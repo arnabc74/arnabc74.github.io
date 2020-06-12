@@ -3,7 +3,7 @@
 <HEAD1>COVIDeo lectures</HEAD1>
 Here is a collection of all my video lectures. All the videos are
 in English, except four, which are in Bengali (marked with (beng)).
-
+If you want to know how I made these, click <LINK to="how.html">here</LINK>.
 <HEAD2>For ISI, Tezpur students</HEAD2>
 <UL>
 <LI><LINK to="https://drive.google.com/open?id=10zqWhG8QmW6HRp5D3KfkZOzhiEq2eyT1">Simulation</LINK></LI>
