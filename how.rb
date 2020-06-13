@@ -25,7 +25,7 @@ the post-processing.
 <HEAD2>Details</HEAD2>
 My videos are nowhere even close to what a good educational video
 should be. Even then, the process to produce them is somewhat
-intricate. I shall split up the details  into   number of
+intricate. I shall split up the details  in a  number of
 sections.
 
 <HEAD3>Design</HEAD3>
@@ -139,7 +139,7 @@ easily lecture for an hour on  a familiar topic. The ideas and
 expressions come rolling automatically, and I can make
 appropriate diagrams and derivations on the fly. It is just like
 moving your facial muscles in a coordinated way while eating. You
-just do in naturally...without thinking. But I ask you to describe
+just do in naturally...without thinking. But if you are asked  to describe
 all those muscle movements in advance, you'll be hard put.</LI>
 <LI>Second, not being an actor, I find it difficult to repeat
 words from a prepared script without appearing mechanical. And
@@ -159,9 +159,9 @@ space that will be needed by it.</LI>
 <LI>the general flow of ideas, e.g., answering questions like: should I start a
 definition, or arrive at the definition after some
 motivation?</LI>
-<LI>where should I shoot? On the roof, or in the drawing room? Or
+<LI>Location: where should I shoot? On the roof, or in the drawing room? Or
 all over the house?
-Shall I need the whiteboard? How much of the types 1, 2 and 3 do I need?</LI>
+Shall I need the whiteboard? How much of the types <I>motivation</I>, <I>discussion</I> and <I>derivation</I> do I need?</LI>
 </UL>
 
 
