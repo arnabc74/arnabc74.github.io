@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE> 
-<UPDT>SUN APR 26 IST 2020</UPDT>
+<UPDT>MON JUN 15 IST 2020</UPDT>
 <HEAD1>Matrix algorithms</HEAD1> 
 
 
@@ -599,7 +599,7 @@ w(L+D+U)\bx = w\bb.
 </D>
 We rearrange this to get the iterative scheme
 <D>
-(D+wL)\bx_{n+1} = w\bb - (wU-(w-1)D)\bx_n.
+(D+wL)\bx_{n+1} = w\bb - (wU+(w-1)D)\bx_n.
 </D>
 This system is easily solved by forward substitution
 since <M>D+wL</M> is lower triangular. Suitable choice
