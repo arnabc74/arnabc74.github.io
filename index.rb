@@ -66,6 +66,14 @@ If you want to know how I made these, click <LINK to="how.html">here</LINK>.
 ]
 </LI>
 
+<LI>Statistical simulation: [
+<LINK to="https://drive.google.com/file/d/17B_2K3jf_JcGjeVbLwXj7w6aSZvc4pgJ/view?usp=sharing">1</LINK>
+]
+</LI>
+
+
+
+
 </UL>
 All comments and queries regarding these videos may be sent to
 arnabc74 at gmail. 
