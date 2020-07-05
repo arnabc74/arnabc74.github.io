@@ -26,7 +26,8 @@ the post-processing.
 My videos are nowhere even close to what a good educational video
 should be. Even then, the process to produce them is somewhat
 intricate. I shall split up the details  in a  number of
-sections.
+sections. <B>Here is <LINK to="rsys.html">a brief tutorial</LINK> explaining an R system
+that I have developed to add 2D animations to my videos.</B>
 
 <HEAD3>Design</HEAD3>
 A good educational video, in my opinion, should have 5
