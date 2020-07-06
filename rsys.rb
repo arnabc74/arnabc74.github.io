@@ -17,7 +17,7 @@ in succession. However, often the animations come in short bursts
 punctuated by long gaps (where I motivate the next animation). If
 I keep on generating one png image per frame, then the total
 number of png images would be huge, which is wasteful, since most of them would show
-the same thing. So the system generates an image only when
+the same thing. To avoid this, the system generates an image only when
 something has changed, and then also generates an MLT file that
 arranges the images properly in the timeline. 
 
@@ -38,11 +38,16 @@ source('../vid.r')
 #for this specific animation.</BLUE>
 myf = function(x) x*(x-1)*(x-1.5)
 a = -0.1; b = 2
+xvals = seq(a,b,len=100)
+yvals = myf(xvals)
+dist = max(yvals) + 5
 
-<BLUE>#Create the animated objects. These are of three types:
+#-------------------------------------------------------------
+<BLUE>#Next, we create the animated objects. These are of four types:
     1. Static curves drawn in an animated way.
     2. Moving curves.
-    3. Anything else.
+    3. Any stationary object.
+    4. Any other animated object.
 
 The first type is created by the ml() function. It takes three
 arguments: a,b, and f, where f:[a,b] -> IR^2 is the parametric
@@ -77,15 +82,33 @@ r5 = list(vs=0,ve=5,ugrid=seq(a,b,len=30),fun=function(ugrid,v) {
     list(x = ugrid-v, y = ugrid^2)
 })
 
-<BLUE>#The third type requires no prior construction.</BLUE>
+<BLUE>#The third type requires no prior construction.
 
+The fourth type is created as a list with the following
+components:
+   1) vs: the initial value of the animation parameter.
+   2) ve: the final value of the animation parameter. 
+   3) fun: a function taking the animation parameter as its only
+           argument.
+
+Here is an example:
+</BLUE>
+mfxAnim = list(vs=pi/2,ve=-pi/2,
+               fun=function(v) {
+                   zvals = yvals*cos(v)
+                   scl = dist/(dist-zvals)
+                   xv = xvals*scl
+                   yv = yvals*sin(v)*scl
+                   lines(xv,yv,lwd=3,col='blue')
+               })
+#-------------------------------------------------------------
 <BLUE>#The system maintains a master list of all the animations. 
 The reset function initializes that list.
 </BLUE>
 reset()
 
-<BLUE>#The masterlist is populated by three functions, nq, nq2
-and nq3, corresponding to the three different types mentioned
+<BLUE>#The masterlist is populated by four functions, nq, nq2, nq3
+and nq4, corresponding to the four different types mentioned
 earlier.
 
 The nq function adds an animation of type 1. Its first argument
@@ -123,6 +146,9 @@ called for. </BLUE>
 nq3(c(7,39,0), f=function() {
     text(b-5,1.5,'f(x+5)',cex=3,col='blue')
     })
+<BLUE>#An example of using nq4 is given below. It is much like
+nq2. </BLUE>
+nq4(finvAnim, c(8,35,0),30)
 
 <BLUE>#The generation of the animations is started by the
 process function. The first 4 parameters specify the screen size
@@ -188,6 +214,17 @@ draw2 = function(thing, ts, te,...) {
 draw3 = function(dot,...) {
     points(dot[1],dot[2],...)
 }
+
+draw4 = function(thing, ts, te) {
+    tn = timeNow
+    if(tn<ts) return(NULL)
+    if(tn>te) tn=te
+    vs = thing$vs
+    ve = thing$ve
+    vn = vs + (tn-ts)/(te-ts)*(ve-vs)
+    tmp = thing$fun(vn)
+}
+
 frameRate = 24300000/810041
 
 tof = function(msf) {
@@ -227,6 +264,18 @@ nq3 = function(i,f,over=Inf) {
     lastTime < <- fi
     if(length(over)>1) over = tof(over)
     master[[length(master)+1]] < <- list(start=fi, end=fi, over=over, fun=f)
+}
+
+nq4 = function(thing, i, dur, over=Inf) {
+    if(length(i)==1)
+        fi = lastTime + i
+    else
+        fi = tof(i)
+    fj = fi + dur
+    lastTime < <- fj
+    if(length(over)>1) over = tof(over)
+    if(over==0) over = fj
+    master[[length(master)+1]] < <- list(start=fi, end=fj, over=over, fun=function(){draw4(thing,fi,fj)})
 }
 
 exec = function(burst) {
