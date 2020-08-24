@@ -1,0 +1,408 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Multiple comparisons">Multiple comparisons</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Fisher's Least Significant Difference">Fisher's Least Significant Difference</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Bonferroni method">Bonferroni method</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Tukey's Honest Significant Difference procedure">Tukey's Honest Significant Difference procedure</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Scheffe's procedure">Scheffe's procedure</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using R">Using R</a>
+</li>
+</ul>
+<hr/>
+
+$\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}$
+<h1><a
+name="Multiple comparisons">Multiple comparisons</a></h1>
+Let's start with an example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;We are testing performance of 4 different fertilisers using
+a 1-way layout. We have 20 more-or-less similar plots. We have
+randomly partitioned them into 4 groups consisting of 5 plots each.
+The plots have been numbered as $(i,j)$
+with $i=1,...,4$ and $j=1,...,5.$, where $i$
+denotes the fertiliser used. The model is 
+$$
+y_{ij} = \mu_i + \epsilon_{ij},
+$$
+where  $\epsilon_{ij}\sim N(0,\sigma^2).$
+<p></p>
+
+The first question that we ask is here is: do the fertilisers
+make any difference to the yield? This corresponds to the hypothesis:
+<blockquote>
+$H_0: \mu_1=\cdots =\mu_4.$ 
+</blockquote>
+This is basically asking if there
+is at least one pair $i_1\neq i_2$ such that $\mu_{i_1}\neq \mu_{i_2}.$
+But the ultimate  question for the farmer will be to 
+identify all such pairs. So now we are
+trying to test all the following hypotheses:
+<blockquote>
+$H_{0i_1i_2}: \mu_{i_1}=\mu_{i_2}$ for $i_1\neq i_2\in\{1,2,3,4\}.$
+</blockquote>
+So we have to perform ${4\choose2} = 6$ tests. 
+<img src="../image/box.png"></p>
+
+This is one example of multiple comparisons. In the general set
+up we have $p$ null hypotheses, $H_{0i},$ for $i=1,...,p.$
+<p></p>
+We want to design a statistical procedure that will come up with
+decisions to accept or reject these $p$ null hypotheses.
+<p></p>
+We shall be given a number $\alpha\in(0,1).$ We must
+guarantee that our statistical procedure is such that if all
+the $H_{0i}$'s are true, then the chance of rejecting at
+least one of them is $\leq \alpha.$ This probability is
+called the <b>experimentwise error rate</b>, and is the analog
+of $P($type I error$)$ in case of usual hypothesis testing.
+Different procedures have been suggested in the literature. We
+discuss a few of them here.
+
+<h2><a
+name="Fisher's Least Significant Difference">Fisher's Least Significant Difference</a></h2>
+Fisher suggested a two stage procedure: In the  first stage we test at level $\alpha$
+<blockquote>$H_0: $ all
+the $H_{0i}$'s are true.</blockquote>
+If this test accepts $H_0,$ then accept all the
+individual $H_{0i}$'s, and there is no need for the second stage.
+
+<p></p>
+If this test rejects $H_0,$ then in the second stage we test each
+individual $H_{0i}$ separately  at level $\alpha,$ and
+report the decisions. In the linear models context,
+each $H_{0i}$ is typically about equality of
+two coefficients. These pairwise comparisons are done using
+2-sample $t$-test  under the homoscedastic
+set up (same $\sigma^2$). This $\sigma^2$ is
+estimated using the <i>entire</i> data.
+<p></p>
+It is easy to see that this procedures indeed keeps the
+experimentwise error rate $\leq \alpha.$
+Consider the event that at least one $H_{0i}$ has been
+rejected. This means $H_0$ was rejected in the first
+stage. This itself has probability $\leq \alpha.$ 
+
+<p></p>
+This procedure occasionally produces counterintuitive result: it
+is possible that $H_0$ is rejected in the first stage, but
+then in the second stage <i>all</i> the $H_{0i}$'s get
+accepted! 
+
+<h2><a
+name="Bonferroni method">Bonferroni method</a></h2>
+Test each $H_{0i}$ at level $\frac{\alpha}{p},$ and report
+the decisions. 
+
+<p></p>
+To see that the experimentwise error rate is $\leq \alpha$
+in this procedure, let $A_i$ be the event that $H_{0i}$
+is rejected. 
+<p></p>
+Now the event that at least one $H_{0i}$ has been rejected
+is $\cup_i A_i.$
+<p></p>
+By Bonferroni inequality $P(\cup_i A_i) \leq \sum_i P(A_i).$
+<p></p>
+If all the $H_{0i}$'s are true, then each $P(A_i)\leq \frac{\alpha}{p}.$
+<p></p>
+Hence the result.
+
+<h2><a
+name="Tukey's Honest Significant Difference procedure">Tukey's Honest Significant Difference procedure</a></h2>
+
+<i>This procedure is only for a special type of multiple
+comparisons.</i> Here we have $k$ independent random
+variables $y_i\sim N(\mu_i,\sigma^2)$ for $i=1,...,k.$
+Also, we have some estimator $S^2$ of $\sigma^2,$ that
+is independent of the $y_i$'s, and 
+$$
+\frac{r S^2}{\sigma^2}\sim\k{r},
+$$
+for some $r.$
+<p></p>
+Our aim is to compare all pairs of $\mu_i$'s, <i>i.e.</i>,
+testing $H_{0ij}:\mu_i = \mu_j$ for all $i\neq j\in\{1,...,k\}.$ 
+<p></p>
+Tukey's method uses the <b>Studentised range</b>
+$$
+Q = \frac{\max y_i-\min_i y_i}{S}.
+$$
+The method crucially depends on the fact that under $H_0: \mu_1
+= \cdots = \mu_k,$ the 
+distribution of $Q$ is free of $\sigma^2$ and the (unknown) common value of
+the $\mu_i$'s. This distribution is denoted
+by $Q(k,r),$ and its quantiles have been tabulated.
+We reject $H_{0ij}$ if 
+$$
+\frac{|y_i-y_j|}{S} &gt; Q(1-\alpha,k,r).
+$$
+To see why this procedure keeps the experimentwise error
+rate $\leq \alpha,$ we reason as follows.
+<p></p>
+Suppose that all the $H_{0ij}$'s are true. Then $H_0$
+must be true. If some $H_{0ij}$ is rejected, then we must be
+having $\frac{|y_i-y_j|}{S} &gt; Q(1-\alpha,k,r).$
+<p></p>
+But clearly 
+$$
+Q \geq \frac{|y_i-y_j|}{S}.
+$$
+Hence we must also have $Q &gt; Q(1-\alpha,k,r).$ This event
+has probability $\alpha$ under $H_0.$
+
+<p></p>
+The set up under which Tukey's method works may seem a contrived
+one. However, that's what we need for multiple comparisons in
+linear models. The following example illustrates this in case of
+2-way ANOVA model.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Our model is
+$$
+y_{ijk} = \mu+\alpha_i+\beta_j + \epsilon_{ijk},
+$$
+where  $\epsilon_{ijk}\sim N(0,\sigma^2)$
+for $i=1,...,I$ and $j=1,...,J$ and $k=1,...,K.$
+We make the estimability assumptions $\sum \alpha_i = 0$ and $\sum \beta_j = 0.$
+<p></p>
+
+We are trying to test $H_{0j_1j_2}: \beta_{j_1}=\beta{j_2}$
+for all pairs $j_1,j_2.$
+<p></p>
+To apply Tukey's procedure here we notice that 
+$$
+\b y_{.j.}\sim N\left(\mu+\beta_j, \tfrac{\sigma^2}{IK} \right).
+$$
+Then $\b y_{.j.}$'s are all independent. Also $MSE$ is
+an estimator of $\sigma^2,$ which is independent of
+the $\b y_{.j.}$'s.
+
+<p></p>
+Hence we can use Tukey's procedure.
+
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Scheffe's procedure">Scheffe's procedure</a></h2>
+This procedure is very specific for linear models. Here we assume
+that all the component null hypotheses are linear. Together, they
+determine a subspace of the parameter space. For instance, the
+parameters are $\mu_1,\mu_2,\mu_3,$ and the two component
+null hypotheses are $H_{01}:\mu_1=\mu_2$
+and $H_{02}:\mu_2=\mu_3,$ then the subspace determined by
+them is $\{(\mu_1,\mu_2,\mu_3)~:~\mu_1=\mu_2=\mu_3\}.$
+<p></p>
+If we add the additional null
+hypothesis $H_{03}:\mu_1=\mu_3,$ the subspace will remain
+the same. In fact, you may add any number of additional null
+hypotheses of the form $H_{0k}:\v\ell'\v \mu =0$
+where $\vec{\mathbb1}'\v\ell = 0,$ and still not change the subspace. 
+<p></p>
+In general, the set up for Scheffe's procedure starts with a
+subspace, $V,$ of the parameter space. Then the component
+hypotheses are all the null hypotheses of the form $H_{0\v\ell}:\v\ell'\v \beta = 0$ such that $\v \beta\in V\Rightarrow
+\v\ell'\v \beta = 0,$ and $\v\ell' \v\beta $ is estimable.
+<p></p>
+We reject $H_{0\v \ell}$ if 
+$$
+\frac{SS(\v \ell' \v\beta)/dim(V)}{MSE} \ge F(1-\alpha,dim(V),
+\text{error df}).
+$$
+Here the $SS(\v\ell' \v \beta)$ denotes the sum of squares
+(<i>i.e.</i>, $RSS_0-RSS$) for testing $H_{0\v\ell}.$ 
+<p></p>
+
+The proof of why this keeps the experimentwise error rate $\le
+\alpha$ is somewhat lengthy, and may be found in Christensen
+(Theorem 5.1.1 and the discussion following it).
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose that we are in the 1-way ANOVA model:
+$$
+y_{ij} = \mu_i + \epsilon_{ij},
+$$
+for $i=1,...,k$ and $j=1,...,t.$
+<p></p>
+We are intereseted in the subspace $\mu_i$'s all same. If we
+call this $V,$ then $dim(V) = 1.$ Here is a
+typical component hypothesis: $\mu_1=\mu_2.$ 
+<p></p>
+To test this we use the test statistic
+$$
+F = \frac{SS(\mu_1-\mu_2)/1}{MSE},
+$$
+where $SS(\mu_1-\mu_2)$ is obtained as $RSS_0-RSS.$
+The $RSS_0$ is computed by maerging the first two classes.
+<p></p>
+ 
+We reject the null hypothesis if $F&gt;F(1-\alpha,1,$error df$).$
+<img src="../image/box.png"></p>
+
+<h2><a
+name="Using R">Using R</a></h2>
+R is not particularly strong about multiple comparison. It does
+provide some of these tests in 3rd party packages. The only
+multiple comparison provided in base R is  Tukey's
+procedure. Unfortunately, it does not work with
+the <code>lm</code> function. Instead it requires the model to be
+fit using the <code>aov</code> function (which actually
+uses <code>lm</code> behind the scene, but packages and prints
+the output in a different form).
+
+<p></p>
+The <code>qtukey</code> function finds the quantiles for
+the $Q$ distribution:
+<font color="red">
+<pre>
+qtukey(0.90,4,3)
+</pre>
+</font>
+Possible a CDF plot would help to visualise the distribution
+better:
+<font color="red">
+<pre>
+x = seq(0,10,len=100)
+y = ptukey(x,4,3)
+plot(x,y,ty='l')
+</pre>
+</font>
+The function <code>TukeyHSD</code> performs the test (or rather
+finds the confidence intervals):
+<font color="red">
+<pre>
+ summary(fm1 &lt;- aov(breaks ~ wool + tension, data = warpbreaks))
+     TukeyHSD(fm1, "tension", ordered = TRUE)
+     plot(TukeyHSD(fm1, "tension"))
+</pre>
+</font>
+The above example has been taken from the online R help. 
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/posthoc.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmposthoc"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

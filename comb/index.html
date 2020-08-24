@@ -1,0 +1,183 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<img align="right" src="image/permcomb.jpg"/>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Permutation and Combination">Permutation and Combination</a>
+</li>
+</ul>
+<hr/>
+<title>Permutation and Combination: অর্ণব চক্রবর্তীর বই</title>
+
+
+<a href="../books/index.html">অন্যান্য বই</a>
+
+<h1><a
+name="Permutation and Combination">Permutation and Combination</a></h1>
+আমার Permutation and Combination বইয়ের webpage এটা৷ বইটার দ্বিতীয় সংস্করণের 
+যা যা ভুলভ্রান্তি এখনও পর্যন্ত ধরা পড়েছে তাদের
+তালিকা দিচ্ছি নীচে৷ 
+
+<ul>
+
+<li>
+<center>
+<fieldset>
+<legend><b>5  নং পাতার অংশ</b></legend><img width="80%" src="image/p5.png"></fieldset>
+</center>
+এখানে Fig 4-এর বদলে Fig 5  হবে৷ ভুলটা ধরেছেন প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b>12  নং পাতার অংশ</b></legend><img width="80%" src="image/p12.png"></fieldset>
+</center>
+এখানে 5-এর বদলে 6  হবে৷ ভুলটা ধরেছেন প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b>23  নং পাতার অংশ</b></legend><img width="80%" src="image/p23.png"></fieldset>
+</center>
+এখানে লাল 6-এর বদলে 2  হবে৷ তাই নীল 15-টা হয়ে যাবে
+ 11.  একই কারণে পরের পাতার লাল 15-টাও 11  হয়ে যাবে--
+<center>
+<fieldset>
+<legend><b>24 
+ নং পাতার অংশ</b></legend><img width="80%" src="image/p24.png"></fieldset>
+</center>
+ ভুলটা ধরেছেন
+ প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>প্রথম অধ্যায়ের 35  নম্বর অংকের উত্তর হবে $3^{10}-2^{10}.$
+ভুলটা ধরেছেন প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>প্রথম অধ্যায়ের 39  নম্বর অংকের উত্তর হবে লেবেল থাকলে $\frac{20\times1\times9\times1}{2}=45.$ লেবেল ছাড়া $5.$
+ভুলটা ধরেছেন প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b>47  নং পাতার অংশ</b></legend><img width="80%" src="image/p47.png"></fieldset>
+</center>
+এখানে নীল 5-টা হবে না৷ ভুলটা ধরেছেন প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b>51  নং পাতার অংশ</b></legend><img width="80%" src="image/p51.png"></fieldset>
+</center>
+এখানে নীল 60-গুলো হবে 360. তাই লাল 66660-টা হয়ে যাবে
+ 399960.  ভুলটা ধরেছেন
+ প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b>52  নং পাতার অংশ</b></legend><img width="80%" src="image/p52.png"></fieldset>
+</center>
+এখানে নীল $m$-টা $n$  হবে৷
+ভুলটা ধরেছেন  প্রফেসর অশোক মল্লিক৷
+</li>
+
+<li>দ্বিতীয় অধ্যায়ের 58  নং পাতায় Exercise 23-এ দুটো অংশ আছে৷ Hint  দেবার সময়ে 
+59  নং পাতায় ওদের উল্টে ফেলেছি ভুল করে৷ 
+এখানে নীল $m$-টা $n$  হবে৷
+ভুলটা ধরেছেন  প্রফেসর অশোক মল্লিক৷
+</li>
+
+
+</ul>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

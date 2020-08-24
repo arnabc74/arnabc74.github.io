@@ -1,0 +1,551 @@
+
+<NOTE>
+
+@{<E>
+<M>\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}</M>
+So far we have not explicitly put any assumption on the behaviour
+of the error. Our approach has been informal, and based on common
+sense. But even this informal approach has secretly relied on
+some assumptions. The following example shows this.
+
+<EXM>We consider the simplest example of measuring the same
+length repeatedly. Suppose that the first 10 measurements are
+taken by some precise instruments, and the remaining 10 by a
+less precise instrument. Now taking simple average does not seem
+the best thing to do. We feel that we should give more weight to
+the precise measurements.</EXM>
+
+<COMMENT>
+(local-set-key [f2] (lambda() (interactive) (insert-string "\\v ")))
+</COMMENT>
+<HEAD1>Gauss-Markov set up</HEAD1>
+
+Here are the assmptions that are commonly made: the errors have
+mean 0, have the same (finite) variance, and are uncorrelated among themselves. This is called
+the <B>Gauss-Markov set up</B>.
+
+<BOX name="Gauss-Markov set up">
+<M>\v y = X \v \beta + \v \epsilon, </M> where <M>E(\v \epsilon)=\v 0</M> and <M>V(\v \epsilon)=\sigma^2 I.</M>
+</BOX>
+
+We shall investigate the properties of the common sense method
+under this model, i.e., find expectation and variance-covariance
+matrix for the least squares estimators. The first hurdle that we
+encounter is that least squares estimators may not be
+unique. There are two ways to tackle this problem:
+<UL>
+<LI>The first way (taken by most foreign authors) is to assume
+that we have dropped redundant columns from the design matrix,
+so that <M>X</M> is now full column rank (leading to some
+particular choice of least squares estimators). These authors
+freely use the expression <M>(X'X)^{-1},</M> assuming <M>X</M>
+is full column rank. </LI>
+<LI>The second way (what we shall take) is to notice that
+certain properties of the least squares estimators is invariant
+in spite of the nonuniqueness of the least squares estimators.</LI>
+</UL>
+The first approach is mathematically easier and is like an
+engineering approach: get the thing done, and that's it! We start
+by dropping redundant columns in some arbitrary way, and do not
+care how that arbitrariness affects our final result. The
+second approach takes care of that. 
+
+<HEAD2>Using  projection</HEAD2>
+Remember the following picture:
+<IMG web="projmod.png"/>
+Here the plane represents <M>\col(X).</M> The vector <M>\hv y</M>
+is the (orthogonal) projection of <M>\v y</M>
+onto <M>\col(X).</M> Let's understand what this means. 
+<P/>
+<M>\v y\in\rr^n</M> and <M>\col(X)</M> is a subspace
+in <M>\rr^n.</M> Now, <M>\col(X)</M> has an orthogonal complement
+inside <M>\rr^n.</M> We denote it by <M>\col(X)^\perp.</M>
+(Basically <M>\col(X)^\perp</M> is just the set of all vectors
+orthogonal to <M>\col(X).</M> This set also happens to be a
+subspace.) 
+
+<P/>
+Then any vector <M>\v x\in\rr</M> can be uniquely split up into
+two parts: 
+<D>
+\v x = \v x_1 + \v x_2,
+</D>
+where <M>\v x_1\in\col(X)</M> and <M>\v x_2\in\col(X)^\perp.</M>
+The map <M>\v x\mapsto \v x_1</M> is called the <I>orthogonal
+projection onto <M>\col(X)</M>.</I>
+<P/>
+We like to consider it as a map from <M>\rr^n</M> to <M>\rr^n</M>
+(the second <M>\rr^n</M> is just the codomain, the range being
+<M>\col(X)</M>). 
+<P/>
+Think of <M>\v x_1</M> as the shadow of <M>\v x</M> on the
+screen <M>\col(X)</M> under light shining orthogonally on the screen.
+<P/>
+Clearly, the projection map is
+linear. <HIDE lab="clear"><MSG>(Not clear?)</MSG><HIDDEN>
+If the object <M>\v x</M> is scaled, the shadow also scales by
+the same factor. The shadow of a parallelogram is again a  parallelogram.
+</HIDDEN></HIDE>
+So we may represent it by a matrix <M>P_X,</M> say, which
+is <M>n\times n,</M> since the map is from <M>\rr^n</M> to <M>\rr^n.</M>
+<P/>
+With this notation we may write <M>\hv y = P_X\v y.</M>
+
+<HEAD3>Some properties of <M>P_X</M></HEAD3>
+We shall rarely need to write the explicit form of <M>P_X.</M>
+All that we shall need are the following properties:
+<OL>
+<LI><M>P_X</M> is a symmetric and idempotent.</LI>
+<LI><M>\col(P_X) = \col(X).</M></LI>
+<LI>If <M>\v x\in\col(X),</M> then <M>P_X \v x = \v x.</M> In
+particular, <M>P_X X = X.</M></LI>
+</OL>
+From these we can easily derive expressions for <M>E(\hv y)</M>
+and <M>V(\hv y).</M>
+
+<THM>Under the Gauss-Markov set up
+<M>E(\hv y) = X \v \beta.</M>
+</THM>
+<PF>
+<M>E(\hv y) = E(P_X\v y) = P_X E(\v y) = P_X X \v \beta = X\v \beta.</M>
+</PF>
+
+<EXR>Derive an expression for <M>V(\hv y)</M> under the
+Gauss-Markov set up.</EXR>
+<HEAD2>Non-uniqueness of least square estimators</HEAD2>
+
+<EXM>
+Consider the 2-way ANOVA model:
+<D>
+<MAT>y_{11}\\y_{12}\\y_{13}\\y_{21}\\y_{22}\\y_{23}</MAT> = 
+<MAT>
+1 & 1 & 0\\
+1 & 1 & 0\\
+1 & 1 & 0\\
+1 & 0 & 1\\
+1 & 0 & 1\\
+1 & 0 & 1
+</MAT><MAT>\mu\\\alpha_1\\\alpha_2</MAT> + 
+<MAT>\epsilon_{11}\\\epsilon_{12}\\\epsilon_{13}\\\epsilon_{21}\\\epsilon_{22}\\\epsilon_{23}</MAT>.
+</D>
+Here is one least square estimators of <M>\v\beta =
+(\mu,\alpha_1,\alpha_2)'.</M>
+<Q>
+<M>\h \mu = 0,</M> <M>\h \alpha_1 = \b y_{1.},</M> <M>\h \alpha_2 = \b y_{2.}.</M>
+</Q>
+Here is another:
+<Q>
+<M>\h \mu = \b y_{..},</M> <M>\h \alpha_1 = \b y_{1.}-\b y_{..},</M> <M>\h \alpha_2 = \b y_{2.}-\b y_{..}.</M>
+</Q>
+You can create infinitely many more by taking different solutions
+of the normal equations. Here is a different kind of least square
+estimator, made by "mixing" based on <M>y:</M>
+<MULTILINE>
+\h \mu & = & <CASES>0<IF>y_{11}>0</IF>\b y_{..}<ELSE/></CASES>\\
+\h \alpha_1 & = & <CASES>\b y_{1.}<IF>y_{11}>0</IF>\b y_{2.}-\b y_{..}<ELSE/></CASES>\\
+\h \alpha_2 & = & <CASES>\b y_{2.}<IF>y_{11}>0</IF>\b y_{2.}-\b y_{..}<ELSE/></CASES>
+</MULTILINE>
+</EXM>
+
+Let this example convince you that a general least square
+estimator <M>\hv \beta </M> is of the form <M>\hv \beta =
+\h\beta_* + v(\v y)</M> where <M>\hv \beta_*</M> is any particular
+least square estimator and <M>v:\rr^n\to\nul(X'X).</M> 
+<P/>
+This rather complicated form prevents us from
+finding <M>E(\hv\beta).</M> If you do not see why, just try to
+solve the following exercise.
+
+<EXR>Again consider the 2-way ANOVA model from the last
+example. Find <M>E(\h \mu)</M> for the "mixed" version of <M>\h
+\mu </M> given there. </EXR>
+
+
+However, there are situations where this arbitrariness of the
+choice of least square estimator can do us no harm. The main idea
+behind all such results is that <M>\hv y = X\hv \beta </M> is
+always the same. It is the projection of <M>\v y</M>
+onto <M>\col(X).</M> So if we have something involving an
+arbitrary least square estimator <M>\hv \beta,</M> we try to see
+if we expres that in terms of <M>\hv y.</M> If we can,  we are
+saved, the arbitrariness cannot harm us anymore.
+
+<P/>
+
+Keep this in mind as you solve the exercise below. 
+
+<EXR>Same example continued. For all the three choices of <M>\hv
+\beta</M> find <M>\h \mu + \h \alpha_1.</M> Are you getting
+different answers? Try some other least square estimators to see
+if you get different values?</EXR>
+
+Again the "tweak without letting off the alarm" game helps to
+understand this. When we move from one least square estimator to
+another, we are never allowing the alarm to go off, i.e., the
+"watched" quantities remain the same. 
+
+
+<P/>
+The following theorem makes this intuition precise.
+
+<THM>
+<M>\v \ell' \hv\beta </M> will be the same for all choices of the
+least square estimator if and only if <M>\v \ell\in\row(X).</M>
+</THM>
+<PF>
+Let <M>\hv \beta_*</M> be some particular least square estimator. Then
+the set of all least square estimators is <M>\hv \beta_* + \nul(X'X).</M>
+<P/>
+So the required condition is satisfied if and only if <M>\v \ell\in (\nul(X'X))^\perp = \row(X'X) = \row(X).</M>
+</PF>
+We could have also used the "<M>\hv y</M> is invariant" idea for
+the if part:
+<Q><I>If part</I>: Let <M>\v\ell\in\row(X).</M> Then <M>\v\ell' = \v
+b' X</M> for some <M>\v b.</M>
+<P/>
+So <M>\v\ell'\hv \beta = \v b' X\hv \beta  = \v b' \hv y.</M>
+Since <M>\hv y</M> is invariant under choice of <M>\hv \beta,</M>
+hence done.
+</Q>
+Unfortunately, the only-if part can't be tackled like this.
+<P/>
+
+Notice that this theorem makes no use of the Gauss-Markov set
+up. It is a pure linear algebraic fact. Interestingly enough, the
+condition <M>\v\ell\in\row(X)</M> also crops up in the context of
+the Gauss-Markov set up.  To see this we start with a definition.
+<DEFN name="Estimable">
+Let <M>\v \ell\in\rr^p.</M> We say that <M>\v \ell' \v \beta</M>
+is <B>(linearly unbiasedly) estimable</B> if there is some fixed 
+<M>\v b\in\rr^n</M> (possibly depending on <M>\v \ell</M>) such that 
+<M>E(\v b' \v y) = \v \ell' \v \beta </M> for all possible values of <M>\v \beta.</M>
+</DEFN>
+
+The next theorem is where the condition <M>\v\ell\in\row(X)</M>
+makes its second appearance.
+
+<THM>Gauss-Markov set up.
+<M>\v \ell' \v \beta</M> is estimable iff <M>\v \ell\in\row(X).</M>
+</THM>
+<PF>
+<I>Only if part:</I> Let <M>\v \ell' \v \beta</M> be estimable. Then  
+there is some <M>\v b\in\rr^n</M> such that <M>E(\v b' \v y) = \v \ell'
+\v\beta </M> for all values of <M>\v\beta.</M> 
+<P/>
+So <M>\v b'X \v \beta  = \v \ell' \v \beta </M> for all <M>\v \beta.</M>
+<P/>
+This means <M>\v \ell' = \v b'X.</M> Hence <M>\v \ell\in\row(X),</M> as
+required. 
+<P/>
+
+<I>If part:</I> Let <M>\v\ell\in\row(X).</M> Then <M>\v\ell' =
+b'X</M> for some <M>b\in\rr^n.</M>
+
+<P/>
+Consider the estimator <M>\v b' y.</M> Its expectation is 
+<D>
+E(\v b' \v y) = \v v'X \v\beta = \v\ell' \v\beta,
+</D>
+as required.
+</PF>
+
+The two theorems together show that
+estimability of <M>\v\ell' \v\beta </M> is equivalent to uniqueness
+of <M>\v\ell' \hv\beta</M> (both the conditions being equivalent
+to the common condition <M>\v\ell\in\row(X)</M>).
+
+<P/>
+Clearly, finding <M>\v\ell</M>'s in <M>\row(X)</M> is of great
+importance. This motivates the following definition.
+
+<DEFN name="Contrast">
+Linear model <M>\v y = X \v \beta + \v \epsilon.</M> By
+a <B>contrast</B> we understand <M>\v\ell'\v \beta </M> for some <M>\v\ell\in\row(X).</M>
+</DEFN>
+<FNOTE><I><B>Warning:</B></I> This is not the "standard definition". The
+"standard definition" is "<M>\v\ell'\v \beta</M>, where the
+components of <M>\v\ell</M> add up to 0."
+Examples are <M>\alpha_1-\alpha_2</M>
+and <M>\alpha_1-2\alpha_2+\alpha_3.</M> However, nobody would
+consider a "contrast" like <M>\mu-\alpha_1</M> that compares
+"different types" of parameters. Looking at the
+various usage, it seems to me that the definition I gave is what
+everybody uses behind the scene. The cases
+like <M>\alpha_1-\alpha_2</M>
+or <M>\alpha_1-2\alpha_2+\alpha_3</M> being the most frequntly
+used contrasts.</FNOTE>
+<P/>
+
+While row-echelon forms and other heavy weight tools
+from linear algebra might help in general, often you can pick
+such <M>\v\ell</M>'s by our familiar "tweak without letting off the
+alarm" game. 
+Try to tweak the components of <M>\v\beta</M>  without
+changing <M>X \v\beta.</M> The things that do not change indicate
+the <M>\v\ell</M>'s. The following example illustrates this. 
+
+<EXM>Same example continued. We shall show by the tweaking game
+that <M>\mu </M> is not estimable. 
+<SOLN/>
+Add 1 to <M>\mu </M>, and adust by subtracting 1 from
+the <M>\alpha_i</M>'s. Clearly, the distrbution of the data does
+not change. So there is no way you can meaningfully estimate <M>\mu</M> from
+the data. 
+</EXM>
+
+
+
+<THM>Gauss-Markov set up. Let <M>\v\ell\in\row(X)</M> be such
+that <M>\v\ell'\v \beta </M> is estimable. Let <M>\hv
+\beta</M> be any least square estimator.
+Then <M>\v\ell'\hv \beta</M> (which is the same for all choices
+of the least square estimator) is unbiased for <M>\v\ell' \v\beta.</M></THM>
+<PF>
+Here <M>\v\ell' = \v b' X</M>
+for some <M>\v b.</M> 
+<P/>
+Hence <M>E(\v\ell' \hv \beta) = E(\v b'X\hv \beta) = E(\v b'\hv
+y) = \v b'E(\hv y) = \v b' X \v \beta  = 
+\v\ell' \v\beta,</M> as required.
+</PF>
+
+<DEFN name="BLUE">
+Let <M>\v\ell' \v\beta </M> be estimable.  Let <M>b\in\rr^n</M> be
+any fixed vector. We say that <M>b'y</M> is a <B>best linear
+unbiased estimator (BLUE)</B> for <M>\v\ell' \v\beta </M> if 
+<UL>
+<LI>it is unbiased</LI>
+<LI>and has the minimum possible variance among all linear
+unbiased estimators.</LI>
+</UL>
+</DEFN>
+
+<THM name="Gauss-Markov theorem">
+If <M>\v\ell' \v\beta </M> is estimable then <M>\v\ell' \hv\beta </M> is
+its BLUE, and is unique with probability 1. 
+</THM>
+<PF>
+<I>Step 1:</I> Shall show unbiasedness. 
+
+<P/>
+
+Estimable, hence <M>\v\ell \in\row( X).</M>
+
+<P/>
+Now <M>\row(X) = \row(X'X).</M> So <M>\v\ell' = \v b'X'X</M>  for some <M>\v b\in\rr^p.</M>
+
+<P/>
+Hence <M>E(\v\ell'\hv \beta) = E(\v b'X'X\hv \beta) = \v b'E(X'\v   y) =
+= \v b'X'X \v\beta = \v\ell' \v\beta,</M> as required.
+<P/>
+<I>Step 2:</I> Shall show that for any unbiased <M>\v c'\v y</M> we
+have <M>V(\v c'\v y) \ge V(\v\ell' \hv \beta).</M>
+<MULTILINE>
+V(\v c'\v y) 
+& = & V(\v c'\v y - \v\ell'\hv \beta+\v\ell'\hv \beta)\\
+& = & V(\v c'\v y - \v\ell'\hv \beta)+V(\v\ell'\hv \beta) + 2cov(\v c'\v y - \v\ell'\hv \beta,\v\ell'\hv \beta).
+</MULTILINE>
+Enough to show that the covariance vanishes. 
+<P/>
+Now <M>\v\ell'\hv \beta  = b' X'X\hv \beta = b'X'\v y.</M> So the covariance is
+<D>
+cov(\v c'\v y - \v b'X'\v y,\v b'X'\v y) = \sigma^2 (\v c'-\v b'X')X\v b 
+= \sigma^2 (\v c'X - \v b'X'X) \v b.
+</D>
+Now since <M>\v c'\v y</M> and <M>\v\ell'\hv \beta = \v b'X'\v y</M> are both
+unbiased, hence <M>E(\v c'\v y) = E(\v b'X'\v y)</M>, i.e., <M>\v c'X \v\beta =
+\v b'X'X \v\beta.</M>
+<P/>
+Since this holds for all values of <M>\v\beta,</M> hence <M>\v c'X  = \v b'X'X.</M>
+<P/>
+Hence the covariance is zero, as required.
+<P/>
+<I>Step 3:</I> Shall show uniqueness. 
+
+<P/>From above we have <M>V(\v c'\v y) = V(\v\ell'\hv \beta)+
+V(\v c'\v y-\v\ell'\hv \beta).</M> Hence
+if <M>V(\v c'\v y) = V(\v\ell'\hv \beta),</M> then we see
+that <M>V(\v c'\v y-\v\ell'\hv \beta)=0.</M> Hence <M>\v c'\v y-\v\ell'\hv \beta =
+0</M> with probability 1 (since both are unbiased).
+</PF>
+
+<HEAD3>Variance and covariance</HEAD3>
+<EXM>We consider the 1-way ANOVA model once again:
+<D>
+y_{ij} = \mu + \alpha_i + \epsilon_{ij},
+</D>
+for <M>i=1,2</M> and <M>j=1,...,3.</M> We have seen that the BLUE
+for <M>\mu + \alpha_i</M> is <M>\b y_{i.}.</M> Its variance
+is <M>[[\sigma^2][3]].</M> Also the covariance is 0.
+</EXM>
+
+
+<THM>Consider the linear model <M>y = X \v\beta + \epsilon </M>
+under the Gauss-Markov set up. Let <M>L' \v\beta </M> be
+estimable with <M>L'=B'(X'X).</M> Then the variance-covariance matrix of its
+BLUE <M>L' \hv \beta </M> is <M>\sigma^2 B'(X'X)B.</M>
+</THM>
+<PF>
+<M>L'\hv \beta = B'(X'X)\hv \beta = B'X'y.</M>
+<P/>
+Its variance-covariance matrix is 
+<D>
+B'X' (\sigma^2 I) X B = \sigma^2 B'X'X B,
+</D>
+as required.
+</PF>
+
+In the special case where <M>X</M> is full column rank, we
+have <M>V(\hv \beta) = \sigma^2 (X'X) ^{-1}.</M>
+
+<HEAD2>Estimating <M>\sigma^2 </M></HEAD2>
+One can guess that the residual <M>y-\h y</M> should help us to
+estimate <M>\sigma^2.</M> The following example is or first
+attempt to turn this guess into an estimator.
+
+<EXM>Consider the meaurement model 
+<D>
+y_i = \mu + \epsilon_i,
+</D>
+where <M>\epsilon_i</M>'s are uncorrelated with zero mean and
+variance <M>\sigma^2 < \infty.</M> 
+<P/>
+Here we know that an unbiased estimator for <M>\sigma^2 </M> is 
+<D>
+\h \sigma^2 = [[1][n-1]] \sum (y_i-\b y_.)^2.
+</D>
+</EXM>
+
+Here the denominator <M>n-1</M> may be naively thouht of
+as <M>n-</M>number of parameters. The following example sharpens
+this naive understanding. 
+
+<EXM>Consider the meaurement model 
+<D>
+y_i = \mu_1+\mu_2 + \epsilon_i,
+</D>
+where <M>\epsilon_i</M>'s are uncorrelated with zero mean and
+variance <M>\sigma^2 < \infty.</M> 
+<P/>
+Actually this is the same model as before. So still an unbiased estimator for <M>\sigma^2 </M> is 
+<D>
+\h \sigma^2 = [[1][n-1]] \sum (y_i-\b y_.)^2.
+</D>
+</EXM>
+So the denominator is more correctly thought of
+as <M>n-</M>number of estimable parameters. Still this is not
+perfect because if <M>\mu_1+\mu_2</M> is estimable, so
+is <M>2(\mu_1+\mu_2).</M> Hence we sharpen this further
+to <M>n-</M>number of independent estimable prameters. 
+
+<P/>
+A smarter formulation is as follows.
+
+<THM>
+In the linear model <M>y = X \v\beta + \epsilon </M> under the
+Gauss-Markov set up 
+<D>
+\h \sigma^2 = [[\|y-\h y\|^2 ][n-r(X)]]
+</D>
+is an unbiased estimator of <M>\sigma^2.</M>
+</THM>
+<PF>
+<MULTILINE>
+E(\|y-\h y\|^2) 
+& = & E[ (y-\h y)' (y-\h y) ]\\
+& = & E[ y'(I-P_X)y ]\\
+& = & E[ tr(y'(I-P_X)y) ]\\
+& = & E[ tr((I-P_X)yy') ]\\
+& = & tr((I-P_X)E(yy').
+</MULTILINE>
+Now 
+<D>
+E(yy') = E[(X \v\beta + \epsilon)(X \v\beta + \epsilon)'] 
+= X\v\beta\v\beta' X + E(\epsilon \epsilon') 
+= X\v\beta\v\beta' X + \sigma^2 I.
+</D>
+So 
+<D>
+E(\|y-\h y\|^2)  = tr((I-P_X)(X\v\beta\v\beta' X + \sigma^2 I))  =
+\sigma^2 tr(I-P_X) = \sigma^2 (n-r(X)).
+</D>
+</PF>
+
+<HEAD1>Normal errors</HEAD1>
+Here we assue that the errors are IID <M>N(0,\sigma^2).</M>
+<HEAD2>MLE</HEAD2>
+<THM>
+<M>\hv \beta </M> is MLE of <M>\v\beta </M> if and only if it is a
+least square estimator. Also MLE of <M>\sigma^2 </M> is 
+<D>
+\h \sigma^2 = [[RSS][n]]. 
+</D>
+Here <M>RSS</M> means Residual Sum of Squares or <M>\|\v y-\hv y\|^2.</M>
+</THM>
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>Consider the 2-way layout without interaction: <M>y_{ij} =
+\mu+\alpha_i+\beta_j+\epsilon_{ij},</M> where <M>i=1,...,I</M>
+and <M>j=1,...,J.</M> Assume the Gauss-Markov set up. Find an
+unbiased estimator of <M>\sigma^2.</M></LI>
+
+<LI>Suppose that you are asked to repeat the above exercise using the model with interaction: <M>y_{ij} =
+\mu+\alpha_i+\beta_j+\gamma_{ij}+\epsilon_{ij},</M> where <M>i=1,...,I</M>
+and <M>j=1,...,J.</M> Do you suspect a problem? Actually try to
+solve the problem to confirm your suspicion (if any).</LI>
+
+<LI>Gauss-Markov theorem made assumptions on only the first two
+moments of the error, and concluded that least square estimator
+of any estimable parametric function is its BLUE (i.e., minimum
+variance among all <I>linear</I> unbiased estimators. Show that
+if we also assume Gaussian distrbution for the errors, the least square
+estimator of an estimable parametric function is its UMVUE
+(i.e., minimum variance among <I>all</I> unbiased estimators). </LI>
+
+<LI>Let <M>\v\ell\in\rr^n.</M> Call <M>\v\ell'\v y</M> a Linear
+Zero Function (LZF) if <M>\forall \v \beta ~~E(\v\ell'\v y) =
+0.</M> Show that this happens
+iff <M>\v\ell\in\col(X)^\perp.</M></LI>
+
+<LI>Continutation of the above exercise. Show that <M>\v\ell'\v
+y</M> is an LZF iff there is a vector <M>\v v</M> such
+that <M>X'\v v = \v 0</M> and <M>\v\ell'\v y = \v v'\v y</M>
+with probability 1.</LI>
+
+<LI>Why are LZF's useful? We know that "ideally" they should be
+0. So their deviation from 0 gives us an idea
+about <M>\sigma^2.</M> It is easy to see that the set of all
+LZF's is a vector space. The larger it is (i.e., the bigger its
+dimension) we should expect <M>\h \sigma^2</M> to be more
+reliable. Come up with a mathematical result that captures this idea.</LI>
+<LI>This exercise revisits the very first problem encounted in
+this page: measurements by intruments of different precision
+levels. A fixed unknown length <M>\ell</M> is measured 10 times
+independently by a precise instrument, and then again 10 more
+time independently by a less precise instrument. The model is 
+<D>
+y_i = \ell + \epsilon_i,
+</D>
+where <M>\epsilon_i</M>'s are uncorrelated, and have mean 0. Also
+<D>
+V(\epsilon_i) = <CASES>\sigma^2 <IF>i=1,...,10</IF>2 \sigma^2 <IF>i=11,...,20</IF> </CASES>
+</D>
+for some unknown <M>\sigma^2>0.</M>
+Reduce this to a Gauss-Markov set up, and
+estimate <M>\ell</M> and <M>\sigma^2.</M> 
+</LI>
+
+<LI>Let <M>\Sigma </M> be any <I>known</I> PD matrix (i.e., <M>\Sigma  =
+S S'</M> for some nonsingular matrix <M>S</M>). Consider the
+linear model <M>\v y = X \v\beta + \v \epsilon, </M>
+where <M>E(\v \epsilon)=\v 0</M> and <M>V(\v \epsilon)=\sigma^2
+\Sigma</M> for some unknown <M>\sigma^2>0.</M> Reduce this to a <DEST name="ex">Gauss-Markov</DEST> set up, and
+estimate <M>\v \beta</M> and <M>\sigma^2.</M> </LI>
+</OL>
+<DISQUSE id="lmmodel"
+url="http://www.isical.ac.in/~arnabc/linmod/model. html"/>
+</E>@}
+</NOTE>

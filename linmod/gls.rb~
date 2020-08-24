@@ -1,0 +1,353 @@
+<NOTE>@{
+<M>\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}</M>
+
+<HEAD1>Generalised least squares (GLS)</HEAD1>
+The Gauss-Markov set up postulates an error covariance matrix of
+the form <M>\sigma^2 I.</M> However, we have seen in an
+exercise <LINK to="model.html#ex">earlier</LINK> that we can
+reduce any covariance matrix of the form <M>\sigma^2 \Sigma </M>
+(for a <I>known</I> PD matrix <M>\Sigma</M>) to the Gauss-Markov
+set up by replacing <M>\v y</M> with <M>S ^{-1} \v y,</M>
+where <M>\Sigma = S S'.</M> More specifically, let the original
+model be 
+<D>
+\v y = X \v \beta + \v \epsilon,
+</D>
+where <M>\v \epsilon \sim N_n(\v 0, \sigma^2 \Sigma)</M> for
+some <I>known</I> PD matrix <M>\Sigma</M> and
+some <I>unknown</I> <M>\sigma^2>0.</M> 
+<P/>
+Then we find <HIDE lab="chol"><MSG>(How?)</MSG><HIDDEN>Such an <M>S</M> may be found by
+Cholesky decomposition (sounds like Kolesky). 
+<R>
+Sigma = matrix(c(2,1,1,2),2)
+S = chol(Sigma)
+t(S) %*% S 
+</R>
+</HIDDEN></HIDE>some nonsingular <M>S</M> such that <M>\Sigma =
+S'S</M>, and multiply the model from the left by <M>T=(S ^{-1})'</M>
+to get the model:
+<D>
+T \v y = T X \v \beta + T \v \epsilon.
+</D>
+Here <M>T\v \epsilon \sim N_n(\v 0, \sigma^2 I).</M>
+Thus, we are back to the Gauss-Markov set up. This is called
+the <B>Generalised Least Squares (GLS)</B> method. In the special
+case when <M>\Sigma</M> is a diagonal matrix (with unequal
+diagonal entries) it is also 
+called the <B>weighted least squares</B> method.
+<P/>
+
+
+In many cases however, <M>\Sigma </M>
+will involve unknown parameters.
+
+<EXM>
+Sometimes we make repeated measurements under the same input
+combination to get an idea of the effect of the random errors. If
+these repeated measurements are made quickly in succession, then
+these measurements may be correlated. A typical model could be
+like 
+<D>
+y_{ij} = \mu + \alpha_i + \epsilon_{ij},
+</D>
+where <M>i=1,...,3</M> and <M>j=1,2.</M> Here 
+ <M>\epsilon_{i1}, \epsilon_{i2}</M> could have some unknown
+ correlation <M>\rho.</M> Thus the covariance matrix of <M>\v
+ \epsilon </M> is <M>\sigma^2\\Sigma(\rho),</M>
+ where <M>\Sigma(\rho)</M> is the correlation matrix of the
+ following form:
+<D>
+\Sigma(\rho) = <MAT>
+1    & \rho & 0    & 0     & 0& 0\\
+\rho & 1    & 0    & 0     & 0& 0\\
+ 0   & 0    & 1    & \rho  & 0& 0\\
+ 0   & 0    & \rho & 1     & 0& 0\\
+ 0   & 0    & 0    & 0     & 1    & \rho\\
+ 0   & 0    & 0    & 0     & \rho & 1
+</MAT>.
+</D>
+</EXM>
+In general, we may be dealing with linear models of the form 
+<D>
+\v y = X\v \beta + \v \epsilon\text{ where } E(\v \epsilon)=\v0
+and  V(\v \epsilon) =  \sigma^2 \Sigma(\v \theta).
+</D>
+We shall assume that the form of the correlation
+matrix <M>\Sigma(\cdot)</M> is known,
+but <M>\v \theta</M> and <M>\sigma^2 </M> is unknown. 
+
+<P/>
+In the example above we had <M>\v \theta = \rho.</M>
+<P/>
+Typically, we may estimate <M>\v
+\beta,</M> <M>\sigma^2 </M> and <M>\v
+\theta</M> using (some variant of) maximum likelihood method. A
+simpler method called 
+<B>Iteratedly Reweighted Least Squares (IRLS)</B> is sometimes
+used to get good initial values for the interations required by
+the likelihood method. 
+
+<P/>
+ The
+IRLS technique starts with a guess of <M>\v \theta,</M> say <M>\v
+\theta_0.</M> Then it performs GLS assuming that this to be the
+ true calue of <M>v \theta.</M> The coeffcients are estimated
+ from this fit, and residuals are computed. Then <M>\v \theta</M>
+ is estimated based on these residuals (depending on the form
+ of <M>\Sigma(\v \theta).</M> Let the new estimates by <M>\v
+ \theta_1.</M> Then the whole process of GLS is repeated with
+ these. We continue like this until convergence.
+
+<HEAD1>Using R</HEAD1>
+The <CODE>gls</CODE> function of the R package <CODE>nlme</CODE>
+performs linear model fitting in presence of correlated,
+heterscedastic errors. Notice the slight mismatch in
+terminology. The standard definition of GLS assumes
+a <I>known</I> correlation matrix, while R
+function <CODE>gls</CODE> allows the correlation matrix to have
+unknown parameters. The exact form is 
+<D>
+\sigma^2 D \Sigma D,
+</D>
+where <M>D</M> is a diagonal matrix involving some
+parameters, <M>\Sigma</M> is a correlation matrix involving a
+different set of parameters, and <M>\sigma^2</M> is a scalar parameter.
+<P/>
+ There are are some standard form of
+correlation matrices already built-in:
+<PRE>
+  corAR1    : autoregressive process of order 1.
+
+ corARMA    : autoregressive moving average process, with arbitrary orders
+          for the autoregressive and moving average components.
+
+ corCAR1    : continuous autoregressive process (AR(1) process for a
+          continuous time covariate).
+
+corCompSymm : compound symmetry structure corresponding to a constant
+          correlation.
+
+  corExp    : exponential spatial correlation.
+
+ corGaus    : Gaussian spatial correlation.
+
+  corLin    : linear spatial correlation.
+
+corRatio    : Rational quadratics spatial correlation.
+
+corSpher    : spherical spatial correlation.
+
+ corSymm    : general correlation matrix, with no additional structure.
+</PRE>
+
+<P/>
+Here is an example taken from the <CODE>gls</CODE> documentation.
+The data set is <CODE>Ovary</CODE> that counts the number of
+follicles in the ovaries of 11 mares during a menstrual
+cycle. The response variable is a count, but here we treat it as
+a continuous variable. The input is time. 
+<R>
+gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
+                weights = varPower(),                     #Specifying the structure of the D matrix
+                correlation = corAR1(form = ~ 1 | Mare))  #Specifying the structure of the Sigma matrix
+</R>
+
+<HEAD1>REML</HEAD1>
+There is no single expansion for the abbreviation REML. Some
+expand it to REsidual Maximum Likelihood, while others prefer
+REduced Maximum Likelihood or REstricted Maximum Likelihood.
+<P/>
+
+We know that MLE of variance parameters are usually biased. The
+simplest case is estimating the variance based
+on <M>X_1,...,X_n</M> IID with unknown variance <M>\sigma^2.</M>
+The MLE is <M>\h \sigma^2 = [[1n]]\sum (X_i-\b X)^2,</M> which is
+biased. We can of course tweak it lightly to get the unbiased
+estimator <M>\h \sigma^2 = [[1][n-1]]\sum (X_i-\b X)^2.</M> 
+<P/>
+This may be generalised to <M>\h \sigma^2 = [[RSS][n-r]]</M> for
+the linear model <M>y = X \beta + \epsilon.</M>
+
+<P/>
+It is possible to slightly tweak the ML procedure so that it
+automatically produces the unbiased estimates. The teaked version
+is called <B>REML</B>.  First we
+need to understand the usual ML method for singular
+distributions. 
+
+<EXM>
+Suppose our data consist of <M>X_1,X_2</M> IID <M>N(\mu,1).</M>
+Then we know how to form the likelihood: just use the joint
+density. However, if you are also given <M>X_3 = X_1+X_2,</M>
+then the joint distribution of <M>(X_1,X_2,X_3)</M> is singular
+(it resides in a lower dimensional space in <M>\rr^3</M>), and
+hence has no density. How do form the likelihood here?
+<SOLN/>
+Consider the situation intuitively: <M>X_3</M> does not bring any
+extra information. So just drop it, and stick to <M>(X_1,X_2)</M>
+as our data. So the likelihood of <M>(X_1,X_2)</M> is still the
+likelihood of <M>(X_1,X_2,X_3).</M> Of course, we could as well
+have kept <M>(X_1,X_3),</M> and thrown away <M>X_2.</M> That
+would also give us a likelihood. A little thinking should
+convince you 
+that this also leads to the same likelihood. For example, suppose
+the data are <M>X_1=3.4,</M> <M>X_2 = 2.3</M> and <M>X_3 =
+5.7.</M> Clearly, <M>\{X_1=3.4,\,X_2=2.3\}</M>
+and <M>\{X_2=2.3,\,X_3=5.7\}</M> and <M>\{X_1=3.4,\,X_3=5.7\}</M>
+are the same event!
+</EXM>
+So when we are faced with singular data distribution, we throw
+away the redundancy (any way is as good as any other way), and
+then report the likelihood based on the remaining data. 
+<P/>
+Now we are in a position to explain REML. We shall start with an
+example. 
+
+<EXM>
+Consider <M>y_1, y_2, y_3</M> IID <M>N(\mu, \sigma^2).</M> We shall
+cast it as a linear model. Then the residuals are <M>e_i = y_i-\b
+y</M>'s. The REML method is to apply ML based on
+the <M>e_i</M>'s. Notice that <M>(e_1, e_2, e_3)</M> has a singular
+distribution, since <M>\sum e_i = 0.</M> We shall throw
+away <M>e_3</M>. Then the joint distribution
+of <M>(e_1,e_2)</M> is normal with mean 0 and 
+<D>
+cov(e_1,e_2) 
+= cov(y_1,y_2) + var(\b y) - cov(y_1,\b y) - cov(y_2,\b y) = 
+=  - [[\sigma^2][3]].
+</D> 
+Also, <M>V(e_1)= V(e_2) = [[2 \sigma^2][3]].</M>
+<P/>
+
+Thus the covariance matrix is <M>\Sigma = \sigma^2\cdot A</M>,
+where <M>A=[[13]]<MAT>2
+& -1\\-1&2</MAT>.</M>
+ 
+<P/>
+The log-likelihood is 
+<D>
+\ell(\sigma^2) = \mbox{constant} - [[12]]\log \sigma^2 -
+[[1][2\sigma^2]] (e_1\quad e_2)A^{-1} <MAT>e_1\\e_2</MAT>. 
+</D>
+A little computation would show that <M>(e_1\quad e_2)A^{-1} <MAT>e_1\\e_2</MAT> = e_1^2+e_2^2+e_3^2.</M>
+
+<P/>
+So solving <M>\ell'(\sigma^2) = 0,</M> we shall get 
+<D>
+\h\sigma^2 = [[e_1^2+e_2^2+e_3^2][2]],
+</D>
+which is our familiar formula.
+</EXM>
+Even this simple example was not entirely straightforward,
+especially that "little computation" part. The following example
+takes a more careful approach  so that we can deal with any
+linear model.
+
+<EXM>
+This time we start with a linear model in the general form 
+<D>
+y = X \beta + \epsilon.
+</D> 
+Obtain REML of <M>\sigma^2</M> by applying ML on <M> e.</M>
+<SOLN/>
+We know that <M> e = (I-P_X) y\in \col(I-P_X).</M>  
+<P/>
+We shall remove redundancy from <M> e</M> cleverly this
+time. We shall take any ONB of <M>\col(I-P_X),</M> and stack the
+vectors as columns to create a matrix <M>B_{n\times (n-r)}.</M>
+Though <M> e</M> consists of <M>n</M> numbers, yet expressed
+w.r.t. 
+this basis there are only <M>n-r</M> numbers, <M>w_1,...,w_{n-r}.</M>
+<P/>
+If we write <M>w = (w_1,...,w_{n-r})',</M> then <M>w = B' e.</M>
+<P/>
+Since <M>B'P = O,</M> hence <M>w = B' e = B'(I-P_X) y = B'y.</M>
+<P/>
+So <M>w\sim N(0,\sigma^2 B'B) = N(0,\sigma^2 I_{n-r}).</M>
+<P/>
+See the advantage of being clever while removing the redundancy? 
+<P/>
+The log-likelihood based on <M>w</M> is 
+<D>
+\ell(\sigma^2) = \log \sigma^2 + [[w'w][\sigma^2]].
+</D>
+Solving <M>\ell'(\sigma^2) = 0,</M> we immediately get 
+<D>
+\h \sigma^2 = [[w'w][n-r]] = [[e'e][n-r]],
+</D>
+as expected.
+</EXM>
+Such an nice analytical expression was possible because we
+assumed the dispersion matrix of <M>\epsilon </M> to
+be <M>\sigma^2 I.</M> Had we assumed it to be
+some <M>\Sigma(\theta),</M> where <M>\theta</M> is unknown (but
+the form of <M>\Sigma(\cdot)</M> being known), we would face a
+bit more trouble.
+First, <M>\h \beta </M> may not have a closed-form expression any
+more. The maximisation w.r.t. <M>\beta</M> and <M>\theta</M> are
+entangled together. We shall proceed step by step: Let <M>\h
+\beta(\theta)</M> be the likelihood maximiser for a given <M>\theta.</M>
+We shall apply ML on <M>e(\theta) = y-X \beta(\theta).</M>
+<D>
+\ell(\theta) = \log |\Sigma(\theta)| + w' \Sigma(\theta) ^{-1} w.
+</D>
+After this, REML has to proceed numerically. 
+
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>Consider the data set 
+<PRE>
+weight length
+1       23.1
+1       23.0
+2       25.3
+2       25.5
+3       26.9
+3       27.1
+4       29.7
+4       29.8
+5       31.9
+5       31.9
+</PRE>
+We want to fit the regression model <M>y_i = \alpha + \beta x_i +
+\epsilon_i,</M> where <M>x</M> is the weight hung from a spring, and <M>y</M> is the
+resulting length of the spring. We assume
+that <M>\epsilon_i</M>'s have <M>N(0, \sigma^2)</M> distribution
+for some unknown <M>\sigma^2>0,</M>
+and that measurements involving the same weights are correlated
+with unknown correlation <M>\rho\in[-1,1].</M> Estimate all the
+parameters (<M>\alpha,\beta,\sigma^2,\rho</M>) using any of the
+techniques discussed in this page. 
+</LI>
+
+
+<LI>Find all possible values of correlation <M>\rho</M> such that
+the correlation matrix with compound symmetry structure is
+nonsingular. A correlation matrix of this structure has all
+off-diagonal entries equal to <M>\rho.</M> </LI>
+
+<LI>State true/false with justification: If <M>y_1,...,y_n</M>
+are iid <M>N(4,\sigma^2)</M> for some unknown <M>\sigma^2>0,</M>
+then the REML estimate of <M>\sigma^2</M> is the same as its ML
+estimator.</LI>
+
+<LI>5 persons are each measuring the same unknown
+length <M>\mu </M> twice. The model is 
+<D>
+y_{ij} = \mu + \epsilon_{ij},
+</D>
+where <M>i=1,...,5</M> and <M>j=1,2.</M> We
+allow <M>\epsilon_{i1}</M> and <M>\epsilon_{i2}</M> to be
+correlated with correlation <M>0.5.</M> Suggest how you may
+obtain MLE of <M>\mu</M> under normality assumption.
+</LI>
+
+
+</OL>
+
+@}
+</NOTE>

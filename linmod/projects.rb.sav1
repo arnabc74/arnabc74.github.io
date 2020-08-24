@@ -1,0 +1,118 @@
+<NOTE>
+@{<E>
+<HEAD1>Projects</HEAD1>
+This course has two projects, each carrying 10 marks (plus some bonus). The first
+project is considered part of the midsem exam, the second project
+is considered part of the sem exam. The bonus marks get added to
+the overall aggregate for this course.
+
+<HEAD2>Midsem project: Making a vector map stitching satellite
+screenshots</HEAD2>
+
+Consider a region samll enough so that earth's curvature may be
+ignored, yet large enough so that Google map cannot fit it in a
+single screen at high resolution.
+<CIMG web="msproj1.png"/>
+ We cover the region with a number of overlapping
+screenshots <I>all of the same resolution</I>. 
+<CIMG web="msproj2.png"/>
+Each rectangle is a screenshot (hence is of the size of your
+monitor). All the screenshots are numbered. To understand the subsequent steps we focus on two
+overlapping screenshots (say screenshots 1 and 2):
+<CIMG web="msproj3.png"/>
+The red dots are known locations that you can identify at the
+current resoluton of the screenshot. Note that the central
+location is part of both the screenshots. For each screenshot
+find the approx pixel coordinate  of the location (e.g., by
+clicking on the centre of each red disk, and reading the mouse
+coordinates). For example, we measure <M>(r_{1j}, c_{1j})</M>
+from screenshot 1:
+<CIMG web="msproj4.png"/>
+Here <M>r</M> stands for "row", and <M>c</M> for "column". The
+first subscript is the screenshot number, the second is the
+location number (we assume that the central red dot in
+the <M>j</M>-th in the list of the known locations). Similarly,
+from screenshot 2 we measure <M>(r_{2j}, c_{2j})</M>:
+<CIMG web="msproj5.png"/>
+Notice that we are using the same <M>j,</M> as it is the same
+location. 
+
+<P/>
+Thus our data set consists of a subset of <M>(r_{ij}, c_{ij})</M>'s
+for <M>i=1,...,</M>number of screenshots,
+and <M>j=1,...,</M>number of locations. Of course, not
+all <M>(i,j)</M> pairs occur in the data, since the <M>j</M>-th
+location may not show up in the <M>i</M>-th screenshot.
+<P/>
+Let <M>(\mu_i, \lambda_i)</M> be the true position of
+the <M>i</M>-th location (w.r.t. some global coordinate
+system). 
+<P/>
+We can set up a linear model to estimate <M>(\mu_i,
+\lambda_i)</M>'s from the data. 
+<P/>
+The project consists of the following parts:
+<OL>
+<LI>Working out the theory: this involves setting up the linear
+model, and working out the rank of the design matrix. [2 marks]</LI>
+<LI>Implememnting the entire thing in R: the final software
+should take a list of screenshots and show them one by one in R,
+allowing the user to click on the known locations. The system
+should save the click locations as well as the location
+identifiers. Then then the system should run the linear model to
+estimate the true positions. [8 marks]</LI>
+<LI>Bonus: allow screenshots of different (known) resolutions.[ 5
+marks]</LI>
+</OL>
+
+<HEAD3>Some R tips</HEAD3>
+You may read a jpeg image in R and display it as:
+<R>
+library(jpeg)
+x=readJPEG('screenshot1.jpg') #replace screenshot1.jpg with your image name.
+
+plot(1:2,ty='n') #set up the screen as [1,2]x[1,2] or whatever you like.
+
+rasterImage(as.raster(x),1,1,2,2) #draw the image on screen.
+</R>
+You may need to install the <CODE>jpeg</CODE> package first.
+<P/>
+
+Similarly, there is a package called <CODE>png</CODE> for reading images in the png format. 
+
+<P/>
+To allow the user to click at points on an image and to get the coordinates of the clicked points:
+
+<R>
+p = locator(1) #for one click
+p = locator(2) #for two clicks
+p = locator() #for any number of clicks (end with a rightclick)
+</R>
+In each of these cases <CODE>p</CODE> stores the coordinates of the clicked points (w.r.t. the coord system you set 
+us using the <CODE>plot</CODE> command earlier).
+
+<HEAD3>Test data sets</HEAD3>
+I have created a fake map and some screenshots
+covering it:
+<CIMG web="../maps/master.png" w="500"/>
+Here are the screenshots for the <LINK to="maps/sameres.tar.gz">same
+resolution</LINK> case, and here
+for <LINK to="maps/diffres.tar.gz">different resolutions</LINK>
+case. Each screenshot contains a horizontal line segment that is
+known to be of the same length. So if you want you may use it as
+a scale. If you alo want to play with rotated images then
+try <LINK to="maps/rot.tar.gz">this bunch</LINK>.
+<P/>
+In your final output the triangles must be equilateral. Also, try
+using only s1, s2, s3 and s8 to see if your program correctly
+generates  an error message. 
+
+<HEAD2>Sem project: Shape analysis</HEAD2>
+This project is about shape recognition. After we see many mango leaves, we shall have an idea about how a typical mango
+ leaf looks. Given a new leaf, we may say with confidence if it is a mango leaf or not. Roughly speaking, we can consider
+ each leaf as a point in a "leaf space". The mango leaves that we were shown all reside in one region in that space. We have
+ to measure the ditance of the new leaf (which again a point in the "leaf space") from this region, and say "yes, it is a
+ mango leaf,
+<DISQUSE id="lmprojects" url="http://www.isical.ac.in/~arnabc/linmod/projects.html"/>
+</E>@}
+</NOTE>

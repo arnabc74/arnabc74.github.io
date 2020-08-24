@@ -1,0 +1,235 @@
+<NOTE>
+@{<E>
+<M>\newcommand{\v}{\vec}</M>
+<HEAD1>Intuitive understanding of rank of design matrix</HEAD1>
+We have seen that the rank of the design matrix plays an
+important role in determining uniqueness of the least squares
+solution. The solution is unique if and only if <M>X</M> is full
+column rank, i.e., rank equals number of columns. In practice,
+however, this condition may not be met. We can of course apply
+some linear algebra algorithm (like Gaussian elimination) to find
+the rank and/or find a subset of columns that
+span <M>\col(X).</M> However, it is often possible to avoid these
+numerical algorithms and resolve the problem intuitively. That is
+what we are going to learn now.
+
+<HEAD2>Guessing if rank <M><</M> number of columns</HEAD2>
+
+Since we know that this is equivalent to nonuniqueness of least
+squares solution, hence we try to tweak one least squares
+solution into another. If we succeed then the rank must be less
+than number of columns. 
+
+<EXM>
+Consider the 1-way ANOVA model: <M>y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}.</M>
+
+<P/>
+Suppose that I give you some least squares solution <M>\h \mu</M>
+and <M>\h \alpha_i</M>'s. Now the intuitive thinking goes like
+this:
+<Q>
+Since <M>y_{ij}\approx \mu + \alpha_i,</M> we may think as
+if <M>\mu + \alpha_i</M>'s are being "watched"
+by <M>y_{ij}</M>'s.
+If any of the <M>\mu + \alpha_i</M>'s change, then it would ring
+an alarm bell.
+</Q>
+But it is quite possible that we can tweak <M>\mu </M> and <M>\alpha_i</M>'s so
+that <M>\mu + \alpha_i</M>'s never change, then that would give us
+a new least squares solution. For instance, add 5 to <M>\mu,</M>
+and adjust by subtracting 5 from all the <M>\alpha_i</M>'s. 
+<P/>
+This shows that <M>X</M> is not full column rank. 
+</EXM>
+
+Here is another example.
+
+<EXM>
+Again we consider a 1-way ANOVA model: <M>y_{ij} = \mu_i +
+\epsilon_{ij}.</M> Here the <M>\mu_i</M>'s are "watched". So
+can't do any tweaking without getting detected. Hence the design
+matrix is full column rank here.
+</EXM>
+
+<HEAD2>Guessing <M>r(X)</M></HEAD2>
+The same intuitive way of thinking can often allow us to guess
+the <M>r(X)</M>.
+
+<EXM>
+Again consider the model: <M>y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}</M> for <M>i=1,...,p,</M> say. The range
+of <M>j</M> does not really matter for finding <M>r(X)</M>.
+<HIDE><MSG>(Why?)</MSG><HIDDEN>It only controls how many times
+each row of <M>X</M> is repeated. Repeating the same row
+multiple times does not affect the rank.</HIDDEN></HIDE> 
+<P/>
+There are <M>p+1</M> columns in <M>X.</M> We have already seen
+that <M>X</M> is not full column rank. Hence <M>r(X) < p+1.</M>
+To guess <M>r(X)</M> we shall again play the "tweak parameters
+without setting off the alarm" game. But this time we shall
+impose an extra constraint: pick any parameter (just any!),
+say <M>\mu,</M> and never tweak it. Now you'll see that no
+tweaking is possible. Since you can tweak
+neither <M>\mu+\alpha_i</M> nor <M>\mu </M>, hence you cannot
+tweak <M>\alpha_i</M> either. Thus, just <I>one</I> constraint is
+enough to prevent tweaking. The conclusion is: <M>r(X)</M> is
+exactly <I>one</I> less than the number of columns.
+</EXM>
+
+Here is a more complicated example.
+
+<EXM>
+The 2-way ANOVA model without interaction:<M>y_{ij} = \mu+\alpha_i+\beta_j+\epsilon_{ij}.</M>
+<P/>
+Here the "watched" quantities are <M>\mu+\alpha_i+\beta_j.</M>
+Clearly, we can add something to <M>\mu</M> and adjust by
+subtracting that amount from all the <M>\alpha_i</M>'s (or all
+the the <M>\beta_j</M>'s). So not full column rank.
+<P/>
+To guess the exact rank, let's impose an additional
+constraint: "Thou shalt not tweak <M>\mu</M>."
+<P/>
+Still we can manage to tweak the <M>\alpha_i</M>'s
+and <M>\beta_j</M>'s without letting off the alarm bell. For
+instance, add 5 to all the <M>\alpha_i</M>'s and subtract the
+same amount from all the <M>\beta_j</M>'s.
+<P/>
+OK, pick any other parameter <I>that is not already fixed by earlier
+constraints</I> (say <M>\alpha_1</M>) and impose
+a new constraint: "Thou shalt not tweak <M>\alpha_1</M> either."
+<P/>
+Now, <M>\mu </M> and <M>\alpha_1</M> both being fixed,
+and <M>\mu+\alpha_1+\beta_j</M>'s being watched, we cannot tweak
+any of the <M>\beta_j</M>'s. So none of the
+other <M>\alpha_i</M>'s can be tweaked either. Hence no tweaking
+at all! And we needed just <I>two</I> constraints.
+<P/>
+Conclusion: <M>r(X)</M> is <I>two</I> less than the number of columns.
+</EXM>
+
+<HEAD2>Reducing <M>X</M> to a full column rank matrix</HEAD2>
+
+"Reducing <M>X</M> to a full column rank matrix" means, linear algebraically,  picking a subset of columns
+of <M>X</M> that constitute a basis for <M>\col(X).</M> Finding a
+column-echelon form for <M>X</M> is one possible sledge hammer to
+break this peanut. However, our "tweak without letting off the
+alarm" game again comes to help. Indeed, it is preferable to the
+sledge hammer method, because the particular least squares
+solution that we shall get by the intuitive method also has
+better interpretability. 
+
+<EXM>Consider the 1-way ANOVA model once again: <M>y_{ij} =
+\mu+\alpha_i+\epsilon_{ij}.</M>
+
+<P/>
+Here is one possible scenario where it could be used. We have
+three different fertilisers <I>None</I>, <I>Compost</I> and <I>NPK</I>. We want to see
+their effect on the yield of paddy. Here the
+constraint <M>\alpha_1 = 0</M> is a suitable one, since <I>None</I> is
+like a reference case. With this constraint the remaining
+parameters have the following interpretation:
+<UL>
+<LI><M>\mu</M> is the effect of no fertiliser.</LI>
+<LI><M>\alpha_2</M> is the extra effect due to <I>Compost</I>,</LI>
+<LI><M>\alpha_3</M> is the extra effect due to <I>NPK</I>.</LI>
+</UL>
+However, if the three fertilisers were <I>Mg</I>, <I>Compost</I> and <I>NPK</I>, then
+a more natural constraint would be <M>\sum \alpha_i = 0,</M>
+leading to the following interpretation:
+<UL>
+<LI><M>\mu</M> is the overall mean effect.</LI>
+<LI><M>\alpha_i</M> is the extra effect due to the <M>i</M>-th fertiliser.</LI>
+</UL>
+Another natural constraint would be: <M>\mu = 0.</M> Here the
+interpretation is even simpler:
+<UL>
+<LI><M>\alpha_i</M> is the effect of the <M>i</M>-th fertiliser.</LI>
+</UL>
+However, most people will prefer the constraint <M>\sum \alpha_i =
+0</M> to the constraint <M>\mu = 0,</M> because under the former
+the signs of the <M>\h \alpha_i</M>'s immediately gives a clue to
+which fertiliser is a good and which is bad. 
+</EXM>
+Each such constraint is effectively choosing a basis
+of <M>\col(X)</M> leading to a unique least squares
+solution. Each software has its favourite constraint, which
+may not be the natural one for a given context. But it is easy to
+convert one least squares solution to another that satisfies a
+natural set of constraints. The next example illustrates this.
+
+<EXM>
+Consider the 1-way ANOVA model <M>y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}.</M> for <M>i=1,2,3</M> and <M>j=1,...,10.</M>
+<P/>
+R uses the constraint <M>\alpha_1 = 0.</M>
+<P/>
+However, we want the constraint <M>\sum \alpha_i = 0.</M> 
+<P/>
+If the estimates produced by R are
+<D>
+\h \mu = 23.4, \quad \h \alpha_1 = 0,\quad \h \alpha_2 =
+45.9,\quad \h \alpha_3 = -3.4,
+</D>
+then find the estimates that satisfies our constraint.
+<SOLN/>
+Just average the <M>\h \alpha_i</M>'s and subtract this from all
+the <M>\h \alpha_i</M>'s. Adjust by adding the same quantity to <M>\h \mu.</M>
+
+<P/>
+Notice that you really do not need to know what constraint(s) R
+uses internally in order to impose your set of constraints.</EXM>
+
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>For the model <M>y_{ij} = \mu + \alpha_i +
+\epsilon_{ij},</M> a software produces the estimates
+<D>
+\h \mu = 23.4, \quad \h \alpha_1 = 2.0,\quad \h \alpha_2 =
+45.9,\quad \h \alpha_3 = -3.4.
+</D>
+Find the estimates under the constraint <M>\mu = 0.</M>
+</LI>
+
+<LI>Consider the model: <M>y_{ijk} = \mu + \alpha_i + \beta_j +
+\gamma_{ij} + \epsilon_{ijk},</M> for <M>i=1,2,3</M>
+and <M>j=1,2</M> and <M>k=1,...,5.</M> Is the design matrix full
+column rank? Find its rank. Find two possible sets of
+constraints to make the solution unique.</LI>
+
+<LI>This exercises will give you an idea why the "tweak without
+letting off the alarm" game always detects whether <M>X</M> is
+not full column rank. Consider a linear
+model <M>\v y = X \v \beta + \v \epsilon,</M> where <M>\v \beta =
+(\beta_1,...,\beta_4).</M>
+It is seen that if we tweak by adding 5 to <M>\beta_1</M> and
+subtracting 3 from <M>\beta_2</M> and adding 1 to <M>\beta_3</M>
+(leaving <M>\beta_4</M> unaltered), then the alarm does not go
+off. In other words, we added the vector <M>(5,-3,1,0)'</M>
+to <M>\v \beta</M> without firing the alarm. We shall call such a 
+vector  a <I>tweak vector</I> (not a standard term).
+<OL type="a">
+<LI> Show that the
+set of all tweak vectors is a subspace.</LI>
+<LI>How is this subspace related to <M>X?</M></LI>
+<LI>Prove that the
+existence of a nonnull tweak vector implies <M>X</M> is not full column rank.</LI>
+</OL>
+</LI>
+
+<LI>This exercise is a continuation of the last. Here you'll see
+why the "tweak without letting off the alarm" game always
+guesses the rank correctly. Again consider the same linear model
+as in the last problem.  Suppose that the only tweak
+vector of the form <M>(0,0,a,b)'</M> is the zero vector. What
+can you conclude about <M>r(X)?</M> </LI>
+
+
+<LI>Consider the linear model <M>y_{i_1\cdots i_t} = \mu +
+\alpha_{1i_1}+\cdots + \alpha_{ti_t}+\epsilon_{i_1\cdots
+i_t}.</M> What is the rank of the design matrix here?</LI>
+
+</OL>
+<DISQUSE id="lmrank" url="http://www.isical.ac.in/~arnabc/linmod/rank.html"/>
+</E>@}
+</NOTE>

@@ -1,0 +1,231 @@
+<NOTE>
+@{<E>
+<M>
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\corr}{\mathrm{corr}}
+\newcommand{\hv}[1]{\hat{\vec{#1}}}
+\newcommand{\v}[1]{\vec{#1}}
+</M>
+<HEAD1>ANOVA tables for linear mixed models</HEAD1>
+Here we shall take a look at testing using ANOVA tables in case
+of linear mixed models.
+<HEAD2>1-way ANOVA</HEAD2>
+Suppose that some drug is being tested in <M>k</M> hospitals,
+each of which try the drug on <M>n</M> patients. The resulting
+data set has <M>kn</M> rows (one per patient) and two columns
+(hospital and response). Since a future user of the analysis
+report would not care about the specific <M>k</M> hospitals
+participating in the study, hence we consider the hospital effect
+as random. The model is:
+<D>
+y_{ij} = \mu + a_i + \epsilon_{ij},
+</D>
+where <M>i=1,...,k</M> and <M>j=1,...,n.</M> Here 
+<UL>
+<LI><M>\mu</M> is
+the (fixed) mean effect (the parameter of primary interest)</LI>
+<LI><M>a_i</M>'s are the (random) hospital effects</LI>
+<LI><M>\epsilon_{ij}</M>'s are the random errors.</LI>
+</UL>
+We assume 
+<UL>
+<LI><M>\epsilon_{ij}</M>'s are iid <M>N(0,\sigma^2_e),</M>
+with <M>\sigma^2_e>0</M> unknown</LI>
+<LI><M>a_i</M>'s are iid <M>N(0,\sigma^2_a),</M>
+with <M>\sigma^2_a\geq 0</M> unknown</LI>
+<LI><M>\epsilon_{ij}</M>'s are indepenent of <M>a_i</M>'s.</LI>
+</UL>
+Here our parameters are <M>\mu,</M> <M>\sigma^2_a</M>
+and <M>\sigma^2_e.</M>
+
+<EXR>Compute <M>\cov(y_{ij}, y_{rs})</M>
+for <M>i,r\in\{1,...,k\}</M> and <M>j,s\in\{1,...,n\}.</M></EXR>
+
+
+<EXR>Use the last exercise to also compute <M>\corr(y_{ij}, y_{rs})</M>
+for <M>i,r\in\{1,...,k\}</M> and <M>j,s\in\{1,...,n\}.</M></EXR>
+
+<HEAD3>Comparing with the fixed effects model</HEAD3>
+<OL><LI>
+In the fixed effects models <M>V(y_{ij})</M> used to be just same
+as the error variance. But now <M>V(y_{ij})</M> has two
+components, one from the error, the other from the random
+effects. Hence, such a model is sometimes also called
+a <B>variance components model</B>.</LI>
+<LI>In the fixed effects model, all the <M>y_{ij}</M>'s were
+independent. But now <M>y_{ij}</M>'s belonging to the same
+hospital are correlated.
+</LI></OL>
+
+With these points in mind we take a look at (the first 3 columns
+of) the ANOVA table (the
+same as for fixed effects model):
+
+<TABLE>
+<TR><TH>Source</TH><TH>d.f.</TH><TH>SS</TH></TR>
+<TR><TH>Hospital</TH><TD><M>k-1</M></TD><TD><M>n\sum \b
+y_{i\bullet}^2-nk\b y_{\bullet\bullet}^2</M></TD></TR>
+<TR><TH>Error</TH><TD><M>k(n-1)</M></TD><TD><M>\sum
+y_{ij}^2-n\sum \b y_{i\bullet}^2</M></TD></TR>
+<TR><TH>Total</TH><TD><M>kn-1</M></TD><TD><M>\sum
+y_{ij}^2-nky_{\bullet\bullet}^2</M></TD></TR>
+</TABLE>
+The table is the same as for the fixed effects model. But let us
+understand how its interpretation may have changed in the random
+effect scenario:
+<UL>
+<LI>The error <M>SS</M> is based on only comparisions within the
+patients of the <I>same</I> hospital. So <M>\sigma^2_a</M> plays
+no play there. Hence, as in the fixed case, the error MS
+continues to be an unbiased estimator of <M>\sigma^2_e.</M></LI>
+<LI>The Hospital SS however has a different expectation than it
+had for the fixed case. The following exercise explores this.</LI>
+</UL>
+
+<EXR>Show that <M>E(\b y_{i\bullet}) = \mu </M> and <M>\var(\b
+y_{i\bullet}) = \sigma^2_a+[[1n]]\sigma^2_e. </M> Hence show that
+the Hospital MS has expectation <M>n \sigma^2_a+\sigma^2_e.</M>
+</EXR>
+
+<EXR>Under the fixed effects model, the Hospital SS and the
+Error SS were both <M>\sigma^2 \chi^2 </M> random variables (the
+former was non-central, while the latter was central). Work out
+the distributions of the two SS's in the random effects
+model. </EXR>
+
+
+In the fixed effects model the two SS's were independent. The
+same thing happens to be true even in the random effects model,
+though this may not be readily apparent. The following exercises
+lead to a proof.
+
+<EXR>Let <M>X,Y</M> and <M>Z</M> be jointly distributed random
+variables such that <UL>
+<LI>given <M>Z,</M> the random variables <M>X</M> and <M>Y</M>
+are independent,</LI>
+<LI><M>Y</M> and <M>Z</M> are independent.</LI>
+</UL> 
+Then show that <M>X</M> and <M>Y</M> must be independent.</EXR>
+
+
+<EXR>Take <UL>
+<LI><M>X = </M> Hospital SS,</LI>
+<LI><M>Y = </M> Error SS,</LI>
+<LI><M>Z = (a_1,...,a_k)</M></LI>
+</UL> 
+in the above exercise to conclude that the two SS's are
+independent.</EXR>
+
+<EXR>In the fixed effects model we could test <M>H_0:</M> no
+hospital effect by using the null distribution of the <M>F</M>-ratio
+<D>
+[[\mbox{Hospital MS}][\mbox{Error MS}]]\sim F_{(k-1,k(n-1)}
+\mbox{ (central)}.
+</D>
+The corresponding <M>H_0</M> for the mixed effects case
+is <M>H_0:\sigma^2_a = 0.</M> Show that the same null
+distribution is still valid here. 
+</EXR>
+
+
+<EXR>
+We know that the Error MS is an unbiased estimator
+for <M>\sigma^2_e.</M> Find an unbiased estimator of <M>\sigma^2_a.</M>
+</EXR>
+
+
+<HEAD2>2-way ANOVA</HEAD2>
+Consider the following model 
+<D>
+y_{ijk} = \mu + a_i + \beta_j + g_{ij}+\epsilon_{ijk},
+</D>
+where <M>i=1,...,I,</M> <M>j=1,...,J</M> and <M>k=1,...,K.</M> We
+make the usual assumptions:
+<OL>
+<LI><M>\epsilon_{ijk}</M>'s are iid <M>N(0,\sigma^2_e),</M>
+where <M>\sigma^2_e>0</M> is unknown.</LI>
+<LI><M>a_i</M>'s are iid <M>N(0,\sigma^2_a),</M>
+where <M>\sigma^2_e\geq 0</M> is unknown.</LI>
+<LI><M>g_{ij}</M>'s are iid <M>N(0,\sigma^2_g),</M>
+where <M>\sigma^2_g\geq 0</M> is unknown.</LI>
+<LI><M>a_i</M>'s <M>g_{ij}</M>'s and <M>\epsilon_{ijk}</M>'s are
+all independent.</LI>
+</OL>
+
+<EXR>Let the first two columns of the ANOVA table be like:
+<TABLE>
+<TR><TH>Source</TH><TH>d.f.</TH></TR>
+<TR><TH>Row</TH><TD><M>I-1</M></TD></TR>
+<TR><TH>Column</TH><TD><M>J-1</M></TD></TR>
+<TR><TH>Interaction</TH><TD><M>(I-1)(J-1)</M></TD></TR>
+<TR><TH>Error</TH><TD><M>IJ(K-1)</M></TD></TR>
+<TR><TH>Total</TH><TD><M>IJK-1</M></TD></TR>
+</TABLE>
+Show that 
+<OL>
+<LI><M>E(</M>Row MS<M>)=\sigma^2_e+K \theta_g +KJ \theta_a</M></LI>
+<LI><M>E(</M>Column MS<M>)=\sigma^2_e+K \theta_g +KI
+\theta_\beta</M></LI>
+<LI><M>E(</M>Interaction MS<M>)=\sigma^2_e+K \theta_g</M></LI>
+<LI><M>E(</M>Error MS<M>)=\sigma^2_e</M></LI>
+</OL>
+Here 
+<UL>
+<LI><M>\theta_a = \sigma^2_a</M></LI>
+<LI><M>\theta_\beta = [[1][J-1]] [*[\sum \beta_j^2 - (*(\sum
+\beta_j)*)^2]*]</M></LI>
+<LI><M>\theta_g = [[J][J-1]]\sigma^2_g</M></LI>
+</UL>
+</EXR>
+<HEAD1>BLUP</HEAD1>
+Henderson introduced the concept of a <B>Best Linear Unbiased
+Predictor (BLUP)</B> of a random effect
+coefficient. Statisticians woking in animal breeding use this
+concept extensively. See <LINK to="blup.pdf">this paper</LINK>
+for some details. (This paper, by the way, is <I>not</I> included in the
+syllabus of this course!) Here are a few things that you should
+know about BLUPs.
+<P/>
+First, the definition. Suppose that you have a LME model with a
+random effect <M>u</M> (i.e., a random coeffcient). There may be
+other random coefficents also. Let the data vector be <M>\v
+y.</M> Then by a BLUP we understand a function of the form <M>\v
+\ell'\v y</M> such that <M>E(\v \ell'\v y - u) = 0,</M> and
+subject to this condition <M>\var(\v \ell'\v y)</M> is the
+minimum possible.
+<P/>
+Henderson gave a computational formula for find BLUPs for the 
+ following model:
+<D>
+\v y = X\v \beta + Z\v u + \v \epsilon,
+</D>
+where <M>\v u\sim (\v 0, \sigma^2 G)</M> and independently <M>\v
+\epsilon \sim (\v 0, \sigma^2 R).</M> Here <M>G, R</M> are known
+pd matrices. Then if we solve 
+<D>
+<MAT>
+X' R ^{-1} X & X' R ^{-1} Z\\
+Z' R ^{-1} X & (Z' R ^{-1} Z + G ^{-1}) 
+</MAT><MAT>\hv \beta\\ \hv u</MAT> = <MAT>X' R ^{-1} \v y\\ Z' R
+^{-1} \v y</MAT>,
+</D>
+we get BLUE <M>\hv \beta </M> for <M>\beta,</M> and BLUP <M>\hv
+u</M> of <M>\v u.</M>
+Don't cram this stuff! If you want to see its derivation that
+read the above paper. 
+<P/>
+BLUP's, as you may guess from the complicated system of
+equations, is quite different from BLUEs of <M>\v u</M> if you
+assume <M>\v u</M> to be fixed. 
+
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>Consider a 2-way ANOVA model without interaction, where both
+the effects are random. Work out the expected values of
+the <M>MS</M> values.</LI>
+</OL>
+<DISQUSE id="lmmixed3"
+url="http://www.isical.ac.in/~arnabc/linmod/mixed3.html"/>
+</E>@}
+</NOTE>

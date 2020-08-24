@@ -1,0 +1,172 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="http://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Permutation and Combination বইয়ের ভুলত্রুটি সংশোধন">Permutation and Combination বইয়ের ভুলত্রুটি সংশোধন</a>
+</li>
+</ul>
+<hr/>
+<title>ভুলত্রুটি সংশোধন</title>
+
+<h1><a
+name="Permutation and Combination বইয়ের ভুলত্রুটি সংশোধন">Permutation and Combination বইয়ের ভুলত্রুটি সংশোধন</a></h1>
+
+<ul>
+
+<li> 2 নং পাতায় Exercise 3-এর উত্তর আছে  $45,$ হওয়া উচিত $44.$
+</li>
+
+
+<li>6 নং পাতার একেবারে শেষে Exercise 8-এ ধরতে হবে যে বইগুলো সব আলাদা আলাদা, একই রঙের হলেও৷ 
+অবশ্য সেটাই স্বাভাবিক৷ 
+</li>
+
+
+<li>16 নং পাতায় একেবারে নীচে Exercise 15-এর শুরুতেই আছে ''একটা চারটে বই আছে''৷ ওটা হবে
+''একটা তাকে চারটে বই আছে''৷  
+</li>
+
+<li>
+40 নং পাতার মাঝামাঝি জায়গায় Exercise 57-এর hint-এর প্রথম লাইনের একেবারে শেষে আছে 
+''এখানে $A$-র মধ্যে তিনটে element''৷ ওই ''তিনটে''-র জায়গায় ''পাঁচটা'' হবে৷ সেটা অবশ্য 
+ছবিটা দেখেই বোঝা যাচ্ছিল৷ 
+</li>
+
+<li>41  নং পাতার মাঝামাঝি এক জায়গায় এইরকম আছে--
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/p41.png"></fieldset>
+</center>
+এখানে হাইলাইট করা $60$-গুলো সব $360$  হবে৷ তাই শেষের $66660$-টা হবে
+$399960.$  এই ভুলটা ধরেছে মহম্মদ৷ 
+</li>
+
+<li>
+51 নং পাতার মাঝামাঝি একটা ছোটো টেবিল আছে৷ টেবিলটা হওয়া উচিত এইরকম--
+<center>
+<table border="1">
+
+<tr>
+<th>$a$</th><th>$N(a)$</th>
+</tr>
+
+<tr>
+<td>$0$ </td><td> $1$ </td>
+</tr>
+
+<tr>
+<td>$1$ </td><td> $144$ </td>
+</tr>
+
+<tr>
+<td>$2$ </td><td> $324$ </td>
+</tr>
+
+<tr>
+<td>$3$ </td><td> $16$ </td>
+</tr>
+
+</table>
+</center>
+
+</li>
+
+<li>
+58 নং পাতার মাঝামাঝি তিন লাইন রঙীন লেখা আছে৷ তার মধ্যে তৃতীয় লাইনে একজায়গায় 
+$bbaaab$ রয়েছে৷ ওটা আসলে হবে $bba+aab.$ মাঝের যোগ চিহ্নটা বাদ পড়ে গেছে৷ 
+</li>
+
+<li>60 পাতার নীচের দিকে এক জায়গায় আছে এইরকম--
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/bhul.png"></fieldset>
+</center>
+এখানে দুটো হাইলাইট করা জায়গাতেই ভুল আছে৷ প্রথম জায়গাতে হবে $N_k = ((k-1)n+1)\times\cdots\times kn.$
+দ্বিতীয় জায়গায় হবে $^{kn}P_{(k-1)n}.$ এ ভুলদুটো ধরেছে অরিত্র কুণ্ডু৷ 
+</li>
+
+<li>
+65 নং পাতার মাঝামাঝি জায়গায় Example 59-এর আগের প্যারাগ্রাফের প্রথম লাইনে রয়েছে 
+''এই টেবিলটার সাথে 46 নম্বর পাতার...''৷ এখানে পাতার সংখ্যাটা
+ 46-এর বদলে 40 হওয়া উচিত ছিল৷ 
+</li>
+
+<li>
+70 নং পাতায় DAY 10-এর আগের প্যারাগ্রাফের চার নম্বর লাইনের গোড়ায় লিখেছি ''$9$-টা 
+হাইড্রোজেন আছে''৷ ওটা হবে ''$12$-টা হাইড্রোজেন''৷ পরের লাইনে ফর্মুলাটা
+দেওয়া আছে $C_2H_9,$ ওটা হবে $C_5H_{12}.$ 
+</li>
+
+<li>
+81 নং পাতার Example 77-এর উত্তরের ইংরাজি অংশের প্রথম লাইনে এক জায়গায় লেখা আছে দ্যাখো,
+''number  ways''৷ ওটা হবে ''number of ways''৷  
+
+ </li>
+
+
+<li>বইটার পিছনের মলাটে বেশ কিছু বানান ভুল আছে৷ কিন্তু সেগুলো অংকের ভুল নয়, পড়তে গেলে এমনিই
+বোঝা যায়৷ তাই সেগুলো আর এখানে দিলাম না৷</li>
+
+</ul>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/><!-- begin htmlcommentbox.com --> 
+<div id="HCB_comment_box">
+<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet"/>
+<script id="hcb" type="text/javascript">
+/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> </body>
+</html>

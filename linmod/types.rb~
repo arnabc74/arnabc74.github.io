@@ -1,0 +1,1150 @@
+<NOTE>
+@{<E>
+<HEAD1>Different types</HEAD1>
+There are different types of situations which give rise to
+approximate linear system of equations, and hence linear
+models. We shall discuss the most important types in this page. 
+<P/>
+In most walks of science we are interested in studying the effect
+of input(s) on some
+object. For instance, drug on a mouse, fertiliser and sunlight on a plant,
+reagents on a
+chemical, a teaching technique on a student, etc. To do so we 
+observe some output from the system. The input-output behaviour
+sheds light on the internal working of the object of study. This
+may be expressed as a box diagram. 
+<CIMG web="bb1.png"></CIMG>
+We want to model the output as a
+<I>function</I> of all the inputs, i.e., <I>same</I> set of inputs must
+give the <I>exactly same</I> output. However, this never occurs
+in practice. If two twins are both given the same dose of the
+same medicine, still their body temperatures can never be
+guaranteed to be the same. This is due to the presence of lots
+tiny factors that can never be precisely recorded. We sum up all
+these ellusive influences into a single input called <I>Random
+error</I>. 
+<P/>
+
+
+Before we start discussing various examples, we need to know a
+few terms. Also we need to know how to store the data for a
+typical linear model.
+
+<HEAD2>A few terms</HEAD2>
+<HEAD3>Factor versus covariate</HEAD3>
+Each inputs may be either continuous or categorical. A
+categorical. input us called a <B>factor</B>. A continuous input
+is called a <B>covariate</B>. For example, <I>age</I> is a
+covariate, but <I>age group</I> is a factor. The different values
+of a factor are called its <B>level</B>s. For
+example, <I>smoking habit</I> may have two levels <I>smoker</I>
+and <I>non-smoker</I>. 
+<P/>
+The output of a linear model is always considered continuous. So
+is the random error. 
+
+<HEAD3>Treatment versus control</HEAD3>
+
+Some of the inputs may be applied by an experimenter, while the
+others may be just there. For example, to study the effect of a
+particular drug on blood-pressure patients the doctor cannot
+ignore the effects of age group and gender. So the diagram looks like:
+<CIMG web="bb2.png"></CIMG>
+Here the drug is applied by the experimenter, while age and
+gender are naturally present. Accordingly, we
+have <B>treatment</B> versus <B>control</B>. 
+
+<P/>
+A study where at least one of the inputs is applied by the
+scientist is called a 
+<B>designed experiment</B>. If all the inputs are chosen by
+nature (the scientist being a merely passive spectator), then we
+have an <B>observational study</B>.
+<P/>
+If there is/are only categorical inputs, then we call it an ANOVA
+model. If the number of categorical inputs is <M>k</M> it is
+a <M>k</M>-way ANOVA model.
+<P/>
+If all the inputs are continuous we call it a <B>regression
+model</B>. 
+<P/>
+If both categorical and continuous inputs are present, then we
+have an ANCOVA model. Again, if there are <M>k</M> categorical
+inputs, then it is a <M>k</M>-way ANCOVA model.
+
+<HEAD2>Data layout</HEAD2>
+Before you can apply a linear model software, the
+data set must be in a particular layout. This layout is governed
+by the input-output diagram. There must be a column for each
+input (except the random error) and output.  The name of each
+input must be the heading for its column. The values in the
+column for a factor must be the levels for that factor. Each row in the data
+set must correspond to one observational unit. 
+<P/>
+For example, if the input-output diagram is like this:
+<CIMG web="bb2.png"></CIMG>
+and there are 6 patients, then a typical data set would look
+like:
+<PRE>
+<B>Drug          AgeGroup        Gender        B.P.Change</B>
+Minipress      Old             1             23.6
+Minipress      Middle          1             24.8
+Minipress      Young           2             2.9
+Qualipro       Old             2             45.1
+Qualipro       Middle          1             19.8
+Qualipro       Young           2             20.1
+</PRE>
+We should load this data set (stored in the
+file <FILE>med.txt</FILE>) as
+<R>
+dat = read.table('med.txt',head=T)
+</R>
+You should check the loaded data set immediately after loading:
+<R>
+dim(dat)
+names(dat)
+head(dat)
+tail(dat)
+</R>
+R, like most other softwares, thinks that valriables with
+numerical values are continuous. Here, however, <I>Gender</I> is
+a factor, though its values are numeric. So it is a good idea to
+tell R explicitly to consider <I>Gender</I> as a factor:
+<R>
+dat[,'Gender'] = factor(dat[,'Gender'])
+</R>
+You could also change the labels to <I>Male</I>
+and <I>Female</I>:
+<R>
+dat[,'Gender'] = factor(dat[,'Gender'], lab=c('Male', 'Female'))
+</R>
+
+<HEAD1>Examples</HEAD1>
+We shall now learn about some standard examples of linear
+model. In all these cases, R can actually build the design matrix
+for us. 
+<HEAD2>Measurement model</HEAD2>
+The simplest example of a linear model is one without any input
+at all (well, except the inevitable random error). Had there been
+no random error the output should always be the same. If we denote
+that ideal constant output by <M>\mu,</M> then the actual output
+(in presence of random error) is 
+<D>
+y_i = \mu+ \epsilon_i,
+</D>
+where <M>i=1,...,n.</M> We assume <M>\epsilon_i\sim
+N(0,\sigma^2).</M> 
+<P/>
+This models a scenario where a fixed uknown
+quantity <M>\mu</M> is being measured <M>n</M>
+times. Here <M>\epsilon_i</M> is the random error for
+the <M>i</M>-th measurement. In matrix notation this is 
+<D>
+<MAT>y_1\\\vdots\\y_n</MAT>
+= 
+<MAT>1\\\vdots\\1</MAT><MAT>\mu</MAT>
++
+<MAT>\epsilon_1\\\vdots\\\epsilon_n</MAT>.
+</D>
+Here <M>\epsilon\sim N_n(0,\sigma^2 I).</M>
+<P/>
+Here the data file should have a single column (for the
+output). One such file is <FILE>meas.txt</FILE>. We load this
+file first:
+<R>
+dat = read.table('meas.txt',head=T)
+</R>
+Then we apply our trivial model as follows.
+<R>
+lm(measurement~1, dat)
+</R>
+Notice the first argument, which is a compact form of the box
+diagram. The output variable is written to the left of
+the <CODE>~</CODE>. The inputs are listed after
+the <CODE>~</CODE>. In this example, we do not have any
+input. This is expressed by writing a 1 after the <CODE>~</CODE>.
+
+
+<P/>
+The <CODE>lm</CODE> function produces a lot more output than is
+printed on screen by default. Usually we store the entire output
+in some variable for detailed inspection later. 
+<R>
+fit = lm(measurement~1, dat)
+</R>
+To get a brief glimpse of the wealth of information stored in the
+variable <CODE>fit</CODE> you can use:
+<R>
+names(fit)
+</R>
+We shall learn about these later. For the time being it might of
+interest to see the design matrix:
+<R>
+model.matrix(f)
+</R>
+
+<HEAD2>1-way ANOVA</HEAD2>
+This is a linear model with a single factor (i.e., a categorical
+input). This single factor may be a
+treatment or a control. One example could be yield of paddy from an
+agricultural  plot when different fertilisers are used. 
+<CIMG web="bb3.png"></CIMG>
+If there are three types fertilisers in use (say None, Compost
+and NPK), then 5 plots under each fertiliser, then a typical
+experiment could be carried out by assigning each fertiliser to 5 random plots. 
+
+<P/>
+As you can guess, the data file should have 2 columns, one for
+the output and the other for the input. Such a file is given
+in <FILE>anova1.txt</FILE>. 
+<P/>
+Since there is only one input (other than the inevitable random
+error), it is expected that the plots are identical w.r.t. all
+other points related to the yield (e.g., sunlight, irrigation
+etc). So had there been no random error present, we would expect
+all the plots with the same fertiliser to produce the same
+yield. For the <M>i</M>-th fertiliser, we denote this ideal yield
+by <M>\mu_i.</M> So the model is 
+<D>
+y_{ij} = \mu_i + \epsilon_{ij},
+</D>
+where <M>i=1,2,3,</M> and <M>j=1,...,5.</M> It is customary to
+write this slightly differently (though equivalently) as 
+<D>
+y_{ij} = \mu+ \alpha_i + \epsilon_{ij}.
+</D>
+This is how R does it. 
+<R>
+dat= read.table('anova1.txt',head=T)
+fit1 = lm(yield ~ 1+fertiliser, dat)
+</R>
+Indeed, the 1 term may be dropped (when there are more terms in
+the RHS). Thus we could also write 
+<R>
+fit2 = lm(yield ~ fertiliser, dat)
+</R>
+and get the same effect. If, on the other hand, you insist on not
+having the intercept term, then you need to write
+<R>
+fit3 = lm(yield ~ fertiliser-1, dat)
+</R>
+Let's check the design matrices:
+<R>
+model.matrix(fit3)
+</R>
+This is just as expected. But something unexpected occurs for the
+model with intercept:
+<R>
+model.matrix(fit1) 
+</R>
+Here R has tried to simplfy the design matrix by dropping
+redundant columns. This keeps the design matrix full column
+rank. This is R's way of giving you <I>one</I> least square
+solution. 
+
+<HEAD2>2-way ANOVA</HEAD2>
+This is where we have two input factors. Both these factors could
+be treatments (e.g., if in the last example we add "tillage" as a new factor with two
+levels "manual" and "tractor"). A more commonly occuring case is
+where one factor is a treatment while the other is a control. We
+discuss one such example below. 
+<P/>
+We want to see the effect of a particular drug on men and women
+or a certain age group. We choose 100 volunteers of either
+gender, and then randomly split each gender group into two
+halves. One half gets the real drug, while the other half gets a
+placebo. So the box diagram is like:
+<CIMG web="bb4.png"/>
+Here <I>Drug</I> is a factor with two levels, <I>real</I>
+and <I>placebo</I>. Also, <I>Gender</I> is a factor with the
+levels <I>Male</I> and <I>Female</I>. 
+<P/>
+A typical data file (<FILE>anova2.txt</FILE>)  consists of three columns,
+headed <I>Drug</I>, <I>Gender</I> and <I>meas</I>. In this file
+we have encoded <I>Real</I> by 1 and <I>Placebo</I> by 0.
+<P/>
+Since we have only two factor inputs (except the random error),
+hence in absence of random error, we would expect all patients
+with the same input combination to provide the same
+measurement. There are <M>2\times2 = 4</M> input combinations
+here:
+<Q>
+(Real, Male), (Real, Feale), (Placebo, Male), (Placebo, Female).
+</Q>
+We call each of these a <B>cell</B>, and assign one ideal
+constant response value for each cell to get the <B>cell means model</B>:
+<D>
+y_{ijk} = \mu_{ij} + \epsilon_{ijk}.
+</D>
+Again, it is more customary to write it as 
+<D>
+y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ijk}.
+</D>
+<R>
+dat = read.table('anova2.txt',head=T)
+fit = lm(meas~drug * gender,dat)
+model.matrix(fit)
+</R>
+Note that <CODE>drug * gender</CODE> is an abbreviation
+for <M>\alpha_i+\beta_j + \gamma_{ij}.</M> If you want, you can
+also write this as:
+<CODE>drug + gender + drug:gender</CODE>. Here
+the <CODE>drug:gender</CODE> standas for <M>\gamma_{ij}.</M>
+<P/>
+
+Next, we consider an example with two
+treatments, <I>fertiliser</I> and <I>crop</I>. Here it is natural
+to ask the question which fertiliser is the best. This natural
+question, however, may be a meaningless one in certain
+situations. For instance if the cell means are as shown in the
+following diagram, then the optimal choice of fertiliser depends
+on the crop at hand.
+<CIMG web="inter1.png"/>
+But if the diagram looks like the following, then we can indeed
+answer the question. 
+<CIMG web="inter2.png"/>
+In the first case we say that there is <B>interaction</B>
+between <I>crop</I> and <I>fertiliser</I>. In the second case,
+there is no such interaction.
+
+<P/>
+If there is no interaction, then the model simplifies to 
+<D>
+y_{ijk} = \mu + \alpha_i + \beta_j + \epsilon_{ijk}.
+</D>
+It is possible to distinguish between the two case graphcally
+using data. 
+Here are two files, <FILE>inter1.txt</FILE>
+and <FILE>inter2.txt</FILE>. The following technique constructs
+the interaction plot based on the first data set. 
+<R>
+dat1 = read.table('inter1.txt',head=T)
+with(dat1, interaction.plot(fert, crop, yield))
+</R>
+Now do the same thing with the second data set to see the
+difference. 
+<P/>
+The no-interaction model (also called an <B>additive</B> model)
+may be specified in R as follows.
+<R>
+(fit = lm(yield~fert+crop,dat1))
+</R>
+In a model like <M>\mu+\alpha_i+\beta_j+\gamma_{ij}</M> we say
+that <M>\alpha_i</M> and <M>\beta_j</M>'s are the <B>main
+effects</B>, while <M>\gamma_{ij}</M>'s are the <B>interaction
+effects</B>. If we have more inputs, we may have <B>higher order
+interaction</B>s also. For instance, if we have three factor
+inputs, then we have have a <B>second order interaction
+effect</B> called <M>\gamma_{ijk}.</M> The <B>order</B> is always
+one less than the number of subscripts. 
+
+<HEAD2>Nested (or hierarchical) models</HEAD2>
+So far, whenever there are mutiple factors going into the box
+diagram, we are taking Cartesian product of all the levels. For
+instance, if one factor is <I>Gender</I> and another
+is <I>Smoker</I>, then we have <M>2\times 2 = 4</M> combinations:
+(Male, Yes), (Male, No), (Female, Yes,), (Female, No).
+<P/>
+There are situations, however, where a tree-like structure is
+more appropriate. One factor, for example, could
+be <I>Subject</I> and another could be <I>College</I>. If the
+subjects are Math, History and Painting, then it is quite likely
+that some of the colleges do not teach all the subjects, e.g.,
+Govt. Art College doesn't teach Math, and ISI doesn't teach
+painting. So we have a nested structure:
+<CIMG web="tree.png"/>
+Here it is meaningless to ask for the main effect of ISI, since
+it only comes under Math. Here say that <I>College</I> is nested
+under <I>Subject</I>. 
+<P/>
+Mathematically, we have the main effect for the higher factor
+(<I>Subject</I>, in this case) and the interaction effect:
+<D>
+y_{ijk} = \mu + \alpha_i + \gamma_{ij} + \epsilon_{ijk}.
+</D>
+In R formula syntax, this is 
+<R>
+y ~ subject + subject:college
+</R>
+<HEAD2>Regression model</HEAD2>
+<HEAD3>Fitting a straight line</HEAD3>
+Suppose that we have a spring from which we can hang known
+weights and measure the resulting length of the spring. We want
+to estimate the spring constant. The model here is 
+<D>
+y_i = \alpha + \beta x_i + \epsilon_i.
+</D>
+Here <M>\alpha</M> is the initial length of the spring (assumed
+unknown) and <M>\beta</M> is sprint constant that we are after. 
+A typical data set is in <FILE>spring.txt</FILE>. We can analyse
+it as follows.
+<R>
+dat = read.table('spring.txt',head=T)
+fit = lm(len ~ wt, dat)
+</R>
+Of course, in practice, the initial length of the spring would be
+known. Say it is 5. Then the model becomes
+<D>
+(y_i-5) = \beta x_i + \epsilon_i.
+</D>
+Here we change the formula used in R:
+<R>
+fit = lm(len-5 ~ wt-1, dat)
+</R>
+
+<HEAD3>Fitting a polynomial</HEAD3>
+Suppose that you want to fit a quadratic regression model, i.e.,
+<D>
+y_i = \alpha + \beta x_i + \gamma x_i^2 + \epsilon_i.
+</D>
+You might be tempted to write 
+<R>
+fit = lm(y~x+x^2,dat)
+</R>
+This won't work. Actually, it will still fit a straight line. You need to write
+<R>
+fit = lm(y~x+I(x^2),dat)
+</R>
+
+<HEAD2>ANCOVA model</HEAD2>
+Suppose that we want to study the relation between height and
+weight for both men and women. In particular, we want to model
+the situation where the regression lines are parallel (i.e.,
+share the slope, while the intercept may be different). 
+<R>
+lm(weight ~ gender + height-1)
+</R>
+If we want allow different slopes with same intercept, then
+<R>
+lm(weight ~ gender:height)
+</R>
+<HEAD2>Nonstandard models</HEAD2>
+The formula technique is good for specifying most commonly used
+models. Ocassionally we need to specify a nonstandard model. A
+weighing design is one such example. Then we can always construct
+the design matrix directly, and specify <CODE>y~mat-1</CODE> as a
+formula, where <CODE>mat</CODE> is our design matrix.
+We have already seen an example of this for the weighing design
+example in the introduction.
+
+<HEAD1>Exercises</HEAD1>
+<I><B>These exercises are some of the most important ones in this
+course. These are the types of problems where you will be
+using linear models in real life. I have deliberately used "real
+life" language (as opposed to a statistical one) in describing
+the data. Even preparing the data set to be read by R is
+irritating in most cases. But still do them. They will help you
+in your data analysis career far more than memorising complicated theorems.</B></I>
+<OL>
+<LI>Consider the 1-way ANOVA model <M>y_{ij} = \mu + \alpha_i +
+\epsilon_i</M> where <M>i=1,2,3,</M> and <M>j=1,2.</M>  Generate such a data
+set using R where <M>\epsilon_{ij}</M>'s are
+IID <M>N(0,0.2).</M> Take <M>\alpha_i</M>'s as you want. Create
+a data set of the proper layout, and apply <CODE>lm</CODE> to
+estimate <M>\alpha_i</M>'s. </LI>
+<LI>Write
+down the design matrix in the above problem. What is its rank?
+Use the <CODE>model.matrix</CODE> command to check the design
+matrix used by R. How does it differ from what you wrote down?
+Guess what design matrix R would use if <M>i=1,...,4</M>
+and <M>j=1,2.</M></LI>
+<LI>
+Here we consider an inheritance study on beef animals of several sire 
+groups (males) each 
+mated to a separate group of dams (females). Birth weights of male progeny calves 
+were recorded. 
+The data consist of birth weights (in lbs) of eight 
+male calves in each of five sire groups. The sire groups
+are numbered as 
+177, 200, 201, 202 and 203. In each group there are 8 sires. 
+The birth weight of the progeny of each sire 
+is listed in the column for its group in the following table. 
+ 
+<TABLE ncol="5" name="Birth wts. (in lbs.) of calves" file="ku3"> 
+<TR><TH colspan="5">Sire groups</TH></TR> 
+<TR><TH>177</TH><TH>200</TH><TH>201</TH><TH>202</TH><TH>203</TH></TR> 
+<TR><TD>61</TD> 
+<TD>75</TD> 
+<TD>58</TD> 
+<TD>57</TD> 
+<TD>59</TD></TR> 
+<TR><TD>100</TD> 
+<TD>102</TD> 
+<TD>60</TD> 
+<TD>56</TD> 
+<TD>46</TD> 
+</TR> 
+<TR><TD>56</TD> 
+<TD>95</TD> 
+<TD>60</TD> 
+<TD>67</TD> 
+<TD>120</TD> 
+</TR> 
+<TR><TD>113</TD> 
+<TD>103</TD> 
+<TD>57</TD> 
+<TD>59</TD> 
+<TD>115</TD> 
+</TR> 
+<TR><TD>99</TD> 
+<TD>98</TD> 
+<TD>57</TD> 
+<TD>58</TD> 
+<TD>115</TD> 
+</TR> 
+<TR><TD>103</TD> 
+<TD>115</TD> 
+<TD>59</TD> 
+<TD>121</TD> 
+<TD>93</TD> 
+</TR> 
+<TR><TD>75</TD> 
+<TD>98</TD> 
+<TD>54</TD> 
+<TD>101</TD> 
+<TD>105</TD> 
+</TR> 
+<TR><TD>62</TD> 
+<TD>94</TD> 
+<TD>100</TD> 
+<TD>101</TD> 
+<TD>75</TD></TR> 
+<TR><TH colspan="5">Source:Kuehl (2000)</TH></TR>
+</TABLE> 
+Model birth weight in terms of the sire effect. Use R to fit this model.
+</LI>
+<LI>
+An experiment, 
+described in Milliken and Johnson (1992) <COMMENT>p285</COMMENT> was 
+conducted by a company to compare between the performances of 3 
+different brands of machines when operated by the company's own 
+personnel. 6 employees were selected at random and each of them had to 
+operate each machine 3 different times. The data set given below 
+consists of 
+overall scores that take into account both the quantity and quality of 
+the output. 
+<COMMENT>
+(progn
+ (save-excursion (replace-regexp "HLINE1?" "TR"))
+ (save-excursion (replace-regexp "HDR" "TH"))
+ (save-excursion (replace-regexp "CL" "TD"))
+ (save-excursion (replace-regexp "ncol" "colspan")))
+</COMMENT>
+
+<TABLE colspan="10" name="Balanced machine-operator data" file="machine1"> 
+<TR><TH></TH> 
+<TH colspan="3">Machine 1</TH><TH colspan="3">Machine 2</TH><TH colspan="3">Machine 3</TH> 
+</TR> 
+<TR><TH>Operator</TH> 
+<TH>1</TH><TH>2</TH><TH>3</TH> 
+<TH>1</TH><TH>2</TH><TH>3</TH> 
+<TH>1</TH><TH>2</TH><TH>3</TH> 
+</TR> 
+<TR><TH>1</TH> 
+<TD>52</TD> 
+<TD>52.8</TD> 
+<TD>53.1</TD> 
+<TD>62.1</TD> 
+<TD>62.6</TD> 
+<TD>64</TD> 
+<TD>67.5</TD> 
+<TD>67.2</TD> 
+<TD>66.9</TD> 
+</TR> 
+<TR><TH>2</TH> 
+<TD>51.8</TD> 
+<TD>52.8</TD> 
+<TD>53.1</TD> 
+<TD>59.7</TD> 
+<TD>60</TD> 
+<TD>59</TD> 
+<TD>61.5</TD> 
+<TD>61.7</TD> 
+<TD>62.3</TD> 
+</TR> 
+<TR><TH>3</TH> 
+<TD>60</TD> 
+<TD>60.2</TD> 
+<TD>58.4</TD> 
+<TD>68.6</TD> 
+<TD>65.8</TD> 
+<TD>69.7</TD> 
+<TD>70.8</TD> 
+<TD>70.6</TD> 
+<TD>71</TD> 
+</TR> 
+<TR><TH>4</TH> 
+<TD>51.1</TD> 
+<TD>52.3</TD> 
+<TD>50.3</TD> 
+<TD>63.2</TD> 
+<TD>62.8</TD> 
+<TD>62.2</TD> 
+<TD>64.1</TD> 
+<TD>66.2</TD> 
+<TD>64</TD> 
+</TR> 
+<TR><TH>5</TH> 
+<TD>50.9</TD> 
+<TD>51.8</TD> 
+<TD>51.4</TD> 
+<TD>64.8</TD> 
+<TD>65</TD> 
+<TD>65.4</TD> 
+<TD>72.1</TD> 
+<TD>72</TD> 
+<TD>71.1</TD> 
+</TR> 
+<TR><TH>6</TH> 
+<TD>46.4</TD> 
+<TD>44.8</TD> 
+<TD>49.2</TD> 
+<TD>43.7</TD> 
+<TD>44.2</TD> 
+<TD>43</TD> 
+<TD>62</TD> 
+<TD>61.4</TD> 
+<TD>60.5</TD> 
+</TR> 
+<TR><TH colspan="10">Source: Milliken and Johnson (1992) 
+</TH></TR></TABLE> 
+The ultimate aim is to model the score in terms of machine and operator
+effects (ignoring time). You have to use R to create an
+interaction plot and visually check if there is any interaction
+between machine and operator effects.
+</LI>
+<LI>
+In this data set from Kuehl (2000) our interest lies in comparing two 
+standard pesticide methods. In particular, we want to compare if the 
+amount of residue left on cotton plant leaves is the same for the two 
+methods, which we shall call methods 1 and 2. 
+ To test this, 6 batches of plants were sampled from the field. 2 plants 
+ were used in the experiment from each batch. Thus, there were 12 plants 
+ in the experiment. The 
+plants inside each batch were from the same field plot. 
+Method 1 was applied to 3 randomly selected batches, and the 
+remaining 3 batches were given method 2. The amounts of residue on the leaves 
+were measured after a specified amount of time for each of the 12 plants, 
+resulting in the following data set. 
+ 
+<TABLE colspan="6" name="Pesticides on cotton leaves" file="pestresidue"> 
+<TR><TH colspan="3">Method 1</TH><TH colspan="3">Method 2</TH></TR> 
+<TR> 
+<TH>Batch 1</TH><TH>Batch 2</TH> 
+<TH>Batch 3</TH><TH>Batch 4</TH> 
+<TH>Batch 5</TH><TH>Batch 6</TH> 
+</TR> 
+<TR><TD>120</TD><TD> 120</TD><TD> 140</TD><TD> 71</TD><TD> 70</TD><TD> 63</TD> 
+</TR> 
+<TR><TD>110</TD><TD> 100</TD><TD> 130</TD><TD> 71</TD><TD> 76</TD><TD> 68</TD> 
+</TR> 
+<TR><TH colspan="6">Source:Kuehl (2000)</TH></TR></TABLE> 
+Fit a suitable linear model to this data using R. 
+</LI>
+<LI>
+The data set for this example comes from Milliken and Johnson (1984). It is 
+an agricultural data set obtained from a  design laid out as 
+follows. We want to compare between four fertilizers and two varieties of 
+crops. We have 4 (whole) plots to try these on. These are grouped into two 
+blocks. The two varieties are assigned randomly to the two (whole) plots 
+in each group. Each (whole) plot is split into 4 subplots, and the 4 
+fertilizers are applied randomly to these.
+<P/>
+Such a design is called a <B>split plot design</B>.
+ 
+<CIMG web="splitplot.png">Split plot layout of the experiment</CIMG> 
+The yield of crop for each 
+subplot is noted. So we get the following data set. 
+ 
+<TABLE colspan="4" name="Yields of crops" file="crops"> 
+<TR><TH></TH><TH colspan="2">Block 1</TH><TH colspan="2">Block 
+2</TH></TR> 
+<TR> 
+<TH>Fertilizer</TH> 
+<TH>Variety 1</TH><TH>Variety 2</TH> 
+<TH>Variety 1</TH><TH>Variety 2</TH> 
+</TR> 
+<TR><TH> 1 </TH> 
+<TD>35.4</TD> 
+<TD>37.9</TD> 
+<TD>41.6</TD> 
+<TD>40.3</TD> 
+</TR><TR><TH> 2 </TH> 
+<TD>36.7</TD> 
+<TD>38.2</TD> 
+<TD>42.7</TD> 
+<TD>41.6</TD> 
+</TR><TR><TH> 3 </TH> 
+<TD>34.8</TD> 
+<TD>36.4</TD> 
+<TD>43.6</TD> 
+<TD>42.8</TD> 
+</TR><TR><TH> 4 </TH> 
+<TD>39.5</TD> 
+<TD>40</TD> 
+<TD>44.5</TD> 
+<TD>47.6</TD> 
+</TR> 
+<TR><TH colspan="5">Milliken and Johnson (1984)</TH> 
+</TR></TABLE> 
+</LI>
+<LI>
+This example is based on a clinical data set presented in Hocking (2003), 
+where a pharmaceutical firm wants to test a new drug for a particular 
+disease. The response is a measure of the improvement in the patients' status. 
+ A sample of 3 
+clinics is selected at random from a large population of clinics. From 
+each clinic a sample of 10 patients with the particular disease are 
+selected. The drug is applied to each patient and we record both the 
+response (<M>Y</M>) of the drug as well as a relevant physical 
+characteristic (<M>Z</M>) for each 
+patient. This leads to the following data set. 
+<TABLE colspan="6" name="Clinical data with covariate" file="clincov"> 
+<TR><TH colspan="2">Clinic 1</TH><TH colspan="2">Clinic 2</TH><TH 
+colspan="2">Clinic 3</TH></TR> 
+<TR> 
+<TH>Y</TH><TH>Z</TH> 
+<TH>Y</TH><TH>Z</TH> 
+<TH>Y</TH><TH>Z</TH> 
+</TR> 
+<TR> 
+<TD>11</TD> 
+<TD>6</TD> 
+<TD>6</TD> 
+<TD>0</TD> 
+<TD>16</TD> 
+<TD>13</TD> 
+</TR><TR> 
+<TD>8</TD> 
+<TD>0</TD> 
+<TD>6</TD> 
+<TD>2</TD> 
+<TD>13</TD> 
+<TD>10</TD> 
+</TR><TR> 
+<TD>5</TD> 
+<TD>2</TD> 
+<TD>7</TD> 
+<TD>3</TD> 
+<TD>11</TD> 
+<TD>18</TD> 
+</TR><TR> 
+<TD>14</TD> 
+<TD>8</TD> 
+<TD>8</TD> 
+<TD>1</TD> 
+<TD>9</TD> 
+<TD>5</TD> 
+</TR><TR> 
+<TD>19</TD> 
+<TD>11</TD> 
+<TD>18</TD> 
+<TD>18</TD> 
+<TD>21</TD> 
+<TD>23</TD> 
+</TR><TR> 
+<TD>6</TD> 
+<TD>4</TD> 
+<TD>8</TD> 
+<TD>4</TD> 
+<TD>16</TD> 
+<TD>12</TD> 
+</TR><TR> 
+<TD>10</TD> 
+<TD>13</TD> 
+<TD>19</TD> 
+<TD>14</TD> 
+<TD>12</TD> 
+<TD>5</TD> 
+</TR><TR> 
+<TD>6</TD> 
+<TD>1</TD> 
+<TD>8</TD> 
+<TD>9</TD> 
+<TD>12</TD> 
+<TD>16</TD> 
+</TR><TR> 
+<TD>11</TD> 
+<TD>8</TD> 
+<TD>5</TD> 
+<TD>1</TD> 
+<TD>7</TD> 
+<TD>1</TD> 
+</TR><TR> 
+<TD>3</TD> 
+<TD>0</TD> 
+<TD>15</TD> 
+<TD>9</TD> 
+<TD>12</TD> 
+<TD>20</TD> 
+</TR> 
+<TR><TH colspan="6">Hocking (2003)</TH> 
+</TR>
+</TABLE> 
+
+</LI>
+<LI>
+After drying beech wood the humidity level at any given point inside a 
+plank typically 
+depends on the the depth of the point. In this example we want to study 
+the relation between the humidity level (measured as a percentage) with 
+the depth for 20 different randomly selected beech planks. For each plank 
+we measure the humidity level  for 5 depths and 3 widths. The 
+resulting data set is shown below. 
+ 
+<TABLE colspan="15" name="Beech wood humidity level" file="planks"> 
+<TR> 
+<TH colspan="3">Depth=1</TH> 
+<TH colspan="3">Depth=3</TH> 
+<TH colspan="3">Depth=5</TH> 
+<TH colspan="3">Depth=7</TH> 
+<TH colspan="3">Depth=9</TH> 
+</TR> 
+<TR><TH colspan="15">Widths</TH></TR> 
+<TR> 
+<TH>1</TH> 
+<TH>2</TH> 
+<TH>3</TH> 
+<TH>1</TH> 
+<TH>2</TH> 
+<TH>3</TH> 
+<TH>1</TH> 
+<TH>2</TH> 
+<TH>3</TH> 
+<TH>1</TH> 
+<TH>2</TH> 
+<TH>3</TH> 
+<TH>1</TH> 
+<TH>2</TH> 
+<TH>3</TH> 
+</TR> 
+<TR> 
+<TD>3.4</TD> 
+<TD>4.1</TD> 
+<TD>4.4</TD> 
+<TD>4.9</TD> 
+<TD>4.7</TD> 
+<TD>4.8</TD> 
+<TD>5</TD> 
+<TD>5.2</TD> 
+<TD>5</TD> 
+<TD>4.9</TD> 
+<TD>4.6</TD> 
+<TD>4.9</TD> 
+<TD>4</TD> 
+<TD>4.3</TD> 
+<TD>4.2</TD> 
+</TR><TR> 
+<TD>4.3</TD> 
+<TD>3.9</TD> 
+<TD>4</TD> 
+<TD>5.5</TD> 
+<TD>5.6</TD> 
+<TD>4.7</TD> 
+<TD>6.2</TD> 
+<TD>5.7</TD> 
+<TD>4.5</TD> 
+<TD>5.4</TD> 
+<TD>5.5</TD> 
+<TD>3.9</TD> 
+<TD>4.7</TD> 
+<TD>4.9</TD> 
+<TD>4</TD> 
+</TR><TR> 
+<TD>4.2</TD> 
+<TD>5.4</TD> 
+<TD>4.5</TD> 
+<TD>5.5</TD> 
+<TD>6.2</TD> 
+<TD>4.9</TD> 
+<TD>5.6</TD> 
+<TD>6.1</TD> 
+<TD>4.9</TD> 
+<TD>6.3</TD> 
+<TD>6.4</TD> 
+<TD>4.9</TD> 
+<TD>4.5</TD> 
+<TD>5.2</TD> 
+<TD>4.4</TD> 
+</TR><TR> 
+<TD>4.4</TD> 
+<TD>4.6</TD> 
+<TD>4.9</TD> 
+<TD>6</TD> 
+<TD>6.1</TD> 
+<TD>5.9</TD> 
+<TD>7.1</TD> 
+<TD>6.6</TD> 
+<TD>5.8</TD> 
+<TD>6.9</TD> 
+<TD>6.5</TD> 
+<TD>6.4</TD> 
+<TD>4.6</TD> 
+<TD>4.7</TD> 
+<TD>4.7</TD> 
+</TR><TR> 
+<TD>3.9</TD> 
+<TD>4.2</TD> 
+<TD>4</TD> 
+<TD>4.7</TD> 
+<TD>5.2</TD> 
+<TD>4.4</TD> 
+<TD>5.2</TD> 
+<TD>5.4</TD> 
+<TD>4.4</TD> 
+<TD>5</TD> 
+<TD>4.8</TD> 
+<TD>4.1</TD> 
+<TD>3.7</TD> 
+<TD>3.9</TD> 
+<TD>3.5</TD> 
+</TR><TR> 
+<TD>4.6</TD> 
+<TD>5.9</TD> 
+<TD>5.2</TD> 
+<TD>5.9</TD> 
+<TD>7.3</TD> 
+<TD>5.7</TD> 
+<TD>6.3</TD> 
+<TD>6.9</TD> 
+<TD>6.6</TD> 
+<TD>5.8</TD> 
+<TD>6.9</TD> 
+<TD>6</TD> 
+<TD>4.8</TD> 
+<TD>4.4</TD> 
+<TD>4</TD> 
+</TR><TR> 
+<TD>3.9</TD> 
+<TD>4.9</TD> 
+<TD>4.3</TD> 
+<TD>5.6</TD> 
+<TD>6.9</TD> 
+<TD>5.4</TD> 
+<TD>6</TD> 
+<TD>7.1</TD> 
+<TD>5.9</TD> 
+<TD>5.3</TD> 
+<TD>6.1</TD> 
+<TD>5.5</TD> 
+<TD>5</TD> 
+<TD>4.5</TD> 
+<TD>4.2</TD> 
+</TR><TR> 
+<TD>3.9</TD> 
+<TD>3.7</TD> 
+<TD>3.8</TD> 
+<TD>4.5</TD> 
+<TD>4.9</TD> 
+<TD>4.5</TD> 
+<TD>5.3</TD> 
+<TD>4.8</TD> 
+<TD>5.4</TD> 
+<TD>5.6</TD> 
+<TD>4.9</TD> 
+<TD>4.8</TD> 
+<TD>4.7</TD> 
+<TD>4.3</TD> 
+<TD>4</TD> 
+</TR><TR> 
+<TD>3.6</TD> 
+<TD>3.8</TD> 
+<TD>3</TD> 
+<TD>4.1</TD> 
+<TD>5.1</TD> 
+<TD>3.9</TD> 
+<TD>4</TD> 
+<TD>5</TD> 
+<TD>4.7</TD> 
+<TD>4.4</TD> 
+<TD>4.6</TD> 
+<TD>4.9</TD> 
+<TD>3.7</TD> 
+<TD>3.3</TD> 
+<TD>3.8</TD> 
+</TR><TR> 
+<TD>6.5</TD> 
+<TD>6.9</TD> 
+<TD>5.8</TD> 
+<TD>8.7</TD> 
+<TD>8.9</TD> 
+<TD>7.5</TD> 
+<TD>9.5</TD> 
+<TD>7.4</TD> 
+<TD>7.7</TD> 
+<TD>7.9</TD> 
+<TD>7</TD> 
+<TD>7.3</TD> 
+<TD>6.6</TD> 
+<TD>6.9</TD> 
+<TD>5.9</TD> 
+</TR><TR> 
+<TD>3.7</TD> 
+<TD>4.7</TD> 
+<TD>3.7</TD> 
+<TD>5.2</TD> 
+<TD>5.8</TD> 
+<TD>5</TD> 
+<TD>5.5</TD> 
+<TD>5.7</TD> 
+<TD>6.3</TD> 
+<TD>5.9</TD> 
+<TD>4.9</TD> 
+<TD>5.2</TD> 
+<TD>4.4</TD> 
+<TD>4.2</TD> 
+<TD>4.3</TD> 
+</TR><TR> 
+<TD>4.3</TD> 
+<TD>4.8</TD> 
+<TD>5.1</TD> 
+<TD>5.8</TD> 
+<TD>6.7</TD> 
+<TD>5.7</TD> 
+<TD>6.2</TD> 
+<TD>7</TD> 
+<TD>5.9</TD> 
+<TD>5.2</TD> 
+<TD>6.1</TD> 
+<TD>6.4</TD> 
+<TD>4.4</TD> 
+<TD>5.2</TD> 
+<TD>5.1</TD> 
+</TR><TR> 
+<TD>6.5</TD> 
+<TD>5.9</TD> 
+<TD>4</TD> 
+<TD>8.8</TD> 
+<TD>7.5</TD> 
+<TD>4.2</TD> 
+<TD>9.1</TD> 
+<TD>8.4</TD> 
+<TD>4.9</TD> 
+<TD>8.9</TD> 
+<TD>7.9</TD> 
+<TD>4.6</TD> 
+<TD>6</TD> 
+<TD>5.7</TD> 
+<TD>3.5</TD> 
+</TR><TR> 
+<TD>4.4</TD> 
+<TD>5.7</TD> 
+<TD>4.6</TD> 
+<TD>6.2</TD> 
+<TD>7</TD> 
+<TD>6.2</TD> 
+<TD>6.7</TD> 
+<TD>7.4</TD> 
+<TD>6.8</TD> 
+<TD>6.4</TD> 
+<TD>7.3</TD> 
+<TD>5.8</TD> 
+<TD>4.3</TD> 
+<TD>5.5</TD> 
+<TD>4.9</TD> 
+</TR><TR> 
+<TD>5.5</TD> 
+<TD>6.4</TD> 
+<TD>6.5</TD> 
+<TD>7.1</TD> 
+<TD>8.4</TD> 
+<TD>8.4</TD> 
+<TD>7.5</TD> 
+<TD>8.9</TD> 
+<TD>9.1</TD> 
+<TD>6.9</TD> 
+<TD>8.1</TD> 
+<TD>9.2</TD> 
+<TD>5.4</TD> 
+<TD>6.1</TD> 
+<TD>7.5</TD> 
+</TR><TR> 
+<TD>5.2</TD> 
+<TD>6.6</TD> 
+<TD>5.9</TD> 
+<TD>6</TD> 
+<TD>7.6</TD> 
+<TD>6.7</TD> 
+<TD>6.2</TD> 
+<TD>7.8</TD> 
+<TD>6.7</TD> 
+<TD>6.6</TD> 
+<TD>7.7</TD> 
+<TD>5</TD> 
+<TD>5.3</TD> 
+<TD>5.8</TD> 
+<TD>3.9</TD> 
+</TR><TR> 
+<TD>3.7</TD> 
+<TD>3.7</TD> 
+<TD>3.7</TD> 
+<TD>4.5</TD> 
+<TD>4.4</TD> 
+<TD>4.5</TD> 
+<TD>5</TD> 
+<TD>4.8</TD> 
+<TD>4.7</TD> 
+<TD>4.5</TD> 
+<TD>4.4</TD> 
+<TD>5.3</TD> 
+<TD>3.7</TD> 
+<TD>4.3</TD> 
+<TD>3.9</TD> 
+</TR><TR> 
+<TD>6</TD> 
+<TD>6.9</TD> 
+<TD>5.1</TD> 
+<TD>7.4</TD> 
+<TD>8.6</TD> 
+<TD>6.1</TD> 
+<TD>7.8</TD> 
+<TD>8.8</TD> 
+<TD>5.2</TD> 
+<TD>7.5</TD> 
+<TD>7.5</TD> 
+<TD>5.4</TD> 
+<TD>5.7</TD> 
+<TD>5.4</TD> 
+<TD>4.7</TD> 
+</TR><TR> 
+<TD>3.8</TD> 
+<TD>3.7</TD> 
+<TD>3.3</TD> 
+<TD>4.6</TD> 
+<TD>4.7</TD> 
+<TD>3.5</TD> 
+<TD>4.8</TD> 
+<TD>4.7</TD> 
+<TD>3.7</TD> 
+<TD>4.4</TD> 
+<TD>4.3</TD> 
+<TD>3.4</TD> 
+<TD>3.8</TD> 
+<TD>3.7</TD> 
+<TD>3.2</TD> 
+</TR><TR> 
+<TD>6.1</TD> 
+<TD>4.7</TD> 
+<TD>4.7</TD> 
+<TD>7.4</TD> 
+<TD>6.3</TD> 
+<TD>6</TD> 
+<TD>7.7</TD> 
+<TD>7.1</TD> 
+<TD>6</TD> 
+<TD>6.7</TD> 
+<TD>6.5</TD> 
+<TD>6.3</TD> 
+<TD>4.6</TD> 
+<TD>5.1</TD> 
+<TD>4.2</TD> 
+</TR> 
+<TR><TH colspan="6">Netmaster</TH> 
+</TR></TABLE> 
+Make an interaction plot to visually check interaction between
+depth and width.
+</LI>
+</OL>
+<DISQUSE id="types" url="http://www.isical.ac.in/~arnabc/linmod/types.html"/>
+</E>@}
+</NOTE>

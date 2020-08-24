@@ -1,0 +1,140 @@
+<NOTE>
+@{<E>
+<HEAD1>Two examples</HEAD1>
+Here we shall see two examples of how linear mixed models may
+help us to incorporate additional info in fixed effects models.
+
+
+<HEAD2>Weight vs. Height</HEAD2>
+The
+file <LINK to="eugenedata/Chapter02/Family.txt">Family.txt</LINK>
+is from chapter 2 of Demidenko's book. Among other things, it
+gives the heights and weights of 71 persons. A simple plot will
+show a scattered increasing trend. 
+
+<R>
+dat = read.table("Family.txt",head=T)
+names(dat)
+attach(dat)
+plot(Weight,Height)
+</R>
+We can, of course, fit a regression to explore the height-weight
+relationship:
+<D>
+w_i = \alpha + \beta h_i + \epsilon_i.
+</D>
+ But here we have another relevant piece of info:
+each of the 71 persons belongs to one of 18 families, and the
+data set gives us the FamilyID's. Once would expect that the
+members of the same family would behave similarly. Can we somehow
+incorporate this information by adding a "family effect" to the model?
+<P/>
+The first approach could be to fit a model:
+<D>
+w_{ki} = \alpha_k + \beta_k h_{ki} + \epsilon_{ki}.
+</D>
+Here each person is coded as a pair <M>(k,i)</M>,
+meaning <M>i</M>-th person from the <M>k</M>-th family. 
+But this is not good because of the following reasons.
+<UL>
+<LI>It is difficult to use the estimated parameters. For
+instance, <M>\h \alpha_1</M> is specific for family 1. And why
+should one
+care about that <I>particular</I> family?</LI>
+<LI>Most families have a very small number of members in the
+data. So the estimates of <M>\alpha_k</M>'s and <M>\beta_k</M>'s
+will be bad (or impossible, in case of family 16 that has ony
+one representative!).</LI>
+</UL>
+A better approach is to allow the intercept to be family-specific
+and random:
+<D>
+\alpha_k = \mu + a_k,
+</D>
+where <M>\mu</M> is fixed and unknown and <M>a_k</M>'s are
+iid <M>N(0,\sigma^2_a).</M> So the full model now becomes
+<D>
+w_{ki} = \mu+a_k + \beta h_{ki} + \epsilon_{ki}.
+</D>
+If we club the random terms in the RHS together, then this is
+actually a GLS model where the covariance matrix  is a block
+diagonal matrix with the one block per family. The <M>i</M>-th
+block has <M>\sigma^2+\sigma^2_a</M> in the diagonal entries and
+the only <M>\sigma^2_a</M> in the off-diagonal ones.
+
+<P/>
+We can fit this model using R as follows.
+<R>
+library(nlme) #install it first if you have not done so already
+fit=lme (Weight~Height , random=~ 1 |FamilyID)
+summary(fit)
+</R>
+
+<HEAD2>Measuring active ingredients in tablets</HEAD2>
+This example is based on the online Netmaster Statistics Courses. Here we
+want to compare 
+two methods (HPLC and NIR) to ascertain the amount of active content 
+in tablets. Suppose that we want to test if the two methods yield more or less the 
+same measurement. 
+The tests have been applied to the <I>same</I> set of 10 tablets (<I>e.g.,</I> 
+breaking each tablet into two halves, and applying one method to each 
+half). The resulting <LINK to="tablet.txt">data</LINK> are shown in the following table. 
+
+<TABLE>
+<TR><TH>Tablet <M>(i)</M></TH><TH>HPLC <M>(x_i)</M></TH><TH>NIR<M>(y_i)</M></TH></TR>
+<TR><TH>1</TH><TD>10.4</TD><TD>10.1</TD></TR>
+<TR><TH>2</TH><TD>10.6</TD><TD>10.8</TD></TR>
+<TR><TH>3</TH><TD>10.2</TD><TD>10.2</TD></TR>
+<TR><TH>4</TH><TD>10.1</TD><TD>9.9</TD></TR>
+<TR><TH>5</TH><TD>10.3</TD><TD>11.0</TD></TR>
+<TR><TH>6</TH><TD>10.7</TD><TD>10.5</TD></TR>
+<TR><TH>7</TH><TD>10.3</TD><TD>10.2</TD></TR>
+<TR><TH>8</TH><TD>10.9</TD><TD>10.9</TD></TR>
+<TR><TH>9</TH><TD>10.1</TD><TD>10.4</TD></TR>
+<TR><TH>10</TH><TD>9.8</TD><TD>9.9</TD></TR>
+</TABLE> 
+<P/> 
+ One standard method to analyze the data  is to perform a paired 
+<M>t</M>-test, which basically works with the differences <M>z_i = x_i-y_i.</M>
+<R>
+dat = read.table('tablet.txt',head=T)
+with(dat,t.test(HPLC,NIR,paired=T))
+</R>
+Now here it is quite natural to assume that <M>x_i</M>'s
+and <M>y_i</M>'s will be positively correlated. This information
+is not used in the paired <M>t</M>-test. However, we may use a
+linear mixed model to incorporate the info. We shall allow a
+tablet effect. 
+<D>
+y_{ij} = \mu + a_i + \beta_j + \epsilon_{ij}.
+</D>
+Here <M>y_{ij}</M> is the measurement for tablet <M>i</M> under
+method <M>j.</M> The tablet effect <M>a_i</M> is random. To fit
+this model using R we need to rearrange the data:
+<R>
+dat1 = with(dat, data.frame(meas=c(HPLC,NIR),meth=c(rep("HPLC",10),rep("NIR",10)), tab=rep(1:10,2)))
+</R> 
+Now we use:
+<R>
+lme(meas~meth, random=~1|tab,dat=dat1)
+</R>
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>We are inspecting the quality of a survey instrument for measuring angles. 50
+roughly equilaterial triangles are taken and each angle is measured
+independently. We are testing 
+<Q><M>H_0:</M> sum of all the angles
+of the same triangle equals <M>180^\circ.</M></Q>
+A straight-forward method is to apply <M>t</M>-test to the total
+measured angles for the triangles. Can you improve upon this by
+sing LME?
+ </LI>
+<LI>How can you use LME to estimate  a fixed
+unknown length which has been measured 5 times each by 3
+persons?</LI>
+
+</OL>
+
+<DISQUSE id="lmmixed2" url="http://www.isical.ac.in/~arnabc/linmod/mixed2.html"/>
+</E>@}
+</NOTE>

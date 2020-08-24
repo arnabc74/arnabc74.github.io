@@ -1,0 +1,381 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Mixed linear model">Mixed linear model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Motivation">Motivation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using R">Using R</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+$\newcommand{\h}{\hat}$
+<h1><a
+name="Mixed linear model">Mixed linear model</a></h1>
+
+<h2><a
+name="Motivation">Motivation</a></h2>
+The main reason behind analysing <i>past</i> data is to be able to apply
+our findings to similar <i>future</i> data. So any meaningful
+analysis must depend on our idea about what the
+typical <i>future</i> data are going to look like. The following
+example will clarify this point.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+We want to study the effect of smart class rooms on student
+performances in Bengali medium schools in West Bengal. Five schools are asked to
+participate in the study. Each school takes a random sample of 50
+students, and assigns a random half of them to smart class rooms,
+while the remaining half is taught using traditional class
+rooms. After 3 months of study, the students are evaluated in a
+common examination. The marks are the responses. So the
+box-diagram is as follows.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mixbox.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here is a <a href="mix.txt">synthetic data set</a>.  The
+following R session fits a 2-way ANOVA model without interaction
+to it:
+<font color="red">
+<pre>
+dat = read.table('mix.txt', head=T)
+fit = lm(marks~., data = dat)
+coef(fit)
+</pre>
+</font>
+The output looks like this:
+<pre>
+(Intercept)    smartyes     schoolB     schoolC     schoolD     schoolE 
+     58.984      10.672       9.680      20.580      -5.220       4.280 
+</pre>
+How do you think we can use this report in the future? The
+estimated <code>smartyes</code> may be used by other schools to
+measure effectiveness of smart class rooms. But who will care
+about the
+estimated <code>schoolB</code>,..., <code>schoolE</code>? The
+schools themselves may have some limited interest in comparing
+themselves with <code>schoolA</code>, but nobody else will care
+about that. The 5 schools are just <i>some</i> 5 schools. They
+are like a sample of size 5 from the population of all similar
+schools. Does this mean that we should drop the school effect
+from our consideration (<i>i.e.</i>, just merge that with random error)?
+No, that is not good either, because the random error part is due
+to all assignable causes. But the variation between schools is
+definitely assignable. While we do not care about the performances
+of these <i>specific</i> schools, we do care about the
+variability among the schools.
+<img src="../image/box.png"></p>
+
+To reflect this idea we make the school effect a <b>random
+effect</b>. 
+
+$$
+y_{ijk} = \mu + \alpha_i + b_j + \epsilon_{ijk},
+$$
+where the school effect $b_j$'s are
+IID $N(0,\sigma^2_b).$ The $\epsilon_{ijk}$'s are
+IID $N(0,\sigma^2_\epsilon),$ and are independent of
+the $b_j$'s. Notice that $b_j$'s are not parameters any
+more. This model has a new parameter $\sigma^2_b,$ which
+measures the school-to-school variation. 
+<p></p>
+Since our model has both a <b>fixed effect</b>
+(the $\alpha_i$'s) as well as a <b>random effect</b>
+(the $b_j$'s), we call it a <b>mixed effects model</b>.
+
+<h2><a
+name="Using R">Using R</a></h2>
+There are two R packages that will allow you to fit a mixed
+effects model: <code>nlme</code> (non-linear mixed effects)
+and <code>lme4</code> (linear mixed effects, version 4). The
+latter is the more modern of the two, while former is far more
+general (it can handle even some non-linearity). We shall
+exclusively use the <code>nlme</code> package, as it allows
+certain extra features that are useful in practice. Neither of
+the two packages are installed by default in R. You'll need to
+install the <code>nlme</code> package via:
+<font color="red">
+<pre>
+install.packages('nlme') #Don't forget the quotes!
+</pre>
+</font>
+Once it is installed, we shall load the library, and invoke
+the <code>lme</code> (linear mixed effects) function:
+<font color="red">
+<pre>
+library(nlme) 
+lme(marks ~ smart, random = ~1|school, data=dat)
+</pre>
+</font>
+Let's understand the somewhat wierd syntax of this function. Our
+familiar <code>lm</code> function required the first argument to
+be a formula object (i.e, a specification of the
+"box diagram"). The second argument (optional) was the name of the
+data set. The <code>lme</code> function is similar, except that
+it requires <i>two</i> formula objects, the first one for the fixed
+effects, the second one for the random effects. The fixed effects
+part is just as in the <code>lm</code> function. The wierdness is
+in the random effects part. R likes to think of the $b_j$ as
+a school-specific intercept term. For example, if you focus on
+only the data from school 1, then model is 
+$$
+y_{i1k} = \mu + \alpha_i + b_1 + \epsilon_{i1k},
+$$
+where $b_1$ is free of the running subscripts $i$
+and $k.$ This school-specific intercept term is denoted
+by <code>1|school</code>. We have already specified the output
+variable to the left of the <code>~</code> in the fixed effects
+part. So we do not specify it any more. Thus, the random effects
+part is just <code>~ 1|school</code>. The random effects part
+must <i>always</i> start with a <code>~</code>. 
+<p></p>
+
+Now, let's look at the output:
+<pre>
+Linear mixed-effects model fit by REML
+  Data: dat 
+  Log-restricted-likelihood: -759.8349
+  Fixed: marks ~ smart 
+(Intercept)    smartyes 
+     <font color="#ff0000">64.848</font>      <font color="#0000ff">10.672</font> 
+
+Random effects:
+ Formula: ~1 | school
+        (Intercept) Residual
+StdDev:    <font color="#00ff00">9.861265</font> <font color="magenta">4.866941</font>
+
+Number of Observations: 250
+ Number of Groups: 5 
+</pre>
+Using our mathematical notation, this means:
+$
+\h \mu = $<font color="#ff0000">64.848</font>, $\h \alpha_1 = 0, \h \alpha_2
+=$ <font color="#0000ff">10.672</font>,
+and 
+$
+\h \sigma_e =$ <font color="magenta">4.866941</font>, $\h \sigma_b = $<font color="#00ff00">9.861265</font>.
+
+<p></p>
+
+Note the rather ugly and counter-intuitive way $\h \sigma_b$
+is presented in the output. 
+
+<p></p>
+The output also mentions an estimation method
+called <b>REML</b>. We have already learned
+REML <a href="gls.html">earlier</a>. 
+
+Essentially the same method may be adapted to the mixed effects
+model:
+$$
+y = X \beta + Z \gamma + \epsilon,
+$$
+where dispersion matrices for $\gamma $ and $\epsilon $
+are, respectively, $D(\theta)$ and $R(\theta).$
+<p></p>
+REML still uses ML on $e = (I-P_X)y$ (no role of $Z$ here).
+We again get 
+$$
+\ell(\theta) = \log |\Sigma(\theta)| + w' \Sigma(\theta) ^{-1} w,
+$$
+where $\Sigma (\theta) = Z D(\theta) Z' + R(\theta).$ It is
+numerical computation after that.
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>In a study related to poultry farming, we are interested in
+seeing if playing soothing music has an effect on the size of
+eggs laid by hens and ducks. A random sample of hens and ducks
+are classified into two groups (one with and the other without
+music). The following data are also collected about each bird: 
+<ul>
+
+<li>hen or duck?</li>
+
+<li>age</li>
+
+<li>originating farm</li>
+
+<li>number of eggs laid</li>
+
+</ul>
+Which of these should be considered as mixed effects?
+</li>
+
+<li>Consider the mixed effect model
+$$\begin{eqnarray*}
+y_{11} &amp; = &amp; \mu + a_1 + \epsilon_{11}\\
+y_{12} &amp; = &amp; \mu + a_1 + \epsilon_{12}\\
+y_{21} &amp; = &amp; \mu + a_2 + \epsilon_{21},
+\end{eqnarray*}$$
+where $a_1,a_2$ are iid $N(0,\sigma^2_a)$
+and $\epsilon_{ij}$'s are iid $N(0,\sigma^2_\epsilon).$
+The $a$'s are independent of the $\epsilon $'s. Find
+REML estimate of $\sigma^2_\epsilon $ and $\sigma^2_a$
+based on the data $y_{11} = 2.3,$ $y_{12} = 2.5,$ and $y_{21} = 3.0.$
+</li>
+
+<li>Write down the R syntax for <code>lme</code> to implement
+the following mixed effects model:
+$$
+y_{ijk} = \mu + a_i + \beta_j + g_{ij} + \epsilon_{ijk},
+$$
+where $a_i$'s and $g_{ij}$'s are random effect
+coeeficients and $\epsilon_{ijk}$'s are the error
+terms. Let $i$ denote the "row" effect and $j$ denote
+the "column" effect (<i>i.e.</i>, you may use "row" and "column" as
+variable names).
+</li>
+
+
+<li>Write the following LME model in mathematical notation:
+<font color="red">
+<pre>
+lme(y ~ x:gender, ~1|college) 
+</pre>
+</font>
+Here <code>x</code> is a covariate, while <code>gender</code>
+and <code>college</code> are factors.
+</li>
+
+
+<li>Consider the model 
+$$
+y_{ij} = \mu + \alpha_i + \epsilon_{ij},
+$$
+where $\epsilon_{ij}\sim N(0,\sigma^2)$ for some
+unknown $\sigma^2.$ Will the ML estimator of $\sigma^2$
+increase or decrease if the $\alpha_i$'s considered to be
+random effects (iid $N(0,\sigma^2_a)$ for some unknown $\sigma^2_a$)?
+</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/mixed.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmmixed"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

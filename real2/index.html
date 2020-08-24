@@ -1,0 +1,191 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<img align="right" src="image/real2.jpg"/>
+<h3>Table of contents</h3>
+<ul>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Real Analysis (volume 2)">Real Analysis (volume 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#ভুল-ত্রুটি">ভুল-ত্রুটি</a>
+</li>
+</ul>
+<hr/>
+<title>Arnab Chakraborty's Real Analysis (Volume 2)</title>
+
+
+<h2><a
+name="Real Analysis (volume 2)">Real Analysis (volume 2)</a></h2>
+
+<table align="right">
+<tr>
+<th><img width="" src="image/cover.jpg"></th>
+</tr>
+<tr>
+<th>বইয়ের মলাট</th>
+</tr>
+</table>
+এই পাতাটা হল আমার লেখা Real Analysis (Volume 2) বইটার জন্য৷ বইটা  দ্বিতীয় সংস্করণে 
+পা দিয়েছে৷ 
+
+<h2><a
+name="ভুল-ত্রুটি">ভুল-ত্রুটি</a></h2>
+
+<ul>
+
+<li>
+<center>
+<fieldset>
+<legend><b>12  পাতার অংশ</b></legend><img width="80%" src="image/p12.png"></fieldset>
+</center>
+এখানে লাল করে গোল করা চিহ্নগুলো ওল্টাবে৷ ভুলটা ধরেছে রাজেশ পাণ্ডা৷ 
+</li>
+
+<li>27  নম্বর পাতাটা বিশ্রীভাবে ছাপা হয়েছে, বাংলাগুলো আসে নি৷ এখানে সেই পাতাটা
+ একটা <a href="realvol2p27.pdf">pdf</a>  হিসেবে দিলাম৷ ছাপার এই গোলযোগের দিকে
+ আমার দৃষ্টি আকর্ষণ করেছেন শ্রী ইন্দ্রনীল রায়৷</li>
+
+<li>43  নম্বর পাতায় Exercise 45-এর উত্তরে আমি লিখিছি 
+<center>
+<fieldset>
+<legend><b>প্রথম অধ্যায়ের উত্তরের অংশ</b></legend><img width="80%" src="image/exr45.png"></fieldset>
+</center>
+লাল করে গোল করা $\frac 12x^2$-টার বদলে $\frac 12x^2+\frac 12$  হতে হবে৷ অংকটার দিকে দৃষ্টি আকর্ষণ 
+করেছেন শ্রী সুকান্ত দাস৷ 
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b>113-114  পাতার অংশ</b></legend><img width="80%" src="image/p113-114.png"></fieldset>
+</center> এখানে লাল করে ঘিরে দেওয়া
+ $m$-গুলো $m-1$  হবে৷ ভুলটা ধরেছে রাজেশ পাণ্ডা৷</li>
+
+<li> 130  পাতার মাঝামাঝি জায়গায় আছে এইরকম--
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/p130.png"></fieldset>
+</center>
+এখানে $x\rightarrow a$-র বদলে $x\rightarrow 0$  হওয়া উচিত৷  ভুলটা
+ ধরেছেন শ্রী ইন্দ্রনীল রায়৷  
+</li>
+
+<li>236  পাতার একেবারে নীচের দিকে আছে এইরকম--
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/p236.png"></fieldset>
+</center>
+হলুদ রঙে ভুলটা ঠিক করে দিয়েছি৷ ভুলটার দিকে দৃষ্টি আকর্ষণ করেছে অনির্বাণ দত্ত৷  
+</li>
+
+</ul>
+আমার বইতে অধিকাংশ অংকই আমি কষে দিই, কারণ একটা বিষয় প্রথম শেখার সময়ে একরাশ কঠিন অংকের
+ তলায় তলিয়ে গেলে 
+মুশকিল৷ কিন্তু একবার শেখা হয়ে গেলে আত্মবিশ্বাস বাড়ানোর জন্য কঠিন অংক নিজে নিজে করাটা
+ খুবই দরকার৷ এইরকম অংক অনেক বইতেই পাওয়া যায়৷ এর মধ্যে আমার বিশেষ ভালো লাগে 
+Casper Goffman-এর Real Analysis বইটার অংকগুলো৷ আমাদের দ্বিতীয় খণ্ডের পক্ষে প্রাসঙ্গিক
+প্রশ্নগুলো ওই বইটা থেকে এখানে তুলে দিলাম--
+<ul>
+
+<li>
+<a href="casperdiff.pdf">Differentiation-এর অংক</a>
+</li>
+
+<li>
+<a href="casperseries.pdf">Series-এর অংক</a>
+</li>
+
+</ul>  
+যদি তোমার কোনো প্রশ্ন থাকে তবে নীচের form-টায় লিখে দিতে পারো৷ আমার কাছে ইমেল চলে আসবে৷ 
+উত্তরটা আমি এখানেই লিখে রাখব, তুমি অবসর সময়ে দেখে নিতে পারবে৷ বা তোমার ইমেল দিয়ে দিলে আমি সেখানেও 
+উত্তর পাঠিয়ে দিতে পারি৷  
+<!-- begin htmlcommentbox.com --> <div id="HCB_comment_box">
+<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet">
+<script id="hcb" type="text/javascript">
+/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

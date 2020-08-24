@@ -1,0 +1,553 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#When things go wrong...">When things go wrong...</a>
+</li>
+<li>
+<a href="#Problem with errors">Problem with errors</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Heteroscedasticity">Heteroscedasticity</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Variance stabilising transforms">Variance stabilising transforms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Non-Gaussianity">Non-Gaussianity</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Box-Cox transform">Box-Cox transform</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Residual bootstrap">Residual bootstrap</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Non IID-ness">Non IID-ness</a>
+</li>
+<li>
+<a href="#Problem with $X \beta $">Problem with $X \beta $</a>
+</li>
+<li>
+<a href="#Outliers">Outliers</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+$\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\t}{\tilde}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}$
+<h1><a
+name="When things go wrong...">When things go wrong...</a></h1>
+The theory of linear models, as we have seen it so far, relies on
+various assumptions. Some of these assumptions may fail for a
+real life data set. We need to diagnose such a failure, and if
+possible, remedy it.
+<p></p>
+There are generally three types of departure:
+<ol type="">
+
+<li>errors are not IID Gaussian.</li>
+
+<li>$E(y)\neq X \beta$ for any $\beta.$ For example,
+if we are trying to fit a straight line where a quadratic curve
+is needed.</li>
+
+<li>presence of some outliers.</li>
+
+</ol>
+We discuss these three issues one by one.
+
+<h1><a
+name="Problem with errors">Problem with errors</a></h1>
+The errors are not observed directly, but we generally use the
+residuals as a proxy for the errors:
+$$
+\v e = \v y - \hv y = (I-P_X)\v y.
+$$
+The since $\hv y = P_X \v y,$ the $P_X$ matrix is
+called the <b>hat matrix</b> (the matrix that puts a hat on $\v
+y$). Its diagonal entries are often written as $h_i$'s.
+
+<h2><a
+name="Heteroscedasticity">Heteroscedasticity</a></h2>
+The general idea is to plot the residuals against various
+quantities. The plots should show no
+change in the variability. Any other pattern (<i>e.g.</i>, fanning out)
+signals potential heteroscedasticity. However, even though the
+true errors $\v \epsilon$, are assumed to be homoscedastic,
+the residuals, $\v e$, are not. Clearly, 
+$$
+V(\v e) = \sigma^2 (I-P_X).
+$$ 
+Here we have used the fact that $I-P_X$ is a symmetric and idempotent.
+<p></p>
+
+Thus, $V(e_i) = \sigma^2 (1-h_i).$ As $h_i$'s are 
+known numbers, we can make the $e_i$'s homoscedastic by
+dividing with $\sqrt{(1-h_i)\h \sigma^2}$ to get the <b>standardised
+residuals</b>:
+$$
+r_i = \frac{e_i}{\sqrt{(1-h_i) \h\sigma^2}}.
+$$
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">There is some ambiguity of terminology here. What we have
+called the standardised residual is called 
+ <b>studentised residual</b> by some authors. Other authors reserve this
+term "Studentised" for the case when $\h \sigma^2$ is computed based on
+all cases except the $i$-th one.</td>
+</tr>
+</table>
+
+<p></p>
+ It is a good idea to
+plot these standardised residuals against the fitted values as
+well as the covariates, if any. Let's look at an example borrowed
+from our textbook.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+The data set we are going to use is already part
+of <code>faraway</code> package. It is called:
+
+<font color="red">
+<pre>
+library(faraway)
+gala
+</pre>
+</font>
+You can find details about it using
+<font color="red">
+<pre>
+?gala
+</pre>
+</font>
+Here is part of the documentation:
+<pre>
+gala                  package:faraway                  R Documentation
+
+Species diversity on the Galapagos Islands
+
+Description:
+
+     There are 30 Galapagos islands and 7 variables in the data set. The
+     relationship between the number of plant species and several
+     geographic variables is of interest. The original data set
+     contained several missing values which have been filled for
+     convenience.
+</pre>
+Let's fit a linear model. Our textbook ignores the second column
+of the data set, and (not being sure about any scientific reason
+behind it) we are doing the same here. 
+<font color="red">
+<pre>
+fit = lm(Species ~ ., data=gala[,-2])
+</pre>
+</font>
+The residuals are found as 
+<font color="red">
+<pre>
+e = fit$resid
+</pre>
+</font>
+The diagonals of the hat matrix are computed as 
+<font color="red">
+<pre>
+h = hatvalues(fit)
+</pre>
+</font>
+So the standardised residuals are 
+<font color="red">
+<pre>
+sigmasq = sum(e*e)/(nrow(gala)-fit$rank)
+s.e = e/sqrt((1-h)*sigmasq)
+</pre>
+</font>
+Now we can plot 
+<font color="red">
+<pre>
+plot(fit$fit,s.e)
+</pre>
+</font>
+Here is the plot 
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diagshot2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+It shows a fanning out effect.<img src="../image/box.png"></p>
+
+ We should also plot the
+standardised residuals against the covariates. It may be that some
+covariate influences the precision of the measurement
+(<i>e.g.</i> temperature may increase noise in certain physical
+systems). In such a situation we may need to incorporate the
+heteroscedasticity into our model. The most common way to do so
+is via <b>generalised least squares (GLS)</b> that we shall
+discuss <a href="gls.html">later</a>. A less ambitious
+technique is to apply some <b>variance stabilising transform</b>
+to remove the heteroscedasticity. 
+
+<h3><a
+name="Variance stabilising transforms">Variance stabilising transforms</a></h3>
+
+
+The following excerpt from our text book suggests how one arrives
+at a variance stabilising transform by visual inspection of the
+residual-vs-fitted plot pattern:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diagshot5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+In our case the fanning out was more or less linear. So we try the square root transform:
+<font color="red">
+<pre>
+fit = lm(sqrt(Species) ~ ., data=gala[,-2])
+</pre>
+</font>
+Now the plot looks like 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diagshot3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Much better!
+
+
+<h2><a
+name="Non-Gaussianity">Non-Gaussianity</a></h2>
+A normal probability plot is a good diagnostic tool here.
+It plots the sample quantiles (of the residuals) against the
+theoretical quantiles (based on $N(0,1)$ distribution). 
+Ideally the plotted points should all lie along a line. R can
+draw such a line for you:
+<font color="red">
+<pre>
+qqnorm(s.e)
+qqline(s.e)
+</pre>
+</font>
+The plot looks like:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diagshot4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+
+<font color="red">
+<pre>
+shapiro.test(s.e)
+</pre>
+</font>
+Departure from normality may be dealt with in a number of ways:
+<ul>
+
+<li>Box-Cox transform</li>
+
+<li>Residual bootstrap</li>
+
+</ul>
+We discuss these next.
+<h3><a
+name="Box-Cox transform">Box-Cox transform</a></h3>
+If the distribution is unimodal, but skewed, then Box-Cox
+transforms might help:
+$$
+f_\lambda(y)
+= \left\{\begin{array}{ll}\frac{y^\lambda-1}{\lambda}&\text{if }\lambda\neq0\\\log y&\text{otherwise.}\end{array}\right.
+$$
+The function <code>boxcox</code> from the <code>MASS</code>
+package computes the best possible value for $\lambda.$
+<h3><a
+name="Residual bootstrap">Residual bootstrap</a></h3>
+
+If the distribution is nowhere near normal, then
+bootstrapping is one way out. The version of bootstrap to be
+used here is called <b>residual bootstrap</b>.
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Here we first extract the residuals, bootstrap them (<i>i.e.</i>,
+resample them), and add the resampled residuals to the original
+fitted values to create bootstrapped response values. 
+<font color="red">
+<pre>
+attach(gala)
+y = sqrt(Species)
+fit = lm(y ~ Area+Elevation+Nearest+Scruz+Adjacent)
+e = fit$resid
+for( i in 1:1000 ) {
+   estar = sample(e,rep=T)
+   ystar = fit$fitted + estar
+   fitstar = lm(ystar~Area+Elevation+Nearest+Scruz+Adjacent)
+   bootcoef = rbind(bootcoef,fitstar$coef)
+}
+</pre>
+</font>
+<img src="../image/box.png"></p>
+
+<h2><a
+name="Non IID-ness">Non IID-ness</a></h2>
+Plotting $\h \epsilon_i$ against $\h \epsilon_{i-1}$
+may unearth some pattern. You may also try the Durbin-Watson test.
+
+<font color="red">
+<pre>
+library(lmtest)
+dwtest(formula)
+</pre>
+</font>
+$$
+DW = \frac{\sum_2^n (e_i-e_{i-1})^2}{\sum_1^n e_i^2}.
+$$
+<p></p>
+The most common remedy to correlated errors is to allow
+nondiagonal covariance matrix for $\epsilon.$ This may be
+tackled by IRLS or MLE. The latter is implemented
+in <code>gls</code> of the <code>nlme</code> package.
+
+<h1><a
+name="Problem with $X \beta $">Problem with $X \beta $</a></h1>
+Such problems are detected by plotting residuals against the
+covariates. 
+<p></p>
+Here one should try different $X$'s. 
+
+<h1><a
+name="Outliers">Outliers</a></h1>
+Outliers are points that do not conform to the general pattern of
+the bulk of the data. A simple way to detect an outlier is by
+looking at points with high residuals. However, some outliers
+influence the fitted model so strongly that the points do not
+have high residuals. It is somewhat like a corrupt powerful politician
+bending the legal machinery to escape detection. The influence of a
+point on the fit (with the remaining points fixed) is called the 
+<b>leverage</b> of that point. To understand this run the following R
+code:
+<font color="red">
+<pre>
+x = rnorm(20)
+y = x + 1 + rnorm(20)/5
+f = function() {
+  plot(x,y,xlim=range(c(x,10)),ylim=range(c(y,12)))
+  fit=lm(y~x)
+  abline(fit$coef)
+  abline(a = fit$coef[1]+1, b=fit$coef[2],lty=2)
+  np = locator(1) 
+  X = np$x
+  Y = (fit$coef[1]+1) + fit$coeff[2]* X
+  newX = c(x,X)
+  newY = c(y,Y)
+  newFit = lm(newY~newX)
+  points(X,Y,col='red')
+  abline(newFit$coef,col='red')
+}
+
+f()
+</pre>
+</font>
+It draws a scatterplot of 20 points, and fits a line to it. Then
+it will wait for you to add an outlier at a vertical distance of
+1 above the fitted line. Click on the plot window to add an
+outlier (R will only  take the $x$-value of the click and
+compute $y$-value so that the new point lies on the dashed
+line which runs parallel to the fitted line at a vertical distance 1).
+The new fit is computed and shown in red. Depending on the
+position of the new point the <i>new</i> residual may be large or
+small. The smaller the residual the more the leverage of the
+outlier.
+
+<p></p>
+Here are two examples. First a low leverage case: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/outlier1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Next, a high leverage case:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/outlier2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Note that in either case the new point is an equally far away
+from the overall pattern. But in the first case you can detect
+this departure by looking at the residuals, while in the second
+case you cannot. 
+<p></p>
+So we need a better way than to just look at the residuals. One
+such technique is called the leave-one-out studentised residuals. In
+principle, it computes the studentised residual for each point by fitting the
+model to <i>only</i> the remaining points. It might sound
+computationally intensive, but actually there is a shortcut
+method to do this:
+$$
+t_i = r_i\sqrt{\frac{n-p-1}{n-p-r_i^2}}.
+$$
+Under Gaussianity assumption, this has $t_{(n-p-1)}$
+distribution. 
+
+<p></p>
+We need to perform Bonferroni correction in order to avoid false
+outlier detection. 
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>Show that the Durbin-Watson statistic always lies between 0
+and 4.</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/diag.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmdiag"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
