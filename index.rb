@@ -1,6 +1,6 @@
 <NOTE>
 @{
-<HEAD1>COVIDeo lectures</HEAD1>
+<HEAD1>COVIDeo  lectures</HEAD1>
 Here is a collection of all my video lectures. All the videos are
 in English, except four, which are in Bengali (marked with (beng)).
 If you want to know how I made these, click <LINK to="how.html">here</LINK>.
