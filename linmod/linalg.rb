@@ -1,6 +1,14 @@
 <NOTE>@{
 <UPDT>FRI AUG 28 IST 2020</UPDT>
 <HEAD1>Linear Algebra</HEAD1>
+<M>
+\newcommand{\v}{\vec}
+\newcommand{\b}{\overline}
+\newcommand{\hv}[1]{\hat{\vec#1}}
+\newcommand{\col}{\mathcal{C}}
+\newcommand{\argmin}{\mathrm{argmin}}
+\newcommand{\o}{{\mathbb 1}}
+</M>
 <HEAD1>For later</HEAD1>
  Pictorially, this means
 projecting <M>\v y</M> on <M>\col(X)</M> and expressing the
