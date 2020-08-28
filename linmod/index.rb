@@ -3,7 +3,7 @@
 <UPDT>FRI AUG 28 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
-III, 2019).
+III, 2020).
 <P/>
 <NEWS src="news.html"/>
 <P/>
@@ -23,10 +23,9 @@ models</LINK></LI>
 <LI>Mixed linear models [<LINK to="mixed.html">page 1</LINK> | <LINK to="mixed2.html">page 2</LINK>| <LINK to="mixed3.html">page 3</LINK>]</LI>
 </UL>
 <HEAD2>Course assessment</HEAD2>
-Midesem 50 makrs, Sem 50 marks. There are two projects (considered
-parts of the midsem and sem exams). Each carry 10 marks (plus
-some bonus). See the
-details <LINK to="projects.html">here</LINK>.
+No midsem, Sem 70 marks. <LINK to="projects.html">One project</LINK> worth 20 marks. Assignments
+worth 10 marks.
+
 <HEAD2>Reference</HEAD2> 
 The class notes constitute the main reference material.  
 The main textbook is 

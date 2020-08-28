@@ -1,12 +1,9 @@
 <NOTE>
 @{<E>
 <HEAD1>Projects</HEAD1>
-This course has two projects, each carrying 10 marks (plus some bonus). The first
-project is considered part of the midsem exam, the second project
-is considered part of the sem exam. The bonus marks get added to
-the overall aggregate for this course.
+This course has one project carrying 20 marks.
 
-<HEAD2>Midsem project: Making a vector map stitching satellite
+<HEAD2>Making a vector map stitching satellite
 screenshots</HEAD2>
 
 Consider a region samll enough so that earth's curvature may be
@@ -54,14 +51,14 @@ We can set up a linear model to estimate <M>(\mu_i,
 The project consists of the following parts:
 <OL>
 <LI>Working out the theory: this involves setting up the linear
-model, and working out the rank of the design matrix. [2 marks]</LI>
+model, and working out the rank of the design matrix. [5 marks]</LI>
 <LI>Implementing the entire thing in R: the final software
 should take a list of screenshots and show them one by one in R,
 allowing the user to click on the known locations. The system
 should save the click locations as well as the location
 identifiers. Then then the system should run the linear model to
-estimate the true positions. [8 marks]</LI>
-<LI>Bonus: allow screenshots of different (known) resolutions.[ 5
+estimate the true positions. [10 marks]</LI>
+<LI>Allow screenshots of different (known) resolutions.[ 5
 marks]</LI>
 </OL>
 
@@ -107,54 +104,7 @@ In your final output the triangles must be equilateral. Also, try
 using only s1, s2, s3 and s8 to see if your program correctly
 generates  an error message. 
 
-<HEAD2>Sem project: Shape analysis</HEAD2>
-This project is about shape recognition. After we see many mango leaves, we get an idea about how a typical mango
- leaf looks. Given a new leaf, we may say with confidence if it is a mango leaf or not. Roughly speaking, we can consider
- each leaf as a point in a "leaf space". The mango leaves that we were shown all reside in one region in that space. We have
- to measure the distance of the new leaf (which again a point in the "leaf space") from this region, and say "yes, it is a
- mango leaf", if this distance is below a certain threshold. 
-<P/>
-This sounds nice, in principle. But how to define the "leaf
-space"? How to define the "region of mango leaves"? How to
-measure distances in this space? How do we accommodate the random
-variations among leaves? 
-<P/>
-It turns out that linear mixed effects models have an answer to
-these. This project will explore that. It is based on the
-book <B>Mixed Models</B> by <I>Eugene Demidenko</I>. <COMMENT>Here is a
-<LINK to="demidenko.pdf">downloadable soft copy</LINK>.</COMMENT>
-<P/>
-This project will involve some amount of reading from this
-book. So let's start by making a list of the reading material:
 
-<UL>
-<LI><B>Section 3.8.1: Membership test</B>: Is a new point like
-some other given points? In other words, if the given points
-form a club, then is the new point a member of the club? Read
-the section to learn how linear models may be used to answer
-such questions.</LI>
-<LI><B>Sections 11.1, 11.2</B>: A brief introduction to
-statistical shape analysis.</LI>
-<LI><B>Section 11.7.1: Analysis of a star shape</B>: This is a
-long and somewhat complicated looking section. I suggest that
-you read the introductory part, and then skip the
-"Semiparametric model", and jump to the "Example: Leaf analysis"
-on page 598. Our aim is to reproduce this example (or argue that
-there is some flaw in it) with some data set of our own.</LI>
-</UL>
-This project is extremely open-ended. You are encouraged to explore
-the idea on your own, and possibly adapt it for with other shapes
-of your choice (geometric, letters, noses, whatever...you get the
-idea). 
-<P/>
-If you want you may take a look at the <LINK to="eugenedata/Chapter11/">data sets and R codes</LINK>
-used in chapter 11 of the book. You are welcome to use these in
-your project. However, in view of the short amount of time
-available, I think it advisable to stick to simpler shapes like
-triangles or quadrilaterals. The aim of the project is to come up
-with a working example to demonstrate use of linear mixed models
-for shape analysis. 
-
-<DISQUSE id="lmprojects" url="http://www.isical.ac.in/~arnabc/linmod/projects.html"/>
+<DISQUSE id="lmprojects" url="https://arnabc74.github.io/linmod/projects.html"/>
 </E>@}
 </NOTE>
