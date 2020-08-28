@@ -48,6 +48,6 @@ Nachtsheim, Neter and Li.</I></LI>
 </UL>
 
 
-<DISQUSE id="lmindex" url="https://arnabc74.github.io/linmod/index.html"/>
+<DISQUSE id="lmindex1" url="https://arnabc74.github.io/linmod/index.html"/>
 </E>@}
 </NOTE>

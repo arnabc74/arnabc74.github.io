@@ -534,7 +534,7 @@ where <M>E(\v \epsilon)=\v 0</M> and <M>V(\v \epsilon)=\sigma^2
 \Sigma</M> for some unknown <M>\sigma^2>0.</M> Reduce this to a <DEST name="ex">Gauss-Markov</DEST> set up, and
 estimate <M>\v \beta</M> and <M>\sigma^2.</M> </LI>
 </OL>
-<DISQUSE id="lmmodel"
+<DISQUSE id="lmmodel1"
 url="http://www.isical.ac.in/~arnabc/linmod/model. html"/>
 </E>@}
 </NOTE>

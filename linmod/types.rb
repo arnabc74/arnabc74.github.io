@@ -1147,6 +1147,6 @@ depth and width.
 <LI><IMG web="basicex1.png"/></LI>
 <LI>Redo the above problem with the extra condition: <M>\beta_0-\alpha_0 = (\beta_1-a_1) x_0.</M></LI>
 </OL>
-<DISQUSE id="types" url="https://arnabc74.github.io/linmod/types.html"/>
+<DISQUSE id="lmtypes1" url="https://arnabc74.github.io/linmod/types.html"/>
 </E>@}
 </NOTE>

@@ -317,6 +317,6 @@ does not depend on the choice of the least squares solution.
 <LI>Generalise the characterisation from the last problem to
 arbitrary design matrix.</LI>
 </OL>
-<DISQUSE id="lmintro" url="https://arnabc74.github.io/linmod/intro.html"/>
+<DISQUSE id="lmintro1" url="https://arnabc74.github.io/linmod/intro.html"/>
 </E>@}
 </NOTE>

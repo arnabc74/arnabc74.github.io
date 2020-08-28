@@ -682,6 +682,6 @@ i_t}.</M> What is the rank of the design matrix here?</LI>
 
 </OL>
 
-<DISQUSE id="lmlinalg" url="https://arnabc74.github.io/linmod/linalg.html"/>
+<DISQUSE id="lmlinalg1" url="https://arnabc74.github.io/linmod/linalg.html"/>
 
 @}</NOTE>

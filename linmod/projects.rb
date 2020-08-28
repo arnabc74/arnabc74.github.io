@@ -105,6 +105,6 @@ using only s1, s2, s3 and s8 to see if your program correctly
 generates  an error message. 
 
 
-<DISQUSE id="lmprojects" url="https://arnabc74.github.io/linmod/projects.html"/>
+<DISQUSE id="lmprojects1" url="https://arnabc74.github.io/linmod/projects.html"/>
 </E>@}
 </NOTE>
