@@ -67,7 +67,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
@@ -83,11 +83,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <li>
 <a href="#Estimating $\h \beta $">Estimating $\h \beta $</a>
 </li>
+<li>
+<a href="#Using R">Using R</a>
+</li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Unique?">Unique?</a>
 </li>
 <li>
-<a href="#Using R">Using R</a>
+<a href="#More R">More R</a>
+</li>
+<li>
+<a href="#Enter statistics">Enter statistics</a>
 </li>
 <li>
 <a href="#Exercises">Exercises</a>
@@ -186,124 +192,7 @@ $$
 \hv \beta  = \argmin_{\v \beta} \|\v y-X\v \beta\|.
 $$
 Here $\|\cdots\|$ denotes the Euclidean distance. So we are
-using our familiar least squares method.  Pictorially, this means
-projecting $\v y$ on $\col(X)$ and expressing the
-projection ($\hv y,$ the foot of the perpendicular) in
-terms of the columns of $X.$
-<p></p>
-For example, in the weighing case, we are looking for $a,b$
-such that $X \beta $ is as close as possible to $y.$
-Now 
-$$
-X \beta  = \left[\begin{array}{ccccccccccc}3 &amp; 4\\4 &amp; 1\\2 &amp; 3
-\end{array}\right]\left[\begin{array}{ccccccccccc}a\\b
-\end{array}\right] =
-a \left[\begin{array}{ccccccccccc}3\\4\\2
-\end{array}\right] + b \left[\begin{array}{ccccccccccc}4\\1\\3
-\end{array}\right],
-$$
-a linear combination of the two columns of $X.$ So our
-interest lies in finding the linear combination of the columns of
-X that is closest to $\v y.$
-<script src="../tools/slideshow.js"></script><script>proj = new SlideShow("proj",
-                                               4);
-proj.pic = new
-Array("",
-"plot1.png",
-"plot2.png",
-"plot3.png",
-"plot4.png");
-
-proj.msg = new
-Array("",
-"The first column of $X.$",
-"The second column of $X.$",
-"The $\v y$ vector.",
-"Project $\v y$ onto $\col(X).$");</script>
-<center>
-<fieldset>
-<legend>Slideshow</legend>
-<form>
-<table height="50%" width="50%" border="0">
-<tr>
-<td colspan="3">
-<div id="projpics">Pictures here.</div>
-</td>
-</tr>
-<tr>
-<td colspan="3">
-<div id="projmsgs">Messages here.</div>
-</td>
-</tr>
-<tr>
-<td align="left"><input onclick="proj.goprev()" value="Prev" type="button"></td><td align="center">
-<div id="projwhich"></div>
-</td><td align="right"><input onclick="proj.gonext()" value="Next" type="button"></td>
-</tr>
-</table>
-</form>
-</fieldset>
-</center>
-<script>proj.showIt();</script>
-
-<p></p>
-Mathematically, this amounts to solving the normal equations 
-$$
-(X'X)\hv \beta = X'\v y.
-$$
-<a href="javascript:hideShow('norm');">(Why?)</a>
-<div id="norm" style="display:none;background-color:#ffcccc;">We want$ (\v y-X\hv \beta)$ to be perpendicular
-to $\col(X).$ So we need $X' (\v y-X\hv \beta) =
-0.$</div>
-
-This system is always consistent.
-<a href="javascript:hideShow('cons');">(Why?)</a>
-<div id="cons" style="display:none;background-color:#ffcccc;">We know from linear algebra that $\col(X') =
-\col(X'X)$ for any real matrix $X.$ So $X'\v y\in\col(X')=\col(X'X).$</div>
-
-
-<h2><a
-name="Unique?">Unique?</a></h2>
- Do the normal equations always produce unique
-solution? Not necessarily. For example, if the linear model is 
-$$
-2.9 = \beta_1 + \beta_2 + \epsilon_1\\
-3.0 = \beta_1 + \beta_2 + \epsilon_2\\
-2.5 = \beta_3 + \epsilon_3,
-$$
-then you can never hope to get $\h\beta_1$ and $\h\beta_2$
-uniquely. But $\h\beta_3$ may be found uniquely.
-Also, $\h\beta_1+\h\beta_2$ is unique, <i>i.e.</i>,
-whatever least squares solutions $\h\beta_1$ and $\h\beta_2$ you take, their sum
-will always be the same. 
-<p></p>
-The foot of the perpendicular (from $\v y$
-to $\col(X)$) is $\hv y$, and is unique. Since this is
-in $\col(X),$ so it can be expressed as a linear combination
-of the columns of $X.$ However, there may be many ways to do
-so. It will be unique if and only if the columns of $X$ are
-all independent.
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Least square solution of $\v y = X \v\beta + \v \epsilon$ is
-unique if and only if $X$ is full column rank. In this case,
-$X'X$ is invertible, and the unique solution is given by 
-$$
-\hv \beta = (X'X) ^{-1} X'\v y.
-$$
-</fieldset>
-Thus, the projection of $\v y$ onto $\col(X)$ is
- $$\hv y = X\hv \beta = \underbrace{X(X'X)^{-1} X'}_{P_X} \v y.$$
-So $P_X = X(X'X)^{-1} X' $ is the (orthogonal) projection
-matrix for $\col(X).$
-<p></p>
-Recall from linear algebra that a real matrix is an orthogonal
-projection matrix if and only if it is symmetric and idempotent.
-
-<p>
-<b>EXERCISE:</b>&nbsp;Quickly check that $P_X$ is indeed symmetric and
-orthogonal.<img src="../image/box.png"></p>
+using our familiar least squares method. 
 
 
 <h1><a
@@ -318,9 +207,15 @@ Solve the weighing problem using R.
 First construct the design matrix and the response vector:
 <font color="red">
 <pre>
-X = matrix(<ruby>c(3,4,2,4,1,3)<rt>column-wise entries</rt>
-</ruby>,<ruby>3<rt>nrow</rt>
-</ruby>,<ruby>2<rt>ncol</rt>
+X = matrix(<ruby>c(3,4,2,4,1,3)<rt>
+<font color="blue">column-wise_entries</font>
+</rt>
+</ruby>,<ruby>3<rt>
+<font color="blue">nrow</font>
+</rt>
+</ruby>,<ruby>2<rt>
+<font color="blue">ncol</font>
+</rt>
 </ruby>) 
 y = c(9.8,9.1,7.0)
 </pre>
@@ -329,13 +224,135 @@ Now invoke the <code>lm</code> function (<code>lm</code> is
 abbreviation of linear model) as follows:
 <font color="red">
 <pre>
-lm(y ~ X-1)
+solve(t(X)%*%X, t(X) %*% y)
 </pre>
 </font>
-The <code>-1</code> may look wierd. Actually, R has the habit of
-adding a column of 1's before the design
-matrix. The <code>-1</code> prevents that.
+In case you do not know, if $A$ is a nonsingular matrix and $\v b$
+is a vector, then <code>solve</code>$(A,\v b)$ computes $A
+^{-1} \v b.$  
 <img src="../image/box.png"></p>
+This example brings up an important question: will $X'X$
+always be nonsingular? The answer is "No!", and this brings us to
+the next topic of discussion.
+
+
+<h2><a
+name="Unique?">Unique?</a></h2>
+ Do the normal equations always produce unique
+solution? Not necessarily. For example, if the linear model is 
+$$
+2.9 = \beta_1 + \beta_2 +           \epsilon_1\\
+3.0 = \beta_1 + \beta_2 +           \epsilon_2\\
+2.5 =                     \beta_3 + \epsilon_3,
+$$
+then you can never hope to get $\h\beta_1$ and $\h\beta_2$
+uniquely. But $\h\beta_3$ may be found uniquely.
+Also, $\h\beta_1+\h\beta_2$ is unique, <i>i.e.</i>,
+whatever least squares solutions $\h\beta_1$ and $\h\beta_2$ you take, their sum
+will always be the same. 
+<h1><a
+name="More R">More R</a></h1>
+The technique we learned using R is not enough to tackle such
+non-unique cases. As such cases are quite common in practice, R
+has a specialised tool for them: the <code>lm()</code>
+function. The name is an abbreviation of "linear model". 
+<font color="red">
+<pre>
+X = matrix(c(1,1,0,1,1,0,0,0,1),3,3)
+y = c(2.9, 3.0, 2.5)
+lm(y ~ X - 1)
+</pre>
+</font>
+The first two lines are as before. The third line is the tricky
+one. The <code>~</code> denotes the $\approx$ of our
+approximate system of equations. To specify $\v y\approx X \v \beta$, you always write the $\v y$ to
+the <i>left</i> of the <code>~</code>. There are various ways to
+specify the $X\v \beta $ part. We shall learn about them in
+due course. Here we have given the simplest form, where we have
+explicitly constructed the $X$ matrix, and specified it
+after the <code>~</code>. (As we shall see later, the explicit
+construction of $X$ in line 1 is rarely required in
+practice, as R can build $X$ for us.) R has the habit of
+putting a additional column of $1$'s before $X.$ This
+will often prove useful later. But for now we do not need
+it. The <code>-1</code> prevents this. 
+<p></p>
+
+<img src="image/alert.png">An expression like this with a <code>~</code> is called
+a <b>formula</b> in R. It attaches special meanings to regular
+math symbols. For instance, <b>X-1</b> does not mean
+subtracting $1$ from $X.$
+<p></p>
+The output is 
+<pre>
+Call:
+lm(formula = y ~ X - 1)
+
+Coefficients:
+  X1    X2    X3  
+2.95    NA  2.50  
+</pre>
+The presence of the <code>NA</code> indicates non-uniqueness. R
+is reporting one particular solution where $\beta_1 = 2.95$,
+$\beta_2 = 0$ and $\beta_3 = 2.50.$ The <code>NA</code>
+means the condition $\beta_2 = 0$ is put arbitrarily
+by $R$ in order to get a particular solution. We shall see
+later how R decides this. 
+
+<h1><a
+name="Enter statistics">Enter statistics</a></h1>
+So far we have not explicitly put any assumption on the behaviour
+of the error. Our approach has been informal, and based on common
+sense. But even this informal approach has secretly relied on
+some assumptions. The following example shows this.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;We consider the simplest example of measuring the same
+length repeatedly. Suppose that the first 10 measurements are
+taken by some precise instruments, and the remaining 10 by a
+less precise instrument. Now taking simple average does not seem
+the best thing to do. We feel that we should give more weight to
+the precise measurements.<img src="../image/box.png"></p>
+
+
+<p></p>
+A statistical model involves some random quantity, and typically
+we make assumptions regarding its distribution. For a linear
+model the error vector $\v \epsilon $ is basically the
+source of randomness ($\v y$ is random because of the
+contribution of $\v \epsilon.$) So far we have been silent
+about the distribution of $\v \epsilon.$ There are various
+types of assumptions that we can impose on $\v \epsilon.$
+Here are some of them:
+<ul>
+
+<li>One of the simplest possible assumptions is the Gauss-Markov
+set up, where we simply assume that $E(\v \epsilon)=\v 0$
+and $V(\v \epsilon) = \sigma^2 I,$ for some
+unknown $\sigma^2&gt;0.$ Notice that here are are not assuming
+any specific distribution for $\v \epsilon.$</li>
+
+
+<li>We might put the stronger assumption $\v \epsilon \sim
+N_n(\v 0, \sigma^2 I),$ for some
+unknown $\sigma^2&gt;0.$</li>
+
+
+<li>In the above two assumptions, we may replace $\sigma^2
+I$ by some (partially) unknown positive definite
+matrix $\Sigma.$</li>
+
+
+<li>More exotic assumptions are possible, <i>e.g.</i>, the components
+of $\v \epsilon $ have double exponential distribution.</li>
+
+
+
+
+
+</ul>
+
+
 
 <h1><a
 name="Exercises">Exercises</a></h1>
@@ -463,15 +480,6 @@ does not depend on the choice of the least squares solution.
 <li>Generalise the characterisation from the last problem to
 arbitrary design matrix.</li>
 
-<li>
-<center>
-<fieldset>
-<legend><b></b></legend><img width="80%" src="image/basicex1.png"></fieldset>
-</center>
-</li>
-
-<li>Redo the above problem with the extra condition: $\beta_0-\alpha_0 = (\beta_1-a_1) x_0.$</li>
-
 </ol>
 
 <h3>Comments</h3>
@@ -485,7 +493,7 @@ begin disqus code --> <div id="disqus_thread"></div>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/linmod/intro.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = "https://arnabc74.github.io/linmod/intro.html"; // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = "lmintro"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 

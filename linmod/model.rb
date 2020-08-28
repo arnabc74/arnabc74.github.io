@@ -6,17 +6,6 @@
 \newcommand{\v}{\vec}
 \newcommand{\h}{\hat}
 \newcommand{\hv}[1]{\hat{\vec#1}}</M>
-So far we have not explicitly put any assumption on the behaviour
-of the error. Our approach has been informal, and based on common
-sense. But even this informal approach has secretly relied on
-some assumptions. The following example shows this.
-
-<EXM>We consider the simplest example of measuring the same
-length repeatedly. Suppose that the first 10 measurements are
-taken by some precise instruments, and the remaining 10 by a
-less precise instrument. Now taking simple average does not seem
-the best thing to do. We feel that we should give more weight to
-the precise measurements.</EXM>
 
 <COMMENT>
 (local-set-key [f2] (lambda() (interactive) (insert-string "\\v ")))
@@ -55,7 +44,7 @@ second approach takes care of that.
 
 <HEAD2>Using  projection</HEAD2>
 Remember the following picture:
-<IMG web="projmod.png"/>
+<CIMG web="projmod.png"/>
 Here the plane represents <M>\col(X).</M> The vector <M>\hv y</M>
 is the (orthogonal) projection of <M>\v y</M>
 onto <M>\col(X).</M> Let's understand what this means. 

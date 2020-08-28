@@ -86,81 +86,8 @@ as close as possible to <M>X\v \beta.</M> In other words,
 \hv \beta  = \argmin_{\v \beta} \|\v y-X\v \beta\|.
 </D>
 Here <M>\|\cdots\|</M> denotes the Euclidean distance. So we are
-using our familiar least squares method.  Pictorially, this means
-projecting <M>\v y</M> on <M>\col(X)</M> and expressing the
-projection (<M>\hv y,</M> the foot of the perpendicular) in
-terms of the columns of <M>X.</M>
-<P/>
-For example, in the weighing case, we are looking for <M>a,b</M>
-such that <M>X \beta </M> is as close as possible to <M>y.</M>
-Now 
-<D>
-X \beta  = <MAT>3 & 4\\4 & 1\\2 & 3</MAT><MAT>a\\b</MAT> =
-a <MAT>3\\4\\2</MAT> + b <MAT>4\\1\\3</MAT>,
-</D>
-a linear combination of the two columns of <M>X.</M> So our
-interest lies in finding the linear combination of the columns of
-X that is closest to <M>\v y.</M>
-<SLIDES name="proj">
-<SLD pic="plot1.png">The first column of <M>X.</M></SLD>
-<SLD pic="plot2.png">The second column of <M>X.</M></SLD>
-<SLD pic="plot3.png">The <M>\v y</M> vector.</SLD>
-<SLD pic="plot4.png">Project <M>\v y</M> onto <M>\col(X).</M></SLD>
-</SLIDES>
-<P/>
-Mathematically, this amounts to solving the normal equations 
-<D>
-(X'X)\hv \beta = X'\v y.
-</D>
-<HIDE lab="norm"><MSG>(Why?)</MSG><HIDDEN>We want<M> (\v y-X\hv \beta)</M> to be perpendicular
-to <M>\col(X).</M> So we need <M>X' (\v y-X\hv \beta) =
-0.</M></HIDDEN></HIDE>
+using our familiar least squares method. 
 
-This system is always consistent.
-<HIDE lab="cons"><MSG>(Why?)</MSG>
-<HIDDEN>We know from linear algebra that <M>\col(X') =
-\col(X'X)</M> for any real matrix <M>X.</M> So <M>X'\v y\in\col(X')=\col(X'X).</M></HIDDEN>
-</HIDE>
-
-<HEAD2>Unique?</HEAD2>
- Do the normal equations always produce unique
-solution? Not necessarily. For example, if the linear model is 
-<D>
-2.9 = \beta_1 + \beta_2 + \epsilon_1\\
-3.0 = \beta_1 + \beta_2 + \epsilon_2\\
-2.5 = \beta_3 + \epsilon_3,
-</D>
-then you can never hope to get <M>\h\beta_1</M> and <M>\h\beta_2</M>
-uniquely. But <M>\h\beta_3</M> may be found uniquely.
-Also, <M>\h\beta_1+\h\beta_2</M> is unique, i.e.,
-whatever least squares solutions <M>\h\beta_1</M> and <M>\h\beta_2</M> you take, their sum
-will always be the same. 
-<P/>
-The foot of the perpendicular (from <M>\v y</M>
-to <M>\col(X)</M>) is <M>\hv y</M>, and is unique. Since this is
-in <M>\col(X),</M> so it can be expressed as a linear combination
-of the columns of <M>X.</M> However, there may be many ways to do
-so. It will be unique if and only if the columns of <M>X</M> are
-all independent.
-
-<THM>
-Least square solution of <M>\v y = X \v\beta + \v \epsilon</M> is
-unique if and only if <M>X</M> is full column rank. In this case,
-<M>X'X</M> is invertible, and the unique solution is given by 
-<D>
-\hv \beta = (X'X) ^{-1} X'\v y.
-</D>
-</THM>
-Thus, the projection of <M>\v y</M> onto <M>\col(X)</M> is
- <D>\hv y = X\hv \beta = \underbrace{X(X'X)^{-1} X'}_{P_X} \v y.</D>
-So <M>P_X = X(X'X)^{-1} X' </M> is the (orthogonal) projection
-matrix for <M>\col(X).</M>
-<P/>
-Recall from linear algebra that a real matrix is an orthogonal
-projection matrix if and only if it is symmetric and idempotent.
-
-<EXR>Quickly check that <M>P_X</M> is indeed symmetric and
-orthogonal.</EXR>
 
 <HEAD1>Using R</HEAD1>
 We may use R to perform least squares estimation. 
@@ -170,18 +97,127 @@ Solve the weighing problem using R.
 <SOLN/>
 First construct the design matrix and the response vector:
 <R>
-X = matrix(<RB e="column-wise entries">c(3,4,2,4,1,3)</RB>,<RB e="nrow">3</RB>,<RB e="ncol">2</RB>) 
+X = matrix(<RB e="column-wise_entries">c(3,4,2,4,1,3)</RB>,<RB e="nrow">3</RB>,<RB e="ncol">2</RB>) 
 y = c(9.8,9.1,7.0)
 </R>
 Now invoke the <CODE>lm</CODE> function (<CODE>lm</CODE> is
 abbreviation of linear model) as follows:
 <R>
-lm(y ~ X-1)
+solve(t(X)%*%X, t(X) %*% y)
 </R>
-The <CODE>-1</CODE> may look wierd. Actually, R has the habit of
-adding a column of 1's before the design
-matrix. The <CODE>-1</CODE> prevents that.
+In case you do not know, if <M>A</M> is a nonsingular matrix and <M>\v b</M>
+is a vector, then <CODE>solve</CODE><M>(A,\v b)</M> computes <M>A
+^{-1} \v b.</M>  
 </EXM>
+This example brings up an important question: will <M>X'X</M>
+always be nonsingular? The answer is "No!", and this brings us to
+the next topic of discussion.
+
+
+<HEAD2>Unique?</HEAD2>
+ Do the normal equations always produce unique
+solution? Not necessarily. For example, if the linear model is 
+<D>
+2.9 = \beta_1 + \beta_2 +           \epsilon_1\\
+3.0 = \beta_1 + \beta_2 +           \epsilon_2\\
+2.5 =                     \beta_3 + \epsilon_3,
+</D>
+then you can never hope to get <M>\h\beta_1</M> and <M>\h\beta_2</M>
+uniquely. But <M>\h\beta_3</M> may be found uniquely.
+Also, <M>\h\beta_1+\h\beta_2</M> is unique, i.e.,
+whatever least squares solutions <M>\h\beta_1</M> and <M>\h\beta_2</M> you take, their sum
+will always be the same. 
+<HEAD1>More R</HEAD1>
+The technique we learned using R is not enough to tackle such
+non-unique cases. As such cases are quite common in practice, R
+has a specialised tool for them: the <CODE>lm()</CODE>
+function. The name is an abbreviation of "linear model". 
+<R>
+X = matrix(c(1,1,0,1,1,0,0,0,1),3,3)
+y = c(2.9, 3.0, 2.5)
+lm(y ~ X - 1)
+</R>
+The first two lines are as before. The third line is the tricky
+one. The <CODE>~</CODE> denotes the <M>\approx</M> of our
+approximate system of equations. To specify <M>\v y\approx X \v \beta</M>, you always write the <M>\v y</M> to
+the <I>left</I> of the <CODE>~</CODE>. There are various ways to
+specify the <M>X\v \beta </M> part. We shall learn about them in
+due course. Here we have given the simplest form, where we have
+explicitly constructed the <M>X</M> matrix, and specified it
+after the <CODE>~</CODE>. (As we shall see later, the explicit
+construction of <M>X</M> in line 1 is rarely required in
+practice, as R can build <M>X</M> for us.) R has the habit of
+putting a additional column of <M>1</M>'s before <M>X.</M> This
+will often prove useful later. But for now we do not need
+it. The <CODE>-1</CODE> prevents this. 
+<P/>
+<ALERT/>An expression like this with a <CODE>~</CODE> is called
+a <B>formula</B> in R. It attaches special meanings to regular
+math symbols. For instance, <B>X-1</B> does not mean
+subtracting <M>1</M> from <M>X.</M>
+<P/>
+The output is 
+<PRE>
+Call:
+lm(formula = y ~ X - 1)
+
+Coefficients:
+  X1    X2    X3  
+2.95    NA  2.50  
+</PRE>
+The presence of the <CODE>NA</CODE> indicates non-uniqueness. R
+is reporting one particular solution where <M>\beta_1 = 2.95</M>,
+<M>\beta_2 = 0</M> and <M>\beta_3 = 2.50.</M> The <CODE>NA</CODE>
+means the condition <M>\beta_2 = 0</M> is put arbitrarily
+by <M>R</M> in order to get a particular solution. We shall see
+later how R decides this. 
+
+<HEAD1>Enter statistics</HEAD1>
+So far we have not explicitly put any assumption on the behaviour
+of the error. Our approach has been informal, and based on common
+sense. But even this informal approach has secretly relied on
+some assumptions. The following example shows this.
+
+<EXM>We consider the simplest example of measuring the same
+length repeatedly. Suppose that the first 10 measurements are
+taken by some precise instruments, and the remaining 10 by a
+less precise instrument. Now taking simple average does not seem
+the best thing to do. We feel that we should give more weight to
+the precise measurements.</EXM>
+
+<P/>
+A statistical model involves some random quantity, and typically
+we make assumptions regarding its distribution. For a linear
+model the error vector <M>\v \epsilon </M> is basically the
+source of randomness (<M>\v y</M> is random because of the
+contribution of <M>\v \epsilon.</M>) So far we have been silent
+about the distribution of <M>\v \epsilon.</M> There are various
+types of assumptions that we can impose on <M>\v \epsilon.</M>
+Here are some of them:
+<UL>
+<LI>One of the simplest possible assumptions is the Gauss-Markov
+set up, where we simply assume that <M>E(\v \epsilon)=\v 0</M>
+and <M>V(\v \epsilon) = \sigma^2 I,</M> for some
+unknown <M>\sigma^2>0.</M> Notice that here are are not assuming
+any specific distribution for <M>\v \epsilon.</M></LI>
+
+<LI>We might put the stronger assumption <M>\v \epsilon \sim
+N_n(\v 0, \sigma^2 I),</M> for some
+unknown <M>\sigma^2>0.</M></LI>
+
+<LI>In the above two assumptions, we may replace <M>\sigma^2
+I</M> by some (partially) unknown positive definite
+matrix <M>\Sigma.</M></LI>
+
+<LI>More exotic assumptions are possible, e.g., the components
+of <M>\v \epsilon </M> have double exponential distribution.</LI>
+
+
+
+
+</UL>
+
+
 <HEAD1>Exercises</HEAD1>
 <OL>
 <LI>Solve the following approximate system using R:
@@ -280,9 +316,7 @@ does not depend on the choice of the least squares solution.
 </LI>
 <LI>Generalise the characterisation from the last problem to
 arbitrary design matrix.</LI>
-<LI><IMG web="basicex1.png"/></LI>
-<LI>Redo the above problem with the extra condition: <M>\beta_0-\alpha_0 = (\beta_1-a_1) x_0.</M></LI>
 </OL>
-<DISQUSE id="lmintro" url="http://www.isical.ac.in/~arnabc/linmod/intro.html"/>
+<DISQUSE id="lmintro" url="https://arnabc74.github.io/linmod/intro.html"/>
 </E>@}
 </NOTE>

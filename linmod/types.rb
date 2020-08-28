@@ -1144,7 +1144,9 @@ resulting data set is shown below.
 Make an interaction plot to visually check interaction between
 depth and width.
 </LI>
+<LI><IMG web="basicex1.png"/></LI>
+<LI>Redo the above problem with the extra condition: <M>\beta_0-\alpha_0 = (\beta_1-a_1) x_0.</M></LI>
 </OL>
-<DISQUSE id="types" url="http://www.isical.ac.in/~arnabc/linmod/types.html"/>
+<DISQUSE id="types" url="https://arnabc74.github.io/linmod/types.html"/>
 </E>@}
 </NOTE>

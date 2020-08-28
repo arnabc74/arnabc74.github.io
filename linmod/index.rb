@@ -1,18 +1,22 @@
 <NOTE>
 @{<E>
+<UPDT>FRI AUG 28 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2019).
+<P/>
+<NEWS src="news.html"/>
+<P/>
 <HEAD2>Class notes</HEAD2>
 I shall be updating the class notes during the course. 
 <UL>
 <LI><LINK to="intro.html">Introduction</LINK></LI>
 <LI><LINK to="types.html">Different types of linear
 models</LINK></LI>
-<LI><LINK to="rank.html">Intuitive understanding of <M>r(X)</M></LINK></LI>
+<LI><LINK to="anova.html">ANOVA</LINK></LI>
+<LI><LINK to="linalg.html">Linear algebra</LINK></LI>
 <LI><LINK to="model.html">Estimation under model assumptions</LINK></LI>
 <LI><LINK to="test.html">Testing under model assumptions</LINK></LI>
-<LI><LINK to="anova.html">ANOVA</LINK></LI>
 <LI><LINK to="posthoc.html">Multiple comparisions</LINK></LI>
 <LI><LINK to="diag.html">Diagnostics</LINK></LI>
 <LI><LINK to="gls.html">Generalised least squares</LINK></LI>
@@ -45,6 +49,6 @@ Nachtsheim, Neter and Li.</I></LI>
 </UL>
 
 
-<DISQUSE id="lmindex" url="http://www.isical.ac.in/~arnabc/linmod/index.html"/>
+<DISQUSE id="lmindex" url="https://arnabc74.github.io/linmod/index.html"/>
 </E>@}
 </NOTE>
