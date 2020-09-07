@@ -1,4 +1,5 @@
  <NOTE pic="image/intcal.jpg">
+@{<TITLE>Integral calculus</TITLE>@}
 <COVID alt="intcal/index.html"/>
 AmAr @{<E>Integral Calculus</E>@}  baiyer oyebpej eTA. baiyer
 sUchIpatraTA <LINK to="contents.pdf">ekhAne dilAm</LINK>. 
