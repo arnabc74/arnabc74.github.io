@@ -1,12 +1,13 @@
 <NOTE>
 @{<E>
-<UPDT>FRI AUG 28 IST 2020</UPDT>
+<UPDT>SUN AUG 30 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
 <P/>
 <NEWS src="news.html"/>
 <P/>
+<COMMENT>
 <HEAD2>Class notes</HEAD2>
 I shall be updating the class notes during the course. 
 <UL>
@@ -22,12 +23,12 @@ models</LINK></LI>
 <LI><LINK to="gls.html">Generalised least squares</LINK></LI>
 <LI>Mixed linear models [<LINK to="mixed.html">page 1</LINK> | <LINK to="mixed2.html">page 2</LINK>| <LINK to="mixed3.html">page 3</LINK>]</LI>
 </UL>
+</COMMENT>
 <HEAD2>Course assessment</HEAD2>
 No midsem, Sem 70 marks. <LINK to="projects.html">One project</LINK> worth 20 marks. Assignments
 worth 10 marks.
 
 <HEAD2>Reference</HEAD2> 
-The class notes constitute the main reference material.  
 The main textbook is 
 <B>Linear models with R</B> by <I>Julian J. Faraway</I>. It is
 written in a non-mathematical way with due emphasis on the
