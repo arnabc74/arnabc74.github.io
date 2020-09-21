@@ -81,6 +81,11 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <a href="#Projects">Projects</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Estimating the frame rate of a video camera without using
+a precision clock">Estimating the frame rate of a video camera without using
+a precision clock</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Making a vector map stitching satellite
 screenshots">Making a vector map stitching satellite
 screenshots</a>
@@ -96,7 +101,84 @@ screenshots</a>
 
 <h1><a
 name="Projects">Projects</a></h1>
-This course has one project carrying 20 marks.
+This course has two projects each carrying 10 marks.
+
+<h2><a
+name="Estimating the frame rate of a video camera without using
+a precision clock">Estimating the frame rate of a video camera without using
+a precision clock</a></h2>
+A video camera works by taking snaps at regular time intervals
+(<i>e.g.</i>, 30 snaps per second). The number of snaps per second is
+called its FPS (Frames Per Second) value. Most cameras advertise
+their FPS values (or even allow the user to select the value). But
+sometimes a camera departs from the advertised value in two ways:
+<ol type="">
+
+<li>The FPS is lower than the advertised value. Each snap
+requires some processing after being taken (eg, compressing and
+storing). The older the camera gets the more time these
+operations take. This leads to a drop in the FPS value.</li>
+
+<li>Even though the FPS value is maintained most of the time,
+one or two frames are dropped occasionally.</li>
+
+</ol>
+
+Given a camera we want to see if the camera suffers from these
+problems. One way could be to videograph the face of a precision
+clock. But it is not easy to see clearly from a video the
+dial/screen of a clock of sub-second precision. This project
+explores an alternative idea: pitching the camera against a known
+law of physics involving time. 
+
+<p></p>
+The law that we shall choose is the law of gravitation, which
+implies that if a stationary object is dropped from a
+height $h$ then its height at time $t$ during free fall
+is $h-\frac 12g
+t^2$, where $g$ is the acceleration due to gravity. 
+
+<p></p>
+We may try to use this to estimate the FPS value of a camera as
+follows.
+<ul>
+
+<li>
+<b>Step 1:</b> Videograph a free falling object.</li>
+
+<li>
+<b>Step 2:</b> Locate the position of the object in each
+frame of the video.</li>
+
+<li>
+<b>Step 3:</b> For each frame obtain the frame
+number $t$ and the vertical pixel position $y$ of the
+object.</li>
+
+<li>
+<b>Step 4:</b> Also photograph a known length using the same
+camera. Convert $y$ to centimetres.</li>
+
+<li>
+<b>Step 5:</b> Fit a linear model to estimate $g$ in
+centimetres/frame$^2$ unit. Don't forget to make a plot first!</li>
+
+<li>
+<b>Step 6:</b> Compare with known value of $g$ to
+estimate FPS.</li>
+
+<li>
+<b>Step 7:</b> (This is IMPORTANT!) Provide a measure of
+precision of your estimate. It is quite possible that the
+procedure does <i>not</i> give a reliable estimate. But provide
+a convincing argument behind your conclusion.</li>
+
+</ul>
+
+Here is <a href="https://www.thewindowsclub.com/extract-frames-from-a-video-with-high-quality">how you may extract the frames from a video</a>. Most digital
+paint programs show the pixel coordinates of the mouse position
+as ou hover the mouse over an image. <a href="http://www.gimp.org">GIMP</a> is just one such free
+software.
 
 <h2><a
 name="Making a vector map stitching satellite
@@ -240,31 +322,10 @@ p = locator() #for any number of clicks (end with a rightclick)
 In each of these cases <code>p</code> stores the coordinates of the clicked points (w.r.t. the coord system you set 
 us using the <code>plot</code> command earlier).
 
-<h3><a
-name="Test data sets">Test data sets</a></h3>
-I have created a fake map and some screenshots
-covering it:
-<center>
-<table width="100%">
-<tr>
-<th><img width="500" src="image/../maps/master.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
-Here are the screenshots for the <a href="maps/sameres.tar.gz">same
-resolution</a> case, and here
-for <a href="maps/diffres.tar.gz">different resolutions</a>
-case. Each screenshot contains a horizontal line segment that is
-known to be of the same length. So if you want you may use it as
-a scale. If you alo want to play with rotated images then
-try <a href="maps/rot.tar.gz">this bunch</a>.
 <p></p>
-In your final output the triangles must be equilateral. Also, try
-using only s1, s2, s3 and s8 to see if your program correctly
-generates  an error message. 
+Please work with the map of a real location that interests
+you. Some of you may collaborate to make a detailed map of the
+same place.
 
 
 <h3>Comments</h3>

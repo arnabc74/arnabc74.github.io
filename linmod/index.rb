@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<UPDT>SUN AUG 30 IST 2020</UPDT>
+<UPDT>MON SEP 21 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
@@ -25,7 +25,8 @@ models</LINK></LI>
 </UL>
 </COMMENT>
 <HEAD2>Course assessment</HEAD2>
-No midsem, Sem 70 marks. <LINK to="projects.html">One project</LINK> worth 20 marks. Assignments
+No midsem, Sem 70 marks. <LINK to="projects.html">Two
+projects</LINK> worth 10 marks each. Assignments
 worth 10 marks.
 
 <HEAD2>Reference</HEAD2> 

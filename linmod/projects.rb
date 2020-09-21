@@ -1,7 +1,64 @@
 <NOTE>
 @{<E>
 <HEAD1>Projects</HEAD1>
-This course has one project carrying 20 marks.
+This course has two projects each carrying 10 marks.
+
+<HEAD2>Estimating the frame rate of a video camera without using
+a precision clock</HEAD2>
+A video camera works by taking snaps at regular time intervals
+(e.g., 30 snaps per second). The number of snaps per second is
+called its FPS (Frames Per Second) value. Most cameras advertise
+their FPS values (or even allow the user to select the value). But
+sometimes a camera departs from the advertised value in two ways:
+<OL>
+<LI>The FPS is lower than the advertised value. Each snap
+requires some processing after being taken (eg, compressing and
+storing). The older the camera gets the more time these
+operations take. This leads to a drop in the FPS value.</LI>
+<LI>Even though the FPS value is maintained most of the time,
+one or two frames are dropped occasionally.</LI>
+</OL>
+
+Given a camera we want to see if the camera suffers from these
+problems. One way could be to videograph the face of a precision
+clock. But it is not easy to see clearly from a video the
+dial/screen of a clock of sub-second precision. This project
+explores an alternative idea: pitching the camera against a known
+law of physics involving time. 
+
+<P/>
+The law that we shall choose is the law of gravitation, which
+implies that if a stationary object is dropped from a
+height <M>h</M> then its height at time <M>t</M> during free fall
+is <M>h-[[12]]g
+t^2</M>, where <M>g</M> is the acceleration due to gravity. 
+
+<P/>
+We may try to use this to estimate the FPS value of a camera as
+follows.
+<UL>
+<LI><B>Step 1:</B> Videograph a free falling object.</LI>
+<LI><B>Step 2:</B> Locate the position of the object in each
+frame of the video.</LI>
+<LI><B>Step 3:</B> For each frame obtain the frame
+number <M>t</M> and the vertical pixel position <M>y</M> of the
+object.</LI>
+<LI><B>Step 4:</B> Also photograph a known length using the same
+camera. Convert <M>y</M> to centimetres.</LI>
+<LI><B>Step 5:</B> Fit a linear model to estimate <M>g</M> in
+centimetres/frame<M>^2</M> unit. Don't forget to make a plot first!</LI>
+<LI><B>Step 6:</B> Compare with known value of <M>g</M> to
+estimate FPS.</LI>
+<LI><B>Step 7:</B> (This is IMPORTANT!) Provide a measure of
+precision of your estimate. It is quite possible that the
+procedure does <I>not</I> give a reliable estimate. But provide
+a convincing argument behind your conclusion.</LI>
+</UL>
+
+Here is <LINK to="https://www.thewindowsclub.com/extract-frames-from-a-video-with-high-quality">how you may extract the frames from a video</LINK>. Most digital
+paint programs show the pixel coordinates of the mouse position
+as ou hover the mouse over an image. <LINK to="http://www.gimp.org">GIMP</LINK> is just one such free
+software.
 
 <HEAD2>Making a vector map stitching satellite
 screenshots</HEAD2>
@@ -88,6 +145,11 @@ p = locator() #for any number of clicks (end with a rightclick)
 In each of these cases <CODE>p</CODE> stores the coordinates of the clicked points (w.r.t. the coord system you set 
 us using the <CODE>plot</CODE> command earlier).
 
+<P/>
+Please work with the map of a real location that interests
+you. Some of you may collaborate to make a detailed map of the
+same place.
+<COMMENT>
 <HEAD3>Test data sets</HEAD3>
 I have created a fake map and some screenshots
 covering it:
@@ -103,7 +165,7 @@ try <LINK to="maps/rot.tar.gz">this bunch</LINK>.
 In your final output the triangles must be equilateral. Also, try
 using only s1, s2, s3 and s8 to see if your program correctly
 generates  an error message. 
-
+</COMMENT>
 
 <DISQUSE id="lmprojects1" url="https://arnabc74.github.io/linmod/projects.html"/>
 </E>@}
