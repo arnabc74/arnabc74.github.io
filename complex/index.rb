@@ -11,7 +11,7 @@ baiTAte @{<E>Moebius transform</E>@}-er ekTA viDior ul+lekh Achhe. seTA <LINK to
 ekhAne @{<E>equality</E>@}-r shar+taTA bhul diye felechhi. shar+taTA habe @{<E>all the <M>z_i</M>'s have a common argument,</E>@}  
 arthA.t shudhu ye tArA sakalei kono @{<E>origin</E>@}-gAmI ekai lAine thAkbe tAi nay, tArA AbAr @{<E>origin</E>@}-er ekai 
 pAshe thAkbe. nIcher chhabiTA dekhe nAo. 
-<CIMG web="p14.png">@{<E>(a)</E>@}  chalbe nA, @{<E>(b)</E>@}  chalbe.</CIMG>
+<CIMG web="p14expl.png">@{<E>(a)</E>@}  chalbe nA, @{<E>(b)</E>@}  chalbe.</CIMG>
 </LI>
 </UL>
 <DISQUSB url="http://www.isical.ac.in/~arnabc/complex/index.html" id="complex"></DISQUSB>
