@@ -1,7 +1,7 @@
 <NOTE>
 @{
 <HEAD1>COVIDeo  lectures</HEAD1>
-Here is a collection of all my video lectures. All the videos are
+Here is a growing collection of  my video lectures. All the videos are
 in English, except four, which are in Bengali (marked with (beng)).
 If you want to know how I made these, click <LINK to="how.html">here</LINK>.
 <HEAD2>For ISI, Tezpur students</HEAD2>
@@ -21,7 +21,7 @@ If you want to know how I made these, click <LINK to="how.html">here</LINK>.
 </LI>
 <LI>Matrix algorithms: [
 <LINK to="https://drive.google.com/open?id=19dYgN9aWKABSFtQ4vwVAcmDQwzFZz8I5">1</LINK> | 
-<LINK to="https://drive.google.com/open?id=1605Z140pk0noRfLX_RuNlaACTQRhTHuV">2</LINK> | 
+<LINK to="https://youtu.be/nwA7aoR-Y4A">2</LINK> | 
 <LINK to="https://drive.google.com/open?id=1G9ZWfxTtZ7TXFxXbO0TopxxsClnhHvi3">3</LINK> | 
 <LINK to="https://drive.google.com/open?id=1fD0qj15vJgHI-Iha1gwYWmjXXHABsR1_">4</LINK> | 
 <LINK to="https://drive.google.com/open?id=1HvRfl1gY7zRFJXuED9TqwLYSypyV0GWg">5</LINK> ]
