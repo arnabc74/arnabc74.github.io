@@ -1,6 +1,10 @@
 <NOTE>
 @{
 <HEAD1>COVIDeo  lectures</HEAD1>
+<ALERT/>I am migrating these videos to Youtube. Some of the
+videos will be unavailable during the migration.
+<P/>
+
 Here is a growing collection of  my video lectures. All the videos are
 in English, except four, which are in Bengali (marked with (beng)).
 If you want to know how I made these, click <LINK to="how.html">here</LINK>.
@@ -8,7 +12,7 @@ If you want to know how I made these, click <LINK to="how.html">here</LINK>.
 <UL>
 <LI><LINK to="https://drive.google.com/open?id=10zqWhG8QmW6HRp5D3KfkZOzhiEq2eyT1">Simulation</LINK></LI>
 <LI><LINK to="https://drive.google.com/open?id=13WI6Cb7XScFaTF2qn9i9o6jknUu7_H-r">PCA</LINK></LI>
-<LI><LINK to="https://drive.google.com/open?id=172Ymg4-kOZGtqj9HtvEAy2obqoyC8x1Z">CART</LINK></LI>
+<LI><LINK to="https://drive.google.com/open?id=172Ymg4-kOZGtqj9HtvEAy2obqoyC8x1Z">CART</LINK>(temporarily unavailable)</LI>
 </UL>
 <HEAD2>For ISI, Kolkata students</HEAD2>
 <UL>
@@ -22,11 +26,12 @@ If you want to know how I made these, click <LINK to="how.html">here</LINK>.
 <LI>Matrix algorithms: [
 <LINK to="https://drive.google.com/open?id=19dYgN9aWKABSFtQ4vwVAcmDQwzFZz8I5">1</LINK> | 
 <LINK to="https://youtu.be/nwA7aoR-Y4A">2</LINK> | 
-<LINK to="https://drive.google.com/open?id=1G9ZWfxTtZ7TXFxXbO0TopxxsClnhHvi3">3</LINK> | 
-<LINK to="https://drive.google.com/open?id=1fD0qj15vJgHI-Iha1gwYWmjXXHABsR1_">4</LINK> | 
-<LINK to="https://drive.google.com/open?id=1HvRfl1gY7zRFJXuED9TqwLYSypyV0GWg">5</LINK> ]
+<LINK to="https://drive.google.com/open?id=1G9ZWfxTtZ7TXFxXbO0TopxxsClnhHvi3">3</LINK>
+(temporarily unavailable)| 
+<LINK to="https://drive.google.com/open?id=1fD0qj15vJgHI-Iha1gwYWmjXXHABsR1_">4</LINK> (temporarily unavailable)| 
+<LINK to="https://drive.google.com/open?id=1HvRfl1gY7zRFJXuED9TqwLYSypyV0GWg">5</LINK> (temporarily unavailable)]
 </LI>
-<LI>Differential equations: [
+<LI>Differential equations: (temporarily unavailable) [
 <LINK to="https://drive.google.com/open?id=1ar4hMYd45PqHAzeA4gh3vtM7HNmNiU67">1</LINK> | 
 <LINK to="https://drive.google.com/open?id=1l6Yx1c-JM4orRDxuPwk52Or7c4gWLWgQ">2</LINK> | 
 <LINK to="https://drive.google.com/open?id=1W1O3xzP3Ymezv6qpdA3Z1CYMtB5c0kWp">3</LINK> ]
