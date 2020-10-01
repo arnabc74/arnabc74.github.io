@@ -29,7 +29,7 @@ hAgsheS thAke, eba.n @{<M>7</M>@}-er belAy bhAgsheS~TA hay @{<M>1.</M>@}  sutarA
 hate habe. AmrA jAni @{<M>i=0,1</M>@}  Ar @{<M>k=0,1,2,3</M>@}  hate pAre. tAi khAli chAr~bhAbei  @{<M>i+k</M>@}-TA @{<E>even</E>@}  
 hate pAre. tAr hala @{<M>(i,j)=(0,0), (0,2), (1,1)</M>@}  eba.n @{<M>(1,3).</M>@}  ataeb uttar habe @{<M>4.</M>@}  
 </Q>
-ei bhulTA dharechhe pratyay.  
+ei bhulTA dharechhe pratyay manDal.  
 </LI>
 
 <LI>
