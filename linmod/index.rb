@@ -29,6 +29,7 @@ III, 2020).
 <LI><LINK to="https://www.youtube.com/watch?v=aOIx7rXKT4s">Lecture
 16</LINK></LI>
 <LI><ALERT/><LINK to="ex1.html">Exercise set 1</LINK></LI>
+<LI><LINK to="https://youtu.be/gnLNb_iqi9o">Lecture 17</LINK></LI>
 </UL>
 <COMMENT>
 <HEAD2>Class notes</HEAD2>
