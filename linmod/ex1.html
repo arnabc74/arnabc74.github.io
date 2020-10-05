@@ -78,167 +78,138 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#Linear Statistical Models">Linear Statistical Models</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Video lectures and exercises">Video lectures and exercises</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Class notes">Class notes</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Course assessment">Course assessment</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Reference">Reference</a>
+<a href="#Exercise set 1">Exercise set 1</a>
 </li>
 </ul>
 <hr/>
 
-<table width="100%">
-<tr>
-<td align="right"><i>Last
-updated on:
-MON OCT 05 IST 2020</i></td>
-</tr>
-</table>
-
 <h1><a
-name="Linear Statistical Models">Linear Statistical Models</a></h1>
-This is the webpage for the Linear Models course (B. Stat. (hons)
-III, 2020).
+name="Exercise set 1">Exercise set 1</a></h1>
+
+<ol type="">
+
+<li>Do all the exercises at the end of chapter 2 of the
+textbook.</li>
+
+<li>Solve the following approximate system using R:
+$$\begin{eqnarray*}
+3a + 4b + c &amp; \approx &amp; 3.4\\
+3a + 4b + c &amp; \approx &amp; 3.5\\
+4a + 3b + 2c &amp; \approx &amp; 10.1\\
+4a + 3b + 2c &amp; \approx &amp; 9.8\\
+6a + 5b + 2c &amp; \approx &amp; 5.6
+\end{eqnarray*}$$
+</li>
+
+<li>Let's see how R tackles a linear model where the design matrix that is not full
+column rank:
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1\\
+
+\end{array}\right],\quad 
+\v y = \left[\begin{array}{ccccccccccc}3.4\\3.5\\10.5\\10.3
+\end{array}\right].
+$$
+Here the first column of $X$ is a column of $1$'s. So
+you may just type the last two columns in R, and omit the <code>-1</code>.
+</li>
+
+<li>
+In the problem above R produced <i>one</i> least squares
+solution. But we know that there are infinitely many. Write down
+two more solutions. Can you write a general form for all least
+squares solutions here?
+</li>
+
+<li>R automatically stores various qunatities computed
+by <code>lm</code>. We shall explore some of them here. Let's
+work with the linear model from the last exercise. Create the
+full design matrix (including its first column) and type:
+<font color="red">
+<pre>
+myfit = lm(y~X-1)
+</pre>
+</font>
+The variable <code>myfit</code> now contains lots of the
+information about the fit. You may extract the computed least
+squares solution $\hv \beta $ as 
+<font color="red">
+<pre>
+myfit$coef
+</pre>
+</font>
+This may be used in future computations. Compute $\h y = X\hv
+\beta.$ Remember that <code>%*%</code> is the R notation for
+matrix multiplication. This $\h y$ is the foot of the
+perpendicular dropped from $\v y$ to $\col(X).$
+Usually $\hv y$ is called the <b>fitted</b> vector. R already
+computes them:
+<font color="red">
+<pre>
+myfit$fitted
+</pre>
+</font>
+The vector $\v y - \hv y$ is called the <b>residual</b>
+vector:
+<font color="red">
+<pre>
+myfit$resid
+</pre>
+</font>
+There are many other pieces of information packed
+in <code>myfit</code>:
+<font color="red">
+<pre>
+names(myfit)
+</pre>
+</font>
+
+</li>
+
+<li>Consider a linear model $\v y = X \beta +\epsilon,$
+where $X$ is not full col rank. Pick any basis
+of $\col(X).$ Stack these vectors side by side a columns to
+get a matrix $B.$ Let $\v w = B(B'B) ^{-1} B' \v y.$
+Show that $\v w = \hv y$ irrespective of the choice
+of $B.$</li>
+
+<li>Consider a linear model with design matrix 
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1\\
+
+\end{array}\right].
+$$
+If $\v \beta = (\beta_1, \beta_2, \beta_3)',$ then show that
+whatever least squares solution $\hv \beta $ you take, $\h
+\beta_2-\h \beta_3$ is always the same. Characterise all
+vectors $\v \ell\in{\mathbb R}^3$ such that $\v \ell' \hv \beta$
+does not depend on the choice of the least squares solution.
+</li>
+
+<li>Generalise the characterisation from the last problem to
+arbitrary design matrix.</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/basicex1.png"></fieldset>
+</center>
+</li>
+
+<li>Redo the above problem with the extra condition: $\beta_0-\alpha_0 = (\beta_1-a_1) x_0.$</li>
+
+</ol>
+
+
 <p></p>
-
-<table align="right" width="50%">
-<tr>
-<td><b>Notice board</b></td>
-</tr>
-<tr>
-<td>
-<iframe src="news.html"></iframe>
-</td>
-</tr>
-</table>
-
-
-<p></p>
-
-
-<h2><a
-name="Video lectures and exercises">Video lectures and exercises</a></h2>
-
-<ul>
-
-<li>
-<a href="https://drive.google.com/file/d/1Au2-iI3t0JFdIpuz1UThwJgAWgAjV6sI/view?usp=sharing">Lecture 1</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1snIfrV_ouAqCDIZZqY3V2aUCCWm736SE/view?usp=sharing">Lecture 2</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1LD2SvP2j7IkoI8_jIFRrGdDUrGT1HsMq/view?usp=sharing">Lecture 3</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1NBr-h5Vnxmp3T0FFGX4A7skjwVqf9z9b/view?usp=sharing">Lecture 4</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1b8M-_9T2IEQbqp-r2I0e6-Co4pBmchVY/view?usp=sharing">Lecture 5</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1LGJ8www6y0RZl-bJR2Ao6xnEERb79ke8/view?usp=sharing">Lecture 6</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1rUBOTG5bpGdaP_YjYzZKi-HuWALa50T7/view?usp=sharing">Lecture 7</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1huAsgDbx2XNJ_cnph3fTYRBPWdu2F9Vf/view?usp=sharing">Lecture 8</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1tqdaPtU-APo5wlF0llJKSvvWa5-f374E/view?usp=sharing">Lecture 9</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1soHe1WQJFFXkKl1GJxalDimzjhVuWjnh/view?usp=sharing">Lecture 10</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/1iC2wztpZCX2czDks0HDeCe5I-rgbNkWo/view?usp=sharing">Lecture 11</a>
-</li>
-
-<li>
-<a href="https://drive.google.com/file/d/11ted3Gn1YWr_QSKBZoxLCjQHHq5Qh-6K/view?usp=sharing">Lecture 12</a>
-</li>
-
-<li>
-<a href="https://www.youtube.com/watch?v=0aX52znHbJo&t=39s">Lecture 13</a>
-</li>
-
-<li>
-<a href="https://www.youtube.com/watch?v=6jEwtWR3tIQ&t=251s">Lecture 14</a>
-</li>
-
-<li>
-<a href="https://www.youtube.com/watch?v=B3-EEmYAJK8&t=5s">Lecture 15</a>
-</li>
-
-<li>
-<a href="https://www.youtube.com/watch?v=aOIx7rXKT4s">Lecture
-16</a>
-</li>
-
-<li>
-<img src="image/alert.png"><a href="ex1.html">Exercise set 1</a>
-</li>
-
-</ul>
-
-
-<h2><a
-name="Course assessment">Course assessment</a></h2>
-No midsem, Sem 70 marks. <a href="projects.html">Two
-projects</a> worth 10 marks each. Assignments
-worth 10 marks.
-
-<h2><a
-name="Reference">Reference</a></h2> 
-The main textbook is 
-<b>Linear models with R</b> by <i>Julian J. Faraway</i>. It is
-written in a non-mathematical way with due emphasis on the
-statistical applications. 
-<p></p>
-A more mathematical exposition (not recommended for this course) is available in the following two
-books:
- <ul>
-
-<li>
-<b>Linear Models_ An Integrated Approach</b> by <i>Sreenivasa
-Rao Jammalamadaka, Debasis Sengupta</i>
-</li>
-
-<li>
-<b>Plane answers to Complex Questions</b> by <i>Ronald Christensen</i>
-</li>
-
-</ul>
-A rather fat book (about 1400 pages) that presents everything in
-great details is 
-<ul>
-
-<li>
-<b>Applied Linear Statistical Models</b> by <i>Kutner,
-Nachtsheim, Neter and Li.</i>
-</li>
-
-</ul>
-
 
 
 <h3>Comments</h3>
@@ -252,8 +223,8 @@ begin disqus code --> <div id="disqus_thread"></div>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "https://arnabc74.github.io/linmod/index.html"; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "lmindex1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "http://arnabc74@github.io/linmod/ex1.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmex1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
