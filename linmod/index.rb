@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<UPDT>SAT OCT 24 IST 2020</UPDT>
+<UPDT>MON OCT 26 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
@@ -35,6 +35,7 @@ III, 2020).
 <LI><LINK to="https://youtu.be/Xn2epWqS-48">Lecture 21</LINK></LI>
 <LI><LINK to="https://youtu.be/QlqvSEE2a2o">Lecture 22</LINK></LI>
 <LI><LINK to="https://youtu.be/5x1s3ruRARk">Lecture 23</LINK></LI>
+<LI><LINK to="https://youtu.be/Tm3ROwspy_A">Lecture 24</LINK></LI>
 </UL>
 <COMMENT>
 <HEAD2>Class notes</HEAD2>
