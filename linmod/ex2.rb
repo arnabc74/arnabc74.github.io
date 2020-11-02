@@ -63,6 +63,8 @@ denoted by <M>(\vec y, X \vec \beta , \sigma^2 I).</M>
 <IMG web="raosg7.png">Rao Sengupta 7</IMG><BR/>
 <IMG web="raosg8.png">Rao Sengupta 8</IMG><BR/>
 <IMG web="raosg9.png">Rao Sengupta 9</IMG><BR/>
+The data set for the following problem is available in R under
+the name <CODE>stackloss</CODE>.
 <IMG web="raosg10.png">Rao Sengupta 10</IMG><BR/>
 <IMG web="raosg11.png">Rao Sengupta 11</IMG><BR/>
 
