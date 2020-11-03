@@ -22,6 +22,28 @@ ekhAne lAl @{<E>6</E>@}-er badale @{<E>2</E>@}  habe. tAi nIl @{<E>15</E>@}-TA h
  bhulTA dharechhen
  prafesar ashok mal+lik.
 </LI>
+<LI>pratham adhyAyer @{<E>Exercise 30</E>@}-er uttare Ami @{<M>AB</M>@}  Ar @{<M>BA</M>@}  ul+Te
+ diyechhi. @{<M>AB</M>@}  habe @{<M>2\times2</M>@}  eba.n bhArat theke AmerikA yAoyAr Tebil--
+@{<D>AB = <MAT>11 & 17\\8 & 11</MAT>.</D>@}  
+anyadike @{<M>BA</M>@}  hala @{<M>3\times3,</M>@}
+@{<D>BA = <MAT>7 & 10 & 5\\6 & 7 & 9\\7 & 9 & 8</MAT>.</D>@}
+bhulTA dharechhe suprabhAt manDal.
+</LI>
+<LI>@{<E>25</E>@}  nambar pAtAy @{<E>Fig 33</E>@}-er tinTe a.nsha @{<E>(i)</E>@}, @{<E>(ii)</E>@} 
+ Ar @{<E>(iii).</E>@}  eder madhye @{<E>(i)</E>@}  Ar @{<E>(ii)</E>@}-er lebel badlAbali haye
+ gechhe, mAne @{<E>(i)</E>@}  habe @{<E>(ii),</E>@}  Ar @{<E>(ii)</E>@}  habe @{<E>(i).</E>@} 
+ bhulTA dharechhe suprabhAt manDal.</LI>
+<LI>@{<E>29</E>@}  nambar pAtAy @{<E>Exercise 33</E>@}-er uttar deoyA Achhe @{<M>11^5-6^5.</M>@}  oTA habe @{<M>11^5-5^5.</M>@}
+ bhulTA dharechhe suprabhAt manDal.</LI>
+<LI>
+<IMG web="p29.png">@{<E>29</E>@}  nambar pAtAr a.nsha</IMG>
+''duTo'' nay, ''ekTA'' kare.  bhulTA dharechhe suprabhAt manDal.
+</LI>
+<LI>
+<IMG web="p35c.png">@{<E>35</E>@}  nambar pAtAr a.nsha</IMG>
+yuk+tiTA Thikai chhila, kintu pratham lAfTA ye @{<M>11</M>@}-bhAbe deoyA yAy, sei kathATA uttarTA lekhAr samaye bhule mere 
+diyechhilAm. tAi uttar habe yA diyechhi, tAr @{<M>11</M>@}  guN, mAne @{<M>11\times(11^9-10^9).</M>@}  
+ bhulTA dharechhe suprabhAt manDal.</LI>
 <LI>
 <IMG web="p35.png">@{<E>35</E>@}  nambar pAtAr a.nsha</IMG>
 bichchhiri bhul, yeTAke chhApAr bhul bale sAnt+wanA pAoyArao chhAi upAy nei. Ami balechhi @{<M>9n+3</M>@}  sar+badA @{<E>odd</E>@}  
@@ -37,9 +59,15 @@ hAgsheS thAke, eba.n @{<M>7</M>@}-er belAy bhAgsheS~TA hay @{<M>1.</M>@}  sutarA
 @{<M>3</M>@}  diye bhAg karleo yA habe @{<M>2^i\times  2^k = 2^{i+k}</M>@}-er bhAgsheSao tAi hate habe. mAne @{<M>2^{i+k}</M>@}-ke 
 @{<M>3</M>@}  diye bhAg karle @{<M>1</M>@}  bhAgsheS As~te habe. e theke ekTu chintA karlei pAbe ye, @{<M>i+k</M>@}-ke @{<E>even</E>@}  
 hate habe. AmrA jAni @{<M>i=0,1</M>@}  Ar @{<M>k=0,1,2,3</M>@}  hate pAre. tAi khAli chAr~bhAbei  @{<M>i+k</M>@}-TA @{<E>even</E>@}  
-hate pAre. tAr hala @{<M>(i,j)=(0,0), (0,2), (1,1)</M>@}  eba.n @{<M>(1,3).</M>@}  ataeb uttar habe @{<M>4.</M>@}  
+hate pAre. tAr hala @{<M>(i,j)=(0,0), (0,2), (1,1)</M>@}  eba.n @{<M>(1,3).</M>@}  Ar
+ @{<M>\ell=0,1,2</M>@}  yA khushi hate pAre. ataeb uttar habe @{<M>4\times3=12.</M>@}  
 </Q>
-ei bhulTA dharechhe pratyay manDal.  
+ei bhulTA dharechhe pratyay manDal eba.n suprabhAt manDal. 
+</LI>
+<LI>
+<IMG web="p35b.png">@{<E>35</E>@}  nambar pAtAr a.nsha</IMG>
+ekhAne uttar habe @{<M>15\times 2 = 30.</M>@}  kAraN @{<M>m</M>@}-er chihna Thik haye gele @{<M>n</M>@}-er chihnao ApnA 
+thekei Thik haye yAy, yehetu @{<M>mn=144</M>@}  balA Achhe. bhulTA dharechhe suprabhAt manDal.
 </LI>
 <LI>pratham adhyAyer @{<E>35</E>@}  nambar a.nker uttar habe @{<M>3^{10}-2^{10}.</M>@}
 bhulTA dharechhen prafesar ashok mal+lik.
