@@ -114,5 +114,7 @@ bhulTA
 ekhAne @{<M>{}^5P_2</M>@}  duToi @{<M>{}^5C_2</M>@}  habe. 
 bhulTA
  dharechhe suprabhAt manDal.</LI>  
+<LI>@{<E>Exercise 38</E>@}-er uttar habe @{<M>{}^{36}C_{10},</M>@}  bhul kare @{<M>{}^{46}C_{10}</M>@}  deoyA hayechhe.
+bhulTA dharechhe kal+lol mAiti.</LI>  
 </UL>
 </NOTE>
