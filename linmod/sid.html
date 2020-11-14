@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul/>
+<hr/>
+প্রেমদাসের সঙ্গে পরিচয় নেই, এবং বদমাসের স্মৃতিও ফিকে হয়ে এসেছিল৷ তার জায়গায় যেটা স্থান নিয়েছে সেটা   হল 
+কম্পিউটারের ভাষা, এবং সে সব ভাষার  প্রচলিত নিয়ম অনুসারে উত্তরটা $128$-ই হবে৷  যেহেতু কম্পিউটারের কোনো 
+বুদ্ধি নেই, তাই তার ''মগজে'' যে সূত্র ঢোকানো হয়, তাতে কোনো ফাঁক থাকলে চলে না, অতএব তার ব্যাকরণ নিয়ে দ্বিধা দ্বন্দ্বের 
+অবকাশও নেই৷ সেই সূত্রটা দাঁড়িয়ে আছে দুটি ধারণার উপর ভিত্তি করে--precedence  এবং associativity.  
+সবচেয়ে বেশী precedence  হল ব্র্যাকেটের, তারপর গুণ ও ভাগের সমান
+ precedence, সবশেষে আসে যোগ 
+আর বিয়োগ, যাদের আবার সমান precedence.  যদি একই precedence-এর দুটো operation  পরপর 
+থাকে, তবে তাদের মধ্যে কাকে আগে করা হবে সেটা বাতলাবে associativity.  ধরা হয় যোগ বিয়োগ গুণ ভাগ সবাইই 
+হল left associative,  অর্থাৎ বাঁদিকের জনকে আগে করা হবে৷ এই নিয়মে করলে $64\div 2(2+2)$  বার 
+করার ধাপগুলো এইরকম--
+<ul>
+
+<li>$64\div 2(2+2)$</li>
+
+<li>$64\div 2\times 4$  (ব্র্যাকেটের precedence  সবচেয়ে বেশী)</li>
+
+<li>$32\times 4$  (যেহেতু $\times$  আর $\div$-এর সমান precedence, তাই বাঁদিকেরটা 
+আগে করা হল)</li>
+
+<li>$128.$</li>
+
+</ul>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
