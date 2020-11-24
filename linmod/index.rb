@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<UPDT>SAT NOV 14 IST 2020</UPDT>
+<UPDT>TUE NOV 24 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
@@ -46,6 +46,11 @@ III, 2020).
 <LI><LINK to="https://youtu.be/QoOF8vdUFCo">Lecture 31</LINK></LI>
 <LI><LINK to="bkw20_52.pdf">Some reference
 material from Belsley, Kuh and Welsch</LINK></LI>
+<LI><LINK to="https://youtu.be/t6DlcCz4V2I">Lecture 32</LINK></LI>
+<LI><LINK to="https://youtu.be/07mlgpBsbWw">Lecture 33</LINK></LI>
+<LI><LINK to="https://youtu.be/qpMFcxcbG4Y">Lecture 34</LINK></LI>
+<LI>A short discussion about different formuations of
+<LINK to="ridge.html">ridge regression</LINK>.</LI>
 </UL>
 
 <COMMENT>
