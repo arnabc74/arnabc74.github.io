@@ -75,6 +75,9 @@ bhulTA dharechhen prafesar ashok mal+lik.
 <LI>pratham adhyAyer @{<E>39</E>@}  nambar a.nker uttar habe lebel thAkle @{<M>\frac{20\times1\times9\times1}{4}=45.</M>@} lebel chhARA @{<M>5.</M>@}
 bhulTA dharechhen prafesar ashok mal+lik.
 </LI>
+<LI>@{<E>Exercise 41</E>@}-er uttare Ami @{<M>6\times9\times 11</M>@}-ke @{<M>703</M>@} likhe base Achhi,
+ oTA @{<M>693</M>@}  habe. tAi sheS parYanta uttarTA d,nARAbe @{<M>[[693-1][2]]+1 = 347.</M>@} 
+ bhulTA dharechhen suprabhAt manDal. </LI>
 </UL>
 <HEAD2>dwitIya  adhyAyer bhultruTi</HEAD2>  
 <UL>
@@ -107,16 +110,18 @@ bhulTA dharechhen  prafesar ashok mal+lik.
 <LI>@{<E>72</E>@}  nambar pAtAy @{<E>Example 27</E>@}-er @{<E>option</E>@}-gulo Thik mata chhApA
  hay ni. Thik hale erakam haoyA uchit chhila--
 <IMG web="p72.png">@{<E>Example 27</E>@}  yeman haoyA uchit</IMG>
+e bhulTAo suprabhAt manDaler dharA. 
 </LI>
 </UL>
 <HEAD2>trritIya  adhyAyer bhultruTi</HEAD2>  
 <UL>
-<LI>@{<E>Exercise 8</E>@}-er uttarTA habe @{<M>[[6!][2\times 2]].</M>@}</LI>
+<LI>@{<E>Exercise 8</E>@}-er uttarTA habe @{<M>[[6!][2\times 2]].</M>@}  bhulTAr dike drriSTi
+ AkarSaN karechhe IshAn chak+rabar+tI. </LI>  
 <LI>@{<E>Exercise 9</E>@}-er uttar deoyA Achhe @{<M>6!,</M>@}  haoyA uchit @{<M>5!.</M>@}  bhulTA
  dharechhen suprabhAt manDal.</LI>  
 <LI>@{<E>Exercise 16</E>@}-er uttar deoyA hay ni. uttarTA habe @{<E>A-P, B-S, C-Q, D-Q.</E>@}  bhulTA
  dharechhen suprabhAt manDal.</LI>  
-<LI>@{<E>Exercise 18</E>@}-er uttare likhechhi ye ''@{<E>SWAP</E>@}'' shabdaAr sthAn habe @{<M>13</M>@} 
+<LI>@{<E>Exercise 18</E>@}-er uttare likhechhi ye ''@{<E>SWAP</E>@}'' shabdaTAr sthAn habe @{<M>13</M>@} 
  nambare. haoyA uchit @{<M>17</M>@}  nambare. kAraN @{<E>''SWAP''</E>@}-er Age Asbe
  @{<E>A***</E>@}  jAtIya @{<M>3!</M>@}-TA shabda, @{<E>P***</E>@}  jAtIya @{<M>3!</M>@}-TA shabda,
  @{<E>SA**</E>@}  jAtIya @{<M>2!</M>@}-TA shabda eba.n @{<E>SP**</E>@}  jAtIya Aro  @{<M>2!</M>@}-TA shabda. 
@@ -127,6 +132,6 @@ ekhAne @{<M>{}^5P_2</M>@}  duToi @{<M>{}^5C_2</M>@}  habe.
 bhulTA
  dharechhen suprabhAt manDal.</LI>  
 <LI>@{<E>Exercise 38</E>@}-er uttar habe @{<M>{}^{36}C_{10},</M>@}  bhul kare @{<M>{}^{46}C_{10}</M>@}  deoyA hayechhe.
-bhulTA dharechhe kal+lol mAiti.</LI>  
+bhulTA dharechhen kal+lol mAiti.</LI>  
 </UL>
 </NOTE>
