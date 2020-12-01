@@ -28,6 +28,11 @@ lAl ra\nge gol karA @{<M>c</M>@}  duTo @{<M>t_1</M>@}  habe. bhulTAr khabar peye
 lAl ra\nge gol karA @{<M>U(P,f)</M>@}-TA @{<M>U(Q,f)</M>@}  habe. bhulTAr khabar peyechhi rAjur theke, ei oyebpej mAr~fat. 
 </LI>
 <LI>
+<IMG web="p81.png">@{<E> 81</E>@}  pAtAr a.nsha</IMG>
+lAl ra\nge gol karA @{<E>inequality</E>@}-TA ul+Te yAbe. bhulTA dharechhe praNay dAs. 
+</LI>
+
+<LI>
 <IMG web="p139_1.png">@{<E> 139</E>@}  pAtAr a.nsha</IMG>
 ekhAne parIxAr a.nkaTAtei ekTA bhul chhila--balechhe @{<M>f(x)\neq 0</M>@}  @{<E>for all </E>@}  @{<M>x\geq 0.</M>@}  athacha 
 dekhAte balechhe @{<M>f(x)=x.</M>@}  tAhale to @{<M>f(0)=0</M>@}  habei! bhulTA dharechhe is~mAil manDal. 
