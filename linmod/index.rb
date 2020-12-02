@@ -57,6 +57,7 @@ material from Belsley, Kuh and Welsch</LINK></LI>
 <LI><LINK to="https://youtu.be/yT7tkG3Zyis">Lecture 38</LINK></LI>
 <LI><LINK to="https://youtu.be/H81FsYMkZ2g">Lecture 39</LINK>
 Here is <LINK to="blup.pdf">the paper mentioned in the video</LINK>.</LI>
+<LI><LINK to="https://youtu.be/zJD2bNuMP4A">Lecture 40</LINK></LI>
 </UL>
 
 <COMMENT>
