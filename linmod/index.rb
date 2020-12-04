@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<UPDT>WED DEC 02 IST 2020</UPDT>
+<UPDT>FRI DEC 04 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
@@ -58,6 +58,7 @@ material from Belsley, Kuh and Welsch</LINK></LI>
 <LI><LINK to="https://youtu.be/H81FsYMkZ2g">Lecture 39</LINK>
 Here is <LINK to="blup.pdf">the paper mentioned in the video</LINK>.</LI>
 <LI><LINK to="https://youtu.be/zJD2bNuMP4A">Lecture 40</LINK></LI>
+<LI><LINK to="https://youtu.be/z201b9qBadM">Lecture 41</LINK></LI>
 </UL>
 
 <COMMENT>
