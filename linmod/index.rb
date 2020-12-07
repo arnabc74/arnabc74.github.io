@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<UPDT>FRI DEC 04 IST 2020</UPDT>
+<UPDT>MON DEC 07 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
@@ -35,30 +35,45 @@ III, 2020).
 <LI><LINK to="https://youtu.be/Xn2epWqS-48">Lecture 21</LINK></LI>
 <LI><LINK to="https://youtu.be/QlqvSEE2a2o">Lecture 22</LINK></LI>
 <LI><LINK to="https://youtu.be/5x1s3ruRARk">Lecture 23</LINK></LI>
-<LI><LINK to="https://youtu.be/Tm3ROwspy_A">Lecture 24</LINK></LI>
+<LI><LINK to="https://youtu.be/Tm3ROwspy_A">Lecture 24</LINK>:
+Multiple hypotheses testing (part 1):</LI>
 <LI><ALERT/><LINK to="ex2.html">Exercise set 2</LINK></LI>
-<LI><LINK to="https://youtu.be/KeyPf4DLri4">Lecture 25</LINK></LI>
-<LI><LINK to="https://youtu.be/sU4BQgkL15k">Lecture 26</LINK></LI>
-<LI><LINK to="https://youtu.be/YRzxQQQ1s-c">Lecture 27</LINK></LI>
-<LI><LINK to="https://youtu.be/mT5qxWbIgn0">Lecture 28</LINK></LI>
-<LI><LINK to="https://youtu.be/JUWQMO1317M">Lecture 29</LINK></LI>
-<LI><LINK to="https://youtu.be/1FFaShGKK3M">Lecture 30</LINK></LI>
-<LI><LINK to="https://youtu.be/QoOF8vdUFCo">Lecture 31</LINK></LI>
+<LI><LINK to="https://youtu.be/KeyPf4DLri4">Lecture 25</LINK>:
+Multiple hypotheses testing (part 2)</LI>
+<LI><LINK to="https://youtu.be/sU4BQgkL15k">Lecture 26</LINK>:
+Model selection</LI>
+<LI><LINK to="https://youtu.be/YRzxQQQ1s-c">Lecture 27</LINK>:
+Multiple hypotheses testing (part 3): using R</LI>
+<LI><LINK to="https://youtu.be/mT5qxWbIgn0">Lecture 28</LINK>: Covariance structures (part 1)</LI>
+<LI><LINK to="https://youtu.be/JUWQMO1317M">Lecture 29</LINK>: Covariance structures (part 2)</LI>
+<LI><LINK to="https://youtu.be/1FFaShGKK3M">Lecture 30</LINK>: Covariance structures (part 3): Using R</LI>
+<LI><LINK to="https://youtu.be/QoOF8vdUFCo">Lecture 31</LINK>:
+Influence diagnostics (part 1)</LI>
 <LI><LINK to="bkw20_52.pdf">Some reference
 material from Belsley, Kuh and Welsch</LINK></LI>
-<LI><LINK to="https://youtu.be/t6DlcCz4V2I">Lecture 32</LINK></LI>
-<LI><LINK to="https://youtu.be/07mlgpBsbWw">Lecture 33</LINK></LI>
-<LI><LINK to="https://youtu.be/qpMFcxcbG4Y">Lecture 34</LINK></LI>
+<LI><LINK to="https://youtu.be/t6DlcCz4V2I">Lecture 32</LINK>:
+Influence diagnostics (part 2)</LI>
+<LI><LINK to="https://youtu.be/07mlgpBsbWw">Lecture 33</LINK>:
+Multicollinearity (part 1)</LI>
+<LI><LINK to="https://youtu.be/qpMFcxcbG4Y">Lecture 34</LINK>:
+Multicollinearity (part 2)</LI>
 <LI>A short discussion about different formuations of
 <LINK to="ridge.html">ridge regression</LINK>.</LI>
-<LI><LINK to="https://youtu.be/M8jBna_VVKo">Lecture 35</LINK></LI>
-<LI><LINK to="https://youtu.be/WXaGLAZ-MQE">Lecture 36</LINK></LI>
-<LI><LINK to="https://youtu.be/XtTuMtMzXzk">Lecture 37</LINK></LI>
-<LI><LINK to="https://youtu.be/yT7tkG3Zyis">Lecture 38</LINK></LI>
-<LI><LINK to="https://youtu.be/H81FsYMkZ2g">Lecture 39</LINK>
+<LI><LINK to="https://youtu.be/M8jBna_VVKo">Lecture 35</LINK>:
+Multicollinearity in R: Ridge regression</LI>
+<LI><LINK to="https://youtu.be/WXaGLAZ-MQE">Lecture 36</LINK>:
+Multicollinearity in R: Lasso and subset selection</LI>
+<LI><LINK to="https://youtu.be/XtTuMtMzXzk">Lecture 37</LINK>: Linear mixed effects models (part 1)</LI>
+<LI><LINK to="https://youtu.be/yT7tkG3Zyis">Lecture 38</LINK>: Linear mixed effects models (part 2)</LI>
+<LI><LINK to="https://youtu.be/H81FsYMkZ2g">Lecture 39</LINK>: Linear mixed effects models (part 3)
 Here is <LINK to="blup.pdf">the paper mentioned in the video</LINK>.</LI>
-<LI><LINK to="https://youtu.be/zJD2bNuMP4A">Lecture 40</LINK></LI>
-<LI><LINK to="https://youtu.be/z201b9qBadM">Lecture 41</LINK></LI>
+<LI><LINK to="https://youtu.be/zJD2bNuMP4A">Lecture 40</LINK>:
+Mixed effects models in R (part 1)</LI>
+<LI><LINK to="https://youtu.be/z201b9qBadM">Lecture 41</LINK>:
+Mixed effects models in R (part 2)</LI>
+<LI><LINK to="https://youtu.be/UupGKE6QDRw">Lecture 42</LINK>:
+Linear mixed effects models (part 4)</LI>
+<LI><ALERT/><LINK to="ex4.html">Exercise set 4</LINK></LI>
 </UL>
 
 <COMMENT>

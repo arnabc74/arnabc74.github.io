@@ -133,6 +133,11 @@ A straight-forward method is to apply <M>t</M>-test to the total
 measured angles for the triangles. Can you improve upon this by
 using LME?
  </LI>
+<LI><IMG web="jsmixed1.png"></IMG></LI>
+<LI><IMG web="jsmixed2.png"></IMG></LI>
+<LI><IMG web="jsmixed3.png"></IMG></LI>
+<LI><IMG web="jsmixed4.png"></IMG></LI>
+
 </OL>
 
 <DISQUSE id="lmmixed2" url="http://www.isical.ac.in/~arnabc/linmod/mixed2.html"/>
