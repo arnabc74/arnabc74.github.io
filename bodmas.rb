@@ -4,7 +4,7 @@ skulshixAr jagate  prAysha.Hi kono kichhu mukhastha rAkhAr  janya chaT.h jaldi b
 parYabasita  han bAbAr jwar sArAnor kAhinIte (''bAbAr haila AbAr jwar sArila \ouSadhe''), kendrashAsita anchal~gulo chapalA 
 seje didimAr dore dhAk+kA dey (''a didA go Ami chapalA'',  kendrashAsita anchal~gulor nAmAbalI mukhastha rAkhAr 
 ei ToTkATi abashya Adhunik bhArabarSe Ar kAj kare nA).  tA, buddhi nA khATiye shar+TkATe mere debAr eisab kAydAte 
-nAnA bipatti ghaTe. sei yeman ekTi chhAtrer galpa shunichhilAm, ye khAmokhA bh\outabijnAner @{<M>P=I^2R</M>@} 
+nAnA bipatti ghaTe. sei yeman ekTi chhAtrer galpa shunechhilAm, ye khAmokhA bh\outabijnAner @{<M>P=I^2R</M>@} 
  farmulATA guliye fele @{<M>P=R^2I</M>@}  kare felta. tAke ke ekjan mane rAkhAr amogh nidAn dila-- 
 <Q>
 @{<E>Twinkle twinkle little star,<BR/>
@@ -90,8 +90,8 @@ bhASAy hala yog. kono bAs+tab samasyAy a.nka prayog karAr Age sar+badAi samasyAT
 hay. seTA sahaj eman dAbI karchhi nA, eba.n yekono shixakerai ekTA guru dAyitwa hala ei anubAd prak+riyATi shekhAno. eba.n 
 sekhAneo shar+TkATe mArte giye samasyA b,nAdhe. kIbhAbe bali. 
 <P/>
-Ami meyeke anubAd karte diyechhilAm, @{<E>He became nervous.</E>@}  o likhla se nArbhAs haye paRla. eTA kintu sampUrNa anubAd 
-hay ni, kAraN @{<E>nervous</E>@}  bA nArbhAs yAi likhi nA kena, oTA bA.nlA shabda nay. anubAdkArI ekhAne kAje f,nAki diyechhe. 
+Ami meyeke anubAd karte diyechhilAm, ''@{<E>He became nervous.</E>@}''  o likhla ''se nArbhAs haye paRla''. eTA kintu sampUrNa anubAd 
+hay ni, kAraN ''@{<E>nervous</E>@}''  bA ''nArbhAs'' yAi likhi nA kena, oTA bA.nlA shabda nay. anubAdkArI ekhAne kAje f,nAki diyechhe. 
 i.nrAjir belAy yerakam a.nke belAteo tAi. anubAdTA sampUrNa karA chAi. ardhekTA kare bAkiTuku ``bojhAi yAchchhe'' bale chAliye 
 deoyATA Thik nay. Thik sei samasyA thekei @{<E>of</E>@}-er janma. yadi balte chAi--
 <Q> ghare tinTe meye Ar
@@ -99,7 +99,7 @@ deoyATA Thik nay. Thik sei samasyA thekei @{<E>of</E>@}-er janma. yadi balte chA
 ardheker madhye chab+bishTi lajens samAn bhAg kare dite hale pratyeke kaTA kare pAbe?</Q>
 tabe tAr gANitik rUp habe 
 @{<D>24\div (*(~[[12]]\times(3+5)~)*).</D>@}
-seTA nA kare anek shixakai shar+TkATe mere debAr cheSTA karen--
+seTA nA kare anekei shar+TkATe mere debAr cheSTA karen--
 @{<D>24\div [[12]]\text{ of }(3+5).</D>@}
 eTA dekhte sahajatara, eba.n mUl barNanAr sange er sAdrrishyao beshI. eba.n f,nAkiTukur doS DhAkte bAdhya hayei mithye balte 
 hay ye ``@{<E>of</E>@}''-o Asale a.nkerai ekTA @{<E>operation.</E>@}  oTA ye Asale guN ete sandeha nei, kintu oi guNTA bhAger 
@@ -107,7 +107,7 @@ Age nA karle hiseb milbe nA, ataeb fer ekTA g,nojA chApAte hay @{<E>of</E>@}-TA 
 eibhAbe natun ekTA @{<E>operation</E>@}  bAniye a.nker madhye g,nuje deoyA bipajjanak. 
 a.nker sUtragulo khub yatna kare t\oirI karA, yAte oder madhye kothAo durakam mAne haye yAbAr suYog nA thAke. tAr janya 
 bis+tar loke mAthA khATiyechhe. AmrA yadi shar+TkAT karAr janya natun natun niyam DhokAte thAki, tabe tAr madhye f,nAk theke 
-yAy bis+tar. yeman ekdal srrijanshIl guNI shixak ei @{<E>of</E>@}-er janapriyatAy u.tsAhita haye ArekTi
+yAy bis+tar. yeman ekdal srrijanshIl guNI mAnuS ei @{<E>of</E>@}-er janapriyatAy u.tsAhita haye ArekTi
  guNAtIt guNer srriSTi kare base Achhen 
 <Q>@{<M>[[12]](3+5)</M>@}  hala @{<M>[[12]]\times (3+5)</M>@}-erai mata, kintu eTio
  @{<E>of</E>@}-er mata, bhAger Age karte habe. </Q>
@@ -155,7 +155,7 @@ biyog Asbe Age (sekhAne @{<E>BODMAS</E>@}  h,nochaT khAy).
  bojhAtei byabahrrita hay tAi nay, @{<E>negation</E>@}  
 bojhAteo kAje lAge, yeman @{<M>-(2+3).</M>@}  tAi seTA Asale ekTA AlAdA @{<E>operation,</E>@}  yAke bale @{<E>unary minus.</E>@}  (ekhAne 
 @{<E>unary</E>@}  mAne yeTA ekTA mAtra sa.nkhyA niye kAj kare). ei @{<E>operation</E>@}-TAr
-@{<E>precedence</E>@}  sabAr Age. @{<E>BODMAS</E>@}-er prabak+tArA sambhabata.H er kathATA bhule giyechhilen. Aro ekTA 
+@{<E>precedence</E>@}  sabAr Age. @{<E>BODMAS</E>@}-er prabak+tArA sambhabata.H ei kathATA bhule giyechhilen. Aro ekTA 
 jinis hala @{<E>power.</E>@}  AmrA yakhan @{<M>2^3</M>@}  likhi, takhan anek samayei kheyAl kari nA ye oi ``ekTu upare uThiye 
 lekhA''-TAo Asale ekTA @{<E>binary operation.</E>@}  kyAlkuleTar bA kampiuTArer belAy abashya seTA Ar gopan thAke nA, kAraN 
 @{<E>power</E>@}-TA bojhAnor janya sekhAne kichhu ekTA Tip~tei hay. sei @{<E>operation</E>@}-TA kintu @{<E>right associative,</E>@}  

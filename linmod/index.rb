@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<UPDT>MON DEC 07 IST 2020</UPDT>
+<UPDT>WED DEC 16 IST 2020</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
 III, 2020).
@@ -74,6 +74,10 @@ Mixed effects models in R (part 2)</LI>
 <LI><LINK to="https://youtu.be/UupGKE6QDRw">Lecture 42</LINK>:
 Linear mixed effects models (part 4)</LI>
 <LI><ALERT/><LINK to="ex4.html">Exercise set 4</LINK></LI>
+<LI><LINK to="https://youtu.be/-01r7JKfQWE">Lecture 43</LINK>: Generalized linear models (part 1)</LI>
+<LI><LINK to="https://youtu.be/u1UY1NuSpzc">Lecture 44</LINK>: Generalized linear models (part 2)</LI>
+<LI><LINK to="https://youtu.be/ZzhsuDR0eGc">Lecture 45</LINK>: Generalized linear models
+(part 3): Using R</LI>
 </UL>
 
 <COMMENT>
