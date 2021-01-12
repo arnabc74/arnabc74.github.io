@@ -1,5 +1,8 @@
  <NOTE>
 <HEAD1>@{<E>BODMAS</E>@}-er bad~mAyesI</HEAD1>
+<U>arNab chak+rabar+tI, inDiyAn sTyATis+TikAl insTiTiuT</U> <BR/>
+<U>siddhArthasha.nkar chaT+TopAdhyAy, abasarprApta shixak, bidhAn~nagar gabha.H hAi skul  </U>  
+<P/>
 skulshixAr jagate  prAysha.Hi kono kichhu mukhastha rAkhAr  janya chaT.h jaldi baTikAr dekhA pAoyA yAy. mogal bAdshAharA 
 parYabasita  han bAbAr jwar sArAnor kAhinIte (''bAbAr haila AbAr jwar sArila \ouSadhe''), kendrashAsita anchal~gulo chapalA 
 seje didimAr dore dhAk+kA dey (''a didA go Ami chapalA'',  kendrashAsita anchal~gulor nAmAbalI mukhastha rAkhAr 
@@ -46,7 +49,7 @@ Ar ei bryAkeTTA rAkhAr darkAr raila nA.  ebAr AbAr b,nAdik theke shuru karo.
  janya ekTA prathA mAtra. yeman, ei niyam mAnle ekTu Ager sajAruTA tAr chAr~joRA bryAkeTer tin joRAi mochan kare ei bhadrasabhya
 rUp lAbh karbe--
 @{<D>3\times(4+ 5)-4\times 4\div 6.</D>@}
-bAki bryAkTgulor as+titwa ekhano Achhe, kintu likhe bojhAte hachchhe nA. 
+bAki bryAkeTgulor as+titwa ekhano Achhe, kintu likhe bojhAte hachchhe nA. 
 
 ArekTA udAharaN dekhi--
 @{<D>
@@ -54,17 +57,17 @@ ArekTA udAharaN dekhi--
  = 
  ((((6\times5)\times4)\div8)\div5)\times7
 </D>@}
-ekhAne khAli guN Ar bhAg chhila, yAder samAn @{<E>precedence</E>@}, tAi b,nAdik theke DAn~dike kare gelei hala. ArekTu jaTil 
+ekhAne khAli guN Ar bhAg chhila,  tAi b,nAdik theke DAn~dike kare gelei hala. ArekTu jaTil 
 udAharaN habe--
 @{<D>2+3\times4\div (5+4) = 2+((3\times4)\div (5+4)).</D>@}
 <P/>
 kAydATA khubai kaThin lAgla ki?  yAi hok, skulshixAr \oitihya mene er janyao loke shar+TkAT ber
  karechhe. erakamai ekTA shar+TkATer nAm hala @{<E>BODMAS.</E>@}    
 
-<HEAD2>@{<E>BODMAS</E>@} ki?</HEAD2>
+<HEAD2>@{<E>BODMAS</E>@} kI?</HEAD2>
 @{<E>BODMAS</E>@}  hala ekTA sa.nxipta rUp, ekhAne @{<E>B</E>@}  mAne bryAkeT, @{<E>O</E>@}  mAne
- @{<E>of</E>@}  @{<E>D</E>@}  mAne @{<E>division,</E>@}  @{<E>M</E>@}  mAne
- @{<E>multiplication</E>@}  @{<E>A</E>@}  hala @{<E>addition</E>@}  Ar @{<E>S</E>@}  hala giye
+ @{<E>of</E>@},  @{<E>D</E>@}  mAne @{<E>division,</E>@}  @{<E>M</E>@}  mAne
+ @{<E>multiplication</E>@},  @{<E>A</E>@}  hala @{<E>addition</E>@}  Ar @{<E>S</E>@}  hala giye
  @{<E>subtraction.</E>@}   ei shar+TkATer bak+tabya hala--prathame bryAkeTer bhitarer kAj karo,
  tArpar @{<E>of</E>@}, tArpar bhAg,  tArpar guN, tArpar yog  eba.n abasheSe biyog.  
 <P/>
@@ -90,7 +93,22 @@ sei biSaye sampUrNa nIrab.
 <HEAD2>trritIya samasyA</HEAD2>
 @{<E>BODMAS</E>@}-er madhye @{<E>of</E>@}  bale ekTi @{<E>operation</E>@}-er ul+lekh Achhe.
  du.Hkher kathA, ei nAme kono @{<E>operation</E>@}  
-a.nker duniyAy nei. byApArTA ekTu khule balA darkAr. a.nka jinisTA @{<E>abstract</E>@},  kichhu @{<E>symbol</E>@}  nARAchARAr 
+a.nker duniyAy nei. <RED>kathATA shune anekei chamke uThben, kAraN chhelebelA theke AmrA sakalei ei
+ ``@{<E>of</E>@}''-er galpa shune Aschhi. eman ki @{<E>1903</E>@}  sAler ekTA prashnapatreo ei ul+lekh pAoyA yAy--
+<CIMG web="bodmasqn.png">janAb shAmsul Alamer @{<E>Facebook</E>@}  pAtA theke pAoyA</CIMG>
+shatAdhik bachhar yAba.t ye jinis chale Aschhe, tAke haThA.t ek fu.tkAre uRiye dile Apatti uThtei pAre. abashya bahudin 
+dhare chale elei ye kono dhAraNA saThik hatei habe, eman kono kathA nei. satIdAha prathAr \oitihya er chAiteo gabhIratara 
+chhila. kintu yAi hok, ei ``@{<E>of</E>@}''-er byApArTA ekTu 
+ khule balA darkAr. mAdhyamik skulshixAr ganDIr madhye AmrA yesab sa.nkhyA niye kAj kari, tArA
+ hala @{<E>real number</E>@}  bA bAs+tab sa.nkhyA. a.nker duniyAr sab jiniser matai ederao
+ yAbatIya dhar+ma, AchAr, AcharaN suspSTa niyame b,nAdhA. sei niyamgulike bale ekekTA
+ @{<E>axiom.</E>@}  eder sampUrNa tAlikA yekono @{<E>real analysis</E>@}-er baitei pAoyA yAy. eder
+ upar ekbAr chokhbolAlei dekhA yAbe ye ekhAne yog eba.n guNer kathA Achhe, yoger ul+To hisebe
+ biyoger kathA Achhe, eba.n guNer ul+To hisebe bhAger kathAo Achhe. kintu ``@{<E>of</E>@}'' nAme
+ kono kichhur kathAi nei. tAhale ``@{<E>of</E>@}''-TA elo kothA theke? tAr spaSTa kAraN jAni nA,
+tAi anumAner upar nirbhar kare balchhi.</RED> a.nka
+ jinisTA @{<E>abstract</E>@}, 
+ kichhu @{<E>symbol</E>@}  nARAchARAr 
 niyamkAnun mAtra. bAs+tab jagater bibhinna indriyagrAhya jinis~ke AmrA sei bhASAy prakAsh karte
  pAri. yeman--
 <Q>
@@ -114,7 +132,7 @@ deoyATA Thik nay. Thik sei samasyA thekei @{<E>of</E>@}-er janma. yadi balte chA
 ardheker madhye chab+bishTi lajens samAn bhAg kare dite hale pratyeke kaTA kare pAbe?</Q>
 tabe tAr gANitik rUp habe 
 @{<D>24\div (*(~[[12]]\times(3+5)~)*).</D>@}
-seTA nA kare anekei shar+TkATe mere debAr cheSTA karen--
+seTA nA kare anekei shar+TkATe mere debAr cheSTA karen, eba.n sambhabata.H sekhAn thekei ``@{<E>of</E>@}''-er u.tpatti--
 @{<D>24\div [[12]]\text{ of }(3+5).</D>@}
 eTA dekhte sahajatara, eba.n mUl barNanAr sange er sAdrrishyao beshI. eba.n f,nAkiTukur doS DhAkte bAdhya hayei mithye balte 
 hay ye ``@{<E>of</E>@}''-o Asale a.nkerai ekTA @{<E>operation.</E>@}  oTA ye Asale guN ete sandeha nei, kintu oi guNTA bhAger 
@@ -136,11 +154,9 @@ iye dekhun, AmAr paribArer ekTA niyam Achhe, AmrA aghrAN mAse biye kari nA. ei k
 poRA deshe shubhadin kh,nujei pAoyA yAy  nA, tAr upar AbAr ghare ghare prAibheT p,nAji khule basle
  kAjkarma chalbe kI kare?''
 
-eirakam prAibheT p,nAjighaTita ekTA samasyAr udAharaN dekhAi. dharA yAk a.nkaTA hala @{<M>6\div8(7-2).</M>@}   y,nArA guNAtIt 
-guNer bhk+ta, t,nArA abshyai egoben eibhAbe--
-@{<D>6\div (8\times (7-2)).</D>@}  
-edike AmrA bIjgaNita shekhAr samaye shikhechhi @{<M>2x</M>@}  Asale @{<M>2\times x.</M>@}  ataeb @{<M>x = 7-2</M>@}  hale 
-@{<M>6\div8x = 6\div 8\times x.</M>@}  ebAr AmrA kampiuTAre bA kyAlkulaTare yakhan likhba @{<CODE>6/8*x</CODE>@}  takhan 
+Ajker yug kampiuTArer yug. eirakam prAibheT p,nAji niye chalte gele sekhAneo h,nochaT khete habe.
+AmrA bIjgaNita shekhAr samaye shikhechhi @{<M>2x</M>@}  Asale @{<M>2\times x.</M>@}  ataeb @{<M>x = 2+2</M>@}  hale 
+@{<M>64\div2x = 64\div 2\times x.</M>@}  ebAr AmrA kampiuTAre bA kyAlkulaTare yakhan likhba @{<CODE>64/2*x</CODE>@}  takhan 
 uttarTA moTei milbe nA. takhan AmrA kon.hTA rAkhba, prAibheT p,nAji nAki kampiuTAr? nAki balba, @{<M>2x</M>@}  mAne sab 
 samaye @{<M>2\times x</M>@}  nay? 
 
