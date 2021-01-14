@@ -1,0 +1,299 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Learning J">Learning J</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Monads and dyads">Monads and dyads</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Right-to-left">Right-to-left</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Cryptic symbols">Cryptic symbols</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#First taste of J">First taste of J</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Learning J">Learning J</a></h1>
+
+<h2><a
+name="Monads and dyads">Monads and dyads</a></h2>
+In the last page we learned about some nice things to expect from
+J. Now, nothing comes without a price. A language needs to
+restrict the freedom of a programmer in various ways to make the
+good things possible. We have already seen one such restriction
+in the last page: the output shape of a function must depend on
+only the input shape. Here is the next one: a function can have
+either one or two arguments. These are called,
+respectively, <font color="#ff0000">monad</font>s and <font color="#ff0000">dyad</font>s. Just as a
+monad has a rank, a dyad has two, one for each of its
+arguments. If $f(x,y)$ is such a function with
+ranks $m$ and $n,$ then $f$ expects $x$ to be
+in $T_m$ and $y$ to be in $T_n.$ If we try to
+evaluate $f(x,y)$ where $x\in T_{m+\ell}$ and $y\in
+T_{n+\ell}$, and the uper $\ell$ levels of $x$
+and $y$ have the same shape, then $\ell$-many implicit nested loops are
+launched. 
+
+<p></p>
+Since functions are either monads or dyads, so they are much like
+unary and binary operations that we learn in school. Indeed, J
+uses exactly the same syntax. Thus, instead of
+writing $f(x,y)$ we write <code>x f
+y</code>. Similarly, $f(x)$ is <code>f x</code>. In
+arithmetic, we have two types of minuses, unary and binary, much
+to the confusion of kids. J
+keeps up the tradition (both of arithmentic and of confusion) by allowing a same symbol to denote a
+monad as well as dyad. Usually, the monad and the dyad denoted by
+the same symbol are related, though this is not a requirement. 
+
+<h2><a
+name="Right-to-left">Right-to-left</a></h2>
+
+With all functions being written as binary and unary operators,
+it is no waonder that J has large number of these. So to keep the
+order of evaluation unambiguous we need to either put lots of
+parentheses or we need to have some convention like precedence
+and associativity. Even with as few operations as just +, -, *
+and /, kids find it difficult to remember rules like
+multiplication needs to be done before addition. You can imagine
+how much more confusing it is going to be with many more
+operators. Well, J has solved the problem by doing away with
+precedence altogether. The J dictum is "always proceed from right
+to left". Before you start to suspect some arabic connection of
+J, and wonder about why we should proceed in this "reverse" way,
+let me point out that this is how we do it in math most of the
+time. 
+
+<h2><a
+name="Cryptic symbols">Cryptic symbols</a></h2>
+J justly prides itself on smart ways of combining existing
+operation to produce new ones. This is much like the way modern
+man writes numbers as opposed to ancient Romans. Ancient Romans
+assigned symbols more or less arbitrily to whatever number they
+needed, like I, V, X and C. But modern man has a systematic
+approach using a radix and expressing everything by combining
+powers of 10. If you want to express a hundred, the ancient Roman
+just used a letter C, while modern man would first express the
+number as square of 10, and notice that it is 
+$$
+<font color="#0000ff">1</font>\times 10^2 + <font color="#0000ff">0</font> \times 10^1 + <font color="#0000ff">0</font>\times 10^0.
+$$
+The ancient Roman must have thought us crazy that we need so much
+math to just express a number. But of course we know the
+advantage. However, even we would be driven crazy if we have to
+write the above expression in full everyime we need to express
+a hundred. So we need an abbreviation: we have (arbitrary)
+symbols for all the possible coefficients (0,1,2,...,9) and then
+simply list the coefficients side by side. Is it really simple?
+Yes, when you see that even a kid can do it. No, when we remember
+that it took centuries for this system to evolve. 
+
+<p></p>
+Well, that is basically what happens for J also. J has a clever way of
+expressing many things by combining some basic objects. Arbitrary
+names of assigned to only the basic entities, and all other
+derived entities are expressed in their terms.  Without
+abbreviations, however, this would not be of much practical
+value. So J uses very short names for its basic functions (at
+most two characters).
+
+<h2><a
+name="First taste of J">First taste of J</a></h2>
+Now let us look at a simple example in the light of what we have
+learnt so far. In this example we shall give a taste of all the
+features we have talked about so far. We start with an array of
+numbers 1,3,4,5,10. J will consider this as a tree of depth 1. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<span class="j">
+<pre>
+x=: 1 3 4 5 10
+</pre>
+</span>
+To find the number of highest level branches J provides a monad
+called <font color="red"><code>#</code></font>. Let's put it to use:
+<span class="j">
+<pre>
+# x
+</pre>
+</span>
+J responds with 5. Notice how I described <font color="red"><code>#</code></font> in terms of
+the input tree, and not as "a function to find the length of a
+list".
+<p></p>
+Next, we shall see the arithmetic operations in J. The operations
+for addition, subtraction and multiplication are usual. But J
+uses <font color="red"><code>%</code></font> for division. All operations are done using floating
+points (more on this later).
+
+<p></p>
+The expression
+<span class="j">
+<pre>
+3 * 4 - 10 % 5
+</pre>
+</span>
+is interpreted as 
+$$
+3\times (4 - (10 \div 5)).
+$$
+Amuse yourself by trying to guess the result of 
+<span class="j">
+<pre>
+5 - 1 - 1 - 1 - 1 - 1
+</pre>
+</span>
+I have talked about a symbol having a monad and dyad
+interpretation. Here is one example. Used as a dyad <font color="red"><code>^</code></font>
+means raising to a power, as in:
+<span class="j">
+<pre>
+3 ^ 2
+</pre>
+</span>
+But used as a monad, it means $e^x$: 
+<span class="j">
+<pre>
+^ 2
+</pre>
+</span>
+Next, let us take a look at some functional operators. We shall
+use the trigonometric functions, which we load as
+<span class="j">
+<pre>
+load'trig'
+</pre>
+</span>
+Then we can create 
+<span class="j">
+<pre>
+f=: sin + cos
+g=: ^ * sin
+h=: sin @ cos
+i=: ^ @ cos
+</pre>
+</span>
+Here $f(x) = \sin x+\cos x$, $g(x) = e^x\sin
+x$, $h(x) = \sin(\cos x)$ and $i(x)=e^{\cos x}.$
+The first two are examples of forks. 
+<p></p>
+Next let us see insertion in action. Suppose we want to compute 
+$$
+1 + 3 + 4 + 5 + 10.
+$$
+This means inserting the dyad <font color="red"><code>+</code></font> between each successive
+pair. So we can write
+<span class="j">
+<pre>
++ / 1 3 4 5 10
+</pre>
+</span>
+Guess the outcome of 
+<span class="j">
+<pre>
+- / 1 1 1 1 1 
+</pre>
+</span>
+Most often the <font color="red"><code>/</code></font> operator is used to accumulate some result
+recursively (<i>e.g.</i>, summing). You can use this to find 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

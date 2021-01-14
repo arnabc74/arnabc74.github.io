@@ -1,12 +1,12 @@
  <NOTE>
 <HEAD1>@{<E>BODMAS</E>@}-er bad~mAyesI</HEAD1>
-<U>arNab chak+rabar+tI, inDiyAn sTyATis+TikAl insTiTiuT</U> <BR/>
+<U>arNab chak+rabar+tI, inDiyAn sTyATis+TikAl insTiTiuT, kalkAtA</U> <BR/>
 <U>siddhArthasha.nkar chaT+TopAdhyAy, abasarprApta shixak, bidhAn~nagar gabha.H hAi skul  </U>  
 <P/>
 skulshixAr jagate  prAysha.Hi kono kichhu mukhastha rAkhAr  janya chaT.h jaldi baTikAr dekhA pAoyA yAy. mogal bAdshAharA 
 parYabasita  han bAbAr jwar sArAnor kAhinIte (''bAbAr haila AbAr jwar sArila \ouSadhe''), kendrashAsita anchal~gulo chapalA 
 seje didimAr dore dhAk+kA dey (''a didA go Ami chapalA'',  kendrashAsita anchal~gulor nAmAbalI mukhastha rAkhAr 
-ei ToTkATi abashya Adhunik bhArabarSe Ar kAj kare nA).  tA, buddhi nA khATiye shar+TkATe mere debAr eisab kAydAte 
+ei ToTkATi abashya Adhunik bhArat~barSe Ar kAj kare nA).  tA, buddhi nA khATiye shar+TkATe mere debAr eisab kAydAte 
 nAnA bipatti ghaTe. sei yeman ekTi chhAtrer galpa shunechhilAm, ye khAmokhA bh\outabijnAner @{<M>P=I^2R</M>@} 
  farmulATA guliye fele @{<M>P=R^2I</M>@}  kare felta. tAke ke ekjan mane rAkhAr amogh nidAn dila-- 
 <Q>
@@ -103,7 +103,7 @@ chhila. kintu yAi hok, ei ``@{<E>of</E>@}''-er byApArTA ekTu
  hala @{<E>real number</E>@}  bA bAs+tab sa.nkhyA. a.nker duniyAr sab jiniser matai ederao
  yAbatIya dhar+ma, AchAr, AcharaN suspSTa niyame b,nAdhA. sei niyamgulike bale ekekTA
  @{<E>axiom.</E>@}  eder sampUrNa tAlikA yekono @{<E>real analysis</E>@}-er baitei pAoyA yAy. eder
- upar ekbAr chokhbolAlei dekhA yAbe ye ekhAne yog eba.n guNer kathA Achhe, yoger ul+To hisebe
+ upar ekbAr chokh bolAlei dekhA yAbe ye ekhAne yog eba.n guNer kathA Achhe, yoger ul+To hisebe
  biyoger kathA Achhe, eba.n guNer ul+To hisebe bhAger kathAo Achhe. kintu ``@{<E>of</E>@}'' nAme
  kono kichhur kathAi nei. tAhale ``@{<E>of</E>@}''-TA elo kothA theke? tAr spaSTa kAraN jAni nA,
 tAi anumAner upar nirbhar kare balchhi.</RED> a.nka
