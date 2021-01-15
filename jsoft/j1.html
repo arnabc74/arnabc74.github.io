@@ -81,13 +81,13 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <a href="#J tutorial">J tutorial</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#What?">What?</a>
+<a href="#Why?">Why?</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Nested implicit loops">Nested implicit loops</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Readymade operators to combine functions">Readymade operators to combine functions</a>
+<a href="#Ready-made operators to combine functions">Ready-made operators to combine functions</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#How?">How?</a>
@@ -104,52 +104,52 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 name="J tutorial">J tutorial</a></h1>
 This is an introductory  tutorial  on a programming language
 called J. Before investing time to learn a new language a natural
-question is: What advantage can we expect to get from it? And
-since we need an answer to this <i>before</i> we start learning
+question is: Why should we care to learn it? 
+Since we need an answer to this <i>before</i>  starting to learn
 the language, the answer has to be in terms of general concepts
 that <i>we already know</i>. 
 
 
 <h2><a
-name="What?">What?</a></h2>
+name="Why?">Why?</a></h2>
 
-The discussion that follows is much like understanding the need
+The discussion that follows is much like discussing the need
 for loops before learning one's first programming language, or
 understanding the concept of object orientedness before learning
-one's first OOP language. We cannot give language specific
-examples here, as that would involve syntactic details yet to be learned.
+one's first OOP language. The discussion will necessarily involve
+some hand waving, as we cannot give examples requiring
+ syntactic details yet to be learned.
 
 <h3><a
 name="Nested implicit loops">Nested implicit loops</a></h3>
 
-Many modern languages like R allow working with arrays as a
-single object. Thus they will allow syntax
-like <code>sin(x)</code> to find sine of all elements in an
+Many modern languages like R, Matlab, Python (with numpy) allow
+working with arrays as a 
+single object. Thus, they will allow syntax
+like <font color="red"><code>sin(x)</code></font> to find sine of all numbers in an
 array. Such implicit loops are handy. However, they may not be
 nested.  For instance, if we have a matrix, and we want to find
 sum of each row, then there is no obvious way to do this. Some
 languages provide cumbersome partial solution for this
-like <code>apply(mat,1,sum)</code>. However, if we have
-a $9\times 5\times 5$ 
-array (think of it as an array of 9 matrices each of order $5\times 5$), and we want to find
-the determinant of each matrix, then this is not achievable. 
+like <code>apply(mat,1,sum)</code>. However, such solutions do
+not scale well for higher dimensional arrays.
 <p></p>
-J provides a way to do this. This, in my opinion, is the
+J provides a way to nest implicit loops. This, in my opinion, is the
 single most strong point of J.
 
 <h3><a
-name="Readymade operators to combine functions">Readymade operators to combine functions</a></h3>
+name="Ready-made operators to combine functions">Ready-made operators to combine functions</a></h3>
 
-The functional programming paradigm is gaining popularity
-fast. In a functional programming language functions are handled
+The functional programming paradigm has been around for a long
+time, and is gaining popularity fast. In a functional programming language functions are handled
 much like variables, they may be passed as arguments into other
 functions, assigned values during runtime, and returned from a
 function.
 <p></p>
-All the functional languages fall short in one respect. While
+Most functional languages, however, fall short in one respect. While
 they allow the user to combine functions in arbitrary ways, they
-hardly provide any standard operators on functions that work out
-of the box. Even basic function operators like composition or
+hardly provide any ready-made standard operator for functions.
+ Even basic function operators like composition or
 addition are sadly missing. 
 <p></p>
 J provides not only these standard operators, but also some new
@@ -157,15 +157,32 @@ ones which prove quite useful.
 
 <h2><a
 name="How?">How?</a></h2>
-
+So now you have some idea about what J has in store for you. The
+next question is: How to avail these?
 
 <h3><a
 name="Nested implicit loops">Nested implicit loops</a></h3>
 J uses a tree structure to store each variable. The tree is
-always balanced (ie, the number of branches at any node equals
-the that of its sibling nodes). The root node is at level 0, and
-the level keeps on icreasing. Let $T_k$ denote the set of
-all trees with exactly $k$ levels. Now consider a function
+always balanced (<i>i.e.</i>, the number of branches at all nodes at a
+the same level are the same). The root node is at level 0, its
+children are at level 1, and so on.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree0.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Let $T_k$ denote the set of all trees with exactly $k$
+ levels, where $k$ is some
+non-negative integer. By the <font color="#ff0000">shape</font> of a tree we shall mean the
+numbers of branches at different levels. For example, the shape
+for the tree shown is the list 3 2 3. 
+<p></p>
+ Now consider a function
 $f(x)$ with a single argument $x.$ Thus, $x$ is a
 tree and $f(x)$ is another. Now, $J$ puts two
 restrictions on its functions:
@@ -176,13 +193,46 @@ of $k$ with $f,$ meaning that $f$ is supposed to
 operate only on elements of $T_k.$ This $k$ is called
 the <font color="#ff0000">rank</font> of $f.$</li>
 
-<li>The depth and shape of $f(x)$ is determined solely by the
+<li>The shape of $f(x)$ is determined solely by the
 shape of $x$ (and not by its value).</li>
 
 </ul>
+This is shown in the diagram below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree2.5.png"></th>
+</tr>
+<tr>
+<th>$f:T_k\rightarrow T_m$</th>
+</tr>
+</table>
+</center>
 If you pass some $x\in
 T_{k+\ell}$ to $f,$ then $\ell$ implicit nested loops are launched
-and $f$ is applied to each of the subtrees with level $k.$
+and $f$ is applied to each of the subtrees with $k$ levels.
+Pictorially, if $x$ is the following tree:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+then $f(x)$ will be:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
 
 <h3><a
 name="Functional operators">Functional operators</a></h3>
