@@ -12,7 +12,7 @@ explore. My chief aim was to see how well and meaningfully your
 explore a real life data set using all the tools you have at your disposal: common
 sense, plots, diagnostics, mathematics. 
 
-<HEAD2>An "ideal" solution</HEAD2>
+<HEAD2>An 'ideal' solution</HEAD2>
 There isn't any. Not just for this problem, but for most (if not
 all) real life data analysis problem. But here are certain steps
 I would have taken:
