@@ -118,14 +118,6 @@ different results for 64 bit and 32 bit machines.
 Absolute value as monad. Remainder as dyad, e.g., <C>3 | 4</C>
 returns 1.</BOX>
 
-<HEAD2>Tree handling functions</HEAD2>
-<C>,</C>, <C>,.</C>,
-<C>,:</C>, <C>$</C>,
-<C>#</C>, <C>{</C>,
-<C>{.</C>, <C>{:</C>,
-<C>}.</C>, <C>}:</C>,
-<C>|.</C>, <C>|:</C>,
-<C>;</C>, <C>'a b'=: x</C>
 
 <HEAD2>Functional operators</HEAD2>
 <C>@</C>, <C>^:</C>,
