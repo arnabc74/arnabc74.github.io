@@ -1,0 +1,279 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#An example: simple pendulum">An example: simple pendulum</a>
+</li>
+</ul>
+<hr/>
+
+$
+\newcommand{\v}{\vec}
+$
+<title>Simple pendulum with J</title>
+
+<h1><a
+name="An example: simple pendulum">An example: simple pendulum</a></h1>
+
+During our high school days we are taught that a simple pendulum executes an
+approximately simple harmonic motion <i>if the angle of swing is small.</i> However, high
+school textbooks avoid discussing the general case: the motion of a
+pendulum that may swing to larger angles. The main reason is that this leads
+to an unmanageable differential equation that cannot be solved without a computer.
+<p></p>
+Consider the following diagram. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pendu.png"></th>
+</tr>
+<tr>
+<th>Simple pendulum</th>
+</tr>
+</table>
+</center>
+Taking $O$ as the origin and positive
+$x$- $y$- and $\theta$-directions as shown, the position of
+the bob is
+$$\begin{eqnarray*}
+x &amp;  = &amp;  L\sin(\theta)\\
+y &amp;  = &amp;  -L\cos(\theta).
+\end{eqnarray*}$$
+Remember that $\theta $ is a function of time $t.$ So the above
+equations actually mean 
+$$\begin{eqnarray*}
+x(t) &amp;  = &amp;  L\sin(\theta(t))\\
+y(t) &amp;  = &amp;  -L\cos(\theta(t)).
+\end{eqnarray*}$$
+
+The forces on the bob along the positive $x$- and $y$-directions
+are, respectively,
+$$\begin{eqnarray*}
+F_x &amp;  = &amp;  -T\sin(\theta)\\
+F_y &amp;  = &amp;  T\cos(\theta)-mg.
+\end{eqnarray*}$$
+Here $T$ is the tension in the rod. It is also a function of
+$t.$
+
+<p></p>
+
+To derive the equations of motion we shall use Newton's second law of
+motion, which says
+$$\begin{eqnarray*}
+F_x &amp;  = &amp;  m x''\\
+F_y &amp;  = &amp;  m y'',
+\end{eqnarray*}$$
+where $x''$, $y''$   denote the second derivatives of $x(t)$, $y(t)$ with respect
+to $t.$
+
+<p></p>
+
+Differentiating $x(t)$ and $y(t)$ twice we get
+$$\begin{eqnarray*}
+x'' &amp;  = &amp;  -L  \sin(\theta)(\theta')^2 + L \cos(\theta)\theta ''\\
+y'' &amp;  = &amp;  L  \cos(\theta)(\theta')^2 + L  \sin(\theta)\theta ''.
+\end{eqnarray*}$$
+
+Putting these in Newton's second law, and simplifying, we get
+$$
+\theta '' = -\frac gL \sin(\theta).
+$$
+At this point most  textbooks use
+the ``$\sin(\theta)\approx \theta $'' approximation for "small"
+$\theta$ to reduce the above differential equation to 
+$$
+\theta '' = -\frac gL \theta,
+$$
+which can be solved easily by hand to produce simple harmonic
+motion. The approximation is pretty good if the pendulum swings
+within $4^\circ$. But not all pendulums swing within that
+range. What if you have a pendulum that swings $30^\circ?$
+That's what we are going to explore now.
+<p></p>
+We first reduce the second
+order differential equation $\theta '' = -\frac gL\theta$ 
+to a <i>system</i> of first order equations.
+$$\begin{eqnarray*}
+\theta ' &amp;  = &amp;  \omega\\
+\omega' &amp;  = &amp;  -\frac gL \theta.
+\end{eqnarray*}$$
+Notice that $(\theta',\omega')$ is given as a function
+of $(\theta,\omega).$ The entire motion of the pendulum is
+determined if we know $(\theta,\omega)$ at some instant. So
+we call $(\theta,\omega)$ the <i>phase</i> of the system. We
+are given the initial phase of the system, <i>i.e.</i>, we know from which initial angle we have released the
+pendulum, and with what angular velocity. Our aim is to know the phase at
+all time points during the swing.
+
+<p></p>
+Thus, at $t=t_0$ (specified number), we know 
+$$\begin{eqnarray*}
+\theta &amp; = &amp; \theta_0\mbox{ (specified number)},\\
+\omega &amp; = &amp; \omega_0\mbox{ (specified number)}.
+\end{eqnarray*}$$ 
+We want to know the values $\theta(t)$  and $\omega(t)$  at any given $t &gt; t_0.$
+<p></p>
+Thanks to the differential equations, we also know 
+the rate at which they are increasing at $t=t_0:$
+$$\begin{eqnarray*}
+\theta'(t_0) &amp; = &amp; \omega_0,\\
+\omega'(t_0) &amp; = &amp; -\frac gL\sin \theta_0.
+\end{eqnarray*}$$ 
+Now advance time a little  to $t_1=t_0+\delta t$, say. By this
+time $\theta$ and $\omega$ will roughly change to
+$$\begin{eqnarray*}
+\theta_1 &amp; = &amp; \theta_0 + \theta'(t_0)\delta t = \theta_0+\omega_0\delta t\\
+\omega_1 &amp; = &amp; \omega_0 +\omega'(t_0)\delta t =
+\omega_0-\frac gL\sin \theta_0 \delta t.
+\end{eqnarray*}$$ 
+
+So we get the phase (approximately) at  $t_1= t_0+\delta t.$
+<p></p>
+Now we keep on advancing time by  $\delta t$ increments. The same 
+logic may be used repeatedly to give, at $t_k = t_0+k\cdot\delta t,$
+$$\begin{eqnarray*}
+\theta_k &amp; = &amp; \theta_{k-1} + \omega_{k-1}\delta t\\
+\omega_k &amp; = &amp; \omega_{k-1} -\frac gL\sin \theta_{k-1} \delta t.
+\end{eqnarray*}$$ 
+Admittedly, this is a rather crude approximation. However, if $\delta t$  is pretty small, the accuracy increases. 
+Let's explore this numerically using the following J code:
+<span class="j">
+<pre>
+r=: {:, (_9.8 *  sin @ {.)  
+e=:] + 0.1 *  r 
+e^:(i.100) 1 0 
+plot {. |: e^:(i.100) 1 0 
+</pre>
+</span>
+<a href="javascript:hideShow('j1');">J help</a>
+<div id="j1" style="display:none;background-color:#ffcccc;">
+
+<ul>
+
+<li>
+<code>=:</code> defining a new variable or function.</li>
+
+<li>
+<code>{.</code> (head): extracts the first element of a list.</li>
+
+<li>
+<code>{:</code> (tail): extracts the last element of a
+list.</li>
+
+<li>
+<code>@</code> function composition.</li>
+
+<li>
+<code>]</code> Identity function $f(y)=y$</li>
+
+<li>
+<code>^:</code> (composition power): <i>e.g.</i> <code>f^:3</code>
+means $f(f(f(\cdots))).$ Also, <code>f^:(1 2 3)</code>
+means a list of functions, $f, f\circ f, f\circ f\circ f.$</li>
+
+<li>
+<code>i.</code> creates a list of integers. In particular,
+<code>i. 5</code> is 0,1,2,3,4.</li>
+
+<li>
+<code>|:</code> (transpose): matrix transposition.</li>
+
+<li>
+<code>plot</code> when used as <code>plot y</code> makes a
+line plot of $(0,y_0),...,(n-1,y_{n-1})$ if $n$ is the
+length of $y.$</li>
+
+</ul>
+
+</div>
+
+<p></p>
+
+Here we are making 100 steps with $\delta t = 0.1.$   Try with $\delta t = 0.01$  also, and see how the plot changes.
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

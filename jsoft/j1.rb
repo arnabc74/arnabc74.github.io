@@ -68,35 +68,26 @@ for the tree shown is the list 3 2 3.
 <P/>
  Now consider a function
 <M>f(x)</M> with a single argument <M>x.</M> Thus, <M>x</M> is a
-tree and <M>f(x)</M> is another. Now, <M>J</M> puts two
-restrictions on its functions:
-<UL>
-<LI>It associates a value
-of <M>k</M> with <M>f,</M> meaning that <M>f</M> is supposed to
-operate only on elements of <M>T_k.</M> This <M>k</M> is called
-the <RED>rank</RED> of <M>f.</M></LI>
-<LI>The shape of <M>f(x)</M> is determined solely by the
-shape of <M>x</M> (and not by its value).</LI>
-</UL>
-This is shown in the diagram below.
-<CIMG web="tree2.5.png"><M>f:T_k\to T_m</M></CIMG>
-If you pass some <M>x\in
-T_{k+\ell}</M> to <M>f,</M> then <M>\ell</M> implicit nested loops are launched
-and <M>f</M> is applied to each of the subtrees with <M>k</M> levels.
-Pictorially, if <M>x</M> is the following tree:
+tree and <M>f(x)</M> is another. Now, when you invoke the
+function <M>f</M> on <M>x</M>, J requires you to specify a
+number. Suppose that <M>x\in T_{k+\ell}</M> and the number
+is <M>k.</M> Then <M>f</M> is actually applied to the subtrees
+shown in green below.
 <CIMG web="tree2.png"></CIMG>
-then <M>f(x)</M> will be:
+Each red subtree is of depth <M>k</M>. Suppose that each green
+subtree converts to a purple subtree (or some depth <M>m</M>)
+under <M>f:</M>
+<CIMG web="tree2.5.png"></CIMG>
+Then the entire <M>f(x)</M> will be:
 <CIMG web="tree3.png"></CIMG>
+Thus, <M>\ell</M> implicit nested loops are launched
+and <M>f</M> is applied once in each pass.
 
 <HEAD3>Functional operators</HEAD3>
 J provides the following functional operators out of the box:
 <OL>
-<LI>function composition:</LI> this comes in two varieties:
-ordinary compositions like <M>\sin\circ \cos</M> and compositions
-like <M>\sum \sin </M>.
-<LI>function iteration: there are two variants: interate a fixed
-number of times, and iterate until convegence (the latter being
-potentially dangerous, as it may launch an infinite loop).</LI>
+<LI>function composition.</LI> 
+<LI>function iteration. </LI>
 <LI>combining two functions like <M>f + g</M>. These are called
 <RED>fork</RED>s in J parlance.</LI>
 <LI>combining a variable with its own summary. This may sound

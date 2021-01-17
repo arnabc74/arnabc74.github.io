@@ -119,10 +119,6 @@ Absolute value as monad. Remainder as dyad, e.g., <C>3 | 4</C>
 returns 1.</BOX>
 
 
-<HEAD2>Functional operators</HEAD2>
-<C>@</C>, <C>^:</C>,
-<C>/</C>, <C>@: </C>,
-
 <HEAD2>Strange functions</HEAD2>
  <C>e.</C>,
 </NOTE>@}

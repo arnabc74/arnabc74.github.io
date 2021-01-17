@@ -184,34 +184,11 @@ for the tree shown is the list 3 2 3.
 <p></p>
  Now consider a function
 $f(x)$ with a single argument $x.$ Thus, $x$ is a
-tree and $f(x)$ is another. Now, $J$ puts two
-restrictions on its functions:
-<ul>
-
-<li>It associates a value
-of $k$ with $f,$ meaning that $f$ is supposed to
-operate only on elements of $T_k.$ This $k$ is called
-the <font color="#ff0000">rank</font> of $f.$</li>
-
-<li>The shape of $f(x)$ is determined solely by the
-shape of $x$ (and not by its value).</li>
-
-</ul>
-This is shown in the diagram below.
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/tree2.5.png"></th>
-</tr>
-<tr>
-<th>$f:T_k\rightarrow T_m$</th>
-</tr>
-</table>
-</center>
-If you pass some $x\in
-T_{k+\ell}$ to $f,$ then $\ell$ implicit nested loops are launched
-and $f$ is applied to each of the subtrees with $k$ levels.
-Pictorially, if $x$ is the following tree:
+tree and $f(x)$ is another. Now, when you invoke the
+function $f$ on $x$, J requires you to specify a
+number. Suppose that $x\in T_{k+\ell}$ and the number
+is $k.$ Then $f$ is actually applied to the subtrees
+shown in green below.
 <center>
 <table width="100%">
 <tr>
@@ -222,7 +199,20 @@ Pictorially, if $x$ is the following tree:
 </tr>
 </table>
 </center>
-then $f(x)$ will be:
+Each red subtree is of depth $k$. Suppose that each green
+subtree converts to a purple subtree (or some depth $m$)
+under $f:$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree2.5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then the entire $f(x)$ will be:
 <center>
 <table width="100%">
 <tr>
@@ -233,18 +223,17 @@ then $f(x)$ will be:
 </tr>
 </table>
 </center>
+Thus, $\ell$ implicit nested loops are launched
+and $f$ is applied once in each pass.
 
 <h3><a
 name="Functional operators">Functional operators</a></h3>
 J provides the following functional operators out of the box:
 <ol type="">
 
-<li>function composition:</li> this comes in two varieties:
-ordinary compositions like $\sin\circ \cos$ and compositions
-like $\sum \sin $.
-<li>function iteration: there are two variants: interate a fixed
-number of times, and iterate until convegence (the latter being
-potentially dangerous, as it may launch an infinite loop).</li>
+<li>function composition.</li> 
+
+<li>function iteration. </li>
 
 <li>combining two functions like $f + g$. These are called
 <font color="#ff0000">fork</font>s in J parlance.</li>
