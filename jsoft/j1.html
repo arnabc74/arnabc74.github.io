@@ -78,40 +78,46 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#J tutorial">J tutorial</a>
+<a href="#Why learn J?">Why learn J?</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Why?">Why?</a>
+<a href="#Reason 1: Nested implicit loops">Reason 1: Nested implicit loops</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reason 2: Ready-made operators to combine functions">Reason 2: Ready-made operators to combine functions</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Nested implicit loops">Nested implicit loops</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Ready-made operators to combine functions">Ready-made operators to combine functions</a>
+<a href="#An example">An example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#In general">In general</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#More fancy ways to specify level">More fancy ways to specify level</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#An unexpected snag">An unexpected snag</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#How?">How?</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Nested implicit loops">Nested implicit loops</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Functional operators">Functional operators</a>
 </li>
 </ul>
 <hr/>
-<h1><a
-name="J tutorial">J tutorial</a></h1>
-This is an introductory  tutorial  on a programming language
-called J. Before investing time to learn a new language a natural
+
+Before investing time to learn a new language a natural
 question is: Why should we care to learn it? 
 Since we need an answer to this <i>before</i>  starting to learn
 the language, the answer has to be in terms of general concepts
 that <i>we already know</i>. 
 
-
-<h2><a
-name="Why?">Why?</a></h2>
+<h1><a
+name="Why learn J?">Why learn J?</a></h1>
 
 The discussion that follows is much like discussing the need
 for loops before learning one's first programming language, or
@@ -120,8 +126,8 @@ one's first OOP language. The discussion will necessarily involve
 some hand waving, as we cannot give examples requiring
  syntactic details yet to be learned.
 
-<h3><a
-name="Nested implicit loops">Nested implicit loops</a></h3>
+<h2><a
+name="Reason 1: Nested implicit loops">Reason 1: Nested implicit loops</a></h2>
 
 Many modern languages like R, Matlab, Python (with numpy) allow
 working with arrays as a 
@@ -135,73 +141,143 @@ like <code>apply(mat,1,sum)</code>. However, such solutions do
 not scale well for higher dimensional arrays.
 <p></p>
 J provides a way to nest implicit loops. This, in my opinion, is the
-single most strong point of J.
+single most strong point of J. We shall see the details soon. But
+first let's learn about the second reason why one should care for J.
 
-<h3><a
-name="Ready-made operators to combine functions">Ready-made operators to combine functions</a></h3>
+<h2><a
+name="Reason 2: Ready-made operators to combine functions">Reason 2: Ready-made operators to combine functions</a></h2>
 
 The functional programming paradigm has been around for a long
 time, and is gaining popularity fast. In a functional programming language functions are handled
-much like variables, they may be passed as arguments into other
-functions, assigned values during runtime, and returned from a
+much like variables, they may be created on the fly during
+run-time, passed as arguments into other
+functions, and returned from a
 function.
 <p></p>
 Most functional languages, however, fall short in one respect. While
 they allow the user to combine functions in arbitrary ways, they
 hardly provide any ready-made standard operator for functions.
  Even basic function operators like composition or
-addition are sadly missing. 
+function addition are sadly missing. 
 <p></p>
 J provides not only these standard operators, but also some new
 ones which prove quite useful.
 
-<h2><a
-name="How?">How?</a></h2>
+<h1><a
+name="Details">Details</a></h1>
 So now you have some idea about what J has in store for you. The
 next question is: How to avail these?
 
-<h3><a
-name="Nested implicit loops">Nested implicit loops</a></h3>
-J uses a tree structure to store each variable. The tree is
-always balanced (<i>i.e.</i>, the number of branches at all nodes at a
-the same level are the same). The root node is at level 0, its
-children are at level 1, and so on.
+<h2><a
+name="Nested implicit loops">Nested implicit loops</a></h2>
+J uses multidimensional arrays. A scalar is a 0-dimensional
+array, vector 1-dimensional, matrix 2-dimensional and so on. It 
+becomes difficult to visualize higher dimensional arrays if we
+continue to use a rectangular layout. It will help to
+switch to a tree layout, where a 0-dimensional array is just the
+root node, a 1-dimensional one is a tree of depth 1:
 <center>
 <table width="100%">
 <tr>
-<th><img width="" src="image/tree0.png"></th>
+<th><img width="" src="image/t1.png"></th>
 </tr>
 <tr>
-<th></th>
+<th>A vector</th>
 </tr>
 </table>
 </center>
-Let $T_k$ denote the set of all trees with exactly $k$
- levels, where $k$ is some
-non-negative integer. By the <font color="#ff0000">shape</font> of a tree we shall mean the
-numbers of branches at different levels. For example, the shape
-for the tree shown is the list 3 2 3. 
+and a 2-dimensional array is a tree of depth 2:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/t2.png"></th>
+</tr>
+<tr>
+<th>A matrix is a list of rows</th>
+</tr>
+</table>
+</center>
+Thus, when we have a 1-dimensional array 
+$$
+x = (x_1,...,x_n),
+$$
+and we want to write $f(x)$ to mean
+$$
+f(x) = (f(x_1),...,f(x_n)),
+$$
+we are basically applying $f$ not to the entire tree
+ directly, but to the leaf nodes separately, and then collating
+ the results. 
 <p></p>
- Now consider a function
-$f(x)$ with a single argument $x.$ Thus, $x$ is a
-tree and $f(x)$ is another. Now, when you invoke the
-function $f$ on $x$, J requires you to specify a
-number. Suppose that $x\in T_{k+\ell}$ and the number
-is $k.$ Then $f$ is actually applied to the subtrees
-shown in green below.
+Well, J allows a generalization of this.
+<p></p>
+ When we
+ want to apply a function $f$ to a tree $x$, we are
+ allowed to specify the level at which we want $f$ to
+ applied. Suppose we have the following $x:$
 <center>
 <table width="100%">
 <tr>
-<th><img width="" src="image/tree2.png"></th>
+<th><img width="" src="image/t3.png"></th>
 </tr>
 <tr>
 <th></th>
 </tr>
 </table>
 </center>
-Each red subtree is of depth $k$. Suppose that each green
-subtree converts to a purple subtree (or some depth $m$)
-under $f:$
+If we say apply $f$ at level 0, then will be applied
+separately at each leaf node and results collated. If we want to
+apply $f$ at level 1, then $f$ is applied separately to
+the subtrees circled in red below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/t4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Similarly, applying $f$ at level 2 will require
+invoking $f$ only one per circled subtree below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/t5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If we apply $f$ at level 3 (or more), then $f$ is
+applied only once for the entire tree. 
+
+<h3><a
+name="An example">An example</a></h3>
+Here is a concrete (albeit useless) example to keep in
+mind. Suppose that $x$ is a list of $5$
+ matrices of size $3\times3.$ Thus, $x$ is a 3-dimensional array of size $5\times3\times 3.$ 
+You also have three functions: "det" is the determinant
+function, "sum" is a function to sum a list of numbers, and
+"square" to square a number.  
+<p></p>
+If you want to square all the entries of all the matrices, you'll
+apply "square" to $x$ at level 0.
+<p></p>
+To find sums of all row sums for all the matrices, you'll apply
+"sum" to $x$ at level 1.
+<p></p>
+If you
+want to find determinant of all the matrices, then you'll need to
+apply "det" to $x$ at level $2.$ 
+
+
+<h3><a
+name="In general">In general</a></h3>
+Now, the output of $f$ may itself be a tree. So if the
+effect to $f$ is to produce the purple tree from a green tree:
 <center>
 <table width="100%">
 <tr>
@@ -212,7 +288,18 @@ under $f:$
 </tr>
 </table>
 </center>
-Then the entire $f(x)$ will be:
+then applying $f$ at level $m$ to the following tree
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+would produce
 <center>
 <table width="100%">
 <tr>
@@ -223,11 +310,67 @@ Then the entire $f(x)$ will be:
 </tr>
 </table>
 </center>
-Thus, $\ell$ implicit nested loops are launched
-and $f$ is applied once in each pass.
+
 
 <h3><a
-name="Functional operators">Functional operators</a></h3>
+name="More fancy ways to specify level">More fancy ways to specify level</a></h3>
+In the examples so far, we are counting the levels bottom up. It
+is possible to count top down as well. Then we use negative
+numbers. If we write level $-1,$ that would mean
+applying $f$ to all the subtrees one level below the root
+node. If we want to apply  $f$ to the entire tree in one go,
+we specify depth $\infty.$
+<p></p>
+As you can possibly guess, J is markedly different from other
+languages. To express its ideas, J needs its own
+terminology. What we are calling the level is
+called <font color="#ff0000">rank</font> in J. Unfortunately, the number of levels
+in a tree is also called by the same name. So we have rank of a
+tree, as well as rank of a function application. All functions
+also have a default rank of application (<i>i.e.</i>, if you do not
+specify the rank explicitly, the function gets applied with this
+default rank). This further confuses beginners who begin thinking
+that ranks are an integral part of a function (like dimension of
+its domain). 
+
+<p></p>
+When we specify the rank while applying  a function, the argument
+tree is split up into an upper and a lower part. The upper part
+(which is again a tree) is called the <font color="#ff0000">frame</font> of the
+original tree for that rank. The lower part consists of some
+identically shaped subtrees, each of which is called
+a <font color="#ff0000">cell</font> of the tree at that rank. 
+
+<h3><a
+name="An unexpected snag">An unexpected snag</a></h3>
+Rank of a function appication is merely a clever shortcut to
+denote nested implicit loops. However, as in all interpreted
+languages, loops are expensive in J. The rank notation does not
+reduce the loop overhead. If you have tree with many
+levels, and apply a function at rank 0, then you are launching a
+huge number of nested loops. This is inefficient. So the creators
+of J has thought about a way out. For expensive functions they
+sometimes run this loop in C (the language in which the J
+interpreter is written). For instance, suppose that $f:{\mathbb R}\rightarrow{\mathbb R}$ is
+an expensive function. As it expects a scalar input, rank 0 is
+all that is needed. But we can implement $f$ as a function <font color="red"><code>fnew</code></font>
+that accepts a full tree, and applies $f$ to each of the
+leaves. Then <font color="red"><code>fnew</code></font> would have rank $\infty$, and be
+far more efficient than applying $f$ with rank 0. One such
+example is the $\sin$ function, which has
+rank $\infty.$ This sometimes leads to counterintuitive
+behaviour.
+
+<h2><a
+name="Functional operators">Functional operators</a></h2>
+
+Next, we shall talk briefly about the functional operators that J
+provides. Indeed, much of the tremendous expressive power of J
+code comes from these operators. While the concept of ranks is
+the most powerful concept in J, beginners are more likely to
+appreciate J's power by using the functional operators.  
+<p></p>
+
 J provides the following functional operators out of the box:
 <ol type="">
 
@@ -250,6 +393,8 @@ array of numbers.</li>
 <li>Cartesian product: producing a table like a multiplication table.</li>
 
 </ol>
+There are many more such standard functional operations provided
+by J.
 <hr/>
 <table width="100%" border="0">
 <tr>

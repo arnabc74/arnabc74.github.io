@@ -1,5 +1,7 @@
 @{<NOTE>
 <HEAD1>J for Joy!</HEAD1>
+This is an introductory  tutorial  on a programming language
+called J. 
 <OL>
 <LI><LINK to="j1.html">Page 1</LINK>: Why learn J?</LI>
 <LI><LINK to="j2.html">Page 2</LINK>: A first taste of J</LI>

@@ -4,21 +4,51 @@
 In the last page we learned about some nice things to expect from
 J. Now, nothing comes without a price. A language needs to
 restrict the freedom of a programmer in various ways to make the
-good things possible. We have already seen one such restriction
-in the last page: the output shape of a function must depend on
-only the input shape. Here is the next one: a function can have
-either one or two arguments. These are called,
-respectively, <RED>monad</RED>s and <RED>dyad</RED>s. Just as a
-monad has a rank, a dyad has two, one for each of its
-arguments. If <M>f(x,y)</M> is such a function with
-ranks <M>m</M> and <M>n,</M> then <M>f</M> expects <M>x</M> to be
-in <M>T_m</M> and <M>y</M> to be in <M>T_n.</M> If we try to
-evaluate <M>f(x,y)</M> where <M>x\in T_{m+\ell}</M> and <M>y\in
-T_{n+\ell}</M>, and the uper <M>\ell</M> levels of <M>x</M>
-and <M>y</M> have the same shape, then <M>\ell</M>-many implicit nested loops are
-launched. 
+good things possible. The astute reader may have already
+discerned that the idea of applying a function to specific level
+of  a tree is meaningful only if the tree is balanced (i.e., the
+number of children of a node equals the number of chidren for its
+siblings. This is the first restriction J puts. To ensure this
+restriction for the outcome of application of a function we need
+yet another restriction: the output shape of a function must depend on
+only the input shape (and not on the input values). 
+<CIMG web="tree2.5.png">The shape of the green triangle
+determines the 
+shape of purple triangle</CIMG>
 
+Here is the next one: a function can have
+either one or two arguments. In operation parlance, these are
+called unary and binary operators. But J call them,
+respectively, <RED>monad</RED>s and <RED>dyad</RED>s. We have
+already learned about how monads behave. Dyads add a second level
+of complication.
+
+<HEAD2>Dyads</HEAD2>
+Recall that a single application of <M>f</M> to <M>x</M> may
+involve implicit loops to be launched causing multiple
+invocations. For example, if <M>x</M> is a 1-dimensional array of
+length 10, then <M>sin(x)</M> is a single application, but
+actually consists of 10 invocations. The specified rank
+determines how an application is split up into invocations.
 <P/>
+The situation is similar for dyads. We have two ranks, one for
+each argument. So the two trees may be split up like these:
+<CIMG web="d1.png"/>
+Notice that the top parts (i.e. the frames) of the two trees are different. So we
+cannot proceed to combine the gren and purple parts with <M>f</M>
+immediately. However,
+the frame of the second tree starts out like that the first
+tree (i.e., the red parts are the same). So the second tree may
+"sprout" to match the shape of the first:
+<CIMG web="d2.png">Each leaf node "sprouts" by replicating</CIMG>
+Now we may apply <M>f.</M> If a purple tree and a green tree are
+combined by <M>f</M> into a blue tree:
+<CIMG web="d3.png"/>
+then the final result will be:
+<CIMG web="d4.png"/>
+
+<HEAD2>Right-to-left</HEAD2>
+
 Since functions are either monads or dyads, so they are much like
 unary and binary operations that we learn in school. Indeed, J
 uses exactly the same syntax. Thus, instead of
@@ -26,26 +56,29 @@ writing <M>f(x,y)</M> we write <CODE>x f
 y</CODE>. Similarly, <M>f(x)</M> is <CODE>f x</CODE>. In
 arithmetic, we have two types of minuses, unary and binary, much
 to the confusion of kids. J
-keeps up the tradition (both of arithmentic and of confusion) by allowing a same symbol to denote a
+keeps up the tradition (both of arithmetic and of confusion) by allowing a same symbol to denote a
 monad as well as dyad. Usually, the monad and the dyad denoted by
 the same symbol are related, though this is not a requirement. 
 
-<HEAD2>Right-to-left</HEAD2>
+
+<P/>
+
 
 With all functions being written as binary and unary operators,
 it is no waonder that J has large number of these. So to keep the
 order of evaluation unambiguous we need to either put lots of
 parentheses or we need to have some convention like precedence
 and associativity. Even with as few operations as just +, -, *
-and /, kids find it difficult to remember rules like
-multiplication needs to be done before addition. You can imagine
+and /, untrained kids find it difficult to remember rules of
+precedence.  You can imagine
 how much more confusing it is going to be with many more
 operators. Well, J has solved the problem by doing away with
-precedence altogether. The J dictum is "always proceed from right
-to left". Before you start to suspect some arabic connection of
-J, and wonder about why we should proceed in this "reverse" way,
+precedence altogether (and thus confusing  trained adults). The J dictum is "always proceed from right
+to left". Before you  and wonder about why we should proceed in
+this "reverse" way, and suspect some Arabic influence, 
 let me point out that this is how we do it in math most of the
-time. 
+time: <M>(f\circ g)(x) = f(g(x))</M> means apply <M>g</M> first,
+and then <M>f.</M> 
 
 <HEAD2>Cryptic symbols</HEAD2>
 J justly prides itself on smart ways of combining existing
@@ -57,9 +90,9 @@ approach using a radix and expressing everything by combining
 powers of 10. If you want to express a hundred, the ancient Roman
 just used a letter C, while modern man would first express the
 number as square of 10, and notice that it is 
-<D>
-<BLUE>1</BLUE>\times 10^2 + <BLUE>0</BLUE> \times 10^1 + <BLUE>0</BLUE>\times 10^0.
-</D>
+<Q>
+<BLUE>1</BLUE><M>\times 10^2+</M> <BLUE>0</BLUE><M> \times 10^1 + </M><BLUE>0</BLUE><M>\times 10^0.</M>
+</Q>
 The ancient Roman must have thought us crazy that we need so much
 math to just express a number. But of course we know the
 advantage. However, even we would be driven crazy if we have to

@@ -84,6 +84,9 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <a href="#Monads and dyads">Monads and dyads</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Dyads">Dyads</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Right-to-left">Right-to-left</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
@@ -102,21 +105,99 @@ name="Monads and dyads">Monads and dyads</a></h2>
 In the last page we learned about some nice things to expect from
 J. Now, nothing comes without a price. A language needs to
 restrict the freedom of a programmer in various ways to make the
-good things possible. We have already seen one such restriction
-in the last page: the output shape of a function must depend on
-only the input shape. Here is the next one: a function can have
-either one or two arguments. These are called,
-respectively, <font color="#ff0000">monad</font>s and <font color="#ff0000">dyad</font>s. Just as a
-monad has a rank, a dyad has two, one for each of its
-arguments. If $f(x,y)$ is such a function with
-ranks $m$ and $n,$ then $f$ expects $x$ to be
-in $T_m$ and $y$ to be in $T_n.$ If we try to
-evaluate $f(x,y)$ where $x\in T_{m+\ell}$ and $y\in
-T_{n+\ell}$, and the uper $\ell$ levels of $x$
-and $y$ have the same shape, then $\ell$-many implicit nested loops are
-launched. 
+good things possible. The astute reader may have already
+discerned that the idea of applying a function to specific level
+of  a tree is meaningful only if the tree is balanced (<i>i.e.</i>, the
+number of children of a node equals the number of chidren for its
+siblings. This is the first restriction J puts. To ensure this
+restriction for the outcome of application of a function we need
+yet another restriction: the output shape of a function must depend on
+only the input shape (and not on the input values). 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree2.5.png"></th>
+</tr>
+<tr>
+<th>The shape of the green triangle
+determines the 
+shape of purple triangle</th>
+</tr>
+</table>
+</center>
 
+Here is the next one: a function can have
+either one or two arguments. In operation parlance, these are
+called unary and binary operators. But J call them,
+respectively, <font color="#ff0000">monad</font>s and <font color="#ff0000">dyad</font>s. We have
+already learned about how monads behave. Dyads add a second level
+of complication.
+
+<h2><a
+name="Dyads">Dyads</a></h2>
+Recall that a single application of $f$ to $x$ may
+involve implicit loops to be launched causing multiple
+invocations. For example, if $x$ is a 1-dimensional array of
+length 10, then $sin(x)$ is a single application, but
+actually consists of 10 invocations. The specified rank
+determines how an application is split up into invocations.
 <p></p>
+The situation is similar for dyads. We have two ranks, one for
+each argument. So the two trees may be split up like these:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Notice that the top parts (<i>i.e.</i> the frames) of the two trees are different. So we
+cannot proceed to combine the gren and purple parts with $f$
+immediately. However,
+the frame of the second tree starts out like that the first
+tree (<i>i.e.</i>, the red parts are the same). So the second tree may
+"sprout" to match the shape of the first:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d2.png"></th>
+</tr>
+<tr>
+<th>Each leaf node "sprouts" by replicating</th>
+</tr>
+</table>
+</center>
+Now we may apply $f.$ If a purple tree and a green tree are
+combined by $f$ into a blue tree:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+then the final result will be:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+
+<h2><a
+name="Right-to-left">Right-to-left</a></h2>
+
 Since functions are either monads or dyads, so they are much like
 unary and binary operations that we learn in school. Indeed, J
 uses exactly the same syntax. Thus, instead of
@@ -124,27 +205,29 @@ writing $f(x,y)$ we write <code>x f
 y</code>. Similarly, $f(x)$ is <code>f x</code>. In
 arithmetic, we have two types of minuses, unary and binary, much
 to the confusion of kids. J
-keeps up the tradition (both of arithmentic and of confusion) by allowing a same symbol to denote a
+keeps up the tradition (both of arithmetic and of confusion) by allowing a same symbol to denote a
 monad as well as dyad. Usually, the monad and the dyad denoted by
 the same symbol are related, though this is not a requirement. 
 
-<h2><a
-name="Right-to-left">Right-to-left</a></h2>
+
+<p></p>
+
 
 With all functions being written as binary and unary operators,
 it is no waonder that J has large number of these. So to keep the
 order of evaluation unambiguous we need to either put lots of
 parentheses or we need to have some convention like precedence
 and associativity. Even with as few operations as just +, -, *
-and /, kids find it difficult to remember rules like
-multiplication needs to be done before addition. You can imagine
+and /, untrained kids find it difficult to remember rules of
+precedence.  You can imagine
 how much more confusing it is going to be with many more
 operators. Well, J has solved the problem by doing away with
-precedence altogether. The J dictum is "always proceed from right
-to left". Before you start to suspect some arabic connection of
-J, and wonder about why we should proceed in this "reverse" way,
+precedence altogether (and thus confusing  trained adults). The J dictum is "always proceed from right
+to left". Before you  and wonder about why we should proceed in
+this "reverse" way, and suspect some Arabic influence, 
 let me point out that this is how we do it in math most of the
-time. 
+time: $(f\circ g)(x) = f(g(x))$ means apply $g$ first,
+and then $f.$ 
 
 <h2><a
 name="Cryptic symbols">Cryptic symbols</a></h2>
@@ -157,9 +240,10 @@ approach using a radix and expressing everything by combining
 powers of 10. If you want to express a hundred, the ancient Roman
 just used a letter C, while modern man would first express the
 number as square of 10, and notice that it is 
-$$
-<font color="#0000ff">1</font>\times 10^2 + <font color="#0000ff">0</font> \times 10^1 + <font color="#0000ff">0</font>\times 10^0.
-$$
+<blockquote>
+
+<font color="#0000ff">1</font>$\times 10^2+$ <font color="#0000ff">0</font>$ \times 10^1 + $<font color="#0000ff">0</font>$\times 10^0.$
+</blockquote>
 The ancient Roman must have thought us crazy that we need so much
 math to just express a number. But of course we know the
 advantage. However, even we would be driven crazy if we have to
