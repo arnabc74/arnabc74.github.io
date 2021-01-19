@@ -188,5 +188,16 @@ Guess the outcome of
 - / 1 1 1 1 1 
 </J>
 Most often the <C>/</C> operator is used to accumulate some result
-recursively (e.g., summing). You can use this to find 
+recursively (e.g., summing). You can use this to find minimum or
+maximum as well, .e.g, 
+<J>
+<./ 1 4 3 8 4
+</J>
+Another important class of operators take slices of dyads to
+produce monads. The slice could be along the <M>y</M>-axis (i.e.,
+fixing some value of <M>x</M>) like <M>y\mapsto f(a,y).</M> Or it
+could be aong the <M>x</M>-axis, like <M>x\mapsto f(x,b).</M> Or
+t could be along the diagonal <M>t\mapsto f(t,t).</M> These are,
+respectively, 
+<C>a & f</C>, <C>f & b</C> and <C>f~</C>. 
 </NOTE>@}
