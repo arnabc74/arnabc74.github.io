@@ -1,5 +1,5 @@
 @{<NOTE>
- <UPDT>TUE JAN 19 IST 2021</UPDT>
+ <UPDT>FRI JAN 22 IST 2021</UPDT>
 <HEAD1>J for Joy!</HEAD1>
 This is an introductory  tutorial  on a programming language
 called J. The aim is to acquaint you with this rather unique
@@ -35,7 +35,7 @@ ideas. The snippets are all deliberately kept simple, so that I
 can explain them to the students. 
 <OL>
 <LI><LINK to="diff1.html">Numerical differential equations</LINK></LI>
-<LI><LINK to="nonlin11.html">Nonlinear equations</LINK></LI>
+<LI><LINK to="nonlin1.html">Nonlinear equations</LINK></LI>
 <LI><LINK to="mat1.html">Matrix algorithms</LINK></LI>
 <LI><LINK to="numint1.html">Numerical integration</LINK></LI>
 <LI><LINK to="interpol1.html">Interpolation</LINK></LI>
