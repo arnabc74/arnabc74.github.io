@@ -4,14 +4,8 @@
 \newcommand{\v}{\vec}
 </M>
 <TITLE>Differential equations</TITLE>
-<UPDT>THU FEB 27 IST 2020</UPDT>
-<HEAD1>Differential equations</HEAD1>
-
-
-We shall start with a familiar physics example that will lead to
-an unmanageable differential equation.
-
-<HEAD2>An example: simple pendulum</HEAD2>
+<UPDT>SAT JAN 23 IST 2021</UPDT>
+<HEAD1>Simple pendulum</HEAD1>
 
 During our high school days we are taught that a simple pendulum executes an
 approximately simple harmonic motion <I>if the angle of swing is small.</I> However, high
@@ -124,13 +118,87 @@ logic may be used repeatedly to give, at <M>t_k = t_0+k\cdot\delta t,</M>
 \theta_k & = & \theta_{k-1} + \omega_{k-1}\delta t\\
 \omega_k & = & \omega_{k-1} -[[gL]]\sin \theta_{k-1} \delta t.
 </MULTILINE> 
+
 Admittedly, this is a rather crude approximation. However, if <M>\delta t</M>  is pretty small, the accuracy increases. 
-Let's explore this numerically using the following J code:
+Let us explore this numerically using J. For this, consider the
+iteration as a single function that maps one <M>(\theta,
+\omega)</M> pair to the next:
+<D>
+(\theta,\omega)\mapsto (\theta,\omega) + \delta t
+\underbrace{(*(\omega,-[t[gL]]\sin \theta)*)}_{r(\theta,\omega),\mbox{ say}}.
+</D>
 <J>
-r=: {:, (_9.8 *  sin @ {.)  
-e=:] + 0.1 *  r 
-e^:(i.100) 1 0 
-plot {. |: e^:(i.100) 1 0 
+r=: {:, (_9.8 *  sin @ {.) 
+</J>
+Rememebr that this function is expeced to work as a monad on a
+pair <M>(\theta,\omega).</M> Notice that the J code is
+essentially the same as the following description
+of <M>r(\theta,\omega)=(*(\omega,-[t[gL]]\sin \theta)*)</M> in plain English:
+<Q>
+the last entry (i.e., <M>\omega</M>) followed
+by <M>-9.8\times</M> the first entry (i.e., <M>\theta </M>).
+</Q>
+Next, have to move from the current <M>r(\theta,\omega)</M> pair
+to the next.
+English description:
+<Q>
+Add <M>\delta t\times r</M> (to the current value).
+</Q>
+Its J translation gives a function <C>u</C>:
+<J>
+u=: + 0.1 *  r 
+</J>
+Try out <C>r</C> and <C>u</C> like this with initial <M>(\theta,\omega)=(1,0)</M>:
+<J>
+r 1 0
+u 1 0
+</J>
+Since J codes are minimalistic, it is easy to lose your
+bearing while programming. To avoid this, keep a firm hold on
+the layout of the data as they  get transformed by
+different functions. For instance, the updating function
+produces the next <M>(\theta,\omega)</M> pair from the current one:
+this:
+<CIMG web="p1.png"></CIMG>
+It will help to visualize the updation as a syntax tree:
+<CIMG web="ftree1.png"></CIMG>
+It should not be very difficult to draw (mentally, after some
+practice) this tree based on the algebraic description. The only
+hitch may be with the "append" function which is something we are
+not as familiar as the mathematical operations. This is more like
+a book-keeping operation, but thanks to J's infix notation we can
+show this in the same syntax tree as the more mathematical
+ones.
+<P/>
+ In a syntax tree, the data enter through the leaves. There
+are two types of data here: those involving the current value
+(shown in red) and those involving various constants
+(shown in blue). Our plan is to express this as a function
+of <M>(\theta,\omega)</M>. So we need two book keeping functions
+to extract <M>\theta </M> and <M>\omega</M>
+from <M>(\theta,\omega),</M> resulting in the following tree:
+<CIMG web="ftree2.png"></CIMG>
+This syntax tree may be written down directly in J:
+<J>
+u=: + 0.1 * {: , _9.8 * sin @ {.
+</J>
+This may look like magic, but the translation rule is simple, and
+best explained diagrammatically. 
+<CIMG web="ftree3.png"></CIMG>
+Now we shall start with initial <M>(\theta,\omega)=(1,0)</M> and
+apply the function updating function 100 times, say. 
+<J>
+u^:(i.100) 1 0 
+</J>
+This is what you get:
+<CIMG web="p2.png"></CIMG>
+
+It will be a lot more fun to make a plot of the <M>\theta</M>
+values. To isolate just the <M>\theta</M> values, you need to
+pick up only the first entry (i.e. apply <C>{.</C>) to each of
+the red subtrees (i.e., at rank 1):
+<J>
+plot {."1 u^:(i.100) 1 0 
 </J>
 <HIDE lab="j1"><MSG>J help</MSG><HIDDEN>
 <UL>
@@ -139,7 +207,6 @@ plot {. |: e^:(i.100) 1 0
 <LI><CODE>{:</CODE> (tail): extracts the last element of a
 list.</LI>
 <LI><CODE>@</CODE> function composition.</LI>
-<LI><CODE>]</CODE> Identity function <M>f(y)=y</M></LI>
 <LI><CODE>^:</CODE> (composition power): e.g. <CODE>f^:3</CODE>
 means <M>f(f(f(\cdots))).</M> Also, <CODE>f^:(1 2 3)</CODE>
 means a list of functions, <M>f, f\circ f, f\circ f\circ f.</M></LI>
@@ -152,78 +219,6 @@ length of <M>y.</M></LI>
 </UL>
 </HIDDEN></HIDE>
 <P/>
-
-Here we are making 100 steps with <M>\delta t = 0.1.</M>   Try with <M>\delta t = 0.01</M>  also, and see how the plot changes.
- <P/>
-The following R code implements the same idea:
-<R>
-pendulum = function(t0,theta0,n,dt) {
-  tm = rep(0,n)
-  theta = rep(0,n);
-  omega = rep(0,n);
-  tm[1] = t0
-  theta[1] = theta0;
-  omega[1] = 0;
-
-  
-  C = -9.8;
-
-  for(k in 2:n) {
-    tm[k] = tm[k-1] + dt
-    theta[k] = theta[k-1] + omega[k-1]*dt
-    omega[k] = omega[k-1] + C*sin(theta[k-1])*dt
-  }
-  return(list(time=tm,angle=theta,vel=omega))
-}
-result1 = pendulum(0,1,1000,0.1)
-
-plot(result1$time,result1$angle,type="l")
-result2 = pendulum(0,1,10000,0.01)
-lines(result2$time,result2$angle,col='red')
-</R>
-
-<EXR>
-Execute the above code with different initial values, and see if
-the output changes as it should. Make a plot of the velocity over
-time. Draw the phasor diagram, i.e., a parametric plot
-of <M>(\theta(t), \omega(t))</M> with <M>t</M> as the parameter.
-</EXR>
-
-<EXR>
-Modify the code to allow the user to specify a non-zero initial velocity. 
-</EXR>
-
-<EXR>
-Plot the potential energy, kinetic energy and total mechanical
-energy of the system as  functions of time. Check if the total
-mechanical energy curve is indeed a horizontal straight line, as
-it should be.
-</EXR>
-
-<EXR>Try to produce an animation of the pendulum in R. Hint: the function 
-<R>
-Sys.sleep(0.1)
-</R>
-will cause R to wait for 0.1 second. 
-</EXR>
-
-<PROJ id="pendu">
-The rod in the above pendulum is an inextensible one. So we could treat
-<M>L</M> as a constant. What if we replace it by a spring with constant
-<M>\gamma?</M> Then the tension in the spring will be
-<D>
-T = \gamma\cdot (\sqrt{x^2+y^2}- \ell),
-</D> 
-where <M>\ell</M>  is the unstretched length of the spring. 
-
-Numerically solve these assuming that 
-<D>
-\ell=4,~~x(0) = 1,~~y(0)= -2,~~x'(0)=y'(0)=0.
-</D>
-Animate to see if the solution looks natural. You may need to tweak <M>\delta t</M>  to make it look more natural (i.e.,
- to make it more accurate).
-</PROJ>
-
 
 <HEAD2>A closer look: Euler's method</HEAD2>
 Our differential equation was of the form
@@ -428,97 +423,5 @@ with line segments use <CODE>pd x; y</CODE></LI>
 </UL>
 </HIDDEN></HIDE>
 </EXM>
-
-<EXR>
-Implement the code in R to produce the above plot. Also try other
-values of <M>n.</M>
-</EXR>
-
-
-<HEAD2>Gravity well</HEAD2>
-This is a more complicated example.
-<P/>
-Many science museums (including the Birla Industrial and
-Technological Museum here in Kolkata) has a model to demonstrate
-Einstein's theory of gravitation. The model consists of some
-balls rolling on a
-large curved plastic funnel. See
-this <LINK to="https://youtu.be/dNyK3jP5gRI?t=23">Youtube video here</LINK>. The funnel
-represents the space-time warped by a heavy star (yellow ball) sitting at the
-center. The smaller balls tend to roll into
-the cavity, but owing to their initial tangential velocities end up
-orbiting the star.
-<P/>
-
- Consider the following funnel-like
-surface. It is obtained by rotating the curve <M>z = f(y)</M> around the
-the <M>z</M>-axis. For instance, <M>f(y)=\sqrt{y-1}</M> would produce a
-surface like the following.
-<CIMG web="funnel.png">Ball in funnel</CIMG>
-A ball is moving along the inner surface of the funnel. We shall ignore
-the radius of the ball and the friction of the surface. (Thus the ball is a point mass slipping,
-not rolling, on the funnel.) We know the
-initial position and velocity of the ball. We want to find out the path
-that the ball will follow. 
-
-<P/>
-
-There are two forces acting on the ball: its weight and the reaction of
-the surface. The first works downwards, and so is 
-<D>
-<MAT>0\\0\\-mg</MAT>.
-</D>
-The reaction acts inwards along the normal to the surface at the current
-position of the ball. Let the current position of the ball be 
-<D>
-<MAT>t\\y\\f(u)</MAT>,
-</D>
-where <M>u = \sqrt{t^2+y^2}.</M> A little coordinate geometry shows that
-the normal lies along 
-<D>
-<MAT>-t\\-y\\u/f'(u)</MAT>.
-</D>
-So the reaction force is
-<D>
-R<MAT>-t\\-y\\u/f'(u)</MAT>,
-</D>
-for some unknown function <M>R</M> of <M>t.</M> So we have the equation of
-motion:
-<D>
-m<MAT>x''\\y''\\z''</MAT> = R<MAT>-t\\-y\\u/f'(u)</MAT>+<MAT>0\\0\\-mg</MAT>.
-</D>
-Thus, we have 3 equations in 3 unknowns: <M>t,y,</M> and <M>R.</M> Notice
-that <M>z</M> is a known function of <M>t</M> and <M>y.</M> To simplify
-the equations first find
-<M>z''</M> in terms of <M>t,y</M> and their derivatives. Then eliminate
-<M>R</M> to get two equations in two unknowns:
-<MULTILINE>
-x'' &  = &  -t\tilde R\\
-y'' &  = &  -y\tilde R,\\
-</MULTILINE>
-where 
-<D>
-\tilde R = \frac{f'(u)\left(x'^2+y'^2-u'^2\right)/u+u'^2f''(u)+g}
-           {u\left(f'(u)+\frac{1}{f'(u)}\right)}.
-</D>
-<PROJ id="gw">Use 2nd  order Taylor method to solve this for the initial condition 
-<D>
-t(0)=10,~~y(0)=0,~~x'(0)=0,~~y'(0)=5.
-</D>
-Take <M>g = 9.8.</M>
-</PROJ>
-
-<EXR>
-You can make the above problem more realistic by taking friction into
-account. Remember that kinetic frictional force has magnitude proportional
-to the normal reaction and acts opposite to the velocity vector.
-</EXR>
-Many other physics examples are
-discussed in the web page <LINK to="http://www.myphysicslab.com">www.myphysicslab.com</LINK>. That page
-has many interactive animations. However, they use a method more
-sophisticated than what we have used. We
- shall learn that method
-in the second half of this course.
-<DISQUSE id="diff1" url="https://www.isical.ac.in/~arnabc/numana/diff1.html"/>
 @}
 </NOTE>

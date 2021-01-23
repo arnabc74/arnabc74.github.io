@@ -93,6 +93,9 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <a href="#Cryptic symbols">Cryptic symbols</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Forks and compositions">Forks and compositions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#First taste of J">First taste of J</a>
 </li>
 </ul>
@@ -262,6 +265,112 @@ derived entities are expressed in their terms.  Without
 abbreviations, however, this would not be of much practical
 value. So J uses very short names for its basic functions (at
 most two characters).
+
+<h2><a
+name="Forks and compositions">Forks and compositions</a></h2>
+We have learned about forks and compositions in the last page. These are
+ways to combine existing functions to create new functions. Here
+is a quick reminder for the monad case (<font color="red"><code>y</code></font> denotes the argument):
+<ul>
+
+<li>A fork  <font color="red"><code>(f g h) y</code></font> is an abbreviation for 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fork.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+<li>A composition  <font color="red"><code>f @ g y</code></font> is an abbreviation for 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/comp.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+</ul>
+The power of these  abbreviations comes from the fact that
+since all J functions are either mondas or dyads, hence the inner
+nodes of any
+syntax trees must have degree either 1 or 2, corresponding to
+monads and dyads.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ex1.png"></th>
+</tr>
+<tr>
+<th>0, 2, 4, 7 are dyads, rest are monads</th>
+</tr>
+</table>
+</center>
+So the tree may be
+constructed by piecing together forks and
+compositions. For each dyad, we need a fork, and for each monad a
+composition.  For the example shown above:
+<span class="j">
+<pre>
+(1 0 3 2  5@(8 7 9) 4 6) y
+</pre>
+</span>
+It might look like magic. It is! But just like all magics in real
+life, there is a way to practice them. The tree technique is one
+such. 
+<p></p> 
+This  example, however, represents the situation where 
+all the leaf nodes 
+correspond to monads, <i>e.g.</i>, in $\sin y + \cos y$ the leaf
+nodes are $\sin$ and $\cos$, both monads.
+<p></p>
+
+Now, that may not always be the case, because
+<ol type="">
+<li>a leaf node may be just some constant, as
+in $5 + \sin y$ the leaf node for 5 is holding a constant.</li>
+
+<li> A leaf node may be $y$ itself, as in $y -\sin y.$</li>
+</ol>
+ J provides convenient
+techniques to cover these in the case where the troublesome leaf
+node is the left child of its parent. If the leaf node contains a
+constant, then just write it, and J will accept it as a constant
+function. For example, <font color="red"><code>(5+sin)</code></font> is a valid fork. 
+In the second case, where the left  leaf node contains $y$ just omit it, and 
+J will understand $y$. For instance, $y-\sin y$ may be
+ expressed by <font color="red"><code>(-sin)</code></font>. Such lop-sided forks are
+called <font color="#ff0000">hook</font>s in J.
+
+<p></p>
+Now, the fact that J can handle trouble only in the left child
+may bother you. If the parent is a commutative operation, then
+the children may be swapped (<i>e.g.</i>, $\sin(y) + 3$ may be written as
+$3+ \sin(y)$), but what if it is not? Don't worry. J has got
+you covered there too! J can swap
+the children of any dyad by using a <font color="red"><code>~</code></font>. Thus, <font color="red"><code>4 -~ 5</code></font>
+is the same as <font color="red"><code>5 - 4</code></font>. If you want to
+express $\sin(y)-5$ using a fork, then <font color="red"><code>sin - 5</code></font> won't
+work, but <font color="red"><code>5-~sin</code></font> will. Similarly, $\sin(y)-y$ may be
+abbreviated to the hook <font color="red"><code>-~sin</code></font>.
+<p></p>
+This discussion was about the monadic behaviour of forks. Similar
+ideas hold for dyads as well. 
+<p></p>
+Of course, creating a huge syntax tree by repeated
+use of forks (hooks) and compositions may not be desirable, but for
+smaller trees they help a lot.
 
 <h2><a
 name="First taste of J">First taste of J</a></h2>

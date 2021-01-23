@@ -184,17 +184,15 @@ J provides the following functional operators out of the box:
 <LI>function iteration. </LI>
 <LI>combining two functions like <M>f + g</M>. These are called
 <RED>fork</RED>s in J parlance.</LI>
-<LI>combining a variable with its own summary. This may sound
-weird, but is actually a commonly encountered situation. For
-example, subtracting the mean from an array of numbers. J calls
-these <RED>hook</RED>s.</LI>
 <LI>Recursive accumulation: This is yet another frequent
 requirement, like finding the sum or minimum or maximum of an
 array of numbers.</LI>
 <LI>Cartesian product: producing a table like a multiplication table.</LI>
 </OL>
 There are many more such standard functional operations provided
-by J.
+by J. It is presence of these operators that make a J program
+look so very different from programs in other
+languages.
 </NOTE>@}
 
 

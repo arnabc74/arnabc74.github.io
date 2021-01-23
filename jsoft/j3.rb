@@ -52,7 +52,7 @@ to create the string "Don't do this." you need to
 write <C>'Don''t do this.'</C>
 </BOX>
 
-<HEAD2>Familiar function, unfamiliar symbol</HEAD2>
+<HEAD2>Familiar functions, unfamiliar symbols</HEAD2>
 
 <BOX><NAME><C>%</C> (dyad)</NAME>
 This is division.
@@ -100,7 +100,7 @@ Creates a lis 0 1 2 3 ... up to one less than the argument.
 <BOX><NAME><C>NB.</C></NAME> Comment. Not a function.</BOX>
 
 
-<HEAD2>Less familiar function</HEAD2>
+<HEAD2>Less familiar functions</HEAD2>
 <BOX><NAME><C>!</C> (monad and dyad)</NAME>
 Factorial when monad, choose when dyad. You write <C>! 3</C>  to
 mean <M>3!</M> and <C>3 ! 4</C> to mean <M>^4C_3.</M>

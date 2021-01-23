@@ -112,6 +112,74 @@ abbreviations, however, this would not be of much practical
 value. So J uses very short names for its basic functions (at
 most two characters).
 
+<HEAD2>Forks and compositions</HEAD2>
+We have learned about forks and compositions in the last page. These are
+ways to combine existing functions to create new functions. Here
+is a quick reminder for the monad case (<C>y</C> denotes the argument):
+<UL>
+<LI>A fork  <C>(f g h) y</C> is an abbreviation for 
+<CIMG web="fork.png"></CIMG>
+</LI>
+<LI>A composition  <C>f @ g y</C> is an abbreviation for 
+<CIMG web="comp.png"></CIMG>
+</LI>
+</UL>
+The power of these  abbreviations comes from the fact that
+since all J functions are either mondas or dyads, hence the inner
+nodes of any
+syntax trees must have degree either 1 or 2, corresponding to
+monads and dyads.
+<CIMG web="ex1.png">0, 2, 4, 7 are dyads, rest are monads</CIMG>
+So the tree may be
+constructed by piecing together forks and
+compositions. For each dyad, we need a fork, and for each monad a
+composition.  For the example shown above:
+<J>
+(1 0 3 2  5@(8 7 9) 4 6) y
+</J>
+It might look like magic. It is! But just like all magics in real
+life, there is a way to practice them. The tree technique is one
+such. 
+<P/> 
+This  example, however, represents the situation where 
+all the leaf nodes 
+correspond to monads, e.g., in <M>\sin y + \cos y</M> the leaf
+nodes are <M>\sin</M> and <M>\cos</M>, both monads.
+<P/>
+
+Now, that may not always be the case, because
+<OL><LI>a leaf node may be just some constant, as
+in <M>5 + \sin y</M> the leaf node for 5 is holding a constant.</LI>
+<LI> A leaf node may be <M>y</M> itself, as in <M>y -\sin y.</M></LI></OL>
+ J provides convenient
+techniques to cover these in the case where the troublesome leaf
+node is the left child of its parent. If the leaf node contains a
+constant, then just write it, and J will accept it as a constant
+function. For example, <C>(5+sin)</C> is a valid fork. 
+In the second case, where the left  leaf node contains <M>y</M> just omit it, and 
+J will understand <M>y</M>. For instance, <M>y-\sin y</M> may be
+ expressed by <C>(-sin)</C>. Such lop-sided forks are
+called <RED>hook</RED>s in J.
+
+<P/>
+Now, the fact that J can handle trouble only in the left child
+may bother you. If the parent is a commutative operation, then
+the children may be swapped (e.g., <M>\sin(y) + 3</M> may be written as
+<M>3+ \sin(y)</M>), but what if it is not? Don't worry. J has got
+you covered there too! J can swap
+the children of any dyad by using a <C>~</C>. Thus, <C>4 -~ 5</C>
+is the same as <C>5 - 4</C>. If you want to
+express <M>\sin(y)-5</M> using a fork, then <C>sin - 5</C> won't
+work, but <C>5-~sin</C> will. Similarly, <M>\sin(y)-y</M> may be
+abbreviated to the hook <C>-~sin</C>.
+<P/>
+This discussion was about the monadic behaviour of forks. Similar
+ideas hold for dyads as well. 
+<P/>
+Of course, creating a huge syntax tree by repeated
+use of forks (hooks) and compositions may not be desirable, but for
+smaller trees they help a lot.
+
 <HEAD2>First taste of J</HEAD2>
 Now let us look at a simple example in the light of what we have
 learnt so far. In this example we shall give a taste of all the
