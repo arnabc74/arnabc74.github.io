@@ -1,5 +1,5 @@
 @{<NOTE>
- <UPDT>FRI JAN 22 IST 2021</UPDT>
+ <UPDT>SAT JAN 23 IST 2021</UPDT>
 <HEAD1>J for Joy!</HEAD1>
 This is an introductory  tutorial  on a programming language
 called J. The aim is to acquaint you with this rather unique
@@ -9,10 +9,11 @@ of this language can benefit you significantly.
 <HEAD2>Getting started</HEAD2>
 <OL>
 <LI><LINK to="j1.html">Page 1</LINK>: Why learn J?</LI>
-<LI><LINK to="j2.html">Page 2</LINK>: A first taste of J</LI>
-<LI><LINK to="j3.html">Page 3</LINK>: Basic building blocks:
-easy ones</LI>
+<LI><LINK to="j2.html">Page 2</LINK>: Basic concepts</LI>
+<LI><LINK to="j3.html">Page 3</LINK>: A first taste of J</LI>
 <LI><LINK to="j4.html">Page 4</LINK>: Basic building blocks:
+easy ones</LI>
+<LI><LINK to="j5.html">Page 5</LINK>: Basic building blocks:
 tree handling</LI>
 </OL>
 <HEAD2>Case studies</HEAD2>

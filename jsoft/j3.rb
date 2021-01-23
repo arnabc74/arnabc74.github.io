@@ -1,124 +1,92 @@
 @{<NOTE>
-<HEAD1>Delving deeper</HEAD1>
-In the last two pages I have said that J allows the prgrammer to
-construct required functions easily by combining some basic
-building blocks. Naturally, you need to be familiar with the
-building blocks in order to take advantage of this.
+<HEAD1>Learning J</HEAD1>
+
+<HEAD2>First taste of J</HEAD2>
+Now let us look at a simple example in the light of what we have
+learnt so far. In this example we shall give a taste of all the
+features we have talked about so far. We start with an array of
+numbers 1,3,4,5,10. J will consider this as a tree of depth 1. 
+<CIMG web="tree1.png"></CIMG>
+<J>
+x=: 1 3 4 5 10
+</J>
+To find the number of highest level branches J provides a monad
+called <C>#</C>. Let's put it to use:
+<J>
+# x
+</J>
+J responds with 5. Notice how I described <C>#</C> in terms of
+the input tree, and not as "a function to find the length of a
+list".
 <P/>
-In this page we shall learn about a few such functions. But
-before we start, let me point you to master resource for these
-building
-blocks: <LINK to="https://code.jsoftware.com/wiki/NuVoc">NuVoc</LINK>. 
-<P/>
-Visit this site. It is as informative and indispensible as a
-dictionary, and about as appetizing. 
+Next, we shall see the arithmetic operations in J. The operations
+for addition, subtraction and multiplication are usual. But J
+uses <C>%</C> for division. All operations are done using floating
+points (more on this later).
 
 <P/>
-The first thing that you should notice is that all the basic
-functions have names consisting of at most two characters. If it
-has two characters, then the second character is either a period
-or a colon. This introduces a natural grouping: a single
-character, the character followed by a period, and the character
-followed by a colon. Each resulting symbol has two possible
-interpretations: monad and dyad. So you get at most 6 different
-functions in a group. These 6 functions are usually related, so
-that it is easy to remember their names. The NuVoc lists them
-according to this natural grouping.
+The expression
+<J>
+3 * 4 - 10 % 5
+</J>
+is interpreted as 
+<D>
+3\times (4 - (10 \div 5)).
+</D>
+Amuse yourself by trying to guess the result of 
+<J>
+5 - 1 - 1 - 1 - 1 - 1
+</J>
+I have talked about a symbol having a monad and dyad
+interpretation. Here is one example. Used as a dyad <C>^</C>
+means raising to a power, as in:
+<J>
+3 ^ 2
+</J>
+But used as a monad, it means <M>e^x</M>: 
+<J>
+^ 2
+</J>
+Next, let us take a look at some functional operators. We shall
+use the trigonometric functions, which we load as
+<J>
+load'trig'
+</J>
+Then we can create 
+<J>
+f=: sin + cos
+g=: ^ * sin
+h=: sin @ cos
+i=: ^ @ cos
+</J>
+Here <M>f(x) = \sin x+\cos x</M>, <M>g(x) = e^x\sin
+x</M>, <M>h(x) = \sin(\cos x)</M> and <M>i(x)=e^{\cos x}.</M>
+The first two are examples of forks. 
 <P/>
-But trying to remember the basic functions by groups is as boring
-and inefficient as trying to build vocabulary by reading a
-dictionary. Instead, we shall group them here by usefulness and
-familiarity.
-
-<HEAD2>Familiar function, familiar symbol</HEAD2>
-Here are the basic functions that you expect to be present in any
-language, and J uses the same symbols as most other languages:
-
-<BOX><NAME><C>+</C>, <C>-</C>, <C>*</C>, <C>^</C> (dyads)</NAME>
-These all behave exactly as you'd expect, except that evaluation
-is always from right to left.
-</BOX>
-
-<BOX><NAME><C><</C>, <C>></C> (dyads)</NAME>
-These are the familiar comparisons. They return 0 or 1.  J does
-not have any separate boolean data type.
-</BOX>
-
-<BOX><NAME><C>'</C>, <C>(</C> and <C>)</C></NAME>
-These are delimiters, not functions. They work as usual. Strings
-in J are always delimited by single quotes. If you need to have a
-single quote inside a string just repeat the single quote, e.g.,
-to create the string "Don't do this." you need to
-write <C>'Don''t do this.'</C>
-</BOX>
-
-<HEAD2>Familiar functions, unfamiliar symbols</HEAD2>
-
-<BOX><NAME><C>%</C> (dyad)</NAME>
-This is division.
-</BOX>
-
-<BOX><NAME><C>=</C>, <C><:</C>, <C>>:</C></NAME>
-These are all conditions testing for equality, <M>\leq</M>
-and <M>\geq.</M> A common mistake is to use <C>=</C> for assignment.
-</BOX>
-
-
-<BOX><NAME><C>=.</C>, <C>=:</C> (dyad) </NAME>
-These are for assignments. The first is for local assignment, the
-second for global. Unless  used inside a script file or function
-these behave similarly. But, if used inside a file, the effect of
-local assignment is confined within the file or function, while
-the global assignment has effect visible everywhere.
-</BOX>
-
-<BOX><NAME><C><.</C>, <C>>.</C> (monads and dyads)</NAME>
-As monads, these are floor and ceiling functions,
-respectively. As dyads, these compute minimum and maximum of two numbers.
-</BOX>
-
-<BOX><NAME><C>+.</C>, <C>*.</C> (dyads) , <C>-.</C>
-(monad)</NAME>
-These are boolean operators, or, and, not.
-</BOX>
-
-<BOX><NAME><C>^</C>, <C>^.</C>, <C>%:</C> (monads)</NAME>
-These are <M>e^x</M> and <M>\log x</M> and <M>\sqrt x</M>.
-</BOX>
-
-<BOX><NAME><C>%.</C> (monad and dyad)</NAME>
-Matrix inversion and least squares solution. 
-</BOX>
-
-
-<BOX><NAME><C>i.</C> (monad)</NAME>
-Creates a lis 0 1 2 3 ... up to one less than the argument.
-</BOX> 
-
-<BOX><NMAE><C>]</C> (monad)</NMAE> identity funtion.</BOX>
-
-<BOX><NAME><C>NB.</C></NAME> Comment. Not a function.</BOX>
-
-
-<HEAD2>Less familiar functions</HEAD2>
-<BOX><NAME><C>!</C> (monad and dyad)</NAME>
-Factorial when monad, choose when dyad. You write <C>! 3</C>  to
-mean <M>3!</M> and <C>3 ! 4</C> to mean <M>^4C_3.</M>
-</BOX>
-
-<BOX><NAME><C>?</C>, <C>?.</C> (monad and dyad)</NAME>
-<C>? 10</C> generates a random number from <M>\{0,1,...,9\}.</M>
-<C>? 0</C> generates a random number from <M>Unif(0,1).</M>
-<C>3 ? 10</C> generates an SRSWOR of size 3 from <M>\{0,1,...,9\}.</M>
-The dotted version is similar, but uses fixed seed. Produces
-different results for 64 bit and 32 bit machines.
-</BOX> 
-
-<BOX><NAME><C>|</C>(monad and dyad)</NAME>
-Absolute value as monad. Remainder as dyad, e.g., <C>3 | 4</C>
-returns 1.</BOX>
-
-
-<HEAD2>Strange functions</HEAD2>
- <C>e.</C>,
+Next let us see insertion in action. Suppose we want to compute 
+<D>
+1 + 3 + 4 + 5 + 10.
+</D>
+This means inserting the dyad <C>+</C> between each successive
+pair. So we can write
+<J>
++ / 1 3 4 5 10
+</J>
+Guess the outcome of 
+<J>
+- / 1 1 1 1 1 
+</J>
+Most often the <C>/</C> operator is used to accumulate some result
+recursively (e.g., summing). You can use this to find minimum or
+maximum as well, .e.g, 
+<J>
+<./ 1 4 3 8 4
+</J>
+Another important class of operators take slices of dyads to
+produce monads. The slice could be along the <M>y</M>-axis (i.e.,
+fixing some value of <M>x</M>) like <M>y\mapsto f(a,y).</M> Or it
+could be aong the <M>x</M>-axis, like <M>x\mapsto f(x,b).</M> Or
+t could be along the diagonal <M>t\mapsto f(t,t).</M> These are,
+respectively, 
+<C>a & f</C>, <C>f & b</C> and <C>f~</C>. 
 </NOTE>@}

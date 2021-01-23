@@ -1,130 +1,124 @@
 @{<NOTE>
-<HEAD1>Tree handling functions</HEAD1>
-The most important and frequently used functions in J are the
-ones that manipulate the tree structure. As these are unique to
-J, these are also the ones that will take more time to
-digest. 
-
-<HEAD2>Structure of trees</HEAD2>
-
-A tree in J is always balanced. This allows an easy way to store
-it. Just store the leaf nodes, and also the shape. So if you want
-to reshape the tree, just change the shape. This is done
-using <C>$</C> dyad. If the list has length different from the
-product of the shape values, then the list is replicated
-(possibly partially). The same symbol <C>$</C> used as a monad
-will extract the shape of a tree. The monad <C>#</C> returns the
-number of items in a tree. If we want to see the
-underlying list, then you can use the monad <C>,</C>
-(mysteriously called ravel).
-
-<HEAD2>Accessing items</HEAD2>
-
-To access items we use the <C>{</C> family.
- get the first
-item use the monad <C>{.</C>. To get the last item use the
-monad <C>{:</C>.  To get an item at a specific
-position (0-based) use the dyad <C>{</C>.
+<HEAD1>Delving deeper</HEAD1>
+In the last two pages I have said that J allows the prgrammer to
+construct required functions easily by combining some basic
+building blocks. Naturally, you need to be familiar with the
+building blocks in order to take advantage of this.
 <P/>
-Most often a tree is best considered as a list of items. Such
- lists are sometimes mere packets of a small number of
- items. There is a quick way to unpack such a tree:
-<J>
-'a b c' =: x
-</J>
-This command expects <C>x</C> to be a packet of 3 items. These
- get stored in the variables <C>a</C>, <C>b</C> and <C>c</C>.
+In this page we shall learn about a few such functions. But
+before we start, let me point you to master resource for these
+building
+blocks: <LINK to="https://code.jsoftware.com/wiki/NuVoc">NuVoc</LINK>. 
 <P/>
+Visit this site. It is as informative and indispensible as a
+dictionary, and about as appetizing. 
 
- To get a new tree consisting of all the items
-except the first use <C>}.</C>. If you want to remove the last
-item then use the monad <C>}:</C>.
+<P/>
+The first thing that you should notice is that all the basic
+functions have names consisting of at most two characters. If it
+has two characters, then the second character is either a period
+or a colon. This introduces a natural grouping: a single
+character, the character followed by a period, and the character
+followed by a colon. Each resulting symbol has two possible
+interpretations: monad and dyad. So you get at most 6 different
+functions in a group. These 6 functions are usually related, so
+that it is easy to remember their names. The NuVoc lists them
+according to this natural grouping.
+<P/>
+But trying to remember the basic functions by groups is as boring
+and inefficient as trying to build vocabulary by reading a
+dictionary. Instead, we shall group them here by usefulness and
+familiarity.
 
-<HEAD2>Modifying a tree</HEAD2>
-The dyad <C>|:</C> will transpose the tree, i.e., reverse the
-shape (and the underlying list accordingly). Used as a dyad it
-will allow more diverse way to permute the shape (and the
-underlying list accordingly).
+<HEAD2>Familiar function, familiar symbol</HEAD2>
+Here are the basic functions that you expect to be present in any
+language, and J uses the same symbols as most other languages:
 
-<HEAD2>Combining trees</HEAD2>
-Next we shall discuss three important ways to combine two trees
-to produce a bigger tree.
-Keeping an analogy in mind might prove helpful here:
-<Q> When
-we work with fractions we often prefer to express them in their
-reduced forms. However, when we perform an operation on two
-fractions in reduced forms, the immediate result may not be in
-reduced form, e.g., 
-<D>
-[[18]]+[[38]] = [[48]].
-</D>
-So we need to do a bit of post-processing (cancellation in this
-example) to achieve the reduced form.
-</Q>
-Similarly, J likes to keep its trees balanced (all branches have
-same length, and all siblings have same number of children). When
-we combine two such trees, the immediate result may not be
-balanced. So J performs some post-processing to balance the
-tree. It helps to have an idea of what this involves. Basically,
-there is only one guiding principle: always pad shorter things to
-match longer counterparts. An example will help. Here is an
-unbalanced tree:
-<CIMG web="unbal.png"/>
-The last branch is shorter than the rest, and the second branch
-has one less leaf node. To make it balanced J first grows the
-short branch until it is as long as the longest branch:
-<CIMG web="bal1.png"/>
-Now at each level we shall find the maximum number of children,
-and pad smaller numbers to the right. We start doing this bottom
-up. After the bottom most layer is done, the tree looks like this:
-<CIMG web="bal2.png"/>
-Next we attack the layer above:
-<CIMG web="bal3.png"/>
-This process is always done internally. 
-<HEAD3>Appending</HEAD3>
-The <C>,</C> dyad appends two trees "side by side". 
-<CIMG web="append1.png">Step 0: The two trees to be appended</CIMG>
-First the trees are combined by merging their root nodes:
-<CIMG web="append2.png">Step 1: The result of direct appending</CIMG>
-Then the resulting  tree is balanced:
-<CIMG web="append3.png">Step 2: The final result</CIMG>
- The simplest case is
-of course, where the tree in step 1 is already
-balanced. This is what you'll need most of the time (though
-often you'll find yourself in the unbalanced situation by
-mistake!). There is one situation however, which is not covered
-by this: when one of the two trees is just the root node:
-<CIMG web="append4.png">Step 0: The blue atom to be appended</CIMG>
- Then
-"merging the root nodes" would not produce a tree at all. In
-this case, we create a new item of the same shape as the other,
-where the atom is <I>replicated in all its leaf nodes</I>:
-<CIMG web="append5.png">Step 1: The final result</CIMG>
-Intuitively, appending is a way to grow a longer list.
+<BOX><NAME><C>+</C>, <C>-</C>, <C>*</C>, <C>^</C> (dyads)</NAME>
+These all behave exactly as you'd expect, except that evaluation
+is always from right to left.
+</BOX>
 
-<HEAD3>Laminate</HEAD3>
-Another natural way to combine two trees is by creating a new
-tree with these two trees as items (and then balancing if
-needed). This is called lamination, and effected
-by <C>,:</C>. Here's one example:
-<CIMG web="laminate1.png">Step 0: the two trees to be
-laminated</CIMG>
-The two trees are hung from a common root node.
-<CIMG web="laminate2.png">Step 1: after combining</CIMG>
-Then we balance the tree:
-<CIMG web="laminate3.png">Step 2: the final result</CIMG>
-As usual, the most frequently encountered situation is where the
-tree in step 1 is already balanced. Intuitively, lamination is
-the way to grow a list of lists. 
+<BOX><NAME><C><</C>, <C>></C> (dyads)</NAME>
+These are the familiar comparisons. They return 0 or 1.  J does
+not have any separate boolean data type.
+</BOX>
 
-<HEAD3>Stitch</HEAD3>
-This is yet another way to combine two trees which is not very
-intuitive. If we have a list of <M>x</M>-values and a
-corresponding list of <M>y</M>-values, then stitching will
-produce a list of <M>(x,y)</M> pairs. More precisely, given two
-trees with equal number of items, the corresponding items pairs
-are appended. If the numbers of items are not equal, then J
-reports a length error.
-<C>|.</C>, <C>|:</C>,
-<C>'a b'=: x</C>
+<BOX><NAME><C>'</C>, <C>(</C> and <C>)</C></NAME>
+These are delimiters, not functions. They work as usual. Strings
+in J are always delimited by single quotes. If you need to have a
+single quote inside a string just repeat the single quote, e.g.,
+to create the string "Don't do this." you need to
+write <C>'Don''t do this.'</C>
+</BOX>
+
+<HEAD2>Familiar functions, unfamiliar symbols</HEAD2>
+
+<BOX><NAME><C>%</C> (dyad)</NAME>
+This is division.
+</BOX>
+
+<BOX><NAME><C>=</C>, <C><:</C>, <C>>:</C></NAME>
+These are all conditions testing for equality, <M>\leq</M>
+and <M>\geq.</M> A common mistake is to use <C>=</C> for assignment.
+</BOX>
+
+
+<BOX><NAME><C>=.</C>, <C>=:</C> (dyad) </NAME>
+These are for assignments. The first is for local assignment, the
+second for global. Unless  used inside a script file or function
+these behave similarly. But, if used inside a file, the effect of
+local assignment is confined within the file or function, while
+the global assignment has effect visible everywhere.
+</BOX>
+
+<BOX><NAME><C><.</C>, <C>>.</C> (monads and dyads)</NAME>
+As monads, these are floor and ceiling functions,
+respectively. As dyads, these compute minimum and maximum of two numbers.
+</BOX>
+
+<BOX><NAME><C>+.</C>, <C>*.</C> (dyads) , <C>-.</C>
+(monad)</NAME>
+These are boolean operators, or, and, not.
+</BOX>
+
+<BOX><NAME><C>^</C>, <C>^.</C>, <C>%:</C> (monads)</NAME>
+These are <M>e^x</M> and <M>\log x</M> and <M>\sqrt x</M>.
+</BOX>
+
+<BOX><NAME><C>%.</C> (monad and dyad)</NAME>
+Matrix inversion and least squares solution. 
+</BOX>
+
+
+<BOX><NAME><C>i.</C> (monad)</NAME>
+Creates a lis 0 1 2 3 ... up to one less than the argument.
+</BOX> 
+
+<BOX><NMAE><C>]</C> (monad)</NMAE> identity funtion.</BOX>
+
+<BOX><NAME><C>NB.</C></NAME> Comment. Not a function.</BOX>
+
+
+<HEAD2>Less familiar functions</HEAD2>
+<BOX><NAME><C>!</C> (monad and dyad)</NAME>
+Factorial when monad, choose when dyad. You write <C>! 3</C>  to
+mean <M>3!</M> and <C>3 ! 4</C> to mean <M>^4C_3.</M>
+</BOX>
+
+<BOX><NAME><C>?</C>, <C>?.</C> (monad and dyad)</NAME>
+<C>? 10</C> generates a random number from <M>\{0,1,...,9\}.</M>
+<C>? 0</C> generates a random number from <M>Unif(0,1).</M>
+<C>3 ? 10</C> generates an SRSWOR of size 3 from <M>\{0,1,...,9\}.</M>
+The dotted version is similar, but uses fixed seed. Produces
+different results for 64 bit and 32 bit machines.
+</BOX> 
+
+<BOX><NAME><C>|</C>(monad and dyad)</NAME>
+Absolute value as monad. Remainder as dyad, e.g., <C>3 | 4</C>
+returns 1.</BOX>
+
+
+<HEAD2>Strange functions</HEAD2>
+ <C>e.</C>,
 </NOTE>@}

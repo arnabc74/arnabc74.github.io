@@ -95,8 +95,14 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Forks and compositions">Forks and compositions</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#First taste of J">First taste of J</a>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Monadic case">Monadic case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Dyadic case">Dyadic case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tacit programming">Tacit programming</a>
 </li>
 </ul>
 <hr/>
@@ -269,11 +275,18 @@ most two characters).
 <h2><a
 name="Forks and compositions">Forks and compositions</a></h2>
 We have learned about forks and compositions in the last page. These are
-ways to combine existing functions to create new functions. Here
-is a quick reminder for the monad case (<font color="red"><code>y</code></font> denotes the argument):
+ways to combine existing functions to create new functions. At
+first glance they may appear to be merely some convenient
+shortcuts. But actually they play an important role in J. We
+shall discuss this now.
+
+<h3><a
+name="Monadic case">Monadic case</a></h3>
+Here
+is a quick reminder for the monadic case (<font color="red"><code>y</code></font> denotes the argument):
 <ul>
 
-<li>A fork  <font color="red"><code>(f g h) y</code></font> is an abbreviation for 
+<li>If <font color="red"><code>r</code></font> is the fork  <font color="red"><code>r=:f g h</code></font> then <font color="red"><code>r y</code></font> means:
 <center>
 <table width="100%">
 <tr>
@@ -287,7 +300,8 @@ is a quick reminder for the monad case (<font color="red"><code>y</code></font> 
 
 </li>
 
-<li>A composition  <font color="red"><code>f @ g y</code></font> is an abbreviation for 
+<li>If <font color="red"><code>s</code></font> is the  composition  <font color="red"><code>s=:f @ g</code></font> then <font color="red"><code>s
+y</code></font> means:
 <center>
 <table width="100%">
 <tr>
@@ -305,8 +319,7 @@ is a quick reminder for the monad case (<font color="red"><code>y</code></font> 
 The power of these  abbreviations comes from the fact that
 since all J functions are either mondas or dyads, hence the inner
 nodes of any
-syntax trees must have degree either 1 or 2, corresponding to
-monads and dyads.
+syntax trees must have degree either 1 or 2:
 <center>
 <table width="100%">
 <tr>
@@ -318,12 +331,13 @@ monads and dyads.
 </table>
 </center>
 So the tree may be
-constructed by piecing together forks and
+constructed by just piecing together forks and
 compositions. For each dyad, we need a fork, and for each monad a
-composition.  For the example shown above:
+composition.  For the example shown above we have (using the
+right-to-left compuation order of J):
 <span class="j">
 <pre>
-(1 0 3 2  5@(8 7 9) 4 6) y
+1 0 3 2  5@(8 7 9) 4 6
 </pre>
 </span>
 It might look like magic. It is! But just like all magics in real
@@ -345,17 +359,29 @@ in $5 + \sin y$ the leaf node for 5 is holding a constant.</li>
 </ol>
  J provides convenient
 techniques to cover these in the case where the troublesome leaf
-node is the left child of its parent. If the leaf node contains a
+node is the left child of its parent:
+<ol type="">
+<li>
+If the leaf node contains a
 constant, then just write it, and J will accept it as a constant
-function. For example, <font color="red"><code>(5+sin)</code></font> is a valid fork. 
-In the second case, where the left  leaf node contains $y$ just omit it, and 
-J will understand $y$. For instance, $y-\sin y$ may be
- expressed by <font color="red"><code>(-sin)</code></font>. Such lop-sided forks are
-called <font color="#ff0000">hook</font>s in J.
+function. For example, <font color="red"><code>(5+sin)</code></font> is a valid fork.</li>
 
-<p></p>
-Now, the fact that J can handle trouble only in the left child
-may bother you. If the parent is a commutative operation, then
+<li>
+In the second case, where the a  leaf node contains $y$,
+there are two possible solutions. You may imagine $y$
+as $id(y)$ where $id$ is the identity function. For
+instance, $y-\sin y$  becomes $id(y)-\sin y,$ which
+is a fork. This works irrespective of whether the $y$ occurs
+in the left or the right child. However, if it occurs in the left
+child, then there is a shortcut:  just omit the $y$, and 
+J will understand. With this,  $y-\sin y$ becomes
+ <font color="red"><code>(-sin)</code></font>. Such lop-sided forks are
+called <font color="#ff0000">hook</font>s in J.
+</li>
+</ol>
+
+In the above solutions,  J shows a bias in favor of the left child.
+This may bother you. If the parent is a commutative operation, then
 the children may be swapped (<i>e.g.</i>, $\sin(y) + 3$ may be written as
 $3+ \sin(y)$), but what if it is not? Don't worry. J has got
 you covered there too! J can swap
@@ -367,21 +393,16 @@ abbreviated to the hook <font color="red"><code>-~sin</code></font>.
 <p></p>
 This discussion was about the monadic behaviour of forks. Similar
 ideas hold for dyads as well. 
-<p></p>
-Of course, creating a huge syntax tree by repeated
-use of forks (hooks) and compositions may not be desirable, but for
-smaller trees they help a lot.
+<h3><a
+name="Dyadic case">Dyadic case</a></h3>
 
-<h2><a
-name="First taste of J">First taste of J</a></h2>
-Now let us look at a simple example in the light of what we have
-learnt so far. In this example we shall give a taste of all the
-features we have talked about so far. We start with an array of
-numbers 1,3,4,5,10. J will consider this as a tree of depth 1. 
+<ul>
+
+<li>If <font color="red"><code>r</code></font> is the fork  <font color="red"><code>r=:f g h</code></font> then <font color="red"><code>x r y</code></font> means:
 <center>
 <table width="100%">
 <tr>
-<th><img width="" src="image/tree1.png"></th>
+<th><img width="" src="image/fork2.png"></th>
 </tr>
 <tr>
 <th></th>
@@ -389,110 +410,72 @@ numbers 1,3,4,5,10. J will consider this as a tree of depth 1.
 </table>
 </center>
 
-<span class="j">
-<pre>
-x=: 1 3 4 5 10
-</pre>
-</span>
-To find the number of highest level branches J provides a monad
-called <font color="red"><code>#</code></font>. Let's put it to use:
-<span class="j">
-<pre>
-# x
-</pre>
-</span>
-J responds with 5. Notice how I described <font color="red"><code>#</code></font> in terms of
-the input tree, and not as "a function to find the length of a
-list".
-<p></p>
-Next, we shall see the arithmetic operations in J. The operations
-for addition, subtraction and multiplication are usual. But J
-uses <font color="red"><code>%</code></font> for division. All operations are done using floating
-points (more on this later).
+</li>
 
+<li>If <font color="red"><code>s</code></font> is the  composition  <font color="red"><code>s=:f @ g</code></font> then <font color="red"><code>x s y</code></font> means:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/comp2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+</ul>
+As in the monadic case, any syntax tree may be built out of
+these. If the leaf nodes are all dyadic, and expect the same
+arguments, then everything is fine. However, that need not always
+be the case. Some of them may be monadic, or need a constant
+argument, or only $x$ or only $y.$  These are tackled
+as follows.
+<ul>
+
+<li>J provides two convenience functions <font color="red"><code>]</code></font>
+and <font color="red"><code>[</code></font>. Used as dyads, they return, respectively, the
+right and left arguments.</li>
+
+<li>Any constant leaf node may be handled as in the monadic
+case, as long as it is the left child.</li>
+
+<li>We can use a hook here as well. The hook <font color="red"><code>h=: f g</code></font> when
+used dyadically as <font color="red"><code>x h y</code></font> will mean:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hook2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+</ul>
+
+
+<h3><a
+name="Tacit programming">Tacit programming</a></h3>
+It is possible to build any syntax tree of dyads and monads using
+forks (hooks) and compositions. This is an example of what is called <font color="#ff0000">tacit
+programming</font> in J: creating new functions by combining
+existing functions via operators without explicitly mentioning
+the arguments. 
 <p></p>
-The expression
-<span class="j">
-<pre>
-3 * 4 - 10 % 5
-</pre>
-</span>
-is interpreted as 
-$$
-3\times (4 - (10 \div 5)).
-$$
-Amuse yourself by trying to guess the result of 
-<span class="j">
-<pre>
-5 - 1 - 1 - 1 - 1 - 1
-</pre>
-</span>
-I have talked about a symbol having a monad and dyad
-interpretation. Here is one example. Used as a dyad <font color="red"><code>^</code></font>
-means raising to a power, as in:
-<span class="j">
-<pre>
-3 ^ 2
-</pre>
-</span>
-But used as a monad, it means $e^x$: 
-<span class="j">
-<pre>
-^ 2
-</pre>
-</span>
-Next, let us take a look at some functional operators. We shall
-use the trigonometric functions, which we load as
-<span class="j">
-<pre>
-load'trig'
-</pre>
-</span>
-Then we can create 
-<span class="j">
-<pre>
-f=: sin + cos
-g=: ^ * sin
-h=: sin @ cos
-i=: ^ @ cos
-</pre>
-</span>
-Here $f(x) = \sin x+\cos x$, $g(x) = e^x\sin
-x$, $h(x) = \sin(\cos x)$ and $i(x)=e^{\cos x}.$
-The first two are examples of forks. 
-<p></p>
-Next let us see insertion in action. Suppose we want to compute 
-$$
-1 + 3 + 4 + 5 + 10.
-$$
-This means inserting the dyad <font color="red"><code>+</code></font> between each successive
-pair. So we can write
-<span class="j">
-<pre>
-+ / 1 3 4 5 10
-</pre>
-</span>
-Guess the outcome of 
-<span class="j">
-<pre>
-- / 1 1 1 1 1 
-</pre>
-</span>
-Most often the <font color="red"><code>/</code></font> operator is used to accumulate some result
-recursively (<i>e.g.</i>, summing). You can use this to find minimum or
-maximum as well, .e.g, 
-<span class="j">
-<pre>
-&lt;./ 1 4 3 8 4
-</pre>
-</span>
-Another important class of operators take slices of dyads to
-produce monads. The slice could be along the $y$-axis (<i>i.e.</i>,
-fixing some value of $x$) like $y\mapsto f(a,y).$ Or it
-could be aong the $x$-axis, like $x\mapsto f(x,b).$ Or
-t could be along the diagonal $t\mapsto f(t,t).$ These are,
-respectively, 
-<font color="red"><code>a &amp; f</code></font>, <font color="red"><code>f &amp; b</code></font> and <font color="red"><code>f~</code></font>. 
+A powerful feature of J as it is, one must not go overboard with
+it. 
+Creating a huge syntax tree by repeated
+use of forks (hooks) and compositions is not desirable from
+the viewpoint of
+readability. But tacit programming helps a lot for
+smaller trees.
+
 <hr/>
 <table width="100%" border="0">
 <tr>
