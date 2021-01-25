@@ -4,7 +4,7 @@
 \newcommand{\v}{\vec}
 </M>
 <TITLE>Differential equations</TITLE>
-<UPDT>SAT JAN 23 IST 2021</UPDT>
+<UPDT>SUN JAN 24 IST 2021</UPDT>
 <HEAD1>Simple pendulum</HEAD1>
 
 During our high school days we are taught that a simple pendulum executes an
@@ -182,14 +182,36 @@ This syntax tree may be written down directly in J:
 <J>
 u=: + 0.1 * {: , _9.8 * sin @ {.
 </J>
-This may look like magic, but the translation rule is simple, and
-best explained diagrammatically. 
-<CIMG web="ftree3.png"></CIMG>
-Now we shall start with initial <M>(\theta,\omega)=(1,0)</M> and
+This may look like a magic spell (it is one!), but if you wish,
+you may resort to a more verbose version:
+<J>
+r=: {: , _9.8 * sin @ {.
+u=: + 0.1 * r
+</J>
+Let us compare this with a similar thing from, say, Python:
+<J>
+r = [ y[1], -9.8 * sin(y[0]) ]
+y = y + 0.1 * r
+</J>
+If you want to start with some <C>y</C> and apply this 10 times,
+then you will need to replay <I>both</I> the lines as many
+times. But in J, <C>r</C> is a function, and it is already
+inside <C>u</C>. So merely applying <C>u</C> 10 times will be
+enough. Let us see this in action.
+We shall start with initial <M>(\theta,\omega)=(1,0)</M> and
 apply the function updating function 100 times, say. 
 <J>
 u^:(i.100) 1 0 
 </J>
+Here we are using the function power operator. If <C>u</C> is a
+function then <C>u ^: 2</C> will apply it twice
+(i.e., <M>y\mapsto u(u(y))</M>). If we write <C>u ^: 1 2 3</C>,
+then you will get a function (<M>f</M>, say) such
+that <M>f(y)</M> is a tree with items <M>u(y)</M>, <M>u(u(y))</M>
+and <M>u(u(u(y))).</M>
+<P/>
+Here <C>i.100</C> is the list <M>0,1,2,...,99.</M> So we are
+getting 99 iterations of the function <C>u</C> starting with <M>(\theta,\omega)=(1,0)</M>.
 This is what you get:
 <CIMG web="p2.png"></CIMG>
 

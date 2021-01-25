@@ -1,0 +1,215 @@
+@{<NOTE>
+<HEAD1>Linked lists</HEAD1>
+Suppose that I have a list of my friends on a piece of paper:
+<PRE>
+Samprit
+Atanu
+Jonaki
+Krishanu
+Saikat
+</PRE>
+The order is important, the first friend is the closest, the
+next one the second closest, and so on. After writing the list up
+to this, I suddenly recall that I have missed a name: Anvit. He
+should be third in the list. Unfortunately, as I am writing on a
+piece of paper, inserting a name between two names is difficult
+(unless I use ugly scribbling). However, if my list were in a
+computer, then it is very easy: I would just take my cursor after
+Atanu, hit enter to create a black line (causing the everything
+below to shift downwards by a line), and then type Anvit in the
+blank line. In this way I can insert as many names as I wish in
+any position. No scribbling, no squeezing. I might even remove
+any number of names from the list, without leaving any ugly
+gap. The list just grows,
+stretches and shrinks as needed.
+<P/>
+How does the computer manage this? Does it reserve lots of empty
+spaces between every pair of names, to allow for future
+insertions, and somehoow hide the spaces while displaying the
+list? Not really. It uses a clever trick called a <B>linked
+list</B>, which we shall discuss now.
+
+<HEAD2>Insertion</HEAD2>
+
+When we make a list on paper, adding a new name is easy, as long
+as you are adding it at the end. Well, internally the computer is
+also writing the names on just such a piece of paper. This paper
+has lines drawn on it, and every line is numbered. Thus, the
+paper looks like this:
+<PRE>
+1 Samprit
+2 Atanu
+3 Jonaki
+4 Krishanu
+5 Saikat
+6
+7
+8
+9
+...
+</PRE>
+Unlike our paper list, the computer also writes after each name
+the number of the line where the next friend is to be found:
+<PRE>
+1 Samprit   2
+2 Atanu     3
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6
+7
+8
+9
+...
+</PRE>
+The 0 after Saikat means that Saikat is the last name in the
+list. Nothing interesting so far. Now suppose that I need to
+insert Anvit in the third position. The computer simply writes
+Anvit at the next available position:
+<PRE>
+1 Samprit   2
+2 Atanu     3
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6 Anvit
+7
+8
+9
+...
+</PRE>
+I want Anvit to appear after Atanu. So I write 6 after Atanu.
+Similarly,  Jonaki should appear after
+Anvit. So I write 3 after Anvit:
+<PRE>
+1 Samprit   2
+2 Atanu     <RED>6</RED>
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6 Anvit     <RED>3</RED>
+7
+8
+9
+...
+</PRE>
+Is this clear. Then try these exercises.
+
+<EXR>
+Insert the name Arko after Krishanu.
+Next, insert the name Oishi <I>before</I> Saikat. 
+</EXR>
+
+<EXR>
+Which is more difficult:
+inserting <I>after</I> a given name, or <I>before</I> a given
+name? Will the difficulty increase if the list is very long?
+</EXR>
+
+<EXR>
+Add Subroto after Saikat. Thus, Subroto is now the last in the list.
+</EXR>
+
+Now suppose I suddenly find a long lost friend, Arinjita, and
+must give her the first place. So I need to update the list as
+follows.
+<PRE>
+1 Samprit   2
+2 Atanu     6
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6 Anvit     3
+7 Arinjita  1
+8
+9
+...
+</PRE>
+But here you'll have a problem while displaying the list. We have
+to start from Arinjita (i.e., line 7) and not from line 1. How on
+earth are we to know where to start from? We need to keep track
+of that. The computer needs to keep track of that separately. It
+calls the line number corresponding to the first name
+the <B>head</B>. So far, the head was always 1. But after
+inserting Arinjita, the head changes to 7. Henceforth, we shall
+denote the head with a star:
+<PRE>
+ 1 Samprit   2
+ 2 Atanu     6
+ 3 Jonaki    4
+ 4 Krishanu  5
+ 5 Saikat    0
+ 6 Anvit     3
+*7 Arinjita  1
+ 8
+ 9
+...
+</PRE>
+
+<HEAD2>Deletion</HEAD2>
+We talked about inserting a name in the list. Deleting is even
+easier. Suppose that we want to delete the name after line number
+2. The next line number is 6 (Anvit), and after that comes line 3
+(Jonaki). Our aim is to delete Anvit from the list, i.e., we
+should have Jonaki coming right after Atanu. Convince yourself
+that the following updating achieves this:
+<PRE>
+ 1 Samprit   2
+ 2 Atanu     <RED>3</RED>
+ 3 Jonaki    4
+ 4 Krishanu  5
+ 5 Saikat    0
+ 6 Anvit     3
+*7 Arinjita  1
+ 8
+ 9
+ ...
+</PRE>
+Notice that we do not need to do anything to line 6. Just by
+making sure that line 6 is not referred by others, we are
+effectively removing Anvit from the list.
+
+<EXR>
+Delete the head from the list, i.e., delete Arinjita making the
+next guy, Samprit the new head.
+</EXR>
+
+<HEAD2>Implementing in C</HEAD2>
+As the discussion above shows, the computer maintains a secret paper
+list (which can only grow), and displays the final list cleverly
+by following the next line numbers. Well, as you might have
+guessed, there is really no paper list inside a computer. The
+role of the paper is played by the memory of the computer. This
+memory is indeed like a long (very l..o..n..g) piece of papers
+with many lines marked on it. Just as in our example, the lines
+are numbered consecutively. Each lines is 
+called a <B>location</B> and its  number is called
+its <B>address</B>. As there are a huge number of locations, the
+address easily runs into 20 digits or so!
+<P/>
+Now, we need to associate a location with an address. There has
+to to be a 2-way communication: address to location, and location
+to address. If you have a variable <C>x</C> stored at some
+location, then its address is given by <C>&x</C>. Conversely, if
+the address of a location is stored in a variable
+called <C>p</C>, then the corresponding location
+is <C>*p</C>. Incidentally, just as integers are stored
+in <C>int</C>'s and characters in <C>char</C>'s, there are
+special types of variables to hold addresses
+called <B>pointer</B>s.
+<P/>
+Thus, to store a name and the address of the next student we need
+a string and a pointer. Typically, you package them as follows in
+C:
+<J>
+struct <RED>stdnt</RED> {
+  char <RED>name</RED>[80];
+  struct <BLUE>stdnt</BLUE> *<RED>next</RED>;
+}
+</J>
+Yes, it is ugly. Nobody denies that. But that is how it is in
+C. Here the red words are words of our choice. The black words
+are parts of the C language. The word <C>stdnt</C> has occurred
+twice (the second occurrence is shown in blue). 
+
+</NOTE>@}

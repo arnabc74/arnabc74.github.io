@@ -98,7 +98,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-SAT JAN 23 IST 2021</i></td>
+SUN JAN 24 IST 2021</i></td>
 </tr>
 </table>
 
@@ -324,25 +324,42 @@ This syntax tree may be written down directly in J:
 u=: + 0.1 * {: , _9.8 * sin @ {.
 </pre>
 </span>
-This may look like magic, but the translation rule is simple, and
-best explained diagrammatically. 
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/ftree3.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
-Now we shall start with initial $(\theta,\omega)=(1,0)$ and
+This may look like a magic spell (it is one!), but if you wish,
+you may resort to a more verbose version:
+<span class="j">
+<pre>
+r=: {: , _9.8 * sin @ {.
+u=: + 0.1 * r
+</pre>
+</span>
+Let us compare this with a similar thing from, say, Python:
+<span class="j">
+<pre>
+r = [ y[1], -9.8 * sin(y[0]) ]
+y = y + 0.1 * r
+</pre>
+</span>
+If you want to start with some <font color="red"><code>y</code></font> and apply this 10 times,
+then you will need to replay <i>both</i> the lines as many
+times. But in J, <font color="red"><code>r</code></font> is a function, and it is already
+inside <font color="red"><code>u</code></font>. So merely applying <font color="red"><code>u</code></font> 10 times will be
+enough. Let us see this in action.
+We shall start with initial $(\theta,\omega)=(1,0)$ and
 apply the function updating function 100 times, say. 
 <span class="j">
 <pre>
 u^:(i.100) 1 0 
 </pre>
 </span>
+Here we are using the function power operator. If <font color="red"><code>u</code></font> is a
+function then <font color="red"><code>u ^: 2</code></font> will apply it twice
+(<i>i.e.</i>, $y\mapsto u(u(y))$). If we write <font color="red"><code>u ^: 1 2 3</code></font>,
+then you will get a function ($f$, say) such
+that $f(y)$ is a tree with items $u(y)$, $u(u(y))$
+and $u(u(u(y))).$
+<p></p>
+Here <font color="red"><code>i.100</code></font> is the list $0,1,2,...,99.$ So we are
+getting 99 iterations of the function <font color="red"><code>u</code></font> starting with $(\theta,\omega)=(1,0)$.
 This is what you get:
 <center>
 <table width="100%">
