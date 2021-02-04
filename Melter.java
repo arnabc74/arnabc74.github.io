@@ -1,4 +1,4 @@
-//[Update:[Thu Oct 22 IST 2020]]
+//[Update:[Wed Feb 03 IST 2021]]
 /*History:
 **Wed Aug 26 2020
 Started.
@@ -14,6 +14,8 @@ Added the animation feature: Just add the triple "<fileroot> <start> <end>" afte
 Then a new MLT file is produced in mlt folder with name like loc<count>.mlt, storing the animation made 
 of files <fileroot>i.png, where i runs from <start> to <end>. This MLT file is incorporated in the main MLT
 file in the appropriate place after shortening the duration of one slide.
+**Tue Feb 02 2021
+Allowing padded file numbering for animation.
 */
 import java.util.*;
 import java.io.*;
@@ -43,7 +45,8 @@ public class Melter {
             reduceBy = 0; hasAnim = false;
             String line = scnr.nextLine();
             StringTokenizer st = new StringTokenizer(line);
-                
+
+            // {{{ Read the first two (compulsory tokens: tag and timestamp
             String tag = st.nextToken();
             try {
                 timeNow = Long.parseLong(st.nextToken());
@@ -53,13 +56,17 @@ public class Melter {
                 ex.printStackTrace();
                 System.exit(1);
             }
+            // }}}
+
+            // {{{ Read the three optional tokens for animation
             int locFrom, locTo;
             if(st.countTokens()==3) {
                 try {
                     locMltRoot = st.nextToken();
-                    locFrom = Integer.parseInt(st.nextToken());
+                    String fromString = st.nextToken();
+                    locFrom = Integer.parseInt(fromString);
                     locTo = Integer.parseInt(st.nextToken());
-                    createLocMLT(locMltRoot, locFrom, locTo);
+                    createLocMLT(locMltRoot, locFrom, locTo, fromString.length());
                     reduceBy = locTo-locFrom+1;
                     hasAnim = true;
                 }
@@ -68,7 +75,10 @@ public class Melter {
                     ex.printStackTrace();
                     System.exit(1);
                 }
-            }                
+            }
+            // }}}
+
+            
             if(tag.equals("o")) {
                 startTime = timeNow;
                 currentType = SHOW;
@@ -86,6 +96,7 @@ public class Melter {
                 }
                 else if(tag.equals("k")) {
                     currentType = BLANK;
+                    currFolder = base;
                 }
                 else if(tag.equals("end")) {
                     currentType = BLANK;
@@ -98,6 +109,7 @@ public class Melter {
                 startTime = timeNow;
             }                    
         }
+        
         if(currentType == SHOW) {
             timeNow = startTime + 1000;
             dump();
@@ -119,8 +131,9 @@ public class Melter {
     }
 
     private int locCount = 0;
-    void createLocMLT(String rt, int f, int t) {
+    void createLocMLT(String rt, int f, int t, int paddedLen) {
         System.err.format("Creating local mlt [%s, %d, %d]\n",rt,f,t);
+        String fmt = "%s%s%0"+paddedLen+"d.png";
         try {
             locCount++;
             PrintWriter locPw = new PrintWriter(new File("mlt/loc"+locCount+".mlt"));
@@ -128,7 +141,7 @@ public class Melter {
             for(int i=f;i<=t;i++) {
                 locPw.format("<producer length=\"1\">");
                 locPw.print("<property name=\"resource\">");
-                locPw.format("%s%s%d.png",currFolder,rt,i);
+                locPw.format(fmt,currFolder,rt,i);
                 locPw.println("</property></producer>");
             }
             endMLT(locPw);
@@ -165,10 +178,6 @@ public class Melter {
     }
     
     void dump() {
-        if(hasAnim) {
-            pw.format("<producer length=\"%d\">",reduceBy);
-            pw.format("<property name=\"resource\">loc%d.mlt</property>\n</producer>\n",locCount);
-        }
         pw.format("<producer length=\"%f\">",(timeNow-startTime)/33.33333 - reduceBy);
         pw.print("<property name=\"resource\">");
         if(currentType==SHOW) {
@@ -184,6 +193,10 @@ public class Melter {
             pw.print("/home/cssc/na/v/android/transparent.png");
         }
         pw.println("</property>\n</producer>");
+        if(hasAnim) {
+            pw.format("<producer length=\"%d\">",reduceBy);
+            pw.format("<property name=\"resource\">loc%d.mlt</property>\n</producer>\n",locCount);
+        }
     }
     
     public static void main(String args[])  throws Exception {

@@ -1,0 +1,399 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Stack">Stack</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Visualization">Visualization</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using C">Using C</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Applications">Applications</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Scenario 1: Nested set ups">Scenario 1: Nested set ups</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Scenario 2: Searching">Scenario 2: Searching</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Stack">Stack</a></h1>
+Throughout the history of development of human skill, restriction
+of freedom has been a useful tool. Here are some examples.
+<ul>
+
+<li>In music we deal with octaves. An octave is the interval of
+frequencies of the form $[x,2x].$ While there are infinitely
+many frequencies in an octave, we always work with only about 12
+of them. This makes it easier for us to compose and play
+music.</li>
+
+<li>If you want to find your way in Kolkata, familiarity with a
+chosen subset of major roads will be more helpful than an
+exhaustive list of all roads in the city!</li>
+
+<li>The internal circuit of a computer works mainly with
+voltages in the range 0V to 5V. Different levels of voltages may
+be used to convey different signals, like [0,1) means
+A, $[1,2)$ means B, and so on. The finer we make the
+partition, the more signals we may convey. Yet to improve
+reliability against voltage fluctuation, a real life computer
+uses only two symbols: 0 and 1.</li>
+
+</ul>
+The data structure we are going to learn is another example of
+this freedom restriction principle: A <b>stack</b> is just a list
+where new values may be added or deleted only at one end (called
+the <b>top</b>). Adding a value is called <b>push</b>, and
+removing a value is called <b>pop</b>.
+
+<h2><a
+name="Visualization">Visualization</a></h2>
+To visualize, think of a stack as a tower of coins. You may add
+a new coin at the top. This is call <b>push</b>ing the coin. Also
+you may remove the topmost coin, <i>i.e.</i>, <b>pop</b>. These are the
+only two operations that can change the stack. A few
+query operations are also allowed. One is called <b>peek</b>, to
+see (but not remove) the topmost coin. Another is
+called <b>size</b> to find the number of columns in the
+stack. Trying to pop an empty stack results in a <b>stack
+underflow</b> error. Sometimes the stack has maximum permissible
+size. If you try to push more coins after a stack has already
+attained this maximum size, you get a <b>stack overflow</b>
+error. 
+<p></p>
+The role of the coins may be played by any type of variables in a
+program: numbers, strings, or composite structures. But all
+entries in a stack are of the same type.
+
+<p></p>
+Here is an empty stack:
+<pre>
+
+-----
+</pre>
+The horizontal line by itself is like the empty tabletop on which the coins are
+going to be towered. After you do <font color="red"><code>push(a)</code></font>, it becomes
+<pre>
+  a
+-----
+</pre>
+Now let's do a <font color="red"><code>push(b)</code></font> to get
+<pre>
+  b
+  a
+-----
+</pre>
+If we do a <font color="red"><code>pop</code></font> we get back the <font color="red"><code>b</code></font> and the stack
+becomes:
+<pre>
+  a
+-----
+</pre>
+
+
+<h2><a
+name="Using C">Using C</a></h2>
+Linked list was a data type. So there was a specific way to
+implement it in C. But  stack is a data structure. It is defined
+through its behaviour. So there may be different ways to
+implement it. The simplest way is using an array. This is useful
+when there is a known upper bound for the stack size. 
+<pre>
+int list[100];
+int size = 0;
+
+void push(int what) {
+  if(size&gt;99) {
+    printf("Stack overflow.");
+    return;
+  }
+  list[size] = what;
+  size++;
+}
+
+int pop() {
+  if(size&gt;0) {
+    size--;
+    return list[size];
+  }
+  else 
+    printf("Stack underflow.");
+}
+</pre>
+However, if no upper bound for size is known, then you might use
+a linked list, where the head plays the role of the top.
+
+<h2><a
+name="Applications">Applications</a></h2>
+It may not be readily apparent why a stack is useful. There are
+two scenarios where stacks prove very useful. We discuss them one
+by one.
+
+<h3><a
+name="Scenario 1: Nested set ups">Scenario 1: Nested set ups</a></h3>
+We human beings are very fond of nested set ups:
+<ul>
+
+<li>we split a country into states, states into districts,
+districts into blocks.</li>
+
+<li>our books consists chapters, chapters consist of sections,
+which in their turn consist of subsections, which consist of
+paragraphs, which consists of sentences, and so on.</li>
+
+<li>In mathematics, we nest one set of parentheses into another.</li>
+
+</ul>
+When we want to store any such nested set up in a computer file
+we need a system like mathematical brackets.
+<p>
+<b>EXAMPLE:</b>&nbsp;<pre>
+
+<font color="#ff0000">Start:India</font>
+  A big country with too many people.
+  <font color="#ff0000">Start:WestBengal</font>
+    The only state that stretches from the sea to the Himalayas.
+    <font color="#ff0000">Start:Kolkata</font>
+      An over-crowded city.
+    <font color="#ff0000">End:Kolkata</font>
+  <font color="#ff0000">End:WestBengal</font>
+  <font color="#ff0000">Start:Bihar</font>
+   Another wonderful state.
+  <font color="#ff0000">End:Bihar</font>
+<font color="#ff0000">End:India</font>
+
+</pre>
+Here the red lines maintain the structure of the document. When a
+computer reads such a file, it uses a
+stack. Each <font color="#ff0000">Start:</font> is a <b>push</b> and
+each <font color="#ff0000">End:</font> is a <b>pop</b>. After every pop, it checks
+if the popped symbol matches the symbol after
+the <font color="#ff0000">End:</font>. We show how the stack changes after
+encountering the <font color="#ff0000">Start:</font> and <font color="#ff0000">End:</font> markers:
+<pre>
+                                             Kolkata                       
+                              WestBengal     WestBengal     WestBengal     Bihar     
+               India          India          India          India          India          India          
+-----          -----          -----          -----          -----          -----          -----          -----
+</pre>
+Convince yourself that the stack will be able to detect
+violations of
+nesting structure.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Calculators use stacks to perform simplifications using the BODMAS
+rule. This is another example of nesting. When you
+write $2+3\times 4$ this means $2+(3\times 4).$ Thus,
+the expression is nested inside. In fact, there are two stacks
+(called the operator stack and the number stack). To facilitate
+writing, I shall show them horizontally (growing towards the
+right).
+<p></p>
+Suppose that we are processing the expression <font color="red"><code>4 + 3 * 2
+= </code></font>.The final <font color="red"><code>=</code></font> is to let the calculator know that we
+have reached the end.
+This consists of 7
+symbols. We show the two stacks as the symbols are fed
+in. Initially, both are empty:
+<pre>
+num: 
+opr:
+</pre>
+Then we read <font color="red"><code>4</code></font>, which is a number and hence pushed onto
+the number stack:
+<pre>
+num: 4
+opr:
+</pre>
+Then comes the operator <font color="red"><code>+</code></font>:
+<pre>
+num: 4
+opr: +
+</pre>
+After reading the <font color="red"><code>3</code></font> we have:
+<pre>
+num: 4 3
+opr: +
+</pre>
+Next comes the <font color="red"><code>*</code></font>. Before it is pushed, we need to peek at
+the current top of the operator stack to find the <font color="red"><code>+</code></font>. Since
+this has lower precedence than <font color="red"><code>*</code></font>, we push the <font color="red"><code>*</code></font>:
+<pre>
+num: 4 3
+opr: + *
+</pre>
+Then comes the <font color="red"><code>2</code></font>:
+<pre>
+num: 4 3 2
+opr: + *
+</pre>
+Now comes the <font color="red"><code>=</code></font>. It pops the operator stack to get
+a <font color="red"><code>*</code></font>:
+<pre>
+num: 4 3 2
+opr: +
+</pre>
+Since <font color="red"><code>*</code></font> needs two arguments, the number stack is popped
+twice to get <font color="red"><code>2</code></font> and <font color="red"><code>3</code></font>:
+<pre>
+num: 4 
+opr: +
+</pre>
+These two numbers are are combined using
+the <font color="red"><code>*</code></font> producing <font color="red"><code>6</code></font>. This gets pushed onto the number stack:
+<pre>
+num: 4 6
+opr: +
+</pre>
+Remember that the <font color="red"><code>=</code></font> is still waiting. Before we push it
+onto the operator stack, we notice that the current top of the
+stack is <font color="red"><code>+</code></font>, which we pop. 
+<pre>
+num: 4 6
+opr: 
+</pre>
+The <font color="red"><code>+</code></font> needs two numbers, which are obtained by popping
+the number stack twice:
+<pre>
+num: 
+opr: 
+</pre>
+The popped numbers are <font color="red"><code>6</code></font> and <font color="red"><code>4</code></font>, which are combined
+using the <font color="red"><code>+</code></font> to produce <font color="red"><code>10</code></font>, which is pushed onto the
+number stack:
+<pre>
+num: 10
+opr: 
+</pre>
+Now the waiting <font color="red"><code>=</code></font> is pushed onto the operator stack:
+<pre>
+num: 10
+opr: =
+</pre>
+The content of the number stack is now printed on the screen.
+<img src="../image/box.png"></p>
+
+
+<h3><a
+name="Scenario 2: Searching">Scenario 2: Searching</a></h3>
+In many applications of artificial intelligence we have to make
+multiple steps cleverly to reach a specified goal. At each step
+we are presented with a finite number of alternatives, from which
+we have to choose an appropriate one. Examples include: 
+<ul>
+
+<li>Finding path in a maze</li>
+
+<li>Changing configuration of blocks (<i>e.g.</i>, tower of Hanoi)</li>
+
+<li>Finding a way in which a knight can tour all squares in a
+chess board without visiting any square more than once,</li>
+
+<li>placing 8 queens in a chess board in mutually non-attacking positions.</li>
+
+</ul>
+The simplest way to tackle such a problem is to continue by choosing any
+alternative at each step until one hits dead-end. Then we have to
+backtrack to the last step and re-explore following the next
+alternative. This simple idea may become mind bogglingly
+complicated in a program unless one keeps track of the steps
+using a stack. See <a href="image/dfs.webm">this video</a> to
+understand. Every time we visit a new vertex, it is pushed. Every
+time we finish all alternatives at a vertex we pop. We start with
+an empty stack. The stack again becomes empty when we have
+visited every vertex and edge. 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
