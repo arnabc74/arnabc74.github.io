@@ -1,0 +1,266 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Queue">Queue</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using C">Using C</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Queue">Queue</a></h1>
+Queues are much like stacks, except that insertion occurs at one
+end, and removal from the other. These two operations are called,
+respectively, <b>enqueue</b> and <b>dequeue</b>. No other
+operations are allowed to modify the queue. As before you may
+have query methods like <b>size</b>.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose that I start with an empty queue, and issue the commands 
+<pre>
+nq(1)
+nq(5)
+nq(3)
+dq()
+dq()
+dq()
+dq()
+</pre>
+What will be the result?
+<p></p>
+<b>SOLUTION:</b>
+Let's show the queue horizontally, insertion at right, removal from
+left:
+<pre>
+------
+
+1
+------
+
+
+1 5
+------
+
+
+1 5 3
+------
+
+
+  5 3
+------
+
+
+    3
+------
+
+
+
+------
+
+
+Error: queue underflow!
+</pre>
+
+<img src="../image/box.png"></p>
+Notice that a queue follows the "first-in-first-out" (FIFO)
+principle as opposed to the "last-in-first-out" (LIFO) principle
+for stack.
+
+<h2><a
+name="Using C">Using C</a></h2>
+If we know an maximum allowable size of the queue, we may use an
+array to implement a queue. However, this is slightly more tricky
+than implementing a stack. To see why, let's first try to proceed
+as we did for a stack. We shall take an array, and use two
+indices to mark the start and end of the queue:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/q1.png"></th>
+</tr>
+<tr>
+<th>The red cells belong to the queue</th>
+</tr>
+</table>
+</center>
+Notice how <font color="red"><code>end</code></font> index is one cell behind the red part.
+This allows us to represent an empty queue by making <font color="red"><code>start</code></font>
+equal to <font color="red"><code>end</code></font>. The size of the queue
+is <font color="red"><code>end</code></font>-<font color="red"><code>start</code></font>. Then we can use the following C
+functions to enqueue and dequeue:
+<pre>
+int body[100];
+
+void nq(int what) {
+  if(start==99) {
+    printf("Queue overflow!");
+    return;
+  }
+  start++;
+  body[start] = what;
+}
+
+int dq() {
+  if(end==start) {
+    printf("Queue underflow!");
+    return;
+  }
+  end++;
+  return body[end];
+}
+
+int size() {
+
+  return start-end;
+}
+
+void dump() {
+  int i;
+
+  for(i=start;i&gt;end;i--) 
+    printf("%d\n", body[i]);
+}
+</pre>
+Do you see why this is a bad implementation? Consider the
+following situation:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/q2.png"></th>
+</tr>
+<tr>
+<th>The white cells are unused</th>
+</tr>
+</table>
+</center>
+Now you want to enqueue one more entry. In our implementation,
+you'll get an overflow error, yet part of the array is lying
+unused! To utilize the trailing white cells, we need a more
+clever implementation, where the <font color="red"><code>start</code></font> and <font color="red"><code>end</code></font>
+indices are allowed to "wrap back" to the beginning. The coding
+wil now become confusing unless you update your computational
+model to a circular set up:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cirq.png"></th>
+</tr>
+<tr>
+<th>Circular set up</th>
+</tr>
+</table>
+</center>
+
+<pre>
+int body[100];
+
+void nq(int what) {
+  int proposedStart = (start+1)%100;
+  if(proposedStart==end) {
+      printf("Queue overflow!");
+      return;
+  }
+  start = proposedStart;
+
+  body[start] = what;
+}
+</pre>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Update the code for <font color="red"><code>dq()</code></font> and <font color="red"><code>size()</code></font>
+and <font color="red"><code>dump()</code></font> appropriately for the circular set up.
+<img src="../image/box.png"></p>
+All this discussion pertains to the situation where we have a
+known maximum allowable size of the queue. If we do not have such
+a maximum, then you may use a linked list, <a href="linklist.html">as we have already discussed</a>.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
