@@ -1,0 +1,882 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#File management in C">File management in C</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Computational model">Computational model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Enter C">Enter C</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Writing letters">Writing letters</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Choosing the folder">Choosing the folder</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Writing numbers">Writing numbers</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Mixing various outputs">Mixing various outputs</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reading from a file">Reading from a file</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Continuing,  stopping and skipping">Continuing,  stopping and skipping</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A word of caution">A word of caution</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="File management in C">File management in C</a></h1>
+
+When you start learning to program, a good analogy to keep in mind
+is this: 
+<blockquote>
+Just as we take inputs from our surroundings via our sensory
+organs (eyes, ears etc), make decisions about them with our brain, and carry out
+those decisions using our motor organs (hands and legs),
+similarly, a computer gets its input from the connected input
+devices (keyboard/mouse/touchpad), processes the input in its
+CPU, and produces results on its output devices (screen/speaker etc).
+</blockquote>
+Most of the devices attached to a computer are either an input
+device (keyboard/mouse/scanner/webcam etc) or an output device
+(screen/speaker/printer). But there is one notable exception: a
+device that is both input as well as output. In fact, this device
+is present in human beings also. It cannot be seen, but its
+presence can be felt. It is the <i>mind</i>. When you are reading this,
+your eye sees some symbols, your brain construes meaning out of
+them, but where does the output go? The output goes into your
+mind. So here the mind acts as an output device. When later
+you'll answer questions in an examination, where will the
+information come from. Assuming honesty on your part, the
+information should come from your mind. So there the mind acts as
+an input device. 
+<p></p>
+The role of the mind is played by the <b>hard drive</b> of the
+computer. It is a big box connected inside the
+computer. Sometimes people use <i>external</i> hard drives, which
+are connected from outside. The hard drive is basically a long
+array of bytes. Each byte is a list of 8 bits. Each bit may be
+set on or off by the computer. The most important property of the
+hard drive is that the bit values set by the computer are
+retained even after the computer is switched off, or the hard
+drive is detached from it! It is this feature that makes it
+behave like our mind. Our mind retains facts  even after the
+source of facts is taken away. So whenever, your program needs to
+produce output that should survive beyond the life time of the
+program (<i>e.g.</i>,  needs to be preserved or shared via email or
+uploaded to the internet), the output must be written to a hard
+drive. Similarly, if your program wants to use information from
+some past session (possibly output from some other program), then
+it needs to read from a hard drive. As this is a common
+requirement, and there are many programs all trying to read from
+or write to the hard drive, it is easy to lose oneself in the
+chaos. To prevent this the array of bytes in the hard drive is
+organized in a particular way. We must have a clear mental picture
+of a computational model of the hard drive in order to use it in
+our program. 
+
+<h2><a
+name="Computational model">Computational model</a></h2>
+There are two parts of the hard drive: the used part and unused
+part. Think of the unused part as a l..o..n..g roll of paper
+stretching for miles. For most purposes, you might consider it
+virtually endless. The part in use is organized as a tree. Thus,
+the computational model of the entire hard drive is like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/drive.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The inner nodes of the tree are labelled red with various
+names. These are called <b>folder</b>s. From each  leaf node we
+see pieces of paper hanging. These are called <b>file</b>s. They
+also have names (I have shown only three, in green). Notice that
+the name <font color="red"><code>isi.c</code></font> has been used twice. In order to uniquely
+specify a file, we give its entire <b>path</b> (<i>i.e.</i>, how to
+reach that file from the top of the tree). The paths for for the
+three files shown in green are:
+<pre>
+c:\user\isi.c
+c:\user\samahriti\isi.c
+c:\user\samahriti\chaplin.mp4
+</pre>
+Notice the backslashes. The are called the path separators. In
+Linux systems, we use a forward slash for this purpose.
+<p></p>
+
+Each file, as I have said already, is like a piece of
+paper. These papers are all torn off the huge roll of unused
+supply. Unlike real paper, however, these pieces of papers may be
+removed from the tree, 
+erased, and returned to the roll for future use!
+
+<h2><a
+name="Enter C">Enter C</a></h2>
+With this computational model in mind, we can now state how 
+a C program manages this tree, i.e, performs file
+management. There are basically three major operations:
+<ul>
+
+<li>Create a file</li>
+
+<li>Delete a file</li>
+
+<li>Write into a file</li>
+
+<li>Read from a file</li>
+
+</ul>
+There is, however, one little complication. A file is just a list
+of bytes, and each byte consists of 8 bits (<i>i.e.</i>, 0s and
+1s). Now, 0s and 1s are good for computers, not for us humans. We
+like to work with numbers and letters. So we encode numbers and
+letters in terms of 0s and 1s. Thus, when we want to write numbers or
+letters into a
+file, we usually mean "first encode them in terms of 0s and 1s,
+and then write the resulting 0s and 1s into the file." Similarly,
+reading from a file usually means "read the 0s and 1s and then
+decode them into numbers and letters." Of course, there may be
+situations where you do want to write/read some 0s and 1s
+directly. 
+<p></p>
+Accordingly there are two sets of functions provided by C: with
+encoding/decoding or directly. We shall discuss the more
+frequently used case first: with encoding/decoding.
+<p></p>
+Numbers and letters may be encoded in different ways in terms of
+0s and 1s. One such is called ASCII (American Standard Code for
+Information Interchange). This is no more the most popular
+method (which is Unicode). However, when C was created, ASCII was
+the main coding format. ASCII maps all the letters (upper/lower
+case), digits, punctuation marks into bytes. Now, if you want to
+encode a letter, you just apply ASCII. If you want to store an integer
+you first reduce it to a list of digits (and possibly
+a sign) using some base, and then apply ASCII to the
+digits and sign. C allows the bases 10, 8 and 16. If you have a
+number that is not an integer, then it is first converted to
+decimal representation, and the resulting digits etc are encoded
+using ASCII. 
+
+<h2><a
+name="Writing letters">Writing letters</a></h2>
+
+<pre>
+
+<table cellspacing="10" border="0">
+
+<tr>
+<td>
+<pre>#include &lt;stdio.h&gt;
+
+int main() {</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>FILE *fp;</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">1</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fp = fopen("silly.txt","w");</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">2</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fprintf(fp,"Hello Samahriti!");</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">3</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fclose(fp);</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">4</font></td>
+</tr>
+  
+<tr>
+<td>
+<pre>return 0;
+}</pre>
+</td>
+</tr>
+
+</table>
+
+</pre>
+
+<p>
+<b>Explanation of the code:</b>
+<dl>
+
+<dt>
+<b>1:</b>
+</dt>
+<dd>This line declares a <b>file pointer</b>. Don't worry
+about its exact definition. According to our computational
+model, it refers to a piece of paper.</dd>
+
+<dt>
+<b>2:</b>
+</dt>
+<dd>The <font color="red"><code>fopen</code></font> function <b>opens a
+file</b>. According to our computational model, this either
+tears a piece of paper from the unused roll and attaches it to a
+leaf of the tree (as here), or connects the pointer to an
+existing file. The <font color="red"><code>"w"</code></font> stands for "write", and tells the
+computer to start a new file. The name of the file is
+"silly.txt". Notice that I have not mentioned the entire
+path. In such a case, C assumes a default folder (more on this below).</dd>
+
+<dt>
+<b>3:</b>
+</dt>
+<dd>The <font color="red"><code>fprintf</code></font> function does the actual
+writing.</dd>
+
+<dt>
+<b>4:</b>
+</dt>
+<dd>The <font color="red"><code>fclose</code></font> function is the complement to
+the <font color="red"><code>fopen</code></font> function.</dd>
+
+</dl>
+</p>
+
+
+<h3><a
+name="Choosing the folder">Choosing the folder</a></h3>
+When a C program (or any other program, for that matter) starts,
+it chooses a particular folder as its default. This folder is
+called its <b>working folder</b>. In most Windows computer, it is
+something like 
+<pre>
+C:\Users\samahriti
+</pre>
+where <font color="red"><code>samahriti</code></font> is the login name of the user. If you are
+starting your program from a terminal, then you can change the
+name of the working folder as part of the prompt. But since this
+is very much system dependent, I shall not discuss this further
+here. Finding the working folder may take some time initially. 
+
+<h2><a
+name="Writing numbers">Writing numbers</a></h2>
+As I have already mentioned, writing numbers is a two stage
+process: first converting the number to a sequence of digits (and
+possibly a decimal point and sign), and then applying ASCII
+encoding. Also, there is a difference between how integers and
+non-integers are handled. Integers may be represented using bases
+10, 8 or 16. But non-integers must use base 10.
+<pre>
+
+<table cellspacing="10" border="0">
+
+<tr>
+<td>
+<pre>#include &lt;stdio.h&gt;
+
+int main() {</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>FILE *fp;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>int i;
+  i = 245;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>fp = fopen("silly.txt","w");</pre>
+</td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fprintf(fp,"%d", i+23);</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">1</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fclose(fp);</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>return 0;
+}</pre>
+</td>
+</tr>
+
+</table>
+
+</pre>
+
+<p>
+<b>Explanation of the code:</b>
+<dl>
+
+<dt>
+<b>1:</b>
+</dt>
+<dd>Now the <font color="red"><code>fprintf</code></font> function takes 3 arguments:
+the first is the file pointer. The second is the <b>format</b>,
+<i>i.e.</i>, how the first stage is to be done. Here the <font color="red"><code>%d</code></font>
+means "base 10" ('d' for "decimal"). The third argument is the
+integer to be printed (here it is $245+23=268$).</dd>
+
+</dl>
+</p>
+If you replace the <font color="red"><code>%d</code></font> with <font color="red"><code>%o</code></font> or <font color="red"><code>%x</code></font>, you'll
+get, respectively, base 8 or base 16.
+
+<p></p>
+The following code shows printing of a non-integer:
+<pre>
+
+<table cellspacing="10" border="0">
+
+<tr>
+<td>
+<pre>#include &lt;stdio.h&gt;
+
+int main() {</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>FILE *fp;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>float x;
+  i = 24.5;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>fp = fopen("silly.txt","w");</pre>
+</td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fprintf(fp,"%f", x/3);</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">1</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fclose(fp);</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>return 0;
+}</pre>
+</td>
+</tr>
+
+</table>
+
+</pre>
+
+<p>
+<b>Explanation of the code:</b>
+<dl>
+
+<dt>
+<b>1:</b>
+</dt>
+<dd>Notice the format <font color="red"><code>%f</code></font>. It requests the value
+of $x/3$ to be converted to the decimal form. It is
+possible to control this conversion regarding the number of
+decimal places to retain. But we shall not go into the details
+here, as the default is pretty good for most cases.</dd>
+
+</dl>
+</p>
+
+
+<h3><a
+name="Mixing various outputs">Mixing various outputs</a></h3>
+It is possible to mix outputs of various types in the
+same <font color="red"><code>fprintf</code></font> line:
+<pre>
+
+<table cellspacing="10" border="0">
+
+<tr>
+<td>
+<pre>#include &lt;stdio.h&gt;
+
+int main() {</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>FILE *fp;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>int i;
+  float x;
+  i = 245;
+  x = 45.6;
+  </pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>fp = fopen("silly.txt","w");</pre>
+</td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fprintf(fp,"x = %f, and i = %d", x, i);</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">1</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fclose(fp);</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>return 0;
+}</pre>
+</td>
+</tr>
+
+</table>
+
+</pre>
+
+<p>
+<b>Explanation of the code:</b>
+<dl>
+
+<dt>
+<b>1:</b>
+</dt>
+<dd>For each format specifier (<i>e.g.</i> <font color="red"><code>%f</code></font>
+and <font color="red"><code>%d</code></font> here), there must be a corresponding value
+specified. Failure to match them up properly may result in weird errors.</dd>
+
+</dl>
+</p>
+
+
+<h2><a
+name="Reading from a file">Reading from a file</a></h2>
+To read from a file, the first prerequisite is that the file must
+exist. Also, you must know what types of values are present
+there, and in what order. For example, if a file merely contains
+the word "Hello", and you are trying to read an integer from it,
+then it will generate an error.
+<table cellspacing="10" border="0">
+
+<tr>
+<td>
+<pre>#include &lt;stdio.h&gt;
+
+int main() {</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>FILE *fp;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>int i;</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>fp = fopen("silly.txt","r");</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">1</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fscanf(fp,"%d", &amp;i);</pre>
+</td><td bgcolor="#000000" align="right"><font color="#ffffff">2</font></td>
+</tr>
+
+  
+<tr>
+<td>
+<pre>fclose(fp);</pre>
+</td>
+</tr>
+  
+<tr>
+<td>
+<pre>return 0;
+}</pre>
+</td>
+</tr>
+
+</table>
+
+<p>
+<b>Explanation of the code:</b>
+<dl>
+
+<dt>
+<b>1:</b>
+</dt>
+<dd>The <font color="red"><code>"r"</code></font> (as opposed to <font color="red"><code>"w"</code></font> in the
+earlier examples) tells the computer to open the file for reading.</dd>
+
+<dt>
+<b>2:</b>
+</dt>
+<dd>The <font color="red"><code>fscanf</code></font> function is for reading from a file.
+Notice how we are using <font color="red"><code>&amp;i</code></font>.</dd>
+
+</dl>
+</p>
+You may use the format specifiers <font color="red"><code>%o</code></font>, <font color="red"><code>%x</code></font>
+and <font color="red"><code>%f</code></font> as in case of <font color="red"><code>fprintf</code></font>.
+
+<h3><a
+name="Continuing,  stopping and skipping">Continuing,  stopping and skipping</a></h3>
+Reading from a file is much more complicated than writing to a
+file. When an ASCII file (often called a "text file") is read,
+the computer reads it character by character, and then groups the
+characters into numbers and other things. To understand this
+process it helps to visualize a <b>reading head</b>. Think of it
+as a thin line that is placed between two consecutive characters:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/readhead.png"></th>
+</tr>
+<tr>
+<th>The red line is the read head</th>
+</tr>
+</table>
+</center>
+All the characters to the left of the reading head have already been
+read, the characters to its right are yet to be read. Here, for
+instance, we have read the <font color="red"><code>s</code></font> and are about to read
+the <font color="red"><code>a</code></font>. Initially, the reading head is before the very
+first character in the file.
+<p></p>
+The entire process launched by <font color="red"><code>fscanf</code></font> may be visualized as
+a journey of the reading head over the contents of the file. It
+can do three things:
+<ul>
+
+<li>move over the next character, and remember that character,</li>
+
+<li>move over the next character, and ignore that character</li>
+
+<li>stop</li>
+
+</ul>
+The rule governing these is simple: ignore any space character(s) in
+the beginning, read as long as you can until the reading head
+comes just before a character that cannot fit into the type of
+thing you are reading (<i>e.g.</i>, integer).
+
+<p>
+<b>EXAMPLE:</b>&nbsp;For instance, if you issue the command:
+<pre>
+fscanf(fp, "%d%d",&amp;i,&amp;j);
+</pre>
+and <font color="red"><code>fp</code></font> points to a file containing this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/read1.png"></th>
+</tr>
+<tr>
+<th>The reading head is at the very left</th>
+</tr>
+</table>
+</center>
+Here the space characters are shown as grey boxes. According to
+the reading policy just mentioned, the first <font color="red"><code>%d</code></font> causes the
+reading head to come to this position:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/read2.png"></th>
+</tr>
+<tr>
+<th>The ignored characters are underlined in red,
+remembered ones in blue</th>
+</tr>
+</table>
+</center>
+Also, the integer 123 gets stored in the variable <font color="red"><code>i</code></font>. 
+<p></p>
+
+The next <font color="red"><code>%d</code></font> causes the reading head to move further (and
+put the value 56 in <font color="red"><code>j</code></font>):
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/read3.png"></th>
+</tr>
+<tr>
+<th>The reading head has finished its
+journey</th>
+</tr>
+</table>
+</center>
+How did the reading head know that it has to stop after
+the <font color="red"><code>6</code></font>? Because, the file ends there! We sometimes  imagine
+a character called the <font color="red"><code>End Of File (EOF)</code></font> placed at the
+very end. The reading head is not allowed to go past it.
+<img src="../image/box.png"></p>
+This example showed the simplest scenario. Now let's see how
+things may go wrong. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+We shall again trace the same <font color="red"><code>fscanf</code></font>,
+but now the file contents are:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/readbad1.png"></th>
+</tr>
+<tr>
+<th>Notice the decimal point</th>
+</tr>
+</table>
+</center>
+Now the first <font color="red"><code>%d</code></font> causes the reading head to come to this position:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/readbad2.png"></th>
+</tr>
+<tr>
+<th>Can't get past the decimal point!</th>
+</tr>
+</table>
+</center>
+But now it's stuck, because an integer cannot contain a decimal
+point. So <font color="red"><code>i</code></font> gets the value 1.
+<p></p>
+Now the next <font color="red"><code>%d</code></font> comes into play. It tries to push the
+reading head further. But the reading head remains
+stuck., and  so <font color="red"><code>j</code></font> remains unchanged. Remember that no
+error message is printed on screen. 
+<img src="../image/box.png"></p>
+
+Here is a third scenario:
+<p>
+<b>EXAMPLE:</b>&nbsp;
+We run the command
+<pre>
+fscanf(fp, "%d%f",&amp;i,&amp;x);
+</pre>
+where the file contents are as in the last example. Here again
+the first <font color="red"><code>%d</code></font> causes <font color="red"><code>i</code></font> to get the value 1, and, as
+before, we
+arrive at: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/readbad2.png"></th>
+</tr>
+<tr>
+<th>End of <font color="red"><code>%d</code></font></th>
+</tr>
+</table>
+</center>
+Next the <font color="red"><code>%f</code></font> takes action. Now of course, the decimal point
+is no more a taboo character, and reading head happily glides
+over it, and eventually stops here:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/readbad3.png"></th>
+</tr>
+<tr>
+<th>End of <font color="red"><code>%f</code></font></th>
+</tr>
+</table>
+</center>
+As a result <font color="red"><code>x</code></font> get the value $0.23.$
+
+<h2><a
+name="A word of caution">A word of caution</a></h2>
+What we have learned so far about <font color="red"><code>fscanf</code></font> pretty much
+covers all that you'll need for the time being. However, there
+are some exotic things that <font color="red"><code>fscanf</code></font> is capable
+of. Unfortunately, beginners inadvertently get into those
+situations by mistake and become puzzled some inexplicable
+behaviour. We shall show one such. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If instead of 
+<pre>
+fscanf(fp, "%d",&amp;i);
+</pre>
+you accidentally put a space before the <font color="red"><code>%d</code></font> to get
+<pre>
+fscanf(fp, " %d",&amp;i);
+</pre>
+then the behaviour will be drastically different. The program
+will now look for an integer <i>following a single
+space</i>. Similarly, typing
+<pre>
+fscanf(fp, "%d ",&amp;i);
+</pre>
+will cause it to look for an integer <i>followed by a single
+space</i>. Similarly, 
+<pre>
+fscanf(fp, "%d %d",&amp;i,&amp;j);
+</pre>
+expects two integers <i>separated by exactly one space</i>. We
+shall not go into the rationale behind this apparently weird
+behaviour. Just remember not to put any space in the format
+in <font color="red"><code>fscanf</code></font>. No such restriction for <font color="red"><code>fprintf</code></font>.
+<img src="../image/box.png"></p>
+
+<img src="../image/box.png"></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
