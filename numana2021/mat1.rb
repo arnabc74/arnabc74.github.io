@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE>
-<UPDT>MON FEB 17 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1>
 <HEAD2>Gauss-Jordan elimination</HEAD2>
 We shall start with a few concepts already familiar to you. 
@@ -200,6 +200,7 @@ perform the following operations.
 _{n-1\mbox{ times}},M,S.
 </D>
 </BOX>
+<COMMENT>
 The following J code implements this:
 <J>
 m=: monad : 'pr=:y % pj{y'
@@ -281,6 +282,7 @@ rhs %. mat
 <LI><CODE>%.</CODE> solves a system of equations in the least
 squares sense.</LI>
 </JHLP>
+</COMMENT>
 
 <HEAD3>Pivoting</HEAD3>
 The <M>M</M>- and <M>S</M>-steps require the pivot to 
@@ -400,7 +402,7 @@ y &  x & z\\
 3 &  0 &  -5 &  -1
 </AUGMAT1>
 </D>
-
+<COMMENT>
 <J>
 amat=: 3 4 $ 0 3 _5 _1 4 1 1 6 _1 _8 _1 _4
 'a1 b1 c1'=:amat
@@ -422,6 +424,7 @@ pj=:0
 ]c4=:s c3
 a4,b4,:c4
 </J>
+</COMMENT>
 Here you end up with 
 <PRE>
 0 0 1 | 0.371951
@@ -495,6 +498,7 @@ Thus, the required inverse is
 \\[[-35][133]]& [[28][133]]& [[-3][19]]
 \\[[1][19]]& [[3][19]]& [[-7][19]]</MAT>.</D> 
 </EXM>
+<COMMENT>
 The following J code will help you to play with this idea.
 <J>
 mat=: ? 3 3 $ 100
@@ -516,6 +520,7 @@ Thus, if all the elements are distinct, then you get an identity
 matrix. In particular, <CODE>e. i. 3</CODE> is a handy way to
 create the identity matrix of order 3.</LI>
 </JHLP>
+</COMMENT>
 <B>Why this works:</B> It is based on the simple fact from linear
 algebra that if we form the matrix product <M>AB,</M> then
 the <M>j</M>-th column of <M>AB</M> is actually <M>A\bb_j,</M>
@@ -660,7 +665,7 @@ Indeed, we have
 Define the matrix <M>R</M> using the <M>r_{ij}</M>'s, and
 form <M>Q</M> with  <M>\bq_i</M>'s as its columns.
 <P/>
-
+<COMMENT>
 The following J code will let you explore the idea.
 <J>
 d=:+/@:*
@@ -686,7 +691,8 @@ works on the list as a whole. For example, <CODE>1 2 3 (+/@:*) 4
 to get a list <CODE>1*4 2*5 3*6</CODE>, and then <CODE>+/</CODE>
 (summation) will sum the list to produce <CODE>(1*4) + (2*5) + (3*6)</CODE>.
 </LI>
-</JHLP>
+</JHLP></COMMENT>
+
 If <M>A</M> is not full column rank, then some
 <M>(\ba_i-\sum_{j=1}^{i-1}(\bq_j'\ba_i)\bq_j)</M> will be zero, hence we cannot apply
 <M>unit</M> to it. But then we can take <M>\bq_i</M> equal to any unit
@@ -742,7 +748,7 @@ Householder idea. You'll need to understand the above solution in
 order to
 understand the definition of <CODE>h</CODE> below to multiply by
 a Huseholder matrix. 
-<J>
+<COMMENT><J>
 h=: ] - 2*[*d
 </J>
 Let's try it out on some vectors.
@@ -752,7 +758,7 @@ b=: 0 5 0
 ]diff=: u a - b
 diff h b
 </J>
-
+</COMMENT>
 <EXR ref="" paper="" marks="">
 Show that in 2 dimensions Householder's transform is the only such
 transform. Show that this uniqueness does not hold for higher dimensions.
@@ -807,7 +813,7 @@ Carry this out for the following <M>5\times 4</M> case.
 </EXR>
 
 We shall now apply it to a <M>4\times 3</M> matrix. 
-<J>
+<COMMENT><J>
 sh=: ({. - n) , }.
 
 ]'a1 b1 c1'=: ? 3 4 $ 100
@@ -820,13 +826,13 @@ e.g., <CODE>}. 1 2 3 4</CODE> is <CODE>2 3 4</CODE>.</LI>
 <LI>Read <CODE>({. - n) , }.</CODE> as "(head minus norm)
 followed by the rest".</LI>
 </JHLP>
-
+</COMMENT>
 The steps are
 shown in the diagram below (red is the entry computed in that
 step, grey means already computed, black means 0):
 <CIMG web="qrst.png">Steps in the computation of <M>R</M> and
 the <M>\bu</M>'s</CIMG>
-<J>
+<COMMENT><J>
 n a1                      NB. (1)
 ]u1=:u sh a1              NB. (2)
 
@@ -845,7 +851,7 @@ n }. c3                  NB. (8)
 
 u sh }. c3               NB. (9)
 </J>
-
+</COMMENT>
 <HEAD3>Efficient implementation</HEAD3>
 Notice that though the Householder matrix 
 <D>
@@ -899,7 +905,7 @@ following theorem.
 <THM>
 The above system has unique least square solution <M>\bx</M> given by
 <D>
-\bx = A(A'A)^{-1}A'\bb.
+\bx = (A'A)^{-1}A'\bb.
 </D>
 Note that the full column rankness of <M>A</M> guarantees the existence
 of the inverse.
@@ -964,7 +970,65 @@ least squares solution. Your program must never compute any
 Householder matrix explicitly.
 </PROJ>
 
+<HEAD3>What if <M>A</M> is not full column rank?</HEAD3>
+You'll detect this during computation of the <M>QR</M>
+decomposition: 
+<Q>If <M>A</M> is not full column rank, then for some <M>k</M>,
+the <M>k</M>-th column of <M>A</M> will be in the span of the
+preceding columns. At that point, the norm of <M>\bu</M> will be
+zero. 
+</Q>
+There are two things you can do if you detect such a
+situation. 
+<UL>
+<LI>One is to take <M>I</M> in place of the Householder
+matrix for that step. This is natural, because if the entries are
+already zero, then there is no need to "shave" them further!
+</LI>
+<LI>However, if you aim is to compute an ONB of column space
+of <M>A</M>, or to compute least squares solution, then you
+should proceed differently. You should "throw away" those columns
+of <M>A</M> that are in the spans of the preceding columns.</LI>
+</UL>
+The following example illustrates both these approaches. 
 
+<EXM>
+Let's take 
+<D>
+A=<MAT>3 & 6 & 1\\4 & 8 & 3\\0&0&4</MAT>.
+</D>
+Clearly, <M>r(A) = 2.</M> The first step of the <M>QR</M>
+algorithm will go smoothly, converting <M>A</M> to 
+<D>
+<MAT>
+5 & 10 & *\\
+0 & 0 & *\\
+0 & 0 & *
+</MAT>.
+</D>
+In the second step we run into trouble. We are supposed to
+"shave" the two entries under the 10. But they are already
+zeroes. So the first approach will simply move on to the third
+step, and finally produce a <M>3\times 3</M> upper
+triangular <M>R.</M> This <M>R</M> will not help you much to get
+any least squares solution of a system <M>A\bx = \bb.</M>
+<P/>
+In the second approach, we shall throw away the second column to
+get:
+<D>
+<MAT>
+5 &  *\\
+0 &  *\\
+0 &  *
+</MAT>.
+</D>
+Then it will proceed to perform the second step again on this new
+matrix, i.e., the lowest <M>*</M> will get shaved. The output of
+this version of the <M>QR</M> algorithm is an <M>R</M> matrix of
+size  <M>3\times 2</M>. The top <M>2\times 2</M> portion is
+a <I>nonsingular</I>  upper triangular matrix, which will allow
+you to compute a least squares solution. 
+</EXM>
 <HEAD2>Eigenanalysis: power method</HEAD2>
 Let us start with the definition of eigenvalues and eigenvectors:
 
@@ -1021,7 +1085,7 @@ the sequence alternates with terms
 Here we do not consider the sequence as being convergent.</RED>
 <P/>
 
-Let's take a computational  example:
+<COMMENT>Let's take a computational  example:
 <J>
 mp=: +/ . *
 d=: +/@:*    NB. Sum of products
@@ -1043,7 +1107,7 @@ v=.? 5#0
    
 ]w=: a pow^:_ v
 plot |: pow^:(i.100) v
-</J>
+</J></COMMENT>
 <HEAD3>When does it work?</HEAD3>
 The algorithm works for many types of matrices. Let's explore
 this using some simple examples.
@@ -1229,6 +1293,6 @@ These are lower triangular matrices with some
 number <M>\lambda</M> repeated along the diagonal, and <M>1</M>'s
 in the subdiagonal. All other entries are 0.
 </EXR>
-<DISQUSE id="mat1" url="https://www.isical.ac.in/~arnabc/numana/mat1.html"/>
+<DISQUSE id="mat1" url="https://www.isical.ac.in/~arnabc/numana2021/mat1.html"/>
 @}
 </NOTE>

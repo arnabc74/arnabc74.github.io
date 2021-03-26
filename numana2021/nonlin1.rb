@@ -6,7 +6,7 @@
 \newcommand{\yy}{{\bf y}}
 \newcommand{\z}{{\bf 0}}</M>
 <TITLE>Nonlinear equations</TITLE>
-<UPDT>MON FEB 03 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Nonlinear equations</HEAD1>
 It often happens that we have to solve a nonlinear  equation,
 <D>
@@ -68,6 +68,7 @@ k      x
 </PRE>
 We already see convergence.
 </EXM>
+<COMMENT>
 The following J code lets you explore this.
 <J>
 f=:-cos
@@ -80,7 +81,7 @@ nr^:(i.10) 1
 f(y,g(y)).</M> For example, <CODE>-cos</CODE> means <M>y\mapsto y-\cos y.</M></LI>
 </UL>
 </HIDDEN></HIDE>
-
+</COMMENT>
 <EXR>
 Solve using the Newton-Raphson method:
 <OL>
@@ -133,7 +134,7 @@ This has inverse given by
 <D>
 (D\ff(\xx))^{-1} = \frac{1}{(y+2x)(2-2xy)-(x-3y^2)(1-y^2)}
 <MAT>2-2xy &  3y^2-x\\ 
-     y^2-1      &  2-2xy</MAT>
+     y^2-1      &  y+2x</MAT>
 </D>
 The following table shows a few sample iterations.
 <PRE>
@@ -163,7 +164,7 @@ n    x             y
 </PRE>
 Obviously we are converging to the solution <M>x=1,y=1.</M>
 </EXM>
-
+<COMMENT>
 <J>
 f=: 3 : '( ((r*s) + (r^2) - (s^3) + 1), (r+(2*s)-(r*s^2)+2) ) [ ''r s''=:y'
 d=: 3 : '(2 2 $ (s+2*r), (r-3*s^2), (1-s^2), (2 * 1-r*s)) [''r s''=:y'
@@ -188,6 +189,7 @@ b</M> in the least squares sense assuming <M>A</M> to be full
 column rank.</LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 <P/>
 
 
@@ -285,6 +287,7 @@ up to the first two decimal places. Thus, we see that the answer is 0.74
 up to the first two decimal places.
 </EXM>
 
+<COMMENT>
 The following J code explores this. 
 <J>
 f=:-cos
@@ -308,6 +311,7 @@ or 1.
 if-else.  </LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 <P/>
 
 <EXR>
@@ -339,7 +343,7 @@ lines(xx,dgamma(xx,2,3))
 </COMMENT>
 <PROJ id="fit">
 The file <FILE>data.txt</FILE>  has <M>n=996</M> random numbers that are generated from the density 
-<D>f(x; p, a) = [[ p^a][\Gamma(p)]] e^{-a x},\quad x>0</D>
+<D>f(x; p, a) = [[ a^p][\Gamma(p)]] x^{p-1}e^{-a x},\quad x>0</D>
 for unknown constants <M>p, a > 0.</M>  The principle of maximum likelihood estimation suggests estimating 
 <M>p,a </M> by maximising
 <D>L(p,a) = \prod_{i=1}^n f(x_i; p,a),</D>
@@ -349,5 +353,5 @@ graphically by overlaying the graph of <M>f(x;p,a)</M>  on the histogram of the 
 <RED>[Hint: You might find the R functions <CODE>gamma</CODE>, <CODE>dgamma</CODE>  and 
  <CODE>digamma</CODE>   useful here.]</RED>
 </PROJ>
-<DISQUSE id="nonlin1" url="http://www.isical.ac.in/~arnabc/numana/nonlin1.html"/>
+<DISQUSE id="nonlin1" url="http://www.isical.ac.in/~arnabc/numana2021/nonlin1.html"/>
 </NOTE>
