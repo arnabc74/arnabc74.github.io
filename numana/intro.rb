@@ -1,7 +1,7 @@
 <NOTE>
 @{
 <TITLE>Numerical Analysis</TITLE>
-<UPDT>FRI JAN 17 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Numerical Analysis</HEAD1>
 Numerical analysis is all about solving equations (approximately)
 using a
@@ -82,8 +82,7 @@ of mathematics will consider
 to be an exact root of the equation <M>7x^2 + 10x + [[23]] = 0.</M> 
 
 <P/>
-When we need the exact numerical value (say correct up to 4
-decimal places), we simplify the expression down to 
+When we need the exact numerical value, we simplify the expression down to 
 <D>
 [[-10+\sqrt{[[244][3]]}][14]].
 </D>

@@ -137,7 +137,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-THU MAY 28 IST 2020</i></td>
+FRI MAR 26 IST 2021</i></td>
 </tr>
 </table>
 
@@ -344,147 +344,7 @@ $$
 _{n-1\mbox{ times}},M,S.
 $$
 </fieldset>
-The following J code implements this:
-<span class="j">
-<pre>
-m=: monad : 'pr=:y % pj{y'
-s=: monad : 'y - (pj{y) * pr'
-</pre>
-</span>
 
-<p>
-<a href="javascript:hideShow('j1');">[J Help]</a>
-<div id="j1" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>monad</code>: A function <code>f</code> that is invoked
-as <code>f y</code>, <i>i.e.</i>, single argument that is written to
-the right of the function name, <i>e.g.</i>, $\tan y$ Inside the
-definition of the function, the argument is always called <code>y</code>.</li>
-
-<li>
-<code>dyad</code>: A function <code>f</code> that is invoked
-as <code>x f y</code>, <i>i.e.</i>, 2 arguments  written on both sides
-of the function name, <i>e.g.</i> $x + y$. Inside the
-definition of the function, the left hand argument is
-called <code>x</code>, and the right hand argument is called <code>y</code>.</li>
-
-<li>
-<code>{</code> selects elements of a list, <i>e.g.</i> <code>1{2 3
-_1 2</code> will return 3, the 1-th element (counting starts
-from 0).</li>
-
-</ul>
-</div>
-</p>
-Let's try them out on a random matrix:
-<span class="j">
-<pre>
-'a1 b1 c1 d1'=:amat=:? 4 5$ 100
-mat=: |:}:|: amat
-rhs=: {:|: amat
-</pre>
-</span>
-
-<p>
-<a href="javascript:hideShow('j2');">[J Help]</a>
-<div id="j2" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>'a b'=: 1 2</code> makes parallel assignments to
-variables <code>a</code> and <code>b</code>.</li>
-
-<li>
-<code>? 100</code> generates a random integer from the
-set $\{0,1,...,99\}.$ To generate 3 such random integers we
-need <code>? 100 100 100</code>. </li>
-
-<li>
-<code>4 5 $ 100</code> creates a $4\times 5$ matrix
-with each element equal to 100.</li>
-
-<li>
-<code>? 4 5 $ 100</code> creates a $4\times 5$ matrix
-with each element drawn iid from the
-set $\{0,1,...,99\}.$</li>
-
-<li>
-<code>|:</code> (transpose) transposes a matrix.</li>
-
-<li>
-<code>}:</code> (curtail) chops off the tail of a list,
-<i>e.g.</i> <code>}: 1 2 3 4</code> returns <code>1 2 3</code>.</li>
-
-</ul>
-</div>
-</p>
-Next, we start the algorithm by setting the pivot column (indexed
-by <code>pj</code>, say) to 0.
-<span class="j">
-<pre>
-pj=:0
-
-]a2=: m a1
-]b2=: s b1
-]c2=: s c1
-]d2=: s d1
-</pre>
-</span>
-
-<p>
-<a href="javascript:hideShow('j3');">[J Help]</a>
-<div id="j3" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>]</code> identity map (when used as
-monad) $f(y)=y.$ Here it is used as a trick to print the assigned
-value.</li>
-
-</ul>
-</div>
-</p>
-That's the end of the first pass. The remaining passes are similar:
-<span class="j">
-<pre>
-pj=:1
-]b3=: m b2
-]a3=: s a2
-]c3=: s c2
-]d3=: s d2
-pj=:2
-]c4=: m c3
-]a4=: s a3
-]b4=: s b3
-]d4=: s d3
-pj=:3
-]d5=: m d4
-]a5=: s a4
-]b5=: s b4
-]c5=: s c4
-</pre>
-</span>
-Check against the solution computed by J:
-<span class="j">
-<pre>
-rhs %. mat
-</pre>
-</span>
-
-<p>
-<a href="javascript:hideShow('j4');">[J Help]</a>
-<div id="j4" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>%.</code> solves a system of equations in the least
-squares sense.</li>
-
-</ul>
-</div>
-</p>
 
 
 <h3><a
@@ -613,29 +473,6 @@ y &amp;  x &amp; z\\
 \end{array}\right]
 $$
 
-<span class="j">
-<pre>
-amat=: 3 4 $ 0 3 _5 _1 4 1 1 6 _1 _8 _1 _4
-'a1 b1 c1'=:amat
-pj=:1
-]c2=:m c1
-]a2=:s a1
-]b2=:s b1
-a2,b2,:c2
-
-pj=:2
-]a3=:m a2
-]b3=:s b2
-]c3=:s c2
-a3,b3,:c3
-
-pj=:0
-]b4=:m b3
-]a4=:s a3
-]c4=:s c3
-a4,b4,:c4
-</pre>
-</span>
 Here you end up with 
 <pre>
 0 0 1 | 0.371951
@@ -715,42 +552,7 @@ $$\left[\begin{array}{ccccccccccc} \frac{91}{133}&amp; \frac{7}{133}&amp; \frac{
 \\\frac{1}{19}&amp; \frac{3}{19}&amp; \frac{-7}{19}
 \end{array}\right].$$ 
 <img src="../image/box.png"></p>
-The following J code will help you to play with this idea.
-<span class="j">
-<pre>
-mat=: ? 3 3 $ 100
-]'a1 b1 c1'=: mat,. e. i. 3
-pj=:2
-]a2=: m a1
-]b2=: s b1
-]c2=: s c1
-</pre>
-</span>
 
-<p>
-<a href="javascript:hideShow('inv');">[J Help]</a>
-<div id="inv" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>e.</code> finds the positions of each value in a
-list. For example, <code>e. 2 5 2</code> will give 3 lists:
-<ul>
-<li> the first one showing the positions of 2, <i>i.e.</i>, 1 0
- 1,</li>
-
-<li> the second shows the positions of 5, <i>i.e.</i>, 0 1 0,</li>
-
-<li>the third again shows the positions of 2, <i>i.e.</i>, 1 0 1.</li>
-
-</ul>
-Thus, if all the elements are distinct, then you get an identity
-matrix. In particular, <code>e. i. 3</code> is a handy way to
-create the identity matrix of order 3.</li>
-
-</ul>
-</div>
-</p>
 
 <b>Why this works:</b> It is based on the simple fact from linear
 algebra that if we form the matrix product $AB,$ then
@@ -918,45 +720,7 @@ Define the matrix $R$ using the $r_{ij}$'s, and
 form $Q$ with  $\bq_i$'s as its columns.
 <p></p>
 
-The following J code will let you explore the idea.
-<span class="j">
-<pre>
-d=:+/@:*
-n=:%:@d~
-u=: %n
-along=: d * [
-</pre>
-</span>
-Let's create some vectors:
-<span class="j">
-<pre>
-]'a1 a2 a3'=: ? 3 4 $ 0
-]q1=: u a1
-]q2=: u a2 - a2 along q1
-]q3=: u a3 - (a3 along q1) + a3 along q2
-]r11=: q1 d a1
-]r12=: q1 d a2
-]r22=: q2 d a2
-</pre>
-</span>
 
-<p>
-<a href="javascript:hideShow('gso');">[J Help]</a>
-<div id="gso" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>@:</code> is a form of composition, where the inner
-function operates element by element, and the other function
-works on the list as a whole. For example, <code>1 2 3 (+/@:*) 4
-5 6</code> will first apply the <code>*</code> element by element
-to get a list <code>1*4 2*5 3*6</code>, and then <code>+/</code>
-(summation) will sum the list to produce <code>(1*4) + (2*5) + (3*6)</code>.
-</li>
-
-</ul>
-</div>
-</p>
 If $A$ is not full column rank, then some
 $(\ba_i-\sum_{j=1}^{i-1}(\bq_j'\ba_i)\bq_j)$ will be zero, hence we cannot apply
 $unit$ to it. But then we can take $\bq_i$ equal to any unit
@@ -1017,21 +781,6 @@ Householder idea. You'll need to understand the above solution in
 order to
 understand the definition of <code>h</code> below to multiply by
 a Huseholder matrix. 
-<span class="j">
-<pre>
-h=: ] - 2*[*d
-</pre>
-</span>
-Let's try it out on some vectors.
-<span class="j">
-<pre>
-a=: 4 3 0
-b=: 0 5 0
-]diff=: u a - b
-diff h b
-</pre>
-</span>
-
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -1096,33 +845,6 @@ $$
 <img src="../image/box.png"></p>
 
 We shall now apply it to a $4\times 3$ matrix. 
-<span class="j">
-<pre>
-sh=: ({. - n) , }.
-
-]'a1 b1 c1'=: ? 3 4 $ 100
-</pre>
-</span>
-
-<p>
-<a href="javascript:hideShow('qq');">[J Help]</a>
-<div id="qq" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>{.</code> (head) extracts the head of a list,
-<i>e.g.</i>, <code>{. 1 2 3 4</code> is <code>1</code>.</li>
-
-<li>
-<code>}.</code> (behead) removes the head of a list,
-<i>e.g.</i>, <code>}. 1 2 3 4</code> is <code>2 3 4</code>.</li>
-
-<li>Read <code>({. - n) , }.</code> as "(head minus norm)
-followed by the rest".</li>
-
-</ul>
-</div>
-</p>
 
 The steps are
 shown in the diagram below (red is the entry computed in that
@@ -1138,28 +860,6 @@ the $\bu$'s</th>
 </tr>
 </table>
 </center>
-
-<span class="j">
-<pre>
-n a1                      NB. (1)
-]u1=:u sh a1              NB. (2)
-
-]b2=:u1 h b1              NB. (3)
-]c2=:u1 h c1              NB. (4)
-
-
-n 1}. b2                  NB. (5) 
-
-]u2=: u sh }. b2         NB. (6)
-
-]c3=:u2 h }. c2          NB. (7) 
-
-
-n }. c3                  NB. (8)
-
-u sh }. c3               NB. (9)
-</pre>
-</span>
 
 
 <h3><a
@@ -1440,42 +1140,7 @@ Here we do not consider the sequence as being convergent.</font>
 
 <p></p>
 
-Let's take a computational  example:
-<span class="j">
-<pre>
-mp=: +/ . *
-d=: +/@:*    NB. Sum of products
-u=: %%:@d~   NB. Divide by square root of dot product with itself
-pow=: u@mp
-</pre>
-</span>
 
-<p>
-<a href="javascript:hideShow('pow');">[J Help]</a>
-<div id="pow" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>Here <code>mp</code> performs matrix multiplication. It uses
-the rather complicated dot operation, which I cannot
-explain here. So just accept the fact that <code>mp</code>
-works. You may try out some examples to convince yourself that
-this is indeed so.</li>
-
-</ul>
-</div>
-</p>
-
-<span class="j">
-<pre>
-a=:? 5 5 $ 0
-a=: a + |: a
-
-v=.? 5#0
-   
-]w=: a pow^:_ v
-plot |: pow^:(i.100) v
-</pre>
-</span>
 
 <h3><a
 name="When does it work?">When does it work?</a></h3>

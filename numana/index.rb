@@ -1,6 +1,6 @@
 <NOTE>
 @{
-<UPDT>WED MAR 04 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Numerical Analysis (B-I, 2020)</HEAD1>
 This is the course web page for Numerical Analysis as taught to
 the B. Stat (hons) first year students in the year 2020.
@@ -87,9 +87,11 @@ participation in the practical computations using J in class.
 
 <HEAD1>Reference and extra reading</HEAD1>
 <UL>
+<LI><B>Numerical Analysis</B> by Timothy Sauer</LI>
 <LI>
 <LINK to="http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/">http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/</LINK>
 </LI>
+<LI><B>An Introduction to Numerical Analysis</B> by Atkinson</LI>
 <LI><B>Matrix Computations</B> by Golub and van Loan</LI>
 <LI><B>Rounding errors in algebraic processes</B> by
 J. H. Wilkinson</LI></UL>

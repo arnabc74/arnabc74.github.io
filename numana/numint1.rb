@@ -1,6 +1,6 @@
 <NOTE>
 @{<TITLE>Numerical Integration</TITLE>
-<UPDT>THU FEB 20 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Numerical Integration</HEAD1>
 Suppose that we are given a function <M>f(x),</M> and we are to compute
 <D>
@@ -69,14 +69,14 @@ So by applying trapezium rule the integral is approximately
 </D>
 It is instructive to compare this with the actual value, which is 0.1359.
 </EXM>
-The following J code allows you to use a finer grid:
+<COMMENT>The following J code allows you to use a finer grid:
 <J>
 trap=:0.1 * 0.5 *  {.+{: + 2*+/@: }.@ }:
 x=: 1+(i.11) % 10
 y=: (^-x*x%2) % %: 2p1
 trap y
 </J>
-
+</COMMENT>
 <HEAD2>Simpson's rule</HEAD2>
 <COMMENT>
 f = function(x) 2+sin(x)
@@ -177,7 +177,7 @@ which is correct up to 4 decimal places. Notice how Simpson's rule gives
 more accurate value here than the trapezium rule, though we have used
 the same <M>n</M> in both methods.
 </EXM>
-
+<COMMENT>
 <J>
 x=: 1+(i.11) % 10
 y=: (^-x*x%2) % %: 2p1
@@ -185,7 +185,7 @@ ev=:2 4 6 8
 od=:1 3 5 7 9
 0.1* (%3) * (+/0 10{ y) + (2*+/ ev{y) + 4*+/od{y
 </J>
-
+</COMMENT>
 <HEAD1>Monte Carlo integration</HEAD1>
 This is a rather different approach that is conceptually very
 simple. Here we consider a definite integration problem as a
@@ -221,13 +221,14 @@ a coordinate system as follows.
 A random dart hit is now <M>(X,Y),</M> where <M>X,Y</M> are
 independent <M>Unif(0,1)</M> random variables. Checking if the
 dart has hit the disc is simply checking whether <M>X^2+Y^2 <
-1.</M> The following J code implements the idea.
+1.</M> 
+<COMMENT>The following J code implements the idea.
 <J>
 p=: _1+2*? 2 1000 $ 0
 in=:1>+/*~ p
 'dot; pensize 3' plot ;/|: in # |:p
 0.004*+/in
-</J>
+</J></COMMENT>
 </EXM>
 
 We shall now use the idea to approximate an integral of the
@@ -242,14 +243,15 @@ Again we throw darts randomly at the rectangle and find the
 proportion of darts hitting the shaded region. Mathematically, we
 generate <M>X,Y</M> independently with <M>X\sim Unif(a,b)</M>
 and <M>Y\sim Unif(0,M).</M> Then we check the proportion of cases
-for which <M>Y < f(X).</M> The following J code snippet
+for which <M>Y < f(X).</M> 
+<COMMENT>The following J code snippet
 implements this idea for <M>f(x) = x^2</M> over <M>[0,1]</M> with
 upper bound <M>B=1.5.</M> 
 <J>
 x=: ? 1000 $ 0
 y=: 1.5 * ? 1000 $ 0
 0.0015 * +/ y < x*x
-</J>
+</J></COMMENT>
 This technique may be used to approximate the area of any region
 that may be bounded in a box and for which we may test
 containment. It easily extends to higher dimensions (volume,

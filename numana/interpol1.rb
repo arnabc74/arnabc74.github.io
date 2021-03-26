@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbb R}</M>
 <TITLE>Polynomial Interpolation</TITLE>
-<UPDT>MON MAY 04 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 
 <HEAD1>Polynomial interpolation</HEAD1>
 Here we shall work with <B>polynomial</B>s.  These are functions with  the
@@ -309,6 +309,7 @@ xi    2   3    -2   1   0
 yi   22   -12   4   5   5
 </PRE>
 </EXR>
+<COMMENT>
 The following J code will help you explore these. You may need
 to <CODE>load'trig'</CODE> (if you have not already writted it in
 your <CODE>startup.ijs</CODE>) in order to use <CODE>sin</CODE>:
@@ -335,6 +336,7 @@ elements, and give <CODE>1 2</CODE>.</LI>
 lists of numbers, then we make a matrix with these as rows
 using <CODE>r1, r2 ,: r3</CODE>.</LI>
 </JHLP>
+</COMMENT>
 <HEAD3>Using the table</HEAD3>
 Once the divided differences have been computed, we can compute the 
 interpolating polynomial <M>f(x)</M> having degree <M>\leq n</M> using the following
@@ -380,6 +382,7 @@ is
 Though we used only the ''north-east edge'', we indirectly used the entire table, because we need all the 
 entries in the table to compute the final 1 in the table. 
 </EXM>
+<COMMENT>
 Here is some J code to implement the idea. 
 
 <J>
@@ -402,6 +405,7 @@ products.</LI>
 <LI><CODE>}:</CODE> (curtail) chop off the tail of a list. For
 example, <CODE>}: 1 2 3</CODE> is <CODE>1 2</CODE>.</LI> 
 </JHLP>
+</COMMENT>
 <EXR>
   Find the interpolating polynomial for the table for which we had already
   used Lagrange's method earlier. Do you get the same answer? You should!
@@ -490,7 +494,7 @@ Check by direct computation that we indeed have
 It is always a good idea to perform 
 this check in the examination to safeguard against mistakes.
 </EXM>
-
+<COMMENT>
 <J>
 grow=: 4 : 'if. x=0 do. y,>:>./y else. y,<:<./y end.'
 ]v=:? 7#2
@@ -500,6 +504,7 @@ pos{tab
 terms=:1,nx-shdw{x
 +/ (pos{tab) * */\terms
 </J>
+</COMMENT>
 <PROJ id="path">Prove this strange fact rigourously. [Hint: The following properties of divided differences may help.]</PROJ>
 
 <HEAD3>Some properties of divided differences</HEAD3>

@@ -104,7 +104,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-THU FEB 27 IST 2020</i></td>
+FRI MAR 26 IST 2021</i></td>
 </tr>
 </table>
 
@@ -239,62 +239,61 @@ $$\begin{eqnarray*}
 \omega_k &amp; = &amp; \omega_{k-1} -\frac gL\sin \theta_{k-1} \delta t.
 \end{eqnarray*}$$ 
 Admittedly, this is a rather crude approximation. However, if $\delta t$  is pretty small, the accuracy increases. 
-Let's explore this numerically using the following J code:
-<span class="j">
+<p></p>
+Let's explore this numerically using R. First, we decide about a
+time resolution, and the number of steps to run the process:
+of time points:
+<font color="red">
 <pre>
-r=: {:, (_9.8 *  sin @ {.)  
-e=:] + 0.1 *  r 
-e^:(i.100) 1 0 
-plot {. |: e^:(i.100) 1 0 
+dt = 0.1
+n = 100
 </pre>
-</span>
-<a href="javascript:hideShow('j1');">J help</a>
-<div id="j1" style="display:none;background-color:#ffcccc;">
-
-<ul>
-
-<li>
-<code>=:</code> defining a new variable or function.</li>
-
-<li>
-<code>{.</code> (head): extracts the first element of a list.</li>
-
-<li>
-<code>{:</code> (tail): extracts the last element of a
-list.</li>
-
-<li>
-<code>@</code> function composition.</li>
-
-<li>
-<code>]</code> Identity function $f(y)=y$</li>
-
-<li>
-<code>^:</code> (composition power): <i>e.g.</i> <code>f^:3</code>
-means $f(f(f(\cdots))).$ Also, <code>f^:(1 2 3)</code>
-means a list of functions, $f, f\circ f, f\circ f\circ f.$</li>
-
-<li>
-<code>i.</code> creates a list of integers. In particular,
-<code>i. 5</code> is 0,1,2,3,4.</li>
-
-<li>
-<code>|:</code> (transpose): matrix transposition.</li>
-
-<li>
-<code>plot</code> when used as <code>plot y</code> makes a
-line plot of $(0,y_0),...,(n-1,y_{n-1})$ if $n$ is the
-length of $y.$</li>
-
-</ul>
-
-</div>
+</font>
+Next,
+we create three arrays, one for $t$, one for $\theta$,
+and  the other
+for $\omega$:
+<font color="red">
+<pre>
+tm = numeric(n)
+theta = numeric(n)
+omega = numeric(n)
+</pre>
+</font>
+Set the initial values:
+<font color="red">
+<pre>
+tm[1] = 0
+theta[1] = 30 * (pi/180)
+omega[1] = 0;
+</pre>
+</font>
+Note that array indices in R start from 1 (and not from 0, as in C).
+Run the following loop to populate the arrays.
+<font color="red">
+<pre>
+for(k in 2:n) {
+   tm[k] = tm[k-1] + dt
+   theta[k] = theta[k-1] + omega[k-1]*dt
+   omega[k] = omega[k-1] - 9.8*sin(theta[k-1])*dt
+}
+</pre>
+</font>
+Finally, make a plot:
+<font color="red">
+<pre>
+plot(tm,theta, ty='l')
+</pre>
+</font>
+Yikes! What nonsense!
 
 <p></p>
 
-Here we are making 100 steps with $\delta t = 0.1.$   Try with $\delta t = 0.01$  also, and see how the plot changes.
+Here we are making 100 steps with $\delta t = 0.1.$   Try
+with $\delta t = 0.01$  also, and see how the plot changes.
+Much better, isn't it? But still do you see something fishy?
  <p></p>
-The following R code implements the same idea:
+You might like to turn the above R code into a function:
 <font color="red">
 <pre>
 pendulum = function(t0,theta0,n,dt) {
@@ -367,7 +366,7 @@ The rod in the above pendulum is an inextensible one. So we could treat
 $L$ as a constant. What if we replace it by a spring with constant
 $\gamma?$ Then the tension in the spring will be
 $$
-T = \gamma\cdot (\sqrt{x^2+y^2}- \ell),
+T = \gamma\cdot \left(\sqrt{x^2+y^2}- \ell\right),
 $$ 
 where $\ell$  is the unstretched length of the spring. 
 
@@ -485,45 +484,7 @@ If you use 100 steps the accuracy is pretty good:
 </tr>
 </table>
 </center>
-We may explore these using the following J code.
-<span class="j">
-<pre>
-d1=:-@sin@+/
-eu=:] + 0.1, 0.1  *  d1
-eu^:(i.5) 0 _0.5p1
-xct=: --arcsin@ (1 (-%+) *~)
-tr=: xct t=: (i.200) % 100
-pd'reset'
-pd t; tr 
-pd ;/ |: eu^:(i.20) 0 _0.5p1
-pd'show'
-</pre>
-</span>
 
-<a href="javascript:hideShow('j2');">J help</a>
-<div id="j2" style="display:none;background-color:#ffcccc;">
-
-<ul>
-
-<li>
-<code>+/</code> means summation. <i>e.g.</i> <code>+/ 1 2 3</code>
-will give 6.</li>
-
-<li>
-<code>,</code> joins two lists end to end. <i>e.g.</i> if $x=1, 2,
-3$ then <code>5, x</code> means 5,1,2,3.</li>
-
-<li>
-<code>_0.5p1</code> means $-\frac \pi2.$</li>
-
-<li>
-<code>(f g h)</code> means the function $y\mapsto
-g(f(y), h(y)),$ or $(x,y)\mapsto g(f(x,y), h(x,y)).$ Just as $(\sin+\cos)(x) = \sin x + \cos
-x.$ In particular, <code>1 (-%+) x</code> means $\frac{1-x}{1+x}.$</li>
-
-</ul>
-
-</div>
 
 <img src="../image/box.png"></p>
 
@@ -618,45 +579,6 @@ The result is shown below. The red curve is the 2nd order Taylor approximation w
 </table>
 </center>
 
-<span class="j">
-<pre>
-d1=:-@sin@+/
-d2=:(-@cos@+/)*(1+d1)
-tay2=:]+0.1, (0.1 * d1) + (0.005 * d2)
-tay2^:(i.5) 0 _0.5p1
-tr=: xct t=: (i.200) % 100 
-xct=: --arcsin@ (1 (-%+) *~)
-pd'reset'
-pd t; tr
-pd ;/ |: tay2^:(i.20) 0 _0.5p1
-pd'show'
-</pre>
-</span>
-
-<a href="javascript:hideShow('j3');">J help</a>
-<div id="j3" style="display:none;background-color:#ffcccc;">
-
-<ul>
-
-<li>
-<code>;</code> makes boxes, <i>e.g.</i> <code> 1; 'str' ; 3.9</code>
-will give a list of boxes.</li>
-
-<li>
-<code>;/</code> inserts a <code>;</code> between consecutuve
-elements of a list, <i>e.g.</i>, <code>;/ 1 2 3</code> is the same as <code>1;2;3</code>.
-</li>
-
-<li>
-<code>pd</code> makes plots in a versatile way. Start
-with <code>pd 'reset'</code> and end with <code>pd
-'show'</code>. To plot $(x_i,y_i)$'s and join the points
-with line segments use <code>pd x; y</code>
-</li>
-
-</ul>
-
-</div>
 
 <img src="../image/box.png"></p>
 

@@ -121,7 +121,7 @@ $\newcommand{\y}{\mathbf y}
 <tr>
 <td align="right"><i>Last
 updated on:
-MON MAY 04 IST 2020</i></td>
+FRI MAR 26 IST 2021</i></td>
 </tr>
 </table>
 
@@ -477,46 +477,7 @@ yi   22   -12   4   5   5
 </pre>
 
 <img src="../image/box.png"></p>
-The following J code will help you explore these. You may need
-to <code>load'trig'</code> (if you have not already writted it in
-your <code>startup.ijs</code>) in order to use <code>sin</code>:
-<span class="j">
-<pre>
-d=: dyad : '(x}.y) - (-x)}. y' 
-x=:  0.1 0.2 0.4 0.45 0.6 0.7 0.72 0.9
-y=: sin 0.1 0.2 0.4 0.45 0.6 0.7 0.72 0.9
-y0=:y
-y1=:(1 d y0) % (1 d x)
-y2=:(1 d y1) % (2 d x)
-y3=:(1 d y2) % (3 d x)
-y4=:(1 d y3) % (4 d x)
-y5=:(1 d y4) % (5 d x)
-y6=:(1 d y5) % (6 d x)
-y7=:(1 d y6) % (7 d x)
-]tab=: |: y,y1,y2,y3,y4,y5,y6,:y7
-</pre>
-</span>
 
-<p>
-<a href="javascript:hideShow('tab');">[J Help]</a>
-<div id="tab" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>3 }. 1 2 3 4 5</code> will remove the first 3 elements,
-and give <code>4 5</code>.</li>
-
-<li>
-<code>_3 }. 1 2 3 4 5</code> will remove the last 3
-elements, and give <code>1 2</code>.</li>
-
-<li>If <code>r1</code>, <code>r2</code> and <code>r3</code> are
-lists of numbers, then we make a matrix with these as rows
-using <code>r1, r2 ,: r3</code>.</li>
-
-</ul>
-</div>
-</p>
 
 <h3><a
 name="Using the table">Using the table</a></h3>
@@ -566,45 +527,7 @@ $$f(x) = -5+6x+2x(x-1)+x(x-1)(x-3) = x^3+6x^2+7x-5$$
 Though we used only the ''north-east edge'', we indirectly used the entire table, because we need all the 
 entries in the table to compute the final 1 in the table. 
 <img src="../image/box.png"></p>
-Here is some J code to implement the idea. 
 
-<span class="j">
-<pre>
-nx=: 0.5
-c=:{. tab
-terms=: 1,}: */\ nx-x
-+/ c * terms
-</pre>
-</span>
-
-<p>
-<a href="javascript:hideShow('forward');">[J Help]</a>
-<div id="forward" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>{.</code> (head) extracts the first entry of a
-list. Here the first entry of the dividied difference table is
-its first row, <i>i.e.</i>, the "north-east edge".</li>
-
-<li>
-<code>*/</code> is the continued product operation, just
-as summation is the continued addition.</li>
-
-<li>
-<code>\</code> applies a function cumulatively to a
-list. For example, <code>f\ 1 2 3</code> means the list $f(1),
-f(1,2), f(1,2,3).$ In particular, <code>*/\ 1 2 3</code> will
-give <code>1, 1*2, 1*2*3</code>, <i>i.e.</i>, the cumulative
-products.</li>
-
-<li>
-<code>}:</code> (curtail) chop off the tail of a list. For
-example, <code>}: 1 2 3</code> is <code>1 2</code>.</li> 
-
-</ul>
-</div>
-</p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -771,18 +694,6 @@ It is always a good idea to perform
 this check in the examination to safeguard against mistakes.
 <img src="../image/box.png"></p>
 
-
-<span class="j">
-<pre>
-grow=: 4 : 'if. x=0 do. y,&gt;:&gt;./y else. y,&lt;:&lt;./y end.'
-]v=:? 7#2
-]pos=:;/(+/\.v,0),.i.8
-pos{tab
-]shdw=:}:grow/(|.v),+/v
-terms=:1,nx-shdw{x
-+/ (pos{tab) * */\terms
-</pre>
-</span>
 
 <p>
 <a name="path"><b>

@@ -6,7 +6,7 @@
 \newcommand{\yy}{{\bf y}}
 \newcommand{\z}{{\bf 0}}</M>
 <TITLE>Nonlinear equations</TITLE>
-<UPDT>WED APR 01 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Nonlinear equations</HEAD1>
 It often happens that we have to solve a nonlinear  equation,
 <D>
@@ -68,6 +68,7 @@ k      x
 </PRE>
 We already see convergence.
 </EXM>
+<COMMENT>
 The following J code lets you explore this.
 <J>
 f=:-cos
@@ -80,7 +81,7 @@ nr^:(i.10) 1
 f(y,g(y)).</M> For example, <CODE>-cos</CODE> means <M>y\mapsto y-\cos y.</M></LI>
 </UL>
 </HIDDEN></HIDE>
-
+</COMMENT>
 <EXR>
 Solve using the Newton-Raphson method:
 <OL>
@@ -163,7 +164,7 @@ n    x             y
 </PRE>
 Obviously we are converging to the solution <M>x=1,y=1.</M>
 </EXM>
-
+<COMMENT>
 <J>
 f=: 3 : '( ((r*s) + (r^2) - (s^3) + 1), (r+(2*s)-(r*s^2)+2) ) [ ''r s''=:y'
 d=: 3 : '(2 2 $ (s+2*r), (r-3*s^2), (1-s^2), (2 * 1-r*s)) [''r s''=:y'
@@ -188,6 +189,7 @@ b</M> in the least squares sense assuming <M>A</M> to be full
 column rank.</LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 <P/>
 
 
@@ -285,6 +287,7 @@ up to the first two decimal places. Thus, we see that the answer is 0.74
 up to the first two decimal places.
 </EXM>
 
+<COMMENT>
 The following J code explores this. 
 <J>
 f=:-cos
@@ -308,6 +311,7 @@ or 1.
 if-else.  </LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 <P/>
 
 <EXR>

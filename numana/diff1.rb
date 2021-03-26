@@ -4,7 +4,7 @@
 \newcommand{\v}{\vec}
 </M>
 <TITLE>Differential equations</TITLE>
-<UPDT>THU FEB 27 IST 2020</UPDT>
+<UPDT>FRI MAR 26 IST 2021</UPDT>
 <HEAD1>Differential equations</HEAD1>
 
 
@@ -125,6 +125,44 @@ logic may be used repeatedly to give, at <M>t_k = t_0+k\cdot\delta t,</M>
 \omega_k & = & \omega_{k-1} -[[gL]]\sin \theta_{k-1} \delta t.
 </MULTILINE> 
 Admittedly, this is a rather crude approximation. However, if <M>\delta t</M>  is pretty small, the accuracy increases. 
+<P/>
+Let's explore this numerically using R. First, we decide about a
+time resolution, and the number of steps to run the process:
+of time points:
+<R>
+dt = 0.1
+n = 100
+</R>
+Next,
+we create three arrays, one for <M>t</M>, one for <M>\theta</M>,
+and  the other
+for <M>\omega</M>:
+<R>
+tm = numeric(n)
+theta = numeric(n)
+omega = numeric(n)
+</R>
+Set the initial values:
+<R>
+tm[1] = 0
+theta[1] = 30 * (pi/180)
+omega[1] = 0;
+</R>
+Note that array indices in R start from 1 (and not from 0, as in C).
+Run the following loop to populate the arrays.
+<R>
+for(k in 2:n) {
+   tm[k] = tm[k-1] + dt
+   theta[k] = theta[k-1] + omega[k-1]*dt
+   omega[k] = omega[k-1] - 9.8*sin(theta[k-1])*dt
+}
+</R>
+Finally, make a plot:
+<R>
+plot(tm,theta, ty='l')
+</R>
+Yikes! What nonsense!
+<COMMENT>
 Let's explore this numerically using the following J code:
 <J>
 r=: {:, (_9.8 *  sin @ {.)  
@@ -151,11 +189,14 @@ line plot of <M>(0,y_0),...,(n-1,y_{n-1})</M> if <M>n</M> is the
 length of <M>y.</M></LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 <P/>
 
-Here we are making 100 steps with <M>\delta t = 0.1.</M>   Try with <M>\delta t = 0.01</M>  also, and see how the plot changes.
+Here we are making 100 steps with <M>\delta t = 0.1.</M>   Try
+with <M>\delta t = 0.01</M>  also, and see how the plot changes.
+Much better, isn't it? But still do you see something fishy?
  <P/>
-The following R code implements the same idea:
+You might like to turn the above R code into a function:
 <R>
 pendulum = function(t0,theta0,n,dt) {
   tm = rep(0,n)
@@ -212,7 +253,7 @@ The rod in the above pendulum is an inextensible one. So we could treat
 <M>L</M> as a constant. What if we replace it by a spring with constant
 <M>\gamma?</M> Then the tension in the spring will be
 <D>
-T = \gamma\cdot (\sqrt{x^2+y^2}- \ell),
+T = \gamma\cdot (*(\sqrt{x^2+y^2}- \ell)*),
 </D> 
 where <M>\ell</M>  is the unstretched length of the spring. 
 
@@ -300,6 +341,7 @@ is somewhat better:
 <CIMG web="eul20.png">Euler with 20 steps</CIMG>
 If you use 100 steps the accuracy is pretty good:
 <CIMG web="eul100.png">Euler with 100 steps</CIMG>
+<COMMENT>
 We may explore these using the following J code.
 <J>
 d1=:-@sin@+/
@@ -325,6 +367,7 @@ g(f(y), h(y)),</M> or <M>(x,y)\mapsto g(f(x,y), h(x,y)).</M> Just as <M>(\sin+\c
 x.</M> In particular, <CODE>1 (-%+) x</CODE> means <M>[[1-x][1+x]].</M></LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 </EXM>
 
 Now try your hand at the following problem.
@@ -401,6 +444,7 @@ The result is shown below. The red curve is the 2nd order Taylor approximation w
  the Euler's approximation (i.e., 1st order Taylor) with the same <M>n.</M>
 <CIMG web="et2_10.png">Euler and 2nd order Taylor
 (<M>n=10</M>)</CIMG>
+<COMMENT>
 <J>
 d1=:-@sin@+/
 d2=:(-@cos@+/)*(1+d1)
@@ -427,6 +471,7 @@ with <CODE>pd 'reset'</CODE> and end with <CODE>pd
 with line segments use <CODE>pd x; y</CODE></LI>
 </UL>
 </HIDDEN></HIDE>
+</COMMENT>
 </EXM>
 
 <EXR>

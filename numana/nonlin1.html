@@ -103,7 +103,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-WED APR 01 IST 2020</i></td>
+FRI MAR 26 IST 2021</i></td>
 </tr>
 </table>
 
@@ -180,26 +180,6 @@ k      x
 </pre>
 We already see convergence.
 <img src="../image/box.png"></p>
-The following J code lets you explore this.
-<span class="j">
-<pre>
-f=:-cos
-nr=:- (f % (1+sin))
-nr^:(i.10) 1
-</pre>
-</span>
-<a href="javascript:hideShow('j1');">J help</a>
-<div id="j1" style="display:none;background-color:#ffcccc;">
-
-<ul>
-
-<li>
-<code>f g</code> means the function $y\mapsto
-f(y,g(y)).$ For example, <code>-cos</code> means $y\mapsto y-\cos y.$</li>
-
-</ul>
-
-</div>
 
 
 <p>
@@ -292,46 +272,6 @@ n    x             y
 Obviously we are converging to the solution $x=1,y=1.$
 <img src="../image/box.png"></p>
 
-
-<span class="j">
-<pre>
-f=: 3 : '( ((r*s) + (r^2) - (s^3) + 1), (r+(2*s)-(r*s^2)+2) ) [ ''r s''=:y'
-d=: 3 : '(2 2 $ (s+2*r), (r-3*s^2), (1-s^2), (2 * 1-r*s)) [''r s''=:y'
-nr2=:  - f %. d
-nr2^:(i.20) 0.34 0.5
-</pre>
-</span>
-<a href="javascript:hideShow('j2');">J help</a>
-<div id="j2" style="display:none;background-color:#ffcccc;">
-
-<ul>
-
-<li>
-<code>f=:3 :'...'</code> creates  a
-fnction $f(y).$ The explicit formula for $f$ is
-written in place of the <code>...</code>.</li>
-
-<li>
-<code>'r s'=:y</code> will split $y\equiv(y_0,y_1)$ into
-two components, and make <code>r</code> equal to $y_0$
-and <code>s</code> equal to $y_1.$</li>
-
-<li>To write single quotes inside single quotes use two single
-quotes <code>''</code>.</li>
-
-<li>
-<code>[</code> is the function $(x,y)\mapsto x.$ It
-evaluates  $y$ and then $x$ and then
-returns $x.$</li>
-
-<li>
-<code>b %. A</code> solves the system $A\vec x = \vec
-b$ in the least squares sense assuming $A$ to be full
-column rank.</li>
-
-</ul>
-
-</div>
 
 <p></p>
 
@@ -438,41 +378,7 @@ up to the first two decimal places. Thus, we see that the answer is 0.74
 up to the first two decimal places.
 <img src="../image/box.png"></p>
 
-The following J code explores this. 
-<span class="j">
-<pre>
-f=:-cos
-m=:0.5 *  +/ 
-n=:{.,m
-p=:m,{:
-c=:0&amp;&gt; @f @ m
-bis=: (c * p) + (-.@c * n)
-bis^:(i.20) 0 1
-</pre>
-</span>
-<a href="javascript:hideShow('j3');">J help</a>
-<div id="j3" style="display:none;background-color:#ffcccc;">
 
-<ul>
-
-<li>
-<code>0&amp;&gt;</code> is "less than 0". If $f(x,y)$ is some
-function, then <code>5&amp;f</code> is the function $y\mapsto
-f(5,y)$ and <code>f&amp;5</code> is $y\mapsto f(y,5).$
-Here <code>&gt;</code> is the greater than function, which returns 0
-or 1.
-</li>
-
-<li>
-<code>-.</code> is negation. It turns 0 into 1 and <i>vice versa</i>.</li>
-
-<li>
-<code>(c * n) + (-.@c * p)</code> is a mathematical way to specify
-if-else.  </li>
-
-</ul>
-
-</div>
 
 <p></p>
 
