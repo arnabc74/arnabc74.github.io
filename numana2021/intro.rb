@@ -128,6 +128,6 @@ numerical analysis.
 <P/>
 
 <DISQUSE id="intro"
-url="https://www.isical.ac.in/~arnabc/numana/intro.html"/>
+url="https://www.isical.ac.in/~arnabc/numana2021/intro.html"/>
 @}
 </NOTE>

@@ -95,6 +95,6 @@ participation in the practical computations using J in class.
 <LI><B>Matrix Computations</B> by Golub and van Loan</LI>
 <LI><B>Rounding errors in algebraic processes</B> by
 J. H. Wilkinson</LI></UL>
-<DISQUSE id="index" url="https://www.isical.ac.in/~arnabc/numana/index.html"/>
+<DISQUSE id="index" url="https://www.isical.ac.in/~arnabc/numana2021/index.html"/>
 @}
 </NOTE>
