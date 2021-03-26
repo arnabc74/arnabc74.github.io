@@ -1,7 +1,7 @@
 <NOTE>
 @{
 <UPDT>FRI MAR 26 IST 2021</UPDT>
-<HEAD1>Numerical Analysis (B-I, 2020)</HEAD1>
+<HEAD1>Numerical Analysis (B-I, 2021)</HEAD1>
 This is the course web page for Numerical Analysis as taught to
 the B. Stat (hons) first year students in the year 2020.
 
