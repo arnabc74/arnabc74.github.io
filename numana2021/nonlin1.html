@@ -83,10 +83,10 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Newton-Raphson method">Newton-Raphson method</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Nonlinear systems">Nonlinear systems</a>
 </li>
-<li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Bisection method">Bisection method</a>
 </li>
 </ul>
@@ -103,7 +103,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-FRI MAR 26 IST 2021</i></td>
+SUN MAR 28 IST 2021</i></td>
 </tr>
 </table>
 
@@ -169,6 +169,20 @@ $x_0=1.$ Here $f(x) = \cos(x)-x,$ and hence $f'(x) =
 $$
 x_{k+1} = x_k + \frac{\cos(x_k)-x_k}{\sin(x_k)+1}.
 $$
+Let's convert it to  R code:
+
+<font color="red">
+<pre>
+x = 0
+( x = x + (cos(x)-x)/(sin(x)+1) )
+</pre>
+</font>
+The outermost parentheses in the second line causes R to print
+the new value of <code>x</code> at each step. Simply repeat this
+line (by hitting the up cursor key followed by enter repeatedly)
+to perform the iterations. 
+<p></p>
+
 A few iterations are as follows. 
 <pre>
 k      x
@@ -194,11 +208,46 @@ Solve using the Newton-Raphson method:
 
 </ol>
 
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Write an R function:
+<font color="red">
+<pre>
+NR = function(f, d, x0, n) {
+  ...
+}
+</pre>
+</font>
+to carry out $n$ steps of NR iterations for the
+equation $f(x) = 0$ where $d(x)$ is the derivative
+of $f(x).$ Here $x_0$ is the initial value. 
+<p></p>
+Here you'll be making use of the powerful
+"functional programming" feature of R. An R functn can accept
+another R function as its argument, <i>e.g.</i>, here <code>f</code>
+and <code>d</code> are both functions. Just to get you stated
+here is a function to compute $f(x)+g(x)$ at $x = x_0:$
+<font color="red">
+<pre>
+plus = function(f,g,x0) {
+  f(x0) + g(x0)
+}
+</pre>
+</font> 
+Use it like
+<font color="red">
+<pre>
+plus(sin, exp, 1.3)
+sin(1.3) + exp(1.3)
+</pre>
+</font>
 
 <img src="../image/box.png"></p>
 
-<h2><a
-name="Nonlinear systems">Nonlinear systems</a></h2>
+<h3><a
+name="Nonlinear systems">Nonlinear systems</a></h3>
 It is possible to use Newton-Raphson method to solve a <i>system</i> of
 nonlinear equations:
 $$\begin{eqnarray*}
@@ -243,7 +292,47 @@ $$
      y^2-1      &amp;  y+2x
 \end{array}\right]
 $$
-The following table shows a few sample iterations.
+Let's try to code this up in R. It will help if we employ vector
+notation here. Thus, we shall use a single parameter to denote
+the vector $(x,y).$
+<font color="red">
+<pre>
+f = function(val) {
+  x = val[1]
+  y = val[2]
+  c(x*y+x^2-y^3-1, x+2*y-x*y^2-2)
+}
+</pre>
+</font>
+We have not used any explicit <code>return</code> this time. By
+default, an R function always returns the value of its last
+line. The <code>c</code> function creates a vector.
+The following table shows a few sample iterations. 
+<p></p>
+Next we need to compute the derivative matrix:
+<font color="red">
+<pre>
+D = function(val) {
+  x = val[1]
+  y = val[2]
+  matrix(c(y+2*x,1-y^2, x-3*y^2, 2-2*x*y), 2, 2)
+}
+</pre>
+</font>
+The <code>matrix</code> function expects its entries
+column-by-column. No need to invert the matrix ourselves. For a
+non-singular matrix <code>A</code> and a vector <code>b</code>,
+the expression <code>solve(A,b)</code> computes $A ^{-1} b$
+in R.
+<p></p>
+Thus, the R version of the NR iteration becomes
+<font color="red">
+<pre>
+val = c(0.34, 0.5)
+( val = val - solve(D(val), f(val)) )
+</pre>
+</font>
+A sample output is given below.
 <pre>
 n    x             y
 -------------------------------------
@@ -271,7 +360,13 @@ n    x             y
 </pre>
 Obviously we are converging to the solution $x=1,y=1.$
 <img src="../image/box.png"></p>
-
+Here the $D$ matrix never became singular. Various
+modifications of the $D$ matrix has been suggested
+if it  becomes
+singular at some point during the iterations. These variations
+are collectively called <b>quasi-Newton-Raphson
+iterations</b>. Most softwares actually use such an algorithm,
+when they claim to use Newton-Raphson method.
 
 <p></p>
 
@@ -292,11 +387,26 @@ $$\begin{eqnarray*}
 (x+y)^2 - \cos(xy^2) &amp; = &amp; 24.1561
 \end{eqnarray*}$$
 
+<p>
+<b>EXERCISE:</b>&nbsp;
+Write NR solver for a general nonlinear system in R like this:
+<font color="red">
+<pre>
+NR2 = function(f, d, x0, n) {
+  ...
+}
+</pre>
+</font>
+Here $f:{\mathbb R}^n\rightarrow{\mathbb R}^n$ and $d:{\mathbb R}^n\rightarrow {\mathbb R}^{n\times n}$
+gives its derivative (Jacobian) matrix. No need to check
+nonsingularity. 
+<img src="../image/box.png"></p>
+
 
 <img src="../image/box.png"></p>
 
-<h1><a
-name="Bisection method">Bisection method</a></h1>
+<h2><a
+name="Bisection method">Bisection method</a></h2>
 While the Newton-Raphson method is very efficient, it requires us to compute the derivative of $f.$  Thus, it is unsuitable
  in cases where $f$  is not differentiable or where the derivative is too difficult to be computed. Now we shall learn
  a method that may be used to solve the (nonlinear) equation 
@@ -356,6 +466,20 @@ Our first guess is
 $$
 m_0 = \frac{l_0+r_0}{2} =  0.7854.
 $$
+It will help to write a little R code to proceed further.
+<font color="red">
+<pre>
+l = 0 
+r = pi/2
+f = function(x) cos(x) - x
+for(i in 1: 20) {m = (l+r)/2; if(f(m)*f(l) &lt; 0) {r= m} else {l = m}; cat(l, r,'\n')}
+</pre>
+</font>
+These lines introduce two new features of R. First, for a
+function consisting of a single expression, the enclosing braces
+are optional. Second, we can use <code>for</code>-loops in R.
+<p></p>
+
 Proceeding like this we get the following table.
 <pre>
 k left         right       mid
@@ -378,6 +502,22 @@ up to the first two decimal places. Thus, we see that the answer is 0.74
 up to the first two decimal places.
 <img src="../image/box.png"></p>
 
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Write an R function like
+<font color="red">
+<pre>
+bis = function(f, l, r, n) {
+  ...
+}
+</pre>
+</font>
+to apply bisection method to a function $f(x)$. Your
+function should stop with an error message if $f(l)$
+and $f(r)$ are not of opposite signs. The R function 
+<code>stopifnot</code> may help here.
+<img src="../image/box.png"></p>
 
 
 <p></p>

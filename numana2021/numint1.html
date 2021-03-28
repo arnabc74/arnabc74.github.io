@@ -97,7 +97,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <tr>
 <td align="right"><i>Last
 updated on:
-FRI MAR 26 IST 2021</i></td>
+SUN MAR 28 IST 2021</i></td>
 </tr>
 </table>
 
@@ -201,6 +201,64 @@ $$
 $$
 It is instructive to compare this with the actual value, which is 0.1359.
 <img src="../image/box.png"></p>
+To use a finer grid, let's harness the power of R. Suppose we
+want 14 subintervals (<i>i.e.</i>, 15 poits in all, including the end points):
+<font color="red">
+<pre>
+n = 14+1
+dx = (2-1)/14
+x = seq(1,2,len=n)
+y = dnorm(x) 
+</pre>
+</font>
+I just cheated, by using the readymade normal pdf that is already
+available in R. Of course, I could have used the more verbose:
+<font color="red">
+<pre>
+y = 1/(sqrt(2*pi)) * exp(-x*x/2)
+</pre>
+</font>
+Anyway, I now need to partition the points into three parts: 
+<ul>
+
+<li>the extreme points (just 2 of them)</li>
+
+<li>the interior points ($15-2=13$ such)</li>
+
+</ul>
+
+<font color="red">
+<pre>
+dx*(y[1]+y[n] + 2*sum(y[2:(n-1)]))/2
+</pre>
+</font>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Write an R function to implement this method:
+<font color="red">
+<pre>
+trapint = function(f,a,b,n) {
+  ...
+}
+</pre>
+</font>
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We want to approximate 
+$$
+\int_0^2 e^{-t} t^{x-1}\, dt.
+$$
+This is the incomplete gamma function evaluated at 2. Keep on
+applying trapezoidal rule with
+increasing $n$ until the approximation with two consecutive
+values of $n$ match up to the first 5 decimal places.
+<img src="../image/box.png"></p>
+
 
 
 <h2><a
@@ -299,6 +357,39 @@ which is correct up to 4 decimal places. Notice how Simpson's rule gives
 more accurate value here than the trapezium rule, though we have used
 the same $n$ in both methods.
 <img src="../image/box.png"></p>
+The R version of Simpson's rule is quite simple. We start out
+just as for Simpson's rule:
+<font color="red">
+<pre>
+dx = (2-1)/14
+x = seq(1,2,len=15)
+y = dnorm(x)
+</pre>
+</font>
+Now we need to partition the points into <i>three</i> groups:
+<ul>
+
+<li>the two extreme points: $x_0$ and $x_n$</li>
+
+<li>the mid points: $x_1,...,x_{n-1}$</li>
+
+<li>the boundary points (except the extreme two): $x_2,...,x_{n-2}.$</li>
+
+</ul>
+Since R starts its indices from 1, we have to be careful:
+<font color="red">
+<pre>
+ext = c(1:15)
+mid = seq(2,14,2)
+bdry = seq(3,13,2)
+</pre>
+</font>
+Make sure you understand these. The third argument in <code>seq</code> is the step size.
+<font color="red">
+<pre>
+(dx/3) * (sum(y[ext]) + 4*sum(y[mid]) + 2*sum(y[bdry]))
+</pre>
+</font>
 
 
 <h1><a
@@ -367,6 +458,45 @@ independent $Unif(0,1)$ random variables. Checking if the
 dart has hit the disc is simply checking whether $X^2+Y^2 &lt;
 1.$ 
 
+<p></p>
+Let's explore using R:
+<font color="red">
+<pre>
+x = runif(1000, min=-1, max=1)
+y = runif(1000, min=-1, max=1)
+hit = (x*x + y*y &lt; 1)
+plot(x,y,col=hit+1,pch=20)
+mean(hit)
+</pre>
+</font>
+A few points about the code:
+<ol type="">
+
+<li>
+<code>hit</code> is a 0-1 variable. If you print it, you'll
+get a sequence of TRUE's and FALSE's.</li>
+
+<li>When we compute <code>mean(hit)</code> we are finding mean
+of the 0's and 1's, <i>i.e.</i>, the proportion of 1's.</li>
+
+<li>The <code>col</code> parameter is set to <code>hit+1</code>,
+<i>i.e.</i>, a sequence of 1's and 2's. In R, colour 1 means black, and
+colour 2 means red. Colour 0 means "don't plot".</li>
+
+</ol>
+This produces a plot like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/numdart1.png"></th>
+</tr>
+<tr>
+<th>Hit points are shown in red</th>
+</tr>
+</table>
+</center>
+
+
 <img src="../image/box.png"></p>
 
 We shall now use the idea to approximate an integral of the
@@ -391,6 +521,38 @@ proportion of darts hitting the shaded region. Mathematically, we
 generate $X,Y$ independently with $X\sim Unif(a,b)$
 and $Y\sim Unif(0,M).$ Then we check the proportion of cases
 for which $Y &lt; f(X).$ 
+
+<p></p>
+The following R code snippet
+implements this idea for $f(x) = x^2$ over $[0,1]$ with
+upper bound $B=1.5.$ 
+<font color="red">
+<pre>
+x = runif(1000)
+y = 1.5 * runif(1000)
+hit = y &lt; x*x
+plot(x,y,col=hit+1,pch=20)
+mean(hit)
+</pre>
+</font>
+
+Try this for yourself. You may not  really like the precision. 
+Here is the plot I got:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/xsqhit.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Can you work out the variance of the estimator? Is the estimator unbiased?
+<img src="../image/box.png"></p>
 
 This technique may be used to approximate the area of any region
 that may be bounded in a box and for which we may test

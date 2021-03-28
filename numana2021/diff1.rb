@@ -4,7 +4,7 @@
 \newcommand{\v}{\vec}
 </M>
 <TITLE>Differential equations</TITLE>
-<UPDT>FRI MAR 26 IST 2021</UPDT>
+<UPDT>SUN MAR 28 IST 2021</UPDT>
 <HEAD1>Differential equations</HEAD1>
 
 
@@ -161,6 +161,7 @@ Finally, make a plot:
 <R>
 plot(tm,theta, ty='l')
 </R>
+<CIMG web="diffplot1.png"/>
 Yikes! What nonsense!
 <COMMENT>
 Let's explore this numerically using the following J code:
@@ -191,12 +192,10 @@ length of <M>y.</M></LI>
 </HIDDEN></HIDE>
 </COMMENT>
 <P/>
-
-Here we are making 100 steps with <M>\delta t = 0.1.</M>   Try
-with <M>\delta t = 0.01</M>  also, and see how the plot changes.
-Much better, isn't it? But still do you see something fishy?
- <P/>
-You might like to turn the above R code into a function:
+We want to play with the value of <M>\delta t</M> (and the number
+of steps). It is difficult to re-run all these lines of R
+everytime we change the values. So at this point it is a good
+idea to turn the above R code into a function:
 <R>
 pendulum = function(t0,theta0,n,dt) {
   tm = rep(0,n)
@@ -214,19 +213,33 @@ pendulum = function(t0,theta0,n,dt) {
     theta[k] = theta[k-1] + omega[k-1]*dt
     omega[k] = omega[k-1] + C*sin(theta[k-1])*dt
   }
+  plot(tm,theta,type="l")
   return(list(time=tm,angle=theta,vel=omega))
 }
-result1 = pendulum(0,1,1000,0.1)
-
-plot(result1$time,result1$angle,type="l")
-result2 = pendulum(0,1,10000,0.01)
-lines(result2$time,result2$angle,col='red')
 </R>
+Now we may simply write 
+<R>
+result1 = pendulum(0,30*(pi/180),100,0.1)
+</R>
+to produce the same plot as before. Also the
+variable <CODE>result1</CODE> will store the numerical values in
+case we need them. 
+<P/>
+Now let's increase the time resolution by setting <M>\delta
+t=0.01</M>. To maintain the same time range don't forget to
+change <M>n</M> accordingly:
+<R>
+pendulum(0, 30* (pi/180), 1000, 0.01)
+</R>
+The result is 
+<CIMG web="diffplot2.png">Much better</CIMG>
+But still do you see something fishy?
+ <P/>
 
 <EXR>
 Execute the above code with different initial values, and see if
 the output changes as it should. Make a plot of the velocity over
-time. Draw the phasor diagram, i.e., a parametric plot
+time. Draw the phase diagram, i.e., a parametric plot
 of <M>(\theta(t), \omega(t))</M> with <M>t</M> as the parameter.
 </EXR>
 
@@ -241,7 +254,8 @@ mechanical energy curve is indeed a horizontal straight line, as
 it should be.
 </EXR>
 
-<EXR>Try to produce an animation of the pendulum in R. Hint: the function 
+<EXR>
+Try to produce an animation of the pendulum in R. Hint: the function 
 <R>
 Sys.sleep(0.1)
 </R>
@@ -370,6 +384,34 @@ x.</M> In particular, <CODE>1 (-%+) x</CODE> means <M>[[1-x][1+x]].</M></LI>
 </COMMENT>
 </EXM>
 
+<EXR>
+Write an R function of the following form
+<R>
+euler = function(x0, y0, dx, n) {
+  ...
+}
+</R>
+to produce these plots. To draw multiple lines in the same plot
+use the <CODE>lines</CODE> function:
+<R>
+x1 = seq(-2*pi, 2*pi, len=101)
+y1 = sin(x1)
+x2 = seq(-4*pi, 4*pi, len=11)
+y2 = 0.01*x2^2
+plot(x1,y1,ty='l')
+lines(x2,y2,lty=2,col='red')
+</R>
+This produces 
+<CIMG web="diffplot3.png"></CIMG>
+Note that the range of <M>x</M> and <M>y</M>-values are
+determined by the first <CODE>plot</CODE> command. You might use
+its <CODE>xlim</CODE> and <CODE>ylim</CODE> parameters to change
+these ranges. See the help of <CODE>plot</CODE> function that:
+<R>
+?plot
+</R>
+
+</EXR>
 Now try your hand at the following problem.
 
 <EXR>
@@ -444,6 +486,7 @@ The result is shown below. The red curve is the 2nd order Taylor approximation w
  the Euler's approximation (i.e., 1st order Taylor) with the same <M>n.</M>
 <CIMG web="et2_10.png">Euler and 2nd order Taylor
 (<M>n=10</M>)</CIMG>
+
 <COMMENT>
 <J>
 d1=:-@sin@+/

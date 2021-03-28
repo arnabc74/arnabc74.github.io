@@ -6,7 +6,7 @@
 \newcommand{\yy}{{\bf y}}
 \newcommand{\z}{{\bf 0}}</M>
 <TITLE>Nonlinear equations</TITLE>
-<UPDT>FRI MAR 26 IST 2021</UPDT>
+<UPDT>SUN MAR 28 IST 2021</UPDT>
 <HEAD1>Nonlinear equations</HEAD1>
 It often happens that we have to solve a nonlinear  equation,
 <D>
@@ -57,6 +57,18 @@ Let us solve <M>\cos(x)=x</M> using Newton-Raphson method starting with
 <D>
 x_{k+1} = x_k + \frac{\cos(x_k)-x_k}{\sin(x_k)+1}.
 </D>
+Let's convert it to  R code:
+
+<R>
+x = 0
+( x = x + (cos(x)-x)/(sin(x)+1) )
+</R>
+The outermost parentheses in the second line causes R to print
+the new value of <CODE>x</CODE> at each step. Simply repeat this
+line (by hitting the up cursor key followed by enter repeatedly)
+to perform the iterations. 
+<P/>
+
 A few iterations are as follows. 
 <PRE>
 k      x
@@ -92,9 +104,36 @@ plot (]; 1 _2 0 3 5 _1&p.) i:100
 </COMMENT>
 <LI><M>1-2x+3x^3+5x^4-x^5 = 0.</M></LI>
 </OL>
+</EXR>
+
+<EXR>Write an R function:
+<R>
+NR = function(f, d, x0, n) {
+  ...
+}
+</R>
+to carry out <M>n</M> steps of NR iterations for the
+equation <M>f(x) = 0</M> where <M>d(x)</M> is the derivative
+of <M>f(x).</M> Here <M>x_0</M> is the initial value. 
+<P/>
+Here you'll be making use of the powerful
+"functional programming" feature of R. An R functn can accept
+another R function as its argument, e.g., here <CODE>f</CODE>
+and <CODE>d</CODE> are both functions. Just to get you stated
+here is a function to compute <M>f(x)+g(x)</M> at <M>x = x_0:</M>
+<R>
+plus = function(f,g,x0) {
+  f(x0) + g(x0)
+}
+</R> 
+Use it like
+<R>
+plus(sin, exp, 1.3)
+sin(1.3) + exp(1.3)
+</R>
 
 </EXR>
-<HEAD2>Nonlinear systems</HEAD2>
+<HEAD3>Nonlinear systems</HEAD3>
 It is possible to use Newton-Raphson method to solve a <I>system</I> of
 nonlinear equations:
 <MULTILINE>
@@ -136,7 +175,41 @@ This has inverse given by
 <MAT>2-2xy &  3y^2-x\\ 
      y^2-1      &  y+2x</MAT>
 </D>
-The following table shows a few sample iterations.
+Let's try to code this up in R. It will help if we employ vector
+notation here. Thus, we shall use a single parameter to denote
+the vector <M>(x,y).</M>
+<R>
+f = function(val) {
+  x = val[1]
+  y = val[2]
+  c(x*y+x^2-y^3-1, x+2*y-x*y^2-2)
+}
+</R>
+We have not used any explicit <CODE>return</CODE> this time. By
+default, an R function always returns the value of its last
+line. The <CODE>c</CODE> function creates a vector.
+The following table shows a few sample iterations. 
+<P/>
+Next we need to compute the derivative matrix:
+<R>
+D = function(val) {
+  x = val[1]
+  y = val[2]
+  matrix(c(y+2*x,1-y^2, x-3*y^2, 2-2*x*y), 2, 2)
+}
+</R>
+The <CODE>matrix</CODE> function expects its entries
+column-by-column. No need to invert the matrix ourselves. For a
+non-singular matrix <CODE>A</CODE> and a vector <CODE>b</CODE>,
+the expression <CODE>solve(A,b)</CODE> computes <M>A ^{-1} b</M>
+in R.
+<P/>
+Thus, the R version of the NR iteration becomes
+<R>
+val = c(0.34, 0.5)
+( val = val - solve(D(val), f(val)) )
+</R>
+A sample output is given below.
 <PRE>
 n    x             y
 -------------------------------------
@@ -164,6 +237,13 @@ n    x             y
 </PRE>
 Obviously we are converging to the solution <M>x=1,y=1.</M>
 </EXM>
+Here the <M>D</M> matrix never became singular. Various
+modifications of the <M>D</M> matrix has been suggested
+if it  becomes
+singular at some point during the iterations. These variations
+are collectively called <B>quasi-Newton-Raphson
+iterations</B>. Most softwares actually use such an algorithm,
+when they claim to use Newton-Raphson method.
 <COMMENT>
 <J>
 f=: 3 : '( ((r*s) + (r^2) - (s^3) + 1), (r+(2*s)-(r*s^2)+2) ) [ ''r s''=:y'
@@ -208,6 +288,17 @@ Solve using the Newton-Raphson method:
 (x+y)^2 - \cos(xy^2) & = & 24.1561
 </MULTILINE>
 
+<EXR>
+Write NR solver for a general nonlinear system in R like this:
+<R>
+NR2 = function(f, d, x0, n) {
+  ...
+}
+</R>
+Here <M>f:\rr^n\to\rr^n</M> and <M>d:\rr^n\to \rr^{n\times n}</M>
+gives its derivative (Jacobian) matrix. No need to check
+nonsingularity. 
+</EXR>
 <COMMENT>
 Ans: 3, 2
 3((sin@*) + ^@]) 2
@@ -215,7 +306,7 @@ Ans: 3, 2
 3(**:)2
 </COMMENT>
 </EXR>
-<HEAD1>Bisection method</HEAD1>
+<HEAD2>Bisection method</HEAD2>
 While the Newton-Raphson method is very efficient, it requires us to compute the derivative of <M>f.</M>  Thus, it is unsuitable
  in cases where <M>f</M>  is not differentiable or where the derivative is too difficult to be computed. Now we shall learn
  a method that may be used to solve the (nonlinear) equation 
@@ -265,6 +356,18 @@ Our first guess is
 <D>
 m_0 = \frac{l_0+r_0}{2} =  0.7854.
 </D>
+It will help to write a little R code to proceed further.
+<R>
+l = 0 
+r = pi/2
+f = function(x) cos(x) - x
+for(i in 1: 20) {m = (l+r)/2; if(f(m)*f(l) < 0) {r= m} else {l = m}; cat(l, r,'\n')}
+</R>
+These lines introduce two new features of R. First, for a
+function consisting of a single expression, the enclosing braces
+are optional. Second, we can use <CODE>for</CODE>-loops in R.
+<P/>
+
 Proceeding like this we get the following table.
 <PRE>
 k left         right       mid
@@ -287,6 +390,18 @@ up to the first two decimal places. Thus, we see that the answer is 0.74
 up to the first two decimal places.
 </EXM>
 
+<EXR>
+Write an R function like
+<R>
+bis = function(f, l, r, n) {
+  ...
+}
+</R>
+to apply bisection method to a function <M>f(x)</M>. Your
+function should stop with an error message if <M>f(l)</M>
+and <M>f(r)</M> are not of opposite signs. The R function 
+<CODE>stopifnot</CODE> may help here.
+</EXR>
 <COMMENT>
 The following J code explores this. 
 <J>

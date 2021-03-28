@@ -1,6 +1,6 @@
 <NOTE>
 @{<TITLE>Numerical Integration</TITLE>
-<UPDT>FRI MAR 26 IST 2021</UPDT>
+<UPDT>SUN MAR 28 IST 2021</UPDT>
 <HEAD1>Numerical Integration</HEAD1>
 Suppose that we are given a function <M>f(x),</M> and we are to compute
 <D>
@@ -69,6 +69,48 @@ So by applying trapezium rule the integral is approximately
 </D>
 It is instructive to compare this with the actual value, which is 0.1359.
 </EXM>
+To use a finer grid, let's harness the power of R. Suppose we
+want 14 subintervals (i.e., 15 poits in all, including the end points):
+<R>
+n = 14+1
+dx = (2-1)/14
+x = seq(1,2,len=n)
+y = dnorm(x) 
+</R>
+I just cheated, by using the readymade normal pdf that is already
+available in R. Of course, I could have used the more verbose:
+<R>
+y = 1/(sqrt(2*pi)) * exp(-x*x/2)
+</R>
+Anyway, I now need to partition the points into three parts: 
+<UL>
+<LI>the extreme points (just 2 of them)</LI>
+<LI>the interior points (<M>15-2=13</M> such)</LI>
+</UL>
+<R>
+dx*(y[1]+y[n] + 2*sum(y[2:(n-1)]))/2
+</R>
+
+<EXR>
+Write an R function to implement this method:
+<R>
+trapint = function(f,a,b,n) {
+  ...
+}
+</R>
+</EXR>
+
+<EXR>
+We want to approximate 
+<D>
+\int_0^2 e^{-t} t^{x-1}\, dt.
+</D>
+This is the incomplete gamma function evaluated at 2. Keep on
+applying trapezoidal rule with
+increasing <M>n</M> until the approximation with two consecutive
+values of <M>n</M> match up to the first 5 decimal places.
+</EXR>
+
 <COMMENT>The following J code allows you to use a finer grid:
 <J>
 trap=:0.1 * 0.5 *  {.+{: + 2*+/@: }.@ }:
@@ -177,6 +219,29 @@ which is correct up to 4 decimal places. Notice how Simpson's rule gives
 more accurate value here than the trapezium rule, though we have used
 the same <M>n</M> in both methods.
 </EXM>
+The R version of Simpson's rule is quite simple. We start out
+just as for Simpson's rule:
+<R>
+dx = (2-1)/14
+x = seq(1,2,len=15)
+y = dnorm(x)
+</R>
+Now we need to partition the points into <I>three</I> groups:
+<UL>
+<LI>the two extreme points: <M>x_0</M> and <M>x_n</M></LI>
+<LI>the mid points: <M>x_1,...,x_{n-1}</M></LI>
+<LI>the boundary points (except the extreme two): <M>x_2,...,x_{n-2}.</M></LI>
+</UL>
+Since R starts its indices from 1, we have to be careful:
+<R>
+ext = c(1:15)
+mid = seq(2,14,2)
+bdry = seq(3,13,2)
+</R>
+Make sure you understand these. The third argument in <CODE>seq</CODE> is the step size.
+<R>
+(dx/3) * (sum(y[ext]) + 4*sum(y[mid]) + 2*sum(y[bdry]))
+</R>
 <COMMENT>
 <J>
 x=: 1+(i.11) % 10
@@ -222,6 +287,28 @@ A random dart hit is now <M>(X,Y),</M> where <M>X,Y</M> are
 independent <M>Unif(0,1)</M> random variables. Checking if the
 dart has hit the disc is simply checking whether <M>X^2+Y^2 <
 1.</M> 
+
+<P/>
+Let's explore using R:
+<R>
+x = runif(1000, min=-1, max=1)
+y = runif(1000, min=-1, max=1)
+hit = (x*x + y*y < 1)
+plot(x,y,col=hit+1,pch=20)
+mean(hit)
+</R>
+A few points about the code:
+<OL>
+<LI><CODE>hit</CODE> is a 0-1 variable. If you print it, you'll
+get a sequence of TRUE's and FALSE's.</LI>
+<LI>When we compute <CODE>mean(hit)</CODE> we are finding mean
+of the 0's and 1's, i.e., the proportion of 1's.</LI>
+<LI>The <CODE>col</CODE> parameter is set to <CODE>hit+1</CODE>,
+i.e., a sequence of 1's and 2's. In R, colour 1 means black, and
+colour 2 means red. Colour 0 means "don't plot".</LI>
+</OL>
+This produces a plot like this:
+<CIMG web="numdart1.png">Hit points are shown in red</CIMG>
 <COMMENT>The following J code implements the idea.
 <J>
 p=: _1+2*? 2 1000 $ 0
@@ -244,6 +331,25 @@ proportion of darts hitting the shaded region. Mathematically, we
 generate <M>X,Y</M> independently with <M>X\sim Unif(a,b)</M>
 and <M>Y\sim Unif(0,M).</M> Then we check the proportion of cases
 for which <M>Y < f(X).</M> 
+
+<P/>
+The following R code snippet
+implements this idea for <M>f(x) = x^2</M> over <M>[0,1]</M> with
+upper bound <M>B=1.5.</M> 
+<R>
+x = runif(1000)
+y = 1.5 * runif(1000)
+hit = y < x*x
+plot(x,y,col=hit+1,pch=20)
+mean(hit)
+</R>
+
+Try this for yourself. You may not  really like the precision. 
+Here is the plot I got:
+<CIMG web="xsqhit.png"></CIMG>
+<EXR>
+Can you work out the variance of the estimator? Is the estimator unbiased?
+</EXR>
 <COMMENT>The following J code snippet
 implements this idea for <M>f(x) = x^2</M> over <M>[0,1]</M> with
 upper bound <M>B=1.5.</M> 

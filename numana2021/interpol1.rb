@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbb R}</M>
 <TITLE>Polynomial Interpolation</TITLE>
-<UPDT>FRI MAR 26 IST 2021</UPDT>
+<UPDT>SUN MAR 28 IST 2021</UPDT>
 
 <HEAD1>Polynomial interpolation</HEAD1>
 Here we shall work with <B>polynomial</B>s.  These are functions with  the
@@ -309,6 +309,35 @@ xi    2   3    -2   1   0
 yi   22   -12   4   5   5
 </PRE>
 </EXR>
+Next let's do it using R.
+<R>
+x = c(0.1, 0.2, 0.4, 0.45, 0.6, 0.7, 0.72, 0.9)
+y = sin(x)
+(y1 = diff(y)/diff(x))
+(y2 = diff(y1)/diff(x,2))
+(y3 = diff(y2)/diff(x,3))
+(y4 = diff(y3)/diff(x,4))
+(y5 = diff(y4)/diff(x,5))
+</R>
+The <CODE>diff</CODE> function computes differences of a
+sequence. The second argument specifies the lag (defaults to 1).
+<P/>
+
+You can easily see a pattern. We may utilise this pattern to use
+a loop. But there is a mild catch. The outcome of each step is a
+vector <I>of  size 1 less than the previous one</I>. Generally we
+employ a matrix to hold a list of vectors. But as these vectors
+are of different lengths, we need to use the <CODE>list</CODE>
+structure provided by R. 
+<R>
+col = list()
+col[[1]] = y
+for(i in 1:(length(x)-1)) {
+  col[[i+1]] = diff(col[[i]])/diff(x,i); 
+}
+</R>
+Just print <CODE>col</CODE> to get the divided difference table
+(turned sideways).
 <COMMENT>
 The following J code will help you explore these. You may need
 to <CODE>load'trig'</CODE> (if you have not already writted it in
@@ -382,6 +411,20 @@ is
 Though we used only the ''north-east edge'', we indirectly used the entire table, because we need all the 
 entries in the table to compute the final 1 in the table. 
 </EXM>
+Let's implement this using R. We had the <CODE>col</CODE> list
+storing the columns of the divided difference table. We need the
+first entry of each column as our coefficients.
+<R>
+coef = c()
+for(i in 1:length(x)) coef[i] = col[[i]][1]
+</R>
+Let's try to evaluate the polynomial at a new value <CODE>nx=2</CODE>:
+<R>
+nx = 2
+sum(c(1,cumprod(x[-length(x)] - nx)) * coef)
+</R>
+The <CODE>cumprod</CODE> function computes cumulative product.
+
 <COMMENT>
 Here is some J code to implement the idea. 
 
