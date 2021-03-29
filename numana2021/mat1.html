@@ -137,7 +137,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-FRI MAR 26 IST 2021</i></td>
+MON MAR 29 IST 2021</i></td>
 </tr>
 </table>
 
@@ -280,7 +280,7 @@ $$
 2 &amp; 5 &amp; -1 &amp; 7\\
 1 &amp; 2 &amp; -3 &amp; -4
 \end{array}\right]
-\stackrel{S\searrow}{\longrightarrow}
+\stackrel{SP}{\longrightarrow}
 \left[\begin{array}{rrr|r}
 1 &amp; -1 &amp; 1 &amp; 2\\
 0 &amp; \fbox7 &amp; -3 &amp; 5\\
@@ -292,7 +292,7 @@ $$
 0 &amp; \fbox1 &amp; -\frac 37 &amp; \frac 57\\
 0 &amp; 3 &amp; -4 &amp; -6
 \end{array}\right]
-\stackrel{S\searrow}{\longrightarrow}
+\stackrel{SP}{\longrightarrow}
 \left[\begin{array}{rrr|r}
 1 &amp; 0 &amp; \frac 47 &amp; 2\\
 0 &amp; 1 &amp; -\frac 37 &amp; \frac 57\\
@@ -304,7 +304,7 @@ $$
 0 &amp; 1 &amp; -\frac 37 &amp; \frac 57\\
 0 &amp; 0 &amp; \fbox1 &amp; 3
 \end{array}\right]
-\stackrel{S\searrow}{\longrightarrow}
+\stackrel{SP}{\longrightarrow}
 \left[\begin{array}{rrr|r}
 1 &amp; 0 &amp; 0 &amp; 1\\
 0 &amp; 1 &amp; 0 &amp; 2\\
@@ -312,7 +312,7 @@ $$
 \end{array}\right]
 $$
 Here we have used 3 symbols $S$, $M$
-and $\searrow$. Let us understand them. Before each step we
+and $P$. Let us understand them. Before each step we
 choose an entry in the lhs of the augmented matrix (framed inside rectangles above). This
 is called the <b>pivot</b>, and its row and column are called the <b>pivotal
 row</b>  and <b>pivotal column</b>. Initially the top left hand entry is chosen as the
@@ -325,7 +325,7 @@ pivot.
 row from the other rows to make the all the entries in the pivotal
 column zero (except the pivot itself).</li>
 
-<li>The $\searrow$ step moves the pivot one step downwards
+<li>The $P$ step moves the pivot one step downwards
 and to the right.</li>
 </ul>
 
@@ -340,10 +340,84 @@ In Gauss-Jordan elimination of a $n\times n$ system
 we start with the pivot at the $(1,1)$-th position. Then we 
 perform the following operations.
 $$
-\underbrace{(M,S,\searrow),\cdots,(M,S,\searrow)}
+\underbrace{(M,S,P),\cdots,(M,S,P)}
 _{n-1\mbox{ times}},M,S.
 $$
 </fieldset>
+If the current position of the pivot is $(p,p)$, then the
+following R code achieves the steps:
+<font color="red">
+<pre>
+M = function() {mat[p,] &lt;&lt;- mat[p,]/mat[p,p]; print(mat)}
+S = function(i) { mat[i,] &lt;&lt;- mat[i,] - mat[p,]*mat[i,p]; print(mat)}
+P = function() { p &lt;&lt;- p + 1; print(p) }
+</pre>
+</font>
+Here we have used the less known <code><<-</code>
+operator. If <code>x</code> is a variable defined outside a
+function, and you write <code>x = 5</code> inside the function,
+then this assignment has no effect outside the function:
+<font color="red">
+<pre>
+x = 3
+f = function() {x = 5}
+f()
+x
+</pre>
+</font>
+Try these to see that <code>x</code> is still 3. However, if you
+use the <code><<-</code> operator, then the assignment is
+visible outside the function:
+<font color="red">
+<pre>
+x = 3
+f = function() {x &lt;&lt;- 5}
+f()
+x
+</pre>
+</font>
+Now <code>x</code> is 5.
+<p></p>
+To try these out let us create a random system:
+<font color="red">
+<pre>
+A = matrix(sample(100, 16, rep=TRUE),4,4)
+b = sample(100, 4, rep=T)
+</pre>
+</font>
+The <code>sample</code> function draws an SRSWOR or SRSWR. The
+first argument specifies the population, the second is the sample
+size. The <code>rep</code> argument specifies whether replacement
+is allowed.
+
+<p></p>
+Let's make the augmented matrix:
+<font color="red">
+<pre>
+mat = cbind(A,b)
+p = 1
+</pre>
+</font>
+Now let's apply our steps:
+<font color="red">
+<pre>
+M()
+S(2)
+S(3)
+S(4)
+</pre>
+</font>
+That finishes the first pass. The second pass starts by updating
+the pivot:
+<font color="red">
+<pre>
+P()
+M()
+S(1)
+S(3)
+S(4)
+</pre>
+</font>
 
 
 
@@ -472,6 +546,78 @@ y &amp;  x &amp; z\\
 3 &amp;  0 &amp;  -5 &amp;  -1
 \end{array}\right]
 $$
+To do this in R we just need to change our <code>P</code>
+function. 
+<font color="red">
+<pre>
+P = function() {
+  p &lt;&lt;- p + 1
+  n = nrow(mat)
+  candidates = mat[p:n,p:n]
+  argmax = which.max(abs(candidates))
+  #cat('argmax=',argmax)
+  newRow = p + (argmax-1) %% nrow(candidates)
+  newCol = p + floor((argmax-1) / nrow(candidates))
+  cat('Best candidate at', newRow, newCol,'\n')
+  tmp = mat[newRow,]
+  mat[newRow,] &lt;&lt;- mat[p,]
+  mat[p,] &lt;&lt;- tmp
+  rheads = rownames(mat)
+  tmp = rheads[newRow]
+  rheads[newRow] = rheads[p]
+  rheads[p] = tmp
+  rownames(mat) &lt;&lt;- rheads
+
+  tmp = mat[,newCol]
+  mat[,newCol] &lt;&lt;- mat[,p]
+  mat[,p] &lt;&lt;- tmp
+  cheads = colnames(mat)
+  tmp = cheads[newCol]
+  cheads[newCol] = cheads[p]
+  cheads[p] = tmp
+  colnames(mat) &lt;&lt;- cheads
+  print(mat)
+}
+</pre>
+</font>
+Of course, we need to keep track of our swaps. For this we shall
+employ the ability of R to attach names to each row and column:
+<font color="red">
+<pre>
+rownames(A) = 1:4
+colnames(A) = paste('x',1:4,sep='')
+A
+</pre>
+</font>
+Now proceed as before:
+<font color="red">
+<pre>
+( mat = cbind(A, b) )
+p = 0
+</pre>
+</font>
+Notice we are starting with pivot position 0. 
+The only differecen is that we start with a pivoting step.
+<font color="red">
+<pre>
+P()
+M()
+S(2)
+S(3)
+S(4)
+</pre>
+</font>
+The next pass is similar:
+<font color="red">
+<pre>
+P()
+M()
+S(1)
+S(3)
+S(4)
+</pre>
+</font>
+
 
 Here you end up with 
 <pre>
@@ -527,19 +673,19 @@ $$
 2&amp; 5&amp; -1&amp; 0 &amp; 1&amp; 0\\
 1&amp; 2&amp; -3&amp; 0&amp; 0&amp; 1
 \end{array}\right] 
-\stackrel{M,S,\searrow}{\longrightarrow}
+\stackrel{M,S,P}{\longrightarrow}
 \left[\begin{array}{rrr|rrr}
 1&amp; -1&amp;  1&amp;  1&amp; 0&amp; 0 \\
 0&amp; \fbox7 &amp; -3&amp; -2&amp; 1&amp; 0 \\
 0&amp; 3 &amp; -4&amp; -1&amp; 0&amp; 1
 \end{array}\right]
-\stackrel{M,S,\searrow}{\longrightarrow}
+\stackrel{M,S,P}{\longrightarrow}
 \left[\begin{array}{rrr|rrr}
 1&amp; 0&amp;  \frac{4}{7}&amp; \frac{5}{7}&amp; \frac{1}{7}&amp; 0 \\
 0&amp; 1&amp; \frac{-3}{7}&amp; \frac{-2}{7}&amp; \frac{1}{7}&amp; 0 \\
 0&amp; 0 &amp; \fbox{$\frac{-19}{7}$}&amp; \frac{-1}{7}&amp; \frac{-3}{7}&amp; 1
 \end{array}\right]
-\stackrel{M,S,\searrow}{\longrightarrow}
+\stackrel{M,S,P}{\longrightarrow}
 \left[\begin{array}{rrr|rrr}
 1&amp; 0&amp; 0&amp;  \frac{91}{133}&amp; \frac{7}{133}&amp; \frac{4}{19} \\
 0&amp; 1&amp; 0&amp; \frac{-35}{133}&amp; \frac{28}{133}&amp; \frac{-3}{19} \\
@@ -775,12 +921,18 @@ multiplication) to get the scalar $2\bu'\bv = \lambda,$
 say. Finally, multiply each entry of $\bu$
 with $\lambda $ (requiring $n$ more multiplications).
 <img src="../image/box.png"></p>
+Let's play with the idea using R:
+<font color="red">
+<pre>
+unit = function(v) {v/sqrt(sum(v*v))}
+hmult = function(u, x) {x - 2* sum(u*x)*u}
+( x = unit(c(1,2,3)) )
+( y = unit(c(4,2,5)) )
+( u = unit(x-y) )
+hmult(u,x)
+</pre>
+</font>
 
-The following J code provides the tools necessary to explore the
-Householder idea. You'll need to understand the above solution in
-order to
-understand the definition of <code>h</code> below to multiply by
-a Huseholder matrix. 
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -861,6 +1013,47 @@ the $\bu$'s</th>
 </table>
 </center>
 
+
+<font color="red">
+<pre>
+shaver = function(x) {
+   x[1] = x[1] - sqrt(sum(x*x))
+   unit(x)
+}
+</pre>
+</font>
+Next, let's create a matrix:
+<font color="red">
+<pre>
+H1 = sample(1000, 6)
+H2 = sample(1000, 6)
+H3 = sample(1000, 6)
+H4 = sample(1000, 6)
+H5 = sample(1000, 6)
+</pre>
+</font>
+OK, ready for first pass:
+<font color="red">
+<pre>
+(u=shaver(H1))
+(H1 = hmult(u,H1)) #Just for checking!
+(H2 = hmult(u,H2))
+(H3 = hmult(u,H3))
+(H4 = hmult(u,H4))
+(H5 = hmult(u,H5))
+</pre>
+</font>
+The second pass is similar:
+<font color="red">
+<pre>
+(u=shaver(H2[2:6]))
+(H2[2:6] = hmult(u,H2[2:6]))
+(H3[2:6] = hmult(u,H3[2:6]))
+(H4[2:6] = hmult(u,H4[2:6]))
+(H5[2:6] = hmult(u,H5[2:6]))
+</pre>
+</font>
+and so on.
 
 <h3><a
 name="Efficient implementation">Efficient implementation</a></h3>
@@ -1108,253 +1301,62 @@ We start with a vector $\bv$ and constructs the sequence
 $$
 unit(A\bv), unit(A^2\bv), unit(A^3\bv), unit(A^4\bv),... 
 $$
-<font color="#ff0000"><b>This red part was added after the lecture:</b> Here $unit(\bv)$ finds a unit vector along a nonzero
-vector $\bv$. Its definition is
-is $unit(\bv) = \bv/\|\bv\|.$ 
-Under some condition on $\bv,$ the sequence "converges" to an eigenvector
-corresponding to the eigenvalue with the maximum absolute value.
-Here "convergence" is taken in a slightly generalised sense: since
-the negative of an eigenvector is again another eigenvector,
-hence if all subsequences converge to some
-common unit vector (up to sign), we shall consider that vector as the limit. For
-example, if $A = \left[\begin{array}{ccccccccccc}-1&amp;0\\0&amp;-1
-\end{array}\right],$ then the sequence
-alternates with terms
-$$
-\left[\begin{array}{ccccccccccc}1/\sqrt2\\1/\sqrt2
-\end{array}\right]\mbox{ and } -\left[\begin{array}{ccccccccccc}1/\sqrt2\\1/\sqrt2
-\end{array}\right].
-$$
-Since these are multiples of each other, we consider this as a
-convergent sequence (with any of these two vectors being called a limit).
-<p></p>
-If, however, we work with $A = \left[\begin{array}{ccccccccccc}1&amp;0\\0&amp;-1
-\end{array}\right],$ then
-the sequence alternates with terms
-$$
-\left[\begin{array}{ccccccccccc}1/\sqrt2\\1/\sqrt2
-\end{array}\right]\mbox{ and } \left[\begin{array}{ccccccccccc}1/\sqrt2\\-1/\sqrt2
-\end{array}\right].
-$$
-Here we do not consider the sequence as being convergent.</font>
+Here $unit(\bv)$ is the unit vector along a nonzero
+vector $\bv$, <i>i.e.</i>, 
+$$unit(\bv) = \bv/\|\bv\|.$$ 
+Under some condition on $\bv,$ the sequence "converges" to an eigenvector.
 
 <p></p>
-
-
-
-<h3><a
-name="When does it work?">When does it work?</a></h3>
-The algorithm works for many types of matrices. Let's explore
-this using some simple examples.
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Does it work for the diagonal matrix $A = diag(1,2,3,4)$ if
-we start from $\bv = (1,1,1,1)'?$
-<p></p>
-<b>SOLUTION:</b>
-Here
-$A^n\bv $ is $(1,2^n,3^n,4^n).$ As you
-can see, the last entry is going to dominate. So the power iterations will converge
-to $(0,0,0,1)$, which is an eigenvector corresponding to the
-eigenvalue $4.$
-<img src="../image/box.png"></p>
-
-The reason we converged to $4$ was that it was the largest
-eigenvalue. The next example will shed more light on it.
-
-<p>
-<b>EXERCISE:</b>&nbsp;
-Try out for $A = diag(1,2,3,-4).$ Start with $\bv =
-(1,1,1,1)'.$
-<img src="../image/box.png"></p>
-
-Thus, the power method is converging to the eigenvalue with the
-largest absolute eigenvalue. Now let's play with the initial
-vector. 
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Again work with $A = diag(1,2,3,4).$ But start with $\bv
-= (1,1,1,0).$
-<p></p>
-<b>SOLUTION:</b> Now the entry corresponding to 4 gets killed. So we
-converge to $(0,0,1,0)$ instead, which corresponds to the
-next largest absolute eigenvalue, 3.
-<img src="../image/box.png"></p>
-
-
-<p>
-<b>EXERCISE:</b>&nbsp;
-What if we had started with $\bv  = (1,1,1,0.0001)$?
-<img src="../image/box.png"></p>
-
-Next we shall explore what happens if $A$ has more than one
-eigenvalue that has largest eigenvalue. 
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Try with $A = diag(1,2,4,4),$ and $\bv = (1,1,1,1)'.$
-Also try with $\bv = (1,1,1,2)'$ and $\bv = (1,1,1,0)'.$
-<img src="../image/box.png"></p>
-
-Finally, let us see what happens if $A$ has
-multiple <i>distinct</i> eigenvalues with same maximum absolute
-value.
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Try with $A = diag(1,2,4,-4)$ and $\bv = (1,1,1,1)'.$
-<img src="../image/box.png"></p>
-Now we have been able to screw up the power iterations!
-
-<p></p>
-The following definition is easily motivated from the above discussion.
+We shall not explore the most general condition under which this
+algorithm works. But here is the most commonly used sufficient
+condition.
 
 
 <fieldset>
-<legend><b>Definition: Dominant eigenvalue</b></legend>
-We say that $A$ has a <b>dominant
-eigenvalue</b> $\lambda$ if $\lambda$ is an eigenvalue
-and for all other eigenvalues $\mu$ of $A$ we have $|\lambda| &gt; |\mu|.$
-</fieldset>
-
-So far we have been working with only diagonal matrices. Of
-course, we do not need any numerical method to find the
-eigenvalues and eigenvectors of a diagonal matrix. However, there
-are many matrices that are not diagonal, but behave
-similarly. The following definition is about them.
-
-<fieldset>
-<legend><b>Definition: Diagonalisable</b></legend>
-A square matrix $A$ is called <b>diagonalisable</b> if it is
-of the form 
+<legend><b><i>Theorem</i></b></legend>Let $A_{n\times n}$ have all real
+eigenvalues, $\lambda_1,...,\lambda_n$, with
 $$
-A = P D P ^{-1},
+|\lambda_1| &gt; |\lambda_2|\geq \cdot \geq |\lambda_n|.
 $$
-for some diagonal matrix $D$ and some nonsingular matrix $P.$
-</fieldset>
-The following theorem relates $D$ and $P$ to the
-eigenvalues and eigenvectors of $A.$
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $A = P D P ^{-1},$ then the diagonal entries of $D$
-are the eigenvalues and the columns of $P$ are the
-corresponding eigenvectors.
+Let $\bv = \sum_i c_i \bv_i$, where $\bv_i$'s are
+eigenvectors corresponding to $\lambda_i$'s, and $c_1\neq 0.$
+<p></p>
+Then the sequence
+$$
+unit(A\bv), unit(A^2\bv), unit(A^3\bv), unit(A^4\bv),... 
+$$
+converges to $\bv_1$ if $\lambda_1 c_1&gt;0$ and
+to $-\bv_1$ if $\lambda_1 c_1 &lt; 0.$
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-$AP = DP,$ and so extracting the $j$-th columns of both
-sides, $A\bp_{*j} = d_{jj}\bp_{*j},$
-where $\bp_{*j}$ is the $j$-th column of $P$,
-and $d_{jj}$ is the $j$-th diagonal element of $D.$
+Here 
+$$
+A^k \bv = \sum_i c_i \lambda_i^k \bv_i = \lambda_1 \left(c_1 \bv_1 +
+\sum_{i=2}^n c_i \left(\tfrac{\lambda_i}{\lambda_1}\right)^k \bv_i\right) \rightarrow
+\lambda_1 c_1 \bv_1.
+$$
+Now, if $(\bx_n)$ is a sequence of vectors with $\bx_n\rightarrow
+\bx\neq \bz,$ then $unit(\bx_n)\rightarrow unit(\bx).$ 
+<p></p>
+Hence $unit(A^k\bv) \rightarrow unit(\lambda_1 c_1 \bv_1) =
+unit(\bv_1)$ if $\lambda_1 c_1 &gt;0$ and $-unit(\bv)$
+is $\lambda_1 c_1 &lt;0.$
 <b><i>[QED]</i></b>
 </p>
-
-It is easy to see that if $A = P D P ^{-1},$ then $A^n = P
-D^n P ^{-1}.$ Thus, the behaviour of the power iterations
-for $A$ starting with $\bv$ is similar to the
-behaviour for $D$ starting with $P ^{-1} \bv.$ This
-leads us to the following
-sufficient set of conditions
-for the power method to work for a square matrix $A$
-starting from some $\bv:$
-<ul>
-
-<li>Let $A$ have a nonzero dominant eigenvalue.</li>
-
-<li>Let $A$ be diagonalisable. Write $A = P D P
-^{-1},$ where the dominant eigenvalue is the first diagonal
-entry of $D.$</li>
-
-<li>Let the first entry of $P ^{-1} \bv$ be nonzero.</li>
-
-</ul>
-If all these conditions hold, then the power method must converge
-to an eigenvector corresponding to an eigenvector corresponding
-to the dominant eigenvalue.
+Let's take a computational example:
+<font color="red">
+<pre>
+A  = matrix(runif(9),3,3)
+(u = unit(1:3))
+(u= unit(A%*% u))
+</pre>
+</font>
+Just keep on running the last line repeatedly.
 
 
 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $A$ be a diagonalisable matrix with $A = P D P
-^{-1},$ with a nonzero dominant
-eigenvalue as the first diagonal entry of $D.$  Let $P
-^{-1} \bv$ have the first entry nonzero. Then the sequence 
-$$
-unit(A\bv),~~unit(A^2\bv),~~unit(A^3\bv),~~unit(A^4\bv),~~
-$$
-is well-defined and converges to the first column of $P$,
-which is an eigenvector corresponding to
-the dominant eigenvalue.
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Let $D = diag(\lambda_1,...,\lambda_n)$
-with $\lambda_1$ being the
-nonzero dominant eigenvalue.
-<p></p>
-
-Let $P ^{-1} \bv = (b_1,...,b_n),$ where $b_1\neq 0.$
-<p></p>
-
-Then 
-
-$$A^k\bv = P D^k P ^{-1} \bv  = P\left[\begin{array}{ccccccccccc}\lambda_1^k
-b_1\\\vdots\\\lambda_n^k b_n
-\end{array}\right]
-= \sum_{j=1}^n \lambda_j^k b_j \bp_{*j} 
-= \lambda_1^k \sum_{i=1}^n \left(\frac{\lambda_j}{\lambda_1}\right)^k b_j \bp_{*j} 
-= \lambda_1^k \left(b_1\bp_{*1}+\sum_{j=2}^n
-\left(\frac{\lambda_j}{\lambda_1}\right)^k b_j \bp_{*j} \right)\neq \bz,$$
-since $\lambda_1,b_1\neq0$ and $\bp_{*j}$'s are linearly independent.
-<p></p>
-
-So we can indeed compute $unit(A^k\bv).$ 
-<p></p>
-Now, since $\lambda_1$ is dominant, 
-$$
-b_1\bp_{*1}+\sum_{j=2}^n
-\left(\frac{\lambda_j}{\lambda_1}\right)^k b_j \bp_{*j} \rightarrow b_1\bp_{*1}\neq\bz.
-$$
-It is easy to see that if $(\bq_k)$ is a sequence of nonzero
-vectors converging to a nonzero vector $\bq$,
-then $unit(\bq_k)\rightarrow unit(\bq).$
-<p></p>
-So 
-$$unit(A^k\bv) \stackrel{*}{=} unit\left(b_1\bp_{*1}+\sum_{j=2}^n
-\left(\frac{\lambda_j}{\lambda_1}\right)^k b_j \bp_{*j}\right)\rightarrow
-unit(b_1\bp_{*1}) = unit(\bp_{*1}),$$
-as required. 
-<p></p>
-Here $\stackrel{*}{=}$ means equality after possibly
-switching sign. 
-<b><i>[QED]</i></b>
-</p>
-
-
-<p>
-<b>EXERCISE:</b>&nbsp;
-It is instructive to think of examples violating the conditions
-of the theorem and check how/whether the power method fails. A
-good source of nondiagonalisable matrices is matrices of the form 
-$$
-\left[\begin{array}{ccccccccccc}
-\lambda\\
-1 &amp; \lambda\\
- &amp; 1 &amp; \lambda\\
- &amp;  &amp;\ddots &amp; \ddots\\
- &amp;  &amp;  &amp; 1 &amp; \lambda
-
-\end{array}\right].
-$$
-These are lower triangular matrices with some
-number $\lambda$ repeated along the diagonal, and $1$'s
-in the subdiagonal. All other entries are 0.
-<img src="../image/box.png"></p>
 
 <h3>Comments</h3>
 To post an anonymous comment, click on the "Name" field. This

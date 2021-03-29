@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE>
-<UPDT>FRI MAR 26 IST 2021</UPDT>
+<UPDT>MON MAR 29 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1>
 <HEAD2>Gauss-Jordan elimination</HEAD2>
 We shall start with a few concepts already familiar to you. 
@@ -143,7 +143,7 @@ during the process:
 2 & 5 & -1 & 7\\
 1 & 2 & -3 & -4
 </AUGMAT1>
-\stackrel{S\searrow}{\longrightarrow}
+\stackrel{SP}{\longrightarrow}
 <AUGMAT1>
 1 & -1 & 1 & 2\\
 0 & \fbox7 & -3 & 5\\
@@ -155,7 +155,7 @@ during the process:
 0 & \fbox1 & -[[37]] & [[57]]\\
 0 & 3 & -4 & -6
 </AUGMAT1>
-\stackrel{S\searrow}{\longrightarrow}
+\stackrel{SP}{\longrightarrow}
 <AUGMAT1>
 1 & 0 & [[47]] & 2\\
 0 & 1 & -[[37]] & [[57]]\\
@@ -167,7 +167,7 @@ during the process:
 0 & 1 & -[[37]] & [[57]]\\
 0 & 0 & \fbox1 & 3
 </AUGMAT1>
-\stackrel{S\searrow}{\longrightarrow}
+\stackrel{SP}{\longrightarrow}
 <AUGMAT1>
 1 & 0 & 0 & 1\\
 0 & 1 & 0 & 2\\
@@ -175,7 +175,7 @@ during the process:
 </AUGMAT1>
 </D>
 Here we have used 3 symbols <M>S</M>, <M>M</M>
-and <M>\searrow</M>. Let us understand them. Before each step we
+and <M>P</M>. Let us understand them. Before each step we
 choose an entry in the lhs of the augmented matrix (framed inside rectangles above). This
 is called the <B>pivot</B>, and its row and column are called the <B>pivotal
 row</B>  and <B>pivotal column</B>. Initially the top left hand entry is chosen as the
@@ -185,7 +185,7 @@ pivot.
 <LI>An <M>S</M>-step subtracts suitable multiples of the pivotal
 row from the other rows to make the all the entries in the pivotal
 column zero (except the pivot itself).</LI>
-<LI>The <M>\searrow</M> step moves the pivot one step downwards
+<LI>The <M>P</M> step moves the pivot one step downwards
 and to the right.</LI></UL>
 </EXM>
 
@@ -196,10 +196,70 @@ In Gauss-Jordan elimination of a <M>n\times n</M> system
 we start with the pivot at the <M>(1,1)</M>-th position. Then we 
 perform the following operations.
 <D>
-\underbrace{(M,S,\searrow),\cdots,(M,S,\searrow)}
+\underbrace{(M,S,P),\cdots,(M,S,P)}
 _{n-1\mbox{ times}},M,S.
 </D>
 </BOX>
+If the current position of the pivot is <M>(p,p)</M>, then the
+following R code achieves the steps:
+<R>
+M = function() {mat[p,] <<- mat[p,]/mat[p,p]; print(mat)}
+S = function(i) { mat[i,] <<- mat[i,] - mat[p,]*mat[i,p]; print(mat)}
+P = function() { p <<- p + 1; print(p) }
+</R>
+Here we have used the less known <CODE><A/></CODE>
+operator. If <CODE>x</CODE> is a variable defined outside a
+function, and you write <CODE>x = 5</CODE> inside the function,
+then this assignment has no effect outside the function:
+<R>
+x = 3
+f = function() {x = 5}
+f()
+x
+</R>
+Try these to see that <CODE>x</CODE> is still 3. However, if you
+use the <CODE><A/></CODE> operator, then the assignment is
+visible outside the function:
+<R>
+x = 3
+f = function() {x <<- 5}
+f()
+x
+</R>
+Now <CODE>x</CODE> is 5.
+<P/>
+To try these out let us create a random system:
+<R>
+A = matrix(sample(100, 16, rep=TRUE),4,4)
+b = sample(100, 4, rep=T)
+</R>
+The <CODE>sample</CODE> function draws an SRSWOR or SRSWR. The
+first argument specifies the population, the second is the sample
+size. The <CODE>rep</CODE> argument specifies whether replacement
+is allowed.
+
+<P/>
+Let's make the augmented matrix:
+<R>
+mat = cbind(A,b)
+p = 1
+</R>
+Now let's apply our steps:
+<R>
+M()
+S(2)
+S(3)
+S(4)
+</R>
+That finishes the first pass. The second pass starts by updating
+the pivot:
+<R>
+P()
+M()
+S(1)
+S(3)
+S(4)
+</R>
 <COMMENT>
 The following J code implements this:
 <J>
@@ -402,6 +462,68 @@ y &  x & z\\
 3 &  0 &  -5 &  -1
 </AUGMAT1>
 </D>
+To do this in R we just need to change our <CODE>P</CODE>
+function. 
+<R>
+P = function() {
+  p <<- p + 1
+  n = nrow(mat)
+  candidates = mat[p:n,p:n]
+  argmax = which.max(abs(candidates))
+  #cat('argmax=',argmax)
+  newRow = p + (argmax-1) %% nrow(candidates)
+  newCol = p + floor((argmax-1) / nrow(candidates))
+  cat('Best candidate at', newRow, newCol,'\n')
+  tmp = mat[newRow,]
+  mat[newRow,] <<- mat[p,]
+  mat[p,] <<- tmp
+  rheads = rownames(mat)
+  tmp = rheads[newRow]
+  rheads[newRow] = rheads[p]
+  rheads[p] = tmp
+  rownames(mat) <<- rheads
+
+  tmp = mat[,newCol]
+  mat[,newCol] <<- mat[,p]
+  mat[,p] <<- tmp
+  cheads = colnames(mat)
+  tmp = cheads[newCol]
+  cheads[newCol] = cheads[p]
+  cheads[p] = tmp
+  colnames(mat) <<- cheads
+  print(mat)
+}
+</R>
+Of course, we need to keep track of our swaps. For this we shall
+employ the ability of R to attach names to each row and column:
+<R>
+rownames(A) = 1:4
+colnames(A) = paste('x',1:4,sep='')
+A
+</R>
+Now proceed as before:
+<R>
+( mat = cbind(A, b) )
+p = 0
+</R>
+Notice we are starting with pivot position 0. 
+The only differecen is that we start with a pivoting step.
+<R>
+P()
+M()
+S(2)
+S(3)
+S(4)
+</R>
+The next pass is similar:
+<R>
+P()
+M()
+S(1)
+S(3)
+S(4)
+</R>
+
 <COMMENT>
 <J>
 amat=: 3 4 $ 0 3 _5 _1 4 1 1 6 _1 _8 _1 _4
@@ -474,19 +596,19 @@ will give the required inverse (after the permutation).
 2& 5& -1& 0 & 1& 0\\
 1& 2& -3& 0& 0& 1
 </AUGMAT2> 
-\stackrel{M,S,\searrow}{\longrightarrow}
+\stackrel{M,S,P}{\longrightarrow}
 <AUGMAT2>
 1& -1&  1&  1& 0& 0 \\
 0& \fbox7 & -3& -2& 1& 0 \\
 0& 3 & -4& -1& 0& 1
 </AUGMAT2>
-\stackrel{M,S,\searrow}{\longrightarrow}
+\stackrel{M,S,P}{\longrightarrow}
 <AUGMAT2>
 1& 0&  [[4][7]]& [[5][7]]& [[1][7]]& 0 \\
 0& 1& [[-3][7]]& [[-2][7]]& [[1][7]]& 0 \\
 0& 0 & \fbox{$[[-19][7]]$}& [[-1][7]]& [[-3][7]]& 1
 </AUGMAT2>
-\stackrel{M,S,\searrow}{\longrightarrow}
+\stackrel{M,S,P}{\longrightarrow}
 <AUGMAT2>
 1& 0& 0&  [[91][133]]& [[7][133]]& [[4][19]] \\
 0& 1& 0& [[-35][133]]& [[28][133]]& [[-3][19]] \\
@@ -742,13 +864,22 @@ multiplication) to get the scalar <M>2\bu'\bv = \lambda,</M>
 say. Finally, multiply each entry of <M>\bu</M>
 with <M>\lambda </M> (requiring <M>n</M> more multiplications).
 </EXM>
-
+Let's play with the idea using R:
+<R>
+unit = function(v) {v/sqrt(sum(v*v))}
+hmult = function(u, x) {x - 2* sum(u*x)*u}
+( x = unit(c(1,2,3)) )
+( y = unit(c(4,2,5)) )
+( u = unit(x-y) )
+hmult(u,x)
+</R>
+<COMMENT>
 The following J code provides the tools necessary to explore the
 Householder idea. You'll need to understand the above solution in
 order to
 understand the definition of <CODE>h</CODE> below to multiply by
-a Huseholder matrix. 
-<COMMENT><J>
+a Householder matrix. 
+<J>
 h=: ] - 2*[*d
 </J>
 Let's try it out on some vectors.
@@ -852,6 +983,39 @@ n }. c3                  NB. (8)
 u sh }. c3               NB. (9)
 </J>
 </COMMENT>
+<R>
+shaver = function(x) {
+   x[1] = x[1] - sqrt(sum(x*x))
+   unit(x)
+}
+</R>
+Next, let's create a matrix:
+<R>
+H1 = sample(1000, 6)
+H2 = sample(1000, 6)
+H3 = sample(1000, 6)
+H4 = sample(1000, 6)
+H5 = sample(1000, 6)
+</R>
+OK, ready for first pass:
+<R>
+(u=shaver(H1))
+(H1 = hmult(u,H1)) #Just for checking!
+(H2 = hmult(u,H2))
+(H3 = hmult(u,H3))
+(H4 = hmult(u,H4))
+(H5 = hmult(u,H5))
+</R>
+The second pass is similar:
+<R>
+(u=shaver(H2[2:6]))
+(H2[2:6] = hmult(u,H2[2:6]))
+(H3[2:6] = hmult(u,H3[2:6]))
+(H4[2:6] = hmult(u,H4[2:6]))
+(H5[2:6] = hmult(u,H5[2:6]))
+</R>
+and so on.
+
 <HEAD3>Efficient implementation</HEAD3>
 Notice that though the Householder matrix 
 <D>
@@ -1060,30 +1224,53 @@ We start with a vector <M>\bv</M> and constructs the sequence
 <D>
 unit(A\bv), unit(A^2\bv), unit(A^3\bv), unit(A^4\bv),... 
 </D>
-<RED><B>This red part was added after the lecture:</B> Here <M>unit(\bv)</M> finds a unit vector along a nonzero
-vector <M>\bv</M>. Its definition is
-is <M>unit(\bv) = \bv/\|\bv\|.</M> 
-Under some condition on <M>\bv,</M> the sequence "converges" to an eigenvector
-corresponding to the eigenvalue with the maximum absolute value.
-Here "convergence" is taken in a slightly generalised sense: since
-the negative of an eigenvector is again another eigenvector,
-hence if all subsequences converge to some
-common unit vector (up to sign), we shall consider that vector as the limit. For
-example, if <M>A = <MAT>-1&0\\0&-1</MAT>,</M> then the sequence
-alternates with terms
-<D>
-<MAT>1/\sqrt2\\1/\sqrt2</MAT>\mbox{ and } -<MAT>1/\sqrt2\\1/\sqrt2</MAT>.
-</D>
-Since these are multiples of each other, we consider this as a
-convergent sequence (with any of these two vectors being called a limit).
+Here <M>unit(\bv)</M> is the unit vector along a nonzero
+vector <M>\bv</M>, i.e., 
+<D>unit(\bv) = \bv/\|\bv\|.</D> 
+Under some condition on <M>\bv,</M> the sequence "converges" to an eigenvector.
+
 <P/>
-If, however, we work with <M>A = <MAT>1&0\\0&-1</MAT>,</M> then
-the sequence alternates with terms
+We shall not explore the most general condition under which this
+algorithm works. But here is the most commonly used sufficient
+condition.
+
+
+<THM>Let <M>A_{n\times n}</M> have all real
+eigenvalues, <M>\lambda_1,...,\lambda_n</M>, with
 <D>
-<MAT>1/\sqrt2\\1/\sqrt2</MAT>\mbox{ and } <MAT>1/\sqrt2\\-1/\sqrt2</MAT>.
+|\lambda_1| > |\lambda_2|\geq \cdot \geq |\lambda_n|.
 </D>
-Here we do not consider the sequence as being convergent.</RED>
+Let <M>\bv = \sum_i c_i \bv_i</M>, where <M>\bv_i</M>'s are
+eigenvectors corresponding to <M>\lambda_i</M>'s, and <M>c_1\neq 0.</M>
 <P/>
+Then the sequence
+<D>
+unit(A\bv), unit(A^2\bv), unit(A^3\bv), unit(A^4\bv),... 
+</D>
+converges to <M>\bv_1</M> if <M>\lambda_1 c_1>0</M> and
+to <M>-\bv_1</M> if <M>\lambda_1 c_1 < 0.</M>
+</THM>
+<PF>
+Here 
+<D>
+A^k \bv = \sum_i c_i \lambda_i^k \bv_i = \lambda_1 (*(c_1 \bv_1 +
+\sum_{i=2}^n c_i (*([t[\lambda_i][\lambda_1]])*)^k \bv_i)*) \to
+\lambda_1 c_1 \bv_1.
+</D>
+Now, if <M>(\bx_n)</M> is a sequence of vectors with <M>\bx_n\to
+\bx\neq \bz,</M> then <M>unit(\bx_n)\to unit(\bx).</M> 
+<P/>
+Hence <M>unit(A^k\bv) \to unit(\lambda_1 c_1 \bv_1) =
+unit(\bv_1)</M> if <M>\lambda_1 c_1 >0</M> and <M>-unit(\bv)</M>
+is <M>\lambda_1 c_1 <0.</M>
+</PF>
+Let's take a computational example:
+<R>
+A  = matrix(runif(9),3,3)
+(u = unit(1:3))
+(u= unit(A%*% u))
+</R>
+Just keep on running the last line repeatedly.
 
 <COMMENT>Let's take a computational  example:
 <J>
@@ -1108,6 +1295,7 @@ v=.? 5#0
 ]w=: a pow^:_ v
 plot |: pow^:(i.100) v
 </J></COMMENT>
+<COMMENT>
 <HEAD3>When does it work?</HEAD3>
 The algorithm works for many types of matrices. Let's explore
 this using some simple examples.
@@ -1293,6 +1481,8 @@ These are lower triangular matrices with some
 number <M>\lambda</M> repeated along the diagonal, and <M>1</M>'s
 in the subdiagonal. All other entries are 0.
 </EXR>
+</COMMENT>
+
 <DISQUSE id="mat1" url="https://www.isical.ac.in/~arnabc/numana2021/mat1.html"/>
 @}
 </NOTE>

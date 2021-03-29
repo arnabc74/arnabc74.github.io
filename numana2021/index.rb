@@ -1,6 +1,6 @@
 <NOTE>
 @{
-<UPDT>FRI MAR 26 IST 2021</UPDT>
+<UPDT>MON MAR 29 IST 2021</UPDT>
 <HEAD1>Numerical Analysis (B-I, 2021)</HEAD1>
 This is the course web page for Numerical Analysis as taught to
 the B. Stat (hons) first year students in the year 2020.
@@ -23,7 +23,7 @@ The following notes will continue to evolve during the course.
 
 <P/>
 
-Before the midsem:
+Before the midsem (ready to print):
 <UL>
 <LI><LINK to="intro.html">Introduction to numerical analysis</LINK></LI>
 <LI><LINK to="diff1.html">Differential equations (part 1)</LINK></LI>
@@ -32,7 +32,7 @@ Before the midsem:
 <LI><LINK to="numint1.html">Integration (part 1)</LINK></LI>
 <LI><LINK to="interpol1.html">Interpolation (part 1)</LINK></LI>
 </UL>
-After the midsem:
+After the midsem (don't print these yet):
 <UL>
 <LI><LINK to="nonlin2.html">Nonlinear equations (part 2)</LINK></LI>
 <LI><LINK to="mat2.html">Matrix algorithms (part 2)</LINK></LI>
@@ -59,31 +59,6 @@ table <LINK to="interpol1.html#path">[Details]</LINK></LI>
 <LI><M>LU</M> decomposition <LINK to="mat2.html#lu">[Details]</LINK></LI>
 <LI>Gravity well simulation (Runge-Kutta) <LINK to="diff2.html#gw2">[Details]</LINK></LI>
 </OL>
-<HEAD2>Practicals</HEAD2>
-This is a computing course. The lectures will appear boring
-unless we actually try out the things as we learn them. Implementing the
-algorithms in traditional languages like C or R or Matlab is
-too time consuming to carry out during the class. Using a
-calculator is also prohibitively labourious.  
-<P/>
-There is, however, a language
-called <LINK to="http://www.jsoftware.com">J</LINK> that combines
-the ease of a calculator with the power of a programming
-language. One may run J code offline in a smart phone
-(android/ipad).
- Learning this language is not part of the syllabus. We shall use
-little snippets of J to perform numerical computations in class. 
-<P/>
-Please install the J app
-from <LINK to="https://code.jsoftware.com/wiki/System/Installation/J901">here</LINK>. This
-app is not available in Google Play.
-<P/>
-I would also suggest that you install the Hacker's Keyboard app
-from Google Play. This is a full keyboard app (complete with
-cursor keys etc).
-<P/>
-The 5 marks for "Practicals" will be based on your active
-participation in the practical computations using J in class. 
 
 <HEAD1>Reference and extra reading</HEAD1>
 <UL>
