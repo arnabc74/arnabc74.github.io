@@ -1,6 +1,6 @@
 <NOTE>
 @{
-<UPDT>MON MAR 29 IST 2021</UPDT>
+<UPDT>TUE MAR 30 IST 2021</UPDT>
 <HEAD1>Numerical Analysis (B-I, 2021)</HEAD1>
 This is the course web page for Numerical Analysis as taught to
 the B. Stat (hons) first year students in the year 2020.
@@ -12,17 +12,13 @@ the B. Stat (hons) first year students in the year 2020.
 
 Marks distribution: 
 <UL>
-<LI>Midsem: 20</LI>
+<LI>Midsem: 15</LI>
 <LI>Sem: 50</LI>
 <LI>Projects: <M>5\times5</M></LI>
-<LI>Practicals: 5</LI>
+<LI>Practicals: 10</LI>
 </UL>
 
 <HEAD2>Class notes</HEAD2>
-The following notes will continue to evolve during the course. 
-
-<P/>
-
 Before the midsem (ready to print):
 <UL>
 <LI><LINK to="intro.html">Introduction to numerical analysis</LINK></LI>
