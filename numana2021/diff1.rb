@@ -4,7 +4,7 @@
 \newcommand{\v}{\vec}
 </M>
 <TITLE>Differential equations</TITLE>
-<UPDT>SUN MAR 28 IST 2021</UPDT>
+<UPDT>THU APR 01 IST 2021</UPDT>
 <HEAD1>Differential equations</HEAD1>
 
 
@@ -80,11 +80,11 @@ range. What if you have a pendulum that swings <M>30^\circ?</M>
 That's what we are going to explore now.
 <P/>
 We first reduce the second
-order differential equation <M>\theta '' = -[[gL]]\theta</M> 
+order differential equation <M>\theta '' = -[[gL]]\sin\theta</M> 
 to a <I>system</I> of first order equations.
 <MULTILINE>
 \theta ' &  = &  \omega\\
-\omega' &  = &  -[[gL]] \theta.
+\omega' &  = &  -[[gL]] \sin\theta.
 </MULTILINE>
 Notice that <M>(\theta',\omega')</M> is given as a function
 of <M>(\theta,\omega).</M> The entire motion of the pendulum is
