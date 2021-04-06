@@ -4,7 +4,7 @@
 \newcommand{\v}{\vec}
 </M>
 <TITLE>Differential equations</TITLE>
-<UPDT>THU APR 01 IST 2021</UPDT>
+<UPDT>TUE APR 06 IST 2021</UPDT>
 <HEAD1>Differential equations</HEAD1>
 
 
@@ -561,34 +561,45 @@ position of the ball. Let the current position of the ball be
 <D>
 <MAT>t\\y\\f(u)</MAT>,
 </D>
-where <M>u = \sqrt{t^2+y^2}.</M> A little coordinate geometry shows that
+where <M>u = \sqrt{x^2+y^2}.</M> A little coordinate geometry shows that
 the normal lies along 
 <D>
-<MAT>-t\\-y\\u/f'(u)</MAT>.
+<MAT>-x\\-y\\u/f'(u)</MAT>.
 </D>
 So the reaction force is
 <D>
-R<MAT>-t\\-y\\u/f'(u)</MAT>,
+R<MAT>-x\\-y\\u/f'(u)</MAT>,
 </D>
-for some unknown function <M>R</M> of <M>t.</M> So we have the equation of
+for some unknown function <M>R</M> of <M>t</M> (time). So we have the equation of
 motion:
 <D>
-m<MAT>x''\\y''\\z''</MAT> = R<MAT>-t\\-y\\u/f'(u)</MAT>+<MAT>0\\0\\-mg</MAT>.
+m<MAT>x''\\y''\\z''</MAT> = R<MAT>-x\\-y\\u/f'(u)</MAT>+<MAT>0\\0\\-mg</MAT>.
 </D>
-Thus, we have 3 equations in 3 unknowns: <M>t,y,</M> and <M>R.</M> Notice
-that <M>z</M> is a known function of <M>t</M> and <M>y.</M> To simplify
-the equations first find
-<M>z''</M> in terms of <M>t,y</M> and their derivatives. Then eliminate
-<M>R</M> to get two equations in two unknowns:
-<MULTILINE>
-x'' &  = &  -t\tilde R\\
-y'' &  = &  -y\tilde R,\\
-</MULTILINE>
-where 
+or, dividing by <M>m,</M>
+<D>
+<MAT>x''\\y''\\z''</MAT> = \tilde R<MAT>-x\\-y\\u/f'(u)</MAT>+<MAT>0\\0\\-g</MAT>,
+</D>
+where <M>\tilde R = [[Rm]].</M>
+
+<P/>
+Notice
+that <M>z</M> is a known function of <M>x</M> and <M>y.</M> 
+Find
+<M>z''</M> in terms of <M>x,y</M> and their derivatives. Then use
+the 3rd equation to get 
 <D>
 \tilde R = \frac{f'(u)\left(x'^2+y'^2-u'^2\right)/u+u'^2f''(u)+g}
            {u\left(f'(u)+\frac{1}{f'(u)}\right)}.
 </D>
+Thus, now <M>\tilde R</M> is expressed in terms of <M>x</M>
+and <M>y</M> (and their derivatives).
+With this <M>\tilde R</M> we now have just two equations in two unknowns:
+<MULTILINE>
+x'' &  = &  -x\tilde R\\
+y'' &  = &  -y\tilde R.
+</MULTILINE>
+
+
 <PROJ id="gw">Use 2nd  order Taylor method to solve this for the initial condition 
 <D>
 t(0)=10,~~y(0)=0,~~x'(0)=0,~~y'(0)=5.
