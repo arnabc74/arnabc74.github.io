@@ -566,6 +566,30 @@ the normal lies along
 <D>
 <MAT>-x\\-y\\u/f'(u)</MAT>.
 </D>
+If this is not clear, then think like this:
+<Q>
+First consider the curve <M>z = f(y)</M> and the point on the
+graph at <M>y = u.</M> The slope of the tangent there
+is <M>f'(u)</M> and hence the slope of the normal
+is <M>-[[1][f'(u)]].</M> Understand how we get from this the normal arrow
+shown below:
+<CIMG web="curve.png">The arrow has coordinates <M>(*( 1,-[[1][f'(u)]] )*)</M></CIMG>
+Now when we rotate the curve around the <M>z</M>-axis to generate
+the surface, the normal arrow also rotates with the curve. The
+following diagram shows a snapshot during the rotation:
+<CIMG web="surf.png">The arrow has coordinates <M>(*( [[xu]],
+[[yu]], ,-[[1][f'(u)]] )*)</M></CIMG>
+The pink plane is the rotated version of the graph paper from the
+earlier 2D graph of <M>z = f(y).</M> If the new position
+of <M>P</M> is at <M>(x,y,0),</M> then we must
+have <M>\sqrt{x^2+y^2} = u.</M>  From this you should be able to
+see that a vector along the (outward) normal direction is <M>(*( [[xu]],
+[[yu]], ,-[[1][f'(u)]] )*)</M>, or equivalently, <M>(*( x,
+y,-[[u][f'(u)]] )*)</M>. So the inward normal direction is given
+by its negative: <M>(*( -x, -y, [[u][f'(u)]] )*)</M>
+
+</Q>
+
 So the reaction force is
 <D>
 R<MAT>-x\\-y\\u/f'(u)</MAT>,
