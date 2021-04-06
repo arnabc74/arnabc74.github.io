@@ -642,6 +642,6 @@ has many interactive animations. However, they use a method more
 sophisticated than what we have used. We
  shall learn that method
 in the second half of this course.
-<DISQUSE id="diff1" url="https://www.isical.ac.in/~arnabc/numana2021/diff1.html"/>
+<DISQUSE id="newdiff1" url="https://www.isical.ac.in/~arnabc/numana2021/diff1.html"/>
 @}
 </NOTE>
