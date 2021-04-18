@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE>
-<UPDT>MON MAR 29 IST 2021</UPDT>
+<UPDT>SUN APR 18 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1>
 <HEAD2>Gauss-Jordan elimination</HEAD2>
 We shall start with a few concepts already familiar to you. 
@@ -474,15 +474,23 @@ P = function() {
   newRow = p + (argmax-1) %% nrow(candidates)
   newCol = p + floor((argmax-1) / nrow(candidates))
   cat('Best candidate at', newRow, newCol,'\n')
+
+<BLUE># Now we shall swap the rows p and newRow.</BLUE>
   tmp = mat[newRow,]
   mat[newRow,] <<- mat[p,]
   mat[p,] <<- tmp
+
+<BLUE># We also need to swap the row heads accordingly.
+# First we extract the current row heads.</BLUE>
   rheads = rownames(mat)
+<BLUE># Next we perform the swap.</BLUE>
   tmp = rheads[newRow]
   rheads[newRow] = rheads[p]
   rheads[p] = tmp
+<BLUE># Finally we assign the swapped array of row heads to the matrix.</BLUE>
   rownames(mat) <<- rheads
 
+<BLUE># Similarly, for the column swap.</BLUE>
   tmp = mat[,newCol]
   mat[,newCol] <<- mat[,p]
   mat[,p] <<- tmp
@@ -491,6 +499,7 @@ P = function() {
   cheads[newCol] = cheads[p]
   cheads[p] = tmp
   colnames(mat) <<- cheads
+
   print(mat)
 }
 </R>
