@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE>
-<UPDT>SUN APR 18 IST 2021</UPDT>
+<UPDT>TUE APR 27 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1>
 <HEAD2>Gauss-Jordan elimination</HEAD2>
 We shall start with a few concepts already familiar to you. 
@@ -1262,9 +1262,13 @@ to <M>-\bv_1</M> if <M>\lambda_1 c_1 < 0.</M>
 <PF>
 Here 
 <D>
-A^k \bv = \sum_i c_i \lambda_i^k \bv_i = \lambda_1 (*(c_1 \bv_1 +
-\sum_{i=2}^n c_i (*([t[\lambda_i][\lambda_1]])*)^k \bv_i)*) \to
-\lambda_1 c_1 \bv_1.
+A^k \bv = \sum_i c_i \lambda_i^k \bv_i = \lambda_1^k (*(c_1 \bv_1 +
+\sum_{i=2}^n c_i (*([t[\lambda_i][\lambda_1]])*)^k \bv_i)*).
+</D>
+So 
+<D>
+unit(A^k \bv) = unit(*(c_1 \bv_1 +
+\sum_{i=2}^n c_i (*([t[\lambda_i][\lambda_1]])*)^k \bv_i)*).
 </D>
 Now, if <M>(\bx_n)</M> is a sequence of vectors with <M>\bx_n\to
 \bx\neq \bz,</M> then <M>unit(\bx_n)\to unit(\bx).</M> 
