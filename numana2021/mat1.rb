@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE>
-<UPDT>TUE APR 27 IST 2021</UPDT>
+<UPDT>WED APR 28 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1>
 <HEAD2>Gauss-Jordan elimination</HEAD2>
 We shall start with a few concepts already familiar to you. 
@@ -1247,7 +1247,7 @@ condition.
 <THM>Let <M>A_{n\times n}</M> have all real
 eigenvalues, <M>\lambda_1,...,\lambda_n</M>, with
 <D>
-|\lambda_1| > |\lambda_2|\geq \cdot \geq |\lambda_n|.
+\lambda_1 > |\lambda_2|\geq \cdot \geq |\lambda_n|.
 </D>
 Let <M>\bv = \sum_i c_i \bv_i</M>, where <M>\bv_i</M>'s are
 eigenvectors corresponding to <M>\lambda_i</M>'s, and <M>c_1\neq 0.</M>
@@ -1256,8 +1256,8 @@ Then the sequence
 <D>
 unit(A\bv), unit(A^2\bv), unit(A^3\bv), unit(A^4\bv),... 
 </D>
-converges to <M>\bv_1</M> if <M>\lambda_1 c_1>0</M> and
-to <M>-\bv_1</M> if <M>\lambda_1 c_1 < 0.</M>
+converges to <M>\bv_1</M> if <M> c_1>0</M> and
+to <M>-\bv_1</M> if <M> c_1 < 0.</M>
 </THM>
 <PF>
 Here 
@@ -1273,9 +1273,9 @@ unit(A^k \bv) = unit(*(c_1 \bv_1 +
 Now, if <M>(\bx_n)</M> is a sequence of vectors with <M>\bx_n\to
 \bx\neq \bz,</M> then <M>unit(\bx_n)\to unit(\bx).</M> 
 <P/>
-Hence <M>unit(A^k\bv) \to unit(\lambda_1 c_1 \bv_1) =
-unit(\bv_1)</M> if <M>\lambda_1 c_1 >0</M> and <M>-unit(\bv)</M>
-is <M>\lambda_1 c_1 <0.</M>
+Hence <M>unit(A^k\bv) \to unit(c_1 \bv_1) =
+unit(\bv_1)</M> if <M>c_1 >0</M> and <M>-unit(\bv)</M>
+is <M> c_1 <0,</M> as required.
 </PF>
 Let's take a computational example:
 <R>
