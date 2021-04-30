@@ -1,6 +1,6 @@
 <NOTE>
 @{<TITLE>Numerical Integration</TITLE>
-<UPDT>SUN MAR 28 IST 2021</UPDT>
+<UPDT>FRI APR 30 IST 2021</UPDT>
 <HEAD1>Numerical Integration</HEAD1>
 Suppose that we are given a function <M>f(x),</M> and we are to compute
 <D>
@@ -234,7 +234,7 @@ Now we need to partition the points into <I>three</I> groups:
 </UL>
 Since R starts its indices from 1, we have to be careful:
 <R>
-ext = c(1:15)
+ext = c(1, 15) # A typo has been corrected here. Earlier I wrongly wrote 1:15 instead of 1,15.
 mid = seq(2,14,2)
 bdry = seq(3,13,2)
 </R>
