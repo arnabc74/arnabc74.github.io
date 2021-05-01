@@ -14,6 +14,12 @@ baiyer pratham adhyAye ekTA yynimeshaner ul+lekh Achhe. seTA pAbe <LINK to="st.h
 bhul~gulor  khabar imel mAr~fat shrI pradIp manDaler theke peyechhi. 
 </LI>
 <LI>
+<IMG web="p91bhul.png">@{<E>91</E>@}  nambar pAtAr uparer a.nsha</IMG>
+ekhAne ekTA atyanta bishrI bhul Achhe. lAl a.nshaTA puroTAi bhul. fale uttarTAo bhul diyechhi. Thik karAr par habe erakam--
+<IMG web="p91thik.png">kI haoyA uchit</IMG>  
+bhulTA dharechhe debajyoti mukhAr+jI. 
+</LI>
+<LI>
 <IMG web="p173.png">@{<E>173</E>@}  nambar pAtAr a.nsha</IMG>
 ekhAne @{<M>\ell'(0)</M>@}  Ar @{<M>r'(0)</M>@}-r jAygAy yathAk+rame @{<M>\ell'(2)</M>@}  Ar @{<M>r'(2)</M>@}  habe. 
 bhulTA dharechhen shrI pradIp manDal. 
