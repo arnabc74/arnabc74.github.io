@@ -1,6 +1,6 @@
 <NOTE>
 @{<TITLE>Numerical Integration</TITLE>
-<UPDT>FRI APR 30 IST 2021</UPDT>
+<UPDT>MON MAY 03 IST 2021</UPDT>
 <HEAD1>Numerical Integration</HEAD1>
 Suppose that we are given a function <M>f(x),</M> and we are to compute
 <D>
@@ -103,7 +103,7 @@ trapint = function(f,a,b,n) {
 <EXR>
 We want to approximate 
 <D>
-\int_0^2 e^{-t} t^{x-1}\, dt.
+\int_0^2 e^{-t} t^{3.4}\, dt.
 </D>
 This is the incomplete gamma function evaluated at 2. Keep on
 applying trapezoidal rule with
