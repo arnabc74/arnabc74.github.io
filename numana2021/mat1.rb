@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE>
-<UPDT>WED APR 28 IST 2021</UPDT>
+<UPDT>TUE MAY 04 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1>
 <HEAD2>Gauss-Jordan elimination</HEAD2>
 We shall start with a few concepts already familiar to you. 
@@ -1115,7 +1115,7 @@ O \bx = \bc_2.
 </D>
 The first system is always consistent and can be solved by
 back-substitution. The second system is trivial and inconsistent unless
-<M>\bc_2=\zz.</M> 
+<M>\bc_2=\bz.</M> 
 
 <COMMENT>Show that the original system is consistent iff \bc_2=\zz.</COMMENT>
 
