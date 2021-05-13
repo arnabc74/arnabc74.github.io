@@ -1,16 +1,16 @@
 <NOTE>
 @{
 <UPDT>THU MAY 13 IST 2021</UPDT>
-<HEAD1>Numerical Analysis (B-I, 2021)</HEAD1>
-This is the course web page for Numerical Analysis as taught to
-the B. Stat (hons) first year students in the year 2020.
-
+<CENTER><RAWIMG web="logo.png"/>
+<P/>
+<RAWIMG web="logo2.png"/>
+</CENTER>
 
 <P/>
 <NEWS src="news.html"/>
 <P/>
 
-Marks distribution: 
+<HEAD1>Marks distribution</HEAD1>
 <UL>
 <LI>Midsem: No midsem (thanks to COVID)</LI>
 <LI>Sem: 50</LI>
@@ -18,7 +18,7 @@ Marks distribution:
 <LI>Assignments: 10</LI>
 </UL>
 
-<HEAD2>Class notes</HEAD2>
+<HEAD1>Class notes</HEAD1>
 Before the midsem (ready to print):
 <UL>
 <LI><LINK to="intro.html">Introduction to numerical analysis</LINK></LI>
@@ -38,7 +38,7 @@ After the midsem (don't print these yet):
 <LI><LINK to="err.html">Error analysis</LINK></LI>
 </UL>
 
-<HEAD2>Projects</HEAD2>
+<HEAD1>Projects</HEAD1>
 Each student has to do the following 10 projects.
 projects. Each project carries 4 marks. The [Details] link for a project leads
 to the appropriate place in the notes where the project is presented.
