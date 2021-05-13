@@ -502,9 +502,9 @@ structure provided by R.
 <font color="red">
 <pre>
 col = list()
-col\frac 1 = y
+col[[1]] = y
 for(i in 1:(length(x)-1)) {
-  col\frac i+1 = diff(col\frac i)/diff(x,i); 
+  col[[i+1]] = diff(col[[i]])/diff(x,i); 
 }
 </pre>
 </font>
@@ -565,7 +565,7 @@ first entry of each column as our coefficients.
 <font color="red">
 <pre>
 coef = c()
-for(i in 1:length(x)) coef[i] = col\frac i[1]
+for(i in 1:length(x)) coef[i] = col[[i]][1]
 </pre>
 </font>
 Let's try to evaluate the polynomial at a new value <code>nx=2</code>:
