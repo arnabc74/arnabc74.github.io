@@ -1,6 +1,6 @@
 <NOTE>
 @{
-<UPDT>TUE MAR 30 IST 2021</UPDT>
+<UPDT>THU MAY 13 IST 2021</UPDT>
 <HEAD1>Numerical Analysis (B-I, 2021)</HEAD1>
 This is the course web page for Numerical Analysis as taught to
 the B. Stat (hons) first year students in the year 2020.
@@ -12,10 +12,10 @@ the B. Stat (hons) first year students in the year 2020.
 
 Marks distribution: 
 <UL>
-<LI>Midsem: 15</LI>
+<LI>Midsem: No midsem (thanks to COVID)</LI>
 <LI>Sem: 50</LI>
-<LI>Projects: <M>5\times5</M></LI>
-<LI>Practicals: 10</LI>
+<LI>Projects: <M>10\times4</M></LI>
+<LI>Assignments: 10</LI>
 </UL>
 
 <HEAD2>Class notes</HEAD2>
@@ -39,8 +39,8 @@ After the midsem (don't print these yet):
 </UL>
 
 <HEAD2>Projects</HEAD2>
-Each student has to do 5 projects from the following list of
-projects. Each project carries 5 marks. The [Details] link for a project leads
+Each student has to do the following 10 projects.
+projects. Each project carries 4 marks. The [Details] link for a project leads
 to the appropriate place in the notes where the project is presented.
 <OL>
 <LI>Elastic pendulum simulation <LINK to="diff1.html#pendu">[Details]</LINK></LI>

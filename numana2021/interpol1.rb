@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbb R}</M>
 <TITLE>Polynomial Interpolation</TITLE>
-<UPDT>SUN MAR 28 IST 2021</UPDT>
+<UPDT>THU MAY 13 IST 2021</UPDT>
 
 <HEAD1>Polynomial interpolation</HEAD1>
 Here we shall work with <B>polynomial</B>s.  These are functions with  the
@@ -654,10 +654,12 @@ whose graphs are also very smooth. Some of these are difficult to
 compute. Often it is possible to find a polynomial that has almost the
 same graph as the complicated function, but yet the polynomial is much
 easier to compute than the original function. In this case we call the
-polynomial as {\bf an approximating polynomial} for that function. 
+polynomial as <B>an approximating polynomial</B> for that function. 
 
-\medskip
-\noindent{\bf Problem statement:} We have some unknown function <M>g(x).</M> We
+
+<P/>
+
+<B>Problem statement:</B> We have some unknown function <M>g(x).</M> We
 know the value of <M>g(x)</M> only for <M>x=x_0,...,x_n,</M> where <M>x_i</M>'s are
 given. If we denote <M>g(x_i)</M> by <M>y_i,</M> then we have the table
 <TABLE>
@@ -721,7 +723,7 @@ In fact, here <M>g(x)=\sin(x).</M> So the actual value is <M>g(0.6) =0.5646.</M>
 Thus our approximation is correct  up to 2 decimal places. 
 </EXM>
 
-\noindent{\bf Note:} Two numbers, <M>a</M> and <M>b,</M> are said to be equal up to
+<B>Note:</B> Two numbers, <M>a</M> and <M>b,</M> are said to be equal up to
 <M>k</M> decimal places if
 <D>|a-b| <  5\times10^{k+1}.</D>
 
