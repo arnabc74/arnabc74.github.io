@@ -121,7 +121,7 @@ $\newcommand{\y}{\mathbf y}
 <tr>
 <td align="right"><i>Last
 updated on:
-THU MAY 13 IST 2021</i></td>
+SAT MAY 15 IST 2021</i></td>
 </tr>
 </table>
 
@@ -254,7 +254,7 @@ This motivates the definition of <i>Lagrangian polynomial</i> s. If $x_0,...,x_n
 defined as
 $$L_i(x) =
 \frac{(x-x_0)\times\cdots\times(x-x_{i-1})\times(x-x_{i+1})\times\cdots\times(x-x_n)}
-{(x_i-x_0)\times\cdots\times(x_i-x_{i-1})\times(x_i-x_{i+1})\times\cdots\times(x-x_n)}.$$
+{(x_i-x_0)\times\cdots\times(x_i-x_{i-1})\times(x_i-x_{i+1})\times\cdots\times(x_i-x_n)}.$$
 Here the numerator is the product of all terms of the form $(x-x_j)$ for
 $j\neq i.$ The denominator is the same as the numerator, except that $x$ is
 replaced by $x_i.$
@@ -565,14 +565,14 @@ first entry of each column as our coefficients.
 <font color="red">
 <pre>
 coef = c()
-for(i in 1:length(x)) coef[i] = col[[i]][1]
+for(i in 1:length(x)) coef[i] = col\frac i[1]
 </pre>
 </font>
 Let's try to evaluate the polynomial at a new value <code>nx=2</code>:
 <font color="red">
 <pre>
 nx = 2
-sum(c(1,cumprod(x[-length(x)] - nx)) * coef)
+sum(c(1,cumprod(nx - x[-length(x)])) * coef)
 </pre>
 </font>
 The <code>cumprod</code> function computes cumulative product.
@@ -738,7 +738,7 @@ $$\begin{eqnarray*}
        &amp;  = &amp;  x^3-2x^2+7x-5
 \end{eqnarray*}$$
 Check by direct computation that we indeed have
-$$f(0)=-5,~~~f(1)=1,~~~f(3)=25 \mbox{ and } f(4)=55.$$
+$$f(0)=-5,f(1)=1,f(3)=25 \mbox{ and } f(4)=55.$$
 It is always a good idea to perform 
 this check in the examination to safeguard against mistakes.
 <img src="../image/box.png"></p>

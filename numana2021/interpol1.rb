@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbb R}</M>
 <TITLE>Polynomial Interpolation</TITLE>
-<UPDT>THU MAY 13 IST 2021</UPDT>
+<UPDT>SAT MAY 15 IST 2021</UPDT>
 
 <HEAD1>Polynomial interpolation</HEAD1>
 Here we shall work with <B>polynomial</B>s.  These are functions with  the
@@ -117,7 +117,7 @@ This motivates the definition of <I>Lagrangian polynomial</I> s. If <M>x_0,...,x
 defined as
 <D>L_i(x) =
 \frac{(x-x_0)\times\cdots\times(x-x_{i-1})\times(x-x_{i+1})\times\cdots\times(x-x_n)}
-{(x_i-x_0)\times\cdots\times(x_i-x_{i-1})\times(x_i-x_{i+1})\times\cdots\times(x-x_n)}.</D>
+{(x_i-x_0)\times\cdots\times(x_i-x_{i-1})\times(x_i-x_{i+1})\times\cdots\times(x_i-x_n)}.</D>
 Here the numerator is the product of all terms of the form <M>(x-x_j)</M> for
 <M>j\neq i.</M> The denominator is the same as the numerator, except that <M>x</M> is
 replaced by <M>x_i.</M>
@@ -331,9 +331,9 @@ are of different lengths, we need to use the <CODE>list</CODE>
 structure provided by R. 
 <R>
 col = list()
-col[[1]] = y
+col[~~~[1]~~~] = y
 for(i in 1:(length(x)-1)) {
-  col[[i+1]] = diff(col[[i]])/diff(x,i); 
+  col[~~~[i+1]~~~] = diff(col[~~~[i]~~~])/diff(x,i); 
 }
 </R>
 Just print <CODE>col</CODE> to get the divided difference table
@@ -421,7 +421,7 @@ for(i in 1:length(x)) coef[i] = col[[i]][1]
 Let's try to evaluate the polynomial at a new value <CODE>nx=2</CODE>:
 <R>
 nx = 2
-sum(c(1,cumprod(x[-length(x)] - nx)) * coef)
+sum(c(1,cumprod(nx - x[-length(x)])) * coef)
 </R>
 The <CODE>cumprod</CODE> function computes cumulative product.
 
