@@ -6,7 +6,7 @@
 \newcommand{\by}{{\bf y}}
 \newcommand{\bz}{{\bf 0}}</M>
 <TITLE>Nonlinear equations</TITLE>
- <UPDT>THU MAR 26 IST 2020</UPDT>
+ <UPDT>MON MAY 17 IST 2021</UPDT>
 
 
 <HEAD1>Fixed-point iteration</HEAD1>
@@ -58,7 +58,31 @@ be visualised as the following "cobweb diagram" (the blue line is
 the graph of <M>\cos x,</M> the red diagonal is the <M>y=x</M>
 line).
 <CIMG web="cobweb1.png"> Cobweb Diagram</CIMG>
-The following code snippet produces this.
+The following code snippet produces this. Here <M>f:[a,b]\to[a,b]</M> is
+the function whose fiex point we are interested in. We start
+from <M>x_0</M> and run the cobweb for <M>n</M> steps
+(producing <M>2n+1</M> line segments, alternatingly vertical and
+horizontal, starting with a vertical):
+<R>
+cobweb = function(f, x0, a, b, n) {
+  xgrid = seq(a,b,len=100)
+  plot(xgrid, f(xgrid), ty='l',asp=1)
+  abline(a=0,b = 1)
+  xpts = ypts = numeric(n)
+  xpts[1:2] = c(x0,x0); ypts[1:2] = c(a, f(x0))
+  for(i in seq(3,len=n,by=2)) {
+    xpts[i] = ypts[i] = ypts[i-1]
+    xpts[i+1] = xpts[i]
+    ypts[i+1] = f(xpts[i+1])
+  }
+  lines(xpts, ypts)
+}
+</R>
+Use it like this:
+<R>
+cobweb(cos, 0.5, 0,1,10)
+</R>
+<COMMENT>
 <J>
 fp1=: (],f),:(f,f)
 fp=: ],fp1 @ {. @ {:
@@ -69,6 +93,7 @@ pd x ; x
 pd ;/ |: fp^:20 (1 2 $ 1 0)
 pd'show'
 </J>
+</COMMENT>
 <P/>
 
 The next example shows a case where the fixed point iteration does not
@@ -102,7 +127,7 @@ point in <M>[a,b].</M>
 </THM>
 <PF>
 If <M>f(a)=a</M> or <M>f(b)=b,</M> we are done. Otherwise, 
-<M>f(a)?a</M> and <M>f(b)< b.</M> Let the points <M>(a,f(a))</M> and
+<M>f(a)>a</M> and <M>f(b)< b.</M> Let the points <M>(a,f(a))</M> and
 <M>(b,f(b))</M> be denoted by <M>A</M> and <M>B,</M> respectively. Then
 the graph of <M>f(x)</M> is a continuous curve from <M>A</M> to <M>B,</M>
 and hence it must intersect the diagonal at least once. Any such
@@ -221,10 +246,19 @@ He tests <M>|s_n-s_{n-1}| < \epsilon,</M> i.e., <M>[[1n]] <
 <P/>
 So this fellow will find a finite limit of this divergent
 sequence.
+<R>
+partial.sums = cumsum(1/(1:1e7))
+</R>
+Let's print the last 10:
+<R>
+partial.sums[(1e7-10):1e7]
+</R>
+<COMMENT>
 <J>
 +/% 1+i.1+1e7
 </J>
-The answer is 16.6953. Wow!
+</COMMENT>
+The answer is 16.69531. Wow!
 </EXM>
 
 Before you lose all faith in iterative methods, however, do please try
@@ -236,11 +270,24 @@ We know <M>\sum[[1][n^2]] = [[\pi^2][6]].</M> Use the iteration
 s_n = s_{n-1} + [[1][n^2]]\mbox{ for } n\in\nn
 </D>
 starting with <M>s_0 = 0.</M> Use the same <M>\epsilon </M> as
-before. How close are you getting to <M>[[\pi^2][6]]</M>
+before. How close are you getting to <M>[[\pi^2][6]]</M>?
 <HINT>
+<R>
+partial.sums = cumsum(1/(1:1e7)^2)
+</R>
+Let's print the last 10:
+<R>
+partial.sums[(1e7-10):1e7]
+</R>
+Now the answer is 1.6449. Compare with the theoretical value:
+<R>
+pi*pi/6
+</R>
+<COMMENT>
 <J>
 +/% *~1+i.1+1e7
 </J>
+</COMMENT>
 </HINT></EXR>
 
 <HEAD2>Rate of convergence</HEAD2>
@@ -371,15 +418,23 @@ k    x_k
 6  0.7390851
 7  0.7390851
 </PRE>
-So the answer is 0.739085 up to 6 decimal places.
+So the answer is 0.739085 up to 6 decimal places. The following R
+code might help:
+<R>
+f = function(x) x - cos(x)
+x0 = 0; y0 = f(x0)
+x1 = 0.5; y1 = f(x1)
+#Replay the following line repeatedly until convergence:
+(x2 = (x0*y1 - x1*y0)/(y1-y0)); y2 = f(x2); x0 = x1; y0 = y1; x1 = x2; y1 = y2;
+</R>
 </EXM>
-
+<COMMENT>
 <J>
 rf=: monad :'y,(],f)+/({: y) * 1, -%/-/_2{.y'
 f=:]-cos
 rf^:10 (],.f) 0 0.5
 </J>
-
+</COMMENT>
 <HEAD1>Polynomial roots</HEAD1>
 Finding the roots of a polynomial is important in different branches of
 science. It is a special case of solving nonlinear equations. However, it
@@ -485,7 +540,7 @@ b_1+b_2x+b_3x^2 = 2-3x+x^2.
 
 <HEAD2>Finding complex roots</HEAD2>
 Newton-Raphson iteration has the property that if we start with a real
-<M>x_0</M> and <M>f(x)</M> is a real polynomial ({\em i.e.,} the
+<M>x_0</M> and <M>f(x)</M> is a real polynomial (i.e., the
 coefficients of <M>f(x)</M> are all real numbers,) then all the
 <M>x_n</M>'s are real numbers as well. So we cannot find complex roots
 using Newton-Raphson method if we start from a real initial
@@ -536,7 +591,7 @@ find complex roots of nonlinear functions other than polynomials.</LI>
 
 Muller's method is a direct generalization of the secant method. In secant
 method we approximate <M>f(x)</M> by linear interpolation. In Muller's
-method we use quadratic interpolation, {\em i.e.,} we fit a parabola. In
+method we use quadratic interpolation, i.e., we fit a parabola. In
 secant method we need <M>x_{n-1}</M> and <M>x_n</M> to find
 <M>x_{n+1}.</M> In Muller's method we need <I>three</I> points
 <M>x_{n-2}, x_{n-1}</M> and <M>x_n</M> to compute <M>x_{n+1}.</M> A
@@ -636,6 +691,44 @@ here
 We stop once we reach a nonzero constant polynomial (we are bound
 to reach one such). 
 </EXM>
+We shall use the <CODE>pracma</CODE> package in R to perform
+polynomial division. You'll need to install that package. 
+We shall need two functions from that
+package: <CODE>polydiv</CODE> for polynomial division,
+and <CODE>polyder</CODE> for polynomial differentiation. A
+polynomial is expressed as a vector of coefficients <I>in
+decreasing of order of exponents</I>. For instance, the
+polynomial 
+<D>
+p_0(x) = 8 + 22x + 21 x^2 + 24 x^3 + 13 x^4 + 2x^5. 
+</D>
+is represented as
+<R>
+library(pracma)
+p0 = c(2,13,24,21, 22, 8)
+</R>
+We obtain <M>p_1(x)</M> by differentiating this:
+<R>
+(p1 = polyder(p0))
+</R>
+The outermost parentheses cause <CODE>p1</CODE> to be printed.
+
+<P/>
+Next, <M>p_2(x)</M> is obtained by dividing <M>p_0(x)</M>
+by <M>p_1(x)</M> and negating the remainder. 
+<R>
+(p2 = - polydiv(p0, p1)$r)
+</R>
+Notice the <CODE>$r</CODE>, which extracts the remainder. Also,
+notice the order of the arguments: <I>first the dividend, and then
+the divisor</I>. The
+remaining polynomials are obtained similarly:
+<R>
+(p3 = - polydiv(p1, p2)$r)
+(p4 = - polydiv(p2, p3)$r)
+(p5 = - polydiv(p3, p4)$r)
+</R>
+<COMMENT>
 J has no built-in method for performing long division of
 polynomials. However, it is easy to implement it. 
 <J>
@@ -683,6 +776,7 @@ p0=: 8  22 21 24 13 2
 <JHLP lab="pdiff">
 <LI><CODE>p..</CODE> here performs polynomial differentiation.</LI>
 </JHLP>
+</COMMENT>
 
 Next, we take some value of <M>x,</M> which is not a zero
 of any of the <M>p_i</M>'s. We evaluate all the
@@ -695,6 +789,15 @@ sequence of values at <M>x=0</M> is
 <D>
 8, 22, -2.28, -43.1643, -7.41164, -9.85481.
 </D> 
+These may be obtained using the <CODE>polyval</CODE> function:
+<R>
+polyval(p0,0)
+polyval(p1,0)
+polyval(p2,0)
+polyval(p3,0)
+polyval(p4,0)
+polyval(p5,0)
+</R>
 The sequence of signs is
 <D>
 + + - - - -.
@@ -740,6 +843,7 @@ Thus, we conclude that there are <M>\sigma(-10)-\sigma(0.9) = 4-1
 We can keep on halving the interval until we get small intervals,
 over each of which <M>\sigma</M> changes by exactly 1. Each of
 these intervals, then is guaranteed to contain exactly one root.
+<COMMENT>
 <P/>
 
 Here are some J
@@ -751,11 +855,12 @@ st p. _10
 * st p. _10
 c=:+/@:(}.~:}:)@:*
 </J>
-
+</COMMENT>
 <HEAD3>Proof</HEAD3>
 The proof of the Sturm's theorem uses certain properties of the
 Sturm's sequence that is visible from a plot:
 <CIMG web="sturm.png">Sturm's sequence</CIMG>
+<COMMENT> 
 <HIDE lab="how"><MSG>[Creating the plot in J]</MSG><HIDDEN>
 
 <J>
@@ -769,7 +874,7 @@ y5=: p5 p. x
 plot x; y0,y1,y2,y3,y4,:y5
 </J>
 </HIDDEN></HIDE>
-
+</COMMENT>
 <P/>
 The properties:
 <OL>
@@ -864,7 +969,7 @@ a_0+a_1x+a_2x^2+\cdots+a_nx^n,
 </D>
 with <M>a_n\neq 0,</M> 
 Matlab first forms its
-{\em companion matrix}
+<B>companion matrix</B>
 <D>
 <MAT>
 -\frac{a_{n-1}}{a_n} &  \cdots & &  \cdots&  -\frac{a_{0}}{a_n}\\

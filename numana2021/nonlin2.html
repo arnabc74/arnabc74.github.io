@@ -67,7 +67,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
@@ -145,7 +145,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-THU MAR 26 IST 2020</i></td>
+MON MAY 17 IST 2021</i></td>
 </tr>
 </table>
 
@@ -212,19 +212,35 @@ line).
 </tr>
 </table>
 </center>
-The following code snippet produces this.
-<span class="j">
+The following code snippet produces this. Here $f:[a,b]\rightarrow[a,b]$ is
+the function whose fiex point we are interested in. We start
+from $x_0$ and run the cobweb for $n$ steps
+(producing $2n+1$ line segments, alternatingly vertical and
+horizontal, starting with a vertical):
+<font color="red">
 <pre>
-fp1=: (],f),:(f,f)
-fp=: ],fp1 @ {. @ {:
-f=: cos
-x=: (i.100) % 99
-plot x ; f x
-pd x ; x
-pd ;/ |: fp^:20 (1 2 $ 1 0)
-pd'show'
+cobweb = function(f, x0, a, b, n) {
+  xgrid = seq(a,b,len=100)
+  plot(xgrid, f(xgrid), ty='l',asp=1)
+  abline(a=0,b = 1)
+  xpts = ypts = numeric(n)
+  xpts[1:2] = c(x0,x0); ypts[1:2] = c(a, f(x0))
+  for(i in seq(3,len=n,by=2)) {
+    xpts[i] = ypts[i] = ypts[i-1]
+    xpts[i+1] = xpts[i]
+    ypts[i+1] = f(xpts[i+1])
+  }
+  lines(xpts, ypts)
+}
 </pre>
-</span>
+</font>
+Use it like this:
+<font color="red">
+<pre>
+cobweb(cos, 0.5, 0,1,10)
+</pre>
+</font>
+
 
 <p></p>
 
@@ -268,7 +284,7 @@ point in $[a,b].$
 <p>
 <b><i>Proof:</i></b>
 If $f(a)=a$ or $f(b)=b,$ we are done. Otherwise, 
-$f(a)?a$ and $f(b)&lt; b.$ Let the points $(a,f(a))$ and
+$f(a)&gt;a$ and $f(b)&lt; b.$ Let the points $(a,f(a))$ and
 $(b,f(b))$ be denoted by $A$ and $B,$ respectively. Then
 the graph of $f(x)$ is a continuous curve from $A$ to $B,$
 and hence it must intersect the diagonal at least once. Any such
@@ -413,12 +429,19 @@ He tests $|s_n-s_{n-1}| &lt; \epsilon,$ <i>i.e.</i>, $\frac 1n &lt;
 <p></p>
 So this fellow will find a finite limit of this divergent
 sequence.
-<span class="j">
+<font color="red">
 <pre>
-+/% 1+i.1+1e7
+partial.sums = cumsum(1/(1:1e7))
 </pre>
-</span>
-The answer is 16.6953. Wow!
+</font>
+Let's print the last 10:
+<font color="red">
+<pre>
+partial.sums[(1e7-10):1e7]
+</pre>
+</font>
+
+The answer is 16.69531. Wow!
 <img src="../image/box.png"></p>
 
 Before you lose all faith in iterative methods, however, do please try
@@ -431,16 +454,29 @@ $$
 s_n = s_{n-1} + \frac{1}{n^2}\mbox{ for } n\in{\mathbb N}
 $$
 starting with $s_0 = 0.$ Use the same $\epsilon $ as
-before. How close are you getting to $\frac{\pi^2}{6}$
+before. How close are you getting to $\frac{\pi^2}{6}$?
 <p>
 <b>Hint:</b>
 <blockquote>
 
-<span class="j">
+<font color="red">
 <pre>
-+/% *~1+i.1+1e7
+partial.sums = cumsum(1/(1:1e7)^2)
 </pre>
-</span>
+</font>
+Let's print the last 10:
+<font color="red">
+<pre>
+partial.sums[(1e7-10):1e7]
+</pre>
+</font>
+Now the answer is 1.6449. Compare with the theoretical value:
+<font color="red">
+<pre>
+pi*pi/6
+</pre>
+</font>
+
 
 </blockquote>
 </p>
@@ -611,17 +647,18 @@ k    x_k
 6  0.7390851
 7  0.7390851
 </pre>
-So the answer is 0.739085 up to 6 decimal places.
-<img src="../image/box.png"></p>
-
-
-<span class="j">
+So the answer is 0.739085 up to 6 decimal places. The following R
+code might help:
+<font color="red">
 <pre>
-rf=: monad :'y,(],f)+/({: y) * 1, -%/-/_2{.y'
-f=:]-cos
-rf^:10 (],.f) 0 0.5
+f = function(x) x - cos(x)
+x0 = 0; y0 = f(x0)
+x1 = 0.5; y1 = f(x1)
+#Replay the following line repeatedly until convergence:
+(x2 = (x0*y1 - x1*y0)/(y1-y0)); y2 = f(x2); x0 = x1; y0 = y1; x1 = x2; y1 = y2;
 </pre>
-</span>
+</font>
+<img src="../image/box.png"></p>
 
 
 <h1><a
@@ -744,7 +781,7 @@ $$
 <h2><a
 name="Finding complex roots">Finding complex roots</a></h2>
 Newton-Raphson iteration has the property that if we start with a real
-$x_0$ and $f(x)$ is a real polynomial ({\em <i>i.e.</i>,} the
+$x_0$ and $f(x)$ is a real polynomial (<i>i.e.</i>, the
 coefficients of $f(x)$ are all real numbers,) then all the
 $x_n$'s are real numbers as well. So we cannot find complex roots
 using Newton-Raphson method if we start from a real initial
@@ -815,7 +852,7 @@ find complex roots of nonlinear functions other than polynomials.</li>
 
 Muller's method is a direct generalization of the secant method. In secant
 method we approximate $f(x)$ by linear interpolation. In Muller's
-method we use quadratic interpolation, {\em <i>i.e.</i>,} we fit a parabola. In
+method we use quadratic interpolation, <i>i.e.</i>, we fit a parabola. In
 secant method we need $x_{n-1}$ and $x_n$ to find
 $x_{n+1}.$ In Muller's method we need <i>three</i> points
 $x_{n-2}, x_{n-1}$ and $x_n$ to compute $x_{n+1}.$ A
@@ -922,82 +959,52 @@ $$\begin{eqnarray*}
 We stop once we reach a nonzero constant polynomial (we are bound
 to reach one such). 
 <img src="../image/box.png"></p>
-J has no built-in method for performing long division of
-polynomials. However, it is easy to implement it. 
-<span class="j">
+We shall use the <font size="+1" color="red"><code>pracma</code></font> package in R to perform
+polynomial division. You'll need to install that package. 
+We shall need two functions from that
+package: <font size="+1" color="red"><code>polydiv</code></font> for polynomial division,
+and <font size="+1" color="red"><code>polyder</code></font> for polynomial differentiation. A
+polynomial is expressed as a vector of coefficients <i>in
+decreasing of order of exponents</i>. For instance, the
+polynomial 
+$$
+p_0(x) = 8 + 22x + 21 x^2 + 24 x^3 + 13 x^4 + 2x^5. 
+$$
+is represented as
+<font color="red">
 <pre>
-f=: dyad : 'y- (((#y)-#x)#0),x * (({:y) % {:x)'
-s=: monad : '(1 + (0=y) i: 0) {. y'
-r=:s@f ^: (#@[ &lt;: #@])
-
-rm=:r ^:_
+library(pracma)
+p0 = c(2,13,24,21, 22, 8)
 </pre>
-</span>
-
-<p>
-<a href="javascript:hideShow('poq');">[J Help]</a>
-<div id="poq" style="display:none;background-color:#ffcccc;">
-<ul>
-
-<li>
-<code>f</code> does a single step of long division. To
-understand this consider dividing $2+3x+4x^2-5x^3$
-by $1+2x^2.$ In a single step you'll look at the highest
-terms, and divide one by the other to get $\frac 52x$ and
-subtract this times the divisor from the dividend. J will treat
-the divisor as <code>1 0 2</code> and dividend as <code>2 3 4
--5</code>. The single step is implemented as 
-<code>1 0 2 f 2 3 4 -5</code>. The code first takes the highest
-coefficients (the tails): <code>{:y</code> (<i>e.g.</i>, 5)
-and <code>{:x</code> (<i>e.g.</i>, 2), divides
-one by the other to get <code>({:y) % {:x</code> (<i>e.g.</i>, $\frac 52$), and then
-multiplies it with the divisor <code>x</code> (<i>e.g.</i> $\frac 52(1+2x^2)$), and adds the
-appropriate number (degree difference) of zeroes to achieve the
-correct power (<i>e.g.</i>, $\frac 52x(1+2x^2).$ Finally it subtracts
-this from the dividend <code>y</code>.
-</li>
-
-<li>
-<code>s</code> sucks up any trailing
-0's. Thus <code>s@f</code> performs a single step of long
-division and produces an answer without trailing zeroes.</li>
-
-<li>
-<code>r</code> is same as <code>s @ f</code>
-(<i>i.e.</i>, <code>f</code> followed by <code>s</code>) except that it
-first checks that the divisor has degree less than or equal to
-that of the dividend.</li>
-
-<li>
-<code>rm</code> keeps on performing <code>r</code> until the answer
-stabilises (<i>i.e.</i>, the remainder is 0).</li>
-
-</ul>
-</div>
-</p>
-
-<span class="j">
+</font>
+We obtain $p_1(x)$ by differentiating this:
+<font color="red">
 <pre>
-p0=: 8  22 21 24 13 2
-]p1=:  p.. p0
-]p2=: - p1 rm p0
-]p3=: - p2 rm p1
-]p4=: - p3 rm p2
-]p5=: - p4 rm p3
+(p1 = polyder(p0))
 </pre>
-</span>
+</font>
+The outermost parentheses cause <font size="+1" color="red"><code>p1</code></font> to be printed.
 
-<p>
-<a href="javascript:hideShow('pdiff');">[J Help]</a>
-<div id="pdiff" style="display:none;background-color:#ffcccc;">
-<ul>
+<p></p>
+Next, $p_2(x)$ is obtained by dividing $p_0(x)$
+by $p_1(x)$ and negating the remainder. 
+<font color="red">
+<pre>
+(p2 = - polydiv(p0, p1)$r)
+</pre>
+</font>
+Notice the <font size="+1" color="red"><code>$r</code></font>, which extracts the remainder. Also,
+notice the order of the arguments: <i>first the dividend, and then
+the divisor</i>. The
+remaining polynomials are obtained similarly:
+<font color="red">
+<pre>
+(p3 = - polydiv(p1, p2)$r)
+(p4 = - polydiv(p2, p3)$r)
+(p5 = - polydiv(p3, p4)$r)
+</pre>
+</font>
 
-<li>
-<code>p..</code> here performs polynomial differentiation.</li>
-
-</ul>
-</div>
-</p>
 
 Next, we take some value of $x,$ which is not a zero
 of any of the $p_i$'s. We evaluate all the
@@ -1010,6 +1017,17 @@ sequence of values at $x=0$ is
 $$
 8, 22, -2.28, -43.1643, -7.41164, -9.85481.
 $$ 
+These may be obtained using the <font size="+1" color="red"><code>polyval</code></font> function:
+<font color="red">
+<pre>
+polyval(p0,0)
+polyval(p1,0)
+polyval(p2,0)
+polyval(p3,0)
+polyval(p4,0)
+polyval(p5,0)
+</pre>
+</font>
 The sequence of signs is
 $$
 + + - - - -.
@@ -1068,20 +1086,6 @@ Thus, we conclude that there are $\sigma(-10)-\sigma(0.9) = 4-1
 We can keep on halving the interval until we get small intervals,
 over each of which $\sigma$ changes by exactly 1. Each of
 these intervals, then is guaranteed to contain exactly one root.
-<p></p>
-
-Here are some J
-snippets to help you.
-
-<span class="j">
-<pre>
-st=:p0,p1,p2,p3,p4,:p5
-st p. _10 
-* st p. _10
-c=:+/@:(}.~:}:)@:*
-</pre>
-</span>
-
 
 <h3><a
 name="Proof">Proof</a></h3>
@@ -1097,25 +1101,6 @@ Sturm's sequence that is visible from a plot:
 </tr>
 </table>
 </center>
-
-<a href="javascript:hideShow('how');">[Creating the plot in J]</a>
-<div id="how" style="display:none;background-color:#ffcccc;">
-
-
-<span class="j">
-<pre>
-x =: _0.7+200%~i.100
-y0=: p0 p. x
-y1=: p1 p. x
-y2=: p2 p. x
-y3=: p3 p. x
-y4=: p4 p. x
-y5=: p5 p. x
-plot x; y0,y1,y2,y3,y4,:y5
-</pre>
-</span>
-
-</div>
 
 
 <p></p>
@@ -1223,11 +1208,11 @@ polynomial. This algorithm is not part of our syllabus, though.
  
 <h2><a
 name="How Matlab does it">How Matlab does it</a></h2>
-Matlab has a function called <code>roots</code> that finds all the roots of
+Matlab has a function called <font size="+1" color="red"><code>roots</code></font> that finds all the roots of
 a polynomial. For instance, to find the roots of the polynomial $1+2x+3x^2$ you
 issue the command 
 <blockquote>
-<code>roots([3 2 1])</code>
+<font size="+1" color="red"><code>roots([3 2 1])</code></font>
 </blockquote> Matlab's algorithm works as
 follows.
 
@@ -1238,7 +1223,7 @@ a_0+a_1x+a_2x^2+\cdots+a_nx^n,
 $$
 with $a_n\neq 0,$ 
 Matlab first forms its
-{\em companion matrix}
+<b>companion matrix</b>
 $$
 \left[\begin{array}{ccccccccccc}
 -\frac{a_{n-1}}{a_n} &amp;  \cdots &amp; &amp;  \cdots&amp;  -\frac{a_{0}}{a_n}\\
