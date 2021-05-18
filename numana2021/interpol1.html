@@ -121,7 +121,7 @@ $\newcommand{\y}{\mathbf y}
 <tr>
 <td align="right"><i>Last
 updated on:
-SAT MAY 15 IST 2021</i></td>
+TUE MAY 18 IST 2021</i></td>
 </tr>
 </table>
 
@@ -489,7 +489,7 @@ y = sin(x)
 (y5 = diff(y4)/diff(x,5))
 </pre>
 </font>
-The <code>diff</code> function computes differences of a
+The <font size="+1" color="red"><code>diff</code></font> function computes differences of a
 sequence. The second argument specifies the lag (defaults to 1).
 <p></p>
 
@@ -497,7 +497,7 @@ You can easily see a pattern. We may utilise this pattern to use
 a loop. But there is a mild catch. The outcome of each step is a
 vector <i>of  size 1 less than the previous one</i>. Generally we
 employ a matrix to hold a list of vectors. But as these vectors
-are of different lengths, we need to use the <code>list</code>
+are of different lengths, we need to use the <font size="+1" color="red"><code>list</code></font>
 structure provided by R. 
 <font color="red">
 <pre>
@@ -508,7 +508,7 @@ for(i in 1:(length(x)-1)) {
 }
 </pre>
 </font>
-Just print <code>col</code> to get the divided difference table
+Just print <font size="+1" color="red"><code>col</code></font> to get the divided difference table
 (turned sideways).
 
 <h3><a
@@ -559,23 +559,23 @@ $$f(x) = -5+6x+2x(x-1)+x(x-1)(x-3) = x^3+6x^2+7x-5$$
 Though we used only the ''north-east edge'', we indirectly used the entire table, because we need all the 
 entries in the table to compute the final 1 in the table. 
 <img src="../image/box.png"></p>
-Let's implement this using R. We had the <code>col</code> list
+Let's implement this using R. We had the <font size="+1" color="red"><code>col</code></font> list
 storing the columns of the divided difference table. We need the
 first entry of each column as our coefficients.
 <font color="red">
 <pre>
 coef = c()
-for(i in 1:length(x)) coef[i] = col\frac i[1]
+for(i in 1:length(x)) coef[i] = col[[i]}{1]
 </pre>
 </font>
-Let's try to evaluate the polynomial at a new value <code>nx=2</code>:
+Let's try to evaluate the polynomial at a new value <font size="+1" color="red"><code>nx=2</code></font>:
 <font color="red">
 <pre>
 nx = 2
 sum(c(1,cumprod(nx - x[-length(x)])) * coef)
 </pre>
 </font>
-The <code>cumprod</code> function computes cumulative product.
+The <font size="+1" color="red"><code>cumprod</code></font> function computes cumulative product.
 
 
 <p>
@@ -1006,7 +1006,7 @@ Thus our approximation is correct  up to 2 decimal places.
 
 <b>Note:</b> Two numbers, $a$ and $b,$ are said to be equal up to
 $k$ decimal places if
-$$|a-b| &lt;  5\times10^{k+1}.$$
+$$|a-b| &lt;  5\times10^{-(k+1)}.$$
 
 <p>
 <b>EXERCISE:</b>&nbsp;

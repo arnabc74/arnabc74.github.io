@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbb R}</M>
 <TITLE>Polynomial Interpolation</TITLE>
-<UPDT>SAT MAY 15 IST 2021</UPDT>
+<UPDT>TUE MAY 18 IST 2021</UPDT>
 
 <HEAD1>Polynomial interpolation</HEAD1>
 Here we shall work with <B>polynomial</B>s.  These are functions with  the
@@ -416,7 +416,7 @@ storing the columns of the divided difference table. We need the
 first entry of each column as our coefficients.
 <R>
 coef = c()
-for(i in 1:length(x)) coef[i] = col[[i]][1]
+for(i in 1:length(x)) coef[i] = col[~~~[i]~~~][1]
 </R>
 Let's try to evaluate the polynomial at a new value <CODE>nx=2</CODE>:
 <R>
@@ -725,7 +725,7 @@ Thus our approximation is correct  up to 2 decimal places.
 
 <B>Note:</B> Two numbers, <M>a</M> and <M>b,</M> are said to be equal up to
 <M>k</M> decimal places if
-<D>|a-b| <  5\times10^{k+1}.</D>
+<D>|a-b| <  5\times10^{-(k+1)}.</D>
 
 <EXR>
   Use the table above to approximate <M>g(-1.0)</M> and <M>g(2.0).</M> Compare your
