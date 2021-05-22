@@ -2,7 +2,7 @@
 @{
 <M>\newcommand{\ip}[1]{\langle #1 \rangle}</M>
 <TITLE>Numerical Integration</TITLE>
-<UPDT>SAT APR 18 IST 2020</UPDT>
+<UPDT>SAT MAY 22 IST 2021</UPDT>
 <HEAD1>Numerical Integration</HEAD1>
 
 
@@ -389,6 +389,36 @@ p_2(x) = x^2-\frac13.
 Check that <M>p_3(x) = x^3-3x/5</M> and <M>p_4(x) = x^4-6x^2/7 + 3/35.</M>
 </EXR>
 
+<R>
+library(pracma)
+ip = function(p1, p2) {
+  intp1p2 = polyint(polymul(p1,p2),0)
+  polyval(intp1p2, 1) -   polyval(intp1p2, -1) 
+}
+ip(1:3,1:4)
+</R>
+The next function computes <RED>c</RED>omponent <RED>o</RED>f one polynomial <RED>a</RED>long another:
+<R>
+coa = function(p,q) {
+  ip(p,q)/ip(q,q) * q
+}
+</R>
+The following is an operator for polynomial subtraction:
+<R>
+'%-%' = function(x,y) polyadd(x,-y)
+</R>
+Now we can employ Gram-Schmidt orthogonalization:
+<R>
+u0 = 1
+u1 = c(1,0)
+u2 = c(1,0,0)
+u3 = c(1,0,0,0)
+(p0 = u0)
+(p1 = u1 %-% coa(u1,p0))
+(p2 = u2 %-% coa(u2,p0) %-% coa(u2,p1))
+(p3 = u3 %-% coa(u3,p0) %-% coa(u3,p1) %-% coa(u3,p2))
+</R>
+<COMMENT>
 <J>
 pm=:+//. @ (*/)
 ip=: (p.&1-p.&_1) @ (0&p.. @ pm )
@@ -408,6 +438,7 @@ p. p0
 p. p1
 p. p2
 </J>
+</COMMENT>
 
 <DEFN name="Gaussian quadrature">
 Gaussian quadrature of

@@ -28,13 +28,11 @@ Before the midsem (ready to print):
 <LI><LINK to="numint1.html">Integration (part 1)</LINK></LI>
 <LI><LINK to="interpol1.html">Interpolation (part 1)</LINK></LI>
 </UL>
-After the midsem:
+After the midsem (ready to print):
 <UL>
-<LI><LINK to="nonlin2.html">Nonlinear equations (part 2)</LINK> (ready to print)</LI>
-<LI><LINK to="mat2.html">Matrix algorithms (part 2)</LINK>
-(ready to print)</LI>
-<LI><LINK to="diff2.html">Differential equations (part 2)</LINK>
-(ready to print)</LI>
+<LI><LINK to="nonlin2.html">Nonlinear equations (part 2)</LINK></LI>
+<LI><LINK to="mat2.html">Matrix algorithms (part 2)</LINK></LI>
+<LI><LINK to="diff2.html">Differential equations (part 2)</LINK></LI>
 <LI><LINK to="numint2.html">Integration (part 2)</LINK></LI>
 <LI><LINK to="interpol2.html">Interpolation (part 2)</LINK></LI>
 <LI><LINK to="err.html">Error analysis</LINK></LI>

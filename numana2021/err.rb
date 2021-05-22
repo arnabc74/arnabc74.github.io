@@ -2,7 +2,7 @@
 @{
 <M>\newcommand{\dig}{\underline{\quad}~~}</M>
 <TITLE>Error analysis</TITLE>
-<UPDT>WED APR 29 IST 2020</UPDT>
+<UPDT>SAT MAY 22 IST 2021</UPDT>
 <HEAD1>Error analysis</HEAD1>
 This page is going to shake your belief in digital computers. 
 Let's start with a shocking example due to Hilbert.
@@ -18,11 +18,20 @@ Clearly, it is a real symmetric matrix. It is also
 nonsingular (though it may  not be immediately obvious). Compute
 its inverse using Gauss-Jordan method.
 <SOLN/>
+<R>
+H = 1/outer(1:10,1:10,'+')
+Hinv = solve(H)
+</R>
+<COMMENT>
 <J>
 ]h=:%+/~ 1+i.10
 ]%. h
 </J>
-Is it (even approximately) symmetric? 
+</COMMENT>
+Is it (even approximately) symmetric? Check using 
+<R>
+max(abs(Hinv - t(Hinv)))
+</R>
 </EXM> 
 
 Once a student of ISI sent me an worried email about an

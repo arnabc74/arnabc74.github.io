@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbf R}</M>
 <TITLE>Interpolation</TITLE>
-<UPDT>SAT APR 25 IST 2020</UPDT>
+<UPDT>SAT MAY 22 IST 2021</UPDT>
 
 
 <HEAD1>Different representations of polynomials</HEAD1>
@@ -275,6 +275,10 @@ So we get the following tridiagonal system:
 = 3<MAT>y_1-y_0\\y_2-y_0\\y_3-y_1\\y_4-y_2\\
 \vdots\\y_n-y_{n-2}\\y_n-y_{n-1}</MAT>.
 </D>
+Such a system may be solved easily by first sweeping out the 
+sub-diagonal entries using elementary row operations, and then by
+using back substitution (how?).
+
 
 <EXR ref="" paper="" marks="">
 Some authors derive cubic splines in a different way. They denote
