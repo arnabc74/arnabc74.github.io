@@ -101,7 +101,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <tr>
 <td align="right"><i>Last
 updated on:
-SUN APR 12 IST 2020</i></td>
+SAT MAY 22 IST 2021</i></td>
 </tr>
 </table>
 
@@ -218,22 +218,34 @@ k_4 &amp;  = &amp;  hf(x_i+h,y_i+k_3)\\
 y_{i+1} &amp;  = &amp;  y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4).
 \end{eqnarray*}$$
 This has the same order of precision as the fourth order Taylor method.
-The proof of this fact follows the same argument as above, but is rather messy.
-<span class="j">
+The proof of this fact follows the same argument as above, but is
+rather messy.
+<p></p>
+Here is a simple code for performing a <i>single</i> RK4 step:
+<font color="red">
 <pre>
-k1=:4 :'h* x f y'
-k2=:4 :'h*(x+h%2) f y+(x k1 y)%2'
-k3=:4 :'h*(x+h%2) f y+(x k2 y)%2'
-k4=:4 :'h*(x+h) f y+(x k3 y)'
-nx=:4 :'x+h'
-ny=:]+%&amp;6@(k1+(2:*k2+k3)+k4)
-rk=:({. nx  {:), ({. ny {:)
-
-f=:sin@+
-h=0.01
-rk^:(i.10) 4 5
+rk4 = function(f, x,y, h) {
+  k1 = h * f(x,y)
+  k2 = h*f(x+h/2, y+k1/2)
+  k3 = h * f(x=h/2, y+k2/2)
+  k4 = h*f(x+h, y+k3)
+  y + (k1+2*k2+2*k3+k4)/6
+}
 </pre>
-</span>
+</font>
+We may use it like this:
+<font color="red">
+<pre>
+f = function(x,y) sin(x+y)
+x = seq(0,1,len=10)
+y = numeric(10); y[1] = 1
+
+for(i in 2:length(x)) { 
+   y[i] = rk4(f,x[i-1],y[i-1],x[i]-x[i-1])
+}
+</pre>
+</font>
+
 
 <h1><a
 name="Applications">Applications</a></h1>

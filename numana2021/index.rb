@@ -1,6 +1,6 @@
 <NOTE>
 @{
-<UPDT>MON MAY 17 IST 2021</UPDT>
+<UPDT>SAT MAY 22 IST 2021</UPDT>
 <CENTER><RAWIMG web="logo.png"/>
 <P/>
 <RAWIMG web="logo2.png"/>
@@ -31,7 +31,8 @@ Before the midsem (ready to print):
 After the midsem:
 <UL>
 <LI><LINK to="nonlin2.html">Nonlinear equations (part 2)</LINK> (ready to print)</LI>
-<LI><LINK to="mat2.html">Matrix algorithms (part 2)</LINK></LI>
+<LI><LINK to="mat2.html">Matrix algorithms (part 2)</LINK>
+(ready to print)</LI>
 <LI><LINK to="diff2.html">Differential equations (part 2)</LINK></LI>
 <LI><LINK to="numint2.html">Integration (part 2)</LINK></LI>
 <LI><LINK to="interpol2.html">Interpolation (part 2)</LINK></LI>

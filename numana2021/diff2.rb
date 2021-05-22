@@ -1,7 +1,7 @@
 <NOTE>
 @{
 <TITLE>Differential equations</TITLE>
-<UPDT>SUN APR 12 IST 2020</UPDT>
+<UPDT>SAT MAY 22 IST 2021</UPDT>
 <HEAD1>Differential equations (contd)</HEAD1>
 In the first part we have dealt with differential equations 
 of the form
@@ -112,7 +112,30 @@ k_4 &  = &  hf(x_i+h,y_i+k_3)\\
 y_{i+1} &  = &  y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4).
 </MULTILINE>
 This has the same order of precision as the fourth order Taylor method.
-The proof of this fact follows the same argument as above, but is rather messy.
+The proof of this fact follows the same argument as above, but is
+rather messy.
+<P/>
+Here is a simple code for performing a <I>single</I> RK4 step:
+<R>
+rk4 = function(f, x,y, h) {
+  k1 = h * f(x,y)
+  k2 = h*f(x+h/2, y+k1/2)
+  k3 = h * f(x=h/2, y+k2/2)
+  k4 = h*f(x+h, y+k3)
+  y + (k1+2*k2+2*k3+k4)/6
+}
+</R>
+We may use it like this:
+<R>
+f = function(x,y) sin(x+y)
+x = seq(0,1,len=10)
+y = numeric(10); y[1] = 1
+
+for(i in 2:length(x)) { 
+   y[i] = rk4(f,x[i-1],y[i-1],x[i]-x[i-1])
+}
+</R>
+<COMMENT>
 <J>
 k1=:4 :'h* x f y'
 k2=:4 :'h*(x+h%2) f y+(x k1 y)%2'
@@ -126,6 +149,7 @@ f=:sin@+
 h=0.01
 rk^:(i.10) 4 5
 </J>
+</COMMENT>
 <HEAD1>Applications</HEAD1>
 <HEAD2>Simple pendulum (revisited)</HEAD2>
 In the first part, we had already arrived at the following system for a simple pendulum:

@@ -170,7 +170,7 @@ $
 <tr>
 <td align="right"><i>Last
 updated on:
-MON JUN 15 IST 2020</i></td>
+SAT MAY 22 IST 2021</i></td>
 </tr>
 </table>
 
@@ -919,9 +919,9 @@ $u_{ij}$'s is shown in the diagram below.
  
 The general formulas to compute $l_{ij}$ and $u_{ij}$ are
 $$\begin{eqnarray*}
-l_{ij} &amp;  = a_{ij} - \sum_{k=1}^{j-1}l_{ik} u_{kj}&amp; ~~~(i\geq j)\\
+l_{ij} &amp;  = a_{ij} - \sum_{k=1}^{j-1}l_{ik} u_{kj}&amp; (i\geq j)\\
 u_{ij}&amp;  = \frac{1}{l_{ii}}\left(a_{ij} - \sum_{k=1}^{i-1}l_{ik}
-u_{kj}\right)&amp; ~~~(i&lt;  j). 
+u_{kj}\right)&amp; (i&lt;  j). 
 \end{eqnarray*}$$
 The following diagram might help to understand the computation of
 the $l_{ij}$'s:
@@ -939,6 +939,22 @@ In order to compute the yellow part of $L,$ subtract a
 linear combination from the yellow part of $A.$ The linear
 combination is made of the corresponding parts of $L$
 computed earlier, and the coefficients come from $U.$
+<p></p>
+This translates into the following R code:
+<font color="red">
+<pre>
+L = function(j) {
+  tot = rep(0,n-j+1)
+  if(j&gt;1) {
+    for(k in 1:(j-1)) 
+      tot = tot + A[j:n,k] * A[k, j]
+  }
+  A[j:n,j] &lt;&lt;- A[j:n,j] - tot
+  A
+}
+</pre>
+</font>
+
 
 <p></p>
 A similar diagram for the $u_{ij}$'s is:
@@ -953,17 +969,38 @@ A similar diagram for the $u_{ij}$'s is:
 </table>
 </center>
 
-<span class="j">
+<font color="red">
 <pre>
-r=:(&lt;:@[){]
-c=:(&lt;:@[){"1 ]
-]a=:?. 4 4 $ 0
-]l1=:1 c a
-]u1=:({. l1) %~ 1 r 2 3 4 c a
-]l2=: (2 3 4 r 2 c a) - ({.u1) * }. l1
-]u2=:({. l2) %~ 2 r  3 4 c a
+U = function(i) {
+  tot = rep(0,n-i)
+  if(i&gt;1) {
+    for(k in 1:(i-1)) 
+      tot = tot + A[i,k] * A[k, (i+1):n]
+  }
+  A[i, (i+1):n] &lt;&lt;- (A[i, (i+1):n] - tot)/A[i, i]
+  A
+}
 </pre>
-</span>
+</font>
+Now we take a matrix:
+<font color="red">
+<pre>
+A = matrix(1:9,3,3); n=3
+</pre>
+</font>
+Then we carry out the steps:
+<font color="red">
+<pre>
+L(1)
+U(1)
+L(2)
+U(2)
+L(3)
+</pre>
+</font>
+
+
+
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -1176,27 +1213,7 @@ for(i in 1:100) A = jacobi(A)
 </pre>
 </font>
 
-<span class="j">
-<pre>
-mp=.+/ . *
-A=: 0.5 -~? 5 5 $ 0
-]A=.A mp |:A
-]index=:,/(i.5),"0/i.5
-off=:(~:/"1 # ]) index
 
-f=: monad define
-  amax=.(&gt;./ i.~ ])(;/off){|y
-  'i j'=.w=.,amax { off
-  d1=. y{~ &lt;i, i
-  d2=. y{~ &lt;j ,j
-  o=. y{~ &lt;i, j
-  theta=.0.5 * _3 o. (2*o) % d2 - d1
-  's c'=. (sin, cos) theta
-  G=.(c,(-s),s, c) (;/,/w,"0/ w)} e. i.5
-  G mp y mp |: G
-)
-</pre>
-</span>
 
 
 <h3><a

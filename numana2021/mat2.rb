@@ -13,7 +13,7 @@
 </M>
 
 <TITLE>Matrix algorithms</TITLE> 
-<UPDT>MON JUN 15 IST 2020</UPDT>
+<UPDT>SAT MAY 22 IST 2021</UPDT>
 <HEAD1>Matrix algorithms</HEAD1> 
 
 
@@ -697,10 +697,48 @@ In order to compute the yellow part of <M>L,</M> subtract a
 linear combination from the yellow part of <M>A.</M> The linear
 combination is made of the corresponding parts of <M>L</M>
 computed earlier, and the coefficients come from <M>U.</M>
+<P/>
+This translates into the following R code:
+<R>
+L = function(j) {
+  tot = rep(0,n-j+1)
+  if(j>1) {
+    for(k in 1:(j-1)) 
+      tot = tot + A[j:n,k] * A[k, j]
+  }
+  A[j:n,j] <<- A[j:n,j] - tot
+  A
+}
+</R>
 
 <P/>
 A similar diagram for the <M>u_{ij}</M>'s is:
 <CIMG web="lucomp2.png"/>
+<R>
+U = function(i) {
+  tot = rep(0,n-i)
+  if(i>1) {
+    for(k in 1:(i-1)) 
+      tot = tot + A[i,k] * A[k, (i+1):n]
+  }
+  A[i, (i+1):n] <<- (A[i, (i+1):n] - tot)/A[i, i]
+  A
+}
+</R>
+Now we take a matrix:
+<R>
+A = matrix(1:9,3,3); n=3
+</R>
+Then we carry out the steps:
+<R>
+L(1)
+U(1)
+L(2)
+U(2)
+L(3)
+</R>
+
+<COMMENT>
 <J>
 r=:(<:@[){]
 c=:(<:@[){"1 ]
@@ -710,6 +748,8 @@ c=:(<:@[){"1 ]
 ]l2=: (2 3 4 r 2 c a) - ({.u1) * }. l1
 ]u2=:({. l2) %~ 2 r  3 4 c a
 </J>
+</COMMENT>
+
 <EXR ref="" paper="" marks="">
 What should we do if for some <M>i</M> we have <M>l_{ii}=0?</M> Does this
 necessarily mean that <M>LU</M> decomposition does not exist in this case?
@@ -872,6 +912,7 @@ val = numeric(100)
 for(i in 1:100) A = jacobi(A)
 </R>
 
+<COMMENT>
 <J>
 mp=.+/ . *
 A=: 0.5 -~? 5 5 $ 0
@@ -891,6 +932,7 @@ f=: monad define
   G mp y mp |: G
 )
 </J>
+</COMMENT>
 
 <HEAD3>Proof</HEAD3>
 We shall present the proof as a sequence of exercises.
