@@ -33,7 +33,8 @@ After the midsem:
 <LI><LINK to="nonlin2.html">Nonlinear equations (part 2)</LINK> (ready to print)</LI>
 <LI><LINK to="mat2.html">Matrix algorithms (part 2)</LINK>
 (ready to print)</LI>
-<LI><LINK to="diff2.html">Differential equations (part 2)</LINK></LI>
+<LI><LINK to="diff2.html">Differential equations (part 2)</LINK>
+(ready to print)</LI>
 <LI><LINK to="numint2.html">Integration (part 2)</LINK></LI>
 <LI><LINK to="interpol2.html">Interpolation (part 2)</LINK></LI>
 <LI><LINK to="err.html">Error analysis</LINK></LI>
