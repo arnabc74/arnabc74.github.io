@@ -69,6 +69,10 @@ ekhAne lAle gherA @{<M>4</M>@}-TA @{<M>3</M>@}  habe. tAi nIle gherA uttarTAo ba
 ekhAne lAle gherA @{<M>(p,q)</M>@}-TA thAkbe nA.
 </LI>
 <LI>
+<IMG web="p243.png">@{<E>243</E>@}  nambar pAtAr a.nsha</IMG>
+lAl diye dekhAno mAinAs chihnaTA dite bhule giyechhilAm. bhulTA dharechhe sh\oubhik manDal. 
+</LI>
+<LI>
 <IMG web="p245.png">@{<E>245</E>@}  nambar pAtAr a.nsha</IMG>
 ekhAne lAl diye AnDArlAin karA @{<M>G</M>@}-TA Asale @{<M>F</M>@}  habe.
 </LI>
