@@ -2,6 +2,8 @@
 Here is a list of videos I have created explaining parts of the
 rather badly written Linear Algebra book by Rao and
 Bhimasankaram:
+<TABLE>
+<TR><TD>
 <OL>
 <LI><LINK to="https://youtu.be/K7HtUlThXeM">5.1 and 5.2</LINK></LI>
 <LI><LINK to="https://youtu.be/LtuH_Hz4zog">5.3</LINK></LI>
@@ -29,5 +31,19 @@ Bhimasankaram:
 <LI><LINK to="https://youtu.be/QRcHn9Yf6MM">8.4, Minimal polynomial</LINK></LI>
 <LI><LINK to="https://youtu.be/vAJnmfqSWqg">8.5, Similarity, Schur and semisimple</LINK></LI>
 <LI><LINK to="https://youtu.be/lVT2ebgw6hA">8.7, Spectral representation</LINK></LI>
+</OL></TD>
+<TD>
+<TABLE><TR><TD>Some other similar videos</TD></TR><TR><TD>
+<OL>
+<LI><LINK to="https://youtu.be/-APq9AA2T-A">Crash course on eigenanalysis</LINK></LI>
+<LI><LINK to="https://youtu.be/2BjT8-etlt4">Gram-Schmidt orthogonalisation</LINK></LI>
+<LI><LINK to="https://youtu.be/_u66gRnmzWI">Understanding ranks (part 1)</LINK></LI>
+<LI><LINK to="https://youtu.be/TDdgsztnD5U">Understanding ranks (part 2)</LINK></LI>
+<LI><LINK to="https://youtu.be/uPHa971AC5s">Rank factorisation</LINK></LI>
+<LI><LINK to="https://youtu.be/OQkIcxY-0L0">Laplace expnasion (a
+direct proof)</LINK></LI>
+<LI><LINK to="https://youtu.be/bvJAl_vUwLg">Finding nullspace basis</LINK></LI>
+
 </OL>
+</TD></TR></TABLE></TD></TR></TABLE>
 </NOTE>@}
