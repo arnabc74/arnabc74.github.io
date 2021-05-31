@@ -29,8 +29,13 @@ Bhimasankaram:
 <LI><LINK to="https://youtu.be/jBY_Xut0Z2g">8 (part 3)</LINK></LI>
 <LI><LINK to="https://youtu.be/9zLVosHzpbs">8.4, Cayley-Hamilton theorem</LINK></LI>
 <LI><LINK to="https://youtu.be/QRcHn9Yf6MM">8.4, Minimal polynomial</LINK></LI>
-<LI><LINK to="https://youtu.be/vAJnmfqSWqg">8.5, Similarity, Schur and semisimple</LINK></LI>
+<LI><LINK to="https://youtu.be/vAJnmfqSWqg">8.5, Similarity,
+Schur and semisimple</LINK></LI>
+<LI>8.6 comes later (to preserve continuity)</LI>
 <LI><LINK to="https://youtu.be/lVT2ebgw6hA">8.7, Spectral representation</LINK></LI>
+<LI><LINK to="https://youtu.be/RUYO7ulvlFg">8.8, Singular Value Decomposition (SVD)</LINK></LI>
+<LI><LINK to="https://youtu.be/OVRxZTNJx0M">8.6, Jordan Canonical
+Form (JCF)</LINK></LI>
 </OL></TD>
 <TD>
 <TABLE><TR><TD>Some other similar videos</TD></TR><TR><TD>
