@@ -817,48 +817,32 @@ is called the Given's matrix for rotation by angle <M>\theta.</M> It is
  trivial to check that it is an orthogonal matrix, and the Given's matrix
  for rotation by <M>-\theta </M> is its transpose (as well as inverse.)
 
-<P/>
-Given's transform may be used to destroy off-diagonal entries in
-a symmetric <M>2\times 2</M> matrix. The following exercise gives
-the details.
-
-<EXR>Show that if <M>\tan(2 \theta ) =
-[[2b][c-a]]</M>, then the off-diagonal entries
-of <M>G(\theta) <MAT>a & b\\b & c</MAT> G(\theta)'</M> are zero.
+<EXR>
+ For any 2-dimensional vector 
+<D>
+<MAT>x_1\\x_2</MAT>
+</D> 
+we can find a Given's rotation matrix <M>G(a,b)</M> such that
+<D>
+G(a,b)<MAT>a\\b</MAT> = <MAT>\sqrt{a^2+b^2}\\0</MAT>.
+</D>
 </EXR>
 
-
-
-We shall often need to apply the transform to only a <M>2\times 2</M> submatrix
-in an <M>n\times n</M> matrix, <M>A.</M> If  we are working with
-its <M>\{i,j\}\times \{i,j\}</M> submatrix (where <M>i\neq j</M>),  we first compute the
- Given's matrix, <M>G,</M> for the submatrix, and define
-an <M>n\times n</M> matrix <M>G(i,j,A)</M> 
-which is the same as <M>I_{n\times
-n}</M> except that its <M>\{i,j\}\times \{i,j\}</M> submatrix
-replaced by <M>G.</M> For example, 
-if 
+Then for any two vectors <M>{\mathbf u}_{m\times 1}</M> and 
+<M>{\mathbf v}_{k\times 1},</M> we have
 <D>
-G = <MAT>p & q\\r & s</MAT>,
-</D>
-then, for <M>n=4,</M>
-<D>
-G(2,4, A) = <MAT>
-1 & 0 & 0 & 0\\
-0 & p & 0 & q\\
-0 & 0 & 1 & 0\\
-0 & r & 0 & s
-</MAT>.
+<MAT>I_m& 0& 0\\0& G(a,b)& 0\\0& 0& I_k</MAT>
+<MAT>{\mathbf u}\\a\\b\\{\mathbf v}</MAT> = 
+<MAT>{\mathbf u}\\\sqrt{a^2+b^2}\\0\\{\mathbf v}</MAT>.
 </D>
 
-Notice that 
+We shall denote the matrix 
 <D>
-G(i,j,A) A G(i,j,A)'
+<MAT>I_m& 0& 0\\0& G(a,b)& 0\\0& 0& I_k</MAT>
 </D>
-has the <M>(i,j)</M>-th entry equal to <M>0.</M> 
-the left changes
-<I>only</I> the 2nd and 4th rows of the matrix. Similarly,
-multiplication by its transpose from right affects only the 2nd and 4th columns.
+by <M>R(m,k;a,b).</M>
+Notice that premultiplication by <M>R(m,k;a,b)</M> changes only two rows
+of a matrix. 
 
 <HEAD2>Jacobi method</HEAD2>
 Here we shall learn a method to find all eigenvalues and
@@ -881,13 +865,22 @@ diagonal matrix.
 <P/>
 We first locate the off-diagonal entry that is farthest away
 from <M>0</M>, i.e., has the maximum absolute value. Say, it is
-the <M>(i,j)</M>-th entry (with <M>i> j</M>). Then we construct the matrix 
-<M>G = G(i,j,a_{ij}, a_{jj}).</M>
-
+the <M>(i,j)</M>-th entry. Then we construct the Given's matrix 
+<M>G(i,j,\theta),</M> which is the identity matrix, except that
+the <M>\{i,j\}\times\{i,j\}</M> submatrix is <M>G(\theta).</M>
+For example, 
+<D>
+G(2,4,\theta) = <MAT>
+1 & 0 & 0 & 0\\
+0 & \cos \theta & 0 & -\sin \theta\\
+0 & 0 & 1 & 0\\
+0 & \sin \theta & 0 & \cos \theta
+</MAT>,
+</D>
+where <M>\tan(2 \theta ) = [[2a_{ij}][a_{jj}-a_{ii}]].</M>
 <P/>
-
 Then it may be easily checked
-that <M>GAG'</M> has the <M>(i,j)</M>-th
+that <M>G(i,j,\theta)AG(i,j,\theta)'</M> has the <M>(i,j)</M>-th
 (and <M>(j,i)</M>-th) entries equal to <M>0.</M>
 <P/>
 If we keep on applying this transformation repeatedly, the
@@ -944,19 +937,24 @@ f=: monad define
 <HEAD3>Proof</HEAD3>
 We shall present the proof as a sequence of exercises.
 
+<EXR>Find <M>\theta</M> such that the off-diagonal entries
+of <M>G(\theta) A G(\theta)'</M> is zero, where <M>A
+= <MAT>a_{11} & a_{12}\\a_{21}&a_{22}</MAT>.</M>
+</EXR>
 
 <EXR>Show that the sum of squares of all entries in a matrix
 does not change if the matrix is pre- or post-multiplied by an
 orthogonal matrix.</EXR>
 
 <EXR>Let <M>f(A)</M> denote the sum of squares of all the
-off-diagonal entries in a symmetric matrix <M>A.</M> Let <M>i\neq
-j</M> and <M>B=G(i,j,A) A G(i,j,A)'.</M> Show that <M>f(B)
+off-diagonal entries in a symmetric matrix <M>A.</M> Show that
+if <M>\theta</M> is chosen so that the <M>(i,j)</M>-th entry
+of <M>B=G(i,j,\theta) A G(i,j,\theta)'</M> is zero, then <M>f(B)
 = f(A) - 2a_{ij}^2.</M></EXR>
 
 <EXR>Let the <M>(i,j)</M>-th entry of <M>A</M> be the largest
-absolute off-diagonal entry of <M>A.</M>  Let <M>B=G(i,j,A)
-A G(i,j,A)'.</M> Show that <M>f(B)\leq(*(1-[[1N]])*) f(A)</M>, where <M>2N</M> is the number of
+absolute off-diagonal entry of <M>A.</M>  Let <M>B=G(i,j,\theta)
+A G(i,j,\theta)'</M> have the <M>(i,j)</M>-th entry <M>0.</M> Show that <M>f(B)\leq(*(1-[[1N]])*) f(A)</M>, where <M>2N</M> is the number of
 off-diagonal entries in <M>A</M> (i.e., if <M>A</M>
 is <M>n\times n,</M> then <M>2N=n^2-n</M>).</EXR>
 
@@ -1142,6 +1140,6 @@ of squares of all entries of the origial matrix, then the final
 output of the algorithm is a <M>BAD(M,\delta)</M> matrix,
 where <M>\delta>0</M> is the convergence criterion.
 
-<DISQUSE id="mat2" url="https://arnabc74.github.io/numana2021/mat2.html"/>
+<DISQUSE id="mat2" url="https://www.isical.ac.in/~arnabc/numana/mat2.html"/>
 @}
 </NOTE>
