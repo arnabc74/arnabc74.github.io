@@ -36,6 +36,7 @@ Schur and semisimple</LINK></LI>
 <LI><LINK to="https://youtu.be/RUYO7ulvlFg">8.8, Singular Value Decomposition (SVD)</LINK></LI>
 <LI><LINK to="https://youtu.be/OVRxZTNJx0M">8.6, Jordan Canonical
 Form (JCF)</LINK></LI>
+<LI><LINK to="https://youtu.be/QT6JJUyF72s">9.1, 9.2, Quadratic forms (defn, types and congruence)</LINK></LI>
 </OL></TD>
 <TD>
 <TABLE><TR><TD>Some other similar videos</TD></TR><TR><TD>
