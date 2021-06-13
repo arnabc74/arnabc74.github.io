@@ -22,7 +22,7 @@ Bhimasankaram:
 <LI><LINK to="https://youtu.be/vKSpdPjK8vc">7.5 (part 2)</LINK></LI>
 <LI><LINK to="https://youtu.be/zm3L8Dw79xA">7.5 (part 3)</LINK></LI>
 <LI><LINK to="https://youtu.be/tvPWA66jSdc">7.5 (part 4)</LINK></LI>
-<LI><LINK to="https://youtu.be/8ZLvV1_IkN4">7.6 (part 1)</LINK></LI>
+<LI><LINK to="https://youtu.be/_Ja7vu7OGGY">7.6 (part 1)</LINK> (corrected)</LI>
 <LI><LINK to="https://youtu.be/rQ2cMqXlpnA">7.6 (part 2)</LINK></LI>
 <LI><LINK to="https://youtu.be/es9aM-thvQc">8 (part 1)</LINK> (refers to <LINK to="https://youtu.be/-APq9AA2T-A">motivation behind eigenvalues</LINK>)</LI>
 <LI><LINK to="https://youtu.be/U4pAkQqO-WM">8 (part 2)</LINK></LI>
