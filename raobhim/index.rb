@@ -49,7 +49,8 @@ Form (JCF)</LINK></LI>
 <LI><LINK to="https://youtu.be/OQkIcxY-0L0">Laplace expnasion (a
 direct proof)</LINK></LI>
 <LI><LINK to="https://youtu.be/bvJAl_vUwLg">Finding nullspace basis</LINK></LI>
-
+<LI><LINK to="https://youtu.be/HYcV4hzfGkE">Jacobi's method to
+find eigenvalues of real, symmetric matrices</LINK></LI>
 </OL>
 </TD></TR></TABLE></TD></TR></TABLE>
 </NOTE>@}
