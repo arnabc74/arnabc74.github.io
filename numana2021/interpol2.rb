@@ -6,7 +6,7 @@
 \newcommand{\PP}{\mathbf P}
 \newcommand{\RR}{\mathbf R}</M>
 <TITLE>Interpolation</TITLE>
-<UPDT>SAT MAY 22 IST 2021</UPDT>
+<UPDT>TUE JUN 15 IST 2021</UPDT>
 
 
 <HEAD1>Different representations of polynomials</HEAD1>
@@ -102,7 +102,7 @@ Let <M>f(x)</M> be any continuous function defined on <M>[a,b].</M> Let
 <M>\epsilon > 0</M> be any number. Then there is a polynomial <M>p(x)</M>
 such that 
 <D>
-|p(x)-f(x)| <  \epsilon ~~~\forall x\in[a,b].
+\forall x\in[a,b]~~|p(x)-f(x)| <  \epsilon.
 </D>
 </THM>
 

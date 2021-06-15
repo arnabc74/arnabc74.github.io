@@ -51,6 +51,7 @@ direct proof)</LINK></LI>
 <LI><LINK to="https://youtu.be/bvJAl_vUwLg">Finding nullspace basis</LINK></LI>
 <LI><LINK to="https://youtu.be/HYcV4hzfGkE">Jacobi's method to
 find eigenvalues of real, symmetric matrices</LINK></LI>
+<LI><LINK to="https://youtu.be/8saHqQWtduM">Proof of Jacobi's method</LINK></LI>
 </OL>
 </TD></TR></TABLE></TD></TR></TABLE>
 </NOTE>@}
