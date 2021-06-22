@@ -2,7 +2,7 @@
 @{
 <M>\newcommand{\ip}[1]{\langle #1 \rangle}</M>
 <TITLE>Numerical Integration</TITLE>
-<UPDT>SAT MAY 22 IST 2021</UPDT>
+<UPDT>TUE JUN 22 IST 2021</UPDT>
 <HEAD1>Numerical Integration</HEAD1>
 
 
@@ -336,12 +336,12 @@ scalar multiplication. Define the inner product
 <D>
 \langle f,g \rangle = \int_a^b f(x)g(x) dx.
 </D>
-Then (**) says that <M>p(x)</M> is orthogonal to all
+<COMMENT>Then (**) says that <M>p(x)</M> is orthogonal to all
 polynomials of degree <M>\leq m-1.</M> In other words, if <M>q(x)</M> is
 any polynomial with degree <M>\leq m-1,</M> then
 <D>
 \langle p,q \rangle = 0.
-</D>
+</D></COMMENT>
 Now, we can apply Gram-Schmidt orthogonalization to the basis 
 <D>
 \{1,x,x^2,x^3,...\}
