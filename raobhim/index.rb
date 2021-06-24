@@ -5,6 +5,7 @@ Bhimasankaram:
 <TABLE>
 <TR><TD>
 <OL>
+<LI><LINK to="https://youtu.be/-dlDnyWDCMg">1.6</LINK></LI>
 <LI><LINK to="https://youtu.be/K7HtUlThXeM">5.1 and 5.2</LINK></LI>
 <LI><LINK to="https://youtu.be/LtuH_Hz4zog">5.3</LINK></LI>
 <LI><LINK to="https://youtu.be/S8O4Ut0FaX0">5.4 (part 1)</LINK></LI>

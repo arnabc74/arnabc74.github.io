@@ -1,3 +1,4 @@
+-*- eval: (highlight-regexp "<B>[^<]*</B>") -*- 
 @{<NOTE>
 <HEAD1>Module 1: Data types</HEAD1>
 
@@ -53,18 +54,40 @@ that's what we are about to do next.
 
 
 
-<HEAD2>Continuous, discrete, counting and categorical</HEAD2>
+<HEAD2>Case, variable and rectangular structure</HEAD2>
 
 All data are results of measurements. The measurement may be made
-by a scientific introument like a measuring tape or a therometer
+by a scientific instrument like a measuring tape or a therometer
 or telescope, or simply by asking a verbal question, or merely by
 inspection. Of course, judging a person's gender by merely looking
 at the person hardly deserves to be called a measurement. So
 statisticians prefer to use the term <B>variable</B>. The result
-of each measrement gives a single outcome called
+of each measurement gives a single outcome called
 the <B>value</B>. 
 <P/>
-<TODO>Explain "case" and the rectangular format.</TODO>
+When we make a measurement, we are are measuring <I>something</I>
+or <I>somebody</I>. That something or somebody is called
+a <B>case</B>. When you are recording a patient's body
+temperature, the patient is a case, "temeperature"  is the
+variable, and the number itself is the value of that variable for
+that case. Typically, a statical data set consists of a number of
+variables and a number of cases. The corresponding values are
+laid out in a rectangular structure, where the rows denote the
+cases and the columns denote the variables. All standard
+statistical softwares excpect the data to be in this rectangular format.
+
+<P/>
+Sometimes beginners fail to create this rectangular format. For
+this, it helps to imagine a <B>report sheet</B> with fields like
+"temperature" "patient's name" to be filled in. Everytime you
+have a occasion to fill up a copy of this report sheet, you get a
+case. Each field in the sheet is a variable, and everything you
+write while filling it up is a value.
+
+<TODO>No information is row/col heads or table headings.</TODO>
+
+
+<HEAD2>Continuous, discrete, counting and categorical</HEAD2>
 
 Different variables 
  may be of different types. Some may be numbers, others may be
@@ -74,18 +97,15 @@ Different variables
  cm) or in words  like "tall", "medium" and "short". But not a
  mixture of both.  
 
-To start with,
-we split all such measurements into two types: <B>continuous</B>
-and <B>discrete</B>. Continuous means a measurement that takes
-values in a continuum, a range of values without any gap. Like a
-measuring people's heights. When you measure heights of a bunch
-of people you will get a few numbers like these. While these are
-only some distinct points along the number line, the points
-between them are also valid values. It is not that people either
-have this height or they jump to that height without ever taking
-the values in-between. All possible human heights form a
-continuum, a range without any gap. So height is a continuous
-variable. 
+The simplest type of variable is an <B>identifier</B> variable. These
+are used to identify something. They could be names or roll
+numbers or EPIC or PAN or something similar.
+
+<P/>
+
+Another simple type is a <B>timestemp</B> variable. 
+<P/>
+
 
 Contrast this with another scenario. Suppose that we are visiting
 a village and asking each family about the number of children
@@ -95,8 +115,10 @@ family have 2.5 children? No! Thus, here the
 values in-between are not valid. The possible values stand apart
 with some gaps between them. 
  This is a <B>counting</B> variable. Examples of other variables of
-this type include <B>count of trees in an area</B>, <B>number of COVID
-infections in a district</B>. 
+this type include <B>count of trees in an area</B>, 
+<B>number of COVID infections in a district</B>. 
+
+<P/>
 
 A different type of variable
 is <B>gender</B>, which typically takes
@@ -105,9 +127,8 @@ Unlike the counting variables, here we know exactly all the
 possible values. This is what is called a <B>categorical</B>
 variable. 
 
-An yet another type of variable is a <B>name</B> variable. These
-are used to identify something. They could be names or roll
-numbers or EPIC or PAN or something similar.
+<P/>
+
 
 A fourth type of variable may be called the <B>interval</B>
 type. Examples are like income group or age group. These are
@@ -120,8 +141,40 @@ boundary values. Usually, names are associated with each
 interval, e.g., Young, Middleage and Senior. Similarly, for LIG,
 MIG and HIG for income. 
 
+<P/>
+
 
 A fifth type is called a <B>Likert scale</B> variable.
+
+<P/>
+<B>Numerical measurements</B> constitute the most important type
+of variable. Examples include temperature, blood pressure, area
+of plots, yield of plots. 
+
+<HEAD2>Continuous, discrete, counting and categorical</HEAD2>
+One might easily get confsed with so many different types of
+variables! To ease the pain, statiticians have reduced the number
+to just three
+<UL>
+<LI><B>Nominal</B></LI>
+<LI><B>Ordinal</B></LI>
+<LI><B>Counting</B></LI>
+<LI><B>continuous</B></LI>
+</UL>
+we split all such measurements into two types: <B>continuous</B>
+and <B>discrete</B>. Continuous means a measurement that takes
+values in a continuum, a range of values without any gap. Like a
+measuring people's heights. When you measure heights of a bunch
+of people you will get a few numbers like these. While these are
+only some distinct points along the number line, the points
+between them are also valid values. It is not that people either
+have this height or they jump to that height without ever taking
+the values in-between. All possible human heights form a
+continuum, a range without any gap. So height is a continuous
+variable. 
+
+<P/>
+
 <HEAD2>Continuous or not?</HEAD2>
 
 Some variables are clearly not continuous, like gender. However,
@@ -160,7 +213,8 @@ file, the 0's and 1's are converted back into the original
 form. This two-way conversion process is mostly done
 automatically without our intervention. Now, this process may be
 done in different ways, and each such way is called a <B>file
-format</B>. There are quite a few file formats that are used in
+format</B>. 
+There are quite a few file formats that are used in
 statistics. Some are free, while others are propreitary and
 require paid softwares to write or read. Some formats are good
 for sending data files over the email, while some formats are
