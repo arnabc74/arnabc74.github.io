@@ -41,6 +41,8 @@ Form (JCF)</LINK></LI>
 forms (defn, types and congruence)</LINK></LI>
 <LI><LINK to="https://youtu.be/WcQwkYLjEBg">9.3 Sylvester's law
 of inertia</LINK></LI>
+<LI><LINK to="https://youtu.be/i0MwNKYqkms">9.3 (contd) Proof of
+Sylvester's law of inertia</LINK></LI>
 </OL></TD>
 <TD>
 <TABLE><TR><TD>Some other similar videos</TD></TR><TR><TD>
