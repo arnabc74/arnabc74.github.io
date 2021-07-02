@@ -36,11 +36,11 @@ way we get <B>data</B>. And this is the first point where
 statistics differs from the common man's way of learning from
 experience.  Statistics systematically collects and  stores the experience in a
 cut-and-dried fashion before proceeding to glean information from
-it. Data is ts that cut-and-dried experience. 
+it. Data is  that cut-and-dried experience. 
 
 The term data conjures up the vision of numbers...zillions of
 figures stored in computer disks to be processed by gigantic
-supercomputers. Well, while it is generally true, data need not
+supercomputers. Well, while it is true to some extent, data need not
 always be numbers. They may take other forms. In order to learn
 statistics effectively, it is imperative that we know what data
 are. 

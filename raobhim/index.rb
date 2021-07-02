@@ -43,6 +43,8 @@ forms (defn, types and congruence)</LINK></LI>
 of inertia</LINK></LI>
 <LI><LINK to="https://youtu.be/i0MwNKYqkms">9.3 (contd) Proof of
 Sylvester's law of inertia</LINK></LI>
+<LI><LINK to="https://youtu.be/2viucQm-tT8">9.3 (contd) Diagonalisation algorithm</LINK></LI>
+<LI><LINK to="https://youtu.be/aea4n4ARxvY">9.4 PD and NND matrices</LINK></LI>
 </OL></TD>
 <TD>
 <TABLE><TR><TD>Some other similar videos</TD></TR><TR><TD>
