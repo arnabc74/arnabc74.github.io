@@ -63,6 +63,7 @@ madhye dharAi Achhe. tAi
 @{<M>E'\setminus A\subseteq (0,\frac{1}{2k}]</M>@}  hate bAdhya, Thik yemanTA AmrA chAichhilAm. 
 <P/>
 bojhA gela ki? nAki ebArao guliye gela? 
+<DISQUSB id="valentian" url="https://arnabc74.github.io/real1/valentina.tml"/>
 </NOTE>
 
 
