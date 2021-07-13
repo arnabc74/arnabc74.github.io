@@ -4,11 +4,26 @@
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
 togglePhoto = function(photoId) {
    var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
    if(me.style.display=="block"){
      me.style.display="none";
    }
@@ -41,9 +56,23 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="http://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
 <body>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
@@ -67,7 +96,7 @@ name="গোড়ার কথা">গোড়ার কথা</a></h1>
 বইটার চতুর্থ অধ্যায়ে  84  পাতার  অংকটায় আমরা কয়েকটা জিনিস ব্যবহার করেছি,
  যেগুলো আগে লিখে দিলে হয়তো
  বুঝতে সুবিধা হবে৷ 
-<ol>
+<ol type="">
 
 <li> যদি $A\subseteq B$  হয়, তবে $A$-র limit point-রা
  $B$-এরও limit point  হতে বাধ্য৷ মানে $A'\subseteq B'.$</li>
@@ -143,10 +172,6 @@ $E'\setminus A\subseteq (0,\frac{1}{2k}]$  হতে বাধ্য, ঠিক 
 <td align="right"/>
 </tr>
 </table>
-<hr/><!-- begin htmlcommentbox.com --> 
-<div id="HCB_comment_box">
-<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
-<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet"/>
-<script id="hcb" type="text/javascript">
-/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> </body>
+<hr/>
+</body>
 </html>
