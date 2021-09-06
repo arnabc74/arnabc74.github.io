@@ -1,5 +1,5 @@
 @{<NOTE>
-<TITLE>Course: Basic 3 </TITLE>
+<TITLE>Course: Basic 3</TITLE>
 <HEAD1>Module 1: Estimation</HEAD1>
 
 <HEAD2>Lesson 1, Video 1: The concept (population, sample)</HEAD2>
