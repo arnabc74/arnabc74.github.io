@@ -1,0 +1,27 @@
+-*- eval: (highlight-regexp "<B>[^<]*</B>") -*- 
+@{<NOTE>
+<HEAD1>Module 2: Dimension</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Different types of multivariate data</HEAD2>
+<HEAD2>Lesson 1, Video 2: The camera problem</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Extrinsic vs intrinsic</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Curse of dimensionality</HEAD2>
+<HEAD2>Lesson 3, Video 2: Dimension reduction</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: ???</HEAD2>
+<HEAD2>Lesson 4, Video 2: ???</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+
+<COMMENT>
+Local Variables:
+ two-part1: ("<B>" "</B>")
+ two-part2: ("<V>" "</V>")
+End:
+</COMMENT>
+</NOTE>@}

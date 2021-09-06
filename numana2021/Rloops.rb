@@ -1,0 +1,159 @@
+@{<NOTE>
+<HEAD1>Some features of R</HEAD1>
+<HEAD2>For loops</HEAD2>
+R uses for-loops to loop over the elements of an array. Here is a
+quick example:
+<R>
+values = c(3, 5.6, -45)
+for(x in values) {
+   cat('x =', x, '\n')
+}
+</R>
+This produces the output
+<R>
+x = 3 
+x = 5.6 
+x = -45
+</R>
+Notice the use of the keyword <CODE>in</CODE>.
+<P/>
+
+Let me tell you some important points that make for-loops in R
+different from those in C.
+<HEAD3>You don't need loops much in R</HEAD3>
+If <M>x = (x_1,...,x_{100}),</M> and you want to compute <M>y =
+(\sin x_1,...,\sin x_{100}),</M> then you write a for-loop in
+C. However, in R just use a single line:
+<R>
+y = sin(x)
+</R>
+You should use such "implicit" loops whenever you can, as they
+are more efficient than the "explicit" for-loops. 
+
+<HEAD3>Looping a fixed number of times</HEAD3>
+If you want to do something <M>n</M> times, then in C you write:
+<R>
+for(i=0;i<n;i++) {
+  printf("hello\n");
+}
+</R>
+To achieve the same effect in R you need:
+<R>
+for(i in 1:n) {
+  print('hello')
+}
+</R>
+However, here <CODE>i</CODE> is going from 1 to <M>n</M>. If you
+want it to go from 0 to <M>n-1</M>, then use 
+<R>
+for(i in 0:(n-1)) {
+  print('hello')
+}
+</R>
+Important: Don't use <CODE>0:n-1</CODE> instead
+of <CODE>0:(n-1)</CODE>. The former means
+"subtract 1 from <CODE>0:n</CODE>".
+<HEAD3>Automatic printing is disabled inside a for-loop</HEAD3>
+If <CODE>x</CODE> is a variable in R, then you can print its
+value by simple typing its name by itself in a line (and hitting
+enter):
+<R>
+x = 1:10
+x
+</R>
+Then the value of <CODE>x</CODE> gets printed automatically
+(without the need of any <CODE>print</CODE> or <CODE>cat</CODE>
+command:
+<R>
+ [1]  1  2  3  4  5  6  7  8  9 10
+</R>
+However, this does not work inside a for-loop:
+<R>
+for( x in 1:10) {
+  x
+}
+</R>
+This does not print anything on the screen. You need to
+use <CODE>print</CODE> or <CODE>cat</CODE> explicitly:
+<R>
+for( x in 1:10) {
+  print(x)
+}
+</R>
+to get output
+<R>
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+</R>
+<HEAD1>Functions</HEAD1>
+A function in R is like 
+<R>
+f = function(x) {
+  sin(x) - exp(x)
+}
+</R>
+This is the function <M>f(x) = \sin x-e^x.</M> You may think of
+  this function is <M>f:\rr\to\rr</M> or rather
+  as <M>f:\rr^n\to\rr^n</M> for every <M>n\in\nn</M> because R
+  will automatically apply the function of each entry in an
+  array. For example,
+<R>
+f(1:10)
+</R>
+produces:
+<R>
+[1]     -1.876811     -6.479759    -19.944417    -55.354953   -149.372083
+[6]   -403.708209  -1095.976172  -2979.968629  -8102.671809 -22027.009816
+</R>
+You may use any number of arguments:
+<R>
+f = function(x,y,z) {
+  x-y+z
+}
+
+g = function() {
+   printf('hello!')
+}
+</R>
+Here is a function from <M>\rr</M> to <M>\rr^2:</M>
+<R>
+f = function(theta) {
+  c(cos(theta), sin(theta))
+}
+</R>
+Some functions in R have many arguments (even 100). It becomes
+very difficult to remember the position of all of them. R has two
+ways to deal with this problem: default values and labels.
+
+<P/>
+If I write 
+<R>
+f = function(x, y=30, z) {
+  cat('x=',x,'y=',y,'z=',z)
+}
+</R>
+then <CODE>y</CODE> has the default value 30. So you write 
+<R>
+f(1,,3)
+</R>
+or 
+<R>
+f(1,z=3)
+</R>
+to get the output
+<R>
+x= 1 y=30 z=3
+</R>
+For more details refer to <LINK
+to="https://www.isical.ac.in/~arnabc/arnabRtut.pdf">my brief
+intro to R</LINK>.
+<DISQUSE id="r" url="https://arnabc74.github.io/numana2021/Rloops.html"/>
+</NOTE>@}

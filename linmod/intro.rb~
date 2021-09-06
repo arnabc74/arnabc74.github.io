@@ -1,0 +1,288 @@
+<NOTE>
+@{<E>
+<M>
+\newcommand{\v}{\vec}
+\newcommand{\hv}[1]{\hat{\vec#1}}
+\newcommand{\col}{\mathcal{C}}
+\newcommand{\argmin}{\mathrm{argmin}}
+</M>
+<HEAD1>What's a linear model?</HEAD1>
+
+We learn to solve a linear system of equations during our school days. Here is
+a familiar example: <M>3a+4b=10,</M> <M>4a+b=9</M>
+and <M>2a+3b=7.</M>
+<P/>
+The solution turns out to be unique: <M>a=2</M> and <M>b=1.</M>
+<P/>
+Simple! But why would we ever want to solve such a system in real
+life? Here is one situation. We are finding the mass of two
+different atoms, <M>A</M> and <M>B.</M> We cannot weigh them separately. However, we can
+weigh different compounds like <M>A_3B_4</M> and <M>A_4B</M>
+and <M>A_2B_3.</M> Hence the three equations. 
+<P/>
+I admit it is a contrived example. But even this example will
+show a difficulty that is present all the time in real life. When
+we measure anything we make random error. Repeatedly measuring
+the same quantity leads to slightly differing results. So we may
+get measurements like 9.8, 9.1 and 7.0 in place of the exact
+values 10, 9 and 7. So the system is now 
+<D>
+3a+4b\approx 9.8\\
+4a+b\approx 9.1\\
+2a+3b\approx 7.0
+</D>
+Our first impulse may be just to pretend that
+the <M>\approx</M>'s are <M>=</M>'s, solve the system as before,
+then report the solution as approximate values for <M>x</M>
+and <M>y.</M> Just try this out, and you'll see that it's
+impossible. The system is inconsistent! 
+<P/>
+It might seem strange, but a real life measurement scenario
+mostly produces inconsistent systems. In mathematics an
+inconsistent system is just absurd. But from the view point of
+real life applications, we should better call them <I>almost
+consistent.</I> It should be possible to get values for the unknowns
+such that the LHS is pretty close to the RHS. Possibly, the
+simplest such example is when we measure the same
+length, <M>\ell,</M> twice
+and get two values 10.50 and 10.49. This is actually an
+inconsistent system: 
+<D>
+\ell = 10.50\\
+\ell = 10.49
+</D>
+Mathematically, this is impossible! 
+However, when we write this more correctly as 
+<D>
+\ell \approx 10.50\\
+\ell \approx 10.49
+</D>
+there is nothing to make us feel uncomfortable. In fact, we may
+even feel happy about the precision of the measurements. 
+
+<P/>
+Such an approximate system of linear equations is called
+a <B>linear model</B>. The traditional notation is 
+<D>
+\v y = X \v \beta + \v \epsilon.
+</D>
+Here <M>\v y</M> is the measurement vector, <M>X</M> is the fixed
+known matrix, <M>\v \beta </M> is the vector of unknowns
+and <M>\v \epsilon </M> is the random error vector. 
+<P/>
+We call <M>\v y</M> the <B>response</B>, <M>X</M> the <B>design
+matrix</B>, <M>\v \beta </M> the <B>parameter vector</B>.
+
+<P/>
+For example, in our weighing example, we have 
+<D>
+\v y = <MAT>9.8\\9.1\\7.0</MAT>,\quad X = <MAT>3 & 4\\4 & 1\\2 & 3</MAT>\text{ and } \beta = <MAT>a\\b</MAT>.
+</D>
+<HEAD1>Estimating <M>\h \beta </M></HEAD1>
+This may be done by
+choosing that value of <M>\v \beta</M> for which <M>\v y</M> is
+as close as possible to <M>X\v \beta.</M> In other words, 
+<D>
+\hv \beta  = \argmin_{\v \beta} \|\v y-X\v \beta\|.
+</D>
+Here <M>\|\cdots\|</M> denotes the Euclidean distance. So we are
+using our familiar least squares method.  Pictorially, this means
+projecting <M>\v y</M> on <M>\col(X)</M> and expressing the
+projection (<M>\hv y,</M> the foot of the perpendicular) in
+terms of the columns of <M>X.</M>
+<P/>
+For example, in the weighing case, we are looking for <M>a,b</M>
+such that <M>X \beta </M> is as close as possible to <M>y.</M>
+Now 
+<D>
+X \beta  = <MAT>3 & 4\\4 & 1\\2 & 3</MAT><MAT>a\\b</MAT> =
+a <MAT>3\\4\\2</MAT> + b <MAT>4\\1\\3</MAT>,
+</D>
+a linear combination of the two columns of <M>X.</M> So our
+interest lies in finding the linear combination of the columns of
+X that is closest to <M>\v y.</M>
+<SLIDES name="proj">
+<SLD pic="plot1.png">The first column of <M>X.</M></SLD>
+<SLD pic="plot2.png">The second column of <M>X.</M></SLD>
+<SLD pic="plot3.png">The <M>\v y</M> vector.</SLD>
+<SLD pic="plot4.png">Project <M>\v y</M> onto <M>\col(X).</M></SLD>
+</SLIDES>
+<P/>
+Mathematically, this amounts to solving the normal equations 
+<D>
+(X'X)\hv \beta = X'\v y.
+</D>
+<HIDE lab="norm"><MSG>(Why?)</MSG><HIDDEN>We want<M> (\v y-X\hv \beta)</M> to be perpendicular
+to <M>\col(X).</M> So we need <M>X' (\v y-X\hv \beta) =
+0.</M></HIDDEN></HIDE>
+
+This system is always consistent.
+<HIDE lab="cons"><MSG>(Why?)</MSG>
+<HIDDEN>We know from linear algebra that <M>\col(X') =
+\col(X'X)</M> for any real matrix <M>X.</M> So <M>X'\v y\in\col(X')=\col(X'X).</M></HIDDEN>
+</HIDE>
+
+<HEAD2>Unique?</HEAD2>
+ Do the normal equations always produce unique
+solution? Not necessarily. For example, if the linear model is 
+<D>
+2.9 = \beta_1 + \beta_2 + \epsilon_1\\
+3.0 = \beta_1 + \beta_2 + \epsilon_2\\
+2.5 = \beta_3 + \epsilon_3,
+</D>
+then you can never hope to get <M>\h\beta_1</M> and <M>\h\beta_2</M>
+uniquely. But <M>\h\beta_3</M> may be found uniquely.
+Also, <M>\h\beta_1+\h\beta_2</M> is unique, i.e.,
+whatever least squares solutions <M>\h\beta_1</M> and <M>\h\beta_2</M> you take, their sum
+will always be the same. 
+<P/>
+The foot of the perpendicular (from <M>\v y</M>
+to <M>\col(X)</M>) is <M>\hv y</M>, and is unique. Since this is
+in <M>\col(X),</M> so it can be expressed as a linear combination
+of the columns of <M>X.</M> However, there may be many ways to do
+so. It will be unique if and only if the columns of <M>X</M> are
+all independent.
+
+<THM>
+Least square solution of <M>\v y = X \v\beta + \v \epsilon</M> is
+unique if and only if <M>X</M> is full column rank. In this case,
+<M>X'X</M> is invertible, and the unique solution is given by 
+<D>
+\hv \beta = (X'X) ^{-1} X'\v y.
+</D>
+</THM>
+Thus, the projection of <M>\v y</M> onto <M>\col(X)</M> is
+ <D>\hv y = X\hv \beta = \underbrace{X(X'X)^{-1} X'}_{P_X} \v y.</D>
+So <M>P_X = X(X'X)^{-1} X' </M> is the (orthogonal) projection
+matrix for <M>\col(X).</M>
+<P/>
+Recall from linear algebra that a real matrix is an orthogonal
+projection matrix if and only if it is symmetric and orthogonal. 
+
+<EXR>Quickly check that <M>P_X</M> is indeed symmetric and
+orthogonal.</EXR>
+
+<HEAD1>Using R</HEAD1>
+We may use R to perform least squares estimation. 
+
+<EXM>
+Solve the weighing problem using R. 
+<SOLN/>
+First construct the design matrix and the response vector:
+<R>
+X = matrix(<RB e="column-wise entries">c(3,4,2,4,1,3)</RB>,<RB e="nrow">3</RB>,<RB e="ncol">2</RB>) 
+y = c(9.8,9.1,7.0)
+</R>
+Now invoke the <CODE>lm</CODE> function (<CODE>lm</CODE> is
+abbreviation of linear model) as follows:
+<R>
+lm(y ~ X-1)
+</R>
+The <CODE>-1</CODE> may look wierd. Actually, R has the habit of
+adding a column of 1's before the design
+matrix. The <CODE>-1</CODE> prevents that.
+</EXM>
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>Solve the following approximate system using R:
+<MULTILINE>
+3a + 4b + c & \approx & 3.4\\
+3a + 4b + c & \approx & 3.5\\
+4a + 3b + 2c & \approx & 10.1\\
+4a + 3b + 2c & \approx & 9.8\\
+6a + 5b + 2c & \approx & 5.6
+</MULTILINE>
+</LI>
+<LI>Let's see how R tackles a linear model where the design matrix that is not full
+column rank:
+<D>
+X = <MAT>
+1 & 1 & 0\\
+1 & 1 & 0\\
+1 & 0 & 1\\
+1 & 0 & 1\\
+</MAT>,\quad 
+\v y = <MAT>3.4\\3.5\\10.5\\10.3</MAT>.
+</D>
+Here the first column of <M>X</M> is a column of <M>1</M>'s. So
+you may just type the last two columns in R, and omit the <CODE>-1</CODE>.
+</LI>
+<LI>
+In the problem above R produced <I>one</I> least squares
+solution. But we know that there are infinitely many. Write down
+two more solutions. Can you write a general form for all least
+squares solutions here?
+</LI>
+<LI>R automatically stores various qunatities computed
+by <CODE>lm</CODE>. We shall explore some of them here. Let's
+work with the linear model from the last exercise. Create the
+full design matrix (including its first column) and type:
+<R>
+myfit = lm(y~X-1)
+</R>
+The variable <CODE>myfit</CODE> now contains lots of the
+information about the fit. You may extract the computed least
+squares solution <M>\hv \beta </M> as 
+<R>
+myfit$coef
+</R>
+This may be used in future computations. Compute <M>\h y = X\hv
+\beta.</M> Remember that <CODE>%*%</CODE> is the R notation for
+matrix multiplication. This <M>\h y</M> is the foot of the
+perpendicular dropped from <M>\v y</M> to <M>\col(X).</M>
+Usually <M>\hv y</M> is called the <B>fitted</B> vector. R already
+computes them:
+<R>
+myfit$fitted
+</R>
+The vector <M>\v y - \hv y</M> is called the <B>residual</B>
+vector:
+<R>
+myfit$resid
+</R>
+There are many other pieces of information packed
+in <CODE>myfit</CODE>:
+<R>
+names(myfit)
+</R>
+</LI>
+<LI>The closer <M>\v y</M> is to <M>\col(X),</M> the better is
+the fit of the linear model. Here are various ways to measure
+this "closeness": 
+<OL type="a">
+<LI>How close <M>\|\v y-\hv y\|^2</M> is to 0.</LI>
+<LI>How close <M>[[\|\hv y\|^2 ][ \|\v y\|^2 ]]</M> is to 1.</LI>
+</OL>
+Comment why these are not "good" measures of fit. Come up with 
+pairs of examples where the fit is equally good (according to
+commonsense) yet these measures say otherwise.
+</LI>
+<LI>Consider a linear model <M>\v y = X \beta +\epsilon,</M>
+where <M>X</M> is not full col rank. Pick any basis
+of <M>\col(X).</M> Stack these vectors side by side a columns to
+get a matrix <M>B.</M> Let <M>\v w = B(B'B) ^{-1} B' \v y.</M>
+Show that <M>\v w = \hv y</M> irrespective of the choice
+of <M>B.</M></LI>
+<LI>Consider a linear model with design matrix 
+<D>
+X = <MAT>
+1 & 1 & 0\\
+1 & 1 & 0\\
+1 & 0 & 1\\
+1 & 0 & 1\\
+</MAT>.
+</D>
+If <M>\v \beta = (\beta_1, \beta_2, \beta_3)',</M> then show that
+whatever least squares solution <M>\hv \beta </M> you take, <M>\h
+\beta_2-\h \beta_3</M> is always the same. Characterise all
+vectors <M>\v \ell\in\rr^3</M> such that <M>\v \ell' \hv \beta</M>
+does not depend on the choice of the least squares solution.
+</LI>
+<LI>Generalise the characterisation from the last problem to
+arbitrary design matrix.</LI>
+<LI><IMG web="basicex1.png"/></LI>
+<LI>Redo the above problem with the extra condition: <M>\beta_0-\alpha_0 = (\beta_1-a_1) x_0.</M></LI>
+</OL>
+<DISQUSE id="lmintro" url="http://www.isical.ac.in/~arnabc/linmod/intro.html"/>
+</E>@}
+</NOTE>

@@ -1,0 +1,71 @@
+@{<NOTE>
+<HEAD1>Stack</HEAD1>
+Throughout the history of development of human skill, restriction
+of freedom has been a useful tool. Here are some examples.
+<UL>
+<LI>In music we deal with octaves. An octave is the interval of
+frequencies of the form <M>[x,2x].</M> While there are infinitely
+many frequencies in an octave, we always work with only about 12
+of them. This makes it easier for us to compose and play
+music.</LI>
+<LI>If you want to find your way in Kolkata, familiarity with a
+chosen subset of major roads will be more helpful than an
+exhaustive list of all roads in the city!</LI>
+<LI>The internal circuit of a computer works mainly with
+voltages in the range 0V to 5V. Different levels of voltages may
+be used to convey different signals, like [0,1) means
+A, <M>[1,2)</M> means B, and so on. The finer we make the
+partition, the more signals we may convey. Yet to improve
+reliability against voltage fluctuation, a real life computer
+uses only two symbols: 0 and 1.</LI>
+</UL>
+The data structure we are going to learn is another example of
+this freedom restriction principle: A <B>stack</B> is just a list
+where new values may be added or deleted only at one end (called
+the <B>top</B>). Adding a value is called <B>push</B>, and
+removing a value is called <B>pop</B>.
+<P/>
+To visualize, think of a stack as a blackbox, with two buttons
+labelled "Push" and "Pop", and an input slot and an output
+slot. You press "Push", the input slot
+opens, and you insert a new token through it. If you press "Pop",
+the output slot opens, and a token rolls out. The blackbox
+operates in a way so that the most recently entered token comes
+out first. 
+
+<HEAD2>Applications</HEAD2>
+<HEAD3>Nested set ups</HEAD3>
+We human beings are very fond of nested set ups:
+<UL>
+<LI>we split a country into states, states into districts,
+districts into blocks.</LI>
+<LI>our books consists chapters, chapters consist of sections,
+which in their turn consist of subsections, which consist of
+paragraphs, which consists of sentences, and so on.</LI>
+<LI>In mathematics, we nest one set of parentheses into another.</LI>
+</UL>
+When we want to store any such nested set up in a computer file
+we need a system like mathematical brackets. Here is one example 
+<PRE>
+<RED>Start:India</RED>
+  A big country with too many people.
+  <RED>Start:WestBengal</RED>
+    The only state that stretches from sea to the Himalayas.
+    <RED>Start:Kolkata</RED>
+      An over-crowded city.
+    <RED>End:Kolkata</RED>
+    <RED>Start:Siliguri</RED>
+    <RED>End:Siliguri</RED>
+  <RED>End:WestBengal</RED>
+  <RED>Start:Bihar</RED>
+    <RED>Start:Patna</RED>
+    <RED>End:Patna</RED>
+  <RED>End:Bihar</RED>
+<RED>End:India</RED>
+</PRE>
+Here the red lines maintain the structure of the document. When a
+computer reads such a file, it uses a
+stack. Each <RED>Start:</RED> is a <B>push</B> and
+each <RED>End:</RED> is a <B>pop</B>. After every pop, it checks
+if the poped symbol matches the symbol after the <RED>End:</RED>.
+</NOTE>@}

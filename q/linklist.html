@@ -1,0 +1,660 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Linked lists">Linked lists</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Insertion">Insertion</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Deletion">Deletion</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Implementing in C">Implementing in C</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The basic operations">The basic operations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Referring to a student">Referring to a student</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Accessing parts">Accessing parts</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Creation">Creation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A computational model">A computational model</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Linked lists">Linked lists</a></h1>
+Suppose that I have a list of my friends on a piece of paper:
+<pre>
+Samprit
+Atanu
+Jonaki
+Krishanu
+Saikat
+</pre>
+The order is important, the first friend is the closest, the
+next one the second closest, and so on. After writing the list up
+to this, I suddenly recall that I have missed a name: Anvit. He
+should be third in the list. Unfortunately, as I am writing on a
+piece of paper, inserting a name between two names is difficult
+(unless I use ugly scribbling). However, if my list were in a
+computer, then it is very easy: I would just take my cursor after
+Atanu, hit enter to create a black line (causing the everything
+below to shift downwards by a line), and then type Anvit in the
+blank line. In this way I can insert as many names as I wish in
+any position. No scribbling, no squeezing. I might even remove
+any number of names from the list, without leaving any ugly
+gap. The list just grows,
+stretches and shrinks as needed.
+<p></p>
+How does the computer manage this? Does it reserve lots of empty
+spaces between every pair of names, to allow for future
+insertions, and somehoow hide the spaces while displaying the
+list? Not really. It uses a clever trick called a <b>linked
+list</b>, which we shall discuss now.
+
+<h2><a
+name="Insertion">Insertion</a></h2>
+
+When we make a list on paper, adding a new name is easy, as long
+as you are adding it at the end. Well, internally the computer is
+also writing the names on just such a piece of paper. This paper
+has lines drawn on it, and every line is numbered. Thus, the
+paper looks like this:
+<pre>
+1 Samprit
+2 Atanu
+3 Jonaki
+4 Krishanu
+5 Saikat
+6
+7
+8
+9
+...
+</pre>
+Unlike our paper list, the computer also writes after each name
+the number of the line where the next friend is to be found:
+<pre>
+1 Samprit   2
+2 Atanu     3
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6
+7
+8
+9
+...
+</pre>
+The 0 after Saikat means that Saikat is the last name in the
+list. Nothing interesting so far. Now suppose that I need to
+insert Anvit in the third position. The computer simply writes
+Anvit at the next available position:
+<pre>
+1 Samprit   2
+2 Atanu     3
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6 Anvit
+7
+8
+9
+...
+</pre>
+I want Anvit to appear after Atanu. So I write 6 after Atanu.
+Similarly,  Jonaki should appear after
+Anvit. So I write 3 after Anvit:
+<pre>
+1 Samprit   2
+2 Atanu     <font color="#ff0000">6</font>
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6 Anvit     <font color="#ff0000">3</font>
+7
+8
+9
+...
+</pre>
+Is this clear. Then try these exercises.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Insert the name Arko after Krishanu.
+Next, insert the name Oishi <i>before</i> Saikat. 
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Which is more difficult:
+inserting <i>after</i> a given name, or <i>before</i> a given
+name? Will the difficulty increase if the list is very long?
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Add Subroto after Saikat. Thus, Subroto is now the last in the list.
+<img src="../image/box.png"></p>
+
+Now suppose I suddenly find a long lost friend, Arinjita, and
+must give her the first place. So I need to update the list as
+follows.
+<pre>
+1 Samprit   2
+2 Atanu     6
+3 Jonaki    4
+4 Krishanu  5
+5 Saikat    0
+6 Anvit     3
+7 Arinjita  1
+8
+9
+...
+</pre>
+But here you'll have a problem while displaying the list. We have
+to start from Arinjita (<i>i.e.</i>, line 7) and not from line 1. How on
+earth are we to know where to start from? The computer needs to keep track of that separately. It
+calls the line number corresponding to the first name
+the <b>head</b>. So far, the head was always 1. But after
+inserting Arinjita, the head changes to 7. Henceforth, we shall
+denote the head with a star:
+<pre>
+ 1 Samprit   2
+ 2 Atanu     6
+ 3 Jonaki    4
+ 4 Krishanu  5
+ 5 Saikat    0
+ 6 Anvit     3
+*7 Arinjita  1
+ 8
+ 9
+...
+</pre>
+
+
+<h2><a
+name="Deletion">Deletion</a></h2>
+We talked about inserting a name in the list. Deleting is even
+easier. Suppose that we want to delete the name after line number
+2. The next line number is 6 (Anvit), and after that comes line 3
+(Jonaki). Our aim is to delete Anvit from the list, <i>i.e.</i>, we
+should have Jonaki coming right after Atanu. Convince yourself
+that the following updating achieves this:
+<pre>
+ 1 Samprit   2
+ 2 Atanu     <font color="#ff0000">3</font>
+ 3 Jonaki    4
+ 4 Krishanu  5
+ 5 Saikat    0
+ 6 Anvit     3
+*7 Arinjita  1
+ 8
+ 9
+ ...
+</pre>
+Notice that we do not need to do anything to line 6. Just by
+making sure that line 6 is not referred by others, we are
+effectively removing Anvit from the list.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Delete the head from the list, <i>i.e.</i>, delete Arinjita making the
+next guy, Samprit the new head.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Implementing in C">Implementing in C</a></h2>
+As the discussion above shows, the computer maintains a secret paper
+list (which can only grow), and displays the final list cleverly
+by following the next line numbers. Well, as you might have
+guessed, there is really no paper list inside a computer. The
+role of the paper is played by the memory of the computer. This
+memory is indeed like a long (very l..o..n..g) piece of papers
+with many lines marked on it. Just as in our example, the lines
+are numbered consecutively. Each lines is 
+called a <b>location</b> and its  number is called
+its <b>address</b>. As there are a huge number of locations, the
+address easily runs into 20 digits or so!
+<p></p>
+Now, we need to associate a location with an address. There has
+to to be a 2-way communication: address to location, and location
+to address. If you have a variable <font color="red"><code>x</code></font> stored at some
+location, then its address is given by <font color="red"><code>&amp;x</code></font>. Conversely, if
+the address of a location is stored in a variable
+called <font color="red"><code>p</code></font>, then the corresponding location
+is <font color="red"><code>*p</code></font>. Incidentally, just as integers are stored
+in <font color="red"><code>int</code></font>'s and characters in <font color="red"><code>char</code></font>'s, there are
+special types of variables to hold addresses
+called <b>pointer</b>s.
+<p></p>
+Thus, to store a name and the address of the next student we need
+a string and a pointer. Typically, you package them as follows in
+C:
+<span class="j">
+<pre>
+struct <font color="#ff0000">stdnt</font> {
+  char <font color="#ff0000">name</font>[80];
+  struct <font color="#0000ff">stdnt</font> *<font color="#ff0000">next</font>;
+}
+</pre>
+</span>
+Yes, it is ugly. Nobody denies that. But that is how it is in
+C. Here the red words are words of our choice. The black words
+are parts of the C language. The word <font color="red"><code>stdnt</code></font> has occurred
+twice (the second occurrence is shown in blue). 
+
+<h2><a
+name="The basic operations">The basic operations</a></h2>
+What are the things that we would like to do with the structure?
+We want to 
+<ul>
+
+<li>refer to a student</li>
+
+<li>accessing parts</li>
+
+<li>create a student,</li> 
+
+</ul>
+Let's learn to do these one by one in C. 
+
+<h3><a
+name="Referring to a student">Referring to a student</a></h3>
+There are two ways to refer to a student, directly or by
+address. It is somewhat like referring to a student by name
+(direct) or by roll number (address).  In the direct method 
+you'll need a variable of type <font color="red"><code>struct stdnt</code></font> like:
+<span class="j">
+<pre>
+struct stdnt aStudent;
+</pre>
+</span>
+In the address method, you'll need a variable of type <font color="red"><code>struct
+stdnt*</code></font> like:
+<span class="j">
+<pre>
+struct stdnt* studentAddress;
+</pre>
+</span>
+In this case the variable <font color="red"><code>studentAddress</code></font> is called
+a <b>pointer</b>. 
+<p></p>
+It is easy to switch between the two representations: 
+<span class="j">
+<pre>
+aStudent = *studentAddress;
+</pre>
+</span>
+and
+<span class="j">
+<pre>
+studentAddress = &amp; aStudent;
+</pre>
+</span>
+
+
+<h3><a
+name="Accessing parts">Accessing parts</a></h3>
+Here <font color="red"><code>struct stdnt</code></font> has two parts (or <b>field</b>s, as they
+are called): <font color="red"><code>name</code></font> and <font color="red"><code>next</code></font>. You may access these
+easily. If the student is given directly, then use:
+<font color="red"><code>aStudent.name</code></font> and <font color="red"><code>aStudent.next</code></font>. If the student is
+specified via address, then use <font color="red"><code>studentAddress-&gt;name</code></font>
+and <font color="red"><code>studentAddress-&gt;next</code></font>. 
+
+<p></p>
+We may use these forms to both read and write. For example, if I
+need to print the name of a student, I may use
+<span class="j">
+<pre>
+printf("Name is %s\n", aStudent.name);
+</pre>
+</span>
+or
+<span class="j">
+<pre>
+printf("Name is %s\n", studentAddress-&gt;name);
+</pre>
+</span>
+If I want to make a student's name "Samprit", I shall use 
+<span class="j">
+<pre>
+sprintf(aStudent.name,"Samprit");
+</pre>
+</span>
+or
+<span class="j">
+<pre>
+sprintf(studentAddress-&gt;name,"Samprit");
+</pre>
+</span>
+I can similarly, read the next student's name as
+<span class="j">
+<pre>
+printf("Next name is %s\n",aStudent.next-&gt;name);
+</pre>
+</span>
+or
+<span class="j">
+<pre>
+printf("Next name is %s\n",studentAddress-&gt;next-&gt;name);
+</pre>
+</span>
+
+
+<h3><a
+name="Creation">Creation</a></h3>
+First, creation of a new
+student. This is like adding a new name in the paper list. For
+this you have to find an unused line, and write the name there. 
+Finding an unused line is called <b>memory allocation</b> in C,
+and we shall do this by the <font color="red"><code>calloc</code></font> function. Now, when the
+memory is being allocated, we have only the address of the
+location with which to refer to the student. So here
+we <i>must</i> use the address method:
+<span class="j">
+<pre>
+studentAddress = (struct stdnt*) calloc(1,sizeof(struct stdnt));
+</pre>
+</span>
+In plain English, this rather ugly line means the following:
+<blockquote>
+Allocate enough memory to store 1 variable of type <font color="red"><code>struct
+stdnt</code></font>, then clear the memory (writing 0s). Finally, store the
+address of the memory in a pointer called <font color="red"><code>studentAddress</code></font>.
+</blockquote>
+
+
+<h2><a
+name="A computational model">A computational model</a></h2>
+Any computer program works with bits, innumerably many 0s and
+1s. If you try to keep track of all those 0s and 1s, then you'll
+beome crazy. Instead, we think in terms of high level
+analogies. The analogy must be simple, yet incorporate the
+pitfalls on the real siuation. Such analogies are called
+computational models. The "names listed on paper" story
+was one example. However, it fails to take into account three
+difficulties that a programmer faces when coding linked lists:
+<ul>
+
+<li>the computer memory is huge, making it impossible to glance
+through the entire list at once.</li>
+
+<li>the computer memory does not store past values. If you 
+write <font color="red"><code>x=5</code></font>, and then <font color="red"><code>x=10</code></font>, then the past value (5)
+of <font color="red"><code>x</code></font> get overwritten by the new value (10). There is no
+way to recover that past value (unless you kept a separate
+backup).</li>
+
+<li>The computer can do only one thing at a time. We human
+beings are parallel processing all the time (dreaming about
+lunch, while taking down notes).</li>
+
+</ul>
+In order to incorporate these, we shall create a new
+computational model. This model will denote the names by pieces
+of cards and the pointers will be paper clips tied with ropes. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pieces.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Thus, our <font color="red"><code>struct stdnt</code></font> looks like this, a paper clip
+attached from a cardboard bearing a name:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/struc.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This is the basic element of a linked list. We chain them
+together and hang them from hooks attached to a horizontal bar:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mod.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The hooks represents all the variables used in your program. The
+particular hook used for hanging the linked list is the
+variable <font color="red"><code>head</code></font>. It is a pointer. That is why we have a clip
+danging from it. Now our computational model says that there is a
+deep abyss under the horizontal bar. Anything no atttached to the
+bar (directly or indirectly) is sure to drop into the abyss, and
+may never be retrieved. This moels the fact that the computer
+memory is huge, and if you lose track of anything, you can never
+recover it. Also, the computer can do only one thing at a
+time. To mimick this, we shall put one final restriction: you can
+use only one hand to work with the cards and clips. 
+
+<p></p>
+OK, now let us see how we may remove "Jonaki" from the linked
+list. 
+<p></p>
+
+<b>Attempt 1:</b> Your first impulse may be to undo the clip that holds
+"Jonaki" in place. But remember that you are only using one hand,
+so you canot hold "Jonaki " with the other hand during this. As a
+result, the moment the clip is released, "Jonaki" and all the
+cards under it will plummet down into the depth of the abyss! 
+
+<p></p>
+
+<b>Attempt 2:</b> Take another clip, and fix this to the card
+below "Jonaki":
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/del1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Next, release the clip holding "Jonaki", causing "Jonaki" to hang
+from its tail:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/del2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Finally, attach the clip that was holding "Jonaki" to the card
+below "Jonaki".
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/del3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Well, we have achieved our goal. However, you may not be happy as
+there are unnecessary appendages dangling here and there. They
+are really not very harmful, but still it is a good habit to clean up the mess, by
+removing thoe appendages. But you cannot reach "Jonaki" anymore
+now, as the ropes attached to clips may
+only be followed <i>towards</i> the clip and not <i>away from</i> it!
+<p></p>
+
+<b>Attempt 3:</b> First step as before. But before you undo the
+clip holding "Jonaki", make sure "Jonaki" does not link to the
+list: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/del1b.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Now, the moment you release the clip holding "Jonaki" it gets
+lost:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/del2b.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Finally, link up "Anvit" to "Samprit".
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/del3b.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+You might as well remove the helper clip at this point.
+<p></p>
+
+Now let us see how we may code this up in C:
+<span class="j">
+<pre>
+struct stdnt* before; /* Given to us */
+struct stdnt* after;  /* The helper */
+
+after = before-&gt;next-&gt;next; /* Conect the helper */
+before-&gt;next-&gt;next = 0; /* Remove the thing to be
+                           deleted */
+before-&gt;next = after;   /* Reconnect */
+after = 0;              /* Remove helper */
+</pre>
+</span>
+Try to feel each of the steps while coding. 
+<p></p>
+If this is clear try your hand at the following exercise.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Write a C program to remove the first element of a linked
+list. Be sure to first work it out single-handedly using the
+computational model. Sketch each step. Then code it up!
+<img src="../image/box.png"></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<NOTE pic="image/permcomb.jpg">
+<TITLE>@{<E>Complex Algebra:</E>@} arNab chak+rabar+tIr bai</TITLE>
+<COVID alt="comb/index.html"/>
+<LINK to="https://www.isical.ac.in/~arnabc/books/index.html">anyAnya bai</LINK>
+<HEAD1>@{<E>Permutation and Combination</E>@}</HEAD1>
+AmAr @{<E>Permutation and Combination</E>@} baiyer @{<E>webpage</E>@} eTA. baiTAr dwitIya sa.nskaraNer 
+yA yA bhulbhrAnti ekhanao parYanta dharA paRechhe tAder
+tAlikA dichchhi nIche. 
+<HEAD2>pratham adhyAyer bhultruTi</HEAD2>  
+<UL>
+<LI><IMG web="p5.png">@{<E>5</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne @{<E>Fig 4</E>@}-er badale @{<E>Fig 5</E>@}  habe. bhulTA dharechhen prafesar ashok mal+lik.
+</LI>
+<LI><IMG web="p12.png">@{<E>12</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne @{<E>5</E>@}-er badale @{<E>6</E>@}  habe. bhulTA dharechhen prafesar ashok mal+lik.
+</LI>
+<LI><IMG web="p23.png">@{<E>23</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne lAl @{<E>6</E>@}-er badale @{<E>2</E>@}  habe. tAi nIl @{<E>15</E>@}-TA haye yAbe
+ @{<E>11.</E>@}  ekai kAraNe parer pAtAr lAl @{<E>15</E>@}-TAo @{<E>11 </E>@} haye yAbe--
+<IMG web="p24.png">@{<E>24</E>@} 
+ na.n pAtAr a.nsha</IMG>
+ bhulTA dharechhen
+ prafesar ashok mal+lik.
+</LI>
+<LI>pratham adhyAyer @{<E>Exercise 30</E>@}-er uttare Ami @{<M>AB</M>@}  Ar @{<M>BA</M>@}  ul+Te
+ diyechhi. @{<M>AB</M>@}  habe @{<M>2\times2</M>@}  eba.n bhArat theke AmerikA yAoyAr Tebil--
+@{<D>AB = <MAT>11 & 17\\8 & 11</MAT>.</D>@}  
+anyadike @{<M>BA</M>@}  hala @{<M>3\times3,</M>@}
+@{<D>BA = <MAT>7 & 10 & 5\\6 & 7 & 9\\7 & 9 & 8</MAT>.</D>@}
+bhulTA dharechhen suprabhAt manDal.
+</LI>
+<LI>@{<E>25</E>@}  nambar pAtAy @{<E>Fig 33</E>@}-er tinTe a.nsha @{<E>(i)</E>@}, @{<E>(ii)</E>@} 
+ Ar @{<E>(iii).</E>@}  eder madhye @{<E>(i)</E>@}  Ar @{<E>(ii)</E>@}-er lebel badlAbali haye
+ gechhe, mAne @{<E>(i)</E>@}  habe @{<E>(ii),</E>@}  Ar @{<E>(ii)</E>@}  habe @{<E>(i).</E>@} 
+ bhulTA dharechhen suprabhAt manDal.</LI>
+<LI>@{<E>29</E>@}  nambar pAtAy @{<E>Exercise 33</E>@}-er uttar deoyA Achhe @{<M>11^5-6^5.</M>@}  oTA habe @{<M>11^5-5^5.</M>@}
+ bhulTA dharechhen suprabhAt manDal.</LI>
+<LI>
+<IMG web="p29.png">@{<E>29</E>@}  nambar pAtAr a.nsha</IMG>
+''duTo'' nay, ''ekTA'' kare.  bhulTA dharechhen suprabhAt manDal.
+</LI>
+<LI>
+<IMG web="p35c.png">@{<E>35</E>@}  nambar pAtAr a.nsha</IMG>
+yuk+tiTA Thikai chhila, kintu pratham lAfTA ye @{<M>11</M>@}-bhAbe deoyA yAy, sei kathATA uttarTA lekhAr samaye bhule mere 
+diyechhilAm. tAi uttar habe yA diyechhi, tAr @{<M>11</M>@}  guN, mAne @{<M>11\times(11^9-10^9).</M>@}  
+ bhulTA dharechhen suprabhAt manDal.</LI>
+<LI>
+<IMG web="p35.png">@{<E>35</E>@}  nambar pAtAr a.nsha</IMG>
+bichchhiri bhul, yeTAke chhApAr bhul bale sAnt+wanA pAoyArao chhAi upAy nei. Ami balechhi @{<M>9n+3</M>@}  sar+badA @{<E>odd</E>@}  
+habe. DAhA bhul! yadi @{<M>n</M>@}-TA @{<E>odd</E>@}  hay, tabei @{<M>9n+3</M>@}-TA @{<E>even</E>@}  habe, yeman @{<M>n=1</M>@}  
+nilei @{<M>9n+3=12,</M>@}  yeTA dibyi @{<E>even</E>@} ! tAi ei uttarTA bhul. Thik uttarTA eirakam--
+<Q>yekono @{<E>factor</E>@}-er 
+chehArAi @{<M>2^i\times 3^j\times 5^k\times 7^\ell</M>@}-er mata, yekhAne @{<M>i=0,1</M>@} ; @{<M>j=0,1,2</M>@} ; @{<M>k=0,...,3</M>@}  
+eba.n @{<M>\ell=0,1,2.</M>@}  er madhye @{<M>j=1</M>@}  hate bAdhya, kAraN @{<M>9n+3</M>@}  jAtIya sa.nkhyArA @{<M>3</M>@}  
+diye bhAg yAy, kintu @{<M>3^2</M>@}  diye bhAg yAy nA. ebAr @{<M>9n+3</M>@}-ke @{<M>3</M>@}  diye bhAg karle hay @{<M>3n+1.</M>@}  
+sutarA.n @{<M>2^i\times  5^k\times 7^\ell</M>@}-ke hate habe @{<M>3n+1</M>@}  chehArAr, arthA.t @{<M>3</M>@}  diye bhAg 
+karle @{<M>1</M>@}  bhAgsheS thAkbe. edike @{<M>2</M>@}  Ar @{<M>5</M>@}-ke @{<M>3 </M>@} diye bhAg karle @{<M>2</M>@}  
+hAgsheS thAke, eba.n @{<M>7</M>@}-er belAy bhAgsheS~TA hay @{<M>1.</M>@}  sutarA.n @{<M>2^i\times  5^k\times 7^\ell</M>@}-ke 
+@{<M>3</M>@}  diye bhAg karleo yA habe @{<M>2^i\times  2^k = 2^{i+k}</M>@}-er bhAgsheSao tAi hate habe. mAne @{<M>2^{i+k}</M>@}-ke 
+@{<M>3</M>@}  diye bhAg karle @{<M>1</M>@}  bhAgsheS As~te habe. e theke ekTu chintA karlei pAbe ye, @{<M>i+k</M>@}-ke @{<E>even</E>@}  
+hate habe. AmrA jAni @{<M>i=0,1</M>@}  Ar @{<M>k=0,1,2,3</M>@}  hate pAre. tAi khAli chAr~bhAbei  @{<M>i+k</M>@}-TA @{<E>even</E>@}  
+hate pAre. tAr hala @{<M>(i,j)=(0,0), (0,2), (1,1)</M>@}  eba.n @{<M>(1,3).</M>@}  Ar
+ @{<M>\ell=0,1,2</M>@}  yA khushi hate pAre. ataeb uttar habe @{<M>4\times3=12.</M>@}  
+</Q>
+ei bhulTA dharechhe pratyay manDal eba.n suprabhAt manDal. 
+</LI>
+<LI>
+<IMG web="p35b.png">@{<E>35</E>@}  nambar pAtAr a.nsha</IMG>
+ekhAne uttar habe @{<M>15\times 2 = 30.</M>@}  kAraN @{<M>m</M>@}-er chihna Thik haye gele @{<M>n</M>@}-er chihnao ApnA 
+thekei Thik haye yAy, yehetu @{<M>mn=144</M>@}  balA Achhe. bhulTA dharechhen suprabhAt manDal.
+</LI>
+<LI>pratham adhyAyer @{<E>35</E>@}  nambar a.nker uttar habe @{<M>3^{10}-2^{10}.</M>@}
+bhulTA dharechhen prafesar ashok mal+lik.
+</LI>
+<LI>pratham adhyAyer @{<E>39</E>@}  nambar a.nker uttar habe lebel thAkle @{<M>\frac{20\times1\times9\times1}{4}=45.</M>@} lebel chhARA @{<M>5.</M>@}
+bhulTA dharechhen prafesar ashok mal+lik.
+</LI>
+<LI>@{<E>Exercise 41</E>@}-er uttare Ami @{<M>6\times9\times 11</M>@}-ke @{<M>703</M>@} likhe base Achhi,
+ oTA @{<M>693</M>@}  habe. tAi sheS parYanta uttarTA d,nARAbe @{<M>[[693-1][2]]+1 = 347.</M>@} 
+ bhulTA dharechhen suprabhAt manDal. </LI>
+</UL>
+<HEAD2>dwitIya  adhyAyer bhultruTi</HEAD2>  
+<UL>
+<LI>@{<E>Exercise 14 (i)</E>@}-er uttar habe @{<M>10!-5\times4\times 8!.</M>@}  bhulTA dharechhen suprabhAt manDal.</LI>
+<LI><IMG web="p47.png">@{<E>47</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne nIl @{<E>5</E>@}-TA habe nA. bhulTA dharechhen prafesar ashok mal+lik.
+</LI>
+<LI>@{<E>Example 11</E>@}-te ekaker ghare baste pAre @{<M>2</M>@}  bA @{<M>6.</M>@}  likhe
+ felechhilAm @{<M>2</M>@}  bA @{<M>4.</M>@}  bhulTA dharechhen suprabhAt manDal. </LI>
+<LI><IMG web="p51.png">@{<E>51</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne nIl @{<E>60</E>@}-gulo habe @{<E>360.</E>@} tAi lAl @{<E>66660</E>@}-TA haye yAbe
+ @{<E>399960.</E>@}  bhulTA dharechhen
+ prafesar ashok mal+lik.
+</LI>
+<LI><IMG web="p52.png">@{<E>52</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne nIl @{<M>m</M>@}-TA @{<M>n</M>@}  habe.
+bhulTA dharechhen  prafesar ashok mal+lik.
+</LI>
+<LI>dwitIya adhyAyer @{<E>58</E>@}  na.n pAtAy @{<E>Exercise 23</E>@}-e duTo a.nsha Achhe. @{<E>Hint</E>@}  debAr samaye 
+@{<E>59</E>@}  na.n pAtAy oder ul+Te felechhi bhul kare. 
+ekhAne nIl @{<M>m</M>@}-TA @{<M>n</M>@}  habe.
+bhulTA dharechhen  prafesar ashok mal+lik.
+</LI>
+<LI>@{<E>Example 18</E>@}-er samAdhAne Ami dhare niyechhi ye, bhadramahilAr @{<M>4</M>@}  jan
+ mahilA eba.n @{<M>3</M>@}  jan puruS At+mIya Achhe. prashne balA chhila @{<M>4</M>@}  jan puruS Ar
+ @{<M>3</M>@}  jan mahilA At+mIya. kAydATA Thikai Achhe. khAli sa.nkhyAgulo ul+Te felAy uttar bhul
+ esechhe. saThik uttar habe @{<M>485.</M>@}  bhulTA dharechhen suprabhAt manDal.</LI>
+<LI>@{<E>Exercise 26</E>@}-er uttare @{<M>c=n-4</M>@}  habe, tAi @{<M>f</M>@}-o badlAbe. bhulTA
+ dharechhen suprabhAt manDal.</LI>
+<LI>@{<E>72</E>@}  nambar pAtAy @{<E>Example 27</E>@}-er @{<E>option</E>@}-gulo Thik mata chhApA
+ hay ni. Thik hale erakam haoyA uchit chhila--
+<IMG web="p72.png">@{<E>Example 27</E>@}  yeman haoyA uchit</IMG>
+e bhulTAo suprabhAt manDaler dharA. 
+</LI>
+</UL>
+<HEAD2>trritIya  adhyAyer bhultruTi</HEAD2>  
+<UL>
+<LI>@{<E>Exercise 8</E>@}-er uttarTA habe @{<M>[[6!][2\times 2]].</M>@}  bhulTAr dike drriSTi
+ AkarSaN karechhe IshAn chak+rabar+tI. </LI>  
+<LI>@{<E>Exercise 9</E>@}-er uttar deoyA Achhe @{<M>6!,</M>@}  haoyA uchit @{<M>5!.</M>@}  bhulTA
+ dharechhen suprabhAt manDal.</LI>  
+<LI>@{<E>Exercise 16</E>@}-er uttar deoyA hay ni. uttarTA habe @{<E>A-P, B-S, C-Q, D-Q.</E>@}  bhulTA
+ dharechhen suprabhAt manDal.</LI>  
+<LI>@{<E>Exercise 18</E>@}-er uttare likhechhi ye ''@{<E>SWAP</E>@}'' shabdaTAr sthAn habe @{<M>13</M>@} 
+ nambare. haoyA uchit @{<M>17</M>@}  nambare. kAraN @{<E>''SWAP''</E>@}-er Age Asbe
+ @{<E>A***</E>@}  jAtIya @{<M>3!</M>@}-TA shabda, @{<E>P***</E>@}  jAtIya @{<M>3!</M>@}-TA shabda,
+ @{<E>SA**</E>@}  jAtIya @{<M>2!</M>@}-TA shabda eba.n @{<E>SP**</E>@}  jAtIya Aro  @{<M>2!</M>@}-TA shabda. 
+bhulTA
+ dharechhen suprabhAt manDal.</LI>  
+<LI><IMG web="p94.png">@{<E>94</E>@}  na.n pAtAr a.nsha</IMG>
+ekhAne @{<M>{}^5P_2</M>@}  duToi @{<M>{}^5C_2</M>@}  habe. 
+bhulTA
+ dharechhen suprabhAt manDal.</LI>  
+<LI>@{<E>Exercise 38</E>@}-er uttar habe @{<M>{}^{36}C_{10},</M>@}  bhul kare @{<M>{}^{46}C_{10}</M>@}  deoyA hayechhe.
+bhulTA dharechhen kal+lol mAiti.</LI>  
+</UL>
+</NOTE>

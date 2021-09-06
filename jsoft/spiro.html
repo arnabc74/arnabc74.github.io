@@ -1,0 +1,175 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Spirograph">Spirograph</a>
+</li>
+</ul>
+<hr/>
+
+<title>J tutorial</title>
+
+<h1><a
+name="Spirograph">Spirograph</a></h1>
+Have you seen spirographs? They are mathmatical toys to produce
+intricate, pleasing curves. A common incarnation consists of a
+gear rotating inside a toothed ring. A pen passes through  a hole
+in the gear and touches the paper underneath. On rotating the
+gear two circular motions are superposed, and a spiral curve
+results. 
+<p></p>
+It is easy to work out a parametric form of the curve. Each
+curcular motion is like 
+$$
+(R\cos (\omega t + \phi), R\sin(\omega t+\phi)).
+$$
+So if are superposing two such we should get 
+$$
+(R_1\cos (\omega_1 t+\phi_1), R_1\sin(\omega_1 t+\phi_1)) + (R_2\cos (\omega_2 t+\phi_2), R_2\sin(\omega_2 t+\phi_2)).
+$$
+It is not very difficult to code this up in any language that
+allows graphical output. We shall use J for this. 
+<p></p>
+J is a strange language that achieves everything by combining
+some simple functions. The simple functions accept either one or
+two arguments. While this may sound like too much restriction, it
+isn't. Each argument is allowed to be a list (so you may pack as
+much info in a single argument, as you like. The advantage is
+that we can use the functions like operators like +, -
+etc in other languages. For example, let us write a function
+<code>g</code> that will take $\omega$ and $\phi$ and a
+list of $t$-values as input and produce $\sin(\omega t+
+\phi)$ and $\cos(\omega t+ \phi).$ 
+We shall package $\omega$ and $\phi $ into a single
+list, and the $t$-values into another. So we shall write
+<pre>
+3 1 g t 
+</pre>
+to mean $\sin(3 t+ 1)$ and $\cos(3 t+ 1).$
+<p></p>
+Since we are packaging $\omega$ and $\phi $ into a
+single list, we should better be able to take them out, as well,
+when needed. The syntax is <code>0{x</code>
+and <code>1{x</code>. So the following code snippet hardly comes
+as a surprise
+<pre>
+val=.(1{x) + (0{x) * y
+</pre>
+Next you want to take $\sin$ and $\cos$ of these. J has
+a single function to compute both. It is called <span class="j">
+<pre>o.</pre>
+</span>. Thus
+we want to do <span class="j">
+<pre>2 o. val</pre>
+</span> and <span class="j">
+<pre>1 o. val</pre>
+</span> and then to
+make a matrix with threse two as rows. J is great at factoring
+out code. since the <span class="j">
+<pre>o. val</pre>
+</span> part is common to both, J will
+allow to factor that out. As a first effort, we may try
+<span class="j">
+<pre>2 1 o. val</pre>
+</span>. This produces an error. J is confused to see
+two lists on both sides. By default it tried to match the first
+element of the left hand list with the first element of the right
+hand list, and so on. This leads to an error as the two lists
+differ in length. Actually, we wanted to say: for each number in
+the left hand list, process the entire right hand side. J has a way
+of saying this: a number is of rank 0 and the entire right hand side has
+rank _. So we write <span class="j">
+<pre>2 1 o."0 _ val</pre>
+</span>. 
+<pre>
+g=.4 : '(2{x) * (2 1) o."(0 _)  (1{x) + (0{x) * y '
+plot;/(3 1 1 g t) + (1 0 2g t)
+plot;/((3 1 1)&amp; g + (1 0 2) &amp; g) t
+</pre>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

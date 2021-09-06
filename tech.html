@@ -1,0 +1,515 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Technical details">Technical details</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Overview">Overview</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Preprocessing">Preprocessing</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Shooting">Shooting</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Postprocessing">Postprocessing</a>
+</li>
+<li>
+<a href="#Scripts used">Scripts used</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#domakelec">domakelec</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#doanim">doanim</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#doandro">doandro</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#docue">docue</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#doamelt">doamelt</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#ipall">ipall</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#dosanxep">dosanxep</a>
+</li>
+<li>
+<a href="#An R script for producing animation">An R script for producing animation</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Technical details">Technical details</a></h1>
+
+<h2><a
+name="Overview">Overview</a></h2>
+The creation of a video proceeds in three stages. The first is
+the preprocessing, where I create the props (images and
+animations that will be overlaid on top of the main video).
+The shooting is done in the second stage. The third stage puts
+everything together. 
+<h2><a
+name="Preprocessing">Preprocessing</a></h2>
+Other than the overall planning of the topic, the main effort in
+this stage is devoted to creating the props: images and
+animations. The animations themselves start out their lives as a
+sequence of images. All the images (whether part of such a
+sequnce or not) are finally produced by inkscape. Ocassionally,
+I need to import supporting materials created by Art Of Illusion
+or R. The steps are:
+<ul>
+
+<li>Issue the command "<a href="#domakelec">domakelec</a> &lt;n&gt;" to start a folder
+called <code>lec&lt;n&gt;</code>. Henceforth I shall call it the
+lecture folder. This folder contains an empty
+subfolder called vid, and a template kdenlive file containing a
+template title page, end page and the jingles.</li>
+
+<li>For each topic to be covered in the video, I create a folder
+to hold all the materials needed for it. With each such folder
+is associated a filename prefix (<i>e.g.</i>, p). Then the files
+p1.svg, p2.svg, etc are the images to be displayed in that
+order. The folder may contain other svg files as well, but they
+will not be displayed. If need animations, then the image
+sequence is also placed in this folder (but with some other
+prefix).</li>
+
+<li>If I plan to have some animation, the image files must be
+stored in &lt;png root&gt;&lt;n&gt;.png format, where &lt;n&gt; is a 4-digit 0-padded counter starting from 1. Then I
+create the first svg file containing (linking, not embedding) the
+first of these images. The svg file must be named
+like &lt;svg root&gt;&lt;unpadded n&gt;.svg. Then issuing the command
+"<a href="doanim">doanim</a> &lt;svg root&gt; &lt;png root&gt; &lt;nframe&gt;" creates the other svg files. </li>
+
+<li>Once all the folders are prepared, I create a file called
+order.txt in the lecture folder that contains the folder names
+followed by the associated prefixes like this:
+<pre>
+intro,i
+fd,f
+lm,lm
+bon,b
+bon2,bb
+lsd,lsd
+</pre>
+Each line is a comma-separated pair, the first part being the name
+of a folder and the second part its associated prefix.
+ </li>
+
+<li>Next I issue the command "ipall y" in the lecture folder. This
+converts all the prefixed svg files in the folders to
+corresponding png files and also constructs index.txt files in
+each folder with the names of the prefixed png files listed
+alphabetically. It is the order of the names in the index.txt
+file that determined the final order in which the images will
+appear during the shooting. </li>
+
+<li>If we are using animation then the last frame of the
+animation is included in the index.txt by hand.</li>
+
+<li>If I now issue the command '<a href="doandro">doandro</a> &lt;folder&gt;' from the
+lecture folder, I can
+preview the images in the shooting order. This is just for
+checking. If any image needs changing, the command "<a href="ipall">ipall</a>"
+(without the "y") will create png from the updated
+svg files bt not modify/create the index.txt files.</li>
+
+<li>When I am satisfied, I give the command "<a href="dotransflip">dotransflip</a>". This
+creates a folder called "transfer" under the lecture folder, and
+creates folders named 1, 2, 3 etc storing the flipped versions
+of the prefixed png images from the folders (according the order
+specified by order.txt). The index.txt file in each folder is
+copied, as well.</li>
+
+<li>Finally, I transfer the "transfer" folder to my mobile.</li>
+
+</ul>
+
+<h2><a
+name="Shooting">Shooting</a></h2>
+For shooting I start my Overlay app, select the folder, start the
+camera, do OK syncing, and start speaking. Holding the camera with
+my right hand at an arm's length is particularly convenient for
+advancing through the images with my index finger unseen by the
+camera. Also, my left hand is free for gesturing. However, this
+is somewhat tiring for the right hand, and is unsuitable for
+shoots longer than 5 minutes or so. For the longer shoots I hold
+the camera with my left hand, and use the right hand to both
+gesture and advance. 
+<p></p>
+Staring into the camera is not a good idea, as this makes my eyes
+look abnormally squinted. If I look at the visuals, then I indeed
+appear to be looking at the visuals during the video. This is an
+unplanned bonus. When I am not looking at the visuals, I prefer
+to look away casually with only occasional glances at the
+camera. I generally walk at a leisurely pace during the shoot. 
+<p></p>
+Everytime I move to a new topic, I change my location. I shoot
+the location for a few seconds both as an establishing shot, as
+well as a restful prelude. 
+<p></p>
+This stage produces two types of output: the recorded videos and
+a cue.txt file in each topic folder inside the transfer folder.
+
+<p></p>
+If we need a screencast, then we use kazam. This produces a third
+type of output: a screencast mp4 file.
+<h2><a
+name="Postprocessing">Postprocessing</a></h2>
+This stage starts with transfering the output of the shooting
+stage into the laptop. All the videos are stored inside the vid
+folder, and the cue.txt files are to be copied to the appropriate
+topic folders. This latter job is facilitate by the docue
+&lt;lecture number&gt; command
+(to be issued from inside (a copy of) the transfer folder of my
+phone. 
+<p></p>
+Now we need to run the command <a href="doamelt">doamelt</a> from inside the lecture
+folder. This will create an mlt forlder under the lecture folder,
+and populate with mlt files based on the cue.txt files in each
+topic folder. If there is some animation, then I need to modify
+the appropriate cue.txt file by adding the triple
+"&lt;png root&gt; &lt;start number&gt; &lt;end number" to the line <i>after</i>
+where the animation is to be inserted.
+<p></p>
+Next it is time to launch kdenlive and load the template file. 
+We import the vid and the mlt folder. Typically, I shoot the
+videos in order (including the estbalishing shots). So I can drag
+and drop all the videos on the timeline in order. Then I add the
+mlt files and sync them. After that I edit off the initial and
+final parts of each. Then I add the separators and trim the
+estbalishing shots. Finally, I add the separator slides and
+render the movie to webm format. Then outside kdenlive I apply
+<a href="dosanxep">dosanxep</a> to compress the rendered video.
+
+<h1><a
+name="Scripts used">Scripts used</a></h1>
+
+<h2><a
+name="domakelec">domakelec</a></h2>
+
+<pre>
+if [ ! $# == 1 ]; then
+  echo "Usage: domakelec &lt;n&gt;"
+  exit -1
+fi
+echo "Creating lec$1"
+mkdir lec$1
+cd lec$1
+pwd
+mkdir vid
+cp $c/template.kdenlive lec$1.kdenlive
+
+
+</pre>
+
+
+<h2><a
+name="doanim">doanim</a></h2>
+
+<pre>
+if [  $# != 3 ]; then
+  echo "Usage: doanim &lt;svg root&gt; &lt;png root&gt; &lt;nframe&gt;"
+  echo "There should be a file &lt;svg root&gt;1.svg in the working directory."
+  echo "It should have reference to &lt;png root&gt;0001.png in it."
+  echo "This program will create &lt;svg root&gt;&lt;i&gt;.svg for i from 1 to &lt;nframe&gt;."
+  echo "&lt;svg root&gt;&lt;i&gt;.svg is same as &lt;svg root&gt;1.svg except that"
+  echo "the references to &lt;png root&gt;0001.png will be changed to "
+  echo "&lt;png root&gt;&lt;j&gt;.png, where j is i 0-padded up to 4 digits."
+  exit 1
+fi
+for((i=2;i&lt;=$3;i++)); do
+   echo $i
+   printf -v j "%04g" $i
+   sed -r "s/${2}0001/$2$j/g" ${1}1.svg &gt; $1$i.svg
+done
+
+</pre>
+
+
+<h2><a
+name="doandro">doandro</a></h2>
+
+<pre>
+echo $v
+java -classpath ~/na/v/android AndroViewer $*
+</pre>
+Here we are using the <a href="AndroViewer.java">AndroViewer.java</a> program.
+<h2><a
+name="docue">docue</a></h2>
+
+<pre>
+folder="lec$1"
+echo "Folder is [$folder]"
+
+declare -a fldextlist
+mapfile fldextlist &lt; $c/$folder/order.txt
+
+i=0
+for fldext in ${fldextlist[*]} ; do
+   fld="${fldext%,*}"
+   i=$((i+1))
+   echo "$i --&gt; $c/$folder/$fld/"
+   cp $i/cue.txt $c/$folder/$fld/
+done
+
+</pre>
+
+<h2><a
+name="doamelt">doamelt</a></h2>
+
+<pre>
+if [ ! -e order.txt ]; then
+  echo "No order.txt here!"
+  exit 1
+fi
+
+
+declare -a fldextlist
+mapfile fldextlist &lt; order.txt
+
+if [ ! -e mlt ]; then
+  mkdir mlt
+fi
+rm mlt/*.mlt
+
+for fldext in ${fldextlist[*]} ; do
+   fld="${fldext%,*}"
+   java -classpath ~/na/v/android Melter $fld
+   mv $fld.mlt mlt/
+done
+</pre>
+This script uses the <a href="Melter.java">Melter.java</a>
+program.
+
+<h2><a
+name="ipall">ipall</a></h2>
+
+<pre>
+if [ ! -e order.txt ]; then
+  echo Error: No order.txt here.
+  exit 1
+fi
+
+declare -a fldextlist
+mapfile fldextlist &lt; order.txt
+
+for fldext in ${fldextlist[*]} ; do
+   fld="${fldext%,*}"
+   ext="${fldext#*,}"
+   echo Folder=$fld , Ext=$ext
+   
+   cd $fld
+
+   for f in *.svg; do
+     extension="${f##*.}"
+     filename="${f%.*}"
+     echo -n "$f -&gt; $filename.png : "
+     if [ ! -e $filename.png ] | [ $f -nt $filename.png ]; then
+        echo "Converting."
+        inkscape -h 480 $f -e $filename.png
+     else
+        echo "Already done."
+     fi
+   done
+
+   if [ $# == 1 ]; then
+      echo Creating index.txt
+      ls -1 $ext[0-9].png &gt; index.txt
+      more index.txt
+   fi
+
+   cd ..
+done
+
+</pre>
+
+<h2><a
+name="dosanxep">dosanxep</a></h2>
+
+<pre>
+ffmpeg -i $1.webm -vcodec libx265 -crf 28 -strict -2 $1.mp4</pre>
+
+
+<h1><a
+name="An R script for producing animation">An R script for producing animation</a></h1>
+This script creates an animation (in the form of an image
+sequence) building up some diagram. It consists of
+the <code>process</code> function, and some supporting routines.
+
+<pre>
+md = function(x) if(!dir.exists(x)) dir.create(x)
+
+scrn = function(xlo, xhi, ylo, yhi,...) {
+    bareplot(0,xlim=c(xlo,xhi),ylim=c(ylo,yhi),ty='n',...)
+}
+
+spStart = function(fname) {
+    png(fname,width=640,bg='transparent')
+}
+
+spEnd = function() dev.off()
+
+
+process = function(xs,xe,ys,ye,rt,ps,pe,fun, nf,...) {
+    md(rt)
+    spStart(paste(rt,'/pic%04d.png',sep=''))
+    for(i in 1:nf) {
+      scrn(xs,xe,ys,ye,...) 
+      pnow = ps + (i-1)/(nf-1)*(pe-ps)
+      fun(pnow)
+    }
+    spEnd()
+}
+</pre>
+
+<ul>
+
+<li>The first four parameters set up the stage
+area: $[xs,xe]\times[ys,ye].$</li>
+
+<li> The next
+parameter, <code>rt</code>, is file root. If it is <b>"abc"</b>,
+then the generated image files are named
+like <b>abc0001.png</b>, <b>abc0002.png</b>, etc.</li>
+
+<li> The next two
+parameters, <code>ps</code> and <code>pe</code>, denote the start
+and end values of the parameter. Here <code>ps</code> may be
+greater than <code>pe</code>.</li>
+
+<li> The <code>fun</code> parameter is a
+function with a single argument, the current parameter value. It
+is responsible for all the drawing. It need not start a new
+plot (<i>e.g.</i>, need not invoke <code>plot</code>), but use functions
+like <code>lines</code> and <code>points</code> to add to an
+existing plot. However, if zooming is involved, then
+the <code>scrn</code> function should be called.</li>
+
+<li> Next comes the <code>nf</code> parameter, which
+denotes the number of frames (<i>i.e.</i>, the number of images in the
+generated sequence). All additional parameters are sent to 
+the underlying plot routine. </li>
+</ul>
+The following code uses this script:
+<pre>
+###-----------------------
+genDat = function(mn,sd) {
+    x = rnorm(10,sd=sd)
+    x - mean(x) + mn
+}
+
+x1 = genDat(0,0.2)
+x2 = genDat(1,0.2)
+x3 = genDat(2,0.2)
+xall = c(x1,x2,x3)
+
+y1 = genDat(0,2)
+y2 = genDat(1,2)
+y3 = genDat(2,2)
+yall = c(y1,y2,y3)
+
+plot(c(x1,x2,x3),c(y1,y2,y3))
+zr = rep(0,30)
+clr = c(rep('red',10),rep('blue',10),rep('green',10))
+
+f = function(t) {
+    abline(h=0,lwd=3)
+    points((1-t)*xall+t*yall,zr,col=clr,pch=20,cex=3)
+}
+
+process(min(yall),max(yall), -0.2, 0.2, 'test', 0,1,f,30 )
+</pre>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

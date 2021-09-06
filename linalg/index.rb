@@ -1,0 +1,334 @@
+ <NOTE pic="image/linalg.jpg">
+<COVID alt="linalg/index.html"/>
+@{<M>\newcommand{\nul}{{\mathcal N}}</M>@}
+@{<M>\newcommand{\col}{{\mathcal C}}</M>@}
+
+ei pAtATAke balA yete pAre AmAr @{<E>Linear Algebra</E>@} baiTAr  lejuR. bai lekhAr samaye anek hiseb mAthAy 
+rAkhte hay, yeman pAtAr sa.nkhyA, chhApAr dAm, samay ityAdi. tAi yata kathA likhte chAi sab kichhu
+ baiyer parisare A,nTiye oThA duSkar. sei kAraNei ei pAtAr janma. yeman dharo tomAder madhye keu keu 
+baiTA lekhAr Agei anurodh karechhile @{<E>JAM</E>@} ityAdir prashnottar AlochanA karte. kintu
+ baiyer kalebarbrriddhir bhaye seTA karte pAri ni. segulo ei pAtAy deba. baite chhApAr bhultruTi
+ yA berobe, tAderao ekTA tAlikA diye deba ekhAnei.    
+<HEAD1>bhultruTi</HEAD1>
+<OL><LI> dwitIya adhyAye @{<E>66</E>@}  pAtAr ekebAre nIcher dike Achhe @{<E>Excercise 3.</E>@} 
+ sekhAne a.nkaTA deoyA Achhe @{<M>C[a,b]</M>@}  diye, kintu samAdhAne bhul kare Ami
+ @{<M>C[a,b]</M>@}-TAke @{<M>C[0,1]</M>@}  bAniye diyechhi. bhulTA dharechhe somak.</LI>
+<LI>@{<E>90</E>@}  pAtAy Achhe eiTA--
+<CIMG web="p90.png"/>
+lAl diye gol karA @{<E>vector</E>@}-TA haoyA uchit @{<M>(1,1,1).</M>@}
+oi ekai a.nke (@{<E>Example 44</E>@}) ArekTA sUxma bhul Achhe. ekTA @{<E>set</E>@}  diye @{<M>\rr^3</M>@}-er @{<E>basis</E>@}  
+dekhAte balAchhila. Ami baite prathame @{<E>linearly independent</E>@}  dekhiye tArpar balechhilAm ye @{<E>set</E>@}-TAr 
+sAij yehetu @{<M>3 = dim(\rr^3),</M>@}  tAi oTA ekTA @{<E>basis</E>@}  habe. yuk+tiTA bhul nay. kintu er pichhane kAj karchhe 
+@{<E>dimension theorem.</E>@}  seTA esechhe ei a.nkaTAr pare. duTo bhulai dharechhe shubhadIp ghoS. 
+</LI>
+<LI>@{<E>101</E>@}  pAtAy Achhe ei a.nshaTA--
+<CIMG web="p101.png"></CIMG>
+ekhAne lAl kare dekhAno @{<M>\alpha_1</M>@}-TA Asale @{<M>\alpha_2</M>@}  habe. bhulTA dharechhe shubhadIp ghoS. 
+</LI>
+<LI>@{<E>111</E>@}  pAtAy Achhe ei a.nshaTA--
+<CIMG web="p111.png"></CIMG>
+ekhAne lAl kare ghire deoyA  @{<M>\rr</M>@}-TA habe  @{<M>\cc.</M>@}   bhulTA dharechhe ayan.  
+</LI>
+</OL>
+@{<HEAD1>JAM, 2014</HEAD1>@}
+@{<QN1>jam2014.q1.png</QN1>@}
+prathamei dyAkho @{<M>(0,0,0)</M>@} kon kon @{<E>set</E>@}-er madhye Achhe. nA thAkle, tAder Ar @{<E>subspace</E>@} haye 
+oThA hala nA. etei @{<M>(B)</M>@} Ar @{<M>(D)</M>@} bAd haye yAbe. tArpar dyAkho @{<M>(x,y,z)</M>@}thAklei @{<M>(-x,-y,-z)</M>@}-o 
+thAkchhe kinA. ete @{<M>(C)</M>@}-o bAd yAbe. 
+@{<QN1>jam2014.q2.png</QN1>@}
+@{<E>Matrix</E>@}-AkAre likhe nAo, pAbe 
+@{<D><MAT>1&1&0\\0&1&1\\1&0&1</MAT>.</D>@}
+er @{<E>rank</E>@}ye @{<M>3</M>@} se to chokhe dekhei bojhA yAchchhe. sutarA.n @{<E>nullity</E>@} habe @{<M>3-3=0.</M>@} 
+tAr mAne uttar hala @{<M>(D).</M>@}
+@{<QN1>jam2014.q3.png</QN1>@}
+@{<E>Inconsistent</E>@} kakhan hay? yakhan @{<E>LHS</E>@}-gulor madhye kono sampar+ka thAke yeTA @{<E>RHS</E>@}-gulor madhye 
+thAke nA. ekhAne dwitIya @{<E>equation</E>@}-TAr @{<E>LHS</E>@} theke prathamTAr @{<E>LHS</E>@} biyog karo, tAr par 
+@{<M>\frac23</M>@} diye guN karle tin nambar @{<E>equation</E>@}-TAr @{<E>LHS</E>@} pAbe. eTA khAli khAnikxaN chokhe dekhe 
+bojhA. sutarA.n @{<E>consistent</E>@} habAr janya ekai sampar+ka @{<E>RHS</E>@}-eo thAkte habe, mAne @{<M>b_3=\frac23(b_2-b_1)</M>@} 
+hate habe. kh,nuje dyAkho kono xetre ei shar+taTA xuNNa hachchhe kinA. uttar habe @{<M>(C).</M>@}
+
+@{<QN1>jam2014.q4.png</QN1>@}
+@{<E>Traingular matrix</E>@}-er @{<E>eigenvalue</E>@}-rA hala or @{<E>diagonal entry</E>@}-guloi, mAne exetre @{<M>a,b</M>@} 
+ar @{<M>3.</M>@} tAr mAne bale diyechhe @{<M>a+b+3=10</M>@} eba.n @{<M>3ab=30.</M>@} tA theke @{<M>a^2+b^2</M>@} bAr karte 
+nishchayai damkal DAkte habe nA? 
+
+@{<QN1>jam2014.q5.png</QN1>@}
+AmrA AmAder @{<E>Linear Algebra</E>@} baite shikhechhilAm ki kare @{<E>dimension</E>@}-ke @{<E>degrees of freedom</E>@} 
+bale bhAble subidhA hay. seibhAbe dekhle @{<E>dimension</E>@} hala sabcheye kam katagulo sa.nkhyA diye oi
+@{<E>vector space</E>@}-er ye kono @{<E>vector</E>@}-ke prakAsh karA yAbe. ekhAne yekono duTo parpar 
+@{<M>x_i</M>@} bale dile tumi tader yog kare parer @{<M>x_i</M>@}-TA bAr kare felte pArbe. tAr
+ mAne puro galpaTA shuru karAr janya khAli @{<M>x_1</M>@} Ar @{<M>x_2</M>@} jAnAi yatheSTa, eba.n
+ er cheye kam tathye kAj chalbe nA. tAr mAne @{<E>dimension</E>@} d,nARAchchhe @{<M>2.</M>@}
+   
+@{<QN1>jam2014.q6.png</QN1>@}
+laxa kara ye @{<M>A(A-I)=O.</M>@} e theke bojhA yAchchhe ye @{<M>\col(A-I)\seq \nul(A).</M>@} yadi @{<M>v\in \nul(A)</M>@} 
+tabe  @{<M>Av = 0,</M>@} sutarA.n @{<M>v = -(Av - v) = -(A-I)v \in \col(I-A).</M>@} sutarA.n @{<M>\col(I-A) = \nul(A).</M>@} 
+ataeb eder @{<E>dimension</E>@}-o samAn habe. seTAi to dekhAte balechhila! 
+
+@{<HEAD1>JAM, 2013</HEAD1>@}
+@{<QN1>jam2013.q1.png</QN1>@}
+ekhAne @{<M>V</M>@} hala @{<M>A</M>@}-r @{<E>nullspace.</E>@} sutarA.n tomAke @{<M>A</M>@}-r @{<E>nullity</E>@} bAr karte 
+balA hachchhe. AmrA jAni ye @{<M>nullity(A) = 3-r(A),</M>@}yehetu @{<M>A</M>@}-r @{<M>3</M>@}-Te @{<E>column</E>@} Achhe. 
+@{<M>A</M>@}-r pratham duTo @{<E>row</E>@} keu kAro @{<E>multiple</E>@} nay, sutarA.n @{<M>r(A) \geq 2</M>@}habei.  @{<M>det(A)</M>@} 
+bAr kare dyAkho, yadi @{<M>0</M>@}hay tabe @{<M>r(A) < 3</M>@} nayto @{<M>r(A)=3.</M>@} 
+
+@{<QN1>jam2013.q2.png</QN1>@}
+prathame @{<M>W_1\cap W_2</M>@}-er sadasyarA dekhte kirakam bujhe nii. eder dekhte eirakam--
+@{<D><MAT>a&-a\\-a&d</MAT>.</D>@}
+laxa kara eke prakAsh karte duTo sa.nkhyA jAnAi yatheSTa, @{<M>a</M>@} Ar @{<M>d.</M>@} er cheye kam sa.nkhyA diye kAjTA 
+karA yAbe nA. tAi @{<M>dim(W_1\cap W_2) = 2.</M>@} 
+ekai rakam yuk+tite @{<M>dim(W_1) = dim(W_2) = 3.</M>@} sutarA.n @{<M>dim(W_1+W_2) = dim(W_1)+dim(W_2)-dim(W_1\cap W_2) = 3+3-2 = 4.</M>@} 
+sutarA.n uttar hala @{<M>(B).</M>@}
+
+@{<QN1>jam2013.q3.png</QN1>@}
+a.nkaTA ekTu bhul Achhe. @{<M>D:P_n\to P_{n-1}</M>@} Ar @{<M>T:P_n\to P_{n+1}</M>@}-ke moTei @{<E>compose</E>@} kare @{<M>DT</M>@} 
+bA @{<M>TD</M>@} bAnAno yAy nA. Asale orA @{<M>D</M>@} Ar @{<M>T</M>@}-er sa.njnAy @{<M>D_n</M>@} Ar @{<M>T_n</M>@} likhte 
+cheyechhila, Ar @{<M>DT</M>@} nA likhe oder lekhA uchit chhila @{<M>D_{n+1}T_n.</M>@} ekaibhAbe @{<M>TD</M>@}-r jAygAy haoyA 
+uchit chhila @{<M>T_{n-1}D_n.</M>@} 
+<P/>
+ekhAne @{<M>D</M>@}-er sa.njnAy ekbAr chokh buliyei kintu oTAke chin~te pArA uchit. oTA AmAder khubai parichita jinis--@{<E>differentiaion!</E>@} 
+Ar @{<M>T</M>@} hala @{<M>x</M>@} diye guN karA.  
+yadi  @{<M>p</M>@} kono @{<E>polynomial</E>@} hay tabe @{<M>DT(p) = \frac{d}{dx}(xp(x)) = p(x)+xp'(x).</M>@} 
+ekaibhAbe @{<M>TD(p) = xp'(x).</M>@} sutarA.n @{<M>(DT-TD)(p) = p(x).</M>@} arthA.t
+ @{<M>DT-TD</M>@} hala Asale @{<E>identity function!</E>@} er @{<E>matrix</E>@} hala @{<E>identity
+ matrix</E>@} (yAr sAij @{<M>n\times n),</M>@} se tumi yAi @{<E>basis</E>@}-er sApexe nAo nA kena!
+ sutarA.n @{<E>trace</E>@}-TA habe @{<M>n.</M>@}  
+
+@{<QN1>jam2013.q4.png</QN1>@}
+ekhAne @{<M>A</M>@}-r @{<E>diagonal</E>@}-e Thik @{<M>p</M>@}-khAnA @{<M>a</M>@} Ar @{<M>q</M>@}-khAnA @{<M>b</M>@} Achhe. 
+dharo @{<M>a</M>@}-gulo sab shurute Achhe, @{<M>b</M>@}-gulo Achhe tArpare. tAhale 
+@{<D>A = <MAT>aI_p & O\\O & bI_q</MAT>.</D>@}
+ebAr @{<M>B</M>@}-keo ekaibhAbe @{<E>partition</E>@} kare nAo--
+@{<D>B = <MAT>W & X\\Y & Z</MAT>.</D>@}
+tAhale @{<M>AB = BA</M>@} theke peye yAbe @{<M>aX = bX</M>@} eba.n @{<M>aY=bY.</M>@} yehetu @{<M>a\neq b </M>@}deoyA Achhe, 
+sutarA.n er mAne @{<M>X = O</M>@} eba.n @{<M>Y = O.</M>@}
+tAr mAne @{<M>B</M>@}-er @{<E>block</E>@} chArTer madhye @{<M>W,Z</M>@} raila @{<E>arbitrary.</E>@} ekhan @{<M>W</M>@}-er 
+sAij hala @{<M>p\times p,</M>@}Ar @{<M>Z</M>@}-er
+ @{<M>q\times q.</M>@} sutarA.n @{<M>B</M>@}-ke prakAsh karte moT @{<M>p^2+q^2</M>@}-TA sa.nkhyA lAgchhe. tAi 
+@{<E>dimension</E>@}-TA habe @{<M>p^2+q^2.</M>@}
+
+@{<QN1>jam2013.q5.png</QN1>@}
+AmAder baite karA Achhe @{<E>spectral decomposition</E>@} nAme. 
+
+@{<HEAD1>JAM, 2012</HEAD1>@}
+@{<QN1>2012.1.png</QN1>@}
+ekhAne yeTA mane rAkhle subidhA habe seTA ei ye, yadi @{<M>T:U\to V</M>@} ekTA @{<E>linear transformation</E>@} hay
+ Ar @{<M>\{u_1,...,u_n\}</M>@} yA khushi ekTA @{<E>basis</E>@} hay @{<M>U</M>@}-er, tabe @{<M>T(u_1),...,T(u_n)</M>@}-er 
+biSaye kichhui balA yAy nA, orA @{<M>V</M>@}-er madhye yA khushi hate pAre. sutarA.n AmAder a.nke 
+@{<M>T(e_1),...,T(e_6)</M>@} hala @{<M>W</M>@}-er madhye yA khushi kayekTA @{<E>vector</E>@} (eman ki sabAi ekai @{<E>vector</E>@}
+haleo Apatti nei!). ei kathATA mAthAy rekhe pratham @{<E>choice</E>@}-TA dyAkho. yadi tinTe yA khushi 
+@{<E>vector</E>@} diye @{<M>W</M>@}-ke @{<E>span</E>@} karA yAy, tabe khAli seTukur bhittitei oderke
+ @{<E>linearly independent</E>@} mane karAr konoi kAraN nei.  sutarA.n @{<M>(A)</M>@} Thik nAi hate pAre. 
+<P/>
+ebAr @{<M>(B)</M>@}-er dike chokh ferAi. balei diyechhe ye @{<M>T:\rr^6\to W.</M>@} sutarA.n @{<M>T(\rr^6)\seq W</M>@} keu 
+ATkAte pArchhe nA. AbAr @{<M>span\{T(e_2),T(e_4),T(e_6)\} = W.</M>@} sutarA.n @{<M>W</M>@}-er sar+batrai @{<M>T</M>@}
+p,n\ouchhate pArchhe. ataeb @{<M>T(\rr^6)  = W</M>@} habei. tAr mAne @{<M>(B)</M>@} ai abashyai bhul. 
+<P/>
+mane rekho exuNi ki ballAm--@{<M>T(e_1),...,T(e_6)</M>@} yA khushi hate pAre. sutarA.n @{<M>T(e_2),T(e_4),T(e_6)</M>@} mile 
+@{<M>W</M>@}-ke @{<E>span</E>@} kare jAnle tA theke @{<M>T(e_1),T(e_3),T(e_5)</M>@}-der biSaye kichhui siddhAnta karA yAy 
+nA. ataeb @{<M>(C)</M>@}-keo bidAy dite hala.
+<P/>
+paRe thAke @{<M>(D).</M>@} tAr janya chaT.h kare  @{<M>dim(W)</M>@} ki ki hate pAre bhAbo to! yehetu @{<M>T(e_2),T(e_4),T(e_6)</M>@} 
+diye @{<M>W</M>@}-ke@{<E>span</E>@} karA yAy, sutarA.n @{<M>dim(W)\leq 3</M>@} habei. tAr mAne @{<M>nullity(T) = 6-dim(W)\geq 6-3 = 3.</M>@} 
+eTA balte pArlAm kAraN @{<M>(B)</M>@} niye gh,nATAgh,nATi karAr samayei dekhechhilAm ye @{<M>Im(T) = W.</M>@}  sutarA.n 
+@{<M>ker(T)</M>@}-TA Ar yAi hok @{<E>trivial </E>@} hate pAre nA. tAi @{<M>(D)</M>@} saThik hate bAdhya! 
+
+@{<QN1>2012.11.png</QN1>@}
+ekhAne duibhAbe bhAbte pAro. @{<M>W</M>@}-er pratiTA @{<E>element</E>@} dekhte @{<M>(x,y,z)</M>@}-er mata yekhAne @{<M>x,y,z\in\rr.</M>@} 
+yadi Ar kono bARti shar+ta nA thAkta tabe @{<M>W = \rr^3</M>@} hata eba.n sexetre tAr @{<E>dimension</E>@} hata @{<M>3.</M>@} 
+kintu ekhAne bARti shar+ta Achhe. pratham shar+ta hala @{<M>2x+2y+z=0.</M>@} er janya @{<M>dim(W)</M>@} ek kame yAbe. 
+er pare Achhe @{<M>3x+3y-2z=0.</M>@} eTA ekTA natun shar+ta, ataeb @{<M>dim(W)</M>@} Aro ek kam~la. er par Achhe 
+@{<M>x+y-3z=0.</M>@} ei shar+taTA kintu Asale natun kichhu nay, kAraN dwitIya shar+taTA theke
+ pratham shar+taTAke biyog karlei eTA Ase. sutarA.n trritIya shar+taTAr janya @{<M>dim(W)</M>@} Ar
+ natun kare kam~be nA. tAr mAne @{<M>dim(W) = 3-1-1 = 1.</M>@}
+<P/>
+  
+@{<QN1>2012.12.png</QN1>@}
+yadi @{<M>A</M>@} ekTA @{<M>n\times n</M>@} sAijer @{<E>matrix</E>@} hay, Ar @{<M>a</M>@} hay  kono sa.nkhyA tabe jAno nishchayai 
+ye @{<M>|aA| = a^n |A|</M>@} hay. seTA lAgAlei dekhbe uttar hala @{<M>(D)</M>@}
+
+@{<QN1>2012.3.png</QN1>@}
+@{<E>(a)</E>@} laxa kara ye @{<M>D^n = PA^n P^{-1} = O</M>@} habe. balA Achhe ye @{<M>D</M>@} hala
+ @{<E>diagonal.</E>@}  AmrA jAni ye @{<E>diagonal matrix</E>@}-der guN karle fer @{<E>diagonal matrix</E>@}-i pAoyA yAy, 
+eba.n @{<E>diagonal entry</E>@}-guloo nijeder madhye guN haye yAy. sutarA.n @{<M>D</M>@}-er
+ @{<E>diagonal entry</E>@}-gulo yadi @{<M>d_i</M>@} haye thAke, tabe @{<M>D^n</M>@}-er
+ @{<E>diagonal entry</E>@}-rA habe @{<M>d_i^n.</M>@} exuNi dekhlAm ye @{<M>D^n = O,</M>@} tAr mAne
+ @{<M>d_i^n</M>@}-rA sabAi @{<M>0,</M>@} mAne @{<M>d_i</M>@}-rA sabAi @{<M>0.</M>@} sutarA.n @{<M>D=O,</M>@} ataeb @{<M>A = P^{-1} D P = O.</M>@}
+<P/>
+@{<E>(b)</E>@}   AmAr @{<E>Linear Algebra</E>@} baite karA Achhe.
+@{<QN1>2012.4.png</QN1>@}
+ 
+@{<HEAD1>JAM, 2011</HEAD1>@}
+@{<QN1>2011.q9.png</QN1>@}
+prathame chaT.h kare dekhe nAo ye @{<M>H_1, H_2 </M>@}dujanei @{<M>G</M>@}-er @{<E>subgroup.</E>@} prashna hala orA @{<E>normal</E>@} 
+kinA. kono @{<E>subgroup</E>@} @{<M>H</M>@}-ke @{<E>normal</E>@} dekhAnor ekTA sahaj kAydA hala eTA dekhAno 
+@{<D>\forall g\in G~~\forall h\in H~~ghg^{-1}\in H.</D>@}
+sutarA.n ekhAne @{<M>P</M>@}-er belAy dekhte habe kono @{<E>matrix</E>@}-er @{<E>determinant</E>@}
+ yadi @{<M>1</M>@} hay, tabe tAr sAthe @{<E>similar</E>@} ye kono @{<E>matrix</E>@}-rai
+ @{<E>determinant</E>@}-TA @{<M>1 </M>@}hay kinA. abashyai hay, sutarA.n @{<M>P</M>@}saThik.
+ @{<M>Q</M>@}-er belAy prashna hala @{<E>upper triangular matrix</E>@}-der sange @{<E>similar
+ matrix</E>@}-rA @{<E>upper triangular</E>@} hate bAdhya kinA. ekhAne uttar hala, nA. AmrA
+ @{<E>Schur decomposition</E>@} theke jAni ye, ye kono @{<E>square matrix</E>@}-i @{<E>upper
+ triangular matrix</E>@}-er sange @{<E>similar.</E>@} 
+<P/>
+ataeb uttar habe @{<M>(B).</M>@}  
+
+@{<QN1>2011.q11.png</QN1>@}
+dharo @{<M>A</M>@}-r  @{<E>eigenvalue</E>@}-gulo hala @{<M>a,b,1.</M>@} tAhale @{<M>a+b+1=3</M>@} eba.n @{<M>ab=2</M>@} 
+doyA Achhe. e theke @{<M>a,b</M>@} ber kare felte pArbe. ebAr mane rekho ye @{<M>p(x)</M>@} kono @{<E>polynomial</E>@} hale 
+@{<M>p(A)</M>@}-r @{<E>eigenvalue</E>@}-rA habe @{<M>p(a),p(b),p(1).</M>@} 
+
+@{<QN1>2011.q12.png</QN1>@}
+saThik uttar hala @{<M>(B).</M>@} kAraNTA AmAder baite bojhAnoi Achhe, tAi natun kare Ar ekhAne likhlAm nA. 
+
+@{<QN1>2011.q13.png</QN1>@}
+@{<E>Matrix</E>@} diye chintA kara. tAhale @{<M>T_1</M>@} hala ekTA @{<M>m\times n</M>@} sAijer @{<E>matrix,</E>@} eba.n 
+@{<M>T_2</M>@}-er sAij hala @{<M>n\times m.</M>@} sutarA.n @{<M>T_1T_2</M>@} hachchhe @{<M>m\times m.</M>@} seTA yakhan 
+@{<E>nonsingular</E>@} (yehetu @{<E>bijective linear transformation</E>@}-er @{<E>matrix</E>@}-rA @{<E>nonsingular</E>@} 
+hay), tAr mAne @{<M>r(T_1T_2) = m.</M>@} AmrA jAni ye guN karle @{<E>matrix</E>@}-er @{<E>rank</E>@} kakhano bARte 
+pAre nA, tAi @{<M>r(T_1),r(T_2)</M>@} dujanei @{<M>r(T_1T_2) = m</M>@}-er samAn bA baRa. edike oder ek janer @{<E>row</E>@}-sa.nkhyA 
+@{<M>m,</M>@} anyajaner @{<E>column</E>@}-s.nkhyA @{<M>m.</M>@} sutarA.n @{<M>r(T_1),r(T_2)+m</M>@} nA haye yAy nA, mAne 
+uttar hala @{<M>(D).</M>@}
+ 
+@{<QN1>2011.q25.png</QN1>@}
+@{<E>(a)</E>@} ki kare egote habe seTA Thik karA sahaj. ekhAne tinTe @{<E>equation</E>@} Achhe Ar tinTe @{<E>unknown,</E>@}
+@{<M>x,y,z.</M>@} sutarA.n @{<E>coefficient matrix</E>@}-TA hala @{<E>square.</E>@} yadi eTA @{<E>nonsingular</E>@} hay 
+tabe @{<E>unique solution</E>@} thAkbe. golmAl habe @{<E>singular</E>@} hale, mAne @{<E>determinant</E>@}-TA shUnya haye 
+gele. golmAl mAne, hay kono @{<E>solution</E>@} thAkbe nA (yeTA cheyechhe) Ar nayto ekAdhik @{<E>solution</E>@}
+thAkbe. sutarA.n pratham kAj habe @{<E>determinant</E>@}-TA bAr kare felA (@{<M>c</M>@}-er farmulA hisebe). yehetu 
+@{<M>c</M>@} Achhe duijAygAy, tAi @{<E>determinant</E>@}-TA habe @{<M>c</M>@}-er ekTA @{<E>quadratic.</E>@} ebAr dekhte 
+habe @{<M>c</M>@}-er kon kon @{<E>value</E>@}-te @{<E>determinant</E>@}-TA shUnya hay (mAne golmAl b,nAdhe). sambhabata.H 
+duTo @{<E>value</E>@} pAbe (yehetu @{<E>quadratic</E>@}). tArpar dekhte habe kon @{<E>value</E>@}-r janya @{<E>inconsistent</E>@}
+habe. ei gela parikalpanAr pAlA. ebAr hAtekalame egoi. 
+
+ @{<E>Determinant</E>@}-TA d,nAte d,nAt chepe bAr kare felA yAy. tabe kAjTA ekTu sahaj habe yadi pratham 
+@{<E>equation</E>@}-TA byabahAr kare parer duTo theke @{<M>x</M>@}-TA bidAy kare nite pAri. tAhale habe
+@{<MULTILINE>
+x+2y+3z & = & 1,\\0x + y + (c-9)z &=& -1,\\0x+(c-4)y+6z & = & 1.
+</MULTILINE>@}
+er @{<E>coefficient matrix</E>@}-er @{<E>determinant</E>@} hachchhe 
+@{<D><DET>1 & 2 & 3\\0 & 1 & c-9 \\ 0 & c-4 & 6</DET>=6-(c-4)(c-9) = -30+13c-c^2 = -(c-3)(c-10).</D>@} 
+sutarA.n golmAl b,nAdhbe @{<M>c=3</M>@} hale Ar @{<M>c=10</M>@} hale. golmAlTA ki seTA bojhAr
+ janya khAli @{<M>y,z</M>@}-oyAlA dwitIya Ar trritIya @{<E>equation</E>@} duTo dekhAi yatheSTa,
+ kAraN @{<M>y,z</M>@} yadi beriye yAy tabe pratham @{<E>equation</E>@}-TA theke @{<M>x</M>@}-o Apnei beriye yAbe. 
+sutarA.n golmAl yA habAr @{<M>y,z</M>@}-ei habe. yadi @{<M>c=3</M>@} nii, tabe 
+@{<MULTILINE>
+y -6z &=& -1,\\-y+6z & = & 1,
+</MULTILINE>@}
+yAr asa.nkhya @{<E>solution</E>@} Achhe. sutarA.n AmrA ye golmAlTA chAichhilAm seTA hala nA. yadi @{<M>c=10</M>@}
+basAi, tabe 
+@{<MULTILINE>
+y + z &=& -1,\\6y+6z & = & 1,
+</MULTILINE>@}
+ yeTA asambhab. sutarA.n uttar hala @{<M>c=10.</M>@}
+
+@{<E>(b)</E>@} eTA ekebArei sojA a.nka. @{<E>Subspace</E>@} dekhAnoTA to @{<E>closure property</E>@} duTo eba.n @{<E>nonempty</E>@}
+dekhAlei habe. ekTA @{<M>n</M>@}@{<E>-degree</E>@}-r @{<E>polynomial</E>@}-e @{<M>n+1</M>@}-khAnA @{<E>coefficient</E>@}
+thAke. sutarA.n @{<M>dim(V)=n+1.</M>@} tAr upar ekTA shar+ta chepechhe, tAi @{<E>dimension</E>@}-TA ek kame @{<M>n</M>@} 
+hayechhe. seTA bojhA to sahaj, kintu likhba ki kare? prathame @{<M>V</M>@}-er ekTA @{<E>general</E>@} sadasyar 
+chehArA dekhA yAk--
+@{<D>a_0 + a_1x + \cdots + a_n x^n.</D>@}
+tAhale @{<M>W</M>@}-er sadsyapad pete hale er bARti ye shar+taTA pAlan karte hachchhe seTA hala 
+@{<D>a_0 + \frac12a_1 + \cdots + \frac{1}{n+1}a_n =0.</D>@}
+sutarA.n AmAder baiyer @{<E>degrees of freedom</E>@}-er kAydAy balte pAri ye @{<M>a_0,....,a_{n-1}</M>@} jAnlei 
+@{<M>a_n</M>@} bale dite pArba, mAne @{<E>degrees of freedom</E>@} hachchhe @{<M>n.</M>@} sutarA.n
+ @{<M>W</M>@}-er sadasyader @{<E>general</E>@} chehArA hala 
+@{<D>a_0 + a_1x + \cdots + a_{n-1} x^{n-1}+(*(-a_0-\frac12a_1-\cdots-\frac1na_{n-1})*)x^n.</D>@} 
+ghAbRe yeo nA, @{<M>a_n</M>@}-ke bAki @{<M>a_i</M>@}-der byabahAr kare lekhAy eTA t\oirI hayechhe. ebAr @{<M>a_i</M>@}-der 
+ek jAygAy jaRa karle habe
+@{<D>a_0(1-x^n) + a_1(x-\frac12x^n) + \cdots + a_{n-1} (*(x^{n-1}-\frac1nx^n)*).</D>@}
+tAr mAne @{<M>W</M>@}-er sadasyarA hala @{<M>a_0p_0+\cdots+a_{n-1}p_{n-1},</M>@}
+yekhAne
+@{<D>p_k=x^k-\frac{1}{k+1}x^{k+1}.</D>@}
+AmrA dekhAba ye @{<M>\{p_0,...,p_{n-1}\}</M>@} hala @{<M>W</M>@}-er ekTA @{<E>basis.</E>@} eTA ye @{<E>generating</E>@} se 
+to dekhAi yAchchhe. @{<E>Independent</E>@} dekhAnor janya ye kono @{<E>linear combination</E>@} niye shUnyar 
+sange samAn karlei yAbatIya @{<E>coefficient</E>@} shUnya haye yAbe. sutarA.n @{<M>W</M>@}-er ekTA @{<E>basis</E>@} pelAm 
+yAr sAij @{<M>n.</M>@} mAne @{<M>dim(W)=n.</M>@}
+
+@{<QN1>2011.q26.png</QN1>@}
+@{<E>(a)</E>@} ei rakam a.nka AmAder @{<E>Linear Algebra</E>@} baitei Achhe. @{<M>adj(A)A = |A|I</M>@} hay, tA thekei haye 
+yAbe. 
+
+@{<E>(b)</E>@} eiTA a.nkaTA ekTu chhabi diye bhAble subidhA habe. dharo @{<M>n=3.</M>@} Ar @{<M>v_1=(1,0,0)</M>@} eba.n 
+@{<M>v_2=(1/2,1/2,0).</M>@} tAhale AmrA @{<M>v_1</M>@}-ke @{<M>v_2</M>@}-te niye yete pAri anek 
+rakam @{<E>linear transformation</E>@} diye. AmrA ekhAne eibhAbe egoba. prathame @{<M>v_1</M>@}-ke
+ ghuriye @{<M>v_2</M>@} barAbar niye Asba. ete orA ekai lAine ese yAbe. kintu @{<M>v_1</M>@} Ar
+ @{<M>v_2</M>@}-r d\oirghya samAn nAo hate pAre (yeman ekhAne @{<M>v_1</M>@}-er d\oirghya
+ @{<M>1,</M>@} Ar @{<M>v_2</M>@}-r @{<M>1/\sqrt2.</M>@}) tAi AmrA ebAr upaYuk+ta kono sa.nkhyA diye guN kare d\oirghyaTA samAn 
+kare deba. yeman ekhAne @{<M>v_1</M>@}-ke prathame @{<M>45^\circ</M>@} ghuriye @{<M>\sqrt2</M>@} diye bhAg kare deba. byas.h 
+ei hala AmAder @{<E>linear transformation.</E>@} chhabite dekhte kirakam habe seTA ekTA chhoT+To @{<E>animation</E>@} kare 
+dekhiyechhi. 
+<RIMG web="my.gif" w="100"/>
+ete kena kAj habe dyAkho. ekhAne
+ @{<E>rotation</E>@} yakhan karlAm 
+seTA sampUrNai @{<M>x</M>@}-@{<M>y</M>@} @{<E>plane</E>@}-er sImAbaddha chhila. tAr mAne
+ @{<M>2\times 2</M>@} @{<E>matrix</E>@}-er kAj. ei @{<E>matrix</E>@}-TAr kono @{<E>real
+ eigenvalue</E>@} nei, mAne duTo @{<E>complex conjugate eigenvalue</E>@} Achhe. ataeb duTo @{<E>distinct eigenvalue</E>@}
+ekhAnei peye gelAm. ebAr laxa kara ye @{<M>z</M>@}@{<E>-axis</E>@}-TA aparibar+tita Achhe, mAne @{<M>(0,0,1)</M>@}
+hala ekTA @{<E>eigenvector</E>@} yAr janya @{<E>eigenvalue</E>@} hala @{<M>1.</M>@} sutarA.n tinTe @{<E>distinct eigenvalue</E>@}
+pAoyA yAchchhe. 
+<P/>
+ebAr dekhi ekai kAj kibhAbe  @{<E>in general</E>@} karA yAy. er janya prathame AmrA @{<M>\{v_1,v_2\}</M>@}-ke 
+@{<M>\rr^n</M>@}-er ekTA @{<E>basis</E>@}-e @{<E>extend</E>@} karba, eba.n tAr upare @{<E>Gram-Schmidt</E>@} lAgiye ekTA 
+@{<E>ONB</E>@} pAba, @{<M>\{u_1,...,u_n\}.</M>@} ebAr @{<M>u_1,u_2</M>@} diye ye @{<E>plane</E>@}-TA t\oirI hay sekhAne 
+prathame @{<E>rotation,</E>@} ba.n tArpare darkAr hale @{<E>scale</E>@} kare @{<M>v_1</M>@}-ke @{<M>v_2</M>@}-te pAThAba. 
+bAki @{<M>u_i</M>@}-der aparibar+tita rAkhba.  fale ye @{<E>linear transformation</E>@}-TA pAba tAr @{<E>matrix</E>@}-TA 
+habe 
+@{<D><MAT>aR & O\\O & I</MAT>,</D>@}
+yekhAne @{<M>R</M>@} hala @{<M>2\times 2</M>@} @{<E>rotation matrix</E>@}-TA, @{<M>a</M>@} hala kataTA @{<E>scale</E>@} 
+karechhi, Ar bAki @{<M>I</M>@}-TA balchhe ye abshiSTarA aparibar+tita Achhe. ekhAne @{<M>R</M>@}-er duTo @{<E>complex conjugate eigenvalue</E>@} 
+Achhe, Ar @{<M>I</M>@}-er @{<E>eigenvalue</E>@} Achhe @{<M>1.</M>@} sutarA.n tinTe @{<E>distinct eigenvalue</E>@} pAchchhi. 
+
+
+
+
+@{<HEAD1>JAM, 2010</HEAD1>@}
+@{<QN1>2010.q11.png</QN1>@}
+@{<M>(5,6)</M>@}-ke likhe fyAlo @{<M>(1,2)</M>@} Ar @{<M>(0,1)</M>@}-er @{<E>linear combination</E>@} hisebe. 
+@{<D>(5,6)=5(1,2)-4(0,1).</D>@}
+sutarA.n 
+@{<D>T((5,6))=5T((1,2))-4T((0,1))= 5(2,3)-4(1,4)=(6,-1).</D>@}
+
+@{<QN1>2010.q14.png</QN1>@}
+ekhAne @{<M>e_1</M>@} yAchchhe @{<M>e_3</M>@}-te, @{<M>e_3</M>@} yAchchhe @{<M>e_1</M>@}-e, Ar @{<M>e_2</M>@} aparibar+tita 
+thAkchhe. sutarA.n @{<E>(A)</E>@} ye bhul bujhtei pArchha. kAraN @{<M>e_1</M>@} giye paRchhe
+ @{<M>e_3</M>@}-te yeTA @{<M>span\{e_1,e_2\}</M>@}-r bAire. 
+<P/>
+Ar eTA dekhAi yAchchhe ye @{<M>r(A) = 3.</M>@} sutarA.n @{<M>nullity(A)=3-r(A) = 0.</M>@} ataeb
+ @{<E>(D)</E>@} hachchhe nA. 
+<P/>
+@{<E>(B)</E>@} Ar @{<E>(C)</E>@} duToi @{<E>eigenvalue</E>@} Ar @{<E>eigenvector</E>@} niye,
+ sutarA.n bhebe nii erA ki ki hate pAre. laxa kara ye kono @{<M>(a,b,c)</M>@}-ke @{<M>A</M>@} diye guN karle 
+@{<M>(c,b,a)</M>@} hay, mAne pratham Ar sheS @{<E>component</E>@} duTo sthAnbinimay kare. bujhtei
+ pArchha ye ei kAj parpar duibAr karle sabAi yathAsthAne fire Asbe, mAne @{<M>A^2=I.</M>@} tAi
+ yadi @{<M>\lambda</M>@} hay @{<M>A</M>@}-r @{<E>eigenvalue</E>@} tabe @{<M>\lambda^2 = 1</M>@} habei.  yehetu
+@{<M>1</M>@}-er moTe duTo @{<E>square root,</E>@} tAi @{<E>(B)</E>@} hate pAre nA. 
+<P/>
+kintu @{<E>(C)</E>@}-o bhul!!! seTA sarAsari dekhA yAy eibhAbe. @{<E>Eigenvector</E>@} habe
+ @{<M>(a,0,a)</M>@} AkArer
+Ar @{<M>(0,b,0)</M>@} AkArer. 
+ 
+
+@{<QN1>2010.q15.png</QN1>@}
+eTA @{<E>skew symmetric matrix,</E>@} eba.n @{<E>order</E>@} hala @{<M>3,</M>@} yeTA @{<E>odd.</E>@} sutarA.n @{<M>|A|=0,</M>@}
+mAne @{<M>A</M>@} ekhAne @{<E>nonsingular</E>@} hate pAre nA. tAi @{<M>(A),(B)</M>@} bAd. 
+<P/>
+yadi @{<M>a=1,b=c=0</M>@} nii udAharaNs+warUp, tabe @{<M>r(A)=2.</M>@} sutarA.n @{<E>(D)</E>@} bAd. 
+
+@{<QN1>2010.q25.png</QN1>@}
+
+@{<E>(a)</E>@} eman ekTA @{<M>T</M>@} nAo yeTA sabkichhuke @{<M>90^\circ</M>@} ghuriye dey. tAhale @{<M>T^2</M>@} lAgAle, 
+mAne parpar dubAr @{<M>T</M>@} lAgAle moT @{<M>180^\circ</M>@} ghure yAbe, arthA.t @{<M>v</M>@} yAbe @{<M>-v</M>@}-te. 
+chhabi dekhe nAo. 
+<CIMG web="rotvec.gif" w="300"/>
+erakam ekTA @{<M>T</M>@} hala 
+@{<D><MAT>0 & -1\\1 & 0</MAT>.</D>@}
+eTA ki kare pelAm? @{<M>90^\circ</M>@} ghorAle (@{<E>counterclockwise)</E>@} @{<M>(1,0)</M>@} yAy @{<M>(0,1)</M>@}-e, seTAkei 
+@{<M>T</M>@}-er pratham @{<E>column</E>@} nilAm. Ar @{<M>(0,1)</M>@} yAy @{<M>(-1,0),</M>@} seTAi @{<M>T</M>@}-er dwitIya 
+@{<E>column.</E>@}
+
+@{<QN1>2010.q28b.png</QN1>@}
+
+<HTMLCOMM/>
+
+</NOTE>

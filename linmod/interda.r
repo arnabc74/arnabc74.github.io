@@ -1,0 +1,22 @@
+fert = c('None', 'Compost', 'NPK')
+crop = c('Paddy', 'Wheat')
+c1 = rep(fert,10)
+c2 = rep(crop, rep(15,2))
+
+y = numeric(30)
+y[c1=='None' & c2=='Paddy'] = rnorm(5,7,sd=0.1)
+y[c1=='Compost' & c2=='Paddy'] = rnorm(5,5,sd=0.1)
+y[c1=='NPK' & c2=='Paddy'] = rnorm(5,6,sd=0.1)
+y[c1=='None' & c2=='Wheat'] = rnorm(5,2,sd=0.1)
+y[c1=='Compost' & c2=='Wheat'] = rnorm(5,3,sd=0.1)
+y[c1=='NPK' & c2=='Wheat'] = rnorm(5,3.8,sd=0.1)
+data.frame(fert=c1,crop=c2,yield=y)
+
+y[c1=='None' & c2=='Paddy'] = rnorm(5,7,sd=0.1)
+y[c1=='Compost' & c2=='Paddy'] = rnorm(5,5,sd=0.1)
+y[c1=='NPK' & c2=='Paddy'] = rnorm(5,6,sd=0.1)
+y[c1=='None' & c2=='Wheat'] = rnorm(5,3.8,sd=0.1)
+y[c1=='Compost' & c2=='Wheat'] = rnorm(5,2,sd=0.1)
+y[c1=='NPK' & c2=='Wheat'] = rnorm(5,3,sd=0.1)
+data.frame(fert=c1,crop=c2,yield=y)
+    

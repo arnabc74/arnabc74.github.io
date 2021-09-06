@@ -1,0 +1,336 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#অর্ণব চক্রবর্তীর বাংলায় বোঝানো ইংরাজি বই">অর্ণব চক্রবর্তীর বাংলায় বোঝানো ইংরাজি বই</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#বাংলায়-বোঝানো-ইংরাজি-বই মানে?">বাংলায়-বোঝানো-ইংরাজি-বই মানে?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#বইগুলো কাদের জন্য?">বইগুলো কাদের জন্য?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#বইগুলোর বৈশিষ্ট্য">বইগুলোর বৈশিষ্ট্য</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#আগ্রহী?">আগ্রহী?</a>
+</li>
+</ul>
+<hr/>
+<table width="100%">
+<tr>
+<td align="right"><i>Last
+updated on:
+SUN JUL 11 IST 2021</i></td>
+</tr>
+</table>
+
+<h1><a
+name="অর্ণব চক্রবর্তীর বাংলায় বোঝানো ইংরাজি বই">অর্ণব চক্রবর্তীর বাংলায় বোঝানো ইংরাজি বই</a></h1>
+বাংলায়-বোঝানো-ইংরাজি-বই বলে একটা বইয়ের সিরিজ করেছি৷ তাতে বারোটা অংক বই লিখেছি এ পর্যন্ত৷ এই পাতাটা
+ তাদের নিয়ে৷ বইগুলো হল--
+<ol type="">
+
+<li>Real Analysis (<a href="../real1/index.html">প্রথম খণ্ড</a>) </li>
+
+<li>Real Analysis (<a href="../real2/index.html">দ্বিতীয় খণ্ড</a>) </li>
+
+<li>Real Analysis (<a href="../real3/index.html">তৃতীয় খণ্ড</a>) </li>
+
+<li>
+<a href="../modalg/index.html">Modern Algebra</a> 
+</li>
+
+<li>
+<a href="../metric/index.html">Metric Spaces</a> 
+</li>
+
+<li>
+<a href="../linalg/index.html">Linear Algebra</a> 
+</li>
+
+<li>
+<a href="../comb/index.html">Permutation and Combination</a>  (+2 level-এর জন্য) </li>
+
+<li>
+<a href="../probstat/index.html">Probability and Statistics</a> 
+</li>
+
+<li>
+<a href="../diffcal/index.html">Differential Calculus</a>  (+2 level-এর জন্য) </li>
+
+<li>
+<a href="../complex/index.html">Complex Analysis</a> 
+</li>
+
+<li>
+<a href="../intcal/index.html">Integral Calculus</a>  (+2 level-এর জন্য) </li>
+
+<li>
+<a href="../hscomplex/index.html">Complex Algebra</a> (+2 level-এর জন্য) </li>
+
+</ol>
+বইগুলোতে কী আছে, কেন লিখেছি, ইত্যাদি গুরুগম্ভীর প্রশ্নে যাওয়ার আগে সহজ কয়েকটা প্রশ্নের জবাব দিয়ে নেওয়া যাক৷ 
+<ul>
+<li>বইগুলো কারা বার করেছে?  শরৎ বুক হাউস (ওরফে Levant Publishers)৷</li>
+
+<li>কোথায় পাওয়া যায়? কলেজ স্ট্রীটে  শরৎ বুক হাউসের দোকানে (কলেজ স্ট্রীট আর
+ মহাত্মা গান্ধী রোডের ক্রসিং-এ)৷ কলেজ স্ট্রীটের অন্য কিছু দোকানেও (যেমন National
+ বা International) পাওয়া যাওয়া উচিত৷ বইয়ের নাম, শরৎ বুক হাউস এবং লেখকের নাম
+ (অর্ণব চক্রবর্তী) বললে কলকাতার যেকোনো বইয়ের দোকানই আনিয়ে দিতে পারে৷ তবে শরৎ বুক
+ হাউসের বেজায় কড়াকড়ি, নগদ পয়সা না দিলে কোনো বইয়ের দোকানদারকে বই দেয় না৷ তাই ''বইটা একটু
+ আনাবেন তো দাদা, কেনা যায় কিনা ভাবব''-জাতীয় অনুরোধ করলে আপনার বইয়ের দোকানদার আপনাকে সটান
+ বলে দেবে যে, ওই বইটা পাওয়া যাচ্ছে না৷</li>
+
+<li>Online-এ পাওয়া যায় না? হ্যাঁ,
+<a href="http://www.amazon.in">আমাজনের জঙ্গলে</a> খুঁজলে পাওয়া যাবে৷ <a href="http://www.flipkart.com">Flipkart</a>-এও 
+পাওয়া যাবে৷ তবে কিনা কোনো এক অজানা কারণে একেকটা বই অনেক সময়ে আমাজন আর Flipkart  থেকে কিছুদিনের জন্য 
+বেপাত্তা হয়ে যায়৷ অবশ্য আবার একদিন ফিরেও আসে৷ বোধহয় হাওয়া খেতে যায়৷ 
+ </li>
+
+</ul>
+
+<h2><a
+name="বাংলায়-বোঝানো-ইংরাজি-বই মানে?">বাংলায়-বোঝানো-ইংরাজি-বই মানে?</a></h2>
+বিজ্ঞানের যে কোনো শাখাই ইংরাজিতে শেখাই ভালো৷ কিন্তু দুঃখের বিষয় যে, ইংরাজি ভাষাটা যতটা সড়গড় হলে 
+তার মাধ্যমে বিজ্ঞান আয়ত্ত করা যায়, ততটা শেখার সুযোগ খুব কম বাঙালীর ভাগ্যেই জোটে৷ স্যুট-বুট-টাই-মণ্ডিত 
+ইংলিশ মিডিয়মে পড়া বঙ্গসন্তানের অভাব নেই, কিন্তু তাদের দক্ষতা কাঁধ shrug করা আর
+ বিলিতি কায়দার হাসি হাসাতে যতটা, ইংরাজি জ্ঞানের গভীরতায় ততটা নয়৷    তাদের দোষ দিতে পারি না, হাজার হোক 
+চব্বিশ ঘন্টার  মধ্যে মাত্র কয়েক ঘন্টা একটা বিলিতি ভাষার খানিক বুকনি শুনে তো আর 
+রাতারাতি সে ভাষায় দক্ষ হয়ে ওঠা যায় না, বিশেষতঃ সে বুকনিগুলোর উৎস  যেখানে নিতান্ত দেশী মানুষজন, 
+যাদের নিজেদেরই ওই ভাষায় তেমন কোনো দক্ষতা নেই৷ 
+<p></p>
+সত্যটা এই যে, বাঙালীরা বাংলাটাই ভালো বোঝে৷ 
+রাশিয়ানরা যেমন ভালো বোঝে রুশভাষা, বা ইটালিয়ানরা তাদের দেশের ভাষা৷ তবে তাদের সঙ্গে আমাদের প্রধান পার্থক্য এই যে, 
+তারা সেই সহজ সত্যটা কবুল করতে লজ্জা পায় না, আমরা পাই৷ 
+<p></p>
+বিজ্ঞানকে বাঙালীর কাছে পৌঁছে দেবার পথে তাই ভাষার সমস্যাটা অনস্বীকার্য৷ তার একটা "সমাধান" 
+ভেবেছিলেন সত্যেন বোস৷ তাঁর মনে হয়েছিল যে, ইংরাজী technical term-গুলোই যত নষ্টের গোড়া৷ 
+ওগুলোকে বাংলায় তর্জমা করে ফেললেই বিজ্ঞান একেবারে পাকা আমটির মত বাঙালী হাতে টুপ করে খসে পড়বে৷  
+ওনার এই হাস্যকর পরিকল্পনায় অবশ্য হাসির চেয়ে কান্নার  কারণই বেশী ঘটেছে৷ গুচ্ছের বাংলা পরিভাষা 
+তৈরী হওয়া (যেগুলো ইংরাজির চেয়েও অনেক বেশী অপরিচিত, এবং যাদের কোনো standard নেই) এবং
+সেই জন্য নিযুক্ত কিছু "পণ্ডিত"-এর পকেটভরা ছাড়া তার দ্বারা কোনো ফল
+ হয় নি৷ একটা কুফল হয়েছে অবশ্য৷ মানুষের মনে এই ধারণা আরও বদ্ধমূল হয়েছে যে, বাংলার মাধ্যমে 
+বিজ্ঞান শেখার চেষ্টার মত অবাস্তব আর কিছুই হতে পারে না৷ সুতরাং এখন  অধিকাংশ
+ বাঙালীর বিশ্বাস  যে, 
+একই সঙ্গে ইংরাজী এবং ইংরাজী ব্যবহার করে বিজ্ঞান দুইই শিখে ফেলতে হয়৷ অধিকাংশই সেই দুরূহ কর্মে 
+ক্ষান্ত দিয়ে বলে--বিজ্ঞান-টিজ্ঞান ভাই আমাদের ছেলেমেয়েদের জন্যে নয়৷ আরেক দল
+ইংরাজিতে বিজ্ঞান মুখস্থ করে মেরে দেবার জন্য আপ্রাণ চেষ্টা চালায় 
+(এবং সেই সঙ্গে বাংলায় বিজ্ঞান শিক্ষার মান উত্তরোত্তর 
+নামিয়ে আনে)৷ এরই মধ্যে বেঁচে যায় সেইসব ভাগ্যবানেরা যাদের অভিভাবক ছোটোবেলাতেই সন্তানকে 
+সযত্নে ইংরাজি শিক্ষা দিয়ে নেন, প্রথাগত শিক্ষার তোয়াক্কা না রেখে৷ এদের সংখ্যা অত্যন্তই কম৷ 
+অথচ কারোরই মাথায় এই অতি সহজ কথাটা আসে না যে, একবার ভেবে দেখি দুনিয়ার অন্যত্র
+ ছেলেমেয়েরা কীকরে বিজ্ঞান শিখছে৷  ইংলণ্ড, আমেরিকা আর অস্ট্রেলিয়া বাদ দিলে বাকি কোথাওই তো আর ইংরাজী
+ মাতৃভাষা নয়, বা ইংলিশ মিডিয়ম স্কুলেরও ছড়াছড়ি নেই৷ তারা কী সবাই সত্যেন বোসের মত
+ নিজ নিজ ভাষায় গুচ্ছের পরিভাষা বানাচ্ছে? না, তারা নিজেদের ভাষাতেই পড়াশোনা করছে,
+ technical term-গুলো ইংরাজীতেই রেখে৷   সেই অতি সহজ বুদ্ধির কাজটাই করার চেষ্টা করেছি আমার বইগুলোতে৷ 
+এখানে definition, theorem এমন কি exercise, exampleএবং তাদের সমাধানও ইংরাজিতে, খালি বোঝানোগুলো 
+বাংলায়৷ একটা উদাহরণ দেখাই--ধরা যাক একটা ইংরাজি বইতে লিখেছে 
+<blockquote>At this point we would like to remind the reader that differentiation of $\sin x$ 
+yields $\cos x.$  </blockquote>
+ইংরাজিতে কাঁচা অংকের ছাত্রছাত্রীর  কাছে কিন্তু এখানে
+$\sin x$ বা $\cos x $  বা differentiate 
+করা কোনোটাই কঠিন ঠেকবে না৷ কঠিন ঠেকবে ইংরাজি বাক্যটার কাঠামো৷ সেই কষ্ট দূর করার জন্য 
+differentiate করাকে অবকলন বা ওই রকম কোনো বিদ্&zwnj;&zwnj;ঘুটে বাংলা দিয়ে তর্জমা করে লাভ নেই, লেখার দরকার--
+<blockquote>এইখানে একবার মনে করিয়ে দিই যে, $\sin x$-কে differentiate করলে $\cos x$ হয়৷</blockquote>
+আমার বইতে আমি ঠিক সেটাই করেছি৷ 
+
+<h2><a
+name="বইগুলো কাদের জন্য?">বইগুলো কাদের জন্য?</a></h2>
+সহজ উত্তর হল--যারা পড়ে উপকৃত হবে তাদের জন্য৷  তবে লেখার সময়ে একটা বিশেষ ধরণের পাঠকের কথা মনে রেখেই 
+বইগুলো লেখা, যারা ভবিষ্যৎ প্রজন্মের শিক্ষক হতে যাচ্ছে৷  শিক্ষক বলতে আমি বলছি তাদের কথা যারা 
+সত্যই ছাত্রদের শিক্ষকতার কাজে যুক্ত থাকেন৷ ঠাণ্ডা ঘরে বসে পলিসি তৈরী করনেওয়ালাদের কথা নয়৷ 
+বা বেজায় নামকরা ইন্স্&zwnj;&zwnj;টিটিউটের বেজায় মোটা মোটা মাইনে পাওয়া সেই সব প্রফেসরদের কথাও নয়, যারা বড়োজোর 
+গোটা তিরিশেক ছাত্র সামলাতেই হিমসিম খেয়ে অফিস পলিটিক্সেই সময় ব্যয় করেন বেশী৷ আমি বলছি তাদের
+কথা যাদের হাত দিয়ে প্রচুর ছাত্র বেরোয়, যাঁরা কোচিং ক্লাসের গোয়াল সামলান, হয়তো পার্ট-টাইমে পড়ান, 
+কিংবা স্রেফ প্রাইভেটেই পড়ান৷ কিন্তু সত্যই যাঁরা পড়ান৷ এঁদের পড়ানোর মান খুব উঁচু হয় না,  কারণ সেটা 
+সম্ভব নয়৷ কিন্তু যদি সেই মান সামান্যও উন্নত করা যায়, তবে তার প্রভাব পড়ে বহু ছাত্রদের উপরে৷  
+আমার বই পড়ে লোকজন ধাঁ করে রাতারাতি অংকে পণ্ডিত হয়ে যাবে, এমন রঙীন কল্পনা করি না৷ 
+Math Olympiad ''ক্র্যাক'' করবার হাতুড়ি  এইসব বইতে নেই৷ আমার উদ্দেশ্য খালি এইটা
+ সাব্যস্ত করা যে,  
+অংক জিনিসটা নীরস নয়, এবং সেটা <u>উপভোগ</u> করার জন্য প্রচণ্ড বুদ্ধিমান বা ইংরাজীতে
+ ভীষণ ওস্তাদ হতে হয় না৷ 
+
+<h2><a
+name="বইগুলোর বৈশিষ্ট্য">বইগুলোর বৈশিষ্ট্য</a></h2>
+
+<ol type="">
+
+<li>এগুলো সাধারণ ছাত্রদের জন্য লেখা textbook. সিলেবাস ধরে লেখা৷ গত দশ বছরের প্রশ্নের
+সমাধান-সুদ্ধ৷ অর্থাৎ পরীক্ষা পাশের যাবতীয় উপকরণের ব্যবস্থা আছে এতে৷ কারণ আমাদের
+ সিলেবাস ও পরীক্ষাব্যবস্থা যতই জঘন্য হোক, ওর উপস্থিতি অনস্বীকার্য৷ মুষ্টিমেয় যে কয়জন 
+ভাগ্যবান  ISI, IIT ইত্যাদি জায়গায় 
+ঢুকে পড়তে পেরেছে, তারা নিরাপদ দূরত্বে থেকে  মান্ধাতা আমলের সিলেবাসগুলো দেখে নাক সিঁটকোতে 
+পারে৷ কিন্তু যাদেরকে বাধ্য হয়েই সেই মান্ধাতা আমলের অন্ধকূপে পচে মরতে হয়, তাদের মধ্য থেকেই 
+ভবিষ্যৎ প্রজন্মের শিক্ষকরা বেরোয় বেশী৷ সিলেবাসকে হাজার ঘৃণা করলেও  অগ্রাহ্য করা সম্ভব নয় তাদের পক্ষে৷ 
+</li>
+
+<li>বইগুলোতে অংক উপস্থাপনার মান আমার জানা কোনো international standard বইয়ের চেয়ে কম নয়৷ 
+সিলেবাস ধরে লেখা মানে এই নয় যে, সিলেবাসেই সীমাবদ্ধ৷ সিলেবাসটা যেন খানাখন্দে  পরিপূর্ণ একটা 
+এবড়োখেবড়ো রাস্তা৷ সিলেবাস অনুযায়ী লেখা বই বলতে আমরা ভেবে নিই যেন একটা ছ্যাকরা গাড়ী যেটা সেই 
+রাস্তার উপর দিয়ে ছাত্রদের হিড়্ হিড়্ করে ছ্যাঁচড়াতে ছ্যাঁচড়াতে টেনে নিয়ে যাবে৷ আর আদর্শ 
+বই বলতে বুঝি একটা দুর্দান্ত গাড়ি যেটায় চড়লেই জীবন জুড়িয়ে যায়, খালি সেটা গন্তব্যে
+ পৌঁছোয় না এই যা দুঃখ৷ যারা গাড়ি চড়ে খালি হাওয়া খাওয়ার উদ্দেশ্যে,  সে গাড়ি
+ কেবল তাদেরই জন্য৷  
+আমার বইগুলোতে আমি  ওই হাওয়া খাওয়ার আরামের গাড়িগুলোকেই জুতেছি 
+সিলেবাসের রাস্তায়, তার জন্য খানাখন্দ যেখানে যা মেরামত করে নেওয়ার দরকার করে নিয়েছি৷
+এই সব বই থেকে শিখে যেন পরীক্ষায় নম্বর পেতে অসুবিধা না হয়, সে দিকে বিশেষ নজর দিয়েছি৷ </li>
+
+<li>প্রচুর ছবি এঁকেছি বইগুলোতে৷ দেশী বইগুলোর তো কথাই নেই, বিদেশী অংক বইতেও
+ ছবির ব্যবহার খুবই কম৷ অথচ কোনো নতুন ধারণা বোঝাতে ছবির উপযোগিতা অপরিসীম৷  </li>
+
+</ol>
+
+
+<h2><a
+name="আগ্রহী?">আগ্রহী?</a></h2>
+
+এই বইগুলো লেখার কাজটাকে মনে করা যেতে পারে একটা বড়  প্রোজেক্টের অংশ৷ যে কোনো বড় প্রোজেক্টেই আগ্রহী 
+মানুষজনের সমাবেশ কাম্য৷ কেউ যদি এই প্রোজেক্টে সামিল হতে চান তবে নীচের পন্থাগুলো ভেবে দেখতে পারেন:
+<ul>
+
+<li>বইগুলোর সম্বন্ধে অপরকে জানাতে পারেন৷ যদি জানান তবে দয়া করে যেন এদেরকে "মহান
+ আদর্শের" নিদর্শন হিসেবে বিজ্ঞাপিত করবেন না৷ আমাদের দেশে মহান আদর্শের এত ছড়াছড়ি যে, 
+ওই জাতীয় কথা শুনলেই লোকে ভণ্ডামি বলে মনে করে৷ "এই বইগুলো পড়ে সহজে পরীক্ষায়
+ নম্বর পাওয়া যায়" বললেই যেটুকু কাজ হবার হবে৷ </li>
+
+<li>বাংলা ভাষায় বিজ্ঞান মানেই যে কিছু technical term-এর বাংলা তর্জমার আঁতলামি  নয়, তার
+উদাহরণ হিসেবে এই বইগুলোর উল্লেখ করা৷ 
+ </li>
+
+<li>ভারতের অন্যান্য ভাষাতে এই বইগুলোর অনুবাদে সাহায্য করা৷ দিল্লীর একজন সহৃদয় প্রফেসর   ইতিমধ্যেই 
+Real Analysis (volume 1)  হিন্দীতে  অনুবাদ করে ফেলেছেন৷
+ এরকম অনুবাদ করবার জন্য--
+<ul>
+
+<li>বাংলা জানার প্রয়োজন নেই৷ আমি আমার বইটা মুখে মুখে ইংরাজী করে রেকর্ড করে ইন্টারনেটের
+ মাধ্যমে পাঠিয়ে দিয়ে থাকি৷ পুরো বইয়ের কাঠামোটাও ইমেল করে পাঠিয়ে দিই, যার মধ্যে ইংরাজী
+ অংশগুলো লেখাই থাকে৷ বাংলাগুলোর জায়গায় খালি ... থাকে, সেগুলো আমার রেকর্ডিং
+ শুনে পূরণ করে দিলেই হল৷</li>
+
+<li>বিভিন্ন ভারতীয় ভাষা কম্পিউটারে টাইপ করার জন্য Google-এই ব্যবস্থা আছে৷ তা
+ দিয়েই কাজ চলে যায়৷ কোনো কিছু install করতে হয় না৷</li>
+
+<li>আর হ্যাঁ, আমি কিন্তু এই কাজের জন্য পয়সা দিতে পারব না৷ তবে যা লেখা হবে সেটা অনুবাদকের সম্পত্তি৷</li>
+
+<li> কাজটা সময়সাপেক্ষ হলেও কোনো ধরাবাঁধা সময়সীমা নেই৷ খানিক দূর গিয়ে ছেড়ে দিলেও আপত্তি নেই৷ 
+অনুবাদের ব্যাপারটা পুরোটাই পরীক্ষামূলক৷ </li>
+
+</ul>
+ 
+</li>
+
+</ul> 
+
+<h3>মন্তব্য</h3>
+নীচে একটা মন্তব্য দেওয়ার জায়গা রয়েছে. দেখে মনে হবে যেন তার জন্য আগে log
+in করতে হবে. যদি তাতে আপত্তি থাকে, তবে ওই "Name"-এর জায়গায় একবার
+click করলেই "I'd rather post as a guest" বলে একটা option আসবে. 
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://www.isical.ac.in/~arnabc/books/index.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "bookintro"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

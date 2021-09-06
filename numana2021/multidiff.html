@@ -1,0 +1,297 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Multivariate differentiation">Multivariate differentiation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The definition">The definition</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Computing the derivative matrix">Computing the derivative matrix</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Two special cases">Two special cases</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Linear transformation">Linear transformation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Differentiaing a quadratic form">Differentiaing a quadratic form</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Application">Application</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Chain rule">Chain rule</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#1st order Taylor expansion">1st order Taylor expansion</a>
+</li>
+<li>
+<a href="#Trouble with tangent plane">Trouble with tangent plane</a>
+</li>
+</ul>
+<hr/>
+<table width="100%">
+<tr>
+<td align="right"><i>Last
+updated on:
+TUE APR 14 IST 2020</i></td>
+</tr>
+</table>
+$\newcommand{\v}{\vec}$
+<h1><a
+name="Multivariate differentiation">Multivariate differentiation</a></h1>
+
+<h2><a
+name="The definition">The definition</a></h2>
+Suppose that you have a function $f:{\mathbb R}^n\rightarrow{\mathbb R}^m.$ Then we
+say that it is differentiable at some $\v a\in{\mathbb R}^n$ if 
+locally at $\v a$ the function may be "well approximated" by an
+(affine) linear function passing through $(\v a, f(\v a)).$ Such a
+function has the form 
+$$
+g(\v x) = f(\v a) + D (\v x -\v a),
+$$
+where  $D$ is a $m\times n$ matrix.
+This
+linear function is what we call the tangent if $m=n=1$ and the
+tangent plane if $m=1,~n=2.$
+<p></p>
+This $D$ is
+called the derivative of $f$ at $\v a.$ More commonly,
+it is also called the <b>Jacobian</b> of $f$ at $\v a.$
+If $m=1$ and $n&gt;1$ then it is often denoted
+by $\nabla f$ and called "grad $f$". 
+<p></p>
+If you are curious about what is meant by "well approximated",
+then here it is:
+$$
+\frac{f(\v x)-g(\v x)}{\|\v x - \v a\|}\rightarrow \v 0\mbox{ as } \v x\rightarrow\v a.
+$$
+The $\|\cdots\|$ is the length in ${\mathbb R}^n.$
+<p></p>
+Check that
+for $n=1$ this is same as our familiar concept of differentiation.
+
+<h2><a
+name="Computing the derivative matrix">Computing the derivative matrix</a></h2>
+The derivative of $f:{\mathbb R}^n\rightarrow{\mathbb R}^n$ at any given $\v
+a\in{\mathbb R}^n$ is an $m\times n$ matrix $D.$
+Its $(i,j)$-th entry is given by 
+$$
+\frac{\partial f_i}{\partial x_j} (\v a).
+$$
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If $f(x_1,x_2,x_3) = 4x_1x_2 - x_3^2,$ then direct
+computation shows
+$$
+\nabla f = (4x_2, 4x_1, -2x_3).
+$$
+
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Two special cases">Two special cases</a></h2>
+
+<h3><a
+name="Linear transformation">Linear transformation</a></h3>
+If $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ is of the form $f(\v x) = A\v x$
+for some constant matrix $A,$ then the derivative will
+be $A$ itself.
+
+<h3><a
+name="Differentiaing a quadratic form">Differentiaing a quadratic form</a></h3>
+If
+$f:{\mathbb R}^n\rightarrow{\mathbb R}$ is of the form 
+$$
+f(\v x) = \v x' M \v x
+$$
+for some <i>symmetric</i> matrix $M,$ then 
+$$
+\nabla f = 2\v x' M.
+$$
+This is the formula we have used in the soap film example. 
+
+<h2><a
+name="Application">Application</a></h2>
+
+Just like the familiar 1-dim derivative, the higher dimensional
+derivatve also vanishes if $f$ attains a local max/min (for $m=1$). We
+also have an analogous second order derivative check, but we
+shall not go into that here. 
+
+<h2><a
+name="Chain rule">Chain rule</a></h2>
+
+Let $f:{\mathbb R}^m\rightarrow{\mathbb R}^n$ and $g:{\mathbb R}^n\rightarrow{\mathbb R}^p$ be both
+differentiable with derivatives $D_f$ and $D_g,$
+respectively. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^p$ is defined as $h =
+g\circ f,$ then $h$ must be differentiable with
+derivative at any $\va\in{\mathbb R}^n$ given by
+$$
+D_h = D_g( f(\v a)) D_f(\v a). 
+$$
+
+<h2><a
+name="1st order Taylor expansion">1st order Taylor expansion</a></h2>
+For a function $f:{\mathbb R}^m\rightarrow{\mathbb R}^n$ that is differentiable at
+some $\v a\in{\mathbb R}^n, $ we know that $f$ is well
+approximated by the affine linear function 
+$$
+g(\v x) = f(\v a) + D (\v x -\v a),
+$$
+where $D$ is the derivative of $f$ at $\v a.$ This
+is called the 1st order Taylor approximation of $f.$ Under
+suitable assumptions (related to existence and continuity of the second
+partial derivatives of $f$), the error involved in this
+approximation is of quadratic order.
+
+<h1><a
+name="Trouble with tangent plane">Trouble with tangent plane</a></h1>
+If $f:{\mathbb R}^2\rightarrow{\mathbb R}$ is differentiable at
+some $(x_0,y_0)$ then the tangent plane is given by 
+$$
+z = f(x_0,y_0) + f_1(x_0,y_0)(x-x_0) + f_2(x_0,y_0)(y-y_0),
+$$
+where $f_i$ is the partial derivative of $f$
+w.r.t. the $i$-th argument. 
+<p></p>
+In particular, the partial derivatives must exist if $f$ is differentiable.
+<p></p>
+However, the converse is not true. It is possible that the
+partial derivatives exist at some $(x_0,y_0)$ (and so the
+above plane is well defined), but still $f$ is not
+differentiable there. Thus, even if the plane exists, it need not
+be the tangent plane. One such example is given by the function 
+$$
+f(x,y) = \left\{\begin{array}{ll}-y&\text{if }x\neq 0\\0&\text{if }x=0\\\end{array}\right..
+$$
+The graph is shown below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/badtan.png"></th>
+</tr>
+<tr>
+<th>Not differentiable at $(0,0)$</th>
+</tr>
+</table>
+</center>
+Here $f_1(0,0) = f_2(0,0) = 0,$ and so the plane is just
+the $xy$-plane, but clearly it is not tangent to the
+surface.  
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://www.isical.ac.in/~arnabc/numana/multidiff.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "multidiff"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

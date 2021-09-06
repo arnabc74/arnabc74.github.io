@@ -1,0 +1,113 @@
+@{<NOTE>
+<TITLE>Course: Data Analysis 5</TITLE>
+<HEAD1>Module 1: Visual Representation</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Why multivariate data visualisation is difficult</HEAD2>
+<HEAD2>Lesson 1, Video 2: Chernoff faces</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Scatter plots: pairs, 3D</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Interactive scatter plots</HEAD2>
+<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: Paralel coordinates</HEAD2>
+<HEAD2>Lesson 4, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+<HEAD1>Module 2: Dimension</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Different types of multivariate data</HEAD2>
+<HEAD2>Lesson 1, Video 2: The camera problem</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Extrinsic vs intrinsic</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Curse of dimensionality</HEAD2>
+<HEAD2>Lesson 3, Video 2: Dimension reduction</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: ???</HEAD2>
+<HEAD2>Lesson 4, Video 2: ???</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+<HEAD1>Module 3: PCA</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Concept through examples</HEAD2>
+<HEAD2>Lesson 1, Video 2: Formulation with animation</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Hands on visualisation</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Terminology</HEAD2>
+<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: Using R</HEAD2>
+<HEAD2>Lesson 4, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+<HEAD1>Module 4: Factor Analysis</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Concept through example</HEAD2>
+<HEAD2>Lesson 1, Video 2: Formulation</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Terms and R</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Rotation</HEAD2>
+<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: Use 1: Likart</HEAD2>
+<HEAD2>Lesson 4, Video 2: Use 2: Educational testing</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+<HEAD1>Module 5: Multidimensional scaling</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Motivation using road map</HEAD2>
+<HEAD2>Lesson 1, Video 2: Real data example</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Metric MDS</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Nonmetric MDS</HEAD2>
+<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: Stress and nonuniqueness</HEAD2>
+<HEAD2>Lesson 4, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+<HEAD1>Module 6: Correspondence analysis</HEAD1>
+
+<HEAD2>Lesson 1, Video 1: Motivation using students and subjects</HEAD2>
+<HEAD2>Lesson 1, Video 2: Real data example</HEAD2>
+
+<HEAD2>Lesson 2, Video 1: Chi-square decomposition</HEAD2>
+<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 3, Video 1: Biplot</HEAD2>
+<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+
+<HEAD2>Lesson 4, Video 1: ???</HEAD2>
+<HEAD2>Lesson 4, Video 2: ???</HEAD2>
+
+<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
+<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+
+
+<COMMENT>
+Local Variables:
+ two-part1: ("<EXR>" "</EXR>")
+ two-part2: ("<HEAD3>Exercises M" "</HEAD3>")
+End:
+</COMMENT>
+</NOTE>@}
+

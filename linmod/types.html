@@ -1,0 +1,1716 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Different types">Different types</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A few terms">A few terms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Factor versus covariate">Factor versus covariate</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Treatment versus control">Treatment versus control</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Data layout">Data layout</a>
+</li>
+<li>
+<a href="#Examples">Examples</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Measurement model">Measurement model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#1-way ANOVA">1-way ANOVA</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#2-way ANOVA">2-way ANOVA</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nested (or hierarchical) models">Nested (or hierarchical) models</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Regression model">Regression model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Fitting a straight line">Fitting a straight line</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Fitting a polynomial">Fitting a polynomial</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#ANCOVA model">ANCOVA model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nonstandard models">Nonstandard models</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Different types">Different types</a></h1>
+There are different types of situations which give rise to
+approximate linear system of equations, and hence linear
+models. We shall discuss the most important types in this page. 
+<p></p>
+In most walks of science we are interested in studying the effect
+of input(s) on some
+object. For instance, drug on a mouse, fertiliser and sunlight on a plant,
+reagents on a
+chemical, a teaching technique on a student, etc. To do so we 
+observe some output from the system. The input-output behaviour
+sheds light on the internal working of the object of study. This
+may be expressed as a box diagram. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+We want to model the output as a
+<i>function</i> of all the inputs, <i>i.e.</i>, <i>same</i> set of inputs must
+give the <i>exactly same</i> output. However, this never occurs
+in practice. If two twins are both given the same dose of the
+same medicine, still their body temperatures can never be
+guaranteed to be the same. This is due to the presence of lots
+tiny factors that can never be precisely recorded. We sum up all
+these ellusive influences into a single input called <i>Random
+error</i>. 
+<p></p>
+
+
+Before we start discussing various examples, we need to know a
+few terms. Also we need to know how to store the data for a
+typical linear model.
+
+<h2><a
+name="A few terms">A few terms</a></h2>
+
+<h3><a
+name="Factor versus covariate">Factor versus covariate</a></h3>
+Each inputs may be either continuous or categorical. A
+categorical. input us called a <b>factor</b>. A continuous input
+is called a <b>covariate</b>. For example, <i>age</i> is a
+covariate, but <i>age group</i> is a factor. The different values
+of a factor are called its <b>level</b>s. For
+example, <i>smoking habit</i> may have two levels <i>smoker</i>
+and <i>non-smoker</i>. 
+<p></p>
+The output of a linear model is always considered continuous. So
+is the random error. 
+
+<h3><a
+name="Treatment versus control">Treatment versus control</a></h3>
+
+Some of the inputs may be applied by an experimenter, while the
+others may be just there. For example, to study the effect of a
+particular drug on blood-pressure patients the doctor cannot
+ignore the effects of age group and gender. So the diagram looks like:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here the drug is applied by the experimenter, while age and
+gender are naturally present. Accordingly, we
+have <b>treatment</b> versus <b>control</b>. 
+
+<p></p>
+A study where at least one of the inputs is applied by the
+scientist is called a 
+<b>designed experiment</b>. If all the inputs are chosen by
+nature (the scientist being a merely passive spectator), then we
+have an <b>observational study</b>.
+<p></p>
+If there is/are only categorical inputs, then we call it an ANOVA
+model. If the number of categorical inputs is $k$ it is
+a $k$-way ANOVA model.
+<p></p>
+If all the inputs are continuous we call it a <b>regression
+model</b>. 
+<p></p>
+If both categorical and continuous inputs are present, then we
+have an ANCOVA model. Again, if there are $k$ categorical
+inputs, then it is a $k$-way ANCOVA model.
+
+<h2><a
+name="Data layout">Data layout</a></h2>
+Before you can apply a linear model software, the
+data set must be in a particular layout. This layout is governed
+by the input-output diagram. There must be a column for each
+input (except the random error) and output.  The name of each
+input must be the heading for its column. The values in the
+column for a factor must be the levels for that factor. Each row in the data
+set must correspond to one observational unit. 
+<p></p>
+For example, if the input-output diagram is like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+and there are 6 patients, then a typical data set would look
+like:
+<pre>
+
+<b>Drug          AgeGroup        Gender        B.P.Change</b>
+Minipress      Old             1             23.6
+Minipress      Middle          1             24.8
+Minipress      Young           2             2.9
+Qualipro       Old             2             45.1
+Qualipro       Middle          1             19.8
+Qualipro       Young           2             20.1
+</pre>
+We should load this data set (stored in the
+file <a
+href="med.txt">med.txt</a>) as
+<font color="red">
+<pre>
+dat = read.table('med.txt',head=T)
+</pre>
+</font>
+You should check the loaded data set immediately after loading:
+<font color="red">
+<pre>
+dim(dat)
+names(dat)
+head(dat)
+tail(dat)
+</pre>
+</font>
+R, like most other softwares, thinks that valriables with
+numerical values are continuous. Here, however, <i>Gender</i> is
+a factor, though its values are numeric. So it is a good idea to
+tell R explicitly to consider <i>Gender</i> as a factor:
+<font color="red">
+<pre>
+dat[,'Gender'] = factor(dat[,'Gender'])
+</pre>
+</font>
+You could also change the labels to <i>Male</i>
+and <i>Female</i>:
+<font color="red">
+<pre>
+dat[,'Gender'] = factor(dat[,'Gender'], lab=c('Male', 'Female'))
+</pre>
+</font>
+
+
+<h1><a
+name="Examples">Examples</a></h1>
+We shall now learn about some standard examples of linear
+model. In all these cases, R can actually build the design matrix
+for us. 
+<h2><a
+name="Measurement model">Measurement model</a></h2>
+The simplest example of a linear model is one without any input
+at all (well, except the inevitable random error). Had there been
+no random error the output should always be the same. If we denote
+that ideal constant output by $\mu,$ then the actual output
+(in presence of random error) is 
+$$
+y_i = \mu+ \epsilon_i,
+$$
+where $i=1,...,n.$ We assume $\epsilon_i\sim
+N(0,\sigma^2).$ 
+<p></p>
+This models a scenario where a fixed uknown
+quantity $\mu$ is being measured $n$
+times. Here $\epsilon_i$ is the random error for
+the $i$-th measurement. In matrix notation this is 
+$$
+\left[\begin{array}{ccccccccccc}y_1\\\vdots\\y_n
+\end{array}\right]
+= 
+\left[\begin{array}{ccccccccccc}1\\\vdots\\1
+\end{array}\right]\left[\begin{array}{ccccccccccc}\mu
+\end{array}\right]
++
+\left[\begin{array}{ccccccccccc}\epsilon_1\\\vdots\\\epsilon_n
+\end{array}\right].
+$$
+Here $\epsilon\sim N_n(0,\sigma^2 I).$
+<p></p>
+Here the data file should have a single column (for the
+output). One such file is <a
+href="meas.txt">meas.txt</a>. We load this
+file first:
+<font color="red">
+<pre>
+dat = read.table('meas.txt',head=T)
+</pre>
+</font>
+Then we apply our trivial model as follows.
+<font color="red">
+<pre>
+lm(measurement~1, dat)
+</pre>
+</font>
+Notice the first argument, which is a compact form of the box
+diagram. The output variable is written to the left of
+the <code>~</code>. The inputs are listed after
+the <code>~</code>. In this example, we do not have any
+input. This is expressed by writing a 1 after the <code>~</code>.
+
+
+<p></p>
+The <code>lm</code> function produces a lot more output than is
+printed on screen by default. Usually we store the entire output
+in some variable for detailed inspection later. 
+<font color="red">
+<pre>
+fit = lm(measurement~1, dat)
+</pre>
+</font>
+To get a brief glimpse of the wealth of information stored in the
+variable <code>fit</code> you can use:
+<font color="red">
+<pre>
+names(fit)
+</pre>
+</font>
+We shall learn about these later. For the time being it might of
+interest to see the design matrix:
+<font color="red">
+<pre>
+model.matrix(f)
+</pre>
+</font>
+
+
+<h2><a
+name="1-way ANOVA">1-way ANOVA</a></h2>
+This is a linear model with a single factor (<i>i.e.</i>, a categorical
+input). This single factor may be a
+treatment or a control. One example could be yield of paddy from an
+agricultural  plot when different fertilisers are used. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If there are three types fertilisers in use (say None, Compost
+and NPK), then 5 plots under each fertiliser, then a typical
+experiment could be carried out by assigning each fertiliser to 5 random plots. 
+
+<p></p>
+As you can guess, the data file should have 2 columns, one for
+the output and the other for the input. Such a file is given
+in <a
+href="anova1.txt">anova1.txt</a>. 
+<p></p>
+Since there is only one input (other than the inevitable random
+error), it is expected that the plots are identical w.r.t. all
+other points related to the yield (<i>e.g.</i>, sunlight, irrigation
+etc). So had there been no random error present, we would expect
+all the plots with the same fertiliser to produce the same
+yield. For the $i$-th fertiliser, we denote this ideal yield
+by $\mu_i.$ So the model is 
+$$
+y_{ij} = \mu_i + \epsilon_{ij},
+$$
+where $i=1,2,3,$ and $j=1,...,5.$ It is customary to
+write this slightly differently (though equivalently) as 
+$$
+y_{ij} = \mu+ \alpha_i + \epsilon_{ij}.
+$$
+This is how R does it. 
+<font color="red">
+<pre>
+dat= read.table('anova1.txt',head=T)
+fit1 = lm(yield ~ 1+fertiliser, dat)
+</pre>
+</font>
+Indeed, the 1 term may be dropped (when there are more terms in
+the RHS). Thus we could also write 
+<font color="red">
+<pre>
+fit2 = lm(yield ~ fertiliser, dat)
+</pre>
+</font>
+and get the same effect. If, on the other hand, you insist on not
+having the intercept term, then you need to write
+<font color="red">
+<pre>
+fit3 = lm(yield ~ fertiliser-1, dat)
+</pre>
+</font>
+Let's check the design matrices:
+<font color="red">
+<pre>
+model.matrix(fit3)
+</pre>
+</font>
+This is just as expected. But something unexpected occurs for the
+model with intercept:
+<font color="red">
+<pre>
+model.matrix(fit1) 
+</pre>
+</font>
+Here R has tried to simplfy the design matrix by dropping
+redundant columns. This keeps the design matrix full column
+rank. This is R's way of giving you <i>one</i> least square
+solution. 
+
+<h2><a
+name="2-way ANOVA">2-way ANOVA</a></h2>
+This is where we have two input factors. Both these factors could
+be treatments (<i>e.g.</i>, if in the last example we add "tillage" as a new factor with two
+levels "manual" and "tractor"). A more commonly occuring case is
+where one factor is a treatment while the other is a control. We
+discuss one such example below. 
+<p></p>
+We want to see the effect of a particular drug on men and women
+or a certain age group. We choose 100 volunteers of either
+gender, and then randomly split each gender group into two
+halves. One half gets the real drug, while the other half gets a
+placebo. So the box diagram is like:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here <i>Drug</i> is a factor with two levels, <i>real</i>
+and <i>placebo</i>. Also, <i>Gender</i> is a factor with the
+levels <i>Male</i> and <i>Female</i>. 
+<p></p>
+A typical data file (<a
+href="anova2.txt">anova2.txt</a>)  consists of three columns,
+headed <i>Drug</i>, <i>Gender</i> and <i>meas</i>. In this file
+we have encoded <i>Real</i> by 1 and <i>Placebo</i> by 0.
+<p></p>
+Since we have only two factor inputs (except the random error),
+hence in absence of random error, we would expect all patients
+with the same input combination to provide the same
+measurement. There are $2\times2 = 4$ input combinations
+here:
+<blockquote>
+(Real, Male), (Real, Feale), (Placebo, Male), (Placebo, Female).
+</blockquote>
+We call each of these a <b>cell</b>, and assign one ideal
+constant response value for each cell to get the <b>cell means model</b>:
+$$
+y_{ijk} = \mu_{ij} + \epsilon_{ijk}.
+$$
+Again, it is more customary to write it as 
+$$
+y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ijk}.
+$$
+<font color="red">
+<pre>
+dat = read.table('anova2.txt',head=T)
+fit = lm(meas~drug * gender,dat)
+model.matrix(fit)
+</pre>
+</font>
+Note that <code>drug * gender</code> is an abbreviation
+for $\alpha_i+\beta_j + \gamma_{ij}.$ If you want, you can
+also write this as:
+<code>drug + gender + drug:gender</code>. Here
+the <code>drug:gender</code> standas for $\gamma_{ij}.$
+<p></p>
+
+Next, we consider an example with two
+treatments, <i>fertiliser</i> and <i>crop</i>. Here it is natural
+to ask the question which fertiliser is the best. This natural
+question, however, may be a meaningless one in certain
+situations. For instance if the cell means are as shown in the
+following diagram, then the optimal choice of fertiliser depends
+on the crop at hand.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/inter1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+But if the diagram looks like the following, then we can indeed
+answer the question. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/inter2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+In the first case we say that there is <b>interaction</b>
+between <i>crop</i> and <i>fertiliser</i>. In the second case,
+there is no such interaction.
+
+<p></p>
+If there is no interaction, then the model simplifies to 
+$$
+y_{ijk} = \mu + \alpha_i + \beta_j + \epsilon_{ijk}.
+$$
+It is possible to distinguish between the two case graphcally
+using data. 
+Here are two files, <a
+href="inter1.txt">inter1.txt</a>
+and <a
+href="inter2.txt">inter2.txt</a>. The following technique constructs
+the interaction plot based on the first data set. 
+<font color="red">
+<pre>
+dat1 = read.table('inter1.txt',head=T)
+with(dat1, interaction.plot(fert, crop, yield))
+</pre>
+</font>
+Now do the same thing with the second data set to see the
+difference. 
+<p></p>
+The no-interaction model (also called an <b>additive</b> model)
+may be specified in R as follows.
+<font color="red">
+<pre>
+(fit = lm(yield~fert+crop,dat1))
+</pre>
+</font>
+In a model like $\mu+\alpha_i+\beta_j+\gamma_{ij}$ we say
+that $\alpha_i$ and $\beta_j$'s are the <b>main
+effects</b>, while $\gamma_{ij}$'s are the <b>interaction
+effects</b>. If we have more inputs, we may have <b>higher order
+interaction</b>s also. For instance, if we have three factor
+inputs, then we have have a <b>second order interaction
+effect</b> called $\gamma_{ijk}.$ The <b>order</b> is always
+one less than the number of subscripts. 
+
+<h2><a
+name="Nested (or hierarchical) models">Nested (or hierarchical) models</a></h2>
+So far, whenever there are mutiple factors going into the box
+diagram, we are taking Cartesian product of all the levels. For
+instance, if one factor is <i>Gender</i> and another
+is <i>Smoker</i>, then we have $2\times 2 = 4$ combinations:
+(Male, Yes), (Male, No), (Female, Yes,), (Female, No).
+<p></p>
+There are situations, however, where a tree-like structure is
+more appropriate. One factor, for example, could
+be <i>Subject</i> and another could be <i>College</i>. If the
+subjects are Math, History and Painting, then it is quite likely
+that some of the colleges do not teach all the subjects, <i>e.g.</i>,
+Govt. Art College doesn't teach Math, and ISI doesn't teach
+painting. So we have a nested structure:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here it is meaningless to ask for the main effect of ISI, since
+it only comes under Math. Here say that <i>College</i> is nested
+under <i>Subject</i>. 
+<p></p>
+Mathematically, we have the main effect for the higher factor
+(<i>Subject</i>, in this case) and the interaction effect:
+$$
+y_{ijk} = \mu + \alpha_i + \gamma_{ij} + \epsilon_{ijk}.
+$$
+In R formula syntax, this is 
+<font color="red">
+<pre>
+y ~ subject + subject:college
+</pre>
+</font>
+
+<h2><a
+name="Regression model">Regression model</a></h2>
+
+<h3><a
+name="Fitting a straight line">Fitting a straight line</a></h3>
+Suppose that we have a spring from which we can hang known
+weights and measure the resulting length of the spring. We want
+to estimate the spring constant. The model here is 
+$$
+y_i = \alpha + \beta x_i + \epsilon_i.
+$$
+Here $\alpha$ is the initial length of the spring (assumed
+unknown) and $\beta$ is sprint constant that we are after. 
+A typical data set is in <a
+href="spring.txt">spring.txt</a>. We can analyse
+it as follows.
+<font color="red">
+<pre>
+dat = read.table('spring.txt',head=T)
+fit = lm(len ~ wt, dat)
+</pre>
+</font>
+Of course, in practice, the initial length of the spring would be
+known. Say it is 5. Then the model becomes
+$$
+(y_i-5) = \beta x_i + \epsilon_i.
+$$
+Here we change the formula used in R:
+<font color="red">
+<pre>
+fit = lm(len-5 ~ wt-1, dat)
+</pre>
+</font>
+
+
+<h3><a
+name="Fitting a polynomial">Fitting a polynomial</a></h3>
+Suppose that you want to fit a quadratic regression model, <i>i.e.</i>,
+$$
+y_i = \alpha + \beta x_i + \gamma x_i^2 + \epsilon_i.
+$$
+You might be tempted to write 
+<font color="red">
+<pre>
+fit = lm(y~x+x^2,dat)
+</pre>
+</font>
+This won't work. Actually, it will still fit a straight line. You need to write
+<font color="red">
+<pre>
+fit = lm(y~x+I(x^2),dat)
+</pre>
+</font>
+
+
+<h2><a
+name="ANCOVA model">ANCOVA model</a></h2>
+Suppose that we want to study the relation between height and
+weight for both men and women. In particular, we want to model
+the situation where the regression lines are parallel (<i>i.e.</i>,
+share the slope, while the intercept may be different). 
+<font color="red">
+<pre>
+lm(weight ~ gender + height-1)
+</pre>
+</font>
+If we want allow different slopes with same intercept, then
+<font color="red">
+<pre>
+lm(weight ~ gender:height)
+</pre>
+</font>
+
+<h2><a
+name="Nonstandard models">Nonstandard models</a></h2>
+The formula technique is good for specifying most commonly used
+models. Ocassionally we need to specify a nonstandard model. A
+weighing design is one such example. Then we can always construct
+the design matrix directly, and specify <code>y~mat-1</code> as a
+formula, where <code>mat</code> is our design matrix.
+We have already seen an example of this for the weighing design
+example in the introduction.
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<i><b>These exercises are some of the most important ones in this
+course. These are the types of problems where you will be
+using linear models in real life. I have deliberately used "real
+life" language (as opposed to a statistical one) in describing
+the data. Even preparing the data set to be read by R is
+irritating in most cases. But still do them. They will help you
+in your data analysis career far more than memorising complicated theorems.</b></i>
+
+<ol type="">
+
+<li>Consider the 1-way ANOVA model $y_{ij} = \mu + \alpha_i +
+\epsilon_i$ where $i=1,2,3,$ and $j=1,2.$  Generate such a data
+set using R where $\epsilon_{ij}$'s are
+IID $N(0,0.2).$ Take $\alpha_i$'s as you want. Create
+a data set of the proper layout, and apply <code>lm</code> to
+estimate $\alpha_i$'s. </li>
+
+<li>Write
+down the design matrix in the above problem. What is its rank?
+Use the <code>model.matrix</code> command to check the design
+matrix used by R. How does it differ from what you wrote down?
+Guess what design matrix R would use if $i=1,...,4$
+and $j=1,2.$</li>
+
+<li>
+Here we consider an inheritance study on beef animals of several sire 
+groups (males) each 
+mated to a separate group of dams (females). Birth weights of male progeny calves 
+were recorded. 
+The data consist of birth weights (in lbs) of eight 
+male calves in each of five sire groups. The sire groups
+are numbered as 
+177, 200, 201, 202 and 203. In each group there are 8 sires. 
+The birth weight of the progeny of each sire 
+is listed in the column for its group in the following table. 
+ 
+<center>
+<table style="" border="1"> 
+
+<tr>
+<th colspan="5" rowspan="">Sire groups</th>
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">177</th><th colspan="" rowspan="">200</th><th colspan="" rowspan="">201</th><th colspan="" rowspan="">202</th><th colspan="" rowspan="">203</th>
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">61</td> 
+<td colspan="" rowspan="">75</td> 
+<td colspan="" rowspan="">58</td> 
+<td colspan="" rowspan="">57</td> 
+<td colspan="" rowspan="">59</td>
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">100</td> 
+<td colspan="" rowspan="">102</td> 
+<td colspan="" rowspan="">60</td> 
+<td colspan="" rowspan="">56</td> 
+<td colspan="" rowspan="">46</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">56</td> 
+<td colspan="" rowspan="">95</td> 
+<td colspan="" rowspan="">60</td> 
+<td colspan="" rowspan="">67</td> 
+<td colspan="" rowspan="">120</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">113</td> 
+<td colspan="" rowspan="">103</td> 
+<td colspan="" rowspan="">57</td> 
+<td colspan="" rowspan="">59</td> 
+<td colspan="" rowspan="">115</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">99</td> 
+<td colspan="" rowspan="">98</td> 
+<td colspan="" rowspan="">57</td> 
+<td colspan="" rowspan="">58</td> 
+<td colspan="" rowspan="">115</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">103</td> 
+<td colspan="" rowspan="">115</td> 
+<td colspan="" rowspan="">59</td> 
+<td colspan="" rowspan="">121</td> 
+<td colspan="" rowspan="">93</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">75</td> 
+<td colspan="" rowspan="">98</td> 
+<td colspan="" rowspan="">54</td> 
+<td colspan="" rowspan="">101</td> 
+<td colspan="" rowspan="">105</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">62</td> 
+<td colspan="" rowspan="">94</td> 
+<td colspan="" rowspan="">100</td> 
+<td colspan="" rowspan="">101</td> 
+<td colspan="" rowspan="">75</td>
+</tr> 
+
+<tr>
+<th colspan="5" rowspan="">Source:Kuehl (2000)</th>
+</tr>
+
+</table>
+</center> 
+Model birth weight in terms of the sire effect. Use R to fit your model.
+</li>
+
+<li>
+An experiment, 
+described in Milliken and Johnson (1992)  was 
+conducted by a company to compare between the performances of 3 
+different brands of machines when operated by the company's own 
+personnel. 6 employees were selected at random and each of them had to 
+operate each machine 3 different times. The data set given below 
+consists of 
+overall scores that take into account both the quantity and quality of 
+the output. 
+
+
+<center>
+<table style="" border="1"> 
+
+<tr>
+<th colspan="" rowspan=""></th> 
+<th colspan="3" rowspan="">Machine 1</th><th colspan="3" rowspan="">Machine 2</th><th colspan="3" rowspan="">Machine 3</th> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">Operator</th> 
+<th colspan="" rowspan="">1</th><th colspan="" rowspan="">2</th><th colspan="" rowspan="">3</th> 
+<th colspan="" rowspan="">1</th><th colspan="" rowspan="">2</th><th colspan="" rowspan="">3</th> 
+<th colspan="" rowspan="">1</th><th colspan="" rowspan="">2</th><th colspan="" rowspan="">3</th> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">1</th> 
+<td colspan="" rowspan="">52</td> 
+<td colspan="" rowspan="">52.8</td> 
+<td colspan="" rowspan="">53.1</td> 
+<td colspan="" rowspan="">62.1</td> 
+<td colspan="" rowspan="">62.6</td> 
+<td colspan="" rowspan="">64</td> 
+<td colspan="" rowspan="">67.5</td> 
+<td colspan="" rowspan="">67.2</td> 
+<td colspan="" rowspan="">66.9</td> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">2</th> 
+<td colspan="" rowspan="">51.8</td> 
+<td colspan="" rowspan="">52.8</td> 
+<td colspan="" rowspan="">53.1</td> 
+<td colspan="" rowspan="">59.7</td> 
+<td colspan="" rowspan="">60</td> 
+<td colspan="" rowspan="">59</td> 
+<td colspan="" rowspan="">61.5</td> 
+<td colspan="" rowspan="">61.7</td> 
+<td colspan="" rowspan="">62.3</td> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">3</th> 
+<td colspan="" rowspan="">60</td> 
+<td colspan="" rowspan="">60.2</td> 
+<td colspan="" rowspan="">58.4</td> 
+<td colspan="" rowspan="">68.6</td> 
+<td colspan="" rowspan="">65.8</td> 
+<td colspan="" rowspan="">69.7</td> 
+<td colspan="" rowspan="">70.8</td> 
+<td colspan="" rowspan="">70.6</td> 
+<td colspan="" rowspan="">71</td> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">4</th> 
+<td colspan="" rowspan="">51.1</td> 
+<td colspan="" rowspan="">52.3</td> 
+<td colspan="" rowspan="">50.3</td> 
+<td colspan="" rowspan="">63.2</td> 
+<td colspan="" rowspan="">62.8</td> 
+<td colspan="" rowspan="">62.2</td> 
+<td colspan="" rowspan="">64.1</td> 
+<td colspan="" rowspan="">66.2</td> 
+<td colspan="" rowspan="">64</td> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">5</th> 
+<td colspan="" rowspan="">50.9</td> 
+<td colspan="" rowspan="">51.8</td> 
+<td colspan="" rowspan="">51.4</td> 
+<td colspan="" rowspan="">64.8</td> 
+<td colspan="" rowspan="">65</td> 
+<td colspan="" rowspan="">65.4</td> 
+<td colspan="" rowspan="">72.1</td> 
+<td colspan="" rowspan="">72</td> 
+<td colspan="" rowspan="">71.1</td> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan="">6</th> 
+<td colspan="" rowspan="">46.4</td> 
+<td colspan="" rowspan="">44.8</td> 
+<td colspan="" rowspan="">49.2</td> 
+<td colspan="" rowspan="">43.7</td> 
+<td colspan="" rowspan="">44.2</td> 
+<td colspan="" rowspan="">43</td> 
+<td colspan="" rowspan="">62</td> 
+<td colspan="" rowspan="">61.4</td> 
+<td colspan="" rowspan="">60.5</td> 
+
+</tr> 
+
+<tr>
+<th colspan="10" rowspan="">Source: Milliken and Johnson (1992) 
+</th>
+</tr>
+</table>
+</center> 
+The ultimate aim is to model the score in terms of machine and operator
+effects (ignoring time). You have to use R to create an
+interaction plot and visually check if there is any interaction
+between machine and operator effects.
+</li>
+
+<li>
+In this data set from Kuehl (2000) our interest lies in comparing two 
+standard pesticide methods. In particular, we want to compare if the 
+amount of residue left on cotton plant leaves is the same for the two 
+methods, which we shall call methods 1 and 2. 
+ To test this, 6 batches of plants were sampled from the field. 2 plants 
+ were used in the experiment from each batch. Thus, there were 12 plants 
+ in the experiment. The 
+plants inside each batch were from the same field plot. 
+Method 1 was applied to 3 randomly selected batches, and the 
+remaining 3 batches were given method 2. The amounts of residue on the leaves 
+were measured after a specified amount of time for each of the 12 plants, 
+resulting in the following data set. 
+ 
+<center>
+<table style="" border="1"> 
+
+<tr>
+<th colspan="3" rowspan="">Method 1</th><th colspan="3" rowspan="">Method 2</th>
+</tr> 
+
+<tr> 
+
+<th colspan="" rowspan="">Batch 1</th><th colspan="" rowspan="">Batch 2</th> 
+<th colspan="" rowspan="">Batch 3</th><th colspan="" rowspan="">Batch 4</th> 
+<th colspan="" rowspan="">Batch 5</th><th colspan="" rowspan="">Batch 6</th> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">120</td><td colspan="" rowspan=""> 120</td><td colspan="" rowspan=""> 140</td><td colspan="" rowspan=""> 71</td><td colspan="" rowspan=""> 70</td><td colspan="" rowspan=""> 63</td> 
+
+</tr> 
+
+<tr>
+<td colspan="" rowspan="">110</td><td colspan="" rowspan=""> 100</td><td colspan="" rowspan=""> 130</td><td colspan="" rowspan=""> 71</td><td colspan="" rowspan=""> 76</td><td colspan="" rowspan=""> 68</td> 
+
+</tr> 
+
+<tr>
+<th colspan="6" rowspan="">Source:Kuehl (2000)</th>
+</tr>
+</table>
+</center> 
+Fit a suitable linear model to this data using R. 
+</li>
+
+<li>
+The data set for this example comes from Milliken and Johnson (1984). It is 
+an agricultural data set obtained from a  design laid out as 
+follows. We want to compare between four fertilizers and two varieties of 
+crops. We have 4 (whole) plots to try these on. These are grouped into two 
+blocks. The two varieties are assigned randomly to the two (whole) plots 
+in each group. Each (whole) plot is split into 4 subplots, and the 4 
+fertilizers are applied randomly to these.
+<p></p>
+Such a design is called a <b>split plot design</b>.
+ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/splitplot.png"></th>
+</tr>
+<tr>
+<th>Split plot layout of the experiment</th>
+</tr>
+</table>
+</center> 
+The yield of crop for each 
+subplot is noted. So we get the following data set. 
+ 
+<center>
+<table style="" border="1"> 
+
+<tr>
+<th colspan="" rowspan=""></th><th colspan="2" rowspan="">Block 1</th><th colspan="2" rowspan="">Block 
+2</th>
+</tr> 
+
+<tr> 
+
+<th colspan="" rowspan="">Fertilizer</th> 
+<th colspan="" rowspan="">Variety 1</th><th colspan="" rowspan="">Variety 2</th> 
+<th colspan="" rowspan="">Variety 1</th><th colspan="" rowspan="">Variety 2</th> 
+
+</tr> 
+
+<tr>
+<th colspan="" rowspan=""> 1 </th> 
+<td colspan="" rowspan="">35.4</td> 
+<td colspan="" rowspan="">37.9</td> 
+<td colspan="" rowspan="">41.6</td> 
+<td colspan="" rowspan="">40.3</td> 
+
+</tr>
+<tr>
+<th colspan="" rowspan=""> 2 </th> 
+<td colspan="" rowspan="">36.7</td> 
+<td colspan="" rowspan="">38.2</td> 
+<td colspan="" rowspan="">42.7</td> 
+<td colspan="" rowspan="">41.6</td> 
+
+</tr>
+<tr>
+<th colspan="" rowspan=""> 3 </th> 
+<td colspan="" rowspan="">34.8</td> 
+<td colspan="" rowspan="">36.4</td> 
+<td colspan="" rowspan="">43.6</td> 
+<td colspan="" rowspan="">42.8</td> 
+
+</tr>
+<tr>
+<th colspan="" rowspan=""> 4 </th> 
+<td colspan="" rowspan="">39.5</td> 
+<td colspan="" rowspan="">40</td> 
+<td colspan="" rowspan="">44.5</td> 
+<td colspan="" rowspan="">47.6</td> 
+
+</tr> 
+
+<tr>
+<th colspan="5" rowspan="">Milliken and Johnson (1984)</th> 
+
+</tr>
+</table>
+</center> 
+
+</li>
+
+<li>
+This example is based on a clinical data set presented in Hocking (2003), 
+where a pharmaceutical firm wants to test a new drug for a particular 
+disease. The response is a measure of the improvement in the patients' status. 
+ A sample of 3 
+clinics is selected at random from a large population of clinics. From 
+each clinic a sample of 10 patients with the particular disease are 
+selected. The drug is applied to each patient and we record both the 
+response ($Y$) of the drug as well as a relevant physical 
+characteristic ($Z$) for each 
+patient. This leads to the following data set. 
+<center>
+<table style="" border="1"> 
+
+<tr>
+<th colspan="2" rowspan="">Clinic 1</th><th colspan="2" rowspan="">Clinic 2</th><th colspan="2" rowspan="">Clinic 3</th>
+</tr> 
+
+<tr> 
+
+<th colspan="" rowspan="">Y</th><th colspan="" rowspan="">Z</th> 
+<th colspan="" rowspan="">Y</th><th colspan="" rowspan="">Z</th> 
+<th colspan="" rowspan="">Y</th><th colspan="" rowspan="">Z</th> 
+
+</tr> 
+
+<tr> 
+
+<td colspan="" rowspan="">11</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">0</td> 
+<td colspan="" rowspan="">16</td> 
+<td colspan="" rowspan="">13</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">8</td> 
+<td colspan="" rowspan="">0</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">2</td> 
+<td colspan="" rowspan="">13</td> 
+<td colspan="" rowspan="">10</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">2</td> 
+<td colspan="" rowspan="">7</td> 
+<td colspan="" rowspan="">3</td> 
+<td colspan="" rowspan="">11</td> 
+<td colspan="" rowspan="">18</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">14</td> 
+<td colspan="" rowspan="">8</td> 
+<td colspan="" rowspan="">8</td> 
+<td colspan="" rowspan="">1</td> 
+<td colspan="" rowspan="">9</td> 
+<td colspan="" rowspan="">5</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">19</td> 
+<td colspan="" rowspan="">11</td> 
+<td colspan="" rowspan="">18</td> 
+<td colspan="" rowspan="">18</td> 
+<td colspan="" rowspan="">21</td> 
+<td colspan="" rowspan="">23</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">8</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">16</td> 
+<td colspan="" rowspan="">12</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">10</td> 
+<td colspan="" rowspan="">13</td> 
+<td colspan="" rowspan="">19</td> 
+<td colspan="" rowspan="">14</td> 
+<td colspan="" rowspan="">12</td> 
+<td colspan="" rowspan="">5</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">1</td> 
+<td colspan="" rowspan="">8</td> 
+<td colspan="" rowspan="">9</td> 
+<td colspan="" rowspan="">12</td> 
+<td colspan="" rowspan="">16</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">11</td> 
+<td colspan="" rowspan="">8</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">1</td> 
+<td colspan="" rowspan="">7</td> 
+<td colspan="" rowspan="">1</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3</td> 
+<td colspan="" rowspan="">0</td> 
+<td colspan="" rowspan="">15</td> 
+<td colspan="" rowspan="">9</td> 
+<td colspan="" rowspan="">12</td> 
+<td colspan="" rowspan="">20</td> 
+
+</tr> 
+
+<tr>
+<th colspan="6" rowspan="">Hocking (2003)</th> 
+
+</tr>
+
+</table>
+</center> 
+
+
+</li>
+
+<li>
+After drying beech wood the humidity level at any given point inside a 
+plank typically 
+depends on the the depth of the point. In this example we want to study 
+the relation between the humidity level (measured as a percentage) with 
+the depth for 20 different randomly selected beech planks. For each plank 
+we measure the humidity level  for 5 depths and 3 widths. The 
+resulting data set is shown below. 
+ 
+<center>
+<table style="" border="1"> 
+
+<tr> 
+
+<th colspan="3" rowspan="">Depth=1</th> 
+<th colspan="3" rowspan="">Depth=3</th> 
+<th colspan="3" rowspan="">Depth=5</th> 
+<th colspan="3" rowspan="">Depth=7</th> 
+<th colspan="3" rowspan="">Depth=9</th> 
+
+</tr> 
+
+<tr>
+<th colspan="15" rowspan="">Widths</th>
+</tr> 
+
+<tr> 
+
+<th colspan="" rowspan="">1</th> 
+<th colspan="" rowspan="">2</th> 
+<th colspan="" rowspan="">3</th> 
+<th colspan="" rowspan="">1</th> 
+<th colspan="" rowspan="">2</th> 
+<th colspan="" rowspan="">3</th> 
+<th colspan="" rowspan="">1</th> 
+<th colspan="" rowspan="">2</th> 
+<th colspan="" rowspan="">3</th> 
+<th colspan="" rowspan="">1</th> 
+<th colspan="" rowspan="">2</th> 
+<th colspan="" rowspan="">3</th> 
+<th colspan="" rowspan="">1</th> 
+<th colspan="" rowspan="">2</th> 
+<th colspan="" rowspan="">3</th> 
+
+</tr> 
+
+<tr> 
+
+<td colspan="" rowspan="">3.4</td> 
+<td colspan="" rowspan="">4.1</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">4.2</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">5.6</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">6.2</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">4.2</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">6.2</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">5.6</td> 
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">6.3</td> 
+<td colspan="" rowspan="">6.4</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">4.4</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">7.1</td> 
+<td colspan="" rowspan="">6.6</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">6.5</td> 
+<td colspan="" rowspan="">6.4</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.7</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">4.2</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">4.1</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">3.5</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">7.3</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">6.3</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">6.6</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">5.6</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">7.1</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">5.3</td> 
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">4.2</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.8</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">5.3</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">5.6</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">4</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.6</td> 
+<td colspan="" rowspan="">3.8</td> 
+<td colspan="" rowspan="">3</td> 
+<td colspan="" rowspan="">4.1</td> 
+<td colspan="" rowspan="">5.1</td> 
+<td colspan="" rowspan="">3.9</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.3</td> 
+<td colspan="" rowspan="">3.8</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">6.5</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">8.7</td> 
+<td colspan="" rowspan="">8.9</td> 
+<td colspan="" rowspan="">7.5</td> 
+<td colspan="" rowspan="">9.5</td> 
+<td colspan="" rowspan="">7.4</td> 
+<td colspan="" rowspan="">7.7</td> 
+<td colspan="" rowspan="">7.9</td> 
+<td colspan="" rowspan="">7</td> 
+<td colspan="" rowspan="">7.3</td> 
+<td colspan="" rowspan="">6.6</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">5.9</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">6.3</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4.2</td> 
+<td colspan="" rowspan="">4.3</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">5.1</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">6.7</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">6.2</td> 
+<td colspan="" rowspan="">7</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">6.4</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">5.1</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">6.5</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">4</td> 
+<td colspan="" rowspan="">8.8</td> 
+<td colspan="" rowspan="">7.5</td> 
+<td colspan="" rowspan="">4.2</td> 
+<td colspan="" rowspan="">9.1</td> 
+<td colspan="" rowspan="">8.4</td> 
+<td colspan="" rowspan="">4.9</td> 
+<td colspan="" rowspan="">8.9</td> 
+<td colspan="" rowspan="">7.9</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">3.5</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">6.2</td> 
+<td colspan="" rowspan="">7</td> 
+<td colspan="" rowspan="">6.2</td> 
+<td colspan="" rowspan="">6.7</td> 
+<td colspan="" rowspan="">7.4</td> 
+<td colspan="" rowspan="">6.8</td> 
+<td colspan="" rowspan="">6.4</td> 
+<td colspan="" rowspan="">7.3</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">4.9</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">5.5</td> 
+<td colspan="" rowspan="">6.4</td> 
+<td colspan="" rowspan="">6.5</td> 
+<td colspan="" rowspan="">7.1</td> 
+<td colspan="" rowspan="">8.4</td> 
+<td colspan="" rowspan="">8.4</td> 
+<td colspan="" rowspan="">7.5</td> 
+<td colspan="" rowspan="">8.9</td> 
+<td colspan="" rowspan="">9.1</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">8.1</td> 
+<td colspan="" rowspan="">9.2</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">7.5</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">6.6</td> 
+<td colspan="" rowspan="">5.9</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">7.6</td> 
+<td colspan="" rowspan="">6.7</td> 
+<td colspan="" rowspan="">6.2</td> 
+<td colspan="" rowspan="">7.8</td> 
+<td colspan="" rowspan="">6.7</td> 
+<td colspan="" rowspan="">6.6</td> 
+<td colspan="" rowspan="">7.7</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">5.3</td> 
+<td colspan="" rowspan="">5.8</td> 
+<td colspan="" rowspan="">3.9</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">5</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.5</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">5.3</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">3.9</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">6.9</td> 
+<td colspan="" rowspan="">5.1</td> 
+<td colspan="" rowspan="">7.4</td> 
+<td colspan="" rowspan="">8.6</td> 
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">7.8</td> 
+<td colspan="" rowspan="">8.8</td> 
+<td colspan="" rowspan="">5.2</td> 
+<td colspan="" rowspan="">7.5</td> 
+<td colspan="" rowspan="">7.5</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">5.7</td> 
+<td colspan="" rowspan="">5.4</td> 
+<td colspan="" rowspan="">4.7</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">3.8</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.3</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">3.5</td> 
+<td colspan="" rowspan="">4.8</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">4.4</td> 
+<td colspan="" rowspan="">4.3</td> 
+<td colspan="" rowspan="">3.4</td> 
+<td colspan="" rowspan="">3.8</td> 
+<td colspan="" rowspan="">3.7</td> 
+<td colspan="" rowspan="">3.2</td> 
+
+</tr>
+<tr> 
+
+<td colspan="" rowspan="">6.1</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">4.7</td> 
+<td colspan="" rowspan="">7.4</td> 
+<td colspan="" rowspan="">6.3</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">7.7</td> 
+<td colspan="" rowspan="">7.1</td> 
+<td colspan="" rowspan="">6</td> 
+<td colspan="" rowspan="">6.7</td> 
+<td colspan="" rowspan="">6.5</td> 
+<td colspan="" rowspan="">6.3</td> 
+<td colspan="" rowspan="">4.6</td> 
+<td colspan="" rowspan="">5.1</td> 
+<td colspan="" rowspan="">4.2</td> 
+
+</tr> 
+
+<tr>
+<th colspan="6" rowspan="">Netmaster</th> 
+
+</tr>
+</table>
+</center> 
+Make an interaction plot to visually check interaction between
+depth and width.
+</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/basicex1.png"></fieldset>
+</center>
+</li>
+
+<li>Redo the above problem with the extra condition: $\beta_0-\alpha_0 = (\beta_1-a_1) x_0.$</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/linmod/types.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmtypes1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

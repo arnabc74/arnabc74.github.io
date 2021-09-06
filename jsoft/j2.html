@@ -1,0 +1,488 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Learning J">Learning J</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Monads and dyads">Monads and dyads</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Dyads">Dyads</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Right-to-left">Right-to-left</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Cryptic symbols">Cryptic symbols</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Forks and compositions">Forks and compositions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Monadic case">Monadic case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Dyadic case">Dyadic case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tacit programming">Tacit programming</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Learning J">Learning J</a></h1>
+
+<h2><a
+name="Monads and dyads">Monads and dyads</a></h2>
+In the last page we learned about some nice things to expect from
+J. Now, nothing comes without a price. A language needs to
+restrict the freedom of a programmer in various ways to make the
+good things possible. The astute reader may have already
+discerned that the idea of applying a function to specific level
+of  a tree is meaningful only if the tree is balanced (<i>i.e.</i>, the
+number of children of a node equals the number of chidren for its
+siblings. This is the first restriction J puts. To ensure this
+restriction for the outcome of application of a function we need
+yet another restriction: the output shape of a function must depend on
+only the input shape (and not on the input values). 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/tree2.5.png"></th>
+</tr>
+<tr>
+<th>The shape of the green triangle
+determines the 
+shape of purple triangle</th>
+</tr>
+</table>
+</center>
+
+Here is the next one: a function can have
+either one or two arguments. In operation parlance, these are
+called unary and binary operators. But J call them,
+respectively, <font color="#ff0000">monad</font>s and <font color="#ff0000">dyad</font>s. We have
+already learned about how monads behave. Dyads add a second level
+of complication.
+
+<h2><a
+name="Dyads">Dyads</a></h2>
+Recall that a single application of $f$ to $x$ may
+involve implicit loops to be launched causing multiple
+invocations. For example, if $x$ is a 1-dimensional array of
+length 10, then $sin(x)$ is a single application, but
+actually consists of 10 invocations. The specified rank
+determines how an application is split up into invocations.
+<p></p>
+The situation is similar for dyads. We have two ranks, one for
+each argument. So the two trees may be split up like these:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Notice that the top parts (<i>i.e.</i> the frames) of the two trees are different. So we
+cannot proceed to combine the gren and purple parts with $f$
+immediately. However,
+the frame of the second tree starts out like that the first
+tree (<i>i.e.</i>, the red parts are the same). So the second tree may
+"sprout" to match the shape of the first:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d2.png"></th>
+</tr>
+<tr>
+<th>Each leaf node "sprouts" by replicating</th>
+</tr>
+</table>
+</center>
+Now we may apply $f.$ If a purple tree and a green tree are
+combined by $f$ into a blue tree:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+then the final result will be:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/d4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+
+<h2><a
+name="Right-to-left">Right-to-left</a></h2>
+
+Since functions are either monads or dyads, so they are much like
+unary and binary operations that we learn in school. Indeed, J
+uses exactly the same syntax. Thus, instead of
+writing $f(x,y)$ we write <code>x f
+y</code>. Similarly, $f(x)$ is <code>f x</code>. In
+arithmetic, we have two types of minuses, unary and binary, much
+to the confusion of kids. J
+keeps up the tradition (both of arithmetic and of confusion) by allowing a same symbol to denote a
+monad as well as dyad. Usually, the monad and the dyad denoted by
+the same symbol are related, though this is not a requirement. 
+
+
+<p></p>
+
+
+With all functions being written as binary and unary operators,
+it is no waonder that J has large number of these. So to keep the
+order of evaluation unambiguous we need to either put lots of
+parentheses or we need to have some convention like precedence
+and associativity. Even with as few operations as just +, -, *
+and /, untrained kids find it difficult to remember rules of
+precedence.  You can imagine
+how much more confusing it is going to be with many more
+operators. Well, J has solved the problem by doing away with
+precedence altogether (and thus confusing  trained adults). The J dictum is "always proceed from right
+to left". Before you  and wonder about why we should proceed in
+this "reverse" way, and suspect some Arabic influence, 
+let me point out that this is how we do it in math most of the
+time: $(f\circ g)(x) = f(g(x))$ means apply $g$ first,
+and then $f.$ 
+
+<h2><a
+name="Cryptic symbols">Cryptic symbols</a></h2>
+J justly prides itself on smart ways of combining existing
+operation to produce new ones. This is much like the way modern
+man writes numbers as opposed to ancient Romans. Ancient Romans
+assigned symbols more or less arbitrily to whatever number they
+needed, like I, V, X and C. But modern man has a systematic
+approach using a radix and expressing everything by combining
+powers of 10. If you want to express a hundred, the ancient Roman
+just used a letter C, while modern man would first express the
+number as square of 10, and notice that it is 
+<blockquote>
+
+<font color="#0000ff">1</font>$\times 10^2+$ <font color="#0000ff">0</font>$ \times 10^1 + $<font color="#0000ff">0</font>$\times 10^0.$
+</blockquote>
+The ancient Roman must have thought us crazy that we need so much
+math to just express a number. But of course we know the
+advantage. However, even we would be driven crazy if we have to
+write the above expression in full everyime we need to express
+a hundred. So we need an abbreviation: we have (arbitrary)
+symbols for all the possible coefficients (0,1,2,...,9) and then
+simply list the coefficients side by side. Is it really simple?
+Yes, when you see that even a kid can do it. No, when we remember
+that it took centuries for this system to evolve. 
+
+<p></p>
+Well, that is basically what happens for J also. J has a clever way of
+expressing many things by combining some basic objects. Arbitrary
+names of assigned to only the basic entities, and all other
+derived entities are expressed in their terms.  Without
+abbreviations, however, this would not be of much practical
+value. So J uses very short names for its basic functions (at
+most two characters).
+
+<h2><a
+name="Forks and compositions">Forks and compositions</a></h2>
+We have learned about forks and compositions in the last page. These are
+ways to combine existing functions to create new functions. At
+first glance they may appear to be merely some convenient
+shortcuts. But actually they play an important role in J. We
+shall discuss this now.
+
+<h3><a
+name="Monadic case">Monadic case</a></h3>
+Here
+is a quick reminder for the monadic case (<font color="red"><code>y</code></font> denotes the argument):
+<ul>
+
+<li>If <font color="red"><code>r</code></font> is the fork  <font color="red"><code>r=:f g h</code></font> then <font color="red"><code>r y</code></font> means:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fork.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+<li>If <font color="red"><code>s</code></font> is the  composition  <font color="red"><code>s=:f @ g</code></font> then <font color="red"><code>s
+y</code></font> means:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/comp.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+</ul>
+The power of these  abbreviations comes from the fact that
+since all J functions are either mondas or dyads, hence the inner
+nodes of any
+syntax trees must have degree either 1 or 2:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ex1.png"></th>
+</tr>
+<tr>
+<th>0, 2, 4, 7 are dyads, rest are monads</th>
+</tr>
+</table>
+</center>
+So the tree may be
+constructed by just piecing together forks and
+compositions. For each dyad, we need a fork, and for each monad a
+composition.  For the example shown above we have (using the
+right-to-left compuation order of J):
+<span class="j">
+<pre>
+1 0 3 2  5@(8 7 9) 4 6
+</pre>
+</span>
+It might look like magic. It is! But just like all magics in real
+life, there is a way to practice them. The tree technique is one
+such. 
+<p></p> 
+This  example, however, represents the situation where 
+all the leaf nodes 
+correspond to monads, <i>e.g.</i>, in $\sin y + \cos y$ the leaf
+nodes are $\sin$ and $\cos$, both monads.
+<p></p>
+
+Now, that may not always be the case, because
+<ol type="">
+<li>a leaf node may be just some constant, as
+in $5 + \sin y$ the leaf node for 5 is holding a constant.</li>
+
+<li> A leaf node may be $y$ itself, as in $y -\sin y.$</li>
+</ol>
+ J provides convenient
+techniques to cover these in the case where the troublesome leaf
+node is the left child of its parent:
+<ol type="">
+<li>
+If the leaf node contains a
+constant, then just write it, and J will accept it as a constant
+function. For example, <font color="red"><code>(5+sin)</code></font> is a valid fork.</li>
+
+<li>
+In the second case, where the a  leaf node contains $y$,
+there are two possible solutions. You may imagine $y$
+as $id(y)$ where $id$ is the identity function. For
+instance, $y-\sin y$  becomes $id(y)-\sin y,$ which
+is a fork. This works irrespective of whether the $y$ occurs
+in the left or the right child. However, if it occurs in the left
+child, then there is a shortcut:  just omit the $y$, and 
+J will understand. With this,  $y-\sin y$ becomes
+ <font color="red"><code>(-sin)</code></font>. Such lop-sided forks are
+called <font color="#ff0000">hook</font>s in J.
+</li>
+</ol>
+
+In the above solutions,  J shows a bias in favor of the left child.
+This may bother you. If the parent is a commutative operation, then
+the children may be swapped (<i>e.g.</i>, $\sin(y) + 3$ may be written as
+$3+ \sin(y)$), but what if it is not? Don't worry. J has got
+you covered there too! J can swap
+the children of any dyad by using a <font color="red"><code>~</code></font>. Thus, <font color="red"><code>4 -~ 5</code></font>
+is the same as <font color="red"><code>5 - 4</code></font>. If you want to
+express $\sin(y)-5$ using a fork, then <font color="red"><code>sin - 5</code></font> won't
+work, but <font color="red"><code>5-~sin</code></font> will. Similarly, $\sin(y)-y$ may be
+abbreviated to the hook <font color="red"><code>-~sin</code></font>.
+<p></p>
+This discussion was about the monadic behaviour of forks. Similar
+ideas hold for dyads as well. 
+<h3><a
+name="Dyadic case">Dyadic case</a></h3>
+
+<ul>
+
+<li>If <font color="red"><code>r</code></font> is the fork  <font color="red"><code>r=:f g h</code></font> then <font color="red"><code>x r y</code></font> means:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fork2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+<li>If <font color="red"><code>s</code></font> is the  composition  <font color="red"><code>s=:f @ g</code></font> then <font color="red"><code>x s y</code></font> means:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/comp2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+</ul>
+As in the monadic case, any syntax tree may be built out of
+these. If the leaf nodes are all dyadic, and expect the same
+arguments, then everything is fine. However, that need not always
+be the case. Some of them may be monadic, or need a constant
+argument, or only $x$ or only $y.$  These are tackled
+as follows.
+<ul>
+
+<li>J provides two convenience functions <font color="red"><code>]</code></font>
+and <font color="red"><code>[</code></font>. Used as dyads, they return, respectively, the
+right and left arguments.</li>
+
+<li>Any constant leaf node may be handled as in the monadic
+case, as long as it is the left child.</li>
+
+<li>We can use a hook here as well. The hook <font color="red"><code>h=: f g</code></font> when
+used dyadically as <font color="red"><code>x h y</code></font> will mean:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hook2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</li>
+
+</ul>
+
+
+<h3><a
+name="Tacit programming">Tacit programming</a></h3>
+It is possible to build any syntax tree of dyads and monads using
+forks (hooks) and compositions. This is an example of what is called <font color="#ff0000">tacit
+programming</font> in J: creating new functions by combining
+existing functions via operators without explicitly mentioning
+the arguments. 
+<p></p>
+A powerful feature of J as it is, one must not go overboard with
+it. 
+Creating a huge syntax tree by repeated
+use of forks (hooks) and compositions is not desirable from
+the viewpoint of
+readability. But tacit programming helps a lot for
+smaller trees.
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

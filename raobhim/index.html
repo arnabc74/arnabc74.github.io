@@ -1,0 +1,304 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul/>
+<hr/>
+Here is a list of videos I have created explaining parts of the
+rather badly written Linear Algebra book by Rao and
+Bhimasankaram:
+<center>
+<table style="" border="1">
+
+<tr>
+<td colspan="" rowspan="">
+
+<ol type="">
+
+<li>
+<a href="https://youtu.be/-dlDnyWDCMg">1.6</a>
+</li>
+
+<li>
+<a href="https://youtu.be/K7HtUlThXeM">5.1 and 5.2</a>
+</li>
+
+<li>
+<a href="https://youtu.be/LtuH_Hz4zog">5.3</a>
+</li>
+
+<li>
+<a href="https://youtu.be/S8O4Ut0FaX0">5.4 (part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/wubX93dlXOw">5.4 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/jiQLhursd4I">5.4 (part 3)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/C4iRk12S4B0">7 (what you should know, part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/JgDomnS0PY4">7 (what you should know, part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/2NbLF2c4Lww">7.2 (part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/6vJxcqCQRSo">7.2 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/oCTbzPndhCw">7.3 (part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/1TKfHaPD3TA">7.3 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/b4X950geouE">7.4 (part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/AsReGThVT8Y">7.4 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/r00nGvNeS2c">7.5 (part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/vKSpdPjK8vc">7.5 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA">7.5 (part 3)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/tvPWA66jSdc">7.5 (part 4)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/_Ja7vu7OGGY">7.6 (part 1)</a> (corrected)</li>
+
+<li>
+<a href="https://youtu.be/rQ2cMqXlpnA">7.6 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/es9aM-thvQc">8 (part 1)</a> (refers to <a href="https://youtu.be/-APq9AA2T-A">motivation behind eigenvalues</a>)</li>
+
+<li>
+<a href="https://youtu.be/U4pAkQqO-WM">8 (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/jBY_Xut0Z2g">8 (part 3)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/9zLVosHzpbs">8.4, Cayley-Hamilton theorem</a>
+</li>
+
+<li>
+<a href="https://youtu.be/QRcHn9Yf6MM">8.4, Minimal polynomial</a>
+</li>
+
+<li>
+<a href="https://youtu.be/vAJnmfqSWqg">8.5, Similarity,
+Schur and semisimple</a>
+</li>
+
+<li>8.6 comes later (to preserve continuity)</li>
+
+<li>
+<a href="https://youtu.be/lVT2ebgw6hA">8.7, Spectral representation</a>
+</li>
+
+<li>
+<a href="https://youtu.be/RUYO7ulvlFg">8.8, Singular Value Decomposition (SVD)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/OVRxZTNJx0M">8.6, Jordan Canonical
+Form (JCF)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/QT6JJUyF72s">9.1, 9.2, Quadratic
+forms (defn, types and congruence)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/WcQwkYLjEBg">9.3 Sylvester's law
+of inertia</a>
+</li>
+
+<li>
+<a href="https://youtu.be/i0MwNKYqkms">9.3 (contd) Proof of
+Sylvester's law of inertia</a>
+</li>
+
+<li>
+<a href="https://youtu.be/2viucQm-tT8">9.3 (contd) Diagonalisation algorithm</a>
+</li>
+
+<li>
+<a href="https://youtu.be/_4hCtWRvEPs">9.4 PD and NND matrices</a>
+</li>
+
+</ol>
+</td>
+<td colspan="" rowspan="">
+
+<center>
+<table style="" border="1">
+<tr>
+<td colspan="" rowspan="">Some other similar videos</td>
+</tr>
+<tr>
+<td colspan="" rowspan="">
+
+<ol type="">
+
+<li>
+<a href="https://youtu.be/-APq9AA2T-A">Crash course on eigenanalysis</a>
+</li>
+
+<li>
+<a href="https://youtu.be/2BjT8-etlt4">Gram-Schmidt orthogonalisation</a>
+</li>
+
+<li>
+<a href="https://youtu.be/_u66gRnmzWI">Understanding ranks (part 1)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/TDdgsztnD5U">Understanding ranks (part 2)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/uPHa971AC5s">Rank factorisation</a>
+</li>
+
+<li>
+<a href="https://youtu.be/OQkIcxY-0L0">Laplace expnasion (a
+direct proof)</a>
+</li>
+
+<li>
+<a href="https://youtu.be/bvJAl_vUwLg">Finding nullspace basis</a>
+</li>
+
+<li>
+<a href="https://youtu.be/HYcV4hzfGkE">Jacobi's method to
+find eigenvalues of real, symmetric matrices</a>
+</li>
+
+<li>
+<a href="https://youtu.be/8saHqQWtduM">Proof of Jacobi's method</a>
+</li>
+
+</ol>
+
+</td>
+</tr>
+</table>
+</center>
+</td>
+</tr>
+</table>
+</center>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

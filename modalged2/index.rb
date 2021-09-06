@@ -1,0 +1,22 @@
+<NOTE>
+<TITLE>@{<E>Modern Algebra:</E>@} arNab chak+rabar+tIr bai</TITLE>
+<COVID alt="modalged2/index.html"/>
+<HEAD1>@{<E>Modern Algebra</E>@}</HEAD1>
+<RIMG web="cover.jpg">baiyer malAT</RIMG>
+AmAr @{<E>Modern Algebra</E>@} baiyer @{<E>2nd edition</E>@}-er @{<E>webpage</E>@} eTA. 
+<P/>
+sUchIpatra Ar bhUmikATuku   <LINK to="contents.pdf">ekhAne</LINK> dilAm.
+<HEAD2>bhulchuk ityAdi</HEAD2>
+<UL>
+<LI>
+<IMG web="p4.png">@{<E>4</E>@}  na.n prriSThAr a.nsha</IMG>
+ei chhabiTA hala yemanTA haoyA uchit. kintu baite bhul kare @{<E>Fig 11</E>@}  Ar @{<E>Fig 12</E>@}  adalbadal haye giyechhe. 
+bhulTAr dike drriSTiAkarSaN karechhen shibnAth ghuku.</LI>
+<LI>
+<IMG web="p16.png">@{<E>16</E>@}  na.n prriSThAr a.nsha</IMG>
+ekhAne @{<E>union</E>@}-gulo @{<E>intersection</E>@}  habAr kathA. 
+eTAo dharechhen shibnAth ghuku.</LI>
+
+</UL>
+<DISQUSB url="https://www.isical.ac.in/~arnabc/modalged2/index.html" id="modalged2"/>
+</NOTE>

@@ -1,0 +1,135 @@
+<NOTE>
+@{
+<TITLE>Multivariate statistics</TITLE>
+<HEAD1>Multivariate statistics</HEAD1>
+
+<HEAD2>Reference materials</HEAD2>
+<UL>
+<LI><B>Applied Multivariate Statistical
+Analysis</B> by <I>Hardle</I> and <I>Simar</I></LI>
+<LI><B>Applied Multivariate Statistics with R</B>
+by <I>Zelterman</I></LI>
+<LI><B>R multivariate statistics taskview</B> at <I>CRAN</I></LI>
+</UL>
+
+<HEAD2>Extrinsic and intrinsic data dimension</HEAD2>
+These are terms coined by me to explain two concepts that pervade
+much of multivariate statistics. When we have a rectangular data
+set, laid out as cases <M>\times</M> variables, the number of
+variables is called the <B>dimension</B> of the data set. This is
+what I am calling the <B>extrinsic dimension</B>. 
+<P/>
+The intrinsic dimension refers to the inherent complexity of the
+underlying set up. For example, in a face recognition problem
+a case is a photograph of a face, and the variables are pixel
+values. The resolution of the image (i.e., the number of pixels
+used) determines the extrinsic dimension, while the the
+complexity of the human face recognition problem denotes the
+intrinsic dimension. 
+<P/>
+A broad area of multivariate statistics revolves around finding
+the intrinsic dimension. As the intrinsic dimension is often much
+less than the extrinsic dimension, such methods are sometimes
+called dimension reduction techniques. We shall discuss three
+different flavours:
+<UL>
+<LI>Principal Component Analysis (PCA)</LI>
+<LI>Factor Analysis (FA)</LI>
+<LI>Multidimensional Scaling (MDS)</LI>
+</UL>
+
+<HEAD2>Principal Component Analysis</HEAD2>
+PCA tries to assess intrinsic dimension by looking at the scatter
+of the data cloud in high dimensional space. It considers
+directions with low scatter as unimportant. To understand this
+let use 
+the trivariate data set in <FILE>pca.csv</FILE>. It has been
+visualised as an interactive scatterplot <LINK
+to="test.html">here</LINK>. Though the extrinsic dimension is 3,
+the intrinsic dimension is only 2, as is apparent by rotating the
+plot with the mouse.
+<P/>
+PCA tries to play the role of the mouse in arbitrarily high
+dimension. It detects both the intrinsic dimension, as well as
+the lower dimensional subspace where the data lie.
+
+<HEAD3>A toy example</HEAD3>
+First let's load  a hypothetical data set about the Physics and
+Statistics marks of 100 students:
+<COMMENT>
+x = read.table("marks.txt",head=T)
+</COMMENT>
+<R>
+x = read.table("https://www.isical.ac.in/~arnabc/talks/mult/marks.dat",head=T)
+</R>
+Check the data set:
+<R>
+dim(x) 
+plot(x)
+</R>
+Notice the strongly elliptical (almost linear) shape of the data cloud. PCA will identify the major and 
+minor axis directions and lengths.  
+<R>
+v = prcomp(x)
+v
+</R>
+Very simple output: <CODE>PC1</CODE> and <CODE>PC2</CODE> give the directions (they are both unit vectors), and the <CODE>standard deviation</CODE>s are just the lengths. 
+Can you  visualize this?  Here are some hints: First you need to know how to access different parts of <CODE>v</CODE>.
+<R>
+names(v)
+</R>
+Check if the output of the following command matches the <CODE>PC1</CODE> and <CODE>PC2</CODE> you saw just now.
+<R>
+v$rot
+</R>
+You can extract <CODE>PC1</CODE> as
+<R>
+pc1 = v$rot[,1] #1st column of rot inside v
+</R>
+Now you have to draw arrows with the <CODE>arrows</CODE> function. Your arrows must start from the centre of the data cloud (call it point <M>O</M>, say): 
+<R>
+Ox = mean(x[,1])
+Oy = mean(x[,2])
+</R>
+
+If the two arrows have tips at <M>P</M> and <M>Q</M>, then your final command will be 
+<R>
+arrows(Ox,Oy,Px,Py)
+arrows(Ox,Oy,Qx,Qy)
+</R>
+Your task is to work out <CODE>Px</CODE>, etc. 
+
+<P/>
+You can produce the scree plot:
+
+<R>
+plot(v)
+</R>
+
+<HEAD3>Face recognition</HEAD3>
+First download the data
+from <LINK to="facesbwandcol.tar.gz">here</LINK>.
+Uncompress the file. 
+<P/>
+
+Then load this <LINK to="eigfaces.r">R code</LINK> in R. You'll
+need to change the location of the data files mentioned in the R
+code.
+
+<P/>
+Now a typical session will be:
+<R>
+png('showstep%d.png')
+x = loadImages()
+newcoord = process(x)
+showSteps(newcoord,26) #keep on hiting Enter to move forward
+
+showFace(newcoord,1)
+dev.off()
+</R>
+<UL>
+<LI><LINK to="eigface.html">Face recognition with eigenanalysis</LINK></LI>
+<LI><LINK to="miscel.html">PCA, FA and cluster analysis</LINK></LI>
+</UL>
+@}
+</NOTE>

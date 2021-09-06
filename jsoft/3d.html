@@ -1,0 +1,475 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Using J: an example">Using J: an example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What you need to know about the .obj format">What you need to know about the <code>.obj</code> format</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Visualising the end product">Visualising the end product</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Doing the preparation">Doing the preparation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Writing the J code">Writing the J code</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#The vertices">The vertices</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#The faces">The faces</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Putting the vertices and faces together">Putting the vertices and faces together</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The final code (raw version)">The final code (raw version)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The final code (adverb version)">The final code (adverb version)</a>
+</li>
+</ul>
+<hr/>
+
+
+<h1><a
+name="Using J: an example">Using J: an example</a></h1>
+I often create 3D models (mainly mathematical ones) for teaching
+purposes. My favourite tool for
+this is <a href="http://www.artofillusion.org">Art of
+Illusion</a>. While it takes care of the artistic aspects
+(texture, lighting etc), sometimes I need complicated 3D objects
+that are described more easily via mathematics than via GUI. For
+such requirements I create an <code>.obj</code> file, which is a
+just an ASCII file listing all the vertices and faces. Then I
+import this file into Art of Illusion, and add the fine polish. 
+<p></p>
+One can use J to produce the <code>.obj</code> file easily. I
+shall illustrate with the example of making a surface of a
+function $F(x,y).$ The aim is to build a tool that will let
+me produce the <code>.obj</code> file for any given function and
+ranges.
+
+<h2><a
+name="What you need to know about the <code>.obj</code> format">What you need to know about the <code>.obj</code> format</a></h2>
+It is best explained by an example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Here is a valid <code>.obj</code> file:
+<pre>
+v 0.1 0.1 0.1
+v 1.5 0.2 2.0
+v 1.1 1.0 0.3
+v -1 1.5 0.6
+
+f 1 2 3
+f 1 3 4
+</pre>
+This describes the object:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/form.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+It consists of 6 lines (the blank line is for the ease of human
+reading, and is ignored by the computer). The first 4 lines
+start with the letter <code>v</code>. They specify vertices. The
+three numbers following the <code>v</code> gives
+the $x$, $y$ and $z$ coordinates of that vertex.
+The vertices are numbered 1 onwards according to the order of listing.
+<p></p>
+Each line starting with an <code>f</code> specifies a
+(triangular) face. The three numbers are the indices of the
+three vertices. 
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Visualising the end product">Visualising the end product</a></h2>
+We want to write a dyad <code>s</code> that will take two inputs,
+the grid of $x$-values and the grid of $y$-values, and
+produce the <code>.obj</code> file for the surface of a
+function $F(x,y)$ (which we assume is already
+available). Here we are assuming that we shall always use the
+name <code>F</code> for the target function. Thus, a typical
+session to create the surface of $F(x,y)=\sin(x)\cos(y)$
+could look like:
+<pre>
+F=. 4 : '(sin x)*cos y'
+
+x=. 10*(i: 100) %100 
+
+(x s x) fw &lt;'test.obj' NB. Using the same grid for x and y
+</pre>
+Here we have assumed that <code>sin</code> and <code>cos</code>
+are defined as usual, and that <code>fw</code> means "file
+write", ie, 
+<pre>
+fw =: 1!:2
+</pre>
+
+<h2><a
+name="Doing the preparation">Doing the preparation</a></h2>
+Let's chalk out the structure of the surface in terms of vertices
+and faces. We want all the faces to be triangular
+(such <code>.obj</code> files are the most portable). We can
+construct a Cartesian grid using the given $x$-grid
+and $y$-grid:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/grid.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+We have drawn the red diagonals to split each cell into two
+triangular faces. Above each grid point we shall have a vertex on
+the surface. Thus, if there are $m$ values for $x$
+and $n$ for 
+$y,$
+ then the number of vertices would be $mn.$
+
+<h2><a
+name="Writing the J code">Writing the J code</a></h2>
+
+<h3><a
+name="The vertices">The vertices</a></h3>
+For each grid point $(x,y)$ we need to produce a line like 
+<blockquote>
+
+<code>v</code> $x$ $y$ $F(x,y)$
+</blockquote>
+In J this may be produced as
+<pre>
+'v ' , <ruby>":<rt>
+<font color="blue">number to string</font>
+</rt>
+</ruby> x, y, (x F y)
+</pre>
+We need to do this for each pair $(x,y).$ J makes this easy
+in the form 
+
+<pre>
+x <img style="vertical-align:text-bottom" src="image/cloud.png">/ y
+</pre>
+What to place in the cloud? The answer is <code>vx"0</code>, where 
+
+<pre>
+vx=: 4 : 0
+  'v ', ": x, y, (x F y)
+)
+</pre>
+
+Notice that 
+<pre>
+x vx"0/ y
+</pre>
+will produce a list of strings. We need to make a single string
+by joining them (after adding a newline character at the end). 
+<pre>
+newline=. , &amp; LF
+ver=. <ruby>,<rt>
+<font color="blue">ravel</font>
+</rt>
+</ruby> newline"1 x vx"0/ y
+</pre>
+Well, that's all for the vertices. 
+
+<h3><a
+name="The faces">The faces</a></h3>
+The faces are slightly more trickier to handle. If we have
+an $m\times n$ grid of vertices, then there
+are $(m-1)(n-1)$ cells, each being split into two
+triangles. We have numbered the vertices in a row-major
+fashion. So a typical cell will be like:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cell.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This should produce two <code>f</code> lines:
+<blockquote>
+
+<code>f</code> $y$ $(y+1)$ $(y+n+1)$<br>
+
+<code>f</code> $k$ $(y+n+1)$ $(y+n)$
+</blockquote>
+It is easy to write a monad that will convert the input $y$
+into a list of these two strings:
+<pre>
+f=: 3 : 0
+  t1=. 'f ', ": y, (y+1), y+n+1
+  t2=. 'f ', ": y, (y+n+1), y+n
+  t1,: t2
+)
+</pre>
+Next we have to run this function over all the vertices. Wait, we
+have to actually run this over all the $(m-1)(n-1)$ cells. We
+are identifying each cell by its "top-left" vertex. So the
+function needs to run over all the blue vertices only in the
+following diagram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/gridtorn.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Well, we need a list of all the blue vertices. We can make one
+from scratch. But let's use the pattern: all vertices except the
+last row and column. We start by making the whole grid:
+<pre>
+mat=. <ruby>&gt;:<rt>
+<font color="blue">1+</font>
+</rt>
+</ruby> i. m, n
+</pre>
+We needed to add 1 to start the counting from 1 (which is the
+norm with <code>.obj</code> format).
+Now tear off the last row:
+<pre>
+
+<ruby>}:<rt>
+<font color="blue">curtail</font>
+</rt>
+</ruby> mat
+</pre>
+and then tear off the last entry of each of the remaining rows:
+<pre>
+trim=. <ruby>}:<rt>
+<font color="blue">curtail</font>
+</rt>
+</ruby>"1 }: mat
+</pre>
+Now we may run our verb on it:
+<pre>
+f"0 trim
+</pre>
+This gives us an array of strings. We want to append a newline at
+the end of each, and join them:
+<pre>
+fac=.<ruby>,<rt>
+<font color="blue">Ravel</font>
+</rt>
+</ruby> newline"1 f"0 trim
+</pre>
+
+
+<h3><a
+name="Putting the vertices and faces together">Putting the vertices and faces together</a></h3>
+This is easy, just append them:
+<pre>
+ver, fac
+</pre>
+However, remember $J$'s habit of using underscore in place of
+minus. Well, <code>.obj</code> file format does not allow
+that. So we need to replace all the underscores by minuses:
+<pre>
+'_-' charsub ver, fac
+</pre>
+
+<h2><a
+name="The final code (raw version)">The final code (raw version)</a></h2>
+
+<pre>
+vx=: 4 : 0
+  'v ', ": x, y, (x F y)
+)
+
+fc=: 3 : 0
+  t1=.'f ', ": y, (y+1), y+ny+1
+  t2=.'f ', ": y, (y+ny+1), y+ny
+  t1,:t2
+)
+
+s=: 4 : 0
+  newline=. ,&amp;LF
+  ver=: , newline"1 x vx"0/ y
+  nx=:  #x
+  ny=: #y
+  mat =: &gt;:i. nx, ny
+  trim =: }:}:"1 mat
+  fac =: , newline"1 fc"0 trim
+  '_-' charsub ver,fac
+)
+</pre>
+
+
+<h2><a
+name="The final code (adverb version)">The final code (adverb version)</a></h2>
+The above code is fine. But to use it you have to use the
+name <code>F</code> for the target function. This is irritating
+if you want to create <code>.obj</code> files for two functions
+in the same session. Notice that we had written a
+verb <code>s</code> that takes two inputs visibly (the $x$
+and $y$ values) and one input invisibly (the target
+function). Thus, what we have written is alike a machine with
+three inputs, one of them being a verb. J calls such machines an
+adverb. Here a typical invocation would be 
+<pre>
+(x (myfun s) y) fw &lt;'test.obj' 
+</pre>
+where <code>myfun</code> is the name of our target
+function. Earlier our <code>s</code> verb delegated its job to
+two verbs, <code>vx</code> for vertices and <code>fc</code> for the
+faces. We needed the target function for only the vertices. The
+faces are determined by the "topology" of the grid, and not on
+the exact positions of the vertices. So we need to pass the
+target function to <code>vx</code> also. This requires two
+modifications to our code: converting <code>s</code>
+and <code>vx</code> both to adverbs.
+<pre>
+vx=: 1 : 0
+:
+  'v ', ": x, y, (x <font color="#ff0000">u</font> y)
+)
+
+fc=: 3 : 0
+  t1=.'f ', ": y, (y+1), y+ny+1
+  t2=.'f ', ": y, (y+ny+1), y+ny
+  t1,:t2
+)
+
+s=: 1 : 0
+:
+  newline=. ,&amp;LF
+  ver=: , newline"1 x (<font color="#ff0000">u</font> vx)"0/ y
+  nx=:  #x
+  ny=: #y
+  mat =: &gt;:i. nx, ny
+  trim =: }:}:"1 mat
+  fac =: , newline"1 fc"0 trim
+  '_-' charsub ver,fac
+)
+</pre>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/j/jtut5.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "jtut5"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

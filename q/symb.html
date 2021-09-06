@@ -1,0 +1,298 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#A primer of symbolic computation">A primer of symbolic computation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Three types of numbers that defy floating points">Three types of numbers that defy floating points</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Rationals">Rationals</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Numbers like $\pi$, $e$">Numbers like $\pi$, $e$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Numbers like $\sqrt2$ etc">Numbers like $\sqrt2$ etc</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Algebraic vs transcendental">Algebraic vs transcendental</a>
+</li>
+<li>
+<a href="#From basic operations to integration">From basic operations to integration</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="A primer of symbolic computation">A primer of symbolic computation</a></h1>
+When we think of computation, we think of two basic things:
+numbers and operations. We shall focus on the basic
+operations: addition, subtraction, multiplication and
+division. In symbolic computation we want the numbers that we
+work with to be <i>exactly</i> representable in the computer. The
+immediate choice is the integers. Unfortunately, we cannot do
+many interesting operations with them, <i>e.g.</i>, division, taking
+roots, infinite series etc. These will take us to numbers which
+cannot be represented exactly in a computer. More precisely, these
+cannot be represented exactly <i>using the default data types
+provided in most languages</i> namely floating point. Symbolic
+computation is all about creating new data types where more of
+these numbers may be stored and operated upon exactly. 
+
+<h2><a
+name="Three types of numbers that defy floating points">Three types of numbers that defy floating points</a></h2>
+Here are three types of numbers that cannot be represented
+exactly in a computer: 
+<ul>
+
+<li>fractions with recurring binary expansion
+form (<i>e.g.</i>, $\frac 13$ or $\frac 15$), </li>
+
+<li>irrational numbers like $\sqrt2$
+or $\sqrt[4]{2-\sqrt3}$, which are described in terms of
+their relation with the rationals.</li>
+
+<li>Special numbers like $\pi$ or $e.$, that have no
+obvious relation with rationals except possibly through infinite series.</li>
+
+</ul>
+We shall learn how to create data types to cope with these. 
+
+<h2><a
+name="Rationals">Rationals</a></h2>
+To represent a rational, just consider it as an ordered pair. For
+instance, in R, the number $\frac 13$ may be represented as
+<font color="red">
+<pre>
+x = list(num=1,den=3)
+</pre>
+</font>
+It is easy to create functions to perform the basic operations on
+them. For instance, addition:
+<font color="red">
+<pre>
+add = function(x,y) {
+  list(num=x$num*y$den + x$den*y$num,den=x$den * y$den)
+}
+</pre>
+</font>
+
+
+<h2><a
+name="Numbers like $\pi$, $e$">Numbers like $\pi$, $e$</a></h2>
+Surprisingly, these are are easier to handle than $\sqrt2$
+or $\sqrt3$. This is because these are not related to
+rationals using any finite number of basic operations, and so
+even after any number of steps, they remain isolated (<i>i.e.</i>,
+cannot be simplified). After all, multiplying $x$
+and $y$ is easier than multiplying $234$
+with $376.$ In the latter case, you have to do the
+multiplication, but in the former you merely write $xy$ and
+there's an end to it!. 
+<p></p>
+Suppose that in a computation we shall need only the rationals
+and $e.$ It is not difficult to see that by applying
+finitely many basic operations the outcome must be something like 
+$$
+\frac{a_0+a_1e+\cdots+a_m e^m}{b_0+b_1e+\cdots+b_n e^n}.
+$$
+where all the $a_i$'s and $b_j$'s are rationals. So we
+can store them as 
+<font color="red">
+<pre>
+list(numCoef = c(a0,a1,...,am), denCoef = c(b0,b1,...,bn))
+</pre>
+</font>
+Again we need to write four functions for the basic operations
+with these things. Difficult, but not too difficult. 
+
+<p></p>
+The set of all these numbers is denoted by ${\mathbb Q}(e).$ We say
+that this is the field extension obtained by adjoining $e$
+to ${\mathbb Q}.$ The construction is perfectly general, and may be
+repeatedly any finite number of times. For instance, if we want
+to work with $e$ as well as $\pi$ simultaneously (along
+with the rationals), the general form is 
+$$
+\frac{a_0+a_1\pi+\cdots+a_m \pi^m}{b_0+b_1\pi+\cdots+b_n \pi^n}.
+$$
+where all the $a_i$'s and $b_j$'s are in ${\mathbb Q}(e).$
+<p></p>
+The set of all these is naturally denoted by ${\mathbb Q}(e)(\pi).$
+It is not diff cult to see that this is the same
+as ${\mathbb Q}(\pi)(e)$, and is often written as ${\mathbb Q}(e,\pi)$
+or ${\mathbb Q}(\pi,e).$
+<p></p>
+The fun fact is that we do not really need to write four fresh
+functions to deal with these. The same four functions would serve
+our turn, if we employ a little programming trick. When operating
+elements of ${\mathbb Q}(e)$ we need operations
+of ${\mathbb Q}$. Similarly, when working with ${\mathbb Q}(\pi,e).$ we
+need operations of ${\mathbb Q}(e).$ So we can write the functions
+recursively, where the lowest case will be the familiar rational
+operations. 
+
+<h2><a
+name="Numbers like $\sqrt2$ etc">Numbers like $\sqrt2$ etc</a></h2>
+Here again we can proceed as above. But this will not lead to
+complete simplification. For example, if we want to compute 
+$$
+e\times e\times e\times e - e
+$$
+then the answer is just $e^3-e.$, as no further
+simplification is possible. But if we take $x = \sqrt2$ then 
+leaving the answer as just $(\sqrt2)^3-\sqrt2$ is not
+enough. We can simplify it further to 
+$$
+(\sqrt2)^3-\sqrt2 = 2\sqrt2-\sqrt2 = \sqrt2.
+$$
+
+<h2><a
+name="Algebraic vs transcendental">Algebraic vs transcendental</a></h2>
+
+This simplification could be effected because $\sqrt2$
+yielded a rational answer after certain finite number of basic
+operations. In particular, here multiplying $\sqrt2$ with
+itself produced $2,$ a rational number.
+<p></p>
+It is not hard to see that 
+<blockquote>"the numbers that yield rational answers after certain finite
+number of basic operations"</blockquote>
+are precisely
+<blockquote>
+"the Numbers that satisfy some polynomial equation with rational
+coefficients."</blockquote>
+These numbers are called <b>algebraic</b>, while numbers
+like $\pi$ and $e$ are called <b>transcendental</b>. 
+
+<p></p>
+In symbolic computation, it is easier to work with
+transcendentals, because we do not have to simplify the result
+(no simplification is possible). If we do not know if a number if
+transcendental or algebraic, then we may just treat it as
+transcendental. We shall still arrive at a valid answer. May be
+we would miss a little simplification at the end, but nothing
+else. 
+
+<h1><a
+name="From basic operations to integration">From basic operations to integration</a></h1>
+A quick summary of the above discussion is that rationals are easy
+to handle because of their general form. Every other exotic
+objects occur only in finite numbers, and so as long as we have a
+list of the exotic objects to be used in a particular
+computation, we can use the field extension technique repeatedly
+to arrive at a field which may be represented exactly in a computer.
+<p></p>
+Well, Risch (or may be Lagrange before him) noticed that a
+similar thing applies for integration. In an elementary calculus
+course we learn about lots of heuristics to find an
+integral. We do not have a sure algorithm that will always
+work. However, there was just one class of functions for which
+such an algorithm indeed exists: rational functions
+can <i>always</i> be integrated by the method of partial
+fractions (assuming that you can exactly factorise
+polynomials). Thus rational functions are "good". All other
+"exotic" things occur only in finite number in any given
+problem. So can't we use the field extension idea here as well? 
+
+<p></p>
+Yes, we can. And that is the Risch algorithm.
+<p></p>
+The role of integers is now played by the polynomials. The role
+of rationals is played by the rational functions. These indeed
+constitute a field (<i>i.e.</i>, basic operations on rational functions
+again produce rational functions). We plan to introduce exotic
+functions. Again, these are of two types: algebraic (<i>i.e.</i>, the ones
+that can produce rational functions after a finite amount of
+torture), and transcendentals (the others). An example of the
+first type is $\sqrt{1-x^2}.$ An example of the second
+is $e^x$ (the proof is not simple). As before working with
+transcendentals is easier, and that is what we shall concern
+ourselves with in this project. 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<img align="right" src="image/real3.jpg"/>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Real Analysis (vol 3)">Real Analysis (vol 3)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#ভুল-ত্রুটি">ভুল-ত্রুটি</a>
+</li>
+</ul>
+<hr/>
+<title>Real Analysis (vol 3): অর্ণব চক্রবর্তীর বই</title>
+
+
+<h1><a
+name="Real Analysis (vol 3)">Real Analysis (vol 3)</a></h1>
+আমার Real Analysis (vol 3) বইয়ের webpage এটা৷ 
+
+<h2><a
+name="ভুল-ত্রুটি">ভুল-ত্রুটি</a></h2>
+
+<ul>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b> 5  পাতার অংশ</b></legend><img width="80%" src="image/p5.png"></fieldset>
+</center>
+প্রথম কথা এখানে যাবতীয় $B$-গুলো $C$  হবে৷ দ্বিতীয় কথা, লাল দাগ দেওয়া
+ $B\cap A^c$-টা হবে $A\cap C^c$৷ 
+ ভুলটার খবর পেয়েছি রাজুর
+ থেকে, এই ওয়েবপেজ মারফত৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b> 8  নং পাতার অংশ</b></legend><img width="80%" src="image/p8.png"></fieldset>
+</center>
+যে অংকের উত্তরে এই counterexample-টা দেওয়া আছে, সেখানে বলা ছিল $A$-কে uncountable  
+হতে হবে৷ সমাধান করার সময়ে সেটা ভুলে গিয়েছিলুম৷ এখানে $A= (0,1)\cup{\mathbb N}$  নিলেই চলবে৷ এই ভুলটা ধরেছে 
+রিমি (ও খুব মিষ্টি গান গায়!)৷  
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b> 53  পাতার অংশ</b></legend><img width="80%" src="image/p53.png"></fieldset>
+</center>
+লাল রঙে গোল করা $c$  দুটো $t_1$  হবে৷ ভুলটার খবর পেয়েছি রাজুর থেকে, এই ওয়েবপেজ মারফত৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b> 53  পাতার নীচের অংশ</b></legend><img width="80%" src="image/p53b.png"></fieldset>
+</center>
+লাল রঙে গোল করা $U(P,f)$-টা $U(Q,f)$  হবে৷ ভুলটার খবর পেয়েছি রাজুর থেকে, এই ওয়েবপেজ মারফত৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b> 81  পাতার অংশ</b></legend><img width="80%" src="image/p81.png"></fieldset>
+</center>
+লাল রঙে গোল করা inequality-টা উল্টে যাবে৷ ভুলটা ধরেছে প্রণয় দাস৷ 
+</li>
+
+
+<li>
+
+<center>
+<fieldset>
+<legend><b> 139  পাতার অংশ</b></legend><img width="80%" src="image/p139_1.png"></fieldset>
+</center>
+এখানে পরীক্ষার অংকটাতেই একটা ভুল ছিল--বলেছে $f(x)\neq 0$  for all   $x\geq 0.$  অথচ 
+দেখাতে বলেছে $f(x)=x.$  তাহলে তো $f(0)=0$  হবেই! ভুলটা ধরেছে ইসমাইল মণ্ডল৷ 
+এখানে লাল-করে-ঘিরে-দেওয়া $x\geq 0$-টা $x&gt;0$  হলে অংকটা ঠিক হত৷  
+সেক্ষেত্রে সমাধানটাও খানিকটা বদলাতে হত৷ যেমন পরের পাতায় আছে--
+<center>
+<fieldset>
+<legend><b> 140  পাতার অংশ</b></legend><img width="80%" src="image/p139_2.png"></fieldset>
+</center>
+এখানেও $x&gt;0$  করতে হবে৷ এখানে আবার আরেকটা ভুলও হয়েছে, $g(x)$-গুলোর আগে $2$  বসবে (নীল 
+দিয়ে দেখিয়েছি)৷  তার খানিকটা নীচে আছে--
+<center>
+<fieldset>
+<legend><b> 140  পাতার অংশ</b></legend><img width="80%" src="image/p139_3.png"></fieldset>
+</center>
+এখানে যেমন দেখিয়েছি, সেরকম ঠিক করে নিতে হবে৷  </li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>270  পাতার অংশ</b></legend><img width="80%" src="image/p270.png"></fieldset>
+</center>
+যেমন দেখিয়েছি, সেরকম ঠিক করে নিতে হবে৷ ভুলটা ধরেছে আদিত্য ঘোষ৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>271  পাতার অংশ</b></legend><img width="80%" src="image/p271.png"></fieldset>
+</center>
+এখানে 37-গুলো সব 3  হবে, আর 38-টা হবে 4.  ভুলটা ধরেছে অনেকেই, তাদের 
+মধ্যে প্রথম হল রামিজ রাজা, এবং আপাততঃ শেষ হল ইসমাইল মণ্ডল৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>276  পাতার অংশ</b></legend><img width="80%" src="image/p276.png"></fieldset>
+</center>
+লাল দাগ দিয়ে দেখানো চৌকো ব্র্যাকেটটা গোল ব্র্যাকেট হবে৷ 
+ভুলটা ধরেছে আদিত্য ঘোষ৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>284  পাতার অংশ</b></legend><img width="80%" src="image/p284.png"></fieldset>
+</center>
+লাল তীর দিয়ে দেখানো $2$-টা থাকবে না৷ সবুজ দাগ দেওয়া $xng(x)$-টা আসলে হবে
+ $x^n g(x)$৷  
+ভুলটা ধরেছেন কোনো নাম-প্রকাশে-অনিচ্ছুক শুভানুধ্যায়ী৷ 
+</li>
+
+<li>285  পাতায় Exercise 242-টা ভুল আছে৷ তবে যদি $g(x)$-কে
+ bounded  ধরে নাও, তবে আর অসুবিধা থাকবে না৷ ভুলটা ধরেছে আদিত্য ঘোষ৷ ভুলের
+ সংশোধনের কায়দাটাও ওরই৷   </li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>336  পাতার অংশ</b></legend><img width="80%" src="image/p336.png"></fieldset>
+</center>
+283  নম্বর অংকের উত্তরে এই আশ্চর্য শব্দগুলো ছাপা হয়েছে৷ আসলে এটা মঙ্গলগ্রহের ভাষা৷  অজ্ঞজনের 
+সুবিধার্থে বাংলায় তর্জমা করে দিচ্ছি৷ প্রথম তিনটের উত্তর হল Neither.  চার নম্বরের উত্তর Uniform.  
+তার পরেরটা Only pointwise.  মঙ্গলগ্রহের ভাষা এটুকু থেকে যা শিখে ফেলেছ, তা থেকেই বাকিটুকুর পাঠোদ্ধার 
+করতে পারবে৷ 
+ভুলটা ধরেছেন কোনো নাম-প্রকাশে-অনিচ্ছুক শুভানুধ্যায়ী (যিনি মঙ্গল গ্রাহের বাসিন্দা নন বলেই সন্দেহ)৷  
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>350  পাতার অংশ</b></legend><img width="80%" src="image/p350.png"></fieldset>
+</center>
+লাল দিয়ে ঘেরা বিচ্ছিরি জিনিসটা ভুল আছে৷ আসলে ওটা আরো বিচ্ছিরি একটা জিনিস হবে, সেটা তীর চিহ্ন দিয়ে লাল রঙে 
+দেখিয়েছি৷ 
+ভুলটা ধরেছেন যিনি, তিনি নিজের নাম বলেন নি৷ 
+</li>
+
+</ul>
+<!-- begin htmlcommentbox.com --> <div id="HCB_comment_box">
+<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet">
+<script id="hcb" type="text/javascript">
+/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

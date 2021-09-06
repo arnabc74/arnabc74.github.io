@@ -1,0 +1,325 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Two examples">Two examples</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Weight vs. Height">Weight vs. Height</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Measuring active ingredients in tablets">Measuring active ingredients in tablets</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Two examples">Two examples</a></h1>
+Here we shall see two examples of how linear mixed models may
+help us to incorporate additional info in fixed effects models.
+
+
+<h2><a
+name="Weight vs. Height">Weight vs. Height</a></h2>
+The
+file <a href="eugenedata/Chapter02/Family.txt">Family.txt</a>
+is from chapter 2 of Demidenko's book. Among other things, it
+gives the heights and weights of 71 persons. A simple plot will
+show a scattered increasing trend. 
+
+<font color="red">
+<pre>
+dat = read.table("Family.txt",head=T)
+names(dat)
+attach(dat)
+plot(Weight,Height)
+</pre>
+</font>
+We can, of course, fit a regression to explore the height-weight
+relationship:
+$$
+w_i = \alpha + \beta h_i + \epsilon_i.
+$$
+ But here we have another relevant piece of info:
+each of the 71 persons belongs to one of 18 families, and the
+data set gives us the FamilyID's. Once would expect that the
+members of the same family would behave similarly. Can we somehow
+incorporate this information by adding a "family effect" to the model?
+<p></p>
+The first approach could be to fit a model:
+$$
+w_{ki} = \alpha_k + \beta_k h_{ki} + \epsilon_{ki}.
+$$
+Here each person is coded as a pair $(k,i)$,
+meaning $i$-th person from the $k$-th family. 
+But this is not good because of the following reasons.
+<ul>
+
+<li>It is difficult to use the estimated parameters. For
+instance, $\h \alpha_1$ is specific for family 1. And why
+should one
+care about that <i>particular</i> family?</li>
+
+<li>Most families have a very small number of members in the
+data. So the estimates of $\alpha_k$'s and $\beta_k$'s
+will be bad (or impossible, in case of family 16 that has ony
+one representative!).</li>
+
+</ul>
+A better approach is to allow the intercept to be family-specific
+and random:
+$$
+\alpha_k = \mu + a_k,
+$$
+where $\mu$ is fixed and unknown and $a_k$'s are
+iid $N(0,\sigma^2_a).$ So the full model now becomes
+$$
+w_{ki} = \mu+a_k + \beta h_{ki} + \epsilon_{ki}.
+$$
+If we club the random terms in the RHS together, then this is
+actually a GLS model where the covariance matrix  is a block
+diagonal matrix with the one block per family. The $i$-th
+block has $\sigma^2+\sigma^2_a$ in the diagonal entries and
+the only $\sigma^2_a$ in the off-diagonal ones.
+
+<p></p>
+We can fit this model using R as follows.
+<font color="red">
+<pre>
+library(nlme) #install it first if you have not done so already
+fit=lme (Weight~Height , random=~ 1 |FamilyID)
+summary(fit)
+</pre>
+</font>
+
+
+<h2><a
+name="Measuring active ingredients in tablets">Measuring active ingredients in tablets</a></h2>
+This example is based on the online Netmaster Statistics Courses. Here we
+want to compare 
+two methods (HPLC and NIR) to ascertain the amount of active content 
+in tablets. Suppose that we want to test if the two methods yield more or less the 
+same measurement. 
+The tests have been applied to the <i>same</i> set of 10 tablets (<i><i>e.g.</i>,</i> 
+breaking each tablet into two halves, and applying one method to each 
+half). The resulting <a href="tablet.txt">data</a> are shown in the following table. 
+
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Tablet $(i)$</th><th colspan="" rowspan="">HPLC $(x_i)$</th><th colspan="" rowspan="">NIR$(y_i)$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">1</th><td colspan="" rowspan="">10.4</td><td colspan="" rowspan="">10.1</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">2</th><td colspan="" rowspan="">10.6</td><td colspan="" rowspan="">10.8</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">3</th><td colspan="" rowspan="">10.2</td><td colspan="" rowspan="">10.2</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">4</th><td colspan="" rowspan="">10.1</td><td colspan="" rowspan="">9.9</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">5</th><td colspan="" rowspan="">10.3</td><td colspan="" rowspan="">11.0</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">6</th><td colspan="" rowspan="">10.7</td><td colspan="" rowspan="">10.5</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">7</th><td colspan="" rowspan="">10.3</td><td colspan="" rowspan="">10.2</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">8</th><td colspan="" rowspan="">10.9</td><td colspan="" rowspan="">10.9</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">9</th><td colspan="" rowspan="">10.1</td><td colspan="" rowspan="">10.4</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">10</th><td colspan="" rowspan="">9.8</td><td colspan="" rowspan="">9.9</td>
+</tr>
+
+</table>
+</center> 
+
+<p></p> 
+ One standard method to analyze the data  is to perform a paired 
+$t$-test, which basically works with the differences $z_i = x_i-y_i.$
+<font color="red">
+<pre>
+dat = read.table('tablet.txt',head=T)
+with(dat,t.test(HPLC,NIR,paired=T))
+</pre>
+</font>
+Now here it is quite natural to assume that $x_i$'s
+and $y_i$'s will be positively correlated. This information
+is not used in the paired $t$-test. However, we may use a
+linear mixed model to incorporate the info. We shall allow a
+tablet effect. 
+$$
+y_{ij} = \mu + a_i + \beta_j + \epsilon_{ij}.
+$$
+Here $y_{ij}$ is the measurement for tablet $i$ under
+method $j.$ The tablet effect $a_i$ is random. To fit
+this model using R we need to rearrange the data:
+<font color="red">
+<pre>
+dat1 = with(dat, data.frame(meas=c(HPLC,NIR),meth=c(rep("HPLC",10),rep("NIR",10)), tab=rep(1:10,2)))
+</pre>
+</font> 
+Now we use:
+<font color="red">
+<pre>
+lme(meas~meth, random=~1|tab,dat=dat1)
+</pre>
+</font>
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>How can you use LME to estimate  a fixed
+unknown length which has been measured 5 times each by 3
+persons?</li>
+
+
+<li>We are inspecting the quality of a survey instrument for measuring angles. 50
+roughly equilaterial triangles are taken and each angle is measured
+independently. We are testing 
+<blockquote>$H_0:$ sum of all the angles
+of the same triangle equals $180^\circ.$</blockquote>
+A straight-forward method is to apply $t$-test to the total
+measured angles for the triangles. Can you improve upon this by
+using LME?
+ </li>
+
+</ol>
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/mixed2.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmmixed2"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

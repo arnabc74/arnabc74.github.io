@@ -1,0 +1,401 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Intuitive understanding of rank of design matrix">Intuitive understanding of rank of design matrix</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Guessing if rank $<$ number of columns">Guessing if rank $&lt;$ number of columns</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Guessing $r(X)$">Guessing $r(X)$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reducing $X$ to a full column rank matrix">Reducing $X$ to a full column rank matrix</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+$\newcommand{\v}{\vec}$
+<h1><a
+name="Intuitive understanding of rank of design matrix">Intuitive understanding of rank of design matrix</a></h1>
+We have seen that the rank of the design matrix plays an
+important role in determining uniqueness of the least squares
+solution. The solution is unique if and only if $X$ is full
+column rank, <i>i.e.</i>, rank equals number of columns. In practice,
+however, this condition may not be met. We can of course apply
+some linear algebra algorithm (like Gaussian elimination) to find
+the rank and/or find a subset of columns that
+span $\col(X).$ However, it is often possible to avoid these
+numerical algorithms and resolve the problem intuitively. That is
+what we are going to learn now.
+
+<h2><a
+name="Guessing if rank $&lt;$ number of columns">Guessing if rank $&lt;$ number of columns</a></h2>
+
+Since we know that this is equivalent to nonuniqueness of least
+squares solution, hence we try to tweak one least squares
+solution into another. If we succeed then the rank must be less
+than number of columns. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the 1-way ANOVA model: $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}.$
+
+<p></p>
+Suppose that I give you some least squares solution $\h \mu$
+and $\h \alpha_i$'s. Now the intuitive thinking goes like
+this:
+<blockquote>
+Since $y_{ij}\approx \mu + \alpha_i,$ we may think as
+if $\mu + \alpha_i$'s are being "watched"
+by $y_{ij}$'s.
+If any of the $\mu + \alpha_i$'s change, then it would ring
+an alarm bell.
+</blockquote>
+But it is quite possible that we can tweak $\mu $ and $\alpha_i$'s so
+that $\mu + \alpha_i$'s never change, then that would give us
+a new least squares solution. For instance, add 5 to $\mu,$
+and adjust by subtracting 5 from all the $\alpha_i$'s. 
+<p></p>
+This shows that $X$ is not full column rank. 
+<img src="../image/box.png"></p>
+
+Here is another example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Again we consider a 1-way ANOVA model: $y_{ij} = \mu_i +
+\epsilon_{ij}.$ Here the $\mu_i$'s are "watched". So
+can't do any tweaking without getting detected. Hence the design
+matrix is full column rank here.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Guessing $r(X)$">Guessing $r(X)$</a></h2>
+The same intuitive way of thinking can often allow us to guess
+the $r(X)$.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Again consider the model: $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}$ for $i=1,...,p,$ say. The range
+of $j$ does not really matter for finding $r(X)$.
+<a href="javascript:hideShow('');">(Why?)</a>
+<div id="" style="display:none;background-color:#ffcccc;">It only controls how many times
+each row of $X$ is repeated. Repeating the same row
+multiple times does not affect the rank.</div> 
+
+<p></p>
+There are $p+1$ columns in $X.$ We have already seen
+that $X$ is not full column rank. Hence $r(X) &lt; p+1.$
+To guess $r(X)$ we shall again play the "tweak parameters
+without setting off the alarm" game. But this time we shall
+impose an extra constraint: pick any parameter (just any!),
+say $\mu,$ and never tweak it. Now you'll see that no
+tweaking is possible. Since you can tweak
+neither $\mu+\alpha_i$ nor $\mu $, hence you cannot
+tweak $\alpha_i$ either. Thus, just <i>one</i> constraint is
+enough to prevent tweaking. The conclusion is: $r(X)$ is
+exactly <i>one</i> less than the number of columns.
+<img src="../image/box.png"></p>
+
+Here is a more complicated example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+The 2-way ANOVA model without interaction:$y_{ij} = \mu+\alpha_i+\beta_j+\epsilon_{ij}.$
+<p></p>
+Here the "watched" quantities are $\mu+\alpha_i+\beta_j.$
+Clearly, we can add something to $\mu$ and adjust by
+subtracting that amount from all the $\alpha_i$'s (or all
+the the $\beta_j$'s). So not full column rank.
+<p></p>
+To guess the exact rank, let's impose an additional
+constraint: "Thou shalt not tweak $\mu$."
+<p></p>
+Still we can manage to tweak the $\alpha_i$'s
+and $\beta_j$'s without letting off the alarm bell. For
+instance, add 5 to all the $\alpha_i$'s and subtract the
+same amount from all the $\beta_j$'s.
+<p></p>
+OK, pick any other parameter <i>that is not already fixed by earlier
+constraints</i> (say $\alpha_1$) and impose
+a new constraint: "Thou shalt not tweak $\alpha_1$ either."
+<p></p>
+Now, $\mu $ and $\alpha_1$ both being fixed,
+and $\mu+\alpha_1+\beta_j$'s being watched, we cannot tweak
+any of the $\beta_j$'s. So none of the
+other $\alpha_i$'s can be tweaked either. Hence no tweaking
+at all! And we needed just <i>two</i> constraints.
+<p></p>
+Conclusion: $r(X)$ is <i>two</i> less than the number of columns.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Reducing $X$ to a full column rank matrix">Reducing $X$ to a full column rank matrix</a></h2>
+
+"Reducing $X$ to a full column rank matrix" means, linear algebraically,  picking a subset of columns
+of $X$ that constitute a basis for $\col(X).$ Finding a
+column-echelon form for $X$ is one possible sledge hammer to
+break this peanut. However, our "tweak without letting off the
+alarm" game again comes to help. Indeed, it is preferable to the
+sledge hammer method, because the particular least squares
+solution that we shall get by the intuitive method also has
+better interpretability. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;Consider the 1-way ANOVA model once again: $y_{ij} =
+\mu+\alpha_i+\epsilon_{ij}.$
+
+<p></p>
+Here is one possible scenario where it could be used. We have
+three different fertilisers <i>None</i>, <i>Compost</i> and <i>NPK</i>. We want to see
+their effect on the yield of paddy. Here the
+constraint $\alpha_1 = 0$ is a suitable one, since <i>None</i> is
+like a reference case. With this constraint the remaining
+parameters have the following interpretation:
+<ul>
+
+<li>$\mu$ is the effect of no fertiliser.</li>
+
+<li>$\alpha_2$ is the extra effect due to <i>Compost</i>,</li>
+
+<li>$\alpha_3$ is the extra effect due to <i>NPK</i>.</li>
+
+</ul>
+However, if the three fertilisers were <i>Mg</i>, <i>Compost</i> and <i>NPK</i>, then
+a more natural constraint would be $\sum \alpha_i = 0,$
+leading to the following interpretation:
+<ul>
+
+<li>$\mu$ is the overall mean effect.</li>
+
+<li>$\alpha_i$ is the extra effect due to the $i$-th fertiliser.</li>
+
+</ul>
+Another natural constraint would be: $\mu = 0.$ Here the
+interpretation is even simpler:
+<ul>
+
+<li>$\alpha_i$ is the effect of the $i$-th fertiliser.</li>
+
+</ul>
+However, most people will prefer the constraint $\sum \alpha_i =
+0$ to the constraint $\mu = 0,$ because under the former
+the signs of the $\h \alpha_i$'s immediately gives a clue to
+which fertiliser is a good and which is bad. 
+<img src="../image/box.png"></p>
+Each such constraint is effectively choosing a basis
+of $\col(X)$ leading to a unique least squares
+solution. Each software has its favourite constraint, which
+may not be the natural one for a given context. But it is easy to
+convert one least squares solution to another that satisfies a
+natural set of constraints. The next example illustrates this.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the 1-way ANOVA model $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}.$ for $i=1,2,3$ and $j=1,...,10.$
+<p></p>
+R uses the constraint $\alpha_1 = 0.$
+<p></p>
+However, we want the constraint $\sum \alpha_i = 0.$ 
+<p></p>
+If the estimates produced by R are
+$$
+\h \mu = 23.4, \quad \h \alpha_1 = 0,\quad \h \alpha_2 =
+45.9,\quad \h \alpha_3 = -3.4,
+$$
+then find the estimates that satisfies our constraint.
+<p></p>
+<b>SOLUTION:</b>
+Just average the $\h \alpha_i$'s and subtract this from all
+the $\h \alpha_i$'s. Adjust by adding the same quantity to $\h \mu.$
+
+<p></p>
+Notice that you really do not need to know what constraint(s) R
+uses internally in order to impose your set of constraints.<img src="../image/box.png"></p>
+
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>For the model $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij},$ a software produces the estimates
+$$
+\h \mu = 23.4, \quad \h \alpha_1 = 2.0,\quad \h \alpha_2 =
+45.9,\quad \h \alpha_3 = -3.4.
+$$
+Find the estimates under the constraint $\mu = 0.$
+</li>
+
+
+<li>Consider the model: $y_{ijk} = \mu + \alpha_i + \beta_j +
+\gamma_{ij} + \epsilon_{ijk},$ for $i=1,2,3$
+and $j=1,2$ and $k=1,...,5.$ Is the design matrix full
+column rank? Find its rank. Find two possible sets of
+constraints to make the solution unique.</li>
+
+
+<li>This exercises will give you an idea why the "tweak without
+letting off the alarm" game always detects whether $X$ is
+not full column rank. Consider a linear
+model $\v y = X \v \beta + \v \epsilon,$ where $\v \beta =
+(\beta_1,...,\beta_4).$
+It is seen that if we tweak by adding 5 to $\beta_1$ and
+subtracting 3 from $\beta_2$ and adding 1 to $\beta_3$
+(leaving $\beta_4$ unaltered), then the alarm does not go
+off. In other words, we added the vector $(5,-3,1,0)'$
+to $\v \beta$ without firing the alarm. We shall call such a 
+vector  a <i>tweak vector</i> (not a standard term).
+<ol type="a">
+
+<li> Show that the
+set of all tweak vectors is a subspace.</li>
+
+<li>How is this subspace related to $X?$</li>
+
+<li>Prove that the
+existence of a nonnull tweak vector implies $X$ is not full column rank.</li>
+
+</ol>
+
+</li>
+
+
+<li>This exercise is a continuation of the last. Here you'll see
+why the "tweak without letting off the alarm" game always
+guesses the rank correctly. Again consider the same linear model
+as in the last problem.  Suppose that the only tweak
+vector of the form $(0,0,a,b)'$ is the zero vector. What
+can you conclude about $r(X)?$ </li>
+
+
+
+<li>Consider the linear model $y_{i_1\cdots i_t} = \mu +
+\alpha_{1i_1}+\cdots + \alpha_{ti_t}+\epsilon_{i_1\cdots
+i_t}.$ What is the rank of the design matrix here?</li>
+
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/rank.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmrank"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

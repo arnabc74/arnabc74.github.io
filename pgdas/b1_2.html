@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Module 2: Presentation of data">Module 2: Presentation of data</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: Graphical: exploratory and pedagogic">Lesson 1, Video 1: Graphical: exploratory and pedagogic</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Line diagram">Lesson 1, Video 2: Line diagram</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 3: Scatter plot">Lesson 1, Video 3: Scatter plot</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Bar, pie">Lesson 2, Video 1: Bar, pie</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Histogram">Lesson 2, Video 2: Histogram</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Tabular">Lesson 3, Video 1: Tabular</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Frequency distribution">Lesson 3, Video 2: Frequency distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: Contingency table">Lesson 4, Video 1: Contingency table</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: Pitfalls">Lesson 4, Video 2: Pitfalls</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Module 2: Presentation of data">Module 2: Presentation of data</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: Graphical: exploratory and pedagogic">Lesson 1, Video 1: Graphical: exploratory and pedagogic</a></h2>
+In the year 1958, a war took place between the British and the
+Russian. A particularly infamous battle fought in it was the
+battle of Crimea, where  a young nurse named Florence Nightingale, along with a
+small group of friends,  was providing
+voluntary service at the battlefield. She was shocked to find
+that more soldiers died of disease than in actual
+fighting. She saw this clearly, as did many others present at the
+battlefield. But unfortunately the policy makers sitting in
+London did not see this as clearly. Fortunately for the soldiers
+and the posterity, Florence Nightingale was not just a dedicated
+nurse. She was also a statistician at heart, one who knew how to
+convince others using data. Data, as a dumb jumble of numbers,
+were not appealing. She knew that. So she improvised a colourful
+way to bring her point home. For each month she had the numbers
+of deaths due to different causes. She gave a sector to each
+month, and split the sector into a number of parts, one for each
+cause. The resulting diagram is called Nighingale Rose Chart. It
+indeed had so much impact on the policymakers that sanitary
+condition of the soldiers improved considerably. 
+<p></p>
+This example shows the power of pictures. We use our eyes to
+decide about our surroundings. Graphical representation of data
+allows our eyes to perform quick statistical analysis. 
+<p></p>
+One may, like Florence Nightingale, improvise one's own way of
+representing data graphically. But there are certain standard
+methods, which every statistician should know about. 
+
+<h2><a
+name="Lesson 1, Video 2: Line diagram">Lesson 1, Video 2: Line diagram</a></h2>
+The data used by Florence Nightingale are tim series data. The
+most common way to depict such data is the <b>line chart</b>. 
+This is just a graph with time shown in the $x$-axis, and
+the quantity of interest in the $y$-axis. If our data set
+looks like this table shown, then each row gives us a
+point. We join them with piecewise straighlines to get a line
+chart. 
+If we multiple quantities of interest, then we vave multiple
+lines that may be plotted separately or, to facilitate comarison,
+overlaid on the same plot. For instance, Florence Nightingale
+could have produced this plot to convey the same information as
+her rose chart. However, notice that her plot highlighted her
+contension that diseases were the greatest killer more
+forcefully.  This is an importnt consideration when choosing one
+graphical technique over another: which is
+more <b>convincing</b>? Unfortunatley, it is easy to go
+overboard, and produce plots that almost present a distorted
+version of trth. We shall talk more abot this later. 
+
+<h2><a
+name="Lesson 1, Video 3: Scatter plot">Lesson 1, Video 3: Scatter plot</a></h2>
+Scatter plot is a close kin of the line chart. Here we just show
+the points without joining them with lines. Consider a height
+weight data set. Here each case is a point. Typically, the
+variable which is less in our ontrol, and is more relieably
+measured, is shown in the $x$-axis. If there are more than
+two variables, then we can use a scatter plot matrix, sometimes
+also called a pairs plot. 
+
+<h2><a
+name="Lesson 2, Video 1: Bar, pie">Lesson 2, Video 1: Bar, pie</a></h2>
+
+
+<h2><a
+name="Lesson 2, Video 2: Histogram">Lesson 2, Video 2: Histogram</a></h2>
+
+
+
+<h2><a
+name="Lesson 3, Video 1: Tabular">Lesson 3, Video 1: Tabular</a></h2>
+
+
+<h2><a
+name="Lesson 3, Video 2: Frequency distribution">Lesson 3, Video 2: Frequency distribution</a></h2>
+
+
+<h2><a
+name="Lesson 4, Video 1: Contingency table">Lesson 4, Video 1: Contingency table</a></h2>
+
+
+<h2><a
+name="Lesson 4, Video 2: Pitfalls">Lesson 4, Video 2: Pitfalls</a></h2>
+
+
+<h2><a
+name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+
+<h2><a
+name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

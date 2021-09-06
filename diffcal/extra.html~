@@ -1,0 +1,522 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#আরো কিছু আলোচনা">আরো কিছু আলোচনা</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#L'Hopital's rule">L'Hopital's rule</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Composition">Composition</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#বিভিন্ন প্রচলিত function-দের ধর্মাবলী">বিভিন্ন প্রচলিত function-দের ধর্মাবলী</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=c,$  যেখানে $c$  কোনো constant">$y=c,$  যেখানে $c$  কোনো constant</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=x,$  যার আরেক নাম identity function">$y=x,$  যার আরেক নাম identity function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=x^2$">$y=x^2$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=|x|$">$y=|x|$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=|x|$">$y=|x|$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=[x]$">$y=[x]$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=x-[x],$  যাকে অনেক সময়ে $\{x\}$  লেখে (fractional part of  $x$)">$y=x-[x],$  যাকে অনেক সময়ে $\{x\}$  লেখে (fractional part of  $x$)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=\sin x$">$y=\sin x$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=\cos x$">$y=\cos x$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=\tan x$">$y=\tan x$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=e^x$">$y=e^x$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$y=\log x$">$y=\log x$</a>
+</li>
+</ul>
+<hr/>
+<title>আরো কিছু আলোচনা</title>
+
+<h1><a
+name="আরো কিছু আলোচনা">আরো কিছু আলোচনা</a></h1>
+
+
+<h2><a
+name="L'Hopital's rule">L'Hopital's rule</a></h2>
+এই জিনিসটা আমার বইতে রাখি নি, কারণ  এটা না বুঝে লাগিয়ে বসলে অনেক সময়ে একটা বিচ্ছিরি ব্যাপার হয়--ভুল পদ্ধতিতে 
+ঠিক উত্তর এসে যায়! পরীক্ষার খাতায় এরকম ব্যাপার হলে মাস্টারমশাইরা নম্বর কাটেন, এবং ছাত্ররা অবাক হয়ে ভাবে--উত্তর 
+তো ঠিকই হয়েছিল, তবে নম্বর কাটা গেল কেন? তবে আজকাল যেরকম MCQ-এর হিড়িক, সেখানে উত্তর আন্দাজ করতে 
+পারলেই নম্বর, ঠিক বেঠিক সব কায়দাই সমান৷ তাই এখানে এই কায়দাটার একটু আলোচনা করি৷ ব্যাপারটা এই--
+<blockquote>
+ধরো $f(x)$  আর $g(x)$  দুটো function.   তোমাকে 
+বার করতে দিয়েছে 
+$$\lim_{x\rightarrow a}\frac{f(x)}{g(x)}.$$
+এদিকে $\lim_{x\rightarrow a}f(x)$  আর $\lim_{x\rightarrow a}g(x)$  দুজনেই $0.$  মানে যে limit-টা 
+বার করতে দিয়েছে, সেটা $\frac00$  জাতীয় হয়ে যাচ্ছে৷ তখন $f(x)$  আর
+ $g(x)$-এর জায়গায় ওদের derivative  বসিয়ে  দ্যাখো 
+$$\lim_{x\rightarrow a}\frac{f'(x)}{g'(x)}$$
+কী হয়৷ যদি এটা বার করতে পারো, তো আমাদের গোড়ার limit-টাও সেটাই হবে!   যদি দ্যাখো এটাও $\frac00$  
+চেহারার হয়ে যাচ্ছে, তবে আরেকবার differentiate  করে 
+$$\lim_{x\rightarrow a}\frac{f''(x)}{g''(x)}$$
+বার করার চেষ্টা করে দ্যাখো৷ 
+</blockquote>
+ব্যাপারটা বেশ ম্যাজিকের মত৷ অবশ্য এটা কাজ করার জন্য $f(x)$  আর $g(x)$-কে differentiable  
+হতে হবে৷ আর গোড়ার limit-টার চেহারা হতে হবে $\frac00$-এর মত (আসলে $\frac\infty\infty$  
+হলেও চলবে)৷ এই কায়দাটা বার করেছিলেন Bernoulli  নামের একজন গণিতজ্ঞ৷ এটা যখন
+ তিনি বার করেন, তখন তিনি এক
+ জমিদারকে অংক শেখাতেন 
+এই শর্তে যে, সেই সময়ের মধ্যে যা যা Bernoulli  আবিষ্কার করবেন, সব কিছুই সেই
+ জমিদার মশায় নিজের নামে একটা বই করে 
+ছাপাবেন৷ জমিদারমশায়ের নাম ছিল L'Hopital.  সেই থেকেই কায়দাটার নাম হয়েছে L'Hopital's rule.  
+শুনেছি নিজের আবিষ্কারের উপর জমিদারমশায়ের নামের লেবেল দেখে Bernoulli  বড়ই দুঃখ পেয়েছিলেন৷ 
+<p></p>
+যাই হোক, এবার  
+একটা ছোট্টো প্রয়োগ দেখাই--
+<p></p>
+ধরো বার করতে বললাম 
+$$\lim_{x\rightarrow 0}\frac{1-\frac{x^2}{2}-\cos x}{x^4}.$$
+এটা একটা $\frac00$  চেহারার limit.  সহজে করা যাচ্ছে না৷ উপর নীচকে differentiate  
+করে দাও, পাবে 
+$$\lim_{x\rightarrow 0}\frac{x+\sin x}{4x^3}.$$
+এতেও সুবিধা হচ্ছে না৷ Limit-টা এখনও $\frac00$  চেহারাতেই রয়ে গেছে৷ আবার differentiate  
+করো--
+$$\lim_{x\rightarrow 0}\frac{1+\cos x}{12x^2}.$$
+ধ্যাত্তেরি, এখনও $\frac00$  চেহারা তো গেল না৷ আবার differentiate  করো--
+$$\lim_{x\rightarrow 0}\frac{-\sin x}{24x}.$$
+এইবার দেখা যাচ্ছে যে, উত্তর হবে $-\frac{1}{24}.$  সুতরাং আমাদের গোড়ার limit-টাও এটাই হবে৷ 
+<p></p>
+তবে আমার বইতে আমি infinite series  ব্যবহার করে যে কায়দা আলোচনা করেছি, সেটা দিয়েই এইরকম অংক বেশী 
+সহজে হয়৷ 
+<p></p>
+এবার বলি অন্ধের মত L'Hopital's rule  লাগাতে গিয়ে কোথায় ভুল হতে পারে৷ ধরো বলল 
+$$\lim_{x\rightarrow 0}\frac{\sin x}{x}$$
+বার করতে৷ এটাও $\frac00$  চেহারার৷ তাই L'Hopital's rule  লাগলে পাবে 
+$$\lim_{x\rightarrow 0}\frac{\cos x}{1}=1.$$
+এটা অবশ্যই ঠিক উত্তর৷ কিন্তু অনেক মাষ্টারমাশাই এতে চটে যাবেন৷ তাঁদের বক্তব্য হল--
+<blockquote>এই যে বাপু $\sin x$-কে 
+differentiate  করে $\cos x$    লিখে  দিলে সেটা কী করে পেয়েছিলে? নিশ্চয়ই এইভাবে--
+$$\frac{d\sin x}{dx} = \lim_{h\rightarrow0}\frac{\sin (x+h)-\sin x}{h} = \lim_{h\rightarrow0}\frac{2\sin \frac{h}{2}\cos x}{h}.$$
+এবার $t=\frac{h}{2}$  বসালে এটা হয়ে যায় 
+$$ = \cos x\lim_{t\rightarrow0}\frac{\sin t}{t} = \cos x.$$
+এখানেই তো তুমি ভিতরে ভিতরে $\lim_{t\rightarrow0}\frac{\sin t}{t}=1$  ব্যবহার করলে, ঠিক
+ যেটা তোমার প্রমাণ করার কথা ছিল!</blockquote>
+   অবশ্য $\frac{d\sin x}{dx}$  যে $\cos x$  হয়, এটা অন্য পথেও 
+প্রমাণ করা যায়, এবং সেই পথে এগোলে L'Hopital's rule  প্রয়োগে কোনো বাধা নেই৷ কিন্তু এতসব গোলমাল এড়াবার জন্য 
+আমি বই থেকে L'Hopital's rule-এর আলোচনা বাদ রেখেছিলাম৷ 
+
+
+<h2><a
+name="Composition">Composition</a></h2>
+দুটো function-এর composition  কী জিনিস সেটা বইটায় অনেক আলোচনা করেছি৷ যদি দুটো function-কেই 
+একাধিক ফর্মুলায় ভেঙে দেওয়া থাকে, তবে তাদের composition  বার করতে অনেকের অসুবিধা হয়৷ নীচের অংকটা সেরকম 
+একটা উদাহরণ৷ এটা IIT-র পরীক্ষায় এসেছিল, 1983-তে৷ 
+
+বলা আছে $f(x)=\left\{\begin{array}{ll}1+x&\text{if }0\leq x\leq 2\\ 3-x&\text{if }2&lt; x\leq 3\\\end{array}\right..$  এ থেকে তোমাকে 
+$f(f(x))$  বার করতে হবে, এবং সেটা কোথায় কোথায় continuous  নয় বলতে হবে৷ 
+<p></p>
+উত্তরটা ধাপে ধাপে করে দেখাই৷ 
+<script src="../tools/slideshow.js"></script><script>part = new
+SlideShow("part",6);
+alert(part)
+part.pic = new
+Array("",
+"part1.png",
+"part2.png",
+"part3.png",
+"part4.png",
+"part5.png",
+"part6.png");
+
+part.msg = new
+Array("",
+"প্রথমে $f(x)$-এর গ্রাফ এঁকে নাও৷",
+"বিভিন্ন ফর্মুলার জায়গাগুলো আলাদা আলাদা রঙে দাগ দিয়ে নিলাম৷\
+ $x$-axis-এ ভিতরের function-টার জন্য, আর\
+ $y$-axis-এ বাইরের function-টার জন্য৷ এখানে অবশ্য বাইরে ভিতরে\
+ দু জায়গাতেই $f(x)$  আছে৷",
+"এবার মনে মনে কোনো একটা $x$  নিয়ে তার জন্য সবুজ লাইনটার মত একটা লাইন টানো৷ \
+মনে মনে $x$-টাকে বাঁদিক থেকে ডানদিকে সরাতে থাকো৷ এখানে সবুজ লাইনটা লাল থেকে শুরু হয়ে লালে\
+ শেষ, তার মানে $1+x$-এর পেটে $1+x$  ঢুকবে, মানে $1+(1+x) = 2+x.$",
+"এই $2+x$-এর মেয়াদ চলবে এতটা অবধি৷ এবার থেকে সবুজ লাইনটা \
+লালে শুরু, নীলে শেষ৷ মানে $3-x$-এর পেটে $1+x$  ঢুকবে, $3-(1+x) = 2-x.$",
+"এই $2-x$  চলবে এতটা পর্যন্ত৷ এরপর থেকে নীলে শুরু, লালে শেষ, মানে...",
+"...  $1+x$-এর পেটে $3-x$  ঢুকবে, ফলে হবে $1+(3-x) = 4-x.$");</script>
+<center>
+<fieldset>
+<legend>ব্ল্যাকবোর্ড</legend>
+<form>
+<table height="50%" width="50%" border="0">
+<tr>
+<td colspan="3">
+<div id="partpics">Pictures here.</div>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<div id="partmsgs">Messages here.</div>
+</td>
+</tr>
+<tr>
+<td align="left"><input onclick="part.goprev()" value="আগের ধাপ" type="button"></td><td align="center">
+<div id="partwhich"></div>
+</td><td align="right"><input onclick="alert('part='+part);part.gonext()" value="পরের ধাপ" type="button"></td>
+</tr>
+</table>
+</form>
+</fieldset>
+</center>
+<script>part.showIt();</script>
+সুতরাং সব মিলিয়ে দাঁড়ালো 
+$$f(f(x))=\left\{\begin{array}{ll}
+2+x &\text{if }0\leq x \leq 1\\
+2-x &\text{if }1&lt; x \leq 2\\
+4-x &\text{if }2\leq x \leq 3\\
+\end{array}\right.$$
+এর discontinuity  খালি দু জায়গায় $1$  আর $2$-তে৷ 
+
+<h2><a
+name="বিভিন্ন প্রচলিত function-দের ধর্মাবলী">বিভিন্ন প্রচলিত function-দের ধর্মাবলী</a></h2>  
+বইটায় নানারকম function-এর আলোচনা করেছি৷ প্রসঙ্গক্রমে তাদের বিভিন্ন ধর্মেরও উল্লেখ করা হয়েছে৷ 
+তাতে করে ধর্মগুলো সারা বইতে ছড়িয়ে ছিটিয়ে গেছে, আবার কিছু কিছু দরকারী জিনিস বাদ পড়ে গেছে৷ সেগুলোকে একত্র 
+করার চেষ্টা করা যাক৷ 
+<h3><a
+name="$y=c,$  যেখানে $c$  কোনো constant">$y=c,$  যেখানে $c$  কোনো constant</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>horizontal  একটা লাইন</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>কোনোটাই নয়, সর্বত্রই stationary.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?-- হ্যাঁ৷ কিন্তু কোনো fundamental period  নেই, কারণ যে কোনো সংখ্যাই এর period.</li>
+
+</ul>
+
+<h3><a
+name="$y=x,$  যার আরেক নাম identity function">$y=x,$  যার আরেক নাম identity function</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>$45^\circ$  লাইন</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?-- না৷</li>
+
+</ul>
+
+
+<h3><a
+name="$y=x^2$">$y=x^2$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>উপর দিকে দু হাত তোলা U-এর মত parabola.</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x&lt;0$-র জন্য decreasing, 
+ $x=0$-তে stationary,  আর $x&gt;0$  হলে increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?-- না৷</li>
+
+</ul>
+
+<h3><a
+name="$y=|x|$">$y=|x|$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>উপর দিকে দু হাত তোলা V-এর মত৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x&lt;0$-র জন্য decreasing, 
+আর $x&gt;0$  হলে increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>$x\neq0$  হলে হ্যাঁ, কিন্তু $x=0$-তে না৷</blockquote>
+</li>
+
+<li>Periodic?-- না৷</li>
+
+</ul>
+
+<h3><a
+name="$y=|x|$">$y=|x|$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>উপর দিকে দু হাত তোলা V-এর মত৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x&lt;0$-র জন্য decreasing, 
+আর $x&gt;0$  হলে increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>হ্যাঁ, সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>$x\neq0$  হলে হ্যাঁ, কিন্তু $x=0$-তে না৷</blockquote>
+</li>
+
+<li>Periodic?-- না৷</li>
+
+</ul>
+
+<h3><a
+name="$y=[x]$">$y=[x]$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>সিঁড়ির মত৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x$  কোনো integer  না হলে stationary.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>$x$  কোনো integer  না হলে continuous</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>$x$  কোনো integer  না হলে differentiable.</blockquote>
+</li>
+
+<li>Periodic?-- না৷</li>
+
+</ul>
+
+<h3><a
+name="$y=x-[x],$  যাকে অনেক সময়ে $\{x\}$  লেখে (fractional part of  $x$)">$y=x-[x],$  যাকে অনেক সময়ে $\{x\}$  লেখে (fractional part of  $x$)</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>করাতের মত৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x$  কোনো integer  না হলে increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>$x$  কোনো integer  না হলে continuous</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>$x$  কোনো integer  না হলে differentiable.</blockquote>
+</li>
+
+<li>Periodic?-- হ্যাঁ৷ Fundamental period  হল $1.$</li>
+
+</ul>
+
+<h3><a
+name="$y=\sin x$">$y=\sin x$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>ঢেউ খেলানো৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x$  কোনো integer  না হলে increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?-- হ্যাঁ৷ Fundamental period  হল $2\pi.$</li>
+
+</ul>
+
+<h3><a
+name="$y=\cos x$">$y=\cos x$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>ঢেউ খেলানো৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x$  কোনো integer  না হলে increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?-- হ্যাঁ৷ Fundamental period  হল $2\pi.$</li>
+
+</ul>
+
+<h3><a
+name="$y=\tan x$">$y=\tan x$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>লম্বা লম্বা খাড়া খাড়া আঁচড়ের মত ৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote>$x$  যদি \frac\pi2-এর বিজোড়  multiple    না হয় তবে
+ increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>$x$  যদি \frac\pi2-এর বিজোড় 
+ multiple    না হয় তবে হ্যাঁ৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>$x$  যদি \frac\pi2-এর বিজোড় 
+ multiple    না হয় তবে হ্যাঁ৷</blockquote>
+</li>
+
+<li>Periodic?-- হ্যাঁ৷ Fundamental period  হল $\pi.$</li>
+
+</ul>
+
+<h3><a
+name="$y=e^x$">$y=e^x$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>উঠেই চলেছে, আর যতই উঠছে, ততই খাড়া হচ্ছে৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote> increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?--  না৷</li>
+
+</ul>
+
+<h3><a
+name="$y=\log x$">$y=\log x$</a></h3>
+
+<ul>
+
+<li>গ্রাফ কেমন--<blockquote>উঠেই চলেছে, আর যতই উঠছে, ততই শুয়ে পড়ছে৷</blockquote>
+</li>
+
+<li>increasing/decreasing--<blockquote> increasing.</blockquote>
+</li>
+
+<li>Continuous--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Differentiable--<blockquote>সর্বত্র৷</blockquote>
+</li>
+
+<li>Periodic?--  না৷</li>
+
+</ul>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/><!-- begin htmlcommentbox.com --> 
+<div id="HCB_comment_box">
+<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet"/>
+<script id="hcb" type="text/javascript">
+/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> </body>
+</html>

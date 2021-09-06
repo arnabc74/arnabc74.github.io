@@ -1,0 +1,85 @@
+<NOTE pic="image/real3.jpg">
+<TITLE>@{<E>Real Analysis (vol 3):</E>@} arNab chak+rabar+tIr bai</TITLE>
+<COVID alt="real3/index.html"/>
+<HEAD1>@{<E>Real Analysis (vol 3)</E>@}</HEAD1>
+AmAr @{<E>Real Analysis (vol 3)</E>@} baiyer @{<E>webpage</E>@} eTA. 
+
+<HEAD2>bhul-truTi</HEAD2>
+<UL>
+<LI>
+<IMG web="p5.png">@{<E> 5</E>@}  pAtAr a.nsha</IMG>
+pratham kathA ekhAne yAbtIya @{<M>B</M>@}-gulo @{<M>C</M>@}  habe. dwitIya kathA, lAl dAg deoyA
+ @{<M>B\cap A^c</M>@}-TA habe @{<M>A\cap C^c</M>@}. 
+ bhulTAr khabar peyechhi rAjur
+ theke, ei oyebpej mAr~fat. 
+</LI>
+<LI>
+<IMG web="p8.png">@{<E> 8</E>@}  na.n pAtAr a.nsha</IMG>
+ye a.nker uttare ei @{<E>counterexample</E>@}-TA deoyA Achhe, sekhAne balA chhila @{<M>A</M>@}-ke @{<E>uncountable</E>@}  
+hate habe. samAdhAn karAr samaye seTA bhule giyechhilum. ekhAne @{<M>A= (0,1)\cup\nn</M>@}  nilei chalbe. ei bhulTA dharechhe 
+rimi (o khub miSTi gAn gAy!).  
+</LI>
+<LI>
+<IMG web="p53.png">@{<E> 53</E>@}  pAtAr a.nsha</IMG>
+lAl ra\nge gol karA @{<M>c</M>@}  duTo @{<M>t_1</M>@}  habe. bhulTAr khabar peyechhi rAjur theke, ei oyebpej mAr~fat. 
+</LI>
+<LI>
+<IMG web="p53b.png">@{<E> 53</E>@}  pAtAr nIcher a.nsha</IMG>
+lAl ra\nge gol karA @{<M>U(P,f)</M>@}-TA @{<M>U(Q,f)</M>@}  habe. bhulTAr khabar peyechhi rAjur theke, ei oyebpej mAr~fat. 
+</LI>
+<LI>
+<IMG web="p81.png">@{<E> 81</E>@}  pAtAr a.nsha</IMG>
+lAl ra\nge gol karA @{<E>inequality</E>@}-TA ul+Te yAbe. bhulTA dharechhe praNay dAs. 
+</LI>
+
+<LI>
+<IMG web="p139_1.png">@{<E> 139</E>@}  pAtAr a.nsha</IMG>
+ekhAne parIxAr a.nkaTAtei ekTA bhul chhila--balechhe @{<M>f(x)\neq 0</M>@}  @{<E>for all </E>@}  @{<M>x\geq 0.</M>@}  athacha 
+dekhAte balechhe @{<M>f(x)=x.</M>@}  tAhale to @{<M>f(0)=0</M>@}  habei! bhulTA dharechhe is~mAil manDal. 
+ekhAne lAl-kare-ghire-deoyA @{<M>x\geq 0</M>@}-TA @{<M>x>0</M>@}  hale a.nkaTA Thik hata.  
+sexetre samAdhAnTAo khAnikTA badlAte hata. yeman parer pAtAy Achhe--
+<IMG web="p139_2.png">@{<E> 140</E>@}  pAtAr a.nsha</IMG>
+ekhAneo @{<M>x>0</M>@}  karte habe. ekhAne AbAr ArekTA bhulao hayechhe, @{<M>g(x)</M>@}-gulor Age @{<M>2</M>@}  basbe (nIl 
+diye dekhiyechhi).  tAr khAnikTA nIche Achhe--
+<IMG web="p139_3.png">@{<E> 140</E>@}  pAtAr a.nsha</IMG>
+ekhAne yeman dekhiyechhi, serakam Thik kare nite habe.  </LI>
+<LI>
+<IMG web="p270.png">@{<E>270</E>@}  pAtAr a.nsha</IMG>
+yeman dekhiyechhi, serakam Thik kare nite habe. bhulTA dharechhe Aditya ghoS. 
+</LI>
+<LI>
+<IMG web="p271.png">@{<E>271</E>@}  pAtAr a.nsha</IMG>
+ekhAne @{<E>37</E>@}-gulo sab @{<E>3</E>@}  habe, Ar @{<E>38</E>@}-TA habe @{<E>4.</E>@}  bhulTA dharechhe anekei, tAder 
+madhye pratham hala rAmij rAjA, eba.n ApAtata.H sheS hala is~mAil manDal. 
+</LI>
+<LI>
+<IMG web="p276.png">@{<E>276</E>@}  pAtAr a.nsha</IMG>
+lAl dAg diye dekhAno ch\ouko bryAkeTTA gol bryAkeT habe. 
+bhulTA dharechhe Aditya ghoS. 
+</LI>
+<LI>
+<IMG web="p284.png">@{<E>284</E>@}  pAtAr a.nsha</IMG>
+lAl tIr diye dekhAno @{<M>2</M>@}-TA thAkbe nA. sabuj dAg deoyA @{<M>xng(x)</M>@}-TA Asale habe
+ @{<M>x^n g(x)</M>@}.  
+bhulTA dharechhen kono nAm-prakAshe-anichchhuk shubhAnudhyAyI. 
+</LI>
+<LI>@{<E>285</E>@}  pAtAy @{<E>Exercise 242</E>@}-TA bhul Achhe. tabe yadi @{<M>g(x)</M>@}-ke
+ @{<E>bounded</E>@}  dhare nAo, tabe Ar asubidhA thAkbe nA. bhulTA dharechhe Aditya ghoS. bhuler
+ sa.nshodhaner kAydATAo orai.   </LI>
+<LI>
+<IMG web="p336.png">@{<E>336</E>@}  pAtAr a.nsha</IMG>
+@{<E>283</E>@}  nambar a.nker uttare ei AshcharYa shabdagulo chhApA hayechhe. Asale eTA mangal~graher bhASA.  ajnajaner 
+subidhArthe bA.nlAy tar+jamA kare dichchhi. pratham tinTer uttar hala @{<E>Neither.</E>@}  chAr nambarer uttar @{<E>Uniform.</E>@}  
+tAr parerTA @{<E>Only pointwise.</E>@}  mangal~graher bhASA eTuku theke yA shikhe felechha, tA thekei bAkiTukur pAThoddhAr 
+karte pArbe. 
+bhulTA dharechhen kono nAm-prakAshe-anichchhuk shubhAnudhyAyI (yini mangal grAher bAsindA nan balei sandeha).  
+</LI>
+<LI>
+<IMG web="p350.png">@{<E>350</E>@}  pAtAr a.nsha</IMG>
+lAl diye gherA bichchhiri jinisTA bhul Achhe. Asale oTA Aro bichchhiri ekTA jinis habe, seTA tIr chihna diye lAl ra\nge 
+dekhiyechhi. 
+bhulTA dharechhen yini, tini nijer nAm balen ni. 
+</LI>
+</UL>
+<HTMLCOMM/>
+</NOTE>

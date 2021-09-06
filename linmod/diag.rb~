@@ -1,0 +1,297 @@
+<NOTE>
+@{<E>
+<M>\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\t}{\tilde}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}</M>
+<HEAD1>When things go wrong...</HEAD1>
+The theory of linear models, as we have seen it so far, relies on
+various assumptions. Some of these assumptions may fail for a
+real life data set. We need to diagnose such a failure, and if
+possible, remedy it.
+<P/>
+There are generally three types of departure:
+<OL>
+<LI>errors are not IID Gaussian.</LI>
+<LI><M>E(y)\neq X \beta</M> for any <M>\beta.</M> For example,
+if we are trying to fit a straight line where a quadratic curve
+is needed.</LI>
+<LI>presence of some outliers.</LI>
+</OL>
+We discuss these three issues one by one.
+
+<HEAD1>Problem with errors</HEAD1>
+The errors are not observed directly, but we generally use the
+residuals as a proxy for the errors:
+<D>
+\v e = \v y - \hv y = (I-P_X)\v y.
+</D>
+The since <M>\hv y = P_X \v y,</M> the <M>P_X</M> matrix is
+called the <B>hat matrix</B> (the matrix that puts a hat on <M>\v
+y</M>). Its diagonal entries are often written as <M>h_i</M>'s.
+
+<HEAD2>Heteroscedasticity</HEAD2>
+The general idea is to plot the residuals against various
+quantities. The plots should show no
+change in the variability. Any other pattern (e.g., fanning out)
+signals potential heteroscedasticity. However, even though the
+true errors <M>\v \epsilon</M>, are assumed to be homoscedastic,
+the residuals, <M>\v e</M>, are not. Clearly, 
+<D>
+V(\v e) = \sigma^2 (I-P_X).
+</D> 
+Here we have used the fact that <M>I-P_X</M> is a symmetric and idempotent.
+<P/>
+
+Thus, <M>V(e_i) = \sigma^2 (1-h_i).</M> As <M>h_i</M>'s are 
+known numbers, we can make the <M>e_i</M>'s homoscedastic by
+dividing with <M>\sqrt{(1-h_i)\h \sigma^2}</M> to get the <B>standardised
+residuals</B>:
+<D>
+r_i = [[e_i][\sqrt{(1-h_i) \h\sigma^2}]].
+</D>
+<FNOTE>There is some ambiguity of terminology here. What we have
+called the standardised residual is called 
+ <B>studentised residual</B> by some authors. Other authors reserve this
+term "Studentised" for the case when <M>\h \sigma^2</M> is computed based on
+all cases except the <M>i</M>-th one.</FNOTE>
+<P/>
+ It is a good idea to
+plot these standardised residuals against the fitted values as
+well as the covariates, if any. Let's look at an example borrowed
+from our textbook.
+
+<EXM>
+The data set we are going to use is already part
+of <CODE>faraway</CODE> package. It is called:
+
+<R>
+library(faraway)
+gala
+</R>
+You can find details about it using
+<R>
+?gala
+</R>
+Here is part of the documentation:
+<PRE>
+gala                  package:faraway                  R Documentation
+
+Species diversity on the Galapagos Islands
+
+Description:
+
+     There are 30 Galapagos islands and 7 variables in the data set. The
+     relationship between the number of plant species and several
+     geographic variables is of interest. The original data set
+     contained several missing values which have been filled for
+     convenience.
+</PRE>
+Let's fit a linear model. Our textbook ignores the second column
+of the data set, and (not being sure about any scientific reason
+behind it) we are doing the same here. 
+<R>
+fit = lm(Species ~ ., data=gala[,-2])
+</R>
+The residuals are found as 
+<R>
+e = fit$resid
+</R>
+The diagonals of the hat matrix are computed as 
+<R>
+h = hatvalues(fit)
+</R>
+So the standardised residuals are 
+<R>
+sigmasq = sum(e*e)/(nrow(savings)-fit$rank)
+s.e = e/sqrt((1-h)*sigmasq)
+</R>
+Now we can plot 
+<R>
+plot(fit$fit,s.e)
+</R>
+Here is the plot 
+
+<CIMG web="diagshot2.png"/>
+It shows a fanning out effect.</EXM>
+
+ We should also plot the
+standardised residuals against the covariates. It may be that some
+covariate influences the precision of the measurement
+(e.g. temperature may increase noise in certain physical
+systems). In such a situation we may need to incorporate the
+heteroscedasticity into our model. The most common way to do so
+is via <B>generalised least squares (GLS)</B> that we shall
+discuss <LINK to="gls.html">later</LINK>. A less ambitious
+technique is to apply some <B>variance stabilising transform</B>
+to remove the heteroscedasticity. 
+
+<HEAD3>Variance stabilising transforms</HEAD3>
+
+
+The following excerpt from our text book suggests how one arrives
+at a variance stabilising transform by visual inspection of the
+residual-vs-fitted plot pattern:
+<CIMG web="diagshot5.png"/>
+In our case the fanning out was more or less linear. So we try the square root transform:
+<R>
+fit = lm(sqrt(Species) ~ ., data=gala[,-2])
+</R>
+Now the plot looks like 
+<CIMG web="diagshot3.png"/>
+Much better!
+
+
+<HEAD2>Non-Gaussianity</HEAD2>
+A normal probability plot is a good diagnostic tool here.
+It plots the sample quantiles (of the residuals) against the
+theoretical quantiles (based on <M>N(0,1)</M> distribution). 
+Ideally the plotted points should all lie along a line. R can
+draw such a line for you:
+<R>
+qqnorm(s.e)
+qqline(s.e)
+</R>
+The plot looks like:
+<CIMG web="diagshot4.png"/>
+
+<R>
+shapiro.test(s.e)
+</R>
+Departure from normality may be dealt with in a number of ways:
+<UL>
+<LI>Box-Cox transform</LI>
+<LI>Residual bootstrap</LI>
+</UL>
+We discuss these next.
+<HEAD3>Box-Cox transform</HEAD3>
+If the distribution is unimodal, but skewed, then Box-Cox
+transforms might help:
+<D>
+f_\lambda(y)
+= <CASES>[[y^\lambda-1][\lambda]]<IF>\lambda\neq0</IF>\log y<ELSE/></CASES>
+</D>
+The function <CODE>boxcox</CODE> from the <CODE>MASS</CODE>
+package computes the best possible value for <M>\lambda.</M>
+<HEAD3>Residual bootstrap</HEAD3>
+
+If the distribution is nowhere near normal, then
+bootstrapping is one way out. The version of bootstrap to be
+used here is called <B>residual bootstrap</B>.
+
+
+<EXM>
+Here we first extract the residuals, bootstrap them (i.e.,
+resample them), and add the resampled residuals to the original
+fitted values to create bootstrapped response values. 
+<R>
+attach(gala)
+y = sqrt(Species)
+fit = lm(y ~ Area+Elevation+Nearest+Scruz+Adjacent)
+e = fit$resid
+for( i in 1:1000 ) {
+   estar = sample(e,rep=T)
+   ystar = fit$fitted + estar
+   fitstar = lm(ystar~Area+Elevation+Nearest+Scruz+Adjacent)
+   bootcoef = rbind(bootcoef,fitstar$coef)
+}
+</R>
+</EXM>
+<HEAD2>Non IID-ness</HEAD2>
+Plotting <M>\h \epsilon_i</M> against <M>\h \epsilon_{i-1}</M>
+may unearth some pattern. You may also try the Durbin-Watson test.
+
+<R>
+library(lmtest)
+dwtest(formula)
+</R>
+<D>
+DW = [[\sum_2^n (e_i-e_{i-1})^2][\sum_1^n e_i^2]].
+</D>
+<P/>
+The most common remedy to correlated errors is to allow
+nondiagonal covariance matrix for <M>\epsilon.</M> This may be
+tackled by IRLS or MLE. The latter is implemented
+in <CODE>gls</CODE> of the <CODE>nlme</CODE> package.
+
+<HEAD1>Problem with <M>X \beta </M></HEAD1>
+Such problems are detected by plotting residuals against the
+covariates. 
+<P/>
+Here one should try different <M>X</M>'s. 
+
+<HEAD1>Outliers</HEAD1>
+Outliers are points that do not conform to the general pattern of
+the bulk of the data. A simple way to detect an outlier is by
+looking at points with high residuals. However, some outliers
+influence the fitted model so strongly that the points do not
+have high residuals. It is somewhat like a corrupt powerful politician
+bending the legal machinery to escape detection. The influence of a
+point on the fit (with the remaining points fixed) is called the 
+<B>leverage</B> of that point. To understand this run the following R
+code:
+<R>
+x = rnorm(20)
+y = x + 1 + rnorm(20)/5
+f = function() {
+  plot(x,y,xlim=range(c(x,10)),ylim=range(c(y,12)))
+  fit=lm(y~x)
+  abline(fit$coef)
+  abline(a = fit$coef[1]+1, b=fit$coef[2],lty=2)
+  np = locator(1) 
+  X = np$x
+  Y = (fit$coef[1]+1) + fit$coeff[2]* X
+  newX = c(x,X)
+  newY = c(y,Y)
+  newFit = lm(newY~newX)
+  points(X,Y,col='red')
+  abline(newFit$coef,col='red')
+}
+
+f()
+</R>
+It draws a scatterplot of 20 points, and fits a line to it. Then
+it will wait for you to add an outlier at a vertical distance of
+1 above the fitted line. Click on the plot window to add an
+outlier (R will only  take the <M>x</M>-value of the click and
+compute <M>y</M>-value so that the new point lies on the dashed
+line which runs parallel to the fitted line at a vertical distance 1).
+The new fit is computed and shown in red. Depending on the
+position of the new point the <I>new</I> residual may be large or
+small. The smaller the residual the more the leverage of the
+outlier.
+
+<P/>
+Here are two examples. First a low leverage case: 
+<CIMG web="outlier1.png"></CIMG>
+Next, a high leverage case:
+<CIMG web="outlier2.png"></CIMG>
+Note that in either case the new point is an equally far away
+from the overall pattern. But in the first case you can detect
+this departure by looking at the residuals, while in the second
+case you cannot. 
+<P/>
+So we need a better way than to just look at the residuals. One
+such technique is called the leave-one-out studentised residuals. In
+principle, it computes the studentised residual for each point by fitting the
+model to <I>only</I> the remaining points. It might sound
+computationally intensive, but actually there is a shortcut
+method to do this:
+<D>
+t_i = r_i\sqrt{[[n-p-1][n-p-r_i^2]]}.
+</D>
+Under Gaussianity assumption, this has <M>t_{(n-p-1)}</M>
+distribution. 
+
+<P/>
+We need to perform Bonferroni correction in order to avoid false
+outlier detection. 
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>Show that the Durbin-Watson statistic always lies between 0
+and 4.</LI>
+</OL>
+<DISQUSE id="lmdiag" url="http://www.isical.ac.in/~arnabc/linmod/diag.html"/>
+</E>@}
+</NOTE>

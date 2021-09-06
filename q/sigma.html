@@ -1,0 +1,461 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#The need of $\sigma$-algebras">The need of $\sigma$-algebras</a>
+</li>
+<li>
+<a href="#The snag">The snag</a>
+</li>
+<li>
+<a href="#Construction of the ugly, complicated set">Construction of the ugly, complicated set</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Warming up">Warming up</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A set without a probability">A set without a probability</a>
+</li>
+<li>
+<a href="#Borel $\sigma $-algebra">Borel $\sigma $-algebra</a>
+</li>
+</ul>
+<hr/>
+
+$\newcommand{\ev}{{\mathcal F}}$
+$\newcommand{\pow}{{\mathcal P}}$
+<h1><a
+name="The need of $\sigma$-algebras">The need of $\sigma$-algebras</a></h1>
+When we learn probabaility theory we see the following
+definition.
+<fieldset>
+<legend><b><i>Axiomatic definition of probability</i></b></legend>
+Let $\Omega$ denote a nonempty set. Let $\ev$  denote
+a $\sigma$-algebra on $\Omega$. Then a probability is a
+function $P:\ev\rightarrow [0,1]$ such that the following conditions hold:
+<ol type="">
+
+<li>For any event $A\in\ev$ we have $P(A)\geq 0$</li>
+
+<li>$P(\Omega)=1$</li>
+
+<li>If $A_1,A_2,...\in\ev$ are countably many (finite/infinite) disjoint events then 
+$$
+P(\cup A_n) = \sum P(A_n).
+$$
+</li>
+
+</ol>
+
+</fieldset>
+We generally encounter this definition after a learning to deal
+with the concept of probability intuitively. We find the three
+axioms quite intuitive. However, the need
+of $\sigma $-algebra comes as an unexpected shock. Its
+precise definition is as follows.
+
+<fieldset>
+<legend><b><i>$\sigma$-algebra</i></b></legend>
+Let $\Omega$ be any non-empty set. By
+a $\sigma $-algebra on $\Omega$ we mean a
+collection $\ev$ of
+the subsets of $\Omega$ such that
+<ol type="">
+
+<li>$\phi\in\ev$</li>
+
+<li>If $A\in\ev$ then $A^c\in\ev$</li>
+
+<li>If $A_1,A_2,...\in\ev,$ then $\cup_n A_\in\ev.$</li>
+
+</ol>
+
+</fieldset>
+One obvious example of a $\sigma $-algebra on any non-empty
+set $\Omega$ is its power set, $\pow(\Omega)$, the collection of all
+possible subsets. 
+<p></p>
+A beginning student of probability may not immediately see the
+need 
+of any $\sigma $-algebra other than the power set.  Indeed,
+that's how mathematicians had started out, until they met a
+snag. The concept of a $\sigma $-algebra was born to avoid
+this snag. 
+
+<h1><a
+name="The snag">The snag</a></h1>
+Let's pretend we do not know anything
+about $\sigma $-algebras, and we have started with a
+non-empty set $\Omega$ and defined probability as a
+function $P:\pow(\Omega)\rightarrow[0,1]$ satisfying the same three
+axioms mentioned earlier. 
+<p></p>
+Now we rarely work with probabilities in general, but rather with
+probabilities that satisfy some additional nice properties.  One
+such nice property is "uniformity". To understand this, consider
+a popular carnival game consisitng of a rotating wheel fitted
+with a fixed pointer. The wheel is rotated and after some times
+comes to rest in some random position. The outcome of the random
+experiment is the point on the rim of the wheel under the
+pointer. Assuming that the wheel has no inherent tilt, a natural
+model is to assume that "all positions are uniformly likely."
+This is intuition. To capture this intuition mathematically, we
+need to have a probabaility with the following property:
+<blockquote>
+Let $\Omega$ denot the set of all points on the
+circumference of the wheel.
+If $f_\theta $ is the function that denotes rotation by an
+angle $\theta,$ then for all $A\in\pow(\Omega)$ and all
+angles $\theta$ we must have 
+$$
+P(f_\theta(A)) = P(A),
+$$
+<i>i.e.</i>, the probabaility does not change under rotation. 
+</blockquote>
+In other words, we are modelling our random experiment using a
+function $P:\pow(\Omega)\rightarrow[0,1]$ that satisfies this
+condition as well as the three probabaility axioms.
+<p></p>
+It might come as a complete surprise that NO SUCH FUNCTION EXISTS!!!!
+<p></p>
+The proof of this non-existence is fun, nontrivial, but prety short. 
+The basic idea is to construct a rather ugly, complicated
+subset $M$ of $\Omega$ for which $P(M)$ cannot be
+defined. The exact construction will be given below. 
+But before that let us quickly point out the
+implication: The problem occurs with some ugly, complicated
+set. Now such sets rarely occur in any practical problem. So why
+care even if we cannot define probabailities for them? This led
+to the idea of defining probabaility only for a collection of
+subsets of $\Omega$ (instead of <i>all</i> subsets). Now
+how many ugly, complicated subsets are we to avoid? That's a
+difficult question to answer. So we attack the problem from the
+other side: for which sets do we want probabaility to be defined?
+Here the answer is obvious: all subsets of $\Omega$ for
+which we can make the axioms meaningful. This immediately leads
+to the definition of $\sigma$-algebra.
+
+<h1><a
+name="Construction of the ugly, complicated set">Construction of the ugly, complicated set</a></h1>
+Let $\Omega$ be the following circle (only the circumference, not the
+inside). Let the circumference have length 1.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli1.png"></th>
+</tr>
+<tr>
+<th>A circle</th>
+</tr>
+</table>
+</center>
+If I pick a point "at random" from this circle, what is the
+chance that it lands in the upper semicircle? The obvious answer
+is $\frac 12.$ What is the chance that it would land in any
+given quadrant? The obvious answer this time is $\frac 14.$
+<p></p>
+In fact, for any arc, the probability equals the length of the arc.
+<p></p>
+Also, suppose that $A$ is some subset of the
+circle. Let us denote by $A+\theta$ the subset obtained by
+rotating $A$ by an angle $\theta.$ Which subset has the
+larger probability, $A$ or $A+\theta?$ Since we are
+picking the point "at random" without any bias for any particular
+direction, hence both $A$ and $A+\theta$ should have
+the same probability. 
+<p></p>
+It might come as a surprise
+that there is <b>no</b> probability function $P$ from the power set
+of $\Omega$ to ${\mathbb R}$ that satisfies these two
+conditions simultaneously, <i>i.e.</i>,
+<ul>
+
+<li>for any arc $A$ we must have $P(A)=length(A).$</li>
+
+<li>for any $A\subseteq\Omega$ and for any $\theta$ we must
+have $P(A) = P(A+\theta).$</li>
+
+</ul>
+Thus, we are claiming that we cannot have a function $P$
+ definied on the entire power set of $\Omega$ that satisfies
+ the three probability axioms as well as these two extra conditions.
+<p></p>
+
+ We shall provide  a quick proof of
+this here by contradiction. Let, if posible, there be such a
+function $P.$ We shall demonstrate a "bad" set $M$ for
+which $P(M)$ cannot be defined, contradicting the assumption
+that $P$ is defined for all subsets of $\Omega.$ 
+<p></p>
+Let's warm up first.
+
+<h2><a
+name="Warming up">Warming up</a></h2>
+Imagine the circle split up into
+12 equal parts like the face of the clock. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli2.png"></th>
+</tr>
+<tr>
+<th>Split up into 12 arcs</th>
+</tr>
+</table>
+</center>
+We have grouped the arcs into 3 different groups of size 4 each
+(shown by the colours red, green and blue). The grouping is done
+like this: Give any colour to any arc to start with. Then start
+counting clockwise and use the
+same colour to every 3rd arc. Then pick an uncoloured arc and
+proceed similarly with another colour, and so on. Notice that the
+parts of the different colours are all identical in shape and
+size. One is just a rotated version of another. So the total
+length of all the parts must be the same. 
+<p></p>
+ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli3.png"></th>
+</tr>
+<tr>
+<th>One arc of each colour</th>
+</tr>
+</table>
+</center>
+Now pick any one arc of each colour. This gives you a set. Call
+it $M.$ Rotate $M$
+by $90^\circ$ clockwise. The new set is $M+90^\circ.$
+Then, notice that $M,
+M+90^\circ, M+180^\circ$ and $M+270^\circ$ are all disjoint and build up
+the entire circle.
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli4.png"></th>
+</tr>
+<tr>
+<th>Partitioning the circle</th>
+</tr>
+</table>
+</center>
+Well, that's all the warm up we need! Now for the actual thing.
+
+<h2><a
+name="A set without a probability">A set without a probability</a></h2>
+We again start with the circle, whose
+circumference is 1. Also, for two points $x,y\in
+S$, we shall denote the (shorter) arc length between them
+by $|xy|.$ This will always be in $[0,1/2].$
+<p></p>
+
+Pick any point on the circle, colour
+it red. Also mark all points that are at a rational distance from
+this point with the same colour. Now pick a point that has not
+been coloured. Colour it green, and do the same thing again: mark
+all points at a rational distance from it with green. Continue
+like this until all the points are coloured. Of course, this will
+take infinite amount of time. What we mean mathematically, is
+that for each point $x\in S$ we define 
+$$
+A_x = \{p\in S~:~ |px|\in{\mathbb Q}\}.
+$$
+Note the following points:
+<ul>
+
+<li>If $y\in A_x$ then $x\in A_y.$ So all
+the $A_x$'s are not distinct. For example, if $x,y$
+are diametrically opposite each other, then $A_x=A_y.$</li>
+
+<li>Each $A_x$ is countable, since there are only countably
+many rationals.</li>
+
+<li>There are uncountably many distinct $A_x$'s (since
+total number of points on the circle is uncountable).</li>
+
+</ul>
+Now pick exactly one point from each distinct $A_x.$ Call the set
+of all these picked points $M.$
+<p></p>
+This is a troublesome set. I claim that you cannot define its
+probability $P(M).$
+<p></p>
+
+For any rational number $r\in [0,1)$ we denote
+by $M+r$ the set $M$ rotated clockwise by distance $r.$
+<p></p>
+Then note that
+<ul>
+
+<li>If $r\neq s$ are two rational points in $[0,1)$
+then $M+r$ and $M+s$ are disjoint.</li>
+
+<li>Let $\{r_1,r_2,...\}$ be a listing all rationals
+in $[0,1).$
+Then 
+$$
+\cup_{i=1}^\infty (M+r_i)
+$$
+equals the entire circle.
+</li>
+
+</ul>
+Now, let's say that $M$ has $P(M)=\ell.$
+Clearly, $\forall r\in[0,1)$ we must have $P(M+r)=\ell,$
+as well.
+
+<p></p>
+Now, if $\ell = 0$ then the second
+condition above implies that $P(\Omega)$
+is $0+0+\cdots = 0,$ which is wrong, since length
+of $P(\Omega)$ must be 1.
+<p></p>
+If $\ell&gt;0,$ then $P(\Omega)$ becomes $\ell+\ell+\cdots =
+\infty,$ again a contradiction! 
+<p></p>
+This completes the proof
+
+<h1><a
+name="Borel $\sigma $-algebra">Borel $\sigma $-algebra</a></h1>
+When we defined $\sigma $-algebra, we basically avoided the
+problem of non-existence of uniform probability, by restricting
+our attention to only a collection of subsets of $\Omega.$
+The definition of $\sigma $-algebra says that the members of this
+collection must be chosen consistently (<i>e.g.</i>, if a set is included
+in the collection, its complement must also be included). But
+there may be many possible collections all satisfying the
+definition of a $\sigma $-algebra. The largest example is
+the power set, which is too large to ensure existence of a
+uniform probability. But how much smaller should we take
+the $\sigma $-algebra. Should we make it the smallest
+possible? The smallest possible $\sigma $-algebra is
+just $\{\phi, \Omega\},$ and we can hardly do any useful
+computation with it. So there is a trade-off: 
+<blockquote>too large means no
+uniform probability, and too small means useless.</blockquote>
+The first attempt to strike a balance was to work with the
+largest possible $\sigma$-algebra that allows a uniform
+probability to exist. This $\sigma $-algebra is called the
+<b>Lebesgue $\sigma $-algebra</b>. Unfortunately, it is
+rather difficult to work with it. So people has settled for a
+smaller $\sigma $-algebra, which is called
+the <b>Borel $\sigma $-algebra</b>. The
+Borel $\sigma $-algebra over ${\mathbb R}$ is the
+smallest $\sigma $-algebra containing all the
+intervals. Equivalently, it is the
+smallest $\sigma $-algebra containing all open sets
+of ${\mathbb R}.$ If we work with any topological
+space $\Omega$ then the Borel $\sigma $-algebra is the
+smallest $\sigma $-algebra containing all open subsets of $\Omega.$
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/q/sigma.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "vit"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

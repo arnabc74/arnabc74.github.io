@@ -1,0 +1,714 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Simple pendulum">Simple pendulum</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A closer look: Euler's method">A closer look: Euler's method</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Taylor's method">Taylor's method</a>
+</li>
+</ul>
+<hr/>
+
+$
+\newcommand{\v}{\vec}
+$
+<title>Differential equations</title>
+
+<table width="100%">
+<tr>
+<td align="right"><i>Last
+updated on:
+SUN JAN 24 IST 2021</i></td>
+</tr>
+</table>
+
+<h1><a
+name="Simple pendulum">Simple pendulum</a></h1>
+
+During our high school days we are taught that a simple pendulum executes an
+approximately simple harmonic motion <i>if the angle of swing is small.</i> However, high
+school textbooks avoid discussing the general case: the motion of a
+pendulum that may swing to larger angles. The main reason is that this leads
+to an unmanageable differential equation that cannot be solved without a computer.
+<p></p>
+Consider the following diagram. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pendu.png"></th>
+</tr>
+<tr>
+<th>Simple pendulum</th>
+</tr>
+</table>
+</center>
+Taking $O$ as the origin and positive
+$x$- $y$- and $\theta$-directions as shown, the position of
+the bob is
+$$\begin{eqnarray*}
+x &amp;  = &amp;  L\sin(\theta)\\
+y &amp;  = &amp;  -L\cos(\theta).
+\end{eqnarray*}$$
+Remember that $\theta $ is a function of time $t.$ So the above
+equations actually mean 
+$$\begin{eqnarray*}
+x(t) &amp;  = &amp;  L\sin(\theta(t))\\
+y(t) &amp;  = &amp;  -L\cos(\theta(t)).
+\end{eqnarray*}$$
+
+The forces on the bob along the positive $x$- and $y$-directions
+are, respectively,
+$$\begin{eqnarray*}
+F_x &amp;  = &amp;  -T\sin(\theta)\\
+F_y &amp;  = &amp;  T\cos(\theta)-mg.
+\end{eqnarray*}$$
+Here $T$ is the tension in the rod. It is also a function of
+$t.$
+
+<p></p>
+
+To derive the equations of motion we shall use Newton's second law of
+motion, which says
+$$\begin{eqnarray*}
+F_x &amp;  = &amp;  m x''\\
+F_y &amp;  = &amp;  m y'',
+\end{eqnarray*}$$
+where $x''$, $y''$   denote the second derivatives of $x(t)$, $y(t)$ with respect
+to $t.$
+
+<p></p>
+
+Differentiating $x(t)$ and $y(t)$ twice we get
+$$\begin{eqnarray*}
+x'' &amp;  = &amp;  -L  \sin(\theta)(\theta')^2 + L \cos(\theta)\theta ''\\
+y'' &amp;  = &amp;  L  \cos(\theta)(\theta')^2 + L  \sin(\theta)\theta ''.
+\end{eqnarray*}$$
+
+Putting these in Newton's second law, and simplifying, we get
+$$
+\theta '' = -\frac gL \sin(\theta).
+$$
+At this point most  textbooks use
+the ``$\sin(\theta)\approx \theta $'' approximation for "small"
+$\theta$ to reduce the above differential equation to 
+$$
+\theta '' = -\frac gL \theta,
+$$
+which can be solved easily by hand to produce simple harmonic
+motion. The approximation is pretty good if the pendulum swings
+within $4^\circ$. But not all pendulums swing within that
+range. What if you have a pendulum that swings $30^\circ?$
+That's what we are going to explore now.
+<p></p>
+We first reduce the second
+order differential equation $\theta '' = -\frac gL\theta$ 
+to a <i>system</i> of first order equations.
+$$\begin{eqnarray*}
+\theta ' &amp;  = &amp;  \omega\\
+\omega' &amp;  = &amp;  -\frac gL \theta.
+\end{eqnarray*}$$
+Notice that $(\theta',\omega')$ is given as a function
+of $(\theta,\omega).$ The entire motion of the pendulum is
+determined if we know $(\theta,\omega)$ at some instant. So
+we call $(\theta,\omega)$ the <i>phase</i> of the system. We
+are given the initial phase of the system, <i>i.e.</i>, we know from which initial angle we have released the
+pendulum, and with what angular velocity. Our aim is to know the phase at
+all time points during the swing.
+
+<p></p>
+Thus, at $t=t_0$ (specified number), we know 
+$$\begin{eqnarray*}
+\theta &amp; = &amp; \theta_0\mbox{ (specified number)},\\
+\omega &amp; = &amp; \omega_0\mbox{ (specified number)}.
+\end{eqnarray*}$$ 
+We want to know the values $\theta(t)$  and $\omega(t)$  at any given $t &gt; t_0.$
+<p></p>
+Thanks to the differential equations, we also know 
+the rate at which they are increasing at $t=t_0:$
+$$\begin{eqnarray*}
+\theta'(t_0) &amp; = &amp; \omega_0,\\
+\omega'(t_0) &amp; = &amp; -\frac gL\sin \theta_0.
+\end{eqnarray*}$$ 
+Now advance time a little  to $t_1=t_0+\delta t$, say. By this
+time $\theta$ and $\omega$ will roughly change to
+$$\begin{eqnarray*}
+\theta_1 &amp; = &amp; \theta_0 + \theta'(t_0)\delta t = \theta_0+\omega_0\delta t\\
+\omega_1 &amp; = &amp; \omega_0 +\omega'(t_0)\delta t =
+\omega_0-\frac gL\sin \theta_0 \delta t.
+\end{eqnarray*}$$ 
+
+So we get the phase (approximately) at  $t_1= t_0+\delta t.$
+<p></p>
+Now we keep on advancing time by  $\delta t$ increments. The same 
+logic may be used repeatedly to give, at $t_k = t_0+k\cdot\delta t,$
+$$\begin{eqnarray*}
+\theta_k &amp; = &amp; \theta_{k-1} + \omega_{k-1}\delta t\\
+\omega_k &amp; = &amp; \omega_{k-1} -\frac gL\sin \theta_{k-1} \delta t.
+\end{eqnarray*}$$ 
+
+Admittedly, this is a rather crude approximation. However, if $\delta t$  is pretty small, the accuracy increases. 
+Let us explore this numerically using J. For this, consider the
+iteration as a single function that maps one $(\theta,
+\omega)$ pair to the next:
+$$
+(\theta,\omega)\mapsto (\theta,\omega) + \delta t
+\underbrace{\left(\omega,-\tfrac gL\sin \theta\right)}_{r(\theta,\omega),\mbox{ say}}.
+$$
+<span class="j">
+<pre>
+r=: {:, (_9.8 *  sin @ {.) 
+</pre>
+</span>
+Rememebr that this function is expeced to work as a monad on a
+pair $(\theta,\omega).$ Notice that the J code is
+essentially the same as the following description
+of $r(\theta,\omega)=\left(\omega,-\tfrac gL\sin \theta\right)$ in plain English:
+<blockquote>
+the last entry (<i>i.e.</i>, $\omega$) followed
+by $-9.8\times$ the first entry (<i>i.e.</i>, $\theta $).
+</blockquote>
+Next, have to move from the current $r(\theta,\omega)$ pair
+to the next.
+English description:
+<blockquote>
+Add $\delta t\times r$ (to the current value).
+</blockquote>
+Its J translation gives a function <font color="red"><code>u</code></font>:
+<span class="j">
+<pre>
+u=: + 0.1 *  r 
+</pre>
+</span>
+Try out <font color="red"><code>r</code></font> and <font color="red"><code>u</code></font> like this with initial $(\theta,\omega)=(1,0)$:
+<span class="j">
+<pre>
+r 1 0
+u 1 0
+</pre>
+</span>
+Since J codes are minimalistic, it is easy to lose your
+bearing while programming. To avoid this, keep a firm hold on
+the layout of the data as they  get transformed by
+different functions. For instance, the updating function
+produces the next $(\theta,\omega)$ pair from the current one:
+this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/p1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+It will help to visualize the updation as a syntax tree:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ftree1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+It should not be very difficult to draw (mentally, after some
+practice) this tree based on the algebraic description. The only
+hitch may be with the "append" function which is something we are
+not as familiar as the mathematical operations. This is more like
+a book-keeping operation, but thanks to J's infix notation we can
+show this in the same syntax tree as the more mathematical
+ones.
+<p></p>
+ In a syntax tree, the data enter through the leaves. There
+are two types of data here: those involving the current value
+(shown in red) and those involving various constants
+(shown in blue). Our plan is to express this as a function
+of $(\theta,\omega)$. So we need two book keeping functions
+to extract $\theta $ and $\omega$
+from $(\theta,\omega),$ resulting in the following tree:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ftree2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This syntax tree may be written down directly in J:
+<span class="j">
+<pre>
+u=: + 0.1 * {: , _9.8 * sin @ {.
+</pre>
+</span>
+This may look like a magic spell (it is one!), but if you wish,
+you may resort to a more verbose version:
+<span class="j">
+<pre>
+r=: {: , _9.8 * sin @ {.
+u=: + 0.1 * r
+</pre>
+</span>
+Let us compare this with a similar thing from, say, Python:
+<span class="j">
+<pre>
+r = [ y[1], -9.8 * sin(y[0]) ]
+y = y + 0.1 * r
+</pre>
+</span>
+If you want to start with some <font color="red"><code>y</code></font> and apply this 10 times,
+then you will need to replay <i>both</i> the lines as many
+times. But in J, <font color="red"><code>r</code></font> is a function, and it is already
+inside <font color="red"><code>u</code></font>. So merely applying <font color="red"><code>u</code></font> 10 times will be
+enough. Let us see this in action.
+We shall start with initial $(\theta,\omega)=(1,0)$ and
+apply the function updating function 100 times, say. 
+<span class="j">
+<pre>
+u^:(i.100) 1 0 
+</pre>
+</span>
+Here we are using the function power operator. If <font color="red"><code>u</code></font> is a
+function then <font color="red"><code>u ^: 2</code></font> will apply it twice
+(<i>i.e.</i>, $y\mapsto u(u(y))$). If we write <font color="red"><code>u ^: 1 2 3</code></font>,
+then you will get a function ($f$, say) such
+that $f(y)$ is a tree with items $u(y)$, $u(u(y))$
+and $u(u(u(y))).$
+<p></p>
+Here <font color="red"><code>i.100</code></font> is the list $0,1,2,...,99.$ So we are
+getting 99 iterations of the function <font color="red"><code>u</code></font> starting with $(\theta,\omega)=(1,0)$.
+This is what you get:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/p2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+It will be a lot more fun to make a plot of the $\theta$
+values. To isolate just the $\theta$ values, you need to
+pick up only the first entry (<i>i.e.</i> apply <font color="red"><code>{.</code></font>) to each of
+the red subtrees (<i>i.e.</i>, at rank 1):
+<span class="j">
+<pre>
+plot {."1 u^:(i.100) 1 0 
+</pre>
+</span>
+<a href="javascript:hideShow('j1');">J help</a>
+<div id="j1" style="display:none;background-color:#ffcccc;">
+
+<ul>
+
+<li>
+<code>=:</code> defining a new variable or function.</li>
+
+<li>
+<code>{.</code> (head): extracts the first element of a list.</li>
+
+<li>
+<code>{:</code> (tail): extracts the last element of a
+list.</li>
+
+<li>
+<code>@</code> function composition.</li>
+
+<li>
+<code>^:</code> (composition power): <i>e.g.</i> <code>f^:3</code>
+means $f(f(f(\cdots))).$ Also, <code>f^:(1 2 3)</code>
+means a list of functions, $f, f\circ f, f\circ f\circ f.$</li>
+
+<li>
+<code>i.</code> creates a list of integers. In particular,
+<code>i. 5</code> is 0,1,2,3,4.</li>
+
+<li>
+<code>|:</code> (transpose): matrix transposition.</li>
+
+<li>
+<code>plot</code> when used as <code>plot y</code> makes a
+line plot of $(0,y_0),...,(n-1,y_{n-1})$ if $n$ is the
+length of $y.$</li>
+
+</ul>
+
+</div>
+
+<p></p>
+
+
+<h2><a
+name="A closer look: Euler's method">A closer look: Euler's method</a></h2>
+Our differential equation was of the form
+$$y'(t) = f(y),$$
+where $y(t_0) = y_0.$ In our pendulum example we had $y
+= (\theta,\omega).$ Also 
+$$
+f(y) \equiv f(\theta, \omega) = \left(\omega, -\frac gL\sin \theta\right).
+$$
+The crude approximation that we used is called <b>Euler's
+method</b>. It works with the more general form:
+$$
+y'(t) = f(t,y),\quad y(t_0) = y_0.
+$$
+We shall be given the function
+$f(\cdot,\cdot)$ and the initial values $t_0,y_0.$ We are also  given a
+positive integer $n$ and a step size $\delta t.$ We have to find out the
+function $y(t)$ at the points $t_1,...,t_n,$ where
+$$
+t_i = t_0+i \delta t.
+$$
+Euler's method works by making local linear
+approximations to the unknown $y(t).$ 
+<p></p>
+For this we need to know the derivative of $y(t).$  If
+at some instant $t$  we can guess the value of $y(t),$  then the value of $y'(t)$  may be obtained from 
+differential equation: $y'(t)=f(t,y(t)).$
+<p></p>
+ Here we are starting from  $y_0 =
+y(t_0).$ So we know that $y'(t_0) = f(t_0,y_0).$ This is the slope
+of the tangent to $y(t)$ at $t=t_0.$ Follow this tangent for
+a little time $\delta t$ to arrive at $y_1 =
+y_0+f(t_0,y_0)\delta t.$ The point
+$(t_1,y_1)$ may not lie exactly on the curve of $y(t).$ But if $\delta t$
+is small, then this should lie close to it. So we take $y_1$ as an
+approximation to $y(t_1).$ Now we repeat the process again to get 
+$y_2 = y_1+\delta t\,f(t_1,y_1).$ In general, we  define 
+$$
+y_k = y_{k-1}+\delta t\, f(t_{k-1},y_{k-1}) \quad\mbox{ for } k=1,...,n.
+$$
+This is <b>Euler's method</b>. 
+<p></p>
+How good is this method? To explore this we shall try out a simple example, where
+the solution is known. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose we are working with $f(t,y) = -\sin(t+y).$ In other
+words, we are solving $\frac{dy}{dt} = -\sin(t+y).$ We shall
+start from the point $\left(0,-\frac \pi2\right),$ <i>i.e.</i>, $y = -\frac \pi2$
+when $t=0.$ 
+<p></p>
+Of course,
+we can solve it analytically, by taking $v = t+y.$
+Then $\frac{dv}{dt}  = 1+\frac{dy}{dt}= 1-\sin(v),$ which may be solved by direct integration. The
+answer is (check!)
+$$
+y = -\sin ^{-1} \left( \frac{1-t^2}{1+t^2} \right) - t.
+$$
+We
+shall compare our approximation with this to 
+see how Euler's method performs. We shall take $n$ steps
+in $[0,2].$ Then the Euler iterations are
+$$
+y_i = y_{i-1} - \frac 2n\times \sin(t_{i-1}+y_{i-1}) 
+$$
+for $i=1,...,n$ starting with $t_0 = 0$ and $y_0 =-\frac \pi2.$
+
+<p></p>
+The result (with $n=10$) is shown in the following graph. The continuous curve is the true solution. The dashed 
+polyline (with 10 segments) is Euler's approximation:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/eul10.png"></th>
+</tr>
+<tr>
+<th>Euler with 10 steps</th>
+</tr>
+</table>
+</center>
+If we increase the number of steps to 20 then the approximation
+is somewhat better:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/eul20.png"></th>
+</tr>
+<tr>
+<th>Euler with 20 steps</th>
+</tr>
+</table>
+</center>
+If you use 100 steps the accuracy is pretty good:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/eul100.png"></th>
+</tr>
+<tr>
+<th>Euler with 100 steps</th>
+</tr>
+</table>
+</center>
+We may explore these using the following J code.
+<span class="j">
+<pre>
+d1=:-@sin@+/
+eu=:] + 0.1, 0.1  *  d1
+eu^:(i.5) 0 _0.5p1
+xct=: --arcsin@ (1 (-%+) *~)
+tr=: xct t=: (i.200) % 100
+pd'reset'
+pd t; tr 
+pd ;/ |: eu^:(i.20) 0 _0.5p1
+pd'show'
+</pre>
+</span>
+
+<a href="javascript:hideShow('j2');">J help</a>
+<div id="j2" style="display:none;background-color:#ffcccc;">
+
+<ul>
+
+<li>
+<code>+/</code> means summation. <i>e.g.</i> <code>+/ 1 2 3</code>
+will give 6.</li>
+
+<li>
+<code>,</code> joins two lists end to end. <i>e.g.</i> if $x=1, 2,
+3$ then <code>5, x</code> means 5,1,2,3.</li>
+
+<li>
+<code>_0.5p1</code> means $-\frac \pi2.$</li>
+
+<li>
+<code>(f g h)</code> means the function $y\mapsto
+g(f(y), h(y)),$ or $(x,y)\mapsto g(f(x,y), h(x,y)).$ Just as $(\sin+\cos)(x) = \sin x + \cos
+x.$ In particular, <code>1 (-%+) x</code> means $\frac{1-x}{1+x}.$</li>
+
+</ul>
+
+</div>
+
+<img src="../image/box.png"></p>
+
+Now try your hand at the following problem.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+$\frac{dy}{dx} = e^{-xy^2}$ starting from $(0,0).$
+<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="Taylor's method">Taylor's method</a></h2>
+One problem with Euler's method is that unless $\delta t$ is very small the
+$y_i$'s may move away from the curve of $y(t).$ Taylor's
+method generalises Euler's method to improve the accuracy. In Euler's
+method we used local linear approximations (tangents)
+to $y(t)$ at each $t_i:$
+$$
+y(t) \approx y(t_i) + y'(t_i)(t-t_i).
+$$
+These are just the first two terms of the Taylor expansion
+of $y(t):$
+$$
+y(t_i) + y'(t_i)(t-t_i) + \frac{y''(t_i)}{2}(t-t_i)^2
++\cdots \frac{y^{(k)}(t_i)}{k!} (t-t_i)^k + \cdots 
+$$
+In Taylor's method we take more terms from this series. Thus,
+1-st order Taylor's method is the same as Euler's method, while
+the $k$-th order Taylor's method uses
+$$
+y(t)\approx y(t_i) + y'(t_i)(t-t_i) + \frac{y''(t_i)}{2}(t-t_i)^2
++\cdots \frac{y^{(k)}(t_i)}{k!} (t-t_i)^k.
+$$
+<p>
+<b>EXERCISE:</b>&nbsp;Check that it is the unique $\leq k$ degree polynomial that has the same
+derivatives as $y(t)$ up to order $k$  at $t_i.$<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;Solve the same differential equation
+ $y'(t) = -\sin(t+y)$ with $y(0) = -\frac \pi2$
+over $[0,2]$
+using 2-nd order Taylor method.
+<p></p>
+<b>SOLUTION:</b>
+The 2-nd degree Taylor polynomial for $y(t)$ at
+any $t_{k-1}$ is 
+$$
+y(t_{k-1}) + y'(t_{k-1})(t-t_{k-1}) + \frac{y''(t_{k-1})}{2} (t-t_{k-1})^2.
+$$
+For this we need $y'(t_{k-1})$  and $y''(t_{k-1}).$  These may be obtained approximately as follows.
+<p></p>
+We can write the differential equation as
+$$
+y'(t) = -\sin(t+y(t)).
+$$
+Differentiating w.r.t. $t,$
+$$
+y''(t) = -\cos(t+y(t))(1+y'(t)).
+$$
+Hence
+$$\begin{eqnarray*}
+y'(t_{k-1}) &amp; = &amp; -\sin(t_{k-1}+y(t_{k-1}))\\
+y''(t_{k-1}) &amp; = &amp; -\cos(t_{k-1}+y(t_{k-1}))(1+y'(t_{k-1})).
+\end{eqnarray*}$$
+<p></p>
+As before we take a grid of values in $[0,2],$ say $10$ steps. So
+there are 11 points starting with $t_0=1$ and ending
+with $t_{10}=2.$ The general formula for $t_k$ is 
+$$
+t_k = 1+k\cdot\delta t,
+$$
+where $\delta t = \frac 2n.$
+<p></p>
+So the 2nd order Taylor iterations are
+$$y_{k} = y_{k-1} +\frac 2ny'(t_{k-1}) + \frac{2}{n^2}y''(t_{k-1}).$$
+
+The result is shown below. The red curve is the 2nd order Taylor approximation with $n=10.$  The dashed polyline is
+ the Euler's approximation (<i>i.e.</i>, 1st order Taylor) with the same $n.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/et2_10.png"></th>
+</tr>
+<tr>
+<th>Euler and 2nd order Taylor
+($n=10$)</th>
+</tr>
+</table>
+</center>
+
+<span class="j">
+<pre>
+d1=:-@sin@+/
+d2=:(-@cos@+/)*(1+d1)
+tay2=:]+0.1, (0.1 * d1) + (0.005 * d2)
+tay2^:(i.5) 0 _0.5p1
+tr=: xct t=: (i.200) % 100 
+xct=: --arcsin@ (1 (-%+) *~)
+pd'reset'
+pd t; tr
+pd ;/ |: tay2^:(i.20) 0 _0.5p1
+pd'show'
+</pre>
+</span>
+
+<a href="javascript:hideShow('j3');">J help</a>
+<div id="j3" style="display:none;background-color:#ffcccc;">
+
+<ul>
+
+<li>
+<code>;</code> makes boxes, <i>e.g.</i> <code> 1; 'str' ; 3.9</code>
+will give a list of boxes.</li>
+
+<li>
+<code>;/</code> inserts a <code>;</code> between consecutuve
+elements of a list, <i>e.g.</i>, <code>;/ 1 2 3</code> is the same as <code>1;2;3</code>.
+</li>
+
+<li>
+<code>pd</code> makes plots in a versatile way. Start
+with <code>pd 'reset'</code> and end with <code>pd
+'show'</code>. To plot $(x_i,y_i)$'s and join the points
+with line segments use <code>pd x; y</code>
+</li>
+
+</ul>
+
+</div>
+
+<img src="../image/box.png"></p>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

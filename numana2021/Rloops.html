@@ -1,0 +1,336 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Some features of R">Some features of R</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#For loops">For loops</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#You don't need loops much in R">You don't need loops much in R</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Looping a fixed number of times">Looping a fixed number of times</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Automatic printing is disabled inside a for-loop">Automatic printing is disabled inside a for-loop</a>
+</li>
+<li>
+<a href="#Functions">Functions</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Some features of R">Some features of R</a></h1>
+
+<h2><a
+name="For loops">For loops</a></h2>
+R uses for-loops to loop over the elements of an array. Here is a
+quick example:
+<font color="red">
+<pre>
+values = c(3, 5.6, -45)
+for(x in values) {
+   cat('x =', x, '\n')
+}
+</pre>
+</font>
+This produces the output
+<font color="red">
+<pre>
+x = 3 
+x = 5.6 
+x = -45
+</pre>
+</font>
+Notice the use of the keyword <code>in</code>.
+<p></p>
+
+Let me tell you some important points that make for-loops in R
+different from those in C.
+<h3><a
+name="You don't need loops much in R">You don't need loops much in R</a></h3>
+If $x = (x_1,...,x_{100}),$ and you want to compute $y =
+(\sin x_1,...,\sin x_{100}),$ then you write a for-loop in
+C. However, in R just use a single line:
+<font color="red">
+<pre>
+y = sin(x)
+</pre>
+</font>
+You should use such "implicit" loops whenever you can, as they
+are more efficient than the "explicit" for-loops. 
+
+<h3><a
+name="Looping a fixed number of times">Looping a fixed number of times</a></h3>
+If you want to do something $n$ times, then in C you write:
+<font color="red">
+<pre>
+for(i=0;i&lt;n;i++) {
+  printf("hello\n");
+}
+</pre>
+</font>
+To achieve the same effect in R you need:
+<font color="red">
+<pre>
+for(i in 1:n) {
+  print('hello')
+}
+</pre>
+</font>
+However, here <code>i</code> is going from 1 to $n$. If you
+want it to go from 0 to $n-1$, then use 
+<font color="red">
+<pre>
+for(i in 0:(n-1)) {
+  print('hello')
+}
+</pre>
+</font>
+Important: Don't use <code>0:n-1</code> instead
+of <code>0:(n-1)</code>. The former means
+"subtract 1 from <code>0:n</code>".
+<h3><a
+name="Automatic printing is disabled inside a for-loop">Automatic printing is disabled inside a for-loop</a></h3>
+If <code>x</code> is a variable in R, then you can print its
+value by simple typing its name by itself in a line (and hitting
+enter):
+<font color="red">
+<pre>
+x = 1:10
+x
+</pre>
+</font>
+Then the value of <code>x</code> gets printed automatically
+(without the need of any <code>print</code> or <code>cat</code>
+command:
+<font color="red">
+<pre>
+ [1]  1  2  3  4  5  6  7  8  9 10
+</pre>
+</font>
+However, this does not work inside a for-loop:
+<font color="red">
+<pre>
+for( x in 1:10) {
+  x
+}
+</pre>
+</font>
+This does not print anything on the screen. You need to
+use <code>print</code> or <code>cat</code> explicitly:
+<font color="red">
+<pre>
+for( x in 1:10) {
+  print(x)
+}
+</pre>
+</font>
+to get output
+<font color="red">
+<pre>
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+</pre>
+</font>
+
+<h1><a
+name="Functions">Functions</a></h1>
+A function in R is like 
+<font color="red">
+<pre>
+f = function(x) {
+  sin(x) - exp(x)
+}
+</pre>
+</font>
+This is the function $f(x) = \sin x-e^x.$ You may think of
+  this function is $f:{\mathbb R}\rightarrow{\mathbb R}$ or rather
+  as $f:{\mathbb R}^n\rightarrow{\mathbb R}^n$ for every $n\in{\mathbb N}$ because R
+  will automatically apply the function of each entry in an
+  array. For example,
+<font color="red">
+<pre>
+f(1:10)
+</pre>
+</font>
+produces:
+<font color="red">
+<pre>
+[1]     -1.876811     -6.479759    -19.944417    -55.354953   -149.372083
+[6]   -403.708209  -1095.976172  -2979.968629  -8102.671809 -22027.009816
+</pre>
+</font>
+You may use any number of arguments:
+<font color="red">
+<pre>
+f = function(x,y,z) {
+  x-y+z
+}
+
+g = function() {
+   printf('hello!')
+}
+</pre>
+</font>
+Here is a function from ${\mathbb R}$ to ${\mathbb R}^2:$
+<font color="red">
+<pre>
+f = function(theta) {
+  c(cos(theta), sin(theta))
+}
+</pre>
+</font>
+Some functions in R have many arguments (even 100). It becomes
+very difficult to remember the position of all of them. R has two
+ways to deal with this problem: default values and labels.
+
+<p></p>
+If I write 
+<font color="red">
+<pre>
+f = function(x, y=30, z) {
+  cat('x=',x,'y=',y,'z=',z)
+}
+</pre>
+</font>
+then <code>y</code> has the default value 30. So you write 
+<font color="red">
+<pre>
+f(1,,3)
+</pre>
+</font>
+or 
+<font color="red">
+<pre>
+f(1,z=3)
+</pre>
+</font>
+to get the output
+<font color="red">
+<pre>
+x= 1 y=30 z=3
+</pre>
+</font>
+For more details refer to <a href="https://www.isical.ac.in/~arnabc/arnabRtut.pdf">my brief
+intro to R</a>.
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/numana2021/Rloops.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "r"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

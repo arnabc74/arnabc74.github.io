@@ -1,0 +1,475 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Module 1: Data types">Module 1: Data types</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: Data--what and why">Lesson 1, Video 1: Data--what and why</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Case, variable and rectangular structure">Lesson 1, Video 2: Case, variable and rectangular structure</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Continuous, discrete, counting and categorical">Lesson 2, Video 1: Continuous, discrete, counting and categorical</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Continuous, discrete, counting and categorical">Lesson 2, Video 2: Continuous, discrete, counting and categorical</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Continuous or not?">Lesson 3, Video 1: Continuous or not?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Numbers: nominal, ordinal etc">Lesson 3, Video 2: Numbers: nominal, ordinal etc</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 3: Univariate and multivariate">Lesson 3, Video 3: Univariate and multivariate</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: IID, time series and spatial">Lesson 4, Video 1: IID, time series and spatial</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: File formats">Lesson 4, Video 2: File formats</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 (review), Video 1">Lesson 5 (review), Video 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 (review), Video 2">Lesson 5 (review), Video 2</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Module 1: Data types">Module 1: Data types</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: Data--what and why">Lesson 1, Video 1: Data--what and why</a></h2>
+This is a lecture on basic statistics. Statistics is the science
+of learning from experience, and as such is the most fundamental 
+tool behind human existence. Whether we are trying to predict 
+tomorrow's weather, or the third wave of COVID, we are using
+statistics. Most often we learn from experience even without
+knowing it.  When we do something unconsciously, out of reflex,
+without really thinking about, we tend to lose
+efficiency. Take high jumping, for instance. Most of us can jump
+over a fence. We hardly need to think about it. Our muscles
+somehow move on their own and we end up on the other side. But if
+one considers the process  consciously, one can see many subtle
+ways of improvement, and the sum total of all those may lead to a
+rather surprising improvement in efficiency!
+
+Well, the same is true about learning from experience. 
+Statistics is a conscious and careful way of going about
+this. Let's start by carefully looking at the word
+"experience". Let's take a simple example. Suppose we want to tap
+the experience of our friends about some movie. If ask them
+about what they think about it, we shall get responses like
+"Good", "so-so", "Ok", "Hey you must watch it"! Yet another may
+give you a long description about what she liked the
+most. Informative as such informal comments are, they are
+difficult to summarise efficently. Webpages like
+Roten Tomato does the same thing, but in a more systematic
+way. They provide a 5-star rating, which provides a common
+denominator and provides a better scaling than mere "Good" and
+"so-so", because one person's "Good" may very well be another
+person's "so-so". When we collect experinence in such a systematic
+way we get <b>data</b>. And this is the first point where
+statistics differs from the common man's way of learning from
+experience.  Statistics systematically collects and  stores the experience in a
+cut-and-dried fashion before proceeding to glean information from
+it. Data is  that cut-and-dried experience. 
+
+The term data conjures up the vision of numbers...zillions of
+figures stored in computer disks to be processed by gigantic
+supercomputers. Well, while it is true to some extent, data need not
+always be numbers. They may take other forms. In order to learn
+statistics effectively, it is imperative that we know what data
+are. 
+
+And yes, "data" is a plural word. Its singular "datum" is rarely
+used. A common mistake found in many reports is to say things
+like "This data says ...". It should be either "These data say
+..." or "This data set says ...". But knowing the word "data"
+grammatically is not enough. We need to take a deeper look, and
+that's what we are about to do next.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Which of the following is the best description of  "statistics"
+as a subject?
+<ol type="">
+
+<li>Science of learning from experience.</li>
+
+<li>Number crunching.</li>
+
+<li>Prediction of future</li>
+
+<li>Worse than damned lie!</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We want to collect first hand data about villagers' condition after a
+natural calamity. Which is the best way to go about it?
+<ol type="">
+
+<li>Chat with the villagers informally</li>
+
+<li>Prepare a list of questions before visiting the village, and
+present that  list to each villager</li>
+
+<li>Same as above but with questions prepared after an informal
+chat with the villagers</li>
+
+<li>Ask only the head of the village.</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+An NGO wants to assess the effect of a health benefit scheme
+introduced by the government. 
+For this some villagers are chosen who has enrolled for the
+scheme, and some others who have not. Then data are collected
+about there monthly health related expenditure. This is an
+example of 
+<ol type="">
+
+<li>a controlled experiment</li>
+
+<li>a designed experiment</li>
+
+<li>observational study</li>
+
+<li>none of the above.</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 2: Case, variable and rectangular structure">Lesson 1, Video 2: Case, variable and rectangular structure</a></h2>
+
+All data are results of measurements. The measurement may be made
+by a scientific instrument like a measuring tape or a therometer
+or telescope, or simply by asking a verbal question, or merely by
+inspection. Of course, judging a person's gender by merely looking
+at the person hardly deserves to be called a measurement. So
+statisticians prefer to use the term <b>variable</b>. The result
+of each measurement gives a single outcome called
+the <b>value</b>. 
+<p></p>
+When we make a measurement, we are are measuring <i>something</i>
+or <i>somebody</i>. That something or somebody is called
+a <b>case</b>. When you are recording a patient's body
+temperature, the patient is a case, "temeperature"  is the
+variable, and the number itself is the value of that variable for
+that case. Typically, a statical data set consists of a number of
+variables and a number of cases. The corresponding values are
+laid out in a rectangular structure, where the rows denote the
+cases and the columns denote the variables. All standard
+statistical softwares excpect the data to be in this rectangular format.
+
+<p></p>
+Sometimes beginners fail to create this rectangular format. For
+this, it helps to imagine a <b>report sheet</b> with fields like
+"temperature" "patient's name" to be filled in. Everytime you
+have a occasion to fill up a copy of this report sheet, you get a
+case. Each field in the sheet is a variable, and everything you
+write while filling it up is a value.
+
+
+
+
+<h2><a
+name="Lesson 2, Video 1: Continuous, discrete, counting and categorical">Lesson 2, Video 1: Continuous, discrete, counting and categorical</a></h2>
+
+Different variables 
+ may be of different types. Some may be numbers, others may be
+ like names. All values belonging to the same variable must be of
+ the same type.  Thus, if we have a variable like a person's
+ height, then either all of the values are in numbers (<i>e.g.</i>, in
+ cm) or in words  like "tall", "medium" and "short". But not a
+ mixture of both.  
+
+The simplest type of variable is an <b>identifier</b> variable. These
+are used to identify something. They could be names or roll
+numbers or EPIC or PAN or something similar.
+
+<p></p>
+
+Another simple type is a <b>timestemp</b> variable. 
+<p></p>
+
+
+Contrast this with another scenario. Suppose that we are visiting
+a village and asking each family about the number of children
+they have. There the data may be like this. Some family has 2
+children, some have 3, while others may have 4 or none. Can a
+family have 2.5 children? No! Thus, here the
+values in-between are not valid. The possible values stand apart
+with some gaps between them. 
+ This is a <b>counting</b> variable. Examples of other variables of
+this type include <b>count of trees in an area</b>, 
+<b>number of COVID infections in a district</b>. 
+
+<p></p>
+
+A different type of variable
+is <b>gender</b>, which typically takes
+three values <b>Male</b>, <b>Female</b> and <b>Others</b>.
+Unlike the counting variables, here we know exactly all the
+possible values. This is what is called a <b>categorical</b>
+variable. 
+
+<p></p>
+
+
+A fourth type of variable may be called the <b>interval</b>
+type. Examples are like income group or age group. These are
+basically low resolution versions of continuous variables. The
+range of values of a continuous variable is split into a number
+of adjacent intervals, and only the interval in which a number
+falls is recorded. Like for age, we could have the age groups
+20--40, 45--60, above 60. Here we need to be careful about the
+boundary values. Usually, names are associated with each
+interval, <i>e.g.</i>, Young, Middleage and Senior. Similarly, for LIG,
+MIG and HIG for income. 
+
+<p></p>
+
+
+A fifth type is called a <b>Likert scale</b> variable.
+
+<p></p>
+
+<b>Numerical measurements</b> constitute the most important type
+of variable. Examples include temperature, blood pressure, area
+of plots, yield of plots. 
+
+<h2><a
+name="Lesson 2, Video 2: Continuous, discrete, counting and categorical">Lesson 2, Video 2: Continuous, discrete, counting and categorical</a></h2>
+One might easily get confsed with so many different types of
+variables! To ease the pain, statiticians have reduced the number
+to just three
+<ul>
+
+<li>
+<b>Nominal</b>
+</li>
+
+<li>
+<b>Ordinal</b>
+</li>
+
+<li>
+<b>Counting</b>
+</li>
+
+<li>
+<b>continuous</b>
+</li>
+
+</ul>
+we split all such measurements into two types: <b>continuous</b>
+and <b>discrete</b>. Continuous means a measurement that takes
+values in a continuum, a range of values without any gap. Like a
+measuring people's heights. When you measure heights of a bunch
+of people you will get a few numbers like these. While these are
+only some distinct points along the number line, the points
+between them are also valid values. It is not that people either
+have this height or they jump to that height without ever taking
+the values in-between. All possible human heights form a
+continuum, a range without any gap. So height is a continuous
+variable. 
+
+<p></p>
+
+
+<h2><a
+name="Lesson 3, Video 1: Continuous or not?">Lesson 3, Video 1: Continuous or not?</a></h2>
+
+Some variables are clearly not continuous, like gender. However,
+for some others the distinction is less prominent. Take for
+example area of agricultural plots. One would typically measure
+it up to the nearest square metre. So the values are all
+integers. While area is definitely continuous, the "reported
+area" is obviously like a counting variable! However, here we
+still consider it continuous. This decision is based on two
+considerations: 
+<ul>
+
+<li>First, "area" itself is continuous.</li>
+
+<li>Second, one square metre is much too small compared to the
+total area.</li>
+
+</ul>
+The same idea applies to any measurement. All measurements are
+made by finite precision instruments, and hence can take only
+finitely many values. Yet we consider the measurement to be
+continuous if the resolution is sufficiently high. 
+
+
+<h2><a
+name="Lesson 3, Video 2: Numbers: nominal, ordinal etc">Lesson 3, Video 2: Numbers: nominal, ordinal etc</a></h2>
+
+
+<h2><a
+name="Lesson 3, Video 3: Univariate and multivariate">Lesson 3, Video 3: Univariate and multivariate</a></h2>
+
+
+<h2><a
+name="Lesson 4, Video 1: IID, time series and spatial">Lesson 4, Video 1: IID, time series and spatial</a></h2>
+
+
+<h2><a
+name="Lesson 4, Video 2: File formats">Lesson 4, Video 2: File formats</a></h2>
+In olden days people used to store data on paper. Now computer
+disks provide the main storage. Data sets are stored as files,
+be it in the hard drive of a computer or removable devices like a
+USB drive. A file in a computer is just a collection of 0's and
+1's. When we store data  in a file, they first need to be
+converted into 0's and 1's. When we read the data back from the
+file, the 0's and 1's are converted back into the original
+form. This two-way conversion process is mostly done
+automatically without our intervention. Now, this process may be
+done in different ways, and each such way is called a <b>file
+format</b>. 
+There are quite a few file formats that are used in
+statistics. Some are free, while others are propreitary and
+require paid softwares to write or read. Some formats are good
+for sending data files over the email, while some formats are
+optimised to hold a large amount of data in a small space. 
+
+
+<p></p>
+
+In this course we shall use the MS Excel software, which
+understands various file formats. We shall discuss only two of
+them. Every file format has its specific file name extension. The
+first format has the extension <b>.xlsx</b>. This is the default
+file format used by MS Excel. While this is adequate for most
+purposes, there are a couple of drawbacks. First, you need to
+have MS Excel in order to view the data in the file, or even to
+make minor modifications. Second, the file may be easily
+corrupted if you send it by email. Third, in case you want to
+process the data by some other software, this format may not be
+recognised by that software. So it is a good idea to know about a
+universally understood format, called
+the <b>comma-separated-values</b> format, with file
+extension <b>.csv</b>. In this format each case is represented by
+a line and the values in each line are separated by a comma. This
+format is particularly useful when a value may have a space in
+it, <i>e.g.</i> <b>West Bengal</b> or <b>Ram Singh</b>. Sometimes a
+value may be missing. Such missing values may be easily marked by
+two consecutive commas. 
+<p></p>
+On most computers a file with <b>.csv</b> format is automatically
+opened in MS Excel, if the software in installed. However, the
+CSV format has one downside. It cannot hold anything other than
+a single data table, while the XLSX format can hold multiple
+tables, as well as graphs and reports.
+
+<h2><a
+name="Lesson 5 (review), Video 1">Lesson 5 (review), Video 1</a></h2>
+
+<h2><a
+name="Lesson 5 (review), Video 2">Lesson 5 (review), Video 2</a></h2>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

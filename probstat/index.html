@@ -1,0 +1,258 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<img align="right" src="image/probstat.jpg"/>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Probability and Statistics বইয়ের জিনিসপত্র ">Probability and Statistics বইয়ের জিনিসপত্র </a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#কিছু animation, video ইত্যাদি">কিছু animation, video ইত্যাদি</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#ভুল ত্রুটি">ভুল ত্রুটি</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Probability and Statistics বইয়ের জিনিসপত্র ">Probability and Statistics বইয়ের জিনিসপত্র </a></h1>
+এই পাতায় আমার Probability and Statistics বইয়ের সঙ্গে জড়িত বিভিন্ন জিনিস পাবে৷ প্রথমেই বলে রাখি 
+পাতার একেবারে নীচে তোমার মন্তব্য, প্রশ্ন ইত্যাদি লেখার একটা জায়গা আছে৷ সেখানে তুমি যা লিখবে সেটা 
+আমার কাছে ইমেল হয়ে চলে আসবে৷ (আগের বইগুলোর জন্যও এরকম ব্যবস্থা করেছিলাম, কিন্তু প্রোগ্রামের 
+দোষে সেগুলো অনেক সময়ে কাজ করত না, এবার আর সেই সমস্যা হওয়া উচিত নয়)৷ 
+<h2><a
+name="কিছু animation, video ইত্যাদি">কিছু animation, video ইত্যাদি</a></h2>
+এবার কিছু link দেব যেগুলো বইয়ের বিভিন্ন জায়গায় উল্লেখ করেছি-- 
+<ul>
+
+<li>
+<a href="https://arnab-chakraborty.shinyapps.io/shny/">এখানে</a> ক্লিক 
+করলেই তুমি বইয়ের প্রথম উদাহরণের ''অংকের লুডো''-টা পাবে, যেটাতে পাতার ছবি আঁকা হয়৷ 
+</li>
+
+<li>
+<a href="https://arnab-chakraborty.shinyapps.io/modelfit/">এখানে</a> ক্লিক 
+করলেই তুমি বইয়ের দ্বিতীয় অধ্যায়ের parameter-এর অ্যানিমেশনটা পাবে৷  
+</li>
+
+<li>কী করে ক্যালকুলেটরে চটপট statistics করতে হয় তার হদিশ আছে এই 
+<a href="https://www.youtube.com/watch?v=luc9eLDC4Cs">
+youtube video</a>-টায়৷ এখানে কথাগুলো বলা আছে  ইংরাজিতে, কিন্তু কোথায় কী
+ টিপছে সেটা দেখিয়ে দেবে৷ </li>
+
+<li>যদি video দেখে পুরো বোঝা না যায়, তবে ক্যালকুলেটরের ম্যানুয়ালের ওই কয়েকটা পাতা 
+<a href="calculator.pdf">এখানে</a> তুলে দিলাম৷ ইংরাজিতে লেখা, কিন্তু কার পরে কী টিপতে হবে
+ সেসব ছবি দিয়ে দেখানো আছে৷ </li>
+
+</ul>
+
+<h2><a
+name="ভুল ত্রুটি">ভুল ত্রুটি</a></h2>
+
+<ol type="">
+
+<li>প্রথম অধ্যায়ের 21  নং পাতার শেষ লাইনে $\{0\}$-র জায়গায় $\{2\}$ 
+ হবে৷ এই ভুলটা ধরেছে তাপস দে৷ </li>
+
+<li>প্রথম অধ্যায়ের 23 নং পাতায় Example 20-তে বলা ছিল "with
+ replacement", কিন্তু আমি "without replacement" ধরে করে ফেলেছি৷ ঠিক হবার পর 
+ব্যাপারটা <a href="p23-24.pdf">এইরকম</a> হবে৷</li>
+
+<li>প্রথম অধ্যাযের 27  নং পাতায় এক জায়গায় আছে এরকম--
+<center>
+<fieldset>
+<legend><b>27  নম্বর পাতার অংশ (যেমন আছে)</b></legend><img width="80%" src="image/p27.png"></fieldset>
+</center>
+লাল অংশগুলো ঠি করার পর হবে এইরকম--
+<center>
+<fieldset>
+<legend><b>27  নম্বর পাতার অংশ (যেমনটা হওয়া উচিত)</b></legend><img width="80%" src="image/p27corr.png"></fieldset>
+</center>
+ভুলটা ধরেছে দেবজ্যোতি মুখার্জী৷   
+</li>
+
+<li>দ্বিতীয় অধ্যায়ের 71  পাতায় Exercise 5-এ একটা density-র
+ ফর্মুলা আছে৷ তার মধ্যে এক জায়গায় $e^{x/\alpha}$  রয়েছে দ্যাখো৷ ওটা হবে 
+$e^{-x/\alpha}$৷ এই ভুলটা যে ধরেছে তার নাম জানি না৷ নীচের comment 
+ অংশ মারফত আমার কাছে খবর এসেছে৷ </li>
+
+<li>তৃতীয় অধ্যায়ের 86 নং পাতায় খানিকটা অংশ ছাপা পড়েনি৷ ঠিক হবার পরে 
+<a href="p86.pdf">এইরকম</a> হবে৷ বাদ যাওয়া অংশটা highlight করে দেখিয়েছি৷ </li>
+
+<li>
+তৃতীয় অধ্যায়ের 88  নম্বর পাতার একজায়গায় আছে এইরকম--
+<center>
+<fieldset>
+<legend><b>88  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p88.png"></fieldset>
+</center>
+এখানে লাল দিয়ে দেখানো জিনিসটা আসলে $P(A|B)$  হবে৷ এই ভুলটা বেশ কয়েকজন পাঠকের চোখে পড়েছে৷ 
+</li>
+
+<li>তৃতীয় অধ্যায়ের 90 নং পাতায় ফুটনোটের শেষ লাইনে আছে "গুণ ফেলা
+ যেত"৷ ওটা হবে "<font color="#ff0000">গুণে</font> ফেলা যেত"৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>106  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p106.png"></fieldset>
+</center>
+এখানে লালে ঘেরা $\frac12$-টা থাকবে না৷ তাই পরের বাক্যটার যে অংশটা কেটে দিয়েছি, সেটাও বাদ যাবে৷
+</li>
+
+<li>ষষ্ঠ অধ্যায়ের 175  নং পাতায় দুটো theorem  আছে একটার বাঁদিকে আছে
+ cov(aX+b,bY+d)  আর অন্যটার বাঁদিকে corr(aX+b,bY+d).  দুই ক্ষেত্রেই
+ $bY+d$-এর জায়গায় $cY+d$  হবে৷ এই ভুলটা ধরেছে তাপস দে৷</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>191  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p191.png"></fieldset>
+</center>
+এখানে লালে ঘেরা $0$-টা $1$  হবে৷ তাই নীলে ঘেরা উত্তরটাও বদলাবে৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>194  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p194.png"></fieldset>
+</center>
+এখানে লালে ঘেরা $4$-টা $3$  হবে৷ তাই নীলে ঘেরা উত্তরটাও বদলাবে৷ তাই শেষ উত্তরটাও বদলাবে৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>197  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p197.png"></fieldset>
+</center>
+এখানে লালে ঘেরা $(p,q)$-টা থাকবে না৷
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>243  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p243.png"></fieldset>
+</center>
+লাল দিয়ে দেখানো মাইনাস চিহ্নটা দিতে ভুলে গিয়েছিলাম৷ ভুলটা ধরেছে শৌভিক মণ্ডল৷ 
+</li>
+
+<li>
+
+<center>
+<fieldset>
+<legend><b>245  নম্বর পাতার অংশ</b></legend><img width="80%" src="image/p245.png"></fieldset>
+</center>
+এখানে লাল দিয়ে আণ্ডারলাইন করা $G$-টা আসলে $F$  হবে৷
+</li>
+
+<li>257  পাতায় Example 18-এ এক জায়গায় বলা আছে তিনটে কারণের কথা, কিন্তু
+ দেওয়ার সময়ে মোটে দুটো কারণ বলা হয়েছে৷ দ্বিতীয় কারণটাকে আবার তিন নম্বর দেওয়া হয়েছে৷
+ আসলে খালি দুটো কারণের কথাই বলতে চেয়েছিলাম৷ তিন-গুলো সব দুই হবে৷ এই ভুলটা ধরেছে তাপস দে৷</li>
+
+<li>258  পাতায় এরকম একটা জায়গ আছে--
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/p258.png"></fieldset>
+</center>
+এখানে গোল করে দেখানো $x$-গুলো আসলে $mx$  হবে৷ এই ভুলটার খবর এসেছে SMS  মারফত৷ 
+</li>
+
+<li>259  নং পাতায় Example 20-র উত্তরে এক জায়গায় $Y_2$-র উল্লেখ
+ আছে, ওটা $X_2$ হবে৷ এই ভুলটা ধরেছে তাপস দে৷</li>
+
+<li>260  পাতায় এক জায়গায় $\frac{5}{\sum Y_r}=\frac{2}{5}$ লেখা আছে৷ ওটা হবে 
+$\frac{\sum Y_r}{5}=\frac{2}{5}$৷ এই ভুলটা ধরেছে তাপস দে৷
+  </li>
+
+</ol>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

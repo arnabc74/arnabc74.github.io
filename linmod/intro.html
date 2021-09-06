@@ -1,0 +1,519 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#What's a linear model?">What's a linear model?</a>
+</li>
+<li>
+<a href="#Estimating $\h \beta $">Estimating $\h \beta $</a>
+</li>
+<li>
+<a href="#Using R">Using R</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Unique?">Unique?</a>
+</li>
+<li>
+<a href="#More R">More R</a>
+</li>
+<li>
+<a href="#Enter statistics">Enter statistics</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+$
+\newcommand{\v}{\vec}
+\newcommand{\hv}[1]{\hat{\vec#1}}
+\newcommand{\col}{\mathcal{C}}
+\newcommand{\argmin}{\mathrm{argmin}}
+$
+<h1><a
+name="What's a linear model?">What's a linear model?</a></h1>
+
+We learn to solve a linear system of equations during our school days. Here is
+a familiar example: $3a+4b=10,$ $4a+b=9$
+and $2a+3b=7.$
+<p></p>
+The solution turns out to be unique: $a=2$ and $b=1.$
+<p></p>
+Simple! But why would we ever want to solve such a system in real
+life? Here is one situation. We are finding the mass of two
+different atoms, $A$ and $B.$ We cannot weigh them separately. However, we can
+weigh different compounds like $A_3B_4$ and $A_4B$
+and $A_2B_3.$ Hence the three equations. 
+<p></p>
+I admit it is a contrived example. But even this example will
+show a difficulty that is present all the time in real life. When
+we measure anything we make random error. Repeatedly measuring
+the same quantity leads to slightly differing results. So we may
+get measurements like 9.8, 9.1 and 7.0 in place of the exact
+values 10, 9 and 7. So the system is now 
+$$
+3a+4b\approx 9.8\\
+4a+b\approx 9.1\\
+2a+3b\approx 7.0
+$$
+Our first impulse may be just to pretend that
+the $\approx$'s are $=$'s, solve the system as before,
+then report the solution as approximate values for $x$
+and $y.$ Just try this out, and you'll see that it's
+impossible. The system is inconsistent! 
+<p></p>
+It might seem strange, but a real life measurement scenario
+mostly produces inconsistent systems. In mathematics an
+inconsistent system is just absurd. But from the view point of
+real life applications, we should better call them <i>almost
+consistent.</i> It should be possible to get values for the unknowns
+such that the LHS is pretty close to the RHS. Possibly, the
+simplest such example is when we measure the same
+length, $\ell,$ twice
+and get two values 10.50 and 10.49. This is actually an
+inconsistent system: 
+$$
+\ell = 10.50\\
+\ell = 10.49
+$$
+Mathematically, this is impossible! 
+However, when we write this more correctly as 
+$$
+\ell \approx 10.50\\
+\ell \approx 10.49
+$$
+there is nothing to make us feel uncomfortable. In fact, we may
+even feel happy about the precision of the measurements. 
+
+<p></p>
+Such an approximate system of linear equations is called
+a <b>linear model</b>. The traditional notation is 
+$$
+\v y = X \v \beta + \v \epsilon.
+$$
+Here $\v y$ is the measurement vector, $X$ is the fixed
+known matrix, $\v \beta $ is the vector of unknowns
+and $\v \epsilon $ is the random error vector. 
+<p></p>
+We call $\v y$ the <b>response</b>, $X$ the <b>design
+matrix</b>, $\v \beta $ the <b>parameter vector</b>.
+
+<p></p>
+For example, in our weighing example, we have 
+$$
+\v y = \left[\begin{array}{ccccccccccc}9.8\\9.1\\7.0
+\end{array}\right],\quad X = \left[\begin{array}{ccccccccccc}3 &amp; 4\\4 &amp; 1\\2 &amp; 3
+\end{array}\right]\text{ and } \beta = \left[\begin{array}{ccccccccccc}a\\b
+\end{array}\right].
+$$
+<h1><a
+name="Estimating $\h \beta $">Estimating $\h \beta $</a></h1>
+This may be done by
+choosing that value of $\v \beta$ for which $\v y$ is
+as close as possible to $X\v \beta.$ In other words, 
+$$
+\hv \beta  = \argmin_{\v \beta} \|\v y-X\v \beta\|.
+$$
+Here $\|\cdots\|$ denotes the Euclidean distance. So we are
+using our familiar least squares method. 
+
+
+<h1><a
+name="Using R">Using R</a></h1>
+We may use R to perform least squares estimation. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Solve the weighing problem using R. 
+<p></p>
+<b>SOLUTION:</b>
+First construct the design matrix and the response vector:
+<font color="red">
+<pre>
+X = matrix(<ruby>c(3,4,2,4,1,3)<rt>
+<font color="blue">column-wise_entries</font>
+</rt>
+</ruby>,<ruby>3<rt>
+<font color="blue">nrow</font>
+</rt>
+</ruby>,<ruby>2<rt>
+<font color="blue">ncol</font>
+</rt>
+</ruby>) 
+y = c(9.8,9.1,7.0)
+</pre>
+</font>
+Now invoke the <code>lm</code> function (<code>lm</code> is
+abbreviation of linear model) as follows:
+<font color="red">
+<pre>
+solve(t(X)%*%X, t(X) %*% y)
+</pre>
+</font>
+In case you do not know, if $A$ is a nonsingular matrix and $\v b$
+is a vector, then <code>solve</code>$(A,\v b)$ computes $A
+^{-1} \v b.$  
+<img src="../image/box.png"></p>
+This example brings up an important question: will $X'X$
+always be nonsingular? The answer is "No!", and this brings us to
+the next topic of discussion.
+
+
+<h2><a
+name="Unique?">Unique?</a></h2>
+ Do the normal equations always produce unique
+solution? Not necessarily. For example, if the linear model is 
+$$
+2.9 = \beta_1 + \beta_2 +           \epsilon_1\\
+3.0 = \beta_1 + \beta_2 +           \epsilon_2\\
+2.5 =                     \beta_3 + \epsilon_3,
+$$
+then you can never hope to get $\h\beta_1$ and $\h\beta_2$
+uniquely. But $\h\beta_3$ may be found uniquely.
+Also, $\h\beta_1+\h\beta_2$ is unique, <i>i.e.</i>,
+whatever least squares solutions $\h\beta_1$ and $\h\beta_2$ you take, their sum
+will always be the same. 
+<h1><a
+name="More R">More R</a></h1>
+The technique we learned using R is not enough to tackle such
+non-unique cases. As such cases are quite common in practice, R
+has a specialised tool for them: the <code>lm()</code>
+function. The name is an abbreviation of "linear model". 
+<font color="red">
+<pre>
+X = matrix(c(1,1,0,1,1,0,0,0,1),3,3)
+y = c(2.9, 3.0, 2.5)
+lm(y ~ X - 1)
+</pre>
+</font>
+The first two lines are as before. The third line is the tricky
+one. The <code>~</code> denotes the $\approx$ of our
+approximate system of equations. To specify $\v y\approx X \v \beta$, you always write the $\v y$ to
+the <i>left</i> of the <code>~</code>. There are various ways to
+specify the $X\v \beta $ part. We shall learn about them in
+due course. Here we have given the simplest form, where we have
+explicitly constructed the $X$ matrix, and specified it
+after the <code>~</code>. (As we shall see later, the explicit
+construction of $X$ in line 1 is rarely required in
+practice, as R can build $X$ for us.) R has the habit of
+putting a additional column of $1$'s before $X.$ This
+will often prove useful later. But for now we do not need
+it. The <code>-1</code> prevents this. 
+<p></p>
+
+<img src="image/alert.png">An expression like this with a <code>~</code> is called
+a <b>formula</b> in R. It attaches special meanings to regular
+math symbols. For instance, <b>X-1</b> does not mean
+subtracting $1$ from $X.$
+<p></p>
+The output is 
+<pre>
+Call:
+lm(formula = y ~ X - 1)
+
+Coefficients:
+  X1    X2    X3  
+2.95    NA  2.50  
+</pre>
+The presence of the <code>NA</code> indicates non-uniqueness. R
+is reporting one particular solution where $\beta_1 = 2.95$,
+$\beta_2 = 0$ and $\beta_3 = 2.50.$ The <code>NA</code>
+means the condition $\beta_2 = 0$ is put arbitrarily
+by $R$ in order to get a particular solution. We shall see
+later how R decides this. 
+
+<h1><a
+name="Enter statistics">Enter statistics</a></h1>
+So far we have not explicitly put any assumption on the behaviour
+of the error. Our approach has been informal, and based on common
+sense. But even this informal approach has secretly relied on
+some assumptions. The following example shows this.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;We consider the simplest example of measuring the same
+length repeatedly. Suppose that the first 10 measurements are
+taken by some precise instruments, and the remaining 10 by a
+less precise instrument. Now taking simple average does not seem
+the best thing to do. We feel that we should give more weight to
+the precise measurements.<img src="../image/box.png"></p>
+
+
+<p></p>
+A statistical model involves some random quantity, and typically
+we make assumptions regarding its distribution. For a linear
+model the error vector $\v \epsilon $ is basically the
+source of randomness ($\v y$ is random because of the
+contribution of $\v \epsilon.$) So far we have been silent
+about the distribution of $\v \epsilon.$ There are various
+types of assumptions that we can impose on $\v \epsilon.$
+Here are some of them:
+<ul>
+
+<li>One of the simplest possible assumptions is the Gauss-Markov
+set up, where we simply assume that $E(\v \epsilon)=\v 0$
+and $V(\v \epsilon) = \sigma^2 I,$ for some
+unknown $\sigma^2&gt;0.$ Notice that here are are not assuming
+any specific distribution for $\v \epsilon.$</li>
+
+
+<li>We might put the stronger assumption $\v \epsilon \sim
+N_n(\v 0, \sigma^2 I),$ for some
+unknown $\sigma^2&gt;0.$</li>
+
+
+<li>In the above two assumptions, we may replace $\sigma^2
+I$ by some (partially) unknown positive definite
+matrix $\Sigma.$</li>
+
+
+<li>More exotic assumptions are possible, <i>e.g.</i>, the components
+of $\v \epsilon $ have double exponential distribution.</li>
+
+
+
+
+
+</ul>
+
+
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>Solve the following approximate system using R:
+$$\begin{eqnarray*}
+3a + 4b + c &amp; \approx &amp; 3.4\\
+3a + 4b + c &amp; \approx &amp; 3.5\\
+4a + 3b + 2c &amp; \approx &amp; 10.1\\
+4a + 3b + 2c &amp; \approx &amp; 9.8\\
+6a + 5b + 2c &amp; \approx &amp; 5.6
+\end{eqnarray*}$$
+</li>
+
+<li>Let's see how R tackles a linear model where the design matrix that is not full
+column rank:
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1\\
+
+\end{array}\right],\quad 
+\v y = \left[\begin{array}{ccccccccccc}3.4\\3.5\\10.5\\10.3
+\end{array}\right].
+$$
+Here the first column of $X$ is a column of $1$'s. So
+you may just type the last two columns in R, and omit the <code>-1</code>.
+</li>
+
+<li>
+In the problem above R produced <i>one</i> least squares
+solution. But we know that there are infinitely many. Write down
+two more solutions. Can you write a general form for all least
+squares solutions here?
+</li>
+
+<li>R automatically stores various qunatities computed
+by <code>lm</code>. We shall explore some of them here. Let's
+work with the linear model from the last exercise. Create the
+full design matrix (including its first column) and type:
+<font color="red">
+<pre>
+myfit = lm(y~X-1)
+</pre>
+</font>
+The variable <code>myfit</code> now contains lots of the
+information about the fit. You may extract the computed least
+squares solution $\hv \beta $ as 
+<font color="red">
+<pre>
+myfit$coef
+</pre>
+</font>
+This may be used in future computations. Compute $\h y = X\hv
+\beta.$ Remember that <code>%*%</code> is the R notation for
+matrix multiplication. This $\h y$ is the foot of the
+perpendicular dropped from $\v y$ to $\col(X).$
+Usually $\hv y$ is called the <b>fitted</b> vector. R already
+computes them:
+<font color="red">
+<pre>
+myfit$fitted
+</pre>
+</font>
+The vector $\v y - \hv y$ is called the <b>residual</b>
+vector:
+<font color="red">
+<pre>
+myfit$resid
+</pre>
+</font>
+There are many other pieces of information packed
+in <code>myfit</code>:
+<font color="red">
+<pre>
+names(myfit)
+</pre>
+</font>
+
+</li>
+
+<li>The closer $\v y$ is to $\col(X),$ the better is
+the fit of the linear model. Here are various ways to measure
+this "closeness": 
+<ol type="a">
+
+<li>How close $\|\v y-\hv y\|^2$ is to 0.</li>
+
+<li>How close $\frac{\|\hv y\|^2 }{ \|\v y\|^2 }$ is to 1.</li>
+
+</ol>
+Comment why these are not "good" measures of fit. Come up with 
+pairs of examples where the fit is equally good (according to
+commonsense) yet these measures say otherwise.
+</li>
+
+<li>Consider a linear model $\v y = X \beta +\epsilon,$
+where $X$ is not full col rank. Pick any basis
+of $\col(X).$ Stack these vectors side by side a columns to
+get a matrix $B.$ Let $\v w = B(B'B) ^{-1} B' \v y.$
+Show that $\v w = \hv y$ irrespective of the choice
+of $B.$</li>
+
+<li>Consider a linear model with design matrix 
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1\\
+
+\end{array}\right].
+$$
+If $\v \beta = (\beta_1, \beta_2, \beta_3)',$ then show that
+whatever least squares solution $\hv \beta $ you take, $\h
+\beta_2-\h \beta_3$ is always the same. Characterise all
+vectors $\v \ell\in{\mathbb R}^3$ such that $\v \ell' \hv \beta$
+does not depend on the choice of the least squares solution.
+</li>
+
+<li>Generalise the characterisation from the last problem to
+arbitrary design matrix.</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/linmod/intro.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmintro1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

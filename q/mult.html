@@ -1,0 +1,435 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Multivariate statistics">Multivariate statistics</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reference materials">Reference materials</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Extrinsic and intrinsic data dimension">Extrinsic and intrinsic data dimension</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Principal Component Analysis">Principal Component Analysis</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#A toy example">A toy example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Face recognition">Face recognition</a>
+</li>
+</ul>
+<hr/>
+
+<title>Multivariate statistics</title>
+
+<h1><a
+name="Multivariate statistics">Multivariate statistics</a></h1>
+
+
+<h2><a
+name="Reference materials">Reference materials</a></h2>
+
+<ul>
+
+<li>
+<b>Applied Multivariate Statistical
+Analysis</b> by <i>Hardle</i> and <i>Simar</i>
+</li>
+
+<li>
+<b>Applied Multivariate Statistics with R</b>
+by <i>Zelterman</i>
+</li>
+
+<li>
+<b>R multivariate statistics taskview</b> at <i>CRAN</i>
+</li>
+
+</ul>
+
+
+<h2><a
+name="Extrinsic and intrinsic data dimension">Extrinsic and intrinsic data dimension</a></h2>
+These are terms coined by me to explain two concepts that pervade
+much of multivariate statistics. When we have a rectangular data
+set, laid out as cases $\times$ variables, the number of
+variables is called the <b>dimension</b> of the data set. This is
+what I am calling the <b>extrinsic dimension</b>. 
+<p></p>
+The intrinsic dimension refers to the inherent complexity of the
+underlying set up. For example, in a face recognition problem
+a case is a photograph of a face, and the variables are pixel
+values. The resolution of the image (<i>i.e.</i>, the number of pixels
+used) determines the extrinsic dimension, while the the
+complexity of the human face recognition problem denotes the
+intrinsic dimension. 
+<p></p>
+A broad area of multivariate statistics revolves around finding
+the intrinsic dimension. As the intrinsic dimension is often much
+less than the extrinsic dimension, such methods are sometimes
+called dimension reduction techniques. We shall discuss three
+different flavours:
+<ul>
+
+<li>Principal Component Analysis (PCA)</li>
+
+<li>Factor Analysis (FA)</li>
+
+<li>Multidimensional Scaling (MDS)</li>
+
+</ul>
+
+
+<h2><a
+name="Principal Component Analysis">Principal Component Analysis</a></h2>
+PCA tries to assess intrinsic dimension by looking at the scatter
+of the data cloud in high dimensional space. It considers
+directions with low scatter as unimportant. To understand this
+let us use 
+the trivariate data set in <a
+href="pca.csv">pca.csv</a>. It has been
+visualised as an interactive scatterplot <a href="test.html">here</a>. Though the extrinsic dimension is 3,
+the intrinsic dimension is only 2, as is apparent by rotating the
+plot with the mouse.
+<p></p>
+PCA tries to play the role of the mouse in arbitrarily high
+dimension. It detects both the intrinsic dimension, as well as
+the lower dimensional subspace where the data lie.
+
+<h3><a
+name="A toy example">A toy example</a></h3>
+First let's load  a hypothetical data set about the Physics and
+Statistics marks of 100 students:
+
+<font color="red">
+<pre>
+x = read.table("https://www.isical.ac.in/~arnabc/talks/mult/marks.dat",head=T)
+</pre>
+</font>
+Check the data set:
+<font color="red">
+<pre>
+dim(x) 
+plot(x)
+</pre>
+</font>
+Notice the strongly elliptical (almost linear) shape of the data cloud. PCA will identify the major and 
+minor axis directions and lengths.  
+<font color="red">
+<pre>
+v = prcomp(x)
+v
+</pre>
+</font>
+Very simple output: <font size="+1" color="red"><code>PC1</code></font> and <font size="+1" color="red"><code>PC2</code></font> give the directions (they are both unit vectors), and the <font size="+1" color="red"><code>standard deviation</code></font>s are just the lengths. 
+Can you  visualize this?  Here are some hints: First you need to know how to access different parts of <font size="+1" color="red"><code>v</code></font>.
+<font color="red">
+<pre>
+names(v)
+</pre>
+</font>
+Check if the output of the following command matches the <font size="+1" color="red"><code>PC1</code></font> and <font size="+1" color="red"><code>PC2</code></font> you saw just now.
+<font color="red">
+<pre>
+v$rot
+</pre>
+</font>
+You can extract <font size="+1" color="red"><code>PC1</code></font> as
+<font color="red">
+<pre>
+pc1 = v$rot[,1] #1st column of rot inside v
+</pre>
+</font>
+Now you have to draw arrows with the <font size="+1" color="red"><code>arrows</code></font> function. Your arrows must start from the centre of the data cloud (call it point $O$, say): 
+<font color="red">
+<pre>
+Ox = mean(x[,1])
+Oy = mean(x[,2])
+</pre>
+</font>
+
+If the two arrows have tips at $P$ and $Q$, then your final command will be 
+<font color="red">
+<pre>
+arrows(Ox,Oy,Px,Py)
+arrows(Ox,Oy,Qx,Qy)
+</pre>
+</font>
+Your task is to work out <font size="+1" color="red"><code>Px</code></font>, etc. 
+
+<p></p>
+You can produce the scree plot:
+
+<font color="red">
+<pre>
+plot(v)
+</pre>
+</font>
+
+
+<h3><a
+name="Face recognition">Face recognition</a></h3>
+A human face has innumerably many features. However, we can
+recognise a face based on only a small number of "important"
+features. What is meant by "important" in this context? Imagine a
+crime scene with just one eye witness. Asked to describe the
+criminal, the witness mentions the following features: 
+<ol type="">
+
+<li>The person had one nose and two eyes.</li>
+
+<li>The person had a scar on the left cheek.</li>
+
+<li>The person looked angry.</li>
+
+</ol>
+Which of these three do you think is the most helpful to identify
+the person. The first one, while very accurate, is of no use, as
+there is no variability in the numbers of nose and eyes of human
+beings. The second is of great use. The third one is too
+temporary.
+
+<p></p>
+This decision is based on our everyday knowledge about the
+variability of the human face. We look for those features that
+vary a lot from one face to another face, but does not easily vary for
+the same person. When identifying a cow, its colour is a good
+indicator. But for a buffalo, body colour has no value as an
+indicator. 
+<p></p>
+PCA tries to glean this experience based on data. Let's
+understand this non-mathematically at first. Suppose we want to
+identify a person by three features: glasses, moustache and
+hair. Suppose there are three types of each feature:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/features.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Now suppose we want to describe this man:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/aman.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Of course this face has many more features (<i>e.g.</i>, brows, lips,
+nose). But we shall focus only on the three chosen features, and
+express this man as:
+<blockquote>
+Hair:3, Glasses: 1, Moustache: 3.
+</blockquote>
+We  reconstruct the face based on this description. We start with
+a generic face:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/generic.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then we add the chosen features on it:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/recon.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Not exactly a very good reconstruction, we must admit. But we
+have used only three features, and only three possible types for each.
+<p></p>
+Well, PCA does this in an automated way. It <i>finds</i>
+appropriate features for us, and allows infinitely many possible
+types for each (encoded by a real number). 
+
+<p></p>
+For example, here are 9 features chosen by PCA:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/efaces.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+And here is a generic face:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/meanf.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Just as we could describe a face in a compact way in terms of
+only he chosen features, we can do the same thing here. 
+<blockquote>
+Feature 1: 17.34, Feature 2: 15.78, Feature 3: -3.85, Feature 4:
+   0.78,
+Feature 5: 11.35, Feature 6: -8.55, Feature 7:  7.57, Feature 8: 2.24,
+Feature 9: -0.74. 
+</blockquote>
+You may find it unbelievable, but if you actually start with the
+generic face, and then add appropriate multiples of the feature
+images (with the above numbers as multipliers), then you will get
+this face:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/recon2raw.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If we just change the numbers (retaining the same 9 feature
+images), then get yet another face:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/recon3raw.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Ths we can now express a recognisable face using just 9 numbers!
+<p></p>
+
+When we take a snap, we are collecting multivariate data,
+typically 3 numbers per pixel: intensities of the  red, green
+and blue lights at that point. For a greylevel image, we have
+just one number per pixel. 
+First download the data
+from <a href="facesbwandcol.tar.gz">here</a>.
+Uncompress the file. 
+<p></p>
+
+Then load this <a href="eigfaces.r">R code</a> in R. You'll
+need to change the location of the data files mentioned in the R
+code.
+
+<p></p>
+Now a typical session will be:
+<font color="red">
+<pre>
+png('showstep%d.png')
+x = loadImages()
+newcoord = process(x)
+showSteps(newcoord,26) #keep on hiting Enter to move forward
+
+showFace(newcoord,1)
+dev.off()
+</pre>
+</font>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

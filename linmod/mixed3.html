@@ -1,0 +1,465 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#ANOVA tables for linear mixed models">ANOVA tables for linear mixed models</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#1-way ANOVA">1-way ANOVA</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Comparing with the fixed effects model">Comparing with the fixed effects model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#2-way ANOVA">2-way ANOVA</a>
+</li>
+<li>
+<a href="#BLUP">BLUP</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+$
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\corr}{\mathrm{corr}}
+\newcommand{\hv}[1]{\hat{\vec{#1}}}
+\newcommand{\v}[1]{\vec{#1}}
+$
+<h1><a
+name="ANOVA tables for linear mixed models">ANOVA tables for linear mixed models</a></h1>
+Here we shall take a look at testing using ANOVA tables in case
+of linear mixed models.
+<h2><a
+name="1-way ANOVA">1-way ANOVA</a></h2>
+Suppose that some drug is being tested in $k$ hospitals,
+each of which try the drug on $n$ patients. The resulting
+data set has $kn$ rows (one per patient) and two columns
+(hospital and response). Since a future user of the analysis
+report would not care about the specific $k$ hospitals
+participating in the study, hence we consider the hospital effect
+as random. The model is:
+$$
+y_{ij} = \mu + a_i + \epsilon_{ij},
+$$
+where $i=1,...,k$ and $j=1,...,n.$ Here 
+<ul>
+
+<li>$\mu$ is
+the (fixed) mean effect (the parameter of primary interest)</li>
+
+<li>$a_i$'s are the (random) hospital effects</li>
+
+<li>$\epsilon_{ij}$'s are the random errors.</li>
+
+</ul>
+We assume 
+<ul>
+
+<li>$\epsilon_{ij}$'s are iid $N(0,\sigma^2_e),$
+with $\sigma^2_e&gt;0$ unknown</li>
+
+<li>$a_i$'s are iid $N(0,\sigma^2_a),$
+with $\sigma^2_a\geq 0$ unknown</li>
+
+<li>$\epsilon_{ij}$'s are indepenent of $a_i$'s.</li>
+
+</ul>
+Here our parameters are $\mu,$ $\sigma^2_a$
+and $\sigma^2_e.$
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute $\cov(y_{ij}, y_{rs})$
+for $i,r\in\{1,...,k\}$ and $j,s\in\{1,...,n\}.$<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Use the last exercise to also compute $\corr(y_{ij}, y_{rs})$
+for $i,r\in\{1,...,k\}$ and $j,s\in\{1,...,n\}.$<img src="../image/box.png"></p>
+
+
+<h3><a
+name="Comparing with the fixed effects model">Comparing with the fixed effects model</a></h3>
+
+<ol type="">
+<li>
+In the fixed effects models $V(y_{ij})$ used to be just same
+as the error variance. But now $V(y_{ij})$ has two
+components, one from the error, the other from the random
+effects. Hence, such a model is sometimes also called
+a <b>variance components model</b>.</li>
+
+<li>In the fixed effects model, all the $y_{ij}$'s were
+independent. But now $y_{ij}$'s belonging to the same
+hospital are correlated.
+</li>
+</ol>
+
+With these points in mind we take a look at (the first 3 columns
+of) the ANOVA table (the
+same as for fixed effects model):
+
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Source</th><th colspan="" rowspan="">d.f.</th><th colspan="" rowspan="">SS</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Hospital</th><td colspan="" rowspan="">$k-1$</td><td colspan="" rowspan="">$n\sum \b
+y_{i\bullet}^2-nk\b y_{\bullet\bullet}^2$</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Error</th><td colspan="" rowspan="">$k(n-1)$</td><td colspan="" rowspan="">$\sum
+y_{ij}^2-n\sum \b y_{i\bullet}^2$</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Total</th><td colspan="" rowspan="">$kn-1$</td><td colspan="" rowspan="">$\sum
+y_{ij}^2-nky_{\bullet\bullet}^2$</td>
+</tr>
+
+</table>
+</center>
+The table is the same as for the fixed effects model. But let us
+understand how its interpretation may have changed in the random
+effect scenario:
+<ul>
+
+<li>The error $SS$ is based on only comparisions within the
+patients of the <i>same</i> hospital. So $\sigma^2_a$ plays
+no play there. Hence, as in the fixed case, the error MS
+continues to be an unbiased estimator of $\sigma^2_e.$</li>
+
+<li>The Hospital SS however has a different expectation than it
+had for the fixed case. The following exercise explores this.</li>
+
+</ul>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Show that $E(\b y_{i\bullet}) = \mu $ and $\var(\b
+y_{i\bullet}) = \sigma^2_a+\frac 1n\sigma^2_e. $ Hence show that
+the Hospital MS has expectation $n \sigma^2_a+\sigma^2_e.$
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Under the fixed effects model, the Hospital SS and the
+Error SS were both $\sigma^2 \chi^2 $ random variables (the
+former was non-central, while the latter was central). Work out
+the distributions of the two SS's in the random effects
+model. <img src="../image/box.png"></p>
+
+
+In the fixed effects model the two SS's were independent. The
+same thing happens to be true even in the random effects model,
+though this may not be readily apparent. The following exercises
+lead to a proof.
+
+<p>
+<b>EXERCISE:</b>&nbsp;Let $X,Y$ and $Z$ be jointly distributed random
+variables such that <ul>
+
+<li>given $Z,$ the random variables $X$ and $Y$
+are independent,</li>
+
+<li>$Y$ and $Z$ are independent.</li>
+
+</ul> 
+Then show that $X$ and $Y$ must be independent.<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Take <ul>
+
+<li>$X = $ Hospital SS,</li>
+
+<li>$Y = $ Error SS,</li>
+
+<li>$Z = (a_1,...,a_k)$</li>
+
+</ul> 
+in the above exercise to conclude that the two SS's are
+independent.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;In the fixed effects model we could test $H_0:$ no
+hospital effect by using the null distribution of the $F$-ratio
+$$
+\frac{\mbox{Hospital MS}}{\mbox{Error MS}}\sim F_{(k-1,k(n-1)}
+\mbox{ (central)}.
+$$
+The corresponding $H_0$ for the mixed effects case
+is $H_0:\sigma^2_a = 0.$ Show that the same null
+distribution is still valid here. 
+<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We know that the Error MS is an unbiased estimator
+for $\sigma^2_e.$ Find an unbiased estimator of $\sigma^2_a.$
+<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="2-way ANOVA">2-way ANOVA</a></h2>
+Consider the following model 
+$$
+y_{ijk} = \mu + a_i + \beta_j + g_{ij}+\epsilon_{ijk},
+$$
+where $i=1,...,I,$ $j=1,...,J$ and $k=1,...,K.$ We
+make the usual assumptions:
+<ol type="">
+
+<li>$\epsilon_{ijk}$'s are iid $N(0,\sigma^2_e),$
+where $\sigma^2_e&gt;0$ is unknown.</li>
+
+<li>$a_i$'s are iid $N(0,\sigma^2_a),$
+where $\sigma^2_e\geq 0$ is unknown.</li>
+
+<li>$g_{ij}$'s are iid $N(0,\sigma^2_g),$
+where $\sigma^2_g\geq 0$ is unknown.</li>
+
+<li>$a_i$'s $g_{ij}$'s and $\epsilon_{ijk}$'s are
+all independent.</li>
+
+</ol>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Let the first two columns of the ANOVA table be like:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Source</th><th colspan="" rowspan="">d.f.</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Row</th><td colspan="" rowspan="">$I-1$</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Column</th><td colspan="" rowspan="">$J-1$</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Interaction</th><td colspan="" rowspan="">$(I-1)(J-1)$</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Error</th><td colspan="" rowspan="">$IJ(K-1)$</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Total</th><td colspan="" rowspan="">$IJK-1$</td>
+</tr>
+
+</table>
+</center>
+Show that 
+<ol type="">
+
+<li>$E($Row MS$)=\sigma^2_e+K \theta_g +KJ \theta_a$</li>
+
+<li>$E($Column MS$)=\sigma^2_e+K \theta_g +KI
+\theta_\beta$</li>
+
+<li>$E($Interaction MS$)=\sigma^2_e+K \theta_g$</li>
+
+<li>$E($Error MS$)=\sigma^2_e$</li>
+
+</ol>
+Here 
+<ul>
+
+<li>$\theta_a = \sigma^2_a$</li>
+
+<li>$\theta_\beta = \frac{1}{J-1} \left[\sum \beta_j^2 - \left(\sum
+\beta_j\right)^2\right]$</li>
+
+<li>$\theta_g = \frac{J}{J-1}\sigma^2_g$</li>
+
+</ul>
+
+<img src="../image/box.png"></p>
+
+<h1><a
+name="BLUP">BLUP</a></h1>
+Henderson introduced the concept of a <b>Best Linear Unbiased
+Predictor (BLUP)</b> of a random effect
+coefficient. Statisticians woking in animal breeding use this
+concept extensively. See <a href="blup.pdf">this paper</a>
+for some details. (This paper, by the way, is <i>not</i> included in the
+syllabus of this course!) Here are a few things that you should
+know about BLUPs.
+<p></p>
+First, the definition. Suppose that you have a LME model with a
+random effect $u$ (<i>i.e.</i>, a random coeffcient). There may be
+other random coefficents also. Let the data vector be $\v
+y.$ Then by a BLUP we understand a function of the form $\v
+\ell'\v y$ such that $E(\v \ell'\v y - u) = 0,$ and
+subject to this condition $\var(\v \ell'\v y)$ is the
+minimum possible.
+<p></p>
+Henderson gave a computational formula for find BLUPs for the 
+ following model:
+$$
+\v y = X\v \beta + Z\v u + \v \epsilon,
+$$
+where $\v u\sim (\v 0, \sigma^2 G)$ and independently $\v
+\epsilon \sim (\v 0, \sigma^2 R).$ Here $G, R$ are known
+pd matrices. Then if we solve 
+$$
+\left[\begin{array}{ccccccccccc}
+X' R ^{-1} X &amp; X' R ^{-1} Z\\
+Z' R ^{-1} X &amp; (Z' R ^{-1} Z + G ^{-1}) 
+
+\end{array}\right]\left[\begin{array}{ccccccccccc}\hv \beta\\ \hv u
+\end{array}\right] = \left[\begin{array}{ccccccccccc}X' R ^{-1} \v y\\ Z' R
+^{-1} \v y
+\end{array}\right],
+$$
+we get BLUE $\hv \beta $ for $\beta,$ and BLUP $\hv
+u$ of $\v u.$
+Don't cram this stuff! If you want to see its derivation that
+read the above paper. 
+<p></p>
+BLUP's, as you may guess from the complicated system of
+equations, is quite different from BLUEs of $\v u$ if you
+assume $\v u$ to be fixed. 
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>Consider a 2-way ANOVA model without interaction, where both
+the effects are random. Work out the expected values of
+the $MS$ values.</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/mixed3.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmmixed3"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

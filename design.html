@@ -1,0 +1,500 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#How I make my educational videos">How I make my educational videos</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Overview">Overview</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Details">Details</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Design">Design</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Three types">Three types</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Scripting">Scripting</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Shooting">Shooting</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Coverage shoot">Coverage shoot</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Screencasts">Screencasts</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#PIPs">PIPs</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Editing">Editing</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="How I make my educational videos">How I make my educational videos</a></h1>
+
+<h2><a
+name="Overview">Overview</a></h2>
+I use my Samsung Galaxy J7 Nxt mobile phone to shoot them. I do
+not use any separate audio recorder (because I do not have
+any). I use only the front camera, because it has fixed
+focus. I mount the phone on a tripod in landscape orientation
+while shooting. The tripod is an invaluable tool. 
+<p></p>
+I use a variety of free tools to create the superimposed
+pictures. These are Inkscape (for 2D drawings), GIMP
+(occasionally for touching things up), ArtOfIllusion (for
+photorealistic 3D animations/stills). These are all artistic
+softwares, and often  are not
+enough for the mathematical objects I need to create.  Then I
+write own program to create the basic shapes, which are then
+loaded into one of these for the artistic finishing touches. My
+programs are mostly written in R and J. All the screencasts are
+done in Kazam (no audio, since my laptop audio input does not work).
+<p></p>
+After shooting the parts I use the free software kdenlive to do
+the post-processing. 
+
+<h2><a
+name="Details">Details</a></h2>
+My videos are nowhere even close to what a good educational video
+should be. Even then, the process to produce them is somewhat
+intricate. I shall split up the details  in a  number of
+sections. 
+<h3><a
+name="Design">Design</a></h3>
+A good educational video, in my opinion, should have 5
+characteristics. I decided upon these after comparing various
+online educational videos (BBC, Khan Academy,
+ThreeBlueOneBrown, FilmMakersIQ and others). These guidelines are
+for educational video makers like myself, who have not much control on
+the topic to be presented, and cannot afford to get 
+expensive visuals (a close up video of a blue whale deep in the Pacific, does not
+need my guidelines to make itself popular!). 
+
+<ol type="">
+
+<li>
+<b>The video should show the presenter talking to the viewer.</b> This is
+because human facial expressions and gestures constitute one of
+the most potent languages known to mankind. What is more, most
+of us actually enjoy reading this language. Simply by talking
+right into the camera, the presenter can convey so much more
+information than is possible with voice alone. If there is one
+reason why Khan Academy videos suck, while BBC videos don't, this
+is it. Also, it is not the beauty of the presenter's face that
+attracts the viewer. It is the natural gesture that goes with
+normal oral communication (eye contact, hand movement, facial
+expressions) that count. So a screencast with a talking face
+looking not at the audience does not help at all.</li>
+
+<li>
+<b>The video must show variation.</b> The video occupies
+only an insignificant small rectangle in front of the
+viewer. There are plenty of interesting things happening
+before his eyes outside that rectangle: birds flying, trees
+moving, people moving around. The content of the video has to
+compete with all these distractions to keep the viewer's
+attention glued to itself. Nobody like to stare at some dumb old
+scene all the time. So it is important to vary the visuals.</li>
+
+<li>
+<b>The video must be well punctuated.</b> Just as a book
+should have chapters and sections and subsections and bulleted
+items for easy navigation, so should an educational video. Suitable
+audio jingles, fades and change of background should be used for
+this purpose.</li>
+
+<li>
+<b>A video must be restful to the eyes.</b> Educational
+videos like the ones shown in threeblueonebrown are based on
+catchy themes that naturally attract the viewer. But when we
+want to cover a typical coursework in a video, you cannot always
+rely on the topic being catchy. Often you'll need to drag your
+audience through details that are not so appetizing. When you
+suspect that this is the case, your video must move slowly,
+allowing longer fades, holding the visuals longer on screen, and
+occasionally injecting soothing visuals like birds chirping.</li>
+
+<li>
+<b>A video must use Foley and reverse-Foley effects.</b>
+Foley effects means "you hear what you see". If a paper is
+crumpled, you must hear the corresponding sound. Most often the
+real sound is so feeble, that it is not audible. Then a similar
+sound must be added later during editing. This apparently silly
+thing adds unbelievably to the charm of a video. However, even
+more important for an educational video is what I have called
+the <i>reverse-Foley effect</i>: the audience must see what they
+hear. Information flows to the viewer via two channels, audio and
+video. It is too easy for the presented to get carried away by a
+topic, and just keep on talking. Then more information is
+channeled via the audio and the video merely shows the presented
+standing. Such a skewness puts strain on the audience leading to
+quick fatigue. A good video must distribute the info more or less
+symmetrically over the audio and video channels.</li>
+
+</ol>
+
+
+<h3><a
+name="Three types">Three types</a></h3>
+AN educational video typically uses three types of parts based on
+the denseness of the information presented:
+<ul>
+
+<li>
+<b>Motivation:</b> Here the presenter talks emotionally to motivate the
+audience. Not much information is transmitted, only the
+enthusiasm.</li>
+
+<li>
+<b>Derivation:</b> Here the presenter is providing lots of
+information. Indeed, so much that the presenter himself might
+find it difficult to keep track of things. A typical example is
+where a mathematical derivation is being done.</li>
+
+<li>
+<b>Discussion:</b> Here the information content is moderate. The presenter can
+rattle off the whole thing easily from memory, but the audience
+will not able to follow that easily.</li>
+
+</ul> 
+
+For the first type, it is enough to show the presenter in close
+up (or medium shot to show hand gestures). No visual other than
+the body language is generally called for.
+
+<p></p>
+For the second type, the best way is to show the presenter in
+front of a black/white board, and record the entire teaching
+session. 
+<p></p>
+The third type is the most interesting, and offers the maximum in
+terms of what an educational video can do. The presenter keeps on
+talking while various diagrams/ animations etc are superimposed
+in a synchronized manner. This is where the editing phase becomes
+tough. But if you can manage it, it is surely worth it. Indeed,
+the aim of an educational video maker should be to avoid the
+second type as much as possible, and replace it with the third
+type. 
+
+
+<h3><a
+name="Scripting">Scripting</a></h3>
+Making a video is a somewhat long process. So careful planning
+or <i>scripting</i> helps. This includes what to say, what to
+show, deciding upon camera angles and  backgrounds, etc
+etc. While scripting may look like a good idea (and professional
+video makers cannot think of video making without a script), it
+is nevertheless is a source of trouble in itself. 
+
+<ul>
+<li>First, it takes
+up a LOT of extra time and energy. Being a teacher by profession I can
+easily lecture for an hour on  a familiar topic. The ideas and
+expressions come rolling automatically, and I can make
+appropriate diagrams and derivations on the fly. It is just like
+moving your facial muscles in a coordinated way while eating. You
+just do in naturally...without thinking. But if you are asked  to describe
+all those muscle movements in advance, you'll be hard put.</li>
+
+<li>Second, not being an actor, I find it difficult to repeat
+words from a prepared script without appearing mechanical. And
+losing my spontaneity is the last thing I want.</li>
+
+</ul>
+But still making a script has its definite advantages. The most
+important of these is the ability to do "coverage shoot" that I shall discuss
+later. But all in all, I generally prefer to work without a
+script. 
+<p></p>
+I start by chalking out the following points:
+<ul>
+
+<li>the stills/animations to be superimposed. If there is a
+challenging one, then I make it first, just to be sure that it
+is possible. Also, this gives me an idea of the amount of screen
+space that will be needed by it.</li>
+
+<li>the general flow of ideas, <i>e.g.</i>, answering questions like: should I start a
+definition, or arrive at the definition after some
+motivation?</li>
+
+<li>Location: where should I shoot? On the roof, or in the drawing room? Or
+all over the house?
+Shall I need the whiteboard? How much of the types <i>motivation</i>, <i>discussion</i> and <i>derivation</i> do I need?</li>
+
+</ul>
+
+
+
+<h3><a
+name="Shooting">Shooting</a></h3>
+The shooting part, surprisingly, is the least troublesome phase
+of the whole process of making an educational video. It is done
+almost in real time (<i>e.g.</i>, if I am shooting a 30 min video,
+I'll typically finish the shooting in 45 min or so). This is
+partly because I use spontaneous flow instead of following a
+script. So the experience is more like acting on stage and not
+acting in a movie. The speed of the shooting owes part of its
+origin to the fact that the fan has to remain switched off during
+the shoot (for the sake of audio quality), and I do not enjoy
+sweating in front of the camera.
+<p></p>
+Here is how I do the shooting. 
+<p></p>
+First I mount the phone on the tripod. Landscape mode, front
+camera. Then I think about what I want to say in the first
+shot. I keep it simple: one one idea per shot. If the idea changes,
+then so must the shot. That provides a natural punctuation. I
+look into the camera (hard to do, as my eyes like to look at my
+image on the phone, and not at the camera lens, which is a tiny
+inconspicuous dot near the margin). I stand pretty close to the
+camera, so that my voice is clearly picked up. This causes my
+head to look more bulbous than it actually is (Hey, now you know
+that I am much more handsome than I look in the videos). 
+<p></p>
+Once I believe that I have finished my first idea, I stop recording
+(stop, not pause, because I like to keep my files small, as it
+helps me avoid loading problems later).
+<p></p>
+Once my first shot is over, I quickly think about a natural
+continuation to the next idea, and shoot that in
+a <i>different</i> setting (different camera angle, different corner
+of the room etc). I think that I should use some 4 different
+settings all through the video. Each setting should be for one
+type of ideas, <i>e.g.</i>, motivation, derivation, critical
+thinking. But I have not tried out this type-to-setting mapping
+in any of my videos yet.
+
+<h3><a
+name="Coverage shoot">Coverage shoot</a></h3>
+This is a smart idea that I learned while working before I
+learned the term "coverage shoot". It means shooting the same
+thing from multiple angles. Then later you might mix those
+different angles during editing. You see this all the time in
+movies: a dialogue between A and B is partly shown over A's
+shoulder, partly over B's shoulder, and partly from the
+side. However, in an educational video of the type discussed
+here, the presenter has to look straight at the audience (<i>i.e.</i>,
+into the camera) all the time. That does not leave much scope for
+exciting coverage shoots. There are two exceptions:
+<ul>
+
+<li>First, you may link up two shots nicely using an idea like
+coverage shoot. Imagine moving from a motivational shot to a
+derivation shot. The motivational shot ends with you saying
+"Let's look at the proof." Start the derivation shot with
+precisely the same sentence. While editing show the motivational
+shot only up to "Let's look at the..." and immediately start the
+derivation shot with "...proof." </li>
+
+<li>Sometimes, you want to say words that are carefully
+chosen. Say there five such sentences and you do not want to
+change background setting during them. So you need to say those
+sentences in one go. But if the sentences are pre-worded, you
+cannot rely on your spontaneity here. In such a case, you might
+find it difficult to say more than two sentences at a time. Here
+coverage shoot helps. Say the first two sentences before the
+camera. Then move the camera closer to or away from you
+retaining the same angle. Say the 2nd and 3rd sentences (the 2nd
+sentence get repeated). Again move the camera back to the
+original position and say the 3rd and 4th sentences, and so
+on. Then while editing jump from one shot to the other during
+the overlap sentences. Such cuts are unobtrusive, and it appears
+that you are speaking all the 5 sentences smartly in one go. </li>
+
+</ul>
+
+
+<h3><a
+name="Screencasts">Screencasts</a></h3>
+I do all my screencasts using the free software Kazam. Since my
+laptop audio input does not work, I record the audio separately
+using the phone. In fact, here I do something like a coverage
+shoot. I keep the video camera of the my phone focused on me,
+while I run Kazam on my laptop. Then I say "O..K" very clearly,
+while typing the letters on screen. While editing these help me
+to sync the camera video with the screencast. 
+<p></p>
+Also, since I have both footage of my face and the screencast, I
+can move between them during editing. But I have found that
+making the screencast 50% transparent and superposing it on the
+footage of my face keeps the best of both worlds.
+
+
+<h3><a
+name="PIPs">PIPs</a></h3>
+PIP (or Picture In Picture) stands for all the little
+pictures/animations are superimposed on the main video. They are
+what makes an educational video stand out. They are are essential
+for the <i>discussion</i> shots. I prefer to use PIPs with
+transparent background and 50% transparency. This, I believe, makes them merge better
+with the video, and also save screen space as I need not find a
+separate screen space for myself.  I use different techniques to
+suit different requirements:
+<ul>
+
+<li>Still images: These are pop ups like a
+graph or a formula that appear somewhere on screen. I use Inkscape to create
+them. There is "Tex Text" plugin, which turns LaTex
+formulae into images.</li>
+
+<li>2D Animations: I tried to use a free software called Synfig
+for this purpose initially. But it is too crude for my taste. So
+I have abandoned it. Now I write an R script for each
+animation. The script dumps a sequence of images in a separate
+folder. I generate 30 frames for each second of animation. Most
+animations are exactly 1 sec in duration.</li>
+
+<li>3D animations: I use the free software ArtOfIllusion for
+this purpose. Again, I use this software to generate a sequence
+of images and dump them into a separate folder.</li>
+
+</ul>
+
+ArtOfIllusion is an artists' program. Often I need to model
+objects that are complicated but have simple mathematical
+descriptions. One example is the soap film frame (or the film
+itself). Then I first create an .obj file, which is a super
+simple format for describing 3D objects. It is just a list of
+points followed by a list of triangular faces.  Such a file may
+be created using a text editor (or output from R or J). Then I
+import it inside ArtOfIllusion, and choose the artistic details
+(camera angle, lighting, texture, colour etc). 
+
+<h3><a
+name="Editing">Editing</a></h3>
+I use the free software kdenlive for all the editing. 
+Editing for me mostly means dumping all the shots on the
+timeline, and chopping off the extra bits at the two ends (where
+I extend my hand to stop recording). Occasionally, I need to
+remove a little coughing or faltering. Since my distance from
+camera is not always the same, the audio volume tends to differ
+from shot to shot. I manually adjust the volume to achieve consistency.
+<p></p>
+This much is pretty easy. The hard part is to insert the PIPs.
+<p></p>
+For this I first play a shot in my editor, carefully marking out
+all the time points where PIPs are to be added. So I get a list
+of time points together with brief descriptions of what I intend
+to put there. Then I write an R program to generate all the 
+I generally steer clear of special effects, because they are
+rather time consuming and end up creating an alienated
+environment that is not desirable in an educational video. Here
+are the few special effects that I do use occasionally:
+<ul>
+
+<li>
+<b>Spatial sync:</b> Sometimes I point to or look at a PIP during
+the video, as if it is a real object floating in the air. For these, I roughly
+decide upon the position and then point or look at that place
+approximately while shooting. Later I place the PIP in that
+place while editing.</li>
+
+<li>
+<b>Green screening:</b> This is making some part of a video
+transparent, so that something else shows behind it. Most
+Youtube tutorial videos scared me about the requirements for
+this effect. It seemed that one needs sophisticated lighting
+arrangement and profession green screens to achieve this. But it
+turned out pretty easy to implement using ordinary home lighting
+(day light or fluorescent light) and piece of green cloth I
+bought from the local tailor shop. However, green screening does
+add an overhead during editing.</li>
+
+</ul>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<NOTE>
+@{<E>
+<HEAD1>Different types of mixed effects models</HEAD1>
+Here we shall see different examples of mixed effects models used
+in real life scenarios. 
+
+<HEAD2>Variance Components models</HEAD2>
+The mixed effects model that we used for the school data in the
+last page was an example of a <B>variance components</B>
+model. Here the randomness of the data came partly from an
+assignable cause (the random effect), and partly from
+unassignable causes (random error), and we had assumed these two
+sourses of variation to be independent. Thus, the variance of
+each observed value could be split up into two components
+<D>
+\sigma^2_b + \sigma^2_e.
+</D>
+Hence the term "variance components". 
+
+<HEAD3>Cow data</HEAD3>
+We have already seen the cow data:
+
+<TABLE ncol="5" name="Birth wts. (in lbs.) of calves" file="ku3"> 
+<TR><TH colspan="5">Sire groups</TH></TR> 
+<TR><TH>177</TH><TH>200</TH><TH>201</TH><TH>202</TH><TH>203</TH></TR> 
+<TR><TD>61</TD> 
+<TD>75</TD> 
+<TD>58</TD> 
+<TD>57</TD> 
+<TD>59</TD></TR> 
+<TR><TD>100</TD> 
+<TD>102</TD> 
+<TD>60</TD> 
+<TD>56</TD> 
+<TD>46</TD> 
+</TR> 
+<TR><TD>56</TD> 
+<TD>95</TD> 
+<TD>60</TD> 
+<TD>67</TD> 
+<TD>120</TD> 
+</TR> 
+<TR><TD>113</TD> 
+<TD>103</TD> 
+<TD>57</TD> 
+<TD>59</TD> 
+<TD>115</TD> 
+</TR> 
+<TR><TD>99</TD> 
+<TD>98</TD> 
+<TD>57</TD> 
+<TD>58</TD> 
+<TD>115</TD> 
+</TR> 
+<TR><TD>103</TD> 
+<TD>115</TD> 
+<TD>59</TD> 
+<TD>121</TD> 
+<TD>93</TD> 
+</TR> 
+<TR><TD>75</TD> 
+<TD>98</TD> 
+<TD>54</TD> 
+<TD>101</TD> 
+<TD>105</TD> 
+</TR> 
+<TR><TD>62</TD> 
+<TD>94</TD> 
+<TD>100</TD> 
+<TD>101</TD> 
+<TD>75</TD></TR> 
+<TR><TH colspan="5">Source:Kuehl (2000)</TH></TR>
+</TABLE> 
+We want to model birth in terms of the sire effect. This means we
+want to know how much contribution does the father have on the
+weight of a new born calf. Obviously, it is of little use to come
+up with a statement like: The effect of that black ox with a
+white patch over the right eye is 2.34 kg. The fathers are chosen
+randomly. All that we care about is "How much variability do the
+fathers contribute?"
+<R>
+cow = read.table('cow.txt',head=T)
+cow$sire = factor(cow$sire)
+lme(wt ~ 1, random = ~ 1| sire, dat)
+</R>
+
+<HEAD3>A model with interaction</HEAD3>
+Sometimes it may happen that a fixed effect has an interaction
+with a random effect. Then we take the interaction itself to be a
+random effect (just as sum of a constant and a random variable is
+itself a random variable). Here is an example. 
+<P/>
+An experiment, 
+described in Milliken and Johnson (1992) <COMMENT>p285</COMMENT> was 
+conducted by a company to compare between the performances of 3 
+different brands of machines when operated by the company's own 
+personnel. 6 employees were selected at random and each of them had to 
+operate each machine 3 different times. The data set given below 
+consists of 
+overall scores that take into account both the quantity and quality of 
+the output. 
+<COMMENT>
+(progn
+ (save-excursion (replace-regexp "HLINE1?" "TR"))
+ (save-excursion (replace-regexp "HDR" "TH"))
+ (save-excursion (replace-regexp "CL" "TD"))
+ (save-excursion (replace-regexp "ncol" "colspan")))
+</COMMENT>
+
+<TABLE colspan="10" name="Balanced machine-operator data" file="machine1"> 
+<TR><TH></TH> 
+<TH colspan="3">Machine 1</TH><TH colspan="3">Machine 2</TH><TH colspan="3">Machine 3</TH> 
+</TR> 
+<TR><TH>Operator</TH> 
+<TH>1</TH><TH>2</TH><TH>3</TH> 
+<TH>1</TH><TH>2</TH><TH>3</TH> 
+<TH>1</TH><TH>2</TH><TH>3</TH> 
+</TR> 
+<TR><TH>1</TH> 
+<TD>52</TD> 
+<TD>52.8</TD> 
+<TD>53.1</TD> 
+<TD>62.1</TD> 
+<TD>62.6</TD> 
+<TD>64</TD> 
+<TD>67.5</TD> 
+<TD>67.2</TD> 
+<TD>66.9</TD> 
+</TR> 
+<TR><TH>2</TH> 
+<TD>51.8</TD> 
+<TD>52.8</TD> 
+<TD>53.1</TD> 
+<TD>59.7</TD> 
+<TD>60</TD> 
+<TD>59</TD> 
+<TD>61.5</TD> 
+<TD>61.7</TD> 
+<TD>62.3</TD> 
+</TR> 
+<TR><TH>3</TH> 
+<TD>60</TD> 
+<TD>60.2</TD> 
+<TD>58.4</TD> 
+<TD>68.6</TD> 
+<TD>65.8</TD> 
+<TD>69.7</TD> 
+<TD>70.8</TD> 
+<TD>70.6</TD> 
+<TD>71</TD> 
+</TR> 
+<TR><TH>4</TH> 
+<TD>51.1</TD> 
+<TD>52.3</TD> 
+<TD>50.3</TD> 
+<TD>63.2</TD> 
+<TD>62.8</TD> 
+<TD>62.2</TD> 
+<TD>64.1</TD> 
+<TD>66.2</TD> 
+<TD>64</TD> 
+</TR> 
+<TR><TH>5</TH> 
+<TD>50.9</TD> 
+<TD>51.8</TD> 
+<TD>51.4</TD> 
+<TD>64.8</TD> 
+<TD>65</TD> 
+<TD>65.4</TD> 
+<TD>72.1</TD> 
+<TD>72</TD> 
+<TD>71.1</TD> 
+</TR> 
+<TR><TH>6</TH> 
+<TD>46.4</TD> 
+<TD>44.8</TD> 
+<TD>49.2</TD> 
+<TD>43.7</TD> 
+<TD>44.2</TD> 
+<TD>43</TD> 
+<TD>62</TD> 
+<TD>61.4</TD> 
+<TD>60.5</TD> 
+</TR> 
+<TR><TH colspan="10">Source: Milliken and Johnson (1992) 
+</TH></TR></TABLE> 
+The ultimate aim is to model the score in terms of machine and operator
+effects (ignoring time). We have already seen this problem
+earlier. What we did not mention then was the fact that the 6
+operators were chosen randomly. So the operator effect should be
+random, while the machine effect is fixed. Now certain operators
+may feel more comfortable with certain machines. So we cannot
+ignore the possibility of a machine<M>\times</M>operator
+interaction. Since this involves the random operator, the
+interaction effect must also be random.
+<P/>
+The model is:
+<D>
+y_{ijk} = \mu + \alpha_i + b_j + c_{ij} + \epsilon_{ijk},
+</D>
+where the fixed <M>\alpha_i</M>'s denote the machine effect, the
+random <M>b_j</M>'s the operator effect, and the <M>c_{ij}</M>'s
+the random interactions. We assume 
+<M>b_j</M>'s to be iid <M>N(0,\sigma^2_b)</M> and <M>c_{ij}</M>'s
+to be iid <M>N(0,\sigma^2_c).</M> These are independent and also
+independent of the errors <M>\epsilon_{ijk}</M>'s which are
+iid <M>N(0,\sigma^2_e).</M> 
+<P/>
+In R:
+<R>
+library(nlme)
+dat = read.table('machine.txt', head=T)
+dat$machine = factor(dat$machine)
+dat$operator = factor(dat$operator)
+fit=lme(time~machine, random=~(1+machine)|operator, data=dat,correlation=corAR1())
+</R>
+Notice how we have specified the random effects. Everything with
+subscript <M>j</M> is random. We have just factored this <M>j</M>
+out to rewrite <M>b_j + c_{ij}</M> as <M>(b+c_i)_j.</M>
+The <M>b</M> is just the intercept and <M>c_i</M> is the machine
+effect (for that particular operator).
+<P/>
+The output is:
+<PRE>
+<RED>> summary(fit)</RED>
+
+Linear mixed-effects model fit by REML
+ Data: dat 
+       AIC      BIC    logLik
+  228.3112 247.6295 -104.1556
+
+Random effects:
+ Formula: ~(1 + machine) | operator
+ Structure: General positive-definite, Log-Cholesky parametrization
+            StdDev    Corr         
+(Intercept) 4.0792806 (Intr) machn2
+machine2    5.8776433  0.484       
+machine3    3.6898543 -0.365  0.297
+Residual    0.9615766              
+
+Fixed effects: time ~ machine 
+               Value Std.Error DF   t-value p-value
+(Intercept) 52.35556  1.680711 46 31.150834  0.0000
+machine2     7.96667  2.420851 46  3.290854  0.0019
+machine3    13.91667  1.540100 46  9.036211  0.0000
+ Correlation: 
+         (Intr) machn2
+machine2  0.463       
+machine3 -0.374  0.301
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.39354008 -0.51377574  0.02690829  0.47245471  2.53338699 
+
+Number of Observations: 54
+Number of Groups: 6 
+</PRE>
+Of particular interest are the parts shown in red. In fact, this
+model has allowed for the two random effects to be correlated!
+Actually, this out shows that <CODE>lme</CODE> allows a
+covariance structure
+for the random effects. Indeed, if you look up the help of
+the <CODE>lme</CODE> function, you'll find an argument
+called <CODE>correlation</CODE>:
+<PRE>
+Usage:
+
+     lme(fixed, data, random, <RED>correlation</RED>, weights, subset, method,
+         na.action, control, contrasts = NULL, keep.data = TRUE)
+</PRE>
+This argument proves very useful in practice. It is because of
+this that we are not using the more modern <CODE>lme4</CODE>
+package (which does not allow any choice of correlation
+structures). 
+<P/>
+
+
+</E>@}
+</NOTE>

@@ -1,0 +1,1973 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Module 1: Data types">Module 1: Data types</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: Data--what and why">Lesson 1, Video 1: Data--what and why</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L1A">Exercises M1L1A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Data--types">Lesson 1, Video 2: Data--types</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L1B">Exercises M1L1B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 3: Case, variable and rectangular structure">Lesson 1, Video 3: Case, variable and rectangular structure</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L1C">Exercises M1L1C</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Continuous, discrete, counting and categorical">Lesson 2, Video 1: Continuous, discrete, counting and categorical</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L2A">Exercises M1L2A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Continuous, discrete, counting and categorical">Lesson 2, Video 2: Continuous, discrete, counting and categorical</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L2B">Exercises M1L2B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Univariate and multivariate">Lesson 3, Video 1: Univariate and multivariate</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L3A">Exercises M1L3A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: IID, time series and spatial">Lesson 3, Video 2: IID, time series and spatial</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L3">Exercises M1L3</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: File formats: Excel">Lesson 4, Video 1: File formats: Excel</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L4A">Exercises M1L4A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: File formats: CSV">Lesson 4, Video 2: File formats: CSV</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M1L4B">Exercises M1L4B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 (review), Video 1">Lesson 5 (review), Video 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 (review), Video 2">Lesson 5 (review), Video 2</a>
+</li>
+<li>
+<a href="#Module 2: Presentation of data (part 1)">Module 2: Presentation of data (part 1)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: Graphical: exploratory and pedagogic">Lesson 1, Video 1: Graphical: exploratory and pedagogic</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Line diagram">Lesson 1, Video 2: Line diagram</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L1B">Exercises M2L1B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 3: Lab">Lesson 1, Video 3: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L1C">Exercises M2L1C</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Scatter plot">Lesson 2, Video 1: Scatter plot</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L2A">Exercises M2L2A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L2B">Exercises M2L2B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Bar, pie">Lesson 3, Video 1: Bar, pie</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L3A">Exercises M2L3A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L3B">Exercises M2L3B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: Pitfalls">Lesson 4, Video 1: Pitfalls</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: Real life eamples">Lesson 4, Video 2: Real life eamples</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+</li>
+<li>
+<a href="#Module 3: Presentation of data (part 2)">Module 3: Presentation of data (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: Frequency distribution">Lesson 1, Video 1: Frequency distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M3L1A">Exercises M3L1A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Lab">Lesson 1, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M2L3B">Exercises M2L3B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Tabular">Lesson 2, Video 1: Tabular</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Histogram">Lesson 3, Video 1: Histogram</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: Contingency table">Lesson 4, Video 1: Contingency table</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+</li>
+<li>
+<a href="#Module 4: Central tendency">Module 4: Central tendency</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: The concept and mean">Lesson 1, Video 1: The concept and mean</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M4L1A">Exercises M4L1A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Lab">Lesson 1, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M4L1B">Exercises M4L1B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Median">Lesson 2, Video 1: Median</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M4L2A">Exercises M4L2A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Mode and others">Lesson 3, Video 1: Mode and others</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M4L3A">Exercises M4L3A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: Robustness">Lesson 4, Video 1: Robustness</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M4L4A">Exercises M4L4A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M4L4B">Exercises M4L4B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+</li>
+<li>
+<a href="#Module 5: Dispersion">Module 5: Dispersion</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: The concept">Lesson 1, Video 1: The concept</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L1A">Exercises M5L1A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: Range">Lesson 1, Video 2: Range</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L1B">Exercises M5L1B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Variance and standard deviation">Lesson 2, Video 1: Variance and standard deviation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L2A">Exercises M5L2A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L2B">Exercises M5L2B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Mean absolute deviation">Lesson 3, Video 1: Mean absolute deviation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L3A">Exercises M5L3A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L3B">Exercises M5L3B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: Semi-interquartile range and boxplot">Lesson 4, Video 1: Semi-interquartile range and boxplot</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L4A">Exercises M5L4A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M5L4B">Exercises M5L4B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+</li>
+<li>
+<a href="#Module 6: Association etc">Module 6: Association etc</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 1: Bivariate data, The concept via plots">Lesson 1, Video 1: Bivariate data, The concept via plots</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M6L1A">Exercises M6L1A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 1, Video 2: (Rank) correlation">Lesson 1, Video 2: (Rank) correlation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M6L1B">Exercises M6L1B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 1: Contingency table measures (part 1)">Lesson 2, Video 1: Contingency table measures (part 1)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 1: Contingency table measures (part 2)">Lesson 3, Video 1: Contingency table measures (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 1: Concept of moments: skewness and kurtosis">Lesson 4, Video 1: Concept of moments: skewness and kurtosis</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M6L4A">Exercises M6L4A</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises M6L4B">Exercises M6L4B</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+</li>
+</ul>
+<hr/>
+<title>Course: Basic 1</title>
+
+<h1><a
+name="Module 1: Data types">Module 1: Data types</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: Data--what and why">Lesson 1, Video 1: Data--what and why</a></h2>
+Hello, and welcome to the PGDAS course on basic statistics. This
+is the first lecture in the very first module. Name enters.As you should know
+already, the course consists of 6 modules, each of one week
+duration, followed by 2 weeks of live online classes.Name leaves. This is
+the very first lecture of module 1. 
+<p></p>
+We hear about statistics a lot. But what is it? Well, there are
+various ways to define it. Possibly the simplest, and most
+comprehensive way, is to say that <b>statistics</b> is the <b>science
+of learning from experience</b>, and as such is the most fundamental 
+tool behind human existence. Whether we are trying to predict 
+tomorrow's weather, or the next wave of COVID, we are using
+statistics.
+<p></p>
+ Most often we learn from experience even without
+knowing it.  When we do something unconsciously, out of reflex,
+without really thinking about it, we tend to do it
+inefficiently. Take high jumping, for instance. Most of us can jump
+over a fence. We hardly need to think about it. Our muscles
+somehow move on their own and we end up on the other side. But if
+one considers the process  consciously, one can see many subtle
+ways of improvement, and the sum total of all those may lead to a
+quite different technique and 
+rather surprising improvement in efficiency!
+
+<p></p>
+
+Well, the same is true about learning from experience. 
+Statistics is a conscious and careful way of going about
+this. Let's start by carefully looking at the word
+"<b>experience</b>". Let's take a simple example. Suppose we want to tap
+the experience of our friends about some movie. If ask them
+about what they think about it, we shall get responses like
+"<b>Good</b>", "<b>so-so</b>", "<b>Ok</b>", "<b>Hey you must watch it</b>"! Yet another may
+give you a long description about what she liked the
+most. Blah blah Informative as such informal comments are, they are
+difficult to summarise efficiently. One person's "Good" may very well be another
+person's "so-so". Webpages like
+Rotten Tomato does the same thing, but in a more systematic
+way. They provide a 5-star rating, which provides a common
+scale and provides a more uniform data than a mere haphazard
+collection of "Good" and
+"so-so". When we collect experience in such a systematic
+way we get <b>data</b>. And this is the first point where
+statistics differs from the common man's way of learning from
+experience.  Statistics systematically collects and  stores the experience in a
+cut-and-dried fashion before proceeding to glean information from
+it. Data are  that cut-and-dried experience. 
+
+
+<p></p>
+
+The term data conjures up the vision of numbers...zillions of
+figures stored in computer disks to be processed by gigantic
+supercomputers. Well, while it is true to some extent, data need not
+always be numbers. They may take other forms. In order to learn
+statistics effectively, it is imperative that we know what data
+are. 
+
+<p></p>
+
+And yes, "data" is a plural word. Its singular "datum" is rarely
+used. A common mistake found in many reports is to say things
+like "This data says ...". It should be either "These data say
+..." or "This data set says ...". But knowing the word "data"
+grammatically is not enough. We need to take a deeper look, and
+that's what we are about to do next.
+
+<h3><a
+name="Exercises M1L1A">Exercises M1L1A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Which of the following is the best description of  "statistics"
+as a subject?
+<ol type="">
+
+<li>Science of learning from experience.</li>
+
+<li>Number crunching.</li>
+
+<li>Prediction of future</li>
+
+<li>Worse than damned lie!</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We want to collect first hand data about villagers' condition after a
+natural calamity. Which is the best way to go about it?
+<ol type="">
+
+<li>Chat with the villagers informally</li>
+
+<li>Prepare a list of questions before visiting the village, and
+present that  list to each villager</li>
+
+<li>Same as above but with questions prepared after an informal
+chat with the villagers</li>
+
+<li>Ask only the head of the village.</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 2: Data--types">Lesson 1, Video 2: Data--types</a></h2>
+Before we start talking abou the details, let's take a quick look
+at some different ways one may go about collecting data. When you
+are collecting data, there is a scenario. Like a village, and you
+plan to collect data on the agriculatural land holding. There are
+basically two ways: you may actually measure the land yourself,
+or get the information from the existing government records. In
+the first first case, the data set is called <b>primary
+data</b>. In the second it is <b>secondary data</b>. Thus,
+primary data are what the agency has collected afresh for the
+current purpose. Secondary data mean data that were collected
+earlier (possibly by another agency for a different purpose).
+<p></p>
+There is another way to classify the data collection
+procedure. If you are interested in the monthly expendicure of
+the houselholds in a village and the village has just 30
+houselholds, then you can indeed visit each and every houselhold
+to collect the data. This is called <b>complete
+enumertion</b>. But imagine doing the same thing for every
+household in a large city! Then we have to resort to take
+a <b>sample</b>, <b>a representative subset of all the households,</b>
+and collect data from only those households. 
+<p></p>
+There is yet another way to classify data
+collection. <b>Observational study</b> and <b>designed
+experiment</b>.  In an observational study, you are merely a
+passive observer, collecting information about a system as you
+find it, without trying to modify the system. In a designed
+experiment, by contrast, you are deliberately trying to disturb
+the system, and collecting data about how it responds to the
+change. Let me give a very simple mundane example. You see
+something longish lying on the way. Is it a rope? Or a snake? You
+want to find out. You may go about this in two ways: you way just
+wait and watch it behaviour (that's observational study). Or you may just throw a stone at it,
+and see how it reacts (that would be a designed experiment).
+
+<p></p>
+Well, that's quite a bit of jargon for a single video. Confusing
+as they might see at first, these concepts are important ones
+when yoy work with data. Each has its advantages and
+disadvantages. Primary data, for example, are the only option if you are
+conducting study about something not explored before. But they
+also happen to be very expensive. Secondary data are easier to
+get, but may be dated, or not exactly suited for a particular
+study. The choice is somewhat like choosing a readymade dress or
+a custommade dress. 
+<p></p>
+
+A comparison between complete enumeration and sampled data is
+similar. Complete enumeration gives you, well, the complte
+information. What can be better? But then it comes at a great
+price. It is enormously more expensive and time
+consuming. Indeed, so much so it might just be infeasible in many
+cases. But samplined data have their own pain. Is the sample
+really representative of the entire population? That's a question
+that continues to bug all conclusons that you draw from such
+data. 
+<p></p>
+Let's now compare observational study with designed
+experiment. Most scientific studies that deal with causality ie,
+tries to conclude things like "this causes that", must rely on
+designed experiment. To conclude things like "This causes that",
+you have to really do "this" and see if "that" occurs, and then
+not do "this" and make sure that "that" also does not occur. In
+other words, you have to modify the system according to a
+design. As you might guess, this involves a lot of extra effort, 
+not present in observational study. However, there are many
+situations where observational study is the only way to go. To
+check if smoking causes cancer, you cannot really ask a person to
+start smoking! Most social science data are collected by
+observational study.
+
+<h3><a
+name="Exercises M1L1B">Exercises M1L1B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+An NGO wants to assess the effect of a health benefit scheme
+introduced by the government. 
+For this some villagers are chosen who has enrolled for the
+scheme, and some others who have not. Then data are collected
+about their monthly health related expenditure. This is an
+example of 
+<ol type="">
+
+<li>a controlled experiment</li>
+
+<li>a designed experiment</li>
+
+<li>observational study</li>
+
+<li>none of the above.</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+A student wants to judge if joining a coaching class is effective
+for admission to a particular institute. Which of the following
+is the more stronger evidence of the coaching class?
+<ol type="">
+
+<li>out of all students admitted to the institute, 95% had gone
+to that coaching class.</li>
+
+<li>out of all students going to the coaching class, 95% got
+admission to the institute.</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;All farmers were requested to write to the minister about
+their daily expenses. A report was constructed based on the
+responses obtained. Is this a reliable data set? <img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Health conditions have deteriorated over the last 10 years. 1000
+people died to cancer 10 years ago. This year the figure is 2000.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 3: Case, variable and rectangular structure">Lesson 1, Video 3: Case, variable and rectangular structure</a></h2>
+
+All data are results of measurements. The measurement may be made
+by a scientific instrument like a measuring tape or a therometer
+or telescope, or simply by asking a verbal question, or merely by
+inspection. Of course, judging a person's gender by merely looking
+at the person hardly deserves to be called a measurement. So
+statisticians prefer to use the term <b>variable</b>. The result
+of each measurement gives a single outcome called
+the <b>value</b>. 
+<p></p>
+When we make a measurement, we are are measuring <i>something</i>
+or <i>somebody</i>. That something or somebody is called
+a <b>case</b>. When you are recording a patient's body
+temperature, the patient is a case, "temeperature"  is the
+variable, and the number itself is the value of that variable for
+that case. Typically, a statical data set consists of a number of
+variables and a number of cases. The corresponding values are
+laid out in a rectangular structure, where the rows denote the
+cases and the columns denote the variables. All standard
+statistical softwares excpect the data to be in this rectangular format.
+
+<p></p>
+Sometimes beginners fail to create this rectangular format. For
+this, it helps to imagine a <b>report sheet</b> with fields like
+"temperature" "patient's name" to be filled in. Everytime you
+have a occasion to fill up a copy of this report sheet, you get a
+case. Each field in the sheet is a variable, and everything you
+write while filling it up is a value.
+
+
+
+<h3><a
+name="Exercises M1L1C">Exercises M1L1C</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;We are collecting household level data from 5 different
+villages. From each  villages  10 random  households are selected.
+For each selected household we collect data on monthly
+income, main source of income, and the number of people. If the
+resulting table has $n$ rows and $p$ columns, then 
+<ol type="">
+
+<li>$n=10$ and $p=4$</li>
+
+<li>$n=50$ and $p=3$</li>
+
+<li>$n=50$ and $p=4$</li>
+
+<li>$n=10$ and $p=3$</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Consider the following data set. What is the value of
+income in the 3rd case?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+The following data set has one suspicious case. Which case?
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Identify the variable which is derived from the other
+variables.<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We have 2, 4 and 3 plots in the villages Abid, Belkhas and
+Chimpani. The following three tables provide data about
+these. Cast it as a single table.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 1: Continuous, discrete, counting and categorical">Lesson 2, Video 1: Continuous, discrete, counting and categorical</a></h2>
+
+Different variables 
+ may be of different types. Some may be numbers, others may be
+ like names. All values belonging to the same variable must be of
+ the same type.  Thus, if we have a variable like a person's
+ height, then either all of the values are in numbers (<i>e.g.</i>, in
+ cm) or in words  like "tall", "medium" and "short". But not a
+ mixture of both.  
+
+The simplest type of variable is an <b>identifier</b> variable. These
+are used to identify something. They could be names or roll
+numbers or EPIC or PAN or something similar.
+
+<p></p>
+
+Another simple type is a <b>timestemp</b> variable. 
+<p></p>
+
+
+Contrast this with another scenario. Suppose that we are visiting
+a village and asking each family about the number of children
+they have. There the data may be like this. Some family has 2
+children, some have 3, while others may have 4 or none. Can a
+family have 2.5 children? No! Thus, here the
+values in-between are not valid. The possible values stand apart
+with some gaps between them. 
+ This is a <b>counting</b> variable. Examples of other variables of
+this type include <b>count of trees in an area</b>, 
+<b>number of COVID infections in a district</b>. 
+
+<p></p>
+
+A different type of variable
+is <b>gender</b>, which typically takes
+three values <b>Male</b>, <b>Female</b> and <b>Others</b>.
+Unlike the counting variables, here we know exactly all the
+possible values. This is what is called a <b>categorical</b>
+variable. 
+
+<p></p>
+
+
+A fourth type of variable may be called the <b>interval</b>
+type. Examples are like income group or age group. These are
+basically low resolution versions of continuous variables. The
+range of values of a continuous variable is split into a number
+of adjacent intervals, and only the interval in which a number
+falls is recorded. Like for age, we could have the age groups
+20--40, 45--60, above 60. Here we need to be careful about the
+boundary values. Usually, names are associated with each
+interval, <i>e.g.</i>, Young, Middleage and Senior. Similarly, for LIG,
+MIG and HIG for income. 
+
+<p></p>
+
+
+A fifth type is called a <b>Likert scale</b> variable.
+
+<p></p>
+
+<b>Numerical measurements</b> constitute the most important type
+of variable. Examples include temperature, blood pressure, area
+of plots, yield of plots. 
+
+<h3><a
+name="Exercises M1L2A">Exercises M1L2A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+In a financial data set the annual turnover of small businesses
+are expressed as slabs like 1lakh to 2lakhs, 2 lakhs to 3lakhs,
+etc. In this data set annual turnover is 
+<ol type="">
+
+<li>an interval variable</li>
+
+<li>a categorical variable</li>
+
+<li>a Likert-type variable </li>
+
+<li>an indentifier variable</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+A data set has a variable "gender" that encodes male as 1, female
+as 2 and others as 3. This variable is an example of a 
+<ol type="">
+
+<li>measurement variable</li>
+
+<li>categorical variable</li>
+
+<li>a Likert-type variable</li>
+
+<li>an identifier variable</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+A variable which gives the number of road accidents in a
+particular month  at a particula crossing is 
+<ol type="">
+
+<li>a counting variable</li>
+
+<li>a categorical variable</li>
+
+<li>a Likert-type variable</li>
+
+<li>an identifier variable</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+If we record the height of a person to the nearest inch then the
+variable is an example of 
+<ol type="">
+
+<li>a counting variable</li>
+
+<li>a categorical variable</li>
+
+<li>a Likert-type variable</li>
+
+<li>a measurement variable</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;The number of new occureences of COVID in each district of a
+state is recorded over a month. Then 
+<ol type="">
+
+<li>district is an identifier variable, covid is a counting variable</li>
+
+<li>district is a categorical variable, covid is a Likert-type variable</li>
+
+<li>district is a categorical variable, covid is a measurement variable</li>
+
+<li>district is an identifier variable, covid is an interval variable</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 2: Continuous, discrete, counting and categorical">Lesson 2, Video 2: Continuous, discrete, counting and categorical</a></h2>
+One might easily get confsed with so many different types of
+variables! To ease the pain, statiticians have reduced the number
+to just four
+<ul>
+
+<li>COntinuous:
+<ul>
+
+<li>Difference type</li>
+
+<li>Ratio type</li>
+
+</ul>
+
+</li>
+
+<li>Discrete
+<ul>
+
+<li>
+<b>Nominal</b>
+</li>
+
+<li>
+<b>Ordinal</b>
+</li>
+
+<li>
+<b>Counting</b>
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+we split all such measurements into two types: <b>continuous</b>
+and <b>discrete</b>. Continuous means a measurement that takes
+values in a continuum, a range of values without any gap. Like a
+measuring people's heights. When you measure heights of a bunch
+of people you will get a few numbers like these. While these are
+only some distinct points along the number line, the points
+between them are also valid values. It is not that people either
+have this height or they jump to that height without ever taking
+the values in-between. All possible human heights form a
+continuum, a range without any gap. So height is a continuous
+variable. 
+
+<p></p>
+
+
+Some variables are clearly not continuous, like gender. However,
+for some others the distinction is less prominent. Take for
+example area of agricultural plots. One would typically measure
+it up to the nearest square metre. So the values are all
+integers. While area is definitely continuous, the "reported
+area" is obviously like a counting variable! However, here we
+still consider it continuous. This decision is based on two
+considerations: 
+<ul>
+
+<li>First, "area" itself is continuous.</li>
+
+<li>Second, one square metre is much too small compared to the
+total area.</li>
+
+</ul>
+The same idea applies to any measurement. All measurements are
+made by finite precision instruments, and hence can take only
+finitely many values. Yet we consider the measurement to be
+continuous if the resolution is sufficiently high. 
+
+<h3><a
+name="Exercises M1L2B">Exercises M1L2B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+A counting variable is 
+<ol type="">
+
+<li>a discrete variable</li>
+
+<li>a difference-type continuous variable</li>
+
+<li>a ratio-type continuous variable</li>
+
+<li>none of these</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Temperature is a 
+<ol type="">
+
+<li>a discrete variable</li>
+
+<li>a difference-type continuous variable</li>
+
+<li>a ratio-type continuous variable</li>
+
+<li>none of these</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Temperature is a 
+<ol type="">
+
+<li>a discrete variable</li>
+
+<li>a difference-type continuous variable</li>
+
+<li>a ratio-type continuous variable</li>
+
+<li>none of these</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+If gender is encoded as 1 for male, 2 for female and 3 for
+others, then it is  
+<ol type="">
+
+<li>a nominal variable</li>
+
+<li>an ordinal variable</li>
+
+<li>a counting variable</li>
+
+<li>a difference-type continuous variable</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+PAN of a person  is an example of 
+<ol type="">
+
+<li>a nominal variable</li>
+
+<li>an ordinal variable</li>
+
+<li>a ratio-type continuous variable</li>
+
+<li>none of these</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="Lesson 3, Video 1: Univariate and multivariate">Lesson 3, Video 1: Univariate and multivariate</a></h2>
+
+
+<h3><a
+name="Exercises M1L3A">Exercises M1L3A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+For 50 households data have been collected on the number of
+members. The resulting data set has two columns, a serial number
+and the number of members. This data set is 
+<ol type="">
+
+<li>univariate</li>
+
+<li>bivariate</li>
+
+<li>multivariate</li>
+
+<li>neither</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+For 50 rural  and 50 semi-urban households we have collected the
+monthly income and expenditure data. 
+The aim is to study the effect of the background on the
+income-expenditre relation. The data set here is
+<ol type="">
+
+<li>univariate</li>
+
+<li>bivariate</li>
+
+<li>trivariate</li>
+
+<li>none of these</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We have collected data on the severrity of road accidents (as
+Likert-type variable) along with the exact time of occurence
+along with type of traffic (rush or slack). This is a 
+<ol type="">
+
+<li>univariate data set</li>
+
+<li>bivariate data set</li>
+
+<li>trivariate data set</li>
+
+<li>none of these</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+For each person registering for a government health benfit
+scheme, we have collected the person's name, phone number, age,
+income, type of benefit (individual/family). Is this a univariate
+data set:
+<ol type="">
+
+<li>Yes</li>
+
+<li>No</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+For each agricultural  plots in a village we record the area,
+crop sown, and income per season. The resulting data set is
+<ol type="">
+
+<li>univariate</li>
+
+<li>multivariate</li>
+
+</ol>
+
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 2: IID, time series and spatial">Lesson 3, Video 2: IID, time series and spatial</a></h2>
+
+<h3><a
+name="Exercises M1L3">Exercises M1L3</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;If we collect household level data for 10 villages in a
+district, and the data collection takes two weeks, then the
+resulting data set is an example of ...<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Arsenic contamination levels are determined at different
+points along a river. The resulting data set is an example of
+...<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Monthly expenditure data of a small business farm for 2
+years is a ...<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Data are collected about the number of different crimes in a
+city per month over 10 years. This is a ... <img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;A line plot is most suitable for ...<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 4, Video 1: File formats: Excel">Lesson 4, Video 1: File formats: Excel</a></h2>
+
+
+In olden days people used to store data on paper. Now computer
+disks provide the main storage. Data sets are stored as files,
+be it in the hard drive of a computer or removable devices like a
+USB drive. A file in a computer is just a collection of 0's and
+1's. When we store data  in a file, they first need to be
+converted into 0's and 1's. When we read the data back from the
+file, the 0's and 1's are converted back into the original
+form. This two-way conversion process is mostly done
+automatically without our intervention. Now, this process may be
+done in different ways, and each such way is called a <b>file
+format</b>. 
+There are quite a few file formats that are used in
+statistics. Some are free, while others are propreitary and
+require paid softwares to write or read. Some formats are good
+for sending data files over the email, while some formats are
+optimised to hold a large amount of data in a small space. 
+
+
+<p></p>
+
+In this course we shall use the MS Excel software, which
+understands various file formats. We shall discuss only two of
+them. Every file format has its specific file name extension. The
+first format has the extension <b>.xlsx</b>. This is the default
+file format used by MS Excel. 
+
+<h3><a
+name="Exercises M1L4A">Exercises M1L4A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Enter the data in excel format.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Delete a row. Then delete a column.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Insert a row. Then insert a column.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 4, Video 2: File formats: CSV">Lesson 4, Video 2: File formats: CSV</a></h2>
+While the Excel format is adequate for many elementary
+purposes, there are a couple of drawbacks. First, you need to
+have MS Excel in order to view the data in the file, or even to
+make minor modifications. Second, the file may be easily
+corrupted if you send it by email. Third, in case you want to
+process the data by some other software, this format may not be
+recognised by that software. So it is a good idea to know about a
+universally understood format, called
+the <b>comma-separated-values</b> format, with file
+extension <b>.csv</b>. In this format each case is represented by
+a line and the values in each line are separated by a comma. This
+format is particularly useful when a value may have a space in
+it, <i>e.g.</i> <b>West Bengal</b> or <b>Ram Singh</b>. Sometimes a
+value may be missing. Such missing values may be easily marked by
+two consecutive commas. 
+<p></p>
+On most computers a file with <b>.csv</b> format is automatically
+opened in MS Excel, if the software in installed. However, the
+CSV format has one downside. It cannot hold anything other than
+a single data table, while the XLSX format can hold multiple
+tables, as well as graphs and reports.
+
+<h3><a
+name="Exercises M1L4B">Exercises M1L4B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;A line from a CSV file is ,34,,. How many variables are
+there?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Export a xslx file into csv. Then import it back.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 5 (review), Video 1">Lesson 5 (review), Video 1</a></h2>
+
+<h2><a
+name="Lesson 5 (review), Video 2">Lesson 5 (review), Video 2</a></h2>
+
+
+<h1><a
+name="Module 2: Presentation of data (part 1)">Module 2: Presentation of data (part 1)</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: Graphical: exploratory and pedagogic">Lesson 1, Video 1: Graphical: exploratory and pedagogic</a></h2>
+In the year 1958, a war took place between the British and the
+Russian. A particularly infamous battle fought in it was the
+battle of Crimea, where  a young nurse named Florence Nightingale, along with a
+small group of friends,  was providing
+voluntary service at the battlefield. She was shocked to find
+that more soldiers died of disease than in actual
+fighting. She saw this clearly, as did many others present at the
+battlefield. But unfortunately the policy makers sitting in
+London did not see this as clearly. Fortunately for the soldiers
+and the posterity, Florence Nightingale was not just a dedicated
+nurse. She was also a statistician at heart, one who knew how to
+convince others using data. Data, as a dumb jumble of numbers,
+were not appealing. She knew that. So she improvised a colourful
+way to bring her point home. For each month she had the numbers
+of deaths due to different causes. She gave a sector to each
+month, and split the sector into a number of parts, one for each
+cause. The resulting diagram is called Nighingale Rose Chart. It
+indeed had so much impact on the policymakers that sanitary
+condition of the soldiers improved considerably. 
+<p></p>
+This example shows the power of pictures. We use our eyes to
+decide about our surroundings. Graphical representation of data
+allows our eyes to perform quick statistical analysis. 
+<p></p>
+One may, like Florence Nightingale, improvise one's own way of
+representing data graphically. But there are certain standard
+methods, which every statistician should know about. 
+
+<h2><a
+name="Lesson 1, Video 2: Line diagram">Lesson 1, Video 2: Line diagram</a></h2>
+The data used by Florence Nightingale are tim series data. The
+most common way to depict such data is the <b>line chart</b>. 
+This is just a graph with time shown in the $x$-axis, and
+the quantity of interest in the $y$-axis. If our data set
+looks like this table shown, then each row gives us a
+point. We join them with piecewise straighlines to get a line
+chart. 
+If we multiple quantities of interest, then we vave multiple
+lines that may be plotted separately or, to facilitate comarison,
+overlaid on the same plot. For instance, Florence Nightingale
+could have produced this plot to convey the same information as
+her rose chart. However, notice that her plot highlighted her
+contension that diseases were the greatest killer more
+forcefully.  This is an importnt consideration when choosing one
+graphical technique over another: which is
+more <b>convincing</b>? Unfortunatley, it is easy to go
+overboard, and produce plots that almost present a distorted
+version of trth. We shall talk more abot this later. 
+
+<h3><a
+name="Exercises M2L1B">Exercises M2L1B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Here is a line plot of sales. What is the value at
+Jan?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;This plot shows a periodic fluctuation. What is the length
+of the period?<img src="../image/box.png"></p>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;From the COVID infection plot guess when the second wave
+will have its peak.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 3: Lab">Lesson 1, Video 3: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M2L1C">Exercises M2L1C</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make a line plot of the following data.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make an overlaid line plot of the two variables.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 1: Scatter plot">Lesson 2, Video 1: Scatter plot</a></h2>
+Scatter plot is a close kin of the line chart. Here we just show
+the points without joining them with lines. Consider a height
+weight data set. Here each case is a point. Typically, the
+variable which is less in our ontrol, and is more relieably
+measured, is shown in the $x$-axis. If there are more than
+two variables, then we can use a scatter plot matrix, sometimes
+also called a pairs plot. 
+
+<h3><a
+name="Exercises M2L2A">Exercises M2L2A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Which of the following scatterplots is possibly a weight vs
+height scatterplot?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;The following scatterplot shows an
+outlier. Its $x$-value is:<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;How many clusters can you see in the following
+scatterplot?<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+
+<h3><a
+name="Exercises M2L2B">Exercises M2L2B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make a scatterplot based on the following height-weight
+data.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Repeat the same exercise, but now colour-code the points
+using gender.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 1: Bar, pie">Lesson 3, Video 1: Bar, pie</a></h2>
+
+
+<h3><a
+name="Exercises M2L3A">Exercises M2L3A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Consider the bar chart. Two values are roughly the
+same. Which two?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;In the pie chart who has the lion's share?<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+
+<h3><a
+name="Exercises M2L3B">Exercises M2L3B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make a bar chart from the following data.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make a pie chart from the same data.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 4, Video 1: Pitfalls">Lesson 4, Video 1: Pitfalls</a></h2>
+
+<h2><a
+name="Lesson 4, Video 2: Real life eamples">Lesson 4, Video 2: Real life eamples</a></h2>
+
+
+<h2><a
+name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+
+<h2><a
+name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+
+
+<h1><a
+name="Module 3: Presentation of data (part 2)">Module 3: Presentation of data (part 2)</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: Frequency distribution">Lesson 1, Video 1: Frequency distribution</a></h2>
+
+<h3><a
+name="Exercises M3L1A">Exercises M3L1A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Here is a frequency distribution. Find the class with
+maximum frequency.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Is it always true that the class with maximum frequency is
+also the class with maximum relative frequency?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find the class with maximum frequency density.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 2: Lab">Lesson 1, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M2L3B">Exercises M2L3B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make a frequency distribution from the following data.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find relative frequency densities of all the classes in the
+given frequency distribution table.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 1: Tabular">Lesson 2, Video 1: Tabular</a></h2>
+
+<h2><a
+name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+
+
+<h2><a
+name="Lesson 3, Video 1: Histogram">Lesson 3, Video 1: Histogram</a></h2>
+
+<h2><a
+name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+
+
+<h2><a
+name="Lesson 4, Video 1: Contingency table">Lesson 4, Video 1: Contingency table</a></h2>
+
+<h2><a
+name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+
+
+
+<h2><a
+name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+
+<h2><a
+name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+
+
+
+<h1><a
+name="Module 4: Central tendency">Module 4: Central tendency</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: The concept and mean">Lesson 1, Video 1: The concept and mean</a></h2>
+Let me ask you a simple question: <b>what is the average life span
+of Indians?</b> You may not know the exact answer, but you'll guess
+that it is around 70. Now let me ask you another question: <b>what
+is the average body weight of an adult male dolphin?</b> Possibly you
+have no idea, and may turn to Google for an answer. Now comes the
+last question: <b>what is the average weight of a mammal?</b> I am sure
+you do not know! I am sure you've never heard this question
+before. Will you turn to Google for an answer? No, this question
+is absurd! There are so many different types of mammals ranging
+from tiny rodents to enormous blue whales. What do you mean by
+"average" here? Well, we learned in school 
+
+<h3><a
+name="Exercises M4L1A">Exercises M4L1A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Consider these 20 numbers. Do you think that they have a
+central tendency?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;If the mean of 10 numbers is 23.5, and one of them is
+exactly equal to 23.5, then what is the mean of the remaining
+nine numbers?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;If the mean of of 10 numbers is 10, and none of them equals
+10, then is it true that exactly five must be above 10, and five
+below 10?<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="Lesson 1, Video 2: Lab">Lesson 1, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M4L1B">Exercises M4L1B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute mean of these numbers using Excel.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute overall mean of the numbers in different columns in
+Excel.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 1: Median">Lesson 2, Video 1: Median</a></h2>
+
+
+<h3><a
+name="Exercises M4L2A">Exercises M4L2A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute median of these numbers by hand.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Change of unit.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Write down 3 numbers such that their median is less than
+their mean. <img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Three numbers has mean equal to median. If the smallest
+number is 10 and second smallest is 13, then find the other number.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find median of the numbers using Excel.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Sort the column.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Sort one column by another.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 1: Mode and others">Lesson 3, Video 1: Mode and others</a></h2>
+
+
+<h3><a
+name="Exercises M4L3A">Exercises M4L3A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find model of these numbers by inspection.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Do these numbers have any mode?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find mode from theis frequency distribution table.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find mode of a column.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find quartiles.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 4, Video 1: Robustness">Lesson 4, Video 1: Robustness</a></h2>
+
+
+<h3><a
+name="Exercises M4L4A">Exercises M4L4A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Which is more robust: mean or median?<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute 10% trimmed mean from these numbers.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M4L4B">Exercises M4L4B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute 10% trimmed mean.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute difference of mean and median.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+
+<h2><a
+name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+
+
+
+
+<h1><a
+name="Module 5: Dispersion">Module 5: Dispersion</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: The concept">Lesson 1, Video 1: The concept</a></h2>
+
+
+<h3><a
+name="Exercises M5L1A">Exercises M5L1A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;We have a data set with just three cases. The value of the
+variable for the first case is given. Find the values of the
+other two to achieve 
+the smallest possible dispersion. <img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Write down two sets of numbers such that the mean of the
+first set is smaller, but the dispersion is larger.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 2: Range">Lesson 1, Video 2: Range</a></h2>
+
+
+<h3><a
+name="Exercises M5L1B">Exercises M5L1B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute range of the column.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;If the range of some number is 56, and a new number is
+added, then how will it change?<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 1: Variance and standard deviation">Lesson 2, Video 1: Variance and standard deviation</a></h2>
+Mention the alternative formula.
+
+<h3><a
+name="Exercises M5L2A">Exercises M5L2A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find the variance and standard deviation of these
+numbers.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;If the sum of squares of some numbers is 100, and the mean
+is 5, then find the standard deviation.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;If the mean and variance of 10 numbers are, respectively, 10
+and 45, and a new
+value 7 is introduced, what is the new variance?<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M5L2B">Exercises M5L2B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute using Excel.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute for multiple columns simultaneously.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Add one outlier and see the effect.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 1: Mean absolute deviation">Lesson 3, Video 1: Mean absolute deviation</a></h2>
+
+
+<h3><a
+name="Exercises M5L3A">Exercises M5L3A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Find MAD for these numbers.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;If the median is ... and MAD is ..., then find the new MAD
+when a new value 7 is introduced.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M5L3B">Exercises M5L3B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute using Excel.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute for multiple columns simultaneously.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Add one outlier and see the effect.<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="Lesson 4, Video 1: Semi-interquartile range and boxplot">Lesson 4, Video 1: Semi-interquartile range and boxplot</a></h2>
+
+
+<h3><a
+name="Exercises M5L4A">Exercises M5L4A</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Show box plot and ask to interpret.<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M5L4B">Exercises M5L4B</a></h3>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute semi-interquartile range for the data.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Make box plots.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compare box plots.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute trimmed variance.<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+
+<h2><a
+name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+
+
+
+<h1><a
+name="Module 6: Association etc">Module 6: Association etc</a></h1>
+
+
+<h2><a
+name="Lesson 1, Video 1: Bivariate data, The concept via plots">Lesson 1, Video 1: Bivariate data, The concept via plots</a></h2>
+
+
+<h3><a
+name="Exercises M6L1A">Exercises M6L1A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Show plots and ask for pattern.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Tight and loose patterns.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Nonlinear pattern. Ask to describe like "first decreasing, then increasing."<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Lesson 1, Video 2: (Rank) correlation">Lesson 1, Video 2: (Rank) correlation</a></h2>
+
+
+<h3><a
+name="Exercises M6L1B">Exercises M6L1B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute correlation.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute rank correlation.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Create data set with correlation 1.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Anscombe.<img src="../image/box.png"></p>
+
+
+
+<h2><a
+name="Lesson 2, Video 1: Contingency table measures (part 1)">Lesson 2, Video 1: Contingency table measures (part 1)</a></h2>
+
+<h2><a
+name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+
+
+<h2><a
+name="Lesson 3, Video 1: Contingency table measures (part 2)">Lesson 3, Video 1: Contingency table measures (part 2)</a></h2>
+
+<h2><a
+name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+
+
+<h2><a
+name="Lesson 4, Video 1: Concept of moments: skewness and kurtosis">Lesson 4, Video 1: Concept of moments: skewness and kurtosis</a></h2>
+
+<h3><a
+name="Exercises M6L4A">Exercises M6L4A</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Visually from histogram (clear)<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Visually from histogram (unclear)<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Income distribution in captalist countries.<img src="../image/box.png"></p>
+
+<h2><a
+name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+
+
+<h3><a
+name="Exercises M6L4B">Exercises M6L4B</a></h3>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Compute.<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;Effect of outlier.<img src="../image/box.png"></p>
+
+<h2><a
+name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+
+<h2><a
+name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+
+
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
