@@ -93,6 +93,27 @@ need operations of <M>\qq(e).</M> So we can write the functions
 recursively, where the lowest case will be the familiar rational
 operations. 
 
+<EXR>Write four functions
+called <CODE>add</CODE>, <CODE>subtract</CODE>, <CODE>multiply</CODE>
+and <CODE>divide</CODE> that will perform these operations
+exactly over fields of the
+form <M>\qq(\alpha_1,...,\alpha_k),</M> where
+each <M>\alpha_i</M> is transcental
+over <M>\qq(\alpha_1,...,\alpha_{i-1}).</M> In
+particular, <M>\alpha_1</M> is transcental over <M>\qq.</M> Here
+is how the <CODE>add</CODE> function should be declared:
+<PRE>
+add = function(a, b, level) {
+  ...
+}
+</PRE>
+The <CODE>level</CODE> argument denotes the number of transcental
+elements adjoined, i.e., <M>k</M>
+in <M>\qq(\alpha_1,...,\alpha_k).</M> The functions should be
+written recursively, i.e., <CODE>add</CODE> with level <M>k</M>
+may call the functions with level <M>k-1.</M>
+</EXR>
+
 <HEAD2>Numbers like <M>\sqrt2</M> etc</HEAD2>
 Here again we can proceed as above. But this will not lead to
 complete simplification. For example, if we want to compute 
