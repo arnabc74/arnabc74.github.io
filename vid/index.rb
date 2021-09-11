@@ -1,6 +1,7 @@
 @{<NOTE>
+<UPDT>SAT SEP 11 IST 2021</UPDT>
 <HEAD1>The video production system</HEAD1>
-Download the <LINK to="">bundle</LINK>, and uncompress it. It
+Download the <LINK to="https://drive.google.com/file/d/17zTa77Eh_Xi88PGNNPI7bNXzOCpj1Hb1/view?usp=sharing">bundle from here</LINK>, and uncompress it. It
 will create a folder structure like this:
 <PRE>
 vidbase (root folder)
@@ -8,8 +9,6 @@ vidbase (root folder)
   +---fromapp
   |
   +---test (a sample video folder)
-  |
-  +---fromapp 
   |
   +---Melter.java
   |
@@ -54,7 +53,7 @@ folder, you need to check the path that you entered just now.
 
 <P/>
 Leave this window open for the time being. Let us understand the
-architecture.
+project architecture.
 
 <HEAD2>Understanding the folder structure</HEAD2>
 The <CODE>vidbase</CODE> folder is the <BLUE>root folder</BLUE>. You'll never
@@ -122,7 +121,8 @@ etc.
 <P/>
 I have provided the <BLUE>video folder</BLUE> <CODE>test</CODE>
 in this state, so that you do not have make the images to test
-out the software.
+out the software. However, I have also populated
+the <CODE>fromcamera</CODE> folder with the raw videos from my mobile.
 </LI>
 <LI><B>Preshoot:</B> Here the <BLUE>video folder</BLUE>
 looks like this:
