@@ -1,7 +1,7 @@
 @{<NOTE>
 <UPDT>SAT SEP 11 IST 2021</UPDT>
 <HEAD1>The video production system</HEAD1>
-Download the <LINK to="https://drive.google.com/file/d/17zTa77Eh_Xi88PGNNPI7bNXzOCpj1Hb1/view?usp=sharing">bundle from here</LINK>, and uncompress it. It
+Download the <LINK to="https://drive.google.com/file/d/1evOYEtx1sWj5kaK1sC58Bv0s1IpxSy-i/view?usp=sharing">bundle from here</LINK>, and uncompress it. It
 will create a folder structure like this:
 <PRE>
 vidbase (root folder)
@@ -23,6 +23,8 @@ vidbase (root folder)
   +---sync.png
   |
   +---transparent.png
+  |
+  +---sep.png
 </PRE>
 
 Open the <CODE>Global.java</CODE> file with an editor. You'll
@@ -32,7 +34,7 @@ final private String
     base = "<RED>/home/cssc/na/s/othernotes/androtalks</RED>"; //Change this folder.
 
 </PRE>
-Change the red part with the path of the
+Replace the red part with the path of the
 folder <CODE>vidbase</CODE>. For example, if you have put
 your <CODE>vidbase</CODE> folder in <CODE>c:\users\sosu</CODE>,
 then you should have:
