@@ -1,5 +1,14 @@
 @{<NOTE>
 <TITLE>Course: Basic 1</TITLE>
+This course consists of 6 modules, each spanning one week. Each
+module is made of 5 lessons, which in their turn are split into
+2 (or in some cases 3) videos. Each of the first 4 lessons in a
+module has around 5 formative quizzes. The last lesson is a
+review lesson and has 8 summative quizzes, where 2 are taken from
+each of the preceding lessons in that module. In this file I am
+providing only the formative quizzes, as the summative ones are
+essentially of the same type.
+
 <HEAD1>Module 1: Data types</HEAD1>
 
 <HEAD2>Lesson 1, Video 1: Data--what and why</HEAD2>
@@ -187,7 +196,7 @@ example of
 <EXR>
 A student wants to judge if joining a coaching class is effective
 for admission to a particular institute. Which of the following
-is the more stronger evidence of the coaching class?
+is the stronger evidence of the coaching class?
 <OL>
 <LI>out of all students admitted to the institute, 95% had gone
 to that coaching class.</LI>
@@ -196,13 +205,16 @@ admission to the institute.</LI>
 </OL>
 </EXR>
 
-<EXR>All farmers were requested to write to the minister about
+<EXR>All farmers in a developing country were requested to write
+to the agricultural minister about
 their daily expenses. A report was constructed based on the
 responses obtained. Is this a reliable data set? </EXR>
 
 <EXR>
-Health conditions have deteriorated over the last 10 years. 1000
-people died to cancer 10 years ago. This year the figure is 2000.
+ "1000
+people died of cancer 10 years ago. This year the figure is
+2000." Can we reasonably conclude from this that 
+<Q>Health conditions have deteriorated over the last 10 years.</Q>
 </EXR>
 
 <HEAD2>Lesson 1, Video 3: Case, variable and rectangular structure</HEAD2>
