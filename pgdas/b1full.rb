@@ -792,7 +792,25 @@ also the class with maximum relative frequency?</EXR>
 <EXR>Find relative frequency densities of all the classes in the
 given frequency distribution table.</EXR>
 
-<HEAD2>Lesson 2, Video 1: Tabular</HEAD2>
+<HEAD2>Lesson 2, Video 1: Tabular: Pivot table</HEAD2>
+In this video we shall talk about a representation of data that
+is definitely the one most commonly used: <V>tabular
+format</V>. Be it a telephone directory or a dictionary or a
+railway timetable, tables are everywhere around us. Even when we
+use a computer to look up information, the underlying data base
+is basically a collection of tables. 
+<P/>
+A table, as we all know, presents data in a rectangular
+format. Well, we have already used them earlier in this course,
+where columns represent variables and row represent cases. Those
+tables were meant primarily to be fed into a computer
+program. But human-readbale tables can be (and should be) more
+varied. They allow for various embellishments, <B>nested rows</B>,
+<B>nested columns</B>, <B>marginal summaries</B> <B>etc</B>.
+Such fancy tables are often called <B>pivot tables</B>.
+<P/>
+Let's start with an example.
+
 <HEAD2>Lesson 2, Video 2: Lab</HEAD2>
 
 <HEAD2>Lesson 3, Video 1: Histogram</HEAD2>
