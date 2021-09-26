@@ -9,9 +9,9 @@ each of the preceding lessons in that module. In this file I am
 providing only the formative quizzes,  as the summative ones are
 essentially of the same type.
 
-<HEAD1>Module 1: Data types</HEAD1>
+<STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
 
-<HEAD2>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD2>
+<STKY><HEAD2>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD2></STKY>
 Hello,  and welcome to the PGDAS course on basic statistics. This
 is the first lecture in the very first module. <V>Name enters.</V>As you should know
 already,  the course consists of 6 modules,  each of one week
@@ -105,7 +105,7 @@ chat with the villagers</LI>
 </OL>
 </EXR>
 
-<HEAD2>Module 1, Lesson 1,  Video 2: Data--types</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 1,  Video 2: Data--types</HEAD2></STKY>
 Before we start talking abou the details,  let's take a quick look
 at some different ways one may go about collecting data. When you
 are collecting data,  there is a scenario. Like a village,  and you
@@ -217,7 +217,7 @@ people died of cancer 10 years ago. This year the figure is
 <Q>Health conditions have deteriorated over the last 10 years.</Q>
 </EXR>
 
-<HEAD2>Module 1, Lesson 1,  Video 3: Case,  variable and rectangular structure</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 1,  Video 3: Case,  variable and rectangular structure</HEAD2></STKY>
 
 All data are results of measurements. The measurement may be made
 by a scientific instrument like a measuring tape or a therometer
@@ -280,7 +280,7 @@ Chimpani. The following three tables provide data about
 these. Cast it as a single table.
 </EXR>
 
-<HEAD2>Module 1, Lesson 2,  Video 1: Continuous,  discrete,  counting and categorical</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 2,  Video 1: Continuous,  discrete,  counting and categorical</HEAD2></STKY>
 
 Different variables 
  may be of different types. Some may be numbers,  others may be
@@ -401,7 +401,7 @@ state is recorded over a month. Then
 </OL>
 </EXR>
 
-<HEAD2>Module 1, Lesson 2,  Video 2: Continuous,  discrete,  counting and categorical</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 2,  Video 2: Continuous,  discrete,  counting and categorical</HEAD2></STKY>
 One might easily get confsed with so many different types of
 variables! To ease the pain,  statiticians have reduced the number
 to just four
@@ -507,7 +507,7 @@ PAN of a person  is an example of
 </EXR>
 
 
-<HEAD2>Module 1, Lesson 3,  Video 1: Univariate and multivariate</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 3,  Video 1: Univariate and multivariate</HEAD2></STKY>
 
 <HEAD3>Exercises M1L3V1</HEAD3>
 <EXR>
@@ -567,7 +567,7 @@ crop sown,  and income per season. The resulting data set is
 </OL>
 </EXR>
 
-<HEAD2>Module 1, Lesson 3,  Video 2: IID,  time series and spatial</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 3,  Video 2: IID,  time series and spatial</HEAD2></STKY>
 <HEAD3>Exercises M1L3</HEAD3>
 <EXR>If we collect household level data for 10 villages in a
 district,  and the data collection takes two weeks,  then the
@@ -585,7 +585,7 @@ city per month over 10 years. This is a ... </EXR>
 
 <EXR>A line plot is most suitable for ...</EXR>
 
-<HEAD2>Module 1, Lesson 4,  Video 1: File formats: Excel</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 4,  Video 1: File formats: Excel</HEAD2></STKY>
 
 
 In olden days people used to store data on paper. Now computer
@@ -621,7 +621,7 @@ file format used by MS Excel.
 
 <EXR>Insert a row. Then insert a column.</EXR>
 
-<HEAD2>Module 1, Lesson 4,  Video 2: File formats: CSV</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 4,  Video 2: File formats: CSV</HEAD2></STKY>
 While the Excel format is adequate for many elementary
 purposes,  there are a couple of drawbacks. First,  you need to
 have MS Excel in order to view the data in the file,  or even to
@@ -650,12 +650,12 @@ there?</EXR>
 
 <EXR>Export a xslx file into csv. Then import it back.</EXR>
 
-<HEAD2>Module 1, Lesson 5 (review),  Video 1</HEAD2>
-<HEAD2>Module 1, Lesson 5 (review),  Video 2</HEAD2>
+<STKY><HEAD2>Module 1, Lesson 5 (review),  Video 1</HEAD2></STKY>
+<STKY><HEAD2>Module 1, Lesson 5 (review),  Video 2</HEAD2></STKY>
 
-<HEAD1>Module 2: Presentation of data (part 1)</HEAD1>
+<STKY><HEAD1>Module 2: Presentation of data (part 1)</HEAD1></STKY>
 
-<HEAD2>Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</HEAD2></STKY>
 In the year 1958,  a war took place between the British and the
 Russian. A particularly infamous battle fought in it was the
 battle of Crimea,  where  a young nurse named Florence Nightingale,  along with a
@@ -684,7 +684,7 @@ One may,  like Florence Nightingale,  improvise one's own way of
 representing data graphically. But there are certain standard
 methods,  which every statistician should know about. 
 
-<HEAD2>Module 2, Lesson 1,  Video 2: Line diagram</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 1,  Video 2: Line diagram</HEAD2></STKY>
 The data used by Florence Nightingale are tim series data. The
 most common way to depict such data is the <B>line chart</B>. 
 This is just a graph with time shown in the <M>x</M>-axis,  and
@@ -715,14 +715,14 @@ of the period?</EXR>
 <EXR>From the COVID infection plot guess when the second wave
 will have its peak.</EXR>
 
-<HEAD2>Module 2, Lesson 1,  Video 3: Lab</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 1,  Video 3: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M2L1V3</HEAD3>
 <EXR>Make a line plot of the following data.</EXR>
 
 <EXR>Make an overlaid line plot of the two variables.</EXR>
 
-<HEAD2>Module 2, Lesson 2,  Video 1: Scatter plot</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 2,  Video 1: Scatter plot</HEAD2></STKY>
 Scatter plot is a close kin of the line chart. Here we just show
 the points without joining them with lines. Consider a height
 weight data set. Here each case is a point. Typically,  the
@@ -741,7 +741,7 @@ outlier. Its <M>x</M>-value is:</EXR>
 <EXR>How many clusters can you see in the following
 scatterplot?</EXR>
 
-<HEAD2>Module 2, Lesson 2,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 <HEAD3>Exercises M2L2V2</HEAD3>
 <EXR>Make a scatterplot based on the following height-weight
 data.</EXR>
@@ -749,7 +749,7 @@ data.</EXR>
 <EXR>Repeat the same exercise,  but now colour-code the points
 using gender.</EXR>
 
-<HEAD2>Module 2, Lesson 3,  Video 1: Bar,  pie</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 3,  Video 1: Bar,  pie</HEAD2></STKY>
 
 <HEAD3>Exercises M2L3V1</HEAD3>
 
@@ -758,14 +758,14 @@ same. Which two?</EXR>
 
 <EXR>In the pie chart who has the lion's share?</EXR>
 
-<HEAD2>Module 2, Lesson 3,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 <HEAD3>Exercises M2L3V2</HEAD3>
 
 <EXR>Make a bar chart from the following data.</EXR>
 
 <EXR>Make a pie chart from the same data.</EXR>
 
-<HEAD2>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD2></STKY>
 
 <HEAD3>Exercises M2L4V1</HEAD3>
 
@@ -779,7 +779,7 @@ smaller.</EXR>
 <EXR>Showing with squares. Sides proportional to value or areas?</EXR>
 
 
-<HEAD2>Module 2, Lesson 4,  Video 2: Real life examples</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 4,  Video 2: Real life examples</HEAD2></STKY>
 
 <HEAD3>Exercises M2L4V2</HEAD3>
 
@@ -792,12 +792,12 @@ different variable.</EXR>
 <EXR>Ask to repeat some activity shown in the video with some
 different variable.</EXR>
 
-<HEAD2>Module 2, Lesson 5 ,  Video 1: Review</HEAD2>
-<HEAD2>Module 2, Lesson 5 ,  Video 2: Review</HEAD2>
+<STKY><HEAD2>Module 2, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<STKY><HEAD2>Module 2, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
-<HEAD1>Module 3: Presentation of data (part 2)</HEAD1>
+<STKY><HEAD1>Module 3: Presentation of data (part 2)</HEAD1></STKY>
 
-<HEAD2>Module 3, Lesson 1,  Video 1: Frequency distribution</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 1,  Video 1: Frequency distribution</HEAD2></STKY>
 <HEAD3>Exercises M3L1V1</HEAD3>
 <EXR>Here is a frequency distribution. Find the class with
 maximum frequency.</EXR>
@@ -807,7 +807,7 @@ also the class with maximum relative frequency?</EXR>
 
 <EXR>Find the class with maximum frequency density.</EXR>
 
-<HEAD2>Module 3, Lesson 1,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 1,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M2L3V2</HEAD3>
 
@@ -816,7 +816,7 @@ also the class with maximum relative frequency?</EXR>
 <EXR>Find relative frequency densities of all the classes in the
 given frequency distribution table.</EXR>
 
-<HEAD2>Module 3, Lesson 2,  Video 1: Tabular: Pivot table ahd chart</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 2,  Video 1: Tabular: Pivot table ahd chart</HEAD2></STKY>
 In this video we shall talk about a representation of data that
 is definitely the one most commonly used: <V>tabular
 format</V>. Be it a telephone directory or a dictionary or a
@@ -847,7 +847,7 @@ same data set. Is the claim justified?</EXR>
 <EXR>Here are two different layouts for the same pivot
 tables. Which one is better suited for a newspaper report?</EXR>
 
-<HEAD2>Module 3, Lesson 2,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M3L2V2</HEAD3>
 
@@ -859,7 +859,7 @@ tables. Which one is better suited for a newspaper report?</EXR>
 pivot table.</EXR>
 
 <EXR>Make a pivot chart</EXR>
-<HEAD2>Module 3, Lesson 3,  Video 1: Histogram</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 3,  Video 1: Histogram</HEAD2></STKY>
 
 <HEAD3>Exercises M3L3V1</HEAD3>
 
@@ -877,7 +877,7 @@ its left.
 </EXR>
 
 
-<HEAD2>Module 3, Lesson 3,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M3L3V2</HEAD3>
 
@@ -889,7 +889,7 @@ its left.
 shapes.</EXR>
 
 
-<HEAD2>Module 3, Lesson 4,  Video 1: Contingency table</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 4,  Video 1: Contingency table</HEAD2></STKY>
 
 <HEAD3>Exercises M3L4V1</HEAD3>
 
@@ -903,7 +903,7 @@ the other column total.</EXR>
 <EXR>Describe a 3-way table set up. Ask to identify the correct
 dimension.</EXR>
 
-<HEAD2>Module 3, Lesson 4,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 4,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M3L4V2</HEAD3>
 
@@ -914,13 +914,13 @@ to be added manually).</EXR>
 
 <EXR>Rectify data and update the table.</EXR>
 
-<HEAD2>Module 3, Lesson 5 ,  Video 1: Review</HEAD2>
-<HEAD2>Module 3, Lesson 5 ,  Video 2: Review</HEAD2>
+<STKY><HEAD2>Module 3, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<STKY><HEAD2>Module 3, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 
-<HEAD1>Module 4: Central tendency</HEAD1>
+<STKY><HEAD1>Module 4: Central tendency</HEAD1></STKY>
 
-<HEAD2>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD2></STKY>
 Let me ask you a simple question: <B>what is the average life span
 of Indians?</B> You may not know the exact answer,  but you'll guess
 that it is around 70. Now let me ask you another question: <B>what
@@ -947,7 +947,7 @@ nine numbers?</EXR>
 below 10?</EXR>
 
 
-<HEAD2>Module 4, Lesson 1,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 1,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M4L1V2</HEAD3>
 
@@ -956,7 +956,7 @@ below 10?</EXR>
 <EXR>Compute overall mean of the numbers in different columns in
 Excel.</EXR>
 
-<HEAD2>Module 4, Lesson 2,  Video 1: Median</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 2,  Video 1: Median</HEAD2></STKY>
 
 <HEAD3>Exercises M4L2V1</HEAD3>
 
@@ -970,7 +970,7 @@ their mean. </EXR>
 <EXR>Three numbers has mean equal to median. If the smallest
 number is 10 and second smallest is 13,  then find the other number.</EXR>
 
-<HEAD2>Module 4, Lesson 2,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M4L2V2</HEAD3>
 
@@ -980,7 +980,7 @@ number is 10 and second smallest is 13,  then find the other number.</EXR>
 
 <EXR>Sort one column by another.</EXR>
 
-<HEAD2>Module 4, Lesson 3,  Video 1: Mode and others</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 3,  Video 1: Mode and others</HEAD2></STKY>
 
 <HEAD3>Exercises M4L3V1</HEAD3>
 <EXR>Find model of these numbers by inspection.</EXR>
@@ -989,7 +989,7 @@ number is 10 and second smallest is 13,  then find the other number.</EXR>
 
 <EXR>Find mode from theis frequency distribution table.</EXR>
 
-<HEAD2>Module 4, Lesson 3,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M4L3V2</HEAD3>
 
@@ -997,14 +997,14 @@ number is 10 and second smallest is 13,  then find the other number.</EXR>
 
 <EXR>Find quartiles.</EXR>
 
-<HEAD2>Module 4, Lesson 4,  Video 1: Robustness</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 4,  Video 1: Robustness</HEAD2></STKY>
 
 <HEAD3>Exercises M4L4V1</HEAD3>
 <EXR>Which is more robust: mean or median?</EXR>
 
 <EXR>Compute 10% trimmed mean from these numbers.</EXR>
 
-<HEAD2>Module 4, Lesson 4,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 4,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M4L4V2</HEAD3>
 
@@ -1012,14 +1012,14 @@ number is 10 and second smallest is 13,  then find the other number.</EXR>
 
 <EXR>Compute difference of mean and median.</EXR>
 
-<HEAD2>Module 4, Lesson 5 ,  Video 1: Review</HEAD2>
-<HEAD2>Module 4, Lesson 5 ,  Video 2: Review</HEAD2>
+<STKY><HEAD2>Module 4, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<STKY><HEAD2>Module 4, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 
 
-<HEAD1>Module 5: Dispersion</HEAD1>
+<STKY><HEAD1>Module 5: Dispersion</HEAD1></STKY>
 
-<HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
 
 <HEAD3>Exercises M5L1V1</HEAD3>
 
@@ -1031,7 +1031,7 @@ the smallest possible dispersion. </EXR>
 <EXR>Write down two sets of numbers such that the mean of the
 first set is smaller,  but the dispersion is larger.</EXR>
 
-<HEAD2>Module 5, Lesson 1,  Video 2: Range</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 1,  Video 2: Range</HEAD2></STKY>
 
 <HEAD3>Exercises M5L1V2</HEAD3>
 <EXR>Compute range of the column.</EXR>
@@ -1039,7 +1039,7 @@ first set is smaller,  but the dispersion is larger.</EXR>
 <EXR>If the range of some number is 56,  and a new number is
 added,  then how will it change?</EXR>
 
-<HEAD2>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD2></STKY>
 Mention the alternative formula.
 
 <HEAD3>Exercises M5L2V1</HEAD3>
@@ -1053,7 +1053,7 @@ is 5,  then find the standard deviation.</EXR>
 and 45,  and a new
 value 7 is introduced,  what is the new variance?</EXR>
 
-<HEAD2>Module 5, Lesson 2,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M5L2V2</HEAD3>
 
@@ -1063,7 +1063,7 @@ value 7 is introduced,  what is the new variance?</EXR>
 
 <EXR>Add one outlier and see the effect.</EXR>
 
-<HEAD2>Module 5, Lesson 3,  Video 1: Mean absolute deviation</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 3,  Video 1: Mean absolute deviation</HEAD2></STKY>
 
 <HEAD3>Exercises M5L3V1</HEAD3>
 
@@ -1072,7 +1072,7 @@ value 7 is introduced,  what is the new variance?</EXR>
 <EXR>If the median is ... and MAD is ...,  then find the new MAD
 when a new value 7 is introduced.</EXR>
 
-<HEAD2>Module 5, Lesson 3,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M5L3V2</HEAD3>
 <EXR>Compute using Excel.</EXR>
@@ -1082,12 +1082,12 @@ when a new value 7 is introduced.</EXR>
 <EXR>Add one outlier and see the effect.</EXR>
 
 
-<HEAD2>Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot</HEAD2></STKY>
 
 <HEAD3>Exercises M5L4V1</HEAD3>
 <EXR>Show box plot and ask to interpret.</EXR>
 
-<HEAD2>Module 5, Lesson 4,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 4,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M5L4V2</HEAD3>
 <EXR>Compute semi-interquartile range for the data.</EXR>
@@ -1099,13 +1099,13 @@ when a new value 7 is introduced.</EXR>
 <EXR>Compute trimmed variance.</EXR>
 
 
-<HEAD2>Module 5, Lesson 5 ,  Video 1: Review</HEAD2>
-<HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2>
+<STKY><HEAD2>Module 5, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<STKY><HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 
-<HEAD1>Module 6: Association etc</HEAD1>
+<STKY><HEAD1>Module 6: Association etc</HEAD1></STKY>
 
-<HEAD2>Module 6, Lesson 1,  Video 1: Bivariate data,  The concept via plots</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 1,  Video 1: Bivariate data,  The concept via plots</HEAD2></STKY>
 
 <HEAD3>Exercises M6L1V1</HEAD3>
 
@@ -1115,7 +1115,7 @@ when a new value 7 is introduced.</EXR>
 
 <EXR>Nonlinear pattern. Ask to describe like "first decreasing,  then increasing."</EXR>
 
-<HEAD2>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD2></STKY>
 
 <HEAD3>Exercises M6L1V2</HEAD3>
 
@@ -1144,7 +1144,7 @@ when a new value 7 is introduced.</EXR>
 
 <EXR>Interpret</EXR>
 
-<HEAD2>Module 6, Lesson 2,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M6L2V2</HEAD3>
 
@@ -1153,7 +1153,7 @@ when a new value 7 is introduced.</EXR>
 <EXR>Compute from data</EXR>
 <EXR>Compute from data</EXR>
 
-<HEAD2>Module 6, Lesson 3,  Video 1: Contingency table measures (part 2)</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 3,  Video 1: Contingency table measures (part 2)</HEAD2></STKY>
 
 Tetrachoric correlation coefficient
  Lambda coefficient
@@ -1170,7 +1170,7 @@ gamma test
 
 <EXR>Interpret</EXR>
 
-<HEAD2>Module 6, Lesson 3,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M6L3V2</HEAD3>
 
@@ -1179,7 +1179,7 @@ gamma test
 <EXR>Compute from data</EXR>
 <EXR>Compute from data</EXR>
 
-<HEAD2>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD2></STKY>
 <HEAD3>Exercises M6L4V1</HEAD3>
 
 <EXR>Visually from histogram (clear)</EXR>
@@ -1187,15 +1187,15 @@ gamma test
 <EXR>Visually from histogram (unclear)</EXR>
 
 <EXR>Income distribution in captalist countries.</EXR>
-<HEAD2>Module 6, Lesson 4,  Video 2: Lab</HEAD2>
+<STKY><HEAD2>Module 6, Lesson 4,  Video 2: Lab</HEAD2></STKY>
 
 <HEAD3>Exercises M6L4V2</HEAD3>
 
 <EXR>Compute.</EXR>
 
 <EXR>Effect of outlier.</EXR>
-<HEAD2>Module 6,  Lesson 5 ,  Video 1: Review</HEAD2>
-<HEAD2>Module 6,  Lesson 5 ,  Video 2: Review</HEAD2>
+<STKY><HEAD2>Module 6,  Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<STKY><HEAD2>Module 6,  Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 
 <COMMENT>

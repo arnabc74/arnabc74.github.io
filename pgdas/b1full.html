@@ -67,6 +67,47 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +115,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -442,12 +484,16 @@ each of the preceding lessons in that module. In this file I am
 providing only the formative quizzes,  as the summative ones are
 essentially of the same type.
 
+<div class="header">
 <h1><a
 name="Module 1: Data types">Module 1: Data types</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
 name="Module 1,  Lesson 1,  Video 1: Data--what and why">Module 1,  Lesson 1,  Video 1: Data--what and why</a></h2>
+</div>
 Hello,  and welcome to the PGDAS course on basic statistics. This
 is the first lecture in the very first module. Name enters.As you should know
 already,  the course consists of 6 modules,  each of one week
@@ -559,8 +605,10 @@ chat with the villagers</li>
 <img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 1,  Video 2: Data--types">Module 1, Lesson 1,  Video 2: Data--types</a></h2>
+</div>
 Before we start talking abou the details,  let's take a quick look
 at some different ways one may go about collecting data. When you
 are collecting data,  there is a scenario. Like a village,  and you
@@ -693,8 +741,10 @@ people died of cancer 10 years ago. This year the figure is
 <img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 1,  Video 3: Case,  variable and rectangular structure">Module 1, Lesson 1,  Video 3: Case,  variable and rectangular structure</a></h2>
+</div>
 
 All data are results of measurements. The measurement may be made
 by a scientific instrument like a measuring tape or a therometer
@@ -775,8 +825,10 @@ these. Cast it as a single table.
 <img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 2,  Video 1: Continuous,  discrete,  counting and categorical">Module 1, Lesson 2,  Video 1: Continuous,  discrete,  counting and categorical</a></h2>
+</div>
 
 Different variables 
  may be of different types. Some may be numbers,  others may be
@@ -940,8 +992,10 @@ state is recorded over a month. Then
 <img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 2,  Video 2: Continuous,  discrete,  counting and categorical">Module 1, Lesson 2,  Video 2: Continuous,  discrete,  counting and categorical</a></h2>
+</div>
 One might easily get confsed with so many different types of
 variables! To ease the pain,  statiticians have reduced the number
 to just four
@@ -1110,8 +1164,10 @@ PAN of a person  is an example of
 
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 3,  Video 1: Univariate and multivariate">Module 1, Lesson 3,  Video 1: Univariate and multivariate</a></h2>
+</div>
 
 
 <h3><a
@@ -1210,8 +1266,10 @@ crop sown,  and income per season. The resulting data set is
 <img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 3,  Video 2: IID,  time series and spatial">Module 1, Lesson 3,  Video 2: IID,  time series and spatial</a></h2>
+</div>
 
 <h3><a
 name="Exercises M1L3">Exercises M1L3</a></h3>
@@ -1242,8 +1300,10 @@ city per month over 10 years. This is a ... <img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;A line plot is most suitable for ...<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 4,  Video 1: File formats: Excel">Module 1, Lesson 4,  Video 1: File formats: Excel</a></h2>
+</div>
 
 
 In olden days people used to store data on paper. Now computer
@@ -1287,8 +1347,10 @@ name="Exercises M1L4V1">Exercises M1L4V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Insert a row. Then insert a column.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 4,  Video 2: File formats: CSV">Module 1, Lesson 4,  Video 2: File formats: CSV</a></h2>
+</div>
 While the Excel format is adequate for many elementary
 purposes,  there are a couple of drawbacks. First,  you need to
 have MS Excel in order to view the data in the file,  or even to
@@ -1323,19 +1385,27 @@ there?<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Export a xslx file into csv. Then import it back.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 5 (review),  Video 1">Module 1, Lesson 5 (review),  Video 1</a></h2>
+</div>
 
+<div class="header">
 <h2><a
 name="Module 1, Lesson 5 (review),  Video 2">Module 1, Lesson 5 (review),  Video 2</a></h2>
+</div>
 
 
+<div class="header">
 <h1><a
 name="Module 2: Presentation of data (part 1)">Module 2: Presentation of data (part 1)</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic">Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</a></h2>
+</div>
 In the year 1958,  a war took place between the British and the
 Russian. A particularly infamous battle fought in it was the
 battle of Crimea,  where  a young nurse named Florence Nightingale,  along with a
@@ -1364,8 +1434,10 @@ One may,  like Florence Nightingale,  improvise one's own way of
 representing data graphically. But there are certain standard
 methods,  which every statistician should know about. 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 1,  Video 2: Line diagram">Module 2, Lesson 1,  Video 2: Line diagram</a></h2>
+</div>
 The data used by Florence Nightingale are tim series data. The
 most common way to depict such data is the <b>line chart</b>. 
 This is just a graph with time shown in the $x$-axis,  and
@@ -1404,8 +1476,10 @@ of the period?<img src="../image/box.png"></p>
 will have its peak.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 1,  Video 3: Lab">Module 2, Lesson 1,  Video 3: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1419,8 +1493,10 @@ name="Exercises M2L1V3">Exercises M2L1V3</a></h3>
 <b>EXERCISE:</b>&nbsp;Make an overlaid line plot of the two variables.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 2,  Video 1: Scatter plot">Module 2, Lesson 2,  Video 1: Scatter plot</a></h2>
+</div>
 Scatter plot is a close kin of the line chart. Here we just show
 the points without joining them with lines. Consider a height
 weight data set. Here each case is a point. Typically,  the
@@ -1447,8 +1523,10 @@ outlier. Its $x$-value is:<img src="../image/box.png"></p>
 scatterplot?<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 2,  Video 2: Lab">Module 2, Lesson 2,  Video 2: Lab</a></h2>
+</div>
 
 <h3><a
 name="Exercises M2L2V2">Exercises M2L2V2</a></h3>
@@ -1463,8 +1541,10 @@ data.<img src="../image/box.png"></p>
 using gender.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 3,  Video 1: Bar,  pie">Module 2, Lesson 3,  Video 1: Bar,  pie</a></h2>
+</div>
 
 
 <h3><a
@@ -1480,8 +1560,10 @@ same. Which two?<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;In the pie chart who has the lion's share?<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 3,  Video 2: Lab">Module 2, Lesson 3,  Video 2: Lab</a></h2>
+</div>
 
 <h3><a
 name="Exercises M2L3V2">Exercises M2L3V2</a></h3>
@@ -1495,8 +1577,10 @@ name="Exercises M2L3V2">Exercises M2L3V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Make a pie chart from the same data.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 4,  Video 1: Pitfalls">Module 2, Lesson 4,  Video 1: Pitfalls</a></h2>
+</div>
 
 
 <h3><a
@@ -1519,8 +1603,10 @@ smaller.<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 4,  Video 2: Real life examples">Module 2, Lesson 4,  Video 2: Real life examples</a></h2>
+</div>
 
 
 <h3><a
@@ -1542,19 +1628,27 @@ different variable.<img src="../image/box.png"></p>
 different variable.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 5 ,  Video 1: Review">Module 2, Lesson 5 ,  Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
 name="Module 2, Lesson 5 ,  Video 2: Review">Module 2, Lesson 5 ,  Video 2: Review</a></h2>
+</div>
 
 
+<div class="header">
 <h1><a
 name="Module 3: Presentation of data (part 2)">Module 3: Presentation of data (part 2)</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 1,  Video 1: Frequency distribution">Module 3, Lesson 1,  Video 1: Frequency distribution</a></h2>
+</div>
 
 <h3><a
 name="Exercises M3L1V1">Exercises M3L1V1</a></h3>
@@ -1573,8 +1667,10 @@ also the class with maximum relative frequency?<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Find the class with maximum frequency density.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 1,  Video 2: Lab">Module 3, Lesson 1,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1590,8 +1686,10 @@ name="Exercises M2L3V2">Exercises M2L3V2</a></h3>
 given frequency distribution table.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 2,  Video 1: Tabular: Pivot table ahd chart">Module 3, Lesson 2,  Video 1: Tabular: Pivot table ahd chart</a></h2>
+</div>
 In this video we shall talk about a representation of data that
 is definitely the one most commonly used: tabular
 format. Be it a telephone directory or a dictionary or a
@@ -1630,8 +1728,10 @@ same data set. Is the claim justified?<img src="../image/box.png"></p>
 tables. Which one is better suited for a newspaper report?<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 2,  Video 2: Lab">Module 3, Lesson 2,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1654,8 +1754,10 @@ pivot table.<img src="../image/box.png"></p>
 <p>
 <b>EXERCISE:</b>&nbsp;Make a pivot chart<img src="../image/box.png"></p>
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 3,  Video 1: Histogram">Module 3, Lesson 3,  Video 1: Histogram</a></h2>
+</div>
 
 
 <h3><a
@@ -1684,8 +1786,10 @@ its left.
 
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 3,  Video 2: Lab">Module 3, Lesson 3,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1706,8 +1810,10 @@ shapes.<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 4,  Video 1: Contingency table">Module 3, Lesson 4,  Video 1: Contingency table</a></h2>
+</div>
 
 
 <h3><a
@@ -1732,8 +1838,10 @@ the other column total.<img src="../image/box.png"></p>
 dimension.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 4,  Video 2: Lab">Module 3, Lesson 4,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1753,20 +1861,28 @@ to be added manually).<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Rectify data and update the table.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 5 ,  Video 1: Review">Module 3, Lesson 5 ,  Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
 name="Module 3, Lesson 5 ,  Video 2: Review">Module 3, Lesson 5 ,  Video 2: Review</a></h2>
+</div>
 
 
 
+<div class="header">
 <h1><a
 name="Module 4: Central tendency">Module 4: Central tendency</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 1,  Video 1: The concept and mean">Module 4, Lesson 1,  Video 1: The concept and mean</a></h2>
+</div>
 Let me ask you a simple question: <b>what is the average life span
 of Indians?</b> You may not know the exact answer,  but you'll guess
 that it is around 70. Now let me ask you another question: <b>what
@@ -1801,8 +1917,10 @@ below 10?<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 1,  Video 2: Lab">Module 4, Lesson 1,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1818,8 +1936,10 @@ name="Exercises M4L1V2">Exercises M4L1V2</a></h3>
 Excel.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 2,  Video 1: Median">Module 4, Lesson 2,  Video 1: Median</a></h2>
+</div>
 
 
 <h3><a
@@ -1844,8 +1964,10 @@ their mean. <img src="../image/box.png"></p>
 number is 10 and second smallest is 13,  then find the other number.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 2,  Video 2: Lab">Module 4, Lesson 2,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1864,8 +1986,10 @@ name="Exercises M4L2V2">Exercises M4L2V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Sort one column by another.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 3,  Video 1: Mode and others">Module 4, Lesson 3,  Video 1: Mode and others</a></h2>
+</div>
 
 
 <h3><a
@@ -1883,8 +2007,10 @@ name="Exercises M4L3V1">Exercises M4L3V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Find mode from theis frequency distribution table.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 3,  Video 2: Lab">Module 4, Lesson 3,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1899,8 +2025,10 @@ name="Exercises M4L3V2">Exercises M4L3V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Find quartiles.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 4,  Video 1: Robustness">Module 4, Lesson 4,  Video 1: Robustness</a></h2>
+</div>
 
 
 <h3><a
@@ -1914,8 +2042,10 @@ name="Exercises M4L4V1">Exercises M4L4V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Compute 10% trimmed mean from these numbers.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 4,  Video 2: Lab">Module 4, Lesson 4,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -1930,21 +2060,29 @@ name="Exercises M4L4V2">Exercises M4L4V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Compute difference of mean and median.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 5 ,  Video 1: Review">Module 4, Lesson 5 ,  Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
 name="Module 4, Lesson 5 ,  Video 2: Review">Module 4, Lesson 5 ,  Video 2: Review</a></h2>
+</div>
 
 
 
 
+<div class="header">
 <h1><a
 name="Module 5: Dispersion">Module 5: Dispersion</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 1,  Video 1: The concept">Module 5, Lesson 1,  Video 1: The concept</a></h2>
+</div>
 
 
 <h3><a
@@ -1963,8 +2101,10 @@ the smallest possible dispersion. <img src="../image/box.png"></p>
 first set is smaller,  but the dispersion is larger.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 1,  Video 2: Range">Module 5, Lesson 1,  Video 2: Range</a></h2>
+</div>
 
 
 <h3><a
@@ -1979,8 +2119,10 @@ name="Exercises M5L1V2">Exercises M5L1V2</a></h3>
 added,  then how will it change?<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 2,  Video 1: Variance and standard deviation">Module 5, Lesson 2,  Video 1: Variance and standard deviation</a></h2>
+</div>
 Mention the alternative formula.
 
 <h3><a
@@ -2002,8 +2144,10 @@ and 45,  and a new
 value 7 is introduced,  what is the new variance?<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 2,  Video 2: Lab">Module 5, Lesson 2,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -2022,8 +2166,10 @@ name="Exercises M5L2V2">Exercises M5L2V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Add one outlier and see the effect.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 3,  Video 1: Mean absolute deviation">Module 5, Lesson 3,  Video 1: Mean absolute deviation</a></h2>
+</div>
 
 
 <h3><a
@@ -2039,8 +2185,10 @@ name="Exercises M5L3V1">Exercises M5L3V1</a></h3>
 when a new value 7 is introduced.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 3,  Video 2: Lab">Module 5, Lesson 3,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -2059,8 +2207,10 @@ name="Exercises M5L3V2">Exercises M5L3V2</a></h3>
 
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot">Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot</a></h2>
+</div>
 
 
 <h3><a
@@ -2070,8 +2220,10 @@ name="Exercises M5L4V1">Exercises M5L4V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Show box plot and ask to interpret.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 4,  Video 2: Lab">Module 5, Lesson 4,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -2094,20 +2246,28 @@ name="Exercises M5L4V2">Exercises M5L4V2</a></h3>
 
 
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 5 ,  Video 1: Review">Module 5, Lesson 5 ,  Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
 name="Module 5, Lesson 5 ,  Video 2: Review">Module 5, Lesson 5 ,  Video 2: Review</a></h2>
+</div>
 
 
 
+<div class="header">
 <h1><a
 name="Module 6: Association etc">Module 6: Association etc</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 1,  Video 1: Bivariate data,  The concept via plots">Module 6, Lesson 1,  Video 1: Bivariate data,  The concept via plots</a></h2>
+</div>
 
 
 <h3><a
@@ -2126,8 +2286,10 @@ name="Exercises M6L1V1">Exercises M6L1V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Nonlinear pattern. Ask to describe like "first decreasing,  then increasing."<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 1,  Video 2: (Rank) correlation">Module 6, Lesson 1,  Video 2: (Rank) correlation</a></h2>
+</div>
 
 
 <h3><a
@@ -2181,8 +2343,10 @@ name="Exercises M6L2V1">Exercises M6L2V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Interpret<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 2,  Video 2: Lab">Module 6, Lesson 2,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -2202,8 +2366,10 @@ name="Exercises M6L2V2">Exercises M6L2V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Compute from data<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 3,  Video 1: Contingency table measures (part 2)">Module 6, Lesson 3,  Video 1: Contingency table measures (part 2)</a></h2>
+</div>
 
 Tetrachoric correlation coefficient
  Lambda coefficient
@@ -2232,8 +2398,10 @@ name="Exercises M6L3V1">Exercises M6L3V1</a></h3>
 <b>EXERCISE:</b>&nbsp;Interpret<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 3,  Video 2: Lab">Module 6, Lesson 3,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -2253,8 +2421,10 @@ name="Exercises M6L3V2">Exercises M6L3V2</a></h3>
 <b>EXERCISE:</b>&nbsp;Compute from data<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis">Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</a></h2>
+</div>
 
 <h3><a
 name="Exercises M6L4V1">Exercises M6L4V1</a></h3>
@@ -2271,8 +2441,10 @@ name="Exercises M6L4V1">Exercises M6L4V1</a></h3>
 <p>
 <b>EXERCISE:</b>&nbsp;Income distribution in captalist countries.<img src="../image/box.png"></p>
 
+<div class="header">
 <h2><a
 name="Module 6, Lesson 4,  Video 2: Lab">Module 6, Lesson 4,  Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
@@ -2286,11 +2458,15 @@ name="Exercises M6L4V2">Exercises M6L4V2</a></h3>
 <p>
 <b>EXERCISE:</b>&nbsp;Effect of outlier.<img src="../image/box.png"></p>
 
+<div class="header">
 <h2><a
 name="Module 6,  Lesson 5 ,  Video 1: Review">Module 6,  Lesson 5 ,  Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
 name="Module 6,  Lesson 5 ,  Video 2: Review">Module 6,  Lesson 5 ,  Video 2: Review</a></h2>
+</div>
 
 
 

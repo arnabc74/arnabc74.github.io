@@ -67,6 +67,47 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +115,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -81,342 +123,356 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <a href="#Module 1: Estimation">Module 1: Estimation</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 1: The concept (population, sample)">Lesson 1, Video 1: The concept (population, sample)</a>
+<a href="#Module 1, Lesson 1, Video 1: The concept (population, sample)">Module 1, Lesson 1, Video 1: The concept (population, sample)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 2: The concept (sampling distribution)">Lesson 1, Video 2: The concept (sampling distribution)</a>
+<a href="#Module 1, Lesson 1, Video 2: The concept (sampling distribution)">Module 1, Lesson 1, Video 2: The concept (sampling distribution)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Exercises M1L1">Exercises M1L1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 1: Estimating mean">Lesson 2, Video 1: Estimating mean</a>
+<a href="#Module 1, Lesson 2, Video 1: Estimating mean">Module 1, Lesson 2, Video 1: Estimating mean</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+<a href="#Module 1, Lesson 2, Video 2: Lab">Module 1, Lesson 2, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Exercises M1L2">Exercises M1L2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 1: Estimating proportions">Lesson 3, Video 1: Estimating proportions</a>
+<a href="#Module 1, Lesson 3, Video 1: Estimating proportions">Module 1, Lesson 3, Video 1: Estimating proportions</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+<a href="#Module 1, Lesson 3, Video 2: Lab">Module 1, Lesson 3, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Exercises M1L3">Exercises M1L3</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 1: Estimating dispersion">Lesson 4, Video 1: Estimating dispersion</a>
+<a href="#Module 1, Lesson 4, Video 1: Estimating dispersion">Module 1, Lesson 4, Video 1: Estimating dispersion</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+<a href="#Module 1, Lesson 4, Video 2: Lab">Module 1, Lesson 4, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Exercises M1L4">Exercises M1L4</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+<a href="#Module 1, Lesson 5 , Video 1: Review">Module 1, Lesson 5 , Video 1: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+<a href="#Module 1, Lesson 5 , Video 2: Review">Module 1, Lesson 5 , Video 2: Review</a>
 </li>
 <li>
 <a href="#Module 2: t-tests">Module 2: t-tests</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 1: The concept of test (sound of water)">Lesson 1, Video 1: The concept of test (sound of water)</a>
+<a href="#Module 2, Lesson 1, Video 1: The concept of test (sound of water)">Module 2, Lesson 1, Video 1: The concept of test (sound of water)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L1A">Exercises M2L1A</a>
+<a href="#Exercises M2L1V1">Exercises M2L1V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 2: The concept of p-value">Lesson 1, Video 2: The concept of p-value</a>
+<a href="#Module 2, Lesson 1, Video 2: The concept of p-value">Module 2, Lesson 1, Video 2: The concept of p-value</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L1B">Exercises M2L1B</a>
+<a href="#Exercises M2L1V2">Exercises M2L1V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 1: one-sample t-test">Lesson 2, Video 1: one-sample t-test</a>
+<a href="#Module 2, Lesson 2, Video 1: one-sample t-test">Module 2, Lesson 2, Video 1: one-sample t-test</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L2A">Exercises M2L2A</a>
+<a href="#Exercises M2L2V1">Exercises M2L2V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+<a href="#Module 2, Lesson 2, Video 2: Lab">Module 2, Lesson 2, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L2B">Exercises M2L2B</a>
+<a href="#Exercises M2L2V2">Exercises M2L2V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 1: Paired t-test">Lesson 3, Video 1: Paired t-test</a>
+<a href="#Module 2, Lesson 3, Video 1: Paired t-test">Module 2, Lesson 3, Video 1: Paired t-test</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L3A">Exercises M2L3A</a>
+<a href="#Exercises M2L3V1">Exercises M2L3V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+<a href="#Module 2, Lesson 3, Video 2: Lab">Module 2, Lesson 3, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L3B">Exercises M2L3B</a>
+<a href="#Exercises M2L3V2">Exercises M2L3V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 1: 2-sample">Lesson 4, Video 1: 2-sample</a>
+<a href="#Module 2, Lesson 4, Video 1: 2-sample">Module 2, Lesson 4, Video 1: 2-sample</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L4A">Exercises M2L4A</a>
+<a href="#Exercises M2L4V1">Exercises M2L4V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+<a href="#Module 2, Lesson 4, Video 2: Lab">Module 2, Lesson 4, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M2L4B">Exercises M2L4B</a>
+<a href="#Exercises M2L4V2">Exercises M2L4V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+<a href="#Module 2, Lesson 5 , Video 1: Review">Module 2, Lesson 5 , Video 1: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+<a href="#Module 2, Lesson 5 , Video 2: Review">Module 2, Lesson 5 , Video 2: Review</a>
 </li>
 <li>
 <a href="#Module 3: ANOVA">Module 3: ANOVA</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 1: ANOVA story">Lesson 1, Video 1: ANOVA story</a>
+<a href="#Module 3, Lesson 1, Video 1: ANOVA story">Module 3, Lesson 1, Video 1: ANOVA story</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L1A">Exercises M3L1A</a>
+<a href="#Exercises M3L1V1">Exercises M3L1V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 2: ANOVA model">Lesson 1, Video 2: ANOVA model</a>
+<a href="#Module 3, Lesson 1, Video 2: ANOVA model">Module 3, Lesson 1, Video 2: ANOVA model</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L1B">Exercises M3L1B</a>
+<a href="#Exercises M3L1V2">Exercises M3L1V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 1: ANOVA types">Lesson 2, Video 1: ANOVA types</a>
+<a href="#Module 3, Lesson 2, Video 1: ANOVA types">Module 3, Lesson 2, Video 1: ANOVA types</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L2A">Exercises M3L2A</a>
+<a href="#Exercises M3L2V1">Exercises M3L2V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 2: Real life examples">Lesson 2, Video 2: Real life examples</a>
+<a href="#Module 3, Lesson 2, Video 2: Real life examples">Module 3, Lesson 2, Video 2: Real life examples</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L2B">Exercises M3L2B</a>
+<a href="#Exercises M3L2V2">Exercises M3L2V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 1: ANOVA table">Lesson 3, Video 1: ANOVA table</a>
+<a href="#Module 3, Lesson 3, Video 1: ANOVA table">Module 3, Lesson 3, Video 1: ANOVA table</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L3A">Exercises M3L3A</a>
+<a href="#Exercises M3L3V1">Exercises M3L3V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+<a href="#Module 3, Lesson 3, Video 2: Lab">Module 3, Lesson 3, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 1: Interaction (through diagram)">Lesson 4, Video 1: Interaction (through diagram)</a>
+<a href="#Module 3, Lesson 4, Video 1: Interaction (through diagram)">Module 3, Lesson 4, Video 1: Interaction (through diagram)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L4A">Exercises M3L4A</a>
+<a href="#Exercises M3L4V1">Exercises M3L4V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+<a href="#Module 3, Lesson 4, Video 2: Lab">Module 3, Lesson 4, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M3L4B">Exercises M3L4B</a>
+<a href="#Exercises M3L4V2">Exercises M3L4V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+<a href="#Module 3, Lesson 5 , Video 1: Review">Module 3, Lesson 5 , Video 1: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+<a href="#Module 3, Lesson 5 , Video 2: Review">Module 3, Lesson 5 , Video 2: Review</a>
 </li>
 <li>
 <a href="#Module 4: Goodness of fit and independence">Module 4: Goodness of fit and independence</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 1: Contingency tables">Lesson 1, Video 1: Contingency tables</a>
+<a href="#Module 4, Lesson 1, Video 1: Contingency tables">Module 4, Lesson 1, Video 1: Contingency tables</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L1A">Exercises M4L1A</a>
+<a href="#Exercises M4L1V1">Exercises M4L1V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 2: Lab">Lesson 1, Video 2: Lab</a>
+<a href="#Module 4, Lesson 1, Video 2: Lab">Module 4, Lesson 1, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L1B">Exercises M4L1B</a>
+<a href="#Exercises M4L1V2">Exercises M4L1V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 1: Independence test">Lesson 2, Video 1: Independence test</a>
+<a href="#Module 4, Lesson 2, Video 1: Independence test">Module 4, Lesson 2, Video 1: Independence test</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L2A">Exercises M4L2A</a>
+<a href="#Exercises M4L2V1">Exercises M4L2V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+<a href="#Module 4, Lesson 2, Video 2: Lab">Module 4, Lesson 2, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 1: Goodness of fit test">Lesson 3, Video 1: Goodness of fit test</a>
+<a href="#Module 4, Lesson 3, Video 1: Goodness of fit test">Module 4, Lesson 3, Video 1: Goodness of fit test</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L3A">Exercises M4L3A</a>
+<a href="#Exercises M4L3V1">Exercises M4L3V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 2: lab">Lesson 3, Video 2: lab</a>
+<a href="#Module 4, Lesson 3, Video 2: lab">Module 4, Lesson 3, Video 2: lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L3B">Exercises M4L3B</a>
+<a href="#Exercises M4L3V2">Exercises M4L3V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha">Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha</a>
+<a href="#Module 4, Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha">Module 4, Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L4A">Exercises M4L4A</a>
+<a href="#Exercises M4L4V1">Exercises M4L4V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+<a href="#Module 4, Lesson 4, Video 2: Lab">Module 4, Lesson 4, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M4L4B">Exercises M4L4B</a>
+<a href="#Exercises M4L4V2">Exercises M4L4V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+<a href="#Module 4, Lesson 5 , Video 1: Review">Module 4, Lesson 5 , Video 1: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+<a href="#Module 4, Lesson 5 , Video 2: Review">Module 4, Lesson 5 , Video 2: Review</a>
 </li>
 <li>
 <a href="#Module 5: Regression">Module 5: Regression</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 1: The concept">Lesson 1, Video 1: The concept</a>
+<a href="#Module 5, Lesson 1, Video 1: The concept">Module 5, Lesson 1, Video 1: The concept</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L1A">Exercises M5L1A</a>
+<a href="#Exercises M5L1V1">Exercises M5L1V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 2: Mathematical formulation">Lesson 1, Video 2: Mathematical formulation</a>
+<a href="#Module 5, Lesson 1, Video 2: Mathematical formulation">Module 5, Lesson 1, Video 2: Mathematical formulation</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L1B">Exercises M5L1B</a>
+<a href="#Exercises M5L1V2">Exercises M5L1V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 1: Least squares">Lesson 2, Video 1: Least squares</a>
+<a href="#Module 5, Lesson 2, Video 1: Least squares">Module 5, Lesson 2, Video 1: Least squares</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L2A">Exercises M5L2A</a>
+<a href="#Exercises M5L2V1">Exercises M5L2V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+<a href="#Module 5, Lesson 2, Video 2: Lab">Module 5, Lesson 2, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L2B">Exercises M5L2B</a>
+<a href="#Exercises M5L2V2">Exercises M5L2V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 1: Real life data">Lesson 3, Video 1: Real life data</a>
+<a href="#Module 5, Lesson 3, Video 1: Real life data">Module 5, Lesson 3, Video 1: Real life data</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L3A">Exercises M5L3A</a>
+<a href="#Exercises M5L3V1">Exercises M5L3V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+<a href="#Module 5, Lesson 3, Video 2: Lab">Module 5, Lesson 3, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L3B">Exercises M5L3B</a>
+<a href="#Exercises M5L3V2">Exercises M5L3V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 1: Outliers, leverage, residuals">Lesson 4, Video 1: Outliers, leverage, residuals</a>
+<a href="#Module 5, Lesson 4, Video 1: Outliers, leverage, residuals">Module 5, Lesson 4, Video 1: Outliers, leverage, residuals</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L4A">Exercises M5L4A</a>
+<a href="#Exercises M5L4V1">Exercises M5L4V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+<a href="#Module 5, Lesson 4, Video 2: Lab">Module 5, Lesson 4, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M5L4B">Exercises M5L4B</a>
+<a href="#Exercises M5L4V2">Exercises M5L4V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+<a href="#Module 5, Lesson 5 , Video 1: Review">Module 5, Lesson 5 , Video 1: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+<a href="#Module 5, Lesson 5 , Video 2: Review">Module 5, Lesson 5 , Video 2: Review</a>
 </li>
 <li>
 <a href="#Module 6: Time series analysis">Module 6: Time series analysis</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 1: Concept: What it is">Lesson 1, Video 1: Concept: What it is</a>
+<a href="#Module 6, Lesson 1, Video 1: Concept: What it is">Module 6, Lesson 1, Video 1: Concept: What it is</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L1A">Exercises M6L1A</a>
+<a href="#Exercises M6L1V1">Exercises M6L1V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 1, Video 2: Concept: Estimation, prediction, smoothing">Lesson 1, Video 2: Concept: Estimation, prediction, smoothing</a>
+<a href="#Module 6, Lesson 1, Video 2: Concept: Estimation, prediction, smoothing">Module 6, Lesson 1, Video 2: Concept: Estimation, prediction, smoothing</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L1B">Exercises M6L1B</a>
+<a href="#Exercises M6L1V2">Exercises M6L1V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 1: Plotting">Lesson 2, Video 1: Plotting</a>
+<a href="#Module 6, Lesson 2, Video 1: Plotting">Module 6, Lesson 2, Video 1: Plotting</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L2A">Exercises M6L2A</a>
+<a href="#Exercises M6L2V1">Exercises M6L2V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a>
+<a href="#Module 6, Lesson 2, Video 2: Lab">Module 6, Lesson 2, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L2B">Exercises M6L2B</a>
+<a href="#Exercises M6L2V2">Exercises M6L2V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 1: Trend+Seasonal+Error">Lesson 3, Video 1: Trend+Seasonal+Error</a>
+<a href="#Module 6, Lesson 3, Video 1: Trend+Seasonal+Error">Module 6, Lesson 3, Video 1: Trend+Seasonal+Error</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L3A">Exercises M6L3A</a>
+<a href="#Exercises M6L3V1">Exercises M6L3V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a>
+<a href="#Module 6, Lesson 3, Video 2: Lab">Module 6, Lesson 3, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L3B">Exercises M6L3B</a>
+<a href="#Exercises M6L3V2">Exercises M6L3V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 1: Real life example">Lesson 4, Video 1: Real life example</a>
+<a href="#Module 6, Lesson 4, Video 1: Real life example">Module 6, Lesson 4, Video 1: Real life example</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L4A">Exercises M6L4A</a>
+<a href="#Exercises M6L4V1">Exercises M6L4V1</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a>
+<a href="#Module 6, Lesson 4, Video 2: Lab">Module 6, Lesson 4, Video 2: Lab</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exercises M6L4B">Exercises M6L4B</a>
+<a href="#Exercises M6L4V2">Exercises M6L4V2</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a>
+<a href="#Module 6, Lesson 5 , Video 1: Review">Module 6, Lesson 5 , Video 1: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a>
+<a href="#Module 6, Lesson 5 , Video 2: Review">Module 6, Lesson 5 , Video 2: Review</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Exercises M&quot; &quot;">Exercises M" "</a>
 </li>
 </ul>
 <hr/>
-<title>Course: Basic 3</title>
+<title>Course: Basic 3: Statistical methods</title>
+This course consists of 6 modules,  each spanning one week. Each
+module is made of 5 lessons,  which in their turn are split into
+2 (or in some cases 3) videos. Each of the first 4 lessons in a
+module has around 5 formative quizzes. The last lesson is a
+review lesson and has 8 summative quizzes,  where 2 are taken from
+each of the preceding lessons in that module. In this file I am
+providing only the formative quizzes,  as the summative ones are
+essentially of the same type.
 
+<div class="header">
 <h1><a
 name="Module 1: Estimation">Module 1: Estimation</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 1: The concept (population, sample)">Lesson 1, Video 1: The concept (population, sample)</a></h2>
+name="Module 1, Lesson 1, Video 1: The concept (population, sample)">Module 1, Lesson 1, Video 1: The concept (population, sample)</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 2: The concept (sampling distribution)">Lesson 1, Video 2: The concept (sampling distribution)</a></h2>
+name="Module 1, Lesson 1, Video 2: The concept (sampling distribution)">Module 1, Lesson 1, Video 2: The concept (sampling distribution)</a></h2>
+</div>
 
 
 <h3><a
@@ -451,11 +507,15 @@ maximum?<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 1: Estimating mean">Lesson 2, Video 1: Estimating mean</a></h2>
+name="Module 1, Lesson 2, Video 1: Estimating mean">Module 1, Lesson 2, Video 1: Estimating mean</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+name="Module 1, Lesson 2, Video 2: Lab">Module 1, Lesson 2, Video 2: Lab</a></h2>
+</div>
 
 <h3><a
 name="Exercises M1L2">Exercises M1L2</a></h3>
@@ -480,11 +540,15 @@ name="Exercises M1L2">Exercises M1L2</a></h3>
 <b>EXERCISE:</b>&nbsp;Estimate mean using median.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 1: Estimating proportions">Lesson 3, Video 1: Estimating proportions</a></h2>
+name="Module 1, Lesson 3, Video 1: Estimating proportions">Module 1, Lesson 3, Video 1: Estimating proportions</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+name="Module 1, Lesson 3, Video 2: Lab">Module 1, Lesson 3, Video 2: Lab</a></h2>
+</div>
 
 <h3><a
 name="Exercises M1L3">Exercises M1L3</a></h3>
@@ -509,11 +573,15 @@ name="Exercises M1L3">Exercises M1L3</a></h3>
 <b>EXERCISE:</b>&nbsp;Combining two estimates from samples of different sizes.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 1: Estimating dispersion">Lesson 4, Video 1: Estimating dispersion</a></h2>
+name="Module 1, Lesson 4, Video 1: Estimating dispersion">Module 1, Lesson 4, Video 1: Estimating dispersion</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+name="Module 1, Lesson 4, Video 2: Lab">Module 1, Lesson 4, Video 2: Lab</a></h2>
+</div>
 
 <h3><a
 name="Exercises M1L4">Exercises M1L4</a></h3>
@@ -542,24 +610,32 @@ name="Exercises M1L4">Exercises M1L4</a></h3>
 <b>EXERCISE:</b>&nbsp;Compare standard errors of different techniqes.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+name="Module 1, Lesson 5 , Video 1: Review">Module 1, Lesson 5 , Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+name="Module 1, Lesson 5 , Video 2: Review">Module 1, Lesson 5 , Video 2: Review</a></h2>
+</div>
 
 
 
+<div class="header">
 <h1><a
 name="Module 2: t-tests">Module 2: t-tests</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 1: The concept of test (sound of water)">Lesson 1, Video 1: The concept of test (sound of water)</a></h2>
+name="Module 2, Lesson 1, Video 1: The concept of test (sound of water)">Module 2, Lesson 1, Video 1: The concept of test (sound of water)</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M2L1A">Exercises M2L1A</a></h3>
+name="Exercises M2L1V1">Exercises M2L1V1</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;We have a random sample of patients. We have found the
@@ -612,11 +688,13 @@ most 0.05.</li>
 <img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 2: The concept of p-value">Lesson 1, Video 2: The concept of p-value</a></h2>
+name="Module 2, Lesson 1, Video 2: The concept of p-value">Module 2, Lesson 1, Video 2: The concept of p-value</a></h2>
+</div>
 
 <h3><a
-name="Exercises M2L1B">Exercises M2L1B</a></h3>
+name="Exercises M2L1V2">Exercises M2L1V2</a></h3>
 
 
 <p>
@@ -635,12 +713,14 @@ typical values ..., ..., ... <img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 1: one-sample t-test">Lesson 2, Video 1: one-sample t-test</a></h2>
+name="Module 2, Lesson 2, Video 1: one-sample t-test">Module 2, Lesson 2, Video 1: one-sample t-test</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M2L2A">Exercises M2L2A</a></h3>
+name="Exercises M2L2V1">Exercises M2L2V1</a></h3>
 
 
 <p>
@@ -656,12 +736,14 @@ name="Exercises M2L2A">Exercises M2L2A</a></h3>
 t-distrn cut-off are given. Ask to accept/reject.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+name="Module 2, Lesson 2, Video 2: Lab">Module 2, Lesson 2, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M2L2B">Exercises M2L2B</a></h3>
+name="Exercises M2L2V2">Exercises M2L2V2</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Real life data. Upper tailed.<img src="../image/box.png"></p>
@@ -673,11 +755,13 @@ name="Exercises M2L2B">Exercises M2L2B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real life data. Two tailed.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 1: Paired t-test">Lesson 3, Video 1: Paired t-test</a></h2>
+name="Module 2, Lesson 3, Video 1: Paired t-test">Module 2, Lesson 3, Video 1: Paired t-test</a></h2>
+</div>
 
 <h3><a
-name="Exercises M2L3A">Exercises M2L3A</a></h3>
+name="Exercises M2L3V1">Exercises M2L3V1</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Identify the test statistic for paired t-test<img src="../image/box.png"></p>
@@ -692,12 +776,14 @@ name="Exercises M2L3A">Exercises M2L3A</a></h3>
 t-distrn cut-off are given. Ask to find p-value.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+name="Module 2, Lesson 3, Video 2: Lab">Module 2, Lesson 3, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M2L3B">Exercises M2L3B</a></h3>
+name="Exercises M2L3V2">Exercises M2L3V2</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Real life data. Upper tailed.<img src="../image/box.png"></p>
@@ -709,11 +795,13 @@ name="Exercises M2L3B">Exercises M2L3B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real life data. Two tailed.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 1: 2-sample">Lesson 4, Video 1: 2-sample</a></h2>
+name="Module 2, Lesson 4, Video 1: 2-sample">Module 2, Lesson 4, Video 1: 2-sample</a></h2>
+</div>
 
 <h3><a
-name="Exercises M2L4A">Exercises M2L4A</a></h3>
+name="Exercises M2L4V1">Exercises M2L4V1</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Identify the test statistic for paired t-test<img src="../image/box.png"></p>
@@ -737,12 +825,14 @@ t-distrn cut-off are given. Ask to find p-value.<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+name="Module 2, Lesson 4, Video 2: Lab">Module 2, Lesson 4, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M2L4B">Exercises M2L4B</a></h3>
+name="Exercises M2L4V2">Exercises M2L4V2</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Real life data. Upper tailed.<img src="../image/box.png"></p>
@@ -754,23 +844,31 @@ name="Exercises M2L4B">Exercises M2L4B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real life data. Two tailed.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+name="Module 2, Lesson 5 , Video 1: Review">Module 2, Lesson 5 , Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+name="Module 2, Lesson 5 , Video 2: Review">Module 2, Lesson 5 , Video 2: Review</a></h2>
+</div>
 
 
+<div class="header">
 <h1><a
 name="Module 3: ANOVA">Module 3: ANOVA</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 1: ANOVA story">Lesson 1, Video 1: ANOVA story</a></h2>
+name="Module 3, Lesson 1, Video 1: ANOVA story">Module 3, Lesson 1, Video 1: ANOVA story</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L1A">Exercises M3L1A</a></h3>
+name="Exercises M3L1V1">Exercises M3L1V1</a></h3>
 
 
 <p>
@@ -787,24 +885,28 @@ output. Ask to label.<img src="../image/box.png"></p>
 not. Ask to identify.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 2: ANOVA model">Lesson 1, Video 2: ANOVA model</a></h2>
+name="Module 3, Lesson 1, Video 2: ANOVA model">Module 3, Lesson 1, Video 2: ANOVA model</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L1B">Exercises M3L1B</a></h3>
+name="Exercises M3L1V2">Exercises M3L1V2</a></h3>
 
 
 <p>
 <b>EXERCISE:</b>&nbsp;Describe set up. Write different models. Choose the correct one.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 1: ANOVA types">Lesson 2, Video 1: ANOVA types</a></h2>
+name="Module 3, Lesson 2, Video 1: ANOVA types">Module 3, Lesson 2, Video 1: ANOVA types</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L2A">Exercises M3L2A</a></h3>
+name="Exercises M3L2V1">Exercises M3L2V1</a></h3>
 
 
 <p>
@@ -819,12 +921,14 @@ name="Exercises M3L2A">Exercises M3L2A</a></h3>
 <b>EXERCISE:</b>&nbsp;Describe set up. Ask to classify. two-way.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 2: Real life examples">Lesson 2, Video 2: Real life examples</a></h2>
+name="Module 3, Lesson 2, Video 2: Real life examples">Module 3, Lesson 2, Video 2: Real life examples</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L2B">Exercises M3L2B</a></h3>
+name="Exercises M3L2V2">Exercises M3L2V2</a></h3>
 
 
 <p>
@@ -837,12 +941,14 @@ name="Exercises M3L2B">Exercises M3L2B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real data: ANCOVA estimation.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 1: ANOVA table">Lesson 3, Video 1: ANOVA table</a></h2>
+name="Module 3, Lesson 3, Video 1: ANOVA table">Module 3, Lesson 3, Video 1: ANOVA table</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L3A">Exercises M3L3A</a></h3>
+name="Exercises M3L3V1">Exercises M3L3V1</a></h3>
 
 
 <p>
@@ -858,16 +964,20 @@ given SS and d.f. columns.<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Describe set up. Ask to provide d.f.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+name="Module 3, Lesson 3, Video 2: Lab">Module 3, Lesson 3, Video 2: Lab</a></h2>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 1: Interaction (through diagram)">Lesson 4, Video 1: Interaction (through diagram)</a></h2>
+name="Module 3, Lesson 4, Video 1: Interaction (through diagram)">Module 3, Lesson 4, Video 1: Interaction (through diagram)</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L4A">Exercises M3L4A</a></h3>
+name="Exercises M3L4V1">Exercises M3L4V1</a></h3>
 
 
 <p>
@@ -888,12 +998,14 @@ intersection, but not parallel.<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Significant interaction. Ask about main effect. Meaningful? No.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+name="Module 3, Lesson 4, Video 2: Lab">Module 3, Lesson 4, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M3L4B">Exercises M3L4B</a></h3>
+name="Exercises M3L4V2">Exercises M3L4V2</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Make from data and interpret. Parallel.<img src="../image/box.png"></p>
@@ -902,23 +1014,31 @@ name="Exercises M3L4B">Exercises M3L4B</a></h3>
 <b>EXERCISE:</b>&nbsp;Make from data and interpret. Nonparallel.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+name="Module 3, Lesson 5 , Video 1: Review">Module 3, Lesson 5 , Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+name="Module 3, Lesson 5 , Video 2: Review">Module 3, Lesson 5 , Video 2: Review</a></h2>
+</div>
 
 
+<div class="header">
 <h1><a
 name="Module 4: Goodness of fit and independence">Module 4: Goodness of fit and independence</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 1: Contingency tables">Lesson 1, Video 1: Contingency tables</a></h2>
+name="Module 4, Lesson 1, Video 1: Contingency tables">Module 4, Lesson 1, Video 1: Contingency tables</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L1A">Exercises M4L1A</a></h3>
+name="Exercises M4L1V1">Exercises M4L1V1</a></h3>
 
 
 <p>
@@ -932,12 +1052,14 @@ name="Exercises M4L1A">Exercises M4L1A</a></h3>
 <p>
 <b>EXERCISE:</b>&nbsp;Give table, guess association<img src="../image/box.png"></p>
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 2: Lab">Lesson 1, Video 2: Lab</a></h2>
+name="Module 4, Lesson 1, Video 2: Lab">Module 4, Lesson 1, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L1B">Exercises M4L1B</a></h3>
+name="Exercises M4L1V2">Exercises M4L1V2</a></h3>
 
 
 <p>
@@ -949,12 +1071,14 @@ frquencies.<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Make a table, guess association.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 1: Independence test">Lesson 2, Video 1: Independence test</a></h2>
+name="Module 4, Lesson 2, Video 1: Independence test">Module 4, Lesson 2, Video 1: Independence test</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L2A">Exercises M4L2A</a></h3>
+name="Exercises M4L2V1">Exercises M4L2V1</a></h3>
 
 
 <p>
@@ -975,16 +1099,20 @@ cells.<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Give set up. Ask d.f.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+name="Module 4, Lesson 2, Video 2: Lab">Module 4, Lesson 2, Video 2: Lab</a></h2>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 1: Goodness of fit test">Lesson 3, Video 1: Goodness of fit test</a></h2>
+name="Module 4, Lesson 3, Video 1: Goodness of fit test">Module 4, Lesson 3, Video 1: Goodness of fit test</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L3A">Exercises M4L3A</a></h3>
+name="Exercises M4L3V1">Exercises M4L3V1</a></h3>
 
 
 <p>
@@ -1000,12 +1128,14 @@ uniformity.<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Do chisq test by hand.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 2: lab">Lesson 3, Video 2: lab</a></h2>
+name="Module 4, Lesson 3, Video 2: lab">Module 4, Lesson 3, Video 2: lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L3B">Exercises M4L3B</a></h3>
+name="Exercises M4L3V2">Exercises M4L3V2</a></h3>
 
 
 <p>
@@ -1020,12 +1150,14 @@ name="Exercises M4L3B">Exercises M4L3B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real data. Perform test of given probability.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha">Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha</a></h2>
+name="Module 4, Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha">Module 4, Lesson 4, Video 1: Cramer's V, Kendal's tau, Cronbach's alpha</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L4A">Exercises M4L4A</a></h3>
+name="Exercises M4L4V1">Exercises M4L4V1</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Identify formula.<img src="../image/box.png"></p>
@@ -1039,12 +1171,14 @@ name="Exercises M4L4A">Exercises M4L4A</a></h3>
 <b>EXERCISE:</b>&nbsp;Find one from another.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+name="Module 4, Lesson 4, Video 2: Lab">Module 4, Lesson 4, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M4L4B">Exercises M4L4B</a></h3>
+name="Exercises M4L4V2">Exercises M4L4V2</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Compute from data.<img src="../image/box.png"></p>
@@ -1053,23 +1187,31 @@ name="Exercises M4L4B">Exercises M4L4B</a></h3>
 <b>EXERCISE:</b>&nbsp;Compute from data.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+name="Module 4, Lesson 5 , Video 1: Review">Module 4, Lesson 5 , Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+name="Module 4, Lesson 5 , Video 2: Review">Module 4, Lesson 5 , Video 2: Review</a></h2>
+</div>
 
 
+<div class="header">
 <h1><a
 name="Module 5: Regression">Module 5: Regression</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 1: The concept">Lesson 1, Video 1: The concept</a></h2>
+name="Module 5, Lesson 1, Video 1: The concept">Module 5, Lesson 1, Video 1: The concept</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L1A">Exercises M5L1A</a></h3>
+name="Exercises M5L1V1">Exercises M5L1V1</a></h3>
 
 
 <p>
@@ -1081,12 +1223,14 @@ increasing/decreasing/nonlinear.<img src="../image/box.png"></p>
 <b>EXERCISE:</b>&nbsp;Strong relation, weak relation.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 2: Mathematical formulation">Lesson 1, Video 2: Mathematical formulation</a></h2>
+name="Module 5, Lesson 1, Video 2: Mathematical formulation">Module 5, Lesson 1, Video 2: Mathematical formulation</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L1B">Exercises M5L1B</a></h3>
+name="Exercises M5L1V2">Exercises M5L1V2</a></h3>
 
 
 <p>
@@ -1094,12 +1238,14 @@ name="Exercises M5L1B">Exercises M5L1B</a></h3>
 perp). Ask to identify least squares.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 1: Least squares">Lesson 2, Video 1: Least squares</a></h2>
+name="Module 5, Lesson 2, Video 1: Least squares">Module 5, Lesson 2, Video 1: Least squares</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L2A">Exercises M5L2A</a></h3>
+name="Exercises M5L2V1">Exercises M5L2V1</a></h3>
 
 
 <p>
@@ -1115,12 +1261,14 @@ clockwise, swing counter-clockwise.<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+name="Module 5, Lesson 2, Video 2: Lab">Module 5, Lesson 2, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L2B">Exercises M5L2B</a></h3>
+name="Exercises M5L2V2">Exercises M5L2V2</a></h3>
 
 
 <p>
@@ -1135,12 +1283,14 @@ name="Exercises M5L2B">Exercises M5L2B</a></h3>
 <b>EXERCISE:</b>&nbsp;Anscombe.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 1: Real life data">Lesson 3, Video 1: Real life data</a></h2>
+name="Module 5, Lesson 3, Video 1: Real life data">Module 5, Lesson 3, Video 1: Real life data</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L3A">Exercises M5L3A</a></h3>
+name="Exercises M5L3V1">Exercises M5L3V1</a></h3>
 
 
 <p>
@@ -1153,12 +1303,14 @@ name="Exercises M5L3A">Exercises M5L3A</a></h3>
 <b>EXERCISE:</b>&nbsp;Real life data. Ask to juudge if intercept should be present.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+name="Module 5, Lesson 3, Video 2: Lab">Module 5, Lesson 3, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L3B">Exercises M5L3B</a></h3>
+name="Exercises M5L3V2">Exercises M5L3V2</a></h3>
 
 
 <p>
@@ -1171,11 +1323,13 @@ name="Exercises M5L3B">Exercises M5L3B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real life data.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 1: Outliers, leverage, residuals">Lesson 4, Video 1: Outliers, leverage, residuals</a></h2>
+name="Module 5, Lesson 4, Video 1: Outliers, leverage, residuals">Module 5, Lesson 4, Video 1: Outliers, leverage, residuals</a></h2>
+</div>
 
 <h3><a
-name="Exercises M5L4A">Exercises M5L4A</a></h3>
+name="Exercises M5L4V1">Exercises M5L4V1</a></h3>
 
 
 <p>
@@ -1193,12 +1347,14 @@ name="Exercises M5L4A">Exercises M5L4A</a></h3>
 <b>EXERCISE:</b>&nbsp;Show residual plots. Ask to identify good one.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+name="Module 5, Lesson 4, Video 2: Lab">Module 5, Lesson 4, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M5L4B">Exercises M5L4B</a></h3>
+name="Exercises M5L4V2">Exercises M5L4V2</a></h3>
 
 
 <p>
@@ -1208,23 +1364,31 @@ name="Exercises M5L4B">Exercises M5L4B</a></h3>
 <b>EXERCISE:</b>&nbsp;Make resudual plot.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+name="Module 5, Lesson 5 , Video 1: Review">Module 5, Lesson 5 , Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+name="Module 5, Lesson 5 , Video 2: Review">Module 5, Lesson 5 , Video 2: Review</a></h2>
+</div>
 
 
 
+<div class="header">
 <h1><a
 name="Module 6: Time series analysis">Module 6: Time series analysis</a></h1>
+</div>
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 1: Concept: What it is">Lesson 1, Video 1: Concept: What it is</a></h2>
+name="Module 6, Lesson 1, Video 1: Concept: What it is">Module 6, Lesson 1, Video 1: Concept: What it is</a></h2>
+</div>
 
 <h3><a
-name="Exercises M6L1A">Exercises M6L1A</a></h3>
+name="Exercises M6L1V1">Exercises M6L1V1</a></h3>
 
 
 <p>
@@ -1234,19 +1398,23 @@ series.<img src="../image/box.png"></p>
 
 
 
+<div class="header">
 <h2><a
-name="Lesson 1, Video 2: Concept: Estimation, prediction, smoothing">Lesson 1, Video 2: Concept: Estimation, prediction, smoothing</a></h2>
+name="Module 6, Lesson 1, Video 2: Concept: Estimation, prediction, smoothing">Module 6, Lesson 1, Video 2: Concept: Estimation, prediction, smoothing</a></h2>
+</div>
 
 <h3><a
-name="Exercises M6L1B">Exercises M6L1B</a></h3>
+name="Exercises M6L1V2">Exercises M6L1V2</a></h3>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 1: Plotting">Lesson 2, Video 1: Plotting</a></h2>
+name="Module 6, Lesson 2, Video 1: Plotting">Module 6, Lesson 2, Video 1: Plotting</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M6L2A">Exercises M6L2A</a></h3>
+name="Exercises M6L2V1">Exercises M6L2V1</a></h3>
 
 
 <p>
@@ -1261,13 +1429,15 @@ name="Exercises M6L2A">Exercises M6L2A</a></h3>
 <b>EXERCISE:</b>&nbsp;Show periodic time series. Ask for period.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 2, Video 2: Lab">Lesson 2, Video 2: Lab</a></h2>
+name="Module 6, Lesson 2, Video 2: Lab">Module 6, Lesson 2, Video 2: Lab</a></h2>
+</div>
 
 
 
 <h3><a
-name="Exercises M6L2B">Exercises M6L2B</a></h3>
+name="Exercises M6L2V2">Exercises M6L2V2</a></h3>
 
 
 <p>
@@ -1283,12 +1453,14 @@ name="Exercises M6L2B">Exercises M6L2B</a></h3>
 RBI data. Identify the pattern.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 1: Trend+Seasonal+Error">Lesson 3, Video 1: Trend+Seasonal+Error</a></h2>
+name="Module 6, Lesson 3, Video 1: Trend+Seasonal+Error">Module 6, Lesson 3, Video 1: Trend+Seasonal+Error</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M6L3A">Exercises M6L3A</a></h3>
+name="Exercises M6L3V1">Exercises M6L3V1</a></h3>
 
 
 <p>
@@ -1302,12 +1474,14 @@ name="Exercises M6L3A">Exercises M6L3A</a></h3>
 <b>EXERCISE:</b>&nbsp;Ask for conceptual trend, period from data scenario.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 3, Video 2: Lab">Lesson 3, Video 2: Lab</a></h2>
+name="Module 6, Lesson 3, Video 2: Lab">Module 6, Lesson 3, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M6L3B">Exercises M6L3B</a></h3>
+name="Exercises M6L3V2">Exercises M6L3V2</a></h3>
 
 
 <p>
@@ -1320,12 +1494,14 @@ name="Exercises M6L3B">Exercises M6L3B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real data.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 1: Real life example">Lesson 4, Video 1: Real life example</a></h2>
+name="Module 6, Lesson 4, Video 1: Real life example">Module 6, Lesson 4, Video 1: Real life example</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M6L4A">Exercises M6L4A</a></h3>
+name="Exercises M6L4V1">Exercises M6L4V1</a></h3>
 
 
 <p>
@@ -1340,12 +1516,14 @@ name="Exercises M6L4A">Exercises M6L4A</a></h3>
 <b>EXERCISE:</b>&nbsp;Show plot. Ask for anomaly.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 4, Video 2: Lab">Lesson 4, Video 2: Lab</a></h2>
+name="Module 6, Lesson 4, Video 2: Lab">Module 6, Lesson 4, Video 2: Lab</a></h2>
+</div>
 
 
 <h3><a
-name="Exercises M6L4B">Exercises M6L4B</a></h3>
+name="Exercises M6L4V2">Exercises M6L4V2</a></h3>
 
 
 <p>
@@ -1358,11 +1536,15 @@ name="Exercises M6L4B">Exercises M6L4B</a></h3>
 <b>EXERCISE:</b>&nbsp;Real data. Estimate and predict.<img src="../image/box.png"></p>
 
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 1: Review">Lesson 5 , Video 1: Review</a></h2>
+name="Module 6, Lesson 5 , Video 1: Review">Module 6, Lesson 5 , Video 1: Review</a></h2>
+</div>
 
+<div class="header">
 <h2><a
-name="Lesson 5 , Video 2: Review">Lesson 5 , Video 2: Review</a></h2>
+name="Module 6, Lesson 5 , Video 2: Review">Module 6, Lesson 5 , Video 2: Review</a></h2>
+</div>
 
 
 
