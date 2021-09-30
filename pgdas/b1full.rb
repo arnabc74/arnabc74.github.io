@@ -1,5 +1,5 @@
 @{<NOTE>
-<TITLE>Course: Basic 1: Descriptive Statistics</TITLE>
+<TITLE>Course: Basic 1: Basic Statistics</TITLE>
 This course consists of 6 modules,  each spanning one week. Each
 module is made of 5 lessons,  which in their turn are split into
 2 (or in some cases 3) videos. Each of the first 4 lessons in a
