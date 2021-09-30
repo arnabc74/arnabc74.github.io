@@ -141,7 +141,9 @@ function myFunction() {
 <a href="#Module 1, Lesson 3,  Video 1: Univariate and multivariate">Module 1, Lesson 3,  Video 1: Univariate and multivariate</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Module 1, Lesson 3,  Video 2: IID,  time series and spatial">Module 1, Lesson 3,  Video 2: IID,  time series and spatial</a>
+<a href="#Module 1, Lesson 3,  Video 2: Cross-sectional,  time
+series, panel and spatial">Module 1, Lesson 3,  Video 2: Cross-sectional,  time
+series, panel and spatial</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Module 1, Lesson 4,  Video 1: File formats: Excel">Module 1, Lesson 4,  Video 1: File formats: Excel</a>
@@ -416,7 +418,7 @@ grammatically is not enough. We need to take a deeper look,  and
 that's what we are about to do next.
 
 <fieldset>
-<legend>M1L1V1</legend>
+<legend>M1L1V1.yml</legend>
 <pre>
 - typeName: multipleChoice
   prompt: &gt;
@@ -536,7 +538,7 @@ start smoking! Most social science data are collected by
 observational study.
 
 <fieldset>
-<legend>M1L1V2</legend>
+<legend>M1L1V2.yml</legend>
 <pre>
 - typeName: multipleChoice
   prompt: &gt;
@@ -649,37 +651,148 @@ write while filling it up is a value.
 
 
 <fieldset>
-<legend>M1L1V3</legend>
+<legend>M1L1V3.yml</legend>
 <pre>
-- typeName: multipleChoiceWe are collecting household level data from 5 different
-villages. From each  villages  10 random  households are selected.
-For each selected household we collect data on monthly
-income,  main source of income,  and the number of people. If the
-resulting table has $n$ rows and $p$ columns,  then 
-shuffleOptions: true
-options:
+- typeName: multipleChoice
+  prompt: &gt;
+    We are collecting household level data from 5 different
+    villages. From each  villages  10 random  households are selected.
+    For each selected household we collect data on monthly
+    income,  main source of income,  and the number of people. If the
+    resulting table has $n$ rows and $p$ columns,
+    then:
+  shuffleOptions: true
+  options:
    - answer: $n=10$ and $p=4$
+     feedback: &gt;
+       Oops! $p$ is the number of variables. How many
+       variables are we having here? Also $n$ is the
+       total number of cases, <i>i.e.</i>, the total number of households.
    - answer: $n=50$ and $p=3$
+     isCorrect: true
+     feedback: &gt;
+       Bang on point! 10 households from each of 5 villages.
+       That gives 50 cases in total. Also we have 3 variables.
    - answer: $n=50$ and $p=4$
+     feedback: &gt; 
+       Not quite! Your $n$ is correct, but are there
+       really 4 variables? 
    - answer: $n=10$ and $p=3$
-
-
-
-- typeName: multipleChoiceConsider the following data set. What is the value of
-income in the 3rd case?
-
-- typeName: multipleChoice
-The following data set has one suspicious case. Which case?
-
-
-- typeName: multipleChoiceIdentify the variable which is derived from the other
-variables.
+     feedback: &gt; 
+       Hmmm...let's see. You think there are just 10 households 
+       in this study? Or 10 households from *each of 5 villages?*
 
 
 - typeName: multipleChoice
-We have 2,  4 and 3 plots in the villages Abid,  Belkhas and
-Chimpani. The following three tables provide data about
-these. Cast it as a single table.
+  prompt: |-
+    Consider the following data set. 
+
+    | Name          | Family size | Income (Rs) |
+    |---------------+-------------+-------------|
+    | Ram Singh     |           3 |        2345 |
+    | Rehan Molla   |           4 |        5000 |
+    | Joseph Mathew |           2 |        4000 |
+
+    What is the value of income in the 3rd case?
+  shuffleOptions: true
+  options:
+  - answer: Rs. 4000
+    isCorrect: true
+    feedback: Good job!
+      
+  - answer: 4000
+    feedback: You missed the unit!
+      
+  - answer: Rs 5000
+    feedback: &gt;
+      The third case means row three *not counting the header row!*
+      
+  - answer: Rs 2345
+    feedback: &gt;
+      The third case means row three (not counting the header row).
+      You were possibly attracted by the 3 in the second column! 
+
+- typeName: multipleChoice
+  prompt: |-
+    The following data set has one suspicious case. Which case?
+  
+    | Height (cm) |
+    |-------------|
+    |         175 |
+    |         180 |
+    |      155176 |
+    | 183         |
+  shuffleOptions: true
+  options:
+  - answer: Case 3
+    isCorrect: true
+    feedback: &gt;
+      Most possibly that 155176 was supposed to be 155 followed
+      by 176.
+  - answer: Case 1
+    feedback: &gt;
+      Nothing unusual about this height!
+  - answer: Case 2
+    feedback: &gt;
+       Nothing unusual about this height!
+  - answer: Cse 4
+    feedback: &gt;
+       Nothing unusual about this height!
+
+- typeName: multipleChoice
+  prompt: |-
+    Identify the variable which is derived from the other variables.
+    | Income from agriculture | Income from business | Total income |
+    |-------------------------+----------------------+--------------|
+    |                     234 |                  435 | 669          |
+  shuffleOptions: true
+  options:
+  - answer: Column 3
+    isCorrect: true
+    feedback: &gt;
+      Yes, it is obtained by adding the other two columns.
+  - answer: Column 1
+    feedback: &gt;
+      Well, you can compute this column as column 3 - column
+      2. But obviously that was not how it was computed.
+
+  - answer: Column 2
+    feedback: &gt;
+      Well, you can compute this column as column 3 - column
+      1. But obviously that was not how it was computed.
+      
+- typeName: multipleChoice
+  prompt: |-
+    We have 2,  4 and 3 plots under an agricultural survey in the villages Abid,  Belkhas and
+    Chimpani. We have data table for each villag with header:
+    | Id | Area | Irrigation | Yield |
+    |----+------+------------+-------|
+    |    |      |            |       |
+    these. If we cast it as a single table, then that combined
+    table will have:
+  shuffleOptions: true
+  options:
+  - answer: 4 columns and 9 rows.
+    isCorrect: true
+    feedback: |-
+      Good. The new header will be:
+      | Id | Area | Irrigation | Yield | Village |
+      |----+------+------------+-------+---------|
+      |    |      |            |       |         |
+  - answer: 3 columns and 9 rows
+    feedback: _-
+      No, we need to have one extra column for the village. The
+      new header will be:
+      | Id | Area | Irrigation | Yield | Village |
+      |----+------+------------+-------+---------|
+      |    |      |            |       |         |
+  - answer: 4 columns and 10 rows.
+    feedback: |-
+      No. You are right about the columns:
+      | Id | Area | Irrigation | Yield | Village |
+      |----+------+------------+-------+---------|
+      |    |      |            |       |         |
+      but there will be just 2+3+4=9 rows.
 
 
 </pre>
@@ -755,66 +868,120 @@ of variable. Examples include temperature,  blood pressure,  area
 of plots,  yield of plots. 
 
 <fieldset>
-<legend>M1L2V1</legend>
+<legend>M1L2V1.yml</legend>
 <pre>
-
 - typeName: multipleChoice
-In a financial data set the annual turnover of small businesses
-are expressed as slabs like 1lakh to 2lakhs,  2 lakhs to 3lakhs, 
-etc. In this data set annual turnover is 
-shuffleOptions: true
-options:
-   - answer: an interval variable
-   - answer: a categorical variable
-   - answer: a Likert-type variable 
-   - answer: an indentifier variable
-
-
-
-- typeName: multipleChoice
-A data set has a variable "gender" that encodes male as 1,  female
-as 2 and others as 3. This variable is an example of a 
-shuffleOptions: true
-options:
-   - answer: measurement variable
-   - answer: categorical variable
-   - answer: a Likert-type variable
-   - answer: an identifier variable
-
+  prompt: &gt;
+    In a financial data set the annual turnover of small businesses
+    are expressed as slabs like 1lakh to 2lakhs,  2 lakhs to 3lakhs, 
+    etc. In this data set annual turnover is most appropriately called
+  shuffleOptions: true
+  options:
+  - answer: an interval variable
+    isCorrect: true
+    feedback: That's right. Each slab here is an interval.
+  - answer: a categorical variable
+    feedback: &gt;
+      Not entirely wrong, but a more appropriate description
+      should take the slab structure in consideration. 
+  - answer: a Likert-type variable 
+    feedback: &gt;
+      No, these are not like ratings along a scale.
+  - answer: an identifier variable
+    feedback: &gt;
+      No, this variable is not identifying the cases. An
+      identifier would just be useful for distinguishing one case
+      from another. Note that each slab denotes a range of values.
 
 
 - typeName: multipleChoice
-A variable which gives the number of road accidents in a
-particular month  at a particula crossing is 
-shuffleOptions: true
-options:
-   - answer: a counting variable
-   - answer: a categorical variable
-   - answer: a Likert-type variable
-   - answer: an identifier variable
-
+  prompt: &gt;
+    A data set has a variable "gender" that encodes male as 1,  female
+    as 2 and others as 3. This variable is an example of a 
+  shuffleOptions: true
+  options:
+  - answer: categorical variable
+    isCorrect: true
+    feedback: &gt;
+      Yes, despite the use of numbers, this is just a
+      categorical variable.
+  - answer: measurement variable
+    feedback: &gt;
+      No, possibly you have chosen this because of the numerical
+      nature of the values. But, you see, finding the gender of a
+      person does not really amount to *measuring* anything. 
+      The different values denote different categories (oops, gave you a hint!).
+  - answer: a Likert-type variable
+    feedback: &gt;
+      No, gender is not a rating along a scale. 
+  - answer: an identifier variable
+    feedback: &gt; 
+      No, this variable is not identifying the cases. An
+      identifier would just be useful for distinguishing one case
+      from another. Note that each slab denotes a range of values.
 
 
 - typeName: multipleChoice
-If we record the height of a person to the nearest inch then the
-variable is an example of 
-shuffleOptions: true
-options:
-   - answer: a counting variable
-   - answer: a categorical variable
-   - answer: a Likert-type variable
-   - answer: a measurement variable
+  prompt: &gt;
+    A variable which gives the number of road accidents in a
+    particular month  at a particular crossing is 
+  shuffleOptions: true
+  options:
+  - answer: a counting variable
+    isCorrect: true
+    feedback: &gt;
+        That's right! We are *counting* the number of accidents.
+  - answer: a categorical variable
+    feedback: &gt; 
+        No, the different values do not denote different
+        categories. Aren't we *counting* something here?
+  - answer: a Likert-type variable
+    feedback: &gt;
+        No, this is not a rating along a scale.
+  - answer: an identifier variable
+    feedback: &gt;
+        No, an identifier is supposed to distinguish one case
+        from another. But number of accidents does not do that.
 
 
+- typeName: multipleChoice
+  prompt: &gt;
+    If we record the height of a person to the nearest inch then the
+    variable is an example of 
+  shuffleOptions: true
+  options:
+  - answer: a measurement variable
+    isCorrect: true
+    feedback: &gt;
+      When we measuring something, the result is a measuring variable.
+  - answer: a counting variable
+    feedback: &gt;
+      Well, you do have a point there. It *is* somewhat like
+      counting the inches. But, you see, the quantity we are
+      measuring is actually continuous. The counting nature is just
+      due to our approximation.
+  - answer: a categorical variable
+    feedback: &gt;
+      No, we are *measuring* something, not merely labelling
+      different categories.
+  - answer: a Likert-type variable
+    feedback: &gt;
+      No, this is not like rating along a scale.
 
-- typeName: multipleChoiceThe number of new occureences of COVID in each district of a
-state is recorded over a month. Then 
-shuffleOptions: true
-options:
-   - answer: district is an identifier variable,  covid is a counting variable
-   - answer: district is a categorical variable,  covid is a Likert-type variable
-   - answer: district is a categorical variable,  covid is a measurement variable
-   - answer: district is an identifier variable,  covid is an interval variable
+
+- typeName: multipleChoice
+  prompt: &gt;
+    The number of new occurences of COVID in each district of a
+    state is recorded over a month. Then 
+  shuffleOptions: true
+  options:
+  - answer: district is an identifier variable,  covid is a counting variable
+    isCorrect: true
+  - answer: district is a categorical variable,  covid is a Likert-type variable
+    feedback: &gt;
+      Each case 
+  - answer: district is a categorical variable,  covid is a measurement variable
+  - answer: district is an identifier variable,  covid is an interval variable
 
 
 
@@ -881,7 +1048,7 @@ finitely many values. Yet we consider the measurement to be
 continuous if the resolution is sufficiently high. 
 
 <fieldset>
-<legend>M1L2V2</legend>
+<legend>M1L2V2.yml</legend>
 <pre>
 - typeName: multipleChoice
 A counting variable is 
@@ -953,45 +1120,80 @@ name="Module 1, Lesson 3,  Video 1: Univariate and multivariate">Module 1, Lesso
 
 
 <fieldset>
-<legend>M1L3V1</legend>
+<legend>M1L3V1.yml</legend>
 <pre>
 - typeName: multipleChoice
-For 50 households data have been collected on the number of
-members. The resulting data set has two columns,  a serial number
-and the number of members. This data set is 
-shuffleOptions: true
-options:
+  prompt: &gt;
+    For 50 households data have been collected on the number of
+    members. The resulting data set has two columns,  a serial number
+    and the number of members. This data set is 
+  shuffleOptions: true
+  options:
    - answer: univariate
+     isCorrect : true
+     feedback: &gt;
+       Correct. Though there are two columns, yet the first
+       column is merely for identifying the cases.
    - answer: bivariate
+     feedback: &gt;
+       No. Despite there being *two* columns in the data matrix,
+       the first column is merely for identifying the cases.
    - answer: multivariate
-   - answer: neither
-
-
-
-- typeName: multipleChoice
-For 50 rural  and 50 semi-urban households we have collected the
-monthly income and expenditure data. 
-The aim is to study the effect of the background on the
-income-expenditre relation. The data set here is
-shuffleOptions: true
-options:
-   - answer: univariate
-   - answer: bivariate
-   - answer: trivariate
-   - answer: none of these
-
+     feedback: &gt;
+       Well, there *are* more than one columns in the data
+       matrix. But the first column is merely for identifying the
+       cases. 
+   - answer: none of these.
+     feedback: &gt;
+       Hey, wait a second! Any data set is either univariate or
+       multivariate (bivariate being just a special case of
+       multivariate). 
 
 
 - typeName: multipleChoice
-We have collected data on the severrity of road accidents (as
-Likert-type variable) along with the exact time of occurence
-along with type of traffic (rush or slack). This is a 
-shuffleOptions: true
-options:
-   - answer: univariate data set
-   - answer: bivariate data set
-   - answer: trivariate data set
-   - answer: none of these
+  prompt: &gt;
+    For 50 rural  and 50 semi-urban households we have collected the
+    monthly income and expenditure data. 
+    The aim is to study the effect of the background on the
+    income-expenditure relation. The data set here is
+  shuffleOptions: true
+  options:
+  - answer: univariate
+    feedback: &gt;
+      Well, I can already see *at least* two variables: income
+      and expenditure. 
+  - answer: bivariate
+    feedback: &gt;
+      Good guess, but not correct. There is a third variable here
+      other than income and expenditure.
+  - answer: trivariate
+    isCorrect: true
+    feedback: &gt;
+      Yes, there are three variables here: income, expenditure
+      and, say,  *type* which is a categorical variable taking
+      values rural and semi-urban.
+  - answer: none of these
+    feedback: &gt;
+      You mean there are at least four variables here? Well, I
+      can see income and expenditure and ...
+
+
+- typeName: multipleChoice
+  prompt: &gt;
+    We have collected data on the severity of road accidents (as
+    Likert-type variable) along with the exact time of occurence
+    and type of traffic (rush or slack). This is a 
+  shuffleOptions: true
+  options:
+  - answer: univariate data set
+    feedback: &gt;
+      There are at least two variables: severity and time of
+      occurence. May be even more.
+  - answer: bivariate data set
+      Just two? No, I can see more variables.
+  - answer: trivariate data set
+    isCorrect: true
+  - answer: none of these
 
 
 
@@ -1024,27 +1226,130 @@ options:
 <div class="header">
 
 <h2><a
-name="Module 1, Lesson 3,  Video 2: IID,  time series and spatial">Module 1, Lesson 3,  Video 2: IID,  time series and spatial</a></h2>
+name="Module 1, Lesson 3,  Video 2: Cross-sectional,  time
+series, panel and spatial">Module 1, Lesson 3,  Video 2: Cross-sectional,  time
+series, panel and spatial</a></h2>
 </div>
 
 <fieldset>
-<legend>M1L3</legend>
+<legend>M1L3.yml</legend>
 <pre>
-- typeName: multipleChoiceIf we collect household level data for 10 villages in a
-district,  and the data collection takes two weeks,  then the
-resulting data set is an example of ...
+- typeName: multipleChoice
+  prompt: &gt;
+    If we collect household level monnthly income data for 10 villages in a
+    district,  and the data collection takes two weeks,  then the
+    resulting data set is an example of ...
+  shuffleOptions: true
+  options:
+  - answer: cross-sectional data set.
+    isCorrect: true
+    feedback: &gt;
+      Since household level data are not excpected to change
+      significantly over a span of just 2 weeks, it is reasonable
+      to consider this data set as cross-sectional. 
+  - answer: time series data set.
+    feedback: &gt;
+      Though 2 weeks ellapsed between the start and end of the
+      survey, yet we are not following any household during this
+      time period. So it is still like a snapshot in time.
+  - answer: spatial data set
+    feedback: &gt;
+      In such a survey the households are not tagged with their geographical
+      locations (*<i>e.g.</i>*, latitudes or longitudes). 
+  - answer: panel data
+    feedback: &gt;
+      Any panel data has a time component. But we are not
+      following any household over time.
+ 
+- typeName: checkbox
+  prompt: &gt;
+    Arsenic contamination levels are determined at different
+    points along a river on a particular date. The resulting data set is 
+    an example of:
+  shuffleOptions: true
+  options:
+  - answer: spatial data set.
+    isCorrect: true
+    feedback: &gt;
+      The points are identified with their geographical locations.
+  - answer: time series data.
+    feedback: &gt;
+      We are not following the river over time.
+  - answer: cross-sectional data.
+    isCorrect: true
+    feedback: &gt;
+      Yes, it is correct, but does not capture the fact that the
+      points are tagged with their geographical locations.
+  - answer: panel data
+    feedback: &gt;
+      No, a panel data has a time component. But our data set has none.
 
-- typeName: multipleChoiceArsenic contamination levels are determined at different
-points along a river. The resulting data set is an example of
-...
 
-- typeName: multipleChoiceMonthly expenditure data of a small business farm for 2
-years is a ...
+- typeName: checkbox
+  prompt: &gt;
+    Monthly expenditure data of a small business farm for 2
+    years are ...
+  shuffleOptions: true
+  options:
+  - answer: time series data.
+    isCorrect: true
+    feedback: &gt;
+      We are measuring the same quantity repeatedly at different
+      time points.
+  - answer: spatial data
+    feedback: &gt;
+      No, thee is no location tagging involved here!
+  - answer: panel data.
+    isCorrect: true
+    feedback: &gt;
+      Well, we reserve the term *panel data* for the situation
+      where multiple measurements are made at each time point. This
+      is most likely the case here, because expenditure comes under
+      different heads.
+  - answer: cross-sectional data.
+    feedback: &gt;
+      No, we are measuring the same quantity repeatedly at different
+      time points.
 
-- typeName: multipleChoiceData are collected about the number of different crimes in a
-city per month over 10 years. This is a ... 
+- typeName: multipleChoice
+  prompt: &gt;
+    Data are collected about the number of different crimes in a
+    city per month over 10 years. This is an example of:
+  shuffleOptions: true
+  options:
+  - answer: panel data 
+    isCorrect: true
+    feedback: &gt;
+      We are measuring multiple quntities repeatedly at different
+      time points. 
+  - answer: spatial data
+    feedback: &gt;
+      No location tagging is involved here.
+  - answer: cross-sectional data
+    feedback: &gt;
+      The measurements are made repeatedly at different time points.
 
-- typeName: multipleChoiceA line plot is most suitable for ...
+- typeName: checkbox
+  prompt:  A line plot is most suitable for:
+  shuffleOptions: true
+  options:
+  - answer: time series data
+    isCorrect: true
+    feedback: &gt;
+      Since time is continuous, it makes sense to joint the
+      values with a line.
+  - answer: cross-sectional data
+    feedback: &gt;
+      The different cases are not linked in any continuous way. In
+      fact they may not even be ordered.
+  - answer: spatial data
+    feedback: &gt;
+      Spatial data are better shown in a map. 
+  - answer: panel data
+    isCorrect: true
+    feedback: &gt;
+      Here each column in the data matrix gets its own line. 
+  
 
 </pre>
 </fieldset>
@@ -1084,13 +1389,154 @@ first format has the extension <b>.xlsx</b>. This is the default
 file format used by MS Excel. 
 
 <fieldset>
-<legend>M1L4V1</legend>
+<legend>M1L4V1.yml</legend>
 <pre>
-- typeName: multipleChoiceEnter the data in excel format.
+- typeName: multipleChoice
+  prompt: |-
+    Enter the following  data in the LibreOffice spreadsheet.
+    | Name    | Age | Income (Rs.) |
+    |---------+-----+--------------|
+    | Ram     |  45 | 23,456       |
+    | Rakibul |  29 | 12,452       |
+  shuffleOptions: true
+  options:
+  - answer: &gt;
+      Yes, I could do it. All the numbers are aligned with the
+      right margin.
+    isCorrect: true
+    feedback: &gt;
+      Great! Data entry is an important (though tedious) part of
+      any real life statistical exercise.
+  - answer: &gt;
+      Yes, I could do it. Some of the numbers are aligned with the
+      left margin.
+    feedback: &gt;
+      Oh, no! Looks like LibreOffice has failed to recognise
+      those "numbers" as numeric. Possible reasons are typing the
+      letter o in place of a zero, or typing the letter I or l in
+      place of a one.
+  - answer: No, I cannot do it.
+    feedback: &gt;
+      Oops, that worries me. Please let me know what went wrong. 
 
-- typeName: multipleChoiceDelete a row. Then delete a column.
+- typeName: checkbox
+  prompt: &gt;
+    Consider the following screenshot:
+    [Screenshot of Libreoffice with the above data set. A cell is
+    marked A, the textfield is marked B]
+    You want to change the third digit of the cell marked A to
+    5. How would you do it?
+  shuffleOptions: true
+  options:
+  - answer: &gt;
+     Double-click that cell, position the cursor after
+     that digit, delete and type 5.
+    isCorrect: true
+    feedback: &gt;
+      Yes, this is the smartest way.
+  - answer: &gt;
+      Click that cell. Click B. Correct the value shown in B.
+    isCorrect: true
+    feedback: &gt;
+      This works, but requires repositioning the mouse.
+  - answer: &gt;
+      Click after that digit in cell A, delete and type 5.
+    feedback: &gt;
+      No, this won't work. It will replace the entire number with
+      just a 5.
+  - answer: &gt;
+      Click on cell A. Retype the entire number.
+    isCorrect: true
+    feedback: &gt;
+      Yes, it will work, but you also re-typed the correct
+      digits. This is time consuming and error-prone.
+    
+    
+- typeName: multipleChoice
+  prompt: &gt;
+    You want to get from:
+    [Screenshot of Libreoffice with the above data set. A row is
+    marked A]
+    You want to delete the marked row to arrive at:
+    [Screenshot of Libreoffice with the same data set, but the
+    row has vanished.]
+    How will you achieve this?
+  shuffleOptions: true
+  options:
+  - answer: &gt;
+      Right-click on the left margin of the row. Choose "Delete
+      rows" from the pop up menu.
+    isCorrect: true
+    feedback: &gt;
+      Great job!  
+  - answer: &gt;
+      Click on the left margin of the row. Hit delete.
+    feedback: &gt;
+      No, this will only delete the contents or the row, not the
+      entire row.
+  - answer: &gt;
+      Right-click on the left margin of the row. Choose "Clear
+      contents" from the pop up menu.
+    feedback: &gt;
+      No, this will only delete the contents or the row, not the
+      entire row.
+    
 
-- typeName: multipleChoiceInsert a row. Then insert a column.
+- typeName: multipleChoice
+  prompt: &gt;
+    You want to get from:
+    [Screenshot of Libreoffice with the above data set. A row is
+    marked A]
+    You want to delete the marked row to arrive at:
+    [Screenshot of Libreoffice with the same data set, but the
+    row has vanished.]
+    How will you achieve this?
+  shuffleOptions: true
+  options:
+  - answer: &gt;
+      Right-click on the left margin of the row. Choose "Delete
+      rows" from the pop up menu.
+    isCorrect: true
+    feedback: &gt;
+      Great job!  
+  - answer: &gt;
+      Click on the left margin of the row. Hit delete.
+    feedback: &gt;
+      No, this will only delete the contents or the row, not the
+      entire row.
+  - answer: &gt;
+      Right-click on the left margin of the row. Choose "Clear
+      contents" from the pop up menu.
+    feedback: &gt;
+      No, this will only delete the contents or the row, not the
+      entire row.
+    
+
+- typeName: checkbox
+  prompt: &gt;
+    You want to insert a new blank row between rows 3 and 4 in the
+    following spreadsheet. 
+      [Screenshot]
+    How would you do it?
+  shuffleOptions: true
+  options:
+  - answer: &gt;
+     Right-click on the left margin of row 3, choose
+     "Insert rows below" from the pop up menu.
+    isCorrect: true
+    feedback: &gt;
+      
+  - answer: &gt;
+      Right-click on the left margin of row 4, choose
+      "Insert rows above" from the pop up menu.
+    isCorrect: true
+    feedback: &gt;
+      
+  - answer: &gt;
+      Click in the last cell in row 3. Then hit enter.
+    feedback: &gt;
+      This works in a textfile, but not in a spreadsheet!
+      
 
 </pre>
 </fieldset>
@@ -1124,12 +1570,61 @@ a single data table,  while the XLSX format can hold multiple
 tables,  as well as graphs and reports.
 
 <fieldset>
-<legend>M1L4V2</legend>
+<legend>M1L4V2.yml</legend>
 <pre>
-- typeName: multipleChoiceA line from a CSV file is , 34, , . How many variables are
-there?
+- typeName: multipleChoice
+  prompt: |-
+    A line from a CSV file is
+       , 34, ,
+    How many variables are there?
+  shuffleOptions: true
+  options:
+  - answer: exactly 4.
+    isCorrect: true
+    feedback: |-
+      Yes, fill up each gap with an x to see this clearly:
+          x, 34, x, x 
+  - answer: exactly 3.
+    feedback: &gt;
+      Fill up each gap with an x. Then you'll get the answer.
+  - answer: exactly 2.
+    feedback: &gt;
+      Fill up each gap with an x. Then you'll get the answer.
+  - answer: exactly 1.
+    feedback: &gt;
+      Fill up each gap with an x. Then you'll get the answer.
 
-- typeName: multipleChoiceExport a xslx file into csv. Then import it back.
+- typeName: multipleChoice
+  prompt: |-
+    Here is a little data set for you:
+    | Area  | Yield | Irrigation |
+    |-------+-------+------------|
+    | 2,345 |   325 | manual     |
+    | 3,451 |       | mechanical |
+    | 1,378 |   182 | manual     |
+    Convert this to a CSV file, and load it into Libreoffice.
+    Did everything go as you expected?
+  shuffleOptions: true
+  options:
+  - answer: Yes.
+    isCorrect: true
+    feedback: &gt;
+      Congratulations!
+  - answer: No, I am getting 4 columns.
+    feedback: &gt;
+      Aha, possibly you typed the commas in the numbers. Skip the
+      commas inside a number.
+  - answer: No, I do not know where to start.
+    feedback: &gt;
+      Oops. You'll need to start typing in a text editor (like notepad).
+  - answer: No, Libreoffice cannot load my file.
+    feedback: &gt;
+      Hmmm...there could be various reasons. Did you use a simple
+      text editor like notepad, and not some fancy editor like MS
+      Word? The latter won't work. Also, you'll need to save the 
+      file with a csv extension. Watch the video carefully to
+      understand how to do this.
+    
 
 </pre>
 </fieldset>
@@ -1209,7 +1704,7 @@ overboard,  and produce plots that almost present a distorted
 version of trth. We shall talk more abot this later. 
 
 <fieldset>
-<legend>M2L1V2</legend>
+<legend>M2L1V2.yml</legend>
 <pre>
 - typeName: multipleChoiceHere is a line plot of sales. What is the value at
 Jan?
@@ -1233,7 +1728,7 @@ name="Module 2, Lesson 1,  Video 3: Lab">Module 2, Lesson 1,  Video 3: Lab</a></
 
 
 <fieldset>
-<legend>M2L1V3</legend>
+<legend>M2L1V3.yml</legend>
 <pre>
 - typeName: multipleChoiceMake a line plot of the following data.
 
@@ -1257,7 +1752,7 @@ two variables,  then we can use a scatter plot matrix,  sometimes
 also called a pairs plot. 
 
 <fieldset>
-<legend>M2L2V1</legend>
+<legend>M2L2V1.yml</legend>
 <pre>
 - typeName: multipleChoiceWhich of the following scatterplots is possibly a weight vs
 height scatterplot?
@@ -1279,7 +1774,7 @@ name="Module 2, Lesson 2,  Video 2: Lab">Module 2, Lesson 2,  Video 2: Lab</a></
 </div>
 
 <fieldset>
-<legend>M2L2V2</legend>
+<legend>M2L2V2.yml</legend>
 <pre>
 - typeName: multipleChoiceMake a scatterplot based on the following height-weight
 data.
@@ -1299,7 +1794,7 @@ name="Module 2, Lesson 3,  Video 1: Bar,  pie">Module 2, Lesson 3,  Video 1: Bar
 
 
 <fieldset>
-<legend>M2L3V1</legend>
+<legend>M2L3V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceConsider the bar chart. Two values are roughly the
@@ -1318,7 +1813,7 @@ name="Module 2, Lesson 3,  Video 2: Lab">Module 2, Lesson 3,  Video 2: Lab</a></
 </div>
 
 <fieldset>
-<legend>M2L3V2</legend>
+<legend>M2L3V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceMake a bar chart from the following data.
@@ -1337,7 +1832,7 @@ name="Module 2, Lesson 4,  Video 1: Pitfalls">Module 2, Lesson 4,  Video 1: Pitf
 
 
 <fieldset>
-<legend>M2L4V1</legend>
+<legend>M2L4V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceHere is a plot of the sales of a company over the
@@ -1362,7 +1857,7 @@ name="Module 2, Lesson 4,  Video 2: Real life examples">Module 2, Lesson 4,  Vid
 
 
 <fieldset>
-<legend>M2L4V2</legend>
+<legend>M2L4V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceAsk to repeat some activity shown in the video with some
@@ -1402,7 +1897,7 @@ name="Module 3, Lesson 1,  Video 1: Frequency distribution">Module 3, Lesson 1, 
 </div>
 
 <fieldset>
-<legend>M3L1V1</legend>
+<legend>M3L1V1.yml</legend>
 <pre>
 - typeName: multipleChoiceHere is a frequency distribution. Find the class with
 maximum frequency.
@@ -1424,7 +1919,7 @@ name="Module 3, Lesson 1,  Video 2: Lab">Module 3, Lesson 1,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M2L3V2</legend>
+<legend>M2L3V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceMake a frequency distribution from the following data.
@@ -1460,7 +1955,7 @@ Such fancy tables are often called <b>pivot tables</b>.
 Let's start with an example.
 
 <fieldset>
-<legend>M3L3V1</legend>
+<legend>M3L3V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceConsider this toy data set. We have constructed this pivot
@@ -1485,7 +1980,7 @@ name="Module 3, Lesson 2,  Video 2: Lab">Module 3, Lesson 2,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M3L2V2</legend>
+<legend>M3L2V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCreate a pivot table based on given data.
@@ -1508,7 +2003,7 @@ name="Module 3, Lesson 3,  Video 1: Histogram">Module 3, Lesson 3,  Video 1: His
 
 
 <fieldset>
-<legend>M3L3V1</legend>
+<legend>M3L3V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceShow a histogram and ask for relative frequency density for
@@ -1537,7 +2032,7 @@ name="Module 3, Lesson 3,  Video 2: Lab">Module 3, Lesson 3,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M3L3V2</legend>
+<legend>M3L3V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceMake histogram based on data.
@@ -1560,7 +2055,7 @@ name="Module 3, Lesson 4,  Video 1: Contingency table">Module 3, Lesson 4,  Vide
 
 
 <fieldset>
-<legend>M3L4V1</legend>
+<legend>M3L4V1.yml</legend>
 <pre>
 
 - typeName: multipleChoice$2\times2$ table. Only row totals and a single column total are given. Find
@@ -1585,7 +2080,7 @@ name="Module 3, Lesson 4,  Video 2: Lab">Module 3, Lesson 4,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M3L4V2</legend>
+<legend>M3L4V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCreate a pivot table from frequency data.
@@ -1635,7 +2130,7 @@ from tiny rodents to enormous blue whales. What do you mean by
 "average" here? Well,  we learned in school 
 
 <fieldset>
-<legend>M4L1V1</legend>
+<legend>M4L1V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceConsider these 20 numbers. Do you think that they have a
@@ -1662,7 +2157,7 @@ name="Module 4, Lesson 1,  Video 2: Lab">Module 4, Lesson 1,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M4L1V2</legend>
+<legend>M4L1V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute mean of these numbers using Excel.
@@ -1682,7 +2177,7 @@ name="Module 4, Lesson 2,  Video 1: Median">Module 4, Lesson 2,  Video 1: Median
 
 
 <fieldset>
-<legend>M4L2V1</legend>
+<legend>M4L2V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute median of these numbers by hand.
@@ -1707,7 +2202,7 @@ name="Module 4, Lesson 2,  Video 2: Lab">Module 4, Lesson 2,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M4L2V2</legend>
+<legend>M4L2V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceFind median of the numbers using Excel.
@@ -1728,7 +2223,7 @@ name="Module 4, Lesson 3,  Video 1: Mode and others">Module 4, Lesson 3,  Video 
 
 
 <fieldset>
-<legend>M4L3V1</legend>
+<legend>M4L3V1.yml</legend>
 <pre>
 - typeName: multipleChoiceFind model of these numbers by inspection.
 
@@ -1748,7 +2243,7 @@ name="Module 4, Lesson 3,  Video 2: Lab">Module 4, Lesson 3,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M4L3V2</legend>
+<legend>M4L3V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceFind mode of a column.
@@ -1767,7 +2262,7 @@ name="Module 4, Lesson 4,  Video 1: Robustness">Module 4, Lesson 4,  Video 1: Ro
 
 
 <fieldset>
-<legend>M4L4V1</legend>
+<legend>M4L4V1.yml</legend>
 <pre>
 - typeName: multipleChoiceWhich is more robust: mean or median?
 
@@ -1785,7 +2280,7 @@ name="Module 4, Lesson 4,  Video 2: Lab">Module 4, Lesson 4,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M4L4V2</legend>
+<legend>M4L4V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute 10% trimmed mean.
@@ -1823,7 +2318,7 @@ name="Module 5, Lesson 1,  Video 1: The concept">Module 5, Lesson 1,  Video 1: T
 
 
 <fieldset>
-<legend>M5L1V1</legend>
+<legend>M5L1V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceWe have a data set with just three cases. The value of the
@@ -1846,7 +2341,7 @@ name="Module 5, Lesson 1,  Video 2: Range">Module 5, Lesson 1,  Video 2: Range</
 
 
 <fieldset>
-<legend>M5L1V2</legend>
+<legend>M5L1V2.yml</legend>
 <pre>
 - typeName: multipleChoiceCompute range of the column.
 
@@ -1865,7 +2360,7 @@ name="Module 5, Lesson 2,  Video 1: Variance and standard deviation">Module 5, L
 Mention the alternative formula.
 
 <fieldset>
-<legend>M5L2V1</legend>
+<legend>M5L2V1.yml</legend>
 <pre>
 - typeName: multipleChoiceFind the variance and standard deviation of these
 numbers.
@@ -1889,7 +2384,7 @@ name="Module 5, Lesson 2,  Video 2: Lab">Module 5, Lesson 2,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M5L2V2</legend>
+<legend>M5L2V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute using Excel.
@@ -1910,7 +2405,7 @@ name="Module 5, Lesson 3,  Video 1: Mean absolute deviation">Module 5, Lesson 3,
 
 
 <fieldset>
-<legend>M5L3V1</legend>
+<legend>M5L3V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceFind MAD for these numbers.
@@ -1930,7 +2425,7 @@ name="Module 5, Lesson 3,  Video 2: Lab">Module 5, Lesson 3,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M5L3V2</legend>
+<legend>M5L3V2.yml</legend>
 <pre>
 - typeName: multipleChoiceCompute using Excel.
 
@@ -1951,7 +2446,7 @@ name="Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot">Module
 
 
 <fieldset>
-<legend>M5L4V1</legend>
+<legend>M5L4V1.yml</legend>
 <pre>
 - typeName: multipleChoiceShow box plot and ask to interpret.
 
@@ -1967,7 +2462,7 @@ name="Module 5, Lesson 4,  Video 2: Lab">Module 5, Lesson 4,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M5L4V2</legend>
+<legend>M5L4V2.yml</legend>
 <pre>
 - typeName: multipleChoiceCompute semi-interquartile range for the data.
 
@@ -2008,7 +2503,7 @@ name="Module 6, Lesson 1,  Video 1: Bivariate data,  The concept via plots">Modu
 
 
 <fieldset>
-<legend>M6L1V1</legend>
+<legend>M6L1V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceShow plots and ask for pattern.
@@ -2029,7 +2524,7 @@ name="Module 6, Lesson 1,  Video 2: (Rank) correlation">Module 6, Lesson 1,  Vid
 
 
 <fieldset>
-<legend>M6L1V2</legend>
+<legend>M6L1V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute correlation.
@@ -2053,7 +2548,7 @@ name="Module 6, Lesson 2,  Video 1: Contingency table measures
  Cramer's V and the contingency coefficient C
 
 <fieldset>
-<legend>M6L2V1</legend>
+<legend>M6L2V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute by hand
@@ -2075,7 +2570,7 @@ name="Module 6, Lesson 2,  Video 2: Lab">Module 6, Lesson 2,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M6L2V2</legend>
+<legend>M6L2V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute from data
@@ -2100,7 +2595,7 @@ Kendal's tau_a and tau_b
 gamma test
 
 <fieldset>
-<legend>M6L3V1</legend>
+<legend>M6L3V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute by hand
@@ -2122,7 +2617,7 @@ name="Module 6, Lesson 3,  Video 2: Lab">Module 6, Lesson 3,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M6L3V2</legend>
+<legend>M6L3V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute from data
@@ -2141,7 +2636,7 @@ name="Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis">M
 </div>
 
 <fieldset>
-<legend>M6L4V1</legend>
+<legend>M6L4V1.yml</legend>
 <pre>
 
 - typeName: multipleChoiceVisually from histogram (clear)
@@ -2161,7 +2656,7 @@ name="Module 6, Lesson 4,  Video 2: Lab">Module 6, Lesson 4,  Video 2: Lab</a></
 
 
 <fieldset>
-<legend>M6L4V2</legend>
+<legend>M6L4V2.yml</legend>
 <pre>
 
 - typeName: multipleChoiceCompute.
