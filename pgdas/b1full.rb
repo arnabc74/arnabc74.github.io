@@ -1283,25 +1283,114 @@ overboard,  and produce plots that almost present a distorted
 version of trth. We shall talk more abot this later. 
 
 <EXRLIST id="M2L1V2.yml">
-- typeName: multipleChoiceHere is a line plot of sales. What is the value at
-Jan?
+- typeName: numeric
+  prompt: |-
+    Here is a line plot of sales. 
+       [Plot here]
+    What is the value for Jan?
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 
-- typeName: multipleChoiceThis plot shows a periodic fluctuation. What is the length
-of the period?
+- typeName: numeric
+  prompt: > 
+    This plot shows a periodic fluctuation. What is the length
+    of a single period?
+    [Plot here]
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 
-
-- typeName: multipleChoiceFrom the COVID infection plot guess when the second wave
-will have its peak.
-
+- typeName: numeric
+  prompt: > 
+    From this time series plot of revenue guess the next
+    peak value. 
+    [Plot here]
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 </EXRLIST>
 
 <STKY>
 <HEAD2>Module 2, Lesson 1,  Video 3: Lab</HEAD2></STKY>
 
 <EXRLIST id="M2L1V3.yml">
-- typeName: multipleChoiceMake a line plot of the following data.
+- typeName: multipleChoice
+  prompt: > 
+    Make a line plot of this data set. [Link] How many peaks are
+    there? 
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceMake an overlaid line plot of the two variables.
+- typeName: numeric
+  prompt: >
+    Make an overlaid line plot of the two variables in this data set.[Link]
+    What is the first point where the first curve goes over the
+    second?
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 
 </EXRLIST>
 
@@ -1316,25 +1405,111 @@ two variables,  then we can use a scatter plot matrix,  sometimes
 also called a pairs plot. 
 
 <EXRLIST id="M2L2V1.yml">
-- typeName: multipleChoiceWhich of the following scatterplots is possibly a weight vs
-height scatterplot?
+- typeName: checkbox
+  prompt: > 
+    Which of the following scatterplots is/are possibly a weight vs
+    height scatterplot for a random sample of adult men?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceThe following scatterplot shows an
-outlier. Its <M>x</M>-value is:
+- typeName: numeric
+  prompt: > 
+    The following scatterplot shows an outlier. Its <M>x</M>-value is:
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 
-- typeName: multipleChoiceHow many clusters can you see in the following
-scatterplot?
+- typeName: multipleChoice
+  prompt: > 
+    How many clusters can you see in the following scatterplot?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
 </EXRLIST>
 
 <STKY>
 <HEAD2>Module 2, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 <EXRLIST id="M2L2V2.yml">
-- typeName: multipleChoiceMake a scatterplot based on the following height-weight
-data.
+- typeName: multipleChoice
+  prompt: >
+    Make a scatterplot based on the following data[link]. One
+    point is slightly away from the bulk of the points. Which case?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceRepeat the same exercise,  but now colour-code the points
-using gender.
+
+- typeName: multipleChoice
+  prompt: > 
+    Repeat the same exercise,  but now colour-code the points
+    using gender. Use red for male and blue for female. There 
+    is one blue point somewhat inside the bulk of the cluster of
+    red points. Which point?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
 </EXRLIST>
 
@@ -1343,10 +1518,45 @@ using gender.
 
 <EXRLIST id="M2L3V1.yml">
 
-- typeName: multipleChoiceConsider the bar chart. Two values are roughly the
-same. Which two?
+- typeName: multipleChoice
+  prompt: > 
+    Consider the following bar chart. 
+    [Fig here]
+    Two values are roughly the
+    same. Which two?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceIn the pie chart who has the lion's share?
+- typeName: multipleChoice
+  prompt: Who has the lion's share in this pie chart? [fig here]
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
 </EXRLIST>
 
@@ -1354,9 +1564,48 @@ same. Which two?
 <HEAD2>Module 2, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 <EXRLIST id="M2L3V2.yml">
 
-- typeName: multipleChoiceMake a bar chart from the following data.
+- typeName: multipleChoice
+  prompt: > 
+    Make a bar chart from the following data. One bar does not
+    follow the general pattern. Which one?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceMake a pie chart from the same data.
+- typeName: multipleChoice
+  prompt: > 
+    Make a pie chart from the same data. One value accounts for
+    about 25% of the total? Which one. Also, how many values
+    exceed 234? Answer *based on the pie chart only*, and not the
+    original data. 
+  shuffleOptions: true
+  options:
+  - answer: 13, cannot answer.
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
 
 </EXRLIST>
 
@@ -1365,14 +1614,70 @@ same. Which two?
 
 <EXRLIST id="M2L4V1.yml">
 
-- typeName: multipleChoiceHere is a plot of the sales of a company over the
-years. Does this show significant growth? [No, axis scales
-unmarked]
+- typeName: multipleChoice
+  prompt: > 
+    Here is a plot of the sales of a company over the
+    years.[plot]
+    Can we claim that the company had a significant amount of
+    growth during this period? [No, axis scales
+    unmarked]
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceConsider a 3D pie chart. Sectors further from the eye look
-smaller.
+- typeName: multipleChoice
+  prompt: >
+    Here is a 3D pie chart. [fig] Which has the bigger share, the
+  red one or the blue one?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
 
-- typeName: multipleChoiceShowing with squares. Sides proportional to value or areas?
+- typeName: multipleChoice
+  prompt: > 
+    The income from excise duty from different states of a country 
+    are shown as bottles with area proportional to the
+    value. [fig] Is the maximum value more than 
+    double the minimum value? 
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
 
 
 </EXRLIST>
@@ -1382,14 +1687,50 @@ smaller.
 
 <EXRLIST id="M2L4V2.yml">
 
-- typeName: multipleChoiceAsk to repeat some activity shown in the video with some
-different variable.
+- typeName: multipleChoice
+  prompt: > 
+    Ask to repeat some activity shown in the video with some
+    different variable.
+  shuffleOptions: true
+  options:
+  - answer: Yes, I could do this.
+    isCorrect: true
+    feedback: >
+      That's great!
+  - answer: No, I could not. 
+    feedback: >
+      Oops, sorry to hear that. Please watch the video from ...
+      to ..., and let me know how you fared.
 
-- typeName: multipleChoiceAsk to repeat some activity shown in the video with some
-different variable.
+- typeName: multipleChoice
+  prompt: > 
+    Ask to repeat some activity shown in the video with some
+    different variable. 
+  shuffleOptions: true
+  options:
+  - answer: Yes, I could do this.
+    isCorrect: true
+    feedback: >
+      That's great!
+  - answer: No, I could not. 
+    feedback: >
+      Oops, sorry to hear that. Please watch the video from ...
+      to ..., and let me know how you fared.
 
-- typeName: multipleChoiceAsk to repeat some activity shown in the video with some
-different variable.
+- typeName: multipleChoice
+  prompt: >
+    Ask to repeat some activity shown in the video with some
+    different variable.
+  shuffleOptions: true
+  options:
+  - answer: Yes, I could do this.
+    isCorrect: true
+    feedback: >
+      That's great!
+  - answer: No, I could not. 
+    feedback: >
+      Oops, sorry to hear that. Please watch the video from ...
+      to ..., and let me know how you fared.
 
 </EXRLIST>
 
@@ -1400,14 +1741,81 @@ different variable.
 <STKY><HEAD1>Module 3: Presentation of data (part 2)</HEAD1></STKY>
 
 <STKY><HEAD2>Module 3, Lesson 1,  Video 1: Frequency distribution</HEAD2></STKY>
+
 <EXRLIST id="M3L1V1.yml">
-- typeName: multipleChoiceHere is a frequency distribution. Find the class with
-maximum frequency.
+- typeName: numeric
+  prompt: |-
+    Here is a frequency distribution.
+    |  Class | Frequency |
+    |--------+-----------|
+    | 10--19 |       329 |
+    | 20--29 |       294 |
+    | 30--39 |       298 |
+    | 40--69 |       198 |
+    | 70--99 |       231 |
+    Find the lower limit of the class with the maximum frequency.
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 
-- typeName: multipleChoiceIs it always true that the class with maximum frequency is
-also the class with maximum relative frequency?
+- typeName: multipleChoice
+  prompt: >  
+    Is it always true that the class with the maximum frequency is
+    also the class with maximum relative frequency?
+  shuffleOptions: true
+  options:
+  - answer: Yes
+    isCorrect: true
+    feedback: >
+      Yes, because relative frequency is just frequency divided by
+      the total sample size, which does not depend on the classes.
+  - answer: No
+    feedback: >
+      Well, relative  frequency is just frequency divided by
+      the total sample size, which does not depend on the classes.
+  - answer: Nothing may be said in general.
+    feedback: >
+      Well, relative relative frequency is just frequency divided by
+      the total sample size, which does not depend on the classes.
 
-- typeName: multipleChoiceFind the class with maximum frequency density.
+- typeName: numeric
+  prompt: |-
+   Find the class width of the class with maximum frequency
+   density in this frequency distribution:
+   | Class    | Frequency |
+   |----------+-----------|
+   | [0,3)    |        45 |
+   | [3,4)    |        34 |
+   | [4,4.5)  |        26 |
+   | [4.5, 5) |        23 |
+   | [5,9]    |        46 |
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 
 </EXRLIST>
 
