@@ -2424,9 +2424,9 @@ from tiny rodents to enormous blue whales. What do you mean by
 - typeName: numeric
   prompt: >
     We have a data set with just three numbers. The first value
-  is 23.4. The other two values are so that the 
-  dispersion is the minimum possible. What is the sum of those 
-  two values?
+    is 23.4. The other two values are so that the 
+    dispersion is the minimum possible. What is the sum of those 
+    two values?
   shuffleOptions: true
   defaultFeedback: >
     No, dispersion is minimised when all the three numbers are 
@@ -2448,11 +2448,64 @@ from tiny rodents to enormous blue whales. What do you mean by
 <HEAD2>Module 5, Lesson 1,  Video 2: Range</HEAD2></STKY>
 
 <EXRLIST id="M5L1V2.yml">
-- typeName: multipleChoiceCompute range of the column.
+- typeName: numeric
+  prompt: >
+    This file [link] gives a data set. Use LibreOffice to compute
+    range of the income variable.
+  shuffleOptions: true
+  defaultFeedback: >
+    No, may be you should just eyeball the values to find the
+    minimum and maximum, and to see why your answer is wrong.
+    Watch the video once again to learn using LibreOffice to
+    compute the range.
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      Great!
 
-- typeName: multipleChoiceIf the range of some number is 56,  and a new number is
-added,  then how will it change?
 
+- typeName: multipleChoice
+  prompt: >
+    The range of some variable in a data set is 56.00.  A new case is
+    added to the data set where the value of this variable is
+    100.54. What will be the new range?
+  shuffleOptions: true
+  defaultFeedback: >
+    You cannot be sure. You need to know the current minimum and the
+    maximum to be able to update the range.
+  options:
+  - answer: Cannot compute based on the given information.
+    isCorrect: true
+    feedback: >
+      Correct. You need to know the current minimum and the
+      maximum to be able to update the range.
+  
+  - answer: 100.54
+
+  - answer: 156.54
+      
+  - answer: 56.00
+  
+- typeName: numeric
+  prompt: >
+    The range of some variable in a data set is 56.00, and
+    minimum is 50.23.  A new case is
+    added to the data set where the value of this variable is
+    110.54. What will be the new range?
+  shuffleOptions: true
+  defaultFeedback: >
+    First find the minimum and maximum *before* and *after* the new
+    case is added.
+  options:
+  - value: 60.31 
+    isCorrect: true
+    feedback: >
+      That's right! The old maximum was 50.23+56.00 =
+      106.23. Since the new value exceeds this, the new
+      maximum is 110.54. So the new range is 110.54 - 50.23.
+  
+    
 </EXRLIST>
 
 <STKY>
@@ -2460,16 +2513,60 @@ added,  then how will it change?
 Mention the alternative formula.
 
 <EXRLIST id="M5L2V1.yml">
-- typeName: multipleChoiceFind the variance and standard deviation of these
-numbers.
+- typeName: multipleChoice
+  prompt: |-
+    Find the variance and standard deviation of these numbers:
+    43, 23, 34, 64, 50, 33, 12
+    Use n-1 in the denominator.
+  shuffleOptions: true
+  options:
+  - answer: var = 296.67, sd = 17.22
+    isCorrect: true
+    feedback: >
+      
+  - answer: var = 17.22, sd = 296.67
+    feedback: >
+      Hey, that can't be. Variance should be square of the
+      standard deviation.
+  - answer: var = 254.29, sd = 15.95
+    feedback: >
+      Hmmm...I askd you to use n-1 in the denominator. Looks
+      like you used n.
+  - answer: var = 260.98, sd = 16.15
+    feedback: >
+      Nope. You may like to watch the video to brush up the
+      formula.
+    
+- typeName: numeric
+  prompt: >
+    If the sum of squares of 5 numbers is 1004,  and the mean
+    is 6,  then find the standard deviation (use n-1 in the
+    denominator).
+  defaultFeedback: >
+    The formula is sqrt(n/(n-1)*(SS/n -  mean^2)).
+  shuffleOptions: true
+  answers:
+  - range: [14.35,14.4]
+    isCorrect: true
+    feedback: >
 
-- typeName: multipleChoiceIf the sum of squares of some numbers is 100,  and the mean
-is 5,  then find the standard deviation.
-
-- typeName: multipleChoiceIf the mean and variance of 10 numbers are,  respectively,  10
-and 45,  and a new
-value 7 is introduced,  what is the new variance?
-
+- typeName: numeric
+  prompt: >
+    If the mean and variance of 10 numbers are,  respectively,
+    10 and 45,  and a new value 7 is introduced, what is the
+    new variance? We are using n-1 in the denominator.
+  defaultFeedback: >
+    Find the sum and sum of squares of the original 10 numbers.
+    Then update these to incorporate the new value.
+  shuffleOptions: true
+  answers:
+  - range: [171.77, 171.8] 
+    isCorrect: true
+    feedback: >
+      Yes, the old sum was 450 and the old sum of squares was
+      20655. After updating they became 457 and 20704,
+      respectively. Also, sample size increased from 10 to 11.
+    
 - typeName: numeric
   prompt: |-
     Consider this data set:
@@ -2511,10 +2608,37 @@ value 7 is introduced,  what is the new variance?
 
 <EXRLIST id="M5L3V1.yml">
 
-- typeName: multipleChoiceFind MAD for these numbers.
+- typeName: numeric
+  prompt: |-
+    Find MAD for these numbers.
+    23, 56, 67, 45, 23, 34, 20
+  defaultFeedback: >
+    You may like to watch the video once again. First find the median.
+  shuffleOptions: true
+  answers:
+  - range: [16.3, 16.31]
+    isCorrect: true
+    feedback: >
+      
 
-- typeName: multipleChoiceIf the median is ... and MAD is ...,  then find the new MAD
-when a new value 7 is introduced.
+- typeName: multipleChoice
+  prompt: >
+    If the median is 6 and MAD is 3,  then find the new MAD
+    when a new value 7 is introduced.
+  defaultFeedback: >
+    You do not have all the values. So you do not have enough
+    information to update the median.
+  shuffleOptions: true
+  options:
+  - answer: Cannot answer with this information.
+    isCorrect: true
+      
+  - answer: 3
+      
+  - answer: 4
+      
+  - answer: 7
+      
 
 </EXRLIST>
 
@@ -2535,7 +2659,30 @@ when a new value 7 is introduced.
 <HEAD2>Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot</HEAD2></STKY>
 
 <EXRLIST id="M5L4V1.yml">
-- typeName: multipleChoiceShow box plot and ask to interpret.
+- typeName: checkbox
+  prompt: >
+    Consider the  box plots for two variables. [fig]
+    Then which of the following statements is/are true?
+  shuffleOptions: true
+  options:
+  - answer: >
+      The first variable has higher dispersion than the second.
+    isCorrect: true
+    feedback: >
+      Yes, the first box is taller than the second.
+  - answer: >
+      There are two outliers for the male income that are
+      too high. 
+    feedback: >
+      No, they are too low.
+  - answer: The medians of the two variable are equal.
+    isCorrect: true
+    feedback: >
+      Yes, the central lines are on the same level.
+  - answer: The means of the two variables are equal.
+    feedback: >
+      No, it seems that mean of the first variable is more.
+
 
 </EXRLIST>
 
@@ -2556,36 +2703,192 @@ when a new value 7 is introduced.
 
 <STKY>
 <HEAD2>Module 5, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+
 <STKY><HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 
 <STKY><HEAD1>Module 6: Association etc</HEAD1></STKY>
 
-<STKY><HEAD2>Module 6, Lesson 1,  Video 1: Bivariate data,  The concept via plots</HEAD2></STKY>
+<STKY><HEAD2>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD2></STKY>
 
 <EXRLIST id="M6L1V1.yml">
 
-- typeName: multipleChoiceShow plots and ask for pattern.
+- typeName: multipleChoice
+  prompt: >
+    Here are two bivariate scatterplots. 
+    [fig]
+    Which of the following is true about them?
+  defaultFeedback: >
+      Are you sure? increasing relation means a south-east to
+      north-west layout of the points.
+  shuffleOptions: true
+  options:
+  - answer: >
+      the first shows an increasing relation, the second a
+      decreasing relation.
+    isCorrect: true
+      
+  - answer: >
+      the first shows a decreasing relation, the second an
+      increasing relation.
 
-- typeName: multipleChoiceTight and loose patterns.
+  - answer: both show an increasing relation.
+      
+  - answer: both show a decreasing relation.
+      
 
-- typeName: multipleChoiceNonlinear pattern. Ask to describe like "first decreasing,  then increasing."
+
+- typeName: multipleChoice
+  prompt: >
+    Here are to scatter plots. [fig] If you want to predict y from x,
+    then which data will prvide more reliable prediction? 
+  defaultFeedback: >
+    The tighter the points are along a line, the more reliable
+    the prediction.
+  shuffleOptions: true
+  options:
+  - answer: the first data.
+    isCorrect: true
+      
+  - answer: the second data.
+      
+  - answer: both will provide equal amount of reliablilty. 
+      
+  - answer: cannot answer just based on the plots.
+      
+
+- typeName: checkbox
+  prompt: >
+    Here is a scatter plot with a nonlinear relation. [fig]
+    which of the following is/are true about it? 
+  shuffleOptions: true
+  options:
+  - answer: First increasing, then decreasing
+    isCorrect: true
+    feedback: >
+      Yes, the data cloud has an inverted U-pattern.
+  - answer: First decreasing, then increasing.
+    feedback: >
+      But that would give a U-like pattern.
+  - answer: >
+      The relation becomes more obscure for larger
+      value of x.
+    isCorrect: true
+    feedback: >
+      Yes, if you imagine a curve through the center of the
+      data cloud, the points are deviating more from it
+      as x increases.      
+  - answer: >
+      The relation becomes more obscure for smaller values
+      of x.
+    feedback: >
+      Hmmm...if we imagine a curve through the center of the data
+      cloud, then aren't the points actually tightly adhering
+      to it when x is small?
+
+
 
 </EXRLIST>
 
 <STKY>
 <HEAD2>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD2></STKY>
+Mention Anscombe data.
 
 <EXRLIST id="M6L1V2.yml">
 
-- typeName: multipleChoiceCompute correlation.
+- typeName: numeric
+  prompt: |-
+    Compute correlation based on the following bivariate data
+    set:
+    |  X |  Y |
+    |----+----|
+    | 12 | 34 |
+    | 56 | 23 |
+    | 14 | 67 |
+    | 23 | 60 |
+    | 34 | 49 |
+  shuffleOptions: true
+  defaultFeedback: >
+    Oops! A correlation cannot be outside [-1,1]. Please review
+    the material.
+  answers:
+  - range: [-0.61, -0.6]
+    isCorrect: true
+    feedback: >
+      Good job!
+  - range: [-1,-0.61)
+    feedback: >
+      You may like to check the formula once again.
+  - range: (-0.6,1]
+    feedback: >
+      You may like to check the formula once again.
+      
 
-- typeName: multipleChoiceCompute rank correlation.
+- typeName: multipleChoice
+  prompt: >
+    Again consider the same toy data set as in the last
+    exercise. But this time compute Spearman's rank correlation.
+  shuffleOptions: true
+  defaultFeedback: >
+    Oops! A correlation cannot be outside [-1,1]. Please review
+    the material.
+  answers:
+  - value: -0.4
+    isCorrect: true
+    feedback: >
+      Good job!
+  - range: [-1,-0.4)
+    feedback: >
+      You may like to check the formula once again.
+  - range: (-0.4,1]
+    feedback: >
+      You may like to check the formula once again.
 
-- typeName: multipleChoiceCreate data set with correlation 1.
+- typeName: plugin
+  prompt: >
+    Create a bivariate data set with Spearman's rank correlation 1,
+    but Pearson's correlation less than 1.
 
-- typeName: multipleChoiceAnscombe.
+- typeName: checkbox
+  prompt: > 
+    This file [link] contain the Anscombe data set. Compute
+    correlation in each case. Also plot them. Now choose the mos
+    approapriate answer below.
+   shuffleOptions: true
+  options: 
+  - answer: The correlations are all the same.
+    isCorrect: true
+    feedback: >
+      Yes, in fact the sum and sum of squares and sum of products
+      are all  same across the data sets.
+  - answer: The plots show completely different patterns.
+    isCorrect: true
+    feedback: >
+      Yes, that's plots are great for detecting patterns.
+  - answer: The correlations are different. 
+    feedback: >
+      Oops! Are you sure that you computed the correlation
+      *separately* for the four data sets?
+  - answer: The plots show more or less similar patterns.
+    feedback: >
+      No, some are linear, while some are nonlinear.
 
+- typeName: multipleChoice
+  prompt: > 
+    A teachers were rated in 10-point Likert scale by the same set of students before
+    after the final examination. We want to measure the
+    correlation between these two ratings. Then:
+  shuffleOptions: true
+  options:
+  - answer: we should use Spearman's rank correlation.
+    isCorrect: true
+    feedback: >
+      Yes, we basically have ordinal data here.
+  - answer: we should use Pearson's correlation.
+    feedback: >
+      Well, you may, but note that the data are ordinal in nature.
+      
+  
 </EXRLIST>
 <HEAD2>Module 6, Lesson 2,  Video 1: Contingency table measures
 (part 1)</HEAD2>
@@ -2596,12 +2899,90 @@ when a new value 7 is introduced.
 
 <EXRLIST id="M6L2V1.yml">
 
-- typeName: multipleChoiceCompute by hand
-- typeName: multipleChoiceCompute by hand
-- typeName: multipleChoiceCompute by hand
-- typeName: multipleChoiceCompute by hand
+- typeName: numeric
+  prompt: |-
+    Here is a 2 by 2 contingency table:
+    |----+----|
+    | 23 | 34 |
+    |----+----|
+    | 56 | 20 |
+    |----+----|
+    Compute odds-ratio from this table.
+  defaultFeedback: >
+    Something wrong. Please review the formula.
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      Great job!      
+  
+- typeName: numeric
+  prompt: >
+    Consider the same contingency table as above. Compute the Phi
+    coefficient.
+  defaultFeedback: >
+    Something wrong. Please review the formula.
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      Great job!
 
-- typeName: multipleChoiceInterpret
+- typeName: numeric
+  prompt: >
+    Consider the same contingency table as above. Compute
+    Cramer's V.
+  defaultFeedback: >
+    Something wrong. Please review the formula.
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      Great job!
+
+
+- typeName: numeric
+  prompt: >
+    Consider the same contingency table as above. Compute the 
+    contingency coefficient.
+  defaultFeedback: >
+    Something wrong. Please review the formula.
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      Great job!
+
+
+- typeName: multipleChoice
+  prompt: >
+    Can odds-ratio be negative? Can it be more than 1?
+  shuffleOptions: true
+  options:
+  - answer: No. Yes.
+    isCorrect: true
+    feedback: >
+      That's right!
+  - answer: No. No.
+    feedback: >
+      Well, you are dividing one odds by another. An odds can be
+      very close to 0. 
+  - answer: Yes. No.
+    feedback: >
+      All entries in a contingency table are frequencies and
+      hence non-negative.
+  - answer: Yes. Yes.
+    feedback: >
+      All entries in a contingency table are frequencies and
+      hence non-negative.
+      
+
+- typeName: multipleChoice
+    Interpret relation between mother's whorl and child's whorl.
 
 </EXRLIST>
 
