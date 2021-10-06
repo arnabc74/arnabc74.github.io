@@ -1,5 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
+<UPDT>WED OCT 06 IST 2021</UPDT>
 This course consists of 6 modules,  each spanning one week. Each
 module is made of 5 lessons,  which in their turn are split into
 2 (or in some cases 3) videos. Each of the first 4 lessons in a
@@ -1824,15 +1825,45 @@ also called a pairs plot.
 
 <EXRLIST id="M2L3V2.yml">
 
-- typeName: multipleChoiceMake a frequency distribution from the following data.
+- typeName: multipleChoice
+  prompt: |-
+    Make a frequency distribution from this data set [link] using
+    these classes. 
+    | Classes    |
+    |------------|
+    | 0 -- 0.1   |
+    | 0.1 -- 0.2 |
+    | 0.2 -- 0.5 |
+    | 0.5 -- 0.7 |
+    | 0.7 -- 0.9 |
+    | 0.9 -- 1.0 |
+    What is the class with the maximum frequency? Number of the
+    classes as 1, 2, 3, 4, 5 and 6.
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
 
-- typeName: multipleChoiceFind relative frequency densities of all the classes in the
-given frequency distribution table.
-
+- typeName: multipleChoice
+  prompt: > 
+    Find relative frequency densities of all the classes in the
+    given frequency distribution table.
+    [How to check an array of numbers?]
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 1: Tabular: Pivot table ahd chart</HEAD2></STKY>
+<HEAD2>Module 3, Lesson 2,  Video 1: Tabular: Pivot table and pivot chart</HEAD2></STKY>
 In this video we shall talk about a representation of data that
 is definitely the one most commonly used: <V>tabular
 format</V>. Be it a telephone directory or a dictionary or a
@@ -1850,18 +1881,59 @@ varied. They allow for various embellishments,  <B>nested rows</B>,
 Such fancy tables are often called <B>pivot tables</B>.
 <P/>
 Let's start with an example.
-
+[Grading multiple values]
 <EXRLIST id="M3L3V1.yml">
 
-- typeName: multipleChoiceConsider this toy data set. We have constructed this pivot
-table. What should the value in the marked cell?
+- typeName: multipleChoice
+  prompt: >
+    We have constructed this pivot
+    table. 
+    |              | Male | Female | Total |
+    |--------------+------+--------+-------|
+    | Left-handed  |   29 | ??     | ??    |
+    | Right-handed |   34 | 45     | ??    |
+    |--------------+------+--------+-------|
+    | Total        |   ?? | ??     | 200   |
 
-- typeName: multipleChoiceHere are two pivot tables claimed to be derived from the
-same data set. Is the claim justified?
+  What should the value in the marked cells be?
+
+- typeName: multipleChoice
+  prompt: > 
+    Here are two pivot tables claimed to be derived from the
+    same data set. Is the claim justified?
 
 
-- typeName: multipleChoiceHere are two different layouts for the same pivot
-tables. Which one is better suited for a newspaper report?
+- typeName: multipleChoice
+  promot: >
+    Here are two different layouts for the same pivot
+    table. Which one is better suited for a newspaper report?
+    |      | Urban | Urban  | Rural | Rural  |   |
+    |------+-------+--------+-------+--------+---|
+    |      | Male  | Female | Male  | Female |   |
+    | High |       |        |       |        |   |
+    | Med  |       |        |       |        |   |
+    | Low  |       |        |       |        |   |
+    and 
+    |        | Urban | Urban | Urban | Rural | Rural | Rural |
+    |--------+-------+-------+-------+-------+-------+-------|
+    |        | High  | Med   | Low   | High  | Med   | Low   |
+    | Male   |       |       |       |       |       |       |
+    | Female |       |       |       |       |       |       |
+  shuffleOptions: true
+  options:
+  - answer: The first
+    isCorrect: true
+    feedback: >
+      Yes, here the column heading denote the background of the
+      persons. The row heading deal with the income.
+  - answer: The second
+    feedback: >
+      Here the demographic background is partly in the row headings
+      and partly in the columns headings.
+  - answer: Both are equally useful.
+    feedback: >
+       Well, they both contain the same information. But the aim
+       here is to related the income group with the background.
 
 </EXRLIST>
 
@@ -1885,7 +1957,8 @@ pivot table.
 
 <EXRLIST id="M3L3V1.yml">
 
-- typeName: multipleChoiceShow a histogram and ask for relative frequency density for
+- typeName: multipleChoice
+  promShow a histogram and ask for relative frequency density for
 a particular class.
 
 - typeName: multipleChoiceShow a histogram, give sample size, and ask for frequency  for
@@ -1969,18 +2042,117 @@ from tiny rodents to enormous blue whales. What do you mean by
 
 <EXRLIST id="M4L1V1.yml">
 
-- typeName: multipleChoiceConsider these 20 numbers. Do you think that they have a
-central tendency?
+- typeName: multipleChoice
+  prompt: >
+    Two sets of  numbers are shown using two diffeent colours along a number line: [fig]
+    Which set do you think has/have central tendency?
+  shuffleOptions: true
+  options:
+  - answer: the red set , but not the blue.
+    isCorrect: true
+    feedback: >
+      The red points are more or less tighlty clustered
+      together, while the blue points seems to come in *two*
+      clusters. Clubbing the two clusters together may not be a good idea.
+  - answer: the blue set B, but not the red.
+    feedback: >
+      The blue points come in *two* clusters. Like weights of
+      blue whales and weights of dogs. Is it s good idea to club them together?
+  - answer: both red and blue.
+    feedback: >
+      The blue points come in *two* clusters. Like weights of
+      blue whales and weights of dogs. Is it s good idea to club them together?
+      
+  - answer: neither red nor blue.
+    feedback: >
+      The red points are nicely clustered together. They appear
+      to represent basically the same number except for some minor
+      variations.        
 
-- typeName: multipleChoiceIf the mean of 10 numbers is 23.5,  and one of them is
-exactly equal to 23.5,  then what is the mean of the remaining
-nine numbers?
+- typeName: multipleChoice
+  prompt: > 
+    If the mean of 10 numbers is 23.5,  and one of them is
+    exactly equal to 23.5,  then what is the mean of the remaining
+    nine numbers?
+  shuffleOptions: true
+  options:
+  - answer: Must also be 23.5.
+    isCorrect: true
+    feedback: >
+      Yes. Had the remaining nine number had a different mean,
+  then the overall mean would have been pulled away from 23.5
+  towards that point.
+  - answer: Should be less than 23.5.
+    feedback: >
+      But then don't you think that the overall mean would be pulled down from 23.5?
+  - answer: Should be more than 23.5.
+    feedback: >
+      But then don't you think that the overall mean would be pulled up from 23.5?
+  - answer: Cannot say anything in general.
+    feedback: >
+      Well, let's say the mean of those nine numbers is x. Then
+      their total must be 9x. So the total of all the numbers is
+      9x+23.5. Then what is their mean?
+  
 
-- typeName: multipleChoiceIf the mean of of 10 numbers is 10,  and none of them equals
-10,  then is it true that exactly five must be above 10,  and five
-below 10?
+- typeName: multipleChoice
+    prompt: > 
+      If the mean of of 10 numbers is 10,  and none of them equals
+      10,  then is it true that exactly five must be above 10,  and five
+      below 10?
+  shuffleOptions: true
+  options: 
+  - answer: No
+    isCorrect: true
+    feedback: >
+      Remember the balancing scale example we discussed in the
+      video? It is possible to have a situation like this[fig].
+      Here that one *far away* point can balance all the other points.
+  - answer: Yes.
+    feedback: >
+      Remember the balancing scale example we discussed in the
+      video? A *far away* point can turn the balance more
+      powerfully than a point closer to the pivot.
 
+- typeName: multipleChoice
+  prompt: >
+    The mean height of 10 students is 164.6 cm. If the heights
+    were measured in inches then the mean would have been:
+  shuffleOptions: true
+  options:
+  - answer: 164.6 times 2.54 inches
+    isCorrect: true
+    feedback: >
+      
+  - answer: 164.6 divided by 2.54 inches
+    feedback: >
+      
+  - answer: 164.6 times 2.54 divided by 10 inches
+    feedback: >
+      
+  - answer: Cannot be computed based on the information given.
+    feedback: >
+      
 
+- typeName: multipleChoice
+  prompt: >
+    The mean side length of 10 square plots is 164.6 cm. Then 
+    the mean area is:
+  shuffleOptions: true
+  options:
+  - answer: cannot answer based on the information given.
+    isCorrect: true
+    feedback: >
+      
+  - answer: \sqrt{164.6} cm^2
+    feedback: >
+      
+  - answer: 164.6^2 cm^2.
+    feedback: >
+      
+  - answer: 
+    feedback: >
+      
 </EXRLIST>
 
 <STKY>
@@ -1988,10 +2160,49 @@ below 10?
 
 <EXRLIST id="M4L1V2.yml">
 
-- typeName: multipleChoiceCompute mean of these numbers using Excel.
+- typeName: numeric
+  prompt: |-
+    Compute mean of these numbers using Excel.
+    23.4, 32.1, 56.2, 45.0, 34.4
+  defaultFeedback: >
+    Well, the minimum of these numbers is 23.4 and the maximum is
+    56.2. Isn't it odd that you think the mean is outside this range?
+  shuffleOptions: true
+  answers:
+  - range: [38.2,38.22]
+    isCorrect: true
+    feedback: >
+      That's right!
+  - range: [23.4, 38.2)
+    feedback: >
+      No, please check the computation. May be you should watch
+      the video once again for the formula?
+  - range: (38.22,56.2]
+    feedback: >
+      No, please check the computation. May be you should watch
+      the video once again for the formula?      
+      
 
-- typeName: multipleChoiceCompute overall mean of the numbers in different columns in
-Excel.
+- typeName: multipleChoice
+  prompt: > 
+    This LibreOffice spread sheet [link] has numbers in 3
+    columns. What is their  *overall* mean?
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+
 
 </EXRLIST>
 
@@ -2000,15 +2211,81 @@ Excel.
 
 <EXRLIST id="M4L2V1.yml">
 
-- typeName: multipleChoiceCompute median of these numbers by hand.
+- typeName: numeric
+  prompt: |-
+    Compute median of these numbers by hand.
+    34.3, 23.5, 34.6, 120.4, 30.4
+  shuffleOptions: true
+  defaultFeedback: >
+    You need to sort the values first. Then pick the central value.
+  answers:
+  - value: 30.4
+    isCorrect: true
+    feedback: >
+      Yes, that is the central value.
+      
 
-- typeName: multipleChoiceChange of unit.
+- typeName: multipleChoice
+  prompt: >
+    The median height of 10 students is 164.6 cm. If the heights
+    were measured in inches then the median would have been:
+  shuffleOptions: true
+  options:
+  - answer: 164.6 times 2.54 inches
+    isCorrect: true
+    feedback: >
+      
+  - answer: 164.6 divided by 2.54 inches
+    feedback: >
+      
+  - answer: 164.6 times 2.54 divided by 10 inches
+    feedback: >
+      
+  - answer: Cannot be computed based on the information given.
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+    The median side length of 10 square plots is 164.6 cm. Then 
+    the median area is:
+  shuffleOptions: true
+  options:
+  - answer: 164.6^2 cm^2.
+    isCorrect: true
+    feedback: >
+      
+  - answer: \sqrt{164.6} cm^2
+    feedback: >
+      
+  - answer: 
+    feedback: >
+      
+  - answer: cannot answer based on the information given.
+    feedback: >
+      
 
-- typeName: multipleChoiceWrite down 3 numbers such that their median is less than
-their mean. 
 
-- typeName: multipleChoiceThree numbers has mean equal to median. If the smallest
-number is 10 and second smallest is 13,  then find the other number.
+
+- typeName: plugin
+  prompt: >
+    Write down 3 numbers such that their median is less than
+    their mean. 
+
+- typeName: numeric
+  prompt: >
+    The mean of three numbers is equal to their median. If the smallest
+    number is 10 and second smallest is 13,  then find the other number.
+  defaultFeedback: >
+    No, that's not correct. If mean equals median, then the
+    numbers must be equispaced.
+  shuffleOptions: true
+  answers:
+  - value: 16
+    isCorrect: true
+    feedback: >
+      Aha, that's right! The numbers are equispaced. Since the
+      gap is 13-10=3, so the remaining number must be 13 + 3 = 16.
+      
 
 </EXRLIST>
 
@@ -2029,12 +2306,64 @@ number is 10 and second smallest is 13,  then find the other number.
 <HEAD2>Module 4, Lesson 3,  Video 1: Mode and others</HEAD2></STKY>
 
 <EXRLIST id="M4L3V1.yml">
-- typeName: multipleChoiceFind model of these numbers by inspection.
+- typeName: numeric
+  prompt: |-
+    Find the mode of these numbers by inspection:
+      23, 54, 59, 31, 54, 78, 54, 54, 31
+  defaultFeedback: >
+    Remember the definition of mode? It is the number that 
+    occurs most frequently. 
+  shuffleOptions: true
+  answers:
+  - value: 54
+    isCorrect: true
+    feedback: >
+      Yes, 54 is the number that repeats most often.
 
-- typeName: multipleChoiceDo these numbers have any mode?
 
-- typeName: multipleChoiceFind mode from theis frequency distribution table.
+- typeName: multipleChoice
+  prompt: |- 
+    Do these numbers have any unique mode?
+    34, 59, 34, 54, 39, 59, 59, 34, 59, 23, 34
+  shuffleOptions: true
+  options:
+  - answer: No.
+    isCorrect: true
+    feedback: >
+      Actually both 34 and 59 qualify to be modes here. 
+  - answer: Yes, 34.
+    feedback: >
+      Well, 34 is *one* mode, but it is not the *unique* mode.
+  - answer: Yes, 59.
+    feedback: >
+      Well, 54 is *one* mode, but it is not the *unique* mode.
 
+
+- typeName: numeric
+  prompt: |-
+    Find mode from this frequency distribution table.
+    |  Class | Frequency |
+    |--------+-----------|
+    | 10--20 |        34 |
+    | 20--30 |        45 |
+    | 30--40 |        51 |
+    | 40--60 |        44 |
+    |  60-90 |        57 |
+  shuffleOptions: true
+  answers:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 </EXRLIST>
 
 <STKY>
@@ -2052,7 +2381,19 @@ number is 10 and second smallest is 13,  then find the other number.
 <HEAD2>Module 4, Lesson 4,  Video 1: Robustness</HEAD2></STKY>
 
 <EXRLIST id="M4L4V1.yml">
-- typeName: multipleChoiceWhich is more robust: mean or median?
+- typeName: multipleChoice
+  prompt: >
+    Which is more robust: mean or median?
+  shuffleOptions: true
+  options:
+  - answer: median
+    isCorrect: true
+    feedback: >
+      Yes, median is not easily purturbed by extreme values.
+  - answer: mean
+    feedback: >
+      No, mean is easily purpurbed even by a single value 
+      lying far from the test.  
 
 - typeName: multipleChoiceCompute 10% trimmed mean from these numbers.
 
@@ -2080,14 +2421,26 @@ number is 10 and second smallest is 13,  then find the other number.
 <STKY><HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
 
 <EXRLIST id="M5L1V1.yml">
+- typeName: numeric
+  prompt: >
+    We have a data set with just three numbers. The first value
+  is 23.4. The other two values are so that the 
+  dispersion is the minimum possible. What is the sum of those 
+  two values?
+  shuffleOptions: true
+  defaultFeedback: >
+    No, dispersion is minimised when all the three numbers are 
+    huddled together *as closely as possible*.
+  answers:
+  - value: 46.8
+    isCorrect: true
+    feedback: >
+      Yes, all the values must be 23.4 to minimise dispersion.
 
-- typeName: multipleChoiceWe have a data set with just three cases. The value of the
-variable for the first case is given. Find the values of the
-other two to achieve 
-the smallest possible dispersion. 
-
-- typeName: multipleChoiceWrite down two sets of numbers such that the mean of the
-first set is smaller,  but the dispersion is larger.
+- typeName: plugin
+  prompt: >
+    Write down two sets of numbers such that the mean of the
+    first set is smaller,  but the dispersion is larger.
 
 </EXRLIST>
 
@@ -2116,6 +2469,27 @@ is 5,  then find the standard deviation.
 - typeName: multipleChoiceIf the mean and variance of 10 numbers are,  respectively,  10
 and 45,  and a new
 value 7 is introduced,  what is the new variance?
+
+- typeName: numeric
+  prompt: |-
+    Consider this data set:
+    | values |
+    |--------|
+    |     51 |
+    |     34 |
+    |     ?? |
+    |     45 |
+    Find the  value marked with ??  to achieve 
+    the smallest possible variance. 
+  defaultFeedback: >
+    No, the variance can be reduced even further. In fact, it can
+    be made 0.
+  shuffleOptions: true
+  answers:
+  - value: 65
+    isCorrect: true
+    feedback: >
+      Yes, you have chosen the mean of the available values.
 
 </EXRLIST>
 
