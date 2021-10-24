@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>WED OCT 06 IST 2021</UPDT>
+<UPDT>SUN OCT 24 IST 2021</UPDT>
 This course consists of 6 modules,  each spanning one week. Each
 module is made of 5 lessons,  which in their turn are split into
 2 (or in some cases 3) videos. Each of the first 4 lessons in a
@@ -11,76 +11,158 @@ providing only the formative quizzes,  as the summative ones are
 essentially of the same type.
 
 <STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
+<SCRIPT>
+<SESS id="" t="0.3">
+Hello,  and welcome to the PGDAS course on <B>Basic Statistics</B>. This
+is our very first lecture, and I am your
+instructor. <V>Name enters.</V> First let me tell you something
+about the structure of our course.
+</SESS>
+<SESS t="0.5" cu="y">
+The <B>course</B> consists of <B>6 modules</B>,  each of <B>one week</B>
+duration,  followed by <B>2 weeks</B> during which you get to <B>study</B> on your
+own (digesting all the pieces of information I bombard at you)
+and within the same 2 two weeks you also appear for a <B>final
+exam</B>. And that brings us to the important question: How are
+you going to be graded?
+</SESS>
+<JINGLE t="0.1">Grading</JINGLE>
+<SESS t="0.2">
+
+Each week we shall discuss four topics, and these will be
+followed by practice
+problems. The points from these will not be considered for final
+grading.</SESS>
+<SESS t="0.2" cu="y">
+The week's grade will come from a unit test at the end
+of the week. It will consist of 8 exercies
+(2 taken from each of the 4 topics learned in the week). The
+marks you get here will be added to your marks from the final exam.
+</SESS>
+<SESS t="0.1">
+ Well,
+that's about it! Now let's get started with the lessons.
+</SESS>
+</SCRIPT>
+
+<STKY><HEAD2>Module 1,  Lesson 1,  Video 0: About the course</HEAD2></STKY>
+<LESSON>
 
 <STKY><HEAD2>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD2></STKY>
-Hello,  and welcome to the PGDAS course on basic statistics. This
-is the first lecture in the very first module. <V>Name enters.</V>As you should know
-already,  the course consists of 6 modules,  each of one week
-duration,  followed by 2 weeks of live online classes.<V>Name leaves.</V> This is
-the very first lecture of module 1. 
-<P/>
-We hear about statistics a lot. But what is it? Well,  there are
-various ways to define it. Possibly the simplest,  and most
-comprehensive way,  is to say that <B>statistics</B> is the <B>science
+<SCRIPT>
+<SESS t="0.2">
+This is a course on <B>Basic Statistics</B>.
+We hear about <B>statistics</B> a lot. But what is it? Well,  there are
+various ways to define it.
+</SESS>
+<SESS cu="t" t="0.5"> Possibly the simplest,  and the most
+comprehensive way,  is to say that is is the <B>art and science
 of learning from experience</B>,  and as such is the most fundamental 
 tool behind human existence. Whether we are trying to predict 
-tomorrow's weather,  or the next wave of COVID,  we are using
+tomorrow's weather <V>Google weather icons</V>,  or the next wave
+of COVID <V>A plot</V>,  we are using
 statistics.
-<P/>
+</SESS>
+<SESS t="0.8">
  Most often we learn from experience even without
 knowing it.  When we do something unconsciously,  out of reflex, 
 without really thinking about it,  we tend to do it
 inefficiently. Take high jumping,  for instance. Most of us can jump
-over a fence. We hardly need to think about it. Our muscles
+over a fence. <V>Jump</V> We hardly need to think about it. Our muscles
 somehow move on their own and we end up on the other side. But if
 one considers the process  consciously,  one can see many subtle
 ways of improvement,  and the sum total of all those may lead to a
-quite different technique and 
-rather surprising improvement in efficiency!
-
-<P/>
+quite different technique <V>fosbury flop glides past</V> and 
+a rather substantial  improvement in efficiency!
+</SESS>
+<SESS t="1.3">
 
 Well,  the same is true about learning from experience. 
 Statistics is a conscious and careful way of going about
 this. Let's start by carefully looking at the word
 "<B>experience</B>". Let's take a simple example. Suppose we want to tap
-the experience of our friends about some movie. If ask them
-about what they think about it,  we shall get responses like
+the experience of our friends about some movie. If we ask them
+about what they think about it, we shall get responses like
 "<B>Good</B>",  "<B>so-so</B>",  "<B>Ok</B>",  "<B>Hey you must watch it</B>"! Yet another may
 give you a long description about what she liked the
 most. <V>Blah blah</V> Informative as such informal comments are,  they are
-difficult to summarise efficiently. One person's "Good" may very well be another
-person's "so-so". Webpages like
-Rotten Tomato does the same thing,  but in a more systematic
-way. They provide a 5-star rating,  which provides a common
-scale and provides a more uniform data than a mere haphazard
+difficult to summarise efficiently. For one thing, they lack a common scale. One person's "Good" may very well be another
+person's "so-so". The very first thing we might do to rectify
+this is consciously provide a common scale. <V>Likert scale
+appears.</V> Webpages like
+Rotten Tomato does precisely this. They provide a 5-star rating.  This common
+scale brings more uniformity in the responses than a mere haphazard
 collection of "Good" and
-"so-so". When we collect experience in such a systematic
+"so-so".
+</SESS>
+<JINGLE t="0.1">Data</JINGLE>
+<SESS t="0.6">
+ When we collect experience in such a systematic
 way we get <B>data</B>. And this is the first point where
 statistics differs from the common man's way of learning from
 experience.  Statistics systematically collects and  stores the experience in a
 cut-and-dried fashion before proceeding to glean information from
-it. Data are  that cut-and-dried experience. 
-
-
+it. Data are  that cut-and-dried experience.
 <P/>
-
-The term data conjures up the vision of numbers...zillions of
-figures stored in computer disks to be processed by gigantic
-supercomputers. Well,  while it is true to some extent,  data need not
-always be numbers. They may take other forms. In order to learn
-statistics effectively,  it is imperative that we know what data
-are. 
-
+It might interest you to learn about the different ways data are
+collected. So let's get a taste of that before delving deeper. 
+</SESS>
+<JINGLE t="0.1">Data collection devices</JINGLE>
+<SESS t="1.00">
+There are basically five types of devices for data collection
+depending on the scenario. 
+Measure, Observe, Lookup, Ask, and Derive. If we want data about some
+physical quantity that is accessible to us, like the area of
+land, height of a person, intensity of sound, temperature of a
+green house, the most direct way is to just measure it.
+Sometimes, however, merely observing is enough, for instance, a
+person's gender. In many cases, especially for data of social
+importance, we may get them from records. For instance, income amounts
+for employees may be obtained from pay registers. In some
+situations asking a knowledgeable person is the only way to get
+information. This is particularly true if the information is
+about a mental state (like satisfaction level, or
+smartness). Finally, certain data are obtained directly by are derived from
+other related quantities. Examples include total expenditure or a
+student's marks.
+</SESS>
+<JINGLE t="0.1">Looking at data</JINGLE>
+<SESS t="1.00">
+Statisticians have to work with data just chemists have to work
+with chemicals. When you see a data set for the first time, it is
+like entering an unknown dark room. Your eyes will need time to
+adjust to it. Similarly, one needs some time to understand what
+a data set is about. A good mental exercise to facilitate this
+process is to quickly classify the various pieces of information
+present in the data set in terms of how they were
+collected. Let's consider this: the number of female headed rural
+households having 4 rooms in
+West Bengal's Malda district. Let's think for a moment how this
+number was arrived at. It involved measurement in the form of
+counting, involved asking (how many rooms are there in the
+house?). But how was the "female headed" attribute decided? Was
+it the result of asking? Or is it based on some government record
+backed by a precise definition? Thinking about such points may
+appear unnecessary, but is a good way to warm up.
 <P/>
+This excercise is not only good for warming up, but may throw
+light on the reliability of the information present. For
+instance, if you ask a person about his/her monthly income data,
+you are more likely to get an underestimate. However, if the data
+were obtained from his pay slip, then the amount is
+accurate.
+</SESS>
 
-And yes,  "data" is a plural word. Its singular "datum" is rarely
+<SESS t="0.5">
+
+Ah yes,  "data" is a plural word. Its singular "datum" is rarely
 used. A common mistake found in many reports is to say things
 like "This data says ...". It should be either "These data say
 ..." or "This data set says ...". But knowing the word "data"
 grammatically is not enough. We need to take a deeper look,  and
 that's what we are about to do next.
-
+</SESS>
+</SCRIPT>
 <EXRLIST id="M1L1V1.yml">
 - typeName: multipleChoice
   prompt: >
@@ -123,28 +205,103 @@ that's what we are about to do next.
 </EXRLIST>
 
 <STKY><HEAD2>Module 1, Lesson 1,  Video 2: Data--types</HEAD2></STKY>
-Before we start talking abou the details,  let's take a quick look
-at some different ways one may go about collecting data. When you
-are collecting data,  there is a scenario. Like a village,  and you
-plan to collect data on the agriculatural land holding. There are
-basically two ways: you may actually measure the land yourself, 
-or get the information from the existing government records. In
-the first first case,  the data set is called <B>primary
-data</B>. In the second it is <B>secondary data</B>. Thus, 
-primary data are what the agency has collected afresh for the
-current purpose. Secondary data mean data that were collected
-earlier (possibly by another agency for a different purpose).
+<SCRIPT>
+<SESS t="0.40">
+In the last video we learned about the various instruments to get
+data. These instruments may be used in different ways in a
+real scenario. In this video we shall take a look at some of these. 
+First, a few terms:
+</SESS>
+<JINGLE t="0.1">A few terms</JINGLE>
+<SESS t="2.40">
+In any data collection scenario we have an
+<B>agency</B> that collects the data. It could be the government, a
+private organisation, or even an investigator in invididual
+capacity. Then there is a <B>scope</B>. For example, the agency
+may be interested in only rural households having income from
+agriculture, or it could be only urban household with at least
+one earning female member. The scope also specifies the <B>time
+frame</B>. Jst imagine how meaningless it would be to refer to
+census data without mentioning the year of the census! Finally,
+we have the concept of a <B>unit</B>. If you are colelcting data
+about households, then each household is a unit, if you are
+collecting data about districts, then each distrct is a unit. 
 <P/>
-There is another way to classify the data collection
-procedure. If you are interested in the monthly expendicure of
+Multiple agencies may be responsible for various parts of a data
+set. For instance, an agency may take the data from some
+existing record, created by some other agency in the past. Such 
+data are called <B>secondary data</B>. If the agency reporting
+the data is also responsible for collecting the data, then we
+have <B>primary data</B>.
+<P/>
+Whether to use primary or secondary data is an important decision
+that one has to make right at the outset.
+Each has its advantages and
+disadvantages. Primary data,  for example,  are the only option if you are
+conducting study about something not explored before. But they
+also happen to be very expensive. Secondary data are easier to
+get,  but may be dated,  or not exactly suited for a particular
+study.
+<P/>
+It is somewhat like buying a dress. You may buy a custom-made
+dress to suit your exact requirements, or you may just buy a
+ready-made one. The advantages and disadvantages are
+similar. Primary data is more expensive and time-consuming to
+collect, but if you can manage to get them, they will give you
+the exact information you want. Secondary data, on the other
+hand, are , if  available, easier to get, but may only be an
+approximation to the information that you are actually seeking.
+</SESS>
+</SCRIPT>
+<EXRLIST>
+
+</EXRLIST>
+
+<STKY><HEAD2>Module 1, Lesson 1,  Video 3: Data--Census/sample, Observational/experiment</HEAD2></STKY>
+<SCRIPT>
+<SESS t="2.50">
+We have talked about the <B>scope</B> of a data, and also
+mentioned the concept of <B>units</B>. All the units coming under
+the scope constitute the <B>population</B>. For example, if we
+are dealing with household level rural data for a district, then
+the set of all rural households in the district is the
+population. If the population is small, then you can actually
+collect the data from each and every unit. This is called <B>complete
+enumertion</B>.
+As an example,  if you are interested in the monthly expenditure of
 the houselholds in a village and the village has just 30
-houselholds,  then you can indeed visit each and every houselhold
-to collect the data. This is called <B>complete
-enumertion</B>. But imagine doing the same thing for every
+households,  then you can indeed visit each and every household
+to collect the data.  But imagine doing the same thing for every
 household in a large city! Then we have to resort to take
 a <B>sample</B>,  <B>a representative subset of all the households, </B>
 and collect data from only those households. 
 <P/>
+How to choose the sample appropriately is a vast topic in
+itself. You'll learn more about it later in the course Sample
+Survey. For now, let it suffice to know that most of the time we
+select the sample as a random subset of the population. Such a
+sample is naturally called a <B>random sample</B>. 
+
+<P/>
+How to compare between complete enumeration data and data
+obtained from a sample?
+Complete enumeration gives,  well,  the complte
+information. What can be better? But then it comes at a great
+price. It is enormously more expensive and time
+consuming. Indeed,  so much so it might just be infeasible in many
+cases. Even a country can hardly afford to perform complete
+census frequently. But sampling is almost inevtiablle in most
+situations. But samples have their own pain. Is a sample
+really representative of the entire population? That's a question
+that continues to bug all conclusons that you draw from such
+data. The larger the sample size, the greater chance that it will
+explore the nooks and corners of the population. But larger
+sample size means greater expense in data collection as
+well. Balancing that trade-off is an important cosideration in
+sample survey, as you will learn later.
+</SESS>
+<JINGLE t="0.1">Observational study and designed experiment</JINGLE>
+<SESS t="2.70">
 There is yet another way to classify data
 collection. <B>Observational study</B> and <B>designed
 experiment</B>.  In an observational study,  you are merely a
@@ -153,32 +310,24 @@ find it,  without trying to modify the system. In a designed
 experiment,  by contrast,  you are deliberately trying to disturb
 the system,  and collecting data about how it responds to the
 change. Let me give a very simple mundane example. You see
-something longish lying on the way. Is it a rope? Or a snake? You
+something like a rope lying on the way. Is it really a rope? Or a snake? You
 want to find out. You may go about this in two ways: you way just
-wait and watch it behaviour (that's observational study). Or you may just throw a stone at it, 
-and see how it reacts (that would be a designed experiment).
-
+wait and watch its behaviour (that's observational study). If it
+stays in the same posture for 10 minutes, then possibly it is
+just a piece of rope. But if it starts slithering away, then
+definitely it is a snake. Here is an alternative way of going
+about this:  you  throw a stone at it, 
+and see how it reacts. This would be a designed experiment,
+because you deliberately chnged the system in order to learn how
+the system reacts to the change.
 <P/>
-Well,  that's quite a bit of jargon for a single video. Confusing
-as they might see at first,  these concepts are important ones
-when yoy work with data. Each has its advantages and
-disadvantages. Primary data,  for example,  are the only option if you are
-conducting study about something not explored before. But they
-also happen to be very expensive. Secondary data are easier to
-get,  but may be dated,  or not exactly suited for a particular
-study. The choice is somewhat like choosing a readymade dress or
-a custommade dress. 
-<P/>
-
-A comparison between complete enumeration and sampled data is
-similar. Complete enumeration gives you,  well,  the complte
-information. What can be better? But then it comes at a great
-price. It is enormously more expensive and time
-consuming. Indeed,  so much so it might just be infeasible in many
-cases. But samplined data have their own pain. Is the sample
-really representative of the entire population? That's a question
-that continues to bug all conclusons that you draw from such
-data. 
+Designed experiments are used more frequently in clinical
+trials to assess effectiveness of drugs, or deciding about optimal
+settings in a production process. In a social study, on the other
+hand, we generally cannot or do want to disturb the system, and
+hence have to rely on observational study. If we want to relate
+educational level to income, then observational study od the only
+way to go about it. 
 <P/>
 Let's now compare observational study with designed
 experiment. Most scientific studies that deal with causality ie, 
@@ -193,7 +342,9 @@ situations where observational study is the only way to go. To
 check if smoking causes cancer,  you cannot really ask a person to
 start smoking! Most social science data are collected by
 observational study.
+</SESS>
 
+</SCRIPT>
 <EXRLIST id="M1L1V2.yml">
 - typeName: multipleChoice
   prompt: >
@@ -268,37 +419,131 @@ observational study.
 
 </EXRLIST>
 
-<STKY><HEAD2>Module 1, Lesson 1,  Video 3: Case,  variable and rectangular structure</HEAD2></STKY>
-
-All data are results of measurements. The measurement may be made
-by a scientific instrument like a measuring tape or a therometer
-or telescope,  or simply by asking a verbal question,  or merely by
-inspection. Of course,  judging a person's gender by merely looking
-at the person hardly deserves to be called a measurement. So
-statisticians prefer to use the term <B>variable</B>. The result
-of each measurement gives a single outcome called
-the <B>value</B>. 
+<STKY><HEAD2>Module 1, Lesson 1,  Video 4: Case,  variable and rectangular structure</HEAD2></STKY>
+<SCRIPT>
+<SESS t="0.5">
+The term data conjures up the vision of numbers...zillions of
+figures stored in computer disks to be processed by gigantic
+supercomputers. Well,  it is true to some extent,  all data
+are encoded as numbers when stored in computers, but the data
+themselves need not
+always be numbers. They may take other forms. In order to learn
+statistics effectively,  it is imperative that we know how data set
+looks inside a computer. It looks like a rectangle, what is
+called a data matrix.
+</SESS>
+<JINGLE t="0.1">Data matrix</JINGLE>
+<SESS t="1.30">
+Let's start with an example. Here is a data set stored shown in a
+spreadsheet. It is like rectangle, consisting of a number of rows
+and columns. Each column denotes a <B>variable</B>. 
+Each row is called a <B>case</B>. Think of this like this. We had
+already mentioned about units in a data collection scenario,
+remember? Like the households in a household-level survey. When
+we collect data we get information about the households. Like
+making a measurement, or asking a specific questionm making an
+observation. Each measurement or question or
+observation gives rise to a variable. Like "What is the family
+size?" corresponds to one variable. The responses that we get
+for measurement / question / observation are the  <B>value</B>s
+for that variable. All the values corresponding to the same unit
+are customarily written in a row, or case, as we call it. The
+values for the same variable are written in a same column. This
+is the format that all standard softwares expect the data to be in.
 <P/>
-When we make a measurement,  we are are measuring <I>something</I>
-or <I>somebody</I>. That something or somebody is called
-a <B>case</B>. When you are recording a patient's body
-temperature,  the patient is a case,  "temeperature"  is the
-variable,  and the number itself is the value of that variable for
-that case. Typically,  a statical data set consists of a number of
-variables and a number of cases. The corresponding values are
-laid out in a rectangular structure,  where the rows denote the
-cases and the columns denote the variables. All standard
-statistical softwares excpect the data to be in this rectangular format.
+Sometimes beginners fail to cast a data set into this
+rectangular format. Let's discuss this next.
+ </SESS>
+<JINGLE t="0.1">From data to data matrix</JINGLE>
+<SESS t="0.40">
+We have already seen how the values in a data set result from
+five different sources: measuring,  observing, looking up, asking
+and deriving. But when we want to cast the data into a data
+matrix, it helps to imagine a <B>report sheet</B> where each
+variable is like a field. Imagine that you are approaching each
+unit with a copy of this sheet, and filling it up based on the
+information from that unit. Then each filled-in sheet gives you
+one case (i.e, row) of your data matrix.
+<P/>
+An example might help here. 
+Suppose that we have are considering household level data in
+different areas in a 
+district. An area may be of one of three types: urban, semi-urban
+and rural.  For each household we are interested in the number of
+inmates, monthly income, whether the household owns agricultural
+land, and if so the area of land holding. The hypothetical report
+sheet will then have fields: 
+  name of head (or some other identifier)
+  name of area
+  type of area
+  number of inmates
+  monthly income
+  landholding [y/n]
+  area  
+Two points are in order here. First, the type of area is really
+not an attribute of the household, rather it is  an attribute of
+the area. But still I have put it in the report sheet. This is
+quite common in practice. The information may actually come from
+units of different levels nested inside one another, like here
+household is the basic unit, that is inside the larger unit
+called area. The type attribute is actually for the larger unit. 
+But still, since each case in the data matrix refers to a single
+household, I have included it in the report sheet.
+<P/>
+ The second point is that the area of landholding is meaningful
+only for the households owning land. But even for households without any
+land holding, there must be a value for the area. It could be 0,
+or could be some special marker like NA, or may simply be left
+blank. 
+</SESS>
+<SESS t="2.00">
+Spreadsheet programs like MS-Excel or LibreOffice are used to
+record data. However, sometimes one needs to rearrange the data
+before it is ready for statistical analysis. Most, if not all,
+statistical analysis requires the input to be a <I>single</I>
+data matrix. But the data may be present over multiple tables in
+a spreadsheet. Here are two scenarios. There may be units nested
+inside one another. Like households inside villages, and villages
+inside districts.
+Some information may be available for districts, some for
+villages, while someothers from vilages. It is important to merge
+these into a single data matrix.
 
 <P/>
-Sometimes beginners fail to create this rectangular format. For
-this,  it helps to imagine a <B>report sheet</B> with fields like
-"temperature" "patient's name" to be filled in. Everytime you
-have a occasion to fill up a copy of this report sheet,  you get a
-case. Each field in the sheet is a variable,  and everything you
-write while filling it up is a value.
+Another scenario is when different tables are created for
+different larger units. Like we are collecting data for
+agricultral plots in different villages. For each plot we want
+its area, type of fertiliser and total yield. If there are 4
+villages, with 10 plots in each, and one investigator is in
+charge of collecting data from one village, then the collected
+data will be in 4 tables, which need to be merged into a single
+data matrix. Notice how the plot numbers are now repeated. 
+Notice also how the names of villages came down from the
+headings and formed a column of its own. This is an important
+thing to remember. In the final data matrix, the information
+should in the columns headings and the body. No information
+should be in the table title. Similarly, there should not be any
+info in the row headings. Here is an example. 
 
-<TODO>No information is row/col heads or table headings.</TODO>
+           Plot number 
+District 1    1
+              2
+              3
+District 2    1
+              2
+              3
+              4
+Here is a quick checklist:
+
+   * No nested rows/columns. 
+   * No row heading
+   * No info in table heading
+   * Single table
+   * Rows denotes cases
+   * Columns denote variables.
+
+</SESS>
+</SCRIPT>
 
 <EXRLIST id="M1L1V3.yml">
 - typeName: multipleChoice
@@ -444,71 +689,220 @@ write while filling it up is a value.
 
 
 </EXRLIST>
+</LESSON>
 
-<STKY><HEAD2>Module 1, Lesson 2,  Video 1: Continuous,  discrete,  counting and categorical</HEAD2></STKY>
-
-Different variables 
- may be of different types. Some may be numbers,  others may be
- like names. All values belonging to the same variable must be of
+<STKY><HEAD2>Module 1, Lesson 2,  Video 1: Types of variables (Users' perspective)</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="1.10">
+In the last lesson we have learned about types of data, and have
+acquired a basic understanding of how they are collected. We
+learned about cases and variables. Now it is time to take a
+closer look at variables.
+<P/>
+Variables are to statisticians what  colours are to a
+painter. You may look at colours from the viewers' perspective,
+and talk about dreamy sunset colour, or the warm colour of roses. But
+all this wide variation is basically made by mixing colours in a
+restricted pallete. So from the painter's perspective the colours
+are more prosaically named as burnt sienna and carmine. The
+description of the colours from the viewers' perspective are more
+intuitive and often lack clear distincttion. But the painter's
+terminology is more precise and technically oriented. 
+<P/>
+Similar is the case with variables. We can classify them in terms
+of usage, and also in terms of their techical nature. Let's learn
+about them one by one.
+</SESS>
+<JINGLE t="0.1">Types of variables (by usage)</JINGLE>
+<SESS t="0.9">
+ As we
+already know the columns in a data matrix denote variables. The names of the
+variables are given at the very top. A quick look at the values
+show that some of them are numbers, while  others are
+textual. Some values may be dates. Also some values may be
+missing. Some values may be like "<12" or "negligible". 
+The first point to know is that all values belonging to the same
+variable (i.e., in the same column) must be of
  the same type.  Thus,  if we have a variable like a person's
  height,  then either all of the values are in numbers (e.g.,  in
  cm) or in words  like "tall",  "medium" and "short". But not a
  mixture of both.  
-
-The simplest type of variable is an <B>identifier</B> variable. These
-are used to identify something. They could be names or roll
-numbers or EPIC or PAN or something similar.
-
+</SESS>
+<JINGLE t="0.1">Identifier variable</JINGLE>
+<SESS t="1.9">
+Let's look at  an example. Here is a data  matrix.
+The simplest type of variable from the users' perspective is an <B>identifier</B> variable. These
+are, well,  used to identify a case. Most official statistics
+data have quite a few of the initial columns devoted to
+identifier variables. They could be names or roll
+numbers or EPIC or PAN or something similar. These variables
+rarely enter into any analysis. The major use for these is for
+tracking. If there is something unusual about a case (as detected
+before or after analysis), we may need to refer to it later. The
+identifier vriables help us to do that. They are often used to
+label plots. But more of that when we shall learn about plotting
+data. 
 <P/>
-
-Another simple type is a <B>timestemp</B> variable. 
+I had once heard the story of a doctor who had a just a
+smattering of the statistical knowledge. He wanted to study
+various medical conditions of patients in a hospital. The data
+matrix was full of numbers. The numbers in very first column gave
+the bed numbers. In his confusion, he entered that into his
+computation, and ended up with a numerical relation between blood
+pressure and bed number! 
 <P/>
-
-
-Contrast this with another scenario. Suppose that we are visiting
+Don't do that mistake. 
+</SESS>
+<JINGLE t="0.1">Timestamp</JINGLE>
+<SESS t="0.80">
+Another type of variable is a <B>timestamp</B>. This marks
+the time when the that particular case was recorded. The time
+stamp may be a date, or a month or even year. For a medical
+monitoring data it may even be marked in hours and minutes. For
+some cases the time stamp may be used only for identification
+purpose. But for certain data sets, the time may enter the main
+analysis. These are called <B>time series</B>. Examples are stock
+prices recorded over time, number of COVID infected persons
+recorded over time. Time series data are extremely important in
+statistics, as they are used for predicting the future. We shall
+later have more occasion to discuss time series. 
+</SESS>
+<JINGLE t="0.1">Counting variables</JINGLE>
+<SESS t="0.7">
+Consider this scenario. We are visiting
 a village and asking each family about the number of children
-they have. There the data may be like this. Some family has 2
-children,  some have 3,  while others may have 4 or none. Can a
-family have 2.5 children? No! Thus,  here the
-values in-between are not valid. The possible values stand apart
-with some gaps between them. 
- This is a <B>counting</B> variable. Examples of other variables of
+they have. There the data may be like this. One family may have 2
+children,  another may have 3,  while others may have 4 or none. Can a
+family have 2.5 children? No! Neither can a family have -2
+children! Thus, here the values must be
+non-negative integers. 
+ This is an example of a <B>counting</B> variable. Examples of other variables of
 this type include <B>count of trees in an area</B>,  
 <B>number of COVID infections in a district</B>. 
-
 <P/>
-
-A different type of variable
-is <B>gender</B>,  which typically takes
-three values <B>Male</B>,  <B>Female</B> and <B>Others</B>.
-Unlike the counting variables,  here we know exactly all the
+Next we shall take a look a another type of variable.
+</SESS>
+<JINGLE t="0.1">Categorical variables</JINGLE>
+<SESS t="0.60">
+Let's look at this example. Here we have two types of houses:
+Kuccha (i.e., made of mud) and Pukka (made of concrete). 
+Unlike the counting variables,  here we know exactly that these
+are the only 
 possible values. This is what is called a <B>categorical</B>
-variable. 
+variable, because it denotes categories. Each value is the name
+of a category.
+
+<P/>
+Next we shall learn about variables that denote outcomes of measurements.
+</SESS>
+</SCRIPT>
+<STKY><HEAD2>Module 1, Lesson 2,  Video 2: Types of variables (Users' perspective) (contd)</HEAD2></STKY>
+<SCRIPT>
+<JINGLE t="0.1">Measurement variables</JINGLE>
+
+<SESS t="2.30">
+An important type of variables is measurement variables. As the
+name suggests, these are
+outcomes of measurements. If you are interested in the relation
+between weight and height of different persons, then you'll
+typically work with the data set like this. Here the variables
+weight and height are both measurement variables.
+<P/>
+Other example include temperature,  blood pressure,  area
+of plots,  agricultural yield of plots. 
 
 <P/>
 
-
-A fourth type of variable may be called the <B>interval</B>
-type. Examples are like income group or age group. These are
-basically low resolution versions of continuous variables. The
-range of values of a continuous variable is split into a number
-of adjacent intervals,  and only the interval in which a number
-falls is recorded. Like for age,  we could have the age groups
-20--40,  45--60,  above 60. Here we need to be careful about the
-boundary values. Usually,  names are associated with each
-interval,  e.g.,  Young,  Middleage and Senior. Similarly,  for LIG, 
-MIG and HIG for income. 
+Now counting may be also considered as a form of measurement, but
+we we shall use the term measurement variable for situations
+where the quantity being meaaured is continuous. Unlike counting,
+where a count jumps from one integer to the next, here the
+measurements can take all the values inbetween. If it is possible
+to have persons 5 feet and 6 feet tall, then it is possible to
+have a person with any height between 5 and 6 feet. Of course the
+sample at hand may not include such a peron, but it is ridiculous
+to say that 5.2 feet is an impossible height for a person to have.
+<P/>
+An important concept connected with such measrement variables is
+that of <B>approximation</B>. All measurements made by hman
+beings are done using finite precision instruments. For instance,
+when you measure a persons height and say that she is 5 feet 3 in
+tall, you are most probably reporting the height <I>to the
+neaest inch</I>. As a result, the reported height jumps from one
+integer mark to the next, much like a counting variable. But
+note the difference. For counting, a count of 2.5 is impossible
+in principle, while a height of 5 feet 2.3 inches is quite
+possible. It is the inadequacy of the measuring instrument which
+prevents us from reporting the height to that level of precision.
+<P/>
+Sometimes we use approximation to such a crude level, that the
+reported values hardly deserve to be called measurements. Instead
+we get <B>interval variables</B>, which we discuss next.
+</SESS>
+<JINGLE t="0.1">Interval variables</JINGLE>
+<SESS t="2.40">
+We shall start with an example: income tax. Income tax depends on
+income. So it is only natural that the data that the income tax
+office is interested in, should have a variable called
+income. Now income has a lot of variability. There are major
+differences as well as minor differences. The major differences
+are of course important, but are the minor differences of any
+consequance for the computation of income tax? No. So the income
+tax office considers income as income slabs. Something like up to
+100,000, from 100,000 to 200,000, from 200,000 to 300,000, and so
+on. These income slabs constitute a new variable, which is an
+example of an interval variable. Sometimes the intervals are
+given descriptive names like low income group, middle income
+group, high income group, etc. Thus, income group like other
+interval variables, is actually a
+categorical variable. The difference between these and
+categorical variables like gender lies in the fact that these are
+created by grouping values of the underlying variable.
+<P/>
+Other examples of such variables include letter grades in
+examinations. Here A denotes a certain range of marks, B denotes
+another range and so on.
+<P/>
+Yet another example is age group.
+<P/>
+When we use  an interval variables instead of the underlying raw
+variable, we are obviously losing information. If I tell you that
+my age is 47 years, you immediately know that I belong to the age
+group middle age (say 40-50). But if I just tell you that I
+belong to the middle age group, yo have no way of knowing my
+exact age for sure. So why should we use interval variables
+instead of the underlying raw variable?  Well, the main advantage 
+is when the underlying variable cannot be
+precisely  measured, and we really do not need the precision for
+our present purpose. 
 
 <P/>
-
-
-A fifth type is called a <B>Likert scale</B> variable.
-
+This idea of categorizing an underlying continuous measureument
+variable is very commonly seen psychomtric studies and feedback
+systems in the form of what is <B>Likert scales.</B> We discuss
+this next.
+</SESS>
+<JINGLE t="0.1">Likert variables</JINGLE>
+<SESS t="1.10">
+In this age of online shopping we all know about Amazon and
+Netflix and Rotten Tomato. All these sites allow the users to
+provide ratings. These ratings are commonly given in a scale of 5
+stars. This is an example of a <B>Likert scale</B>, or 5-point
+Likert scale, to be precise.
 <P/>
-<B>Numerical measurements</B> constitute the most important type
-of variable. Examples include temperature,  blood pressure,  area
-of plots,  yield of plots. 
-
+This is also an interval variable in disguise, where the
+underlying variable may be called satisfaction. But it is really
+hard to measure it. So we cannot really explicitly associate
+intervals to each rating, like "two star means satisfaction
+between 2.3 and 4.6". That is why we refrain from the calling
+them interval variables.
+<P/>
+Well we have described many different types of variables from the
+user's perspective. It is important to know these well, as the
+choice of the appropriate type of statistical analyses depends
+crucially on the type of variable you are working with. 
+</SESS></SCRIPT>
 <EXRLIST id="M1L2V1.yml">
 - typeName: multipleChoice
   prompt: >
@@ -628,28 +1022,23 @@ of plots,  yield of plots.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 1, Lesson 2,  Video 2: Continuous,  discrete,  counting and categorical</HEAD2></STKY>
-One might easily get confsed with so many different types of
-variables! To ease the pain,  statiticians have reduced the number
-to just four
-<UL>
-   - answer: COntinuous:
-<UL>
-   - answer: Difference type
-   - answer: Ratio type
-</UL>
-
-   - answer: Discrete
-<UL>
-   - answer: <B>Nominal</B>
-   - answer: <B>Ordinal</B>
-   - answer: <B>Counting</B>
-</UL>
-
-</UL>
-we split all such measurements into two types: <B>continuous</B>
-and <B>discrete</B>. Continuous means a measurement that takes
-values in a continuum,  a range of values without any gap. Like a
+<HEAD2>Module 1, Lesson 2,  Video 3: Types of variables (technical perspective)</HEAD2></STKY>
+<SCRIPT>
+<SESS t="0.60">
+In one of the earlier videos we mentioned how variables are some
+what like coulours to a painter. There seem to be so many
+different colours in the world. Yet to the painter everything
+boils down to a surprising simple pallette consisting of only a
+few colours. Similarly, from a technical perspective there are
+only two different types of variables. Yes, you have heard that
+right, just two: <B>continuous</B>
+and <B>discrete</B>. 
+</SESS>
+<JINGLE t="0.1">Continuous</JINGLE>
+<SESS t="1.20">
+Continuous means a measurement that takes
+values in a continuum,  a range of values without any gap. We
+have already seen this when we talked about 
 measuring people's heights. When you measure heights of a bunch
 of people you will get a few numbers like these. While these are
 only some distinct points along the number line,  the points
@@ -658,28 +1047,41 @@ have this height or they jump to that height without ever taking
 the values in-between. All possible human heights form a
 continuum,  a range without any gap. So height is a continuous
 variable. 
+<P/>
+Most measurement variables are continuous. Here we are not taking
+approximation into account, we are talking about the true
+underlying value. It is quite possible that you are reporting the
+figures rounted of to one decimal place, so no value between
+150.3 and 150.4 can appear in the reported data, but actually the
+value 150.32 is quite possible. It just gets reported as 150.3,
+that's all! 
+</SESS>
+<JINGLE t="0.1">Discrete</JINGLE>
+<SESS t="1.30">To understand easily remember a discrete variable as one which
+can take only finitely many values.
+All the categorical variables are of this type. For instance,
+gender can take only three values Male, Female and
+others. Counting variables are also considered discrete, though
+they can in principle go on and on. All identifier variables are
+discrete, as well. So are Likert type variables. Variables whose
+values use numbers  at
+nominal or ordinal levels are all discrete. As you can
+understand, almost all variables execept measurement variables are
+discrete. The mathematics to handle all discrete variables is
+quite similar. But that is no comfort for the practising
+statistician, because the intepretation of the result will
+crucially depend on whether a variable is Likert variable or a
+Categorical variable. 
 
 <P/>
-
-
-Some variables are clearly not continuous,  like gender. However, 
-for some others the distinction is less prominent. Take for
-example area of agricultural plots. One would typically measure
-it up to the nearest square metre. So the values are all
-integers. While area is definitely continuous,  the "reported
-area" is obviously like a counting variable! However,  here we
-still consider it continuous. This decision is based on two
-considerations: 
-<UL>
-   - answer: First,  "area" itself is continuous.
-   - answer: Second,  one square metre is much too small compared to the
-total area.
-</UL>
-The same idea applies to any measurement. All measurements are
-made by finite precision instruments,  and hence can take only
-finitely many values. Yet we consider the measurement to be
-continuous if the resolution is sufficiently high. 
-
+By the way, even a measurement variable may appear discrete due
+to approximation. However, discrete or continuous refers to the
+true values, and not the approximate values. Thus, even if
+monthly income is reported to the nearest thousand, it is
+considered continuous. However, if we use only income slabs,
+which is a interval variable, then we have a discrete variable.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M1L2V2.yml">
 - typeName: multipleChoice
 A counting variable is 
@@ -741,9 +1143,189 @@ options:
 
 </EXRLIST>
 
+<STKY><HEAD2>Module 1, Lesson 2,  Video 4: Uses of numbers</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.20">
+When we think about data, we think about numbers. While we do
+occasionally use texts as values of variables, numbers are used
+much more often. Now, numbers as used in a data set need not be
+same as numbers as we learn in mathematics. Numbers are often
+used as codes. Here's an
+example. Suppose we hae a variable called <B>smoking
+habit</B>. It can either be "yes" or "no". However, often such
+binary values are encoded as 1 and 0, respectively. Now you must
+be careful when working with these. You may not just average a
+smoker and a non-smoker to get 0.5! That would just be
+meaningless! Similarly, we cannot say that a smoker is greater
+than a non-smoker (even though 1 is indeed greater than
+0). Indeed, the numbers are just used as names here. Depending on
+how they are used, there are 4 types of numbers in statistics:
+  * nominal
+  * ordinal
+  * interval type
+  * interval/ratio type
+Let's start with nominal.
+</SESS>
+<JINGLE t="0.1">Nominal</JINGLE>
+<SESS t="1.10">
+When a number is used just as a name, we call it nominal. The
+example of smoking habit that we saw just now furnishes one such
+scenario. Another example could be coding Male as 0 and Female as
+0. When a number is used nominally, we may not perform any
+arithmetic operation or comparison with them. Changing the
+numbers should also not have any effect, as long as the distinct
+numbers remain distinct. Thus, we could as well have coded Male
+as 2 and Female as 1. 
+<P/>
+Numbers used nominally are a trap for the beginning
+statisticians. They inadvertanently pass these numbers into
+statistical analysis techniques that perform artihmetic
+operations on them. The computer would never complain if you make
+this mistake. You'll just be rewarded with garbage results. 
+<P/>
+Next we shall talk about another level of using numbers, where
+comparison is allowed, though arithmetic operations are still forbidden.
+</SESS>
+<JINGLE t="0.1">Ordinal</JINGLE>
+<SESS t="1.10">
+Consider a variable called educational level. This is an important
+variable in many social studies. Typical values may be
+"Preschool", "Primary", "Secondary", "Higher secondary",
+"College" and "Higher". These may be encoded as numbers, say as
+1,2,...,6, respectively. While this encoding is natural, would
+you consider encoding them like this: 1 for "Preschool", 4 for
+"Primary", 2 for "Higher", etc? No, that is absurd, because there
+is an implied ordering among the values. Thus we are at a higher
+level than nominal, but still arithmetic oprations are
+meaningless. For example, 2-1 = 5-4, but that does not mean  that
+the difference between 
+primary education  and preschool education is the same as the
+difference between
+College than Higher secondary education. Indeed, we can hardly
+quantify the "difference between primary and preschool education
+levels"!
+Earlier we talked about interval variables. If the intervals are
+encoded as single numbers, then those numbers are being used as
+ordinals. 
+</SESS>
+<JINGLE t="0.1">Interval/ratio level</JINGLE>
+<SESS t="1.00">
+Next we shall talk about the highest level of using numbers. The
+fancy name is <B>interval/ratio level</B>. In plain words, it
+means using numbers as in mathematics. You can perform arithmetic
+operation on these meaningfully. Most measurement variables are
+of this type. I said "most", because there are a few examples
+where cetain operaions  may not really make sense. Consider this
+data set, where we record temperatures of different cities in the
+month of January. While it is meaningful to say that Kolkata is
+5 degrees warmer than Delhi, it is meaningless to say Kolkata is
+double warmer than Delhi. This is because the temperatre scales
+have arbitrary origins. What is double in one scale need not be
+double in another. Thus, here difference is meaningful, but not
+ratio. 
+</SESS>
+</SCRIPT>
+</LESSON>
 <STKY>
 <HEAD2>Module 1, Lesson 3,  Video 1: Univariate and multivariate</HEAD2></STKY>
-
+<LESSON>
+<SCRIPT>
+<SESS t="0.80">
+Welcome back! We have learned quite a bit of stuff in the videos
+so far. We have a basic idea about how data are collected, and
+what are the different types of variables we are interested
+in. So far we are looking at the variables one at a time. But in
+most real life scenario we have more than one variable of
+interest in the
+data. I said "variable of interest" to exclude any identifier
+variable that might be present. This is because we collect
+different pieces of information for the same unit. Typically we
+are interested in the interplay between these variables. Let's
+take a toy example to understand this.
+</SESS>
+<JINGLE t="0.1">A toy example</JINGLE>
+<SESS t="1.70">
+Quantities in the real world are related in various ways, and one
+of the aims of science is explore them. While some of the laws are
+obtained by purely logical thinking, most others are ascertained
+empirically based on data. In this toy example suppose we are
+interested in exploring the relation between the sides of a right
+angled triangle. Of course, we know that they are linked by 
+Pythagoras' theorem, but like many such relations in nature let's
+pretend that this is also initially unknown to the researcher. 
+We start with this random collection of right angled triangles.
+and  measure the lengths of their sides.
+Thus, we have 4
+variables, of which the very first one is an identifier. Now
+these 6 triangles are just 6 random triangles, and so their order in the
+data set is not important. Suppose we focus our attention on only
+the hypotenuse. No information is lost about it if I 
+reshuffle the numbers in its column.
+And this is true about each the variables
+individually. But does that mean that  I can reshuffle the numbers in each column
+independently, and still not lose any information? Well,
+no. Because then I shall end up with triangles like these, which
+are not even  right angled!
+Thus, important information like Pythagoras' theorem 
+is lost! Reshuffling is OK, as long as we reshuffle entire
+rows, and not merely the values in the columns
+independently. Otherwise, we have no hope to recover the
+inter-relation between the variables.
+</SESS>
+<SESS t="0.70">
+Well, this brings us to the distinction between
+a <B>univariate</B> and <B>multivariate</B> data set. A
+univariate scenario is where we are focusing our attention on
+only one variable. There may be other variables also, but we are
+interested in only one of them. A multivariate scenario, on the
+other hand, involves more than one variable, and we are
+interested in exploring their inter-relation. As the triangle example
+showed, a multivariate data set is not merely just a collection
+of some univariate data sets. All the variables need to be
+considered together.
+</SESS>
+<SESS t="1.40">
+Here's a more practical example of a bivariate
+scenario. "Bivariate" as you have no doubt guessed is a pecial
+case of multivariate, where we have only <I>two</I> variables of
+interest. Similarly, <B>trivariate</B> is where the focus is on
+only three variables. Anyway, our example is a bivariate one. The
+units are schools, and we are interested in checking if a certain school
+nurtures academic and physical skills in a balanced way. We draw a
+random sample of students
+ and
+conduct two tests, one on academic skills and the other on
+physical skills. Ths we get two variables, academic and
+physical. There are students with high and low values in either
+variable. But looking at each variable <I>separately</I> will not
+let us answer our question. In this data set, for example, we
+have a high scorer in academics, but they are in poor physical
+training. The guys who are physically well-trained are flunking
+in academics. Now let's just reshuffle the numbers in each
+column. The new data set shows much better balance between
+academic and physical training, as a students with high marks in
+one are pypically getting high marks in the othr, as well. 
+</SESS>
+</SCRIPT>
+<SCRIPT>
+<SESS t="0">
+Welcome back! We have learned quite a bit of stuff in the videos
+so far. We have a basic idea about how data are collected, and
+what are the different types of variables we are interested
+in. Now let's get our hands dirty, and create a little data
+set and play with it using a software. What software are we going
+to use? There are many, starting from quite easy ones with gentle
+learning curves to extremely expensive sophisticated ones with
+steep learning curves. We shall naturally start with a software
+that is not too difficult to learn, and yet is capable of doing a
+good number of data manipulation activities. And just to keep it accessible
+to everybody, we shall use a free software that you can download
+from the web. We shall use LibreOffice. "What's that?" you may
+ask. Well, it is a free alternative to the  popular MS-Excel
+software. They have very similar interfaces. If you learn
+LibreOffice you can take your skills to use MS-Excel. 
+</SESS>
+</SCRIPT>
 <EXRLIST id="M1L3V1.yml">
 - typeName: multipleChoice
   prompt: >
@@ -847,6 +1429,56 @@ options:
 <STKY>
 <HEAD2>Module 1, Lesson 3,  Video 2: Cross-sectional,  time
 series, panel and spatial</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="1.80">
+In the last few videos we have talked a lot about variables,
+i.e., the columns in the data matrix. But what about the rows,
+i.e., the cases? Well, that's what we are going to talk about
+now. But first, when we think about cases, stop thinking of them
+as a row of values, but as the totality of information about a
+single unit. Visualise a unit as a single object, like a patient,
+or a plot of land, a household, a student in a particular class,
+and so on. When you do so, you might detect some layout of
+these units that has bearing on the object of your study. Like,
+they may be measurements of depth of a river at different points
+along the river. Each point is then a unit, and they are laid out
+spatially. A point near the source of the river may behave
+differently from one near the estuary. In fact, the variation of
+depth along the river may be the focus of attention in the
+study. As yet another example, we might count number of COVID
+infected persons in each month for an entire year. Here each
+month is a unit, and the months are laid out uniformly along a
+time line. This temporal layout is important because we may hope
+to predict future values based on such a data set. Based on the
+layout of the units we classify data in a number of ways:
+  * Cross-sectional data
+  * Time series and panel data
+  * Spatial data
+Let's discuss these one by one.
+</SESS>
+<JINGLE t="0.1">Cross-sectional data</JINGLE>
+<SESS t="0.70">
+This is the simplest possible scenario, where there is no particular
+layout of the units. Most of our examples so far have been of
+this type. Here you may reshuffle the cases (entire rows)
+without destroying any important information. A special case is
+where all the cases are
+independent and as far as the study area is concerned are
+expected to behave identically, all variations being due to
+chance only. Such a cross-sectional data set is 
+called an IID data set. IID is an acronym for Independent and
+Identically Distributed. Typical examples are data from a random
+sample. 
+</SESS>
+<JINGLE t="0.1">Time series and panel data</JINGLE>
+<SESS t="0.30">
+If the cases are each marked with a time stamp, and we are
+interested in the temporal evolution of the data, i.e, how the
+values are changing over time, then we have a <B>time
+series</B>. 
+</SESS>
+</SCRIPT>
 <EXRLIST id="M1L3.yml">
 - typeName: multipleChoice
   prompt: >
@@ -966,7 +1598,7 @@ series, panel and spatial</HEAD2></STKY>
   
 
 </EXRLIST>
-
+</LESSON>
 <STKY>
 <HEAD2>Module 1, Lesson 4,  Video 1: File formats: Excel</HEAD2></STKY>
 
@@ -2982,7 +3614,10 @@ Mention Anscombe data.
       
 
 - typeName: multipleChoice
-    Interpret relation between mother's whorl and child's whorl.
+  prompt: >
+    A person's finger print may be classified as whorl and
+    no-whorl. 100 mother-child pairs 
+    The following contingency table gives mother Interpret relation between mother's whorl and child's whorl.
 
 </EXRLIST>
 
@@ -3009,8 +3644,14 @@ gamma test
 
 <EXRLIST id="M6L3V1.yml">
 
-- typeName: multipleChoiceCompute by hand
-- typeName: multipleChoiceCompute by hand
+- typeName: numeric
+  prompt: >
+    Compute the tetrachoric correlation coefficient from the
+    following table.
+  defaultFeedback: No, that does not look right.
+- typeName: numeric
+  prompt: >
+    Compute the lambda coefficient from the above table.
 - typeName: multipleChoiceCompute by hand
 - typeName: multipleChoiceCompute by hand
 
@@ -3056,11 +3697,10 @@ gamma test
 <HEAD2>Module 6,  Lesson 5 ,  Video 1: Review</HEAD2></STKY>
 <STKY><HEAD2>Module 6,  Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
-
 <COMMENT>
 Local Variables:
- two-part1: ("<B>" "</B>")
- two-part2: ("<V>" "</V>")
+ two-part1: ((format "%cSESS t=\"0\">\n" 60) (format "\n%c/SESS>" 60))
+ two-part2: ("<B>" "</B>")
 End:
 </COMMENT>
 </NOTE>@}
