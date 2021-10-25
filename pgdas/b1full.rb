@@ -1,16 +1,11 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SUN OCT 24 IST 2021</UPDT>
-This course consists of 6 modules,  each spanning one week. Each
-module is made of 5 lessons,  which in their turn are split into
-2 (or in some cases 3) videos. Each of the first 4 lessons in a
-module has around 5 formative quizzes. The last lesson is a
-review lesson and has 8 summative quizzes,  where 2 are taken from
-each of the preceding lessons in that module. In this file I am
-providing only the formative quizzes,  as the summative ones are
-essentially of the same type.
+<UPDT>MON OCT 25 IST 2021</UPDT>
+
 
 <STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
+<STKY><HEAD2>Module 1,  Introductory video: About the
+course</HEAD2></STKY>
 <SCRIPT>
 <SESS id="" t="0.3">
 Hello,  and welcome to the PGDAS course on <B>Basic Statistics</B>. This
@@ -37,7 +32,28 @@ grading.</SESS>
 The week's grade will come from a unit test at the end
 of the week. It will consist of 8 exercies
 (2 taken from each of the 4 topics learned in the week). The
-marks you get here will be added to your marks from the final exam.
+marks you get here will be added to your marks from the final
+exam.
+
+<P/>
+Next let's talk about the software we are going to use for this course.
+</SESS>
+<JINGLE t="0.1">Software</JINGLE>
+<SESS t="1.10">
+Modern day statistics is impossible without statistical
+softwares. There are quite a few softwares out there in the market.
+starting from quite easy ones with gentle
+learning curves to extremely expensive and sophisticated ones with
+steep learning curves. We shall naturally start with a software
+that is not too difficult to learn, and yet is capable of doing a
+good number of data manipulation activities. And just to keep it accessible
+to everybody, we shall use a free software that you can download
+from the web. We shall use LibreOffice. "What's that?" you may
+ask. Well, it is a free alternative to the  popular MS-Excel
+software. They have very similar interfaces. If you learn
+LibreOffice you can take your skills to use MS-Excel. Of course,
+LibreOffice will not be enough for some ambitious  analyses, but
+then we shall learn R and Python for them in a different course. 
 </SESS>
 <SESS t="0.1">
  Well,
@@ -45,10 +61,10 @@ that's about it! Now let's get started with the lessons.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 1,  Lesson 1,  Video 0: About the course</HEAD2></STKY>
-<LESSON>
 
 <STKY><HEAD2>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD2></STKY>
+<LESSON>
+
 <SCRIPT>
 <SESS t="0.2">
 This is a course on <B>Basic Statistics</B>.
@@ -495,6 +511,7 @@ only for the households owning land. But even for households without any
 land holding, there must be a value for the area. It could be 0,
 or could be some special marker like NA, or may simply be left
 blank. 
+<TODO>Use NREG_JOB_CARD example from hugli data here.</TODO>
 </SESS>
 <SESS t="2.00">
 Spreadsheet programs like MS-Excel or LibreOffice are used to
@@ -521,7 +538,7 @@ data matrix. Notice how the plot numbers are now repeated.
 Notice also how the names of villages came down from the
 headings and formed a column of its own. This is an important
 thing to remember. In the final data matrix, the information
-should in the columns headings and the body. No information
+should be only in the columns headings and the body. No information
 should be in the table title. Similarly, there should not be any
 info in the row headings. Here is an example. 
 
@@ -542,6 +559,7 @@ Here is a quick checklist:
    * Rows denotes cases
    * Columns denote variables.
 
+<TODO>Mention example from table on page 116 of nss68/report/*.pdf</TODO>
 </SESS>
 </SCRIPT>
 
@@ -1307,25 +1325,7 @@ academic and physical training, as a students with high marks in
 one are pypically getting high marks in the othr, as well. 
 </SESS>
 </SCRIPT>
-<SCRIPT>
-<SESS t="0">
-Welcome back! We have learned quite a bit of stuff in the videos
-so far. We have a basic idea about how data are collected, and
-what are the different types of variables we are interested
-in. Now let's get our hands dirty, and create a little data
-set and play with it using a software. What software are we going
-to use? There are many, starting from quite easy ones with gentle
-learning curves to extremely expensive sophisticated ones with
-steep learning curves. We shall naturally start with a software
-that is not too difficult to learn, and yet is capable of doing a
-good number of data manipulation activities. And just to keep it accessible
-to everybody, we shall use a free software that you can download
-from the web. We shall use LibreOffice. "What's that?" you may
-ask. Well, it is a free alternative to the  popular MS-Excel
-software. They have very similar interfaces. If you learn
-LibreOffice you can take your skills to use MS-Excel. 
-</SESS>
-</SCRIPT>
+
 <EXRLIST id="M1L3V1.yml">
 - typeName: multipleChoice
   prompt: >
@@ -1452,16 +1452,61 @@ month is a unit, and the months are laid out uniformly along a
 time line. This temporal layout is important because we may hope
 to predict future values based on such a data set. Based on the
 layout of the units we classify data in a number of ways:
-  * Cross-sectional data
   * Time series and panel data
+  * Cross-sectional data
   * Spatial data
 Let's discuss these one by one.
 </SESS>
+<JINGLE t="0.1">Time series and panel data</JINGLE>
+<SESS t="0.90">
+If the cases are each marked with a time stamp, and we are
+interested in the temporal evolution of the data, i.e, how the
+values are changing over time, then we have a <B>time
+series</B>. If we imagine time flowing down a pipe, then it is
+like following a flow longitudinally through the pipe. Hence
+another name for such data is <B>longitudinal data</B>. Stock
+market data is a common example. The most important aim behind
+analysing such data is prediction of the future.
+<P/>
+In most scenarios, the cases of a time series data set are
+collected uniformly over time. However, in a bugeoning field of
+statistics, astrostatistics, where we observe celestial bodies
+over time, the sampling time points are necessarily irregular, as
+certain bodies are not visible a certain time. It is remarkable
+how time series analysis helps NASA to look for extrasolar
+planets (i.e., planets around stars other than the sun) that
+might be inhabitable! 
+<P/>
+Commonly when we use the term time series or longitudinal data,
+we think of just a single variable, or univariate data. But of
+course we may like follow the temporal evolution for a
+multivariate data as well. Then it is called <B>panel data</B>.
+</SESS>
+<JINGLE t="0.1">Panel data</JINGLE>
+<SESS t="0">
+Panel data, as I said just now, are basically multivariate time
+series data. These are very common in econometric studies, where
+we follow the interplay among different economic factors over
+time. 
+<P/>
+In all these cases we are considering time as flowing down a
+pipe, and we are following along longitudinally. If, on the other
+hand, our data consist of just  a single snap shot of all the
+variables at a single time point, we get a <B>cross-sectional</B>
+data set.
+</SESS>
 <JINGLE t="0.1">Cross-sectional data</JINGLE>
 <SESS t="0.70">
-This is the simplest possible scenario, where there is no particular
-layout of the units. Most of our examples so far have been of
-this type. Here you may reshuffle the cases (entire rows)
+ The term cross-sectional comes from the fact
+that a snapshot at a single time point is like  a cross-sectional
+view of the pipe.  In a sense this is the simplest possible scenario, where there is no particular
+layout of the units. If we visit the households of a village and
+collect some information from them, the resulting data set is
+will be cross-sectional. When a country conducts a census of its
+population, the result is a cross-sectional data set.
+
+<P/>
+In a cross-sectional data set you may reshuffle the cases (entire rows)
 without destroying any important information. A special case is
 where all the cases are
 independent and as far as the study area is concerned are
@@ -1471,12 +1516,37 @@ called an IID data set. IID is an acronym for Independent and
 Identically Distributed. Typical examples are data from a random
 sample. 
 </SESS>
-<JINGLE t="0.1">Time series and panel data</JINGLE>
-<SESS t="0.30">
-If the cases are each marked with a time stamp, and we are
-interested in the temporal evolution of the data, i.e, how the
-values are changing over time, then we have a <B>time
-series</B>. 
+<JINGLE t="0.1">Spatial data</JINGLE>
+<SESS t="0.70">
+When the units are laid out geographically ocer space, and we are
+interested in the spatial positionings of the units, we
+have <B>spatial data</B>. A good example is weather data (e.g.,
+rainfall and temperature) or environment data (e.g. pollution
+level) collected from different centres. Often we want to
+approximate the values of the variables at other nearby points
+based on the data from the given locations. Geostatistics is the
+branch of statistics that deal spcially with spatial data.
+<P/>
+With the wide availability of satellite imagery, spatial data are
+now assuming great importance.  
+</SESS>
+<JINGLE t="0.1">Other layouts</JINGLE>
+<SESS t="0.90">
+We have learned about various ways units may be laid out in a
+data set. A great deal has been written about analysing spatial data, and
+an even greater amount of literature exists for cross-sectional
+and time series data. 
+Still these by no means exhaust the possibilities. It is quite
+possible to have other, more complicated layouts. For instance we
+may have both spatial and temporal structures. e.g., how railfall
+pattern is changin over time in different parts of the globe. 
+<P/>
+Another example could be data from social media, where the units
+are the people, and the layout is provided by their
+intercommunication like Facebook friendship. 
+
+<P/>
+In this course we shall not consider these layouts.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M1L3.yml">
@@ -1600,13 +1670,102 @@ series</B>.
 </EXRLIST>
 </LESSON>
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 1: File formats: Excel</HEAD2></STKY>
+<HEAD2>Module 1, Lesson 4,  Video 1: Using a computer</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="2.80">
+As we have already mentioned at the very outset of the course, we
+need a software to play with data. There are many to choose
+from. Some softwares like Microsoft Excel are relatively easy to
+learn, while others like SPSS or SAS have a steeper learning
+curve. All these softwares are proprietary, and you need to pay
+money in order to own a legal copy. There are also some excellent
+free softwares. One is LibreOffice, which provides much the same
+experience as Microsoft Excel, and is quite easy to learn. The R
+language and RStudio provide a very sophisticated statistical
+computational environment that is completely free but requires
+quite a bit of time to master. There is now a formidable array of
+statistical analysis tools in the vastly popular Python language,
+which is also free. 
+<P/>
+This course is not about
+learning some software. We need just a simple software
+that will enable us to try out the concepts that we are
+learning. Also to keep financial burden to a minimum on the
+learner, we shall use LibreOffice. It has an interface extremely
+similar to that of Microsoft Excel, and expertise in using one
+easily translates to the other. LibreOffice is available for free
+for Windows, Linux as well MacOS. 
+<P/>
+Now, here is a little point that I should mention. Since
+LibreOffice is free, it is possible to run it on cloud for free,
+and Coursera already set up such a cloud version for use with
+course. If you use it, there is no need to install anything in
+your personal computer. 
+<P/>
+While that may sound great, it comes with a downside. The ability
+to install a software yourself, and then run it is very much part
+of the skill you need to acquire. If you are afraid of installing
+the software, then all your expertise will vanish once the course
+is over, because the cloud version will cease to be available to
+you! So my advise is to tak the time to try to install the
+software in your local machine. It is easy and generally proceeds
+without any hitch. But in case there is a problem you can get
+help from the course community. 
+<P/>
+So for a solid knowledge, do please install LibreOffice in your
+local machine. In case you are really not in a position to do so,
+use the cloud ersion as a fallback option.
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 1, Lesson 4,  Video 2: Local installation</HEAD2>
+</STKY>
+
+<SCRIPT>
+<SESS t="2.00">
+[Screencast of download and installation]
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 1, Lesson 4,  Video 3: Getting started</HEAD2>
+</STKY>
+
+<SCRIPT>
+<SESS t="4.00">
+[Screencast: Getting started]
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 1, Lesson 4,  Video 5: Some tasks already seen</HEAD2>
+</STKY>
+
+<SCRIPT>
+<SESS t="4.00">
+[Screencast: Renaming categories]
+</SESS>
+<SESS t="4.00">
+[Screencast: Combining and reshaping tables]
+</SESS>
+</SCRIPT>
 
 
-In olden days people used to store data on paper. Now computer
-disks provide the main storage. Data sets are stored as files, 
+<STKY>
+<HEAD2>Module 1, Lesson 4,  Video 6: File formats: Excel</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="1.60">
+In olden days people used to store data on paper, and perform all
+the computations by hand. Now of course computers
+provide both  the  storage as well as the processing. Data sets are stored as files, 
 be it in the hard drive of a computer or removable devices like a
-USB drive. A file in a computer is just a collection of 0's and
+USB drive.
+
+<P/>
+Now,  a file in a computer is just a collection of 0's and
 1's. When we store data  in a file,  they first need to be
 converted into 0's and 1's. When we read the data back from the
 file,  the 0's and 1's are converted back into the original
@@ -1614,6 +1773,8 @@ form. This two-way conversion process is mostly done
 automatically without our intervention. Now,  this process may be
 done in different ways,  and each such way is called a <B>file
 format</B>. 
+<P/>
+
 There are quite a few file formats that are used in
 statistics. Some are free,  while others are propreitary and
 require paid softwares to write or read. Some formats are good
@@ -1623,12 +1784,17 @@ optimised to hold a large amount of data in a small space.
 
 <P/>
 
-In this course we shall use the MS Excel software,  which
+In this course we shall use the LibreOffice software,  which
 understands various file formats. We shall discuss only two of
 them. Every file format has its specific file name extension. The
-first format has the extension <B>.xlsx</B>. This is the default
+first format has the extension <B>.xlsx</B>. This is one of the main
 file format used by MS Excel. 
-
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="2.00">
+[Screencast: Saving and loading xslx]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M1L4V1.yml">
 - typeName: multipleChoice
   prompt: |-
@@ -1780,7 +1946,9 @@ file format used by MS Excel.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 2: File formats: CSV</HEAD2></STKY>
+<HEAD2>Module 1, Lesson 4,  Video 7: File formats: CSV</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.50">
 While the Excel format is adequate for many elementary
 purposes,  there are a couple of drawbacks. First,  you need to
 have MS Excel in order to view the data in the file,  or even to
@@ -1803,6 +1971,12 @@ CSV format has one downside. It cannot hold anything other than
 a single data table,  while the XLSX format can hold multiple
 tables,  as well as graphs and reports.
 
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="0">
+[Screencast: Saving and loading as csv]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M1L4V2.yml">
 - typeName: multipleChoice
   prompt: |-
@@ -1859,7 +2033,7 @@ tables,  as well as graphs and reports.
     
 
 </EXRLIST>
-
+</LESSON>
 <STKY>
 <HEAD2>Module 1, Lesson 5 (review),  Video 1</HEAD2></STKY>
 <STKY><HEAD2>Module 1, Lesson 5 (review),  Video 2</HEAD2></STKY>
