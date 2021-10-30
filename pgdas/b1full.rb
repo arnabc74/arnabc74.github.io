@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>FRI OCT 29 IST 2021</UPDT>
+<UPDT>SAT OCT 30 IST 2021</UPDT>
 
 
 <STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
@@ -2779,10 +2779,221 @@ Anyway, before talking further it is time to go to the lab.
 
 
 
+
 <STKY>
-<HEAD2>Module 2, Lesson 3,  Video 1: Bar chart (interpretation)</HEAD2></STKY>
+<HEAD2>Module 2, Lesson 3,  Video 3: Pie</HEAD2></STKY>
 <SCRIPT>
-<SESS t="1.80">
+<SESS t="1.50">
+Bar charts are good for showing values of one variable (typically
+a continuous one) in relation to a categorical variable. Often,
+however, we are interested in showing the values as fraction of
+a whole. For instance, to get a quick idea of the COVID infection
+situation in a state, we might report the number of COVID
+infected persons for each district. But this will not be adequate
+for providing contrast between the districts in relation with the
+whole state. For this we should divide the number for each
+district by the total for the state. A good way of representing
+such fractions that add up to 1 is the <B>pie chart</B>. 
+<P/>
+Here is a pie chart for our data. It shows the whole state as a
+circle. We know that the central angle is 360 degrees. Also the
+total fraction is 1. This known total is naturally mapped to the
+known central angle. Then we split the circle into sectors whose
+central angles (or equivalently the area) are proportional to the
+fractions to be depicted. Notice that the radius contains no
+information. Also, the actual value denoted by each sector cannot
+be recovered from the pie chart, only the fractions. 
+<P/>
+Let's learn making a pie chart using Libreoffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="5">
+[Screencast: Make a simple pie chart. Play with labels etc.]
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 2, Lesson 3,  Video 4: Pie (variants)</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="0.80">
+There are not too many variants possible for a pie chart. Of
+course, you may make it look like a 3D disk. But that is only a
+cosmetic thing, which may actually interfere with
+interpretability, as in a 3D view the circle looks distorted into
+an ellipse. So the sectors to the sides get more prominence. 
+<P/>
+Pie charts are not good for multivariate data. If you have more
+than variable, you have to make a separate pie chart for
+each. Libreoffice does have an option for incorporating multiple
+variables in the same pie chart using concentric rings, but that
+is quite confusing to the eye, and should be avoided. 
+</SESS>
+
+</SCRIPT>
+<EXRLIST id="M2L3V1.yml">
+
+- typeName: multipleChoice
+  prompt: > 
+    Consider the following bar chart. 
+    [Fig here]
+    Two values are roughly the
+    same. Which two?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
+- typeName: multipleChoice
+  prompt: Who has the lion's share in this pie chart? [fig here]
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
+</EXRLIST>
+
+
+<EXRLIST id="M2L3V2.yml">
+
+- typeName: multipleChoice
+  prompt: > 
+    Make a bar chart from the following data. One bar does not
+    follow the general pattern. Which one?
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
+- typeName: multipleChoice
+  prompt: > 
+    Make a pie chart from the same data. One value accounts for
+    about 25% of the total? Which one. Also, how many values
+    exceed 234? Answer *based on the pie chart only*, and not the
+    original data. 
+  shuffleOptions: true
+  options:
+  - answer: 13, cannot answer.
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
+
+</EXRLIST>
+</LESSON>
+<STKY>
+<HEAD2>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="5.80">
+Charts are more colourful than numbers. But we do not add charts
+in a report just to make the report colourful. Charts must help
+in interpreting data. Sometimes people use charts wrongly,
+deliberately or inadvertently. It is important to acquaint
+ourselves with such misuses, both to avoid committing these
+mistakes ourselves, as well as to safeguard against others
+deliberately trying to distort our view of data. 
+<P/>
+The very first point to remember is that charts show values of
+variables, and every chart should be clearly labelled with the
+names of variables it is depicting. It is not uncommon to find
+plots like this accompanying a claim like our brand of nutrition
+drink is 30% more helpful for building muscles. Such a plot is
+meaningless because it is not telling us what  the variable
+along the vertical axis is. 
+<P/>
+The next important point is to mention the scale. When you draw
+two axes like this, an unsuspecting
+viewer is led to believe that this is the origin. However, it is
+quite possible that the scales do not start from 0. In that case
+values that seem to double, may not actually double. So never produce
+and always suspect charts that do not show scales along the
+axes depicting continuous variables. Also, be careful about
+interpreting scales that do not start from zero.
+<P/>
+These are gross mistakes. Next we shall discuss errors that are
+more subtle. These are often deliberately planted in propaganda
+reports. When we use charts we are converting patterns in the
+data to visual patterns, patterns that appeal to the eye. Now
+there are various things that appeal to the eye, some more than
+others. If you use a chart that maps to a more conspicuous
+feature, then the viewer will find it more convincing. And there
+is a pitfall for the unwary here. Suppose that we have a
+univariate data set, about populations in a district. Instead of
+making a bar chart, we want to be playful, and replace the drab
+rectangles with little human figures with sizes proportional to
+the population. Problem! What do we mean by "size" here? Length
+or area? Now it is a property of the human eye that it is more
+attracted by the area than by linear dimensions. This square
+seems to be 4 times that square, though in terms of linear
+dimension it is only doubled! So if you are showing the
+population as proportional to the length, you'll make a much
+greater (and false) impact on the viewer. 
+<P/>
+Indeed Florence Nightingale's original chart could have been made
+more visually powerful by making the <I>radius</I> instead of the
+area of a
+sector proportional to the value. [Suggest what is bad if we make
+outer layer areas proportional.]
+<P/>
+
+3D graphics look cool in a report. Realistically rendered 3D
+graphics employ perspective distortion, the distortion that makes
+circles look like ellipses, and make far away trees appear
+smaller than those close at hand. Now depth added to a chart is
+mainly to make it look cool, and hence be applied in different
+ways. But depending on how you apply it, the part of the chart
+closer to the eye will get more emphasis than the part away from
+it. As this interferes  with an objective interpretation
+the data, serious statistiians strongly disparage the use of the
+pseudo 3D plots. 3D plots are OK, only when the user is allowed
+to view it from different angles (typically using some
+interactive software). 
+<P/>
+Finally we come to the sublest mistake: forgetting the two basic
+principles behind graphical representations:
+
 Graphical representations like most statistical procedures are
 dumb procedures that work on data. I cal them dumb, because they
 do not care about whether they produce meaningful results or
@@ -2835,107 +3046,10 @@ of the report. If you cannot, then possibly you should better
 omit the plot.
 </SESS>
 </SCRIPT>
-
-<STKY>
-<HEAD2>Module 2, Lesson 3,  Video 1: Bar,  pie</HEAD2></STKY>
-
-<EXRLIST id="M2L3V1.yml">
-
-- typeName: multipleChoice
-  prompt: > 
-    Consider the following bar chart. 
-    [Fig here]
-    Two values are roughly the
-    same. Which two?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-- typeName: multipleChoice
-  prompt: Who has the lion's share in this pie chart? [fig here]
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-</EXRLIST>
-
-<STKY>
-<HEAD2>Module 2, Lesson 3,  Video 2: Lab</HEAD2></STKY>
-<EXRLIST id="M2L3V2.yml">
-
-- typeName: multipleChoice
-  prompt: > 
-    Make a bar chart from the following data. One bar does not
-    follow the general pattern. Which one?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-- typeName: multipleChoice
-  prompt: > 
-    Make a pie chart from the same data. One value accounts for
-    about 25% of the total? Which one. Also, how many values
-    exceed 234? Answer *based on the pie chart only*, and not the
-    original data. 
-  shuffleOptions: true
-  options:
-  - answer: 13, cannot answer.
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-
-</EXRLIST>
-</LESSON>
-<STKY>
-<HEAD2>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD2></STKY>
-
 <EXRLIST id="M2L4V1.yml">
+
+- typeName: multipleChoice
+- prompt: Difference between rose chart and pie chart.
 
 - typeName: multipleChoice
   prompt: > 
@@ -3057,14 +3171,469 @@ omit the plot.
 
 </EXRLIST>
 
+</LESSON>
 <STKY>
 <HEAD2>Module 2, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
 <STKY><HEAD2>Module 2, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 <STKY><HEAD1>Module 3: Presentation of data (part 2)</HEAD1></STKY>
+<SCRIPT>
+<SESS t="0.70">
+Here we are at the start of week 3 of our course. We have already
+mae quite a bit of progress. We have learned about data and
+related concepts. We have learned about some basic graphical
+representation of data. This week we shall learn about tabular
+representation of data and a very important graphical device
+called the histogram. 
+<P/>
+The structure will remain as the last week. Four topics, along
+with practice problems, followed by a review session and the
+week's test. And as before we have some peer review problems. 
+<P/>
+OK, enough introduction. Let's get started!
+</SESS>
+</SCRIPT>
 
-<STKY><HEAD2>Module 3, Lesson 1,  Video 1: Frequency distribution</HEAD2></STKY>
+<STKY>
+<HEAD2>Module 3, Lesson 1,  Video 1: Tabular: Pivot table and pivot chart</HEAD2>
+</STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="2.60">
+In this video we shall talk about a representation of data that
+is definitely the one most commonly used: <V>tabular
+format</V>. Be it a telephone directory or a dictionary or a
+railway timetable,  tables are everywhere around us. Even when we
+use a computer to look up information,  the underlying data base
+is basically a collection of tables. 
+<P/>
+A table,  as we all know,  presents data in a rectangular
+format. Well,  we have already used them earlier in this
+course. When we first learned
+about data in week 1, we talked about a data matrix, which is an
+example of a table. 
+There columns represented variables and rows represented cases. Those
+tables were meant primarily to be fed into a computer
+program. Such a table did not allow information to be attached to
+row headings. But human-readbale tables can be (and should be) more
+varied. They allow for various embellishments, like 
+<B>row headings</B>,   <B>nested rows</B>, 
+<B>nested columns</B>,  <B>marginal summaries</B> <B>etc</B>.
+Such fancy tables are often called <B>pivot tables</B>.
+<P/>
+When we learned about bar chart and pie chart, we often needed a
+summary table to start with. Those were also examples of pivot
+tables. Let's understand how to arrive at these starting the data
+matrix. 
+<P/>
+Let's start with an example. Suppose that there are a 1000
+students who have been given letter grades A, B, C, D, and F. We
+want to represent the data as a bar chart like this. As you may
+guess we need a summary table like this to produce the
+chart. However, most likely the original data was laid out like a
+data matrix where each row corresponded to a single student, and
+there was a column with the grades. Thus, if there are 1000
+students we have as many rows. To arrive at the summary table we
+basically have to count the numbers of A's and B's etc. Of
+course, it is tedious to do by hand. We shall learn how to make
+Libreoffice do this for us. In the process we shall also learn
+how the same technique may be modified to produce more varied
+pivot tables. 
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Create a letter grade frequency distribution.]
+</SESS>
+</SCRIPT>
 
+<SCRIPT>
+<SESS t="1.30">
+The example that we saw in the last video was possibly the
+simplest type of pivot table. More generally a pivot table (also
+called a cross-tabulation) takes a raw data matrix, with at least
+one categorical variable. To make a pivot table you need to
+select one or more of these categorical variables. Based on 
+the combinations of values of these variables the cases get
+grouped into subsets. For instance, if there is a column called
+gender (taking values Male and Female) and another column called
+handedness (taking values Left and Right), then there will be
+four subsets (Male, Left), (Male, Right), (Female, Left) and
+(Female, Right). Of course, one or more of these subsets may
+actually be empty, i.e. ,there may not be any row corresponding
+to that particular combination. The next thing you need to
+specify is some kind of summary value to be applied to the
+subsets. The summary value could just be the size of the
+subset. This is hat we did in the letter grade example. Or it
+could be average or sum or something else. 
+
+<P/>
+Let's see a detailed example to understand this.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="5">
+[Screencast: Make a pivot table, and play with settings]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="0.40">
+Pivot tables allow some additional embellishments to be added to
+the basic summary table. These take the form of marginals. This
+is best exaplained through an example. Here is a basic pivot
+table. We can append marginals to it like this. 
+<P/>
+Let's see how we can do this using Libreoffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="5">
+[Screencast: Marginals.]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="0.80">
+Pivot tables have two major uses in a report. One is as
+themselves. Most tables that we see in a report are actually
+pivot tables generated from the original data matrix which is
+typically very huge. The second use of pivot tables is as an
+intermediate step towards producing grphical representations
+like bar charts or pie charts. So the entire route from the raw
+data matrix to such a chart basically consists of two steps: raw
+data to pivot table, and then pivot table to the chart. Both
+these steps may be conveniently packed into a single thing in
+LibreOffice. This single thing is called a <B>pivot chart</B>. 
+Let's see an example.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="0">
+[Screencast: Pivot chart]
+</SESS>
+</SCRIPT>
+<EXRLIST id="M3L3V1.yml">
+
+- typeName: multipleChoice
+  prompt: >
+    We have constructed this pivot
+    table. 
+    |              | Male | Female | Total |
+    |--------------+------+--------+-------|
+    | Left-handed  |   29 | ??     | ??    |
+    | Right-handed |   34 | 45     | ??    |
+    |--------------+------+--------+-------|
+    | Total        |   ?? | ??     | 200   |
+
+  What should the value in the marked cells be?
+
+- typeName: multipleChoice
+  prompt: > 
+    Here are two pivot tables claimed to be derived from the
+    same data set. Is the claim justified?
+
+
+- typeName: multipleChoice
+  promot: >
+    Here are two different layouts for the same pivot
+    table. Which one is better suited for a newspaper report?
+    |      | Urban | Urban  | Rural | Rural  |   |
+    |------+-------+--------+-------+--------+---|
+    |      | Male  | Female | Male  | Female |   |
+    | High |       |        |       |        |   |
+    | Med  |       |        |       |        |   |
+    | Low  |       |        |       |        |   |
+    and 
+    |        | Urban | Urban | Urban | Rural | Rural | Rural |
+    |--------+-------+-------+-------+-------+-------+-------|
+    |        | High  | Med   | Low   | High  | Med   | Low   |
+    | Male   |       |       |       |       |       |       |
+    | Female |       |       |       |       |       |       |
+  shuffleOptions: true
+  options:
+  - answer: The first
+    isCorrect: true
+    feedback: >
+      Yes, here the column heading denote the background of the
+      persons. The row heading deal with the income.
+  - answer: The second
+    feedback: >
+      Here the demographic background is partly in the row headings
+      and partly in the columns headings.
+  - answer: Both are equally useful.
+    feedback: >
+       Well, they both contain the same information. But the aim
+       here is to related the income group with the background.
+
+</EXRLIST>
+
+
+<EXRLIST id="M3L2V2.yml">
+
+- typeName: multipleChoiceCreate a pivot table based on given data.
+
+- typeName: multipleChoiceModify the layout of an existing pivot table.
+
+- typeName: multipleChoiceChange the  original data and report the change in the
+pivot table.
+
+- typeName: multipleChoiceMake a pivot chart
+</EXRLIST>
+</LESSON>
+
+<STKY>
+<HEAD2>Module 3, Lesson 2,  Video 1: Contingency table</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="1.10">
+In the last video we talked about pivot tables, and mentioned how
+they may be used in a report. There is one type of pivot table
+which has a much more important use, and goes deeper in terms of
+theory. 
+<P/>
+A pivot table requires specification of two things:
+ * One or more categorical variables.
+ * Some summary measure.
+
+<P/>
+To get a contingency table, we need to choose exactly two
+categorical variables, and count as the summary measure. Let's
+take an example.
+<P/>
+Here is a table with two categorical variables gender
+(Male/Female) and Handedness (Left/Right). The corresponding
+contingency table is 2 by 2, where each cell has the
+corresponding count. [Explain by pointing].
+<P/>
+It should be quite easy to create a contingency table in
+LibreOffice, as we have already learned how to create a general
+pivot table. Anyway, here is a little lab session, in case you
+need one.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Make contingency table.]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="1.70">
+We mentioned just now that contingency tables are very
+important in statistics. Why is that? The most important reason
+is that they help us to explore relation between two categorical
+variables. Let's take an example.
+<P/>
+We often want to answer questions like is smoking related to
+cancer? Or what is the relation between education level and
+income level? Does the chance admission to an edicational
+institute depend on one's gender? All these questions are trying
+to connect two categorical variables. In the first case smoking
+habit (Y/N) with cancer (Y/N). In the second case, educational
+level (preschool, primary school, high school, college and above)
+and income level (low, middle, high). In the third case admission
+status (admitted / rejected) and gender (male /
+female). Interesting heredity questions may also be couched in
+the form of contingency tables. Fingerprints may be roughly
+classified into two patterns whorl and no whorl. We may ask the
+question: Is there any relation between mother having whorl and
+her baby having whorl? Here the two categorical variables are:
+Mother's whorl (Y/N) and baby's whorl (Y/N). 
+<P/>
+Contingency tables have been known to  play important role in
+legal suits as well. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="2.30">
+
+We shall return to contingency tables near the end of this
+course, and later in other courses as well. There we shall see
+how we exactly process a contingency table numerically to derive
+answers to important questions. For now let have an intuitive
+feel for how a contingency table may shed light on the relation
+between two categorical variables. 
+<P/>
+Suppose that we are interested in knowing whether there is any
+relation  between income level and gender in a particular job sector. For this
+we draw a random sample of individuals from that sector and
+record their gender as well as their income group. For the sake
+of simplicity suppose that there are only three income groups:
+low, middle and high. The resulting raw data will look something
+like this. We convert this to a contingency table like this. Just
+by looking at it, do you think that there is any relation between
+gender and income group. Well, even a cursory glance will show
+that the row for Male is basically the same as the row for
+Females. So there is no reason to believe that gender matters in
+determining the income group. Now suppose the values in the
+Female row  are like this.  Here the Female row differs quite a
+lot from the Male row. Does that mean that Gender influences
+Income group here? Well, no. Because the values are
+proportionally reduced. It is just that the the total number
+females are smaller in our sample. But among the females the
+proportions of the three income groups are the same as those for
+Males. So here also we conclude that gender is not associated
+with income group. 
+<P/>
+If however, the table were like this, then definitely. the
+proportions are widely different fro the two genders. Now there
+is indeed reason to suspect a strong relation between gender and
+income group.
+<P/>
+This is the basic idea behind using a contingency table for
+assessing relation. More details will come later.
+<TODO>Include an example of guessing expected frequency based on marginals.</TODO>
+</SESS>
+</SCRIPT>
+<EXRLIST id="M3L4V1.yml">
+
+- typeName: multipleChoice<M>2\times2</M> table. Only row totals and a single column total are given. Find
+the other column total.
+
+- typeName: multipleChoiceGive a contingency table. Ask to merge two rows.
+
+- typeName: multipleChoiceMake a contingency table by hand from toy data.
+
+- typeName: multipleChoiceDescribe a 3-way table set up. Ask to identify the correct
+dimension.
+
+</EXRLIST>
+
+
+<EXRLIST id="M3L4V2.yml">
+
+- typeName: multipleChoiceCreate a pivot table from frequency data.
+
+- typeName: multipleChoiceCreate a pivot table from raw data (where the 1 column needs
+to be added manually).
+
+- typeName: multipleChoiceRectify data and update the table.
+
+</EXRLIST>
+</LESSON>
+<STKY><HEAD2>Module 3, Lesson 3,  Video 1: Frequency distribution</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="1.90">
+Out of all the topics we are  learning this week, frequency
+distribution is perhaps the most important. It is quite quite
+humble to look at, and yet its roots go to the very core of
+statistical theory. We have already seen one example of frequncy
+distribution. We had counted the number of A's , B's etc in the
+letter grade example. Well, the resulting pivot table was an
+example of a frequency distribution. But not frequency
+distributions are just pivot tables like this. Pivot tables do
+the subsetting based categorical variables only. But a frequency
+distribution applies to all variables, categorical, counting or
+continuous. 
+<P/>
+Let's understand with an example. Suppose we have a variable. We
+consider the set of all possible values it can take, and split it
+into some mutually exclusive and exhaustive subsets. If the
+variable is a categorical one, then this is trivial, just use the
+values temselves. But if the variable is continuous, then we have
+to introduce some binning. For example, if we are taking about
+areas of farmlands, then we may use the bins: below 1 hectare,
+between 1 and  hectares, etc. Now we just find the frequncies in
+the data set of those subsets, i.e., we count the number of cases
+landing in each subset. When you write down these frequncies
+against each subset, you get a frequency distribution table.
+<P/>
+Similalry, for a counting valriable the bins counld be 0, 1, 2,
+ 3 or more.
+<P/>
+Nothing impressive so far. Before we start the impressive news,
+let's quickly see how frequency distributions may be created in LibreOffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="5">
+[Screencast: Create a frequency distribution table.]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="2.90">
+Now that we have learned what is frequency distribution is, you
+might naturally wonder what is so special about them! Indeed,
+this humble thing is central to the very idea of statistics.  To
+appreciate this it will help if you carry out a simple (if a bit
+tedious) experiment. The experiment goes like this: take a coin,
+toss it 50 times, record the outcomes. So you get a list of 50
+heads and tails. You already know how to work out the frequency
+distribution from this raw data: just count the number of heads
+and number of tails. But for this experiment we need something a
+bit more complex. We need the relative frequencies, i.e.,  the
+frequencies divided by the total number tosses. We want to
+compute these after each toss. 
+<P/>
+Let me explain with a typical run. You take out the coin. Toss it
+for the first time, and you get a head. So 1 head out of 1
+toss. So relative frequency of head is 1/1 = 1. Relative
+frequency of tail is 0/1. Toss it again. SUppose that now you get
+a tail. So 1 head so far out of 2 tosees. Hence relative
+frequency of head slips down to 0.5, while the relative frequency
+of tails go up to 0.5. You g oon like this for 50 tosses. Yo can
+easily see that the relative frequencies of heads and tails must
+add up to 1. So keeping track of any one of them is enough. Just
+to fix ideas, let's keep track of the relative frequencies of heads.
+
+<P/>
+Now make a line chart of these. The horizontal axis should show
+the number of tosses, the vertical axis shows the relative
+frequencies of heads. Though the coin was an arbitrary one, each
+toss was random and one toss had no effect on the other tosses,
+yet you'll be surprised to see that the resulting plot shows a
+very predictable pattern. It fluctuates for some time initially,
+and then mysteriously becomes rather steady and approaches a
+fixed number (in the vicinity of 0.5). Just try this at home with
+your own coin. You'll see that your coin behaves in the way I
+predicted. 
+<P/>
+While I strongly urge you to carry this experiment out with a
+real coin, here I am providing a LibreOffice version of the
+experiment, which will show the same result, much more easily,
+albeit much less dramatically, because a computer can only
+simulate a coin toss. Anyway, here is the LibreOffice version.
+</SESS>
+<JINGLE t="0.1">Experiment</JINGLE>
+<SESS t="4">
+[Screencast: experiment]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="1.80">
+What you experienced just now is the key idea behind the whole of
+statistics. It is called statistical regularity: lots of
+randomness accumulating in a way so that the randomness seems to
+cancel itself out, and a regular behavior emerges. This was first
+observed by gamblers in the middle ages. There have been
+innumerably many mathematical results that try to capture its
+essence in various contexts. The first such theorem was proved by
+Bernoulli in .... It is said that it took 25 years from the first
+concept of the theorem to the finished proof. 
+<P/>
+Why is statistical regularity important? Because it seems to
+offer a clue to the working of nature. There are many natural
+things around us that show surprising similariries and yet are
+completely distinct. One example is fingerprints. All finger
+prints look deceptively similar, and yet are distinct. All the
+leaves of the same tree are very much similar to each other, and
+yet no two leaves are exactly identical. It is undeniable that
+the variation is random, but then what is the source of the
+similarity? Statistical regularity is one way to explain this. 
+<P/>
+One way (if not the only way) to harness the idea of statistical
+regularity is via the frequency distribution, or to be precise
+relative frequency distribution. If you repeat the same random
+experiment again and again, the relative frequency distribution
+starts showing statistical regularity, i.e., starts approaching
+something fixed. This fixed limit is called the probability
+distribution for that random experiment. The entire theory of
+statistics hinges on that. 
+
+
+<P/>
+<TODO>Introduce class, class width, class boundary</TODO>
+</SESS>
+</SCRIPT>
 <EXRLIST id="M3L1V1.yml">
 - typeName: numeric
   prompt: |-
@@ -3143,7 +3712,7 @@ omit the plot.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 3, Lesson 1,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 3, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <EXRLIST id="M2L3V2.yml">
 
@@ -3183,100 +3752,46 @@ omit the plot.
     given frequency distribution table.
     [How to check an array of numbers?]
 </EXRLIST>
-
+</LESSON>
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 1: Tabular: Pivot table and pivot chart</HEAD2></STKY>
-In this video we shall talk about a representation of data that
-is definitely the one most commonly used: <V>tabular
-format</V>. Be it a telephone directory or a dictionary or a
-railway timetable,  tables are everywhere around us. Even when we
-use a computer to look up information,  the underlying data base
-is basically a collection of tables. 
-<P/>
-A table,  as we all know,  presents data in a rectangular
-format. Well,  we have already used them earlier in this course, 
-where columns represent variables and row represent cases. Those
-tables were meant primarily to be fed into a computer
-program. But human-readbale tables can be (and should be) more
-varied. They allow for various embellishments,  <B>nested rows</B>, 
-<B>nested columns</B>,  <B>marginal summaries</B> <B>etc</B>.
-Such fancy tables are often called <B>pivot tables</B>.
-<P/>
-Let's start with an example.
-[Grading multiple values]
-<EXRLIST id="M3L3V1.yml">
-
-- typeName: multipleChoice
-  prompt: >
-    We have constructed this pivot
-    table. 
-    |              | Male | Female | Total |
-    |--------------+------+--------+-------|
-    | Left-handed  |   29 | ??     | ??    |
-    | Right-handed |   34 | 45     | ??    |
-    |--------------+------+--------+-------|
-    | Total        |   ?? | ??     | 200   |
-
-  What should the value in the marked cells be?
-
-- typeName: multipleChoice
-  prompt: > 
-    Here are two pivot tables claimed to be derived from the
-    same data set. Is the claim justified?
-
-
-- typeName: multipleChoice
-  promot: >
-    Here are two different layouts for the same pivot
-    table. Which one is better suited for a newspaper report?
-    |      | Urban | Urban  | Rural | Rural  |   |
-    |------+-------+--------+-------+--------+---|
-    |      | Male  | Female | Male  | Female |   |
-    | High |       |        |       |        |   |
-    | Med  |       |        |       |        |   |
-    | Low  |       |        |       |        |   |
-    and 
-    |        | Urban | Urban | Urban | Rural | Rural | Rural |
-    |--------+-------+-------+-------+-------+-------+-------|
-    |        | High  | Med   | Low   | High  | Med   | Low   |
-    | Male   |       |       |       |       |       |       |
-    | Female |       |       |       |       |       |       |
-  shuffleOptions: true
-  options:
-  - answer: The first
-    isCorrect: true
-    feedback: >
-      Yes, here the column heading denote the background of the
-      persons. The row heading deal with the income.
-  - answer: The second
-    feedback: >
-      Here the demographic background is partly in the row headings
-      and partly in the columns headings.
-  - answer: Both are equally useful.
-    feedback: >
-       Well, they both contain the same information. But the aim
-       here is to related the income group with the background.
-
-</EXRLIST>
-
-<STKY>
-<HEAD2>Module 3, Lesson 2,  Video 2: Lab</HEAD2></STKY>
-
-<EXRLIST id="M3L2V2.yml">
-
-- typeName: multipleChoiceCreate a pivot table based on given data.
-
-- typeName: multipleChoiceModify the layout of an existing pivot table.
-
-- typeName: multipleChoiceChange the  original data and report the change in the
-pivot table.
-
-- typeName: multipleChoiceMake a pivot chart
-</EXRLIST>
-
-<STKY>
-<HEAD2>Module 3, Lesson 3,  Video 1: Histogram</HEAD2></STKY>
-
+<HEAD2>Module 3, Lesson 4,  Video 1: Histogram</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="0.60">
+We have already seen some ways to graphically represent
+data. Most of them were pretty self-evident. Indeed, that was one
+of their main qualities, because they are meant to present data
+to laymen. In this course we shall also discuss two graphical
+devices to represent data, that are more sophisticated, and
+primarily used by statisticians themselves for understanding
+data. These are 
+  * histogram
+  * box plot
+The first of this will be discussed here. The other will come
+later this week. 
+</SESS>
+<SESS t="1.30">
+The histogram is extremely similar to bar charts. However, bar
+charts are for categorical variables, while histograms are for
+continuous ones. The histogram is a graphical way of
+demonstrating statistical regularity based on a frequency
+distribution. Without further ado, let us look at an example. All
+histograms start with a frequency distribution of a continuous
+variable. Like this. Since we are after statistical regularity
+here, we need to convert the frequencies to relative frequencies
+first. What we are going to do is very much like making a bar
+chart for these relative frequencies, except for two important
+differences. First. each bar sits on its own class. So if the
+classes have different widths, then the bars may have differen
+widths. Also the bar are all adjacent to each other. The second
+difference is more subtle. The height of a bar is not proortional
+to the relative frequency of its class, but to what is called the
+relative frequency density of the class. This is the relative
+frequency divided by the class width. This makes the total area
+of all the bars equal to 1. 
+</SESS>
+<TODO>Explore opendata.org</TODO>
+</SCRIPT>
 <EXRLIST id="M3L3V1.yml">
 
 - typeName: multipleChoice
@@ -3297,7 +3812,7 @@ its left.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 3, Lesson 3,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 3, Lesson 4,  Video 2: Lab</HEAD2></STKY>
 
 <EXRLIST id="M3L3V2.yml">
 
@@ -3310,37 +3825,7 @@ shapes.
 
 
 </EXRLIST>
-
-<STKY>
-<HEAD2>Module 3, Lesson 4,  Video 1: Contingency table</HEAD2></STKY>
-
-<EXRLIST id="M3L4V1.yml">
-
-- typeName: multipleChoice<M>2\times2</M> table. Only row totals and a single column total are given. Find
-the other column total.
-
-- typeName: multipleChoiceGive a contingency table. Ask to merge two rows.
-
-- typeName: multipleChoiceMake a contingency table by hand from toy data.
-
-- typeName: multipleChoiceDescribe a 3-way table set up. Ask to identify the correct
-dimension.
-
-</EXRLIST>
-
-<STKY>
-<HEAD2>Module 3, Lesson 4,  Video 2: Lab</HEAD2></STKY>
-
-<EXRLIST id="M3L4V2.yml">
-
-- typeName: multipleChoiceCreate a pivot table from frequency data.
-
-- typeName: multipleChoiceCreate a pivot table from raw data (where the 1 column needs
-to be added manually).
-
-- typeName: multipleChoiceRectify data and update the table.
-
-</EXRLIST>
+</LESSON>
 
 <STKY>
 <HEAD2>Module 3, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
@@ -3348,20 +3833,142 @@ to be added manually).
 
 
 <STKY><HEAD1>Module 4: Central tendency</HEAD1></STKY>
+<SCRIPT>
+<SESS t="2.30">
+We are starting our fourth week. In the first two weeks we have
+learned about data and their graphical representations. The idea
+was like this: we wanted information, so we collected data, lots
+of values of lots of variables for lots of cases. And we could
+not digest all those data by just looking at them. But our eye
+can take in a lot of pictorial details easily. So we devised a
+way to convert numerical patterns to visual patterns. And that
+was graphical representation. That's what we learned in the
+second week. Pictures are great when they can be used, but it is
+difficult to convert all types of patterns to pictures. So we
+explored a different approach in the  third week:
+cross-tabulation. Here we summarised a possible huge data matrix
+to much more managable tables. But howsoever we summarise data,
+by pictures or tables, the end product still needs to be
+intepreted by human brain. It would be great if we can come up
+with ways to summarise data using some mathematical formula, that
+would capture various intuitive aspects of the data. Then the
+process may be completely automated. This is an ambitious demand,
+and no body till date can claim to have developed mathematical
+formulae for capturing all intuitive aspects of a data set. But
+still many aspects can be captured mathematically.  These result inwhat
+are called summary statistics. More precisely, we shall
+compute certain numbers based on the data, that will tell us
+important intuitive aspects of the data. Any number computed based
+on data is called a <B>statistic</B> (no 's' at end). It is a
+singular noun. Since we are using a statistic to cature one
+aspect of data, it is a form of summarisation. Hence the term
+summary statistic. They are also called <B>descriptive statistics</B>
+<P/>
+As is our
+norm, we shall learn 4 new lessons this week also. Each lesson
+will introduce one class of summary statistics:
+ * Central tendency
+ * Dispersion
+ * Association
+ * Skewness, kurtosis etc.
+<P/>
 
+Let's get started.
+</SESS>
+</SCRIPT>
 <STKY><HEAD2>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD2></STKY>
-Let me ask you a simple question: <B>what is the average life span
+<LESSON>
+<SCRIPT>
+<SESS t="2.60">
+Let me ask you a simple question: <B>what is the typical life span
 of Indians?</B> You may not know the exact answer,  but you'll guess
-that it is around 70. Now let me ask you another question: <B>what
-is the average body weight of an adult male dolphin?</B> Possibly you
+that it is around 70, and you'll be right. Now let me ask you another question: <B>what
+is the typical length of an adult male dolphin?</B> Possibly you
 have no idea,  and may turn to Google for an answer. Now comes the
-last question: <B>what is the average weight of a mammal?</B> I am sure
+last question: <B>what is the typical weight of a mammal?</B> I am sure
 you do not know! I am sure you've never heard this question
 before. Will you turn to Google for an answer? No,  this question
 is absurd! There are so many different types of mammals ranging
 from tiny rodents to enormous blue whales. What do you mean by
-"average" here? Well,  we learned in school 
+"typical" here? 
 
+<P/> Look at the three questions carefully. All the three mentions a
+set of numbers (lifespans of Indians in the first case, lengths of
+dolphins in the second, and body weights of mammals in the
+third). They we are asked to provide a "typical" value that represents
+that set. In the first two cases such "typical" values made sense. But
+in the last it didn't.  <P/> This is a common situation in real
+life. Sometimes we feel that a bunch of numbers are close enogh
+together, that their essence may be captured by a single "typical"
+value. In some cases, no single "typical" value can represent all the
+numers meaningfully. Of course, it is somewhat subjective, and it may
+be hard to draw a line where a typical value starts becomeing
+meaningless, but intuitively we can all feel this. Right? If a bunch
+numbers may be reasonably represented by a single typical value, we
+say that those numbers have a <B>central tendency</B>. Notice the use
+of the word "tendency". It correctly captures the somewhat intuitive
+and subjective flavour of the situation. If we have a valriable whoe
+values have central tendency, i.e., a single typical representative
+value makes sense, then we would naturally be interested in finding
+one. Any such way is called a measure of central tendency. And our
+first lesson is devoted to just this. The most popular in the list is
+arithmetic mean. That's what we shall discuss next.
+</SESS>
+
+<JINGLE t="0.1">Arithmetic mean</JINGLE>
+<SESS t="2.20">
+We talked about a "representative typical value". Commonly people
+loosely refer to it as "the average value" as in "What is the average
+cost of a 2 bedroom flat in central Kolkata?" or "What is the average
+time needed for delivery?"  The term "average" also appears in a
+precise sense in school text books: the average of a bunch of numbers
+<M>a_1, ..., a_n</M> is defined as their sum divided by the number of
+numbers. i.e., <M>[[\sum_{i=0}^n a_i][n]].</M>
+<P/>
+We use the bar notation to denote mean.
+<P/>
+Now there is am important difference between these two usages of the
+term "average". In the first sense it conveys the somewhat intuitive
+notion of "representative typical value", and is not even uniquely
+defined. In the second sense it is just a mathametical formula. To
+avoid any possible confusion between the two concepts we use two
+different terms to convey these two meanings:
+  * When we want to mean "representative typical value" we say "a
+    measure of central tendency".
+  * When we want to refer to that math formula, we say arithmetic mean
+    or just simply the mean. 
+<P/>
+Now the fact that common man uses the same term "average" for both
+purposes has its origin in the fact that arithmetic mean is indeed the
+most popular measure of central tendency. But be careful
+here. Arithmetic mean is just a formula, it is always defined for any
+bunch of numbers, whether or not they show central tendency. Thus, if
+I ask "What is the avrage body weight of mammals?" then you can in
+principle just
+list the body weights of all the mammals and find their arithmetic
+mean. While that will definitely produce a number, that number will
+not be a meaningful answer to the original question. In fact, the
+question is absurd, because how can you measure central tendency,
+where there is no central tendency?
+</SESS>
+<SESS t="1.00">
+In statistics we have to be careful about this scenario, which appears
+in many other contexts also. There is an intuitive concept, and a
+mathematical way to measure it. Even if the concept is invalid in some
+particular case, the mathematical formula may still provide a
+number. You must not blindly report this number. Use your domain
+knowledge and common sense first to decide if the concept at all
+applies to the case at hand. This is especially relevant in the modern
+age of computers, when mathematical formulae may be applied very
+easily using computers, and long list of output may be produced in no
+time. Many budding statistician, unable to fathom the situation, fills
+up the report with all these numbers, even when the numbers are
+meaningless. 
+<P/>
+Think of statistics as an extension of common sense, not an
+alternative to it.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L1V1.yml">
 
 - typeName: multipleChoice
@@ -3479,7 +4086,22 @@ from tiny rodents to enormous blue whales. What do you mean by
 
 <STKY>
 <HEAD2>Module 4, Lesson 1,  Video 2: Lab</HEAD2></STKY>
-
+<SCRIPT>
+<SESS t="0.50">
+Computing mean is conceptually easy. We learn do this in school. But
+there we work with only a few numbers, may be at most 10 of them. But
+in statistics when we compute mean of a variable, we need to work with
+as many values as there are cases, which may easily range into
+thousands. So use of softwares is imperative. Let's learn how to do
+this using LibreOffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="6">
+[Screencast: Different techniques-- =average, right click summary bar, --
+                                -- =averageif, rubbish values skipped,
+                                descriptive statistics]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L1V2.yml">
 
 - typeName: numeric
@@ -3528,9 +4150,130 @@ from tiny rodents to enormous blue whales. What do you mean by
 
 </EXRLIST>
 
+<SCRIPT>
+<SESS t="1.30">
+Mean is a measure of central tendency. But central tendency is a
+subjective, intuitive concept, while mean has a precise mthematical
+definition. It is quite difficult (if not impossible) to come with a
+mathematical definition that fully captures human intuition. Mean is
+no exception. Before you use mean to measure central tendency, it is
+important to know what aspects of the intuition are captured by mean,
+and what are not. 
+<P/>
+Suppose a typical height of a adult females in a certain community is
+5.5 feet. What should be a typical height in inches? Intuition tells
+us to just convert 5.5 feet to inches to get 66 inches. This is
+intuitive. Is this really true for mean. If the mean of some heights
+expressed in feet is 5.5, then is the mean of the same heights
+expressed in inches be 66? Well, yes. As may be easily seen from the
+formula. The common multiplier just comes out of the sum. Indeed, we
+can have this formula which you can prove similarly.
+
+<P/>
+
+Theorem: am(a*x_i+b) = a*am(x_i)+b.
+<P/>
+Here the mathematics went hand in hand with intuition. Now let's see
+where things go wrong.
+</SESS>
+<JINGLE t="0.1">Problem</JINGLE>
+<SESS t="1.10">
+Consider these squares. What is a typical side length of these
+squares? What is a typical area of these squares? Intuition says that
+if L is an answer to the first question, then L^2 should be an answer
+to the second. 
+<P/>
+Let's see if the arithmetic mean formula conforms to this.
+<P/>
+am of the lengths is this, but am of the areas is this, which is not a
+square of that!
+<P/>
+Indeed, this is not just for squaring. If you take any transformation
+of the values oter than the simple ax+b type, then the am will not
+transform in the same way!
+<P/>
+It is hard to live with this fact. But it is a fact nonetheless. If
+you feel very unhappy with this, don't worry. The  measure of
+central tendency that we shall discuss in the next video is free of
+this problem to a great extent!
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="1.90">
+So far we are talking about computing arithmetic mean for raw data,
+where all the observed values of a variable are available. Sometimes
+we have to work with a frequency distribution table. This is
+particularly the case when using secondary data, which we have to
+retrieve from printed reports. Few printed reports contain the raw
+data, which are often pretty huge. Reports contain only summary
+tables, e.g. frequency distribution tables. So its important to know
+how to compute arithmetic mean from frequency distribution tables.
+<P/>
+Let's start with am example. Suppose that we have 10 values, with
+artihmetic mean .... Now  suppose we make a frequency distribution
+like this: The first point that you should understand that we have
+have lost soe information when we passed from the raw table to this
+table. We could construct the frequency distribution from the raw
+data, but we cannot construct the raw table back from the frequency
+distribution. For example, we know that there are 3 values in this
+class, but do not know where in the interval those 3 numbers lie. So
+precisely speaking we cannot compute the arithmetic mean of the
+original 10 values using only the frequency distribution. However, we
+can do an approximation. For each class we choose its mid point as its
+representative. It is called the <B>class mark</B>. We shall assume that all values in a class are
+actually equal to the class mark. Now we can apply our formula. This
+produces:
+<D>
+[[\sum f_i m_i][\sum f_i]].
+</D>
+Unfortunatly LibreOffice does not provide any easy short cut. Let's
+learn the longhand way.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Mean for grouped data]
+</SESS>
+</SCRIPT>
+</LESSON>
 <STKY>
 <HEAD2>Module 4, Lesson 2,  Video 1: Median</HEAD2></STKY>
-
+<LESSON>
+<SCRIPT>
+<SESS t="1.80">
+We have learned about one measure of central tendency already in the
+last lesson, arithmetic mean. We have also seen one undesirable
+property of that, it does not transform intuitively: e.g., square of
+mean need not be mean of squares. We are going to propose another
+measure that is somewhat free of this problem, and has also some other
+desirable properties.
+<P/>
+It is called <B>median</B>. It is defined as the centrsl most
+value. Here is a quick example. Consider these numbers. Imagine them
+along a number line, pick the middlemost. Here we have 7 numbers (two
+of which are the same, but still we count them as two numbers). The
+middlemost means the third number, third when you show them ordered
+like this, i.e., this one.
+<P/>
+Here we had an odd number of values, so we could get a middlemost
+value. What if we had 6 values? Then there are two middlemost
+values. Well, median needs to be a single number. There is a little
+bit controversy about how to choose a single value. Some people
+maintain that median is not uniquely defined here, any value in this
+interval should be called a median. But most peope agree to call the
+point exactly midway between these as the mdeian. All softwares follow
+this definition, and so shall we.
+<P/>
+Computing median is bit more work that computing mean, because we have
+to first sort the values. Sorting is one thing that computers do quite
+well. So let's learn how to compute median using LibreOffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="6">
+[Screencast: compute median. Mention rubbish avoidance. Status bar
+click. Descriptive statistics menu.]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L2V1.yml">
 
 - typeName: numeric
@@ -3612,8 +4355,68 @@ from tiny rodents to enormous blue whales. What do you mean by
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 2,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 4, Lesson 2,  Video 2: Transformation</HEAD2></STKY>
+<SCRIPT>
+<SESS t="2.10">
+We have already seen how arithmetic mean behaves nicely when we change
+units or shift origin. Well, the same good quality is shared by median
+as well. If you measure the heights of 10 persons in metres and get
+these values, then the median is. It depends only on the ordering. So
+when you change the unit of centmetres, i.e., multiply all the values
+by 100 (or any other constant for that matter) the order remains the
+same, and so does the central most value. Similarly if you shift all
+the values by the same amount, the median remains changes
+accordingly. So we have this theorem.
 
+<P/>
+Theorem: median(a*x_i+b) = a*median(x_i)+b
+<P/>
+Now let's revisit that example of squares. We have 7 squares, and want
+to know the typical length of side, and also the typical area. We
+hoped that the typical area to be the square of the typical length. This
+hope was belied by arithmetic mean. But let's see what happens for the
+median. Let us order the squares by lengths of sides. The middle most
+length is this. Now to find median of area, we have to sort the
+sqaures by the areas. Since a square with longer sides must also have
+larger area, so the same ordering would work here as well. Thus, we
+again pick the area of this square. So the median area is indeed the
+square of the median side length. In fact, the same thing is true
+about any transformation that preserves the order. 
+<P/>
+A similar argument may also be used had there been 
+an even number of squares. Only then we would have to deal with
+nonuniuness of medians: the square of a median = a median of the squares.
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="6.00">
+Just as for mean, we may need to compute median from a frequency
+distribution table. The need of this arises mainly when you are using
+secondary data, where summary tables are more readily available than
+raw data. 
+<P/>
+As we have already mentioned earlier, grouped data
+contain less inforation than the raw data. So we may not be able to
+get back the median of the raw data using onl the grouped data. But
+still we can try to approximate it following the same line as we did
+for mean. There we assued all values insie a class to be exactly equal
+to the class mark value. Once we get this proxy raw data, we can use
+our formula. 
+<P/>
+Let's see this with an example.
+<P/>
+[raw example here]
+
+<P/>
+However, we can do it more smartly. First find the half of the sample
+size. Then locate the class where the median falls using cumulative
+frequency. Now do linear interpolation. Give the formula.
+<P/>
+Unfortunately, LibreOffice (or no other software for that matter, as
+far as I know) implements this.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L2V2.yml">
 
 - typeName: multipleChoiceFind median of the numbers using Excel.
@@ -3623,10 +4426,36 @@ from tiny rodents to enormous blue whales. What do you mean by
 - typeName: multipleChoiceSort one column by another.
 
 </EXRLIST>
-
+<STKY>
+<HEAD2>Module 4, Lesson 2,  Video 3: Robustness</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.50">
+This course uses peer review: one student's answers are graded by
+three randomly selected students. So each student basically has three
+candidate grades, hopefully more or less similar.  And we have to
+choose a typical value. Aha, isn't that a central tendency problem?
+Yes, it is. And this is how I shall proceed. First I need to make sure
+that the three grades are indeed similar, i.e., they have a central
+tendency. If not, then I need to intervene. Otherwise, I need to
+choose a measure of central tendency. SHould I choose arithmetic mean?
+Let's see what may go wrong if I do.
+<P/>
+Suppose the grades are shown in a number line. Two are close together,
+while one is much lower. If it is very low, then of course, I shall
+flag it as a "no central tendency" case and intervene. But suppose it
+is quite low, but yet not too low. If I take the arithmetic mean, that
+will be somewhere here. You see how it got influenced that far off
+value. Such far off values, as you already know are called
+outliers. Mean has this problem: it gets affected too much outliers. 
+<P/>
+So we do not use mean here. We use median, which is the central most
+value.
+</SESS>
+</SCRIPT>
+</LESSON>
 <STKY>
 <HEAD2>Module 4, Lesson 3,  Video 1: Mode and others</HEAD2></STKY>
-
+<LESSON>
 <EXRLIST id="M4L3V1.yml">
 - typeName: numeric
   prompt: |-
@@ -3698,9 +4527,7 @@ from tiny rodents to enormous blue whales. What do you mean by
 - typeName: multipleChoiceFind quartiles.
 
 </EXRLIST>
-
-<STKY>
-<HEAD2>Module 4, Lesson 4,  Video 1: Robustness</HEAD2></STKY>
+</LESSON>
 
 <EXRLIST id="M4L4V1.yml">
 - typeName: multipleChoice
@@ -3720,6 +4547,10 @@ from tiny rodents to enormous blue whales. What do you mean by
 - typeName: multipleChoiceCompute 10% trimmed mean from these numbers.
 
 </EXRLIST>
+<STKY>
+<HEAD2>Module 4, Lesson 4,  Video 1: Quantiles and p-values</HEAD2></STKY>
+<LESSON>
+
 
 <STKY>
 <HEAD2>Module 4, Lesson 4,  Video 2: Lab</HEAD2></STKY>
@@ -3731,7 +4562,7 @@ from tiny rodents to enormous blue whales. What do you mean by
 - typeName: multipleChoiceCompute difference of mean and median.
 
 </EXRLIST>
-
+</LESSON>
 <STKY>
 <HEAD2>Module 4, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
 <STKY><HEAD2>Module 4, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
@@ -3741,7 +4572,12 @@ from tiny rodents to enormous blue whales. What do you mean by
 <STKY><HEAD1>Module 5: Dispersion</HEAD1></STKY>
 
 <STKY><HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
-
+<LESSON>
+<SCRIPT>
+<SESS t="0">
+In this video we shall talk about dispersion.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M5L1V1.yml">
 - typeName: numeric
   prompt: >
@@ -3926,7 +4762,7 @@ Mention the alternative formula.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 5, Lesson 3,  Video 1: Mean absolute deviation</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD2></STKY>
 
 <EXRLIST id="M5L3V1.yml">
 
@@ -4028,7 +4864,7 @@ Mention the alternative formula.
 
 <STKY><HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
-
+</LESSON>
 <STKY><HEAD1>Module 6: Association etc</HEAD1></STKY>
 
 <STKY><HEAD2>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD2></STKY>
