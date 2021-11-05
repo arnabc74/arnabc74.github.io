@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SAT OCT 30 IST 2021</UPDT>
+<UPDT>FRI NOV 05 IST 2021</UPDT>
 
 
 <STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
@@ -1715,7 +1715,7 @@ help from the course community.
 <P/>
 So for a solid knowledge, do please install LibreOffice in your
 local machine. In case you are really not in a position to do so,
-use the cloud ersion as a fallback option.
+use the cloud version as a fallback option.
 </SESS>
 </SCRIPT>
 
@@ -1725,7 +1725,7 @@ use the cloud ersion as a fallback option.
 
 <SCRIPT>
 <SESS t="2.00">
-[Screencast of download and installation]
+[Screencast:  download and installation, show in windows and ubuntu]
 </SESS>
 </SCRIPT>
 
@@ -2156,6 +2156,7 @@ cancellation.
 </SESS>
 </SCRIPT>
 </LESSON>
+
 <STKY><HEAD1>Module 2: Presentation of data (part 1)</HEAD1></STKY>
 <STKY><HEAD2>Module 2, Introductory Video: Peer review</HEAD2></STKY>
 <SCRIPT>
@@ -2187,8 +2188,7 @@ with the correct answers plus a rubric, i.e., a scheme for how much marks to
 give for different aspects of the solution. 
 </SESS>
 </SCRIPT>
-<STKY><HEAD2>Module 2, Lesson 1,  Video 1: Graphical: exploratory
-and pedagogic</HEAD2></STKY>
+<STKY><HEAD2>Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</HEAD2></STKY>
 <LESSON>
 <SCRIPT>
 <SESS t="1.50">
@@ -2329,12 +2329,47 @@ overlaid on the same plot.
 
 <STKY><HEAD2>Module 2, Lesson 1,  Video 3: Line diagram (lab)</HEAD2></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="0.20">
+Remember that softwares are stupid. We shall learn with toy
+examples. Get into real data at the very end.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="2">
 [Screencast: making a line diagram, overlay, labeling]
+ts1: Single series, works out of box.
+</SESS>
+<JINGLE t="0.1">ts2</JINGLE>
+<SESS t="3">
+[Screencast: making a line diagram, overlay, labeling]
+ts2: Multiple series, works out of box.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 2, Lesson 1,  Video 4: Line diagram (interpretation)</HEAD2></STKY>
+<STKY><HEAD2>Module 2, Lesson 1,  Video 4: Line diagram (lab)</HEAD2></STKY>
+<SCRIPT>
+<SESS t="5.5">
+[Screencast: ts3: Time as numbers, Needs "First column as
+labels", missing?]
+</SESS>
+</SCRIPT>
+
+<STKY><HEAD2>Module 2, Lesson 1,  Video 5: Line diagram (lab)</HEAD2></STKY>
+<SCRIPT>
+<SESS t="7">
+[Screencast: ts4: Details of the chart wizard.]
+<TODO>Combine this and the next video.</TODO>
+</SESS>
+</SCRIPT>
+
+<STKY><HEAD2>Module 2, Lesson 1,  Video 6: Line diagram (lab)</HEAD2></STKY>
+<SCRIPT>
+<SESS t="6">
+[Screencast: ts5: Details of the chart edit mode.]
+<TODO>Combine this and the last video.</TODO>
+</SESS>
+</SCRIPT>
+
+<STKY><HEAD2>Module 2, Lesson 1,  Video 7: Line diagram (interpretation)</HEAD2></STKY>
 <SCRIPT>
 <SESS t="0.70">
 What are line charts good for? 
@@ -2516,10 +2551,29 @@ The resulting diagram is called a scatterplot. Let's go through a
 little lab session before discussion further details.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="2">
 [Screencast: making a scatterplot for the height-weight data.]
+hw1: simple 
+</SESS>
+<SESS t="0.20">
+In the next video we shall look at a little variation of this.
 </SESS>
 </SCRIPT>
+<STKY>
+<HEAD2>Module 2, Lesson 2,  Video 2: Closer look at scatterplots</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="0.20">
+Sometimes we may accommodate a third (categorical) variable in a
+scatterplot. Let's see how.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="7">
+[Screencast: hw2: Gender: Split using gender, plot both.]
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 2, Lesson 2,  Video 3: Closer look at scatterplots</HEAD2></STKY>
 
 <SCRIPT>
 <SESS t="0.60">
@@ -2529,7 +2583,7 @@ used even when one variable is discrete. Like plotting yields of
 crops for different fertilisers. But if you try to use them for
 situations where both the variables are discrete, you may have
 many cases piling up at the same point, and the scatterplot will
-not able to distinguish them. 
+not be able to distinguish them. 
 </SESS>
 <JINGLE t="0.1">Interpretation</JINGLE>
 <SESS t="0.50">
@@ -2577,11 +2631,23 @@ they are difficult to interpret unless you can move them
 interactively with the mouse.
 <P/>
 Libreoffice provides a different solution, called a bubble
-plot. Here a third variable is accommodated as the size of the dots.
+plot. Here a third variable (and even  a fourth variable) may be
+accommodated as the size (and colour) of the bubbles. We shall
+learn how to create them in the next video.
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 2, Lesson 2,  Video 4: Closer look at scatterplots</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="1">
+[Bubble intro]
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
 [Screencast: bubble plot]
+bubble.csv: Need of the first column as label. Try without making
+colours, then make colours.
 </SESS>
 </SCRIPT>
 
@@ -2647,8 +2713,6 @@ plot. Here a third variable is accommodated as the size of the dots.
 
 </EXRLIST>
 
-<STKY>
-<HEAD2>Module 2, Lesson 2,  Video 2: Lab</HEAD2></STKY>
 <EXRLIST id="M2L2V2.yml">
 - typeName: multipleChoice
   prompt: >
@@ -2738,8 +2802,10 @@ Before going into further details. It is time to get our hands
 dirty with some lab work.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
-[Screencast: Make a simple bar chart. Play with labels legends etc]
+<SESS t="6">
+[Screencast: Make a simple bar chart. Play with labels legends
+etc]
+bar.csv: Go slow.
 </SESS>
 </SCRIPT>
 
@@ -2774,6 +2840,9 @@ Anyway, before talking further it is time to go to the lab.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
 [Screencast: side-by-side and subdivided (also show 3D)]
+bar3.csv: Side by side. Change colour.
+bar2.csv: First side by side. Diffeence and subdivided. Show
+3d with 3d options.
 </SESS>
 </SCRIPT>
 
@@ -2809,6 +2878,8 @@ Let's learn making a pie chart using Libreoffice.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
 [Screencast: Make a simple pie chart. Play with labels etc.]
+pie.csv: Tools > Options > Charts > Default colours (in chart
+edit environment) <TODO>Chop some excess audio near the end.</TODO>
 </SESS>
 </SCRIPT>
 <STKY>
@@ -3028,6 +3099,7 @@ how this may be done.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="4">
 [Screencast: Bar chart of derived quantities.]
+bar4.csv: GDP inflation. Time series is better. 
 </SESS>
 <SESS t="1.10">
 So much for comparability. Now for contrast. Most graphical
@@ -3243,9 +3315,13 @@ pivot tables.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="4">
 [Screencast: Create a letter grade frequency distribution.]
+letgrad.csv:
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 3, Lesson 1,  Video 2: Tabular: Pivot table and pivot chart</HEAD2>
+</STKY>
 <SCRIPT>
 <SESS t="1.30">
 The example that we saw in the last video was possibly the
@@ -3272,24 +3348,31 @@ Let's see a detailed example to understand this.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
 [Screencast: Make a pivot table, and play with settings]
+lr.csv, count and avg iq, decimal places.
 </SESS>
 </SCRIPT>
+<STKY>
+<HEAD2>Module 3, Lesson 1,  Video 3: Tabular: Pivot table and pivot chart</HEAD2>
+</STKY>
 
 <SCRIPT>
 <SESS t="0.40">
 Pivot tables allow some additional embellishments to be added to
-the basic summary table. These take the form of marginals. This
-is best exaplained through an example. Here is a basic pivot
-table. We can append marginals to it like this. 
+the basic summary table. In fact, the marginal totals that we
+were seeing all along, are examples of this. We can remove them,
+if we please.
 <P/>
 Let's see how we can do this using Libreoffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
-[Screencast: Marginals.]
+[Screencast: Marginals off from last example.]
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 3, Lesson 1,  Video 4: Tabular: Pivot table and pivot chart</HEAD2>
+</STKY>
 <SCRIPT>
 <SESS t="0.80">
 Pivot tables have two major uses in a report. One is as
@@ -3305,8 +3388,9 @@ LibreOffice. This single thing is called a <B>pivot chart</B>.
 Let's see an example.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="0">
+<SESS t="5">
 [Screencast: Pivot chart]
+letgrad.csv: pie chart
 </SESS>
 </SCRIPT>
 <EXRLIST id="M3L3V1.yml">
@@ -3410,9 +3494,12 @@ need one.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="4">
 [Screencast: Make contingency table.]
+lr.csv: Don't use iq
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 3, Lesson 2,  Video 2: Contingency table</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.70">
 We mentioned just now that contingency tables are very
@@ -3441,6 +3528,8 @@ legal suits as well.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 3, Lesson 2,  Video 3: Contingency table</HEAD2></STKY>
 <SCRIPT>
 <SESS t="2.30">
 
@@ -3482,6 +3571,108 @@ assessing relation. More details will come later.
 <TODO>Include an example of guessing expected frequency based on marginals.</TODO>
 </SESS>
 </SCRIPT>
+
+<STKY>
+<HEAD2>Module 3, Lesson 2,  Video 4: Contingency table</HEAD2></STKY>
+<SCRIPT>
+<SESS t="2.90">
+We have mentioned how we may construct  contingency table from
+raw data. When we collect raw data with the aim of creating a
+contingency table, there are two major ways to go about it. Let's
+understand this with an example. 
+<P/>
+Suppose that our population consists of employees from a
+particular job sector. We are interested in two variables gender
+and responsibility levels. Let's say there are four
+responsibility levels: Manager,
+Engineer, Clerk and  Support staff. Our final aim is to get a
+contingency table like this, that shows genders in the tows
+and the designations in the columns. 
+<P/>
+How should we go about collecting data for this. One method could
+be to select 100 employees randomly from the entire populartion,
+and collect observe the gender and responsibility levels for
+each. In this scheme we have no control on how many men and how
+many women will be in our sample. Neither do we have any control
+on the counts for the responsibility levels. So both the row
+marginals and the column marginals are random.
+<P/>
+An alternative approach is to draw a random sample of 50 men and
+50 women, and then observe the responsibility levels for each of
+them. Here there are 50 men and 50 women by design. So the row
+marginals are fixed, not random. However,  the row marginals
+continue to the random as before.
+<P/>
+Of course, we could have done it the other way around, fixing the
+column marginals first. Then we should have chosen in advance the number of
+persons in each responsibility level, say 25 each, and randomly
+chosen that many employees from each level. Finally, we observe
+the genders of these selected employees. 
+<P/>
+Why are we bothering about these different forms? Because the
+different sampling schemes will let us make different types of
+inferences. Take a very simple example. Suppose that we want to
+know the proportion of male employees versus female
+employees. Then the second scheme is not suitable, because there
+we deliberately chose an equal number of men and women. However,
+if we are interested in comparing the responsibility levels for
+the two genders, i.e., trying to check if the responsibility
+level distribution for men differ significantly from that for
+women. Then the third scheme is not suitable, as there we are
+starting by fixing the responsibility level counts.  The first
+scheme may also not be suitable if there happen to be too few men (or two
+few women) in the sample. Here the second scheme is the best
+suited for the purpose.
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 3, Lesson 2,  Video 5: Contingency table</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.60">
+All the contingency tables discussed so far were 2-way or
+2-dimensional. It is quite possible to have higher dimensional
+contingency tables. For example if we want to study relation
+between 3 categorical variables, e.g., gender (M/F), educational
+level (Preschool, School, College, University)
+and income group (Low, Middle, High), then we shall have a 3-way
+contingency table,which <M>2\times4\times 4</M> in size. In such
+a case it ia customary to refer to the first variable as the
+layer, the second as the row, and last as the column. Here, for
+example, gender is the layer variable, educational level is the
+row variable, and income group is the column variable. When
+printing the table is printed layer by layer, where each layer is
+a 2-way table. 
+
+<P/>
+Most of the concepts that we have learned about 2-dimensional contingency
+tables readily generalise for higher dimensional contingency
+tables, as well. For example, we may talk about association
+between the variables. However, a higher dimensional contingency
+table allows more variety. For instance, 
+income group and educational level may be associated in
+one way in the male layer, but they may be associated differently
+ in the female layer. 
+<P/>
+Statisticians often build elaborate models called log-linear
+models to capture such complex relations. But we shall not go
+into this any further in this course.
+<P/>
+In the nexr video we shall see how we may construct a 3-way contingency
+table from raw data in LibreOffice.
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 3, Lesson 2,  Video 6: Contingency table</HEAD2></STKY>
+<SCRIPT>
+<SESS t="6">
+[Screencast: 3-way toy example as described.]
+gei.csv: gender, edu, income
+</SESS>
+</SCRIPT>
+
+
 <EXRLIST id="M3L4V1.yml">
 
 - typeName: multipleChoice<M>2\times2</M> table. Only row totals and a single column total are given. Find
@@ -3528,7 +3719,8 @@ Let's understand with an example. Suppose we have a variable. We
 consider the set of all possible values it can take, and split it
 into some mutually exclusive and exhaustive subsets. If the
 variable is a categorical one, then this is trivial, just use the
-values temselves. But if the variable is continuous, then we have
+values temselves. We have already seen this inthe letter grade
+example. But if the variable is continuous, then we have
 to introduce some binning. For example, if we are taking about
 areas of farmlands, then we may use the bins: below 1 hectare,
 between 1 and  hectares, etc. Now we just find the frequncies in
@@ -3545,9 +3737,11 @@ let's quickly see how frequency distributions may be created in LibreOffice.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
 [Screencast: Create a frequency distribution table.]
+land.csv
 </SESS>
 </SCRIPT>
 
+<STKY><HEAD2>Module 3, Lesson 3,  Video 2: Frequency distribution</HEAD2></STKY>
 <SCRIPT>
 <SESS t="2.90">
 Now that we have learned what is frequency distribution is, you
@@ -3587,17 +3781,22 @@ your own coin. You'll see that your coin behaves in the way I
 predicted. 
 <P/>
 While I strongly urge you to carry this experiment out with a
-real coin, here I am providing a LibreOffice version of the
+real coin. In the next video  I shall provide a LibreOffice version of the
 experiment, which will show the same result, much more easily,
 albeit much less dramatically, because a computer can only
-simulate a coin toss. Anyway, here is the LibreOffice version.
-</SESS>
-<JINGLE t="0.1">Experiment</JINGLE>
-<SESS t="4">
-[Screencast: experiment]
+<I>simulate</I> a coin toss. Here we shall see how LibreOffice
+can simuate data. 
 </SESS>
 </SCRIPT>
 
+<SCRIPT>
+<SESS t="6">
+[Screencast: experiment]
+Show simul randomness. Split. Do cumsum.
+</SESS>
+</SCRIPT>
+
+<STKY><HEAD2>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.80">
 What you experienced just now is the key idea behind the whole of
@@ -3711,8 +3910,6 @@ statistics hinges on that.
 
 </EXRLIST>
 
-<STKY>
-<HEAD2>Module 3, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <EXRLIST id="M2L3V2.yml">
 
@@ -3757,7 +3954,7 @@ statistics hinges on that.
 <HEAD2>Module 3, Lesson 4,  Video 1: Histogram</HEAD2></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="0.60">
+<SESS t="0.90">
 We have already seen some ways to graphically represent
 data. Most of them were pretty self-evident. Indeed, that was one
 of their main qualities, because they are meant to present data
@@ -3768,29 +3965,160 @@ data. These are
   * histogram
   * box plot
 The first of this will be discussed here. The other will come
-later this week. 
+later this week.
+<P/>
+Histograms are not frequently used in reports meant
+for laymen. However, they are extremely useful for understanding
+the behaviour of data, and have a rich theory underlying
+them. But since they are not used much for report generation,
+neither LibreOffice nor MS Excel has full support for them.
 </SESS>
-<SESS t="1.30">
+<SESS t="0.60">
 The histogram is extremely similar to bar charts. However, bar
-charts are for categorical variables, while histograms are for
+charts are for categorical variables, while histograms  may be
+used  for both discrete and
 continuous ones. The histogram is a graphical way of
 demonstrating statistical regularity based on a frequency
-distribution. Without further ado, let us look at an example. All
-histograms start with a frequency distribution of a continuous
-variable. Like this. Since we are after statistical regularity
-here, we need to convert the frequencies to relative frequencies
-first. What we are going to do is very much like making a bar
-chart for these relative frequencies, except for two important
-differences. First. each bar sits on its own class. So if the
-classes have different widths, then the bars may have differen
-widths. Also the bar are all adjacent to each other. The second
+distribution. Histograms come in two major varieties, depending
+on whether the variable is discrete or continuous. The discrete
+case is the easier of the two, and we shall start with that.
+</SESS>
+<JINGLE t="0.1">Discrete histogram</JINGLE>
+<SESS t="2.80">
+Consider a household level data set where household size is a
+variable. It is a counting variable, and hence discrete. We shall
+first obtain its frequency distribution, i.e., how many times
+each possible value has occured in the data set. Then we compute
+the relative frequency for each value, i.e., the frequency
+divided by the total number of cases. If we now create
+a bar chart with bars showing these relative frequencies, we get the histogram
+for the variable. Since the bars depict relative frequencies, so
+the sum of the lengts of the all the bar <V>[animation]</V>  must
+be 1.
+<P/>
+While this is the precise definition of the histogram of a discrete
+variable, sometimes it is slightly simplified and uses the
+frequencies themselves rather than the relative frequencies. This
+does not change the overall shape of the histogram, only the
+labelling of the vertical axis.
+
+<P/>
+Let's look at various possible shapes of a discrete
+histogram. 
+
+<P/>
+* This histogram has a peak at the centre, tapering off
+towards the two ends. This peak gives the value that the variable
+is taking most frequently. These extreme values occur more
+rarely. The overall shape is symmetric around the centre.
+<P/>
+* This histogram, on the other hand, is quite skewed towards the
+right. The most frequently occuring value is near the left
+extreme. 
+<P/>
+* This histogram is skewed towards the right. The most frequently
+occuring value is near the right.
+<P/>
+* Here is yet another pattern with multiple peaks. 
+<P/>
+* In this histogram all the values are more or less the same.
+<P/>
+
+Next let us look at histograms of continuous variables. 
+A discrete variable takes a some discrete values <V>[show]</V>. A
+continuous variable takes values continuously over a
+line. [*]. In order to create bars, we need to subdivide the line
+into classes, and consider the corresponding frequency
+distribution. As before we compute the relative frequencies and
+erect rectangles over each class with area equal to the relative frequency.
+<P/>
+
+Note  two important
+differences of continuous histograms with discrete ones.
+<P/>
+
+* First. each bar sits on its own class. So if the
+classes have different widths, then the bars may have different
+widths. Also the bar are all adjacent to each other.
+<P/>
+* The second
 difference is more subtle. The height of a bar is not proortional
-to the relative frequency of its class, but to what is called the
-relative frequency density of the class. This is the relative
-frequency divided by the class width. This makes the total area
-of all the bars equal to 1. 
+to the relative frequency of its class, but the area is.
+This makes the total area of the histogram equal to 1.
 </SESS>
 <TODO>Explore opendata.org</TODO>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 3, Lesson 4,  Video 2: Shape of histogram</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="4.20">
+The shape of the histogram reveals interesting facts about a
+variable, and has profound implication for the statistical
+analysis of data.
+The variables  in a data set take values randomly. For instance,
+if height is our variable, and each case is a person, then we
+shall have random variation among the values, because different
+persons have different heights, and there is known formula
+explaining this variation perfectly. Any statistical analysis
+presupposes that there is some underlying (unknown) random
+process of nature that produces these values. Just like rolling a
+die, subtle variations in the forces, the angle of launch,
+rotations determine the final outcome in some complex a way that
+we have to consider it as a blackbox. Since we cannot figure out
+the exact working of the blackbox, we have to satisfy ourselves
+with the overall behaviour. And that's where histograms come to
+our help. If we run the blackbox a large number of times, and
+make the histogram of its random output, then quite surprisingly
+the effect of the randomness magically vanishes and we arrive at
+a shape that depends only on the process, and not on the
+outputs. In other words, if you run the same process again a
+large number of times, then the shape of the new histogram will
+be essentially the same as the earlier one. This magical
+behaviour, as you might have guessed, already is a consequence of
+statistical regularity, and is utilised by statisticians to
+detect the unobserved process behind the observed data. It is
+much like fingerprint analysis. Fingerprints that all appear
+similar to the layman uniquely identify different persons in the
+hands of the expert. Similarly, values that appear as jumbles of
+numbers to the layman reveal interesting tell-tale shapes to the
+statistician who constructs a histogram out of them!
+<P/>
+Here's a discrete toy example. Suppose I  a given a die and asked
+to check if it is fair. Then I can roll it a large number times
+and construct a histogram. After a few hundred tosses the
+histogram stabilises to a shape. If the die were a fair one, then
+all the bars should have equal heights. But the heights are quite
+unequal, we know that the die is loaded.
+
+<P/>
+Of course, this was a rather artificial example. Let's now look
+at a more practical example. Suppose we draw a huge random sample
+across all the strata of the Indian population, and collect data
+about their monthly income. Even without carrying out the
+sampling let's see whether we can guess the shape of
+histogram. Can it be like this [flat]? No [explain], Can it be
+like this [left skew]? No [explain]. Can it be like this [right
+skew]. This looks better. Indeed, this is the typical shape for
+income distribution of most countries. Notice how the shape of
+the histogram shows the underlying process, namely how the
+economic structure of the country.
+<P/>
+Certain shapes of histograms occur so frequently in diverse
+situations, that statisticians have given them special names, and
+created mathematical formula to descibe the shapes. Each such
+shape is called a distribution, and faimiliarity with these is
+one important pillar of statistical expertise.
+<P/>
+Here is the most popular one: the bell-shape. If you make it
+skewed to the right, you get this shape. We saw it just now in
+the income example. If we skew it in the other direction, we get
+this shape. Of course, we can create variations of each. Like we
+can start with the bell shape, and just move it around, or make
+the peak sharper or flatter. 
+<P/>
+We shall more occasion to visit these shapes throughout statistics.
+</SESS>
 </SCRIPT>
 <EXRLIST id="M3L3V1.yml">
 
@@ -3812,7 +4140,24 @@ its left.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 3, Lesson 4,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 3, Lesson 4,  Video 3: Lab</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="5">
+[Screencast: Discrete histogram]
+Reuse the earlier data.
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 3, Lesson 4,  Video 4: Lab</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="7">
+[Screencast: Continuous histogram]
+Reuse the earlier data.
+</SESS>
+</SCRIPT>
+
 
 <EXRLIST id="M3L3V2.yml">
 
@@ -4152,6 +4497,7 @@ this using LibreOffice.
 
 <SCRIPT>
 <SESS t="1.30">
+<TODO>Sum of deviations frm mean must be 0.</TODO>
 Mean is a measure of central tendency. But central tendency is a
 subjective, intuitive concept, while mean has a precise mthematical
 definition. It is quite difficult (if not impossible) to come with a
@@ -4446,7 +4792,7 @@ flag it as a "no central tendency" case and intervene. But suppose it
 is quite low, but yet not too low. If I take the arithmetic mean, that
 will be somewhere here. You see how it got influenced that far off
 value. Such far off values, as you already know are called
-outliers. Mean has this problem: it gets affected too much outliers. 
+outliers. Mean has this problem: it gets affected too much by outliers. 
 <P/>
 So we do not use mean here. We use median, which is the central most
 value.
@@ -4456,6 +4802,119 @@ value.
 <STKY>
 <HEAD2>Module 4, Lesson 3,  Video 1: Mode and others</HEAD2></STKY>
 <LESSON>
+<SCRIPT>
+<SESS t="4.50">
+In the last two lessons we have learned about two most popular
+measures of central tendency: mean and median. These were
+applicable primarily for continuous variables, and also for
+counting variables and certain ordinal variables. Next we shall discuss a
+measure of central tendency that is primarily for categorical
+variables and counting variables, though sometimes also used for
+continuous variables.
+<P/>
+Let's start with an example. Suppoe that there are three
+different types of dress, and 100 different people, among whom 
+the first type fits 40, the second type fits 35 and the third
+type fits the rest. Now due to some constraint you have to order
+the same type of dress for all the 100 people. Which type would
+you order? 
+<P/>
+If you order type 1, then 40 will be happy, the remaining 60 has
+to wear something they do not fit into.
+<P/>
+If you order type 2, instead, then only 35 will be happy.
+<P/>
+If type 3 is ordered, then the number of happy persons will be
+even smaller, just 25.
+<P/>
+So you should order the first type for everybody.
+<P/>
+Notice how the categorical nature of the variable (type of dress)
+played a role here. Either one gets the right type or not. Either
+wrong type is bad. In such a case, the best representative value
+is the one which occurs the maximum number of times. This value
+is called the <B>mode</B>. This is basically how one makes a selection
+by majority vote. Of course, you may run into the problem of
+ties. There may be two candidates both attaining the same maximum
+frequency. Such a data set is called <B>multimodal</B> as opposed
+to <B>unimodal</B>, which means having a unique mode. In a
+multimodal situation mode is not very useful as a measre of
+central tendency. Indeed, being multimodal may even imply lack of
+central tendency.
+<P/>
+Mode may be considered  as a  way to choose a
+representative value by minimising the overall unhappiness.
+This idea of minimising the overall unhappiness was actually present even for
+mean and median. Only the definition of unhappiness was different
+in those cases. Let's take an example to understand this. Here are some
+points along the number line. Suppose we decide to choose this point as
+their representative. We shall see how unhappy each of the data
+points is with this decision.  Clearly, the further a point is from the
+representative, the unhappier it is. He is like: "Oh that guy is so far
+away from me. He cannot represent me well!" So here is one way to measure the
+unhappiness: the geometric distance between the point and the
+line, or the absolute value <M>|x_i-a|.</M> So the total
+unhappiness is a <M>\sum|x_i-a|.</M> This of course depends
+on <M>a.</M> If you choose <M>a</M> to
+minimise this, then one can show that <M>a</M> must be median of
+the points.
+<P/>
+Another similar, but different way to do measure unhappiness is
+by considering the squared distance: <M>(x_i-a)^2</M> leading to
+the total distance <M>\sum(x_i-a)^2.</M> Minimising this
+w.r.t. <M>a</M> leads to <M>a</M> being the mean. 
+<P/>
+Thus, you see, all the measures of central tendency that we have
+discussed so far can be considered from a common view point:
+minimising unhappiness. In fact, this idea pervades much of
+statistics beyond just central tendency. What we called
+unhappiness is more technically referred to as
+the <B>loss</B>. Many statistical methods are motivated by trying
+to minimise some suitable notion of loss.
+<P/>
+So far we have presented mode as a measure of central tendency
+for categorical and counting variables. Indeed, that's what mode
+is used for most often. However, we do sometimes talk about mode
+for continuous variables. The next video will talk about that.
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="1.40">
+Mode as we defined it in the last video was the value (or values) with the
+highest frequency. This made sense for categorical data or count
+data, as there the same value is usually repeated many times. But
+a continuous data, the same values are repeated more rarely, if
+at all. However, lots of values may be very close together. For
+example, if you report body weights of 100 persons to the nearest 10th of a kg,
+you may hardly get any exact repetion, while many weights will
+lie tightly together. A typical case may be shown along a number
+line. 
+Naturally you'll like to say that the most frequntly occuring
+weights are near here. So we should call the center of this
+cluster the mode. To make this idea somewhat precise, we
+construct a histogram, and look at the class with the maximum
+area. We expec tthe mode to lie there. If the classes are taken
+with sufficiently small width, then we can narrow down on the
+mode more and more precisely. 
+<P/>
+However, this procedure requires a huge amount of data, and whike
+it works in principle, is not a practicable way. So people do not
+talk much about modes for continuous variables.
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="0.30">
+Finding the mode for a categorical variable or count variable is
+quite easy. Let's work with toy data of hourly counts of traffic rule
+violations over at a fictitious crossing.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="5">
+[Screencast: traffic poisson mode.]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L3V1.yml">
 - typeName: numeric
   prompt: |-
@@ -4518,8 +4977,69 @@ value.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 4, Lesson 3,  Video 2: Other measures</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.90">
+We have talked about the three major measures of central
+tendency: mean, median and mode. Each has its own advantages and
+disadvantages. Sometimes we want to retain the advantages of one,
+and yet avoid its disadvantages. This leads to other measures of
+central tendency that are obtained by tweaking these basic
+measures. We shall see two such. Both are obtained by tweaking
+the definition of mean. 
+<P/>
+The first is called <B>weighted mean</B>. When we compute the
+mean by the formula <M>[[1n]]\sum x_i,</M> we are giving equal
+importance to all the <M>x_i</M>'s. Sometimes that is
+undesirable. Here is  a simple example. Suppose that we have many
+agricultural plots of different productivity levels, and we want
+to find the average productivity level for all the
+plots. Productiity level for a plot is measred as yield per unit
+area for a single season. If we merely add all the productiity
+levels of the inididual plots and divide by the number of plots,
+then we shall arrive at a meaningless figure. Because  a
+very small plot with high productiity may not offset the effect
+of a huge plot with a low productivty. So we should take areas of
+the plots int account. How should we do that? Well, we first
+multiply the productivty level of each plot with its area to get
+the yield of that plot, sum these to get the total yield and then
+divide by the total area to get the overall productivity
+level. This formula is called the weighted mean.
+<P/>
+Let's see this in action.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Above example.]
+</SESS>
+</SCRIPT>
 
+<SCRIPT>
+<SESS t="1.20">
+We saw how weighted mean is sometimes better than usual
+mean. Well, the next measure of central tendency that we are
+going to discuss is an extreme application of this idea. It just
+gives  zero weights to some of the points in order to achieve
+robustness. It is called <B>trimmed mean</B>.
+<P/>
+We have seen that mean is not very robust, because extreme
+observtions can easily pull it towards themselves away from the
+true centre of the bulk of points. One way to rectify this is to
+first trim away the extreme points and then compute the mean of
+the rest. This is the same as attaching zero weights to those
+discarded extreme poits. Depending on how far we trim, we have
+different versions of trimmed mean, e.g., 10% trimmed mean or 5%
+trimmed mean. A 10% trimmed mean will first discard the most
+extreme 10% of the points (5% from either end) and then compute
+the usual mean of the rest. 
+<P/>
+Let's look at the computation using LibreOffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: 10%-trimmed mean of 90 numbers.]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L3V2.yml">
 
 - typeName: multipleChoiceFind mode of a column.
@@ -4546,12 +5066,105 @@ value.
 
 - typeName: multipleChoiceCompute 10% trimmed mean from these numbers.
 
+ - typeName: trimmed median is same as median.
 </EXRLIST>
 <STKY>
 <HEAD2>Module 4, Lesson 4,  Video 1: Quantiles and p-values</HEAD2></STKY>
 <LESSON>
+<SCRIPT><SESS t="4.30">
+This lesson is not about any more measures of central
+tendency. However, the idea is somewhat related, so I am
+discussing it this week. This topic will prove essential in the
+Statistical Methods course when we shall learn about test of
+statistical hypotheses. 
+<P/>
+Let's start with something we have already seen: median. It is
+the most central point among all the values. [*] We may think it
+as the point which splits the all the values into two parts, with
+exactly half the values to its left. Well, this is not entirely
+precise if we have an odd numer of values, but you get the general
+idea.
+<P/>
+ Now, there is nothing special about the proportion half. We might as well think
+of a point that <M>[[13]]</M>-way into the data set from the
+left, i.e., exactly <M>[[13]]</M> of the values lie to its left
+(again allow a little rounding off if the number of points is not
+exactly divisible by 3). In general for any
+fraction <M>p\in(0,1)</M> we can consider a point such that
+exactly <M>[np]</M> of the values lie to its left. This point is
+called the <B><M>p</M>-th quantile</B>.
+<P/>
+In particular, median is the <M>p</M>-th  quantile for <M>p=[[12]].</M>
+<P/>
+While this is the most popular quantile in use, some other
+quantiles also deserve mention. If you take <M>p=[[14]]</M> you
+get the first quartile. Note the spelling, it is <B>quartile</B>
+and not <B>quantile</B>. If you take <M>p=[[34]]</M>, you get the
+third quartile. Clearly, the second quartile corresponds
+to <M>p=[[24]]=[[12]]</M>, and so is the same as the median. 
+<P/>
+Another type of quantile that has a special name is
+the <B>percentile</B>. For <M>k=1,...,99</M> the <M>k</M>-th
+percentile is the <M>[[k][100]]</M>-th quantile. Sometimes you
+may hear about <B>deciles</B>, which refer to <M>[[k][10]]</M>-th
+quantiles, for <M>k=1,...,9.</M> However, the term decile is
+rarely used.
+<P/>
+Why are quantiles useful? Just as central tendency measures seek
+to capture the notion of the centre of data, quantiles are often
+used to capture the idea of the border of data. Most quantities
+in real life vary randomly. If we hold our finger steadily in
+midair, we can see it shake a little. This random variation is natural as
+long as it remains within a threshold. Crossing the threshold
+might signal a change of regime, causing us to make a remark
+like: "Hey your finger is shaking too much, are you ill?"
+There is some inevitable variation among bloodpressures of
+healthy persons. Thus, though 120/80 is nominally the standard
+for healthy blood pressure a bloopd pressure like 125/76 is no
+cause of worry. It is within the acceptable threshold of variation.  How
+does one decie upon such a threshold? Well, quantiles come in
+handy for this purpose. A typical exercise that is followed to
+come up with such thresholds often boils down to this: First
+measurements are made for a random sample of  individuals who are
+known to be healthy. Then the 5% and 95% quantiles (i.e., 5-th
+and 95-th percentiles, respectively) are computed. These are
+considered as the lower and upper thresholds. Values falling
+beyond these are suspicious, as only 5% of the healthy cases fall
+below this lower threshold and only 5% exceed the upper one.
+<P/>
+Thus quantiles help to provide hard boundaries allowing for some
+margin. Later in this lesson we shall discuss a similar concept
+called <B>p-value</B>, that provides a soft boundary.
+<P/>
+But for now let's see how quartiles are  computed using LibreOffice.
+</SESS>
+</SCRIPT>
 
+<SCRIPT>
+<SESS t="2">
+[Screencast: Computation of quantiles.]
+</SESS>
+<JINGLE t="0.1">Visualisation</JINGLE>
+<SESS t="4">
+[Screencast: Visualize quantiles using histogram.]
+</SESS>
+</SCRIPT>
 
+<SCRIPT>
+<SESS t="0">
+We have already mentioned p-values as a soft boundary for a
+data. In this video we shall learn the details. If I ask you "Is
+2 greater than 5?" then answer is "No". If I ask you "Is 100 more
+than 80?" then answer is "Yes". These are objective questions
+with objective answers irrespective of the context. But if I ask
+you "Is 15 a large number?", then as an objective question it is
+meaningless. It needs some context to have a meaningful
+answer. Say I have a pet animal aged 15 years, and I am asking
+"Is it too old?" The answer depends on the species of the
+animal. If it is a cat, then it is old indeed. But if it is a
+turtle, then it is just a baby. 
+</SESS>
+</SCRIPT>
 <STKY>
 <HEAD2>Module 4, Lesson 4,  Video 2: Lab</HEAD2></STKY>
 
@@ -4565,6 +5178,7 @@ value.
 </LESSON>
 <STKY>
 <HEAD2>Module 4, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<TODO>Longitude</TODO>
 <STKY><HEAD2>Module 4, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 
@@ -4574,10 +5188,81 @@ value.
 <STKY><HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="0">
-In this video we shall talk about dispersion.
+<SESS t="1.60">
+In the last lesson we talked about central tendency, representing
+a bunch of numbers by a single typical numbers. In this video we
+shall go a bit deeper and talk about dispersion. 
+<P/>
+<V>First set of
+firings. I move. Second set of firings.</V>
+<P/>
+Whew! Did you notice that? The guy who fired just now? He had two
+revolvers in two hands. We must report this o the police. But I
+do not know anything about the guy. But wait! May be we can infer
+something! Look at the bullet marks. 6 From left hand, 6 from the
+right. All the marks are quite close together. Hmmm...a pretty
+good shot. But the bullets from his left hand are more tightly
+together, while the other 6 are somewhat more scattered. Well,
+what can that mean. He has better aim with his left hand? At
+least he has more consistent aim with his left hand. He must be a
+left handed person. Aha, that's a good clue for the police. And
+in the meantime that's a good clue for us, too, for our current
+topic. The shots are more scattered, or as we say in statistics,
+these have higher <B>dispersion</B>, while these have lower
+dispersion. Dispersion measures the amount of scatter, or how
+loosely the points are together. That's our topic today.
+</SESS>
+<JINGLE t="0.1">Dispersion</JINGLE>
+<SESS t="2.50">
+Central tendency gives  a typical representative
+value for a bunch of values. But none of the values may be
+exactly equal to that representative value. There is bound to be
+some scatter. Measuring that scatter is the purpose of
+dispersion. Dispersion is useful because it tells us how
+relieable the central tendency is. For a variable with high
+dispersion, central tendency is not of much use. For example,
+when we talked about body weights of mammals there was an
+enormous dispersion, so much so that there was no central
+tendency left in the data. In many cases we predict a value say
+tomorrow's rainfall or some future stock price. Here it is good
+to have a kind of error bar, an interval rather than a single
+value. Dispersion plays a crucial role behind desgning such
+intervals. 
+<P/>
+Dispersion, like central tendency, is an intuitive concept. We
+shall want to capture its essence using some mathematical formula
+that may be plugged into a computer for automated decision
+making. Have you seen power saving gadgets that sometime people
+fit inside rooms. These can automatically switch lights and fans
+on or off according as whether there are people in the
+room. These devicec actually detect motion, and that is done by
+sensing sound or light intensity change and computing the
+dispersion. Is the dispersion is too low, then the machine infers
+that there is no motion, while a dispersion value exceeding a
+threshold triggers it. 
+<P/>
+OK, let's start learning about measures of dispersion. Here we
+shall work with a single continuous variable, whose values may be
+considered as points along a number line, like this. If the
+points are close together then dispersion is low, and if the are
+wider apart then dispersion is higher. We are looking for a
+mathematical fomula which will take the points as its input and
+produce a single number as its output, which should indicate the
+amount dispersion present. 
+<P/>
+There are quite a few such measures. Here is a list of commonly
+used ones:
+
+<P/>
+* Range
+* Variance and standard deviation 
+* Median absolute deviation
+* Semi-interquartile range
+<P/>
+We shall start with range in the next video.
 </SESS>
 </SCRIPT>
+
 <EXRLIST id="M5L1V1.yml">
 - typeName: numeric
   prompt: >
@@ -4605,6 +5290,122 @@ In this video we shall talk about dispersion.
 <STKY>
 <HEAD2>Module 5, Lesson 1,  Video 2: Range</HEAD2></STKY>
 
+<SCRIPT>
+<SESS t="0.90">
+Range is the simplest measure of dispersion, simplest to
+understand and simplest to compute. Here suppose are the values
+of a variable along a number line. To compute the range, you look
+at the two extremes, the minimum and maximum. The range is
+defined as the distance betwen
+them. More mathematically, if the values are 
+<D>
+x_1,...,x_n,
+</D>
+then the range is defined as
+<D>
+\max_i\{x_i\} - \min_i\{x_i\}.
+</D>
+For example, if the numbers are 
+<D>
+2.3, 4.6, 9.8, 2.4,
+</D>
+then the minimum is <M>2.3</M> and the maximum is <M>9.8.</M> So
+the range is <M>9.8-2.3 = 7.5.</M>
+<P/>
+
+Let's quickly learn to compute it using LibreOffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Compute range. by formula. by descriptive
+statistics. Show that same formula is being used. Show dynamic update.]
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 5, Lesson 1,  Video 2: Properties of range</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="0.30">
+In this video we shall explore the properties of the range. There
+are some good properties and one seriously bad property. Let's
+start with the good ones.
+</SESS>
+<JINGLE t="0.1">Good properties</JINGLE>
+<SESS t="3.00">
+Range is easy to compute, easy to understand. Good points. Now
+here are a couple of more good things about range that show that
+it captures the intuitive idea of dispersion. Suppose I take some
+points, and the points are all squeezed down to a single
+point. There is no dispersion among them now, right? So desirable
+property number one for any measure of dispersion: if all the
+values are equal then the measure should be 0. Is it true about
+range? If all the values are the same, then that same number is
+both the minimum and maximum, and hence their difference is
+zero. 
+<P/>
+Here is another desirable property for a dispersion measure to
+have. If all the points are just shifted by the same amount, then
+do you think that dispersion has changed? Intuitively, it should
+not change, right? Because they have just moved not come closer
+together or fallen further apart. So if we have some values 
+<D>
+x_1,...,x_n
+</D>
+and add a constant, say <M>c</M> to all of them to get
+<D>
+x_1+c, ..., x_n+c,
+</D>
+then both these set of numbers shoud have the same dispersion. 
+<P/>
+Is it true about the range? Yes, because when you shift all the
+numbers by some common amount, the min and max also get shifted
+by the same amount. When you take their difference, this common
+amount just cancels out. 
+<P/>
+Next comes yet another desirable property. We again start with
+values along a number line. They have some dispersion. Now we
+multiply all the numbers by some constant, say <M>c.</M> For
+instance we just double all the numbers. Then the dispersion
+should also change according to <M>c,</M> right. If <M>c>1</M>
+then the dispersion should increase, if <M>0< c< 1</M> then the
+points are squeezed together, and hence dispersion should go
+down. The sign of <M>c</M> should not matter. If if <M>c < 0</M>
+then the points just get flipped around 0. In short, a good
+dispersion measure should get multiplied with <M>|c|</M> if all
+the numbers are multiplied with <M>c.</M>
+<P/>
+It is not hard to see that range satisfies this property, as
+well. [Insert proof here.]
+
+<P/>
+So we have listed lots of good properties of the range. Easy to
+understand, easy to computes, becomes zero when all the values
+are the same, is not affected by constant shift, scales appropriately.
+<P/>
+But still range is not a popular measure of dispersion. Why?
+Because it has one particularly bad property. It is not robust
+against outliers. 
+
+</SESS>
+<JINGLE t="0.1">Bad property</JINGLE>
+<SESS t="1.10">
+Let's quickly understand what that means. Suppose we have many
+cases in a data set. So for each variable we have many values.
+When there are many values it is quite likely to some stray
+points, or outliers as they are called, that lie far away from
+the bulk of the other points. In one dimension, along a number
+line, these outliers are the extreme points, and become the
+maximum or the minimum or both. So they have tremendous influence
+of the range. Even if all the other points are tightly together,
+just one  stray point may cause the range to shoot up. Thus, the
+range is quite unstable, or non-robust, to use a technical term. 
+<P/>
+In the following videos we shall look at other meeasures of
+dispersion that are more robust than range. They look at data
+more closely, not just at the two extreme points.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M5L1V2.yml">
 - typeName: numeric
   prompt: >
@@ -4668,7 +5469,63 @@ In this video we shall talk about dispersion.
 
 <STKY>
 <HEAD2>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD2></STKY>
-Mention the alternative formula.
+<LESSON>
+<SCRIPT>
+<SESS t="0.80">
+We learned about the concept of dispersion in the last lesson,
+and also one measure of dispersion, namely range. Range was easy
+to compute, but suffered from lack of robustness. It uses the
+data points too superficially. It is completely determined by the
+two extreme values, and does not care about the other points in-between.
+<P/>
+In this lesson we shall learn about two related measures of
+dispersion that are free of this problem. The measures are
+called <B>variance</B> and its square root the <B>standard
+deviation</B>. These are the most popular measures of
+dispersion. Let's learn about step by step.
+</SESS>
+<JINGLE t="0.1">Variance</JINGLE>
+<SESS t="2.20">
+Let's take a moment to remembr why we are caring about
+dispersion. We have a bunch of numbers with central tendency, and
+we want to represent the bunch with a single typical value. We
+are now wondering how reliable this representation is.  The higher
+the dispersion, the less reliable is the representation. This was
+our motivation for considering dispersion. Let's
+turn this  motivation into a measure of dispersion.
+<P/>
+Here is our bunch of values. 
+We start with a measure of central tendency, say mean. This
+number is going to represent each of these values. For the values
+close to the mean the representation is highly acceptable. For
+points further away, the acceptability is more dubious. So the
+difference between a point and the mean plays a central role in
+determining how well the mean can represent the point. If the
+point is <M>x_i</M> then the difference is <M>x_i-\bar x.</M>
+This is positive if the point is on this side, and negative if
+the point is on that side. But we do not care about sides
+here. So we want to get rid to the sign. One way to get rid of
+the sign is to square the difference to get the number <M>(x_i-\bar
+x)^2.</M> For each point we get one such number. Now we want to
+get a single number, a typical number to represent all these
+numbers. Ah, that again sounds like a central tendency
+problem. So we can take the mean of all these numbers to get 
+<D>
+[[\sum (x_i-\bar x)^2][n]].
+</D>
+This might look complicated, and had we not followed its genesis,
+it would have left us wondering, 
+"How does this qualify as a measure of dispersion?". 
+But now we know. This is called the variance. It
+square root is called the standard deviation. Let's quickly digest
+the definition with a small numerical example.
+</SESS>
+<JINGLE t="0.1">Numerical example by hand</JINGLE>
+<SESS t="4">
+[Boardcast: Show a computation.]
+</SESS>
+</SCRIPT>
+
 
 <EXRLIST id="M5L2V1.yml">
 - typeName: multipleChoice
@@ -4749,8 +5606,153 @@ Mention the alternative formula.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 2,  Video 2: Other ways to compute it</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.00">
+The formula that we used to define variance is not that easy to
+use by hand. It requires a sort of two-stage computation, first
+you compute mean <M>\bar x</M>, then you find the mean of
+the <M>(x_i-\bar x)^2</M>'s. 
+<P/>
+There is another equivalent formula that is somewhat
+easier in the sense that it only requires a one-stage computation. Not that you'll typically do the computation by hand, but
+still it is good to know. 
+<P/>
+The formula is 
+<D>
+[[\sum x_i^2][n]] - (*([[\sum x_i][n])*)^2.
+</D>
+So here you compute the sum of all the values as well as the sum
+of their squares, and then plug them into the formula. Let's see
+if we get the same answer.
+</SESS>
+<JINGLE t="0.1">Alternative formula</JINGLE>
+<SESS t="4">
+[Boardcast: Show the same data and last answer. Use alternative formula.]
+</SESS>
+<SESS t="0">
+It is possible to prove that these two formulae will always
+produce the same answer. Let's not bother about the proof
+here. The reading material has the proof, anyway. And it is
+nothing terribly important for learning statidtics. In fact, the
+alternative formula itself is not terribly important, unless you
+are forced to do hand computation. 
+<P/>
+Now let's learn what is important: computing using LibreOffice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Compute for the same data. Var. Find n-1 problem.]
+</SESS>
+<JINGLE t="0.1">The mystery</JINGLE>
+<SESS t="1.90">
+Actually LibreOffice, like most other softwares use a slightly
+different formula which is different:
+<D>
+[[1][n-1]]\sum (x_i-\bar x)^2.
+</D>
+Why <M>n-1,</M> you might naturally wonder, as all beginning
+statisticans do. Well, thereby hangs a long
+story. To cut that story short, here is a quick explanation.
+Consider this math problem: 2 * 4 + 5 * 6.
+The steps should be 
+<MULTILINE>
+2\times 4 + 5\times 6 
+& = & 8 + 5\times 6 \\
+& = & 8 + 30 \\
+& = & 38.
+</MULTILINE>
+Suppose that a student has done the steps like this:
+<MULTILINE>
+2\times 4 + 5\times 6 
+& = & 9 + 5\times 6 \\
+& = & 8 + 24 \\
+& = & 32.
+</MULTILINE>
+How many steps do you see that do not match the corresponding
+correct step? The answer is 3. But how many
+mistakes do we see? Now the answer is 2. The reason is that the
+steps are interrelated. If one mistake  leads to
+multiple incorrect lines, then they should not be counted separately. 
+<P/>
+That is what is happening here. When we are considering the
+differences <M>x_i-\bar x</M> there are <M>n</M> such
+differences. But they are interrelated. In particular they must
+add up to 0. So only <M>n-1</M> of them are actually free, the
+remaining one is completely determined by them. So we are
+dividing by <M>n-1.</M> 
+<P/>
+This explanation is admittedly rather crude. It leaves many
+gaps. But filling up those gaps will take us beyond the scope of
+the present course. By the way this number 
+of "free" things has a general name: <B>degrees of
+freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
+</SESS>
+</SCRIPT>
 
+<STKY>
+<HEAD2>Module 5, Lesson 2,  Video 2: Properties</HEAD2></STKY>
+<SCRIPT>
+<SESS t="3.30">
+While discussing range, we had listed some desirable properties
+that a measure of dispersion should have. 
+<P/>
+
+ * should be 0 if all the values are the same
+ * should not change if all the values are shifted together
+ * should scale as the data (unaffected by the direction of scaling).
+<P/>
+Let's see if variance and standard deviation have these
+ qualities.
+<P/>
+ If all the data points are the same, then that value
+ is also the mean, so all the <M>x_i-\bar x</M>'s are zeroes, and
+ hence variance is 0. 
+<P/>
+If all the data points are shifted by a common amount,
+ then <M>\bar x</M> is also shifted by the same amount. So all
+ the <M>x_i-\bar x</M>'s remain unchanged. Hence so do variance
+ and standard deviation.
+<P/>
+If, however,  the values are all scaled by a common amount, then
+ variance gets scaled by the square of that amount. Standard
+ deviation, however, has the right behaviour. In fact, this is
+ the reason why we care about standard deviation. It has the same
+ unit as the data. Variace has the square unit, like area.
+<P/>
+OK, so we have the good properties. Now let's check
+ robustness. We have already mentioned that variance and standard
+ deviation are more robust than the range. But you know what,
+ even these are not sometimes robust enough for some purposes. So
+ stay tuned for something more robust in the next video. But
+ despite there being even more robust alternatives, nothing
+ really beats variance and standard deviation in popularity. The
+ reason behind this may appear a bit confusing at our level, but
+ I shall let you see them anyway. 
+<P/>
+The first reason is that variance is a smooth function of
+ the <M>x_i</M>'s. What's that? A smooth function, i.e., a
+ function that you can differentiate. "What's the big deal about
+ differentiation here?" you naturally wonder. Well, often times
+ we want to minimize or maximize dispersion. And you might recall
+ from your calculus classes that differentiation plays an
+ important role in maximization and minimisation. What, never had
+ a calculus course? Don't worry! Just forget what I said, you'd
+ never need calculus here. 
+ 
+<P/>
+The second reason is possibly a bit less mysterious. Let me explain with just
+two numbers <M>x_1</M> and <M>x_2.</M> Think of them as a single
+point on a graph paper. You want to replace both of them with a
+typical representative value, which is <M>\bar x.</M> So instead
+of <M>(x_1,x_2)</M> you have <M>(\bar x,\bar ),</M> which is just
+another point on the graph paper. What is the distance of the
+original point from this proxy point? Well, it is ..., and that
+is just the standard deviation (except for the constant
+denominator). This geometric interpretation helps statisticians
+in many ways.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M5L2V2.yml">
 
 - typeName: multipleChoiceCompute using Excel.
@@ -4760,12 +5762,119 @@ Mention the alternative formula.
 - typeName: multipleChoiceAdd one outlier and see the effect.
 
 </EXRLIST>
+</LESSON>
+<STKY><HEAD2>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="1.90">
+We here acronyms everywhere. Each field has its own world of
+acronyms. But in how many fields use MAD as an acronym. Well,
+statisticians do. They are really mad guys! Of course, MAD does
+not really mean mad, it stands for Median Absolute Deviation. And
+its sole motivation is to create a more robust version of
+variance. 
+<P/>
+Let's understand this step by step.
+<P/>
+When we created variance, we started with a measure of central
+tendency. We had chosen the mean. Now mean is known suffer from
+lack of robustness. Median is a more robus alternative. So why
+not start with median, instead. Well, that's precisely what MAD
+does. Next, we had computed the differences <M>x_i-median.</M> As
+we have already mentioned, we want to get rid of its
+sign. Earlier we had squared the quantity. That did get rid of
+the sign, but also contributed to its lack of robustness. If
+some <M>x_i</M> is far away, then its deviation from the centre
+is anyway somewhat large, and if you square the deviation then it
+becomes way larger. We do not want to square, but still get rid
+of the sign. How? Simple, we just drop the sign. In other words,
+we take the absolute values. Finally we had taken mean, here we
+shall take the median. 
+<P/>
+Now you can also see why it is called Median Absolute
+Deviation. There is some method in the MADness after all. 
+<P/>
+Computing median by hand is never fun, because it requires you to sort
+the values. But just to remember the definition, let us toil
+through a numerical example by hand.
+</SESS>
+<JINGLE t="0.1">Hand computation</JINGLE>
+<SESS t="3">
+[Boardcast: compute MAD.]
+</SESS>
+<SESS t="0.40">
+Now let's see how to compute MAD using
+LibreOffice. Unfortunately, LibreOffice or its paid analog Excel
+does not have any readymade command for this. But they can
+compute median and take absolute values. So it is not hard to
+compute MAD with them. Let's see how.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="5">
+[Screencast: Same data. Compute MAD]
+</SESS>
+</SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 3,  Video 1: Properties of MAD</HEAD2></STKY>
+<SCRIPT>
+<SESS t="1.00">
+MAD has all the good properties of a dispersion measure that we
+have learned. If all the points are the same, then the median is
+that common value, so the deviations are all 0, and so is MAD.
+<P/>
+If you shift all the points by the same amount, then the median
+also gets shifted by the same amount. So when we compute
+deviations by taking differences, this common amount gets
+cancelled. So MAD remains unchanged.
+<P/>
+If all the numbers are multiplied by some constant, the median
+also get multiplied by the same constant. So each of the
+deviations <M>x_i-median</M> also gets multiplied by the same
+constant. When you take absolute value, the effect of the sign
+goes away. And so the MAD is also scaled appropriately.
+</SESS>
+<JINGLE t="0.1">Bad properties</JINGLE>
+<SESS t="0.70">
+MAD cannot be computed easily by hand. That was the main reason
+why people did not use it much before the advent of computers. Of
+course, this is hardly a consideration in the modern age. So the
+only criticism that may be leveled against MAD now is that it is not
+a smooth function the data. The absolute value function is not
+differentiable, and that troubles people who try to do
+mathematical manipulations with the MAD formula. But we do not
+need to worry about that in this course.
+</SESS>
+<JINGLE t="0.1">Geometry</JINGLE>
+<SESS t="1.50">
+We had seen one geometric interpretation of standard
+deviation. We can give a geomtric interpretation of MAD as well
+along a similar vein. Again we consider just two
+numbers, <M>x_1</M> and <M>x_2,</M> and consider them as a
+point <M>(x_1,x_2)</M> on the graph paper. Earlier we
+used <M>\bar x</M> as a proxy for the <M>x_i</M>'s, and
+thus <M>(\bar x, \bar x)</M> was a proxy for <M>(x_1, x_2).</M>
+For MAD the role of <M>\bar x</M> is played by the median. So the
+proxy point is <M>(median, median).</M> Now we want to think of
+MAD as the distance between the actual point and this
+proxy. Since MAD is
+<D>
+|x_1-median|+|x_2-median|,
+</D>
+it can be visualised as a sort of horizontal-vertical
+distance. In mathematics we call this
+the <M>L_1</M>-distance. According to this distance, if you want
+to go from one point to another, you have to move either
+horizontally or vertically. This is, for example, the distance you
+have to travel in a city where the roads are all north-south or
+east-west. As Manhattan is one such place, people sometimes call
+this the Manhattan distance. We shall discuss this any further,
+as we shall not need this here any more.
+</SESS>
+</SCRIPT>
 
 <EXRLIST id="M5L3V1.yml">
-
+What signals outliers: MAD diffeernet from standard deviation.
 - typeName: numeric
   prompt: |-
     Find MAD for these numbers.
@@ -4800,8 +5909,6 @@ Mention the alternative formula.
 
 </EXRLIST>
 
-<STKY>
-<HEAD2>Module 5, Lesson 3,  Video 2: Lab</HEAD2></STKY>
 
 <EXRLIST id="M5L3V2.yml">
 - typeName: multipleChoiceCompute using Excel.
@@ -4812,9 +5919,37 @@ Mention the alternative formula.
 
 
 </EXRLIST>
-
+</LESSON>
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 1: Semi-interquartile range and boxplot</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="1.40">
+We have already learned about quite a few dispersion
+measures. These included the most popular variance and standard
+deviation, and the robust MAD. So it might seem unnecessary to
+learn about yet another measure of dispersion, the 
+interquartile range. Just as MAD is a robustified version of standard
+deviation,  interquartile range is a robustification of
+range. Not that it 
+used much. But still we should know it, because it is closely
+connected with an important graphical representation, the
+boxplot or the box-and-whiskers plot. 
+<P/>
+Let us understand  interquartile range pictorially in
+relation with the range. Imagine the data points along a number
+line, as usual. When we defined range, we looked at the two
+extremes and took the distance between them. We noticed that the
+two extremes are very likely affected by outliers, and so range
+was not robust at all. So let's shave away part of the data from
+both the extremes. This is just like trimmed mean. But here we
+shall trim off 25% of the data from either end. So that leaves
+50% data in the middle. Now take the range of that. 
+<P/>
+Let's look at an example. 
+</SESS>
+</SCRIPT>
+
 
 <EXRLIST id="M5L4V1.yml">
 - typeName: checkbox
@@ -4845,10 +5980,30 @@ Mention the alternative formula.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 2: Lab</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 4,  Video 2: Boxplot</HEAD2></STKY>
+<SCRIPT>
+<SESS t="0">
+Explain box plot.
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 5, Lesson 4,  Video 2: Lab 1</HEAD2></STKY>
+<SCRIPT>
+<SESS t="4">
+[Screencast: Use BoxplotR]
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 5, Lesson 4,  Video 2: Lab 2</HEAD2></STKY>
+<SCRIPT>
+<SESS t="6">
+[Screencast: Use LibreOffice]
+</SESS>
+</SCRIPT>
 
 <EXRLIST id="M5L4V2.yml">
-- typeName: multipleChoiceCompute semi-interquartile range for the data.
+- typeName: multipleChoiceCompute interquartile range for the data.
 
 - typeName: multipleChoiceMake box plots.
 
@@ -4858,6 +6013,7 @@ Mention the alternative formula.
 
 
 </EXRLIST>
+</LESSON>
 
 <STKY>
 <HEAD2>Module 5, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
