@@ -7119,6 +7119,9 @@ misleading. So it is awlays a good idea to draw a histogram
 first. And when you draw the histogram, you'll have a good idea
 about the skewness present. As a result the skewness coefficient
 is not used too commonly. 
+<TODO>
+mean median mode relation for skewness.
+</TODO>
 </SESS>
 </SCRIPT>
 
