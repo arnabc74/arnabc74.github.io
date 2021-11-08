@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>FRI NOV 05 IST 2021</UPDT>
+<UPDT>SUN NOV 07 IST 2021</UPDT>
 
 
 <STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
@@ -3348,7 +3348,7 @@ Let's see a detailed example to understand this.
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="5">
 [Screencast: Make a pivot table, and play with settings]
-lr.csv, count and avg iq, decimal places.
+lr.csv,  avg iq, decimal places.
 </SESS>
 </SCRIPT>
 <STKY>
@@ -3720,16 +3720,19 @@ consider the set of all possible values it can take, and split it
 into some mutually exclusive and exhaustive subsets. If the
 variable is a categorical one, then this is trivial, just use the
 values temselves. We have already seen this inthe letter grade
-example. But if the variable is continuous, then we have
+example.
+<P/>
+Similalry, for a counting valriable the bins counld be 0, 1, 2,
+ 3 or more.
+
+<P/>
+ But if the variable is continuous, then we have
 to introduce some binning. For example, if we are taking about
 areas of farmlands, then we may use the bins: below 1 hectare,
 between 1 and  hectares, etc. Now we just find the frequncies in
 the data set of those subsets, i.e., we count the number of cases
 landing in each subset. When you write down these frequncies
 against each subset, you get a frequency distribution table.
-<P/>
-Similalry, for a counting valriable the bins counld be 0, 1, 2,
- 3 or more.
 <P/>
 Nothing impressive so far. Before we start the impressive news,
 let's quickly see how frequency distributions may be created in LibreOffice.
@@ -3789,6 +3792,7 @@ can simuate data.
 </SESS>
 </SCRIPT>
 
+<STKY><HEAD2>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD2></STKY>
 <SCRIPT>
 <SESS t="6">
 [Screencast: experiment]
@@ -3796,7 +3800,7 @@ Show simul randomness. Split. Do cumsum.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD2></STKY>
+<STKY><HEAD2>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.80">
 What you experienced just now is the key idea behind the whole of
@@ -4445,6 +4449,7 @@ this using LibreOffice.
 [Screencast: Different techniques-- =average, right click summary bar, --
                                 -- =averageif, rubbish values skipped,
                                 descriptive statistics]
+land.csv
 </SESS>
 </SCRIPT>
 <EXRLIST id="M4L1V2.yml">
@@ -4495,6 +4500,8 @@ this using LibreOffice.
 
 </EXRLIST>
 
+<STKY>
+<HEAD2>Module 4, Lesson 1,  Video 3: Lab</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.30">
 <TODO>Sum of deviations frm mean must be 0.</TODO>
@@ -4545,6 +4552,8 @@ this problem to a great extent!
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 1,  Video 4: Lab</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.90">
 So far we are talking about computing arithmetic mean for raw data,
@@ -4615,7 +4624,7 @@ to first sort the values. Sorting is one thing that computers do quite
 well. So let's learn how to compute median using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="6">
+<SESS t="1.5">
 [Screencast: compute median. Mention rubbish avoidance. Status bar
 click. Descriptive statistics menu.]
 </SESS>
@@ -4735,6 +4744,8 @@ nonuniuness of medians: the square of a median = a median of the squares.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 2,  Video 3: Transformation</HEAD2></STKY>
 <SCRIPT>
 <SESS t="6.00">
 Just as for mean, we may need to compute median from a frequency
@@ -4773,7 +4784,7 @@ far as I know) implements this.
 
 </EXRLIST>
 <STKY>
-<HEAD2>Module 4, Lesson 2,  Video 3: Robustness</HEAD2></STKY>
+<HEAD2>Module 4, Lesson 2,  Video 4: Robustness</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.50">
 This course uses peer review: one student's answers are graded by
@@ -4879,6 +4890,9 @@ for continuous variables. The next video will talk about that.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 3,  Video 2: Mode and
+others</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.40">
 Mode as we defined it in the last video was the value (or values) with the
@@ -4904,15 +4918,20 @@ talk much about modes for continuous variables.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 3,  Video 3: Mode and others</HEAD2>
+</STKY>
 <SCRIPT>
 <SESS t="0.30">
 Finding the mode for a categorical variable or count variable is
 quite easy. Let's work with toy data of hourly counts of traffic rule
 violations over at a fictitious crossing.
+<TODO>Grow this a bit.</TODO>
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="2.8">
 [Screencast: traffic poisson mode.]
+acc.csv
 </SESS>
 </SCRIPT>
 <EXRLIST id="M4L3V1.yml">
@@ -4977,7 +4996,7 @@ violations over at a fictitious crossing.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 2: Other measures</HEAD2></STKY>
+<HEAD2>Module 4, Lesson 3,  Video 4: Other measures</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.90">
 We have talked about the three major measures of central
@@ -5014,6 +5033,8 @@ Let's see this in action.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 3,  Video 5: Other measures</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.20">
 We saw how weighted mean is sometimes better than usual
@@ -5037,7 +5058,7 @@ Let's look at the computation using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
 <SESS t="4">
-[Screencast: 10%-trimmed mean of 90 numbers.]
+[Screencast: 10%-trimmed mean of  land_owned from hugli saruve. survey.csv]
 </SESS>
 </SCRIPT>
 <EXRLIST id="M4L3V2.yml">
@@ -5140,18 +5161,24 @@ But for now let's see how quartiles are  computed using LibreOffice.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 4,  Video 2: Quantiles and p-values</HEAD2></STKY>
 <SCRIPT>
 <SESS t="2">
-[Screencast: Computation of quantiles.]
+[Screencast: Computation of quartiles.]
+toy.csv
 </SESS>
 <JINGLE t="0.1">Visualisation</JINGLE>
 <SESS t="4">
-[Screencast: Visualize quantiles using histogram.]
+[Screencast: Visualize quartiles using histogram.]
+toycomp.ods
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD2>Module 4, Lesson 4,  Video 3: Quantiles and p-values</HEAD2></STKY>
 <SCRIPT>
-<SESS t="0">
+<SESS t="3.60">
 We have already mentioned p-values as a soft boundary for a
 data. In this video we shall learn the details. If I ask you "Is
 2 greater than 5?" then answer is "No". If I ask you "Is 100 more
@@ -5161,13 +5188,60 @@ you "Is 15 a large number?", then as an objective question it is
 meaningless. It needs some context to have a meaningful
 answer. Say I have a pet animal aged 15 years, and I am asking
 "Is it too old?" The answer depends on the species of the
-animal. If it is a cat, then it is old indeed. But if it is a
-turtle, then it is just a baby. 
+animal. If it is a cat, then the answer is "yes, it is old indeed." But if it is a
+turtle, then our answer would be "No, it is just a baby." How did
+we choose the appropriate answers in the different  contexts? By
+comparing the given number, 15, with our prior knowledge about
+how long the animals of the species in question usually live. In
+other words we imagined the value, 15, as a point on a number
+line, which was full of typical known life spans of that kind of
+animals. Cats rarely live longer than than 15 years. So only a
+miniscule fraction of points would lie to the right of 15.
+Turtles, on the other hand, are known to live even longer than
+150 years, so the fraction of points to the right of 15 is
+huge. It is this "fraction of points exceeding our given value"
+that determines our answer. If this fraction is small, then we
+say that the value is too large in this context. If the the
+fraction is large, then we do not call our value "too
+large". If we do not have such a sample of typical values to
+comoare against, we cannot answer the question at all. For
+instance, if I ask you "Is 15 years too old an age for a Komodo
+Dragon?", and you do not any idea about that particular beast,
+then you won't be able to answer the question at all (unless you
+look up the internet).
+
+<P/>
+This all important "fraction of typical points exceding a given
+value" is called the <B>upper-tailed p-value</B> of that point in that
+context. Had the question been about a given value being "too
+low" in a context, we would have naturally looked at the opposite
+fraction, the fraction of points below that given values. That is
+called, as you might expect, the <B>lower tailed
+p-value</B>. Sometime we talk about <B>two-tailed
+p-values</B>. Here we are talking about typical points that are
+symmetrically distributed around some centre, and we are asking
+whether a given value is too far from that centre, too far in
+either direction, too high or too low. Thus, both these values
+will qualify as "too far". Here we look at the fraction of the
+points whose distances from the centre exceed the distance of the
+given value. As far-away points lie both below and above the
+centre, this fraction is called the two-tailed p-value.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 4, Lesson 4,  Video 2: Lab</HEAD2></STKY>
-
+<HEAD2>Module 4, Lesson 4,  Video 4: Lab</HEAD2></STKY>
+<SCRIPT>
+<SESS t="5">
+[Screencast: Compute p-value from data]
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 4, Lesson 4,  Video 5: Lab</HEAD2></STKY>
+<SCRIPT>
+<SESS t="6">
+[Screencast: Visualise p-value from histogram and distribution]
+</SESS>
+</SCRIPT>
 <EXRLIST id="M4L4V2.yml">
 
 - typeName: multipleChoiceCompute 10% trimmed mean.
@@ -5185,7 +5259,8 @@ turtle, then it is just a baby.
 
 <STKY><HEAD1>Module 5: Dispersion</HEAD1></STKY>
 
-<STKY><HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
+<STKY>
+<HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
 <LESSON>
 <SCRIPT>
 <SESS t="1.60">
@@ -5323,7 +5398,7 @@ statistics. Show that same formula is being used. Show dynamic update.]
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 1,  Video 2: Properties of range</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 1,  Video 3: Properties of range</HEAD2></STKY>
 
 <SCRIPT>
 <SESS t="0.30">
@@ -5630,7 +5705,7 @@ if we get the same answer.
 <SESS t="4">
 [Boardcast: Show the same data and last answer. Use alternative formula.]
 </SESS>
-<SESS t="0">
+<SESS t="0.50">
 It is possible to prove that these two formulae will always
 produce the same answer. Let's not bother about the proof
 here. The reading material has the proof, anyway. And it is
@@ -5638,13 +5713,19 @@ nothing terribly important for learning statidtics. In fact, the
 alternative formula itself is not terribly important, unless you
 are forced to do hand computation. 
 <P/>
-Now let's learn what is important: computing using LibreOffice.
+In the next vieo we shall  learn what is important: computing using LibreOffice.
 </SESS>
-<JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
-[Screencast: Compute for the same data. Var. Find n-1 problem.]
+</SCRIPT>
+<STKY>
+<HEAD2>Module 5, Lesson 2,  Video 3: Other ways to compute it</HEAD2></STKY>
+<SCRIPT>
+<SESS t="6">
+[Screencast: Compute for the same data. Var. Then explicit. Find n-1 problem.]
 </SESS>
-<JINGLE t="0.1">The mystery</JINGLE>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 5, Lesson 2,  Video 4: Other ways to compute it</HEAD2></STKY>
+<SCRIPT>
 <SESS t="1.90">
 Actually LibreOffice, like most other softwares use a slightly
 different formula which is different:
@@ -5691,7 +5772,7 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 2: Properties</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 2,  Video 5: Properties</HEAD2></STKY>
 <SCRIPT>
 <SESS t="3.30">
 While discussing range, we had listed some desirable properties
@@ -5763,7 +5844,8 @@ in many ways.
 
 </EXRLIST>
 </LESSON>
-<STKY><HEAD2>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD2></STKY>
+<STKY>
+<HEAD2>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD2></STKY>
 <LESSON>
 <SCRIPT>
 <SESS t="1.90">
@@ -5816,7 +5898,7 @@ compute MAD with them. Let's see how.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 3,  Video 1: Properties of MAD</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 3,  Video 2: Properties of MAD</HEAD2></STKY>
 <SCRIPT>
 <SESS t="1.00">
 MAD has all the good properties of a dispersion measure that we
@@ -5987,15 +6069,15 @@ Explain box plot.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 2: Lab 1</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 4,  Video 3: Lab 1</HEAD2></STKY>
 <SCRIPT>
-<SESS t="4">
+<SESS t="6">
 [Screencast: Use BoxplotR]
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 2: Lab 2</HEAD2></STKY>
+<HEAD2>Module 5, Lesson 4,  Video 4: Lab 2</HEAD2></STKY>
 <SCRIPT>
 <SESS t="6">
 [Screencast: Use LibreOffice]
@@ -6018,13 +6100,118 @@ Explain box plot.
 <STKY>
 <HEAD2>Module 5, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
 
-<STKY><HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
+<STKY>
+<HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
 
 </LESSON>
+
 <STKY><HEAD1>Module 6: Association etc</HEAD1></STKY>
+<SCRIPT>
+<SESS t="1.10">
+We are nearing the end of our long journey. This is the last week
+of lecture in this course. Last, but not the least. Indeed the
+topic of this module will open up a whole new world, the world
+where we explore relation between different variables. 
 
+<P/>
+So far most of our techniques have focused on a single variable at a
+time. We often had multiple variables in the same data set, but
+we worked with them at a time. This week we shall start
+considering two variables at a time. The discussion that we shall
+start here will eventually culminate in the Multivariate
+Statistics course in the second semester, where we shall deal
+with even higher number of variables at a time. 
+<P/>
+This week's structure is basically the same as that of the
+earlier ones. Four lessons followed by a review lesson. Practice
+problems in between, and a weekly test at the very end. 
+<P/>
+So let's get started!
+</SESS>
+</SCRIPT>
 <STKY><HEAD2>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="2.40">
+Naure around us obeys various laws, and scientists have been trying to
+capture these laws in the language of mathematics and physics and
+chemistry and what not. All those laws are precise. But nature
+isn't. Nature does follow the precise laws, but under a cover of
+unpredicatability. While other branches of science tries to look
+under this cover, statistics tries to study the cover itself. 
+<P/>
+Now if you look at the laws of nature, be it Newton's laws of
+motion or Darwin's theory of evolution, we notice that the laws
+connect different quantities. How will this quantity, this
+variable, change if that variable changes in a certain way? How
+will blood pressure change with does of a certain drug, how will
+the length of spring change with a change in the load hung from it?
+<P/>
+To answer such questions based on data we need to observe both
+the variables simultaneously. Like here is a weight dangling from
+the end of a spring. I note the weight and record the length,
+then change the weight and record the new length. This gives rise
+to bivariate data. This was an example of experimental data,
+where I the experimenter am actively changing the weight. A
+bivariate data may also result from an observational study. For
+instance, I may measure the heights and weights of different
+persons. In many household level surveys we collect data about
+the monthly income and monthly expenditure, and want to study the
+relation between them. Another example, that we have already seen
+is about educational level and income group, which leads to a
+contingency table. In the earlier examples both the variables
+were continuous. In the educational level and income group
+example, both were categorical. It is also possible to have a
+mixture, like a study that wants to compare health conditions of rural
+and urban population would have two variables: background
+(rural/urban) and some health diagonostic variable.
 
+<P/>
+We have encountered such data already in our
+course. In fact, we have learned some basic techniques to analyse
+them as well. Let's start with a quick review. 
+</SESS>
+<JINGLE t="0.1">Scatterplot</JINGLE>
+<SESS t="1.90">
+When it comes to explore the relation between two continuous
+variables, nothing beats a simple scatterplot. Here is an
+example. Later in this lesson we shall learn  about various mathematical
+ways of quantifying such a relation. That's impressive, but does
+reduce the power of the scatterplot. Two continuous variables may
+be related in myriads of complex ways. A dumb mathematical
+algorithm falls far too short of capturing all the
+possibilities. The human eye (with a brain behind it) can capture
+a far greater variety. If the relation is like this, somewhat
+like a straight line, we can hope to capture it usong a formula
+like <M>y=m x+c.</M> But how would you even describe a relation
+lie this? Or this? Here possibly you have to choose two different
+straight lines for the two different parts. Let's pretend you have a
+software to fit the lines for you. So you have two softwares, one
+fits a single line, another fits a broken line. Even if both
+these softwares are very reliable, you still need to decide which
+one of them to use for <I>your</I> data set, and there you'll
+need a scatterplot. 
+<P/>
+So never underestimate a scatterplot. If you are analysing
+bivariate data with continuous variables, and you have not
+plotted a scatterplot right at the outset, you are in a state of
+unpardonable sin! 
+<P/>
+By the way, the scatterplot may also be used when one of the
+variables is categorical, however, it is less effective there. In
+this case a better alternative is to make two boxplots side by side.
+</SESS>
+<JINGLE t="0.1">Boxplot</JINGLE>
+<SESS t="2">
+[An example]
+
+<P/>
+If both the variables are categorical, then we usually resort to
+contingency tables, like this. So far we have not done much with
+contingency tables, except just constructing them from raw
+data. We shall learn to do things with them later this week.
+</SESS>
+</SCRIPT>
 <EXRLIST id="M6L1V1.yml">
 
 - typeName: multipleChoice
@@ -6106,7 +6293,122 @@ Explain box plot.
 
 <STKY>
 <HEAD2>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD2></STKY>
-Mention Anscombe data.
+<SCRIPT>
+<SESS t="3.40">
+Suppose we have a bivariate data set, heights and weights of some
+adult males from some country. Here both the variables
+are continuous. The scatterplot looks like this. You can see that there
+is an increasing relation between the two variables. A taller person
+tends to be heavier. Now what exactly do we mean by a tall
+person? The value of the height variable is large? Well, yes,
+but how large is "large"? When we call a person tall, we are
+basically comparing him with the typical or average height. Thus,
+if <M>x_i</M> denotes the height of the <M>i</M>-th guy,
+and <M>\bar x</M> is the average, then we have in
+mind <M>x_i-\bar x.</M> A tall guy is one for whom this is a
+large positive number. Similarly, if <M>y_i</M> denotes the
+weight of the <M>i</M>-th guy, with mean <M>\bar y,</M> then a
+heavy guy is one who has large positive <M>y_i-\bar y.</M> Thus,
+here positive values of <M>x_i-\bar x</M> tend to go with
+positive values of <M>y_i-\bar y.</M> Similarly, shorter guys
+tend to be lighter, i.e., negative values of <M>x_i-\bar x</M>
+generally go with negative values of <M>y_i-\bar y.</M> 
+<P/>
+This idea that <M>x_i-bar x</M> and <M>y_i-\bar y</M> generally
+have the same sign is nice captured by looking at their product 
+<M>(x_i-\bar x)(y_i-\bar y).</M> If this is positive,
+then <M>x_i-bar x</M> and <M>y_i-\bar y</M> have the same
+sign. Hence this notion of an increasing relation may be
+expressed as: <M>(x_i-\bar x)(y_i-\bar y)</M> values are
+typically positive. Since there are many <M>(x_i-\bar x)(y_i-\bar
+y)</M> values (one for each guy), and we are talking about their
+typical value, this is a case for central tendency. So we look at
+the mean of these numbers:
+<D>
+[[1n]]\sum (x_i-\bar x)(y_i-\bar y).
+</D>
+This quantity has a special name, it is called the <B>covariance
+between</B> height and weight, because it measures how the two
+variables vary together. It is denoted by <M>\cov(x,y).</M> The
+hope is that if <M>\cov(x,y)>0</M> then cases with higher
+values of <M>x</M> tend to have higher values of <M>y,</M> as
+well. If, on the other hand, <M>\cov(x,y)<0</M>, then larger
+values of <M>x</M> will tend to go with smaller values
+of <M>y.</M> However, as I have said already, two variables may
+be related in ways too complex to be just classified as
+increasing or decreasing, and covariance is easily confused in
+such complex cases. We shall see such examples soon. 
+<P/>
+But before that we shall explore some mathematical properties of
+covariance, some desirable, some not.
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="3.00">
+In this video we shall discuss some properties of 
+<D>
+\cov(x,y) = [[1n]]\sum (x_i-\bar x)(y_i-\bar y).
+</D>
+This number is designed to shed light on the relation
+between <M>x</M> and <M>y.</M> A positive value is supposed to
+imply an increasing relation, a negative value a decreasing
+relation. Also, we would like to associate positive values much
+above zero
+with stronger increasing relations, and negative values much
+below zero with stronger decreasing relations. That's what we
+would like to have. Now let's see whether this magic formula
+lives up to our expectations. 
+<P/>
+We have our data 
+<D>
+(x_1,y_1),...,(x_n,y_n).
+</D>
+Suppose that we add 3 to all the <M>x</M>'s and 7 to all
+the <M>y</M>'s. Should the strength or direction of the relation between the
+two variables change? No. Indeed, that is the case, because the
+constants influence both the values and the means in the same
+way, and hence gets cancelled during these subtractions. Good for
+us: covariance is invariant under shifts. 
+<P/>
+Now suppose once again that the <M>x</M>'s denote heights
+and <M>y</M>'s denote weights. Say the heights are measured in
+inches and weights are measured in pounds. If we just change the
+units, heights in cms and weights in kgs, do you expect the
+strength and direction of  the relation to change? No! But here's
+a bad news for us. Covariance does get changed here! Changing
+units means multiplying <M>x</M>'s with some constant, and
+the <M>y</M>'s with another constance. Both the values and the
+means get multiplied by the constants, and so the constants comes
+out. If one of the constants happens to be negative, then the
+direction of the relation changes, as is expected. But the sad
+fact is that the value of the covariance changes even when both
+the constants are positive. 
+<P/>
+In order to rectify this defect: we propose a modified version of
+the covariance, we divide the covariance by the standard
+deviations of <M>x</M> and <M>y</M>:
+<D>
+[[\cov(x,y)][sd(x)\times sd(y)]].
+</D>
+ Since the standard
+deviations also scale by the same amount as the data, the effect
+of unit changes cancels out during the division. The resulting
+formula is called <B>correlation</B>, one of the most frequently
+used terms in statistics. This quantity always lies
+between <M>-1</M> and <M>1.</M> 
+<P/>
+[When +1 and when -1.]
+<P/>
+The hope: zero means no relation. But nonlinearlity ruins.
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="5">
+<TODO>Mention Anscombe data.</TODO>
+</SESS>
+</SCRIPT>
 
 <EXRLIST id="M6L1V2.yml">
 
@@ -6204,12 +6506,347 @@ Mention Anscombe data.
       
   
 </EXRLIST>
-<HEAD2>Module 6, Lesson 2,  Video 1: Contingency table measures
-(part 1)</HEAD2>
+</LESSON>
+<STKY>
+<HEAD2>Module 6, Lesson 2,  Video 1: Rank correlation</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="5.10">
+In the last lesson we saw that correlation coefficient or
+Prearson's correlation coefficient, to be precise, is meant to
+assess the direction and strength of linear relation only. It
+gets confused if the relation is nonlinear. In this video we
+shall discuss a more general version of correlation that will
+measure the direction and strength of monotonic relations. Let us
+understand what is meant by a monotonic relation. 
+<P/>
+Here is a scatterplot showing a monotonic relation. When <M>x</M>
+increases so does <M>y.</M> However, it is not linear, it looks
+like a curve. Here is yet another example of a monotonic
+relation, this time a decreasing one, when <M>x</M>
+increases, <M>y</M> decreases. However, this scatterplot shows a
+relation that is not monotonic, it is increasing here, but
+decreasing here. 
+<P/>
+So we understand what is meant by monotonic relation and
+direction of the relation. Now let us see what is meant by the
+strength of a monotonic relation. Here is a monotonic
+relation. Now this is a stronger version of the same relation,
+and this is a weaker version. 
+<P/>
+TThe new correlation coefficient that we are going to learn about
+will assume that the relation is monotonic, and will measure the
+strength and direction of the relation. If the relation is not
+monotonic, then the correlation coefficient will be confused, and
+may give meaningless values. So we should first make a
+scatterplot to visually ascertain the monotonicity before
+computing the correlation coefficient.
+<P/>
+The new correlation coefficient uses the same idea as Pearson's
+correlation, but with a twist. It first seeks to linearise the
+relation before computing Pearson's correlation. The technique is
+to rank the data first, w.r.t. both the variables. Let's
+understand this with a toy example.
+<P/>
+Consider this scatterplot. The relation is clearly
+nonlinear. Consider the <M>x</M>-values alone. You can see that
+they are not regularly spaced. Some are closer together, while
+some are spread apart. We shall stretch out the <M>x</M>-axis
+much like flattening a crumpled handkerchief. Then we shall do
+the same thing with the <M>y</M>-axis. As the result the points
+on the graph have straightened themselves into a nice straight
+line. Now we may meaningfully apply the Pearson's correlation
+coefficient formula. This idea of computing Pearson's
+correlation coefficient after linearlising the data leads to the
+concept of <B>Spearman's rank correlation.</B> 
+<P/>
+The exact proedure is this. When we straighten out
+the <M>x</M>-axis, we are basically making the <M>x</M>-values
+regularly spaced while retianing their original order. If we
+start from 1 and make the common gap 1, then we
+smallest <M>x</M>-value becomes <M>1,</M> the next
+smallest <M>2</M> and so on. In other words, we are replacing the
+<M>x</M>-variable by its
+ranks. We are doing the same thing with
+the <M>y</M>-variable. Let's a see numerical example.
+<P/>
+Here is a bivariate data set. This value is the smallest. So it
+gets rank 1. This is the next minimum, and hence gets rank 2. In
+this way we replace all the values by the ranks. Again we do this
+seperately for the <M>y</M>-variable. Now we compute Pearson's
+correlation coefficient. The result is called Spearman's rank
+correlation coefficient for the original data. 
+<P/>
+The next video will teach us how to do this using LibreOffice.
+<P/>
+For now let's quickly look at the properties. Since Spearman's
+rank correlation coefficient is after all a Pearson's correlation
+coefficient applied on linearised data, so Spearman's coefficient
+inherits the mathematical properties of Pearson's coefficient: 
+  * It lies between -1 and 1
+  * It is +1 in case of perfect increasing relation (not
+    necessarily linear)
+  * It is -1 in case of perfect increasing relation (not
+    necessarily linear)
+  * It remains unchanged if either variable is transformed in any 
+    way that preserves the ranks. This is of course as
+    expected. After all we are using just the ranks.
+  * It gets confused if the relation is not monotonic.
+<P/>
+Incidentally, do not carried away too much by the idea of
+linearlising the data before applying Pearson's correlation. You
+are modifying the data, and whenever you do that, you must make
+sure that you are losing important information. So Spearman's
+rank correlation is to be used only when the main information is
+contained only in the order of the values, and not the values
+themseleves. In other words, this is applicable to only ordinal
+data. 
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 6, Lesson 2,  Video 2: Rank correlation lab</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="6">
+[Screencast:Computation of rank correlation.]
+hw.dat: (with repetion) use =rank.avg(a1, a$1:a$100, 1) First
+find rank for variable without repetition. 
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 6, Lesson 2,  Video 3: Phi coefficient for binary data</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="3.50">
+The idea of replacing the actual data by something conveient is
+appealing, as long as not valuable information is lost. Here is
+another such example. Suppose that we have a bivariate data set
+where both the valriable sare binary, i.e., take only two
+values. One example is gender vs handedness data. The gender
+variable takes only 2 values Male and Female, and the handedness
+variable takes two values Left and Right. In order to apply
+Pearson's correlation formula we first encode the two values as 0
+and 1. Of course, the sign depends on which value we call 0 and
+which value 1. Since we have assigned that arbitrarily, the sign
+of the computed correlation coefficient has no importance. So we
+take only the absolute value, and call it the <M>\phi</M>
+coefficient. Let's look at an example.
+<P/>
+Here is a small toy data set. We first encode Male as 0 and
+Female 1. Then Left as 0 and Right as 1. Pearson's correlation
+formula applied to the resulting data set yields ..., which is
+slightly negative. We take the absolute value to get <M>\phi=...</M>.
+<P/>
+Computing this by LibreOffice is not much difficult, and we shall
+do that in the next video. But for now let's think about this
+procedure carefully.
+<P/>
+First, we choose the values 0 and 1 arbitrarily. They have no
+significance. We could as well have chosen 100 and 117. Wouldn't
+that change the value of <M>\phi.</M> The answer is: No, it
+won't. Because remember that if a variable <M>x</M> is
+transformed to <M>ax+b</M> for some constants <M>a>0</M>
+and <M>b,</M> then correlation computed based on <M>x</M> (and
+some other variable) remains unchanged. Here you can map 0, 1 to
+100, 117, by simply multiplying with 17, and adding 100. Thus, if
+you take <M>100+17x</M> then <M>0,</M> and <M>1</M> will
+become  <M>100</M> and <M>117.</M> So the correlation remains
+unchanged. If however, the transformation is <M>ax+b</M> for some
+<M>a<0,</M> then the correlation changes sign. But who cares
+about the sign here? We are taking the absolute value! Got it? [IVQ]
+<P/>
+From this discussion it shoud be apparent why this trick works
+only for binary data. Because given any two distinct points you
+can always draw a line through them. This cannot be guaranteed
+for distinct points.
+<P/>
+A quick word about interpretation of the <M>\phi</M>
+coefficient. If it is 1 then there is perfect relation between
+the two variables (i.e., given the value for one variable, you
+can exactly predict the other). Here the variables are nominal,
+so we cannot talk about the relation being increasing or
+decreasing. As the value of <M>\phi</M> goes down towards zero,
+the strength of the relation weakens. At 0 there is no relation
+at all.
+<P/>
+OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coefficient.
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 6, Lesson 2,  Video 2: Phi lab</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="6">
+[Screencast: LibreOffice phi computation.]
+</SESS>
+</SCRIPT>
+
+
+<STKY>
+<HEAD2>Module 6, Lesson 3,  Video 1: Contingency table measures</HEAD2></STKY>
+<LESSON>
 <COMMENT>https://en.wikipedia.org/wiki/Contingency_table</COMMENT>
  Odds ratio
  Phi coefficient
  Cramer's V and the contingency coefficient C
+
+<SCRIPT>
+<SESS t="1.90">
+In the last lesson we were discussing how Pearson's correlation
+formula may be adapted to situations where the variables are not
+continuous, say ordinal or even nominal. We talked
+about the <M>\phi</M> coefficient, which works with a biavariate
+data, where both the variables are binary. Now notice that such a
+data set may be nicely presented as a <M>2\times2</M> contingency
+table. There are four possible combinations (Male, Left), (Male,
+Rightt) etc, that may be neatly laid out as a table. We just
+count the number cases under each combination, and populate the
+table with those frequencies. Thus, the <M>\phi</M> coefficient
+may be considered as a measure of association for
+a <M>2\times2</M> contingency table. 
+<P/>
+In this lesson we shall take a look at some other popular
+measures of association for contingency tables. Some will be
+for <M>2\times2</M> tables only, like the <M>\phi</M>
+coefficient, while others may be used for larger tables, as well. 
+<P/>
+Unlike the way we presented the <M>\phi</M> coefficient, our
+approach in this lesson will be different. We shall not try to
+use Pearson's correlation formula here. Instead, we shall think
+intuitively about what is meant by there being "no association"
+between the two variables, take that as a benchmark, and then
+compare our actual contingency table with that benchmark. The
+distance of our
+table from that benchmark will provide a measure of
+association. Well, that is the basic idea. There are a number of
+possible ways to go about it, as we shall now see.
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 6, Lesson 3,  Video 2: Odds ratio</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="1.30">
+The first approach will be like this. Again consider the gender
+vs handedness data. What do I mean when I say that there is no
+association between gender and handedness. I mean a male person
+is as likely to left handed as a female one. Assuming that we
+have a data set that well represents the population, it goes like
+this: Look at only the males in the data set, find the odds
+of being a lefty amoung them. What is meant by odds here?  It is
+the ratio of lefties to righties among the males, i.e.,  this
+number by this number. Now carry out the same
+exercise for the females. The odds is ... In case of no
+association, both the odds should be the same. So one way to
+meaasure departure from that benchmark situation is to take the
+ratio of the two odds. Do you wat this is called. Surprise! It is
+called the odds ratio. Values close to 1 signify low association,
+while high values indicate high association. 
+<P/>
+It's pretty easy to compute this using LibreOffice. Let's see how.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SESS t="4">
+[Screencast: Compute odds ratio.]
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 6, Lesson 3,  Video 3: Chisquare</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="3.50">
+Our next approach will be based on a more subtle notion of "no
+association". It wil hae the advantage of being applicable to
+even larger contingency tables. Consider this table for
+example. The variables are education level and income
+groups. Suppose I tell you that for this data set at least there
+is no association between education level and income group (oh,
+terrible!). I am giving you these marginal values. Can you tell
+me this value? At first you might wonder how to find it. But
+remember I told you that there is no association between the two
+variables. So if I consider each row separately then the
+proportional distribution of the numbers in them must be the
+same. For example, if 10% of the preprimary chaps earn high
+income, then the proportion of high wage earners among the university chaps will
+also be 10%. And if the same proprtions prevail in each row,
+they must also prevail in thse marginals. Now since this marginal
+is given, we can really work out the proprtions ... By
+multiplying with the total we can see that this cell must have
+the number .... Well, don't worry about this not being an
+integer. It is just what we expect on an average. Just like if
+you roll a fair die the average is<M> (1+...+6)/6=3.5</M>, though
+there is 3.5 on a die! 
+<P/>
+Take a second look at this formula. It is the row total times the
+column total by the grand total. Repeating this for all the
+cells, we have the expected frequencies, expected under the
+assumption of no association. So that's our benchmark. Now comes
+the question of comparing our observed cell frequences with it. 
+<P/>
+First we do the obvious: forming the difference between the
+observed frequency and the expected frequency in each cell. Some
+of these numbers will be positive, some will be negative. We do
+not care about the sign,. To get rid of it, we just square the
+differences. Next we do something that might come as a
+surprise. We divide this number by the expected frequency. This
+is like forming the relative error. To appreciate this imagine
+that some one has a salary hike of Rs 1000. If the original
+salary was Rs 2000, then a hike of Rs 1000 is appreciable. But if
+the original salary were Rs 100000, then a hike of Rs 1000 is
+hardly prciptible. Thus the importance of the hike is to be
+measured relative to the base amount. In this case wrt the
+expected frequency. Thus for each cell you get a number. The
+total of all these numbers is a rather famous quantity in
+statistics. It is called <M>\chi^2 </M>-value. The formula is
+<D>
+\chi^2 = \sum[[(m_{ij}-n_{ij})^2][n_{ij}]].
+</D>
+The different measures of association that we are going to learn
+about now are all based on this. But perhanps it would be better
+to go over this computation using LibreOffice before discussing them.
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 6, Lesson 3,  Video 4: Chisquare lab</HEAD2></STKY>
+
+<SCRIPT>
+<SESS t="5">
+[Screencast: Computation of <M>\chi^2.</M>]
+</SESS>
+
+</SCRIPT>
+
+<STKY>
+<HEAD2>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD2></STKY>
+<SCRIPT>
+<SESS t="0.90">
+The first <M>\chi^2</M>-based measure of association is called
+the contingency coefficient. It is defined as
+<D>
+C = \sqrt{[[\chi^2][N+\chi^2]]},
+</D>
+where <M>N</M> is the grand total. Its problem is that it does
+not reach <M>1</M> even for a perfect relation. Indeed, the
+maximum that it can reach depends on the size of the table. So it
+should not be used to compare the levels of association of two
+tables of different sizes. Another related measure, which is free
+of this problem is Cramer's <M>V.</M> It definition is
+<D>
+V = \sqrt{[[\chi^2][N(k-1)]]},
+</D>
+where <M>k</M> is the minimum of the numbers of rows and columns.
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD2>Module 6, Lesson 3,  Video 6: Lab</HEAD2></STKY>
+<SCRIPT>
+<SESS t="5">
+[Screencast: Compute starting from chisquared.]
+</SESS>
+</SCRIPT>
 
 <EXRLIST id="M6L2V1.yml">
 
@@ -6303,9 +6940,6 @@ Mention Anscombe data.
 
 </EXRLIST>
 
-<STKY>
-<HEAD2>Module 6, Lesson 2,  Video 2: Lab</HEAD2></STKY>
-
 <EXRLIST id="M6L2V2.yml">
 
 - typeName: multipleChoiceCompute from data
@@ -6314,7 +6948,7 @@ Mention Anscombe data.
 - typeName: multipleChoiceCompute from data
 
 </EXRLIST>
-
+</LESSON>
 <STKY>
 <HEAD2>Module 6, Lesson 3,  Video 1: Contingency table measures (part 2)</HEAD2></STKY>
 
@@ -6352,9 +6986,201 @@ gamma test
 - typeName: multipleChoiceCompute from data
 
 </EXRLIST>
+</LESSON>
 
 <STKY>
 <HEAD2>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD2></STKY>
+<LESSON>
+<SCRIPT>
+<SESS t="3.70">
+Now we are about to embark upon the very last topic, a topic that
+traditionally is introduced much earlier. But this course is
+geared more towards practical applications and less towards
+theory, I have decided to postpone this topic to the very
+end. The methods we shall learn here are of limited practical use
+because of their lack of robustness. But nevertheless this lesson
+will introduce the concept of moments, which enjoys an 
+important position in the theory of statisitcs. 
+<P/>
+If we have a variable taking values <M>x_1,...,x_n,</M> then we
+often need the mean <M>[[in]]\sum x_i.</M>
+There is an interesting physical interpretation of this
+quantity. 
+<P/>
+To understand we show the <M>x_i</M>'s as points along the number
+line. Imagine that the line is actually a see-saw, and the data points
+as point masses placed on it. A  see-saw needs a pivot. Let's
+imagine the pivot at the 0 mark. Here 0 is not at the centre, and
+so the see-saw will try to tilt. Suppose you are to keep the
+see-saw horizontal. Then how much rotating force do you need to
+apply. You may know from physics, that the rotating effect of a
+force is determined by how far from the pivot the force is
+applied. In fact, the effect is computed as the force times this
+perpendicular distance. This product is called the moment. So
+in order to keep the see-saw horizontal, you need to counter the
+total moment of all the masses, or data points around zero. The
+moment of the <M>i</M>-th data point is <M>1\times x_i = x_i.</M>
+Note that this may be negative, if the point is to the left of
+the pivot. To total moment is <M>\sum x_i.</M>
+<P/>
+This terminology has entered into statistics from physics. What a
+physicist calls "the moment of the points masses around 0" is
+called "the first raw moment of the variable".
+The word "raw" signifies that the moment is tsken around 0. 
+The word "first" implies that there are second, third and possibly
+higher ordered moment in use. And indeed they
+are. The <M>k</M>-th raw moment is defined as <M>[[1n]]\sum x_i^k.</M> 
+<P/>
+We have already had occasion to use the 2nd raw moment in the
+alternative deifition of variance:
+<D>
+[[1n]]\sum x_i^2 - \bar x^2.
+</D>
+Now let's recall for a moment the first definition of
+variance:
+<D>
+[[1n]]\sum (x_i-\bar x)^2.
+</D>
+This quantity is called the "second central moment" of the
+variable. "Second" because the exponent is 2, and "central"
+because we have subtracted <M>\bar x</M> from each <M>x_i</M>
+before computing the moment. In general the <M>k</M>-th central
+moment is defined as
+<D>
+[[1n]]\sum (x_i-\bar x)^k.
+</D>
+Why do we care about these moments? Mostly because they play
+an important role in the theorey of statistics. But there are a
+couple of practical uses as well. 
+<P/>
+The next video will discuss them. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="0.60">
+We have already seen some uses of moments. The first raw moment
+is the mean, which is the most commonly used moment. Next comes
+the second central moment, the variance. The second raw moment
+occurs in its alternative form. 
+<P/>
+In this video we shall learn about two more moments that are
+used:
+<P/>
+
+  * The third central moment, used to measure <B>skewness</B> of
+    a variable.
+  * The fourth central moment, used to measure <B>kurtosis</B> of
+    a variable.
+
+<P/>
+Let's start with skewness.
+</SESS>
+<JINGLE t="0.1">Skewness</JINGLE>
+<SESS t="2.80">
+Skewness is a form of assymmetry in the values of a
+continuous variable. Consider these three histograms. This one is
+symmetric, while these two are asymmetric. Anything that is not
+symmetric is asymmetric. But these two are asymmetric in a
+special way. There are two tails in all the cases. Here the right
+tail is longer than the left. And here it is the opposite. This
+special types of asymmetry is seen in many real life data
+sets. It is this type of asymmetry that is called skewness. It may be measured by comparing the
+lengths of the two tails. If the right tail is longer, we call
+the variable positively skewed, if the left tail is longer then
+we have negative skewness. A symmetric case has zero skewness. 
+<P/>
+Now the tails are only an intuitive
+description. There is no clearly defined start of the tails. So
+we cannot just measure its length from start to end. Then how do
+we compare the lengths of the tails? Well, that's precisely where
+the third central moment comes in.
+<D>
+[[1n]]\sum (x_i-\bar x)^3.
+</D>
+Think of the number line as a see-saw pivoted at <M>\bar x.</M>
+Then the (signed) distance of the <M>i</M>-th point from the
+pivot is <M>x_i-\bar x.</M> Think of <M>[[1n]](x_i-\bar x)^3</M> as 
+<D>
+[[1n]](x_i-\bar x)^3 = [[1n]] (x_i-\bar x)^2\tijes (x_i-\bar x).
+</D>
+Then this is like the moment of a mass <M>[[1n]](x_i-\bar
+x)^2</M> placed at <M>x_i.</M> notice how the masses increase
+rapidly as you move away from the pivot. Thus the tip of the
+longer tail will exert a much greater moment than that of the
+shorter tail. This will cause the see-saw to tilt in the
+direction of the longer tail. By the direction of the tilt and
+strength, we can then measure the skewness present in the
+variable.
+<P/>
+But be warned. If the data is not having two tails tapering away
+from a central peak, then the third central moment may be
+misleading. So it is awlays a good idea to draw a histogram
+first. And when you draw the histogram, you'll have a good idea
+about the skewness present. As a result the skewness coefficient
+is not used too commonly. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="6">
+[Screencast: 3 variables for skewness. Start with  histograms.]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="2.00">
+The 4th central moment is used to measure what is called
+the <B>kurtosis</B> of a variable. Just as central tendency,
+dispersion and skewness it is also a characteristic of the
+data. It is somewhat more subtle than these, though. Here again
+we are working with a data with two tails tapering off from a
+central peak. Skewness is concerned with the tails. Kurtosis is
+more about the peak. Basically kurtosis is about how steep the
+peak is. Now, just as in the case of the skewness
+we consider 
+<D>
+[[1n]] (x_i-\bar x)^4 = [[1n]] (x_i-\bar x)^3\times (x_i-\bar x).
+</D>
+In other words, a force of <M>[[1n]] (x_i-\bar x)^3</M> is applied
+at <M>x_i.</M> The resulting moment is always nonnegative. If the
+tails are even slightly long, their tips will contribute
+vehemently to the moment. 
+<P/>
+How does it help to detect the steepness of the central peak. If
+If it is rather steep, then the tails become short
+and/or thin. So the fourth central moment remains small. But if
+the peak is somewhat flat, then the tails grow fat and long,
+causing the fourth central moment to increase. It is customary to
+consider the value 3 as a benchmark. It corresponds to kurtosis
+present in this bell shape. This is called <B>mesokurtic</B>. If
+the peak is more steep, then the fourth central moment drops
+below 3, and we called it <B>leptokurtic</B>. If the peak is
+flatter, then the tails dominate, and we get <M>>3,</M> called <B>platykurtic</B>.
+</SESS>
+<SESS t="0.60">
+As I have already mentioned skewness and kurtosis do not play a
+major role in practical data analsys. There are three main
+reasons:
+ * They often do not have much practical interpretation. 
+ * They presuppose a certain two tailed form of the variable. In 
+   practice a variable may not have such a histogram.
+ * As they involve cubes and fourth powers, they are easily
+   confused by a few extreme outliers. 
+<P/>
+Let's see all these in action using LibreOffice.
+
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+<SESS t="6">
+[Screencast: 3 variables for kurtosis. Start with  histograms.]
+</SESS>
+</SCRIPT>
+
+<SCRIPT>
+</SCRIPT>
 <EXRLIST id="M6L4V1.yml">
 
 - typeName: multipleChoiceVisually from histogram (clear)
@@ -6374,7 +7200,7 @@ gamma test
 - typeName: multipleChoiceEffect of outlier.
 
 </EXRLIST>
-
+</LESSON>
 <STKY>
 <HEAD2>Module 6,  Lesson 5 ,  Video 1: Review</HEAD2></STKY>
 <STKY><HEAD2>Module 6,  Lesson 5 ,  Video 2: Review</HEAD2></STKY>
