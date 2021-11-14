@@ -67,6 +67,55 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ff0000;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +123,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -143,7 +193,7 @@ or R. The steps are:
 <ul>
 
 <li>Issue the command "<a href="#domakelec">domakelec</a> &lt;n&gt;" to start a folder
-called <code>lec&lt;n&gt;</code>. Henceforth I shall call it the
+called <font size="+1" color="red"><code>lec&lt;n&gt;</code></font>. Henceforth I shall call it the
 lecture folder. This folder contains an empty
 subfolder called vid, and a template kdenlive file containing a
 template title page, end page and the jingles.</li>
@@ -418,9 +468,10 @@ ffmpeg -i $1.webm -vcodec libx265 -crf 28 -strict -2 $1.mp4</pre>
 name="An R script for producing animation">An R script for producing animation</a></h1>
 This script creates an animation (in the form of an image
 sequence) building up some diagram. It consists of
-the <code>process</code> function, and some supporting routines.
+the <font size="+1" color="red"><code>process</code></font> function, and some supporting routines.
 
 <pre>
+
 md = function(x) if(!dir.exists(x)) dir.create(x)
 
 scrn = function(xlo, xhi, ylo, yhi,...) {
@@ -428,19 +479,24 @@ scrn = function(xlo, xhi, ylo, yhi,...) {
 }
 
 spStart = function(fname) {
-    png(fname,width=640,bg='transparent')
+    png(fname,width=640)#,bg='transparent')
 }
 
 spEnd = function() dev.off()
 
 
-process = function(xs,xe,ys,ye,rt,ps,pe,fun, nf,...) {
+process = function(xs,xe,ys,ye,rt,fun, nf, dur=1, ps=0, pe=0, ...) {
     md(rt)
     spStart(paste(rt,'/pic%04d.png',sep=''))
+    filename = sprintf('%s.lst',rt)
+    cat("FPS",nf,"\n",file=filename)
     for(i in 1:nf) {
       scrn(xs,xe,ys,ye,...) 
       pnow = ps + (i-1)/(nf-1)*(pe-ps)
-      fun(pnow)
+      fun(i,pnow) # i is the frame number (int, so exact), 
+                  # pnow is param value (may be approx)
+
+      cat(sprintf('%s/pic%04d.png\n',rt,i),file=filename,append=TRUE)
     }
     spEnd()
 }
@@ -452,24 +508,26 @@ process = function(xs,xe,ys,ye,rt,ps,pe,fun, nf,...) {
 area: $[xs,xe]\times[ys,ye].$</li>
 
 <li> The next
-parameter, <code>rt</code>, is file root. If it is <b>"abc"</b>,
-then the generated image files are named
-like <b>abc0001.png</b>, <b>abc0002.png</b>, etc.</li>
+parameter, <font size="+1" color="red"><code>rt</code></font>, is folder root. If it is <b>"abc"</b>,
+then a folder with that name is created (if it is not already
+existing), and the generated image files are named
+like <b>abc/pic0001.png</b>, <b>abc/pic0002.png</b>, etc. Also 
+a list file <font size="+1" color="red"><code>abc.lst</code></font> is created for loading into
+SynfigStudio. The FPS is computed to make the durarion <font size="+1" color="red"><code>dur</code></font> sec.</li>
 
 <li> The next two
-parameters, <code>ps</code> and <code>pe</code>, denote the start
-and end values of the parameter. Here <code>ps</code> may be
-greater than <code>pe</code>.</li>
+parameters, <font size="+1" color="red"><code>ps</code></font> and <font size="+1" color="red"><code>pe</code></font>, denote the start
+and end values of the parameter. Here <font size="+1" color="red"><code>ps</code></font> may be
+greater than <font size="+1" color="red"><code>pe</code></font>.</li>
 
-<li> The <code>fun</code> parameter is a
+<li> The <font size="+1" color="red"><code>fun</code></font> parameter is a
 function with a single argument, the current parameter value. It
-is responsible for all the drawing. It need not start a new
-plot (<i>e.g.</i>, need not invoke <code>plot</code>), but use functions
-like <code>lines</code> and <code>points</code> to add to an
-existing plot. However, if zooming is involved, then
-the <code>scrn</code> function should be called.</li>
+is responsible for all the drawing. It must not start a new
+plot (<i>e.g.</i>, must not invoke <font size="+1" color="red"><code>plot</code></font>), but use functions
+like <font size="+1" color="red"><code>lines</code></font> and <font size="+1" color="red"><code>points</code></font> to add to an
+existing plot.</li>
 
-<li> Next comes the <code>nf</code> parameter, which
+<li> Next comes the <font size="+1" color="red"><code>nf</code></font> parameter, which
 denotes the number of frames (<i>i.e.</i>, the number of images in the
 generated sequence). All additional parameters are sent to 
 the underlying plot routine. </li>
@@ -496,12 +554,12 @@ plot(c(x1,x2,x3),c(y1,y2,y3))
 zr = rep(0,30)
 clr = c(rep('red',10),rep('blue',10),rep('green',10))
 
-f = function(t) {
+f = function(i,t) {
     abline(h=0,lwd=3)
     points((1-t)*xall+t*yall,zr,col=clr,pch=20,cex=3)
 }
 
-process(min(yall),max(yall), -0.2, 0.2, 'test', 0,1,f,30 )
+process(min(yall),max(yall), 'test', 0,1,f,30,-0.2, 0.2 )
 </pre>
 <hr/>
 <table width="100%" border="0">

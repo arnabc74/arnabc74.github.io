@@ -1,11 +1,11 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SUN NOV 07 IST 2021</UPDT>
+<UPDT>SUN NOV 14 IST 2021</UPDT>
 
 
-<STKY><HEAD1>Module 1: Data types</HEAD1></STKY>
-<STKY><HEAD2>Module 1,  Introductory video: About the
-course</HEAD2></STKY>
+<HEAD1>Module 1: Data types</HEAD1>
+<STKY><HEAD3>Module 1,  Introductory video: About the
+course</HEAD3></STKY>
 <SCRIPT>
 <SESS id="" t="0.3">
 Hello,  and welcome to the PGDAS course on <B>Basic Statistics</B>. This
@@ -13,7 +13,7 @@ is our very first lecture, and I am your
 instructor. <V>Name enters.</V> First let me tell you something
 about the structure of our course.
 </SESS>
-<SESS t="0.5" cu="y">
+<SESS t="0.5" done="n" cu="y">
 The <B>course</B> consists of <B>6 modules</B>,  each of <B>one week</B>
 duration,  followed by <B>2 weeks</B> during which you get to <B>study</B> on your
 own (digesting all the pieces of information I bombard at you)
@@ -22,13 +22,13 @@ exam</B>. And that brings us to the important question: How are
 you going to be graded?
 </SESS>
 <JINGLE t="0.1">Grading</JINGLE>
-<SESS t="0.2">
+<SESS t="0.2" done="n">
 
 Each week we shall discuss four topics, and these will be
 followed by practice
 problems. The points from these will not be considered for final
 grading.</SESS>
-<SESS t="0.2" cu="y">
+<SESS t="0.2" done="n" cu="y">
 The week's grade will come from a unit test at the end
 of the week. It will consist of 8 exercies
 (2 taken from each of the 4 topics learned in the week). The
@@ -39,7 +39,7 @@ exam.
 Next let's talk about the software we are going to use for this course.
 </SESS>
 <JINGLE t="0.1">Software</JINGLE>
-<SESS t="1.10">
+<SESS t="1.70" done="n">
 Modern day statistics is impossible without statistical
 softwares. There are quite a few softwares out there in the market.
 starting from quite easy ones with gentle
@@ -54,67 +54,82 @@ software. They have very similar interfaces. If you learn
 LibreOffice you can take your skills to use MS-Excel. Of course,
 LibreOffice will not be enough for some ambitious  analyses, but
 then we shall learn R and Python for them in a different course. 
-</SESS>
-<SESS t="0.1">
+
+<P/>
+Finally we come to the question of reference materials. The video
+lectures and reading materials will constitue the main
+reference. Here are some books that you may read along:
+  * Statistics by Robert S Witte and John S Witte
+  * Statistics by Friedman, Pisani and Purves
+  * How to lie with statistics by Darrell Huff
+<P/>
+This last book, despite its frivolous name, is full of useful
+insights. If you feel bored with statistics, that's a good book
+to revive your interest with!
+<P/>
+ 
  Well,
 that's about it! Now let's get started with the lessons.
 </SESS>
 </SCRIPT>
 
-
-<STKY><HEAD2>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD2></STKY>
+<HEAD2>Module 1, Lesson 1</HEAD2>
+<STKY><HEAD3>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD3></STKY>
 <LESSON>
 
 <SCRIPT>
-<SESS t="0.2">
-This is a course on <B>Basic Statistics</B>.
-We hear about <B>statistics</B> a lot. But what is it? Well,  there are
-various ways to define it.
-</SESS>
-<SESS cu="t" t="0.5"> Possibly the simplest,  and the most
-comprehensive way,  is to say that is is the <B>art and science
+<SESS t="0.70" done="n" id="s1">
+This is a course on [1]<B>Basic Statistics</B>.
+We hear about statistics a lot. But what is it? Well,  there are
+various ways to define it.[2]
+
+<P/>
+Possibly the simplest,  and the most
+comprehensive way,  is to say that it is the [3]<B>art and science
 of learning from experience</B>,  and as such is the most fundamental 
 tool behind human existence. Whether we are trying to predict 
-tomorrow's weather <V>Google weather icons</V>,  or the next wave
-of COVID <V>A plot</V>,  we are using
+tomorrow's weather   or the next wave
+of COVID,  we are using
 statistics.
 </SESS>
-<SESS t="0.8">
+
+<JINGLE t="0.1">Learning from experience</JINGLE>
+<SESS t="2.10" done="n">
  Most often we learn from experience even without
 knowing it.  When we do something unconsciously,  out of reflex, 
 without really thinking about it,  we tend to do it
-inefficiently. Take high jumping,  for instance. Most of us can jump
-over a fence. <V>Jump</V> We hardly need to think about it. Our muscles
+inefficiently. Take high jumping,  for instance.[1] Most of us can jump
+over a fence. [2]<V>Jump</V> We hardly need to think about it. Our muscles
 somehow move on their own and we end up on the other side. But if
 one considers the process  consciously,  one can see many subtle
 ways of improvement,  and the sum total of all those may lead to a
-quite different technique <V>fosbury flop glides past</V> and 
-a rather substantial  improvement in efficiency!
-</SESS>
-<SESS t="1.3">
+quite different technique [3]<V>fosbury flop animation</V>, which yields 
+a rather substantial  improvement in efficiency![4]
+
+<P/>
 
 Well,  the same is true about learning from experience. 
 Statistics is a conscious and careful way of going about
 this. Let's start by carefully looking at the word
-"<B>experience</B>". Let's take a simple example. Suppose we want to tap
+[5]"<B>experience</B>". Take a simple example. Suppose we want to tap
 the experience of our friends about some movie. If we ask them
 about what they think about it, we shall get responses like
-"<B>Good</B>",  "<B>so-so</B>",  "<B>Ok</B>",  "<B>Hey you must watch it</B>"! Yet another may
+[6]"<B>Good</B>",  "<B>so-so</B>",  "<B>Ok</B>",  "<B>Hey you must watch it</B>"! Yet another may
 give you a long description about what she liked the
 most. <V>Blah blah</V> Informative as such informal comments are,  they are
 difficult to summarise efficiently. For one thing, they lack a common scale. One person's "Good" may very well be another
 person's "so-so". The very first thing we might do to rectify
-this is consciously provide a common scale. <V>Likert scale
-appears.</V> Webpages like
-Rotten Tomato does precisely this. They provide a 5-star rating.  This common
+this is to provide a common scale. [7]<V>Likert scale
+appears.</V> Many movie rating
+webpages do precisely this. They provide a 5-point scale.  This common
 scale brings more uniformity in the responses than a mere haphazard
 collection of "Good" and
 "so-so".
 </SESS>
 <JINGLE t="0.1">Data</JINGLE>
-<SESS t="0.6">
+<SESS t="0.6" done="n">
  When we collect experience in such a systematic
-way we get <B>data</B>. And this is the first point where
+way we get [1]<B>data</B>. And this is the first point where
 statistics differs from the common man's way of learning from
 experience.  Statistics systematically collects and  stores the experience in a
 cut-and-dried fashion before proceeding to glean information from
@@ -124,33 +139,38 @@ It might interest you to learn about the different ways data are
 collected. So let's get a taste of that before delving deeper. 
 </SESS>
 <JINGLE t="0.1">Data collection devices</JINGLE>
-<SESS t="1.00">
+<SESS t="1.10" done="n">
 There are basically five types of devices for data collection
 depending on the scenario. 
-Measure, Observe, Lookup, Ask, and Derive. If we want data about some
+* Measure, 
+* Observe, 
+* Lookup, 
+* Ask, and 
+* Derive. 
+<P/>
+If we want data about some
 physical quantity that is accessible to us, like the area of
 land, height of a person, intensity of sound, temperature of a
 green house, the most direct way is to just measure it.
 Sometimes, however, merely observing is enough, for instance, a
 person's gender. In many cases, especially for data of social
-importance, we may get them from records. For instance, income amounts
-for employees may be obtained from pay registers. In some
+importance, we may get them by looking up existing records. For instance, income amounts
+for employees may be obtained from the pay registers. In some
 situations asking a knowledgeable person is the only way to get
 information. This is particularly true if the information is
-about a mental state (like satisfaction level, or
-smartness). Finally, certain data are obtained directly by are derived from
+about a mental state (like satisfaction level). Finally, certain data are obtained directly by are derived from
 other related quantities. Examples include total expenditure or a
 student's marks.
 </SESS>
 <JINGLE t="0.1">Looking at data</JINGLE>
-<SESS t="1.00">
-Statisticians have to work with data just chemists have to work
-with chemicals. When you see a data set for the first time, it is
+<SESS t="1.00" done="n">
+Statisticians have to work with data from various, posibly
+unfamiliar, domains.  When you see a data set for the first time, it is
 like entering an unknown dark room. Your eyes will need time to
-adjust to it. Similarly, one needs some time to understand what
-a data set is about. A good mental exercise to facilitate this
+adjust to the room. Similarly, one needs some time to get a feel
+for a data set. A good mental exercise to facilitate this
 process is to quickly classify the various pieces of information
-present in the data set in terms of how they were
+present in the data in terms of how they were
 collected. Let's consider this: the number of female headed rural
 households having 4 rooms in
 West Bengal's Malda district. Let's think for a moment how this
@@ -163,19 +183,20 @@ appear unnecessary, but is a good way to warm up.
 <P/>
 This excercise is not only good for warming up, but may throw
 light on the reliability of the information present. For
-instance, if you ask a person about his/her monthly income data,
+instance, if you ask a man about his monthly income data,
 you are more likely to get an underestimate. However, if the data
-were obtained from his pay slip, then the amount is
-accurate.
+were obtained from his pay slip, then the amount is more likely
+to be accurate.
 </SESS>
-
-<SESS t="0.5">
-
-Ah yes,  "data" is a plural word. Its singular "datum" is rarely
+<JINGLE t="0.1">The word "data"</JINGLE>
+<SESS t="0.5" done="n">
+ "Data" is a plural word. Its singular "datum" is rarely
 used. A common mistake found in many reports is to say things
 like "This data says ...". It should be either "These data say
-..." or "This data set says ...". But knowing the word "data"
-grammatically is not enough. We need to take a deeper look,  and
+..." or "This data set says ...".
+<P/>
+ But knowing the word "data"
+grammatically is hardly enough. We need to take a deeper look,  and
 that's what we are about to do next.
 </SESS>
 </SCRIPT>
@@ -220,16 +241,16 @@ that's what we are about to do next.
      feedback: The head might give only his/her personal view.
 </EXRLIST>
 
-<STKY><HEAD2>Module 1, Lesson 1,  Video 2: Data--types</HEAD2></STKY>
+<STKY><HEAD3>Module 1, Lesson 1,  Video 2: Data--types</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.40">
+<SESS t="0.40" done="n">
 In the last video we learned about the various instruments to get
 data. These instruments may be used in different ways in a
 real scenario. In this video we shall take a look at some of these. 
 First, a few terms:
 </SESS>
 <JINGLE t="0.1">A few terms</JINGLE>
-<SESS t="2.40">
+<SESS t="2.40" done="n">
 In any data collection scenario we have an
 <B>agency</B> that collects the data. It could be the government, a
 private organisation, or even an investigator in invididual
@@ -273,9 +294,9 @@ approximation to the information that you are actually seeking.
 
 </EXRLIST>
 
-<STKY><HEAD2>Module 1, Lesson 1,  Video 3: Data--Census/sample, Observational/experiment</HEAD2></STKY>
+<STKY><HEAD3>Module 1, Lesson 1,  Video 3: Data--Census/sample, Observational/experiment</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.50">
+<SESS t="2.50" done="n">
 We have talked about the <B>scope</B> of a data, and also
 mentioned the concept of <B>units</B>. All the units coming under
 the scope constitute the <B>population</B>. For example, if we
@@ -317,7 +338,7 @@ well. Balancing that trade-off is an important cosideration in
 sample survey, as you will learn later.
 </SESS>
 <JINGLE t="0.1">Observational study and designed experiment</JINGLE>
-<SESS t="2.70">
+<SESS t="2.70" done="n">
 There is yet another way to classify data
 collection. <B>Observational study</B> and <B>designed
 experiment</B>.  In an observational study,  you are merely a
@@ -435,9 +456,9 @@ observational study.
 
 </EXRLIST>
 
-<STKY><HEAD2>Module 1, Lesson 1,  Video 4: Case,  variable and rectangular structure</HEAD2></STKY>
+<STKY><HEAD3>Module 1, Lesson 1,  Video 4: Case,  variable and rectangular structure</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.5">
+<SESS t="0.5" done="n">
 The term data conjures up the vision of numbers...zillions of
 figures stored in computer disks to be processed by gigantic
 supercomputers. Well,  it is true to some extent,  all data
@@ -449,7 +470,7 @@ looks inside a computer. It looks like a rectangle, what is
 called a data matrix.
 </SESS>
 <JINGLE t="0.1">Data matrix</JINGLE>
-<SESS t="1.30">
+<SESS t="1.30" done="n">
 Let's start with an example. Here is a data set stored shown in a
 spreadsheet. It is like rectangle, consisting of a number of rows
 and columns. Each column denotes a <B>variable</B>. 
@@ -471,7 +492,7 @@ Sometimes beginners fail to cast a data set into this
 rectangular format. Let's discuss this next.
  </SESS>
 <JINGLE t="0.1">From data to data matrix</JINGLE>
-<SESS t="0.40">
+<SESS t="0.40" done="n">
 We have already seen how the values in a data set result from
 five different sources: measuring,  observing, looking up, asking
 and deriving. But when we want to cast the data into a data
@@ -513,7 +534,7 @@ or could be some special marker like NA, or may simply be left
 blank. 
 <TODO>Use NREG_JOB_CARD example from hugli data here.</TODO>
 </SESS>
-<SESS t="2.00">
+<SESS t="2.00" done="n">
 Spreadsheet programs like MS-Excel or LibreOffice are used to
 record data. However, sometimes one needs to rearrange the data
 before it is ready for statistical analysis. Most, if not all,
@@ -709,10 +730,11 @@ Here is a quick checklist:
 </EXRLIST>
 </LESSON>
 
-<STKY><HEAD2>Module 1, Lesson 2,  Video 1: Types of variables (Users' perspective)</HEAD2></STKY>
+<HEAD2>Module 1, Lesson 2</HEAD2>
+<STKY><HEAD3>Module 1, Lesson 2,  Video 1: Types of variables (Users' perspective)</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 In the last lesson we have learned about types of data, and have
 acquired a basic understanding of how they are collected. We
 learned about cases and variables. Now it is time to take a
@@ -733,7 +755,7 @@ of usage, and also in terms of their techical nature. Let's learn
 about them one by one.
 </SESS>
 <JINGLE t="0.1">Types of variables (by usage)</JINGLE>
-<SESS t="0.9">
+<SESS t="0.9" done="n">
  As we
 already know the columns in a data matrix denote variables. The names of the
 variables are given at the very top. A quick look at the values
@@ -748,7 +770,7 @@ variable (i.e., in the same column) must be of
  mixture of both.  
 </SESS>
 <JINGLE t="0.1">Identifier variable</JINGLE>
-<SESS t="1.9">
+<SESS t="1.9" done="n">
 Let's look at  an example. Here is a data  matrix.
 The simplest type of variable from the users' perspective is an <B>identifier</B> variable. These
 are, well,  used to identify a case. Most official statistics
@@ -773,7 +795,7 @@ pressure and bed number!
 Don't do that mistake. 
 </SESS>
 <JINGLE t="0.1">Timestamp</JINGLE>
-<SESS t="0.80">
+<SESS t="0.80" done="n">
 Another type of variable is a <B>timestamp</B>. This marks
 the time when the that particular case was recorded. The time
 stamp may be a date, or a month or even year. For a medical
@@ -787,7 +809,7 @@ statistics, as they are used for predicting the future. We shall
 later have more occasion to discuss time series. 
 </SESS>
 <JINGLE t="0.1">Counting variables</JINGLE>
-<SESS t="0.7">
+<SESS t="0.7" done="n">
 Consider this scenario. We are visiting
 a village and asking each family about the number of children
 they have. There the data may be like this. One family may have 2
@@ -802,7 +824,7 @@ this type include <B>count of trees in an area</B>,
 Next we shall take a look a another type of variable.
 </SESS>
 <JINGLE t="0.1">Categorical variables</JINGLE>
-<SESS t="0.60">
+<SESS t="0.60" done="n">
 Let's look at this example. Here we have two types of houses:
 Kuccha (i.e., made of mud) and Pukka (made of concrete). 
 Unlike the counting variables,  here we know exactly that these
@@ -815,11 +837,11 @@ of a category.
 Next we shall learn about variables that denote outcomes of measurements.
 </SESS>
 </SCRIPT>
-<STKY><HEAD2>Module 1, Lesson 2,  Video 2: Types of variables (Users' perspective) (contd)</HEAD2></STKY>
+<STKY><HEAD3>Module 1, Lesson 2,  Video 2: Types of variables (Users' perspective) (contd)</HEAD3></STKY>
 <SCRIPT>
 <JINGLE t="0.1">Measurement variables</JINGLE>
 
-<SESS t="2.30">
+<SESS t="2.30" done="n">
 An important type of variables is measurement variables. As the
 name suggests, these are
 outcomes of measurements. If you are interested in the relation
@@ -859,7 +881,7 @@ reported values hardly deserve to be called measurements. Instead
 we get <B>interval variables</B>, which we discuss next.
 </SESS>
 <JINGLE t="0.1">Interval variables</JINGLE>
-<SESS t="2.40">
+<SESS t="2.40" done="n">
 We shall start with an example: income tax. Income tax depends on
 income. So it is only natural that the data that the income tax
 office is interested in, should have a variable called
@@ -902,7 +924,7 @@ systems in the form of what is <B>Likert scales.</B> We discuss
 this next.
 </SESS>
 <JINGLE t="0.1">Likert variables</JINGLE>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 In this age of online shopping we all know about Amazon and
 Netflix and Rotten Tomato. All these sites allow the users to
 provide ratings. These ratings are commonly given in a scale of 5
@@ -1040,9 +1062,9 @@ crucially on the type of variable you are working with.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 1, Lesson 2,  Video 3: Types of variables (technical perspective)</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 2,  Video 3: Types of variables (technical perspective)</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.60">
+<SESS t="0.60" done="n">
 In one of the earlier videos we mentioned how variables are some
 what like coulours to a painter. There seem to be so many
 different colours in the world. Yet to the painter everything
@@ -1053,7 +1075,7 @@ right, just two: <B>continuous</B>
 and <B>discrete</B>. 
 </SESS>
 <JINGLE t="0.1">Continuous</JINGLE>
-<SESS t="1.20">
+<SESS t="1.20" done="n">
 Continuous means a measurement that takes
 values in a continuum,  a range of values without any gap. We
 have already seen this when we talked about 
@@ -1075,7 +1097,7 @@ value 150.32 is quite possible. It just gets reported as 150.3,
 that's all! 
 </SESS>
 <JINGLE t="0.1">Discrete</JINGLE>
-<SESS t="1.30">To understand easily remember a discrete variable as one which
+<SESS t="1.30" done="n">To understand easily remember a discrete variable as one which
 can take only finitely many values.
 All the categorical variables are of this type. For instance,
 gender can take only three values Male, Female and
@@ -1161,9 +1183,9 @@ options:
 
 </EXRLIST>
 
-<STKY><HEAD2>Module 1, Lesson 2,  Video 4: Uses of numbers</HEAD2></STKY>
+<STKY><HEAD3>Module 1, Lesson 2,  Video 4: Uses of numbers</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.20">
+<SESS t="1.20" done="n">
 When we think about data, we think about numbers. While we do
 occasionally use texts as values of variables, numbers are used
 much more often. Now, numbers as used in a data set need not be
@@ -1185,7 +1207,7 @@ how they are used, there are 4 types of numbers in statistics:
 Let's start with nominal.
 </SESS>
 <JINGLE t="0.1">Nominal</JINGLE>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 When a number is used just as a name, we call it nominal. The
 example of smoking habit that we saw just now furnishes one such
 scenario. Another example could be coding Male as 0 and Female as
@@ -1205,7 +1227,7 @@ Next we shall talk about another level of using numbers, where
 comparison is allowed, though arithmetic operations are still forbidden.
 </SESS>
 <JINGLE t="0.1">Ordinal</JINGLE>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 Consider a variable called educational level. This is an important
 variable in many social studies. Typical values may be
 "Preschool", "Primary", "Secondary", "Higher secondary",
@@ -1227,7 +1249,7 @@ encoded as single numbers, then those numbers are being used as
 ordinals. 
 </SESS>
 <JINGLE t="0.1">Interval/ratio level</JINGLE>
-<SESS t="1.00">
+<SESS t="1.00" done="n">
 Next we shall talk about the highest level of using numbers. The
 fancy name is <B>interval/ratio level</B>. In plain words, it
 means using numbers as in mathematics. You can perform arithmetic
@@ -1244,11 +1266,13 @@ ratio.
 </SESS>
 </SCRIPT>
 </LESSON>
+
+<HEAD2>Module 1, Lesson 3</HEAD2>
 <STKY>
-<HEAD2>Module 1, Lesson 3,  Video 1: Univariate and multivariate</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 3,  Video 1: Univariate and multivariate</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="0.80">
+<SESS t="0.80" done="n">
 Welcome back! We have learned quite a bit of stuff in the videos
 so far. We have a basic idea about how data are collected, and
 what are the different types of variables we are interested
@@ -1262,7 +1286,7 @@ are interested in the interplay between these variables. Let's
 take a toy example to understand this.
 </SESS>
 <JINGLE t="0.1">A toy example</JINGLE>
-<SESS t="1.70">
+<SESS t="1.70" done="n">
 Quantities in the real world are related in various ways, and one
 of the aims of science is explore them. While some of the laws are
 obtained by purely logical thinking, most others are ascertained
@@ -1290,7 +1314,7 @@ rows, and not merely the values in the columns
 independently. Otherwise, we have no hope to recover the
 inter-relation between the variables.
 </SESS>
-<SESS t="0.70">
+<SESS t="0.70" done="n">
 Well, this brings us to the distinction between
 a <B>univariate</B> and <B>multivariate</B> data set. A
 univariate scenario is where we are focusing our attention on
@@ -1302,7 +1326,7 @@ showed, a multivariate data set is not merely just a collection
 of some univariate data sets. All the variables need to be
 considered together.
 </SESS>
-<SESS t="1.40">
+<SESS t="1.40" done="n">
 Here's a more practical example of a bivariate
 scenario. "Bivariate" as you have no doubt guessed is a pecial
 case of multivariate, where we have only <I>two</I> variables of
@@ -1427,11 +1451,11 @@ options:
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 1, Lesson 3,  Video 2: Cross-sectional,  time
-series, panel and spatial</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 3,  Video 2: Cross-sectional,  time
+series, panel and spatial</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="1.80">
+<SESS t="1.80" done="n">
 In the last few videos we have talked a lot about variables,
 i.e., the columns in the data matrix. But what about the rows,
 i.e., the cases? Well, that's what we are going to talk about
@@ -1458,7 +1482,7 @@ layout of the units we classify data in a number of ways:
 Let's discuss these one by one.
 </SESS>
 <JINGLE t="0.1">Time series and panel data</JINGLE>
-<SESS t="0.90">
+<SESS t="0.90" done="n">
 If the cases are each marked with a time stamp, and we are
 interested in the temporal evolution of the data, i.e, how the
 values are changing over time, then we have a <B>time
@@ -1483,7 +1507,7 @@ course we may like follow the temporal evolution for a
 multivariate data as well. Then it is called <B>panel data</B>.
 </SESS>
 <JINGLE t="0.1">Panel data</JINGLE>
-<SESS t="0">
+<SESS t="0" done="n">
 Panel data, as I said just now, are basically multivariate time
 series data. These are very common in econometric studies, where
 we follow the interplay among different economic factors over
@@ -1496,7 +1520,7 @@ variables at a single time point, we get a <B>cross-sectional</B>
 data set.
 </SESS>
 <JINGLE t="0.1">Cross-sectional data</JINGLE>
-<SESS t="0.70">
+<SESS t="0.70" done="n">
  The term cross-sectional comes from the fact
 that a snapshot at a single time point is like  a cross-sectional
 view of the pipe.  In a sense this is the simplest possible scenario, where there is no particular
@@ -1517,7 +1541,7 @@ Identically Distributed. Typical examples are data from a random
 sample. 
 </SESS>
 <JINGLE t="0.1">Spatial data</JINGLE>
-<SESS t="0.70">
+<SESS t="0.70" done="n">
 When the units are laid out geographically ocer space, and we are
 interested in the spatial positionings of the units, we
 have <B>spatial data</B>. A good example is weather data (e.g.,
@@ -1531,7 +1555,7 @@ With the wide availability of satellite imagery, spatial data are
 now assuming great importance.  
 </SESS>
 <JINGLE t="0.1">Other layouts</JINGLE>
-<SESS t="0.90">
+<SESS t="0.90" done="n">
 We have learned about various ways units may be laid out in a
 data set. A great deal has been written about analysing spatial data, and
 an even greater amount of literature exists for cross-sectional
@@ -1669,11 +1693,13 @@ In this course we shall not consider these layouts.
 
 </EXRLIST>
 </LESSON>
+
+<HEAD2>Module 1, Lesson 4</HEAD2>
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 1: Using a computer</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 4,  Video 1: Using a computer</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="2.80">
+<SESS t="2.80" done="n">
 As we have already mentioned at the very outset of the course, we
 need a software to play with data. There are many to choose
 from. Some softwares like Microsoft Excel are relatively easy to
@@ -1720,44 +1746,56 @@ use the cloud version as a fallback option.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 2: Local installation</HEAD2>
+<HEAD3>Module 1, Lesson 4,  Video 2: Local installation</HEAD3>
 </STKY>
 
 <SCRIPT>
-<SESS t="2.00">
-[Screencast:  download and installation, show in windows and ubuntu]
+<SESS t="2.00" done="n">
+[Screencast:  portable app and appimage. download and no installation, show in windows and ubuntu]
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 3: Getting started</HEAD2>
+<HEAD3>Module 1, Lesson 4,  Video 3: Getting started</HEAD3>
 </STKY>
 
 <SCRIPT>
-<SESS t="4.00">
+<SESS t="6.00" done="n">
 [Screencast: Getting started]
+  * The regions: spreadsheet, menu, status bar
+  * Spreadsheet: 
+      - Enter data, numbers and text (align) 
+      - motion: cursor, enter, mouse click, [shift] tab
+      - selection
+      - delete/hide row/column
+      - using =: autoupdate, mouseclick  does not work, enter to exit, double click to edit
+                 drag over range
+      - loops (value[string, num] and position) and $
+
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 5: Some tasks already seen</HEAD2>
+<HEAD3>Module 1, Lesson 4,  Video 4: Some tasks already seen</HEAD3>
 </STKY>
 
 <SCRIPT>
-<SESS t="4.00">
+<SESS t="4.00" done="n">
 [Screencast: Renaming categories]
+switch with default
 </SESS>
-<SESS t="4.00">
+<SESS t="4.00" done="n">
 [Screencast: Combining and reshaping tables]
+Paste special, unformatted text
 </SESS>
 </SCRIPT>
 
 
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 6: File formats: Excel</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 4,  Video 5: File formats: Excel</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="1.60">
+<SESS t="1.60" done="n">
 In olden days people used to store data on paper, and perform all
 the computations by hand. Now of course computers
 provide both  the  storage as well as the processing. Data sets are stored as files, 
@@ -1791,7 +1829,7 @@ first format has the extension <B>.xlsx</B>. This is one of the main
 file format used by MS Excel. 
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="2.00">
+<SESS t="2.00" done="n">
 [Screencast: Saving and loading xslx]
 </SESS>
 </SCRIPT>
@@ -1946,9 +1984,9 @@ file format used by MS Excel.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 1, Lesson 4,  Video 7: File formats: CSV</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 4,  Video 6: File formats: CSV</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.50">
+<SESS t="1.50" done="n">
 While the Excel format is adequate for many elementary
 purposes,  there are a couple of drawbacks. First,  you need to
 have MS Excel in order to view the data in the file,  or even to
@@ -1973,7 +2011,7 @@ tables,  as well as graphs and reports.
 
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="0">
+<SESS t="0" done="n">
 [Screencast: Saving and loading as csv]
 </SESS>
 </SCRIPT>
@@ -2034,11 +2072,13 @@ tables,  as well as graphs and reports.
 
 </EXRLIST>
 </LESSON>
+
+<HEAD2>Module 1, Lesson 5</HEAD2>
 <STKY>
-<HEAD2>Module 1, Lesson 5 (review),  Video 1</HEAD2></STKY>
+<HEAD3>Module 1, Lesson 5 (review),  Video 1</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="3.70">
+<SESS t="3.70" done="n">
 So we have come the very last lesson of the week. We have 
 had an exciting week with already 4 lessons. This last lesson is
 just for review purposes. We have discussed many terms and
@@ -2100,13 +2140,13 @@ familirising ourselves with a data set using a real life example.
 </SCRIPT>
 
 <SCRIPT>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Getting started with NSS Hugli data.]
 </SESS>
 </SCRIPT>
-<STKY><HEAD2>Module 1, Lesson 5 (future directions),  Video 2</HEAD2></STKY>
+<STKY><HEAD3>Module 1, Lesson 5 (future directions),  Video 2</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.90">
+<SESS t="2.90" done="n">
 Statistics is a vast subject, and there is so much to say even
 about just basic structure of data. We have mostly covered
 whatever basic notion about data we shall need for our
@@ -2151,16 +2191,16 @@ produce a "opposite sound" to
 cancel noise in air crafts. This is called active noise
 cancellation. 
 </SESS>
-<SESS t="0">
+<SESS t="0" done="n">
 <TODO>H5 data format and others (e.g. sav)</TODO>
 </SESS>
 </SCRIPT>
 </LESSON>
 
-<STKY><HEAD1>Module 2: Presentation of data (part 1)</HEAD1></STKY>
-<STKY><HEAD2>Module 2, Introductory Video: Peer review</HEAD2></STKY>
+<HEAD1>Module 2: Presentation of data (part 1)</HEAD1>
+<STKY><HEAD3>Module 2, Introductory Video: Peer review</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.60">
+<SESS t="1.60" done="y" id="s1">
 So we have finished one week of our course, and are now about to
 start the second week. This week our focus will be on 
 presentation of data, mainly graphical presentations.
@@ -2188,79 +2228,83 @@ with the correct answers plus a rubric, i.e., a scheme for how much marks to
 give for different aspects of the solution. 
 </SESS>
 </SCRIPT>
-<STKY><HEAD2>Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</HEAD2></STKY>
+
+<HEAD2>Module 2, Lesson 1</HEAD2>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.50">
-In the year 1858,  a war took place between the British and the
-Russian. A particularly infamous battle fought in it was the
-battle of Crimea,  where  a young nurse named Florence Nightingale,  along with a
+<SESS t="2.60" done="y" id="s1">
+During the period <B>1853--1856</B>,  the <B>Crimean War</B> took place between the British and the
+Russian, where  a young nurse named <B>Florence
+Nightingale</B>, <V>[florpic.png]</V>  along with a
 small group of friends,   was providing
-voluntary service at the battlefield. She was shocked to find
-that more soldiers died of disease than in actual
-fighting. She saw this clearly,  as did many others present at the
+voluntary nursing service at the battlefield. She was shocked to find
+that more soldiers died of preventible diseases and neglect than in actual
+fighting.
+<P/>
+This was painfully obvious to her, as it was to many others present at the
 battlefield. But unfortunately the policy makers sitting in
 London did not see this as clearly. Fortunately for the soldiers
 and the posterity,  Florence Nightingale was not just a dedicated
 nurse. She was also a passionate statistician at heart,  one who knew how to
-convince others using data. She knew that data, as a mere
+convince others using data.<V>[Clear]</V> She knew that data, as a mere
 collection of numbers, did not appeal to non-statisticians. So
 she designed a way to present her data through pictures. Her
-graphic, which she called the wedges, and more commonly known as the
-Nightingale Rose Chart or the Coxcomb has gone down in history
+graphic<V>[rose1.jpg]</V>, which she called the <B>wedges</B>, and more commonly known as the
+<B>Nightingale Rose Chart</B> or the <B>Coxcomb</B> has gone down in history
 as one of the most famous data charts ever made. She included it
 in a privately published report, which she circulated among
-powerful politicians. This eventually led to significant
+powerful politicians. This eventually led to a significant
 improvement in the sanitary conditions of the army hospitals.
 <P/>
-Let's take a closer look at the chart. <V>[Chart
-appears]</V>. Her data set was a monthly 
+Let's take a closer look at the chart. <V>[others clear out]</V>. Her data set<V>datapart.png</V> was a monthly 
 trivariate time series, collected from 1854 to 1855. The three
 variables were the numbers of deaths due to three causes:
-epidemic, preventable reasons, and others. She split the central
+preventible, wounds, and others. She split the central
 360 degree angle of circle
 into 12 equal parts and devoted one to each month. For each of
 the causes of death, 
-she constructed one sector in each wedge with area proportional to the mortality
-rates.  Thus, in each wedge she had three sectors (all
-overlapping near the centre), and colour coded by the cause of
-death, red for ... blue for ... and black for the others. As one
-can easily see the blue parts dominate the entire chart, driving
-her point home that deaths due to preventable reasons were the
-most significant. To make the direness of the situation all the
-more vivid, she added a dashed circle <V>[shown]</V> with area
-proportional to the mortality rate in the London hospitals at
-that time.
+she constructed one sector in each wedge with <B>area proportional to the mortality
+rates.</B>  Thus, in each wedge she had three sectors (all
+starting from the centre), and colour coded by the cause of
+death, blue for preventible, red for wounds, and black for the others. As one
+can easily see the blue sectors dominate the entire chart, driving
+her point home that deaths due to preventible reasons were the
+most significant. 
 </SESS>
-<SESS t="1.40">
+<SESS t="1.70" done="y" id="s2">
 This is a classic example showing the power of pictorial
 representation of data. We use our eyes to
 decide about our surroundings. We are extremely adept at grasping
 visual patterns.  Graphical representation of data
-just converts patterns in the data into visual patterns, which
+just converts patterns in the data into visual patterns, 
+which
 even a layman can quickly detect. 
 <P/>
 Now graphically representaing data does not mean converting a
 jumble of numbers into a riot of colours. It must be
 done with two basic points in view: <B>comparability</B> and <B>contrast</B>.
-In his book Speaking of Graphics, the author tells us how
-Nightingale achieved these using her Rose Chart. Though her
-original data were the numbers of deaths, she did not actually
-make the area proportional to that. Instead she projeccted
-everything to the  mortality rate. This allowed her to
+In his book <B>Speaking of Graphics</B>, the author <B>Paul Lewi</B> tells us how
+Nightingale achieved these using her chart. Though her
+original data<V>[datapart.png]</V> were the numbers of deaths, she did not actually
+make the area proportional to that. Instead she projected
+everything to   <B>mortality rate</B>, by dividing the numbers of
+death by the estimated army size for that month. This allowed her to
 compare different months, without having to worry about the
-different numbers of patients in different months. Also, she was
-comparing the sectors with that of the dashed circle. As the
-dashed circle denoted the annual value, she projected her monthly
-rates to the annual rates before drawing the sectors. The idea of
+different army sizes in the different months. Also, in the Rose
+chart for a different mortality data <V>[rose2part.jpg]</V> she
+added this dashed circle to the chart to denote the mortality
+rate at the civilian hospitals at Manchester, far from the battlefield. As the
+dashed circle denoted the annual value, she projected her <B>monthly
+rates to the annual rates</B> before drawing the sectors. The idea of
 comparability is like bringing fractions on a common denominator
 before comparing them by the numerators.
 </SESS>
-<SESS t="0.80">
-The next point is that of contrast. In her Rose chart,
+<SESS t="0.80" done="y" id="s3">
+The next point is that of <B>contrast</B>. In her chart,
 Nightingale presented two different contrasting pairs. First,
 between the different causes of mortality, and then between
-mortality in the army hospitals and that in the London
+mortality in the army hospitals and that in the Manchester
 hospitals. Contrast appeals to the human mind. Do you have a
 favourite Bond movie? When you discuss it, you'll be inevitably
 drawn towards comtrasting it with the other Bond movies you have
@@ -2269,128 +2313,146 @@ Bond. A description without contrast is as uninteresting as a
 musical piece where the same sound is produced again and again
 without variation.
 </SESS>
-<SESS t="0.20">
+<SESS t="0.20" done="y" id="s4">
 One may,  like Florence Nightingale,  improvise one's own way of
 representing data graphically. But there are certain standard
-methods,  which every statistician should know about. 
+methods,  which every statistician should know about. And that's
+what we are going to learn next.
 </SESS>
 </SCRIPT>
-<STKY><HEAD2>Module 2, Lesson 1,  Video 2: Line diagram</HEAD2></STKY>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 2: Line diagram</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.10">
+<SESS t="3.20" done="y" id="s1">
 When we present data, there are two conflicting aims. One is to
-present it as is, in an objective way. The other is to highlight
+present it as is, in an <B>objective</B> way. The other
+is <B>subjective</B>, 
+to highlight
 what we feel is worth seeing, possibly downplaying other
-aspects. This is somewhat like writing a  review for a book.
-An editorial review imapassively lists the salient features of
+aspects. 
+<P/>
+This is somewhat like writing a  review for a book.
+An editorial review impassively lists the salient features of
 the book, leaving the final judgement to the reader. But a
 customer review is more passionate, it seeks to present a
 personal view more than a comprehensive picture. In the world of
 modern statistics, the latter is generally frowned upon. Though
 such presentations are frequently used in advertisements and
 similar places.
-
-<P/>
-
-The data used by Florence Nightingale were time series data. The
+</SESS>
+<SESS t="0" done="y" id="s2">
+The data used by Florence Nightingale  were time series data. The
 most common way to depict such data is the <B>line chart</B>. 
-This is just a graph with time shown in the <M>x</M>-axis, and
-the quantity of interest in the <M>y</M>-axis. Let's consider a
-data set used by Florence Nightingale about the monthly
-mortalities in the army hospital at Scutari. <V>table shown</V>.
-This is a monthly data. So we label the horizontal axis with the
-months. The first value is ..., which gives us a point like this.
+This is  a graph like this. <V>Show example</V> Here time is shown in the <M>x</M>-axis, and
+the quantity of interest in the <M>y</M>-axis and the values are
+shown as dots joined by line segments.
+<P/>
+  Let's consider a
+data set used by Florence Nightingale about the 
+mortalities in the army hospital at Scutari. <V>[data.png]</V>.
+Here time is given as dates. So we label the horizontal axis with the
+dates,<V>Show box</V> and the vertical axis shows the mortality
+values.
+ The first value is 192, which gives us a point like this. <V>[show]</V>
 Similarly, each row gives us one
 point <V>Points are shown</V>. We join the consecutive points
-with straighlines. The resulting plot is a line
+with straighlines.<V>[Show]</V> The resulting plot is a line
 chart. 
 
 <P/>
-Why did we join the points with straight lines? Because, time
-flows continuously, even though we are oberving our series at
-only some discrete points. Also the valriable shown along the
-vertical axis is also continuous. Thus, it is quite meaningful to ask
-for the value of the series inbetween two observations. A simple
+Why did we join the points with straight lines? Two reasons. First, time
+flows continuously, even though we are observing our series at
+only some discrete points. Second, the variable shown along the
+vertical axis is a count variable. For a count variable or a
+continuous variable, it is meaningful to ask
+for the value of the series in-between two observations. A simple
 way to approximate such intermediate values is by linear
 interpolation. This is what is achieved by joining consecutive
-points with straigh lines.
+points with straight lines.
 <P/>
 But if the variable shown along the vertical axis were
-categorical, then joining the points with a straighlines like
-this will not make any sense. Then we could use only vertical or
-horizontal lines, much like a staircase.
+categorical, then a line chart would not make much sense.
 <P/>
 
-If we multiple quantities of interest,  then we vave multiple
-lines that may be plotted separately or,  to facilitate comarison, 
-overlaid on the same plot. 
+If we multiple variables of interest,  then we have multiple
+lines that may be plotted separately or,  if they are comparable,
+overlaid on the same plot. For example, the trivariate mortality
+data used by Florence Nightingale may be presented like
+this. <V>[plot appears, animated]</V>. Here the three lines
+correspond to the three causes of deaths, as is shown by the
+legend.
+<P/>
+In the next video we shall learn about how to create line charts
+using Libreoffice.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 2, Lesson 1,  Video 3: Line diagram (lab)</HEAD2></STKY>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 3: Line diagram (lab)</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.20">
-Remember that softwares are stupid. We shall learn with toy
-examples. Get into real data at the very end.
+<SESS t="0.30" done="y" id="s1">
+In this video we shall learn how to create line charts
+using Libreoffice. We shall first learn with toy
+examples. We shall get into real data at the very end of the module.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="2">
+<SC t="2" done="r">
 [Screencast: making a line diagram, overlay, labeling]
 ts1: Single series, works out of box.
-</SESS>
+</SC>
 <JINGLE t="0.1">ts2</JINGLE>
-<SESS t="3">
+<SC t="3" done="r">
 [Screencast: making a line diagram, overlay, labeling]
 ts2: Multiple series, works out of box.
-</SESS>
+</SC>
 </SCRIPT>
 
-<STKY><HEAD2>Module 2, Lesson 1,  Video 4: Line diagram (lab)</HEAD2></STKY>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 4: Line diagram (lab)</HEAD3></STKY>
 <SCRIPT>
-<SESS t="5.5">
+<SC t="5.5" done="r">
 [Screencast: ts3: Time as numbers, Needs "First column as
 labels", missing?]
-</SESS>
+</SC>
 </SCRIPT>
 
-<STKY><HEAD2>Module 2, Lesson 1,  Video 5: Line diagram (lab)</HEAD2></STKY>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 5: Line diagram (lab)</HEAD3></STKY>
 <SCRIPT>
-<SESS t="7">
+<SC t="7" done="r">
 [Screencast: ts4: Details of the chart wizard.]
 <TODO>Combine this and the next video.</TODO>
-</SESS>
+</SC>
 </SCRIPT>
 
-<STKY><HEAD2>Module 2, Lesson 1,  Video 6: Line diagram (lab)</HEAD2></STKY>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 6: Line diagram (lab)</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SC t="6" done="r">
 [Screencast: ts5: Details of the chart edit mode.]
 <TODO>Combine this and the last video.</TODO>
-</SESS>
+</SC>
 </SCRIPT>
 
-<STKY><HEAD2>Module 2, Lesson 1,  Video 7: Line diagram (interpretation)</HEAD2></STKY>
+<STKY><HEAD3>Module 2, Lesson 1,  Video 7: Line diagram (interpretation)</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.70">
-What are line charts good for? 
-Line charts show the ups and downs of the values over time. A
-plot like this, for example, indicates a steady growth, while
-a plot like this shows a steady decline. Often we see a periodic
+<SESS t="1.50" done="y" id="s1">
+What are line charts good for? Line charts show the ups and downs
+of the values over time. A 
+plot like this <V>[show]</V>, for example, indicates a steady growth, while
+a plot like this<V>[show]</V> shows a steady decline. Often we see a periodic
 behaviour, like a weekly or yearly cycle. Such periodic
-behaviour is often difficult to discern otherwise. Let's look at
-the famous sunspot data as an example. First a little bit of
+behaviour is often difficult to discern without a line chart. Let's look at
+a famous data set as an example. First a little bit of
 background. Just as the
-moon has spots on it, the Sun also has spots on it. Of course, we
+moon has dark patches on it, the Sun also has dark patches called
+<B>sunspots</B>. Here is a video from NASA that show
+these. <V>[sunspot.lst]</V> Of course, we
 cannot see them with the naked eye, but astronomers manage to
 count these spots using solar telescopes. They find that this the
-number of sunspots vary from year to year. If we plot the yearly
+number of sunspots vary with time. If we plot the yearly average
 numbers of sunspots as
- a line chart, then we discern a periodic behaviour. The period
-is roughly 11 years. 
+ a line chart, then we get a chart like this. <V>[Show]</V> We
+can discern a periodic behaviour. The period is roughly 11 years. 
 <P/>
-Let us go through an example. Consider this line chart. If I ask
-the value for time 34, the answer is this height, which is
-roughly ... What is the maximum value? It is ...
+Line charts of sales or stock prices also show various periodic
+patterns that are useful for prediction. We shall have more
+occasion to talk about prediction when we discuss time series analysis.
 </SESS>
 </SCRIPT>
 
@@ -2503,13 +2565,13 @@ roughly ... What is the maximum value? It is ...
 
 </EXRLIST>
 </LESSON>
-
+<HEAD2>Module 2, Lesson 2</HEAD2>
 <STKY>
-<HEAD2>Module 2, Lesson 2,  Video 1: Scatter plot</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 2,  Video 1: Scatter plot</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="2.60">
-Line charts are primarily used for univariate data, though
+<SESS t="2.70" done="y" id="s1">
+The last video discussed line charts. Line charts are primarily used for univariate data, though
 multivariate data could be accommodated using multiple line
 charts overlaid on top of one another. The next graphical device
 that we are going to learn about is primarily for bivariate data,
@@ -2521,72 +2583,80 @@ the points without joining them with lines. Sort of a line chart,
 without the lines! Let's understand this with an example. 
 
 <P/>
-Consider a fictitious height-weight data set. Here each case is a
+Consider a fictitious height-weight data set. <V>[Show]</V> Here each case is a
 person, and we have measured the height and weight of each
 person. To present this data set as a scatterplot, we take two
-axes, one for each variable. Typically,  the
-variable which is less in our ontrol,  and is more relieably
-measured,  is shown in the <M>x</M>-axis. For example, here
+axes, one for each variable.  Here
 height is shown in the horizontal axis, and weight in the
-vertical axis. This choice is taken from mathematics. If you plot
+vertical axis. 
+<P/>
+The first case has this height,  weight pair. This corresponds to
+this point. Similarly, each case gives us a point.<V>[anim]</V> 
+<P/>
+The resulting diagram is called a scatterplot.
+<P/>
+Why do we show height along the horizontal axis, and weight along
+the vertical axis?
+This choice is taken from mathematics. If you plot
 the graph of some formula like <M>y = \sin x</M>, where <M>y</M>
-is a given in terms of <M>x,</M> then <M>x</M>, the independent
+is  given in terms of <M>x,</M> then <M>x</M>, the independent
 variable,  is shown along the
 horizontal axis, while the dependent variable <M>y</M> is shown
 in the vertical axis. Similarly, here height is like the
-independent variable, it depends on fewer things than weight
+<B>independent</B> variable, and weight is the <B>dependent</B> variable. it depends on fewer things than weight
 does. We seem to just get our height genetically, and it becomes
 fixed once we are adults. Weight, on the other hand,
-depends and fluctuates based on lots of factors, food,
-exercise. As a result, we talk about the ideal weight of a a
+fluctuates based on lots of factors, food,
+exercise. As a result, we talk about the ideal weight of a 
 person with a given height, but not about the ideal height for a
 person with a given weight. Thus judging the weight in terms of
-the height is a natural tendency, and this is why we shall show
+the height is a natural tendency, and this is why we have shown
 height along the horizontal axis and weight along the vertical axis.
 <P/>
-The first case has this height,  weight pair. This corresponds to
-this point. Similarly, each case gives us a point. 
-<P/>
-The resulting diagram is called a scatterplot. Let's go through a
+
+ Let's go through a
 little lab session before discussion further details.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="2">
+<SC t="2" done="r">
 [Screencast: making a scatterplot for the height-weight data.]
 hw1: simple 
-</SESS>
-<SESS t="0.20">
+</SC>
+<SESS t="0.20" done="y" id="s2">
 In the next video we shall look at a little variation of this.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 2, Lesson 2,  Video 2: Closer look at scatterplots</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 2,  Video 2: Colour-coding</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="0.20">
+<SESS t="0.20" done="y" id="s1">
 Sometimes we may accommodate a third (categorical) variable in a
 scatterplot. Let's see how.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="7">
+<SC t="7" done="r">
 [Screencast: hw2: Gender: Split using gender, plot both.]
-</SESS>
+</SC>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 2, Lesson 2,  Video 3: Closer look at scatterplots</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 2,  Video 3: Closer look at scatterplots</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="0.60">
+<SESS t="0.70" done="y" id="s1">
 Let's now take a closer look at scatterplots. First, these are
 mainly used when both the variables are continuous. They are sometimes
-used even when one variable is discrete. Like plotting yields of
-crops for different fertilisers. But if you try to use them for
-situations where both the variables are discrete, you may have
-many cases piling up at the same point, and the scatterplot will
-not be able to distinguish them. 
+used even when one variable is discrete. Like if you have a data
+set with two variables income group and educational level, <V>[plot]</V>then
+all the  cases with school level education and in the
+midle income group, will pile up here. So you cannot distinguish
+them from  the scatterplot!
+<P/>
+Next we shall discuss about interpreting a scatterplot of two
+continuous variables.
 </SESS>
 <JINGLE t="0.1">Interpretation</JINGLE>
-<SESS t="0.50">
+<SESS t="0.50" done="y" id="s2">
 How to intepret a scatterplot? Well, a scatterplot shows the
 relation (or lack thereof) between two variables. Our eyes are
 extremely adept at discerning patterns in 2 dimensional
@@ -2604,7 +2674,7 @@ patterns.
  * Independent 
 </SESS>
 <JINGLE t="0.1">Outliers</JINGLE>
-<SESS t="0.80">
+<SESS t="0.80" done="y" id="s3">
 If finding overall patterns in a data set is the most important
 use of scatterplots, the second most important use is just its
 opposite: detecting points that do not conform to the general
@@ -2613,42 +2683,79 @@ pattern. These are called <B>outliers</B>.
 Real life data abound in outliers. There are two types of
 outliers:
   * Result of data error (typo, power outages)
-  * Indication of inadequacy of the model.
+  * Correct but unexpected behaviour
 Whatever the type, the scatterplots are quite useful to detect
 them. Here are a few examples:
-  * Independent with one point far off.
-  * Linear with one point not along the line.
-  * Linear with one point one the line but far from others.
+  * Independent with one point far off. <V>[out1.png]</V>
+  * Linear with one point not along the line. <V>[out2.png]</V>
+  * Linear with one point one the line but far from others. <V>[out3.png]</V>
 </SESS>
-<SESS t="6">
-Outliers always deserve special attention. Ozone holes. Challenger.
-</SESS>
-<SESS t="0.60">
-What to do if we have a third variable? One solution (which is
-not available in Libreoffice) is to make a 3D scatterplot, where
-the points are floating a 3D space. Even if you can make them,
-they are difficult to interpret unless you can move them
-interactively with the mouse.
+<JINGLE t="0.1">What to do with outliers</JINGLE>
+<SESS t="2.30" done="y" id="s4">
+ Statistics tries to
+understand the overall behaviour of the bulk of the data. So it
+may seem that outliers should just be weeded out. While that may
+be justified for certain types of outliers, this should not be
+the general strategy. 
 <P/>
-Libreoffice provides a different solution, called a bubble
-plot. Here a third variable (and even  a fourth variable) may be
-accommodated as the size (and colour) of the bubbles. We shall
-learn how to create them in the next video.
+Outliers always deserve special attention. There are at least
+three reasons for this:
+* First, some outliers are results of rectifiable mistakes in
+data collection. They should be corrected and included in the
+analysis. <V>[Rectification]</V>
+* Second, some methods are seriously affected by the presence of
+outliers. So outliers may dictate the choice of the analysis
+methods. <V>[Choice of methods]</V>
+*Third, and the most important, the outliers may indicate the
+presence of some hitherto unsuspected natural process. Such outliers might
+very well open the door to a new world of research. <V>[New behaviour]</V>
+<P/>
+Let me site a couple of examples of  outliers that proved to
+be of great consequence. The <B>discovery of holes in the ozonosphere</B>
+resulted from an unexpected anomalous observation in the
+Antarctic atmosphere. Even the scientist who noticed it first
+thought that it was possibly just peculiar to
+Antarctica. Fortunately, he did not ignore it, and thus made the
+important discovery of holes in the ozone layer.
+<P/>
+The second example, ironically, <V>[Challenger disaster]</V> was one where the scientists
+focused only on the outliers, and hence missed the fact that
+certain parts of a space shuttle tend to fail in low
+temperatures. This eventually led to the explosion of
+the Challenger space shuttle causing death of all the crew
+aboard. 
+<P/>
+More specifically, based on test launches the scientists had
+created these scatterplots. <V>[challenger.png]</V> The lower
+plot shows the number of failures versus temperature. The
+scientists had wrongly ignored the cases with no failures to
+consider only the top plot, which seems to indicate no relation
+between temperature and failure. But the full plot clearly
+indicates that failures are more likely on colder days.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 2, Lesson 2,  Video 4: Closer look at scatterplots</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 2,  Video 4: Closer look at scatterplots</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="1">
-[Bubble intro]
+<SESS t="0.60" done="y" id="s1">
+A scatterplot is primarily meant for two continuous variables. We
+have seen how we can use color coding to incorporate a third
+categorical variable. But what if we have a third variable that
+is continuous. Then we can use a <B>bubble plot</B>, like
+this. <V>[Show]</V>. It is basically a scatterplot with the
+points replaced by disks whose radii are proportional to the
+third variable.
+<P/>
+Let's see how it works in Libreoffice.
+
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SC t="5" done="r">
 [Screencast: bubble plot]
 bubble.csv: Need of the first column as label. Try without making
 colours, then make colours.
-</SESS>
+</SC>
 </SCRIPT>
 
 
@@ -2759,41 +2866,43 @@ colours, then make colours.
 
 </EXRLIST>
 </LESSON>
-
+<HEAD2>Module 2, Lesson 3</HEAD2>
 <STKY>
-<HEAD2>Module 2, Lesson 3,  Video 1: Bar chart</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 3,  Video 1: Bar chart</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="2.30">
+<SESS t="2.30" done="y" id="s1">
 The two graphical representations that we have learned so far were
 both meant primarily for continuous variables. Take line chart
 for example. The justification behind joining successive points
 by lines came from the continuity of the two variables. It made
 sense to talk about the values inbetween two observed points. But
 there are situations where this is not the case. Suppose that we
-want to present the populations of five different states. Using a
-data set like this. Here state is a discrete variable. If we make
-a line plot like this, then the lines will be meaningless.
+want to present the populations of different countries. 
+Here country is a categorical variable. If we make
+a line plot like this,<V>[line plot]</V> then the line will be meaningless.
 What is the intepretation of this point, for example? It is the
-population half-way between Bihar and Orissa? What is 
-"half-way between two states"? It is not that the the states are
-two points and population is something that changes continuously
-between them. Also, the states are not ordered. So why should we
-joint Bihar and Orissa, and not, say, Bihar and West Bengal? 
+population half-way between India and the US? What is 
+"half-way between two countries"? It is not that the countries are
+just two points and population is something that changes continuously
+between them. Also, the countries are not ordered. So why should we
+join India and US, and not, say, India and Indonesia? 
 <P/>
 It is in such a situation that we need a discrete version of the
 line chart. Of course, we may just leave the points as they are,
-and omit the lines. But then the points look very
-inconspicuous. You can hardly see them, right? So instead we draw
-bars like this. The heights of the bars represent the
-variable. This is called a <B>bar chart</B>. If the variable in
+and omit the lines. But then it is just a scatterplot, which is
+better suited if both the variables are continuous. So here instead we draw
+bars like this.<V>[bar chart]</V> The heights of the bars represent the
+variable. This is called a <B>bar chart</B>. To avoid clutter I
+have not shown the values along the axis here. But ideally one
+should.
+If the variable in
 the horizontal axis is unordered (as is the case here), then the
-order of the bars are not important. For example, both this, and
-this, may be used. However, if the horizontal variable is
+order of the bars are not important. However, if the horizontal variable is
 ordered, then it is natural to present them according to that
 order. For example, if we are representing counts of people in
-different educational levels, then this is meaningful, but not
-this, since college should come after high school.
+different income groups, then ordering them as Low, Middle, High
+is OK, but not as Low, High, Middle. 
 
 <P/>
 Another similar example, is from Amazon's review summary.
@@ -2802,17 +2911,17 @@ Before going into further details. It is time to get our hands
 dirty with some lab work.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="6">
+<SC t="6" done="n">
 [Screencast: Make a simple bar chart. Play with labels legends
 etc]
 bar.csv: Go slow.
-</SESS>
+</SC>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 2, Lesson 3,  Video 2: Bar chart variants</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 3,  Video 2: Bar chart variants</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.50">
+<SESS t="1.50" done="y" id="s1">
 Now that we have learned how to make a basic bar chart, it is
 time to take a look at some of its variants. The basic bar chart
 for bivariate data only, where the variable shown along the
@@ -2823,10 +2932,10 @@ that we have the male and female populations reported
 separately. 
 Of course, we may just want to make two separate bar charts. But
 what if we also want to compare them? Then we can place the bars
-side by side. While this faciliates comparison between the male
+side by side.<V>[side.png]</V> While this faciliates comparison between the male
 and female populations, it makes it difficult to compare the
 total poplations between states. So we may use a subdivided bar
-chart. Here it is easier to compare totals over states, males
+chart.<V>[top.png]</V> Here it is easier to compare totals over states, males
 over states, males with females for each state. But comparing the
 female poplations over state is less easy, because those
 rectangles do not start from a common level. This is a common
@@ -2838,33 +2947,34 @@ presenting a biased view of the data.
 Anyway, before talking further it is time to go to the lab.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SC t="5" done="n">
 [Screencast: side-by-side and subdivided (also show 3D)]
 bar3.csv: Side by side. Change colour.
-bar2.csv: First side by side. Diffeence and subdivided. Show
+bar2.csv: First side by side. Difference and subdivided. Show
 3d with 3d options.
-</SESS>
+</SC>
 </SCRIPT>
 
 
 
 
 <STKY>
-<HEAD2>Module 2, Lesson 3,  Video 3: Pie</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 3,  Video 3: Pie</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.50">
+<SESS t="1.50" done="y" id="s1">
 Bar charts are good for showing values of one variable (typically
 a continuous one) in relation to a categorical variable. Often,
 however, we are interested in showing the values as fraction of
-a whole. For instance, to get a quick idea of the COVID infection
-situation in a state, we might report the number of COVID
-infected persons for each district. But this will not be adequate
-for providing contrast between the districts in relation with the
-whole state. For this we should divide the number for each
-district by the total for the state. A good way of representing
+a whole. For instance, to get a quick idea of the relative
+positions in sales of different brands of cars,
+we might report the number of sales of each brand.<V>[dat.png]</V>
+But this will not be adequate
+for providing contrast between the brands in relation with the
+whole. For this we should divide the sales for each
+brand by the total.  A good way of representing
 such fractions that add up to 1 is the <B>pie chart</B>. 
 <P/>
-Here is a pie chart for our data. It shows the whole state as a
+Here is a pie chart for our data.<V>[pie.png]</V> It shows the whole state as a
 circle. We know that the central angle is 360 degrees. Also the
 total fraction is 1. This known total is naturally mapped to the
 known central angle. Then we split the circle into sectors whose
@@ -2876,19 +2986,19 @@ be recovered from the pie chart, only the fractions.
 Let's learn making a pie chart using Libreoffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SC t="5" done="n">
 [Screencast: Make a simple pie chart. Play with labels etc.]
 pie.csv: Tools > Options > Charts > Default colours (in chart
 edit environment) <TODO>Chop some excess audio near the end.</TODO>
-</SESS>
+</SC>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 2, Lesson 3,  Video 4: Pie (variants)</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 3,  Video 4: Pie (variants)</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="0.80">
+<SESS t="0.80" done="y" id="s1">
 There are not too many variants possible for a pie chart. Of
-course, you may make it look like a 3D disk. But that is only a
+course, you may make it look like a 3D disk.<V>[pie3d.png]</V> But that is only a
 cosmetic thing, which may actually interfere with
 interpretability, as in a 3D view the circle looks distorted into
 an ellipse. So the sectors to the sides get more prominence. 
@@ -2993,14 +3103,15 @@ is quite confusing to the eye, and should be avoided.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 2, Lesson 4</HEAD2>
 <STKY>
-<HEAD2>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="5.80">
+<SESS t="1.70" done="y" id="s1">
 Charts are more colourful than numbers. But we do not add charts
-in a report just to make the report colourful. Charts must help
-in interpreting data. Sometimes people use charts wrongly,
+in a report just to make the report colourful. <B>Charts must help
+in interpreting data</B>. Sometimes people use charts wrongly,
 deliberately or inadvertently. It is important to acquaint
 ourselves with such misuses, both to avoid committing these
 mistakes ourselves, as well as to safeguard against others
@@ -3008,114 +3119,148 @@ deliberately trying to distort our view of data.
 <P/>
 The very first point to remember is that charts show values of
 variables, and every chart should be clearly labelled with the
-names of variables it is depicting. It is not uncommon to find
-plots like this accompanying a claim like our brand of nutrition
-drink is 30% more helpful for building muscles. Such a plot is
+<B>names of variables</B> it is depicting. It is not uncommon to find
+plots like this <V>[Show]</V> accompanying a claim like our brand of nutrition
+drink is 50% more helpful for building muscles. Such a plot is
 meaningless because it is not telling us what  the variable
 along the vertical axis is. 
 <P/>
-The next important point is to mention the scale. When you draw
-two axes like this, an unsuspecting
-viewer is led to believe that this is the origin. However, it is
-quite possible that the scales do not start from 0. In that case
-values that seem to double, may not actually double. So never produce
-and always suspect charts that do not show scales along the
-axes depicting continuous variables. Also, be careful about
-interpreting scales that do not start from zero.
+The next important point is to <B>mention the scale</B>. In this bar
+chart <V>[bad chart 2]</V>, an unsuspecting
+viewer is led to believe that this denotes the zero
+level. <V>[show axis]</V>, and so this value is twice that. However, it is
+quite possible that the scales do not start from 0. Instead they
+start like this.<V>Show correction.</V> Now we see that the two bars are almost of the
+same height!
+There are two take away messages from this:
+
 <P/>
-These are gross mistakes. Next we shall discuss errors that are
+ * Always <B>show the scale</B>.
+ * Be careful about <B>scales that do not start from 0</B>.
+</SESS>
+<SESS t="1.80" done="y" id="s2">
+These were gross mistakes. Next we shall discuss errors that are
 more subtle. These are often deliberately planted in propaganda
 reports. When we use charts we are converting patterns in the
 data to visual patterns, patterns that appeal to the eye. Now
 there are various things that appeal to the eye, some more than
 others. If you use a chart that maps to a more conspicuous
 feature, then the viewer will find it more convincing. And there
-is a pitfall for the unwary here. Suppose that we have a
-univariate data set, about populations in a district. Instead of
+is a pitfall for the unwary here.
+<P/>
+ Suppose that we have a
+univariate data set, about populations in different countries.
+<V>[popdat.png]</V>
+ Instead of
 making a bar chart, we want to be playful, and replace the drab
 rectangles with little human figures with sizes proportional to
-the population. Problem! What do we mean by "size" here? Length
+the population.<V>[show]</V> Problem! What do we mean by "size" here? Length
 or area? Now it is a property of the human eye that it is more
-attracted by the area than by linear dimensions. This square
-seems to be 4 times that square, though in terms of linear
+attracted by the area than by linear dimensions. This
+ square<V>[big square]</V>
+seems to be 4 times this square<V>[small square]</V>, though in terms of linear
 dimension it is only doubled! So if you are showing the
-population as proportional to the length, you'll make a much
-greater (and false) impact on the viewer. 
+population as proportional to the length, you're accentuating the contrast
+(which may not be desirable).
 <P/>
 Indeed Florence Nightingale's original chart could have been made
 more visually powerful by making the <I>radius</I> instead of the
 area of a
 sector proportional to the value. [Suggest what is bad if we make
 outer layer areas proportional.]
-<P/>
-
+</SESS>
+<SESS t="0.90" done="y" id="s3">
 3D graphics look cool in a report. Realistically rendered 3D
 graphics employ perspective distortion, the distortion that makes
 circles look like ellipses, and make far away trees appear
-smaller than those close at hand. Now depth added to a chart is
+smaller than those close at hand.
+<P/>
+ Now depth added to a chart is
 mainly to make it look cool, and hence be applied in different
 ways. But depending on how you apply it, the part of the chart
 closer to the eye will get more emphasis than the part away from
 it. As this interferes  with an objective interpretation
-the data, serious statistiians strongly disparage the use of the
-pseudo 3D plots. 3D plots are OK, only when the user is allowed
+the data, serious statisticians strongly disparage the use of the
+static 3D plots. 3D plots are OK, only when the user is allowed
 to view it from different angles (typically using some
-interactive software). 
-<P/>
-Finally we come to the sublest mistake: forgetting the two basic
+interactive software). In this course, however, we shall not go
+into interactive plots.
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD3>Module 2, Lesson 4,  Video 2: Pitfalls</HEAD3></STKY>
+
+<SCRIPT>
+<SESS t="1.90" done="y" id="s1">
+Finally we come to the subtlest mistake: forgetting the two basic
 principles behind graphical representations:
+  * <B>Comparability </B>
+  * <B>Contrast</B>
+<P/>
+We had mentioned earlier how Florence Nightingale had used these
+two principles in her charts. 
+
+<P/>
 
 Graphical representations like most statistical procedures are
 dumb procedures that work on data. I cal them dumb, because they
 do not care about whether they produce meaningful results or
 not. It is your duty as the analyst to make sure that the outcome
 is meaningful. This reponsibility is apparent even in as simple a
-plot as a bar chart. Remember what we had said about Florence
-Nightingale's approach. She had in mind the two most important
-principles:
-  * Comparability 
-  * Contrast
+plot as a line chart. 
+
+
+<P/>
 
 Let's see how these two principles are to be followed while
-making a bar chart. 
-When you make a bar chart of values, the eye of the viewer is
+making a line chart. 
+When you make a line chart of values, the eye of the viewer is
 naturally drawn towards  comparing the
-heights of the bar. So the quantities represented by the heights
+heights of the points along the line. So the quantities
+represented by these heights
 should better be comparabale. The software will not guarantee
 this for you. It is a dumb piece of algorithm that has no sense
 of the domain, and does not know what is comparable and what
-isn't. Suppose that I have 5  agricultural plots. I have sown
-5 different crops and measured the revenue earned from them. Here
-is the hypothetical data set. Our aim is to compare the revenues
-from different crops (possibly to motivate growing a particular
-crop more than others).  Would you go about making a bar
-plot like this? 
+isn't. Suppose that I have I want to make a chart showing 
+GDP of a country over time. Here is the data set.  Would you
+immediately go about making a 
+line chart of these raw data?
 <P/>
-No, because here the revenues are not comparable, as they depend
-not only on the types of crops, but also on the area. So it would
-be better to make a bar plot of revenue per unit area. Let's see
-how this may be done.
+No, because here the GDP values are not comparable, as they depend
+on the value of the money which is also changing over time. So we
+need to have an idea of how the relative value of money was
+changing over time. This information is provided by the price
+indices. <V>[Enhanced data]</V>. We need to deflate the GDP
+values using these indices before making a line chart.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
-[Screencast: Bar chart of derived quantities.]
-bar4.csv: GDP inflation. Time series is better. 
-</SESS>
-<SESS t="1.10">
-So much for comparability. Now for contrast. Most graphical
+<SC t="4" done="n">
+[Screencast: Line chart of derived quantities.]
+bar4.csv: GDP inflation. <TODO>Redo as line chart (existing: bar chart)</TODO>
+</SC>
+<SESS t="1.10" done="y" id="s2">
+While comparability makes a chart meaningful, it
+is contrast that makes it relevant and interesting.
+<P/>
+ Most graphical
 representations are used as part of a report. A report should
-tell a story, and the charts should fit into that story. Just
-presenting charts after charts, may leave the viewer
-bewildered. It is contrast (or a sriking lack thereof) that fits
-a chart into a report. If there is one crop that markedly stands
-out over the rest, then that contrast should make the chart
-relevant. If your contetion is that the crops are basically all
-similar in terms of the revenue they bring, then a bar chart with
-all bars more or less of the same height is relevant. In other
-words, before you you include a chart in your report, make sure
-that you can write a one-line highlight that fits into the flow
-of the report. If you cannot, then possibly you should better
+tell a story, and the charts should fit into that story. It is contrast (or a sriking lack thereof) that fits
+a chart into a report.
+Just
+presenting charts after charts, leaves the viewer
+bewildered.  
+Before you you include a chart in your report, make sure
+that you can write a one-line highlight of the contrast
+present in the chart. If you cannot write such a line, then possibly you should better
 omit the plot.
+
+<P/>
+
+If there is one crop that markedly stands
+out over the rest, then that contrast should make the chart
+relevant. If your contention is that the crops are basically all
+similar in terms of the revenue they bring, then a bar chart with
+all bars more or less of the same height is relevant.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M2L4V1.yml">
@@ -3192,7 +3337,7 @@ omit the plot.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 2, Lesson 4,  Video 2: Real life examples</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 4,  Video 3: Real life examples</HEAD3></STKY>
 
 <EXRLIST id="M2L4V2.yml">
 
@@ -3244,13 +3389,14 @@ omit the plot.
 </EXRLIST>
 
 </LESSON>
+<HEAD2>Module 2, Lesson 5</HEAD2>
 <STKY>
-<HEAD2>Module 2, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
-<STKY><HEAD2>Module 2, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
+<HEAD3>Module 2, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
+<STKY><HEAD3>Module 2, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
-<STKY><HEAD1>Module 3: Presentation of data (part 2)</HEAD1></STKY>
+<HEAD1>Module 3: Presentation of data (part 2)</HEAD1>
 <SCRIPT>
-<SESS t="0.70">
+<SESS t="0.70" done="n">
 Here we are at the start of week 3 of our course. We have already
 mae quite a bit of progress. We have learned about data and
 related concepts. We have learned about some basic graphical
@@ -3265,13 +3411,13 @@ week's test. And as before we have some peer review problems.
 OK, enough introduction. Let's get started!
 </SESS>
 </SCRIPT>
-
+<HEAD2>Module 3, Lesson 1</HEAD2>
 <STKY>
-<HEAD2>Module 3, Lesson 1,  Video 1: Tabular: Pivot table and pivot chart</HEAD2>
+<HEAD3>Module 3, Lesson 1,  Video 1: Tabular: Pivot table and pivot chart</HEAD3>
 </STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="2.60">
+<SESS t="2.60" done="n">
 In this video we shall talk about a representation of data that
 is definitely the one most commonly used: <V>tabular
 format</V>. Be it a telephone directory or a dictionary or a
@@ -3313,50 +3459,59 @@ how the same technique may be modified to produce more varied
 pivot tables. 
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Create a letter grade frequency distribution.]
 letgrad.csv:
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 1,  Video 2: Tabular: Pivot table and pivot chart</HEAD2>
+<HEAD3>Module 3, Lesson 1,  Video 2: Tabular: Pivot table and pivot chart</HEAD3>
 </STKY>
 <SCRIPT>
-<SESS t="1.30">
+<SESS t="1.90" done="n">
 The example that we saw in the last video was possibly the
 simplest type of pivot table. More generally a pivot table (also
-called a cross-tabulation) takes a raw data matrix, with at least
+called a cross-tabulation) takes a raw data
+matrix, <V>[dat.png]</V> like this one, with at least
 one categorical variable. To make a pivot table you need to
 select one or more of these categorical variables. Based on 
 the combinations of values of these variables the cases get
-grouped into subsets. For instance, if there is a column called
+grouped into subsets. For instance, here we have a column called
 gender (taking values Male and Female) and another column called
-handedness (taking values Left and Right), then there will be
+handedness (taking values Left and Right). So there are
 four subsets (Male, Left), (Male, Right), (Female, Left) and
-(Female, Right). Of course, one or more of these subsets may
+(Female, Right). We group all the cases into 4 groups
+accordingly. <V>[shown one by one]</V> Of course, one or more of these subsets may
 actually be empty, i.e. ,there may not be any row corresponding
-to that particular combination. The next thing you need to
-specify is some kind of summary value to be applied to the
-subsets. The summary value could just be the size of the
-subset. This is hat we did in the letter grade example. Or it
-could be average or sum or something else. 
-
+to that particular combination. In our case, the (Male, Left)
+group is empty. 
+<P/>
+The next thing you need to 
+specify is some variable that you want to study over the
+groups. It could be the categorical variables themselves, or
+something else, like IQ in our example.
+The last thing to specify is some kind of summary value to be
+applied to the selected variable over each
+subset. The summary value could just be the size of the
+subset. This is what we did in the letter grade example. Or it
+could be average or sum or something else. Thus, we may like to
+find out average IQ level for each of the four groups.
 <P/>
 Let's see a detailed example to understand this.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Make a pivot table, and play with settings]
 lr.csv,  avg iq, decimal places.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 3, Lesson 1,  Video 3: Tabular: Pivot table and pivot chart</HEAD2>
+<HEAD3>Module 3, Lesson 1,  Video 3: Tabular: Pivot table and pivot chart</HEAD3>
 </STKY>
 
 <SCRIPT>
-<SESS t="0.40">
+<SESS t="0.40" done="n">
 Pivot tables allow some additional embellishments to be added to
 the basic summary table. In fact, the marginal totals that we
 were seeing all along, are examples of this. We can remove them,
@@ -3365,30 +3520,30 @@ if we please.
 Let's see how we can do this using Libreoffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Marginals off from last example.]
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 1,  Video 4: Tabular: Pivot table and pivot chart</HEAD2>
+<HEAD3>Module 3, Lesson 1,  Video 4: Tabular: Pivot chart</HEAD3>
 </STKY>
 <SCRIPT>
-<SESS t="0.80">
+<SESS t="0.80" done="n">
 Pivot tables have two major uses in a report. One is as
-themselves. Most tables that we see in a report are actually
+themselves, just to summarise data.  Most tables that we see in a report are actually
 pivot tables generated from the original data matrix which is
 typically very huge. The second use of pivot tables is as an
 intermediate step towards producing grphical representations
 like bar charts or pie charts. So the entire route from the raw
 data matrix to such a chart basically consists of two steps: raw
-data to pivot table, and then pivot table to the chart. Both
+data to pivot table,<V>[shown]</V> and then pivot table to the chart<V>[shown]</V>. Both
 these steps may be conveniently packed into a single thing in
-LibreOffice. This single thing is called a <B>pivot chart</B>. 
+LibreOffice. This combined thing is called a <B>pivot chart</B>. 
 Let's see an example.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Pivot chart]
 letgrad.csv: pie chart
 </SESS>
@@ -3461,12 +3616,12 @@ pivot table.
 - typeName: multipleChoiceMake a pivot chart
 </EXRLIST>
 </LESSON>
-
+<HEAD2>Module 3, Lesson 2</HEAD2>
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 1: Contingency table</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 2,  Video 1: Contingency table</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 In the last video we talked about pivot tables, and mentioned how
 they may be used in a report. There is one type of pivot table
 which has a much more important use, and goes deeper in terms of
@@ -3492,16 +3647,16 @@ pivot table. Anyway, here is a little lab session, in case you
 need one.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Make contingency table.]
 lr.csv: Don't use iq
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 2: Contingency table</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 2,  Video 2: Contingency table</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.70">
+<SESS t="1.70" done="n">
 We mentioned just now that contingency tables are very
 important in statistics. Why is that? The most important reason
 is that they help us to explore relation between two categorical
@@ -3529,9 +3684,9 @@ legal suits as well.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 3: Contingency table</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 2,  Video 3: Contingency table</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.30">
+<SESS t="2.30" done="n">
 
 We shall return to contingency tables near the end of this
 course, and later in other courses as well. There we shall see
@@ -3573,9 +3728,9 @@ assessing relation. More details will come later.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 4: Contingency table</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 2,  Video 4: Contingency table</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.90">
+<SESS t="2.90" done="n">
 We have mentioned how we may construct  contingency table from
 raw data. When we collect raw data with the aim of creating a
 contingency table, there are two major ways to go about it. Let's
@@ -3627,9 +3782,9 @@ suited for the purpose.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 5: Contingency table</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 2,  Video 5: Contingency table</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.60">
+<SESS t="1.60" done="n">
 All the contingency tables discussed so far were 2-way or
 2-dimensional. It is quite possible to have higher dimensional
 contingency tables. For example if we want to study relation
@@ -3664,9 +3819,9 @@ table from raw data in LibreOffice.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 3, Lesson 2,  Video 6: Contingency table</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 2,  Video 6: Contingency table</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: 3-way toy example as described.]
 gei.csv: gender, edu, income
 </SESS>
@@ -3699,10 +3854,11 @@ to be added manually).
 
 </EXRLIST>
 </LESSON>
-<STKY><HEAD2>Module 3, Lesson 3,  Video 1: Frequency distribution</HEAD2></STKY>
+<HEAD2>Module 3, Lesson 3</HEAD2>
+<STKY><HEAD3>Module 3, Lesson 3,  Video 1: Frequency distribution</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 Out of all the topics we are  learning this week, frequency
 distribution is perhaps the most important. It is quite quite
 humble to look at, and yet its roots go to the very core of
@@ -3734,19 +3890,23 @@ the data set of those subsets, i.e., we count the number of cases
 landing in each subset. When you write down these frequncies
 against each subset, you get a frequency distribution table.
 <P/>
+<TODO>Introduce class, class width, class boundary</TODO>
+
+<P/>
+
 Nothing impressive so far. Before we start the impressive news,
 let's quickly see how frequency distributions may be created in LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Create a frequency distribution table.]
 land.csv
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 3, Lesson 3,  Video 2: Frequency distribution</HEAD2></STKY>
+<STKY><HEAD3>Module 3, Lesson 3,  Video 2: Frequency distribution</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.90">
+<SESS t="2.90" done="n">
 Now that we have learned what is frequency distribution is, you
 might naturally wonder what is so special about them! Indeed,
 this humble thing is central to the very idea of statistics.  To
@@ -3792,17 +3952,17 @@ can simuate data.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD2></STKY>
+<STKY><HEAD3>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: experiment]
 Show simul randomness. Split. Do cumsum.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD2>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD2></STKY>
+<STKY><HEAD3>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.80">
+<SESS t="1.80" done="n">
 What you experienced just now is the key idea behind the whole of
 statistics. It is called statistical regularity: lots of
 randomness accumulating in a way so that the randomness seems to
@@ -3834,7 +3994,6 @@ statistics hinges on that.
 
 
 <P/>
-<TODO>Introduce class, class width, class boundary</TODO>
 </SESS>
 </SCRIPT>
 <EXRLIST id="M3L1V1.yml">
@@ -3954,11 +4113,12 @@ statistics hinges on that.
     [How to check an array of numbers?]
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 3, Lesson 4</HEAD2>
 <STKY>
-<HEAD2>Module 3, Lesson 4,  Video 1: Histogram</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 4,  Video 1: Histogram</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="0.90">
+<SESS t="0.90" done="n">
 We have already seen some ways to graphically represent
 data. Most of them were pretty self-evident. Indeed, that was one
 of their main qualities, because they are meant to present data
@@ -3977,7 +4137,7 @@ the behaviour of data, and have a rich theory underlying
 them. But since they are not used much for report generation,
 neither LibreOffice nor MS Excel has full support for them.
 </SESS>
-<SESS t="0.60">
+<SESS t="0.60" done="n">
 The histogram is extremely similar to bar charts. However, bar
 charts are for categorical variables, while histograms  may be
 used  for both discrete and
@@ -3988,7 +4148,7 @@ on whether the variable is discrete or continuous. The discrete
 case is the easier of the two, and we shall start with that.
 </SESS>
 <JINGLE t="0.1">Discrete histogram</JINGLE>
-<SESS t="2.80">
+<SESS t="2.80" done="n">
 Consider a household level data set where household size is a
 variable. It is a counting variable, and hence discrete. We shall
 first obtain its frequency distribution, i.e., how many times
@@ -4050,13 +4210,12 @@ difference is more subtle. The height of a bar is not proortional
 to the relative frequency of its class, but the area is.
 This makes the total area of the histogram equal to 1.
 </SESS>
-<TODO>Explore opendata.org</TODO>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 3, Lesson 4,  Video 2: Shape of histogram</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 4,  Video 2: Shape of histogram</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="4.20">
+<SESS t="4.20" done="n">
 The shape of the histogram reveals interesting facts about a
 variable, and has profound implication for the statistical
 analysis of data.
@@ -4144,19 +4303,19 @@ its left.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 3, Lesson 4,  Video 3: Lab</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 4,  Video 3: Lab</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Discrete histogram]
 Reuse the earlier data.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 3, Lesson 4,  Video 4: Lab</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 4,  Video 4: Lab</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="7">
+<SESS t="7" done="n">
 [Screencast: Continuous histogram]
 Reuse the earlier data.
 </SESS>
@@ -4175,15 +4334,15 @@ shapes.
 
 </EXRLIST>
 </LESSON>
-
+<HEAD2>Module 3, Lesson 5</HEAD2>
 <STKY>
-<HEAD2>Module 3, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
-<STKY><HEAD2>Module 3, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
+<HEAD3>Module 3, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
+<STKY><HEAD3>Module 3, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
 
-<STKY><HEAD1>Module 4: Central tendency</HEAD1></STKY>
+<HEAD1>Module 4: Central tendency</HEAD1>
 <SCRIPT>
-<SESS t="2.30">
+<SESS t="2.30" done="n">
 We are starting our fourth week. In the first two weeks we have
 learned about data and their graphical representations. The idea
 was like this: we wanted information, so we collected data, lots
@@ -4224,11 +4383,13 @@ will introduce one class of summary statistics:
 
 Let's get started.
 </SESS>
+
+<HEAD2>Module 4, Lesson 1</HEAD2>
 </SCRIPT>
-<STKY><HEAD2>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD2></STKY>
+<STKY><HEAD3>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="2.60">
+<SESS t="2.60" done="n">
 Let me ask you a simple question: <B>what is the typical life span
 of Indians?</B> You may not know the exact answer,  but you'll guess
 that it is around 70, and you'll be right. Now let me ask you another question: <B>what
@@ -4265,7 +4426,7 @@ arithmetic mean. That's what we shall discuss next.
 </SESS>
 
 <JINGLE t="0.1">Arithmetic mean</JINGLE>
-<SESS t="2.20">
+<SESS t="2.20" done="n">
 We talked about a "representative typical value". Commonly people
 loosely refer to it as "the average value" as in "What is the average
 cost of a 2 bedroom flat in central Kolkata?" or "What is the average
@@ -4300,7 +4461,7 @@ not be a meaningful answer to the original question. In fact, the
 question is absurd, because how can you measure central tendency,
 where there is no central tendency?
 </SESS>
-<SESS t="1.00">
+<SESS t="1.00" done="n">
 In statistics we have to be careful about this scenario, which appears
 in many other contexts also. There is an intuitive concept, and a
 mathematical way to measure it. Even if the concept is invalid in some
@@ -4434,9 +4595,9 @@ alternative to it.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 1,  Video 2: Lab</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 1,  Video 2: Lab</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.50">
+<SESS t="0.50" done="n">
 Computing mean is conceptually easy. We learn do this in school. But
 there we work with only a few numbers, may be at most 10 of them. But
 in statistics when we compute mean of a variable, we need to work with
@@ -4445,7 +4606,7 @@ thousands. So use of softwares is imperative. Let's learn how to do
 this using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: Different techniques-- =average, right click summary bar, --
                                 -- =averageif, rubbish values skipped,
                                 descriptive statistics]
@@ -4501,10 +4662,10 @@ land.csv
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 1,  Video 3: Lab</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 1,  Video 3: Lab</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.30">
-<TODO>Sum of deviations frm mean must be 0.</TODO>
+<SESS t="1.30" done="n">
+<TODO>Exr: Sum of deviations frm mean must be 0.</TODO>
 Mean is a measure of central tendency. But central tendency is a
 subjective, intuitive concept, while mean has a precise mthematical
 definition. It is quite difficult (if not impossible) to come with a
@@ -4530,7 +4691,7 @@ Here the mathematics went hand in hand with intuition. Now let's see
 where things go wrong.
 </SESS>
 <JINGLE t="0.1">Problem</JINGLE>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 Consider these squares. What is a typical side length of these
 squares? What is a typical area of these squares? Intuition says that
 if L is an answer to the first question, then L^2 should be an answer
@@ -4553,9 +4714,9 @@ this problem to a great extent!
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 1,  Video 4: Lab</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 1,  Video 4: Lab</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 So far we are talking about computing arithmetic mean for raw data,
 where all the observed values of a variable are available. Sometimes
 we have to work with a frequency distribution table. This is
@@ -4586,16 +4747,17 @@ Unfortunatly LibreOffice does not provide any easy short cut. Let's
 learn the longhand way.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Mean for grouped data]
 </SESS>
 </SCRIPT>
 </LESSON>
+<HEAD2>Module 4, Lesson 2</HEAD2>
 <STKY>
-<HEAD2>Module 4, Lesson 2,  Video 1: Median</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 2,  Video 1: Median</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.80">
+<SESS t="1.80" done="n">
 We have learned about one measure of central tendency already in the
 last lesson, arithmetic mean. We have also seen one undesirable
 property of that, it does not transform intuitively: e.g., square of
@@ -4624,7 +4786,7 @@ to first sort the values. Sorting is one thing that computers do quite
 well. So let's learn how to compute median using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="1.5">
+<SESS t="1.5" done="n">
 [Screencast: compute median. Mention rubbish avoidance. Status bar
 click. Descriptive statistics menu.]
 </SESS>
@@ -4710,9 +4872,9 @@ click. Descriptive statistics menu.]
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 2,  Video 2: Transformation</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 2,  Video 2: Transformation</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.10">
+<SESS t="2.10" done="n">
 We have already seen how arithmetic mean behaves nicely when we change
 units or shift origin. Well, the same good quality is shared by median
 as well. If you measure the heights of 10 persons in metres and get
@@ -4745,9 +4907,9 @@ nonuniuness of medians: the square of a median = a median of the squares.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 2,  Video 3: Transformation</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 2,  Video 3: Transformation</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6.00">
+<SESS t="6.00" done="n">
 Just as for mean, we may need to compute median from a frequency
 distribution table. The need of this arises mainly when you are using
 secondary data, where summary tables are more readily available than
@@ -4784,9 +4946,9 @@ far as I know) implements this.
 
 </EXRLIST>
 <STKY>
-<HEAD2>Module 4, Lesson 2,  Video 4: Robustness</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 2,  Video 4: Robustness</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.50">
+<SESS t="1.50" done="n">
 This course uses peer review: one student's answers are graded by
 three randomly selected students. So each student basically has three
 candidate grades, hopefully more or less similar.  And we have to
@@ -4810,11 +4972,12 @@ value.
 </SESS>
 </SCRIPT>
 </LESSON>
+<HEAD2>Module 4, Lesson 3</HEAD2>
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 1: Mode and others</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 3,  Video 1: Mode and others</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="4.50">
+<SESS t="4.50" done="n">
 In the last two lessons we have learned about two most popular
 measures of central tendency: mean and median. These were
 applicable primarily for continuous variables, and also for
@@ -4891,10 +5054,10 @@ for continuous variables. The next video will talk about that.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 2: Mode and
-others</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 3,  Video 2: Mode and
+others</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.40">
+<SESS t="1.40" done="n">
 Mode as we defined it in the last video was the value (or values) with the
 highest frequency. This made sense for categorical data or count
 data, as there the same value is usually repeated many times. But
@@ -4919,17 +5082,17 @@ talk much about modes for continuous variables.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 3: Mode and others</HEAD2>
+<HEAD3>Module 4, Lesson 3,  Video 3: Mode and others</HEAD3>
 </STKY>
 <SCRIPT>
-<SESS t="0.30">
+<SESS t="0.30" done="n">
 Finding the mode for a categorical variable or count variable is
 quite easy. Let's work with toy data of hourly counts of traffic rule
 violations over at a fictitious crossing.
 <TODO>Grow this a bit.</TODO>
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="2.8">
+<SESS t="2.8" done="n">
 [Screencast: traffic poisson mode.]
 acc.csv
 </SESS>
@@ -4996,9 +5159,9 @@ acc.csv
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 4: Other measures</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 3,  Video 4: Other measures</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 We have talked about the three major measures of central
 tendency: mean, median and mode. Each has its own advantages and
 disadvantages. Sometimes we want to retain the advantages of one,
@@ -5028,15 +5191,15 @@ level. This formula is called the weighted mean.
 Let's see this in action.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Above example.]
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 3,  Video 5: Other measures</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 3,  Video 5: Other measures</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.20">
+<SESS t="1.20" done="n">
 We saw how weighted mean is sometimes better than usual
 mean. Well, the next measure of central tendency that we are
 going to discuss is an extreme application of this idea. It just
@@ -5057,7 +5220,7 @@ the usual mean of the rest.
 Let's look at the computation using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: 10%-trimmed mean of  land_owned from hugli saruve. survey.csv]
 </SESS>
 </SCRIPT>
@@ -5089,10 +5252,12 @@ Let's look at the computation using LibreOffice.
 
  - typeName: trimmed median is same as median.
 </EXRLIST>
+<HEAD2>Module 4, Lesson 4</HEAD2>
+
 <STKY>
-<HEAD2>Module 4, Lesson 4,  Video 1: Quantiles and p-values</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 4,  Video 1: Quantiles and p-values</HEAD3></STKY>
 <LESSON>
-<SCRIPT><SESS t="4.30">
+<SCRIPT><SESS t="4.30" done="n">
 This lesson is not about any more measures of central
 tendency. However, the idea is somewhat related, so I am
 discussing it this week. This topic will prove essential in the
@@ -5162,23 +5327,23 @@ But for now let's see how quartiles are  computed using LibreOffice.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 4,  Video 2: Quantiles and p-values</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 4,  Video 2: Quantiles and p-values</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2">
+<SESS t="2" done="n">
 [Screencast: Computation of quartiles.]
 toy.csv
 </SESS>
 <JINGLE t="0.1">Visualisation</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Visualize quartiles using histogram.]
 toycomp.ods
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 4, Lesson 4,  Video 3: Quantiles and p-values</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 4,  Video 3: Quantiles and p-values</HEAD3></STKY>
 <SCRIPT>
-<SESS t="3.60">
+<SESS t="3.60" done="n">
 We have already mentioned p-values as a soft boundary for a
 data. In this video we shall learn the details. If I ask you "Is
 2 greater than 5?" then answer is "No". If I ask you "Is 100 more
@@ -5229,16 +5394,16 @@ centre, this fraction is called the two-tailed p-value.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 4, Lesson 4,  Video 4: Lab</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 4,  Video 4: Lab</HEAD3></STKY>
 <SCRIPT>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Compute p-value from data]
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 4, Lesson 4,  Video 5: Lab</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 4,  Video 5: Lab</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: Visualise p-value from histogram and distribution]
 </SESS>
 </SCRIPT>
@@ -5250,20 +5415,23 @@ centre, this fraction is called the two-tailed p-value.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 4, Lesson 5</HEAD2>
+
 <STKY>
-<HEAD2>Module 4, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
+<HEAD3>Module 4, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
 <TODO>Longitude</TODO>
-<STKY><HEAD2>Module 4, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
+<STKY><HEAD3>Module 4, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
 
 
-<STKY><HEAD1>Module 5: Dispersion</HEAD1></STKY>
+<HEAD1>Module 5: Dispersion</HEAD1>
+<HEAD2>Module 5, Lesson 1</HEAD2>
 
 <STKY>
-<HEAD2>Module 5, Lesson 1,  Video 1: The concept</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 1,  Video 1: The concept</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.60">
+<SESS t="1.60" done="n">
 In the last lesson we talked about central tendency, representing
 a bunch of numbers by a single typical numbers. In this video we
 shall go a bit deeper and talk about dispersion. 
@@ -5288,7 +5456,7 @@ dispersion. Dispersion measures the amount of scatter, or how
 loosely the points are together. That's our topic today.
 </SESS>
 <JINGLE t="0.1">Dispersion</JINGLE>
-<SESS t="2.50">
+<SESS t="2.50" done="n">
 Central tendency gives  a typical representative
 value for a bunch of values. But none of the values may be
 exactly equal to that representative value. There is bound to be
@@ -5363,10 +5531,10 @@ We shall start with range in the next video.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 5, Lesson 1,  Video 2: Range</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 1,  Video 2: Range</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="0.90">
+<SESS t="0.90" done="n">
 Range is the simplest measure of dispersion, simplest to
 understand and simplest to compute. Here suppose are the values
 of a variable along a number line. To compute the range, you look
@@ -5391,23 +5559,25 @@ the range is <M>9.8-2.3 = 7.5.</M>
 Let's quickly learn to compute it using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Compute range. by formula. by descriptive
-statistics. Show that same formula is being used. Show dynamic update.]
+statistics. Show that same formula is being used. Show dynamic
+update. NA skipped]
+land.csv
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 1,  Video 3: Properties of range</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 1,  Video 3: Properties of range</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="0.30">
+<SESS t="0.30" done="n">
 In this video we shall explore the properties of the range. There
 are some good properties and one seriously bad property. Let's
 start with the good ones.
 </SESS>
 <JINGLE t="0.1">Good properties</JINGLE>
-<SESS t="3.00">
+<SESS t="3.00" done="n">
 Range is easy to compute, easy to understand. Good points. Now
 here are a couple of more good things about range that show that
 it captures the intuitive idea of dispersion. Suppose I take some
@@ -5464,7 +5634,7 @@ against outliers.
 
 </SESS>
 <JINGLE t="0.1">Bad property</JINGLE>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 Let's quickly understand what that means. Suppose we have many
 cases in a data set. So for each variable we have many values.
 When there are many values it is quite likely to some stray
@@ -5481,6 +5651,7 @@ dispersion that are more robust than range. They look at data
 more closely, not just at the two extreme points.
 </SESS>
 </SCRIPT>
+</LESSON>
 <EXRLIST id="M5L1V2.yml">
 - typeName: numeric
   prompt: >
@@ -5541,12 +5712,13 @@ more closely, not just at the two extreme points.
   
     
 </EXRLIST>
+<HEAD2>Module 5, Lesson 2</HEAD2>
 
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="0.80">
+<SESS t="0.80" done="n">
 We learned about the concept of dispersion in the last lesson,
 and also one measure of dispersion, namely range. Range was easy
 to compute, but suffered from lack of robustness. It uses the
@@ -5560,7 +5732,7 @@ deviation</B>. These are the most popular measures of
 dispersion. Let's learn about step by step.
 </SESS>
 <JINGLE t="0.1">Variance</JINGLE>
-<SESS t="2.20">
+<SESS t="2.20" done="n">
 Let's take a moment to remembr why we are caring about
 dispersion. We have a bunch of numbers with central tendency, and
 we want to represent the bunch with a single typical value. We
@@ -5570,6 +5742,14 @@ our motivation for considering dispersion. Let's
 turn this  motivation into a measure of dispersion.
 <P/>
 Here is our bunch of values. 
+<Q>
+3, 
+5, 
+4, 
+5, 
+1, 
+7.
+</Q>
 We start with a measure of central tendency, say mean. This
 number is going to represent each of these values. For the values
 close to the mean the representation is highly acceptable. For
@@ -5596,7 +5776,7 @@ square root is called the standard deviation. Let's quickly digest
 the definition with a small numerical example.
 </SESS>
 <JINGLE t="0.1">Numerical example by hand</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Boardcast: Show a computation.]
 </SESS>
 </SCRIPT>
@@ -5681,9 +5861,9 @@ the definition with a small numerical example.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 2: Other ways to compute it</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 2,  Video 2: Other ways to compute it</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.00">
+<SESS t="1.00" done="n">
 The formula that we used to define variance is not that easy to
 use by hand. It requires a sort of two-stage computation, first
 you compute mean <M>\bar x</M>, then you find the mean of
@@ -5702,10 +5882,10 @@ of their squares, and then plug them into the formula. Let's see
 if we get the same answer.
 </SESS>
 <JINGLE t="0.1">Alternative formula</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Boardcast: Show the same data and last answer. Use alternative formula.]
 </SESS>
-<SESS t="0.50">
+<SESS t="0.50" done="n">
 It is possible to prove that these two formulae will always
 produce the same answer. Let's not bother about the proof
 here. The reading material has the proof, anyway. And it is
@@ -5717,16 +5897,18 @@ In the next vieo we shall  learn what is important: computing using LibreOffice.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 3: Other ways to compute it</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 2,  Video 3: Other ways to compute it</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
-[Screencast: Compute for the same data. Var. Then explicit. Find n-1 problem.]
+<SESS t="6" done="n">
+[Screencast: Compute for the same data. Var. Then explicit. Find
+n-1 problem.]
+var.csv
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 4: Other ways to compute it</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 2,  Video 4: Other ways to compute it</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 Actually LibreOffice, like most other softwares use a slightly
 different formula which is different:
 <D>
@@ -5772,9 +5954,9 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 2,  Video 5: Properties</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 2,  Video 5: Properties</HEAD3></STKY>
 <SCRIPT>
-<SESS t="3.30">
+<SESS t="3.30" done="n">
 While discussing range, we had listed some desirable properties
 that a measure of dispersion should have. 
 <P/>
@@ -5844,11 +6026,12 @@ in many ways.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 5, Lesson 3</HEAD2>
 <STKY>
-<HEAD2>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 We here acronyms everywhere. Each field has its own world of
 acronyms. But in how many fields use MAD as an acronym. Well,
 statisticians do. They are really mad guys! Of course, MAD does
@@ -5881,10 +6064,11 @@ the values. But just to remember the definition, let us toil
 through a numerical example by hand.
 </SESS>
 <JINGLE t="0.1">Hand computation</JINGLE>
-<SESS t="3">
+<SESS t="3" done="n">
 [Boardcast: compute MAD.]
+var.csv
 </SESS>
-<SESS t="0.40">
+<SESS t="0.40" done="n">
 Now let's see how to compute MAD using
 LibreOffice. Unfortunately, LibreOffice or its paid analog Excel
 does not have any readymade command for this. But they can
@@ -5892,15 +6076,16 @@ compute median and take absolute values. So it is not hard to
 compute MAD with them. Let's see how.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Same data. Compute MAD]
+var.csv
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 3,  Video 2: Properties of MAD</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 3,  Video 2: Properties of MAD</HEAD3></STKY>
 <SCRIPT>
-<SESS t="1.00">
+<SESS t="1.00" done="n">
 MAD has all the good properties of a dispersion measure that we
 have learned. If all the points are the same, then the median is
 that common value, so the deviations are all 0, and so is MAD.
@@ -5917,7 +6102,7 @@ constant. When you take absolute value, the effect of the sign
 goes away. And so the MAD is also scaled appropriately.
 </SESS>
 <JINGLE t="0.1">Bad properties</JINGLE>
-<SESS t="0.70">
+<SESS t="0.70" done="n">
 MAD cannot be computed easily by hand. That was the main reason
 why people did not use it much before the advent of computers. Of
 course, this is hardly a consideration in the modern age. So the
@@ -5928,7 +6113,7 @@ mathematical manipulations with the MAD formula. But we do not
 need to worry about that in this course.
 </SESS>
 <JINGLE t="0.1">Geometry</JINGLE>
-<SESS t="1.50">
+<SESS t="1.50" done="n">
 We had seen one geometric interpretation of standard
 deviation. We can give a geomtric interpretation of MAD as well
 along a similar vein. Again we consider just two
@@ -6002,11 +6187,13 @@ What signals outliers: MAD diffeernet from standard deviation.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 5, Lesson 4</HEAD2>
+
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="1.40">
+<SESS t="1.40" done="n">
 We have already learned about quite a few dispersion
 measures. These included the most popular variance and standard
 deviation, and the robust MAD. So it might seem unnecessary to
@@ -6062,25 +6249,35 @@ Let's look at an example.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 2: Boxplot</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 4,  Video 2: Boxplot</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0">
+<SESS t="0" done="n">
 Explain box plot.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 3: Lab 1</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 4,  Video 3: Lab 1</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: Use BoxplotR]
+[cons.csv]
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 5, Lesson 4,  Video 4: Lab 2</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 4,  Video 4: Lab 2</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
-[Screencast: Use LibreOffice]
+<SESS t="4" done="n">
+[Screencast: Use LibreOffice stock plot]
+cons.csv
+</SESS>
+</SCRIPT>
+<STKY>
+<HEAD3>Module 5, Lesson 4,  Video 5: Lab 3</HEAD3></STKY>
+<SCRIPT>
+<SESS t="6" done="n">
+[Screencast: Use LibreOffice barplot trick]
+cons.csv
 </SESS>
 </SCRIPT>
 
@@ -6096,18 +6293,19 @@ Explain box plot.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 5, Lesson 5</HEAD2>
+<LESSON>
+<STKY>
+<HEAD3>Module 5, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
 
 <STKY>
-<HEAD2>Module 5, Lesson 5 ,  Video 1: Review</HEAD2></STKY>
-
-<STKY>
-<HEAD2>Module 5, Lesson 5 ,  Video 2: Review</HEAD2></STKY>
+<HEAD3>Module 5, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
 </LESSON>
 
-<STKY><HEAD1>Module 6: Association etc</HEAD1></STKY>
+<HEAD1>Module 6: Association etc</HEAD1>
 <SCRIPT>
-<SESS t="1.10">
+<SESS t="1.10" done="n">
 We are nearing the end of our long journey. This is the last week
 of lecture in this course. Last, but not the least. Indeed the
 topic of this module will open up a whole new world, the world
@@ -6129,10 +6327,13 @@ problems in between, and a weekly test at the very end.
 So let's get started!
 </SESS>
 </SCRIPT>
-<STKY><HEAD2>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD2></STKY>
+
+<HEAD2>Module 6, Lesson 1</HEAD2>
+
+<STKY><HEAD3>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="2.40">
+<SESS t="2.40" done="n">
 Naure around us obeys various laws, and scientists have been trying to
 capture these laws in the language of mathematics and physics and
 chemistry and what not. All those laws are precise. But nature
@@ -6172,7 +6373,7 @@ course. In fact, we have learned some basic techniques to analyse
 them as well. Let's start with a quick review. 
 </SESS>
 <JINGLE t="0.1">Scatterplot</JINGLE>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 When it comes to explore the relation between two continuous
 variables, nothing beats a simple scatterplot. Here is an
 example. Later in this lesson we shall learn  about various mathematical
@@ -6202,7 +6403,7 @@ variables is categorical, however, it is less effective there. In
 this case a better alternative is to make two boxplots side by side.
 </SESS>
 <JINGLE t="0.1">Boxplot</JINGLE>
-<SESS t="2">
+<SESS t="2" done="n">
 [An example]
 
 <P/>
@@ -6292,9 +6493,9 @@ data. We shall learn to do things with them later this week.
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD3></STKY>
 <SCRIPT>
-<SESS t="3.40">
+<SESS t="3.40" done="n">
 Suppose we have a bivariate data set, heights and weights of some
 adult males from some country. Here both the variables
 are continuous. The scatterplot looks like this. You can see that there
@@ -6344,8 +6545,10 @@ covariance, some desirable, some not.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD3>Module 6, Lesson 1,  Video 3: (Rank) correlation</HEAD3></STKY>
 <SCRIPT>
-<SESS t="3.00">
+<SESS t="3.00" done="n">
 In this video we shall discuss some properties of 
 <D>
 \cov(x,y) = [[1n]]\sum (x_i-\bar x)(y_i-\bar y).
@@ -6404,9 +6607,11 @@ The hope: zero means no relation. But nonlinearlity ruins.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD3>Module 6, Lesson 1,  Video 4: (Rank) correlation</HEAD3></STKY>
 <SCRIPT>
-<SESS t="5">
-<TODO>Mention Anscombe data.</TODO>
+<SESS t="6" done="n">
+[Screencast: anscombe.csv]
 </SESS>
 </SCRIPT>
 
@@ -6507,11 +6712,14 @@ The hope: zero means no relation. But nonlinearlity ruins.
   
 </EXRLIST>
 </LESSON>
+
+<HEAD2>Module 6, Lesson 2</HEAD2>
+
 <STKY>
-<HEAD2>Module 6, Lesson 2,  Video 1: Rank correlation</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 2,  Video 1: Rank correlation</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="5.10">
+<SESS t="5.10" done="n">
 In the last lesson we saw that correlation coefficient or
 Prearson's correlation coefficient, to be precise, is meant to
 assess the direction and strength of linear relation only. It
@@ -6604,20 +6812,20 @@ data.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 6, Lesson 2,  Video 2: Rank correlation lab</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 2,  Video 2: Rank correlation lab</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast:Computation of rank correlation.]
-hw.dat: (with repetion) use =rank.avg(a1, a$1:a$100, 1) First
-find rank for variable without repetition. 
+hw2.dat: (with repetion) use =rank.avg(a1, a$1:a$100, 1) First
+find rank for variable without repetition (height).
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 6, Lesson 2,  Video 3: Phi coefficient for binary data</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 2,  Video 3: Phi coefficient for binary data</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="3.50">
+<SESS t="3.50" done="n">
 The idea of replacing the actual data by something conveient is
 appealing, as long as not valuable information is lost. Here is
 another such example. Suppose that we have a bivariate data set
@@ -6629,7 +6837,7 @@ Pearson's correlation formula we first encode the two values as 0
 and 1. Of course, the sign depends on which value we call 0 and
 which value 1. Since we have assigned that arbitrarily, the sign
 of the computed correlation coefficient has no importance. So we
-take only the absolute value, and call it the <M>\phi</M>
+interpret only its absolute value. Call it the <M>\phi</M>
 coefficient. Let's look at an example.
 <P/>
 Here is a small toy data set. We first encode Male as 0 and
@@ -6674,17 +6882,19 @@ OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coeffic
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 6, Lesson 2,  Video 2: Phi lab</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 2,  Video 4: Phi lab</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: LibreOffice phi computation.]
+lr.csv:
+Save whorl.csv for exercises.
 </SESS>
 </SCRIPT>
 
 
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 1: Contingency table measures</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 1: Contingency table measures</HEAD3></STKY>
 <LESSON>
 <COMMENT>https://en.wikipedia.org/wiki/Contingency_table</COMMENT>
  Odds ratio
@@ -6692,7 +6902,7 @@ OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coeffic
  Cramer's V and the contingency coefficient C
 
 <SCRIPT>
-<SESS t="1.90">
+<SESS t="1.90" done="n">
 In the last lesson we were discussing how Pearson's correlation
 formula may be adapted to situations where the variables are not
 continuous, say ordinal or even nominal. We talked
@@ -6724,10 +6934,10 @@ possible ways to go about it, as we shall now see.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 2: Odds ratio</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 2: Odds ratio</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="1.30">
+<SESS t="1.30" done="n">
 The first approach will be like this. Again consider the gender
 vs handedness data. What do I mean when I say that there is no
 association between gender and handedness. I mean a male person
@@ -6747,16 +6957,17 @@ while high values indicate high association.
 It's pretty easy to compute this using LibreOffice. Let's see how.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4">
+<SESS t="4" done="n">
 [Screencast: Compute odds ratio.]
+lr.csv:
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 3: Chisquare</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 3: Chisquare</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="3.50">
+<SESS t="3.50" done="n">
 Our next approach will be based on a more subtle notion of "no
 association". It wil hae the advantage of being applicable to
 even larger contingency tables. Consider this table for
@@ -6810,19 +7021,20 @@ to go over this computation using LibreOffice before discussing them.
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 4: Chisquare lab</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 4: Chisquare lab</HEAD3></STKY>
 
 <SCRIPT>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Computation of <M>\chi^2.</M>]
+eduinc.csv
 </SESS>
 
 </SCRIPT>
 
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.90">
+<SESS t="0.90" done="n">
 The first <M>\chi^2</M>-based measure of association is called
 the contingency coefficient. It is defined as
 <D>
@@ -6841,10 +7053,11 @@ where <M>k</M> is the minimum of the numbers of rows and columns.
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 6: Lab</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 6: Lab</HEAD3></STKY>
 <SCRIPT>
-<SESS t="5">
+<SESS t="5" done="n">
 [Screencast: Compute starting from chisquared.]
+eduinc.csv:
 </SESS>
 </SCRIPT>
 
@@ -6949,8 +7162,10 @@ where <M>k</M> is the minimum of the numbers of rows and columns.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 6, Lesson 3</HEAD2>
+
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 1: Contingency table measures (part 2)</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 7: Contingency table measures (part 2)</HEAD3></STKY>
 
 Tetrachoric correlation coefficient
  Lambda coefficient
@@ -6976,7 +7191,7 @@ gamma test
 </EXRLIST>
 
 <STKY>
-<HEAD2>Module 6, Lesson 3,  Video 2: Lab</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 3,  Video 8: Lab</HEAD3></STKY>
 
 <EXRLIST id="M6L3V2.yml">
 
@@ -6987,12 +7202,13 @@ gamma test
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 6, Lesson 4</HEAD2>
 
 <STKY>
-<HEAD2>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD2></STKY>
+<HEAD3>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <LESSON>
 <SCRIPT>
-<SESS t="3.70">
+<SESS t="3.70" done="n">
 Now we are about to embark upon the very last topic, a topic that
 traditionally is introduced much earlier. But this course is
 geared more towards practical applications and less towards
@@ -7057,8 +7273,10 @@ The next video will discuss them.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD3>Module 6, Lesson 4,  Video 2: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT>
-<SESS t="0.60">
+<SESS t="0.60" done="n">
 We have already seen some uses of moments. The first raw moment
 is the mean, which is the most commonly used moment. Next comes
 the second central moment, the variance. The second raw moment
@@ -7077,7 +7295,7 @@ used:
 Let's start with skewness.
 </SESS>
 <JINGLE t="0.1">Skewness</JINGLE>
-<SESS t="2.80">
+<SESS t="2.80" done="n">
 Skewness is a form of assymmetry in the values of a
 continuous variable. Consider these three histograms. This one is
 symmetric, while these two are asymmetric. Anything that is not
@@ -7125,14 +7343,19 @@ mean median mode relation for skewness.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD3>Module 6, Lesson 4,  Video 3: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: 3 variables for skewness. Start with  histograms.]
+skew.csv
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD3>Module 6, Lesson 4,  Video 4: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT>
-<SESS t="2.00">
+<SESS t="2.00" done="n">
 The 4th central moment is used to measure what is called
 the <B>kurtosis</B> of a variable. Just as central tendency,
 dispersion and skewness it is also a characteristic of the
@@ -7161,7 +7384,7 @@ the peak is more steep, then the fourth central moment drops
 below 3, and we called it <B>leptokurtic</B>. If the peak is
 flatter, then the tails dominate, and we get <M>>3,</M> called <B>platykurtic</B>.
 </SESS>
-<SESS t="0.60">
+<SESS t="0.60" done="n">
 As I have already mentioned skewness and kurtosis do not play a
 major role in practical data analsys. There are three main
 reasons:
@@ -7176,14 +7399,15 @@ Let's see all these in action using LibreOffice.
 </SESS>
 </SCRIPT>
 
+<STKY>
+<HEAD3>Module 6, Lesson 4,  Video 5: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT>
-<SESS t="6">
+<SESS t="6" done="n">
 [Screencast: 3 variables for kurtosis. Start with  histograms.]
+kurt.csv
 </SESS>
 </SCRIPT>
 
-<SCRIPT>
-</SCRIPT>
 <EXRLIST id="M6L4V1.yml">
 
 - typeName: multipleChoiceVisually from histogram (clear)
@@ -7193,9 +7417,6 @@ Let's see all these in action using LibreOffice.
 - typeName: multipleChoiceIncome distribution in captalist countries.
 </EXRLIST>
 
-<STKY>
-<HEAD2>Module 6, Lesson 4,  Video 2: Lab</HEAD2></STKY>
-
 <EXRLIST id="M6L4V2.yml">
 
 - typeName: multipleChoiceCompute.
@@ -7204,13 +7425,16 @@ Let's see all these in action using LibreOffice.
 
 </EXRLIST>
 </LESSON>
+<HEAD2>Module 6, Lesson 5</HEAD2>
+
 <STKY>
-<HEAD2>Module 6,  Lesson 5 ,  Video 1: Review</HEAD2></STKY>
-<STKY><HEAD2>Module 6,  Lesson 5 ,  Video 2: Review</HEAD2></STKY>
+<HEAD3>Module 6,  Lesson 5 ,  Video 1: Review</HEAD3></STKY>
+<STKY><HEAD3>Module 6,  Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
 <COMMENT>
 Local Variables:
- two-part1: ((format "%cSESS t=\"0\">\n" 60) (format "\n%c/SESS>" 60))
+ dummy: ((format "%cSESS t=\"0\">\n" 60) (format "\n%c/SESS>" 60))
+ two-part1: ("<V>" "</V>")
  two-part2: ("<B>" "</B>")
 End:
 </COMMENT>

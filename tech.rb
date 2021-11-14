@@ -260,6 +260,7 @@ sequence) building up some diagram. It consists of
 the <CODE>process</CODE> function, and some supporting routines.
 
 <PRE>
+
 md = function(x) if(!dir.exists(x)) dir.create(x)
 
 scrn = function(xlo, xhi, ylo, yhi,...) {
@@ -267,19 +268,24 @@ scrn = function(xlo, xhi, ylo, yhi,...) {
 }
 
 spStart = function(fname) {
-    png(fname,width=640,bg='transparent')
+    png(fname,width=640)#,bg='transparent')
 }
 
 spEnd = function() dev.off()
 
 
-process = function(xs,xe,ys,ye,rt,ps,pe,fun, nf,...) {
+process = function(xs,xe,ys,ye,rt,fun, nf, dur=1, ps=0, pe=0, ...) {
     md(rt)
     spStart(paste(rt,'/pic%04d.png',sep=''))
+    filename = sprintf('%s.lst',rt)
+    cat("FPS",nf,"\n",file=filename)
     for(i in 1:nf) {
       scrn(xs,xe,ys,ye,...) 
       pnow = ps + (i-1)/(nf-1)*(pe-ps)
-      fun(pnow)
+      fun(i,pnow) # i is the frame number (int, so exact), 
+                  # pnow is param value (may be approx)
+
+      cat(sprintf('%s/pic%04d.png\n',rt,i),file=filename,append=TRUE)
     }
     spEnd()
 }
@@ -288,20 +294,22 @@ process = function(xs,xe,ys,ye,rt,ps,pe,fun, nf,...) {
 <LI>The first four parameters set up the stage
 area: <M>[xs,xe]\times[ys,ye].</M></LI>
 <LI> The next
-parameter, <CODE>rt</CODE>, is file root. If it is <B>"abc"</B>,
-then the generated image files are named
-like <B>abc0001.png</B>, <B>abc0002.png</B>, etc.</LI>
+parameter, <CODE>rt</CODE>, is folder root. If it is <B>"abc"</B>,
+then a folder with that name is created (if it is not already
+existing), and the generated image files are named
+like <B>abc/pic0001.png</B>, <B>abc/pic0002.png</B>, etc. Also 
+a list file <CODE>abc.lst</CODE> is created for loading into
+SynfigStudio. The FPS is computed to make the durarion <CODE>dur</CODE> sec.</LI>
 <LI> The next two
 parameters, <CODE>ps</CODE> and <CODE>pe</CODE>, denote the start
 and end values of the parameter. Here <CODE>ps</CODE> may be
 greater than <CODE>pe</CODE>.</LI>
 <LI> The <CODE>fun</CODE> parameter is a
 function with a single argument, the current parameter value. It
-is responsible for all the drawing. It need not start a new
-plot (e.g., need not invoke <CODE>plot</CODE>), but use functions
+is responsible for all the drawing. It must not start a new
+plot (e.g., must not invoke <CODE>plot</CODE>), but use functions
 like <CODE>lines</CODE> and <CODE>points</CODE> to add to an
-existing plot. However, if zooming is involved, then
-the <CODE>scrn</CODE> function should be called.</LI>
+existing plot.</LI>
 <LI> Next comes the <CODE>nf</CODE> parameter, which
 denotes the number of frames (i.e., the number of images in the
 generated sequence). All additional parameters are sent to 
@@ -328,11 +336,11 @@ plot(c(x1,x2,x3),c(y1,y2,y3))
 zr = rep(0,30)
 clr = c(rep('red',10),rep('blue',10),rep('green',10))
 
-f = function(t) {
+f = function(i,t) {
     abline(h=0,lwd=3)
     points((1-t)*xall+t*yall,zr,col=clr,pch=20,cex=3)
 }
 
-process(min(yall),max(yall), -0.2, 0.2, 'test', 0,1,f,30 )
+process(min(yall),max(yall), 'test', 0,1,f,30,-0.2, 0.2 )
 </PRE>
 </NOTE>@}
