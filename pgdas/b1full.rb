@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>THU NOV 18 IST 2021</UPDT>
+<UPDT>SAT NOV 20 IST 2021</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -3396,18 +3396,20 @@ all bars more or less of the same height is relevant.
 
 <HEAD1>Module 3: Presentation of data (part 2)</HEAD1>
 <SCRIPT id="m3/intro">
-<SESS t="0.70" done="n">
+<SESS t="0.70" done="r" id="s1">
 Here we are at the start of week 3 of our course. We have already
-mae quite a bit of progress. We have learned about data and
+made quite a bit of progress. We have learned about data and
 related concepts. We have learned about some basic graphical
-representation of data. This week we shall learn about tabular
+representation of data. 
+---
+This week we shall learn about tabular
 representation of data and a very important graphical device
 called the histogram. 
-<P/>
-The structure will remain as the last week. Four topics, along
+---
+The structure will remain as in the last week. Four topics, along
 with practice problems, followed by a review session and the
 week's test. And as before we have some peer review problems. 
-<P/>
+
 OK, enough introduction. Let's get started!
 </SESS>
 </SCRIPT>
@@ -3417,136 +3419,160 @@ OK, enough introduction. Let's get started!
 </STKY>
 <LESSON>
 <SCRIPT id="m3/l1/v1">
-<SESS t="2.60" done="n">
+<SESS t="2.70" done="r" kf="10,20,30,40,50,60,70" id="s1">
 In this video we shall talk about a representation of data that
-is definitely the one most commonly used: <V>tabular
-format</V>. Be it a telephone directory or a dictionary or a
+is definitely the one most commonly used: <B>tabular
+format</B>.
+---
+ Be it a telephone directory or a dictionary or a
 railway timetable,  tables are everywhere around us. Even when we
 use a computer to look up information,  the underlying data base
 is basically a collection of tables. 
-<P/>
+---
 A table,  as we all know,  presents data in a rectangular
 format. Well,  we have already used them earlier in this
-course. When we first learned
+course<V>[rawtab.png]</V> like this. When we first learned
 about data in week 1, we talked about a data matrix, which is an
 example of a table. 
+---
 There columns represented variables and rows represented cases. Those
 tables were meant primarily to be fed into a computer
-program. Such a table did not allow information to be attached to
-row headings. But human-readbale tables can be (and should be) more
-varied. They allow for various embellishments, like 
-<B>row headings</B>,   <B>nested rows</B>, 
-<B>nested columns</B>,  <B>marginal summaries</B> <B>etc</B>.
+program. 
+But human-readbale tables can be (and should be) more
+varied. 
+---
+They allow for various embellishments,<V>[ptab, point]</V> like 
+row headings,   nested rows, 
+nested columns,  marginal summaries etc.
 Such fancy tables are often called <B>pivot tables</B>.
-<P/>
+Now here is a little question for you: [ivq] <V>[clear]</V>
+---
 When we learned about bar chart and pie chart, we often needed a
 summary table to start with. Those were also examples of pivot
-tables. Let's understand how to arrive at these starting the data
+tables. Let's understand how to get these from the data
 matrix. 
-<P/>
-Let's start with an example. Suppose that there are a 1000
-students who have been given letter grades A, B, C, D, and F. We
-want to represent the data as a bar chart like this. As you may
-guess we need a summary table like this to produce the
-chart. However, most likely the original data was laid out like a
-data matrix where each row corresponded to a single student, and
-there was a column with the grades. Thus, if there are 1000
-students we have as many rows. To arrive at the summary table we
+---
+Let's start with an example. Suppose that there are 1000
+students who have been given letter grades A, B, C, D, and F<V>[letgrad]</V>. We
+want to represent the data as a bar chart like
+this<V>[gradbar]</V>.
+---
+ As you may
+guess we need a summary table <V>[gradtab]</V>like this to produce the
+chart. 
+To arrive at the summary table we
 basically have to count the numbers of A's and B's etc. Of
-course, it is tedious to do by hand. We shall learn how to make
+course, it is tedious to do by hand. 
+---
+We shall learn how to make
 Libreoffice do this for us. In the process we shall also learn
 how the same technique may be modified to produce more varied
 pivot tables. 
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4" done="n">
+<SC t="4" done="n" id="s1">
 [Screencast: Create a letter grade frequency distribution.]
 letgrad.csv:
-</SESS>
+</SC>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 3, Lesson 1,  Video 2: Tabular: Pivot table and pivot chart</HEAD3>
 </STKY>
 <SCRIPT id="m3/l1/v2">
-<SESS t="1.90" done="n">
+<SESS t="1.90" done="r" kf="10,20,50" id="s1">
 The example that we saw in the last video was possibly the
 simplest type of pivot table. More generally a pivot table (also
-called a cross-tabulation) takes a raw data
+called a <B>cross-tabulation</B>) takes a raw data
 matrix, <V>[dat.png]</V> like this one, with at least
-one categorical variable. To make a pivot table you need to
+one categorical variable.
+---
+ To make a pivot table you need to
 select one or more of these categorical variables. Based on 
 the combinations of values of these variables the cases get
-grouped into subsets. For instance, here we have a column called
-gender (taking values Male and Female) and another column called
+grouped into subsets.
+---
+ For instance, here we have a variable called
+gender (taking values Male and Female) and another variable called
 handedness (taking values Left and Right). So there are
 four subsets (Male, Left), (Male, Right), (Female, Left) and
 (Female, Right). We group all the cases into 4 groups
-accordingly. <V>[shown one by one]</V> Of course, one or more of these subsets may
+accordingly. <V>[shown one by one]</V>
+---
+ Of course, one or more of these subsets may
 actually be empty, i.e. ,there may not be any row corresponding
 to that particular combination. In our case, the (Male, Left)
 group is empty. 
-<P/>
+---
 The next thing you need to 
 specify is some variable that you want to study over the
 groups. It could be the categorical variables themselves, or
 something else, like IQ in our example.
+
 The last thing to specify is some kind of summary value to be
 applied to the selected variable over each
-subset. The summary value could just be the size of the
+subset.
+---
+ The summary value could just be the size of the
 subset. This is what we did in the letter grade example. Or it
-could be average or sum or something else. Thus, we may like to
+could be average or sum or something else. For example, we may like to
 find out average IQ level for each of the four groups.
-<P/>
+
 Let's see a detailed example to understand this.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5" done="n">
+<SC t="5" done="r" id="s1">
 [Screencast: Make a pivot table, and play with settings]
 lr.csv,  avg iq, decimal places.
-</SESS>
+</SC>
 </SCRIPT>
 <STKY>
 <HEAD3>Module 3, Lesson 1,  Video 3: Tabular: Pivot table and pivot chart</HEAD3>
 </STKY>
 
 <SCRIPT id="m3/l1/v3">
-<SESS t="0.40" done="n">
+<SESS t="0.40" done="r" id="s1">
 Pivot tables allow some additional embellishments to be added to
 the basic summary table. In fact, the marginal totals that we
-were seeing all along, are examples of this. We can remove them,
+were seeing all along, were examples of this. We can remove them,
 if we please.
-<P/>
+---
 Let's see how we can do this using Libreoffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5" done="n">
+<SC t="5" done="r" id="s1">
 [Screencast: Marginals off from last example.]
-</SESS>
+</SC>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 3, Lesson 1,  Video 4: Tabular: Pivot chart</HEAD3>
 </STKY>
 <SCRIPT id="m3/l1/v4">
-<SESS t="0.80" done="n">
+<SESS t="0.80" done="r" kf="10,30,50,60" id="s1">
 Pivot tables have two major uses in a report. One is as
 themselves, just to summarise data.  Most tables that we see in a report are actually
 pivot tables generated from the original data matrix which is
-typically very huge. The second use of pivot tables is as an
+typically very huge.
+---
+ The second use of pivot tables is as an
 intermediate step towards producing grphical representations
-like bar charts or pie charts. So the entire route from the raw
+like bar charts or pie charts.
+---
+ So the entire route from the raw
 data matrix to such a chart basically consists of two steps: raw
-data to pivot table,<V>[shown]</V> and then pivot table to the chart<V>[shown]</V>. Both
+data to pivot table,<V>[shown]</V>
+--- 
+Then pivot table to the chart<V>[shown]</V>. Both
 these steps may be conveniently packed into a single thing in
 LibreOffice. This combined thing is called a <B>pivot chart</B>. 
 Let's see an example.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5" done="n">
+<SC t="5" done="r" id="s1">
 [Screencast: Pivot chart]
 letgrad.csv: pie chart
-</SESS>
+</SC>
 </SCRIPT>
 <EXRLIST id="M3L3V1.yml">
 
@@ -3621,160 +3647,191 @@ pivot table.
 <HEAD3>Module 3, Lesson 2,  Video 1: Contingency table</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m3/l2/v1">
-<SESS t="1.10" done="n">
+<SESS t="1.30" done="r" kf="10,20,30,40,50" id="s1">
 In the last video we talked about pivot tables, and mentioned how
 they may be used in a report. There is one type of pivot table
 which has a much more important use, and goes deeper in terms of
-theory. 
-<P/>
+theory. I am talking about a <B>contingency table</B>.
+---
 A pivot table requires specification of two things:
- * One or more categorical variables.
- * Some summary measure.
+ * One or more <B>categorical</B> variables.
+ * Some <B>summary</B> measure.
 
-<P/>
-To get a contingency table, we need to choose exactly two
+---
+To get a contingency table, we need to choose  two
 categorical variables, and count as the summary measure. Let's
 take an example.
-<P/>
-Here is a table with two categorical variables gender
+---
+Here is a table<V>[shown]</V> with two categorical variables gender
 (Male/Female) and Handedness (Left/Right). The corresponding
-contingency table is 2 by 2, where each cell has the
+contingency table is 2 by 2<V>[shown]</V>, where each cell has the
 corresponding count. [Explain by pointing].
-<P/>
-It should be quite easy to create a contingency table in
+---
+It should be quite easy to create such a contingency table in
 LibreOffice, as we have already learned how to create a general
 pivot table. Anyway, here is a little lab session, in case you
 need one.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="4" done="n">
+<SC t="4" done="r" id="s1">
 [Screencast: Make contingency table.]
 lr.csv: Don't use iq
-</SESS>
+</SC>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 2: Contingency table</HEAD3></STKY>
 <SCRIPT id="m3/l2/v2">
-<SESS t="1.70" done="n">
+<SESS t="1.10" done="r" kf="10,20,30" id="s1">
 We mentioned just now that contingency tables are very
 important in statistics. Why is that? The most important reason
 is that they help us to explore relation between two categorical
 variables. Let's take an example.
-<P/>
-We often want to answer questions like is smoking related to
-cancer? Or what is the relation between education level and
-income level? Does the chance admission to an edicational
-institute depend on one's gender? All these questions are trying
+---
+We often want to answer questions like <B>"Is smoking related to
+cancer?"</B>. Or what is the relation between <B>education level and
+income group</B>? Does the chance of <B>admission to an educational
+institute depend on one's gender</B>? 
+---
+All these questions are trying
 to connect two categorical variables. In the first case smoking
 habit (Y/N) with cancer (Y/N). In the second case, educational
-level (preschool, primary school, high school, college and above)
+level (preschool, school,  college and above)
 and income level (low, middle, high). In the third case admission
 status (admitted / rejected) and gender (male /
-female). Interesting heredity questions may also be couched in
-the form of contingency tables. Fingerprints may be roughly
-classified into two patterns whorl and no whorl. We may ask the
-question: Is there any relation between mother having whorl and
-her baby having whorl? Here the two categorical variables are:
-Mother's whorl (Y/N) and baby's whorl (Y/N). 
-<P/>
-Contingency tables have been known to  play important role in
-legal suits as well. 
+female). 
+---
+Contingency tables help us to understand such relations.
 </SESS>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 3: Contingency table</HEAD3></STKY>
 <SCRIPT id="m3/l2/v3">
-<SESS t="2.30" done="n">
+<SESS t="2.90" done="r" kf="10,20,30,40,50,60" id="s1">
 
 We shall return to contingency tables near the end of this
 course, and later in other courses as well. There we shall see
 how we exactly process a contingency table numerically to derive
-answers to important questions. For now let have an intuitive
+answers to important questions. 
+---
+For now let's have an intuitive
 feel for how a contingency table may shed light on the relation
 between two categorical variables. 
-<P/>
+---
 Suppose that we are interested in knowing whether there is any
-relation  between income level and gender in a particular job sector. For this
-we draw a random sample of individuals from that sector and
-record their gender as well as their income group. For the sake
+relation  between <B>income level and gender</B> in a
+particular job sector. 
+---
+For this
+we draw a random sample of workers from that sector and
+record their genders as well as their income groups. For the sake
 of simplicity suppose that there are only three income groups:
-low, middle and high. The resulting raw data will look something
-like this. We convert this to a contingency table like this. Just
+low, middle and high. The resulting raw data will look<V>[geninc]</V> something
+like this.
+---
+ We convert this to a contingency table <V>[noasso1]</V>like this. Just
 by looking at it, do you think that there is any relation between
-gender and income group. Well, even a cursory glance will show
+gender and income group?
+---
+ Well, even a cursory glance will show
 that the row for Male is basically the same as the row for
 Females. So there is no reason to believe that gender matters in
-determining the income group. Now suppose the values in the
-Female row  are like this.  Here the Female row differs quite a
+determining the income group.
+---
+ Now suppose the values in the
+Female row  are like this<V>[noasso2]</V>.  Here the Female row differs quite a
 lot from the Male row. Does that mean that Gender influences
-Income group here? Well, no. Because the values are
-proportionally reduced. It is just that the the total number
-females are smaller in our sample. But among the females the
+Income group here?
+---
+ Well, no. Because the values are
+all proportionally reduced, basically halved. It is just that the total number
+of females is smaller in our sample. But among the females the
 proportions of the three income groups are the same as those for
-Males. So here also we conclude that gender is not associated
+the Males.
+---
+ So here also we conclude that gender is not associated
 with income group. 
-<P/>
-If however, the table were like this, then definitely. the
-proportions are widely different fro the two genders. Now there
+---
+If however, the table<V>[asso]</V> were like this, then definitely the
+proportions are widely different for the two genders. Now there
 is indeed reason to suspect a strong relation between gender and
 income group.
-<P/>
+---
 This is the basic idea behind using a contingency table for
 assessing relation. More details will come later.
-<TODO>Include an example of guessing expected frequency based on marginals.</TODO>
+---
+OK, here's little table for you.<V>[assoq]</V> Assume that there
+is no association between gender and income group. Can you tell
+me what should be here? 
+---
+10% males are in the Low income group. So 10% females must 
+be there
+too. 10% of 300, ie 30. So A should be 30. Work out the remaining
+two for yourself.
 </SESS>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 4: Contingency table</HEAD3></STKY>
 <SCRIPT id="m3/l2/v4">
-<SESS t="2.90" done="n">
-We have mentioned how we may construct  contingency table from
+<SESS t="3.00" done="r" kf="10,50,60,70,80" id="s1">
+We have mentioned how we may construct  a contingency table from
 raw data. When we collect raw data with the aim of creating a
-contingency table, there are two major ways to go about it. Let's
+contingency table, there are three major ways to go about it. Let's
 understand this with an example. 
-<P/>
+---
 Suppose that our population consists of employees from a
-particular job sector. We are interested in two variables gender
-and responsibility levels. Let's say there are four
-responsibility levels: Manager,
-Engineer, Clerk and  Support staff. Our final aim is to get a
-contingency table like this, that shows genders in the tows
-and the designations in the columns. 
-<P/>
-How should we go about collecting data for this. One method could
-be to select 100 employees randomly from the entire populartion,
-and collect observe the gender and responsibility levels for
-each. In this scheme we have no control on how many men and how
+particular job sector. We are interested in two variables <B>gender
+and responsibility</B> levels. Let's say there are four
+responsibility levels: <B>Manager,
+Engineer, Clerk and  Support staff</B>.
+---
+ Our final aim is to get a
+contingency table<V>[emptytab]</V> like this, that shows genders in the rows
+and the responsibilities in the columns. 
+---
+How should we go about collecting data for this? One method could
+be to select 100 employees randomly from the entire population,
+and observe the gender and responsibility levels for
+each.
+---
+ In this scheme we have no control on how many men and how
 many women will be in our sample. Neither do we have any control
 on the counts for the responsibility levels. So both the row
 marginals and the column marginals are random.
-<P/>
-An alternative approach is to draw a random sample of 50 men and
+---
+An alternative approach<V>[gentab]</V> is to draw a random sample of 50 men and
 50 women, and then observe the responsibility levels for each of
 them. Here there are 50 men and 50 women by design. So the row
 marginals are fixed, not random. However,  the row marginals
-continue to the random as before.
-<P/>
+continue to be random as before.
+---
 Of course, we could have done it the other way around, fixing the
-column marginals first. Then we should have chosen in advance the number of
+column marginals first<V>[restab]</V>. Then we should have chosen in advance the number of
 persons in each responsibility level, say 25 each, and randomly
-chosen that many employees from each level. Finally, we observe
+chosen that many employees from each level.
+---
+ Finally, we observe
 the genders of these selected employees. 
-<P/>
-Why are we bothering about these different forms? Because the
-different sampling schemes will let us make different types of
-inferences. Take a very simple example. Suppose that we want to
+
+Why are we bothering about these different sampling schemes? Because the
+different  schemes will let us make different types of
+inferences. 
+---
+Suppose that we want to
 know the proportion of male employees versus female
 employees. Then the second scheme is not suitable, because there
-we deliberately chose an equal number of men and women. However,
+we deliberately chose an equal number of men and women.
+---
+Similarly,
 if we are interested in comparing the responsibility levels for
 the two genders, i.e., trying to check if the responsibility
 level distribution for men differ significantly from that for
-women. Then the third scheme is not suitable, as there we are
-starting by fixing the responsibility level counts.  The first
+women, then the third scheme is not suitable, as there we are
+starting by fixing the responsibility level counts.
+---
+  The first
 scheme may also not be suitable if there happen to be too few men (or two
 few women) in the sample. Here the second scheme is the best
 suited for the purpose.
@@ -3784,47 +3841,59 @@ suited for the purpose.
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 5: Contingency table</HEAD3></STKY>
 <SCRIPT id="m3/l2/v5">
-<SESS t="1.60" done="n">
+<SESS t="1.60" done="r" kf="10,20,30,50,90,120,130,140,150,160" id="s1">
 All the contingency tables discussed so far were 2-way or
 2-dimensional. It is quite possible to have higher dimensional
-contingency tables. For example if we want to study relation
-between 3 categorical variables, e.g., gender (M/F), educational
-level (Preschool, School, College, University)
-and income group (Low, Middle, High), then we shall have a 3-way
-contingency table,which <M>2\times4\times 4</M> in size. In such
-a case it ia customary to refer to the first variable as the
-layer, the second as the row, and last as the column. Here, for
-example, gender is the layer variable, educational level is the
-row variable, and income group is the column variable. When
-printing the table is printed layer by layer, where each layer is
-a 2-way table. 
+contingency tables. For example if we want to study the relation
+between 3 categorical variables, say, <B>gender</B>, <B>educational
+level</B>
+and <B>income group,</B>
+---
+ We consider  two levels
+under gender <V>[shown]</V>, 4 under educational
+level <V>[shown]</V>, and 3 under income group<V>[shown]</V>.
+---
+So we shall have a <B>3-way
+contingency table</B>,which is <B><M>2\times4\times 4</M></B> in
+size.
 
-<P/>
+Here  it ia customary to refer to the first variable as the
+<B>layer</B>, the second as the <B>row</B>, and last as
+ the <B>column</B>.
+---
+Thus, gender is the layer variable, educational level is the
+row variable, and income group is the column variable. Such
+ tables
+are printed  layer by layer, where each layer is
+a 2-way table. 
+---
 Most of the concepts that we have learned about 2-dimensional contingency
 tables readily generalise for higher dimensional contingency
 tables, as well. For example, we may talk about association
-between the variables. However, a higher dimensional contingency
+between the variables.
+---
+ However, a higher dimensional contingency
 table allows more variety. For instance, 
 income group and educational level may be associated in
-one way in the male layer, but they may be associated differently
+one way in the male layer, but  differently
  in the female layer. 
-<P/>
-Statisticians often build elaborate models called log-linear
-models to capture such complex relations. But we shall not go
+---
+Statisticians often build elaborate models called <B>log-linear
+models</B> to capture such complex relations. But we shall not go
 into this any further in this course.
-<P/>
+---
 In the nexr video we shall see how we may construct a 3-way contingency
-table from raw data in LibreOffice.
+table from raw data using LibreOffice.
 </SESS>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 6: Contingency table</HEAD3></STKY>
 <SCRIPT id="m3/l2/v6">
-<SESS t="6" done="n">
+<SC t="6" done="r" id="s1">
 [Screencast: 3-way toy example as described.]
 gei.csv: gender, edu, income
-</SESS>
+</SC>
 </SCRIPT>
 
 
@@ -3857,143 +3926,163 @@ to be added manually).
 <HEAD2>Module 3, Lesson 3</HEAD2>
 <STKY><HEAD3>Module 3, Lesson 3,  Video 1: Frequency distribution</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m3/l/v">
-<SESS t="1.90" done="n">
-Out of all the topics we are  learning this week, frequency
-distribution is perhaps the most important. It is quite quite
+<SCRIPT id="m3/l3/v1">
+<SESS t="1.80" done="r" kf="10,20,30,40,50,60,70,80,90,100,110,120" id="s1">
+Out of all the topics we are  learning this week, <B>frequency
+distribution</B> is perhaps the most important. It is quite 
 humble to look at, and yet its roots go to the very core of
-statistical theory. We have already seen one example of frequncy
-distribution. We had counted the number of A's , B's etc in the
-letter grade example. Well, the resulting pivot table was an
-example of a frequency distribution. But not frequency
-distributions are just pivot tables like this. Pivot tables do
-the subsetting based categorical variables only. But a frequency
-distribution applies to all variables, categorical, counting or
-continuous. 
-<P/>
-Let's understand with an example. Suppose we have a variable. We
-consider the set of all possible values it can take, and split it
-into some mutually exclusive and exhaustive subsets. If the
-variable is a categorical one, then this is trivial, just use the
-values temselves. We have already seen this inthe letter grade
-example.
-<P/>
-Similalry, for a counting valriable the bins counld be 0, 1, 2,
- 3 or more.
+statistical theory. 
+---
+Let's understand with an example. Suppose we have a categorical
+variable, like the letter grades we saw in an earlier
+example <V>[data shown]</V>. 
+---
+When we counted the numbers of A's , B's etc there
+ <V>[shown]</V> we got this. These counts are
+called the <B>frequencies</B>. The entire table is called
+the frequency distribution table for this categorical
+variable. 
+---
+Unlike a categorical variable, a counting variable may take
+infinitely many values in principle 0, 1,2,3, etc. But to create
+a frequency distribution table, we make finitely many groups, something
+like <V>[countfrq]</V> 0, 1, 2, and 3 or more, and count from the data the frequency
+for each group to fill in these places.
+---
+ But if the variable is continuous, like a person's height<V>[man
+ shown]</V>, then we consider the set of
+ all its possible values along a line.<V>[scale shown]</V> 
+---
+We  choose some convenient points  along this line<V>[shown]</V> and consider the
+ resulting intervals. Each interval is a <B>class</B>. The chosen
+ points are the <B>class boundaries</B>.
+---
+ The lengths of the classes are
+ called the <B>class widths</B>. Sometimes we consider the midpoint
+ of a class as a representative value, called the <B>class mark</B>.
 
-<P/>
- But if the variable is continuous, then we have
-to introduce some binning. For example, if we are taking about
-areas of farmlands, then we may use the bins: below 1 hectare,
-between 1 and  hectares, etc. Now we just find the frequncies in
-the data set of those subsets, i.e., we count the number of cases
-landing in each subset. When you write down these frequncies
-against each subset, you get a frequency distribution table.
-<P/>
-<TODO>Introduce class, class width, class boundary</TODO>
-
-<P/>
-
-Nothing impressive so far. Before we start the impressive news,
-let's quickly see how frequency distributions may be created in LibreOffice.
+Now let's quickly see how frequency distributions may be created in LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SESS t="5" done="n">
+<SC t="5" done="r" id="s1">
 [Screencast: Create a frequency distribution table.]
 land.csv
-</SESS>
+</SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 3,  Video 2: Frequency distribution</HEAD3></STKY>
-<SCRIPT id="m3/l/v">
-<SESS t="2.90" done="n">
-Now that we have learned what is frequency distribution is, you
+<SCRIPT id="m3/l3/v2">
+<SESS t="2.90" done="r" kf="10,20,30" id="s1">
+Now that we have learned what a frequency distribution is, you
 might naturally wonder what is so special about them! Indeed,
 this humble thing is central to the very idea of statistics.  To
 appreciate this it will help if you carry out a simple (if a bit
-tedious) experiment. The experiment goes like this: take a coin,
+tedious) experiment.
+---
+ The experiment goes like this: take a coin,
 toss it 50 times, record the outcomes. So you get a list of 50
-heads and tails. You already know how to work out the frequency
-distribution from this raw data: just count the number of heads
-and number of tails. But for this experiment we need something a
-bit more complex. We need the relative frequencies, i.e.,  the
-frequencies divided by the total number tosses. We want to
-compute these after each toss. 
-<P/>
-Let me explain with a typical run. You take out the coin. Toss it
-for the first time, and you get a head. So 1 head out of 1
-toss. So relative frequency of head is 1/1 = 1. Relative
-frequency of tail is 0/1. Toss it again. SUppose that now you get
-a tail. So 1 head so far out of 2 tosees. Hence relative
-frequency of head slips down to 0.5, while the relative frequency
-of tails go up to 0.5. You g oon like this for 50 tosses. Yo can
-easily see that the relative frequencies of heads and tails must
-add up to 1. So keeping track of any one of them is enough. Just
-to fix ideas, let's keep track of the relative frequencies of heads.
-
-<P/>
+heads and tails.
+---
+From this we need to find the proportion of heads, i.e.,  the
+number of heads divided by the total number tosses. And we want to
+compute this after every toss. 
+---
+Let me explain with a typical run. Here is a coin. I toss it
+for the first time<V>[toss]</V>. Head!  1 head out of 1
+toss. So proportion of head is 1/1 = <B>1.</B>
+---
+Toss again. Tail! So still just 1 head out of the 2 tosses. Hence the
+proportion of head slips down to 1/2 i.e, <B>0.5</B>.
+You go on like this for 50 tosses. 
+---
 Now make a line chart of these. The horizontal axis should show
-the number of tosses, the vertical axis shows the relative
-frequencies of heads. Though the coin was an arbitrary one, each
+the number of tosses, 1,2,...up to 50. the vertical axis shows the running
+proportions of heads. I shall not show the plot here, because I
+want you to do this for yourself! But I shall give you a hint.
+---
+Though the coin is an arbitrary one, each
 toss was random and one toss had no effect on the other tosses,
-yet you'll be surprised to see that the resulting plot shows a
-very predictable pattern. It fluctuates for some time initially,
+yet  the resulting plot will show a
+very predictable pattern.
+---
+ It fluctuates for some time initially,
 and then mysteriously becomes rather steady and approaches a
-fixed number (in the vicinity of 0.5). Just try this at home with
-your own coin. You'll see that your coin behaves in the way I
-predicted. 
-<P/>
+fixed number (in the vicinity of 0.5).
+---
+ Just try this at home with
+your own coin. You'll see that your coin behaves just in the way I
+have predicted. 
+---
 While I strongly urge you to carry this experiment out with a
 real coin. In the next video  I shall provide a LibreOffice version of the
 experiment, which will show the same result, much more easily,
-albeit much less dramatically, because a computer can only
-<I>simulate</I> a coin toss. Here we shall see how LibreOffice
-can simuate data. 
+albeit much less dramatically,
+---
+ because a computer can only
+<B>simulate</B> a coin toss. There we shall also learn how LibreOffice
+can simulate data. 
 </SESS>
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD3></STKY>
-<SCRIPT id="m3/l/v">
-<SESS t="6" done="n">
+<SCRIPT id="m3/l3/v3">
+<SC t="6" done="r" id="s1">
 [Screencast: experiment]
 Show simul randomness. Split. Do cumsum.
-</SESS>
+</SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD3></STKY>
-<SCRIPT id="m3/l/v">
-<SESS t="1.80" done="n">
-What you experienced just now is the key idea behind the whole of
-statistics. It is called statistical regularity: lots of
-randomness accumulating in a way so that the randomness seems to
+<SCRIPT id="m3/l3/v4">
+<SESS t="0.70" done="r" kf="10,20" id="s1">
+What you experienced is the last video is the key idea behind the whole of
+statistics. It is called <B>statistical regularity</B>:
+---
+ lots of randomness accumulating in a way so that the randomness seems to
 cancel itself out, and a regular behavior emerges. This was first
-observed by gamblers in the middle ages. There have been
+observed by gamblers in the middle ages.
+---
+ There have been
 innumerably many mathematical results that try to capture its
-essence in various contexts. The first such theorem was proved by
-Bernoulli in .... It is said that it took 25 years from the first
-concept of the theorem to the finished proof. 
-<P/>
+essence in various contexts. The first such theorem
+ was proved by
+<B>Jacob Bernoulli in 1731</B>.
+---
+ It took him more than  20 years of research
+from the concept of the theorem to the finished proof!
+</SESS>
+<SESS t="0.70" done="r" id="s2">
 Why is statistical regularity important? Because it seems to
 offer a clue to the working of nature. There are many natural
 things around us that show surprising similariries and yet are
-completely distinct. One example is fingerprints. All finger
+completely distinct. 
+---
+One example is fingerprints. All finger
 prints look deceptively similar, and yet are distinct. All the
 leaves of the same tree are very much similar to each other, and
-yet no two leaves are exactly identical. It is undeniable that
+yet no two leaves are exactly identical.
+---
+ It is undeniable that
 the variation is random, but then what is the source of the
 similarity? Statistical regularity is one way to explain this. 
-<P/>
+</SESS>
+<SESS t="0.60" done="r" kf="10,20" id="s3">
 One way (if not the only way) to harness the idea of statistical
 regularity is via the frequency distribution, or to be precise
-relative frequency distribution. If you repeat the same random
+<B>relative frequency distribution</B>.
+---
+ Relative frequency is
+just a fancy term for proportions, frequency divided by the
+sample size. Like number of heads divided by number of tosses.
+---
+If you repeat the same random
 experiment again and again, the relative frequency distribution
 starts showing statistical regularity, i.e., starts approaching
-something fixed. This fixed limit is called the probability
-distribution for that random experiment. The entire theory of
-statistics hinges on that. 
-
-
-<P/>
+something fixed.
+---
+ This fixed limit is called the <B>probability
+distribution</B> for that random experiment. The entire theory of
+statistics hinges on this idea.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M3L1V1.yml">
@@ -4117,27 +4206,30 @@ statistics hinges on that.
 <STKY>
 <HEAD3>Module 3, Lesson 4,  Video 1: Histogram</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m3/l/v">
-<SESS t="0.90" done="n">
+<SCRIPT id="m3/l4/v1">
+<SESS t="0.90" done="a" kf="10,20" id="s1">
 We have already seen some ways to graphically represent
-data. Most of them were pretty self-evident. Indeed, that was one
+data. Most of them were pretty self-evident. Indeed, that is one
 of their main qualities, because they are meant to present data
-to laymen. In this course we shall also discuss two graphical
+to laymen.
+---
+ In this course we shall also discuss two graphical
 devices to represent data, that are more sophisticated, and
 primarily used by statisticians themselves for understanding
-data. These are 
-  * histogram
-  * box plot
-The first of this will be discussed here. The other will come
-later this week.
-<P/>
-Histograms are not frequently used in reports meant
-for laymen. However, they are extremely useful for understanding
+data. 
+---
+These are 
+  * <B>histogram</B>
+  * <B>box plot</B>
+The first of these will be discussed here. The other will come
+in a couple of weeks.
+---
+Histograms are extremely useful for understanding
 the behaviour of data, and have a rich theory underlying
 them. But since they are not used much for report generation,
 neither LibreOffice nor MS Excel has full support for them.
 </SESS>
-<SESS t="0.60" done="n">
+<SESS t="0.60" done="a" id="s2">
 The histogram is extremely similar to bar charts. However, bar
 charts are for categorical variables, while histograms  may be
 used  for both discrete and
@@ -4148,97 +4240,95 @@ on whether the variable is discrete or continuous. The discrete
 case is the easier of the two, and we shall start with that.
 </SESS>
 <JINGLE t="0.1">Discrete histogram</JINGLE>
-<SESS t="2.80" done="n">
+<SESS t="2.90" done="n" id="s3">
 Consider a household level data set where household size is a
-variable. It is a counting variable, and hence discrete. We shall
-first obtain its frequency distribution, i.e., how many times
+variable. It is a counting variable. To make its histogram, we shall
+first obtain its frequency distribution, i.e., count how many times
 each possible value has occured in the data set. Then we compute
-the relative frequency for each value, i.e., the frequency
-divided by the total number of cases. If we now create
-a bar chart with bars showing these relative frequencies, we get the histogram
-for the variable. Since the bars depict relative frequencies, so
-the sum of the lengts of the all the bar <V>[animation]</V>  must
+the <B>relative frequency</B> for each value, i.e., the frequency
+divided by the total number of cases. Then we  create
+a bar chart<V>[shown]</V> with bars having <B>heights= relative
+frequencies</B>,
+That's our histogram!
+Since the bars depict relative frequencies, so
+the sum of the lengths of the all the bar <V>[animation]</V>  must
 be 1.
 <P/>
-While this is the precise definition of the histogram of a discrete
-variable, sometimes it is slightly simplified and uses the
-frequencies themselves rather than the relative frequencies. This
+Sometimes however, people draw bars with
+<B>heights=frequencies</B> rather than the relative frequencies. This
 does not change the overall shape of the histogram, only the
-labelling of the vertical axis.
+labelling and scale of the vertical axis.
 
 <P/>
-Let's look at various possible shapes of a discrete
+Let's look at some possible shapes of a discrete
 histogram. 
 
 <P/>
-* This histogram has a peak at the centre, tapering off
+* This<V>[shown]</V> histogram has a peak at the centre, tapering off
 towards the two ends. This peak gives the value that the variable
 is taking most frequently. These extreme values occur more
 rarely. The overall shape is symmetric around the centre.
 <P/>
-* This histogram, on the other hand, is quite skewed towards the
+* This <V>[shown]</V> histogram, on the other hand, is quite skewed towards the
 right. The most frequently occuring value is near the left
 extreme. 
 <P/>
-* This histogram is skewed towards the right. The most frequently
+* This<V>[shown]</V> histogram is skewed towards the right. The most frequently
 occuring value is near the right.
 <P/>
-* Here is yet another pattern with multiple peaks. 
+* Here<V>[shown]</V> is yet another pattern with multiple peaks. 
 <P/>
-* In this histogram all the values are more or less the same.
+* In this<V>[shown]</V> histogram all the values are more or less the same.
 <P/>
 
 Next let us look at histograms of continuous variables. 
-A discrete variable takes a some discrete values <V>[show]</V>. A
-continuous variable takes values continuously over a
-line. [*]. In order to create bars, we need to subdivide the line
+A continuous variable takes values continuously over a
+line. [*]. We subdivide the line
 into classes, and consider the corresponding frequency
 distribution. As before we compute the relative frequencies and
-erect rectangles over each class with area equal to the relative frequency.
+erect rectangles over each class with <B>area = relative frequency</B>.
 <P/>
 
 Note  two important
 differences of continuous histograms with discrete ones.
 <P/>
 
-* First. each bar sits on its own class. So if the
-classes have different widths, then the bars may have different
-widths. Also the bar are all adjacent to each other.
+* First. each bar sits on its own class. So the bars may have <B>different
+widths</B>. Also the bar are all adjacent to each other.
 <P/>
 * The second
-difference is more subtle. The height of a bar is not proortional
-to the relative frequency of its class, but the area is.
+difference is more subtle. It is the area, and not height, of a
+bar that is  proortional
+to the relative frequency.
 This makes the total area of the histogram equal to 1.
 </SESS>
 </SCRIPT>
 <STKY>
 <HEAD3>Module 3, Lesson 4,  Video 2: Shape of histogram</HEAD3></STKY>
 
-<SCRIPT id="m3/l/v">
-<SESS t="4.20" done="n">
+<SCRIPT id="m3/l4/v2">
+<SESS t="1.80" done="n" id="s1">
 The shape of the histogram reveals interesting facts about a
 variable, and has profound implication for the statistical
 analysis of data.
-The variables  in a data set take values randomly. For instance,
-if height is our variable, and each case is a person, then we
-shall have random variation among the values, because different
-persons have different heights, and there is known formula
-explaining this variation perfectly. Any statistical analysis
+<P/>
+
+The variables  in a data set take values randomly.
+ Any statistical analysis
 presupposes that there is some underlying (unknown) random
-process of nature that produces these values. Just like rolling a
+process of nature that produces these values.<V>[blackbox shown]</V> Just like rolling a
 die, subtle variations in the forces, the angle of launch,
-rotations determine the final outcome in some complex a way that
-we have to consider it as a blackbox. Since we cannot figure out
-the exact working of the blackbox, we have to satisfy ourselves
-with the overall behaviour. And that's where histograms come to
-our help. If we run the blackbox a large number of times, and
-make the histogram of its random output, then quite surprisingly
+rotations determine the final outcome in so complex a way that
+we have to consider it as a blackbox. Its working can be 
+inferred only indirectly from its output. And that's where histograms come to
+our help. If the blackbox runs a large number of times, and we
+make a histogram of its random outputs<V>[hist shown]</V>, then quite surprisingly
 the effect of the randomness magically vanishes and we arrive at
-a shape that depends only on the process, and not on the
-outputs. In other words, if you run the same process again a
+a shape that depends only on the process, and not on the particular
+outputs. If you run the same process again a
 large number of times, then the shape of the new histogram will
 be essentially the same as the earlier one. This magical
-behaviour, as you might have guessed, already is a consequence of
+behaviour is a consequence of
 statistical regularity, and is utilised by statisticians to
 detect the unobserved process behind the observed data. It is
 much like fingerprint analysis. Fingerprints that all appear
@@ -4246,41 +4336,45 @@ similar to the layman uniquely identify different persons in the
 hands of the expert. Similarly, values that appear as jumbles of
 numbers to the layman reveal interesting tell-tale shapes to the
 statistician who constructs a histogram out of them!
-<P/>
-Here's a discrete toy example. Suppose I  a given a die and asked
-to check if it is fair. Then I can roll it a large number times
-and construct a histogram. After a few hundred tosses the
-histogram stabilises to a shape. If the die were a fair one, then
-all the bars should have equal heights. But the heights are quite
-unequal, we know that the die is loaded.
+</SESS>
+</SCRIPT>
 
-<P/>
-Of course, this was a rather artificial example. Let's now look
-at a more practical example. Suppose we draw a huge random sample
+<STKY>
+<HEAD3>Module 3, Lesson 4,  Video 3: Shape of histogram</HEAD3></STKY>
+<SCRIPT id="m3/l4/v3">
+<SESS t="1.80" done="n" id="s1">
+Suppose we draw a huge random sample
 across all the strata of the Indian population, and collect data
 about their monthly income. Even without carrying out the
 sampling let's see whether we can guess the shape of
-histogram. Can it be like this [flat]? No [explain], Can it be
-like this [left skew]? No [explain]. Can it be like this [right
+histogram. Can it be like this <V>[flat]</V>? No, then there are
+an equal number of people in all income levels! Can it be
+like this [left skew]? No, then there are more rich men than
+poor!
+ Can it be like this [right
 skew]. This looks better. Indeed, this is the typical shape for
-income distribution of most countries. Notice how the shape of
+income distribution for most countries. Notice how the shape of
 the histogram shows the underlying process, namely how the
 economic structure of the country.
+
 <P/>
-Certain shapes of histograms occur so frequently in diverse
-situations, that statisticians have given them special names, and
-created mathematical formula to descibe the shapes. Each such
-shape is called a distribution, and faimiliarity with these is
+Since the shapes are the most important aspect of a histogram,
+statistician try to capture just the shape using 
+curves with known mathematical formula. <V>[curve shown]</V> Each such
+formula is called a <B>probability distribution</B>.
+<P/>
+
+Certain distributions occur so frequently in practice
+that statisticians have given them special names, and
+created mathematical formula to describe the shapes.  and familiarity with these is
 one important pillar of statistical expertise.
 <P/>
-Here is the most popular one: the bell-shape. If you make it
-skewed to the right, you get this shape. We saw it just now in
-the income example. If we skew it in the other direction, we get
-this shape. Of course, we can create variations of each. Like we
-can start with the bell shape, and just move it around, or make
-the peak sharper or flatter. 
+Here is the most popular one: the bell-shape<V>[hist shown]</V>. Its formula
+is <V>[curve and formula shown]</V> this. If you
+change <M>\mu</M> the bell moves right and left. If you
+change <M>\sigma</M> then it becomes more or less peaked.
 <P/>
-We shall more occasion to visit these shapes throughout statistics.
+We shall have more occasion to visit these shapes throughout statistics.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M3L3V1.yml">
@@ -4303,22 +4397,22 @@ its left.
 </EXRLIST>
 
 <STKY>
-<HEAD3>Module 3, Lesson 4,  Video 3: Lab</HEAD3></STKY>
-
-<SCRIPT id="m3/l/v">
-<SESS t="5" done="n">
-[Screencast: Discrete histogram]
-Reuse the earlier data.
-</SESS>
-</SCRIPT>
-<STKY>
 <HEAD3>Module 3, Lesson 4,  Video 4: Lab</HEAD3></STKY>
 
-<SCRIPT id="m3/l/v">
-<SESS t="7" done="n">
+<SCRIPT id="m3/l4/v4">
+<SC t="5" done="n" id="s1">
+[Screencast: Discrete histogram]
+Reuse the earlier data.
+</SC>
+</SCRIPT>
+<STKY>
+<HEAD3>Module 3, Lesson 4,  Video 5: Lab</HEAD3></STKY>
+
+<SCRIPT id="m3/l4/v5">
+<SC t="7" done="n" id="s1">
 [Screencast: Continuous histogram]
 Reuse the earlier data.
-</SESS>
+</SC>
 </SCRIPT>
 
 
@@ -6460,20 +6554,20 @@ cons.csv
 
 <HEAD1>Module 6: Association etc</HEAD1>
 <SCRIPT id="m6/intro">
-<SESS t="1.10" done="y" id="s1">
+<SESS t="1.20" done="y" id="s1">
 We are nearing the end of our long journey. This is the last week
 of lecture in this course. Last, but not the least. Indeed the
 topic of this module will open up a whole new world, the world
 where we explore relation between different variables. 
 
 <P/>
-So far most of our techniques have focused on a single variable at a
+So far we have mostly focused on a single variable at a
 time. We often had multiple variables in the same data set, but
-we worked with them at a time. This week we shall start
-considering two variables at a time. The discussion that we shall
+we worked with them one at a time. This week we shall consider
+ two variables at a time. The discussion that we shall
 start here will eventually culminate in the Multivariate
 Statistics course in the second semester, where we shall deal
-with even higher number of variables at a time. 
+with multiple variables at a time. 
 <P/>
 This week's structure is basically the same as that of the
 earlier ones. Four lessons followed by a review lesson. Practice
