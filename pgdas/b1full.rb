@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SAT NOV 20 IST 2021</UPDT>
+<UPDT>SUN NOV 21 IST 2021</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -4207,14 +4207,14 @@ statistics hinges on this idea.
 <HEAD3>Module 3, Lesson 4,  Video 1: Histogram</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m3/l4/v1">
-<SESS t="0.90" done="a" kf="10,20" id="s1">
-We have already seen some ways to graphically represent
-data. Most of them were pretty self-evident. Indeed, that is one
+<SESS t="0.90" done="r" kf="10,20" id="s1">
+We have already seen some ways to  represent
+data graphically. Most of them were pretty self-evident. Indeed, that is one
 of their main qualities, because they are meant to present data
 to laymen.
 ---
- In this course we shall also discuss two graphical
-devices to represent data, that are more sophisticated, and
+ In this course we shall also discuss two other graphical
+devices, that are more sophisticated, and
 primarily used by statisticians themselves for understanding
 data. 
 ---
@@ -4229,76 +4229,71 @@ the behaviour of data, and have a rich theory underlying
 them. But since they are not used much for report generation,
 neither LibreOffice nor MS Excel has full support for them.
 </SESS>
-<SESS t="0.60" done="a" id="s2">
-The histogram is extremely similar to bar charts. However, bar
+<SESS t="0.60" done="r" id="s2">
+Histograms are extremely similar to bar charts. However, bar
 charts are for categorical variables, while histograms  may be
 used  for both discrete and
-continuous ones. The histogram is a graphical way of
+continuous ones. 
+---
+The histogram is a graphical way of
 demonstrating statistical regularity based on a frequency
 distribution. Histograms come in two major varieties, depending
-on whether the variable is discrete or continuous. The discrete
-case is the easier of the two, and we shall start with that.
+on whether the variable is discrete or continuous. 
 </SESS>
-<JINGLE t="0.1">Discrete histogram</JINGLE>
-<SESS t="2.90" done="n" id="s3">
-Consider a household level data set where household size is a
-variable. It is a counting variable. To make its histogram, we shall
-first obtain its frequency distribution, i.e., count how many times
-each possible value has occured in the data set. Then we compute
-the <B>relative frequency</B> for each value, i.e., the frequency
+<JINGLE t="0.1">Discrete and continuous histograms</JINGLE>
+<SESS t="2.40" done="r" kf="10,20,30,70,80,140,200,210,212,270,280" id="s3">
+The discrete
+case is the easier of the two, and we shall start with that.
+Suppose that we have a counting variable. To make its histogram, we shall
+first obtain its frequency distribution<V>[frq]</V>, i.e., count how many times
+each possible class of values has occured in the data set.
+---
+ Then we compute
+the relative frequency<V>[relfrq]</V> for each class, i.e., the frequency
 divided by the total number of cases. Then we  create
-a bar chart<V>[shown]</V> with bars having <B>heights= relative
-frequencies</B>,
+a bar chart<V>[shown]</V>. Here each  bar has height= relative
+frequency.
+---
 That's our histogram!
 Since the bars depict relative frequencies, so
-the sum of the lengths of the all the bar <V>[animation]</V>  must
+the sum of the lengths of the all the bars <V>[animation]</V>  must
 be 1.
-<P/>
-Sometimes however, people draw bars with
-<B>heights=frequencies</B> rather than the relative frequencies. This
-does not change the overall shape of the histogram, only the
-labelling and scale of the vertical axis.
 
-<P/>
 Let's look at some possible shapes of a discrete
 histogram. 
-
-<P/>
-* This<V>[shown]</V> histogram has a peak at the centre, tapering off
+---
+* This <V>[shown,point]</V> histogram has a peak at the centre, tapering off
 towards the two ends. This peak gives the value that the variable
 is taking most frequently. These extreme values occur more
 rarely. The overall shape is symmetric around the centre.
-<P/>
+---
 * This <V>[shown]</V> histogram, on the other hand, is quite skewed towards the
-right. The most frequently occuring value is near the left
-extreme. 
-<P/>
-* This<V>[shown]</V> histogram is skewed towards the right. The most frequently
+right. The frequently occuring values are near the left extreme. 
+---
+* This<V>[shown]</V> histogram is skewed towards left. The most frequently
 occuring value is near the right.
-<P/>
-* Here<V>[shown]</V> is yet another pattern with multiple peaks. 
-<P/>
-* In this<V>[shown]</V> histogram all the values are more or less the same.
-<P/>
 
+Of course, there are many other types of histograms possible as well.
+---
 Next let us look at histograms of continuous variables. 
 A continuous variable takes values continuously over a
-line. [*]. We subdivide the line
-into classes, and consider the corresponding frequency
-distribution. As before we compute the relative frequencies and
-erect rectangles over each class with <B>area = relative frequency</B>.
-<P/>
-
+line. <V>[shown]</V> We subdivide the line
+into classes<V>[shown]</V>,
+ and consider the corresponding frequency
+distribution.
+---
+ As before we compute the relative frequencies and
+erect rectangles<V>[shown]</V> over each class with <B>area = relative frequency</B>.
+---
 Note  two important
 differences of continuous histograms with discrete ones.
-<P/>
 
-* First. each bar sits on its own class. So the bars may have <B>different
+* First, the bars here, unlike here, may have <B>different
 widths</B>. Also the bar are all adjacent to each other.
-<P/>
+---
 * The second
 difference is more subtle. It is the area, and not height, of a
-bar that is  proortional
+bar that is  equal 
 to the relative frequency.
 This makes the total area of the histogram equal to 1.
 </SESS>
@@ -4307,33 +4302,42 @@ This makes the total area of the histogram equal to 1.
 <HEAD3>Module 3, Lesson 4,  Video 2: Shape of histogram</HEAD3></STKY>
 
 <SCRIPT id="m3/l4/v2">
-<SESS t="1.80" done="n" id="s1">
+<SESS t="1.80" done="r" kf="10,20,40" id="s1">
 The shape of the histogram reveals interesting facts about a
 variable, and has profound implication for the statistical
 analysis of data.
-<P/>
-
-The variables  in a data set take values randomly.
+---
+The variables  in a data set take values randomly.<V>[somedat]</V>
  Any statistical analysis
 presupposes that there is some underlying (unknown) random
-process of nature that produces these values.<V>[blackbox shown]</V> Just like rolling a
-die, subtle variations in the forces, the angle of launch,
+process of nature that produces these values.<V>[blackbox
+shown]</V>
+---
+It is just like rolling a
+die. Subtle variations in the forces, the angle of launch,
 rotations determine the final outcome in so complex a way that
 we have to consider it as a blackbox. Its working can be 
-inferred only indirectly from its output. And that's where histograms come to
+inferred only indirectly from its output.
+---
+ And that's where histograms come to
 our help. If the blackbox runs a large number of times, and we
 make a histogram of its random outputs<V>[hist shown]</V>, then quite surprisingly
-the effect of the randomness magically vanishes and we arrive at
+the effect of the randomness magically vanishes...
+---
+... and we arrive at
 a shape that depends only on the process, and not on the particular
 outputs. If you run the same process again a
 large number of times, then the shape of the new histogram will
-be essentially the same as the earlier one. This magical
-behaviour is a consequence of
+be essentially the same as the earlier one!
+---
+ This magical behaviour is a consequence of
 statistical regularity, and is utilised by statisticians to
 detect the unobserved process behind the observed data. It is
 much like fingerprint analysis. Fingerprints that all appear
 similar to the layman uniquely identify different persons in the
-hands of the expert. Similarly, values that appear as jumbles of
+eye of the expert.
+---
+ Similarly, values that appear as jumbles of
 numbers to the layman reveal interesting tell-tale shapes to the
 statistician who constructs a histogram out of them!
 </SESS>
@@ -4342,39 +4346,53 @@ statistician who constructs a histogram out of them!
 <STKY>
 <HEAD3>Module 3, Lesson 4,  Video 3: Shape of histogram</HEAD3></STKY>
 <SCRIPT id="m3/l4/v3">
-<SESS t="1.80" done="n" id="s1">
+<SESS t="1.20" done="a" kf="10,70,130,140,150" id="s1">
 Suppose we draw a huge random sample
-across all the strata of the Indian population, and collect data
+across  the entire Indian population, and collect data
 about their monthly income. Even without carrying out the
 sampling let's see whether we can guess the shape of
-histogram. Can it be like this <V>[flat]</V>? No, then there are
-an equal number of people in all income levels! Can it be
-like this [left skew]? No, then there are more rich men than
+histogram. Can it be like this <V>[flat]</V>?
+---
+The horizontal axis denotes income. So <V>[point]</V>this is the poor end, and
+this the rich end. Here it seems there is
+an equal number of people in all income levels! That's not true! 
+
+Can it be
+like this <V>[left skew]</V>?
+---
+ No, now there are more rich men than
 poor!
- Can it be like this [right
-skew]. This looks better. Indeed, this is the typical shape for
-income distribution for most countries. Notice how the shape of
-the histogram shows the underlying process, namely how the
+ Can it be like this <V>[right
+skew]</V>.
+---
+ This looks better. Indeed, this is the typical shape for
+income distribution for most countries with a significant 
+capitalist component.  Notice how the shape of
+the histogram shows the underlying process, namely the
 economic structure of the country.
-
-<P/>
-Since the shapes are the most important aspect of a histogram,
-statistician try to capture just the shape using 
-curves with known mathematical formula. <V>[curve shown]</V> Each such
-formula is called a <B>probability distribution</B>.
-<P/>
-
-Certain distributions occur so frequently in practice
+---
+Since the shape is the most important aspect of a histogram,
+statisticians try to capture  the shape using 
+mathematical curves. <V>[curve shown]</V> Each such
+curve is called a <B>probability distribution</B>.
+</SESS>
+<JINGLE t="0.1">Probability distribution</JINGLE>
+<SESS t="0.90" done="r" kf="10,12,68,125" id="s2">
+Certain probability distributions occur so frequently in practice
 that statisticians have given them special names, and
-created mathematical formula to describe the shapes.  and familiarity with these is
+created mathematical formulae to describe the shapes.  Familiarity with these is
 one important pillar of statistical expertise.
-<P/>
+---
 Here is the most popular one: the bell-shape<V>[hist shown]</V>. Its formula
-is <V>[curve and formula shown]</V> this. If you
-change <M>\mu</M> the bell moves right and left. If you
-change <M>\sigma</M> then it becomes more or less peaked.
-<P/>
-We shall have more occasion to visit these shapes throughout statistics.
+is <V>[curve and formula shown]</V> this. It is called
+the <B>normal distribution</B> or the <B>Gaussian
+distribution</B> with parameters <M>\mu</M> and <M>\sigma^2.</M>
+---
+ If you
+change <M>\mu</M> the bell moves right and left<V>[shown]</V>. If you
+change <M>\sigma</M> then its steepness changes<V>[shown]</V>.
+
+We shall have many occasion to visit these shapes throughout statistics.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M3L3V1.yml">
@@ -4435,143 +4453,145 @@ shapes.
 
 
 <HEAD1>Module 4: Central tendency</HEAD1>
-<SCRIPT id="m4/l/v">
+<SCRIPT id="m4/intro">
 <SESS t="2.30" done="n" id="s1">
 We are starting our fourth week. In the first two weeks we have
 learned about data and their graphical representations. The idea
 was like this: we wanted information, so we collected data, lots
-of values of lots of variables for lots of cases. And we could
+of values of lots of variables for lots of cases. 
+---
+We could
 not digest all those data by just looking at them. But our eye
 can take in a lot of pictorial details easily. So we devised a
 way to convert numerical patterns to visual patterns. And that
-was graphical representation. That's what we learned in the
-second week. Pictures are great when they can be used, but it is
+was graphical representation that we learned in the
+second week.
+---
+ Pictures are great when they can be used, but it is
 difficult to convert all types of patterns to pictures. So we
 explored a different approach in the  third week:
-cross-tabulation. Here we summarised a possible huge data matrix
-to much more managable tables. But howsoever we summarise data,
+cross-tabulation. Here we summarised a possibly huge data matrix
+into much more managable pivot tables. 
+---
+But howsoever we summarise data,
 by pictures or tables, the end product still needs to be
-intepreted by human brain. It would be great if we can come up
+intepreted by inspection. It would be great if we can come up
 with ways to summarise data using some mathematical formula, that
-would capture various intuitive aspects of the data. Then the
-process may be completely automated. This is an ambitious demand,
-and no body till date can claim to have developed mathematical
-formulae for capturing all intuitive aspects of a data set. But
-still many aspects can be captured mathematically.  These result inwhat
-are called summary statistics. More precisely, we shall
+would capture various intuitive aspects of the data.
+---
+ Then the process may be completely automated. This is an ambitious demand,
+and nobody till date can claim to have developed mathematical
+formulae for capturing all intuitive aspects of a data set. 
+---
+But still many aspects can be captured mathematically
+using what are called summary statistics. More precisely, we shall
 compute certain numbers based on the data, that will tell us
-important intuitive aspects of the data. Any number computed based
+important intuitive features of the data.
+---
+ Any number computed based
 on data is called a <B>statistic</B> (no 's' at end). It is a
-singular noun. Since we are using a statistic to cature one
+singular noun. Since we are using a statistic to capture some
 aspect of data, it is a form of summarisation. Hence the term
 summary statistic. They are also called <B>descriptive statistics</B>
 <P/>
-As is our
-norm, we shall learn 4 new lessons this week also. Each lesson
-will introduce one class of summary statistics:
- * Central tendency
- * Dispersion
- * Association
- * Skewness, kurtosis etc.
-<P/>
-
-Let's get started.
+These are classified according to intuitive concept
+they seek to capture. This week, we shall learn about
+the intuitive concept: centre of the data. 
 </SESS>
 
 <HEAD2>Module 4, Lesson 1</HEAD2>
 </SCRIPT>
 <STKY><HEAD3>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m4/l/v">
-<SESS t="2.60" done="y" id="s1">
+<SCRIPT id="m4/l1/v1">
+<SESS t="2.70" done="r" kf="10,20,30,40,50" id="s1">
 Let me ask you a simple question: <B>what is the typical life span
 of Indians?</B> You may not know the exact answer,  but you'll guess
-that it is around 70, and you'll be right. Now let me ask you another question: <B>what
+that it is around 70, and you'll be right.
+---
+ Now let me ask you another question: <B>what
 is the typical length of an adult male dolphin?</B> Possibly you
-have no idea,  and may turn to Google for an answer. Now comes the
+have no idea,  but anyway Google will give you an answer.
+---
+ Now comes the
 last question: <B>what is the typical weight of a mammal?</B> I am sure
 you do not know! I am sure you've never heard this question
 before. Will you turn to Google for an answer? No,  this question
-is absurd! There are so many different types of mammals ranging
+is absurd!
+---
+ There are so many different types of mammals ranging
 from tiny rodents to enormous blue whales. What do you mean by
 "typical" here? 
-
-<P/> Look at the three questions carefully. All the three mentions a
+---
+All these questions mention a
 set of numbers (lifespans of Indians in the first case, lengths of
 dolphins in the second, and body weights of mammals in the
-third). They we are asked to provide a <B>"typical" value</B> that represents
-that set. In the first two cases such "typical" values made sense. But
-in the last it didn't.  <P/> 
+third).
+---
+We need  a <B>"typical" value</B> that represents
+that set. In the first two cases such "typical" values make sense. But
+in the last it doesn't.
+--- 
 This is a common situation in real
-life. Sometimes we feel that a bunch of numbers are close enogh
+life.<V>[clear]</V> Sometimes we feel that a bunch of numbers are
+so close enough
 together, that their essence may be captured by a single "typical"
-value. In some cases, no single "typical" value can represent all the
-numers meaningfully. Of course, it is somewhat subjective, and it may
-be hard to draw a line where a typical value starts becomeing
-meaningless, but intuitively we can all feel this. Right? If a bunch
-numbers may be reasonably represented by a single typical value, we
-say that those numbers have a <B>central tendency</B>. Notice the use
-of the word "tendency". It correctly captures the somewhat intuitive
-and subjective flavour of the situation. If we have a valriable whoe
-values have central tendency, i.e., a single typical representative
-value makes sense, then we would naturally be interested in finding
-one. Any such way is called a measure of central tendency. And our
+value.
+---
+ In some cases, no single  value can represent the entire set
+ meaningfully. It is hard to draw a line where a typical value starts becoming
+meaningless, but intuitively we can all feel this.
+---
+ If a bunch of numbers may be reasonably represented by a single typical value, we
+say that those numbers have a <B>central tendency</B>. Here
+the word "tendency" captures the somewhat intuitive
+and subjective flavour of the situation.
+---
+ If we have a variable whose
+values have central tendency, i.e., a single typical 
+value makes sense, then we are naturally interested in finding
+one.
+---
+ Any such way is called a measure of central tendency. And our
 first lesson is devoted to just this. We shall start with the
-post popular one in the list.
+most popular such measure.
 </SESS>
 <JINGLE t="0.1">Arithmetic mean</JINGLE>
-<SESS t="2.30" done="y" id="s2">
-We talked about a "<B>typical representative value</B>". Commonly people
-loosely refer to it as "the <B>average value</B>" as in "What is the average
-cost of a 2 bedroom flat in central Kolkata?" or "What is the average
-time needed for delivery?"  The term "average" also appears in a
+<SESS t="2.20" done="r" kf="10,20,30,40,50" id="s2">
+ Commonly people
+loosely refer to a "<B>typical value</B>" as "the <B>average</B>" as in "What is the average
+cost of a 2 bedroom flat?"
+---
+  The term "average" also appears in a
 precise sense in school text books: the average of a bunch of numbers
 <M>x_1, ..., x_n</M> is defined as their sum divided by the number of
 numbers. i.e., <M>[[\sum_{i=1}^n x_i][n]].</M>
 <P/>
-We use the bar notation to denote mean. 
+We use x-bar to denote average of xi's.
 <P/>
 Now there is an important difference between these two usages of the
 term "average". In the first sense it conveys the somewhat intuitive
-notion of "typical representative value", and is not even uniquely
-defined. In the second sense it is a precise mathametical formula. To
-avoid any possible confusion between the two concepts we use two
+notion of a "typical value".
+In the second sense it is a precise mathametical formula. To
+avoid any possible confusion between the two concepts statistics uses two
 different terms to convey these two meanings:
-  * When we want to mean "typical representative value" we say "a
+  * When we want to mean "typical value" we say "a
     measure of central tendency".
   * When we want to refer to that math formula, we say <B>arithmetic mean</B>
     or just simply the mean. 
 <P/>
 Now the fact that common man uses the same term "average" for both
-purposes has its origin in the fact that arithmetic mean is indeed the
+purposes has its origin in the fact that mean is indeed the
 most popular measure of central tendency. But be careful
-here. Arithmetic mean is just a formula, it is always defined for any
+here. Mean is just a formula, it is always defined for any
 bunch of numbers, whether or not they show central tendency. Thus, if
-I ask "What is the avrage body weight of mammals?" then you can in
+I ask "What is the average body weight of mammals?" then you can in
 principle just
-list the body weights of all the mammals and find their arithmetic
+list the body weights of all the mammals and find their 
 mean. While that will definitely produce a number, that number will
 not be a meaningful answer to the original question. In fact, the
 question itself is absurd, because how can you measure central tendency,
 where there is no central tendency?
-</SESS>
-<JINGLE t="0.1">Trap for the unwary</JINGLE>
-<SESS t="1.00" done="y" id="s3">
-In statistics we have to be careful about this scenario, which appears
-in many other contexts also. There is an intuitive concept, and a
-mathematical way to measure it. Even if the concept is invalid in some
-particular case, the mathematical formula may still provide a
-number. You must not blindly report this number. Use your domain
-knowledge and common sense first to decide if the concept at all
-applies to the case at hand. This is especially relevant in the modern
-age of computers, when mathematical formulae may be applied very
-easily using computers, and long list of output may be produced in no
-time. Many budding statistician, unable to fathom the situation, fills
-up the report with all these numbers, even when the numbers are
-meaningless. <B>Don't use a formula blindly!</B>
-<P/>
-Think of statistics as an extension of common sense, not an
-alternative to it.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M4L1V1.yml">
@@ -4691,10 +4711,13 @@ alternative to it.
 
 <STKY>
 <HEAD3>Module 4, Lesson 1,  Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="0.50" done="y" id="s1">
+<SCRIPT id="m4/l1/v2">
+<SESS t="0.50" done="r" id="s1">
 Computing mean is conceptually easy. We learn do this in school. But
-there we worked with only a few numbers, may be at most 10 of them. But
+there we worked with only a few numbers, may be at most 10 of
+them.
+---
+ But
 in statistics when we compute the mean of a variable, we need to work with
 as many values as there are cases, which may easily range into
 thousands. So use of softwares is imperative. Let's learn how to do
@@ -4758,51 +4781,64 @@ land.csv
 
 <STKY>
 <HEAD3>Module 4, Lesson 1,  Video 3: Lab</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="1.30" done="y" id="s1">
 <TODO>Exr: Sum of deviations frm mean must be 0.</TODO>
+<SCRIPT id="m4/l1/v3">
+<SESS t="1.30" done="r" kf="10,20,40,50" id="s1">
 Mean is a measure of central tendency. But central tendency is a
-subjective, intuitive concept, while mean has a precise mthematical
-definition. It is quite difficult (if not impossible) to come with a
+subjective, intuitive concept, while mean has a precise mathematical
+definition.
+---
+ It is quite difficult (if not impossible) to come up with a
 mathematical definition that fully captures human intuition. Mean is
-no exception. Before you use mean to measure central tendency, it is
+no exception.
+---
+ Before you use mean to measure central tendency, it is
 important to know what aspects of the intuition are captured by mean,
 and what are not. 
-<P/>
-Suppose a typical height of a adult females in a certain community is
-5.5 feet. What should be a typical height in inches? Intuition tells
-us to just convert 5.5 feet to inches to get 66 inches. This is
-intuitive. Is this really true for the mathematical formula for mean? If the mean of some heights
-expressed in feet is 5.5, then is the mean of the same heights
-expressed in inches be 66? Well, yes. As may be easily seen from the
-formula.<V>scale.png 1</V> The common multiplier just comes out
-of the sum.<V>scale.png 2</V> and we get <V>scale.png 3</V>. Indeed, we
+---
+Suppose a typical height of  adult females in a certain community is
+<B>5.5 feet</B>. What should be a typical height in inches? Intuition tells
+us to just convert 5.5 feet to inches to get <B>66 inches</B>. This is
+intuitive.
+---
+ Is this really true for the mathematical formula for mean? If the mean of some heights
+expressed in feet is 5.5, then will the mean of the same heights
+expressed in inches be 66?
+---
+ Well, yes. As may be easily seen from the
+formula.<V>scale.png</V> The common multiplier just comes out
+of the sum. and we get this.
+---
+ Indeed, we
 can have this formula which you can prove similarly.
 
 <P/>
 <V>Theorem: am(a*x_i+b) = a*am(x_i)+b.</V>
 <P/>
-Here the mathematics went hand in hand with intuition. Now let's see
+---
+Here the mathematics goes hand in hand with intuition. Now let's see
 where things go wrong.
 </SESS>
 <JINGLE t="0.1">Problem</JINGLE>
-<SESS t="1.20" done="y" id="s2">
+<SESS t="1.20" done="r" kf="50,60,70" id="s2">
 Consider these squares.<V>[shown]</V> What is a typical side length of these
-squares? What is a typical area of these squares? Intuition says that
+squares? What is a typical area of these squares?
+---
+ Intuition says that
 if L is an answer to the first question, then L^2 should be an answer
 to the second. 
-<P/>
+
 Let's see if the arithmetic mean formula conforms to this.
-<P/>
-am of the lengths is this<V>[shown]</V>, but am of the areas is this<V>[shown]</V>, which is not a
+---
+Mean of the lengths is this<V>[shown]</V>, but mean of the areas is this<V>[shown]</V>, which is not a
 square of that!
-<P/>
+---
 Indeed, this is not just for squaring. If you take any transformation
-of the values oter than the simple <M>ax+b</M> type, then the am will not
+of the values other than the simple <M>ax+b</M> type, then the mean will not
 transform in the same way!
-<P/>
+---
 It is hard to live with this fact. But it is a fact nonetheless. If
-you feel very unhappy with this, don't worry. The  measure of
+you feel unhappy with this, don't worry. The  measure of
 central tendency that we shall discuss in the next video is free of
 this problem to a great extent!
 </SESS>
@@ -4810,41 +4846,54 @@ this problem to a great extent!
 
 <STKY>
 <HEAD3>Module 4, Lesson 1,  Video 4: Lab</HEAD3></STKY>
-###Keep this
-<SCRIPT id="m4/l/v"> 
-<SESS t="2.50" done="y" id="s1">
-So far we are talking about computing arithmetic mean for <B>raw data</B>,
+
+<SCRIPT id="m4/l1/v4"> 
+<SESS t="2.50" done="a" kf="10,20,40,60,70,80,90,100,140" id="s1">
+So far we have been talking about computing  mean for <B>raw data</B>,
 where all the observed values of a variable are available. Sometimes
-we have to work with a <B>frequency distribution</B> table. This is
-particularly the case when using secondary data, which we have to
+we have to work with a <B>frequency distribution</B> table.
+---
+ This is particularly the case when using secondary data, which we have to
 retrieve from printed reports. Few printed reports contain the raw
 data, which are often pretty huge. Reports contain only summary
-tables, like frequency distribution tables. So its important to know
+tables, like frequency distribution tables.
+---
+ So it's important to know
 how to compute arithmetic mean from frequency distribution tables.
-<P/>
+
 Let's start with am example. Suppose that we have these
 values <V>[number line shown]</V>, with
-artihmetic mean here <V>[mean shown with arrow]</V> Now  suppose we make a frequency distribution
+artihmetic mean here <V>[mean shown with finger]</V>
+---
+ Now  suppose we make a frequency distribution
 like this:<V>[frequencies shown as f_i]</V> The first thing that you should understand that we have
 have lost some information when we passed from the raw table to this
-table. We could construct the frequency distribution from the raw
+distribution.
+--
+ We could construct the frequency distribution from the raw
 data, but we cannot construct the raw table back from the frequency
-distribution. For example, we know that there are <M>f_1</M> values in this
+distribution.
+---
+ For example, we know that there are <M>f_1</M> values in this
 class, but do not know where in the interval those <M>f_1</M> numbers lie. So
 precisely speaking we cannot compute the arithmetic mean of the
-original values using only the frequency distribution. However, we
-can do an approximation. For each class we assume that the points
+original values using only the frequency distribution.
+---
+ However, we can do an approximation. For each class we assume that the points
 within are uniformly distributed throughout the class. So the
-average value in a class is its mid point.  It is called
-the <B>class mark</B>. Let's call
-them <M>m_i</M>'s. <V>[shown]</V> Then roughly the total of all
+average value in a class is its mid point, 
+the class mark<V>[shown]</V>.
+---
+ Let's call them <M>m_i</M>'s.  Then roughly the total of all the
 values in the <M>i</M>-th class should be <B><M>f_im_i.</M></B>
 Hence the total sum is roughly <B><M>\sum f_im_i.</M></B>
-Also the total number of values is <B><M>\sum f_i.</M></B>  This is
-exact. So the mean is<V>[anim]</V>
+---
+Also the total number of values is <B><M>\sum f_i.</M></B> 
+ So the mean is<V>[anim]</V>
 <B><D>
 [[\sum f_i m_i][\sum f_i]].
 </D></B>
+---
 Unfortunately LibreOffice does not provide any shortcut to this formula.
  Let's
 learn the longhand way.
@@ -4859,8 +4908,8 @@ learn the longhand way.
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 1: Median</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m4/l/v">
-<SESS t="1.10" done="y" id="s1">
+<SCRIPT id="m4/l2/v1">
+<SESS t="1.10" done="a" kf="10,40,90" id="s1">
 We have learned about one measure of central tendency already in the
 last lesson, arithmetic mean. We have also seen one undesirable
 property of that, it does not transform intuitively: e.g., square of
@@ -4881,7 +4930,7 @@ idea. First, the case where the same value occurs multiple
 times.
 </SESS>
 <JINGLE t="0.1">Repeated value</JINGLE>
-<SESS t="0.70" done="y" id="s2">
+<SESS t="0.70" done="a" kf="70,100" id="s2">
  Suppose that  we have these 7 numbers.
 <V>[5 3 6 1 3 7 8 shown in column]</V>. Sort them. <V>[anim]</V>. Two
 of these are the same, but still we count them as two numbers). The
@@ -4893,14 +4942,14 @@ value. What if we had an even number of values? That's what we
 shall see next.
 </SESS>
 <JINGLE t="0.1">Even number of values</JINGLE>
-<SESS t="1.00" done="y" id="s3">
+<SESS t="1.00" done="a" kf="60,90" id="s3">
 Suppose that we have these 6 values. <V>[1 4 2 6 7 5 Shown as
 column].</V> If we sort them 
 <V>[shown]</V> like this, then we see that there are two middlemost
 values. 
 <P/>
 Well, median needs to be a single number. There is a little
-bit controversy about how to choose a single value. Some people
+controversy about how to choose a single value. Some people
 maintain that median is not uniquely defined here, any value in this
 interval should be called a median. But most peope agree to call the
 point exactly midway between these as the mdeian. All softwares follow
@@ -4998,8 +5047,8 @@ click. Descriptive statistics menu.]
 
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 2: Transformation</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="3.10" done="y" id="s1">
+<SCRIPT id="m4/l2/v2">
+<SESS t="3.10" done="a" kf="10,70,130,140,150,180" id="s1">
 We have already seen how arithmetic mean behaves nicely when we change
 units or shift origin. Well, the same good quality is shared by median
 as well. Let's see how. 
@@ -5007,13 +5056,12 @@ as well. Let's see how.
 Suppose that we have measured the lengths of a number of objects in centimetres
 and show the values along a number line,<V>[show]</V> like this.
 The median is either the central value for an odd number of
-points, or the value exactly halfway between
-the two centralmost values for an even number. Or if you follow the other
-definition, then any value is the central interval. 
+points, or a value  between
+the two centralmost values for an even number.
 <P/>
 Now when you change the unit, say to inches, i.e., divide all the values
 by 2.54, All the points squeeze in by the same factor <V>[anim]</V> The order remains the
-same,  and so does the central most value. Thus, the median also
+same,  and so does the centralmost value. Thus, the median also
 gets divided by 2.54. The same thing happens if you multiply or divide by
 any other constant. 
 <P/>
@@ -5051,9 +5099,8 @@ the median.
 
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 3: Transformation</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="6" done="y" id="s1">
-<V>Go slow and explain.</V>
+<SCRIPT id="m4/l2/v3">
+<SESS t="6" done="a" kf="10,30,40,50,60,70,80" id="s1">
 Just as for mean, we may need to compute median from a frequency
 distribution table. The need of this arises mainly when you are using
 secondary data, where summary tables are more readily available than
@@ -5077,15 +5124,15 @@ Let's see this with an example.
 </V>
 If we try to show these points along the number line <V>[show]</V>we know that
  there are 5 points here, 4 here and 6 here, but we do not know the
- exact locations of the individual dots. We can just put the
+ exact locations of the individual dots. We have just put the
  points by imagination, but there is no way to be sure.
  Now there are 5+4+6=15
  points in all, that's for sure. So the 8-th point should be the central
  most. This point, but of course, we have drawn this here by
  imagination. We do not know the exact location.
  All that we know for sure is that it must be in this
- class. We call it the <B>median class</B>.  But
- where exactly in the median class does the median lie? We can
+ class.   But
+ where exactly in the this class does the median lie? We can
  try to make a reasonable guess like this.
 <P/>
 Suppose we start walking from this end towards that end. We
@@ -5103,8 +5150,8 @@ here, and when we come here we have crossed <M>5+4=9</M> points
  we do not know how the points are distributed inside this
  class. This is just a reasonable guess. 
 <P/>
-Unfortunately, LibreOffice (or no other software for that matter, as
-far as I know) implements this. All softwares allow you to
+Unfortunately, LibreOffice (or any other software for that matter, as
+far as I know) does not implements this. All softwares allow you to
  computer median only from raw data.
 </SESS>
 </SCRIPT>
@@ -5119,8 +5166,8 @@ far as I know) implements this. All softwares allow you to
 </EXRLIST>
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 4: Robustness</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="1.50" done="y" id="s1">
+<SCRIPT id="m4/l2/v4">
+<SESS t="1.50" done="a" kf="40,50,60" id="s1">
 This course uses peer review: one student's answers are graded by
 three randomly selected students. So each student basically has three
 candidate grades, hopefully more or less similar.  And we have to
@@ -5137,7 +5184,7 @@ flag it as a "no central tendency" case and intervene. But suppose it
 is quite low, but yet not too low. If I take the arithmetic mean, that
 will be somewhere here.<V>[show]</V> You see how it got influenced that far off
 value. Such far off values, as you already know are called
-outliers. Mean has this problem: it gets affected too much by outliers. 
+<B>outlier</B>s. Mean has this problem: it gets affected too much by outliers. 
 <P/>
 So we do not use mean here. We use median, which is the central most
 value, and not affected by changes in the extreme values.
@@ -5148,8 +5195,8 @@ value, and not affected by changes in the extreme values.
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 1: Mode and others</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m4/l/v">
-<SESS t="2.30" done="y" id="s1">
+<SCRIPT id="m4/l3/v1">
+<SESS t="2.70" done="a" kf="30,40,50,60,70,80,90,100" id="s1">
 In the last two lessons we have learned about two most popular
 measures of central tendency: mean and median. These were
 applicable primarily for continuous variables, and also for
@@ -5165,8 +5212,8 @@ Now due to some constraint you have to order
 dresses of the same colour  for all the 100 people. Which colour would
 you order? 
 <P/>
-If you order red, then these 40 will be happy, the remaining 60 has
-to wear a colour they do not love.
+If you order red, then these 40 will be happy, but the remaining
+60 will be unhappy, because they have to wear a colour they do not love.
 <P/>
 If you order blue, instead, then only these 35 will be happy.
 <P/>
@@ -5184,14 +5231,19 @@ by majority vote. Of course, you may run into the problem of
 ties. There may be two candidates both attaining the same maximum
 frequency. Such a data set is called <B>multimodal</B> as opposed
 to <B>unimodal</B>, which means having a unique mode. In our
-example we had a unimodal data set. Had the numbers been like 40,
-40, 20 <V>[shown]</V>, then both red and blue would be modes,
+example we had a unimodal data set. Had the numbers been like<V>[shown]</V> 40,
+40, 20, then both red and blue would be modes,
 and we have a multimodal data set. In a
 multimodal situation mode is not very useful as a measure of
 central tendency. Indeed, being multimodal may even imply lack of
 central tendency.
 </SESS>
-<SESS t="1.50" done="y" id="s2">
+</SCRIPT>
+
+<STKY>
+<HEAD3>Module 4, Lesson 3,  Video 2: Minimising unhappiness</HEAD3></STKY>
+<SCRIPT id="m4/l3/v2">
+<SESS t="1.50" done="a" kf="10,20,30,40,50,60" id="s1">
 Mode may be considered  as a  way to choose a
 representative value by minimising the overall unhappiness.
 This idea of minimising the overall unhappiness was actually present even for
@@ -5207,23 +5259,26 @@ representative, the unhappier it is. He is like:
 well!" 
 So here is one way to measure the
 unhappiness: the  distance between the point and the
-line, or the absolute value <B><M>|x_i-a|.</M></B> So the total
-unhappiness is a <B><M>\sum|x_i-a|.</M></B> This of course depends
+representative, or the absolute value <B><M>|x_i-a|.</M></B> So the total
+unhappiness is  <B><M>\sum|x_i-a|.</M></B> This of course depends
 on <M>a.</M> If you choose <M>a</M> to
 minimise this, then one can show that <M>a</M> must be median of
 the points.<V>median minimises this.</V>
 </SESS>
-<SESS t="1.20" done="y" id="s3">
+<JINGLE t="0.1">Another form of unhappiness</JINGLE>
+<SESS t="1.30" done="a" kf="10,20,30,40" id="s2">
 Another similar, but different way to do measure unhappiness is
 by considering the squared distance: <M>(x_i-a)^2</M><V>[show
-everything in one go]</V> leading to
-the total distance <B><M>\sum(x_i-a)^2.</M></B> Minimising this
+everything in one go]</V>. Here <M>a</M> is the representative
+and <M>x_i</M> is some value of our variable.  This choice leads to
+the total unhappiness <B><M>\sum(x_i-a)^2.</M></B> Minimising this
 w.r.t. <M>a</M> leads to <M>a</M> being the mean.<V>Mean
 minimises this.</V> 
 <P/>
 Thus, you see, all the measures of central tendency that we have
 discussed so far can be considered from a common view point:
-minimising unhappiness. In fact, this idea pervades much of
+choosing a representative causing minimum unhappiness. 
+In fact, this idea pervades much of
 statistics beyond just central tendency. What we called
 unhappiness is more technically referred to as
 the <B>loss</B>. Many statistical methods are motivated by trying
@@ -5237,10 +5292,9 @@ for continuous variables. The next video will talk about that.
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 4, Lesson 3,  Video 2: Mode and
-others</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="1.40" done="y" id="s1">
+<HEAD3>Module 4, Lesson 3,  Video 3: Mode and others</HEAD3></STKY>
+<SCRIPT id="m4/l3/v3">
+<SESS t="1.40" done="a" kf="10,20" id="s1">
 Mode as we defined it in the last video was the value (or values) with the
 highest frequency. This made sense for categorical data or count
 data, as there the same value is usually repeated many times. But
@@ -5258,14 +5312,14 @@ area. We expect the mode to lie there. If the classes are taken
 with sufficiently small width, then we can narrow down on the
 mode more and more precisely. 
 <P/>
-However, this procedure requires a huge amount of data, and whike
-it works in principle, is not a practicable way. So people do not
-talk much about modes for continuous variables.
+However, this procedure requires a huge amount of data, and while
+it works in principle, is not a practicable way for real life
+data. 
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 4, Lesson 3,  Video 3: Mode and others</HEAD3>
+<HEAD3>Module 4, Lesson 3,  Video 4: Mode and others</HEAD3>
 </STKY>
 <SCRIPT id="m4/l/v">
 <SESS t="0.30" done="y" id="s1">
@@ -5342,7 +5396,7 @@ acc.csv
 </EXRLIST>
 
 <STKY>
-<HEAD3>Module 4, Lesson 3,  Video 4: Other measures</HEAD3></STKY>
+<HEAD3>Module 4, Lesson 3,  Video 5: Other measures</HEAD3></STKY>
 <SCRIPT id="m4/l/v">
 <SESS t="1.90" done="y" id="s1">
 We have talked about the three major measures of central
@@ -5385,7 +5439,7 @@ Let's see this in action.
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 4, Lesson 3,  Video 5: Other measures</HEAD3></STKY>
+<HEAD3>Module 4, Lesson 3,  Video 6: Other measures</HEAD3></STKY>
 <SCRIPT id="m4/l/v">
 <SESS t="1.60" done="y" id="s1">
 We saw how weighted mean is sometimes better than usual
@@ -5613,6 +5667,24 @@ centre, this fraction is called the two-tailed p-value.
 <STKY>
 <HEAD3>Module 4, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
 <TODO>Longitude</TODO>
+<SCRIPT>This is from m4/l1/v1/s3
+<SESS t="1.00" done="a" kf="10,30" id="s3">
+In statistics we have to be careful about this scenario, which appears
+in many other contexts also. There is an intuitive concept, and a
+mathematical way to measure it. Even if the concept is invalid in some
+particular case, the mathematical formula may still provide a
+number. You must not blindly report this number. Use your domain
+knowledge and common sense first to decide if the concept at all
+applies to the case at hand. This is especially relevant in the modern
+age of computers, when mathematical formulae may be applied very
+easily using computers. Many budding statistician fills
+up the report with all these computer outputs, even when they are irrelevant.
+<B>Don't use a formula blindly!</B>
+<P/>
+Statistics is an extension of common sense, not its
+alternative!
+</SESS>
+</SCRIPT>
 <STKY><HEAD3>Module 4, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
 
