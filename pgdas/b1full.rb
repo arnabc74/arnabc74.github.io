@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SUN NOV 21 IST 2021</UPDT>
+<UPDT>THU NOV 25 IST 2021</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -4847,8 +4847,8 @@ this problem to a great extent!
 <STKY>
 <HEAD3>Module 4, Lesson 1,  Video 4: Lab</HEAD3></STKY>
 
-<SCRIPT id="m4/l1/v4"> 
-<SESS t="2.50" done="a" kf="10,20,40,60,70,80,90,100,140" id="s1">
+<SCRIPT id="m4/l1/v4">
+<SESS t="2.50" done="r" kf="10,20,40,60,70,80,90,100,140" id="s1">
 So far we have been talking about computing  mean for <B>raw data</B>,
 where all the observed values of a variable are available. Sometimes
 we have to work with a <B>frequency distribution</B> table.
@@ -4909,52 +4909,58 @@ learn the longhand way.
 <HEAD3>Module 4, Lesson 2,  Video 1: Median</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m4/l2/v1">
-<SESS t="1.10" done="a" kf="10,40,90" id="s1">
+<SESS t="1.10" done="r" kf="10,40,90" id="s1">
 We have learned about one measure of central tendency already in the
-last lesson, arithmetic mean. We have also seen one undesirable
+last lesson, the mean. We have also seen one undesirable
 property of that, it does not transform intuitively: e.g., square of
-mean need not be mean of squares. We are going to propose another
+mean need not be mean of squares.
+---
+ We are going to propose another
 measure that is somewhat free of this problem, and has also some other
 desirable properties.
-<P/>
+---
 It is called the <B>median</B>. The median of a variable in a
 data set is defined as the central most
 value of that variable. 
-<P/>
+---
   Here is a quick example. Consider these numbers.<V>[4.5 1.3  7.1
 in a column]</V>, imagine them along a number line <V>[anim]</V>,
 pick the middlemost, i.e., 4.5.
-<P/>
+---
 Simple! But let's see two possible troubles with this simple
 idea. First, the case where the same value occurs multiple
 times.
 </SESS>
 <JINGLE t="0.1">Repeated value</JINGLE>
-<SESS t="0.70" done="a" kf="70,100" id="s2">
+<SESS t="0.70" done="r" kf="70,100" id="s2">
  Suppose that  we have these 7 numbers.
 <V>[5 3 6 1 3 7 8 shown in column]</V>. Sort them. <V>[anim]</V>. Two
-of these are the same, but still we count them as two numbers). The
+of these are the same, but still we count them as two numbers).
+---
+ The
 middlemost means the fourth number, fourth when you show them ordered
 like this, i.e., 3.
-<P/>
+---
 In all these examples we had an odd number of values, so we could get a middlemost
 value. What if we had an even number of values? That's what we
 shall see next.
 </SESS>
 <JINGLE t="0.1">Even number of values</JINGLE>
-<SESS t="1.00" done="a" kf="60,90" id="s3">
+<SESS t="1.00" done="r" kf="60,90" id="s3">
 Suppose that we have these 6 values. <V>[1 4 2 6 7 5 Shown as
 column].</V> If we sort them 
 <V>[shown]</V> like this, then we see that there are two middlemost
 values. 
-<P/>
+---
 Well, median needs to be a single number. There is a little
 controversy about how to choose a single value. Some people
 maintain that median is not uniquely defined here, any value in this
-interval should be called a median. But most peope agree to call the
+interval should be called a median. 
+---
+But most people agree to call the
 point exactly midway between these as the mdeian. All softwares follow
-this definition, and so shall we.
-<P/>
+this definition.
+---
 Computing median is bit more work that computing mean, because we have
 to first sort the values. Sorting is one thing that computers do quite
 well. So let's learn how to compute median using LibreOffice.
@@ -5048,51 +5054,55 @@ click. Descriptive statistics menu.]
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 2: Transformation</HEAD3></STKY>
 <SCRIPT id="m4/l2/v2">
-<SESS t="3.10" done="a" kf="10,70,130,140,150,180" id="s1">
+<SESS t="3.10" done="r" kf="10,70,130,140,150,180" id="s1">
 We have already seen how arithmetic mean behaves nicely when we change
-units or shift origin. Well, the same good quality is shared by median
+units or add a constant. Well, the same good quality is shared by median
 as well. Let's see how. 
-<P/>
+---
 Suppose that we have measured the lengths of a number of objects in centimetres
-and show the values along a number line,<V>[show]</V> like this.
-The median is either the central value for an odd number of
+and show the values along a number line,<V>[show]</V>.
+The median is either the central value in case there is an odd number of
 points, or a value  between
-the two centralmost values for an even number.
-<P/>
+the two centralmost values in case of an even number.
+---
 Now when you change the unit, say to inches, i.e., divide all the values
 by 2.54, All the points squeeze in by the same factor <V>[anim]</V> The order remains the
 same,  and so does the centralmost value. Thus, the median also
 gets divided by 2.54. The same thing happens if you multiply or divide by
 any other constant. 
-<P/>
+---
 Similarly if you shift all
 the values by the same amount<V>[anim]</V>, the median changes
 accordingly. So we have this theorem.<V>[trans.png]</V>
 
-<P/>
 <B>Theorem: median(a*x_i+b) = a*median(x_i)+b</B>
-<P/>
+---
 Now let's revisit that example of squares. We had 4 squares <V>[show]</V>, and wanted
-to know the typical length of side, and also the typical area. We
-hoped that the typical area to be the square of the typical length. This
-hope was belied by arithmetic mean. But let's see what happens for the
-median. Let us order the squares by lengths of sides.<V>[anim]</V> The middle most
+to know the typical side length, and also the typical area. We
+hoped that the typical area would be the square of the typical length. This
+hope was belied by arithmetic mean. But let's see what happens for 
+median.
+---
+ Let us order the squares by lengths of sides.<V>[anim]</V> The middle most
 side length is this. Now to find median of area, we have to sort the
-sqaures by the areas. Since a square with longer sides must also have
-larger area, so the ordering remains the same  here as well. And
+squares by the areas. Since a square with longer side must also have
+larger area, so the ordering remains the same  here as well.
+---
+ And
 since median depends only on the ordering, we can actually talk
 about a median square as something between these two central
 squares. The side of the median square is the median side, and
 the area of the median square is the median area. 
-Since, both the meadian side and median area refer to the same
+---
+Since, both the median side and median area refer to the same
 square, the median area is indeed the
 square of the median side. In fact, the same thing is true
 about any transformation that preserves the order.
-<P/>
-A similar argument also works if the order had been completely
+---
+A similar argument also works if the order is completely
 reversed, because the centre of the data would still remain in
 the center. This end would go to that end, and that end would
-come to that end, but the centre stays at the centre, and so does
+come to this end, but the centre stays at the centre, and so does
 the median.
 </SESS>
 </SCRIPT>
@@ -5100,56 +5110,71 @@ the median.
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 3: Transformation</HEAD3></STKY>
 <SCRIPT id="m4/l2/v3">
-<SESS t="6" done="a" kf="10,30,40,50,60,70,80" id="s1">
+<SESS t="6" done="r" kf="10,30,40,50,60,70,80" id="s1">
 Just as for mean, we may need to compute median from a frequency
-distribution table. The need of this arises mainly when you are using
+distribution table. The need for this arises mainly when you are using
 secondary data, where summary tables are more readily available than
 raw data. 
-<P/>
+---
 As we have already mentioned earlier, grouped data
-contain less inforation than the raw data. So we may not be able to
+contain less information than  raw data. So we may not be able to
 get back the median of the raw data using only the grouped data. But
 still we can try to approximate it following the same line as we did
-for mean. There we assumed all values inside a class to be
+for mean.
+---
+ There we assumed all values inside a class to be
 uniformly spread out throughout the class. We are going to make
 the same assumption here as well.
-<P/>
-Let's see this with an example.
-<P/>
+---
+Let's see this with an example. Here is a small frequency distribution.
+
 <V><PRE>
 1--3 5
 3--5 4
 5--8 6
 </PRE>
 </V>
+---
 If we try to show these points along the number line <V>[show]</V>we know that
  there are 5 points here, 4 here and 6 here, but we do not know the
- exact locations of the individual dots. We have just put the
+ exact locations of the individual dots. We have just put these
  points by imagination, but there is no way to be sure.
+---
  Now there are 5+4+6=15
  points in all, that's for sure. So the 8-th point should be the central
- most. This point, but of course, we have drawn this here by
+ most. This point, but of course, we have drawn this here by just
  imagination. We do not know the exact location.
+---
  All that we know for sure is that it must be in this
  class.   But
  where exactly in the this class does the median lie? We can
  try to make a reasonable guess like this.
-<P/>
+---
 Suppose we start walking from this end towards that end. We
  arrive here after crossing <M>5</M> of the <M>15</M> points,
  i.e, <M>[[5][15]]=[[13]]</M> of
- the points. As we continue our journey, we pass the halfway point somewhere
+ the points.
+---
+ As we continue our journey, we pass the halfway point somewhere
 here, and when we come here we have crossed <M>5+4=9</M> points
  out of <M>15,</M> i.e., crossed  <M>[[5+4][15]]=[[35]]</M>-th
- part of the data.  The position of the halfway point i.e., the
- median may now be guessed by <B>linear interpolation</B>. That
+ part of the data.
+---
+  The position of the halfway point i.e., the
+ median, may now be guessed by <B>linear interpolation</B>. That
  is think of the <M>[[13]]</M> and <M>[[35]]</M> as on a number
- line of their own <V>[show]</V>. On that line <M>[[12]]</M> is
- here. <V>[show]</V> So on the original number line tt should be somewhere
- here.<V>[Show]</V> Of course we have no way to be sure, because
+ line of their own <V>[show]</V>.
+---
+ On that line <M>[[12]]</M> is
+ here. <V>[show]</V> The corresponding point on the  original
+number line 
+should be somewhere
+ here.<V>[Show]</V>
+---
+ Of course we have no way to be sure, because
  we do not know how the points are distributed inside this
  class. This is just a reasonable guess. 
-<P/>
+---
 Unfortunately, LibreOffice (or any other software for that matter, as
 far as I know) does not implements this. All softwares allow you to
  computer median only from raw data.
@@ -5167,25 +5192,35 @@ far as I know) does not implements this. All softwares allow you to
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 4: Robustness</HEAD3></STKY>
 <SCRIPT id="m4/l2/v4">
-<SESS t="1.50" done="a" kf="40,50,60" id="s1">
-This course uses peer review: one student's answers are graded by
-three randomly selected students. So each student basically has three
+<SESS t="1.50" done="r" kf="40,50,60" id="s1">
+This course uses peer review: each student's answerscript is graded by
+three other randomly selected students. So each student basically has three
 candidate grades, hopefully more or less similar.  And we have to
-choose a typical value. Aha, isn't that a central tendency problem?
-Yes, it is. And this is how I shall proceed. First I need to make sure
-that the three grades are indeed similar, i.e., they have a central
-tendency. If not, then I need to intervene. Otherwise, I need to
-choose a measure of central tendency. Should I choose arithmetic mean?
+choose a typical value.
+---
+ Aha, isn't that a central tendency problem?
+Yes, it is. And this is how we shall proceed. First we need to make sure
+that the three grades are indeed similar, i.e., they do have a central
+tendency. If not, then some intervention is called for.
+---
+ Otherwise, we need to
+choose a measure of central tendency. Should I choose mean?
 Let's see what may go wrong if I do.
-<P/>
+---
 Suppose the grades are shown in a number line.<V>[Shown]</V> Two are close together,
-while one is much lower. If it is very low, then of course, I shall
-flag it as a "no central tendency" case and intervene. But suppose it
-is quite low, but yet not too low. If I take the arithmetic mean, that
-will be somewhere here.<V>[show]</V> You see how it got influenced that far off
-value. Such far off values, as you already know are called
+while one is much lower. If it is very low, then of course, we shall
+flag the situation as a "no central tendency" scenario and
+intervene.
+---
+ But suppose it
+is quite low, but yet not too low. If we take the  mean, that
+will be somewhere here.<V>[show]</V> You see how it gets
+influenced by that far off
+value. 
+---
+Such far off values, as you already know are called
 <B>outlier</B>s. Mean has this problem: it gets affected too much by outliers. 
-<P/>
+
 So we do not use mean here. We use median, which is the central most
 value, and not affected by changes in the extreme values.
 </SESS>
@@ -5196,42 +5231,48 @@ value, and not affected by changes in the extreme values.
 <HEAD3>Module 4, Lesson 3,  Video 1: Mode and others</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m4/l3/v1">
-<SESS t="2.70" done="a" kf="30,40,50,60,70,80,90,100" id="s1">
+<SESS t="2.70" done="r" kf="30,40,50,60,70,80,90,100" id="s1">
 In the last two lessons we have learned about two most popular
 measures of central tendency: mean and median. These were
 applicable primarily for continuous variables, and also for
-counting variables and certain ordinal variables. Next we shall discuss a
-measure of central tendency that is primarily for categorical
+counting variables and certain ordinal variables.
+---
+ Next we shall discuss a
+measure of central tendency that is primarily meant for categorical
 variables and counting variables, though sometimes also used for
 continuous variables.
-<P/>
+---
 Let's start with an example. Suppose that there are dresses of three
 different colours,<V>[dresses]</V> and 100 different people, among whom 
 40 love red<V>[show]</V>,  35 love blue<V>[show]</V>, and the remaining 25 love purple<V>[show]</V>.
+---
 Now due to some constraint you have to order
 dresses of the same colour  for all the 100 people. Which colour would
 you order? 
-<P/>
+---
 If you order red, then these 40 will be happy, but the remaining
 60 will be unhappy, because they have to wear a colour they do not love.
-<P/>
+
 If you order blue, instead, then only these 35 will be happy.
-<P/>
+---
 If purple is ordered, then the number of happy persons will be
 even smaller, just 25.
-<P/>
+
 So you should order red for everybody.
-<P/>
+---
 Notice how the categorical nature of the variable (color of dress)
-played a role here. Either one gets the favourite colour or not. Either
+plays a role here. One either gets one's favourite colour or not. Either
 of the other two colours is equally bad. In such a case, the best representative value
 is the one which occurs the maximum number of times. This value
-is called the <B>mode</B>. Thus, here red is the mode. This is basically how one makes a selection
+is called the <B>mode</B>.
+---
+ Thus, here red is the mode. This is basically how one makes a selection
 by majority vote. Of course, you may run into the problem of
 ties. There may be two candidates both attaining the same maximum
 frequency. Such a data set is called <B>multimodal</B> as opposed
-to <B>unimodal</B>, which means having a unique mode. In our
-example we had a unimodal data set. Had the numbers been like<V>[shown]</V> 40,
+to <B>unimodal</B>, which means having a unique mode.
+---
+ In our example we had a unimodal data set. Had the numbers been like<V>[shown]</V> 40,
 40, 20, then both red and blue would be modes,
 and we have a multimodal data set. In a
 multimodal situation mode is not very useful as a measure of
@@ -5243,90 +5284,105 @@ central tendency.
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 2: Minimising unhappiness</HEAD3></STKY>
 <SCRIPT id="m4/l3/v2">
-<SESS t="1.50" done="a" kf="10,20,30,40,50,60" id="s1">
+<SESS t="1.50" done="r" kf="10,20,30,40,50,60" id="s1">
 Mode may be considered  as a  way to choose a
 representative value by minimising the overall unhappiness.
 This idea of minimising the overall unhappiness was actually present even for
 mean and median. Only the definition of unhappiness was different
-in those cases. Let's take an example to understand this. Here are some
+in those cases.
+---
+ Let's take an example to understand this. Here are some
 points along the number line<V>[shown]</V>. Suppose we decide to choose this point as
 their representative<V>[shown]</V>. We shall see how unhappy each of the data
 points is with this decision. Take this point
 say, <M>x_i.</M> <V>[shown]</V>.
+---
  Clearly, the further it is from the
 representative, the unhappier it is. He is like: 
 "Oh that guy is so far away from me. He cannot represent me
 well!" 
 So here is one way to measure the
-unhappiness: the  distance between the point and the
+unhappiness:
+---
+ the  distance between the point and the
 representative, or the absolute value <B><M>|x_i-a|.</M></B> So the total
-unhappiness is  <B><M>\sum|x_i-a|.</M></B> This of course depends
+unhappiness is  <B><M>\sum|x_i-a|.</M></B>
+---
+ This of course depends
 on <M>a.</M> If you choose <M>a</M> to
 minimise this, then one can show that <M>a</M> must be median of
 the points.<V>median minimises this.</V>
 </SESS>
 <JINGLE t="0.1">Another form of unhappiness</JINGLE>
-<SESS t="1.30" done="a" kf="10,20,30,40" id="s2">
+<SESS t="1.10" done="r" kf="10,20,30,40" id="s2">
 Another similar, but different way to do measure unhappiness is
 by considering the squared distance: <M>(x_i-a)^2</M><V>[show
-everything in one go]</V>. Here <M>a</M> is the representative
+everything in one go]</V>.
+---
+ Here <M>a</M> is the representative
 and <M>x_i</M> is some value of our variable.  This choice leads to
-the total unhappiness <B><M>\sum(x_i-a)^2.</M></B> Minimising this
-w.r.t. <M>a</M> leads to <M>a</M> being the mean.<V>Mean
+the total unhappiness <B><M>\sum(x_i-a)^2.</M></B> One may show that
+this is minimum, when <M>a</M> is the mean.<V>Mean
 minimises this.</V> 
-<P/>
+---
 Thus, you see, all the measures of central tendency that we have
 discussed so far can be considered from a common view point:
 choosing a representative causing minimum unhappiness. 
+---
 In fact, this idea pervades much of
 statistics beyond just central tendency. What we called
 unhappiness is more technically referred to as
 the <B>loss</B>. Many statistical methods are motivated by trying
 to minimise some suitable notion of loss.
-<P/>
-So far we have presented mode as a measure of central tendency
-for categorical and counting variables. Indeed, that's what mode
-is used for most often. However, we do sometimes talk about mode
-for continuous variables. The next video will talk about that.
 </SESS>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 3: Mode and others</HEAD3></STKY>
 <SCRIPT id="m4/l3/v3">
-<SESS t="1.40" done="a" kf="10,20" id="s1">
+<SESS t="1.60" done="r" kf="10,20" id="s1">
 Mode as we defined it in the last video was the value (or values) with the
 highest frequency. This made sense for categorical data or count
 data, as there the same value is usually repeated many times. But
-a continuous data, the same values are repeated more rarely, if
-at all. However, lots of values may be very close together. For
-example, if you report body weights of 100 persons to the nearest 10th of a kg,
+in continuous data, the same value is repeated more rarely, if
+at all.
+---
+ However, lots of values may be very close together. For
+example, if you report body weights of 100 persons to the nearest 100th of a kg,
 you may hardly get any exact repetion, while many weights will
 lie tightly together. A typical case may be shown along a number
 line. <V>[show]</V>
+---
 Naturally you'll like to say that the most frequntly occuring
 weights are near here. So we should call the center of this
-cluster the mode. To make this idea somewhat precise, we
+crowd the mode.
+---
+ To make this idea somewhat precise, we
 construct a histogram,<V>[show]</V> and look at the class with the maximum
 area. We expect the mode to lie there. If the classes are taken
 with sufficiently small width, then we can narrow down on the
 mode more and more precisely. 
-<P/>
+---
 However, this procedure requires a huge amount of data, and while
 it works in principle, is not a practicable way for real life
-data. 
+data. So we do not usually try to find mode for a continuous
+variable in a data set.
 </SESS>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 4: Mode and others</HEAD3>
 </STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="0.30" done="y" id="s1">
+<SCRIPT id="m4/l3/v4">
+<SESS t="0.30" done="r" id="s1">
 Finding the mode for a categorical variable or count variable is
-quite easy. Let's work with toy data of hourly counts of traffic rule
+quite easy. We just find the frequncy of each possible value, and
+choose the value corresponding to the maximum frequency. If this
+maximum occurs for multiple values, then each of those values is
+a mode.
+---
+Let's work with toy data of hourly counts of traffic rule
 violations over at a fictitious crossing.
-<TODO>Grow this a bit.</TODO>
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
 <SC t="2.8" done="n" id="s">
@@ -5397,39 +5453,50 @@ acc.csv
 
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 5: Other measures</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="1.90" done="y" id="s1">
+<SCRIPT id="m4/l3/v5">
+<SESS t="1.90" done="r" kf="10,20,30,40,50,80,90,100,110,120" id="s1">
 We have talked about the three major measures of central
 tendency: mean, median and mode. Each has its own advantages and
 disadvantages. Sometimes we want to retain the advantages of one,
-and yet avoid its disadvantages. This leads to other measures of
+and yet avoid its disadvantages.
+---
+ This leads to other measures of
 central tendency that are obtained by tweaking these basic
 measures. We shall see two such. Both are obtained by tweaking
 the definition of mean. 
-<P/>
+---
 The first is called <B>weighted mean</B>. When we compute the
 mean by the formula <B><M>[[1n]]\sum x_i,</M></B> we are giving equal
 importance to all the <M>x_i</M>'s. Sometimes that is
-undesirable. Here is  a simple example. Suppose that we have many
+undesirable.
+---
+ Here is  a simple example. Suppose that we have many
 agricultural plots of different areas and productivity
 levels<V>[rectangles]</V>.
 Let the productivities be called <M>x_i</M>'s. <V>[shown]</V>
+---
 We want
 to find the average productivity level for all the
 plots. Productivity for a plot is measured as yield per unit
-area<V>[shown]</V> for a single season. If we merely add all the productivity
+area<V>[shown]</V> for a single season.
+---
+ If we merely add all the productivity
 levels of the individual plots and divide by the number of plots,
 then we shall arrive at a meaningless figure. Because  a
 very small plot with high productiity may not offset the effect
-of a huge plot with a low productivty. So we should take areas
+of a huge plot with a low productivty.
+---
+ So we should take areas
 and yield separately into account. <V>[area and yield animate one
-below another from the fraction.]</V>
-Let's call the areas <M>w_i</M>'s. We shall first
-multiply the productivty  of each plot with its area to get
-the yield of that plot<V>[shown]</V> sum these to get the total yield and then
+below the other from the fraction.]</V>
+Let's call the areas <M>w_i</M>'s.
+---
+ We shall first multiply the productivty  of each plot with its area to get
+the yield of that plot<V>[shown]</V> sum these to get the total
+yield, and 
 divide by the total area<V>[show]</V> to get the overall productivity
-level. This formula is called the weighted mean.
-<P/>
+level. This formula is called the <B>weighted mean</B>.
+---
 Let's see this in action.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
@@ -5440,29 +5507,35 @@ Let's see this in action.
 
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 6: Other measures</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="1.60" done="y" id="s1">
+<SCRIPT id="m4/l3/v6">
+<SESS t="1.60" done="r" kf="10,40,60" id="s1">
 We saw how weighted mean is sometimes better than usual
 mean. Well, the next measure of central tendency that we are
 going to discuss is an extreme application of this idea. It just
 gives  zero weights to some of the points in order to achieve
 robustness. It is called <B>trimmed mean</B>.
-<P/>
+---
 We have seen that mean is not very robust, because extreme
 observtions can easily pull it towards themselves away from the
 true centre of the bulk of points. Consider these
-values.<V>[number line shown]</V>. This point at the extreme is
-an outlier that might pull the mean away too much. One way to rectify this is to
+values.<V>[number line anim]</V>. This point[finger] at the extreme is
+an outlier that might pull the mean away too much.
+---
+ One way to rectify this is to
 first trim away the extreme points and then compute the mean of
 the rest. This is the same as attaching zero weights to those
-discarded extreme poits. Depending on how far we trim, we have
+discarded extreme points.
+---
+ Depending on how far we trim, we have
 different versions of trimmed mean, e.g., 10% trimmed mean or 5%
 trimmed mean. A 10% trimmed mean will first discard the most
 extreme 10% of the points (5% from either end) and then compute
-the usual mean of the rest. Suppose in our example we trim off 2
+the usual mean of the rest.
+---
+ Suppose in our example we trim off 2
 points from each end. <V>[dashed lines shown]</V> and compute the
 mean of the rest. Now the outlier can have no effect.
-<P/>
+
 Let's look at the computation using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
@@ -5501,155 +5574,196 @@ Let's look at the computation using LibreOffice.
 <HEAD2>Module 4, Lesson 4</HEAD2>
 
 <STKY>
-<HEAD3>Module 4, Lesson 4,  Video 1: Quantiles and p-values</HEAD3></STKY>
+<HEAD3>Module 4, Lesson 4,  Video 1: Quantiles what?</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m4/l/v">
-<SESS t="4.30" done="n" id="s1">
-This lesson is not about any more measures of central
+<SCRIPT id="m4/l4/v1">
+<SESS t="2.60" done="r" kf="10,20,50,80,90,120,130,140" id="s1">
+This lesson is not about yet another measure of central
 tendency. However, the idea is somewhat related, so I am
 discussing it this week. This topic will prove essential in the
 Statistical Methods course when we shall learn about test of
 statistical hypotheses. 
-<P/>
-Let's start with something we have already seen: median. It is
-the most central point among all the values. [*] We may think it
+---
+Let's start with something we have already seen: median.
+<V>[number line with median shown]</V> It is
+the most central point among all the values.
+---
+ We may think it
 as the point which splits the all the values into two parts, with
-exactly half the values to its left. Well, this is not entirely
+exactly half the values to its left.<V>[shown]</V> Well, this is not entirely
 precise if we have an odd numer of values, but you get the general
 idea.
-<P/>
+---
  Now, there is nothing special about the proportion half. We might as well think
-of a point that <M>[[13]]</M>-way into the data set from the
+of a point<V>[shown]</V> that <M>[[13]]</M>-way into the data set from the
 left, i.e., exactly <M>[[13]]</M> of the values lie to its left
 (again allow a little rounding off if the number of points is not
-exactly divisible by 3). In general for any
-fraction <M>p\in(0,1)</M> we can consider a point such that
-exactly <M>[np]</M> of the values lie to its left. This point is
+exactly divisible by 3).
+---
+ In general for any
+fraction <M>p\in(0,1)</M> we can consider a point<V>[shown]</V> such that
+exactly <M>p</M> fraction of the values lie to its left. This point is
 called the <B><M>p</M>-th quantile</B>.
-<P/>
+
 In particular, median is the <M>p</M>-th  quantile for <M>p=[[12]].</M>
-<P/>
-While this is the most popular quantile in use, some other
-quantiles also deserve mention. If you take <M>p=[[14]]</M> you
-get the first quartile. Note the spelling, it is <B>quartile</B>
-and not <B>quantile</B>. If you take <M>p=[[34]]</M>, you get the
-third quartile. Clearly, the second quartile corresponds
+---
+While median is the most popular quantile in use, some other
+quantiles also deserve mention. If you take <M>p=[[14]]</M><V>[shown]</V> you
+get the <B>first quartile</B>. Note the spelling, it is quartile
+and not quantile.
+---
+ If you take <M>p=[[34]]</M>, you get the
+third quartile<V>[shown]</V>. Clearly, the second quartile corresponds
 to <M>p=[[24]]=[[12]]</M>, and so is the same as the median. 
-<P/>
+---
 Another type of quantile that has a special name is
-the <B>percentile</B>. For <M>k=1,...,99</M> the <M>k</M>-th
-percentile is the <M>[[k][100]]</M>-th quantile. Sometimes you
-may hear about <B>deciles</B>, which refer to <M>[[k][10]]</M>-th
-quantiles, for <M>k=1,...,9.</M> However, the term decile is
+the <B>percentile</B>. For <M>k=1,...,99</M> the <B><M>k</M>-th
+percentile is the <M>[[k][100]]</M>-th quantile</B>.
+---
+ Sometimes you
+may hear about <B>k-th decile</B>, which refers to the <B><M>[[k][10]]</M>-th
+quantile, for <M>k=1,...,9.</M></B> However, the term decile is
 rarely used.
-<P/>
-Why are quantiles useful? Just as central tendency measures seek
-to capture the notion of the centre of data, quantiles are often
-used to capture the idea of the border of data. Most quantities
-in real life vary randomly. If we hold our finger steadily in
-midair, we can see it shake a little. This random variation is natural as
-long as it remains within a threshold. Crossing the threshold
-might signal a change of regime, causing us to make a remark
-like: "Hey your finger is shaking too much, are you ill?"
-There is some inevitable variation among bloodpressures of
-healthy persons. Thus, though 120/80 is nominally the standard
-for healthy blood pressure a bloopd pressure like 125/76 is no
-cause of worry. It is within the acceptable threshold of variation.  How
-does one decie upon such a threshold? Well, quantiles come in
-handy for this purpose. A typical exercise that is followed to
-come up with such thresholds often boils down to this: First
-measurements are made for a random sample of  individuals who are
-known to be healthy. Then the 5% and 95% quantiles (i.e., 5-th
-and 95-th percentiles, respectively) are computed. These are
-considered as the lower and upper thresholds. Values falling
-beyond these are suspicious, as only 5% of the healthy cases fall
-below this lower threshold and only 5% exceed the upper one.
-<P/>
-Thus quantiles help to provide hard boundaries allowing for some
-margin. Later in this lesson we shall discuss a similar concept
-called <B>p-value</B>, that provides a soft boundary.
-<P/>
-But for now let's see how quartiles are  computed using LibreOffice.
 </SESS>
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 4, Lesson 4,  Video 2: Quantiles and p-values</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SC t="2" done="n" id="s">
+<HEAD3>Module 4, Lesson 4,  Video 2: Quantiles why?</HEAD3></STKY>
+<SCRIPT id="m4/l4/v2">
+<SESS t="2.10" done="r" kf="10,20,30,40,50,60" id="s1">
+Why are quantiles useful? Just as central tendency  seeks
+to capture the notion of the centre of data, quantiles are 
+used to capture the idea of the <B>boundary of data</B>.
+---
+ Most quantities in real life vary randomly. If we hold our finger steadily in
+midair, we can see it shake a little. This random variation is natural as
+long as it remains within a threshold. Crossing the threshold
+might signal a change, causing us to make a remark
+like: "Hey your finger is shaking too much, are you ill?"
+---
+As yet another example, there is some inevitable variation among
+blood pressures of healthy persons. Thus, though <B>120/80</B> is
+nominally the standard for healthy blood pressure, a blood
+pressure like <B>125/76</B> is no cause of worry. It is within the
+acceptable threshold of variation.
+---
+ How does one decide upon such a threshold? Well, quantiles come in
+handy for this purpose. A typical exercise that is followed to
+come up with such thresholds often boils down to this:
+---
+ First
+measurements are made for a random sample of  individuals who are
+known to be healthy. Imagine these laid out along a number line. <V>[number line shown]</V>
+---
+ Then the 5% and 95% quantiles (i.e., 5-th
+and 95-th percentiles, respectively) are computed.<V>[shown]</V> These are
+considered as the lower and upper thresholds. Values falling
+beyond these are suspicious, as only 5% of the healthy cases fall
+below this lower threshold and only 5% exceed the upper one.
+---
+Thus quantiles help to provide hard boundaries allowing for some
+margin. Later in this lesson we shall discuss a similar concept
+called <B>p-value</B>, that provides a soft boundary.
+
+In the next video we shall  see how quartiles are  computed using LibreOffice.
+</SESS>
+</SCRIPT>
+
+<STKY>
+<HEAD3>Module 4, Lesson 4,  Video 3: Quantiles how?</HEAD3></STKY>
+<SCRIPT id="m4/l4/v3">
+<SC t="2" done="n" id="s1">
 [Screencast: Computation of quartiles.]
 toy.csv
 </SC>
 <JINGLE t="0.1">Visualisation</JINGLE>
-<SC t="4" done="n" id="s">
+<SC t="4" done="n" id="s2">
 [Screencast: Visualize quartiles using histogram.]
 toycomp.ods
 </SC>
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 4, Lesson 4,  Video 3: Quantiles and p-values</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
-<SESS t="3.60" done="n" id="s1">
-We have already mentioned p-values as a soft boundary for a
-data. In this video we shall learn the details. If I ask you "Is
-2 greater than 5?" then answer is "No". If I ask you "Is 100 more
-than 80?" then answer is "Yes". These are objective questions
-with objective answers irrespective of the context. But if I ask
-you "Is 15 a large number?", then as an objective question it is
+<HEAD3>Module 4, Lesson 4,  Video 4: p-values</HEAD3></STKY>
+<SCRIPT id="m4/l4/v4">
+<SESS t="3.90" done="r" kf="0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150" id="s1">
+We have already mentioned <B>p-value</B> as a soft boundary for a
+data. In this video we shall learn the details. If I ask you "<B>Is
+2 greater than 5?</B>" then answer is "No". If I ask you "<B>Is 100 more
+than 80?</B>" then answer is "Yes". These are objective questions
+with objective answers irrespective of the context.
+---
+ But if I ask you "<B>Is 15 a large number?</B>", then as an objective question it is
 meaningless. It needs some context to have a meaningful
-answer. Say I have a pet animal aged 15 years, and I am asking
-"Is it too old?" The answer depends on the species of the
-animal. If it is a cat, then the answer is "yes, it is old indeed." But if it is a
-turtle, then our answer would be "No, it is just a baby." How did
-we choose the appropriate answers in the different  contexts? By
-comparing the given number, 15, with our prior knowledge about
+answer. Like <B>Is an animal aged 15 years too old?</B>,
+ The answer depends on the species of the
+animal.
+---
+ If it is a <B>cat</B>, then the answer is "<B>yes</B>, it is old indeed." But if it is a
+<B>turtle</B>, then our answer would be "<B>No</B>, it is just a baby." How did
+we choose the appropriate answers in the different  contexts?
+---
+ By comparing the given number, 15, with our prior knowledge about
 how long the animals of the species in question usually live. In
 other words we imagined the value, 15, as a point on a number
-line, which was full of typical known life spans of that kind of
-animals. Cats rarely live longer than than 15 years. So only a
+line<V>[shown]</V>, which was full of typical known life spans of that kind of
+animals.
+---
+ Cats rarely live longer than than 15 years. So only a
 miniscule fraction of points would lie to the right of 15.
 Turtles, on the other hand, are known to live even longer than
 150 years, so the fraction of points to the right of 15 is
-huge. It is this "fraction of points exceeding our given value"
-that determines our answer. If this fraction is small, then we
-say that the value is too large in this context. If the the
-fraction is large, then we do not call our value "too
-large". If we do not have such a sample of typical values to
-comoare against, we cannot answer the question at all. For
-instance, if I ask you "Is 15 years too old an age for a Komodo
-Dragon?", and you do not any idea about that particular beast,
+huge.
+---
+ It is this "fraction of points exceeding our given value"
+that determines our answer. 
+If the fraction is close to 0, then we  call our value "too large".
+ If we do not have such a sample of typical values to
+compare against, we cannot answer the question at all.
+---
+ For
+instance, if I ask you "Is 15 years too old an age for a <B>Komodo
+Dragon</B>?", and you do not any idea about that particular beast,
 then you won't be able to answer the question at all (unless you
 look up the internet).
-
-<P/>
-This all important "fraction of typical points exceding a given
-value" is called the <B>upper-tailed p-value</B> of that point in that
-context. Had the question been about a given value being "too
-low" in a context, we would have naturally looked at the opposite
-fraction, the fraction of points below that given values. That is
+---
+This all important "fraction of values of a variable exceeding a given point"
+is called the <B>upper-tailed p-value</B> of that point for that variable.
+---
+Had the question been about a given point being "too
+low" for a variable, we would have naturally looked at the opposite
+fraction, the fraction of values below that given point. That is
 called, as you might expect, the <B>lower tailed
-p-value</B>. Sometime we talk about <B>two-tailed
-p-values</B>. Here we are talking about typical points that are
-symmetrically distributed around some centre, and we are asking
+p-value</B>.
+---
+ Sometime we talk about <B>two-tailed
+p-values</B>. Here we are talking about a variable with values
+more or less
+symmetrically distributed around some centre<V>[numline
+shown]</V>,
+---
+ and we are asking
 whether a given value is too far from that centre, too far in
 either direction, too high or too low. Thus, both these values
-will qualify as "too far". Here we look at the fraction of the
-points whose distances from the centre exceed the distance of the
-given value. As far-away points lie both below and above the
-centre, this fraction is called the two-tailed p-value.
+will qualify as "too far".<V>[finger]</V>
+---
+Now suppose this is the poont whose two-tailed p-value we are to
+find.<V>[shown]</V> Imagine another point symmetrically opposite
+on the other cide of the centre.<V>[shown]</V>  Look at the fraction of the
+points lying outside this interval.
+That is  the two-tailed p-value. 
 </SESS>
 </SCRIPT>
 <STKY>
-<HEAD3>Module 4, Lesson 4,  Video 4: Lab</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
+<HEAD3>Module 4, Lesson 4,  Video 5: Lab</HEAD3></STKY>
+<SCRIPT id="m4/l4/v5">
 <SC t="5" done="n" id="s">
 [Screencast: Compute p-value from data]
 </SC>
 </SCRIPT>
 <STKY>
-<HEAD3>Module 4, Lesson 4,  Video 5: Lab</HEAD3></STKY>
-<SCRIPT id="m4/l/v">
+<HEAD3>Module 4, Lesson 4,  Video 6: Lab</HEAD3></STKY>
+<SCRIPT id="m4/l4/v6">
 <SC t="6" done="n" id="s">
 [Screencast: Visualise p-value from histogram and distribution]
 </SC>
@@ -5696,98 +5810,108 @@ alternative!
 <HEAD3>Module 5, Lesson 1,  Video 1: The concept</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m5/l1/v1">
-<SESS t="1.80" done="y" id="s1">
-In the last lesson we talked about central tendency, representing
-a bunch of numbers by a single typical numbers. In this video we
+<SESS t="1.80" done="r" kf="0,60,120,130" id="s1">
+In the last module we talked about central tendency, representing
+a bunch of numbers by a single typical number. In this video we
 shall go a bit deeper and talk about a concept called <B>dispersion. </B>
-<P/>
+---
 <V>First set of
-firings (good corner). I duck. Second set of firings. Pause. I
+firings. I duck. Second set of firings. Pause. I
 reappear from below.</V>
-<P/>
-Whew! Did you notice that? The guy who fired just now? He had two
-revolvers in two hands. We must report this to the police. But I
-do not know anything about the guy. But wait! May be we can infer
-something! Look at the bullet marks. 6 From left hand, 6 from the
+---
+Whew! Did you notice that? The guy  had two
+revolvers in two hands, and fired 6 bullets from each. Any clue
+about who the guy is?  May be we can infer
+something from the bullet marks!
+---
+ 6 From the left hand, 6 from the
 right. All the marks are quite close together. Hmmm...a pretty
 good shot. But the bullets from his left hand are more tightly
-together, while the other 6 are somewhat more scattered. Well,
-what can that mean? Does he have better aim with his left hand?
-Well, judging by the fact that he missed me, I would not say
-better aim, but rather that he is more consistent  with his left
-hand. He must be a
-left handed person. Aha, that's a good clue for the police. And
+together, while the other 6 are somewhat more scattered.
+---
+ Well, that means he has a better aim with his left hand.
+So he must be a left handed person. Aha, that's a good clue for the police. And
 in the meantime that's a good clue for us, too, for our current
-topic. The shots are more scattered, or as we say in statistics,
+topic. 
+---
+The shots here are more scattered, or as we say in statistics,
 these have higher <B>dispersion</B>, while these have lower
 dispersion. Dispersion measures <B>the amount of scatter</B>, or how
 loosely the values of a variable are together. That's our topic today.
 </SESS>
 <JINGLE t="0.1">Dispersion</JINGLE>
-<SESS t="2.30" done="y" id="s2">
+<SESS t="2.30" done="r" kf="10,20,30,40,50,110,120,130,140" id="s2">
 If you have a bunch of values <V>[numberline]</V>, central
 tendency is about finding   a typical representative
 value<V>[arrow]</V>. But none of the values may be
-exactly equal to that typical value. There is usually always
-some scatter. Measuring that scatter is the purpose of
-<B>dispersion</B>.
-<P/>
-<B>Why do we care</B><V>[anim]</V> about this? For one thing,
+exactly equal to that typical value.
+---
+ There is usually always some scatter. Measuring that scatter 
+is the purpose of <B>dispersion</B>.
+
+<B>Why do we care</B><V>[anim]</V> about this? 
+---
+For one thing,
  dispersion tells us <B>how
 reliable the central tendency is</B>. For a variable with higher
-dispersion, <V>points sread out, same centre]</V> like this,
- central tendency is of less use. For example,
+dispersion, <V>points spread out, same centre]</V>,
+ central tendency is of less use.
+---
+ For example,
 when we talked about body weights of mammals there was an
 enormous dispersion, so much so that there was no central
 tendency left in the data.
-<P/>
-Here is a second reason.  In many cases we predict a value say
+---
+Here is a second reason.  In many cases we predict a value like
 tomorrow's rainfall or some future stock price. Here it is good
 to have a kind of <B>error bar</B>, an interval rather than a single
-value. Dispersion plays a crucial role behind desgning such
+value. Dispersion plays a crucial role behind designing such
 intervals. 
-<P/>
+---
 A third reason is that dispersion helps us to <B>measure precision</B>
  of instruments. Ideally, the same machine should always produce
  the same output if given the same input. But in practice, there
- is always some fluctuations. The smaller its amount, the happier
- we are. Dispersion is the key tool to measure this.
-<P/>
-Often dispersion is used to <B>measure instabiloty</B>. It could
- be volatility of the share market or motion in a room. Have you seen power saving gadgets that sometime people
+ is always some fluctuation. The smaller its amount, the more precise
+the machine. Dispersion is the key tool to measure this.
+---
+Often dispersion is used to <B>measure instability</B>. It could
+ be volatility of the share market or motion in a room. Have you
+ seen power saving gadgets that sometime people 
 fit inside rooms? These can automatically switch lights and fans
-on or off according as whether there are people in the
-room. These devices actually detect motion, and that is done by
-sensing sound or light intensity change and computing the
-dispersion. Is the dispersion is too low, then the machine infers
+on or off according as whether there is movement in the
+room.
+---
+ These devices detect motion  by sensing sound or light
+intensity changes and computing the
+dispersion. If the dispersion is too low, then the machine infers
 that there is no motion, while a dispersion value exceeding a
 threshold triggers it. 
 </SESS>
 <JINGLE t="0.1">Math</JINGLE>
-<SESS t="1.10" done="y" id="s3">
+<SESS t="1.10" done="r" kf="10,20,30,40,50" id="s3">
 Dispersion, like central tendency, is an intuitive concept. We
  want to capture its essence using some mathematical formula
 that may be plugged into a computer for automated decision
 making. 
-<P/>
-We
-shall work with a single continuous variable, whose values may be
-considered as points along a number line,<V>[shown]</V> like this. If the
+---
+We shall work with a  continuous variable, whose values may be
+considered as points along a number line,<V>[shown]</V>. If the
 points are close together then dispersion is low, and if the are
-wider apart then dispersion is higher. We are looking for a
-mathematical fomula which will take the points as its input and
+wider apart then dispersion is higher.
+---
+ We are looking for a
+mathematical formula which will take the points as its input and
 produce a single number as its output, which should indicate the
 amount dispersion present. 
-<P/>
+---
 There are quite a few such measures. Here is a list of commonly
 used ones:
 
-<P/>
 *<B> Range</B>
 * <B>Variance and standard deviation </B>
 * <B>Median absolute deviation</B>
 * <B>Interquartile range</B>
-<P/>
+---
 We shall start with range in the next video.
 </SESS>
 </SCRIPT>
@@ -5819,14 +5943,18 @@ We shall start with range in the next video.
 <STKY>
 <HEAD3>Module 5, Lesson 1,  Video 2: Range</HEAD3></STKY>
 
-<SCRIPT id="m5/l/v">
-<SESS t="0.90" done="y" id="s1">
+<SCRIPT id="m5/l1/v2">
+<SESS t="0.90" done="r" kf="10,20,30,70,80,90,100,110" id="s1">
 <B>Range</B> is the simplest measure of dispersion, simplest to
 understand and simplest to compute. We again consider the values
-of a variable along a number line <V>[shown]</V>. To compute the range, you look
-at the two extremes<V>[shown]</V>, the minimum and maximum. The range is
+of a variable along a number line <V>[shown]</V>.
+---
+ To compute the range, you look
+at the two extremes<V>[shown]</V>, the minimum and the maximum. The range is
 defined as the distance betwen
-them<V>[shown, "range" comes down anim]</V>. More mathematically, if the values are 
+them<V>[shown, "range" comes down anim]</V>.
+---
+ More mathematically, if the values are 
 <B><D>
 x_1,...,x_n,
 </D>
@@ -5834,14 +5962,14 @@ then the range is defined as
 <D>
 \max_i\{x_i\} - \min_i\{x_i\}.
 </D></B>
+---
 For example, if the numbers are 
 <B><D>
 2.3, 4.6, 9.8, 2.4,
 </D></B>
 then the minimum is <M>2.3</M><V>[shown]</V> and the maximum is <M>9.8.</M><V>[shown]</V> So
-the range is <B><M>9.8-2.3 = 7.5.</M></B>
-<P/>
-
+the range is <B><M>9.8-2.3</M></B> which is <B><M>=7.5</M>.</B>
+---
 Let's quickly learn to compute it using LibreOffice.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
@@ -5856,85 +5984,89 @@ land.csv
 <STKY>
 <HEAD3>Module 5, Lesson 1,  Video 3: Properties of range</HEAD3></STKY>
 
-<SCRIPT id="m5/l/v">
-<SESS t="0.30" done="y" id="s1">
+<SCRIPT id="m5/l1/v3">
+<SESS t="0.30" done="r" id="s1">
 In this video we shall explore the properties of the range. There
 are some good properties and one seriously bad property. Let's
 start with the good ones.
 </SESS>
 <JINGLE t="0.1">Good properties</JINGLE>
-<SESS t="3.00" done="y" id="s2">
+<SESS t="3.00" done="r" kf="10,70,80,90,150,160,170,230,240" id="s2">
 Range is easy to compute, easy to understand. Good points. Now
 here are a couple of more good things about range that show that
-it captures the intuitive idea of dispersion. Suppose I take some
+it captures the intuitive idea of dispersion.
+---
+ Suppose I take some
 points,<V>[shown]</V> and the points are all squeezed down to a single
-point<V>[shown]</V>. There is no dispersion among them now, right? So desirable
-property number one for any measure of dispersion: <B>if all the
-values are equal then the measure should be 0.</B> Is it true about
+point<V>[shown]</V>. There is no dispersion among them now,
+right?
+---
+ So desirable property number one for any measure of dispersion: 
+<B>if all the values are equal then the measure should be 0.</B>
+ Is it true about
 range? If all the values are the same, then that same number is
 both the minimum and maximum, and hence their difference is
 zero. 
-<P/>
+---
 Here is another desirable property for a dispersion measure to
-have. We again start with our set of values. <V>[shown]</V>. If all the points are just shifted by the same amount<V>[shown]</V>, then
-do you think that dispersion has changed? Intuitively, it should
-not change, right? Because they have just moved not come closer
-together or fallen further apart. So if we have some values 
-<D>
-x_1,...,x_n
-</D>
-and add a constant, say <M>c</M> to all of them to get
-<D>
-x_1+c, ..., x_n+c,
-</D>
-then both these set of numbers shoud have the same
-dispersion. <V>[2. Dispersion should remain unchanged by constant shift.]</V>
-<P/>
+have. We again start with our set of values. <V>[shown]</V>. 
+If all the points are just shifted by the same amount<V>[shown]</V>, then
+do you think that dispersion has changed?
+---
+ Intuitively, it should not change, right? Because they have just
+ moved,  not come closer
+together or fallen further apart. So 
+<V>[2. Dispersion should remain unchanged by constant shift.]</V>
+---
 Is it true about the range? Yes, because when you shift all the
 numbers by some common amount, the min and max also get shifted
 by the same amount. So their difference remains the same.
-<P/>
+---
 Next comes yet another desirable property. We again start with
 values along a number line<V>[shown]</V>. They have some dispersion. Now we
 multiply all the numbers by some constant, say <M>c.</M> For
-instance we just double all the numbers<V>[shown]</V>. Then the dispersion
-should also change according to that constant <M>c,</M> right? If <M>c>1</M>
-then the dispersion should increase, if <M>0< c< 1</M> then the
+instance if <M>c=2,</M> then we just double all the numbers<V>[shown]</V>.
+---
+ Then the dispersion
+should also change according to that constant <M>c.</M>
+ If <M>c>1</M> then the dispersion should increase, if <M>0< c< 1</M> then the
 points are squeezed together, and hence dispersion should go
-down. The sign of <M>c</M> should not matter. If if <M>c < 0</M>
-then the points just get flipped around 0. In short, a good
+down.
+---
+ The sign of <M>c</M> should not matter. The sign merely controls
+if the points just  flipped around 0. In short, <V>[shown]</V>a good
 dispersion measure should get multiplied with <M>|c|</M> if all
-the numbers are multiplied with <M>c.</M><V>[dispersion should be
-multiplied by <M>|c|</M> if the values are multiplied by <M>c.</M>]</V>
-<P/>
-Does range satisfy this property, as
-well? Let's see.
+the numbers are multiplied with <M>c.</M>
+---
+Does range satisfy this property? Let's see.
 </SESS>
 <JINGLE t="0.1">Proof</JINGLE>
 <BC t="2">[Boardcast: Proof]</BC>
-<SESS t="0.50" done="y" id="s3">
+<SESS t="0.50" done="r" id="s3">
 So we have listed lots of good properties of the range. Easy to
 understand, easy to compute, becomes zero when all the values
 are the same, is not affected by constant shift, scales appropriately.
-<P/>
+---
 But still range is not a popular measure of dispersion. Why?
 Because it has one particularly bad property.
 
 </SESS>
 <JINGLE t="0.1">Bad property</JINGLE>
-<SESS t="1.10" done="y" id="s4">
+<SESS t="1.10" done="r" kf="10,20,80" id="s4">
  <B>Range is not robust</B> against outliers. 
 Let's quickly understand what that means. Suppose we have many
 cases in a data set. So for each variable we have many values.
+---
 When there are many values<V>[shown]</V> it is quite likely to some stray
 points, or outliers as they are called, that lie far away from
 the bulk of the other points<V>[outlier moves out shown]</V>, like this.
+---
 These outliers completely determine the 
 maximum or the minimum or both. So they have tremendous influence
-of the range. Even if all the other points are tightly together,
+on the range. Even if all the other points are tightly together,
 just one  stray point may cause the range to shoot up. Thus, the
 range is quite unstable, or non-robust.
-<P/>
+---
 In the following videos we shall look at other measures of
 dispersion that are more robust than range. They look at data
 more deeply, not just at the two extreme points.
@@ -6006,64 +6138,70 @@ more deeply, not just at the two extreme points.
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m5/l/v">
-<SESS t="0.80" done="y" id="s1">
+<SCRIPT id="m5/l2/v1">
+<SESS t="0.80" done="r" kf="10,20" id="s1">
 We learned about the concept of dispersion in the last lesson,
 and also one measure of dispersion, namely range. Range was easy
 to compute, but suffered from lack of robustness. It uses the
 data points too superficially. It is completely determined by the
 two extreme values, and does not care about the other points in-between.
-<P/>
+---
 In this lesson we shall learn about two related measures of
 dispersion that are free of this problem. The measures are
 called <B>variance</B> and its square root the <B>standard
 deviation</B>. These are the most popular measures of
-dispersion. Let's learn about step by step.
+dispersion. Let's learn about them step by step.
 </SESS>
 <JINGLE t="0.1">Variance</JINGLE>
-<SESS t="2.40" done="y" id="s2">
+<SESS t="2.40" done="r" kf="10,20,30,40,50,60,70,80,90" id="s2">
 Let's take a moment to remember why we are caring about
 dispersion. We have a bunch of numbers with central
 tendency<V>[shown in number line]</V>, and
 we want to represent the bunch with a single typical
-value<V>[arrow shown]</V>. We
-are now wondering how well  this single number can represent the
-data values.   The higher
-the dispersion, the less reliable is the representation. This was
+value<V>[arrow shown]</V>.
+---
+ We are now wondering how well  this single number can represent the
+data values.   The higher the dispersion, the less reliable is
+the representation. This was
 our motivation for considering dispersion. Let's
 turn this  motivation into a measure of dispersion.
-<P/>
+---
 Let the numbers be called <M>x_1,x_2,</M> etc. So the <M>i</M>-th
 number is <M>x_i.</M><V>[shown]</V> 
-Lets use mean as our measure of central tendency. So the centre
+Let's use mean as our measure of central tendency. So the centre
 is marked by <M>\bar x</M><V>[shown]</V>.
-<P/>
+---
 This single number <M>\bar x</M> is going to represent all
 the <M>x_i</M>'s. For the values
 close to the mean the representation is highly acceptable. For
-points further away, the acceptability is more dubious. So the
-difference between a point and the mean plays a central role in
+points further away, the acceptability is more dubious. 
+---
+So the difference between a point and the mean plays a central role in
 determining how well the mean can represent the point. Let's look
 at the <M>i</M>-th point.
 Its  difference from the mean is <B><M>x_i-\bar x.</M></B>
-This is positive because the point is on this side. It would have
-been negative if
-the point were on that side. But we do not care about sides
-here. So we want to get rid to the sign. One way to get rid of
-the sign is to square the difference to get the number 
+---
+This is negative because the point is on that side<V>[finger]</V>. It would have
+been positive if
+the point were on this side. But we do not care about sides
+here. So we want to get rid of the sign. One way to get rid of
+the sign is to square the difference to get 
 <B><M>(x_i-\bar x)^2.</M></B>
-<P/>
+---
  For each point we get one such number. Now we want to
-get a single number, a typical number to represent all these
-numbers. Aha, that again sounds like a central tendency
-problem. So we can take the mean of all these numbers to get 
+get a single number, a typical number to represent all these.
+Aha, that again sounds like a central tendency
+problem.
+---
+ So we can take the mean of all these numbers to get 
 <B><D>
 [[\sum (x_i-\bar x)^2][n]].
 </D></B>
 This might look complicated, and had we not followed its genesis,
 it would have left us wondering, 
 "How does this qualify as a measure of dispersion?". 
-But now we know. This is called the <B>variance</B>. It
+---
+But now we know. This is called the <B>variance</B>. Its
 square root, as we already know, is called the <B>standard
 deviation</B>. 
 Let's quickly digest
@@ -6163,23 +6301,27 @@ the definition with a small numerical example.
 
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 2: Other ways to compute it</HEAD3></STKY>
-<SCRIPT id="m5/l/v">
-<SESS t="1.00" done="y" id="s1">
+<SCRIPT id="m5/l2/v2">
+<SESS t="1.00" done="r" kf="10,20,30,40,50" id="s1">
 The formula that we used to define variance is not that easy to
 use by hand. It requires a sort of two-stage
-computation. Starting the data <V>[shown as x_1...x_n in a column]</V> first
-you compute mean <M>\bar x</M><V>[shown]</V>, then you compute
+computation. Starting from the raw data <V>[shown as x_1...x_n in a column]</V> first
+you compute mean <M>\bar x</M><V>[shown]</V>,
+---
+ then you compute
 the <M>(x_i-\bar x)^2</M>'s<V>[shown as another column]</V>, 
 and finally their mean <V>[shown]</V>.
-<P/>
+---
 There is another equivalent formula that is somewhat
-easier in the sense that it only requires a one-stage computation. Not that you'll typically do the computation by hand, but
+easier in the sense that it only requires a one-stage
+computation. Not that you'll typically do the computation by hand, but 
 still it is good to know. 
-<P/>
+---
 The formula is 
 <B><D>
 [[\sum x_i^2][n]] - (*([[\sum x_i][n])*)^2.
 </D></B>
+---
 So here you compute the sum of all the values as well as the sum
 of their squares, and then plug them into the formula. Let's see
 if we get the same answer.
@@ -6188,15 +6330,16 @@ if we get the same answer.
 <BC t="4" done="n" id="s1">
 [Boardcast: Show the same data and last answer. Use alternative formula.]
 </BC>
-<SESS t="0.50" done="y" id="s2">
+<SESS t="0.50" done="r" id="s2">
 It is possible to prove that these two formulae will always
 produce the same answer. Let's not bother about the proof
 here. The reading material has the proof, anyway. And it is
-nothing terribly important for learning statidtics. In fact, the
-alternative formula itself is not terribly important, unless you
-are forced to do hand computation. 
-<P/>
-In the next vieo we shall  learn what is important: computing
+nothing terribly important for learning statidtics.
+---
+ In fact, the alternative formula itself is not terribly
+important, unless you are forced to do hand computation. 
+
+In the next video we shall  learn what is important: computing
 variance using LibreOffice.
 </SESS>
 </SCRIPT>
@@ -6211,47 +6354,59 @@ var.csv
 </SCRIPT>
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 4: Other ways to compute it</HEAD3></STKY>
-<SCRIPT id="m5/l/v">
-<SESS t="1.90" done="y" id="s1">
-Actually LibreOffice, like most other softwares use a slightly
-different formula which is different:
+<SCRIPT id="m5/l2/v4">
+<SESS t="1.90" done="r" kf="10,20,30,40,50,60" id="s1">
+Actually LibreOffice, like most other softwares, uses a slightly
+different formula which is:
 <B><D>
 [[1][n-1]]\sum (x_i-\bar x)^2.
 </D></B>
+Notice the <M>n-1</M> in the deno.
+---
 Why <M>n-1,</M> you might naturally wonder, as all beginning
-statisticans do. Well, thereby hangs a long
+statisticans do.
+
+ Well, thereby hangs a long
 story. To cut that story short, here is a quick explanation.
+---
 Consider this math problem: <B><M>2 \times 4 + 5 \times 6=?</M>.</B>
 The steps should be 
 <B><MULTILINE>
-2\times 4 + 5\times 6 
 & = & 8 + 5\times 6 \\
 & = & 8 + 30 \\
 & = & 38.
 </MULTILINE></B>
-Suppose that a student has done the steps like this:
+---
+Now suppose that a student has done the steps wrongly like this:
 <B><MULTILINE>
-2\times 4 + 5\times 6 
 & = & 9 + 5\times 6 \\
-& = & 8 + 24 \\
-& = & 32.
+& = & 9 + 24 \\
+& = & 33.
 </MULTILINE></B>
+---
 How many steps do you see that do not match the corresponding
-correct step? The answer is 3. But how many
-mistakes do we see? Now the answer is 2. The reason is that the
+correct step? All the three steps. But how many
+mistakes do we see? Now the answer is different: only two. This and
+this. There is no fresh mistake in the last step.
+---
+ The reason behind this difference is that the
 steps are interrelated. If one mistake  leads to
-multiple incorrect lines, then they should not be counted separately. 
-<P/>
+multiple incorrect steps, then they should not be counted separately. 
+---
 That is what is happening here. When we are considering the
 differences <M>x_i-\bar x</M><V>[shown as column]</V>, there are <M>n</M> such
-differences. But they are interrelated. In particular they must
+differences. But they are interrelated.
+---
+ In particular they must
 add up to 0. So only <M>n-1</M> of them are actually free, the
 remaining one is completely determined by them. So we are
 dividing by <M>n-1.</M> 
-<P/>
+---
 This explanation is admittedly rather crude. It leaves many
 gaps. But filling up those gaps will take us beyond the scope of
-the present course. By the way this number 
+the present course. 
+---
+By the way this number 
 of "free" things has a general name: <B>degrees of
 freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 </SESS>
@@ -6259,74 +6414,54 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 5: Properties</HEAD3></STKY>
-<SCRIPT id="m5/l/v">
-<SESS t="2.60" done="y" id="s1">
+<SCRIPT id="m5/l2/v5">
+<SESS t="2.60" done="r" kf="10,70,80,140,150,210,220" id="s1">
 While discussing range, we had listed some desirable properties
-that a measure of dispersion should have. 
-<P/>
+that a measure of dispersion should have. <V>[data shown]</V>
 
- * should be 0 if all the values are the same <V>[anim shown]</V>
- * should not change if all the values are shifted together <V>[anim shown]</V>
- * should scale as the data (unaffected by the direction of
- scaling). <V>[anim shown]</V>
-<P/>
+ * if all the values are the same <V>[anim shown]</V>, the
+dispersion should be 0.
+---
+The next proprty is<V>[data shown]</V>
+ *  if all the values are shifted
+together <V>[anim shown]</V> dispersion should not change.
+---
+The third proprty <V>[data shown]</V>
+ * if the data values change unit
+ <V>[anim shown]</V> so should the dispersion (except for the sign).
+---
 Let's see if variance and standard deviation have these
  qualities. Enough to work with variance <V>[formula shown]</V>,
  because standard deviation is just its square root. Don't worry
  about the <M>n</M> in the denominator. The results remain the
  same even if you put <M>n-1</M> there.
-<P/>
- If all the data points are the same, then that value
+---
+ If all the data points are the same, then<V>[finger]</V> that value
  is also the mean, so all the <M>x_i-\bar x</M>'s are zeroes, and
  hence variance is 0. 
-<P/>
+---
 If all the data points are shifted by a common amount,
- then <M>\bar x</M> is also shifted by the same amount. So all
+ then<V>[finger]</V> <M>\bar x</M> is also shifted by the same amount. So all
  the <M>x_i-\bar x</M>'s remain unchanged. Hence so do variance
  and standard deviation.
-<P/>
-If, however,  the values are all multiplied by a constant, then
- each <M>x_i</M> and <M>\bar x</M> gets scaled by the same
+---
+If, however,  the values are all multiplied by a constant, then<V>[finger]</V>
+ each <M>x_i</M> and <M>\bar x</M> get multiplied by the same
  constant, so <M>x_i-\bar x</M> is also multiplied by it. Now we
  have a square here. So 
- variance gets multiplied by the square of that constant. Standard
- deviation, however, has the right behaviour. In fact, this is
+ variance gets multiplied by the square of that constant.
+---
+ Standard deviation, however, has the right behaviour. In fact, this is
  the reason why we care about standard deviation. It has the same
  unit as the data. Variace has the square unit, like area.
-<P/>
-OK, so we have the good properties. Now let's check
+---
+OK, so we have checked the good properties. Now let's check
  robustness. We have already mentioned that variance and standard
- deviation are more robust than the range. But you know what,
+ deviation are more robust than range.
+---
+ But you know what,
  even these are not sometimes robust enough for some purposes. So
- stay tuned for something more robust in the next video. But
- despite there being even more robust alternatives, nothing
- really beats variance and standard deviation in popularity. The
- reason behind this may appear a bit confusing at our level, but
- I shall let you see them anyway. 
-</SESS>
-<JINGLE t="0.1">Why popular?</JINGLE>
-<SESS t="1.40" done="skip" id="s2">
-The first reason is that variance <V>[formula shown]</V> is  <B>differentiable</B>.
-  "What's the big deal about
- differentiation here?" <V>[surprised face shown]</V>you naturally wonder. Well, often times
- we want to minimize or maximize dispersion. And you might recall
- from your calculus classes that differentiation plays an
- important role in maximization and minimisation.<V>[sad face shown]</V> What, never had
- a calculus course? Don't worry! Just forget what I said, you'd
- never need calculus here. <V>[face smiles, I nod.]</V>
- 
-<P/>
-The second reason is possibly a bit less mysterious. Let me explain with just
-two numbers <M>x_1</M> and <M>x_2.</M><V>[shown as columns]</V> Think of them as a single
-point on a graph paper.<V>[axes shown, point pops, x1 x2 anims to
-(x1,x2)]</V> You want to replace both of them with a
-typical representative value, which is <M>\bar x.</M> So instead
-of <M>(x_1,x_2)</M> you have <M>(\bar x,\bar ),</M><V>[shown]</V> which is just
-another point on the graph paper<V>[shown, label anims to it]</V>. What is the distance of the
-original point from this proxy point?<V>[shown]</V> Well, it is ...<V>[shown]</V>, and that
-is just the standard deviation (except for the constant
-denominator). This geometric interpretation helps statisticians
-in many ways.
+ stay tuned for something more robust in the next video.
 </SESS>
 </SCRIPT>
 <EXRLIST id="M5L2V2.yml">
@@ -6343,35 +6478,45 @@ in many ways.
 <STKY>
 <HEAD3>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m5/l/v">
-<SESS t="1.90" done="y" id="s1">
-We here acronyms everywhere. Each field has its own world of
-acronyms. But in how many fields use <B>MAD</B> as an acronym. Well,
-statisticians do. They are really mad guys! Of course, MAD does
-not really mean mad, it stands for <B>Median Absolute Deviation</B>. And
+<SCRIPT id="m5/l3/v1">
+<SESS t="1.90" done="r" kf="10,50,60,70,80,90,100" id="s1">
+We use acronyms everywhere. Each field has its own world of
+acronyms. But how many fields use <B>MAD</B> as an acronym? Well,
+statisticians do. They are really mad guys!
+---
+ Of course, MAD does
+not really mean mad in statistics, it stands for <B>Median Absolute Deviation</B>. And
 its sole motivation is to create a more robust version of
 variance. 
-<P/>
+
 Let's understand this step by step.
-<P/>
+---
 When we created variance, we started with a measure of central
-tendency.<V>[shown numberline with arrow]</V> We had chosen the mean. Now mean is known suffer from
+tendency.<V>[shown numberline with arrow]</V> We had chosen the
+mean. Now mean is known to suffer from
 lack of robustness. Median is a more robust alternative. So why
-not start with median, instead?<V>[shown]</V>
-Next, we had compute the differences <M>x_i-median.</M> As
-we have already mentioned, we want to get rid of its
-sign. Earlier we had squared the quantity. That did get rid of
-the sign, but also contributed to its lack of robustness. If
-some <M>x_i</M> is far away, then its deviation from the centre
-is anyway somewhat large, and if you square the deviation then it
-becomes way larger. We do not want to square, but still get rid
-of the sign. How? Simple, we just drop the sign. In other words,
-we take the absolute values.<V>[shown]</V> Finally we had taken mean, here we
-shall take the median. <V>[shown]</V>
-<P/>
+not start with the median, instead?<V>[shown]</V>
+---
+Next, we had computed the deviation of each point from the
+centre<V>[finger]</V>. As
+we have already mentioned, the sign does not matter.
+So earlier we had squared the deviation. That did get rid of
+the sign, but also contributed to its lack of robustness.
+---
+ If some <M>x_i</M> is far away, then its deviation. from the centre
+is anyway somewhat large, and if you square the deviation. then it
+becomes way larger, leading to non-robustness.
+ So here we do not want to square, but still get rid
+of the sign. How?
+---
+ Simple, we just drop the sign. In other words,
+we take the absolute values.<V>[shown]</V> Finally, earlier
+ we had taken mean, here we
+shall take the median of these absolute deviations <V>[shown]</V>.
+---
 Now you can also see why it is called Median Absolute
 Deviation. There is some method in the MADness after all. 
-<P/>
+
 Computing median by hand is never fun, because it requires you to sort
 the values. But just to remember the definition, let us toil
 through a numerical example by hand.
@@ -6381,7 +6526,7 @@ through a numerical example by hand.
 [Boardcast: compute MAD.]
 var.csv
 </BC>
-<SESS t="0.40" done="y" id="s2">
+<SESS t="0.40" done="r" id="s2">
 Now let's see how to compute MAD using
 LibreOffice. Unfortunately, LibreOffice or its paid analog Excel
 does not have any readymade command for this. But they can
@@ -6398,58 +6543,28 @@ var.csv
 <STKY>
 <HEAD3>Module 5, Lesson 3,  Video 2: Properties of MAD</HEAD3></STKY>
 <SCRIPT id="m5/l3/v2">
-<SESS t="1.00" done="y" id="s1">
+<SESS t="1.20" done="r" kf="10,70,80,140,150,210" id="s1">
 MAD has all the good properties of a dispersion measure that we
-have learned. If all the points are the same<V>[anim shown]</V>, then the median is
+have learned<V>[data shown]</V>. If all the points are the
+same<V>[anim shown]</V>,  then the median is
 that common value, so the deviations are all 0, and so is MAD.
-<P/>
-If you shift all the points by the same amount<V>[anim shown]</V>, then the median
+---
+Similarly <V>[data shown]</V>, if you shift all the points by the same amount<V>[anim shown]</V>, then the median
 also gets shifted by the same amount. So when we compute
 deviations by taking differences, this common amount gets
 cancelled. So MAD remains unchanged.
-<P/>
-If all the numbers are multiplied by some constant<V>[anim shown]</V>, the median
-also get multiplied by the same constant. So each of the
+---
+Finally <V>[data shown]</V>, if all the numbers are multiplied by some constant<V>[anim shown]</V>, the median
+also gets multiplied by the same constant. So each of the
 deviations <M>x_i-median</M> also gets multiplied by the same
 constant. When you take absolute value, the effect of the sign
 goes away. And so the MAD is also scaled appropriately.
 </SESS>
 <JINGLE t="0.1">Bad properties</JINGLE>
-<SESS t="0.70" done="y" id="s2">
+<SESS t="0.30" done="r" id="s2">
 MAD cannot be computed easily by hand. That was the main reason
 why people did not use it much before the advent of computers. Of
-course, this is hardly a consideration in the modern age. So the
-only criticism that may be leveled against MAD now is that it is not
-a differentiable formula, because the absolute value function is not
-differentiable, and that troubles people who try to do
-mathematical manipulations with the MAD formula. However, we do not
-need to worry about that in this course.
-</SESS>
-<JINGLE t="0.1">Geometry</JINGLE>
-<SESS t="1.50" done="skip" id="s3">
-We had seen one geometric interpretation of standard
-deviation. We can give a geomtric interpretation of MAD as well
-along a similar vein. Again we consider just two
-numbers, <M>x_1</M> and <M>x_2,</M> and consider them as a
-point <M>(x_1,x_2)</M> on the graph paper. Earlier we
-used <M>\bar x</M> as a proxy for the <M>x_i</M>'s, and
-thus <M>(\bar x, \bar x)</M> was a proxy for <M>(x_1, x_2).</M>
-For MAD the role of <M>\bar x</M> is played by the median. So the
-proxy point is <M>(median, median).</M> Now we want to think of
-MAD as the distance between the actual point and this
-proxy. Since MAD is
-<D>
-|x_1-median|+|x_2-median|,
-</D>
-it can be visualised as a sort of horizontal-vertical
-distance. In mathematics we call this
-the <M>L_1</M>-distance. According to this distance, if you want
-to go from one point to another, you have to move either
-horizontally or vertically. This is, for example, the distance you
-have to travel in a city where the roads are all north-south or
-east-west. As Manhattan is one such place, people sometimes call
-this the Manhattan distance. We shall discuss this any further,
-as we shall not need this here any more.
+course, this is hardly a consideration in the modern age. 
 </SESS>
 </SCRIPT>
 
@@ -6506,29 +6621,35 @@ What signals outliers: MAD diffeernet from standard deviation.
 <HEAD3>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m5/l4/v1">
-<SESS t="1.40" done="y" id="s1">
+<SESS t="1.40" done="r" kf="10,20,30,40,50" id="s1">
 We have already learned about quite a few dispersion
 measures. These included the most popular variance and standard
 deviation, and the robust MAD. So it might seem unnecessary to
 learn about yet another measure of dispersion, the 
-<B>interquartile range</B>. Just as MAD is a robustified version of standard
+<B>interquartile range</B>.
+---
+ Just as MAD is a robustified version of standard
 deviation,  interquartile range is a robustification of
-range. Not that it 
+range. Not that it is
 used much. But still we should know it, because it is closely
 connected with an important graphical representation, the
-<B>boxplot</B> or the <B>box-and-whiskers plot</B>. 
-<P/>
+<B>box plot</B> or the <B>box-and-whiskers plot</B>. 
+---
 Let us understand  interquartile range pictorially in
 relation with the range. Imagine the data points along a number
-line, as usual<V>[shown]</V>. When we defined range, we looked at the two
+line, as usual<V>[shown]</V>.
+---
+ When we defined range, we looked at the two
 extremes and took the distance between them. We noticed that the
 two extremes are very likely affected by outliers, and so range
 was not robust at all. So let's shave away part of the data from
-both the extremes<V>[shown]</V>. This is just like trimmed mean. But here we
+both the extremes<V>[shown]</V>.
+---
+ This is just like trimmed mean. But here we
 shall trim off 25% of the data from either end. So that leaves
-50% data in the middle. Now take the range of that. 
+50% data in the middle. Now we take the range of that. That
+is the interquartile range.
 
-<P/>
 The next video will talk about using this in a box plot.
 </SESS>
 </SCRIPT>
@@ -6565,13 +6686,19 @@ The next video will talk about using this in a box plot.
 <STKY>
 <HEAD3>Module 5, Lesson 4,  Video 2: Boxplot</HEAD3></STKY>
 <SCRIPT id="m5/l4/v2">
-<SESS t="0" done="y" id="s1">
-A box plot or a box-and-whisker plot is a quick summary picture
-of a single continuous or count variable. It consists of a
+<SESS t="0.70" done="r" kf="0,15,30,45,60,75,90,105" id="s1">
+A box-and-whiskers plot (or a box plot, for short) is a quick summary picture
+of a single continuous or count variable.
+---
+ It consists of a
 box<V>[shown]</V>, a line somewhere in the middle through
-it<V>[shown]</V>, and two whiskers. The box extends from the
+it<V>[shown]</V>, and two whiskers<V>[shown]</V>.
+---
+ The box extends from the
 first quartile to the third quartile<V>[Q1, Q3 shown]</V>. The
-central line is through the median. Different variants of the box
+central line is through the median<V>[med shown]</V>.
+---
+ Different variants of the box
 plot use different extents for the whiskers. The simplest is from
 the minimum<V>[shown]</V> to the maximum<V>[shown]</V>
 </SESS>
