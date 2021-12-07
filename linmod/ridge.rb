@@ -61,8 +61,8 @@ is a special case of the ad hoc formulation (with <M>\lambda = 0</M>).
 If the least squares estimator lies outside the hard bound
 constraint disc, then the constrained minimizer must lie on the
 circumference of the disc (since the target function if
-convex). So we might change the constraint from <M>\|\v \\beta
-\|^2\leq \delta</M> to <M>\|\v \\beta \|^2= \delta.</M> Now we
+convex). So we might change the constraint from <M>\|\v \beta
+\|^2\leq \delta</M> to <M>\|\v \beta \|^2= \delta.</M> Now we
 can use Lagrange multiplier technique, which works with the
 modified target funciion:
 <D>

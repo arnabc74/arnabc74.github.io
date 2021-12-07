@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>THU NOV 25 IST 2021</UPDT>
+<UPDT>SUN NOV 28 IST 2021</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -6753,25 +6753,26 @@ cons.csv
 
 <HEAD1>Module 6: Association etc</HEAD1>
 <SCRIPT id="m6/intro">
-<SESS t="1.20" done="y" id="s1">
+<SESS t="1.20" done="a" id="s1">
 We are nearing the end of our long journey. This is the last week
 of lecture in this course. Last, but not the least. Indeed the
 topic of this module will open up a whole new world, the world
 where we explore relation between different variables. 
-
-<P/>
+---
 So far we have mostly focused on a single variable at a
 time. We often had multiple variables in the same data set, but
 we worked with them one at a time. This week we shall consider
- two variables at a time. The discussion that we shall
+ two variables at a time.
+---
+ The discussion that we shall
 start here will eventually culminate in the Multivariate
 Statistics course in the second semester, where we shall deal
-with multiple variables at a time. 
-<P/>
+with multiple variables simultaneously. 
+---
 This week's structure is basically the same as that of the
 earlier ones. Four lessons followed by a review lesson. Practice
 problems in between, and a weekly test at the very end. 
-<P/>
+
 So let's get started!
 </SESS>
 </SCRIPT>
@@ -6781,75 +6782,94 @@ So let's get started!
 <STKY><HEAD3>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m6/l1/v1">
-<SESS t="2.40" done="y" id="s1">
+<SESS t="2.40" done="r" kf="10,20,30,40" id="s1">
 Nature around us obeys various laws, and scientists have been trying to
 capture these laws in the language of mathematics and physics and
 chemistry and what not. All those laws are precise. But nature
 isn't. Nature does follow the  laws, but under a cover of
-unpredictability. While other branches of science tries to look
+unpredictability.
+---
+ While other branches of science try to look
 under this cover, statistics tries to study the cover itself. 
-<P/>
+
 Now if you look at the laws of nature, be it Newton's laws of
 motion or Darwin's theory of evolution, we notice that the laws
-connect different quantities. How will this quantity, this
-variable, change if that variable changes in a certain way? How will
-the length of spring change with a change in the load hung from
-it?<V>[shown]</V>
-How
-will blood pressure change with dose of a certain drug?
+connect different quantities.
+---
+ How will this quantity, this
+variable, change if that variable changes in a certain
+way? 
+---
+How will blood pressure change with dose of a certain drug?
+<V>[spring shown]</V> How will
+the length of a spring change when the load hung from
+it changes?
+---
 <P/>
 To answer such questions based on data we need to observe both
-the variables simultaneously. Like this a weight dangling from
+the variables simultaneously. Like this weight dangling from
 the end of a spring. I note the weight and record the length,
-then change the weight and record the new length. This gives rise
+then change the weight and record the new length, and keep on
+doing this a number of times.
+---
+ This gives rise
 to bivariate data. This was an example of experimental data,
 where I, the experimenter, am actively changing the weight. A
 bivariate data may also result from an observational study. For
 instance, I may measure the heights and weights of different
-persons.<V>[hw shown]</V> In many household level surveys we collect data about
-the monthly income and monthly expenditure, and want to study the
-relation between them. Another example, that we have already seen
+persons.<V>[hw shown]</V>
+---
+Another example, that we have already seen
 is about educational level and income group,<V>[eduinc shown]</V> which leads to a
 contingency table. In the earlier examples both the variables
-were continuous. In the educational level and income group
-example, both were categorical. It is also possible to have a
+were continuous. But in this example
+both the variables are categorical.
+---
+ It is also possible to have a
 mixture, like a study that wants to compare monthly income of rural
-and urban population would have two variables: <B>background
+and urban population. Here we  would have two variables: <B>background
 (rural/urban) and monthly income.</B>
-
-<P/>
-We have encountered such data already in our
+---
+We have encountered bivariate data already in our
 course. In fact, we have learned some basic techniques to analyse
 them as well. Let's start with a quick review. 
 </SESS>
 <JINGLE t="0.1">Scatterplot</JINGLE>
-<SESS t="2.00" done="y" id="s2">
+<SESS t="2.10" done="r" kf="0,10,70,130,140" id="s2">
 When it comes to explore the relation between two continuous
-variables, nothing beats a simple scatterplot. Here is an
-example. Later in this lesson we shall learn  about various mathematical
-ways of quantifying such a relation. That's impressive, but does not
+variables, nothing beats a simple scatterplot<V>[linear pattern shown]</V>.
+---
+Later in this lesson, we shall learn  about various mathematical
+formulae for quantifying such a relation. Those are impressive, but do not
 reduce the power of the scatterplot. Two continuous variables may
-be related in a myriad of complex ways. A dumb mathematical
-algorithm falls far too short of capturing all the
+be related in a myriad of complex ways.
+---
+ A dumb mathematical formula falls far too short of capturing all the
 possibilities. The human eye (with a brain behind it) can capture
 a far greater variety. If the relation is like this, somewhat
 like a straight line, we can hope to capture it using a formula
-like <B><M>y=m x+c.</M></B> But how would you even describe a relation
-lie this? Or this? Here possibly you have to choose two different
-straight lines for the two different parts. Let's pretend you have a
+like <B><M>y=m x+c.</M></B>
+---
+ But how would you even describe a relation
+like this<V>[anim to complex]</V>? Or this<V>[another anim]</V>? 
+In this second case<V>[trans and finger]</V>  you possibly have to choose two different
+straight lines for the two different parts.
+---
+ Let's pretend you have a
 software to fit the lines for you. So you have two softwares, one
-fits a single line, another fits a broken line. Even if both
-these softwares are very reliable, you still need to decide which
+fits a single line, another fits a double line.
+---
+ Even if both these softwares are very reliable, you still need to decide which
 one of them to use for <I>your</I> data set, and there you'll
 need a scatterplot. 
-<P/>
+---
 So never underestimate a scatterplot. If you are analysing
 bivariate data with continuous variables, and you have not
 plotted a scatterplot right at the outset, you are in a state of
 unpardonable sin! 
-<P/>
+---
 If both the variables are categorical, then we usually resort to
-<B>contingency tables</B>, like this. So far we have not done much with
+<B>contingency tables</B>. So far we have not done much with
 contingency tables, except just constructing them from raw
 data. We shall learn to do things with them later this week.
 </SESS>
@@ -6936,49 +6956,64 @@ data. We shall learn to do things with them later this week.
 <STKY>
 <HEAD3>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD3></STKY>
 <SCRIPT id="m6/l1/v2">
-<SESS t="3.40" done="y" id="s1">
-Suppose we have a bivariate data set, heights and weights of some
-adult males from some country. Here both the variables
-are continuous. The scatterplot looks like this. You can see that there
-is an increasing relation between the two variables. A taller person
-tends to be heavier. Now what exactly do we mean by a tall
-person? We mean taller than average. Thus,
-if <M>x_i</M> denotes the height of the <M>i</M>-th guy,
-and <M>\bar x</M> is the average, then a 
- tall guy is one for whom <M>x_i-\bar x.</M> is a
-large positive number. Similarly, if <M>y_i</M> denotes the
-weight of the <M>i</M>-th guy, with mean <M>\bar y,</M> then a
+<SESS t="3.60" done="r" kf="10,20,30,40,70,80,120,140,150,160" id="s1">
+Suppose we have a bivariate data set<V>[shown]</V>, heights and weights of some
+adult males. Here both the variables
+are continuous. The scatterplot looks like this<V>[shown]</V>. You can see that there
+is an increasing relation between the two variables.
+---
+ A tall person
+tends to be heavy. Now what exactly do we mean by a tall
+person? We mean taller than average.
+---
+ Thus, if <B><M>x_i</M></B> denotes the height of the <M>i</M>-th guy,
+and <B><M>\bar x</M></B> is the average, then a 
+ tall guy is one for whom <B><M>(x_i-\bar x)</M></B> is a
+large positive number.
+---
+ Similarly, if <M>y_i</M> denotes the
+weight of the <M>i</M>-th guy,<V>[shown]</V>  then a
 heavy guy is one who has large positive <M>y_i-\bar y.</M> Thus,
 here positive values of <M>x_i-\bar x</M> tend to go with
-positive values of <M>y_i-\bar y.</M> Similarly, shorter guys
+positive values of <M>y_i-\bar y.</M>
+---
+ Similarly, shorter guys
 tend to be lighter, i.e., negative values of <M>x_i-\bar x</M>
 generally go with negative values of <M>y_i-\bar y.</M> 
-<P/>
+---
 This idea that <M>x_i-bar x</M> and <M>y_i-\bar y</M> generally
-have the same sign is nice captured by looking at their product 
-<M>(x_i-\bar x)(y_i-\bar y).</M> If this is positive,
+have the same sign is nicely captured by  their product 
+<B><M>(x_i-\bar x)(y_i-\bar y).</M></B> If this is positive,
 then <M>x_i-bar x</M> and <M>y_i-\bar y</M> have the same
-sign. Hence this notion of an increasing relation may be
+sign.
+---
+ Hence this notion of an increasing relation may be
 expressed as: <M>(x_i-\bar x)(y_i-\bar y)</M> values are
-typically positive. Since there are many <M>(x_i-\bar x)(y_i-\bar
-y)</M> values (one for each guy), and we are talking about their
-typical value, this is a case for central tendency. So we look at
+typically positive. Since there are many such  values 
+(one for each guy), and we are talking about their
+typical value, this is a case for central tendency.
+---
+ So we look at
 the mean of these numbers:
-<D>
+<B><D>
 [[1n]]\sum (x_i-\bar x)(y_i-\bar y).
-</D>
+</D></B>
+---
 This quantity has a special name, it is called the <B>covariance
 between</B> height and weight, because it measures how the two
-variables vary together. It is denoted by <M>\cov(x,y).</M> The
-hope is that if <M>\cov(x,y)>0</M> then cases with higher
+variables vary together. It is denoted by <M>\cov(x,y).</M>
+---
+ The hope is that if <M>\cov(x,y)>0</M> then cases with higher
 values of <M>x</M> tend to have higher values of <M>y,</M> as
 well. If, on the other hand, <M>\cov(x,y)<0</M>, then larger
 values of <M>x</M> will tend to go with smaller values
-of <M>y.</M> However, as I have said already, two variables may
+of <M>y.</M>
+---
+ However, as I have said already, two variables may
 be related in ways too complex to be just classified as
 increasing or decreasing, and covariance is easily confused in
 such complex cases. We shall see such examples soon. 
-<P/>
+---
 But before that we shall explore some mathematical properties of
 covariance, some desirable, some not.
 </SESS>
@@ -6987,60 +7022,81 @@ covariance, some desirable, some not.
 <STKY>
 <HEAD3>Module 6, Lesson 1,  Video 3: (Rank) correlation</HEAD3></STKY>
 <SCRIPT id="m6/l1/v3">
-<SESS t="3.00" done="y" id="s1">
+<SESS t="3.20" done="r" kf="10,20,30,40,50,60,70,80,90" id="s1">
 In this video we shall discuss some properties of 
-<D>
+<B><D>
 \cov(x,y) = [[1n]]\sum (x_i-\bar x)(y_i-\bar y).
-</D>
+</D></B>
+---
 This number is designed to shed light on the relation
 between <M>x</M> and <M>y.</M> A positive value is supposed to
 imply an increasing relation, a negative value a decreasing
-relation. Also, we would like to associate positive values much
+relation.
+---
+ Also, we would like to associate positive values much
 above zero
 with stronger increasing relations, and negative values much
-below zero with stronger decreasing relations. That's what we
+below zero with stronger decreasing relations.
+---
+ That's what we
 would like to have. Now let's see whether this magic formula
 lives up to our expectations. 
-
-<P/>
-
+---
 Suppose that we add 3 to all the <M>x</M>'s and 7 to all
 the <M>y</M>'s. Should the strength or direction of the relation between the
-two variables change? No. Indeed, that is the case, because the
+two variables change? No.
+---
+ Indeed, that is the case,<V>[finger]</V> because the
 constants influence both the values and the means in the same
 way, and hence gets cancelled during these subtractions. Good for
 us:<B> data shift does not change covariance.</B>
-<P/>
+---
 Now suppose once again that the <M>x</M>'s denote heights
 and <M>y</M>'s denote weights. Say the heights are measured in
 inches and weights are measured in pounds. If we just change the
 units, heights in cms and weights in kgs, do you expect the
-strength and direction of  the relation to change? No! But here's
+strength and direction of  the relation to change? No!
+---
+ But here's
 a bad news for us. Covariance does get changed here! Changing
 units means multiplying <M>x</M>'s with some constant, and
-the <M>y</M>'s with another constance. Both the values and the
-means get multiplied by the constants, and so the constants comes
-out. If one of the constants happens to be negative, then the
-direction of the relation changes, as is expected. But the sad
-fact is that the value of the covariance changes even when both
-the constants are positive. 
-<P/>
+the <M>y</M>'s with another constant.
+--- 
+Both <V>[finger]</V>the values and the
+means get multiplied by the constants, and so the constants come
+out. 
+---
 In order to rectify this defect: we propose a modified version of
 the covariance, we divide the covariance by the standard
 deviations of <M>x</M> and <M>y</M>:
-<D>
+<B><D>
 [[\cov(x,y)][sd(x)\times sd(y)]].
-</D>
+</D></B>
+---
  Since the standard
 deviations also scale by the same amount as the data, the effect
 of unit changes cancels out during the division. The resulting
 formula is called <B>correlation</B>, one of the most frequently
-used terms in statistics. This quantity always lies
+used terms in statistics.
+---
+ This quantity always lies
 between <M>-1</M> and <M>1.</M> 
-<P/>
-[When +1 and when -1.]
-<P/>
-The hope: zero means no relation. But nonlinearlity ruins.
+
+It may be shown that correlation is 1 iff there is a perfect linear relation with a
+ positive slope<V>[shown]</V> like this. Similarly, it is <M>-1</M> iff there is a
+ perfect linear relation with negative slope.<V>[shown]</V>
+---
+Now we  hope that correlation being zero means no relation. 
+But unfortunately that hope is
+ not fulfilled. While a zero correlation may look like
+ this <V>[shown]</V>, it may also look like
+ this<V>[shown]</V>.
+---
+ Correlation fails to detect the relation
+ between the variables here because the relation is
+ nonlinear. The plot looks like a curve.
+ And that is the greatest drawback of correlation. <B>It 
+works only for linear relation.</B>
 </SESS>
 </SCRIPT>
 
@@ -7156,101 +7212,129 @@ The hope: zero means no relation. But nonlinearlity ruins.
 <HEAD3>Module 6, Lesson 2,  Video 1: Rank correlation</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m6/l2/v1">
-<SESS t="5.10" done="y" id="s1">
+<SESS t="1.80" done="r" kf="10,20,30,40,50,60" id="s1">
 In the last lesson we saw that correlation coefficient or
-Prearson's correlation coefficient, to be precise, is meant to
-assess the direction and strength of linear relation only. It
-gets confused if the relation is nonlinear. In this video we
-shall discuss a more general version of correlation that will
+<B>Pearson's correlation coefficient</B>, to be precise, is meant to
+assess the direction and strength of <B>linear relation</B> only. It
+gets confused if the relation is nonlinear.
+---
+ In this video we shall discuss a more general version of correlation called 
+<B>Spearman's rank correlation</B> that will
 measure the direction and strength of <B>monotonic relations</B>. Let us
 understand what is meant by a monotonic relation. 
-<P/>
-Here is a scatterplot showing a monotonic relation. When <M>x</M>
+---
+Here<V>[shown]</V> is a scatterplot showing a monotonic relation. When <M>x</M>
 increases so does <M>y.</M> However, it is not linear, it looks
-like a curve. Here is yet another example of a monotonic
+like a curve. Here<V>[shown]</V> is yet another example of a monotonic
 relation, this time a decreasing one, when <M>x</M>
-increases, <M>y</M> decreases. However, this scatterplot shows a
-relation that is not monotonic, it is increasing here, but
-decreasing here. 
-<P/>
-So we understand what is meant by monotonic relation and
-direction of the relation. Now let us see what is meant by the
-strength of a monotonic relation. Here is a monotonic
-relation. Now this is a stronger version of the same relation,
-and this is a weaker version. 
-<P/>
-TThe new correlation coefficient that we are going to learn about
-will assume that the relation is monotonic, and will measure the
-strength and direction of the relation. If the relation is not
+increases, <M>y</M> decreases.
+---
+The new correlation coefficient that we are going to learn about
+will  measure the
+strength and direction of the relation, assuming that the
+relation is monotonic.  If the relation is not
 monotonic, then the correlation coefficient will be confused, and
-may give meaningless values. So we should first make a
-scatterplot to visually ascertain the monotonicity before
-computing the correlation coefficient.
-<P/>
+may give meaningless values.
+---
+ So we should first make a scatterplot to visually ascertain an overall
+monotonic pattern before computing this new correlation coefficient. 
+---
 The new correlation coefficient uses the same idea as Pearson's
 correlation, but with a twist. It first seeks to linearise the
-relation before computing Pearson's correlation. The technique is
-to rank the data first, w.r.t. both the variables. Let's
+relation before computing Pearson's correlation. Let's
 understand this with a toy example.
-<P/>
-Consider this scatterplot. The relation is clearly
+</SESS>
+<JINGLE t="0.1">An example</JINGLE>
+<SESS t="2.30" done="r" kf="10,70,130,140,150,160,190,220,230" id="s2">
+Consider <V>[shown]</V>this scatterplot. The relation is clearly
 nonlinear. Consider the <M>x</M>-values alone. You can see that
 they are not regularly spaced. Some are closer together, while
-some are spread apart. We shall stretch out the <M>x</M>-axis
-much like flattening a crumpled handkerchief. Then we shall do
-the same thing with the <M>y</M>-axis. As the result the points
-on the graph have straightened themselves into a nice straight
-line, except for a little hitch here. Now we may meaningfully apply the Pearson's correlation
-coefficient formula. This idea of computing Pearson's
+some are spread apart.
+---
+ We shall stretch out the <M>x</M>-axis
+much like straightening out a crumpled handkerchief.<V>[anim]</V>
+so that the x-values become regularly spaced.
+---
+Then we shall do the same thing with
+the <M>y</M>-axis.<V>[anim]</V> 
+As a result, the points on the graph have straightened themselves into a nice straight
+line, except for a little hitch here. 
+---
+Now we may meaningfully apply  Pearson's correlation
+coefficient formula.
+---
+ This idea of computing Pearson's
 correlation coefficient after linearlising the data leads to the
 concept of <B>Spearman's rank correlation.</B> 
-<P/>
-The exact proedure is this. When we straighten out
+---
+The exact procedure is this. When we straighten out
 the <M>x</M>-axis, we are basically making the <M>x</M>-values
-regularly spaced while retianing their original order. If we
-start from 1 and make the common gap 1, then we
+regularly spaced while retaining their original order.
+---
+If we start from 1 <V>[finger]</V> and make the common gap also 1, then we
 smallest <M>x</M>-value becomes <M>1,</M> the next
 smallest <M>2</M> and so on. In other words, we are replacing the
-<M>x</M>-variable by its
-<B>rank</B>s. If the values of a variable are 
-<Q>
+<M>x</M>-values by their <B>rank</B>s.
+---
+ If the values of a variable are 
 <B>4.5, 3.2, 4.2, 6.7</B>
-</Q>
 then the ranks are ...<V>[say]</V>
 We are doing the same thing with
-the <M>y</M>-variable. Let's a see numerical example.
-<P/>
-Here is a bivariate data set. This value is the smallest. So it
+the <M>y</M>-variable, as well.
+
+ Let's  see a numerical example.
+---
+Here is a bivariate data set.<V>[hwraw shown trans]</V>. Consider
+only the heights first. This
+height <V>[finger]</V>
+ is the smallest. So it
 gets rank 1. This is the next minimum, and hence gets rank 2. In
-this way we replace all the values by the ranks. Again we do this
-seperately for the <M>y</M>-variable. Now we compute Pearson's
-correlation coefficient. The result is called Spearman's rank
-correlation coefficient for the original data. 
-<P/>
+this way we replace all the values by the ranks.<V>[hrank
+shown]</V>
+---
+ Again we do this
+seperately for the weight variable.<V>[wrank shown]</V> 
+
+Now we compute Pearson's
+correlation coefficient. The result is called <B>Spearman's rank
+correlation</B> for the original data. 
+---
 The next video will teach us how to do this using LibreOffice.
-<P/>
-For now let's quickly look at the properties. Since Spearman's
+
+For now let's quickly look at the properties of rank correlation.
+</SESS>
+<JINGLE t="0.1">Properties</JINGLE>
+<SESS t="1.30" done="r" kf="10,20,30,40,50,60" id="s3">
+ Since Spearman's
 rank correlation coefficient is after all a Pearson's correlation
-coefficient applied on linearised data, so Spearman's coefficient
+coefficient applied to linearised data, so Spearman's coefficient
 inherits the mathematical properties of Pearson's coefficient: 
-  * It lies between -1 and 1
-  * It is +1 in case of perfect increasing relation (not
-    necessarily linear)
-  * It is -1 in case of perfect decreasing relation (not
-    necessarily linear)
-  * It remains unchanged if either variable is transformed in any 
-    way that preserves the ranks. This is of course as
+---
+  * It <B>lies between -1 and 1</B>
+---
+  * It is <B>+1 in case of perfect increasing relation</B> (ie, y
+increases iff x increases)
+---
+  * It is -<B>1 in case of perfect decreasing relation</B> (ie y
+decreases iff <M>x</M> increases)
+---
+  * It remains <B>unchanged if either variable is transformed in any 
+    way that preserves the ranks.</B> This is of course as
     expected. After all we are using just the ranks.
-  * It gets confused if the relation is far from monotonic.
-<P/>
-Incidentally, do not carried away too much by the idea of
-linearlising the data before applying Pearson's correlation. You
-are modifying the data, and whenever you do that, you must make
-sure that you are losing important information. So Spearman's
+---
+  * It <B>gets confused if the relation is far from monotonic</B>.
+---
+Incidentally, do not get carried away too much by the idea of
+linearlising the data before applying Pearson's
+correlation. Linearisation  modifies the data, and whenever 
+you do that, you must make sure that you are not losing
+important information. 
+---
+ So Spearman's
 rank correlation is to be used only when the main information is
 contained only in the order of the values, and not the values
-themseleves. In other words, this is applicable to only ordinal
-data. 
+themselves. In other words, this is applicable to only <B>ordinal
+variables.</B> 
 </SESS>
 </SCRIPT>
 <STKY>
@@ -7271,7 +7355,7 @@ find rank for variable without repetition (height).
 The idea of replacing the actual data by something convenient is
 appealing, as long as not valuable information is lost. Here is
 another such example. Suppose that we have a bivariate data set
-where both the valriable sare binary, i.e., take only two
+where both the variables are binary, i.e., take only two
 values. One example is gender vs handedness data.<V>[shown]</V> The gender
 variable takes only 2 values Male and Female, and the handedness
 variable takes two values Left and Right. In order to apply
@@ -7370,27 +7454,36 @@ possible ways to go about it, as we shall now see.
 <HEAD3>Module 6, Lesson 3,  Video 2: Odds ratio</HEAD3></STKY>
 
 <SCRIPT id="m6/l3/v2">
-<SESS t="1.30" done="y" id="s1">
+<SESS t="1.30" done="a" kf="9,10,50,90,130,140" id="s1">
 The first approach will be like this. Again consider the gender
-vs handedness data. What do I mean when I say that there is no
-association between gender and handedness. I mean a male person
+vs handedness data.<V>[shown]</V> What do I mean when I say that there is no
+association between gender and handedness?
+---
+ I mean a male person
 is as likely to left handed as a female one. Assuming that we
 have a data set that well represents the population, it goes like
-this: Look at only the males in the data set, find the odds
-of being a lefty amoung them. What is meant by odds here?  It is
-the ratio of lefties to righties among the males, i.e.,  this
-number by this number. Now carry out the same
-exercise for the females. The odds is ... In case of no
+this:
+---
+ Look at only the females in the data set, find the <B>odds</B>
+of being a lefty among them. What is meant by odds here?  It is<V>[finger]</V>
+the ratio of lefties to righties among the females, i.e.,  this
+number by this number.<V>[anim]</V>
+---
+ Now carry out the same
+exercise for the males.<V>[anim]</V> The male odds is 5/48.
+---
+ In case of no
 association, both the odds should be the same. So one way to
 meaasure departure from that benchmark situation is to take the
-ratio of the two odds. It is
-called the odds ratio. Values close to 1 signify low association,
-while high values indicate high association. 
-<P/>
+ratio of the two odds.<V>[anim]</V>
+---
+ It is called the <B>odds ratio</B>. Values close to 1 signify low association,
+while values away from 1 indicate high association. 
+
 It's pretty easy to compute this using LibreOffice. Let's see how.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="4" done="n">
+<SC t="4" done="r">
 [Screencast: Compute odds ratio.]
 lr.csv:
 </SC>
@@ -7460,23 +7553,33 @@ eduinc.csv
 
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD3></STKY>
-<SCRIPT id="m6/l/v">
-<SESS t="0.90" done="y" id="s1">
+<SCRIPT id="m6/l3/v5">
+<SESS t="1.30" done="a" kf="10,20,30" id="s1">
 The first <M>\chi^2</M>-based measure of association is called
-the contingency coefficient. It is defined as
-<D>
+the <B>contingency coefficient</B>. It is defined as
+<B><D>
 C = \sqrt{[[\chi^2][N+\chi^2]]},
-</D>
-where <M>N</M> is the grand total. Its problem is that it does
+</D></B>
+where <M>N</M><V>[finger]</V> is the grand total.
+---
+So if you have a contingency table<V>[shown]</V> like this, then
+you first compute <M>\chi^2 </M> and use this <V>[finger]</V>
+for <M>N.</M>
+---
+ Its problem is that it does
 not reach <M>1</M> even for a perfect relation. Indeed, the
 maximum that it can reach depends on the size of the table. So it
 should not be used to compare the levels of association of two
-tables of different sizes. Another related measure, which is free
-of this problem is Cramer's <M>V.</M> Its definition is
-<D>
+tables of different sizes.
+---
+ Another related measure, which is free
+of this problem is <B>Cramer's <M>V.</M></B> Its definition is
+<B><D>
 V = \sqrt{[[\chi^2][N(k-1)]]},
-</D>
+</D></B>
 where <M>k</M> is the minimum of the numbers of rows and columns.
+
+Thus for our example <M>k</M> is 3.
 </SESS>
 </SCRIPT>
 <STKY>
@@ -7685,22 +7788,21 @@ The next video will discuss them.
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 2: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT id="m6/l4/v2">
-<SESS t="0.60" done="y" id="s1">
+<SESS t="0.60" done="a" kf="10,20" id="s1">
 We have already seen some uses of moments. The first raw moment
 is the mean, which is the most commonly used moment. Next comes
 the second central moment, the variance. The second raw moment
 occurs in its alternative form. 
-<P/>
+---
 In this video we shall learn about two more moments that are
 used:
-<P/>
 
-  * The third central moment, used to measure <B>skewness</B> of
+  * The <B>third central moment, used to measure skewness</B> of
     a variable.
-  * The fourth central moment, used to measure <B>kurtosis</B> of
+---
+  * The <B>fourth central moment, used to measure kurtosis</B> of
     a variable.
 
-<P/>
 Let's start with skewness.
 </SESS>
 <JINGLE t="0.1">Skewness</JINGLE>
@@ -7771,48 +7873,65 @@ skew.csv
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 4: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT id="m6/l4/v4">
-<SESS t="2.20" done="y" id="s1">
+<SESS t="2.20" done="a" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 The 4th central moment<V>[shown]</V> is used to measure what is called
 the <B>kurtosis</B> of a variable. Just as central tendency,
 dispersion and skewness it is also a characteristic of the
-data. It is somewhat more subtle than these, though. Here again
+data.
+---
+ It is somewhat more subtle than these, though. Here again
 we are working with a data with two tails tapering off from a
-central peak. Skewness is concerned with different of the tails. Kurtosis is
+central peak.<V>[shown]</V> Skewness was concerned with asymmetry
+ of the tails. Kurtosis is
 about how far the tails go in relation to the peak. 
+---
 A data set with higher kurtosis is more likely to have far flung
-outliers. This histogram corresponds to low kurtosis, there is no
-tail at all, just a fat peak. 
-<D>
-[[1n]] (x_i-\bar x)^4 = [[1n]] (x_i-\bar x)^3\times (x_i-\bar x).
-</D>
+outliers. This histogram corresponds to medium kurtosis, the
+tails are not too long.
+---
+To appreciate the role of the 4th central moment here,
+consider the histogram as balanced on a pivot at its mean.<V>[shown]</V>
+Now think of the terms in the sum as
+<B><D>
+[[1n]] (x_i-\bar x)^3\times (x_i-\bar x).
+</D></B>
+---
 In other words, a point of weight  <M>[[1n]] (x_i-\bar x)^3</M> is applied
 at <M>x_i.</M> The resulting moment is always nonnegative. If the
 tails are even slightly long, their tips will contribute
-vehemently to the moment. 
-<P/>
-How does it help to detect the steepness of the central peak. If
-If it is rather steep, then the tails become short
-and/or thin. So the fourth central moment remains small. But if
-the peak is somewhat flat, then the tails grow fat and long,
+tremendously to the moment. 
+---
+How does it help to detect the behaviour of the tails?. If
+If the peak is rather steep, then the tails become short
+and/or thin. So the fourth central moment remains small.
+---
+ But if the peak is somewhat flat, then the tails grow fat and long,
 causing the fourth central moment to increase. To keep it free of
 unit we divide it by the fourth power of the standard deviation:
-
+<B><D>
+[[1n]] \sum (x_i-\bar x)^4/sd(x)^4
+</D></B>
+---
 It is customary to
 consider the value 3 as a benchmark. It corresponds to kurtosis
-present in this bell shape. This is called <B>mesokurtic</B>. If
-the peak is more steep, then the fourth central moment drops
+present in this bell shape<V>[shown]</V>. This is
+called <B>mesokurtic</B>.
+---
+ If the peak is more steep<V>[shown]</V>, then the fourth central moment drops
 below 3, and we called it <B>leptokurtic</B>. If the peak is
-flatter, then the tails dominate, and we get <M>>3,</M> called <B>platykurtic</B>.
+flatter<V>[shown]</V>, then the tails dominate, and we
+get <M>>3,</M> called <B>platykurtic</B>.
 </SESS>
-<SESS t="0.60" done="y" id="s2">
+<SESS t="0.60" done="a" kf="10,20,30,40" id="s2">
 As I have already mentioned skewness and kurtosis do not play a
 major role in practical data analysis. There are three main
 reasons:
- * They often do not have much practical interpretation. 
- * They presuppose a certain two tailed form of the variable. In 
+ * They often do <B>not have much practical interpretation. </B>
+ * They presuppose a certain <B>two tailed</B> form of the
+variable, ie a form like this<V>[shown]</V>. In 
    practice a variable may not have such a histogram.
  * As they involve cubes and fourth powers, they are easily
-   confused by a few extreme outliers. 
+   confused by a few extreme outliers.<V>[not robust]</V> 
 <P/>
 The coming videos will show skewness and kurtosis in action using LibreOffice.
 
