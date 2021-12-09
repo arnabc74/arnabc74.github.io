@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SUN NOV 28 IST 2021</UPDT>
+<UPDT>THU DEC 09 IST 2021</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -73,7 +73,7 @@ that's about it! Now let's get started with the lessons.
 </SESS>
 </SCRIPT>
 
-<HEAD2>Module 1, Lesson 1</HEAD2>
+<HEAD2>Module 1: Lesson 1</HEAD2>
 <STKY><HEAD3>Module 1,  Lesson 1,  Video 1: Data--what and why</HEAD3></STKY>
 <LESSON>
 
@@ -730,7 +730,7 @@ Here is a quick checklist:
 </EXRLIST>
 </LESSON>
 
-<HEAD2>Module 1, Lesson 2</HEAD2>
+<HEAD2>Module 1: Lesson 2</HEAD2>
 <STKY><HEAD3>Module 1, Lesson 2,  Video 1: Types of variables (Users' perspective)</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m1/l2/v1">
@@ -1267,7 +1267,7 @@ ratio.
 </SCRIPT>
 </LESSON>
 
-<HEAD2>Module 1, Lesson 3</HEAD2>
+<HEAD2>Module 1: Lesson 3</HEAD2>
 <STKY>
 <HEAD3>Module 1, Lesson 3,  Video 1: Univariate and multivariate</HEAD3></STKY>
 <LESSON>
@@ -1694,7 +1694,7 @@ In this course we shall not consider these layouts.
 </EXRLIST>
 </LESSON>
 
-<HEAD2>Module 1, Lesson 4</HEAD2>
+<HEAD2>Module 1: Lesson 4</HEAD2>
 <STKY>
 <HEAD3>Module 1, Lesson 4,  Video 1: Using a computer</HEAD3></STKY>
 <LESSON>
@@ -2073,7 +2073,7 @@ tables,  as well as graphs and reports.
 </EXRLIST>
 </LESSON>
 
-<HEAD2>Module 1, Lesson 5</HEAD2>
+<HEAD2>Module 1: Lesson 5</HEAD2>
 <STKY>
 <HEAD3>Module 1, Lesson 5 (review),  Video 1</HEAD3></STKY>
 <LESSON>
@@ -2229,14 +2229,14 @@ give for different aspects of the solution.
 </SESS>
 </SCRIPT>
 
-<HEAD2>Module 2, Lesson 1</HEAD2>
+<HEAD2>Module 2: Lesson 1</HEAD2>
 <STKY><HEAD3>Module 2, Lesson 1,  Video 1: Graphical: exploratory and pedagogic</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m2/l1/v1">
-<SESS t="2.60" done="y" id="s1">
-During the period <B>1853--1856</B>,  the <B>Crimean War</B> took place between the British and the
-Russian, where  a young nurse named <B>Florence
-Nightingale</B>, <V>[florpic.png]</V>  along with a
+<SESS t="2.60" done="a*" kf="10,20,30,40,50,60,120,180,190" id="s1">
+During the period <B>1853--1856, the Crimean War</B> took place between the British and the
+Russian, where  a young nurse named 
+<B>Florence Nightingale [florpic.png]</B>  along with a
 small group of friends,   was providing
 voluntary nursing service at the battlefield. She was shocked to find
 that more soldiers died of preventible diseases and neglect than in actual
@@ -2257,22 +2257,22 @@ in a privately published report, which she circulated among
 powerful politicians. This eventually led to a significant
 improvement in the sanitary conditions of the army hospitals.
 <P/>
-Let's take a closer look at the chart. <V>[others clear out]</V>. Her data set<V>datapart.png</V> was a monthly 
+Let's take a closer look at the chart. Her data set<V>datapart.png</V> was a monthly 
 trivariate time series, collected from 1854 to 1855. The three
 variables were the numbers of deaths due to three causes:
-preventible, wounds, and others. She split the central
-360 degree angle of circle
-into 12 equal parts and devoted one to each month. For each of
-the causes of death, 
-she constructed one sector in each wedge with <B>area proportional to the mortality
-rates.</B>  Thus, in each wedge she had three sectors (all
+preventible, wounds, and others. To depict 12 months' data, she split the central
+360 degree angle of a circle 
+into 12 equal parts and devoted one to each month. Then  
+she scaled each wedge with <B>area proportional to the mortality
+rates.</B> She did such a thing three times, once for each cause
+of mortality. Thus, in each wedge she had three sectors (all
 starting from the centre), and colour coded by the cause of
 death, blue for preventible, red for wounds, and black for the others. As one
 can easily see the blue sectors dominate the entire chart, driving
 her point home that deaths due to preventible reasons were the
 most significant. 
 </SESS>
-<SESS t="1.70" done="y" id="s2">
+<SESS t="1.70" done="a*" kf="10,20,30,40,50,60,70,80" id="s2">
 This is a classic example showing the power of pictorial
 representation of data. We use our eyes to
 decide about our surroundings. We are extremely adept at grasping
@@ -2286,9 +2286,10 @@ done with two basic points in view: <B>comparability</B> and <B>contrast</B>.
 In his book <B>Speaking of Graphics</B>, the author <B>Paul Lewi</B> tells us how
 Nightingale achieved these using her chart. Though her
 original data<V>[datapart.png]</V> were the numbers of deaths, she did not actually
-make the area proportional to that. Instead she projected
+make the area proportional to that. Instead she used an
+additional variable, the monthly size of the army,<V>[variable shown]</V> and projected
 everything to   <B>mortality rate</B>, by dividing the numbers of
-death by the estimated army size for that month. This allowed her to
+death by the army size for that month. This allowed her to
 compare different months, without having to worry about the
 different army sizes in the different months. Also, in the Rose
 chart for a different mortality data <V>[rose2part.jpg]</V> she
@@ -2299,12 +2300,14 @@ rates to the annual rates</B> before drawing the sectors. The idea of
 comparability is like bringing fractions on a common denominator
 before comparing them by the numerators.
 </SESS>
-<SESS t="0.80" done="y" id="s3">
-The next point is that of <B>contrast</B>. In her chart,
+<SESS t="0.80" done="a*" k="10,20,30" id="s3">
+The next point is that of <B>contrast</B>. In her charts,
 Nightingale presented two different contrasting pairs. First,
-between the different causes of mortality, and then between
+<B>between the different causes of mortality</B>, and then <B>between
 mortality in the army hospitals and that in the Manchester
-hospitals. Contrast appeals to the human mind. Do you have a
+hospitals. </B>
+---
+Contrast appeals to the human mind. Do you have a
 favourite Bond movie? When you discuss it, you'll be inevitably
 drawn towards comtrasting it with the other Bond movies you have
 watched. You'll talk about where this Bond differed from that
@@ -2312,7 +2315,7 @@ Bond. A description without contrast is as uninteresting as a
 musical piece where the same note is played repeatedly
 without variation.
 </SESS>
-<SESS t="0.20" done="y" id="s4">
+<SESS t="0.20" done="a*" id="s4">
 One may,  like Florence Nightingale,  improvise one's own way of
 representing data graphically. But there are certain standard
 methods,  which every statistician should know about. And that's
@@ -2320,9 +2323,8 @@ what we are going to learn next.
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 2, Lesson 1,  Video 2: Line diagram</HEAD3></STKY>
-###Keep this.
 <SCRIPT id="m2/l1/v2"> 
-<SESS t="0.80" done="y" id="s1">
+<SESS t="0.80" done="a*" kf="10,20" id="s1">
 When we present data, there are two conflicting aims. One is to
 present it as is, in an <B>objective</B> way. The other
 is <B>subjective</B>, 
@@ -2339,7 +2341,7 @@ modern statistics, the latter is generally frowned upon. Though
 such presentations are frequently used in advertisements and
 similar places.
 </SESS>
-<SESS t="2.40" done="y" id="s2">
+<SESS t="2.40" done="a*" kf="10,20,30,40,42,68,95,98,125" id="s2">
 The data used by Florence Nightingale  were time series data. The
 most common way to depict such data is the <B>line chart</B>. 
 This is  a graph like this. <V>Show example</V> Here time is shown in the <M>x</M>-axis, and
@@ -2372,12 +2374,12 @@ points with straight lines.
 But if the variable shown along the vertical axis were
 categorical, then a line chart would not make much sense.
 <P/>
-
-If we multiple variables of interest,  then we have multiple
+<V>[clear]</V>
+If we have multiple variables of interest,  then we have multiple
 lines that may be plotted separately or,  if they are comparable,
-overlaid on the same plot. For example, the trivariate mortality
+overlaid on the same plot. For example,<V>[empty plot shown]</V> the trivariate mortality
 data used by Florence Nightingale may be presented like
-this. <V>[plot appears, animated]</V>. Here the three lines
+this. <V>[3 lines are animated]</V>. Here the three lines
 correspond to the three causes of deaths, as is shown by the
 legend.
 <P/>
@@ -2388,7 +2390,7 @@ using Libreoffice.
 
 <STKY><HEAD3>Module 2, Lesson 1,  Video 3: Line diagram (lab)</HEAD3></STKY>
 <SCRIPT id="m2/l1/v3">
-<SESS t="0.30" done="y" id="s1">
+<SESS t="0.30" done="a*" id="s1">
 In this video we shall learn how to create line charts
 using Libreoffice. We shall first learn with toy
 examples. We shall get into real data at the very end of the module.
@@ -2565,14 +2567,15 @@ occasion to talk about prediction when we discuss time series analysis.
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 2, Lesson 2</HEAD2>
+<HEAD2>Module 2: Lesson 2</HEAD2>
 <STKY>
 <HEAD3>Module 2, Lesson 2,  Video 1: Scatter plot</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m2/l2/v1">
-<SESS t="2.70" done="y" id="s1">
-The last video discussed line charts. Line charts are primarily used for univariate data, though
-multivariate data could be accommodated using multiple line
+<SESS t="2.70" done="a*" kf="10,20,30,32,50,60,61,96,100,110,120" id="s1">
+The last video discussed line charts. Line charts are primarily
+used for univariate data, though multivariate data could be
+accommodated using multiple line 
 charts overlaid on top of one another. The next graphical device
 that we are going to learn about is primarily for bivariate data,
 though it may also be used for trivariate data. It is called a
@@ -2588,21 +2591,22 @@ person, and we have measured the height and weight of each
 person. To present this data set as a scatterplot, we take two
 axes, one for each variable.  Here
 height is shown in the horizontal axis, and weight in the
-vertical axis. 
+vertical axis.<V>[axes shown]</V> 
 <P/>
-The first case has this height,  weight pair. This corresponds to
+The first case has this height,  weight pair.<V>[first point
+shown]</V> This corresponds to
 this point. Similarly, each case gives us a point.<V>[anim]</V> 
 <P/>
-The resulting diagram is called a scatterplot.
+The resulting diagram is called a <B>scatterplot</B>.
 <P/>
 Why do we show height along the horizontal axis, and weight along
 the vertical axis?
 This choice is taken from mathematics. If you plot
-the graph of some formula like <M>y = \sin x</M>, where <M>y</M>
+the graph of some formula like <M>y = \sin x</M>,<V>[anim]</V> where <M>y</M>
 is  given in terms of <M>x,</M> then <M>x</M>, the independent
 variable,  is shown along the
 horizontal axis, while the dependent variable <M>y</M> is shown
-in the vertical axis. Similarly, here height is like the
+in the vertical axis. Similarly,<V>[scatterplot shown]</V> here height is like the
 <B>independent</B> variable, and weight is the <B>dependent</B> variable. it depends on fewer things than weight
 does. We seem to just get our height genetically, and it becomes
 fixed once we are adults. Weight, on the other hand,
@@ -2622,7 +2626,7 @@ little lab session before discussion further details.
 [Screencast: making a scatterplot for the height-weight data.]
 hw1: simple 
 </SC>
-<SESS t="0.20" done="y" id="s2">
+<SESS t="0.20" done="a*" id="s2">
 In the next video we shall look at a little variation of this.
 </SESS>
 </SCRIPT>
@@ -2630,7 +2634,7 @@ In the next video we shall look at a little variation of this.
 <HEAD3>Module 2, Lesson 2,  Video 2: Colour-coding</HEAD3></STKY>
 
 <SCRIPT id="m2/l2/v2">
-<SESS t="0.20" done="y" id="s1">
+<SESS t="0.20" done="a*" id="s1">
 Sometimes we may accommodate a third (categorical) variable in a
 scatterplot. Let's see how.
 </SESS>
@@ -2643,7 +2647,7 @@ scatterplot. Let's see how.
 <HEAD3>Module 2, Lesson 2,  Video 3: Closer look at scatterplots</HEAD3></STKY>
 
 <SCRIPT id="m2/l2/v3">
-<SESS t="0.70" done="y" id="s1">
+<SESS t="0.70" done="a" kf="30" id="s1">
 Let's now take a closer look at scatterplots. First, these are
 mainly used when both the variables are continuous. They are sometimes
 used even when one variable is discrete. Like if you have a data
@@ -2656,25 +2660,25 @@ Next we shall discuss about interpreting a scatterplot of two
 continuous variables.
 </SESS>
 <JINGLE t="0.1">Interpretation</JINGLE>
-<SESS t="0.50" done="y" id="s2">
+<SESS t="0.50" done="a" kf="10,40,70,100,130,160,190,220,250" id="s2">
 How to intepret a scatterplot? Well, a scatterplot shows the
 relation (or lack thereof) between two variables. Our eyes are
 extremely adept at discerning patterns in 2 dimensional
 pictures. Scatterplots harness that power by converting the
 values to points in the plane. Here are some commonly encountered
 patterns.  
- * Linear increasing
- * Linear decresing
- * Constant
- * Linear loose
- * Linear tight
- * Nonlinear increasing
- * Nonlinear decresing
- * Nonlinear max
- * Independent 
+ * <B>Linear increasing</B>
+ * <B>Linear decreasing</B>
+ * <B>Constant</B>
+ * <B>Linear loose</B>
+ * <B>Linear tight</B>
+ * <B>Nonlinear increasing</B>
+ * <B>Nonlinear decreasing</B>
+ * <B>Nonlinear mixed</B>
+ * <B>Independent </B>
 </SESS>
 <JINGLE t="0.1">Outliers</JINGLE>
-<SESS t="0.80" done="y" id="s3">
+<SESS t="0.80" done="a" kf="10,20,30,40,50,60" id="s3">
 If finding overall patterns in a data set is the most important
 use of scatterplots, the second most important use is just its
 opposite: detecting points that do not conform to the general
@@ -2682,8 +2686,8 @@ pattern. These are called <B>outliers</B>.
 <P/>
 Real life data abound in outliers. There are two types of
 outliers:
-  * Result of data error (typo, power outages)
-  * Correct but unexpected behaviour
+  * Result of data <B>error</B> (typo, power outages)
+  * Correct but unexpected ie <B>new behaviour</B>
 Whatever the type, the scatterplots are quite useful to detect
 them. Here are a few examples:
   * Independent with one point far off. <V>[out1.png]</V>
@@ -2738,7 +2742,7 @@ indicates that failures are more likely on colder days.
 <HEAD3>Module 2, Lesson 2,  Video 4: Closer look at scatterplots</HEAD3></STKY>
 
 <SCRIPT id="m2/l2/v4">
-<SESS t="0.60" done="y" id="s1">
+<SESS t="0.60" done="a*" kf="10,20" id="s1">
 A scatterplot is primarily meant for two continuous variables. We
 have seen how we can use color coding to incorporate a third
 categorical variable. But what if we have a third variable that
@@ -2866,7 +2870,7 @@ colours, then make colours.
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 2, Lesson 3</HEAD2>
+<HEAD2>Module 2: Lesson 3</HEAD2>
 <STKY>
 <HEAD3>Module 2, Lesson 3,  Video 1: Bar chart</HEAD3></STKY>
 <LESSON>
@@ -2996,18 +3000,20 @@ edit environment) <TODO>Chop some excess audio near the end.</TODO>
 <HEAD3>Module 2, Lesson 3,  Video 4: Pie (variants)</HEAD3></STKY>
 
 <SCRIPT id="m2/l3/v4">
-<SESS t="0.80" done="y" id="s1">
+<SESS t="0.90" done="a*" kf="30" id="s1">
+[Go very slow]
 There are not too many variants possible for a pie chart. Of
 course, you may make it look like a 3D disk.<V>[pie3d.png]</V> But that is only a
 cosmetic thing, which may actually interfere with
 interpretability, as in a 3D view the circle looks distorted into
-an ellipse. So the sectors to the sides get more prominence. 
+an ellipse. So the sectors to the sides get more prominence. Also
+the part that is further away from eye looks smaller.
 <P/>
 Pie charts are not good for multivariate data. If you have more
 than variable, you have to make a separate pie chart for
 each. Libreoffice does have an option for incorporating multiple
 variables in the same pie chart using concentric rings, but that
-is quite confusing to the eye, and should be avoided. 
+is quite confusing to the eye, and should better be avoided. 
 </SESS>
 
 </SCRIPT>
@@ -3103,7 +3109,7 @@ is quite confusing to the eye, and should be avoided.
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 2, Lesson 4</HEAD2>
+<HEAD2>Module 2: Lesson 4</HEAD2>
 <STKY>
 <HEAD3>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD3></STKY>
 <LESSON>
@@ -3169,7 +3175,7 @@ area of a
 sector proportional to the value. [Suggest what is bad if we make
 outer layer areas proportional.]
 </SESS>
-<SESS t="0.90" done="y" id="s3">
+<SESS t="0.90" done="a" id="s3">
 3D graphics look cool in a report. Realistically rendered 3D
 graphics employ perspective distortion, the distortion that makes
 circles look like ellipses, and make far away trees appear
@@ -3389,7 +3395,7 @@ all bars more or less of the same height is relevant.
 </EXRLIST>
 
 </LESSON>
-<HEAD2>Module 2, Lesson 5</HEAD2>
+<HEAD2>Module 2: Lesson 5</HEAD2>
 <STKY>
 <HEAD3>Module 2, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
 <STKY><HEAD3>Module 2, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
@@ -3413,7 +3419,7 @@ week's test. And as before we have some peer review problems.
 OK, enough introduction. Let's get started!
 </SESS>
 </SCRIPT>
-<HEAD2>Module 3, Lesson 1</HEAD2>
+<HEAD2>Module 3: Lesson 1</HEAD2>
 <STKY>
 <HEAD3>Module 3, Lesson 1,  Video 1: Tabular: Pivot table and pivot chart</HEAD3>
 </STKY>
@@ -3642,7 +3648,7 @@ pivot table.
 - typeName: multipleChoiceMake a pivot chart
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 3, Lesson 2</HEAD2>
+<HEAD2>Module 3: Lesson 2</HEAD2>
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 1: Contingency table</HEAD3></STKY>
 <LESSON>
@@ -3923,7 +3929,7 @@ to be added manually).
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 3, Lesson 3</HEAD2>
+<HEAD2>Module 3: Lesson 3</HEAD2>
 <STKY><HEAD3>Module 3, Lesson 3,  Video 1: Frequency distribution</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m3/l3/v1">
@@ -4202,7 +4208,7 @@ statistics hinges on this idea.
     [How to check an array of numbers?]
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 3, Lesson 4</HEAD2>
+<HEAD2>Module 3: Lesson 4</HEAD2>
 <STKY>
 <HEAD3>Module 3, Lesson 4,  Video 1: Histogram</HEAD3></STKY>
 <LESSON>
@@ -4446,7 +4452,7 @@ shapes.
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 3, Lesson 5</HEAD2>
+<HEAD2>Module 3: Lesson 5</HEAD2>
 <STKY>
 <HEAD3>Module 3, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
 <STKY><HEAD3>Module 3, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
@@ -4499,7 +4505,7 @@ they seek to capture. This week, we shall learn about
 the intuitive concept: centre of the data. 
 </SESS>
 
-<HEAD2>Module 4, Lesson 1</HEAD2>
+<HEAD2>Module 4: Lesson 1</HEAD2>
 </SCRIPT>
 <STKY><HEAD3>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD3></STKY>
 <LESSON>
@@ -4904,7 +4910,7 @@ learn the longhand way.
 </SC>
 </SCRIPT>
 </LESSON>
-<HEAD2>Module 4, Lesson 2</HEAD2>
+<HEAD2>Module 4: Lesson 2</HEAD2>
 <STKY>
 <HEAD3>Module 4, Lesson 2,  Video 1: Median</HEAD3></STKY>
 <LESSON>
@@ -5226,7 +5232,7 @@ value, and not affected by changes in the extreme values.
 </SESS>
 </SCRIPT>
 </LESSON>
-<HEAD2>Module 4, Lesson 3</HEAD2>
+<HEAD2>Module 4: Lesson 3</HEAD2>
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 1: Mode and others</HEAD3></STKY>
 <LESSON>
@@ -5571,7 +5577,7 @@ Let's look at the computation using LibreOffice.
 
  - typeName: trimmed median is same as median.
 </EXRLIST>
-<HEAD2>Module 4, Lesson 4</HEAD2>
+<HEAD2>Module 4: Lesson 4</HEAD2>
 
 <STKY>
 <HEAD3>Module 4, Lesson 4,  Video 1: Quantiles what?</HEAD3></STKY>
@@ -5776,7 +5782,7 @@ That is  the two-tailed p-value.
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 4, Lesson 5</HEAD2>
+<HEAD2>Module 4: Lesson 5</HEAD2>
 
 <STKY>
 <HEAD3>Module 4, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
@@ -5804,7 +5810,7 @@ alternative!
 
 
 <HEAD1>Module 5: Dispersion</HEAD1>
-<HEAD2>Module 5, Lesson 1</HEAD2>
+<HEAD2>Module 5: Lesson 1</HEAD2>
 
 <STKY>
 <HEAD3>Module 5, Lesson 1,  Video 1: The concept</HEAD3></STKY>
@@ -6133,7 +6139,7 @@ more deeply, not just at the two extreme points.
   
     
 </EXRLIST>
-<HEAD2>Module 5, Lesson 2</HEAD2>
+<HEAD2>Module 5: Lesson 2</HEAD2>
 
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD3></STKY>
@@ -6474,7 +6480,7 @@ OK, so we have checked the good properties. Now let's check
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 5, Lesson 3</HEAD2>
+<HEAD2>Module 5: Lesson 3</HEAD2>
 <STKY>
 <HEAD3>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD3></STKY>
 <LESSON>
@@ -6615,7 +6621,7 @@ What signals outliers: MAD diffeernet from standard deviation.
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 5, Lesson 4</HEAD2>
+<HEAD2>Module 5: Lesson 4</HEAD2>
 
 <STKY>
 <HEAD3>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD3></STKY>
@@ -6741,7 +6747,7 @@ cons.csv
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 5, Lesson 5</HEAD2>
+<HEAD2>Module 5: Lesson 5</HEAD2>
 <LESSON>
 <STKY>
 <HEAD3>Module 5, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
@@ -6753,7 +6759,7 @@ cons.csv
 
 <HEAD1>Module 6: Association etc</HEAD1>
 <SCRIPT id="m6/intro">
-<SESS t="1.20" done="a" id="s1">
+<SESS t="1.20" done="r" id="s1">
 We are nearing the end of our long journey. This is the last week
 of lecture in this course. Last, but not the least. Indeed the
 topic of this module will open up a whole new world, the world
@@ -6761,12 +6767,12 @@ where we explore relation between different variables.
 ---
 So far we have mostly focused on a single variable at a
 time. We often had multiple variables in the same data set, but
-we worked with them one at a time. This week we shall consider
- two variables at a time.
+we mostly worked with them one at a time. This week we shall consider
+ two variables together.
 ---
  The discussion that we shall
 start here will eventually culminate in the Multivariate
-Statistics course in the second semester, where we shall deal
+Statistics course in later semester, where we shall deal
 with multiple variables simultaneously. 
 ---
 This week's structure is basically the same as that of the
@@ -6777,7 +6783,7 @@ So let's get started!
 </SESS>
 </SCRIPT>
 
-<HEAD2>Module 6, Lesson 1</HEAD2>
+<HEAD2>Module 6: Lesson 1</HEAD2>
 
 <STKY><HEAD3>Module 6, Lesson 1, Video 1: Bivariate data, The concept via plots</HEAD3></STKY>
 <LESSON>
@@ -7206,7 +7212,7 @@ works only for linear relation.</B>
 </EXRLIST>
 </LESSON>
 
-<HEAD2>Module 6, Lesson 2</HEAD2>
+<HEAD2>Module 6: Lesson 2</HEAD2>
 
 <STKY>
 <HEAD3>Module 6, Lesson 2,  Video 1: Rank correlation</HEAD3></STKY>
@@ -7304,7 +7310,7 @@ The next video will teach us how to do this using LibreOffice.
 For now let's quickly look at the properties of rank correlation.
 </SESS>
 <JINGLE t="0.1">Properties</JINGLE>
-<SESS t="1.30" done="r" kf="10,20,30,40,50,60" id="s3">
+<SESS t="1.30" done="r" kf="10,20,30,40,50" id="s3">
  Since Spearman's
 rank correlation coefficient is after all a Pearson's correlation
 coefficient applied to linearised data, so Spearman's coefficient
@@ -7351,49 +7357,65 @@ find rank for variable without repetition (height).
 <HEAD3>Module 6, Lesson 2,  Video 3: Phi coefficient for binary data</HEAD3></STKY>
 
 <SCRIPT id="m6/l2/v3">
-<SESS t="2.80" done="y" id="s1">
+<SESS t="2.90" done="r" kf="10,20,30,40" id="s1">
 The idea of replacing the actual data by something convenient is
-appealing, as long as not valuable information is lost. Here is
+appealing, as long as no valuable information is lost. Here is
 another such example. Suppose that we have a bivariate data set
 where both the variables are binary, i.e., take only two
-values. One example is gender vs handedness data.<V>[shown]</V> The gender
+values.
+---
+ One example is gender vs handedness data.<V>[shown]</V> The gender
 variable takes only 2 values Male and Female, and the handedness
-variable takes two values Left and Right. In order to apply
+variable takes two values Left and Right.
+---
+ In order to apply
 Pearson's correlation formula we first encode the two values as 0
-and 1.<V>[shown]</V> Call it the resulting correlation
-coefficient the <M>\phi</M>
-coefficient. Of course, the sign depends on which value we call 0 and
-which value 1. Since we have assigned that arbitrarily, the sign
+and 1.<V>[shown]</V> 
+---
+Call the resulting correlation
+coefficient the <B><M>\phi</M>
+coefficient</B>. Of course, the sign depends on which value we call 0 and
+which value 1.
+---
+ Since we have assigned that arbitrarily, the sign
 of the computed correlation coefficient has no importance. So we
 interpret only its absolute value. 
-<P/>
+---
 Computing this by LibreOffice is not much difficult, and we shall
-do that in the next video. But for now let's think about this
-procedure carefully.
-<P/>
-First, we choose the values 0 and 1 arbitrarily. They have no
-significance. We could as well have chosen 100 and 117. Wouldn't
-that change the value of <M>\phi.</M> The answer is: No, it
-won't. Because remember that if a variable <M>x</M> is
-transformed to <M>ax+b</M> for some constants <M>a>0</M>
-and <M>b,</M> then correlation computed based on <M>x</M> (and
-some other variable) remains unchanged. Here you can map 0, 1 to
-100, 117, using a straight line,<V>[shown]</V> like this.
-<P/>
-From this discussion it shoud be apparent why this trick works
-only for binary data. Because given any two distinct points you
+do that in the next video. But for now let's take a second look
+at the 
+procedure.
+---
+Here we chose the values 0 and 1 arbitrarily. They have no
+significance. We could as well have chosen 100 and 117. But wouldn't
+that change the value of <M>\phi?</M>
+---
+ The answer is: No, it won't. Because remember that if a variable <M>x</M> is
+transformed to <M>ax+b</M> for some constants <M>a</M>
+and <M>b,</M> where <M>a>0</M>, then correlation computed based
+between <M>x</M> and some other variable, remains unchanged, if
+we replace <M>x</M> by <M>ax+b.</M>
+---
+ Here you can map 0, 1 to 100, 117, using a straight line,<V>[shown]</V> like this.
+
+From this discussion it should be apparent why this trick works
+only for binary data.
+---
+ Because given any two distinct points you
 can always draw a line through them. This cannot be guaranteed
 for three distinct points.
-<P/>
+---
 A quick word about interpretation of the <M>\phi</M>
 coefficient. If it is <M>\pm1</M> then there is perfect relation between
 the two variables (i.e., given the value for one variable, you
-can exactly predict the other). Here the variables are nominal,
+can exactly predict the other).
+---
+ Here the variables are nominal,
 so we cannot talk about the relation being increasing or
 decreasing. As the value of <M>\phi</M> goes towards zero,
 the strength of the relation weakens. At 0 there is no relation
 at all.
-<P/>
+---
 OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coefficient.
 </SESS>
 </SCRIPT>
@@ -7419,32 +7441,38 @@ Save whorl.csv for exercises.
  Cramer's V and the contingency coefficient C
 
 <SCRIPT id="m6/l3/v1">
-<SESS t="1.90" done="y" id="s1">
+<SESS t="1.90" done="r" kf="10" id="s1">
 In the last lesson we were discussing how Pearson's correlation
 formula may be adapted to situations where the variables are not
 continuous, say ordinal or even nominal. We talked
-about the <M>\phi</M> coefficient, which works with a biavariate
-data, where both the variables are binary. Now notice that such a
-data set may be nicely presented as a <M>2\times2</M> contingency
+about the <M>\phi</M> coefficient, which works with bivariate
+data, where both the variables are binary.
+---
+ Now notice that such a data set may be nicely presented as a <M>2\times2</M> contingency
 table. There are four possible combinations (Male, Left), (Male,
-Rightt) etc, that may be neatly laid out as a table. We just
+Right) etc, that may be neatly laid out as a table.<V>[shown]</V>
+---
+ We just
 count the number cases under each combination, and populate the
 table with those frequencies. Thus, the <M>\phi</M> coefficient
 may be considered as a measure of association for
 a <M>2\times2</M> contingency table. 
-<P/>
+---
 In this lesson we shall take a look at some other popular
 measures of association for contingency tables. Some will be
 for <M>2\times2</M> tables only, like the <M>\phi</M>
 coefficient, while others may be used for larger tables, as well. 
-<P/>
+---
 Unlike the way we presented the <M>\phi</M> coefficient, our
 approach in this lesson will be different. We shall not try to
-use Pearson's correlation formula here. Instead, we shall think
+use Pearson's correlation formula here.
+---
+ Instead, we shall think
 intuitively about what is meant by there being "no association"
 between the two variables, take that as a benchmark, and then
-compare our actual contingency table with that benchmark. The
-distance of our
+compare our actual contingency table with that benchmark.
+---
+ The distance of our
 table from that benchmark will provide a measure of
 association. Well, that is the basic idea. There are a number of
 possible ways to go about it, as we shall now see.
@@ -7454,27 +7482,28 @@ possible ways to go about it, as we shall now see.
 <HEAD3>Module 6, Lesson 3,  Video 2: Odds ratio</HEAD3></STKY>
 
 <SCRIPT id="m6/l3/v2">
-<SESS t="1.30" done="a" kf="9,10,50,90,130,140" id="s1">
+<SESS t="1.30" done="r" kf="9,10,50,90,130,140" id="s1">
 The first approach will be like this. Again consider the gender
 vs handedness data.<V>[shown]</V> What do I mean when I say that there is no
 association between gender and handedness?
 ---
  I mean a male person
-is as likely to left handed as a female one. Assuming that we
+is as likely to be left handed as a female one. Assuming that we
 have a data set that well represents the population, it goes like
 this:
 ---
  Look at only the females in the data set, find the <B>odds</B>
-of being a lefty among them. What is meant by odds here?  It is<V>[finger]</V>
+of being a lefty among them. What is meant by odds
+here?<V>[trans]</V> It is<V>[finger]</V>
 the ratio of lefties to righties among the females, i.e.,  this
 number by this number.<V>[anim]</V>
 ---
- Now carry out the same
+ <V>[transoff]</V>Now carry out the same
 exercise for the males.<V>[anim]</V> The male odds is 5/48.
 ---
  In case of no
 association, both the odds should be the same. So one way to
-meaasure departure from that benchmark situation is to take the
+measure departure from that benchmark situation is to take the
 ratio of the two odds.<V>[anim]</V>
 ---
  It is called the <B>odds ratio</B>. Values close to 1 signify low association,
@@ -7493,50 +7522,73 @@ lr.csv:
 <HEAD3>Module 6, Lesson 3,  Video 3: Chisquare</HEAD3></STKY>
 
 <SCRIPT id="m6/l3/v3">
-<SESS t="3.50" done="y" id="s1">
-Our next approach will be based on a more subtle notion of "no
-association". It wil hae the advantage of being applicable to
+<SESS t="3.40" done="r" kf="10,20,30,40,50,60,90,100" id="s1">
+We have already seen one way of quantifiying "no association". 
+Our next approach will be based on a more subtle notion of 
+the same "no association" concept. 
+---
+It wil have the advantage of being applicable to
 even larger contingency tables. Consider this table for
-example.<V>[shown]</V> The variables are education level and income
+example.<V>[shown trans]</V>
+---
+ The variables are education level and income
 groups. Suppose I tell you that for this data set at least there
 is no association between education level and income group (oh,
-terrible!). I am giving you these marginal values. Can you tell
+terrible!).
+---
+Now I am giving you these marginal values. Can you tell
 me this value?<V>[point]</V> At first you might wonder how to find it. But
 remember I told you that there is no association between the two
-variables. So if I consider each row separately then the
+variables.
+---
+ So if I consider each row separately then the
 proportional distribution of the numbers in them must be the
-same.  And if the same proprtions prevail in each row,
-they must also prevail in thse marginals. Now from these totals
-I can see that 60 is one fifth of 300.
-this cell must be one fifth of 40, ie, 8.
-<P/>
+same in each row.  And if the same proprtions prevail in each row,
+they must also prevail in these marginals.
+---
+ Now from these totals I can see that 60 is one fifth of 300.
+So this cell must be one fifth of 40, ie, 8.<V>[shown]</V>
+Understand this carefully.
+---
 Let's make a formula out of it. It is the <B>row total times the
 column total by the grand total</B>. Repeating this for all the
-cells, we have the expected frequencies, expected under the
-assumption of no association. So that's our benchmark. Now comes
-the question of comparing our observed cell frequences with it. 
-<P/>
+cells, we have the expected cell frequencies, expected under the
+assumption of no association. So that's our benchmark.
+---
+ Now comes
+the question of comparing our observed cell frequences with these
+expected values.
+---
 First we do the obvious: forming the difference between the
-observed frequency and the expected frequency in each cell. Some
-of these numbers will be positive, some will be negative. We do
-not care about the sign,. To get rid of it, we just square the
-differences. Next we do something that might come as a
-surprise. We divide this number by the expected frequency. This
-is like forming the relative error. To appreciate this imagine
+observed frequency and the expected frequency in each cell.<V>[shown]</V> Some
+of these numbers will be positive, some will be negative.
+---
+ We do not care about the sign. To get rid of the sign, we just square the
+differences.<V>[shown]</V> Next we do something that might come as a
+surprise. We divide this number by the expected
+frequency.<V>[shown]</V>
+---
+ This is like forming the relative error. To appreciate this imagine
 that some one has a salary hike of Rs 1000. If the original
 salary was Rs 2000, then a hike of Rs 1000 is appreciable. But if
 the original salary were Rs 100000, then a hike of Rs 1000 is
-hardly prciptible. Thus the importance of the hike is to be
+hardly perceptible.
+---
+ Thus the importance of the hike is to be
 measured relative to the base amount. In this case wrt the
-expected frequency. Thus for each cell you get a number. The
-total of all these numbers is a rather famous quantity in
-statistics. It is called <M>\chi^2 </M>-value. The formula is
-<D>
+expected frequency. Now using this formula  you get a number for
+each cell. 
+---
+The total of all these numbers is a rather famous quantity in
+statistics. It is called <M>\chi^2 </M>-statistic. The formula is
+<B><D>
 \chi^2 = \sum[[(m_{ij}-n_{ij})^2][n_{ij}]].
-</D>
+</D></B>
+---
 The different measures of association that we are going to learn
-about now are all based on this. But perhanps it would be better
-to go over this computation using LibreOffice before discussing them.
+about now are all based on this. But perhaps it would be better
+to go over this computation using LibreOffice before discussing
+those measures.
 </SESS>
 </SCRIPT>
 
@@ -7554,7 +7606,7 @@ eduinc.csv
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD3></STKY>
 <SCRIPT id="m6/l3/v5">
-<SESS t="1.30" done="a" kf="10,20,30" id="s1">
+<SESS t="1.30" done="r" kf="10,20,30" id="s1">
 The first <M>\chi^2</M>-based measure of association is called
 the <B>contingency coefficient</B>. It is defined as
 <B><D>
@@ -7692,7 +7744,7 @@ eduinc.csv:
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 6, Lesson 3</HEAD2>
+<HEAD2>Module 6: Lesson 3</HEAD2>
 
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 7: Contingency table measures (part 2)</HEAD3></STKY>
@@ -7732,55 +7784,61 @@ gamma test
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 6, Lesson 4</HEAD2>
+<HEAD2>Module 6: Lesson 4</HEAD2>
 
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m6/l4/v1">
-<SESS t="2.90" done="y" id="s1">
+<SESS t="2.90" done="r" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 The methods we shall learn here are of limited practical use
 because of their lack of robustness. But nevertheless this lesson
 will introduce the concept of moments, which enjoys an 
 important position in the theory of statisitcs. 
-<P/>
+---
 We start by showing the <M>x_i</M>'s as points along the number
 line<V>[shown]</V>. Imagine that the line is actually a see-saw, and the data points
-as point masses placed on it each of weight <M>[[1n]].</M>  Let's
-imagine the pivot at the 0 mark<V>[shown]</V>. Here <M>x_i</M> is
-the position of the <M>i</M>-th point. Since 0 is not at the centre, 
-the see-saw will try to tilt. 
+are point masses placed on it, each of weight <M>[[1n]].</M>  Let's
+imagine the pivot at the 0 mark<V>[shown]</V>.
+---
+ Here <B><M>x_i</M></B> is the position of the <M>i</M>-th
+point. Since 0 is not at the centre, the see-saw will  tilt. 
  You may know from physics, that each point applies a turning force to turn the
-see-saw in its direction. The turning force is called
-the <B>moment</B> and is given by the product of the weight and
-the distance from the pivot. The total moment therefore is 
+see-saw in its direction.
+---
+ The turning force is called the <B>moment</B> and is given by
+the product of the weight and its distance from the pivot. The total moment therefore is 
  <B><M>[[1n]]\sum x_i.</M></B>
-<P/>
+---
 This terminology has entered into statistics from physics. What a
-physicist calls "the moment of the points masses around 0" is
-called "the <B>first raw moment</B> of the variable".
-The word "raw" signifies that the moment is tsken around 0. 
+physicist calls "the moment of the point masses around 0" is
+called "the <B>first raw moment</B> of the variable" in statistics.
+---
+The word "raw" signifies that the moment is taken around 0. 
 The word "first" implies that there are second, third and possibly
-higher ordered moment in use. And indeed there
+higher ordered moments in use. And indeed there
 are. The <B><M>k</M>-th raw moment</B> is defined as <B><M>[[1n]]\sum x_i^k.</M></B> 
-<P/>
+---
 Now let's recall the  definition of
 variance:
 <B><D>
 [[1n]]\sum (x_i-\bar x)^2.
 </D></B>
-This quantity is called the <B>"second central moment"</B> of the
+---
+This quantity is also called the <B>"second central moment"</B> of the
 variable. "Second" because the exponent is 2, and "central"
 because we have subtracted <M>\bar x</M> from each <M>x_i</M>
-before computing the moment. In general the <B><M>k</M>-th central
-moment</B> is defined as
+before computing the moment.
+---
+ In general the <B><M>k</M>-th central moment</B> is defined as
 <B><D>
 [[1n]]\sum (x_i-\bar x)^k.
 </D></B>
+---
 Why do we care about these moments? Mostly because they play
 an important role in the theory of statistics. But there are a
 couple of practical uses as well. 
-<P/>
+
 The next video will discuss them. 
 </SESS>
 </SCRIPT>
@@ -7788,11 +7846,11 @@ The next video will discuss them.
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 2: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT id="m6/l4/v2">
-<SESS t="0.60" done="a" kf="10,20" id="s1">
+<SESS t="0.60" done="r" kf="10,20" id="s1">
 We have already seen some uses of moments. The first raw moment
 is the mean, which is the most commonly used moment. Next comes
 the second central moment, the variance. The second raw moment
-occurs in its alternative form. 
+occurs in the alternative formula of variance.
 ---
 In this video we shall learn about two more moments that are
 used:
@@ -7806,60 +7864,75 @@ used:
 Let's start with skewness.
 </SESS>
 <JINGLE t="0.1">Skewness</JINGLE>
-<SESS t="2.80" done="y" id="s2">
+<SESS t="2.80" done="r" kf="10,20,30,40,70,80" id="s2">
 Skewness is a form of assymmetry in the values of a
-continuous variable. Consider these three histograms. This one is
+continuous variable. Consider these three histograms.<V>[shown]</V> This one is
 symmetric, while these two are asymmetric. Anything that is not
 symmetric is asymmetric. But these two are asymmetric in a
-special way. There are two tails in all the cases. Here the right
+special way.
+---
+ There are two tails in all the cases. Here the right
 tail is longer than the left. And here it is the opposite. This
 special types of asymmetry is seen in many real life data
-sets. It is this type of asymmetry that is called skewness. It may be measured by comparing the
+sets. It is this type of asymmetry that is called skewness.
+---
+ It may be measured by comparing the
 lengths of the two tails. If the right tail is longer, we call
 the variable positively skewed, if the left tail is longer then
 we have negative skewness. A symmetric case has zero skewness. 
-<P/>
+---
 Now the tails are only an intuitive
 description. There is no clearly defined start of the tails. So
 we cannot just measure its length from start to end. Then how do
-we compare the lengths of the tails? Well, that's precisely where
+we compare the lengths of the tails?
+---
+ Well, that's precisely where
 the third central moment comes in.
 <B><D>
 [[1n]]\sum (x_i-\bar x)^3.
 </D></B>
-Think of the number line as a see-saw pivoted at <M>\bar x.</M>
+---
+Think of the number line as a see-saw pivoted at <M>\bar x.</M><V>[shown]</V>
 Then the (signed) distance of the <M>i</M>-th point from the
 pivot is <M>x_i-\bar x.</M> Think of <M>[[1n]](x_i-\bar x)^3</M> as 
 <B><D>
 [[1n]](x_i-\bar x)^3 = [[1n]] (x_i-\bar x)^2\times (x_i-\bar x).
 </D></B>
+---
 Then this is like the moment of a mass <M>[[1n]](x_i-\bar
-x)^2</M> placed at <M>x_i.</M> notice how the masses increase
-rapidly as you move away from the pivot. Thus the tip of the
+x)^2</M> placed at <M>x_i.</M> Notice how the masses increase
+rapidly as you move away from the pivot. 
+---
+Thus the tip of the
 longer tail will exert a much greater moment than that of the
 shorter tail. This will cause the see-saw to tilt in the
-direction of the longer tail<V>[shown]</V>. By the direction of the tilt and
+direction of the longer tail<V>[anim]</V>.
+---
+ By the direction of the tilt and
 strength, we can then measure the skewness present in the
 variable.
-<P/>
+---
 Just to make the skewness free of the unit of the data, we divide
 by the cube of the standard deviation:
-<D>
+<B><D>
 [[\sum (x_i-\bar x)^3][sd(x)^3]].
-</D>
+</D></B>
 This is called the <B>coefficient of skewness</B>.
-<P/>
+---
 But be warned. If the data is not having two tails tapering away
 from a central peak, then the third central moment may be
 misleading. So it is awlays a good idea to draw a histogram
-first. And when you draw the histogram, you'll have a good idea
-about the skewness present. As a result the skewness coefficient
-is not used too commonly. 
+first.
+---
+ And when you draw the histogram, you'll anyway have a good idea
+about the skewness present just by looking at it. 
+As a result the skewness coefficient is not used too commonly. 
+</SESS>
+</SCRIPT>
+
 <TODO>
 mean median mode relation for skewness.
 </TODO>
-</SESS>
-</SCRIPT>
 
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 3: Concept of moments: skewness and kurtosis</HEAD3></STKY>
@@ -7873,14 +7946,14 @@ skew.csv
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 4: Concept of moments: skewness and kurtosis</HEAD3></STKY>
 <SCRIPT id="m6/l4/v4">
-<SESS t="2.20" done="a" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
+<SESS t="2.20" done="r" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 The 4th central moment<V>[shown]</V> is used to measure what is called
 the <B>kurtosis</B> of a variable. Just as central tendency,
-dispersion and skewness it is also a characteristic of the
-data.
+dispersion and skewness it is also a characteristic of a
+variable.
 ---
  It is somewhat more subtle than these, though. Here again
-we are working with a data with two tails tapering off from a
+we are working with a variable with two tails tapering off from a
 central peak.<V>[shown]</V> Skewness was concerned with asymmetry
  of the tails. Kurtosis is
 about how far the tails go in relation to the peak. 
@@ -7901,13 +7974,14 @@ at <M>x_i.</M> The resulting moment is always nonnegative. If the
 tails are even slightly long, their tips will contribute
 tremendously to the moment. 
 ---
-How does it help to detect the behaviour of the tails?. If
+How does it help to detect the behaviour of the tails?. 
 If the peak is rather steep, then the tails become short
-and/or thin. So the fourth central moment remains small.
+and thin. So the fourth central moment remains small.
 ---
  But if the peak is somewhat flat, then the tails grow fat and long,
 causing the fourth central moment to increase. To keep it free of
-unit we divide it by the fourth power of the standard deviation:
+unit we divide it by the fourth power of the standard deviation
+to get this measure of kurtosis:
 <B><D>
 [[1n]] \sum (x_i-\bar x)^4/sd(x)^4
 </D></B>
@@ -7917,24 +7991,27 @@ consider the value 3 as a benchmark. It corresponds to kurtosis
 present in this bell shape<V>[shown]</V>. This is
 called <B>mesokurtic</B>.
 ---
- If the peak is more steep<V>[shown]</V>, then the fourth central moment drops
+ If the peak is more steep<V>[shown]</V>, then the kurtosis drops
 below 3, and we called it <B>leptokurtic</B>. If the peak is
 flatter<V>[shown]</V>, then the tails dominate, and we
 get <M>>3,</M> called <B>platykurtic</B>.
 </SESS>
-<SESS t="0.60" done="a" kf="10,20,30,40" id="s2">
+<SESS t="0.60" done="r" kf="10,20,30,40" id="s2">
 As I have already mentioned skewness and kurtosis do not play a
 major role in practical data analysis. There are three main
 reasons:
- * They often do <B>not have much practical interpretation. </B>
+---
+ * Unlike central tendency and dispersion, they often do 
+   <B>not have much practical interpretation. </B>
+---
  * They presuppose a certain <B>two tailed</B> form of the
 variable, ie a form like this<V>[shown]</V>. In 
    practice a variable may not have such a histogram.
+---
  * As they involve cubes and fourth powers, they are easily
    confused by a few extreme outliers.<V>[not robust]</V> 
-<P/>
+---
 The coming videos will show skewness and kurtosis in action using LibreOffice.
-
 </SESS>
 </SCRIPT>
 
@@ -7964,7 +8041,7 @@ kurt.csv
 
 </EXRLIST>
 </LESSON>
-<HEAD2>Module 6, Lesson 5</HEAD2>
+<HEAD2>Module 6: Lesson 5</HEAD2>
 
 <STKY>
 <HEAD3>Module 6,  Lesson 5 ,  Video 1: Review</HEAD3></STKY>
