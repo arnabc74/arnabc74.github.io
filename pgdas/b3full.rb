@@ -6,93 +6,121 @@
 <STKY><HEAD3>Module 1, Lesson 1, Video 1: The concept (population,
 sample)</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m1/l1/v1">
-<SESS t="1.30" done="n" id="s1">
-The worls around us is full of unpredictable variations. Unpredictable, yet
+<SCRIPT id="m1/l1/v1" done="b">
+<SESS t="1.30" done="a" kf="10,20,30" id="s1">
+The world around us is full of unpredictable variations. Unpredictable, yet
 the unpredictability has a pattern in it. Man has been studying this
-pattern ever since his earliest existence. There are different ways to deal
-with such patterned unpredictability, and statististics is one of them. In
-this lesso e shall learn what sets statistics apart from the other
-approaches. This diffeence is the key to appreciating statistical methods,
+pattern ever since his earliest existence.
+---
+ There are different ways to deal
+with such patterned unpredictability, and statistics is one of them. In
+this lesson we shall learn what sets statistics apart from the other
+approaches.
+---
+ This diffeence is the key to appreciating statistical methods,
 their strong points as well as their weak points. 
-
+---
 This key concept in a nutshell is this: Whatever data we collect is like a
-cup of water from a vast ocean. The cup of water is all that we have to
+<B>cup of water from a vast ocean</B>. The cup of water is all that we have to
 base our inference on, but it is not the water in the cup that we want to
-draw inference about. The  target of our inference is the entire ocean. The
-statistical term for the cup of ater is a <B>sample</B>, the ocean being
+draw inference about.
+---
+ The  target of our inference is the entire ocean. The
+statistical term for the cup of water is a <B>sample</B>, the ocean being
 called the <B>population</B>. 
-
+---
 Any serious statistical exercise starts with a precise and clear picture of
-the population and the sample being used for that purpose. 
+the population and its relation with the sample.
 </SESS>
 <JINGLE t="0.1">Population and sample</JINGLE>
-<SESS t="3.90" done="n" id="s2">
+<SESS t="1.90" done="a" kf="10,40,90,100" id="s2">
 We shall start with a simple example. The very term <B>population</B>
 conjures up the vision of the totality of all the people living in a
 country. While statistics uses the term in a broader sense, this
-nevertheless remains a picture to keep in mind. 
-
-Here is our toy example. Imagine  that we want to know the height of the
-tallest person in our population, consisting of all the people living in a
-large country. Of course, if we had a list of the heights of all the
+nevertheless remains a good picture to keep in mind. 
+---
+Here is our toy example. Imagine a population consisting of all the people living in a
+large country. <V>[men shown]</V> We want to know the height of the
+tallest person in our population.<V>[line shown]</V>  
+---
+Of course, if we had a list of the heights of all the
 members of the entire population, then it would have been just a matter of
 looking up the maximum, something that a computer could have done easily
-for us. But the point is that we do not have such a list to start with, nor
+for us.
+---
+ But the point is that we do not have such a list to start with, nor
 are we in a position to construct such a list now by measuring the heights
-of all the people in the country. We just do not have enough resourses to
-carry out such a gigantic task. What we can do however is draw a random
-sample of individuals and measure their heights only. There is no guarantee
+of all the people in the country. We just do not have enough resources to
+carry out such a gigantic task.
+---
+ What we can do however is draw a random
+sample of individuals and measure their heights
+only.<V>[highlighted]</V>
+ There is no guarantee
 of course that this sample will contain the tallest person in the
-population, and so that cannot exist any sure fire way to ind the maximum
+population,...
+---
+ and so there cannot exist any sure fire way to find the maximum
 height in the population by looking at just the heights in the sample. The
 best that we can hope for is a reasonable guess. The precise statistican
 term for obtaining  such a reasonable guess is <B>estimation</B>. 
-
-
-Let's try to come up with a good estimation procedure. Suppose the heights
-of the people in our sample are 5'2'', 5'5'', 5'0'', 5'9'', 5,5'' and
-6'3''. 
-
-Based on this somone estimates the maximum population to e 6'. Is this a
+</SESS>
+<SESS t="3.60" done="b" id="s3">
+Now let's try to come up with a good estimation procedure. Suppose the heights
+of the people in our sample are 5'2'', 5'5'', 5'0'', 5'9'' and
+6'3''.<V>[list shown]</V> 
+----
+Based on this somone estimates the maximum population to be 6'.<V>[6'?]</V> Is this a
 good estimate? No! Because even in our sample we have a person taller than
-this! OK, let's revise our estimate to 6'3'' then, the maximum in our
+this!<V>[finger]</V>
+---
+ OK, let's revise our estimate to 6'3''<V>[6'3''?]</V> then, the maximum in our
 sample. That is not as absurd as the last estimate, but still this assumes
 that just by randomly selecting 5 persons out of an enormous population we
-have managed to get one of the tallest guys in the entire country! Not
-impossible, but not very probable either! So we should better allow some
-margin above the sample maximum. Howe to choose the margin? Here are two ad
+have managed to get one of the tallest guys in the entire
+country!
+---
+ Not impossible, but not very probable either! So we should better allow some
+margin above the sample maximum. How to choose the margin? Here are two ad
 hoc suggestions: 
-
+---
 * One method could be to use the gap between the top two tallest persons in
-the sample as the margin. Thus in our case it would be 6'3''-5'9'' =
-6''. So we estimate the population maximum to be 6'3''+6'' = 6'9''.
-
+the sample as the margin<V>[anim shown]</V>. Thus in our case it would be this.<V>[finger]</V>
+ So we estimate the population maximum to be 6'3''+6'' = 6'9''.<V>[shown]</V>
+-----
 * Another method could be to scale up the sample maximum by a factor 5/4,
-which is sample size/(sample size-1).
-
+which is sample size/(sample size-1), just an ad hc
+suggestion!<V>[numbers shown]</V>
+---
 These are, as I said, ad hoc suggesions, and one can come up with many such
-suggestions. Just as our toy example, this scenario is indeed common to all
-statistical methods. Instead of just blurting out a single number as our
+suggestions. Just as in our toy example, this scenario is indeed common to all
+statistical methods. We can think of many ad hoc procedures, and
+need to choose the best, or at least a good one among them.
+---
+ Instead of just blurting out a single number as our
 estimate, we are instead trying to come up with a  rule or formula to
-produce the estimate from the sample. Like "sample max" or "sample max +
-gap between the tallest two guys in the sample" or "sample size/(sample
-size-1) * sample max".
-
+produce the estimate from the sample. Like <B>"sample max"</B> or <B>"sample max +
+gap between the tallest two guys in the sample"</B> or <B>"sample size/(sample
+size-1) * sample max".</B>
+---
 Such formulae are called <B>estimators</B>, as opposed to
 an <B>estimate</B> which refers to the numerical value that the formula takes for a
-given sample. The target quenatity that we are trying to estimate
-is called a parameter. Indeed, any unknown quantity regarding the
+given sample. The target quantity that we are trying to estimate
+is called a <B>parameter</B>.
+---
+ Indeed, any unknown quantity regarding the
 underlying population is called a parameter, whether or not we
-are tryin gto estimate it. 
-
-Our aim was to find the population maximum. Had we possesed a complete list
+are trying to estimate it. 
+---
+Our parameter of interest was the population maximum. Had we possesed a complete list
 of all the heights in the population, then this would have been a dumb
 clerical exercise. No scope of creativty there. As uninteresting as a
-detective story where you already know the ending. But since we do not have
+detective story where you already know the ending.
+---
+ But since we do not have
 such a master list available, we can propse and compare between different
 estimators. Lots of scope for creativity here! 
-
+---
 So here is the take away message that you should never forget. The ultimate
 aim of statistics is not to <B>look at data</B>, but <B>through data at
 the underlying reality</B>. Sample corresponds to the data, population to
@@ -101,219 +129,288 @@ the underlying reality.
 </SCRIPT>
 
 <STKY><HEAD3>Module 1, Lesson 1, Video 2: The concept (sampling distribution)</HEAD3></STKY>
-<SCRIPT id="m1/l1/v2">
-<SESS t="1.30" done="n" id="s1">
+<SCRIPT id="m1/l1/v2" done="a">
+<SESS t="1.30" done="a" kf="30,60" id="s1">
 In the last video we looked at the simplest scenario of <B>sample</B> and
 <B>population</B>. Indeed, what we discussed there is what most people would
 anyway associate with these concepts. But statisticians use the terms
 population and sample in a much more general sense. That's what we are
 going to discuss next. 
-
+---
 In most branches of science, we need to make measurements. As everybody
 connected with actual measuring processes know quite well,  if you measure
-the same quantity repeatedly under as identical conditionas as you can manage,
-still the measurements fluctuate to some extent. Stand still on a weighing
-machine, note the readin on the instrument, get down, come back after five
+the same quantity repeatedly under as identical conditions as you can manage,
+still the measurements fluctuate to some extent.
+---
+ Stand still on a weighing
+machine, note the reading on the instrument, get down, come back after five
 minutes and weigh yourself again, and you might very well get a slightly different
-measurement. It is hard to pin point the cause behind the variation. But
+measurement.
+---
+ It is hard to pin point the cause behind the variation. But
 something imperciptible, something imponderable beyond our control has
-changed somewhere. One cannot avoid noticing the uncanny resemblance of
-this with a oin toss. The outcome is random. That is why in any scientific
+changed somewhere.
+---
+ One cannot avoid noticing the uncanny resemblance of
+this with a coin toss. The outcome is random. That is why in any scientific
 measurement we are advised to measure  the same quantity multiple times.
 </SESS>
-
-<SESS t="0.80" done="n" id="s2">
+<JINGLE t="0.1">Statistician's perspective</JINGLE>
+<SESS t="0.80" done="a" kf="30" id="s2">
 Statisticians like to invoke the same population and sample analogy even in
 this case. It may require some effort to visualise this at first, but it is
-well wort getting used to. Think of each measurement as picking a random
+well worth getting used to.
+---
+ Think of each measurement as picking a random
 sample from a population of all possible measurements. As if nature has in
 her secret store all these slightly differing values.
+---
 That is the population of measurements. When you are
 making 5 measurements, it is as if you are picking 5 of the stored
-measurements and making them public. To distinguish this abstract usuage of
+measurements and making them public.
+---
+ To distinguish this abstract usuage of
 the term population, people sometimes call it an <B>infinite
 population</B>. 
 </SESS>
-
-<SESS t="1.80" done="n" id="s3">
+<SESS t="1.90" done="a" kf="30,40,100,110,120" id="s3">
 Admittedly this might look like a rather contrived way of looking at
 things.  However, there is a theoetical justification behind this
-approach. And it comes from the<B> statistical regularity.</B> We had
-discussed this in our Basic Statistics course. But it boots repetition. 
+approach. And it comes from the concept of <B> statistical
+regularity</B>. 
+---
+We had discussed this in our Basic Statistics
+course. But it boots repetition. 
 
 In certain situations we see that lots of randomness piled together somehow
 cancel each other out to a great extent and a more or less regular
-behaviour emerges.  Well, this concept make s asomewhat unexpected
+behaviour emerges.
+---
+  Well, this concept make a somewhat unexpected
 appearance in the context of measurements. Suppose that you measure the
 same quantity again and again keeping the set up as unchanged as
-possible. Thus you get lots of numbers. If you create a histogram of these
-numbers, then you'll see that a particular shape emerges as you make more
-and more measurements. The shape will depend on the quantity being measured
+possible. Thus you get lots of numbers.
+---
+ If you create a histogram<V>[start shown]</V> of these numbers, then you'll see that
+a particular shape emerges as you make more and more
+measurements. <V>[anim]</V> 
+---
+The shape will depend on the quantity being measured
 and the measurement procedure being followed. This fixed shape corroborates
 the idea that there is something fixed sitting unseen beyond our immediate perception
-and all our measurements re coming from that. The shape os the histogram is
+and all our measurements are coming from that.
+---
+ The shape of the histogram as captured by this curve is
 basically a rough picture of that unseen master process. 
-
-The more data we collect the better we get an ideaof that process. We could
-have known it completely only we could collect an infinite amount of thed
-ata. Hence the notion of an <B>infinite population</B>. We often use the
-term <B>distrobution</B> to mean the same thing. Thus we talks about a
-random sample from an inifinte population, and sometimes refer to the same
-thing as a random sample from
-a distribution. 
+---
+The more data we collect the better we get an idea of that process. We could
+have known it completely if only we could collect an infinite amount
+of data. Hence the notion of an <B>infinite population</B>.
+---
+ We often use the term <B>distribution</B> to mean the same thing. Thus we talk about a
+random sample from an infinte population, and sometimes refer to the same
+thing as a random sample from a distribution. 
 </SESS>
-<SESS t="1.40" done="n" id="s1">
-You shall often hear statements like <B>Let's consider a random sample
-from so-n-so distribution.</B> It is important to understand what this
-means. In this context, a <B>distribution</B>, or rather <B>probability
-distribution</B> to be precise, refers to particular shape of the
-histogram. The shape is often depicted as a curve for a continuous
-variable, and a bar chart for a discrete one. Suppose that we have some
+<SESS t="1.40" done="a" kf="30,60,70,80,90,100" id="s4">
+You often hear statements like <B>Let's consider a random sample
+from such-n-such distribution.</B> It is important to understand what this
+means. In this context, a distribution, or rather <B>probability
+distribution</B> to be precise, refers to a particular shape of the
+underlying population histogram.
+---
+ The shape is often depicted as a curve<V>[shown]</V> for a continuous
+variable, and a bar chart<V>[shown]</V> for a discrete one. We usually
+capture the shape using math formula, called <B>probability
+density function (pdf)</B> for the continuous case,
+and <B>probability mass function (pmf)</B> for the discrete case.
+---
+ Suppose that we have some
 variable in a data set. There are as many values as there are cases. If we
 make a histogram of all these values, then histogram will have that
-particular shape. The shape need not be apparent if we have too few
+particular shape.
+---
+ The shape need not be apparent if we have too few
 cases. But as the number of cases grows the histogram will go closer and
 closer to that shape. 
-
-It is surprising how certain shapes are linked with certain types of
-variables. Take for example cricket runs data. If we make a histogram of
-runs data for different ODI matches for a cricketer the shape is
-particularly like a curve of this form. It is sometimes difficult to come
-up with a good explanation behind the shape, as in this case. 
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 1, Lesson 1, Video 3: The concept (sampling distribution)</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="1.80" done="n" id="s1">
+<SCRIPT id="m1/l1/v3" done="b">
+<SESS t="1.80" done="a" id="s1">
 In the last video we have introduced the all important concept
 that sets statistics apart from other approaches to analysing
 data. Statistics, as I have already said, looks through data
 instead of looking at data. We shall see an important consequence
 of this concept now. 
-
+---
 In the Basic Statistics course as well as in our  school days we
-have leaned about computing the mean of a bunch of numbers. You
-do not need to be a statistician to do that. But the way a
-statistician looks at the mean may not be how a layman considers
+have learned about computing the mean of a bunch of numbers. You
+do not need to be a statistician to do that.
+---
+ But the way a
+statistician looks at  mean is not exactly how a layman considers
 it. You are given a bunch of numbers. You crunch them with a
 formula, and out pops the mean, which is
-just another number situated more or less near the centre. From a
-layman's perspective the story ends there. But for a statistician
+just another number situated more or less near the centre.
+---
+ From a layman's perspective the story ends there. But for a statistician
 will rarely stop at that. For a statistician it is a path leading
-towards the mean of the unkniwn distribution lying beyond, that
+towards the mean of the unknown distribution lying beyond, that
 unknwn population, that unknown truth which has given birth to
-the data.  The observed sample from the statistician's
+the data.
+---
+  The observed sample from the statistician's
 perspective, is just one possible sample that has turned up
 randomly. Any conclusion based on that also suffers from the same
 randomness. It is the underlying distribution that is the
-unwavering truth worth seeking. When you hear this for the irst
+unwavering truth worth seeking.
+---
+ When you hear this for the irst
 time it might not make much sense, besides sounding a bit
 theatrical. But the germ of this idea is already there in our
-everyday lives, as the next thought experiment will show now.
+everyday lives, as the next thought experiment will show.
 </SESS>
 <JINGLE t="0.1">A little thought experiment</JINGLE>
-<SESS t="2.00" done="n" id="s2">
+<SESS t="2.00" done="a" kf="10,40,50" id="s2">
 Suppose that you are comparing between two fertilisers for a
 certain variety of crop. The aim is to see which variety produces
-the greater yield. For this purpose two plots are chosen as
+the greater yield.
+---
+ For this purpose two plots<V>[shown]</V> are chosen as
 identical as possible. The same variety of crop is sown in both
 and a yield is measured at the harvest. The yields turn out to be
-234 bushels and 235 bushels. Here 235 > 234. There can't be any
+234 bushels and 235 bushels<V>[shown]</V>.
+---
+ Here 235 > 234. There can't be any
 doubt about that. But is this evidence enough to clearly conclude
 that the fertiliser used in the second plot is te better of the
-two? No, because the margin is so low here. Just a single bushel,
-a single bushel out of over 230 bushels. One might say that such
+two? No, because the margin is so low here.
+---
+ Just a single bushel, a single bushel out of over 230 bushels. One might say that such
 a small difference could very wll have resulted from pure chance
-variations. That's commonsense. Well, let's understand this
+variations. That's commonsense.
+---
+ Well, let's understand this
 little piece of commonsense. No, we are not saying that 235 is
 not greater than 234, but the idea is that if we repeat the
 entire experiment all over again but using the same fertiliser
-for both the plots, even then some minor difference between the
+for both the plots,...
+---
+ even then some minor difference between the
 two yields was quite likely, say a bushel or two this way or
-that. That is kind of the inevitable error margin. One fertiliser
-can be called better than another in terms of yield only when
+that. That is kind of the inevitable error margin.
+---
+ One fertiliser can be called better than another in terms of yield only when
 it produces a yeiled difference significantly larger than this
 margin. Thus you see our common sense has this idea built into
-it: If we repeated the same experiment
+it:
+---
+ If we repeated the same experiment
 repeatedly, some fluctuation is inevitable, and our conclusion
 about the underlying truth must not get caught in this
 fluctuation.
-
+---
 Statistics formalises this notion into what is called the
-sampling distributon. That's what we shall discuss in the next video.
-
+<B>sampling distributon</B>. That's what we shall discuss in the next video.
 </SESS>
 </SCRIPT>
 
 
 <STKY><HEAD3>Module 1, Lesson 1, Video 4: The concept (sampling distribution)</HEAD3></STKY>
-<SCRIPT id="m1/l1/v4">
-<SESS t="1.20" done="n" id="s1">
-The last video introduced the very important concept of sampling
-distribution. Here we shall learn some more details about
+<SCRIPT id="m1/l1/v4" done="b">
+<SESS t="1.20" done="a" kf="10,20,30,40,50" id="s1">
+The last video introduced the very important concept of <B>sampling
+distribution</B>. Here we shall learn some more details about
 it. Having a clear idea about sampling distributions is the key
 to understanding the working of most statisticial procedures.
-
-
+---
 We shall start with an example that we have already used:
-estimating the maximum height of people in a vast population. We
-shall compare between two contending procedures. In both cases
-we shall start by drawing a sample of size 10
-randomly from our population. The procedures differ in the
-estimators used. The first procedure will use just the sample
-maximum, while the second procedure will multiply the sample max
-by the 10/9, which is the ratio sample size/(sample size-1).
-
-One a partocular sample of size 10 is drawn, these two estimators
+estimating the maximum height of people in a vast population.<V>[shown]</V> We
+shall compare between two contending procedures.
+---
+ In both cases
+we shall start by drawing a sample of size 5
+randomly from our population.<V>[highlighted]</V> The procedures differ in the
+estimators used.
+---
+ The first procedure will use just the <B>sample
+maximum</B>, while the second procedure will multiply the sample max
+by the 5/4, which is the ratio sample size/(sample
+size-1).<V>[formula shown]</V>
+---
+One a particular sample of size 5 is drawn, these two estimators
 will yield two numbers or estimates. Of course, just by staring at
 those two numbers, we can never decide which one is
-better. That's where sampling distributions comes to our
+better. That's where sampling distribution comes to our
 help.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="5" done="n">
+<SC t="5" done="r" id="max_114">
 Show population of size 10000. Show true max. Draw sample. Find
 estimates. Mention repeating this 1000 times. Show the results
-already in a different sheet. show histograms already made. Compare.
+already in a different sheet. Show histogram already made. Compare.
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 1, Lesson 1, Video 5: The concept (sampling distribution)</HEAD3></STKY>
-<SCRIPT id="m1/l1/v5">
-<SESS t="2.10" done="n" id="s1">
-We have learned quite a few terms. A parameter is any unknown
+<SCRIPT id="m1/l1/v5" done="a">
+<SESS t="2.50" done="a" kf="10,20,30,40,50,80,90,100,110,120,130" id="s1">
+We have learned quite a few terms. A <B>parameter</B> is any unknown
 quantity related to the underlying the distribution. It is a fixed
-quantity, part of the ultimate truth. To estimate it we need an
-estimator, which is a formula. It is like a machine that takes a
-sample in and produces a number out. In general any such formula
-is called a statistic. It is a singular noun, so 's' at the
+quantity, part of the ultimate truth.
+---
+ To estimate it we need an
+<B>estimator</B>, which is a formula. It is like a machine that takes a
+sample in and produces a number out<V>[shown]</V>. In general any such formula
+is called a<B> statistic</B>.
+---
+ It is a singular noun, no 's' at the
 end. An estimator is a just a special statistic that is being
-used for the purpose of estimation. Every statistic has its own
-sampling distribution, its behaviour when different random ample
-fom the ame population are fed into it. 
-
-This is basically what we showd in the last lab session. We
+used for the purpose of estimation.
+---
+ Every statistic has its own
+<B>sampling distribution</B>, its behaviour when different random samples
+from the same population are fed into it. 
+---
+This is basically what we showed in the last lab session. We
 played god. We generated many random samples, evaluated the
 statistic for them and made a histogram to provide a visual
 representation of the sampling distribution. 
-
+---
 While a visual representation is a good thing to have, we can use
-the techniques like mean and standard deviation to describe the
-sampling distribution quantatively. The mean of the sampling
-distribution is the value around which the values of the
-statistic are expected to hover. So if the statistic is an
-estimator, then the diffrence between this mean and the true
+the techniques like <B>mean</B> and <B>standard deviation</B> to describe the
+sampling distribution quantatively. 
+---
+The mean of the sampling distribution is the value around which the values of the
+statistic are expected to hover. This is often called the 
+expected value or <B>expectation</B>.
+---
+ So if the statistic is an
+estimator, then the diffrence between this expectation and the true
 value of the parameter is a useful thing to have. This is called
-the bias: mean value of estimator - parameter. Of course, you may
-not be able to compute this since the parameter value is
-unknown. But sometimes you can! We shall take this issue up in
+the <B>bias: mean value of estimator - parameter</B>.
+---
+ Of course, you may not be able to compute this since the parameter value is
+unknown. But sometimes you can even without knowing the true
+parameter value! We shall take this issue up in
 the next lesson. 
-
+---
 Then you can also consider the standard deviation of the sampling
-distribution. That has a special name here: the standard error of
+distribution. That has a special name here: the<B> standard error</B> of
 the statistic. Unlike bias, which makes sense only for
 estimators, standard error is meaningful for any statistic. 
+---
+The next video will give us an idea about bias and standard
+error using LibreOffice.
 </SESS>
+</SCRIPT>
+
+<SCRIPT id="m1/l1/v6" done="n">
+<SC t="5" done="r" id="min_116">
+Start with a population. Compute min. Draw sample, compute sample
+min. Show already computed values. Compute their mean, subtract
+true min. Also compute standard error. 
+</SC>
 </SCRIPT>
 <EXRLIST id="M1L1">
 <EXR>Two statisticians have drawn two random samples from the
@@ -339,47 +436,104 @@ maximum?</EXR>
 <HEAD2>Module 1: Lesson 2: Estimating mean</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 1, Lesson 2, Video 1: Estimating mean</HEAD3></STKY>
-<SCRIPT id="m1/l2/v1">
-<SESS t="1.10" done="n" id="s1">
+<SCRIPT id="m1/l2/v1" done="n">
+<SESS t="2.10" done="a" kf="10,40,50,60" id="s1">
 In this and the following lessons in this module we shall see
-special cases of what we have already learned in the firs
-lesson. In each lesson we shall take up a different parameter and
-learn about estimating it.
+special cases of what we have already learned in the first
+lesson, ie, estimating some parameter of interest. 
+---
+ In each lesson we shall take up a different parameter and
+learn about estimating it. We shall talk about one or more common
+estimators, and compare them.
+---
+ Then we shall also discuss the
+sampling  distribution of one, typically the most commonly used,  estimator. 
+In particular, we shall talk about  bias and standard error.  The
+underlying results are often quite mathematical.
+---
+ Our exposition will only lightly touch upon the mathematics.
 
-
-In this lesson the parameter to be estimated is the mean. Here is
-the mental picture to remember. There is an underlying
-distrbution (the unknown, unwavering truth). It's best to think
-as the shape of a histogram. This has a mean, a fixed number,
-which is also unknown. It is this unknown number that we are
-trying to estimate. Our parameter of interest. All that we have
-is a random sample from this distribution, i.e., a bunch of
+In the current lesson the parameter to be estimated is the
+<B>mean</B>.
+---
+ Remember that here we are talking about the <V>[shown]population
+mean</V>, the unknown mean of the underlying distribution. And not
+the sample mean, which we anyway know for sure for the sample at
+hand, and hence we do not need to estimate.
+---
+ Estimating the unknown population mean is a deeper concept than merely computing
+the mean of a given sample. We have already learned computation
+of the sample mean in the Basic Statistics course. Here we are
+going to tackle the deeper concept.
+---
+First let us recall the mental picture to remember. There is an underlying
+distribution (the unknown, unwavering truth). It's best to think
+of it as the shape of a histogram<V>[shown]</V>.
+---
+ This distrbution has a mean<V>[arrow shown]</V>, a fixed number, which is also
+unknown. It is this unknown number that we are 
+trying to estimate. That is our parameter of interest.
+---
+ All that we have is a random sample from this distribution, i.e., a bunch of
 numbers whose histogram roughly resembles this shape (the
-resemblance improves as the sample size increases). Our job is to
+resemblance improves as the sample size increases).
+---
+ Our job is to
 obtain a good estimator in terms of this random sample.
 </SESS>
 <JINGLE t="0.1">A simple solution</JINGLE>
-<SESS t="0.50" done="n" id="s2">
+<SESS t="2.40" done="a" kf="10,20" id="s2">
 Here is a simple solution. If the sample histogram closely
 resembles the population histogram, and our aim is to estimate
 the centre of the population, then why not use the centre of the
-sample histogram for that purpose. In other words, just use the
-sample mean to estimate the population mean. Other alternative
-estimators are possible. But this is the simplest and the most
-popular one. The alternatives may be better for certain special
-types of underlying distributions. We shall discuss them
-later. But first we should see the sample mean in action. 
-<P/>
-But didn't we learn about computing mean of a bunch of a numbers
+sample histogram for that purpose?
+---
+ In other words, just use the sample mean to estimate the
+population mean. But hey, didn't I
+tell you just now that estimating the population mean is
+different from computing just the sample mean?
+---
+ Well, they are indeed! The first is an aim, estimating an unknown quantity. The
+second is one possible way to do it. It is like approximating the
+number <B><M>\pi.</M></B> This  number has many deep concepts
+associated with it, its geometric and triginometric
+properties.
+---
+ The fraction <B><M>[[22][7]]</M></B> on the other hand, is
+just a fraction. You can understand it without knowing any
+geometry or triginometry. But still the fact remains
+that <M>[[22][7]]</M> is a rather good approximation
+to <M>\pi.</M>
+---
+ There are other approximations possible, as
+well, <M>[[22][7]]</M> 
+is just one of them. 
+---
+Similarly, sample mean is not the only possible estimator for the
+population mean. Other alternative
+estimators are also possible, and sometimes even preferable. We
+shall discuss them later.
+---
+ But sample mean remains the simplest and the most
+popular one. Also it is the best possible as long as the
+underlying distrbution is well-behaved. We shall talk about that
+later.
+---
+But first we should see the sample mean in action using LibreOffice.
+
+But didn't we learn using LibreOffice to computing mean of a bunch of a numbers
 already in the Basic Statistics course? Is there anything new in
-it now? Well, there is. In that course we looked at data, but now
-we mean to look through it. So in the next vide we shall explore
-the smapling distributions of sample mean. 
+it now?
+---
+ Well, there is. In that course we looked at data, but now
+we mean to look through data. So in the next video we shall go to
+the lab to explore
+the smapling distribution of sample mean.
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 1, Lesson 2, Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m1/l2/v2" done="n">
+<SC t="6" done="r" id="mean_122">
 Normal data already present. Draw a Sample. Find mean. Show lots
 of means and histogram already in different sheets. Mention how
 adding a constant to population shifts the sample mean.
@@ -387,138 +541,226 @@ adding a constant to population shifts the sample mean.
 </SCRIPT>
 
 <STKY><HEAD3>Module 1, Lesson 2, Video 3: Sampling distributions of mean</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="2.00" done="n" id="s1">
-The lab session in the last video gave us some idea abou the
-sampling distribution of the sample mean. A more quantative idea may
-be had using its bias and standard error. Recall that the bias of
-an estimator is the mean of the estimator - parameter. In
+<SCRIPT id="m1/l2/v3" done="n">
+<SESS t="2.00" done="a" kf="10,20" id="s1">
+The lab session in the last video gave us some idea about the
+sampling distribution of the sample mean. A more quantitative idea may
+be had using its bias and standard error.
+---
+ Recall that the bias of
+an estimator is the <B>E(estimator) - parameter</B>. In
 general, this may not be computable, since the parameter is
-unknown. But in certain special cases te bais may be computed
+unknown.
+---
+ But in certain special cases the bias may be computed
 indirecly via mathematical reasoning even without knowing the
-value of the parameter. The case at hand is just such a
-example. Here we can compute the bias, and it just turns out to
-be zero! So we call sample mean an unbiased estimator of the
-population mean. Understand this term unbiased. It means the
-the sample mean always tracks the population mean. If the
+value of the parameter. The case at hand is just such an
+example.
+---
+ Here we can compute the bias, and it just turns out to
+be zero! So we call sample mean an <B>unbiased</B> estimator of the
+population mean. Understand well this term unbiased.
+---
+ It implies that the sample mean always tracks the population mean. If the
 population mean increases so does the sample mean, if the
-population mean decreases, so does the sample mean. It is like a
+population mean decreases, so does the sample mean.
+---
+ It is like a
 gun connected with an automatic aiming mechanism. That is why the
 bias is always zero, irrespective of the unknown value of the
 parameter.
 
-Next let's turn to the standard error. This is the standard
-deviation of the sampling distribution of the sample
+Let's see why sample mean is unbiased for poplation mean.
+</SESS>
+<JINGLE t="0.1">Proof</JINGLE>
+<BC t="4.5" done="r" id="meanbias_123">
+Proof of unbiasedness.
+</BC>
+</SCRIPT>
+
+
+<SCRIPT id="m1/l2/v4" done="n">
+<SESS t="1.30" done="a" kf="10,20" id="s1">
+In the last video we looked at the bias of sample mean as an estimator
+of the poplation mean. 
+Next let's turn to the <B>standard error</B> of sample mean.
+---
+ This is the standard
+deviation as computed from the sampling distribution of the sample
 mean. Continuing with the analogy of the tracking gun with
 automated aiming mechanism, this measures how shaky the gun
-is. On an average the gun is shooting at the correct target, but
+is.
+---
+ On an average the gun is shooting at the correct target, but
 may miss it because of shakiness. Higher the standard error, the
-shakier is the gun. As may
-be expected this is closely connected with the standard deviation
+shakier the gun is.
+---
+ As may be expected this is closely connected with the standard deviation
 of the underlying distribution. If the population standard
-deviation is less so should be the standard error of sample
-mean. Also another thing should be intuitively obvious: the
-larger the sample size the better we can guess the underlying
+deviation is less, so should be the standard error of sample
+mean.
+---
+ Also another thing should be intuitively obvious: the
+larger the sample size, the better we can guess the underlying
 distribution. So the standard error should decrease with
-increasing sample size. In fact, we can show that the standard
+increasing sample size.
+---
+ In fact, we can show that the standard
 error is 
-<D>
+<B><D>
 [[\sigma][\sqrt n]],
-</D>
+</D></B>
 where <M>\sigma </M> is the population standard deviation,
-and <M>n</M> is the sample size.
-
+and <M>n</M> is the sample size. Let's look at the proof.
+</SESS>
+<JINGLE t="0.1">Proof</JINGLE>
+<BC t="4" done="r" id="meanse_124">
+Proof.
+</BC>
+<SESS t="0.40" done="a" kf="30" id="s2">
+Here is the standard error formula again> <V>[shown]</V>
 Notice the square root in the denominator. The <M>n</M> in the
 denominator shows that a larger
-sample means more precise estiator. That is commonsense. But
+sample means more precise estiator.
+---
+ That is commonsense. But
 the square root means that to double the precision you need to
 take 4 times sample. This is not very intuitive. 
 </SESS>
 </SCRIPT>
 
+<SCRIPT id="m1/l2/v5" done="n">
+<SESS t="0.30" done="b" id="s1">
+There is a very important theorem in statstics called the <B>Central
+Limit Theorem</B> about the sampling distribution of the mean. It
+says that even if you do not know the  population distribution,
+but just know its mean and standard deviation, ... then you
+basically know the distribution of the sample mean!
+
+</SESS>
+<BC t="4" done="r" id="cltstmt_125">
+CLT statement.
+</BC>
+</SCRIPT>
+<SCRIPT id="m1/l2/v6" done="n">
+
+<SESS t="0.20" done="n" id="s1">
+Let's look at a practical example. CI. Let us see ... the
+mathematical formulation.
+</SESS>
+<BC t="5" done="r" id="cltci_126">
+CI example.
+</BC>
+</SCRIPT>
+
 <STKY><HEAD3>Module 1, Lesson 2, Video 4: Alternatives</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="2.80" done="n" id="s1">
+<SCRIPT id="m1/l2/v7" done="n">
+<SESS t="3.00" done="a" kf="10,20" id="s1">
 We have seen sample mean as an estimator of population mean. It
 is an intuitive natural choice, no doubt. But is it a good
 estimator? Is it the best estimator according to some objective
 criterion? Or can we do something better? 
-
+---
 Well, a precise answer will need some way to quantify
 ``goodness'' of an estimator. For one thing, we have bias as a criterion. And we
 have seen that sample mean is unbiased for population
-mean. That's obviously the best that you can get in terms of
+mean.
+---
+ That's obviously the best that you can get in terms of
 bias. Our gun is pointed in the right direction all the time.
 
 Now for the standard error, how shaky the gun is. Lower the
-standard error, the better. The standard error
-is <M>[[\sigma][\sqrt n]].</M> Is it possible to have some other
+standard error, the better.
+---
+ The standard error here
+is <B><M>[[\sigma][\sqrt n]].</M></B>
+ Is it possible to have some other
 unbiased estimator which has less standard error?
-
-
+---
 Well, it may be shown that if the underlying distribution is well
 behaved, then the answer is No. Sample mean is indeed the
-best. But what is meant by ``well-behaved''? The simplest way to
+best. But what is meant by ``well-behaved''?
+---
+ The simplest way to
 understand this is to look at a distribution that is not
 well-behaved. 
-
+---
 A distribution, as we have mentioned earlier, is basically the
-shape of a histogram. Consider the shape [spike]. It is a nice
+shape of a histogram. Consider the shape <V>[shown spike]</V>. It is a nice
 bell shape, but contaminated by a little spike out
-there. Visualise this like this: the population consists of lots
+there.
+---
+ Visualise this like this: the population consists of lots
 of values that form this bell shaped part, say 10000 points to
 fix ideas. But there is just one point with a very high value. 
-
+---
 Now because it is just one bad point as opposed to 10000 good
 points, the population mean is hardly affected by it. But imagine
 what may happen when you draw a random sample of size, say, 10
-from it. With a high probability all the 10 points wil come from
-the nice points. In that case there is nothing to worry
-about. But there is some chance that that the high value will be
-included among the 10 selected points. Now you have one extremely
-high value and just 9 good values to counter it. So the sample
-mean will be heavily affected by this high value, and will get
-pulled away from the population mean. And that is bad.
-
+from it.
+---
+ With a high probability all the 10 points will come from
+the nice values. In that case there is nothing to worry
+about. But there is some chance that  the high value will be
+included among the 10 selected points.
+---
+ Now you have one extremely high value and just 9 good values to
+counter it.  So the sample mean will be heavily affected by this high value, and will get
+pulled away from the population mean.  And that is bad.
+---
 However, we could have avoided this, had we used sample median or
-sample trimmed mean to estimate the population mean, because they
+sample trimmed mean to estimate the population central tendency, because they
 are more robust, and would not be influenced by just one outlier.
-
+---
+In case you do not remember the computation of sample median or
+the sample trimmed mean, here is a quick reminder using LibreOffice.
 </SESS>
-<JINGLE t="0.1">Mean or not</JINGLE>
-<SESS t="1.80" done="n" id="s2">
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="3" done="r" id="medtrim_127">
+Median and Trimmed mean computation.
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m1/l2/v8" done="n">
+<SESS t="1.80" done="a" kf="10,20" id="s1">
 We said that sample mean is the best estimator for the population
 mean for well behaved distributions, while more robust measures
 of sample central tendency are prefered for some less nicely
-behaved distributions. Now the underlying distribution is unknown
-to the statistician. Then how should we make the choice then?
+behaved distributions.
+---
+ Now the underlying distribution is unknown
+to the statistician. Then how should we make the choice?
 
 There are two solutions to this dilemma. 
-
-* Even if we do not know the shape of the distrbutuon, we are
+---
+* Even if we do not know the shape of the distribution, we are
 often aware of the possibility of outliers. This is especially
-true about measurements made in a noisy environment. In such a
-situation, we should be on our guard, and use sample median or
-sample trimmed mean to estimate the population mean.
-
+true about measurements made in a noisy environment.
+---
+ In such a situation, we should be on our guard, and use sample median or
+sample trimmed mean to estimate the population central tendency.
+<B>noisy environments need robust methods.</B>
+---
 * Also we can form an idea about the population distrbutuon, by
-looking at the sample histogram. If the sample histogram has far
+looking at the sample histogram.<V>[use sample histogram]</V> 
+If the sample histogram has far
 flung tails, then again sample median or sample trimmed mean
 should be preferred.  
-
-Notice the subtle diffeence here: If I give you a sample and ask
+---
+Notice the subtle difference here: If I give you a sample and ask you
 to compute the mean, it is just simply a matter of adding the
-numbers and dividing by the number of points. But if I ask you to
-estimate the mean, then I am asking you to estimate the
-population mean. A good procedure then is much more involved,
+numbers and dividing by the number of points.
+---
+ But if I ask you to estimate the mean, then I am asking you to estimate the
+population central tendency. A good procedure then is much more involved,
 making a histogram, forming an idea about the shape of the
-underlying distrbutuon and guessing about the presence of
-outliers, then choosing an appropriate estimator and finally
-computing it. 
+underlying distrbution and...
+---
+ guessing about the presence of outliers, then choosing an
+appropriate estimator and finally computing it. 
 
 This might look like an overkill, but that is the spirit of any
 statistical analysis of data. 
-<TODO>CLT</TODO>
 </SESS>
 </SCRIPT>
 
@@ -538,207 +780,286 @@ statistical analysis of data.
 <HEAD2>Module 1: Lesson 3: Estimating proportions</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 1, Lesson 3, Video 1: Estimating proportions</HEAD3></STKY>
-<SCRIPT id="m1/l2/v1">
-<SESS t="2.00" done="n" id="s1">
-In the fiest lesson of this week we had learned about the concept
+<SCRIPT id="m1/l3/v1" done="n">
+<SESS t="2.00" done="a" kf="10,20,30,40,50" id="s1">
+In the first lesson of this week we had learned about the concept
 of estimation. We are now learning how to apply this concept to
-various parameters of interest. In the last lesson we worked
+various parameters of interest.
+---
+ In the last lesson we worked
 with the population mean, and learned various ways to estimate
-it. In this lesson we shall estimate populatin proportion. 
-
-First let's understand the importance of the problem with a rea
-life example. Suppose that an election is imminent in an
+it. In this lesson we shall estimate <B>population proportion</B>. 
+---
+First let's understand the importance of the problem with a real
+life example. Suppose that an <B>election</B> is imminent in a
 country. There are two major contending parties. Each striving
-its best to win the election. What will they not give to know the
-result of the election beforehand. If only they knew where their
+its best to win the election.
+---
+ What will they not give to know the result of the election
+beforehand.  If only they knew where their
 support base is weaker, they would be able to focus more effort
-in those regions. In abstract terms this is the problem of
-estimating a proprtion, the proportion of the people who would
-vote for a party. 
-
-As yet another application, consider this a casino. They use
-various gambling devices, slot machines roullette wheels
-etc. They need to be very clearly tuned in order to rake money
-for the house. For instance, if a roullette wheel is slightly
+in those regions.
+---
+ In abstract terms this is the problem of estimating a proprtion, 
+the proportion of the people who would vote for that
+party. <V>[proportion of supporters]</V>
+---
+As yet another application, consider  a <B>casino</B>. They use
+various gambling devices there, slot machines, roullette wheels
+etc. They need to be very carefully tuned in order to rake money
+for the house.
+---
+ For instance, if a roullette wheel is slightly
 tilted resulting in certain numbers showing up more often and the
 gamblers get a hint of the that, then that means ruin for the
-house. So casino owner has to keep an eye on the unbiasedness of
+house.
+---
+ So the casino owner has to keep an eye on the unbiasedness of
 his devices. How can he do that?  Let's consider the simplest
-gambling device. Given a coin how do you find its probability of
-showing head. Unlike the radius, thickness or mass of the coin,
+gambling device, a coin<V>[actually show]</V>.
+---
+ Given a coin how do you find its <B>probability of
+showing head</B>? That is an example of a population proportion. Unlike the radius, thickness or mass of the coin,
 its probability of head is not a directly observable feature. 
 
 That's where estimation of a population proportion becomes important.
 </SESS>
 <JINGLE t="0.1">A simple solution</JINGLE>
-<SESS t="2.20" done="n" id="s2">
-How would you estimate the probability of head of a coin? What is
+<SESS t="2.20" done="a" kf="10,20,30,60,70,80,90" id="s2">
+How would you estimate the <B>probability of head</B> of a coin? What is
 the commonsense method? Just toss the coin a large number of
-times and find the proportion of times you get head. Say I toss
-the coin 1000 times, and find 465 heads. Then I estimate the
-probability of head as <M>[[465][1000]=0.465.</M> Of course,
-what you get in this way is the sample proportion. But if the
-sample is large enough, then it should be cose to the population
+times and find the proportion of times you get head.
+---
+ Say I toss the coin <B>1000</B> times, and find <B>465</B> heads. Then I estimate the
+probability of head as <B><M>[[465][1000]=0.465.</M></B> Of course,
+what you get in this way is the <B>sample proportion</B>.
+---
+ But if the sample is large enough, then it should be close to the population
 proportion, thanks to statistical regularity.
- How large is large enough? We shall take up this
-important question in a later video, when we talk at length about
-the sampling distribution of the sample proportion. 
-
+---
 Similarly for the election problem we can draw a sample of voters
 and try to determine their political leanings. Then find the
-proprtion based on the sampled voters.  
-
+proportion based on the sampled voters.  
+---
 There is another equivalent way of looking at estimating
 population proportion that may be understood using this voter
-example. Associate a number 0 or 1 with each voter in the
+example.
+---
+ Associate a number 0 or 1 with each voter in the
 population according as the voter is against or for the party in
-question. This creates a new variable. Notice that the population
+question.<V>[shown]</V> This creates a new variable.
+---
+ Notice that the population
 mean of this variable is precisely the proportion we are trying
-to estimate. Thus estimation of population proportion is just a
+to estimate. Because when you sum, you are basically counting the
+1's. 
+---
+Thus estimation of population proportion is just a
 special case of estimation of population mean. So we may use
 sample mean of this variable as before. It is easy to see that
 this sample mean is just the sample proportion. 
-
+---
 The advantage of this line of thought, considering proprtion as a
 special case of mean, may not be readily apparent. The main
-advantage is that we sample proportion inherits all the
-properties of the sample mean. This will make our life easier
-when we shall try to work with the sampling distribution of
+advantage is that  sample proportion inherits all the
+properties of the sample mean.
+---
+ This will make our life easier when we shall try to work with the sampling distribution of
 sample proportion.
 
-But first let's look at a little practical exercise first.
+But first let's look at a little hands on computation.
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 1, Lesson 3, Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="6" done="n" id="s1">
-Normal data already present. Draw a Sample. Find mean after ifelse. Show lots
+<SCRIPT id="m1/l3/v2" done="n">
+<SC t="5" done="r" id="prop_132">
+Voting data already present. Draw a Sample. Find mean after ifelse. Show lots
 of proportions and histogram already in different sheets. 
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 1, Lesson 3, Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="2.10" done="n" id="s1">
-The lab session in the last video gave us some idea abou the
-sampling distribution of the sample proprtion. As in the case
+<SCRIPT id="m1/l3/v3" done="n">
+<SESS t="1.80" done="a" kf="10,20,30,40,50,60" id="s1">
+The lab session in the last video gave us some idea about the
+sampling distribution of the sample proportion. As in the case
 sample mean, a more quantative idea may
-be had using its bias and standard error. We know  that the bias of
-an estimator is the mean of the estimator - parameter. In
+be had using its <B>bias</B> and <B>standard error</B>.
+---
+ We know  that the bias of an estimator is the <B>expectation of
+the estimator - parameter</B>. In 
 general, this may not be computable, since the parameter is
-unknown. But in certain special cases te bais may be computed
+unknown.
+---
+ But in certain special cases the bias may be computed
 indirecly via mathematical reasoning even without knowing the
 value of the parameter. This was the case for sample mean, and
-this is also going to the case with sample proprtion. And that is
-hardly unexpected because as we have already mentioned proportion
-is a special case of mean, it is the mean of a 0-1 veriable. 
-
-Sample mean was unbiased for population mean. So here sample
-proprtion is unbiaed for population proportion. Thus, while the
+this is also going to the case with sample proprtion.
+---
+ And that is hardly unexpected because as we have already
+mentioned that sample proportion
+is a special case of sample mean, it is the mean of a 0-1 veriable. 
+---
+Sample mean was <B>unbiased</B> for population mean. So here sample
+proportion is unbiased for population proportion. Thus, while the
 sample mean is not guaranteed to equal the population proportion
 but it is likely to hover centred around the true value.
-
-
-Next let's turn to the standard error. This is the standard
+---
+Next let's turn to the <B>standard error</B>. This is the standard
 deviation of the sampling distribution of the sample
-mean. Again we shall invoke the corresponding result for sample
-mean. There the standard error was 
-<D>
+proportion. Again we shall invoke the corresponding result for sample
+mean.
+---
+ There the standard error was 
+<B><D>
 [[\sigma][\sqrt n]],
-</D>
+</D></B>
 where <M>\sigma </M> is the population standard deviation,
-and <M>n</M> is the sample size. Now our variable takes only the
-values 0 and 1. So <M>\sigma</M> may be simplified further. Let
+and <M>n</M> is the sample size.
+---
+ Now our variable takes only the values 0 and 1. 
+So <M>\sigma</M> may be... simplified further. 
+</SESS>
+<BC t="3" done="r" id="propse_133">
+Let
 the population proportin be <M>\theta.</M> Then <M>\sigma </M> is 
 <D>
-\frac1n\sum x_i^2-(\bar x)^2 = \theta - \theta^2 = \theta(1-\theta).
+\frac1N\sum x_i^2-(\bar x)^2 = \theta - \theta^2 = \theta(1-\theta).
 </D>
 Becuase <M>x_i^2 = x_i</M> since <M>x_i</M> is either 0 or
 1. Thus the standard error is 
 <D>
 [[\theta(1-\theta)][\sqrt n]].
 </D>
-</SESS>
+</BC>
 </SCRIPT>
 
+<SCRIPT id="m1/l3/v4" done="n">
+<SESS t="0.80" done="n" id="s1">
+We have a large go-down full of items, <M>\theta</M> proportion
+of which are defective. This <M>\theta</M> is unknown. We want to
+estimate it. For this we have drawn a random sample of 100 items,
+and found 73 defective items. This gives us a point
+estimate <M>[[73][100]].</M> But we want a <M>95\%</M> CI, ie,
+two numbers <M>L</M> and <M>U</M> based on our sample such that 
+<M>P(L\leq \theta \leq U ) = 0.95.</M> Let us see how the central
+limit theorem ... helps us here.
+</SESS>
+<BC t="5" done="r" id="propci_134">
 
+</BC>
+</SCRIPT>
 <STKY><HEAD3>Module 1, Lesson 3, Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="2.60" done="n" id="s1">
+<SCRIPT id="m1/l3/v5" done="n">
+<SESS t="2.60" done="a" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 In case of estimating population  mean we saw  that there were
 situations where sample mean was not the best solution. The
 problem was with outliers and lack of robustness of sample
-mean. While sample proportion is a special case of sample mean,
+mean.
+---
+ While sample proportion is a special case of sample mean,
 we do not have to worry about outliers here, because here our
 variable takes ony the value 0 and 1 by design. So no question of
-extreme values creeping in. However, there is a problem from a
+extreme values creeping in.
+---
+ However, there is a problem from a
 different direction, as we are about to discuss. 
 
 We had been pretty close to this problem when we talked about the
-election scenario. There our suggestion was to sample some voters
+election scenario.
+---
+ There our suggestion was to sample some voters
 and find out their political leanings. Now a voter is entitled to
 privacy. He/she may not agree to reveal his/her political
-leaning. Even worse, a voter may simply lie. This poses a
-different problem. A similar problem occurs in a rather different
-context. 
+leaning.
+---
+ Even worse, a voter may simply lie. This poses a
+different problem, the problem respondents trying to hide  sensitive information.
 
-Suppose we have a multiple choice question with 4 options
+The  problem also occurs in a rather different
+context. 
+---
+Suppose we have a <B>multiple choice question with 4 options</B>
 exactly one of which is known to be correct. We want to estimate
-the proportion of students who know the correct answer. If we
+the proportion of students who know the correct answer.
+---
+ If we
 simply take a sample of students, ask the question, and find the
 proprtion of correct answers, then that won't be a good estimator
 [qn: biased up or down?] as a student may have answered correctly
-by chance. 
-
-So here we need to model the students thinking. Either a student
-knows the answer or not. In the first case, she answers
-correctly, but in the second case she makes a guess, say a random
-guess. So even then she has <M>[[14]]</M> chance of getting the
-correct answer. Let the true probability of her knowing the
-correct answer be <M>\theta.</M> Then the probability of her
-giving the correct answer is <M>\theta + (1-\theta)/4.</M> It is
+by chance.
+---
+So here we need to model the students' thought process. Either a student
+knows the answer or not.<V>[tree shown]</V> In the first case, she answers
+correctly<V>[shown]</V>, but in the second case she makes a guess, say a random
+guess<V>[tree grows]</V>.
+---
+Let the true probability of her knowing the
+correct answer be <M>\theta.</M><V>[shown]</V> So this is <M>1-\theta.</M>
+When she guesses,  she has <M>[[14]]</M> chance of getting the
+correct answer<V>[shown]</V>, and <M>[[34]]</M> of getting it wrong.
+---
+ Then the probability of her
+giving the correct answer is <B><M>\theta + (1-\theta)/4.</M></B>
+<V>[finger expl]</V> It is
 this thing that is estimated well by the sample
-proportion, <M>p</M> say. So we may say 
-<D>
+proportion, <M>p</M> say, of correct answers. 
+---
+So we may say 
+<B><D>
 \theta + [[14]](1-\theta) \approx p,
-</D>
-hence <M>\theta\approx [[4p-1][3]].</M>
-This is not entirely intuitive. An even more counter intuitive
+</D></B>
+hence <B><M>\theta\approx [[4p-1][3]].</M></B>
+---
+This is not entirely intuitive. Also, if this turns out to be
+negative, we should of course take <M>\theta </M> to be 0. 
+
+ A similar
 application of this idea is used to estimate population
 proportion of sensitive issues like political leanings. The
-method is called randomised response.
+method is called <B>randomised response</B>.
 </SESS>
 <JINGLE t="0.1">Randomised response</JINGLE>
-<SESS t="1.80" done="n" id="s2">
-Randomised response refers to situations where the respondent may
+<SESS t="1.30" done="a" kf="10,20,30,60,90" id="s2">
+<B>Randomised response</B> refers to situations where the respondent may
 add a layer of extra randomness to hide the truth. The student
 guessing in an MCQ was one example where the randomisation was
-unplanned. Here is a planned version of the same. Again consider
-the election scenario with two contending parties. We pick a
-random sample of voters and ask them: "Will you vote for party
-A?" But in order to protect their privacy you also hand them a
-fair die, ask them to roll it in private, answer truthfully if
-the die shows 6, and lie if the die shows something else. Thus,
-let's say I am a voter favouring party A. I roll my die, get a 5,
+unplanned. Here is a planned version of the same.
+---
+ Again consider the election scenario with two contending parties. We pick a
+random sample of voters and ask them: <B>"Will you vote for party
+A?"</B> But in order to protect their privacy you also hand them a
+fair die<V>[shown]</V>...,
+---
+ ask them to roll it in private, and <V>[scheme shown]</V> answer truthfully if
+the die shows 6, and lie if the die shows something else.
+---
+ Thus, let's say I am a voter favouring party A.<V>[finger]</V> I
+roll my die, get a <B>5</B>, 
 so I answer "No". My friend is against party A, she gets a 6, and
-she also answers "No". 
-
-Here the mechanism is like this: A voter is either for or against
-party A, with probabilities <M>\theta</M> and <M>(1-\theta),</M>
-respectively. Then die may show a 6 or not,
-probabilities <M>[[16]]</M> and <M>[[56]].</M> Accordingly there
-are two ways one may answer "Yes". The total probability is 
-<D>
+she also answers "<B>No</B>". 
+---
+Let's see how we may estimate the proportion of A supporters from
+the responses we thus obtain.
+</SESS>
+<JINGLE t="0.1">Estimation</JINGLE>
+<SESS t="1.00" done="a" kf="10,20,30,40,50,60,70" id="s3">
+ A voter is either for or against party A, with probabilities <M>\theta</M>
+and <M>(1-\theta),</M><V>[tree top shown]</V>
+respectively. Suppose he is for A. <V>[finger]</V> Then the die may show a 6 or not,
+probabilities <M>[[16]]</M> and <M>[[56]].</M><V>[tree bot left shown]</V> Accordingly there
+are two ways one may answer "Yes".<V>[finger]</V> The total probability is 
+<B><D>
 \theta \times [[16]] + (1-\theta)\times [[56]].
-</D>
-This is estimated by the ample proportion of "yes". If this
+</D></B>
+This is estimated by the sample proportion of "yes". If this
 proportion is <M>p,</M> then 
-<D>
+<B><D>
 \theta \times [[16]] + (1-\theta)\times [[56]]\approx p.
-</D>
-So <M>\theta \approx [[5-6 p][4]].</M>
+</D></B>
+So <B><M>\theta \approx [[5-6 p][4]].</M></B>
 
-This is called Warner's method. There are different variations of
+This is called <B>Warner's method</B>. There are different variations of
 the same idea in use.
 </SESS>
 </SCRIPT>
@@ -760,142 +1081,258 @@ the same idea in use.
 
 <STKY><HEAD3>Module 1, Lesson 4, Video 1: Estimating dispersion</HEAD3></STKY>
 
-<SCRIPT id="m/l/v">
-<SESS t="1.60" done="n" id="s1">
+<SCRIPT id="m1/l4/v1" done="n">
+<SESS t="1.60" done="a" kf="10,20,30,40" id="s1">
 We are continuing with our plan of estimating various parameters
 following the idea presented in the very first lesson of this
-module. We have already learned how t oestimate population mean,
-and population proortion. In this lesson we shall attack
-population variance and population standard deviation.
-
+module. We have already learned how to estimate population mean,
+and population proportion.
+---
+ In this lesson we shall attack
+<B>population dispersion</B>. Now dispersion is just an intuitive
+concept, it cannot be a parameter. We need some conrete measure
+of dispersion to act as our parameter.
+--- 
+<B>Population variance</B> and <B>population standard deviation</B> are the two
+most popular choices.
+---
 The need for this estimation could be felt even when we learned
 to estimate population mean using sample mean. There the standard
-error was <M>[[\sigma][\sqrt n]].</M> This quantitiy was supposed
-to give us an idea about the precision of our estimator. But how
+error was <B><M>[[\sigma][\sqrt n]].</M></B>
+---
+ This quantitiy gave us an idea about the precision of our estimator. But how
 can it be useful, because it involves <M>\sigma,</M> which is
-unknown. So we need to estimate <M>\sigma</M> or
+unknown? 
+---
+So we need to estimate <M>\sigma</M> or
 equivalently <M>\sigma^2.</M> 
-
+---
 Throughout this lesson keep this picture at the back of your mind.
 There is an underlying
 distrbution (the unknown truth). It's best to think
 as the shape of a histogram. The spread of this histogram is what
-we have in mind. A population with low  scatter is often easier to
-work with, as all the memners are more or less similar. A
+we have in mind.
+---
+ A population with low  scatter is often easier to
+work with, as all the members are more or less similar. A
 population with wide scatter requires much more effort to
 explore. 
-
-So even before we embartk upon a detailed exploration of the
+---
+So even before we embark upon a detailed exploration of the
 population, we need to estimate its variance to get an idea of
 how much work lies ahead.
 </SESS>
 <JINGLE t="0.1">A simple solution</JINGLE>
-<SESS t="1.30" done="n" id="s2">
+<SESS t="1.30" done="a" kf="10,20,30" id="s2">
 We already know a simple solution from our experience so far with
 estimating population mean and proportion. Just use the sample
-analog. By the way, this idea of estimating a population
+analog.
+---
+ By the way, this idea of estimating a population
 parameter by using corresponding sample quantity has a name. It
-is called the plugin principle. It is justified on the ground
+is called the <B>plugin principle</B>. 
+---
+It is justified on the ground
 that the sample histogram closely resembles the population
 histogram. Here this principle suggests
 using sample variance as an estimator of population
-variance, and sample standard deviation as an estimator of
+variance, and...
+---
+ sample standard deviation as an estimator of
 population standard deviation. 
-
+---
 By the way, we had noticed earlier in the Basic Statistics course
 that there are two alternative definitions of sample variance
 (and hence of sample standard deviation). One is 
-<D>
+<B><D>
 [[1n]]\sum (x_i-\bar x)^2
-</D>
+</D></B>
 and the other is 
-<D>
+<B><D>
 [[1][n-1]]\sum (x_i-\bar x)^2.
-</D>
+</D></B>
+---
 LibreOffice, as well as most other standard statistical software,
-uses the second formula. Earlier we had glossed over this point
-in our basic Statistics course. But here we shall give a better
+use the second formula by default. Earlier we had glossed over this point
+in our basic Statistics course. But here we shall give a more detailed
 exposition. 
-
+---
 But first it is time to go to the lab.
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 1, Lesson 4, Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m1/l4/v2" done="n">
+<SC t="6" done="r" id="var_142">
 Normal data already present. Draw a Sample. Find variance. Show lots
-of means and histogram already in different sheets. Mention how
+of variances and histogram already in different sheets. Mention how
 adding a constant to population shifts leaves the result unaffected.
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 1, Lesson 4, Video 3: Sampling distributions</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="1.90" done="n" id="s1">
+<SCRIPT id="m1/l4/v3" done="n">
+<SESS t="1.10" done="a" kf="10,20,30,40" id="s1">
 The lab session in the last video gave us some idea about the
-sampling distribution of the sample mean. A more quantative idea may
-be had using its bias and standard error. The bias of
-an estimator is the mean of the estimator - parameter. In
+sampling distribution of the sample variance. A more quantitative idea may
+be had using its bias and standard error.
+---
+ The bias of
+an estimator is the <B>mean of the estimator - parameter</B>. In
 general, this may not be computable, since the parameter is
-unknown. But in case of the mean as well as proportion it
-turned out to zero. So there the estimators were unbiased. But
-the situation somewhat different for sample variance. For one
-thing the estimator 
-<D>
+unknown.
+---
+ But in case of the mean as well as proportion it
+turned out to be zero. So there the estimators were unbiased. But
+the situation somewhat different for sample variance.
+---
+ For one thing the estimator 
+<B><D>
 [[1n]]\sum (x_i-\bar x)^2
-</D>
-is not unbiased. So we really cannot compute the bias as a
-number, only as a formula involving the unknown parameter.
+</D></B>
+is not unbiased.
+---
+ So we really cannot compute the bias as a
+number, only express it as a formula involving the unknown parameter.
+Let's do so.
+---
 The expected value of this
 estimator is 
-<D>
+<B><D>
 [[n-1][n]]\times \sigma^2.
-</D>
-So the bias is <M>-[[1n]] \sigma^2.</M> [IVQ: over-est or
+</D></B>
+---
+So the bias is <B><M>-[[1n]] \sigma^2.</M></B> [IVQ: over-est or
 under-est?]
 
-Notice that the expected value is a known multipe
-of <M>\sigma^2.</M> So we may just divide by this known constant
+Let's prove this fact.
+</SESS>
+<JINGLE t="0.1">Proof</JINGLE>
+<BC t="5" done="r" id="varbias_143">
+Proof
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m1/l4/v4" done="n">
+<SESS t="2.70" done="a" kf="10,20,30" id="s1">
+The proof of this fact <V>[shown]</V>
+that we saw in the last video may be too technical
+for your taste.  There are
+a couple of points, though, that are worth highlighting, and may
+be appreciated without going too deep into mathematics.
+---
+ First, as <M>n</M> becomes larger and larger, <B><M>[[n-1][n]]=1-[[1n]]</M></B> goes
+closer and closer to 1, since the <M>[[1n]]</M> becomes very very
+small.
+---
+ It is as if <M>n</M> is a person's daily earning. It has been
+reduced by 1 unit, so now it is <M>n-1</M>. How serious is that
+for the person?
+---
+ Well, if the person is a beggar whose earning is
+anyway something very low, a reduction of 1, is serious
+indeed.
+---
+ But if the earning were very high, a reduction of 1
+hardly makes a difference. So for a large sample, this estimator
+is nearly unbiased. 
+---
+That was the first point that I wanted to draw your attention
+to. Now here is the second point. Notice that the expected value<V>[finger]</V> is a known multiple
+of <M>\sigma^2.</M> This <M>[[n-1][n]]</M> is known because the
+sample <M>size</M> <M>n</M> is known.
+---
+ Also, it is not random, though the sample itself is random,
+because the sample size is known even
+before the sample has been drawn.
+---
+  So we may just divide our estimator by this known constant
 to make the expected value exactly equal to <M>\sigma^2.</M> When
 we do this we arrive at
-<D>
-[[n][n-1]]\times [[1n]]\sum (x_i-\bar x)^2 = [[1][n-1]]\sum (x_i-\bar x)^2.
-</D>
+<B><D>
+[[1][n-1]]\sum (x_i-\bar x)^2.
+</D></B>
+---
 So now you know where that alternative estimator came from.
 
 Next we should turn to the standard error. Unfortunately, the
 formula is rather complicated. So we shall not torture ourselves
-with that formula here. However, as we may guess, the standard
+with that formula here.
+---
+ However, as we may guess, the standard
 error will go down as the sample size increases.
 
+Incidentally, it might interest you know the shape of the
+sampling distribution.
+---
+ Even though we assume a nice symmetric
+bell shape for the population, the sampling distribution is
+asymmetric, or skewed to the right, to use a precise mathematical
+term. We have already seen the shape in the last lab session.
 </SESS>
 </SCRIPT>
+<TODO>positively skewed or negatively?</TODO>
 
 <STKY><HEAD3>Module 1, Lesson 4, Video 4: Alternatives</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="1.90" done="n" id="s1">
+<SCRIPT id="m1/l4/v5" done="n">
+<SESS t="1.40" done="a" kf="10,20" id="s1">
 Sample variance (whether with an <M>n</M> or a <M>n-1</M> in the
 denominator) is a natural estimator of population variance.
 But it suffers from lack of robustness.
-
-Suppose that there is a little spike in our underlying distribution. 
+---
+Suppose that there is a little spike in our underlying distribution.<V>[shown]</V> 
 A distribution, as we have mentioned earlier, is basically the
-shape of a histogram. By a spike I mean a little contaminating
+shape of a histogram.
+---
+The spike<V>[finger]</V> indicates a little contaminating
 value, an extreme value that just does not fit with the rest of
 the values.
-
+---
 Now because it is just one bad point as opposed to many many good
 points, the population variance is not influenced much by it. But imagine
 what may happen when you draw a random sample of much smaller
-size. If that spike somehow gets into your sample it might wreak
-havoc. Because there are only a handfull good values to counter
+size.
+---
+ If that spike somehow gets into your sample it might wreak
+havoc. Because there are only a handful of good values to counter
 it. As a result the sample variance will move far from the
 population value. 
-
+---
 So we need something more robust. Something that does not care
-much about extreme points. MAD is one good option. However, it is
-rather difficult to compute its bias. Similar is the case with
-interquartile range. Difficulty in computing a simple sampling
+much about extreme points. <B>Median Absolute Deviation (MAD)</B>
+is one good option. Let's quickly recall the definition
+and computation of MAD.
+</SESS>
+<SC t="3.5" done="r" id="mad_145">
+[Computation of MAD]
+</SC>
+<SESS t="0.90" done="n" id="s2">
+  However, it is
+rather difficult to compute its bias, because its formula
+involves abolute value, and that makes mathematical computation of its
+expected value difficult. 
+
+Now there is one point that must be bourne in mind. Our aim is to
+estimate population dispersion, and not necessarily population
+variance. Do not consider MAD as an estimator of population
+variance or population standard deviation. Think of it as an
+estimator of population MAD. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m1/l4/v6" done="n">
+<SESS t="0.30" done="n" id="s1">
+In the last video we talked about using sample MAD to estimate
+population dispersion, as captured by the population MAD. 
+Similar is the case with
+interquartile range. Let us quickly recall its computation. 
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="4" done="r" id="iqr_146">
+Show IQR computation.
+</SC>
+<JINGLE t="0.1">Properties as estimator</JINGLE>
+<SESS t="0.60" done="n" id="s2">
+  Difficulty in computing a simple sampling
 distribution makes them less applealing alternatives. But if you
 are just trying to get an idea of the population dispersion
 without caring about exact mathematical expressions, then MAD and
@@ -904,6 +1341,7 @@ IQR are great choices.
 Typically you should first form an opinion about how much likely
 outliers are. If that chance is low, go for sample variance. But
 MAD and IQR should be prefered for noisy data with outliers.
+
 </SESS>
 </SCRIPT>
 
@@ -934,86 +1372,118 @@ MAD and IQR should be prefered for noisy data with outliers.
 <HEAD2>Module 2: Lesson 1: Concept of test</HEAD2>
 <STKY><HEAD3>Module 2, Lesson 1, Video 1: The concept of test (sound of water)</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m2/l1/v1">
-<SESS t="1.50" done="n" id="s1">
-In this module we shall learn about test of statistical
-hypotheses. What is that? You may ask. Well, it's a long story
-with many details that scare away beginners. We shall go into
+<SCRIPT id="m2/l1/v1" done="n">
+<SESS t="1.50" done="a" kf="30" id="s1">
+In this module we shall learn about <B>test of statistical
+hypotheses</B>. What is that? You may ask. Well, it's a long story
+with many details that might scare beginners away.
+---
+ We shall go into
 those details later. For now let's start with a simple
 non-mathematical example. 
-
-Here I have a sealed container, and I want to know if it is half
+---
+Here I have a sealed container, and I want to know if it is partly
 filled with water. How do I ascertain that? Remember: my aim is
-not to ascertain the actual content of the container, but just to
+not to ascertain the actual content of the container,...
+---
+ but just to
 provide a yes/no answer to the question: Is it half filled with
 water?
 
-Why not just open it and see? Well, it contained is sealed, and I
+Why not just open it and see?
+---
+ Well, it  is sealed, and I
 cannot open it. So guess work is my only option. 
-
+---
 Let's start by feeling  the weight. It's not empty. But it could
-be water or wood or something else. Let's shake it, and listen to
-the sound. It does not sound like water at all. It actually
+be water or wood or something else.
+---
+ Let's shake it, and listen to the sound. It does not sound like water at all. It actually
 sounds like...any way who cares! That it does not sound like
-water is what I need to know. That's enough info for me to
+water is all I need to know. That's enough info for me to
 conclude cannot be half filled with water.
-
+---
 Test of statistical hypotheses is just a formal way of carrying
 out the same common sense procedure.
 </SESS>
 <JINGLE t="0.1">More formally</JINGLE>
-<SESS t="3.10" done="n" id="s1">
+<SESS t="1.40" done="a" kf="10,20,30,40,50,60,70,80,140" id="s2">
 The set up started with two possibilities: either the contained
-is half full with water or not. In statistical parlance we call
-these  two hypotheses. One of them is called the null hypothesis
-the other is called the alternative hypothesis. We shall learn
+is <B>partly full of water</B> or <B>not that</B>. In statistical parlance we call
+these  two <B>hypotheses</B>. 
+---
+One of them is called the <B>null hypothesis</B>
+the other is called the <B>alternative hypothesis</B>. We shall learn
 later how to choose which one to call the null and which one to
-call alternative. But to keep going let's say "half filled with
+call alternative.
+---
+ But to keep going let's say "half filled with
 water" is our null hypothesis. We denote the null hypothesis by
-the symbol <M>H_0</M> and the alternative on by <M>H_1</M>. The
-two hypotheses must cover all possibilities, and must not
+the symbol <B><M>H_0</M></B> and the alternative one
+by <B><M>H_1</M></B>. 
+---
+The two hypotheses must cover all possibilities, and must not
 overlap. Thus, it should not be possible to have a situation
 where neither hypothesis holds or both the hypotheses
-hold. Deciding in favour of one of these hypotheses is called a
-test of hypotheses. Opening the container and peeping inside
+hold. Thus 
+---
+ Deciding in favour of one of these hypotheses is called a
+<B>test of hypotheses</B>. Opening the container and peeping inside
 would have given the answer for sure, but that was impossible by
-the rules of the game. So guessing based on imperfect indirect
-knowledge was the only option. Hence we have statistical
+the rules of the game.
+---
+ So guessing based on imperfect indirect
+knowledge is the only option. Hence we have <B>statistical</B>
 hypotheses testing.
+</SESS>
 
-When picked up the container felt its weight and gave it a shake,
-we were collecting data, some useful and some not. The weight did
-not help us at all, but the sound did. The relevant aspect of the
-data is called the test statistic. Here we meet the term
-statistic again, a quantity computed based on the sample. Since
+<SESS t="2.00" done="a" kf="10,20,30,40,50" id="s3">
+When we picked up the container felt its weight and gave it a shake,
+and listened to the sound,
+we were collecting <B>data</B>, some useful and some not. The weight did
+not help us at all, but the sound did.
+---
+ The relevant aspect of the data is called the <B>test
+statistic</B>. 
+Here we meet the term
+statistic again, a quantity computed based on the sample.
+---
+ Since
 it is being used for testing, so the term test statistic. Its
 choice crucially depends on the two hypotheses we are trying to
-distinguish between. For instance, had we tried to distinguish
+distinguish between.
+---
+ For instance, had we tried to distinguish
 between water and milk, sound would have been of little value,
-because either would have sounded about the same.  If the two
+because either would have sounded about the same.
+---
+  If the two
 hypotheses were water versus empty, then weight itself would have
 provided enough clue.
-
+---
 The test statistic should be some aspect of the data that behaves
 very differently under the two hypotheses. In order to decide if
 the null hypothesis is true we need to know the behaviour of the
-test statistic under the null hypothesis, ie. the sound of water
-in our toy example. This is called the null distrbutuon of the
+test statistic under the null hypothesis,...
+---
+ ie. the sound of water
+in our toy example. This is called the <B>null distribution</B> of the
 test statistic.
-
-We compared the observed value of the test statistic with its
+---
+We compare the observed value of the test statistic with its
 null distrbution. If the observed value is too extreme compared
 to what is expected for the null distrbution, then we naturally
-cast our vote in favour of the alternative hypothesis. This
-decision is customarily called Rejecting <M>H_0</M> instead of
-accepting <M>H_1.</M> If, on the other hand, the observed value
+cast our vote in favour of the alternative hypothesis.
+---
+ This decision is customarily called <B>Rejecting <M>H_0</M></B>.
+If, on the other hand, the observed value
 of the test statistic is nothing incongruous with the null
-distrbution, then we Accept <M>H_0.</M>
+distrbution, then we <B>Accept <M>H_0.</M></B>
 </SESS>
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 1, Video 2: The concept of test (sound of water)</HEAD3></STKY>
-<SCRIPT id="m2/l1/v2">
+<SCRIPT id="m2/l1/v2" done="n">
 <SESS t="0.60" done="n" id="s1">
 In the last video we talked about comparing the observed value of
 the test statistic with its null distrbution, ie, how the test
@@ -1029,25 +1499,42 @@ statistical softwares and is the easier to explain. So we shall
 start with that.
 </SESS>
 <JINGLE t="0.1">p-value</JINGLE>
-<SESS t="1.70" done="n" id="s2">
-In the Basic Statistics course we had already discussed p-value as a means of checking if a
+<SESS t="1.40" done="a" kf="10,20,30,40,50" id="s2">
+In the Basic Statistics course we had already discussed <B>p-value</B> as a means of checking if a
 given value is too extreme compared to a bunch of numbers. This
-is precisely what we need here. We know the null distribution,
+is precisely what we need here.
+---
+ We know the <B>null distribution</B>,
 ie, the type of values that the test statistic is expected to
-take if the null hypothesis were true. And we are to compare the
-observed value of the test statistic with these. If the value is
+take if the null hypothesis were true.
+---
+ And we are to compare the
+<B>observed value of the test statistic</B> with these. If the value is
 too extreme, then we shall reject <M>H_0</M>, else we shall
 accept <M>H_0.</M> 
-
+---
 As we have already learned in the Basic Statistics course, the
 p-value is basically the chance that the test
-statistic may be more extreme  than the observed values even if
-the null hypothesis is true. If this is small, then the observed
-value is already too extreme. and we rekect <M>H_0.</M> Clearly
-smaller p-values favour rejection of <M>H_0.</M> How small is
-small enough? A commonly used threhold is 5%. If you want to be
-more liberal use 1%. 
-
+statistic may be more extreme  than the observed value even if
+the null hypothesis is true.
+---
+ If this is small, then the observed
+value is already too extreme. and we reject <M>H_0.</M> Clearly
+smaller p-values favour rejection of <M>H_0.</M>
+---
+ How small is
+small enough? A commonly used threshold is <B>5%</B>. If you want to be
+more liberal use 1%. Whatever threshold you use is called
+the <B>level of significance</B> of the test. 
+---
+It is possible to use a mathematical curve
+to find p-values. Let's understand this...using pictures.
+</SESS>
+<BC t="4" done="r" id="pval_212">
+Show points along a numberine explain p-value. Draw
+histogram. Approx by curve. Explain by area.
+</BC>
+<SESS t="0.50" done="n" id="s3">
 Thus the pvalue technique for test of statistical hypotheses is
 to compute the test statistic, compute the p-value and
 reject/accept <M>H_0</M> according as the p-value is below or
@@ -1058,9 +1545,14 @@ the p-value, leaving the choice of the cut off to you.
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 1, Video 3: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="5" done="n" id="s1">
-Toy example: start data and some arbit test statistic. Give lots
+<SCRIPT id="m2/l1/v3" done="n">
+<SESS t="0.20" done="n" id="s1">
+In this video we shall take a closer look at the concept of
+p-value in the context of test of hypotheses.
+</SESS>
+<SC t="5" done="r" id="pval_213">
+Toy example: start with data and some arbit test
+statistic.  Give lots
 of typical values in a different sheet. Find p-value based on
 them. Accept or reject. Mention that this is an exploded view,
 not recommended in practice.
@@ -1098,73 +1590,101 @@ most 0.05.</LI>
 </EXR>
 </EXRLIST>
 <STKY><HEAD3>Module 2, Lesson 1, Video 4: Critical value method</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="1.80" done="n" id="s1">
-The p-value method is simple, but leaves one important question
-unanswered. How do we choose the test statistic? While this
-question is not teribly important for us in this course, because
+<SCRIPT id="m2/l1/v4" done="n">
+<SESS t="1.80" done="a" kf="10,20,30,40,50,60,70" id="s1">
+The <B>p-value method</B> is simple, but leaves one important question
+unanswered. How do we choose the test statistic? This
+question is not terribly important for us in this course,...
+---
+ because
 we shall be using standard softwares where the test statistic is
-already built in, but still it is good to have an idea. And that
-is where the critical value method will help us. 
-
+already built in. But still it is good to have an idea. And that
+is where the <B>critical value method</B> will help us. 
+---
 Incidentally, it will also expose us to some more statistical
 jargon. 
 
-In a statistical hypothesis testing snenario our conclusion is
+In a statistical hypothesis testing scenario our conclusion is
 based only on indirect evidence, and hence liable to
-errors. There are two types of errors. There are two hypotheses
-that cover all possibilities without any overlap
-[shown]. Accordingly we have two possible verdicts:
-accept <M>H_0</M> and reject <M>H_0</M>. These two cases
-correspond to correct decisions. <M>H_0</M> correct, and we have
+errors. There are two types of errors.
+---
+ There are two hypotheses that cover all possibilities without any overlap
+<V>[H0 and H1 shown in column headed truth]</V>. Accordingly we have two possible verdicts:
+<B>accept <M>H_0</M> and reject <M>H_0</M></B><V>[shown as row
+with head verdict]</V>.
+---
+So we have a tabular structure with 4 cells.<V>[shown]</V> These two cases
+correspond to correct decisions.<V>[finger]</V> <M>H_0</M> correct, and we have
 rightly accepted it. Here <M>H_0</M> does not hold, and we have
-indeed rejected it. These two cases correspond to errors. Here we
+indeed rejected it.
+---
+ These two cases correspond to errors. Here we
 have accepted <M>H_0</M> even though it does not hold, and here
 we have rejected a correct <M>H_0.</M> These two are called type
-I and type II errors. Notice that if we swap the
+I and type II errors.<V>[shown]</V>
+---
+ Notice that if we swap the
 labels <M>H_0</M> and <M>H_1</M>, then the  types are also
-swapped. The convention is to call the more serious of the two
+swapped. The convention is to call the <B>more serious</B> of the two
 errors Type I.
-
+---
 Let's understand this with an example.
 </SESS>
 <JINGLE t="0.1">An example</JINGLE>
-<SESS t="1.20" done="n" id="s2">
+<SESS t="1.20" done="a" kf="30" id="s2">
 Suppose that I have a tumour in my hand. I am worried about its
 being cancerous. So there are two possibilities: it is cancerous
-or it is not. These are my two hypotheses. I visit a doctor, who
+or it is not. These are my two hypotheses.
+---
+ I visit a doctor, who
 makes diagnostic measurements (ie collects data) and either says
-"Yes, it is cancer" or "No, it isn't". Now let's look at the two
-errors. Here I do not have cancer, but the doc says cancer. So I
+"Yes, it is cancer" or "No, it isn't".<V>[table shown]</V> Now let's look at the two
+errors.
+---
+ Here I do not have cancer, but the doc says cancer. So I
 pass a few sleepless nights, curse my fate, and spend some money
-to get my harmless tumour treated. Now let's see the consequence
+to get my harmless tumour treated.
+---
+ Now let's see the consequence
 of the other error. I do have cancer, but the doc says, "Don't
 worry, you're just fine!" I feel very happy, go home, cancer
 spreads, and RIP.
-
+---
 I hope you'll agree that the latter error is the more serious of
 the two. So we shall call that our Type I error. Now type I error
-is the error of reecting a correct <M>H_0.</M> So we label the
+is the error of rejecting a correct <M>H_0.</M> So we label the
 two hypotheses accordingly. 
 </SESS>
-<SESS t="1.20" done="n" id="s3">
+<SESS t="1.20" done="a" kf="30" id="s3">
 Since Type I error is the more serious, we naturally want to
 guard against that first. We set an upper bound on the
-probability of committing that error. This uppr bound is called
-the level of significance or the size of the test. Common choices
-are 5% and 1%. Subject to this we choose a test that minimises
+probability of committing that error. This upper bound is called
+the <B>level of significance</B> or the <B>size</B> of the test.
+---
+ Common choices are 5% and 1%. Subject to this we choose a test that minimises
 the probability of the other error. This minimisation dictates
-the choice of the test statistic, as well as a cut off value. We
-have to have to compute the test statistic from the data and
+the choice of the test statistic, as well as of the cut off value. 
+---
+We have to have to compute the test statistic from the data and
 compare it against the critical value. Depending on the side of
 the critical value our test statistic lands, we either accept for
 reject <M>H_0.</M>
-
+---
 However, in our course we do not need to worry about all
 these. The softwares already know the best test statistic to use
 in each case, and so the simpler p-value approach will give the same
 result as the more ambitious critical value approach.
 </SESS>
+</SCRIPT>
+
+<SCRIPT id="m2/l1/v5" done="n">
+<BC t="6" done="r" id="binom_215">
+A huge lot of items. Proportion of defective items is \theta
+unknown. 
+The lot is is good if H_0: \theta \leq 0.2  vs H_1: \theta > 0.2. Accept a
+lot based on a sample 
+of 10 iff all ok. Compute type I and type 2 prob.
+</BC>
 </SCRIPT>
 <EXRLIST id="M2L1V2">
 
@@ -1182,109 +1702,158 @@ typical values ..., ..., ... </EXR>
 
 <STKY><HEAD3>Module 2, Lesson 2, Video 1: one-sample t-test</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m2/l2/v1">
-<SESS t="2.80" done="n" id="s1">
+<SCRIPT id="m2/l2/v1" done="n">
+<SESS t="2.00" done="a" kf="30" id="s1">
 There are many different types of tests of statistical hypotheses
 suited for different purposes. We shall talk about quite a few of
-them in this module. Let's start with the one that is possibly
+them in this module.
+---
+ Let's start with the one that is possibly
 the easiest to understand and has wide application. We shall
 start with an example. 
-
+---
 We all use bottled liquids, milk, shampoo, oil, medicines. The
 container bears a label telling us the amount of the content. How
 does the manufacturer ensure that the amount is as it should
-be. Of course, if we fill each bottle manually we may
+be?
+---
+ Of course, if we fill each bottle manually we may
 painstakingly measure out the right amount and pour it in. But
 these bottles are not packaged manually. The amounts are poured
-out by some automated device, and churned out by hundreds. If
-some setting somewhere goes off a bit, it will have a disastrous
+out by some automated device, and churned out by the hundreds.
+---
+ If some setting somewhere goes off a bit, it will have a disastrous
 effect. So the manufacturer has to keep a constant eye on the
 process. And test of statistical hypotheses plays a crucial
 role here. 
-
+---
 First, we must understand that even when the machinery is working
-satisfactorily there is some inevitable rndom variation among the
-amounts of the contents in the bottles. [numline] This level is typically
-property of the machine itself, its precision, and may be
-expected to hold through out. But even with the precision in
-place the setting may get shifted over time. And that's what we
-need to guard against. This is called a test of mean. Again,
-be careful here this mean is the population mean. Now we take
-some bottles from the production line, open them and actually
-measure their contents. That's our data. We want to know if the
-mean is shifted from its advertised value or not. So we take our
-null hypothesis <M>H_0: \mu = 50</M> and the alternative
-hypothesis <M>H_1: \mu \neq 50.</M> Be careful here,
-this <M>\mu </M> is the population mean, the unknown quantity
-depending on the current possibly faulty condition of the
-machine. Had it been just the sample mean, then we could just
-have computed it and checked if is equal to 50. Of course, we do
-need to compare the sample with 50, but since the sample mean is
-just an estimator of the population mean, we should allow some
-margin. A sample mean just a little off from 50 should not be an
+satisfactorily there is some inevitable random variation among the
+amounts of the contents in the bottles. 
+---
+ The extent of this variation is typically a property of the machine
+itself,  its precision, and may be expected to hold through out. 
+But even with the precision in place, the setting may get shifted 
+over time. And that's what we need to guard against. 
+---
+This is called a <B>test of mean</B>. Again,
+be careful here: this mean is the population mean. 
+
+The procedure is this: We take some bottles from the production line, open
+them and actually measure their contents.
+---
+ That's our data. We want to know if the population
+mean is shifted from its advertised value or not. Let's
+understand this using some concrete numbers.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="3.5" done="r" id="sc_onet_221">
+Start with a population. Draw a sample. Draw another
+sample. Shift population. Draw
+another sample.  Compute means of all three samples. 
+Point out that the difference between the first two is ignorable,
+but not so for the third.
+</SC>
+<JINGLE t="0.1">Back to theory</JINGLE>
+<SESS t="1.00" done="a" kf="10,20" id="s2">
+So we take our null hypothesis <B><M>H_0: \mu = 50</M></B> and the alternative
+hypothesis <B><M>H_1: \mu \neq 50.</M></B>
+ Be careful here, this <M>\mu </M> is the population mean,
+ the unknown quantity depending on the current possibly faulty condition of the
+machine. 
+---
+Had it been just the sample mean, then we could just
+have computed it and checked if it is equal to 50. 
+
+Even here, we do need to compare the sample with 50, but since the sample mean is
+just an approximation of the population mean, we should allow some
+margin.
+--- 
+A sample mean just a little off from 50 should not be an
 excuse to stop the production process and call for the
 repairman. 
-
+---
 The question is how to choose the margin. And that's what we
 shall discuss in the next video.
 </SESS>
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 2, Video 2: one-sample t-test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="3.40" done="n" id="s1">
+<SCRIPT id="m2/l2/v2" done="n">
+<SESS t="3.40" done="a" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 We are learning test of population mean. In the last video we
 discussed a real life scenario where such a test is called
 for. Let's quickly recall the set up, but this time in an
 abstract way. 
-
+---
 Our set up consists of a population, an underlying distribution
-with an unknown mean <M>\mu.</M> In our bottling plant example
+with an unknown <B>mean <M>\mu.</M></B> In our bottling plant example
 this is the population of all bottles that the machine can churn
-out in its current possibly faulty setting. We have an advertised
-value <M>\mu_0</M> for <M>\mu.</M> We want to test <M>H_0: \mu =
-\mu_0</M> versus <M>H_1: \mu \neq \mu_0.</M> In certain other
-situations it may be known a priori that <M>\mu</M> cannot fall
-below <M>\mu_0.</M> Then we can just test againt <M>H_1: \mu >
-\mu_0.</M> Similarly, other situations may call for testing
-against <M>H_1: \mu < \mu_0.</M> These are called respectively
-two-tailed, upper-tailed and lower-tailed tests.
-
-We have a random sample from the population <M>X_1,...,X_n.</M>
-We have computed <M>\bar X</M> and are about compare this
-with <M>\mu_0.</M> We intuitively feel that we should
-reject <M>H_0</M> in favour of <M>H_1</M> if <M>|\bar
-X-\mu_0|</M> is too large. Similarly we should
-reject <M>H_0</M> in favour of <M>H_2</M> if <M>\bar
-X-\mu_0</M> is too large (no abs value). Similarly for <M>H_3</M>
-we should reject for too large values of <M>\mu_0-\bar X</M>.
-
+out in its current possibly faulty setting.
+---
+ We have an <B>advertised value <M>\mu_0</M></B> for <M>\mu.</M> We want to
+test <B><M>H_0: \mu =\mu_0</M> versus <M>H_1: \mu \neq \mu_0.</M></B>
+---
+ In certain other situations it may be known a priori that <M>\mu</M> cannot fall
+below <M>\mu_0.</M> Then we can just test againt <B><M>H_2: \mu >
+\mu_0.</M></B>
+---
+ Similarly, other situations may call for testing against <B><M>H_3: \mu <
+\mu_0.</M></B>
+ These are called respectively
+<B>two-tailed, upper-tailed and lower-tailed</B> tests.
+---
+We have a random sample from the population <B><M>X_1,...,X_n.</M></B>
+We compute <B><M>\bar X</M></B> and are about to compare this
+with <M>\mu_0.</M>
+---
+ We intuitively feel that we should
+reject <M>H_0</M> in favour of <M>H_1</M> not just if <M>\bar X</M> is not
+equal to <M>\mu_0,</M> but only if <M>\bar
+X</M> is too far away from <M>\mu_0.</M>.
+---
+ Similarly we should reject <M>H_0</M> in favour of <M>H_2</M>
+(or <M>H_3</M>) if <M>\bar X</M> is much larger (or smaller)
+than <M>\mu_0</M>. 
+---
 The question now is "how large is too large?" The answer, as you
 might have guessed already, depends on the dispersion present in
-the population. When you are measuring an agricultural plot a
+the population.
+---
+ When you are measuring an agricultural plot a
 shift of a few centimetres during measurement is nothing serious,
 but during an eye operation using laser beams, a shift of even a
 10th of a millimetre may be disastrous. 
-
+---
 Hmmm...dispersion present in the population. How can we know
 that? The population is that underlying unknown truth. Well,
-yes. But not everything need to be unknown about the
-population. For instance, many machines come with a rating of its
+yes. But not everything has to be unknown about the
+population.
+---
+ For instance, many machines come with a rating of its
 inherent precision, and even though we suspect that the mean has
 shifted, we may have reason to believe that the dispersion is
-still at its advertised value. If that is the case, then we are
-in luck. Let's call this known population standard
-deviation <M>\sigma.</M> Then our test statistic is 
-<D>
+still at its advertised value.
+---
+ If that is the case, then we are in luck. Let's call this <B>known 
+population standard deviation <M>\sigma.</M></B> Then our test statistic is 
+<B><D>
 Z = [[(\bar X - \mu_0)][\sigma/\sqrt{n}]].
-</D>
-Don't bother too much about this formula, this is already built
+</D></B>
+---
+Its null distribution is <B><M>N(0,1)</M></B> which involves no unknown quantity,
+and may be used to compute absolute cut off points.
+---
+Don't bother too much about this formula or the null distribution. 
+These aee already built
 into all standard statistical softwares. However, you should
 quickly recognise the denominator as the standard error
-of <M>\bar X.</M> Notice the letter <M>Z.</M> Well, this test is
+of <M>\bar X.</M>
+---
+ Notice the letter <M>Z.</M> Well, this test is
 called the <M>Z</M>-test of mean.
 </SESS>
-<SESS t="1.20" done="n" id="s3">
+<SESS t="1.20" done="n" id="s2">
 So far we have discussed the case where we are in luck: the
 population standard deviation is known. Our machine has possibly
 slipped in the mean, but still holding its advertised
@@ -1309,11 +1878,28 @@ mathematical forms. Instead it is time to see these things in action.
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 2, Video 2: Lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m2/l2/v3" done="n">
+<BC t="6" done="r" id="onet_223">
+Toy data. Full computation. Mention t-distribution. df.
+<R>
+set.seed(23261)
+x = as.numeric(format(rnorm(6,mean=10),digit=2))
+m=mean(x)
+v=var(x)
+n=length(x)
+(m-11)*sqrt(n)/sqrt(v)
+t.test(x,mu=11)
+t.test(x,mu=11,alt="greater")
+</R>
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m2/l2/v4" done="n">
+<SC t="5" done="r" id="sc_zt_224">
 z test and one sample t-test.
 </SC>
 </SCRIPT>
+
 
 <EXRLIST id="M2L2V1">
 
@@ -1335,7 +1921,7 @@ t-distrn cut-off are given. Ask to accept/reject.</EXR>
 <HEAD2>Module 2: Lesson 3: Paired t-test</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 2, Lesson 3, Video 1: Paired t-test</HEAD3></STKY>
-<SCRIPT id="m2/l2/v1">
+<SCRIPT id="m2/l3/v1" done="n">
 <SESS t="2.90" done="n" id="s1">
 As we have already said, there are many different types of tests of statistical hypotheses
 suited for different purposes. We have already talked about the
@@ -1369,7 +1955,7 @@ the sleep. So we should subtract the before values from the after
 values. Then we can express the hyptoeses mathematically as on an
 average the diffrence are not positive. and are positive.We can
 now perform a t-test on the difference. This is called paired
-t-test.
+t-test. A little graphical exposition might help here.
 
 Notice the adjective "paired". This is important. Here we have
 two sets of measurements, the ones made before the medication and
@@ -1383,14 +1969,14 @@ Now it is time to take a look at paired t-test in practice.
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 3, Video 1: Paired t-test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="6" done="n" id="s1">
-Insomnia data. Peform the test.
+<SCRIPT id="m2/l3/v2" done="n">
+<SC t="6.5" done="r" id="sc_pairt_232">
+Medication data. Peform the test.
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 3, Video 1: Paired t-test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m2/l3/v3" done="n">
 <SESS t="3.30" done="n" id="s1">
 In the last video we saw paired t-test in action. Here we shall
 look at it from a more abstract viewpoint, and also consider the
@@ -1448,6 +2034,25 @@ t = [[\sqrt n \bar w][sd(w)]].
 Its null distribution is <M>t</M> with degrees of freedom <M>n-1.</M>
 </SESS>
 </SCRIPT>
+
+<SCRIPT id="m2/l3/v4" done="n">
+<BC t="6" done="r" id="pairt_234">
+Toy data. Full computation. Mention t-distribution. df.
+<R>
+set.seed(23263)
+x = as.numeric(format(rnorm(6,mean=3),digit=2))
+y = as.numeric(format(rnorm(6,mean=3),digit=2))
+z = y - x
+m=mean(z)
+v=var(z)
+n=length(x)
+(m-0)*sqrt(n)/sqrt(v)
+t.test(z,alt="greater")
+</R>
+
+</BC>
+</SCRIPT>
+
 <EXRLIST id="M2L3V1">
 <EXR>Identify the test statistic for paired t-test</EXR>
 
@@ -1470,7 +2075,7 @@ t-distrn cut-off are given. Ask to find p-value.</EXR>
 <LESSON>
 
 <STKY><HEAD3>Module 2, Lesson 4, Video 1: 2-sample</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m2/l4/v1" done="n">
 <SESS t="3.70" done="n" id="s1">
 In the last lesson we learned about the paired sample
 t-test. What we are going to learn in this lesson is deceptively
@@ -1520,26 +2125,28 @@ complicated, but their null distributions are simpler. They are
 always <M>t</M>-distributions with different degrees of
 freedom. In the homoscedastic case it is <M>m+n-2,</M> which is
 easier to remember as <M>(m-1) + (n-1).</M> In the hetescedastic
-case it complicated. 
+case it is complicated. 
 
-I am not torturing you here with the exact formulas, partly
-because you can get them easily from books and the internet, and
-mostly because you rarely need to know them in practice, because
-standard statistical softwares have all these built into them.
+Let me scare you with  the exact formulas of the test
+statistics. For the homo case it is <V>[shown]</V>, and for the
+heteroscedastic case it is <V>[shown]</V>. They are complicated,
+but they have a pattern. In both the cases the numerator is the
+difference of the two sample means, ad the denominator is an
+estimator of its standard error.
 
 So let's see how to perform two-sample <M>t</M>-test using LibreOffice.
 </SESS>
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 4, Video 1: 2-sample</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m2/l4/v2" done="n">
+<SC t="6" done="n" id="sc_twot_242">
 Homo and hetero 2-sample t-test
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 4, Video 1: 2-sample</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m2/l4/v3" done="n">
 <SESS t="2.50" done="n" id="s1">
 We have seen how there are two versions of
 2-sample <M>t</M>-tests based on homo and heteroscedastic set
@@ -1587,7 +2194,7 @@ Let's see it in practice.
 </SCRIPT>
 
 <STKY><HEAD3>Module 2, Lesson 4, Video 1: 2-sample</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m2/l4/v4" done="n">
 <SC t="6" done="n" id="s1">
 F-test.
 </SC>
@@ -1626,8 +2233,8 @@ t-distrn cut-off are given. Ask to find p-value.</EXR>
 
 <STKY><HEAD3>Module 3, Lesson 1, Video 1: Contingency tables</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m3/l1/v1">
-<SESS t="1.30" done="r" kf="10,20,30,40,50" id="s1">
+<SCRIPT id="m3/l1/v1" done="n">
+<SESS t="1.30" done="" kf="10,20,30,40,50" id="s1">
 In the Basic Statistics course we talked about pivot tables, and
 had mentioned mentioned how one special 
  type of pivot table
@@ -1664,8 +2271,8 @@ lr.csv: Don't use iq
 
 
 <STKY><HEAD3>Module 3, Lesson 1,  Video 2: Contingency table</HEAD3></STKY>
-<SCRIPT id="m3/l1/v2">
-<SESS t="1.10" done="r" kf="10,20,30" id="s1">
+<SCRIPT id="m3/l1/v2" done="n">
+<SESS t="1.10" done="" kf="10,20,30" id="s1">
 We mentioned just now that contingency tables are very
 important in statistics. Why is that? The most important reason
 is that they help us to explore relation between two categorical
@@ -1685,12 +2292,15 @@ status (admitted / rejected) and gender (male /
 female). 
 ---
 Contingency tables help us to understand such relations.
+
+[Talk about joint distribution starting with relation between
+distribution and bar chart]
 </SESS>
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 1,  Video 4: Contingency table</HEAD3></STKY>
-<SCRIPT id="m3/l1/v4">
-<SESS t="3.00" done="r" kf="10,50,60,70,80" id="s1">
+<SCRIPT id="m3/l1/v3" done="n">
+<SESS t="3.00" done="" kf="10,50,60,70,80" id="s1">
 We have mentioned how we may construct  a contingency table from
 raw data. When we collect raw data with the aim of creating a
 contingency table, there are three major ways to go about it. Let's
@@ -1754,8 +2364,8 @@ suited for the purpose.
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 1,  Video 5: Contingency table</HEAD3></STKY>
-<SCRIPT id="m3/l1/v5">
-<SESS t="1.60" done="r" kf="10,20,30,50,90,120,130,140,150,160" id="s1">
+<SCRIPT id="m3/l1/v4" done="n">
+<SESS t="1.60" done="" kf="10,20,30,50,90,120,130,140,150,160" id="s1">
 All the contingency tables discussed so far were 2-way or
 2-dimensional. It is quite possible to have higher dimensional
 contingency tables. For example if we want to study the relation
@@ -1802,7 +2412,7 @@ table from raw data using LibreOffice.
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 1,  Video 6: Contingency table</HEAD3></STKY>
-<SCRIPT id="m3/l1/v6">
+<SCRIPT id="m3/l1/v5" done="n">
 <SC t="6" done="r" id="s1">
 [Screencast: 3-way toy example as described.]
 gei.csv: gender, edu, income
@@ -1832,8 +2442,8 @@ frquencies.</EXR>
 <LESSON>
 <STKY><HEAD3>Module 3, Lesson 2, Video 1: Independence test</HEAD3></STKY>
 
-<SCRIPT id="m3/l2/v1">
-<SESS t="5.30" done="r" kf="10,20,30,40,50,60" id="s1">
+<SCRIPT id="m3/l2/v1" done="n">
+<SESS t="5.30" done="" kf="10,20,30,40,50,60" id="s1">
 
 In this video we shall discuss the most important application for
 contingency tables: testing independence between two ctegorical
@@ -1926,15 +2536,35 @@ next video.
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 2, Video 1: Independence test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="5" done="n" id="s1">
+<SCRIPT id="m3/l2/v2" done="n">
+<BC t="6" done="r" id="chistat_322">
+Hand computation (whorl)
+<R>
+obs = matrix(c(35,129,10,33),2)
+rtot = c(45,162)
+ctot = c(164,43)
+gtot = sum(obs)
+expc = matrix(0,2,2)
+expc[1,1] = rtot[1]*ctot[1]/gtot
+expc[1,2] = rtot[1]*ctot[2]/gtot
+expc[2,1] = rtot[2]*ctot[1]/gtot
+expc[2,2] = rtot[2]*ctot[2]/gtot
+expc
+(obs-expc)^2/expc
+sum((obs-expc)^2/expc)
+</R>
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m3/l2/v3" done="n">
+<SC t="6" done="r" id="sc_chistat_323">
 Compute <M>\chi^2</M> by raw computation and automatically.
 </SC>
 </SCRIPT>
 
 
 <STKY><HEAD3>Module 3, Lesson 2, Video 1: Independence test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l2/v4" done="n">
 <SC t="5" done="n" id="s1">
 Idea of null distribution of <M>\chi^2.</M> Show a
 population. Draw sample compute. Redraw and compute again. Show
@@ -1944,7 +2574,7 @@ difference. Show precomputed values in a different sheet. Make hist.
 [qn: null distrn is sampling distrn]
 
 <STKY><HEAD3>Module 3, Lesson 2, Video 1: Independence test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l2/v5" done="n">
 <SESS t="1.90" done="n" id="s1">
 In the last lab session we have got a taste of the null
 distribution of the <M>\chi^2 </M> statistic. The process we used
@@ -1971,6 +2601,9 @@ the numbers of categories of the two variables. For instance, in
 the educations level vs income group example, the degrees of
 freedom are (4-1)(3-1) = 6.
 
+[Give another example. Mention that at least two categories must
+be present.]
+
 Of course, as a practicing statistician in the modern age, you
 really do not have to remember all these. All standard
 statistical softwares have these things built in. 
@@ -1980,8 +2613,8 @@ The next video will demonstrate this in action.
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 2, Video 1: Independence test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SC t="0" done="n" id="s1">
+<SCRIPT id="m3/l2/v6" done="n">
+<SC t="5" done="n" id="s1">
 <M>\chi^2 </M> test.
 </SC>
 </SCRIPT>
@@ -2002,7 +2635,7 @@ cells.</EXR>
 <HEAD2>Module 3: Lesson 3: Permutation test</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 3, Lesson 3, Video 1: Permutation test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l3/v1" done="n">
 <SESS t="2.70" done="n" id="s1">
 We have seen in the last video how the <M>\chi^2</M> statistic
 may be used for testing independence between two categorical
@@ -2091,13 +2724,45 @@ demanding. The next video will show this in action.
 </SESS>
 </SCRIPT>
 
+<SCRIPT id="m3/l3/v2" done="n">
+<SESS t="6" done="n" id="s1">
+Randomise using random permutation.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m3/l3/v3" done="n">
+<SESS t="0.5" done="n" id="s1">
+We have seen one complicated method. Now shall see a simpler but
+crude method.
+</SESS>
+<BC t="5" done="r" id="imerge_332">
+Merging.
+<R>
+set.seed(135317)
+obs = matrix(c(46,34,5,2,47,78),2)
+rtot = apply(obs,1,sum)
+ctot = apply(obs,2,sum)
+gtot = sum(obs)
+(exp = outer(rtot,ctot)/gtot)
+obs = matrix(c(51,36,47,78),2)
+rtot = apply(obs,1,sum)
+ctot = apply(obs,2,sum)
+gtot = sum(obs)
+(exp = outer(rtot,ctot)/gtot)
+sum((exp-obs)^2/exp)
+
+</R>
+</BC>
+</SCRIPT>
+
 <STKY><HEAD3>Module 3, Lesson 3, Video 2: Permutation test lab</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l3/v4" done="n">
 <SC t="6" done="n" id="s1">
 Permutation test: do one set of randomisation. Then show
 many <M>\chi^2 </M> values in a different sheet. 
 </SC>
 </SCRIPT>
+
 
 <EXRLIST id="M4L3V1">
 <EXR>Identify formula.</EXR>
@@ -2117,8 +2782,8 @@ many <M>\chi^2 </M> values in a different sheet.
 <LESSON>
 <STKY><HEAD3>Module 3, Lesson 4, Video 1: Goodness of fit test</HEAD3></STKY>
 
-<SCRIPT id="m/l/v">
-<SESS t="3.20" done="n" id="s1">
+<SCRIPT id="m3/l4/v1" done="n">
+<SESS t="1.60" done="n" id="s1">
 In statistics and probability we often talk about an unbiased
 coin, a coin that when tossed is equally likely to show either a
 head or a tail. We use such coins do make impartial decisions, like which
@@ -2138,10 +2803,13 @@ Note the similarity of this situation with the independence test
 that learned in the last lesson. We have observed frequncies 523
 and 477 and expected frequncies 500 and 500. And we are trying to
 test if the observed frequncies are too far away from the
-expected ones. Let's try the <M>\chi^2 </M> statistic here. We
-compute the differences between the  the observed and the
+expected ones. Let's try ... the <M>\chi^2 </M> statistic here.
+
+</SESS>
+<BC t="5" done="r" id="coin_341">
+ We compute the differences between the  the observed and the
 expected frequncies, square them divide by the expected
-frequncies and sum. 
+frequencies and sum. 
 
 Clearly, if this too large then we should think that the coin is
 biased. Well, we are doing a statistical test here. So let's
@@ -2165,18 +2833,18 @@ case (unbiased coin means both the probabilities are given to
 be <M>[[12]]</M>) then the degrees of freedom is one less than
 the number of categories. In our case we had just two categories,
 head and tail. So the degree of freedom is 1.
-</SESS>
+</BC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 4, Video 1: Goodness of fit test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l4/v2" done="n">
 <SC t="6" done="n" id="s1">
 Die roll test. Any Hugli data categories?
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 4, Video 1: Goodness of fit test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l4/v3" done="n">
 <SESS t="2.40" done="n" id="s1">
 In the last two videos we learned to perform goodness-of-fit test
 for some completely specified distribution, ie, a distribution
@@ -2226,12 +2894,33 @@ The rest is as before.
 </SCRIPT>
 
 <STKY><HEAD3>Module 3, Lesson 4, Video 1: Goodness of fit test</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m3/l4/v4" done="n">
 <SC t="6" done="n" id="s1">
 Prussian data lab.
 </SC>
 </SCRIPT>
 
+<SCRIPT id="m3/l4/v5" done="n">
+<SESS t="0.5" done="n" id="s1">
+Intro
+</SESS>
+<BC t="5" done="r" id="gmerge_345">
+Merging.
+<R>
+set.seed(135317)
+x = rpois(50,lambda=1)
+table(x) 
+50*(1-sum(dpois(0:4,lam=1)))
+# 0     1     2     3     4    5 
+#19    22     4     2     2    1
+#18.39 18.39  (9.20  3.07  0.77 0.18)=13.21
+ob = c(19,22,9)
+ex = c(18.39,18.39,13.21)
+k=sum((ob-ex)^2/ex)
+1-pchisq(k,df=2) #0.36
+</R>
+</BC>
+</SCRIPT>
 <EXRLIST id="M4L4V1">
 
 <EXR>Find expected frequencies under the assumption of
@@ -2262,7 +2951,7 @@ uniformity.</EXR>
 <HEAD2>Module 4: Lesson 1: ANOVA concept</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 4, Lesson 1, Video 1: ANOVA story</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l1/v1" done="n">
 <SESS t="2.80" done="n" id="s1">
 Suppose that you have entered a room, that you haven't been in
 before. There  you find a lamp that is on. And two switches like
@@ -2322,7 +3011,7 @@ The next video will illustrate this with a concrete example.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 1, Video 1: ANOVA story</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l1/v2" done="n">
 <SESS t="3.20" done="n" id="s1">
 The example that I am going to discuss here is painfully
 real. Indeed so much so, that I have to hide behind symbolic
@@ -2381,7 +3070,7 @@ variation and assigning the parts to different heads.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 1, Video 1: ANOVA story</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l1/v3" done="n">
 <SESS t="3.20" done="n" id="s1">
 When we draw a blackbox like this it looks like a machine that
 takes these input and produces that output. Now the output of a machine is
@@ -2436,7 +3125,7 @@ of that due to random error.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 1, Video 1: ANOVA story</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l1/v4" done="n">
 <SESS t="2.30" done="n" id="s1">
 We have already presented the two important pillars of
 ANOVA. 
@@ -2536,8 +3225,8 @@ Total    TSS
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 1, Video 1: ANOVA story</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<BC t="5" done="n" id="s1">
+<SCRIPT id="m4/l1/v5" done="n">
+<BC t="6" done="r" id="aovid_415[abc]">
 Proof of the 1-factor ANOVA identity.
 </BC>
 </SCRIPT>
@@ -2563,14 +3252,16 @@ not. Ask to identify.</EXR>
 <LESSON>
 
 <STKY><HEAD3>Module 4, Lesson 2, Video 1: ANOVA terms</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="0.50" done="n" id="s1">
+<SCRIPT id="m4/l2/v1" done="n">
+<SESS t="1.80" done="n" id="s1">
 When dealing with an ANOVA problem it is important to think about
 the blackbox diagram. There must be at least one input apart from
 the inevitable random error input, and exactly one output. The
 traditional theory of ANOVA requires the output to be continuous,
 and the random error input to be continuous as well. The other
 inputs may be categorical or continuous. 
+
+[Mention MANOVA and GLM]
 
 If all the non-random inputs are categorical we call it an ANOVA
 set up. If all the non-random inputs are continuous we generally
@@ -2584,7 +3275,10 @@ If there are exactly <M>k</M> categorical inputs and no
 continuous input, then we
 have a <M>k</M>-factor ANOVA. If we also have at least one
 continuous input, then it is <M>k</M>-factor ANCOVA. The number
-of covariates does not feature in the nomenclature. 
+of covariates does not feature in the nomenclature. This
+terminology however, is not entirely standard. Some people use
+the term <M>k</M>-way ANOVA only when each factor combination
+occurs exactly once in the data set. [Example]
 
 In this module we shall focus on only 1-factor and 2-factor
 ANOVA. 
@@ -2671,8 +3365,11 @@ finished. This is called double blind.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 2, Video 1: ANOVA terms</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="6" done="n" id="s1">
+<SCRIPT id="m4/l2/v2" done="n">
+<SESS t="0" done="n" id="s1">
+Data layout intro.
+</SESS>
+<BC t="4.5" done="r" id="aovlay_422">
 When collecting data it is good to think in terms of the balckbox
 diagram. Each input arrow (excluding the random error) and output
 arrow corresponds to a variable, ie, a column in the data
@@ -2691,7 +3388,11 @@ the blanks approapriately for each patient. Collating all the
 filled in forms we get a data matrix like this. This is the data
 layout required by most standard statistical softwares like R, SAS,
 SPSS, Systat, Stata. 
+</BC>
+</SCRIPT>
 
+<SCRIPT id="m4/l2/v3" done="n">
+<SESS t="0.60" done="n" id="s1">
 However, LibreOffice expects a
 different layout, which is somewhat more intuitive. First let me
 admit that LibreOffice cannot handle ANOVA in its full
@@ -2699,8 +3400,21 @@ generality. It can handle only 1-factor and 2-factor ANOVA. The
 simple data layout that LibreOffice expects is possible only for
 these simple cases. So let's simplify our example to retain only
 the Drug input. Then we have a 1-factor ANOVA set up. 
-[Explain the rest and also 2-factor layout]
+[Explain the rest]
 </SESS>
+<SC t="5" done="n" id="s1">
+One-way LibreOffice layout.
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m4/l2/v4" done="n">
+<SESS t="2" done="n" id="s1">
+Explain 2-factor layout.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="3" done="n" id="s1">
+Two-way in Libre Office
+</SC>
 </SCRIPT>
 <EXRLIST id="M3L2V1">
 
@@ -2716,12 +3430,12 @@ the Drug input. Then we have a 1-factor ANOVA set up.
 <HEAD2>Module 4: Lesson 3: ANOVA table</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 4, Lesson 3, Video 1: ANOVA table</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="0" done="n" id="s1">
+<SCRIPT id="m4/l3/v1" done="n">
+<SESS t="1.30" done="n" id="s1">
 We have aleady seen ANOVA tables. They sit at the heart of ANOVA
 and is the traditional way to present the result of ANOVA. Let us
 take an example. We are comparing three varieties of paddy and two
-fertilisers in terms of the yield. To
+fertilisers in terms of the yield. [Describe real life set up] To
 understand ANOVA tables it is important to visualise the set up
 as a blackbox diagram.
 
@@ -2733,21 +3447,50 @@ is one total row for the output arrow. The very first column is
 called the Source column and describes each input arrow. The last
 non-total row is always reserved for the random error. Thus here
 the source column looks like this. The next column is for the
-variabilities called sum of squares. The exact formulae are of no
-concern here. 
-
+variabilities called sum of squares. To understand this we need
+to go back to our basic identity. And that's what we shall do in
+the next video.
 </SESS>
+
+</SCRIPT>
+<SCRIPT id="m4/l3/v2" done="n">
+<SESS t="0" done="n" id="s1">
+Intro. The 1-way ANOVA table is a fancy way of expressing...the basic identity.
+</SESS>
+<BC t="6" done="r" id="aovexpl_432">
+Basic identity BSS, WSS. Their positions in ANOVA table. df. The
+other columns. Examplain F test.
+</BC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 3, Video 1: ANOVA table</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l3/v3" done="n">
 <SC t="6" done="n" id="s1">
-Fake data, one way and two way.
+Fake data, one way.
 </SC>
 </SCRIPT>
 
+<SCRIPT id="m4/l3/v4" done="n">
+<SESS t="6" done="n" id="s1">
+Start with 1-way set up, cast it as model. Explain a 2-way set
+up. Mention additive. Refer to non-additive to come later.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m4/l3/v5" done="n">
+<BC t="6.3" done="r" id="aov2expl_435">
+2-way ANOVA table. Brief explanation.
+[aov2.png]
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m4/l3/v6" done="n">
+<SC t="0" done="n" id="s1">
+2-way ANOVA with LibreOffice.
+</SC>
+</SCRIPT>
 <STKY><HEAD3>Module 4, Lesson 3, Video 1: ANOVA table</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l3/v7" done="n">
 <SC t="6" done="n" id="s1">
 Real data
 </SC>
@@ -2774,7 +3517,7 @@ given SS and d.f. columns.</EXR>
 <HEAD2>Module 4: Lesson 4: Interaction</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 4, Lesson 4, Video 1: Interaction (through story)</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l4/v1" done="n">
 <SESS t="1.90" done="n" id="s1">
 We had started our discussion of ANOVA with a story, the story of
 a room with a lamp and two switches. The actual circuitry that
@@ -2847,7 +3590,7 @@ cell entries give the interaction effects.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 4, Video 1: Interaction (through story)</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l4/v2" done="n">
 <SESS t="3.40" done="n" id="s1">
 In the last video we saw some expository examples of
 interaction. Here we shall see how interaction occurs in real
@@ -2904,21 +3647,21 @@ In the next video we shall see how to make such charts in LibreOffice.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 4, Video 1: Interaction (through story)</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l4/v3" done="n">
 <SC t="5" done="n" id="s1">
 Interaction chart.
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 4, Video 1: Interaction (through story)</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l4/v4" done="n">
 <SESS t="1.50" done="n" id="s1">
 We have seen examples of interaction between two categorical
 inputs. In this video we shall see how a categorical input may be
 locked in interaction with a continuous input or covariate. 
 
 Consider this data set where we have three variables height,
-weight and gender of some adult persons. Our aim is to see if
+weight and gender of some adult persons.[Describe set up.]  Our aim is to see if
 height has influence on weight, and if the height weight relation
 is the same for both genders. 
 
@@ -2943,7 +3686,7 @@ coded scatterplot like the ones used here.
 </SCRIPT>
 
 <STKY><HEAD3>Module 4, Lesson 4, Video 1: Interaction (through story)</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m4/l4/v5" done="n">
 <SC t="5" done="n" id="s1">
 Color coded scatterplot.
 </SC>
@@ -2977,15 +3720,15 @@ intersection, but not parallel.</EXR>
 <HEAD2>Module 5: Lesson 1: Regression concept</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 1, Video 1: The concept</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m5/l1/v1" done="n">
 <SESS t="2.30" done="n" id="s1">
 We had mentioned scatterplots in the Basic Statitics course. They
 are an important visual tool to assess the relation between two
-continuous variables. Fir instance, consider this toy data set of
+continuous variables. For instance, consider this toy data set of
 height and weight. The scatterplot looks like this. Here you can
 see a linear pattern. I said a linear pattern, not a
 line. Because not all the points are lying exactly on a line. But
-still w can feel the presence of a line. Our aim is to capture
+still we can feel the presence of a line. Our aim is to capture
 that line mathemarically. Let's frst try by eye estimation. Let's
 consider this line. Is this a good fit? Since not all the points are exactly on a
 line, whatever line we draw is bound to miss some points. But
@@ -3002,7 +3745,7 @@ avoiding such lines that are wide off the mark.
 * Second, how to do what eye cannot do: choosing objectively the
 best among such best contenders.
 
-Before we go into urther details, let me tell you that the
+Before we go into further details, let me tell you that the
 problem is not specific to linear patterns alone. Consider this
 scatterplot that shows a curved pattern like a parabola. Surely
 this parabola is a bad fit[shift], as is this one[scale]. We
@@ -3019,14 +3762,15 @@ something else)
 <SESS t="1.10" done="n" id="s2">
 Most of the time we choose the form either by visual inspection
 or by domain knowledge, eg, we know that projectiles near the
-ground move along parabolic paths. Any such mathematical form is
+ground move along parabolic paths. [More examples: Boyle, Lens] 
+Any such mathematical form is
 characterised by some parameters eg, a straight line by the
 form <M>y = a + bx,</M> where <M>a</M> and <M>b</M> are the
 parameters. A parabola has the form <M>y = a + bx + cx^2,</M>
 where <M>a,b,c</M> are the parameters. Choosing the form is the
 first step.
 
-Once we have finished choosing the form the next step os t
+Once we have finished choosing the form the next step is to
 estimate the values of the parameters. 
 
 Regression that proceeds in these two steps is called parametric
@@ -3040,15 +3784,19 @@ regression. This course will only discuss parametric regression.
 </SCRIPT>
 <EXRLIST id="M5L1V1">
 
-<EXR>Show plot. Classify as
-increasing/decreasing/nonlinear.</EXR>
+<EXR>Show plot. Classify as increasing/decreasing/nonlinear.</EXR>
 
 <EXR>Strong relation, weak relation.</EXR>
 </EXRLIST>
 
 <STKY><HEAD3>Module 5, Lesson 1, Video 2: Mathematical formulation</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="2.90" done="n" id="s1">
+<SCRIPT id="m5/l1/v2" done="n">
+<SESS t="0.20" done="n" id="s1">
+In this video and the next video we shall introduce the mathematical model
+behind linear regression. It is best understood through an example.
+</SESS>
+<SC t="5" done="n" id="s1">
+[Use shiny]
 Here is a scatterplot. We discern a linear pattern. So we try to
 fit a straight line to the data cloud. That means looking for a
 line like <M>y=a+bx.</M> Here <M>a</M> and <M>b</M> are the two
@@ -3061,14 +3809,35 @@ itself. If I move the <M>b</M> slider then the line rotates
 around the point where it hits vertical axis. Our aim is to
 find <M>a</M> and <M>b</M> such that the line passes as close as
 possible to all the data points. 
+</SC>
 
-Now the way I described it, is looking at data. But as I have
-saying again and again, statistics is all about looking through
+</SCRIPT>
+
+
+<SCRIPT id="m5/l1/v3" done="n">
+<SC t="6" done="n" id="s1">
+Computing with LibreOffice for the same data set.
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m5/l1/v4" done="n">
+<SESS t="4" done="n" id="s1">
+Fit polynomial using linest.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m5/l1/v5" done="n">
+<SESS t="0.70" done="n" id="s1">
+Now the way I described in the last video, is more like looking at data. But as I have
+been saying again and again, statistics is all about looking through
 data at the underlying truth. So let's understand the underlying
 truth here. It will help to visualise the set up as a measurng
 the length of a spring from which we are hanging different
 weights. The weight we hang is <M>x</M> and the measured length
-is <M>y.</M> Every time we choose a weight to hang, ie we choose
+is <M>y.</M> Every time we choose... a weight to hang,
+</SESS> 
+<BC t="4" done="r" id="regmod_515">
+ie we choose
 a value for <M>x,</M> nature decides about the length in two
 steps. First, she uses two fixed numbers <M>\alpha </M>
 and <M>\beta</M> (depending on the spring used), and
@@ -3090,8 +3859,9 @@ This is called the regression model.
 Now the problem is to estimate <M>\alpha</M> and <M>\beta.</M> A secondary problem is
 to estimate <M>\sigma^2,</M> which measures the accuracy of the
 line. 
-</SESS>
+</BC>
 </SCRIPT>
+
 <EXRLIST id="M5L1V2">
 
 <EXR>Show plots of errors as lines (vertical, horizontal,
@@ -3101,11 +3871,11 @@ perp). Ask to identify least squares.</EXR>
 <HEAD2>Module 5: Lesson 2: Least squares</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 2, Video 1: Least squares</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m5/l2/v1" done="n">
 <SESS t="0.50" done="n" id="s1">
 Here we shall describe the most popular technique for
 regression. We shall explain the idea with fitting a straight
-line, bu the idea is equally valid for other types of lines, like
+line, but the idea is equally valid for other types of lines, like
 parabolas. 
 
 We have already mentioned the idea of thinking of fitting a
@@ -3116,7 +3886,7 @@ for <M>a</M> and <M>b.</M>
 Show the vertical error lines.
 </SC>
 <JINGLE t="0.1">Mathematically</JINGLE>
-<SESS t="0.70" done="n" id="s1">
+<SESS t="0.70" done="n" id="s2">
 For any given values of <M>a</M> and <M>b</M> we have the total
 error 
 <D>
@@ -3139,27 +3909,71 @@ An estimator for <M>\sigma^2 </M> is ...
 </SCRIPT>
 
 <STKY><HEAD3>Module 5, Lesson 2, Video 1: Least squares</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="1.10" done="n" id="s1">
+<SCRIPT id="m5/l2/v2" done="n">
+<SESS t="0.30" done="n" id="s1">
 We have learned one way to estimate <M>\alpha </M>
 and <M>\beta.</M> The estimators have some interesting properties
-that we want to discuss here. First, the regression coefficient
+that we want to discuss here. First,...
+
+</SESS>
+
+<BC t="5" done="r" id="regsamp_522">
+
+ the regression coefficient
 is of the form <M>[[\cos(x,y)][\var(x)]].</M> And second the
 estimated line always passes through the centre of the data cloud <M>(\bar x, bar y).</M>
-
 
 As we have already mentioned in an earlier lesson, statisticians
 always worry about the sampling distributions of the
 estimators, in particular their bias and standard error. It may
 be shown that both the estimators are unbiased.  Also their
-standard errors are given by ... 
+standard errors are given by ... [Show that if x's are close
+together then variance increases]
 
 Don't be scared by the formulae. When you compute them for a
 given data set, they are just two numbers. If the numbers are
 large, then that is a cause for worry, because large standard
 errors mean inaccurate estimators. 
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m5/l2/v3" done="n">
+<BC t="6" done="r" id="regcomp_523">
+Hand computation of regression line.
+<R>
+set.seed(135319)
+(x = 1:5)
+y = as.numeric(format(2+x+rnorm(5),dig=2))
+cbind(x,y)
+(sx = sum(x)); (sy = sum(y))
+(sx2 = sum(x*x)); (sy2 = sum(y*y))
+(sxy = sum(x*y))
+(mnx = mean(x)); (mny = mean(y))
+(vx = var(x)); (vy = var(y)); (cxy = cov(x,y))
+(b = lm(y~x)$coef)
+as.numeric(format(lm(y~x)$fit))
+</R>
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m5/l2/v4" done="n">
+<SESS t="0.30" done="n" id="s1">
+Notice that there is some assymmetry in the set up, predicting y
+based on x. It could be the other way round. We shall discuss
+that now.
+</SESS>
+<JINGLE t="0.1">x on y</JINGLE>
+<BC t="5" done="n" id="xony_524">
+[x-on-y, y-on-x, beta*beta = r^2, sign]
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m5/l2/v5" done="n">
+<SESS t="3" done="n" id="s1">
+Orthogonal regression.
 </SESS>
 </SCRIPT>
+
 <EXRLIST id="M5L2V1">
 
 <EXR>
@@ -3203,7 +4017,7 @@ clockwise, swing counter-clockwise.</EXR>
 <HEAD2>Module 5: Lesson 4: Residuals, outliers, leverage</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 4, Video 1: Residuals (theory) </HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m5/l4/v1" done="n">
 <SESS t="2.00" done="n" id="s1">
 We have mentioned that statisticians look through data rather
 than loot at data. They look through data at an underlying truth,
@@ -3236,7 +4050,7 @@ and a plethora of tools are available to rectify a failed
 assumption. All these together are called Regression Diagnostics.
 </SESS>
 <JINGLE t="0.1">Regression diagonsotics</JINGLE>
-<SESS t="1.30" done="n" id="s1">
+<SESS t="1.30" done="n" id="s2">
 Remember we had the assumption <M>y_i = \alpha + \beta x_i +
 \epsilon_i,</M> where the <M>\epsilon_i</M>'s were supposed to be
 iid with normal distribution having mean 0. As we cannot observe
@@ -3261,14 +4075,14 @@ The next video will show such an example.
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 5, Lesson 4, Video 2: Residuals (lab) </HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m5/l4/v2" done="n">
 <SC t="6" done="n" id="s1">
 Computing residuals. Plotting them. y=1/x model.
 </SC>
 </SCRIPT>
 
 <STKY><HEAD3>Module 5, Lesson 4, Video 3: Outiers, leverage (theory) </HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m5/l4/v3" done="n">
 <SESS t="1.70" done="n" id="s1">
 We have talked about outliers in our Basic Statistics course
 already. Roughl speaking these are points that lie far away from
@@ -3324,7 +4138,7 @@ inspection of the scatterplot is enough.
 </SESS>
 </SCRIPT>
 <STKY><HEAD3>Module 5, Lesson 4, Video 4: Outiers, leverage (lab) </HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m5/l4/v4" done="n">
 <SC t="6" done="n" id="s1">
 Outliers, leverage plots.
 </SC>
@@ -3357,7 +4171,7 @@ Outliers, leverage plots.
 <LESSON>
 <STKY><HEAD3>Module 6, Lesson 1, Video 1: Concept: What it is</HEAD3></STKY>
 
-<SCRIPT id="m/l/v">
+<SCRIPT id="m/l/v" done="n">
 <SESS t="5.90" done="n" id="s1">
 To be able to predict the future has always been the dream of
 man. From science to science fiction, from astronomy to
@@ -3456,7 +4270,7 @@ series.</EXR>
 
 
 <STKY><HEAD3>Module 6, Lesson 1, Video 2: Concept: Estimation, prediction, smoothing</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m/l/v" done="n">
 <SESS t="4.30" done="n" id="s1">
 Why do we care about time series data? 
 The primary aim of time series analysis is, as I have already
@@ -3529,8 +4343,8 @@ of time series.
 </SCRIPT>
 
 <STKY><HEAD3>Module 6, Lesson 1, Video 2: Concept: Estimation, prediction, smoothing</HEAD3></STKY>
-<SCRIPT id="m/l/v">
-<SESS t="3.20" done="n" id="s2">
+<SCRIPT id="m/l/v" done="n">
+<SESS t="3.20" done="n" id="s1">
 Prediction is definitely the most important aim behind analysing
 a time series. 
 However, that is not the only 
@@ -3619,7 +4433,7 @@ RBI data. Identify the pattern.</EXR>
 <LESSON>
 <STKY><HEAD3>Module 6, Lesson 3, Video 1: Trend+Seasonal+Error</HEAD3></STKY>
 
-<SCRIPT id="m/l/v">
+<SCRIPT id="m/l/v" done="n">
 <SESS t="3.00" done="n" id="s1">
 We had earlier talked about looking through data as opppsoed to
 looking at data. We look through data at the underlying
@@ -3671,7 +4485,7 @@ discuss a more flexible alternative that suits diverse real life scenarios.
 </SCRIPT>
 
 <STKY><HEAD3>Module 6, Lesson 3, Video 1: Trend+Seasonal+Error</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m/l/v" done="n">
 <SESS t="2.20" done="n" id="s1">
 In the last video we learned about a class of time series moels
 where the time component and chance components are added
@@ -3739,7 +4553,7 @@ The next video will show this in action.
 </SCRIPT>
 
 <STKY><HEAD3>Module 6, Lesson 3, Video 1: Trend+Seasonal+Error</HEAD3></STKY>
-<SCRIPT id="m/l/v">
+<SCRIPT id="m/l/v" done="n">
 <SC t="6" done="n" id="s1">
 Create a daily time series from scratch. The trend values along a
 line and some day-of-the-week values adding up to 0. Finally
@@ -3768,7 +4582,7 @@ errors as rand()-1. Recover and compare.
 <LESSON>
 <STKY><HEAD3>Module 6, Lesson 4, Video 1: Real life example</HEAD3></STKY>
 
-<SCRIPT id="m/l/v">
+<SCRIPT id="m/l/v" done="n">
 <SESS t="0.50" done="n" id="s1">
 So far we have given some idea about times series, what they are,
 why they are important, and also given a very simple introduction
@@ -3810,10 +4624,10 @@ smooth the time series.
 
 <COMMENT>
 Local Variables:
- two-part1: ((format "%cSCRIPT id=\"m/l/v\">\n" 60) (format "\n%c/SCRIPT>" 60))
- two-part2: ((format "%cSESS t=\"0\" done=\"n\" id=\"s1\">\n" 60) (format "\n%c/SESS>" 60))
- dummy: ("<V>[shown]" "</V>")
- tmp: ("<B>" "</B>")
+ d1: ((format "%cSCRIPT id=\"m/l/v\">\n" 60) (format "\n%c/SCRIPT>" 60))
+ d2: ((format "%cSESS t=\"0\" done=\"n\" id=\"s1\">\n" 60) (format "\n%c/SESS>" 60))
+ two-part1: ("<V>[shown]" "</V>")
+ two-part2: ("<B>" "</B>")
 End:
 </COMMENT>
 </NOTE>@}
