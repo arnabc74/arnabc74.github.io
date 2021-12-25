@@ -1,6 +1,6 @@
 @{<NOTE>
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>TUE DEC 21 IST 2021</UPDT>
+<UPDT>FRI DEC 24 IST 2021</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -290,9 +290,6 @@ hand, are , if  available, easier to get, but may only be an
 approximation to the information that you are actually seeking.
 </SESS>
 </SCRIPT>
-<EXRLIST>
-
-</EXRLIST>
 
 <STKY><HEAD3>Module 1, Lesson 1,  Video 3: Data--Census/sample, Observational/experiment</HEAD3></STKY>
 <SCRIPT id="m1/l1/v3" done="">
@@ -3512,6 +3509,27 @@ all bars more or less of the same height is relevant.
 <STKY>
 <HEAD3>Module 2, Lesson 4,  Video 3: Real life examples</HEAD3></STKY>
 
+<SCRIPT t="0" done="n" id="">
+<SESS t="0.9" done="n" id="s1">
+Ramble intro for real life data.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="">
+Plotting world bank data for countries (after transposing)
+</SC>
+</SCRIPT>
+
+<SCRIPT t="0" done="n" id="">
+<SESS t="0.9" done="n" id="s1">
+Ramble intro for real life data.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="">
+Pie chart from Hugli data.
+</SC>
+</SCRIPT>
+
+
 <EXRLIST id="M2L4V2.yml">
 
 - typeName: multipleChoice
@@ -3854,7 +3872,7 @@ lr.csv: Don't use iq
 
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 2: Contingency table</HEAD3></STKY>
-<SCRIPT id="m3/l2/v2" done="k*">
+<SCRIPT id="m3/l2/v2" done="k">
 <SESS t="1.10" done="r" kf="10,20,30" id="s1">
 We mentioned just now that contingency tables are very
 important in statistics. Why is that? The most important reason
@@ -3875,6 +3893,74 @@ status (admitted / rejected) and gender (male /
 female). 
 ---
 Contingency tables help us to understand such relations.
+</SESS>
+<JINGLE t="0.1">Some real life scenarios</JINGLE>
+<SESS t="3.00" done="a" kf="60,70,80,90" id="s2">
+Many studies aim to assess satisfaction of people regarding some
+service or product. It could be reviewing a product, or providing
+feedback for some service.
+---
+ Satisfaction, inherently is something
+continuous. However, it is impossible to quantify it meaningfully
+along a continuous scale, like "I am 2.3343 unit happy". However,
+we can broadly classify our satisfaction level in say 5 classes,...
+---
+ranging from very unhappy to very happy.<V>[shown]</V>. Hence we
+see such star rating systems everywhere. These are
+called  <B>Likert scale</B>s.
+---
+ The one that we saw just now was a 5-point
+Likert scale, which is the most common variant. We sometimes also
+see 10 points versions.
+---
+ When we collect such data, we get one
+such rating from each respondent, or case. Along with the rating
+variable, we also collect other potentially relevant data about
+the respondents, like gender, income level, etc.
+---
+ So we end upwith a data se tlike this.<V>[shown]</V>
+
+One of the most important things that we do with such a data set,
+is to assess which of the other variables are closely associated
+with the rating.
+---
+ Like answering questions like: Does gender play
+a signficant role? Something like women liking our product
+more than men do? Or may be gender plays no role at all?
+---
+Similarly, we may ask whether income level plays a role. Answers
+to such questions will enable a company to focus their efforts to
+appropriate channels. 
+---
+In order to arrive at the answer, we first create a contingency
+table involving the rating variable and the variable in
+question, and find some suitable measure of association based on
+the table. 
+---
+Here is a different type of application. 
+Firms that lend money to people, like house loans, credit cards and all
+that, have to worry a lot about defaulters, those who do not pay
+up.
+---
+ A new customer comes in, asks for a loan. The firm naturally
+wants to guess if this fellow is going to be a defaulter or
+not. For this the firm uses  data regarding past
+customers.
+---
+ There we have a binary variable, defaulter, with
+values yes and no. And also other background information about
+each customer.
+---
+ Many of these background variables are
+categorical. So their association with the "defaulter" variable
+may be assessed using a contingency table involving that variable
+and the "defaulter" variable.
+---
+We may even use this technique for continuous variables, after
+suitably categorising it. Like "age" is converted to "age group".
+---
+In the next video we shall take a brief look at how association may be
+measured based on contingency tables.
 </SESS>
 </SCRIPT>
 
@@ -4013,7 +4099,7 @@ suited for the purpose.
 
 <STKY>
 <HEAD3>Module 3, Lesson 2,  Video 5: Contingency table</HEAD3></STKY>
-<SCRIPT id="m3/l2/v5" done="k*">
+<SCRIPT id="m3/l2/v5" done="k">
 <SESS t="1.60" done="r" kf="10,20,30,50,90,120,130,140,150,160" id="s1">
 All the contingency tables discussed so far were 2-way or
 2-dimensional. It is quite possible to have higher dimensional
@@ -4050,13 +4136,61 @@ table allows more variety. For instance,
 income group and educational level may be associated in
 one way in the male layer, but  differently
  in the female layer. 
----
+---(*)
 Statisticians often build elaborate models called <B>log-linear
 models</B> to capture such complex relations. But we shall not go
 into this any further in this course.
 ---
-In the nexr video we shall see how we may construct a 3-way contingency
+In the next video we shall see how we may construct a 3-way contingency
 table from raw data using LibreOffice.
+</SESS>
+<SESS t="2.10" done="a" kf="10,20,30,40,50,110,290" id="s2">
+(insert this at (*) above)
+Here is a real life example of a 3-dimensional contingency table
+scenario, where different layers have different types of
+association.
+---
+ Indeed, we shall consider an extreme situation where
+one layer has strong association, while another layer has no
+association at all!
+---
+ Suppose that we have a list of locations and  are collecting
+data from a random sample of people about how happy they will be
+to live in the locations in our list.
+---
+ Each person is to either
+say "Happy" or "Unhappy" for each location. So we have one
+variable: <B>"Happiness"</B>  with values <B>Happy and Unhappy</B>.
+--- 
+Now, we have various information regarding the
+locations as well as the respondents. One variable about the
+locations is "<B>school</B>" which says if there is a school nearby or
+not. Accordingly there are two possible values. <V>[shown]</V>
+---
+ Finally there is another binary variable, this time  about the 
+respondents, <B>"marital status", married or unmarried. </B>
+So our data set has three binary variables, other than the names
+of the respondents and the locations.
+---
+We may neatly present the information as a 2x2x2 contingency
+table like this.<V>[shown]</V> Each little cube is a cell, and
+contains a frequncy, the number of times that combination occurs
+in the data set. 
+---
+This cell for example<V>[finger]</V> gives the count of married people who are
+happy in a location with a school in the neighbourhood.
+---
+Let's consider the 
+married and unmarried layers separately.<V>[anim]</V> 
+---
+Married people are
+likely to worry about proximity to school while deciding about
+the location for residence. So in this layer we expect to see
+association.
+---
+ But in the other layer, we have unmarried people,
+who may not care at all about schools. So we may not find
+association here.
 </SESS>
 </SCRIPT>
 
@@ -4143,8 +4277,19 @@ land.csv
 </SC>
 </SCRIPT>
 
-<STKY><HEAD3>Module 3, Lesson 3,  Video 2: Frequency distribution</HEAD3></STKY>
-<SCRIPT id="m3/l3/v2" done="k">
+<STKY><HEAD3>Module 3, Lesson 3,  newVideo 2: Tally marks</HEAD3></STKY>
+<SCRIPT t="0" done="n" id="">
+<SESS t="0.9" done="n" id="s1">
+Ramble intro to tally marks
+</SESS>
+<JINGLE t="0.1">Tally marking</JINGLE>
+<BC t="3" done="n" id="bc_tally_332">
+Explain tally marking.
+</BC>
+</SCRIPT>
+
+<STKY><HEAD3>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD3></STKY>
+<SCRIPT id="m3/l3/v3" done="k">
 <SESS t="2.90" done="r" kf="10,20,30" id="s1">
 Now that we have learned what a frequency distribution is, you
 might naturally wonder what is so special about them! Indeed,
@@ -4197,16 +4342,16 @@ can simulate data.
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD3>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD3></STKY>
-<SCRIPT id="m3/l3/v3" done="">
+<STKY><HEAD3>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD3></STKY>
+<SCRIPT id="m3/l3/v4" done="">
 <SC t="6" done="r" id="s1">
 [Screencast: experiment]
 Show simul randomness. Split. Do cumsum.
 </SC>
 </SCRIPT>
 
-<STKY><HEAD3>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD3></STKY>
-<SCRIPT id="m3/l3/v4" done="k*">
+<STKY><HEAD3>Module 3, Lesson 3,  Video 5: Frequency distribution</HEAD3></STKY>
+<SCRIPT id="m3/l3/v5" done="k*">
 <SESS t="0.70" done="r" kf="10,20" id="s1">
 What you experienced is the last video is the key idea behind the whole of
 statistics. It is called <B>statistical regularity</B>:
@@ -4257,6 +4402,10 @@ something fixed.
 distribution</B> for that random experiment. The entire theory of
 statistics hinges on this idea.
 </SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="2" done="n" id="sc_binom_335">
+Convergence of relative freq. Show binom example.
+</SC>
 </SCRIPT>
 <EXRLIST id="M3L1V1.yml">
 - typeName: numeric
@@ -4376,9 +4525,10 @@ statistics hinges on this idea.
 </EXRLIST>
 </LESSON>
 <HEAD2>Module 3: Lesson 4</HEAD2>
+<LESSON>
+
 <STKY>
 <HEAD3>Module 3, Lesson 4,  Video 1: Histogram</HEAD3></STKY>
-<LESSON>
 <SCRIPT id="m3/l4/v1" done="k**">
 <SESS t="0.90" done="r" kf="10,20" id="s1">
 We have already seen some ways to  represent
@@ -4471,8 +4621,31 @@ to the relative frequency.
 This makes the total area of the histogram equal to 1.
 </SESS>
 </SCRIPT>
+
 <STKY>
-<HEAD3>Module 3, Lesson 4,  Video 2: Shape of histogram</HEAD3></STKY>
+<HEAD3>Module 3, Lesson 4,  Video 2: Lab</HEAD3></STKY>
+
+<SCRIPT id="m3/l4/v5" done="n">
+<SC t="5" done="n" id="s1">
+[Screencast: Discrete histogram]
+Reuse the earlier data.
+</SC>
+</SCRIPT>
+
+
+<STKY>
+<HEAD3>Module 3, Lesson 4,  Video 3: Lab</HEAD3></STKY>
+
+<SCRIPT id="m3/l4/v6" done="">
+<SC t="7" done="n" id="s1">
+[Screencast: Continuous histogram]
+Reuse the earlier data.
+</SC>
+</SCRIPT>
+
+
+<STKY>
+<HEAD3>Module 3, Lesson 4,  Video 4: Shape of histogram</HEAD3></STKY>
 
 <SCRIPT id="m3/l4/v2" done="r">
 <SESS t="1.80" done="r" kf="10,20,40" id="s1">
@@ -4517,26 +4690,35 @@ statistician who constructs a histogram out of them!
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 3, Lesson 4,  Video 3: Shape of histogram</HEAD3></STKY>
-<SCRIPT id="m3/l4/v3" done="">
+<HEAD3>Module 3, Lesson 4,  Video 5: Convergence of histogram</HEAD3></STKY>
+<SCRIPT t="0" done="n" id="m3/l4/v3">
+<SESS t="1" done="n" id="s1">
+Ramble intro
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="4" done="n" id="sc_hist_343">
+Convergence of continuous histogram. Show Gaussian example.
+</SC>
+</SCRIPT>
+
+<STKY>
+<HEAD3>Module 3, Lesson 4,  Video 6: Shape of histogram</HEAD3></STKY>
+<SCRIPT id="m3/l4/v4" done="n">
 <SESS t="1.20" done="a" kf="10,70,130,140,150" id="s1">
-Suppose we draw a huge random sample
-across  the entire Indian population, and collect data
-about their monthly income. Even without carrying out the
-sampling let's see whether we can guess the shape of
-histogram. Can it be like this <V>[flat]</V>?
+Suppose we draw a huge random sample across  the entire Indian
+population, and collect data about their monthly income. Even
+without carrying out the sampling let's see whether we can guess
+the shape of histogram. Can it be like this <V>[flat]</V>?
 ---
 The horizontal axis denotes income. So <V>[point]</V>this is the poor end, and
 this the rich end. Here it seems there is
 an equal number of people in all income levels! That's not true! 
 
-Can it be
-like this <V>[left skew]</V>?
+Can it be like this <V>[left skew]</V>?
 ---
  No, now there are more rich men than
 poor!
- Can it be like this <V>[right
-skew]</V>.
+ Can it be like this <V>[right skew]</V>.
 ---
  This looks better. Indeed, this is the typical shape for
 income distribution for most countries with a significant 
@@ -4586,25 +4768,6 @@ its left.
 
 
 </EXRLIST>
-
-<STKY>
-<HEAD3>Module 3, Lesson 4,  Video 4: Lab</HEAD3></STKY>
-
-<SCRIPT id="m3/l4/v4" done="">
-<SC t="5" done="n" id="s1">
-[Screencast: Discrete histogram]
-Reuse the earlier data.
-</SC>
-</SCRIPT>
-<STKY>
-<HEAD3>Module 3, Lesson 4,  Video 5: Lab</HEAD3></STKY>
-
-<SCRIPT id="m3/l4/v5" done="">
-<SC t="7" done="n" id="s1">
-[Screencast: Continuous histogram]
-Reuse the earlier data.
-</SC>
-</SCRIPT>
 
 
 <EXRLIST id="M3L3V2.yml">
@@ -5004,18 +5167,21 @@ to the second.
 
 Let's see if the arithmetic mean formula conforms to this.
 ---
-Mean of the lengths is this<V>[shown]</V>, but mean of the areas is this<V>[shown]</V>, which is not a
+Mean of the lengths is this<V>[shown]</V>, but mean of the areas is this<V>[shown]</V>, which is not 
 square of that!
 ---
 Indeed, this is not just for squaring. If you take any transformation
 of the values other than the simple <M>ax+b</M> type, then the mean will not
 transform in the same way!
----
+---(*)
 It is hard to live with this fact. But it is a fact nonetheless. If
 you feel unhappy with this, don't worry. The  measure of
 central tendency that we shall discuss in the next video is free of
 this problem to a great extent!
 </SESS>
+<BC t="4" done="n" id="bc_meangraph_413">
+Explain with curved graph why mean(f)\neq f(mean) using two points.
+</BC>
 </SCRIPT>
 
 <STKY>
@@ -5398,6 +5564,20 @@ Such far off values, as you already know are called
 So we do not use mean here. We use median, which is the central most
 value, and not affected by changes in the extreme values.
 </SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="4" done="n" id="sc_medrob_424">
+Median is robust, mean is not. Show using data.
+</SC>
+</SCRIPT>
+
+<SCRIPT t="0" done="n" id="m4/l2/v5">
+<SESS t="0.9" done="n" id="s1">
+Ramble intro to different properties (for generalisation).
+</SESS>
+<JINGLE t="0.1">Properties</JINGLE>
+<BC t="5" done="n" id="bc_medprop_425">
+Properties: Data depth, simplicial.
+</BC>
 </SCRIPT>
 </LESSON>
 <HEAD2>Module 4: Lesson 3</HEAD2>
@@ -5979,7 +6159,11 @@ alternative!
 
 <HEAD1>Module 5: Dispersion</HEAD1>
 <HEAD2>Module 5: Lesson 1</HEAD2>
+<SCRIPT t="0" done="n" id="m5/intro">
+<SESS t="0" done="n" id="s1">
 
+</SESS>
+</SCRIPT>
 <STKY>
 <HEAD3>Module 5, Lesson 1,  Video 1: The concept</HEAD3></STKY>
 <LESSON>
@@ -6115,9 +6299,21 @@ We shall start with range in the next video.
 </EXRLIST>
 
 <STKY>
-<HEAD3>Module 5, Lesson 1,  Video 2: Range</HEAD3></STKY>
+<HEAD3>Module 5, Lesson 1,  Video 2: Dispersion in real life</HEAD3></STKY>
+<SCRIPT  done="k" id="m5/l1/v2" t="6:19">
+<SESS t="1" done="r" id="s1">
+[Intro ramble]
+</SESS>
+<JINGLE t="0.1">Examples</JINGLE>
+<SC t="5" done="r" id="vol_512">
+audio noise, TV noise, handwriting, volatility
+</SC>
+</SCRIPT>
 
-<SCRIPT id="m5/l1/v2" done="k**">
+<STKY>
+<HEAD3>Module 5, Lesson 1,  Video 3: Range</HEAD3></STKY>
+
+<SCRIPT id="m5/l1/v3" done="k">
 <SESS t="0.90" done="r" kf="10,20,30,70,80,90,100,110" id="s1">
 <B>Range</B> is the simplest measure of dispersion, simplest to
 understand and simplest to compute. We again consider the values
@@ -6156,9 +6352,9 @@ land.csv
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 5, Lesson 1,  Video 3: Properties of range</HEAD3></STKY>
+<HEAD3>Module 5, Lesson 1,  Video 4: Good properties of range</HEAD3></STKY>
 
-<SCRIPT id="m5/l1/v3" done="r">
+<SCRIPT id="m5/l1/v4" done="k" t="7:14">
 <SESS t="0.30" done="r" id="s1">
 In this video we shall explore the properties of the range. There
 are some good properties and one seriously bad property. Let's
@@ -6215,18 +6411,25 @@ the numbers are multiplied with <M>c.</M>
 Does range satisfy this property? Let's see.
 </SESS>
 <JINGLE t="0.1">Proof</JINGLE>
-<BC t="2">[Boardcast: Proof]</BC>
-<SESS t="0.50" done="r" id="s3">
+<BC t="4" done="n" id="rpf_512">
+[Boardcast: Proof]
+</BC>
+</SCRIPT>
+
+<STKY>
+<HEAD3>Module 5, Lesson 1,  Video 5: Bad properties of range</HEAD3></STKY>
+
+<SCRIPT t="1:49" done="k" id="m5/l1/v5">
+<SESS t="0.50" done="r" id="s1">
 So we have listed lots of good properties of the range. Easy to
 understand, easy to compute, becomes zero when all the values
 are the same, is not affected by constant shift, scales appropriately.
 ---
 But still range is not a popular measure of dispersion. Why?
 Because it has one particularly bad property.
-
 </SESS>
 <JINGLE t="0.1">Bad property</JINGLE>
-<SESS t="1.10" done="r" kf="10,20,80" id="s4">
+<SESS t="1.10" done="r" kf="10,20,80" id="s2">
  <B>Range is not robust</B> against outliers. 
 Let's quickly understand what that means. Suppose we have many
 cases in a data set. So for each variable we have many values.
@@ -6247,6 +6450,7 @@ more deeply, not just at the two extreme points.
 </SESS>
 </SCRIPT>
 </LESSON>
+
 <EXRLIST id="M5L1V2.yml">
 - typeName: numeric
   prompt: >
@@ -6312,7 +6516,7 @@ more deeply, not just at the two extreme points.
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m5/l2/v1" done="r">
+<SCRIPT id="m5/l2/v1" done="k!">
 <SESS t="0.80" done="r" kf="10,20" id="s1">
 We learned about the concept of dispersion in the last lesson,
 and also one measure of dispersion, namely range. Range was easy
@@ -6475,7 +6679,7 @@ the definition with a small numerical example.
 
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 2: Other ways to compute it</HEAD3></STKY>
-<SCRIPT id="m5/l2/v2" done="r">
+<SCRIPT id="m5/l2/v2" done="k">
 <SESS t="1.00" done="r" kf="10,20,30,40,50" id="s1">
 The formula that we used to define variance is not that easy to
 use by hand. It requires a sort of two-stage
@@ -6519,16 +6723,17 @@ variance using LibreOffice.
 </SCRIPT>
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 3: Other ways to compute it</HEAD3></STKY>
-<SCRIPT id="m5/l2/v3" done="r">
+<SCRIPT id="m5/l2/v3" done="k" t="5:34">
 <SC t="6" done="n" id="s1">
 [Screencast: Compute for the same data. Var. Then explicit. Find
 n-1 problem.]
 var.csv
 </SC>
 </SCRIPT>
+
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 4: Other ways to compute it</HEAD3></STKY>
-<SCRIPT id="m5/l2/v4" done="k*">
+<SCRIPT id="m5/l2/v4" done="k">
 <SESS t="1.90" done="r" kf="10,20,30,40,50,60" id="s1">
 Actually LibreOffice, like most other softwares, uses a slightly
 different formula which is:
@@ -6588,7 +6793,7 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 5: Properties</HEAD3></STKY>
-<SCRIPT id="m5/l2/v5" done="k**">
+<SCRIPT id="m5/l2/v5" done="k">
 <SESS t="2.60" done="r" kf="10,70,80,140,150,210,220" id="s1">
 While discussing range, we had listed some desirable properties
 that a measure of dispersion should have. <V>[data shown]</V>
@@ -6652,7 +6857,7 @@ OK, so we have checked the good properties. Now let's check
 <STKY>
 <HEAD3>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m5/l3/v1" done="r">
+<SCRIPT id="m5/l3/v1" done="k" t="6:58">
 <SESS t="1.90" done="r" kf="10,50,60,70,80,90,100" id="s1">
 We use acronyms everywhere. Each field has its own world of
 acronyms. But how many fields use <B>MAD</B> as an acronym? Well,
@@ -6696,11 +6901,14 @@ the values. But just to remember the definition, let us toil
 through a numerical example by hand.
 </SESS>
 <JINGLE t="0.1">Hand computation</JINGLE>
-<BC t="3" done="n" id="s1">
+<BC t="4.7" done="r" id="madhand_531">
 [Boardcast: compute MAD.]
 var.csv
 </BC>
-<SESS t="0.40" done="r" id="s2">
+</SCRIPT>
+
+<SCRIPT t="4:55" done="k" id="m5/l3/v2">
+<SESS t="0.40" done="r" id="s1">
 Now let's see how to compute MAD using
 LibreOffice. Unfortunately, LibreOffice or its paid analog Excel
 does not have any readymade command for this. But they can
@@ -6708,15 +6916,15 @@ compute median and take absolute values. So it is not hard to
 compute MAD with them. Let's see how.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="5" done="n" id="s1">
+<SC t="4.6" done="r" id="var_532">
 [Screencast: Same data. Compute MAD]
 var.csv
 </SC>
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 5, Lesson 3,  Video 2: Properties of MAD</HEAD3></STKY>
-<SCRIPT id="m5/l3/v2" done="k**">
+<HEAD3>Module 5, Lesson 3,  Video 3: Properties of MAD</HEAD3></STKY>
+<SCRIPT id="m5/l3/v3" done="k" t="3:30">
 <SESS t="1.20" done="r" kf="10,70,80,140,150,210" id="s1">
 MAD has all the good properties of a dispersion measure that we
 have learned<V>[data shown]</V>. If all the points are the
@@ -6740,8 +6948,35 @@ MAD cannot be computed easily by hand. That was the main reason
 why people did not use it much before the advent of computers. Of
 course, this is hardly a consideration in the modern age. 
 </SESS>
+<JINGLE t="0.1">Another MAD</JINGLE>
+<SESS t="2" done="r" kf="10,40,70,80" id="s3">
+Ramble: 
+We defined MAD as a robust version of variance. <V>[var
+formula]</V>
+
+Present as mean sqd dev<V>[shown]</V>
+---
+The robust version was MAD.<V>[shown]</V>
+
+Robustified twice. Second thing makes computation tough.
+So combine.<V>[finger]</V>
+---
+The result is also called MAD.<V>[shown]</V>
+
+But our defn is more common.
+</SESS>
 </SCRIPT>
 
+<SCRIPT done="k" id="m5/l3/v4" t="5:31">
+<SESS t="0.9" done="r" id="s1">
+Ramble intro
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="r" id="rob_534">
+Robustness comparison between SD and MAD.
+rob.csv
+</SC>
+</SCRIPT>
 <EXRLIST id="M5L3V1.yml">
 What signals outliers: MAD diffeernet from standard deviation.
 - typeName: numeric
@@ -6794,7 +7029,7 @@ What signals outliers: MAD diffeernet from standard deviation.
 <STKY>
 <HEAD3>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m5/l4/v1" done="k**">
+<SCRIPT id="m5/l4/v1" done="k">
 <SESS t="1.40" done="r" kf="10,20,30,40,50" id="s1">
 We have already learned about quite a few dispersion
 measures. These included the most popular variance and standard
@@ -6823,9 +7058,11 @@ both the extremes<V>[shown]</V>.
 shall trim off 25% of the data from either end. So that leaves
 50% data in the middle. Now we take the range of that. That
 is the interquartile range.
-
-The next video will talk about using this in a box plot.
 </SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="r" id="rob_541">
+IQR computation. and robustness comparison.
+</SC>
 </SCRIPT>
 
 
@@ -6859,7 +7096,7 @@ The next video will talk about using this in a box plot.
 
 <STKY>
 <HEAD3>Module 5, Lesson 4,  Video 2: Boxplot</HEAD3></STKY>
-<SCRIPT id="m5/l4/v2" done="r">
+<SCRIPT id="m5/l4/v2" done="k">
 <SESS t="0.70" done="r" kf="0,15,30,45,60,75,90,105" id="s1">
 A box-and-whiskers plot (or a box plot, for short) is a quick summary picture
 of a single continuous or count variable.
@@ -6876,10 +7113,7 @@ central line is through the median<V>[med shown]</V>.
 plot use different extents for the whiskers. The simplest is from
 the minimum<V>[shown]</V> to the maximum<V>[shown]</V>
 </SESS>
-</SCRIPT>
-<STKY>
-<HEAD3>Module 5, Lesson 4,  Video 3: Lab 1</HEAD3></STKY>
-<SCRIPT id="m5/l4/v3" done="r">
+<JINGLE t="0.1">Lab</JINGLE>
 <SC t="6" done="r" id="s1">
 [Screencast: Use BoxplotR]
 [cons.csv]
@@ -6887,17 +7121,21 @@ the minimum<V>[shown]</V> to the maximum<V>[shown]</V>
 </SCRIPT>
 
 <STKY>
-<HEAD3>Module 5, Lesson 4,  Video 4: Lab 2</HEAD3></STKY>
-<SCRIPT id="m5/l4/v4" done="r">
-<SC t="4" done="r" id="s1">
+<HEAD3>Module 5, Lesson 4,  Video 3: Lab 2</HEAD3></STKY>
+<SCRIPT id="m5/l4/v3" done="k" t="3:46">
+<SESS t="1.5" done="r" id="s1">
+Ramble Intro about two tricks.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="2.5" done="r" id="s1">
 [Screencast: Use LibreOffice stock plot]
 cons.csv
 </SC>
 </SCRIPT>
 <STKY>
-<HEAD3>Module 5, Lesson 4,  Video 5: Lab 3</HEAD3></STKY>
-<SCRIPT id="m5/l4/v5" done="r">
-<SC t="6" done="n" id="s1">
+<HEAD3>Module 5, Lesson 4,  Video 4: Lab 3</HEAD3></STKY>
+<SCRIPT id="m5/l4/v4" done="k" t="6:04">
+<SC t="6" done="n" id="constrick_544">
 [Screencast: Use LibreOffice barplot trick]
 cons.csv
 </SC>
@@ -7048,15 +7286,15 @@ contingency tables, except just constructing them from raw
 data. We shall learn to do things with them later this week.
 </SESS>
 </SCRIPT>
-<EXRLIST id="M6L1V1.yml">
+<EXRLIST>
 
 - typeName: multipleChoice
   prompt: >
     Here are two bivariate scatterplots. 
-    [fig]
+    [e1a.png] [e1_b.png]
     Which of the following is true about them?
   defaultFeedback: >
-      Are you sure? increasing relation means a south-east to
+      Are you sure? An increasing relation means a south-east to
       north-west layout of the points.
   shuffleOptions: true
   options:
@@ -7064,39 +7302,44 @@ data. We shall learn to do things with them later this week.
       the first shows an increasing relation, the second a
       decreasing relation.
     isCorrect: true
-      
+    feedback: >
+      Yes, that's correct. A   south-east to
+      north-west layout of the points indeed 
+      indicates an increasing relation.
+
   - answer: >
       the first shows a decreasing relation, the second an
       increasing relation.
-
   - answer: both show an increasing relation.
-      
   - answer: both show a decreasing relation.
       
-
-
 - typeName: multipleChoice
   prompt: >
-    Here are to scatter plots. [fig] If you want to predict y from x,
-    then which data will provide more reliable prediction? 
-  defaultFeedback: >
-    The tighter the points are along a line, the more reliable
-    the prediction.
+     Consider the following 4 plots.
+      [e2a.png]
+     Which of these show(s) a nonlinear pattern?
   shuffleOptions: true
   options:
-  - answer: the first data.
+  - answer:
     isCorrect: true
-      
-  - answer: the second data.
-      
-  - answer: both will provide equal amount of reliablilty. 
-      
-  - answer: cannot answer just based on the plots.
+    feedback: >
+      Yes, only these two cannot be captured via straight lines.
+  - answer:
+    feedback: >
+      No, try to pass a straight line through the data cloud.
+      Which two will not allow that?
+  - answer:
+    feedback: >
+      No, try to pass a straight line through the data cloud.
+      Which two will not allow that?
+  - answer:
+    feedback: >
       
 
 - typeName: checkbox
   prompt: >
-    Here is a scatter plot with a nonlinear relation. [fig]
+    Here is a scatter plot with a nonlinear relation. 
+                      [e3a.png]
     which of the following is/are true about it? 
   shuffleOptions: true
   options:
@@ -7119,16 +7362,35 @@ data. We shall learn to do things with them later this week.
       The relation becomes more obscure for smaller values
       of x.
     feedback: >
-      Hmmm...if we imagine a curve through the center of the data
+      Hmmm...if we imagine a curve through the centre of the data
       cloud, then aren't the points actually tightly adhering
       to it when x is small?
 
 
 
+- typeName: multipleChoice
+  prompt: >
+    Here are two scatterplots. 
+               [e4a.png] 
+    If you want to predict y from x,
+    then which data will provide more reliable prediction? 
+  defaultFeedback: >
+    The tighter the points are along a line, the more reliable
+    the prediction.
+  shuffleOptions: true
+  options:
+  - answer: the first data.
+    isCorrect: true
+      
+  - answer: the second data.
+      
+  - answer: both will provide equal amount of reliablilty. 
+      
+  - answer: cannot answer just based on the plots.
 </EXRLIST>
 
 <STKY>
-<HEAD3>Module 6, Lesson 1,  Video 2: (Rank) correlation</HEAD3></STKY>
+<HEAD3>Module 6, Lesson 1,  Video 2: Concept of covariance</HEAD3></STKY>
 <SCRIPT id="m6/l1/v2" done="k" t="3:10">
 <SESS t="3.60" done="r" kf="10,20,30,40,70,80,120,140,150,160" id="s1">
 Suppose we have a bivariate data set<V>[shown]</V>, heights and weights of some
@@ -7193,8 +7455,106 @@ covariance, some desirable, some not.
 </SESS>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+    Compute the covariance between X and Y using the following
+    bivariate data set: 
+    |  X |  Y |
+    |----+----|
+    | 12 | 34 |
+    | 56 | 23 |
+    | 14 | 67 |
+    | 23 | 60 |
+    | 34 | 49 |
+
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: numeric
+  prompt: >
+     If cov(X,Y) = 2.3, then what is cov(2*X,Y)? 
+     Hint: Use the definition of covariance.
+ 
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+
+- typeName: multipleChoice
+  prompt: >
+     Consider this data set:
+       |  X | Y |
+       |----+---|
+       | -2 | 4 |
+       | -1 | 1 |
+       |  0 | y |
+       |  1 | 1 |
+       |  2 | 4 |
+     Find all possible values of y so that cov(X,Y)=0. 
+  shuffleOptions: true
+  options:
+  - answer: 0.
+    isCorrect: true
+    feedback: >
+      Yes, you can see this by writing cov(X,Y)=0
+      as an equation in one unknown, y.
+  - answer: 0 and 1.
+    feedback: >
+      Try writing cov(X,Y)=0
+      as an equation in one unknown, y.
+  - answer: all values of y.
+    feedback: >
+      Hmmm..., just compute cov(X,Y) using y=2000.
+  - answer: no possible value of y.
+    feedback: >
+      Try writing cov(X,Y)=0
+      as an equation in one unknown, y.      
+      
+- typeName: numeric
+  prompt: >
+    Find cov(X,Y), if X, and Y both have variance 1, and mean 0,
+    and Y = 2*X + 1.
+  shuffleOptions: true
+  options:
+  - range: [2,2]
+    isCorrect: true
+    feedback: >
+      
+  - range: 
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+</EXRLIST>
+
 <STKY>
-<HEAD3>Module 6, Lesson 1,  Video 3: (Rank) correlation</HEAD3></STKY>
+<HEAD3>Module 6, Lesson 1,  Video 3: Correlation </HEAD3></STKY>
 <SCRIPT id="m6/l1/v3" done="k" t="4:05">
 <SESS t="3.20" done="r" kf="10,20,30,40,50,60,70,80,90" id="s1">
 In this video we shall discuss some properties of 
@@ -7274,38 +7634,7 @@ works only for linear relation.</B>
 </SESS>
 </SCRIPT>
 
-
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 4: (Rank) correlation</HEAD3></STKY>
-<SCRIPT id="m6/l1/v4" done="k" t="5:00">
-<SC t="5" done="r">
-[Screencast: anscombe.csv]
-</SC>
-</SCRIPT>
-
-
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 5: correlation transform</HEAD3></STKY>
-<SCRIPT id="m6/l1/v5" done="k" t="">
-<BC t="6" done="r" id="corprop_615">
-Transformation properties of correlation. As a problem set.
-</BC>
-</SCRIPT>
-
-
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 6: Pooled correlation</HEAD3></STKY>
-<SCRIPT id="m6/l1/v6" done="k" t="">
-<SC t="7" done="r" id="sc_poolcor">
-Idea of pooled mean, pooled variance. The shocking news for
-pooled correlation.
-poolcor.csv
-</SC>
-</SCRIPT>
-
-
-<EXRLIST id="M6L1V2.yml">
-
+<EXRLIST>
 - typeName: numeric
   prompt: |-
     Compute correlation based on the following bivariate data
@@ -7332,74 +7661,196 @@ poolcor.csv
   - range: (-0.6,1]
     feedback: >
       You may like to check the formula once again.
-      
-
+          
 - typeName: multipleChoice
   prompt: >
-    Again consider the same toy data set as in the last
-    exercise. But this time compute Spearman's rank correlation.
+     Make a scatterplot for the following bivariate data. 
+       |   X |   Y |
+       |-----+-----|
+       | 2.3 | 2.5 |
+       | 1.4 | 1.6 |
+       | 3.7 | 3.5 |
+       | 4.2 | 3.9 |
+       | 3.5 | 3.2 |
+     Based on the scatterplot guess the sign of the correlation coefficient.
   shuffleOptions: true
-  defaultFeedback: >
-    Oops! A correlation cannot be outside [-1,1]. Please review
-    the material.
-  answers:
-  - value: -0.4
-    isCorrect: true
-    feedback: >
-      Good job!
-  - range: [-1,-0.4)
-    feedback: >
-      You may like to check the formula once again.
-  - range: (-0.4,1]
-    feedback: >
-      You may like to check the formula once again.
-
-- typeName: plugin
-  prompt: >
-    Create a bivariate data set with Spearman's rank correlation 1,
-    but Pearson's correlation less than 1.
-
-- typeName: checkbox
-  prompt: > 
-    This file [link] contain the Anscombe data set. Compute
-    correlation in each case. Also plot them. Now choose the mos
-    approapriate answer below.
-   shuffleOptions: true
   options: 
-  - answer: The correlations are all the same.
+  - answer: positive.
     isCorrect: true
     feedback: >
-      Yes, in fact the sum and sum of squares and sum of products
-      are all  same across the data sets.
-  - answer: The plots show completely different patterns.
-    isCorrect: true
+      
+  - answer: negative.
     feedback: >
-      Yes, that's plots are great for detecting patterns.
-  - answer: The correlations are different. 
+      
+  - answer: zero.
     feedback: >
-      Oops! Are you sure that you computed the correlation
-      *separately* for the four data sets?
-  - answer: The plots show more or less similar patterns.
+      
+  - answer: impossible to say.
     feedback: >
-      No, some are linear, while some are nonlinear.
+</EXRLIST>
 
-- typeName: multipleChoice
-  prompt: > 
-    A teachers were rated in 10-point Likert scale by the same set of students before
-    after the final examination. We want to measure the
-    correlation between these two ratings. Then:
+<STKY>
+<HEAD3>Module 6, Lesson 1,  Video 4: Why correlation is not enough</HEAD3></STKY>
+<SCRIPT id="m6/l1/v4" done="k" t="5:00">
+<SC t="5" done="r">
+[Screencast: anscombe.csv]
+</SC>
+</SCRIPT>
+
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Let's make our own Anscombe-like data. Here is a starting
+     point: 
+       | X | Y |
+       |---+---|
+       | 1 | 1 |
+       | 2 | 2 |
+       | 3 | 3 |
+       | 4 | y |
+       | 5 | 5 |
+     Find a value of y such that the correlation becomes 0.5.
   shuffleOptions: true
   options:
-  - answer: we should use Spearman's rank correlation.
+  - range:
     isCorrect: true
     feedback: >
-      Yes, we basically have ordinal data here.
-  - answer: we should use Pearson's correlation.
-    feedback: >
-      Well, you may, but note that the data are ordinal in nature.
       
-  
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: checkbox
+  prompt: >
+      Which of the following is/are reason(s) why you should not
+      trust correlation coefficient blindly?
+  shuffleOptions: true
+  options: The relation may be nonlinear.
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer: The formula is complicated.
+    feedback: >
+      
+  - answer: There may be outliers.
+    isCorrect: true
+    feedback: >
+      
+  - answer: Making a little scatterplot beforehand never hurts.
+    isCorrect: true
+    feedback: >
 </EXRLIST>
+
+<STKY>
+<HEAD3>Module 6, Lesson 1,  Video 5: Transformation properties of correlation</HEAD3></STKY>
+<SCRIPT id="m6/l1/v5" done="k" t="6:36">
+<BC t="6" done="r" id="corprop_615">
+Transformation properties of correlation.
+</BC>
+</SCRIPT>
+
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+     If correlation between X and Y is 0.9, then what will be 
+     the correlation between 2+X and 1-2*Y?
+  shuffleOptions: true
+  options:
+  - answer: -0.9
+    isCorrect: true
+    feedback: >
+      
+  - answer: 0.9
+    feedback: >
+      
+  - answer: Something positive less than 0.9.
+    feedback: >
+      
+  - answer: Not possible to answer based on this information.
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     If correlation between X and Y is -0.9, then what will be 
+     the correlation between -X and -Y?
+  shuffleOptions: true
+  options:
+  - answer: -0.9
+    isCorrect: true
+    feedback: >
+      
+  - answer: 0.9
+    feedback: >
+      
+  - answer: Something negative more than -0.9.
+    feedback: >
+      
+  - answer: Not possible to answer based on this information.
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     Consider this data set:
+      | X | Y |
+      |---+---|
+      | 1 | 3 |
+      | 2 | 5 |
+      | 3 | 7 |
+      | 4 | 9 |
+     Then which of the following must hold? [Hint: Don't start
+     to compute right away. Think!]
+  shuffleOptions: true
+  options:
+  - answer: cor(X,Y) > cor(X,Y^2)
+    isCorrect: true
+    feedback: >
+      
+  - answer: cor(X,Y) < cor(X,Y^2)
+    feedback: >
+      
+  - answer: cor(X,Y) = cor(X,Y^2)
+    feedback: >
+      
+</EXRLIST>
+<STKY>
+<HEAD3>Module 6, Lesson 1,  Video 6: Pooled correlation</HEAD3></STKY>
+<SCRIPT id="m6/l1/v6" done="k" t="6:39">
+<SC t="7" done="r" id="sc_poolcor">
+Idea of pooled mean, pooled variance. The shocking news for
+pooled correlation.
+poolcor.csv
+</SC>
+</SCRIPT>
+
+<EXRLIST>
+- typeName: peerreview
+    Construct two bivariate data sets such that  each has correlation
+    between -0.1 and 0.1, but the pooled data has correlation > 0.8.
+    If you think that is impossible, justify yourself.  
+
+- typeName: multipleChoice
+  prompt: >
+     Is it possible to have two biavariate data sets, each with
+  correlation +1, but the pooled data has correlation <M>-1?</M> 
+  shuffleOptions: true
+  options: 
+  - answer: No.
+    isCorrect: true
+    feedback: >
+      You may go arbitraily close to to -1, but not exactly -1.
+      
+  - answer: Yes.
+    feedback: >
+      No.
+
+</EXRLIST>
+
 </LESSON>
 
 <HEAD2>Module 6: Lesson 2</HEAD2>
@@ -7534,6 +7985,50 @@ variables.</B>
 </SESS>
 </SCRIPT>
 <STKY>
+
+<EXRLIST>
+
+- typeName: multipleChoice
+  prompt: >
+    Again consider the same toy data set as in the last
+    exercise. But this time compute Spearman's rank correlation.
+  shuffleOptions: true
+  defaultFeedback: >
+    Oops! A correlation cannot be outside [-1,1]. Please review
+    the material.
+  answers:
+  - value: -0.4
+    isCorrect: true
+    feedback: >
+      Good job!
+  - range: [-1,-0.4)
+    feedback: >
+      You may like to check the formula once again.
+  - range: (-0.4,1]
+    feedback: >
+      You may like to check the formula once again.
+
+- typeName: plugin
+  prompt: >
+    Create a bivariate data set with Spearman's rank correlation 1,
+    but Pearson's correlation less than 1.
+
+- typeName: multipleChoice
+  prompt: > 
+    A teachers were rated in 10-point Likert scale by the same set of students before
+    after the final examination. We want to measure the
+    correlation between these two ratings. Then:
+  shuffleOptions: true
+  options:
+  - answer: we should use Spearman's rank correlation.
+    isCorrect: true
+    feedback: >
+      Yes, we basically have ordinal data here.
+  - answer: we should use Pearson's correlation.
+    feedback: >
+      Well, you may, but note that the data are ordinal in nature.
+</EXRLIST>
+
 <HEAD3>Module 6, Lesson 2,  Video 2: Rank correlation lab</HEAD3></STKY>
 
 <SCRIPT id="m6/l2/v2" done="k" t="6:00">
@@ -7543,16 +8038,148 @@ hw2.dat: (with repetion) use =rank.avg(a1, a$1:a$100, 1) First
 find rank for variable without repetition (height).
 </SC>
 </SCRIPT>
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+     Which of the following two scatterplots show a monotonic relation? 
+       [e1a.png]
+  shuffleOptions: true
+  options:
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+
+- typeName: numeric
+  prompt: >
+     Compute Spearman's rank correlation from the following data
+     set. 
+       |   X |   Y |
+       |-----+-----|
+       | 1.2 | 5.3 |
+       | 2.3 | 4.5 |
+       | 5.1 | 4.1 |
+       | 6.1 | 8.8 |
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: numeric
+  prompt: >
+     Compute Spearman's rank correlation from the following data
+     set. 
+       |   X |   Y |
+       |-----+-----|
+       | 1.2 | 5.3 |
+       | 2.3 | 4.3 |
+       | 5.1 | 4.3 |
+       | 2.3 | 8.8 |
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+
+</EXRLIST>
 
 <STKY>
 <HEAD3>Module 6, Lesson 2,  Video 3: Alternative formula for rank correlation</HEAD3></STKY>
 
-<SCRIPT id="m6/l2/v3" done="k" t="6:00">
+<SCRIPT id="m6/l2/v3" done="k" t="5:52">
 <BC t="6" done="r" id="dicor_623">
 The d_i formula. No tie, tie.
 </BC>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+     Here are two bivariate data sets. For which one would you
+     use the alternative formula discussed in the video to
+     compute Spearman's rank correlation? Compute it for that
+     data set using the alternative formula.
+
+       |   X |   Y |
+       |-----+-----+
+       | 2.3 | 3.7 |
+       | 5.4 | 8.9 |
+       | 2.3 | 7.0 |
+       | 4.8 | 3.4 |
+     and
+       |   X |   Y |
+       |-----+-----+
+       | 2.3 | 3.7 |
+       | 5.4 | 8.9 |
+       | 2.4 | 7.0 |
+       | 4.8 | 3.4 |
+
+  shuffleOptions: true
+  options:
+  - answer: Second, 
+    isCorrect: true
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+  - answer:
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     If  Pearson's correlation coefficient between two 
+     positive variables is 1, then what can you say about 
+     Spearman's rank correlation between X and Y^2?
+  shuffleOptions: true
+  options:
+  - answer: must also be 1.
+    isCorrect: true
+    feedback: >
+      
+  - answer: must be < 1, but positive.
+    feedback: >
+      
+  - answer: must be -1.
+    feedback: >
+      
+  - answer: nothing can be said in general.
+    feedback: >
+      
+
+</EXRLIST>
 
 <STKY>
 <HEAD3>Module 6, Lesson 2,  Video 4: Phi coefficient for binary data</HEAD3></STKY>
@@ -7621,6 +8248,36 @@ OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coeffic
 </SESS>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute phi-coefficient based on the following data:
+         | Drug | Status |
+         |------+--------|
+         | A    | Dead   |
+         | A    | Dead   |
+         | B    | Dead   |
+         | B    | Alive  |
+         | A    | Alive  |
+         | B    | Alive  |
+
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+
+</EXRLIST>
 <STKY>
 <HEAD3>Module 6, Lesson 2,  Video 5: Phi lab</HEAD3></STKY>
 
@@ -7632,6 +8289,47 @@ Save whorl.csv for exercises.
 </SC>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute phi coefficient using this data set: [1a.csv] 
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+</EXRLIST>
+
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute phi coefficient using this data set: [1b.csv] 
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+</EXRLIST>
+</LESSON>
+<HEAD2>Module 6: Lesson 3</HEAD2>
 
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 1: Contingency table measures</HEAD3></STKY>
@@ -7679,6 +8377,31 @@ association. Well, that is the basic idea. There are a number of
 possible ways to go about it, as we shall now see.
 </SESS>
 </SCRIPT>
+
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute phi coefficient using this 2 by 2 contingency table:
+       |        | Alive | Dead |
+       |--------+-------+------|
+       | Drug A |    37 |   23 |
+       | Drug B |   123 |   56 |
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+</EXRLIST>
+
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 2: Odds ratio</HEAD3></STKY>
 
@@ -7719,7 +8442,78 @@ lr.csv:
 </SC>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+     Which of the following statements is true about the set of
+  al possibe values an odds ratio can take?
+  shuffleOptions: true
+  options:
+  - answer: >
+       Odds ratio can take any nonnegative value, but cannot
+       be negative.
+    isCorrect: true
+    feedback: >
+      
+  - answer: >
+       Odds ratio can take any real number as its value.
+    feedback: >
+      
+  - answer: Odds ratio must lie in [0,1].
+    feedback: >
+      
+  - answer: Odds ratio must lie in [-1,1].
+    feedback: >
+      
+- typeName: numeric
+  prompt: >
+     Compute odds ratio from this table. 
+       |               | Cured | Not cured |
+       |---------------+-------+-----------|
+       | Physiotherapy |    34 |        98 |
+       | Chemotherapy  |    57 |        29 |
+
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     How will the odds ratio change if the rows of a 2 by 2
+     contingency table are swapped? How will it change if the
+     columns are swapped (keeping the rows unaffected)?
+  shuffleOptions: true
+  options: Will become reciprocal of the original value in both cases.
+  - answer:
+    isCorrect: true
+    feedback: >
+      
+  - answer: Will change sign in both cases.
+    feedback: >
+      
+  - answer: > 
+       Will become reciprocal for row swap, but change sign
+       for column swap.
+    feedback: >
+      
+  - answer: >
+       Will become reciprocal for column swap, but change sign
+       for row swap.
+    feedback: >
+</EXRLIST>
 <STKY>
+
 <HEAD3>Module 6, Lesson 3,  Video 3: Chisquare</HEAD3></STKY>
 
 <SCRIPT id="m6/l3/v3" done="k" t="4:57">
@@ -7793,6 +8587,59 @@ those measures.
 </SESS>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute the expected frequency for the marked cell under the
+     assumption of no association. 
+       |        |   A | B |  C | Total |
+       |--------+-----+---+----+-------|
+       | Male   |     |   |    |   439 |
+       | Female |     | * |    |       |
+       |--------+-----+---+----+-------|
+       | Total  | 231 |   | 48 |  1000 |
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: peer review
+  prompt: >
+     Compute the chi-square statistic for the following
+     contingency table. Show the steps.
+       |        |   A |   B |  C |
+       |--------+-----+-----+----+
+       | Male   | 476 | 346 | 98 |
+       | Female |  24 |  43 | 43 |
+
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+
+</EXRLIST>
+
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 4: Chisquare lab</HEAD3></STKY>
 
@@ -7801,8 +8648,47 @@ those measures.
 [Screencast: Computation of <M>\chi^2.</M>]
 eduinc.csv
 </SC>
-
 </SCRIPT>
+
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute chi-square based on this data set: [e1a.csv] 
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: numeric
+  prompt: >
+     Compute chi-square based on this data set: [e2a.csv] 
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+
+</EXRLIST>
 
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD3></STKY>
@@ -7835,16 +8721,10 @@ where <M>k</M> is the minimum of the numbers of rows and columns.
 Thus for our example <M>k</M> is 3.
 </SESS>
 </SCRIPT>
-<STKY>
-<HEAD3>Module 6, Lesson 3,  Video 6: Lab</HEAD3></STKY>
-<SCRIPT id="m6/l3/v6" done="k" t="4:18">
-<SC t="5" done="n">
-[Screencast: Compute starting from chisquared.]
-eduinc.csv:
-</SC>
-</SCRIPT>
 
-<EXRLIST id="M6L2V1.yml">
+
+
+<EXRLIST>
 
 - typeName: numeric
   prompt: |-
@@ -7903,92 +8783,96 @@ eduinc.csv:
     isCorrect: true
     feedback: >
       Great job!
+</EXRLIST>
 
+<STKY>
+<HEAD3>Module 6, Lesson 3,  Video 6: Lab</HEAD3></STKY>
+<SCRIPT id="m6/l3/v6" done="k" t="4:18">
+<SC t="5" done="n">
+[Screencast: Compute starting from chisquared.]
+eduinc.csv:
+</SC>
+</SCRIPT>
 
-- typeName: multipleChoice
+<EXRLIST>
+- typeName: numeric
   prompt: >
-    Can odds-ratio be negative? Can it be more than 1?
+      Compute contingency coefficient based on [e1a.csv]
   shuffleOptions: true
   options:
-  - answer: No. Yes.
+  - range:
     isCorrect: true
     feedback: >
-      That's right!
-  - answer: No. No.
-    feedback: >
-      Well, you are dividing one odds by another. An odds can be
-      very close to 0. 
-  - answer: Yes. No.
-    feedback: >
-      All entries in a contingency table are frequencies and
-      hence non-negative.
-  - answer: Yes. Yes.
-    feedback: >
-      All entries in a contingency table are frequencies and
-      hence non-negative.
       
-
-- typeName: multipleChoice
-  prompt: >
-    A person's finger print may be classified as whorl and
-    no-whorl. 100 mother-child pairs 
-    The following contingency table gives mother Interpret relation between mother's whorl and child's whorl.
-
-</EXRLIST>
-
-<EXRLIST id="M6L2V2.yml">
-
-- typeName: multipleChoiceCompute from data
-- typeName: multipleChoiceCompute from data
-- typeName: multipleChoiceCompute from data
-- typeName: multipleChoiceCompute from data
-
-</EXRLIST>
-</LESSON>
-<HEAD2>Module 6: Lesson 3</HEAD2>
-
-<STKY>
-<HEAD3>Module 6, Lesson 3,  Video 7: Contingency table measures (part 2)</HEAD3></STKY>
-
-Tetrachoric correlation coefficient
- Lambda coefficient
- Uncertainty coefficient
-Kendal's tau_a and tau_b
-gamma test
-
-<EXRLIST id="M6L3V1.yml">
-
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 - typeName: numeric
   prompt: >
-    Compute the tetrachoric correlation coefficient from the
-    following table.
-  defaultFeedback: No, that does not look right.
+      Compute Cramer's V based on [e1a.csv]
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 - typeName: numeric
   prompt: >
-    Compute the lambda coefficient from the above table.
-- typeName: multipleChoiceCompute by hand
-- typeName: multipleChoiceCompute by hand
-
-- typeName: multipleChoiceInterpret
-
-</EXRLIST>
-
-<STKY>
-<HEAD3>Module 6, Lesson 3,  Video 8: Lab</HEAD3></STKY>
-
-<EXRLIST id="M6L3V2.yml">
-
-- typeName: multipleChoiceCompute from data
-- typeName: multipleChoiceCompute from data
-- typeName: multipleChoiceCompute from data
-- typeName: multipleChoiceCompute from data
-
+      Compute contingency coefficient based on [e3a.csv]
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+- typeName: numeric
+  prompt: >
+      Compute Cramer's V based on [e3a.csv]
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
 </EXRLIST>
 </LESSON>
+
 <HEAD2>Module 6: Lesson 4</HEAD2>
 
 <STKY>
-<HEAD3>Module 6, Lesson 4,  Video 1: Concept of moments: skewness and kurtosis</HEAD3></STKY>
+<HEAD3>Module 6, Lesson 4,  Video 1: Moments</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m6/l4/v1" done="k" t="2:53">
 <SESS t="2.90" done="r" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
@@ -8043,6 +8927,66 @@ couple of practical uses as well.
 The next video will discuss them. 
 </SESS>
 </SCRIPT>
+
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+     If the <M>k</M>-th central moment is denoted by <M>c_k</M> and
+     the <M>k</M>-th raw moment by <M>r_k</M>, then which of the
+     following always equals <M>c_2?</M>
+  shuffleOptions: true
+  options:
+  - answer: <M>r_2-(r_1)^2.</M>
+    isCorrect: true
+    feedback: >
+      
+  - answer: <M>r_1-(r_2)^2.</M>
+    feedback: >
+      
+  - answer: <M>(r_2)^2-r_1.</M>
+    feedback: >
+      
+  - answer: <M>(r_1)^2-r_2.</M>
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     If we add 5 to all the values of a variable, then which of
+     the following will be true? 
+  shuffleOptions: true
+  options:
+  - answer: The raw moments will change, but not the central moments.
+    isCorrect: true
+    feedback: >
+      
+  - answer: Both the raw and the central moments will change.
+    feedback: >
+      
+  - answer: The central moments will change, but not the raw moments.
+    feedback: >
+      
+  - answer: Neither the raw nor the central moments will change.
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     Let the values of a variable be symmtric around some
+     point. Then which of the following statements is true?
+  shuffleOptions: true
+  options:
+  - answer: The 3rd central moment must be zero.
+    isCorrect: true
+    feedback: >
+      
+  - answer: The 3rd raw moment must be zero.
+    feedback: >
+      
+  - answer: The 4th central moment must be zero.
+    feedback: >
+      
+  - answer: The 4th raw moment must be zero.
+    feedback: >
+</EXRLIST>
 
 <STKY>
 <HEAD3>Module 6, Lesson 4,  Video 2: Concept of moments: skewness and kurtosis</HEAD3></STKY>
@@ -8131,21 +9075,94 @@ As a result the skewness coefficient is not used too commonly.
 </SESS>
 </SCRIPT>
 
-<TODO>
-mean median mode relation for skewness.
-</TODO>
+<EXRLIST>
+- typeName: multipleChoice
+  prompt: >
+     Consider this histogram. [e1a.png] 
+     Classify it in terms of skewness.
+  shuffleOptions: true
+  options:
+  - answer: Positively skewed.
+    isCorrect: true
+    feedback: >
+      
+  - answer: Negatively skewed.
+    feedback: >
+      
+  - answer: Not skewed.
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     Consider a negatively skewed data set with a unique mode and
+  whose histogram has two tails and a peak in the middle. Then
+  which of the following is true? [Think pictorially in terms of the histogram.]
+  shuffleOptions: true
+  options:
+  - answer: Mode > Median > Mean
+    isCorrect: true
+    feedback: >
+      
+  - answer: Mean > Mode > median
+    feedback: >
+      
+  - answer: Mean > Median > Mode
+    feedback: >
+      
+  - answer: Median > Mean > Mode
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+     Income distribution in a capitalist country should be ... 
+  shuffleOptions: true
+  options:
+  - answer: positively skewed.
+    isCorrect: true
+    feedback: >
+      
+  - answer: negatively skewed.
+    feedback: >
+      
+  - answer: zero skewed.
+    feedback: >
+      
+  - answer: cannot answer in general.
+    feedback: >
+      
+
+</EXRLIST>
 
 <STKY>
-<HEAD3>Module 6, Lesson 4,  Video 3: Concept of moments: skewness and kurtosis</HEAD3></STKY>
-<SCRIPT id="m6/l4/v3" done="r">
+<HEAD3>Module 6, Lesson 4,  Video 3: Skewness lab</HEAD3></STKY>
+<SCRIPT id="m6/l4/v3" done="k" t="5:56">
 <SC t="6" done="r" id="sc_skew">
 [Screencast: 3 variables for skewness. Start with  histograms.]
 skew.csv
 </SC>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute skewness based on this data set. [e1a.csv]
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+</EXRLIST>
 <STKY>
-<HEAD3>Module 6, Lesson 4,  Video 4: Concept of moments: skewness and kurtosis</HEAD3></STKY>
+<HEAD3>Module 6, Lesson 4,  Video 4: Kurtosis theory</HEAD3></STKY>
 <SCRIPT id="m6/l4/v4" done="k" t="3:53">
 <SESS t="2.20" done="r" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 The 4th central moment<V>[shown]</V> is used to measure what is called
@@ -8216,30 +9233,96 @@ The coming videos will show skewness and kurtosis in action using LibreOffice.
 </SESS>
 </SCRIPT>
 
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute kurtosis based on the following values of a
+     variable: 3, 5, 7, 1, 0, 1, 3.
+ 
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+
+- typeName: multipleChoice
+  prompt: >
+     If kurtosis of a variable <M>X</M> based on a data set is
+     4.5, then what should be the kurtosis of <M>2x-4</M> based
+     on the same data set?
+ 
+  shuffleOptions: true
+  options:
+  - answer: 4.5
+    isCorrect: true
+    feedback: >
+      
+  - answer: less than 4.5
+    feedback: >
+      
+  - answer: more than 4.5
+    feedback: >
+      
+  - answer: cannot answer in general.
+    feedback: >
+      
+      
+- typeName: multipleChoice
+  prompt: >
+     If the population kurtosis is high, then a random sample is  
+  shuffleOptions: true
+  options:
+  - answer: more likely to have outliers.
+    isCorrect: true
+    feedback: >
+      
+  - answer: less likely to have outliers.
+    feedback: >
+      
+  - answer: more likely to have high variance.
+    feedback: >
+      
+  - answer: less likely to have high variance.
+    feedback: >
+</EXRLIST>
+
 <STKY>
-<HEAD3>Module 6, Lesson 4,  Video 5: Concept of moments: skewness and kurtosis</HEAD3></STKY>
-<SCRIPT id="m6/l4/v5" done="r">
+<HEAD3>Module 6, Lesson 4,  Video 5: Kurtosis lab</HEAD3></STKY>
+<SCRIPT id="m6/l4/v5" done="k" t="6:06">
 <SC t="6" done="r" id="sc_kurt">
 [Screencast: 3 variables for kurtosis. Start with  histograms.]
 kurt.csv
 </SC>
 </SCRIPT>
 
-<EXRLIST id="M6L4V1.yml">
-
-- typeName: multipleChoiceVisually from histogram (clear)
-
-- typeName: multipleChoiceVisually from histogram (unclear)
-
-- typeName: multipleChoiceIncome distribution in captalist countries.
-</EXRLIST>
-
-<EXRLIST id="M6L4V2.yml">
-
-- typeName: multipleChoiceCompute.
-
-- typeName: multipleChoiceEffect of outlier.
-
+<EXRLIST>
+- typeName: numeric
+  prompt: >
+     Compute kurtosis from this data set. [e1a.csv]
+  shuffleOptions: true
+  options:
+  - range:
+    isCorrect: true
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
+  - range:
+    feedback: >
+      
 </EXRLIST>
 </LESSON>
 <HEAD2>Module 6: Lesson 5</HEAD2>
@@ -8250,9 +9333,10 @@ kurt.csv
 
 <COMMENT>
 Local Variables:
- dummy: ((format "%cSESS t=\"0\">\n" 60) (format "\n%c/SESS>" 60))
- two-part1: ("<V>[shown]" "</V>")
- two-part2: ("<B>" "</B>")
+ two-part2: ((format "%cSESS t=\"0\" done=\"n\" id=\"\">\n" 60) (format "\n%c/SESS>" 60))
+ two-part1: ((format "%cSCRIPT t=\"0\" done=\"n\" id=\"\">\n" 60) (format "\n%c/SCRIPT>" 60))
+ two-part3: ("<V>[shown]" "</V>")
+ two-part4: ("<B>" "</B>")
 End:
 </COMMENT>
 </NOTE>@}
