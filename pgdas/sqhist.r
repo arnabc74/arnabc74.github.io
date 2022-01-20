@@ -1,0 +1,7 @@
+set.seed(35235)
+x = runif(1000,0,2)
+hist(x,prob=T,xlab='',ylab='')
+opar=par(mfrow=c(1,2))
+hist(x*x,prob=T,xlab='',ylab='',main="I")
+hist(4-x*x,prob=T,xlab='',ylab='',main="II")
+par(opar)
