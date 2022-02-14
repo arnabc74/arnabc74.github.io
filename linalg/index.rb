@@ -29,6 +29,8 @@ ekhAne lAl kare dekhAno @{<M>\alpha_1</M>@}-TA Asale @{<M>\alpha_2</M>@}  habe. 
 <CIMG web="p111.png"></CIMG>
 ekhAne lAl kare ghire deoyA  @{<M>\rr</M>@}-TA habe  @{<M>\cc.</M>@}   bhulTA dharechhe ayan.  
 </LI>
+<LI>@{<E>177</E>@}  Ar @{<E>178</E>@}  nambar pAtAy besh kichhu bhul Achhe. Thik karle habe 
+<LINK to="image/p1778.pdf">ei rakam</LINK>. bhul~gulor dike drriSTi AkarSaN karechhe ar+kajit.  </LI>
 </OL>
 @{<HEAD1>JAM, 2014</HEAD1>@}
 @{<QN1>jam2014.q1.png</QN1>@}

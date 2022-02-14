@@ -71,3 +71,4 @@
 
 (orgtbl-mode 1)
 
+(global-set-key [C-return] 'org-open-at-point-global) 

@@ -1,11 +1,11 @@
 @{<NOTE> -*- eval: (folding-mode t) -*-
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>THU JAN 20 IST 2022</UPDT>
+<UPDT>MON JAN 31 IST 2022</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
 <STKY><HEAD3>Module 1,  Introductory video: About the course</HEAD3></STKY>
-<SCRIPT id="m1/intro" done="r">
+<SCRIPT id="m1/intro" done="k" t="4:03">
 <SESS t="1.10" done="a" kf="30,60,70,80,90" id="s1">
 Hello,  and welcome to the PGDAS course on <B>Basic Statistics</B>. This
 is our very first lecture, and I am your
@@ -53,7 +53,7 @@ contained as possible.
 ---
 Here are some books that you may read along:
   * <B>Statistics by Witte and Witte</B>
-  * <B>Statistics by Friedman, Pisani and Purves</B>
+  * <B>Statistics by Freedman, Pisani and Purves</B>
   * <B>How to lie with statistics by  Huff</B>
 ---
 This last book, despite its frivolous name, is full of useful
@@ -92,7 +92,7 @@ then we shall learn R and Python for them in a different course.
 <STKY>
 <HEAD3>Module 1, Lesson 1,  Video 1: Using a computer</HEAD3></STKY>
 <LESSON>
-<SCRIPT id="m1/l1/v1" done="r">
+<SCRIPT id="m1/l1/v1" done="k" t="2:30">
 <SESS t="2.40" done="a" kf="10,20,30,40,50,60,70" id="s1">
 The common belief about statistics is that it is number
 crunching. While there is more to statistics than mere number
@@ -148,11 +148,30 @@ in your machine.
 </SESS>
 </SCRIPT>
 
+<FLD>
+<EXRLIST id="m1l1_a.yml">
+- typeName: textReflect
+  prompt: >
+     Name three free softwares and/or languages that may be used
+     for statistical analysis. 
+  defaultFeedback: >
+     R, LibreOffice Calc and Python. 
+
+- typeName: textReflect
+  prompt: >
+     LibreOffice Calc is very similar to Microsoft Excel in its
+  interface. True or False? 
+  defaultFeedback: >
+      True. There are some ifferences of course. But they would
+      not matter much for our course.
+
+</EXRLIST>
+</FLD>
 <STKY>
 <HEAD3>Module 1, Lesson 1,  Video 2: Local installation</HEAD3>
 </STKY>
 
-<SCRIPT id="m1/l1/v2" done="nr">
+<SCRIPT id="m1/l1/v2" done="k" t="6:06">
 <SESS t="0.80" done="r" kf="30,60" id="s1">
 Here we shall learn how to get LibreOffice running in your
 machine. You'll need a Windows or Linux or Mac computer. I do not
@@ -170,20 +189,42 @@ running. You may even put the downloaded thing in your pen drive,
 and run the program from there in a public machine!
 </SESS>
 <JINGLE t="0.1">Windows</JINGLE>
-<SC t="2.00" done="n">
+<SC t="2.00" done="r" id="sc_win_112">
 [Screencast:  portable app. download and no installation, show in windows]
 </SC>
 <JINGLE t="0.1">Linux</JINGLE>
-<SC t="2.00" done="n">
-[Screencast:  portable appimage. download and no installation, show in ubuntu]
+<SC t="2.00" done="r" id="sc_lin_112">
+[Screencast:  portable appimage. download and no installation,
+show in ubuntu]
+https://www.libreoffice.org/download/appimage/
 </SC>
 </SCRIPT>
+<REF>
+LibreOffice download instructions.
+</REF>
+<FLD>
+<EXRLIST id="m1l1_b.yml">
+- typeName: textReflect
+  prompt: >
+     After you finish downloading the appimage for LibreOffice in
+  a Linux machine, can you immediately run it? 
+  defaultFeedback: >
+     No, you need to give the file execution access first.
 
+- typeName: textReflect
+  prompt: >
+      After you finish downloading the portable app for LibreOffice in
+  a Windows machine, can you immediately run it? 
+  defaultFeedback: >
+     No, you need to unpack it (what they call installation,
+  though it is really not an installation in the true sense).
+</EXRLIST>
+</FLD>
 <STKY>
 <HEAD3>Module 1, Lesson 1,  Video 3: Getting started</HEAD3>
 </STKY>
 
-<SCRIPT id="m1/l1/v3" done="r">
+<SCRIPT id="m1/l1/v3" done="k" t="7:11">
 <SC t="6.00" done="r" id="sc_lointroa_113">
 [Screencast: Getting started]
   * The regions: spreadsheet, menu, status bar
@@ -208,26 +249,182 @@ New suggestions:
 </SC>
 </SCRIPT>
 
+<FLD>
+<EXRLIST id="m1l1_c.yml">
+- typeName: textReflect
+  prompt: |-
+Enter the following  data in the LibreOffice spreadsheet.
+    | Name    | Age | Income (Rs.) |
+    |---------+-----+--------------|
+    | Ram     |  45 | 23,456       |
+    | Rakibul |  29 | 12,452       |
+  defaultFeedback: >
+    Here is what I get after some formatting:
+     [[./exraux/tab1.png]]
+
+- typeName: checkbox
+  prompt: >
+    Consider the following screenshot:
+     [[./exraux/tabpart.png]]
+    You want to change the third digit of the cell marked A to
+    5. How would you do it?
+  shuffleOptions: true
+  options:
+  - answer: >
+     Double-click that cell, position the cursor after
+     that digit, delete and type 5.
+    isCorrect: true
+    feedback: >
+      Yes, this is the smartest way.
+  - answer: >
+      Click that cell. Click B. Correct the value shown in B.
+    isCorrect: true
+    feedback: >
+      This works, but requires repositioning the mouse.
+  - answer: >
+      Click after that digit in cell A, delete and type 5.
+    feedback: >
+      No, this won't work. It will replace the entire number with
+      just a 5.
+  - answer: >
+      Click on cell A. Retype the entire number.
+    isCorrect: true
+    feedback: >
+      Yes, it will work, but you also re-typed the correct
+      digits. This is time consuming and error-prone.
+    
+    
+- typeName: multipleChoice
+  prompt: >
+    You have a table like this:
+     [[./exraux/tabpart2.png]]
+    You want to delete the marked row to arrive at:
+     [[./exraux/tabpart3.png]]
+    How will you achieve this?
+  shuffleOptions: true
+  options:
+  - answer: >
+      Right-click on the left margin of the row. Choose "Delete
+      rows" from the pop up menu.
+    isCorrect: true
+    feedback: >
+      Great job!  
+  - answer: >
+      Click on the left margin of the row. Hit delete.
+    feedback: >
+      No, this will only delete the contents or the row, not the
+      entire row.
+  - answer: >
+      Right-click on the left margin of the row. Choose "Clear
+      contents" from the pop up menu.
+    feedback: >
+      No, this will only delete the contents or the row, not the
+      entire row.
+    
+- typeName: checkbox
+  prompt: >
+    You want to insert a new blank row between rows 3 and 4 in the
+    following spreadsheet. The new row will be called row 4, the
+    existing row 4 will become row 5.
+    How would you do it?
+  shuffleOptions: true
+  options:
+  - answer: >
+     Right-click on the left margin of row 3, choose
+     "Insert rows below" from the pop up menu.
+    isCorrect: true
+    feedback: >
+      
+  - answer: >
+      Right-click on the left margin of row 4, choose
+      "Insert rows above" from the pop up menu.
+    isCorrect: true
+    feedback: >
+      
+  - answer: >
+      Click in the last cell in row 3. Then hit enter.
+    feedback: >
+      This works in a textfile, but not in a spreadsheet!
+      
+
+</EXRLIST>
+</FLD>
+
 <STKY>
 <HEAD3>Module 1, Lesson 1,  Video 4: Some tasks already seen</HEAD3>
 </STKY>
 
-<SCRIPT id="m1/l1/v4" done="skipped">
-<SC t="4.00" done="n" id="skipped">
-[Screencast: Renaming categories]
-switch with default
-</SC>
-<SC t="4.00" done="n" id="skipped">
-[Screencast: Combining and reshaping tables]
-Paste special, unformatted text
+<SCRIPT id="m1/l1/v4" done="k" t="6:09">
+<SC t="4.00" done="r" id="sc_lointrob_113">
+Formula with relative reference. 
 </SC>
 </SCRIPT>
 
 
+<FLD>
+<EXRLIST id="m1l1_d.yml">
+- typeName: textReflect
+  prompt: >
+     The cell  C1 has the formula =A1-D3. The content of the
+  cell is copied and pasted into cell E5. What will be the actual
+  content of E5?
+  defaultFeedback: >
+      We have moved from column C to column E, so bump all
+      columns two steps ahead. A becomes C, D becomes F.
+      We have moved from row 1 to row 5. So all referenced rows
+      will also increase by 4. The final answer is =C5-F7.
+
+- typeName: textReflect
+  prompt: >
+     The cell  C10 has the formula =A1-D3. The content of the
+  cell is copied and pasted into cell E5. What will be the actual
+  content of E5?
+  defaultFeedback: >
+     Aha, now we need to reference cells that are outside the
+     spreadsheet. That's not allowed. You'll see a #REF! error.
+
+
+</EXRLIST>
+</FLD>
+
+<SCRIPT id="m1/l1/v5" done="k" t="5:55">
+<SC t="4.00" done="n" id="sc_introc_113">
+Dragging relative reference. Absolute reference.
+</SC>
+</SCRIPT>
+
+
+<FLD>
+<EXRLIST id="m1l1_e.yml">
+- typeName: textReflect
+  prompt: >
+     Cell A5 contains =A$1+$A3. It is copied to B6. What is the 
+     content of B6 now?
+  defaultFeedback: >
+     We have moved one place down and right. So all unlocked
+     columns will increase by 1, and so will the unlocked rows.
+     Thus A$1 will become B$1, and $A3 will be $A4. So the
+     content of B6 is =B$1+$A4.
+
+- typeName: textReflect
+  prompt: >
+     Consider this situation.
+      [[./exraux/before.png]]
+     We want to subtract A4 from all the numbers.
+     If the formula at B1 is dragged
+     upto B4, what will the values in column B be?
+  defaultFeedback: >
+      [[./exraux/after.png]]
+     Here the column in $A4 is locked, not the row.
+     You needed =A1-A$4.
+
+</EXRLIST>
+</FLD>
+
 <STKY>
 <HEAD3>Module 1, Lesson 1,  Video 5: File formats: Excel</HEAD3></STKY>
 
-<SCRIPT id="m1/l1/v5" done="nr">
+<SCRIPT id="m1/l1/v6" done="k" t="4:01">
 <SESS t="2.00" done="r" kf="30,60,90" id="s1">
 In olden days people used to store data on paper, and perform all
 the computations by hand. Now of course computers
@@ -275,166 +472,42 @@ file formats used by MS Excel. This format allows cell formatings and
 embedded graphics, and is suitable for producing reports.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="2.00" done="n">
+<SC t="2.00" done="r" id="sc_xlsx_115">
 [Screencast: Saving and loading xslx]
 </SC>
 </SCRIPT>
 
+
 <FLD>
-<EXRLIST id="M1L4V1.yml">
-- typeName: multipleChoice
-  prompt: |-
-    Enter the following  data in the LibreOffice spreadsheet.
-    | Name    | Age | Income (Rs.) |
-    |---------+-----+--------------|
-    | Ram     |  45 | 23,456       |
-    | Rakibul |  29 | 12,452       |
-  shuffleOptions: true
-  options:
-  - answer: >
-      Yes, I could do it. All the numbers are aligned with the
-      right margin.
-    isCorrect: true
-    feedback: >
-      Great! Data entry is an important (though tedious) part of
-      any real life statistical exercise.
-  - answer: >
-      Yes, I could do it. Some of the numbers are aligned with the
-      left margin.
-    feedback: >
-      Oh, no! Looks like LibreOffice has failed to recognise
-      those "numbers" as numeric. Possible reasons are typing the
-      letter o in place of a zero, or typing the letter I or l in
-      place of a one.
-  - answer: No, I cannot do it.
-    feedback: >
-      Oops, that worries me. Please let me know what went wrong. 
-
-- typeName: checkbox
+<EXRLIST id="m1l1_f.yml">
+- typeName: numeric
   prompt: >
-    Consider the following screenshot:
-    [Screenshot of Libreoffice with the above data set. A cell is
-    marked A, the textfield is marked B]
-    You want to change the third digit of the cell marked A to
-    5. How would you do it?
+      Here is a data file in xlsx format [test.xlsx]. Open it,
+      and report the value in cell a6.
+  defaultFeedback: >
+      No, check again.
   shuffleOptions: true
   options:
-  - answer: >
-     Double-click that cell, position the cursor after
-     that digit, delete and type 5.
+  - value: 172
     isCorrect: true
     feedback: >
-      Yes, this is the smartest way.
-  - answer: >
-      Click that cell. Click B. Correct the value shown in B.
-    isCorrect: true
-    feedback: >
-      This works, but requires repositioning the mouse.
-  - answer: >
-      Click after that digit in cell A, delete and type 5.
-    feedback: >
-      No, this won't work. It will replace the entire number with
-      just a 5.
-  - answer: >
-      Click on cell A. Retype the entire number.
-    isCorrect: true
-    feedback: >
-      Yes, it will work, but you also re-typed the correct
-      digits. This is time consuming and error-prone.
-    
-    
-- typeName: multipleChoice
-  prompt: >
-    You want to get from:
-    [Screenshot of Libreoffice with the above data set. A row is
-    marked A]
-    You want to delete the marked row to arrive at:
-    [Screenshot of Libreoffice with the same data set, but the
-    row has vanished.]
-    How will you achieve this?
-  shuffleOptions: true
-  options:
-  - answer: >
-      Right-click on the left margin of the row. Choose "Delete
-      rows" from the pop up menu.
-    isCorrect: true
-    feedback: >
-      Great job!  
-  - answer: >
-      Click on the left margin of the row. Hit delete.
-    feedback: >
-      No, this will only delete the contents or the row, not the
-      entire row.
-  - answer: >
-      Right-click on the left margin of the row. Choose "Clear
-      contents" from the pop up menu.
-    feedback: >
-      No, this will only delete the contents or the row, not the
-      entire row.
-    
-
-- typeName: multipleChoice
-  prompt: >
-    You want to get from:
-    [Screenshot of Libreoffice with the above data set. A row is
-    marked A]
-    You want to delete the marked row to arrive at:
-    [Screenshot of Libreoffice with the same data set, but the
-    row has vanished.]
-    How will you achieve this?
-  shuffleOptions: true
-  options:
-  - answer: >
-      Right-click on the left margin of the row. Choose "Delete
-      rows" from the pop up menu.
-    isCorrect: true
-    feedback: >
-      Great job!  
-  - answer: >
-      Click on the left margin of the row. Hit delete.
-    feedback: >
-      No, this will only delete the contents or the row, not the
-      entire row.
-  - answer: >
-      Right-click on the left margin of the row. Choose "Clear
-      contents" from the pop up menu.
-    feedback: >
-      No, this will only delete the contents or the row, not the
-      entire row.
-    
-
-- typeName: checkbox
-  prompt: >
-    You want to insert a new blank row between rows 3 and 4 in the
-    following spreadsheet. 
-      [Screenshot]
-    How would you do it?
-  shuffleOptions: true
-  options:
-  - answer: >
-     Right-click on the left margin of row 3, choose
-     "Insert rows below" from the pop up menu.
-    isCorrect: true
-    feedback: >
+       That's correct.
       
-  - answer: >
-      Right-click on the left margin of row 4, choose
-      "Insert rows above" from the pop up menu.
-    isCorrect: true
-    feedback: >
-      
-  - answer: >
-      Click in the last cell in row 3. Then hit enter.
-    feedback: >
-      This works in a textfile, but not in a spreadsheet!
-      
+
+
+- typeName: textReflect
+  prompt: >
+    Change some value in the above data set, and again save it in
+    the xlsx format.
+  defaultFeedback: >
+    Check by reloading the modified file.   
 
 </EXRLIST>
 </FLD>
 
 <STKY>
 <HEAD3>Module 1, Lesson 1,  Video 6: File formats: CSV</HEAD3></STKY>
-<SCRIPT id="m1/l1/v6" done="t">
+<SCRIPT id="m1/l1/v7" done="k" t="6:44">
 <SESS t="0.80" done="a" kf="30,60" id="s1">
 While the Excel format is adequate for many elementary
 purposes,  there are a few of drawbacks. First,  you need to
@@ -474,7 +547,30 @@ tables,  as well as graphs and reports.
 </SCRIPT>
 <FLD>
 
-<EXRLIST id="M1L4V2.yml">
+<EXRLIST id="m1l1_g.yml">
+- typeName: multipleChoice
+  prompt: >
+     If you need to create a csv file from scratch which of the
+     following editors is *not* suitable?
+
+  defaultFeedback: >
+      Use a plain text editor. Nothing fancy.
+  shuffleOptions: true
+  options:
+  - answer: MS Word
+    isCorrect: true
+    feedback: >
+      
+  - answer: notepad (Windows)
+    feedback: >
+      
+  - answer: gedit (Linux)
+    feedback: >
+      
+  - answer: vi (Linux)
+    feedback: >
+      
+
 - typeName: multipleChoice
   prompt: |-
     A line from a CSV file is
@@ -532,6 +628,14 @@ tables,  as well as graphs and reports.
 </EXRLIST>
 
 </FLD>
+<REF>
+Windows installation: 
+   https://www.youtube.com/watch?v=HzGi0og2irE
+Full documentation of Calc
+https://documentation.libreoffice.org/en/english-documentation/calc/
+Specifically read: Chapter 1: Introducing Calc
+</REF>
+
 </LESSON>
 
 <HEAD2>Module 1: Lesson 2</HEAD2>
@@ -611,6 +715,101 @@ It might interest you to learn about the different ways data are
 collected. So let's get a taste of that in the next video.
 </SESS>
 </SCRIPT>
+
+<FLD>
+<EXRLIST id="m1l2_a.yml">
+- typeName: multipleChoice
+  prompt: >
+     Which of the following is the best description of
+     "statistics" as a subject?
+  options:
+    - answer: Science of learning from experience.
+      feedback: Yes, that's right! 
+      isCorrect: true
+    - answer: Number crunching.
+      feedback: >
+        Ah, not quite. While much of statistics does involve
+        number crunching, statistics is no more just number
+        crunching than Hamlet is just some ink on paper.
+    - answer: Prediction of future
+      feedback: It's just one imortant application area of statistics. 
+    - answer: Worse than damned lie!
+      feedback: Oh no, sometimes it is even worse!
+
+
+- typeName: multipleChoice
+  prompt: >
+    The managing director of a car manufacturing company wants
+    to assess the role of three aspects of different car (colour,
+    mileage and leg space) behind its appeal to potential
+    customers. Among the following approaches which is the best for him?
+
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: >
+     Ask potential customers to rate different cars in a 5-point
+     scale, and also collect data on colour, mileage and leg
+     space of those cars.
+    isCorrect: true
+    feedback: >
+      Good strategy. Also some other aspects like gender and
+      income and number of cars already owned could be recorded.
+  - answer: |-
+      Ask three questions to each customer: 
+         How important is colour for you?
+         How important is mileage for you?
+         How important is leg space for you?
+      Let them write a single sentence answer for each.
+    feedback: >
+      There would be no standard to collate the sentences.
+  - answer: >
+      Get past sales data for different brands of cars, and also 
+      record their colour, mileage and leg space.
+    feedback: >
+      Not bad, but customer preferences change over time. So
+      better to work with potential customers.
+
+  - answer: >
+      Employ a psychologist to make the decision. 
+    feedback: >
+      Beneficial strategy...for the psychologist, I mean!
+
+- typeName: multipleChoice
+  prompt: >
+    "A certain tution centre claims to have prepare students
+  very well for admission to a reputed institute." In order to
+  assess the truth of this claim which one is the better strategy?
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: >
+      Take some students from that tution centre randomly and see
+      how many of them get admission to that institute.
+    isCorrect: true
+    feedback: >
+      This is the better strategy. We are basicaly answering the
+      question "If a student is trained by this centre, what is
+      the chance of him.her to get admission to that institute?"
+      This strategy starts with students satisfying the "if"
+      condition, and counts the number of students satisfying then
+      "then" condition.
+  - answer:
+    feedback: >
+      Take some random students admitted to that institute, and
+      see how many of them came from that tution centre.
+  - answer:
+    feedback: >
+      Bad strategy. Imagine a tution centre that thanks to its ad
+      campaigns gets almost all the students, but gives
+      them hardly any training. Still the proportion of their
+      students among the admitted students would be high. It would
+      merely reflect the success of their ad campaigns. 
+
+</EXRLIST>
+</FLD>
 
 <STKY><HEAD3>Module 1,  Lesson 2,  Video 2: Data collection devices</HEAD3></STKY>
 
@@ -702,25 +901,7 @@ that's what we are about to do next.
 </SCRIPT>
 
 <FLD>
-<EXRLIST id="M1L1V1.yml">
-- typeName: multipleChoice
-  prompt: >
-     Which of the following is the best description of
-     "statistics" as a subject?
-  options:
-    - answer: Science of learning from experience.
-      feedback: Yes, that's right! 
-      isCorrect: true
-    - answer: Number crunching.
-      feedback: >
-        Ah, not quite. While much of statistics does involve
-        number crunching, statistics is no more just number
-        crunching than Hamlet is just some ink on paper.
-    - answer: Prediction of future
-      feedback: It's just one imortant application area of statistics. 
-    - answer: Worse than damned lie!
-      feedback: Oh no, sometimes it is even worse!
-
+<EXRLIST id="m1l2_b.yml">
 - typeName: multipleChoice
   prompt: > 
     We want to collect first hand data about villagers' condition after a
@@ -741,10 +922,48 @@ that's what we are about to do next.
      isCorrect: true
    - answer: Ask only the head of the village.
      feedback: The head might give only his/her personal view.
+
+
+- typeName: multipleChoice
+  prompt: >
+     How would go about collecting data on fertility of soil in
+     different plots of lands? 
+
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: Derive
+    isCorrect: true
+    feedback: >
+      Aha! That's correct. You need to know total yield and also
+      total area. Divide one by the other.
+  - answer: Measure
+    feedback: >
+      Fertility is not like length, mass or time, something you
+    can directly measure.
+  - answer: Ask
+    feedback: >
+      Whom should you ask? Not me! 
+  - answer: Look up
+    feedback: >
+      Hmmm...that kind of avoids answering the question. Which
+      existing source would you look up? How could that source get
+      the data in the first place?
+  - answer: Observe
+    feedback: >
+      Nope! Fertility is not something that you can just
+      observe...unless you have very special eyes!
+
+
+- typeName: textReflect
+  prompt: >
+  defaultFeedback: >
+      
+
 </EXRLIST>
 </FLD>
 
-<STKY><HEAD3>Module 1, Lesson 2,  Video 3: Data--types</HEAD3></STKY>
 <SCRIPT id="m1/l2/v3" done="k" t="3:18">
 <SESS t="0.40" done="a" id="s1">
 In the last video we learned about the various instruments to get
@@ -810,6 +1029,34 @@ hand,  may only be an approximation to the information that you
 are actually seeking. 
 </SESS>
 </SCRIPT>
+
+
+<FLD>
+<EXRLIST id="m1l2_c.yml">
+- typeName: textReflect
+  prompt: >
+         An astronomer has discovered a new celestial object, and
+  wants to compare it with similar objects already known. Will
+  she need primary data or secondary data?
+  defaultFeedback: >
+      Both. Primary data for the new object, secondary one for
+      the already knwn ones. 
+
+- typeName: textReflect
+  prompt: >
+     A population census aims, among other things, to count the
+  total  number of people in a country at a certain time
+  point. Suppose that the census itself takes 6 months to
+  complete. Think of one problem with scope that this may cause.
+  defaultFeedback: >
+      How to account for the chnge in population during this
+  time? For example, people have died, new babaies have been
+  born, some people have left the country, while others have
+  entered. Should we include them? Or exclude them? 
+      
+
+</EXRLIST>
+</FLD>
 
 <STKY><HEAD3>Module 1, Lesson 2,  Video 4: Data--Census/sample, Observational/experiment</HEAD3></STKY>
 <SCRIPT id="m1/l2/v4" done="k" t="3:26">
@@ -877,8 +1124,37 @@ sample survey, as you will learn later.
 </SESS>
 </SCRIPT>
 
-<FLD> Exercises to be inserted
-<EXRLIST>
+<FLD>
+<EXRLIST id="m1l2_d.yml">
+- typeName: textReflect
+  prompt: >
+     A statistician wants to study the distribution of heights  of
+  people in a country. Another statistician wants to study the
+  distribution of incomes. Which statistician will need a larger
+  sample? 
+  defaultFeedback: >
+      The second, because income varies more than heights.
+
+- typeName: textReflect
+  prompt: >
+     In order to draw a sample of 10 hens from a cage containing
+  500, a statistician employs the following procedure: She opens
+  the cage slightly, and catches the first 10 she can. Is this a
+  good procedure? 
+  defaultFeedback: >
+      No. The hens near the door and the weaker ones are more
+  likely to be selected.
+
+- typeName: textReflect
+  prompt: >
+     "Java programmers die younger than C programmers." In order to test this (fake)
+  rumour, you collect data on the lifespans of all dead Java and C
+  programmers, and indeed find that in your sample the average life span of the
+  Java programmers are less than those of the C
+  programmers. What's wrong with this approach?
+  defaultFeedback: >
+      Java is a more recent language. So most Java programmers
+      are still living. You excluded them from your sample.
 
 </EXRLIST>
 </FLD>
@@ -952,11 +1228,11 @@ effect of some <B>new measure</B>, then designed experiment  is the only
 option, because how can you learn about the new measure unless
 you apply it?     
 </SESS>
-
 </SCRIPT>
 
 <FLD>
-<EXRLIST id="M1L1V2.yml">
+
+<EXRLIST id="m1l2_e.yml">
 - typeName: multipleChoice
   prompt: >
    An NGO wants to assess the effect of a health benefit scheme
@@ -1013,8 +1289,8 @@ you apply it?
 
 - typeName: multipleChoice
   prompt: > 
-    "1000 people died of cancer 10 years ago. 
-    This year the figure is 2000." Can we 
+    "1243 people died of cancer in a city 10 years ago. 
+    This year the figure is 2982." Can we 
     reasonably conclude from this that 
     health conditions have deteriorated over the last 10 years?
   shuffleOptions: true
@@ -1028,10 +1304,11 @@ you apply it?
       But the total population may have increased over the last
       10 years!
 </EXRLIST>
+
 </FLD>
 
-<STKY><HEAD3>Module 1, Lesson 2,  Video 6: Case,  variable and rectangular structure</HEAD3></STKY>
-<SCRIPT id="m1/l2/v6" done="nk">
+
+<SCRIPT id="m1/l2/v6" done="k" t="5:24">
 <SESS t="0.5" done="a" id="s1">
 The term data conjures up the vision of numbers...zillions of
 figures stored in computer disks to be processed by gigantic
@@ -1122,9 +1399,100 @@ blank.
 </SC>
 </SCRIPT>
 
-<STKY><HEAD3>Module 1, Lesson 2,  Video 7: Stitching a data matrix</HEAD3></STKY>
 
-<SCRIPT id="m1/l2/v7" done="nk" t="">
+<FLD>
+<EXRLIST id="m1l2_f.yml">
+- typeName: multipleChoice
+  prompt: >
+    We are collecting household level data from 5 different
+    villages. From each  villages  10 random  households are selected.
+    For each selected household we collect data on monthly
+    income,  main source of income,  and the number of people. If the
+    resulting table has <M>n</M> rows and <M>p</M> columns,
+    then:
+  shuffleOptions: true
+  options:
+   - answer: <M>n=10</M> and <M>p=4</M>
+     feedback: >
+       Oops! <M>p</M> is the number of variables. How many
+       variables are we having here? Also <M>n</M> is the
+       total number of cases, i.e., the total number of households.
+   - answer: <M>n=50</M> and <M>p=3</M>
+     isCorrect: true
+     feedback: >
+       Bang on point! 10 households from each of 5 villages.
+       That gives 50 cases in total. Also we have 3 variables.
+   - answer: <M>n=50</M> and <M>p=4</M>
+     feedback: > 
+       Not quite! Your <M>n</M> is correct, but are there
+       really 4 variables? 
+   - answer: <M>n=10</M> and <M>p=3</M>
+     feedback: > 
+       Hmmm...let's see. You think there are just 10 households 
+       in this study? Or 10 households from *each of 5 villages?*
+
+
+- typeName: multipleChoice
+  prompt: |-
+    Consider the following data set. 
+
+    | Name          | Family size | Income (Rs) |
+    |---------------+-------------+-------------|
+    | Ram Singh     |           3 |        2345 |
+    | Rehan Molla   |           4 |        5000 |
+    | Joseph Mathew |           2 |        4000 |
+
+    What is the value of income in the 3rd case?
+  shuffleOptions: true
+  options:
+  - answer: Rs. 4000
+    isCorrect: true
+    feedback: Good job!
+      
+  - answer: 4000
+    feedback: You missed the unit!
+      
+  - answer: Rs 5000
+    feedback: >
+      The third case means row three *not counting the header row!*
+      
+  - answer: Rs 2345
+    feedback: >
+      The third case means row three (not counting the header row).
+      You were possibly attracted by the 3 in the second column! 
+
+
+- typeName: multipleChoice
+  prompt: |-
+    The following data set has one suspicious case. Which case?
+  
+    | Height (cm) |
+    |-------------|
+    |         175 |
+    |         180 |
+    |      155176 |
+    | 183         |
+  shuffleOptions: true
+  options:
+  - answer: Case 3
+    isCorrect: true
+    feedback: >
+      Most possibly that 155176 was supposed to be 155 followed
+      by 176.
+  - answer: Case 1
+    feedback: >
+      Nothing unusual about this height!
+  - answer: Case 2
+    feedback: >
+       Nothing unusual about this height!
+  - answer: Cse 4
+    feedback: >
+       Nothing unusual about this height!
+</EXRLIST>
+</FLD>
+
+
+<SCRIPT id="m1/l2/v7" done="k" t="2:46">
 <SESS t="0.80" done="t" id="s1">
 In the last video we have learned about creating a data matrix
 from scratch. This is useful if we are doing our own data
@@ -1197,92 +1565,7 @@ Here is a quick checklist:
 
 <FLD>
 
-<EXRLIST id="M1L1V3.yml">
-- typeName: multipleChoice
-  prompt: >
-    We are collecting household level data from 5 different
-    villages. From each  villages  10 random  households are selected.
-    For each selected household we collect data on monthly
-    income,  main source of income,  and the number of people. If the
-    resulting table has <M>n</M> rows and <M>p</M> columns,
-    then:
-  shuffleOptions: true
-  options:
-   - answer: <M>n=10</M> and <M>p=4</M>
-     feedback: >
-       Oops! <M>p</M> is the number of variables. How many
-       variables are we having here? Also <M>n</M> is the
-       total number of cases, i.e., the total number of households.
-   - answer: <M>n=50</M> and <M>p=3</M>
-     isCorrect: true
-     feedback: >
-       Bang on point! 10 households from each of 5 villages.
-       That gives 50 cases in total. Also we have 3 variables.
-   - answer: <M>n=50</M> and <M>p=4</M>
-     feedback: > 
-       Not quite! Your <M>n</M> is correct, but are there
-       really 4 variables? 
-   - answer: <M>n=10</M> and <M>p=3</M>
-     feedback: > 
-       Hmmm...let's see. You think there are just 10 households 
-       in this study? Or 10 households from *each of 5 villages?*
-
-
-- typeName: multipleChoice
-  prompt: |-
-    Consider the following data set. 
-
-    | Name          | Family size | Income (Rs) |
-    |---------------+-------------+-------------|
-    | Ram Singh     |           3 |        2345 |
-    | Rehan Molla   |           4 |        5000 |
-    | Joseph Mathew |           2 |        4000 |
-
-    What is the value of income in the 3rd case?
-  shuffleOptions: true
-  options:
-  - answer: Rs. 4000
-    isCorrect: true
-    feedback: Good job!
-      
-  - answer: 4000
-    feedback: You missed the unit!
-      
-  - answer: Rs 5000
-    feedback: >
-      The third case means row three *not counting the header row!*
-      
-  - answer: Rs 2345
-    feedback: >
-      The third case means row three (not counting the header row).
-      You were possibly attracted by the 3 in the second column! 
-
-- typeName: multipleChoice
-  prompt: |-
-    The following data set has one suspicious case. Which case?
-  
-    | Height (cm) |
-    |-------------|
-    |         175 |
-    |         180 |
-    |      155176 |
-    | 183         |
-  shuffleOptions: true
-  options:
-  - answer: Case 3
-    isCorrect: true
-    feedback: >
-      Most possibly that 155176 was supposed to be 155 followed
-      by 176.
-  - answer: Case 1
-    feedback: >
-      Nothing unusual about this height!
-  - answer: Case 2
-    feedback: >
-       Nothing unusual about this height!
-  - answer: Cse 4
-    feedback: >
-       Nothing unusual about this height!
+<EXRLIST id="m1l2_g.yml">
 
 - typeName: multipleChoice
   prompt: |-
@@ -1325,7 +1608,7 @@ Here is a quick checklist:
       |----+------+------------+-------+---------|
       |    |      |            |       |         |
   - answer: 3 columns and 9 rows
-    feedback: _-
+    feedback: |-
       No, we need to have one extra column for the village. The
       new header will be:
       | Id | Area | Irrigation | Yield | Village |
@@ -1343,12 +1626,18 @@ Here is a quick checklist:
 </EXRLIST>
 
 </FLD>
+
+<REF>
+WW: Chapter 1
+FPP: Chapter 1 (skim)
+DH: Chapter 1 (optional)
+</REF>
 </LESSON>
 
 <HEAD2>Module 1: Lesson 3</HEAD2>
-<STKY><HEAD3>Module 1, Lesson 3,  Video 1: Types of variables (Users' perspective)</HEAD3></STKY>
+
 <LESSON>
-<SCRIPT id="m1/l3/v1" done="nk">
+<SCRIPT id="m1/l3/v1" done="k" t="5:46">
 <SESS t="1.20" done="a" id="s1">
 In the last lesson we have learned about types of data, and have
 acquired a basic understanding of how they are collected. We
@@ -1468,6 +1757,41 @@ measurements.
 </FLD>
 </SC>
 </SCRIPT>
+
+
+<FLD>
+<EXRLIST id="m1l3_a.yml">
+- typeName: multipleChoice
+  prompt: >
+           A statistician classifies people into three classes: tall,
+  medium and short. This produces:
+
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: one categorical variable
+    isCorrect: true
+    feedback: >
+      
+  - answer: one measurement variable
+    feedback: >
+      
+  - answer: three categorical variables
+    feedback: >
+      "Tall", "medium" and "short" are the values, not separate variables.
+  - answer: three measurement variables
+    feedback: >
+      
+- typeName: textReflect
+  prompt: >
+    Is blood group a categorical variable? What about blood pressure?
+  defaultFeedback: >
+      Blood group is a categorical variable, but not blood pressure.
+
+</EXRLIST>
+</FLD>
+
 <STKY><HEAD3>Module 1, Lesson 3,  Video 2: Types of variables (Users' perspective) (contd)</HEAD3></STKY>
 <SCRIPT id="m1/l3/v2" done="k" t="5:09">
 <SC t="5" done="r" id="sc_meas_132">
@@ -1577,11 +1901,11 @@ crucially on the type of variable you are working with.
 </SC>
 </SCRIPT>
 <FLD>
-<EXRLIST id="M1L2V1.yml">
+<EXRLIST id="m1l3_b.yml">
 - typeName: multipleChoice
   prompt: >
     In a financial data set the annual turnover of small businesses
-    are expressed as slabs like 1lakh to 2lakhs,  2 lakhs to 3lakhs, 
+    are expressed as slabs like 1 lakh to 2 lakhs,  2 lakhs to 3 lakhs, 
     etc. In this data set annual turnover is most appropriately called
   shuffleOptions: true
   options:
@@ -1795,69 +2119,29 @@ considered <B>continuous</B>. However, if we use only <B>income slabs</B>,
 which is an interval variable, then we have a <B>discrete</B> variable.
 </SESS>
 </SCRIPT>
+
+
 <FLD>
+<EXRLIST id="m1l3_c.yml">
+- typeName: textReflect
+  prompt: >
+     Identify the types (discrete/continuous) of these variables regarding a human
+  being: body type (endomorphic/mesomorphic/ectomorphic), age in
+  completed years, eye colour, height, blood group.
+  defaultFeedback: >
+     body type, eye colour and blood group are discrete. The
+     others are continuous. 
 
-<EXRLIST id="M1L2V2.yml">
-- typeName: multipleChoice
-A counting variable is 
-shuffleOptions: true
-options:
-   - answer: a discrete variable
-   - answer: a difference-type continuous variable
-   - answer: a ratio-type continuous variable
-   - answer: none of these
-
-
-
-- typeName: multipleChoice
-Temperature is a 
-shuffleOptions: true
-options:
-   - answer: a discrete variable
-   - answer: a difference-type continuous variable
-   - answer: a ratio-type continuous variable
-   - answer: none of these
-
-
-
-
-- typeName: multipleChoice
-Temperature is a 
-shuffleOptions: true
-options:
-   - answer: a discrete variable
-   - answer: a difference-type continuous variable
-   - answer: a ratio-type continuous variable
-   - answer: none of these
-
-
-
-- typeName: multipleChoice
-If gender is encoded as 1 for male,  2 for female and 3 for
-others,  then it is  
-shuffleOptions: true
-options:
-   - answer: a nominal variable
-   - answer: an ordinal variable
-   - answer: a counting variable
-   - answer: a difference-type continuous variable
-
-
-
-- typeName: multipleChoice
-PAN of a person  is an example of 
-shuffleOptions: true
-options:
-   - answer: a nominal variable
-   - answer: an ordinal variable
-   - answer: a ratio-type continuous variable
-   - answer: none of these
-
-
-
+- typeName: textReflect
+  prompt: >
+     Should marks awarded to students in a scale of 0 to 100 be considered continuous?
+  defaultFeedback: >
+     Well, yes. Partly because it is measuring the merit of a
+     student, and intuitively merit is something continuous. Also
+     the resolution of the scale is quite high. Moreover, some
+     teachers do award fractional marks like 50.5.
 
 </EXRLIST>
-
 </FLD>
 
 <STKY><HEAD3>Module 1, Lesson 3,  Video 4: Uses of numbers</HEAD3></STKY>
@@ -1943,7 +2227,76 @@ ratio.
 </FLD>
 </SC>
 </SCRIPT>
+<REF>
+WW: 1.4--1.6
+    8.1, 8.2
+</REF>
 
+<FLD>
+
+<EXRLIST id="m1l3_d.yml">
+- typeName: multipleChoice
+- prompt: >
+    A counting variable is 
+  shuffleOptions: true
+  options:
+   - answer: a discrete variable
+   - answer: a difference-type continuous variable
+   - answer: a ratio-type continuous variable
+   - answer: none of these
+
+
+
+- typeName: multipleChoice
+Temperature is a 
+shuffleOptions: true
+options:
+   - answer: a discrete variable
+   - answer: a difference-type continuous variable
+   - answer: a ratio-type continuous variable
+   - answer: none of these
+
+
+
+
+- typeName: multipleChoice
+Temperature is a 
+shuffleOptions: true
+options:
+   - answer: a discrete variable
+   - answer: a difference-type continuous variable
+   - answer: a ratio-type continuous variable
+   - answer: none of these
+
+
+
+- typeName: multipleChoice
+If gender is encoded as 1 for male,  2 for female and 3 for
+others,  then it is  
+shuffleOptions: true
+options:
+   - answer: a nominal variable
+   - answer: an ordinal variable
+   - answer: a counting variable
+   - answer: a difference-type continuous variable
+
+
+
+- typeName: multipleChoice
+PAN of a person  is an example of 
+shuffleOptions: true
+options:
+   - answer: a nominal variable
+   - answer: an ordinal variable
+   - answer: a ratio-type continuous variable
+   - answer: none of these
+
+
+
+
+</EXRLIST>
+
+</FLD>
 </LESSON>
 
 <HEAD2>Module 1: Lesson 4</HEAD2>
@@ -2074,9 +2427,86 @@ the information content of the data set.
 <TODO>Cut a period of silence: done</TODO>
 </SCRIPT>
 
+<FLD>
+<EXRLIST id="m1l4_a.yml">
+- typeName: textReflect
+  prompt: >
+     If we collect daily data on maximum and minimum temperatures
+  in a city, then is the resulting data set a univariate one or a
+  multivariate one?
+  defaultFeedback: >
+      Multivariate. Bivariate, to be precise.
+
+- typeName: textReflect
+  prompt: >
+     For 1000 persons, we collect their government identification
+  number, name as well their income. Is the resulting data set
+  univariate or multivariate?
+  defaultFeedback: >
+      Well, there are three variables. But still it should be
+      univariate for statistical purposes, because the first two are
+      just identifier variables.
+
+- typeName: multipleChoice
+  prompt: >
+    For 50 households data have been collected on the number of
+    members. The resulting data set has two columns,  a serial number
+    and the number of members. This data set is 
+  shuffleOptions: true
+  options:
+   - answer: univariate
+     isCorrect : true
+     feedback: >
+       Correct. Though there are two columns, yet the first
+       column is merely for identifying the cases.
+   - answer: bivariate
+     feedback: >
+       No. Despite there being *two* columns in the data matrix,
+       the first column is merely for identifying the cases.
+   - answer: multivariate
+     feedback: >
+       Well, there *are* more than one columns in the data
+       matrix. But the first column is merely for identifying the
+       cases. 
+   - answer: none of these.
+     feedback: >
+       Hey, wait a second! Any data set is either univariate or
+       multivariate (bivariate being just a special case of
+       multivariate). 
+
+
+- typeName: multipleChoice
+  prompt: >
+    For 50 rural  and 50 semi-urban households we have collected the
+    monthly income and expenditure data. 
+    The aim is to study the effect of the background on the
+    income-expenditure relation. The data set here is
+  shuffleOptions: true
+  options:
+  - answer: univariate
+    feedback: >
+      Well, I can already see *at least* two variables: income
+      and expenditure. 
+  - answer: bivariate
+    feedback: >
+      Good guess, but not correct. There is a third variable here
+      other than income and expenditure.
+  - answer: trivariate
+    isCorrect: true
+    feedback: >
+      Yes, there are three variables here: income, expenditure
+      and, say,  *type* which is a categorical variable taking
+      values rural and semi-urban.
+  - answer: none of these
+    feedback: >
+      You mean there are at least four variables here? Well, I
+      can see income and expenditure and ...
+</EXRLIST>
+</FLD>
+
 <STKY>
 <HEAD3>Module 1, Lesson 4,  Video 2: Univariate and multivariate</HEAD3></STKY>
-<SCRIPT id="m1/l4/v2" done="nk" t="0">
+<SCRIPT id="m1/l4/v2" done="k" t="4:40">
 <SESS t="0.5" done="r" id="s1">
 In this video we are going to see the example of a famous
 multivariate data set, called the iris data set. It is about 3
@@ -2092,6 +2522,30 @@ Real life data example. Point out interrelations worth exploring.
 [iris.ods (iris + pollution)]
 </SC>
 </SCRIPT>
+
+
+
+<FLD>
+<EXRLIST id="m1l4_b.yml">
+- typeName: textReflect
+  prompt: >
+     How many continuous variables are there
+     in the iris data? And how many categorical? 
+  defaultFeedback: >
+     4 continuous and 1 categorical. 
+
+- typeName: textReflect
+  prompt: >
+     The iris data set has 150 cases. 
+     Suppose that you decide to draw a representative
+     sample of only 15 cases out of these.
+     How would you do this? 
+  defaultFeedback: >
+     Pick 5 random flowers of each species. 
+
+</EXRLIST>
+</FLD>
+
 
 <STKY>
 <HEAD3>Module 1, Lesson 4,  Video 3: Time series and  panel data</HEAD3></STKY>
@@ -2190,10 +2644,38 @@ time series and panel data.
 </SESS>
 </SCRIPT>
 
+<FLD>
+<EXRLIST id="m1l4_c.yml">
+- typeName: textReflect
+  prompt: >
+     Think of 5 time series data that might be interesting to you.
+  defaultFeedback: >
+     Daily COVID infection in your neighbourhood. Your bank
+     balance over time. Your body weight over the past few
+     years. Prices of the stocks that you hold. Download speed of
+     your internet connection.
+
+- typeName: textReflect
+  prompt: >
+    Many parents keep a record of their children's heights each
+    birthday. Are these  examples of  time series?
+  defaultFeedback: >
+    Yes, of course!  
+
+- typeName: textReflect
+  prompt: >
+     There is a familiar clinical measurement related to the
+     heart that is actually a time series.  What is it?
+  defaultFeedback: >
+     Electrocardiogram (ECG). 
+
+</EXRLIST>
+</FLD>
+
 <STKY>
 <HEAD3>Module 1, Lesson 4,  Video 4: Time series and  panel data</HEAD3></STKY>
-<SCRIPT id="m1/l4/v4" t="0" done="n">
-<SC t="6" done="a" id="s1">
+<SCRIPT id="m1/l4/v4" t="5:55" done="k">
+<SC t="6" done="r" id="sc_time_144">
 [time.ods]
 
 Practical:
@@ -2224,11 +2706,29 @@ St. Louis; https://fred.stlouisfed.org/series/LNU00000001, December 27, 2021.
 </SC>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 1, Lesson 4,  Video 5: Cross-sectional data</HEAD3></STKY>
+
+<FLD>
+<EXRLIST id="m1l4_d.yml">
+- typeName: textReflect
+  prompt: >
+     How many variables were there in the panel data set in the
+     last video?
+
+  defaultFeedback: >
+      Five.
+
+- typeName: textReflect
+  prompt: >
+    In one variable in the panel data set above, numbers were used
+    at the nominal level. Which variable?
+  defaultFeedback: >
+    Firm.
+
+</EXRLIST>
+</FLD>
 
 
-<SCRIPT id="m1/l4/v5" done="nk" t="0">
+<SCRIPT id="m1/l4/v5" done="k" t="5:46">
 <SESS t="1.60" done="r" kf="10,20,80" id="s1">
 We have learned about time series and panel data, where the cases
 are laid along a line, the time line. 
@@ -2261,15 +2761,41 @@ Identically Distributed.<V>[shown]</V> Typical examples are data from a random
 sample. 
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="4" done="a" id="">
+<SC t="4" done="r" id="sc_cross_145">
 fusion.ods
+https://developer.nvidia.com/sites/all/modules/custom/gpugems/books/GPUGems/gpugems_ch41.html
 </SC>
 </SCRIPT>
+
+<FLD>
+<EXRLIST id="m1l4_e.yml">
+- typeName: textReflect
+  prompt: >
+     A scientist spins tops at different speeds and measures the
+     times they take to stop. Is the resulting data set a time
+     series data set? 
+  defaultFeedback: >
+     No, it is cross sectional data set. The cases (ie spins) may
+     be  reordered without losing any information.
+
+- typeName: textReflect
+  prompt: >
+    It is     suspected that a spring balance slowly sags, when used repeated
+    over a short time. To juudge this it is used to measure the
+    same weight repeatedly 100 times at regular intervals over 30 minutes. Is the
+    resulting data set a time series data?
+  defaultFeedback: >
+    Yes.  
+
+</EXRLIST>
+</FLD>
+
+
 
 <STKY>
 <HEAD3>Module 1, Lesson 4,  Video 6: Spatial data etc</HEAD3></STKY>
 
-<SCRIPT id="m1/l4/v6" t="0" done="r">
+<SCRIPT id="m1/l4/v6" t="1:33" done="k">
 <SESS t="0.70" done="a" kf="30,60" id="s1">
 When the units are laid out geographically over space, and we are
 interested in the spatial positionings of the units, we
@@ -2306,111 +2832,8 @@ In this course, however, we shall not consider these layouts.
 </SCRIPT>
 
 <FLD>
-<EXRLIST id="M1L3V1.yml">
-- typeName: multipleChoice
-  prompt: >
-    For 50 households data have been collected on the number of
-    members. The resulting data set has two columns,  a serial number
-    and the number of members. This data set is 
-  shuffleOptions: true
-  options:
-   - answer: univariate
-     isCorrect : true
-     feedback: >
-       Correct. Though there are two columns, yet the first
-       column is merely for identifying the cases.
-   - answer: bivariate
-     feedback: >
-       No. Despite there being *two* columns in the data matrix,
-       the first column is merely for identifying the cases.
-   - answer: multivariate
-     feedback: >
-       Well, there *are* more than one columns in the data
-       matrix. But the first column is merely for identifying the
-       cases. 
-   - answer: none of these.
-     feedback: >
-       Hey, wait a second! Any data set is either univariate or
-       multivariate (bivariate being just a special case of
-       multivariate). 
+<EXRLIST id="m1l4_f.yml">
 
-
-- typeName: multipleChoice
-  prompt: >
-    For 50 rural  and 50 semi-urban households we have collected the
-    monthly income and expenditure data. 
-    The aim is to study the effect of the background on the
-    income-expenditure relation. The data set here is
-  shuffleOptions: true
-  options:
-  - answer: univariate
-    feedback: >
-      Well, I can already see *at least* two variables: income
-      and expenditure. 
-  - answer: bivariate
-    feedback: >
-      Good guess, but not correct. There is a third variable here
-      other than income and expenditure.
-  - answer: trivariate
-    isCorrect: true
-    feedback: >
-      Yes, there are three variables here: income, expenditure
-      and, say,  *type* which is a categorical variable taking
-      values rural and semi-urban.
-  - answer: none of these
-    feedback: >
-      You mean there are at least four variables here? Well, I
-      can see income and expenditure and ...
-
-
-- typeName: multipleChoice
-  prompt: >
-    We have collected data on the severity of road accidents (as
-    Likert-type variable) along with the exact time of occurence
-    and type of traffic (rush or slack). This is a 
-  shuffleOptions: true
-  options:
-  - answer: univariate data set
-    feedback: >
-      There are at least two variables: severity and time of
-      occurence. May be even more.
-  - answer: bivariate data set
-      Just two? No, I can see more variables.
-  - answer: trivariate data set
-    isCorrect: true
-  - answer: none of these
-
-
-
-- typeName: multipleChoice
-For each person registering for a government health benfit
-scheme,  we have collected the person's name,  phone number,  age, 
-income,  type of benefit (individual/family). Is this a univariate
-data set:
-shuffleOptions: true
-options:
-   - answer: Yes
-   - answer: No
-
-
-
-- typeName: multipleChoice
-For each agricultural  plots in a village we record the area, 
-crop sown,  and income per season. The resulting data set is
-shuffleOptions: true
-options:
-   - answer: univariate
-   - answer: multivariate
-
-
-
-</EXRLIST>
-</FLD>
-
-
-<FLD>
-
-<EXRLIST id="M1L3.yml">
 - typeName: multipleChoice
   prompt: >
     If we collect household level monnthly income data for 10 villages in a
@@ -2506,31 +2929,15 @@ options:
     feedback: >
       The measurements are made repeatedly at different time points.
 
-- typeName: checkbox
-  prompt:  A line plot is most suitable for:
-  shuffleOptions: true
-  options:
-  - answer: time series data
-    isCorrect: true
-    feedback: >
-      Since time is continuous, it makes sense to joint the
-      values with a line.
-  - answer: cross-sectional data
-    feedback: >
-      The different cases are not linked in any continuous way. In
-      fact they may not even be ordered.
-  - answer: spatial data
-    feedback: >
-      Spatial data are better shown in a map. 
-  - answer: panel data
-    isCorrect: true
-    feedback: >
-      Here each column in the data matrix gets its own line. 
-  
-
 </EXRLIST>
 
 </FLD>
+
+<REF>
+Visit DASL and search for multivariate data. Read their
+story. Also search for time series data. Finally, visit the panel
+data webpage refered to in the video. 
+</REF>
 </LESSON>
 
 
@@ -2538,7 +2945,7 @@ options:
 <LESSON>
 
 <STKY><HEAD3>Module 1, Lesson 5 (review),  Video 1</HEAD3></STKY>
-<SCRIPT id="m1/l5/v1" done="r">
+<SCRIPT id="m1/l5/v1" done="k" t="3:48">
 <SESS t="3.30" done="a"  id="s1">
 So we have come to the very last lesson of the week. We have 
 already had 4 lessons. This last lesson is
@@ -2611,7 +3018,7 @@ the joy of statistics.
 </SCRIPT>
 
 <STKY><HEAD3>Module 1, Lesson 5,  Video 2: Secondary data</HEAD3></STKY>
-<SCRIPT id="m1/l5/v2" done="r" t="">
+<SCRIPT id="m1/l5/v2" done="k" t="2:47">
 <SESS t="1.90" done="a" kf="10,20,30,40,50,60" id="s1">
 The most interesting types of data, as I said, are primary
 data. Data that you collect yourself for your own interest.
@@ -2665,7 +3072,8 @@ Kaggle: https://www.kaggle.com/datasets</B>
 
 <STKY><HEAD3>Module 1, Lesson 5 (review),  Video 3: Software</HEAD3></STKY>
 
-<SCRIPT  id="m1/l5/v3" t="0" done="r">
+<SCRIPT  id="m1/l5/v3" t="1:24" done="k">
+skip it
 <SESS t="1.40" done="a" kf="30" id="s1">
 We talked about the LibreOffice CALC software. Like all softwares
 it takes time to get used to. Espcially if you already know some
@@ -2702,7 +3110,7 @@ tedious for a large data set. But you can define a keyboard short cut.
 
 
 <STKY><HEAD3>Module 1, Lesson 5, Video 4</HEAD3></STKY>
-<SCRIPT id="m1/l5/v4" done="r">
+<SCRIPT id="m1/l5/v4" done="k" t="3:21">
 <SESS t="2.90" done="a" kf="10,20,30,40" id="s1">
 Statistics is a vast subject, and there is so much to say even
 about just basic structure of data. We have mostly covered
@@ -2774,7 +3182,7 @@ cancel noise in air crafts.
 
 
 <STKY><HEAD3>Module 1, Lesson 5,  Video 5: Real life experience</HEAD3></STKY>
-<SCRIPT id="m1/l5/v5" t="0" done="r">
+<SCRIPT id="m1/l5/v5" t="6:35" done="k">
 <SESS t="1.90" done="a" kf="10,20,30,40,50,60,70" id="s1">
 Much of whatever we have discussed in this module is basically
 common sense, and may appear trivial, until you see them used in
@@ -2905,11 +3313,11 @@ sense, and judgement while  implementing them...
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+<EXRLIST id="m1_add.yml">
 - typeName: checkbox
   prompt: |-
       Consider the data stored in an informal style in the 
-  file [m1_1.ods]. If the complete data are presented as a
+  file [[./exraux/m1_1.ods]]. If the complete data are presented as a
   data matrix, then which of the following statements would be
   true   about the data matrix?
 
@@ -2969,8 +3377,8 @@ sense, and judgement while  implementing them...
   - answer: >
       All the numbers are used at ordinal level.
     feedback: >
-      Hmmm..., you think that person 1 is "the first" or "the
-      smallest"  in some sense?
+      Hmmm..., you think that person 1 is something like "the
+      first" or "the smallest"  in some sense?
   - answer: >
       Column 1 uses numbers at ordinal level, other columns
       at nominal level.
@@ -2995,7 +3403,7 @@ sense, and judgement while  implementing them...
     isCorrect: true
 
 - typeName: checkbox
-  prompt: >
+  prompt: |-
       Which of the following statements is/are appropriate about the
       following data:
         | Place | Temperature (degrees Celsius) |
@@ -3052,7 +3460,7 @@ sense, and judgement while  implementing them...
 
 <HEAD1>Module 2: Presentation of data (part 1)</HEAD1>
 <STKY><HEAD3>Module 2, Introductory Video: Peer review</HEAD3></STKY>
-<SCRIPT id="m2/intro" done="r">
+<SCRIPT id="m2/intro" done="k" t="2:14">
 <SESS t="2.00" done="a" kf="30,40,70,80,90,100" id="s1">
 So we have finished one week of our course, and are now about to
 start the second week. This week our focus will be on 
@@ -3285,6 +3693,47 @@ using LibreOffice.
 </SESS>
 </SCRIPT>
 
+<FLD> Line plot
+<EXRLIST id="m2l1_a.yml">
+- typeName: numeric
+  prompt: |-
+    Here is a line plot of sales. 
+       [[./exraux/line1.png]]
+    What is the value for May?
+  shuffleOptions: true
+  answers:
+  - value: [145,155]
+    isCorrect: true
+    feedback: >
+
+- typeName: numeric
+  prompt: > 
+    This plot shows a periodic fluctuation. What is the length
+    of a single period?
+    [[./exraux/line2.png]]
+  defaultFeedback: >
+    Consider the horizontal distance between two consecutive minima.
+  answers:
+  - range: [30,40]
+    isCorrect: true
+    feedback: >
+
+- typeName: numeric
+  prompt: > 
+    From this time series plot  guess the next
+    peak value. 
+        [[./exraux/line3.png]]
+  defaultFeedback: >
+    The maximums are roughly on a straight line. They are
+    increasing regularly, 3, 6, 9, ...
+  answers:
+  - range: [11,13]
+    isCorrect: true
+    feedback: >
+      
+</EXRLIST>
+</FLD>
+
 <STKY><HEAD3>Module 2, Lesson 1,  Video 3: Line diagram (lab)</HEAD3></STKY>
 <SCRIPT id="m2/l1/v3" done="k" t="5:34">
 <SESS t="0.30" done="r" id="s1">
@@ -3320,6 +3769,23 @@ labels", missing?]
 </SC>
 </SCRIPT>
 
+<FLD> More line plot (make plot)
+<EXRLIST id="m2l1_b.yml">
+- typeName: textReflect
+  prompt: >
+     Make a line plot of sales1 against time based on this data set. 
+      [[./exraux/lineplot.csv]] 
+  defaultFeedback: >
+      [[./exraux/line2.png]]
+- typeName: textReflect
+  prompt: >
+    Consider the same data set once again. Make an overlaid line
+    plot of sales1 and sales2 against time.
+  defaultFeedback: >
+      [[./exraux/line4.png]]
+</EXRLIST>
+</FLD>
+
 <STKY><HEAD3>Module 2, Lesson 1,  Video 6: Line diagram (interpretation)</HEAD3></STKY>
 <SCRIPT id="m2/l1/v6" done="k" t="1:47">
 <SESS t="1.50" done="r" kf="10,20,30,40,390,400,440" id="s1">
@@ -3352,118 +3818,12 @@ occasion to talk about prediction when we discuss time series analysis.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST id="M2L1V2.yml">
-- typeName: numeric
-  prompt: |-
-    Here is a line plot of sales. 
-       [Plot here]
-    What is the value for Jan?
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
 
-- typeName: numeric
-  prompt: > 
-    This plot shows a periodic fluctuation. What is the length
-    of a single period?
-    [Plot here]
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
 
-- typeName: numeric
-  prompt: > 
-    From this time series plot of revenue guess the next
-    peak value. 
-    [Plot here]
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-</EXRLIST>
-</FLD>
 
-<FLD>
-<EXRLIST id="M2L1V3.yml">
-- typeName: multipleChoice
-  prompt: > 
-    Make a line plot of this data set. [Link] How many peaks are
-    there? 
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-- typeName: numeric
-  prompt: >
-    Make an overlaid line plot of the two variables in this data set.[Link]
-    What is the first point where the first curve goes over the
-    second?
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-
-</EXRLIST>
-</FLD>
+<REF>
+WW: 
+</REF>
 </LESSON>
 <HEAD2>Module 2: Lesson 2</HEAD2>
 <STKY>
@@ -3539,8 +3899,6 @@ hw1: simple
 In the next video we shall look at a little variation of this.
 </SESS>
 </SCRIPT>
-<STKY>
-<HEAD3>Module 2, Lesson 2,  Video 2: Colour-coding</HEAD3></STKY>
 
 <SCRIPT id="m2/l2/v2" done="k" t="7:01">
 <SESS t="0.20" done="r" id="s1">
@@ -3552,8 +3910,6 @@ scatterplot. Let's see how.
 [Screencast: hw2: Gender: Split using gender, plot both.]
 </SC>
 </SCRIPT>
-<STKY>
-<HEAD3>Module 2, Lesson 2,  Video 3: Closer look at scatterplots</HEAD3></STKY>
 
 <SCRIPT id="m2/l2/v3" done="k" t="3:40">
 <SESS t="0.70" done="r" kf="30" id="s1">
@@ -3616,7 +3972,7 @@ them. Here are a few examples:
 In the next video we shall learn about handling outliers.
 </SESS>
 </SCRIPT>
-<STKY><HEAD3>Module 2, Lesson 2,  Video 4: Outliers</HEAD3></STKY>
+
 <SCRIPT id="m2/l2/v4" done="k" t="3:07">
 <SESS t="2.30" done="r" kf="10,20,30,40,50,60" id="s1">
  Statistics tries to
@@ -3669,8 +4025,6 @@ lower temperatures may lead to  failures.
 And that's what evntually happened on the final day.
 </SESS>
 </SCRIPT>
-<STKY>
-<HEAD3>Module 2, Lesson 2,  Video 5: Bubble plot</HEAD3></STKY>
 
 <SCRIPT id="m2/l2/v5" done="k" t="5:16">
 <SESS t="0.60" done="r" kf="10,20" id="s1">
@@ -3695,120 +4049,75 @@ colours, then make colours.
 </SCRIPT>
 
 
-<FLD>
-<EXRLIST id="M2L2V1.yml">
-- typeName: checkbox
-  prompt: > 
-    Which of the following scatterplots is/are possibly a weight vs
-    height scatterplot for a random sample of adult men?
+<FLD>Scatter plot
+<EXRLIST id="m2l2_a.yml">
+- typeName: numeric
+  prompt: >
+    Here is a weight vs height scatterplot for a random sample of adult men.
+        [[/.exraux/scat1.png]]
+    What is the weight of the shortest guy?
+
+  defaultFeedback: >
+      
   shuffleOptions: true
   options:
-  - answer:
+  - value: 70
     isCorrect: true
     feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
 
 - typeName: numeric
   prompt: > 
-    The following scatterplot shows an outlier. Its <M>x</M>-value is:
+    The following scatterplot shows an outlier. 
+           [[./exraux/scat2.png]]
+    Its <M>x</M>-value is:
   shuffleOptions: true
   answers:
-  - range:
+  - range: [165,175]
     isCorrect: true
     feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
 
-- typeName: multipleChoice
-  prompt: > 
-    How many clusters can you see in the following scatterplot?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-</EXRLIST>
-</FLD>
-
-<FLD>
-<EXRLIST id="M2L2V2.yml">
-- typeName: multipleChoice
+- typeName: numeric
   prompt: >
-    Make a scatterplot based on the following data[link]. One
-    point is slightly away from the bulk of the points. Which case?
+     How many clusters can you see in the following scatterplot?
+      [[./exraux/scat3.png]]
+  defaultFeedback: >
+      
   shuffleOptions: true
   options:
-  - answer:
+  - value: 2
     isCorrect: true
     feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-
-- typeName: multipleChoice
-  prompt: > 
-    Repeat the same exercise,  but now colour-code the points
-    using gender. Use red for male and blue for female. There 
-    is one blue point somewhat inside the bulk of the cluster of
-    red points. Which point?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
 </EXRLIST>
 </FLD>
+
+<FLD>Make scatter plot
+<EXRLIST id="m2l2_b.yml">
+- typeName: textReflect
+  prompt: >
+     Make a scatterplot based on the following data 
+      [[./exraux/scatplot.csv]]
+  defaultFeedback: >
+      [[./exraux/scatplot.png]]
+- typeName: textReflect
+  prompt: >
+    Repeat the same exercise,  but now colour-code the clusters
+    in the plot. 
+      
+  defaultFeedback: >
+    Use the condition "x < 60" to separate the clusters.
+       [[./exraux/scatplotcol.png]]
+</EXRLIST>
+</FLD>
+
+<REF>*
+FPP: Chapter 7, section 1, 2.
+     Chapter 8, section 1.
+WW:  6.1, 6.2
+</REF>
+
 </LESSON>
 <HEAD2>Module 2: Lesson 3</HEAD2>
-<STKY>
-<HEAD3>Module 2, Lesson 3,  Video 1: Bar chart</HEAD3></STKY>
+
 <LESSON>
 <SCRIPT id="m2/l3/v1" done="k" t="6:27">
 <SESS t="2.30" done="r" kf="30,60,70,80" id="s1">
@@ -3867,8 +4176,6 @@ bar.csv: Go slow.
 </SC>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 2, Lesson 3,  Video 2: Bar chart variants</HEAD3></STKY>
 <SCRIPT id="m2/l3/v2" done="k" t="6:54">
 <SESS t="1.50" done="r" kf="10,20" id="s1">
 Now that we have learned how to make a basic bar chart, it is
@@ -4010,105 +4317,49 @@ used for any serious statistical work.
 </SESS>
 
 </SCRIPT>
-<FLD>
-<EXRLIST id="M2L3V1.yml">
+<FLD> Bar and pie chart
+<EXRLIST id="m2l3_a.yml">
 
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: > 
     Consider the following bar chart. 
-    [Fig here]
-    Two values are roughly the
-    same. Which two?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
+    [[./exraux/pie1.png]]
+    Two categories have  roughly the same value. Which two?
+  defaultFeedback: A and C.
 
-- typeName: multipleChoice
-  prompt: Who has the lion's share in this pie chart? [fig here]
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
+- typeName: textReflect
+  prompt: Who has the lion's share in the pie chart of the last exercise?
+  defaultFeedback: E.
 </EXRLIST>
 </FLD>
 
 
-<FLD>
-<EXRLIST id="M2L3V2.yml">
+<FLD>Make bar and pie charts
+<EXRLIST id="m2l3_b.yml">
 
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: > 
-    Make a bar chart from the following data. One bar does not
-    follow the general pattern. Which one?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
+    Make a bar chart from the following data.
+     [[./exraux/piebar.csv]]
+  defaultFeedback:
+     [[./exraux/bar1.png]]
 
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: > 
-    Make a pie chart from the same data. One value accounts for
-    about 25% of the total? Which one. Also, how many values
-    exceed 234? Answer *based on the pie chart only*, and not the
-    original data. 
-  shuffleOptions: true
-  options:
-  - answer: 13, cannot answer.
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
+    Make a bar chart from the following data.
+     [[./exraux/piebar.csv]]
+  defaultFeedback:
+     [[./exraux/pie1.png]]
 
 
 </EXRLIST>
 </FLD>
+<REF>
+WW: 2.10
+</REF>
 </LESSON>
 <HEAD2>Module 2: Lesson 4</HEAD2>
-<STKY>
-<HEAD3>Module 2, Lesson 4,  Video 1: Pitfalls</HEAD3></STKY>
+
 <LESSON>
 <SCRIPT id="m2/l4/v1" done="k" t="5:41">
 <SESS t="1.70" done="r" kf="10,20,30,40,50,60,70,80" id="s1">
@@ -4301,77 +4552,23 @@ similar in terms of the revenue they bring, then a bar chart with
 all bars more or less of the same height is relevant.
 </SESS>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M2L4V1.yml">
-
-- typeName: multipleChoice
-- prompt: Difference between rose chart and pie chart.
+<FLD>Bad plot
+<EXRLIST id="m2l4_a.yml">
 
 - typeName: multipleChoice
   prompt: > 
     Here is a plot of the sales of a company over the
-    years.[plot]
-    Can we claim that the company had a significant amount of
-    growth during this period? [No, axis scales
-    unmarked]
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
+    years. [[./exraux/ts.png]]
+    Can we claim that the company has doubled its sales from 2017
+    to 2018? 
+  defaultFeedback: No. The vertical axis is unmarked.
 
 - typeName: multipleChoice
   prompt: >
-    Here is a 3D pie chart. [fig] Which has the bigger share, the
-  red one or the blue one?
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-
-- typeName: multipleChoice
-  prompt: > 
-    The income from excise duty from different states of a country 
-    are shown as bottles with area proportional to the
-    value. [fig] Is the maximum value more than 
-    double the minimum value? 
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
-
+    Here is a 3D pie chart. 
+     [[./exraux/badpie.png]]
+    Two categories here have the same value. Which two?
+  defaultFeedback: F and D. By the way, B has double their value.
 
 </EXRLIST>
 </FLD>
@@ -4379,12 +4576,13 @@ all bars more or less of the same height is relevant.
 <STKY>
 <HEAD3>Module 2, Lesson 4,  Video 3: Real life examples</HEAD3></STKY>
 
-<SCRIPT t="0" done="n" id="m2/l4/v3">
+<SCRIPT t="6:55" done="k" id="m2/l4/v3">
 <SESS t="0.9" done="r" id="s1">
 Ramble intro for real life data.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="5" done="a" id="">
+<SC t="5" done="r" id="sc_tsplot_243">
+[tsplot.ods]
 Plotting world bank data for countries (w/ & w/o transposing)
 timeseries.xlsx: afganisthan, corruption, Copy with transpose to
 new sheet, use index, 
@@ -4395,76 +4593,24 @@ new sheet, use index,
 <HEAD3>Module 2, Lesson 4,  Video 4: Real life examples</HEAD3></STKY>
 
 
-<SCRIPT t="0" done="n" id="m2/l4/v4">
+<SCRIPT t="5:31" done="k" id="m2/l4/v4">
 <SESS t="0.9" done="r" id="s1">
 Ramble intro for real life data.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="5" done="a" id="">
+<SC t="5" done="r" id="sc_pie_244">
 Pie chart from Hugli data.
 </SC>
 </SCRIPT>
 
 
-<FLD>
-<EXRLIST id="M2L4V2.yml">
-
-- typeName: multipleChoice
-  prompt: > 
-    Ask to repeat some activity shown in the video with some
-    different variable.
-  shuffleOptions: true
-  options:
-  - answer: Yes, I could do this.
-    isCorrect: true
-    feedback: >
-      That's great!
-  - answer: No, I could not. 
-    feedback: >
-      Oops, sorry to hear that. Please watch the video from ...
-      to ..., and let me know how you fared.
-
-- typeName: multipleChoice
-  prompt: > 
-    Ask to repeat some activity shown in the video with some
-    different variable. 
-  shuffleOptions: true
-  options:
-  - answer: Yes, I could do this.
-    isCorrect: true
-    feedback: >
-      That's great!
-  - answer: No, I could not. 
-    feedback: >
-      Oops, sorry to hear that. Please watch the video from ...
-      to ..., and let me know how you fared.
-
-- typeName: multipleChoice
-  prompt: >
-    Ask to repeat some activity shown in the video with some
-    different variable.
-  shuffleOptions: true
-  options:
-  - answer: Yes, I could do this.
-    isCorrect: true
-    feedback: >
-      That's great!
-  - answer: No, I could not. 
-    feedback: >
-      Oops, sorry to hear that. Please watch the video from ...
-      to ..., and let me know how you fared.
-
-</EXRLIST>
-</FLD>
 
 </LESSON>
 
 <HEAD2>Module 2: Lesson 5</HEAD2>
 <LESSON>
-<STKY>
-<HEAD3>Module 2, Lesson 5, Video 1: Need for plots</HEAD3>
-</STKY>
-<SCRIPT id="m2/l5/v1" t="0" done="r">
+
+<SCRIPT id="m2/l5/v1" t="4:36" done="k">
 <SESS t="1.10" done="n" id="s1">
 So we have come to the end of module 2. We are now two week deep
 into our six weeks of lecture. This week we have learned one of
@@ -4496,6 +4642,7 @@ conclusion for themselves. This latter technique is far more
 effective. Graphical representations of data do precisely that,
 they let the viewer make the decision. 
 </SESS>
+<JINGLE t="0.1">Two uses</JINGLE>
 <SESS t="2.70" done="n" id="s3">
 We have have discussed different forms of charts. There are many
 more. Some of them will be discussed later in this course. But
@@ -4554,14 +4701,14 @@ your audience would be more familiar with those. Charts are like
 languages, when you speak, you must do so in a language that your
 audience understands. 
 </SESS>
-<TODO>chop silence</TODO>
+<TODO>chop silence: done</TODO>
 </SCRIPT>
 
 <STKY>
 <HEAD3>Module 2, Lesson 5, Video 2: Need for plots</HEAD3>
 </STKY>
 
-<SCRIPT id="m2/l5/v2" t="0" done="r">
+<SCRIPT id="m2/l5/v2" t="1:55" done="k">
 <SESS t="1.80" done="a" kf="30" id="s1">
 There is one thing regarding charts that I have not mentioned,
 but might as well do so now. It is called a <B>Dashboard</B>. The idea
@@ -4606,7 +4753,7 @@ But we shall not explore these ideas further in this course.
 <STKY>
 <HEAD3>Module 2, Lesson 5, Video 3: Line charts</HEAD3>
 </STKY>
-<SCRIPT  id="m2/l5/v3" t="0" done="r">
+<SCRIPT  id="m2/l5/v3" t="2:51" done="k">
 <SESS t="2.50" done="n" id="s1">
 We discussed 4 different charts. Line chart, scatter plots, bar
 charts and pie charts. All these charts are meant for printing on
@@ -4666,7 +4813,7 @@ other type of chart, for that matter.
 <STKY>
 <HEAD3>Module 2, Lesson 5, Video 4: Scatterplot</HEAD3>
 </STKY>
-<SCRIPT id="m2/l5/v4" t="0" done="r">
+<SCRIPT id="m2/l5/v4" t="1:36" done="k">
 <SESS t="0.90" done="n" id="s1">
 We have learned about scatterplots. Extremely useful things to
 show the relation between two continuos variables. I cannot think
@@ -4712,7 +4859,7 @@ video we shall give a little taste of these.
 <HEAD3>Module 2, Lesson 5, Video 5: Pairs and 3D (R)</HEAD3>
 </STKY>
 
-<SCRIPT id="m2/l5/v5" t="0" done="nr">
+<SCRIPT id="m2/l5/v5" t="5:24" done="k">
 <SESS t="0.40" done="r" id="s1">
 Here I shall demonstrate two ways to use scatterplots for higher
 dimensional data. These techniques are not available in
@@ -4723,7 +4870,7 @@ learn in a different course. So this demonstration is something
 that you won't be able to reproduce yourselves at this point.
 </SESS>
 <JINGLE t="0.1">Lab</JINGLE>
-<SC t="5" done="n" id="">
+<SC t="5" done="r" id="sc_rgl_255">
 [pca.ods]
 $cw/pgdas/plot3d/index.html
 RGL demo.
@@ -4756,7 +4903,7 @@ spheres3d(val,rad=0.1)
 <HEAD3>Module 2, Lesson 5, Video 6: Pie and bar</HEAD3>
 </STKY>
 
-<SCRIPT id="m2/l5/v6" t="0" done="r">
+<SCRIPT id="m2/l5/v6" t="1:58" done="k">
 <SESS t="1.80" done="n" id="s1">
 We have learned about pie charts and bar charts. Both of these
 are for categorical variables. Unlike line
@@ -4798,8 +4945,9 @@ differently.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Additive
+
+<EXRLIST id="m2_add.yml">
 - typeName: Peer review
   prompt: |-
      A statistician has devised a new chart that she calls the
@@ -4812,7 +4960,7 @@ differently.
       | China     | 1439323776 |
       | USA       |  331002651 |
       | Indonesia |  273523615 |
-     is depicted as [./exrpics/ringplot.png]. Here each ring (the central ring looks
+     is depicted as [./exraux/ringplot.png]. Here each ring (the central ring looks
      like a disc) has area proportional to the value. Suggest
      what is wrong with this chart.
  
@@ -4885,13 +5033,14 @@ plot(x,y)
 csv(data.frame(x,y),'m2_3.csv')
 </R>
 <R>
-cw('exrpics')
+cw('exraux')
 png('m2_scat.png')
 x = runif(30,-2,3)
 y = x + rnorm(30)/4
 plot(x,y,pch=20)
 dev.off()
 </R>
+
 </FLD>
 
 <R>
@@ -4911,16 +5060,18 @@ ring = function(x) {
    }
 }
 
-   cw('exrpics')
+   cw('exraux')
    png('ringplot.png')   
    ring(1:3)
    dev.off()
 
 </R>
 </LESSON>
-
+<REF>
+(local-set-key [f12] 'org-open-at-point-global)
+</REF>
 <HEAD1>Module 3: Presentation of data (part 2)</HEAD1>
-<SCRIPT id="m3/intro" done="r">
+<SCRIPT id="m3/intro" done="k" t="0:42">
 <SESS t="0.70" done="r" id="s1">
 Here we are at the start of week 3 of our course. We have already
 made quite a bit of progress. We have learned about data and
@@ -4939,9 +5090,7 @@ OK, enough introduction. Let's get started!
 </SESS>
 </SCRIPT>
 <HEAD2>Module 3: Lesson 1</HEAD2>
-<STKY>
-<HEAD3>Module 3, Lesson 1,  Video 1: Tabular: Pivot table and pivot chart</HEAD3>
-</STKY>
+
 <LESSON>
 <SCRIPT id="m3/l1/v1" done="k" t="6:25">
 <SESS t="2.70" done="r" kf="10,20,30,40,50,60,70" id="s1">
@@ -5001,73 +5150,30 @@ letgrad.csv:
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>Make pivot table (1D)
+<EXRLIST id="m3l1_a.yml">
+- typeName: textReflect
   prompt: >
-      Consider this letter grade [data set]. Make a pivot
-  table. What is the difference between the maximum frequency and
-  the minimum frequency?
+      Consider this letter grade [[./exraux/grades.xlsx]]. Make a pivot
+  table of counts.
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+      [[./exraux/gradesol.png]]
       
 - typeName: numeric
   prompt: >
-      Consider this [data set]. Find the percent of persons of
-  religion 2 by making a pivot table.
+      Consider this [[./exraux/nsshugli.csv]]. Make a pivot table
+  showing the percent of persons of the different religions
+  (column Y).
   defaultFeedback: >
-      
+    [[./exraux/nsshuglisol.png]]      
   shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
       
 - typeName: numeric
   prompt: >
-      Consider the [kick data]. Use a pivot table to find the number of times the
+      Consider the [[./exraux/kick.csv]]. Use a pivot table to find the number of times the
       maximum value of death has occured.
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-
+      [[./exraux/kicksol.png]]
 </EXRLIST>
 </FLD>
 <STKY>
@@ -5121,69 +5227,41 @@ lr.csv,  avg iq, decimal places.
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>Make pivot table for things other than count
+<EXRLIST id="m3l1_b.yml">
+- typeName: textReflect
   prompt: >
-      Here is a data set similar to the one used in the
+      Here is a data set [[./exraux/lrnew.xlsx]] similar to the one used in the
   video. Apply the same technique on this data set. What is the
   average IQ for the right-handed males?
   defaultFeedback: >
+      [[./exraux/lrnewsol.png]]
       
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
+- typeName: textReflect
   prompt: >
       Consider he same data set once more. But this time make a
-      table showin the maximum IQ values for the four
+      table showing the maximum IQ values for the four
       groups. What is the maximum for left-handed females?
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+      [[./exraux/lrnewsol2.png]]
       
 - typeName: multipleChoice
   prompt: >
       Consider this pivot table computed based on this data:
-        [[./exrpics/pivtab.png]]
+        [[./exraux/pivtab.png]]
       Which of the following LibreOffice dialogs produced this?
   defaultFeedback: >
 
   shuffleOptions: true
-  options: [[./exrpics/d1.png]]
+  options: [[./exraux/d1.png]]
   - answer:
     isCorrect: true
     feedback: >
       
-  - answer: [[./exrpics/d2.png]]
+  - answer: [[./exraux/d2.png]]
     feedback: >
       
-  - answer: [[./exrpics/d3.png]]
+  - answer: [[./exraux/d3.png]]
     feedback: >
       
 
@@ -5208,38 +5286,44 @@ Let's see how we can do this using Libreoffice.
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Pivot table math
+<EXRLIST id="m3l1_c.yml">
 
-- typeName: multipleChoice
-  prompt: >
+- typeName: textReflect
+  prompt: |-
     We have constructed this pivot
     table. 
     |              | Male | Female | Total |
     |--------------+------+--------+-------|
-    | Left-handed  |   29 | ??     | ??    |
-    | Right-handed |   34 | 45     | ??    |
+    | Left-handed  |   29 | A      | B     |
+    | Right-handed |   34 | 45     | C     |
     |--------------+------+--------+-------|
-    | Total        |   ?? | ??     | 200   |
+    | Total        |   D  | E      | 200   |
 
-  What should the value in the marked cells be?
+  What should the values in the named cells be?
+  defaultFeedback: >
+    C = 34+45=79. D=29+34=63. B = 200-C=121. E = 200-D=137. A = B-29=92.
 
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: > 
     Here are two pivot tables claimed to be derived from the
     same data set. Is the claim justified?
-
+    [[./exraux/ctabboth.png]]
+  defaultFeedback: >    
+    Yes, because all the cell frequencies match. They are just in
+    a different order, that's all!
 
 - typeName: multipleChoice
-  promot: >
+  promot: |-
     Here are two different layouts for the same pivot
     table. Which one is better suited for a newspaper report?
-    |      |     Urban      |     Rural      |   |
-    |------+-------+--------+-------+--------+---|
-    |      | Male  | Female | Male  | Female |   |
-    | High |       |        |       |        |   |
-    | Med  |       |        |       |        |   |
-    | Low  |       |        |       |        |   |
+    |      |     Urban      |    Rural      |
+    |------+-------+--------+------+--------|
+    |      | Male  | Female | Male | Female |
+    |------+-------+--------+------+--------|
+    | High |       |        |      |        |
+    | Med  |       |        |      |        |
+    | Low  |       |        |      |        |
     and 
     |        |         Urban         |         Rural         |
     |--------+-------+-------+-------+-------+-------+-------|
@@ -5259,13 +5343,11 @@ Let's see how we can do this using Libreoffice.
       and partly in the columns headings.
   - answer: Both are equally useful.
     feedback: >
-       Well, they both contain the same information. But the aim
-       here is to related the income group with the background.
+       Well, they both contain the same information. But the
+       natural aim here is to relate the income group with the background.
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 3, Lesson 1,  Video 4: Tabular: Pivot chart</HEAD3>
-</STKY>
+
 <SCRIPT id="m3/l1/v4" done="k" t="5:30">
 <SESS t="0.80" done="r" kf="10,30,50,60" id="s1">
 Pivot tables have two major uses in a report. One is as
@@ -5292,21 +5374,30 @@ Let's see an example.
 letgrad.csv: pie chart
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M3L3V1.yml">
+<FLD>Make pivot chart
+<EXRLIST id="m3l1_d.yml">
 - typeName: textReflect
   prompt: >
-    Consider the same [data set] as used in the video. Create a 
-    pivot bar chart.
+    Consider the same data set [[./exraux/letgrad.csv]] as used
+    in the video. Create a 
+    pivot bar chart showing the frequencies.
+  defaultFeedback: >
+     [[./exraux/letgradsol1.png]]
 
 - typeName: textReflect
   prompt: >
-    Consider the same [data set] as used in the video. Create a 
-    pivot bar chart showing the percentages of students.
-
-
+    Repeat the same exercise, but this time showing 
+    the percentages of students.
+  defaultFeedback: >
+     [[./exraux/letgradsol2.png]] 
+     I needed to edit the y-axis a bit to get the labellings as percentages.
+  
 </EXRLIST>
 </FLD>
+<REF>
+FPP: Chapter 3, section 6
+LO manual
+</REF>
 </LESSON>
 
 <HEAD2>Module 3: Lesson 2</HEAD2>
@@ -5346,10 +5437,35 @@ lr.csv: Don't use iq
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: textReflect
+<FLD>Contingency table by hand and LibreOffice
+<EXRLIST id="m3l2_a.yml">
+- typeName: multipleChoice
   prompt: >
+     We have a contingency table to explore association among
+     three categorical variables, gender (M/F), education level
+     (preschool/school/college/higher) and income group
+     (high/middle/low). What is the order of the resulting
+     contingency table?
+  defaultFeedback: >
+     Gender has 2 values, education level 4 and income group 3.
+     So the answer is 2x4x3.      
+  shuffleOptions: true
+  options:
+  - answer: >
+       2x4x3
+    isCorrect: true
+    feedback: >
+      2x2x4
+  - answer:
+      2x4x4
+    feedback: >
+      
+  - answer:
+      3x4x4
+    feedback: >
+
+- typeName: textReflect
+  prompt: |-
     Create a contingency table by hand from this toy data:
       | Serial | Gender | Income group |
       |--------+--------+--------------|
@@ -5360,11 +5476,15 @@ lr.csv: Don't use iq
       |      5 | Female | Middle       |
       |      6 | Male   | Low          |
       |      7 | Male   | High         |
-  defaultFeedback: >
-    It should look like this [fig]
+  defaultFeedback: |-
+    It should look like this 
+        |        | High | Middle | Low |
+        |--------+------+--------+-----|
+        | Male   |    2 |      1 |   2 |
+        | Female |    0 |      1 |   1 |
 
-- typeName: numeric
-  prompt: >
+- typeName: textReflect
+  prompt: |-
       Consider this incomplete contingency table:
         |            | Male | Female | Total |
         |------------+------+--------+-------|
@@ -5374,46 +5494,37 @@ lr.csv: Don't use iq
         | Total      |  600 |    500 |       |
       What should be in the cell marked 'x'?
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - value: 755
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+      (600+500)-345 = 755.
 
 - typeName: textReflect
   prompt: >
-    Consider this [data set] reporting educational level and
+    Consider this data set [[./exraux/eduincdata.xlsx]]
+    reporting educational levels and
     income groups of some people. Create a contingency table.
   defaultFeedback: >
-    It should look like this [fig]
-
+    It should look like this [[./exraux/eduincsol1.png]]
+    Do you find the order of the rows and columns disconcerting? 
+    Unfortunately, there is no simple way out of this other than 
+    renaming the categories carefully.
 - typeName: textReflect
   prompt: >
     Redo the last exercise, but this time drop the preschool category.
   defaultFeedback: >
-    It should look like this [fig]. 
+    It should look like this [[./exraux/eduincsol2.png]]
+    Notice the little blue triangle, clicking on it did the
+    trick.
 
 - typeName: textReflect
   prompt: >
-    Here is a contingency table. Merge the last two rows.
+    Use the same data file as above. Create a pivot table.
+    Now change a value in the raw data. Get LibreOffice to 
+    update the pivot table.
   defaultFeedback: >
-    It should look like this [fig]
-
+    Right click on the pivot table and select "Refresh" from the 
+    pop up menu.
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 3, Lesson 2,  Video 2: Contingency table</HEAD3></STKY>
+
 <SCRIPT id="m3/l2/v2" done="k" t="5:01">
 <SESS t="1.10" done="r" kf="10,20,30" id="s1">
 We mentioned just now that contingency tables are very
@@ -5506,8 +5617,8 @@ measured based on contingency tables.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Contingency table use
+<EXRLIST id="m3l2_b.yml">
 - typeName: checkbox
   prompt: >
       Association between which of the following pairs of
@@ -5530,12 +5641,13 @@ measured based on contingency tables.
   - answer: >
       Height (in cm) and weight (in kg) of adult African males
     feedback: >
-      
+      These are not categorical variables.
   - answer: >
       Severity of car accidents with car brands.
     isCorrect: true
     feedback: >
-      
+      Here we are assuming that severity is a categorical variable.  
+
 - typeName: numeric
   prompt: >
       We want to assess association between gender (Male/Female)
@@ -5543,17 +5655,18 @@ measured based on contingency tables.
       contingency table is at least 5. Then the minimum possible
       sample size is
   defaultFeedback: >
-      
+      2*3 = 6 cells, each with at least 5 cases. So the minimum
+  sample size is 6*5 = 30.      
   shuffleOptions: true
   options:
   - value: 30
     isCorrect: true
     feedback: >
 
+      
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 3, Lesson 2,  Video 3: Contingency table</HEAD3></STKY>
+
 <SCRIPT id="m3/l2/v3" done="k" t="3:26">
 <SESS t="2.90" done="r" kf="10,20,30,40,50,60" id="s1">
 
@@ -5619,10 +5732,10 @@ two for yourself.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Association by hand
+<EXRLIST id="m3l2_c.yml">
 - typeName: textReflect
-  prompt: >
+  prompt: |-
      Here is a blank contingency table with the given
      marginals. 
        |              | Male | Female | Total |
@@ -5637,7 +5750,7 @@ two for yourself.
   defaultFeedback: >
       
 - typeName: textReflect
-  prompt: >
+  prompt: |-
      Here is a contingency table between gender and income group.
       |        | High | Middle | Low |
       |--------+------+--------+-----|
@@ -5647,8 +5760,7 @@ two for yourself.
   defaultFeedback: >
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 3, Lesson 2,  Video 4: Contingency table</HEAD3></STKY>
+
 <SCRIPT id="m3/l2/v4" done="k" t="3:27">
 <SESS t="3.00" done="r" kf="10,50,60,70,80" id="s1">
 We have mentioned how we may construct  a contingency table from
@@ -5713,8 +5825,8 @@ suited for the purpose.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Sampling for assoc
+<EXRLIST id="m3l2_d.yml">
 - typeName: multipleChoice
   prompt: >
       We want to explore the association between the occurence of
@@ -5749,8 +5861,7 @@ suited for the purpose.
 
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 3, Lesson 2,  Video 5: Contingency table</HEAD3></STKY>
+
 <SCRIPT id="m3/l2/v5" done="k" t="4:57">
 <SESS t="1.60" done="r" kf="10,20,30,50,90,120,130,140,150,160" id="s1">
 All the contingency tables discussed so far were 2-way or
@@ -5846,8 +5957,6 @@ association here.
 </SESS>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 3, Lesson 2,  Video 6: Contingency table</HEAD3></STKY>
 <SCRIPT id="m3/l2/v6" done="k" t="6:34">
 <SC t="6" done="r" id="s1">
 [Screencast: 3-way toy example as described.]
@@ -5856,50 +5965,10 @@ gei.csv: gender, edu, income
 </SCRIPT>
 
 
-<FLD>
-<EXRLIST id="M3L4V1.yml">
-- typeName: multipleChoice
-  prompt: >
-     We have a contingency table to explore association among
-     three categorical variables, gender (M/F), education level
-     (preschool/school/college/higher) and income group
-     (high/middle/low). What is the order of the resulting
-     contingency table?
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - answer: >
-       2x4x3
-    isCorrect: true
-    feedback: >
-      2x2x4
-  - answer:
-      2x4x4
-    feedback: >
-      
-  - answer:
-      3x4x4
-    feedback: >
 
-</EXRLIST>
-</FLD>
-
-
-<FLD>
-
-<EXRLIST id="M3L4V2.yml">
-
-- typeName: multipleChoiceCreate a pivot table from frequency data.
-
-- typeName: multipleChoiceCreate a pivot table from raw data (where the 1 column needs
-to be added manually).
-
-- typeName: multipleChoiceRectify data and update the table.
-
-</EXRLIST>
-
-</FLD>
+<REF>
+WW: 19.6 Lost letter study
+</REF>
 </LESSON>
 <HEAD2>Module 3: Lesson 3</HEAD2>
 <STKY><HEAD3>Module 3, Lesson 3,  Video 1: Frequency distribution</HEAD3></STKY>
@@ -5948,15 +6017,10 @@ land.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: textReflect
-  prompt: >
-     Create a frequency distribution for the categorical variable
-     eye colour from this [data set]. 
-  defaultFeedback: >
+<FLD>Make discrete and cont freq using LO
+<EXRLIST id="m3l3_a.yml">
 
-- typeName: numeric
+- typeName: textReflect
   prompt: |-
     Here is a frequency distribution.
     |  Class | Frequency |
@@ -5967,25 +6031,19 @@ land.csv
     | 40--69 |       198 |
     | 70--99 |       231 |
     Find the lower endpoint of the class with the maximum frequency.
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+  defaultFeedback: >
+    It is 10.
 
-- typeName: multipleChoice
+- typeName: textReflect
+  prompt: >
+     Create a frequency distribution for the categorical variable
+     colour from this [[./exraux/colour.csv]]. 
+  defaultFeedback: >
+     [[./exraux/coloursol.png]]
+
+- typeName: textReflect
   prompt: |-
-    Make a frequency distribution from this data set [link] using
+    Make a frequency distribution from this data set [[./exraux/frqdata.csv]] using
     these classes. 
     | Classes    |
     |------------|
@@ -5995,24 +6053,11 @@ land.csv
     | 0.5 -- 0.7 |
     | 0.7 -- 0.9 |
     | 0.9 -- 1.0 |
-    What is the class with the maximum frequency? Number of the
-    classes as 1, 2, 3, 4, 5 and 6.
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-
+  defaultFeedback: >
+    [[./exraux/frqdatasol.png]]
+    We first created the "Breaks" column,
+    then populated the "Freq" column. Finally we added the
+  "Class" column.
       
 - typeName: textReflect
   prompt: >
@@ -6024,15 +6069,16 @@ land.csv
 - typeName: textReflect
   prompt: >
      Create a frequency distribution for the continuous variable
-     petal length from this [data set]. Use these 4 classes of
+     Petal.Length from this data set [[./exraux/iris.csv]]. Use 4 classes of
      equal width of your choice.
   defaultFeedback: >
-      
+      First find the minimum and maximum of the values. Then
+      split the whole range into 4 equal parts.
 
 </EXRLIST>
 </FLD>
 
-<STKY><HEAD3>Module 3, Lesson 3,  Video 2: Tally marks</HEAD3></STKY>
+
 <SCRIPT id="m3/l3/v2" done="k" t="4:08">
 <SESS t="0.90" done="r" id="s1">
 What we are going to discuss here may look ridiculously
@@ -6057,8 +6103,33 @@ technique called tally marking helps.
 Explain tally marking.
 </BC>
 </SCRIPT>
+<R>
+cw('exraux')
+set.seed(46346)
+x = runif(50)
+y = runif(50,-0.2,0.2)
+col = sample(c('red','blue','green'),50,rep=T)
+bareplot(x,y,ylim=c(-1,1),pch=20,col=col)
+table(col)
+</R>
 
-<STKY><HEAD3>Module 3, Lesson 3,  Video 3: Frequency distribution</HEAD3></STKY>
+<FLD>
+<EXRLIST id="m3l3_b.yml">
+- typeName: textReflect
+  prompt: >
+     Use tally marks to count the numbers of dots of different colours in this
+     picture: [[./exraux/tally.png]]
+ 
+  defaultFeedback: |-
+      | Colour | Frequency |
+      |--------+-----------|
+      | Blue   |        20 |
+      | Green  |        14 |
+      | Red    | 16        |
+
+</EXRLIST>
+</FLD>
+
 <SCRIPT id="m3/l3/v3" done="k" t="3:06">
 <SESS t="2.90" done="r" kf="10,20,30" id="s1">
 Now that we have learned what a frequency distribution is, you
@@ -6112,15 +6183,16 @@ can simulate data.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Actual coin toss
+<EXRLIST id="m3l3_c.yml">
 - typeName: textReflect
   prompt: >
      Carry out the coin toss experiment by performing at least 50
      tosses.  Make a plot using LibreOffce.
   defaultFeedback: >
-      
-- typeName: multipleChoice
+      You should see a line converging to somewhere close to 0.5.
+
+- typeName: textReflect
   prompt: >
      This and the following exercises try to give an idea about
      why statistical regularity occurs in the coin toss experiment.
@@ -6130,71 +6202,29 @@ can simulate data.
      out of the 10 tosses?
 
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - answer: min 1/2, max 3/5 
-    isCorrect: true
-    feedback: >
-      
-  - answer: min 5/9, max 2/3
-    feedback: >
-      
-  - answer: min 0, max 1
-    feedback: >
-      
-  - answer: min 3/5, max 1
-    feedback: >
+      Min = 1/2, Max= 3/5. Minimum  occurs when I get a tail in
+      the 10th toss, and maximum occurs when I get a head.
       
       
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: >
      Suppose that I have tossed a coin k times and have obtained
      p_k proportion of  heads. If I toss again, what are the 
      minimum and maximum possible values of p_{k+1}
 
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - answer: min kp_k/(k+1), max (kp_k+1)/(k+1) 
-    isCorrect: true
-    feedback: >
-      
-  - answer: min p_k, max p_k+1/k 
-    feedback: >
-      
-  - answer: min (kp_k-1)/(k+1), max (kp_k+1)/(k+1) 
-    feedback: >
-      
-  - answer: min kp_k/(k+1), max p_k 
-    feedback: >
+      Min =  kp_k/(k+1), Max = (kp_k+1)/(k+1). Reasoning is same
+      as that in the last problem.
       
 - typeName: multipleChoice
   prompt: >
      Suppose that I am tossing a coin repeatedly. Let p_k be the
      proportion of  heads out of the first k tosses. Given p_k,
      let the minimum and maximum possible values of p_{k+1} be
-     m_k and M_k. Then, as k increases, M_k-m_k is 
+     m_k and M_k. Then, as k increases, how will M_k-m_k behave?
 
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - answer: decreasing to zero.
-    isCorrect: true
-    feedback: >
-      
-  - answer: decreasing, but not to zero.
-    feedback: >
-      
-  - answer: increasing.
-    feedback: >
-      
-  - answer: fluctuating.
-    feedback: >
-      
-      
+     It will decrease to zero. Use the last exercise to see this.
 
 </EXRLIST>
 </FLD>
@@ -6206,17 +6236,17 @@ Show simul randomness. Split. Do cumsum.
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Simulated coin toss
+<EXRLIST id="m3l3_d.yml">
 - typeName: textReflect
   prompt: >
      Perform the experiment yourself using LibreOffce. 
-  defaultFeedback: >
-      
+     defaultFeedback: >
+       You already know what to expect.   
 
 </EXRLIST>
 </FLD>
-<STKY><HEAD3>Module 3, Lesson 3,  Video 5: Frequency distribution</HEAD3></STKY>
+
 <SCRIPT id="m3/l3/v5" done="k" t="5:07">
 <SESS t="0.70" done="r" kf="10,20" id="s1">
 What you experienced is the last video is the key idea behind the whole of
@@ -6272,8 +6302,8 @@ statistics hinges on this idea.
 Convergence of relative freq. Show binom example.
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M3L1V1.yml">
+<FLD>Relative freq concept
+<EXRLIST id="m3l3_e.yml">
 - typeName: textReflect
   prompt: |-
      Here is a frequency distribution table. Add a column of
@@ -6286,7 +6316,7 @@ Convergence of relative freq. Show binom example.
        |     4 |        19 |
        |     5 |        12 |
   defaultFeedback: >
-      
+      The relative frequencies are: 0.189, 0.189, 0.278, 0.211, 0.133.
 
 - typeName: multipleChoice
   prompt: >  
@@ -6310,13 +6340,13 @@ Convergence of relative freq. Show binom example.
 
 </EXRLIST>
 </FLD>
-
+<REF>
+WW: 2.1--2.7
+</REF>
 </LESSON>
 <HEAD2>Module 3: Lesson 4</HEAD2>
 <LESSON>
 
-<STKY>
-<HEAD3>Module 3, Lesson 4,  Video 1: Histogram</HEAD3></STKY>
 <SCRIPT id="m3/l4/v1" done="k" t="4:31">
 <SESS t="0.90" done="r" kf="10,20" id="s1">
 We have already seen some ways to  represent
@@ -6411,7 +6441,7 @@ This makes the total area of the histogram equal to 1.
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+<EXRLIST id="m3l4_a.yml">
 - typeName: numeric
   prompt: |-
    Find the class width of the class with maximum frequency
@@ -6450,7 +6480,7 @@ Reuse the earlier data.
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+<EXRLIST id="m3l4_b.yml">
 - typeName: textReflect
   prompt: >
      Make a histogram of this [data set]. Remember to show
@@ -6477,7 +6507,7 @@ Reuse the earlier data.
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+<EXRLIST id="m3l4_c.yml">
 - typeName: textReflect
   prompt: >
      Make a histogram of this [data set]. Remember to show
@@ -6492,9 +6522,6 @@ Reuse the earlier data.
 
 </EXRLIST>
 </FLD>
-
-<STKY>
-<HEAD3>Module 3, Lesson 4,  Video 4: Shape of histogram</HEAD3></STKY>
 
 <SCRIPT id="m3/l4/v4" done="k" t="2:09">
 <SESS t="1.80" done="r" kf="10,20,40" id="s1">
@@ -6539,7 +6566,7 @@ statistician who constructs a histogram out of them!
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+<EXRLIST id="m3l4_d.yml">
 - typeName: multipleChoice
   prompt: >
      Make a histogram of this [data set] and identify the
@@ -6564,9 +6591,9 @@ statistician who constructs a histogram out of them!
 - typeName: multipleChoice
   prompt: >
       We have some variable whose histogram looks like this:
-        [[./exrpics/histx.png]]
+        [[./exraux/histx.png]]
       Then the histogram of x^2 looks like which one of the two?
-        [[./exrpics/histsol.png]]
+        [[./exraux/histsol.png]]
   defaultFeedback: >
       
   shuffleOptions: true
@@ -6584,9 +6611,8 @@ statistician who constructs a histogram out of them!
 
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 3, Lesson 4,  Video 5: Convergence of histogram</HEAD3></STKY>
-<SCRIPT id="m3/l4/v5" done="nk" t="?+4:29">
+
+<SCRIPT id="m3/l4/v5" done="k" t="5:02">
 <SESS t="1" done="r" id="s1">
 As our sample size grows, the shape of the histogram starts to
 converge to a definite shape, as long as the sample comes from the
@@ -6654,7 +6680,7 @@ We shall have many occasions to visit these shapes throughout statistics.
 </SESS>
 </SCRIPT>
 <FLD>
-<EXRLIST id="M3L3V1.yml">
+<EXRLIST id="m3l4_e.yml">
 
 - typeName: multipleChoice
   promShow a histogram and ask for relative frequency density for
@@ -6676,7 +6702,7 @@ its left.
 
 
 <FLD>
-<EXRLIST id="M3L3V2.yml">
+<EXRLIST id="m3l4_f.yml">
 
 - typeName: multipleChoiceMake histogram based on data.
 
@@ -6688,6 +6714,12 @@ shapes.
 
 </EXRLIST>
 </FLD>
+
+<REF>
+FPP: Chapter 3, parts 1--4.
+WW: 2.11
+DH: Chapters 5, 6, 7
+</REF>
 </LESSON>
 
 <HEAD2>Module 3: Lesson 5</HEAD2>
@@ -6696,7 +6728,7 @@ shapes.
 <HEAD3>Module 3, Lesson 5 ,  Video 1: Review</HEAD3>
 </STKY>
 
-<SCRIPT id="m3/l5/v1" t="0" done="r">
+<SCRIPT id="m3/l5/v1" t="5:46" done="k">
 <SESS t="1.50" done="n" id="s1">
 We have come to the end of week 3. Three weeks out of 6 weeks of
 lecture. And this week we have covered a very important
@@ -6807,7 +6839,7 @@ this one) focuses only on  parametric statistics.
 <STKY>
 <HEAD3>Module 3, Lesson 5 ,  Video 2: Review of contingency tables</HEAD3>
 </STKY>
-<SCRIPT id="m3/l5/v2" t="0" done="r">
+<SCRIPT id="m3/l5/v2" t="4:57" done="k">
 <SESS t="0" done="a" kf="10,20,30" id="s1">
 We have introduced the concept of contingency tables this
 week. As I have already said, they are just frequncy distributions tables where 
@@ -6901,7 +6933,7 @@ contingency table analysis would only infer association. That's all.
 </SESS>
 </SCRIPT>
 
-<SCRIPT id="m3/l5/v3" t="0" done="nr">
+<SCRIPT id="m3/l5/v3" t="6:20" done="k">
 <SESS t="0.50" done="a" kf="30" id="s1">
 Sometimes I find people are worried about the terms <B>class limit
 and class boundary</B>. It is not an important distinction, and most
@@ -6948,7 +6980,7 @@ binary number inside a computer.
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m3/l5/v4" t="0" done="r">
+<SCRIPT id="m3/l5/v4" t="2:00" done="k">
 <SESS t="1.60" done="a" kf="30" id="s1">
 Statistics has two major goals, analysing data and presenting
  data. While analysing data is the more important of the two,
@@ -6992,7 +7024,8 @@ Microsoft Excel, by the way, has a much better support for dashboards.
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+
+<EXRLIST id="m3_add.yml">
 - Use LibreOffice Calc to create a histogram with 5 equal classes based on this data
   set[m3_hist.csv]. Show relative frequency densities along the
   vertical axis.
@@ -7056,11 +7089,13 @@ set.seed(333341)
 x = trim(100+10*rnorm(1000))
 csv(data.frame(x),'m3_hist.csv')
 </R>
+
 </FLD>
+
 </LESSON>
 
 <HEAD1>Module 4: Central tendency</HEAD1>
-<SCRIPT id="m4/intro" done="r">
+<SCRIPT id="m4/intro" done="k" t="2:36">
 <SESS t="2.30" done="a" kf="30,60" id="s1">
 We are starting our fourth week. In the first two weeks we have
 learned about data and their graphical representations. The idea
@@ -7069,8 +7104,9 @@ of values of lots of variables for lots of cases.
 ---
 We cannot digest all those data by just looking at them. But our eye
 can take in a lot of pictorial details easily. So we devised a
-way to convert numerical patterns to visual patterns. And that
-was the graphical representations that we learned in the
+way to convert numerical patterns to visual patterns.
+---
+ And that was the graphical representations that we learned in the
 second week.
 ---
  Pictures are great when they can be used, but it is
@@ -7114,7 +7150,6 @@ the intuitive concept: centre of the data.
 
 <HEAD2>Module 4: Lesson 1</HEAD2>
 
-<STKY><HEAD3>Module 4, Lesson 1,  Video 1: The concept and mean</HEAD3></STKY>
 <LESSON>
 <SCRIPT id="m4/l1/v1" done="k" t="5:08">
 <SESS t="2.70" done="r" kf="10,20,30,40,50" id="s1">
@@ -7207,12 +7242,14 @@ question itself is absurd, because how can you measure central tendency,
 where there is no central tendency?
 </SESS>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M4L1V1.yml">
+<FLD>Central tendency
+<EXRLIST id="m4l1_a.yml">
 
 - typeName: multipleChoice
   prompt: >
-    Two sets of  numbers are shown using two diffeent colours along a number line: [fig]
+    Two sets of  numbers are shown using two diffeent colours
+    along a number line: 
+         [[./exraux/numline.png]]
     Which set do you think has/have central tendency?
   shuffleOptions: true
   options:
@@ -7236,6 +7273,13 @@ where there is no central tendency?
       The red points are nicely clustered together. They appear
       to represent basically the same number except for some minor
       variations.        
+
+</EXRLIST>
+</FLD>
+
+<FLD> Mean math
+<EXRLIST id="m4l1_b.yml">
+
 
 - typeName: multipleChoice
   prompt: > 
@@ -7282,47 +7326,9 @@ where there is no central tendency?
       video? A *far away* point can turn the balance more
       powerfully than a point closer to the pivot.
 
-- typeName: multipleChoice
-  prompt: >
-    The mean height of 10 students is 164.6 cm. If the heights
-    were measured in inches then the mean would have been:
-  shuffleOptions: true
-  options:
-  - answer: 164.6 times 2.54 inches
-    isCorrect: true
-    feedback: >
-      
-  - answer: 164.6 divided by 2.54 inches
-    feedback: >
-      
-  - answer: 164.6 times 2.54 divided by 10 inches
-    feedback: >
-      
-  - answer: Cannot be computed based on the information given.
-    feedback: >
-      
-
-- typeName: multipleChoice
-  prompt: >
-    The mean side length of 10 square plots is 164.6 cm. Then 
-    the mean area is:
-  shuffleOptions: true
-  options:
-  - answer: cannot answer based on the information given.
-    isCorrect: true
-    feedback: >
-      
-  - answer: \sqrt{164.6} cm^2
-    feedback: >
-      
-  - answer: 164.6^2 cm^2.
-    feedback: >
-      
-  - answer: 
-    feedback: >
-      
 </EXRLIST>
 </FLD>
+
 
 <STKY>
 <HEAD3>Module 4, Lesson 1,  Video 2: Lab</HEAD3></STKY>
@@ -7346,12 +7352,13 @@ this using LibreOffice.
 land.csv
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M4L1V2.yml">
+
+<FLD>Mean compute lab
+<EXRLIST id="m4l1_c.yml">
 
 - typeName: numeric
   prompt: |-
-    Compute mean of these numbers using Excel.
+    Compute mean of these numbers using LibreOffice.
     23.4, 32.1, 56.2, 45.0, 34.4
   defaultFeedback: >
     Well, the minimum of these numbers is 23.4 and the maximum is
@@ -7374,30 +7381,20 @@ land.csv
 
 - typeName: multipleChoice
   prompt: > 
-    This LibreOffice spread sheet [link] has numbers in 3
+    This LibreOffice spread sheet [[./exraux/multi.xlsx]] has numbers in 3
     columns. What is their  *overall* mean?
-  shuffleOptions: true
+  defaultFeedback: >
+    The simplest way to find out is to select all the columns and
+    then look up the status bar.
+
   answers:
-  - range:
+  - value: 15
     isCorrect: true
     feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-
 
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 4, Lesson 1,  Video 3: Lab</HEAD3></STKY>
 
 <SCRIPT id="m4/l1/v3" done="k" t="7:15">
 <SESS t="1.30" done="r" kf="10,20,40,50" id="s1">
@@ -7464,8 +7461,59 @@ Explain with curved graph why mean(f)\neq f(mean) using two points.
 </BC>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 4, Lesson 1,  Video 4: Lab</HEAD3></STKY>
+<FLD>Mean trans
+<EXRLIST id="m4l1_d.yml">
+
+
+- typeName: multipleChoice
+  prompt: >
+    The mean height of 10 students is 164.6 cm. If the heights
+    were measured in inches then the mean would have been:
+  defaultFeedback: Use the theorem from the video.
+  shuffleOptions: true
+  options:
+  - answer: 164.6 times 2.54 inches
+    isCorrect: true
+    feedback: >
+      
+  - answer: 164.6 divided by 2.54 inches
+    feedback: >
+      
+  - answer: 164.6 times 2.54 divided by 10 inches
+    feedback: >
+      
+  - answer: Cannot be computed based on the information given.
+    feedback: >
+      
+
+- typeName: multipleChoice
+  prompt: >
+    The mean side length of 10 square plots is 164.6 cm. Then 
+    the mean area is:
+  defaultFeedback: >
+    Mean bhaves nicely only when the values are transformed by a
+    formula like ax+b. Here the transformation is squaring, which
+    is not of this form.
+  shuffleOptions: true
+  options:
+  - answer: cannot answer based on the information given.
+    isCorrect: true
+    feedback: >
+      
+  - answer: \sqrt{164.6} cm^2
+    feedback: >
+      
+  - answer: 164.6^2 cm^2.
+    feedback: >
+      
+  - answer: 
+    feedback: >
+      
+</EXRLIST>
+</FLD>
+
+
+
 
 <SCRIPT id="m4/l1/v4" done="k" t="6:23">
 <SESS t="2.50" done="r" kf="10,20,40,60,70,80,90,100,140" id="s1">
@@ -7523,10 +7571,50 @@ learn the longhand way.
 [Screencast: Mean for grouped data]
 </SC>
 </SCRIPT>
+<FLD>
+<EXRLIST id="m4l1_e.yml">
+
+- typeName: textReflect
+  prompt: |-
+     Find mean from this frequency distribution:
+      | Value | Frequency |
+      |-------+-----------|
+      |     1 |         3 |
+      |     2 |         5 |
+      |     3 |         2 |
+      |     4 |         9 |
+      |     5 |         3 |
+  defaultFeedback: >
+    Approximately 3.18. Here sum of the frequecies is 22, and sum
+    of all the values is 70.
+
+- typeName: textReflect
+  prompt: |-
+     Find mean from this frequency distribution:
+      | Value    | Frequency |
+      |----------+-----------|
+      | 0 --  10 |         4 |
+      | 10 -- 20 |        10 |
+      | 20 -- 30 |        12 |
+      | 30 -- 40 |         9 |
+      | 40 -- 50 |         5 |
+  defaultFeedback: >
+    Approximately 25.25. Here sum of the frequecies is 40, and sum
+    of all the values is 1010.
+</EXRLIST>
+</FLD>
+<R>
+x = 1:5
+frq = c(3,5,2,9,3)
+sum(x*frq)/sum(frq)
+
+x = c(5,15,25,35,45)
+frq = c(4,10,12,9,5)
+sum(x*frq)/sum(frq)
+</R>
 </LESSON>
 <HEAD2>Module 4: Lesson 2</HEAD2>
-<STKY>
-<HEAD3>Module 4, Lesson 2,  Video 1: Median</HEAD3></STKY>
+
 <LESSON>
 <SCRIPT id="m4/l2/v1" done="k" t="4:42">
 <SESS t="1.10" done="r" kf="10,40,90" id="s1">
@@ -7591,8 +7679,9 @@ well. So let's learn how to compute median using LibreOffice.
 click. Descriptive statistics menu.]
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M4L2V1.yml">
+
+<FLD>Median comp hand
+<EXRLIST id="m4l2_a.yml">
 
 - typeName: numeric
   prompt: |-
@@ -7606,75 +7695,37 @@ click. Descriptive statistics menu.]
     isCorrect: true
     feedback: >
       Yes, that is the central value.
-      
-
-- typeName: multipleChoice
-  prompt: >
-    The median height of 10 students is 164.6 cm. If the heights
-    were measured in inches then the median would have been:
-  shuffleOptions: true
-  options:
-  - answer: 164.6 times 2.54 inches
-    isCorrect: true
-    feedback: >
-      
-  - answer: 164.6 divided by 2.54 inches
-    feedback: >
-      
-  - answer: 164.6 times 2.54 divided by 10 inches
-    feedback: >
-      
-  - answer: Cannot be computed based on the information given.
-    feedback: >
-      
-- typeName: multipleChoice
-  prompt: >
-    The median side length of 10 square plots is 164.6 cm. Then 
-    the median area is:
-  shuffleOptions: true
-  options:
-  - answer: 164.6^2 cm^2.
-    isCorrect: true
-    feedback: >
-      
-  - answer: \sqrt{164.6} cm^2
-    feedback: >
-      
-  - answer: 
-    feedback: >
-      
-  - answer: cannot answer based on the information given.
-    feedback: >
-      
-
-
-
-- typeName: plugin
-  prompt: >
-    Write down 3 numbers such that their median is less than
-    their mean. 
 
 - typeName: numeric
   prompt: >
-    The mean of three numbers is equal to their median. If the smallest
-    number is 10 and second smallest is 13,  then find the other number.
+      Find median of the numbers in [[./exraux/medcomp.xlsx]] using LibreOffice
   defaultFeedback: >
-    No, that's not correct. If mean equals median, then the
-    numbers must be equispaced.
+      Use the median function.
   shuffleOptions: true
-  answers:
-  - value: 16
+  options:
+  - value: 13
     isCorrect: true
     feedback: >
-      Aha, that's right! The numbers are equispaced. Since the
-      gap is 13-10=3, so the remaining number must be 13 + 3 = 16.
-      
+      That's correct. 
+
+- typeName: textReflect
+  prompt: >
+     Sort the value column in [[./exraux/sortme.xlsx]] in
+     ascending order.
+  defaultFeedback: >
+     It should look like [[./exraux/sorted1.xlsx]] 
+
+- typeName: textReflect
+  prompt: >
+     Sort value column  according to the key column in [[./exraux/sortme.xlsx]] in
+     descending order.
+  defaultFeedback: >
+     It should look like [[./exraux/sorted2.xlsx]] 
 
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 4, Lesson 2,  Video 2: Transformation</HEAD3></STKY>
+
 <SCRIPT id="m4/l2/v2" done="k" t="3:20">
 <SESS t="3.00" done="r" kf="10,70,130,140,150,180" id="s1">
 We have already seen how arithmetic mean behaves nicely when we change
@@ -7729,8 +7780,55 @@ the median.
 </SESS>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 4, Lesson 2,  Video 3: Transformation</HEAD3></STKY>
+<FLD>Median trans
+<EXRLIST id="m4l2_b.yml">
+- typeName: multipleChoice
+  prompt: >
+    The median height of 10 students is 164.6 cm. If the heights
+    were measured in inches then the median would have been:
+  shuffleOptions: true
+  options:
+  - answer: 164.6 times 2.54 inches
+    isCorrect: true
+    feedback: >
+      
+  - answer: 164.6 divided by 2.54 inches
+    feedback: >
+      
+  - answer: 164.6 times 2.54 divided by 10 inches
+    feedback: >
+      
+  - answer: Cannot be computed based on the information given.
+    feedback: >
+      
+- typeName: multipleChoice
+  prompt: >
+    The median side length of 10 square plots is 164.6 cm. Then 
+    the median area is:
+  defaultFeedback: >
+    Median transforms like the data for any order
+    preserving transformation.
+  shuffleOptions: true
+  options:
+  - answer: 164.6^2 cm^2.
+    isCorrect: true
+    feedback: >
+      
+  - answer: \sqrt{164.6} cm^2
+    feedback: >
+      
+  - answer: 
+    feedback: >
+      
+  - answer: cannot answer based on the information given.
+    feedback: >
+      
+
+
+</EXRLIST>
+</FLD>
+
+
 <SCRIPT id="m4/l2/v3" done="k" t="3:24+??">
 <SESS t="2:42" done="r" kf="10,30,40,50,60,70,80" id="s1">
 Just as for mean, we may need to compute median from a frequency
@@ -7803,19 +7901,42 @@ far as I know) does not implements this. All softwares allow you to
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST id="M4L2V2.yml">
 
-- typeName: multipleChoiceFind median of the numbers using Excel.
+<FLD> Median from grouped data
+<EXRLIST id="m4l2_c.yml">
+- typeName: textReflect
+  prompt: |-
+     Computed median from this grouped data set:
+       | Value | Frequency |
+       |-------+-----------|
+       |     1 |         3 |
+       |     2 |        10 |
+       |     3 |         4 |
+       |     4 |         3 |
+       |     5 |         1 |
+  defaultFeedback: >
+     There are 21 values in all (counting repetitions). So the
+     median is the 11-th number. This is 2.
 
-- typeName: multipleChoiceSort the column.
-
-- typeName: multipleChoiceSort one column by another.
+- typeName: textReflect
+  prompt: |-
+     Which class contains the median in the following grouped data set?
+       |  Value | Frequency |
+       |--------+-----------|
+       | 10--20 |         4 |
+       | 20--30 |        10 |
+       | 30--40 |        23 |
+       | 40--50 |        33 |
+       | 50--60 |         1 |
+  defaultFeedback: >
+     There are 71 values in all (counting repetitions). So the
+     median is the 36-th number. Add the frequencies cumulatively
+     to get 4, 4+10=14, 14+23=37, which exceeds 36. So the median
+     must lie in the class 30--40.
 
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 4, Lesson 2,  Video 4: Robustness</HEAD3></STKY>
+
 <SCRIPT id="m4/l2/v4" done="k" t="5:30">
 <SESS t="1.50" done="r" kf="40,50,60" id="s1">
 This course uses peer review: each student's answerscript is graded by
@@ -7855,7 +7976,39 @@ Median is robust, mean is not. Show using data.
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m4/l2/v5" done="n" t="0:38+?">
+<FLD>Mean median relation
+<EXRLIST id="m4l2_d.yml">
+
+
+- typeName: textReflect
+  prompt: >
+    Write down 3 numbers such that their median is less than
+    their mean. 
+  defaultFeedback: >
+    Start with three regularly spaced numbers, e.g., 1,2,3. Then increase the
+  largest number. For instance, 1,2,4.
+
+- typeName: numeric
+  prompt: >
+    The mean of three numbers is equal to their median. If the smallest
+    number is 10 and second smallest is 13,  then find the other number.
+  defaultFeedback: >
+    No, that's not correct. If mean equals median, then the
+    numbers must be equispaced.
+  shuffleOptions: true
+  answers:
+  - value: 16
+    isCorrect: true
+    feedback: >
+      Aha, that's right! The numbers are equispaced. Since the
+      gap is 13-10=3, so the remaining number must be 13 + 3 = 16.
+      
+
+</EXRLIST>
+</FLD>
+
+
+<SCRIPT id="m4/l2/v5" done="k" t="6:38">
 <SESS t="0.9" done="r" id="s1">
 Ramble intro to different properties (for generalisation).
 </SESS>
@@ -7866,8 +8019,7 @@ Properties: Data depth, simplicial.
 </SCRIPT>
 </LESSON>
 <HEAD2>Module 4: Lesson 3</HEAD2>
-<STKY>
-<HEAD3>Module 4, Lesson 3,  Video 1: Mode and others</HEAD3></STKY>
+
 <LESSON>
 <SCRIPT id="m4/l3/v1" done="k" t="2:59">
 <SESS t="2.70" done="r" kf="30,40,50,60,70,80,90,100" id="s1">
@@ -7920,8 +8072,7 @@ central tendency.
 </SESS>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 4, Lesson 3,  Video 2: Minimising unhappiness</HEAD3></STKY>
+
 <SCRIPT id="m4/l3/v2" done="k" t="2:33">
 <SESS t="1.50" done="r" kf="10,20,30,40,50,60" id="s1">
 Mode may be considered  as a  way to choose a
@@ -7976,61 +8127,8 @@ to minimise some suitable notion of loss.
 </SESS>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 4, Lesson 3,  Video 3: Mode and others</HEAD3></STKY>
-<SCRIPT id="m4/l3/v3" done="k" t="1:44">
-<SESS t="1.60" done="r" kf="10,20" id="s1">
-Mode as we defined it in the last video was the value (or values) with the
-highest frequency. This made sense for categorical data or count
-data, as there the same value is usually repeated many times. But
-in continuous data, the same value is repeated more rarely, if
-at all.
----
- However, lots of values may be very close together. For
-example, if you report body weights of 100 persons to the nearest 100th of a kg,
-you may hardly get any exact repetion, while many weights will
-lie tightly together. A typical case may be shown along a number
-line. <V>[show]</V>
----
-Naturally you'll like to say that the most frequntly occuring
-weights are near here. So we should call the center of this
-crowd the mode.
----
- To make this idea somewhat precise, we
-construct a histogram,<V>[show]</V> and look at the class with the maximum
-area. We expect the mode to lie there. If the classes are taken
-with sufficiently small width, then we can narrow down on the
-mode more and more precisely. 
----
-However, this procedure requires a huge amount of data, and while
-it works in principle, is not a practicable way for real life
-data. So we do not usually try to find mode for a continuous
-variable in a data set.
-</SESS>
-</SCRIPT>
-
-<STKY>
-<HEAD3>Module 4, Lesson 3,  Video 4: Mode and others</HEAD3>
-</STKY>
-<SCRIPT id="m4/l3/v4" done="k" t="3:04">
-<SESS t="0.30" done="r" id="s1">
-Finding the mode for a categorical variable or count variable is
-quite easy. We just find the frequncy of each possible value, and
-choose the value corresponding to the maximum frequency. If this
-maximum occurs for multiple values, then each of those values is
-a mode.
----
-Let's work with toy data of hourly counts of traffic rule
-violations over at a fictitious crossing.
-</SESS>
-<JINGLE t="0.1">Lab</JINGLE>
-<SC t="2.8" done="r" id="acc_432">
-[Screencast: traffic poisson mode.]
-acc.csv
-</SC>
-</SCRIPT>
-<FLD>
-<EXRLIST id="M4L3V1.yml">
+<FLD>Mode computation by hand
+<EXRLIST id="m4l3_a.yml">
 - typeName: numeric
   prompt: |-
     Find the mode of these numbers by inspection:
@@ -8063,32 +8161,88 @@ acc.csv
     feedback: >
       Well, 54 is *one* mode, but it is not the *unique* mode.
 
+</EXRLIST>
+</FLD>
 
-- typeName: numeric
+<SCRIPT id="m4/l3/v3" done="k" t="1:44">
+<SESS t="1.60" done="r" kf="10,20" id="s1">
+Mode as we defined it in the last video was the value (or values) with the
+highest frequency. This made sense for categorical data or count
+data, as there the same value is usually repeated many times. But
+in continuous data, the same value is repeated more rarely, if
+at all.
+---
+ However, lots of values may be very close together. For
+example, if you report body weights of 100 persons to the nearest 100th of a kg,
+you may hardly get any exact repetion, while many weights will
+lie tightly together. A typical case may be shown along a number
+line. <V>[show]</V>
+---
+Naturally you'll like to say that the most frequntly occuring
+weights are near here. So we should call the center of this
+crowd the mode.
+---
+ To make this idea somewhat precise, we
+construct a histogram,<V>[show]</V> and look at the class with the maximum
+area. We expect the mode to lie there. If the classes are taken
+with sufficiently small width, then we can narrow down on the
+mode more and more precisely. 
+---
+However, this procedure requires a huge amount of data, and while
+it works in principle, is not a practicable way for real life
+data. So we do not usually try to find mode for a continuous
+variable in a data set.
+</SESS>
+</SCRIPT>
+
+
+<SCRIPT id="m4/l3/v4" done="k" t="3:04">
+<SESS t="0.30" done="r" id="s1">
+Finding the mode for a categorical variable or count variable is
+quite easy. We just find the frequncy of each possible value, and
+choose the value corresponding to the maximum frequency. If this
+maximum occurs for multiple values, then each of those values is
+a mode.
+---
+Let's work with toy data of hourly counts of traffic rule
+violations over at a fictitious crossing.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="2.8" done="r" id="acc_432">
+[Screencast: traffic poisson mode.]
+acc.csv
+</SC>
+</SCRIPT>
+
+
+<FLD>Mode computation by LibreOffice
+<EXRLIST id="m4l3_b.yml">
+- typeName: textReflect
+  prompt: >
+     Compute mode for the data set in [[./exraux/modecomp.xlsx]]
+  defaultFeedback: >
+     First make a frequency distribution. It should look like 
+     [[./exraux/modetab.png]]
+     The highest frequency is 24, occurs for the value 12, which
+     is the mode.
+
+- typeName: textReflect
   prompt: |-
-    Find mode from this frequency distribution table.
-    |  Class | Frequency |
-    |--------+-----------|
-    | 10--20 |        34 |
-    | 20--30 |        45 |
-    | 30--40 |        51 |
-    | 40--60 |        44 |
-    |  60-90 |        57 |
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+     Consider this frequency distribution:
+      | Value | Frequency |
+      |-------+-----------|
+      |     1 |         2 |
+      |     2 |        10 |
+      |     3 |         4 |
+      |     4 |         6 |
+      |     5 |        12 |
+      |     6 |         3 |
+     What is the mode? Will you use it as a measure of central
+     tendency here?
+  defaultFeedback: >
+     The mode is 5. But the distribution actually looks bimodal,
+     with another peak at 2. So possibly there is no central tendency 
+     in the data.
 </EXRLIST>
 </FLD>
 
@@ -8146,6 +8300,28 @@ Let's see this in action.
 </SC>
 </SCRIPT>
 
+
+<FLD>
+<EXRLIST id="m4l3_c.yml">
+- typeName: textReflect
+  prompt: >
+     Consider the data set [[./exraux/wmean.xlsx]]. Compute 
+     weighted mean of Sales 1 using the weights given. 
+  defaultFeedback: >
+      The answer should be 14.47. Here is the computation:
+      [[./exraux/wmeansol1.png]]
+
+- typeName: textReflect
+  prompt: >
+     Again considee the same data set. Now find the weighted mean
+     of Sales 2 using the same weights.  
+  defaultFeedback: >
+     Computation sheet:
+     [[./exraux/wmeansol2.png]]   
+
+</EXRLIST>
+</FLD>
+
 <STKY>
 <HEAD3>Module 4, Lesson 3,  Video 6: Other measures</HEAD3></STKY>
 <SCRIPT id="m4/l3/v6" done="k" t="6:11">
@@ -8184,19 +8360,10 @@ Let's look at the computation using LibreOffice.
 [Screencast: 10%-trimmed mean of  land_owned from hugli survey. survey.csv]
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M4L3V2.yml">
-
-- typeName: multipleChoiceFind mode of a column.
-
-- typeName: multipleChoiceFind quartiles.
-
-</EXRLIST>
-</FLD>
 </LESSON>
 
-<FLD>
-<EXRLIST id="M4L4V1.yml">
+<FLD>Robust
+<EXRLIST id="m4l3_d.yml">
 - typeName: multipleChoice
   prompt: >
     Which is more robust: mean or median?
@@ -8272,6 +8439,24 @@ rarely used.
 </SESS>
 </SCRIPT>
 
+
+<FLD>
+<EXRLIST id="m4l4_a.yml">
+- typeName: textReflect
+  prompt: >
+     What is the 50% percentile of a variable commonly called? 
+  defaultFeedback: >
+     Median. 
+
+- typeName: textReflect
+  prompt: >
+    A variable has 1000 cases. Then approximately how many values
+    will lie above the 3rd quartile?
+  defaultFeedback: >
+    One fourth of the values, ie, 250.     
+
+</EXRLIST>
+</FLD>
 <STKY>
 <HEAD3>Module 4, Lesson 4,  Video 2: Quantiles why?</HEAD3></STKY>
 <SCRIPT id="m4/l4/v2" done="k" t="2:24">
@@ -8328,8 +8513,6 @@ toycomp.ods
 </SC>
 </SCRIPT>
 
-<STKY>
-<HEAD3>Module 4, Lesson 4,  Video 4: p-values</HEAD3></STKY>
 <SCRIPT id="m4/l4/v4" done="k" t="4:07">
 <SESS t="3.90" done="r" kf="0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150" id="s1">
 We have already mentioned <B>p-value</B> as a soft boundary for a
@@ -8401,7 +8584,7 @@ That is  the two-tailed p-value.
 </SCRIPT>
 <STKY>
 <HEAD3>Module 4, Lesson 4,  Video 5: Lab</HEAD3></STKY>
-<SCRIPT id="m4/l4/v5" done="nk" t="?+5:26">
+<SCRIPT id="m4/l4/v5" done="k" t="5:26">
 <SESS t="0.20" done="r" id="s1">
 In this video we shall learn about computing
 p-values assuming... that we know the entire population.
@@ -8410,23 +8593,41 @@ p-values assuming... that we know the entire population.
 [Screencast: Compute p-value from popln data]
 </SC>
 </SCRIPT>
-<STKY>
-<HEAD3>Module 4, Lesson 4,  Video 6: Lab</HEAD3></STKY>
-<SCRIPT id="m4/l4/v6" done="k" t="?+5:12">
-<SESS t="0" done="n" id="">
-In this video we shall continue with what we were doing in the
-last video...but now work with histograms and their shapes.
-</SESS>
+
+<SCRIPT id="m4/l4/v6" done="k" t="5:12">
 <SC t="6" done="r" id="pvalhist_446">
 [Screencast: Visualise p-value from histogram and distribution]
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M4L4V2.yml">
 
-- typeName: multipleChoiceCompute 10% trimmed mean.
 
-- typeName: multipleChoiceCompute difference of mean and median.
+<FLD> pvalues computation
+<EXRLIST id="m4l4_b.yml">
+- typeName: textReflect
+  prompt: >
+     The file [[./exraux/pvalcomp.xlsx]] contains lots of values of a
+     variable. Find the upper tailed p-value for 3.14 w.r.t these values. 
+  defaultFeedback: >
+      Use the =countif(a2:a1001,">3.14"). The answer should be 0.385.
+- typeName: textReflect
+  prompt: >
+     The file [[./exraux/pvalcomp.xlsx]] contains lots of values of a
+     variable. Find the lower tailed p-value for 2.12 w.r.t these values. 
+  defaultFeedback: >
+      Use the =countif(a2:a1001,"<2.12")/1000. The answer should
+      be 0.423.
+
+
+</EXRLIST>
+</FLD>
+
+<FLD>Trimmed mean computation
+<EXRLIST id="m4l4_c.yml">
+- typeName: textReflect
+  prompt: >
+     Compute 10% trimmed mean of the values in [[./exraux/pvalcomp.xlsx]] 
+  defaultFeedback: >
+     Use =trimmean(a2:a1001,0.1). The answer should be 2.54.
 
 </EXRLIST>
 </FLD>
@@ -8435,7 +8636,7 @@ last video...but now work with histograms and their shapes.
 <LESSON>
 <STKY>
 <HEAD3>Module 4, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
-<SCRIPT id="m4/l5/v1" t="0" done="r">
+<SCRIPT id="m4/l5/v1" t="6:24" done="k">
 <SESS t="1.70" done="a" kf="30" id="s1">
 Statistics uses mathematics. But the main difference between
 statistics and mathematics is that in mathematics the same
@@ -8573,7 +8774,7 @@ dev.off()
 
 <STKY><HEAD3>Module 4, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
-<SCRIPT id="m4/l5/v2" t="0" done="r">
+<SCRIPT id="m4/l5/v2" t="2:13" done="k">
 <SESS t="0.90" done="a" id="s1">
 We have talked about mean. And also its brethren weighted mean
 and trimmed mean. In the usual mean all the points contribute
@@ -8621,7 +8822,7 @@ this in passing.
 </SESS>
 </SCRIPT>
 
-<SCRIPT id="m4/l5/v3" t="0" done="r">
+<SCRIPT id="m4/l5/v3" t="2:30" done="k">
 <SESS t="0.70" done="a" id="s1">
 We have talked about medians quite a bit already. Let's quickly
 summarise. Median is the centralmost data value. "Centralmost"
@@ -8670,7 +8871,7 @@ Thus the concept of breakdown quantifies the level of robustness.
 </SESS>
 </SCRIPT>
 
-<SCRIPT id="m4/l5/v4" done="nr" t="">
+<SCRIPT id="m4/l5/v4" done="k" t="5:18">
 <SESS t="0.20" done="r" id="s1">
 There are interesting ideas about how the concept of median may
 be generalised. We shall discuss...some of them here.
@@ -8680,7 +8881,7 @@ Half-space depth, Simplicial depth,
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m4/l5/v5" t="0" done="nr">
+<SCRIPT id="m4/l5/v5" t="7:21" done="k">
 <SESS t="1.60" done="r" kf="30" id="s1">
 If we consider in terms of the math involved, the mean is the
 simplest measure of central tendency. But if you consider
@@ -8721,7 +8922,7 @@ Mode for grouped data
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m4/l5/v6" t="0" done="r">
+<SCRIPT id="m4/l5/v6" t="1:20" done="k">
 <SESS t="1.10" done="a" kf="30,60,90" id="s1">
 We have talked a lot about how to measure central tendency, when
  a variable does have central tendency. What if it doesn't?
@@ -8749,7 +8950,7 @@ door to further research.
 
 <FLD>
 
-<EXRLIST>
+<EXRLIST id="m4_add.yml">
 - If we have n numbers x1,...,xn with mean xbar, then show that
   sum (xi-xbar) = 0.
 
@@ -8762,7 +8963,7 @@ this list. Let the median of the new data set be m (depends on
 x). Sketch the graph of m vs x. 
 
    Rubric:
-    1) Plot looks like this: [[./exrpics/medplot.pdf]]
+    1) Plot looks like this: [[./exraux/medplot.pdf]]
     2) 1 point if the graph is horizontal at the two ends.
 
 - For the data set [m4_1.csv] find the 10% trimmed mean and
@@ -8806,8 +9007,13 @@ csv(dat,'m4_bimod.csv')
 </FLD>
 </LESSON>
 
+<REF>
+WW: Chapter 3
+FPP: Chapter 4, parts 1--3.
+</REF>
+
 <HEAD1>Module 5: Dispersion</HEAD1>
-<SCRIPT id="m5/intro" t="0" done="r">
+<SCRIPT id="m5/intro" t="1:18" done="k">
 <SESS t="1.30" done="n" id="s1">
 We are starting our fifth week. This week is very similar in
 structure to the last one. We are still continuing with 
@@ -8839,8 +9045,7 @@ Let's get started!
 
 <HEAD2>Module 5: Lesson 1</HEAD2>
 
-<STKY>
-<HEAD3>Module 5, Lesson 1,  Video 1: The concept</HEAD3></STKY>
+
 <LESSON>
 <SCRIPT id="m5/l1/v1" done="k" t="5:29">
 <SESS t="1.80" done="r" kf="0,60,120,130" id="s1">
@@ -8949,14 +9154,13 @@ We shall start with range in the next video.
 </SESS>
 </SCRIPT>
 
-<FLD>
+<FLD>Dispersion in general
 
-<EXRLIST id="M5L1V1.yml">
+<EXRLIST id="m5l1_a.yml">
 - typeName: checkbox
   prompt: >
       Which of the following is/are measure(s) of dispersion?
-  defaultFeedback: >
-      Oops, you seem to have confused central tendency with dispersion!
+
   shuffleOptions: true
   options:
   - answer: variance
@@ -8969,10 +9173,11 @@ We shall start with range in the next video.
       Yes, range is a measure of dispersion. 
   - answer: median
     feedback: >
+      Oops, you seem to have confused central tendency with dispersion!
       
   - answer: mean
     feedback: >
-      
+      Oops, you seem to have confused central tendency with dispersion!      
 
 - typeName: numeric
   prompt: >
@@ -9021,7 +9226,7 @@ We shall start with range in the next video.
   trying to hold still. Then high dispersion in the position of
   the camera would result in
   defaultFeedback: >
-      
+    Higher dispersion means the camera is shaking a lot.      
   shuffleOptions: true
   options:
   - answer: shaky video
@@ -9039,11 +9244,13 @@ We shall start with range in the next video.
       
 
 
-- typeName: plugin
+- typeName: textReflect
   prompt: >
     Write down two sets of numbers such that the mean of the
     first set is smaller,  but the dispersion is larger.
-
+  defaultFeedback: >
+    You can achieve this with just two numbers per set. 
+    In the first set 0 and 10. In the second 10000 and 10001.
 </EXRLIST>
 
 </FLD>
@@ -9060,36 +9267,40 @@ audio noise, TV noise, handwriting, volatility
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST id="M5L1V2.yml">
+<FLD>Real life
+<EXRLIST id="m5l1_b.yml">
 - typeName: multipleChoice
   prompt: >
-      For an audio recording data, a noisy environment means
+      For a stock price time series data, higher dispersion means
   defaultFeedback: >
       
   shuffleOptions: true
   options:
-  - answer: high dispersion
+  - answer: less certainty
     isCorrect: true
     feedback: >
       
-  - answer: low dispersion
+  - answer: more certainty
     feedback: >
       
-  - answer: medium dispersion
+  - answer: higher central tendency
     feedback: >
       
-  - answer: low central tendency
+  - answer: lower central tendency
     feedback: >
       
 - typeName: multipleChoice
   prompt: >
       The graphs show a variable Y changing with a variable
-      X. [fig] The red lines show the relation predicted by theory. 
+      X. [[./exraux/dispscat.png]] The red lines show the
+      relation predicted by theory.  
       In which case is the dispersion of Y values higher? In
       which case is the experimental values closer to the theory? 
   defaultFeedback: >
-      
+      The points are closer to the red line in general for
+      I. However, if you just consider the vertical spread of the 
+      points then I shows more scatter.
+ 
   shuffleOptions: true
   options: 
   - answer: II, I
@@ -9116,39 +9327,18 @@ audio noise, TV noise, handwriting, volatility
   - answer: -1,0,1
     isCorrect: true
     feedback: >
-      
+      The -1 will be wrapped to 1 on squaring.
   - answer: 0.2 0.4 0.9
-    feedback: >
-      
-  - answer: 1 2 3
-    feedback: >
-      
-  - answer: -1, 2 10
-    feedback: >
-      
-- typeName: multipleChoice
-  prompt: >
-      The plot has two regions marke I and II. 
-           [fig]
-      Which of these
-      show an   increase in dispersion?
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - answer: I, but not II.
     isCorrect: true
     feedback: >
-      
-  - answer: II, but not I.
+      Numbers between 0 and 1 tend to crowd towards 0
+      when squared.
+  - answer: 1 2 3
     feedback: >
-      
-  - answer: both
+      These numbers will spread out on squaring.
+  - answer: -1, 2 10
     feedback: >
-      
-  - answer: neither.
-    feedback: >
-      
+      The -1 will become 1, but the 10 will go far out.
 
 </EXRLIST>
 </FLD>
@@ -9194,56 +9384,63 @@ land.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Range simple and lab
+<EXRLIST id="m5l1_c.yml">
 - typeName: numeric
   prompt: >
-    This file [link] gives a data set. Use LibreOffice to compute
-    range of the income variable.
-  shuffleOptions: true
-  defaultFeedback: >
-    No, may be you should just eyeball the values to find the
-    minimum and maximum, and to see why your answer is wrong.
-    Watch the video once again to learn using LibreOffice to
-    compute the range.
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      Great!
-
-
-- typeName: multipleChoice
-  prompt: >
-    The range of some variable in a data set is 56.00.  A new case is
+    The range of some variable in a data set is 56.00, and
+    minimum is 50.23.  A new case is
     added to the data set where the value of this variable is
-    100.54. What will be the new range?
+    110.54. What will be the new range?
   shuffleOptions: true
   defaultFeedback: >
-    You cannot be sure. You need to know the current minimum and the
-    maximum to be able to update the range.
+    First find the minimum and maximum *before* and *after* the new
+    case is added.
   options:
-  - answer: Cannot compute based on the given information.
+  - value: 60.31 
     isCorrect: true
     feedback: >
-      Correct. You need to know the current minimum and the
-      maximum to be able to update the range.
+      That's right! The old maximum was 50.23+56.00 =
+      106.23. Since the new value exceeds this, the new
+      maximum is 110.54. So the new range is 110.54 - 50.23.
   
-  - answer: 100.54
-
-  - answer: 156.54
-      
-  - answer: 56.00
-  
-- typeName: multipleChoice
+- typeName: numeric
   prompt: >
-      A toy data set consists of the values 2, 3, 4 and x. Find
+     I have a data set consisting of 100 values. The minimum
+     value is 121, and the range is 20. A new  value 130 arrives
+     (making the new sample size 101). What is the new range?
+
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - value: 20.
+    isCorrect: true
+    feedback: >
+      
+- typeName: numeric
+  prompt: >
+    Use LibreOffice to compute
+    range of the Sales1 variable in [[./exraux/wmean.xlsx]]
+  shuffleOptions: true
+  defaultFeedback: >
+    Minimum is 10, and maximum is 20.
+  answers:
+  - value: 10
+    isCorrect: true
+
+- typeName: textReflect
+  prompt: >
+      A data set consists of the values 2, 3, 4 and x. Find
       the number x   such that range equal four times the mean.
   defaultFeedback: >
-      
+      4 times the mean is 9+x. Also the range is x-2 if x > 4,
+      4-x if x < 2, and 2 otherwise. So we need either 9+x=x-2
+      (and x > 4), or 9+x = 4-x (and x < 2) or 9+x=2 (otherwise).
+      Only the second case is possible. 
   shuffleOptions: true
   options:
-  - answer: No such x exists.
+  - answer: x = -2.5
     isCorrect: true
     feedback: >
       
@@ -9253,15 +9450,13 @@ land.csv
   - answer: x = 2.5
     feedback: >
       
-  - answer: Any value between 2 and 3.
+  - answer: Any value greater than 4.
     feedback: >
       
 
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 5, Lesson 1,  Video 4: Good properties of range</HEAD3></STKY>
 
 <SCRIPT id="m5/l1/v4" done="k" t="7:14">
 <SESS t="0.30" done="r" id="s1">
@@ -9325,8 +9520,8 @@ Does range satisfy this property? Let's see.
 </BC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Range trans
+<EXRLIST id="m5l1_d.yml">
 - typeName: multipleChoice
   prompt: >
       A fixed length has been measured 10 times in inches. The
@@ -9370,25 +9565,9 @@ Does range satisfy this property? Let's see.
   - answer: impossible to answer from the given information.
     feedback: >
       
-- typeName: numeric
-  prompt: >
-     I have a data set consisting of 100 values. The minimum
-     value is 121, and the range is 20. Two new values arrive
-     (making the new sample size 101): 130. What is the new range?
-
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - value: 20.
-    isCorrect: true
-    feedback: >
-      
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 5, Lesson 1,  Video 5: Bad properties of range</HEAD3></STKY>
 
 <SCRIPT t="1:49" done="k" id="m5/l1/v5">
 <SESS t="0.50" done="r" id="s1">
@@ -9421,65 +9600,45 @@ more deeply, not just at the two extreme points.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Range plot
+<EXRLIST id="m5l1_e.yml">
 - typeName: multipleChoice
   prompt: >
       One new value x is added to a univariate data set. Let the
   new range be R (which depends on x). Then a plot of R versus x
-  looks like [four plots].
-
+  looks like which of the four plots below?
+     [[./exraux/rngplot.png]]
   defaultFeedback: >
       
   shuffleOptions: true
   options:
-  - answer: I
+  - answer: C
     isCorrect: true
     feedback: >
-      
-  - answer: II
+      Yes, as long as x remains within the min and max of the
+      existing data set, the range remains fixed. Beyond, that in
+      increases. 
+  - answer: A
     feedback: >
-      
-  - answer: III
+      If x becomes very very low, then range cannot remain unchanged.
+  - answer: B
     feedback: >
-      
-  - answer: IV
+      Range cannot go down if x is very large or small!
+  - answer: D
     feedback: >
-      
+      If x changes within the min and max of the existing data
+      set, then range should remain unchanged.
+ 
 
 </EXRLIST>
 </FLD>
 </LESSON>
 
-<FLD>
-<EXRLIST id="M5L1V2.yml">
-- typeName: numeric
-  prompt: >
-    The range of some variable in a data set is 56.00, and
-    minimum is 50.23.  A new case is
-    added to the data set where the value of this variable is
-    110.54. What will be the new range?
-  shuffleOptions: true
-  defaultFeedback: >
-    First find the minimum and maximum *before* and *after* the new
-    case is added.
-  options:
-  - value: 60.31 
-    isCorrect: true
-    feedback: >
-      That's right! The old maximum was 50.23+56.00 =
-      106.23. Since the new value exceeds this, the new
-      maximum is 110.54. So the new range is 110.54 - 50.23.
-  
-    
-</EXRLIST>
-</FLD>
 <HEAD2>Module 5: Lesson 2</HEAD2>
 
-<STKY>
-<HEAD3>Module 5, Lesson 2,  Video 1: Variance and standard deviation</HEAD3></STKY>
+
 <LESSON>
-<SCRIPT id="m5/l2/v1" done="nk" t="3:30+?">
+<SCRIPT id="m5/l2/v1" done="k" t="7:54">
 <SESS t="0.80" done="r" kf="10,20" id="s1">
 We learned about the concept of dispersion in the last lesson,
 and also one measure of dispersion, namely range. Range was easy
@@ -9572,89 +9731,29 @@ x = c(3, 5, 4, 5, 1, 7)
 var(x) * (n-1)/n
 </R>
 
-<FLD>
-<EXRLIST id="M5L2V1.yml">
-- typeName: multipleChoice
+<FLD> Variance and SD hand comp
+<EXRLIST id="m5l2_a.yml">
+- typeName: textReflect
   prompt: |-
     Find the variance and standard deviation of these numbers:
     43, 23, 34, 64, 50, 33, 12
-    Use n-1 in the denominator.
-  shuffleOptions: true
-  options:
-  - answer: var = 296.67, sd = 17.22
+  defaultFeedback:
+    var = 254.29, sd = 15.95
     isCorrect: true
-    feedback: >
-      
-  - answer: var = 17.22, sd = 296.67
-    feedback: >
-      Hey, that can't be. Variance should be square of the
-      standard deviation.
-  - answer: var = 254.29, sd = 15.95
-    feedback: >
-      Hmmm...I askd you to use n-1 in the denominator. Looks
-      like you used n.
-  - answer: var = 260.98, sd = 16.15
-    feedback: >
-      Nope. You may like to watch the video to brush up the
-      formula.
-    
-- typeName: numeric
-  prompt: >
-    If the sum of squares of 5 numbers is 1004,  and the mean
-    is 6,  then find the standard deviation (use n-1 in the
-    denominator).
-  defaultFeedback: >
-    The formula is sqrt(n/(n-1)*(SS/n -  mean^2)).
-  shuffleOptions: true
-  answers:
-  - range: [14.35,14.4]
-    isCorrect: true
-    feedback: >
 
-- typeName: numeric
-  prompt: >
-    If the mean and variance of 10 numbers are,  respectively,
-    10 and 45,  and a new value 7 is introduced, what is the
-    new variance? We are using n-1 in the denominator.
-  defaultFeedback: >
-    Find the sum and sum of squares of the original 10 numbers.
-    Then update these to incorporate the new value.
-  shuffleOptions: true
-  answers:
-  - range: [171.77, 171.8] 
-    isCorrect: true
-    feedback: >
-      Yes, the old sum was 450 and the old sum of squares was
-      20655. After updating they became 457 and 20704,
-      respectively. Also, sample size increased from 10 to 11.
     
-- typeName: numeric
-  prompt: |-
-    Consider this data set:
-    | values |
-    |--------|
-    |     51 |
-    |     34 |
-    |     ?? |
-    |     45 |
-    Find the  value marked with ??  to achieve 
-    the smallest possible variance. 
+- typeName: textReflect
+  prompt: >
+    Let a variable take only two values p and q. Then what is its
+    variance?
   defaultFeedback: >
-    No, the variance can be reduced even further. In fact, it can
-    be made 0.
-  shuffleOptions: true
-  answers:
-  - value: 65
-    isCorrect: true
-    feedback: >
-      Yes, you have chosen the mean of the available values.
+    (p-q)^2/4.
 
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 5, Lesson 2,  Video 2: Other ways to compute it</HEAD3></STKY>
-<SCRIPT id="m5/l2/v2" done="nk" t="1:42+?">
+
+<SCRIPT id="m5/l2/v2" done="k" t="5:58">
 <SESS t="1.00" done="r" kf="10,20,30,40,50" id="s1">
 The formula that we used to define variance is not that easy to
 use by hand. It requires a sort of two-stage
@@ -9696,8 +9795,44 @@ In the next video we shall  learn what is important: computing
 variance using LibreOffice.
 </SESS>
 </SCRIPT>
-<STKY>
-<HEAD3>Module 5, Lesson 2,  Video 3: Other ways to compute it</HEAD3></STKY>
+
+
+<FLD>Alternative formula
+<EXRLIST id="m5l2_b.yml">
+- typeName: numeric
+  prompt: >
+    If the mean and variance of 10 numbers are,  respectively,
+    10 and 45,  and a new value 7 is introduced, what is the
+    new variance?
+  defaultFeedback: >
+    Find the sum and sum of squares of the original 10 numbers.
+    Then update these to incorporate the new value.
+  shuffleOptions: true
+  answers:
+  - range: [171.77, 171.8] 
+    isCorrect: true
+    feedback: >
+      Yes, the old sum was 450 and the old sum of squares was
+      20655. After updating they became 457 and 20704,
+      respectively. Also, sample size increased from 10 to 11.
+    
+- typeName: numeric
+  prompt: >
+    If the sum of squares of 5 numbers is 1004,  and the mean
+    is 6,  then find the standard deviation.
+
+  defaultFeedback: >
+    The formula is sqrt((SS/n -  mean^2)).
+  shuffleOptions: true
+  answers:
+  - range: [14.35,14.4]
+    isCorrect: true
+    feedback: >
+
+</EXRLIST>
+</FLD>
+
+
 <SCRIPT id="m5/l2/v3" done="k" t="5:34">
 <SC t="6" done="r" id="s1">
 [Screencast: Compute for the same data. Var. Then explicit. Find
@@ -9705,70 +9840,6 @@ n-1 problem.]
 var.csv
 </SC>
 </SCRIPT>
-
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
-      Here is a [data] set with two variables gender and
-  height. Find the variance of height considering all cases,
-  irrespective of gender. Use the default formula in LibreOffice.
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-- typeName: numeric
-  prompt: >
-      Again consider the same data set as in the last
-      exercise. But this time compute the variance of the heights of
-      men only. Use the default formula in LibreOffice.
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
-  prompt: >
-      Again consider the same data set as in the last
-      exercise. But this time compute the variance of the heights of
-      women only. Use the formula with n in the denominator.
-
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-
-</EXRLIST>
-</FLD>
 
 <STKY>
 <HEAD3>Module 5, Lesson 2,  Video 4: Other ways to compute it</HEAD3></STKY>
@@ -9830,29 +9901,19 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Variance n and n-1
+<EXRLIST id="m5l2_c.yml">
 - typeName: numeric
   prompt: >
-      A statistician used the LibreOffice formula =var(a2:a100)
+      A statistician used the LibreOffice formula =var(a2:a101)
   to get the answer 34. Had she used the formula with n in the
   denominator, she would have obtained:
   defaultFeedback: >
-      
+      34 * (100-1)/100 = 33.66.
   shuffleOptions: true
   options:
-  - range:
+  - value: 33.66
     isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
       
 - typeName: numeric
   prompt: >
@@ -9861,27 +9922,53 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
   LibreOffice var formula minus variance with n in the
   denominator is:
   defaultFeedback: >
-      
+     Mean is 10/5 = 2. Variance with n in the denominator is
+  100/5-2*2 = 16. LibreOffice will report 16*(5/4) = 20. So the
+  answer should be 20-16 = 4.      
   shuffleOptions: true
   options:
-  - range:
+  - value: 4
     isCorrect: true
     feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
 
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 5, Lesson 2,  Video 5: Properties</HEAD3></STKY>
+
+- typeName: textReflect
+  prompt: >
+      Here is a data set [[./exraux/gh.xlsx]] with two variables gender and
+  height. Find the variance of height considering all cases,
+  irrespective of gender. Use the default formula in LibreOffice.
+  defaultFeedback: >
+      Variance = 53.05
+
+- typeName: textReflect
+  prompt: >
+      Again consider the same data set as in the last
+      exercise. But this time compute the variance of the heights of
+      men only. Use the default formula in LibreOffice.
+  defaultFeedback: >
+      Use =IF(A2="Male",B2,"") in cell C2, and drag.
+      Variance  = 59.43
+      
+- typeName: textReflect
+  prompt: >
+      Again consider the same data set as in the last
+      exercise. But this time compute the variance of the heights of
+      women only. Use the formula with n in the denominator.
+
+  defaultFeedback: >
+      Use =IF(A2="Male",B2,"") in cell C2, and drag.
+      Remember that here n = 10. So you need to multiply
+      LibreOffice output by 9/10.
+
+      Variance = 47.44
+
+</EXRLIST>
+</FLD>
+
+
+
 <SCRIPT id="m5/l2/v5" done="k" t="2:46">
 <SESS t="2.60" done="r" kf="10,70,80,140,150,210,220" id="s1">
 While discussing range, we had listed some desirable properties
@@ -9932,8 +10019,9 @@ OK, so we have checked the good properties. Now let's check
  stay tuned for something more robust in the next video.
 </SESS>
 </SCRIPT>
-<FLD>
-<EXRLIST id="M5L2V5.yml">
+
+<FLD>Var trans
+<EXRLIST id="m5l2_d.yml">
 - typeName: multipleChoice
   prompt: >
       Variance some lengths meansured in centimetres is V sq
@@ -9955,10 +10043,18 @@ OK, so we have checked the good properties. Now let's check
   - answer: 100 V sq m
     feedback: >
       
+- typeName: textReflect
+  prompt: >
+     If the variance of a variable X is 10, then the variance of 
+     2-3X is: 
+  defaultFeedback: >
+     The added 2 has no effect. The multiplied -3 becomes
+     (-3)^2=9. So the answer is 9*10 = 90. 
 
 </EXRLIST>
 </FLD>
 </LESSON>
+
 <HEAD2>Module 5: Lesson 3</HEAD2>
 <STKY>
 <HEAD3>Module 5, Lesson 3,  Video 1: Median absolute deviation</HEAD3></STKY>
@@ -10013,9 +10109,9 @@ var.csv
 </BC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>Mad by hand
+<EXRLIST id="m5l3_a.yml">
+- typeName: textReflect
   prompt: >
       Compute MAD for this data set by hand:
        | X |
@@ -10026,14 +10122,9 @@ var.csv
        | 4 |
        | 4 |
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - value: 
-    isCorrect: true
-    feedback: >
-      
-- typeName: numeric
+      median = 4. MAD = 1.
+
+- typeName: textReflect
   prompt: >
     Consider the data set:
       | X |
@@ -10044,51 +10135,44 @@ var.csv
       | 9 |
     What is the MAD?
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - value: 
-    isCorrect: true
-    feedback: >
+      median = 6.5. MAD = 1.5.
       
 - typeName: multipleChoice
   prompt: >
-      A variable has MAD 10. The maximum value of the variable is
+      A variable with 5 values has has MAD 10. The maximum value of the variable is
       increased by 100.  Then the new MAD is:
   defaultFeedback: >
-      
+      Median is unaffected by increasing the maximum value.
   shuffleOptions: true
   options:
   - answer: 10
     isCorrect: true
-    feedback: >
       
   - answer: 110
-    feedback: >
       
   - answer: 60
-    feedback: >
       
   - answer: cannot be computed based on the given information.
-    feedback: >
       
 - typeName: multipleChoice
   prompt: >
-      We have a univariate data set with median m. 10 more cases
+      We have a univariate data set  having median m. 10 more cases
   are appended to the data set each with the same value m. Then
-  the MAD will 
+  how will the MAD change?
   defaultFeedback: >
-      
+      The median still remains m. In the list of absolute
+      deviations the new values will all contribute 0, the least
+      possible value.
   shuffleOptions: true
-  options: decrease
+  options: cannot increase.
   - answer:
     isCorrect: true
     feedback: >
       
-  - answer: increase
+  - answer: cannot decrease.
     feedback: >
       
-  - answer: stay the same
+  - answer: must stay the same
     feedback: >
       
   - answer: none of the above may be said in general.
@@ -10112,11 +10196,13 @@ var.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>Mad by LibreOffice
+<EXRLIST id="m5l3_b.yml">
 - typeName: numeric
   prompt: >
-      Consider this [data file]. Compute MAD of the variable x.
+      Consider this [[./exraux/gh.xlsx]]. Compute MAD of the
+  variable height considering both genders.
+
   defaultFeedback: >
       
   shuffleOptions: true
@@ -10137,7 +10223,7 @@ var.csv
 - typeName: multipleChoice
   prompt: >
       Here is a portion of a LibreOffice spreadsheet:
-       [[./exrpics/sheet.png]]
+       [[./exraux/sheet.png]]
       In order to create a column of deviations from the median a
       statistician has writen an formula in the cell marked *, and
       then plans to drag the formula from cell B2 to B6. Which of 
@@ -10186,8 +10272,6 @@ var.csv
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 5, Lesson 3,  Video 3: Properties of MAD</HEAD3></STKY>
 <SCRIPT id="m5/l3/v3" done="k" t="3:30">
 <SESS t="1.20" done="r" kf="10,70,80,140,150,210" id="s1">
 MAD has all the good properties of a dispersion measure that we
@@ -10231,22 +10315,18 @@ But our defn is more common.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>MAD trans
+<EXRLIST id="m5l3_c.yml">
+- typeName: textReflect
   prompt: >
       Some heights reported in centimetres have MAD 150.4 cm. If
       the same heights were reported in inches, then the MAD would
       have been 
   defaultFeedback: >
+      MAD also changes unit, just like the data: 150.4/2.54 = 59.21 inches. 
+
       
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-- typeName: numeric
+- typeName: textReflect
   prompt: >
       Find the mean absolute deviation from mean for the
       following data: 
@@ -10258,22 +10338,7 @@ But our defn is more common.
          | 27 |
          | 30 |
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+      mean = 28. So mean absolute deviation from mean is 8.
 
 </EXRLIST>
 </FLD>
@@ -10288,75 +10353,9 @@ rob.csv
 </SC>
 </SCRIPT>
 <FLD>
-<EXRLIST id="M5L3V1.yml">
-What signals outliers: MAD diffeernet from standard deviation.
-- typeName: numeric
+<EXRLIST id="m5l3_d.yml">
+- typeName: multipleChoice
   prompt: |-
-    Find MAD for these numbers.
-    23, 56, 67, 45, 23, 34, 20
-  defaultFeedback: >
-    You may like to watch the video once again. First find the median.
-  shuffleOptions: true
-  answers:
-  - range: [16.3, 16.31]
-    isCorrect: true
-    feedback: >
-      
-
-- typeName: multipleChoice
-  prompt: >
-    If the median is 6 and MAD is 3,  then find the new MAD
-    when a new value 7 is introduced.
-  defaultFeedback: >
-    You do not have all the values. So you do not have enough
-    information to update the median.
-  shuffleOptions: true
-  options:
-  - answer: Cannot answer with this information.
-    isCorrect: true
-      
-  - answer: 3
-      
-  - answer: 4
-      
-  - answer: 7
-      
-- typeName: numeric
-  prompt: >
-      Here is a [data set]. Compute its MAD. Now append the outlier
-  case 100 to the data. Recompute the MAD. The new value minus
-  the old value is:
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-
-- typeName: numeric
-  prompt: >
-      Redo the last exercise with standard deviation in place of MAD.
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-      
-- typeName: multipleChoice
-  prompt: >
       We have two variables in a data set of equal size. Their
       MAD and SD are like these:
           |            |  MAD |   SD |
@@ -10378,7 +10377,7 @@ What signals outliers: MAD diffeernet from standard deviation.
 
 - typeName: multipleChoice
   prompt: >
-      Which is expected to be more robust, mean absolute
+      Which is expected to be less robust, mean absolute
   deviation abount mean, or median absolute deviation about median?
   defaultFeedback: >
       
@@ -10397,8 +10396,7 @@ What signals outliers: MAD diffeernet from standard deviation.
 
 <HEAD2>Module 5: Lesson 4</HEAD2>
 
-<STKY>
-<HEAD3>Module 5, Lesson 4,  Video 1: Interquartile range and boxplot</HEAD3></STKY>
+
 <LESSON>
 <SCRIPT id="m5/l4/v1" done="k" t="6:51">
 <SESS t="1.40" done="r" kf="10,20,30,40,50" id="s1">
@@ -10436,9 +10434,9 @@ IQR computation. and robustness comparison.
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>IQR hand and LibreOffice computation and properties
+<EXRLIST id="m5l4_a.yml">
+- typeName: textReflect
   prompt: >
       Compute IQR based on this data set:
        |   X |
@@ -10451,59 +10449,24 @@ IQR computation. and robustness comparison.
        | 0.5 |
        | 3.4 |
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
+      First sort the values: 0.5 2.8 2.8 3.4 3.4 5.6 6.1.
+      Here Q1 is the second value: 2.8 and Q3 is the 6th: 5.6.
+      So IQR = Q3-Q1 = 2.8.
 
-- typeName: numeric
+- typeName: textReflect
   prompt: >
-      Compute IQR using LibreOffice using this [data set].
+      Compute IQR of the Sales 1 variable using LibreOffice using
+      this data set: [[./exraux/pvalcomp.xlsx]]
+
   defaultFeedback: >
-      
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: multipleChoice
-  prompt: >
-      If IQR of a variable X is q, then the IQR of -3-2*X will be 
-  defaultFeedback: >
-      
-  shuffleOptions: true
-  options: 2*q
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer: -3 -2*q
-    feedback: >
-      
-  - answer: -2*q
-    feedback: >
-      
-  - answer: -3 + 2*q
-    feedback: >
-      
+      Q1 = 1.3 and Q3 = 3.9. So IQR = 2.6
+
 - typeName: multipleChoice
   prompt: >
       By changing just a single value in a univariate data set
       with 10 cases, the IQR cannot change. True or false?
   defaultFeedback: >
-      
+      The value you change might be Q1 or Q3.      
   shuffleOptions: true
   options:
   - answer: False.
@@ -10515,6 +10478,7 @@ IQR computation. and robustness comparison.
 
 </EXRLIST>
 </FLD>
+
 <STKY>
 <HEAD3>Module 5, Lesson 4,  Video 2: Boxplot</HEAD3></STKY>
 <SCRIPT id="m5/l4/v2" done="k" t="5:39">
@@ -10541,17 +10505,17 @@ the minimum<V>[shown]</V> to the maximum<V>[shown]</V>
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST id="M5L4V1.yml">
+<FLD>boxplot interpret
+<EXRLIST id="m5l4_b.yml">
 
 - typeName: checkbox
   prompt: >
-    Consider the  box plots for two variables. [fig]
+    Consider the  box plots for two variables. [[./exraux/bixinc.png]]
     Then which of the following statements is/are true?
   shuffleOptions: true
   options:
   - answer: >
-      The first variable has higher dispersion than the second.
+      Male income has higher dispersion than female income.
     isCorrect: true
     feedback: >
       Yes, the first box is taller than the second.
@@ -10560,14 +10524,10 @@ the minimum<V>[shown]</V> to the maximum<V>[shown]</V>
       too high. 
     feedback: >
       No, they are too low.
-  - answer: The medians of the two variable are equal.
+  - answer: The medians of the two variables are equal.
     isCorrect: true
     feedback: >
       Yes, the central lines are on the same level.
-  - answer: The means of the two variables are equal.
-    feedback: >
-      No, it seems that mean of the first variable is more.
-
 
 </EXRLIST>
 </FLD>
@@ -10594,25 +10554,24 @@ cons.csv
 </SC>
 </SCRIPT>
 
+
 <FLD>
-<EXRLIST id="M5L4V2.yml">
-- typeName: multipleChoiceCompute interquartile range for the data.
-
-- typeName: multipleChoiceMake box plots.
-
-- typeName: multipleChoiceCompare box plots.
-
-- typeName: multipleChoiceCompute trimmed variance.
-
+<EXRLIST id="m5l4_c.yml">
+- typeName: textReflect
+  prompt: >
+     Create a box plot of the data in [[./exraux/pvalcomp.xlsx]].  
+  defaultFeedback: >
+      min= 0, Q1 = 1.3, Q2 = 2.55, Q3 = 3.9, max = 5.
 
 </EXRLIST>
 </FLD>
+
 </LESSON>
 <HEAD2>Module 5: Lesson 5</HEAD2>
 <LESSON>
 <STKY>
 <HEAD3>Module 5, Lesson 5 ,  Video 1: Review</HEAD3></STKY>
-<SCRIPT id="m5/l5/v1" t="0" done="r">
+<SCRIPT id="m5/l5/v1" t="3:00" done="k">
 <SESS t="2.60" done="a" id="s1">
 We have arrived at the end of the fifth week. We are nearing the
 end of our lectures. This week we have covered dispersion. While
@@ -10677,7 +10636,7 @@ Let's review these concepts one by one.
 <STKY>
 <HEAD3>Module 5, Lesson 5 ,  Video 2: Review</HEAD3></STKY>
 
-<SCRIPT id="m5/l5/v2" t="0" done="r">
+<SCRIPT id="m5/l5/v2" t="2:53" done="k">
 <SESS t="5" done="a" kf="30" id="s1">
 Boxplot.
 We have talked quite a bit about it. It is certainly the most
@@ -10716,7 +10675,7 @@ png('irisbox.png',bg='transparent')
 boxplot(iris[,-5],col='blue',lwd=3,lty=1)
 dev.off()
 </R>
-<SCRIPT id="m5/l5/v3" t="0" done="r">
+<SCRIPT id="m5/l5/v3" t="3:27" done="k">
 <SESS t="2.50" done="a" kf="30" id="s1">
 What are the most popular measures of dispersion? The answer is
 variance and its square root standard deviation.
@@ -10797,7 +10756,7 @@ bareplot(x,y,pch=20,cex=2,col='blue')
 abline(h=0,v=0,lwd=3)
 dev.off()
 </R>
-<SCRIPT id="m5/l5/v4" t="0" done="r">
+<SCRIPT id="m5/l5/v4" t="2:54" done="k">
 <SESS t="2.50" done="a" id="s1">
 We have encountered the concept of outliers and robustness
 already a number of times duing this course.  Outliers are the
@@ -10855,7 +10814,7 @@ the extent of the whiskers.
 </SESS>
 </SCRIPT>
 
-<SCRIPT id="m5/l5/v5" t="0" done="nr">
+<SCRIPT id="m5/l5/v5" t="5:20" done="k">
 <SESS t="0.5" done="n" id="s1">
 We have seen that there are two different formulae for computing
 variance of a bunch of numbers. One formula uses... n in the
@@ -10869,7 +10828,7 @@ varalt.ods
 </SCRIPT>
 
 <FLD>
-<EXRLIST>
+<EXRLIST id="m5_add.yml">
 - Consider this time series data [m5_1.csv] of length thousand. Consider the first 100 values
 only (ie 1st to 100th) , and find the variance, call it <M>V_1.</M> Next, consider
 the 100 values from 2nd to 101st, and find their
@@ -10960,6 +10919,10 @@ dev.off()
 </FLD>
 
 </LESSON>
+<REF>
+WW: Chapter 4
+FPP: Chapter 4, parts 4--6.
+</REF>
 
 <HEAD1>Module 6: Association etc</HEAD1>
 <SCRIPT id="m6/intro" done="k" t="1:07">
@@ -11084,14 +11047,14 @@ contingency tables, except just constructing them from raw
 data. We shall learn to do things with them later this week.
 </SESS>
 </SCRIPT>
-<FLD>
+<FLD>*4
 
-<EXRLIST>
+<EXRLIST id="m6l1_a.yml">
 
 - typeName: multipleChoice
   prompt: >
     Here are two bivariate scatterplots. 
-    [e1a.png] [e1_b.png]
+    [[./exraux/twoscat.png]]
     Which of the following is true about them?
   defaultFeedback: >
       Are you sure? An increasing relation means a south-east to
@@ -11116,11 +11079,11 @@ data. We shall learn to do things with them later this week.
 - typeName: multipleChoice
   prompt: >
      Consider the following 4 plots.
-      [e2a.png]
+      [[./exraux/fourscat.png]]
      Which of these show(s) a nonlinear pattern?
   shuffleOptions: true
   options:
-  - answer:
+  - answer: C
     isCorrect: true
     feedback: >
       Yes, only these two cannot be captured via straight lines.
@@ -11139,7 +11102,7 @@ data. We shall learn to do things with them later this week.
 - typeName: checkbox
   prompt: >
     Here is a scatter plot with a nonlinear relation. 
-                      [e3a.png]
+                      [[./exraux/onescat.png]]
     which of the following is/are true about it? 
   shuffleOptions: true
   options:
@@ -11171,7 +11134,7 @@ data. We shall learn to do things with them later this week.
 - typeName: multipleChoice
   prompt: >
     Here are two scatterplots. 
-               [e4a.png] 
+               [[twomorescat.png]] 
     If you want to predict y from x,
     then which data will provide more reliable prediction? 
   defaultFeedback: >
@@ -11191,8 +11154,6 @@ data. We shall learn to do things with them later this week.
 
 </FLD>
 
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 2: Concept of covariance</HEAD3></STKY>
 <SCRIPT id="m6/l1/v2" done="k" t="3:10">
 <SESS t="3.60" done="r" kf="10,20,30,40,70,80,120,140,150,160" id="s1">
 Suppose we have a bivariate data set<V>[shown]</V>, heights and weights of some
@@ -11257,10 +11218,10 @@ covariance, some desirable, some not.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: multipleChoice
-  prompt: >
+<FLD>*4
+<EXRLIST id="m6l1_b.yml">
+- typeName: textReflect
+  prompt: |-
     Compute the covariance between X and Y using the following
     bivariate data set: 
     |  X |  Y |
@@ -11270,44 +11231,18 @@ covariance, some desirable, some not.
     | 14 | 67 |
     | 23 | 60 |
     | 34 | 49 |
-
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
+  defaultFeedback: >
+    Roughly -348.8. 
       
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
+- typeName: textReflect
   prompt: >
      If cov(X,Y) = 2.3, then what is cov(2*X,Y)? 
      Hint: Use the definition of covariance.
- 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+  defaultFeedback: >
+     2.3 * 2 = 4.6.
 
 - typeName: multipleChoice
-  prompt: >
+  prompt: |-
      Consider this data set:
        |  X | Y |
        |----+---|
@@ -11338,27 +11273,19 @@ covariance, some desirable, some not.
       
 - typeName: numeric
   prompt: >
-    Find cov(X,Y), if X, and Y both have variance 1, and mean 0,
+    Find cov(X,Y), if X has variance 1,
     and Y = 2*X + 1.
-  shuffleOptions: true
-  options:
-  - range: [2,2]
-    isCorrect: true
-    feedback: >
-      
-  - range: 
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+  defaultFeedback: >
+    Directly apply the definition. The answer is 2.
 </EXRLIST>
+<R>
+fff
+x = c(12,56,14,23,34)
+y = c(34,23,67,60,49)
+sum(x*y)/6-mean(x)*mean(y)
+</R>
 </FLD>
 
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 3: Correlation </HEAD3></STKY>
 <SCRIPT id="m6/l1/v3" done="k" t="4:05">
 <SESS t="3.20" done="r" kf="10,20,30,40,50,60,70,80,90" id="s1">
 In this video we shall discuss some properties of 
@@ -11438,9 +11365,9 @@ works only for linear relation.</B>
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>*2
+<EXRLIST id="m6l1_c.yml">
+- typeName: textReflect
   prompt: |-
     Compute correlation based on the following bivariate data
     set:
@@ -11451,24 +11378,11 @@ works only for linear relation.</B>
     | 14 | 67 |
     | 23 | 60 |
     | 34 | 49 |
-  shuffleOptions: true
   defaultFeedback: >
-    Oops! A correlation cannot be outside [-1,1]. Please review
-    the material.
-  answers:
-  - range: [-0.61, -0.6]
-    isCorrect: true
-    feedback: >
-      Good job!
-  - range: [-1,-0.61)
-    feedback: >
-      You may like to check the formula once again.
-  - range: (-0.6,1]
-    feedback: >
-      You may like to check the formula once again.
+    Roughly -0.6.
           
-- typeName: multipleChoice
-  prompt: >
+- typeName: textReflect
+  prompt: |-
      Make a scatterplot for the following bivariate data. 
        |   X |   Y |
        |-----+-----|
@@ -11478,35 +11392,28 @@ works only for linear relation.</B>
        | 4.2 | 3.9 |
        | 3.5 | 3.2 |
      Based on the scatterplot guess the sign of the correlation coefficient.
-  shuffleOptions: true
-  options: 
-  - answer: positive.
-    isCorrect: true
-    feedback: >
-      
-  - answer: negative.
-    feedback: >
-      
-  - answer: zero.
-    feedback: >
-      
-  - answer: impossible to say.
-    feedback: >
+  defaultFeedback: >
+    [[./exraux/scatcor.png]]
+   Must be positive. In fact, pretty close to 1.
 </EXRLIST>
+<R>
+x = c(2.3,1.4,3.7,4.2,3.5); y = c(2.5,1.6,3.5,3.9,3.2)
+cor(x,y)
+plot(x,y,pch=20,cex=3)
+</R>
 </FLD>
 
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 4: Why correlation is not enough</HEAD3></STKY>
+
 <SCRIPT id="m6/l1/v4" done="k" t="5:00">
 <SC t="5" done="r">
 [Screencast: anscombe.csv]
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
+<FLD>*2
+<EXRLIST id="m6l1_d.yml">
+- typeName: textReflect
+  prompt: |-
      Let's make our own Anscombe-like data. Here is a starting
      point: 
        | X | Y |
@@ -11516,22 +11423,15 @@ works only for linear relation.</B>
        | 3 | 3 |
        | 4 | y |
        | 5 | 5 |
-     Find a value of y such that the correlation becomes 0.5.
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+     Find a value of y such that the correlation becomes less
+     than 0.5.
+  defaultFeedback: >
+     You may start by expressing the correlation in terms of the unknown
+     y. But an easier way is to use LibreOffice. Actually plug
+     various values in place of y and compute the correlation. In particular,
+     y = 45 works:
+      [[./exraux/funsol.png]]
+
 - typeName: checkbox
   prompt: >
       Which of the following is/are reason(s) why you should not
@@ -11544,67 +11444,46 @@ works only for linear relation.</B>
       
   - answer: The formula is complicated.
     feedback: >
-      
+      Why care about that? The computer takes care of that for you!
   - answer: There may be outliers.
     isCorrect: true
     feedback: >
-      
+      Even a single outlier may change correlation a lot!
   - answer: Making a little scatterplot beforehand never hurts.
     isCorrect: true
     feedback: >
+      Aha! That's spoken like a wise statistician.
 </EXRLIST>
 </FLD>
 
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 5: Transformation properties of correlation</HEAD3></STKY>
 <SCRIPT id="m6/l1/v5" done="k" t="6:36">
 <BC t="6" done="r" id="corprop_615">
 Transformation properties of correlation.
 </BC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: multipleChoice
+<FLD>*3
+<EXRLIST id="m6l1_e.yml">
+- typeName: textReflect
   prompt: >
      If correlation between X and Y is 0.9, then what will be 
      the correlation between 2+X and 1-2*Y?
-  shuffleOptions: true
-  options:
-  - answer: -0.9
-    isCorrect: true
-    feedback: >
-      
-  - answer: 0.9
-    feedback: >
-      
-  - answer: Something positive less than 0.9.
-    feedback: >
-      
-  - answer: Not possible to answer based on this information.
-    feedback: >
+  defaultFeedback: >
+     The added constants have no effect. Neither do the
+     multiplied constants. Only the signs of the multiplied
+     constant matter. Here the sign before X is a plus, the 
+     sign before Y is a minus. So the answer is -0.9.
       
 - typeName: multipleChoice
   prompt: >
      If correlation between X and Y is -0.9, then what will be 
      the correlation between -X and -Y?
-  shuffleOptions: true
-  options:
-  - answer: -0.9
-    isCorrect: true
-    feedback: >
-      
-  - answer: 0.9
-    feedback: >
-      
-  - answer: Something negative more than -0.9.
-    feedback: >
-      
-  - answer: Not possible to answer based on this information.
-    feedback: >
+  defaultFeedback: >
+     Both X and Y are negated. Since (-1)*(-1)=1, the correlation
+     will remain unchanged: -0.9.
       
 - typeName: multipleChoice
-  prompt: >
+  prompt: |-
      Consider this data set:
       | X | Y |
       |---+---|
@@ -11613,23 +11492,23 @@ Transformation properties of correlation.
       | 3 | 7 |
       | 4 | 9 |
      Then which of the following must hold? [Hint: Don't start
-     to compute right away. Thinnk]
+     to compute right away. Think!]
+  defaultFeedback: >
+    X and Y are related by a perfect linear relation.
   shuffleOptions: true
   options:
   - answer: cor(X,Y) > cor(X,Y^2)
     isCorrect: true
     feedback: >
-      
+      Yes! Here Y = 2*X+1. Since we have a perfect linear
+      linear relation with positive slope, cor(X,Y)=1. But
+      clearly X, Y^2 are not related linearly. So cor(X,Y) < 1.
   - answer: cor(X,Y) < cor(X,Y^2)
-    feedback: >
       
   - answer: cor(X,Y) = cor(X,Y^2)
-    feedback: >
-      
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 6, Lesson 1,  Video 6: Pooled correlation</HEAD3></STKY>
+
 <SCRIPT id="m6/l1/v6" done="k" t="6:39">
 <SC t="7" done="r" id="sc_poolcor">
 Idea of pooled mean, pooled variance. The shocking news for
@@ -11638,28 +11517,28 @@ poolcor.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: peerreview
+<FLD>*2
+<EXRLIST id="m6l1_f.yml">
+- typeName: textReflect
     Construct two bivariate data sets such that  each has correlation
-    between -0.1 and 0.1, but the pooled data has correlation > 0.8.
-    If you think that is impossible, justify yourself.  
+    1, but the pooled data has correlation less than 0.8.
+    [Hint: Take the first data set (1,1), (2,2), (3,3), then
+    shift these points by some amount (say add p to X-values, and
+    q to all Y-values) to get (1+p,1+q), (2+p,2+q), (3+p,3+q).
+    Find suitable p and q. LibreOffice might help.] 
+  defaultFeedback: >
+    Try these:
+       [[./exraux/funsol2.png]]
 
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: >
      Is it possible to have two biavariate data sets, each with
   correlation +1, but the pooled data has correlation <M>-1?</M> 
-  shuffleOptions: true
-  options: 
-  - answer: No.
-    isCorrect: true
-    feedback: >
-      You may go arbitraily close to to -1, but not exactly -1.
-      
-  - answer: Yes.
-    feedback: >
-      No.
-
+  defaultFeedback: >
+     No. If the pooled correlation is -1, then the points must 
+     all lie along a line of negative slope. So no subset can
+     have positive correlation.
+ 
 </EXRLIST>
 </FLD>
 
@@ -11798,34 +11677,21 @@ variables.</B>
 </SCRIPT>
 <STKY>
 
-<FLD>
-<EXRLIST>
-
-- typeName: multipleChoice
-  prompt: >
-    Again consider the same toy data set as in the last
-    exercise. But this time compute Spearman's rank correlation.
-  shuffleOptions: true
-  defaultFeedback: >
-    Oops! A correlation cannot be outside [-1,1]. Please review
-    the material.
-  answers:
-  - value: -0.4
-    isCorrect: true
-    feedback: >
-      Good job!
-  - range: [-1,-0.4)
-    feedback: >
-      You may like to check the formula once again.
-  - range: (-0.4,1]
-    feedback: >
-      You may like to check the formula once again.
-
-- typeName: plugin
+<FLD>*2
+<EXRLIST id="m6l2_a.yml">
+- typeName: textReflect
   prompt: >
     Create a bivariate data set with Spearman's rank correlation 1,
     but Pearson's correlation less than 1.
-
+  defaultFeedback: |-
+    Think in terms of a scatterplot. the points must all lie on
+    an exact increasing relation, but not on a line. For example, 
+       | X |  Y |
+       |---+----|
+       | 1 |  1 |
+       | 2 |  4 |
+       | 3 |  9 |
+       | 4 | 16 |
 - typeName: multipleChoice
   prompt: > 
     A teachers were rated in 10-point Likert scale by the same set of students before
@@ -11852,30 +11718,17 @@ hw2.dat: (with repetion) use =rank.avg(a1, a$1:a$100, 1) First
 find rank for variable without repetition (height).
 </SC>
 </SCRIPT>
-<FLD>
-<EXRLIST>
-- typeName: multipleChoice
+<FLD>*3
+<EXRLIST id="m6l2_b.yml">
+- typeName: textReflect
   prompt: >
      Which of the following two scatterplots show a monotonic relation? 
-       [e1a.png]
-  shuffleOptions: true
-  options:
-  - answer:
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
+       [[./exraux/monscat.png]]
+  defaultFeedback: >
+    The second one. The first one doubles back on itself.
 
-- typeName: numeric
-  prompt: >
+- typeName: textReflect
+  prompt: |-
      Compute Spearman's rank correlation from the following data
      set. 
        |   X |   Y |
@@ -11884,23 +11737,11 @@ find rank for variable without repetition (height).
        | 2.3 | 4.5 |
        | 5.1 | 4.1 |
        | 6.1 | 8.8 |
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+  defaultFeedback: >
+      Answer is 0.2.
       
 - typeName: numeric
-  prompt: >
+  prompt: |-
      Compute Spearman's rank correlation from the following data
      set. 
        |   X |   Y |
@@ -11909,23 +11750,16 @@ find rank for variable without repetition (height).
        | 2.3 | 4.3 |
        | 5.1 | 4.3 |
        | 2.3 | 8.8 |
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+  defaultFeedback: >
+    Here we have a tie. Answer is -0.63.
 
 </EXRLIST>
+<R>
+x = c(1.2,2.3,5.1,6.1); y = c(5.3, 4.5, 4.1,8.8)
+x1 = c(1.2,2.3,5.1,2.3); y = c(5.3, 4.5, 4.1,8.8)
+gg
+cor(rank(x1),rank(y))
+</R>
 </FLD>
 
 <STKY>
@@ -11937,10 +11771,10 @@ The d_i formula. No tie, tie.
 </BC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>*2
+<EXRLIST id="m6l2_c.yml">
 - typeName: multipleChoice
-  prompt: >
+  prompt: |-
      Here are two bivariate data sets. For which one would you
      use the alternative formula discussed in the video to
      compute Spearman's rank correlation? Compute it for that
@@ -11959,44 +11793,30 @@ The d_i formula. No tie, tie.
        | 5.4 | 8.9 |
        | 2.4 | 7.0 |
        | 4.8 | 3.4 |
+  defaultFeedback: |-
+    For the second one, because there is no tie there.
+    Here the ranks and di's are 
+      | Rx | Ry |  d |
+      |----+----+----|
+      |  1 |  2 | -1 |
+      |  4 |  4 |  0 |
+      |  2 |  3 |  1 |
+      |  3 |  1 |  2 |
+    Spearman's rank correlation = 0.4.
 
-  shuffleOptions: true
-  options:
-  - answer: Second, 
-    isCorrect: true
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-  - answer:
-    feedback: >
-      
-- typeName: multipleChoice
+- typeName: textReflect
   prompt: >
      If  Pearson's correlation coefficient between two 
      positive variables is 1, then what can you say about 
      Spearman's rank correlation between X and Y^2?
-  shuffleOptions: true
-  options:
-  - answer: must also be 1.
-    isCorrect: true
-    feedback: >
-      
-  - answer: must be < 1, but positive.
-    feedback: >
-      
-  - answer: must be -1.
-    feedback: >
-      
-  - answer: nothing can be said in general.
-    feedback: >
-      
+  defaultFeedback: >
+     Must also be 1, because for positive numbers squaring is an
+     increasing function.
 
 </EXRLIST>
+<R>
+cor(c(1,4,2,3),c(2,4,3,1))
+</R>
 </FLD>
 
 <STKY>
@@ -12066,10 +11886,10 @@ OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coeffic
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
+<FLD>*2
+<EXRLIST id="m6l2_d.yml">
+- typeName: textReflect
+  prompt: |-
      Compute phi-coefficient based on the following data:
          | Drug | Status |
          |------+--------|
@@ -12079,24 +11899,23 @@ OK, now let's see how LibreOffice can help us to compute the <M>\phi</M> coeffic
          | B    | Alive  |
          | A    | Alive  |
          | B    | Alive  |
-
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
+  defaultFeedback: >
+- typeName: textReflect
+  prompt: >
+     How will the answer to the above problem change if A and B
+  are interchanged? 
+  defaultFeedback: >
+      The sign will reverse. Of course, interpretation will
+      remain the same, as the interpretation depdends only on the
+      absolute value.
 
 </EXRLIST>
+<R>
+tt
+x = c(0,0,1,1,0,1)
+y = c(0,0,0,1,1,1)
+cor(x,y)
+</R>
 </FLD>
 <STKY>
 <HEAD3>Module 6, Lesson 2,  Video 5: Phi lab</HEAD3></STKY>
@@ -12109,49 +11928,27 @@ Save whorl.csv for exercises.
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>*1
+<EXRLIST id="m6l2_e.yml">
+- typeName: textReflect
   prompt: >
-     Compute phi coefficient using this data set: [1a.csv] 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+     Compute phi coefficient using this data set: [[./exraux/phicomp.csv]]
+  defaultFeedback: >
+     Roughly 0.11. Use the LibreOffice switch function to convert
+     the values to 0 and 1.
 </EXRLIST>
+<R>
+set.seed(4643)
+cw('exraux')
+gender = sample(2,100,rep=T)
+handedness = sample(2,100,rep=T)
+g = c('male','female')
+h = c('left','right')
+csv(data.frame(g[gender], h[handedness]),'phicomp.csv')
+cor(gender, handedness)
+</R>
 </FLD>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
-     Compute phi coefficient using this data set: [1b.csv] 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-</EXRLIST>
-</FLD>
 </LESSON>
 <HEAD2>Module 6: Lesson 3</HEAD2>
 
@@ -12202,29 +11999,19 @@ possible ways to go about it, as we shall now see.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
+<FLD>1
+<EXRLIST id="m6l3_a.yml">
+- typeName: textReflect
+  prompt: |-
      Compute phi coefficient using this 2 by 2 contingency table:
        |        | Alive | Dead |
        |--------+-------+------|
        | Drug A |    37 |   23 |
-       | Drug B |   123 |   56 |
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+       | Drug B |   123 |   57 |
+  defaultFeedback: >
+    Let X = 0 for A, 1 for B. Similarly, let Y = 0 for Alive, 1
+    for Dead. 
+
 </EXRLIST>
 </FLD>
 
@@ -12268,12 +12055,14 @@ lr.csv:
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: multipleChoice
+<FLD>*3
+<EXRLIST id="m6l3_b.yml">
+- typeName: textReflect
   prompt: >
      Which of the following statements is true about the set of
-  al possibe values an odds ratio can take?
+     all possibe values an odds ratio can take?
+  defaultFeedback: >
+     Remember that odds may take any nonegative value. 
   shuffleOptions: true
   options:
   - answer: >
@@ -12292,52 +12081,42 @@ lr.csv:
   - answer: Odds ratio must lie in [-1,1].
     feedback: >
       
-- typeName: numeric
-  prompt: >
+- typeName: textReflect
+  prompt: |-
      Compute odds ratio from this table. 
        |               | Cured | Not cured |
        |---------------+-------+-----------|
        | Physiotherapy |    34 |        98 |
        | Chemotherapy  |    57 |        29 |
 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+  defaultFeedback: >
+    (34*29)/(57*98). 
       
 - typeName: multipleChoice
   prompt: >
      How will the odds ratio change if the rows of a 2 by 2
      contingency table are swapped? How will it change if the
      columns are swapped (keeping the rows unaffected)?
+  defaultFeedback: |-
+     If the contingency table is like
+       | a | b |
+       |---+---|
+       | c | d | 
+     then odds ratio is (ad)/(bc).  
   shuffleOptions: true
   options: Will become reciprocal of the original value in both cases.
   - answer:
     isCorrect: true
-    feedback: >
       
   - answer: Will change sign in both cases.
-    feedback: >
       
   - answer: > 
        Will become reciprocal for row swap, but change sign
        for column swap.
-    feedback: >
       
   - answer: >
        Will become reciprocal for column swap, but change sign
        for row swap.
-    feedback: >
 </EXRLIST>
 </FLD>
 <STKY>
@@ -12415,10 +12194,10 @@ those measures.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
+<FLD>*2
+<EXRLIST id="m6l3_c.yml">
+- typeName: textReflect
+  prompt: |-
      Compute the expected frequency for the marked cell under the
      assumption of no association. 
        |        |   A | B |  C | Total |
@@ -12427,44 +12206,23 @@ those measures.
        | Female |     | * |    |       |
        |--------+-----+---+----+-------|
        | Total  | 231 |   | 48 |  1000 |
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
+  defaultFeedback: >
+     (1000-231-48)*(1000-439)/1000.
       
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: peer review
-  prompt: >
+- typeName: textReflect
+  prompt: |-
      Compute the chi-square statistic for the following
-     contingency table. Show the steps.
+     contingency table. 
        |        |   A |   B |  C |
        |--------+-----+-----+----+
        | Male   | 476 | 346 | 98 |
        | Female |  24 |  43 | 43 |
+  defaultFeedback: >
+      Roughly 76.22. The steps are shown below:
+       [[./exraux/chistep1.png]]
+       [[./exraux/chistep2.png]]
+       [[./exraux/chistep3.png]]
 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
       
 
 </EXRLIST>
@@ -12480,47 +12238,7 @@ eduinc.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
-  prompt: >
-     Compute chi-square based on this data set: [e1a.csv] 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
-  prompt: >
-     Compute chi-square based on this data set: [e2a.csv] 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
 
-</EXRLIST>
-</FLD>
 
 <STKY>
 <HEAD3>Module 6, Lesson 3,  Video 5: Chisquare-related measures</HEAD3></STKY>
@@ -12556,66 +12274,30 @@ Thus for our example <M>k</M> is 3.
 
 
 
-<FLD>
-<EXRLIST>
-
-- typeName: numeric
+<FLD>*2
+<EXRLIST id="m6l3_e.yml">
+  
+- typeName: textReflect
   prompt: |-
     Here is a 2 by 2 contingency table:
-    |----+----|
-    | 23 | 34 |
-    |----+----|
-    | 56 | 20 |
-    |----+----|
-    Compute odds-ratio from this table.
+      |----+----|
+      | 23 | 34 |
+      |----+----|
+      | 56 | 20 |
+      |----+----|
+    Compute the contingency coefficient.
   defaultFeedback: >
-    Something wrong. Please review the formula.
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      Great job!      
-  
-- typeName: numeric
-  prompt: >
-    Consider the same contingency table as above. Compute the Phi
-    coefficient.
-  defaultFeedback: >
-    Something wrong. Please review the formula.
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      Great job!
+    Here chisquare is 15.01. So the contingency coefficient =
+    0.32.
 
-- typeName: numeric
+- typeName: textReflect
   prompt: >
     Consider the same contingency table as above. Compute
     Cramer's V.
   defaultFeedback: >
-    Something wrong. Please review the formula.
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      Great job!
+    Here chisquare is 15.01. So Cramer's V = 
+    0.34.
 
-
-- typeName: numeric
-  prompt: >
-    Consider the same contingency table as above. Compute the 
-    contingency coefficient.
-  defaultFeedback: >
-    Something wrong. Please review the formula.
-  shuffleOptions: true
-  answers:
-  - range:
-    isCorrect: true
-    feedback: >
-      Great job!
 </EXRLIST>
 </FLD>
 
@@ -12628,79 +12310,19 @@ eduinc.csv:
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>*2
+<EXRLIST id="m6l3_f.yml">
+- typeName: textReflect
   prompt: >
-      Compute contingency coefficient based on [e1a.csv]
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
+      Compute contingency coefficient based on [[./exraux/phicomp.csv]]
+  defaultFeedback: >
+    [[./exraux/contsol.png]]
+- typeName: textReflect
   prompt: >
-      Compute Cramer's V based on [e1a.csv]
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
-  prompt: >
-      Compute contingency coefficient based on [e3a.csv]
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-- typeName: numeric
-  prompt: >
-      Compute Cramer's V based on [e3a.csv]
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+      Compute Cramer's V based on [[./exraux/phicomp.csv]]
+  defaultFeedback: >
+     [[./exraux/cramsol.png]]
+
 </EXRLIST>
 </FLD>
 </LESSON>
@@ -12764,13 +12386,15 @@ The next video will discuss them.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>*3
+<EXRLIST id="m6l4_a.yml">
 - typeName: multipleChoice
   prompt: >
      If the <M>k</M>-th central moment is denoted by <M>c_k</M> and
      the <M>k</M>-th raw moment by <M>r_k</M>, then which of the
      following always equals <M>c_2?</M>
+  defaultFeedback: >
+     Here c_2 is just the variance. Remember its alternative formula.
   shuffleOptions: true
   options:
   - answer: <M>r_2-(r_1)^2.</M>
@@ -12790,39 +12414,38 @@ The next video will discuss them.
   prompt: >
      If we add 5 to all the values of a variable, then which of
      the following will be true? 
+  defaultFeedback: >
+     When we add 5 to all the values, the mean also gets 5 added
+     to it. So the central moments do not change.
   shuffleOptions: true
   options:
   - answer: The raw moments will change, but not the central moments.
     isCorrect: true
-    feedback: >
       
   - answer: Both the raw and the central moments will change.
-    feedback: >
       
   - answer: The central moments will change, but not the raw moments.
-    feedback: >
       
   - answer: Neither the raw nor the central moments will change.
-    feedback: >
       
 - typeName: multipleChoice
   prompt: >
      Let the values of a variable be symmtric around some
      point. Then which of the following statements is true?
+  defaultFeedback: >
+     Symmetric means the values are as likely to be on one
+     side of the mean as the other. So all the odd central 
+     moments become zero. 
   shuffleOptions: true
   options:
   - answer: The 3rd central moment must be zero.
     isCorrect: true
-    feedback: >
       
   - answer: The 3rd raw moment must be zero.
-    feedback: >
       
   - answer: The 4th central moment must be zero.
-    feedback: >
       
   - answer: The 4th raw moment must be zero.
-    feedback: >
 </EXRLIST>
 </FLD>
 
@@ -12913,8 +12536,8 @@ As a result the skewness coefficient is not used too commonly.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>3
+<EXRLIST id="m6l4_b.yml">
 - typeName: multipleChoice
   prompt: >
      Consider this histogram. [e1a.png] 
@@ -12982,29 +12605,16 @@ skew.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
-- typeName: numeric
+<FLD>*1
+<EXRLIST id="m6l4_c.yml">
+- typeName: textReflect
   prompt: >
-     Compute skewness based on this data set. [e1a.csv]
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+     Compute skewness based on this data set. [[./exraux/skewkurt.csv]]
+  defaultFeedback: >
+    Roughly 0.03.
 </EXRLIST>
 </FLD>
-<STKY>
-<HEAD3>Module 6, Lesson 4,  Video 4: Kurtosis theory</HEAD3></STKY>
+
 <SCRIPT id="m6/l4/v4" done="k" t="3:53">
 <SESS t="2.20" done="r" kf="10,20,30,40,50,60,70,80,90,100" id="s1">
 The 4th central moment<V>[shown]</V> is used to measure what is called
@@ -13075,49 +12685,42 @@ The coming videos will show skewness and kurtosis in action using LibreOffice.
 </SESS>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>*3
+<R>
+x = c(3, 5, 7, 1, 0, 1, 3)
+m = mean(x)
+mean((x-m)^4)
+(mean((x-m)^2))
+</R>
+<EXRLIST id="m6l4_d.yml">
 - typeName: numeric
   prompt: >
      Compute kurtosis based on the following values of a
      variable: 3, 5, 7, 1, 0, 1, 3.
- 
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+  defaultFeedback: >
+    Mean = 2.86. Second central moment = 5.27, fourth central moment
+  = 58.01. Kurtosis = 2.09.
 
 - typeName: multipleChoice
   prompt: >
      If kurtosis of a variable <M>X</M> based on a data set is
      4.5, then what should be the kurtosis of <M>2x-4</M> based
      on the same data set?
- 
+  defaultFeedback: >
+     Think about the formula for kurtosis coefficient. 
+     It is made of central moments, and hence is unaffected
+     by the -4. Also since we are taking a ratio, the 2 is
+     knocked off. 
   shuffleOptions: true
   options:
   - answer: 4.5
     isCorrect: true
-    feedback: >
       
   - answer: less than 4.5
-    feedback: >
       
   - answer: more than 4.5
-    feedback: >
       
   - answer: cannot answer in general.
-    feedback: >
-      
       
 - typeName: multipleChoice
   prompt: >
@@ -13148,25 +12751,13 @@ kurt.csv
 </SC>
 </SCRIPT>
 
-<FLD>
-<EXRLIST>
+<FLD>*1
+<EXRLIST id="m6l4_e.yml">
 - typeName: numeric
   prompt: >
-     Compute kurtosis from this data set. [e1a.csv]
-  shuffleOptions: true
-  options:
-  - range:
-    isCorrect: true
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
-      
-  - range:
-    feedback: >
+     Compute kurtosis from this data set. [[./exraux/skewkurt.csv]]
+  defaultFeedback: >
+    Roughly -1.2.
       
 </EXRLIST>
 </FLD>
@@ -13177,7 +12768,7 @@ kurt.csv
 <STKY>
 <HEAD3>Module 6,  Lesson 5 ,  Video 1: Moments</HEAD3>
 </STKY>
-<SCRIPT id="m6/l5/v1" t="0" done="r">
+<SCRIPT id="m6/l5/v1" done="k" t="5:37">
 <SESS t="1.30" done="a" kf="30" id="s1">
 <TODO>Two different videos (take the second, first cue overwritten)</TODO>
 So we have come to the very end of our lectures. This is the last
@@ -13287,7 +12878,7 @@ and skewness coefficient.
 <STKY>
 <HEAD3>Module 6,  Lesson 5 ,  Video 2: Correlation</HEAD3>
 </STKY>
-<SCRIPT id="m6/l5/v2" t="0" done="r">
+<SCRIPT id="m6/l5/v2" t="2:38" done="k">
 <SESS t="2.30" done="a" id="s1">
 Correlation coefficient is a number lying between -1 and 1. The
 sign determines the direction, ie, whether the linear relation is
@@ -13343,7 +12934,7 @@ correlation values.
 <STKY>
 <HEAD3>Module 6,  Lesson 5 ,  Video 3: Spurious correlation</HEAD3>
 </STKY>
-<SCRIPT id="m6/l5/v3" t="0" done="r">
+<SCRIPT id="m6/l5/v3" t="5:20" done="k">
 <SESS t="2.10" done="a" kf="30,60" id="s1">
 Correlation is an important concept in statistics, and is a much
 misinterpreted one. Often we seem to see correlation where there isn't
@@ -13457,14 +13048,14 @@ variable in a categorical set up.
 </SCRIPT>
 
 <STKY><HEAD3>Module 6,  Lesson 5 ,  Video 4: Review</HEAD3></STKY>
-<SCRIPT id="m6/l5/v4" t="0" done="r">
+<SCRIPT id="m6/l5/v4" t="6:05" done="k">
 <SESS t="0.30" done="n" id="s1">
 In this video we shall a see rather surprising effect that hidden
 variables may have. Indeed, it is so very surprising, that it is
 called a paradox, Simpson's paradox.
 </SESS>
 <JINGLE t="0.1">Simpson's paradox</JINGLE>
-<SC t="6">
+<SC t="6" done="r" id="sc_simp_654">
 simp.csv
 </SC>
 </SCRIPT>
@@ -13484,19 +13075,24 @@ csv(x,'simp.csv')
 </R>
 
 <FLD>
-<EXRLIST>
-- Here is a contingency chi square data [m6_1.csv]. 
+<EXRLIST id="m6_add.yml">
+- Here is a contingency chi square data [[./exraux/m6_1.csv]]. 
   Compute chisqure value.
 
 - 30 online sales were considered where 5-point Likert  feedback was
 available on both the quality of delivery and the quality of the
-product. The resulting data set is in [m6_2.csv].
+product. The resulting data set is in [[./exraux/m6_2.csv]].
 Compute a suitable measure of correlation (either Pearson's or
 Spearman's as you think appropriate) between the two variables.
 
-- Here is an incomplete 2x2x2 contingency table. Fill in the
-missing value in such a way that you get Simpson's paradox.
+- Here is a trivariate data set with three categorical variables 
+  [[./exraux/simp2.xlsx]]. 
+  Show that this data set demonstrates Simpson's paradox.
 
+  Rubric: 
+    1) Computing odds correctly: (1 point)
+    2) Showing  Simpson's paradox. (1 point)
+    3) [[./exraux/simp2sol.png]]
 - Construct two bivariate data sets (choose number of cases to
 suit yourself), each with correlation above
 0.9, so that the combined data set has negative correlation.
@@ -13505,7 +13101,7 @@ suit yourself), each with correlation above
    1) Two data sets with correlation > 0.9 (1 point)
    2) Combined data set has negative correlation (2 point)
 
-- Consider the following boxplot. [[./exrpics/m6_box.png]] Assuming that the shape of the
+- Consider the following boxplot. [[./exraux/m6_box.png]] Assuming that the shape of the
 histogram has a single peak with tapering tails on both sides of
 it, write down the order of the mode, median and mean. Justify
 your answer.
@@ -13521,19 +13117,34 @@ set.seed(34636)
 x = sample(1:5,30,rep=T)
 y = sample(1:5,30,rep=T)
 csv(data.frame(Delivery=x,Product=y),'m6_2.csv')
+
+cw('exraux')
+repmat = function(rw, n) matrix(rep(rw,n),n,byrow=T)
+x = rbind(
+     repmat(c('male','rich','A'), 105), #53
+     repmat(c('male','rich','B'), 829), #414
+     repmat(c('female','rich','B'), 32),  #16
+     repmat(c('female','poor','A'), 9),  #4
+     repmat(c('female','poor','B'), 278), #139
+     repmat(c('male','poor','A'), 22), #11
+     repmat(c('male','poor','B'), 74),  #37
+     repmat(c('female','rich','A'), 1))  #0
+csv(x,'simp2.csv')
 </R>
 
 </FLD>
 </LESSON>
 
+<REF>
+FPP: Chapter 8, parts 1,2,4
+     Chapter 9, parts 1,3,4,5
+WW: Chapter 6
+</REF>
+
 <COMMENT>
 Local Variables:
- two-part3: ((format "%cSESS t=\"0\" done=\"n\" id=\"\">\n" 60) (format "\n%c/SESS>" 60))
- two-part4: ((format "%cSCRIPT t=\"0\" done=\"n\" id=\"\">\n" 60) (format "\n%c/SCRIPT>" 60))
  two-part1: ("<V>[shown]" "</V>")
  two-part2: ("<B>" "</B>")
-End:
 </COMMENT>
 </NOTE>@}
-
 
