@@ -14,6 +14,11 @@ ekhAne @{<E>Fig 4</E>@}-er badale @{<E>Fig 5</E>@}  habe. bhulTA dharechhen praf
 <LI><IMG web="p12.png">@{<E>12</E>@}  na.n pAtAr a.nsha</IMG>
 ekhAne @{<E>5</E>@}-er badale @{<E>6</E>@}  habe. bhulTA dharechhen prafesar ashok mal+lik.
 </LI>
+<LI>@{<E>16</E>@}  nambar pAtAr @{<E>Exercise 24</E>@}-er uttar Ami kI kare yena @{<M>5\times
+ 7\times 7</M>@}  likhe base Achhi. nishchayai  bhImrati dharechhila. uttarTA habe
+ @{<M>2\times2\times2 = 8.</M>@}  bhulTA dharechhe m\ounab. prashnaTAr bhASAo sAmAnya badlAno uchit. 
+@{<E>''If <M>r,s,t</M>  are prime numbers''</E>@}  nA bale balA uchit chhila @{<E>''If
+ <M>r,s,t</M>  are <I>distinct</I> prime numbers''.</E>@}</LI>
 <LI><IMG web="p23.png">@{<E>23</E>@}  na.n pAtAr a.nsha</IMG>
 ekhAne lAl @{<E>6</E>@}-er badale @{<E>2</E>@}  habe. tAi nIl @{<E>15</E>@}-TA haye yAbe
  @{<E>11.</E>@}  ekai kAraNe parer pAtAr lAl @{<E>15</E>@}-TAo @{<E>11 </E>@} haye yAbe--
@@ -33,6 +38,8 @@ bhulTA dharechhen suprabhAt manDal.
  Ar @{<E>(iii).</E>@}  eder madhye @{<E>(i)</E>@}  Ar @{<E>(ii)</E>@}-er lebel badlAbali haye
  gechhe, mAne @{<E>(i)</E>@}  habe @{<E>(ii),</E>@}  Ar @{<E>(ii)</E>@}  habe @{<E>(i).</E>@} 
  bhulTA dharechhen suprabhAt manDal.</LI>
+<LI>@{<E>26</E>@}  nambar pAtAr @{<E>Exercise 31</E>@}-er uttar deoyA Achhe @{<M>2.</M>@}  oTA
+ haoyA uchit @{<M>8.</M>@}  ei bhulTAr dike drriSTi AkaraSaN karechhe m\ounab.</LI>
 <LI>@{<E>29</E>@}  nambar pAtAy @{<E>Exercise 33</E>@}-er uttar deoyA Achhe @{<M>11^5-6^5.</M>@}  oTA habe @{<M>11^5-5^5.</M>@}
  bhulTA dharechhen suprabhAt manDal.</LI>
 <LI>

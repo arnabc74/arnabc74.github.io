@@ -72,3 +72,15 @@
 (orgtbl-mode 1)
 
 (global-set-key [C-return] 'org-open-at-point-global) 
+(defun exrlst ()
+  "Insert exrlist"
+  (interactive)
+  (insert-string
+  (concat "<EXRLIST id=\"\">\n\n</EXRLIST>\n"
+          "<FLD> R code for the above\n<R>\n</R></FLD>\n"))
+  (goto-char (- (point) 54)))
+
+(global-set-key [C-f12] 'exrlst)
+
+
+

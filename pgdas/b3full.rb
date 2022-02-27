@@ -5411,14 +5411,11 @@ hw2.ods
 </LESSON>
 
 <HEAD1>Module 5: Regression</HEAD1>
-<SCRIPT id="m5/intro" done="n">
-<SESS t="0" done="n"  id="s1">
-</SESS>
-</SCRIPT>
+
 <HEAD2>Module 5: Lesson 1: Regression concept</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 1, Video 1: The concept</HEAD3></STKY>
-<SCRIPT id="m5/l1/v1" done="r">
+<SCRIPT id="m5/l1/v1" done="k" t="4:27">
 <SESS t="2.30" done="a" kf="30,60,90,120,180,210,240,270,300" id="s1">
 We had mentioned scatterplots in the Basic Statistics course. They
 are an important visual tool to assess the relation between two
@@ -5522,20 +5519,38 @@ process('lin2non',f,30,ps=0,pe=1,bg=rgb(1,1,1,0.8))
 </FLD>
 </SCRIPT>
 
-<EXRLIST id="M5L1V1">
+<EXRLIST id="m5l1_a.yml">
 
-<EXR>Show plot. Classify as increasing/decreasing/nonlinear.</EXR>
-
-<EXR>Strong relation, weak relation.</EXR>
+- typeName: textReflect
+  prompt: >
+     Consider this data set: [[./exrauxb/reg1.csv]]. Make a
+    scatterplot, and visually judge id the pattern s linear or
+  nonlinear. Also is it increasing or decreasing?
+ 
+  defaultFeedback: >
+    The scatterplot looks like this: [[./exrauxb/reg1sol.png]] 
+    The pattern is nonlinear and decreasing.     
 </EXRLIST>
-
+<FLD> R code for the above exercises
+<R>
+cw('exrauxb')
+set.seed(32353)
+x = trim(runif(20,1,10))
+y = trim(1-x*x + rnorm(20))
+csv(data.frame(x,y),'reg1.csv')
+png('reg1sol.png')
+plot(x,y,cex=2,pch=20)
+dev.off()
+</R>
+</FLD>
 <STKY><HEAD3>Module 5, Lesson 1, Video 2: Mathematical formulation</HEAD3></STKY>
-<SCRIPT id="m5/l1/v2" done="r">
+<SCRIPT id="m5/l1/v2" done="k" t="3:59">
 <SESS t="0.20" done="a" id="s1">
 In this video and the next video we shall introduce the mathematical model
 behind linear regression. It is best understood through an example.*
 </SESS>
-<SC t="5" done="n" id="s1">
+<JINGLE t="0.1">An example</JINGLE>
+<SC t="5" done="r" id="sc_shiny_512">
 [Use shiny]
 Here is a scatterplot. We discern a linear pattern. So we try to
 fit a straight line to the data cloud. That means looking for a
@@ -5553,20 +5568,82 @@ possible to all the data points.
 
 </SCRIPT>
 
+<EXRLIST id="m5l1_b.yml">
+- typeName: textReflect
+  prompt: >
+     How would you change the values of the a and b  parameter as
+  given in the video to change the blue line to red one in [[./exrauxb/reg2.png]]
+  defaultFeedback: >
+     Just increase the slpe b. Leave a unchanged (because both
+  the lines intersect the vertical axis at the same point). 
 
-<SCRIPT id="m5/l1/v3" done="n">
-<SC t="6" done="n" id="s1">
-Computing with LibreOffice for the same data set.
+</EXRLIST>
+<FLD> R code for the above exercise
+<R>
+cw('exrauxb')
+png('reg2.png')
+bareplot(0,xlim=c(-1,1),ylim=c(-1,1),ty='n')
+abline(h=0,v=0,lwd=2)
+abline(a=0.2, b=0.8,lwd=3,col='blue')
+abline(a=0.2, b=1.3,lwd=3,col='red')
+dev.off()
+</R>
+</FLD>
+<SCRIPT id="m5/l1/v3" done="k" t="5:17">
+<SC t="6" done="r" id="sc_regplot_513">
+Computing with LibreOffice (plot only) for the same data set.
+</SC>
+<FLD> R code for the above screencast
+<R>
+p(5,1,3)
+set.seed(334646) #seed from $t/lsq2/server.r
+x = rnorm(50)
+y = 1-x+rnorm(50,sd=0.5)
+x = trim(x)
+y = trim(y)
+csv(data.frame(x,y),'regsimp.csv')
+</R>
+</FLD>
+</SCRIPT>
+
+<SCRIPT id="m5/l1/v4" done="k" t="6:06">
+<SC t="6" done="r" id="sc_linest_514">
+Fit line using linest and regression menu
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m5/l1/v4" done="n">
-<SC t="4" done="n" id="s1">
-Fit polynomial using linest.
-</SC>
-</SCRIPT>
+<EXRLIST id="m5l1_c.yml">
+- typeName: textReflect
+  prompt: >
+     Repeat the procecure shown in the video with this data set [[./exrauxb/linest2.csv]]
+  defaultFeedback: >
+     Part of the output: [[./exrauxb/linest2sol.png]]   
+     If you are getting some error, then you have possibly
+  selected entire columns (and not just the data part). Also make
+  sure that you have either not selected the labels, or have
+  selected this checkbox: [[./exrauxb/linest2hint.png]]
+  
 
-<SCRIPT id="m5/l1/v5" done="r">
+</EXRLIST>
+<FLD>
+<R>
+cw('exrauxb')
+set.seed(46346346)
+x = 1:10
+y = trim(2+3*x + rnorm(10))
+plot(x,y,cex=2,pch=20)
+csv(data.frame(x,y),'linest2.csv')
+bhul
+lm(y~x)
+</R>
+</FLD>
+
+
+
+
+
+
+<SCRIPT id="m5/l1/v5" done="k" t="5:14">
 <SESS t="0.70" done="a" kf="30,60,90" id="s1">
 What I described in the last few videos, fitting a line or curve
 to a bunch of points, is more like looking at data.
@@ -5612,16 +5689,29 @@ line.
 </BC>
 </SCRIPT>
 
-<EXRLIST id="M5L1V2">
-
-<EXR>Show plots of errors as lines (vertical, horizontal,
-perp). Ask to identify least squares.</EXR>
+<EXRLIST id="m5l1_d.yml">
+- typeName: textReflect
+  prompt: |-
+     Suppose that the errors have some unknown (common) mean
+  instead of zero. Does that really change the regression model? 
+  defaultFeedback: >
+      No, the unknown mean of the errors may be "absorbed" into
+  the alpha term. Thus if the unnown common mean of the epsilons
+  is gamma, then we define 
+      new_epsilon = epsilon - gamma, 
+      new_alpha = alpha + gamma.
+  Then our model becomes
+      y = new_alpha + beta * x + new_epsilon,
+  which is of the type discussed in the video, because the mean
+  of new_epsilon is 0.
 </EXRLIST>
+
+
 </LESSON>
 <HEAD2>Module 5: Lesson 2: Least squares</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 2, Video 1: Least squares</HEAD3></STKY>
-<SCRIPT id="m5/l2/v1" done="r">
+<SCRIPT id="m5/l2/v1" done="k" t="5:02">
 <SESS t="0.50" done="a" kf="30" id="s1">
 Here we shall describe the most popular technique for
 regression. We shall explain the idea with fitting a straight
@@ -5632,7 +5722,7 @@ We have already considered the fitting of a
 line <B><M>y = a + bx</M></B> by imagining that we have sliders
 for <M>a</M> and <M>b.</M>*
 </SESS>
-<SC t="4" done="n" id="s1">
+<SC t="4" done="r" id="sc_shiny_521">
 Show the vertical error lines. Mention about squaring.
 </SC>
 <JINGLE t="0.1">Mathematically</JINGLE>
@@ -5672,8 +5762,23 @@ coefficients, a and b. Hence n-2.*
 </SESS>
 </SCRIPT>
 
-<STKY><HEAD3>Module 5, Lesson 2, Video 1: Least squares</HEAD3></STKY>
-<SCRIPT id="m5/l2/v2" done="r">
+<EXRLIST id="m5l2_a.yml">
+- typeName: textReflect
+  prompt: >
+     If all the x values are multiplied by 2, and all the y
+  values are multiplied by 3, then how would the estimated
+  intercept and slope change?
+  defaultFeedback: >
+      Estimated intercept will get multiplied by 3. Estimated
+  slope will get multiplied by 3/2.
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
+
+<SCRIPT id="m5/l2/v2" done="k" t="4:45">
 <SESS t="0.30" done="a" id="s1">
 We have learned one way to estimate intercept
 and slope in a regression set up. The estimators have some interesting properties
@@ -5700,8 +5805,24 @@ large, then that is a cause for worry, because large standard
 errors mean inaccurate estimators. 
 </BC>
 </SCRIPT>
+<EXRLIST id="m2l2_b.yml">
+- typeName: textReflect
+  prompt: >
+     If all the x values are doubled, then how would the
+  estimated intercept and slope change? How will their standard
+  errors change?
+  defaultFeedback: >
+      Estimated intercept will not change, estimated slope will
+  be halved. The standard error of the estimated intercept will
+  not change. The other standard error will be halved.
 
-<SCRIPT id="m5/l2/v3" done="n">
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R>
+</FLD>
+
+<SCRIPT id="m5/l2/v3" done="k" t="5:39">
 <BC t="6" done="r" id="regcomp_523">
 Hand computation of regression line.
 <R>
@@ -5720,7 +5841,30 @@ as.numeric(format(lm(y~x)$fit))
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m5/l2/v4" done="r">
+<EXRLIST id="m5l2_c.yml">
+- typeName: textReflect
+  prompt: |-
+     Compute the least squares estimates of intercept, slope and error
+     variance based on this toy data: 
+           | x | y |
+           |---+---|
+           | 1 | 9 |
+           | 2 | 7 |
+           | 3 | 5 |
+           | 4 | 3 | 
+     Look carefully at the data. You should be able to guess the
+  values even without any lengthy computation. But do check using
+  the lengthy formulae given in the video.  
+  defaultFeedback: >
+      estimated intercept is 11, estimated slope is -2. The fit
+  is exact, so estimated error variance is 0.
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R>
+</FLD>
+
+<SCRIPT id="m5/l2/v4" done="k" t="5:41">
 <SESS t="0.30" done="a" id="s1">
 Notice that there is some assymmetry in the set up that we have
 been working with so far: predicting y
@@ -5735,8 +5879,25 @@ that now.*
 [x-on-y, y-on-x, beta*beta = r^2, sign]
 </BC>
 </SCRIPT>
+<EXRLIST id="m5l2_d.yml">
+- typeName: textReflect
+  prompt: >
+     If the estimated regression equation for y on x is 
+          y = 1 + x/2,
+     and the regression equation for x on y is
+          x = -2 + 2*y,
+     then find the correlation between x and y.
+  defaultFeedback: >
+     The two regression coefficients are 1/2 ans 2. Their produce
+  is 1. So the square of the correlation is 1. Also, corrleation
+  has the same sign as the coefficients. So correlation must be 1. 
 
-<SCRIPT id="m5/l2/v5" done="r">
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
+<SCRIPT id="m5/l2/v5" done="k" t="5:44">
 <SESS t="0.5" done="a" id="s1">
 In the last video we switched the roles of x and y. But still
 that did not achieve symmetry. It just went to the other extreme
@@ -5749,121 +5910,244 @@ Orthogonal regression.
 </BC>
 </SCRIPT>
 
-<EXRLIST id="M5L2V1">
-
-<EXR>
-Show plots of errors as lines (vertical, horizontal, perp). Ask
-to identify least squares.
-</EXR>
-
-<EXR>Show bad fit. Ask to improve by lift, lower, swing
-clockwise, swing counter-clockwise.</EXR>
+<EXRLIST id="m5l2_e.yml">
+- typeName: Discussion
+  prompt: >
+      If we multiply all the x values by 2 in an orthogonal
+  regression set up, how do you think the estimated intercept and
+  slope would change?
 </EXRLIST>
 
-
-<EXRLIST id="M5L2V2">
-
-<EXR>Fit least squares to toy data with intercept.</EXR>
-
-<EXR>Fit least squares to toy data without intercept.</EXR>
-
-<EXR>Anscombe.</EXR>
-</EXRLIST>
 </LESSON>
 <HEAD2>Module 5: Lesson 3: Real life data</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 3, Video 1: Real life data</HEAD3></STKY>
 
-<SCRIPT id="m5/l3/v1">
-<SESS t="0" done="n" id="s1">
-Intro to real life regression data.
+<SCRIPT id="m5/l3/v1" done="k" t="6:20">
+<SESS t="0" done="r" kf="30,60" id="s1">
+In this lesson we shall take a look at some real life scenarios
+that call for regression analysis. The scenarios are taken from
+diverse fields to provide an idea of the range of
+applications.
+---
+ In each case, the first step is to make a
+scatterplot. 
+---
+Our first example is also historically the very first example of
+regression analysis in statistics. In fact the very term 
+<B>regression</B> was coined by <B>Sir Francis Galton </B> while
+analysing this data set.
+---
+ At that time, however, it meant something quite
+different from its present meaning.*
 </SESS>
-<SC t="5" done="n" id="s1">
-First demo 
+<JINGLE t="0.1">Galton's height data</JINGLE>
+<SC t="5" done="r" id="sc_galton_531">
+galton.ods: 1) Describe variables
+            2) Make plot
+            3) Insert 45 degree line
+            4) Explain regression
+            5) Discussion prompt: why? 
+</SC>
+<FLD>
+<R>
+p(5,3,1)
+library(HistData)
+csv(Galton,'galton.csv')
+?Galton
+</R>
+</FLD>
+</SCRIPT>
+<EXRLIST id="m5l3_a.yml">
+- typeName: discussion
+  prompt: >
+      Galton's notion of regression stemmed from the observation
+  that the fitted least squares line had slope less than 1. Is it
+  true that the slope of any least squares line must be less than
+  1? If so, why? If not, then why is it natural to have this for
+  this data set? 
+  defaultFeedback: >
+      
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
+<SCRIPT id="m5/l3/v2" done="k" t="5:28">
+<SC t="5" done="r" id="sc_boyle_532">
+Demo 2
+boyle.ods
 </SC>
 </SCRIPT>
+<EXRLIST id="m5l3_b.yml">
+- typeName: textReflect
+  prompt: >
+     Consider the same data set once again:
+  [[./exrauxb/boyle.csv]]. But this time proceed
+  differently. Define y = 1/height, and then plot 
+  and regress y on pressure.
+  defaultFeedback: >
+      [[./exrauxb/boylesol.png]]
 
-<SCRIPT id="m5/l3/v2">
-<SESS t="5" done="n" id="s1">
-Demo 2
-</SESS>
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
+<SCRIPT id="m5/l3/v3" done="k" t="6:37">
+<SC t="6" done="r" id="sc_bfat_533">
+bodyfat.ods: multiple regression
+</SC>
 </SCRIPT>
+<EXRLIST id="m5l3_c.yml">
+- typeName: textReflect
+  prompt: >
+     The video ended with a model where some of the variables
+  were redundant (ie, had p-values >= 0.05). Refit the model
+  to the same data [[./exrauxb/bodyfat.csv]] after removing those variables. What is the new R^2 value?
 
-<SCRIPT id="m5/l3/v3">
-<SESS t="5" done="n" id="s1">
-Demo 3
-</SESS>
-</SCRIPT>
+  defaultFeedback: >
+      LibreOffice does not allow you to perform multiple
+      regression where the independent variables are not in
+      contiguous columns. So we need to copy the relevant columns
+      to a different sheet. Here is a relevant screenshot: 
+          [[./exrauxb/bfatsol1.png]]
+      The estimated coefficient are here:
+          [[./exrauxb/bfatsol2.png]]
+      The new R^2 value is 0.724. 
 
-<SCRIPT id="m5/l3/v4">
+</EXRLIST>
+
+<SCRIPT id="m5/l3/v4" done="k" t="5:51">
 <BC t="5" done="r" id="bc_nonpara_534">
 Nonparametric
 </BC>
 </SCRIPT>
+<EXRLIST id="m5l3_d.yml">
+- typeName: discussion
+  prompt: >
+      Suppose that we have a bivariate data set where the
+  scatterplot  clearly shows a linear pattern. But a statistician
+  does not use that pattern. Instead, she uses nonparametric
+  regression as shown in the video. Discuss what advantages and
+  disadvantages this approach might have over the parametric
+  approach. 
+  defaultFeedback: >
+      
 
-<SCRIPT id="m5/l3/v5">
-<SC t="0.10" done="n" id="s1">
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
+<SCRIPT id="m5/l3/v5" done="k" t="6:38">
+<SC t="6" done="r" id="sc_nonpar_535">
 Demo 5: nonparametric.
+[nonpar.ods]
 </SC>
+<FLD> R code for above screencast
+<R>
+p(5,3,5)
+set.seed(3523)
+x = trim(runif(100))
+y1 = x#seq(0,1,len=100)
+y2 = 3*sin(5*y1)
+y = ifelse(y1>y2,y1,y2)
+y = trim(y + rnorm(100)/5)
+plot(x,y)
+csv(data.frame(x,y),'nonpar.csv')
+</R>
+</FLD>
 </SCRIPT>
 
-
-<EXRLIST id="M5L3V1">
-
-<EXR>Real life data. Show plot. Ask for estimate by inspection.</EXR>
-<EXR>Real life data. Ask to guess sign of coeff.</EXR>
-<EXR>Real life data. Ask to juudge if intercept should be present.</EXR>
+<EXRLIST id="m5l3_e.yml">
+- typeName: textReflect
+  prompt: >
+    Here is a bivariate data set [[./exrauxb/nonpar2.csv]]. Make
+  a scatterplot, and perform nonparametric regression following
+  the method shown in the video.      
+  defaultFeedback: >
+   Scatterplot:
+    [[./exrauxb/nonpar2sol1.png]]
+   The fitted values:
+    [[./exrauxb/nonpar2sol2.png]]
+   Overlaid on the scatterplot:
+    [[./exrauxb/nonpar2sol3.png]]
+    
 </EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(35232)
+x = trim(runif(100))
+y1 = 2*x
+y2 = 3*cos(5*y1)
+y = ifelse(y1>y2,y1,y2)
+y = trim(y + rnorm(100)/5)
+plot(x,y)
+csv(data.frame(x,y),'nonpar2.csv')
+</R>
+</FLD>
 
 
-<EXRLIST id="M5L3V2">
-
-<EXR>Real life data.</EXR>
-<EXR>Real life data.</EXR>
-<EXR>Real life data.</EXR>
-</EXRLIST>
 </LESSON>
 <HEAD2>Module 5: Lesson 4: Residuals, outliers, leverage</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 5, Lesson 4, Video 1: Residuals (theory) </HEAD3></STKY>
-<SCRIPT id="m5/l4/v1" done="n">
-<SESS t="2.00" done="n" id="s1">
+<SCRIPT id="m5/l4/v1" done="k" t="2:44">
+<SESS t="2.00" done="r" kf="30" id="s1">
 We have mentioned that statisticians look through data rather
-than loot at data. They look through data at an underlying truth,
-that is at least partly unknown. Unless some part of this truth
+than look at data. They look through data at an underlying truth.
+---
+ Unless some part of this truth
 is assumed to be known it becomes impossible to make any
 progress. But how can part of the truth be already known
-beforehand? Sometimes from past experience or expert opinion. But
-more often it is just an untested  gut feeling of the statistician that is
-accepted at face value. Clearly any method built on such
+beforehand?
+---
+ Sometimes from past experience or expert opinion. But
+more often it is just an untested  gut feeling of the
+statistician that is accepted at face value.
+---
+ Clearly any method built on such
 unverified premise has a possibility of going wrong. So a
-statistician must carefully assess the success of any proposed
-method to detect any mistake in his original assumptions. Indeed,
-this is the most important point where a professional statistcian
-differs from an amateur one. It is not diffcult to become an
-amateur statitician by learning a few
-standard statistical softwares and applying their canned routines to a data
-set. But that often leads to erroneous results, unless the
+statistician must carefully assess the success of a proposed
+method to detect any mistake in the original assumptions.
+---
+ Indeed, this is the most important point where a professional
+statistcian differs from an amateur one. It is not diffcult to become an
+amateur statitician by learning a few 
+standard statistical softwares and applying their packaged routines to a data
+set.
+---
+ But that often leads to erroneous results, unless the
 assumptions underlying the methods are carefully checked, and
-appropriate measures taken in case the assumptions fail. It is
-like driving a car. Pressing on the gas pedal and turning the
-steering wheel are easy when everything goes according to your plan. The difficulty lies in
-swerving your vehicle in time when a car comes at you unexpectedly from the other
-direction. 
-
+appropriate measures taken in case the assumptions fail.
+---
+ It is like driving a car. Pressing on the gas pedal and turning the
+steering wheel are easy when everything goes according to your
+plan. The difficulty lies in controlling your vehicle on the road
+where not everything goes according to your plan.
+---
 This idea of cross checking the basic assumptions after applying
 a statistical method is a general principle applicable everywhere
-in statistics. But its need is seldom felt more strongly than in
+in statistics.
+---
+ But its need is seldom felt more strongly than in
 regression, because there the original assumptions often fail,
 and a plethora of tools are available to rectify a failed
-assumption. All these together are called Regression Diagnostics.
+assumption.
+---
+ All these together are called <B>Regression
+Diagnostics</B>. That's what we are going to learn in the coming videos.
 </SESS>
 </SCRIPT>
 
+
 <STKY><HEAD3>Module 5, Lesson 4, Video 2: Regression diagonsotics</HEAD3></STKY>
-<SCRIPT id="m5/l4/v2" done="r">
+<SCRIPT id="m5/l4/v2" done="k" t="6:03">
 <BC t="6" done="r" id="bc_regdiag_542">
-<TODO>Try to chop the part where I suggest plotting resid vs y</TODO>
+<TODO>Try to chop the part where I suggest plotting resid vs y: done</TODO>
 Remember we had the assumption <M>y_i = \alpha + \beta x_i +
 \epsilon_i,</M> where the <M>\epsilon_i</M>'s were supposed to be
 iid with normal distribution having mean 0. As we cannot observe
@@ -5888,15 +6172,80 @@ The next video will show such an example.
 </BC>
 </SCRIPT>
 
+<EXRLIST id="m5l4_a.yml">
+- typeName: textReflect
+  prompt: >
+     Suppose that we have carried out a regression  analysis and
+  the histogram of the residuals look like
+  [[./exrauxb/residhist.png]]
+  Name at least one model assumption that appears to have been violated.
+  defaultFeedback: >
+      Errors (and as their approximations, residuals) are
+  supposed to be normally distributed around 0. But here the
+  distribution is not even symmetric!
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(46346)
+resid = exp(rnorm(200))
+resid = resid-mean(resid)
+png('residhist.png')
+hist(resid,prob=T,col='red')
+dev.off()
+</R>
+</FLD>
+
 <STKY><HEAD3>Module 5, Lesson 4, Video 3: Residuals (lab) </HEAD3></STKY>
-<SCRIPT id="m5/l4/v3" done="n">
-<SC t="6" done="n" id="s1">
-Computing residuals. Plotting them. y=1/x model.
+<SCRIPT id="m5/l4/v3" done="k" t="4:04">
+<SC t="6" done="r" id="sc_curve_543">
+curve.ods: 1) Plot already shown (very linear)
+           2) Regress with resid
+           3) Plot resid
+           4) Point out curvature and why it was not apparent in
+              the original plot.
+           5) Update fit (already shown in next sheet)
 </SC>
+<FLD> R code for above screencast 
+<R>
+p(5,4,3)
+set.seed(3433)
+x = rnorm(100,mean=100)
+y = x + 0.5*x*x+rnorm(100)/2
+plot(x,y)
+fit = lm(y~x)
+plot(x,fit$res)
+csv(data.frame(x,y),'curve.csv')
+</R>
+</FLD>
 </SCRIPT>
+<EXRLIST id="m5l4_b.yml">
+- typeName: textReflect
+  prompt: >
+     Consider the data [[./exrauxb/diag.csv]].
+     Fit a straight line and make the residual plot. Is it a good
+  fit? Update the model, fit again and **make the residual plot again**.
+  Is it a good fit now? Can you improve the fit?
+  defaultFeedback: >
+      You'll need a cubic term.
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(34331)
+x = rnorm(100,mean=100)
+y = x + 0.5*x*x*x+rnorm(100)/2
+plot(x,y)
+fit = lm(y~x+I(x*x))
+plot(x,fit$res)
+csv(data.frame(x,y),'diag.csv')
+</R>
+</FLD>
 
 <STKY><HEAD3>Module 5, Lesson 4, Video 4: Outiers, leverage (theory) </HEAD3></STKY>
-<SCRIPT id="m5/l4/v4" done="r">
+<SCRIPT id="m5/l4/v4" done="k" t="4:17">
 <SESS t="1.70" done="a" kf="30,60,90,120,150,180,210,240" id="s1">
 We have talked about <B>outliers</B> in our Basic Statistics course
 already. Roughly speaking these are points that lie far away from
@@ -6052,46 +6401,75 @@ dev.off()
 </R>
 </FLD>
 </SCRIPT>
+<EXRLIST id="m5l4_c.yml">
+- typeName: textReflect
+  prompt: >
+     We have a bivariate data set with 100 cases and two variables x and
+  y. Here are some summary values: 
+     |      |    x |     y |
+     |------+------+-------|
+     | mean | 34.8 | 100.2 |
+     | min  | 15.2 |  20.8 |
+     | max  | 53.6 | 193.2 |
+   Two new points are added to this data set: (x_101,y_101)=(54,100)
+  and (x_102,y_102)=(15,193). Which of these has the higher
+  leverage? 
+  defaultFeedback: >
+      The first one, because it is near an extremity of the x-values.
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <STKY><HEAD3>Module 5, Lesson 4, Video 5: Outiers, leverage (lab) </HEAD3></STKY>
-<SCRIPT id="m5/l4/v5" done="n">
-<SC t="6" done="n" id="s1">
-Outliers, leverage plots.
+<SCRIPT id="m5/l4/v5" done="k" t="6:45">
+<SC t="6" done="r" id="sc_crowd_545">
+crowdedness.ods: 1) Source
+                 2) Explain crowdedness, fertility 
+                 3) Plot fertility vs crowdedness
+                 4) Try to regress by selecting whole columns: fail
+                 5) Try to regress by selecting labels: fail
+                 6) Copy to different sheet, remove incomplete cases
+                 7) Regress
+                 8) Plot residuals, show outliers.
 </SC>
 </SCRIPT>
-<EXRLIST id="M5L4V1">
+<EXRLIST id="m5l4_d.yml">
+- typeName: textReflect
+  prompt: >
+     Fit a straight line to this data set:
+     [[./exrauxb/out.csv]]. 
+     Find an outlier. Remove it and refit. 
+  defaultFeedback: >
+     The last case is an outlier. 
 
-<EXR>Show scatter plot. Ask to identify outlier.</EXR>
-<EXR>Show scatter plot. Ask to identify leverage point.</EXR>
-
-<EXR>Toy data. Fit, drop and refit. Ask for change.</EXR>
-
-<EXR>Show residual plots. Ask to identify good one.</EXR>
 </EXRLIST>
-
-<EXRLIST id="M5L4V2">
-
-<EXR>Real data with outlier. Identify.</EXR>
-<EXR>Make resudual plot.</EXR>
-</EXRLIST>
-</LESSON>
-<HEAD2>Module 5: Lesson 5: Review</HEAD2>
-<LESSON>
-<STKY><HEAD3>Module 5, Lesson 5 , Video 1: Review</HEAD3></STKY>
-<STKY><HEAD3>Module 5, Lesson 5 , Video 2: Review</HEAD3></STKY>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(3534)
+x = trim(runif(50,10,20))
+y = trim(1+x+rnorm(50)/3)
+badx = 25 ; bady = 30
+x = c(x,badx); y = c(y,bady)
+plot(x,y)
+fit=lm(y~x)
+abline(fit$coef)
+plot(x,fit$resid)
+csv(data.frame(x,y),'out.csv')
+</R>
+</FLD>
 
 </LESSON>
 
 <HEAD1>Module 6: Time series analysis</HEAD1>
-<SCRIPT id="m6/intro" done="n">
-<SESS t="0" done="n"  id="s1">
-</SESS>
-</SCRIPT>
+
 <HEAD2>Module 6: Lesson 1: Time series concept</HEAD2>
 <LESSON>
 <STKY><HEAD3>Module 6, Lesson 1, Video 1: Concept: What it is</HEAD3></STKY>
 
-<SCRIPT id="m6/l1/v1" done="r">
+<SCRIPT id="m6/l1/v1" done="k" t="3:36">
 <SESS t="1.60" done="a" id="s1">
 To be able to predict the future has always been the dream of
 man. From science to science fiction, from astronomy to
@@ -6162,8 +6540,40 @@ These assumptions are called <B>time series models</B>.
 We shall see some of these in this module.*
 </SESS>
 </SCRIPT>
+<EXRLIST id="">
+- typeName: textReflect
+  prompt: >
+     We have a time series model where the observations are all
+  independent. Initially the mean is some unknown number m1 for
+  some unknown stretch of time, T, and then the mean abruptly
+  changes to another unknown value m2. Here is a plot of such a
+  time series.
+     [[./exrauxb/change.png]]
+ Provide rough estimates for m1, m2 and T.
+  defaultFeedback: >
+     Consider this plot:
+     [[./exrauxb/changesol.png]]
+     m1 is a bit below 10 (blue level), m2= 20 (green level) 
+     and T is slightly before 60 (purple vertical line).
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(5747)
+x = c(10+rnorm(57), 20+rnorm(43))
+png('change.png')
+plot(x,ty='l',lwd=3,col='red')
+dev.off()
+png('changesol.png')
+plot(x,ty='l',lwd=3,col='red')
+m1 = mean(x[1:57])
+m2 = mean(x[58:100])
+abline(h=c(m1,m2),v=57.5,lty=2,col=c('blue','green','purple'),lwd=3)
+dev.off()
+</R>
+</FLD>
 
-<SCRIPT id="m6/l1/v2" done="r">
+<SCRIPT id="m6/l1/v2" done="k" t="4:03">
 <SESS t="3.00" done="a" id="s1">
 Whatever we do takes time. And data collection is no
 exception. In that sense should we not call most data sets  time
@@ -6195,7 +6605,7 @@ significant portion of the variation, then and only then you
 designate that data as a time series.*
 </SESS>
 <JINGLE t="0.1">Time: continuous, regular, irregular</JINGLE>
-<SESS t="0" done="a" id="s2">
+<SESS t="0.70" done="a" id="s2">
 Time inherently is continuous. However, when we measure something
 over time, we generally do so at discrete time points. Certain
 electronic measuring devices like the ECG,...
@@ -6209,8 +6619,8 @@ spaced in time. This temporal resolution is often mentioned in the
 title of the data set, like daily rainfall, or monthly sales or
 annual production.*
 </SESS>
-<JINGLE t="0.1">Time point or interval?</JINGLE>
-<SESS t="0" done="a" kf="30,60,90,120" id="s3">
+<JINGLE t="0.1">Time: point or interval?</JINGLE>
+<SESS t="1.60" done="a" kf="30,60,90,120" id="s3">
 If we consider time as flowing along a  line<V>[shown]</V>, the time points
 are like regularly spaced points along that line<V>[shown]</V>. For each point
 we have a measured value<B>?<V>[shown]</V></B>. 
@@ -6243,17 +6653,26 @@ something new.
 can still make up for the missing value by making other
 measurements during the same week. *
 </SESS>
-<TODO>Chop two silences</TODO>
+<TODO>Chop two silences: done</TODO>
 </SCRIPT>
-<EXRLIST id="M6L1V1">
+<EXRLIST id="">
+- typeName: textReflect
+  prompt: >
+     A hospital keeps record of the birth weight and as well as
+  the birth time of newborns. Do these data constitute a time
+  series? 
+  defaultFeedback: >
+      Not really, as we do not expect the birth time to have much
+  effect on the birth weight. However, if we average the birth
+  weights over different months, and want to explore if average
+  birth weights vary systematically over the years (eg, babies
+  born in winter are lighter, or birth weights show an increasing
+  trend over the years), then we shall have a valid time series.
 
-<EXR>Describe different data scenarios. Ask to identify time
-series.</EXR>
 </EXRLIST>
 
 
-<STKY><HEAD3>Module 6, Lesson 1, Video 2: Concept: Prediction</HEAD3></STKY>
-<SCRIPT id="m6/l1/v3" done="r">
+<SCRIPT id="m6/l1/v3" done="k" t="6:09">
 <SESS t="4.30" done="a" id="s1">
 Why do we care about time series data? 
 The primary aim of time series analysis is, as I have already
@@ -6373,9 +6792,22 @@ prediction. The next video will take up some different applications
 of time series.*
 </SESS>
 </SCRIPT>
+<EXRLIST id="">
+- typeName: discussion
+  prompt: >
+      Think of at least one more scenario where you use time
+  series for prediction. Try to give an example as different as
+  possible from the ones mentioned in the video.
+  defaultFeedback: >
+      
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <STKY><HEAD3>Module 6, Lesson 1, Video 2: Concept: Diverse applications</HEAD3></STKY>
-<SCRIPT id="m6/l1/v4" done="r">
+<SCRIPT id="m6/l1/v4" done="k" t="4:57">
 <SESS t="0.50" done="a" id="s1">
 Prediction is definitely the most important aim behind analysing
 a time series. However, that is not always the only 
@@ -6499,13 +6931,22 @@ process('exop',f,90,1,1,120,bg=trans)
 </FLD>
 </SCRIPT>
 
-<EXRLIST id="M6L1V2">
+<EXRLIST id="">
+- typeName: discussion
+  prompt: >
+      Think of another example where we use time series for a
+  purpose other than prediction. Make you example different from
+  the ones presented in the video. [Hint: One of the earlier exercises in
+  this module may give you an idea.]
+  defaultFeedback: >
+      Change point analysis.
+
 </EXRLIST>
 </LESSON>
 
 <HEAD2>Module 6: Lesson 2: Plotting and real life examples</HEAD2>
 <LESSON>
-<SCRIPT id="m6/l2/v1" done="r">
+<SCRIPT id="m6/l2/v1" done="k" t="3:48">
 <SESS t="0.70" done="a" kf="30" id="s1">
 In this lesson we are about to see real life examples of time
 series. These data sets are all freely available, and are
@@ -6520,34 +6961,114 @@ disclose many important facts about a time series. And that's
 what we are about to see now. 
 *
 </SESS>
-<SC t="5" done="n">
-First demo.
+<SC t="5" done="r" id="sc_covid_621">
+covid.ods: Just plot and see.
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m6/l2/v2">
-<SC t="6" done="n" id="s1">
-Second demo 
+<SCRIPT id="m6/l2/v2" done="k" t="6:25">
+<SC t="6" done="r" id="sc_newpol_622">
+newpol.ods: Make both plots. Compare.
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m6/l2/v3">
-<SC t="6" done="n" id="s1">
-Third demo 
+<SCRIPT id="m6/l2/v3" done="k" t="4:53">
+<SC t="6" done="r" id="sc_sunspot_623">
+sunspot.ods: mouseover to get peak positions
+</SC>
+<FLD> R code for the above screencast
+<R>
+p(6,2,3)
+year = 1700:1988
+sunspot=sunspot.year
+csv(data.frame(year,sunspot),'sunspot.csv')
+</R>
+</FLD>
+</SCRIPT>
+
+<SCRIPT id="m6/l2/v4" done="k" t="4:24">
+<SC t="6" done="n" id="sc_coffee_624">
+coffee.ods: differencing
+</SC>
+</SCRIPT>
+<EXRLIST id="">
+- typeName: textReflect
+  prompt: >
+     Consider time series data in [[./exrauxb/quad.csv]].
+     Plot it and consider the trend pattern. It is not linear. 
+     Try to difference it once, plot the differenced series. 
+     Has the trend vanished? If not, repeat the differencing on
+    the differenced series. How many diffeencing steps are needed
+  to remove the trend in the original time series.
+  defaultFeedback: >
+     The original series looks like this:
+       [[./exrauxb/quadsol1.png]]
+     After first differencing:
+       [[./exrauxb/quadsol2.png]]
+     There is still a linear  trend. Difference once again:
+       [[./exrauxb/quadsol3.png]]
+     Now the trend is gone. Here is how the second differencing
+     is done.
+       [[./exrauxb/quadsol4.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(4647)
+day = 1:100
+value = trim(10+0.01*tm+0.01*(tm-50)^2+rnorm(100))
+plot(value,ty='l')
+plot(diff(value,diff=2),ty='l')
+csv(data.frame(day,value),'quad.csv')
+</R>
+</FLD>
+
+<SCRIPT id="m6/l2/v5" done="k" t="5:22">
+<SC t="5" done="r" id="sc_corrupt1_625">
+World bank data transposing and filtering
+corrupt.ods:
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m6/l2/v4">
-<SC t="6" done="n" id="s1">
-Fourth demo 
+<EXRLIST id="">
+- typeName: textReflect
+  prompt: >
+     The data set used in the video is in
+     [[./exrauxb/timeseries.xlsx]].
+     Repeat what the procedure shown in the video for 
+     corruption data for Cameroon.
+  defaultFeedback: >
+     [[./exrauxb/timeseriessol1.png]] 
+     While copy-n-pasting to a different sheet after filtering 
+     don't make the mistake of selecting the entire columns. 
+     Then even the hidden cases will get selected. Select only
+  the visible cells.
+  
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
+<SCRIPT id="m6/l2/v6" done="k" t="4:37">
+<SC t="5" done="r" id="sc_corrupt2_626">
+World bank time series with error bars
+corrupt2.ods:
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m6/l2/v5">
-<SC t="6" done="n" id="s1">
-Fifth demo 
-</SC>
-</SCRIPT>
+<EXRLIST id="">
+- typeName: textReflect
+  prompt: >
+     Continue with the last exercise to arrive a timeseries with
+  error bars.  
+  defaultFeedback: >
+      [[./exrauxb/timeseriessol2.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <STKY><HEAD3>Module 6, Lesson 2, Video 1: Plotting</HEAD3></STKY>
 
@@ -6576,7 +7097,7 @@ RBI data. Identify the pattern.</EXR>
 <LESSON>
 <STKY><HEAD3>Module 6, Lesson 3, Video 1: Trend+Seasonal+Error</HEAD3></STKY>
 
-<SCRIPT id="m6/l3/v1" done="r">
+<SCRIPT id="m6/l3/v1" done="k" t="2:33">
 <SESS t="2.20" done="a" kf="30,60,90,120,150,180,210,240" id="s1">
 We had earlier talked about looking through data as opposed to
 looking at data. We look through data at the underlying
@@ -6625,7 +7146,7 @@ In the next video we shall see some common examples of additive models.*
 </SESS>
 </SCRIPT>
 
-<SCRIPT id="m6/l3/v2" done="r">
+<SCRIPT id="m6/l3/v2" done="k" t="3:20">
 <SESS t="1.40" done="a" kf="30,60,90,120,150,180,210" id="s1">
 There are many different time series models proposed in the
 literature ranging from simple to extremely complex. Near the
@@ -6730,14 +7251,26 @@ process('tstrans',f,60,2,bg='transparent')
 </FLD>
 </SCRIPT>
 
-<SCRIPT id="m6/l3/v3" done="n">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m6/l3/v3" done="k" t="4:40">
+<SC t="6" done="r" id="sc_cfit_633">
 Least squares curve fit lab.
+expo.ods: 1) Make plot
+          2) Insert exponential trend line
 </SC>
+<FLD> R code for the above screencast
+<R>
+p(6,3,3)
+set.seed(33344)
+tm = 1:100
+y = exp(-tm/20)+rnorm(100)/25
+plot(tm,y,ty='l')
+csv(data.frame(tm,y),'expo.csv')
+</R>
+</FLD>
 </SCRIPT>
 
 
-<SCRIPT id="m6/l3/v4" done="r">
+<SCRIPT id="m6/l3/v4" done="k" t="4:20">
 <SESS t="3.80" done="a" kf="30,60,90,120" id="s1">
 In the last video we learned about a class of time series models
 where the time component and chance components were added
@@ -6838,16 +7371,19 @@ dev.off()
 </FLD>
 </SCRIPT>
 
-<SCRIPT id="m6/l3/v5" done="n">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m6/l3/v5" done="k" t="4:12">
+<SC t="6" done="r" id="sc_god_635">
 Here we shall play god and create and plot step by step.
 Create a daily time series from scratch. The trend values along a
 line and some day-of-the-week values adding up to 0. Finally
-errors as rand()-1. Recover and compare.
+errors as rand()-1. 
+god.ods: trend=10,10.3,...
+         seas=5,6,2,0,-2,-4,-4
+         err=randbetween(-3,3)
 </SC>
 </SCRIPT>
 
-<SCRIPT id="m6/l3/v6" done="r">
+<SCRIPT id="m6/l3/v6" done="k" t="5:45">
 <SESS t="0.50" done="a" id="s1">
 In the last video we saw how we may make a time series from the
 various components. Now that was just for the purpose of
@@ -6857,7 +7393,7 @@ illustration.
 operation: given the time series we need to somehow isolate the different
 components. Let's understand this with an  example.
 </SESS>
-<BC t="5" done="n" id="bc_trndseas_636">
+<BC t="5" done="r" id="bc_trndseas_636">
 Here is a time series plot. The first step to analyse it is
 to make a plot. The plot will give a visual check that our model
 is a reasonable one and also give us a rough idea about the
@@ -6918,9 +7454,15 @@ The next video will show this in action.*
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m6/l3/v7" done="n">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m6/l3/v7" done="k" t="6:03">
+<SC t="6" done="r" id="sc_dog_637">
 Moving average lab.
+dog.ods: trend=10,10.3,...
+         seas=5,6,2,0,-2,-4,-4
+         err=randbetween(-3,3)
+         Start with components and plot. Find trend, plot. Find
+seas, compare.
+         Remember: avoid #NA while averaging.
 </SC>
 </SCRIPT>
 
@@ -6945,7 +7487,7 @@ Moving average lab.
 <HEAD2>Module 6: Lesson 4: Prediction techniques</HEAD2>
 <LESSON>
 
-<SCRIPT id="m6/l4/v1" done="r">
+<SCRIPT id="m6/l4/v1" done="k" t="5:06">
 <SESS t="0.70" done="a" id="s1">
 So far we have given some idea about times series, what they are,
 why they are important, and also given a very simple introduction
@@ -6983,7 +7525,8 @@ the <M>\epsilon_t</M>'s.
 where <M>a</M> is some constant depending on the distribution of
 the errors.
 </SESS>
-<BC t="4" done="n" id="bc_predint_641">
+<JINGLE t="0.1">Gaussian prediction interval</JINGLE>
+<BC t="4" done="r" id="bc_predint_641">
  For example, if the random errors are assumed to
 have <B><M>N(0,\sigma^2)</M></B> distribution, then we know that 
 <B><M>\frac{\epsilon_t}{\sigma}\sim N(0,1).</M></B> And so
@@ -6996,13 +7539,31 @@ The next video will demonstrate this in the lab.*
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m6/l4/v2" done="n">
-<SC t="6" done="n" id="s1">
+<SCRIPT id="m6/l4/v2" done="k" t="5:48">
+<SC t="6" done="r" id="sc_cpred_642">
 Curve fitting prediction (point and interval).
+cpred.ods: 1) Plot already shown (with gap for prediction)
+           2) Insert square column
+           3) Regress
+           4) Predict (point)
+           5) Locate sigma-hat
+           6) Prediction interval
+           7) error bar
 </SC>
+<FLD> R code for the above screencast
+<R>
+p(6,4,2)
+set.seed(33344)
+tm = 1:100
+y = 10-tm/50+tm^2/100+rnorm(100)
+plot(tm,y,ty='l')
+csv(data.frame(tm,y),'cpred.csv')
+</R>
+</FLD>
+
 </SCRIPT>
 
-<SCRIPT id="m6/l4/v3" done="r">
+<SCRIPT id="m6/l4/v3" done="k" t="5:14">
 <SESS t="1.10" done="a" kf="30" id="s1">
 In the last video we learned about prediction based on  curve fitting models.
 While this is conceptually simple, it suffers seriously from its
@@ -7037,7 +7598,7 @@ This method should be used only for a time series without any
 seasonal variation or any sytematic trend component. We shall
 later discuss a variant that will be free of these restrictions.
 </SESS>
-<BC t="6" done="n" id="bc_expo_643">
+<BC t="3" done="r" id="bc_expo_643">
 We start with a time
 series:
 <D>
@@ -7071,13 +7632,25 @@ We shall see this in action in the lab in the next video.*
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m6/l4/v4" done="n">
-<SC t="6" done="n" id="s1">
-Lab showing exponential smoothing, and comparing different alpha values.
+<SCRIPT id="m6/l4/v4" done="k" t="5:19">
+<SC t="6" done="r" id="sc_exsm_644">
+Lab showing exponential smoothing, and comparing different alpha
+values.
+exsm.ods
 </SC>
+<FLD> R code for the above screencast
+<R>
+p(6,4,4)
+set.seed(463463)
+tm = 1:100
+x = rnorm(100,mean=37)
+plot(tm,x,ty='l')
+csv(data.frame(tm,x),'exsm.csv')
+</R>
+</FLD>
 </SCRIPT>
 
-<SCRIPT id="m6/l4/v5" done="r">
+<SCRIPT id="m6/l4/v5" done="k" t="6:51">
 <SESS t="0.70" done="a" kf="30,60" id="s1">
 We have mentioned that exponential smoothing is not suitable for
 a time series with systematic trend and seasonal component in
@@ -7094,7 +7667,7 @@ form <M>a+bt</M> plus a seasonal component<V>[shown]</V>, and...
 exponential smoothings in parallel. One for <M>a</M> one
 for <M>b</M> and the third on for the seasonal component. 
 </SESS>
-<BC t="5" done="n" id="bc_holt_645">
+<BC t="5" done="r" id="bc_holt_645">
 <MULTILINE>
 \hat y_{t+1} & = & a_t + b_t  + s_{t+1-p}\\
 a_t & = & \alpha (y_t-s_{t-p}) + (1-\alpha)(a_{t-1}+b_{t-1})\\
@@ -7113,9 +7686,18 @@ just the last value <M>b_{t-1}.</M> Again we take an average. *
 </BC>
 </SCRIPT>
 
-<SCRIPT id="m6/l4/v6" done="n">
-<SC t="0" done="n" id="s1">
+<SCRIPT id="m6/l4/v6" done="k" t="4:47">
+<SC t="5" done="r" id="sc_hw_646">
 Holt Winter's lab.
+hw.ods: 1) Just for demo
+        2) No seasonality (show formula)
+        3) Place a_2, b_2 first (not a_1, b_1)
+        4) Predict Y_3 (explain)
+        5) Place a_3 lock alpha
+        6) Place b_3 lock beta
+        7) Drag and explain for 0,0
+        8) Change to 1,1
+        9) Mention need for init values.
 </SC>
 </SCRIPT>
 <EXRLIST id="M6L4V1">

@@ -1,0 +1,23 @@
+inn = function(x,y) sum(x*y)
+nrm = function(x) sqrt(inn(x,x))
+
+u = matrix(c(1,2,3,4,5,6,7,8,10),3)
+v = w = matrix(0,nrow(u),ncol(u))
+ip = matrix(0,ncol(u),ncol(u)-1)
+len = rep(0,ncol(u))
+          
+for(i in 1:ncol(u)) {
+    if(i==1) {
+        w[,1] = u[,i]
+    }
+    else {
+        sm = rep(0,nrow(u))
+        for(j in 1:(i-1)) {
+            ip[i,j] = inn(u[,i],v[,j])
+            sm = sm + ip[i,j]*v[,j]
+        }
+        w[,i] = u[,i] - sm
+    }
+    len[i] = nrm(w[,i])
+    v[,i] = v[,i]/len[i]
+}
