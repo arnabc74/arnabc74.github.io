@@ -5606,16 +5606,38 @@ csv(data.frame(x,y),'regsimp.csv')
 </FLD>
 </SCRIPT>
 
+<EXRLIST id="m5l1_c.yml">
+- typeName: textReflect
+  prompt: >
+     Repeat the procecure shown in the video with this data set [[./exrauxb/linest2.csv]]
+  defaultFeedback: >
+     Part of the output: [[./exrauxb/linest2pic.png]]   
+
+</EXRLIST>
+<FLD>
+<R>
+cw('exrauxb')
+set.seed(46346346)
+x = 1:10
+y = trim(2+3*x + rnorm(10))
+plot(x,y,cex=2,pch=20)
+csv(data.frame(x,y),'linest2.csv')
+bhul
+lm(y~x)
+</R>
+</FLD>
+
 <SCRIPT id="m5/l1/v4" done="k" t="6:06">
 <SC t="6" done="r" id="sc_linest_514">
 Fit line using linest and regression menu
 </SC>
 </SCRIPT>
 
-<EXRLIST id="m5l1_c.yml">
+<EXRLIST id="m5l1_d.yml">
 - typeName: textReflect
   prompt: >
-     Repeat the procecure shown in the video with this data set [[./exrauxb/linest2.csv]]
+     Repeat the procecure shown in the video with the same data
+  set [[./exrauxb/linest2.csv]] as used in the last exercise.
   defaultFeedback: >
      Part of the output: [[./exrauxb/linest2sol.png]]   
      If you are getting some error, then you have possibly
@@ -5689,7 +5711,7 @@ line.
 </BC>
 </SCRIPT>
 
-<EXRLIST id="m5l1_d.yml">
+<EXRLIST id="m5l1_e.yml">
 - typeName: textReflect
   prompt: |-
      Suppose that the errors have some unknown (common) mean
@@ -5805,7 +5827,7 @@ large, then that is a cause for worry, because large standard
 errors mean inaccurate estimators. 
 </BC>
 </SCRIPT>
-<EXRLIST id="m2l2_b.yml">
+<EXRLIST id="m5l2_b.yml">
 - typeName: textReflect
   prompt: >
      If all the x values are doubled, then how would the
@@ -6462,6 +6484,120 @@ csv(data.frame(x,y),'out.csv')
 </FLD>
 
 </LESSON>
+<EXRLIST id="m5_add.yml">
+- typeName: peerReview
+  prompt: >
+    Consider the bivariate data set stored in
+  [[./exrauxb/m5add1.csv]]. Regress y on x using some 
+  appropriate form of line or curve. Comment on the adequacy of
+  the fit. Report relevant plots.
+  
+  Rubric:
+  ------
+      1) 1 point for reporting this:
+            [[./exrauxb/m5add1hint1.png]]
+      2) 1 point for proceeding with residual plot:
+            [[./exrauxb/m5add1hint2.png]]
+         and understanding that there is scope for improvement.
+
+- typeName: peerReview
+  prompt: >
+      A forgetful statistician has regressed y on x as well as x
+  on y from the same data set and has obtained these two lines:
+     y = 4+5x and y = 1 + 3x.
+  Unfortunately, he has forgotten which is which, and has also
+  lost track of the data. How can he
+  figure out which is which by just looking at these two
+  equations? 
+
+  Rubric:
+  -------
+    1) Solution: 
+      Let's try the first possibility: 
+      y on x : y = 4 + 5x
+      x on y : y = 1 + 3x, or x = -1/3 + y/3.
+
+      The product of the slopes are 5/3> 1, which is impossible
+      since the product is square of the correlation and hence
+      must be in [0,1].
+
+    Let's try the second possibility: 
+      y on x : y = 1 + 3x
+      x on y : y = 4 + 5x, or x = -4/5 + y/5.
+
+      The product of the slopes are 3/5, which is in [0,1].
+    
+    So the second possibility is the correct one.
+   
+    2) 1 point for understanding that one of the equations must
+    be turned around before computing the slopes.   
+     
+- typeName: peerReview
+  prompt: >
+     The x-on-y and y-on-x least squares regression lines
+  obtained from the same data set are, respectively,
+    x = 2-3y and y = 5-0.1*x
+  What are the means of x and y?
+  
+  Rubric:
+  -------
+    1) 1 point for understanding the two lines intersect at
+  (xbar, ybar).
+    2) 1 point for finding: xbar = -130/7, and ybar = 48/7.
+      
+- typeName: peerReview
+  prompt: >
+    Consider the data set in [[./exrauxb/outliers.xlsx]]. Detect
+  the outliers. Then remove the one with higher leverage and fit
+  a straight line.  
+   
+    Rubric:
+    ------
+     1) The outliers are cases 13 and 40. Should show scatterplot. (1 point)
+     2) Case 40 has higher leverage. After removing the fitted
+    line is like this:  
+      [[./exrauxb/outliersol.png]]
+
+- typeName: peerReview
+  prompt: >
+    Consider the body fat data set  [[./exrauxb/bodyfat.csv]]
+  that we have already used in one of our videos. Perform
+  multiple regression of the bodyfat variable on hip, knee,
+  biceps and forearm. Only one of these variables seems to be
+  important based on the output. Which one? How did you decide?
+  
+  Rubric:
+  -------
+    1) The variables are not in contiguous columns. So they need
+  to be copied to a different sheet. 
+    2) The relevant portion of the multiple regression is 
+        [[./exrauxb/bodyfatsol1.png]] (1 point)
+    3) Only the hip variable seems to be important, because its
+  p-value (yellow cell) is less than 0.05. (1 point)
+      
+
+</EXRLIST>
+<FLD> R code for the above
+cw('exrauxb')
+set.seed(343364)
+x = rnorm(100,mean=100)
+y = -x + 0.5*x*x+rnorm(100)/2
+plot(x,y)
+fit = lm(y~x)
+plot(x,fit$res)
+csv(data.frame(x,y),'m5add1.csv')
+
+cw('exrauxb')
+set.seed(34336)
+x = runif(50,10,20)
+y = x + rnorm(50)/3
+x[13] = 15; y[13] = 12
+x[40] = 22; y[40] = 18
+plot(x,y)
+csv(data.frame(x,y),'outliers.csv')
+<R>
+</R>
+</FLD>
 
 <HEAD1>Module 6: Time series analysis</HEAD1>
 
@@ -6540,7 +6676,7 @@ These assumptions are called <B>time series models</B>.
 We shall see some of these in this module.*
 </SESS>
 </SCRIPT>
-<EXRLIST id="">
+<EXRLIST id="m6l1_a.yml">
 - typeName: textReflect
   prompt: >
      We have a time series model where the observations are all
@@ -6655,7 +6791,7 @@ measurements during the same week. *
 </SESS>
 <TODO>Chop two silences: done</TODO>
 </SCRIPT>
-<EXRLIST id="">
+<EXRLIST id="m6l1_b.yml">
 - typeName: textReflect
   prompt: >
      A hospital keeps record of the birth weight and as well as
@@ -6792,7 +6928,7 @@ prediction. The next video will take up some different applications
 of time series.*
 </SESS>
 </SCRIPT>
-<EXRLIST id="">
+<EXRLIST id="m6l1_c.yml">
 - typeName: discussion
   prompt: >
       Think of at least one more scenario where you use time
@@ -6931,7 +7067,7 @@ process('exop',f,90,1,1,120,bg=trans)
 </FLD>
 </SCRIPT>
 
-<EXRLIST id="">
+<EXRLIST id="m6l1_d.yml">
 - typeName: discussion
   prompt: >
       Think of another example where we use time series for a
@@ -6965,12 +7101,41 @@ what we are about to see now.
 covid.ods: Just plot and see.
 </SC>
 </SCRIPT>
+<EXRLIST id="m6l2_a.yml">
+- typeName: discussion
+  prompt: >
+     Consider the time series plot that you saw in the
+  video. Can you think of a reason behind the sudden drop in the
+  "recovered" line? 
+  defaultFeedback: >
+      
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l2/v2" done="k" t="6:25">
 <SC t="6" done="r" id="sc_newpol_622">
 newpol.ods: Make both plots. Compare.
 </SC>
 </SCRIPT>
+<EXRLIST id="m6l2_b.yml">
+- typeName: textReflect
+  prompt: >
+     Consider the time series plots shown in the video. What is
+  the overall trend? Increasing or decreasing? 
+  defaultFeedback: >
+     If you think that the trend is decreasing, then you haven't
+   the wierd thing in the time series plot:
+  The time axis was flipped! Could you create the correct time
+  series plot? 
+      
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l2/v3" done="k" t="4:53">
 <SC t="6" done="r" id="sc_sunspot_623">
@@ -6985,13 +7150,39 @@ csv(data.frame(year,sunspot),'sunspot.csv')
 </R>
 </FLD>
 </SCRIPT>
+<EXRLIST id="m6l2_c.yml">
+- typeName: textReflect
+  prompt: >
+    Consider a monthly sunspot data set from Jan, 1749 to Dec,
+  1983:
+    [[./exrauxb/sspot.csv]]
+  Make a time series plot and guess an approximate period of
+  repetition. 
+
+  defaultFeedback: >
+      [[./exrauxb/sspotsol1.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+sfe
+year = 1749:1983
+years = rep(year,rep(12,length(year)))
+months =
+rep(c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'),
+    length(year))
+sunspot=sunspots
+csv(data.frame(year,months,sunspot),'sspot.csv')
+</R>
+</FLD>
 
 <SCRIPT id="m6/l2/v4" done="k" t="4:24">
 <SC t="6" done="n" id="sc_coffee_624">
 coffee.ods: differencing
 </SC>
 </SCRIPT>
-<EXRLIST id="">
+<EXRLIST id="m6l2_d.yml">
 - typeName: textReflect
   prompt: >
      Consider time series data in [[./exrauxb/quad.csv]].
@@ -7031,7 +7222,7 @@ corrupt.ods:
 </SC>
 </SCRIPT>
 
-<EXRLIST id="">
+<EXRLIST id="m6l2_e.yml">
 - typeName: textReflect
   prompt: >
      The data set used in the video is in
@@ -7057,7 +7248,7 @@ corrupt2.ods:
 </SC>
 </SCRIPT>
 
-<EXRLIST id="">
+<EXRLIST id="m6l2_f.yml">
 - typeName: textReflect
   prompt: >
      Continue with the last exercise to arrive a timeseries with
@@ -7072,26 +7263,6 @@ corrupt2.ods:
 
 <STKY><HEAD3>Module 6, Lesson 2, Video 1: Plotting</HEAD3></STKY>
 
-<EXRLIST id="M6L2V1">
-
-<EXR>Show time series plot. Ask for trend.</EXR>
-
-<EXR>Show plot. Ask for periodicity.</EXR>
-
-<EXR>Show periodic time series. Ask for period.</EXR>
-</EXRLIST>
-
-
-
-<EXRLIST id="M6L2V2">
-
-<EXR>Plot and identify trend.</EXR>
-
-<EXR>Plot and identify periodic pattern.</EXR>
-
-<EXR>Show liner, quadratic and exponential curves. Ask to plot
-RBI data. Identify the pattern.</EXR>
-</EXRLIST>
 </LESSON>
 <HEAD2>Module 6: Lesson 3: Analysis</HEAD2>
 <LESSON>
@@ -7145,6 +7316,31 @@ than multiplicative ones.
 In the next video we shall see some common examples of additive models.*
 </SESS>
 </SCRIPT>
+<EXRLIST id="m6l3_a.yml">
+- typeName: textReflect
+  prompt: >
+     Here is a toy data set generated from a multiplicative
+  model: [[./exrauxb/mult.csv]]
+  Make a time series plot. Then take logarithm to transform the
+  data to arrive at an additive model. Plot again. Familiarise
+  yourself with the difference.
+  defaultFeedback: >
+      The original time series: [[./exrauxb/multsol1.png]]
+      After taking logarithm: [[./exrauxb/multsol2.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+3rwf
+set.seed(43523)
+x = sin(0.1*(1:100)) + rnorm(100)
+y = trim(exp(x))
+plot(y,ty='l')
+time=1:100
+csv(data.frame(time, y),'mult.csv')
+</R>
+</FLD>
 
 <SCRIPT id="m6/l3/v2" done="k" t="3:20">
 <SESS t="1.40" done="a" kf="30,60,90,120,150,180,210" id="s1">
@@ -7250,6 +7446,29 @@ process('tstrans',f,60,2,bg='transparent')
 </R>
 </FLD>
 </SCRIPT>
+<EXRLIST id="m6l3_b.yml">
+- typeName: textReflect
+  prompt: >
+    What type of curve would you fit to this data set:
+  [[./exrauxb/findtype.csv]]?      
+    Make a plot to guess?
+  defaultFeedback: >
+      Quadratic looks like a possible choice. So is
+  exponential. Don't be fooled by the fact that the series can
+  take negative values. When we say quadratic or exponential, we
+  mean the general shape. You can always add a constant to move
+  the series up or down without changing the shape!
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(3461)
+tm = 1:50
+y = 10*scale(tm*tm)+rnorm(length(tm))
+csv(data.frame(tm,y),'findtype.csv')
+plot(y,ty='l')
+</R></FLD>
 
 <SCRIPT id="m6/l3/v3" done="k" t="4:40">
 <SC t="6" done="r" id="sc_cfit_633">
@@ -7268,6 +7487,24 @@ csv(data.frame(tm,y),'expo.csv')
 </R>
 </FLD>
 </SCRIPT>
+<EXRLIST id="m6l3_c.yml">
+- typeName: textReflect
+  prompt: >
+    Fit an exponential curve to the time series in [[./exrauxb/fitcurve.csv]]      
+  defaultFeedback: >
+      [[./exrauxb/fitcurvesol.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(3334)
+tm = 1:50
+y = trim(2*exp(-tm/15)+rnorm(50)/20)
+plot(tm,y,ty='l')
+csv(data.frame(tm,y),'fitcurve.csv')
+</R>
+</FLD>
 
 
 <SCRIPT id="m6/l3/v4" done="k" t="4:20">
@@ -7338,7 +7575,7 @@ But before that let's understand the general form of the new
 model carefully. We have a trend term, a seasonal term with known
 period and a random error.
 ---
- The perioed of the cyclical
+ The period of the cyclical
 compomnt is usually obtained from domain knowledge, eg, for
 monthly data we expect an annual variation, for daily data a
 weekly variation and so on.
@@ -7370,6 +7607,24 @@ dev.off()
 </R>
 </FLD>
 </SCRIPT>
+<EXRLIST id="m6l3_d.yml">
+- typeName: textReflect
+  prompt: >
+     If we have a seasonal component of period 5, then we might
+  as well consider the period as 10, because what repeats after
+  every 5 values, must also repeat after every 10 values (since
+  10 is a multiple of 5). Which one is better to use in a model?
+  5 or 10? 
+  defaultFeedback: >
+      5, because that requires only 5 terms. The less terms to
+  estimate, the better are the estimators. Also, repetition after
+  5 implies repetition after 10, but not the other way around!
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
+
 
 <SCRIPT id="m6/l3/v5" done="k" t="4:12">
 <SC t="6" done="r" id="sc_god_635">
@@ -7382,6 +7637,20 @@ god.ods: trend=10,10.3,...
          err=randbetween(-3,3)
 </SC>
 </SCRIPT>
+<EXRLIST id="m6l3_e.yml">
+- typeName: textReflect
+  prompt: >
+     Repeat what you have learned in the video to create a
+  synthetic time series of length 20 with  trend values 
+  15, 15.1, 15.2,..., seasonal components 3, 4, -5, -2 and error
+  terms generated by randbetween(-4,4). Make a plot of your time series.
+  defaultFeedback: >
+      Here is what I got (your plot should surely differ):
+      [[./exrauxb/synthsol.png]]
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l3/v6" done="k" t="5:45">
 <SESS t="0.50" done="a" id="s1">
@@ -7453,6 +7722,21 @@ this from the series, and consider the remainder as the error.
 The next video will show this in action.*
 </BC>
 </SCRIPT>
+<EXRLIST id="m6l3_f.yml">
+- typeName: textReflect
+  prompt: >
+     Suppose that we have seasonality period p=7. If 
+     S_t + ... + S_{t+6} is not equal to zero, as assumed in the
+  video, what will go wrong? 
+  defaultFeedback: >
+      The average value of the seasonality terms over a single
+  period will get subtracted from the seasonality terms and get
+  added to the trend.  
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l3/v7" done="k" t="6:03">
 <SC t="6" done="r" id="sc_dog_637">
@@ -7465,22 +7749,28 @@ seas, compare.
          Remember: avoid #NA while averaging.
 </SC>
 </SCRIPT>
+<EXRLIST id="m6l3_g.yml">
+- typeName: textReflect
+  prompt: >
+     Consider the synthetic time series you  generated  as
+  solution to an exercise a couple of videos back. Decompose that
+  time series and see how close you are getting to the original
+  values. 
+ 
+  defaultFeedback: >
+    You'll face a little problem here, as the period is 4, which
+    is even. So the moving averages do not align with the
+    original series, but sit midway. This is easily rectified by
+    taking a further 2-point moving average of the 4-point moving
+    averages. The exact values depend on the random series
+    generated by you.
 
-<EXRLIST id="M6L3V1">
-
-<EXR>Toy data. Hand computation.</EXR>
-<EXR>Toy data. Hand prediction.</EXR>
-
-<EXR>Ask for conceptual trend, period from data scenario.</EXR>
 </EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 
-<EXRLIST id="M6L3V2">
-
-<EXR>Real data.</EXR>
-<EXR>Real data.</EXR>
-<EXR>Real data.</EXR>
-</EXRLIST>
 
 </LESSON>
 
@@ -7538,6 +7828,23 @@ So an approximately 95% prediction interval would be
 The next video will demonstrate this in the lab.*
 </BC>
 </SCRIPT>
+<EXRLIST id="m6l4_a.yml">
+- typeName: textReflect
+  prompt: >
+     In the video we used the multiplier 1.96 to construct a 95%  prediction
+  interval. How can you find the multiplier that we should  use to construct a 90%
+  prediction interval? 
+  defaultFeedback: >
+      To get a p% prediction interval we use a multiplier m, such
+  that a standard normal random number has probability p% of
+  lying in [-m,m]. See [[./exrauxb/normexpl.png]]. Here the green
+  and red areas are equal and hence 0.5*(1-p/100) each. For p=90, 
+  we can find m using LibreOffice Calc as [[./exrauxb/normexpl2.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l4/v2" done="k" t="5:48">
 <SC t="6" done="r" id="sc_cpred_642">
@@ -7562,6 +7869,26 @@ csv(data.frame(tm,y),'cpred.csv')
 </FLD>
 
 </SCRIPT>
+<EXRLIST id="m6l4_b.yml">
+- typeName: textReflect
+  prompt: >
+     Consider the time series data in [[./exrauxb/cpred2.csv]]. 
+     Follow the procedure shown in the video to construct a 90%
+  prediction interval for the value at time 110.
+  defaultFeedback: >
+     [[./exrauxb/cpred2sol.png]]
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(3334)
+tm = 1:100
+y = trim(10-tm/50+tm^2/100+rnorm(100))
+plot(tm,y,ty='l')
+csv(data.frame(tm,y),'cpred2.csv')
+</R>
+</FLD>
 
 <SCRIPT id="m6/l4/v3" done="k" t="5:14">
 <SESS t="1.10" done="a" kf="30" id="s1">
@@ -7631,6 +7958,19 @@ the one that gives the least error.
 We shall see this in action in the lab in the next video.*
 </BC>
 </SCRIPT>
+<EXRLIST id="m6l4_c.yml">
+- typeName: textReflect
+  prompt: >
+     Apply exponential smoothing to predict Y_3 from the two
+  values: Y_1 = 3 and Y_2 = 4. Use alpha=0.2.
+  defaultFeedback: >
+     Based on Y_1 along the predicted Y_2 is 3. After learning
+  Y_2 = 4, the predicted value for Y_3 is 0.2*4 + (1-0.2)*3 = 3.2.
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l4/v4" done="k" t="5:19">
 <SC t="6" done="r" id="sc_exsm_644">
@@ -7649,6 +7989,27 @@ csv(data.frame(tm,x),'exsm.csv')
 </R>
 </FLD>
 </SCRIPT>
+<EXRLIST id="m6l4_d.yml">
+- typeName: textReflect
+  prompt: >
+     Apply exponential smoothing with parameter value 0.3 on the
+  time series data in [[./exrauxb/exsmex.csv]]
+  defaultFeedback: >
+      [[./exrauxb/exsmexsol.png]]
+  Be careful. You must select only the cells containing the
+  series, and not the entire column!
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(4634)
+tm = 1:50
+x = trim(rnorm(50,mean=25))
+plot(tm,x,ty='l')
+csv(data.frame(tm,x),'exsmex.csv')
+</R>
+</FLD>
 
 <SCRIPT id="m6/l4/v5" done="k" t="6:51">
 <SESS t="0.70" done="a" kf="30,60" id="s1">
@@ -7685,6 +8046,24 @@ about <M>b_t?</M> One guess is <M>a_t-a_{t-1}</M> the other is
 just the last value <M>b_{t-1}.</M> Again we take an average. *
 </BC>
 </SCRIPT>
+<EXRLIST id="m6l4_e.yml">
+- typeName: textReflect
+  prompt: >
+     This might lok like a silly exercise. But it will help you
+  wrap your brain around the Holt-Winters formula. Just assume
+  that all the seasonality term are zero. Now write down the
+  Holt-Winters formulae given in the video (dropping mentions of
+  all the S-terms). 
+  defaultFeedback: |-
+     yhat_{t+1}  =  a_t + b_t
+a_t  =  alpha (y_t-s_{t-p}) + (1-alpha)(a_{t-1}+b_{t-1})
+b_t  = beta(a_t-a_{t-1})+(1-beta) b_{t-1}
+      
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
 <SCRIPT id="m6/l4/v6" done="k" t="4:47">
 <SC t="5" done="r" id="sc_hw_646">
@@ -7700,31 +8079,129 @@ hw.ods: 1) Just for demo
         9) Mention need for init values.
 </SC>
 </SCRIPT>
-<EXRLIST id="M6L4V1">
+<EXRLIST id="m6l4_f.yml">
+- typeName: textReflect
+  prompt: >
+     The video did not really use Holt-Winters method for
+  predicting the time series, though the formula for Yhat_{t+1}
+  was shown. Watch the values shown in the video, and predict the
+  next value in the time series. Use alpha=beta = 0.2.
+  defaultFeedback: >
+      Yhat_{t+1} = alpha_t + beta_t = 11.03+0.53 = 11.56.
 
-<EXR>Ask for source.</EXR>
-
-<EXR>Show plot. Ask for anomaly.</EXR>
-
-<EXR>Show plot. Ask for anomaly.</EXR>
 </EXRLIST>
+<FLD> R code for the above
+<R>
+</R></FLD>
 
-
-<EXRLIST id="M6L4V2">
-
-<EXR>Real data. Estimate and predict.</EXR>
-<EXR>Real data. Estimate and predict.</EXR>
-<EXR>Real data. Estimate and predict.</EXR>
-</EXRLIST>
 
 </LESSON>
+<EXRLIST id="m6_add.yml">
+- typeName: peerReview
+  prompt: >
+    Consider the time series values in [[./exrauxb/exposm.csv]]. 
+    Perform exponential smoothing with alpha = 0.15.
+    Overlay the smooth over the original time series.
+  
+  Rubric:
+  -------
+    1) The first few lines: [[./exrauxb/exposmsol2.png]] (1 point)
+    2) The plot looks like [[./exrauxb/exposmsol1.png]] (1 point)
 
-<HEAD2>Module 6: Lesson 5: Review</HEAD2>
-<LESSON>
-<STKY><HEAD3>Module 6, Lesson 5 , Video 1: Review</HEAD3></STKY>
-<STKY><HEAD3>Module 6, Lesson 5 , Video 2: Review</HEAD3></STKY>
-</LESSON>
+- typeName: peerReview
+  prompt: >
+     [[./exrauxb/predint.xlsx]] contains a times series data. 
+     Use the curve fitting approach to construct a 90% prediction
+  interval for the value at time 53. Choose an appropriate parametric curve.
+  defaultFeedback: >
+      
+     Rubric:
+     -------
+       1) Here is the solution: 
+         [[./exrauxb/predintsol.png]]
+         The pattern is linear. So we have fitted a straight line.
+       2) 1 point for fitting
+       3) 1 point for the prediction interval
 
+- typeName: multipleChoice
+  prompt: >
+      In which of the following application areas are times
+  series with irregularly spaced time points most commonly encountered?
+  shuffleOptions: true
+  options:
+  - answer: Astronomy data 
+    isCorrect: true
+      
+  - answer: Meterological data
+      
+  - answer: Econometric data
+      
+  - answer: Audio data.
+
+- typeName: peerReview
+  prompt: >
+    Consider the daily data stored in [[./exrauxb/decomp.xslx]]. 
+    Make a times series plot.
+    Assuming an additive model with seasonal period of length 5,
+    estimate the trend component.  Overlay on the original plot.
+  Rubric:
+  -------
+    1) The original plot: 
+         [[./exrauxb/decompsol1.png]] (0.5 point)
+    2) Part of the estimated trends:
+         [[./exrauxb/decompsol2.png]] (1 point)
+    3) Overlaid plot: 
+         [[./exrauxb/decompsol3.png]] (0.5 point)
+      
+- typeName: peerReview
+  prompt: >
+    Continue with the last problem. But this time estimate the 5
+  seasonal components.
+  Rubric:
+  -------
+    1) Part of the computation together with answer in last
+       column: [[./exrauxb/decompseas.png]] (2 points)
+    2) The yellow entry was redundant, but used to check that 
+       seasonal components are repeating as expected.
+    
+      
+      
+
+</EXRLIST>
+<FLD> R code for the above
+<R>
+cw('exrauxb')
+set.seed(463452)
+tm = 1:100
+x = trim(rnorm(100,mean=35))
+plot(tm,x,ty='l')
+csv(data.frame(tm,x),'exposm.csv')
+
+cw('exrauxb')
+set.seed(3334)
+tm = 1:50
+y = 10+tm/5+rnorm(50)
+plot(tm,y,ty='l')
+csv(data.frame(tm,y),'predint.csv')
+
+cw('exrauxb')
+set.seed(33341)
+day=1:120
+seas = sample(10,5)
+seas = seas-mean(seas)
+trnd = 5*sin((1:120)/120)
+rnd = rnorm(100,sd=1)
+ytmp = trnd + 3*seas + rnd
+y = ytmp - min(ytmp) + 3
+csv(data.frame(day,y),'decomp.csv')
+bareplot(y,ty='l',ylim=range(y,0),lwd=3)
+abline(v=1,lwd=3)
+abline(v=seq(12,120,12),lwd=3,lty=2,col='grey')
+axis(1,seq(0,120,12),2000:2010,lwd=3)
+
+ddd
+</R>
+</FLD>
 <COMMENT>
 Local Variables:
  two-part1: ((format "%cSCRIPT id=\"m/l/v\">\n" 60) (format "\n%c/SCRIPT>" 60))

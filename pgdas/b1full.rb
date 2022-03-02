@@ -1,6 +1,6 @@
 @{<NOTE> -*- eval: (folding-mode t) -*-
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>MON JAN 31 IST 2022</UPDT>
+<UPDT>TUE MAR 01 IST 2022</UPDT>
 
 
 <HEAD1>Module 1: Data types</HEAD1>
@@ -245,8 +245,33 @@ New suggestions:
   box
  4) Drag for sequencing: direct and control d
  5) fORMULA 
- 6) rEFERENCE: RELEATIVE AND ABSOLUTE
+ 6) REFERENCE: RELEATIVE AND ABSOLUTE
 </SC>
+<IVQ id="ivq113.yml" t="2:00">
+- typeName: multipleChoice
+  prompt: >
+      What key are you supposed to hold down while clicking to
+  select a rangle of cells?
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options: The shift key
+  - answer:
+    isCorrect: true
+    feedback: >
+      Yes! 
+  - answer: The control key
+    feedback: >
+      Control clicking selects different (possibly)
+  non-contiguous cells.
+  - answer: The alt key
+    feedback: >
+      Nope! 
+  - answer: The windows key
+    feedback: >
+      Nope!
+
+</IVQ>
 </SCRIPT>
 
 <FLD>
@@ -2226,6 +2251,24 @@ double in another. Thus, here difference is meaningful, but not
 ratio. 
 </FLD>
 </SC>
+<IVQ id="ivq134.yml" t="2:27">
+- typeName: multipleChoice
+  prompt: >
+      If each case is a dog, and different breeds are encoded as
+  numbers, like 1 for greyhound, 2 for doverman etc, then numbers
+  are used at the 
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: nominal level
+    isCorrect: true
+    feedback: >
+      Yes!
+  - answer: ordinal level
+    feedback: >
+      No specific ordering.
+</IVQ>
 </SCRIPT>
 <REF>
 WW: 1.4--1.6

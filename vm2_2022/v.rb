@@ -1,0 +1,267 @@
+<NOTE>
+<SCRIPT id="m/l/v" done="n" t="">
+<SESS t="0.50" done="n" id="s1">
+The simplest way to define an inner product of two vectors from a finite
+dimensional vector space over <M>\rr</M> is this. First you choose some basis,
+some arbitrary basis, and keep it fixed. Now take the two vectors. Express
+both of them as linear combinations of that basis. So you get two
+tuples. Take their usual dot product. 
+
+Let's take an example. Suppose we take the vector space of all
+polynomials of degree <M>\leq 2</M>. We take the
+basis <M>\{1,x,x^2\}.</M>
+Next we take these two vectors, ie polynomials,: <M>2-3x+5x^2</M>
+and <M>5+x^2.</M> Expressing them as linear combinations of the
+chosen basis, we get the tuples <M>(2,-3,5)</M>
+and <M>(5,0,1).</M> Their usual dot product
+is <M>2\times5+(-3)\times0+5\times1 = 15.</M> 
+
+Had we chosen a different basis, say <M>\{1,1+x,x^2\},</M> then
+the liner combinations would have been different, and so would
+have been the tuples and the final answer. 
+</SESS>
+<SESS t="1.40" done="n" id="s2">
+Thus, an inner product basically combines two vectors into a
+single real number, and as such may be considered as a
+function <M>f:V\times V\to \rr.</M> However, it requires us to
+fix some arbitrary basis to start with. So we should better use
+the notation <M>f_B:V\times V\to \rr,</M> where this <M>B</M>
+denotes the basis being used.
+
+This presence of <M>B</M> is irritating fro two reasons. First,
+if we express some property of the vectors in iterms of inner
+products, we have no obvious way of knowing if the property
+is really a property of the vectors or of the arbitrarily chosen
+basis. Orthogonality, for example, is one such property. Two
+vectors that are orthogonal w.r.t one basis, need not be
+orthogonal w.r.t another. Here is a quick example. 
+
+Consider <M>\rr^2.</M> We are interested in the inner product of
+these two vectors. Choose this basis, then the  inner product
+will be nonzero, so they are not orthogonal. But choose this
+basis. Now the inner product will be 0. Just check for yourself!
+</SESS>
+<SESS t="0.50" done="n" id="s3">
+The second problem is that this whole idea of turning a vector
+into a tuple w.r.t a basis works only for finite dimensional
+vector spaces. While infinite dimensional vector spaces do have
+bases, the are infinite in size, so the multpily and add to form
+the usual dot product is not readily applicable there. 
+
+In order to overcome these two problems, we often approach the
+concept of inner products in a somewhat different way.
+</SESS>
+<SESS t="1.20" done="n" id="s4">
+We look at all the useful things we do with inner products, using
+the definition we have already given. Then carefully note down all the
+basic properties of the inner product function, the properties
+that work irrespective of the arbitrary basis chosen. So we get a
+list of properties, a long list. But not all the properties in
+the list are new, some are just consequences of other
+proprties. So we remove these consequence properties. In other
+words, we start shortening the list retaining only the essential
+ones. In this way we arrive at a minimal list of properties. No
+property in this list follows from the others, and also all
+other proerties may be derived from these. Of course, such a
+minimal list is not unique, but any such list is equivalent to
+any other such list, in the sense that if you have one such list,
+and I have another, all your properties can be proved from mine,
+and vice versa. Now here is the minimal list that is considered
+standard. If we take this list as the definition of inner
+product, then we can bypass the need of choosing a basis. This is
+much like defining <M>\rr</M> via axioms. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v" done="n" t="">
+<SESS t="1.30" done="n" id="s1">
+In the last video we presented two definitions of inner
+products. First, fix a basis and apply the usual dot product
+formula. Second, via the three axioms. The second approach is
+already more general because it applies to ven infinite
+dimensional vector spaces over <M>\rr.</M> But if we are working
+with a finite dimensional vector spaces, then how do the two
+definitions compare with each other? Are they equivalent? Is one
+more general than the other? 
+
+Well, one way is obvious from the very costruction. Inner
+products defined via 
+bases definitely satisfies the axioms. That's how the axioms were
+obtained, after all.  But what is not readily apparent, and
+indeed is a non-trivial fact, is that the converse is also
+true. Any inner product defined via the axioms, ie any
+function <M>f:V\times V\to \rr</M> satisfying the axioms must
+be <M>f_B</M> for some choice of basis <M>B.</M>
+
+We are not in a position yet to prove this fact, but still let's take a
+closer look taking the example of <M>\rr^n.</M>
+</SESS>
+<SESS t="2.10" done="n" id="s2">
+We start with two vectors <M>\v x</M> and <M>\v y</M>. We shall
+take a basis <M>\{\v b_1,...,\v b_n\}</M>, and express these two vectors as tuples
+w.r.t it. Thus, we are looking for <M>\alpha_1,...,\alpha_n</M>
+such that
+<D>
+\alpha_1 \v b_1 +\cdots + \alpha_n \v b_n = \v x,
+</D>
+or
+<D>
+B <MAT>\alpha_1\\\vdots\\\alpha_n</MAT> = \v x,
+</D>
+where <M>B</M> is created by stacking the basis vectors as
+ columns. This <M>B</M> is nonsingular, and hence the required
+ tuple is just <M>B ^{-1} \v x.</M>
+
+Similarly, the tuple representing <M>\v y</M> w.r.t. this same
+ basis is <M>B ^{-1} \v y.</M> 
+
+Their usual dot product is 
+<D>
+\v y' B ^{-1} ' B ^{-1} \v x.
+</D>
+Since the basis was arbitrary, the matrix <M>B</M> is any
+ arbitrary nonsingular matrix. So <M>B ^{-1} </M>is also an
+ arbitrary nonsingular matrix. 
+
+Thus, all the possible inner products that you may obtain by
+varying the basis are of the form <M>\v y' M \v x,</M>
+where <M>M</M> is a matrix that can be expressed as <M>P'P,</M>
+for some nonsingular matrix <M>P.</M> 
+
+Such matrices are of great importance in mathematics and
+statistics. They are called positive definite matrices. 
+
+Now the equivalence of the two definitions may be stated as: 
+
+A function <M>f:\rr^n\times\rr^n\to \rr</M> satisfies the axioms
+if and only if it is of the form
+<M>f(\v x, \v y) = \v y' M \v x</M> for some <M>PD</M> matrix <M>M.</M>
+
+We shall be able to prove this after we learn about eigenanalysis.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v" done="n" t="">
+<SESS t="1.10" done="n" id="s1">
+We talked about inner products in the last few videos. We shall
+now approach the concept of norms in a similar spirit. But here we
+shall face an unexpected snag. 
+
+But let's start from the beginning. We have already defined norm
+in terms of inner products like this: <M>\sqrt(\v x'\v x).</M>
+This definition does not refer to a basis, only an inner
+product. Also, thanks to the axiomatic definition, inner products
+are meaningful even for infinite dimensional vector spaces
+over <M>\rr.</M> So this definition of norm is already pretty
+general. 
+
+Now let's take the second approach, 
+finding a minimal list of useful properties. This time the
+universally accepted minimal list is this: So the second
+definition says any function <M>f:V\to\rr</M> satisfying these
+axioms is a norm.
+
+Again we are confronted with the same question? Are these
+equivalent? 
+</SESS>
+<SESS t="1.00" done="n" id="s2">
+The answer this time is different. The norms obtained using
+inner products do satisfy the axioms (nothing unexpected
+there), there are norms satisfying the axioms that cannot be
+obtained from an inner product. And, this is
+true even for finite dimensional vector spaces over <M>\rr.</M> 
+I shall show you an example in <M>\rr^2.</M>
+
+Consider this function <M>f:\rr^2\to\rr</M> defined as 
+<M>f(x_1,x_2) = |x_1|+|x_2|.</M> It is easy to check that it satisfies
+the three axioms. So, according to the axiomatic definition, it
+is norm. It is called the <M>L_1</M>-norm. But that it is not
+induced by any inner product
+is not readily apparent. There is a trick to show this.
+And the trick uses what is called the parallelogram identity.
+</SESS>
+<JINGLE t="0.1">Parallelogram identity</JINGLE>
+<SESS t="0.70" done="n" id="s3">
+The parallelogram identity is this:
+
+<D>
+\|x + y\|^2 + \|x - y \|^2 = 2(\|x\|^2+\|y\|^2).
+</D>
+t is a property that all norms induced by an inner product satisfies.
+Just try to prove this. It is basically
+the <M>(a+b)^2+(a-b)^2</M> formula.
+
+But it is easy to find <M>(x_1,x_2)</M> and <M>(y_1,y_2)</M> such
+that this is not satisfied for the <M>L_1</M>-norm. Again I leave
+it to you to find such vectors. Pretty easy!
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v" done="n" t="">
+<SESS t="0.50" done="n" id="s1">
+So what's the upshot? The axiomatic definitions are always more
+general, both for inner products and for norms. And so that's
+what we use in mathematics. For finite dimensional vector spaces
+over <M>\rr</M> the fix-a-basis approach is more intuitive.
+For norms we distinguish between general norms and the norms
+induced by inner products.
+
+Let's look at some examples of norms.
+</SESS>
+<SESS t="0.80" done="n" id="s2">
+Fix any <M>p\geq 1.</M> Then for any <M>\rr^n</M> we have a norm
+called the <M>L_p</M>-norm defined as 
+<D>
+\|\v x\|_p = (*(\sum |x_i|^p)*)^{1/p}.
+</D>
+That it is indeed a norm (according to the axioms) requires some
+effort to prove. If you put <M>p=2,</M> then we have the usual
+norm, called the Euclidean norm. 
+
+It is an interesting fact, easy to prove, that the
+only <M>L_p</M> norm that is induced by an inner product
+when <M>p=2.</M> 
+</SESS>
+<SESS t="1.20" done="n" id="s3">
+Here we are really not going worry much about infinite
+dimensional vector spaces. But still it is good to know some
+inner products and norms over some of
+these. Consider <M>C[0,1],</M> the vector space of real valued
+continuous functions on <M>[0,1]</M> under the pointwise operations. 
+Then 
+<D>
+\langle f,g\rangle = \int_0^1 f(x)g(x)\, dx
+</D>
+is one possible inner product. Another example is 
+<D>
+\langle f,g\rangle = \int_0^1 (1+x^2) f(x)g(x)\, dx
+</D>
+Indeed, any positive function here would have served as
+well. Checking this is easy. Give it a try.
+
+Here is the <M>L_p</M> norm (for <M>\geq 1</M>):
+<D>
+\|f\|_p = (*(\int_0^1 |f(x)|^p\, dx )*)^{1/p}.
+</D>
+Here again, <M>L_2</M> is the only member of the <M>L_p</M>
+family of norms that is induced by an inner product.
+</SESS>
+<SESS t="0.50" done="n" id="s4">
+And finally here are two terms. By an inner product space we mean
+a vector space along with an inner product defined on it.
+
+What do you call a vector space equipped with a norm? Norm space?
+No! WHile that would have been in keeping with inner product
+space, people prefer to call such a space a normed linear space.
+</SESS>
+</SCRIPT>
+<COMMENT>
+Local Variables:
+ two-part1: ((format "%cSCRIPT id=\"m/l/v\" done=\"n\" t=\"\">\n" 60) (format "\n%c/SCRIPT>" 60))
+ two-part2: ((format "%cSESS t=\"0\" done=\"n\" id=\"s1\">\n" 60) (format "\n%c/SESS>" 60))
+ d1: ("<V>[shown]" "</V>")
+ d2: ("<B>" "</B>")
+End:
+</COMMENT>
+
+</NOTE>
