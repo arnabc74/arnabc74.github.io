@@ -1,0 +1,67 @@
+@{<NOTE>
+<M>\newcommand{\v}{\vec}</M>
+<HEAD1>Quadratic forms</HEAD1>
+<HEAD2>Degrees of freedom</HEAD2>
+Consider a random vector <M>\v X\in\rr^n,</M> where the <M>n</M>
+components are independent <M>N(0,1)</M> random variables.  Then
+its squared length, i.e., <M>\|\v X\|^2</M> is a random variable
+whose distribution depends on the dimension <M>n.</M> In this
+context, the dimension is a parameter of the distribution, and
+this parameter is called the <B>degrees of freedom</B>. The
+distribution is called the <M>\chi^2</M>-distribution
+with <M>n</M> degrees of freedom, and
+written <M>\chi^2_{(n)}.</M> 
+<P/>
+Now let's take some subspace <M>V\leq \rr^n </M> of
+dimension <M>m,</M> say. Project <M>\v X</M> (orthogonally)
+onto <M>V.</M> Let the projection be <M>\v Y.</M> Then <M>\v
+Y</M> still has <M>n</M> components but can move only
+inside <M>V,</M> a space of dimension only <M>m.</M> Then it may
+be proved that <M>\|\v Y\|^2</M> has a <M>\chi^2_{(m)}</M>
+distribution. We loosely say that <M>\|\v Y\|^2</M> has <M>m</M>
+degrees of freedom.
+<P/>
+So far there is no mention of quadratic forms. Now they will come
+into play.
+<P/>
+We may write <M>\|\v X\|^2</M> as <M>\v X'\v X = \v X' I_n \v
+X,</M> a quadratic form. It had <M>n</M>  degrees of freedom
+which also happened to be the rank of <M>I_n.</M> Now <M>\v Y =
+P\v X,</M> where <M>P</M> is the projection matrix onto <M>V.</M>
+Then <M>\|\v Y\|^2 = \v Y'\v Y = \v X'P'P\v X = \v X' P\v X,</M>
+since <M>P</M> is symmetric and idempotent. Notice that the
+degrees of freedom is again given by the rank of <M>P</M> (which
+is the dimension of <M>V</M>). 
+<P/>
+Hence for a symmetric idempotent matrix <M>A</M> we say (loosely)
+that <M>\v X' A \v X</M> has <M>r(A)</M> degrees of freedom. This
+usage is only for symmetric, idempotent matrices. Also, for any
+quadratic form the matrix is always considered to be
+symmetric. So in your example <M>k=[[32]].</M>
+
+<HEAD2>Are there cubic or higher forms?</HEAD2>
+Yes, there are, but they are not usually called by these
+names. Instead, first quadratic forms are generalised to bilinear
+forms:
+<Q>
+A quadratic form is a function <M>f(\v x) = \v x' A\v x.</M> If
+you allow the two difeent vectors on the two side, you get a
+bilinear form, which is a function like <M>f(\v x, \v y) = \v
+x'A\v y.</M> Here the matrix <M>A</M> may be any square matrix. 
+</Q>
+A bilinear map is linear in each of its arguments separately (i.e.,
+when the other arguments are help fixed). Next, bilinear maps are
+generalised to multilinear maps <M>f(\v x, \v y, \v z,...),</M>
+which are linear in each of its arguments separately. 
+
+<HEAD2>Are there nonhomogeneous quadratic forms?</HEAD2>
+Yes and no. No because the expression <M>\v x' A\v x</M> has
+exactly two components per term. However, you can accommodate
+nonhomogeneous quadratic forms indirectly. Consider <M>2x^2-4x +
+4.</M> Think of it as <M>2x^2-4xy + 4y^2,</M> but
+with <M>y=1.</M> Then it is 
+<D>
+<MAT>x 1</MAT><MAT>2 & -2\\-2 & 4</MAT><MAT>x\\1</MAT>.
+</D>
+The conic-section formula is one application of this.
+</NOTE>@}

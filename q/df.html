@@ -1,0 +1,230 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Quadratic forms">Quadratic forms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Degrees of freedom">Degrees of freedom</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Are there cubic or higher forms?">Are there cubic or higher forms?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Are there nonhomogeneous quadratic forms?">Are there nonhomogeneous quadratic forms?</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}{\vec}$
+<h1><a
+name="Quadratic forms">Quadratic forms</a></h1>
+
+<h2><a
+name="Degrees of freedom">Degrees of freedom</a></h2>
+Consider a random vector $\v X\in{\mathbb R}^n,$ where the $n$
+components are independent $N(0,1)$ random variables.  Then
+its squared length, <i>i.e.</i>, $\|\v X\|^2$ is a random variable
+whose distribution depends on the dimension $n.$ In this
+context, the dimension is a parameter of the distribution, and
+this parameter is called the <b>degrees of freedom</b>. The
+distribution is called the $\chi^2$-distribution
+with $n$ degrees of freedom, and
+written $\chi^2_{(n)}.$ 
+<p></p>
+Now let's take some subspace $V\leq {\mathbb R}^n $ of
+dimension $m,$ say. Project $\v X$ (orthogonally)
+onto $V.$ Let the projection be $\v Y.$ Then $\v
+Y$ still has $n$ components but can move only
+inside $V,$ a space of dimension only $m.$ Then it may
+be proved that $\|\v Y\|^2$ has a $\chi^2_{(m)}$
+distribution. We loosely say that $\|\v Y\|^2$ has $m$
+degrees of freedom.
+<p></p>
+So far there is no mention of quadratic forms. Now they will come
+into play.
+<p></p>
+We may write $\|\v X\|^2$ as $\v X'\v X = \v X' I_n \v
+X,$ a quadratic form. It had $n$  degrees of freedom
+which also happened to be the rank of $I_n.$ Now $\v Y =
+P\v X,$ where $P$ is the projection matrix onto $V.$
+Then $\|\v Y\|^2 = \v Y'\v Y = \v X'P'P\v X = \v X' P\v X,$
+since $P$ is symmetric and idempotent. Notice that the
+degrees of freedom is again given by the rank of $P$ (which
+is the dimension of $V$). 
+<p></p>
+Hence for a symmetric idempotent matrix $A$ we say (loosely)
+that $\v X' A \v X$ has $r(A)$ degrees of freedom. This
+usage is only for symmetric, idempotent matrices. Also, for any
+quadratic form the matrix is always considered to be
+symmetric. So in your example $k=\frac 32.$
+
+<h2><a
+name="Are there cubic or higher forms?">Are there cubic or higher forms?</a></h2>
+Yes, there are, but they are not usually called by these
+names. Instead, first quadratic forms are generalised to bilinear
+forms:
+<blockquote>
+A quadratic form is a function $f(\v x) = \v x' A\v x.$ If
+you allow the two difeent vectors on the two side, you get a
+bilinear form, which is a function like $f(\v x, \v y) = \v
+x'A\v y.$ Here the matrix $A$ may be any square matrix. 
+</blockquote>
+A bilinear map is linear in each of its arguments separately (<i>i.e.</i>,
+when the other arguments are help fixed). Next, bilinear maps are
+generalised to multilinear maps $f(\v x, \v y, \v z,...),$
+which are linear in each of its arguments separately. 
+
+<h2><a
+name="Are there nonhomogeneous quadratic forms?">Are there nonhomogeneous quadratic forms?</a></h2>
+Yes and no. No because the expression $\v x' A\v x$ has
+exactly two components per term. However, you can accommodate
+nonhomogeneous quadratic forms indirectly. Consider $2x^2-4x +
+4.$ Think of it as $2x^2-4xy + 4y^2,$ but
+with $y=1.$ Then it is 
+$$
+\left[\begin{array}{ccccccccccc}x &amp; 1
+\end{array}\right]\left[\begin{array}{ccccccccccc}2 &amp; -2\\-2 &amp; 4
+\end{array}\right]\left[\begin{array}{ccccccccccc}x\\1
+\end{array}\right].
+$$
+The conic-section formula is one application of this.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
