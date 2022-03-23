@@ -1,9 +1,79 @@
 @{<NOTE> -*- eval: (folding-mode t) -*-
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>TUE MAR 01 IST 2022</UPDT>
+<UPDT>FRI MAR 18 IST 2022</UPDT>
+
+<INTRO>
+We hear about statistics a lot. Be it forecasting the weather or
+predicting the share market or clinical trials, statistics is all
+around us. We all have some idea about statistics, even though we
+may not have had any formal training.  Terms like  "data", "data
+processing softwares", "average behaviour" etc are not unfamiliar
+to us. Yet we the world of statistics remains a mystery. Ever
+wanted to peep deep inside statistics, to attain mastery over
+that mystery. If so, you are standing right at the entrance. This
+course will take a birds' eye overview of some key concepts of
+statistics.  No prerequisite, except some free time and the
+willingness to learn. We shall learn about types of data, how to present
+data, and the basic 
+characteristics of data. Nothing ambitious, really. But it is the
+start of an ambitious journey! 
+
+The course consists of 6 modules, one per week.
+Each module will have 5 lessons. The first 4 of them will
+each introduce a new topic. The last lesson will review and
+complement the earlier lessons.
+
+Each lesson will have some videos, some reading references, and
+some practice problems for you to work out.
+
+After the 6 weeks of lecture are over, you'll get 2 more weeks
+for self study and the final exam.
+
+The grade will come from two sources, module tests
+and a <B>final exam</B>. At the end of each module
+there will a test consisting of <B>5 questions</B>
+about the topics 
+discussed in that module. Each question will carry 2 points.
+
+That accounts for 60 points. The remaining 40 points will
+come from the final exam.
+
+The video lectures and reading materials will constitute the main
+reference. The reading materials will all come from the following books:
+
+  * Statistics by Witte and Witte
+  * Statistics by Freedman, Pisani and Purves
+  * How to lie with statistics by  Huff
 
 
+We shall use the <B>LibreOffice Calc</B> software for data
+ analysis. It is not the most popular software out there. But it
+ free (and open source, if you care for that), and closely
+ resembles the propreitary MS-Excel interface. Also, LibreOffice
+ Calc has an easy learning curve. Don't worry if you have never
+ heard of LibreOffice Calc or about any statistical software, for
+ that matter. We shall start from downloading and installing it
+ in your system. 
+
+  OK, that's the end of the course intro. 
+
+</INTRO>
 <HEAD1>Module 1: Data types</HEAD1>
+<INTRO>
+This module is about getting started with LibreOffice
+Calc. That's what we *have* to start with, as everything else
+requires a software to perform. Just as you need to know how to
+use a telescope before you can observe the distant planets!
+LibreOffice Calc is available for free downlod for Windows, Linux
+and Mac. Installation is generally quite easy. At this point you
+might be tempted to ditch your computer and rely solely on your
+mobile instead. My sincere advice: don't! LibreOffice Calc does
+not have an Android or IPhone version, and the interface is too
+detailed to read on a small screen. Some learners prefer to learn
+everything inside online sandbox versions. This course will not
+let you do that. I believe that learning to install a software is
+an integral part of learning to use the software.   
+</INTRO>
 <STKY><HEAD3>Module 1,  Introductory video: About the course</HEAD3></STKY>
 <SCRIPT id="m1/intro" done="k" t="4:03">
 <SESS t="1.10" done="a" kf="30,60,70,80,90" id="s1">
@@ -4991,7 +5061,7 @@ differently.
 <FLD>Additive
 
 <EXRLIST id="m2_add.yml">
-- typeName: Peer review
+- typeName: checkbox
   prompt: |-
      A statistician has devised a new chart that she calls the
      ring chart. It shows values of a single continuous
@@ -5006,12 +5076,33 @@ differently.
      is depicted as [./exraux/ringplot.png]. Here each ring (the central ring looks
      like a disc) has area proportional to the value. Suggest
      what is wrong with this chart.
- 
-  Rubric: 
-    1) No legend (1 point)
-    2) Eye cannot feel equal areas of rings. Outer rings become
-    thinner. (1 point)
       
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: There is no legend. 
+    isCorrect: true
+    feedback: >
+      Yes, not having a legend makes it difficult/impossible to
+  figure out which ring is for which category.
+  - answer: The eye is more sensitive to the thickness of a ring
+  than its area.
+    isCorrect: true
+    feedback: >
+      Yes, the outer rings become thinner to accommodate the same
+  area.  
+  - answer:  The eye is more sensitive to the area of a ring
+  than its thickness.
+    feedback: >
+      No, it is the other way around. The eye feels the thickness
+  more easily than the area. 
+  - answer: Too many rngs might confuse the eye.
+    feedback: >
+      While that is true, it is not a flaw of this **particular**
+  chart. Too many of anything is difficult for visual
+  comprehension. 
+
 - typeName: Peer review
   prompt: >
      Here is a data set [m2_1.csv] about daily minimum
@@ -5022,25 +5113,58 @@ differently.
     1) Should draw a line chart (1 point)
     2) The plot should be correct with appropriate title and labels (1 point)
       
-- typeName: Peer review
+- typeName: checkbox
   prompt: >
-     Here is a summary table [m2_2.csv] from an NSSO survey. Represent it with a
-     suitable chart using LibreOffice Calc. Your chart must have appropriate labels.
+     Here is a summary table [m2_2.csv] from an NSSO survey. Your
+  boss wants you to represent it with a
+     suitable chart using LibreOffice Calc. Which of the
+  following should you do? 
 
-  Rubric: 
-    1) Should be a bar chart (not a pie chart) (1 point)
-    2) The plot should be correct with appropriate title and labels (1 point)
+  shuffleOptions: true
+  options:
+  - answer: Make a bar chart.
+    isCorrect: true
+    feedback: >
+      Yes, a bar chart is the right thing here, because you want
+  to show absolute values for certain  categories. 
+  - answer: Add labels and titles.
+    feedback: >
+      Good. While these may be dropped for exploratory charts
+  (the ones that you make for your own inspection), they must be
+  included in charts for the boss (or others)!
+  - answer: Make a pie chart.
+    feedback: >
+      Well, pie charts show only the relative proportions. Your
+  boss might not like a chart that does not show the actual
+  values. 
+  - answer: Make a line chart.
+    feedback: >
+      Hmmm...line charts are for continuous variables. 
+
       
-- typeName: textReflect
+- typeName: checkbox
   prompt: >
      Use a suitable chart to explore this bivariate data
-     [m2_3.csv]. In particular, comment on whether you see any
-     outlier. If you do, then mention the serial number(s) of 
-     the outlier(s).
-
-  Rubric:
-    1) Scatterplot (1 point)
-    2) Case 37 is an outlier (1 point)    
+     [[m2_3.csv]]. In particular, which of the following is/are
+  true about the data?
+      
+  shuffleOptions: true
+  options:
+  - answer: Case 37 is the only outlier.
+    isCorrect: true
+    feedback: >
+      Good. I hope you made a scatterplot, and moused over the
+  outlier to see that it is for case 37.
+  - answer: Case 24 is the only outlier.
+    feedback: >
+      No, did you make a scatterplot? 
+  - answer: Case 37 and case 24 are both outliers.
+    feedback: >
+      Is case 24 really an outlier? Check using a scatterplot.
+  - answer: There is no outlier.
+    feedback: >
+      If you just look at the values of the individual variables,
+  then that's how it seems. But make a scatterplot first. 
 
 - typeName: multipleChoice
   prompt: >
@@ -7069,19 +7193,63 @@ Microsoft Excel, by the way, has a much better support for dashboards.
 <FLD>
 
 <EXRLIST id="m3_add.yml">
-- Use LibreOffice Calc to create a histogram with 5 equal classes based on this data
-  set[m3_hist.csv]. Show relative frequency densities along the
-  vertical axis.
+- typeName: checkbox
+  prompt: >
+      Which of the following statement(s) is/area true about a
+  histogram that shows relative frequency density along the
+  vertical axis? 
+      
+  shuffleOptions: true
+  options:
+  - answer: The area of a bar gives the **relative frequency** of the
+  corresponding class.
+    isCorrect: true
+    feedback: >
+      Yes, because the area is width times relative frequency density.
+  - answer: Each bar must touch its neighbour(s).
+    isCorrect: true 
+    feedback: >
+      Yes, because relative frequency density is only for
+    continuous variables.
+  - answer: The bars must be equal widths.
+    feedback: >
+      
+  - answer: The area of a bar gives the **frequency** of the
+  corresponding class.
+    feedback: >
+      No, because the area is width times **relative** frequency density.
 
-  Rubric:
-    1) A histogram is drawn (1 point)
-    2) The bars should be adjacent. (0.5 point)
-    3) The relative frequency density should be shown (0.5 point)
+- typeName: multipleChoice
+  prompt: >
+       Create a contingency table based on religion and household type
+  from this data set. [[./exraux/m3_cont.csv]]. Now choose the most
+  appropriate options(s):
 
-- Create a contingency table based on religion and household type
-  from this data set. [m3_cont.csv]
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: There are exactly 11 cells with 0 frequencies.
+    isCorrect: true
+    feedback: >
+      Yes, all the cells for religion 3 (except where household
+  type is 29). Also two cells for religion 2.
+  - answer:  There are exactly 9 cells with 0 frequencies.
+    feedback: >
+      No, possibly you have overlooked the empty cells for
+  religion 2.
+  - answer: It is a 3x10 contingency table.
+    isCorrect: true
+    feedback: >
+      Yes, 3 rows and 10 columns, not counting the totals.
+  - answer: It is a 4x11 contingency table.
+    feedback: >
+      No. Possibly you included the row and column for the
+  totals.  
 
-- Here is an empty  contingency table with only some of the
+- typeName: multipleChoice
+  prompt: |-
+      Here is an empty  contingency table with only some of the
 marginals.
     |          | Carpentar | Tailor | Barber | Total |
     |----------+-----------+--------+--------+-------|
@@ -7090,24 +7258,57 @@ marginals.
     |----------+-----------+--------+--------+-------|
     | Total    | 145       |        | 91     |       |
 
- Find the expected frequencies of all the cells
-assuming that the two categorical variables profession and tax
-payment status are independent. 
+Assume that the two categorical variables profession and tax
+payment status are independent. Then which of the following
+statements is/are true?
 
-Rubric:
-  The table should be
-   90 87.51724 56.48276
-   55 53.48276 34.51724
-  145 141       91
-  Accept as long as first decimal matches.
-  If the marginal computation is wrong, but cell frequency
-  formulas are correct, then 1 point.
+  defaultFeedback: >
+      To find the expected frequency of a cell multiply the row
+      and column totals and divide by the grand total.
+  shuffleOptions: true
+  options:
+  - answer: The expected number of carpentars who has paid their
+      taxes is 90. 
+    isCorrect: true
+      
+  - answer: The expected frequency in the cell (Tax due, Barber)
+    is 34.5 (rounded to first decimal place).
+    isCorrect: true
+  
+  - answer: The expected frequency for a cell may exceed the
+    minimum of the 
+    corresponding row total and column total.
+      
+  - answer: The expected frequency for a cell must not exceed the
+    observed freqncy for the cell. 
+      
 
+- typeName: multipleChoice
+  prompt: >
+      Make a bar chart as a pivot chart for Religion based on the
+  data set [m3_cont.csv]. Then choose the correct option(s).
 
-- Make a bar chart as a pivot chart for Religion based on the
-  data set [m3_cont.csv].
+  shuffleOptions: true
+  options:
+  - answer: The tallest bar is more than 6 times the next tallest one.
+    isCorrect: true
+    feedback: >
+      Yes, the tallest bar is for religion 1, the second tallest
+  for religion 2.
+  - answer: One of the bars has height 0.
+    feedback: >
+      No, the bar for religion 3 is indeed very low, but it does
+  have a positive height.
+  - answer: There are two bars of (roughly) equal heights.
+    feedback: >
+      Not at all. The heights arewidely different.
+  - answer: The bar for religion 2 is slightly taller than 75.
+    feedback: >
+      No, it barely exceeds 50. 
 
-- Here is a frequency distribution based on some raw data that is
+- typeName: multipleChoice
+  prompt: |-
+       Here is a frequency distribution based on some raw data that is
     not available.
     |  Class | Frequency |
     |--------+-----------|
@@ -7118,7 +7319,25 @@ Rubric:
     | 50--60 |        30 |
     | 60--70 |        15 |
     | 70--80 |         5 |
-   Let M be the centralmost value in the raw data. 
+   Let M be the centralmost value in the raw data. Then which of
+    the followin option(s) is/are true? 
+
+  defaultFeedback: >
+   There are 211 observations in all. So the centralmost value is
+   the 106-th one. We need to cumulatively add the frequencies
+   until we cross the 106 for the first time.      
+  shuffleOptions: true
+  options:
+  - answer: M lies between 20 and 30
+      
+  - answer: M lies between 30 and 40
+    isCorrect: true
+      
+  - answer: M lies between 40 and 50
+      
+  - answer: M lies in the class with the maximum frequency.
+    isCorrect: true
+      
 </EXRLIST>
 <R>
 rw = c(234,143)
@@ -7131,6 +7350,8 @@ cw('exraux')
 set.seed(333341)
 x = trim(100+10*rnorm(1000))
 csv(data.frame(x),'m3_hist.csv')
+
+23+45+50+43+30+15+5
 </R>
 
 </FLD>
@@ -9977,6 +10198,7 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 </EXRLIST>
 </FLD>
 
+<FLD>
 - typeName: textReflect
   prompt: >
       Here is a data set [[./exraux/gh.xlsx]] with two variables gender and
@@ -10007,7 +10229,6 @@ freedom</B>. Thus here the degrees of freedom is <M>n-1.</M>
 
       Variance = 47.44
 
-</EXRLIST>
 </FLD>
 
 
@@ -10815,7 +11036,7 @@ But how should we deal with outliers while measuring dispersion?
 Dispersion is about how far away the points may deviate from the
 centre.
 ---
- So shouldn't outliers be allowed to influence it? Well,
+ So shouldn''t outliers be allowed to influence it? Well,
 even here the answer is
 no. Dispersion, just like central tendency, is about the bulk
 behaviour of data.
@@ -10872,62 +11093,156 @@ varalt.ods
 
 <FLD>
 <EXRLIST id="m5_add.yml">
-- Consider this time series data [m5_1.csv] of length thousand. Consider the first 100 values
-only (ie 1st to 100th) , and find the variance, call it <M>V_1.</M> Next, consider
-the 100 values from 2nd to 101st, and find their
-variance, <M>V_2.</M> Continue shifting a window of width 100 over the entire
-data in this way. In general <M>V_k</M> is the variance of
-the <M>k</M>-th value to <M>99+k</M>-th value, for k from 1 to 901. Submit a plot of
-the original time series, as well as the value of <M>k</M> for
-which <M>V_k</M> is maximum. 
+- typeName: multipleChoice
+  prompt: >
+      Consider this stock price time series data [[./exraux/m5_1.csv]] of length thousand. Consider the first 100 values
+only (ie 1st to 100th) , and find the variance, call it V1. Next, consider
+the 100 values from the 2nd to the 101st, and find their
+variance, V2. Continue shifting a window of width 100 over the entire
+data in this way. In general Vk is the variance of
+the k-th value to (99+k)-th value, for k from 1 to 901. 
+Use a plot of the Vk values againt k  to find the time point
+  when the volatility is maximum.
+  defaultFeedback: >
+      The Vk values give you an idea about the volatility. So you
+  should look for the maximum Vk. 
+  shuffleOptions: true
+  options:
+  - answer: Around time 250.  
+    isCorrect: true
+    feedback: >
+      Yes. The maximum Vk is when k=200. Adding half the window
+  length (100/2 = 50) to it, gives the centre of the most
+  volatile window.
+  - answer: Around time 500.
+    feedback: >
+            No, Vk values quite low there. 
+  - answer: Around time 600.
+    feedback: >
+      No, Vk values quite low there. 
+  - answer: Around time 200.
+    feedback: >
+      Well, the maximum Vk occurs for k=200. But as we are using
+    a window of length 100, we should better add 100/2 = 50 to it
+    in order to reach the centre the window.
 
-  Rubric:
-    1) Plot of the original series, which should look like [[./exraux/m5_1.png]].
-    2) The maximum should occur for k=200.
 
-- Create a boxplot (using any of the three methods discussed) of
-all those variables in this [data set], for which it is
-meaningful to create a boxplot.
 
-  Rubric:
-   1) Subtract 1 point if boxplot is made for the third variable
-   2) The boxplots should look like [[./exraux/m5_2.png]]
+- typeName: checkbox
+  prompt: >
+      There are three variables in the data set
+  [[./exraux/m5_2.csv]]. Which of the following is/area true
+  about this data set?
 
-- Consider this statement about a continuous variable in a data
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: > 
+     It is meaningful to
+  create a boxplot for only the Length1 and Length2 variables. 
+    isCorrect: true
+    feedback: >
+      Yes, these are the only two continuous variables.
+  - answer: Length2 has the longest box. 
+    isCorrect: true
+    feedback: >
+      Yes. Length2 has maximum IQR.
+  - answer: >
+     It is meaningful to create a boxplot for all the three variables.
+    feedback: >
+      No, Metal Type is a categorical variable.
+  - answer: >
+      The Metal Type variable has the longest box.
+    feedback: >
+      Metal Type is not even a continuous variable. So boxplot
+      does not make sense for it.
+
+
+- typeName: checkbox
+  prompt: >
+       Which of the following statements is/are true about a continuous variable in a data
 set with 11 cases: 
-   just by changing a single value of a variable we cannot change
-IQR.
+
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: >
+     Just by changing a single value  we may   change IQR.
+    isCorrect: true
+    feedback: >
+      Yes, changing Q1 or Q3 (ie the 3rd or 7th value in the
+  ordered data set) would change the IQR.
+  - answer: >
+     Changing any single value in the data set would change the IQR.
+    feedback: >
+      No, you may reduce the minimum. That would not change the IQR.
+  - answer: >
+ It is impossible to change the IQR by changing only a
+    single value in the data set.
+    feedback: >
+      No, if you change Q1 or Q3 the IQR would change.
+  - answer: > 
+      We may change a suitably chosen 9 out of the 11 values and
+      still keep IQR unchanged.
+    isCorrect: true 
+    feedback: >
+      Yes, just leave the 3rd and 7th values in the ordered data unchanged. 
   
-  Is this statement true or false? Justify your answer.
+- typeName: checkbox
+  prompt: >
+      Which of the following statements is/are true about a
+  univariate data
+  set with at least 10 cases.
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: >
+     Presence a very high outlier would make
+  standard deviation exceed IQR.
+    isCorrect: true
+    feedback: >
+      Yes, standard deviation is less robust, and grows in
+  presence of outliers.
+  - answer: >
+     Presence of  a very low outlier would make
+  standard deviation exceed IQR.
+    isCorrect: true
+    feedback: >
+            Yes, standard deviation is less robust, and grows in
+  presence of outliers.
+  - answer: >
+     Presence of  a very low outlier would make
+  standard deviation smaller than IQR.
 
-  Rubric:
-   1) False. Justification: Here the 3rd and 7th values in the
-   ordered data are Q1 and Q3. So if those values are changed IQR
-   will change.
-   2) 1 point for correct answer without justification. 
+    feedback: >
+      No, an outlier (low or high) will always increase standard deviation.
+  - answer: >
+      IQR can never exceed standard deviation.
+    feedback: >
+      No, consider a data set with 10 values, half of which are
+      at either extreme. 
 
-- Construct two data sets each with 11 cases such that in the
-first one standard
-deviation is more than IQR, and in the second IQR is more than
-the standard deviation.  Submit both the data sets, the standard
-deviations and the IQRs. Use the standard deviation formula with n-1
-in the denominator.
-
-  Rubric:
-   1) 1 point for each correct data set.
-
-- The variance (with n in denominator) of a variable in a data
+- typeName: numeric
+  prompt: >
+   The variance (with n in denominator) of a variable in a data
 set of size 10 is 20 and
 mean 3. A new case 3 is appended to the variable. What is the new
-variance? 
-
-  Rubric:
-   1) Mean remains the same. 
+variance?      
+  defaultFeedback: |-
+    Mean remains the same. 
       Sum of squares was 10*(20 + 3*3) = 290
       New sum of squares = 290 + 3*3 = 299
       New n = 11
       New variance = 299/11 - 3*3 = 18.18
-   2) 1 point if original sum of squares computed correctly.
+      
+  shuffleOptions: true
+  options:
+  - range: [18.1, 18.2]
+    isCorrect: true
+
 </EXRLIST>
 <R>
 cw('exraux')
@@ -13119,40 +13434,125 @@ csv(x,'simp.csv')
 
 <FLD>
 <EXRLIST id="m6_add.yml">
-- Here is a contingency chi square data [[./exraux/m6_1.csv]]. 
-  Compute chisqure value.
+- typeName: numeric
+  prompt: >
+  Here is a contingency chi square data [[./exraux/m6_1.csv]]. 
+  Compute chisqure value.      
+  defaultFeedback: >
+    No, that does not look correct. May be you should watch the
+  video once again.     
+  shuffleOptions: true
+  options:
+  - range: [472,472.23)
+    isCorrect: true
+    feedback: >
+     The value computed by LibreOffice Calc in my machine is 472.225.
+      
 
-- 30 online sales were considered where 5-point Likert  feedback was
+
+
+- typeName: multipleChoice
+  prompt: >
+      30 online sales were considered where 5-point Likert  feedback was
 available on both the quality of delivery and the quality of the
 product. The resulting data set is in [[./exraux/m6_2.csv]].
-Compute a suitable measure of correlation (either Pearson's or
-Spearman's as you think appropriate) between the two variables.
+Which measure of correlation is more suitable here,  Pearson's or
+Spearman's? Also, compute the value (rounded to two decimal places).
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: Spearman. Value is -0.30.
+    isCorrect: true
+    feedback: >
+     Good! Since the variables are ordinal in nature, Spearman's
+     rank correlation is the way to go!     
+  - answer: Spearman. Value is  -0.27.
+    feedback: >
+      Oops, you computed the Pearson's coefficient!
+  - answer: Pearson. Value is -0.30.
+    feedback: >
+      We are working with ordinal data here! So Pearson's
+    correlation is not the best thing to use here.
+    
+  - answer: Pearson. Value is -0.27.
+    feedback: >
+      We are working with ordinal data here! So Pearson's
+      correlation is not the best thing to use here.
+      
 
-- Here is a trivariate data set with three categorical variables 
+
+- typeName: 
+  prompt: >
+       Here is a trivariate data set with three categorical variables 
   [[./exraux/simp2.xlsx]]. 
-  Show that this data set demonstrates Simpson's paradox.
+  Which of the following is true here?
+  defaultFeedback: >
+Here are the odds:   [[./exraux/simp2sol.png]]      
+  shuffleOptions: true
+  options:
+  - answer: >
+    For the Male and Female layers separately the A/B
+  odds is higher for the poor, and for the  pooled table it is
+  higher for the rich. So we have Simpson's paradox.
+    isCorrect: true
+    feedback: >
+      
+  - answer: >
+    For the Male and Female layers separately the A/B
+  odds is higher for the rich, and for the  pooled table it is
+  higher for the poor. So we have Simpson's paradox.
+      
+  - answer: >
+    For the Male and Female layers separately the A/B
+  odds is higher for the poor, and for the  pooled table it is
+  higher for the poor. So we don't have Simpson's paradox.
+      
+  - answer: >
+    For the Male and Female layers separately the A/B
+  odds is higher for the rich, and for the  pooled table it is
+  higher for the rich. So we don't have Simpson's paradox.
 
-  Rubric: 
-    1) Computing odds correctly: (1 point)
-    2) Showing  Simpson's paradox. (1 point)
-    3) [[./exraux/simp2sol.png]]
-- Construct two bivariate data sets (choose number of cases to
+
+- typeName: peerReview
+  prompt: >
+      Construct two bivariate data sets (choose number of cases to
 suit yourself), each with correlation above
 0.9, so that the combined data set has negative correlation.
 
   Rubric:
    1) Two data sets with correlation > 0.9 (1 point)
-   2) Combined data set has negative correlation (2 point)
+   2) Combined data set has negative correlation (1 point)
 
-- Consider the following boxplot. [[./exraux/m6_box.png]] Assuming that the shape of the
-histogram has a single peak with tapering tails on both sides of
-it, write down the order of the mode, median and mean. Justify
+- typeName: checkbox
+  prompt: >
+       Consider the following boxplot. [[./exraux/m6_box.png]] Assuming that  the
+histogram has a single peak with a tapering tail on either side of
+it, which of the following would you conclude?
 your answer.
- 
-  Rubric:
-   1) Mean < Median < Mode (1 point)
-   2) Justification: negtively skewed (1 point)
-</EXRLIST>
+
+  defaultFeedback: >
+      
+  shuffleOptions: true
+  options:
+  - answer: Mean < Median < Mode 
+    isCorrect: true
+    feedback: >
+      Correct. There are more extreme small values than large ones. That
+  pulls the mean down.
+  - answer: Mean > Median > Mode 
+    feedback: >
+      There are more extreme small values than large ones. That
+  should pulls the mean down, not **up**!
+  - answer: Positively skewed
+    feedback: >
+      A positively skewed boxplot would have a longer upper half.
+  - answer: Negatively skewed
+    isCorrect: true
+    feedback: >
+      Correct! The longer lower half indicates negative skew in
+    the data.
+ </EXRLIST>
 
 <R>
 cw('exraux')

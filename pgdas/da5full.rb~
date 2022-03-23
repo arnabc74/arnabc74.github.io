@@ -1,77 +1,1320 @@
 @{<NOTE>
-<TITLE>Course: DA 5</TITLE>
-<HEAD1>Module 1: Visual Representation</HEAD1>
+<TITLE>Course: Data Analysis 5</TITLE>
+<MODULE><TOPIC>Basic concepts</TOPIC>
+<LESSON>
+<SCRIPT id="m1/l/v">
+<TOPIC>Intro to the course</TOPIC>
+<SESS t="1.00" done="n" id="s1">
+Welcome to the PGDAS course on Multivariate Statistics. I am your
+instructor Arnab Chakraborty. We have already met in the Basic
+Statistics and Statistical Methods courses. And here we are
+meeting for the third time. Multivariate statistics is, well,
+statistics for multivariate data. As most data sets in practice
+are multivariate, this is a rather rich subject. Indeed so much
+so that one cannot do full justice to it within the span of just a
+single course. So we have split up the subject into a number of
+parts and have devoted one entire course for each part. There is
+one course for multiple regression. Another on classification and
+clustering. We shall not discuss those topics in this course. In
+this course we shall discuss some basic multivaiate concepts,
+Principal Component Analysis, Factor 
+Analysis, Multidimensional Scaling, Canonical Correlation and
+Conjoint Analysis. 
+</SESS>
+<JINGLE t="0.1">Textbook</JINGLE>
+<SESS t="1.00" done="n" id="s2">
+There are quite a few textbooks for multivariate statistics. Some
+deal with the theory, some with the more practcal aspects. Some
+focus on only a a few specific topics, while others provide a
+broad perspective of the entire gamut. We shall use the book
+Applied Multivariate Statistics by Hardle and Simar.
 
-<HEAD2>Lesson 1, Video 1: Why multivariate data visualisation is difficult</HEAD2>
-<HEAD2>Lesson 1, Video 2: Chernoff faces</HEAD2>
+In my opinion it is excellent book with one chapter devoted to
+each topic. Each chapter starts with a brief motivation, followed
+by the barest minimum formulation of the problem. The next
+section gives the math, which may be skipped without much loss of
+continity. Each chapter ends with some real data analysis. Nice
+and compact. Great for self study. Self complete with the data
+and R code for each exercise available online.
 
-<HEAD2>Lesson 2, Video 1: Scatter plots: pairs, 3D</HEAD2>
-<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+And that brings us to the next question: what software to use.
+</SESS>
+<JINGLE t="0.1">Software</JINGLE>
+<SESS t="0.70" done="n" id="s3">
+Unlike the last two courses that I taught, this course requires
+relatively heavier dose of computation. So LibreOffice Calc won't
+suffice. Instead, we shall use R, the most popular free
+statistical software out there. It does have a bit of steep
+learning curve. But you've already had a course on R and Python,
+and so I hope you are already somewhere in the middle of the
+learning curve.  And even if you are too fond of R, don't worry I
+shall explain all the R codes that I shall use in this course. 
+</SESS>
+<JINGLE t="0.1">Course structure</JINGLE>
+<SESS t="0.70" done="n" id="s4">
+The course structure is pretty much the same as what you are
+already used to in PGDAS. 6 modules, one per week. Each module has
+4 lessons, some practive problems, some graded exercises. Each
+week will have 10 points worth of graded exercises. That will
+account for 60 points. The remaining 40 will come from a final
+exam, that will take place within 2 weeks from the end of the
+last module. 
 
-<HEAD2>Lesson 3, Video 1: Interactive scatter plots</HEAD2>
-<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+Well, that's about all that I wanted to say about the
+course. Let's get rolling!
+</SESS>
+</SCRIPT>
+</LESSON>
 
-<HEAD2>Lesson 4, Video 1: Paralel coordinates</HEAD2>
-<HEAD2>Lesson 4, Video 2: Lab</HEAD2>
+<LESSON>
+<HEAD2>Module 1, Lesson 1: Multivariate data
+visualisation</HEAD2>
 
-<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
-<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+<SCRIPT id="m/l/v">
+<TOPIC>Loading multivariate data in R</TOPIC>
+<SESS t="1" done="n" id="s1">
 
-<HEAD1>Module 2: Dimension</HEAD1>
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="0" done="n" id="s1">
+Some real life examples with loading in R.
+</SC>
+</SCRIPT>
 
-<HEAD2>Lesson 1, Video 1: Different types of multivariate data</HEAD2>
-<HEAD2>Lesson 1, Video 2: The camera problem</HEAD2>
+<SCRIPT id="m/l/v">
+<TOPIC>Data frames in R</TOPIC>
+<SESS t="6" done="n" id="s1">
 
-<HEAD2>Lesson 2, Video 1: Extrinsic vs intrinsic</HEAD2>
-<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+</SESS>
+</SCRIPT>
 
-<HEAD2>Lesson 3, Video 1: Curse of dimensionality</HEAD2>
-<HEAD2>Lesson 3, Video 2: Dimension reduction</HEAD2>
+<SCRIPT id="m1/l/v">
+<TOPIC>Why difficult?</TOPIC>
+<SESS t="0.60" done="n" id="s1">
+Multivariate statistics, as I have already said, is statistics
+with multivariate data, ie, data consisting of more than one,
+often hundreds of variables, where we are interested in exploring
+the interrelation of the variables. Stated in this way,
+multivariate statistics sounds like a straight forward extension
+of  univariate statistics. But it isn't. There's a snag, a
+diffculty that sets it apart from the statistics we have
+encoutned so far in this course. Let's understand this difference first.
+</SESS>
+<JINGLE t="0.1">The difference</JINGLE>
+<SESS t="1.20" done="n" id="s1">
+When we are confronted with a data set we set ourselves certin
+goals that we achieve mathematically or computationally. All the
+goals we have worked with so far have been things that we could
+visually ascertain. Like central tendency. It is the centre of
+the data. Or dispersion, how much scatterred the points are. Or
+correlation, how tight a linear increasing or decresing pattern
+the points form, or regression or time series. In all these cases
+we could inspect the data visually, set a goal, and then go about
+designing mathematical machinery to achieve it in an automated
+objective way. The visual inspection was possible because we
+worked with univariate, bivariate or at most trivariate data. So
+cases could be represented by points along a line, on a paper of
+screen or may be floating in space. What if the data dimension,
+ie the number of variables is more than three? Our familiar
+visualisation tools fall short then, and if we cannot visualise
+the data we cannot even set our goals!
+</SESS>
+<JINGLE t="0.1">A naive attempt</JINGLE>
+<SESS t="1.80" done="n" id="s3">
+At this point, you might be tempted to bypass the problem
+altogether. "Why consider all the variables together?", you might
+ask, "Why not just consider a multivariate data as a bunch of
+univariate data, one per column of the data matrix?" Well, that's
+not adequate. Let's understand this with a picture. Suppose that
+we have a bivariate data with this scatterplot. Each point is a
+pair of numbers, X and Y. When you consider them separately, all
+the X values as one univariate data set, and all the Y values as
+another, you are basically taking only the corresponding points
+on the two axes. So instead of the actual points you are merely
+looking at there shadows, two sets of shadows, to be precise, one
+on either axis. These shadows won't tell you which X values go
+with which Y values. That is which 5 of these 25 junctions
+contained the data. For example, you might try to reconstruct
+the original data like this. Or like this. All these would
+correspond to the same shadows, ie the same two univariate data
+sets. Yet their joint behaviours are radically different from one
+another. 
 
-<HEAD2>Lesson 4, Video 1: ???</HEAD2>
-<HEAD2>Lesson 4, Video 2: ???</HEAD2>
+So we need to consider the variables together. Scatterplot is a
+good visual way to do this for bivariate data or even trivariate
+data if you can rotate the plot interactively on a screen. But
+what to do if
+you have more that 3 variables? That's what we shall take up in
+the coming videos.
+</SESS>
+</SCRIPT>
 
-<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
-<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+<SCRIPT id="m/l/v">
+<TOPIC>R packages for multivariate data visualisation</TOPIC>
+<SESS t="6" done="n" id="s1">
+base, lattice, ggobi, rgl
+</SESS>
+</SCRIPT>
 
-<HEAD1>Module 3: PCA</HEAD1>
+<SCRIPT id="m1/l/v">
+<TOPIC>Univariate projections</TOPIC>
+<SESS t="0.60" done="n" id="s1">
+In the last video we mentioned why it is inadequate to consider a
+multivariate data set as a bunch of univariate data sets. I said
+inadequate, but not useless. Even the shadows constain some
+useful information. Indeed, when you encounter a multivariate
+data set, the very first thing that I suggest you do is to
+visualise the shadows, or the low dimensional projections. And the box plot is a good way to go about
+it. Let's see an example. 
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="s1">
+Box plot of bodyfat.
+</SC>
+</SCRIPT>
 
-<HEAD2>Lesson 1, Video 1: Concept through examples</HEAD2>
-<HEAD2>Lesson 1, Video 2: Formulation with animation</HEAD2>
+<SCRIPT id="m1/l/v">
+<TOPIC>Bivariate projections</TOPIC>
+<SESS t="1.00" done="n" id="s1">
+What we did in the last video was to look at one variable at a
+time. Looking at the shadows of the points on each axis
+separately. That is what is called univariate projection of the
+multivariate data. But we can accommodate two variables on a
+two-dimensional piece of paper. So why not take bivariate
+projections, ie, shadows of the points on the coordinate
+planes. This produces 3 scatterplots, xy, yz and xz. In general
+if we have p variables, then we shall have p choose 2
+scatterplots. Of course, if p is large then this is too many. But
+for moderate values of p say 10, plotting all the these
+scatterplots gives a deeper insight than making the univariate
+boxplots. This should always be the second plot to try  when you
+get a multivariate data set.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="s1">
+Bodyfat pairs plot.
+</SC>
+</SCRIPT>
 
-<HEAD2>Lesson 2, Video 1: Hands on visualisation</HEAD2>
-<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
+<SCRIPT id="m1/l/v">
+<TOPIC>3D scatterplots in R (interactive) </TOPIC>
+<SESS t="6" done="n" id="s1">
 
-<HEAD2>Lesson 3, Video 1: Terminology</HEAD2>
-<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
+</SESS>
+</SCRIPT>
 
-<HEAD2>Lesson 4, Video 1: Using R</HEAD2>
-<HEAD2>Lesson 4, Video 2: Lab</HEAD2>
+</LESSON>
 
-<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
-<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+<LESSON>
 
-<HEAD1>Module 4: Factor Analysis</HEAD1>
+<SCRIPT id="m1/l/v">
+<TOPIC>Chernoff faces</TOPIC>
+<SESS t="1.50" done="n" id="s1">
+The visual devices we discussed in the last several videos
+dealt with lower dimensional projections or slices of the high
+dimensional data. In a sense this is only looking at certain
+specific aspects of the data, and not the entire data. Is the
+some way our eyes can comprehend a multivariate data set in its
+entirety? At first it may seem that the answer is "No!". But
+wait, when we see something we discern patterns, and patterns
+are high-dimensional object. Take for example a human face. We
+can easily tell one face apart from another. How do we do this?
+We compare the two faces in terms of various measurements, shape
+of skull, sizes of
+eyes, distances between them, sizes of ears, noses, etc etc. In
+other words, when we look at a face (or a picture of a face), we
+see at one go many different values simulatenously. So if we can
+somehow convert each case in a multivariate data set to features
+of a face, then the resulting faces should provide a visual
+representation of the entire data. Depending on how you look at
+it, this idea may seem anything from brilliant to frivolous. But
+there indeed is such a statistical plot, called Chernof's
+faces. Let's see this in practice.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="s1">
+Chernof's faces for Egyptian skull or Swiss bank notes.
+</SC>
+</SCRIPT>
 
-<HEAD2>Lesson 1, Video 1: Concept through example</HEAD2>
-<HEAD2>Lesson 1, Video 2: Formulation</HEAD2>
 
-<HEAD2>Lesson 2, Video 1: Terms and R</HEAD2>
-<HEAD2>Lesson 2, Video 2: Lab</HEAD2>
 
-<HEAD2>Lesson 3, Video 1: Rotation</HEAD2>
-<HEAD2>Lesson 3, Video 2: Lab</HEAD2>
 
-<HEAD2>Lesson 4, Video 1: Use 1: Likart</HEAD2>
-<HEAD2>Lesson 4, Video 2: Use 2: Educational testing</HEAD2>
+<SCRIPT id="m1/l/v">
+<TOPIC>Parallel coordinates</TOPIC>
+<SESS t="1.10" done="n" id="s1">
+The idea presented in the last video was fun, but informal at its
+best. A more formal implementation of the same idea is the so
+called parallel coordinates plot. Suppose that we have 5
+variables. Show the variables in some order along a horizontal
+axis, much like the horizontal axis is a bar chart. Now imagine a
+vertical axis for each variable. They need not have the same
+scale or origin. Now take a case from the data matrix. There are
+5 values in it, one for each variable. Accordingly, we have one
+point along the vertical axis for each variable. Join these
+points with straight lines to get a profile for that case. When
+we do this for all the cases, we get a bush like figure. Sometime
+a bunch of these behave in some characteristic way. An example
+will make it clear.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="s1">
+Iris data, try options. https://r-charts.com/ranking/parallel-coordinates/
+Use lattice.
+</SC>
+</SCRIPT>
 
-<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
-<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
+<SCRIPT id="m1/l/v">
+<TOPIC>Conditional plots</TOPIC>
+<SESS t="6" done="n" id="s1">
 
-<HEAD1>Module 5: Multidimensional scaling</HEAD1>
+</SESS>
+</SCRIPT>
 
-<HEAD2>Lesson 1, Video 1: Motivation using road map</HEAD2>
-<HEAD2>Lesson 1, Video 2: Real data example</HEAD2>
+<SCRIPT id="m/l/v">
+<TOPIC>Kernel plots</TOPIC>
+<SESS t="6" done="n" id="s1">
+
+</SESS>
+</SCRIPT>
+</LESSON>
+
+<LESSON>
+<HEAD1>Module 1, Lesson 2: Dimension</HEAD1>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Curse of dimensionality</TOPIC>
+<SESS t="1.00" done="n" id="s1">
+Multivariate data are often called high-dimensional data. The
+term "dimension" is heard frrquently in connection with
+multivariate statistical analysis. In its simplest sense, it
+means the number of variables of interest in the data set. I said
+variable of interest to exclude various identifier variables that
+might be present. Also, for a tim series data, we do not count
+the time variable in the dimension. In our course, however, we
+shall not work with tme series data, but with cross-sectional
+data. If the data matrix is of size n x p after removing the
+identifier variables, then p is the dimension, and n is the
+number of cases. If p becomes large, then certain problems crop
+up, and these are refered together as the curse of
+dimensionality.
+Let's take a closer look.
+</SESS>
+<JINGLE t="0.1">Average thy neighbours...</JINGLE>
+<SESS t="0" done="n" id="s2">
+Many statistical methods rely on a simple principle of averaging
+over similar cases. Here's a simple non-mathematical
+example. Suppose that you go for bungee jumping. This is your
+first time. You are a bit apprehensive. There are quite a few
+others in the team with you. Most of them experienced. They are a
+varied lot, some young athletic men, some girls who look the
+studious type,  some are quite
+advanced in age. And then there is a bunch of teenager. Let's
+pretend you are a girl, and you want to talk to the others to get
+an idea about how it is going to be. Who would you talk to? If
+you are a girl, then most likely you'll first talk to the girls,
+because they appear to be most similar to you. If you are an aged
+person, then the aged persons are your best bet. In other words,
+you'd average your neighbours. 
+
+Now suppose you are a girl, completely new to bungee jumping. And
+everybody else are expert men. Of course, they are very
+supportive, and tell you what to expect, but still you'll feel a
+bit disconcerted...after all they are different, they are males,
+they are experts, but I am so very different from them...will
+their opinion really apply in my case?
+</SESS>
+<JINGLE t="0.1">Stranded...</JINGLE>
+<SESS t="1.80" done="n" id="s1">
+Here is a more mathematical example. Consider this
+scatterplot. For this value of x, what will be typical value
+of <M>y?</M> You just look at the neighbours, and average. But
+what about this far away value of x. Now you are less sure. 
+
+Well, a high dimensional space is like a strange room with many
+far flung nooks and corners. And unless you have a lot of points,
+most of the points will be stranded in its own corner, with
+hardly any neighbour. And this makes statistical analysis
+difficult. 
+
+To have a reasonable number of neighbours for most of the points,
+you need your samle size to be huge. Indeed, the required sample
+size will grow with the dimension in the power! Could I make
+myself clear? Possibly not! Let's be more specific. Suppose you
+have a univariate data, ie, p=1, and you have sample of size 100,
+and you find that adequate for some statistical problem. Now if
+you have a multivariate data set with p=5, then to achieve the
+same level of adequacy you'll need 100^5 data points! And if
+p=10, then the requirement will be of the order of 100^10. As
+such a huge number of cases are often not available in practice,
+univariate techniques directly generalised to multivariate set
+ups generally perform poorly. This exponential growth in the
+sample size requirement is called the curse of dimensionality.
+
+In the next video we shall take a look at some crude mathematical
+estimates to convince ourselves of this exponential growth.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Volumes of boxes and spheres</TOPIC>
+<SESS t="2.10" done="n" id="s1">
+One way to get a feel about high dimensional space is to
+gradually work our way up from dimensions 1, 2 and 3, and see how
+things change. We shall start with 2-dimensional space, a plane
+like a graph paper. We shall consider the unit box centred at the
+origin. Imagine points randomly sprinkled in this box. We want to
+know the chance that a random point is within a distance of 1
+from the centre. In other words, that a point lies inside this
+circle. The total area is 4 and the area of the disc is pi. So
+the ratio is pi/4 = 0.79. Next let's consider the 3D
+situation. Here we have a box of volume 8 and the unit ball has
+volume 4/3 pi. So the ratio is 0.52. In fact, we could have
+started with dimension 1. Then the unit box is just a line o
+length 2, and the unit ball is the same line. So the ratio is 1.
+As we move up the dimension scale the unit ball volume formula
+becomes complicated. 
+
+https://en.wikipedia.org/wiki/Volume_of_an_n-ball
+But we may compute it. The ratio dwindles at
+an alarming rate. For 10 dimensions, it is as low as 0.002. Thus,
+only about 2 out of 1000 points are near the centre. The rest are
+tucked up into distant corners. How many corners are there? For 1
+dimension there are just two. For two dimensions, there are
+four. For three dimension there are 8. So you see the exponential
+growth. Thus for high dimensional data almost every point is
+stuck in its own corner, virtually isolated from the rest. It is
+like a finicky person choosing a date. They have so many
+parameters of choice, that they seldom end up finding some one
+close to their heart. 
+</SESS>
+<FLD>R code for above session
+<R>
+d = function(n) {
+  if(n%%2==0) {
+    k = n/2
+    pi^k/factorial(k)
+  }
+  else {
+    k = (n-1)/2
+    (4*pi)^k*2*factorial(k)/factorial(n)
+  }
+}
+r = function(n) d(n)/2^n
+for(n in 1:10) cat(n,r(n),'\n')
+</R>
+</FLD>
+<BC t="5" done="n" id="s1">
+
+</BC>
+</SCRIPT>
+
+
+<SCRIPT id="m/l/v">
+<TOPIC>Beating the curse of dimensionality</TOPIC>
+<SESS t="2.00" done="n" id="s1">
+The idea of averaging over neighbours is inevitable in
+statistics, and the curse of dimensionality makes this difficult
+in a multivariate set up. So most multivariate methods make some
+assumptions on the data that would alleviate the curse. They
+basically redefine neighbours, by considering fewer
+variables. Again let's start with a non-mathematical example. I
+have a data set where each case is a patient, and there are many
+variables, age, gender, clinical measurements etc etc. Now when a
+new patient arrives it is quite unlikely that he would closely
+match any of the archived patients w.r.t all the variables. Here
+the doctor has to use some discretion, domain knowledge, gut
+feeling, experience from past, whatever you choose to call it,
+and consider only a small number of variables as important. This
+basically increases the neighbourhood. So this choice of the
+variables beats the curse here. Some multivariate statistical
+methods use one variable at a time. Some others start by throwing
+away all but the most important variables. Yet others would try
+to combine many variables into a smaller number of important
+variables. A classical scenario where this approach is used is
+educational testing. In an exam the student is asked many
+probems, say 40 math problems, 40 language problems and 40 logic
+problems. So each student gets 120 scores, one for each
+problem. But when comparing between students we rarely compare
+all the 120 numbers for one with those for the other. We
+generally consolidate the 120 numbers into a single overall grade
+or may be three grades, one for math, one for language and the
+other for logical abilities. This is basically one way to beat the curse
+of dimensionality. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Two types of multivariate data: n > p and n < p</TOPIC>
+<SESS t="3.20" done="n" id="s1">
+Before we embark upon any statistical anlysis the data must be
+cast into the form of the matrix. The data matrix
+has one row per case  and one column per variables. Traditionally
+the columns are somewhat like demand and the rows like
+supplies. Let's see this with an example. Suppose that we are
+trying to related various measurements taken on patients. Blood
+pressure, height weight age, gender, etc. These are the
+columns. Now more variables there are the more difficult it gets
+to obtain relation between them. If you all the patients are
+males of a certain age group, then you might expect to get a
+simple relation. But if you also include diffeent age groups and
+genders, the relation can only get more complex. To explore the
+complex relation we need more cases. Hence the traditional
+viewpoint is: As p grows, so must n, and typically n should be
+much much larger than p to achieve a dependable conclusion.
+
+Thus, if n remains the same and p grows too much, a traditional
+statistician would give up. "It's a hopeless exercise!", he would
+say, "I cannot possibly meet so much demand with so little
+supply!"
+
+Now with the advent of modern data collection devices the
+situation has changed drastically. Let's see an example. Consider
+a digital camera, say the one in your mobile camera. You may not
+be accustomed to thinking about it as a data collection device,
+but it is one nonetheless! When you snap a photo, the image
+formed by the lens is split into a rectangular grid of tiny little tiles, called
+pixels. There  are many of them. If you have a 13 megapixel camera
+then there are about 13*... many pixels. There are three sensors
+per pixel. One of them measures the intensity of the red
+component of the pixel, the other two measure the green and
+blue. As a result you get 3*13*... many variables. Each snap is a
+case. Thus, if you take 100 snaps of faces of friends the
+resulting data matrix is 100 x ... in size. What will be a
+typical statistical analysia that you may like to do with such a
+data set? You may try to do face recognition! Now would you
+really think that the huge number of colun puts more demand on
+you? Not really, it is actually a help. Higher the numer pixels,
+the better the resolution of the photos, and the easier it should
+be to recognise the faces from them. So you see p ceases to be
+the demand, and is like a supply here. 
+
+So you see there are two possibilities: one posibility is where
+the columns make the exercise more complex, and those where the
+columns make the exercise easier. 
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Extrinsic and intrinsic dimension</TOPIC>
+<SESS t="2.20" done="n" id="s1">
+We shall now take a closer look at what we saw in the last
+video. Sometimes more variables make the problem more complex,
+sometimes it makes it easier. Let's understand the reason behind
+the difference. In the process we shall learn to distinguish
+between two types of dimension of a data set. 
+
+Consider the medical example. Here each new variable is for a new
+type of measurement height is not like weight, which is not like
+blood pressure or gender. So as the number of variables increase
+newer aspects are entering the picture. On the other hand, in the
+camera example, a higher resolution camera is taking pictures of
+the same object, but at a greater detail. It is the level of
+details that is changing, a quantitative change, but not a
+qualitative one. Consider an even simpler example: observing a
+flower. Here is a flower, and I am looking at it. There are two
+ways of getting more information: I may turn the flower around
+and get newer aspects of the flower that was completely unaware
+of before. Or I may just look closer, zoom in. I still see
+basically the same aspects as before, but at a greater level of
+details. 
+
+When data collection is a laborious process (as it was in olden
+days, and is still so in certain aplication areas) adding an
+extra variable to our data, is an expensive operation, and is
+worth it only when we can capture a new aspect of the
+scenario. Introduction of such variables increase the complxity
+of the scenario But with the adventof modern data collection devices,
+we can just collect lot of variables which are basically zoomed
+in versions of the same aspect. Such variables do not increase the
+complexity of the scenario.
+
+And this brings us to the concept of extrinsic and intronsic
+dimension. 
+</SESS>
+<SESS t="1.10" done="n" id="s1">
+The terms extrinsic and intronsic dimensions are not standard
+ones. I have just coined them to explain the concept. By extrinsic
+dimension we understand the number of variables of interest in
+our data set. This is the number of columns in the data matrix
+(after excluding identifier variables). 
+
+The intrinsic dimension is a more subtle concept. It is what we
+called the complexity of the scenario. Like if the problem is to
+recognise faces from photographs, then the intrinsic dimension
+will be determined by the complexity of the human face needed for
+recognition. If the photo from a 5 megapixel camera is enough to
+recognise a face, then using a 13 megapixel camera is not
+changing the intrinsic dimension, though it does increase the
+extrinsic dimension a lot. 
+
+Coming up with precise meaningful ways to measure the intrinsic
+dimension is a common theme around which many multivariate
+satatistical techniques are built.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Lab session for intrinsic and exptrinsic</TOPIC>
+<SC t="0" done="n" id="s1">
+3D plot.
+</SC>
+</SCRIPT>
+</LESSON>
+</MODULE>
+
+
+<MODULE><TOPIC>PCA</TOPIC>
+<LESSON>
+<SCRIPT id="m/l/v">
+<TOPIC>Introduction to PCA</TOPIC>
+<SESS t="2.30" done="n" id="s1">
+In this module we shall learn about the most popular way to
+detect intrinsic dimension of data. The technique is called the
+principal component analysis or PCA, for short. All multivariate
+statistics books discuss this technique to varying levels of
+sophistication. However, most of the expositions avilable in
+books and websites tend to be pretty intensive
+mathematically. This often leads a beginner to suspect that PCA
+is a rather complicated beast. It isn't. In order to convince you
+that is isn't, we shall start with a simpe toy example where you
+can easily see what we are after. 
+
+PCA is a way to detect intrinsic dimension. Now intrinsic
+dimension is not a very clearly defined quantity. So any method
+trying to capture that nebulous idea, must first start with a
+concrete version of it. We shall start with that. 
+
+Here is a trivariate data set. Each case is a point floating in
+space. There are three variables, so the extrinsic dimension is
+3. No quation about that. Now when we make the scatterplot, we
+notice that the points lie almost exactly on a plane, this
+oblique plane. So in this case it is natural to say that the
+intrinsic dimension is 2. So what concrete definition of
+intrinsic dimension are we using here? The definition is in terms
+dispersion. If the points are scattered along a line we shall say
+that the intrinsic dimension is 1. If they are all scattered
+over a plane (but not along a line), then the intrinsic dimension
+is 2. If they are scattered in a 3D way in space, scattered with
+a thickness, not just along a thin plane, then the intrinsic
+dimension is 3.
+
+This, by the way, is just one possible concrete way of defining
+intrinsic dimension, and may not be useful in all scenarios. We
+shall discuss later scenarios, where this definition is not
+useful. But for the times being we shall use this definition,
+because that's what PCA uses. 
+
+Next let's understand what we expect from PCA.
+</SESS>
+<SESS t="2.30" done="n" id="s1">
+We are about to get a little technical. To keep ourselves from
+getting confused, I shall take an even simpler example, where the
+extrinsic dimension is 2 ad intrinsic dimension is 1. How did we
+know the intrinsic dimension? Since the extrinsic dimension is
+quite low, just 2, so we could create a scatterplot and visual
+inspecion revealed that the points are along a line, almost. Had
+the points been scatterred like this, then the intrinsic
+dimension would have been 2. Well, PCA is an automated tool to
+achieve what we did by visual inspection. The visual inspection
+technique cannot be used for extrinsic dimension exceeding 3. But
+the PCA technique may be applied to higher dimensions as
+well. Even if you have a data with 10000 variables (ie extrinsci
+dimension is 10000) and the intrinsic dimension is just 22, PCA will
+detect that for you.  But the good news does not end
+there. There is more. PCA will also report how the intrinsic low
+dimensional space is embedded in the extrinsic high dimensional
+space. For this simple example, this means PCA will tell you how
+the line lies in the plane. For the 3D example PCA will similarly
+tell you how the oblique plane is positioned in space.
+
+If the intrinsic low dimensional space is just a line or a plane,
+then you may easily describe their position by means of
+equations. But if the intrinsci dimension is 10000, and the
+intrinsic low dimensional space has dimension 22, then equations
+become pretty cumbersome to work with. Instead, PCA uses a
+smarter notation, vectors. Depending on your background you may
+or may not have familiarity with vectors. Vectors, in their full
+glory, require a lot of time to explain. But we shall need only a
+small part of it, merely as a notational convenience. So we shall
+pause the present dicussion for the time being, and come back
+only after a little crash course on vectors.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Crash course on vectors</TOPIC>
+<BC t="6" done="n" id="s1">
+Length, ortogonality, unit vector, direction unalteredby sign.
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Back to PCA</TOPIC>
+<SESS t="1.20" done="n" id="s1">
+We were discussing what to expect from PCA. We were working with
+this bivariate data set, where the extrinsic dimension is 2 but
+intrinsic dimension is 1. PCA will first compute the centre of
+the data, and then draw from it a unit vector pointing along the
+direction of maximum scatter.  Then it will also draw the
+direction of minimum scatter. This unit vector will always be
+orthogonal to the first. Even that is not all, it will also give
+the amount of scatter of the data along these two
+directions. Along this direction the scatter is large, while
+along this direction it is small. 
+
+Here is a quick list of output from PCA:
+
+  * centre of data
+  * direction of maximum scatter along with the maximum amount
+  * direction of minimum scatter along with the minimum amount
+
+But what about the intrinsic dimension? Well, if the the scatter
+along the second dimension is negligible compared to the first,
+then the intrinsic dimension is 1, else it is 2.
+
+Well it is time to hit the lab.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="5" done="n" id="s1">
+Lab of 1D PCA
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Lab for 2D PCA</TOPIC>
+<SESS t="0.70" done="n" id="s1">
+The example in the last video was a toy one. And a trivial one to
+boot. In this video we shall again work with a toy data, but this
+time it will be lss trivial. We shall work with three trivariate
+data sets, one is scattered along a line, another along a plane,
+and third spread as a 3D ball in space. The extrinsic dimension
+is 3 in all the three cases, but intrinsic dimensions vary from 1
+to 3. Let us see PCA can detect them from the data.
+</SESS>
+<JINGLE t="0.1">Lab</JINGLE>
+<SC t="6" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+</LESSON>
+
+<LESSON>
+<SCRIPT id="m/l/v">
+<TOPIC>Interpretation</TOPIC>
+<SESS t="3.30" done="n" id="s1">
+In the last several videos we have demonstrated one way of
+capturing the notion of the intrinsic dimension. A natural
+question now is:
+Why are we interested in the intrinsic dimension at all? Well, as
+a kind of evasive answer we may say that knowing the intrinsic
+dimension helps us to understand the structure of the data
+better. But we would like to have a more concrete description of
+the advantage. And that's what we plan to do now, using an example.
+
+Consider a math exam where three similar questions have been
+asked to each of 50 students. So each student gets three marks,
+one for each problem. This gives rise to a 3D scatterplot. Since
+the questions are all similar, the three scores move up and down
+in a more or less matching way. A student doing well in one, is
+likely to do well in the others as well, and the opposite is true
+also. As a result the points are more or less along a line. Now
+imagine an axis laid out along this line. This axis then may be
+considered as measuring math proficiency (at least for the type
+represented by those three similar problems). So instead of
+reporting three separate scores for each students we would do
+better if we report a single "math score" measured along this
+axis. This could be obtained by taking the point on the axis
+closest to the point of the student. This is better than a mere
+average of the three individual scores as it automaticaly takes
+into account the relative difficulty levels of the three
+problems.  This is bascialy like a weighted average where the
+weights are determined by the direction of the axis.
+
+This example was a watered down version of the procedure actually
+followed in many grading systems. We shall return to these
+techniques in greater details when we shall discuss something
+called Factor Analysis later.
+
+This example also touched upon another reason for using intrinsic
+dimension: data compression. Instead of 3 separate scores could
+be consolidated into a single score. The reduction is 3-1 =
+2. Extrinsic dimension minus the intrinsic dimension. Of course,
+compression was not the main aim in this example. But often the
+intrinsic dimension is drastically less han the extrinsic
+dimension, and then data may be compressed a lot before further
+processing. A prominent example is face recognition from
+photographs. A digital photograph, as we have already mentioned,
+consists of lots of intensity values, three per pixel. But for
+recognising faces, we hardly need so many numbers. As a result
+the intrinsic dimension is often of the orner of 20. In other
+words, instead of storing an entire photo we may just store 20
+numbers and still achieve more or less the same accuracy of face
+recognition. We shall return to this example later. 
+</SESS>
+</SCRIPT>
+</LESSON>
+
+<LESSON>
+<SCRIPT id="m/l/v">
+<TOPIC>Math behind PCA</TOPIC>
+<SESS t="1.60" done="n" id="s1">
+So far we have presented PCA as a blackbox. We know what we want
+to achieve, and 
+we know how to use R to achieve this. But exactly how the goal is
+being achieved is still a mystery to us. In this and the next
+several videos I shall introduce the mathematical techniques that
+make PCA possible. They are interesting, but not extremely
+essential from the viewpoint of a practising statistician. So
+don't be worried if you find it a bit boring. 
+
+The basic idea, however, is something we all know. Consider these
+two objects. They both look similar. Now turn them around, and
+you'll immediately notice that they are quite different from
+each other. Actually the objects are 3D, when you are looking at
+them from some fixed direction you are seeing only a 2D image of
+it. A 2D projection, to use a technical term. Unfortunately, 2D
+projections are all that we can see. So in order to get an idea
+of 3D objects we take multiple 2D projections from different
+directions as we did in our example. Then the brain combines all
+the 2D images and produces a feeling for the 3D object. Well, PCA
+does precisely this. It combines multiple low dimensional
+projections to figure out the lay out of the high dimensional
+data. Let's see how this is achieved.    
+</SESS>
+<SESS t="0.70" done="n" id="s1">
+Unlike the human eye which can see 2D prpjections, PCA uses
+something even simpler, 1D projection. It looks along some
+direction. Think of the direction as this arrow.
+
+There is an amount of scatter among the points along this
+direction. PCA searches through al possible directions and finds
+the direction of maximum scatter. This direction is called the
+first PC. Then the directions perpendiclar to this are searched
+until the next maximum scatter direction found, this is called
+the second PC. and so on. The detailed math will come in the next video.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Math (QF and eigenanalysis)</TOPIC>
+<BC t="6" done="n" id="s1">
+
+</BC>
+</SCRIPT>
+</LESSON>
+<LESSON>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Data analysisfrom Everritt or AMS</TOPIC>
+<SC t="6" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Eigen faces intro</TOPIC>
+<SESS t="5" done="n" id="s1">
+Intro
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Eigenface Lab</TOPIC>
+<SC t="6" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Caveats</TOPIC>
+<SESS t="5" done="n" id="s1">
+* Is higher dispersion better?
+* Correlation or Covariance?
+</SESS>
+</SCRIPT>
+</LESSON>
+</MODULE>
+
+<MODULE><TOPIC>Factor analysis</TOPIC>
+<LESSON><TOPIC>Introduction</TOPIC>
+<SCRIPT id="m/l/v">
+<TOPIC>Introduction</TOPIC>
+<SESS t="3.70" done="n" id="s1">
+In many area of scientific study, especially in psychometry and
+various social sciences and sometimes even in the bilogical
+sciences, we need to measure a quantity that is not easily
+quantifiable. One example is IQ. When we say some one as IQ 78,
+we speak as if it is something like height and weight. Here is
+the person, you take
+an IQmeter, apply it on the person,  and well you the IQ! But a
+moment's reflecton would show that it can't be like that. You
+cannot measure IQ directly. It is more like an abstract
+concept that manifests itself indirectly through how well the
+person can solve problems. So the statandard way to measure the
+IQ is to ask the person various questions and somehow combine the
+scores into a consolidated IQ value. 
+
+If you have understood this, then it's time to introduce a couple
+of technical terms. A latent variable is something that cannot be
+directly observed. Like IQ in our example. A manifest variable,
+on the other hand, is a variable that can be observed and
+measured. Like the answers to the questions in our example. 
+
+The only way to measure a latent variable is as we said: link it
+up with  some manifest variables, measure the manifest variables,
+and then indirectly arrive at a value for the latent variable.
+
+Here is another latent variable, which may not look like one when
+you first hear about it. Size of a bullfrog. Well, let me start
+from the beginning. Once I met a natural scientist who was
+studying creatures found in the marshlands of northern India. 
+Among various other questions, he also asked this question how
+does the size of an adult male bullfrog depend on its living
+conditions. He had collected data about varables regarding the
+living condition, but how to go about measuring the size of a
+bullfrog? Is it the length? Or girth? Or weight? Or length of the
+fully stretched legs? All these hover around the concept of
+size. All these are easily measurable. But how to consolidate
+these into a single satisfactory measure of size? 
+
+Here size is a latent variable. That might sound
+surprising. After all, you easily tell a large bullfrog apart
+from the smaller one. But when its comes to measurement, there is
+no clear way to do it directly. That's why it is a latent
+variable. The quantitites like length, girth, weight etc are the
+related manifest variables. 
+
+Indirectly determining the value of a latent variable from the
+observed values of the related manifest variables, is the aim of
+factor analysis. Incidentally, factor analysis is not the only
+statistical tool for this purpose. Probit regression and  Structural
+Equation Modelling  are two other popular techniques. But in this
+course we shall not go into them. 
+
+Why is it called factor analysis? Well, traditionally, what we
+called latent variables used to be called factors. Don't confuse
+this terminology with the factors that we learned about in
+ANOVA. There the factors were categorical, but most latent
+variables are considered continuous. Though the usage of the term
+factor to mean latent variables has dwindled, yet the term still
+sticks around in the name of the technique: factor analysis.  
+
+
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Multiple factor, rel with PCA</TOPIC>
+<SESS t="2.40" done="n" id="s1">
+We have introduced factor analysis very informally in the last
+video. Before we embark upon a more detailed exposition we shall
+devote this video to dispel some misconceptions that our informal
+introduction may have led you into. 
+
+First, factor analysis is not always about consolidating some
+manifest variables into a single latent fariable. There could
+very well be, and often are, multiple latent variables. 
+A very simpe example is furnished by an educational testing
+scenario. Imagine such a test where there are 10 language
+problems, 10 math problems and 10 logic problems. Then typically
+each student will be given three scores, one for language skills,
+one for quantitiative skills, and one for analytical
+skills. Factor analysis cn go even deeper, where
+the same
+manifest variable may have contribtion from more than one latent
+variable. For example, a math puzzle may require both analytical
+and quantitative skills. Many social science surveys seek to tap
+into latent factors via a questionnaire with overlapping
+questions. Consider these questions: 
+
+1) Do you like your present job?
+2) Are you planning to a different job soon?
+3) If you get another job with the same pay elsewhere, will you
+take it?
+4) Are you happy with your paycheck?
+5) Are you happy with your responsibility level?
+Here  the questions all revolve around two themes: satisfaction
+with the job itself (irrespective of the remuneration) and satisfaction with the
+remuneration. Some of the questions are clearly focused on  one
+of these, like the Q3 and Q4, while some others are mixtures of
+the two like Q1. Here we shall call the two themes the two latnt
+variables or factors, F1 and F2, say. Then we shall say  that F1
+loads heavily on Q3 (meaning the manifest variable Q3 is giverned
+primarily by F1) and F2 loads heavily on Q4. F1 and F2 both load
+to some extent on Q1.  The most idea situation is where each
+latent variable has its own separate set of manifest variables,
+like the educational testing example. But often such a set of
+manifest variables is difficult  to get. 
+</SESS>
+<JINGLE t="0.1">Difference with PCA</JINGLE>
+<SESS t="2.10" done="n" id="s1">
+We had discussed the educational testing scenario in the contexts
+of both PCA and FA. They seem to be serving the same purpose,
+consolidating many variables into fewer variables. A natural
+question therefore is: Are they the same? Just two names for the
+same thing? Well, no! Despite their similarity, they are
+fundamentally different. We shall see this difference as we go
+along. But here is a quick overview. 
+
+First, PCA is a mathematical technique to find directions of
+maximum scatter, then the next maximum scatter and so on. It is
+not really a statistical algorithm based on a statistical model. 
+
+FA, onn the other hand, is a statistical problem, based on a
+statistical model (which we shall get into shortly). It is not a
+technique, it is the name of a problem or requirement, and there
+are different techniques to solve it. The PCA technique may be
+used to solve the FA problem, but there are other techniques as
+well. 
+
+Second, PCA and FA both create fewer new variables from the
+exissting vriables. But they take the opposite view points. In
+PCA the existing variables are the ones of importance, the new
+ones are created just for convenience. They often do not have any
+intepretation. In FA on the other hand the new variables are of
+the primary importace. They are the latent variables with
+intepretation attached to them. The existing variables are of
+secondary importance. The aim is to express the existing
+variables in terms of the new variables. 
+
+Third, PCA and FA both have their own critics. PCA is sometimes
+criticised for not being as useful asit is claimed. But the
+charge levelled agains FA, is often much more serious. There are
+statisticians who consider FA as an invalid statistical
+method. We shall see more about this later.
+</SESS>
+</SCRIPT>
+</LESSON>
+
+<LESSON><TOPIC>Models</TOPIC>
+<SCRIPT id="m/l/v">
+<TOPIC>EFA vs CFA</TOPIC>
+<SESS t="2.30" done="n" id="s1">
+Factor analysis comes in two flavours: exploratory and
+confirmatory. When we do not mention the flavour explicitly we
+generally mean the exploratory factor analysis or EFA for
+short. It refers to the set up where we have no prior idea about
+the relation between the latent variables and the manifest
+variables. Any manifest variable may load on to any latent
+variables. We leave that for the data to decide. That is why it
+is called exploratory. We are exploring the relation based on the
+data. 
+
+A confirmatory factor analysis, on the other hand, starts with
+some prior idea about the nature of the latent variables, mainly
+regarding their relation with the manifest ones. We already had a
+little taste of confirmatory factor analysis in the educational
+testing example where we had three latent variables: language
+skills, quantitative skills and analytical skills. The first
+latent variable was to be measured only based on the first 10
+questions, the second from the next 10 questions, and so on. Of
+course, one would call it is an example of a CFA, since it is
+more easily described as three EFA being used in parallel. A
+nontrivial CFA would start with a possibly complex postulated
+relation between the latent variables and manifest variables. The
+relation may involve unknown parameter values to be estimated,
+and certain aspects to be tested. The analysis would involve
+carrying out statiatical inference regarding those parameters:
+estimating them and testing statistical hypotheses about the
+relation, eg, whether there is a common latent variable
+underlying a set of manifest variables, and so on.
+
+The main reason CFA is not discussed much is because it is
+subsumed in a more versatile statistical tool called the
+Structural Equation Modelling. Also both CFA as well as its
+generalised version SEM require dedicated softwares and packages
+to implement. The somewhat steep learning curve required for
+mastering them is another reason behind their unpopolarity in
+beginners' texts on multivariate statistical analysis.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Model</TOPIC>
+<BC t="6" done="n" id="s1">
+
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Techniques</TOPIC>
+<BC t="5" done="n" id="s1">
+Principal components
+MLE
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Rotations</TOPIC>
+<BC t="5" done="n" id="s1">
+
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Rotation lab</TOPIC>
+<SC t="5" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Finding number of factors</TOPIC>
+<SESS t="2.20" done="n" id="s1">
+In the EFA model we assume no prior information about the latent
+variables, except one thing: their number, ie, how many  latent
+variables are we using in the model. How on earth are we to know
+this number beforehand? Well, for one thing, we may use domain
+knowledge or common sense. But what if we have no such prior
+idea? 
+
+Well, then we generally fall back on guessing the number of
+latent variables by trial and error. There are some important
+facts to be kept in mind regarding this.
+
+Suppose we have taken some trial value for the number of latent
+variables. Is there any tell-tale mark that would signal if the
+value is less than adequate? Well, not quite, but here is hint:
+you'd see too many high loadings. It would seem that most
+manifest variables significantly load on most of the factors. In
+other words, the factors are all jumbled up together. 
+
+Now suppose you have taken a trial value that is too high. How
+would know that? Here you'll typically see that all the loadings
+are small. 
+
+Finally suppose that you have hit the correct number by chance.
+Is there a way to know about your good luck? Well, not
+really. You may still see the latent variables jumbled in a mess
+until you rotate them appropriately. 
+
+So what's the final message? Well, I am afraid, it is nothing too
+heartening. You have to try out various values, and for each you
+need to fiddle around trying to achieve a nice and interpretable
+loading structure. If you fail to arrive at such a structure even
+after a lot of effort, well, give up and try a new value. 
+
+Indeed, it is this try until something looks nice approach that
+is the main reason why many statisticians are strongly against
+factor analysis. We shall talk about the criticisms later. 
+</SESS>
+</SCRIPT>
+</LESSON>
+
+<LESSON><TOPIC>Real life data</TOPIC>
+<SCRIPT id="m/l/v">
+<TOPIC>FA 1</TOPIC>
+<SC t="6" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>FA 3</TOPIC>
+<SC t="6" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>FA 3</TOPIC>
+<SC t="6" done="n" id="s1">
+
+</SC>
+</SCRIPT>
+</LESSON>
+
+<LESSON><TOPIC>Looking back</TOPIC>
+<SCRIPT id="m/l/v">
+<TOPIC>Criticisms</TOPIC>
+<SESS t="1.80" done="n" id="s1">
+Factor analysis is probably the most openly criticized
+statistical method out there! And there is good reason behind the
+criticism. First, often the final reported outcome of an EFA is
+the existence of certain latent variables. Scientists (often non
+statisticians applying statistics in fields like psychometry) go
+ga ga over their discovery of a latent variable like
+"Genetic motivational factor". I just cooked up this term instead
+of citing real examples lest I hurt anybody's personal
+feeling. It is as if the latent variable is like gold hidden so
+far in an unknown mine, until this scientist has suddenly found
+it using the magic wand of factor analysis. The analogy,
+unfortunately, breaks down because the unearthed gold has real
+existence that may be proved without the tools used for the
+prospecting. However, even the postulated existence of the latent
+variable depends on the outcome of factor analysis. Had factor
+analysis been an objective tool, this would possibly be not much
+of a criticism. Now no statistical tool can  really claim to be
+objective. But, owing to factor rotations, exploratory factor
+analysis is hopelessly subjective. The choice of the rotation has
+no objective criterion associated with it, except to make the
+outcome come close to the  postulated loading structure. So
+choosing the rotation to achieve the postulated structure, and
+then to cite the outcome as an objective  proof for the structure
+is much like torturing the data set until in confesses to whatever
+you want it to confess.  Such a confession surely does not have
+much value as evidence.
+</SESS>
+
+<SESS t="2.80" done="n" id="s1">
+But does that mean the factor analysis is useless in
+practice. Indeed Chatfield and Collins go as far. But still 
+factor analysis remains  popular. Indeed, any discussion of the
+worth of factor anlysis tends to start a flame war between the
+two groups. Most trained statisticians would disparage use of
+EFA, while many non-statisticias applying statistics to market
+survey data or psychometry data cannot leave without it. It would
+perhaps be a good idea to have some practical safety guidlines
+for using factor anlysis. 
+
+The first such guideline is actually generally applicable to all
+statistical methods: after you make some inference based on some
+data set, never accept it until you check it on a different data
+set from the same domain. Unfortunately, this principle is only
+too often violated in reseach papers, where the authors
+enthusiastically report what they have found from some data set,
+and go completely silent about the fact that other similar data
+sets do not support the findings. In an academic  world where
+publication is more important than applicability, this is perhaps
+inevitable. 
+
+The second guideline is rely strongly on domain knowledge, and
+use FA only for estimating the latent variables, and not
+justifying their existence. A simple example is measuring the
+size of a bullfrog. There is no denying that length, girth,
+weight etc all strongly relate to the notion of size. A large
+bull frog will have high values for all these variables. So the
+latent variable structure is guaranteed by domain knowledge. It
+is still a latent variable, because there is no single obvious
+way to measure it. Use FA to come up with the measuring scheme. 
+
+
+It is somewhat like the existence of the subconscious mind. While
+it seems to provide easy (indeed too easy) explanation behind
+many human behaviours, its intepretation is so subjective that
+the psychologist can prove almost whatever they want to prove. 
+
+A third guideline, which is not always easy to follow, is to add
+some CFA component. If an investigator has a hunch about the
+existence of certain latent variables, then it is better to turn
+it into a CFA model (or, more generally, a SEM), and perform
+tests of hypothesis to assess it. As setting up such a model is
+much more difficult than performing EFA and the results lot less
+spectacular, EFA continues to enjoy popularity among the
+non-statisticians looking for a quick and dirty way to make a
+splash!      
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>SEM</TOPIC>
+<SESS t="0.70" done="n" id="s1">
+Structural Equation Model, or SEM for short, is a recent addition
+to the statisticians' repertoire that subsumes CFA. It is a vast
+topic, and this course is no place to delve deep into it. But as
+it is connected to Factor Analysis, I would give a short
+overview. I shall follow the somewhat dated reference ...
+
+Until recently, SEM was not part of most statistical
+softwares. One had to ue specialised softwares meant specifically
+for SEM. 
+If you are interested in gaining some hand on experience you
+should 
+</SESS>
+</SCRIPT>
+
+
+</LESSON>
+</MODULE>
+
+
+
+<MODULE><TOPIC>Multidimensional scaling</TOPIC>
+<LESSON><TOPIC>Motivation</TOPIC>
+
+<SCRIPT id="m/l/v">
+<TOPIC>A road map example</TOPIC>
+<SESS t="0.90" done="n" id="s1">
+In this module we shall learn about a technique which follows the
+same spirit of detecting intrinsic dimension. However, in
+contrast with those two techniques, here the final output is more
+informal and exploratory in nature. 
+
+Let's start with a simple example. Suppose I give you a map
+consisting of some points, and I ask you to compute the distance
+between each pair of points. That's easily achieved using a
+ruler. Now consider the reverse problem, where we start with the
+distances between all the pairs of points, and your job is to
+draw them on a piece of paper preserving those distances. This is
+more difficult, but doable. You have to repeatedly use the
+geometric construction of a triangle from its sides. 
+</SESS>
+<BC t="5" done="n" id="s1">
+Show the constrution with an example. Point out nonuniqueness.End
+with a note on multidimensional generalisation.
+</BC>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Multidimensional road map</TOPIC>
+<SESS t="3.00" done="n" id="s1">
+Is it always possible to do what we did in the last example wirh
+any set of positive values for the distances? In other words, if
+I give you the number of the points, and for every pair I give
+you a positive number, can you always draw that many  points on
+a piece of paper such that the specified positive numbers are the
+distances between the points? 
+
+The answer may not be readily apparent. Let's take an example.
+Suppose you have to work with four points, such that the distance
+between every pair is 1. How would you go about it? Had there
+been just three points instead of four, we would have the obvious
+solution, an equilateral triangle. The question is how to add the
+fourth point. Since the fourth point is supposed to be
+equidistant from the first three points, the only choice is the
+centre of the triangle. But then the distance of the centre from
+the vertices is less than 1. To increase it to 1, the point must
+leave the plane of the triangle and stick out into the third
+dimension producing a tetrahedron.  Thus, you see, it is
+impossible to represent these distances exactly by a two
+dimensional map. 
+
+This is the crux of multidimensional scaling. We start with a
+data set with n cases. We have a dissimilarity measure for each
+pair of cases. This is a positive number that gives us an idea
+about how different the two cases are. If that sounds too
+abstract, here is a more concrete version. Suppose that we have
+10 brands of cars. 50 persons are asked to rate the cars in terms
+of various aspects like mileage, appearance, comfort, cost and
+sturdiness. So each brand gets 5 average ratings. Based on these
+we compute the dissimilarity between brands. Now our aim is to
+visually represent these as 10 points on a piece of paper such
+that the geometric distances between every pair is as close as
+possible to the dissimilarity. Such a visual representation would
+quickly reveal cluster of similar brands. I said "as close as
+possible", and not "exactly equal to" because as we have seen
+just now it may not be possible to represent the distances
+exactly in a 2 dimensional space. If, however, the distances may
+be represented reasonably closely on a 2D plane, then that will
+give us yet another way to say that intrinsic dimension is 2 (or
+less, if the points are along a line, say).
+
+This is precisely what MDS seeks to achieve. Before further
+discussion it is time for a real example.
+</SESS>
+</SCRIPT>
+
+<SCRIPT id="m/l/v">
+<TOPIC>Real example</TOPIC>
+<SC t="6" done="n" id="s1">
+Toy example with nearly 2D points in 3D. And also non 2D example.
+</SC>
+</SCRIPT>
+</LESSON>
+
+
+</MODULE>
 
 <HEAD2>Lesson 2, Video 1: Metric MDS</HEAD2>
 <HEAD2>Lesson 2, Video 2: Lab</HEAD2>
@@ -82,10 +1325,8 @@
 <HEAD2>Lesson 4, Video 1: Stress and nonuniqueness</HEAD2>
 <HEAD2>Lesson 4, Video 2: Lab</HEAD2>
 
-<HEAD2>Lesson 5 , Video 1: Review</HEAD2>
-<HEAD2>Lesson 5 , Video 2: Review</HEAD2>
 
-<HEAD1>Module 6: Correspondence analysis</HEAD1>
+<MODULE><TOPIC>Correspondence analysis</TOPIC></MODULE>
 
 <HEAD2>Lesson 1, Video 1: Motivation using students and subjects</HEAD2>
 <HEAD2>Lesson 1, Video 2: Real data example</HEAD2>
@@ -102,11 +1343,18 @@
 <HEAD2>Lesson 5 , Video 1: Review</HEAD2>
 <HEAD2>Lesson 5 , Video 2: Review</HEAD2>
 
+<MODULE><TOPIC>MANOVA</TOPIC></MODULE>
+
+
+<MODULE><TOPIC>Conjoint analysis</TOPIC></MODULE>
 
 <COMMENT>
 Local Variables:
- two-part1: ("<EXR>" "</EXR>")
- two-part2: ("<HEAD3>Exercises M" "</HEAD3>")
+ two-part1: ((format "%cSCRIPT id=\"m/l/v\">\n%cTOPIC>" 60 60)
+ (format "%c/TOPIC>\n%c/SCRIPT>" 60 60))
+ two-part2: ((format "%cSESS t=\"0\" done=\"n\" id=\"s1\">\n" 60) (format "\n%c/SESS>" 60))
+ d1: ("<V>[shown]" "</V>")
+ d2: ("<B>" "</B>")
 End:
 </COMMENT>
 </NOTE>@}
