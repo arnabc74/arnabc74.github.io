@@ -1,0 +1,93 @@
+@{<NOTE>
+<M>\renewcommand{\v}{\vec}</M>
+<HEAD1>Within and between variations</HEAD1>
+Consider 15 points in <M>\rr^2</M> that come in 3 clusters of
+size 5 each.
+<CIMG web="eigdemo1.png">The 15 points</CIMG>
+ The clusters are each horizontal in shape, and they
+are laid vertically on top of one another. So in order to
+separate the clusters the best direction is vertical (i.e., if
+each cluster is reduced to its mean, then the points would lie on
+a vertical line). However, since there is quite a bit of spread
+inside the clusters, this verical direction is not apparent if all
+the 15 points are taken together (ignoring the colour-coding).
+<CIMG web="eigdemo2.png">The first eigenvector</CIMG>
+Clearly the first eigenvector follows the spread of the overall
+data cloud, which is dominated by the scatter <I>within</I> the clusters
+and not the scatter <I>between</I> them.
+<P/>
+In order to rectify this we compute two covariance matrices, one
+to measure the <I>within</I> variation, the other for
+the <I>between</I> variation.
+<P/>
+First the <I>within</I> matrix:
+<R>
+W1 = cov(dat[1:5,])  #cov of the first 5 points (cluster 1)
+W2 = cov(dat[6:10,])
+W3 = cov(dat[11:15,])
+W = (5-1)*(W1+W2+W3)/(15-1) #combined (the denominator is n-1)
+</R>
+Next, the <I>between</I> matrix:
+<R>
+m1 = apply(dat[1:5,],2,mean)    #Mean of the first cluster
+m2 = apply(dat[6:10,],2,mean)
+m3 = apply(dat[11:15,],2,mean)
+
+B = 5*cov(rbind(m1,m2,m3))   #Cov matrix when all points in a
+                             #cluster equals the cluster mean
+</R>
+Now we solve this problem:
+<D>
+\max [[\v x' B \v x][\v x' W \v x]]
+</D>
+subject to <M>\|\v x\|=1.</M> Hopefully this would give a
+direction along which the clusters will differ the most, but the
+points within the clusters won't differ much. 
+
+<CIMG web="eigdemo3.png">The new direction</CIMG>
+Indeed the new direction is better than the first eigenvector.
+
+<HEAD1>What to do?</HEAD1>
+The first thing in the project is to solve the maximisation
+problem algebraically, i.e., express the maximising <M>\v x</M>
+has eigenvector of some real symmetric matrix. Find the matrix. 
+<P/>
+Next, show that the maximisation actually works in a layered way,
+i.e., the next eigenvector  of the matrix gives the maximising
+direction subject to orothogonality with the first direction, and
+so on.
+<P/>
+Test out your idea on our toy example [data <LINK to="testdat.csv">here</LINK>]
+<P/>
+Finally, try it on the face data.  
+<COMMENT>
+png('image/eigdemo%d.png')
+x1 = rnorm(5); y1 = rnorm(5)/10
+x2 = rnorm(5); y2 = 0.5+rnorm(5)/10
+x3 = rnorm(5); y3 = 1+rnorm(5)/10
+plot(c(x1,x2,x3),c(y1,y2,y3),asp=1,pch=22,col=rep(c('red','blue','green'),rep(5,3)))
+dat = cbind(c(x1,x2,x3),c(y1,y2,y3))
+sink('testdat.csv')
+dat
+sink()
+A = cov(dat)
+e=eigen(A)
+m = apply(dat,2,mean)
+plot(c(x1,x2,x3),c(y1,y2,y3),asp=1,pch=22,col=rep(c('red','blue','green'),rep(5,3)))
+arrows(m[1],m[2],m[1]+e$vec[1,1],m[2]+e$vec[2,1])
+m1 = apply(dat[1:5,],2,mean)
+m2 = apply(dat[6:10,],2,mean)
+m3 = apply(dat[11:15,],2,mean)
+W1 = cov(dat[1:5,])
+W2 = cov(dat[6:10,])
+W3 = cov(dat[11:15,])
+W = 4*(W1+W2+W3)/14
+B = 5*cov(rbind(m1,m2,m3))
+W.sqrt = chol(W)
+WBW = solve(t(W.sqrt),B) %*% W.sqrt
+e2 = eigen(WBW)
+plot(c(x1,x2,x3),c(y1,y2,y3),asp=1,pch=22,col=rep(c('red','blue','green'),rep(5,3)))
+ arrows(m[1],m[2],m[1]+e2$vec[1,1],m[2]+e2$vec[2,1],col='red')
+dev.off()
+</COMMENT>
+</NOTE>@}

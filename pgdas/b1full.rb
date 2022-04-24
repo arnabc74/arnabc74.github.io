@@ -1,6 +1,6 @@
 @{<NOTE> -*- eval: (folding-mode t) -*-
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>FRI MAR 18 IST 2022</UPDT>
+<UPDT>SAT APR 09 IST 2022</UPDT>
 
 <INTRO>
 We hear about statistics a lot. Be it forecasting the weather or
@@ -5104,6 +5104,9 @@ differently.
   comprehension. 
 
 - typeName: Peer review
+  intro: Presenting real life data graphically is a crucial skill
+  to have. This exercise provides you an opportunity to hone this
+  skill. 
   prompt: >
      Here is a data set [m2_1.csv] about daily minimum
      temperatures in Melbourne that I downloaded from Kaggle.
@@ -13515,6 +13518,11 @@ Here are the odds:   [[./exraux/simp2sol.png]]
 
 
 - typeName: peerReview
+  intro: This excercise deals with a common misconception found
+  among many beginning statisticians. If we merge two data sets
+  each with high positive correlation, it seems reasonable to
+  expect that the merged data will also have positive
+  correlation. This exercise asks you to find a counterexample.
   prompt: >
       Construct two bivariate data sets (choose number of cases to
 suit yourself), each with correlation above

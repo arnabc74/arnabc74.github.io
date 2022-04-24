@@ -670,7 +670,7 @@ This limiting bar chart is the bivariate PMF of our 2D random
 variable. This was the discrete case. Now lets see a continuous
 example. 
 </SESS>
-<JINGLE t="0.1">Continuous case</JINGLE>
+<JINGLE t="0.1">Coninuous case</JINGLE>
 <SESS t="1.60" done="n" id="s1">
 Suppose that our 2D random variable is <M>(X,Y).</M> Each time
 you run your random experiment you get two numbers, one
@@ -703,189 +703,18 @@ higher dimensions.
 Definition.
 </BC>
 </SCRIPT>
-
 <SCRIPT id="m/l/v">
 <TOPIC>Multivariate central tendency</TOPIC>
-<SESS t="1.50" done="n" id="s1">
-When we talked about univariate distribution, we learned about
-two fundamental aspects of a distribution: central tendency and
-dispersion. The first is about the typical value of a
-distribution, the second is about how far from that typucal value
-can we expect to go. A multivariate distribution is no exception
-to these. We can talk about central tendency and dispersion for a
-multivariate distribution. In this video we shall talk about
-multivariate central tendency. 
-
-First we consider a bivariate distribution. A good way to
-visualise it to generate random points from it, and making a
-scatterplot from them. Here we can see that the points are more
-of less clustered around this region. So we may say that this
-distribution does have central tendency. If we visualise the
-bivariate distributio using its PDF, then its central tendency is
-shown by the single peak. Contrast this with a PDF like
-this. Here we have two peaks. If we generate many random points
-from this PDF, the scatterplot will look like this. Here no
-single value may be called typical. In fact, there seem to be two
-clusters, each centred around its own typical value. Here the
-entire distribution does not have a central tendency.
-</SESS>
-<JINGLE t="0.1">Measuring central tendency: mode</JINGLE>
-<SESS t="0.70" done="n" id="s1">
-Lets get back to the first PDF, where we do have central
-tendency, ie, we can talk about a single typical value. The next
-question is how to obtain such a typical value. Just as for
-univariate distributions, there is o unique answer to this
-question. One answer that readily comes to mind to take the
-position of the peak of the PDF as a measure of central
-tendency. Indeed, this is a standard measure, and is called the
-mode. However, this measure is not a very satisfactory one.  
-In practice, youll rarely start with the PDF, but with a data
-like a scatterplot. Finding the model from the scatterplot is
-much more difficult. 
-</SESS>
-<JINGLE t="0.1">Measuring central tendency: mean</JINGLE>
-<SESS t="0.60" done="n" id="s1">
-The most popular measure of central tendency is the mean. If the
-multidimensional random variable is <M>(X_1,...,X_d),</M> then we
-take mean of each component sepearately. We are computing mean
-from a sample, then this is obtained by averaging each column
-separately.  If we are computing the mean from a PDF, then this
-requires us to do a multiple integration. Dont be scared by this
-hairy expression. We shall not need this later in this course.   
-</SESS>
-<JINGLE t="0.1">Measuring central tendency: median</JINGLE>
-<SESS t="0.30" done="n" id="s1">
-One popular measure of central tendency for univariate data is
-the median. However, generalising this concept for multivariate
-distributions is quite tricky. We shall touch upon this in a
-later video. 
-</SESS>
-</SCRIPT>
-
-<SCRIPT id="m/l/v">
-<TOPIC>Lab for central tendency</TOPIC>
-<SC t="5" done="n" id="s1">
-Use apply to find column mean or trimmed mean.
-</SC>
-</SCRIPT>
-
-<SCRIPT id="m/l/v">
-<TOPIC>Multivariate medians</TOPIC>
-<BC t="6" done="n" id="s1">
-Oja, Tukey, etc
-</BC>
 </SCRIPT>
 
 <SCRIPT id="m/l/v">
 <TOPIC>Multivariate dispersion</TOPIC>
-<SESS t="0.90" done="n" id="s1">
-We have talked about multivariate measures of central
-tendency. Now we shall discuss multivariate measures of
-dispersion. Dispersion means scatter. For  univariate
-distributions, scatter simply means the amount of scatter. But
-for multivariate data, we have different amounts of dispersion
-along different directions. Indeed, given any direction, there is
-an amount of scatter along that. How to capture this idea using
-numbers. 
-
-Well, there is a rather clever and somewhat sophisticated
-solution to this problem. We do not use a single number, but
-rather a matrix. Those of you, who are not strong in matrices,
-might feel scared atthis point. But dont worry, it is not very
-complicated, and I shall explain step by step. For this we need
-to recall two definitions.
-</SESS>
-<JINGLE t="0.1">Variance and covariance</JINGLE>
-<SESS t="1.10" done="n" id="s1">
-Consider a bivariate data. Two columns, many cases, say n cases.
-Call the variables X1 and X2. Then by variance of X1 we mean
-... and covariance of X1 and X2 we mean ...
-
-Now we make a little 2 x 2 table. For ease of reading we shall
-label the rows and columns with the variable names. Now we fill
-in the diagonal positions with the variances, and off-diaonal
-entries with the covariances. The resulting table is called the
-dispersion matrix. 
-
-The idea easily extends to more variables. If there are d
-variables, just use a d x d table. The diagonal entries are the
-variances, and the off-diagonal ones the covariances.
-
-You might justly wonder about how these dispersion matrices can
-give us the different amounts of scatter for different
-directions. We shall come to that pretty soon. But the next video
-is devoted to computing the dispersion matrix using R. 
-</SESS>
-</SCRIPT>
-
-<SCRIPT id="m/l/v">
-<TOPIC>Lab for dispersion</TOPIC>
-<SC t="5" done="n" id="s1">
-Mention symmetry. var-cov name.
-</SC>
 </SCRIPT>
 
 <SCRIPT id="m/l/v">
 <TOPIC>Mean and variance of linear combination</TOPIC>
-<SESS t="0.40" done="n" id="s1">
-In this video we shall see how the dispersion matrix allows us to
-know about the different amounts of dispersions along different
-directions. In fact, we shall do much more than that. To set the
-stage we need to uderstand the concept of projections. 
-</SESS>
-<JINGLE t="0.1">Projections</JINGLE>
-<SESS t="2.10" done="n" id="s1">
-We human being are basicaly 2D creatures. Though we have two eyes
-to get a stereoscopic view f thngs, but each eye basically
-creates a flat image. Our 3D perception about the world around us
-is the result of piecing together views from different
-angles. When I have this 3D object, I turn it under my eye. 
-
-We do a similar thing when dealing with multivariate data. we take
-1D views. Lets understand this wth a bivariate data in the form
-of a scatterplot. Taking a 1D projection means taking any
-arbitrary direction, and the line through the origin in that
-direction. Now take imagine a scale along that line. The zero
-must at the origin, then take any unit of your choice, and
-graduate the scale accordingly. Finally project the points onto
-this line. That is, let the points rain down perpendiclarly on
-the line. The point of hit on your scale gives a numer, the 1D
-projection. Computers explore multivariate data by scanning
-through it using a movinfg line. There is a nifty thing that
-helps us to find the projection of any given point. When you set
-up the scale, just note the point marked 1 on your scale. Let it
-be <M>(a,b)</M> in scatterplot. Then a point <M>(X,Y)</M> will
-have projection (aX+bY)/sqrt(a^2+b^2). Yes, it is that simple! 
-
-The same idea works in higher dimensions too. Suppose there are k
-variables X1, ..., Xk. Again take any arbitrary line through the
-origin, set up a scale, and note where the 1 mark is. Say it is
-at (a1,...,ak). Then a point (X1,...,Xk) will have projection
-sum(aiXi)/sum(ai^2).
-
-
-What we basically do is to apply our unvariate skills on these
-projections. In particular we find their mean and variance. Just
-note that the sum(ai^2) in the denominaor is just a fixed
-number. 
-</SESS>
-<JINGLE t="0.1">Mean</JINGLE>
-<SESS t="0.30" done="n" id="s1">
-The formula for mean is simple. Mean of sum(ai Xi) is sum (ai
-mean(Xi)).
-
-The variance formula is slightly trickier. It is a^TSa. 
-Some numerical hand computation will help to sink this idea into
-our heads. Thats what we shall do in the next video.
-</SESS>
 </SCRIPT>
 
-<SCRIPT id="m/l/v">
-<TOPIC>Hand computation</TOPIC>
-<BC t="5" done="n" id="s1">
-hand computation of Quad forms.
-</BC>
-</SCRIPT>
 
 </LESSON>
 
@@ -896,90 +725,16 @@ hand computation of Quad forms.
 
 <SCRIPT id="m/l/v">
 <TOPIC>Gaussian</TOPIC>
-<SESS t="1.90" done="n" id="s1">
-The most frequently used univariate distribution in statisticsis the
-Gaussian distribution. It has a multivariate generalisation which
-is used almost exclusively in multivariate statistics. In this
-video we shall learn about this distribution. 
-
-It has a PDF which may not look very easy when you see it for the
-first time. Let us postpone that shock a bit, and start with the
-bivariate case, where we can see its picture. You see that it
-consists of a single peak, the surface drops down gently in all
-directions and approaches 0 (ie the xy plane). It never really
-becomes zero, but goes very very close to zero. Thats the
-general shape. Lots of variations are possibly within this
-desciption. First, the position of the peak. It may be anywhere
-in the plane. In fact, that position of the peak is mean of the
-distribution. Second. the way the surface rolls down from the
-peak. It is not that the rolling down has to be identical in all
-directions like having a circular cross-section. The hill could
-very well be squashed to have an elliptical cross-section. And the
-ellipses may have oblique axes.  However, still there will be one
-form of symmetry. If you cut the surface vertically through the
-peak, the resulting curve must always be a univariate Gaussian
-curve. Just as the position of the peak is determined by the
-mean, the shape of peak is governed by the dispersion
-matrix. Indeed, these are the only parameters of a multivariate
-Gaussian distribution. 
-
-Accordingly we use the notation N_d(mu,Sigma). Next, take a look
-at the general form of the PDF.   
-</SESS>
-<JINGLE t="0.1">General form</JINGLE>
-<BC t="2" done="n" id="s1">
-The PDF of Nd(mu,Sigma) is ...
-
-
-</BC>
 </SCRIPT>
 
 <SCRIPT id="m/l/v">
 <TOPIC>Properties of Gaussian</TOPIC>
-<SESS t="0.40" done="n" id="s1">
-The multivariate Gaussian distribution is most frequently used
-distribution in multivariate statistics. However, that does not
-mean what we always directly work with the hairy expression we
-encountered in the last video. Instead, we deal with it through
-many helpful properties. In this video we shall present some of
-them. 
-</SESS>
-<BC t="5" done="n" id="s1">
-If (X1,...,Xd) ~ Nd(mu,\Sigma) and v is a vector, then v'X ~
-N(v'mu,v'\Sigma v). 
-
-If (X1,...,Xd) ~ Nd(mu,Sigma), then any subset of the Xi's again
-have the corresponding multivariate Gaussian distribution.
-
-Uncorr iff indep.
-
-Translation.
-
-Conditional is gaussian
-
-Matrix mult and addition 
-</BC>
 </SCRIPT>
 </LESSON>
 
 <LESSON><TOPIC>Estimation</TOPIC>
 <SCRIPT id="m/l/v">
 <TOPIC>Histogram</TOPIC>
-<SESS t="0" done="n" id="s1">
-In the preceeding lessons we have learned about concepts of
-multivariate distributions, and seen one specific example. 
-But remember that distributions are idealisations of reality. The
-actually reality consists of data. So the natural question is:
-given a multivariate data set how to estimate the underlying
-distribution. As in the case of univariate statistic, the answer
-to this question crucially depends on how much we assume to be
-known about the distribution to be estimated. If we assume that
-the form is known then we are in the parametric set up. If even
-the form is unknown then we are in the nonparametric set up. We
-shall give a taste of both of them in this lesson. 
-
-Lets start with parametric set up
-</SESS>
 </SCRIPT>
 
 <SCRIPT id="m/l/v">
