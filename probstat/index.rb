@@ -24,6 +24,9 @@ karlei tumi baiyer dwitIya adhyAyer @{<E>parameter</E>@}-er yynimeshanTA pAbe.
 </UL>
 <HEAD2>bhul truTi</HEAD2>
 <OL>
+<LI><IMG web="p16.png">@{<E>16</E>@}  nambar pAtAr a.nsha</IMG>
+gol kare dekhAno @{<M>P(A_k)</M>@}-TA habe @{<M>P(A_{k+1}).</M>@} ei bhulTA dharAr krritit+wa 
+ rUpnArAyaN s,nAt~rAr. </LI>
 <LI>pratham adhyAyer @{<E>21</E>@}  na.n pAtAr sheS lAine @{<M>\{0\}</M>@}-r jAygAy @{<M>\{2\}</M>@} 
  habe. ei bhulTA dharechhe tApas de. </LI>
 <LI>pratham adhyAyer @{<E>23</E>@} na.n pAtAy @{<E>Example 20</E>@}-te balA chhila @{<E>"with
