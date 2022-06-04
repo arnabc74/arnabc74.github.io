@@ -1,0 +1,365 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Projects">Projects</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Estimating the frame rate of a video camera without using
+a precision clock">Estimating the frame rate of a video camera without using
+a precision clock</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Making a vector map stitching satellite
+screenshots">Making a vector map stitching satellite
+screenshots</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Some R tips">Some R tips</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Test data sets">Test data sets</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Projects">Projects</a></h1>
+This course has two projects each carrying 10 marks.
+
+<h2><a
+name="Estimating the frame rate of a video camera without using
+a precision clock">Estimating the frame rate of a video camera without using
+a precision clock</a></h2>
+A video camera works by taking snaps at regular time intervals
+(<i>e.g.</i>, 30 snaps per second). The number of snaps per second is
+called its FPS (Frames Per Second) value. Most cameras advertise
+their FPS values (or even allow the user to select the value). But
+sometimes a camera departs from the advertised value in two ways:
+<ol type="">
+
+<li>The FPS is lower than the advertised value. Each snap
+requires some processing after being taken (eg, compressing and
+storing). The older the camera gets the more time these
+operations take. This leads to a drop in the FPS value.</li>
+
+<li>Even though the FPS value is maintained most of the time,
+one or two frames are dropped occasionally.</li>
+
+</ol>
+
+Given a camera we want to see if the camera suffers from these
+problems. One way could be to videograph the face of a precision
+clock. But it is not easy to see clearly from a video the
+dial/screen of a clock of sub-second precision. This project
+explores an alternative idea: pitching the camera against a known
+law of physics involving time. 
+
+<p></p>
+The law that we shall choose is the law of gravitation, which
+implies that if a stationary object is dropped from a
+height $h$ then its height at time $t$ during free fall
+is $h-\frac 12g
+t^2$, where $g$ is the acceleration due to gravity. 
+
+<p></p>
+We may try to use this to estimate the FPS value of a camera as
+follows.
+<ul>
+
+<li>
+<b>Step 1:</b> Videograph a free falling object.</li>
+
+<li>
+<b>Step 2:</b> Locate the position of the object in each
+frame of the video.</li>
+
+<li>
+<b>Step 3:</b> For each frame obtain the frame
+number $t$ and the vertical pixel position $y$ of the
+object.</li>
+
+<li>
+<b>Step 4:</b> Also photograph a known length using the same
+camera. Convert $y$ to centimetres.</li>
+
+<li>
+<b>Step 5:</b> Fit a linear model to estimate $g$ in
+centimetres/frame$^2$ unit. Don't forget to make a plot first!</li>
+
+<li>
+<b>Step 6:</b> Compare with known value of $g$ to
+estimate FPS.</li>
+
+<li>
+<b>Step 7:</b> (This is IMPORTANT!) Provide a measure of
+precision of your estimate. It is quite possible that the
+procedure does <i>not</i> give a reliable estimate. But provide
+a convincing argument behind your conclusion.</li>
+
+</ul>
+
+Here is <a href="https://www.thewindowsclub.com/extract-frames-from-a-video-with-high-quality">how you may extract the frames from a video</a>. Most digital
+paint programs show the pixel coordinates of the mouse position
+as ou hover the mouse over an image. <a href="http://www.gimp.org">GIMP</a> is just one such free
+software.
+
+<h2><a
+name="Making a vector map stitching satellite
+screenshots">Making a vector map stitching satellite
+screenshots</a></h2>
+
+Consider a region samll enough so that earth's curvature may be
+ignored, yet large enough so that Google map cannot fit it in a
+single screen at high resolution.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/msproj1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ We cover the region with a number of overlapping
+screenshots <i>all of the same resolution</i>. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/msproj2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Each rectangle is a screenshot (hence is of the size of your
+monitor). All the screenshots are numbered. To understand the subsequent steps we focus on two
+overlapping screenshots (say screenshots 1 and 2):
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/msproj3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The red dots are known locations that you can identify at the
+current resoluton of the screenshot. Note that the central
+location is part of both the screenshots. For each screenshot
+find the approx pixel coordinate  of the location (<i>e.g.</i>, by
+clicking on the centre of each red disk, and reading the mouse
+coordinates). For example, we measure $(r_{1j}, c_{1j})$
+from screenshot 1:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/msproj4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here $r$ stands for "row", and $c$ for "column". The
+first subscript is the screenshot number, the second is the
+location number (we assume that the central red dot in
+the $j$-th in the list of the known locations). Similarly,
+from screenshot 2 we measure $(r_{2j}, c_{2j})$:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/msproj5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Notice that we are using the same $j,$ as it is the same
+location. 
+
+<p></p>
+Thus our data set consists of a subset of $(r_{ij}, c_{ij})$'s
+for $i=1,...,$number of screenshots,
+and $j=1,...,$number of locations. Of course, not
+all $(i,j)$ pairs occur in the data, since the $j$-th
+location may not show up in the $i$-th screenshot.
+<p></p>
+Let $(\mu_i, \lambda_i)$ be the true position of
+the $i$-th location (w.r.t. some global coordinate
+system). 
+<p></p>
+We can set up a linear model to estimate $(\mu_i,
+\lambda_i)$'s from the data. 
+<p></p>
+The project consists of the following parts:
+<ol type="">
+
+<li>Working out the theory: this involves setting up the linear
+model, and working out the rank of the design matrix. [5 marks]</li>
+
+<li>Implementing the entire thing in R: the final software
+should take a list of screenshots and show them one by one in R,
+allowing the user to click on the known locations. The system
+should save the click locations as well as the location
+identifiers. Then then the system should run the linear model to
+estimate the true positions. [10 marks]</li>
+
+<li>Allow screenshots of different (known) resolutions.[ 5
+marks]</li>
+
+</ol>
+
+
+<h3><a
+name="Some R tips">Some R tips</a></h3>
+You may read a jpeg image in R and display it as:
+<font color="red">
+<pre>
+library(jpeg)
+x=readJPEG('screenshot1.jpg') #replace screenshot1.jpg with your image name.
+
+plot(1:2,ty='n') #set up the screen as [1,2]x[1,2] or whatever you like.
+
+rasterImage(as.raster(x),1,1,2,2) #draw the image on screen.
+</pre>
+</font>
+You may need to install the <code>jpeg</code> package first.
+<p></p>
+
+Similarly, there is a package called <code>png</code> for reading images in the png format. 
+
+<p></p>
+To allow the user to click at points on an image and to get the coordinates of the clicked points:
+
+<font color="red">
+<pre>
+p = locator(1) #for one click
+p = locator(2) #for two clicks
+p = locator() #for any number of clicks (end with a rightclick)
+</pre>
+</font>
+In each of these cases <code>p</code> stores the coordinates of the clicked points (w.r.t. the coord system you set 
+us using the <code>plot</code> command earlier).
+
+<p></p>
+Please work with the map of a real location that interests
+you. Some of you may collaborate to make a detailed map of the
+same place.
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/linmod/projects.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmprojects1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,593 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+<script src="bulb.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#ANalysis Of VAriance">ANalysis Of VAriance</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A simple example">A simple example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Light bulb again">Light bulb again</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#How large is &quot;large enough&quot;?">How large is "large enough"?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Doing some algebra">Doing some algebra</a>
+</li>
+</ul>
+<hr/>
+
+$
+\newcommand{\o}{{\mathbb 1}}
+\newcommand{\v}{\vec}
+$
+<h1><a
+name="ANalysis Of VAriance">ANalysis Of VAriance</a></h1>
+We have already seen how a input-output box diagram sits at the
+heart of linear models. Our primary interest lies in learning
+about how the inputs influence the output. Usually we start with
+an easier question: which inputs have any influence on the
+output? It's a binary quetion, requiring yes/no answer. We can
+eliminate all the inputs that do not influence the output, and
+then focus on exploring the roles of the other inputs. ANOVA is
+our main weapon to answer this binary question.
+<h2><a
+name="A simple example">A simple example</a></h2>
+Suppose you enter a room where there is a light bulb that is
+on. Also there are 4 switches as shown. <i>Just by looking at
+the switches</i>, try to answer this question: Which switch
+controls the light?
+<center>
+<table style="" border="0">
+
+<tr>
+
+<td colspan="" rowspan=""><img onclick="f(0)" id="s0" width="" align="" src="image/switchoff.png"></td>
+<td colspan="" rowspan=""><img onclick="f(1)" id="s1" width="" align="" src="image/switchon.png"></td>
+<td colspan="" rowspan=""><img onclick="f(2)" id="s2" width="" align="" src="image/switchoff.png"></td>
+<td colspan="" rowspan=""><img onclick="f(3)" id="s3" width="" align="" src="image/switchoff.png"></td>
+<td colspan="" rowspan=""><img onclick="" id="lamp1" width="" align="" src="image/lighton.png"></td>
+</tr>
+</table>
+</center>
+Now play with the switches (click to toggle). What is the answer
+to the same question now? 
+<p></p>
+The important lesson to learn from this example is that it is
+less important to relate values of the inputs to the value of the
+output. You should relate change in the inputs with the change in
+the output. So before you say that the high value of ouput is
+associated with a high value of a input, you should lower the
+input's value and see if the ouput also comes down. This is the
+crucial idea behind ANOVA: explaining  the variation of the
+output in terms of variations of the inputs. Here is another
+example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+I once heard it mentioned that girls have worse 3D perception
+that boys. Many teachers who have worked with both boys and girls
+support this view. But is it because of hormnal diference? Or is
+it because of how the society nurtures children of the two
+genders. Boys are usually given building blocks and mechnics sets
+to play with, while girls are supposed to play with soft toys and
+miniature kitchen stuffs. It is quite likely that this difference
+eventually influence the 3D perception. In terms of box diagram
+we may visualise this as:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/boygirl1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The big double-headed red arrow means that we do observe a lot of
+variation in 3D perception of kids. We want to link this with the
+variation of of the inputs. Here is one possibility:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/boygirl2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here the main role is played by the gender difference. Choice of
+toys or random errors take a back stage. This is basically what
+goes in the mind of people who make remarks like
+"Oh, girls will never be as smart as boys,
+howsoever you try". 
+<p></p>
+But those who thinks nurture is the root cause have the following
+diagram in mind:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/boygirl3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Notice that in each case part of the variation comes from random
+error. This source could play the main role, as in the following
+diagram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/boygirl4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+By the way, you should not think that only one input must
+dominate all the time. Multiple inputs may be significant
+simulataneously. 
+<img src="../image/box.png"></p>
+
+From the above example we may get the idea that the output
+variation is "split up" nicely into parts that are each ascribed
+to one input. Thus, we may expect to have a table like the one
+shown below:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Source</th><th colspan="" rowspan="">Variation</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Gender</td> <td colspan="" rowspan="">$S_1$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Toy</td> <td colspan="" rowspan="">$S_2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Random</td> <td colspan="" rowspan="">$S_3$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Output</td> <td colspan="" rowspan="">$S_1+S_2+S_3$</td>
+</tr>
+
+</table>
+</center>
+Here $S_i$'s are suitable measures of variation for the
+different arrows in and out of the box. Such a table is called an
+ANOVA table (a typical ANOVA table also has some additional
+columns as we shall see soon). 
+<p></p>
+This ANOVA table has one row for each arrow. This may not always be the case, though. Let us
+aain illustrate with a light bulb example.
+
+<h2><a
+name="Light bulb again">Light bulb again</a></h2>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+You enter a room with two switches and a lamp as shown. Play with
+the switches to figure out how they control the lamp.
+<center>
+<table style="" border="0">
+
+<tr>
+
+<td colspan="" rowspan=""><img onclick="g(0)" id="t0" width="" align="" src="image/switchoff.png"></td>
+<td colspan="" rowspan=""><img onclick="g(1)" id="t1" width="" align="" src="image/switchoff.png"></td>
+<td colspan="" rowspan=""><img onclick="" id="lamp2" width="" align="" src="image/lightoff.png"></td>
+</tr>
+</table>
+</center>
+Here the lamp turns on only when both the switches are on. If any
+one of the switches is off, then the other has no effect. Thus,
+here the importance of each switch depends on the state of the
+other switch. We have already seen this kind of
+situation: <b>interaction</b>. 
+<img src="../image/box.png"></p>
+We have already seen the following agricultural example. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+To allow for possible interaction between <i>crop</i>
+and <i>fertiliser</i>, our ANOVA table should now have one extra
+row:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Source</th><th colspan="" rowspan="">Variation</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Crop</td> <td colspan="" rowspan="">$S_1$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Fertiliser</td> <td colspan="" rowspan="">$S_2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Crop$\times$Fertiliser</td> <td colspan="" rowspan="">$S_3$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Random</td> <td colspan="" rowspan="">$S_4$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Output</td> <td colspan="" rowspan="">$S_1+S_2+S_3+S_4$</td>
+</tr>
+
+</table>
+</center>
+If $S_3$ is pretty large, then we shall suspect the presence
+of interaction. 
+
+<h2><a
+name="How large is "large enough"?">How large is "large enough"?</a></h2>
+Let's take two examples to explore this important question.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+A student got 31% marks in her +2 level math exam. She was not happy with
+it. She went to a private coaching centre, and after a year of
+study there appeared in the same exam once again. This time she
+scored 33%. Do you think that the coaching centre helped? 
+<p></p>
+<b>SOLUTION:</b>Not really. An increase from 31% to 33% is only very
+slight increase, could very well be due to chance. 
+<img src="../image/box.png"></p>
+
+Contrast this example with the next one. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+The daughter of one of our staff is a state-level competitive
+swimmer. A student of only class VII, she takes 33 sec to finish
+her 50 metre butterfly. Her father wishes she could do it in 31
+sec, because only then she has chance to comete at the national
+level. Now suppose a swimming coach really trains her to achieve
+that level. Would you consider that as a significant
+contribution?<p></p>
+<b>SOLUTION:</b>Sure! Reducing 2 sec in 50 metre is no joke!
+It calls for serious improvement in swimming, and not effected by
+mere random variations.
+<img src="../image/box.png"></p>
+
+In both the examples we compared the numbers 31 and 33. Yet in
+one case the diffeence was considred insignificant, while in the
+other it was significant. This was because we used the variation
+due to randomness as a yard stick. If the variation associated
+wit an input is significantly larger than that for the random
+error, only then does the contribution of the input count. 
+<p></p>
+For example, in the following diagram input 1 is significant:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/sig1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+while the same input is insignificant here:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/sig2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<h2><a
+name="Doing some algebra">Doing some algebra</a></h2>
+So far our discussion has been pretty informal. Now we shall try
+to mathematise the ideas. We shall start with the 1-way ANOVA
+model. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+We are trying to see the effect of three different fertilisers
+(None, Compost and NPK) on the
+yield of paddy. So fertiliser is the only input (except random
+error) and the box diagram looks like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+We take 15 identical plots, and randomly assign each fertiliser
+to 5 plots. Here is the outcome shown in a number line:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fert1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Do you think that the fertiliser effect is significant? What if
+the outcomes were like this?
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fert2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>SOLUTION:</b>
+I hope you agree that the fertiliser effect is significant in the
+first case, and insignificant in the second case. Indeed, you can
+roughly denote your finding diagrammatically as follows.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb3a.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+and
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bb3b.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+We shall now try to arrive at these mathematically. 
+<p></p>
+We start with the output variability. If we call the yield of
+the $j$-th plot under the $i$-th fertiliser by the
+name $y_{ij}$ (for $i=1,2,3$ and $j=1,...,5$),
+then the output variability may be measured by 
+$$
+\sum_i\sum_j (y_{ij}-\b y_{..})^2.
+$$
+The error variability is best measured by looking it how much
+dots of the same colour differ from each other. These are given
+by (for $i=1,2,3$)
+$$
+\sum_j (y_{ij}-\b y_{i.})^2.
+$$
+So the total variability due to random error is 
+$$
+\sum_i \sum_j (y_{ij}-\b y_{i.})^2.
+$$
+If we want to measure the variability due to <i>fertiliser</i>,
+then we should first find the average of dots of each colour, and
+pretend that all the dots of that colour are actually at that
+average, and 
+then see how much the points differ from each other:
+$$
+\sum_j 5(\b y_{i.}-\b y_{..})^2.
+$$
+The 5 is because there are 5 dots of each colour.
+<p></p>
+
+And indeed we have the algebraic identity:
+$$
+\sum_i\sum_j (y_{ij}-\b y_{..})^2 = 
+\sum_i \sum_j (y_{ij}-\b y_{i.})^2 + \sum_j 5(\b y_{i.}-\b y_{..})^2.
+$$
+In fact, here all the group size were 5. If the $i$-th group
+size were $n_i$ (for $i=1,2,3$), even then we have
+$$
+\sum_i\sum_j (y_{ij}-\b y_{..})^2 = 
+\sum_i \sum_j (y_{ij}-\b y_{i.})^2 + \sum_j n_i(\b y_{i.}-\b y_{..})^2.
+$$
+So we now have a mathematical form of our ANOVA table:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Source</th><th colspan="" rowspan="">SS</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Fertiliser</td> <td colspan="" rowspan="">$\sum_j n_i(\b y_{i.}-\b y_{..})^2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Random</td> <td colspan="" rowspan="">$\sum_i \sum_j (y_{ij}-\b y_{i.})^2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Total</td> <td colspan="" rowspan="">$\sum_i\sum_j (y_{ij}-\b y_{..})^2$</td>
+</tr>
+
+</table>
+</center>
+As we had mentioned earlier, we use the $RSS$ as our yard
+stick. So we are going to measure the $SS$
+for <i>fertiliser</i> in units of $RSS.$ In other words, we
+shall check if the following ratio is "too large":
+$$
+\frac{\sum_j n_i(\b y_{i.}-\b y_{..})^2.}{\sum_i \sum_j (y_{ij}-\b y_{i.})^2 }.
+$$
+You have probably guessed that this looks suspiciously like
+an $F$-statistic (only if we divide by suitable degrees of
+freedom). Indeed, these detais constitute the other columns of a
+traditional ANOVA table:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Source</th><th colspan="" rowspan="">d.f.</th><th colspan="" rowspan="">SS</th><th colspan="" rowspan="">$MS$</th><th colspan="" rowspan="">$F$</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Fertiliser</td><td colspan="" rowspan="">2</td> <td colspan="" rowspan="">$\sum_j n_i(\b y_{i.}-\b y_{..})^2$</td><td colspan="" rowspan="">$SS_{fert}/df_{fert}$</td><td colspan="" rowspan="">$MS_{fert}/MS_{err}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Random</td> <td colspan="" rowspan="">12</td><td colspan="" rowspan="">$\sum_i \sum_j (y_{ij}-\b y_{i.})^2$</td><td colspan="" rowspan="">$SS_{err}/df_{err}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Total</td> <td colspan="" rowspan="">14</td><td colspan="" rowspan="">$\sum_i\sum_j (y_{ij}-\b y_{..})^2$</td>
+</tr>
+
+</table>
+</center>
+
+<img src="../image/box.png"></p>
+The d.f. column is mysterious, but the others are not. The
+d.f. column requires some linear algbra to explain, which we
+shall do now.
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/linmod/anova.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmanova"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

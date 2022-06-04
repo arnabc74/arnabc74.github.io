@@ -1,0 +1,682 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Testing">Testing</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Null distribution">Null distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#$\chi^2 $ distribution">$\chi^2 $ distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Deriving the null distribution">Deriving the null distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Finding dimension of $W$">Finding dimension of $W$</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+
+$\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}$
+<h1><a
+name="Testing">Testing</a></h1>
+There are two types of testing that we want to do in the context
+of linear models:
+<ul>
+
+<li> Given a model we want to know if it is a good
+fit or not.</li>
+
+<li>Given a model that we already know to be a good fit, we want
+to know if we can have a submodel that is also a good
+fit. The type of submodel that we have in mind here is
+where $E(\v y)$ lies in some given $W\le \col(X).$</li>
+
+</ul>
+
+We address the latter question here. To understand what we are
+going to do, here are a few examples. 
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose that we have fitted a model $y_i = \beta_0 + \beta_1
+x_i + \beta_2 x_i^2 + \epsilon_i.$ The plot looks this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/quad.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then we wonder if the quadratic term is really needed or not. In
+other words, we are trying to understand if the submodel $y_i =
+\beta_0 + \beta_1 x_i + \epsilon_i$ would do just as
+well. Here $X$ has three columns:
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; x_1 &amp; x_1^2\\
+\vdots &amp; \vdots &amp; \vdots\\
+1 &amp; x_n &amp; x_n^2\\
+
+\end{array}\right],
+$$
+and $W$ is the span of the first two columns of $X.$
+<img src="../image/box.png"></p>
+
+Here is another example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+In the 1-way ANOVA model $y_{ij} = \mu + \alpha_1 +
+\epsilon_{ij}$ we want to test $H_0:\alpha_2=2 \alpha_1.$
+If we write 
+$$
+\v \beta = \left[\begin{array}{ccccccccccc}\mu\\ \alpha_1\\\alpha_2\\\vdots\\\alpha_p
+\end{array}\right],
+$$
+then under $H_0$ the vector becomes 
+$$
+\left[\begin{array}{ccccccccccc}\mu\\ \alpha_1\\2 \alpha_1\\\vdots\\\alpha_p
+\end{array}\right] = 
+B \v \beta,
+$$
+where the $B$ is just the identity matrix with the 3rd row
+(the one corresponding to $\alpha_2$) replaced by $(0,2,0,...,0).$
+<p></p>
+Hence the model under $H_0$ is $\v y = XB\v \beta + \v \epsilon.$
+<p></p>
+So here $W = \col(XB).$
+<img src="../image/box.png"></p>
+
+
+The test procedure is intuitive:
+<ol type="">
+
+<li>Fit the larger model (already known to be a good fit). The
+$RSS$ for this model gives us an yardstick about how much
+error is accepable.</li>
+
+<li>Next we fit the submodel, and find the $RSS$ for
+that. Of course, this must be $\ge$ the $RSS$ for the
+full model.</li>
+
+<li>We compare the increase in $RSS$ to the acceptable
+amount of $RSS$ from step 1.</li>
+
+</ol>
+This common sense procedure turns out to be also the LRT, as may
+be seen quite easily as follows.
+
+<p></p>
+The LRT rejects $H_0$ for large values of 
+$$
+\frac{\sup_{\Theta} L(\theta)}{\sup_{\Theta_0} L(\theta)}.
+$$
+In our case, $\theta = (\v\beta,\sigma^2)$ and 
+$$
+L(\theta) = (\sigma^2)^{-n/2} \exp\left[ -\frac{\|y-X \v\beta\|^2}{2 \sigma^2} \right].
+$$
+So 
+$$
+\sup_{\Theta} L(\theta) = \left(\frac{n}{RSS} \right)^{n/2}e^{-n/2},
+$$
+and 
+$$
+\sup_{\Theta_0} L(\theta) = \left(\frac{n}{RSS_0} \right)^{n/2}e^{-n/2},
+$$
+Hence
+$$
+LR = \left(\frac{RSS_0}{RSS} \right)^{n/2}.
+$$
+So we reject $H_0$ for large values
+of $\frac{RSS_0}{RSS},$ or, equivalently, large values
+of $\frac{RSS_0}{RSS}- = \frac{RSS_0-RSS}{RSS}.$
+
+<h2><a
+name="Null distribution">Null distribution</a></h2>
+ In
+order to carry this out in practice we need the null distribution
+of the test statistic. We derive this below.
+
+<h3><a
+name="$\chi^2 $ distribution">$\chi^2 $ distribution</a></h3>
+
+Let $\v y\sim N_n(0,  I).$ Then $\|\v y\|^2\sim \chi^2_{(n)}.$
+
+<p></p>
+We shall take this as the definition of $\chi^2 $
+distribution. We shall also use the notation $U \sim \sigma^2
+\k{n}$ to mean $\frac{U}{\sigma^2}\sim\k{n}.$
+
+
+
+<p></p>
+Here is a basic fact that e shall use repeatedly:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+ If $\v y\sim
+N_n(\mu,\Sigma),$ then for any $A_{m\times n}$ we
+have $A\v y\sim N_m(A \mu , A \Sigma A').$
+</fieldset>
+In particular, if $A$ is an orthogonal matrix,
+and $\v y\sim N_n(\v 0, \sigma^2 I),$ then $A\v y\sim
+N_n(\v 0, \sigma^2 I),$ as well. Thus, rotation does not
+change the distribution of the components of a random vector with
+ IID Gaussian components.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v y\sim N_n(0, \sigma^2 I)$ and $V\le{\mathbb R}^n,$ then
+$$\|P_{V}(\v y)\|^2\sim \sigma^2 \k{r},$$
+where $r = dim(V).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Start with an ONB of $V.$ Extend to an ONB
+of ${\mathbb R}^n.$ Express $\v y$ in this new basis. 
+<p></p>
+In terms of matrices, this means creating an orthogonal
+matrix $P$ by stacking the ONB vectors as rows, and then
+computing $P\v y.$
+The first $r$ components of this vector gives $P_V(\v y).$
+<p></p>
+So $\|P_V(\v y)\|^2$ is just the sum of squares of the
+first $r$ entries. Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v y\sim N_n(\mu, \sigma^2  I)$ and $V\le{\mathbb R}^n,$
+and $\mu\in V^\perp,$ then 
+$$\|P_{V}(y)\|^2\sim \sigma^2 \k{r},$$
+  where $r = dim(V).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Take $\v z = \v y-\v \mu.$ Then $P_V(\v z) = P_V(\v
+y-\v \mu) =
+P_V(\v y)-P_V(\v \mu) = P_V(\v y).$ Now apply the last theorem
+to $\v z.$<b><i>[QED]</i></b>
+</p>
+
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v y\sim N_n(0, \sigma^2 I)$ and $U,V \le{\mathbb R}^n$ are
+ mutually orthogonal,
+ then $P_U(y)$ and $P_V(y)$ are
+ independent.
+</fieldset>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $y\sim N_n(\mu, \sigma^2 I)$ and $V,W \le{\mathbb R}^n$ are
+ mutually orthogonal, and $\mu\in V^\perp\cap W^\perp,$
+ then $P_V(y)$ and $P_W(y)$ are
+ independent.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v z = \v y-\v \mu.$ Then $P_V(\v z) = P_V(\v y)$
+and $P_W(\v z) = P_W(\v y).$ Now apply the last theorem
+with $\v z$ in place of $\v y$ there. 
+<b><i>[QED]</i></b>
+</p>
+
+
+<h3><a
+name="Deriving the null distribution">Deriving the null distribution</a></h3>
+We shall consider the linear model 
+$$
+\v y =X \v\beta + \v\epsilon,
+$$
+where $\v \epsilon\sim N_n(0, \sigma^2 I).$
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$RSS\sim \sigma^2 \k{n-r(X)}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Here $\v y\sim N_n(X \v\beta, \sigma^2 I),$ and $X \v\beta\in
+\col(X).$ Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If  $W\le\col(X),$
+then $RSS_0-RSS = \|P_U(y)\|^2,$
+where $U=W^\perp\cap \col(X).$</fieldset>
+
+<p>
+<b><i>Proof:</i></b><i>(Simplification thanks to Sayak)</i>
+
+<p></p>
+
+We can split $\col(X)$ into two mutually orthogonal
+subspaces: $W$ and $U=W^\perp\cap
+\col(X).$<a href="javascript:hideShow('sayak');">(Care!)</a>
+<div id="sayak" style="display:none;background-color:#ffcccc;">
+Start with any ONB of $W.$ Extend to ONB of $\col(X).$
+Then the span of the added vectors is $W^\perp\cap \col(X).$
+<p></p>
+Beware the wrong argument: Since $W\oplus W^\perp = {\mathbb R}^n,$
+hence $\col(X) = {\mathbb R}^n\cap \col(X) = (W\oplus W^\perp)\cap
+\col(X) = (W\cap \col(X)) \oplus (W^\perp\cap \col(X)) = W\oplus
+(W^\perp\cap \col(X)).$ 
+<p></p>
+This is wrong because $\cap$ does distribute in general over $\oplus.$
+</div>
+
+<p></p>
+Thus, 
+$$
+P_{\col(X)}(\v y) = P_U(\v y) + P_W(\v y),
+$$
+and
+$$
+\|P_{\col(X)}(\v y)\|^2 = \|P_U(\v y)\|^2 + \|P_W(\v y)\|^2,
+$$
+<i>i.e.</i>,
+$$
+\|\v y\|^2-RSS = \|P_U(\v y)\|^2+(\|\v y\|^2-RSS_0).
+$$
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If  $W\le\col(X),$ and $X \v\beta\in W,$
+then $RSS_0-RSS \sim \sigma^2\k{r-s},$
+where $r = r(X)$ and $s = dim(W).$</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+From the last theorem, $RSS_0-RSS = \|P_U(\v y)\|^2.$ Also $X \v\beta\in W\le U^\perp.$
+<p></p>
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If  $W\le\col(X),$
+then $RSS_0-RSS$ is independent of $RSS.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$RSS_0-RSS = \|P_U(\v y)\|^2$ and $RSS =
+\|P_{\col(X)^\perp}(\v y)\|^2.$ 
+<p></p>
+Now $U$ and $\col(X)^\perp$ are mutually orthogonal.
+<p></p>
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If  $W\le\col(X),$ and $X \v\beta\in W,$
+then 
+$$\frac{(RSS_0-RSS)/(r-s)}{RSS/(n-r)}\sim F_{r-s,n-r},$$
+where $s = dim(W).$</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Follows from the theorems above.<b><i>[QED]</i></b>
+</p>
+
+
+<h3><a
+name="Finding dimension of $W$">Finding dimension of $W$</a></h3>
+In order to apply the theorem above we need to know two numbers,
+the rank of $X$ and the dimension of $W.$
+We have already discussed how to guess the rank of $X$
+intuitively. Here we shall discuss how to guess the dimension
+of $W$ when $H_0$ is given in a special form. The most
+common form of $H_0$ is where we set some estimable
+parametric functions equal to 0. For example, in the 1-way ANOVA
+model $y_{ij} = \mu + \alpha_i + \epsilon_{ij},$ we may
+test $\alpha_1=2\alpha_2$ or "all $\alpha_i$'s
+equal". Such hypothese are of the general form $L \v \beta = \v 0,$
+where $\row(L)\le\row(X).$ 
+Each row of $L$ imposes a restriction on the parameter
+space, and hence makes $W$ smaller and smaller
+inside $\col(X).$ So intuitively we can hope that 
+$$
+dim(W) = r(X) - r(L).
+$$
+Indeed, this is the case. We shall now prove this formally. 
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_{n\times p}$ and $L_{k\times p}$ be any two
+matrices such that $\row(L)\le\row(X).$  Consider $W\le{\mathbb R}^n$ defined as
+$$
+W=\{X \v\beta ~:~ L \b \beta = \v 0\}.
+$$
+Then $dim(W)=r(X)-r(L).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+<u>Case I: $X$ full column rank</u>: 
+<p></p>
+Think of $W$
+as the image of $\nul(L)$ under the linear
+transformation $\v v\mapsto X\v v.$ 
+<p></p>
+Since $X$ is full column rank, this linear transformation is
+one-one. So the image has the same dimention as $\nul(L) =
+p-r(L).$ Since $r(X)=p,$ hence the result follows.
+<p></p>
+
+<u>Case II: $r(X) = r &lt; p$</u>:
+<p></p>
+We shall reduce this case to the earlier one. The idea is to pick a
+basis of $\col(X)$ and work with that. 
+<p></p>
+More precisely, we
+take any rank factorisation $X =
+BC.$<a href="javascript:hideShow('rf');">(What's that?)</a>
+<div id="rf" style="display:none;background-color:#ffcccc;">
+By a rank factorisation $X=BC$ we mean: taking any basis
+of $\col(X)$ and stacking them side by side to form a
+matrix $B.$ If $X$ is $n\times p$
+with $r(X)=r,$ then $B$ must be $n\times r.$
+<p></p>
+Now, each column of $X$ is a linear combination of the
+columns of $B.$ Collecting the coefficients of these linear
+combinations to form a matrix $C,$ we get $X_{n\times p} =
+B_{n\times r}C_{r\times p}.$
+<p></p>
+By construction $r(B)=r(X)=r,$ and hence $B$ is full
+column rank. 
+Interestingly,  $C$ must be full row rank,
+with $r(C)=r.$ Also the rows of $C$ form a basis of $\row(X).$
+</div> Then $C$ is a
+full row rank matrix, whose rows form a basis of $\row(X).$
+<p></p>
+Since $\row(L)\le\row(X),$ hence $ L = DC$ for some
+matrix $D.$ Hence
+$$
+W=\{BC \v\beta ~:~ DC \b \beta = \v 0\}.
+$$
+Notice that $\col(C)={\mathbb R}^r.$ So $\v \gamma\equiv C\v \beta $ may be any
+vector in ${\mathbb R}^r.$ Thus 
+$$
+W=\{B \v \gamma  ~:~ D \b \gamma  = \v 0\}.
+$$
+Case I applies here, since $B$ is full column
+rank. So we have 
+$$
+dim(W) = r(B)-r(D) = r(X)-r(L),
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>Consider the 1-way ANOVA model $y_{ij} = \mu_i +
+\epsilon_{ij}$, where $i=1,...,I$ and $j=1,...,J.$ 
+We are testing $H_0: \mu_1=0.$ Show
+that $RSS_0-RSS = J(\b y_{1.})^2.$ Hence show that the LRT
+test statistic is 
+$$
+\frac{J(\b y_{1.})^2}{\h \sigma^2}.
+$$
+This is intuitive, as this is actually
+$$
+\left(\frac{\h \mu_1}{\h SE(\h \mu_1)}\right)^2,
+$$
+where $SE(\h \mu_1)$ is the standard error of $\h
+\mu_1,$ and its estimator $\h SE(\h \mu_1)$ is obtained
+by plugging the unbiased estimator $\h \sigma^2$ in place of $\sigma^2.$
+Thus, we do not need to fit the submodel at
+all.</li>
+
+
+<li>We are working with $\v y = X \v \beta + \v \epsilon.$
+Let $\v \ell\in\row(X).$ Want to test $H_0: \v \ell' \v \beta =
+0.$ Show that the LRT test statistic is actually 
+$$
+\left(\frac{\v\ell'\h \beta}{\h SE(\v\ell'\h \beta)}\right)^2,$$
+where 
+$
+\h SE(\v\ell'\h \beta)
+$
+is obtained by plugging the unbiased estimator $\h \sigma^2$
+in place of $\sigma^2 $ in the expression for $SE(\v\ell'\h \beta).$
+</li>
+
+
+<li>Same model as in the first problem. But now we want to test $H_0: \mu_1=
+\mu_2.$ Apply the last problem to perform the LRT without
+having to fit a submodel.
+</li>
+
+
+
+<li>Consider the 1-way ANOVA model: $y_{ij} = \mu_i +
+\epsilon_{ij}$ where $i=1,...,5.$ Is the LRT test
+for $H0:\mu_1 = \mu_2$ equivalent to the $t$-test
+based on only the subset of the data belonging to the first two
+groups? [Hint: Think intuitively before proceeding with
+algebra.]</li>
+
+
+<li>In each of the following cases you are given a linear model
+and an $H_0.$ You have to find the LRT test statistic.
+<center>
+<table style="" border="1">
+
+<tr>
+
+<th colspan="" rowspan=""></th><th colspan="" rowspan="">Linear model</th><th colspan="" rowspan="">$H_0$</th>
+
+</tr>
+
+<tr>
+<td colspan="" rowspan="">(a)</td>
+<td colspan="" rowspan="">$y_{ij} = \mu_i + \epsilon_{ij}$</td>
+<td colspan="" rowspan="">All $\mu_i$'s equal</td>
+
+</tr>
+
+
+<tr>
+<td colspan="" rowspan="">(b)</td>
+<td colspan="" rowspan="">$y_{ij} = \mu +\alpha_i + \beta_j + \epsilon_{ij}$</td>
+<td colspan="" rowspan="">All $\alpha_i$'s equal</td>
+
+</tr>
+
+
+<tr>
+<td colspan="" rowspan="">(c)</td>
+<td colspan="" rowspan="">$y_{ijk} = \mu +\alpha_i + \beta_j + \gamma_{ij}+\epsilon_{ij}$</td>
+<td colspan="" rowspan="">All $\gamma_{ij}$'s free of $i,j$</td>
+
+</tr>
+
+
+<tr>
+<td colspan="" rowspan="">(d)</td>
+<td colspan="" rowspan="">$y_{ijk} = \mu +\alpha_i + \beta_j + \gamma_{ij}+\epsilon_{ij}$</td>
+<td colspan="" rowspan="">All $\gamma_{ij}$'s free of $j$</td>
+
+</tr>
+
+
+</table>
+</center>
+
+
+</li>
+
+
+<li>Consider the 2-way ANOVA model $y_{ij} = \mu +\alpha_i +
+\beta_j + \gamma_{ij}+\epsilon_{ij}.$
+Someone asks you to test $\v\ell'\v \beta = 0$ for some $\v\ell\in\row(X).$
+Explain why this is impossible to do using LRT.
+</li>
+
+
+
+<li>Consider the linear model $\v y = X \v \beta + \v
+\epsilon,$ where $X$ is $n\times p.$
+Let $W\le{\mathbb R}^n$ and $\v c\in{\mathbb R}^n$ be such that $W+\v
+c\subseteq\col(X).$ Then show that
+under $H_0: X\v \beta \in W+\v c,$ we have $RSS_0-RSS\sim \sigma^2
+\k{s-r},$ where $s = dim(W).$ [Here $RSS_0$ is the
+squared distance from $\v y$ to $W+\v c.$
+See <a href="image/affineprojmod.png">this picture</a> to
+understand. Mathematically, it is the squared norm of the
+residual when $\v y-\v c$ is projected onto $W.$]</li>
+
+
+<li>Use the result of the above exercise to explicitly derive a
+test for $H_0: \alpha_1 = \alpha_2+1$ in the linear
+model $y_{ij}=\mu+\alpha_i+\epsilon_{ij}.$
+Show that the test statistic may be conveniently written as 
+$$
+\left(\frac{\h \alpha_1-\h \alpha_2-1}{\h SE(\h \alpha_1-\h \alpha_2)}\right)^2.
+$$
+</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/linmod/test.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmtest"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

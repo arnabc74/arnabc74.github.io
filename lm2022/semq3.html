@@ -1,0 +1,253 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Discussion of question 3">Discussion of question 3</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What I tried to test">What I tried to test</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#An 'ideal' solution">An 'ideal' solution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What many of you did wrong">What many of you did wrong</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Discussion of question 3">Discussion of question 3</a></h1>
+Here is the question:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/semq3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+All the data sets were similar, and consisted of random samples
+of equal numbers of
+webm and mp4 video files. 
+<h2><a
+name="What I tried to test">What I tried to test</a></h2>
+I knew that prediction of duration based on file size was not
+destined to have high success. So it would require you to
+explore. My chief aim was to see how well and meaningfully your
+explore a real life data set using all the tools you have at your disposal: common
+sense, plots, diagnostics, mathematics. 
+
+<h2><a
+name="An 'ideal' solution">An 'ideal' solution</a></h2>
+There isn't any. Not just for this problem, but for most (if not
+all) real life data analysis problem. But here are certain steps
+I would have taken:
+<ul>
+
+<li>Common sense: name and date just should not play any role. I
+would have confirmed that first by plotting against
+them. Similarly, I would plot duration against size and use
+colour to mark the extension. This is better than making separate scatter plots for the two
+extensions.</li>
+
+<li>The plot shows high concentration for small values and large
+scatter for large values. Naturally, videos with longer duration
+show more variation. This would lead me to think in terms of
+relative error, instead of additive error. But the linear model
+theory we now is for additive error only. So the idea of log
+transform automatically comes to mind to reduce relative errors
+to additive errors. I would play for some time with log
+transformed scatter plots (log y vs x, y vs log x, log y vd log
+x) colour coded with extensions.</li>
+
+<li>I know that the extension determines how the video is
+encoded, and thus controls the relation between duration and
+size. So it is quite possible that for different extensions the
+relations between duration and size are different. In other
+words, I would be surprised if there is no interaction between
+size and extension. But still I would desist from fitting a
+model. I am still in the exploratory phase.</li>
+
+<li>So now I have two ideas buzzing in my head: (1) the points near the
+origin seem to behave differently from the points farther away,
+and (2) how the extension influences the size-duration relation.
+A look at the data set shows that there are many cases where the
+same video has been encoded in the two formats. That would
+immediately suggest a way to explore the second idea. I shall
+take the subset of all videos provided in both the formats,
+and consider them as paired data, and make a scatterplot of
+sizes. (Thus, the names do provide some info after all!)
+
+For (1) I already had the idea of log transform. Another idea is
+to split the data into two parts: points cloe to origin and the
+rest. Can I see any pattern in them separately.
+</li>
+
+
+<li>Now I am going to exit the exploratory phase, and start
+fitting models. Of course I would leave out name and date in
+stage one, and think about them to explain wierd behaviours
+later. My mind would revolt against fitting a linear model to
+the raw data (I can just see from the colour coded raw scatterplot,
+that there is no good relation, the computer cannot provide a
+good fit by magic!). So I shall proceed with log data (log x log
+y, whatever I chose from my exploratory analysis). And
+definitely I shall keep the interaction term initially, and make
+it a point to test significance of that term once I settle upon
+a model. Some amount of experimentation would follow.</li>
+
+<li>Then I shall also try out the idea of fitting different
+models to the near and far points.</li>
+
+
+<li>I already had an idea about the effect of extension on size
+from the paired subset data. I shall try to use that to bring
+everything to a "common denominator" (<i>e.g.</i>, what would the
+duration of an mp4 have been, had it been encoded by webm). Then
+I would try to plot and fit linear model of that converted
+data.</li>
+
+
+<li>Should I use random effects? The factor
+inputs are extension, name, date. I see from domain knowledge
+that name and date cannot determine duration (Surely changing
+the name of a video from "RomeoAndJuliet" to "LinerModelLecture"
+is not going to change the duration!). It is true that there are
+other extensions also, but there is no way I can draw inference
+about them based on webm and mp4. So the report of this analysis
+is going to be useful only for other videos using only these two particular extensions.  </li>
+
+<li>Once I settle down on a few models that look decent, I shall
+compare them </li>
+
+
+</ul>
+
+
+<h2><a
+name="What many of you did wrong">What many of you did wrong</a></h2>
+
+<ul>
+
+<li>Using name and date as explanatory variables. Never lose hold
+of common sense! Even if you find them significant by chance,
+how are you going to interpret your model? A model without
+interpretation is worse than no model! </li>
+
+<li>Random effect does not mean an input without
+interpretation. It is an effect which has more levels than what
+are present in the data, and you believe that the levels present
+are representative of all the levels.</li>
+
+<li>For a low dimensional data set never expect a fitted model
+to provide better accuracy than a plot. A fitted model may be
+considered more objective, but if there is no obvious relation
+from the plot, the model cannot find one magically for you! Many
+of you made a plot, and in spite of its uninviting nature
+started to fit a model.</li>
+
+<li>Many of fitted a model like duration~size+extn. This means
+that extension only adds a constant burden in the file (like a
+header section), the rest of the file remaining the same in
+size. Does that sound plausible? Shouldn't there be some
+interaction?</li>
+
+<li>Quite a few of you said: "the residuals are scattered around
+0 randomly. So my model is a good fit." The random scatter is a
+weak necessary condition only, NOT a sufficient one. Consider
+the magnitude of the residuals as well!</li>
+
+<li>Also, extn is a factor. So writing the extn term as
+beta*extn does not make much sense (even if you have coded extn
+as 0 and 1).</li>
+
+</ul>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

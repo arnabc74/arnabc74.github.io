@@ -1,0 +1,249 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Exercise set 1">Exercise set 1</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Exercise set 1">Exercise set 1</a></h1>
+
+<ol type="">
+
+<li>Do all the exercises at the end of chapter 2 of the
+textbook.</li>
+
+<li>Solve the following approximate system using R:
+$$\begin{eqnarray*}
+3a + 4b + c &amp; \approx &amp; 3.4\\
+3a + 4b + c &amp; \approx &amp; 3.5\\
+4a + 3b + 2c &amp; \approx &amp; 10.1\\
+4a + 3b + 2c &amp; \approx &amp; 9.8\\
+6a + 5b + 2c &amp; \approx &amp; 5.6
+\end{eqnarray*}$$
+</li>
+
+<li>Let's see how R tackles a linear model where the design matrix that is not full
+column rank:
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1\\
+
+\end{array}\right],\quad 
+\v y = \left[\begin{array}{ccccccccccc}3.4\\3.5\\10.5\\10.3
+\end{array}\right].
+$$
+Here the first column of $X$ is a column of $1$'s. So
+you may just type the last two columns in R, and omit the <code>-1</code>.
+</li>
+
+<li>
+In the problem above R produced <i>one</i> least squares
+solution. But we know that there are infinitely many. Write down
+two more solutions. Can you write a general form for all least
+squares solutions here?
+</li>
+
+<li>R automatically stores various qunatities computed
+by <code>lm</code>. We shall explore some of them here. Let's
+work with the linear model from the last exercise. Create the
+full design matrix (including its first column) and type:
+<font color="red">
+<pre>
+myfit = lm(y~X-1)
+</pre>
+</font>
+The variable <code>myfit</code> now contains lots of the
+information about the fit. You may extract the computed least
+squares solution $\hv \beta $ as 
+<font color="red">
+<pre>
+myfit$coef
+</pre>
+</font>
+This may be used in future computations. Compute $\h y = X\hv
+\beta.$ Remember that <code>%*%</code> is the R notation for
+matrix multiplication. This $\h y$ is the foot of the
+perpendicular dropped from $\v y$ to $\col(X).$
+Usually $\hv y$ is called the <b>fitted</b> vector. R already
+computes them:
+<font color="red">
+<pre>
+myfit$fitted
+</pre>
+</font>
+The vector $\v y - \hv y$ is called the <b>residual</b>
+vector:
+<font color="red">
+<pre>
+myfit$resid
+</pre>
+</font>
+There are many other pieces of information packed
+in <code>myfit</code>:
+<font color="red">
+<pre>
+names(myfit)
+</pre>
+</font>
+
+</li>
+
+<li>Consider a linear model $\v y = X \beta +\epsilon,$
+where $X$ is not full col rank. Pick any basis
+of $\col(X).$ Stack these vectors side by side a columns to
+get a matrix $B.$ Let $\v w = B(B'B) ^{-1} B' \v y.$
+Show that $\v w = \hv y$ irrespective of the choice
+of $B.$</li>
+
+<li>Consider a linear model with design matrix 
+$$
+X = \left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 1\\
+
+\end{array}\right].
+$$
+If $\v \beta = (\beta_1, \beta_2, \beta_3)',$ then show that
+whatever least squares solution $\hv \beta $ you take, $\h
+\beta_2-\h \beta_3$ is always the same. Characterise all
+vectors $\v \ell\in{\mathbb R}^3$ such that $\v \ell' \hv \beta$
+does not depend on the choice of the least squares solution.
+</li>
+
+<li>Generalise the characterisation from the last problem to
+arbitrary design matrix.</li>
+
+<li>
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/basicex1.png"></fieldset>
+</center>
+</li>
+
+<li>Redo the above problem with the extra condition: $\beta_0-\alpha_0 = (\beta_1-a_1) x_0.$</li>
+
+</ol>
+
+
+<p></p>
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://arnabc74@github.io/linmod/ex1.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmex1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

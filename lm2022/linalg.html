@@ -1,0 +1,1088 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Linear Algebra">Linear Algebra</a>
+</li>
+<li>
+<a href="#For later">For later</a>
+</li>
+<li>
+<a href="#Linear algebra">Linear algebra</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Generalising">Generalising</a>
+</li>
+<li>
+<a href="#Intuitive understanding of rank of design matrix">Intuitive understanding of rank of design matrix</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Guessing if rank $<$ number of columns">Guessing if rank $&lt;$ number of columns</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Guessing $r(X)$">Guessing $r(X)$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reducing $X$ to a full column rank matrix">Reducing $X$ to a full column rank matrix</a>
+</li>
+<li>
+<a href="#Linear algebra">Linear algebra</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Generalising">Generalising</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+<table width="100%">
+<tr>
+<td align="right"><i>Last
+updated on:
+FRI AUG 28 IST 2020</i></td>
+</tr>
+</table>
+
+<h1><a
+name="Linear Algebra">Linear Algebra</a></h1>
+$
+\newcommand{\v}{\vec}
+\newcommand{\b}{\overline}
+\newcommand{\hv}[1]{\hat{\vec#1}}
+\newcommand{\col}{\mathcal{C}}
+\newcommand{\argmin}{\mathrm{argmin}}
+\newcommand{\o}{{\mathbb 1}}
+$
+<h1><a
+name="For later">For later</a></h1>
+ Pictorially, this means
+projecting $\v y$ on $\col(X)$ and expressing the
+projection ($\hv y,$ the foot of the perpendicular) in
+terms of the columns of $X.$
+<p></p>
+For example, in the weighing case, we are looking for $a,b$
+such that $X \beta $ is as close as possible to $y.$
+Now 
+$$
+X \beta  = \left[\begin{array}{ccccccccccc}3 &amp; 4\\4 &amp; 1\\2 &amp; 3
+\end{array}\right]\left[\begin{array}{ccccccccccc}a\\b
+\end{array}\right] =
+a \left[\begin{array}{ccccccccccc}3\\4\\2
+\end{array}\right] + b \left[\begin{array}{ccccccccccc}4\\1\\3
+\end{array}\right],
+$$
+a linear combination of the two columns of $X.$ So our
+interest lies in finding the linear combination of the columns of
+X that is closest to $\v y.$ We shall proceed step by step
+here. 
+
+<p></p>
+Start by thinking of the first column of $X$ as an arrow in ${\mathbb R}^3:$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/plot1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Similarly for the second column:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/plot2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The $\v y$ vector is also an arrow in ${\mathbb R}^3:$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/plot3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Our job is to drop a perpendicular from the tip of $\v y$
+on the plane $\col(X).$ That is,
+we want to find some $\hv \beta $ such that $X\hv
+\beta $ is the projection of $\v y$ onto $\col(X):$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/plot4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+This may be done by the following  mathematical trick: Just 
+solve the so called <b>normal equation</b>:
+$$
+(X'X)\hv \beta = X'\v y.
+$$
+We shall not worry about why this trick works right now. We shall
+prove this later.  Then we shall also prove the useful fact that this system is
+always consistent. 
+
+
+
+<p></p>
+
+The foot of the perpendicular (from $\v y$
+to $\col(X)$) is $\hv y$, and is unique. Since this is
+in $\col(X),$ so it can be expressed as a linear combination
+of the columns of $X.$ However, there may be many ways to do
+so. It will be unique if and only if the columns of $X$ are
+all independent.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Least square solution of $\v y = X \v\beta + \v \epsilon$ is
+unique if and only if $X$ is full column rank. In this case,
+$X'X$ is invertible, and the unique solution is given by 
+$$
+\hv \beta = (X'X) ^{-1} X'\v y.
+$$
+</fieldset>
+Thus, the projection of $\v y$ onto $\col(X)$ is
+ $$\hv y = X\hv \beta = \underbrace{X(X'X)^{-1} X'}_{P_X} \v y.$$
+So $P_X = X(X'X)^{-1} X' $ is the (orthogonal) projection
+matrix for $\col(X).$
+<p></p>
+Recall from linear algebra that a real matrix is an orthogonal
+projection matrix if and only if it is symmetric and idempotent.
+
+<p>
+<b>EXERCISE:</b>&nbsp;Quickly check that $P_X$ is indeed symmetric and
+orthogonal.<img src="../image/box.png"></p>
+
+
+<h1><a
+name="Linear algebra">Linear algebra</a></h1>
+Here the design matrix is like
+$$
+X = \left[\begin{array}{ccccccccccc}
+\o &amp; \o &amp; 0 &amp; 0\\
+\o &amp; 0 &amp; \o &amp; 0\\
+\o &amp; 0 &amp; 0 &amp; \o\\
+
+\end{array}\right],
+$$
+where $\o = (1,1,1,1,1)'.$ The sum of the last three columns
+equals the first, and so $\col(X)$ has dimension $3.$
+We split $\col(X)$ into two orthogonal parts. To understand
+this let $V_1$
+and $V_2,$ where $V_1$ is just the span of the first
+column, and $V_2$ is the span of the last
+three. Clearly, $\col(X) = V_1+V_2.$ However, there is an
+overlap. So we replace $V_2$ by $W = V_2\cap
+V_1^\perp.$ Now consider $y\in{\mathbb R}^{15}.$ We have
+effectively split ${\mathbb R}^{15}$ into three orthogonal parts:
+$$
+{\mathbb R}^{15} = V_1 + W_2 + \col(X)^\perp.
+$$
+Accordinly $y$ gets split as 
+$$
+y = y_{V_1} + y_{W_2} + y_{\col(X)^\perp}.
+$$
+Here $y_{S}$ means orthogonal projection of $y$ onto $S.$
+<p></p>
+A little computation would show that the squared norms of these
+are the $SS$'s in our ANOVA table. The degrees of freedom
+are just the dimension of the subspace we are projecting into. 
+
+<p></p>
+The situation is as depicted below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/proj.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<h2><a
+name="Generalising">Generalising</a></h2>
+This idea is very tempting. Just split $\col(X)$ into
+mutually orthogonal subspaces corresponding to the inputs. The
+subspace $\col(X)^\perp$ will correspond to the random error
+input. 
+<p></p>
+However tempting this idea may sound, it is not achievable in
+many situations. We shall illustrate both the cases, where it is
+possible, and where it is not.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the 2-way ANOVA model without interaction:
+$$
+y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij},
+$$
+where $i=1,2,3$ and $j=1,...,4.$ The design matrix
+is $X$ given by
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/des1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+We have grouped the columns according to effects. The cyan
+column in the overall mean effect, the pink ones are
+the $\alpha$ columns, and the orange ones are due to
+the $\beta$'s. If we denote the spans of the cyan, pink and
+orange columns by $V_1, V_2$ and $V_3,$ respectively,
+then 
+$$
+\col(X) = V_1 + V_2 + V_3.
+$$
+However, they are not mutually orthogonal. Indeed, $V_2\cap V_3
+= V_1.$ However, something nice is true: once you
+"remove" this intersection, the remaining parts of $V_2$
+and $V_3$ are mutually
+orthogonal. <a href="javascript:hideShow('det');">(Details)</a>
+<div id="det" style="display:none;background-color:#ffcccc;">
+Recall that if $\v u$ and $\v v\neq\v0$ are two
+vectors, then the residual of $\v u$ after "removing the
+effect of"
+$\v v$ is 
+$$
+\v u-P_{span\{\v v\}} (\v u) = \v u - \frac{\v v'\v u}{\|\v v\|^2}\v v.
+$$
+If we remove the effect of the cyan column from the rest, then we
+get the matrix:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/des2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Basically, each pink vector $\v u$ in the original design
+matrix now becomes $\v u - \frac 13\o,$ and each orange
+vector $\v v$ in the original design matrix has become $\v v - \frac 14\o.$
+<p></p>
+It is easily checked that the new pink vectors are orthogonal lto
+the new orange vectors. 
+</div> The situation is much
+like $xy$ and $xz$ planes in ${\mathbb R}^3:$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/planes.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+So we may define 
+$$
+W_1 = V_1,\quad W_2 = V_2\cap V_1^\perp,\quad W_3 = V_3\cap V_1^\perp.
+$$
+Then $\col(X) = W_1+W_2+W_3$ is an orthogonal
+partition. This produces the following ANOVA table:
+
+<center>
+<table style="" border="1">
+
+<tr>
+
+<th colspan="" rowspan="">Source</th>
+<th colspan="" rowspan="">d.f.</th>
+<th colspan="" rowspan="">SS</th>
+<th colspan="" rowspan="">MSS</th>
+<th colspan="" rowspan="">F</th>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Mean</td>
+<td colspan="" rowspan="">1</td>
+<td colspan="" rowspan="">$3\times4\times \b y_{...}^2$</td>
+
+</tr>
+
+
+<tr>
+
+<td colspan="" rowspan="">Rows</td>
+<td colspan="" rowspan="">3-1</td>
+<td colspan="" rowspan="">$4\times(\sum_i \b y_{i..}^2 - 3\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Columns</td>
+<td colspan="" rowspan="">4-1</td>
+<td colspan="" rowspan="">$3\times(\sum_j \b y_{.j.}^2 - 4\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Error</td>
+<td colspan="" rowspan="">$3\times4 - 1 - (3-1) - (4-1)$</td>
+<td colspan="" rowspan="">$\langle$by subtraction$\rangle$</td>
+
+</tr>
+
+<tr>
+<td colspan="5" rowspan=""></td>
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Total</td> 
+<td colspan="" rowspan="">$3\times4$</td>
+<td colspan="" rowspan="">$\sum_{ijk} y_{ijk}^2$</td>
+
+</tr>
+
+</table>
+</center>
+Usually the first row is "absorbed" into the last row to produce:
+<center>
+<table style="" border="1">
+
+<tr>
+
+<th colspan="" rowspan="">Source</th>
+<th colspan="" rowspan="">d.f.</th>
+<th colspan="" rowspan="">SS</th>
+<th colspan="" rowspan="">MSS</th>
+<th colspan="" rowspan="">F</th>
+
+</tr>
+
+
+<tr>
+
+<td colspan="" rowspan="">Rows</td>
+<td colspan="" rowspan="">3-1</td>
+<td colspan="" rowspan="">$4\times(\sum_i \b y_{i..}^2 - 3\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Columns</td>
+<td colspan="" rowspan="">4-1</td>
+<td colspan="" rowspan="">$3\times(\sum_j \b y_{.j.}^2 - 4\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Error</td>
+<td colspan="" rowspan="">$3\times4 - 1 - (3-1) - (4-1)$</td>
+<td colspan="" rowspan="">$\langle$by subtraction$\rangle$</td>
+
+</tr>
+
+<tr>
+<td colspan="5" rowspan=""></td>
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Adjusted total</td> 
+<td colspan="" rowspan="">$3\times4-1$</td>
+<td colspan="" rowspan="">$\sum_{ijk} y_{ijk}^2-3\times4 \b y_{...}^2$</td>
+
+</tr>
+
+</table>
+</center>
+
+<img src="../image/box.png"></p>
+
+Next we see an example where no satisfactory orthogonal partition
+exists.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Same model as above, but now each row of design matrix is
+repeated twice, except the last, which is present only once. Now
+the orthogonality structure collapses. 
+<img src="../image/box.png"></p>
+Note that statistically there
+is not much difference between this example and the last. We just
+repeated each combination on two plots. Due to some accident one
+of the plots aigned to the last combination was lost. Thus the
+beauty of the
+linear algebraic structure is not very "robust". Hence ANOVA
+tables are not much popular nowadays. 
+
+
+$\newcommand{\v}{\vec}$
+<h1><a
+name="Intuitive understanding of rank of design matrix">Intuitive understanding of rank of design matrix</a></h1>
+We have seen that the rank of the design matrix plays an
+important role in determining uniqueness of the least squares
+solution. The solution is unique if and only if $X$ is full
+column rank, <i>i.e.</i>, rank equals number of columns. In practice,
+however, this condition may not be met. We can of course apply
+some linear algebra algorithm (like Gaussian elimination) to find
+the rank and/or find a subset of columns that
+span $\col(X).$ However, it is often possible to avoid these
+numerical algorithms and resolve the problem intuitively. That is
+what we are going to learn now.
+
+<h2><a
+name="Guessing if rank $&lt;$ number of columns">Guessing if rank $&lt;$ number of columns</a></h2>
+
+Since we know that this is equivalent to nonuniqueness of least
+squares solution, hence we try to tweak one least squares
+solution into another. If we succeed then the rank must be less
+than number of columns. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the 1-way ANOVA model: $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}.$
+
+<p></p>
+Suppose that I give you some least squares solution $\h \mu$
+and $\h \alpha_i$'s. Now the intuitive thinking goes like
+this:
+<blockquote>
+Since $y_{ij}\approx \mu + \alpha_i,$ we may think as
+if $\mu + \alpha_i$'s are being "watched"
+by $y_{ij}$'s.
+If any of the $\mu + \alpha_i$'s change, then it would ring
+an alarm bell.
+</blockquote>
+But it is quite possible that we can tweak $\mu $ and $\alpha_i$'s so
+that $\mu + \alpha_i$'s never change, then that would give us
+a new least squares solution. For instance, add 5 to $\mu,$
+and adjust by subtracting 5 from all the $\alpha_i$'s. 
+<p></p>
+This shows that $X$ is not full column rank. 
+<img src="../image/box.png"></p>
+
+Here is another example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Again we consider a 1-way ANOVA model: $y_{ij} = \mu_i +
+\epsilon_{ij}.$ Here the $\mu_i$'s are "watched". So
+can't do any tweaking without getting detected. Hence the design
+matrix is full column rank here.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Guessing $r(X)$">Guessing $r(X)$</a></h2>
+The same intuitive way of thinking can often allow us to guess
+the $r(X)$.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Again consider the model: $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}$ for $i=1,...,p,$ say. The range
+of $j$ does not really matter for finding $r(X)$.
+<a href="javascript:hideShow('');">(Why?)</a>
+<div id="" style="display:none;background-color:#ffcccc;">It only controls how many times
+each row of $X$ is repeated. Repeating the same row
+multiple times does not affect the rank.</div> 
+
+<p></p>
+There are $p+1$ columns in $X.$ We have already seen
+that $X$ is not full column rank. Hence $r(X) &lt; p+1.$
+To guess $r(X)$ we shall again play the "tweak parameters
+without setting off the alarm" game. But this time we shall
+impose an extra constraint: pick any parameter (just any!),
+say $\mu,$ and never tweak it. Now you'll see that no
+tweaking is possible. Since you can tweak
+neither $\mu+\alpha_i$ nor $\mu $, hence you cannot
+tweak $\alpha_i$ either. Thus, just <i>one</i> constraint is
+enough to prevent tweaking. The conclusion is: $r(X)$ is
+exactly <i>one</i> less than the number of columns.
+<img src="../image/box.png"></p>
+
+Here is a more complicated example.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+The 2-way ANOVA model without interaction:$y_{ij} = \mu+\alpha_i+\beta_j+\epsilon_{ij}.$
+<p></p>
+Here the "watched" quantities are $\mu+\alpha_i+\beta_j.$
+Clearly, we can add something to $\mu$ and adjust by
+subtracting that amount from all the $\alpha_i$'s (or all
+the the $\beta_j$'s). So not full column rank.
+<p></p>
+To guess the exact rank, let's impose an additional
+constraint: "Thou shalt not tweak $\mu$."
+<p></p>
+Still we can manage to tweak the $\alpha_i$'s
+and $\beta_j$'s without letting off the alarm bell. For
+instance, add 5 to all the $\alpha_i$'s and subtract the
+same amount from all the $\beta_j$'s.
+<p></p>
+OK, pick any other parameter <i>that is not already fixed by earlier
+constraints</i> (say $\alpha_1$) and impose
+a new constraint: "Thou shalt not tweak $\alpha_1$ either."
+<p></p>
+Now, $\mu $ and $\alpha_1$ both being fixed,
+and $\mu+\alpha_1+\beta_j$'s being watched, we cannot tweak
+any of the $\beta_j$'s. So none of the
+other $\alpha_i$'s can be tweaked either. Hence no tweaking
+at all! And we needed just <i>two</i> constraints.
+<p></p>
+Conclusion: $r(X)$ is <i>two</i> less than the number of columns.
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Reducing $X$ to a full column rank matrix">Reducing $X$ to a full column rank matrix</a></h2>
+
+"Reducing $X$ to a full column rank matrix" means, linear algebraically,  picking a subset of columns
+of $X$ that constitute a basis for $\col(X).$ Finding a
+column-echelon form for $X$ is one possible sledge hammer to
+break this peanut. However, our "tweak without letting off the
+alarm" game again comes to help. Indeed, it is preferable to the
+sledge hammer method, because the particular least squares
+solution that we shall get by the intuitive method also has
+better interpretability. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;Consider the 1-way ANOVA model once again: $y_{ij} =
+\mu+\alpha_i+\epsilon_{ij}.$
+
+<p></p>
+Here is one possible scenario where it could be used. We have
+three different fertilisers <i>None</i>, <i>Compost</i> and <i>NPK</i>. We want to see
+their effect on the yield of paddy. Here the
+constraint $\alpha_1 = 0$ is a suitable one, since <i>None</i> is
+like a reference case. With this constraint the remaining
+parameters have the following interpretation:
+<ul>
+
+<li>$\mu$ is the effect of no fertiliser.</li>
+
+<li>$\alpha_2$ is the extra effect due to <i>Compost</i>,</li>
+
+<li>$\alpha_3$ is the extra effect due to <i>NPK</i>.</li>
+
+</ul>
+However, if the three fertilisers were <i>Mg</i>, <i>Compost</i> and <i>NPK</i>, then
+a more natural constraint would be $\sum \alpha_i = 0,$
+leading to the following interpretation:
+<ul>
+
+<li>$\mu$ is the overall mean effect.</li>
+
+<li>$\alpha_i$ is the extra effect due to the $i$-th fertiliser.</li>
+
+</ul>
+Another natural constraint would be: $\mu = 0.$ Here the
+interpretation is even simpler:
+<ul>
+
+<li>$\alpha_i$ is the effect of the $i$-th fertiliser.</li>
+
+</ul>
+However, most people will prefer the constraint $\sum \alpha_i =
+0$ to the constraint $\mu = 0,$ because under the former
+the signs of the $\h \alpha_i$'s immediately gives a clue to
+which fertiliser is a good and which is bad. 
+<img src="../image/box.png"></p>
+Each such constraint is effectively choosing a basis
+of $\col(X)$ leading to a unique least squares
+solution. Each software has its favourite constraint, which
+may not be the natural one for a given context. But it is easy to
+convert one least squares solution to another that satisfies a
+natural set of constraints. The next example illustrates this.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the 1-way ANOVA model $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij}.$ for $i=1,2,3$ and $j=1,...,10.$
+<p></p>
+R uses the constraint $\alpha_1 = 0.$
+<p></p>
+However, we want the constraint $\sum \alpha_i = 0.$ 
+<p></p>
+If the estimates produced by R are
+$$
+\h \mu = 23.4, \quad \h \alpha_1 = 0,\quad \h \alpha_2 =
+45.9,\quad \h \alpha_3 = -3.4,
+$$
+then find the estimates that satisfies our constraint.
+<p></p>
+<b>SOLUTION:</b>
+Just average the $\h \alpha_i$'s and subtract this from all
+the $\h \alpha_i$'s. Adjust by adding the same quantity to $\h \mu.$
+
+<p></p>
+Notice that you really do not need to know what constraint(s) R
+uses internally in order to impose your set of constraints.<img src="../image/box.png"></p>
+
+
+<h1><a
+name="Linear algebra">Linear algebra</a></h1>
+Here the design matrix is like
+$$
+X = \left[\begin{array}{ccccccccccc}
+\o &amp; \o &amp; 0 &amp; 0\\
+\o &amp; 0 &amp; \o &amp; 0\\
+\o &amp; 0 &amp; 0 &amp; \o\\
+
+\end{array}\right],
+$$
+where $\o = (1,1,1,1,1)'.$ The sum of the last three columns
+equals the first, and so $\col(X)$ has dimension $3.$
+We split $\col(X)$ into two orthogonal parts. To understand
+this let $V_1$
+and $V_2,$ where $V_1$ is just the span of the first
+column, and $V_2$ is the span of the last
+three. Clearly, $\col(X) = V_1+V_2.$ However, there is an
+overlap. So we replace $V_2$ by $W = V_2\cap
+V_1^\perp.$ Now consider $y\in{\mathbb R}^{15}.$ We have
+effectively split ${\mathbb R}^{15}$ into three orthogonal parts:
+$$
+{\mathbb R}^{15} = V_1 + W_2 + \col(X)^\perp.
+$$
+Accordinly $y$ gets split as 
+$$
+y = y_{V_1} + y_{W_2} + y_{\col(X)^\perp}.
+$$
+Here $y_{S}$ means orthogonal projection of $y$ onto $S.$
+<p></p>
+A little computation would show that the squared norms of these
+are the $SS$'s in our ANOVA table. The degrees of freedom
+are just the dimension of the subspace we are projecting into. 
+
+<p></p>
+The situation is as depicted below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/proj.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<h2><a
+name="Generalising">Generalising</a></h2>
+This idea is very tempting. Just split $\col(X)$ into
+mutually orthogonal subspaces corresponding to the inputs. The
+subspace $\col(X)^\perp$ will correspond to the random error
+input. 
+<p></p>
+However tempting this idea may sound, it is not achievable in
+many situations. We shall illustrate both the cases, where it is
+possible, and where it is not.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the 2-way ANOVA model without interaction:
+$$
+y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij},
+$$
+where $i=1,2,3$ and $j=1,...,4.$ The design matrix
+is $X$ given by
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/des1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+We have grouped the columns according to effects. The cyan
+column in the overall mean effect, the pink ones are
+the $\alpha$ columns, and the orange ones are due to
+the $\beta$'s. If we denote the spans of the cyan, pink and
+orange columns by $V_1, V_2$ and $V_3,$ respectively,
+then 
+$$
+\col(X) = V_1 + V_2 + V_3.
+$$
+However, they are not mutually orthogonal. Indeed, $V_2\cap V_3
+= V_1.$ However, something nice is true: once you
+"remove" this intersection, the remaining parts of $V_2$
+and $V_3$ are mutually
+orthogonal. <a href="javascript:hideShow('det');">(Details)</a>
+<div id="det" style="display:none;background-color:#ffcccc;">
+Recall that if $\v u$ and $\v v\neq\v0$ are two
+vectors, then the residual of $\v u$ after "removing the
+effect of"
+$\v v$ is 
+$$
+\v u-P_{span\{\v v\}} (\v u) = \v u - \frac{\v v'\v u}{\|\v v\|^2}\v v.
+$$
+If we remove the effect of the cyan column from the rest, then we
+get the matrix:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/des2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Basically, each pink vector $\v u$ in the original design
+matrix now becomes $\v u - \frac 13\o,$ and each orange
+vector $\v v$ in the original design matrix has become $\v v - \frac 14\o.$
+<p></p>
+It is easily checked that the new pink vectors are orthogonal lto
+the new orange vectors. 
+</div> The situation is much
+like $xy$ and $xz$ planes in ${\mathbb R}^3:$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/planes.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+So we may define 
+$$
+W_1 = V_1,\quad W_2 = V_2\cap V_1^\perp,\quad W_3 = V_3\cap V_1^\perp.
+$$
+Then $\col(X) = W_1+W_2+W_3$ is an orthogonal
+partition. This produces the following ANOVA table:
+
+<center>
+<table style="" border="1">
+
+<tr>
+
+<th colspan="" rowspan="">Source</th>
+<th colspan="" rowspan="">d.f.</th>
+<th colspan="" rowspan="">SS</th>
+<th colspan="" rowspan="">MSS</th>
+<th colspan="" rowspan="">F</th>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Mean</td>
+<td colspan="" rowspan="">1</td>
+<td colspan="" rowspan="">$3\times4\times \b y_{...}^2$</td>
+
+</tr>
+
+
+<tr>
+
+<td colspan="" rowspan="">Rows</td>
+<td colspan="" rowspan="">3-1</td>
+<td colspan="" rowspan="">$4\times(\sum_i \b y_{i..}^2 - 3\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Columns</td>
+<td colspan="" rowspan="">4-1</td>
+<td colspan="" rowspan="">$3\times(\sum_j \b y_{.j.}^2 - 4\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Error</td>
+<td colspan="" rowspan="">$3\times4 - 1 - (3-1) - (4-1)$</td>
+<td colspan="" rowspan="">$\langle$by subtraction$\rangle$</td>
+
+</tr>
+
+<tr>
+<td colspan="5" rowspan=""></td>
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Total</td> 
+<td colspan="" rowspan="">$3\times4$</td>
+<td colspan="" rowspan="">$\sum_{ijk} y_{ijk}^2$</td>
+
+</tr>
+
+</table>
+</center>
+Usually the first row is "absorbed" into the last row to produce:
+<center>
+<table style="" border="1">
+
+<tr>
+
+<th colspan="" rowspan="">Source</th>
+<th colspan="" rowspan="">d.f.</th>
+<th colspan="" rowspan="">SS</th>
+<th colspan="" rowspan="">MSS</th>
+<th colspan="" rowspan="">F</th>
+
+</tr>
+
+
+<tr>
+
+<td colspan="" rowspan="">Rows</td>
+<td colspan="" rowspan="">3-1</td>
+<td colspan="" rowspan="">$4\times(\sum_i \b y_{i..}^2 - 3\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Columns</td>
+<td colspan="" rowspan="">4-1</td>
+<td colspan="" rowspan="">$3\times(\sum_j \b y_{.j.}^2 - 4\b y_{...}^2)$</td>
+
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Error</td>
+<td colspan="" rowspan="">$3\times4 - 1 - (3-1) - (4-1)$</td>
+<td colspan="" rowspan="">$\langle$by subtraction$\rangle$</td>
+
+</tr>
+
+<tr>
+<td colspan="5" rowspan=""></td>
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Adjusted total</td> 
+<td colspan="" rowspan="">$3\times4-1$</td>
+<td colspan="" rowspan="">$\sum_{ijk} y_{ijk}^2-3\times4 \b y_{...}^2$</td>
+
+</tr>
+
+</table>
+</center>
+
+<img src="../image/box.png"></p>
+
+Next we see an example where no satisfactory orthogonal partition
+exists.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Same model as above, but now each row of design matrix is
+repeated twice, except the last, which is present only once. Now
+the orthogonality structure collapses. 
+<img src="../image/box.png"></p>
+Note that statistically there
+is not much difference between this example and the last. We just
+repeated each combination on two plots. Due to some accident one
+of the plots aigned to the last combination was lost. Thus the
+beauty of the
+linear algebraic structure is not very "robust". Hence ANOVA
+tables are not much popular nowadays. 
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>For the model $y_{ij} = \mu + \alpha_i +
+\epsilon_{ij},$ a software produces the estimates
+$$
+\h \mu = 23.4, \quad \h \alpha_1 = 2.0,\quad \h \alpha_2 =
+45.9,\quad \h \alpha_3 = -3.4.
+$$
+Find the estimates under the constraint $\mu = 0.$
+</li>
+
+
+<li>Consider the model: $y_{ijk} = \mu + \alpha_i + \beta_j +
+\gamma_{ij} + \epsilon_{ijk},$ for $i=1,2,3$
+and $j=1,2$ and $k=1,...,5.$ Is the design matrix full
+column rank? Find its rank. Find two possible sets of
+constraints to make the solution unique.</li>
+
+
+<li>This exercises will give you an idea why the "tweak without
+letting off the alarm" game always detects whether $X$ is
+not full column rank. Consider a linear
+model $\v y = X \v \beta + \v \epsilon,$ where $\v \beta =
+(\beta_1,...,\beta_4).$
+It is seen that if we tweak by adding 5 to $\beta_1$ and
+subtracting 3 from $\beta_2$ and adding 1 to $\beta_3$
+(leaving $\beta_4$ unaltered), then the alarm does not go
+off. In other words, we added the vector $(5,-3,1,0)'$
+to $\v \beta$ without firing the alarm. We shall call such a 
+vector  a <i>tweak vector</i> (not a standard term).
+<ol type="a">
+
+<li> Show that the
+set of all tweak vectors is a subspace.</li>
+
+<li>How is this subspace related to $X?$</li>
+
+<li>Prove that the
+existence of a nonnull tweak vector implies $X$ is not full column rank.</li>
+
+</ol>
+
+</li>
+
+
+<li>This exercise is a continuation of the last. Here you'll see
+why the "tweak without letting off the alarm" game always
+guesses the rank correctly. Again consider the same linear model
+as in the last problem.  Suppose that the only tweak
+vector of the form $(0,0,a,b)'$ is the zero vector. What
+can you conclude about $r(X)?$ </li>
+
+
+
+<li>Consider the linear model $y_{i_1\cdots i_t} = \mu +
+\alpha_{1i_1}+\cdots + \alpha_{ti_t}+\epsilon_{i_1\cdots
+i_t}.$ What is the rank of the design matrix here?</li>
+
+
+</ol>
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/linmod/linalg.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmlinalg1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

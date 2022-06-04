@@ -1,0 +1,471 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Linear Statistical Models">Linear Statistical Models</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Video lectures and exercises">Video lectures and exercises</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Class notes">Class notes</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Course assessment">Course assessment</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reference">Reference</a>
+</li>
+</ul>
+<hr/>
+
+<table width="100%">
+<tr>
+<td align="right"><i>Last
+updated on:
+SAT JUN 04 IST 2022</i></td>
+</tr>
+</table>
+
+<h1><a
+name="Linear Statistical Models">Linear Statistical Models</a></h1>
+This is the webpage for the Linear Models course (B. Stat. (hons)
+III, 2020).
+<p></p>
+
+<table align="right" width="50%">
+<tr>
+<td><b>Notice board</b></td>
+</tr>
+<tr>
+<td>
+<iframe src="news.html"></iframe>
+</td>
+</tr>
+</table>
+
+
+<p></p>
+
+
+<h2><a
+name="Video lectures and exercises">Video lectures and exercises</a></h2>
+
+<ul>
+
+<li>
+<a href="https://youtu.be/C1UnnYzrizo">Lecture 1</a>:
+Introduction using approximately consistent linear system of
+equations. Concept of orthogonal projection presented
+pictorially, normal equation.</li>
+
+<li>
+<a href="https://youtu.be/jxxfQ7SxLOA">Lecture 2</a>:
+Solving the toy problem from the last video by R: lm as well as
+brute force normal equations.</li>
+
+<li>
+<a href="https://youtu.be/c8mBKaq83-8">Lecture 3</a>: R
+workflow using faraway package.</li>
+
+<li>
+<a href="https://youtu.be/KZo4o3Q_vJw">Lecture 4</a>:
+Terminology: factor, covariate, ANOVA, regression, ANCOVA, 
+           treatment, control, random error</li>
+
+<li>
+<a href="https://youtu.be/fzRywERTg4o">Lecture 5</a>: A
+complete example from set up to analysis using R: springs.</li>
+
+<li>
+<a href="https://youtu.be/-phZYb_zrIQ">Lecture 6</a>
+</li>
+
+<li>
+<a href="https://youtu.be/k1vq2NU6k28">Lecture 7</a>:
+Constructing a model from a description. Details of a blackbox with two inputs (spring example). data
+layout, subscripting. model. R lab.</li>
+
+<li>
+<a href="https://youtu.be/GTkVNDJQQ-8">Lecture 8</a>:
+Statistical assumptions on the errors. Gauss-Markov set up.</li>
+
+<li>
+<a href="https://youtu.be/PHU7pfe9Y5w">Lecture 9</a> (19:44):
+bias and variance under Gauss-Markov set up. BLUE. Gauss-Markov
+theorem (full col rank version) with motivation and proof.</li>
+
+<li>
+<a href="https://youtu.be/3-BD8EqCAtg">Lecture 10</a> (24:01):
+Gauss-Markov theorem (general form), identifiability, departures
+from assumptions.</li>
+
+<li>
+<a href="https://youtu.be/Yc-EEOYnaPU">Lecture 11</a>
+(24:02): Estimating error variance</li>
+
+<li>
+<a href="https://youtu.be/xaJj2TRj1LY">Lecture 12</a>
+(32:27): 1-way ANOVA* agricultural example. R.</li>
+
+<li>
+<a href="https://www.youtube.com/watch?v=0aX52znHbJo&t=39s">Lecture
+13</a>(22:49): 2-factor model (part 1), interaction chart.
+</li>
+
+<li>
+<a href="https://www.youtube.com/watch?v=6jEwtWR3tIQ&t=251s">Lecture
+14</a>: (29:28) Control, confounding, blocking,
+randomisation, design of experiments</li>
+
+<li>
+<a href="https://www.youtube.com/watch?v=B3-EEmYAJK8&t=5s">Lecture
+15</a> (12:39): 2-factor model in R</li>
+
+<li>
+<a href="https://www.youtube.com/watch?v=aOIx7rXKT4s">Lecture
+16</a> (26:31): 2-factor model with interaction</li>
+
+<li>
+<img src="image/alert.png"><a href="ex1.html">Exercise set 1</a>
+</li>
+
+<li>
+<a href="https://youtu.be/gnLNb_iqi9o">Lecture 17</a>
+(32:26): Goodness of fit, residuals, RSS, R-squared, , R-squared
+(adj) </li>
+
+<li>
+<a href="https://youtu.be/WfYiBkd4onE">Lecture 18</a>
+(): Test of hypotheses (part 1), set up through an example,
+subspace of column space, pictorial representation of test</li>
+
+<li>
+<a href="https://youtu.be/99Y5ENGWAxU">Lecture 19</a>
+(): Project 2</li>
+
+<li>
+<a href="https://youtu.be/rolgYPN_e_U">Lecture 20</a>
+(17:01): Test of hypotheses (part 2), LRT</li>
+
+<li>
+<a href="https://youtu.be/Xn2epWqS-48">Lecture 21</a>
+(22:21): Test of hypotheses (part 3), derivation of null distribution</li>
+
+<li>
+<a href="https://youtu.be/QlqvSEE2a2o">Lecture 22</a>
+(14:19): Test of hypotheses (part 4) using R</li>
+
+<li>
+<a href="https://youtu.be/5x1s3ruRARk">Lecture 23</a>
+(36:31): 1-way ANOVA identity, orthogonal split up of SS.</li>
+
+<li>
+<a href="https://youtu.be/Tm3ROwspy_A">Lecture 24</a> (25:48):
+Multiple hypotheses testing (part 1) FDR, Bonferroni, Fisher LSD.</li>
+
+<li>
+<img src="image/alert.png"><a href="ex2.html">Exercise set 2</a>
+</li>
+
+<li>
+<a href="https://youtu.be/KeyPf4DLri4">Lecture 25</a> (8:35):
+Multiple hypotheses testing (part 2), Tukey's HSD</li>
+
+<li>
+<a href="https://youtu.be/sU4BQgkL15k">Lecture 26</a> (14:10):
+Model selection, AIC, BIC</li>
+
+<li>
+<a href="https://youtu.be/YRzxQQQ1s-c">Lecture 27</a> (11:45):
+Multiple hypotheses testing (part 3): using R</li>
+
+<li>
+<a href="https://youtu.be/mT5qxWbIgn0">Lecture 28</a>(missing): 
+Covariance structures (part 1)</li>
+
+<li>
+<a href="https://youtu.be/JUWQMO1317M">Lecture 29</a>
+(15:20): Covariance structures (part 2), GLS, IRLS</li>
+
+<li>
+<a href="https://youtu.be/1FFaShGKK3M">Lecture 30</a>(17:29): 
+Covariance structures (part 3): Using R</li>
+
+<li>
+<a href="https://youtu.be/QoOF8vdUFCo">Lecture 31</a>:
+Influence diagnostics (part 1)</li>
+
+<li>
+<a href="bkw20_52.pdf">Some reference
+material from Belsley, Kuh and Welsch</a>
+</li>
+
+<li>
+<a href="https://youtu.be/t6DlcCz4V2I">Lecture 32</a>:
+Influence diagnostics (part 2)</li>
+
+<li>
+<a href="https://youtu.be/07mlgpBsbWw">Lecture 33</a>:
+Multicollinearity (part 1)</li>
+
+<li>
+<a href="https://youtu.be/qpMFcxcbG4Y">Lecture 34</a>:
+Multicollinearity (part 2)</li>
+
+<li>A short discussion about different formuations of
+<a href="ridge.html">ridge regression</a>.</li>
+
+<li>
+<a href="https://youtu.be/M8jBna_VVKo">Lecture 35</a>:
+Multicollinearity in R: Ridge regression</li>
+
+<li>
+<a href="https://youtu.be/WXaGLAZ-MQE">Lecture 36</a>:
+Multicollinearity in R: Lasso and subset selection</li>
+
+<li>
+<a href="https://youtu.be/XtTuMtMzXzk">Lecture 37</a>: Linear mixed effects models (part 1)</li>
+
+<li>
+<a href="https://youtu.be/yT7tkG3Zyis">Lecture 38</a>: Linear mixed effects models (part 2)</li>
+
+<li>
+<a href="https://youtu.be/H81FsYMkZ2g">Lecture 39</a>: Linear mixed effects models (part 3)
+Here is <a href="blup.pdf">the paper mentioned in the video</a>.</li>
+
+<li>
+<a href="https://youtu.be/zJD2bNuMP4A">Lecture 40</a>:
+Mixed effects models in R (part 1)</li>
+
+<li>
+<a href="https://youtu.be/z201b9qBadM">Lecture 41</a>:
+Mixed effects models in R (part 2)</li>
+
+<li>
+<a href="https://youtu.be/UupGKE6QDRw">Lecture 42</a>:
+Linear mixed effects models (part 4)</li>
+
+<li>
+<img src="image/alert.png"><a href="ex4.html">Exercise set 4</a>
+</li>
+
+<li>
+<a href="https://youtu.be/-01r7JKfQWE">Lecture 43</a>: Generalized linear models (part 1)</li>
+
+<li>
+<a href="https://youtu.be/u1UY1NuSpzc">Lecture 44</a>: Generalized linear models (part 2)</li>
+
+<li>
+<a href="https://youtu.be/ZzhsuDR0eGc">Lecture 45</a>: Generalized linear models
+(part 3): Using R</li>
+
+</ul>
+
+
+
+<h2><a
+name="Course assessment">Course assessment</a></h2>
+No midsem, Sem 70 marks. <a href="projects.html">Two
+projects</a> worth 10 marks each. Assignments
+worth 10 marks.
+
+<h2><a
+name="Reference">Reference</a></h2> 
+The main textbook is 
+<b>Linear models with R</b> by <i>Julian J. Faraway</i>. It is
+written in a non-mathematical way with due emphasis on the
+statistical applications. 
+<p></p>
+A more mathematical exposition (not recommended for this course) is available in the following two
+books:
+ <ul>
+
+<li>
+<b>Linear Models_ An Integrated Approach</b> by <i>Sreenivasa
+Rao Jammalamadaka, Debasis Sengupta</i>
+</li>
+
+<li>
+<b>Plane answers to Complex Questions</b> by <i>Ronald Christensen</i>
+</li>
+
+</ul>
+A rather fat book (about 1400 pages) that presents everything in
+great details is 
+<ul>
+
+<li>
+<b>Applied Linear Statistical Models</b> by <i>Kutner,
+Nachtsheim, Neter and Li.</i>
+</li>
+
+</ul>
+
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/linmod/index.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lmindex1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

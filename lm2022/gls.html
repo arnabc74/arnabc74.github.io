@@ -1,0 +1,490 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Generalised least squares (GLS)">Generalised least squares (GLS)</a>
+</li>
+<li>
+<a href="#Using R">Using R</a>
+</li>
+<li>
+<a href="#REML">REML</a>
+</li>
+<li>
+<a href="#Exercises">Exercises</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\k}[1]{\chi^2_{(#1)}}
+\newcommand{\v}{\vec}
+\newcommand{\h}{\hat}
+\newcommand{\hv}[1]{\hat{\vec#1}}$
+
+<h1><a
+name="Generalised least squares (GLS)">Generalised least squares (GLS)</a></h1>
+The Gauss-Markov set up postulates an error covariance matrix of
+the form $\sigma^2 I.$ However, we have seen in an
+exercise <a href="model.html#ex">earlier</a> that we can
+reduce any covariance matrix of the form $\sigma^2 \Sigma $
+(for a <i>known</i> PD matrix $\Sigma$) to the Gauss-Markov
+set up by replacing $\v y$ with $S ^{-1} \v y,$
+where $\Sigma = S S'.$ More specifically, let the original
+model be 
+$$
+\v y = X \v \beta + \v \epsilon,
+$$
+where $\v \epsilon \sim N_n(\v 0, \sigma^2 \Sigma)$ for
+some <i>known</i> PD matrix $\Sigma$ and
+some <i>unknown</i> $\sigma^2&gt;0.$ 
+<p></p>
+Then we find <a href="javascript:hideShow('chol');">(How?)</a>
+<div id="chol" style="display:none;background-color:#ffcccc;">Such an $S$ may be found by
+Cholesky decomposition (sounds like Kolesky). 
+<font color="red">
+<pre>
+Sigma = matrix(c(2,1,1,2),2)
+S = chol(Sigma)
+t(S) %*% S 
+</pre>
+</font>
+
+</div>some nonsingular $S$ such that $\Sigma =
+S'S$, and multiply the model from the left by $T=(S ^{-1})'$
+to get the model:
+$$
+T \v y = T X \v \beta + T \v \epsilon.
+$$
+Here $T\v \epsilon \sim N_n(\v 0, \sigma^2 I).$
+Thus, we are back to the Gauss-Markov set up. This is called
+the <b>Generalised Least Squares (GLS)</b> method. In the special
+case when $\Sigma$ is a diagonal matrix (with unequal
+diagonal entries) it is also 
+called the <b>weighted least squares</b> method.
+<p></p>
+
+
+In many cases however, $\Sigma $
+will involve unknown parameters.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Sometimes we make repeated measurements under the same input
+combination to get an idea of the effect of the random errors. If
+these repeated measurements are made quickly in succession, then
+these measurements may be correlated. A typical model could be
+like 
+$$
+y_{ij} = \mu + \alpha_i + \epsilon_{ij},
+$$
+where $i=1,...,3$ and $j=1,2.$ Here 
+ $\epsilon_{i1}, \epsilon_{i2}$ could have some unknown
+ correlation $\rho.$ Thus the covariance matrix of $\v
+ \epsilon $ is $\sigma^2\\Sigma(\rho),$
+ where $\Sigma(\rho)$ is the correlation matrix of the
+ following form:
+$$
+\Sigma(\rho) = \left[\begin{array}{ccccccccccc}
+1    &amp; \rho &amp; 0    &amp; 0     &amp; 0&amp; 0\\
+\rho &amp; 1    &amp; 0    &amp; 0     &amp; 0&amp; 0\\
+ 0   &amp; 0    &amp; 1    &amp; \rho  &amp; 0&amp; 0\\
+ 0   &amp; 0    &amp; \rho &amp; 1     &amp; 0&amp; 0\\
+ 0   &amp; 0    &amp; 0    &amp; 0     &amp; 1    &amp; \rho\\
+ 0   &amp; 0    &amp; 0    &amp; 0     &amp; \rho &amp; 1
+
+\end{array}\right].
+$$
+<img src="../image/box.png"></p>
+In general, we may be dealing with linear models of the form 
+$$
+\v y = X\v \beta + \v \epsilon\text{ where } E(\v \epsilon)=\v0
+and  V(\v \epsilon) =  \sigma^2 \Sigma(\v \theta).
+$$
+We shall assume that the form of the correlation
+matrix $\Sigma(\cdot)$ is known,
+but $\v \theta$ and $\sigma^2 $ is unknown. 
+
+<p></p>
+In the example above we had $\v \theta = \rho.$
+<p></p>
+Typically, we may estimate $\v
+\beta,$ $\sigma^2 $ and $\v
+\theta$ using (some variant of) maximum likelihood method. A
+simpler method called 
+<b>Iteratedly Reweighted Least Squares (IRLS)</b> is sometimes
+used to get good initial values for the interations required by
+the likelihood method. 
+
+<p></p>
+ The
+IRLS technique starts with a guess of $\v \theta,$ say $\v
+\theta_0.$ Then it performs GLS assuming that this to be the
+ true calue of $v \theta.$ The coeffcients are estimated
+ from this fit, and residuals are computed. Then $\v \theta$
+ is estimated based on these residuals (depending on the form
+ of $\Sigma(\v \theta).$ Let the new estimates by $\v
+ \theta_1.$ Then the whole process of GLS is repeated with
+ these. We continue like this until convergence.
+
+<h1><a
+name="Using R">Using R</a></h1>
+The <code>gls</code> function of the R package <code>nlme</code>
+performs linear model fitting in presence of correlated,
+heterscedastic errors. Notice the slight mismatch in
+terminology. The standard definition of GLS assumes
+a <i>known</i> correlation matrix, while R
+function <code>gls</code> allows the correlation matrix to have
+unknown parameters. The exact form is 
+$$
+\sigma^2 D \Sigma D,
+$$
+where $D$ is a diagonal matrix involving some
+parameters, $\Sigma$ is a correlation matrix involving a
+different set of parameters, and $\sigma^2$ is a scalar parameter.
+<p></p>
+ There are are some standard form of
+correlation matrices already built-in:
+<pre>
+  corAR1    : autoregressive process of order 1.
+
+ corARMA    : autoregressive moving average process, with arbitrary orders
+          for the autoregressive and moving average components.
+
+ corCAR1    : continuous autoregressive process (AR(1) process for a
+          continuous time covariate).
+
+corCompSymm : compound symmetry structure corresponding to a constant
+          correlation.
+
+  corExp    : exponential spatial correlation.
+
+ corGaus    : Gaussian spatial correlation.
+
+  corLin    : linear spatial correlation.
+
+corRatio    : Rational quadratics spatial correlation.
+
+corSpher    : spherical spatial correlation.
+
+ corSymm    : general correlation matrix, with no additional structure.
+</pre>
+
+
+<p></p>
+Here is an example taken from the <code>gls</code> documentation.
+The data set is <code>Ovary</code> that counts the number of
+follicles in the ovaries of 11 mares during a menstrual
+cycle. The response variable is a count, but here we treat it as
+a continuous variable. The input is time. 
+<font color="red">
+<pre>
+gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
+                weights = varPower(),                     #Specifying the structure of the D matrix
+                correlation = corAR1(form = ~ 1 | Mare))  #Specifying the structure of the Sigma matrix
+</pre>
+</font>
+
+
+<h1><a
+name="REML">REML</a></h1>
+There is no single expansion for the abbreviation REML. Some
+expand it to REsidual Maximum Likelihood, while others prefer
+REduced Maximum Likelihood or REstricted Maximum Likelihood.
+<p></p>
+
+We know that MLE of variance parameters are usually biased. The
+simplest case is estimating the variance based
+on $X_1,...,X_n$ IID with unknown variance $\sigma^2.$
+The MLE is $\h \sigma^2 = \frac 1n\sum (X_i-\b X)^2,$ which is
+biased. We can of course tweak it lightly to get the unbiased
+estimator $\h \sigma^2 = \frac{1}{n-1}\sum (X_i-\b X)^2.$ 
+<p></p>
+This may be generalised to $\h \sigma^2 = \frac{RSS}{n-r}$ for
+the linear model $y = X \beta + \epsilon.$
+
+<p></p>
+It is possible to slightly tweak the ML procedure so that it
+automatically produces the unbiased estimates. The teaked version
+is called <b>REML</b>.  First we
+need to understand the usual ML method for singular
+distributions. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose our data consist of $X_1,X_2$ IID $N(\mu,1).$
+Then we know how to form the likelihood: just use the joint
+density. However, if you are also given $X_3 = X_1+X_2,$
+then the joint distribution of $(X_1,X_2,X_3)$ is singular
+(it resides in a lower dimensional space in ${\mathbb R}^3$), and
+hence has no density. How do form the likelihood here?
+<p></p>
+<b>SOLUTION:</b>
+Consider the situation intuitively: $X_3$ does not bring any
+extra information. So just drop it, and stick to $(X_1,X_2)$
+as our data. So the likelihood of $(X_1,X_2)$ is still the
+likelihood of $(X_1,X_2,X_3).$ Of course, we could as well
+have kept $(X_1,X_3),$ and thrown away $X_2.$ That
+would also give us a likelihood. A little thinking should
+convince you 
+that this also leads to the same likelihood. For example, suppose
+the data are $X_1=3.4,$ $X_2 = 2.3$ and $X_3 =
+5.7.$ Clearly, $\{X_1=3.4,\,X_2=2.3\}$
+and $\{X_2=2.3,\,X_3=5.7\}$ and $\{X_1=3.4,\,X_3=5.7\}$
+are the same event!
+<img src="../image/box.png"></p>
+So when we are faced with singular data distribution, we throw
+away the redundancy (any way is as good as any other way), and
+then report the likelihood based on the remaining data. 
+<p></p>
+Now we are in a position to explain REML. We shall start with an
+example. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider $y_1, y_2, y_3$ IID $N(\mu, \sigma^2).$ We shall
+cast it as a linear model. Then the residuals are $e_i = y_i-\b
+y$'s. The REML method is to apply ML based on
+the $e_i$'s. Notice that $(e_1, e_2, e_3)$ has a singular
+distribution, since $\sum e_i = 0.$ We shall throw
+away $e_3$. Then the joint distribution
+of $(e_1,e_2)$ is normal with mean 0 and 
+$$
+cov(e_1,e_2) 
+= cov(y_1,y_2) + var(\b y) - cov(y_1,\b y) - cov(y_2,\b y) = 
+=  - \frac{\sigma^2}{3}.
+$$ 
+Also, $V(e_1)= V(e_2) = \frac{2 \sigma^2}{3}.$
+<p></p>
+
+Thus the covariance matrix is $\Sigma = \sigma^2\cdot A$,
+where $A=\frac 13\left[\begin{array}{ccccccccccc}2
+&amp; -1\\-1&amp;2
+\end{array}\right].$
+ 
+<p></p>
+The log-likelihood is 
+$$
+\ell(\sigma^2) = \mbox{constant} - \frac 12\log \sigma^2 -
+\frac{1}{2\sigma^2} (e_1\quad e_2)A^{-1} \left[\begin{array}{ccccccccccc}e_1\\e_2
+\end{array}\right]. 
+$$
+A little computation would show that $(e_1\quad e_2)A^{-1} \left[\begin{array}{ccccccccccc}e_1\\e_2
+\end{array}\right] = e_1^2+e_2^2+e_3^2.$
+
+<p></p>
+So solving $\ell'(\sigma^2) = 0,$ we shall get 
+$$
+\h\sigma^2 = \frac{e_1^2+e_2^2+e_3^2}{2},
+$$
+which is our familiar formula.
+<img src="../image/box.png"></p>
+Even this simple example was not entirely straightforward,
+especially that "little computation" part. The following example
+takes a more careful approach  so that we can deal with any
+linear model.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+This time we start with a linear model in the general form 
+$$
+y = X \beta + \epsilon.
+$$ 
+Obtain REML of $\sigma^2$ by applying ML on $ e.$
+<p></p>
+<b>SOLUTION:</b>
+We know that $ e = (I-P_X) y\in \col(I-P_X).$  
+<p></p>
+We shall remove redundancy from $ e$ cleverly this
+time. We shall take any ONB of $\col(I-P_X),$ and stack the
+vectors as columns to create a matrix $B_{n\times (n-r)}.$
+Though $ e$ consists of $n$ numbers, yet expressed
+w.r.t. 
+this basis there are only $n-r$ numbers, $w_1,...,w_{n-r}.$
+<p></p>
+If we write $w = (w_1,...,w_{n-r})',$ then $w = B' e.$
+<p></p>
+Since $B'P = O,$ hence $w = B' e = B'(I-P_X) y = B'y.$
+<p></p>
+So $w\sim N(0,\sigma^2 B'B) = N(0,\sigma^2 I_{n-r}).$
+<p></p>
+See the advantage of being clever while removing the redundancy? 
+<p></p>
+The log-likelihood based on $w$ is 
+$$
+\ell(\sigma^2) = \log \sigma^2 + \frac{w'w}{\sigma^2}.
+$$
+Solving $\ell'(\sigma^2) = 0,$ we immediately get 
+$$
+\h \sigma^2 = \frac{w'w}{n-r} = \frac{e'e}{n-r},
+$$
+as expected.
+<img src="../image/box.png"></p>
+Such an nice analytical expression was possible because we
+assumed the dispersion matrix of $\epsilon $ to
+be $\sigma^2 I.$ Had we assumed it to be
+some $\Sigma(\theta),$ where $\theta$ is unknown (but
+the form of $\Sigma(\cdot)$ being known), we would face a
+bit more trouble.
+First, $\h \beta $ may not have a closed-form expression any
+more. The maximisation w.r.t. $\beta$ and $\theta$ are
+entangled together. We shall proceed step by step: Let $\h
+\beta(\theta)$ be the likelihood maximiser for a given $\theta.$
+We shall apply ML on $e(\theta) = y-X \beta(\theta).$
+$$
+\ell(\theta) = \log |\Sigma(\theta)| + w' \Sigma(\theta) ^{-1} w.
+$$
+After this, REML has to proceed numerically. 
+
+<h1><a
+name="Exercises">Exercises</a></h1>
+
+<ol type="">
+
+<li>Consider the data set 
+<pre>
+weight length
+1       23.1
+1       23.0
+2       25.3
+2       25.5
+3       26.9
+3       27.1
+4       29.7
+4       29.8
+5       31.9
+5       31.9
+</pre>
+We want to fit the regression model $y_i = \alpha + \beta x_i +
+\epsilon_i,$ where $x$ is the weight hung from a spring, and $y$ is the
+resulting length of the spring. We assume
+that $\epsilon_i$'s have $N(0, \sigma^2)$ distribution
+for some unknown $\sigma^2&gt;0,$
+and that measurements involving the same weights are correlated
+with unknown correlation $\rho\in[-1,1].$ Estimate all the
+parameters ($\alpha,\beta,\sigma^2,\rho$) using any of the
+techniques discussed in this page. 
+</li>
+
+
+
+<li>Find all possible values of correlation $\rho$ such that
+the correlation matrix with compound symmetry structure is
+nonsingular. A correlation matrix of this structure has all
+off-diagonal entries equal to $\rho.$ </li>
+
+
+<li>State true/false with justification: If $y_1,...,y_n$
+are iid $N(4,\sigma^2)$ for some unknown $\sigma^2&gt;0,$
+then the REML estimate of $\sigma^2$ is the same as its ML
+estimator.</li>
+
+
+<li>5 persons are each measuring the same unknown
+length $\mu $ twice. The model is 
+$$
+y_{ij} = \mu + \epsilon_{ij},
+$$
+where $i=1,...,5$ and $j=1,2.$ We
+allow $\epsilon_{i1}$ and $\epsilon_{i2}$ to be
+correlated with correlation $0.5.$
+Also $\epsilon_{ij}$'s all have the same unknown
+variance $\sigma^2.$ Suggest how you may
+obtain MLE of $\mu$ under normality assumption.
+</li>
+
+
+<li>Consider the last problem again. Let the correlation
+between $\epsilon_{i1}$ and $\epsilon_{i2}$ be some
+known number $r\in[0,1].$ Let the MLE
+of $\sigma^2$ be  $\h \sigma^2(r).$ Would you
+expect $\h \sigma^2(r)$ to be an increasing function
+of $r$ or a decreasing function?</li>
+
+</ol>
+
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
