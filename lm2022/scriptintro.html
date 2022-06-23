@@ -1,0 +1,335 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#intro1 (basic)">intro1 (basic)</a>
+</li>
+<li>
+<a href="#intro2 (basic)">intro2 (basic)</a>
+</li>
+<li>
+<a href="#intro3 (basic)">intro3 (basic)</a>
+</li>
+<li>
+<a href="#intro4 (basic)">intro4 (basic)</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="intro1 (basic)">intro1 (basic)</a></h1>
+Intro to the course. To be recorded.
+
+<h1><a
+name="intro2 (basic)">intro2 (basic)</a></h1>
+We shall start our exposition with one example. The scenario we
+shall discuss is faced by all applied scientists, who need to
+make real life measurements. We have two different types of atom that we shall call Red and
+Blue. We want to measure their masses. Unfortunately,
+we cannot separate a single atom.  So we consider three molecules, each of
+which consist of just these two atoms. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/approx/mol1.png"></th>
+</tr>
+<tr>
+<th>Three molecules</th>
+</tr>
+</table>
+</center>
+Suppose that I carry out an experiment and measure the masses of
+these three molecules to be 9.8, 9.1 and 7.0 in some suitable
+unit. From these we get these  equations:
+$$
+$$\begin{eqnarray*}
+3A+4B &amp; = &amp; 9.8\\
+4A + B &amp; = &amp; 9.1\\
+2A + 3B &amp; = &amp; 7.0
+\end{eqnarray*}$$
+$$
+So we have three equations in two unknowns. If you try to solve
+these you will find that the system in inconsistent. The reason
+is that all these three equations are approximate. These are
+outcomes of measurements, and all measurements are inherently
+prone to errors. So the question we now face is: How to solve such an
+approximate system?
+
+One naive approach is to ignore any one of three equations. Then
+we have two (approximate) equations in two unknowns. Just treat
+them as exact equations, and solve. This is not entirely
+satisfactory, because:
+<ul>
+<li> the answer will depend on which equation
+you chose to ignore.</li>
+
+<li> All the equations here give some partial
+information about the unknowns. Since they are not exact, no two
+(or even all the three together) give you complete
+information. So when you pick only two equations, you are
+utilising only part of the available information, while
+consciously throwing away some further information (the other
+equation).</li>
+</ul>
+Instead, we want a method which takes all the three equations
+into account, and makes the fullest possible utilisation of the
+available information. 
+
+This is a common requirement of all scientists involved in
+practical measurements. They have a theory involving some unknown
+quantities, they make (approximate) measurements, and end up into
+some inconsistent (or rather approximately consistent)
+system. They still want to solve the equations. 
+
+And this leads to linear statistical model, which is a
+fascinating application of linear algebra.
+
+<h1><a
+name="intro3 (basic)">intro3 (basic)</a></h1>
+We start with the same approximate system as above. We shall
+first recast them into a form that may be handled with linear
+algebra:
+$$
+A\left[\begin{array}{ccccccccccc}
+3\\4\\2
+
+\end{array}\right]
++B\left[\begin{array}{ccccccccccc}4\\1\\3
+\end{array}\right]
+\approx
+\left[\begin{array}{ccccccccccc}9.8\\9.1\\7.0
+\end{array}\right].
+$$
+Thus, our interest lies in expressing the RHS vector as a linear
+combination of the two vectors in the LHS. I said that the system
+is inconsistent, <i>i.e.</i>, the RHS vector does not lie in the span
+of the LHS vectors. I said "approximately consistent" meaning
+that the RHS vector is "close" to that span. 
+
+Think of these pictorially:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/"></th>
+</tr>
+<tr>
+<th>The "most important"picture of this
+course!</th>
+</tr>
+</table>
+</center>
+ The two short red arrows denote the LHS vectors, the long green
+one denotes the RHS one. The plane is the span of the LHS
+vectors. Clearly, the green vector is not in this plane. To
+assess how "close" it is to the plane, you
+may drop a perpendicular from the tip of the green arrow onto the
+plane (you will get the tip of the long purple arrow). 
+
+Solving an approximately consistent system means: 
+<blockquote>even if you
+cannot express the RHS as a linear combination of the LHS
+vectors, at least find a linear combination that comes as close
+as possible to the RHS vector.</blockquote>
+This means finding the vector in the plane that is closest to the
+green vector. Clearly, that is the long purple vector. So our aim
+will be to get $A$ and $B$ such that the LHS equals
+this purple vector.
+
+This you can recognise as the least squares technique. When we
+are talking about the distance between the green and purple tip,
+it is Euclidean distance which is just the square root of the sum
+of squares of the coordinate-wise differences.
+
+<h1><a
+name="intro4 (basic)">intro4 (basic)</a></h1>
+In general we shall work with an approximate system like 
+$$
+\v y_{n\times 1}\approx X_{n\times p}\v \beta_{p\times 1}.
+$$ 
+<p></p>
+For example, in our weighing example, we have 
+$$
+\v y = \left[\begin{array}{ccccccccccc}9.8\\9.1\\7.0
+\end{array}\right],\quad X = \left[\begin{array}{ccccccccccc}3 &amp; 4\\4 &amp; 1\\2 &amp; 3
+\end{array}\right]\text{ and } \beta = \left[\begin{array}{ccccccccccc}a\\b
+\end{array}\right].
+$$
+<p></p>
+Such an approximate system of linear equations is called
+a <b>linear model</b>. The traditional notation is 
+$$
+\v y = X \v \beta + \v \epsilon.
+$$
+Here $\v y$ is the measurement vector, $X$ is the fixed
+known matrix, $\v \beta $ is the vector of unknowns
+and $\v \epsilon $ is the random error vector. 
+
+A linear model becomes a linear statistical model when we put
+some distributional assumptions on the error vector $\v
+\epsilon.$
+
+Our aim is to find the $\v \beta$ such that $X\v
+\beta $ is the orithogonal projection of $\v y$
+onto $\col(X).$
+
+The technique is like this:
+You have $X\v \beta \approx \v y.$ Premultiply both sides
+by $X'$ to get $X'X\v \beta \approx X'\v y.$ Change
+the $a\pprox$ to an exact equality to get this system
+(called the normal equations):
+$$
+X'X\v \beta = X'\v y.
+$$
+Mysteriously, this system is always consistent, and its solution
+will give you the  required least squares solution! Why this works
+is something we shall get into later. 
+
+The normal equations constitute a square system, <i>i.e.</i>, as many
+equations as there are unknowns. If the coefficient matrix $X'X$ happens 
+to be nonsingular, we can write down the unique least squares
+estimator of $\v \beta $  as
+$$
+\h\v \beta = (X'X)^{-1} X'\v y.
+$$ 
+If $X'X$ is singular, then the solution is not unique
+(though at least one solution must exist). We shall get into
+those details later.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

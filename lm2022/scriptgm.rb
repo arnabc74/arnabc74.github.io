@@ -1,0 +1,48 @@
+@{<NOTE>
+<HEAD1>gm1 (basic)</HEAD1>
+Motivation for statistical assumptions on epsilon.
+
+
+<HEAD1>gm2 (basic)</HEAD1>
+An example of measuring a bar.
+
+<HEAD1>gm3 (basic)</HEAD1>
+Gauss-Markov model using the bar example.
+
+<HEAD1>gm4 (basic)</HEAD1>
+Mean & variance of LSQ for full column rank case.
+---------
+
+<HEAD1>gm5 (basic)</HEAD1>
+BLUE. Gauss-Markov theorem statement (full column rank case).
+
+<HEAD1>gm6 (basic)</HEAD1>
+Geometric intuition.
+
+<HEAD1>gm7 (basic)</HEAD1>
+Proof of GM theorem (full column rank case).
+-----------
+<HEAD1>gm8 (basic)</HEAD1>
+Identifiability with motivation. 
+
+<HEAD1>gm9 (basic?)</HEAD1>
+Identifiability and estimability.
+
+<HEAD1>gm10 (basic?)</HEAD1>
+Statement and proof of general version of GM theorem.
+
+<HEAD1>gm11 (advanced)</HEAD1>
+Departures from GM set up and possible alternatives.
+-----
+<HEAD1>gm12 (basic)</HEAD1>
+Unbiased estimator formula for \sigma^2. 
+
+<HEAD1>gm13 (advanced)</HEAD1>
+use of ONB in the proof. Mainly lin alg recap.
+
+<HEAD1>gm14 (advanced)</HEAD1>
+The proof.
+
+<HEAD1>gm15 (advanced)</HEAD1>
+\sigma^2-hat is UMVUE under gaussianity.
+</NOTE>@}

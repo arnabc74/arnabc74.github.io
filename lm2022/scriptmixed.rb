@@ -1,0 +1,1003 @@
+@{<NOTE>
+<M>\newcommand{\h}{\hat}</M>
+<HEAD1>Lecture 37 (mixed1: basic)</HEAD1>
+We shall now start discussing mixed linear models.
+<HEAD2>Motivation</HEAD2>
+The main reason behind analysing <I>past</I> data is to be able to apply
+our findings to similar <I>future</I> data. For instance,
+students prepare for an exam by practising past years'
+questions. The hope is that the same pattern will repeat in the
+current year's questions. This love for the past years' papers
+die down considerably if there is any major change in the syllabus. 
+
+So any meaningful
+analysis must depend on our idea about what pattern in the past
+data would continue into the future. For example, if we want to
+predict the outcomes of future tosses of a coin based on the
+outcomes of some past tosses of the same coin, the exact order of
+heads and tails in the past data is of no consequence, but the
+proportion of the heads is. 
+
+<HEAD3>In the context of linear models</HEAD3>
+Let's start with an example. [This example is different from the
+one used in the video, but convey the same idea.]
+
+<EXM>
+We want to study the effect of smart class rooms on student
+performances in Bengali medium schools in West Bengal. Five schools are asked to
+participate in the study. Each school takes a random sample of 50
+students, and assigns a random half of them to smart class rooms,
+while the remaining half is taught using traditional class
+rooms. After 3 months of study, the students are evaluated in a
+common examination. The marks are the responses. So the
+box-diagram is as follows.
+<CIMG web="mixbox.png"/>
+We shall work with a 2-factor ANOVA model without interaction:
+<D>
+y_{ijk} = \mu + \alpha_i + \beta_j + \epsilon_{ijk},
+</D>
+where <M>\mu </M> is the overall mean effect, <M>\alpha_i</M> is
+the effect due to class room (<M>i=1</M> for smart
+class, <M>i=2</M> for traditional), and <M>\beta_j</M> is the
+effect for the <M>j</M>-th school
+(<M>j=1,...,5</M>). We have taken <M>25</M> students in each
+(class room type, school) combination. So <M>k</M> goes from 1 to
+25. The <M>\epsilon_{ijk}</M>'s are
+iid <M>N(0,\sigma^2)</M> errors, where <M>\sigma^2>0</M> is
+unknown.
+
+Here is a <LINK to="mix.txt">synthetic data set</LINK>.  The
+following R session fits a 2-way ANOVA model without interaction
+to it:
+<R>
+dat = read.table('mix.txt', head=T)
+fit = lm(marks~., data = dat)
+coef(fit)
+</R>
+The output looks like this:
+<PRE>
+(Intercept)    smartyes     schoolB     schoolC     schoolD     schoolE 
+     58.984      10.672       9.680      20.580      -5.220       4.280 
+</PRE>
+
+<HEAD1>mixed2</HEAD1>
+How do you think we can use this report in the future? The
+estimated <CODE>smartyes</CODE> may be used by other schools to
+measure effectiveness of smart class rooms. But who will care
+about the
+estimated <CODE>schoolB</CODE>,..., <CODE>schoolE</CODE>? The
+schools themselves may have some limited interest in comparing
+themselves with <CODE>schoolA</CODE>, but nobody else will care
+about that. The 5 schools are just <I>some</I> 5 schools. They
+are like a sample of size 5 from the population of all similar
+schools. Does this mean that we should drop the school effect
+from our consideration (i.e., just merge that with random error)?
+No, that is not good either, because the random error part is due
+to all assignable causes. But the variation between schools is
+definitely assignable. While we do not care about the performances
+of these <I>specific</I> schools, we do care about the
+variability among the schools.
+</EXM>
+
+To reflect this idea we make the school effect a <B>random
+effect</B>. 
+
+<D>
+y_{ijk} = \mu + \alpha_i + b_j + \epsilon_{ijk},
+</D>
+where the school effect <M>b_j</M>'s are
+IID <M>N(0,\sigma^2_b).</M> The <M>\epsilon_{ijk}</M>'s are
+IID <M>N(0,\sigma^2_\epsilon),</M> and are independent of
+the <M>b_j</M>'s. Notice that <M>b_j</M>'s are not parameters any
+more. This model has a new parameter <M>\sigma^2_b,</M> which
+measures the school-to-school variation. Now we
+assume <M>\sigma^2_\epsilon >0,</M> as before,
+but <M>\sigma^2_b\geq0.</M> We allow <M>\sigma^2_b^2=0</M> for
+the special case where the school input does not have any effect.
+In particular, if we want to test if the schools indeed differ among
+themselves in terms of marks, we should test <M>H_0:
+\sigma^2_b=0</M> against <M>H_1: \sigma^2_b>0.</M>  
+<P/>
+Since our model has both a <B>fixed effect</B>
+(the <M>\alpha_i</M>'s) as well as a <B>random effect</B>
+(the <M>b_j</M>'s), we call it a <B>mixed effects model</B>.
+A model with only fixed effects (like the ones we have discussed
+in this course before today) are called <B>fixed effects
+models</B>. Similarly, a model where all the effects are random
+is called a <B>random effects model</B>.
+
+<HEAD1>Lecture 38 (mixed3: basic)</HEAD1>
+
+Here we shall learn about the math formulation of a general linear
+mixed effects model. The fixed effects linear models we have
+worked with so far were of the form 
+<D>
+\v y = X\v \beta + \v \epsilon. 
+</D>
+Each column of <M>X</M> was for one component of the <M>\v
+\beta </M> vector. 
+
+In a mixed effects model some of the components of <M>\v
+\beta </M> are random, while some are fixed. If we group the
+columns of <M>X</M> corresponding to the random components together, we get a
+new matrix <M>Z.</M> Let us use the name <M>X</M> for the matrix
+consisting of only the columns corresponding to the fixed
+components together <M>\v \beta.</M> Then the model becomes
+<D>
+\v y = X\v \beta + Z\v g + \v \epsilon. 
+</D>
+We assume <M>\v \epsilon </M> and <M>\v g</M> are independent
+multivariate normals with zero mean. Symbolically, 
+<D>
+<MAT>\v g\\ \v \epsilon </MAT>\sim N_{q+n} (*(\v 0,
+\sigma^2 <MAT>G & O\\O & R</MAT>)*),
+</D>
+where <M>\sigma^2>0</M> is unknown, and <M>G</M> and <M>R</M> are
+PD matrices. Do not think that we are assuming a common
+variance <M>\sigma^2 </M> for the compoents of both <M>\v
+\beta </M> and <M>\v \epsilon,</M> because <M>G</M> and <M>R</M>
+need not be correlation matrices. 
+
+Different mixed effects models assume diffeent
+levels of knowledge about these matrices. Some assume they are
+completely known, while some others assume that they are
+completely unknown. Most models, however, assume parametric forms
+for them involving further unknown parameters. We shall take a
+look at some of these later.
+
+<HEAD2>Mixed model as special case of fixed model</HEAD2>
+In the fixed effects model <M>\v y = X\v \beta + \v \epsilon,</M>
+the only source of randomness is <M>\v \epsilon.</M> But in the
+mixed effects model <M>\v y = X\v \beta + + Z \v g+ \v
+\epsilon,</M> we have two sources: <M>\Z\v g</M> and <M>\v
+\epsilon.</M> We may combine these into a single term 
+<D>
+\v \eta = Z\v g + \v \epsilon.
+</D>
+Then the mixed model becomes a fixed model <M>\v y = X\v \beta +
+\v \eta.</M> However, unlike the <M>\v \epsilon </M> earlier,
+this <M>\v \eta</M> has a a more complicated covariance
+structure. In fact, it is easy to see that
+<D>
+\v \eta\sim N_n(\v 0, \sigma^2(ZGZ'+R)).
+</D>
+Thus, algorithm-wise, mixed effects models are just special cases of fixed effects models. However, interpretation-wise they are actually more general.
+
+<HEAD1>mixed4: An example: Measuring active ingredients in tablets</HEAD1>
+Tablets contain drug as well as a base material. The drug present
+in a tablet is
+called its active content. Given a tablet we may want to measure
+its content. This may be useful for testing claims made by the
+manufacturer. There are different methods to measure the active
+contetns of tablets.  Here we
+want to compare 
+two such methods, HPLC and NIR.
+
+In particular,  we want to test if the two methods yield more or less the 
+same measurements. 
+The tests have been applied to the <I>same</I> set of 10 tablets (<I>e.g.,</I> 
+breaking each tablet into two halves, and applying one method to each 
+half). The resulting data are shown in the following table. 
+
+<TABLE>
+<TR><TH>Tablet <M>(i)</M></TH><TH>HPLC <M>(y_{1,i})</M></TH><TH>NIR<M>(y_{2,i})</M></TH></TR>
+<TR><TH>1</TH><TD>10.4</TD><TD>10.1</TD></TR>
+<TR><TH>2</TH><TD>10.6</TD><TD>10.8</TD></TR>
+<TR><TH>3</TH><TD>10.2</TD><TD>10.2</TD></TR>
+<TR><TH>4</TH><TD>10.1</TD><TD>9.9</TD></TR>
+<TR><TH>5</TH><TD>10.3</TD><TD>11.0</TD></TR>
+<TR><TH>6</TH><TD>10.7</TD><TD>10.5</TD></TR>
+<TR><TH>7</TH><TD>10.3</TD><TD>10.2</TD></TR>
+<TR><TH>8</TH><TD>10.9</TD><TD>10.9</TD></TR>
+<TR><TH>9</TH><TD>10.1</TD><TD>10.4</TD></TR>
+<TR><TH>10</TH><TD>9.8</TD><TD>9.9</TD></TR>
+</TABLE> 
+<P/> 
+ One standard method to analyze the data  is to perform a paired 
+<M>t</M>-test, which basically assumes that  the
+differences <M>y_{1,i}-y_{2,i}</M> are iid normal. A stronger
+assumption that is often made is that <M>(y_{1,i}, y_{2,i})</M>
+are iid bivariate normal. We shall show that, under a very
+assumption, linear mixed effects model can out-perform paired
+t-test here. 
+
+We shall start with  the fixed effects model:
+<D>
+y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij} \mbox{ for } i=1,2,~~j=1,...,10,
+</D>
+where <M>\epsilon_{ij}</M>'s are iid <M>N(0,\sigma^2)</M> for
+some unknown <M>\sigma^2 > 0.</M>
+
+Here <M>\mu </M> is the overall mean effect, <M>\alpha_i</M>'s
+are the effects of the methods, and <M>\beta_j</M>'s are the
+effects of the tablets. Now, the individual tablets are of no
+importance. Indeed, the tests being destructive those specific
+tablets cease to exist once the data collection is over. Those 10
+tablets were merely a random representative set from a vast
+population of similar tablets. So we should make the tablet
+effect random:
+ <D>
+y_{ij} = \mu + \alpha_i + b_j + \epsilon_{ij} \mbox{ for } i=1,2,~~j=1,...,10,
+</D>
+where <M>\epsilon_{ij}</M>'s are iid <M>N(0,\sigma^2)</M> for
+some unknown <M>\sigma^2 > 0,</M> and, independently of
+the <M>\epsilon_i</M>'s,  <M>b_j</M>'s are
+iid <M>N(0, \tau^2)</M> for some unknown <M>\tau^2\geq 0.</M>
+
+
+Notice that this implies that <M>(y_{1,j}-y_{2,j})</M>'s are iid
+bivariate normal, just as for the paired t-test case. However,
+the mixed effects model captures one further aspect of the data
+that the paired t-test set up did not. 
+
+Now here it is quite natural to assume that <M>y_{1,1}</M>'s
+and <M>y_i</M>'s will be positively correlated. This information
+is not used in the paired <M>t</M>-test. However, the mixed
+effects model does incorporate this. 
+
+<EXR>Compute <M>cov(y_{1,i},y_{2,i})</M> using the mixed effects
+model, and check that this is really positive.</EXR>
+
+<HEAD1>Lecture 39 (advanced)</HEAD1>
+Here we shall discuss tests of significance in the mixed models
+set up. Consider the fixed effects model
+<D>
+y_{ijk} = \mu + \alpha_i + \beta_j + \epsilon_{ijk}
+</D>
+where <M>\epsilon_{ijk}</M>'s are iid <M>N(0,\sigma^2).</M> If we
+want to test whether the input denoted by the subscript <M>j</M>
+has any effect, we couch it mathematically as <M>H_0:
+\beta_j</M>'s are all same. Under this null hypothesis, the
+common value of the <M>\beta_j</M>'s get merged with <M>\mu,</M>
+and so the null model is basically
+<D>
+y_{ijk} = \mu + \alpha_i +  \epsilon_{ijk}.
+</D>
+The testing procedure is to fit both these models (the full one
+and null one) and then compare the fits using likelihood
+ratio. We have already seen this.
+
+Now let's consider a mixed effects model:
+<D>
+y_{ijk} = \mu + \alpha_i + b_j + \epsilon_{ijk}
+</D>
+where <M>b_j</M>'s are iid <M>N(0,\sigma^2_b).</M> Suppose that
+here again we want to test whether the input denoted by the
+subscript <M>j</M> has any effect. Now we cannot write <M>H_0:
+b_j</M>'s are all same, because <M>b_j</M>'s are random
+quantities and not paramters. Here the mathematical formulation
+would be <M>H_0: \sigma^2_b = 0.</M> 
+
+If, however, we are interested in testing whether the input
+denoted by the subscript <M>i</M> has any effect, then we shall
+still use <M>H_0: \alpha_i</M>'s are all same. However, the test
+procedure here would be different from the fixed model case,
+because the distribution of the data is now more complicated
+owing to the random effect.
+
+<HEAD1>Lecture 40 (basic)</HEAD1>
+Recap of tablet set up.
+
+Design matrix.
+
+Grouped data motivation.
+
+Factoring trick.
+
+(The tablet data set is not analysed here.)
+
+<HEAD1>Lecture 41 (basic/advanced)</HEAD1>
+We are going to use R for mixed effects models. Tehere are two
+functions lme in nlme package, and lmer in lme4. We shall use the
+former as is the one better documented.
+
+data layout.
+
+data conversion in R.
+
+model
+
+fitting in R
+
+paramteric bootstrap (advanced)
+
+<HEAD1>Lecture 42 (advanced)</HEAD1>
+We have mentioned the general form of a linear mixed effect
+model:
+ <D>
+\v y = X \v \beta + Z\v g + \v \epsilon, 
+</D>
+with suitable distributional assumptions on <M>\v g</M> and <M>\v
+\epsilon.</M> We have also mentioned that not all models of this
+form are actually meaningful in practice. One example of a
+meaningless model of this form is 
+<D>
+y_i = \alpha_0+\alpha_1x_i + a_2 x_i^2 + \alpha_3 x_i^3 + \epsilon_i,
+</D>
+a cubic polynomial model where only the quadartic coeffcient is
+random! 
+
+To avoid dealing with such meaningless mixed effects model, we
+had introduced the concept of grouped data, where we first start
+by designating one or more input to our blackbox as random, and
+then every coefficient involving subscripts corresponding to
+those inputs are considered random. Indeed, this is how the nlme
+package of R suggests writing the model. However, you must
+understand that the class of all mixed effects models of the
+grouped data type constitute a rather small subset of all models
+that are of the general form. There are a few mixed effects
+models that are not of the grouped data type, which are both
+meaningful as well as useful in practice. We shall discuss three
+such models here.    
+
+<HEAD2>Same effect is both fixed and random!</HEAD2>
+An example of this type is a model like
+<D>
+y_{ij} = \mu + \alpha_i + \beta_j + a_i + \epsilon_{ij},
+</D>
+along with the usual distributonal
+assumptions: <M>\epsilon_{ij}</M>'s iid <M>N(0,\sigma^2_e)</M>
+and <M>a_i</M>'s iid <M>N(0,\sigma^2_a).</M> 
+
+ Here
+there are two <M>i</M>-effects (i.e., effect of the input corresponding
+to the subscript <M>i</M>): a fixed effect denoted
+by <M>\alpha_i</M> and a random effect <M>a_i.</M> 
+
+Actually, the common formulation of linear mixed effects model
+only allows a zero mean for all the random effects. However, you
+may need to allow a possibly non-zero (unknown) mean
+for <M>a_i</M>'s. If this mean is same for all the <M>a_i</M>'s,
+then it might be incorporated into <M>\mu.</M> But if you want a
+model where <M>a_i</M>'s have possibly different (unknown) means,
+then you give a name (say <M>\alpha_i</M>) to <M>E(a_i)</M> and
+make it a separate term in the model. In other words, instead of
+working with <M>a_i</M>'s with nonzero means, you work
+with <M>a_i-\alpha_i</M>'s which have zero means. 
+
+The design matrices here are:
+<D>
+X = <MAT>
+1 & 1 &  & 1 &   &   \\
+1 & 1 &  &   & 1 &   \\
+1 & 1 &  &   &   & 1 \\
+1 &  & 1  & 1 &   &   \\
+1 &  & 1  &   & 1 &   \\
+1 &  & 1  &   &   & 1
+</MAT>,
+Z = 
+<MAT>
+ 1 &  \\
+ 1 &  \\
+ 1 &  \\
+  & 1  \\
+  & 1  \\
+  & 1
+</MAT>.
+</D>
+Notice that <M>Z</M> is basically the submatrix of <M>X</M>
+consisting of the columns corresponding to
+the <M>\alpha_i</M>'s. Now this is a very common situation
+where <M>Z</M> is just a submatrix of <M>X.</M> In the lme()
+function of R, you may specify this as
+<CODE>fixed = y~i+j</CODE> and <CODE>random=~1|i</CODE>, where I am using <CODE>i</CODE>
+and <CODE>j</CODE> as the variables corresponding to these two
+variables. 
+
+<HEAD2>Main effects fixed, but interaction random</HEAD2>
+You sometimes come across models like
+<D>
+y_{ijk} = \mu + \alpha_i + \beta_j + g_{ij} + \epsilon_{ijk},
+</D>
+along with appropriate distributional assumptions. Here the main
+effects <M>\alpha_i</M> and <M>\beta_j</M> are fixed, but the
+interaction term <M>g_{ij}</M> is random. 
+
+Here is a real life scenario that might call for such a model. 
+
+There are some machines, and we want to study how they
+behave. Each machine operates under and internal
+setting and external environment. For instance, if we are working
+with washing machines, then the internal settings are the ones
+you set on its dashboard (e.g., duration, nature of wash etc),
+and the external environment consists of things like the actual
+type and amount of the laundry that you put in. 
+
+Suppose that there are 10 possible values of the internal
+setting, and 8 possible values of the external environment. So
+there are <M>10\times8=80</M> possible combinations.  If you want
+to keep interaction on your model then you should
+collect data for  <I>all</I>  these 80 combinations. If you want
+to repeat each of these 3 times (to assess the effect of chance),
+then you need 240 observations, which may be
+rather tough to obtain. So while experimenters take all the 10
+settings and all the 8 environments into account, they merely
+take a handful of combinations of these. Then we need to keep the
+interaction term random.
+
+<RED>The video has a mistake here. There I choose just 4
+possible cominations, which is not enough to cover all the
+settings and environments. You need at
+least <M>\max\{10,8\}=10</M> observations to cover all the settings
+and environments.</RED>  
+
+Here of course we need to assume that all the interactions are
+more or less similar, so that studying a few of them would
+provide an adequate total picture. 
+
+<HEAD2>Multilvel models/Hierarchcal Linear Models (HLMM)</HEAD2>
+Consider a blackbox example where each unit is a student, and
+there are two inputs teaching technlogy (smart class room/
+regular class room) and school. The output is the grade obtain by
+each student. Then we may use a model like
+<D>
+y_{ijk} = \mu + \alpha_i + \beta_j + \epsilon_{ijk},
+</D> 
+where the subscript <M>i</M> coreesponds to the teaching
+technlogy, and <M>j</M> to the school.
+
+Now let us take a closer look at the school input. When we talk
+about the effect of school, it is actually a combined effect of
+different aspects like its instruction medium, available
+playarea, the average economic status of the students etc. We may
+visualise all these as yet another blackbox with these as the
+inputs and the output being fed into the school input of the
+original blackbox. This new blackbox has school as its  unit, and
+has its own separate random error input. This is an example of a
+multilevel model. Its multilevel nature will become further
+apparent when we consider the data collection. We shall conduct
+the data collection at two levels: the schoo level and the
+student level. In the school level we shall create a database
+about the schools, where each row will correspond to a school,
+and the columns will store various information about the
+schools. The student level data will consist of a table where
+each row is a student, and the columns give various info about
+the students (including the school they come from). Here the
+student level is nested inide the school level.
+
+Now that the school effect is itself the output of a blackbox
+with a random error input, that effect should better be
+considered as a random effect. So we have the model:
+<D>
+y_{ijk} = \mu + \alpha_i + b_j + \epsilon_{ijk},
+</D>  
+and
+<D>
+b_j = \cdots + \eta_j.
+</D>
+We could have continued this further.
+
+To specify this model in R you need to use
+<Q><CODE>random=list(school~...)</CODE></Q>
+
+Also R requires one single table to work on. So you need to
+combine the level specific tables into a single big table, where
+the rows of the school level table needs to replicated for each
+student of the school. 
+
+We shall not 
+-------
+<HEAD2>Using R</HEAD2>
+There are two R packages that will allow you to fit a mixed
+effects model: <CODE>nlme</CODE> (non-linear mixed effects)
+and <CODE>lme4</CODE> (linear mixed effects, version 4). The
+latter is the more modern of the two, while former is far more
+general (it can handle even some non-linearity). We shall
+exclusively use the <CODE>nlme</CODE> package, as it allows
+certain extra features that are useful in practice. Neither of
+the two packages are installed by default in R. You'll need to
+install the <CODE>nlme</CODE> package via:
+<R>
+install.packages('nlme') #Don't forget the quotes!
+</R>
+Once it is installed, we shall load the library, and invoke
+the <CODE>lme</CODE> (linear mixed effects) function:
+<R>
+library(nlme) 
+lme(marks ~ smart, random = ~1|school, data=dat)
+</R>
+Let's understand the somewhat wierd syntax of this function. Our
+familiar <CODE>lm</CODE> function required the first argument to
+be a formula object (i.e, a specification of the
+"box diagram"). The second argument (optional) was the name of the
+data set. The <CODE>lme</CODE> function is similar, except that
+it requires <I>two</I> formula objects, the first one for the fixed
+effects, the second one for the random effects. The fixed effects
+part is just as in the <CODE>lm</CODE> function. The wierdness is
+in the random effects part. R likes to think of the <M>b_j</M> as
+a school-specific intercept term. For example, if you focus on
+only the data from school 1, then model is 
+<D>
+y_{i1k} = \mu + \alpha_i + b_1 + \epsilon_{i1k},
+</D>
+where <M>b_1</M> is free of the running subscripts <M>i</M>
+and <M>k.</M> This school-specific intercept term is denoted
+by <CODE>1|school</CODE>. We have already specified the output
+variable to the left of the <CODE>~</CODE> in the fixed effects
+part. So we do not specify it any more. Thus, the random effects
+part is just <CODE>~ 1|school</CODE>. The random effects part
+must <I>always</I> start with a <CODE>~</CODE>. 
+<P/>
+
+Now, let's look at the output:
+<PRE>
+Linear mixed-effects model fit by REML
+  Data: dat 
+  Log-restricted-likelihood: -759.8349
+  Fixed: marks ~ smart 
+(Intercept)    smartyes 
+     <RED>64.848</RED>      <BLUE>10.672</BLUE> 
+
+Random effects:
+ Formula: ~1 | school
+        (Intercept) Residual
+StdDev:    <GREEN>9.861265</GREEN> <MAGENTA>4.866941</MAGENTA>
+
+Number of Observations: 250
+ Number of Groups: 5 
+</PRE>
+Using our mathematical notation, this means:
+<M>
+\h \mu = </M><RED>64.848</RED>, <M>\h \alpha_1 = 0, \h \alpha_2
+=</M> <BLUE>10.672</BLUE>,
+and 
+<M>
+\h \sigma_e =</M> <MAGENTA>4.866941</MAGENTA>, <M>\h \sigma_b = </M><GREEN>9.861265</GREEN>.
+
+<P/>
+
+Note the rather ugly and counter-intuitive way <M>\h \sigma_b</M>
+is presented in the output. 
+
+<P/>
+The output also mentions an estimation method
+called <B>REML</B>. We have already learned
+REML <LINK to="gls.html">earlier</LINK>. 
+
+Essentially the same method may be adapted to the mixed effects
+model:
+<D>
+y = X \beta + Z \gamma + \epsilon,
+</D>
+where dispersion matrices for <M>\gamma </M> and <M>\epsilon </M>
+are, respectively, <M>D(\theta)</M> and <M>R(\theta).</M>
+<P/>
+REML still uses ML on <M>e = (I-P_X)y</M> (no role of <M>Z</M> here).
+We again get 
+<D>
+\ell(\theta) = \log |\Sigma(\theta)| + w' \Sigma(\theta) ^{-1} w,
+</D>
+where <M>\Sigma (\theta) = Z D(\theta) Z' + R(\theta).</M> It is
+numerical computation after that.
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>In a study related to poultry farming, we are interested in
+seeing if playing soothing music has an effect on the size of
+eggs laid by hens and ducks. A random sample of hens and ducks
+are classified into two groups (one with and the other without
+music). The following data are also collected about each bird: 
+<UL>
+<LI>hen or duck?</LI>
+<LI>age</LI>
+<LI>originating farm</LI>
+<LI>number of eggs laid</LI>
+</UL>
+Which of these should be considered as mixed effects?
+</LI>
+<LI>Consider the mixed effect model
+<MULTILINE>
+y_{11} & = & \mu + a_1 + \epsilon_{11}\\
+y_{12} & = & \mu + a_1 + \epsilon_{12}\\
+y_{21} & = & \mu + a_2 + \epsilon_{21},
+</MULTILINE>
+where <M>a_1,a_2</M> are iid <M>N(0,\sigma^2_a)</M>
+and <M>\epsilon_{ij}</M>'s are iid <M>N(0,\sigma^2_\epsilon).</M>
+The <M>a</M>'s are independent of the <M>\epsilon </M>'s. Find
+REML estimate of <M>\sigma^2_\epsilon </M> and <M>\sigma^2_a</M>
+based on the data <M>y_{11} = 2.3,</M> <M>y_{12} = 2.5,</M> and <M>y_{21} = 3.0.</M>
+</LI>
+<LI>Write down the R syntax for <CODE>lme</CODE> to implement
+the following mixed effects model:
+<D>
+y_{ijk} = \mu + a_i + \beta_j + g_{ij} + \epsilon_{ijk},
+</D>
+where <M>a_i</M>'s and <M>g_{ij}</M>'s are random effect
+coeeficients and <M>\epsilon_{ijk}</M>'s are the error
+terms. Let <M>i</M> denote the "row" effect and <M>j</M> denote
+the "column" effect (i.e., you may use "row" and "column" as
+variable names).
+</LI>
+
+<LI>Write the following LME model in mathematical notation:
+<R>
+lme(y ~ x:gender, ~1|college) 
+</R>
+Here <CODE>x</CODE> is a covariate, while <CODE>gender</CODE>
+and <CODE>college</CODE> are factors.
+</LI>
+
+<LI>Consider the model 
+<D>
+y_{ij} = \mu + \alpha_i + \epsilon_{ij},
+</D>
+where <M>\epsilon_{ij}\sim N(0,\sigma^2)</M> for some
+unknown <M>\sigma^2.</M> Will the ML estimator of <M>\sigma^2</M>
+increase or decrease if the <M>\alpha_i</M>'s considered to be
+random effects (iid <M>N(0,\sigma^2_a)</M> for some unknown <M>\sigma^2_a</M>)?
+</LI>
+</OL>
+
+-------
+
+
+<HEAD1>Two examples</HEAD1>
+Here we shall see two examples of how linear mixed models may
+help us to incorporate additional info in fixed effects models.
+
+
+<HEAD2>Weight vs. Height</HEAD2>
+The
+file <LINK to="eugenedata/Chapter02/Family.txt">Family.txt</LINK>
+is from chapter 2 of Demidenko's book. Among other things, it
+gives the heights and weights of 71 persons. A simple plot will
+show a scattered increasing trend. 
+
+<R>
+dat = read.table("Family.txt",head=T)
+names(dat)
+attach(dat)
+plot(Weight,Height)
+</R>
+We can, of course, fit a regression to explore the height-weight
+relationship:
+<D>
+w_i = \alpha + \beta h_i + \epsilon_i.
+</D>
+ But here we have another relevant piece of info:
+each of the 71 persons belongs to one of 18 families, and the
+data set gives us the FamilyID's. Once would expect that the
+members of the same family would behave similarly. Can we somehow
+incorporate this information by adding a "family effect" to the model?
+<P/>
+The first approach could be to fit a model:
+<D>
+w_{ki} = \alpha_k + \beta_k h_{ki} + \epsilon_{ki}.
+</D>
+Here each person is coded as a pair <M>(k,i)</M>,
+meaning <M>i</M>-th person from the <M>k</M>-th family. 
+But this is not good because of the following reasons.
+<UL>
+<LI>It is difficult to use the estimated parameters. For
+instance, <M>\h \alpha_1</M> is specific for family 1. And why
+should one
+care about that <I>particular</I> family?</LI>
+<LI>Most families have a very small number of members in the
+data. So the estimates of <M>\alpha_k</M>'s and <M>\beta_k</M>'s
+will be bad (or impossible, in case of family 16 that has ony
+one representative!).</LI>
+</UL>
+A better approach is to allow the intercept to be family-specific
+and random:
+<D>
+\alpha_k = \mu + a_k,
+</D>
+where <M>\mu</M> is fixed and unknown and <M>a_k</M>'s are
+iid <M>N(0,\sigma^2_a).</M> So the full model now becomes
+<D>
+w_{ki} = \mu+a_k + \beta h_{ki} + \epsilon_{ki}.
+</D>
+If we club the random terms in the RHS together, then this is
+actually a GLS model where the covariance matrix  is a block
+diagonal matrix with the one block per family. The <M>i</M>-th
+block has <M>\sigma^2+\sigma^2_a</M> in the diagonal entries and
+the only <M>\sigma^2_a</M> in the off-diagonal ones.
+
+<P/>
+We can fit this model using R as follows.
+<R>
+library(nlme) #install it first if you have not done so already
+fit=lme (Weight~Height , random=~ 1 |FamilyID)
+summary(fit)
+</R>
+
+<HEAD2>Measuring active ingredients in tablets</HEAD2>
+This example is based on the online Netmaster Statistics Courses. Here we
+want to compare 
+two methods (HPLC and NIR) to ascertain the amount of active content 
+in tablets. Suppose that we want to test if the two methods yield more or less the 
+same measurements. 
+The tests have been applied to the <I>same</I> set of 10 tablets (<I>e.g.,</I> 
+breaking each tablet into two halves, and applying one method to each 
+half). The resulting <LINK to="tablet.txt">data</LINK> are shown in the following table. 
+
+<TABLE>
+<TR><TH>Tablet <M>(i)</M></TH><TH>HPLC <M>(x_i)</M></TH><TH>NIR<M>(y_i)</M></TH></TR>
+<TR><TH>1</TH><TD>10.4</TD><TD>10.1</TD></TR>
+<TR><TH>2</TH><TD>10.6</TD><TD>10.8</TD></TR>
+<TR><TH>3</TH><TD>10.2</TD><TD>10.2</TD></TR>
+<TR><TH>4</TH><TD>10.1</TD><TD>9.9</TD></TR>
+<TR><TH>5</TH><TD>10.3</TD><TD>11.0</TD></TR>
+<TR><TH>6</TH><TD>10.7</TD><TD>10.5</TD></TR>
+<TR><TH>7</TH><TD>10.3</TD><TD>10.2</TD></TR>
+<TR><TH>8</TH><TD>10.9</TD><TD>10.9</TD></TR>
+<TR><TH>9</TH><TD>10.1</TD><TD>10.4</TD></TR>
+<TR><TH>10</TH><TD>9.8</TD><TD>9.9</TD></TR>
+</TABLE> 
+<P/> 
+ One standard method to analyze the data  is to perform a paired 
+<M>t</M>-test, which basically works with the differences <M>z_i = x_i-y_i.</M>
+<R>
+dat = read.table('tablet.txt',head=T)
+with(dat,t.test(HPLC,NIR,paired=T))
+</R>
+Now here it is quite natural to assume that <M>x_i</M>'s
+and <M>y_i</M>'s will be positively correlated. This information
+is not used in the paired <M>t</M>-test. However, we may use a
+linear mixed model to incorporate the info. We shall allow a
+tablet effect. 
+<D>
+y_{ij} = \mu + a_i + \beta_j + \epsilon_{ij}.
+</D>
+Here <M>y_{ij}</M> is the measurement for tablet <M>i</M> under
+method <M>j.</M> The tablet effect <M>a_i</M> is random. To fit
+this model using R we need to rearrange the data:
+<R>
+dat1 = with(dat, data.frame(meas=c(HPLC,NIR),meth=c(rep("HPLC",10),rep("NIR",10)), tab=rep(1:10,2)))
+</R> 
+Now we use:
+<R>
+lme(meas~meth, random=~1|tab,dat=dat1)
+</R>
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>How can you use LME to estimate  a fixed
+unknown length which has been measured 5 times each by 3
+persons?</LI>
+
+<LI>We are inspecting the quality of a survey instrument for measuring angles. 50
+roughly equilaterial triangles are taken and each angle is measured
+independently. We are testing 
+<Q><M>H_0:</M> sum of all the angles
+of the same triangle equals <M>180^\circ.</M></Q>
+A straight-forward method is to apply <M>t</M>-test to the total
+measured angles for the triangles. Can you improve upon this by
+using LME?
+ </LI>
+<LI><IMG web="jsmixed1.png"></IMG></LI>
+<LI><IMG web="jsmixed2.png"></IMG></LI>
+<LI><IMG web="jsmixed3.png"></IMG></LI>
+<LI><IMG web="jsmixed4.png"></IMG></LI>
+
+</OL>
+
+----
+
+<M>
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\corr}{\mathrm{corr}}
+\newcommand{\hv}[1]{\hat{\vec{#1}}}
+\newcommand{\v}[1]{\vec{#1}}
+</M>
+<HEAD1>ANOVA tables for linear mixed models</HEAD1>
+Here we shall take a look at testing using ANOVA tables in case
+of linear mixed models.
+<HEAD2>1-way ANOVA</HEAD2>
+Suppose that some drug is being tested in <M>k</M> hospitals,
+each of which try the drug on <M>n</M> patients. The resulting
+data set has <M>kn</M> rows (one per patient) and two columns
+(hospital and response). Since a future user of the analysis
+report would not care about the specific <M>k</M> hospitals
+participating in the study, hence we consider the hospital effect
+as random. The model is:
+<D>
+y_{ij} = \mu + a_i + \epsilon_{ij},
+</D>
+where <M>i=1,...,k</M> and <M>j=1,...,n.</M> Here 
+<UL>
+<LI><M>\mu</M> is
+the (fixed) mean effect (the parameter of primary interest)</LI>
+<LI><M>a_i</M>'s are the (random) hospital effects</LI>
+<LI><M>\epsilon_{ij}</M>'s are the random errors.</LI>
+</UL>
+We assume 
+<UL>
+<LI><M>\epsilon_{ij}</M>'s are iid <M>N(0,\sigma^2_e),</M>
+with <M>\sigma^2_e>0</M> unknown</LI>
+<LI><M>a_i</M>'s are iid <M>N(0,\sigma^2_a),</M>
+with <M>\sigma^2_a\geq 0</M> unknown</LI>
+<LI><M>\epsilon_{ij}</M>'s are indepenent of <M>a_i</M>'s.</LI>
+</UL>
+Here our parameters are <M>\mu,</M> <M>\sigma^2_a</M>
+and <M>\sigma^2_e.</M>
+
+<EXR>Compute <M>\cov(y_{ij}, y_{rs})</M>
+for <M>i,r\in\{1,...,k\}</M> and <M>j,s\in\{1,...,n\}.</M></EXR>
+
+
+<EXR>Use the last exercise to also compute <M>\corr(y_{ij}, y_{rs})</M>
+for <M>i,r\in\{1,...,k\}</M> and <M>j,s\in\{1,...,n\}.</M></EXR>
+
+<HEAD3>Comparing with the fixed effects model</HEAD3>
+<OL><LI>
+In the fixed effects models <M>V(y_{ij})</M> used to be just same
+as the error variance. But now <M>V(y_{ij})</M> has two
+components, one from the error, the other from the random
+effects. Hence, such a model is sometimes also called
+a <B>variance components model</B>.</LI>
+<LI>In the fixed effects model, all the <M>y_{ij}</M>'s were
+independent. But now <M>y_{ij}</M>'s belonging to the same
+hospital are correlated.
+</LI></OL>
+
+With these points in mind we take a look at (the first 3 columns
+of) the ANOVA table (the
+same as for fixed effects model):
+
+<TABLE>
+<TR><TH>Source</TH><TH>d.f.</TH><TH>SS</TH></TR>
+<TR><TH>Hospital</TH><TD><M>k-1</M></TD><TD><M>n\sum \b
+y_{i\bullet}^2-nk\b y_{\bullet\bullet}^2</M></TD></TR>
+<TR><TH>Error</TH><TD><M>k(n-1)</M></TD><TD><M>\sum
+y_{ij}^2-n\sum \b y_{i\bullet}^2</M></TD></TR>
+<TR><TH>Total</TH><TD><M>kn-1</M></TD><TD><M>\sum
+y_{ij}^2-nky_{\bullet\bullet}^2</M></TD></TR>
+</TABLE>
+The table is the same as for the fixed effects model. But let us
+understand how its interpretation may have changed in the random
+effect scenario:
+<UL>
+<LI>The error <M>SS</M> is based on only comparisions within the
+patients of the <I>same</I> hospital. So <M>\sigma^2_a</M> plays
+no play there. Hence, as in the fixed case, the error MS
+continues to be an unbiased estimator of <M>\sigma^2_e.</M></LI>
+<LI>The Hospital SS however has a different expectation than it
+had for the fixed case. The following exercise explores this.</LI>
+</UL>
+
+<EXR>Show that <M>E(\b y_{i\bullet}) = \mu </M> and <M>\var(\b
+y_{i\bullet}) = \sigma^2_a+[[1n]]\sigma^2_e. </M> Hence show that
+the Hospital MS has expectation <M>n \sigma^2_a+\sigma^2_e.</M>
+</EXR>
+
+<EXR>Under the fixed effects model, the Hospital SS and the
+Error SS were both <M>\sigma^2 \chi^2 </M> random variables (the
+former was non-central, while the latter was central). Work out
+the distributions of the two SS's in the random effects
+model. </EXR>
+
+
+In the fixed effects model the two SS's were independent. The
+same thing happens to be true even in the random effects model,
+though this may not be readily apparent. The following exercises
+lead to a proof.
+
+<EXR>Let <M>X,Y</M> and <M>Z</M> be jointly distributed random
+variables such that <UL>
+<LI>given <M>Z,</M> the random variables <M>X</M> and <M>Y</M>
+are independent,</LI>
+<LI><M>Y</M> and <M>Z</M> are independent.</LI>
+</UL> 
+Then show that <M>X</M> and <M>Y</M> must be independent.</EXR>
+
+
+<EXR>Take <UL>
+<LI><M>X = </M> Hospital SS,</LI>
+<LI><M>Y = </M> Error SS,</LI>
+<LI><M>Z = (a_1,...,a_k)</M></LI>
+</UL> 
+in the above exercise to conclude that the two SS's are
+independent.</EXR>
+
+<EXR>In the fixed effects model we could test <M>H_0:</M> no
+hospital effect by using the null distribution of the <M>F</M>-ratio
+<D>
+[[\mbox{Hospital MS}][\mbox{Error MS}]]\sim F_{(k-1,k(n-1)}
+\mbox{ (central)}.
+</D>
+The corresponding <M>H_0</M> for the mixed effects case
+is <M>H_0:\sigma^2_a = 0.</M> Show that the same null
+distribution is still valid here. 
+</EXR>
+
+
+<EXR>
+We know that the Error MS is an unbiased estimator
+for <M>\sigma^2_e.</M> Find an unbiased estimator of <M>\sigma^2_a.</M>
+</EXR>
+
+
+<HEAD2>2-way ANOVA</HEAD2>
+Consider the following model 
+<D>
+y_{ijk} = \mu + a_i + \beta_j + g_{ij}+\epsilon_{ijk},
+</D>
+where <M>i=1,...,I,</M> <M>j=1,...,J</M> and <M>k=1,...,K.</M> We
+make the usual assumptions:
+<OL>
+<LI><M>\epsilon_{ijk}</M>'s are iid <M>N(0,\sigma^2_e),</M>
+where <M>\sigma^2_e>0</M> is unknown.</LI>
+<LI><M>a_i</M>'s are iid <M>N(0,\sigma^2_a),</M>
+where <M>\sigma^2_e\geq 0</M> is unknown.</LI>
+<LI><M>g_{ij}</M>'s are iid <M>N(0,\sigma^2_g),</M>
+where <M>\sigma^2_g\geq 0</M> is unknown.</LI>
+<LI><M>a_i</M>'s <M>g_{ij}</M>'s and <M>\epsilon_{ijk}</M>'s are
+all independent.</LI>
+</OL>
+
+<EXR>Let the first two columns of the ANOVA table be like:
+<TABLE>
+<TR><TH>Source</TH><TH>d.f.</TH></TR>
+<TR><TH>Row</TH><TD><M>I-1</M></TD></TR>
+<TR><TH>Column</TH><TD><M>J-1</M></TD></TR>
+<TR><TH>Interaction</TH><TD><M>(I-1)(J-1)</M></TD></TR>
+<TR><TH>Error</TH><TD><M>IJ(K-1)</M></TD></TR>
+<TR><TH>Total</TH><TD><M>IJK-1</M></TD></TR>
+</TABLE>
+Show that 
+<OL>
+<LI><M>E(</M>Row MS<M>)=\sigma^2_e+K \theta_g +KJ \theta_a</M></LI>
+<LI><M>E(</M>Column MS<M>)=\sigma^2_e+K \theta_g +KI
+\theta_\beta</M></LI>
+<LI><M>E(</M>Interaction MS<M>)=\sigma^2_e+K \theta_g</M></LI>
+<LI><M>E(</M>Error MS<M>)=\sigma^2_e</M></LI>
+</OL>
+Here 
+<UL>
+<LI><M>\theta_a = \sigma^2_a</M></LI>
+<LI><M>\theta_\beta = [[1][J-1]] [*[\sum \beta_j^2 - (*(\sum
+\beta_j)*)^2]*]</M></LI>
+<LI><M>\theta_g = [[J][J-1]]\sigma^2_g</M></LI>
+</UL>
+</EXR>
+<HEAD1>BLUP</HEAD1>
+Henderson introduced the concept of a <B>Best Linear Unbiased
+Predictor (BLUP)</B> of a random effect
+coefficient. Statisticians woking in animal breeding use this
+concept extensively. See <LINK to="blup.pdf">this paper</LINK>
+for some details. (This paper, by the way, is <I>not</I> included in the
+syllabus of this course!) Here are a few things that you should
+know about BLUPs.
+<P/>
+First, the definition. Suppose that you have a LME model with a
+random effect <M>u</M> (i.e., a random coeffcient). There may be
+other random coefficents also. Let the data vector be <M>\v
+y.</M> Then by a BLUP we understand a function of the form <M>\v
+\ell'\v y</M> such that <M>E(\v \ell'\v y - u) = 0,</M> and
+subject to this condition <M>\var(\v \ell'\v y)</M> is the
+minimum possible.
+<P/>
+Henderson gave a computational formula for find BLUPs for the 
+ following model:
+<D>
+\v y = X\v \beta + Z\v u + \v \epsilon,
+</D>
+where <M>\v u\sim (\v 0, \sigma^2 G)</M> and independently <M>\v
+\epsilon \sim (\v 0, \sigma^2 R).</M> Here <M>G, R</M> are known
+pd matrices. Then if we solve 
+<D>
+<MAT>
+X' R ^{-1} X & X' R ^{-1} Z\\
+Z' R ^{-1} X & (Z' R ^{-1} Z + G ^{-1}) 
+</MAT><MAT>\hv \beta\\ \hv u</MAT> = <MAT>X' R ^{-1} \v y\\ Z' R
+^{-1} \v y</MAT>,
+</D>
+we get BLUE <M>\hv \beta </M> for <M>\beta,</M> and BLUP <M>\hv
+u</M> of <M>\v u.</M>
+Don't cram this stuff! If you want to see its derivation that
+read the above paper. 
+<P/>
+BLUP's, as you may guess from the complicated system of
+equations, is quite different from BLUEs of <M>\v u</M> if you
+assume <M>\v u</M> to be fixed. 
+
+<HEAD1>Exercises</HEAD1>
+<OL>
+<LI>Consider a 2-way ANOVA model without interaction, where both
+the effects are random. Work out the expected values of
+the <M>MS</M> values.</LI>
+</OL>
+
+</NOTE>@}
+
+

@@ -1,15 +1,16 @@
 <NOTE>
 @{<E>
-<UPDT>SAT JUN 04 IST 2022</UPDT>
+<UPDT>SAT JUN 11 IST 2022</UPDT>
 <HEAD1>Linear Statistical Models</HEAD1>
 This is the webpage for the Linear Models course (B. Stat. (hons)
-III, 2020).
+III, 2022).
 <P/>
 <NEWS src="news.html"/>
 
 <P/>
 
 <HEAD2>Video lectures and exercises</HEAD2>
+<HEAD3>Intro</HEAD3>
 <UL>
 <LI><LINK to="https://youtu.be/C1UnnYzrizo">Lecture 1</LINK>:
 Introduction using approximately consistent linear system of
@@ -23,12 +24,19 @@ workflow using faraway package.</LI>
 <LI><LINK to="https://youtu.be/KZo4o3Q_vJw">Lecture 4</LINK>:
 Terminology: factor, covariate, ANOVA, regression, ANCOVA, 
            treatment, control, random error</LI>
+
+<HEAD3>Deeper</HEAD3>
 <LI><LINK to="https://youtu.be/fzRywERTg4o">Lecture 5</LINK>: A
 complete example from set up to analysis using R: springs.</LI>
-<LI><LINK to="https://youtu.be/-phZYb_zrIQ">Lecture 6</LINK></LI>
+<LI><LINK to="https://youtu.be/-phZYb_zrIQ">Lecture
+6</LINK>(10:05): Quadratic regression using R
+</LI>
 <LI><LINK to="https://youtu.be/k1vq2NU6k28">Lecture 7</LINK>:
 Constructing a model from a description. Details of a blackbox with two inputs (spring example). data
 layout, subscripting. model. R lab.</LI>
+
+<HEAD3>Gauss-Markov set up</HEAD3>
+
 <LI><LINK to="https://youtu.be/GTkVNDJQQ-8">Lecture 8</LINK>:
 Statistical assumptions on the errors. Gauss-Markov set up.</LI>
 <LI><LINK to="https://youtu.be/PHU7pfe9Y5w">Lecture 9</LINK> (19:44):
@@ -39,6 +47,9 @@ Gauss-Markov theorem (general form), identifiability, departures
 from assumptions.</LI>
 <LI><LINK to="https://youtu.be/Yc-EEOYnaPU">Lecture 11</LINK>
 (24:02): Estimating error variance</LI>
+
+<HEAD3>Common cases</HEAD3>
+
 <LI><LINK to="https://youtu.be/xaJj2TRj1LY">Lecture 12</LINK>
 (32:27): 1-way ANOVA* agricultural example. R.</LI>
 <LI><LINK to="https://www.youtube.com/watch?v=0aX52znHbJo&t=39s">Lecture
@@ -52,9 +63,15 @@ randomisation, design of experiments</LI>
 <LI><LINK to="https://www.youtube.com/watch?v=aOIx7rXKT4s">Lecture
 16</LINK> (26:31): 2-factor model with interaction</LI>
 <LI><ALERT/><LINK to="ex1.html">Exercise set 1</LINK></LI>
+
+<HEAD3>Looking at residuals</HEAD3>
+
 <LI><LINK to="https://youtu.be/gnLNb_iqi9o">Lecture 17</LINK>
 (32:26): Goodness of fit, residuals, RSS, R-squared, , R-squared
 (adj) </LI>
+
+<HEAD3>Test of hypotheses</HEAD3>
+
 <LI><LINK to="https://youtu.be/WfYiBkd4onE">Lecture 18</LINK>
 (): Test of hypotheses (part 1), set up through an example,
 subspace of column space, pictorial representation of test</LI>
@@ -68,6 +85,9 @@ subspace of column space, pictorial representation of test</LI>
 (14:19): Test of hypotheses (part 4) using R</LI>
 <LI><LINK to="https://youtu.be/5x1s3ruRARk">Lecture 23</LINK>
 (36:31): 1-way ANOVA identity, orthogonal split up of SS.</LI>
+
+<HEAD3>Multiple hypotheses testing</HEAD3>
+
 <LI><LINK to="https://youtu.be/Tm3ROwspy_A">Lecture 24</LINK> (25:48):
 Multiple hypotheses testing (part 1) FDR, Bonferroni, Fisher LSD.</LI>
 <LI><ALERT/><LINK to="ex2.html">Exercise set 2</LINK></LI>
@@ -77,43 +97,71 @@ Multiple hypotheses testing (part 2), Tukey's HSD</LI>
 Model selection, AIC, BIC</LI>
 <LI><LINK to="https://youtu.be/YRzxQQQ1s-c">Lecture 27</LINK> (11:45):
 Multiple hypotheses testing (part 3): using R</LI>
+
+<HEAD3>Departure 1 from GM: covariance structure</HEAD3>
+
 <LI><LINK to="https://youtu.be/mT5qxWbIgn0">Lecture 28</LINK>(missing): 
 Covariance structures (part 1)</LI>
 <LI><LINK to="https://youtu.be/JUWQMO1317M">Lecture 29</LINK>
 (15:20): Covariance structures (part 2), GLS, IRLS</LI>
 <LI><LINK to="https://youtu.be/1FFaShGKK3M">Lecture 30</LINK>(17:29): 
 Covariance structures (part 3): Using R</LI>
-<LI><LINK to="https://youtu.be/QoOF8vdUFCo">Lecture 31</LINK>:
-Influence diagnostics (part 1)</LI>
+
+<HEAD3>Departure 2 from GM: influential points</HEAD3>
+
+<LI><LINK to="https://youtu.be/QoOF8vdUFCo">Lecture 31</LINK>(17:17):
+Influence diagnostics (part 1), influential, leverage, DFBETA,
+DFFIT etc.</LI>
 <LI><LINK to="bkw20_52.pdf">Some reference
 material from Belsley, Kuh and Welsch</LINK></LI>
-<LI><LINK to="https://youtu.be/t6DlcCz4V2I">Lecture 32</LINK>:
-Influence diagnostics (part 2)</LI>
-<LI><LINK to="https://youtu.be/07mlgpBsbWw">Lecture 33</LINK>:
-Multicollinearity (part 1)</LI>
-<LI><LINK to="https://youtu.be/qpMFcxcbG4Y">Lecture 34</LINK>:
-Multicollinearity (part 2)</LI>
+<LI><LINK to="https://youtu.be/t6DlcCz4V2I">Lecture 32</LINK>(21:06):
+Influence diagnostics (part 2) What to do with influential
+points, R session, Cook's distance</LI>
+
+<HEAD3>Departure 3 from GM: multicollinearity</HEAD3>
+
+<LI><LINK to="https://youtu.be/07mlgpBsbWw">Lecture 33</LINK>(13:46):
+Multicollinearity (part 1), VIF, subset selection, ridge.</LI>
+<LI><LINK to="https://youtu.be/qpMFcxcbG4Y">Lecture 34</LINK>(14:20):
+Multicollinearity (part 2), ridge as bayes, ridge as soft bound,
+ridge as hard bound, Lasso.</LI>
 <LI>A short discussion about different formuations of
 <LINK to="ridge.html">ridge regression</LINK>.</LI>
-<LI><LINK to="https://youtu.be/M8jBna_VVKo">Lecture 35</LINK>:
-Multicollinearity in R: Ridge regression</LI>
-<LI><LINK to="https://youtu.be/WXaGLAZ-MQE">Lecture 36</LINK>:
-Multicollinearity in R: Lasso and subset selection</LI>
-<LI><LINK to="https://youtu.be/XtTuMtMzXzk">Lecture 37</LINK>: Linear mixed effects models (part 1)</LI>
-<LI><LINK to="https://youtu.be/yT7tkG3Zyis">Lecture 38</LINK>: Linear mixed effects models (part 2)</LI>
-<LI><LINK to="https://youtu.be/H81FsYMkZ2g">Lecture 39</LINK>: Linear mixed effects models (part 3)
+<LI><LINK to="https://youtu.be/M8jBna_VVKo">Lecture 35</LINK>(10:50):
+Ridge regression in R.</LI>
+<LI><LINK to="https://youtu.be/WXaGLAZ-MQE">Lecture 36</LINK>(16:05):
+Lasso and subset selection in R</LI>
+
+<HEAD3>Linear mixed effects model in R</HEAD3>
+<LI><LINK to="https://youtu.be/XtTuMtMzXzk">Lecture
+37</LINK>(13:01): 
+Linear mixed effects models (part 1), motivation. </LI>
+<LI><LINK to="https://youtu.be/yT7tkG3Zyis">Lecture 38</LINK>(16:07): 
+Linear mixed effects models (part 2), math formulation, real
+life example, comparison with paired-t test</LI>
+<LI><LINK to="https://youtu.be/H81FsYMkZ2g">Lecture 39</LINK>(16:38):
+ Linear mixed effects models (part 3), test of significance,
+ bootstrapping, BLUP, Henderson's equations
 Here is <LINK to="blup.pdf">the paper mentioned in the video</LINK>.</LI>
-<LI><LINK to="https://youtu.be/zJD2bNuMP4A">Lecture 40</LINK>:
-Mixed effects models in R (part 1)</LI>
-<LI><LINK to="https://youtu.be/z201b9qBadM">Lecture 41</LINK>:
-Mixed effects models in R (part 2)</LI>
-<LI><LINK to="https://youtu.be/UupGKE6QDRw">Lecture 42</LINK>:
-Linear mixed effects models (part 4)</LI>
+<LI><LINK to="https://youtu.be/zJD2bNuMP4A">Lecture 40</LINK>(16:39):
+Mixed effects models in R (part 1), concept of grouped data,
+"factoring" trick</LI>
+<LI><LINK to="https://youtu.be/z201b9qBadM">Lecture 41</LINK>(18:18):
+Mixed effects models in R (part 2), lme from nlme, tablet
+example, parametric bootstrap. </LI>
+<LI><LINK to="https://youtu.be/UupGKE6QDRw">Lecture 42</LINK>(19:38):
+Linear mixed effects models (part 4), three mixed models that are
+not of grouped data type: same effect both fixed and random,
+main effect fixed but interaction random, multilevel model</LI>
 <LI><ALERT/><LINK to="ex4.html">Exercise set 4</LINK></LI>
-<LI><LINK to="https://youtu.be/-01r7JKfQWE">Lecture 43</LINK>: Generalized linear models (part 1)</LI>
-<LI><LINK to="https://youtu.be/u1UY1NuSpzc">Lecture 44</LINK>: Generalized linear models (part 2)</LI>
-<LI><LINK to="https://youtu.be/ZzhsuDR0eGc">Lecture 45</LINK>: Generalized linear models
-(part 3): Using R</LI>
+
+<HEAD3>Generalised linear models</HEAD3>
+<LI><LINK to="">glm1</LINK>(): The probit problem</LI>
+<LI><LINK to="">glm2</LINK>(): The probit solution</LI>
+<LI><LINK to="">glm3</LINK>(): Social impact</LI>
+<LI><LINK to="">glm4</LINK>(): R lab</LI>
+<LI><LINK to="">glm5</LINK>(): Math formulation, logistic regression (advanced)</LI>
+<LI><LINK to="">glm6</LINK>(): R lab (advanced)</LI>
 </UL>
 
 <COMMENT>

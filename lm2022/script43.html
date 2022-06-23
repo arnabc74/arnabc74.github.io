@@ -1,0 +1,302 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Generalised Linear Model">Generalised Linear Model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A little bit of history">A little bit of history</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Generalised Linear Model">Generalised Linear Model</a></h1>
+We shall now start discussing Generalised Linear Models (GLM). In
+linear model, as we have already seen, we had this box diagram. 
+
+There were some inputs, categorical or continuous, a random error
+input, which as continuous. The output was always asumed to be
+continuous. However, in many situations we need the output to be
+discrete, say a categorical or a count variable. That is where we
+need a Generalised Linear Model.
+
+<h2><a
+name="A little bit of history">A little bit of history</a></h2>
+Possibly, the very first use of generalised linear model was made
+by D J Finney, who was a toxicologist, a scientist investigating
+poison. He wanted to measure the strength of a poison
+quantitatively. For this he used lethal dose for a poison, the minimum dose of
+the poison needed to kill. Of course, the dose depended not only
+on the poison, but also on what he was trying to kill, mice or
+rabbits or human beings. So ideally we should talk about the
+lethat dose of a poison for a particular population. Even within
+a homogeneous population there are bound to be some random
+variations among the minimum amounts needed for the different
+members. Thus, lethal dose is a random variable, just as height
+and blood pressure are random variables. So a meaningful way to
+capture the strenght of a poison is the expected value of this
+random variable. 
+
+Finney worked with a population of mice, and took a random sample
+out of that population. Let the lethal doses of the poison for
+these mice be 
+$$
+X_1,...,X_n.
+$$
+He assumed that these are IID $N(\mu,\sigma^2)$ (We shall 
+ relax the Gaussianity assumption later.) Then $\mu $
+ measures the <b>potency</b> of the poison (for that population),
+ and $\frac{1}{\sigma^2}$ measures the <b>reliability</b> of
+ the poison.
+
+This naturally leads to the apparently simple process: Grab a
+sample of mice, find the lethal dodes for them to get a random
+sample, then estimate $\mu $ and $\sigma^2.$ Pretty
+simple, huh?
+
+All that we haveto do is this: start applying the poison drop by
+drop to the first mouse, and stop the moment it dies, and record
+the dose administered. That is $X_1.$ Now repeat with the
+other mice. 
+
+But this experiment, howsoever simple it may sound, is
+nevertheless impossible to be carried out in practice. The
+trouble is with the condition "stop the moment it dies". Death of
+a mouse (or of any other living being under the continued
+application of a poison) is not an easily discernible
+event. After a stage the mouse goes into a coma state, and it is
+difficult to judge if it is dead or alive. An objective decision
+may be obtained only by a lengthy procedure, for which you have
+to discontinue the poison injection. Say this death detection
+takes 10 minutes, after which we see that the mouse is still
+living. Still we cannot resume injecting further poison into the
+poor creature, as during those 10 minutes the purgatory system of
+the mouse has worked frantically and have removed part of the
+poison from its blood stream. So the effective amounf of poison
+still in its blood is unknown to the experimenter. 
+
+This is a serious  problem   with <b>bio-assay</b>, <i>i.e.</i>,
+assesing the effect of chemicals on a living being. Due to this
+problem, all an experimenter can really do in practice with a
+mouse is to administer a predetermined a dose of poison, and then
+detect if the mouse is still living or not. 
+
+Thus, Finney was set back by the problem of not being able to
+observe the $X_i$'s, which he needed to estimate the
+parameters. Such random quantities that cannot be measured
+directly are called <b>latent variables</b>.
+
+Finney devised a clever work-around, which was the first instance
+of a generalised linear model. Here is his scheme.
+
+He took a grid of values for the dose. Then for each dose he
+took, say, $n$ mice. To each of these he applied that dose, and
+counted the number, $K$, of deaths. Then 
+$\frac Kn\approx P(X\leq d) = \Phi\left(\frac{d-\mu}{\sigma}\right),$ where $d$ is the dose,
+and $X$ is the random variable denoting the lethal
+dose. 
+
+He did this for each dose $d_i,$ and got corresponding
+values $K_i.$ 
+
+Thus, he had $\Phi ^{-1} \left(\frac{K_i}{n}\right)\approx
+\frac{d_i-\mu}{\sigma},$  which is a linear graph. So he
+plotted $\Phi ^{-1} \left(\frac{K_i}{n}\right)$'s
+against $d_i$'s, fitted a least squares line, and estimated
+the potency and reliability based on that.
+
+Finney called the function $\Phi ^{-1} (\cdot)$
+the <b>probit function</b> (actually he used the term for  $\Phi
+^{-1} (\cdot)+5$, the 5 being added to avoid negative numbers, which were
+difficult to handle in those pre-computer days). In modern
+parlance, we call $\Phi ^{-1} (\cdot)$ the probit function,
+and the statistical method used by Finney came to be known as the
+Probit method.  
+  
+This technique has now been made more sophisticated, and is used
+frequently for bio-assay to test safety of eye cosmetics. The
+harmful cemicals are applied to the eyes of rabbits, and an
+analysis like this is performed to assess the safe
+level. Thousands of rabbits turn blind every year due to this
+abominable practice. 
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Consider the following data obtained by an experimental set up as
+described above. 
+<pre>
+| Dose | Number of mice | Number of deaths |
+|------+----------------+------------------|
+|  2.0 |            100 |                2 |
+|  2.1 |            100 |                5 |
+|  2.2 |            100 |               34 |
+|  2.3 |            150 |               75 |
+|  2.4 |            100 |               78 |
+|  2.5 |             50 |               49 |
+|------+----------------+------------------|
+</pre>
+Estimate $\mu $ and $\sigma^2$ using Finney's method.  
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Consider the same set up and data as above. But now use MLE. 
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Repeat the first exercise, but with logiic distribution instead of
+normal distribution. That is, replace the standard normal CDF by
+the logistic CDF 
+$$
+F(x) = \frac{e^x}{1+e^x},~~x\in{\mathbb R}.
+$$ 
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Repeat the second exercise using logistic distribution.
+<img src="../image/box.png"></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
