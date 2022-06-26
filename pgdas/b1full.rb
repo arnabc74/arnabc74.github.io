@@ -3216,7 +3216,7 @@ may cases there are. You may of course scroll down, but that is
 tedious for a large data set. But you can define a keyboard short cut.
 </SESS>
 <JINGLE t="0.1">Keyboard short cut</JINGLE>
-<SC t="4">
+<SC t="4" id="short_153" done="r">
 
 </SC>
 </SCRIPT>
