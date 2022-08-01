@@ -1,9 +1,11 @@
 <NOTE>
-@{<M>\newcommand{\v}{\vec}</M>
+@{<M>
+\newcommand{\v}{\vec}
+\newcommand{\hv}[1]{\hat{\vec #1}}
+
+</M>
 <HEAD1>Exercise set 1</HEAD1>
 <OL>
-<LI>Do all the exercises at the end of chapter 2 of the
-textbook.</LI>
 <LI>Solve the following approximate system using R:
 <MULTILINE>
 3a + 4b + c & \approx & 3.4\\
@@ -33,45 +35,6 @@ solution. But we know that there are infinitely many. Write down
 two more solutions. Can you write a general form for all least
 squares solutions here?
 </LI>
-<LI>R automatically stores various qunatities computed
-by <CODE>lm</CODE>. We shall explore some of them here. Let's
-work with the linear model from the last exercise. Create the
-full design matrix (including its first column) and type:
-<R>
-myfit = lm(y~X-1)
-</R>
-The variable <CODE>myfit</CODE> now contains lots of the
-information about the fit. You may extract the computed least
-squares solution <M>\hv \beta </M> as 
-<R>
-myfit$coef
-</R>
-This may be used in future computations. Compute <M>\h y = X\hv
-\beta.</M> Remember that <CODE>%*%</CODE> is the R notation for
-matrix multiplication. This <M>\h y</M> is the foot of the
-perpendicular dropped from <M>\v y</M> to <M>\col(X).</M>
-Usually <M>\hv y</M> is called the <B>fitted</B> vector. R already
-computes them:
-<R>
-myfit$fitted
-</R>
-The vector <M>\v y - \hv y</M> is called the <B>residual</B>
-vector:
-<R>
-myfit$resid
-</R>
-There are many other pieces of information packed
-in <CODE>myfit</CODE>:
-<R>
-names(myfit)
-</R>
-</LI>
-<LI>Consider a linear model <M>\v y = X \beta +\epsilon,</M>
-where <M>X</M> is not full col rank. Pick any basis
-of <M>\col(X).</M> Stack these vectors side by side a columns to
-get a matrix <M>B.</M> Let <M>\v w = B(B'B) ^{-1} B' \v y.</M>
-Show that <M>\v w = \hv y</M> irrespective of the choice
-of <M>B.</M></LI>
 <LI>Consider a linear model with design matrix 
 <D>
 X = <MAT>

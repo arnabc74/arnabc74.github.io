@@ -67,6 +67,59 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +127,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -82,14 +136,15 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 </li>
 </ul>
 <hr/>
+$
+\newcommand{\v}{\vec}
+\newcommand{\hv}[1]{\hat{\vec #1}}
 
+$
 <h1><a
 name="Exercise set 1">Exercise set 1</a></h1>
 
 <ol type="">
-
-<li>Do all the exercises at the end of chapter 2 of the
-textbook.</li>
 
 <li>Solve the following approximate system using R:
 $$\begin{eqnarray*}
@@ -115,7 +170,7 @@ X = \left[\begin{array}{ccccccccccc}
 \end{array}\right].
 $$
 Here the first column of $X$ is a column of $1$'s. So
-you may just type the last two columns in R, and omit the <code>-1</code>.
+you may just type the last two columns in R, and omit the <font size="+1" color="red"><code>-1</code></font>.
 </li>
 
 <li>
@@ -126,7 +181,7 @@ squares solutions here?
 </li>
 
 <li>R automatically stores various qunatities computed
-by <code>lm</code>. We shall explore some of them here. Let's
+by <font size="+1" color="red"><code>lm</code></font>. We shall explore some of them here. Let's
 work with the linear model from the last exercise. Create the
 full design matrix (including its first column) and type:
 <font color="red">
@@ -134,7 +189,7 @@ full design matrix (including its first column) and type:
 myfit = lm(y~X-1)
 </pre>
 </font>
-The variable <code>myfit</code> now contains lots of the
+The variable <font size="+1" color="red"><code>myfit</code></font> now contains lots of the
 information about the fit. You may extract the computed least
 squares solution $\hv \beta $ as 
 <font color="red">
@@ -143,7 +198,7 @@ myfit$coef
 </pre>
 </font>
 This may be used in future computations. Compute $\h y = X\hv
-\beta.$ Remember that <code>%*%</code> is the R notation for
+\beta.$ Remember that <font size="+1" color="red"><code>%*%</code></font> is the R notation for
 matrix multiplication. This $\h y$ is the foot of the
 perpendicular dropped from $\v y$ to $\col(X).$
 Usually $\hv y$ is called the <b>fitted</b> vector. R already
@@ -161,7 +216,7 @@ myfit$resid
 </pre>
 </font>
 There are many other pieces of information packed
-in <code>myfit</code>:
+in <font size="+1" color="red"><code>myfit</code></font>:
 <font color="red">
 <pre>
 names(myfit)

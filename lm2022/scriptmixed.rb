@@ -60,7 +60,7 @@ The output looks like this:
      58.984      10.672       9.680      20.580      -5.220       4.280 
 </PRE>
 
-<HEAD1>mixed2</HEAD1>
+<HEAD1>mixed2 (basic)</HEAD1>
 How do you think we can use this report in the future? The
 estimated <CODE>smartyes</CODE> may be used by other schools to
 measure effectiveness of smart class rooms. But who will care
@@ -238,7 +238,7 @@ effects model does incorporate this.
 <EXR>Compute <M>cov(y_{1,i},y_{2,i})</M> using the mixed effects
 model, and check that this is really positive.</EXR>
 
-<HEAD1>Lecture 39 (advanced)</HEAD1>
+<HEAD1>mixed5 (advanced)</HEAD1>
 Here we shall discuss tests of significance in the mixed models
 set up. Consider the fixed effects model
 <D>
@@ -285,6 +285,43 @@ Grouped data motivation.
 Factoring trick.
 
 (The tablet data set is not analysed here.)
+
+<HEAD1>mixed6 (advanced)</HEAD1>
+Bootstrapping
+
+<HEAD1>mixed7 (advanced)</HEAD1>
+BLUP
+
+<HEAD1>mixed8 (advanced)</HEAD1>
+Henderson
+
+<HEAD1>mixed9 (advanced)</HEAD1>
+Approaching R lab with tablet example. 
+
+<HEAD1>mixed10 (advanced)</HEAD1>
+Grouped data.
+
+<HEAD1>mixed11 (advanced)</HEAD1>
+R syntax.
+
+<HEAD1>mixed12 (advanced)</HEAD1>
+Preparing the tablet data for R.
+
+<HEAD1>mixed13 (advanced)</HEAD1>
+Fitting the model in R.
+
+<HEAD1>mixed14 (advanced)</HEAD1>
+Parametric bootstrap.
+
+<HEAD1>mixed15 (advanced)</HEAD1>
+Exceptional case: same effect both fixed and random
+
+<HEAD1>mixed16 (advanced)</HEAD1>
+Exceptional case: main effect fixed but interaction random
+
+<HEAD1>mixed17 (advanced)</HEAD1>
+Exceptional case: multilevel models.
+
 
 <HEAD1>Lecture 41 (basic/advanced)</HEAD1>
 We are going to use R for mixed effects models. Tehere are two

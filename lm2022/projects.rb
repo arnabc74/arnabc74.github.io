@@ -1,8 +1,9 @@
 <NOTE>
 @{<E>
 <HEAD1>Projects</HEAD1>
-This course has two projects each carrying 10 marks.
+This course has one project carrying 10 marks.
 
+<COMMENT>
 <HEAD2>Estimating the frame rate of a video camera without using
 a precision clock</HEAD2>
 A video camera works by taking snaps at regular time intervals
@@ -59,7 +60,7 @@ Here is <LINK to="https://www.thewindowsclub.com/extract-frames-from-a-video-wit
 paint programs show the pixel coordinates of the mouse position
 as ou hover the mouse over an image. <LINK to="http://www.gimp.org">GIMP</LINK> is just one such free
 software.
-
+</COMMENT>
 <HEAD2>Making a vector map stitching satellite
 screenshots</HEAD2>
 

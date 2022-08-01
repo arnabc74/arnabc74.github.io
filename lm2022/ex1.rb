@@ -1,9 +1,11 @@
 <NOTE>
-@{
+@{<M>
+\newcommand{\v}{\vec}
+\newcommand{\hv}[1]{\hat{\vec #1}}
+
+</M>
 <HEAD1>Exercise set 1</HEAD1>
 <OL>
-<LI>Do all the exercises at the end of chapter 2 of the
-textbook.</LI>
 <LI>Solve the following approximate system using R:
 <MULTILINE>
 3a + 4b + c & \approx & 3.4\\

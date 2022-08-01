@@ -1,5 +1,5 @@
 @{<NOTE>
-
+<M>\newcommand{\v}{\vec}</M>
 <HEAD1>Exercises on identifiability</HEAD1>
 <OL><LI>
 Consider the model <M>y_{ij} = \mu + \alpha_i +
@@ -55,7 +55,10 @@ change if all the <M>n_{ij}</M>'s are known to be equal?</LI>
 In the following problems our familiar Gauss-Markov model is
 denoted by <M>(\vec y, X \vec \beta , \sigma^2 I).</M>
 <IMG web="raosg1.png">Rao Sengupta 1</IMG><BR/>
-<IMG web="raosg2.png">Rao Sengupta 2</IMG><BR/>
+<IMG web="raosg2.png">Rao Sengupta 2</IMG>
+Here LPF means Linear Parametric Function, i.e., a constant
+matrix times <M>\v beta.</M>
+<BR/>
 <IMG web="raosg3.png">Rao Sengupta 3</IMG><BR/>
 <IMG web="raosg4.png">Rao Sengupta 4</IMG><BR/>
 <IMG web="raosg5.png">Rao Sengupta 5</IMG><BR/>

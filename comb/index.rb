@@ -1,5 +1,5 @@
 <NOTE pic="image/permcomb.jpg">
-<TITLE>@{<E>Complex Algebra:</E>@} arNab chak+rabar+tIr bai</TITLE>
+<TITLE>@{<E>Permutation and combination:</E>@} arNab chak+rabar+tIr bai</TITLE>
 <COVID alt="comb/index.html"/>
 <LINK to="https://www.isical.ac.in/~arnabc/books/index.html">anyAnya bai</LINK>
 <HEAD1>@{<E>Permutation and Combination</E>@}</HEAD1>

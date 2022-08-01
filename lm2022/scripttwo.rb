@@ -1,6 +1,6 @@
 @{<NOTE>
 <HEAD1>two1 (basic)</HEAD1>
-Expalaining the 2-factor set up with an agricultural example. 
+Explaining the 2-factor set up with an agricultural example. 
 
 <HEAD1>two2 (basic)</HEAD1>
 More examples.

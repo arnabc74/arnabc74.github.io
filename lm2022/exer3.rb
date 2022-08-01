@@ -1,9 +1,11 @@
 <NOTE>
-@{<M>\newcommand{\v}{\vec}</M>
-<HEAD1>Exercise set 1</HEAD1>
+@{<M>
+\newcommand{\v}{\vec}
+\newcommand{\hv}[1]{\hat{\vec #1}}
+
+</M>
+<HEAD1>Exercise set 3</HEAD1>
 <OL>
-<LI>Do all the exercises at the end of chapter 2 of the
-textbook.</LI>
 <LI>Solve the following approximate system using R:
 <MULTILINE>
 3a + 4b + c & \approx & 3.4\\
@@ -68,7 +70,7 @@ names(myfit)
 </LI>
 <LI>Consider a linear model <M>\v y = X \beta +\epsilon,</M>
 where <M>X</M> is not full col rank. Pick any basis
-of <M>\col(X).</M> Stack these vectors side by side a columns to
+of <M>\col(X).</M> Stack these vectors side by side as columns to
 get a matrix <M>B.</M> Let <M>\v w = B(B'B) ^{-1} B' \v y.</M>
 Show that <M>\v w = \hv y</M> irrespective of the choice
 of <M>B.</M></LI>
