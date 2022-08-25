@@ -161,7 +161,7 @@ $\newcommand{\col}{{\mathcal C}}$
 name="Further explanation for Video 38">Further explanation for Video 38</a></h1>
 The video says that in the Gauss-Markov model 
 $$\v y = X\v \beta + \v \epsilon
-\text{ with } \v \epsilon \sim N_n(\v 0, \sigma^2 I),$$ 
+\text{ with } \v \epsilon \sim (\v 0, \sigma^2 I_n),$$ 
 an unbiased estimator for $\sigma^2 $ is 
 $$
 \h \sigma^2 = \frac{\|\v y-X \hv \beta \|^2}{n-r(X)}. 
@@ -182,8 +182,8 @@ If I give you $Y\sim N(0,\sigma^2),$ and ask you to come up
 with an unbiased estimator for $\sigma^2,$ you will readily
 come up with $Y^2.$
 <p></p>
-Now let's take it to higher dimensions: $\v Y\sim N_d(\v 0,
-\sigma^2 I).$ What will be an unbiased estimator
+Now let's take it to higher dimensions: $\v Y\sim (\v 0,
+\sigma^2 I_d).$ What will be an unbiased estimator
 for $\sigma^2 $ here?
 <p></p>
 Again, applying the same idea to each of the components of $\v
@@ -202,7 +202,7 @@ you an unbiased estimator of $\sigma^2.$
 
 <h3><a
 name="Step 2">Step 2</a></h3>
-Again consider $\v Y\sim N_d(\v 0, \sigma^2 I).$ Now I also
+Again consider $\v Y\sim (\v 0, \sigma^2 I_d).$ Now I also
 give you a subspace $V$ of ${\mathbb R}^d.$ Let $dim(V) =
 k.$ Let the (orthogonal) projection of $\v Y$ on $V$
 be $\v Y_1$. Can you come up with an unbiased estimator
@@ -238,8 +238,8 @@ We may write $\hv Y$ as $P\v Y,$ where $P$ is
 a $k\times d$ matrix with $\v v_i$'s as its
 rows. Since $\{\v v_1,...,\v v_k\}$ is an ONB, hence $P P'
 = I.$ (But $P' P $ need not be $I$!)
-So $$\hv Y \sim N_k(\v 0, \sigma^2 P P') =  N_k(\v 0, \sigma^2
-I).$$
+So $$\hv Y_{k\times 1} \sim (\v 0, \sigma^2 P P') \equiv (\v 0, \sigma^2
+I_k).$$
 Thus, we are again in our familiar setting with $\frac{\|\hv
 Y\|^2}{k}$ as an unbiased estimator of $\sigma^2.$
 
@@ -248,7 +248,7 @@ name="Step 3">Step 3</a></h3>
 So far we were working with mean $\v 0.$ Now let's allow a
 general mean vector:
 $$
-\v Y\sim N_d(\v \mu, \sigma^2 I).
+\v Y\sim (\v \mu, \sigma^2 I_d).
 $$
 Now unfortunately, even the one dimensional case breaks down,
 because if $Y\sim N(\mu, \sigma^2),$ then $E(Y^2) =
@@ -259,7 +259,7 @@ as before. And $\v \mu$ is orthogonal to $V.$ Then if
 we construct $P$ as before (using ONB of $V$),
 then $P\v \mu = \v 0.$ So 
 $$
-\hv Y \sim N_k(P \v \mu, \sigma^2 P P') = N_k(\v 0, \sigma^2 I).
+\hv Y_{k\times 1} \sim (P \v \mu, \sigma^2 P P') = N_k(\v 0, \sigma^2 I_k).
 $$
 Aha! So we are back to the original case again! So
 again $\frac 1k\|\v Y_1\|^2\equiv \frac 1k\|\hv Y\|^2$

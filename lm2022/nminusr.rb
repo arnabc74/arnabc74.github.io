@@ -6,7 +6,7 @@
 <HEAD1>Further explanation for Video 38</HEAD1>
 The video says that in the Gauss-Markov model 
 <D>\v y = X\v \beta + \v \epsilon
-\text{ with } \v \epsilon \sim N_n(\v 0, \sigma^2 I),</D> 
+\text{ with } \v \epsilon \sim (\v 0, \sigma^2 I_n),</D> 
 an unbiased estimator for <M>\sigma^2 </M> is 
 <D>
 \h \sigma^2 = [[\|\v y-X \hv \beta \|^2][n-r(X)]]. 
@@ -24,8 +24,8 @@ If I give you <M>Y\sim N(0,\sigma^2),</M> and ask you to come up
 with an unbiased estimator for <M>\sigma^2,</M> you will readily
 come up with <M>Y^2.</M>
 <P/>
-Now let's take it to higher dimensions: <M>\v Y\sim N_d(\v 0,
-\sigma^2 I).</M> What will be an unbiased estimator
+Now let's take it to higher dimensions: <M>\v Y\sim (\v 0,
+\sigma^2 I_d).</M> What will be an unbiased estimator
 for <M>\sigma^2 </M> here?
 <P/>
 Again, applying the same idea to each of the components of <M>\v
@@ -43,7 +43,7 @@ Thus, you see dividing the squared norm by the dimension gives
 you an unbiased estimator of <M>\sigma^2.</M>
 
 <HEAD3>Step 2</HEAD3>
-Again consider <M>\v Y\sim N_d(\v 0, \sigma^2 I).</M> Now I also
+Again consider <M>\v Y\sim (\v 0, \sigma^2 I_d).</M> Now I also
 give you a subspace <M>V</M> of <M>\rr^d.</M> Let <M>dim(V) =
 k.</M> Let the (orthogonal) projection of <M>\v Y</M> on <M>V</M>
 be <M>\v Y_1</M>. Can you come up with an unbiased estimator
@@ -79,8 +79,8 @@ We may write <M>\hv Y</M> as <M>P\v Y,</M> where <M>P</M> is
 a <M>k\times d</M> matrix with <M>\v v_i</M>'s as its
 rows. Since <M>\{\v v_1,...,\v v_k\}</M> is an ONB, hence <M>P P'
 = I.</M> (But <M>P' P </M> need not be <M>I</M>!)
-So <D>\hv Y \sim N_k(\v 0, \sigma^2 P P') =  N_k(\v 0, \sigma^2
-I).</D>
+So <D>\hv Y_{k\times 1} \sim (\v 0, \sigma^2 P P') \equiv (\v 0, \sigma^2
+I_k).</D>
 Thus, we are again in our familiar setting with <M>[[\|\hv
 Y\|^2][k]]</M> as an unbiased estimator of <M>\sigma^2.</M>
 
@@ -88,7 +88,7 @@ Y\|^2][k]]</M> as an unbiased estimator of <M>\sigma^2.</M>
 So far we were working with mean <M>\v 0.</M> Now let's allow a
 general mean vector:
 <D>
-\v Y\sim N_d(\v \mu, \sigma^2 I).
+\v Y\sim (\v \mu, \sigma^2 I_d).
 </D>
 Now unfortunately, even the one dimensional case breaks down,
 because if <M>Y\sim N(\mu, \sigma^2),</M> then <M>E(Y^2) =
@@ -99,7 +99,7 @@ as before. And <M>\v \mu</M> is orthogonal to <M>V.</M> Then if
 we construct <M>P</M> as before (using ONB of <M>V</M>),
 then <M>P\v \mu = \v 0.</M> So 
 <D>
-\hv Y \sim N_k(P \v \mu, \sigma^2 P P') = N_k(\v 0, \sigma^2 I).
+\hv Y_{k\times 1} \sim (P \v \mu, \sigma^2 P P') = N_k(\v 0, \sigma^2 I_k).
 </D>
 Aha! So we are back to the original case again! So
 again <M>[[1k]]\|\v Y_1\|^2\equiv [[1k]]\|\hv Y\|^2</M>
