@@ -81,7 +81,7 @@ rows. Since <M>\{\v v_1,...,\v v_k\}</M> is an ONB, hence <M>P P'
 = I.</M> (But <M>P' P </M> need not be <M>I</M>!)
 So <D>\hv Y \sim N_k(\v 0, \sigma^2 P P') =  N_k(\v 0, \sigma^2
 I).</D>
-Thus, we are again in our familiar setting with <M>[[\|hv
+Thus, we are again in our familiar setting with <M>[[\|\hv
 Y\|^2][k]]</M> as an unbiased estimator of <M>\sigma^2.</M>
 
 <HEAD3>Step 3</HEAD3>

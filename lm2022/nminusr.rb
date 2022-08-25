@@ -3,7 +3,7 @@
 <M>\newcommand{\v}[1]{{\mathbf #1}}</M>
 <M>\newcommand{\hv}[1]{{\hat{\mathbf #1}}}</M>
 <M>\newcommand{\col}{{\mathcal C}}</M>
-<HEAD1>Further explanation for Video 28</HEAD1>
+<HEAD1>Further explanation for Video 38</HEAD1>
 The video says that in the Gauss-Markov model 
 <D>\v y = X\v \beta + \v \epsilon
 \text{ with } \v \epsilon \sim N_n(\v 0, \sigma^2 I),</D> 
