@@ -1,0 +1,287 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Further explanation for Video 28">Further explanation for Video 28</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Why is there $n-r(X)$ in the denominator of $\h
+\sigma^2$?">Why is there $n-r(X)$ in the denominator of $\h
+\sigma^2$?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Step 1">Step 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Step 2">Step 2</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Step 3">Step 3</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Step 4">Step 4</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\h}[1]{{\hat #1}}$
+$\newcommand{\v}[1]{{\mathbf #1}}$
+$\newcommand{\hv}[1]{{\hat{\mathbf #1}}}$
+$\newcommand{\col}{{\mathcal C}}$
+<h1><a
+name="Further explanation for Video 28">Further explanation for Video 28</a></h1>
+The video says that in the Gauss-Markov model 
+$$\v y = X\v \beta + \v \epsilon
+\text{ with } \v \epsilon \sim N_n(\v 0, \sigma^2 I),$$ 
+an unbiased estimator for $\sigma^2 $ is 
+$$
+\h \sigma^2 = \frac{\|\v y-X \hv \beta \|^2}{n-r(X)}. 
+$$
+
+<h2><a
+name="Why is there $n-r(X)$ in the denominator of $\h
+\sigma^2$?">Why is there $n-r(X)$ in the denominator of $\h
+\sigma^2$?</a></h2>
+Of course, we may just provide a straightforward proof
+that $E\h (\sigma^2) = \sigma^2.$ But that won't provide
+much motivation as to why $n-r(X)$ is a "natural"
+choice. So, instead, we shall proceed step by step.
+
+<h3><a
+name="Step 1">Step 1</a></h3>
+If I give you $Y\sim N(0,\sigma^2),$ and ask you to come up
+with an unbiased estimator for $\sigma^2,$ you will readily
+come up with $Y^2.$
+<p></p>
+Now let's take it to higher dimensions: $\v Y\sim N_d(\v 0,
+\sigma^2 I).$ What will be an unbiased estimator
+for $\sigma^2 $ here?
+<p></p>
+Again, applying the same idea to each of the components of $\v
+Y$, you will get $d$ unbiased
+estimators, $Y_1^2,...,Y_d^2.$ Of course, you will combine
+them in the natural way to utilise the entire vector and get 
+$$
+\frac 1d\sum Y_i^2
+$$
+as an unbiased estimator of $\sigma^2.$ This is just 
+$$
+\frac{\|\v Y\|^2}{d}.
+$$
+Thus, you see dividing the squared norm by the dimension gives
+you an unbiased estimator of $\sigma^2.$
+
+<h3><a
+name="Step 2">Step 2</a></h3>
+Again consider $\v Y\sim N_d(\v 0, \sigma^2 I).$ Now I also
+give you a subspace $V$ of ${\mathbb R}^d.$ Let $dim(V) =
+k.$ Let the (orthogonal) projection of $\v Y$ on $V$
+be $\v Y_1$. Can you come up with an unbiased estimator
+of $\sigma^2 $ based on $\v Y_1$ alone?
+<p></p>
+Possibly you have guessed the answer:
+$$
+\frac{\|\v Y_1\|^2}{k}.
+$$
+Yes, you're are right, but let's understand why it works. For this a little linear
+algebra recap would help. Take an ONB $\{\v v_1,...,\v
+v_k\}$ of $P.$ Then do you see that 
+$\|v Y_1\|^2 = \sum_1^k(\v v_i\bullet \v Y)^2?$ 
+This is because each $\v v_i\bullet \v Y$ gives the length
+of the component of $\v Y$ along $\v v_i.$ 
+<p></p>
+If you find it hard to visualise, consider this example:
+<blockquote> $\v Y
+= (x,y,z)\in{\mathbb R}^3$ and $P$ is the $xy$-plane with
+ONB $\{(1,0,0), (0,1,0)\}.$ Then $\v Y_1 = (x,y,0).$ So 
+$$
+\|\v Y_1\|^2 = x^2 + y^2 + 0^2 = x^2 + y^2 =
+((1,0,0)\bullet(x,y,z))^2 + ((0,1,0)\bullet(x,y,z))^2.
+$$
+</blockquote>
+In other words, $\|\v Y_1\|^2 = \|\hv Y\|^2$, where $\hv Y
+= (\v v_1\bullet \v Y,...,\v v_k\bullet \v Y).$ Just a word of
+warning here: $\v Y_1$ is not the same as $\hv Y$ (as
+their lengths differ). But their norms are equal. Just
+as $(x,y,0)$ and $(x,y).$
+<p></p>
+We may write $\hv Y$ as $P\v Y,$ where $P$ is
+a $k\times d$ matrix with $\v v_i$'s as its
+rows. Since $\{\v v_1,...,\v v_k\}$ is an ONB, hence $P P'
+= I.$ (But $P' P $ need not be $I$!)
+So $$\hv Y \sim N_k(\v 0, \sigma^2 P P') =  N_k(\v 0, \sigma^2
+I).$$
+Thus, we are again in our familiar setting with $\frac{\|hv
+Y\|^2}{k}$ as an unbiased estimator of $\sigma^2.$
+
+<h3><a
+name="Step 3">Step 3</a></h3>
+So far we were working with mean $\v 0.$ Now let's allow a
+general mean vector:
+$$
+\v Y\sim N_d(\v \mu, \sigma^2 I).
+$$
+Now unfortunately, even the one dimensional case breaks down,
+because if $Y\sim N(\mu, \sigma^2),$ then $E(Y^2) =
+\mu^2+ \sigma^2,$ which is not $\sigma^2$ if $\mu\neq 0.$
+<p></p>
+But just suppose that we take a subspace $V$ of ${\mathbb R}^d$
+as before. And $\v \mu$ is orthogonal to $V.$ Then if
+we construct $P$ as before (using ONB of $V$),
+then $P\v \mu = \v 0.$ So 
+$$
+\hv Y \sim N_k(P \v \mu, \sigma^2 P P') = N_k(\v 0, \sigma^2 I).
+$$
+Aha! So we are back to the original case again! So
+again $\frac 1k\|\v Y_1\|^2\equiv \frac 1k\|\hv Y\|^2$
+estimates $\sigma^2 $ unbiasedly!
+
+<h3><a
+name="Step 4">Step 4</a></h3>
+Now just observe that we are in the set up of step 3 in the
+original linear model problem. We have $X \v \beta $ in
+place of $\v \mu.$ Also the role of $V$ is played
+by $(\col(X))^\perp,$ whose dimension is $k = n-r(X).$
+Now $\v \mu = X \v \beta \in \col(X)$ and so is indeed
+orthogonal to $V.$ 
+
+ 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
