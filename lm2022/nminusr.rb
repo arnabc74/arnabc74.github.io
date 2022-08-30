@@ -72,7 +72,7 @@ ONB <M>\{(1,0,0), (0,1,0)\}.</M> Then <M>\v Y_1 = (x,y,0).</M> So
 In other words, <M>\|\v Y_1\|^2 = \|\hv Y\|^2</M>, where <M>\hv Y
 = (\v v_1\bullet \v Y,...,\v v_k\bullet \v Y).</M> Just a word of
 warning here: <M>\v Y_1</M> is not the same as <M>\hv Y</M> (as
-their lengths differ). But their norms are equal. Just
+their numbers of components differ). But their norms are equal. Just
 as <M>(x,y,0)</M> and <M>(x,y).</M>
 <P/>
 We may write <M>\hv Y</M> as <M>P\v Y,</M> where <M>P</M> is
