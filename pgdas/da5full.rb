@@ -33,7 +33,7 @@ In my opinion it is excellent book with one chapter devoted to
 each topic. Each chapter starts with a brief motivation, followed
 by the barest minimum formulation of the problem. The next
 section gives the math, which may be skipped without much loss of
-continity. Each chapter ends with some real data analysis. Nice
+continuity. Each chapter ends with some real data analysis. Nice
 and compact. Great for self study. Self complete with the data
 and R code for each exercise available online.
 
@@ -42,12 +42,12 @@ And that brings us to the next question: what software to use.
 <JINGLE t="0.1">Software</JINGLE>
 <SESS t="0.70" done="n" id="s3">
 Unlike the last two courses that I taught, this course requires
-relatively heavier dose of computation. So LibreOffice Calc won't
+a relatively heavier dose of computation. So LibreOffice Calc won't
 suffice. Instead, we shall use R, the most popular free
 statistical software out there. It does have a bit of steep
 learning curve. But you've already had a course on R and Python,
 and so I hope you are already somewhere in the middle of the
-learning curve.  And even if you are too fond of R, don't worry I
+learning curve.  And even if you are not too fond of R, don't worry I
 shall explain all the R codes that I shall use in this course. 
 </SESS>
 <JINGLE t="0.1">Course structure</JINGLE>
@@ -67,8 +67,7 @@ course. Let's get rolling!
 </LESSON>
 
 <LESSON><TOPIC>Visualisation (part 1)</TOPIC>
-<HEAD2>Module 1, Lesson 1: Multivariate data
-visualisation</HEAD2>
+<HEAD2>Module 1, Lesson 1: Multivariate data visualisation</HEAD2>
 
 <SCRIPT id="m/l/v">
 <TOPIC>Loading multivariate data in R</TOPIC>

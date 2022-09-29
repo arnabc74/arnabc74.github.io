@@ -1,6 +1,6 @@
 <NOTE>
 @{<E>
-<HEAD1>Projects</HEAD1>
+<HEAD1>Project</HEAD1>
 This course has one project carrying 10 marks.
 
 <COMMENT>

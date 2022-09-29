@@ -1,6 +1,6 @@
 @{<NOTE> -*- eval: (folding-mode t) -*-
 <TITLE>Course: Basic 1: Basic Statistics</TITLE>
-<UPDT>SAT APR 09 IST 2022</UPDT>
+<UPDT>WED SEP 28 IST 2022</UPDT>
 
 <INTRO>
 We hear about statistics a lot. Be it forecasting the weather or
@@ -2758,6 +2758,7 @@ time series and panel data.
 </SCRIPT>
 
 <FLD>
+
 <EXRLIST id="m1l4_c.yml">
 - typeName: textReflect
   prompt: >
@@ -2783,6 +2784,7 @@ time series and panel data.
      Electrocardiogram (ECG). 
 
 </EXRLIST>
+
 </FLD>
 
 <STKY>
@@ -2881,6 +2883,7 @@ https://developer.nvidia.com/sites/all/modules/custom/gpugems/books/GPUGems/gpug
 </SCRIPT>
 
 <FLD>
+
 <EXRLIST id="m1l4_e.yml">
 - typeName: textReflect
   prompt: >
@@ -2901,6 +2904,7 @@ https://developer.nvidia.com/sites/all/modules/custom/gpugems/books/GPUGems/gpug
     Yes.  
 
 </EXRLIST>
+
 </FLD>
 
 
@@ -7545,6 +7549,7 @@ where there is no central tendency?
 </FLD>
 
 <FLD> Mean math
+
 <EXRLIST id="m4l1_b.yml">
 
 
@@ -7594,6 +7599,7 @@ where there is no central tendency?
       powerfully than a point closer to the pivot.
 
 </EXRLIST>
+
 </FLD>
 
 
