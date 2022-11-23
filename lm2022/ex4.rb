@@ -23,7 +23,11 @@ the <M>MS</M> values.</LI>
 <LI>The following problem refers to this model:<IMG web="jsmixed1.png"></IMG>
 <IMG web="jsmixed2.png"></IMG></LI>
 <LI><IMG web="jsmixed3.png"></IMG></LI>
-<LI><IMG web="jsmixed4.png"></IMG></LI>
+<LI><IMG web="jsmixed4.png"></IMG>
+This problem refers to model (8.3.2) which is 
+<IMG web="8321.png"></IMG>
+Also, here <M>{\bf p}</M> is any arbitrary fixed known vector. 
+</LI>
 
 </OL>
 
