@@ -1,0 +1,539 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Multivariate Normal Distribution">Multivariate Normal Distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Basic facts">Basic facts</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Estimation">Estimation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Transforming MLE">Transforming MLE</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#MLE of correlation coefficient">MLE of correlation coefficient</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Sampling distributions">Sampling distributions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#For $\Xbar$">For $\Xbar$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#For $S$">For $S$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Joint distribution of $\Xbar$ and $S$">Joint distribution of $\Xbar$ and $S$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Confidence region for $\v \mu$ (when $\Sigma$
+is known PD)">Confidence region for $\v \mu$ (when $\Sigma$
+is known PD)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Testing  $H_0:\v \mu=\v \mu_0$ (when $\Sigma$
+is known PD)">Testing  $H_0:\v \mu=\v \mu_0$ (when $\Sigma$
+is known PD)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#When $\Sigma $ is unknown PD">When $\Sigma $ is unknown PD</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Hotelling's $T^2$">Hotelling's $T^2$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Testing independence">Testing independence</a>
+</li>
+</ul>
+<hr/>
+$
+\newcommand{\v}[1]{\boldsymbol{#1}}
+\newcommand{\Xbar}{\overline{\boldsymbol{X}}}
+$
+<h1><a
+name="Multivariate Normal Distribution">Multivariate Normal Distribution</a></h1>
+This is a short note containing some facts about the multivariate
+normal distribution that we are relevant for our course. These
+are based on the book <b>An Introduction to Multivariate
+Statistical Analysis</b> by <i>T W Anderson.</i>
+
+
+<h2><a
+name="Basic facts">Basic facts</a></h2>
+
+
+<fieldset>
+<legend><b>Definition: Multivariate normal distribution</b></legend>
+Let $\v\mu\in{\mathbb R}^p$ and $\Sigma_{p\times p}$ be any NND
+matrix. Then a $p$-dimensional random vector $\v X$ is
+said to have a <b>multivariate normal distribution</b> with
+parameters $\v \mu $ and $\Sigma$ if 
+$$
+\forall \v\ell \in {\mathbb R}^p~~\v \ell'\v X \sim N(\v \ell'\v \mu, \v
+\ell' \Sigma \v\ell).
+$$
+In this case we write $\v X\sim N_p(\v \mu,\Sigma).$
+</fieldset>
+
+The following facts are easy to check. If $\v X\sim N_p(\v
+\mu,\Sigma),$ then $E(\v X)=\v \mu $ and $V(\v
+X)=\Sigma. $
+<p></p>
+Also, $N_p(\v \mu,\Sigma)$ has a PDF if and only
+if $\Sigma $ is PD. In this case the PDF is
+$$
+f(\v x; \v \mu,\Sigma) = (2\pi)^{-p/2}|\Sigma|)^{-1/2}\exp\left(-\frac 12(\v
+x-\v \mu)'\Sigma ^{-1} (\v x-\v \mu)\right)\text{ for } \v x\in{\mathbb R}^p.
+$$
+Similarly, one may check directly from the definition that the
+characteristic function of $N_p(\v \mu,\Sigma)$ is 
+$$
+E(\exp(i\v t'\v X) = \exp\left(i\v t'\v \mu - \frac 12 \v t' \Sigma\v t\right).
+$$
+
+<h2><a
+name="Estimation">Estimation</a></h2>
+We shall estimate $\v \mu $ and $\Sigma $ from $\v
+X_1,...,\v X_n$ IID $N_p(\v \mu,\Sigma)$
+assuming $\Sigma $ to be PD. For this we have to maximise
+the likelihood function, or equivalently, minimise
+$$
+f(\v \mu,\Sigma) = n\log|\Sigma| + \sum_1^n(\v
+X_i-\v \mu)'\Sigma ^{-1} (\v X_i-\v \mu).
+$$
+We may apply the standard differentiation technique here. But
+differentiating the log of determinant wrt a matrix may not be
+familiar to you. So instead, we shall take a more down-to-earth
+(albeit longer) way.
+
+$$\begin{eqnarray*}
+\sum_1^n(\v X_i-\v \mu)'\Sigma ^{-1} (\v X_i-\v \mu)
+&amp; = &amp; tr\left(\sum_1^n(\v X_i-\v \mu)'\Sigma ^{-1} (\v X_i-\v \mu) \right)\\
+&amp; = &amp; \sum_1^n tr\left((\v X_i-\v \mu)'\Sigma ^{-1} (\v X_i-\v \mu) \right)\\
+&amp; = &amp; \sum_1^n tr\left(\Sigma ^{-1} (\v X_i-\v \mu)(\v X_i-\v \mu)' \right)\\
+&amp; = &amp;  tr\left(\Sigma ^{-1} \sum_1^n (\v X_i-\v \mu)(\v X_i-\v \mu)' \right)\\
+&amp; = &amp; tr\left(\Sigma ^{-1} \sum_1^n(\v X_i-\Xbar +\Xbar-\v \mu) (\v X_i-\Xbar +\Xbar-\v \mu)'\right)\\
+&amp; = &amp; \cdots\\
+&amp; = &amp; n(\v \mu-\Xbar)' \Sigma ^{-1} (\v \mu - \Xbar) +
+\text{something free of }
+\v \mu.
+\end{eqnarray*}$$
+So immediately we see that MLE of $\v \mu$ must
+be $\Xbar.$ Plugging this in $f(\v \mu , \Sigma)$ we
+get the function that we have to minimise wrt PD $\Sigma$: 
+$$\begin{eqnarray*}
+f(\Xbar,\Sigma) 
+&amp; = &amp; n\log|\Sigma| + \sum_1^n(\v X_i-\Xbar)'\Sigma ^{-1} (\v X_i-\Xbar)\\
+&amp; = &amp; n\log|\Sigma| + tr\left(\sum_1^n(\v X_i-\Xbar)'\Sigma ^{-1} (\v X_i-\Xbar)\right)\\
+&amp; = &amp; n\log|\Sigma| + \sum_1^ntr\left((\v X_i-\Xbar)'\Sigma ^{-1} (\v X_i-\Xbar)\right)\\
+&amp; = &amp; n\log|\Sigma| + \sum_1^ntr\left(\Sigma ^{-1}(\v X_i-\Xbar) (\v X_i-\Xbar)'\right)\\
+&amp; = &amp; n\log|\Sigma| + tr\left(\Sigma ^{-1}\underbrace{\sum_1^n(\v X_i-\Xbar) (\v X_i-\Xbar)'}_S\right).
+\end{eqnarray*}$$
+ Now $S$ is a sum of NND matrices, and NND. Actually PD. So $S =
+ E E'$ for some (nonsingular) $E.$ Hence our function becomes
+$$\begin{eqnarray*}
+&amp; &amp; n\log|\Sigma| + tr\left(\Sigma ^{-1}E E'\right)\\
+&amp; = &amp; n\log|\Sigma| + tr\left(E'\Sigma ^{-1}E\right).
+\end{eqnarray*}$$  
+We pln to write everything in terms of $E'\Sigma ^{-1}E =
+H,$ say. Then $\Sigma = E H ^{-1} E'.$
+<p></p>
+Hence $|\Sigma| = |E E'|/|H| = |S|/|H|.$ So our function becomes
+$$
+n(\log|S|-\log|H|) + tr(H).
+$$
+We plan to minimise this wrt $H.$ 
+<p></p>
+Let the eigenvalues of $H$
+be $\lambda_1,...,\lambda_p.$ These are all positive reals
+since $H$ is PD. Dropping parts free of $H,$ our
+function becomes
+$$
+\sum_1^p (\lambda_i-n\log\lambda_i)
+$$
+Now we can differentiate wrt $\lambda_i$'s, and see that for
+a minimum we need $\lambda_i = n.$ So $H =
+nI.$
+<p></p>
+This implies that MLE of $\Sigma $ is $\frac 1nS,$ the
+sample covariance matrix.
+
+<h2><a
+name="Transforming MLE">Transforming MLE</a></h2>
+What is the definition of an MLE? This might seem a bit too late
+to ask this question after all the mathematical jugglery
+above. But surprisingly, people seem to have confustio about this
+basic question. Ideally MLE is that value of the
+parameter $\theta$ or which the likelihood is
+maximised. This naive description assumes that $\theta $ is
+the <i>only</i> parameter (or, equivalently, all the parameters
+are concatenated into a vector $\theta$). In our case, for
+example, $\theta = (\v \mu, \Sigma).$
+<p></p>
+But according to this naive defintion of MLE, we cannot indeed
+talk about MLE of $\v \mu $ or MLE of $\Sigma$
+separately. S here we generalise the definition a bit:
+If $\theta \equiv (\theta_1,\theta_2)$, then by MLE
+of $\theta_1$ we mean an estimator such that there exists
+an estimator for $\theta_2$ such that they maximise the
+likelihood together. 
+<p></p>
+Generalising this further we define MLE for any $h(\theta)$
+for (some given $h,$ which may not be one-one), an
+estimator $\widehat{h(\theta)}$ such that there exists MLE $\hat \theta$
+for $\theta$ with $h(\hat
+\theta)=\widehat{h(\theta)}. $  
+<p></p>
+This immediately provides a way to obtain MLE of $h(\theta)$
+for any given $h:$ Just use $h( \hat \theta),$
+where $\hat \theta$ is an MLE of $\theta.$ Please note
+that if we follow the naive (stricter) definition of MLE, then we
+need $h$ to be one-one for this to hold. 
+
+<h2><a
+name="MLE of correlation coefficient">MLE of correlation coefficient</a></h2>
+Since all the correlation coefficients are functions
+of $\Sigma$, we can apply the same functions on the sample
+covariance matrix (with $n$ in the denominator) to obtain
+their MLEs. In other words, the sample correlation coefficients
+are MLEs of the theoretical correlation coefficients.
+
+<h2><a
+name="Sampling distributions">Sampling distributions</a></h2>
+
+
+<h3><a
+name="For $\Xbar$">For $\Xbar$</a></h3>
+The sampling distribution of $\Xbar$ is clearly $N_p\left(\v \mu,\frac 1n \Sigma\right).$
+
+It is unbiased for $\v \mu.$ Also, by WLLN applied to its
+components separately, we see that it is consisitent for $\v \mu.$
+
+<h3><a
+name="For $S$">For $S$</a></h3>
+We had  $S= \sum_1^n(\v X_i-\Xbar) (\v X_i-\Xbar)'.$ 
+It is
+like the sum of $n$ terms of the form $\v U_i\v U_i'$,
+where $\sum \v U_i = \v 0.$ So we suspect that $S$ can
+be expressed as the sum of $n-1$ terms of the form $\v
+Z_i\v Z_i'$, where the $\v Z_i$'s are IID $N_p(\v 0, \Sigma). $
+<p></p>
+Indeed that is the case. First notice that we can
+alternatively write $S$ as 
+$$
+S = \sum_1^n \v X_i\v X_i' - n \Xbar\Xbar'.
+$$
+Let's  pack our data into a data
+matix $X_{n\times p}.$ Then notice that 
+$$X'X = \sum_1^n \v X_i\v X_i'.$$ 
+Also
+$\Xbar = \frac 1nX'\v
+1.$ Here $\v 1$ is of size $n\times1.$ 
+We normalise $\v 1$ to get $\v p_1 = \frac{1}{\sqrt n}\v 1.$
+Extend this to an ONB $\{\v p_1,...,\v p_n\}$
+of ${\mathbb R}^n.$ Pack these as a columns to construct an orthogonal 
+matrix $P_{n\times n}.$
+<p></p>
+Let $Z_{n\times p} = P'X.$ Then notice that $Z'Z = X'P P'X
+= X'X.$
+<p></p>
+So, writing $\v Z_i$ (a $p\times 1$ vector) for the $i$-th row of $Z,$  we have
+$$
+S = \sum_1^n \v X_i\v X_i' - n \Xbar\Xbar' =
+ \sum_1^n \v Z_i\v Z_i' - \v Z_1\v Z_1' = \sum_2^n \v Z_i\v Z_i'.
+$$
+Now it is easy to see that $\v Z_i$'s are IID $N_p(\v 0, \Sigma).$
+      
+<p></p>
+Such a distribution is called the (central) <b>Wishart</b>
+distribution with parameter $\Sigma$ and $n-1$ degrees
+of freedom. It is a straightforward generalisation of $\sigma^2
+\chi^2_{(n-1)}$ distribution.
+
+<h3><a
+name="Joint distribution of $\Xbar$ and $S$">Joint distribution of $\Xbar$ and $S$</a></h3>
+
+As in the univariate situation, $\Xbar$ and $S$ are
+independent. This follows easily since the $\v Z_i$'s are
+all independent. Here $\Xbar$ is a function of $\v Z_1$
+alone, while $S$ is a function $\v Z_2,...,\v Z_n.$
+
+<h2><a
+name="Confidence region for $\v \mu$ (when $\Sigma$
+is known PD)">Confidence region for $\v \mu$ (when $\Sigma$
+is known PD)</a></h2>
+It is easy to see that $\Xbar-\v \mu\sim N_p\left(\v 0, \frac 1n\Sigma\right).$
+Let $A = \Sigma^{-1/2}$ (not unique), <i>i.e.</i>, 
+$\Sigma ^{-1} = (A ^{-1})'A ^{-1}.$ 
+Then $A(\Xbar-\v \mu) \sim N_p(\v 0, I).$
+
+<p></p>
+So  $(\Xbar-\v \mu)'\Sigma ^{-1} (\Xbar-\v \mu)\sim \chi^2_{(p)}.$
+<p></p>
+We may use this to construct an $\alpha$-level confidence
+region for $\v \mu $ as:
+$$
+\{\v x\in {\mathbb R}^p~:~ (\v x-\Xbar)'\Sigma ^{-1} (\v x-\Xbar) \leq k\},
+$$
+where $k$ is the appropriate cut-off computed from
+the $\chi^2_{(p)}$ distribution.
+
+<h2><a
+name="Testing  $H_0:\v \mu=\v \mu_0$ (when $\Sigma$
+is known PD)">Testing  $H_0:\v \mu=\v \mu_0$ (when $\Sigma$
+is known PD)</a></h2>
+We may use the same idea as above to perform a test. Just use the
+acceptance region 
+$$
+\{\v x\in {\mathbb R}^p~:~ (\v x-\v \mu_0)'\Sigma ^{-1} (\v x-\v \mu_0) \leq k\},
+$$
+where $k$ is the appropriate cut-off computed from
+the $\chi^2_{(p)}$ distribution.
+
+<h2><a
+name="When $\Sigma $ is unknown PD">When $\Sigma $ is unknown PD</a></h2>
+Here we have to generalise the idea of
+univariate $t$-distribution.
+
+<h3><a
+name="Hotelling's $T^2$">Hotelling's $T^2$</a></h3>
+
+<fieldset>
+<legend><b>Definition: Hotelling's $T^2$</b></legend>Let $\v Z\sim N_p(0,I)$ and $M\sim$Wishart distribution
+with parameter $I$ and degrees of freedom $m.$
+Let $\v Z$ and $M$ be independent. Then the
+distribution of $m\v Z' M ^{-1} \v Z$ is
+called <b>Hotelling's $T^2$ distribution with numerator
+df $p$ and denominator df $m.$</b>
+
+</fieldset>
+We may use it for testing $H_0:\v \mu = \v \mu_0$ by
+defining the test statistic
+$$
+T^2 = n(\Xbar-\v \mu_0)' S ^{-1} (\Xbar - \v \mu_0).
+$$
+This clearly reduces to the square of the
+usual $t$-statistic in the univariate case. It has a
+ Hotelling's $t^2$ with num df $p$ and denom
+df $n-1$ distribution under $H_0.$
+So we may compute $p$-value based on this distribution.
+
+<p></p>
+Fortunately, the $T^2$-distribution is closely related to
+the $F$-distribution:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $T^2$ has Hotelling's $T^2$-distribution with
+df's $p$ and $m$, then 
+$$
+\frac{m-p+1}{pm} T^2\sim F_{(p,m-p+1)}.
+$$ 
+</fieldset>
+You may compute the $F$ df's to use for the test based on this.
+
+<h2><a
+name="Testing independence">Testing independence</a></h2>
+Suppose that we have a multivariate normal data set, and we are
+interested in testing that the two given variables are
+independent. In presence of normality, this amounts to testing if
+the correlation between them is zero. It is
+natural to consider the sample correlation coefficient as a test
+statistic for this. The null distribution is given by the
+following theorem.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X_1,...,\v X_n$ be IID $N_p(\v \mu, \Sigma).$
+Let $\rho_{ij}$ be the population correlation coefficient
+and let $r_{ij}$ be te sample correlation coefficient 
+between the $i$-th and $j$-th variables ($i\neq j\in \{1,...,p\}.$ 
+If $\rho_{ij} = 0,$ then $r_{ij}$ has PDF given by
+$$
+f(r) = \frac{\Gamma\left( \frac{n-1}{2} \right) }{\Gamma\left( \frac{n-2}{2} \right)\sqrt\pi }
+(1-r^2)^{\frac{n-4}{2}},\quad r\in(-1,1). 
+$$
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>See the proof of theorem 4.2.1 in Anderson's book.<b><i>[QED]</i></b>
+</p>
+
+The exact distribution of the sample correlation coefficient when the
+population correlation is nonzero. However, there are useful
+asymptotic approximations. 
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Same set up as in the last theorem. But
+now $\rho_{ij}$ need not be 0. Then 
+$$
+\frac{\sqrt{n}(r_{ij}-\rho_{ij})}{1-\rho_{ij}^2} \rightarrow N(0,1)
+$$
+in distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>See the proof of theorem 4.2.4 in Anderson's book.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+Owing to the presence of the parameter in the denominator, this is
+somewhat unwieldy to use. Here is a smarter version with constant
+variance.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Same set up as above. Then 
+$$
+\sqrt{n}(\tanh ^{-1} r_{ij} - \tanh ^{-1} \rho_{ij}) \rightarrow N(0,1) 
+$$
+in distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>See the proof of theorem 4.2.5 in Anderson's book.<b><i>[QED]</i></b>
+</p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
