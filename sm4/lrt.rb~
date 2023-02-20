@@ -1,0 +1,89 @@
+@{<NOTE>
+<M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
+<HEAD1>Likelihood Ratio Tests</HEAD1>
+Likelihood Ratio Tests (LRT) are a reasonable approach for
+constructing a test in a parametric set up.  The general set up
+is like this: We have some data with a distribution that is known
+except for some parameter <M>\theta\in\ \Theta.</M>
+Here <M>\Theta </M> is the known parameter space. We have
+partitioned <M>\Theta</M> as <M>\Theta = \Theta_0\cup
+\Theta_1,</M> and want to test <M>H_0: \theta\in \Theta_0</M>
+against <M>H_1: \theta\in \Theta_1.</M>
+<P/>
+The LRT for this rejects <M>H_0</M> for small values of 
+<D>
+[[\sup_{\theta\in \Theta_0} L(\theta)][\sup_{\theta\in \Theta} L(\theta)]],
+</D>  
+where <M>L(\theta)</M> is the likelihood. This is naturally
+called the Likelihood Ratio (<M>LR</M>). Under certain conditions
+<M>-2\log(LR)</M> has an asymptotic <M>\chi^2</M> distribution
+df given by the difference in the "dimension"s of <M>\Theta_0</M>
+and <M>\Theta.</M>
+<P/>
+The suprema are generally maxima, and are obtained by plugging
+appropriate MLEs of <M>\theta </M> into the likelihood function.
+<P/>
+
+The convergence is often rather poor in practice. But still LRT
+is quite popular. We shall see one example below.
+
+<HEAD2>An example</HEAD2>
+We have data <M>\v y_1,...,\v y_n</M> that are independent
+with <M>\v Y_i\sim N_p(B\v z_i, \Sigma)</M> where <M>\v
+x_1,...,\v x_n</M> are known fixed <M>q\times 1</M> vectors. The
+unknown parameters are <M>B_{p\times q}</M> <M>\Sigma_{p\times
+p}</M>, which is assumed to be PD. Thus, we have a data matrix
+with <M>n</M> rows and <M>p+q</M> columns, out of which <M>p</M>
+are devoted to the output <M>\v Y</M>'s, and the remaining <M>q</M> to
+the <M>\v x</M>'s, the inputs.  
+
+<P/>
+Out the <M>q</M> input  variables we focus on some <M>k</M>
+special ones (say the first <M>k</M>). Accordingly the <M>\v
+x</M> vectors get split into two parts <M>\v u_{k\times 1}</M>
+and <M>\v v_{q-k\times 1}.</M> The <M>B</M> matrix also gets
+partitioned as <M>B = [C~~ D],</M> where <M>C</M> has <M>k</M>
+columns, and <M>D</M> has <M>q-k.</M> The null hypothesis we want
+to test is 
+<D>
+H_0: C = C_0,
+</D>
+where <M>C_0</M> is some fixed given matrix.
+<P/>
+We shall present the construction of the LRT here through a
+sequence of exercises. The first two exercises are about the
+denominator, i.e., the general MLE.
+
+<EXR>
+Show that the general MLE for <M>B</M> is <M>\hat B = PA
+^{-1},</M> where <M>P = YX'</M> and <M>A =
+XX'</M>. Here <M>Y_{p\times n} = [\v y_1~~\cdots~~\v y_n]</M> and 
+<M>X_{q\times n} = [\v x_1~~\cdots~~\v x_n].</M>
+</EXR>
+
+<EXR>
+Show that the general MLE for <M>\Sigma</M> is <M>\hat \Sigma  = 
+[[1n]] \sum_i (\v y_i-\hat B\v x_i)' (\v y_i-\hat B\v x_i),</M>
+where <M>\hat B</M> is as given in the  exercise above.
+</EXR>
+
+Next we look at the numerator, i.e., the null MLE.
+
+<EXR>
+Under <M>H_0,</M> consider <M>\v z_i = \v y_i - C_0 \v u_i</M> as
+our data. Suitably adapt the formula given in the first exercise
+above to obtain the null MLE of <M>D.</M>
+</EXR>
+
+<EXR>
+Again consider the modified data as above, adapt the formula
+given in the second exercise to obtain the null MLE of <M>\Sigma.</M>
+</EXR>
+
+Finally we can create the test statistic.
+
+<EXR>
+Use the results from the exercises above to construct the
+likelihood ratio statistic.
+</EXR>
+</NOTE>@}

@@ -1,0 +1,29 @@
+t = 1:100
+x = 10+t/10+rnorm(100)
+plot(x,ty='l')
+year = 1900+t
+dat = data.frame(year,x)
+write.csv(dat,file="tsfront1.csv")
+
+gr = matrix(c(10,30,20,11,31,20),2,3,byrow=T)
+rw = matrix(c(1,1,1,2,2,2),2,3,byrow=T)
+cl = matrix(c(1,2,3,1,2,3),2,3,byrow=T)
+
+rp = matrix(5,2,3,byrow=T)
+
+yield = rep(gr,rp) + rnorm(30)
+fertiliser = rep(rw,rp)
+variety = rep(cl,rp)
+
+sink("agridata1.csv")
+cbind(fertiliser, variety, yield)
+sink()
+
+fit=lm(yield ~ fertiliser *variety)
+
+x = c(1, 2, 3, 4, 5)
+y = c(2, 5, 7, 7, 9)
+lm(y~x)
+plot(x,y)
+
+

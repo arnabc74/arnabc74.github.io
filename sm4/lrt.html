@@ -1,0 +1,247 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Likelihood Ratio Tests">Likelihood Ratio Tests</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#An example">An example</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+<h1><a
+name="Likelihood Ratio Tests">Likelihood Ratio Tests</a></h1>
+Likelihood Ratio Tests (LRT) are a reasonable approach for
+constructing a test in a parametric set up.  The general set up
+is like this: We have some data with a distribution that is known
+except for some parameter $\theta\in\ \Theta.$
+Here $\Theta $ is the known parameter space. We have
+partitioned $\Theta$ as $\Theta = \Theta_0\cup
+\Theta_1,$ and want to test $H_0: \theta\in \Theta_0$
+against $H_1: \theta\in \Theta_1.$
+<p></p>
+The LRT for this rejects $H_0$ for small values of 
+$$
+\frac{\sup_{\theta\in \Theta_0} L(\theta)}{\sup_{\theta\in \Theta} L(\theta)},
+$$  
+where $L(\theta)$ is the likelihood. This is naturally
+called the Likelihood Ratio ($LR$). Under certain conditions
+$-2\log(LR)$ has an asymptotic $\chi^2$ distribution
+df given by the difference in the "dimension"s of $\Theta_0$
+and $\Theta.$
+<p></p>
+The suprema are generally maxima, and are obtained by plugging
+appropriate MLEs of $\theta $ into the likelihood function.
+<p></p>
+
+The convergence is often rather poor in practice. But still LRT
+is quite popular. We shall see one example below.
+
+<h2><a
+name="An example">An example</a></h2>
+We have data $\v y_1,...,\v y_n$ that are independent
+with $\v Y_i\sim N_p(B\v z_i, \Sigma)$ where $\v
+x_1,...,\v x_n$ are known fixed $q\times 1$ vectors. The
+unknown parameters are $B_{p\times q}$ $\Sigma_{p\times
+p}$, which is assumed to be PD. Thus, we have a data matrix
+with $n$ rows and $p+q$ columns, out of which $p$
+are devoted to the output $\v Y$'s, and the remaining $q$ to
+the $\v x$'s, the inputs.  
+
+<p></p>
+Out the $q$ input  variables we focus on some $k$
+special ones (say the first $k$). Accordingly the $\v
+x$ vectors get split into two parts $\v u_{k\times 1}$
+and $\v v_{q-k\times 1}.$ The $B$ matrix also gets
+partitioned as $B = [C~~ D],$ where $C$ has $k$
+columns, and $D$ has $q-k.$ The null hypothesis we want
+to test is 
+$$
+H_0: C = C_0,
+$$
+where $C_0$ is some fixed given matrix.
+<p></p>
+We shall present the construction of the LRT here through a
+sequence of exercises. The first two exercises are about the
+denominator, <i>i.e.</i>, the general MLE.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Show that the general MLE for $B$ is $\hat B = PA
+^{-1},$ where $P = YX'$ and $A =
+XX'$. Here $Y_{p\times n} = [\v y_1~~\cdots~~\v y_n]$ and 
+$X_{q\times n} = [\v x_1~~\cdots~~\v x_n].$
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Show that the general MLE for $\Sigma$ is $\hat \Sigma  = 
+\frac 1n \sum_i (\v y_i-\hat B\v x_i) (\v y_i-\hat B\v x_i)',$
+where $\hat B$ is as given in the  exercise above.
+<img src="../image/box.png"></p>
+
+Next we look at the numerator, <i>i.e.</i>, the null MLE.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Under $H_0,$ consider $\v z_i = \v y_i - C_0 \v u_i$ as
+our data. Suitably adapt the formula given in the first exercise
+above to obtain the null MLE of $D.$
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Again consider the modified data as above, adapt the formula
+given in the second exercise to obtain the null MLE of $\Sigma.$
+<img src="../image/box.png"></p>
+
+Finally we can create the test statistic.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Use the results from the exercises above to construct the
+likelihood ratio statistic.
+<img src="../image/box.png"></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
