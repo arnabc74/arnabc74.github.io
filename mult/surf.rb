@@ -1,4 +1,4 @@
 <NOTE>
-<HEAD1>ki sundar, mAiri!</HEAD1>
-<UT u="MMBkNmnGtuA">chandril ki jhARchhe bas.h!</UT>
+@{<HEAD1>Chapter 1, Day 1</HEAD1>@}
+<UT u="MMBkNmnGtuA">chan</UT>
 </NOTE>
