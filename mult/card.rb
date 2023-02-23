@@ -1,4 +1,5 @@
 <NOTE>
-@{<HEAD1>Chapter 1, Day 1</HEAD1>@}
+@{<HEAD1>Chapter 7, Day 38</HEAD1>@}
 <UT u="MMBkNmnGtuA">chan</UT>
+barafer madhye kAr+D basiye sojA karA. 
 </NOTE>

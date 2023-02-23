@@ -1,4 +1,5 @@
 <NOTE>
-@{<HEAD1>Chapter 1, Day 1</HEAD1>@}
+@{<HEAD1>Chapter 7, Day 43</HEAD1>@}
 <UT u="MMBkNmnGtuA">chan</UT>
+@{<E>Cross-product</E>@}  diye @{<E>surface</E>@}-er @{<E>normal</E>@}  bAr karA. 
 </NOTE>

@@ -1,4 +1,5 @@
 <NOTE>
-@{<HEAD1>Chapter 1, Day 1</HEAD1>@}
+@{<HEAD1>Chapter 2, Day 11</HEAD1>@}
 <UT u="MMBkNmnGtuA">chan</UT>
+@{<E>Gradient ascent</E>@}-er yynimeshan. 
 </NOTE>
