@@ -1,0 +1,398 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Distribution of order statistics">Distribution of order statistics</a>
+</li>
+<li>
+<a href="#Asymptotic distribution of sample quantiles">Asymptotic distribution of sample quantiles</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Special case: Uniform(0,1)">Special case: Uniform(0,1)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The general case">The general case</a>
+</li>
+</ul>
+<hr/>
+$
+\newcommand{\xnp}{X_{(\lceil np\rceil)}}
+\newcommand{\rightarrowd}{\stackrel{d}{\longrightarrow}}
+$
+<h1><a
+name="Distribution of order statistics">Distribution of order statistics</a></h1>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$ be iid with cdf $F(x).$ Then the cdf
+of the $r$-th order statistic is
+$$
+P(X_{(r)}\leq x) = \sum_{i=r}^n \binom n i (F(x))^i (1-F(x))^{n-i}. 
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$$\begin{eqnarray*}
+P(X_{(r)}\leq x)
+&amp; = &amp; P(\text{at least $r$ of the $X$`s are } \leq x)\\
+&amp; = &amp; \sum_{i=r}^n P(\text{exactly $i$ of the $X$`s are
+} \leq x)\\
+&amp; = &amp;  \sum_{i=r}^n \binom n i (F(x))^i (1-F(x))^{n-i}. 
+\end{eqnarray*}$$
+<b><i>[QED]</i></b>
+</p>
+
+By differentiating we may obtain the pdf of the $i$-th order
+statistic as:
+$$
+\frac{n!}{(n-i)!(i-1)!} (F(x))^{i-1} f(x) (1-F(x))^{n-i},
+$$
+where $f(x)$ is the common pdf of the $X$`s.
+
+<h1><a
+name="Asymptotic distribution of sample quantiles">Asymptotic distribution of sample quantiles</a></h1>
+
+<b>Set up:</b> We have $X_1,...,X_n$ iid from some
+distribution with pdf $f(x).$ We also have
+some $p\in(0,1].$ We define the $p$-th sample quantile
+as $\xnp,$ where $X_{(1)} &lt; \cdots &lt; X_{(n)}$ are the
+order statistics. Our aim is to obtain an asymptotic normal
+distribution for $\xnp.$ The distribution will involve the
+common distribution of the $X_i$`s.
+
+<h2><a
+name="Special case: Uniform(0,1)">Special case: Uniform(0,1)</a></h2>
+We shall first tackle the special case where the common
+distribution is Uniform(0,1). Once we complete this case, the
+general case may be reduced to this by the inverse cdf transform.
+
+<p></p>
+For the uniform case we can explicitly work out the exact
+distribution of each order statistic. It is a Beta
+distribution. However, for our purpose the following less
+explicit form would be more helpful.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $U_1,...,U_{n+1}$ be iid Expo(1). Let $k\in\{1,...,n\}$
+Then 
+$$
+X_{(k)} \sim \frac{U_1+\cdots+U_k}{U_1+\cdots+U_{n+1}}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Direct computation conditioning the denominator.<b><i>[QED]</i></b>
+</p> 
+
+Our plan is to use CLT to obtain asymptotic distribution for the
+numerator and denominator, and then apply (multivariate) delta
+method to compute the required asymptotic distribution.
+<p></p>
+Let $S_j = U_1+\cdots+U_j$ for $j=1,...,n+1.$ We need
+the asymptotic joint distribution of $(S_k,S_{n+1}).$ It
+would be better to work with $(S_k,S_{n+1}-S_k),$ since
+these are independent. Also we shall work with $k = \lceil
+np\rceil.$ So $k$ itself depends on $n.$
+<p></p>
+ 
+Let`s first work out in rough the asymptotic joint
+distribution. We know that the mean and variance of an Expo(1)
+distribution are both 1. So by CLT
+$$
+\frac{S_k}{k}\sim AN\left(1,\frac 1k\right)\text{ and } \frac{S_{n+1}-S_k}{n+1-k}\sim AN\left(1,\frac{1}{n+1-k}\right),
+$$
+and these are independent. Remember that we shall need to work
+with $\frac{S_k}{(S_{n+1}-S_k)+S_k}.$ So dividing both $S_k$
+and $S_{n+1}-S_k$ by the same factor would be helpful. Let`s
+use $n+1$ as the dividing factor. Then 
+$$
+\frac{S_k}{n+1} = \frac{S_k}{k}\times\frac{k}{n+1}\sim
+AN\left(p,\frac{p^2}{k}\right)\approx N\left(p,\frac{p}{n+1}\right).
+$$
+Hence 
+$$
+\sqrt{n+1} \left(\frac{S_k}{n+1}-p\right)\sim AN(0,p).
+$$
+This was done in rough. It used the dubious argument that
+if $a_n\approx b_n$ then $na_n\approx nb_n.$ But it
+helps us to guess what we should try to prove. 
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Set up as above. Then
+$$
+\sqrt{n+1} \left(\frac{S_k}{n+1}-p\right)\rightarrowd N(0,p).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$$\begin{eqnarray*}
+\sqrt{n+1} \left(\frac{S_k}{n+1}-p\right)
+&amp; = &amp; \sqrt{n+1} \left(\frac{S_k}{k}\times\frac{k}{n+1}-p\right)\\
+&amp; = &amp; \sqrt{n+1} \left( \left\{\frac{Z_n}{\sqrt{k}}+1\right\} \times\frac{k}{n+1}-p\right),
+\quad \text{where }Z_n = \sqrt{k}\left(\frac{S_k}{k}-1\right)\rightarrowd N(0,1).\\
+&amp; = &amp; Z_n\times \sqrt{\frac{k}{n+1}} +  
+\frac{k}{\sqrt{n+1}} - p\sqrt{n+1}\rightarrowd N(0,p),
+\end{eqnarray*}$$
+since $\sqrt{\frac{k}{n+1}}\rightarrow \sqrt p$ and $\frac{k}{\sqrt{n+1}} - p\sqrt{n+1}\rightarrow 0.$ 
+
+<p></p>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+The following theorem is a simple corollary that we shall
+actually use. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$$
+\sqrt n \left(\left[\begin{array}{ccccccccccc}\frac{S_k}{n+1}\\
+\frac{S_{n+1}-S_k}{n+1}
+\end{array}\right]-\left[\begin{array}{ccccccccccc}p\\1-p
+\end{array}\right]\right)\rightarrowd
+N_2\left(\left[\begin{array}{ccccccccccc}0\\0
+\end{array}\right],\left[\begin{array}{ccccccccccc}p &amp; 0\\0 &amp; 1-p
+\end{array}\right] \right).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We have used the last theorem twice, once for $S_k$ and then
+for $S_{n+1}-S_k,$ which is actually the sum of $n+1-k$
+iid Expo(1) random variables. Finally we have used the
+independence of these two. 
+<b><i>[QED]</i></b>
+</p>
+Our  main theorem for the Uniform(0,1) case will be proved by
+applying the (multivariate) delta method to this result. The
+following theorem gives the multivariate delta method.
+
+<fieldset>
+<legend><b><i>Multivariate delta method</i></b></legend>
+Let $T_1, T_2,...$ be a sequence of 
+random variables taking values in ${\mathbb R}^p.$ Let $T$ be
+another such random variable. Also let $\mu\in{\mathbb R}^p$ be a
+fixed vector. 
+If $\sqrt{n} (T_n-\mu) \rightarrowd T,$ and $g:{\mathbb R}^p\rightarrow{\mathbb R}$ is
+such that $\nabla g$ is continuous in a neighbourhhood
+of $\mu,$ then $\sqrt{n} (g(T_n)-g(\mu)) \rightarrowd \nabla g(\mu)T$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Since $\sqrt{n} (T_n-\mu) \rightarrowd T,$ we have $T_n \rightarrowd
+\mu.$
+
+By MVT, $g(T_n)-g(\mu) = \nabla g(\xi_n)(T_n-\mu)$ for
+some $\xi_n$ on the segment joining $\mu $ and $T_n.$
+<blockquote>
+
+<b>[Because:</b>
+
+<blockquote>
+Define $h(t) = g(\mu + t(T_n-\mu)).$ Then $g(T_n)-g(\mu) =
+h(1)-h(0) = h`(\theta),$ for some $\theta\in(0,1).$
+</blockquote>
+
+<b>]</b>
+
+</blockquote>
+So $\sqrt{n}(g(T_n)-g(\mu)) = \nabla
+g(\xi_n)\sqrt{n}(T_n-\mu)\rightarrowd \nabla g(\mu)T,$ as required.
+<b><i>[QED]</i></b>
+</p>
+
+Here at last is our final theorem for the Uniform(0,1) case.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Same set up. Then $\sqrt{n}(\xnp-p)\rightarrowd N(0,p(1-p)).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Consider $g:(0,\infty)^2\rightarrow (0, \infty)$ given by $g(x,y)
+= \frac{x}{x+y}.$
+
+Notice that $g\left(\frac{S_k}{n+1}, \frac{S_{n+1}-S_k}{n+1}\right) =
+\frac{S_k}{S_{n+1}}$ and $g(p,1-p) = 0.$ Also 
+$$
+\nabla g(x,y) = \frac{(y,-x)}{(x+y)^2}.
+$$
+So by multivariate delta method, 
+$\sqrt{n}(\xnp-p)\rightarrowd N(0,\sigma^2),$ where 
+$$
+\sigma^2 = \left[\begin{array}{ccccccccccc}1-p &amp; -p
+\end{array}\right]\left[\begin{array}{ccccccccccc}p &amp; 0\\0 &amp; 1-p
+\end{array}\right]\left[\begin{array}{ccccccccccc}1-p
+\\ -p
+\end{array}\right] = p(1-p),
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+
+<h2><a
+name="The general case">The general case</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$ be iid with cdf $F(x)$ and
+pdf $f(x).$ We have some fixed $p\in(0,1).$ We assume
+that $f(x)$ is continuous and positive over a neighbourhood
+of the population quantile $x_p=F ^{-1}(p).$ Then
+ $$
+\sqrt n(\xnp - x_p) \rightarrowd N\left(0,\frac{p(1-p)}{(f(x_p))^2} \right).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We define $Y_i = F(X_i).$ Apply Uniform(0,1) case to
+these. Finally apply inverse cdf transform to return to $X_i$`s.
+<b><i>[QED]</i></b>
+</p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

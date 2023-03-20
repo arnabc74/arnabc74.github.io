@@ -1,0 +1,194 @@
+@{<NOTE>
+<M>
+\newcommand{\xnp}{X_{(\lceil np\rceil)}}
+\newcommand{\tod}{\stackrel{d}{\longrightarrow}}
+</M>
+<HEAD1>Distribution of order statistics</HEAD1>
+<THM>
+Let <M>X_1,...,X_n</M> be iid with cdf <M>F(x).</M> Then the cdf
+of the <M>r</M>-th order statistic is
+<D>
+P(X_{(r)}\leq x) = \sum_{i=r}^n \binom n i (F(x))^i (1-F(x))^{n-i}. 
+</D>
+</THM>
+<PF>
+<MULTILINE>
+P(X_{(r)}\leq x)
+& = & P(\text{at least <M>r</M> of the <M>X</M>`s are } \leq x)\\
+& = & \sum_{i=r}^n P(\text{exactly <M>i</M> of the <M>X</M>`s are
+} \leq x)\\
+& = &  \sum_{i=r}^n \binom n i (F(x))^i (1-F(x))^{n-i}. 
+</MULTILINE>
+</PF>
+
+By differentiating we may obtain the pdf of the <M>r</M>-th order
+statistic as:
+<D>
+[[n!][(n-i)!(i-1)!]] (F(x))^{i-1} f(x) (1-F(x))^{n-i},
+</D>
+where <M>f(x)</M> is the common pdf of the <M>X</M>`s.
+<HEAD1>Asymptotic distribution of sample quantiles</HEAD1>
+<B>Set up:</B> We have <M>X_1,...,X_n</M> iid from some
+distribution with pdf <M>f(x).</M> We also have
+some <M>p\in(0,1].</M> We define the <M>p</M>-th sample quantile
+as <M>\xnp,</M> where <M>X_{(1)} < \cdots < X_{(n)}</M> are the
+order statistics. Our aim is to obtain an asymptotic normal
+distribution for <M>\xnp.</M> The distribution will involve the
+common distribution of the <M>X_i</M>`s.
+
+<HEAD2>Special case: Uniform(0,1)</HEAD2>
+We shall first tackle the special case where the common
+distribution is Uniform(0,1). Once we complete this case, the
+general case may be reduced to this by the inverse cdf transform.
+
+<P/>
+For the uniform case we can explicitly work out the exact
+distribution of each order statistic. It is a Beta
+distribution. However, for our purpose the following less
+explicit form would be more helpful.
+
+<THM>
+Let <M>U_1,...,U_{n+1}</M> be iid Expo(1). Let <M>k\in\{1,...,n\}</M>
+Then 
+<D>
+X_{(k)} \sim [[U_1+\cdots+U_k][U_1+\cdots+U_{n+1}]].
+</D>
+</THM>
+<PF>Direct computation conditioning the denominator.</PF> 
+
+Our plan is to use CLT to obtain asymptotic distribution for the
+numerator and denominator, and then apply (multivariate) delta
+method to compute the required asymptotic distribution.
+<P/>
+Let <M>S_j = U_1+\cdots+U_j</M> for <M>j=1,...,n+1.</M> We need
+the asymptotic joint distribution of <M>(S_k,S_{n+1}).</M> It
+would be better to work with <M>(S_k,S_{n+1}-S_k),</M> since
+these are independent. Also we shall work with <M>k = \lceil
+np\rceil.</M> So <M>k</M> itself depends on <M>n.</M>
+<P/>
+ 
+Let`s first work out in rough the asymptotic joint
+distribution. We know that the mean and variance of an Expo(1)
+distribution are both 1. So by CLT
+<D>
+[[S_k][k]]\sim AN(*(1,[[1k]])*)\text{ and } [[S_{n+1}-S_k][n+1-k]]\sim AN(*(1,[[1][n+1-k]])*),
+</D>
+and these are independent. Remember that we shall need to work
+with <M>[[S_k][S_{n+1}-S_k]].</M> So dividing both <M>S_k</M>
+and <M>S_{n+1}-S_k</M> by the same factor would be helpful. Let`s
+use <M>n+1</M> as the dividing factor. Then 
+<D>
+[[S_k][n+1]] = [[S_k][k]]\times[[k][n+1]]\sim
+AN(*(p,[[p^2][k]])*)\approx N(*(p,[[p][n+1]])*).
+</D>
+Hence 
+<D>
+\sqrt{n+1} (*([[S_k][n+1]]-p)*)\sim AN(0,p).
+</D>
+This was done in rough. It used the dubious argument that
+if <M>a_n\approx b_n</M> then <M>na_n\approx nb_n.</M> But it
+helps us to guess what we should try to prove. 
+
+<THM>
+Set up as above. Then
+<D>
+\sqrt{n+1} (*([[S_k][n+1]]-p)*)\tod N(0,p).
+</D>
+</THM>
+<PF>
+<MULTILINE>
+\sqrt{n+1} (*([[S_k][n+1]]-p)*)
+& = & \sqrt{n+1} (*([[S_k][k]]\times[[k][n+1]]-p)*)\\
+& = & \sqrt{n+1} (*( {*{[[Z_n][\sqrt{k}]]+1}*} \times[[k][n+1]]-p)*),
+\quad \text{where }Z_n = \sqrt{k}(*([[S_k][k]]-1)*)\tod N(0,1).\\
+& = & Z_n\times \sqrt{[[k][n+1]]} +  
+\sqrt{[[k][n+1]]} - p\sqrt{n+1}\tod N(0,p),
+</MULTILINE>
+since <M>\sqrt{[[k][n+1]]}\to \sqrt p</M> and <M>\sqrt{[[k][n+1]]} - p\sqrt{n+1}\to 0.</M> 
+
+<P/>
+This completes the proof.
+</PF>
+The following theorem is a simple corollary that we shall
+actually use. 
+<THM>
+<D>
+\sqrt n (*(<MAT>[[S_k][n+1]]\\
+[[S_{n+1}-S_k][n+1]]</MAT>-<MAT>p\\1-p</MAT>)*)\tod
+N_2(*(<MAT>0\\0</MAT>,<MAT>p & 0\\0 & 1-p</MAT> )*).
+</D>
+</THM>
+<PF>
+We have used the last theorem twice, once for <M>S_k</M> and then
+for <M>S_{n+1}-S_k,</M> which is actually the sum of <M>n+1-k</M>
+iid Expo(1) random variables. Finally we have used the
+independence of these two. 
+</PF>
+Our  main theorem for the Uniform(0,1) case will be proved by
+applying the (multivariate) delta method to this result. The
+following theorem gives the multivariate delta method.
+
+<THM name="Multivariate delta method">
+Let <M>T_1, T_2,...</M> be a sequence of randomlt distributed
+random variables taking values in <M>\rr^p.</M> Let <M>T</M> be
+another such random variable. Also let <M>\mu\in\rr^p</M> be a
+fixed vector. 
+If <M>\sqrt{n} (T_n-\mu) \tod T,</M> and <M>g:\rr^p\to\rr</M> is
+such that <M>\nabla g</M> is continuous in a neighbourhhood
+of <M>\mu,</M> then <M>\sqrt{n} (g(T_n)-g(\mu)) \tod \nabla g(\mu)T</M>
+</THM>
+<PF>
+Since <M>\sqrt{n} (T_n-\mu) \tod T,</M> we have <M>T_n \tod
+\mu.</M>
+
+By MVT, <M>g(T_n)-g(\mu) = \nabla g(\xi_n)(T_n-\mu)</M> for some <M>\xi_n\in (0,1).</M>
+<Q>
+<B>[Because:</B>
+<Q>
+Define <M>h(t) = g(\mu + t(T_n-\mu)).</M> Then <M>g(T_n)-g(\mu) =
+h(1)-h(0) = h`(\theta),</M> for some <M>\theta\in(0,1).</M>
+</Q>
+<B>]</B>
+</Q>
+So <M>\sqrt{n}(g(T_n)-g(\mu)) = \nabla
+g(\xi_n)\sqrt{n}(T_n-\mu)\tod \nabla g(\mu)T,</M> as required.
+</PF>
+
+Here at last is our final theorem for the Uniform(0,1) case.
+
+<THM>
+Same set up. Then <M>\sqrt{n}(\xnp-p)\tod N(0,p(1-p)).</M>
+</THM>
+<PF>
+Consider <M>g:(0,\infty)^2\to (0, \infty)</M> given by <M>g(x,y)
+= [[x][x+y]].</M>
+
+Notice that <M>g(*([[S_k][n+1]], [[S_{n+1}-S_k][n+1]])*) =
+[[S_k][S_{n+1}]]</M> and <M>g(p,1-p) = 0.</M> Also 
+<D>
+\nabla g(x,y) = [[(y,-x)][(x+y)^2]].
+</D>
+So by multivariate delta method, 
+<M>\sqrt{n}(\xnp-p)\tod N(0,\sigma^2),</M> where 
+<D>
+\sigma^2 = <MAT>1-p & -p</MAT><MAT>p & 0\\0 & 1-p</MAT><MAT>1-p
+\\ -p</MAT> = p(1-p),
+</D>
+as required.
+</PF>
+
+<HEAD2>The general case</HEAD2>
+<THM>
+Let <M>X_1,...,X_n</M> be iid with cdf <M>F(x)</M> and
+pdf <M>f(x).</M> We have some fixed <M>p\in(0,1).</M> We assume
+that <M>f(x)</M> is continuous and positive over a neighbourhood
+of the population quantile <M>x_p=F ^{-1}(p).</M> Then
+ <D>
+\sqrt n(\xnp - x_p) \tod N(*(0,[[p(1-p)][(f(x_p))^2]] )*).
+</D>
+</THM>
+<PF>
+We define <M>Y_i = F(X_i).</M> Apply Uniform(0,1) case to
+these. Finally apply inverse cdf transform to return to <M>X_i</M>`s.
+</PF>
+</NOTE>@}
