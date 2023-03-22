@@ -1,5 +1,4 @@
 <NOTE>
 @{<HEAD1>Chapter 2, Day 10</HEAD1>@}
-<UT u="MMBkNmnGtuA">chan</UT>
-bhUmikampa diye @{<E>Jacobian</E>@}  bojhAno. p,nipRe.  
+ei @{<E>video</E>@}-TA shIghrai Asbe. 
 </NOTE>
