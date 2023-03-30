@@ -3,4 +3,4 @@
 @{<UT u="sE_R7xfvK8E">Riemann integration for double
 integrals</UT>@}
 @{Double integral@}-der belAy @{<E>Riemann integration.</E>@}
-</NOTE>
+<DISQUSB url="https://arnabc74.github.io/mult/riem.html" id="riem"/></NOTE>

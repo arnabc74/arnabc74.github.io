@@ -4,4 +4,4 @@
 @{<E>Cylinder</E>@}-er durakam @{<E>general</E>@}  sa.njnA--Tene 
                                 tolA diye, Ar
  @{<E>generating line</E>@}  diye. 
-</NOTE>
+<DISQUSB url="https://arnabc74.github.io/mult/cyl.html" id="cyl"/></NOTE>
