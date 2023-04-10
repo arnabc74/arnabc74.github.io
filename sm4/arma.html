@@ -1,0 +1,458 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #ccc;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Moving average process">Moving average process</a>
+</li>
+<li>
+<a href="#Autoregressive process">Autoregressive process</a>
+</li>
+<li>
+<a href="#Invertibility of $MA(q)$">Invertibility of $MA(q)$</a>
+</li>
+<li>
+<a href="#Autoregressive moving average process">Autoregressive moving average process</a>
+</li>
+<li>
+<a href="#Estimation">Estimation</a>
+</li>
+<li>
+<a href="#Prediction">Prediction</a>
+</li>
+</ul>
+<hr/>
+$
+\newcommand{\h}{\hat}
+\newcommand{\b}{\mathbf}
+$
+<b>Ref: Introduction to Time Series and Forecasting by Brockwell
+and Davis</b>
+
+<h1><a
+name="Moving average process">Moving average process</a></h1>
+The $MA(q)$ is 
+$$
+X_t = \beta_0 \epsilon_t + \beta_1  \epsilon_{t-1} +
+\cdots + \beta_q \epsilon_{t-q},
+$$
+where the $\beta_i$'s are (unknown) fixed parameters
+and $(\epsilon_t)\sim WN(0,\sigma_\epsilon^2).$ 
+
+<p></p>
+Using $B$-notation, this may be written as $X_t =
+\theta(B) \epsilon_t,$ where 
+$$
+\theta(z) = \beta_0 + \beta_1 z + \cdots + \beta_q z^q.
+$$
+
+<p></p>
+We may assume, w.l.g., $\beta_0 = 1.$ This is what is done
+in most applications, though the notation $\beta_0$ helps
+while writing formulae. 
+<p></p>
+Clearly $(X_t)$ is (weakly/strongly) stationary according
+as $(\epsilon_t)$ is (weakly/strongly) stationary.
+<p></p>
+Here 
+<ul>
+
+<li>$E(X_t) = 0.$</li>
+
+<li>$V(X_t) = \sigma^2_\epsilon\sum_0^q \beta_i^2.$</li>
+
+<li>ACVF: $\gamma(h) = \left\{\begin{array}{ll}\sigma^2_\epsilon
+\sum_0^{q-h}\beta_i \beta_{i+h} &\text{if }h=0,...,q\\0&\text{if }h&gt;q\\\gamma(-h)&\text{if }h&lt;0\\\end{array}\right..$ </li>
+
+<li>ACF: $\rho(h) = \left\{\begin{array}{ll}\frac{\sum_0^{q-h}\beta_i \beta_{i+h}}{\sum_0^q\beta_i^2} &\text{if }h=0,...,q\\0&\text{if }h&gt;q\\\rho(-h)&\text{if }h&lt;0\\\end{array}\right..$ </li>
+
+</ul>
+It is interesting to note that the ACF cuts off after
+lag $q.$ This gives us a way to guess $q$ just by
+looking at ACF. Plot of $\rho(h)$ or rather of $\h
+\rho(h)$ against $h$ is a form of <b>correlogram</b>.
+
+<h1><a
+name="Autoregressive process">Autoregressive process</a></h1>
+The model is 
+$$
+X_t = \alpha_1 X_{t-1}+\cdots+\alpha_p X_{t-p}+\epsilon_t,\quad t\in{\mathbb Z},
+$$
+where the $\alpha_i$`s are (unknown) fixed parameters,
+and $(\epsilon_t)\sim WN(0,\sigma^2_\epsilon).$
+
+<p></p>
+Using $B$-notation this may be written as $\phi (B)X_t =
+\epsilon_t,$ where 
+$$
+\phi(z) = 1-\alpha_1z-\cdots-\alpha_pz^p.
+$$
+<p></p>
+This looks like a recursive definition, but unlike a usual
+recursive definition, we are not given any initial values to
+start the recursion from. Instead, $t$ is allowed to take
+all integer values! So how we start the recursion? Does it even
+make sense?
+<p></p>
+Well, it does. In fact, we can show (some non-trivial probablity
+arguement required) that given any white
+noise, $(\epsilon_t)$, there is a unique weakly stationary
+process $(X_t)$ that satisfies the above recursive
+relation. We define our $(X_t)$ to be that unique time
+series. Now, intuitively, we like to think of $X_t$ as being
+caused partly by its recent past values and some fresh
+error. But, for certain choices of $\alpha_i$`s, the unique
+stationary  $(X_t)$ satisfying the above recursion has the
+property that $X_t$ is correlated
+with $\epsilon_{t+h}$`s for $h&gt;0.$ In other words, the
+value observed today is correlated with fresh errors that will be
+born in the future! Naturally, we want to avoid such choices
+of $\alpha_i$`s. The resulting $AR(p)$ model is called
+a <b>causal</b> $AR(p)$ model. Generally, we always
+assume a causal model, even when we drop the adjective before $AR(p).$
+<p></p>
+The causality condition on the $\alpha_i$`s turns out to be
+rather nice mathematically: all the complex zeroes
+of $\phi(z)$ must lie outside the closed unit disc!    
+
+<p></p>
+In this case, one can express $\big(\phi(z) \big) ^{-1} $ as an
+absolutely convergent power series for $|z|\leq 1.$ It is
+interesting to note that then $X_t = \phi(B) ^{-1}
+\epsilon_t.$ 
+
+<p></p>
+It is easy to see that $E(X_t) = 0.$ But finding ACVF is
+somewhat more tricky. we start with the defining recursion 
+$$
+X_t = \alpha_1 X_{t-1}+\cdots+\alpha_p X_{t-p}+\epsilon_t,
+$$ 
+and multiply both sides with $X_{t-h}$ (for $h&gt;0$) and take expecation
+to get
+$$
+\gamma(h) = \alpha_1 \gamma(h-1)+\cdots+\alpha_p \gamma(h-p),
+$$
+since $cov(X_{t-h},\epsilon_t)=0$. Dividing
+by $V(X_t),$ which is free of $t,$ we get
+$$
+\forall h&gt;0 ~~\rho(h) = \alpha_1 \rho(h-1)+\cdots+\alpha_p \rho(h-p)
+$$
+Here $\rho(0)=1$ and the first $p-1$ equations are all
+in terms of $\rho(1),...,\rho(p-1),$
+since $\rho(-h)=\rho(h).$
+
+<p></p>
+Unlike $MA(q),$ here the ACF does not cut off. Rather they
+typically continue to decay geometrically. 
+<p></p>
+However, here we may consider PACF, which indeed cuts off after
+lag $p.$ Thus, PACF is a good way to identify $p.$
+
+<h1><a
+name="Invertibility of $MA(q)$">Invertibility of $MA(q)$</a></h1>
+
+We saw just now that an $AR(p)$ may be non-causal, but
+generally we avoid them by putting a condition on the
+coeefficients. Surprisingly, the same condition allows us to
+express a causal $AR(p)$ as an $MA(\infty)$ process. 
+<p></p>
+We can obviosly put an analogous condition on the coeffcients of
+an $MA(q)$ and express it as an $AR(\infty)$
+process. Such an $MA(q)$ is called <b>invertible</b>.
+
+<p></p>
+Unlike the cusality condtion on $AR(p)$, the invertibility
+condition is more of technical interest than of a statistical
+one. 
+
+<h1><a
+name="Autoregressive moving average process">Autoregressive moving average process</a></h1>
+Next we shall consider a mixture of $AR(p)$ and $MA(q)$
+which is called $ARMA(p,q):$
+$$
+\phi(B)X_t = \theta(B) \epsilon_t,~~t\in{\mathbb Z},
+$$
+where $\phi(z) = 1-\alpha_1z-\cdots-\alpha_p z^p$
+and $\theta(z) = 1+ \beta_1 z+\cdots + \beta_q z^q$
+both have their complex zeroes outside the closed unit disc.
+
+<p></p>
+This condition allows us to express the $ARMA(p,q)$ process
+as an $MA(\infty)$ as well as an $AR(\infty)$
+process. This duality is technically advantageous during various
+proofs. 
+
+<p></p>
+The mean of the $ARMA(p,q)$ process is $0,$ but the ACF
+or PACF is not very easy to compute analytically. Also, these do
+not cut off after lags $q$ or $p,$ respectively. 
+
+<h1><a
+name="Estimation">Estimation</a></h1>
+SUppose that we have  observed a weakly stationary time series
+for $n$ time points to get $X_1,...,X_n.$ The first
+thing we do is to make a plot. Let`s say there is no obvious
+trend or seasonal component (neither from the plot, nor from the
+domain knowledge). We want to
+fit an $ARMA(p,q)$ model to it. This means choosing
+appropriate $p,q$, then estimating the coefficients, and the
+wihite noise variance. The overall procedure is to search over
+different choices of $p,q$. For each choice we use MLE to
+fit the other parameters. Typically, the fits for the different
+candidate $p,q$`s are compared using Akaike`s Information
+Criterion (AIC) or its bias-corrected version (AICC). These are
+functions of the maxmimum likelhood obtained and the
+candidate $p,q.$ The value of $p,q$ minimising AIC or
+AICC is chosen.
+<p></p>
+The MLE procedure is far from simple, and involves many steps
+like initialisation, iteration, dealing with singular situations
+etc. However, all these are neatly covered by standard
+statistical softwares, and we shall not delve deeper
+inside. However, the procedure generally starts with  some basic
+estimation that we shall briefly touch upon next.
+<p></p>
+The mean of the process is obviously estimated by 
+$$
+\h \mu = \bar X.
+$$  
+Estimating ACVF is somewhat less intuitive:
+$$
+\h \gamma(h) = \frac 1n\sum_{t=1}^{n-h} (X_{t+h}-\bar X)(X_t-\bar
+X)\text{ for }h=0,1,...,n-1.
+$$ 
+Notice that we are subtracting the overall mean. Also we are
+dividing by $n$ and not $n-h.$ This ensures the sample
+covariance matrix constructed out of these is NND. 
+<p></p>
+Then we estimate ACF as
+$$
+\h \rho(h) = \h \gamma(h)/\h \gamma(0).
+$$ 
+
+<h1><a
+name="Prediction">Prediction</a></h1>
+Given a time series model (not
+necessarily stationary, but second order moments exist), some observed
+values: $X_1,...,X_n,$ we want to predict $X_{n+h}$ for
+some $h&gt;0.$
+<p></p>
+For this purpose we employ an (affine) linear predictor of the
+form 
+$$
+\h X_{n+h} = a_0 + a_1X_1 + \cdots a_n X_n.
+$$
+We choose $a_i$`s so that $E(\h X_{n+h}-X_{n+h})^2$ is
+minimum. Here we assume that the model is completely given to us
+(all parameters are known). So the best choice of $a_i$`s
+are in terms of those parameters. In practice we plug-in the
+estimators in place of the actual values. There are a couple of
+algorithims to obtain the best $a_i$`s. We shall describe
+one of them 
+ called the <b>innovations algorithm</b>.
+
+<p></p>
+We shall assume a zero mean process. We shall use the following
+notation:
+ <ol type="">
+
+<li> $\kappa(i,j)=E(X_iX_j)$</li>
+
+<li>$\h X_n$ will denote the best prediction of $X_n$
+based on $X_1,...,X_{n-1}$ for $n\geq 2.$ Also we
+define $\h X_1=0.$</li>
+
+<li>$U_n = X_n-\h X_n.$</li>
+
+</ol>
+Then 
+$$
+\left[\begin{array}{ccccccccccc}U_1\\\vdots\\ U_n
+\end{array}\right] = A\left[\begin{array}{ccccccccccc}X_1\\\vdots\\ X_n
+\end{array}\right] 
+$$
+for some lower triangular matrix with 1`s in the diagonal
+entries. It is this $A$ that we want to find out. 
+
+<p></p>
+Let`s call the two vectors $\b U_n$ and $\b X_n.$
+Similarly we define $\h{\b X}_n.$
+Then
+$$
+\h{\b X}_n = \b X_n - \b U_n = A ^{-1} \b U_n - \b U_n = (A ^{-1} -
+I) \b U_n.
+$$ 
+Notice that $A ^{-1} - I$ is a strict lower triangular
+matrix. Let`s write it as
+$$
+A ^{-1} - I = \left[\begin{array}{ccccccccccc}
+0 \\
+\theta_{1,1} &amp; 0  \\
+\theta_{2,2} &amp; \theta_{2,1} &amp; 0 \\
+\vdots &amp; \vdots \\
+\theta_{n-1,n-1} &amp; \theta_{n-1,n-2} &amp; \cdots &amp; \theta_{n-1,1} &amp; 0
+
+\end{array}\right]
+$$
+Then we can write
+$$
+\h X_{n+1} = \left\{\begin{array}{ll}
+0&\text{if }n=0\\
+\sum_1^n \theta_{n.j}(X_{n+1-j}-\h X_{n+1-j})&\text{if }n\in{\mathbb N}\\
+\end{array}\right..
+$$
+Then all one-step predictors $\h X_1,\h X_2,...$ can be
+computed if the $\theta_{i,j}$`s are known. The following
+algorithm finds precisely these:
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/../inno.png"></fieldset>
+</center>
+Here $v_n = E(X_{n+1}-\h X_{n+1})^2.$
+
+<p></p>
+
+For an $ARMA(p,q)$ we first estimated $\rho(h)$ (which
+supplies the $\kappa(i,j)$`s and then apply the above
+algorithm, which simplifies considerably for the $ARMA(p,q)$ case.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

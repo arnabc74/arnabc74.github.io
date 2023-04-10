@@ -1,0 +1,64 @@
+@{<NOTE>
+<HEAD1>Moving average process</HEAD1>
+The <M>MA(q)</M> is 
+<D>
+X_t = \beta_0 \epsilon_t + \beta_1 \epsilon_1 \epsilon_{t-1} +
+\cdots + \beta_q \epsilon_{t-q},
+</D>
+where the <M>\beta_i</M>'s are (unknown) fixed parameters
+and <M>(\epsilon_t)\sim WN(0,\sigma_\epsilon^2).</M> 
+
+<P/>
+Using <M>B</M>-notation, this may be written as <M>X_t =
+\theta(B) \epsilon_t,</M> where 
+<D>
+\theta(z) = \beta_0 + \beta_1 z + \cdots + \beta_q z^q.
+</D>
+
+<P/>
+We may assume, w.l.g., <M>\beta_0 = 1.</M> This is what is done
+in most applications, though the notation <M>\beta_0</M> helps
+while writing formulae. 
+<P/>
+Clearly <M>(X_t)</M> is (weakly/strongly) stationary according
+as <M>(\epsilon_t)</M> is (weakly/strongly) stationary.
+<P/>
+Here 
+<UL>
+<LI><M>E(X_t) = 0.</M></LI>
+<LI><M>V(X_t) = \sigma^2_\epsilon\sum_0^q \beta_i^2.</M></LI>
+<LI>ACVF: <M>\gamma(h) = <CASES>\sigma^2_\epsilon
+\sum_0^{q-h}\beta_i \beta_{i+h} <IF>h=0,...,q</IF>0<IF>h>q</IF>\gamma(-h)<IF>h<0</IF></CASES>.</M> </LI>
+<LI>ACF: <M>\rho(h) = <CASES>[[\sum_0^{q-h}\beta_i \beta_{i+h}][\sum_0^q\beta_i^2]] <IF>h=0,...,q</IF>0<IF>h>q</IF>\rho(-h)<IF>h<0</IF></CASES>.</M> </LI>
+</UL>
+It is interesting to note that the ACF cuts off after
+lag <M>q.</M> This gives us a way to guess <M>q</M> just by
+looking at ACF. 
+<COMMENT>
+Is it possible to estimate the <M>\beta_i</M>'s
+as well, just by looking at ACF? Unfortunately, no. The
+map <M>(1,\beta_1...,\beta_q)\to</M>ACF is not 1-1. However,
+something interesting happens here: this map is 2-1, i.e., given
+the ACF, there are exactly <I>two</I> sets
+of <M>(1,\beta_1...,\beta_q)</M> that lead to that ACF.  
+</COMMENT>
+<HEAD1>Autoregressive process</HEAD1>
+The model is 
+<D>
+X_t = \alpha_1 X_{t-1}+\cdots+\alpha_p X_{t-p}+\epsilon_t,\quad t\in\zz,
+</D>
+where the <M>\alpha_i</M>'s are (unknown) fixed parameters, and <M>(E_t)\sim WN(0,\sigma^2_\epsilon).</M>
+
+<P/>
+This looks like a recursive definition, but unlike a usual
+recursive definition, we are not given any initial values to
+start the recursion from. Instead, <M>t</M> is allowed to take
+all integer values! So how we start the recursion? Does it even
+make sense?
+<P/>
+Well, it does. In fact, we may show (some non-trivial probablity
+arguement required) that given any white
+noise, <M>(\epsilon_t)</M>, there is a unique weakly stationary
+process <M>(X_t)</M> that satisfies the above recursive
+relation. 
+</NOTE>@}
