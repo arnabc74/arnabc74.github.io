@@ -1,0 +1,443 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #ccc;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Frequency domain analysis">Frequency domain analysis</a>
+</li>
+<li>
+<a href="#Uses">Uses</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Finding structure">Finding structure</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Removing noise">Removing noise</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Sparsity and compressing">Sparsity and compressing</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Convolution">Convolution</a>
+</li>
+<li>
+<a href="#FFT">FFT</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}{\mathbf}$
+<h1><a
+name="Frequency domain analysis">Frequency domain analysis</a></h1>
+Consider a time series data set: $X_1,...,X_n.$ If you think
+of these as components of a data vector $\v x = (X_1,...,X_n),$
+then each $x_t$ is the coeffcient of $\v e_t$ in its
+representation w.r.t the canonical basis:
+$$
+\v x = x_1\v e_1+\cdots+ x_n\v e_n.
+$$  
+As we all know, the canonical basis is an ONB. Now we shall do
+two somewhat counterintuitive things: <ul>
+<li>first, we shall
+consider $\v x$ as a vector in ${\mathbb C}^n$ (though all its
+components are still real),</li> 
+
+<li>and second, we shall take a different ONB: $\v f_1,...,\v
+f_n$ of ${\mathbb C}^n$ (usual inner product) and express $\v x$ w.r.t this new
+basis:
+$$
+\v x = z_1\v f_1+\cdots+ z_n\v f_n.
+$$
+</li>
+</ul>
+Moving back and forth between $(x_1,...,x_n)$
+and $(z_1,...,z_n)$ is pretty straight forward, since 
+$$
+\left[\begin{array}{ccccccccccc}z_1\\\vdots\\z_n
+\end{array}\right]=P^* \left[\begin{array}{ccccccccccc}x_1\\\vdots\\x_n
+\end{array}\right],
+$$
+where $P$ is formed by stacking the new ONB side by side as
+columns:
+$$
+P = \left[\begin{array}{ccccccccccc}\v f_1 &amp; \cdots &amp; \v f_n
+\end{array}\right].
+$$
+This $P$ is a unitary matrix, and so inverting it is as
+simple as conjugate transposing it. So 
+$$
+\left[\begin{array}{ccccccccccc}x_1\\\vdots\\x_n
+\end{array}\right]=P \left[\begin{array}{ccccccccccc}z_1\\\vdots\\z_n
+\end{array}\right].
+$$
+The representation of the data vector w.r.t. the canonical basis
+is called its <b>time domain representation</b>. For a special
+choice of the new ONB, the representation w.r.t. that is called
+the <b>frequency domain representation</b>.
+<p></p>
+We shall now present this special new ONB. Instead of giving
+the $\v f_j$`s separately, we shall specify
+the $(h,k)$-th entry of the $P$
+matrix:
+$$
+P_{h,k} = \frac{1}{\sqrt n}\exp\left(2\pi i\frac{(h-1)(k-1)}{n}\right). 
+$$
+If we take $\omega_n = e^{2\pi i/n},$ (a
+primitive $n$-th root of unity), then 
+$$
+P = \frac{1}{\sqrt n}\left[\begin{array}{ccccccccccc}
+1 &amp; 1 &amp; \cdots &amp; 1\\
+1 &amp; \omega_n &amp; \cdots &amp; \omega_n^{n-1}\\
+1 &amp; \omega_n^2 &amp; \cdots &amp; \omega_n^{2(n-1)}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+1 &amp; \omega_n^{n-1} &amp; \cdots &amp; \omega_n^{(n-1)^2}
+
+\end{array}\right].
+$$
+The vector $(z_1,...,z_n)$ is often called the <b>Discrete
+Fourier Transform (DFT)</b> of the time series. Due to the
+structured nature of $P,$ it may be expected that DFT should
+less effort to compute than explicit matrix
+multiplication. That is indeed true. In fact, if $n$ is an
+integral power of $2,$ a class of very efficient algorithm exists
+called the <b>Fast Fourier Transform (FFT)</b>. The most famous
+algorithm in this class is the Cooley-Tukey algorithm, and we
+generally understand this algorithm, when we talk about FFT. 
+
+<p></p>
+
+An uncomfortable fact about DFT is that it takes
+into ${\mathbb C}^n.$ If just retain the real part of the DFT, then
+we get <b>Discrete Cosine Transform</b>. Similarly, the imaginary
+part leads to the <b>Discrete Sine Transform</b>.
+
+<p></p>
+Let`s now focus on the individual vectors of the new ONB:
+$$
+\v f_k = \frac{1}{\sqrt n}\left[\begin{array}{ccccccccccc}1\\ e^{w_k}\\ e^{2w_k}\\ \vdots\\ e^{(n-1)w_k}
+\end{array}\right],
+$$
+where $w_k = 2\pi i (k-1)/n.$ Since $e^{iwt} =
+\cos(wt)+i\sin(wt), $ we may think of $\v f_k$ as a
+complex time series whose real and imaginary parts both represent
+waves at the particular frequency $w_k.$ 
+<p></p>
+Thus $z_k,$ the coeffcient of $\v f_k$ in the
+Fourier representation of the data, may be considered as
+measuring the strength of that frequency in the time
+series. Indeed, with some physics, one may show that the total
+power accounted for by that frequency is proportional
+to $|z_k|^2.$ 
+  
+<h1><a
+name="Uses">Uses</a></h1>
+DFT is one of the most popular techniques used by the sceintific
+community at large. We shall touch upon 4 basic types of
+applications.
+
+<h2><a
+name="Finding structure">Finding structure</a></h2>
+Think of a time series as an audio signal, which is obtained by
+playing some musical intruments of different frquencies. DFT
+should show the different freqncies as different peaks. This
+approach  is used in many  music analysis tools. It is
+used for detecting periods in unfamiliar times series, like the
+sun spot data.
+
+<font color="red">
+<pre>
+library(tuneR) #You may need to install it first.
+x = normalize(2*sine(440) + sine(340))
+x = normalize(2*sine(440,dur=88200) + sine(340,dur=88200))
+plot(x)
+setWavPlayer("aplay") #You may need to change this depending on your
+                      #set up. You not even need this.
+play(x)
+z = fft(x@left)
+plot(abs(z)[1:1000],ty='l')
+which(abs(z)&gt;5000)
+</pre>
+</font> 
+
+<h2><a
+name="Removing noise">Removing noise</a></h2>
+When we want to filter out signal from noise, we look for some
+detectable characteristic wrt which the signal differes from
+signal. Freqeuncy often provides such a characteristic. <a href="noisy3.wav">Download
+the audio file here.</a> 
+<font color="red">
+<pre>
+x=readWave("noisy3.wav")
+play(x)
+z = fft(x@left)/sqrt(length(x))
+plot(abs(z),ty='l')
+length(z)
+zclean = z
+zclean[abs(z)&gt;1e6]=0
+#zclean[abs(z)&lt;1000]=0
+plot(abs(zclean),ty='l')
+xclean = x
+snd = fft(zclean,inv=T)/sqrt(length(x))
+tmp = Re(snd)
+xclean@left = 30000*tmp/max(abs(tmp))
+xclean@right = rep(0,length(x))
+play(xclean)
+</pre>
+</font>
+
+<h2><a
+name="Sparsity and compressing">Sparsity and compressing</a></h2>
+We often know a narrow frequncy range (or frequncy band) where our
+signal is supposed to lie. Anything outside this band may then be
+discarded, resulting in drastic reduction in the size of the data
+without any appreciable loss of quality. mp3 and jpeg are two
+well known examples.
+<p></p>
+Often over-reduction leads to "ringing".
+<p></p>
+
+<a href="original.wav">Download
+the audio file here.</a> 
+<font color="red">
+<pre>
+x = readWave("original.wav")
+z = fft(x@left)
+trimFreq = function() {
+  plot(abs(z),ty='l')
+  fromUser = locator(1)
+  side = floor(fromUser$x)
+  abline(v=c(side,29002-side),col='red',lwd=3)
+  fromUser = locator(1)
+  mid = floor(fromUser$x)
+  abline(v=c(mid,29002-mid),col='blue',lwd=3)
+  zclean = z
+  zclean[mid:(29002-mid)]=0
+  zclean[1]=0
+  zclean[2:side]=0
+  zclean[(29002-side):29000]=0
+  plot(abs(zclean),ty='l')
+  raw = fft(zclean,inv=T)
+  tmp = Re(raw)
+  xcomp = x
+  xcomp@left = 30000*tmp/max(abs(tmp))
+  play(xcomp)
+  invisible(list(side=side,mid=mid,clean=zclean,howBad=Im(raw)))
+}
+</pre>
+</font>
+
+<h2><a
+name="Convolution">Convolution</a></h2>
+A completely different type of application utilises an unexpected
+property of DFT. Before going into it, let me give an analogy
+from high school mathematics. We know log is the opposite of
+exponentiation. Now, the original reason behind the introduction
+of logarithms was to perform multiplication by addition. The base
+of the log was of little consequence. Widely used tools like
+Napier's bones and the slide rule, all used logarithms for just
+this purpose. 
+<p></p>
+Given two sequences we can define <b>convolution</b> between them
+like polynomial multiplication. This operation is often useful
+for masking purposes (like moving averaging). An important
+property of DFT is that 
+<blockquote>
+DFT(x o y) = DFT(x) * DFT(y).
+</blockquote>   
+So we can compute 
+<blockquote>
+x o y = IDFT(DFT(x) * DFT(y)).
+</blockquote>   
+Since computation of DFT or its inverse is pretty cheap, this
+roundabout way actually saves a lot of computational labour!
+
+<h1><a
+name="FFT">FFT</a></h1>
+FFT, or rather the Cooley-Tukey algorithm, peforms the matrix
+multiplication, keeping account of the fact that certain
+multipications occur multiple times. It performs these operations
+only once, and reuses the results when used later. To understand
+the idea consider the $n=4$ case. Then the unitary matrix is 
+$$
+P = \left[\begin{array}{ccccccccccc}1 &amp; 1 &amp; 1 &amp; 1\\
+1 &amp; \omega_4 &amp; \omega_4^2 &amp; \omega_4^3\\
+1 &amp; \omega_4^2 &amp; \omega_4^4 &amp; \omega_4^6\\
+1 &amp; \omega_4^3 &amp; \omega_4^6 &amp; \omega_4^9
+
+\end{array}\right],
+$$  
+where $\omega_4 = e^{2\pi i/4} = i.$ In the $n=2$ case
+the matrix is
+$$
+\left[\begin{array}{ccccccccccc}
+1 &amp; 1\\
+1 &amp; \omega_2
+
+\end{array}\right],
+$$
+where $\omega_2 = e^{2\pi i/2} = -1 = \omega_4^2$
+<p></p>
+Now look carefully once again at the matrix for the $n=4$
+case (I am writing $\omega$ for $\omega_4$):
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/../colmat.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+I have partitioned the matrix into 4 submatrices: red, blue,
+green and black. The red submatrix is just the matrix
+for the $n=2$ case. Once you remember that $\omega^4 =
+1,$ the green matrix is also the same. The blue matrix is
+almost the same matrix, except that the $i$-th row is
+multiplied by $\omega^i.$ The black matrix is the same as
+the blue matrix. Thus the $n=4$ case is actually made of 4
+copies of the $n=2$ case. 
+<p></p>
+The Cooley-Tukey algorithm utilises this recursive structure for
+the case $n=2^k$ for some $k.$
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
