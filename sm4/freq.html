@@ -71,8 +71,8 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <style>
 body {
   margin: 0;
-  background: #000;
-  color: #fff;
+  //background: #000;
+  //color: #fff;
 }
 
 
@@ -303,12 +303,13 @@ the audio file here.</a>
 <pre>
 x=readWave("noisy3.wav")
 play(x)
+plot(x)
 z = fft(x@left)/sqrt(length(x))
 plot(abs(z),ty='l')
 length(z)
 zclean = z
 zclean[abs(z)&gt;1e6]=0
-#zclean[abs(z)&lt;1000]=0
+zclean[abs(z)&lt;1000]=0
 plot(abs(zclean),ty='l')
 xclean = x
 snd = fft(zclean,inv=T)/sqrt(length(x))
@@ -335,6 +336,7 @@ the audio file here.</a>
 <font color="red">
 <pre>
 x = readWave("original.wav")
+play(x)
 z = fft(x@left)
 trimFreq = function() {
   plot(abs(z),ty='l')

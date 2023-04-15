@@ -128,12 +128,13 @@ the audio file here.</LINK>
 <R>
 x=readWave("noisy3.wav")
 play(x)
+plot(x)
 z = fft(x@left)/sqrt(length(x))
 plot(abs(z),ty='l')
 length(z)
 zclean = z
 zclean[abs(z)>1e6]=0
-#zclean[abs(z)<1000]=0
+zclean[abs(z)<1000]=0
 plot(abs(zclean),ty='l')
 xclean = x
 snd = fft(zclean,inv=T)/sqrt(length(x))
@@ -155,6 +156,7 @@ Often over-reduction leads to "ringing".
 the audio file here.</LINK> 
 <R>
 x = readWave("original.wav")
+play(x)
 z = fft(x@left)
 trimFreq = function() {
   plot(abs(z),ty='l')
