@@ -106,20 +106,24 @@ sun spot data.
 
 <R>
 library(tuneR) #You may need to install it first.
-x = normalize(2*sine(440) + sine(340))
+#x = normalize(2*sine(440) + sine(340))
 x = normalize(2*sine(440,dur=88200) + sine(340,dur=88200))
 plot(x)
 setWavPlayer("aplay") #You may need to change this depending on your
                       #set up. You not even need this.
 play(x)
 z = fft(x@left)
+plot(abs(z),ty='l')
 plot(abs(z)[1:1000],ty='l')
 which(abs(z)>5000)
+plot(sunspots,ty='l')
+z = fft(sunspots)
+plot(1:length(sunspots),abs(z),ty='l')
 </R> 
 <HEAD2>Removing noise</HEAD2>
 When we want to filter out signal from noise, we look for some
-detectable characteristic wrt which the signal differes from
-signal. Freqeuncy often provides such a characteristic. <LINK to="noisy3.wav">Download
+detectable characteristic wrt which the signal differs from
+noise. Freqeuncy often provides such a characteristic. <LINK to="noisy3.wav">Download
 the audio file here.</LINK> 
 <R>
 x=readWave("noisy3.wav")
