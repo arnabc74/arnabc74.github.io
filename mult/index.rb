@@ -3,6 +3,14 @@
 eiTA AmAr @{<E>Multivariable Calculus</E>@}  baiyer oyebpej. bhultruTi yA berobe, ekhAne tAr
  tAlikA thAkbe. baiyer yekhAne @{<E>functional dependence</E>@}-er AlochanA chhila, sekhAne ekTA
  pepArer kathA balechhilAm. seTA <LINK to="WFNewns.pdf">ekhAn theke DAunloD karte pAro</LINK>.  
+<HEAD2>bhul-truTi</HEAD2>  
+<UL>
+<LI><IMG web="p268.png">@{<E>268</E>@}  pAtAr a.nsha.</IMG>
+ekhAne oi lAl diye dekhAno
+ @{<E>integral</E>@}-TA @{<M>1</M>@}  theke @{<M>\infty</M>@}  parYanta habe. bhulTA parer pAtAteo
+ gaRiyechhe. bhulTA dharechhen jaydIp sen.
+</LI>
+</UL>
 <P/>
 <DISQUSB url="https://arnabc74.github.io/mult/index.html" id="mult"/>
 </NOTE> 
