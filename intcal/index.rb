@@ -8,7 +8,9 @@ bhultruTi yA berobe, ekhAne diye deba. baiTAr byApAre kono bak+tabya
 thAkle ei pAtAr nIche mantabya karAr jAygAy likhe dilei Ami peye yAba. 
 
 <HEAD1>bhultruTi</HEAD1>
-<UL><LI>
+<UL>
+<LI><IMG web="p84.png">@{<E>84</E>@}  pAtAr a.nsha</IMG> bhulTA dharechhen asImA dAs.</LI>
+<LI>
 <IMG web="p107.png">@{<E>107</E>@}  nambar pAtAr a.nsha</IMG>
 ekhAne lAl diye ghire deoyA @{<M>x</M>@}-gulo sab @{<M>[[x2]]</M>@}  habe. bhulTAr khabar peyechhi saptar+Si sAdhukhAner 
 kAchh theke. 
