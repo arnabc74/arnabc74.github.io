@@ -24,6 +24,8 @@ The suprema are generally maxima, and are obtained by plugging
 appropriate MLEs of <M>\theta </M> into the likelihood function.
 <P/>
 
+
+
 The convergence is often rather poor in practice. But still LRT
 is quite popular. We shall see one example below.
 
