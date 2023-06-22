@@ -67,6 +67,61 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +129,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -92,14 +148,38 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Combining trees">Combining trees</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The comma family (dyad)">The comma family (dyad)</a>
+</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Appending">Appending</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Laminate">Laminate</a>
+<a href="#Laminate ">Laminate </a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Stitch">Stitch</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The comma family (monad)">The comma family (monad)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Ravel ">Ravel </a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Itemize ">Itemize </a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Ravel items ">Ravel items </a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The semicolon family">The semicolon family</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Box-append (link)">Box-append (link)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Raze">Raze</a>
 </li>
 </ul>
 <hr/>
@@ -116,13 +196,16 @@ name="Structure of trees">Structure of trees</a></h2>
 A tree in J is always balanced. This allows an easy way to store
 it. Just store the leaf nodes, and also the shape. So if you want
 to reshape the tree, just change the shape. This is done
-using <font color="red"><code>$</code></font> dyad. If the list has length different from the
+using <font color="red"><code>$</code></font> dyad. It considers the tree as a list (not the
+inderlying list). If the list has a length different from the
 product of the shape values, then the list is replicated
 (possibly partially). The same symbol <font color="red"><code>$</code></font> used as a monad
 will extract the shape of a tree. The monad <font color="red"><code>#</code></font> returns the
 number of items in a tree. If we want to see the
 underlying list, then you can use the monad <font color="red"><code>,</code></font>
-(mysteriously called ravel).
+(mysteriously called ravel). To really change the shape you need
+to use <font color="red"><code>m n $ , x</code></font>
+
 
 <h2><a
 name="Accessing items">Accessing items</a></h2>
@@ -141,7 +224,7 @@ Most often a tree is best considered as a list of items. Such
 'a b c' =: x
 </pre>
 </span>
-This command expects <font color="red"><code>x</code></font> to be a packet of 3 items. These
+This command expects <font color="red"><code>x</code></font> to be a list of 3 items. These
  get stored in the variables <font color="red"><code>a</code></font>, <font color="red"><code>b</code></font> and <font color="red"><code>c</code></font>.
 <p></p>
 
@@ -154,7 +237,8 @@ name="Modifying a tree">Modifying a tree</a></h2>
 The dyad <font color="red"><code>|:</code></font> will transpose the tree, <i>i.e.</i>, reverse the
 shape (and the underlying list accordingly). Used as a dyad it
 will allow more diverse way to permute the shape (and the
-underlying list accordingly).
+underlying list accordingly). Basically, <font color="red"><code>|:</code></font>
+applies <font color="red"><code>|.</code></font> to the shape.
 
 <h2><a
 name="Combining trees">Combining trees</a></h2>
@@ -227,10 +311,30 @@ Next we attack the layer above:
 </tr>
 </table>
 </center>
-This process is always done internally. 
+This process is always done internally.
+
+<h2><a
+name="The comma family (dyad)">The comma family (dyad)</a></h2> 
+
 <h3><a
 name="Appending">Appending</a></h3>
-The <font color="red"><code>,</code></font> dyad appends two trees "side by side". 
+The <font color="red"><code>,</code></font> dyad appends two trees "side by side":
+ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/app.png"></th>
+</tr>
+<tr>
+<th>The new tree may need to be balanced</th>
+</tr>
+</table>
+</center>
+
+
+<p></p>
+Here is a complete example with balancing.
+
 <center>
 <table width="100%">
 <tr>
@@ -296,11 +400,25 @@ where the atom is <i>replicated in all its leaf nodes</i>:
 Intuitively, appending is a way to grow a longer list.
 
 <h3><a
-name="Laminate">Laminate</a></h3>
+name="Laminate ">Laminate </a></h3>
+
+<font color="red"><code>,:</code></font>
 Another natural way to combine two trees is by creating a new
 tree with these two trees as items (and then balancing if
 needed). This is called lamination, and effected
-by <font color="red"><code>,:</code></font>. Here's one example:
+by <font color="red"><code>,:</code></font>. 
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lam.png"></th>
+</tr>
+<tr>
+<th>The new tree needs to be balanced.</th>
+</tr>
+</table>
+</center>
+Here's one complete example with balancing.
 <center>
 <table width="100%">
 <tr>
@@ -340,13 +458,97 @@ the way to grow a list of lists.
 
 <h3><a
 name="Stitch">Stitch</a></h3>
+
+<font color="red"><code>,.</code></font>
 This is yet another way to combine two trees which is not very
 intuitive. If we have a list of $x$-values and a
 corresponding list of $y$-values, then stitching will
 produce a list of $(x,y)$ pairs. More precisely, given two
 trees with equal number of items, the corresponding items pairs
-are appended. If the numbers of items are not equal, then J
+are appended. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/stitch1.png"></th>
+</tr>
+<tr>
+<th>Step 1: two trees to be stitched together</th>
+</tr>
+</table>
+</center>
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/stitch2.png"></th>
+</tr>
+<tr>
+<th>Step 2: the final result</th>
+</tr>
+</table>
+</center>
+If the numbers of items are not equal, then J
 reports a length error.
+
+<h2><a
+name="The comma family (monad)">The comma family (monad)</a></h2>
+
+<h3><a
+name="Ravel ">Ravel </a></h3>
+
+<font color="red"><code>,</code></font>
+Sometimes you need to see the underlying list. This is
+called <b>ravel</b>ling, and is effected by the
+monad <font color="red"><code>,</code></font>. In terms of trees, it creates a new tree with the
+same leaf nodes in the same order, but immediately under the
+root. If the original tree is just the root node, then ravel
+creates a new root node above it.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ravel.png"></th>
+</tr>
+<tr>
+<th>Ravelling</th>
+</tr>
+</table>
+</center>
+
+
+<h3><a
+name="Itemize ">Itemize </a></h3>
+
+<font color="red"><code>,:</code></font>
+This creates a new tree, with the old tree as its single item. In
+other words, it adds a parent to the root node, and that parent
+becomes the new root node. A leading 1 is added to the shape. In
+terms of sets it is like converting $x$ to a singleton
+set $\{x\}$.
+
+<h3><a
+name="Ravel items ">Ravel items </a></h3>
+
+<font color="red"><code>,.</code></font>
+This applies ravel to each item separately. Indeed this is the
+same as ravelling with rank $-1.$
+
+<h2><a
+name="The semicolon family">The semicolon family</a></h2>
+
+<h3><a
+name="Box-append (link)">Box-append (link)</a></h3>
+The dyad <font color="red"><code>;</code></font> effectively does the same thing as the dyad <font color="red"><code>,</code></font>, but after
+boxing. The result is a tree with two leaf nodes under a root,
+the  leaf nodes being boxes containing the original
+trees. Simple!
+
+<h3><a
+name="Raze">Raze</a></h3>
+This is the monad <font color="red"><code>;</code></font>. It performs unboxing and then tries
+to append the box contents together. As the box contents may be
+wildly different, this may entail a massive amount of recasting
+and balancing.   Remember that unboxing keeps unboxed things unaltered.
+ 
 <font color="red"><code>|.</code></font>, <font color="red"><code>|:</code></font>,
 <font color="red"><code>'a b'=: x</code></font>
 <hr/>

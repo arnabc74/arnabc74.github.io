@@ -67,6 +67,61 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +129,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -139,7 +195,7 @@ is always from right to left.
 
 
 <fieldset>
-<legend><b><font color="red"><code>&lt;</code></font>, <font color="red"><code>&gt;</code></font> (dyads)</b></legend>
+<legend><b><font color="red"><code>&lt; </code></font>, <font color="red"><code>&gt; </code></font> (dyads)</b></legend>
 These are the familiar comparisons. They return 0 or 1.  J does
 not have any separate boolean data type.
 </fieldset>
@@ -161,15 +217,48 @@ name="Familiar functions, unfamiliar symbols">Familiar functions, unfamiliar sym
 
 
 <fieldset>
+<legend><b><font color="red"><code>i.</code></font>, <font color="red"><code>i:</code></font> (monad)</b></legend>
+Sequences.
+</fieldset>
+
+
+<fieldset>
+<legend><b><font color="red"><code>i.</code></font>, <font color="red"><code>i:</code></font> (dyad)</b></legend>
+Index of first occurence: list i. elt.
+Index of last occurence: list i: elt.
+</fieldset>
+
+
+<fieldset>
+<legend><b><font color="red"><code>j.</code></font> (monad and dyad)</b></legend>
+Imaginary. Complex.
+</fieldset>
+
+
+<fieldset>
+<legend><b><font color="red"><code>p.</code></font> (monad and dyad)</b></legend>
+Find roots: p. coeffs in increasing order
+Eval poly: coeffs p. where
+</fieldset>
+
+
+
+<fieldset>
 <legend><b><font color="red"><code>%</code></font> (dyad)</b></legend>
 This is division.
 </fieldset>
 
 
 <fieldset>
-<legend><b><font color="red"><code>=</code></font>, <font color="red"><code>&lt;:</code></font>, <font color="red"><code>&gt;:</code></font></b></legend>
-These are all conditions testing for equality, $\leq$
-and $\geq.$ A common mistake is to use <font color="red"><code>=</code></font> for assignment.
+<legend><b><font color="red"><code>#.</code></font> and <font color="red"><code>#:</code></font>(monad and dyad)</b></legend>
+From/To some base to/from decimal.
+</fieldset>
+
+
+<fieldset>
+<legend><b><font color="red"><code>=</code></font>, <font color="red"><code>&lt;:</code></font>, <font color="red"><code>&gt;:</code></font>, <font color="red"><code>~:</code></font> (dyads)</b></legend>
+These are all conditions testing for equality, $\leq$,
+$\geq$ and $\neq.$ A common mistake is to use <font color="red"><code>=</code></font> for assignment.
 </fieldset>
 
 
@@ -218,7 +307,12 @@ Creates a lis 0 1 2 3 ... up to one less than the argument.
 
 
 <fieldset>
-<font color="red"><code>]</code></font> (monad) identity funtion.</fieldset>
+<legend><b><font color="red"><code>]</code></font> (monad)</b></legend> identity funtion.</fieldset>
+
+
+<fieldset>
+<legend><b><font color="red"><code>|:</code></font> (monad)</b></legend> transpose. Actually more
+general than that.</fieldset>
 
 
 <fieldset>
@@ -226,8 +320,11 @@ Creates a lis 0 1 2 3 ... up to one less than the argument.
 
 
 
-<h2><a
-name="Less familiar functions">Less familiar functions</a></h2>
+<fieldset>
+<legend><b><font color="red"><code>-.</code></font> (dyad)</b></legend>
+Set minus
+</fieldset>
+
 
 <fieldset>
 <legend><b><font color="red"><code>!</code></font> (monad and dyad)</b></legend>
@@ -250,6 +347,20 @@ different results for 64 bit and 32 bit machines.
 <legend><b><font color="red"><code>|</code></font>(monad and dyad)</b></legend>
 Absolute value as monad. Remainder as dyad, <i>e.g.</i>, <font color="red"><code>3 | 4</code></font>
 returns 1.</fieldset>
+
+
+<h2><a
+name="Less familiar functions">Less familiar functions</a></h2>
+
+
+<fieldset>
+<legend><b><font color="red"><code>~.</code></font> (monad)</b></legend> unique values</fieldset>
+
+
+<fieldset>
+<legend><b><font color="red"><code>~:</code></font> (monad)</b></legend> positions of first occurences
+of unique values</fieldset>
+
 
 
 
