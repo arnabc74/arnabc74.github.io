@@ -234,11 +234,17 @@ item then use the monad <font color="red"><code>}:</code></font>.
 
 <h2><a
 name="Modifying a tree">Modifying a tree</a></h2>
-The dyad <font color="red"><code>|:</code></font> will transpose the tree, <i>i.e.</i>, reverse the
-shape (and the underlying list accordingly). Used as a dyad it
-will allow more diverse way to permute the shape (and the
-underlying list accordingly). Basically, <font color="red"><code>|:</code></font>
-applies <font color="red"><code>|.</code></font> to the shape.
+
+<font color="red"><code>|:</code></font> (monad and dyad) 
+applies <font color="red"><code>|.</code></font> (monad and dyad) to the shape.
+
+This effectively permutes the indices always maintaining the
+following contract: If $\pi$ denote the permutation, then 
+the new entry at $(\pi(i_1),...,\pi(i_k))$ will always
+equal the old entry at $(i_1,...,i_k)$.
+<p></p>
+ 
+The dyad <font color="red"><code>|:</code></font> will transpose a matrix.
 
 <h2><a
 name="Combining trees">Combining trees</a></h2>
@@ -521,7 +527,18 @@ name="Itemize ">Itemize </a></h3>
 <font color="red"><code>,:</code></font>
 This creates a new tree, with the old tree as its single item. In
 other words, it adds a parent to the root node, and that parent
-becomes the new root node. A leading 1 is added to the shape. In
+becomes the new root node. A leading 1 is added to the shape.
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/item.png"></th>
+</tr>
+<tr>
+<th>Itemization</th>
+</tr>
+</table>
+</center>
+ In
 terms of sets it is like converting $x$ to a singleton
 set $\{x\}$.
 
@@ -544,13 +561,25 @@ trees. Simple!
 
 <h3><a
 name="Raze">Raze</a></h3>
-This is the monad <font color="red"><code>;</code></font>. It performs unboxing and then tries
-to append the box contents together. As the box contents may be
-wildly different, this may entail a massive amount of recasting
-and balancing.   Remember that unboxing keeps unboxed things unaltered.
- 
-<font color="red"><code>|.</code></font>, <font color="red"><code>|:</code></font>,
-<font color="red"><code>'a b'=: x</code></font>
+This is the monad <font color="red"><code>;</code></font>. It expects a list of boxes, unboxes
+the items and then tries
+to append them together. As the items may be
+wildly different in shape and type, this may entail a massive amount of recasting
+and balancing.   
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/raze.png"></th>
+</tr>
+<tr>
+<th>The new tree may need to be balanced</th>
+</tr>
+</table>
+</center>
+Remember that unboxing keeps unboxed things
+unaltered. So if the tree were a list of unboxed items, then raze
+is just same a appending the items.
+
 <hr/>
 <table width="100%" border="0">
 <tr>

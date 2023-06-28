@@ -19,6 +19,9 @@ ekhAne @{<E>5</E>@}-er badale @{<E>6</E>@}  habe. bhulTA dharechhen prafesar ash
  @{<M>2\times2\times2 = 8.</M>@}  bhulTA dharechhe m\ounab. prashnaTAr bhASAo sAmAnya badlAno uchit. 
 @{<E>''If <M>r,s,t</M>  are prime numbers''</E>@}  nA bale balA uchit chhila @{<E>''If
  <M>r,s,t</M>  are <I>distinct</I> prime numbers''.</E>@}</LI>
+<LI><IMG web="p16.png">@{<E>16</E>@}  na.n pAtAr a.nsha</IMG>
+Ish.h, @{<E>Excercise 25</E>@}-er uttareo fer gublechhi. uttarTA habe @{<M>30.</M>@}  kAraN @{<M>m</M>@}  eba.n @{<M>n</M>@}-er 
+chihna ekai hate bAdhya! bhulTA dharechhe chayan hAldAr. </LI>
 <LI><IMG web="p23.png">@{<E>23</E>@}  na.n pAtAr a.nsha</IMG>
 ekhAne lAl @{<E>6</E>@}-er badale @{<E>2</E>@}  habe. tAi nIl @{<E>15</E>@}-TA haye yAbe
  @{<E>11.</E>@}  ekai kAraNe parer pAtAr lAl @{<E>15</E>@}-TAo @{<E>11 </E>@} haye yAbe--

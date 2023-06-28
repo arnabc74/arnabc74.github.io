@@ -154,6 +154,11 @@ returns 1.</BOX>
 <BOX><NAME><C>~:</C> (monad)</NAME> positions of first occurences
 of unique values</BOX>
 
+<BOX><NAME><C>q:</C> (monad)</NAME> prime factors.</BOX>
+
+<BOX><NAME><C>q:</C> (dyad)</NAME> prime factor exponents.</BOX>
+
+
 
 
 <HEAD2>Strange functions</HEAD2>

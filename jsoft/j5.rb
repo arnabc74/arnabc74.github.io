@@ -43,11 +43,16 @@ except the first use <C>}.</C>. If you want to remove the last
 item then use the monad <C>}:</C>.
 
 <HEAD2>Modifying a tree</HEAD2>
-The dyad <C>|:</C> will transpose the tree, i.e., reverse the
-shape (and the underlying list accordingly). Used as a dyad it
-will allow more diverse way to permute the shape (and the
-underlying list accordingly). Basically, <C>|:</C>
-applies <C>|.</C> to the shape.
+<C>|:</C> (monad and dyad) 
+applies <C>|.</C> (monad and dyad) to the shape.
+
+This effectively permutes the indices always maintaining the
+following contract: If <M>\pi</M> denote the permutation, then 
+the new entry at <M>(\pi(i_1),...,\pi(i_k))</M> will always
+equal the old entry at <M>(i_1,...,i_k)</M>.
+<P/>
+ 
+The dyad <C>|:</C> will transpose a matrix.
 
 <HEAD2>Combining trees</HEAD2>
 Next we shall discuss three important ways to combine two trees
@@ -160,7 +165,9 @@ creates a new root node above it.
 <C>,:</C>
 This creates a new tree, with the old tree as its single item. In
 other words, it adds a parent to the root node, and that parent
-becomes the new root node. A leading 1 is added to the shape. In
+becomes the new root node. A leading 1 is added to the shape.
+ <CIMG web="item.png">Itemization</CIMG>
+ In
 terms of sets it is like converting <M>x</M> to a singleton
 set <M>\{x\}</M>.
 
@@ -177,11 +184,14 @@ the  leaf nodes being boxes containing the original
 trees. Simple!
 
 <HEAD3>Raze</HEAD3>
-This is the monad <C>;</C>. It performs unboxing and then tries
-to append the box contents together. As the box contents may be
-wildly different, this may entail a massive amount of recasting
-and balancing.   Remember that unboxing keeps unboxed things unaltered.
- 
-<C>|.</C>, <C>|:</C>,
-<C>'a b'=: x</C>
+This is the monad <C>;</C>. It expects a list of boxes, unboxes
+the items and then tries
+to append them together. As the items may be
+wildly different in shape and type, this may entail a massive amount of recasting
+and balancing.   
+ <CIMG web="raze.png">The new tree may need to be balanced</CIMG>
+Remember that unboxing keeps unboxed things
+unaltered. So if the tree were a list of unboxed items, then raze
+is just same as appending the items.
+
 </NOTE>@}
