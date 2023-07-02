@@ -31,6 +31,10 @@ ekhAne lAl kare ghire deoyA  @{<M>\rr</M>@}-TA habe  @{<M>\cc.</M>@}   bhulTA dh
 </LI>
 <LI>@{<E>177</E>@}  Ar @{<E>178</E>@}  nambar pAtAy besh kichhu bhul Achhe. Thik karle habe 
 <LINK to="image/p1778.pdf">ei rakam</LINK>. bhul~gulor dike drriSTi AkarSaN karechhe ar+kajit.  </LI>
+<LI>@{<E>373</E>@}  pAtAy Achhe ei a.nshaTA--
+<CIMG web="p373.png"></CIMG>
+ekhAne lAl kare ghire deoyA  dhApTA  habe  @{<M>(f(0)+g(0), f(1)+g(1)).</M>@}     bhulTA dharechhen bijiteS hAldAr.   
+</LI>
 </OL>
 @{<HEAD1>JAM, 2014</HEAD1>@}
 @{<QN1>jam2014.q1.png</QN1>@}
