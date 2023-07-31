@@ -1450,6 +1450,7 @@ rectangular format. Let's discuss this next.
 data matrix. Fill the forms and watch the data matrix grow.
 ]
 <FLD>
+
 We have already seen how the values in a data set result from
 five different sources: measuring,  observing, looking up, asking
 and deriving. But when we want to cast the data into a data
@@ -1490,6 +1491,7 @@ land holding, there must be a value for the area. It could be 0,
 or could be some special marker like NA, or may simply be left
 blank. 
 <TODO>Use NREG_JOB_CARD example from hugli data here.</TODO>
+
 </FLD>
 </SC>
 </SCRIPT>
@@ -2949,6 +2951,7 @@ In this course, however, we shall not consider these layouts.
 </SCRIPT>
 
 <FLD>
+
 <EXRLIST id="m1l4_f.yml">
 
 - typeName: multipleChoice
@@ -6358,6 +6361,7 @@ can simulate data.
 </SCRIPT>
 
 <FLD>Actual coin toss
+
 <EXRLIST id="m3l3_c.yml">
 - typeName: textReflect
   prompt: >
@@ -6401,6 +6405,7 @@ can simulate data.
      It will decrease to zero. Use the last exercise to see this.
 
 </EXRLIST>
+
 </FLD>
 <STKY><HEAD3>Module 3, Lesson 3,  Video 4: Frequency distribution</HEAD3></STKY>
 <SCRIPT id="m3/l3/v4" done="k" t="6:14">

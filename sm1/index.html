@@ -1,0 +1,241 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Statistical Methods 1 (2023)">Statistical Methods 1 (2023)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reference materials">Reference materials</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Statistical Methods 1 (2023)">Statistical Methods 1 (2023)</a></h1>
+This is the course webpage for Statistical Methods 1 for
+B.Stat(hons) first year students (2023). I shall post various
+things (code snippets, data sets etc) here from time to time.
+<p></p>
+
+<table align="right" width="50%">
+<tr>
+<td><b>Notice board</b></td>
+</tr>
+<tr>
+<td>
+<iframe src="news.html"></iframe>
+</td>
+</tr>
+</table>
+
+<p></p>
+
+
+<h2><a
+name="Reference materials">Reference materials</a></h2>
+The lecture notes are the main reference materials. You should also
+take a look at  the following  books. The lectures
+will <i>not</i>  follow the books. 
+<dl>
+
+<dt>
+<b>Statistics</b> by <i>Witte and Witte</i>
+</dt>
+
+<dd>The book that is closes to being our main textbook. It is an
+easy-going book, not too ambitious.</dd>
+
+
+<dt>
+<b>Statistics</b> by <i>Freedman, Pisani and Purves</i>
+</dt>
+
+<dd>This book is a thought-provoking one. It has ideas and open
+questions. Not a regular textbook, but a welcome change from the
+world of classroom lectures.</dd>
+
+
+<dt>
+<b>How to Lie with Statistics</b> by <i>Huff</i>
+</dt>
+
+<dd>A fun book, as its name suggests. Contains cartoons, and some
+valuable insights. A must read, when you get bored!</dd>
+
+</dl>
+
+We shall
+use the R environment (language plus libraries)   for all our computation. If you know Python,
+that`s great, but please also learn R. We shall need only only a small
+subset of features of R, that we shall discuss and demonstrate
+in class. The following  books are for optional self-reading.
+<dl>
+
+<dt>
+<b><a href="arnabRtut.pdf">A short R tutorial</a></b>
+</dt>
+
+<dd>I put together this little tutorial to get you started in
+R. It has some things for you to type and watch the outputs to
+explore R.</dd>
+
+
+<dt>
+<b>R for Everyone</b> by <i>Lander</i>
+</dt>
+
+<dd>An introduction to the R language and environment. </dd>
+
+
+
+<dt>
+<b>The Art of R Programming</b> by <i>Matloff</i>
+</dt>
+
+<dd>Another introductory book for  R.</dd>
+
+
+
+
+</dl>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

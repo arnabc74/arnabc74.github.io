@@ -1,0 +1,53 @@
+@{<NOTE>
+<HEAD1>Statistical Methods 1 (2023)</HEAD1>
+This is the course webpage for Statistical Methods 1 for
+B.Stat(hons) first year students (2023). I shall post various
+things (code snippets, data sets etc) here from time to time.
+<P/>
+<NEWS src="news.html"/>
+<P/>
+
+<HEAD2>Survival tips</HEAD2>
+Please read <LINK to="survival.html">these tips</LINK>. 
+
+<HEAD2>Reference materials</HEAD2>
+The lecture notes are the main reference materials. You should also
+take a look at  the following  books. The lectures
+will <I>not</I>  follow the books. 
+<DL>
+<DT><B>Statistics</B> by <I>Witte and Witte</I></DT>
+<DD>The book that is closest to being our main textbook. It is an
+easy-going book, not too ambitious.</DD>
+
+<DT><B>Statistics</B> by <I>Freedman, Pisani and Purves</I></DT>
+<DD>This book is a thought-provoking one. It has ideas and open
+questions. Not a regular textbook, but a welcome change from the
+world of classroom lectures.</DD>
+
+<DT><B>How to Lie with Statistics</B> by <I>Huff</I></DT>
+<DD>A fun book, as its name suggests. Contains cartoons, and some
+valuable insights. A must read, when you get bored!</DD>
+</DL>
+
+We shall
+use the R environment (language plus libraries)   for all our computation. If you know Python,
+that`s great, but please also learn R. We shall need only only a small
+subset of features of R, that we shall discuss and demonstrate
+in class. The following  books are for optional self-reading.
+<DL>
+<DT><B><LINK to="arnabRtut.pdf">A short R tutorial</LINK></B></DT>
+<DD>I put together this little tutorial to get you started in
+R. It has some things for you to type and watch the outputs to
+explore R.</DD>
+
+<DT><B>R for Everyone</B> by <I>Lander</I></DT>
+<DD>An introduction to the R language and environment. </DD>
+
+
+<DT><B>The Art of R Programming</B> by <I>Matloff</I></DT>
+<DD>Another introductory book for  R.</DD>
+
+
+
+</DL>
+</NOTE>@}

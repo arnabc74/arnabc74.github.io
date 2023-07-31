@@ -1,0 +1,314 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Survival guidelines">Survival guidelines</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What goes wrong?">What goes wrong?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#How to cope with study problems">How to cope with study problems</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#How to cope with teachers">How to cope with teachers</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#How to cope with hostel life">How to cope with hostel life</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Survival guidelines">Survival guidelines</a></h1>
+
+<center>
+<i>[Views expressed here are not officially endorsed by ISI.]</i>
+</center>
+Welcome to ISI. I am sure you are all very good students. But
+possibly you feel a bit apprehensive about whether your good
+days will continue at ISI. Indeed, this apprehension is
+justified, as ISI days are going to be rather different from what
+you have seen so far. 
+
+<h2><a
+name="What goes wrong?">What goes wrong?</a></h2>
+If you think carefully you'll notice that
+your good academic career so far has depended on these three factors:
+<ol type="">
+
+<li>You lived in a supportive environment (your parents cared
+for you, maintained daily routines, kept disturbances away
+etc).</li>
+
+<li>You knew the exam patterns well in advance (using textbooks,
+private tuitions etc).</li>
+
+<li>You were way ahead of your class. So you could spend time
+pursuing your own ideas (hobbies, solving difficult math problems,
+whatever) without sacrificing class performance.</li>
+
+</ol>
+Here at ISI the first two points are definitely missing! And the
+third point will also be missing for most of you.
+<ol type="">
+
+<li>The hostel environment (with its poor maintenance and
+boisterious inmates) is far from what you are used to.</li>
+
+<li>Most teachers teach based on their personal intution about
+the subject, and do not follow any textbook. Exam patterns may vary
+drastically from year to year and teacher to teacher.</li>
+
+<li>Typically at most five students in each class can boast to
+follow everything discused in a lecture. And even these students
+may founder in certain classes.</li>
+
+</ol>
+None of these points can be changed easily. So you need some way
+to survive <i>in spite of these.</i>
+
+<h2><a
+name="How to cope with study problems">How to cope with study problems</a></h2>
+In a nutshell, here is the survival strategy: <blockquote>
+
+<b>Don't expect to understand everything. But carefully keep
+track of what you are understanding and what you are not (and why).</b>
+
+</blockquote> 
+Here is how this may be achieved. Maintain one fair note for each
+subject. It could be the same as your class notes (if you have a
+good fast handwriting), but having a different fair note is more
+effective. In this fair notebook, you'll write down all the
+things that you have understood and, for each unclear point,
+identify where the problem lies:
+<ol type="">
+
+<li>Do you know the definitions of all the terms and symbols? If
+not, underline the unclear ones.</li>
+
+<li>Do you think that this step is wrong? <i>e.g.</i>, you seem to be
+able to find a counterexample? Then jot down your argument in
+the margin.</li>
+
+<li>Do you have no idea why this step is correct? Write "How?"
+in the margin.</li>
+
+<li>You understand the step, but you do not see any
+motivation behind it. Write "Motivation?" in the margin.</li>
+
+</ol>
+Do not spend more than 5 minutes to decide these points for each
+step. The important thing is annotate like this all the class
+notes on daily basis. Do not get stuck up with any single problem
+before you finish doing the above to all the notes for that
+day. It is like appearing in a competivie exam with lots of
+MCQs. Spending too much time on one may mean missing an easy
+question later on!  <p></p> It is not very difficult. But this
+single technique will allow you to survive quite merrily at
+ISI. Many of your problems will automatically go away when you go
+though your annotated notes before the exam, because many
+questions get answered down the way. Also, you'll have precise
+questions to ask your teachers instead of a confused request like
+"Could not follow anything for the last month, please help!".
+
+<h2><a
+name="How to cope with teachers">How to cope with teachers</a></h2> 
+
+Teachers at ISI sometimes experiment with the course
+structure. If you feel that things are not working out well for
+you, you must first inform the teacher. Doing so collectively is
+a good idea. There are teachers who appear unfriendly in class,
+but area actually quite friendly when you visit them in their
+offices personally. Do not get irritated with a teacher before
+talking to him/her personally at least once.  <p></p> If the
+teacher's response is not satisfactory, then talk to the class
+teacher about it. If even that does not solve your problem, well,
+then start believing in God so that you can blame Him!
+
+<h2><a
+name="How to cope with hostel life">How to cope with hostel life</a></h2>
+If you are new to hostel life or are not familiar with Bengali or
+Hindi, then chances are that you'll initially hate hostel life
+here. That is natural. But let me assure you that when you'll
+eventurally leave ISI, you'll miss
+that very hostel life that you had once hated!  The key to start
+loving the hostel life is to actively explore ways to love it. The worst
+mistake that you can make is to sit inside your closed hostel
+room immersed in cyber space pretending that you are still back
+home. Make friends (take the initiative), play, read story books,
+and above all don't skip meals or sleep. If you have some hobby,
+don't just leave it saying "I don't have enough time any more". Also explore the nooks
+and corners of the campus, the rooftops, ponds, the new building
+under construction, and the strange
+hidden stairways in S N Bose Bhavan (I leave you to find them!). 
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://arnabc74.github.io/sm1/survival.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "survival"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
