@@ -46,8 +46,7 @@ explore R.</DD>
 
 <DT><B>The Art of R Programming</B> by <I>Matloff</I></DT>
 <DD>Another introductory book for  R.</DD>
-
-
-
 </DL>
+
+<DISQUSE id="sm1index" u="http://arnabc74.github.io/sm1/index.html"/>
 </NOTE>@}

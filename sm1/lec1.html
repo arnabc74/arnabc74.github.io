@@ -1,0 +1,324 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#What is statistics?">What is statistics?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Feedback control">Feedback control</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Function fitting">Function fitting</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Fuzzy logic">Fuzzy logic</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="What is statistics?">What is statistics?</a></h1>
+It is a most reasonable question to ask before you plan to embark
+upon a course dealing primarily with statistics. Unfortunately,
+it is not as easy to answer. It is somewhat like asking "What is
+a number?" before starting to learn mathematics. You need to be
+pretty advanced into mathematics before you can hope to form some
+meaningful idea about what numbers really are. Certain spcial types of
+numbers (like the positive integers used for counting) are all
+that are apparent at the beginning, and basic mathematics
+education has to start out with that. 
+<p></p>
+The situation is somewhat similar in case of
+statistics. Nevertheless, I shall try to outline a crude
+definition of the subject. Of course, there is no hard and fast
+boundary delineating the scope of statistics. There are
+borderline topics that some statitisticians will include in the
+domain of statitistics, while others will put them under computer
+science. The situation is further aggravated by the advent of
+some modern buzz words like Data Science, Machine Learning, Deep
+Learning. Are these modern statistical techniques? Or are these
+different from statistics? The debate continues. 
+<p></p>
+A reasonable point to start from seems to be a definition by P C
+Mahalanobis: 
+<blockquote>
+Statistics is the art and science of learning from experience.
+</blockquote> 
+That's pretty broad...possibly too broad. But still it captures
+the essence. The world around us is full of
+unpredictability, things beyond our control. Take any
+activity, like say drawing a freehand straight line. Perform it
+as carefully as possible. You get one line. Now redo it, again as
+carefully as possible, on a different piece of paper. You get a
+second line. The two lines must necessarily be different, because
+your hand is not <i>entirely</i> under your control. There are
+tiny shakes, imponderable variations in the texture of the paper,
+that will inevitably make the lines different. If you take a
+ruler, then the variation will be less, but not go away
+completely. Try  recording some audio in an absolutely silent
+room. You will see that "absolute silence" is beyond your control
+to create. Often we can ignore these tiny variations, but more
+often we cannot. Then we need some way to deal with
+it. Generally, we call this experience. It is like assessing the
+wetness of a pain in watercolour. Feeling the pitch while playing
+violin. Apparently, it is not within the realm of mathematics,
+where everything is expected to be precise, not random,
+deterministic, to use a technical term. Surprisingly,
+mathematical techniques may be used to capture the essence of
+experience. Hence the "science of learning from
+experience". Something that can be programmed into a
+computer. But still some human intervention is needed, hence the
+"art" component. According to Mahalanobis, all such techniques come under the
+head of statistics. 
+<p></p>
+Mahanobis flourished in the early dawn of the subject. Much like
+Aristotle in the field of science. His thought process needs to
+be modified to suit modern practice.  If we follow the
+development of statistical methods, we see that statistics is
+only <i>one</i> of four major scientific methods for manipulating
+experience mathematically. These are, in order of importance, 
+<ol type="">
+
+<li>feedback control</li>
+
+<li>function fitting</li>
+
+<li>statistics</li>
+
+<li>fuzzy logic</li>
+
+</ol>
+Let me give an overview of the other three before we start
+with statistics. 
+
+<h2><a
+name="Feedback control">Feedback control</a></h2>
+Feedback control is <i>the</i> technique behind modern
+technological precision.  When we hear about robots performing
+incredibly accurate surgical operations, or nanotechnological
+marvels, we are actually hearing about the success stories of
+feedback control systems. Automatic flight control, guided
+missiles, automatic cars, robots, precise time keeping devices, all these are applications of
+feedback control systems. Indeed, it is not an exaggeration to
+say  that a nation which has a better expertise on feedback control
+systems, is the more powerful country. That is possibly one
+reason why we in India do not hear much about it. 
+<p></p>
+Stripped to  its bare essentials, feedback control systems are
+basically machines where the output is compared with a desired
+output, and difference (or <i>error</i>) between them is fed
+cleverly back into the input, so that the next output is closer
+to the desired goal. The way to use this idea in practice is to
+start with a machine that achieves the desired goal only crudely,
+and then to wrap it in a feedback loop to enhance its accuracy. It is
+surprising that even simple feedback loops can result in great
+accuracy. 
+
+<p></p>
+The technique has a nice mathematical foundation requiring
+complex analysis. We shall not explore this any further in this
+course. 
+
+<h2><a
+name="Function fitting">Function fitting</a></h2> 
+Imagine a quantity of interest that you want to
+predict, and some other quantities whose values are known. In the
+curve fitting approach you postulate a family of functions, that
+contains the actual function. Then based on data you try to pick
+up that function. Possibly the simplest example is that of
+fitting a line. And the most complicated example is fitting a
+neural network. Some notable examples in between is Boyle's law,
+the formula used by NASA to predict lunar motion. 
+
+<p></p>
+This approach is the closest to the statistical approach, and
+often statistical techniques are born out of function fitting, and
+vice versa. You will learn a number of function fitting
+techniques as part of this course. 
+
+<h2><a
+name="Fuzzy logic">Fuzzy logic</a></h2>
+
+This is completely different approach, where we harness the
+mysterious power of the human
+brain to intuitively solve problems that require precise data to
+be solved mathematically. Take for instance the problem of
+catching a ball. You have to extend your arm to the right place,
+curl your fingers around the ball and apply enough force to bring
+it to a halt. We may consider this as a function, one that takes
+the current velocity and position of the ball as input and
+produces the necessary motion of the hand as output. This
+function may be mathematically quite complicated, requiring
+solving differential equations. However, it seems unresonable to
+think that we have this functon built inside our brain. In fact,
+if some one just asks us to eye-estimate the velocity of the
+incoming ball, we shall be hard put. Yet somehow we do manage to
+catch the ball quite easily. 
+<p></p>
+Fuzzy logic provides a way to convert this intuition into a
+mathematical function.
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/sm1/lec1.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "lec1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -48,5 +48,5 @@ explore R.</DD>
 <DD>Another introductory book for  R.</DD>
 </DL>
 
-<DISQUSE id="sm1index" u="http://arnabc74.github.io/sm1/index.html"/>
+<DISQUSE id="sm1index" u="https://arnabc74.github.io/sm1/index.html"/>
 </NOTE>@}

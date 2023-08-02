@@ -101,7 +101,7 @@ under construction, and the strange
 hidden stairways in S N Bose Bhavan (I leave you to find them!). 
 
 
-<DISQUSE url="http://arnabc74.github.io/sm1/survival.html" id="survival"/></E>@}
+<DISQUSE url="https://arnabc74.github.io/sm1/survival.html" id="survival"/></E>@}
 
 
 </NOTE>
