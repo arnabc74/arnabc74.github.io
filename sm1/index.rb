@@ -7,6 +7,10 @@ things (code snippets, data sets etc) here from time to time.
 <NEWS src="news.html"/>
 <P/>
 
+<HEAD2>Brief lecture notes</HEAD2>
+<OL>
+<LI><LINK to="lec1.html">July 31, 2023</LINK></LI>
+</OL>
 <HEAD2>Survival tips</HEAD2>
 Please read <LINK to="survival.html">these tips</LINK>. 
 
