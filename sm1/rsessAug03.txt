@@ -1,37 +1,3 @@
-library(tuneR)
-library(audio)
-x = numeric(16000)
-record(x,8000,1)
-audio.drivers()
-?set.audio.driver
-x = readWave('untitled.wav')
-hist(x$left)
-hist(x@left)
-hist(x@left,prob=T)
-mu = mean(x@left)
-sigma = mean(x@left)
-curve(dnorm(x),mean=mu,sd=sigma,add=T)
-curve(dnorm(x,mu,sigma),add=T)
-hist(x@left,prob=T)
-curve(dnorm(x,mu,sigma),add=T)
-curve(expression(dnorm(x,mu,sigma)),add=T)
-curve(expression('dnorm(x,mu,sigma)'),add=T)
-expression('dnorm(x,mu,sigma)')
-xgrid = (-10000):10000
-y = dnorm(xgrid,mu,sigma)
-lines(xgrid,y)
-sigma
-sigma = sd(x@left)
-mu
-y = dnorm(xgrid,mu,sigma)
-lines(xgrid,y)
-hist(x@left,prob=T)
-curve(dnorm(x,mu,sigma),add=T)
-hist(x@left,prob=T)
-x = readWave('untitled.wav')
-x
-hist(x)
-hist(x@left)
 4 + 5
 1+2*3
 pi

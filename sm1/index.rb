@@ -11,8 +11,9 @@ things (code snippets, data sets etc) here from time to time.
 <OL>
 <LI><LINK to="lec1.html">July 31, 2023</LINK></LI>
 <LI>Aug 03, 2023:
-[<LINK to="b1a_2023show.pdf">slides</LINK>][<LINK to="fern.r">R
-code for fractal</LINK>][<LINK to="rsessAug03.txt">R session</LINK>][<LINK to="lec2.html">summary</LINK>]</LI>
+[<LINK to="b1a_2023show.pdf">slides</LINK>] [<LINK to="fern.r">R
+code for fractal</LINK>] [<LINK to="rsessAug03.txt">R
+session</LINK>] [<LINK to="lec2.html">summary</LINK>]</LI>
 </OL>
 <HEAD2>Survival tips</HEAD2>
 Please read <LINK to="survival.html">these tips</LINK>. 
