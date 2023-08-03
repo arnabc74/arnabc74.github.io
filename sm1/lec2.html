@@ -134,149 +134,118 @@ function myFunction() {
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#Statistical Methods 1 (2023)">Statistical Methods 1 (2023)</a>
+<a href="#Statistical approach">Statistical approach</a>
+</li>
+<li>
+<a href="#Statistical regularity">Statistical regularity</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Brief lecture notes">Brief lecture notes</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Survival tips">Survival tips</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Reference materials">Reference materials</a>
+<a href="#So what?">So what?</a>
 </li>
 </ul>
 <hr/>
 <h1><a
-name="Statistical Methods 1 (2023)">Statistical Methods 1 (2023)</a></h1>
-This is the course webpage for Statistical Methods 1 for
-B.Stat(hons) first year students (2023). I shall post various
-things (code snippets, data sets etc) here from time to time.
+name="Statistical approach">Statistical approach</a></h1>
+In the last lecture we had mentioned four strategies to
+mathematise experience. We have briefly discussed three of them. 
+Finally, we come to the approach of our primary interest: statistics.
 <p></p>
+ It is based
+on a natural phenomenon called <b>statistical
+regularity</b>. Many branches of human knowledge start from an
+effort to understand (and harness) some natural phenomena. If you
+mix two things, often there is a reaction and some new thing is
+produced. Man's curiosity as to the nature of such change has led
+to the birth of chemistry. Similarly the regular nature of
+planetary motion has led to the laws of mechanics. Explorations
+revolving around such a natural phenomenon, take two paths: a
+disinterested pursuit of knowledge, and a hope to put it to
+practical use.  
 
-<table align="right" width="50%">
-<tr>
-<td><b>Notice board</b></td>
-</tr>
-<tr>
-<td>
-<iframe src="news.html"></iframe>
-</td>
-</tr>
-</table>
-
-<p></p>
-
-
-<h2><a
-name="Brief lecture notes">Brief lecture notes</a></h2>
-
+<h1><a
+name="Statistical regularity">Statistical regularity</a></h1> 
+Let me illustrate this rather interesting phenomenon through a
+dramatic demonstration. It is a form of the game of Ludo. The
+board is just ${\mathbb R}^2$, which you may imagine as an infinite
+graph paper, with an $x$-axis and an $y$-axis drawn on
+it. We have just a single counter, which is just a dot initially at $(0,0).$
+Instead of a die, we have four pieces of paper, with the
+following formulae written on them:
 <ol type="">
 
 <li>
-<a href="lec1.html">July 31, 2023</a>
+<fieldset>
+$X_{new} = 0.8 X_{old}+0.1$<br>
+$Y_{new} = 0.8 Y_{old}+0.04$}</fieldset>
+
 </li>
 
-<li>Aug 03, 2023:
-[<a href="b1_2023show.pdf">slides</a>}{<a href="fern.r">R
-code</a>}{<a href="lec2.html">summary</a>]</li>
+<li>
+<fieldset>
+$X_{new} = 0.5 X_{old}+0.25$<br>
+$Y_{new} = 0.5 Y_{old}+0.4$}</fieldset>
+
+</li>
+
+<li>
+<fieldset>
+$X_{new} = 0.355 X_{old}-0.355Y_{old}+0.266$<br>
+$Y_{new} = 0.355 X_{old}+0.355 Y_{old}+0.078$}</fieldset>
+
+</li>
+
+<li>
+<fieldset>
+$X_{new} = 0.355 X_{old}+0.355Y_{old}+0.378$<br>
+$Y_{new} = -0.355 X_{old}+0.355 Y_{old}+0.434$}</fieldset>
+
+</li>
 
 </ol>
+We draw a paper at random, and move the counter according to the
+rule written on it. Then we return the paper, and again draw
+another paper at random, and make a move accordingly. This new paper could very well be the
+paper we drew last time. We repeat this process a large number
+of times, marking all the positions the counter occupies during
+its journey.
+ It is not much fun unless you play it
+yourself. <a href="https://arnab-chakraborty.shinyapps.io/shny/">This link</a> provides a way. 
+
+<p></p>
+
+If you play it a large number of times, you will see that the
+marked points look like a maple leaf! 
+<p></p>
+This is an example statistical regularity: a regular behaviour
+emerging from pure randomness. 
 
 <h2><a
-name="Survival tips">Survival tips</a></h2>
-Please read <a href="survival.html">these tips</a>. 
+name="So what?">So what?</a></h2>
+The demonstration that we saw was dramatic, but a contrived
+one. Now we shall see a simple, possibly the simplest,
+example. We shall toss a coin repeatedly, and plot the proportion
+of heads after each toss. The resulting plot, though random,
+seems to lose its randomness as we move towards the right, and
+converges to a value. This value is called the probability of
+head for a typical coin toss. 
 
-<h2><a
-name="Reference materials">Reference materials</a></h2>
-The lecture notes are the main reference materials. You should also
-take a look at  the following  books. The lectures
-will <i>not</i>  follow the books. 
-<dl>
+<p></p>
 
-<dt>
-<b>Statistics</b> by <i>Witte and Witte</i>
-</dt>
-
-<dd>The book that is closest to being our main textbook. It is an
-easy-going book, not too ambitious.</dd>
-
-
-<dt>
-<b>Statistics</b> by <i>Freedman, Pisani and Purves</i>
-</dt>
-
-<dd>This book is a thought-provoking one. It has ideas and open
-questions. Not a regular textbook, but a welcome change from the
-world of classroom lectures.</dd>
-
-
-<dt>
-<b>How to Lie with Statistics</b> by <i>Huff</i>
-</dt>
-
-<dd>A fun book, as its name suggests. Contains cartoons, and some
-valuable insights. A must read, when you get bored!</dd>
-
-</dl>
-
-We shall
-use the R environment (language plus libraries)   for all our computation. If you know Python,
-that`s great, but please also learn R. We shall need only only a small
-subset of features of R, that we shall discuss and demonstrate
-in class. The following  books are for optional self-reading.
-<dl>
-
-<dt>
-<b><a href="arnabRtut.pdf">A short R tutorial</a></b>
-</dt>
-
-<dd>I put together this little tutorial to get you started in
-R. It has some things for you to type and watch the outputs to
-explore R.</dd>
-
-
-<dt>
-<b>R for Everyone</b> by <i>Lander</i>
-</dt>
-
-<dd>An introduction to the R language and environment. </dd>
-
-
-
-<dt>
-<b>The Art of R Programming</b> by <i>Matloff</i>
-</dt>
-
-<dd>Another introductory book for  R.</dd>
-
-</dl>
-
-
-<h3>Comments</h3>
-To post an anonymous comment, click on the "Name" field. This
-will bring up an option saying "I'd rather post as a guest."
-<p></p><!--
-begin disqus code --> <div id="disqus_thread"></div>
-<script>
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-var disqus_config = function () {
-this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "sm1index"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://txtbk.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript><!-- end disqus code --> 
+We can do the same thing for a die roll. But since there are 6
+outcomes, we would like to track them simulataneously. A
+graphical device to do this is a bar plot.  As the number of
+rolls approach infinity, the diagram stabilises. The limiting
+diagram is a function, called the probability mass function.    
+<p></p>
+This gives rise to the concept of a <b>random experiment</b>, an
+activity that is random in nature, yet can be repeated in such a
+controlled manner so that this convergence holds. Random
+experiments are something like ideal gases. They exist only
+notionally, a coin toss or a die roll being some of closest
+approximations of a random experiment that we can carry out in
+practice. Since the activity is random, there is something
+unknown involved. Our hope is to use statistical regularity to
+bring out that unknown. 
 <hr/>
 <table width="100%" border="0">
 <tr>

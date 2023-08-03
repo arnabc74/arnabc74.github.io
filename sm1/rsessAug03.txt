@@ -1,0 +1,132 @@
+library(tuneR)
+library(audio)
+x = numeric(16000)
+record(x,8000,1)
+audio.drivers()
+?set.audio.driver
+x = readWave('untitled.wav')
+hist(x$left)
+hist(x@left)
+hist(x@left,prob=T)
+mu = mean(x@left)
+sigma = mean(x@left)
+curve(dnorm(x),mean=mu,sd=sigma,add=T)
+curve(dnorm(x,mu,sigma),add=T)
+hist(x@left,prob=T)
+curve(dnorm(x,mu,sigma),add=T)
+curve(expression(dnorm(x,mu,sigma)),add=T)
+curve(expression('dnorm(x,mu,sigma)'),add=T)
+expression('dnorm(x,mu,sigma)')
+xgrid = (-10000):10000
+y = dnorm(xgrid,mu,sigma)
+lines(xgrid,y)
+sigma
+sigma = sd(x@left)
+mu
+y = dnorm(xgrid,mu,sigma)
+lines(xgrid,y)
+hist(x@left,prob=T)
+curve(dnorm(x,mu,sigma),add=T)
+hist(x@left,prob=T)
+x = readWave('untitled.wav')
+x
+hist(x)
+hist(x@left)
+4 + 5
+1+2*3
+pi
+sin(2)
+2*(3+4)
+x = 4
+x <- 4
+x
+x = x + 1
+x
+?sample
+sample(2,1)
+sample(2,1)
+sample(2,1)
+sample(2,1)
+sample(2,1)
+sample(2,1)
+sample(2,1)
+Sample(2,1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),1)
+sample(c("head","tail"),100)
+sample(c("head","tail"),100,replace=TRUE)
+sample(c("head","tail"),100,rep=T)
+sample(6,10,rep=T)
+toss = sample(2,100,rep=T)
+toss
+toss==1
+sum(toss==1)
+sum(toss==2)
+y = c(1,4,5,6,-2,3)
+sum(y)
+table(toss)
+barplot( table(toss) )
+table(toss)/100
+barplot( table(toss)/100 )
+length(toss)
+barplot( table(toss)/ length(toss) )
+toss = sample(2,100,rep=T)
+barplot( table(toss)/ length(toss) )
+toss = sample(2,10,rep=T)
+toss
+toss-1
+toss = toss-1
+toss
+cumsum(toss)
+ntoss = 1:10
+ntoss
+2*ntoss
+seq(1,10,0.5)
+10:1
+seq(1,10,-0.5)
+
+seq(1,-10,len=20)
+toss
+ntoss
+cumsum(toss)/ntoss
+runningProportions = cumsum(toss)/ntoss
+plot(ntoss, runningProportions,ty='l')
+plot(ntoss, runningProportions,ty='l',ylim=c(0,1))
+runningProportions = cumsum(toss)/ntoss
+cumsum(toss)
+toss
+cumsum(1:6)
+1j1
+
+2+3i
+(2+3i)^2
+sin(2+3i)
+
+plot(ntoss, runningProportions,ty='l',ylim=c(0,1))
+toss = sample(2,10,rep=T)
+toss = sample(2,100,rep=T)
+plot(ntoss, runningProportions,ty='l',ylim=c(0,1))
+ntoss = 1:100
+runningProportions = cumsum(toss)/ntoss
+plot(ntoss, runningProportions,ty='l',ylim=c(0,1))
+ntoss
+runningProportions
+runningProportions = cumsum(toss-1)/ntoss
+plot(ntoss, runningProportions,ty='l',ylim=c(0,1))
+toss = sample(2,100,rep=T)
+runningProportions = cumsum(toss-1)/ntoss
+lines(ntoss, runningProportions,col='red')
+q()
