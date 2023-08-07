@@ -13,7 +13,30 @@ things (code snippets, data sets etc) here from time to time.
 <LI>Aug 03, 2023:
 [<LINK to="b1a_2023show.pdf">slides</LINK>] [<LINK to="fern.r">R
 code for fractal</LINK>] [<LINK to="rsessAug03.txt">R
-session</LINK>] [<LINK to="lec2.html">summary</LINK>]</LI>
+session</LINK>] [<LINK to="lec2.html">summary</LINK>]
+We have learned the following R functions and operators:
+<Q>
+<CODE>+,-,*,/,=, ==</CODE>,
+<CODE>sin</CODE>,
+<CODE>sample</CODE>,
+<CODE>c</CODE>,
+<CODE>sum,  </CODE>
+<CODE>table</CODE>,
+<CODE>barplot</CODE>,
+<CODE>length</CODE>,
+<CODE>cumsum</CODE>,
+<CODE>seq</CODE>,
+<CODE>:,</CODE>
+<CODE>plot</CODE>,
+<CODE>lines</CODE>,
+<CODE>q</CODE>
+</Q>
+To learn more about them, lookup their helps by typing a
+question mark(?) followed by the name (enclose the name in quotes
+if it is some symbol like ":" or "*"). In particular, there is a
+wealth of information that is worth knowing
+for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
+</LI>
 </OL>
 <HEAD2>Survival tips</HEAD2>
 Please read <LINK to="survival.html">these tips</LINK>. 
