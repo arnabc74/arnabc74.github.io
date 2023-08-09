@@ -1,0 +1,353 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Population and sample">Population and sample</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Basic workflow of statistics">Basic workflow of statistics</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What if more than one model gives comparably good
+fits?">What if more than one model gives comparably good
+fits?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Domain knowledge">Domain knowledge</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Parsimony">Parsimony</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Interpretability">Interpretability</a>
+</li>
+</ul>
+<hr/><h1><a
+name="Population and sample">Population and sample</a></h1>
+The concept of population and sample sits at the heart of how
+statistical regularity is used in statistics. 
+This key concept in a nutshell is this:
+<blockquote> Whatever data we collect is like a
+<b>cup of water from a vast ocean</b>. The cup of water is all that we have to
+base our inference on, but it is not the water in the cup that we want to
+draw inference about.
+ The  target of our inference is the entire ocean.</blockquote>
+ The
+statistical term for the cup of water is a <b>sample</b>, the ocean being
+called the <b>population</b>. 
+<p></p>
+The very term <b>population</b>
+conjures up the vision of the totality of all the people living in a
+country. While this is indeed a very important example,
+statistics uses the term "population" in a broader sense: Suppose
+that I toss a coin. Thus is a random experiment that I can repeat
+as many times as I like. A statistician likes to think of this as
+drawing "head"s and "tail"s from an <i>infinite</i> population
+consisting of many, many "head"s and "tail"s. Since the
+population is infinite, we cannot really say that the chance of
+obtaining a "head" is the total number of heads divided by
+the population size. Instead, we pretend that God is handing out
+the "head"s and "tail"s randomly with certain
+probabilities. The "population" then is not just an infinite set,
+it is the entire random experiment.
+<p></p>
+This approach may appear a bit wierd at first, and may take some
+time to digest. But that's how you should learn to think in order
+to study statistics.    
+<p></p>
+The idea if statistics is to repeat the experiment a large number
+of times (or, equivalently, to draw a large sample from the
+population) and use statistical regularity to learn about the
+random experiment (or, equivalently, the population).
+
+<h2><a
+name="Basic workflow of statistics">Basic workflow of statistics</a></h2>
+Many activities may be considered like a blackbox, we put some
+input into it, and get some output out of it. In many cases, the
+blackbox is unpredictable, in the sense even when we put in the
+same input the output differs unpredictably. Statistics starts by
+postulating an ideal form of unpredictablity: a blackbox whose
+output is unpreditable, but whose unpredictability may be
+repeated as many times as we like. Such ideal blackboxes are
+called <b>random experiments</b>. Just like ideal gases, a random
+experiment is an idealised concept, that may not exist in
+practice. Some of its best approximations are coin toss or die
+roll. Next, we try to explain every other blackbox in terms of
+one or more random experiments. Much like chemists trying to
+explain all chemicals in terms of elements. This is called
+<b>statistical modelling</b>. 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If we measure the amount of dust or suspended particulate matter
+(SPM) in air everyday in the same location we see random
+fluctuations in the values. Clearly, the values are not
+independent. Here is one way to statistically model the data: 
+
+<p></p>
+Let $\epsilon_t = $ the amount of <i>fresh</i> SPM generated
+on day $t.$ We assume $\epsilon_t$'s are IID from some
+random experiment. We link these with the observed data as
+follows:
+$$
+X_t = \epsilon_t + \theta_1 X_{t-1} + \theta_2 X_{t-2}.
+$$
+Thishas  the interpretation that the amount of SPM is partly due to
+the residual SPM from the last two days plus the fresh SPM
+generated today. The constants $\theta_1$
+and $\theta_2$ are the fractions determining how much the
+SPM of the last two days influence today's SPM. 
+
+<p></p>
+This model has three unknowns: the random experiment from which
+the $\epsilon_t$'s were generated, $\theta_1$ and $\theta_2.$
+
+<p></p>
+The job of the statistician is to collect lots of $X_t$'s
+(<i>i.e.</i>, measure $X_t$'s over many days) and then somehow use
+statistical regularity to find these unknown quantities. 
+ ///
+</p>
+
+From where did we get this model? Is there any theory that SPM
+indeed behaves in this way? Not really. It is just a model, a
+mathematically simple way to approximate the random behaviour
+of $X_t$'s. In statistics we start by assuming some such
+model, and estimate the unknown quantities based on the
+data. Then we compare the actual data with the fitted model. If
+the fitted model exlains the behaviour of the data well, then we
+are happy, else we look for some other model. 
+
+
+<p></p>
+This is much like fitting a polynomial to a scatterplot. We start
+by fitting a straight line: $y = \alpha + \beta x,$ <i>i.e.</i>, by
+choosing the values of $\alpha$ and $\beta $ that gives
+the best possible fit (according to some suitable criteria). Then
+we draw this best line on the scatterplot, and decide if it is a
+good fit. The <i>best</i> fit need not be a <i>good</i> fit, just
+as the best swimmer in India is not a good swimmer according to
+the Olympic standard. If our best fitting line is indeed a good fit, we
+are happy. Otherwise we look for a different model, say all
+polynomials of the form $\alpha + \beta x + \gamma x^2.$
+Again, the same titual follows: we pick those values for the
+parameters $\alpha$, $\beta $ and $\gamma$ that
+give the best fit (within this class of models), and check its goodness-of-fit.
+<p></p>
+This is the general statistical workflow:
+<ol type="">
+
+<li>Decide upon a goodness-of-fit criterion.</li>
+
+<li>Pick a (class of) models.</li>
+
+<li>Pick the best fitting member of that class.</li>
+
+<li>Check it's goodness-of-fit.</li>
+
+<li>If you are happy, then use it for prediction etc. If
+unhappy, pick another class of models, and repeat.</li>
+
+<li>Give up, when you are bored!</li>
+
+</ol>
+A remarkably wide range of models may be used in step 2
+above. But remember that your aim is to get a good fit, and not
+merely to showcase your modelling prowess! Getting a good fit is
+usually not easy, even with creative choces for the class of
+models.
+
+<h2><a
+name="What if more than one model gives comparably good
+fits?">What if more than one model gives comparably good
+fits?</a></h2>
+Then we choose one among them according to the following three
+basic guidelines:
+<ol type="">
+
+<li>domain knowledge</li>
+
+<li>parsimony</li>
+
+<li>interpretability</li>
+
+</ol>
+
+
+<h3><a
+name="Domain knowledge">Domain knowledge</a></h3>
+Statistics just deals with numbers, without caring for the story
+behind them. Consider the experiment for Boyle's law. Here we get
+different values for volume (V) for different values of pressure
+(P). The scatterplot shows a decreasing  trend.
+<center>
+<fieldset>
+<legend><b>Part of Boyle's original data</b></legend><img width="80%" src="image/pv.png"></fieldset>
+</center>
+Both a straightline and a rectangular hyperbola may appear to be a
+good fit.  But a straightline is obviously impossible once you
+recall that you cannot make the volume negative by applying a bit
+of extra pressure! 
+ 
+
+<h3><a
+name="Parsimony">Parsimony</a></h3>
+"Parsimony" means "miserliness" (being unwilling to spend
+money). Sometimes we see that two models producing comparably
+good fits are of different levels of complexity. Then we
+naturally choose the one thatis simpler. This is the principle of
+parsimony. It is also called Occam's razor principle. 
+
+
+<h3><a
+name="Interpretability">Interpretability</a></h3>
+Statistics works closely with our everyday life, and unlike most
+other walks of science, it involves dealing with lay people.
+Nobody minds if you come up with a most complicated formula to
+explain lunar motion, but when you want to give a formula for
+deciding the optimal amount of fertliser based on soil type, your
+formula will be used by farmers, and a complicated formula may
+just go unheeded. So we prefer models that are easily
+interpretable. 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,181 @@
+@{<NOTE><HEAD1>Population and sample</HEAD1>
+The concept of population and sample sits at the heart of how
+statistical regularity is used in statistics. 
+This key concept in a nutshell is this:
+<Q> Whatever data we collect is like a
+<B>cup of water from a vast ocean</B>. The cup of water is all that we have to
+base our inference on, but it is not the water in the cup that we want to
+draw inference about.
+ The  target of our inference is the entire ocean.</Q>
+ The
+statistical term for the cup of water is a <B>sample</B>, the ocean being
+called the <B>population</B>. 
+<P/>
+The very term <B>population</B>
+conjures up the vision of the totality of all the people living in a
+country. While this is indeed a very important example,
+statistics uses the term "population" in a broader sense: Suppose
+that I toss a coin. Thus is a random experiment that I can repeat
+as many times as I like. A statistician likes to think of this as
+drawing "head"s and "tail"s from an <I>infinite</I> population
+consisting of many, many "head"s and "tail"s. Since the
+population is infinite, we cannot really say that the chance of
+obtaining a "head" is the total number of heads divided by
+the population size. Instead, we pretend that God is handing out
+the "head"s and "tail"s randomly with certain
+probabilities. The "population" then is not just an infinite set,
+it is the entire random experiment.
+<P/>
+This approach may appear a bit wierd at first, and may take some
+time to digest. But that's how you should learn to think in order
+to study statistics.    
+<P/>
+The idea if statistics is to repeat the experiment a large number
+of times (or, equivalently, to draw a large sample from the
+population) and use statistical regularity to learn about the
+random experiment (or, equivalently, the population).
+
+<HEAD2>Basic workflow of statistics</HEAD2>
+Many activities may be considered like a blackbox, we put some
+input into it, and get some output out of it. In many cases, the
+blackbox is unpredictable, in the sense even when we put in the
+same input the output differs unpredictably. Statistics starts by
+postulating an ideal form of unpredictablity: a blackbox whose
+output is unpreditable, but whose unpredictability may be
+repeated as many times as we like. Such ideal blackboxes are
+called <B>random experiments</B>. Just like ideal gases, a random
+experiment is an idealised concept, that may not exist in
+practice. Some of its best approximations are coin toss or die
+roll. Next, we try to explain every other blackbox in terms of
+one or more random experiments. Much like chemists trying to
+explain all chemicals in terms of elements. This is called
+<B>statistical modelling</B>. 
+
+<EXM>
+If we measure the amount of dust or suspended particulate matter
+(SPM) in air everyday in the same location we see random
+fluctuations in the values. Clearly, the values are not
+independent. Here is one way to statistically model the data: 
+
+<P/>
+Let <M>\epsilon_t = </M> the amount of <I>fresh</I> SPM generated
+on day <M>t.</M> We assume <M>\epsilon_t</M>'s are IID from some
+random experiment. We link these with the observed data as
+follows:
+<D>
+X_t = \epsilon_t + \theta_1 X_{t-1} + \theta_2 X_{t-2}.
+</D>
+Thishas  the interpretation that the amount of SPM is partly due to
+the residual SPM from the last two days plus the fresh SPM
+generated today. The constants <M>\theta_1</M>
+and <M>\theta_2</M> are the fractions determining how much the
+SPM of the last two days influence today's SPM. 
+
+<P/>
+This model has three unknowns: the random experiment from which
+the <M>\epsilon_t</M>'s were generated, <M>\theta_1</M> and <M>\theta_2.</M>
+
+<P/>
+The job of the statistician is to collect lots of <M>X_t</M>'s
+(i.e., measure <M>X_t</M>'s over many days) and then somehow use
+statistical regularity to find these unknown quantities. 
+</EXM>
+
+From where did we get this model? Is there any theory that SPM
+indeed behaves in this way? Not really. It is just a model, a
+mathematically simple way to approximate the random behaviour
+of <M>X_t</M>'s. In statistics we start by assuming some such
+model, and estimate the unknown quantities based on the
+data. Then we compare the actual data with the fitted model. If
+the fitted model exlains the behaviour of the data well, then we
+are happy, else we look for some other model. 
+
+
+<P/>
+This is much like fitting a polynomial to a scatterplot. We start
+by fitting a straight line: <M>y = \alpha + \beta x,</M> i.e., by
+choosing the values of <M>\alpha</M> and <M>\beta </M> that gives
+the best possible fit (according to some suitable criteria). Then
+we draw this best line on the scatterplot, and decide if it is a
+good fit. The <I>best</I> fit need not be a <I>good</I> fit, just
+as the best swimmer in India is not a good swimmer according to
+the Olympic standard. If our best fitting line is indeed a good fit, we
+are happy. Otherwise we look for a different model, say all
+polynomials of the form <M>\alpha + \beta x + \gamma x^2.</M>
+Again, the same titual follows: we pick those values for the
+parameters <M>\alpha</M>, <M>\beta </M> and <M>\gamma</M> that
+give the best fit (within this class of models), and check its goodness-of-fit.
+<P/>
+This is the general statistical workflow:
+<OL>
+<LI>Decide upon a goodness-of-fit criterion.</LI>
+<LI>Pick a (class of) models.</LI>
+<LI>Pick the best fitting member of that class.</LI>
+<LI>Check it's goodness-of-fit.</LI>
+<LI>If you are happy, then use it for prediction etc. If
+unhappy, pick another class of models, and repeat.</LI>
+<LI>Give up, when you are bored!</LI>
+</OL>
+A remarkably wide range of models may be used in step 2
+above. But remember that your aim is to get a good fit, and not
+merely to showcase your modelling prowess! Getting a good fit is
+usually not easy, even with creative choces for the class of
+models.
+
+<HEAD2>What if more than one model gives comparably good
+fits?</HEAD2>
+Then we choose one among them according to the following three
+basic guidelines:
+<OL>
+<LI>domain knowledge</LI>
+<LI>parsimony</LI>
+<LI>interpretability</LI>
+</OL>
+
+<HEAD3>Domain knowledge</HEAD3>
+Statistics just deals with numbers, without caring for the story
+behind them. Consider the experiment for Boyle's law. Here we get
+different values for volume (V) for different values of pressure
+(P). The scatterplot shows a decreasing  trend.
+<IMG web="pv.png">Part of Boyle's original data</IMG>
+Both a straightline and a rectangular hyperbola may appear to be a
+good fit.  But a straightline is obviously impossible once you
+recall that you cannot make the volume negative by applying a bit
+of extra pressure! 
+<COMMENT>
+V = c(seq(48,24,-2),23:12)
+P1 =
+c(29,30,31,33,35,37,39,41,44,47,50,54,58,61,64,67,70,74,77,82,87,93,100,107,111)
+P2 = c(7,9,15,8,5,0,5,10,3,1,5,5,13,5,1,1,11,2,14,12,14,1,7,13,9)
+P = P1 + P2/16
+plot(P,V)
+fit=lm(V ~ P+I(P^2)+I(P^3))
+lines(P,fit$fit)
+ind = (P>=50 & P<=80)
+Pnew = P[ind]
+Vnew = V[ind]
+plot(Pnew,Vnew)
+fit1 = lm(Vnew~Pnew)
+fit2 = lm(Vnew~I(1/Pnew))
+abline(fit1$coef)
+lines(Pnew,fit2$fit)
+</COMMENT> 
+
+<HEAD3>Parsimony</HEAD3>
+"Parsimony" means "miserliness" (being unwilling to spend
+money). Sometimes we see that two models producing comparably
+good fits are of different levels of complexity. Then we
+naturally choose the one thatis simpler. This is the principle of
+parsimony. It is also called Occam's razor principle. 
+
+
+<HEAD3>Interpretability</HEAD3>
+Statistics works closely with our everyday life, and unlike most
+other walks of science, it involves dealing with lay people.
+Nobody minds if you come up with a most complicated formula to
+explain lunar motion, but when you want to give a formula for
+deciding the optimal amount of fertliser based on soil type, your
+formula will be used by farmers, and a complicated formula may
+just go unheeded. So we prefer models that are easily
+interpretable. 
+</NOTE>@}

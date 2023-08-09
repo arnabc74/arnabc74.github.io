@@ -37,9 +37,8 @@ if it is some symbol like ":" or "*"). In particular, there is a
 wealth of information that is worth knowing
 for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 </LI>
-<LI>Aug 03, 2023:
-[<LINK1 to="rsessAug07.txt">R session</LINK1>] 
-[<LINK1 to="lec3.html">summary</LINK1>]
+<LI>Aug 07, 2023:
+[<LINK to="lec3.html">summary</LINK>]
 
 <ALERT/><LINK to="q1.pdf">First question set</LINK>
 
