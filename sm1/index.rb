@@ -3,6 +3,10 @@
 This is the course webpage for Statistical Methods 1 for
 B.Stat(hons) first year students (2023). I shall post various
 things (code snippets, data sets etc) here from time to time.
+
+<P/>
+<LINK to="https://classroom.google.com/c/NjE3NzIwOTMyMjA5?cjc=nv4afuy">Google
+classroom joining link</LINK>
 <P/>
 <NEWS src="news.html"/>
 <P/>
