@@ -1,0 +1,62 @@
+library(tuneR)
+s = readWave('class.wav')
+str(s)
+s@left
+hist(s@left)
+hist(s@left,prob=T)
+s = readWave('office.wav')
+str(s)
+hist(s@left,prob=T)
+library(shiny)
+shinyAppDir('fit')
+s = readWave('class.wav')
+shinyAppDir('fit')
+hist(s@left,prob=T)
+hist(s@left,prob=T,n=11)
+hist(s@left,prob=T,n=11)
+?hist
+hist(s@left,prob=T,nclass=11)
+hist(s@left,prob=T,nclass=110)
+?hist
+hist(s@left,prob=T,breaks=seq(-15000,15000,1000))
+range(s@left)
+hist(s@left,prob=T,breaks=seq(min(s@left),max(s@left),len=50))
+
+hist(s@left,prob=T,breaks=c(-4e4,-2e4,0,3e4,4e4))
+hist(s@left,prob=T,nclass=30266+32767)
+s = readWave('office.wav')
+shinyAppDir('fit')
+hist(s@left,prob=T)
+curve(dnorm(x,mean=0,sd=2463),add=T,col='blue',lwd=3)
+m=mean(s@left)
+m
+sig = sd(s@left)
+sig
+curve(dnorm(x,mean=m,sd=sig),add=T,col='red',lwd=3,lty=2)
+x = 1:10
+x
+x = 2*(1:10)
+x
+x[c(2,4,7,1)]
+x[1]
+x[6]
+x[c(2,4,7,1)]
+x[c(2,4,7,1)] = 89
+x
+x[c(2,4,7,1)] = 89:92
+x
+x = 1:10
+y = seq(0,1,len=10)
+x
+y
+z = rep(0,20)
+z
+odd = seq(1,19,2)
+even = seq(2,20,2)
+odd
+even
+z[odd] = x
+z
+z[even] = y
+z
+q()

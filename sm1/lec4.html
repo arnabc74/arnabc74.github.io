@@ -1,0 +1,232 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Histogram">Histogram</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Data from a distribution">Data from a distribution</a>
+</li>
+</ul>
+<hr/>
+<h2><a
+name="Histogram">Histogram</a></h2>
+We have seen how barplot of proportions show statistical
+regularity. Incidentally, there is a name for this: <b>relative
+frequency</b>. The actual number of times an outcome occurs is
+called the <b>frequency</b>. For instance, if you toss a coin 100
+times and get 45 heads and 55 tails, then the frequencies are 45
+and 55, while the relative frequencies are 0.45 and 0.55. Often
+we like to show the frequencies as a table, like
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Value</th><th colspan="" rowspan="">Frequency</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Head</td><td colspan="" rowspan="">45</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">Tail</td><td colspan="" rowspan="">55</td>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">Total</th><th colspan="" rowspan="">100</th>
+</tr>
+
+</table>
+</center>
+It is called a <b>frequency distribution table</b>. Similarly,
+you construct a <b>relative frequency distribution table</b>.
+
+
+<p></p>
+As we have already mentioned, the relative frequency distribution
+table (or equivalently, its graphical representation, the
+barplot) converges, as the sample size goes to infinity. The
+limit is called the <b>probability mass function (pmf)</b>.
+
+<p></p>
+Here the outcomes were <b>discrete</b>, taking only finitely many
+values. Often we encounter <b>continuous</b> outcomes, that can
+take any value in an interval, like the height of a person.
+The barplot  technique cannot be used in these cases. 
+<p></p>
+So we discretise the continuous output into a finite number of
+intervals or <b>bin</b>s, before applying the barplot technique. 
+
+<p></p>
+We start with a frequency distribution for the discretised data,
+where the bins play the role of values. This called
+a frequency distribution for <b>grouped data</b>. The bins are
+called <b>classes</b>. They are adjacent to each other, and we
+need some convention to decide about which class gets the
+boundary point. A typical example could be like 
+<blockquote>
+[0,1], (1,2], (2,4], (4,6].
+</blockquote>
+We generally work with data that take value in a bounded
+interval $(a,b).$ 
+<p></p>
+
+Then we compute
+the relative frequencies. Finally we divide the relative
+frequency of a class by  the class width to get
+the <b>relative frequency density</b> for that class.   A barplot
+for this is called a <b>histogram</b>, which is powerful
+graphical device to harness statistical regularity.
+
+
+<h2><a
+name="Data from a distribution">Data from a distribution</a></h2>
+We say that $X_1,...,X_n$ constitute a <b>random sample</b> from a
+distribution if they are the outcomes of repeated independent
+trials of the same random experiment, and their barplot or
+histogram converges to that distribution. We also say
+that $X_1,...,X_n$ are  <b>independently and identically
+distributed (IID)</b> from that distribution.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

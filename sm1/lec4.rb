@@ -1,0 +1,64 @@
+@{<NOTE>
+<HEAD2>Histogram</HEAD2>
+We have seen how barplot of proportions show statistical
+regularity. Incidentally, there is a name for this: <B>relative
+frequency</B>. The actual number of times an outcome occurs is
+called the <B>frequency</B>. For instance, if you toss a coin 100
+times and get 45 heads and 55 tails, then the frequencies are 45
+and 55, while the relative frequencies are 0.45 and 0.55. Often
+we like to show the frequencies as a table, like
+<TABLE>
+<TR><TH>Value</TH><TH>Frequency</TH></TR>
+<TR><TD>Head</TD><TD>45</TD></TR>
+<TR><TD>Tail</TD><TD>55</TD></TR>
+<TR><TH>Total</TH><TH>100</TH></TR>
+</TABLE>
+It is called a <B>frequency distribution table</B>. Similarly,
+you construct a <B>relative frequency distribution table</B>.
+
+
+<P/>
+As we have already mentioned, the relative frequency distribution
+table (or equivalently, its graphical representation, the
+barplot) converges, as the sample size goes to infinity. The
+limit is called the <B>probability mass function (pmf)</B>.
+
+<P/>
+Here the outcomes were <B>discrete</B>, taking only finitely many
+values. Often we encounter <B>continuous</B> outcomes, that can
+take any value in an interval, like the height of a person.
+The barplot  technique cannot be used in these cases. 
+<P/>
+So we discretise the continuous output into a finite number of
+intervals or <B>bin</B>s, before applying the barplot technique. 
+
+<P/>
+We start with a frequency distribution for the discretised data,
+where the bins play the role of values. This called
+a frequency distribution for <B>grouped data</B>. The bins are
+called <B>classes</B>. They are adjacent to each other, and we
+need some convention to decide about which class gets the
+boundary point. A typical example could be like 
+<Q>
+[0,1], (1,2], (2,4], (4,6].
+</Q>
+We generally work with data that take value in a bounded
+interval <M>(a,b).</M> 
+<P/>
+
+Then we compute
+the relative frequencies. Finally we divide the relative
+frequency of a class by  the class width to get
+the <B>relative frequency density</B> for that class.   A barplot
+for this is called a <B>histogram</B>, which is powerful
+graphical device to harness statistical regularity.
+
+
+<HEAD2>Data from a distribution</HEAD2>
+We say that <M>X_1,...,X_n</M> constitute a <B>random sample</B> from a
+distribution if they are the outcomes of repeated independent
+trials of the same random experiment, and their barplot or
+histogram converges to that distribution. We also say
+that <M>X_1,...,X_n</M> are  <B>independently and identically
+distributed (IID)</B> from that distribution.
+</NOTE>@}

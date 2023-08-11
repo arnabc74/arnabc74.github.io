@@ -47,6 +47,12 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 
 
 </LI>
+<LI>Aug 10, 2023:
+[<LINK to="lec4.html">summary</LINK>]
+[<LINK to="RsessAug10.txt">R session</LINK>]
+[<LINK to="https://youtu.be/UAeiOFU4zWo">Video showing how to use an R script file</LINK>]
+[<LINK to="https://youtu.be/lSBZh7a1zTY">Video showing audio data collection</LINK>]
+</LI>
 </OL>
 <HEAD2>Survival tips</HEAD2>
 Please read <LINK to="survival.html">these tips</LINK>. 
