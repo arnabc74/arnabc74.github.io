@@ -1,0 +1,604 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Some examples of statistical modelling">Some examples of statistical modelling</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Quick reminders">Quick reminders</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Model 1: Weibull model for cricket run data">Model 1: Weibull model for cricket run data</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Model 2: Probit">Model 2: Probit</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Model 3: Maxwell model">Model 3: Maxwell model</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Some examples of statistical modelling">Some examples of statistical modelling</a></h1>
+Any serious statistical exercise starts with a precise and clear picture of
+the population and its relation with the sample. So here, in a nutshell, is the crux of
+the statistical approach:
+<blockquote>
+First try to approximate any unpredictable phenomenon in terms of
+(combinations of) random experiments. Then use statistical
+regularity to look into the phenomenon. The first step is
+called <b>statistical modelling</b>, the second is
+called <b>statistical inference</b>.
+</blockquote>
+
+<h2><a
+name="Quick reminders">Quick reminders</a></h2>
+We say that $X_1,...,X_n$ constitute a <b>random sample</b>
+ from a
+distribution if they are the outcomes of repeated independent
+trials of the same random experiment, and their barplot converges
+or
+histogram converges to that distribution. We also say
+that $X_1,...,X_n$ are  <b>IID</b> from that distribution.
+The limit of the barplot is called the <b>probability mass
+function (PMF)</b>. The limit of the histogram is called
+the <b>probability density function (PDF)</b>. 
+<p></p>
+Remember how to find probabilities from a PMF or a PDF. For PMF,
+let $S$ be the (countable) set of all possible values (<i>e.g.</i>,
+for a die roll $S=\{1,2,3,4,5,6\}.$) Let $p:S\rightarrow[0,1]$
+be the PMF. Then for any $A\subseteq S$ we have $P(A) = \sum_{x\in A} p(x).$
+<p></p>
+For PDF, let $S$ be the interval where $X$ can take
+values. Let $f(x)$ be the PDF. The for any $[a,b]\subseteq S$ we have $P([a,b]) =
+\int_a^b f(x)\, dx,$ <i>i.e.</i>, the area under under the PDF over
+that interval. 
+
+<h3><a
+name="Model 1: Weibull model for cricket run data">Model 1: Weibull model for cricket run data</a></h3>
+A statistical model is any mechanism that we postulate using 
+ mathematical functions and random experiments to mimick
+behaviour of observed data. In order for the model to be
+called <i>statistical</i>, there must be at least one random
+experiments involved in it. Our first example is the  simplest
+possible model, just a random experiment. 
+<p></p>
+Here we shall work with cricket score data that we have got from
+a public data repository called Kaggle. In particular we have
+used the data <a href="https://www.kaggle.com/datasets/anirbna/sachin-tendulkar-batting-stats?resource=download">from this link</a>.  
+
+<p></p>
+This data set is an example of a <b>multivariate</b> data set. It
+is in the form of a <b>data matrix</b>, where each row is
+a <b>case</b> and each column is a <b>variable</b>. Here is
+little screenshot:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/crick.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here each case is one inning in the cricket career of Sachin
+Tendulkar. Some of the variables
+are <i>Runs</i>, <i>Mins</i>, <i>BF</i>, <i>4s</i>. 
+
+<p></p>
+In this exercise, we shall need only the <i>Runs</i> variable,
+the number of runs scored by Sachin in each inning. The <a href="">extracted
+data set</a> is an example of a <b>univariate</b> data set. Our model
+is that all these numbers are basically like IID observations
+from the same distribution with PDF:
+$$
+f(x) = \frac ab \left(\frac xb\right)^{a-1} \exp\left[ \left(\frac xb\right)^a
+\right],\text{ for } x&gt;0.
+$$ 
+Here $a,b&gt;0$ are two parameters. This is called
+the <b>Weibull distribution</b>. Our model says that if we make a
+histogram of the runs, then the shape will match $f(x)$
+for <i>some suitably chosen</i> values of $a$ and $b.$
+"Choosing the values suitably" to match the behaviour of the data
+is called <b>estimation</b>. We shall learn about estimation
+procedures later.
+<p></p>
+We start by loading the data into R:
+<font color="red">
+<pre>
+x = read.table('run.txt',head=T)
+</pre>
+</font>
+The file <a href="run.txt">run.txt</a> has the heading "Runs"
+ in the first line. That is why we wrote <font size="+1" color="red"><code>head=T</code></font>
+ (abbreviation of <font size="+1" color="red"><code>header=TRUE</code></font>). The file must reside
+ in the <i>working directory</i> of R. If you are not sure check
+ the current working directory using the <font size="+1" color="red"><code>getwd()</code></font>
+ function. You may change the working directory using
+ <font size="+1" color="red"><code>setwd('path to your desired directory')</code></font>. 
+
+<p></p>
+The output of <font size="+1" color="red"><code>read.table</code></font> is always a <i>data
+frame</i>, <i>i.e.</i>, a matrix-like rectangular object, where the rows
+are the cases, and the columns are the variables. It is good idea
+to chec its dimensions (<i>i.e.</i>, numbers of rows and columns):
+<font color="red">
+<pre>
+dim(x)
+</pre>
+</font>
+
+<p></p>
+<fieldset>
+<legend>Output</legend>
+<pre>
+[1] 819   1
+</pre>
+</fieldset>
+<p></p>
+We have 819 rows and a single column. 
+<p></p>
+Next we try to make a histogram of the data. There are a couple
+of snags here. First, R distinguishes between a matrix with one
+column and a vector. We need to extract the first column as a vector:
+<font color="red">
+<pre>
+runs = x[,1] 
+</pre>
+</font>
+If $A$ is a matrix, then its $(i,j)$-th entry is
+ denoted by <font size="+1" color="red"><code>A[i,j]</code></font> in R. The indices start from 1,
+ as in mathematics. We write <font size="+1" color="red"><code>A[,j]</code></font> to mean the
+ entire $j$-th column, and <font size="+1" color="red"><code>A[i,]</code></font> to denote the
+ entire $i$-th row.
+<font color="red">
+<pre>
+hist(runs,prob=T)
+</pre>
+</font>
+
+<p></p>
+<fieldset>
+<legend>Output</legend>
+<pre>
+Error in hist.default(runs, prob = T) : 'x' must be numeric
+</pre>
+</fieldset>
+<p></p>  
+This error message shows up because
+our data set contains some non-numeric values: DNB (Did Not Bat)
+and TDNB (Team Did Not Bat). We need to remove these cases from
+the data set before we can make a histogram. This is an example
+of <b>data cleaning</b>. For this we first force all the values
+to numeric:
+<font color="red">
+<pre>
+runs2 = as.numeric(runs)
+</pre>
+</font>
+R would complain that some <font size="+1" color="red"><code>NA</code></font>s have been
+introduced. <font size="+1" color="red"><code>NA</code></font> means "Not Available", which is
+R`s way of denoting a missing value. We need to remove these:
+<font color="red">
+<pre>
+bad = is.na(runs2)
+</pre>
+</font> 
+The function <font size="+1" color="red"><code>is.na</code></font> checks if its input
+is <font size="+1" color="red"><code>NA</code></font> or not. Here <font size="+1" color="red"><code>bad</code></font> is an array
+of <font size="+1" color="red"><code>TRUE</code></font>s and <font size="+1" color="red"><code>FALSE</code></font>s. We keep only those
+values of <font size="+1" color="red"><code>runs2</code></font> where <font size="+1" color="red"><code>bad</code></font>
+is <font size="+1" color="red"><code>FALSE</code></font>:
+<font color="red">
+<pre>
+runs3 = runs2[!bad]   # The ! means "not"
+</pre>
+</font>
+Finally we can create a histogram:
+<font color="red">
+<pre>
+hist(runs3,prob=T)
+</pre>
+</font>
+
+<p></p>
+The histogram looks like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/runhist1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+Next we need to estimate $a$ and $b.$ We use an R
+package called <font size="+1" color="red"><code>MASS</code></font> (already present in R by
+default), which has a function
+called <font size="+1" color="red"><code>fitdistr</code></font> that estimates parameters:
+<font color="red">
+<pre>
+library(MASS)
+fitdistr(runs,"weibull")
+</pre>
+</font>
+
+<p></p>
+<fieldset>
+<legend>Output</legend>
+<pre>
+Error in fitdistr(runs, "weibull") : Weibull values must be &gt; 0
+</pre>
+</fieldset>
+<p></p>
+Yaaack! Well, let`s keep R happy by adding a little offset, say
+1.
+<font color="red">
+<pre>
+fitdistr(runs+1,"weibull")
+</pre>
+</font>
+
+<p></p>
+<fieldset>
+<legend>Output</legend>
+<pre>
+      shape         scale   
+   0.93339008   43.48820468 
+ ( 0.02645608) ( 1.74751617)
+</pre>
+</fieldset>
+<p></p>
+Thus the best value of shape ($a$) is 0.93, and the best
+ value for scale ($b$) is 43.49. Don`t get carried away by
+ the apparent high precision of the output. The fit hardly
+ changes if you modify the parameters only slightly. Ignore the
+ numbers in the parentheses for the moment. 
+<p></p>
+Let us overlay the best fitting Weibull density   
+ on the histogram to see if the best fit is indeed a good fit or not:
+<font color="red">
+<pre>
+curve(dweibull(x,shape= 0.93, scale= 43.49), col='red', lwd=3, add=T)
+</pre>
+</font>
+The result is:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/runhist2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Indeed, it is a good fit. It is surprising that for any
+international standard cricketer the run data has a Weibull shape
+(the parameter values may differ)! One potential use of this
+model is to relate the estimated parameter values  to innate
+characteristics of the cricketers, just like probability of head
+for a coin toss. It is a feature that is readily apparent unless
+we look through the instriment of statistical regularity.
+
+<p></p>
+I am not aware of any attempt to relate the parameters in this
+example with characteristics of the cricketers. But the next
+model is used for that purpose.
+
+
+
+<h3><a
+name="Model 2: Probit">Model 2: Probit</a></h3>
+D.J. Finney was a toxicologist interested in finding the
+strengths of different poisons. A naive way to measure the
+strength of a poison is by determining its lethal dose, <i>i.e.</i>,
+the minimum dose needed to kill. Problem is that this dose depends
+not only upon the posion, but also on what you are trying to
+kill. Finney experimented with mice. So he chose mice as
+controlled as possible (w.r.t. age, breed, gender etc). But even
+then the lethal dose might vary randomly from mouse to mouse. 
+
+<p></p>
+So Finney went for a statistical model. He postulated a normal
+model $N(\mu,\sigma^2)$ for
+the lethal dose of our poison for a random
+mouse. Unlike the run data example, here the parameters have
+clear interpretation. Then $\mu$ measures the strength of the poison, while
+$\sigma^2 $ gives an idea about how unreliable the poison
+is. Indeed, Finney called $\frac \mu \sigma$
+the <i>toxicity</i> and $\frac 1 \sigma$
+the <i>reliability</i> of the poison. 
+
+<p></p>
+You might expect that the next step would be to collect data,
+<i>i.e.</i>, pick a random mouse, and start applying the poison bit by
+bit, and recording the dose when the mouse first succumbs to
+death. Unfortunately, we cannot carry out this experment in
+practice, because death is not an easily detected phenomenon.
+<p></p>
+So, instead, Finney applied the same dose to many mice (say 100),
+and counted the number of deaths
+(say $k$). Then $k/100$ should be close to the
+probability $P(X \leq d).$ He did this with different
+doses, resulting in a data set like the following (assuming 10 different doses).
+
+<center>
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Dose ($d$)</th><th colspan="" rowspan="">Batch size ($n$)</th><th colspan="" rowspan="">Number dead ($X$)</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$d_1$</td><td colspan="" rowspan="">$n_1$</td><td colspan="" rowspan="">X_1</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$d_2$</td><td colspan="" rowspan="">$n_2$</td><td colspan="" rowspan="">X_2</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$d_3$</td><td colspan="" rowspan="">$n_3$</td><td colspan="" rowspan="">X_3</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$\vdots$</td><td colspan="" rowspan="">$\vdots$</td><td colspan="" rowspan="">$\vdots$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$d_10$</td><td colspan="" rowspan="">$n_10$</td><td colspan="" rowspan="">X_10</td>
+</tr>
+
+</table>
+</center>
+
+</center>
+Finney plotted the $\frac{X_i}{n_i}$ values against the
+doses $d_i$ values. He got a plot like this: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/probit1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ 
+This set him up in hope, because this was supposed to be
+approximately like the graph of the function $F(x)$, which
+is the area under the $N(\mu,\sigma^2)$ PDF to the left
+of $x.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/probit2lab.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+He knew that the plot of $F(x)$ (for any value
+of $\mu $ and $\sigma^2 $) looks like an S as follows:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/probit3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Since the points obtained from his data also followed this
+pattern, Finney was happy. The question was now to find suitable
+values for $\mu$ and $\sigma^2 $ such that the S-curve
+passes as closes as possible to the points. For this he used a
+mathematical property of normal PDF. 
+
+<p></p>
+Consider the function 
+$$
+\Phi (x) = \int_{- \infty} ^ x \frac{1}{\sqrt{\pi}} e^{-t^2/2}\, dt.
+$$
+This is clearly (?) a strictly increasing (and hence one-one),
+continuous, onto function from ${\mathbb R}$ to $(0,1).$ Now it
+is easy (?) to see that 
+$$
+F (x) = \int_{- \infty} ^ x \frac{1}{\sqrt{\pi}\sigma} e^{-\frac{1}{2
+\sigma^2}(t-\mu)^2}\, dt = \Phi \left(\frac{x-\mu}{\sigma}\right).
+$$
+So Finney applied $\Phi ^{-1} $ to both sides of the
+approximate equality $F(d_i) = \frac{X_i}{n_i}$ to get
+$$
+\frac{d_i - \mu}{\sigma} = \Phi ^{-1}\left( \frac{X_i}{n_i} \right). 
+$$  
+He called $\Phi ^{-1}( \cdot )$ the <b>probit</b>
+function. Finney now plotted $\Phi ^{-1}\left( \frac{X_i}{n_i}
+\right)$ against $d_i$ to get a plot like this: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/probit4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+He was relieved to find a linear pattern, which justified his
+normality assumption. Now it was a simple matter to find the
+slope and intercept of the line, and obtain the estimated
+toxicity and reliability of the poison.
+<p></p>
+The probit analysis is routinely performed on rabbits to test for
+toxicity of chemicals used in eye cosmetics. Thousands of rabbits
+turn blind every year due to this. Click on the image below to
+know more about this.
+<a href="http://www.hsi.org/issues/becrueltyfree/facts/blinded_rabbits.html">
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rabbit.jpg"></th>
+</tr>
+<tr>
+<th>A rabbit blinded by such an experiment</th>
+</tr>
+</table>
+</center>
+</a>
+
+
+<h3><a
+name="Model 3: Maxwell model">Model 3: Maxwell model</a></h3>
+See the <a href="sm1maxshow.pdf">slides</a> for the details.
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

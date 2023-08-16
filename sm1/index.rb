@@ -53,7 +53,34 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 [<LINK to="https://youtu.be/UAeiOFU4zWo">Video showing how to use an R script file</LINK>]
 [<LINK to="https://youtu.be/lSBZh7a1zTY">Video showing audio data collection</LINK>]
 </LI>
+
+
+<LI>Aug 14, 2023:
+[<LINK to="lec5.html">summary with R code</LINK>]
+
+<UL>
+<LI>Cricket model: 
+[<LINK to="Sachin Tendulkar Batting Stats.xlsx">Full multivariate data
+(Excel format)</LINK>]
+[<LINK to="run.txt">Extracted runs data (text file)</LINK>]
+</LI>
+</UL>
+
+<UL>
+<LI>Probit model: 
+[<LINK to="probit.txt">Raw data</LINK>]
+</LI>
+</UL>
+
+<UL>
+<LI>Maxwell model: 
+[<LINK to="sm1maxshow.pdf">Slides</LINK>]
+</LI>
+</UL>
+<ALERT/><LINK to="q2.pdf">Second question set [Due date: Aug 23, 2023]</LINK>
+</LI>
 </OL>
+
 <HEAD2>Survival tips</HEAD2>
 Please read <LINK to="survival.html">these tips</LINK>. 
 
