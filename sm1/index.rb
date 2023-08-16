@@ -77,7 +77,7 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 [<LINK to="sm1maxshow.pdf">Slides</LINK>]
 </LI>
 </UL>
-<ALERT/><LINK to="q2.pdf">Second question set [Due date: Aug 23, 2023]</LINK>
+<ALERT/><LINK to="q2.pdf">Second question set [Due date: Aug 27, 2023]</LINK>
 </LI>
 </OL>
 
