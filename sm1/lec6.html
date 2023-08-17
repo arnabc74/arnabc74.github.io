@@ -1,0 +1,292 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#More statistical models">More statistical models</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Model 4: Random browser model">Model 4: Random browser model</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Model 5: Capture-recapture">Model 5: Capture-recapture</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Model 6: Hardy-Weinberg model">Model 6: Hardy-Weinberg model</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="More statistical models">More statistical models</a></h1>
+
+
+<h2><a
+name="Model 4: Random browser model">Model 4: Random browser model</a></h2>
+When we search the web, Google not only
+finds all the pages, but also ranks them in the order of
+importance. This ranking is a complex affair, depending on
+importance of the webpage itself, as well as other considerations
+like your identity, search history, revenue generation etc. The
+entire algorithm is propreitary. But here I shall discuss a
+simpler version that is taken from the PhD thesis of Larry Page,
+one of the founders of Google. I shall discuss this using a toy
+example. Consider this little internet. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/googmap.png"></th>
+</tr>
+<tr>
+<th>A little internet</th>
+</tr>
+</table>
+</center>
+Here each  square is a webpage. The links are shown as
+arrows. Just by looking at this, can you guess which page is the
+most important? A first attempt could use the number of incoming
+links: a page must be important if lots of other pages link to
+it. So 5 must be a very important page, and 1 and 3 are both
+least important. But wait a second! Shouldn`t 1 also be pretty
+important, because though it has just a single incoming  link,
+yet that single link comes from 5, which itself is a bigshot! So
+it seems that importance of a page may depend on the importance
+of its neighbours, which in its turn may depend indirectly on the
+page we are trying to find the importance of. This makes the
+problem complicated. Let`s see how a little statistical modelling
+helps us here. 
+<p></p>
+Imagine a random surfer, one who visits a page, clicks any
+outgoing link at random (equal chance to each link), and
+continues indefinitely like that. Keep a track of the proportion
+of times he visits each page. The pages visited most often must
+be the more important ones.
+<font color="red">
+<pre>
+link = matrix(c(2,3,4,2,1,4,5,5,5,5),5,2)
+x = numeric(1000)
+x[1] = sample(5,1)
+for(i in 2:1000) x[i] = link[x[i-1],sample(2,1)]
+barplot(table(x))
+</pre>
+</font>  
+
+
+<h2><a
+name="Model 5: Capture-recapture">Model 5: Capture-recapture</a></h2>
+Suppose that we want to estimate the number of fish in a lake. 
+One method is to drain out the lake, and count all the fish. But
+this is not practicable. A viable alternative is provided by the
+capture-recapture method. 
+<p></p>
+The process proceeds in two steps: capture and recapture. In the
+capture step we catch (a random) sample of fish, tag them, and
+return them to the lake. After allowing sufficient time for these
+released fish to mix up in the population, we recapture another
+(random) sample of fish, and count the number of tagged fish
+among the recaptured fish. Using this number, we can estimate the
+total number of fish as follows. 
+
+<p></p>
+Let $N$ be the population size (to be
+estimated). Let $m$ and $n$ be the capture and
+recapture sizes, respectively. Let $X$ be the number of
+tagged fish among the recaptured ones. Since our recapture was a
+ random sample, we may reasonably(?) assume that the proprtion of
+tagged fish in the sample is approximately equal to the proprtion
+of tagged fish in the population:
+$$
+\frac mN\approx \frac Xn.
+$$  
+From this we get $\hat N = \frac{mn}{X}.$
+<p></p>
+This is a crude estimator. But the same idea may be made more
+sophisticated by increasing the number of capture and recapture
+stages. 
+<p></p>
+In practice, this method is not used for counting fish, but for
+counting tigers using camera trapping. Cameras are scatterred at
+different locations throughout a forest. These take pictures of
+tigers when they happen to pass in front of them. This plays the
+role of both capture and recapture. Each tiger has its unique
+stripe pattern, which serves as the tagging.
+You may find  more details
+in <a href="https://www.capturerecapture.co.uk/">this book</a>.
+
+
+
+<h2><a
+name="Model 6: Hardy-Weinberg model">Model 6: Hardy-Weinberg model</a></h2>
+ This is something you may be familiar with
+from your school days. A living being often shows traits that
+are genetically controlled. You cannot learn or unlearn them. For example,
+some people can roll their tongues, while others cannot. It is
+natural to expect that heredity plays a part in this, but no
+clear mathematical relation is known to exist between the
+parents' traits and the offspring's trait. Thus, even if I tell
+you that my father could not roll his tongue, while my mother
+could roll hers, you cannot say for certain whether I can roll
+mine. It is here that one uses a statistical model. 
+
+<p></p>
+
+It says that each person has a coin inside that determines
+whether they are a roller. The coin has two sides, and each side
+bears an inscription, which could be either "Yes" or "No". If at
+least one side says "Yes", then the person is a roller. Now when
+this person mates with another person to produce an offspring,
+they create a new coin for the offspring as follows. They both
+toss their coins, and see which side comes up. They write those
+two inscriptions on the two sides of the new
+coin, thus determining the trait of the offspring.
+
+<p></p>
+All this may sound ridiculous. Indeed, most statistical models do
+sound hopelessly naive. But sometimes they end up explaining the
+reality quite well, better than any other proposed model! Indeed there is
+a famous saying by the statistician David Cox: All statistical
+models are wrong, but some are useful! 
+
+
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

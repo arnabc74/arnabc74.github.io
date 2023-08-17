@@ -79,6 +79,22 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 </UL>
 <ALERT/><LINK to="q2.pdf">Second question set [Due date: Aug 27, 2023]</LINK>
 </LI>
+
+<LI>Aug 17, 2023:
+[<LINK to="lec6.html">summary</LINK>]
+<UL>
+<LI>Google model: 
+[<LINK to="google.r">R code</LINK>]
+</LI>
+<LI>Capture-recapture model: 
+[<LINK to="caprecap.r">R code</LINK>]
+</LI>
+<LI>Mendel's model: 
+[<LINK to="mndl.r">R code</LINK>]
+</LI>
+</UL>
+
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
