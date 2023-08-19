@@ -283,13 +283,13 @@ mathematical property of normal PDF.
 <P/>
 Consider the function 
 <D>
-\Phi (x) = \int_{- \infty} ^ x [[1][\sqrt{\pi}]] e^{-t^2/2}\, dt.
+\Phi (x) = \int_{- \infty} ^ x [[1][\sqrt{2\pi}]] e^{-t^2/2}\, dt.
 </D>
 This is clearly (?) a strictly increasing (and hence one-one),
 continuous, onto function from <M>\rr</M> to <M>(0,1).</M> Now it
 is easy (?) to see that 
 <D>
-F (x) = \int_{- \infty} ^ x [[1][\sqrt{\pi}\sigma]] e^{-[[1][2
+F (x) = \int_{- \infty} ^ x [[1][\sqrt{2\pi}\sigma]] e^{-[[1][2
 \sigma^2]](t-\mu)^2}\, dt = \Phi (*([[x-\mu][\sigma]])*).
 </D>
 So Finney applied <M>\Phi ^{-1} </M> to both sides of the
