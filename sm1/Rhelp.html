@@ -1,0 +1,555 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Plot and locator">Plot and locator</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#For loop">For loop</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Random experiment">Random experiment</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Counting number of cases satisfying some given condition">Counting number of cases satisfying some given condition</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Structure of a simulation code">Structure of a simulation code</a>
+</li>
+</ul>
+<hr/>
+The R code for the Mendel model done in class was a bit tough for
+many of you. That is understandable. In this page I shall discuss
+some R techniques used in it.
+
+<h2><a
+name="Plot and locator">Plot and locator</a></h2>
+The <font size="+1" color="red"><code>locator()</code></font> function allows you to interactively
+select a point from a plot. To see its effect start a new plot:
+<font color="red">
+<pre>
+plot(1:10, 1:10)
+</pre>
+</font>
+This just creates scatterplot with the points ($(k,k)$
+for $k=1,...,10.$ Now issue the command
+<font color="red">
+<pre>
+locator(1)
+</pre>
+</font>
+The prompt will go away, indicating that the program is running waiting
+for input from you. Visit the plot window, take your mouse over
+the plot region. You will notice the mouse cursor changing to a
+crosshair. Click at some point. Immediately the R prompt will
+return and coordinates (wrt the axis used in the plot) of the
+click point will be shown on screen. The <font size="+1" color="red"><code>1</code></font>  passed
+to  <font size="+1" color="red"><code>locator</code></font> tells it to return after a single
+click. If you want to click thrice, then
+pass <font size="+1" color="red"><code>3</code></font>. Then after three clicks a list will be
+returned with two fields in it: <font size="+1" color="red"><code>x</code></font>
+and <font size="+1" color="red"><code>y</code></font>, each a vector of length 3. Here is how you
+access these:
+<font color="red">
+<pre>
+p = locator(3)
+p$x   #All the x values
+p$y   #All the y values
+p$x[1] #x component of the first click
+p$y[1] #y component of the first click
+</pre>
+</font>
+
+The function <font size="+1" color="red"><code>points</code></font> adds points to
+an <i>existing</i> plot. Points outside the current plot region
+are silently ignored. 
+
+<font color="red">
+<pre>
+plot(1:10,1:10)
+points(5,6.col='red')
+points(c(2,4,2), c(3,9,1), col='blue') #Plots (2,3), (4,9) and (2,1)
+</pre>
+</font>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Use the <font size="+1" color="red"><code>plot</code></font>, <font size="+1" color="red"><code>locator</code></font>
+and <font size="+1" color="red"><code>points</code></font> functions to draw a point at a clicked point.
+</p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Repeat the above exercise, but for two clicks.
+</p>
+
+If you use <font size="+1" color="red"><code>locator()</code></font> with specifying the number of
+clicks, then it allows any number of clicks (you have to
+terminate by right-clicking). The <font size="+1" color="red"><code>length</code></font> function
+will return the length of a vector. For example, 
+<font color="red">
+<pre>
+x = c(3,4,-1,0,0)
+length(x)   # returns 5. 
+</pre>
+</font>
+ 
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Use <font size="+1" color="red"><code>locator()</code></font> without specifying the number of
+clicks. Click 5 times (and terminate by right-clicking). Then use
+<font size="+1" color="red"><code>length</code></font> to find the number of clicks. 
+</p> 
+
+
+<h2><a
+name="For loop">For loop</a></h2>
+If <font size="+1" color="red"><code>someVector</code></font> is any vector, then 
+<font color="red">
+<pre>
+for ( x in someVector ) {
+   blah blah using x
+}
+</pre>
+</font>
+will carry out blah blah using x for each entry <font size="+1" color="red"><code>x</code></font>
+in <font size="+1" color="red"><code>someVector</code></font>. For instance,
+<font color="red">
+<pre>
+myVector = 3,4,7,-9,0)) {
+for (x in myVector) {
+  print(sin(x))
+}
+</pre>
+</font>
+will print the sine of all the values in the vector. Of course,
+you could have achieved the same effect using just:
+<font color="red">
+<pre>
+sin(myVector)
+</pre>
+</font>
+This latter form is also more efficient. It automatically loops
+over all the entries. It is called an <i>implicit</i> loop, as
+opposed to an <i>explicit</i> loop,
+using <font size="+1" color="red"><code>for</code></font>. Explicit loops should be avoided if
+implicit loops suffice. Explicit loops are needed only when repeating
+some multi-step complicated computation. 
+<p></p>
+In our case, we want to run a simulation many times. So use a
+loop like <font size="+1" color="red"><code>for( i in 1:1000) {...}</code></font> that will repeat
+the <font size="+1" color="red"><code>...</code></font> part 1000 times.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Use explicit loop to print the squares of the first 10 natural
+numbers. Then use implicit loop to achieve the same.
+</p>  
+
+Often we need to save the result of the computation after each
+pass of the loop. To take a trivial example, suppose we again
+want to compute the sine value for each entry in a vector, but
+instead of printing the values on screen, we want to save them in
+another vector, <font size="+1" color="red"><code>y</code></font>:
+
+<font color="red">
+<pre>
+myVector = c(3,4,-9, 0, 3 , 7)
+y = numeric(6) # 6 is the length of myVector
+for ( x in myVector) {
+  y[i] = sin(x)
+}
+</pre>
+</font>
+The line <font size="+1" color="red"><code>y = numeric(6)</code></font> creates a numeric vector of
+length 6, containing only zeroes. You also have used <font size="+1" color="red"><code>y =
+rep(0,6)</code></font> to acieve the same effect. If you want to avoid
+explicit mention of 6,
+then you should write <font size="+1" color="red"><code>y = numeric(length(myVector))</code></font>
+or <font size="+1" color="red"><code>y = rep(0,length(myVector))</code></font>.
+
+<p></p>
+This trivial example is only for illustration purpose. In this
+example the following implicit loop is preferable
+<font color="red">
+<pre>
+y = sin(myVector)
+</pre>
+</font>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Pick variable name that is not currently in use,
+say <font size="+1" color="red"><code>ttt</code></font>. Now execute the following code:
+<font color="red">
+<pre>
+for( i in 1:10) {
+   ttt[i] = sin(i) 
+}
+</pre>
+</font> 
+The error message will tell you why we need to start with a line
+like <font size="+1" color="red"><code>ttt = numeric(10)</code></font> or <font size="+1" color="red"><code>ttt = rep(0,10)</code></font>.
+</p>
+
+
+<h2><a
+name="Random experiment">Random experiment</a></h2>
+All random experiments with a finite sample space can be
+performed using the <font size="+1" color="red"><code>sample</code></font> function. Here is the
+most general form that need:
+<font color="red">
+<pre>
+sample(c(1,1.5,2,3),2,rep=T,prob=c(3,2,5,6))
+</pre>
+</font>
+Let`s understand this carefully. The first argument is a vector
+giving the sample space. Here it is $\{1,1.5,2,3\}.$ This
+could also be {Male, Female}, in which case the first input
+to <font size="+1" color="red"><code>sample</code></font> would have
+been <font size="+1" color="red"><code>c('Male','Female')</code></font>. The second input is the
+number of times you want to carry out the experiment. The third
+input <font size="+1" color="red"><code>rep=T</code></font> says that the sampling is done <i>with
+replacement</i>. The last input gives the probabilities (upto a
+normalising factor which R will compute automatically).
+<p></p>
+This is the most general form. In most applications, however, the
+sample space will be like $\{1,...,n\}$ for some $n.$
+Also the probabilities will all be the same. Then we simply
+write:
+ <font color="red">
+<pre>
+sample(n,2,rep=T)
+</pre>
+</font>
+instead of the more elaborate
+<font color="red">
+<pre>
+sample(1:n,2,rep=T,prob=rep(1,n)) # Here rep(1,n) means (1,...,1) n times
+</pre>
+</font>
+
+On some rare ocassions, we shall need to draw a random
+sample <i>without replacement</i>, like drawing two persons
+randomly from $n$ persons (the two persons must be
+distinct):
+<font color="red">
+<pre>
+sample(n,2)
+</pre>
+</font>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Roll a biased die 100 times, where $P(i) = P(7-i) \propto i$
+for $i=1,2,3.$ Do not compute the constant of
+proportionality explicitly. Find the mean.  
+</p>
+
+
+The <font size="+1" color="red"><code>sample</code></font> function is particularly suitable when
+the probabilities are all equal, or are specified in some
+patternless way. If, however, the probabilities vary according to
+some standard distribution, then you will be better off using
+some function specific to that distribution. R has most of the
+standard distributions built in. To carry out those random
+experiments the function always starts with the
+letter <font size="+1" color="red"><code>r</code></font> followed by an abbreivation of the
+distribution, like <font size="+1" color="red"><code>rbinom</code></font> for
+binomial, <font size="+1" color="red"><code>rpois</code></font> for Poisson, and so on. You need to
+look up the help of those functions to learn about how the
+specify the parameter values. For instance, commonly we talk
+about the Binomial($n,p$)distribution. R calls $n$
+the <font size="+1" color="red"><code>size</code></font> and $p$ the <font size="+1" color="red"><code>prob</code></font>.
+
+<p></p>
+The following lines create a barchart based on the relative frequency
+distribution of a $Poisson(5)$ random sample of
+size $1000.$
+
+<font color="red">
+<pre>
+barplot(table(rpois(1000,lambda=5))/1000)
+</pre>
+</font>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Make a similar barplot based on a random sample of size 100 from
+a Binomial($10,0.3$) distribution. What is the sample mean?
+</p>
+
+
+<h2><a
+name="Counting number of cases satisfying some given condition">Counting number of cases satisfying some given condition</a></h2>
+Suppose that we have a vector, <font size="+1" color="red"><code>x</code></font>, some of entries are positive. We
+may count all those using the following technique:
+<font color="red">
+<pre>
+sum(x &gt; 0)
+</pre>
+</font> 
+Details of why it works were given in the R
+tutorial. Here <font size="+1" color="red"><code>&gt;</code></font> is a Boolean operator. Other
+Boolean operators
+include: <font size="+1" color="red"><code>&lt; </code></font>, <font size="+1" color="red"><code>&lt;=</code></font>, <font size="+1" color="red"><code>&gt; </code></font>, <font size="+1" color="red"><code>&gt;=</code></font>, <font size="+1" color="red"><code>==</code></font>,
+<font size="+1" color="red"><code>!=</code></font>. You may combine Boolean operations
+using <font size="+1" color="red"><code>&amp;</code></font> (and), <font size="+1" color="red"><code>|</code></font> (or)
+and <font size="+1" color="red"><code>!</code></font> (not). For instance, to count all entries
+lying in (3,10] we use:
+<font color="red">
+<pre>
+sum(x &gt; 3 &amp; x &lt;= 10)
+</pre>
+</font>
+
+There is another Boolean operator <font size="+1" color="red"><code>%in%</code></font> which is the
+"belongs to" operator. For instance, <font size="+1" color="red"><code>4 %in%
+c(3,6,4,1)</code></font> returns <font size="+1" color="red"><code>TRUE</code></font>, while <font size="+1" color="red"><code>6 %in%
+c(4,5,2)</code></font> returns <font size="+1" color="red"><code>FALSE</code></font>.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Roll a die 1000 times. Count the number of times you get an odd
+number. You may use <font size="+1" color="red"><code>%in%</code></font> or you may use the modulo
+operator <font size="+1" color="red"><code>&</code></font> (<i>e.g.</i>, <font size="+1" color="red"><code>5&3</code></font> is 2). 
+</p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+I roll two dice 100 times each:
+<font color="red">
+<pre>
+x = sample(6,100,rep=T)
+y = sample(6,100,rep=T)
+</pre>
+</font>
+Count the number of times the sum of the two outcomes exceed 7.
+</p>
+
+
+<h2><a
+name="Structure of a simulation code">Structure of a simulation code</a></h2>
+
+We shall combine the techniques discussed above  to create the basic
+structure of a simulation code. You have a random experiment, and
+you want to do some math with its outcome, and save the
+result. You repeat this a large number of times (say $N$) to obtain a long
+vector of results. Finally look at the results through the lens
+of statistical regularity, <i>i.e.</i>, draw histogram or compute mean,
+or whatever.
+<p></p>
+ The basic structure is
+<font color="red">
+<pre>
+result = numeric(N)
+for(i in 1:N) {
+  #Perform th random experiment once
+  #Do the math with the outcome
+  result = #Whatever you want to save
+}
+hist(result)
+mean(result)
+</pre>
+</font>
+
+For instance, we may toss a coin 100 times in
+each pass, and save the number of heads obtained. If we repeat
+this 10 times, then we shall end up with a
+vector <font size="+1" color="red"><code>nhead</code></font> of length 10,
+where <font size="+1" color="red"><code>nhead[i]</code></font> stores the number of heads in
+the $i$-th batch of 100 tosses. Here is a code to do this:
+<font color="red">
+<pre>
+nhead = numeric(1000)
+for( i in 1:1000) {
+   tosses = sample(c("Head","Tail"), 100, rep=T)
+   nhead = sum(tosses=="Head")
+}
+mean(nhead)
+table(nhead) # frequency distribution
+barplot(table(nhead))
+</pre>
+</font>
+
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+A Roulette wheel in a casino consists of a rotating wheel on
+which a ball rolls. The wheel has some boxes attached to its
+periphery, marked 0,1,2,...,32. When the wheel stops rolling, the
+ball drops in one of the boxes. The outcome of this random
+experiment is the number written on the box. I have bought a
+ticket priced Rs 100 to play this. I shall get Rs 500 if the
+number is divisible by 5. Simulate to find my expected
+payoff per game.
+</p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Use simulation to approximate the expected value of $(X-\bar X)^3$
+where $X\sim Poisson(3).$
+</p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Use simulation to approximate the expected value of $(X-\bar X)^3$
+where $X\sim Poisson(\lambda)$ for $\lambda \in [1,5].$
+Make a plot of the expected value against $\lambda.$
+<p></p>
+[<b>Hint:</b> Take a grid of values of $\lambda$
+in $[1,5]$ and apply the last exercise for each. 
+</p>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

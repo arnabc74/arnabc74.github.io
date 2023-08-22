@@ -95,6 +95,7 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 </UL>
 
 </LI>
+<LI>Aug 21, 2023: <LINK to="Rhelp.html">R practice problems</LINK></LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
