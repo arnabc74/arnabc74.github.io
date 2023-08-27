@@ -1,0 +1,20 @@
+#install.packages(c('png','jpeg')) You need to do this only once.
+library(png)
+library(jpeg)
+
+#setwd('...') replace ... by the name of th subfolder where you have the images. 
+x = readPNG('toucantrans.png')
+str(x)
+plot(as.raster(x))
+plot(as.raster(x),xlim=c(105,110),ylim=c(80,86),inter=F)
+plot(as.raster(x[,,1]))
+x = readJPEG('gorkhey.jpg')
+dim(x)
+plot(as.raster(x))
+plot(as.raster(x),xlim=c(1570,1600),ylim=c(1150,1200),inter=F)
+p = locator(1)
+
+###Let's do some simple image processing: reducing the red component to half.
+
+x[,,1] = x[,,1]/2
+plot(as.raster(x))

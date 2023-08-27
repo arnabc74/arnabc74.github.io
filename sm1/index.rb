@@ -96,6 +96,19 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 
 </LI>
 <LI>Aug 21, 2023: <LINK to="Rhelp.html">R practice problems</LINK></LI>
+
+<LI>Aug 24, 2023:
+<UL><LI>[<LINK to="im.r">R code for image processing</LINK>]
+[<LINK to="https://youtu.be/QemnHaINeUc">video for image processing</LINK>]</LI>
+<LI>
+[<LINK to="https://youtu.be/Xq43Y0pfzpc?si=f5kDWtxT-tVtoXve">Video for understanding CSV format</LINK>]
+[<LINK to="https://youtu.be/BYX2XY_8IPM">Video for manipulating CSV files using R</LINK>]
+</LI>
+<LI>Amusement park ride accelerometer data: [<LINK to="one.csv">one.csv</LINK>]
+[<LINK to="two.csv">two.csv</LINK>]
+[<LINK to="three.csv">three.csv</LINK>]</LI>
+</UL>
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
