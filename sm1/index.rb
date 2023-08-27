@@ -98,7 +98,9 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 <LI>Aug 21, 2023: <LINK to="Rhelp.html">R practice problems</LINK></LI>
 
 <LI>Aug 24, 2023:
-<UL><LI>[<LINK to="im.r">R code for image processing</LINK>]
+<UL><LI>[<LINK to="toucantrans.png">png image</LINK>]
+[<LINK to="gorkhey.jpg">jpg image</LINK>]
+[<LINK to="im.r">R code for image processing</LINK>]
 [<LINK to="https://youtu.be/QemnHaINeUc">video for image processing</LINK>]</LI>
 <LI>
 [<LINK to="https://youtu.be/Xq43Y0pfzpc?si=f5kDWtxT-tVtoXve">Video for understanding CSV format</LINK>]
