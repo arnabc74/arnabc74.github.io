@@ -109,6 +109,15 @@ for <CODE>plot</CODE>, <CODE>barplot</CODE> and <CODE>lines</CODE>.
 <LI>Amusement park ride accelerometer data: [<LINK to="one.csv">one.csv</LINK>]
 [<LINK to="two.csv">two.csv</LINK>]
 [<LINK to="three.csv">three.csv</LINK>]</LI>
+
+</UL>
+</LI>
+<LI>Aug 28, 2023:
+<UL><LI><ALERT/><LINK to="q3.pdf">Third question set</LINK>[Due
+date: Sep 05, 2023]</LI>
+
+<LI>[<LINK to="q3help.html">Some help for Question set 3</LINK>]</LI>
+<LI>[<LINK to="haldane.pdf">Haldane's lecture</LINK>]</LI>
 </UL>
 </LI>
 </OL>
