@@ -118,7 +118,14 @@ date: Sep 05, 2023]</LI>
 
 <LI>[<LINK to="q3help.html">Some help for Question set 3</LINK>]</LI>
 <LI>[<LINK to="haldane.pdf">Haldane's lecture</LINK>]</LI>
+<LI>[<LINK to="RsessAug28.txt">R session used in class</LINK>]</LI>
 </UL>
+</LI>
+
+<LI>Aug 31, 2023:
+[<LINK to="links.html">Links to some wellknown sources for
+secondary data</LINK>]
+[<LINK to="nsshugli.csv">Hugli NSSO data</LINK>]
 </LI>
 </OL>
 
