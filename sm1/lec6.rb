@@ -104,7 +104,7 @@ coin, thus determining the trait of the offspring.
 All this may sound ridiculous. Indeed, most statistical models do
 sound hopelessly naive. But sometimes they end up explaining the
 reality quite well, better than any other proposed model! Indeed there is
-a famous saying by the statistician David Cox: All statistical
+a famous saying by the statistician George Box: All statistical
 models are wrong, but some are useful! 
 
 
