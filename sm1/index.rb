@@ -127,6 +127,18 @@ date: Sep 05, 2023]</LI>
 secondary data</LINK>]
 [<LINK to="nsshugli.csv">Hugli NSSO data</LINK>]
 </LI>
+
+<LI>Sep 04, 2023:
+<UL><LI>[<LINK to="lec7.html">Summary</LINK>]</LI>
+<LI>Linear algebra
+approach to least squares:
+[<LINK to="https://youtu.be/C1UnnYzrizo?t=3m36s">Video (3:36 onwards)</LINK>]</LI>
+<LI>Proof of consistency of the normal equations:
+[<LINK to="https://youtu.be/HpBL4AkQUcg">Video</LINK>]</LI>
+</UL>
+</LI>
+
+
 </OL>
 
 <HEAD2>Survival tips</HEAD2>

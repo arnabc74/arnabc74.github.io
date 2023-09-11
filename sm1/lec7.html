@@ -1,0 +1,268 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Least squares method">Least squares method</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Calculus technique">Calculus technique</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Linear algebra approach">Linear algebra approach</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using R">Using R</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Least squares method">Least squares method</a></h1>
+
+<b>Set up:</b> We have a bivariate
+data $(x_1,y_1),...,(x_n,y_n).$ Suppose that the scatterplot
+shows a linear pattern. We want to fit a straight line of the
+form $y = \alpha + \beta x$ to the data. We want our line to
+pass "as close as possible to all the points as possible". This
+is a rather vague specification. There are a number of ways to
+make it precise. The most popular among them is the <b>least
+squares approach</b>. Suppose that we want to predict the value
+of $y$ for $x = x_i$
+using the equation $y = \alpha + \beta x.$ The predicted
+value would be $\hat y_i = \alpha + \beta x_i.$ We measure the
+(unsigned) distance between $\hat y_i$ and $y_i$ as 
+$$
+(y_i-\hat y_i)^2 = (y_i - \alpha - \beta x_i)^2.
+$$
+Then the total error is 
+$$
+\sum_{i=1}^n (y_i - \alpha - \beta x_i)^2 =
+S(\alpha,\beta),\text{ say.}
+$$
+We want to choose $\alpha,\beta $ so
+that $S(\alpha,\beta)$ is minimised. This is called the
+least squares approach. We shall now outline two ways to
+minimise $S(\alpha,\beta).$
+
+<h2><a
+name="Calculus technique">Calculus technique</a></h2>
+First we differentiate $S(\alpha,\beta)$ partially
+wrt $\alpha $ and $\beta $ and equate the partial
+derivatives to zero. This gives two equations
+$$
+\frac{\partial S}{\partial \alpha} = -2\sum(y_i-\alpha - \beta x_i)
+= 0,
+$$
+and 
+$$
+\frac{\partial S}{\partial \beta } = -2\sum x_i(y_i-\alpha - \beta x_i)
+= 0.
+$$
+Remember that our unknowns are $\alpha$ and $\beta,$
+while the $x_i$'s and $y_i$'s are all known. So these
+are two <i>linear</i> equations in two unknowns. In matrix form
+these are
+$$
+\left[\begin{array}{ccccccccccc}
+n &amp; \sum x_i \\ \sum x_i &amp; \sum x_i^2
+
+\end{array}\right]\left[\begin{array}{ccccccccccc}\alpha\\\beta 
+\end{array}\right] = 
+\left[\begin{array}{ccccccccccc}\sum y_i\\ \sum x_i y_i
+\end{array}\right].
+$$
+Here the coefficient matrix is nonsingular if and only
+if $\frac 1n\sum x_i^2-(\overline x)^2\neq 0.$ This condition
+is natural, because, otherwise, all the points on the same
+vertical line, and slope of a vertical line is undefined.
+
+<p></p>
+
+Solving we get 
+$$
+\hat \beta = \frac{n\sum x_i y_i- \overline x\overline y}{n\sum
+x_i^2-(\overline x)^2 },
+$$
+and then $\hat \alpha $ may be obtained from 
+$$
+\overline y = \hat \alpha + \hat \beta \overline x. 
+$$
+Now, equating the first derivatives to zero, only ensures a
+stationary point. We still do not know if it is a maximum or
+minimum or something else, and even if it is a minimum, whether
+it is a global minimum, or just a local one. Second derivative
+tests (beyond our mathematical toolbox at present) will help
+resolve the first question, but not the second. We shall not
+discuss this any further here, because we still do not have the
+necessary math tools at our disposal.
+
+<h2><a
+name="Linear algebra approach">Linear algebra approach</a></h2>
+See <a href="https://youtu.be/C1UnnYzrizo?t=3m36s">this
+video (3:36 onwards)</a>.
+
+<p></p>
+
+For a proof of consistency of the normal equations
+see <a href="https://youtu.be/HpBL4AkQUcg">this video</a>.
+
+<h2><a
+name="Using R">Using R</a></h2>
+Let's say the $x$-values are stored in <font size="+1" color="red"><code>x</code></font>, and
+the $y$-values in <font size="+1" color="red"><code>y</code></font>. Then the following R code
+will fit a line:
+<font color="red">
+<pre>
+lm(y ~ x)
+</pre>
+</font> 
+You can overlay the least squares line on top of the scatterplot
+like this:
+<font color="red">
+<pre>
+plot(x,y)
+fit = lm(y ~ x)
+abline(fit)
+</pre>
+</font>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,99 @@
+@{<NOTE>
+<HEAD1>Least squares method</HEAD1>
+<B>Set up:</B> We have a bivariate
+data <M>(x_1,y_1),...,(x_n,y_n).</M> Suppose that the scatterplot
+shows a linear pattern. We want to fit a straight line of the
+form <M>y = \alpha + \beta x</M> to the data. We want our line to
+pass "as close as possible to all the points as possible". This
+is a rather vague specification. There are a number of ways to
+make it precise. The most popular among them is the <B>least
+squares approach</B>. Suppose that we want to predict the value
+of <M>y</M> for <M>x = x_i</M>
+using the equation <M>y = \alpha + \beta x.</M> The predicted
+value would be <M>\hat y_i = \alpha + \beta x_i.</M> We measure the
+(unsigned) distance between <M>\hat y_i</M> and <M>y_i</M> as 
+<D>
+(y_i-\hat y_i)^2 = (y_i - \alpha - \beta x_i)^2.
+</D>
+Then the total error is 
+<D>
+\sum_{i=1}^n (y_i - \alpha - \beta x_i)^2 =
+S(\alpha,\beta),\text{ say.}
+</D>
+We want to choose <M>\alpha,\beta </M> so
+that <M>S(\alpha,\beta)</M> is minimised. This is called the
+least squares approach. We shall now outline two ways to
+minimise <M>S(\alpha,\beta).</M>
+
+<HEAD2>Calculus technique</HEAD2>
+First we differentiate <M>S(\alpha,\beta)</M> partially
+wrt <M>\alpha </M> and <M>\beta </M> and equate the partial
+derivatives to zero. This gives two equations
+<D>
+[[\partial S][\partial \alpha]] = -2\sum(y_i-\alpha - \beta x_i)
+= 0,
+</D>
+and 
+<D>
+[[\partial S][\partial \beta ]] = -2\sum x_i(y_i-\alpha - \beta x_i)
+= 0.
+</D>
+Remember that our unknowns are <M>\alpha</M> and <M>\beta,</M>
+while the <M>x_i</M>'s and <M>y_i</M>'s are all known. So these
+are two <I>linear</I> equations in two unknowns. In matrix form
+these are
+<D>
+<MAT>
+n & \sum x_i \\ \sum x_i & \sum x_i^2
+</MAT><MAT>\alpha\\\beta </MAT> = 
+<MAT>\sum y_i\\ \sum x_i y_i</MAT>.
+</D>
+Here the coefficient matrix is nonsingular if and only
+if <M>[[1n]]\sum x_i^2-(\overline x)^2\neq 0.</M> This condition
+is natural, because, otherwise, all the points on the same
+vertical line, and slope of a vertical line is undefined.
+
+<P/>
+
+Solving we get 
+<D>
+\hat \beta = [[n\sum x_i y_i- \overline x\overline y][n\sum
+x_i^2-(\overline x)^2 ]],
+</D>
+and then <M>\hat \alpha </M> may be obtained from 
+<D>
+\overline y = \hat \alpha + \hat \beta \overline x. 
+</D>
+Now, equating the first derivatives to zero, only ensures a
+stationary point. We still do not know if it is a maximum or
+minimum or something else, and even if it is a minimum, whether
+it is a global minimum, or just a local one. Second derivative
+tests (beyond our mathematical toolbox at present) will help
+resolve the first question, but not the second. We shall not
+discuss this any further here, because we still do not have the
+necessary math tools at our disposal.
+
+<HEAD2>Linear algebra approach</HEAD2>
+See <LINK to="https://youtu.be/C1UnnYzrizo?t=3m36s">this
+video (3:36 onwards)</LINK>.
+
+<P/>
+
+For a proof of consistency of the normal equations
+see <LINK to="https://youtu.be/HpBL4AkQUcg">this video</LINK>.
+
+<HEAD2>Using R</HEAD2>
+Let's say the <M>x</M>-values are stored in <CODE>x</CODE>, and
+the <M>y</M>-values in <CODE>y</CODE>. Then the following R code
+will fit a line:
+<R>
+lm(y ~ x)
+</R> 
+You can overlay the least squares line on top of the scatterplot
+like this:
+<R>
+plot(x,y)
+fit = lm(y ~ x)
+abline(fit)
+</R>
+</NOTE>@}
