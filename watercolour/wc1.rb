@@ -70,7 +70,7 @@ ekTA chintAi anibArYa haye oThe--dhyA.t, ei chhabiTAo bichchhiri hachchhe! praty
 habe. bhAbte yadi panero miniTao lAge, to kuchh paroyA nei (abashya sAdhAraNta.H panero sekenDao lAgbe nA). 
 
 <HEAD3>tinTe prashna</HEAD3>
-<UL><LI>pratham prashna--tuli ra\nger jor ki kame Aschhe? jor dubhAbe kame Aste pAre, r\nger cheye jal beshI
+<UL><LI>pratham prashna--tulite ra\nger jor ki kame Aschhe? jor dubhAbe kame Aste pAre, r\nger cheye jal beshI
  haye gechhe, bA tuli shukiye Aschhe. AmrA yakhan DaT.h pene likhi, takhan AmrA yeman kAli furonor kichhu Agei anubhab
  karte pAri ye, pener kAli furiye Aschhe, eo temni. eTA bojhAr janya kono sAdhanA karte hay nA.
  yadi mane hay ra\nger jor kame Aschhe, tabe tulite fer ra.n bhare nite habe. yadi pyAleTeo ra.n
