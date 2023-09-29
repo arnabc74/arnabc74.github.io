@@ -140,6 +140,8 @@ approach to least squares:
 </UL>
 </LI>
 
+<LI>Sep 14, 2023: Maximum Likelihood Estimation [<LINK to="lec8.html">Summary</LINK>]</LI>
+
 
 </OL>
 
