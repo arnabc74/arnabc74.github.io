@@ -141,7 +141,12 @@ approach to least squares:
 </LI>
 
 <LI>Sep 14, 2023: Maximum Likelihood Estimation [<LINK to="lec8.html">Summary</LINK>]</LI>
+<LI>Sep 25, 2023: Videos: 
+[<LINK to="https://youtu.be/O-Dt_XUc4Jc">outliers</LINK>]
+[<LINK to="https://youtu.be/1-KLPM21-68">breakdown point</LINK>]
+[<LINK to="https://youtu.be/3gCAblbImk8">multivariate medians</LINK>]
 
+</LI>
 
 </OL>
 
