@@ -148,6 +148,17 @@ approach to least squares:
 
 </LI>
 
+<LI>Oct 05, 2023:
+We have covered the hard part. Now we shall cruise through the
+remainder of the course. I have created a 
+<LINK to="https://www.youtube.com/playlist?list=PLx--gUxue3Z-BUKXCvZz_EIL0dixAvBHy">Youtube playlist</LINK>
+containing my lecture videos (the order may differ slightly from the order
+I follow in class). Also we shall now adhere to the textbook by
+Witte and Witte more closely. Read chapter 1 and 2. Skim through
+chapter 8, and sections 9.1 and 9.2. These <I>roughly</I> cover the
+topics taught so far. The rest of the course will primarily deal
+with chapter 3, 4 and 5.
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
