@@ -69,7 +69,7 @@ Aditya Aryan (BS2305)
 Deep Hariya (BS2324)
 Nishant Lamboria (BS2334)
 Sauparna Kar (BS2343)
-Srijan Bhowmic (BS2352)
+Srijan Bhowmick (BS2352)
 </BOX>
 
 <BOX name="Students">
