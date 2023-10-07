@@ -10,6 +10,11 @@ ekhAne oi lAl diye dekhAno
  @{<E>integral</E>@}-TA @{<M>1</M>@}  theke @{<M>\infty</M>@}  parYanta habe. bhulTA parer pAtAteo
  gaRiyechhe. bhulTA dharechhen jaydIp sen.
 </LI>
+<LI><IMG web="p294.png">@{<E>294</E>@}  pAtAr a.nsha.</IMG>
+ekhAne oi lAl diye dekhAno
+ @{<E>integral</E>@}-TA habe @{<M>\pi \int_{-1}^2 x^4\, dx.</M>@}  tAi uttarTA habe @{<M>[[33\pi][5]].</M>@}
+bhulTA dharechhen jaydIp sen.
+</LI>
 </UL>
 <P/>
 <DISQUSB url="https://arnabc74.github.io/mult/index.html" id="mult"/>
