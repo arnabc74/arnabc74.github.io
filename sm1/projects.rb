@@ -103,7 +103,8 @@ Rahul Ganguly (BS2337)
 Rupayan Chowdhury (BS2340)</BOX>
 </LI>
 <LI><B>Distance estimation:</B> This one will require an app
-that you need to download from <LINK to="sounddata.apk">here</LINK>. The app records the ambient audio
+that you need to download from <LINK to="sounddata.apk">here
+(updated for Android 11+)</LINK>. The app records the ambient audio
 for a fixed period (say 2 secs), and then shows the standard
 deviation of the values. Hopefully that is the loudness of the
 sound. Now stand at different known distances from a noise source, and
