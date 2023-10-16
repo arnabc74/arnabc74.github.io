@@ -1,0 +1,490 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Functions in R">Functions in R</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The basic structure">The basic structure</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Visibility of a variable">Visibility of a variable</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Returning multiple values">Returning multiple values</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Passing arguments by position or name">Passing arguments by position or name</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#R as a functional programming language">R as a functional programming language</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Passing functions as an input to another function">Passing functions as an input to another function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Returning  a function from a function">Returning  a function from a function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The apply function">The <font size="+1" color="red"><code>apply</code></font> function</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Functions in R">Functions in R</a></h1>
+Functions play a very important role in R. In this page we shall
+summarise some of the important points regarding them. 
+
+<h2><a
+name="The basic structure">The basic structure</a></h2>
+A function is like a machine. It has
+<ul>
+
+<li>zero or more input(s),</li>
+
+<li>one or more output(s),</li>
+
+<li>possible some side-effect(s).</li>
+
+</ul>
+Here is a simple function in R:
+<font color="red">
+<pre>
+myfun = function(x,y) {
+  z = x+y
+  cat("The difference = ',x-y,'\n')
+  sin(z)
+}
+</pre>
+</font>
+The name of the function is <font size="+1" color="red"><code>myfun</code></font> (any name of your
+choice, as long as it does not clash with any keyword of R). The
+word <font size="+1" color="red"><code>function</code></font> is a keyword. The inputs to the
+function are listed (comma-separated) inside the <font size="+1" color="red"><code>(</code></font>
+... <font size="+1" color="red"><code>)</code></font>. The parentheses are complulsory wven if there
+are no inputs. The input names are dummy variables (has nothing
+to do with other variables with the same name). More on this
+later. The inputs are called the <b>arguments</b> or
+the <b>parameters</b> of the function. 
+<p></p>
+The body of the function  comes next, inside a pairs of braces
+(optional if the body consists of a single statement).
+
+<p></p>
+In body of the function consists of one or more statements, each
+of which serve one or more of the these three purposes:
+<ul>
+
+<li>internal computation, <i>e.g.</i>, the line <font size="+1" color="red"><code>z = x+y</code></font>
+computes <font size="+1" color="red"><code>z</code></font>, which is not visible from outside the function.</li>
+
+<li>side-effect, <i>e.g.</i>, the line <font size="+1" color="red"><code>cat("The difference =
+',x-y,'\n')</code></font> prints a line on the screen.</li>
+
+<li>output, <i>i.e.</i>, the last line outputs <font size="+1" color="red"><code>sin(z)</code></font>. The
+last line is always an output line in R. If you want to produce
+output at any other line, use <font size="+1" color="red"><code>return(...)</code></font>.</li>
+
+</ul>
+
+
+<h2><a
+name="Visibility of a variable">Visibility of a variable</a></h2>
+The variables outside a function, and those inside a function are
+linked only via the arguments and returned value. The following example illustrates
+this:
+<font color="red">
+<pre>
+f = function(x) {
+  y = x+1
+  x = x-1
+  2*x+y
+}
+
+x = 25
+y = 34
+z = 4
+val = f(z)
+x #prints 25
+y #prints 34
+z #prints 4
+val #prints 10
+</pre>
+</font>
+
+If you are in a desperate need of a function that modifies a variable value
+outside, then use the <font size="+1" color="red"><code>&lt;&lt;-</code></font> assignment instead
+of <font size="+1" color="red"><code>=</code></font> as in the following example.
+
+<font color="red">
+<pre>
+f = function(x) {
+  y = x+1
+  x &lt;&lt;- x-1  #The RHS x is the argument x, the LHS x is the global x. 
+  2*x+y
+}
+
+x = 25
+y = 34
+z = 4
+val = f(z)
+x #prints 5 (modified)
+y #prints 34 (unmodified)
+z #prints 4 (unmodified)
+val #prints 10
+</pre>
+</font>
+But use the <font size="+1" color="red"><code>&lt;&lt;-</code></font> assignment very sparingly, as its
+careless use generally leads to bugs that are hard to detect.
+
+<h2><a
+name="Returning multiple values">Returning multiple values</a></h2>
+Functions in R can return only one object. In order to return
+multiple objects, you first need to pack them into a single
+object. Such a composite object is called a <font size="+1" color="red"><code>list</code></font>. 
+
+<font color="red">
+<pre>
+f = function(n) {
+  list(1:n, sum(1:n), sum((1:n)^2))
+}
+</pre>
+</font>
+This function takes a positive integer as input, and returns
+three  things: 
+<ul>
+
+<li>the array 1,2,...,n</li>
+
+<li>\sum_1^n i</li>
+
+<li>\sum_1^n i^2</li>
+
+</ul>
+
+The function is used like this:
+<font color="red">
+<pre>
+val = f(10)
+val\frac 1
+val\frac 2
+val\frac 3
+</pre>
+</font> 
+Notice the use of <font size="+1" color="red"><code>\frac ...</code></font> to unpack
+a <font size="+1" color="red"><code>list</code></font>. However, this is cumbersome. An easier way
+is to use names for the different fields in a list:
+ <font color="red">
+<pre>
+f = function(n) {
+  list(all=1:n, sum=sum(1:n), sumOfSq=sum((1:n)^2))
+}
+</pre>
+</font>
+Then you can use:
+<font color="red">
+<pre>
+val = f(10)
+val$all
+val$sum
+val$sumOfSq
+</pre>
+</font>
+
+<h2><a
+name="Passing arguments by position or name">Passing arguments by position or name</a></h2>
+Consider this example:
+<font color="red">
+<pre>
+f = function(x,y,z) {
+  cat('x = ',x,'y = ','z = ',z)
+}
+</pre>
+</font>
+Here are two different ways to call this function:
+<font color="red">
+<pre>
+f(3,4,5) #Output: x = 3 y = 4 z = 5
+f(y=3,x=4,z=5) #Output: x = 4 y = 5 z = 5
+</pre>
+</font>
+The second form uses names of the arguments, and is useful when
+there are many parameters and it is difficult to remember their
+order. Its usefulness increases even further when used along with
+defaut values:
+<font color="red">
+<pre>
+f = function(x,y,z=3) {
+  cat('x = ',x,'y = ','z = ',z)
+}
+</pre>
+</font>
+Consider the following calls to this function:
+<font color="red">
+<pre>
+f(3,4,5) #Output: x = 3 y = 4 z = 5
+f(y=3,x=4) #Output: x = 4 y = 5 z = 3 (default value)
+</pre>
+</font>
+Most standard functions in R is of this type: they have
+m..a..n..y arguments (may be even more than 50), of which most
+have default values. We care to remember the positions of only
+yhe first few (th most important ones), and names of the next few
+(of secondary  importance), and just use the defaults for the
+rest. An example is the <font size="+1" color="red"><code>plot</code></font> function:
+<font color="red">
+<pre>
+u = 1:10
+v = 2*x+4
+plot(u,v) #Passing by position (the first along horizontal axis,
+          #the second along vertical)
+plot(u,v,ty='l', col='red') #Using names of arguments. 
+                            #Many other arguments, like line
+                            #types, line width etc are at their default values.
+</pre>
+</font>
+
+
+<h2><a
+name="R as a functional programming language">R as a functional programming language</a></h2>
+Notice the similarity of the following two R snippets:
+<font color="red">
+<pre>
+x = c(3,4,6,1)
+</pre>
+</font> 
+and
+<font color="red">
+<pre>
+x = function(t) t^2
+</pre>
+</font>
+The first makes <font size="+1" color="red"><code>x</code></font> an object, while the second makes
+it a function. The same assignment operation <font size="+1" color="red"><code>=</code></font> is
+used in both the cases. This points at a deep truth about R: it
+treats objects and functions on an equal footing. You can do with
+functions pretty much whatever you can do with objects, <i>e.g.</i>, you
+can pass a function as an input to another function, or return a
+function from a function, you can have arrays of functions, you
+can create functions on the fly.
+
+<h3><a
+name="Passing functions as an input to another function">Passing functions as an input to another function</a></h3>
+
+<font color="red">
+<pre>
+fsq = function(g,x) {
+  g(g(x))
+}
+</pre>
+</font>
+
+<h3><a
+name="Returning  a function from a function">Returning  a function from a function</a></h3>
+
+<font color="red">
+<pre>
+compose = function(f,g) {
+  function(x) {
+    f(g(x))
+  }
+}
+</pre>
+</font>
+Here is how you use it:
+<font color="red">
+<pre>
+sinOfCos = compose(sin,cos)
+sinOfCos(1) #returns sin(cos(1))
+</pre>
+</font>
+This is of course of limited value. Here is a really useful one:
+<font color="red">
+<pre>
+iter(f,n) {
+  function(x) {
+    for(i in 1:n) x = f(x)
+    x
+  }
+}
+</pre>
+</font>
+You can numerically solve the equation $x = \cos x$ using
+this function as:
+<font color="red">
+<pre>
+iter(cos,100)
+</pre>
+</font>
+
+
+<h2><a
+name="The <font size="+1" color="red"><code>apply</code></font> function">The <font size="+1" color="red"><code>apply</code></font> function</a></h2>
+R allows multidimensional arrays (their modern popular name
+being <i>tensor</i>). 
+The following line produces a $3\times4\times10$ array
+consisting of the integers 1 to 120:
+<font color="red">
+<pre>
+x = matrix(1:12, 3,4)
+</pre>
+</font>
+Now suppose we want to find row sums. Then you <font size="+1" color="red"><code>apply</code></font>
+the <font size="+1" color="red"><code>sum</code></font> function to the first dimension (<i>i.e.</i>,
+rows):
+<font color="red">
+<pre>
+apply(x,1,sum)
+</pre>
+</font>
+If you want to find column sums, then:
+<font color="red">
+<pre>
+apply(x,2,sum)
+</pre>
+</font>
+You may replace <font size="+1" color="red"><code>sum</code></font> by <font size="+1" color="red"><code>prod</code></font> or any
+function that takes a vector in and produces a single number.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

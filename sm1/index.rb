@@ -159,6 +159,12 @@ chapter 8, and sections 9.1 and 9.2. These <I>roughly</I> cover the
 topics taught so far. The rest of the course will primarily deal
 with chapter 3, 4 and 5.
 </LI>
+
+<LI>Oct 12, 2023: 
+[<LINK to="https://youtu.be/TJCcKfrCPMM">Florence
+Nightingale video</LINK>]
+[<LINK to="Rfun.html">R functions</LINK>]
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
