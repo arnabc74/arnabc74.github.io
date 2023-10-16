@@ -170,7 +170,7 @@ Nightingale video</LINK>]
 R code for the projection animation used in class:
 [<LINK to="ui.r">ui.r</LINK>
 | <LINK to="server.r">server.r</LINK>]
-You need to install and shiny package to use these.
+You need to install and use the shiny package to use these.
 </LI>
 </OL>
 
