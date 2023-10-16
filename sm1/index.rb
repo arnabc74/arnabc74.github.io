@@ -165,6 +165,13 @@ with chapter 3, 4 and 5.
 Nightingale video</LINK>]
 [<LINK to="Rfun.html">R functions</LINK>]
 </LI>
+
+<LI>Oct 16, 2023: 
+R code for the projection animation used in class:
+[<LINK to="ui.r">ui.r</LINK>
+| <LINK to="server.r">server.r</LINK>]
+You need to install and shiny package to use these.
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
