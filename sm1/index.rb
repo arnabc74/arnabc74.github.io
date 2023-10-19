@@ -167,10 +167,15 @@ Nightingale video</LINK>]
 </LI>
 
 <LI>Oct 16, 2023: 
+<UL>
+<LI>The concept of dispersion matrix
+[<LINK to="https://youtu.be/MQcZ-csmA1Y">Video</LINK>]
+</LI><LI>
 R code for the projection animation used in class:
 [<LINK to="ui.r">ui.r</LINK>
 | <LINK to="server.r">server.r</LINK>]
 You need to install and use the shiny package to use these.
+</LI></UL>
 </LI>
 </OL>
 
