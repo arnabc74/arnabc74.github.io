@@ -177,6 +177,19 @@ R code for the projection animation used in class:
 You need to install and use the shiny package to use these.
 </LI></UL>
 </LI>
+
+<LI>Oct 19, 2023: Application of eigenanalysis to statistics:
+<UL>
+<LI>The first example: 
+[<LINK to="pca/datacloud.csv">data used</LINK>]
+[<LINK to="pca/eigen.r">R code</LINK>]
+</LI>
+<LI>The second example (face recognition):
+[<LINK to="https://www.isical.ac.in/~arnabc/talks/facesbwandcol.tar.gz">data used</LINK>]
+[<LINK to="pca/eigfaces.r">R code</LINK>]
+</LI>
+</UL>
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
