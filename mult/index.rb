@@ -22,6 +22,8 @@ bhulTA dharechhen jaydIp sen.
 <LI>saptam adhyAyer @{<E>Exercise 9</E>@}-er dwitIya a.nkaTAr uttar habe @{<M>0.</M>@}  Ami bhul
  kare @{<M>2</M>@}  likhe felechhi. bhulTA dharechhen shrI sarkAr. 
  </LI>
+<LI>@{<E>326</E>@}  pAtAy ek jAygAy likhe base Achhi @{<M>-[[12]]+2=-[[32]].</M>@}  balAi bAhulya
+ ye, oTA @{<M>[[32]]</M>@}  habe. bhulTA dharechhen shrI sarkAr.</LI>
 </UL>
 <P/>
 <DISQUSB url="https://arnabc74.github.io/mult/index.html" id="mult"/>
