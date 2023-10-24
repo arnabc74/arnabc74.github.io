@@ -209,7 +209,7 @@ sinOfCos(1) #returns sin(cos(1))
 </R>
 This is of course of limited value. Here is a really useful one:
 <R>
-iter(f,n) {
+iter = function(f,n) {
   function(x) {
     for(i in 1:n) x = f(x)
     x

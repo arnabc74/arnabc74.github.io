@@ -19,6 +19,9 @@ ekhAne oi lAl diye dekhAno
  @{<E>integral</E>@}-TA habe @{<M>\pi \int_{-1}^2 x^4\, dx.</M>@}  tAi uttarTA habe @{<M>[[33\pi][5]].</M>@}
 bhulTA dharechhen jaydIp sen.
 </LI>
+<LI>saptam adhyAyer @{<E>Exercise 9</E>@}-er dwitIya a.nkaTAr uttar habe @{<M>0.</M>@}  Ami bhul
+ kare @{<M>2</M>@}  likhe felechhi. bhulTA dharechhen shrI sarkAr. 
+ </LI>
 </UL>
 <P/>
 <DISQUSB url="https://arnabc74.github.io/mult/index.html" id="mult"/>

@@ -1,0 +1,15 @@
+library(rgl)
+
+options(rgl.printRglwidget = TRUE) #You may not need this.
+mydata = read.csv('datacloud.csv')
+mn = apply(mydata,2,mean)
+cov(mydata)
+(eig = eigen(cov(mydata)))
+r = range(mydata,mn + 10*eig$vec)
+
+plot3d(mydata,xlim=r,ylim=r,zlim=r)
+
+segments3d(c(mn[1],mn[1]+10*eig$vec[1,1]), c(mn[2],mn[2]+10*eig$vec[2,1]), c(mn[3],mn[3]+10*eig$vec[3,1]),col="red",lwd=3)
+segments3d(c(mn[1],mn[1]+10*eig$vec[1,2]), c(mn[2],mn[2]+10*eig$vec[2,2]), c(mn[3],mn[3]+10*eig$vec[3,2]),col="blue",lwd=3)
+segments3d(c(mn[1],mn[1]+10*eig$vec[1,3]), c(mn[2],mn[2]+10*eig$vec[2,3]), c(mn[3],mn[3]+10*eig$vec[3,3]),col="green",lwd=3)
+
