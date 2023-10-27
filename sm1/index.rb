@@ -187,6 +187,8 @@ You need to install and use the shiny package to use these.
 <LI>The second example (face recognition):
 [<LINK to="https://www.isical.ac.in/~arnabc/talks/facesbwandcol.tar.gz">data used</LINK>]
 [<LINK to="pca/eigfaces.r">R code</LINK>]
+[<LINK to="https://www.youtube.com/playlist?list=PLx--gUxue3Z8fvVAMWWltAsHLumwqPThF">Youtube playlist for eigenanalysis in
+statistics (includes face recognition details)</LINK>]
 </LI>
 </UL>
 </LI>
