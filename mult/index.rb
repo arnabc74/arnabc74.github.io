@@ -9,11 +9,33 @@ eiTA AmAr @{<E>Multivariable Calculus</E>@}  baiyer oyebpej. bhultruTi yA berobe
 ekhAne oi lAl a.nshagulo bhul kare bAd diye felechhilAm.
 bhulTA dharechhen abantikA rAy barmaN. 
 </LI>
+<LI><IMG web="p152a.png">@{<E>152</E>@}  pAtAr a.nsha.</IMG>
+trritIya adhyAyer ei pAtAy Ami @{<E>copy-paste</E>@}  karte giye bhul kare felechhi. lAl ra.n diye bhul eba.n sa.nshodhan 
+duii dekhAlAm. bhulTA dharechhe abantikA rAy barmaN. 
+</LI>
+<LI><IMG web="p152.png">@{<E>152</E>@}  pAtAr Arek a.nsha.</IMG>
+trritIya adhyAyer sei ekai pAtAy Ami @{<E>copy-paste</E>@}  karte giye AbAr bhul kare felechhi. lAl ra.n
+ diye bhul eba.n sa.nshodhan 
+duii dekhAlAm. e bhulTAo dharechhe abantikA rAy barmaN. 
+</LI>
 <LI><IMG web="p268.png">@{<E>268</E>@}  pAtAr a.nsha.</IMG>
 ekhAne oi lAl diye dekhAno
  @{<E>integral</E>@}-TA @{<M>1</M>@}  theke @{<M>\infty</M>@}  parYanta habe. bhulTA parer pAtAteo
  gaRiyechhe. bhulTA dharechhen jaydIp sen.
 </LI>
+<LI><IMG web="p234.png">@{<E>234</E>@}  pAtAr a.nsha.</IMG>
+eTA Asale @{<E>170</E>@}  nambar pAtAr @{<E>Exercise 5</E>@}-er uttar. ekhAne oi lAl @{<M>x^2</M>@}-TAr Age ekTA mAinAs 
+basbe. 
+bhulTA dharechhe abantikA rAy barmaN. 
+</LI>
+<LI><IMG web="p270.png">@{<E>270</E>@}  pAtAr a.nsha.</IMG>
+eTA Asale @{<E>241</E>@}  nambar pAtAr @{<E>Exercise 2</E>@}-er uttar. bhul eba.n sa.nshodhan duii lAl
+ diye dekhiyechhi. 
+bhulTA dharechhe abantikA rAy barmaN. 
+</LI>
+<LI>pancham adhyAye @{<E>266 </E>@} nambar pAtAr @{<E>Exercise 21</E>@}-er uttar habe
+ @{<E>(D).</E>@}  bhul kare @{<E>(B)</E>@}  likhe felechhi.
+bhulTA dharechhe abantikA rAy barmaN. </LI>
 <LI><IMG web="p294.png">@{<E>294</E>@}  pAtAr a.nsha.</IMG>
 ekhAne oi lAl diye dekhAno
  @{<E>integral</E>@}-TA habe @{<M>\pi \int_{-1}^2 x^4\, dx.</M>@}  tAi uttarTA habe @{<M>[[33\pi][5]].</M>@}
