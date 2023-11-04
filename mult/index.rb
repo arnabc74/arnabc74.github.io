@@ -28,6 +28,11 @@ eTA Asale @{<E>170</E>@}  nambar pAtAr @{<E>Exercise 5</E>@}-er uttar. ekhAne oi
 basbe. 
 bhulTA dharechhe abantikA rAy barmaN. 
 </LI>
+<LI><IMG web="p267.png">@{<E>267</E>@}  pAtAr a.nsha.</IMG>
+ei parIxAr a.nkaTA bhul TukechhilAm. bhul eba.n sa.nshodhan lAl
+ diye dekhAlAm. 
+bhulTA dharechhe abantikA rAy barmaN. 
+</LI>
 <LI><IMG web="p270.png">@{<E>270</E>@}  pAtAr a.nsha.</IMG>
 eTA Asale @{<E>241</E>@}  nambar pAtAr @{<E>Exercise 2</E>@}-er uttar. bhul eba.n sa.nshodhan duii lAl
  diye dekhiyechhi. 
