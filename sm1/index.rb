@@ -192,6 +192,14 @@ statistics (includes face recognition details)</LINK>]
 </LI>
 </UL>
 </LI>
+
+<LI>Oct 30, 2023: Spearman's Rank Correlation</LI>
+
+<LI>Nov 02, 2023: An astrology fallacy regarding pooled correlation</LI>
+
+<LI>Nov 06, 2023: Simpson's paradox. Concept of confounding,
+blocking and randomisation: [<LINK to="simp.r">R code</LINK>
+| <LINK to="simpson.csv">data</LINK>]</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>

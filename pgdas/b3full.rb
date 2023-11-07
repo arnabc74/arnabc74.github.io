@@ -1,4 +1,3 @@
-
 @{<NOTE> -*- eval: (folding-mode t) -*-
 <TITLE>Course: Basic 3: Statistical methods</TITLE>
 
