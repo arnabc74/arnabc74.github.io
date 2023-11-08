@@ -1,0 +1,255 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#A correlation fallacy">A correlation fallacy</a>
+</li>
+<li>
+<a href="#Latent variable">Latent variable</a>
+</li>
+<li>
+<a href="#Is it safe to pool data?">Is it safe to pool data?</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="A correlation fallacy">A correlation fallacy</a></h1>
+The fallacy that I am going to discuss here had actually happened
+during the days of Prof Mahalanobis. I learned about this from a
+lecture by Dr C R Rao. I do not have the original data set. So
+the discussion will only provide the basic idea. 
+<p></p>
+Allegedly, there is a claim in astrology that the ratio of the
+life line and the wrist width can predict one's life span. The
+life line is the length of the diagonal across the palm ending at
+the base of the index finger. There was a paper where the authors
+visited various burning ghats and crematoria, and collected data
+on this ratio and the age at death for different dead bodies. The
+computed Pearson's correlation and found a value as high as
+0.8. So they claimed that astrology has some scientific justification,
+after all.   
+<p></p>
+The paper had attracted the attenstion of Prof Mahalanobis, who
+was particularly intrigued by the fact that the authors had not
+provided a scatterplot. Merely quoting the correlation without
+showing the full data (graphically) opens up the hell of
+data misintrepretation. He contacted the authors, and managed to
+get the raw data, which contained also the genders of the dead
+persons. The scatterplot looked something like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/astro1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+The red points correspond to the males, while the females are
+shown by blue points. Notice that the cloud of points for the
+males show no strong correlation. Neither does the female
+cloud. Yet the two clouds being located at two different centres
+create the correlation. In fact, here the male correlation is
+about $-0.2$ while the female correlation is
+about $-0.01$. Yet the pooled correlation is $0.8$.
+
+<p></p>
+Such a high correlation is an example of a <b>spurious
+correlation</b>, meaning that it is really not there. 
+<p></p>
+The interpretation of the data is that men tend to have more
+squarish hands than women, and so have higher values of the
+ratio. Also, during that time, a large number of women used to
+die during child birth. So their life spans were shorter than
+those for men. 
+<p></p>
+In fact, you could have obtained a more striking paradox by
+replacing the ratio with length of hair!
+
+<h1><a
+name="Latent variable">Latent variable</a></h1> 
+We can visualise the cause of the fallacy as the following
+diagram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fallbox.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The two variables Ratio and Lifespan are not directly connected
+at all, but both are influenced by a common variable Gender. When
+this common variable is not mentioned (as in the original paper),
+the two other variables appear to have a correlation. 
+<p></p>
+Such variables that influence other vsriables from behind the
+scene, are called <b>latent variables</b>, and are at the centre
+of much attention. 
+
+<h1><a
+name="Is it safe to pool data?">Is it safe to pool data?</a></h1>
+Statistics is all about aggregate overall behaviour. So we often
+pool smaller samples with similar behaviours into a larger
+sample, and expect to see that common behaviour more strongly in
+the pooled data. For instance, if the mean of two univariate
+samples are both between 3 and 4, then the pooled mean will also
+lie in the ame interval. 
+<p></p>
+However, thanks to latent variables, pooling may give rise to
+wierd artefacts. The astrology fallacy is one such example. The
+following problem outlies another.
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We have two bivariate data sets $(X_i,Y_i)$
+for $i=1,...,50$ and for $i=51,...,100$ such that each
+has correlation equal to 1. Show that the pooled correlation can
+be anything in $(-1,1]$.
+</p> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
