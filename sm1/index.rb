@@ -201,6 +201,19 @@ correlation [<LINK to="astro.html">summary</LINK>]</LI>
 <LI>Nov 06, 2023: Simpson's paradox. Concept of confounding,
 blocking and randomisation: [<LINK to="simp.r">R code</LINK>
 | <LINK to="simpson.csv">data</LINK>]</LI>
+
+<LI>Nov 09, 2023: 
+
+<UL><LI>Please skim through Part III (Correlation and
+Regression) from Freedman, Pisani and Purves. It is about 100
+pages, most of which you will find trivially easy. Pay special
+attention to Section 5 of chapter 9 (Association is not
+causation) and Section 4 or chapter 10 (The regression fallacy).
+</LI>
+<LI>Also skim through chapter 1 of the same book to develop
+intuition about controlled experiments.</LI>
+</UL>
+</LI>
 </OL>
 
 <HEAD2>Survival tips</HEAD2>
