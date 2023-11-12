@@ -8,6 +8,14 @@ may use R or Python or Java or C or C++. No project specific
 library is allowed.
 
 <P/>
+
+<ALERT/>Each project group should submit a single report in pdf
+along with code etc (separately via email/github link/etc). The
+report must contain exploration of the data. There
+will be a project presentation (about 20min to 30 min per project
+group), where each member has to present a part. No separate viva
+(except questions from the classmates and me during the presentation).  
+<P/>
 <ALERT/><B>The deadline for submission of project is the last
 day before the semestral exam week starts. Submit report (problem
 description, algo, findings etc) and code. Do not include code
