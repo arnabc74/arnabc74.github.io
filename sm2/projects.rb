@@ -87,57 +87,9 @@ find. This project will explore this.
 
 </BOX>
 </LI>
-<LI><B>Skew angle estimation:</B> Any QR code or bar code reader has to
-do a skew angle estimation, i.e., estimate the angle at which the object is
-tilted w.r.t. the camera. Take a page of parallel lines, and
-photograph them from  different angles. Try to come up with an
-estimation technique. Check by rotating the image by that angle.
-<BOX name="Students">Arikith, Tamim  Abhik </BOX>
+<LI><B>EM algorithm:</B> 
 
-
-</LI>
-<LI><B>Develop an online casino:</B> Learn about at least 5
-different gambling schemes used in real casinos, and implement
-them using simulation. There should be an option to compute the
-long term average and standard deviation for each of them.  
-</LI>
-<LI><B>Rifle shuffle:</B> Simulate riffle shuffle using the
-model done in class. Then plot the probabilities of various
-events as the number of shuffles increase to see how many
-shuffles are needed to reeach complete mixing.
 <BOX name="Students"></BOX>
-</LI>
-<LI><B>Shannon's mind reading game:</B> Claude Shannon, the
-father of informaton theory, is credited with inventing this
-magic trick. An ordered deck is rifle shuffled thrice. A card is
-picked at random, and inserted back randomly. The deck is then
-handed back to the magician, who finds the card. The trick is
-that there will be just one singleton rising sequence with a
-``high probability''. This singleton must be the chosen
-card. Use simulation to find the probability of success of this
-trick.
-<BOX name="Students">
-Himadri Mandal (BS2327), Ayan Ghosh (BS2321), Drishti Singla (BS2325), Mrittika
-Giri (BS2332), Aman Verma(BS2309), Siddhartha Bhattacharya(BS2345)
-</BOX>
-</LI>
-<LI><B>Separating a mixture:</B>
-Consider this random experiment: toss a fair coin, if head, then
-generate from <M>N(\mu_1,\sigma^2_1)</M> else generate
-from <M>N(\mu_2,\sigma^2_2).</M>
-The data consist of IID outcomes of this random experiment. Devise some way to estimate 
-<M>\mu_1,\mu_2,\sigma^2_1</M> and <M>\sigma^2_2</M> from the
-data. Implement in R. 
-<BOX name="Students"></BOX>
-</LI>
-<LI><B>Applying discrete arc sine law for sojourn times on various sports</B>
-<BOX name="Students">
-Anunoy Chal BS2313
-Aryan Sahu BS2317
-Aryanil Kundu BS2318
-Atmadeep Sengupta BS2320
-Adity Banerjee (BS2304)
-Ankit Bhar (BS2311)</BOX>
 </LI>
 </OL>
 </NOTE>@}
