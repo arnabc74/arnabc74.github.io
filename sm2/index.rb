@@ -13,7 +13,12 @@ Google classroom <LINK to="https://classroom.google.com/c/NjUxMjAxMDM3Njk0?cjc=n
 <P/>
 
 <HEAD2>Brief lecture notes</HEAD2>
-
+<OL>
+<LI>Multivariate statistics</LI>
+Here is a Youtube playlist consisting
+of <LINK to="https://www.youtube.com/playlist?list=PLx--gUxue3Z-UzXZ5d_P9aqcGyBU-7bJ6">20 
+short videos</LINK>. I 
+</OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
 <DL>
