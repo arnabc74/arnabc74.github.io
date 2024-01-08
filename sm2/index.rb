@@ -5,7 +5,7 @@ B.Stat(hons) first year students (2023-24). I shall post various
 things (code snippets, data sets etc) here from time to time.
 
 <P/>
-<ALERT/>Please see the <LINK to="projects.html">projects page</LINK>.
+<ALERT/>
 
 Google classroom <LINK to="https://classroom.google.com/c/NjUxMjAxMDM3Njk0?cjc=n3nmi54">joining link</LINK>
 <P/>
