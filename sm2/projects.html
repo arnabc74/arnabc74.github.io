@@ -1,0 +1,348 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Projects">Projects</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Projects">Projects</a></h1>
+Each group of 5 or 6 students will do a single project. They have
+to either come up with their own project idea (to be ratified by
+me), or they have to choose one from the following list of
+projects. Same project may be chosen by more than one group. You
+may use R or Python or Java or C or C++. No project specific
+library is allowed.
+
+<p></p>
+
+
+<img src="image/alert.png">Each project group should submit a single report in pdf
+along with code etc (separately via email/github link/etc). The
+report must contain exploration of the data. There
+will be a project presentation (about 20min to 30 min per project
+group), where each member has to present a part. No separate viva
+(except questions from the classmates and me during the presentation).  
+<p></p>
+
+<img src="image/alert.png"><b>The deadline for submission of project is the last
+day before the semestral exam week starts. Submit report (problem
+description, algo, findings etc) and code. Do not include code
+in your report.</b>
+
+<p></p>
+
+<img src="image/alert.png">The projects are often tough, while your expertise in
+statistics is still rudimentary. So do not despair if your
+results are not satisfactory. Your performance will be judged in
+terms of how much sincere effort you have put into it. Doing a
+Google search, and implementing a sophisticated algo will fetch
+less credit than trying on your own and possibly coming up with an
+inferior technique. Doing a Google search, finding an efficient
+algorithm, and passing it off as your original research will
+incur severe penalty. 
+<ol type="">
+
+<li>
+<b>Exploring cross-correlation for permutations
+ of $M$:</b> There is an interesting theorem that for two
+ independent random variables $X$ and $Y$, we can
+ construct two other random variables $U$ and $V$ that
+ have the same marginal distributions as $X$ and $Y$
+ and the joint distributions are arbitrarily close. Now
+ cross-correlation claims to be able to detect all types of
+ inependence. This project will explore how (and whether) it can
+ distinguish between $X,Y$ and $U,V.$ The project
+ involves reading the proof of the theorem, coding
+ cross-correlation and doing the exploration.
+
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+
+</fieldset>
+
+</li>
+
+<li>
+<b>OCR-able handwriting:</b> We want to come up with an
+alphabet (a set of symbols) that have the following properties:
+they are mechanically distinguishable easily from scanned images,
+they are easy to write by hand.
+ 
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+
+
+</fieldset>
+
+</li>
+
+<li>
+<b>Sequential testing:</b> Often the result of a test is
+inconclusive. Fixed sample size proecedures resolves such cases
+in favour of $H_0.$ We want to come up with a test procedure
+that will ask for more data in such cases. The desired test
+procedure should split the sample space into three parts: accept,
+reject and continue. Suggest (and implement) how it may be done satisfactorily.
+<fieldset>
+<legend><b><i>Student</i></b></legend>
+
+
+</fieldset>
+
+</li>
+
+<li>
+<b>RGB to CMYK conversion</b>:
+There are two different models for colours: additive (<i>i.e.</i>,
+light) and subtractive (<i>i.e.</i>, paint). The additive primaries are
+Red (R) , Green (G) and Blue (B). The subtractive primaries are
+Cyan (C), Magenta (M), and Yellow (Y). The three subtractive
+primares are supposed to make perfect black when mixed together
+in equal amounts. However, since black paint is generally cheaper
+than mixing the three primaries, we also consider black (K for
+key) as a subtractive primary. The RGB system is used for
+computer monitors, while the CMYK system is ised for colour
+printers. In order to produce comparable result based on
+on-screen designs, we need a reliable mappiing between the two
+systems. Surprisingly, such a mapping is rather hard to
+find. This project will explore this.
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+
+</fieldset>
+
+</li>
+
+<li>
+<b>Computing multivariate medians:</b>
+
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+
+
+</fieldset>
+
+</li>
+
+<li>
+<b>Skew angle estimation:</b> Any QR code or bar code reader has to
+do a skew angle estimation, <i>i.e.</i>, estimate the angle at which the object is
+tilted w.r.t. the camera. Take a page of parallel lines, and
+photograph them from  different angles. Try to come up with an
+estimation technique. Check by rotating the image by that angle.
+<fieldset>
+<legend><b><i>Students</i></b></legend>Arikith, Tamim  Abhik </fieldset>
+
+
+
+</li>
+
+<li>
+<b>Develop an online casino:</b> Learn about at least 5
+different gambling schemes used in real casinos, and implement
+them using simulation. There should be an option to compute the
+long term average and standard deviation for each of them.  
+</li>
+
+<li>
+<b>Rifle shuffle:</b> Simulate riffle shuffle using the
+model done in class. Then plot the probabilities of various
+events as the number of shuffles increase to see how many
+shuffles are needed to reeach complete mixing.
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+</fieldset>
+
+</li>
+
+<li>
+<b>Shannon's mind reading game:</b> Claude Shannon, the
+father of informaton theory, is credited with inventing this
+magic trick. An ordered deck is rifle shuffled thrice. A card is
+picked at random, and inserted back randomly. The deck is then
+handed back to the magician, who finds the card. The trick is
+that there will be just one singleton rising sequence with a
+``high probability''. This singleton must be the chosen
+card. Use simulation to find the probability of success of this
+trick.
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+Himadri Mandal (BS2327), Ayan Ghosh (BS2321), Drishti Singla (BS2325), Mrittika
+Giri (BS2332), Aman Verma(BS2309), Siddhartha Bhattacharya(BS2345)
+</fieldset>
+
+</li>
+
+<li>
+<b>Separating a mixture:</b>
+Consider this random experiment: toss a fair coin, if head, then
+generate from $N(\mu_1,\sigma^2_1)$ else generate
+from $N(\mu_2,\sigma^2_2).$
+The data consist of IID outcomes of this random experiment. Devise some way to estimate 
+$\mu_1,\mu_2,\sigma^2_1$ and $\sigma^2_2$ from the
+data. Implement in R. 
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+</fieldset>
+
+</li>
+
+<li>
+<b>Applying discrete arc sine law for sojourn times on various sports</b>
+
+<fieldset>
+<legend><b><i>Students</i></b></legend>
+Anunoy Chal BS2313
+Aryan Sahu BS2317
+Aryanil Kundu BS2318
+Atmadeep Sengupta BS2320
+Adity Banerjee (BS2304)
+Ankit Bhar (BS2311)</fieldset>
+
+</li>
+
+</ol>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

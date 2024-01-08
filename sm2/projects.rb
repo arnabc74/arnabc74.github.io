@@ -1,0 +1,143 @@
+@{<NOTE>
+<HEAD1>Projects</HEAD1>
+Each group of 5 or 6 students will do a single project. They have
+to either come up with their own project idea (to be ratified by
+me), or they have to choose one from the following list of
+projects. Same project may be chosen by more than one group. You
+may use R or Python or Java or C or C++. No project specific
+library is allowed.
+
+<P/>
+
+<ALERT/>Each project group should submit a single report in pdf
+along with code etc (separately via email/github link/etc). The
+report must contain exploration of the data. There
+will be a project presentation (about 20min to 30 min per project
+group), where each member has to present a part. No separate viva
+(except questions from the classmates and me during the presentation).  
+<P/>
+<ALERT/><B>The deadline for submission of project is the last
+day before the semestral exam week starts. Submit report (problem
+description, algo, findings etc) and code. Do not include code
+in your report.</B>
+<P/>
+<ALERT/>The projects are often tough, while your expertise in
+statistics is still rudimentary. So do not despair if your
+results are not satisfactory. Your performance will be judged in
+terms of how much sincere effort you have put into it. Doing a
+Google search, and implementing a sophisticated algo will fetch
+less credit than trying on your own and possibly coming up with an
+inferior technique. Doing a Google search, finding an efficient
+algorithm, and passing it off as your original research will
+incur severe penalty. 
+<OL>
+<LI><B>Exploring cross-correlation for permutations
+ of <M>M</M>:</B> There is an interesting theorem that for two
+ independent random variables <M>X</M> and <M>Y</M>, we can
+ construct two other random variables <M>U</M> and <M>V</M> that
+ have the same marginal distributions as <M>X</M> and <M>Y</M>
+ and the joint distributions are arbitrarily close. Now
+ cross-correlation claims to be able to detect all types of
+ inependence. This project will explore how (and whether) it can
+ distinguish between <M>X,Y</M> and <M>U,V.</M> The project
+ involves reading the proof of the theorem, coding
+ cross-correlation and doing the exploration.
+
+<BOX name="Students">
+</BOX>
+</LI>
+<LI><B>OCR-able handwriting:</B> We want to come up with an
+alphabet (a set of symbols) that have the following properties:
+they are mechanically distinguishable easily from scanned images,
+they are easy to write by hand.
+ 
+<BOX name="Students">
+
+</BOX>
+</LI>
+<LI><B>Sequential testing:</B> Often the result of a test is
+inconclusive. Fixed sample size proecedures resolves such cases
+in favour of <M>H_0.</M> We want to come up with a test procedure
+that will ask for more data in such cases. The desired test
+procedure should split the sample space into three parts: accept,
+reject and continue. Suggest (and implement) how it may be done satisfactorily.
+<BOX name="Student">
+
+</BOX>
+</LI>
+<LI><B>RGB to CMYK conversion</B>:
+There are two different models for colours: additive (i.e.,
+light) and subtractive (i.e., paint). The additive primaries are
+Red (R) , Green (G) and Blue (B). The subtractive primaries are
+Cyan (C), Magenta (M), and Yellow (Y). The three subtractive
+primares are supposed to make perfect black when mixed together
+in equal amounts. However, since black paint is generally cheaper
+than mixing the three primaries, we also consider black (K for
+key) as a subtractive primary. The RGB system is used for
+computer monitors, while the CMYK system is ised for colour
+printers. In order to produce comparable result based on
+on-screen designs, we need a reliable mappiing between the two
+systems. Surprisingly, such a mapping is rather hard to
+find. This project will explore this.
+<BOX name="Students">
+</BOX>
+</LI>
+<LI><B>Computing multivariate medians:</B>
+<BOX name="Students">
+
+</BOX>
+</LI>
+<LI><B>Skew angle estimation:</B> Any QR code or bar code reader has to
+do a skew angle estimation, i.e., estimate the angle at which the object is
+tilted w.r.t. the camera. Take a page of parallel lines, and
+photograph them from  different angles. Try to come up with an
+estimation technique. Check by rotating the image by that angle.
+<BOX name="Students">Arikith, Tamim  Abhik </BOX>
+
+
+</LI>
+<LI><B>Develop an online casino:</B> Learn about at least 5
+different gambling schemes used in real casinos, and implement
+them using simulation. There should be an option to compute the
+long term average and standard deviation for each of them.  
+</LI>
+<LI><B>Rifle shuffle:</B> Simulate riffle shuffle using the
+model done in class. Then plot the probabilities of various
+events as the number of shuffles increase to see how many
+shuffles are needed to reeach complete mixing.
+<BOX name="Students"></BOX>
+</LI>
+<LI><B>Shannon's mind reading game:</B> Claude Shannon, the
+father of informaton theory, is credited with inventing this
+magic trick. An ordered deck is rifle shuffled thrice. A card is
+picked at random, and inserted back randomly. The deck is then
+handed back to the magician, who finds the card. The trick is
+that there will be just one singleton rising sequence with a
+``high probability''. This singleton must be the chosen
+card. Use simulation to find the probability of success of this
+trick.
+<BOX name="Students">
+Himadri Mandal (BS2327), Ayan Ghosh (BS2321), Drishti Singla (BS2325), Mrittika
+Giri (BS2332), Aman Verma(BS2309), Siddhartha Bhattacharya(BS2345)
+</BOX>
+</LI>
+<LI><B>Separating a mixture:</B>
+Consider this random experiment: toss a fair coin, if head, then
+generate from <M>N(\mu_1,\sigma^2_1)</M> else generate
+from <M>N(\mu_2,\sigma^2_2).</M>
+The data consist of IID outcomes of this random experiment. Devise some way to estimate 
+<M>\mu_1,\mu_2,\sigma^2_1</M> and <M>\sigma^2_2</M> from the
+data. Implement in R. 
+<BOX name="Students"></BOX>
+</LI>
+<LI><B>Applying discrete arc sine law for sojourn times on various sports</B>
+<BOX name="Students">
+Anunoy Chal BS2313
+Aryan Sahu BS2317
+Aryanil Kundu BS2318
+Atmadeep Sengupta BS2320
+Adity Banerjee (BS2304)
+Ankit Bhar (BS2311)</BOX>
+</LI>
+</OL>
+</NOTE>@}
