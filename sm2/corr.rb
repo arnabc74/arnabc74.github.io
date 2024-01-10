@@ -29,7 +29,7 @@ Y.</M>
 We
 find <M>a_0,a_1,...,a_p</M> such that 
 <M>cor(Y,a_0+a_1 X_1+\cdots + a_p X_p)</M> is maximised. 
-
+This maximum correlation is the multiple correlation.
 <HEAD2>A little simplification</HEAD2>
 Since both the formulations work with product-moment correlation,
 which is invariant under translation (i.e., does not change if
