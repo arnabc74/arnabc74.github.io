@@ -1,0 +1,345 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Multiple correlation">Multiple correlation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#First formulation">First formulation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Second formulation">Second formulation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A little simplification">A little simplification</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Equivalence between the two formulations">Equivalence between the two formulations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Simple properties of multiple correlation">Simple properties of multiple correlation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Coefficient of determination">Coefficient of determination</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Beware using $R^2$ for model selection">Beware using $R^2$ for model selection</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}{\vec}$
+<h1><a
+name="Multiple correlation">Multiple correlation</a></h1>
+
+<b>Set up:</b> We have $p+1$ variables,
+<blockquote>
+$X_1,...,X_p$ and $Y,$
+</blockquote>
+and $n$ observations on each. Multiple correlation is a way
+to express mathematically the "strength of linear relation
+between $Y$ and $\{X_1,...,X_p\}.$"
+We shall present the idea in two equivalent ways.
+
+<h2><a
+name="First formulation">First formulation</a></h2>
+We regress (linearly using least squares) $Y$
+on $X_1,...,X_p.$ In other words, we
+find $a_0,a_1,...,a_p$ such that 
+$\|Y-a_0-a_1 X_1-\cdots - a_p X_p\|^2$ is minimised. 
+If the minimum is attained at $\hat a_i$'s, then we define
+the best fit as 
+$$
+\hat Y = \hat a_0 + \hat a_1 X_1+\cdots\hat a_p X_p.
+$$
+Then multiple correlation between $Y$
+and $\{X_1,...,X_p\}$ is defined as $cor(Y,\hat Y),$
+the product-moment correlation between $Y$ and $\hat
+Y.$
+
+<h2><a
+name="Second formulation">Second formulation</a></h2>
+We
+find $a_0,a_1,...,a_p$ such that 
+$cor(Y,a_0+a_1 X_1+\cdots + a_p X_p)$ is maximised. 
+
+<h2><a
+name="A little simplification">A little simplification</a></h2>
+Since both the formulations work with product-moment correlation,
+which is invariant under translation (<i>i.e.</i>, does not change if
+some constants are added to the variables), we might as well
+centre each variable first, and drop the intercept
+terms. Henceforth, we shall assume that all the variables,
+the $X_i$'s as well as $Y$, are centred (<i>i.e.</i>, have
+zero mean).  
+
+<p></p>
+Then in the first formulation we shall fit 
+$$
+\hat Y =  \hat a_1 X_1+\cdots\hat a_p X_p,
+$$
+while, in the second, we shall maximise 
+$cor(Y,a_1 X_1+\cdots + a_p X_p)$.
+<p></p>
+There is one conceptual advantage of working with the centred
+variables. The correlation between two centred variables $X$
+and $Y$ with values $\v x = (x_1,...,x_n)$ and $\v y
+= (y_1,...,y_n)$ is 
+$$
+\frac{\sum x_i y_i}{\sqrt{\sum x_i^2\sum y_i^2}} = \frac{\langle \v x,\v
+y\rangle}{\|\v x\|\cdot\|\v y\|},
+$$ 
+ which is $\cos \theta,$ where $\theta $ is the "angle"
+ between $\v x$ and $\v y.$
+
+<h2><a
+name="Equivalence between the two formulations">Equivalence between the two formulations</a></h2>
+We shall see this pictorially. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/corrpic.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Maximising $\cos \theta $ is equivalent to
+minimising $\sin \theta $, which is equivalent to minimising
+the height (since the hypotenuse is fixed). 
+
+<h2><a
+name="Simple properties of multiple correlation">Simple properties of multiple correlation</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Multiple correlation must lie in $[0,1].$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Clearly, must be in $[-1,1],$ since it is a product-moment
+correlation. The second formulation shows that it cannot be
+negative, because if the maximum correlation is 
+$$
+cor(Y,a_1 X_1+\cdots +a_p X_p) &lt; 0,
+$$
+then 
+$$
+cor(Y,-a_1 X_1-\cdots -a_p X_p) &gt; 0 
+$$
+So we have 
+$$
+cor(Y,-a_1 X_1-\cdots -a_p X_p) &gt; cor(Y,a_1 X_1+\cdots +a_p X_p), 
+$$
+contradicting the claim that $cor(Y,a_1 X_1+\cdots +a_p
+X_p)$ is the maximum correlation.
+<b><i>[QED]</i></b>
+</p>
+
+
+<h2><a
+name="Coefficient of determination">Coefficient of determination</a></h2>
+
+The square of the multiple correlation is called the coefficient
+of determination. As the above diagram shows this
+is $1-\frac{\|Y-\hat Y\|^2}{\|Y\|^2}$ in the centred case. So
+in terms of the uncentred variables, the coefficient of
+determination is 
+$$
+R^2 = 1-\frac{\sum (y_i-\hat y_i)^2}{\sum(y_i-\bar y)^2}.
+$$
+It is basically the $\cos^2 \theta = 1-\sin^2 \theta $ identity.
+ 
+<p></p>
+As the multiple correlation is always non-negative, $R^2$
+contains as much information as the multiple
+correlation. Somehow, $R^2$ is used more popularly than
+multiple correlation.
+
+<h2><a
+name="Beware using $R^2$ for model selection">Beware using $R^2$ for model selection</a></h2>
+A common misuse of $R^2$ is to compare between different
+models for the same data. We shall illustrate this with an
+example of polynomial regression.
+
+<font color="red">
+<pre>
+set.seed(1254235)
+x = (-3):3
+y = x*x + rnorm(7,sd=2)
+plot(x,y)
+fit1=lm(y~x)
+fit2=lm(y~x+I(x^2))
+fit3=lm(y~x+I(x^2)+I(x^3))
+fit4=lm(y~x+I(x^2)+I(x^3)+I(x^4))
+fit5=lm(y~x+I(x^2)+I(x^3)+I(x^4)+I(x^5))
+fit6=lm(y~x+I(x^2)+I(x^3)+I(x^4)+I(x^5)+I(x^6))
+</pre>
+</font>
+Then we have
+<font color="red">
+<pre>
+&gt; summary(fit1)$r.sq
+[1] 0.007768352
+&gt; summary(fit2)$r.sq
+[1] 0.9692956
+&gt; summary(fit3)$r.sq
+[1] 0.9732164
+&gt; summary(fit4)$r.sq
+[1] 0.9835701
+&gt; summary(fit5)$r.sq
+[1] 0.9902857
+&gt; summary(fit6)$r.sq
+[1] 1
+</pre>
+</font>
+Clearly, picking the degree corresponding to the
+maximum $R^2$ is a bad idea, since $R^2$ can only
+increase as the degree increases (think of the second
+formulation). So it will always hit 1 when the degree is one less
+than the sample size (the best polynomial of that degree is just
+the polynomial that passes <i>exactly</i> through all the points).
+ 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
