@@ -19,6 +19,7 @@ Here is a Youtube playlist consisting
 of <LINK to="https://www.youtube.com/playlist?list=PLx--gUxue3Z-UzXZ5d_P9aqcGyBU-7bJ6">20 
 short videos</LINK>. </LI>
 <LI>Jan 08, 2024: <LINK to="corr.html">Multiple correlation</LINK>. </LI>
+<LI>Jan 12, 2024: <LINK to="pcorr.html">Partial correlation</LINK>. </LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.

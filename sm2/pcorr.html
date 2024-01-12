@@ -1,0 +1,439 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Partial correlation">Partial correlation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Motivation">Motivation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Set up">Set up</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The idea">The idea</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The basic algorithm">The basic algorithm</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Why does it work?">Why does it work?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Efficient algorithm">Efficient algorithm</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Pairwise partial correlations">Pairwise partial correlations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Notation">Notation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using R">Using R</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\h}{\hat}$
+<h1><a
+name="Partial correlation">Partial correlation</a></h1>
+
+<h2><a
+name="Motivation">Motivation</a></h2>
+We shall start with an example. 
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose that we collect data
+about the age ($X$), years of experience ($Y$) and average amount of monthly
+sales ($Z$) for 100 salesmen.  This results in
+a $100\times3$ data matrix. It will be seen that $X$
+and $Z$ are correlated. But we suspect that this correlation
+is "only through $Y$", <i>i.e.</i>, $X$ and $Z$ are both
+correlated with $Y$, and that is why we see the correlation
+between $X$ and $Z.$ So, conceptually, we have the
+following picture, where $X$ and $Z$ are linked only
+through $Y.$ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diag1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This is in contrast with the following scenario where $X$
+and $Z$ also have a direct link:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diag2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The question we want to address here is: how to identify the
+strength of the red link based on the available data?
+<p></p>
+You should understand that mere $cor(X,Z)$ is not enough, as
+it is the combined effect of the black and red links.
+ ///
+</p>
+The most ideal way to see if a third variable has any bearing
+upon the relation between two variables, is to control/block wrt
+that third variable. For instance, in the palmistry example from
+the last semester, we saw that the palm-ratio and lifespan were
+actually related only through gender. We could see this by
+considering two separate palm-ratio vs lifespan data, one for
+the males and one for the females. 
+<p></p>
+But in many cases the available data do not allow for
+controlling/blocking. This is particularly true if the third
+variable is a continuous one, as it is in the salesman
+example. We can of course try to group the 100 salesmen into
+experience slabs, and compute the correlation between $X$
+and $Z$ for each slab, but it is hard to decide anything
+based on the correlations computed from the small subsets.
+<p></p>
+Partial correlation is one way to deal with such a problem. 
+
+<h2><a
+name="Set up">Set up</a></h2>
+We have two variables, say $X$ and $Z$, and also a
+bunch of other "nuisance" variables $Y_1,...,Y_p.$ We want
+to know if $X$ and $Z$ are correlated only
+through $Y_i$'s or whether they have a direct link as
+well. In other words, we are interested in assessing the strength
+of the red link below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diag3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center> 
+Since we are working with correlation, we are dealing exclusively with
+<i>linear</i> relation.
+<p></p>
+Our data matrix is of size $n\times (p+2).$  
+
+<h2><a
+name="The idea">The idea</a></h2>
+The idea is to filter out the effects of the nuisance variables
+from both $X$ and $Z$, and then to compute the
+correlation between the filterred variables. The filtering is
+done by linear regression. 
+<p></p>
+We first fit linear regressions 
+$$\begin{eqnarray*}
+\h X &amp; = &amp; \h a_0 + \h a_1 Y_1 + \cdots + \h a_p Y_p\\
+\h Z &amp; = &amp; \h b_0 + \h b_1 Y_1 + \cdots + \h b_p Y_p
+\end{eqnarray*}$$
+using least squares. Then the <b>partial correlation</b>
+between $X$ and $Z$ given $Y_1,...,Y_n$ is defined
+as $cor(X-\h X,Z-\h Z).$ 
+
+<p></p>
+This may look like a rather complicated procedure. But it turns
+out there is a rather simple algorithm to compute it without
+actually performing any regression. We discuss this next.
+
+<h2><a
+name="The basic algorithm">The basic algorithm</a></h2>
+Order the variables as $Y_1,...,Y_p,X,Z$, with the nuisance
+variables first. Find the $(p+2)\times(p+2)$ covariance
+matrix, and partition it as:
+$$
+\left[\begin{array}{ccccccccccc}
+A_{p\times p} &amp; B\\ B' &amp; C_{2\times2}
+
+\end{array}\right].
+$$
+Then compute the $2\times 2$ Schur complement of $A:$
+$$
+C - B'A ^{-1} B.
+$$
+This is called the <b>partial covariance matrix</b> of $X$
+and $Z$ given the $Y_i$'s. The correlation computed
+from this is  the required partial correlation.
+<h3><a
+name="Why does it work?">Why does it work?</a></h3>
+To see why this works, it will help to first centre all the
+variables. Also, partition the data matrix as
+$$
+\left[\begin{array}{ccccccccccc}Y_{n\times p} X_{p\times 1} Z_{p\times 1}
+\end{array}\right].
+$$ 
+Then, thanks to the centring, 
+$$
+A = Y'Y,\quad B = \left[\begin{array}{ccccccccccc}X'\\Z'
+\end{array}\right] Y,\quad C
+= \left[\begin{array}{ccccccccccc}X'\\Z'
+\end{array}\right]\left[\begin{array}{ccccccccccc}X &amp; Z
+\end{array}\right].
+$$ 
+We shall assume, wlg, that $Y$ is full column rank (else
+just throw out the dependent columns).
+<p></p>
+Then from linear regression result (done last semester):
+$$
+\h X = Y(Y'Y) ^{-1} Y' X 
+\text{ and }
+\h Z = Y(Y'Y) ^{-1} Y' Z. 
+$$
+The residuals  $X-\h X$ and $Z-\h Z$  
+both have zero mean, and hence their covariance matrix is 
+$$
+\left[\begin{array}{ccccccccccc}X'-\h X'\\Z'-\h Z'
+\end{array}\right]\left[\begin{array}{ccccccccccc}X-\h X &amp; Z-\h Z
+\end{array}\right].
+$$
+This might look scary, but there is a nice way to write things
+down. Let $P = Y(Y'Y) ^{-1} Y'$ be the orthogonal projection
+operator onto the column space of $Y.$ Then $I-P$ is
+the orthogonal projection operator onto its orthogonal
+complement. Being an orthogonal projection operator, $I-P$
+is symmetric and idemponent.
+
+<p></p>
+Now $X-\h X = (I-P)X$ and $Z-\h Z = (I-P)Z.$ So the
+above covariance matrix simplifies into the Schur complement
+mentioned earlier (check!).
+<h3><a
+name="Efficient algorithm">Efficient algorithm</a></h3>
+We also have a more efficient version of the algorithm using
+Gauss-Jordan elimination. We start applying the Gauss-Jordan
+elimination to the $(p+2)\times(p+2)$ covariance matrix, but
+stop after the first $p$ steps. The lower right
+hand $2\times2$ submatrix will then be the Schur complement!
+The proof is easy, and left as an excercise.
+<h3><a
+name="Pairwise partial correlations">Pairwise partial correlations</a></h3>
+Sometimes we have a bunch of variables of
+interest $X_1,...,X_q$ and a bunch of nuisance
+variables, $Y_1,...,Y_p$, and we want to find the partial
+correlations between all the pairs of $X$'s given all
+the $Y$'s. The algorithm can be adopted very easily for
+this. Just compute the $(p+q)\times(p+q)$ covariance matrix
+with the nuisance variables listed first. Then apply the
+first $p$ steps of the Gauss-Jordan
+elimination algorithm. The lower right hand $q\times q$
+submatrix of the resulting matrix will be the partial covariance
+matrix of the $X$'s given the $Y$'s. All the required
+partial correlations may now be easily obtained from this matrix.
+
+<h2><a
+name="Notation">Notation</a></h2>
+We often list all the available valriables as $X_1,...X_p.$
+Then, for multiple correlation, we identify one variable as the
+dependent variable, and a bunch of the others as the independent
+ones. For instance, if $p=9$, then we may have $X_3$ as
+the dependent variable, and $X_1, X_2$ and $X_6$ as the
+independent ones. The other variables are not considered. Then
+the multiple correlation between $X_3$
+and $\{X_1,X_2,X_6\}$ is denoted by 
+$$
+R_{3\bullet1,2,6}.
+$$ 
+Similarly, for partial correlation between $X_1$
+and $X_5$ given $X_2,X_3,X_7$ is denoted by 
+$$
+R_{1,5\bullet2,3,7}.
+$$
+
+<h2><a
+name="Using R">Using R</a></h2>
+Let`s first load the library (you may need to install it first).
+<font color="red">
+<pre>
+library(ppcor)
+</pre>
+</font>
+Next we create a data set using this diagram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/diag1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<font color="red">
+<pre>
+x = rnorm(100)
+y = 1+2*x + rnorm(100)/3
+z = -y + rnorm(100)/3
+</pre>
+</font>
+Here $X$ and $Z$ are highly correlated.
+<font color="red">
+<pre>
+cor(x,z) #Pretty high
+</pre>
+</font>
+But once you take $Y$ into account, the partial correlation
+turns out to be quite low.
+<font color="red">
+<pre>
+pcor(data.frame(x,y,z)) # The partial correlation is quite low.
+</pre>
+</font>
+Let`s try the linear regression technique to compute the partial correlation.
+<font color="red">
+<pre>
+x.y = lm(x~y)$resid
+z.y = lm(z~y)$resid
+cor(x.y,z.y)
+</pre>
+</font>
+Same answer, as it should be!
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
