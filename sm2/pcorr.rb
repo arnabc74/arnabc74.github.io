@@ -95,7 +95,7 @@ from this is  the required partial correlation.
 To see why this works, it will help to first centre all the
 variables. Also, partition the data matrix as
 <D>
-<MAT>Y_{n\times p} X_{p\times 1} Z_{p\times 1}</MAT>.
+<MAT>Y_{n\times p} X_{n\times 1} Z_{n\times 1}</MAT>.
 </D> 
 Then, thanks to the centring, 
 <D>
