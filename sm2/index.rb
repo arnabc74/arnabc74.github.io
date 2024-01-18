@@ -22,6 +22,10 @@ short videos</LINK>. </LI>
 <LI>Jan 12, 2024: <LINK to="pcorr.html">Partial correlation</LINK>. </LI>
 <LI>Jan 15, 2024: [ <LINK to="jan15.r">R session</LINK>
 | <LINK to="amazon-books.txt">data</LINK> ] </LI>
+<LI><ALERT/>Assignment 1 sent to Google classroom. Here is
+the <LINK to="amazon-books.txt">dataset</LINK>. Last date for
+submission is Jan 28, 2024. Not joining Google classroom in time
+will not be considered as an excuse!</LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
