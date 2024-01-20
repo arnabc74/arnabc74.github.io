@@ -1,0 +1,308 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Characteristic function">Characteristic function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Why CF is &quot;good&quot;">Why CF is "good"</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Moment generating function (MGF)">Moment generating function (MGF)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Using CF">Using CF</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Characteristic function">Characteristic function</a></h1>
+Characteristic function (CF) is a useful tool from probability
+theory to deal with distributions. 
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+For any distribution on ${\mathbb R}$, its <b>characteristic
+function</b> is defined as
+$$
+\phi(t) = E(e^{it X}), t\in{\mathbb R},
+$$
+where $X$ is any random variable with that distribution.
+</fieldset>
+Notice that the CF of a distribution is a complex valued function
+defined over entire ${\mathbb R}.$
+<p></p>
+The two most important facts that we shall use here are the
+following.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+
+<ul>
+
+<li>Every distribution over ${\mathbb R}$ has a CF (<i>i.e.</i>, the
+expectation in the above definition exists finitely).</li>
+
+<li>The CF characterises the distribution, <i>i.e.</i>, two
+distributions are the same if and only if their CFs are the same.</li>
+
+</ul>
+
+</fieldset>
+It is the latter result that earns characteristic function its
+name.
+
+<h2><a
+name="Why CF is "good"">Why CF is "good"</a></h2>
+CF is a function associated with a distribution. We already know of other
+functions associated with distributions: 
+<ol type="">
+
+<li>probability mass function (PMF)</li>
+
+<li>probability density function (PDF)</li>
+
+<li>(cumulative) distribution function (CDF)</li>
+
+</ol>
+However, CF is "better" than these in the following two senses:
+<ul>
+
+<li>CF exists for all distributions, while PMF and PDF do
+not.</li>
+
+<li>CDF does exist for all distributions, but if $X$ and Y
+ are independent with known CDFs, there is no simple formula to
+ express the CDF of $X+Y$ in terms of them. But it is quite
+ simple to express the CF of $X+Y$ in terms of those
+ of $X$ and $Y.$ (how?)</li>
+
+</ul>
+
+
+<h2><a
+name="Moment generating function (MGF)">Moment generating function (MGF)</a></h2>
+It is something very similar to CF.
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+For any distribution on ${\mathbb R}$, its <b>moment generating
+function</b> is defined as
+$$
+M(t) = E(e^{t X}), \text{when its exists,}
+$$
+where $X$ is any random variable with that distribution.
+</fieldset>
+
+Despite the superficial similarity of this with CFs, the MGF is
+much more ill-behaved (owing to the fact that $e^{tx}$ is an
+unbounded function though $e^{itx}$ is bounded. In
+particular, it may not exist for all $t\in{\mathbb R}$ for all
+distributions. Also, two distinct distributions may have the same
+MGF (though such examples are rather hard to find). Our textbook
+disregards this point, and (wrongly) uses MGFs to characterise
+distributions. We shall rectify the mistake by replacing MGFs
+with CFs. The math will remain almost the same. 
+
+<h2><a
+name="Using CF">Using CF</a></h2>
+The first step to use CF, is to remember the CFs of the standard
+distributons. This <a href="https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)">wikipedia
+page</a> privides a such a list. Eventually, you will need to
+memorise at least pasrt of this list. For now, we shall need only
+the CF of the $N(\mu,\sigma^2)$ distributon:
+$$
+\phi(t) = e^{it \mu-\frac 12\sigma^2 t^2}.
+$$ 
+Remember the form well: inside the exponent you have a quadratic
+in $t$ where the constant is zero, the linear term is purely
+imaginary, anf the quadratic terms has negative coefficient. Any
+such CF must correspond to a Gaussian distributon, the parameters
+of which may be read off from the coefficients.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X\sim N(\mu,\sigma^2)$ and $a,b\in{\mathbb R}$
+with $a\neq 0,$ then $aX+b\sim N(a \mu+b,a^2 \sigma^2).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The CF of $aX+b$ is 
+$$
+e^{it(aX+b)} = e^{itb}E(e^{itaX} = e^{itb} \phi(at) = e^{itb}
+e^{ita \mu-\frac 12 \sigma^2 (at)^2} = e^{it(a \mu+b) -\frac 12 a^2\sigma^2 t^2}, 
+$$
+which we immediately recognise as the CF of $N(a \mu+b, a^2 \sigma^2).$
+<p></p>
+The characterising property of CFs now completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$ are independent and $X_i\sim N(\mu_i,\sigma_i^2)$,
+and $a_1,...,a_n\in{\mathbb R},$ then 
+$$
+\sum_1^n a_i X_i\sim N\left(\sum a_i \mu_i, \sum a_i^2 \sigma^2_i\right).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Direct, using CF.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n\sim N(\mu,\sigma^2)$, then $\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Special case of the last theorem.<b><i>[QED]</i></b>
+</p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

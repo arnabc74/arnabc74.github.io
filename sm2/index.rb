@@ -26,6 +26,10 @@ short videos</LINK>. </LI>
 the <LINK to="amazon-books.txt">dataset</LINK>. Last date for
 submission is Jan 28, 2024. Not joining Google classroom in time
 will not be considered as an excuse!</LI>
+<LI>Jan 19, 2024: We have started following the Ramachandran and
+Tsokos book starting with chapter 4. The book uses moment
+generating functions (MGF) somewhat wrongly. We shall replace
+those parts with the <LINK to="cf.html">characteristic functions</LINK>.</LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
