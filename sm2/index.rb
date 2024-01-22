@@ -30,6 +30,8 @@ will not be considered as an excuse!</LI>
 Tsokos book starting with chapter 4. The book uses moment
 generating functions (MGF) somewhat wrongly. We shall replace
 those parts with the <LINK to="cf.html">characteristic functions</LINK>.</LI>
+<LI>Jan 22, 2024: Banach-Tarski Paradox [<LINK to="madhavabtshow.pdf">slides</LINK>]
+</LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
