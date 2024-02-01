@@ -32,6 +32,9 @@ generating functions (MGF) somewhat wrongly. We shall replace
 those parts with the <LINK to="cf.html">characteristic functions</LINK>.</LI>
 <LI>Jan 22, 2024: Banach-Tarski Paradox [<LINK to="madhavabtshow.pdf">slides</LINK>]
 </LI>
+<LI>Jan 29, 2024: Multivariate Gaussian distribution
+and <M>\chi^2</M> distribution [<LINK to="gausamdist.html">summary</LINK>]
+</LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.

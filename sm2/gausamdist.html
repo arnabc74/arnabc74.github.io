@@ -1,0 +1,454 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Sampling distribution of mean and variance of a Gaussian
+random sample">Sampling distribution of mean and variance of a Gaussian
+random sample</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Independence">Independence</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Two distributions">Two distributions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Multivariate Gaussian distribution">Multivariate Gaussian distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#The $\chi^2 $ distribution">The $\chi^2 $ distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Some intuitive results that we shall not prove">Some intuitive results that we shall not prove</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Relation with orthogonal projection">Relation with orthogonal projection</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Sampling distribution of sample mean and variance of Gaussian sample">Sampling distribution of sample mean and variance of Gaussian sample</a>
+</li>
+</ul>
+<hr/>
+$
+\newcommand{\v}{\vec}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\span}{\mathrm{span}}
+$
+<h1><a
+name="Sampling distribution of mean and variance of a Gaussian
+random sample">Sampling distribution of mean and variance of a Gaussian
+random sample</a></h1>
+ 
+
+<h2><a
+name="Two distributions">Two distributions</a></h2>
+
+<h3><a
+name="Multivariate Gaussian distribution">Multivariate Gaussian distribution</a></h3>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+Let $\v \mu\in{\mathbb R}^k$ and $\Sigma_{k\times k}$ be any PD
+matrix. We say $\v U\sim N_k(\v \mu , \Sigma)$ if it has PDF
+$$
+f(\v u) = (2\pi)^{-k/2}|\Sigma|^{-1/2} \exp\left(-\frac 12(\v u-\v
+\mu)' \Sigma ^{-1} (\v u-\v \mu) \right),\quad \v u\in{\mathbb R}^k.
+$$ 
+</fieldset>
+The simplest (and also the most frequent case) of a multivariate
+Gaussian distribution is when $\Sigma = I.$
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+The following are equivalent:
+<ol type="">
+
+<li>$U_1,...,U_k$ are iid $N(\mu,\sigma^2)$</li>
+
+<li>$(U_1,...,U_k)\sim N(\mu\v1 ,\sigma^2I)$</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Immediate.<b><i>[QED]</i></b>
+</p>
+
+
+<h3><a
+name="The $\chi^2 $ distribution">The $\chi^2 $ distribution</a></h3>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+If $U_1,...,U_k$ are iid $N(0,1),$ then the
+distribution of $\sum_1^k U_i^2$ is called the <b>chi square
+distribution with degrees of freedom</b> $k$, written as 
+$$
+\sum_1^k U_i^2 \sim \chi^2_{(k)}.
+$$
+</fieldset>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v U\sim N_k(\v0,I)$ then $\|\v U\|^2\sim \chi^2_{(k)}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Just a restatement of the definition above.
+<b><i>[QED]</i></b>
+</p>
+
+
+
+<h2><a
+name="Some intuitive results that we shall not prove">Some intuitive results that we shall not prove</a></h2>
+ 
+Next we state some basic useful factos about the multivariate
+Gaussian distribution. These are all  intuitively pleasing. But
+rigourous proof needs multivariate integration (which you may not
+know yet).
+ 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $\v U\sim N_k(\v \mu, \Sigma).$ Take
+any $\{i_1,...,i_p\}\subseteq\{1,...,n\}.$
+Then 
+$$
+(U_{i_1},...,U_{i_p})\sim N_p(\v \nu, T),
+$$
+where $\v \nu$ is the subsector of $\v \mu $ using only
+the $i_1,...,i_p$-th entries. Similarly, $T$ is
+the $p\times p$ submatrix of $\Sigma $ consisting of
+only the $i_1,...,i_p$-th rows and columns.
+</fieldset>
+ 
+In particular, all the marginals of a multivariate Gaussian
+distribution are the appropriate univariate Gaussian
+distributions. 
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v U\sim N_k(\v \mu , \Sigma)$, then 
+$\cov(U_i,U_j) = \sigma_{ij}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Enough to prove for $k=2.$
+<b><i>[QED]</i></b>
+</p>
+
+
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v U\sim N_k(\v \mu , \Sigma)$, then $U_i$'s are
+independent if and only if $\Sigma$ is a diagonal matrix.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+If independent, then $\forall i\neq j~~\cov(U_i,U_j) = 0,$ and so $\Sigma $
+is diagonal. 
+<p></p>
+Conversely, if $\Sigma $ is diagonal, the PDF factorises.
+<b><i>[QED]</i></b>
+</p>
+We know that independence implies zero covariance (assuming
+covariance exists). The converse does not hold in general. The
+above theorem gives one spaecial case where the converse is
+indeed true.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v U\sim N_k(\v \mu, \Sigma)$ and $A_{p\times k}$
+and $\v b\in{\mathbb R}^p$ are such that $A \Sigma A'$ is PD,
+then 
+$$
+A\v U + \v b \sim N_p(A\v \mu+\v b, A \Sigma A').
+$$
+</fieldset>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v U\sim N_k(\v \mu, \Sigma)$ and $\v a,\v
+b\in{\mathbb R}^k,$ then $\v a' \v U$ and $\v b' \v U$ are
+independent if and only if $\v a'\v b = 0$ (<i>i.e.</i>, $\v
+a$ and $\v b$ are orthogonal to each other).
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Directly from the above results.<b><i>[QED]</i></b>
+</p>
+
+
+This theorem is particularly appealing as it links the linear
+algebraic concept of orthogonality with the probabilistic concept
+of independence. 
+
+
+
+<h2><a
+name="Relation with orthogonal projection">Relation with orthogonal projection</a></h2>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$ be a random sample from $N(0,1).$
+Let $V \leq {\mathbb R}^n$ be any subspace.
+Let $\v Y$  be the projection of $\v X$
+on $V$. Then 
+$$\|\v Y\|^2\sim \chi^2_{(\dim(V))}.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v v_1,...,\v v_p$ be an ONB of $V.$
+
+<p></p>
+
+Then $\v Y = (\v v_1'\v X)\v v_1 + \cdots + (\v v_p'\v X)\v v_p.$
+<p></p>
+Also, $\|\v Y\|^2 = \sum_i (\v v_i\v X)^2 = \|\v U\|^2,$
+where 
+$$
+\v U = \left[\begin{array}{ccccccccccc}\v v_1'\v X\\\vdots\\\v v_p'\v X
+\end{array}\right] = A\v X,
+$$
+where $A_{p\times n}$ is the matrix with the $\v v_i'$'s
+as its rows.
+
+<p></p>
+
+<img src="image/alert.png">Careful! I am not sayng that $\v Y$ equals $\v
+U.$ They may have different lengths!
+<p></p>
+So $\v U\sim N_p(\v 0, I).$ Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$ be a random sample from $N(0,1).$
+Let $V, W\leq {\mathbb R}^n$ be any two mutually orthogonal subspaces.
+Let $\v Y,\v Z$  be the projections of $\v X$
+on $V,W$. Then $\v Y$ and $\v Z$ are
+(stochastically) independent. 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v v_1,...,\v v_p$ be an ONB of $V.$
+
+<p></p>
+Let $\v w_1,...,\v w_q$ be an ONB of $W.$
+<p></p>
+Construct $\v U$ using $V$ as in the last proof. Also
+similarly construct $\v Z$ using $W.$
+
+<p></p>
+Notice that $\v U$ and $\v V$ are (stochastically)
+independent, completing the proof.
+<b><i>[QED]</i></b>
+</p>
+
+
+<h2><a
+name="Sampling distribution of sample mean and variance of Gaussian sample">Sampling distribution of sample mean and variance of Gaussian sample</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$ be a random sample from $N(0,1)$
+distribution. Let 
+$$
+\bar X = \frac 1n\sum X_i\text{ and } S^2 = \sum_i(X_i-\bar X)^2.
+$$
+Then 
+<ol type="">
+
+<li>$\bar X\sim N\left(0,\frac 1n\right).$</li>
+
+<li>$S^2\sim \chi^2_{(n-1)}.$</li>
+
+<li>$\bar X$ and $S^2$ are (stochastically) independent.</li>
+
+</ol> 
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+
+We had <a href="cf.html">already proved</a> the first statement using CF. Here we
+shall prove it again using linear algebra. 
+<p></p>
+Here $\v X\sim N_n(\v 0,I).$ 
+
+<p></p>
+Hence $\bar X = \frac 1n\v1'\v X\sim N\left(\frac 1n\v1'\v 0,
+\frac 1n\v1'I\frac 1n\v1\right) = N\left(0,\frac 1n\right),$ completing the
+proof of the first statement.
+<p></p>
+For the other two statements, define $V = \span\{\v1\}$,
+and $W = V^\perp.$
+<p></p>
+Then check that the projection of $\v X$ on $V$
+is $\bar X\v1,$
+
+and, hence, the projection of $\v X$ on $W$ is $\v X-\bar X\v1.$
+<p></p>
+So $\|\v X-\bar X\v1\|^2\sim \chi^2_{(n-1)},$ since $\dim(W) = n-1.$
+<p></p>
+Now $\|\v X-\bar X\v1\|^2 = \|\v X\|^2- \|\bar X\v1\|^2 =
+\cdots = S^2,$ completing the proof.
+<b><i>[QED]</i></b>
+</p>
+
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
