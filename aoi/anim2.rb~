@@ -1,0 +1,96 @@
+@{<NOTE>
+<HEAD1>The basic workflow</HEAD1>
+Before we get into complicated things, we should familiarise
+ourselves with the basic workflow. 
+Understand the workflow first without bothering about the GUI. 
+<OL>
+<LI>Select the frame.</LI>
+<LI>Update the scene.</LI>
+<LI>Select the object.</LI>
+<LI>Select the tracks that you want to keyframe.</LI>
+<LI>Add the keyframes.</LI>
+</OL>
+You may need to spend some time before you can wrap your brain
+around these. Here are some mistakes that beginners do:
+<OL>
+<LI>Forgetting to select the keyframe first. You update
+everything, and then notice that you are still at the last
+keyframe. Your natural impulse is to go to the correct
+frame <I>now</I>. Immediately, all your updates are lost! You
+try to restore by going back to the last frame, but the updates
+do not return. You hit undo, possibly destroying some earier good work!
+The reason is simple, adding a keyframe is like saving a
+file. If you edit a file, and close the editor without saving
+your work, and then return to it, your work will be lost, and no
+amount of undoing would bring back the lost work! Sad but
+true. Moral: Never forget to select the new frame before
+updating your scene.</LI>
+<LI>Forgetting to select the tracks. Then no keyframe will be
+added, which means your work is still not saved, and is on the
+brink of being irrevocably lost! Moral: Always ensure that you
+see some visual proof that the keyframes are indeed created before you
+change frame.</LI>
+<LI>Forgetting to add the keyframe. Well, you now know the consequence. </LI>
+</OL>
+
+<HEAD2>Keyframe twice per motion</HEAD2>
+This is a simple point, but often hard to remember. If you want
+to animate an object during a certain span, remember to
+keyframe <I>both</I> at the first and last frame of that span.  
+
+<EXM> Consider a
+very simple situation consisting of a cube and sphere. The cube
+moves first for the first 30 frames, while the sphere is
+stationary. Then the sphere moves for next 30 frames, while
+the cube remains fixed. Let us see a wrong approach taken by many
+beginners:
+<OL>
+<LI>Select frame 1.</LI>
+<LI>Place the two objects in their initial position.</LI>
+<LI>Add keyframe to both the objects.</LI>
+<LI>Select frame 30.</LI>
+<LI>Update the position of the cube.</LI>
+<LI>Add keyframe to cube.</LI>
+<LI>Select frame 60.</LI>
+<LI>Update the position of the sphere.</LI>
+<LI>Add keyframe to sphere.</LI>
+</OL>
+You will find (to your dismay) that the sphere starts moving
+right from the beginning! This is what you should have done:
+<OL>
+<LI>Select frame 1.</LI>
+<LI>Place the two objects in their initial position.</LI>
+<LI>Add keyframe to both the objects.</LI>
+<LI>Select frame 30.</LI>
+<LI>Update the position of the cube.</LI>
+<LI><RED>Add keyframe to both the cube and the sphere.</RED></LI>
+<LI>Select frame 60.</LI>
+<LI>Update the position of the sphere.</LI>
+<LI>Add keyframe to sphere.</LI>
+</OL>
+Keyframing the sphere at frame 30 may appear redundant, as the
+sphere has not changed since the last keyframe! But think about
+the graph to see what has one wrong.
+
+</EXM>
+ 
+<HEAD2>Animating an object hierarchy</HEAD2>
+This is of great importance in two situations:
+<UL>
+<LI>When the objects are naturally linked.</LI>
+<LI>When an object needs to be rotated around a point other
+than its centre.</LI>
+</UL>
+
+First you should learn how to move the entire hierarchy in the
+way you want. This means applying transformations (not setting
+the layout directly, as it will not propagate). You should start
+with the top object, then gradually work you way down, if
+needed. 
+<P/>
+Once you are sure about the steps, select <I>all</I> the objects
+in the hierarchy, and keyframe at the beginning. Then move to the
+last frame, deselect everything, and apply the
+transformation. Then finally select everything again, and
+keyframe everything again. 
+</NOTE>@}

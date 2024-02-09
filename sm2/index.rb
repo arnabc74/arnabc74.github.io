@@ -38,7 +38,7 @@ and <M>\chi^2</M> distribution [<LINK to="gausamdist.html">summary</LINK>]
 <LI>Feb 02, 2024: Visualising bivariate Gaussian 
 and <M>\chi^2</M> distributions [<LINK to="hist.r">R code</LINK>]
 </LI>
-<LI>Feb 05, 2024: Quality control simulation [<LINK to="qc.r">R code</LINK>]
+<LI>Feb 05, 2024: Application of sampling distribution in quality control [<LINK to="sampappl.html">summary</LINK>|<LINK to="qc.r">R code</LINK>]
 </LI>
 
 </OL>

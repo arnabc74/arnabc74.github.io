@@ -134,141 +134,92 @@ function myFunction() {
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#Statistical Methods 2 (2024)">Statistical Methods 2 (2024)</a>
+<a href="#Application of sampling distribution in quality control">Application of sampling distribution in quality control</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Brief lecture notes">Brief lecture notes</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Reference materials">Reference materials</a>
+<a href="#Bottling plant">Bottling plant</a>
 </li>
 </ul>
 <hr/>
 <h1><a
-name="Statistical Methods 2 (2024)">Statistical Methods 2 (2024)</a></h1>
-This is the course webpage for Statistical Methods 2 for
-B.Stat(hons) first year students (2023-24). I shall post various
-things (code snippets, data sets etc) here from time to time.
+name="Application of sampling distribution in quality control">Application of sampling distribution in quality control</a></h1>
+We often want to check if some parameter is at a certain
+target value. But since the parameter is not directly observable we use
+some estimator and check if the estimator value is "close" to
+that value. To quantify the "closeness" we use the sampling
+distribution of the estimator. We shall illustrate this with a
+number of examples.
 
-<p></p>
-
-<img src="image/alert.png">
-
-Google classroom <a href="https://classroom.google.com/c/NjUxMjAxMDM3Njk0?cjc=n3nmi54">joining link</a>
-
-<p></p>
-
-<table align="right" width="50%">
+<h2><a
+name="Bottling plant">Bottling plant</a></h2>
+Considering a bottling plant where milk is bottled. The empty
+bottles come down a conveyor belt to be filled automatically. 
+<center>
+<table width="100%">
 <tr>
-<td><b>Notice board</b></td>
+<th><img width="" src="image/bott1.png"></th>
 </tr>
 <tr>
-<td>
-<iframe src="news.html"></iframe>
-</td>
+<th></th>
 </tr>
 </table>
-
+</center>
+Our aim is to fill 500 ml of milk in each bottle. We set the
+machine accordingly. Of course, there is some random fluctuation,
+and each bottle may get slightly more or less than this target
+amount. 
 <p></p>
-
-
-<h2><a
-name="Brief lecture notes">Brief lecture notes</a></h2>
-
-<ol type="">
-
-<li>
-<b>Multivariate statistics:</b>
-Here is a Youtube playlist consisting
-of <a href="https://www.youtube.com/playlist?list=PLx--gUxue3Z-UzXZ5d_P9aqcGyBU-7bJ6">20 
-short videos</a>. </li>
-
-<li>Jan 08, 2024: <a href="corr.html">Multiple correlation</a>. </li>
-
-<li>Jan 12, 2024: <a href="pcorr.html">Partial correlation</a>. </li>
-
-<li>Jan 15, 2024: [ <a href="jan15.r">R session</a>
-| <a href="amazon-books.txt">data</a> ] </li>
-
-<li>
-<img src="image/alert.png">Assignment 1 sent to Google classroom. Here is
-the <a href="amazon-books.txt">dataset</a>. Last date for
-submission is Jan 28, 2024. Not joining Google classroom in time
-will not be considered as an excuse!</li>
-
-<li>Jan 19, 2024: We have started following the Ramachandran and
-Tsokos book starting with chapter 4. The book uses moment
-generating functions (MGF) somewhat wrongly. We shall replace
-those parts with the <a href="cf.html">characteristic functions</a>.</li>
-
-<li>Jan 22, 2024: Banach-Tarski Paradox [<a href="madhavabtshow.pdf">slides</a>]
-</li>
-
-<li>Jan 29, 2024: Multivariate Gaussian distribution
-and $\chi^2$ distribution [<a href="gausamdist.html">summary</a>]
-</li>
-
-<li>Feb 02, 2024: Visualising bivariate Gaussian 
-and $\chi^2$ distributions [<a href="hist.r">R code</a>]
-</li>
-
-<li>Feb 05, 2024: Application of sampling distribution in quality control [<a href="sampappl.html">summary</a>|<a href="qc.r">R code</a>]
-</li>
-
-
-</ol>
-
-<h2><a
-name="Reference materials">Reference materials</a></h2>
-Our main textbooks are the following two excellent texts.
-<dl>
-
-<dt>
-<b>Mathematical statistics with applications</b>
-by <i>Ramachandran and Tsokos</i>
-</dt>
-
-<dd>We shall need only chapters 4,5,6 and 7.</dd>
-
-
-<dt>
-<b>Introduction to statistical theory</b> by <i>Hoel, Port
-and Stone</i>
-</dt>
-
-<dd>We shall need only chapter 1, 2 and 3.</dd>
-
-</dl>
-These texts, however, do not cover multiple and partial
-correlations adequately. So we need the following:
-<dl>
-
-<dt>
-<a href="pandmcorr.pdf">A few (poorly) scanned pages from
-some(?) book</a>
-</dt>
-<dd>A bunch of standard formulae that
-you MUST NOT cram!</dd>
-
-<dt>Some videos on (adjusted) $R^2$: 
-[
-<a href="https://youtu.be/krTAqkcpAvY">1</a>|
-<a href="https://youtu.be/M-BY2mVV2Rg">2</a>|
-<a href="https://youtu.be/oFXJcjOg2JU">3</a>|
-<a href="https://youtu.be/NHST-e6kBzU">4</a>
-]
-</dt>
-
-<dd>I have borrowed these from my Linear Models course. Some
-students have kindly provided the transcripts for these:
-[<a href="v85.pdf">1</a>|<a href="v86.pdf">2</a>|NA|<a href="v88.pdf">4</a>]
-
-</dd>
-
-</dl> 
-We shall
-use the R environment for all our computation. 
-
+We shall assume that amount of milk in a ranomly selected bottle
+is a random variable with $N(\mu,\sigma^2)$
+distribution. Initially, $\mu = 500$ and $\sigma^2 $ is
+at some known acceptable value. We shall also assume
+that $\sigma^2 $ will stay put at this value all through
+out. However, $\mu $ may drift away from its target value
+ovr time. If it does, we want to detect it as soon as possible,
+stop the production line,  set the mean back to its target value, and
+resume production.     
+<p></p>
+Then problem is that $\mu $ is not readily visible. 
+<p></p>
+So we draw a random sample of size $n$ from the production
+line from time to time, and actually measure their
+contents. Let $X_i$ be the amount of milk in the $i$-th
+bootle in our sample. Then, by our
+assumption,   $X_1,...,X_n$ are
+iid $N(\mu,\sigma^2_0).$ 
+<p></p>
+We cannot observe $\mu.$ So instead we estimate it
+with $\bar X.$ 
+<p></p>
+Our aim is to check if $\mu  = 500.$ Instead we check
+if $\bar X\approx 500.$ Notice the "$\approx$"
+because $\bar X$ may not exactly equal 500. More precisely,
+we look for some $c$ such that if $|\bar X-500|&gt;c,$ then
+we shall stop the machine. Now, stopping the machine itself
+incurs some loss of time and money. So we want to do so only when
+we strongly feel the need. However, sometimes $|\bar X-500|$
+may exceed $c$ just by chance evne when the machine is
+under control (<i>i.e.</i>, $\mu = 500$). Then we shall stop the
+machine, waste time and money only to find that the hassle was
+useless. So we want $P(|\bar X-500|&gt;c)$ to be low when the
+process in under control. A typical choice for this low
+probablity is 5%. In other words, we are looking for $c$
+such that $P(|\bar X-500|&gt;c) = 0.05$ when $\mu = 500.$
+<p></p>
+It is here that the sampling distribution of $\bar X$
+proves useful. When the process is under control, we
+have $X_1,...,X_n$ iid $N(500, \sigma^2_0).$ So $\bar
+X\sim N\left(500, \frac{\sigma^2_0}{n}\right),$ or 
+$$
+\frac{\bar X-500}{\sigma_0/\sqrt n}\sim N(0,1).
+$$
+We need $P(|\bar X-500|&gt;c) = 0.05$ or $P\left(\frac{|\bar
+X-500|}{\sigma_0/\sqrt n}&gt;\frac{c}{\sigma_0/\sqrt n}\right) = 0.05$
+or 
+$$
+\frac{c}{\sigma_0/\sqrt n} = \Phi ^{-1} (0.975) = 1.96.
+$$
+So we should take $c = \frac{1.96 \sigma_0}{\sqrt n}.$
 <hr/>
 <table width="100%" border="0">
 <tr>

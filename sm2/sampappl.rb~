@@ -1,0 +1,70 @@
+@{<NOTE>
+<HEAD1>Application of sampling distribution in quality control</HEAD1>
+We often want to check if some parameter is at a certain
+target value. But since the parameter is not directly observable we use
+some estimator and check if the estimator value is "close" to
+that value. To quantify the "closeness" we use the sampling
+distribution of the estimator. We shall illustrate this with a
+number of examples.
+
+<HEAD2>Bottling plant</HEAD2>
+Considering a bottling plant where milk is bottled. The empty
+bottles come down a conveyor belt to be filled automatically. 
+<CIMG web="bott1.png"/>
+Our aim is to fill 500 ml of milk in each bottle. We set the
+machine accordingly. Of course, there is some random fluctuation,
+and each bottle may get slightly more or less than this target
+amount. 
+<P/>
+We shall assume that amount of milk in a ranomly selected bottle
+is a random variable with <M>N(\mu,\sigma^2)</M>
+distribution. Initially, <M>\mu = 500</M> and <M>\sigma^2 </M> is
+at some known acceptable value. We shall also assume
+that <M>\sigma^2 </M> will stay put at this value all through
+out. However, <M>\mu </M> may drift away from its target value
+ovr time. If it does, we want to detect it as soon as possible,
+stop the production line,  set the mean back to its target value, and
+resume production.     
+<P/>
+Then problem is that <M>\mu </M> is not readily visible. 
+<P/>
+So we draw a random sample of size <M>n</M> from the production
+line from time to time, and actually measure their
+contents. Let <M>X_i</M> be the amount of milk in the <M>i</M>-th
+bootle in our sample. Then, by our
+assumption,   <M>X_1,...,X_n</M> are
+iid <M>N(\mu,\sigma^2_0).</M> 
+<P/>
+We cannot observe <M>\mu.</M> So instead we estimate it
+with <M>\bar X.</M> 
+<P/>
+Our aim is to check if <M>\mu  = 500.</M> Instead we check
+if <M>\bar X\approx 500.</M> Notice the "<M>\approx</M>"
+because <M>\bar X</M> may not exactly equal 500. More precisely,
+we look for some <M>c</M> such that if <M>|\bar X-500|>c,</M> then
+we shall stop the machine. Now, stopping the machine itself
+incurs some loss of time and money. So we want to do so only when
+we strongly feel the need. However, sometimes <M>|bar X-500|</M>
+may exceed <M>c</M> just by chance evne when the machine is
+under control (i.e., <M>\mu = 500</M>). Then we shall stop the
+machine, waste time and money only to find that the hassle was
+useless. So we want <M>P(|\bar X-500|>c)</M> to be low when the
+process in under control. A typical choice for this low
+probablity is 5%. In other words, we are looking for <M>c</M>
+such that <M>P(|\bar X-500|>c) = 0.05</M> when <M>\mu = 500.</M>
+<P/>
+It is here that the sampling distribution of <M>\bar X</M>
+proves useful. When the process is under control, we
+have <M>X_1,...,X_n</M> iid <M>N(500, \sigma^2_0).</M> So <M>\bar
+X\sim N(*(500, [[\sigma^2_0][n]])*),</M> or 
+<D>
+[[\bar X-500][\sigma_0/\sqrt n]]\sim N(0,1).
+</D>
+We need <M>P(|\bar X-500|>c) = 0.05</M> or <M>P(*([[|\bar
+X-500|][\sigma_0/\sqrt n]]>[[c][\sigma_0/\sqrt n]])*) = 0.05</M>
+or 
+<D>
+[[c][\sigma_0/\sqrt n]] = \Phi ^{-1} (0.975) = 1.96.
+</D>
+So we should take <M>c = [[1.96 \sigma_0][\sqrt n]].</M>
+</NOTE>@}

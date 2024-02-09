@@ -1,0 +1,58 @@
+@{<NOTE>
+<HEAD1>Scripted objects</HEAD1>
+Scripted objects can be given custom behaviour. They can be
+animated in unique ways. 
+
+
+<P/>
+You must know Java and be conversant with reading javadoc. The
+scripts are themselves written in Groovy, which is a language
+that is just like Java except that you do not need to declare
+variables. There are lots of technical differences. But the point
+of using Groovy is that you should not need to worry about them
+at first. 
+
+<P/>
+But the programming philosophy closely mimicks Java. So
+familiarity with Java is necessary and sufficient. 
+<P/>
+The first thing that you should do is to bookmark the javadoc
+from this link. Personally, I prefer to have an offline copy, as
+I live in a place with unreliable internet connection.
+<P/>
+Next you should understand when your script is
+excuted:
+<UL>
+<LI>During preview the script is executed every time you hit OK
+in the script window. Unfortunately, the window closes after
+that, and you need to reopen it for each correction. Very
+irritatin gif you are doing some sort of trial-and-error.</LI>
+<LI>During still frame rendeing the script is executed once for
+the current frame.</LI>
+<LI>During video rendering, the script is excuted once for each
+frame. Each execution is done from scratch. Not effect lingers
+from the earlier frames.</LI>
+</UL>
+
+A couple of irritating features:
+<OL>
+<LI>Though Groovy has a file include mechanism, it does not work
+(produces error) in AoI.</LI>
+<LI>The script is copied and stored internally. So there is no
+way to modify the code from outside AoI. </LI>
+</OL>
+
+You main entry point to the code is a ScriptedObjectController
+object which is called <B>script</B>. You must use this name,
+just like "main" in C. The three main things that you can get
+from script are the current frame number, the parameters and the
+scene. Familiarise yourself with the ScriptedObjectController
+from the javadoc. It is quite simple. It is <B>scene</B> that is
+complicated. Read its javadoc page carefully. 
+
+<P/>
+There is one point that you should remember especially well: the
+difference between an Object3D and ObjectInfo. These names are
+sometimes confused in the API, e.g., getObject actually returns
+an ObjectInfo. 
+</NOTE>@}
