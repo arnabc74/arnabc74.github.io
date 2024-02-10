@@ -40,7 +40,8 @@ and <M>\chi^2</M> distributions [<LINK to="hist.r">R code</LINK>]
 </LI>
 <LI>Feb 05, 2024: Application of sampling distribution in quality control [<LINK to="sampappl.html">summary</LINK>|<LINK to="qc.r">R code</LINK>]
 </LI>
-
+<LI><ALERT/>Assignment 2 is <LINK to="hw2/pic.html">here</LINK>. 
+Upload solutions to Google classroom.</LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
