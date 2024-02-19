@@ -42,6 +42,9 @@ and <M>\chi^2</M> distributions [<LINK to="hist.r">R code</LINK>]
 </LI>
 <LI><ALERT/>Assignment 2 is <LINK to="hw2/pic.html">here</LINK>. 
 Upload solutions to Google classroom.</LI>
+<LI>Feb 16, 2024: <M>\chi^2</M>-tests (Section 7.6 of our
+textbook)</LI>
+<LI>Feb 19, 2024: <LINK to="chilab.r">R code</LINK></LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
