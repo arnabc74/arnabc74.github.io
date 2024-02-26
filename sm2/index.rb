@@ -12,7 +12,7 @@ Google classroom <LINK to="https://classroom.google.com/c/NjUxMjAxMDM3Njk0?cjc=n
 <P/>
 <ALERT/>
 
-Projects ar posted at <LINK to="projects.html">this link</LINK>.
+Projects are posted at <LINK to="projects.html">this link</LINK>.
 <P/>
 <NEWS src="news.html"/>
 <P/>
