@@ -60,7 +60,14 @@ inconclusive. Fixed sample size proecedures resolves such cases
 in favour of <M>H_0.</M> We want to come up with a test procedure
 that will ask for more data in such cases. The desired test
 procedure should split the sample space into three parts: accept,
-reject and continue. Suggest (and implement) how it may be done satisfactorily.
+reject and continue.
+This project will explore a simple toy version of this: there are
+20 closed boxes, exactly 5 of which contain a Rs 5 coin. You have
+to pay Re 1 to open a box. If the opened box contains a coin, it
+is yours. What is the best strategy to maximise expected gain. No
+closed form solution may exist. Coming up with a computer program
+(along with a mathematical proof of its optimality) is all that I
+expect. 
 <BOX name="Student">
 
 </BOX>
@@ -82,12 +89,40 @@ find. This project will explore this.
 <BOX name="Students">
 </BOX>
 </LI>
-<LI><B>Computing multivariate medians:</B>
+<LI><B>Computing multivariate medians:</B> We have discussed
+different types of multivariate medians in class. Some of them
+are rather tricky to compute. Write programs to compute them
+in <M>k</M>-dim. If general <M>k</M> is difficult, you may just
+focus on <M>k=3.</M>
 <BOX name="Students">
 
 </BOX>
 </LI>
 <LI><B>EM algorithm:</B> 
+Read about the basics of the Expectation-Maximisation algorithm
+to compute MLE. Implement it for some real life
+problem. Different student groups must take different application areas.
+<BOX name="Students"></BOX>
+</LI>
+<LI><B>Information theory:</B> 
+Morse code sends English characters using dots and dashes. The
+letter E is represented by a single dot. This is reasonable
+because E happens to the most frequently occuring letter in
+normal usage. So assigning the shortest code to it makes sense
+from the viewpoint of length optimisation. "More frequent inputs
+should be mapped to shorter outputs" is an intuitive idea that
+has been rigoorised in Huffman encoding. This first part of the project is to learn
+about this Huffman coding and its optimality (along with the
+important concept of entropy).  Huffman coding is optimal when
+the input probability distribution is known. If it is not known,
+then Huffman encoding may perform badly. So the natural question
+is whether one can come up with an encodig scheme that guarantees
+a minimum performance against all input probability
+distributions. 
+
+<P/>
+This is not an easy project. You will need to consult chapter 12
+of the book Elements of Information Theory by Thomas and Cover. 
 
 <BOX name="Students"></BOX>
 </LI>
