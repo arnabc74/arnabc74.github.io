@@ -50,6 +50,15 @@ Upload solutions to Google classroom.</LI>
 <LI>Feb 16, 2024: <M>\chi^2</M>-tests (Section 7.6 of our
 textbook)</LI>
 <LI>Feb 19, 2024: <LINK to="chilab.r">R code</LINK></LI>
+
+<LI>Mar 11,
+2024: Basic idea behind test of
+hypotheses: [<LINK to="https://www.youtube.com/watch?v=yayYsofoaGQ">video 1</LINK>
+| <LINK to="https://youtu.be/oYZlMJK-vYI?si=Ql5PQq-3-ytk1En7">video
+2</LINK> | <LINK to="testhyp.html">summary</LINK>]
+</LI>
+<LI>Mar 15, 2024: Point estimation. Follow chapter 5 of the
+Ramachandran and Tsokos book.</LI>
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.

@@ -1,0 +1,11 @@
+trueTheta = 0.5
+result = numeric(10000)
+for(i in 1:10000) {
+    mydata = sample(c(0,1),5,rep=TRUE, prob=c(1-trueTheta,trueTheta))
+    thetaHat = mean(mydata)
+    if(thetaHat > 0.8) {
+        result[i] = 1 #reject H0
+    } else {
+        result[i] = 0 #accept H0
+    }
+}
