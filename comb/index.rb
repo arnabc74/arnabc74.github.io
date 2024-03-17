@@ -65,7 +65,7 @@ eba.n @{<M>\ell=0,1,2.</M>@}  er madhye @{<M>j=1</M>@}  hate bAdhya, kAraN @{<M>
 diye bhAg yAy, kintu @{<M>3^2</M>@}  diye bhAg yAy nA. ebAr @{<M>9n+3</M>@}-ke @{<M>3</M>@}  diye bhAg karle hay @{<M>3n+1.</M>@}  
 sutarA.n @{<M>2^i\times  5^k\times 7^\ell</M>@}-ke hate habe @{<M>3n+1</M>@}  chehArAr, arthA.t @{<M>3</M>@}  diye bhAg 
 karle @{<M>1</M>@}  bhAgsheS thAkbe. edike @{<M>2</M>@}  Ar @{<M>5</M>@}-ke @{<M>3 </M>@} diye bhAg karle @{<M>2</M>@}  
-hAgsheS thAke, eba.n @{<M>7</M>@}-er belAy bhAgsheS~TA hay @{<M>1.</M>@}  sutarA.n @{<M>2^i\times  5^k\times 7^\ell</M>@}-ke 
+bhAgsheS thAke, eba.n @{<M>7</M>@}-er belAy bhAgsheS~TA hay @{<M>1.</M>@}  sutarA.n @{<M>2^i\times  5^k\times 7^\ell</M>@}-ke 
 @{<M>3</M>@}  diye bhAg karleo yA habe @{<M>2^i\times  2^k = 2^{i+k}</M>@}-er bhAgsheSao tAi hate habe. mAne @{<M>2^{i+k}</M>@}-ke 
 @{<M>3</M>@}  diye bhAg karle @{<M>1</M>@}  bhAgsheS As~te habe. e theke ekTu chintA karlei pAbe ye, @{<M>i+k</M>@}-ke @{<E>even</E>@}  
 hate habe. AmrA jAni @{<M>i=0,1</M>@}  Ar @{<M>k=0,1,2,3</M>@}  hate pAre. tAi khAli chAr~bhAbei  @{<M>i+k</M>@}-TA @{<E>even</E>@}  
@@ -136,7 +136,7 @@ e bhulTAo suprabhAt manDaler dharA.
  @{<E>A***</E>@}  jAtIya @{<M>3!</M>@}-TA shabda, @{<E>P***</E>@}  jAtIya @{<M>3!</M>@}-TA shabda,
  @{<E>SA**</E>@}  jAtIya @{<M>2!</M>@}-TA shabda eba.n @{<E>SP**</E>@}  jAtIya Aro  @{<M>2!</M>@}-TA shabda. 
 bhulTA
- dharechhen suprabhAt manDal.</LI>  
+ dharechhen prathame suprabhAt manDal eba.n pare anIk sen.</LI>  
 <LI><IMG web="p94.png">@{<E>94</E>@}  na.n pAtAr a.nsha</IMG>
 ekhAne @{<M>{}^5P_2</M>@}  duToi @{<M>{}^5C_2</M>@}  habe. 
 bhulTA

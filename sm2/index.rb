@@ -51,8 +51,7 @@ Upload solutions to Google classroom.</LI>
 textbook)</LI>
 <LI>Feb 19, 2024: <LINK to="chilab.r">R code</LINK></LI>
 
-<LI>Mar 11,
-2024: Basic idea behind test of
+<LI>Mar 11, 2024: Basic idea behind test of
 hypotheses: [<LINK to="https://www.youtube.com/watch?v=yayYsofoaGQ">video 1</LINK>
 | <LINK to="https://youtu.be/oYZlMJK-vYI?si=Ql5PQq-3-ytk1En7">video
 2</LINK> | <LINK to="testhyp.html">summary</LINK>]
