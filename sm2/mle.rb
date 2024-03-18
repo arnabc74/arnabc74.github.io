@@ -125,7 +125,7 @@ Here <M>k</M> is the number of parameter (i.e., the number of
 out to be quite hairy, limiting the effectiveness of the
 technique. 
 
-<HEAD2>Technique 2: Fisher's scoring method</HEAD2>
+<HEAD2>Technique 2: Fisher`s scoring method</HEAD2>
 This is actually a variant of the Newton-Raphson method, but
 tailored to finding MLE. Here we replace <M>-H(\v \theta)</M> by
 its expectation 
@@ -139,11 +139,16 @@ is <I>not</I> a function of the random sample.
 <P/>
 Under fairly general conditions
 <D>
-I(\v \theta) = E[(\nabla\ell(\v \theta))'\nabla\ell(\v \theta)].
+I(\v \theta) = E[(\nabla\ell(\v \theta))^T\nabla\ell(\v \theta)].
 </D> 
+Notice that <M>\nabla\ell(\v \theta)</M> is a <I>row</I>
+vector. So the quantity inside the expectation is a <M>k\times
+k</M> matrix, where <M>k</M> is the number of components in <M>\theta.</M>
+<P/>
+
 This formula, being in terms first derivatives only, may be
 computationally easier.
-<HEAD3>Advantages of Fisher's scoring method over
+<HEAD3>Advantages of Fisher`s scoring method over
 Newton-Raphson</HEAD3>
 There are three advantages:
 <OL>

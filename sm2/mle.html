@@ -140,11 +140,11 @@ function myFunction() {
 <a href="#Technique 1: Newton-Raphson method">Technique 1: Newton-Raphson method</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Technique 2: Fisher's scoring method">Technique 2: Fisher's scoring method</a>
+<a href="#Technique 2: Fisher`s scoring method">Technique 2: Fisher`s scoring method</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Advantages of Fisher's scoring method over
-Newton-Raphson">Advantages of Fisher's scoring method over
+<a href="#Advantages of Fisher`s scoring method over
+Newton-Raphson">Advantages of Fisher`s scoring method over
 Newton-Raphson</a>
 </li>
 </ul>
@@ -286,7 +286,7 @@ out to be quite hairy, limiting the effectiveness of the
 technique. 
 
 <h2><a
-name="Technique 2: Fisher's scoring method">Technique 2: Fisher's scoring method</a></h2>
+name="Technique 2: Fisher`s scoring method">Technique 2: Fisher`s scoring method</a></h2>
 This is actually a variant of the Newton-Raphson method, but
 tailored to finding MLE. Here we replace $-H(\v \theta)$ by
 its expectation 
@@ -300,13 +300,18 @@ is <i>not</i> a function of the random sample.
 <p></p>
 Under fairly general conditions
 $$
-I(\v \theta) = E[(\nabla\ell(\v \theta))'\nabla\ell(\v \theta)].
+I(\v \theta) = E[(\nabla\ell(\v \theta))^T\nabla\ell(\v \theta)].
 $$ 
+Notice that $\nabla\ell(\v \theta)$ is a <i>row</i>
+vector. So the quantity inside the expectation is a $k\times
+k$ matrix, where $k$ is the number of components in $\theta.$
+<p></p>
+
 This formula, being in terms first derivatives only, may be
 computationally easier.
 <h3><a
-name="Advantages of Fisher's scoring method over
-Newton-Raphson">Advantages of Fisher's scoring method over
+name="Advantages of Fisher`s scoring method over
+Newton-Raphson">Advantages of Fisher`s scoring method over
 Newton-Raphson</a></h3>
 There are three advantages:
 <ol type="">
