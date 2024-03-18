@@ -1,0 +1,302 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Advanced MLE techniques">Advanced MLE techniques</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Technique 1: Newton-Raphson method">Technique 1: Newton-Raphson method</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Technique 2: Fisher's scoring method">Technique 2: Fisher's scoring method</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Advantages of Fisher's scoring method over
+Newton-Raphson">Advantages of Fisher's scoring method over
+Newton-Raphson</a>
+</li>
+</ul>
+<hr/>
+$
+\renewcommand{\v}{\vec}
+\newcommand{\do}[1]{\frac{\partial}{\partial #1}}
+$
+<h1><a
+name="Advanced MLE techniques">Advanced MLE techniques</a></h1>
+Our textbook covers the basic idea behind the maximum likelihood
+estimation technique. In some simple cases, you can find the
+maximum just by inspection, while in others you have to use
+differentiation. In most cases direct differentiation of the
+likelihood function leads to unwieldy expressions (as the
+likelihood is often the product of $n$ functions, and the
+"differentiate-one-at-a-time" rule for differentiating a product is
+not fun when $n$ is large). So a common technique is to
+first take logarithm of the likelihood (converting the product to
+a sum) and then to differentiate the log-likelihood. As log is a
+strictly increasing differentiable function, the argmax does not
+change upon taking log. So if $\ell(\v \theta)$ is the
+log-likelihood, then we want to solve the equation:
+$$
+\nabla \ell(\v \theta) = \v0.
+$$ 
+By the way, $\nabla \ell(\cdot)$ is called the <b>score function</b>.
+<p></p>
+
+All methods to solve it analytically will be called basic MLE
+techniques. Often the equation is too complicated for such basic
+techniques to exist. Then we need what we shall call the advanced
+MLE techniques.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+We have a random sample $X_1,...,X_n$ from the Gamma($\alpha,p$) with
+pdf
+$$
+f(x) = \left\{\begin{array}{ll}\frac{p^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-px}&\text{if }x&gt;0\\0&\text{otherwise.}\end{array}\right..
+$$
+Here the parameter space for $(\alpha,p)$ is $(0,\infty)^2.$
+Obtain MLE of the parameters.
+<p></p>
+<b>SOLUTION:</b>
+The log-likelihood function is
+$$
+\ell(\alpha,p) = n(\alpha \log p - \log \Gamma(\alpha))
++(\alpha-1)\sum_i \log x_i -p\sum_i x_i. 
+$$
+It is quite easy to differentiate partially wrt $p$ and
+equate it to zero: 
+ $$
+\do p \ell(\alpha,p) = \frac{n \alpha}{p}-\sum_i x_i. 
+$$
+So for each given value of  $\alpha$ we must have 
+ $$
+\hat p = \frac{n \alpha}{\sum_i x_i}. 
+$$
+Putting this 
+in $\ell(\alpha,p)$ we get a function of $\alpha $ alone:
+$$
+\ell_1(\alpha) = \ell(\alpha,\hat p).
+$$
+Since this involves the $\Gamma $ function, the
+equation $\ell_1'(\alpha) = 0$ may not be solved analytically.
+ ///
+</p>
+
+
+<h2><a
+name="Technique 1: Newton-Raphson method">Technique 1: Newton-Raphson method</a></h2>
+The Newton-Raphson method is a numerical approach to solving any
+equation of the form $g(\v x) = \v0$, where $g:{\mathbb R}^n\rightarrow{\mathbb R}^n$ is
+differentiable. It uses the iterative scheme
+$$
+\v x_{n+1} = \v x_n - J(\v x_n) ^{-1} g(\v x_n)
+$$
+starting from some $\v x_0.$ Here $J(\v x)$ is the
+Jacobian matrix of $f$ at $\v x.$ 
+<p></p>
+There is no guaranty that it will converge. But for a large class
+of problems it does converge quite fast if $\v x_0$ is pretty close to the
+actual answer. 
+<p></p>
+On the face of it, it may seem that only first order derivatives
+are involved. But when we are using the Newton-Raphson method for
+MLE, our $g(\cdot)$ is actually the derivative of the
+log-likelihood function. So the Jacobian of $g$ is actually
+the second derivative matrix (called the Hessian) of the
+log-likelihood. The iterative scheme is:
+$$
+\v \theta_{n+1} = \v \theta_n - H(\v \theta_n) ^{-1}  \nabla \ell (\v \theta_n),
+$$
+where $H_{k\times k}$ is the Hessian matrix with $(i,j)$-th entry 
+$$
+\frac{\partial^2}{\partial \theta_i\partial \theta_j} \ell(\v \theta).
+$$
+Here $k$ is the number of parameter (<i>i.e.</i>, the number of
+ components in $\v \theta$).
+<p></p>
+ As you might guess, the expressions often turn
+out to be quite hairy, limiting the effectiveness of the
+technique. 
+
+<h2><a
+name="Technique 2: Fisher's scoring method">Technique 2: Fisher's scoring method</a></h2>
+This is actually a variant of the Newton-Raphson method, but
+tailored to finding MLE. Here we replace $-H(\v \theta)$ by
+its expectation 
+$$
+I(\v \theta) = -E(H(v \theta)).
+$$ 
+While this might appear even hairier, usually the expectation
+often simplifies things by averaging over all possible
+data. Note that $I(\v \theta)$, unlike $H(\v \theta)$
+is <i>not</i> a function of the random sample.
+<p></p>
+Under fairly general conditions
+$$
+I(\v \theta) = E[(\nabla\ell(\v \theta))'\nabla\ell(\v \theta)].
+$$ 
+This formula, being in terms first derivatives only, may be
+computationally easier.
+<h3><a
+name="Advantages of Fisher's scoring method over
+Newton-Raphson">Advantages of Fisher's scoring method over
+Newton-Raphson</a></h3>
+There are three advantages:
+<ol type="">
+
+<li>There expressions involved in the iterative scheme is analytically more tractable. So it is easier to write
+the code.</li>
+
+<li>As we are averaging out over all possible samples, the
+undulations specific to the given random sample are ironed out
+to some extent (they are still there in the score function,
+though). So less chance of the iterative method getting stuck at
+a local max.</li>
+
+<li>Under fairly general conditions, the information matrix is
+the limiting covariance matrix of the MLE. This is automatically
+computed as a byproduct.</li>
+
+</ol>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
