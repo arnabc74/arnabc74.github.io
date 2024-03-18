@@ -210,10 +210,45 @@ $$
 \ell_1(\alpha) = \ell(\alpha,\hat p).
 $$
 Since this involves the $\Gamma $ function, the
-equation $\ell_1'(\alpha) = 0$ may not be solved analytically.
+equation $\ell_1`(\alpha) = 0$ may not be solved analytically.
  ///
 </p>
 
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+<b>(Probit model)</b> We have $n$ mice (random sample from a
+cohort bred under uniform condition). The $i$-th mouse is
+given a dose of $x_i$ g of a poison. $Y_i = 1$ if
+the $i$-th mouse was killed by the dose, and $0$
+otherwise. Our data consist of the $n$
+pairs $(x_1,Y_1),...,(x_n,Y_n).$ 
+<p></p>
+Want to fit the model
+$$
+Y_i\sim Bern\left(\Phi\left(\alpha+\beta x_i\right)\right), 
+$$
+and $Y_i$`s independent, where $\alpha\in{\mathbb R}$
+and $\beta &gt;0$ are the unknown parameters. 
+<p></p>
+Estimate $\alpha, \beta $ using MLE.
+<p></p>
+<b>SOLUTION:</b>
+Here the likelihood function is 
+$$
+L(\alpha,\beta) = \prod_1^n \left[\Phi(\alpha+\beta x_i) \right]^{Y_i}\left[1-\Phi(\alpha+\beta x_i) \right]^{1- Y_i}.
+$$
+So the log-likelihood function is
+$$
+\ell(\alpha,\beta) = \sum [Y_i \log\Phi(\alpha+\beta x_i)]+ \sum[(1- Y_i)\log (1-\Phi(\alpha+\beta x_i))].
+$$
+We need to solve $\nabla\ell(\alpha,\beta)=(0,0).$
+
+<p></p>
+I hope you will agree with me that the expressions are not
+particularly apetising!  
+ ///
+</p>
 
 <h2><a
 name="Technique 1: Newton-Raphson method">Technique 1: Newton-Raphson method</a></h2>
