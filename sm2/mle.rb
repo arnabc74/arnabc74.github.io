@@ -63,7 +63,7 @@ equation <M>\ell_1`(\alpha) = 0</M> may not be solved analytically.
 <EXM>
 <B>(Probit model)</B> We have <M>n</M> mice (random sample from a
 cohort bred under uniform condition). The <M>i</M>-th mouse is
-given a dose of <M>x_i</M> g of a poison. <M>Y_i = 1</M> if
+given a dose <M>x_i</M>  of a poison. <M>Y_i = 1</M> if
 the <M>i</M>-th mouse was killed by the dose, and <M>0</M>
 otherwise. Our data consist of the <M>n</M>
 pairs <M>(x_1,Y_1),...,(x_n,Y_n).</M> 
