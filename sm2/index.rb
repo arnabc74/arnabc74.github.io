@@ -58,6 +58,9 @@ hypotheses: [<LINK to="https://www.youtube.com/watch?v=yayYsofoaGQ">video 1</LIN
 </LI>
 <LI>Mar 15, 2024: Point estimation. Follow chapter 5 of the
 Ramachandran and Tsokos book.</LI>
+<LI>Mar 18, 2024: MLE. <LINK to="mle.html">Here</LINK> are a few
+advanced things not covered in the textbook.</LI>
+
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
