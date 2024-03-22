@@ -178,30 +178,26 @@ While this might appear even hairier, usually the expectation
 often simplifies things by averaging over all possible
 data. Note that <M>I(\v \theta)</M>, unlike <M>H(\v \theta)</M>
 is <I>not</I> a function of the random sample.
+
 <P/>
-Under fairly general conditions
-<D>
-I(\v \theta) = E[(\nabla\ell(\v \theta))^T\nabla\ell(\v \theta)].
-</D> 
+
 Notice that <M>\nabla\ell(\v \theta)</M> is a <I>row</I>
 vector. So the quantity inside the expectation is a <M>k\times
 k</M> matrix, where <M>k</M> is the number of components in <M>\theta.</M>
-<P/>
 
-This formula, being in terms first derivatives only, may be
-computationally easier.
 <HEAD3>Advantages of Fisher`s scoring method over
 Newton-Raphson</HEAD3>
 There are three advantages:
 <OL>
-<LI>There expressions involved in the iterative scheme is analytically more tractable. So it is easier to write
+<LI>The expressions involved in the iterative scheme is analytically more tractable. So it is easier to write
 the code.</LI>
 <LI>As we are averaging out over all possible samples, the
 undulations specific to the given random sample are ironed out
 to some extent (they are still there in the score function,
 though). So possibly less chance of the iterative method getting stuck at
 a local max. Never seen any demonstration of this.</LI>
-<LI>Under fairly general conditions, the negative of the information matrix is
+<LI>Under fairly general conditions, the negative of the inverse
+of the information matrix is
 the limiting covariance matrix of the MLE. This is automatically
 computed as a byproduct.</LI>
 </OL>

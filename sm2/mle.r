@@ -57,7 +57,7 @@ infinv = function(param) {
     bb = sum(dose*hb)
     ab = sum(dose*ha)
     dt = aa*bb-ab*ab
-    matrix(c(bb,-ab,-ab,aa)/dt,2,2)
+    -matrix(c(bb,-ab,-ab,aa)/dt,2,2)
 }
 
 nr = function(param) {
@@ -66,10 +66,15 @@ nr = function(param) {
     newval
 }
 fs = function(param) {
-    newval = param -  infinv(param) %*% grad(param)
+    newval = param +  infinv(param) %*% grad(param)
     cat('l(',newval,') = ',loglik(newval),'\n')
     newval
 }
 
 
 param=c(-4,1)
+for(i in 1:10) param=nr(param)
+
+param=c(-4,1)
+for(i in 1:10) param=fs(param)
+infinv(param)
