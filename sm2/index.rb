@@ -60,6 +60,7 @@ hypotheses: [<LINK to="https://www.youtube.com/watch?v=yayYsofoaGQ">video 1</LIN
 Ramachandran and Tsokos book.</LI>
 <LI>Mar 18, 2024: MLE. <LINK to="mle.html">Here</LINK> are a few
 advanced things not covered in the textbook.</LI>
+<LI>Mar 22, 2024: <LINK to="mle.r">R code</LINK> for mle in probit.</LI>
 
 </OL>
 <HEAD2>Reference materials</HEAD2>

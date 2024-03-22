@@ -12,6 +12,19 @@ loglik = function(param) {
     sum(dead*log(prob)) + sum( (1-dead)*log(1-prob) )
 }
 
+aval = -mu/sigma
+
+bval = 1/sigma
+
+agrid = aval + seq(-5,2,0.1)
+bgrid = bval + seq(-0.5,1.5,0.01)
+val = outer(agrid,bgrid,Vectorize(function(a,b)loglik(c(a,b))))
+
+library(rgl)
+options(rgl.printRglwidget = TRUE)
+persp3d(agrid,bgrid,val)
+
+#--------------------------------------
 f = function(x) dnorm(x)/pnorm(x)
 g = function(x) dnorm(x)/(1-pnorm(x))
 
@@ -58,15 +71,5 @@ fs = function(param) {
     newval
 }
 
-aval = -mu/sigma
 
-bval = 1/sigma
-
-agrid = aval + seq(-5,2,0.1)
-bgrid = bval + seq(-0.5,1.5,0.01)
-#val = outer(agrid,bgrid,Vectorize(loglik))
-
-#library(rgl)
-#options(rgl.printRglwidget = TRUE)
-#persp3d(agrid,bgrid,val)
 param=c(-4,1)
