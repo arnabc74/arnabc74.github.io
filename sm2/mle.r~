@@ -1,0 +1,32 @@
+set.seed(3235325)
+mu = 5
+sigma = 1
+tolerance = rnorm(340,mean=mu,sd=sigma)
+dose = rep(seq(1,9,0.5),20)
+dead = tolerance <= dose
+loglik = function(a,b) {
+    prob = pnorm(a+b*dose)
+    sum(dead*log(prob)) + sum( (1-dead)*log(1-prob) )
+}
+loglik1 = function(a,b) {
+    den = pnorm(a+b*dose)
+    num = dnorm(a+b*dose)
+    sum(dead*num/den) - sum( (1-dead)*num/(1-den) )
+}
+loglik2 = function(a,b) {
+    den = pnorm(a+b*dose)
+    num = dnorm(a+b*dose)
+    sum(dead*dose*num/den) - sum( (1-dead)*dose*num/(1-den) )
+}
+
+aval = -mu/sigma
+
+bval = 1/sigma
+
+agrid = aval + seq(-5,2,0.1)
+bgrid = bval + seq(-0.5,1.5,0.01)
+val = outer(agrid,bgrid,Vectorize(loglik))
+
+library(rgl)
+options(rgl.printRglwidget = TRUE)
+persp3d(agrid,bgrid,val)

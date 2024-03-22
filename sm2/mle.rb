@@ -2,6 +2,8 @@
 <M>
 \renewcommand{\v}{\vec}
 \newcommand{\do}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\dt}[1]{\frac{\partial^2}{\partial #1^2}}
+\newcommand{\doo}[2]{\frac{\partial^2}{\partial #1\partial #2}}
 </M>
 <HEAD1>Advanced MLE techniques</HEAD1>
 Our textbook covers the basic idea behind the maximum likelihood
@@ -89,7 +91,7 @@ We need to solve <M>\nabla\ell(\alpha,\beta)=(0,0).</M>
 
 <P/>
 I hope you will agree with me that the expressions are not
-particularly apetising!  
+particularly apetising! 
 </EXM>
 <HEAD2>Technique 1: Newton-Raphson method</HEAD2>
 The Newton-Raphson method is a numerical approach to solving any
@@ -124,7 +126,47 @@ Here <M>k</M> is the number of parameter (i.e., the number of
  As you might guess, the expressions often turn
 out to be quite hairy, limiting the effectiveness of the
 technique. 
+<EXM><B>(Newton-Raphson for probit)</B>
+We had already seen that the log-likelihood equation was pretty
+nasty looking. But we can notationally simplify things
+by introducing two functions: 
+<M>f(x) = \phi(x)/\Phi(x)</M> and <M>g(x) =
+\phi(x)/(1-\Phi(x)).</M>
+  
+<P/>
 
+It is easy to see that <M>f'(x) = -f(x)(x+f(x))</M> and <M>g'(x) = -g(x)(x-g(x)).</M>
+<P/>
+With these definitions, we can now write
+<MULTILINE>
+\do \alpha \ell & = & \sum h_i(\alpha,\beta)\\
+\do \beta  \ell & = & \sum x_i h_i(\alpha,\beta),
+</MULTILINE> 
+where 
+<D>
+h_i(\alpha,\beta) = Y_i f(\alpha + \beta x_i) - (1-Y_i) g(\alpha + \beta x_i),
+</D>
+and hence
+<MULTILINE>
+\do \alpha h_i(\alpha,\beta) & = & Y_i f'(\alpha + \beta x_i) - (1-Y_i) g'(\alpha + \beta x_i),\\
+\do \beta h_i(\alpha,\beta) & = & x_i \do \alpha h_i(\alpha,\beta).
+</MULTILINE>
+
+
+So 
+<MULTILINE>
+\dt \alpha \ell & = & \sum \do \alpha h_i(\alpha,\beta)\\
+\dt \beta \ell & = & \sum x_i^2\do \alpha  h_i(\alpha,\beta)\\
+\doo \alpha \beta  \ell & = & \sum x_i \do \alpha h_i(\alpha,\beta).
+</MULTILINE> 
+Then the Newton-Raphson iteration is
+<D>
+<MAT>\alpha_{k+1} \\ \beta_{k+1} </MAT> = <MAT>\alpha_k \\ \beta_k </MAT>
+- <MAT>\dt \alpha \ell & \doo \alpha \beta \ell\\ \doo \alpha
+\beta \ell & \dt \beta \ell</MAT>^{-1} <MAT>\do \alpha \ell\\\do \beta \ell</MAT>.
+</D>
+Here the RHS is evaluated at <M>(\alpha_k,\beta_k).</M>
+</EXM>
 <HEAD2>Technique 2: Fisher`s scoring method</HEAD2>
 This is actually a variant of the Newton-Raphson method, but
 tailored to finding MLE. Here we replace <M>-H(\v \theta)</M> by
@@ -157,10 +199,29 @@ the code.</LI>
 <LI>As we are averaging out over all possible samples, the
 undulations specific to the given random sample are ironed out
 to some extent (they are still there in the score function,
-though). So less chance of the iterative method getting stuck at
-a local max.</LI>
-<LI>Under fairly general conditions, the information matrix is
+though). So possibly less chance of the iterative method getting stuck at
+a local max. Never seen any demonstration of this.</LI>
+<LI>Under fairly general conditions, the negative of the information matrix is
 the limiting covariance matrix of the MLE. This is automatically
 computed as a byproduct.</LI>
 </OL>
+
+<EXM><B>(Fisher's scoring method for probit)</B>
+For Fisher's scoring method we need the expectation of the Hessian
+matrix. This involves 
+<D>
+E(*(\do \alpha h_i(\alpha,\beta) )*)  =  E(Y_i) f'(\alpha + \beta x_i)
+- (1-E(Y_i)) g'(\alpha + \beta x_i).
+</D>
+Since <M>E(Y_i) = \Phi(\alpha + \beta x_i),</M> we get some
+simplification:
+<D>
+E(Y_i) f'(\alpha + \beta x_i) = -\phi(\alpha + \beta x_i) (x + f(x))
+</D>
+and 
+<D>
+(1-E(Y_i)) g'(\alpha + \beta x_i) = -\phi(\alpha + \beta x_i) (x - g(x))
+</D>
+
+</EXM>
 </NOTE>@}
