@@ -208,14 +208,14 @@ undulations specific to the given random sample are ironed out
 to some extent (they are still there in the score function,
 though). So possibly less chance of the iterative method getting stuck at
 a local max. Never seen any demonstration of this.</LI>
-<LI>Under fairly general conditions, the negative of the inverse
+<LI>Under fairly general conditions,  the inverse
 of the information matrix is
-the limiting covariance matrix of the MLE. This is automatically
+the asymptotic covariance matrix of the MLE. This is automatically
 computed as a byproduct.</LI>
 </OL>
 
 <EXM><B>(Fisher`s scoring method for probit)</B>
-For Fisher's scoring method we need the expectation of the Hessian
+For Fisher`s scoring method we need the expectation of the Hessian
 matrix. This involves 
 <D>
 E(*(\do \alpha h_i(\alpha,\beta) )*)  =  E(Y_i) f'(\alpha + \beta x_i)
@@ -255,13 +255,13 @@ statistics, one of which is relevant here:
 <THM>
 Under some regularity conditions, 
 <D>
-I(\v \theta)^{1/2} (\hat \theta_{mle}- \theta)\to N_k(\v0,I),
+I(\v \theta)^{1/2} (\hat \v\theta_{mle}- \v\theta)\to N_k(\v0,I),
 </D>
-where <M>k</M> is the dimensionof <M>\theta.</M>
+where <M>k</M> is the dimension of <M>\v \theta.</M>
 </THM>
 It is more commonly (though less rigourously) remembered as 
 <Q>"For
 large enuogh <M>n</M>, the sampling distribution of <M>\hat
-\theta_{mle}</M> is roughly <M>N_k(\theta, I(\theta)^{-1}).</M>"
+\v\theta_{mle}</M> is roughly <M>N_k(\v\theta, I(\v\theta)^{-1}).</M>"
 </Q>
 </NOTE>@}
