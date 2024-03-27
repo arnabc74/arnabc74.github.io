@@ -255,8 +255,9 @@ statistics, one of which is relevant here:
 <THM>
 Under some regularity conditions, 
 <D>
-I(\v \theta)^{1/2} (\hat \theta_{mle}- \theta)\to N(\v0,I).
+I(\v \theta)^{1/2} (\hat \theta_{mle}- \theta)\to N_k(\v0,I),
 </D>
+where <M>k</M> is the dimensionof <M>\theta.</M>
 </THM>
 It is more commonly (though less rigourously) remembered as 
 <Q>"For
