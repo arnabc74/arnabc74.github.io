@@ -1,7 +1,6 @@
 set.seed(3235325)
 mu = 5
 sigma = 1
-tolerance = rnorm(340,mean=mu,sd=sigma)
 dose = rep(seq(1,9,0.5),20)
 tolerance = rnorm(340,mean=mu,sd=sigma)
 dead = tolerance <= dose
@@ -68,7 +67,7 @@ nr = function(param) {
 }
 fs = function(param) {
     newval = param +  infinv(param) %*% grad(param)
-    ##cat('l(',newval,') = ',loglik(newval),'\n')
+    cat('l(',newval,') = ',loglik(newval),'\n')
     newval
 }
 

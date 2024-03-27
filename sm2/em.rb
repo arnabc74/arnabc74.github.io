@@ -214,7 +214,10 @@ We shall reserve the symbols <M>p</M> and <M>q</M> for the true
 (unknown) values of the parameters.
 Then 
 <D>
-E(\ell_{com}(a,b)|\text{data}) = \text{terms free of a,b} + E(A|\text{data})\log a + E(B|\text{data})\log b + E(C|\text{data})\log (1-a-b).
+E(\ell_{com}(\alpha ,\beta )|\text{data}) = \text{terms free of
+\alpha ,\beta } + E(A|\text{data})\log \alpha  +
+E(B|\text{data})\log \beta  + E(C|\text{data})\log (1-\alpha
+-\beta ).
 </D>
 Now 
 <MULTILINE>
@@ -223,14 +226,14 @@ E(B|\text{data}) & = & E(n_{b b}|\text{data})+n_B+n_{AB} = n_B\times[[q^2][q^2+2
 E(C|\text{data}) & = & E(n_{o o}|\text{data}) = n_O=C_1.
 </MULTILINE>
 Note that the conditional expectation is a function of the dummy
-variables <M>a,b</M> as well as the constants <M>p,q.</M> So we
-denote it by <M>Q(a,b|p,q).</M> As <M>(a,b)</M> and <M>(p,q)</M> both  take values
+variables <M>\alpha ,\beta </M> as well as the constants <M>p,q.</M> So we
+denote it by <M>Q(\alpha ,\beta |p,q).</M> As <M>(\alpha, \beta )</M> and <M>(p,q)</M> both  take values
 in the parameter space, this notation might confuse you at
 first. 
-Now we shall find the maximum of <M>Q(a,b|p,q)</M>
-wrt <M>(a,b)</M>. Remember that <M>p,q</M> are constants, and
+Now we shall find the maximum of <M>Q(\alpha ,\beta |p,q)</M>
+wrt <M>(\alpha ,\beta )</M>. Remember that <M>p,q</M> are constants, and
 play no role in the maximisation. This is the M-step. The output
-of this step consists of the maximising <M>(a,b),</M> which may
+of this step consists of the maximising <M>(\alpha ,\beta ),</M> which may
 involve <M>p,q.</M> 
 
 <P/>
