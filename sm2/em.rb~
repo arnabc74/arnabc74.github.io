@@ -1,0 +1,63 @@
+@{<NOTE>
+<HEAD1>Expectation-Maximisation algorithm</HEAD1>
+The EM algorithm is an iterative method to compute MLE in certain
+cases. 
+<P/>
+To find MLE we have to maximise the likelihood function, or
+equivalently, the log-likelihood function, <M>\ell(\theta).</M> Depending on the
+problem, 
+ the log-likelihood may be easy or  complicated for
+maximisation. The EM algorithm is useful for those situations
+where the log-likelihood is complicated, but the data is a
+many-to-one function of some data for which the log-likelihood is
+easy. The EM maximises the easy  log-likelihood repeatedly to
+indirectly maximise the complicated log-likelihood.
+
+<P/>
+There are many scenarios where this is applicable. We shall
+discuss only one.
+
+<EXM><B>Gaussian mixture</B>
+Consider this random experiment: a coin with <M>P(H)=[[13]]</M>
+is tossed. If a head is obtained, we generate <M>X\sim
+N(\mu_1,1^2)</M> else we generate <M>X\sim N(\mu_2,2^2).</M> This
+experiment is performed in IID fashion  <M>n</M> times, resulting
+in the data <M>X_1,...,X_n.</M> We want to find MLEs
+for <M>\mu_1,\mu_2.</M>
+
+Here the <M>X_i</M>'s are IID with pdf 
+<D>
+[[13]] \phi(*([[x-\mu_1][1]])*)+[[23]] \phi(*([[x-\mu_2][2]])*).
+</D>
+So the log-likelihood is 
+<D>
+\ell(\mu_1,\mu_2) = \sum\log [*[ [[13]]
+\phi(*([[x-\mu_1][1]])*)+[[23]] \phi(*([[x-\mu_2][2]])*) ]*].
+</D>
+This hardly simplifies. 
+<P/>
+But let us consider the following more elaborate version of the
+same experiment: we again do the same thing, but now we output
+not only <M>X</M>, but also the outcome of the toss, and <M>Y= <CASES>1<IF>head</IF>0<ELSE/></CASES>.</M>
+<P/>
+
+Now the estimation becomes very easy, as we know
+which <M>X_i</M>'s come from which Gaussian. It should be easy to
+see that the MLEs are
+<D>
+\hat \mu_1 = [[\sum X_iY_i][\sum Y_i]]\text{ and }\hat \mu_1 = [[\sum X_i(1-Y_i)][n-\sum Y_i]].
+</D>
+Here the actual data consisted of only the <M>X_i</M>'s. The more
+elaborate data consist of <M>(X_i,Y_i)</M>'s. The many-to-one map
+is <M>(X_i,Y_i)\mapsto X_i.</M>
+</EXM>
+
+In general the actuall data will be called the <B>incomplete</B>
+data, while the more elaborate data will be called
+the <B>complete</B> data. The log-likelihood for the complete
+data will be denoted by <M>\ell_{com}(\cdot).</M> This cannot be
+computed in practice, as the complete data is not really
+available. We shall compute the conditional expectation
+of <M>\ell_{com}(\cdot)</M> given the incomplete data. This is
+the Expectation step of the EM algorithm. 
+</NOTE>@}

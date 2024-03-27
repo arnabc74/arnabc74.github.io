@@ -3,6 +3,7 @@ mu = 5
 sigma = 1
 tolerance = rnorm(340,mean=mu,sd=sigma)
 dose = rep(seq(1,9,0.5),20)
+tolerance = rnorm(340,mean=mu,sd=sigma)
 dead = tolerance <= dose
 
 
@@ -67,7 +68,7 @@ nr = function(param) {
 }
 fs = function(param) {
     newval = param +  infinv(param) %*% grad(param)
-    cat('l(',newval,') = ',loglik(newval),'\n')
+    ##cat('l(',newval,') = ',loglik(newval),'\n')
     newval
 }
 
@@ -77,4 +78,24 @@ for(i in 1:10) param=nr(param)
 
 param=c(-4,1)
 for(i in 1:10) param=fs(param)
+infinv(param)
+
+est = c()
+for(count in 1:1000) {
+    tolerance = rnorm(340,mean=mu,sd=sigma)
+    dead = tolerance <= dose
+    param=c(-4,1)
+    converged = FALSE
+    for(i in 1:10) {
+        newparam=fs(param)
+        if(any(is.nan(newparam))) break
+        if(all(abs(newparam-param)< c(1e-5,1e-5))) {
+            converged = TRUE
+            break
+        }
+        param = newparam
+    }
+    if(converged) est = rbind(est,t(newparam)) 
+}
+cov(est)
 infinv(param)

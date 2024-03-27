@@ -1,0 +1,533 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Expectation-Maximisation algorithm">Expectation-Maximisation algorithm</a>
+</li>
+</ul>
+<hr/>
+$\renewcommand{\v}{\vec}$
+<h1><a
+name="Expectation-Maximisation algorithm">Expectation-Maximisation algorithm</a></h1>
+The EM algorithm is an iterative method to compute MLE in certain
+cases. 
+<p></p>
+To find MLE we have to maximise the likelihood function, or
+equivalently, the log-likelihood function, $\ell(\theta).$ Depending on the
+problem, 
+ the log-likelihood may be easy or  complicated for
+maximisation. The EM algorithm is useful for those situations
+where the log-likelihood is complicated, but the data is a
+many-to-one function of some data for which the log-likelihood is
+easy. The EM maximises the easy  log-likelihood repeatedly to
+indirectly maximise the complicated log-likelihood.
+
+<p></p>
+There are many scenarios where this is applicable. We shall
+discuss only one.
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+We shall consider the four blood
+groups $A$, $B$, $AB$ and $O.$ They occur in
+a certain proportion in a population. Since there are just 4
+categories, their proportions must add up to 1 in any
+population. So enough to consider any three of them,
+say $A$, $B$ and $AB.$ If find these proportions
+for different populations we get different points
+in ${\mathbb R}^3.$ Naturally, they all lie in the tetrahedron 
+$$
+\{(x,y,z)~:~0\leq x,y,z,~~x+y+z\leq 1\}.
+$$
+But, quite surprisingly, they are always seen to lie in a surface
+inside that tetrahedron. The surface is shown in  green below.
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/blood.png"></th>
+</tr>
+<tr>
+<th>The green surface</th>
+</tr>
+</table>
+</center>
+ To explain this strange behaviour
+here is a statistical model: there are two things (call them
+<i>allele</i>s) inside each individual. The alleles can be of 3
+types: $a$, $b$ and $o.$ 
+The (unordered) pair determines the blood group as follows:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Pair (genotype)</th><th colspan="" rowspan="">Blood group (phenotype)</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">aa, ao</td><td colspan="" rowspan="">A</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">bb, bo</td><td colspan="" rowspan="">B</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">ab</td><td colspan="" rowspan="">AB</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">oo</td><td colspan="" rowspan="">O</td>
+</tr>
+
+</table>
+</center> 
+
+The two alleles in an individual are independent, and each can
+take the values $a$, $b$ and $o$ with
+probablilities $p$, $q$ and $r$, respectively,
+where $p+q+r=1.$
+<p></p>
+Thus the blood group distribution is 
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Blood group</th><th colspan="" rowspan="">Probablility</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">A</td><td colspan="" rowspan="">$p^2+2pr$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">B</td><td colspan="" rowspan="">$q^2+2qr$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">AB</td><td colspan="" rowspan="">$2pq$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">O</td><td colspan="" rowspan="">$r^2$</td>
+</tr>
+
+</table>
+</center> 
+In order to estimate $p$, $q$ and $r$ we have
+collected a data set. Since the alleles cannot be observed directly
+(they are basically imaginary components of our model), we can
+only have data about the actual blood group:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Blood group</th><th colspan="" rowspan="">Frequency</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">A</td><td colspan="" rowspan="">$n_A=$182</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">B</td><td colspan="" rowspan="">$n_B=$60</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">AB</td><td colspan="" rowspan="">$n_{AB}=$17</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">O</td><td colspan="" rowspan="">$n_O=$176</td>
+</tr>
+
+</table>
+</center> 
+We want find MLEs of $p$, $q$ and $r$ based on
+this.
+<p></p>
+<b>SOLUTION:</b>
+Since $r=1-p-q,$ we can consider $(p,q)$ as our
+parameter. The likelihood is 
+$$
+L(p,q) = (p^2+2p(1-p-q))^{n_A}(q^2+2q(1-p-q))^{n_B}(2pq)^{n_{AB}}(1-p-q)^{2n_O}.
+$$
+The log-likelihood is
+$$
+\ell(p,q) = 182\log(2p-p^2-2pq)+60\log(2q-2pq-q^2)+17\log(2pq)+352\log(1-p-q).
+$$
+The equation $\nabla \ell(p,q) = (0,0)$ is not analytically tractable.
+<p></p>
+However, if we could observe the allele pairs themselves, then
+our data set would have been like:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Pair</th><th colspan="" rowspan="">Frequency</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">aa</td><td colspan="" rowspan="">$n_{a a}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">ao</td><td colspan="" rowspan="">$n_{a o}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">bb</td><td colspan="" rowspan="">$n_{b b}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">bo</td><td colspan="" rowspan="">$n_{b o}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">ab</td><td colspan="" rowspan="">$n_{a b}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">oo</td><td colspan="" rowspan="">$n_{o o}$</td>
+</tr>
+
+</table>
+</center> 
+Then the log-likelihood would have been
+$$\begin{eqnarray*}
+&amp; &amp; 2n_{a a}\log p + 2n_{b b}\log q +  2n_{o o}\log (1-p-q)+
+n_{a o}(\log 2+\log p+\log (1-p-q)) + 
+n_{b o}(\log 2+\log q+\log (1-p-q)) + 
+n_{a b}(\log 2+\log p+\log q)\\
+&amp; = &amp; \text{terms free of parameters} + A\log p + B\log q + C\log (1-p-q),
+\end{eqnarray*}$$
+where 
+$$
+A = 2n_{a a}+n_{a o}+n_{a b},\quad B = 2n_{b b}+n_{b o}+n_{a
+b},\quad C = 2n_{o o}.
+$$
+This is one is far more tractable, and here MLE may be found
+analytically. 
+<p></p>
+Notice that this original data is a many-to-one function of this
+more elaborate data, because 
+$$
+n_A = n_{a a}+n_{ao},\quad n_B = n_{b b}+n_{bo},\quad n_{AB} =
+n_{ab},\quad n_O = n_{oo}.  
+$$
+ ///
+</p>
+In general the actual data will be called the <b>incomplete</b>
+data, while the more elaborate data will be called
+the <b>complete</b> data. The log-likelihood for the complete
+data will be denoted by $\ell_{com}(\cdot).$ This cannot be
+computed in practice, as the complete data is not really
+available. We shall compute the conditional expectation
+of $\ell_{com}(\cdot)$ given the incomplete data. This is
+the Expectation step of the EM algorithm.
+
+<p></p>
+
+Here we have to be careful. We are finding expectation of
+a <i>random function</i>. This is done pointwise, <i>i.e.</i>, for each
+possible value of the argument we compute the expectation of the
+value of the function. We have to remember that the argument is
+a dummy variable. Its name does not matter, and should better be
+chosen to avoid clash with any other symbol. The following
+example illustrates this.
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the random function $G(\mu) = X- \mu,$
+where $X\sim N(\mu,1).$ Find the expectation of the
+function. 
+<p></p>
+<b>SOLUTION:</b>
+You might be tempted to say that the answer is $E(X-\mu) = \mu
+- \mu = 0.$ Here $\mu$ was doing double duty, first as
+a dummy variable in defining the function $G(\cdot),$ and
+then as a constant in the distribution of $X.$ We should
+have first changed the dummy variable to something else,
+<i>e.g.</i>, $G(t) = X-t.$ Then the expectation is $\mu-t,$
+which is indeed a function of $t.$  
+ ///
+</p> 
+
+The next example is to remind you about computation of
+conditional expectation. 
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose that I have a die with $P(i)=p_i$
+for $i=1,...,6.$ It is rolled 100 times. What is the
+conditional expectation of the number of 1's given that total
+number of odd outputs is 62?
+<p></p>
+<b>SOLUTION:</b>
+$62\times \frac{p_1}{p_1+p_3+p_5}.$
+ ///
+</p>
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+First we rename the dummy variables $p$ and $q$ to
+$\alpha $ and $\beta,$ say:
+$$
+\ell_{com}(\alpha ,\beta) =  \text{terms free of }\alpha ,\beta
++ A\log \alpha  + B\log \beta  + C\log (1-\alpha -\beta),
+$$
+where 
+$$
+A = 2n_{a a}+n_{a o}+n_{a b},\quad B = 2n_{b b}+n_{b o}+n_{a
+b},\quad C = 2n_{o o}.
+$$
+We shall reserve the symbols $p$ and $q$ for the true
+(unknown) values of the parameters.
+Then 
+$$
+E(\ell_{com}(a,b)|\text{data}) = \text{terms free of a,b} + E(A|\text{data})\log a + E(B|\text{data})\log b + E(C|\text{data})\log (1-a-b).
+$$
+Now 
+$$\begin{eqnarray*}
+E(A|\text{data}) &amp; = &amp; E(n_{a a}|\text{data})+n_A+n_{AB} = n_A\times\frac{p^2}{p^2+2p(1-p-q)}+n_A+n_{AB}=A_1\\ 
+E(B|\text{data}) &amp; = &amp; E(n_{b b}|\text{data})+n_B+n_{AB} = n_B\times\frac{q^2}{q^2+2q(1-p-q)}+n_B+n_{AB}=B_1\\ 
+E(C|\text{data}) &amp; = &amp; E(n_{o o}|\text{data}) = n_O=C_1.
+\end{eqnarray*}$$
+Note that the conditional expectation is a function of the dummy
+variables $a,b$ as well as the constants $p,q.$ So we
+denote it by $Q(a,b|p,q).$ As $(a,b)$ and $(p,q)$ both  take values
+in the parameter space, this notation might confuse you at
+first. 
+Now we shall find the maximum of $Q(a,b|p,q)$
+wrt $(a,b)$. Remember that $p,q$ are constants, and
+play no role in the maximisation. This is the M-step. The output
+of this step consists of the maximising $(a,b),$ which may
+involve $p,q.$ 
+
+<p></p>
+In our example, the partial derivatives of $Q(\alpha ,\beta |p,q)$
+wrt $\alpha $ and $\beta $ are:
+$$\begin{eqnarray*}
+\frac{A_1}{\alpha} &amp; = &amp; \frac{C_1}{1-\alpha -\beta },\\
+\frac{B_1}{\beta} &amp; = &amp; \frac{C_1}{1-\alpha-\beta }.
+\end{eqnarray*}$$
+Solving, we get
+$$\begin{eqnarray*}
+\alpha &amp; = &amp; \frac{A_1}{A_1+B_1+C_1},\\
+\beta  &amp; = &amp; \frac{B_1}{A_1+B_1+C_1}.
+\end{eqnarray*}$$
+Notice that the RHSs are functions of $p$ and $q.$
+ ///
+</p>
+We put the E-step and the M-step together to construct the EM
+algorithm as follows:
+
+<fieldset>
+<legend><b><i>EM algorithm</i></b></legend>
+We have some random <i>complete</i> data (unobserved), a
+known (many-to-one) function $h(\cdot),$
+where $h($complete data$)$
+is the <i>incomplete</i> data (observed). We start with some $\v \theta_0.$
+<ul>
+
+<li>
+<b>E step:</b> $Q(\cdot|\v \theta)  = E_{\v\theta}(\ell_{com}(\cdot)|h(Y)).$
+</li>
+
+<li>
+<b>M step:</b> $\v \theta_{k+1} = \text{argmax}_{\v t \in \Theta}~~
+Q(\v t | \v \theta_{k}).
+$
+</li>
+
+</ul> 
+We continue until convergence (or until some prespecified maximum
+number of iterarions is reached).
+</fieldset>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+In our example we use
+$$\begin{eqnarray*}
+p_{k+1} &amp; = &amp;  \frac{A_1}{A_1+B_1+C_1},\\
+q_{k+1}  &amp; = &amp; \frac{B_1}{A_1+B_1+C_1},
+\end{eqnarray*}$$
+where the RHSs are computed at $p_{k}$ and $q_{k}.$
+ ///
+</p>
+
+
+<font color="red">
+<pre>
+nA = 182; nB = 60; nAB = 17; nO = 176
+em = function(param) {
+  p = param[1]; q = param[2]; r = 1-p-q
+  A1 = nA*p/(p+2*r)+nA+nAB
+  B1 = nB*q/(q+2*r)+nB+nAB
+  C1 = nO
+  newval = c(A1,B1)/(A1+B1+C1)
+  cat(newval,'\n')
+  newval
+}
+param=c(1,1)/3
+</pre>
+</font>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Here we could also have used Newton-Raphson iteration and
+Fisher's scoring method. Try them and see if you are getting the
+same MLE or not.
+</p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+We have worked with a given model here, <i>assuming</i> that it
+is the correct model. Carry out a $\chi^2$-test of
+goodness-of-fit at 5% level of significance. 
+</p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

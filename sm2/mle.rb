@@ -169,14 +169,26 @@ Here the RHS is evaluated at <M>(\alpha_k,\beta_k).</M>
 </EXM>
 <HEAD2>Technique 2: Fisher`s scoring method</HEAD2>
 This is actually a variant of the Newton-Raphson method, but
-tailored to finding MLE. Here we replace <M>-H(\v \theta)</M> by
-its expectation 
+tailored to finding MLE. Here we replace the Hessian matrix by
+its expectation. So the Fisher`s scoring iteration is:
 <D>
-I(\v \theta) = -E(H(v \theta)).
-</D> 
-While this might appear even hairier, usually the expectation
+<MAT>\alpha_{k+1} \\ \beta_{k+1} </MAT> = <MAT>\alpha_k \\ \beta_k </MAT>
++ (*(-E<MAT>\dt \alpha \ell & \doo \alpha \beta \ell\\ \doo \alpha
+\beta \ell & \dt \beta \ell</MAT>)*)^{-1} <MAT>\do \alpha \ell\\\do \beta \ell</MAT>.
+</D>
+The matrix whose inverse we are taking (i.e., the negative of
+the expected Hessian) is called the <B>Fisher information
+matrix</B> and denoted by <M>I(\v \theta).</M> If <M>\v
+\theta</M> just consists of a single scalar parameter,
+then <M>I(\v \theta)</M> is just a number, called the <B>Fisher
+information</B>. 
+
+<P/>
+
+While the Fisher`s scoring method  might appear even hairier than
+the Newton-Raphson method, usually the expectation
 often simplifies things by averaging over all possible
-data. Note that <M>I(\v \theta)</M>, unlike <M>H(\v \theta)</M>
+data. Note that <M>I(\v \theta)</M>, unlike the Hessian 
 is <I>not</I> a function of the random sample.
 
 <P/>
@@ -202,7 +214,7 @@ the limiting covariance matrix of the MLE. This is automatically
 computed as a byproduct.</LI>
 </OL>
 
-<EXM><B>(Fisher's scoring method for probit)</B>
+<EXM><B>(Fisher`s scoring method for probit)</B>
 For Fisher's scoring method we need the expectation of the Hessian
 matrix. This involves 
 <D>
@@ -218,6 +230,37 @@ and
 <D>
 (1-E(Y_i)) g'(\alpha + \beta x_i) = -\phi(\alpha + \beta x_i) (x - g(x))
 </D>
-
 </EXM>
+
+<HEAD2>More on Fisher information</HEAD2>
+What does it have to do with information? Consider the following
+two cases for the log-likelihood function:
+<CIMG web="loglikinfo.png"/>
+Which one pinpoints the MLE better? Surely the first one, because
+the peak is more prominent. So we shall say that the first one
+has more information about the parameter than the second has. You
+might like to compare them both with the extreme example:
+estimating <M>\theta</M> from a random sample from <M>N(0,1)</M>
+(no <M>\theta </M> in the distribution at all). Here the
+log-likelihood function is just flat, meaning that there is no
+information at all in the data about <M>\theta.</M>
+<P/>
+The second derivative of the log-likelihood function is negative
+at the peak. The more prominent the peak, the more negative it
+is. So its negative should be a good indication of  the amount of
+information the data contain about the parameter.
+<P/>
+The Fisher information matrix occurs in a number of theorems in
+statistics, one of which is relevant here:
+<THM>
+Under some regularity conditions, 
+<D>
+I(\v \theta)^{1/2} (\hat \theta_{mle}- \theta)\to N(\v0,I).
+</D>
+</THM>
+It is more commonly (though less rigourously) remembered as 
+<Q>"For
+large enuogh <M>n</M>, the sampling distribution of <M>\hat
+\theta_{mle}</M> is roughly <M>N_k(\theta, I(\theta)^{-1}).</M>"
+</Q>
 </NOTE>@}

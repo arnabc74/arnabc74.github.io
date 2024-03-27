@@ -147,6 +147,9 @@ function myFunction() {
 Newton-Raphson">Advantages of Fisher`s scoring method over
 Newton-Raphson</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#More on Fisher information">More on Fisher information</a>
+</li>
 </ul>
 <hr/>
 $
@@ -337,14 +340,30 @@ Here the RHS is evaluated at $(\alpha_k,\beta_k).$
 <h2><a
 name="Technique 2: Fisher`s scoring method">Technique 2: Fisher`s scoring method</a></h2>
 This is actually a variant of the Newton-Raphson method, but
-tailored to finding MLE. Here we replace $-H(\v \theta)$ by
-its expectation 
+tailored to finding MLE. Here we replace the Hessian matrix by
+its expectation. So the Fisher`s scoring iteration is:
 $$
-I(\v \theta) = -E(H(v \theta)).
-$$ 
-While this might appear even hairier, usually the expectation
+\left[\begin{array}{ccccccccccc}\alpha_{k+1} \\ \beta_{k+1} 
+\end{array}\right] = \left[\begin{array}{ccccccccccc}\alpha_k \\ \beta_k 
+\end{array}\right]
++ \left(-E\left[\begin{array}{ccccccccccc}\dt \alpha \ell &amp; \doo \alpha \beta \ell\\ \doo \alpha
+\beta \ell &amp; \dt \beta \ell
+\end{array}\right]\right)^{-1} \left[\begin{array}{ccccccccccc}\do \alpha \ell\\\do \beta \ell
+\end{array}\right].
+$$
+The matrix whose inverse we are taking (<i>i.e.</i>, the negative of
+the expected Hessian) is called the <b>Fisher information
+matrix</b> and denoted by $I(\v \theta).$ If $\v
+\theta$ just consists of a single scalar parameter,
+then $I(\v \theta)$ is just a number, called the <b>Fisher
+information</b>. 
+
+<p></p>
+
+While the Fisher`s scoring method  might appear even hairier than
+the Newton-Raphson method, usually the expectation
 often simplifies things by averaging over all possible
-data. Note that $I(\v \theta)$, unlike $H(\v \theta)$
+data. Note that $I(\v \theta)$, unlike the Hessian 
 is <i>not</i> a function of the random sample.
 
 <p></p>
@@ -378,7 +397,7 @@ computed as a byproduct.</li>
 
 
 <p>
-<b>EXAMPLE:</b>&nbsp;<b>(Fisher's scoring method for probit)</b>
+<b>EXAMPLE:</b>&nbsp;<b>(Fisher`s scoring method for probit)</b>
 For Fisher's scoring method we need the expectation of the Hessian
 matrix. This involves 
 $$
@@ -394,9 +413,52 @@ and
 $$
 (1-E(Y_i)) g'(\alpha + \beta x_i) = -\phi(\alpha + \beta x_i) (x - g(x))
 $$
-
  ///
 </p>
+
+
+<h2><a
+name="More on Fisher information">More on Fisher information</a></h2>
+What does it have to do with information? Consider the following
+two cases for the log-likelihood function:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/loglikinfo.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Which one pinpoints the MLE better? Surely the first one, because
+the peak is more prominent. So we shall say that the first one
+has more information about the parameter than the second has. You
+might like to compare them both with the extreme example:
+estimating $\theta$ from a random sample from $N(0,1)$
+(no $\theta $ in the distribution at all). Here the
+log-likelihood function is just flat, meaning that there is no
+information at all in the data about $\theta.$
+<p></p>
+The second derivative of the log-likelihood function is negative
+at the peak. The more prominent the peak, the more negative it
+is. So its negative should be a good indication of  the amount of
+information the data contain about the parameter.
+<p></p>
+The Fisher information matrix occurs in a number of theorems in
+statistics, one of which is relevant here:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Under some regularity conditions, 
+$$
+I(\v \theta)^{1/2} (\hat \theta_{mle}- \theta)\rightarrow N(\v0,I).
+$$
+</fieldset>
+It is more commonly (though less rigourously) remembered as 
+<blockquote>"For
+large enuogh $n$, the sampling distribution of $\hat
+\theta_{mle}$ is roughly $N_k(\theta, I(\theta)^{-1}).$"
+</blockquote>
 <hr/>
 <table width="100%" border="0">
 <tr>
