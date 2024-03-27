@@ -255,13 +255,13 @@ statistics, one of which is relevant here:
 <THM>
 Under some regularity conditions, 
 <D>
-I(\v \theta)^{1/2} (\hat \v\theta_{mle}- \v\theta)\to N_k(\v0,I),
+I(\v \theta)^{1/2} (\hat {\v\theta}_{mle}- \v\theta)\to N_k(\v0,I),
 </D>
 where <M>k</M> is the dimension of <M>\v \theta.</M>
 </THM>
 It is more commonly (though less rigourously) remembered as 
 <Q>"For
-large enuogh <M>n</M>, the sampling distribution of <M>\hat
-\v\theta_{mle}</M> is roughly <M>N_k(\v\theta, I(\v\theta)^{-1}).</M>"
+large enuogh <M>n</M>, the sampling distribution of <M>\hat{
+\v\theta}_{mle}</M> is roughly <M>N_k(\v\theta, I(\v\theta)^{-1}).</M>"
 </Q>
 </NOTE>@}
