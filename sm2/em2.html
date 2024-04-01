@@ -1,0 +1,329 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#More on EM">More on EM</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A toy example">A toy example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#The problem">The problem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Direct solution">Direct solution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Solution using EM">Solution using EM</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#How EM algorithm was born">How EM algorithm was born</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="More on EM">More on EM</a></h1>
+
+<h2><a
+name="A toy example">A toy example</a></h2>
+We had seen one real life application of the EM algorithm in
+genetics. The set up was rather complicated, which is only
+natural, because simpler set ups can usually be dealt with
+directly without resorting to the EM algorithm. Here we shall
+discuss a toy example, where EM is not called for, but still can
+be demonstrated. 
+
+<h3><a
+name="The problem">The problem</a></h3>
+We have a random variable $Y$ with $Binom(2,\theta)$
+distribution, where $\theta\in[0,1].$ This random variable is not directly observed. We
+only observe $X,$ where
+$$
+X = \left\{\begin{array}{ll}1&\text{if }Y=0\\0&\text{otherwise.}.\end{array}\right.
+$$ 
+The observed value of $X$ is 0. We want to find the MLE
+of $\theta$ based on this data set.
+
+<h3><a
+name="Direct solution">Direct solution</a></h3>
+Here $X\sim Bern(P(Y=0))\equiv Bern((1-\theta)^2).$ Since we
+have observed $X=0$, the likelihood function is
+just $P(X=0),$ <i>i.e.</i>, 
+$$
+L(\theta) = 1-(1-\theta)^2 =  \theta(2 - \theta). 
+$$
+The MLE is $\hat \theta  = 1.$
+
+<h3><a
+name="Solution using EM">Solution using EM</a></h3>
+We consider $Y$ as the complete data, and $X$ as the
+incomplete data. If we could observe $Y$ then the likelihood
+would have been 
+$$
+L_Y(\theta) = \binom{2}{Y} \theta^Y (1-\theta)^{2-Y}
+$$
+with log-likelihood 
+$$
+\ell_Y(\theta) = \langle\text{terms free of }\theta\rangle +
+Y\log \theta + (2-Y)\log (1-\theta). 
+$$ 
+This is a function, where $\theta$ plays the role of the
+dummy argument. To avoid confusing it with the true (unknown)
+value of the parameter, we shall change the dummy argument
+to $t,$ say:
+$$
+\ell_Y(t) = \langle\text{terms free of }t\rangle +
+Y\log t + (2-Y)\log (1-t). 
+$$ 
+Notice that we cannot compute this function, since $Y$ is
+not known. We shall try to approximate it as best as we can in
+light of the information that we do have (<i>viz.</i>, $X$). For
+this we shall compute the conditional expectation
+of $\ell_Y(t)$ given $X:$
+$$
+E(\ell_Y(t)|X=0) = \langle\text{terms free of }t\rangle +
+E(Y|X=0)\log t + (2-E(Y|X=0))\log (1-t). 
+$$ 
+Now it should not be difficult to check that 
+$$
+E(Y|X=0) = E(Y|Y=1\text{ or }2) = 1\cdot P(Y=1|Y=1\text{ or }2) +
+2\cdot P(Y=2|Y=1\text{ or }2) = \frac{P(Y=1)}{1-P(Y=0)} +
+\frac{2P(Y=2)}{1-P(Y=0)}
+  = \frac{2 \theta (1-\theta) + 2 \theta^2}{1-(1-\theta)^2} = \frac{2
+\theta }{2 \theta - \theta^2} = \frac{2}{2-\theta}. 
+$$
+Hence 
+$$
+E(\ell_Y(t)|X=0) = \langle\text{terms free of }t\rangle +
+\frac{2\log t + 2(1-\theta)\log (1-t)}{2-\theta}.
+$$ 
+Notice that it is a function of both $t$ (the dummy
+argument) and $\theta$ (the true unknown value). We call
+this $Q(t|\theta).$ This was the E-step.
+<p></p>
+Next we shall differentiate this  partially wrt $t$ and
+equate it to zero to get
+$$
+\frac 1t = \frac{(1- \theta)}{1-t}.
+$$
+Solving 
+$$
+t = \frac{1}{2 -\theta}.
+$$
+This is the M-step. 
+<p></p>
+Now the EM algorithm consists of starting with
+some $\theta_0$ and repeatedly applying the iteration
+$$
+\theta_{k+1} = \frac{1}{2- \theta_k}.
+$$ 
+The sequence $(\theta_n)$ converges to $1,$
+which we already know to be the correct MLE.
+
+<h2><a
+name="How EM algorithm was born">How EM algorithm was born</a></h2>
+The EM algorithm was born out of the need to handle missing
+data. Most statistical methods are designed to deal with
+rectangular data tables, where the rows are cases and columns are
+variables. Sometimes certain entries of the table are missing,
+destroying the rectangular structure. Here are different things
+that people have tried to rectify the situation:
+<ol type="">
+
+<li>Ignore the missing cases separately for each step in a
+computation. For instance, suppose that you have 100 cases and two
+variables $X$ and $Y$. The cases $1,5$ and 45 are
+missing for $X,$ while the cases 4 and 56 are missing
+for $Y.$ Now suppose that we want to compute the covariance
+matrix. For this we shall need $\sum X$, $\sum
+Y$, $\sum X^2$, $\sum Y^2$ and $\sum XY.$
+For $\sum X$ and $\sum X^2$ we shall skip cases 1, 5
+and 45. For $\sum Y$ and $\sum Y^2$ we shall skip
+cases 4, 56. For $\sum XY$ we shall skip all the five
+cases. This naive approach is very bad, as the computed matrix
+may not even be nnd!</li>
+
+<li>Skip all cases with even a single missing value. This is
+better than the naive approach, but still very wasteful. Often
+we have many variables in a data set that are of less
+importance. These variables usually abound in missing values. It
+would be a pity to throw away available values of the important
+variables just because some less important variable is
+missing.</li>
+
+<li>A more meaningful idea is to impute the missing values,
+<i>i.e.</i>, somehow fill up the missing places with reasonable
+values. If we have a model for the data, then one possible way
+for this imputation is to replace the missing value by its
+conditional expectation given the available data. While, this is
+a nice idea, it calls for a large number of conditional
+expectation computation, once for each missing value. If no
+model is available, then imputation may be done using mean,
+median or interpolation.</li>
+
+<li>The EM algorithm is a direct descendant of the imputation
+approach. Imagine a set up where you are to find MLE of some
+parameter based on a rectangular data matrix. If the data matrix
+has missing values, then the imputation approach fills those
+places with imputed values, and puts the data into the
+log-likelihood function, and proceeds with the maximisation. So
+the steps are basically: compute lots of conditional
+expectation, compute the log-likelihood, maximise. The EM
+algorithm just reverses the first two steps: compute the
+log-likelihood (with placeholder variables in the gaps), then
+compute the conditional expectation of this log-likelihood, and
+finally proceed with maximisation as before. The data
+matrix with placeholder variables in the gaps was
+called <i>complete data</i>, while the same matrix without the
+placeholders was called the <i>incomplete</i> data.
+</li>
+
+<li>As the EM idea became popular, people noticed that the
+idea is more generally applicable. All that we need is a
+"complete data" such that the available data  is a function
+of it. This is the form that we have studied.</li>
+
+</ol> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
