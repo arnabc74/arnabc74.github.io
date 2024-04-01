@@ -62,7 +62,9 @@ Ramachandran and Tsokos book.</LI>
 advanced things not covered in the textbook.</LI>
 <LI>Mar 22, 2024: <LINK to="mle.r">R code</LINK> for mle in probit.</LI>
 <LI>Mar 27, 2024: <LINK to="em.html">EM algorithm</LINK></LI>
-
+<LI>Apr 01, 2024: <ALERT/> <LINK to="mleex.html">Numerical MLE
+computation practice problem set</LINK>. (This is not an
+April-fool prank!)</LI> 
 </OL>
 <HEAD2>Reference materials</HEAD2>
 Our main textbooks are the following two excellent texts.
