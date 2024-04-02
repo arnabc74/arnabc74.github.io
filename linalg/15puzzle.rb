@@ -1,0 +1,3 @@
+<NOTE>
+<HEAD1>@{<E>15 puzzle</E>@}-er samAdhAn</HEAD1>
+</NOTE> 
