@@ -1,0 +1,374 @@
+function assert(boolCond) {
+  if(!boolCond) alert("ERROR");
+}
+
+function printf(str) {
+  document.getElementById("rule").innerHTML = str;
+}
+
+function printf1(str) {
+  document.getElementById("exm").innerHTML = str;
+}
+
+function printf2(str) {
+  document.getElementById("exm").innerHTML += str;
+}
+
+function Frac(n,d) {
+  assert(d>0);  
+  this.num=n;
+  this.den = d;
+  this.toString= function() {
+    if(this.den==1)
+      return this.num;
+    else
+      return "<sup>"+this.num+"</sup>&frasl;<sub>"+this.den+"</sub>";
+  }
+} 
+
+var  m, n, pi, pj, firstNegbi;
+var tab;
+var row,
+    col;
+
+
+function gcd(a,b) {
+  var divisor, dividend, remainder;
+
+  if(b==0) alert('ERROR: b==0');
+
+  divisor = (b>0? b: -b);
+  dividend = (a>0? a: -a);
+  
+  while(1) {
+
+    remainder = dividend % divisor;
+
+    if(remainder==0) return divisor;
+
+    dividend = divisor;
+    divisor = remainder;
+  }
+  return -1;
+}
+
+function reduce(a) {
+  var d,ans;
+
+  if(!(a.den>0)) alert('ERROR: a.den <= 0');
+
+  d = gcd(a.num,a.den);
+  ans = new Frac(a.num/d,a.den/d);
+  
+  if(ans.den < 0) {
+    ans.num = -ans.num;
+    ans.den = -ans.den;
+  }
+  return ans;
+}
+
+function add(a, b) {
+  var den,num;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+
+  den = a.den * b.den;
+  num = a.num*b.den + a.den*b.num;
+
+  return reduce(new Frac(num,den));
+}
+
+function sub(a, b) {
+  var den, num;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+
+  den = a.den * b.den;
+  num = a.num*b.den - a.den*b.num;
+  return reduce(new Frac(num,den));
+}
+
+function mul(a, b) {
+  var num, den;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+
+  den = a.den * b.den;
+  num = a.num * b.num;
+  
+  return reduce(new Frac(num,den));
+}
+
+function dvd(a, b) {
+  var den, num;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+  assert(b.num!=0);
+
+  den = a.den * b.num;
+  num = a.num * b.den;
+  if(den < 0) {
+    den = -den;
+    num = -num;
+  }
+
+  return reduce(new Frac(num,den));
+}
+
+function print(a) {
+  if(a.den==1)
+    return ""+a.num;
+  else
+    return "<sup>"+a.num+"</sup>&frasl;<sub>"+a.den+"</sub>";
+}
+
+
+function isZero(a) {
+  assert(a.den>0);
+  return (a.num == 0);
+}
+function isNeg(a) {
+  assert(a.den>0);
+  return (a.num < 0);
+}
+
+function isNonpos(a) {
+  assert(a.den>0);
+  return (a.num <= 0);
+}
+
+function isPos(a) {
+  assert(a.den>0);
+  return (a.num > 0);
+}
+
+function isNonneg(a) {
+  assert(a.den>0);
+  return (a.num >= 0);
+}
+
+function neg(a) {
+  var num, den;
+  assert(a.den>0);
+  num = -a.num;
+  den = a.den;
+
+  return reduce(new Frac(num,den));
+}
+
+function oneBy(a) {
+  var num, den;
+
+  assert(a.num!=0);
+  assert(a.den>0);
+  num = a.den;
+  den = a.num;
+  if(den < 0) {
+    den = -den;
+    num = -num;
+  }
+  assert(den>0);
+  return reduce(new Frac(num,den));
+}
+
+
+
+//------Reduce2.m-----
+var pivRow=0, pivCol = 0
+var propRow = 0
+var found = false
+var state = "1a";
+
+function step1a() {
+    printf("আমরা এবার গোলাপী অংশটার মধ্যে একটা nonzero entry খুঁজব") 
+    state = "1b"
+}
+function step1b() {
+  /*Search for lead in col-major order in [pivRow,m]x[pivCol,n]*/                           
+  outer: for(c=pivCol;c<n;c++) {
+    for(r=pivRow;r<m;r++) {
+        if(!isZero(tab[r][c])) {
+         found  = true
+         break outer
+      }
+    }
+  }
+   
+
+  if(!found) {
+    state = "5a"
+    return
+  }
+  
+  pivCol = c
+  propRow = r
+  dump()
+  state = "2a"
+}
+
+function step2a() {
+    printf("এবার swap করব")
+    state = "2b"
+}
+function step2b() {
+  /*Swap propRow and pivRow*/
+    if(propRow==pivRow) {
+        printf1("আমাদের বেলায় দরকারই পড়ল না")
+    }
+    else {
+      for(j=0;j<n;j++) {
+      tmp = tab[pivRow][j]
+      tab[pivRow][j] = tab[propRow][j]
+      tab[propRow][j] = tmp
+    }
+  }
+    dump()
+  state = "3a"
+}
+
+function step3a() {
+    printf("এবার scale করব")
+    state = "3b"
+}
+function step3b() {
+  /*Scale pivotal row*/
+  pivot = tab[pivRow][pivCol]
+
+  if(pivot!=1) {
+    for(j=0;j<n;j++) 
+        tab[pivRow][j] = dvd(tab[pivRow][j],pivot)
+  }
+    dump()
+
+  state = "4a"
+}
+
+function step4a() {
+    printf("এবার sweep করব")
+    state = "4b"
+}
+
+function step4b() {
+  /*Sweep out pivotal column*/
+  for(i=0;i<m;i++) {
+    if(i!=pivRow) {
+        for(j=0;j<n;j++)
+            if(j!=pivCol)
+          tab[i][j] = sub(tab[i][j], mul(tab[pivRow][j],tab[i][pivCol]))
+    }
+  }
+  for(i=0;i<m;i++) 
+    if(i!=pivRow) tab[i][pivCol] = 0
+    
+  if(pivRow == m-1) {
+    state = "5a"
+  }
+  else {
+    pivRow++
+    state = "1a"
+  }
+  if(pivCol == n-1) {
+    state = "5a"
+  }
+  else {
+    pivCol++
+    state = "1a"
+  }
+    
+    dump()
+
+}
+
+function step5a() {
+    printf("কাজ শেষ")
+    state = "5b"
+}
+function step5b() {
+  printf1("Done")
+}
+//------Reduce2.m ends-----
+
+//GUI methods
+
+function createTable() {
+  m = document.getElementById("nrow").value;
+  n = document.getElementById("ncol").value;
+
+  var str = "<table>"
+
+  for(i=0;i<m;i++) {
+      str += "<tr>";
+    for(j=0;j<n;j++) {
+      str += "<td><input type='text' id='"+i+"_"+j+"' /></td>";
+    }
+    str += "</tr>";
+  }
+  str += "</table>"
+  document.getElementById("tbl").innerHTML = str;
+  state = "1a";
+}
+
+function asFrac(str) {
+  var tokens = str.split("/");
+  if(tokens.length==1) {
+    return new Frac(str,1);
+  }
+  else {
+    return new Frac(tokens[0],tokens[1]);
+  }
+}
+
+function loadTable() {
+  tab = new Array(m+1);
+  for(i=0;i<m;i++) {
+    tab[i] = new Array(n+1);
+    for(j=0;j<n;j++) {
+      tmp = document.getElementById(i+"_"+j).value;
+      tab[i][j] = asFrac(tmp);
+    }
+  }  
+
+  document.getElementById("tbl").innerHTML = "";
+    dump()
+}
+
+
+function dump() {
+
+  var str = "<table cellspacing=10><tr>";
+  for(i=0;i<m;i++) {
+    for(j=0;j<n;j++) {
+        if(i >= pivRow && j >= pivCol)
+            str += "<td bgcolor=pink>";
+        else
+            str += "<td>"
+      str += tab[i][j];
+      str += "</td>";
+    }
+    str += "</tr>";
+  }
+  str += "</table>"
+
+  document.getElementById("tblout").innerHTML = str;
+}
+
+
+
+function dostep() {
+  printf1("");
+  eval("step"+state+"()");
+}
+
+function randomise() {
+  for(i=0;i<m;i++)
+    for(j=0;j<n;j++) 
+      document.getElementById(i+"_"+j).value = 
+        Math.floor(20*Math.random())-10;
+}
+
+alert("RREF algorithm loaded.");
+

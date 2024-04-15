@@ -1,0 +1,447 @@
+<html>
+  <head>
+<title>Simplex</title>
+
+<SCRIPT>
+<![CDATA[
+function assert(boolCond) {
+  if(!boolCond) alert("ERROR");
+}
+
+function printf(str) {
+  document.getElementById("rule").innerHTML = str;
+}
+
+function printf1(str) {
+  document.getElementById("exm").innerHTML = str;
+}
+
+function printf2(str) {
+  document.getElementById("exm").innerHTML += str;
+}
+
+function Frac(n,d) {
+  assert(d>0);  
+  this.num=n;
+  this.den = d;
+  this.toString= function() {
+    if(this.den==1)
+      return this.num;
+    else
+      return "<sup>"+this.num+"</sup>&frasl;<sub>"+this.den+"</sub>";
+  }
+} 
+
+var  m, n, pi, pj, firstNegbi;
+var tab;
+var row,
+    col;
+
+
+function gcd(a,b) {
+  var divisor, dividend, remainder;
+
+  if(b==0) alert('ERROR: b==0');
+
+  divisor = (b>0? b: -b);
+  dividend = (a>0? a: -a);
+  
+  while(1) {
+
+    remainder = dividend % divisor;
+
+    if(remainder==0) return divisor;
+
+    dividend = divisor;
+    divisor = remainder;
+  }
+  return -1;
+}
+
+function reduce(a) {
+  var d,ans;
+
+  if(!(a.den>0)) alert('ERROR: a.den <= 0');
+
+  d = gcd(a.num,a.den);
+  ans = new Frac(a.num/d,a.den/d);
+  
+  if(ans.den < 0) {
+    ans.num = -ans.num;
+    ans.den = -ans.den;
+  }
+  return ans;
+}
+
+function add(a, b) {
+  var den,num;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+
+  den = a.den * b.den;
+  num = a.num*b.den + a.den*b.num;
+
+  return reduce(new Frac(num,den));
+}
+
+function sub(a, b) {
+  var den, num;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+
+  den = a.den * b.den;
+  num = a.num*b.den - a.den*b.num;
+  return reduce(new Frac(num,den));
+}
+
+function mul(a, b) {
+  var num, den;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+
+  den = a.den * b.den;
+  num = a.num * b.num;
+  
+  return reduce(new Frac(num,den));
+}
+
+function dvd(a, b) {
+  var den, num;
+
+  assert(a.den>0);  
+  assert(b.den>0);
+  assert(b.num!=0);
+
+  den = a.den * b.num;
+  num = a.num * b.den;
+  if(den < 0) {
+    den = -den;
+    num = -num;
+  }
+
+  return reduce(new Frac(num,den));
+}
+
+function print(a) {
+  if(a.den==1)
+    return ""+a.num;
+  else
+    return "<sup>"+a.num+"</sup>&frasl;<sub>"+a.den+"</sub>";
+}
+
+
+function isNeg(a) {
+  assert(a.den>0);
+  return (a.num < 0);
+}
+
+function isNonpos(a) {
+  assert(a.den>0);
+  return (a.num <= 0);
+}
+
+function isPos(a) {
+  assert(a.den>0);
+  return (a.num > 0);
+}
+
+function isNonneg(a) {
+  assert(a.den>0);
+  return (a.num >= 0);
+}
+
+function neg(a) {
+  var num, den;
+  assert(a.den>0);
+  num = -a.num;
+  den = a.den;
+
+  return reduce(new Frac(num,den));
+}
+
+function oneBy(a) {
+  var num, den;
+
+  assert(a.num!=0);
+  assert(a.den>0);
+  num = a.den;
+  den = a.num;
+  if(den < 0) {
+    den = -den;
+    num = -num;
+  }
+  assert(den>0);
+  return reduce(new Frac(num,den));
+}
+
+
+function pivot() {
+  var i,j;
+  var temp;
+
+  //alert("\n>>Pivoting with pivot @ (%d, %d)\n",pi+1,pj+1);
+
+  for(i=0;i<=m;i++) {
+    if(i==pi) continue;
+    for(j=0;j<=n;j++) {
+      if(j==pj) continue;
+      tab[i][j] = sub(tab[i][j],
+                      dvd(mul(tab[i][pj],tab[pi][j]),
+                          tab[pi][pj]
+                          )
+                      );
+    }
+  }
+
+
+  for(i=0;i<=m;i++) {
+    if(i==pi) continue;
+    tab[i][pj] = neg(dvd(tab[i][pj],tab[pi][pj]));
+  }
+
+  for(j=0;j<=n;j++) {
+    if(j==pj) continue;
+    tab[pi][j] = dvd(tab[pi][j],tab[pi][pj]);
+  }
+
+  tab[pi][pj] = oneBy(tab[pi][pj]);
+
+  temp = row[pi];
+  row[pi] = col[pj];
+  col[pj] = temp;
+
+  dump(pi,pj,"red");
+}
+
+//------Reduce2.m-----
+var pivRow=0, pivCol = 0
+var propRow = 0
+var found = false
+var state = 1;
+function step1() {
+  /*Search for lead in col-major order in [pivRow,m]x[pivCol,n]*/                           
+  outer: for(c=pivCol;c<n;c++) {
+    for(r=pivRow;r<m;r++) {
+      if(tab[r][c] != 0) {
+         found  = true
+         break outer
+      }
+    }
+  }
+   
+
+  if(!found) {
+    state = 5
+    return
+  }
+  
+  pivCol = c
+  propRow = r
+  state = 2
+}
+
+function step2() {
+  /*Swap propRow and pivRow*/
+  if(propRow!=pivRow) {
+    for(j=0;j<n;j++) {
+      tmp = tab[p][j]
+      tab[p][j] = tab[r][j]
+      tab[r][j] = tmp
+    }
+  }
+  state = 3
+}
+
+function step3() {
+  /*Scale pivotal row*/
+  pivot = tab[p][lead]
+
+  if(pivot!=1) {
+    for(j=0;j<n;j++) 
+      tab[p][j] /= pivot
+  }
+
+  state = 4
+}
+
+function step4() {
+  /*Sweep out pivotal column*/
+  for(i=0;i<m;i++) {
+    if(i!=p) {
+      for(j=0;j<n;j++)
+        tab[i][j] -=  tab[p][j]*tab[i][lead]
+    }
+  }  
+  if(pivRow == m-1) {
+    state = 5
+  }
+  else {
+    pivRow++
+    state = 1
+  }
+}
+
+function step5() {
+  printf("Done")
+}
+//------Reduce2.m ends-----
+
+//GUI methods
+
+function createTable() {
+  m = document.getElementById("nrow").value;
+  n = document.getElementById("ncol").value;
+
+  
+  row = new Array(m);
+  for(i=0;i<m;i++)
+    row[i] = "Y"+(i+1);
+
+  col = new Array(n);
+  for(j=0;j<n;j++)
+    col[j] = "X"+(j+1);
+
+
+  var str = "<table><tr><th></th>";
+  for(j=0;j<n;j++)
+    str += "<th>"+col[j]+"</th>";
+  str += "<th width=1 rowspan="+(m+3)+" bgcolor=black></th>"
+
+  str += "</tr>";
+  for(i=0;i<=m;i++) {
+    if(i<m) 
+      str += "<tr><th>"+row[i]+"</th>";
+    else 
+      str += "<tr><th width=1 colspan="+(n+4)+" bgcolor=black></th></tr><tr><th></th>";
+    for(j=0;j<=n;j++) {
+      str += "<td><input type='text' id='"+i+"_"+j+"' /></td>";
+    }
+    str += "</tr>";
+  }
+  str += "</table>"
+  document.getElementById("tbl").innerHTML = str;
+  state = 1;
+}
+
+function asFrac(str) {
+  var tokens = str.split("/");
+  if(tokens.length==1) {
+    return new Frac(str,1);
+  }
+  else {
+    return new Frac(tokens[0],tokens[1]);
+  }
+}
+
+function loadTable() {
+  tab = new Array(m+1);
+  for(i=0;i<=m;i++) {
+    tab[i] = new Array(n+1);
+    for(j=0;j<=n;j++) {
+      tmp = document.getElementById(i+"_"+j).value;
+      tab[i][j] = asFrac(tmp);
+    }
+  }  
+
+  document.getElementById("tbl").innerHTML = "";
+  dump(-1,-1,"red");
+}
+
+
+function dump(hiRow, hiCol, hiRang) {
+
+  var str = "<table cellspacing=10><tr><th></th>";
+  for(j=0;j<n;j++)
+    str += "<th>"+col[j]+"</th>";
+  str += "<th width=1 rowspan="+(m+3)+" bgcolor=black></th>"
+
+  str += "</tr>";
+  for(i=0;i<=m;i++) {
+    if(i<m) 
+      str += "<tr><th>"+row[i]+"</th>";
+    else 
+      str += "<tr><th width=1 colspan="+(n+4)+" bgcolor=black></th></tr><tr><th></th>";
+    for(j=0;j<=n;j++) {
+      str += "<td>"
+      if(i == hiRow || j == hiCol) str += "<b><font color="+hiRang+">";
+
+      str += tab[i][j];
+      if(i == hiRow || j == hiCol) str += "</font></b>";
+      str += "</td>";
+    }
+    str += "</tr>";
+  }
+  str += "</table>"
+
+  document.getElementById("tblout").innerHTML = str;
+}
+
+
+
+function dostep() {
+  printf1("");
+  eval("step"+state+"()");
+}
+
+function randomise() {
+  for(i=0;i<=m;i++)
+    for(j=0;j<=n;j++) 
+      document.getElementById(i+"_"+j).value = 
+        Math.floor(20*Math.random())-10;
+
+
+    document.getElementById(m+"_"+n).value = "0";
+}
+
+alert("Simplex algorithm loaded.");
+
+]]></SCRIPT>
+<HEAD1>Simplex</h1>
+
+  If the problem is
+<PRE>
+  max x<sub>1</sub> + 3x<sub>2</sub>
+  subj to
+  x<sub>1</sub> + 2x<sub>2</sub> &le; 10
+  x<sub>1</sub>, x<sub>2</sub> &ge; 0
+</PRE>
+
+  then you should enter:
+<Q> 
+No. of constraints = 1 (not counting nonnegativity constraints),<br>
+No. of variables =2.
+</Q>
+
+ The table should be: 
+
+<PRE>
+ 1  2 |  10
+------+----
+-1 -3 |   0
+</PRE>
+
+
+<h2>Interactive calculator</h2>
+<form>
+  Number of constraints: <input type='text' id="nrow"/>
+  Number of variables: <input type='text' id="ncol"/>
+<p>
+  <input type="button" value="Create table" onclick="createTable()">
+<p>
+  <div id="tbl"></div>
+
+  <input type="button" value="Random problem" onclick="randomise()">
+  <input type="button" value="Read" onclick="loadTable()">
+  <input type="button" value="Step" onclick="dostep()">
+</form>
+<table width=100% valign=top border=0 cellspacing=20><tr><td width=50% rowspan=2>
+<b>Tableau:</b><p><div id="tblout">
+</div></td><td width=50%><b>Rule:</b><p><div id="rule">
+  </div></td></tr>
+<tr><td><b>In our case:</b><p>
+<div id="exm">
+</div></td></tr></table>
+</body></html>

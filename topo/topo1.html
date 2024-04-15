@@ -1,0 +1,1171 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Separable and countable">Separable and countable</a>
+</li>
+<li>
+<a href="#Compact">Compact</a>
+</li>
+</ul>
+<hr/>
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a cofinite topological space,
+where $X$ is an uncountable set. Then which of the following
+is false? (1 mark for choosing correct option and 1 mark for
+justification).
+
+<li>Each point of $X$ is the intersection of all of its
+neighbourhoods in $X.$</li>
+
+<li>No two open sets in $X$ are disjoint.</li>
+
+<li>$\tau\subseteq\tau',$ where $\tau'$ denotes the
+co-countable topology on $X.$</li>
+
+<li>There exists a metric on $X$ which generates the
+topology on $X.$ </li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a topological space  and $A$ be a
+proper non-empty subset of $X$ such
+that $int(X-A)=\phi,$ where $int(B)$ denotes the
+interior of any subset $B$ in $X$). Then which of the
+following is false?
+
+<li>$A$ is dense in $X.$</li>
+
+<li>Every non-empty open set in $X$
+intersects $A.$</li>
+
+<li>The only closed set in $X$ containing $A$
+is $X.$</li>
+
+<li>The derived set of $A$ is an empty set.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let ${\mathbb R}$ be the set of all real numbers with the usual
+topology and $K=\left\{\frac 1n~:~n=1,2,...\right\}.$ Then $K$ is
+
+<li>open in ${\mathbb R}$</li>
+
+<li>closed in ${\mathbb R}$</li>
+
+<li>both open and closed in ${\mathbb R}$</li>
+
+<li>neither open nor closed in ${\mathbb R}$</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+The closure of the set $A =
+\left\{2,\frac 32,\frac 43,\frac 54,...\right\}$ with resepct to the usual
+topology on the set of real numbers, ${\mathbb R}$, is given by
+
+<li>$A\cup\{1\}.$</li>
+
+<li>$A\cup\{2\}.$</li>
+
+<li>$A\cup\{\phi\}.$</li>
+
+<li>$A\cup\{3\}.$</li>
+ 
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $f:({\mathbb R},\tau_\ell)\rightarrow({\mathbb R},\tau_u)$ be defined
+as $f(x)=x$ for all $x\in{\mathbb R},$
+where $\tau_\ell,\tau_u$ are the lower limit topology and
+the usual topology on ${\mathbb R},$ respectively, then 
+
+<li>$f$ is not a continuous map.</li>
+
+<li>$f$ is an open map.</li>
+
+<li>$f$ is neither continuous nor an open map.</li>
+
+<li>$f$ is continuous but not an open map.</li>
+
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a co-countable space, where $X$ is an
+uncountable set. Then which of the following is true?
+
+<li>$(X,\tau)$ is a first countable space.</li>
+
+<li>$(X,\tau)$ is a Hausdorff space.</li>
+
+<li>There exists a convergent sequence in $X$ whose limit
+is not unique.</li>
+
+<li>A sequence $\{x_n\}$ in $X$ is convergent if and
+only if there is some positive integer $m$ such that for
+all $n\geq mm$ $x_n=$ constant.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $\tau=\big\{\phi,\{a\},\{a,b\},X\big\}$ be a topology on $X
+= \{a,b,c,\}.$ Then $X$ is 
+
+<li>compact and Hausdorff.</li>
+
+<li>compact but not Hausdorff.</li>
+
+<li>only Hausdorff.</li>
+
+<li>$T_1.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+A continuous function $f$ from an infinite connected
+space $(X,\tau)$ to a discrete two-point
+space $\{0,1\}$ 
+
+<li>must be constant.</li>
+
+<li>must be non-constant.</li>
+
+<li>is not closed.</li>
+
+<li>is not open.</li>
+ 
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be an uncountable compact space
+and $({\mathbb R},\tau_u)$ be the space of real numbers with the
+usual topology. Then which of the following is false?
+
+<li>There exists a continuous map $f:X\rightarrow{\mathbb R}$ which is
+unbounded.</li>
+
+<li>A map $f:X\rightarrow{\mathbb R}$ is
+continuous $\Rightarrow$ $f:X\rightarrow{\mathbb R}$ is a closed map.</li>
+
+<li>If $f:X\rightarrow{\mathbb R}$ is a continuous map, then $f(X)$ is
+closed in ${\mathbb R}.$</li>
+
+<li>A map $f:X\rightarrow{\mathbb R}$ is continuous and $A\in\tau$
+implies $f(X\setminus A)$ is compact in ${\mathbb R}.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $X = [0,1)\cup [2,3]$ be the subspace of the topological
+space ${\mathbb R}$ with the usual topology and $f:X\rightarrow{\mathbb R}$ be
+a map given by 
+$$
+f(x) = \left\{\begin{array}{ll}x&\text{if }0\leq x &lt; 1\\2&\text{if }2\leq x\leq 3\\\end{array}\right..
+$$
+Then which of the following is true?
+
+<li>$f$ is open and continuous.</li>
+
+<li>$f$ is open but not continuous.</li>
+
+<li>$f$ is not open but continuous.</li>
+
+<li>$f$ is neither open nor continuous.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let ${\mathbb N}$ be the set of natural numbers and $A_n =
+\{1,2,3,...,n\},$ $n\in{\mathbb N}.$ Then prove that the
+collector 
+$$
+\tau = \{A_n~:~n\in{\mathbb N}\}\cu[p\{{\mathbb N},\phi\}
+$$
+is a topology on ${\mathbb N}.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Find the erived set of $\{1\}$ in the anove topological space.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that the lower limit topology, $\tau_\ell,$ and the
+upper limit topology, $\tau_r,$ are both strictly finer than
+the usual topology, $\tau_u,$ on the set of all real
+numbers, ${\mathbb R}.$[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that the lower limit topology, $\tau_\ell,$ and the
+upper limit topology, $\tau_r,$ are non-comparable, but
+their intersection is 
+the usual topology, $\tau_u,$ on ${\mathbb R}.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Define topologically equivalent metrics on a non=empty
+set $X.$ Prove that the space $(X,\tau(d)),$
+where $\tau(d)$ is the topology induced by a metric $d$
+on a non-empty set $X$ is homeomorphic to the
+space $(X,\tau(d_1)),$ where $\tau(d_1)$ is the
+topology induced by the metric $d_1$ on $Xm$
+where $d_1$ is given by 
+$$
+d_1(x,y) = \frac{d(x,y)}{1+d(x,y)},\text{ for all } x,y\in{\mathbb R}.
+$$[1+4]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose $(X,\tau)$ is a topological space
+and $(Y,\tau_Y)$ is the subspace of $(X,\tau).$ Prove
+that, for a subset $A$ of $Y,$ $\overline{A}^Y =
+\overline{A}\cap Y,$ where $\overline{A}^Y$ denotes the
+closure of $A$ in $(Y,\tau_Y).$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Find the boundary and interiour of the
+set $\{(x,y)~:~x\in{\mathbb Q}\}$ in ${\mathbb R}^2$ endowed with the
+usual product topology.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that in a topological space $(X,\tau)$ the
+set $A\cup A'$ is the smallest closed subset
+containing $A,$ where $A\subseteq X$ and $A'$ is th
+erived set of $A.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove or disprove: $\overline{A\cap B} = \overline A\cap
+\overline B,$ where $\overline A$ denotes the closure
+of $A$ in $(X,\tau).$[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $X$ be a non-empty set and $B=\big\{ \{x\}~:~ x\in
+X\big\}.$ Then prove that $B$ is a basis for a topology on $X.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Give an example of a map from a topological space $(X,\tau)$
+to another topological space $(Y,\tau')$ which is both open
+and clsoed, but not continuous.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be the topological product of a family of
+topological spaces $\{(X_i,\tau_i)~:~i=1,2,...,n\}$
+and $p_i:X\rightarrow X_i$ denote the $i$-th projection map for
+all $i=1,2,...,n.$ Then prove that
+
+(a) $p_i$ is an open map for all $i=1,2,...,n.$
+
+(b) the product topology $\tau$ is the smallest topology
+on $X$ such that each projection map is continuous.
+
+[2+3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Give example of a topological space which is $T_1$ but
+not $T_2.$ Justify your answer. [2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that a topological space $(X,\tau)$ is $T_1$ if
+and only if every neighbourhood of any limit point $p$ of
+any set $A\subseteq X$ intersects $A$ in countably infinite
+number of points.[2+3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the set ${\mathbb R}$ of real numbers. Let $\ta$ be
+the lower limit topology and $\sigma $ be the upper limit
+topology on ${\mathbb R}.$ Then 
+
+<li>$\tau\subseteq \sigma $</li>
+
+<li>$\sigma\subseteq \tau$</li>
+
+<li>$\tau= \sigma $</li>
+
+<li>$\tau$ and $\sigma $ are non-comparable.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a topological space and $A\subseteq X.$ It
+is false that if 
+
+<li>$(X,\tau)$ is compact, then $(A,\tau_A)$ is compact.</li>
+
+<li>$(X,\tau)$ is $T_2$, then $(A,\tau_A)$ is $T_2.$</li>
+
+<li>$(X,\tau)$ is first countable, then $(A,\tau_A)$ is
+first countable.</li>
+
+<li>$(X,\tau)$ is $T_1$, then $(A,\tau_A)$ is $T_1.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a topological space such that for every
+point $p\in X,$ the sequence $\{p,p,p,...\}$ has a
+unique limit $p.$ Then $(X,\tau)$ is
+
+<li>$T_1$ space</li>
+
+<li>$T_2$ space</li>
+
+<li>first countable space</li>
+
+<li>compact space.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+A connected subset $G$ of the real line ${\mathbb R}$ with at
+least two points must be
+
+<li>a finite set</li>
+
+<li>a bounded set</li>
+
+<li>an infinite closed set</li>
+
+<li>an uncountable set.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $f:(X,d)\rightarrow(Y,d_1)$ be a continuous bijection
+where $(X,d)$ is a compact metric space, and $(Y,d_1)$
+is any metric space. Then which of the following is true?
+
+<li>$f$ is a homeomorphism.</li>
+
+<li>$f ^{-1} $ is open, but not continuous.</li>
+
+<li>$f ^{-1} $ is closed, but not continuous.</li>
+
+<li>$f ^{-1} $ is continuous, but neither open nor closed.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $Y= [0,1]\cup (2,3)$ be endowed with the subspace
+topology of ${\mathbb R}.$ Then which of the following is true?
+
+<li>$(2,3)$ is open, but not closed in $Y.$</li>
+
+<li>$[0,1]$ is closed, but not open in $Y.$</li>
+
+<li>$(2,3)$ and $[0,1]$ both are clopen in $Y.$</li>
+
+<li>$(2,3)$ is clopen, but $[0,1]$ is not clopen in $Y.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+In the subspace topology on $[-1,1]$, which of the following
+set is open?
+
+<li>\left\{x\in{\mathbb R}~:~\frac 12\leq |x| \leq 1\right\}.</li>
+
+<li>\left\{x\in{\mathbb R}~:~\frac 12&lt; |x| \leq 1\right\}.</li>
+
+<li>\left\{x\in{\mathbb R}~:~\frac 12\leq |x| &lt; 1\right\}.</li>
+
+<li>\left\{x\in{\mathbb R}~:~-1\leq |x| \leq \frac 12\right\}.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $({\mathbb R},\tau_f)$ be the cofinite topological space. Then
+the set $\left\{\frac 1n~:~n\in{\mathbb N}\}$ is 
+
+<li>a closed set.</li>
+
+<li>an open set.</li>
+
+<li>both open and closed</li>
+
+<li>a dense set</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+${\mathbb R}$ is endowed with the topology defned by $\tau =
+\A\subseteq{\mathbb R}~:~1\in A\}\cup\{\phi\}.$ Then the derived set
+of $\{1\}$ is 
+
+<li>$\phi$</li>
+
+<li>$\{1\}$</li>
+
+<li>${\mathbb R}\setminus\{1\}$</li>
+
+<li>${\mathbb R}.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+In a topological space $(X,\tau),$ $A$ is a dense
+subset of $X$ and $B$ is dense in $A.$
+Thwn $B$ is a 
+
+<li>open subset of $X$</li>
+
+<li>closed subset of $X$</li>
+
+<li>dense subset of $X$</li>
+
+<li>none of the above.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the set ${\mathbb N}$ of natural numbers and let $A_n =
+\{n,n+1,n+2,...\}.$ Show that the
+collection $\{A_n~:~n\in{\mathbb N}\}\cup\{\phi\}$ is a topology on ${\mathbb N}.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Find the derived set of the set $\{1947\}$ in the above
+topological space.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that every infinite subset of $X$ is dense in $X$
+with respect to the cofinite topology.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If $D$ is dense in a space $X$ and $U$ is an open
+set in $X,$ then show that $\overline U = \overline{U\cap D}.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $\{\tau_\alpha~:~\alpha\in \Lambda\}$ be a collection of
+topologies on a set $X.$ Show that there is a unique
+smallest topology on $X$ containing all the topologies $\tau_\alpha.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,d)$ be a metric space and $A\subseteq X.$ Prove
+that $\bar A=\{x\in X~:~d(x,A)=0\}$.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Show that the collection ${\cal C} = \{[a,b)~:~a &lt;
+b,~~a,b\in{\mathbb Q}\}$ is a basis that generates a topology
+different from the lower limit topology on ${\mathbb R}.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the order topology on the set of natural
+numbers, ${\mathbb N}.$ Is the topology same as the discrete
+topology on ${\mathbb N}?$ Justify.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Consider the following collections of subsets of the
+set ${\mathbb R}:$
+$$\begin{eqnarray*}
+\beta_1 &amp; = &amp; \{(a,b)~:~a,b\in{\mathbb R}\}\cup\left\{(a,b)\setminus
+A~:~a,b\in{\mathbb R}\text{ and } A=\left\{\frac 1n~:~n\in\
+nn\right\} \right\},\\
+\beta_2 &amp; = &amp; \{(a,\infty)~:~a\in{\mathbb R}\}.
+\end{eqnarray*}$$
+Show that $\beta_1$ and $\beta_2$ are basis for some
+topologies on ${\mathbb R}.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Correct or justify: ${\mathbb R}$ with usual topology
+and $\left(-\frac \pi2,\frac [\pi2\right)$ with usual subspace topology
+are homeomorphic.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that if $Y$ is a closed subset of a topological
+space $(X,\tau),$ then a subset $G$ of $Y$ is
+closed in the subspace $(Y,\tau_Y)$ if and only if it is
+closed in $(X,\tau).$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that the boundary of a finite set $A$
+in $({\mathbb R},\tau_f)$ is $A$ itself, were $\tau_f$
+denotes the cofinite topology on ${\mathbb R}.$
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+What is metric invariant? Correct of justify: A metric invariant
+is also a topological invariant.[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+$X$ is a metric space with metric $d.$ Show
+that $d:X\times X\rightarrow{\mathbb R}$ is continuous.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<h1><a
+name="Separable and countable">Separable and countable</a></h1>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Show that every metric space is a first countable space, but not
+necessarily second countable.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $X$ be an uncountable set, and $p$ be a fixed point
+in $X.$ Consider the topology $\tau=\{A\subseteq X~:~p\in
+A\}\cup\{\phi\}$ on $X.$ Examine whether $(X,\tau)$
+is a second countable space.[1+2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a first countable space and $f:X\rightarrow
+Y$ be any function ($Y$ being any topological space) such
+that for any sequence $\{x_n\}$ converging to any
+point $x\in X,$ the sequence $\{f(x_n)\}$ converges
+to $f(x).$ Prove that $f$ is continuous on $X.$[5]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $f:X\rightarrow Y$, $g:X\rightarrow Y$ be two continuous functions
+from a topological space $(X,\tau)$ to a Hausdorff
+space $(Y,\sigma).$ Prove that
+
+(a) $F = \{x\in X~:~f(x)=g(x)\}$ is a closed set.
+
+(b) $f|_D = g|_D\Rightarrow f=g,$ where $\bar D = X.$[3+2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+A $G_\delta $ set in a space $X$ is a set that equals a
+countable intersection of open sets of $X.$ Show that
+if $X$ is a first countable $T_1$-space, every
+singleton set is a $G_\delta $ set.[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that ${\mathbb R}$ endowed with cofinite topology is not a
+first countable space.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $X$ be an uncountable set and $p$ be a fixed point
+in $X.$ Define 
+$$\tau = \{G\subseteq X~:~\text{either } p\npt\in G\text{ or if }p\in G\text{ then } X\setminus G\text{ is finite}.\}$$
+Prove that $(X,\tau)$ is a topological space which is not
+first countable. [2+3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a topological space and ${\cal B}$ a
+local base at $c\in X.$ Prove that a
+sequence $\{x_n\}_n$ converges to $c\in X$ if nd only
+if for every $B\in{\cal B}$ there exists a positive
+integer $m$ such that for all $n\geq m,$ $x_n\in
+B.$ [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $f:(X,\tau_1)\rightarrow(Y,\tau_2)$ be an open, continuous
+surjective map, where $X$ is first countable. Prove
+that $Y$ is first countable.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If $(X_1,\tau_1)$ and $(X_2,\tau_2)$ are two $T_2$
+spaces, then prove that their product space $(X,\tau)$ is
+also a $T_2$ space. [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $f:(X,\tau_1)\rightarrow(Y,\tau_2)$ be a continuous map,
+and $Y$ be $T_2.$ Prove that the
+set $\{(x,f(x))~:~x\in X\}$ is a closed set in $X\tims
+Y,$ where $X\times Y$ is endowed with the product topology.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<h1><a
+name="Compact">Compact</a></h1>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+$({\mathbb R},\tau_C)$ is a co-countable topological space. Is the
+set $[0,1]$ a compact subspace of ${\mathbb R}?$[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that the set of components of a topological space forms a
+partition of that space.[5]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau)$ be a any topological space and $\beta =
+\{X\setminus K~:~K\text{ is compact and closed in
+}(X,\tau)\}.$ Prove that $\beta $ is a basis for some
+topology $\tau'$ on $X$ such that $\tau'\subseteq\tau.$
+Prove that  $(X,\tau')$ is compact.[3+2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+$(X,\tau)$ is a topological space and $A\subseteq X,$
+and $C$ is a connected subset of $X$ that intersects
+both $A$ and $X\ \setminus A.$ Prove that $C$
+intersects boundary of $A.$[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+$f:[0,1]\rightarrow[0,1]$ is a continuous function. Show that thee
+exists $C\in[0,1]$ such that $f(C)=C,$
+where $[0,1]$ is endowed with the usual subspace topology.[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that the union of any family of connected sets, every pair
+of which has an element in common, is a connected set in any
+topological space. Is the intersection of two connected sets
+alaways connected? Justify.[3+2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove or disprove: Every infinite compact subset of ${\mathbb R}$ is
+connected. Is the converse true? Justify.[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Suppose $(X,\tau)$ is a topological space and ${\cal F} =
+\{F_\alpha~:~\alpha\in \Lambda\}$ ($\\Lambda $ is an
+index set) is any family of closed subsets of $X$ with the
+property that $\cap_{i=1}^n F_{\alpha_i} \neq \phi$ for any
+finite subfamilty $\{F_{\alpha_i}~:~\alpha_i\in
+\Lambda,~~i=1,2,...,n\}$ of ${\cal F}.$ Prove
+that $X$ is compact if and only if $\cap_{\alpha\in \Lambda} F_\alpha\neq\phi.$[3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Let $(X,\tau_1)$ be a $T_2$ space and $(X,\tau_2)$
+be compact such that $\tau_1\subseteq \tau_2.$ Prove that $\tau_1=\tau_2.$[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that the set of real numbr ${\mathbb R}$ with lower limit
+topology is disconnected.[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that a topological space containing a dense connected set
+is connected. [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that a real valued continuous function $f$ on a
+compact set $(X,\tau)$ attains its greatest value. [2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If $K$ isa compact subset of a $T_2$ space $X,$
+then prove that $K$ is a closed set in $X.$ [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove that every closed and bounded interval of the real
+line${\mathbb R}$ (<i>i.e.</i>, ${\mathbb R}$ with the usual topology) is
+compact. [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Prove tht each component of a topological space is closed. [2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If every continuois real values function on a topological
+space $(X,\tau)$ takes on all values between any two values
+that it assumes, then prove that $(X,\tau)$ is connected. [2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If $A$ is a connected subset consisting of at least two
+points in a matic space $(X,d),$ then prve that $A$ is
+uncountable. [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

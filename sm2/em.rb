@@ -143,7 +143,7 @@ n_{a b}(\log 2+\log p+\log q)\\
 where 
 <D>
 A = 2n_{a a}+n_{a o}+n_{a b},\quad B = 2n_{b b}+n_{b o}+n_{a
-b},\quad C = 2n_{o o}.
+b},\quad C = 2n_{o o}+n_{a o}+n_{b o}.
 </D>
 This is one is far more tractable, and here MLE may be found
 analytically. 
@@ -208,7 +208,7 @@ First we rename the dummy variables <M>p</M> and <M>q</M> to
 where 
 <D>
 A = 2n_{a a}+n_{a o}+n_{a b},\quad B = 2n_{b b}+n_{b o}+n_{a
-b},\quad C = 2n_{o o}.
+b},\quad C = 2n_{o o} + n_{a o} + n_{b o}.
 </D>
 We shall reserve the symbols <M>p</M> and <M>q</M> for the true
 (unknown) values of the parameters.
@@ -223,7 +223,8 @@ Now
 <MULTILINE>
 E(A|\text{data}) & = & E(n_{a a}|\text{data})+n_A+n_{AB} = n_A\times[[p^2][p^2+2p(1-p-q)]]+n_A+n_{AB}=A_1\\ 
 E(B|\text{data}) & = & E(n_{b b}|\text{data})+n_B+n_{AB} = n_B\times[[q^2][q^2+2q(1-p-q)]]+n_B+n_{AB}=B_1\\ 
-E(C|\text{data}) & = & E(n_{o o}|\text{data}) = n_O=C_1.
+E(C|\text{data}) & = & E(2n_{o o}+n_{a o} + n_{b o}|\text{data})
+= 2n_O+ [[2(1-p-q)][2-p-2q]]n_A+[[2(1-p-q)][2-q-2p]]n_B =C_1.
 </MULTILINE>
 Note that the conditional expectation is a function of the dummy
 variables <M>\alpha ,\beta </M> as well as the constants <M>p,q.</M> So we
@@ -285,7 +286,7 @@ em = function(param) {
   p = param[1]; q = param[2]; r = 1-p-q
   A1 = nA*p/(p+2*r)+nA+nAB
   B1 = nB*q/(q+2*r)+nB+nAB
-  C1 = nO
+  C1 = 2*nO + nA*2*r/(2-p-2*q) + nB*2*r/(2-q-2*p)
   newval = c(A1,B1)/(A1+B1+C1)
   cat(newval,'\n')
   newval
