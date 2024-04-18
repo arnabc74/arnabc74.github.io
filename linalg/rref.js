@@ -208,7 +208,7 @@ function step1b() {
   pivCol = c
   propRow = r
     dump()
-    printf1("("+pivRow+", "+pivCol+")-th entry-টা nonzero.")
+    printf1("("+(propRow+1)+", "+(pivCol+1)+")-th entry-টা nonzero.")
   state = "2a"
 }
 
@@ -226,7 +226,7 @@ function step2b() {
       tmp = tab[pivRow][j]
       tab[pivRow][j] = tab[propRow][j]
       tab[propRow][j] = tmp
-      printf1("আমরা "+pivRow+" এবং "+propRow+" নম্বর row swap করলাম.")
+          printf1("আমরা "+(pivRow+1)+" এবং "+(propRow+1)+" নম্বর row swap করলাম.")
     }
   }
     dump()
@@ -256,36 +256,32 @@ function step4a() {
 }
 
 function step4b() {
-  /*Sweep out pivotal column*/
+    /*Sweep out pivotal column*/
+    printf1("আমরা "+(pivRow+1)+" নম্বর row-এর<ul>")
   for(i=0;i<m;i++) {
     if(i!=pivRow) {
+        factor = tab[i][pivCol]
+        printf2("<li>"+print(factor)+" গুণ "+(i+1)+" নম্বর row থেকে বিয়োগ করলাম.</li>")
         for(j=0;j<n;j++)
-            if(j!=pivCol)
-          tab[i][j] = sub(tab[i][j], mul(tab[pivRow][j],tab[i][pivCol]))
+            if(j!=pivCol) {
+                tab[i][j] = sub(tab[i][j], factor)
+            }
     }
   }
+    printf2("</ul>")
   for(i=0;i<m;i++) 
       if(i!=pivRow) tab[i][pivCol] = new Frac(0,1)
     
-  if(pivRow == m-1) {
-    state = "5a"
+  if(pivRow == m-1 || pivCol == n-1) {
+      state = "5a"
   }
   else {
-    pivRow++
-    state = "1a"
+      pivRow++
+      pivCol++
+      state = "1a"
   }
-  if(pivCol == n-1) {
-    state = "5a"
-  }
-  else {
-    pivCol++
-    state = "1a"
-  }
-    
     dump()
-
 }
-
 function step5a() {
     printf("কাজ শেষ")
     state = "5b"
@@ -342,7 +338,7 @@ function loadTable() {
 
 function dump() {
 
-  var str = "<table cellspacing=10><tr>";
+  var str = "<table cellpadding=10><tr>";
   for(i=0;i<m;i++) {
     for(j=0;j<n;j++) {
         if(i >= pivRow && j >= pivCol)

@@ -95,6 +95,11 @@ body {
 .scrpt {
   border-left: 5px solid black;
 }
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
 </style>
 <script>
 window.onscroll = function() {myFunction()};
@@ -134,16 +139,520 @@ function myFunction() {
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#Separable and countable">Separable and countable</a>
+<a href="#Basic">Basic</a>
 </li>
-<li>
-<a href="#Compact">Compact</a>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Usual">Usual</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Metric">Metric</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#General">General</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Subspace">Subspace</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Special examples">Special examples</a>
 </li>
 </ul>
 <hr/>
+এই বইতে আমরা topology  আলোচনা করব৷ 
+আমরা এখানে অতি সংক্ষেপে কাজ সারব, বেশী বোঝার খুঁটিনাটির মধ্যে যাব না৷ 
+<h1><a
+name="Basic">Basic</a></h1>
+
+<p></p>
+Topology-র গল্প শুরু হবে একটা 
+non-empty set  নিয়ে, ধরো তার নাম দিলাম $X.$  এর নানা subset  আছে৷ এদের মধ্যে একগুচ্ছকে 
+আমরা নেব৷ এই গুচ্ছটা নিতে হবে কিছু সূত্র মেনে--
+<ul>
+<li>এক, $\phi$  এবং $X$  দুজনকেই এই গুচ্ছে থাকতে হবে৷</li>
+
+<li>দুই, যদি যেকোনো দুটো subset  নাও ওই গুচ্ছের ভিতর থেকে, তবে ওদের
+ intersection-ও যেন গুচ্ছের মধ্যে থাকে৷</li>
+
+<li>তিন, যদি গুচ্ছের মধ্যে যা খুশি যতগুলো খুশি subset  নাও (অসংখ্য নিলেও
+ আপত্তি নেই), তবে তাদের union-ও থাকতে হবে ওই গুচ্ছের মধ্যেই৷</li>
+
+</ul>
+যদি তোমার নেওয়া গুচ্ছটা এই তিনটে শর্তই পলন করে, তবে তাকে বলব $X$-এর উপর একটা topology.  
+এবং $X$  আর এই topology  মিলিয়ে বলব একটা topological space.  এমন বিদঘুটে সংজ্ঞা কোথা 
+থেকে এল, সেটা জানার ইচ্ছা হওয়া স্বাভাবিক৷ তার উত্তরটাও মজাদার৷ কিন্তু এখনই সে প্রশ্নে যাব না৷ আগে একটা উদাহরণ 
+দেখে নিই৷ 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;ধরো $X=\{a,b,c\}.$ তার এই কয়টা subset  নিলাম, 
+ $\phi,\{a\},\{a,b\},X.$  এরা মিলে কি $X$-এর উপরে একটা topology  হচ্ছে?
+<p></p>
+<b>SOLUTION:</b>হ্যাঁ৷ কারণ $\phi$  আর $X $ দুজনেই আছে৷ যতরকম
+ intersection  আর union  সম্ভব, তারাও আছে৷ <p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "ex1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+এই অংকের গুচ্ছটাকে ধরো একটা নাম দিলাম, $\tau.$  মানে $\tau=\big\{\phi,\{a\},\{a,b\},X\big\}.$  তবে আমরা 
+বলব যে, $\tau$  হল $X$-এর উপরে একটা topology.  এবং $(X,\tau)$-কে বলব একটা 
+topological space.  
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.2a):</b>&nbsp;
+Let ${\mathbb N}$ be the set of natural numbers and $A_n =
+\{1,2,3,...,n\},$ $n\in{\mathbb N}.$ Then prove that the
+collector 
+$$
+\tau = \{A_n~:~n\in{\mathbb N}\}\cup\{{\mathbb N},\phi\}
+$$
+is a topology on ${\mathbb N}.$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+By definition, ${\mathbb N},\phi\in\tau.$
+<p></p>
+Let $\{B_ \alpha~:~\alpha\in \Lambda\}  $  be an arbitrary collection of sets in $\tau.$  
+<p></p>
+If the collection is infinite, or if ${\mathbb N}$  is in this collection, then $\cup_{\alpha\in
+ \Lambda} B_ \alpha = {\mathbb N}\in\tau.$
+<p></p>
+Otherwise, there is a maximum element $m$  in $\cup_{\alpha\in \Lambda} B_ \alpha.$  This means $A_m$  is
+ in the collection, and all other memmbers are its subsets. So $\cup_{\alpha\in \Lambda} B_ \alpha=A_m\in\tau.$
+<p></p>
+Hence closed under arbitrary union.
+<p></p>
+Again, if $B_1, B_2$  are in the collection, then the following cases may arise:
+<ol type="">
+
+<li>$B_1$  or $B_2$  is $\phi$: Then $B_1\cap B_2=\phi\in\tau.$</li>
+
+<li>$B_1={\mathbb N}$: Then $B_1\cap B_2=B_2\in\tau.$</li>
+
+<li>$B_2={\mathbb N}$: Similar.</li>
+
+<li>$B_1=A_m$  and $B_2=A_m$  for some $m,n\in{\mathbb N}$: Then $B_1\cap B_2=A_{\min\{m,n\}}\in\tau.$</li>
+
+</ol>
+Hence closed under finite intersection.
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.2a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.2a):</b>&nbsp;
+Consider the set ${\mathbb N}$ of natural numbers and let $A_n =
+\{n,n+1,n+2,...\}.$ Show that the
+collection $\{A_n~:~n\in{\mathbb N}\}\cup\{\phi\}$ is a topology on ${\mathbb N}.$[3]
+<p></p>
+<b>SOLUTION:</b>আগেরটার মতই৷<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.2a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+তোমার গুচ্ছে যেসব subset  নিয়েছ, তাদেরকে বলব একেকটা open subset.  
+<p></p>
+এই ভাষাটা তোমার অপরিচিত নয়৷ আমরা real analysis  বা metric space 
+ শেখার সময়েও open  শব্দটা ব্যবহার করেছি৷ এখানে open-এর ধারণাটা
+ ওগুলোরই generalisation.   একটু চিন্তা করলেই বুঝবে যে,  আমারা topology-র সংজ্ঞায় যে শর্তগুলো 
+দিয়েছি, সেগুলো সবই real analysis  বা metric space-এর open  set-দের ধর্ম৷ 
+ওখানে আরো অনেক ধর্ম ছিল, সেগুলো আমরা কম গুরুত্বপূর্ণ বলে topology-র সংজ্ঞায় ধরি নি৷ 
+সেই জন্যই আমাদের open-এর ধারণাটা আগেকার open-এর ধারণার থেকে বেশী general.  
+<p></p>
+এ থেকেই তুমি সবচেয়ে গুরুত্বপূর্ণ এক ধরণের topological space-এর কথা জেনে গেলে--
+যেখানে set-টা হল ${\mathbb R}^n$  আর তার উপরে real
+ analysis-এর সংজ্ঞা অনুসারে open set-দের নিয়ে তৈরী topology.  এই
+ topology-টা বার বার আমাদের আলোচনায় মাথা চাড়া দেবে৷ একে আমরা আদর করে বলি ``usual topology''.  
+যদি $n&gt;1$  হয়, তবে ''usual product topology''-ও বলি অনেক সময়ে৷  এবার এদের নিয়ে কিছু অংক দেখি৷ 
+<p></p>
+
+<h2><a
+name="Usual">Usual</a></h2>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1c):</b>&nbsp;
+Let ${\mathbb R}$ be the set of all real numbers with the usual
+topology and $K=\left\{\frac 1n~:~n=1,2,...\right\}.$ Then $K$ is
+
+<li>open in ${\mathbb R}$</li>
+
+<li>closed in ${\mathbb R}$</li>
+
+<li>both open and closed in ${\mathbb R}$</li>
+
+<li>neither open nor closed in ${\mathbb R}$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>$0$  একটা limit point.  কিন্তি $0\not\in K.$  তাই
+ closed  নয়৷ আবার $1\in K,$  কিন্তু $1$-এর কোনো
+ neighbourhood  $K$-র মধ্যে নেই৷ তাই open  বা closed  কোনোটাই নয়৷<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.1c"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1d):</b>&nbsp;
+The closure of the set $A =
+\left\{2,\frac 32,\frac 43,\frac 54,...\right\}$ with resepct to the usual
+topology on the set of real numbers, ${\mathbb R}$, is given by
+
+<li>$A\cup\{1\}.$</li>
+
+<li>$A\cup\{2\}.$</li>
+
+<li>$A\cup\{\phi\}.$</li>
+
+<li>$A\cup\{3\}.$</li>
+ 
+
+<p></p>
+<b>SOLUTION:</b>একটাই limit point  আছে, $1.$  এবং সেটা
+ set-এর বাইরে৷ তাই উত্তর হবে $A\cup\{1\}.$<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.1d"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.5b):</b>&nbsp;
+Find the boundary and interior of the
+set $\{(x,y)~:~x\in{\mathbb Q}\}$ in ${\mathbb R}^2$ endowed with the
+usual product topology.[2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Let $A = \{(x,y)~:~x\in{\mathbb Q}\}.$  This is dense in ${\mathbb R}^2.$  Hence every open ball intersects it. So its boundary
+ is ${\mathbb R}^2.$ 
+<p></p>
+$A^c$ is also dense. So every open ball intersects $A^c.$  Hence interor of $A $ is $\phi.$  
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.5b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<h2><a
+name="Metric">Metric</a></h2>
+দুই, যদি $(X,d)$  কোনো metric space  হয়, তবে metric space-এর
+ সংজ্ঞা অনুযায়ী open set-দের নিয়ে একটা topology  হয়৷ একে বলে metric
+ topology.  এটাও আমাদের আলোচনায় বারবার আসবে৷ এটাকে আমরা অনেক সময়ে $\tau(d)$  লিখব৷
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.8b):</b>&nbsp;
+$X$ is a metric space with metric $d.$ Show
+that $d:X\times X\rightarrow{\mathbb R}$ is continuous.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+To show 
+<p></p>
+
+<div class="box">Target</div>$\forall \mbox{open }U \subseteq{\mathbb R}~~d ^{-1}(U)\mbox{ is open in }X\times X.$
+<p></p>
+
+<div class="box">$\forall U$</div> Take any open $U\subseteq{\mathbb R}.$  
+<p></p>
+Let $(a,b)\in d ^{-1}(U).$ 
+<p></p>
+Let $p = d(a,b)\in U.$
+<p></p>
+Since $U\subseteq{\mathbb R}$  is open, $\exists \delta &gt; 0~~(p-\delta,p+\delta)\subseteq U.$ 
+<p></p>
+Consider the neighbourhood 
+$$V=\left\{(x,y)\in X\times X~:~d(x,a)&lt;\frac \delta2,~d(y,b)&lt;\frac \delta2\right\}$$ 
+ of $(a,b)$  in  $X\times X.$
+<p></p>
+Take any $(x,y)\in V.$  Then 
+$$|d(x,y)-d(a,b)| \leq |d(x,y)-d(a,y)+d(a,y)-d(a,b)| \leq ??$$
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.8b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.8a):</b>&nbsp;
+What is a metric invariant? Correct of justify: A metric invariant
+is also a topological invariant.[3]
+<p></p>
+<b>SOLUTION:</b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.8a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.4b):</b>&nbsp;
+Let $(X,d)$ be a metric space and $A\subseteq X.$ Prove
+that $\bar A=\{x\in X~:~d(x,A)=0\}$.[2]
+<p></p>
+<b>SOLUTION:</b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.4b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.4):</b>&nbsp;
+Define topologically equivalent metrics on a non-empty
+set $X.$ Prove that the space $(X,\tau(d)),$
+where $\tau(d)$ is the topology induced by a metric $d$
+on a non-empty set $X$ is homeomorphic to the
+space $(X,\tau(d_1)),$ where $\tau(d_1)$ is the
+topology induced by the metric $d_1$ on $Xm$
+where $d_1$ is given by 
+$$
+d_1(x,y) = \frac{d(x,y)}{1+d(x,y)},\text{ for all } x,y\in{\mathbb R}.
+$$[1+4]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Two metrics on the same set are called topologically equivalent if they induce the same topology. 
+<p></p>
+We have $\forall x,y\in X~~d_1(x,y)\leq d(x,y).$  So $\forall a\in X~~\forall r&gt;0~~N_d(a,r)\subseteq N_{d_1}(a,r).$ 
+<p></p>
+Again, $\forall x,y\in X~~\big(~d(x,y)\leq 1\Rightarrow d_1(x,y)\leq \frac 12d(x,y)~\big).$
+<p></p>
+Hence $\forall a\in X~~\forall r&gt;0~~N_{d_1}\left(a,\frac r2\right)\subseteq N_d(a,r).$
+<p></p>
+Hence the two topologies are the same. 
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.4"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+এই দুই topology  হল দুনিয়ার সবচেয়ে গুরুত্বপূর্ণ দুটো topology. 
+ গুরুত্বের দিকে দিয়ে এর পরেই আসে discrete topology.  এখানে আমাদের গুচ্ছে আমরা যতরকম subset  
+সম্ভব সবাইকেই ধরি৷ 
+<p></p>
+এবার আরো চারটে topology-র কথা বলব, যাদের গুরুত্ব খুব বেশী নয়, যদিও পরীক্ষার প্রশ্নে এদের প্রায়ই দেখা 
+পাওয়া যায়--
+<ul>
+
+<li>এক, cofinite topology</li>
+
+<li>দুই, cocountable topology</li>
+
+<li>তিন, lower limit topology</li>
+
+<li>চার, upper limit topology</li>
+
+</ul>
+এদের মধ্যে প্রথম দুটো বোঝানো সহজতর৷ ধরো $X$  যা খুশি একটা infinite set.  এর মধ্যে সেই 
+subset-গুলো নাও যারা cofinite, অর্থাৎ যাদের complement  হল finite.  যেমন 
+$X = \{1,2,3,...\}$  হলে $\{2,3,4,...\}$  হল একটা cofinite subset.  এরকম সব cofinite subset  
+আর $\phi$  নিয়ে তোমার গুচ্ছটা তৈরী কর৷ একটু ভাবলেই বুঝবে যে, সেটা একটা topology  হতে বাধ্য৷ 
+একেই বলে cofinite  topology.   
+<p></p>
+একইভাবে যদি কোনো uncountable set  নিয়ে তার সব cocountable  subset  (এবং $\phi$) 
+নিয়ে গুচ্ছ বানাও, তবে সেটাও একটা topology  হবে৷ তার নাম cocountable  topology.   
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1a):</b>&nbsp;
 Let $(X,\tau)$ be a cofinite topological space,
 where $X$ is an uncountable set. Then which of the following
 is false? (1 mark for choosing correct option and 1 mark for
@@ -162,12 +671,749 @@ topology on $X.$ </li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>শেষেরটাই খালি ভুল, কারণ first countable  নয়৷<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.1a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
+<h2><a
+name="General">General</a></h2>
+
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE (2021.1a):</b>&nbsp;
+If $\tau_1$ and $\tau_2$ are the topologies
+on ${\mathbb R}^2$ generated by the base $\beta_1$ of interiors
+of all circular regions in ${\mathbb R}^2$ and he
+base $\beta_2$ of interiors of all rectangular regions
+in ${\mathbb R}^2$ respectively, then
+
+<li>$\tau_1$ is a proper subset of $\tau_2$</li>
+
+<li>$\tau_2$ is a proper subset of $\tau_1$</li>
+
+<li>$\tau_1=\tau_2$</li>
+
+<li>$\tau_1\cap \tau_2 = \{{\mathbb R}^2,\phi\}.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>যেকোনো circle-এর মধ্যে যেকোনো বিন্দুকে ঘিরে একটা
+ rectangle  ঢোকানো যায়, এবং তার উল্টোটাও করা সম্ভব৷ তাই $\tau_1 = \tau_2.$<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2021.1a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1b):</b>&nbsp;
+Let $(X,\tau)$ be a topological space and $A$ be a
+non-empty subset of $X$ such that every non-empty open
+subset of $X$ intersects $A.$ Then which of the
+following is true?
+
+<li>$A$ must be equal to $X.$</li>
+
+<li>$A$ is dense in $X.$</li>
+
+<li>$A=\overline{A}$</li>
+
+<li>$A$ must be an open set.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>$A$  অবষহ্যই $X$-বে মধ্যে dense  হবে৷ সেটাই
+ dense  হবার সংজ্ঞা৷ বাকিগুলো নাই হতে পারে৷ যেমন প্রথমটা
+ counterexample  হল $X={\mathbb R}$  (usual topology) আর $A =
+ (-\infty,0)\cup(0,\infty).$  এটা তৃতীয়টার বেলাতেও counterexample.  চার
+ নম্বরের জন্য counterexample  হবে ${\mathbb R}$-এর মধ্যে ${\mathbb Q}.$  <p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2021.1b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1c):</b>&nbsp;
+Let $(X,\tau)$ be a topological space and $A$ be a
+non-empty proper subset of $X$ such that the boundary
+of $A$ is an empty set. Then which of the following is
+false?
+<li>$A$ contains all of its limit points.</li>
+
+<li>Every point of $A$ is an interior point.</li>
+
+<li>The boundary of $(X\setminus A)$ is an empty set.</li>
+
+<li>$A$ is closed, but may not be an open set.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>শেষেরটা ভুল, কারণ $A$-কে open  হতেই হবে৷<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2021.1c"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.7a):</b>&nbsp;
+Prove that if $Y$ is a closed subset of a topological
+space $(X,\tau),$ then a subset $G$ of $Y$ is
+closed in the subspace $(Y,\tau_Y)$ if and only if it is
+closed in $(X,\tau).$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+<u>(Only if part)</u>  Let $G$  be closed in $Y.$  Then $G^c$  is open in $Y.$  So $G^c = A\cap Y $ 
+ for some open set $A$  in $X.$  Hence $G = (A\cap Y)^c = A^c\cup Y^c,$  which is union of two closed sets in
+ $X,$  and hence is closed, as required.
+<p></p>
+
+<u>(If part)</u>  Let $G$ be closed in $(X,\tau).$  But since $G\se Y,$  hence   $G = G\cap Y.$  So $G$ 
+ is closed in $(Y,\tau_Y), $ as well.
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.7a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p>
+<b>EXAMPLE (2022.6a):</b>&nbsp;
+Consider the following collections of subsets of the
+set ${\mathbb R}:$
+$$\begin{eqnarray*}
+\beta_1 &amp; = &amp; \{(a,b)~:~a,b\in{\mathbb R}\}\cup\left\{(a,b)\setminus
+A~:~a,b\in{\mathbb R}\text{ and } A=\left\{\frac 1n~:~n\in\
+nn\right\} \right\},\\
+\beta_2 &amp; = &amp; \{(a,\infty)~:~a\in{\mathbb R}\}.
+\end{eqnarray*}$$
+Show that $\beta_1$ and $\beta_2$ are basis for some
+topologies on ${\mathbb R}.$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+<u>Part 1</u>:
+<p></p>
+Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall x\in {\mathbb R} ~~ \exists A\in \beta_1~~x\in A.$
+<p></p>
+
+<div class="box">$\forall x$</div>Take any $x\in{\mathbb R}.$
+<p></p>
+
+<div class="box">$\exists A$</div> Choose $A = (x-1,\infty)\in \beta_2.$
+<p></p>
+
+<div class="box">Check</div>Then $x\in A,$  as required. 
+<p></p>
+Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall A,B\in \beta_1~~\forall x\in A\cap B~~\exists C\in \beta_1~~x\in C\subseteq A\cap B.$
+<p></p>
+
+<div class="box">$\forall A,B$</div> Take any $A,B\in \beta_2.$
+<p></p>
+
+<div class="box">$\forall x$</div> Take any $x\in A\cap B.$
+<p></p>
+Let $A = (a,\infty)$  and $B = (b,\infty).$  Then $A\cap B = (\max\{a,\b\},\infty).$
+<p></p>
+So $x &gt; \max\{a,b\}.$  
+<p></p>
+
+<div class="box">$\exists C$</div> Choose $C =\left( \frac{x+\max\{a,b,\}}{2}, \infty\right)\in \beta_2.$
+<p></p>
+
+<div class="box">Check</div>Then clearly $x\in C\subseteq A\cap B,$  as required.
+<p></p>
+
+<u>Part 2</u>:
+<p></p>
+Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall x\in {\mathbb R} ~~ \exists A\in \beta_2~~x\in A.$
+<p></p>
+
+<div class="box">$\forall x$</div>Take any $x\in{\mathbb R}.$
+<p></p>
+
+<div class="box">$\exists A$</div> Choose $A = (x-1,\infty)\in \beta_2.$
+<p></p>
+
+<div class="box">Check</div>Then $x\in A,$  as required. 
+<p></p>
+Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall A,B\in \beta_2~~\forall x\in A\cap B~~\exists C\in \beta_2~~x\in C\subseteq A\cap B.$
+<p></p>
+
+<div class="box">$\forall A,B$</div> Take any $A,B\in \beta_2.$
+<p></p>
+
+<div class="box">$\forall x$</div> Take any $x\in A\cap B.$
+<p></p>
+Let $A = (a,\infty)$  and $B = (b,\infty).$  Then $A\cap B = (\max\{a,\b\},\infty).$
+<p></p>
+So $x &gt; \max\{a,b\}.$  
+<p></p>
+
+<div class="box">$\exists C$</div> Choose $C =\left( \frac{x+\max\{a,b,\}}{2}, \infty\right)\in \beta_2.$
+<p></p>
+
+<div class="box">Check</div>Then clearly $x\in C\subseteq A\cap B,$  as required.
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.6a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.5a):</b>&nbsp;
+Suppose $(X,\tau)$ is a topological space
+and $(Y,\tau_Y)$ is the subspace of $(X,\tau).$ Prove
+that, for a subset $A$ of $Y,$ $\overline{A}^Y =
+\overline{A}\cap Y,$ where $\overline{A}^Y$ denotes the
+closure of $A$ in $(Y,\tau_Y).$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Since $\overline A$  is closed in $X$, hence $\overline A\cap Y$  must be closed in $Y.$
+<p></p>
+Let $G\subseteq Y$  be any closed set in $Y$  with $A\subseteq G.$  Then $G = V\cap Y$  for some closed $V$ 
+ in $X.$  So $\overline A\subseteq V.$  Hence $\overline A\cap Y\subseteq V\cap Y = G.$
+<p></p>
+Thus, $\overline A\cap Y$  is the smallest closed set in $Y$  containing $A.$  Hence the result.
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.5a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.1j):</b>&nbsp;
+In a topological space $(X,\tau),$ $A$ is a dense
+subset of $X$ and $B$ is dense in $A.$
+Then $B$ is a 
+
+<li>open subset of $X$</li>
+
+<li>closed subset of $X$</li>
+
+<li>dense subset of $X$</li>
+
+<li>none of the above.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Considering $X={\mathbb R}$  with usual topology and $A={\mathbb Q}$, we see that the first two options are false. 
+<p></p>
+However, the third option is true.  Let $U$  be any non-empty open subset of $X.$  Then $U\cap
+ A$  is open in $A.$  Also since $A$  is dense in $X$, $U\cap A$  is non-empty. 
+<p></p>
+Since $B$  is dense in $A,$  we have $U\cap A \cap B\neq \phi.$  But $B\subseteq
+ A.$  Hence $U\cap B\neq \phi.$  Hence  $B$  must be dense in $X.$
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.1j"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.3b):</b>&nbsp;
+If $D$ is dense in a space $X$ and $U$ is an open
+set in $X,$ then show that $\overline U = \overline{U\cap D}.$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Since $U\cap D\subseteq U,$  hence $\overline {U\cap D} \subseteq \overline U.$
+<p></p>
+Shall show $\overline U\subseteq \overline {U\cap D}.$
+<p></p>
+Since $\overline {U\cap D}$  is closed, hence enough to show $U\subseteq \overline {U\cap D}.$
+<p></p>
+Let $x\in U.$  
+<p></p>
+Let $V$  be any open set with $x\in V.$  
+<p></p>
+Then $V $ is a non-empty open set, and hence $V\subseteq D\neq\phi.$  If $x\not\in D$ , then done. 
+<p></p>
+If $x\in D,$  then $x\in U\cap D\subseteq \overline{U\cap D}.$  Hence done.
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.3b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.4a):</b>&nbsp;
+Let $\{\tau_\alpha~:~\alpha\in \Lambda\}$ be a collection of
+topologies on a set $X.$ Show that there is a unique
+smallest topology on $X$ containing all the topologies $\tau_\alpha.$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $\{\sigma_ \beta~:~\beta\in \Xi\}$  be the family of all topologies, each of which 
+ contain all $\tau_ \alpha$'s. 
+<p></p>
+This family is non-empty because the discrete topology in this family. 
+<p></p>
+Let $\sigma = \cap_{\beta\in\Xi} \sigma_ \beta.$  
+<p></p>
+Then $\sigma,$  being the intersection of a family of topologies, must again be a topology. 
+<p></p>
+Also, $\sigma$  must contain all the $\tau_ \alpha$'s. 
+<p></p>
+Also, if any $\sigma'$  has this property, then $\sigma'$  is in the family, and so
+ $\sigma\subseteq \sigma'.$  So $\sigma $ is a smallest such topology.
+<p></p>
+If $\sigma''$  is another smallest such topology, then $\sigma''\subseteq \sigma$ and
+ $\sigma\subseteq \sigma'',$  and so $\sigma=\sigma''.$  Hence unique.  
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.4a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.6a):</b>&nbsp;
+Prove that in a topological space $(X,\tau)$ the
+set $A\cup A'$ is the smallest closed subset
+containing $A,$ where $A\subseteq X$ and $A'$ is the
+derived set of $A.$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Shall show that $A\cup A'$  is a closed set, <i>i.e.</i>, $(A\cup A')^c$  is open. 
+<p></p>
+
+<div class="box">Target</div>$\forall x\in (A\cup A')^c~~\exists U\in\tau~~x\in U\subseteq (A\cup A')^c.$
+<p></p>
+
+<div class="box">$\forall x$</div> Take any $x\in (A\cup A')^c = A^c\cap (A')^c.$  
+<p></p>
+Since $x\not\in A',$  hence $\exists U\in\tau~~x\in U\mbox{ and }U\seminus\{x\}\cap A=\phi.$  
+<p></p>
+Also, since $x\not\in A,$  hence $U\cap A = \phi.$
+<p></p>
+
+<div class="box">$\exists U$</div> Choose this $U\in\tau.$
+<p></p>
+
+<div class="box">Check</div>Then $x\in U\subseteq (A\cup A')^c,$  as required. 
+<p></p>
+Shall show that 
+<p></p>
+
+<div class="box">Target</div>$\forall \mbox{closed }G ~~(A\subseteq G\Rightarrow A\cup A'\subseteq G).$
+<p></p>
+
+<div class="box">$\forall G$</div> Take any closed $G$ with $A\subseteq G.$  Then $A'\subseteq G' = G.$  Hence $A\cup A'\subseteq G,$  as
+ required.
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.6a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.6b):</b>&nbsp;
+Prove or disprove: $\overline{A\cap B} = \overline A\cap
+\overline B,$ where $\overline A$ denotes the closure
+of $A$ in $(X,\tau).$[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">Not correct. We take ${\mathbb R}$  with usual topology, $A = (0,1)$  and $B=(1,2).$  
+Then $\overline A = [0,1]$  and $\overline B = [1,2].$  So $\overline A\cap \overline B = \{1\}.$  
+<p></p>
+But $\overline{A\cap B} = \overline{\phi}=\phi.$
+ </font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.6b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.7a):</b>&nbsp;
+Let $X$ be a non-empty set and $B=\big\{ \{x\}~:~ x\in
+X\big\}.$ Then prove that $B$ is a basis for a topology on $X.$[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+$\forall x\in X~~x\in\{x\}.$
+<p></p>
+Shall show 
+<p></p>
+
+<div class="box">Target</div>$\forall a,b\in X~~\forall c\in \{a\}\cap \{b\}~~\exists d\in X~~c\in \{d\}\subseteq \{a\}\cap \{b\}.$
+<p></p>
+
+<div class="box">$\forall a,b$</div> Take any $a,b\in X.$
+<p></p>
+
+<div class="box">$\forall c$</div> If $\{a\}\cap\{b\}=\phi,$  then the statement is vacuously true. Otherwise take any $c\in \{a\}\cap \{b\}.$
+<p></p>
+In this case $a = b = c.$
+<p></p>
+
+<div class="box">$\exists d$</div> Choose $d = c.$
+<p></p>
+
+<div class="box">Check</div>Then obviously $c\in \{d\}\subseteq \{a\}\cap \{b\},$  as required.
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.7a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.7b):</b>&nbsp;
+Give an example of a map from a topological space $(X,\tau)$
+to another topological space $(Y,\tau')$ which is both open
+and closed, but not continuous.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $X=Y={\mathbb R}.$  We take $\tau$  to be the usual topology, and $\tau'$  to be the discrete topology. 
+Let $f:X\rightarrow Y$  be 
+$$f(x) = \left\{\begin{array}{ll}1&\text{if }x=0\\ 0&\text{otherwise.}\end{array}\right..$$
+Since all subsets on $(Y,\tau')$  are both open and closed, hence this is $f$  is both open and closed map. 
+<p></p>
+Also $\{1\}$  is open in $(Y,\tau').$  But $f ^{-1} (\{1\}) = \{0\}$  is not open in $(X,\tau).$  Hence
+ $f $ is  not continuous. 
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.7b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.8):</b>&nbsp;
+Let $(X,\tau)$ be the topological product of a family of
+topological spaces $\{(X_i,\tau_i)~:~i=1,2,...,n\}$
+and $p_i:X\rightarrow X_i$ denote the $i$-th projection map for
+all $i=1,2,...,n.$ Then prove that
+<p></p>
+(a) $p_i$ is an open map for all $i=1,2,...,n.$
+<p></p>
+(b) the product topology $\tau$ is the smallest topology
+on $X$ such that each projection map is continuous.
+<p></p>
+[2+3]
+<p></p>
+<b>SOLUTION:</b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.8"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p>
+<b>EXAMPLE (2023.1b):</b>&nbsp;
 Let $(X,\tau)$ be a topological space  and $A$ be a
 proper non-empty subset of $X$ such
 that $int(X-A)=\phi,$ where $int(B)$ denotes the
@@ -186,344 +1432,613 @@ is $X.$</li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+The first two options are equivalent by definition, and they are also equivalent to the third
+ option and the given condition.
+<p></p>
+The fourth option is false.  A counterexample is $A = {\mathbb Q}$  in $\X={\mathbb R}$  with usual topology. 
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.1b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Let ${\mathbb R}$ be the set of all real numbers with the usual
-topology and $K=\left\{\frac 1n~:~n=1,2,...\right\}.$ Then $K$ is
+<b>EXAMPLE (2023.2b):</b>&nbsp;
+Find the derived set of $\{1\}$ in the above topological space.[2]
+<p></p>
+<b>SOLUTION:</b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
-<li>open in ${\mathbb R}$</li>
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.2b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
 
-<li>closed in ${\mathbb R}$</li>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
 
-<li>both open and closed in ${\mathbb R}$</li>
+<p></p>
 
-<li>neither open nor closed in ${\mathbb R}$</li>
+<h2><a
+name="Subspace">Subspace</a></h2>
+
+<p>
+<b>EXAMPLE (2021.1j):</b>&nbsp;
+Let $X = {\mathbb N}\times{\mathbb Q}$ with the subspace topology
+on ${\mathbb R}^2$ and $P=\left\{\left(n,\frac 1n\right)~:~n\in{\mathbb N}\right\}.$ Which of
+the following statements is true?
+
+<li>$P$ is closed, but not open.</li>
+
+<li>$P$ is open, but not closed.</li>
+
+<li>$P$ is both open and closed.</li>
+
+<li>$P$ is neither open nor  closed.</li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-The closure of the set $A =
-\left\{2,\frac 32,\frac 43,\frac 54,...\right\}$ with resepct to the usual
-topology on the set of real numbers, ${\mathbb R}$, is given by
-
-<li>$A\cup\{1\}.$</li>
-
-<li>$A\cup\{2\}.$</li>
-
-<li>$A\cup\{\phi\}.$</li>
-
-<li>$A\cup\{3\}.$</li>
- 
-
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+The first option is true. 
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $f:({\mathbb R},\tau_\ell)\rightarrow({\mathbb R},\tau_u)$ be defined
-as $f(x)=x$ for all $x\in{\mathbb R},$
-where $\tau_\ell,\tau_u$ are the lower limit topology and
-the usual topology on ${\mathbb R},$ respectively, then 
-
-<li>$f$ is not a continuous map.</li>
-
-<li>$f$ is an open map.</li>
-
-<li>$f$ is neither continuous nor an open map.</li>
-
-<li>$f$ is continuous but not an open map.</li>
-
-
-
+Here we can take $\{n\}\times (a,b)\cap{\mathbb Q}$  as our basic open sets. Then $(1,1)\in P$  but every basic open set
+ cotaining $(1,1)$  must contain some $(1,q)$  where $q\in{\mathbb Q}$  and $q\neq 1.$  Since $(1,q)\not\in P,$ 
+ hence $P$  cannot be open. 
 <p></p>
-<b>SOLUTION:</b> ///
+However, if we take any point $(n,q)\in P^c,$  then $q\neq \frac 1n.$  Let $r =
+ \left| q-\frac 1n \right|&gt;0. $  Then $(n,q)\in \{n\}\times \left(q-\frac r2,q+\frac r2\right)\cap {\mathbb Q}\subseteq P^c.$
+<p></p>
+Hence $P$  is closed. 
+<p></p>
+
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2021.1j"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
-
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be a co-countable space, where $X$ is an
-uncountable set. Then which of the following is true?
+<b>EXAMPLE (2021.1i):</b>&nbsp;
+Which of the following statements is not true?
 
-<li>$(X,\tau)$ is a first countable space.</li>
+<li>${\mathbb R}$ with usual topology is homeomorphic with the
+subspace topology on $(-1,1).$</li>
 
-<li>$(X,\tau)$ is a Hausdorff space.</li>
+<li>$\left[-1,\frac 12 \right]$ is open in $[-1,1]$ with
+respect to the subspace topology from the usual topology
+on ${\mathbb R}.$</li>
 
-<li>There exists a convergent sequence in $X$ whose limit
-is not unique.</li>
+<li>$[-1,1]$ is homeomorphic
+with $\{(x,y)~:~x^2+y^2=1\},$ where both the sets are
+endowed with the subspace topology from the usual topology
+on ${\mathbb R}$ and product topology  on ${\mathbb R}^2,$ respectively.</li>
 
-<li>A sequence $\{x_n\}$ in $X$ is convergent if and
-only if there is some positive integer $m$ such that for
-all $n\geq mm$ $x_n=$ constant.</li>
+<li>$[-1,1]$ is homeomorphic
+with $[0,1],$ where both the sets are
+endowed with the subspace topology from the usual topology
+on ${\mathbb R}$.</li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>
+<b><font color="#0000cc">The third option is false. If we remove the point $0$  from $[-1,1]$, then it
+ becomes disconnected. But $\{(x,y)~:~x^2+y^2=1\}$ cannot be made disconnected by removing just a single point. </font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2021.1i"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Let $\tau=\big\{\phi,\{a\},\{a,b\},X\big\}$ be a topology on $X
-= \{a,b,c,\}.$ Then $X$ is 
+<b>EXAMPLE (2022.6b):</b>&nbsp;
+Correct or justify: ${\mathbb R}$ with usual topology
+and $\left(-\frac \pi2,\frac \pi2\right)$ with usual subspace topology
+are homeomorphic.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">Correct.
+The function $\tan x$  is a homeomorphism from $\left(-\frac \pi2,\frac \pi2\right)$  to ${\mathbb R}.$  By standard result,
+ it is continuous, bijective and its inverse is continuous.
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
-<li>compact and Hausdorff.</li>
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.6b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
 
-<li>compact but not Hausdorff.</li>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
 
-<li>only Hausdorff.</li>
+<p>
+<b>EXAMPLE (2022.1f):</b>&nbsp;
+Let $Y= [0,1]\cup (2,3)$ be endowed with the subspace
+topology of ${\mathbb R}.$ Then which of the following is true?
 
-<li>$T_1.$</li>
+<li>$(2,3)$ is open, but not closed in $Y.$</li>
+
+<li>$[0,1]$ is closed, but not open in $Y.$</li>
+
+<li>$(2,3)$ and $[0,1]$ both are clopen in $Y.$</li>
+
+<li>$(2,3)$ is clopen, but $[0,1]$ is not clopen in $Y.$</li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Here $(2,3) = (2,3)\cap Y.$  Since $(2,3)$  is open in ${\mathbb R},$  hence $(2,3)$  is open in $Y.$
+<p></p>
+Again $[0,1] = (-1,2)\cap Y.$  Since $(-1,2)$  is open in ${\mathbb R},$  hence $[0,1]$  is open in $Y.$
+<p></p>
+Also $[0,1]$  are $[2,3]$  complements of each other in $Y.$  So they are closed in $Y.$
+<p></p>
+Hence both of them are clopen in $Y.$  
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.1f"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-A continuous function $f$ from an infinite connected
-space $(X,\tau)$ to a discrete two-point
-space $\{0,1\}$ 
-
-<li>must be constant.</li>
-
-<li>must be non-constant.</li>
-
-<li>is not closed.</li>
-
-<li>is not open.</li>
- 
 
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be an uncountable compact space
-and $({\mathbb R},\tau_u)$ be the space of real numbers with the
-usual topology. Then which of the following is false?
+<b>EXAMPLE (2022.1g):</b>&nbsp;
+In the subspace topology on $[-1,1]$, which of the following
+set is open?
 
-<li>There exists a continuous map $f:X\rightarrow{\mathbb R}$ which is
-unbounded.</li>
+<li>$\left\{x\in{\mathbb R}~:~\frac 12\leq |x| \leq 1\right\}.$</li>
 
-<li>A map $f:X\rightarrow{\mathbb R}$ is
-continuous $\Rightarrow$ $f:X\rightarrow{\mathbb R}$ is a closed map.</li>
+<li>$\left\{x\in{\mathbb R}~:~\frac 12&lt; |x| \leq 1\right\}.$</li>
 
-<li>If $f:X\rightarrow{\mathbb R}$ is a continuous map, then $f(X)$ is
-closed in ${\mathbb R}.$</li>
+<li>$\left\{x\in{\mathbb R}~:~\frac 12\leq |x| &lt; 1\right\}.$</li>
 
-<li>A map $f:X\rightarrow{\mathbb R}$ is continuous and $A\in\tau$
-implies $f(X\setminus A)$ is compact in ${\mathbb R}.$</li>
-
-
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $X = [0,1)\cup [2,3]$ be the subspace of the topological
-space ${\mathbb R}$ with the usual topology and $f:X\rightarrow{\mathbb R}$ be
-a map given by 
-$$
-f(x) = \left\{\begin{array}{ll}x&\text{if }0\leq x &lt; 1\\2&\text{if }2\leq x\leq 3\\\end{array}\right..
-$$
-Then which of the following is true?
-
-<li>$f$ is open and continuous.</li>
-
-<li>$f$ is open but not continuous.</li>
-
-<li>$f$ is not open but continuous.</li>
-
-<li>$f$ is neither open nor continuous.</li>
+<li>$\left\{x\in{\mathbb R}~:~-1\leq |x| \leq \frac 12\right\}.$</li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let ${\mathbb N}$ be the set of natural numbers and $A_n =
-\{1,2,3,...,n\},$ $n\in{\mathbb N}.$ Then prove that the
-collector 
-$$
-\tau = \{A_n~:~n\in{\mathbb N}\}\cu[p\{{\mathbb N},\phi\}
-$$
-is a topology on ${\mathbb N}.$[3]
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+$(0.4,0.6)$  is a neighbourhood of $\frac 12$  in our space. Since $\frac 12$  is the
+ sets given in options 1,3 and 4, but $(0.4,0.6)$  is not, hence those sets cannot be open. 
 <p></p>
-<b>SOLUTION:</b> ///
+Only the set given in option 2 is open.
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.1g"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Find the erived set of $\{1\}$ in the anove topological space.[2]
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
 
+<h2><a
+name="Special examples">Special examples</a></h2>
 
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that the lower limit topology, $\tau_\ell,$ and the
-upper limit topology, $\tau_r,$ are both strictly finer than
-the usual topology, $\tau_u,$ on the set of all real
-numbers, ${\mathbb R}.$[2]
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that the lower limit topology, $\tau_\ell,$ and the
-upper limit topology, $\tau_r,$ are non-comparable, but
-their intersection is 
-the usual topology, $\tau_u,$ on ${\mathbb R}.$[3]
+<b>EXAMPLE (2022.7b):</b>&nbsp;
+Prove that the boundary of a finite set $A$
+in $({\mathbb R},\tau_f)$ is $A$ itself, were $\tau_f$
+denotes the cofinite topology on ${\mathbb R}.$
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Define topologically equivalent metrics on a non=empty
-set $X.$ Prove that the space $(X,\tau(d)),$
-where $\tau(d)$ is the topology induced by a metric $d$
-on a non-empty set $X$ is homeomorphic to the
-space $(X,\tau(d_1)),$ where $\tau(d_1)$ is the
-topology induced by the metric $d_1$ on $Xm$
-where $d_1$ is given by 
-$$
-d_1(x,y) = \frac{d(x,y)}{1+d(x,y)},\text{ for all } x,y\in{\mathbb R}.
-$$[1+4]
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $a\in A.$  Let $B$  be any open set containing $a.$  Then  $B\cap A\neq\phi.$  Also, $B$  is
+ co-finite,
+ and hence infinite,
+ while $A$  is finite. Thus, $B\cap A^c\neq\phi.$  
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Suppose $(X,\tau)$ is a topological space
-and $(Y,\tau_Y)$ is the subspace of $(X,\tau).$ Prove
-that, for a subset $A$ of $Y,$ $\overline{A}^Y =
-\overline{A}\cap Y,$ where $\overline{A}^Y$ denotes the
-closure of $A$ in $(Y,\tau_Y).$[3]
+Hence $a\in\partial A.$
 <p></p>
-<b>SOLUTION:</b> ///
+Conversely, let $b\in\partial A.$  Let, if possible, $b\not\in A.$  Then $A^c$  is a cofinite (ie, open) set
+ containing $b$, and this set does not intersect $A.$  So $b $ cannot be a boundary point.
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.7b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Find the boundary and interiour of the
-set $\{(x,y)~:~x\in{\mathbb Q}\}$ in ${\mathbb R}^2$ endowed with the
-usual product topology.[2]
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that in a topological space $(X,\tau)$ the
-set $A\cup A'$ is the smallest closed subset
-containing $A,$ where $A\subseteq X$ and $A'$ is th
-erived set of $A.$[3]
+<b>EXAMPLE (2022.5a):</b>&nbsp;
+Show that the collection ${\cal C} = \{[a,b)~:~a &lt;
+b,~~a,b\in{\mathbb Q}\}$ is a basis that generates a topology
+different from the lower limit topology on ${\mathbb R}.$[3]
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove or disprove: $\overline{A\cap B} = \overline A\cap
-\overline B,$ where $\overline A$ denotes the closure
-of $A$ in $(X,\tau).$[2]
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $A = [\sqrt2,2).$  Then $A$  is open wrt the lower limit topology. But $A$  is
+ not open wrt the topology generated by ${\cal C}.$  
 <p></p>
-<b>SOLUTION:</b> ///
+Any set in ${\cal C}$  containing $\sqrt2$  is of the form $[a,b)$  with $a &lt; \sqrt2$  and $b &gt; sqrt2$,
+ where $a,b\in{\mathbb Q}.$  Since $a &lt; \sqrt2,$  hence $[a,b)\not\subseteq A.$
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.5a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $X$ be a non-empty set and $B=\big\{ \{x\}~:~ x\in
-X\big\}.$ Then prove that $B$ is a basis for a topology on $X.$[3]
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Give an example of a map from a topological space $(X,\tau)$
-to another topological space $(Y,\tau')$ which is both open
-and clsoed, but not continuous.[2]
+<b>EXAMPLE (2022.5b):</b>&nbsp;
+Consider the order topology on the set of natural
+numbers, ${\mathbb N}.$ Is the topology same as the discrete
+topology on ${\mathbb N}?$ Justify.[2]
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be the topological product of a family of
-topological spaces $\{(X_i,\tau_i)~:~i=1,2,...,n\}$
-and $p_i:X\rightarrow X_i$ denote the $i$-th projection map for
-all $i=1,2,...,n.$ Then prove that
-
-(a) $p_i$ is an open map for all $i=1,2,...,n.$
-
-(b) the product topology $\tau$ is the smallest topology
-on $X$ such that each projection map is continuous.
-
-[2+3]
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Yes. Let the order topology be $\sigma$  and the discrete topology be $\tau.$
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Give example of a topological space which is $T_1$ but
-not $T_2.$ Justify your answer. [2]
+Then $\sigma\subseteq\tau,$  since $\tau$  is the largest topology. 
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that a topological space $(X,\tau)$ is $T_1$ if
-and only if every neighbourhood of any limit point $p$ of
-any set $A\subseteq X$ intersects $A$ in countably infinite
-number of points.[2+3]
+$\tau$  has a basis $\{~\{n\}~:~n\in{\mathbb N}~\}.$  
 <p></p>
-<b>SOLUTION:</b> ///
+Now for $n\geg 2$  we have $\{n\} = (n-1,n+1)$  in ${\mathbb N}.$  Since $(n-1,n+1)\in\sigma,$ hence $\{n\} \in\sigma.$
+<p></p>
+Also $\{1\} = (-\infty,2)\in\sigma.$  
+<p></p>
+Thus, a basis of $\tau$  is inside $\sigma.$  
+<p></p>
+Hence $\tau\subseteq \sigma.$
+<p></p>
+So $\tau=\sigma$, as required. 
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.5b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE (2022.3a):</b>&nbsp;
+Prove that every infinite subset of $X$ is dense in $X$
+with respect to the cofinite topology.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $A\subseteq X$  be infinite. Let $U$  be any non-empty open set in $X.$  Then $U$  must be cofinite. So
+ $U^c$  is finite. Hence $A\not\subseteq U^c.$  Thus, $A\cap U\neq\phi.$
+<p></p>
+Hence $A$  must be dense in $X.$
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.3a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.2b):</b>&nbsp;
+Find the derived set of the set $\{1947\}$ in the above
+topological space.[2]
+<p></p>
+<b>SOLUTION:</b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.2b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p>
+<b>EXAMPLE (2022.1i):</b>&nbsp;
+${\mathbb R}$ is endowed with the topology defined by $\tau =
+\{A\subseteq{\mathbb R}~:~1\in A\}\cup\{\phi\}.$ Then the derived set
+of $\{1\}$ is 
+
+<li>$\phi$</li>
+
+<li>$\{1\}$</li>
+
+<li>${\mathbb R}\setminus\{1\}$</li>
+
+<li>${\mathbb R}.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">Here the closed sets are ${\mathbb R}$  and all subsets of ${\mathbb R}$  not containing $1.$
+  So the only closed set containing $\{1\}$  is ${\mathbb R}.$  So this is also the smallest
+ closed set containing $\{1\}.$  Hence the last option is correct.</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.1i"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.1h):</b>&nbsp;
+Let $({\mathbb R},\tau_f)$ be the cofinite topological space. Then
+the set $\left\{\frac 1n~:~n\in{\mathbb N}\right\}$ is 
+
+<li>a closed set.</li>
+
+<li>an open set.</li>
+
+<li>both open and closed</li>
+
+<li>a dense set</li>
+
+
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+The given set is not empty or cofinite, so not open.
+<p></p>
+It is not finite or ${\mathbb R}$, so not closed. 
+<p></p>
+Every infinite set is dense in cofinite topology. The given set is infinite. So it is dense.
+<p></p>
+Hence the last option is correct. 
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.1h"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.1a):</b>&nbsp;
 Consider the set ${\mathbb R}$ of real numbers. Let $\ta$ be
 the lower limit topology and $\sigma $ be the upper limit
 topology on ${\mathbb R}.$ Then 
@@ -538,627 +2053,178 @@ topology on ${\mathbb R}.$ Then
 
 
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+$[0,1)$  is an open set in the lower limit topology. Shall show that it is not open in the upper limit topology. 
+<p></p>
+All the basic open sets in the upper limit topology containing $0$  is of the form $(a,b]$  with $ a &lt; 0\leq b.$ 
+ Since $a&lt;0,$  we see that $(a,b]\not\subseteq[0,1).$  
+<p></p>
+Similarly, $(0,1]$  is not open in the lower limit topology.
+<p></p>
+So the last option is correct
+</font></b>
+
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2022.1a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be a topological space and $A\subseteq X.$ It
-is false that if 
+<b>EXAMPLE (2023.3a):</b>&nbsp;
+Prove that the lower limit topology, $\tau_\ell,$ and the
+upper limit topology, $\tau_r,$ are non-comparable, but
+their intersection is 
+the usual topology, $\tau_u,$ on ${\mathbb R}.$[3]
+<p></p>
+<b>SOLUTION:</b>
+প্রথম অংশ আগেই করেছি৷ 
+<b><font color="#0000cc">
+<u>Second part</u>: $\tau_u$  has a basis $\{(a,b)~:~a &lt; b\}.$  
+<p></p>
+Now $(a,b) = \cup_{n\in{\mathbb N}} \left[a+\frac 1n, b\right) \in \tau_\ell.$
+<p></p>
+Again, $(a,b) = \cup_{n\in{\mathbb N}} \left(a,b+\frac 1n \right] \in \tau_u.$
+<p></p>
+So $\tau_u\subseteq \tau_\ell\cap \tau_r.$
+<p></p>
+Conversely, let $A\in \tau_\ell\cap \tau_r.$  
+<p></p>
+Pick any $a\in A.$  
+<p></p>
+Since $A\in\tau_\ell,$   hence $a\in [p,q)\subseteq A$  for some $p &lt; q.$   
+<p></p>
+Again, since $A\in\tau_u,$   hence $a\in (s,t]\subseteq A$  for some $s &lt; t.$   
+<p></p>
+Let $\alpha = \max\{s,p\}$  and $\beta = \min\{t,q\}.$  Then $\alpha &lt; \beta$  and $a\in (\alpha,\beta)\subseteq A.$
+<p></p>
+Hence $A\in\tau_u.$ 
+<p></p>
+So $\tau_u = \tau_\ell\cap \tau_r,$  as required. 
+</font></b>
 
-<li>$(X,\tau)$ is compact, then $(A,\tau_A)$ is compact.</li>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
-<li>$(X,\tau)$ is $T_2$, then $(A,\tau_A)$ is $T_2.$</li>
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.3a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
 
-<li>$(X,\tau)$ is first countable, then $(A,\tau_A)$ is
-first countable.</li>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
+</p>
 
-<li>$(X,\tau)$ is $T_1$, then $(A,\tau_A)$ is $T_1.$</li>
+<p>
+<b>EXAMPLE (2023.1e):</b>&nbsp;
+Let $f:({\mathbb R},\tau_\ell)\rightarrow({\mathbb R},\tau_u)$ be defined
+as $f(x)=x$ for all $x\in{\mathbb R},$
+where $\tau_\ell,\tau_u$ are the lower limit topology and
+the usual topology on ${\mathbb R},$ respectively, then 
+
+<li>$f$ is not a continuous map.</li>
+
+<li>$f$ is an open map.</li>
+
+<li>$f$ is neither continuous nor an open map.</li>
+
+<li>$f$ is continuous but not an open map.</li>
 
 
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Since $\tau_u\subseteq \tau_\ell,$  hence continuous. But since $\tau_\ell\not\subseteq\tau_u,$  hence not open.
+</font></b>
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.1e"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be a topological space such that for every
-point $p\in X,$ the sequence $\{p,p,p,...\}$ has a
-unique limit $p.$ Then $(X,\tau)$ is
-
-<li>$T_1$ space</li>
-
-<li>$T_2$ space</li>
-
-<li>first countable space</li>
-
-<li>compact space.</li>
-
 
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-A connected subset $G$ of the real line ${\mathbb R}$ with at
-least two points must be
-
-<li>a finite set</li>
-
-<li>a bounded set</li>
-
-<li>an infinite closed set</li>
-
-<li>an uncountable set.</li>
-
-
+<b>EXAMPLE (2023.3a):</b>&nbsp;
+Prove that the lower limit topology, $\tau_\ell,$ and the
+upper limit topology, $\tau_r,$ are both strictly finer than
+the usual topology, $\tau_u,$ on the set of all real
+numbers, ${\mathbb R}.$[2]
 <p></p>
-<b>SOLUTION:</b> ///
+<b>SOLUTION:</b>
+আগেই করেছি৷ 
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = ""; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "2023.3a"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code -->  ///
 </p>
 
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $f:(X,d)\rightarrow(Y,d_1)$ be a continuous bijection
-where $(X,d)$ is a compact metric space, and $(Y,d_1)$
-is any metric space. Then which of the following is true?
-
-<li>$f$ is a homeomorphism.</li>
-
-<li>$f ^{-1} $ is open, but not continuous.</li>
-
-<li>$f ^{-1} $ is closed, but not continuous.</li>
-
-<li>$f ^{-1} $ is continuous, but neither open nor closed.</li>
-
-
 <p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $Y= [0,1]\cup (2,3)$ be endowed with the subspace
-topology of ${\mathbb R}.$ Then which of the following is true?
-
-<li>$(2,3)$ is open, but not closed in $Y.$</li>
-
-<li>$[0,1]$ is closed, but not open in $Y.$</li>
-
-<li>$(2,3)$ and $[0,1]$ both are clopen in $Y.$</li>
-
-<li>$(2,3)$ is clopen, but $[0,1]$ is not clopen in $Y.$</li>
-
-
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-In the subspace topology on $[-1,1]$, which of the following
-set is open?
-
-<li>\left\{x\in{\mathbb R}~:~\frac 12\leq |x| \leq 1\right\}.</li>
-
-<li>\left\{x\in{\mathbb R}~:~\frac 12&lt; |x| \leq 1\right\}.</li>
-
-<li>\left\{x\in{\mathbb R}~:~\frac 12\leq |x| &lt; 1\right\}.</li>
-
-<li>\left\{x\in{\mathbb R}~:~-1\leq |x| \leq \frac 12\right\}.</li>
-
-
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $({\mathbb R},\tau_f)$ be the cofinite topological space. Then
-the set $\left\{\frac 1n~:~n\in{\mathbb N}\}$ is 
-
-<li>a closed set.</li>
-
-<li>an open set.</li>
-
-<li>both open and closed</li>
-
-<li>a dense set</li>
-
-
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-${\mathbb R}$ is endowed with the topology defned by $\tau =
-\A\subseteq{\mathbb R}~:~1\in A\}\cup\{\phi\}.$ Then the derived set
-of $\{1\}$ is 
-
-<li>$\phi$</li>
-
-<li>$\{1\}$</li>
-
-<li>${\mathbb R}\setminus\{1\}$</li>
-
-<li>${\mathbb R}.$</li>
-
-
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-In a topological space $(X,\tau),$ $A$ is a dense
-subset of $X$ and $B$ is dense in $A.$
-Thwn $B$ is a 
-
-<li>open subset of $X$</li>
-
-<li>closed subset of $X$</li>
-
-<li>dense subset of $X$</li>
-
-<li>none of the above.</li>
-
-
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Consider the set ${\mathbb N}$ of natural numbers and let $A_n =
-\{n,n+1,n+2,...\}.$ Show that the
-collection $\{A_n~:~n\in{\mathbb N}\}\cup\{\phi\}$ is a topology on ${\mathbb N}.$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Find the derived set of the set $\{1947\}$ in the above
-topological space.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that every infinite subset of $X$ is dense in $X$
-with respect to the cofinite topology.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-If $D$ is dense in a space $X$ and $U$ is an open
-set in $X,$ then show that $\overline U = \overline{U\cap D}.$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $\{\tau_\alpha~:~\alpha\in \Lambda\}$ be a collection of
-topologies on a set $X.$ Show that there is a unique
-smallest topology on $X$ containing all the topologies $\tau_\alpha.$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,d)$ be a metric space and $A\subseteq X.$ Prove
-that $\bar A=\{x\in X~:~d(x,A)=0\}$.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Show that the collection ${\cal C} = \{[a,b)~:~a &lt;
-b,~~a,b\in{\mathbb Q}\}$ is a basis that generates a topology
-different from the lower limit topology on ${\mathbb R}.$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Consider the order topology on the set of natural
-numbers, ${\mathbb N}.$ Is the topology same as the discrete
-topology on ${\mathbb N}?$ Justify.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Consider the following collections of subsets of the
-set ${\mathbb R}:$
-$$\begin{eqnarray*}
-\beta_1 &amp; = &amp; \{(a,b)~:~a,b\in{\mathbb R}\}\cup\left\{(a,b)\setminus
-A~:~a,b\in{\mathbb R}\text{ and } A=\left\{\frac 1n~:~n\in\
-nn\right\} \right\},\\
-\beta_2 &amp; = &amp; \{(a,\infty)~:~a\in{\mathbb R}\}.
-\end{eqnarray*}$$
-Show that $\beta_1$ and $\beta_2$ are basis for some
-topologies on ${\mathbb R}.$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Correct or justify: ${\mathbb R}$ with usual topology
-and $\left(-\frac \pi2,\frac [\pi2\right)$ with usual subspace topology
-are homeomorphic.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that if $Y$ is a closed subset of a topological
-space $(X,\tau),$ then a subset $G$ of $Y$ is
-closed in the subspace $(Y,\tau_Y)$ if and only if it is
-closed in $(X,\tau).$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that the boundary of a finite set $A$
-in $({\mathbb R},\tau_f)$ is $A$ itself, were $\tau_f$
-denotes the cofinite topology on ${\mathbb R}.$
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-What is metric invariant? Correct of justify: A metric invariant
-is also a topological invariant.[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-$X$ is a metric space with metric $d.$ Show
-that $d:X\times X\rightarrow{\mathbb R}$ is continuous.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<h1><a
-name="Separable and countable">Separable and countable</a></h1>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Show that every metric space is a first countable space, but not
-necessarily second countable.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $X$ be an uncountable set, and $p$ be a fixed point
-in $X.$ Consider the topology $\tau=\{A\subseteq X~:~p\in
-A\}\cup\{\phi\}$ on $X.$ Examine whether $(X,\tau)$
-is a second countable space.[1+2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be a first countable space and $f:X\rightarrow
-Y$ be any function ($Y$ being any topological space) such
-that for any sequence $\{x_n\}$ converging to any
-point $x\in X,$ the sequence $\{f(x_n)\}$ converges
-to $f(x).$ Prove that $f$ is continuous on $X.$[5]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $f:X\rightarrow Y$, $g:X\rightarrow Y$ be two continuous functions
-from a topological space $(X,\tau)$ to a Hausdorff
-space $(Y,\sigma).$ Prove that
-
-(a) $F = \{x\in X~:~f(x)=g(x)\}$ is a closed set.
-
-(b) $f|_D = g|_D\Rightarrow f=g,$ where $\bar D = X.$[3+2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-A $G_\delta $ set in a space $X$ is a set that equals a
-countable intersection of open sets of $X.$ Show that
-if $X$ is a first countable $T_1$-space, every
-singleton set is a $G_\delta $ set.[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that ${\mathbb R}$ endowed with cofinite topology is not a
-first countable space.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $X$ be an uncountable set and $p$ be a fixed point
-in $X.$ Define 
-$$\tau = \{G\subseteq X~:~\text{either } p\npt\in G\text{ or if }p\in G\text{ then } X\setminus G\text{ is finite}.\}$$
-Prove that $(X,\tau)$ is a topological space which is not
-first countable. [2+3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be a topological space and ${\cal B}$ a
-local base at $c\in X.$ Prove that a
-sequence $\{x_n\}_n$ converges to $c\in X$ if nd only
-if for every $B\in{\cal B}$ there exists a positive
-integer $m$ such that for all $n\geq m,$ $x_n\in
-B.$ [3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $f:(X,\tau_1)\rightarrow(Y,\tau_2)$ be an open, continuous
-surjective map, where $X$ is first countable. Prove
-that $Y$ is first countable.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-If $(X_1,\tau_1)$ and $(X_2,\tau_2)$ are two $T_2$
-spaces, then prove that their product space $(X,\tau)$ is
-also a $T_2$ space. [3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $f:(X,\tau_1)\rightarrow(Y,\tau_2)$ be a continuous map,
-and $Y$ be $T_2.$ Prove that the
-set $\{(x,f(x))~:~x\in X\}$ is a closed set in $X\tims
-Y,$ where $X\times Y$ is endowed with the product topology.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<h1><a
-name="Compact">Compact</a></h1>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-$({\mathbb R},\tau_C)$ is a co-countable topological space. Is the
-set $[0,1]$ a compact subspace of ${\mathbb R}?$[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that the set of components of a topological space forms a
-partition of that space.[5]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau)$ be a any topological space and $\beta =
-\{X\setminus K~:~K\text{ is compact and closed in
-}(X,\tau)\}.$ Prove that $\beta $ is a basis for some
-topology $\tau'$ on $X$ such that $\tau'\subseteq\tau.$
-Prove that  $(X,\tau')$ is compact.[3+2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-$(X,\tau)$ is a topological space and $A\subseteq X,$
-and $C$ is a connected subset of $X$ that intersects
-both $A$ and $X\ \setminus A.$ Prove that $C$
-intersects boundary of $A.$[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-$f:[0,1]\rightarrow[0,1]$ is a continuous function. Show that thee
-exists $C\in[0,1]$ such that $f(C)=C,$
-where $[0,1]$ is endowed with the usual subspace topology.[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that the union of any family of connected sets, every pair
-of which has an element in common, is a connected set in any
-topological space. Is the intersection of two connected sets
-alaways connected? Justify.[3+2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove or disprove: Every infinite compact subset of ${\mathbb R}$ is
-connected. Is the converse true? Justify.[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Suppose $(X,\tau)$ is a topological space and ${\cal F} =
-\{F_\alpha~:~\alpha\in \Lambda\}$ ($\\Lambda $ is an
-index set) is any family of closed subsets of $X$ with the
-property that $\cap_{i=1}^n F_{\alpha_i} \neq \phi$ for any
-finite subfamilty $\{F_{\alpha_i}~:~\alpha_i\in
-\Lambda,~~i=1,2,...,n\}$ of ${\cal F}.$ Prove
-that $X$ is compact if and only if $\cap_{\alpha\in \Lambda} F_\alpha\neq\phi.$[3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Let $(X,\tau_1)$ be a $T_2$ space and $(X,\tau_2)$
-be compact such that $\tau_1\subseteq \tau_2.$ Prove that $\tau_1=\tau_2.$[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that the set of real numbr ${\mathbb R}$ with lower limit
-topology is disconnected.[2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that a topological space containing a dense connected set
-is connected. [3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that a real valued continuous function $f$ on a
-compact set $(X,\tau)$ attains its greatest value. [2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-If $K$ isa compact subset of a $T_2$ space $X,$
-then prove that $K$ is a closed set in $X.$ [3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove that every closed and bounded interval of the real
-line${\mathbb R}$ (<i>i.e.</i>, ${\mathbb R}$ with the usual topology) is
-compact. [3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-Prove tht each component of a topological space is closed. [2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-If every continuois real values function on a topological
-space $(X,\tau)$ takes on all values between any two values
-that it assumes, then prove that $(X,\tau)$ is connected. [2]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
-
-<p>
-<b>EXAMPLE:</b>&nbsp;
-If $A$ is a connected subset consisting of at least two
-points in a matic space $(X,d),$ then prve that $A$ is
-uncountable. [3]
-<p></p>
-<b>SOLUTION:</b> ///
-</p>
-
 <hr/>
 <table width="100%" border="0">
 <tr>
