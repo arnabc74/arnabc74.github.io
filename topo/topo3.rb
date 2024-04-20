@@ -736,17 +736,288 @@ Thus <M>U</M>  and <M>V</M>  provide a strong separation of <M>x,y.</M>
 Prove or disprove: In a topological space <M>(X,\tau)</M>, if
 every convergent sequence in <M>X</M> has unique limit,
 then <M>X</M> is a <M>T_2</M> space.[2]
-</E>@}</EBODY><SOLN/>@{<WR>
-The statement is false. 
-
-<U>Counterexample</U>:
-
-We consider <M>\nn</M>  with cofinite topology. Here a sequence is convergent if and only if it is eventually constant. Hence
- limit, if its exists, must be unique. However, here no two non-empty open sets are disjoint. So it is not 
-Hausdorff. 
-</WR>@}</EXM>
+</E>@}</EBODY><SOLN/></EXM>
 
 
 
+
+@{<HEAD1>Compact</HEAD1>@}
+
+<EXM ref="2021.1h" paper="2021.1h"><EBODY>@{<E>
+If <M>\tau = \{\phi, \{a\},\a,b\},X\}</M> is a topology on <M>X =
+\{a,b,c\},</M> then <M>(X,\tau)</M> is
+<VL>
+<LI>compact and Hausdorff.</LI>
+<LI>compact, but not  Hausdorff.</LI>
+<LI>only Hausdorff.</LI>
+<LI>neither compact nor Hausdorff.</LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+
+<EXM ref="2021.1g" paper="2021.1g"><EBODY>@{<E>
+Which of the following statements is not correct for the discrete
+topology <M>\tau_d</M> on <M>\rr</M>?
+<VL>
+<LI><M>\tau_d</M> is the largest topology on <M>\rr.</M></LI>
+<LI><M>(\rr,\tau_d)</M> is compact.</LI>
+<LI><M>(\rr,\tau_d)</M> is first countable.</LI>
+<LI>For every subset <M>A</M> of <M>\rr,</M> <M>A^\circ =
+\overline A,</M> where <M>A^\circ</M> and <M>\overline A</M>
+denotes the interior and closure of <M>A</M> in <M>(\rr,\tau_d).</M></LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+
+<EXM ref="2021.1e" paper="2021.1e"><EBODY>@{<E>
+Let <M>f:(\rr,\tau_u)\to (\rr,\tau_u)</M> be a continuous map
+(where <M>\tau_u</M> denots the usual topology on <M>\rr</M>)
+and <M>Z(f) = \{x\in\rr~:~f(x)=0\}.</M> Which of the following is
+true?<VL>
+<LI><M>Z(f)</M> must be a closed set.</LI>
+<LI><M>Z(f)</M> must be compact.</LI>
+<LI><M>Z(f)</M> must be an open set.</LI>
+<LI><M>Z(f)</M> must be connected.</LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+
+<EXM ref="2022.1e" paper="2022.1e"><EBODY>@{<E>
+Let <M>f:(X,d)\to(Y,d_1)</M> be a continuous bijection
+where <M>(X,d)</M> is a compact metric space, and <M>(Y,d_1)</M>
+is any metric space. Then which of the following is true?
+<VL>
+<LI><M>f</M> is a homeomorphism.</LI>
+<LI><M>f ^{-1} </M> is open, but not continuous.</LI>
+<LI><M>f ^{-1} </M> is closed, but not continuous.</LI>
+<LI><M>f ^{-1} </M> is continuous, but neither open nor closed.</LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.1c" paper="2022.1c"><EBODY>@{<E>
+Let <M>(X,\tau)</M> be a topological space such that for every
+point <M>p\in X,</M> the sequence <M>\{p,p,p,...\}</M> has a
+unique limit <M>p.</M> Then <M>(X,\tau)</M> is
+<HL>
+<LI><M>T_1</M> space</LI>
+<LI><M>T_2</M> space</LI>
+<LI>first countable space</LI>
+<LI>compact space.</LI>
+</HL>
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.1b" paper="2022.1b"><EBODY>@{<E>
+Let <M>(X,\tau)</M> be a topological space and <M>A\seq X.</M> It
+is false that if 
+<VL>
+<LI><M>(X,\tau)</M> is compact, then <M>(A,\tau_A)</M> is compact.</LI>
+<LI><M>(X,\tau)</M> is <M>T_2</M>, then <M>(A,\tau_A)</M> is <M>T_2.</M></LI>
+<LI><M>(X,\tau)</M> is first countable, then <M>(A,\tau_A)</M> is
+first countable.</LI>
+<LI><M>(X,\tau)</M> is <M>T_1</M>, then <M>(A,\tau_A)</M> is <M>T_1.</M></LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.1j" paper="2023.1j"><EBODY>@{<E>
+Let <M>X = [0,1)\cup [2,3]</M> be the subspace of the topological
+space <M>\rr</M> with the usual topology and <M>f:X\to\rr</M> be
+a map given by 
+<D>
+f(x) = <CASES>x<IF>0\leq x < 1</IF>2<IF>2\leq x\leq 3</IF></CASES>.
+</D>
+Then which of the following is true?
+<VL>
+<LI><M>f</M> is open and continuous.</LI>
+<LI><M>f</M> is open but not continuous.</LI>
+<LI><M>f</M> is not open but continuous.</LI>
+<LI><M>f</M> is neither open nor continuous.</LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.1i" paper="2023.1i"><EBODY>@{<E>
+Let <M>(X,\tau)</M> be an uncountable compact space
+and <M>(\rr,\tau_u)</M> be the space of real numbers with the
+usual topology. Then which of the following is false?
+<VL>
+<LI>There exists a continuous map <M>f:X\to\rr</M> which is
+unbounded.</LI>
+<LI>A map <M>f:X\to\rr</M> is
+continuous <M>\implies</M> <M>f:X\to\rr</M> is a closed map.</LI>
+<LI>If <M>f:X\to\rr</M> is a continuous map, then <M>f(X)</M> is
+closed in <M>\rr.</M></LI>
+<LI>A map <M>f:X\to\rr</M> is continuous and <M>A\in\tau</M>
+implies <M>f(X\setminus A)</M> is compact in <M>\rr.</M></LI>
+</VL>
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.1g" paper="2023.1g"><EBODY>@{<E>
+Let <M>\tau={#{\phi,\{a\},\{a,b\},X}#}</M> be a topology on <M>X
+= \{a,b,c\}.</M> Then <M>X</M> is 
+<HL>
+<LI>compact and Hausdorff.</LI>
+<LI>compact but not Hausdorff.</LI>
+<LI>only Hausdorff.</LI>
+<LI><M>T_1.</M></LI>
+</HL>
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.13a" paper="2022.13a"><EBODY>@{<E>
+<M>(\rr,\tau_C)</M> is a co-countable topological space. Is the
+set <M>[0,1]</M> a compact subspace of <M>\rr?</M>[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.14" paper="2022.14"><EBODY>@{<E>
+Prove that the set of components of a topological space forms a
+partition of that space.[5]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.15" paper="2022.15"><EBODY>@{<E>
+Let <M>(X,\tau)</M> be a any topological space and <M>\beta =
+\{X\setminus K~:~K\text{ is compact and closed in
+}(X,\tau)\}.</M> Prove that <M>\beta </M> is a basis for some
+topology <M>\tau'</M> on <M>X</M> such that <M>\tau'\seq\tau.</M>
+Prove that  <M>(X,\tau')</M> is compact.[3+2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.16a" paper="2022.16a"><EBODY>@{<E>
+<M>(X,\tau)</M> is a topological space and <M>A\seq X,</M>
+and <M>C</M> is a connected subset of <M>X</M> that intersects
+both <M>A</M> and <M>X\ \setminus A.</M> Prove that <M>C</M>
+intersects boundary of <M>A.</M>[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.16b" paper="2022.16b"><EBODY>@{<E>
+<M>f:[0,1]\to[0,1]</M> is a continuous function. Show that thee
+exists <M>C\in[0,1]</M> such that <M>f(C)=C,</M>
+where <M>[0,1]</M> is endowed with the usual subspace topology.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.17" paper="2022.17"><EBODY>@{<E>
+Prove that the union of any family of connected sets, every pair
+of which has an element in common, is a connected set in any
+topological space. Is the intersection of two connected sets
+alaways connected? Justify.[3+2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2022.13b" paper="2022.13b"><EBODY>@{<E>
+Prove or disprove: Every infinite compact subset of <M>\rr</M> is
+connected. Is the converse true? Justify.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.13a" paper="2023.13a"><EBODY>@{<E>
+Suppose <M>(X,\tau)</M> is a topological space and <M>{\cal F} =
+\{F_\alpha~:~\alpha\in \Lambda\}</M> (<M>\\Lambda </M> is an
+index set) is any family of closed subsets of <M>X</M> with the
+property that <M>\cap_{i=1}^n F_{\alpha_i} \neq \phi</M> for any
+finite subfamilty <M>\{F_{\alpha_i}~:~\alpha_i\in
+\Lambda,~~i=1,2,...,n\}</M> of <M>{\cal F}.</M> Prove
+that <M>X</M> is compact if and only if <M>\cap_{\alpha\in \Lambda} F_\alpha\neq\phi.</M>[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.13b" paper="2023.13b"><EBODY>@{<E>
+Let <M>(X,\tau_1)</M> be a <M>T_2</M> space and <M>(X,\tau_2)</M>
+be compact such that <M>\tau_1\seq \tau_2.</M> Prove that <M>\tau_1=\tau_2.</M>[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.14a" paper="2023.14a"><EBODY>@{<E>
+Prove that the set of real numbr <M>\rr</M> with lower limit
+topology is disconnected.[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.14b" paper="2023.14b"><EBODY>@{<E>
+Prove that a topological space containing a dense connected set
+is connected. [3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.15a" paper="2023.15a"><EBODY>@{<E>
+Prove that a real valued continuous function <M>f</M> on a
+compact set <M>(X,\tau)</M> attains its greatest value. [2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.15b" paper="2023.15b"><EBODY>@{<E>
+If <M>K</M> isa compact subset of a <M>T_2</M> space <M>X,</M>
+then prove that <M>K</M> is a closed set in <M>X.</M> [3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.16a" paper="2023.16a"><EBODY>@{<E>
+Prove that every closed and bounded interval of the real
+line<M>\rr</M> (i.e., <M>\rr</M> with the usual topology) is
+compact. [3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.16b" paper="2023.16b"><EBODY>@{<E>
+Prove tht each component of a topological space is closed. [2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.17a" paper="2023.17a"><EBODY>@{<E>
+If every continuois real values function on a topological
+space <M>(X,\tau)</M> takes on all values between any two values
+that it assumes, then prove that <M>(X,\tau)</M> is connected. [2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2023.17b" paper="2023.17b"><EBODY>@{<E>
+If <M>A</M> is a connected subset consisting of at least two
+points in a matic space <M>(X,d),</M> then prve that <M>A</M> is
+uncountable. [3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.13a" paper="2021.13a"><EBODY>@{<E>
+Prove or disprove: The intersection of any family of compact
+subsets of a space is compact.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.13b" paper="2021.13b"><EBODY>@{<E>
+Prove or disprove: <M>(\rr,\tau_c)</M> is a compact space, where <M>\tau_c = \{U\seq\rr~:~\text{either }\rr\setminus U\text{ is countable, or }\rr\}.</M>[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.14a" paper="2021.14a"><EBODY>@{<E>
+<M>A</M> and <M>B</M> are two compact subsets of a
+space <M>(X,\tau)</M> suchthat each point of <M>A</M> is strongly
+separated from each point of <M>B.</M> Prove that <M>A</M>
+and <M>B</M> are strongly separated in <M>X.</M>[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.14b" paper="2021.14b"><EBODY>@{<E>
+``There does not exist a continuous map from <M>[2,5]</M>
+onto <M>(1,4),</M> where <M>[2,5]</M> and <M>((1,4)</M> are
+endowed with the subspace topology of the usual topology
+on <M>\rr.</M>''--Justify the statement.[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.15a" paper="2021.15a"><EBODY>@{<E>
+In a topological space <M>(X,\tau),</M> <M>E</M> is a connected
+subset of <M>X</M> so that <M>E=A\cup B\cup C,</M> where <M>A</M>
+and <M>B</M> are separated and <M>C</M> is connected. Show
+that <M>A \cup C</M> is connected.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.15b" paper="2021.15b"><EBODY>@{<E>
+Consider <M>\rr</M> endowed with the usual
+topology, <M>f:\rr\to\rr</M> is any function such
+that <M>f(\qq)\seq\rr\setminus\qq</M>
+and <M>f(\rr\setminus\qq)\seq\qq.</M> Show that <M>f</M> is not a
+continuous function.[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.16a" paper="2021.16a"><EBODY>@{<E>
+If every real valued continuous function defined on a a
+topological space <M>X</M> takes on every value between any two
+values that it assumes, then prove that <M>X</M> is connected.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.16b" paper="2021.16b"><EBODY>@{<E>
+Prove that a continuous mapping from a connected space to the
+real line having only rational values is constant.[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.17a" paper="2021.17a"><EBODY>@{<E>
+If <M>A</M> is a connected subset of a metric space <M>(X,d)</M>
+consisting of at least two points, then prove that <M>A</M> is uncountable.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.17b" paper="2021.17b"><EBODY>@{<E>
+Find all components of the set of rational numbers endowed with
+the subspace topology from the usual topology of <M>\rr.</M>[2]
+</E>@}</EBODY><SOLN/></EXM>
 
 </NOTE>

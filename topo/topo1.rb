@@ -153,12 +153,32 @@ Take any <M>(x,y)\in V.</M>  Then
 <EXM ref="2022.8a" paper="2022.8a"><EBODY>@{<E>
 What is a metric invariant? Correct of justify: A metric invariant
 is also a topological invariant.[3]
-</E>@}</EBODY><SOLN/><DSQS/></EXM>
+</E>@}</EBODY><SOLN/>
+@{<WR>
+Let <M>(X,d)</M>  and <M>(X',d')</M>  be two metric spaces. Let <M>f:X\to X'</M>  be a bijection such that <M>\forall a,b\in X~~d'(f(a),f(b)) = d(a,b).</M>
+Any property of <M>(X,d)</M>  that is preserved by any such map is called a metric invariant. 
+
+The statement is not correct. For instance, the property that ''three points are equidistant from each other'' is a metric
+ invariant. But it is not topological invariant. 
+
+However, every topological invariant property is also metic invariant, because any such <M>f</M>  must be a homeomorphism.
+ </WR>@}
+<DSQS/></EXM>
 
 <EXM ref="2022.4b" paper="2022.4b"><EBODY>@{<E>
 Let <M>(X,d)</M> be a metric space and <M>A\seq X.</M> Prove
 that <M>\bar A=\{x\in X~:~d(x,A)=0\}</M>.[2]
-</E>@}</EBODY><SOLN/><DSQS/></EXM>
+</E>@}</EBODY><SOLN/>
+@{<WR>
+Pick any <M>b\in \bar A.</M>  If <M>x\in A,</M>  then done. Otherwise <M>x\in A'.</M>  Then
+ <M>\forall n\in\nn~~\exists a_n\in
+ A\setminus\{x\}~~d(a_n,b)<[[1n]].</M>  
+
+So <M>\forall n\in\nn~~d(b,A)\leq [[1n]].</M>  Thus <M>d(b,A) = 0,</M>  as required. 
+
+Conversely, let <M>d(x,A)=0.</M> 
+</WR>@}
+<DSQS/></EXM>
 
 <EXM ref="2023.4" paper="2023.4"><EBODY>@{<E>
 Define topologically equivalent metrics on a non-empty
@@ -231,7 +251,7 @@ co-countable topology on <M>X.</M></LI>
 <LI>There exists a metric on <M>X</M> which generates the
 topology on <M>X.</M> </LI>
 </VL>
-</E>@}</EBODY><SOLN/>sheSerTAi khAli bhul, kAraN @{<E>first countable</E>@}  nay.<DSQS/></EXM>
+</E>@}</EBODY><SOLN/>sheSerTAi khAli bhul, kAraN @{<M>T_2</M>@} nay.<DSQS/></EXM>
 @{<HEAD2>General</HEAD2>@}
 
 <EXM ref="2021.1a" paper="2021.1a"><EBODY>@{<E>
@@ -261,7 +281,7 @@ following is true?
 <LI><M>A</M> must be an open set.</LI>
 </VL>
 </E>@}</EBODY><SOLN/>@{<M>A</M>@}  abaShyai @{<M>X</M>@}-we madhye @{<E>dense</E>@}  habe. seTAi
- @{<E>dense</E>@}  habAr sa.njnA. bAkigulo nAi hate pAre. yeman prathamTA
+ @{<E>dense</E>@}  habAr sa.njnA. bAkigulo nAi hate pAre. yeman prathamTAr
  @{<E>counterexample</E>@}  hala @{<M>X=\rr</M>@}  (@{<E>usual topology</E>@}) Ar @{<M>A =
  (-\infty,0)\cup(0,\infty).</M>@}  eTA trritIyaTAr belAteo @{<E>counterexample.</E>@}  chAr
  nambarer janya @{<E>counterexample</E>@}  habe @{<M>\rr</M>@}-er madhye @{<M>\qq.</M>@}  <DSQS/></EXM>
@@ -713,7 +733,7 @@ Then <M>\sigma\seq\tau,</M>  since <M>\tau</M>  is the largest topology.
 
 <M>\tau</M>  has a basis <M>\{~\{n\}~:~n\in\nn~\}.</M>  
 
-Now for <M>n\geg 2</M>  we have <M>\{n\} = (n-1,n+1)</M>  in <M>\nn.</M>  Since <M>(n-1,n+1)\in\sigma,</M> hence <M>\{n\} \in\sigma.</M>
+Now for <M>n\geq 2</M>  we have <M>\{n\} = (n-1,n+1)</M>  in <M>\nn.</M>  Since <M>(n-1,n+1)\in\sigma,</M> hence <M>\{n\} \in\sigma.</M>
 
 Also <M>\{1\} = (-\infty,2)\in\sigma.</M>  
 

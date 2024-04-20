@@ -1,0 +1,1122 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Connected">Connected</a>
+</li>
+<li>
+<a href="#Separable and countable">Separable and countable</a>
+</li>
+</ul>
+<hr/>
+<p></p>
+
+<h1><a
+name="Connected">Connected</a></h1>
+
+<p>
+<b>EXAMPLE (2022.1d):</b>&nbsp;
+A connected subset $G$ of the real line ${\mathbb R}$ with at
+least two points must be
+
+<li>a finite set</li>
+
+<li>a bounded set</li>
+
+<li>an infinite closed set</li>
+
+<li>an uncountable set.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">Connected subsets of ${\mathbb R}$  under the usual topology are the intervals. An interval
+ with at least two (distinct) points is an uncountable set. The last option is correct.</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1h):</b>&nbsp;
+A continuous function $f$ from an infinite connected
+space $(X,\tau)$ to a discrete two-point
+space $\{0,1\}$ 
+
+<li>must be constant.</li>
+
+<li>must be non-constant.</li>
+
+<li>is not closed.</li>
+
+<li>is not open.</li>
+ 
+
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $f:X\rightarrow\{0,1\}$  be continuous. Now $\{0\}$  and $\{1\}$  are both open in the codomain. 
+<p></p>
+So $f ^{-1}(\{0\})$  and $f ^{-1}(\{1\})$  must be open in the domain. Also, these are complements of each other.
+ Hence both must be closed. 
+<p></p>
+So both are clopen. Since the domain is connected, hence the only clopen subsets in it are $\phi$  and $X.$  
+<p></p>
+So either $f ^{-1}(\{1\}) = X$  and $f ^{-1}(\{0\}) = \phi,$  or $f ^{-1}(\{1\}) = \phi$  and $f ^{-1}(\{0\}) = X.$
+<p></p>
+In either case, $f $ is a constant function, as required.
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<h1><a
+name="Separable and countable">Separable and countable</a></h1>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.9a):</b>&nbsp;
+Give example of a topological space which is $T_1$ but
+not $T_2.$ Justify your answer. [2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+${\mathbb R}$  with cofinite topology is one such example. 
+<p></p>
+Let $a\neq b\in{\mathbb R}.$  
+<p></p>
+Then $\{a\}^c$  is an open neighbourhood of $b$  that does not contain $a.$  Hence $T_1.$
+<p></p>
+We consider $0\neq 1\in{\mathbb R}.$   Let $A$ and $B$   be any open neighbourhoods of $0$  and $1$, respectively.
+ Then both $A, B$  are cofinite, and since ${\mathbb R} $ is infinite, both must be infinite. So $A\not\subseteq B^c$ 
+ and $B\not\subseteq A^c.$  Hence $A\cap B\neq\phi.$  
+<p></p>
+So the space is not $T_2.$
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.9b):</b>&nbsp;
+Prove that a topological space $(X,\tau)$ is $T_1$ if
+and only if every neighbourhood of any limit point $p$ of
+any set $A\subseteq X$ intersects $A$ in countably infinite
+number of points.[2+3]
+<p></p>
+<b>SOLUTION:</b>
+অংকটার ভাষা নিয়ে একটু সমস্যা আছে৷ আমরা জানি যে, usual topology  নিলে ${\mathbb R}$  হল $T_1.$  
+এর মধ্যে একটা set  নিতে পারি $A=(0,1)$  যার একটা limit point  হল
+ $\frac 12.$  এর যেকোনো neighbourhood-ই $A$-কে uncountably
+ infinite-সংখ্যক বিন্দুতে intersect  করে৷   তবে এখানে countably infinite  বলেছে কেন? 
+এটা অনেকটা সেই ''কোন্ কোন্ মাসে আঠাশ দিন আছে?'' প্রশ্নটার মত৷ যেহেতু বলিনি ''কেবলমাত্র আঠাশ দিনই আছে'', 
+তাই উত্তর হল সব মাসেই আঠাশ দিন আছে৷ এখানেও তেমনি countably infinite -এর মধ্যে uncountably infinite -ও 
+ধরা আছে৷ বস্তুতঃ এখানে স্রেফ ''infinite'' বললেই সবচেয়ে ভালো হত৷  
+<b><font color="#0000cc">
+Let $U_1$  be any neighbourhood of $p.$  
+<p></p>
+Since $p $ is a limit point of $A,$  hence $A\cap U_1$  contains at least one point $q_1$  other than $p.$ 
+<p></p>
+Since the space is $T_1,$  we can find some neighbourhood $U_2$  of $p$  such that
+ $q_1\not\in U_2.$  As before we can find $q_2\neq p$  in $A\cap U_2.$  
+<p></p>
+Clearly, $q_1\neq q_2,$  since $q_1\not\in U_2 $ and $q_2\in U_2.$  
+<p></p>
+Again, by $T_1$  property, we can find neighbourhoods $U_3$  of $p$  such that
+ $q_1, q_2\not\in U_3. $   and find $q_3\in A\cap U_3. $  
+<p></p>
+Continuing in this way we can produce a (countably) infinite sequence of distinct points in $A\cap U_1.$  
+<p></p>
+Conversely, let the given condition hold. Let, if possible, the space be not $T_1.$  
+<p></p>
+Then we can find two distinct points $a,b$  that cannot be weakly separated.
+<p></p>
+Then every neighbourhood of $a$  contains $b.$  Hence $a$  is a limit point of
+ $\{b\}.$  But since $\{b\}$  is a just a finite set, not neighbourhood of $a$  can
+ intersect $\{b\}$  at infinitely many points. This contradicts the given condition.   
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.12b):</b>&nbsp;
+Prove that ${\mathbb R}$ endowed with cofinite topology is not a
+first countable space.[2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Let, if possible, the space be first countable. Then there is countable local base $A_1,A_2,...$  at $0.$  
+<p></p>
+Each $A_1^c$  is finite. Let $B = \cup_n A_n^c.$  Then $B$  is countable. 
+<p></p>
+Since ${\mathbb R}$  is uncountable, hence $B^c$  is uncountable. 
+<p></p>
+We pick some $r\in B^c$ such that $r\neq 0.$   Then $\{r\}^c$  is a neighbourhood of $0.$  However, it
+cannot be expressed as the union of any number of $A_n$'s. 
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1d):</b>&nbsp;
+An uncountable set with cofinite topology is
+
+<li>both $T_1$ and first countable space.</li>
+
+<li>both $T_2$ and first countable space.</li>
+
+<li>a first countable space, but not a $T_2$ space.</li>
+
+<li>neither a first countable space nor a $T_2$ space.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>
+আগেই দেখিয়েছি যে, $T_2$  নয়, এবং  first countable-ও নয়৷ 
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1f):</b>&nbsp;
+Let $(X,\tau)$ be a co-countable space, where $X$ is an
+uncountable set. Then which of the following is true?
+
+<li>$(X,\tau)$ is a first countable space.</li>
+
+<li>$(X,\tau)$ is a Hausdorff space.</li>
+
+<li>There exists a convergent sequence in $X$ whose limit
+is not unique.</li>
+
+<li>A sequence $\{x_n\}$ in $X$ is convergent if and
+only if there is some positive integer $m$ such that for
+all $n\geq m$ $x_n=$ constant.</li>
+
+
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1f):</b>&nbsp;
+The number of $T_1$ topologies that can be defined on a
+finite set with $n$ elements is 
+<li>1</li>
+<li>$n$</li>
+<li>$2^n$<li>$n-1.$</li>
+</li>
+
+<p></p>
+<b>SOLUTION:</b>Discrete topology-ই খালি হতে পারে৷ যদি $n=2$  হয়,
+ তবে দুটো point-কে weakly spearate  রাখার একটাই পথ, ওদেরকে আলাদা করে
+ নিয়ে open  set  বানানো৷ 
+<p></p>
+যদি $n\geq 3 $ হয়, তবে ধরো point-গুলো হল $a_1,...,a_n.$ 
+তুমি $a_1$  আর $a_i$-কে weakly spearate  করার জন্য
+ $a_1$-এর এমন একটা neighbourhood  চাইবে, যাতে $a_i$  নেই৷ এটা সব
+ $i=2,...,n$-এর জন্য খাটে৷ এই neighbourhood-গুলোর intersection 
+ একটা open  set  হবে৷ সেটা তো স্রেফ $\{a_1\}.$  একইভাবে প্রতিটা
+ $\{a_i\}$-ই একেকটা open  set.   ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.12b):</b>&nbsp;
+If $(X,\tau)$ is a $T_1$ space and every intersection
+of open sets is open in $(X,\tau),$ prove that $\tau$
+is the discrete topology on $X.$[2]
+<p></p>
+<b>SOLUTION:</b>আগের অংকের যুক্তিটাই খাটবে৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.9a):</b>&nbsp;
+Show that every metric space is a first countable space, but not
+necessarily second countable.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+If $(X,d)$  is a metric space, then at each point $p$  a countable local base is
+ $\left\{N\left(p,\frac 1n \right)~:~n\in{\mathbb N}\right\}.$
+<p></p>
+Consider the space ${\mathbb R}$  under the metric $d(x,y) =\left\{\begin{array}{ll}1&\text{if }x\neq y\\ 0&\text{otherwise.}\end{array}\right.. $  The topology
+induced by this metric is the discrete topology, where each singleton is a open set. Hence any base must contain all the
+ singletons. Since ${\mathbb R}$  is an uncountable set, any base must be uncountable.
+<p></p>
+So this metric space is not second countable. 
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.9b):</b>&nbsp;
+Let $X$ be an uncountable set, and $p$ be a fixed point
+in $X.$ Consider the topology $\tau=\{A\subseteq X~:~p\in
+A\}\cup\{\phi\}$ on $X.$ Examine whether $(X,\tau)$
+is a second countable space.[1+2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+No, it is not second countable. 
+<p></p>
+Let $q\neq p.$  Then $\{p,q\}$ 
+ is an open set, but $\{q\}$  is not. So $\{p,q\}$  must be in any base. But $q$  may be taken in uncountably
+ infinitely many ways. So any base must be uncountably infinite.
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.11a):</b>&nbsp;
+Let $(X,\tau)$ be a topological space and ${\cal B}$ a
+local base at $c\in X.$ Prove that a
+sequence $\{x_n\}_n$ converges to $c\in X$ if and only
+if for every $B\in{\cal B}$ there exists a positive
+integer $m$ such that for all $n\geq m,$ $x_n\in
+B.$ [3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+<u>(If part)</u>: Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall U\in \tau\mbox{ with } $c\in U$~~\exists K\in{\mathbb N}~~\forall n\geq K~~x_n\in U.$
+<p></p>
+
+<div class="box">$\forall U$</div> Take any $U\in\tau$  with $c\in U.$  
+<p></p>
+Then $\exists B\in {\cal B}~~c\in B\subseteq U.$  
+<p></p>
+By the given condition, $\exists m\in{\mathbb N}~~\forall n\geq m~~x_n\in B.$
+<p></p>
+
+<div class="box">$\exists K$</div> Choose $K = m\in{\mathbb N}.$  
+<p></p>
+
+<div class="box">$\forall n$</div> Take any $n\geq K.$
+<p></p>
+
+<div class="box">Check</div>Then $x_n\in B\subseteq U,$  as required.
+<p></p>
+
+<u>(Only if part)</u>: Shall show 
+<p></p>
+
+<div class="box">Target</div>$\forall B\in {\cal B}~~\exists K\in{\mathbb N}~~\forall n\geq K~~x_n\in B.$
+<p></p>
+
+<div class="box">$\forall B$</div> Take any $B\in{\cal B}.$
+<p></p>
+Since $B\in\tau,$  hence $\exists K\in{\mathbb N}~~\forall n\geq K~~x_n\in B.$
+<p></p>
+
+<div class="box">$\exists K$</div> Choose this $K\in{\mathbb N}.$
+<p></p>
+
+<div class="box">$\forall n$</div> Take any $n\geq K.$
+<p></p>
+
+<div class="box">Check</div>Then $x_n\in B,$  as required.
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.10):</b>&nbsp;
+Let $(X,\tau)$ be a first countable space and $f:X\rightarrow
+Y$ be any function ($Y$ being any topological space) such
+that for any sequence $\{x_n\}$ converging to any
+point $x\in X,$ the sequence $\{f(x_n)\}$ converges
+to $f(x).$ Prove that $f$ is continuous on $X.$[5]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let, if possible, $f$  be not continuous. 
+<p></p>
+Then we can find some open $V$ in $Y$ such that $U = f ^{-1} (V)$ 
+  is not open in $X.$
+<p></p>
+Since $U$  is not open, hence we can pick some $a\in U$  such that no neighbourhood of $a$  is completely
+ inside $U.$  
+<p></p>
+Let $\{B_n\}$  be a  local base at $a.$
+<p></p>
+Then $\forall n\in{\mathbb N}~~\exists x_n\in B_n\setminus U.$  
+<p></p>
+Thus we have a sequence $\{x_n\}_n.$   Since this is sequence is outside $U,$  hence $f(x_n)$  is outside
+ $V.$  Hence $f(x_n)\not\rightarrow f(a).$  
+<p></p>
+However, $x_n\rightarrow a.$   (why?)
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.11):</b>&nbsp;
+Let $f:X\rightarrow Y$, $g:X\rightarrow Y$ be two continuous functions
+from a topological space $(X,\tau)$ to a Hausdorff
+space $(Y,\sigma).$ Prove that
+<p></p>
+(a) $F = \{x\in X~:~f(x)=g(x)\}$ is a closed set.
+<p></p>
+(b) $f|_D = g|_D\Rightarrow f=g,$ where $\bar D = X.$[3+2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+(a) Let $a\in F^c.$  Then $f(a)\neq g(a).$  Since $(Y,\sigma)$  is Hausdorff, $\exists U,V\in\sigma$ 
+ such that $f(a)\in U,$  $f(b)\in V$  and $U\cap V=\phi.$  
+<p></p>
+So $f ^{-1} (U)$  and $g ^{-1} (V)$  are open sets in $X.$  
+<p></p>
+Let $W  = f ^{-1}(U)\cap g ^{-1}(V).$  It is an open set containing $a.$  
+<p></p>
+For each $x\in W$  we have $f(x)\in U$  and $g(x)\in V.$   Since $U\cap V = \phi,$  hence $F(x)\neq g(x).$
+<p></p>
+So $W\subseteq F^c,$  proving that $F $ is open in $X.$
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.12a):</b>&nbsp;
+A $G_\delta $ set in a space $X$ is a set that equals a
+countable intersection of open sets of $X.$ Show that
+if $X$ is a first countable $T_1$-space, every
+singleton set is a $G_\delta $ set.[3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Take any $a\in X. $  Since $X$  is first countable, hence there is a countable local base $\{B_n~:~n\in{\mathbb N}\}.$ 
+<p></p>
+Claim: $\cap _n B_n = \{a\}.$  
+<p></p>
+Justification: Clearly $a\in \cap_n B_n.$  Let $b\in X$  wher $b\neq a.$  Since $X $ is $T_1,$ 
+ we can find a neighbourhood $U$  of $a$  such that $b\not\in U.$  
+<p></p>
+Now, there is some $k\in{\mathbb N}$  such that $a\in B_k\subseteq U.$  
+<p></p>
+Hence $b\not\in\cap_n B_n.$  Since $b\neq a$  is arbitrary, the claim is justified.///
+<p></p>
+Hence $\{a\}$  is a $G_ \delta$  set, as required.  
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.10):</b>&nbsp;
+Let $X$ be an uncountable set and $p$ be a fixed point
+in $X.$ Define 
+$$\tau = \{G\subseteq X~:~\text{either } p\not\in G\text{ or if }p\in G\text{ then } X\setminus G\text{ is finite}.\}$$
+Prove that $(X,\tau)$ is a topological space which is not
+first countable. [2+3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+<u>First part</u>:  $\bc\not\in \phi,$  $\tf \phi\in\tau.$
+<p></p>
+$\bc p\in X $ and $X $ is cofinite, $\tf X\in\tau.$
+<p></p>
+Let $\{G_ \alpha~:~\alpha\in A\}\subseteq \tau.$   If $\exists \alpha\in A~~(p\in G_ \alpha$  and $G$  is cofinite$),$ 
+ then so is $\cup_{\alpha\in A} G_ \alpha, $ and hence $\cup_{\alpha\in A} G_ \alpha\in\tau.$
+<p></p>
+Otherwise, $\forall \alpha\in A~~p\not\in G_ \alpha.$  Hence $p\not\in \cup_{\alpha\in A} G_ \alpha.$
+<p></p>
+Hence $\cup_{\alpha\in A} G_ \alpha\in\tau.$
+<p></p>
+Let $H_1, H_2\in\tau.$  If $p\notin H_1 $ or $p\notin H_2, $  then $p\notin H_1\cap H_2. $  Hence $H_1\cap H_2\in\tau.$
+<p></p>
+Otherwise, $p\in H_1,H_2$  and both $H_1,H_2$  are cofinite. So $p\in H_1\cap H_2$  and $H_1\cap H_2$ 
+ is cofinite. So $H_1\cap H_2\in\tau.$  
+<p></p>
+Hence $\tau$  is a topology.
+<p></p>
+
+<u>Second part</u>: 
+<p></p>
+Let, if possible, the topology be first countable. Let a countable local base at $p $ be $\{B_n~:~n\in{\mathbb N}\}.$
+<p></p>
+Since each $B_n$  contains $p,$  hence each $B_n$  is cofinite. 
+<p></p>
+Let $C = \cup_n B_n^c,$  which is a countable union of finite sets, and hence countable. Since $X$  is uncountable,
+ $C^c\neq\phi.$  
+<p></p>
+We take any  $x\in C.$. Then  $\{x}^c$  is an open set containing $p.$  
+<p></p>
+So there must be some $n\in{\mathbb N}$  such that $B_n\subseteq\{x\}^c,$  ie, $c\in B_n^c(\contra\bc x\in C^c).$   
+<p></p>
+
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.11b):</b>&nbsp;
+Consider a topology $\eta$ on ${\mathbb R}$ given by $\eta =
+\{U\subseteq{\mathbb R}~:~\text{ either } 1\not\in U \text{ or } {\mathbb R}\setminus
+U\text{ is finite}\}.$ Prove that $({\mathbb R},\eta)$ is not
+first countable.[2]
+<p></p>
+<b>SOLUTION:</b>আগেরটার মতই৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.11b):</b>&nbsp;
+Let $f:(X,\tau_1)\rightarrow(Y,\tau_2)$ be an open, continuous
+surjective map, where $X$ is first countable. Prove
+that $Y$ is first countable.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $y\in Y.$  Since $f$  is surjective, $y = f(x)$  for some $x\in X.$
+<p></p>
+Since $X$  is first countable, there is a countable local base $\{B_n~:~n\in{\mathbb N}\}$  at $x.$  
+<p></p>
+Let $U_n = f(B_n).$
+<p></p>
+Since $f$  is an open map, hence $U_n$'s are all open. 
+<p></p>
+Shall show that $\{U_n~:~n\in{\mathbb N}\}$  is a local base at $y.$  
+<p></p>
+We take any open set $V$  in $Y$  such that $y\in V.$  
+<p></p>
+Since $f $ is continuous, $f ^{-1} (V)$  is open in $X.$ Also, its contains $x.$  
+<p></p>
+So there is some $n\in{\mathbb N}$  such that $B_n\subseteq f ^{-1}(V).$  So $f(B_n)\subseteq V,$  ie, $U_n\in V.$
+<p></p>
+Hence the result.
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.11a):</b>&nbsp;
+$f:(X,\tau)\rightarrow (Y,\tau')$ is a open, continuous surjection,
+and $(X,\tau)$ is a first countable space. Prove
+that $Y$ is first countable.[3]
+<p></p>
+<b>SOLUTION:</b>আগের অংকটাই৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.12a):</b>&nbsp;
+$f:(X,\tau)\rightarrow (Y,\tau')$ is  continuous and injective,
+where $Y$ is a Hausdorff space. Show that $X$ is Hausdorff.[3]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Let $a,b\in X$  be distinct. (If no such distinct pair, then vacuously Hausdorff.)
+<p></p>
+Since $f$  is injective, $f(a)$  and $f(b)$  are distinct in $Y.$  Since
+ $Y$  is Hausdorff, can find disjoint open sets $A$  and $B$  in $Y$  such
+ that $f(a)\in A$ and $f(b)\in B.$  
+<p></p>
+Since $f$  is continuous, hence $f ^{-1}(A)$ and $f ^{-1}(B)$  are open. Also they are disjoint.
+<p></p>
+Since $a\in f ^{-1}(A)$  and $b\in f ^{-1}(B)$, hence they provide a strong separation of $a,b.$
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.12a):</b>&nbsp;
+If $(X_1,\tau_1)$ and $(X_2,\tau_2)$ are two $T_2$
+spaces, then prove that their product space $(X,\tau)$ is
+also a $T_2$ space. [3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $(a_1,a_2),(b_1,b_2)$  be two distinct points in $ X=X_1\times X_2.$  
+<p></p>
+Then  $a_1,b_1\in  X_1$  and $a_2,b_2\in X_2.$
+<p></p>
+
+<u>Case I: $a_1\neq b_1$  </u>: Since $X_1$  is $T_2,$  we can find two disjoint open sets $A_1,B_1$ in $X_1$
+such that $a_1\in A_1$ and $b_1\in B_1.$  
+<p></p>
+Also we take any two open sets $A_2,B_2$ in $X_2$   such that $a_2\in A_2$  and $b_2\in B_2.$  
+<p></p>
+Then $A_1\times A_2$  and $B_1\times B_2$  are disjoint open sets in $X$ 
+ containing $(a_1,b_1)$  and $(a_2,b_2)$, respectively. 
+<p></p>
+ 
+<u>Case I: $a_1= b_1$</u>: Then we must have $a_2\neq b_2.$ We repeat the above agument
+ with $X_2$ this time, since $X_2 $ is also Hausdorf.
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.12b):</b>&nbsp;
+Let $f:(X,\tau_1)\rightarrow(Y,\tau_2)$ be a continuous map,
+and $Y$ be $T_2.$ Prove that the
+set $\{(x,f(x))~:~x\in X\}$ is a closed set in $X\times
+Y,$ where $X\times Y$ is endowed with the product topology.[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Let $G=\{(x,f(x))~:~x\in X\}.$  We take any $(a,b)\in (X\timesY)\seminus G.$
+<p></p>
+So $b\neq f(a).$  Since $Y$  is $T_2,$  hence can find two disjoint open sets $U$  and $V$  in $Y$ 
+ such that $f(a)\in U$  and $b\in V.$  
+<p></p>
+Since $f$  is continuous, $f ^{-1}(U)$  and $f ^{-1}(V)$   open in $X.$  Also these are disjoint.
+<p></p>
+Clearly, $a\in f ^{-1}(U).$   
+<p></p>
+Consider the open set $f ^{-1}(U)\times V$  in $X\times Y.$  It contains $(a,b).$
+<p></p>
+Also $\forall x\in f ^{-1}(U)~~f(x)\in U,$  and hence $\forall x\in f ^{-1}(U)~~f(x)\not\in V.$  
+<p></p>
+So $f ^{-1}(U)\times V\subseteq G^c,$  completing the proof.
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.2):</b>&nbsp;
+Let $(X,\tau)$ be the topological product of the family of
+topological spaces $\{(X_i,\tau_i)~:~i=1,2,...,n\}$
+and $p_i:X\rightarrow X_i$ denote the $i$-th projection map for
+all $i=1,...,n.$ Prove that
+<p></p>
+(a) $p_i$ is an open map for each $i.$
+<p></p>
+(b) $\tau$ is the smallest topology on $X$ such that
+each $p_i$ is continuous.[2+3]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+(a) Let $U$  be an open set in the product topology. Shall show that $p_i(U)$  is open in $X_i.$  
+<p></p>
+Take any point $a\in p_i(U).$  Then there is some point $b\in U$   such that $a = p_i(b).$  
+<p></p>
+Since rectangles form a base in the product topology, $\forall k$  there must exist open sets
+ $U_k$  in $X_k$  such that $b\in U_1\times\cdots\times U_n\subseteq U.$
+<p></p>
+So $p_i(b)\in p_i(U_1\times\cdots\times U_n)\subseteq p_i(U),$  ie, $a\in U_i\subseteq p_i(U).$
+<p></p>
+Hence $p_i(U)$  is open in $X_i,$  as required.   
+<p></p>
+(b) To make $p_i$'s continuous, we need to have all sets of the form $X_1\times\cdots X_{i-1}\times U_i\times X_{i+1}\times\cdots X_n$ 
+ in the topology, where $U_i$  is any open set in $X_i.$
+<p></p>
+Taking finite itersections, the topology must contain all rectangles. Since these constitute a base for  $\tau,$   we
+ must have $\tau$  inside the topology, completing the proof.
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.3):</b>&nbsp;
+Prove that a topological invariant is a metric invariant. Is the
+converse ture? Justify.[3+2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.4):</b>&nbsp;
+Let $(X,d)$ be  a metric space and $A$ be a non-empty
+subset of $X.$ Prove that the
+functions $f_A:(X,\tau(d))\rightarrow{\mathbb R}$ defined by $f_A(x) =
+\inf\{d(x,a)~:~a\in A\},$ for all $x\in X,$ is continuous
+on $X$ (where $\tau(d)$ denotes the metric topology
+on $X$ induced by $d$). Hence prove that for
+any $A\subseteq X,$$$
+\overline A = \{x\in X~:~d(x,A)=0\}
+$$
+in $(X,\tau(d)).$[3+2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall \alpha\in{\mathbb R} ~~\ub{f_A ^{-1}(-\infty,\alpha)\in\tau(d)}_G.$
+<p></p>
+
+<div class="box">$\forall \alpha$</div> We take any $\alpha\in{\mathbb R}$. 
+<p></p>
+
+<div class="box">Check</div>If $G=\phi,$  and hence $G\in\tau.$  
+<p></p>
+Otherwise, we take any $x\in G.$  
+<p></p>
+Then $\inf\{d(x,a)~:~a\in A\} &lt; \alpha.$
+<p></p>
+Let $\epsilon = \alpha-\inf\{d(x,a)~:~a\in A\}&gt;0.$
+<p></p>
+Then $N\left(x,\frac \epsilon2\right)\subseteq G.$
+<blockquote>
+<b>Because:</b>
+Take any $y\in N\left(x,\frac \epsilon2\right)$  and any $a\in A.$
+<p></p>
+Then, by triangle inequality, $d(a,y) \leq d(a,x)+\d(x,y) &lt; d(a,x) + \epsilon.$
+<p></p>
+So, taking infimum over $a\in A$ , we have 
+$$f_A(y) \leq  f_A(x) + \frac \epsilon2 &lt; \alpha-\frac \epsilon2 &lt; \alpha.$$
+</blockquote>  
+Hence $G\in\tau(d).$
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.5):</b>&nbsp;
+(a) $\tau$ is the usual topology on ${\mathbb R}$
+and $\tau'=\{A\cup B~:~A\in\tau,~~B\subseteq {\mathbb R}\setminus{\mathbb Q}\}.$
+Prove that $\tau'$ is a topology on ${\mathbb R}$ which is
+finer than $\tau.$
+<p></p>
+(b) Find the interior of the set $\{\sqrt2+n~:~n\in{\mathbb N}\}$
+in $({\mathbb R},\tau').$ [3+2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+(a) 
+<p></p>
+
+<u>$\tau'$  is a topology</u>: $\phi\in\tau$  and $\phi\subseteq {\mathbb Q}^c.$  Hence
+ $\phi = \phi\cup\phi\in\tau'.$
+<p></p>
+Again, ${\mathbb R}\in\tau.$  So ${\mathbb R} = {\mathbb R}\cup\phi\in\tau'.$
+<p></p>
+Let $\{G_ \alpha~:~\alpha\in \Lambda\}\subseteq\tau'.$  
+<p></p>
+Then $\forall \alpha\in ^{-1}~~ G_ \alpha = A_ \alpha \cup B_ \alpha$  
+for some $A_ \alpha\in\tau$  and some $B_ \alpha\in{\mathbb Q}^c.$
+<p></p>
+Hence 
+$$\cup_{\alpha\in \Lambda} G_ \alpha = \ub{\cup_{\alpha\in \Lambda} A_ \alpha}_A \bigcup \ub{\cup_{\alpha\in \Lambda} B_ \alpha}_B \in\tau',$$ 
+since $A\in\tau$  and $B\subseteq{\mathbb Q}^c.$
+<p></p>
+Finally, let $G_1,G_2\in\tau'.$  Then $G_i = A_i\cup B_i $ for $i=1,2$  for some $A_1,A_2\in\tau $ and
+ $B_1,B_2\subseteq{\mathbb Q}^c.$  
+<p></p>
+So 
+$$G_1\cap G_2 = (A_1\cap A_2)\cup (B_1\cap B_2)\in\tau',$$
+since $A_1\cap A_2\in\tau$  and $B_1\cap B_2\subseteq{\mathbb Q}^c.$
+<p></p>
+
+<u>$\tau'$  is finer than $\tau$</u>:
+<p></p>
+Since $\phi\subseteq{\mathbb Q}^c,$  hence $\forall A\in\tau~~A = A\cup\phi\in \tau'.$
+<p></p>
+(b) Let $C=  \{\sqrt2+n~:~n\in{\mathbb N}\}.$  
+<p></p>
+Since $\phi\in\tau$  and $\forall n\in{\mathbb N}~~\sqrt2+n\in{\mathbb Q}^c,$  we see that $\{\sqrt2+n\} = \phi\cup\{\sqrt2+n\}\in\tau'.$
+<p></p>
+Thus, each singleton subset of $C$  is open wrt $\tau'.$  Hence the required interior is $C$  itself.
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.6a):</b>&nbsp;
+Prove that an isometry $f:(X,d)\rightarrow(Y,d')$ is a homeomorphism
+from $(X,\tau(d))$ to $(Y,\tau(d')).$
+(Here $(X,d)$ and $(Y,d')$ are two metric spaces,
+and $\tau(d)$ and $\tau(d')$ are the topologies
+generated by the corresponding metric on $X$ or $Y,$ respectively.)[3]
+<p></p>
+<b>SOLUTION:</b>
+এখানে ভাষার সামান্য সমস্যা আছে৷ Isometry  মানে এমন function, যেটা দূরত্ব রক্ষা করে, মানে $x_1,x_2$-র 
+মধ্যে দূরত্ব যা, $f(x_1), f(x_2)$-এর মধ্যের দূরত্বও তা-ই হবে৷ এর মধ্যে কোথাও onto  ধরা নেই৷ 
+কিন্তু এখানে সেটা ধরে নিতে হবে৷ 
+<b><font color="#0000cc">
+We assume that $f$  is onto.
+<p></p>
+Since $f$  is an isometry, it is one-one.
+<blockquote>
+<b>Because:</b>
+$x_1\neq x_2\Rightarrow d(x_1,x_2) &gt; 0 \Rightarrow d'(f(x_1),f(x_2))= d(x_1,x_2)&gt; 0\Rightarrow f(x_1)\neq f(x_2).$
+</blockquote>
+Shall show that $f $ is continuous, ie
+<p></p>
+
+<div class="box">Target</div>$\forall U\in \tau(d')~~f ^{-1}(U)\in\tau(d).$
+<p></p>
+
+<div class="box">$\forall U$</div> We take any $U\in\tau(d').$  
+<p></p>
+If $f ^{-1} (U)=\phi,$  then done.
+<p></p>
+Otherwise, let $a\in f ^{-1}(U).$
+<p></p>
+Then $f(a)\in U.$  Since $U\in\tau(d'),$  hence $f(a)\in N_{d'}(f(a),\epsilon)\subseteq U$  for some $\epsilon&gt;0.$
+<p></p>
+Hence $a\in f ^{-1}\big(N_{d'}(f(a),\epsilon) \big)\subseteq f ^{-1}(U).$
+<p></p>
+But, since $f$  is an isometry, hence $N_{d'}(f(a),\epsilon) \big) = N_d(a,\epsilon).$
+<p></p>
+Hence $a\in N_d(f(a),\epsilon) \big)\subseteq f ^{-1}(U).$
+<p></p>
+So $f ^{-1}(U)\in\tau(d).$
+<p></p>
+Next, let $V\in\tau(d).$  Shall show that $f(V)\in\tau(d').$  
+<p></p>
+We take any $b\in f(V).$  Then $f ^{-1}(b)\in V.$  
+<p></p>
+Since $V\in\tau(d),$  hence $N_d(f ^{-1}(b),\delta) \subseteq V.$
+<p></p>
+Hence $f\big(N_d(f ^{-1}(b),\delta) \big) \subseteq f(V).$
+<p></p>
+But, since $f$  is an isometry, hence $f\big(N_d(f ^{-1}(b),\delta) \big)  = N_{d'}(f(b),\delta).$
+<p></p>
+Hence $N_{d'}(f(b),\delta)\subseteq f (V)$  proving that $f(V)\in\tau(d').$  
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.6b):</b>&nbsp;
+If $\{A_\alpha~:~\alpha\in \Lambda\}$ is an infinite family
+of subsets in any topological space $(X,\tau),$ then the
+equality $\overline{\cup_{\alpha\in \Lambda} A_\alpha} = \cup_{\alpha\in \Lambda} \overline{A_\alpha}$ is always
+true--correct or justify.[2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+The result is not correct. 
+<p></p>
+
+<u>Counterexample</u>: ${\mathbb R}$  with usual topology. $A_n=\left\{ \frac 1n \right\}$  for $n\in{\mathbb N}.$  
+Then $\overline{\cup_n A_n}=  \{0\}\cup \cup_n A_n.$
+<p></p>
+But $\cup_n \overline A_n}=  \cup_n A_n,$  which does not contain $0.$ 
+<p></p>
+A possible correction is: 
+$\cup_{\alpha\in \Lambda} \overline{A_\alpha}\subseteq \overline{\cup_{\alpha\in \Lambda} A_\alpha}.$ 
+<p></p>
+This is correct, because if  $A= \cup_ \alpha A_ \alpha$, then $\forall \alpha~~A_ \alpha\subseteq A.$  Hence $\forall \alpha~~\overline A_ \alpha\subseteq \overline A.$
+<p></p>
+So $\cup_\alpha\overline A_ \alpha\subseteq \overline A.$
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.7a):</b>&nbsp;
+$(X,\tau)$ is a topological space and $D$ is a dense
+subset of $X.$ Prove that, for an open subset $Y$
+of $X,$ $D\cap Y$ is dense in the subspace topology
+on $Y.$ Is the result true if $Y$ is not open? Justify.[3] 
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+<u>First part</u>: Let $V$  be any non-empty open set in $Y$  wrt the subspace topology. 
+<p></p>
+Let $U = V\cup (X\setminus Y).$ This is must be open in $X.$   for some non-empty $U\in\tau.$
+<p></p>
+Since $D$  is dense in $X,$  hence $U\cap D\neq\phi.$  
+<p></p>
+So $V\cap (D\cap Y) = (U\cap Y)\cap (D\cap Y) = U\cap D\cap Y. $
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.7b):</b>&nbsp;
+$(X,\tau)$ is a topological space and $D$ is a dense
+subset of $X.$ Prove that for a continuous
+surjection $f:(X,\tau)\rightarrow(Z,\tau')$ the set $f(D)$ is
+dense in $Z,$ where $(Z,\tau')$ is any topological space.[2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Take any non-empty $U\in\tau'.$   
+<p></p>
+Then $f ^{-1} (U\cap f(D)) = f ^{-1} (U)\cap f ^{-1} (f(D)).$
+<p></p>
+Since $D\subseteq f ^{-1}(f(D)).$  Also $f$  being continuous, $f ^{-1}(U)\in\tau.$  
+<p></p>
+Also $f ^{-1}(U)\neq\phi,$  since $U\neq\phi.$
+<p></p>
+Since $D$  is dense, hence $f ^{-1}(U)\cap D\neq\phi.$  
+<p></p>
+So $f ^{-1} (U)\cap f ^{-1} (f(D))\neq \phi.$
+<p></p>
+So $f(D)\cap U\neq\phi.$
+<p></p>
+Hence $f(D)$  is dense in $(Z,\tau').$
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.8):</b>&nbsp;
+If $(X,\tau)$ is a second countable space and ${\cal B}$ is a
+base for $\tau,$ then prove that there exists a countable
+subfamily ${\cal D}$ or ${\cal B}$  such that ${\cal D}$ is a base for $\tau.$[5]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Let $\{C_n~:~n\in{\mathbb N}\}$  be a countable base for $\tau.$  
+<p></p>
+Then each $C_n\in\tau.$  
+<p></p>
+So $\forall n\in{\mathbb N}~~\exists B_n\in{\cal B}~~B_n\subseteq C_n.$
+<p></p>
+Then the subcollection ${\cal D}=\{B_n~:~n\in{\mathbb N}\}$  is again a base.
+<p></p>
+Clearly, $B_n\in\{\cal B}\subseteq\tau.$  
+<p></p>
+Let $U\in\tau$  and $x\in U.$  Then $\exists n\in{\mathbb N} ~~x\in C_n\subseteq U.$  
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.9):</b>&nbsp;
+Let $f:X\rightarrow Y$ be any function from a topological
+space $X$ into a topological space $Y.$ If $f$ is
+continuous, then prove that the graph of $f$ defined
+by $G(f) = \{(x,f(x))~:~x\in X\}$ is homeomorphic to $X.$[5]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Consider the map $g:X\rightarrow G(f)$  defined by $g(x) = (x,f(x)).$  
+<p></p>
+Clearly, this is a bijection. Also both the componet functions are continuous, and so $g$  is continuous.
+<p></p>
+Shall show that $g $ is an open map. 
+<p></p>
+Let $U$  be an open set in $X.$  
+<p></p>
+Then $g(U) = (U\times Y)\cap G(f),$  which is open in $G(f).$  
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.10a):</b>&nbsp;
+Prove that a topological space $(X,\tau)$ is Hausdorff if
+the diagonal $\{(x,x)~:~x\in X\}$ is a closed set in the
+product space $(X\times X,\tau\times\tau).$[3]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+<u>If part</u>: Let $D=\{(x,x)~:~x\in X\}$  be closed in the product space. 
+<p></p>
+Let $x\neq y\in X.$  Then $(x,y)\in D^c.$   Since $D^c$  is open in the product space, and the rectangles
+ form a base in its topology, hence 
+$(x,y)\in U\times V\subseteq D^c$  for some $U,V\in\tau.$  
+<p></p>
+Since $U\times V\subseteq D^c,$  hence $U\cap V = \phi.$  Also $x\in U$  and $y\in V.$
+<p></p>
+Thus $U$  and $V$  provide a strong separation of $x,y.$  
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.10b):</b>&nbsp;
+Prove or disprove: In a topological space $(X,\tau)$, if
+every convergent sequence in $X$ has unique limit,
+then $X$ is a $T_2$ space.[2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+The statement is false. 
+<p></p>
+
+<u>Counterexample</u>:
+<p></p>
+We consider ${\mathbb N}$  with cofinite topology. Here a sequence is convergent if and only if it is eventually constant. Hence
+ limit, if its exists, must be unique. However, here no two non-empty open sets are disjoint. So it is not 
+Hausdorff. 
+</font></b> ///
+</p>
+
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
