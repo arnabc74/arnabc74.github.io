@@ -738,13 +738,16 @@ every convergent sequence in <M>X</M> has unique limit,
 then <M>X</M> is a <M>T_2</M> space.[2]
 </E>@}</EBODY><SOLN/>@{<WR>
 The statement is false. 
+</WR>@}
+du.Hkher byApAr er kono sahaj @{<E>counterexample</E>@}  AmAr jAnA nei. @{<E>Wikipedia</E>@}-r
+ <LINK to="https://topospaces.subwiki.org/wiki/US_not_implies_Hausdorff">ekhAne</LINK>  ekTA 
+@{<E>counterexample</E>@}  deoyA Achhe baTe, kintu seTA bhul. @{<E>1937</E>@}-e @{<E>Urysohn</E>@}  nAmer ekjan bikhyAt 
+gaNitajna yakhan @{<E>topology</E>@}-r upar bak+trritA dichchhilen, takhan upasthit Arekjan bikhyAta gaNitajna t,nAke ei 
+prashnaTA jijnAsA karen. uttarTA beriyechhila dui bachhar pare ekTA gabeSaNApatre. sei pepArTA farAsI bhASAy lekhA, eba.n 
+Ami jogAR karte pArini. ArekTA @{<E>counterexample</E>@}  Achhe <LINK to="refs/antihaus.pdf">ei pepAre</LINK>. seTA etai 
+jaTil ye ekhAne dichchhi nA. 
 
-<U>Counterexample</U>:
-
-We consider <M>\nn</M>  with cofinite topology. Here a sequence is convergent if and only if it is eventually constant. Hence
- limit, if its exists, must be unique. However, here no two non-empty open sets are disjoint. So it is not 
-Hausdorff. 
-</WR>@}</EXM>
+</EXM>
 
 
 
