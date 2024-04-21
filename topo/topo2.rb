@@ -744,7 +744,7 @@ du.Hkher byApAr er kono sahaj @{<E>counterexample</E>@}  AmAr jAnA nei. @{<E>Wik
 @{<E>counterexample</E>@}  deoyA Achhe baTe, kintu seTA bhul. @{<E>1937</E>@}-e @{<E>Urysohn</E>@}  nAmer ekjan bikhyAt 
 gaNitajna yakhan @{<E>topology</E>@}-r upar bak+trritA dichchhilen, takhan upasthit Arekjan bikhyAta gaNitajna t,nAke ei 
 prashnaTA jijnAsA karen. uttarTA beriyechhila dui bachhar pare ekTA gabeSaNApatre. sei pepArTA farAsI bhASAy lekhA, eba.n 
-Ami jogAR karte pArini. ArekTA @{<E>counterexample</E>@}  Achhe <LINK to="refs/antihaus.pdf">ei pepAre</LINK>. seTA etai 
+Ami jogAR karte pArini. ArekTA @{<E>counterexample</E>@}  Achhe <LINK to="ref/antihaus.pdf">ei pepAre</LINK>. seTA etai 
 jaTil ye ekhAne dichchhi nA. 
 
 </EXM>
