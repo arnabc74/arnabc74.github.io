@@ -738,15 +738,22 @@ every convergent sequence in <M>X</M> has unique limit,
 then <M>X</M> is a <M>T_2</M> space.[2]
 </E>@}</EBODY><SOLN/>@{<WR>
 The statement is false. 
-</WR>@}
-du.Hkher byApAr er kono sahaj @{<E>counterexample</E>@}  AmAr jAnA nei. @{<E>Wikipedia</E>@}-r
- <LINK to="https://topospaces.subwiki.org/wiki/US_not_implies_Hausdorff">ekhAne</LINK>  ekTA 
-@{<E>counterexample</E>@}  deoyA Achhe baTe, kintu seTA bhul. @{<E>1937</E>@}-e @{<E>Urysohn</E>@}  nAmer ekjan bikhyAt 
-gaNitajna yakhan @{<E>topology</E>@}-r upar bak+trritA dichchhilen, takhan upasthit Arekjan bikhyAta gaNitajna t,nAke ei 
-prashnaTA jijnAsA karen. uttarTA beriyechhila dui bachhar pare ekTA gabeSaNApatre. sei pepArTA farAsI bhASAy lekhA, eba.n 
-Ami jogAR karte pArini. ArekTA @{<E>counterexample</E>@}  Achhe <LINK to="ref/antihaus.pdf">ei pepAre</LINK>. seTA etai 
-jaTil ye ekhAne dichchhi nA. 
 
+<U>Counterxample</U>: <M>\rr</M>  with co-countable topology. 
+
+It is not Hausdorff, because all non-empty open sets intersect. 
+
+Each convergent sequence is eventually constant. 
+<BECAUSE>
+Let <M>x_n\to L.</M>  Then <M>G = \{x_n\}^c\cup\{L\}</M>  is an open neighbourhood of <M>L.</M>  So
+ <M>\exists K\in\nn~~\forall n\geq K~~x_n\in G.</M>  
+
+But <M>G</M>  contains no <M>x_n</M>  except those equal to <M>L.</M>  Hence we must have <M>\exists K\in\nn~~\forall n\geq K~~x_n = L.</M>
+</BECAUSE> 
+</WR>@}
+ @{<E>Wikipedia</E>@}-r
+ <LINK to="https://topospaces.subwiki.org/wiki/US_not_implies_Hausdorff">ekhAne</LINK>  ekTA 
+@{<E>counterexample</E>@}  deoyA Achhe, yeTA bhul.
 </EXM>
 
 
