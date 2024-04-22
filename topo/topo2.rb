@@ -675,6 +675,20 @@ Taking finite itersections, the topology must contain all rectangles. Since thes
 </WR>@}
 </EXM>
 
+<EXM ref="2023.8" paper="2023.8"><EBODY>@{<E>
+Let <M>(X,\tau)</M> be the topological product of a family of
+topological spaces <M>\{(X_i,\tau_i)~:~i=1,2,...,n\}</M>
+and <M>p_i:X\to X_i</M> denote the <M>i</M>-th projection map for
+all <M>i=1,2,...,n.</M> Then prove that
+
+(a) <M>p_i</M> is an open map for all <M>i=1,2,...,n.</M>
+
+(b) the product topology <M>\tau</M> is the smallest topology
+on <M>X</M> such that each projection map is continuous.
+
+[2+3]
+</E>@}</EBODY><SOLN/>Ager a.nkaTAi.</EXM>
+
 <EXM ref="2021.3" paper="2021.3"><EBODY>@{<E>
 Prove that a topological invariant is a metric invariant. Is the
 converse ture? Justify.[3+2]
