@@ -135,7 +135,18 @@ In a topological space <M>(X,\tau),</M> <M>E</M> is a connected
 subset of <M>X</M> so that <M>E=A\cup B\cup C,</M> where <M>A</M>
 and <M>B</M> are separated and <M>C</M> is connected. Show
 that <M>A \cup C</M> is connected.[3]
-</E>@}</EBODY><SOLN/></EXM>
+</E>@}</EBODY><SOLN/>ekhAne @{<M>A</M>@}  Ar @{<M>B</M>@}-ke @{<E>separated</E>@}  balAr mAne @{<M>A\cap \overline B = \overline A\cap B = \phi.</M>@}
+@{<WR>
+Let, if possible, <M>A\cup C</M>  be not connected. Let <M>(U,V)</M>  be a disconnection. Then either <M>C\seq U</M>  or
+ <M>C\seq V,</M>  since <M>C</M>  is connected. Wlog, let <M>C\seq V.</M>  Then  <M>(U,V\cup B)</M>  is a disconnection.
+ for <M>A\cup B\cup C.</M>  
+<BECAUSE>
+<M>U</M>  is clopen in <M>A\cup C.</M>  Since <M>C\cap U=\phi,</M>  hence <M>U\seq A.</M> 
+ Since <M>A,B</M>  are separated, hence  <M>B</M>  is separated from <M>U.</M>  So <M>U</M>  is clopen in <M>A\cup B\cup C.</M> 
+ </BECAUSE>
+This gives a contradiction, since <M>A\cup B\cup C</M>  is connected. 
+</WR>@}
+</EXM>
 
 <EXM ref="2021.15b" paper="2021.15b"><EBODY>@{<E>
 Consider <M>\rr</M> endowed with the usual
@@ -143,7 +154,12 @@ topology, <M>f:\rr\to\rr</M> is any function such
 that <M>f(\qq)\seq\rr\setminus\qq</M>
 and <M>f(\rr\setminus\qq)\seq\qq.</M> Show that <M>f</M> is not a
 continuous function.[2]
-</E>@}</EBODY><SOLN/></EXM>
+</E>@}</EBODY><SOLN/>@{<WR>
+Let <M>a= f(0)</M>  and <M>b = f(\sqrt2).</M>  Then <M>a\neq b,</M>  since <M>a\not\in\qq</M>  and <M>b\in\qq.</M>  Let,
+ wlog, <M>a < b.</M>  Then by the intermediate value theorem all the values in <M>\qq^c\cap[a,b]</M>  must be taken by <M>f(x)</M> 
+ for <M>x\in[0,\sqrt2]\cap \qq.</M>  But this is impossible, since <M>\qq^c\cap[a,b]</M>  is uncountable, while <M>\qq\cap[0,\sqrt2]</M> 
+ is countable.
+</WR>@}</EXM>
 
 
 <EXM ref="2021.16b" paper="2021.16b"><EBODY>@{<E>
@@ -322,19 +338,6 @@ An uncountable set with cofinite topology is
 Agei dekhiyechhi ye, @{<M>T_2</M>@}  nay, eba.n  @{<E>first countable</E>@}-o nay. 
 </EXM>
 
-<EXM ref="2023.1f" paper="2023.1f"><EBODY>@{<E>
-Let <M>(X,\tau)</M> be a co-countable space, where <M>X</M> is an
-uncountable set. Then which of the following is true?
-<VL>
-<LI><M>(X,\tau)</M> is a first countable space.</LI>
-<LI><M>(X,\tau)</M> is a Hausdorff space.</LI>
-<LI>There exists a convergent sequence in <M>X</M> whose limit
-is not unique.</LI>
-<LI>A sequence <M>\{x_n\}</M> in <M>X</M> is convergent if and
-only if there is some positive integer <M>m</M> such that for
-all <M>n\geq m</M> <M>x_n=</M> constant.</LI>
-</VL>
-</E>@}</EBODY><SOLN/></EXM>
 
 <EXM ref="2021.1f" paper="2021.1f"><EBODY>@{<E>
 The number of <M>T_1</M> topologies that can be defined on a
@@ -689,10 +692,6 @@ on <M>X</M> such that each projection map is continuous.
 [2+3]
 </E>@}</EBODY><SOLN/>Ager a.nkaTAi.</EXM>
 
-<EXM ref="2021.3" paper="2021.3"><EBODY>@{<E>
-Prove that a topological invariant is a metric invariant. Is the
-converse ture? Justify.[3+2]
-</E>@}</EBODY><SOLN/></EXM>
 
 <EXM ref="2021.4" paper="2021.4"><EBODY>@{<E>
 Let <M>(X,d)</M> be  a metric space and <M>A</M> be a non-empty
@@ -827,6 +826,20 @@ Hence <M>f(#(N_d(f ^{-1}(b),\delta) )#) \seq f(V).</M>
 But, since <M>f</M>  is an isometry, hence <M>f(#(N_d(f ^{-1}(b),\delta) )#)  = N_{d'}(f(b),\delta).</M>
 
 Hence <M>N_{d'}(f(b),\delta)\seq f (V)</M>  proving that <M>f(V)\in\tau(d').</M>  
+</WR>@}
+</EXM>
+<EXM ref="2021.3" paper="2021.3"><EBODY>@{<E>
+Prove that a topological invariant is a metric invariant. Is the
+converse true? Justify.[3+2]
+</E>@}</EBODY><SOLN/>pratham a.nsher uttar Ager a.nkei rayechhe. dwitIya a.nsher uttar hala--
+@{<WR>
+No, a metric invariant need not be a topological invariant. 
+
+One example is boundedness. If <M>(X,d)</M>  and <M>(Y,d')</M>  are both metric spaces with a bijective isometry between
+ them, then <M>X</M>  i bounded if and only if <M>Y</M>  is bounded. 
+
+But it is not a topological invariant. For example <M>(0,1)</M>  under usual topology is homeomorphic to <M>\rr</M>  under
+ usual topology. But <M>(0,1)</M>  is bounded under the usual metric, while <M>\rr</M>  is not. 
 </WR>@}
 </EXM>
 
@@ -967,6 +980,19 @@ But <M>G</M>  contains no <M>x_n</M>  except those equal to <M>L.</M>  Hence we 
 </EXM>
 
 
+<EXM ref="2023.1f" paper="2023.1f"><EBODY>@{<E>
+Let <M>(X,\tau)</M> be a co-countable space, where <M>X</M> is an
+uncountable set. Then which of the following is true?
+<VL>
+<LI><M>(X,\tau)</M> is a first countable space.</LI>
+<LI><M>(X,\tau)</M> is a Hausdorff space.</LI>
+<LI>There exists a convergent sequence in <M>X</M> whose limit
+is not unique.</LI>
+<LI>A sequence <M>\{x_n\}</M> in <M>X</M> is convergent if and
+only if there is some positive integer <M>m</M> such that for
+all <M>n\geq m</M> <M>x_n=</M> constant.</LI>
+</VL>
+</E>@}</EBODY><SOLN/>khAli sheSerTAi Thik.</EXM>
 
 
 </NOTE>
