@@ -313,7 +313,7 @@ is any metric space. Then which of the following is true?
 <LI><M>f ^{-1} </M> is closed, but not continuous.</LI>
 <LI><M>f ^{-1} </M> is continuous, but neither open nor closed.</LI>
 </VL>
-</E>@}</EBODY><SOLN/>prathamTAi saThik. karaNTA eirakam--@{<WR>
+</E>@}</EBODY><SOLN/>prathamTAi saThik. kAraNTA eirakam--@{<WR>
 Enough to show that <M>f</M>  is a closed map, because being bijective, it is then also open, ie, <M>f ^{-1}</M>  is continuous.
 
 Let <M>A\seq X </M> be closed. Since <M>X</M>  is compact, hence <M>A</M>  is also compact.
@@ -326,17 +326,23 @@ Since <M>Y</M>  is a metric space, hence <M>Y</M>  is <M>T_2.</M>  We know that 
 <EXM ref="2023.13b" paper="2023.13b"><EBODY>@{<E>
 Let <M>(X,\tau_1)</M> be a <M>T_2</M> space and <M>(X,\tau_2)</M>
 be compact such that <M>\tau_1\seq \tau_2.</M> Prove that <M>\tau_1=\tau_2.</M>[2]
-</E>@}</EBODY><SOLN/></EXM>
+</E>@}</EBODY><SOLN/>eTA Asale Ager samAdhAnTAr yuk+titei ghAyel habe. khAli yApArTAke eibhAbe sAjiye nAo. 
+@{<M>f:(X,\tau_2)\to(X,\tau_1)</M>@}  nichchhi @{<M>f(x)=x.</M>@}  tabe @{<M>\tau_1\seq \tau_2</M>@}  haoyAy @{<M>f</M>@}  
+ekTA @{<E>continuous</E>@}  @{<E>function</E>@}  habe. Ager a.nker yuk+tite @{<M>f</M>@}  ekTA @{<E>homeomorphism.</E>@}  
+tAi dudiker @{<E>topology</E>@}  ek hate bAdhya. Ager a.nke abashya @{<E>metric space</E>@}  niye kaj hachchhila. kintu 
+samAdhAne khAli @{<M>f</M>@}-er @{<E>domain</E>@}-TA ye @{<M>T_2</M>@}, eTukui legechhe. 
+</EXM>
+
 <EXM ref="2023.15a" paper="2023.15a"><EBODY>@{<E>
 Prove that a real valued continuous function <M>f</M> on a
 compact set <M>(X,\tau)</M> attains its greatest value. [2]
-</E>@}</EBODY><SOLN/></EXM>
+</E>@}</EBODY><SOLN/>@{<E>Standard result.</E>@}</EXM>
 
 <EXM ref="2023.16a" paper="2023.16a"><EBODY>@{<E>
 Prove that every closed and bounded interval of the real
 line<M>\rr</M> (i.e., <M>\rr</M> with the usual topology) is
 compact. [3]
-</E>@}</EBODY><SOLN/></EXM>
+</E>@}</EBODY><SOLN/>@{<E>Standard result.</E>@}</EXM>
 
 
 <EXM ref="2021.13a" paper="2021.13a"><EBODY>@{<E>
