@@ -1,0 +1,675 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Compact">Compact</a>
+</li>
+</ul>
+<hr/>
+$
+\newcommand{\contra}{\Rightarrow\Leftarrow}
+\newcommand{\bc}{\because}
+\newcommand{\tf}{\therefore}
+$
+<h1><a
+name="Compact">Compact</a></h1>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1h):</b>&nbsp;
+If $\tau = \{\phi, \{a\},\{\a,b\},X\}$ is a topology on $X =
+\{a,b,c\},$ then $(X,\tau)$ is
+
+<li>compact and Hausdorff.</li>
+
+<li>compact, but not  Hausdorff.</li>
+
+<li>only Hausdorff.</li>
+
+<li>neither compact nor Hausdorff.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>যেহতু $X$-টা finite,  তাই compact.  কিন্তু
+ $a$  আর $b$-কেই তো আলাদা করা যাচ্ছে না৷ তাই Hausdorff  আর হয় কী করে? ///
+</p> 
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1g):</b>&nbsp;
+Let $\tau=\big\{\phi,\{a\},\{a,b\},X\big\}$ be a topology on $X
+= \{a,b,c\}.$ Then $X$ is 
+
+<li>compact and Hausdorff.</li>
+
+<li>compact but not Hausdorff.</li>
+
+<li>only Hausdorff.</li>
+
+<li>$T_1.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>আগেরটার মতই৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1g):</b>&nbsp;
+Which of the following statements is not correct for the discrete
+topology $\tau_d$ on ${\mathbb R}$?
+
+<li>$\tau_d$ is the largest topology on ${\mathbb R}.$</li>
+
+<li>$({\mathbb R},\tau_d)$ is compact.</li>
+
+<li>$({\mathbb R},\tau_d)$ is first countable.</li>
+
+<li>For every subset $A$ of ${\mathbb R},$ $A^\circ =
+\overline A,$ where $A^\circ$ and $\overline A$
+denotes the interior and closure of $A$ in $({\mathbb R},\tau_d).$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>দ্বিতীয়টা ভুল৷ যদি ${\mathbb R} = \cup_{x\in{\mathbb R}} \{x\}$  লিখি, তবে সেই
+ open  cover-এর finite subcover  নেই৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.1e):</b>&nbsp; 
+Let $f:({\mathbb R},\tau_u)\rightarrow ({\mathbb R},\tau_u)$ be a continuous map
+(where $\tau_u$ denots the usual topology on ${\mathbb R}$)
+and $Z(f) = \{x\in{\mathbb R}~:~f(x)=0\}.$ Which of the following is
+true?
+<li>$Z(f)$ must be a closed set.</li>
+
+<li>$Z(f)$ must be compact.</li>
+
+<li>$Z(f)$ must be an open set.</li>
+
+<li>$Z(f)$ must be connected.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>প্রথমটাই খালি ঠিক, করণ $\{0\}$  হল closed.  তাই 
+$Z(f) = f ^{-1} (\{0\})$-ও closed,  কারণ $f$  বলে দিয়েছে continuous.
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.1c):</b>&nbsp;
+Let $(X,\tau)$ be a topological space such that for every
+point $p\in X,$ the sequence $\{p,p,p,...\}$ has a
+unique limit $p.$ Then $(X,\tau)$ is
+
+<li>$T_1$ space</li>
+
+<li>$T_2$ space</li>
+
+<li>first countable space</li>
+
+<li>compact space.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>প্রথমটাই খালি ঠিক হতে বাধ্য, কারণ--
+<b><font color="#0000cc">
+If the space is not $T_1,$  then we have some $p\neq q$  such that every open
+ neighbourhood of $p$  contains $q.$ 
+ So any sequence that coverges to $p$  must also converge to $q.$  
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.1b):</b>&nbsp;
+Let $(X,\tau)$ be a topological space and $A\subseteq X.$ It
+is false that if 
+
+<li>$(X,\tau)$ is compact, then $(A,\tau_A)$ is compact.</li>
+
+<li>$(X,\tau)$ is $T_2$, then $(A,\tau_A)$ is $T_2.$</li>
+
+<li>$(X,\tau)$ is first countable, then $(A,\tau_A)$ is
+first countable.</li>
+
+<li>$(X,\tau)$ is $T_1$, then $(A,\tau_A)$ is $T_1.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>প্রথমটাই ভুল৷
+<b><font color="#0000cc">
+<u>Counterexample</u>: $[0,3]$  under usual topology is compact. But $(1,2)$  under its subspace topology is not.
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1j):</b>&nbsp;
+Let $X = [0,1)\cup [2,3]$ be the subspace of the topological
+space ${\mathbb R}$ with the usual topology and $f:X\rightarrow{\mathbb R}$ be
+a map given by 
+$$
+f(x) = \left\{\begin{array}{ll}x&\text{if }0\leq x &lt; 1\\2&\text{if }2\leq x\leq 3\\\end{array}\right..
+$$
+Then which of the following is true?
+
+<li>$f$ is open and continuous.</li>
+
+<li>$f$ is open but not continuous.</li>
+
+<li>$f$ is not open but continuous.</li>
+
+<li>$f$ is neither open nor continuous.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>Continuous, কারণ এর গ্রাফ আঁকতে হলে পেন তুলতে হয় একমাত্র
+ domain-এ ফাঁক আছে যেখানে, সেখানে৷ Open  নয়, কারণ
+ $(2.1,2.9)$  এখানে $open,$  কিন্তু এর image  হল $\{2\},$ 
+ যেক্ষা মোটেই ${\mathbb R}$-এর মধ্যে open  নয়৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.1i):</b>&nbsp;
+Let $(X,\tau)$ be an uncountable compact space
+and $({\mathbb R},\tau_u)$ be the space of real numbers with the
+usual topology. Then which of the following is false?
+
+<li>There exists a continuous map $f:X\rightarrow{\mathbb R}$ which is
+unbounded.</li>
+
+<li>A map $f:X\rightarrow{\mathbb R}$ is
+continuous $\Rightarrow$ $f:X\rightarrow{\mathbb R}$ is a closed map.</li>
+
+<li>If $f:X\rightarrow{\mathbb R}$ is a continuous map, then $f(X)$ is
+closed in ${\mathbb R}.$</li>
+
+<li>A map $f:X\rightarrow{\mathbb R}$ is continuous and $A\in\tau$
+implies $f(X\setminus A)$ is compact in ${\mathbb R}.$</li>
+
+
+<p></p>
+<b>SOLUTION:</b>প্রথমটাই ভুল৷ $X$-এর জায়গায় $[0,1]$  নাও৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.13a):</b>&nbsp;
+$({\mathbb R},\tau_C)$ is a co-countable topological space. Is the
+set $[0,1]$ a compact subspace of ${\mathbb R}?$[2]
+<p></p>
+<b>SOLUTION:</b>
+<b><font color="#0000cc">
+No. Let $r_1,r_2,...$  be an enumeration of ${\mathbb Q}\cap[0,1].$
+<p></p>
+Let $U_n = {\mathbb Q}^c\cup\{r_n\}.$  Then each $U_n$  is co-countable, and hence open. 
+<p></p>
+Also $[0,1]\subseteq \cup_n U_n.$  But no finite subcover exists, since each $r_n$  is ocevered by a single $U_n.$
+</font></b>
+ ///
+</p>
+
+<p>
+<b>EXAMPLE (2021.13b):</b>&nbsp;
+Prove or disprove: $({\mathbb R},\tau_c)$ is a compact space, where $\tau_c = \{U\subseteq{\mathbb R}~:~\text{either }{\mathbb R}\setminus U\text{ is countable, or }{\mathbb R}\}.$[2]
+<p></p>
+<b>SOLUTION:</b>আগের অংকের মতই৷ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.14):</b>&nbsp;
+Prove that the set of components of a topological space forms a
+partition of that space.[5]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Let $(X,\tau)$  be our topological space. We define a binary relation on $X$  as follows.
+<p></p>
+For $a,b\in X$  we shall say $a\sim b$  if and only if there are no disjoint clopen sets $A,B\subseteq X$  with
+ $a\in A$  and $b\in B.$  
+<p></p>
+Clearly, this relation is reflexive and symmetric. Also it is transitive.
+<blockquote>
+<b>Because:</b>
+Let $a\sim b$  and $b\sim c.$  Let, if possible, $a\not\sim c.$
+<p></p>
+Then there are disjoint  clopen $A,C\subseteq X$  with $a\in A$  and $c\in C.$
+<p></p>
+But since $a\sim b,$  hence $b\not\in C.$  Also since $b\sim c,$  hence $b\not\in A.$  
+</blockquote>
+
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.15):</b>&nbsp;
+Let $(X,\tau)$ be a any topological space and $\beta =
+\{X\setminus K~:~K\text{ is compact and closed in
+}(X,\tau)\}.$ Prove that $\beta $ is a basis for some
+topology $\tau'$ on $X$ such that $\tau'\subseteq\tau.$
+Prove that  $(X,\tau')$ is compact.[3+2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+<u>First part</u>:
+Since $K=\phi$  is closed and compact, we have $X\in\beta.$  So $\beta$  covers every point. 
+<p></p>
+Let $B_1,B_2\in \beta.$  Then $B_i = K_i^c.$  for some closed and compact $K_i.$  
+<p></p>
+Hence $B_1\cap B_2 = (K_1\cup K_2)^c = K^c,$  where $K=K_1\cup K_2$  is closed and compact. 
+<p></p>
+Hence $B_1\cap B_2\in \beta.$  So $\beta$  is a basis.
+<p></p>
+
+<u>Second part</u>:
+Since the elements of $\beta$  are all complements of closed sets (wrt $\tau$), hence $bb\subseteq \tau.$  
+<p></p>
+So $\tau'\subseteq \tau.$
+<p></p>
+
+<u>Third part</u>:
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.13b):</b>&nbsp;
+Prove or disprove: Every infinite compact subset of ${\mathbb R}$ is
+connected. Is the converse true? Justify.[3]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Thestatement is false. Counterexample: $[0,1]\cup [2,3]$  is closed and bounded, and hence compact in ${\mathbb R}$  (usual
+ topology). Also it is an infinite set. But it is not cononected, as $[0,1]$  and $[2,3]$  provide a disconnection.
+<p></p>
+The converse statement is: Every connected subset in ${\mathbb R}$  is infinite, compact. 
+<p></p>
+This is also false. Counterexample: $(0,1)$  is connected, but not compact. Also $\{0\}$  is connected, but not
+ infinite. 
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.13a):</b>&nbsp;
+Suppose $(X,\tau)$ is a topological space and ${\cal F} =
+\{F_\alpha~:~\alpha\in \Lambda\}$ ($\Lambda $ is an
+index set) is any family of closed subsets of $X$ with the
+property that $\cap_{i=1}^n F_{\alpha_i} \neq \phi$ for any
+finite subfamily $\{F_{\alpha_i}~:~\alpha_i\in
+\Lambda,~~i=1,2,...,n\}$ of ${\cal F}.$ Prove
+that $X$ is compact if and only if $\cap_{\alpha\in \Lambda} F_\alpha\neq\phi.$[3]
+<p></p>
+<b>SOLUTION:</b>
+এই অংকের ভাষাটা একটু গোলমেলে৷ ঠিক করে বলতে গেলে আগে একটা সংজ্ঞা থাকা দরকার--
+<blockquote>
+আমরা বলব যে, একটা closed  set-এর family-র
+ finite intersection property (FIP)  আছে, যদি এর মধ্যে যাই finite subfamily  নাও না কেন, 
+তার intersection-টা  non-empty  হবে৷  
+</blockquote>
+এই প্রশ্নে আমাদের দেখাতে বলেছে দুটো জিনিস--
+<ul>
+<li>এক, যদি একটা compact  space-এর মধ্যে FIP-বিশিষ্ট কোনো
+ family  নাও, তবে তার intersection-টা non-empty  হবেই৷</li>
+
+<li>দুই, যদি কোনো topological space-এর বেলায় এমন হয় যে, FIP-বিশিষ্ট
+ যেকোনো family-র intersection-ই non-empty,  তবে topological
+ space-টা compact  হতে বাধ্য৷ </li>
+
+</ul>
+এটা আসলে compact-এর সংজ্ঞাটাই open-এর বদলএ closed  দিয়ে প্রকাশ করা৷ 
+<b><font color="#0000cc">
+Let the topological space be compact. Take any family ${\cal F}=\{F_ \alpha~:~\alpha\in \Lambda\}$  with FIP. 
+Let, if possible, $\cap _{\alpha\in \Lambda} F_ \alpha = \phi.$  Then, de Morgan, $\cup _{\alpha\in \Lambda} F_ \alpha^c = X.$ 
+ So $\{F_ \alpha^c~:~ \alpha\in \Lambda\}$  is an open cover of $X.$
+<p></p>
+Since $X$  is compact, there is a finite subcover, $\{F_{\alpha_1}^c,...,F_{\alpha_n}^c\}$  ie, 
+$\cup _{i=1}^n F_ \alpha_i^c = X,$  ie, $\cap _{i=1}^n F_ \alpha_i = \phi (\contra$  FIP$).$
+<p></p>
+Conversely, if every family with FIP has non-empty intersection, then we shall show that $X$  must be compact.
+<p></p>
+Let $\{U_ \alpha~:~\alpha\in \Xi\}$  be an open cover for $X.$  Then $\cap _{\alpha\in \Xi} U_ \alpha^c = \phi.$
+<p></p>
+Hence $\{U_ \alpha^c~:~\alpha\in \Xi\}$  cannot have FIP, ie, we have some finite subfamily $\{U_{\alpha_1}^c,...,U_{\alpha_n}^c\}$ 
+ with $\cap _{i=1}^n U_ {\alpha_i}^c = \phi$, ie $\cap _{i=1}^n U_ {\alpha_i} = X.$
+<p></p>
+This is a finite subcover of $X.$
+</font></b>
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.15b):</b>&nbsp;
+If $K$ is a compact subset of a $T_2$ space $X,$
+then prove that $K$ is a closed set in $X.$ [3]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Shall show that $K$  is closed, ie, $K^c$  is open, ie
+<p></p>
+
+<div class="box">Target</div>$\forall x\in K^c~~\exists U\in \tau~~x\in U\subseteq K^c.$
+<div class="box">$\forall x$</div>Take any $x\in K^c.$  
+<p></p>
+Then $\forall y\in K~~x\neq y.$
+<p></p>
+So, by the $T_2$  property, 
+$$\exists A_y, B_y\in \tau~~A_y\cap B_y=\phi,~~x\in A_y\mbox{ and } y\in B_y.$$
+Then $\{B_y~:~y\in K\}$  is an open cover for $K.$
+<p></p>
+Since $K$  is compact, we can extract a finite subcover $\{B_{y_1},...,B_{y_n}\}.$  
+<p></p>
+
+<div class="box">$\exists U$</div> Choose $U = \cap_{i=1}^n A_{y_i}\in\tau.$
+<p></p>
+
+<div class="box">Check</div>Then $U\subseteq \left(\cup B_{y_i}\right)^c \subseteq K^c.$
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.14a):</b>&nbsp;
+$A$ and $B$ are two compact subsets of a
+space $(X,\tau)$ such that each point of $A$ is strongly
+separated from each point of $B.$ Prove that $A$
+and $B$ are strongly separated in $X.$[3]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+$\forall a\in A~~\forall b\in B~~\exists U_a, V_b\in \tau~~U_a\cap V_b=\phi\mbox{ and } a\in U_a,~~b\in V_b.$
+<p></p>
+Then $\{U_a~:~a\in A\}$  is an open cover for $A$, and $\{V_b~:~b\in B\}$  is an open cover for $B.$
+<p></p>
+Since $A,B$  are compact, we can extract finite subcovers $\{A_{a_1},...,A_{a_m}\}$  and $\{B_{b_1},...,B_{b_n}\},$ 
+ say. 
+<p></p>
+Then $U = \cap_{i=1}^m A_{a_i}$  and $V = \cap_{i=1}^n B_{b_i}$  provide a strong separation of $A$ and $B.$
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.14b):</b>&nbsp;
+``There does not exist a continuous map from $[2,5]$
+onto $(1,4),$ where $[2,5]$ and $(1,4)$ are
+endowed with the subspace topology of the usual topology
+on ${\mathbb R}.$''--Justify the statement.[2]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+Here $[2,5]$  is compact. So any real-valued continuous map defined on it must attain its maximum and minimum. 
+But $(1,4)$  does not contain $1$  and $4.$  
+<p></p>
+Hence no such $f $ can exist.
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2022.1e):</b>&nbsp;
+Let $f:(X,d)\rightarrow(Y,d_1)$ be a continuous bijection
+where $(X,d)$ is a compact metric space, and $(Y,d_1)$
+is any metric space. Then which of the following is true?
+
+<li>$f$ is a homeomorphism.</li>
+
+<li>$f ^{-1} $ is open, but not continuous.</li>
+
+<li>$f ^{-1} $ is closed, but not continuous.</li>
+
+<li>$f ^{-1} $ is continuous, but neither open nor closed.</li>
+
+
+<p></p>
+<b>SOLUTION:</b>প্রথমটাই সঠিক৷ করণটা এইরকম--<b><font color="#0000cc">
+Enough to show that $f$  is a closed map, because being bijective, it is then also open, ie, $f ^{-1}$  is continuous.
+<p></p>
+Let $A\subseteq X $ be closed. Since $X$  is compact, hence $A$  is also compact.
+<p></p>
+We know that continuous image of compact is compact. So $f(A)$  is compact. 
+Since $Y$  is a metric space, hence $Y$  is $T_2.$  We know that $compact$  subsets of $T_2$  spaces
+ are closed. So $f(A)$  is closed in $Y$  , as required. 
+</font></b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.13b):</b>&nbsp;
+Let $(X,\tau_1)$ be a $T_2$ space and $(X,\tau_2)$
+be compact such that $\tau_1\subseteq \tau_2.$ Prove that $\tau_1=\tau_2.$[2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+<p>
+<b>EXAMPLE (2023.15a):</b>&nbsp;
+Prove that a real valued continuous function $f$ on a
+compact set $(X,\tau)$ attains its greatest value. [2]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2023.16a):</b>&nbsp;
+Prove that every closed and bounded interval of the real
+line${\mathbb R}$ (<i>i.e.</i>, ${\mathbb R}$ with the usual topology) is
+compact. [3]
+<p></p>
+<b>SOLUTION:</b> ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE (2021.13a):</b>&nbsp;
+Prove or disprove: The intersection of any family of compact
+subsets of a space is compact.[3]
+<p></p>
+<b>SOLUTION:</b><b><font color="#0000cc">
+The statement is false. 
+<p></p>
+
+<u>Counterexample</u>: Let $X = {\mathbb N}\cup\{-\infty,\infty\}.$  
+<p></p>
+Let $\tau = \big\{~\{-\infty\}\cup{\mathbb N},~\{\infty\}\cup{\mathbb N},~\{-\infty,\infty\}\cup{\mathbb N}~\big\}\cup {\mathscr P}({\mathbb N}).$
+<p></p>
+Then $\tau$  is a topology on $X.$  
+<blockquote>
+<b>Because:</b>
+Clearly, $\phi, X\in\tau.$
+<p></p>
+Let $\{U_ \alpha~:~ \alpha\in \Lambda\}\subseteq \tau.$   If $\infty$  or $-\infty$  is in some $U_ \alpha,$ 
+ then $\cup_ {\alpha\in \Lambda} U_ \alpha$  one of $\{-\infty\}\cup{\mathbb N},$  $\{\infty\}\cup{\mathbb N},$  or $X.$ 
+ If $\infty $ or $-\infty$  is not in any of the $U_ \alpha$'s, then $\cup_
+ {\alpha\in \Lambda} U_ \alpha\subseteq {\mathbb N}.$  
+<p></p>
+Thus, in either case, $\cup_ {\alpha\in \Lambda} U_ \alpha\in \tau.$
+<p></p>
+Let $U_1,U_2\in\tau.$  If $U_1, U_2$  do not contain $\pm\infty,$  then $U_1\cap U_2\subseteq{\mathbb N}.$   If $U_1 $ or
+ $U_2$  equals $X,$  then also done. 
+<p></p>
+If $-\infty\in U_1$  
+</blockquote>
+Here $K_1 = \{-\infty\}\cup {\mathbb N}$  and $K_2 = \{\infty\}\cup {\mathbb N}$  are both compact. Because any cover of $K_1$ 
+ must contain $K_1$  itself. Similarly for $K_2.$  
+<p></p>
+But $K_1\cap K_2={\mathbb N},$  which is not compact, because the open cover $\big\{~\{n\}~:~n\in{\mathbb N}~\big\}$  does not have a
+ finite subcover.
+</font></b> ///
+</p>
+
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

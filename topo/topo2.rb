@@ -1,6 +1,202 @@
 <NOTE>
-
+@{<M>
+\newcommand{\contra}{\Rightarrow\Leftarrow}
+\newcommand{\bc}{\because}
+\newcommand{\tf}{\therefore}
+</M>@}
 @{<HEAD1>Connected</HEAD1>@}
+<EXM ref="2022.16a" paper="2022.16a"><EBODY>@{<E>
+<M>(X,\tau)</M> is a topological space and <M>A\seq X,</M>
+and <M>C</M> is a connected subset of <M>X</M> that intersects
+both <M>A</M> and <M>X \setminus A.</M> Prove that <M>C</M>
+intersects boundary of <M>A.</M>[2]
+</E>@}</EBODY><SOLN/>@{<WR>
+We know that <M>A^\circ, \partial A</M>  and <M>(A^c)^\circ</M>   form a partition of <M>X.</M>  
+
+Let, if possible, <M>C\cap \partial A=\phi.</M> 
+
+ Then <M>C = U\cup V,</M>  where <M>U= C\cap A^\circ</M>  and
+ <M>V= C\cap (A^c)^\circ.</M>
+
+In the subspace topology of <M>C</M>  both <M>U</M>  and <M>V</M>  are open. Also they are disjoint. So they are clopen in
+ <M>C.</M>  Thus, they provide a disconnection of <M>C (\contra\bc C</M>  is connected<M>).</M>
+</WR>@}</EXM>
+
+
+<EXM ref="2022.16b" paper="2022.16b"><EBODY>@{<E>
+<M>f:[0,1]\to[0,1]</M> is a continuous function. Show that there
+exists <M>C\in[0,1]</M> such that <M>f(C)=C,</M>
+where <M>[0,1]</M> is endowed with the usual subspace topology.[3]
+</E>@}</EBODY><SOLN/>@{<E>Intermediate value theorem</E>@}  lAgAo @{<M>f(x)-x</M>@}-er upar.</EXM>
+
+
+<EXM ref="2022.17" paper="2022.17"><EBODY>@{<E>
+Prove that the union of any family of connected sets, every pair
+of which has an element in common, is a connected set in any
+topological space. Is the intersection of two connected sets
+alaways connected? Justify.[3+2]
+</E>@}</EBODY><SOLN/>@{<WR>
+<U>First part</U>: Let <M>\{C_ \alpha~:~\alpha\in \Lambda\}</M>  be a family of connected subsets in some topological space
+ <M>(X,\tau)</M>  such that <M>\forall \alpha,\beta\in \Lambda~~C_ \alpha\cap C_ \beta\neq\phi.</M>  
+
+Let <M>C = \cup_{ \alpha\in \Lambda} C_ \alpha.</M>
+
+Let, if possible, <M>C</M>  be not connected. Let <M>C = D\cup E </M> be a disconnection. 
+
+Then <M>\forall \alpha\in \Lambda~~(C_ \alpha\seq D\mbox{ or } C_ \alpha\seq E).</M>
+<BECAUSE>Otherwise, for some <M>\alpha\in \Lambda</M>  we have <M>C_ \alpha\cap D\neq\phi</M>  and
+ <M>C_ \alpha\cap E\neq\phi.</M>  Then <M>(C_ \alpha\cap E)\cup(C_ \alpha\cap E)</M>  is a disconnection for <M>C_ \alpha.</M></BECAUSE>
+Also, <M>\exists \alpha\in \Lambda~~C_ \alpha\seq D</M>  and <M>\exists \beta\in \Lambda~~C_ \beta\seq E.</M>
+<BECAUSE>Otherwise, either <M>D=\phi</M>  or <M>E=\phi.</M></BECAUSE>
+
+Then <M>C_ \alpha\cap C_ \beta = \phi(\contra).</M>
+
+<U>Second part</U>: No, the intersection of two connected sets need not be connected. For example, 
+in the picture below <M>A</M>  and <M>B</M>  are two connected subsets of <M>\rr^2</M>  (usual topology). 
+<CIMG web="conninter.png"/>
+The intersection (shown in red) is not connected.
+</WR>@}</EXM>
+
+<EXM ref="2023.14a" paper="2023.14a"><EBODY>@{<E>
+Prove that the set of real numbr <M>\rr</M> with lower limit
+topology is disconnected.[2]
+</E>@}</EBODY><SOLN/>@{<WR>
+<M>(-\infty,0), ([0,\infty)</M>  provides one disconnection.
+</WR>@}</EXM>
+
+<EXM ref="2023.14b" paper="2023.14b"><EBODY>@{<E>
+Prove that a topological space containing a dense connected set
+is connected. [3]
+</E>@}</EBODY><SOLN/>@{<WR>
+Let <M>(X,\tau)</M>  be a topological space with a dense subset <M>D</M>, which is connected. Shall show that <M>X</M>  is
+ connected.
+
+Let, if possible, <M>X = U\cup V </M> be a disconnection. 
+
+Since <M>D</M>  is dense, and <M>U,V </M> are non-empty open sets, hence <M>D\cap U\neq\phi</M>  and <M>D\cap V\neq\phi.</M> 
+ 
+Thus <M>D = (D\cap U)\cup (D\cap V)</M>  is a disconnection for <M>D (\contra\bc D</M>  is connected<M>).</M>
+</WR>@}</EXM>
+
+<EXM ref="2023.17a" paper="2023.17a"><EBODY>@{<E>
+If every continuous real valued function on a topological
+space <M>(X,\tau)</M> takes on all values between any two values
+that it assumes, then prove that <M>(X,\tau)</M> is connected. [2]
+</E>@}</EBODY><SOLN/>@{<WR>
+Let, if possible, <M>(X,\tau)</M>  have a disconnection <M>X = U\cup V.</M>  
+Let <M>f:X\to\rr</M> be defined as <M>f(x)=<CASES>1<IF>x\in U</IF> 0<IF>x\in V</IF></CASES>.</M>  
+
+Since <M>U\cap V=\phi,</M>  this is well-defined. 
+
+This function is continuous.
+<BECAUSE>
+Let <M>A\seq\rr</M>  be open. 
+<UL>
+<LI>If <M>0\in A,</M>  but <M>1\not\in A,</M>  then <M>f ^{-1}(A)= V.</M></LI>
+<LI>If <M>1\in A,</M>  but <M>0\not\in A,</M>  then <M>f ^{-1}(A)= U.</M></LI>
+<LI>If <M>0,1\in A,</M>    then <M>f ^{-1}(A)= X.</M></LI>
+<LI>If <M>0,1\not\in A,</M>   then <M>f ^{-1}(A)= \phi.</M></LI>
+</UL>
+Thus, in all the cases <M>f ^{-1}(A)\in \tau.</M>
+</BECAUSE>
+But <M>f</M>  does not take the value <M>[[12]]</M>  which is between <M>0</M>  and <M>1(\contra).</M>  
+</WR>@}</EXM>
+
+<EXM ref="2021.16a" paper="2021.16a"><EBODY>@{<E>
+If every real valued continuous function defined on a a
+topological space <M>X</M> takes on every value between any two
+values that it assumes, then prove that <M>X</M> is connected.[3]
+</E>@}</EBODY><SOLN/>Ager a.nkaTAi.</EXM>
+
+<EXM ref="2023.17b" paper="2023.17b"><EBODY>@{<E>
+If <M>A</M> is a connected subset consisting of at least two
+points in a metric space <M>(X,d),</M> then prove that <M>A</M> is
+uncountable. [3]
+</E>@}</EBODY><SOLN/>@{<WR>
+Let <M>a\neq b\in A.</M>  We define <M>f:A\to\rr</M>  as <M>f(x) = d(a,x).</M>  
+
+Then <M>f(a) = 0</M>  and <M>f(b) = d(a,b)>0.</M>  
+
+By intermediate value theorem, <M>f</M>  must take all values in <M>[0,d(a,b)].</M>  
+
+Hence <M>\forall y\in [0,d(a,b)]~~\exists x\in A~~f(x) = y.</M>
+
+Since <M>[0,d(a,b)]</M>  is uncountable, so is <M>A.</M>  
+</WR>@}</EXM>
+<EXM ref="2021.17a" paper="2021.17a"><EBODY>@{<E>
+If <M>A</M> is a connected subset of a metric space <M>(X,d)</M>
+consisting of at least two points, then prove that <M>A</M> is uncountable.[3]
+</E>@}</EBODY><SOLN/>Ager a.nkaTAi.</EXM>
+
+
+
+<EXM ref="2021.15a" paper="2021.15a"><EBODY>@{<E>
+In a topological space <M>(X,\tau),</M> <M>E</M> is a connected
+subset of <M>X</M> so that <M>E=A\cup B\cup C,</M> where <M>A</M>
+and <M>B</M> are separated and <M>C</M> is connected. Show
+that <M>A \cup C</M> is connected.[3]
+</E>@}</EBODY><SOLN/></EXM>
+
+<EXM ref="2021.15b" paper="2021.15b"><EBODY>@{<E>
+Consider <M>\rr</M> endowed with the usual
+topology, <M>f:\rr\to\rr</M> is any function such
+that <M>f(\qq)\seq\rr\setminus\qq</M>
+and <M>f(\rr\setminus\qq)\seq\qq.</M> Show that <M>f</M> is not a
+continuous function.[2]
+</E>@}</EBODY><SOLN/></EXM>
+
+
+<EXM ref="2021.16b" paper="2021.16b"><EBODY>@{<E>
+Prove that a continuous mapping from a connected space to the
+real line having only rational values is constant.[2]
+</E>@}</EBODY><SOLN/>@{<WR>
+Let, if possible, the function be not constant. Then <M>\exists a,b~~f(a)\neq f(b).</M>  
+
+By intermediate value theorem, <M>f</M>  must take all values  between <M>f(a)</M> and <M>f(b).</M>  Since <M>\qq^c</M> 
+ is dense in <M>\rr,</M>  hence there must be at least one irrational between <M>f(a)</M>  and <M>f(b).</M>  
+But, by the given condition, <M>f </M> cannot attain this value <M>(\contra).</M>
+</WR>@}</EXM>
+
+
+<EXM ref="2021.17b" paper="2021.17b"><EBODY>@{<E>
+Find all components of the set of rational numbers endowed with
+the subspace topology from the usual topology of <M>\rr.</M>[2]
+</E>@}</EBODY><SOLN/>
+@{<WR>
+The singletons <M>\{r\}</M>  for <M>r\in\qq</M>  are the components. Obviously each such singleton is a
+ connected subset of <M>\qq.</M>  
+
+Let, if possible, there be a connected component with more than one element. Let <M>r< s</M>  be in such a component,
+ <M>A.</M>  
+
+Since <M>\qq^c</M>  is dense in <M>\rr,</M>  we have <M>\qq^c\cap[r,s]\neq\phi.</M>  
+
+We pick some <M>a\in\qq^c\cap[r,s].</M>
+
+Then <M>A\cap(-\infty,a)\cap\qq</M>  and <M>A\cap(a,\infty)\cap\qq</M>  provide a disconnection of <M>A(\contra).</M>
+</WR>@}
+</EXM>
+
+<EXM ref="2023.16b" paper="2023.16b"><EBODY>@{<E>
+Prove that each component of a topological space is closed. [2]
+</E>@}</EBODY><SOLN/>@{<WR>
+
+Ler <M>A</M>  be a connected component of a topological space <M>(X,\tau).</M>  
+
+Then <M>A</M>  is the intersection of all its  clopen supersets.
+<BECAUSE>
+Let <M>C</M>  be a clopen superset of <M>A.</M>  Let <M>p\in C^c.</M>   Then <M>C^c</M>  and
+ <M>C</M>  provide a disconnection for <M>A\cup\{p\}.</M> 
+
+Conversely, let <M>q</M>  be in the intersection of all clopen supersets of <M>A.</M>  Let, if possible, <M>A\cup\{q\}</M> 
+ have a disconnection <M>(U,V).</M>  Since <M>A</M>  is connected, hence <M>A\seq U</M>  or <M>A\seq V.</M>  If <M>A\seq U,</M> 
+ then <M>U</M>  is a clopen superset of <M>A,</M>  and hence <M>q\in U.</M>  So <M>V=\phi (\contra).</M>  Similarly, if <M>A\seq V,</M> 
+ then <M>U=\phi (\contra).</M>
+</BECAUSE>
+ Since arbitrary intersectons of closed sets are closed,
+ hence <M>A</M>  must be closed.
+</WR>@}</EXM>
+
 <EXM ref="2022.1d" paper="2022.1d"><EBODY>@{<E>
 A connected subset <M>G</M> of the real line <M>\rr</M> with at
 least two points must be
