@@ -540,7 +540,7 @@ Since each <M>B_n</M>  contains <M>p,</M>  hence each <M>B_n</M>  is cofinite.
 Let <M>C = \cup_n B_n^c,</M>  which is a countable union of finite sets, and hence countable. Since <M>X</M>  is uncountable,
  <M>C^c\neq\phi.</M>  
 
-We take any  <M>x\in C.</M>. Then  <M>\{x}^c</M>  is an open set containing <M>p.</M>  
+We take any  <M>x\in C.</M>. Then  <M>\{x\}^c</M>  is an open set containing <M>p.</M>  
 
 So there must be some <M>n\in\nn</M>  such that <M>B_n\seq\{x\}^c,</M>  ie, <M>c\in B_n^c(\contra\bc x\in C^c).</M>   
 
@@ -630,7 +630,7 @@ set <M>\{(x,f(x))~:~x\in X\}</M> is a closed set in <M>X\times
 Y,</M> where <M>X\times Y</M> is endowed with the product topology.[2]
 </E>@}</EBODY><SOLN/>
 @{<WR>
-Let <M>G=\{(x,f(x))~:~x\in X\}.</M>  We take any <M>(a,b)\in (X\timesY)\seminus G.</M>
+Let <M>G=\{(x,f(x))~:~x\in X\}.</M>  We take any <M>(a,b)\in (X\times Y)\setminus G.</M>
 
 So <M>b\neq f(a).</M>  Since <M>Y</M>  is <M>T_2,</M>  hence can find two disjoint open sets <M>U</M>  and <M>V</M>  in <M>Y</M> 
  such that <M>f(a)\in U</M>  and <M>b\in V.</M>  
@@ -917,7 +917,7 @@ So <M>\forall n\in\nn~~\exists B_n\in{\cal B}~~B_n\seq C_n.</M>
 
 Then the subcollection <M>{\cal D}=\{B_n~:~n\in\nn\}</M>  is again a base.
 
-Clearly, <M>B_n\in\{\cal B}\seq\tau.</M>  
+Clearly, <M>B_n\in{\cal B}\seq\tau.</M>  
 
 Let <M>U\in\tau</M>  and <M>x\in U.</M>  Then <M>\exists n\in\nn ~~x\in C_n\seq U.</M>  
 </WR>@}</EXM>

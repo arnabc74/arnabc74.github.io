@@ -7,7 +7,7 @@
 @{<HEAD1>Compact</HEAD1>@}
 
 <EXM ref="2021.1h" paper="2021.1h"><EBODY>@{<E>
-If <M>\tau = \{\phi, \{a\},\{\a,b\},X\}</M> is a topology on <M>X =
+If <M>\tau = \{\phi, \{a\},\{a,b\},X\}</M> is a topology on <M>X =
 \{a,b,c\},</M> then <M>(X,\tau)</M> is
 <VL>
 <LI>compact and Hausdorff.</LI>
@@ -110,8 +110,8 @@ Then which of the following is true?
 </VL>
 </E>@}</EBODY><SOLN/>@{<E>Continuous</E>@}, kAraN er grAf A,nkte hale pen tulte hay ekmAtra
  @{<E>domain</E>@}-e f,nAk Achhe yekhAne, sekhAne. @{<E>Open</E>@}  nay, kAraN
- @{<M>(2.1,2.9)</M>@}  ekhAne @{<M>open,</M>@}  kintu er @{<E>image</E>@}  hala @{<M>\{2\},</M>@} 
- yexA moTei @{<M>\rr</M>@}-er madhye @{<E>open</E>@}  nay.</EXM>
+ @{<M>(2.1,2.9)</M>@}  ekhAne @{<E>open,</E>@}  kintu er @{<E>image</E>@}  hala @{<M>\{2\},</M>@} 
+ yeTA moTei @{<M>\rr</M>@}-er madhye @{<E>open</E>@}  nay.</EXM>
 
 <EXM ref="2023.1i" paper="2023.1i"><EBODY>@{<E>
 Let <M>(X,\tau)</M> be an uncountable compact space
@@ -182,11 +182,17 @@ Hence <M>B_1\cap B_2 = (K_1\cup K_2)^c = K^c,</M>  where <M>K=K_1\cup K_2</M>  i
 Hence <M>B_1\cap B_2\in \beta.</M>  So <M>\beta</M>  is a basis.
 
 <U>Second part</U>:
-Since the elements of <M>\beta</M>  are all complements of closed sets (wrt <M>\tau</M>), hence <M>bb\seq \tau.</M>  
+Since the elements of <M>\beta</M>  are all complements of closed sets (wrt <M>\tau</M>), hence <M>\beta\seq \tau.</M>  
 
 So <M>\tau'\seq \tau.</M>
 
 <U>Third part</U>:
+
+Let <M>\{U_ \alpha~:~ \alpha\in \Lambda\}\seq \tau'</M>  be a cover for <M>X.</M>  Pick some
+ <M>U</M>  in this cover (possible since this cover cannot be empty, as <M>X\neq\phi</M>). 
+Then <M>U^c</M>  is compact in <M>(X,\tau)</M>   and has <M>\{U_ \alpha~:~ \alpha\in \Lambda\}\setminus\{U\}</M>  as an open
+ cover (since <M>\tau'\seq\tau</M>). So we can extract a finite subcover <M>\{U_1,...,U_n\}</M>  for <M>U^c.</M>  Then <M>\{U_1,...,U_n\}\cup \{U\}</M> 
+ is a finite subcover for <M>X</M>  in <M>(X,\tau'),</M>  completing the proof.
 </WR>@}</EXM>
 
 
@@ -232,7 +238,7 @@ Let, if possible, <M>\cap _{\alpha\in \Lambda} F_ \alpha = \phi.</M>  Then, de M
  So <M>\{F_ \alpha^c~:~ \alpha\in \Lambda\}</M>  is an open cover of <M>X.</M>
 
 Since <M>X</M>  is compact, there is a finite subcover, <M>\{F_{\alpha_1}^c,...,F_{\alpha_n}^c\}</M>  ie, 
-<M>\cup _{i=1}^n F_ \alpha_i^c = X,</M>  ie, <M>\cap _{i=1}^n F_ \alpha_i = \phi (\contra</M>  FIP<M>).</M>
+<M>\cup _{i=1}^n F_ {\alpha_i}^c = X,</M>  ie, <M>\cap _{i=1}^n F_ {\alpha_i} = \phi (\contra</M>  FIP<M>).</M>
 
 Conversely, if every family with FIP has non-empty intersection, then we shall show that <M>X</M>  must be compact.
 
@@ -255,6 +261,7 @@ then prove that <M>K</M> is a closed set in <M>X.</M> [3]
 Shall show that <M>K</M>  is closed, ie, <M>K^c</M>  is open, ie
 
 <TGT>\forall x\in K^c~~\exists U\in \tau~~x\in U\seq K^c.</TGT>
+
 <FLL>x</FLL>Take any <M>x\in K^c.</M>  
 
 Then <M>\forall y\in K~~x\neq y.</M>
