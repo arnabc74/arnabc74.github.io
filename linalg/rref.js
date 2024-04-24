@@ -396,7 +396,16 @@ function loadTable() {
     dump()
 }
 
-var mats = {"all same":[ [5,5,5],[5,5,5],[5,5,5]]}
+var mats = {
+    "nonsingular":[ [1,2,3],[4,5,6],[7,8,8]],
+    "singular":[ [1,2,3],[4,5,6],[7,8,9]],
+    "full column rank":[ [1,2,3],[3,4,-1],[5,5,5],[3,5,2]],
+    "full row rank":[ [1,2,3,4],[3,4,-1,8],[5,5,5,2]],
+    "need swap":[ [1,1,1],[5,5,5],[1,2,3]],
+    "all same":[ [5,5,5],[5,5,5],[5,5,5]],
+    "zero start":[ [0,0,5],[0,1,0],[2,0,0]],
+    "zero column":[ [0,0,5],[0,5,5],[0,1,4]],  
+}
 function exm(which) {
     tmp = mats[which]
     m=tmp.length
