@@ -131,6 +131,11 @@ function isZero(a) {
   assert(a.den>0);
   return (a.num == 0);
 }
+
+function isNotOne(a) {
+  assert(a.den>0);
+  return (a.num !=  a.den);
+}
 function isNeg(a) {
   assert(a.den>0);
   return (a.num < 0);
@@ -186,9 +191,12 @@ var state = "1a";
 function step1a() {
     printf("আমরা এবার রঙীনদের মধ্যে একটা nonzero entry খুঁজব. খোঁজাটা হবে column ধরে ধরে, বাঁদিক থেকে ডানদিকে.") 
     state = "1b"
+    printf1("")
 }
+
 function step1b() {
-  /*Search for lead in col-major order in [pivRow,m]x[pivCol,n]*/                           
+    /*Search for lead in col-major order in [pivRow,m]x[pivCol,n]*/
+    var found = false
   outer: for(c=pivCol;c<n;c++) {
     for(r=pivRow;r<m;r++) {
         if(!isZero(tab[r][c])) {
@@ -215,60 +223,109 @@ function step1b() {
 function step2a() {
     printf("যদি এই nonzero entry-টা রঙীন অংশের প্রথম row-তে না থাকে, তবে row swap করে উপরে আনব.")
     state = "2b"
+    printf1("")
 }
 function step2b() {
   /*Swap propRow and pivRow*/
     if(propRow==pivRow) {
         printf1("আমাদের বেলায় দরকারই পড়ল না")
+        state = "3a"
     }
     else {
-      for(j=0;j<n;j++) {
-      tmp = tab[pivRow][j]
-      tab[pivRow][j] = tab[propRow][j]
-      tab[propRow][j] = tmp
-          printf1("আমরা "+(pivRow+1)+" এবং "+(propRow+1)+" নম্বর row swap করলাম.")
+        printf1("আমরা "+(pivRow+1)+" এবং "+(propRow+1)+" নম্বর row swap করব.")
+        state = "2c";
     }
-  }
+}
+function step2c() {
+  /*Swap propRow and pivRow*/
+    for(j=0;j<n;j++) {
+        tmp = tab[pivRow][j]
+        tab[pivRow][j] = tab[propRow][j]
+        tab[propRow][j] = tmp
+    }
     dump()
-  state = "3a"
+    state = "3a"
+    printf2("<br/>...করলাম!")
 }
 
 function step3a() {
-    printf("এবার scale করব")
+    printf("এবার pivot যদি 1 না হয়, তবে ওর row-টাকে pivot দিয়ে ভাগ করব.")
     state = "3b"
+    printf1("")
 }
 function step3b() {
   /*Scale pivotal row*/
   pivot = tab[pivRow][pivCol]
 
-  if(pivot!=1) {
+    if(isNotOne(pivot)) {
+        printf1("আমরা "+(pivRow+1)+" নম্বর row-কে "+print(pivot)+" দিয়ে ভাগ করব.")
+        state = "3c";
+    }
+    else {
+        printf1("এখানে pivot-টা 1-ই আছে.")
+        state = "4a"
+    }
+}
+
+function step3c() {
+    /*Scale pivotal row*/
+    pivot = tab[pivRow][pivCol]
+
     for(j=0;j<n;j++) 
         tab[pivRow][j] = dvd(tab[pivRow][j],pivot)
-  }
+
     dump()
 
-  state = "4a"
+    state = "4a"
+    printf2("<br/>...করলাম!")
 }
 
 function step4a() {
     printf("এবার sweep করব")
     state = "4b"
+    printf1("")
 }
 
 function step4b() {
     /*Sweep out pivotal column*/
+    var needWork = false
     printf1("আমরা "+(pivRow+1)+" নম্বর row-এর<ul>")
   for(i=0;i<m;i++) {
     if(i!=pivRow) {
         factor = tab[i][pivCol]
-        printf2("<li>"+print(factor)+" গুণ "+(i+1)+" নম্বর row থেকে বিয়োগ করলাম.</li>")
-        for(j=0;j<n;j++)
-            if(j!=pivCol) {
-                tab[i][j] = sub(tab[i][j], factor)
-            }
+        if(!isZero(factor)) {
+            needWork = true
+            printf2("<li>"+print(factor)+" গুণ "+(i+1)+" নম্বর row থেকে বিয়োগ করব.</li>")
+        }
     }
   }
     printf2("</ul>")
+    if(needWork) {
+        state = "4c"
+        return;
+    }
+    
+    if(pivRow == m-1 || pivCol == n-1) {
+        state = "5a"
+    }
+    else {
+        pivRow++
+        pivCol++
+        state = "1a"
+    }
+}
+
+function step4c() {
+    /*Sweep out pivotal column*/
+  for(i=0;i<m;i++) {
+    if(i!=pivRow) {
+        factor = tab[i][pivCol]
+        for(j=0;j<n;j++)
+            if(j!=pivCol) {
+                tab[i][j] = sub(tab[i][j], mul(tab[pivRow][j],factor))
+            }
+    }
+  }
   for(i=0;i<m;i++) 
       if(i!=pivRow) tab[i][pivCol] = new Frac(0,1)
     
@@ -281,14 +338,17 @@ function step4b() {
       state = "1a"
   }
     dump()
+    printf2("<br/>...করলাম!")
 }
+
 function step5a() {
     printf("কাজ শেষ")
-    state = "5b"
+    pivRow += 5 //To stop highlight
+    pivCol += 5 //To stop highlight
+    dump();
+    printf1("")
 }
-function step5b() {
-  printf1("Done")
-}
+
 //------Reduce2.m ends-----
 
 //GUI methods
@@ -322,16 +382,37 @@ function asFrac(str) {
 }
 
 function loadTable() {
-  tab = new Array(m+1);
+  tab = new Array(m);
   for(i=0;i<m;i++) {
-    tab[i] = new Array(n+1);
+    tab[i] = new Array(n);
     for(j=0;j<n;j++) {
       tmp = document.getElementById(i+"_"+j).value;
       tab[i][j] = asFrac(tmp);
     }
   }  
+    showUI("op",true)
+    showUI("custom",false)
+    document.getElementById("tbl").innerHTML = "";
+    dump()
+}
 
+var mats = {"all same":[ [5,5,5],[5,5,5],[5,5,5]]}
+function exm(which) {
+    tmp = mats[which]
+    m=tmp.length
+    n = tmp[0].length
+    tab = new Array(m)
+    for(i=0;i<m;i++) {
+        tab[i] = new Array(n)
+        for(j=0;j<n;j++) {
+            tab[i][j] = asFrac(""+tmp[i][j])
+        }
+    }
+    showUI("shuru",false)
+    showUI("op",true)
   document.getElementById("tbl").innerHTML = "";
+  document.getElementById("rand").disabled = true;
+  document.getElementById("read").disabled = true;
     dump()
 }
 
@@ -358,7 +439,6 @@ function dump() {
 
 
 function dostep() {
-  printf1("");
   eval("step"+state+"()");
 }
 
@@ -368,6 +448,22 @@ function randomise() {
       document.getElementById(i+"_"+j).value = 
         Math.floor(20*Math.random())-10;
 }
+var str=""
+function loadMenu() {
+    var holder = document.getElementById("whichexm")
+    var ky = Object.keys(mats)
+    str = "<option selected=\"selected\">Select example</option>"
+    for(i in ky) {
+        item = ky[i]
+        str += "<option onClick=\"exm('"+item+"')\">"+item+"</option>"
+    }
+    holder.innerHTML = str;
+}
 
-alert("RREF algorithm loaded.");
+
+function showUI(which,showIt) {
+    document.getElementById(which).style.display
+        =(showIt? "block":"none")
+}
+    alert("RREF algorithm loaded.");
 

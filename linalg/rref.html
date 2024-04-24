@@ -3,35 +3,37 @@
 <title>GJ for RREF</title>
 
 <script src="rref.js">Javascript not supported</script>
-
+<body onload="loadMenu()">
 
 
 
 <h1>RREF using GJ algorithm</h1>
-<form>
-<select id="whichexm">
-<option onClick="alert(1)">Example 1</option>
-<option onClick="example(2)">Example 2</option>
-<option onClick="example(3)">Example 3</option>
-<option onClick="example(4)">Example 4</option>
-</select>
+<div id="shuru">
+<select id="whichexm"></select>
+<input type=button value="My own example"
+onclick="showUI('shuru',false);showUI('custom',true)">
+</div>
+<div style="display:none" id="custom">
 <p>
   Number of rows: <input type='text' id="nrow"/>
   Number of columns: <input type='text' id="ncol"/>
 <p>
   <input type="button" value="Create table" onclick="createTable()">
 <p>
+  <input type="button" id="rand" value="Fill table randomly" onclick="randomise()">
+  <input type="button" id="read" value="Read"
+onclick="loadTable()">
+</div>
   <div id="tbl"></div>
 
-  <input type="button" value="Random problem" onclick="randomise()">
-  <input type="button" value="Read" onclick="loadTable()">
-  <input type="button" value="Step" onclick="dostep()">
-</form>
+<div id="op"  style="display:none">
+  <input type="button" id="step" value="Step" onclick="dostep()">
 <table width=100% valign=top border=0 cellspacing=20><tr><td width=50% rowspan=2>
-<b>Tableau:</b><p><div id="tblout">
+<b>Matrix:</b><p><div id="tblout">
 </div></td><td width=50%><b>Rule:</b><p><div id="rule">
   </div></td></tr>
 <tr><td><b>In our case:</b><p>
 <div id="exm">
 </div></td></tr></table>
+</div>
 </body></html>
