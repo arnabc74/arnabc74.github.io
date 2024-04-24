@@ -281,7 +281,7 @@ function step3c() {
 }
 
 function step4a() {
-    printf("এবার sweep করব")
+    printf("এবার pivot\-এর উপরে ও নীচের সব entry-কে শূন্য করব")
     state = "4b"
     printf1("")
 }
@@ -406,7 +406,8 @@ var mats = {
     "zero start":[ [0,0,5],[0,1,0],[2,0,0]],
     "zero column":[ [0,0,5],[0,5,5],[0,1,4]],  
 }
-function exm(which) {
+function exm() {
+    var which = document.getElementById("whichexm").value
     tmp = mats[which]
     m=tmp.length
     n = tmp[0].length
@@ -464,7 +465,7 @@ function loadMenu() {
     str = "<option selected=\"selected\">Select example</option>"
     for(i in ky) {
         item = ky[i]
-        str += "<option onClick=\"exm('"+item+"')\">"+item+"</option>"
+        str += "<option>"+item+"</option>"
     }
     holder.innerHTML = str;
 }

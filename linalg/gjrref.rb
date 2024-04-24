@@ -6,7 +6,7 @@
 @}ekhAne AmrA dekhba kIbhAbe @{Gauss-Jordan elimination@}  diye ekTA @{matrix@}-er @{Reduced Row Echelon Form (RREF)@}  
 bAr kare. 
 <p>tumi dubhAbe shuru karte pAro. AmAr deoyA kichhu udAharaN diye. athabA tomAr nijer bAnAno kichhu udAharaN diye. </p>
-AmAr deoyA udAharaN@{: <select id="whichexm"></select>
+AmAr deoyA udAharaN@{: <select id="whichexm"  onchange="exm()"></select>
 <p/>@} tomAr nijer bAnAno @{ matrix: <input type=button value="My own example"
 onclick="showUI('shuru',false);showUI('custom',true)" />
 </div>
