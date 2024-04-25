@@ -1,5 +1,5 @@
 <NOTE script="rref.js" onload="loadMenu()">
-@{<HEAD1>GJ for RREF</HEAD1>@}
+@{<HEAD1>Reduced Row Echelon Form@} bAr karA</HEAD1>
 <HR/>
 @{<KEEP>
 <div id="shuru">
@@ -7,7 +7,7 @@
 bAr kare. 
 <p>tumi dubhAbe shuru karte pAro. AmAr deoyA kichhu udAharaN diye. athabA tomAr nijer bAnAno kichhu udAharaN diye. </p>
 AmAr deoyA udAharaN@{: <select id="whichexm"  onchange="exm()"></select>
-<p/>@} tomAr nijer bAnAno @{ matrix: <input type=button value="My own example"
+<p/>@} tomAr nijer bAnAno @{ matrix: <input type=button value="Your own example"
 onclick="showUI('shuru',false);showUI('custom',true)" />
 </div>
 <div style="display:none" id="custom">

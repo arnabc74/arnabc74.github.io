@@ -289,28 +289,30 @@ function step4a() {
 function step4b() {
     /*Sweep out pivotal column*/
     var needWork = false
-    printf1("আমরা "+(pivRow+1)+" নম্বর row-এর<ul>")
+    var str="আমরা "+(pivRow+1)+" নম্বর row-এর<ul>"
   for(i=0;i<m;i++) {
     if(i!=pivRow) {
         factor = tab[i][pivCol]
         if(!isZero(factor)) {
             needWork = true
-            printf2("<li>"+print(factor)+" গুণ "+(i+1)+" নম্বর row থেকে বিয়োগ করব.</li>")
+            str += "<li>"+print(factor)+" গুণ "+(i+1)+" নম্বর row থেকে বিয়োগ করব.</li>"
         }
     }
   }
-    printf2("</ul>")
     if(needWork) {
+        str += "</ul>"
+        printf1(str)
         state = "4c"
         return;
     }
-    
+    printf1("আমাদের বেলায় সবাই শূন্য হয়েই আছে, তাই কিছুই করতে হবে না!")
     if(pivRow == m-1 || pivCol == n-1) {
         state = "5a"
     }
     else {
         pivRow++
         pivCol++
+        dump()
         state = "1a"
     }
 }
