@@ -228,7 +228,7 @@ function step2a() {
 function step2b() {
   /*Swap propRow and pivRow*/
     if(propRow==pivRow) {
-        printf1("আমাদের বেলায় দরকারই পড়ল না")
+        printf1("আমাদের বেলায় প্রথম row-তেই আছে, তাই swap লাগছে না")
         state = "3a"
     }
     else {
@@ -356,10 +356,10 @@ function step5a() {
 //GUI methods
 
 function createTable() {
-  m = document.getElementById("nrow").value;
-  n = document.getElementById("ncol").value;
+    m = Number(document.getElementById("nrow").value);
+    n = Number(document.getElementById("ncol").value);
 
-  var str = "<table>"
+    var str = "<table>"
 
   for(i=0;i<m;i++) {
       str += "<tr>";
