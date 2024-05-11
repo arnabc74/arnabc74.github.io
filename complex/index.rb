@@ -25,6 +25,10 @@ lAl diye gherA a.nshaTA habe @{<M>aw+b = -[[ac][d]]+b = -[[ac-bd][c]].</M>@}  bh
 <LI><IMG web="p168.png">@{<E>168</E>@}  pAtAr a.nsha</IMG>
 lAl ra\nge yeman dekhiyechhi, ekTA @{<M>z'(t)</M>@}  Dhukbe.    bhulTA dharechhen prafesar samIraN kar+makAr. 
 </LI>
+<LI><IMG web="p185.png">@{<E>185</E>@}  pAtAr a.nsha</IMG>
+lAl ra\nge dekhAno @{<M>(z\omega)</M>@}-TA habe @{<M>(z-\omega).</M>@} 
+bhulTA dharechhen bIreshwar. 
+</LI>
 
 </UL>
 <DISQUSB url="http://www.isical.ac.in/~arnabc/complex/index.html" id="complex"></DISQUSB>

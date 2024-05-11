@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -67,13 +70,73 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -135,12 +198,14 @@ shape of purple triangle</th>
 </table>
 </center>
 
+<p></p>
 Here is the next one: a function can have
 either one or two arguments. In operation parlance, these are
 called unary and binary operators. But J call them,
 respectively, <font color="#ff0000">monad</font>s and <font color="#ff0000">dyad</font>s. We have
 already learned about how monads behave. Dyads add a second level
 of complication.
+<p></p>
 
 <h2><a
 name="Dyads">Dyads</a></h2>
@@ -203,25 +268,27 @@ then the final result will be:
 </table>
 </center>
 
+<p></p>
 
 <h2><a
 name="Right-to-left">Right-to-left</a></h2>
 
+<p></p>
 Since functions are either monads or dyads, so they are much like
 unary and binary operations that we learn in school. Indeed, J
 uses exactly the same syntax. Thus, instead of
-writing $f(x,y)$ we write <code>x f
-y</code>. Similarly, $f(x)$ is <code>f x</code>. In
+writing $f(x,y)$ we write <font size="+1" color="red"><code>x f
+y</code></font>. Similarly, $f(x)$ is <font size="+1" color="red"><code>f x</code></font>. In
 arithmetic, we have two types of minuses, unary and binary, much
 to the confusion of kids. J
 keeps up the tradition (both of arithmetic and of confusion) by allowing a same symbol to denote a
 monad as well as dyad. Usually, the monad and the dyad denoted by
 the same symbol are related, though this is not a requirement. 
-
+<p></p>
 
 <p></p>
 
-
+<p></p>
 With all functions being written as binary and unary operators,
 it is no waonder that J has large number of these. So to keep the
 order of evaluation unambiguous we need to either put lots of
@@ -237,6 +304,7 @@ this "reverse" way, and suspect some Arabic influence,
 let me point out that this is how we do it in math most of the
 time: $(f\circ g)(x) = f(g(x))$ means apply $g$ first,
 and then $f.$ 
+<p></p>
 
 <h2><a
 name="Cryptic symbols">Cryptic symbols</a></h2>
@@ -262,6 +330,7 @@ symbols for all the possible coefficients (0,1,2,...,9) and then
 simply list the coefficients side by side. Is it really simple?
 Yes, when you see that even a kid can do it. No, when we remember
 that it took centuries for this system to evolve. 
+<p></p>
 
 <p></p>
 Well, that is basically what happens for J also. J has a clever way of
@@ -271,6 +340,7 @@ derived entities are expressed in their terms.  Without
 abbreviations, however, this would not be of much practical
 value. So J uses very short names for its basic functions (at
 most two characters).
+<p></p>
 
 <h2><a
 name="Forks and compositions">Forks and compositions</a></h2>
@@ -279,6 +349,7 @@ ways to combine existing functions to create new functions. At
 first glance they may appear to be merely some convenient
 shortcuts. But actually they play an important role in J. We
 shall discuss this now.
+<p></p>
 
 <h3><a
 name="Monadic case">Monadic case</a></h3>
@@ -350,6 +421,7 @@ correspond to monads, <i>e.g.</i>, in $\sin y + \cos y$ the leaf
 nodes are $\sin$ and $\cos$, both monads.
 <p></p>
 
+<p></p>
 Now, that may not always be the case, because
 <ol type="">
 <li>a leaf node may be just some constant, as
@@ -380,6 +452,7 @@ called <font color="#ff0000">hook</font>s in J.
 </li>
 </ol>
 
+<p></p>
 In the above solutions,  J shows a bias in favor of the left child.
 This may bother you. If the parent is a commutative operation, then
 the children may be swapped (<i>e.g.</i>, $\sin(y) + 3$ may be written as
@@ -459,6 +532,7 @@ used dyadically as <font color="red"><code>x h y</code></font> will mean:
 
 </ul>
 
+<p></p>
 
 <h3><a
 name="Tacit programming">Tacit programming</a></h3>
@@ -475,7 +549,7 @@ use of forks (hooks) and compositions is not desirable from
 the viewpoint of
 readability. But tacit programming helps a lot for
 smaller trees.
-
+<p></p>
 <hr/>
 <table width="100%" border="0">
 <tr>
@@ -483,6 +557,4 @@ smaller trees.
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

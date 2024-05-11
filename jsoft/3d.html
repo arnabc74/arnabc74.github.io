@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -67,13 +70,73 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -81,7 +144,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <a href="#Using J: an example">Using J: an example</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#What you need to know about the .obj format">What you need to know about the <code>.obj</code> format</a>
+<a href="#What you need to know about the .obj format">What you need to know about the <font size="+1" color="red"><code>.obj</code></font> format</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Visualising the end product">Visualising the end product</a>
@@ -119,29 +182,31 @@ this is <a href="http://www.artofillusion.org">Art of
 Illusion</a>. While it takes care of the artistic aspects
 (texture, lighting etc), sometimes I need complicated 3D objects
 that are described more easily via mathematics than via GUI. For
-such requirements I create an <code>.obj</code> file, which is a
+such requirements I create an <font size="+1" color="red"><code>.obj</code></font> file, which is a
 just an ASCII file listing all the vertices and faces. Then I
 import this file into Art of Illusion, and add the fine polish. 
 <p></p>
-One can use J to produce the <code>.obj</code> file easily. I
+One can use J to produce the <font size="+1" color="red"><code>.obj</code></font> file easily. I
 shall illustrate with the example of making a surface of a
 function $F(x,y).$ The aim is to build a tool that will let
-me produce the <code>.obj</code> file for any given function and
+me produce the <font size="+1" color="red"><code>.obj</code></font> file for any given function and
 ranges.
+<p></p>
 
 <h2><a
-name="What you need to know about the <code>.obj</code> format">What you need to know about the <code>.obj</code> format</a></h2>
+name="What you need to know about the <font size="+1" color="red"><code>.obj</code></font> format">What you need to know about the <font size="+1" color="red"><code>.obj</code></font> format</a></h2>
 It is best explained by an example.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
-Here is a valid <code>.obj</code> file:
+<b>EXAMPLE ():</b>&nbsp;
+Here is a valid <font size="+1" color="red"><code>.obj</code></font> file:
 <pre>
 v 0.1 0.1 0.1
 v 1.5 0.2 2.0
 v 1.1 1.0 0.3
 v -1 1.5 0.6
-
+<p></p>
 f 1 2 3
 f 1 3 4
 </pre>
@@ -158,36 +223,38 @@ This describes the object:
 </center>
 It consists of 6 lines (the blank line is for the ease of human
 reading, and is ignored by the computer). The first 4 lines
-start with the letter <code>v</code>. They specify vertices. The
-three numbers following the <code>v</code> gives
+start with the letter <font size="+1" color="red"><code>v</code></font>. They specify vertices. The
+three numbers following the <font size="+1" color="red"><code>v</code></font> gives
 the $x$, $y$ and $z$ coordinates of that vertex.
 The vertices are numbered 1 onwards according to the order of listing.
 <p></p>
-Each line starting with an <code>f</code> specifies a
+Each line starting with an <font size="+1" color="red"><code>f</code></font> specifies a
 (triangular) face. The three numbers are the indices of the
 three vertices. 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <h2><a
 name="Visualising the end product">Visualising the end product</a></h2>
-We want to write a dyad <code>s</code> that will take two inputs,
+We want to write a dyad <font size="+1" color="red"><code>s</code></font> that will take two inputs,
 the grid of $x$-values and the grid of $y$-values, and
-produce the <code>.obj</code> file for the surface of a
+produce the <font size="+1" color="red"><code>.obj</code></font> file for the surface of a
 function $F(x,y)$ (which we assume is already
 available). Here we are assuming that we shall always use the
-name <code>F</code> for the target function. Thus, a typical
+name <font size="+1" color="red"><code>F</code></font> for the target function. Thus, a typical
 session to create the surface of $F(x,y)=\sin(x)\cos(y)$
 could look like:
 <pre>
 F=. 4 : '(sin x)*cos y'
-
+<p></p>
 x=. 10*(i: 100) %100 
-
+<p></p>
 (x s x) fw &lt;'test.obj' NB. Using the same grid for x and y
 </pre>
-Here we have assumed that <code>sin</code> and <code>cos</code>
-are defined as usual, and that <code>fw</code> means "file
+Here we have assumed that <font size="+1" color="red"><code>sin</code></font> and <font size="+1" color="red"><code>cos</code></font>
+are defined as usual, and that <font size="+1" color="red"><code>fw</code></font> means "file
 write", ie, 
 <pre>
 fw =: 1!:2
@@ -197,7 +264,7 @@ fw =: 1!:2
 name="Doing the preparation">Doing the preparation</a></h2>
 Let's chalk out the structure of the surface in terms of vertices
 and faces. We want all the faces to be triangular
-(such <code>.obj</code> files are the most portable). We can
+(such <font size="+1" color="red"><code>.obj</code></font> files are the most portable). We can
 construct a Cartesian grid using the given $x$-grid
 and $y$-grid:
 <center>
@@ -216,6 +283,7 @@ the surface. Thus, if there are $m$ values for $x$
 and $n$ for 
 $y,$
  then the number of vertices would be $mn.$
+<p></p>
 
 <h2><a
 name="Writing the J code">Writing the J code</a></h2>
@@ -225,7 +293,7 @@ name="The vertices">The vertices</a></h3>
 For each grid point $(x,y)$ we need to produce a line like 
 <blockquote>
 
-<code>v</code> $x$ $y$ $F(x,y)$
+<font size="+1" color="red"><code>v</code></font> $x$ $y$ $F(x,y)$
 </blockquote>
 In J this may be produced as
 <pre>
@@ -236,11 +304,13 @@ In J this may be produced as
 </pre>
 We need to do this for each pair $(x,y).$ J makes this easy
 in the form 
+<p></p>
 
 <pre>
 x <img style="vertical-align:text-bottom" src="image/cloud.png">/ y
 </pre>
-What to place in the cloud? The answer is <code>vx"0</code>, where 
+What to place in the cloud? The answer is <font size="+1" color="red"><code>vx"0</code></font>, where 
+<p></p>
 
 <pre>
 vx=: 4 : 0
@@ -248,6 +318,7 @@ vx=: 4 : 0
 )
 </pre>
 
+<p></p>
 Notice that 
 <pre>
 x vx"0/ y
@@ -262,6 +333,7 @@ ver=. <ruby>,<rt>
 </ruby> newline"1 x vx"0/ y
 </pre>
 Well, that's all for the vertices. 
+<p></p>
 
 <h3><a
 name="The faces">The faces</a></h3>
@@ -280,12 +352,12 @@ fashion. So a typical cell will be like:
 </tr>
 </table>
 </center>
-This should produce two <code>f</code> lines:
+This should produce two <font size="+1" color="red"><code>f</code></font> lines:
 <blockquote>
 
-<code>f</code> $y$ $(y+1)$ $(y+n+1)$<br>
+<font size="+1" color="red"><code>f</code></font> $y$ $(y+1)$ $(y+n+1)$<br>
 
-<code>f</code> $k$ $(y+n+1)$ $(y+n)$
+<font size="+1" color="red"><code>f</code></font> $k$ $(y+n+1)$ $(y+n)$
 </blockquote>
 It is easy to write a monad that will convert the input $y$
 into a list of these two strings:
@@ -321,7 +393,7 @@ mat=. <ruby>&gt;:<rt>
 </ruby> i. m, n
 </pre>
 We needed to add 1 to start the counting from 1 (which is the
-norm with <code>.obj</code> format).
+norm with <font size="+1" color="red"><code>.obj</code></font> format).
 Now tear off the last row:
 <pre>
 
@@ -350,6 +422,7 @@ fac=.<ruby>,<rt>
 </ruby> newline"1 f"0 trim
 </pre>
 
+<p></p>
 
 <h3><a
 name="Putting the vertices and faces together">Putting the vertices and faces together</a></h3>
@@ -358,7 +431,7 @@ This is easy, just append them:
 ver, fac
 </pre>
 However, remember $J$'s habit of using underscore in place of
-minus. Well, <code>.obj</code> file format does not allow
+minus. Well, <font size="+1" color="red"><code>.obj</code></font> file format does not allow
 that. So we need to replace all the underscores by minuses:
 <pre>
 '_-' charsub ver, fac
@@ -371,13 +444,13 @@ name="The final code (raw version)">The final code (raw version)</a></h2>
 vx=: 4 : 0
   'v ', ": x, y, (x F y)
 )
-
+<p></p>
 fc=: 3 : 0
   t1=.'f ', ": y, (y+1), y+ny+1
   t2=.'f ', ": y, (y+ny+1), y+ny
   t1,:t2
 )
-
+<p></p>
 s=: 4 : 0
   newline=. ,&amp;LF
   ver=: , newline"1 x vx"0/ y
@@ -390,14 +463,15 @@ s=: 4 : 0
 )
 </pre>
 
+<p></p>
 
 <h2><a
 name="The final code (adverb version)">The final code (adverb version)</a></h2>
 The above code is fine. But to use it you have to use the
-name <code>F</code> for the target function. This is irritating
-if you want to create <code>.obj</code> files for two functions
+name <font size="+1" color="red"><code>F</code></font> for the target function. This is irritating
+if you want to create <font size="+1" color="red"><code>.obj</code></font> files for two functions
 in the same session. Notice that we had written a
-verb <code>s</code> that takes two inputs visibly (the $x$
+verb <font size="+1" color="red"><code>s</code></font> that takes two inputs visibly (the $x$
 and $y$ values) and one input invisibly (the target
 function). Thus, what we have written is alike a machine with
 three inputs, one of them being a verb. J calls such machines an
@@ -405,27 +479,27 @@ adverb. Here a typical invocation would be
 <pre>
 (x (myfun s) y) fw &lt;'test.obj' 
 </pre>
-where <code>myfun</code> is the name of our target
-function. Earlier our <code>s</code> verb delegated its job to
-two verbs, <code>vx</code> for vertices and <code>fc</code> for the
+where <font size="+1" color="red"><code>myfun</code></font> is the name of our target
+function. Earlier our <font size="+1" color="red"><code>s</code></font> verb delegated its job to
+two verbs, <font size="+1" color="red"><code>vx</code></font> for vertices and <font size="+1" color="red"><code>fc</code></font> for the
 faces. We needed the target function for only the vertices. The
 faces are determined by the "topology" of the grid, and not on
 the exact positions of the vertices. So we need to pass the
-target function to <code>vx</code> also. This requires two
-modifications to our code: converting <code>s</code>
-and <code>vx</code> both to adverbs.
+target function to <font size="+1" color="red"><code>vx</code></font> also. This requires two
+modifications to our code: converting <font size="+1" color="red"><code>s</code></font>
+and <font size="+1" color="red"><code>vx</code></font> both to adverbs.
 <pre>
 vx=: 1 : 0
 :
   'v ', ": x, y, (x <font color="#ff0000">u</font> y)
 )
-
+<p></p>
 fc=: 3 : 0
   t1=.'f ', ": y, (y+1), y+ny+1
   t2=.'f ', ": y, (y+ny+1), y+ny
   t1,:t2
 )
-
+<p></p>
 s=: 1 : 0
 :
   newline=. ,&amp;LF
@@ -470,6 +544,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

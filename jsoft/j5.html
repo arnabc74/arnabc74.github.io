@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -95,6 +98,11 @@ body {
 .scrpt {
   border-left: 5px solid black;
 }
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
 </style>
 <script>
 window.onscroll = function() {myFunction()};
@@ -122,13 +130,12 @@ function myFunction() {
   else
     tphldr.innerHTML = header[index].innerHTML
 }
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
@@ -189,10 +196,12 @@ The most important and frequently used functions in J are the
 ones that manipulate the tree structure. As these are unique to
 J, these are also the ones that will take more time to
 digest. 
+<p></p>
 
 <h2><a
 name="Structure of trees">Structure of trees</a></h2>
 
+<p></p>
 A tree in J is always balanced. This allows an easy way to store
 it. Just store the leaf nodes, and also the shape. So if you want
 to reshape the tree, just change the shape. This is done
@@ -206,10 +215,12 @@ underlying list, then you can use the monad <font color="red"><code>,</code></fo
 (mysteriously called ravel). To really change the shape you need
 to use <font color="red"><code>m n $ , x</code></font>
 
+<p></p>
 
 <h2><a
 name="Accessing items">Accessing items</a></h2>
 
+<p></p>
 To access items we use the <font color="red"><code>{</code></font> family.
  get the first
 item use the monad <font color="red"><code>{.</code></font>. To get the last item use the
@@ -228,23 +239,27 @@ This command expects <font color="red"><code>x</code></font> to be a list of 3 i
  get stored in the variables <font color="red"><code>a</code></font>, <font color="red"><code>b</code></font> and <font color="red"><code>c</code></font>.
 <p></p>
 
+<p></p>
  To get a new tree consisting of all the items
 except the first use <font color="red"><code>}.</code></font>. If you want to remove the last
 item then use the monad <font color="red"><code>}:</code></font>.
+<p></p>
 
 <h2><a
 name="Modifying a tree">Modifying a tree</a></h2>
 
 <font color="red"><code>|:</code></font> (monad and dyad) 
 applies <font color="red"><code>|.</code></font> (monad and dyad) to the shape.
-
+<p></p>
 This effectively permutes the indices always maintaining the
 following contract: If $\pi$ denote the permutation, then 
 the new entry at $(\pi(i_1),...,\pi(i_k))$ will always
 equal the old entry at $(i_1,...,i_k)$.
 <p></p>
- 
+
+<p></p>
 The dyad <font color="red"><code>|:</code></font> will transpose a matrix.
+<p></p>
 
 <h2><a
 name="Combining trees">Combining trees</a></h2>
@@ -318,6 +333,7 @@ Next we attack the layer above:
 </table>
 </center>
 This process is always done internally.
+<p></p>
 
 <h2><a
 name="The comma family (dyad)">The comma family (dyad)</a></h2> 
@@ -325,7 +341,8 @@ name="The comma family (dyad)">The comma family (dyad)</a></h2>
 <h3><a
 name="Appending">Appending</a></h3>
 The <font color="red"><code>,</code></font> dyad appends two trees "side by side":
- 
+<p></p>
+
 <center>
 <table width="100%">
 <tr>
@@ -337,9 +354,11 @@ The <font color="red"><code>,</code></font> dyad appends two trees "side by side
 </table>
 </center>
 
+<p></p>
 
 <p></p>
 Here is a complete example with balancing.
+<p></p>
 
 <center>
 <table width="100%">
@@ -404,6 +423,7 @@ where the atom is <i>replicated in all its leaf nodes</i>:
 </table>
 </center>
 Intuitively, appending is a way to grow a longer list.
+<p></p>
 
 <h3><a
 name="Laminate ">Laminate </a></h3>
@@ -413,6 +433,7 @@ Another natural way to combine two trees is by creating a new
 tree with these two trees as items (and then balancing if
 needed). This is called lamination, and effected
 by <font color="red"><code>,:</code></font>. 
+<p></p>
 
 <center>
 <table width="100%">
@@ -461,6 +482,7 @@ Then we balance the tree:
 As usual, the most frequently encountered situation is where the
 tree in step 1 is already balanced. Intuitively, lamination is
 the way to grow a list of lists. 
+<p></p>
 
 <h3><a
 name="Stitch">Stitch</a></h3>
@@ -495,6 +517,7 @@ are appended.
 </center>
 If the numbers of items are not equal, then J
 reports a length error.
+<p></p>
 
 <h2><a
 name="The comma family (monad)">The comma family (monad)</a></h2>
@@ -520,6 +543,7 @@ creates a new root node above it.
 </table>
 </center>
 
+<p></p>
 
 <h3><a
 name="Itemize ">Itemize </a></h3>
@@ -541,6 +565,7 @@ becomes the new root node. A leading 1 is added to the shape.
  In
 terms of sets it is like converting $x$ to a singleton
 set $\{x\}$.
+<p></p>
 
 <h3><a
 name="Ravel items ">Ravel items </a></h3>
@@ -548,6 +573,7 @@ name="Ravel items ">Ravel items </a></h3>
 <font color="red"><code>,.</code></font>
 This applies ravel to each item separately. Indeed this is the
 same as ravelling with rank $-1.$
+<p></p>
 
 <h2><a
 name="The semicolon family">The semicolon family</a></h2>
@@ -558,6 +584,7 @@ The dyad <font color="red"><code>;</code></font> effectively does the same thing
 boxing. The result is a tree with two leaf nodes under a root,
 the  leaf nodes being boxes containing the original
 trees. Simple!
+<p></p>
 
 <h3><a
 name="Raze">Raze</a></h3>
@@ -578,8 +605,8 @@ and balancing.
 </center>
 Remember that unboxing keeps unboxed things
 unaltered. So if the tree were a list of unboxed items, then raze
-is just same a appending the items.
-
+is just same as appending the items.
+<p></p>
 <hr/>
 <table width="100%" border="0">
 <tr>
@@ -587,6 +614,4 @@ is just same a appending the items.
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -67,13 +70,73 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -130,6 +193,7 @@ $\newcommand{\bx}{{\bf x}}
 \newcommand{\bq}{{\bf q}}
 \newcommand{\bp}{{\bf p}}
 $
+<p></p>
 
 <title>Matrix algorithms</title>
 
@@ -147,9 +211,10 @@ name="Matrix algorithms">Matrix algorithms</a></h1>
 <h2><a
 name="Gauss-Jordan elimination">Gauss-Jordan elimination</a></h2>
 We shall start with a few concepts already familiar to you. 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Consider the following three equations:
 $$\begin{eqnarray*}
 2x-3y+z&amp; =&amp; 5\\
@@ -157,8 +222,10 @@ $$\begin{eqnarray*}
 2x + 3z&amp; =&amp; -2
 \end{eqnarray*}$$
 This is an example of a <i> system of linear equations.</i>
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 We can write a system of $m$ linear equations in $n$ unknowns
 using matrix notation:
 $$
@@ -167,9 +234,10 @@ $$
 where $A_{m\times n}$ is called the <i> coefficient matrix,</i>
 $\bx_{n\times 1}$ is called the vector of unknowns, and
 $\bb_{m\times 1}$ is called the rhs vector.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 The system in the last example can be written as
 $$
 \left[\begin{array}{ccccccccccc}2&amp; -3&amp; 1\\3&amp; 1&amp; 2\\2&amp; 0&amp; 3
@@ -180,90 +248,95 @@ $$
 Thus, here
 $$
 A = \left[\begin{array}{ccccccccccc}2&amp; -3&amp; 1\\3&amp; 1&amp; 2\\2&amp; 0&amp; 3
-\end{array}\right],~~~\bx = \left[\begin{array}{ccccccccccc}x\\y\\z
-\end{array}\right],~~~
+\end{array}\right],\bx = \left[\begin{array}{ccccccccccc}x\\y\\z
+\end{array}\right],
 \bb = \left[\begin{array}{ccccccccccc}5\\15\\-2
 \end{array}\right].
 $$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
  If the rhs vector $\bb$ is $\bz$, then we call the system <b> homogeneous</b>, else we call it <b> non-homogeneous</b>. 
+<p></p>
 
 <p></p>
 
+<p></p>
 Any value of $\bx$ for which $A\bx = \bb,$ is called a <i>
 solution</i>  of the system. A system of linear equations has either exactly
 one solution, or infinitely many solutions or no solution at all. In the
 last case we call the system <b> inconsistent</b>. Otherwise it is called
 <b> consistent</b>.
-
-
+<p></p>
 The next example shows the method for solving a system of linear
 equations that we learn at high school.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Consider the following system of three linear equations, which we call
 $\alpha_1,\beta_1$ and $\gamma_1.$
-
-
+<p></p>
 $$\begin{array}{lrrrrrrrrrrrr}
-\alpha_1 :~~~&amp; x&amp; -y&amp; +z&amp; =&amp; 2 \\
-\beta_1 :~~~&amp; 2x&amp; +5y&amp; -z&amp; =&amp; 9 \\
-\gamma_1 :~~~&amp; x&amp; +2y&amp; -3z&amp; =&amp;  -4
+\alpha_1 :&amp; x&amp; -y&amp; +z&amp; =&amp; 2 \\
+\beta_1 :&amp; 2x&amp; +5y&amp; -z&amp; =&amp; 9 \\
+\gamma_1 :&amp; x&amp; +2y&amp; -3z&amp; =&amp;  -4
 \end{array}$$
 In high school we used to solve this by eliminating the unknowns one by
 one until only one remained. Here we shall do this for all the unknowns simultaneously. 
-
+<p></p>
 
 Let us first eliminate $x$ from the last two equations by subtracting
 multiples of the first equation from them. Here are the resulting 3
 equations, which we call
 $\alpha_2,\beta_2$ and $\gamma_2.$
-
+<p></p>
 $$\begin{array}{lrrrrrrrrrrrr}
-\alpha_2=&amp; \alpha_1 :~~~&amp; x&amp; -y&amp; +z&amp; =&amp; 2 \\
-\beta_2=&amp; \beta_1-2\alpha_1 :~~~&amp;  &amp; 7y&amp; -3z&amp; =&amp; 5 \\
-\gamma_2=&amp; \gamma_1-\alpha_1 :~~~&amp;  &amp; 3y&amp; -4z&amp; =&amp;  -6
+\alpha_2=&amp; \alpha_1 :&amp; x&amp; -y&amp; +z&amp; =&amp; 2 \\
+\beta_2=&amp; \beta_1-2\alpha_1 :&amp;  &amp; 7y&amp; -3z&amp; =&amp; 5 \\
+\gamma_2=&amp; \gamma_1-\alpha_1 :&amp;  &amp; 3y&amp; -4z&amp; =&amp;  -6
 \end{array}$$ 
 We want the coefficient of $y$ in the second equation to be $1:$
 $$\begin{array}{lrrrrrrrrrrrr}
-\alpha_3=&amp; \alpha_2 :~~~&amp; x&amp; -y &amp; +z&amp; =&amp; 2 \\
-\beta_3=&amp; \frac 17\beta_2 :~~~&amp;  &amp; y&amp; -\frac 37z&amp; =&amp; \frac 57 \\
-\gamma_3=&amp;  \gamma_2 :~~~&amp;  &amp; 3y &amp; -4z&amp; =&amp;  -6
+\alpha_3=&amp; \alpha_2 :&amp; x&amp; -y &amp; +z&amp; =&amp; 2 \\
+\beta_3=&amp; \frac 17\beta_2 :&amp;  &amp; y&amp; -\frac 37z&amp; =&amp; \frac 57 \\
+\gamma_3=&amp;  \gamma_2 :&amp;  &amp; 3y &amp; -4z&amp; =&amp;  -6
 \end{array}$$
 Now let us eliminate $y$ from the all the equations except
 the second one:
 $$\begin{array}{lrrrrrrrrrrrr}
-\alpha_4=&amp; \alpha_3+\beta_2 :~~~&amp; x&amp; &amp; +\frac 47z&amp; =&amp; \frac{19}{7} \\
-\beta_4=&amp; \beta_3 :~~~&amp;  &amp; y&amp; -\frac 37z&amp; =&amp; \frac 57 \\
-\gamma_4=&amp; \gamma_3-3\beta_2 :~~~&amp;  &amp;  &amp; -\frac{19}{7}z&amp; =&amp;  -\frac{57}{7}
+\alpha_4=&amp; \alpha_3+\beta_2 :&amp; x&amp; &amp; +\frac 47z&amp; =&amp; \frac{19}{7} \\
+\beta_4=&amp; \beta_3 :&amp;  &amp; y&amp; -\frac 37z&amp; =&amp; \frac 57 \\
+\gamma_4=&amp; \gamma_3-3\beta_2 :&amp;  &amp;  &amp; -\frac{19}{7}z&amp; =&amp;  -\frac{57}{7}
 \end{array}$$
 Next, we want the coefficient of $z$ in the third equation
 to be $1:$
 $$\begin{array}{lrrrrrrrrrrrr}
-\alpha_5=&amp; \alpha_4 :~~~&amp; x&amp; &amp; +\frac 47z&amp; =&amp; \frac{19}{7} \\
-\beta_5=&amp; \beta_4 :~~~&amp;  &amp; y&amp; -\frac 37z&amp; =&amp; \frac 57 \\
-\gamma_5=&amp; -\frac{7}{19}\gamma_4 :~~~&amp;  &amp;  &amp; z&amp; =&amp;  3
+\alpha_5=&amp; \alpha_4 :&amp; x&amp; &amp; +\frac 47z&amp; =&amp; \frac{19}{7} \\
+\beta_5=&amp; \beta_4 :&amp;  &amp; y&amp; -\frac 37z&amp; =&amp; \frac 57 \\
+\gamma_5=&amp; -\frac{7}{19}\gamma_4 :&amp;  &amp;  &amp; z&amp; =&amp;  3
 \end{array}$$
 Finally, eliminate $z$ from all but the last equation:
 $$\begin{array}{lrrrrrrrrrrrr}
-\alpha_6=&amp; \alpha_5-\frac 74\gamma_5 :~~~&amp; x&amp; &amp; &amp; =&amp; 1 \\
-\beta_6=&amp; \beta_5+\frac 73 \gamma_5 :~~~&amp;  &amp; y&amp; &amp; =&amp; 2 \\
-\gamma_6=&amp; \gamma_5 :~~~&amp;  &amp;  &amp; z&amp; =&amp;  3
+\alpha_6=&amp; \alpha_5-\frac 74\gamma_5 :&amp; x&amp; &amp; &amp; =&amp; 1 \\
+\beta_6=&amp; \beta_5+\frac 73 \gamma_5 :&amp;  &amp; y&amp; &amp; =&amp; 2 \\
+\gamma_6=&amp; \gamma_5 :&amp;  &amp;  &amp; z&amp; =&amp;  3
 \end{array}$$
 This gives us the final solution.
 <p></p>
+ ///
+</p>
 
-<img src="../image/box.png"></p>
-
+<p></p>
 This is what is called Gauss-Jordan elimination 
 in computational matrix theory. While doing
 Gauss-Jordan elimination it is customary to write the system at each step in
 the <b> augmented matrix form</b>. This is done in the example below.
- 
+<p></p>
+
 <p>
-<b>EXAMPLE:</b>&nbsp; The augmented matrix form of the given system is as follows.
+<b>EXAMPLE ():</b>&nbsp; The augmented matrix form of the given system is as follows.
 $$\left[\begin{array}{rrr|r}
 1&amp; -1&amp; 1&amp; 2 \\
 2&amp; 5&amp; -1&amp; 9 \\
@@ -328,11 +401,10 @@ column zero (except the pivot itself).</li>
 <li>The $\searrow$ step moves the pivot one step downwards
 and to the right.</li>
 </ul>
+ ///
+</p>
 
-<img src="../image/box.png"></p>
-
-
-
+<p></p>
 
 <fieldset>
 <legend><b><i>Gauss-Jordan elimination (without pivoting)</i></b></legend>
@@ -358,21 +430,21 @@ s=: monad : 'y - (pj{y) * pr'
 <ul>
 
 <li>
-<code>monad</code>: A function <code>f</code> that is invoked
-as <code>f y</code>, <i>i.e.</i>, single argument that is written to
+<font size="+1" color="red"><code>monad</code></font>: A function <font size="+1" color="red"><code>f</code></font> that is invoked
+as <font size="+1" color="red"><code>f y</code></font>, <i>i.e.</i>, single argument that is written to
 the right of the function name, <i>e.g.</i>, $\tan y$ Inside the
-definition of the function, the argument is always called <code>y</code>.</li>
+definition of the function, the argument is always called <font size="+1" color="red"><code>y</code></font>.</li>
 
 <li>
-<code>dyad</code>: A function <code>f</code> that is invoked
-as <code>x f y</code>, <i>i.e.</i>, 2 arguments  written on both sides
+<font size="+1" color="red"><code>dyad</code></font>: A function <font size="+1" color="red"><code>f</code></font> that is invoked
+as <font size="+1" color="red"><code>x f y</code></font>, <i>i.e.</i>, 2 arguments  written on both sides
 of the function name, <i>e.g.</i> $x + y$. Inside the
 definition of the function, the left hand argument is
-called <code>x</code>, and the right hand argument is called <code>y</code>.</li>
+called <font size="+1" color="red"><code>x</code></font>, and the right hand argument is called <font size="+1" color="red"><code>y</code></font>.</li>
 
 <li>
-<code>{</code> selects elements of a list, <i>e.g.</i> <code>1{2 3
-_1 2</code> will return 3, the 1-th element (counting starts
+<font size="+1" color="red"><code>{</code></font> selects elements of a list, <i>e.g.</i> <font size="+1" color="red"><code>1{2 3
+_1 2</code></font> will return 3, the 1-th element (counting starts
 from 0).</li>
 
 </ul>
@@ -393,39 +465,39 @@ rhs=: {:|: amat
 <ul>
 
 <li>
-<code>'a b'=: 1 2</code> makes parallel assignments to
-variables <code>a</code> and <code>b</code>.</li>
+<font size="+1" color="red"><code>'a b'=: 1 2</code></font> makes parallel assignments to
+variables <font size="+1" color="red"><code>a</code></font> and <font size="+1" color="red"><code>b</code></font>.</li>
 
 <li>
-<code>? 100</code> generates a random integer from the
+<font size="+1" color="red"><code>? 100</code></font> generates a random integer from the
 set $\{0,1,...,99\}.$ To generate 3 such random integers we
-need <code>? 100 100 100</code>. </li>
+need <font size="+1" color="red"><code>? 100 100 100</code></font>. </li>
 
 <li>
-<code>4 5 $ 100</code> creates a $4\times 5$ matrix
+<font size="+1" color="red"><code>4 5 $ 100</code></font> creates a $4\times 5$ matrix
 with each element equal to 100.</li>
 
 <li>
-<code>? 4 5 $ 100</code> creates a $4\times 5$ matrix
+<font size="+1" color="red"><code>? 4 5 $ 100</code></font> creates a $4\times 5$ matrix
 with each element drawn iid from the
 set $\{0,1,...,99\}.$</li>
 
 <li>
-<code>|:</code> (transpose) transposes a matrix.</li>
+<font size="+1" color="red"><code>|:</code></font> (transpose) transposes a matrix.</li>
 
 <li>
-<code>}:</code> (curtail) chops off the tail of a list,
-<i>e.g.</i> <code>}: 1 2 3 4</code> returns <code>1 2 3</code>.</li>
+<font size="+1" color="red"><code>}:</code></font> (curtail) chops off the tail of a list,
+<i>e.g.</i> <font size="+1" color="red"><code>}: 1 2 3 4</code></font> returns <font size="+1" color="red"><code>1 2 3</code></font>.</li>
 
 </ul>
 </div>
 </p>
 Next, we start the algorithm by setting the pivot column (indexed
-by <code>pj</code>, say) to 0.
+by <font size="+1" color="red"><code>pj</code></font>, say) to 0.
 <span class="j">
 <pre>
 pj=:0
-
+<p></p>
 ]a2=: m a1
 ]b2=: s b1
 ]c2=: s c1
@@ -439,7 +511,7 @@ pj=:0
 <ul>
 
 <li>
-<code>]</code> identity map (when used as
+<font size="+1" color="red"><code>]</code></font> identity map (when used as
 monad) $f(y)=y.$ Here it is used as a trick to print the assigned
 value.</li>
 
@@ -479,13 +551,14 @@ rhs %. mat
 <ul>
 
 <li>
-<code>%.</code> solves a system of equations in the least
+<font size="+1" color="red"><code>%.</code></font> solves a system of equations in the least
 squares sense.</li>
 
 </ul>
 </div>
 </p>
 
+<p></p>
 
 <h3><a
 name="Pivoting">Pivoting</a></h3>
@@ -493,7 +566,7 @@ The $M$- and $S$-steps require the pivot to
 be nonzero. However, in the above algorithm the pivot may become
 zero. 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 If the system is 
 $$\begin{array}{lrrrrrrrrrrrr}
  &amp; 3 y &amp; - 5z &amp; = &amp; -1\\
@@ -501,9 +574,11 @@ $$\begin{array}{lrrrrrrrrrrrr}
 -x &amp; - 8y &amp; - z &amp; = &amp; -4
 \end{array}$$
 then the $(1,1)$-th entry is 0. 
+<p></p>
 
 <p></p>
 
+<p></p>
 Yet it is hardly a problem, because we just have to use some
 other equation to eliminate $x$ with. For this we may choose
 just any equation that has $x$ in it (<i>i.e.</i>, the coefficient
@@ -522,16 +597,18 @@ $$\begin{array}{lrrrrrrrrrrrr}
 4x &amp; + y &amp; + z &amp; = &amp; 6\\
 -x &amp; - 8y &amp; - z &amp; = &amp; -4
 \end{array}$$
-<img src="../image/box.png"></p>
+ ///
+</p>
 These are called <b>pivoting</b>.
 It is useful
 even when the pivot is nonzero, but is very small in absolute value. 
 This is because
 division by numbers near zero in a computer introduces large errors in the output. 
-
+<p></p>
 
 <p></p>
 
+<p></p>
 In terms of augmented matrices, pivoting means choosing the pivot
 position appropriately at the start of each step. There are just
 two rules to keep in mind: 
@@ -551,6 +628,7 @@ variable may come back!).</li>
 
 </ul>
 Also we follow another <i>desirable</i> property:
+<p></p>
 
 <ul>
 
@@ -567,9 +645,11 @@ Most textbooks present pivoting in terms of swapping rows and
  step is always $(k,k).$ If you want anything else at that
  position, you manually swap the rows and columns to bring it at
  the $(k,k)$-th position.
+<p></p>
 
 <p></p>
 
+<p></p>
  In our example we
 swap row 2 with row 3, and column 2 with column 3 to get
 $$
@@ -594,7 +674,7 @@ way to keep track of the order of the variables is to write the variables
 above the 
 columns. If we call the variables as $x,y,z$ in the last example then
 we shall write:
-
+<p></p>
 $$
 \left[\begin{array}{rrr|r}
 x &amp;  y &amp; z\\
@@ -612,6 +692,7 @@ y &amp;  x &amp; z\\
 3 &amp;  0 &amp;  -5 &amp;  -1
 \end{array}\right]
 $$
+<p></p>
 
 <span class="j">
 <pre>
@@ -622,13 +703,13 @@ pj=:1
 ]a2=:s a1
 ]b2=:s b1
 a2,b2,:c2
-
+<p></p>
 pj=:2
 ]a3=:m a2
 ]b3=:s b2
 ]c3=:s c2
 a3,b3,:c3
-
+<p></p>
 pj=:0
 ]b4=:m b3
 ]a4=:s a3
@@ -645,6 +726,7 @@ Here you end up with
 The left hand side is a permuation matrix, which tells us how to
 interpret the right hand side: $z = 0.371951$, $x =
 1.33537$ and $y = 0.286585$.
+<p></p>
 
 <fieldset>
 <legend><b><i>Gauss-Jordan elimination (with pivoting)</i></b></legend>
@@ -655,6 +737,7 @@ _{n\mbox{ times}}.
 $$
 </fieldset>
 
+<p></p>
 
 <h3><a
 name="Inversion using Gauss-Jordan elimination">Inversion using Gauss-Jordan elimination</a></h3>
@@ -664,10 +747,10 @@ solving the system
 $$
 AX = I.
 $$
-
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Suppose that we want to find the inverse of the matrix 
 $\left[\begin{array}{ccccccccccc}1&amp; -1&amp; 1 \\
 2&amp; 5&amp; -1 \\
@@ -708,13 +791,14 @@ $$
 0&amp; 1&amp; 0&amp; \frac{-35}{133}&amp; \frac{28}{133}&amp; \frac{-3}{19} \\
 0&amp; 0&amp; 1&amp; \frac{1}{19}&amp; \frac{3}{19}&amp; \frac{-7}{19}
 \end{array}\right]$$ 
-
+<p></p>
 Thus, the required inverse is 
 $$\left[\begin{array}{ccccccccccc} \frac{91}{133}&amp; \frac{7}{133}&amp; \frac{4}{19}
 \\\frac{-35}{133}&amp; \frac{28}{133}&amp; \frac{-3}{19}
 \\\frac{1}{19}&amp; \frac{3}{19}&amp; \frac{-7}{19}
 \end{array}\right].$$ 
-<img src="../image/box.png"></p>
+ ///
+</p>
 The following J code will help you to play with this idea.
 <span class="j">
 <pre>
@@ -733,8 +817,8 @@ pj=:2
 <ul>
 
 <li>
-<code>e.</code> finds the positions of each value in a
-list. For example, <code>e. 2 5 2</code> will give 3 lists:
+<font size="+1" color="red"><code>e.</code></font> finds the positions of each value in a
+list. For example, <font size="+1" color="red"><code>e. 2 5 2</code></font> will give 3 lists:
 <ul>
 <li> the first one showing the positions of 2, <i>i.e.</i>, 1 0
  1,</li>
@@ -745,7 +829,7 @@ list. For example, <code>e. 2 5 2</code> will give 3 lists:
 
 </ul>
 Thus, if all the elements are distinct, then you get an identity
-matrix. In particular, <code>e. i. 3</code> is a handy way to
+matrix. In particular, <font size="+1" color="red"><code>e. i. 3</code></font> is a handy way to
 create the identity matrix of order 3.</li>
 
 </ul>
@@ -837,6 +921,7 @@ $$
 This is the reqired premultiplier (why?).
 <p></p>
 
+<p></p>
 Thus, each step in the GJ algorithm is a left multiplication by a nonsingular
 matrix. Suppose that we start with $(A~|~I)$ and end
 with $(P~|~ B),$ where $P$ is a permutation
@@ -853,15 +938,16 @@ Since $P$ is a permutation matrix, hence $P'P=I.$
 So $P'NA = I.$ Thus, $A ^{-1}  = P'N = P'B.$ In other
 words, you permute the <i>rows</i> of $B$ according
 to $P'$ to get $A ^{-1}.$
+<p></p>
 
 <h3><a
 name="Determinant using Gaussian elimination">Determinant using Gaussian elimination</a></h3>
 
 <p>
 <b>EXERCISE:</b>&nbsp;Find out how one may use the  Gauss-Jordan
-elimination algorithm to compute the determinant. <img src="../image/box.png"></p>
+elimination algorithm to compute the determinant. </p>
 
-
+<p></p>
 
 <p>
 <a name="gj"><b>
@@ -875,6 +961,7 @@ elimination algorithm to compute the determinant. <img src="../image/box.png"></
  column space, row space and null space of the matrix using the
  computed  RREF.<img src="../image/box.png"></p>
 
+<p></p>
 
 <h2><a
 name="$QR$ decomposition">$QR$ decomposition</a></h2>
@@ -887,6 +974,7 @@ $p$ upper triangular matrix $R$ such that
 $$A = QR.$$
 </fieldset>
 
+<p></p>
 This decomposition is the matrix version of the Gram-Schmidt
 Orthogonalization (GSO). <b>[If you do not know GSO, then skip to
 the next heading: <a href="#Householder%20transformation">Householder 
@@ -908,7 +996,7 @@ computed in the order $i=1,...,p.$ Here $unit(\bv)$ is defined as
 $$
 unit(\bv) = \bv/\|\bv\|,\quad \bv\neq \bz.
 $$
-
+<p></p>
 Notice that $span\{\ba_1,...,\ba_i\}=span\{\bq_1,...,\bq_i\}.$ 
 So we can write 
 $$\ba_j = r_{1j} \bq_1 + r_{2j} \bq_2 + \cdots + r_{jj} \bq_i.$$
@@ -918,6 +1006,7 @@ Define the matrix $R$ using the $r_{ij}$'s, and
 form $Q$ with  $\bq_i$'s as its columns.
 <p></p>
 
+<p></p>
 The following J code will let you explore the idea.
 <span class="j">
 <pre>
@@ -946,12 +1035,12 @@ Let's create some vectors:
 <ul>
 
 <li>
-<code>@:</code> is a form of composition, where the inner
+<font size="+1" color="red"><code>@:</code></font> is a form of composition, where the inner
 function operates element by element, and the other function
-works on the list as a whole. For example, <code>1 2 3 (+/@:*) 4
-5 6</code> will first apply the <code>*</code> element by element
-to get a list <code>1*4 2*5 3*6</code>, and then <code>+/</code>
-(summation) will sum the list to produce <code>(1*4) + (2*5) + (3*6)</code>.
+works on the list as a whole. For example, <font size="+1" color="red"><code>1 2 3 (+/@:*) 4
+5 6</code></font> will first apply the <font size="+1" color="red"><code>*</code></font> element by element
+to get a list <font size="+1" color="red"><code>1*4 2*5 3*6</code></font>, and then <font size="+1" color="red"><code>+/</code></font>
+(summation) will sum the list to produce <font size="+1" color="red"><code>(1*4) + (2*5) + (3*6)</code></font>.
 </li>
 
 </ul>
@@ -967,6 +1056,7 @@ matrix. This is because in the $unit$ steps you have to divide
 by the norms which may be too small. Division by small numbers in a computer may lead to numerical instability. The standard
  way to implement it is
 using Householder's transformation, that we discuss next.
+<p></p>
 
 <h2><a
 name="Householder transformation">Householder transformation</a></h2>
@@ -986,16 +1076,18 @@ is one such:
 $$
 A = I-2uu', \mbox{ where } u = unit(x-y).
 $$
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
 Show that this $A$ is orthogonal and it sends $x$ to $y$
 and vice versa.
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 In general you need $n^2$ scalar multiplications to multiply
 an $n\times n$ matrix with an $n\times 1$ vector.
 However, show that if the matrix is a Householder matrix then only
@@ -1010,12 +1102,14 @@ multiplications to compute. Multiply that with $2$ (one more
 multiplication) to get the scalar $2\bu'\bv = \lambda,$
 say. Finally, multiply each entry of $\bu$
 with $\lambda $ (requiring $n$ more multiplications).
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 The following J code provides the tools necessary to explore the
 Householder idea. You'll need to understand the above solution in
 order to
-understand the definition of <code>h</code> below to multiply by
+understand the definition of <font size="+1" color="red"><code>h</code></font> below to multiply by
 a Huseholder matrix. 
 <span class="j">
 <pre>
@@ -1032,14 +1126,15 @@ diff h b
 </pre>
 </span>
 
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
 Show that in 2 dimensions Householder's transform is the only such
 transform. Show that this uniqueness does not hold for higher dimensions.
-<img src="../image/box.png"></p>
+</p>
 
-
+<p></p>
 
 <h3><a
 name="Using Householder for $QR$">Using Householder for $QR$</a></h3>
@@ -1050,6 +1145,7 @@ $$
 v = \left[\begin{array}{ccccccccccc}\|u\|^2\\0\\\vdots\\0
 \end{array}\right].
 $$
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -1067,8 +1163,9 @@ H = \left[\begin{array}{ccccccccccc}I &amp;  0\\0 &amp;  H_{\bu_2}
 $$
 Show that $H$ is orthogonal and compute $Hu.$ We shall say that
 $H$ shaves the last $k-1$ elements of $u.$
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 Let the first column of $X$ be $a.$ Let $H_1$ shave its
 lower $n-1$ entries.  Consider  the second column  $b$ of
 $H_1A.$ Let $H_2$ shave off its lower $n-2$ entries.
@@ -1079,6 +1176,7 @@ $$
 Q = (H_1H_2\cdots H_p)'
 $$
 and $R = Q'X$ to get a $QR$ decomposition.
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -1093,13 +1191,14 @@ $$
 
 \end{array}\right]
 $$
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 We shall now apply it to a $4\times 3$ matrix. 
 <span class="j">
 <pre>
 sh=: ({. - n) , }.
-
+<p></p>
 ]'a1 b1 c1'=: ? 3 4 $ 100
 </pre>
 </span>
@@ -1110,20 +1209,21 @@ sh=: ({. - n) , }.
 <ul>
 
 <li>
-<code>{.</code> (head) extracts the head of a list,
-<i>e.g.</i>, <code>{. 1 2 3 4</code> is <code>1</code>.</li>
+<font size="+1" color="red"><code>{.</code></font> (head) extracts the head of a list,
+<i>e.g.</i>, <font size="+1" color="red"><code>{. 1 2 3 4</code></font> is <font size="+1" color="red"><code>1</code></font>.</li>
 
 <li>
-<code>}.</code> (behead) removes the head of a list,
-<i>e.g.</i>, <code>}. 1 2 3 4</code> is <code>2 3 4</code>.</li>
+<font size="+1" color="red"><code>}.</code></font> (behead) removes the head of a list,
+<i>e.g.</i>, <font size="+1" color="red"><code>}. 1 2 3 4</code></font> is <font size="+1" color="red"><code>2 3 4</code></font>.</li>
 
-<li>Read <code>({. - n) , }.</code> as "(head minus norm)
+<li>Read <font size="+1" color="red"><code>({. - n) , }.</code></font> as "(head minus norm)
 followed by the rest".</li>
 
 </ul>
 </div>
 </p>
 
+<p></p>
 The steps are
 shown in the diagram below (red is the entry computed in that
 step, grey means already computed, black means 0):
@@ -1143,24 +1243,23 @@ the $\bu$'s</th>
 <pre>
 n a1                      NB. (1)
 ]u1=:u sh a1              NB. (2)
-
+<p></p>
 ]b2=:u1 h b1              NB. (3)
 ]c2=:u1 h c1              NB. (4)
-
-
+<p></p>
 n 1}. b2                  NB. (5) 
-
+<p></p>
 ]u2=: u sh }. b2         NB. (6)
-
+<p></p>
 ]c3=:u2 h }. c2          NB. (7) 
-
-
+<p></p>
 n }. c3                  NB. (8)
-
+<p></p>
 u sh }. c3               NB. (9)
 </pre>
 </span>
 
+<p></p>
 
 <h3><a
 name="Efficient implementation">Efficient implementation</a></h3>
@@ -1172,7 +1271,7 @@ is an $n\times n$ matrix, it is actually determined by only $n$
 numbers. Thus, we can effectively store the matrix in linear space. In
 particular, the matrix $H_1$ needs only $n$ spaces, $H_2$
 needs only $n-1$ spaces and so on. 
-
+<p></p>
 So we shall try to store these in the ``shaved'' parts of $X.$
 Let 
 $H_1 = 1-2\bu_1\bu_1'$ and $H_1X$ be partitioned as
@@ -1186,7 +1285,7 @@ have only $n-1$ zeroes. So the standard practice is to
 store $\alpha$ (which is the squared norm  of the first
 column) in a separate array, and store $\bu_1$ in place of
 the first column of $A.$
-
+<p></p>
 The final output will be a $n\times p$ matrix and
 a $p$-dimensional vector (which is like an extra row
 in $A).$ The matrix is packed with the
@@ -1206,15 +1305,15 @@ The ``extra row'' stores the diagonal entries of $R.$
 It is possible to ``unpack'' $Q$ from the $u$'s. However, if we
 need $Q$ only to multiply some $x$ to get $Qx,$ then even
 this unpacking is not necessary. 
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
 Write a program that performs the above multiplication without explicitly
 computing $Q.$
-<img src="../image/box.png"></p>
+</p>
 
- 
-
+<p></p>
 
 <h3><a
 name="Application to least squares">Application to least squares</a></h3>
@@ -1225,6 +1324,7 @@ A\bx = \bb,
 $$
 where $A$ is full column rank (need not be square.) Then we have the
 following theorem.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -1236,6 +1336,7 @@ Note that the full column rankness of $A$ guarantees the existence
 of the inverse.
 </fieldset>
 
+<p></p>
 However, computing the inverse directly and then performing matrix
 multiplication is not an efficient algorithm. A better way (which is used
 in standard software packages) is to first form a $QR$ decomposition
@@ -1272,16 +1373,19 @@ $$
 The first system is always consistent and can be solved by
 back-substitution. The second system is trivial and inconsistent unless
 $\bc_2={\mathbb Z}.$ 
+<p></p>
 
 
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
 Show that $x=R_1^{-1}\bc_1$ is the least square solution of the original
 system. Notice that you use back-substituting to find this $\bx$ and not
 direct inversion of $R_1.$ 
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -1289,8 +1393,9 @@ Find a use of $\bc_2$ to compute the residual sum of squares:
 $$
 \|\bb-A\bx\|^2.
 $$
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 
 <p>
 <a name="qr"><b>
@@ -1306,6 +1411,7 @@ least squares solution. Your program must never compute any
 Householder matrix explicitly.
 <img src="../image/box.png"></p>
 
+<p></p>
 
 <h3><a
 name="What if $A$ is not full column rank?">What if $A$ is not full column rank?</a></h3>
@@ -1332,9 +1438,10 @@ of $A$ that are in the spans of the preceding columns.</li>
 
 </ul>
 The following example illustrates both these approaches. 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Let's take 
 $$
 A=\left[\begin{array}{ccccccccccc}3 &amp; 6 &amp; 1\\4 &amp; 8 &amp; 3\\0&amp;0&amp;4
@@ -1373,11 +1480,13 @@ this version of the $QR$ algorithm is an $R$ matrix of
 size  $3\times 2$. The top $2\times 2$ portion is
 a <i>nonsingular</i>  upper triangular matrix, which will allow
 you to compute a least squares solution. 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <h2><a
 name="Eigenanalysis: power method">Eigenanalysis: power method</a></h2>
 Let us start with the definition of eigenvalues and eigenvectors:
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Eigenvalue and eigenvector</b></legend>
@@ -1394,16 +1503,16 @@ The importance of these concepts is by no means  obvious from the
 definition. However,
 finding the eigenvalues and eigenvectors of matrices is a fundamental
 problem of numerical linear algebra. 
-
+<p></p>
 The subject in its entirety is well
 beyond the scope of the present course. Here We shall try to find
 only a single eigenvector and a corresponding eigenvalue of a
 given square matrix.
+<p></p>
 
 <p></p>
 Our algorithm is very simple:
-
-
+<p></p>
 We start with a vector $\bv$ and constructs the sequence 
 $$
 unit(A\bv), unit(A^2\bv), unit(A^3\bv), unit(A^4\bv),... 
@@ -1440,12 +1549,13 @@ Here we do not consider the sequence as being convergent.</font>
 
 <p></p>
 
+<p></p>
 Let's take a computational  example:
 <span class="j">
 <pre>
 mp=: +/ . *
 d=: +/@:*    NB. Sum of products
-u=: %%:@d~   NB. Divide by square root of dot product with itself
+u=: &:@d~   NB. Divide by square root of dot product with itself
 pow=: u@mp
 </pre>
 </span>
@@ -1455,9 +1565,9 @@ pow=: u@mp
 <div id="pow" style="display:none;background-color:#ffcccc;">
 <ul>
 
-<li>Here <code>mp</code> performs matrix multiplication. It uses
+<li>Here <font size="+1" color="red"><code>mp</code></font> performs matrix multiplication. It uses
 the rather complicated dot operation, which I cannot
-explain here. So just accept the fact that <code>mp</code>
+explain here. So just accept the fact that <font size="+1" color="red"><code>mp</code></font>
 works. You may try out some examples to convince yourself that
 this is indeed so.</li>
 
@@ -1469,9 +1579,9 @@ this is indeed so.</li>
 <pre>
 a=:? 5 5 $ 0
 a=: a + |: a
-
+<p></p>
 v=.? 5#0
-   
+<p></p>
 ]w=: a pow^:_ v
 plot |: pow^:(i.100) v
 </pre>
@@ -1481,9 +1591,10 @@ plot |: pow^:(i.100) v
 name="When does it work?">When does it work?</a></h3>
 The algorithm works for many types of matrices. Let's explore
 this using some simple examples.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Does it work for the diagonal matrix $A = diag(1,2,3,4)$ if
 we start from $\bv = (1,1,1,1)'?$
 <p></p>
@@ -1493,59 +1604,73 @@ $A^n\bv $ is $(1,2^n,3^n,4^n).$ As you
 can see, the last entry is going to dominate. So the power iterations will converge
 to $(0,0,0,1)$, which is an eigenvector corresponding to the
 eigenvalue $4.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 The reason we converged to $4$ was that it was the largest
 eigenvalue. The next example will shed more light on it.
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
 Try out for $A = diag(1,2,3,-4).$ Start with $\bv =
 (1,1,1,1)'.$
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 Thus, the power method is converging to the eigenvalue with the
 largest absolute eigenvalue. Now let's play with the initial
 vector. 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Again work with $A = diag(1,2,3,4).$ But start with $\bv
 = (1,1,1,0).$
 <p></p>
 <b>SOLUTION:</b> Now the entry corresponding to 4 gets killed. So we
 converge to $(0,0,1,0)$ instead, which corresponds to the
 next largest absolute eigenvalue, 3.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
 What if we had started with $\bv  = (1,1,1,0.0001)$?
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 Next we shall explore what happens if $A$ has more than one
 eigenvalue that has largest eigenvalue. 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Try with $A = diag(1,2,4,4),$ and $\bv = (1,1,1,1)'.$
 Also try with $\bv = (1,1,1,2)'$ and $\bv = (1,1,1,0)'.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 Finally, let us see what happens if $A$ has
 multiple <i>distinct</i> eigenvalues with same maximum absolute
 value.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE ():</b>&nbsp;
 Try with $A = diag(1,2,4,-4)$ and $\bv = (1,1,1,1)'.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 Now we have been able to screw up the power iterations!
+<p></p>
 
 <p></p>
 The following definition is easily motivated from the above discussion.
-
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Dominant eigenvalue</b></legend>
@@ -1554,11 +1679,13 @@ eigenvalue</b> $\lambda$ if $\lambda$ is an eigenvalue
 and for all other eigenvalues $\mu$ of $A$ we have $|\lambda| &gt; |\mu|.$
 </fieldset>
 
+<p></p>
 So far we have been working with only diagonal matrices. Of
 course, we do not need any numerical method to find the
 eigenvalues and eigenvectors of a diagonal matrix. However, there
 are many matrices that are not diagonal, but behave
 similarly. The following definition is about them.
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Diagonalisable</b></legend>
@@ -1587,6 +1714,7 @@ and $d_{jj}$ is the $j$-th diagonal element of $D.$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 It is easy to see that if $A = P D P ^{-1},$ then $A^n = P
 D^n P ^{-1}.$ Thus, the behaviour of the power iterations
 for $A$ starting with $\bv$ is similar to the
@@ -1609,8 +1737,7 @@ entry of $D.$</li>
 If all these conditions hold, then the power method must converge
 to an eigenvector corresponding to an eigenvector corresponding
 to the dominant eigenvalue.
-
-
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -1633,11 +1760,13 @@ with $\lambda_1$ being the
 nonzero dominant eigenvalue.
 <p></p>
 
+<p></p>
 Let $P ^{-1} \bv = (b_1,...,b_n),$ where $b_1\neq 0.$
 <p></p>
 
+<p></p>
 Then 
-
+<p></p>
 $$A^k\bv = P D^k P ^{-1} \bv  = P\left[\begin{array}{ccccccccccc}\lambda_1^k
 b_1\\\vdots\\\lambda_n^k b_n
 \end{array}\right]
@@ -1648,6 +1777,7 @@ b_1\\\vdots\\\lambda_n^k b_n
 since $\lambda_1,b_1\neq0$ and $\bp_{*j}$'s are linearly independent.
 <p></p>
 
+<p></p>
 So we can indeed compute $unit(A^k\bv).$ 
 <p></p>
 Now, since $\lambda_1$ is dominant, 
@@ -1670,6 +1800,7 @@ switching sign.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <p>
 <b>EXERCISE:</b>&nbsp;
@@ -1689,7 +1820,7 @@ $$
 These are lower triangular matrices with some
 number $\lambda$ repeated along the diagonal, and $1$'s
 in the subdiagonal. All other entries are 0.
-<img src="../image/box.png"></p>
+</p>
 
 <h3>Comments</h3>
 To post an anonymous comment, click on the "Name" field. This
@@ -1723,6 +1854,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -67,13 +70,73 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -109,26 +172,30 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 </li>
 </ul>
 <hr/>
-
+<p></p>
 Before investing time to learn a new language a natural
 question is: Why should we care to learn it? 
 Since we need an answer to this <i>before</i>  starting to learn
 the language, the answer has to be in terms of general concepts
 that <i>we already know</i>. 
+<p></p>
 
 <h1><a
 name="Why learn J?">Why learn J?</a></h1>
 
+<p></p>
 The discussion that follows is much like discussing the need
 for loops before learning one's first programming language, or
 understanding the concept of object orientedness before learning
 one's first OOP language. The discussion will necessarily involve
 some hand waving, as we cannot give examples requiring
  syntactic details yet to be learned.
+<p></p>
 
 <h2><a
 name="Reason 1: Nested implicit loops">Reason 1: Nested implicit loops</a></h2>
 
+<p></p>
 Many modern languages like R, Matlab, Python (with numpy) allow
 working with arrays as a 
 single object. Thus, they will allow syntax
@@ -137,16 +204,18 @@ array. Such implicit loops are handy. However, they may not be
 nested.  For instance, if we have a matrix, and we want to find
 sum of each row, then there is no obvious way to do this. Some
 languages provide cumbersome partial solution for this
-like <code>apply(mat,1,sum)</code>. However, such solutions do
+like <font size="+1" color="red"><code>apply(mat,1,sum)</code></font>. However, such solutions do
 not scale well for higher dimensional arrays.
 <p></p>
 J provides a way to nest implicit loops. This, in my opinion, is the
 single most strong point of J. We shall see the details soon. But
 first let's learn about the second reason why one should care for J.
+<p></p>
 
 <h2><a
 name="Reason 2: Ready-made operators to combine functions">Reason 2: Ready-made operators to combine functions</a></h2>
 
+<p></p>
 The functional programming paradigm has been around for a long
 time, and is gaining popularity fast. In a functional programming language functions are handled
 much like variables, they may be created on the fly during
@@ -162,11 +231,13 @@ function addition are sadly missing.
 <p></p>
 J provides not only these standard operators, but also some new
 ones which prove quite useful.
+<p></p>
 
 <h1><a
 name="Details">Details</a></h1>
 So now you have some idea about what J has in store for you. The
 next question is: How to avail these?
+<p></p>
 
 <h2><a
 name="Nested implicit loops">Nested implicit loops</a></h2>
@@ -253,6 +324,7 @@ invoking $f$ only one per circled subtree below:
 </center>
 If we apply $f$ at level 3 (or more), then $f$ is
 applied only once for the entire tree. 
+<p></p>
 
 <h3><a
 name="An example">An example</a></h3>
@@ -272,7 +344,7 @@ To find sums of all row sums for all the matrices, you'll apply
 If you
 want to find determinant of all the matrices, then you'll need to
 apply "det" to $x$ at level $2.$ 
-
+<p></p>
 
 <h3><a
 name="In general">In general</a></h3>
@@ -311,6 +383,7 @@ would produce
 </table>
 </center>
 
+<p></p>
 
 <h3><a
 name="More fancy ways to specify level">More fancy ways to specify level</a></h3>
@@ -332,6 +405,7 @@ specify the rank explicitly, the function gets applied with this
 default rank). This further confuses beginners who begin thinking
 that ranks are an integral part of a function (like dimension of
 its domain). 
+<p></p>
 
 <p></p>
 When we specify the rank while applying  a function, the argument
@@ -340,6 +414,7 @@ tree is split up into an upper and a lower part. The upper part
 original tree for that rank. The lower part consists of some
 identically shaped subtrees, each of which is called
 a <font color="#ff0000">cell</font> of the tree at that rank. 
+<p></p>
 
 <h3><a
 name="An unexpected snag">An unexpected snag</a></h3>
@@ -360,10 +435,12 @@ far more efficient than applying $f$ with rank 0. One such
 example is the $\sin$ function, which has
 rank $\infty.$ This sometimes leads to counterintuitive
 behaviour.
+<p></p>
 
 <h2><a
 name="Functional operators">Functional operators</a></h2>
 
+<p></p>
 Next, we shall talk briefly about the functional operators that J
 provides. Indeed, much of the tremendous expressive power of J
 code comes from these operators. While the concept of ranks is
@@ -371,6 +448,7 @@ the most powerful concept in J, beginners are more likely to
 appreciate J's power by using the functional operators.  
 <p></p>
 
+<p></p>
 J provides the following functional operators out of the box:
 <ol type="">
 
@@ -399,6 +477,4 @@ languages.
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>
