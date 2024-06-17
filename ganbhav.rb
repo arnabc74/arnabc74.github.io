@@ -1,0 +1,38 @@
+ <NOTE>
+<HEAD1>AmAr skul jIbane a.nka shekhAr paddhati</HEAD1>
+skule baRa ekTA yetAm nA. a.nka shikhtAm bAbAr kAchhe. @{<E>British Council Library</E>@}-te
+ takhan ekTA @{<E>Children's Section</E>@}  chhila (ekhan fer chAlu hayechhe, yadio sei baigulo Ar nei). bAbA sei lAibrarIr 
+bai byabahAr kare  a.nka shekhAten. AmAr a.nka shekhA shuru hayechhila @{<E>set</E>@}-er a.nka
+ diye. mejhete chak diye gol e,nke tAr madhye bibhinna paysA Ar t,netul bichi sAjAno hata (bARir
+ khub kAchhei ekTA mas+ta t,netul gAchh thAkAy bichir abhAb chhila nA). tArpar gol nay eman paysAder
+@{<E>set</E>@}  theke @{<E>compement</E>@}-er dharaNA, sab Dheu-khelAno paysAder @{<E>set</E>@}  theke @{<E>union</E>@}-er 
+dharaNA (dui Ar dash duidharaNer paysArai pAsh Dheu khelAno hata), ityAdi. 
+tArpar esechhila goNA, eba.n bibhinna sa.nkhyAr @{<E>base</E>@}-e goNA. ekTA bai chhila tAte ekekTA pAtAy ekekTA jantur 
+kathA chhila, yAder pAyer sa.nkhyA bibhinna. ghoRAr chAr pA, tAi tArA chArer @{<E>base</E>@}-e
+ goNe, ak+TopAs goNe ATer @{<E>base</E>@}-e. bAbAr kAchhe shekhA sab a.nker matai eTAo khub hAte
+ kalame byApAr. ekrAsh t,netul bichi niye basA hata. ghoRAr hiseb karAr samaye seguloke chAre
+ guchchha kare kare rAkhA hata, ye kaTA paRe thAkta, ghoRA khAli seguloi guNte pAre. erpar chArTe kare chArer guchchha 
+karAr hata. fer dekhA hata kaTA paRe thAke. eibhAbe chArer @{<E>base</E>@}-e goNA hata. kono
+ pAnDitya falAnor cheSTA chhila nA, guNlei a.nka sheS.  AmAke ekak dashak shatak ityAdi AlAdA kare shekhAno hayni. bA ek 
+theke eksha parYanta sa.nkhyAo konodin mukhastha karAno hayni. er pare ye baigulo Ase segulo hala @{<E>Discovering Mathematics.</E>@}  
+egulo takhankAr i.nlanDer skuler pAThya bai chhila. pratiTA adhyAye ati alpa ekTu bojhAno thAkta, kintu khub pranjalbhAbe, 
+tArpare ekTA ki baRakor duTo udAharaN, eba.n tArparei ekdam ekairakamer goTA kuRi a.nka. a.nkagulo sAdhAraNata.H joR-bijoR 
+kare sAjAno thakta, mAne @{<M>1</M>@}  Ar @{<M>2 </M>@} nambar a.nka prayei ekai hata, khAli sa.nkhyAr sAmAnya tafAt. fale 
+@{<M>1</M>@} nambarTA yadi bAbAr sAhAYya nite hay, tabe @{<M>2</M>@}-TA nijei chASTA karA yAy. bAigulo lekhak kothAo kono 
+kAloyAti karAr cheSTA karten nA,  ThakAno prashna, ekaker kAr~sAji, jaTil guNbhAg esab kichhui
+ lAgta nA. pichhane uttar thakta. seTA melAte khub majA lAgta. bAbA ekebAre niyam mene pratidin
+ basten. Ami kichhu bujhte nA pArle aparisIm dh\oirYa niye bojhAten, Ami amanoYogI hale atyanta
+ rege yeten, kakhano khAtA chh,nuRe felten. a.nkagulo paribeshita hata katakTA gabeSaNAr bhangIte.
+ yeman @{<M>y=2x+3</M>@}-er grAf A,nkte deoyA hala. erakam kayekTA grAf a,nkAr par bAbA hayto abAk
+ haye ballen ye, sabguloi to saralrekhA hachchhe. Ami mane karlAm grAf mAtrei saralrekhA hay. bAbA
+ moTei sei bhul bhA\ngAnor kono cheSTA karlen nA. kadin pare @{<M>y=x^2-2x+1</M>@}-er grAf ela.
+ seTA ye saralrekhA hala nA, seTA dekhe bAbA fer bhArI abAk haye gelen. kakhan ye saralrekhA habe,
+ Ar kakhan habe nA, seTA AmAr kAchhei jAn~te chAilen, shixaker mata na, gobechArA mAnuSer mata
+ (gobechArAr abhinay karte pArATA yekono shixakerai mahat guN, eba.n bAbAr se guNTA khubai
+ chhila). Ami khAnikxaN behbe kichhui balte pArlAm nA. yehetu bAbAo gobechAra haye Achhen, tA
+ nijer axamatAr janya AmAr lajjita habAr kono karaNai janmAla nA. parer din prashnaTA fer uThla. balAi bAhulya baite bAbAte 
+mile udAharaNgulo emanbhAbe deoyA hachchhila ye uttarTA ati baRa AkATao eksamaye nA bujhe pArbe nA. Amio eksamaye pArlAm, 
+kintu mane karlAm yena nijei AbiskAr karechhi. mane Achhe kichhu din pare bAbA fer uttarTA bhule giye AmAke jijnAsA karechhilen. 
+eba.n Amio uttarTA bhule giye bejAy lajjAy paRe giyechhilAm. kintu bAbA gobechArA mukhe chup karei chhilen. bAbAr gobechArA 
+sAjAr ArekTA drriSTAnta bali. 
+</NOTE>

@@ -1,0 +1,233 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#আলো আঁধারির তিন সমস্যা">আলো আঁধারির তিন সমস্যা</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="আলো আঁধারির তিন সমস্যা">আলো আঁধারির তিন সমস্যা</a></h1>
+যদি এক পাত্র জলে একটা পেন্সিলকে হেলিয়ে  ডোবানো হয়, তবে পেন্সিলটাকে বাঁকা দেখায়৷ এর কারণ হল refraction.  
+এর ব্যাখ্যা হিসেবে এরকম একটা ছবি অধিকাংশ বইতেই দেখা যায়--
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/wrong.png"></th>
+</tr>
+<tr>
+<th>কেন পেন্সিল বাঁকা দেখাচ্ছে, তার ব্যাখ্যা</th>
+</tr>
+</table>
+</center>
+এই ছবিটা থেকে যে ধারণাটা জন্মায় সেটা হল এই যে, যদি জলের নীচে পেন্সিলের গায় কোনো বিন্দু
+ $A$  নিই, তবে সেখান থেকে বেরোনো 
+রশ্মিগুলো  refractionএর পরে অন্য একটা বিন্দু $B$  থেকে বেরোচ্ছে হচ্ছে বলে মনে
+ হয়৷ ফলে মনে হয় যেন $A$  
+বিন্দুটা আসলে $B$  অবস্থানে আছে (অর্থ৷আত $A$-র virtual image  হল $B$-তে)৷
+ আমি স্কুলে থাকতে  কখনোই ছবিটা refraction-এর
+ সূত্র মেনে নিখুঁতভাবে 
+আঁকা চেষ্টা করি নি৷ কদিন আগে সেই চেষ্টা করতে গিয়ে  দেখলাম যে, $A$  বিন্দু থেকে বেরোনো রশ্মিগুলো মোটেই
+refraction-এর পরে যে 
+সব সরলরেখা বরাবর যায়, সেগুলো মোটেই concurrent নয়, অর্থাৎ এমন কোনো বিন্দু নেই যার মধ্য দিয়ে এই সবগুলো সরলরেখাই 
+যাবে৷ অবশ্য যদি সরলরেখাগুলো মোটামুটি কোনো বিন্দুর কাছাকাছাই দিয়ে যায়, তবেও কাজ চলবে, কারণ চোখের আন্দাজে সেটা 
+একটা বিন্দু বলেই মনে হবে৷ কিন্তু নীচের ছবিটা (যেটা refraction-এর সূত্র মেনে নিখুঁত করে আঁকা) দেখলেই 
+বোঝা যাবে যে, রশ্মিগুলো concurrent  হওয়ার থেকে বহু দূরে৷ Refraction-এর
+ পরে বিভিন্ন রশ্মিদের 
+ছেদ বিদুগুলোকে লাল করে দেখিয়েছি৷ ফলে যে লাইনটা পেয়েছি তার ব্যাপ্তি বড় কম নয়৷  
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/right.png"></th>
+</tr>
+<tr>
+<th>এখানে খালি refraction-এর পরে পাওয়া রশ্মি বরাবর সরলরেখাগুলোই দেখানো হয়েছে৷</th>
+</tr>
+</table>
+</center>
+এই গেল প্রথম সমস্যার কথা৷ 
+<p></p>
+এবার দ্বিতীয় সমস্যার কথায় আসি৷  আমরা যখন কোনো এক জায়গায় চোখ রেখে দেখছি, তখন সবগুলো রশ্মি
+ আমাদের চোখে পড়ছে না, 
+চোখে পড়ছে কেবল সরু একগুচ্ছ রশ্মি৷ যদি সেই সরু গুচ্ছটুকুকে নিয়েই খালি মাথা ঘামাই, তবে সেগুলো মোটামুটিভাবে 
+একই বিন্দু দিয়ে যায় বটে, যেমন নীচের ছবিতে দেখিয়েছি৷ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/eyes.png"></th>
+</tr>
+<tr>
+<th>$E_1$  ভাবছে virtual image-টা $B_1$-এ৷</th>
+</tr>
+</table>
+</center>
+কিন্তু যদি আমাদের চোখ সরাই, তবে তখন অন্য একগুচ্ছ 
+রশ্মি আমাদের চোখে ঢুকবে, তার ছেদবিন্দু  অন্য কিছু হবে৷ যেমন $E_2$  দেখছে যে, virtual image-টা 
+$B_2$-তে সরে গেছে৷
+ ফলে আমাদের মনে হবে যেন
+ $A$  বিন্দুটা জলের 
+নীচে আমাদের চোখের সাথে সাথে নড়ছে (দ্বিতীয় ছবির লাল লাইন বরাবর)৷ কিন্তু জলের গ্লাসে পেন্সিল রেখে
+ পরীক্ষাটা করলেই দেখা
+ যাবে যে এমনটা মোটেই হয় 
+না৷ চোখ সরালেও $A$  বিন্দুর virtual image   একই জায়গায় থাকে৷ গোলমালটা কোথায়? 
+<p></p>
+তৃইতীয় সমস্যা-- যদি পেন্সিলটাকে খাড়াভাবে জলে ডোবানো হয়, তবে যেভাবেই দেখি না কেন, সেটাকে
+ সোজাই মনে হয়৷ এর যুক্তি  হিসেবে বলা হয় যে, লম্ব রশ্মি refraction-এর পরও একই সরলরেখা বরাবরই চলতে 
+থাকে৷ কিন্তু এখানে লম্ব হল পেন্সিলটা, সেটা তো আর রশ্মি নয়৷ রশ্মিগুলো তো পেন্সিল থেকে চোখ পর্যন্ত, তাই
+ ওরা মোটেই লম্ব নয়৷ যদি আমরা 
+পেন্সিলটাকে $10 cm$  ডোবাই, এবং প্রায় $45^\circ$  কোণে হেলানো একটা সরু রশ্মিগুচ্ছ নিই, তবে
+ refraction-এর সূত্র অনুসারে অংক কষলে (বা ছবি আঁকলে) দেখানো যায় যে refraction-এর পরে ছেদ 
+বিন্দুর (মানে virtual image-এর) অবস্থান হবে পেন্সিলের প্রায় $7 cm$  সামনে (জল থেকে হাওয়ার ঢোকার সময়ে
+ refractive index  
+আমি $1.3$  ধরেছি)৷ ফলে পেন্সিলটা ভয়ানকভাবে বাঁকা দেখানোর কথা৷ কিন্তু তা দেখায় না৷ বা কোনো swimming pool-এর 
+খাড়া দেওয়ালকেও হেলানো বলে ভুল হয় না৷ 
+<p></p>
+কিন্তু refraction  সূত্র অনুযায়ী তো সেটাই হওয়া উচিত বলে মনে হচ্ছে৷ তবে ভুলটা কোথায়? 
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
