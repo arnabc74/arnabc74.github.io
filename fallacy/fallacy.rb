@@ -51,3 +51,8 @@ kintu @{<E>refraction</E>@}  sUtra anuYAyI to seTAi haoyA uchit bale mane hachch
 
 
 </NOTE>
+
+baRa muskile paRechhi. jaler madhye ekTA pensilke heliye DobAle kena b,nAkA dekhAy, seTA bujhte tin tinTe samasyA hachchhe. 
+eikhAne samasyA tinTer kathA guchhiye likhechhi@{: https://arnabc74.github.io/fallacy.html@} 
+ @{<E>Physic</E>@}  jAnA sahrriday keu yadi ekTu bujhiye den, baRa upakAr hay. AmAr janya ApnAr amUlya samay naSTa karAr 
+janya AgAm dhanyabAd. 

@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -67,27 +70,78 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
-</script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#The video production system">The video production system</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Understanding the folder structure">Understanding the folder structure</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#States">States</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Detailed workflow">Detailed workflow</a>
+<a href="#How I make my videos">How I make my videos</a>
 </li>
 </ul>
 <hr/>
@@ -95,295 +149,47 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <tr>
 <td align="right"><i>Last
 updated on:
-SAT SEP 11 IST 2021</i></td>
+WED JUL 03 IST 2024</i></td>
 </tr>
 </table>
 
 <h1><a
-name="The video production system">The video production system</a></h1>
-Download the <a href="https://drive.google.com/file/d/1evOYEtx1sWj5kaK1sC58Bv0s1IpxSy-i/view?usp=sharing">bundle from here</a>, and uncompress it. It
-will create a folder structure like this:
-<pre>
-vidbase (root folder)
-  |
-  +---fromapp
-  |
-  +---test (a sample video folder)
-  |
-  +---Melter.java
-  |
-  +---AndroViewer.java
-  |
-  +---Preprocess.java
-  |
-  +---Global.java
-  |
-  +---icon.png
-  |
-  +---sync.png
-  |
-  +---transparent.png
-  |
-  +---sep.png
-</pre>
+name="How I make my videos">How I make my videos</a></h1>
+It is a rather complex process, that I have built up bit by bit
+over the years. I shall  outline the main steps first:
+<ol type="">
 
-Open the <font size="+1" color="red"><code>Global.java</code></font> file with an editor. You'll
-find these lines near the top:
-<pre>
-final private String
-    base = "<font color="#ff0000">/home/cssc/na/s/othernotes/androtalks</font>"; //Change this folder.
+<li>I first create a script, a detailed write up of what I want
+to say. This script is divided into multiple sessions
+(punctuated by black title screens and a short melody).</li>
 
-</pre>
-Replace the red part with the path of the
-folder <font size="+1" color="red"><code>vidbase</code></font>. For example, if you have put
-your <font size="+1" color="red"><code>vidbase</code></font> folder in <font size="+1" color="red"><code>c:\users\sosu</code></font>,
-then you should have:
-<pre>
-final private String
-    base = "<font color="#ff0000">c:/users/sosu/vidbase</font>"; //Change this folder.
+<li>Next, I create the pictures and texts that will be
+shown. These are inserted at appropriate points in the
+script.</li>
 
-</pre>
-Note the forward slashes (even in Windows).
-<p></p>
+<li>Then I load the images in my mobile phone, and shoot the
+video. This is done with a rather novel technology. While the
+camera app is running, another app (written by me) is also
+running in parallel and shows the pictures as overlays on the
+screen). So during the shooting I can see myself as well as the
+images just as the viewer would see them in the final video. So
+I can point to various parts of the images.</li>
 
-Compile, and run. You should get a window like this:
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/window.png"></th>
-</tr>
-<tr>
-<th>Preprocess starting window</th>
-</tr>
-</table>
-</center>
-Only the <font size="+1" color="red"><code>dir</code></font> button is enabled. Click this, and you
-will be presented with a folder open dialog starting with
-the <font size="+1" color="red"><code>vidbase</code></font> folder. If it starts from any other
-folder, you need to check the path that you entered just now.
+<li>The result of the shooting consists of one video file per
+session, plus a cue file produced by my app that stores the 
+timings of the overlay entry and exit points. </li>
+
+<li>I download these from the phone back to my laptop, and
+process it with another software (written by me) to produce the
+final video.</li>
+
+</ol>
 
 <p></p>
-Leave this window open for the time being. Let us understand the
-project architecture.
-
-<h2><a
-name="Understanding the folder structure">Understanding the folder structure</a></h2>
-The <font size="+1" color="red"><code>vidbase</code></font> folder is the <font color="#0000ff">root folder</font>. You'll never
-poke outside this. This folder will have one subfolder for each
-lecture (one lecture=one output video). These will be called the <font color="#0000ff">video folder</font>s. 
-Here I have provided one sample lecture
-folder <font size="+1" color="red"><code>test</code></font>. A lecture consists of a number of
-sessions (continuous shoots). Inside a <font color="#0000ff">video folder</font>
-there is one <font color="#0000ff">session folder</font> for each
-session. The <font size="+1" color="red"><code>fromapp</code></font> folder (under the <font color="#0000ff">root
-folder</font>) is for
-dumping the output of the app from the tab. Currently, it
-contains the output from my mobile, so that you can test the
-software even without access to the tab.
-
-<h2><a
-name="States">States</a></h2>
-As you work with the software, you'll move from one state to
-another. There are 6 states in all. Here is an overview of the
-workflow:
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/states.png"></th>
-</tr>
-<tr>
-<th>Overview of the steps</th>
-</tr>
-</table>
-</center>
-At the very outset you'll choose a <font color="#0000ff">video folder</font> to
-work on. As you move from one state to the next, the contents of
-this folder will evolve. Understanding this evolution
-is the key to understanding the states. The detailed workflow
-will come later.
-
-<ul>
-
-<li>
-<b>Blank:</b> In this state the structure of the <font color="#0000ff">video
-folder</font> is this:
-<pre>
-video folder
-  |
-  +---fromcamera (blank folder)
-  |
-  +---order.txt (blank text file)
-</pre>
-This is the very first state.
-</li>
-
-
-<li>
-<b>Ready:</b> You arrive at this state after you finish
-making the pictures and prompts (optional) for each session. In
-this state  the <font color="#0000ff">video folder</font> contains a
-few extra things:
-<pre>
-video folder
-  |
-  +---fromcamera (blank folder)
-  |
-  +---order.txt (see below for its contents)
-  |
-  +---<font color="#ff0000">intro (session folder 1)</font>
-  |
-  +---<font color="#ff0000">math (session folder 2)</font>
-
-</pre>
-As we have already mentioned,  each  session has its 
-<font color="#0000ff">session folder</font> under
-the <font color="#0000ff">video folder</font>. The names are arbitrary
-(<i>e.g.</i>, <font size="+1" color="red"><code>intro</code></font> and <font size="+1" color="red"><code>math</code></font> used above). Each <font color="#0000ff">session folder</font>
-consists of the slides and (optionally) the prompt file. We
-shall give the details later. Most of the images will be in svg
-format (output by inkscape), and should have names consisting of a common prefix
-followed by a number, <i>e.g.</i>, <font size="+1" color="red"><code>pic1.svg</code></font>, <font size="+1" color="red"><code>pic2.svg</code></font>, <font size="+1" color="red"><code>pic3.svg</code></font>,
-etc.
-
+Though I rely too heavily on software written by me, part of the
+process may be delegated to existing (free and open source)
+software.  
 <p></p>
-I have provided the <font color="#0000ff">video folder</font> <font size="+1" color="red"><code>test</code></font>
-in this state, so that you do not have make the images to test
-out the software. However, I have also populated
-the <font size="+1" color="red"><code>fromcamera</code></font> folder with the raw videos from my mobile.
-</li>
-
-<li>
-<b>Preshoot:</b> Here the <font color="#0000ff">video folder</font>
-looks like this:
-<pre>
-video folder
-  |
-  +---fromcamera (blank folder)
-  |
-  +---order.txt (see below for its contents)
-  |
-  +---intro (session folder 1)
-  |
-  +---math (session folder 2)
-</pre>
-The file
-<font size="+1" color="red"><code>order.txt</code></font> specifies the sessions in the correct
-order, along with the file prefixes used. A typical example:
-<pre>
-intro,r
-math,p
-</pre>
-This means there are two <font color="#0000ff">session folder</font>s. The first
-is called <font size="+1" color="red"><code>intro</code></font>, the second <font size="+1" color="red"><code>math</code></font>. In
-the first, the svg files have prefix <font size="+1" color="red"><code>r</code></font>, and
-in the second, the prefix is <font size="+1" color="red"><code>p</code></font>.
-
-<p></p>
-
-Note the new subfolder called <font size="+1" color="red"><code>transfer</code></font> containing the
-things to be transferred to the tab.</li>
-
-
-<li>
-<b>Postshoot:</b> This state is reached after the shootings
-are over, one shooting per session, and the things are
-transferred back from the tab to the laptop.
-The <font size="+1" color="red"><code>fromapp</code></font> folder (under the <font color="#0000ff">root
-folder</font>) has the output of the app, and 
-the <font size="+1" color="red"><code>fromcamera</code></font>
-folder (under the <font color="#0000ff">video folder</font>) now contain the videos shot by the camera.</li>
-
-<pre>
-video folder
-  |
-  +---fromcamera <font color="#ff0000">(contains the raw videos from the tab)</font>
-  |
-  +---order.txt
-  |
-  +---intro (session folder 1)
-  |
-  +---math (session folder 2)
-</pre>
-
-<li>
-<b>Preedit:</b> This step is reached after a little technical
-processing of the output of the app, resulting in a folder
-called <font size="+1" color="red"><code>mlt</code></font> under the  <font color="#0000ff">video folder</font>:
-<pre>
-video folder
-  |
-  +---fromcamera
-  |
-  +---order.txt
-  |
-  +---intro (session folder 1)
-  |
-  +---math (session folder 2)
-  |
-  +---<font color="#ff0000">mlt</font>
-
-</pre>
-
-
-</li>
-
-<li>
-<b>Postedit:</b> You get to this state after opening kdenlive
-and aligning the overlays with the raw videos. Two new things are born
-in the <font color="#0000ff">video folder</font>: a <font size="+1" color="red"><code>kdenlive</code></font> file,
-and  an <font size="+1" color="red"><code>mp4</code></font> video file, the final output.</li>
-
-</ul>
-
-
-<h2><a
-name="Detailed workflow">Detailed workflow</a></h2>
-
-
-<ul>
-
-<li>
-<b>Blank</b> to <b>Ready</b>: Toughest part. Here you have
-to draw the pictures, and create the optional prompt files. We
-shall skip this step here, as the provided sample is already in
-the <b>Ready</b> state.</li>
-
-<li>
-<b>Ready</b> to <b>Preshoot</b>: Launch Preprocess.java (you
-might create a desktop shortcut). Click "dir", choose
-the <font color="#0000ff">video folder</font>. Click "svg-&gt;png". While keeping
-this window open, run the AndroViewer.java in parallel. Flip
-through the slides using the cursor keys to check
-everything. When you are satisfied, hit the "flip" button. This
-will generate a <font size="+1" color="red"><code>transfer</code></font> folder under
-the <font color="#0000ff">video folder</font>. Transfer the
-entire <font size="+1" color="red"><code>transfer</code></font> folder (not just is contents) to
-the tab. </li>
-
-<li>
-<b>Preshoot</b> to <b>Postshoot</b>: Well, shoot!</li>
-
-<li>
-<b>Postshoot</b> to <b>Preedit</b>: Transfer the videos to
-the <font size="+1" color="red"><code>fromcamera</code></font> folder under the <font color="#0000ff">video
-folder</font>, and the output of the app to
-the <font size="+1" color="red"><code>fromapp</code></font> folder under the <font color="#0000ff">root
-folder</font>.
-<p></p>
-
-Then run
-Preprocess.java (or continue to use it, if it is already
-running). Click "cue" followed by "melt".</li>
-
-
-<li>
-<b>Preedit</b> to <b>Postedit</b>: Launch kdenlive, and
-import the folders <font size="+1" color="red"><code>fromcamera</code></font> and <font size="+1" color="red"><code>mlt</code></font>
-into it. Drag them to the timeline, align and render!</li>
-
-</ul>
-
-
 <hr/>
 <table width="100%" border="0">
 <tr>
@@ -391,6 +197,4 @@ into it. Drag them to the timeline, align and render!</li>
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>
