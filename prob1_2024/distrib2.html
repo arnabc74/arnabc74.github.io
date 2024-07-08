@@ -1,0 +1,1035 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Infinite sample space">Infinite sample space</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Geometric distribution">Geometric distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Negative binomial">Negative binomial</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Poisson distribution">Poisson distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Sum of independent Poissons">Sum of independent Poissons</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Poisson aproximation to Binomial">Poisson aproximation to Binomial</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Infinite sample space">Infinite sample space</a></h1>
+
+<h2><a
+name="Geometric distribution">Geometric distribution</a></h2>
+
+<b>Notation:</b> <b>Geom</b>$(\theta),$ where $0 &lt; \theta &lt;1.$
+<p></p>
+
+<b>Sample space:</b> {1,2,3,...}.
+<p></p>
+
+<b>PMF:</b> 
+$$
+P(X=x) = \left\{\begin{array}{ll}
+            (1-\theta)^{x-1}\theta &\text{if }x=1,2,3,...\\
+            0 &\text{otherwise.}
+         \end{array}\right.
+$$
+<b>Terminology:</b> Such an $X$ is said to have (or follow) <b>Geom</b>$(\theta)$
+distribution. We also say that $X$ is a <b>Geom</b>$(\theta)$ random
+variable, and write $X\sim$<b>Geom</b>$(\theta).$
+<p></p>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Some people (including those who created the R software)
+use a slightly different convention. For them the number
+of '$0$'s preceding the first '$1$' is a Geometric
+random variable.</td>
+</tr>
+</table>
+
+<font color="red">
+<pre>
+barplot(dgeom(0:10, prob=0.5))
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+barplot(dgeom(0:10, prob=0.5))
+`));"/>
+<p></p>
+
+In R each distribution has a short name. It is <font size="+1" color="red"><code>geom</code></font>
+for the Geometric distribution. For each distribution there are 4
+functions in R: these are formed by appending the
+prefixes <font size="+1" color="red"><code>d</code></font>, <font size="+1" color="red"><code>p</code></font>, <font size="+1" color="red"><code>q</code></font>
+and <font size="+1" color="red"><code>r</code></font> before the short name. The <font size="+1" color="red"><code>d</code></font>
+prefix gives the PMF, <i>e.g.</i>, <font size="+1" color="red"><code>dgeom</code></font>. The
+prefix <font size="+1" color="red"><code>p</code></font> gives the CDF,
+<i>e.g.</i>, <font size="+1" color="red"><code>pgeom</code></font>. The prefix <font size="+1" color="red"><code>q</code></font> gives the
+"inverse" of the CDF, also called the <b>quantile</b>
+function. Finally, the <font size="+1" color="red"><code>r</code></font> prefix generates random
+number from the distribution. 
+<font color="red">
+<pre>
+data = rgeom(1000, prob=0.5)
+table(data)
+barplot(table(data))
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+data = rgeom(1000, prob=0.5)
+table(data)
+barplot(table(data))
+`));"/>
+
+<p></p>
+
+<b>Where used:</b> Suppose that we have a <b>Bern</b>$(\theta)$ 
+random experiment. Let us perform the experiment again and again
+independently until we obtain the first `1'. Then count the total
+number of
+experiments you have done (among these all but the last one have produced 
+outcome `0'.) The total number of experiments performed is a random
+variable with <b>Geom</b>$(\theta)$ distribution.  
+<p></p>
+Let us derive the PMF using the above description. Suppose that we
+have a coin with $P(head)=\theta.$ We keep on tossing it until we get
+the first head. Suppose that the first head comes at the $x$-th
+toss. Then the first $x-1$ tosses are all tails:
+$$
+\underbrace{TT\cdots TT}_{x-1}H
+$$
+Each of these tails occurs with probability $(1-\theta)$ and the
+final head occurs with probability $\theta.$ So the
+probability of
+having the first head at the $x$-th toss is
+$$
+\underbrace{(1-\theta)\times\cdots\times(1-\theta)}_{x-1}\times \theta
+ = (1-\theta)^{x-1} \theta, 
+$$
+which is the <b>Geom</b>$(\theta)$ PMF
+<p></p>
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+If $X\sim$<b>Geom</b>$(0.3),$ find $P(X&gt;2).$
+<p></p>
+<b>SOLUTION:</b> 
+$$\begin{eqnarray*}
+P(X&gt;2) &amp;=&amp; 1-P(X\leq 2)\\
+       &amp;=&amp; 1-\left(P(X=1) + P(X=2)\right)\\
+       &amp;=&amp; 1-(1-0.3)^{1-1}0.3 - (1-0.3)^{2-1}0.3\\
+       &amp;=&amp; 1-0.3-0.21 = 0.49.
+\end{eqnarray*}$$
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+If $G$ is a <b>Geom</b>$(0.2)$ random variable, then compute the
+following probabilities.
+<ol>
+<li>$P(G=3)$
+</li>
+<li>$P(G=0)$
+</li>
+<li>$P(G=1)$
+</li>
+<li>$P(G\leq 3)$
+</li>
+<li>$P(G&gt;3)$
+</li>
+</ol>
+
+</p>
+
+<p></p>
+
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Find $P(T\mbox{ is even})$ where $T\sim$<b>Geom</b>$(0.4).$ 
+</p>
+
+<p>
+<b>Hint:</b>
+<blockquote> You will need the geometric series here.
+$$\begin{eqnarray*}P(X\mbox{ is even})&amp;=&amp; P(X=2)+P(X=4)+\cdots\\
+                   &amp;=&amp;(1-\theta)\theta +(1-\theta)^3 \theta+
+                              (1-\theta)^5 \theta+\cdots\\
+                   &amp;=&amp; \theta(1-\theta)\left[
+1+(1-\theta)^2 + (1-\theta)^4+\cdots\right].
+\end{eqnarray*}$$</blockquote>
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+Some versions of Ludo require you to get a `6' on the die before your
+counter can move. Sometimes it takes frustratingly long time before you
+finally roll a `6'. Let $X$ denote the number of rolls required to
+get the first `6'. If we assume the die is fair (<i>i.e.</i>, each side has
+probability 1/6 of turning up), then what is the distribution of $X?$
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b> $X$ is a <b>Geom</b>(1/6) random variable. 
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+In the above example compute the probability of getting the first `6' within
+the first 3 rolls. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Some couples are so keen about having a son that they go on producing
+babies until they get their first son, and then they stop having children. 
+ Assume that at each birth a baby of
+either gender is equally likely. Also assume that the births are
+independent. Compute the probability that such a  couple has exactly 2
+daughters. 
+</p>
+
+<p>
+<b>Hint:</b>
+<blockquote>
+Let $D$ denote the number of daughters. Then notice that 
+$D+1$
+is a <b>Geom</b>(0.5) random variable.
+</blockquote>
+</p>
+
+<b>Expectation and variance:</b> If $X$ is a <b>Geom</b>$(\theta)$
+random variable, then
+$$\begin{eqnarray*}
+E(X)&amp; =&amp; 1/\theta\\Var(X)&amp; =&amp; (1-\theta)/\theta^2.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; \sum_{x=1}^\infty x(1-\theta)^{x-1}\theta\\
+     &amp;=&amp; \theta \sum_{x=1}^\infty x(1-\theta)^{x-1}\\
+     &amp;=&amp; \theta\cdot\frac1{(1-(1-\theta))^2}\\
+     &amp;=&amp; \frac{\theta}{\theta^2} = \frac1{\theta}
+\end{eqnarray*}$$
+$$\begin{eqnarray*}
+E(X(X-1)) &amp;=&amp; \sum_{x=1}^\infty x(x-1)P(X=x) \\
+          &amp;=&amp; \sum_{x=1}^\infty x(x-1)(1-\theta)^{x-1}\theta 
+\end{eqnarray*}$$
+The term corresponding to `$x=1$' is zero. So we can as well start
+     the sum from $x=2.$
+$$\begin{eqnarray*}
+\sum_{x=1}^\infty x(x-1)(1-\theta)^{x-1}\theta 
+	  &amp;=&amp; \sum_{x=2}^\infty x(x-1)(1-\theta)^{x-1}\theta \\
+	  &amp;=&amp; \theta(1-\theta)\sum_{x=2}^\infty x(x-1)(1-\theta)^{x-2} \\
+	  &amp;=&amp; \theta(1-\theta)\frac2{(1-(1-\theta))^3}\\
+	  &amp;=&amp; \frac{2\theta(1-\theta)}{\theta^3} \\
+	  &amp;=&amp; \frac{2(1-\theta)}{\theta^2}
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X^2) &amp;=&amp; E(X(X-1)) + E(X) \\
+       &amp;=&amp; \frac{2(1-\theta)}{\theta^2} + \frac1{\theta} \\
+       &amp;=&amp; \frac2{\theta^2} - \frac1{\theta}
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+Var(X) &amp;=&amp; E(X^2) - (E(X))^2 \\
+       &amp;=&amp; \frac2{\theta^2} - \frac1\theta - \left(\frac1\theta\right)^2\\
+       &amp;=&amp; \frac{1-\theta}{\theta^2}
+\end{eqnarray*}$$
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Find the mean and standard deviation of a <b>Geom</b>$(\theta)$ random
+variable for the following values of $\theta.$
+<ol>
+<li>$\theta = \frac34.$
+</li>
+<li>$\theta = \frac59.$
+</li>
+<li>$\theta = \frac89.$
+</li>
+</ol>
+
+</p>
+
+
+<p></p>
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+When a computer tries to connect to another computer, it
+ sends a connection request to the second. Depending on how busy the
+ second computer is, this request may be honoured (and so the connection is
+ established) or refused (hence connection is not established.) In the
+ latter case, the first computer waits for some time, and sends the
+ same request again. In this way the first computer keeps on trying until
+ connection is established. If the attempts are independent and if the
+ probability of a refusal at each attempt is 0.2, then what is the
+ expected number of attempts?
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b> If $X$ denotes the number of attempts required then $X$ is a
+<b>Geom</b>$(0.8)$ random variable. So 
+$$
+E(X) = 1/0.8 = 1.25
+$$ 
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Compute $E(D)$ and $Var(D)$ in the son-daughter exercise above.
+</p>
+
+
+<h2><a
+name="Negative binomial">Negative binomial</a></h2>
+
+<b>Notation:</b> <b>NegBin</b>$(\theta,r),$ where $\theta &gt; 0$ and
+$r$ is some positive integer.
+<p></p>
+
+<b>Sample space:</b> $\{r,r+1,r+2,...\}$
+<p></p>
+
+<b>PMF:</b> 
+$$
+P(X=x) = \left\{\begin{array}{ll}
+            {x-1\choose r-1}\theta^r (1-\theta)^{x-r}&\text{if }$x=r,r+1,...$\\
+            0 &\text{otherwise.}
+         \end{array}\right.
+$$
+<b>Terminology:</b> Such an $X$ is said to have (or follow) <b>NegBin</b>$(r,\theta)$
+distribution. We also say that $X$ is a <b>NegBin</b>$(r,\theta)$ random
+variable, and write $X\sim$<b>NegBin</b>$(r,\theta).$
+<p></p>
+
+<b>Where used:</b>
+Suppose that you have a coin with $P(head) = \theta.$ You keep on
+tossing it until you get the first $r$ heads, and then you stop. For
+instance, if $r=3,$ a typical tossing session may be like this:
+$$
+T,T,H,T,H,T,T,H.
+$$
+If $X$ denotes the total number of tosses you require, then
+$X$ has <b>NegBin</b>($\theta,r)$ distribution. In the tossing session
+above there are 8 tosses, so $X=8.$ Note that the 8 tosses could not
+have been 
+$$
+T,T,H,T,H,T,H,T.
+$$
+Because, here you have got the third head at your seventh toss, so you
+will not do the eighth toss at all. 
+<p></p>
+Let us derive the PMF of negative binomial using an example. We are
+tossing a coin with $P(head)=\theta$ until we get 3 heads. We shall
+find $P(X=5),$ <i>i.e.</i>, the probability that the third head comes
+at the fifth toss. This can happen in the following ways:
+$$\begin{eqnarray*}
+HHTTH&amp;HTHTH&amp;HTTHH\\
+THHTH&amp;THTHH&amp;TTHHH
+\end{eqnarray*}$$
+<p></p>
+Note that in all these cases the fifth toss is a $H,$ while there are
+exactly $3-1=2$ heads among the first $5-1=4$ tosses. Thus the total number
+of cases is ${5-1\choose 3-1} = {4\choose2}=6.$ Each of these 6 cases has 3 heads and 2
+tails, and hence has probability 
+$$
+\theta^3(1-\theta)^2.
+$$  
+So 
+$$
+P(X=5) = {5-1\choose 3-1}  \theta^3(1-\theta)^2 = 6\theta^3(1-\theta)^2.
+$$
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+If $X$ follows <b>NegBin</b>$(3,\frac14)$ distribution, find the following
+probabilities.
+<ol>
+<li>$P(T=5)$
+</li>
+<li>$P(T=2)$
+</li>
+<li>$P(T=3)$
+</li>
+<li>$P(T\leq5)$
+</li>
+</ol>
+
+</p>
+
+<p></p>
+
+<b>Expectation and variance:</b> 
+If $X\sim$<b>NegBin</b>$(\theta,r),$ then
+$$\begin{eqnarray*}
+E(X) &amp; = &amp; \frac{r}{\theta}\\ 
+Var(X) &amp; = &amp; \frac{r(1-\theta)}{\theta^2} 
+\end{eqnarray*}$$
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp; $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
+$Var(Y)$ for the following values of $r$ and $\theta.$
+<ol>
+<li>$r=3, \theta=\frac12$
+</li>
+<li>$r=2, \theta=\frac15$
+</li>
+<li>$r=1, \theta=\frac23$
+</li>
+<li>$r=5, \theta=\frac13$
+</li>
+</ol>
+
+</p>
+
+
+<p></p>
+It should be apparent from the description of the distribution that
+Negative Binomial distribution is related with the Geometric
+distribution. In Geometric distribution we keep on tossing until we get the
+first head, while for the Negative Binomial distribution we toss until the
+first $r$ heads. If $r=1$ then this is same as the Geometric
+distribution. 
+<p></p>
+
+<fieldset>
+
+<b>NegBin</b>$(\theta,1)$ is the same as <b>Geom</b>$(\theta).$
+</fieldset>
+
+<p></p>
+Here is another connection.
+<p></p>
+
+<fieldset>
+If $X\sim$<b>NegBin</b>$(\theta,r), $$Y\sim$<b>NegBin</b>$(\theta,s)$ and they are
+independent, then 
+<blockquote>
+$X+Y\sim$<b>NegBin</b>$(\theta,r+s).$
+</blockquote>
+
+</fieldset>
+
+<p></p>
+
+<fieldset>
+If $X_1,...,X_r$ are independent <b>Geom</b>$(\theta)$ random
+variables, then 
+<blockquote>
+$X_1+\cdots+X_r\sim $<b>NegBin</b>$(\theta,r)$.
+</blockquote>
+
+</fieldset>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Using the above result and the mean and variance of
+<b>Geom</b>$(\theta),$
+derive the formula for mean and variance of <b>NegBin</b>$(r,\theta).$
+</p>
+
+<p>
+<b>Hint:</b>
+<blockquote>Use the result that $E(X_1+\cdots+X_r)=
+E(X_1)+\cdots+E(X_r).$ Also, since $X_1,...,X_r$ are independent,
+so  $Var(X_1+\cdots+X_r)=
+Var(X_1)+\cdots+Var(X_r).$</blockquote>
+</p>
+
+<p></p>
+It is also possible to derive these directly without using the Geometric
+distribution. The direct proof is more complicated and uses the result 
+$$
+{x-1\choose r-1} = (-1)^{x-r} {r\choose x-r},
+$$
+which is proved in the appendix.
+<font color="red">
+<pre>
+barplot(dnbinom(0:10, size=3, prob=0.5))
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+barplot(dnbinom(0:10, size=3, prob=0.5))
+`));"/>
+
+<h2><a
+name="Poisson distribution">Poisson distribution</a></h2>
+
+<b>Notation:</b> <b>Poi</b>$(\lambda),$ where $\lambda &gt; 0.$
+<p></p>
+
+<b>Sample space:</b> \{0,1,2,...\}
+<p></p>
+
+<b>PMF:</b> 
+$$
+P(X=x) = \left\{\begin{array}{ll}
+            e^{-\lambda}\cdot\frac{\lambda^x}{x!} &\text{if }$x=0,1,2,...$\\
+            0 &\text{otherwise.}
+         \end{array}\right.
+$$
+<b>Terminology:</b> Such an $X$ is said to have (or follow) <b>Poi</b>$(\lambda)$
+distribution. We also say that $X$ is a <b>Poi</b>$(\lambda)$ random
+variable, and write $X\sim$<b>Poi</b>$(\lambda).$
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
+<ol>
+<li>$P(X=4)$
+</li>
+<li>$P(X=0)$
+</li>
+<li>$P(X= -1)$
+</li>
+<li>$P(X\leq 3)$
+</li>
+</ol>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+What is the probability that a <b>Poi</b>$(5)$ random variable is even?
+</p>
+
+<p></p>
+
+<b>Where used:</b> One use of Poisson distribution is in approximating
+Binomial distribution.
+<p></p>
+
+<fieldset>
+If $n$ is large and $\lambda $ is small, then
+<b>Bin</b>$(n,\lambda)$ is approximately same as <b>Poi</b>$(\lambda)$
+where $\lambda  = n \lambda. $
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE:</b>&nbsp;
+$X$ has <b>Bin</b>(1000,0.01) distribution. Compute $P(X=5)$
+approximately by using Poisson approximation. 
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b> Here $n=1000$ and $\lambda  = 0.01.$ So we should take $\lambda
+= 1000\times 0.01 = 10.$ By Poisson approximation, $X$ is
+approximately a <b>Poi</b>(10) random variable. Hence
+$$
+P(X=5)\approx e^{-10}10^{5}/5! = 0.03783.
+$$
+It is instructive to compare this with the exact value, which is
+$$
+P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
+$$
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+A box has 100 items, each of which either passes a quality control test
+(OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
+box is rejected by the quality control inspector. It is known that each
+item is OK with probability 0.01, and that the items are independent. Use
+Poisson approximation to compute the probability that a box is not
+rejected.
+</p>
+
+<p></p>
+
+<b>Expectation and variance:</b> If $X$ has <b>Poi</b>$(\lambda)$
+distribution then
+$$\begin{eqnarray*}
+E(X)&amp;=&amp;\lambda\\ Var(X)&amp; =&amp; \lambda.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; \sum_{x=0}^\infty xP(X=x)\\
+     &amp;=&amp; \sum_{x=0}^\infty x\frac{e^{-\lambda}\lambda^x}{x!}\\
+\end{eqnarray*}$$
+The term for `$x=0$' is zero in this sum. So we can drop it to get
+$$\begin{eqnarray*}
+\sum_{x=0}^\infty x\frac{e^{-\lambda}\lambda^x}{x!}
+     &amp;=&amp; \sum_{x=1}^\infty x\frac{e^{-\lambda}\lambda^x}{x!}\\
+     &amp;=&amp; e^{-\lambda}\sum_{x=1}^\infty x\frac{\lambda^x}{x!}\\
+     &amp;=&amp; e^{-\lambda}\sum_{x=1}^\infty \frac{\lambda^x}{(x-1)!}\\
+\end{eqnarray*}$$
+Now put $y=x-1.$
+$$\begin{eqnarray*}
+e^{-\lambda}\sum_{x=1}^\infty \frac{\lambda^x}{(x-1)!}
+     &amp;=&amp; e^{-\lambda}\sum_{y=0}^\infty \frac{\lambda^{y+1}}{y!}\\
+     &amp;=&amp; e^{-\lambda}\lambda\sum_{y=0}^\infty \frac{\lambda^{y}}{y!}\\
+     &amp;=&amp; e^{-\lambda}\lambda e^\lambda\\
+     &amp;=&amp; \lambda.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X(X-1))&amp;=&amp; \sum_{x=0}^\infty x(x-1)P(X=x)\\      
+         &amp;=&amp; \sum_{x=0}^\infty x(x-1)\frac{e^{-\lambda}\lambda^x}{x!}\\
+\end{eqnarray*}$$
+Drop the first two terms (which are both zeroes) to obtain
+$$\begin{eqnarray*}
+\sum_{x=0}^\infty x(x-1)\frac{e^{-\lambda}\lambda^x}{x!}
+         &amp;=&amp; \sum_{x=2}^\infty x(x-1)\frac{e^{-\lambda}\lambda^x}{x!}\\
+         &amp;=&amp; e^{-\lambda}\sum_{x=2}^\infty x(x-1)\frac{\lambda^x}{x!}\\
+         &amp;=&amp; e^{-\lambda}\sum_{x=2}^\infty \frac{\lambda^x}{(x-2)!}\\
+\end{eqnarray*}$$
+Substitute $y=x-2$ to see that
+$$\begin{eqnarray*}
+e^{-\lambda}\sum_{x=2}^\infty \frac{\lambda^x}{(x-2)!}
+         &amp;=&amp; e^{-\lambda}\sum_{y=0}^\infty \frac{\lambda^{y+2}}{y!}\\
+         &amp;=&amp; e^{-\lambda}\lambda^2\sum_{y=0}^\infty \frac{\lambda^{y}}{y!}\\
+         &amp;=&amp; e^{-\lambda}\lambda^2 e^\lambda\\
+         &amp;=&amp; \lambda^2.\\
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X^2)   &amp;=&amp; E(X(X-1)+E(X)\\
+         &amp;=&amp; \lambda^2 +\lambda.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+Var(X)   &amp;=&amp; E(X^2) - (E(X))^2\\
+         &amp;=&amp; \lambda^2 +\lambda - \lambda^2\\
+         &amp;=&amp; \lambda.
+\end{eqnarray*}$$
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Find the expected values of the following random variables.
+<ol>
+<li>$X\sim$<b>Poi</b>$(2).$
+</li>
+<li>$Y\sim$<b>Poi</b>$(\frac12).$
+</li>
+<li>$Z\sim$<b>Poi</b>$(2.5).$
+</li>
+</ol>
+
+</p>
+
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Find the variance of a <b>Poi</b>$(\lambda)$ random variable for the
+following values of $\lambda.$
+<ol>
+<li>$1$
+</li>
+<li>$9$
+</li>
+<li>$0.01$
+</li>
+</ol>
+
+</p>
+
+
+<p></p>
+
+<fieldset>
+If $X$ is a <b>Poi</b>$(\alpha)$ random variable, $Y$ is a
+<b>Poi</b>$(\beta)$ random variable, and $X,Y$ are independent,
+then $X+Y$ is a <b>Poi</b>$(\alpha+\beta)$ random variable.
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+If $X_1,X_2,X_3,X_4$ are independent random variables with
+ distributions <b>Poi</b>(1),<b>Poi</b>(2),<b>Poi</b>(4) and <b>Poi</b>(5),
+ respectively.
+Find the distribution of $(X_1+\cdots+X_4).$
+</p>
+
+
+<h3><a
+name="Sum of independent Poissons">Sum of independent Poissons</a></h3>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X\sim$<b>Poi</b>$(\lambda)$
+and $Y\sim$<b>Poi</b>$(\mu)$ and they are independent,
+then $X+Y\sim$<b>Poi</b>$(\lambda+\mu)$.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Clearly, $X+Y$ takes non-negative integer values.
+<p></p>
+Let $k$ be any such value.
+<p></p>
+Then 
+$$\begin{eqnarray*}
+P(X+Y = k)
+&amp;= &amp; P\left(\cup_0^k \{X=i~\&amp; Y=k-i\}\right)\\
+&amp;= &amp; \sum_0^kP( X=i~\&amp; Y=k-i)~~\left[\mbox{$\because$
+disjoint}\right]\\
+&amp;= &amp; \sum_0^kP( X=i)P(Y=k-i)~~\left[\mbox{$\because$
+independent}\right]\\
+&amp;= &amp; \sum_0^k \frac{ e^{-\lambda} \lambda^i}{i !}\times \frac{e^{-\mu} \mu^{k-i}}{(k-i)!}\\
+&amp;= &amp; \sum_0^k \frac{ e^{-(\lambda+\mu)}}{i! (k-i)!} \times \lambda^i
+\mu^{k-i}\\
+&amp;= &amp; \sum_0^k \frac{ e^{-(\lambda+\mu)}}{k!} \times \binom{k}{i}\lambda^i
+\mu^{k-i}\\
+&amp;= &amp;  \frac{ e^{-(\lambda+\mu)}}{k!} \times \sum_0^k \binom{k}{i}\lambda^i
+\mu^{k-i}\\
+&amp;= &amp;  \frac{ e^{-(\lambda+\mu)}}{k!} \times (\lambda+\mu)^k,
+\end{eqnarray*}$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<h3><a
+name="Poisson aproximation to Binomial">Poisson aproximation to Binomial</a></h3>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\lambda &gt; 0.$ If $n\rightarrow\infty$ and $p = \frac \lambda n,$
+then for any $k\in\{0,1,2,...\}$ 
+$$
+\binom{n}{k} p^k (1-p)^{n-k} \rightarrow e^{-\lambda} \frac{\lambda^k}{k!}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Since $p = \frac  \lambda n,$ hence
+$$
+\binom{n}{k} p^k (1-p)^{n-k}  = \frac{n! }{k!(n-k)!  }\times
+\frac{\lambda^k}{n^k}\times \left(1-\frac \lambda n \right)^{n-k}.
+$$
+Separate out all factors free of $n$ to rewrite this as
+$$
+\frac{ \lambda^k}{k!} \times \frac{ n! }{(n-k)! n^k }\left(1-\frac \lambda n \right)^{n-k}.
+$$
+Now 
+$$
+\left(1-\frac \lambda n \right)^{-k}\rightarrow 1,
+$$
+since $k$ is fixed. Also
+and 
+$$
+\left(1-\frac \lambda n \right)^n \rightarrow e^{-\lambda}.
+$$
+Finally, since $k$ is fixed, we have
+$$
+\frac{ n(n-1)\cdots(n-k+1) }{ n^k }\rightarrow 1,
+$$
+completing the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<ol type="">
+
+<li>
+<img width="" src="image/infdist1.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist2.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist3.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist4.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist5.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist6.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist7.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist8.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist9.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist10.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist11.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist12.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist13.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>
+<img width="" src="image/infdist14.png" style="vertical-align:text-top;"><hr>
+</li>
+
+<li>Show that 
+$$
+\frac{\lambda^k}{k!} \left(1-\frac \lambda n\right)^{n-k} 
+\geq
+\binom{n}{k}p^k(1-p)^{n-k} \geq
+\frac{\lambda^k}{k!} \left(1-\frac kn \right)^k\left(1-\frac \lambda n\right)^{n-k}, 
+$$
+where $\lambda = np.$
+<hr>
+</li>
+
+<li>Use the above inequality to show that 
+$$
+\frac{e^{-\lambda}\lambda^k}{k!} e^{k \lambda/n}
+&gt;
+\binom{n}{k}p^k(1-p)^{n-k} 
+&gt;
+\frac{e^{-\lambda}\lambda^k}{k!} e^{-k^2/(n-k)-\lambda^2/(n-\lambda)}.
+$$
+<hr>
+</li>
+
+<li>(Banach's matchbox problem)
+A certain mathematician has two matchboxes (containing $n$
+matches each), one in his left pocket, the other in the
+right. When he needs to light a cigar (smoking which, BTW, is
+injurious to health) he chooses one of the two pockets at random,
+and takes a match from the box in that pocket. (Choices of
+pockets are assumed independent.) One day for the first time he
+discovers that his chosen box is empty. What is the probability
+distribution of the number ($X$) of matches remaining in 
+the other box? [Hint: To get yourself started first
+find $P(X=n).$ This means he has been using the same
+box $n$ times without ever using the other box.]
+<hr>
+
+</li>
+
+</ol>
+
+<p></p>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/distrib.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "distrib"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

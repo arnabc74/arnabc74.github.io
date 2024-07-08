@@ -1,0 +1,1195 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Basic concepts">Basic concepts</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Probability axioms">Probability axioms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Continuity of probability function">Continuity of probability function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Inclusion-Exclusion formula">Inclusion-Exclusion formula</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Countable sample spaces">Countable sample spaces</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Equally likely cases">Equally likely cases</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Simulations">Simulations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\ev}{{\mathcal F}}$
+<h1><a
+name="Basic concepts">Basic concepts</a></h1>
+A <b>random experiment</b> is an activity whose outcome we cannot
+predict. The set of all outcomes is called its <b>sample space</b>. Each
+element of this set is called a <b>sample point</b>. 
+By the term <b>event</b>  we understand a subset of the sample
+space. 
+<p>
+<b>EXAMPLE ():</b>&nbsp;A coin toss is a random experiment. Its sample space is $\{head,tail\}.$  There are four
+ different events possible here: 
+$\phi, \{head\},\{tail\},\{head,tail\}.$
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;Rolling a die is another random experiment. The sample space here is $\{1,2,3,4,5,6\}.$ 
+ One possible event is the set of all even numbers, $\{2,4,6\}.$ ///
+</p>
+
+<p></p>
+I give you a coin to toss. Before tossing, you carefully inspect
+it. You find no difference at all between the two sides (except
+for the pictures on them). So you infer that both head and tail
+are <i>equally likely</i> (<i>i.e.</i>, you are equally ignorant about
+both sides). It is common to express this situation as "50-50"
+chance, or $50\%$ chance of a head (or a tail), or probability of a head (or a tail) is $\frac 12.$
+<p></p>
+The main idea is that the chance of a head equals the chance of a
+tail. We like to express this by first imagining a totality and
+then halving it. This totality may be taken as 100 or 100% or 1 or any other positive number.
+<p></p>
+In probability theory we take the total as $1.$  This choice
+is justified by statistical regularity, as the following example
+shows.
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+Consider rolling a fair die. Let $A$ be the event that we
+get a prime number, <i>i.e.</i>, $A=\{2,3,5\}.$ Intuitively, the
+probability of $A$ should be $\frac 12.$  We shall use R to 
+perform  5000 trials of this random experiment and check the running proportion of
+cases that the event $A$ happens.
+<font color="red">
+<pre>
+x = sample(6,5000,rep=T)
+A = x %in% c(2,3,5)
+plot(cumsum(A)/(1:5000), ty='l')
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(6,5000,rep=T)
+A = x %in% c(2,3,5)
+plot(cumsum(A)/(1:5000), ty='l')
+`));"/> 
+Notice that the proportions indeed tend towards $\frac 12.$
+<p></p>
+
+<p></p>
+Similarly, we can get an idea of the probability of $B=\{1,3,4,5\}$ using
+the following R code.
+<font color="red">
+<pre>
+x = sample(6,5000,rep=T)
+B = x %in% c(1,3,4,5)
+mean(B)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(6,5000,rep=T)
+B = x %in% c(1,3,4,5)
+mean(B)
+`));"/>
+ ///
+</p>
+
+<p></p>
+With each event we assign a probability
+which is a number from $[0,1].$ In practice it is difficult
+(<a href="refs/headswithJ.pdf">impossible?</a>) to get a biased coin (<i>i.e.</i>, a coin which is more likely
+to show one side than the other). It is very easy to <i>simulate</i>
+such a coin though:
+<font color="red">
+<pre>
+x = sample(c('h', 't'), 1000, prob=c(0.7,0.3), rep=T)
+sum(x=='h')
+sum(x=='t')
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(c('h', 't'), 1000, prob=c(0.7,0.3), rep=T)
+sum(x=='h')
+sum(x=='t')
+`));"/>
+The <font size="+1" color="red"><code>prob=c(0.7,0.3)</code></font> specifies the probabilities. 
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">If the sample space is countable (finite/infinite), then
+generally $\ev$ is just the power set of $\Omega.$
+If $\Omega$ is uncountable, then there may be some <a href="vit.html">"bad"
+subsets</a> for which probability cannot be defined! These are
+not called events, and so are not considered as members of $\ev.$ In this case
+$\ev$ is a strict subset of the power set of $\Omega.$ Fortunately, 
+we shall not come across such "bad" subsets any time soon.</td>
+</tr>
+</table> 
+
+<p></p>
+Let $\ev$  be the set of all events in a sample space. For
+example, if $\Omega = \{head, tail\}$ then $\ev$
+is $\big\{\phi,\{head\},\{tail\},\{head,tail\} \big\}.$
+<p></p>
+
+<p></p>
+Then a <b>probability</b>  is a function $P:\ev\rightarrow[0,1].$
+<p></p>
+Of course, not all such functions  can be a probability. A function needs to satisfy certain
+ common sense conditions to be called a probability function. 
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+A report says that the health condition in a country is so bad, that the chance of a newborn baby surviving for at least
+ 1 year is only 50%. However, the chance that he survives for at least 5 years is 90%. Does it sound odd?
+<p></p>
+<b>SOLUTION:</b>
+Yes. Any baby surviving for at least 5 years has of course survived the first year as well. So how can the latter chance
+ be larger?
+ ///
+</p>
+
+<p></p>
+This example gives one common sense condition that a probability function must satisfy: if $A\subseteq B$ then we should
+have $P(A)\leq P(B).$ 
+<p></p>
+Of course, there are many many such common sense conditions and it is difficult to come up with a complete list. 
+A Russian mathematician named 
+Kolmogorov reduced this list to only 3 conditions, called the <b>probability axioms</b>.
+<p></p>
+
+<h2><a
+name="Probability axioms">Probability axioms</a></h2>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">A collection of sets is called <b>disjoint</b> if the intersection of any two sets from the collection is
+ empty. They are also called
+ <b>mutually exclusive</b></td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Probability axioms</i></b></legend>
+Let $\Omega$ denote the sample space. Let $\ev$  denote the set of all events. Then 
+<ol type="">
+
+<li>For any event $A\in\ev$ we have $P(A)\geq 0$</li>
+
+<li>$P(\Omega)=1$</li>
+
+<li>If $A_1,A_2,...\in\ev$ are countably many (finite/infinite) disjoint events then 
+$$
+P(\cup A_n) = \sum P(A_n).
+$$
+</li>
+
+</ol>
+
+</fieldset>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">You'll often see this sentence: 
+<blockquote>"$(\Omega,\ev,P)$ is a
+<b>probability space</b>".</blockquote>
+ This is a shorthand for:
+<ul>
+<li> $\Omega$
+is a nonempty set (sample space),</li> 
+
+<li>$\ev$ is the collection
+of all events,</li>
+
+<li>$P:\ev\rightarrow{\mathbb R}$ is a probability (<i>i.e.</i>, a
+function satisfying the three probability axioms).</li>
+</ul>
+</td>
+</tr>
+</table>
+Notice the last axiom. Here the sum may involve infinitely many
+terms. Such a sum is called an infinite series. You'll learn
+about them in details in your analysis course. But for now you
+may quickly read this
+<a href="series.html">crash course on infinite series</a>.
+<p></p>
+
+<p></p>
+It is a remarkable fact that whatever other common sense condition one has been able to think of so far
+actually follows as a consequence of these! Also, you cannot drop
+any of these requirements, in the sense that no two of these
+imply the other. Can you show this?
+<p></p>
+
+<p></p>
+
+<p></p>
+It is an interesting exercise to derive various common sense
+conditions from these axioms. Here is one.
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+If $A\subseteq B$ then show that $P(A)\leq P(B).$
+<p></p>
+<b>SOLUTION:</b>
+Split $B$ as $B=A\cup (A^c\cap B).$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ax1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ The two events in RHS  are
+disjoint. So by Axiom 3 we have
+$$
+P(B) = P(A) + P(A^c\cap B).
+$$
+The second probability in the RHS is $\geq 0$ (by Axiom
+1). So done.
+ ///
+</p>
+
+<p></p>
+Try your hand at these:
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Show $P(A^c) = 1-P(A).$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;Show $P(\phi)=0.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;If $A_1\subseteq A_2\subseteq A_3,$  then show that $P(A_1\cup A_1\cup A_3) = P(A_1)+P(A_2\cap A_1^c)+P(A_3\cap A_2^c).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>&nbsp;
+Show $P(A\cup B) = P(A)+P(B)-P(A\cap B).$
+</p>
+
+<p></p>
+Next we shall prove some common sense properties that will require more effort.
+<p></p>
+
+<h3><a
+name="Continuity of probability function">Continuity of probability function</a></h3>
+We know that if $f(x)$  is a continuous function and $x_n\rightarrow a$  then $f(x_n)\rightarrow f(a).$  Any probability function
+ has a similar property.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Increasing limit</b></legend>
+Let $A_1,A_2,...$ be a sequence of events. Let $A$ be
+any event. We say that $A_n$'s increase to $A$ (and
+write $A_n\nearrow A$) if 
+$$A_1\subseteq A_2\subseteq A_3\subseteq\cdots$$
+and 
+$$A = \cup_n A_n.$$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Decreasing limit</b></legend>
+Let $A_1,A_2,...$ be a sequence of events. Let $A$ be
+any event. We say that $A_n$'s decrease to $A$ (and
+write $A_n\searrow A$) if 
+$$A_1\supseteq A_2\supseteq A_3\supseteq \cdots$$
+and 
+$$A = \cap_n A_n.$$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $A_n\nearrow A$ or $A_n\searrow A$ then $P(A_n)\rightarrow P(A).$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let's do the $A_n\nearrow A$ case first. 
+<p></p>
+Define $B_1=A_1$ and for $n\geq 2$ let $B_n
+=A_n\setminus A_{n-1}.$ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rings.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then $B_1,B_2,B_3,...$ are all disjoint. <a href="javascript:hideShow('cwh');">(Why? Don't just say
+ "obvious!". Write a one line proof.)</a>
+<div id="cwh" style="display:none;background-color:#ffcccc;">Take any $i &lt; j.$  Then $B_i\subseteq A_i\subseteq A_j.$  But $B_j\subseteq A_i^c.$  So $B_i\cap B_j=\phi.$</div> 
+Also, for $n\in{\mathbb N},$ we have $A_n = B_1\cup\cdots\cup B_n.$
+<p></p>
+So $A = B_1\cup B_2\cup\cdots.$<a href="javascript:hideShow('wh2');">(Why?)</a>
+<div id="wh2" style="display:none;background-color:#ffcccc;">
+If $x\in A$  then $x\in A_n$  for some $n\in{\mathbb N}.$  Let $n_0$  be the least $n\in{\mathbb N}$  for which
+ $x\in A_{n_0}.$  If $n_0=1,$  then $x\in A_1 = B_1.$  If $n_0&gt;1,$  then $x\in A_{n_0}\setminus A_{n_0-1} = B_{n_0}.$
+<p></p>
+Hence $A\subseteq \cup B_n.$
+<p></p>
+Conversely, let $y\in \cup_n B_n.$  Then $y\in A_n\subseteq A.$
+<p></p>
+So $\cup B_n \subseteq A.$<p></p>
+Combining, $\cup B_n = A.$
+</div>
+
+<p></p>
+Hence, by the third axiom, $P(A) = \sum_1^\infty P(B_i) =
+\lim_n \sum_1^n P(B_i) = \lim_n P(A_n),$ as required.
+<p></p>
+
+<a href="javascript:hideShow('cont');">The $A_n\searrow A$ case follows on taking complements. 
+</a>
+<div id="cont" style="display:none;background-color:#ffcccc;">
+If $A_n\searrow A$, then $A_n^c\nearrow A^c.$
+<p></p>
+Hence, by what we have proved, $P(A_n^c)\rightarrow P(A^c),$
+<p></p>
+or $1-P(A_n)\rightarrow 1-P(A),$ or $P(A_n)\rightarrow P(A),$ as required.
+</div>
+
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h3><a
+name="Inclusion-Exclusion formula">Inclusion-Exclusion formula</a></h3>
+Just now we have mentioned the result $P(A\cup B) = P(A)+P(B)-P(A\cap B).$  
+We can think of this like 
+<blockquote>$P(A)+P(B)$  overestimates $P(A\cup B)$  because the $P(A\cap B)$  part is included
+ twice. So we need to exclude it once.</blockquote>
+ This idea of inclusion and exclusion works for any finite number of events. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Inclusion-Exclusion formula</i></b></legend>
+Let $A_1,...,A_n$ be any $n$
+events. Let $T$ denote the set of all subsets of $\{1,...,n\}.$ Then 
+$$P(A_1\cup \cdots \cup A_n) = \sum_{k=1}^n \left[(-1)^{k+1} \sum_{\alpha\in T,|\alpha|=k} P(A_\alpha)\right],$$
+where for any $\alpha\subseteq T$ we define 
+$$A_\alpha = \cap_{i\in \alpha} A_i.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The notation is a bit complicated. Let's understand it first with the $n=3$ case. 
+Here the first term of the outer sum consists of the sum of all $A_\alpha$  where $\alpha\in T$  
+and $|\alpha|=1$  (<i>i.e.</i>, all singleton  subsets of $\{1,2,3\}$). 
+This sum is simply 
+$$P(A_1)+P(A_2)+P(A_3).$$ 
+ Similarly, the next term consists of 
+all $A_\alpha,$  where $\alpha$  is a doubleton subset of $\{1,2,3\}.$  Remember that 
+$A_{\{1,2\}} = A_1\cap A_2$  and so on. So the second term (for $k=2$) becomes 
+$$-[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_1\cap A_3)].$$ 
+ The third term (for $k=3$) similarly is 
+$P(A_1\cap A_2\cap A_3).$  So the entire sum looks like 
+$$P(A_1\cup A_2\cup A_3) = [P(A_1)+P(A_2)+P(A_3)]-[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_1\cap A_3)]+P(A_1\cap A_2\cap A_3).$$
+ The Venn diagram shows why this formula is correct. But a Venn diagram cannot be 
+considered as a proof, as it shows only one possible case. However, a Venn diagram does indicate 
+how to construct a general proof.
+Note that $A_1\cup A_2\cup A_3$ is made of certain disjoint
+events:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ie1.png"></th>
+</tr>
+<tr>
+<th>Cells</th>
+</tr>
+</table>
+</center>
+We have coloured these using blue, green and red. Blue cells
+consist of points belonging to exactly one $A_i.$ For
+example, $B_1$ is the set of points that belong only
+to $A_1.$ The green
+cells consist of points belonging to exactly two $A_i$'s,
+and so on. So 
+$$A_1 =  B_1\cup B_{12}\cup B_{13} \cup B_{123},$$
+and similarly for $A_2,$ and $A_3.$ Note the pattern:
+all the $B's$ with $1$ somewhere in the subscript has
+occurred in the RHS. Since the events in the RHS are
+disjoint, so we have 
+$$P(A_1) =  P(B_1)+P(B_{12})+P(B_{13})+P(B_{123}).$$
+Now, the first stage (inclusion) is
+$$\begin{eqnarray*}
+P(A_1)+P(A_2)+P(A_3) 
+&amp; = &amp; [P(B_1)+P(B_{12})+P(B_{13})+P(B_{123})]\\
+&amp; &amp; +[P(B_2)+P(B_{12})+P(B_{23})+P(B_{123})]\\
+&amp; &amp; +[P(B_3)+P(B_{13})+P(B_{23})+P(B_{123})]
+\end{eqnarray*}$$
+<p></p>
+Note that here each $B$ with a single subscript occurs once,
+each $B$ with two subscripts occur twice, and so on. This 
+is of course natural, since for example, $B_{12}$ occurs once as
+part of $A_1$ and then again as part of $A_2.$
+<p></p>
+Next, we have 
+$$A_{12} =  B_{12}\cup  B_{123}.$$
+Here all the $B$'s with $12$ in the subscript occur in
+the RHS. Again, since the $B$'s are all disjoint, 
+$$
+P(A_{12}) =  P(B_{12})+P(B_{123}).
+$$
+Similarly for $A_{23}$ and $A_{13}.$ Using these, 
+the second stage (exclusion) is 
+$$\begin{eqnarray*}
+P(A_{12})+P(A_{23})+P(A_{13}) 
+&amp; = &amp; [P(B_{12})+P(B_{123})]\\
+&amp; &amp; +[P(B_{23})+P(B_{123})]\\
+&amp; &amp; +[P(B_{13})+P(B_{123})]
+\end{eqnarray*}$$
+Note that no $B$ with a single subscript occurs at
+all. The $B$'s with two subscripts occur once each, while
+the $B$ with three subscripts occur thrice. Do you see the
+pattern? Each $B$ is like $B_\beta,$ where $\beta$
+is a nonempty subset of $\{1,2,3\}.$ Similarly, each $A$ is
+like $A_\alpha,$ where $\alpha $ is also a nonempty
+subset of $\{1,2,3\}.$ Now $B_\beta$  occurs as a part
+of $A_\alpha$ if and only if $\alpha\subseteq \beta.$
+So the number of times we see $B_{123}$ in the RHS is same
+as the number of subsets of size 2 of $\{1,2,3\},$ which
+is $\binom{3}{2}=3.$ The same technique will also explain
+why $B_{23},$ for example, occurs only once: the number of
+subsets of size 2 of $\{2,3\}$ is $\binom{2}{2}=1.$
+In fact, the same approach also explains the absence
+of $B$'s with single indices. Each single index $B$
+occurs $\binom{1}{2}=0$ times!
+<p></p>
+The third stage (inclusion) is similar, though
+simpler. Here $A_{123} = B_{123},$ and so $P(A_{123}) =
+P(B_{123}).$ Our basic pattern holds here also: The
+3-index $B$ occurs $\binom33=1$
+time. The $2$-index $B$'s occur $\binom23=0$ time,
+and the 1-index $B$'s occur $\binom13=0$ time.
+<p></p>
+The following table gives a summary:
+<center>
+<table style="" border="1">
+
+<tr>
+<td colspan="" rowspan="2">No. of indices
+of $B$</td><td colspan="3" rowspan="">Considered how many times in</td><td colspan="" rowspan="">Total</td>
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Stage 1 (incl)</td>
+<td colspan="" rowspan="">Stage 2 (excl)</td>
+<td colspan="" rowspan="">Stage 3 (incl)</td>
+
+</tr>
+
+<tr>
+<td colspan="" rowspan="">1</td><td colspan="" rowspan="">$\binom11$</td><td colspan="" rowspan="">$\binom12$</td><td colspan="" rowspan="">$\binom13$</td><td colspan="" rowspan="">1-0+0=1</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">2</td><td colspan="" rowspan="">$\binom21$</td><td colspan="" rowspan="">$\binom22$</td><td colspan="" rowspan="">$\binom23$</td><td colspan="" rowspan="">2-1+0=1</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">3</td><td colspan="" rowspan="">$\binom31$</td><td colspan="" rowspan="">$\binom32$</td><td colspan="" rowspan="">$\binom33$</td><td colspan="" rowspan="">3-3+1=1</td>
+</tr>
+
+</table>
+</center>
+Now we head for the general case for any given $n.$ 
+<p></p>
+For any $\alpha\in T$ define
+<blockquote>
+$B_\alpha=$ the set of all those points that belong to $A_i$ iff $i\in \alpha.$
+</blockquote>
+Clearly, by definition, $B_\alpha$'s are all disjoint and 
+$$A_1\cup\cdots\cup A_n = \cup_{\alpha\in T} B_\alpha.$$
+Now observe that for any $\alpha \in T$
+$$A_\alpha = \cup_{\beta\supseteq\alpha} B_\beta.$$
+So
+$$P(A_\alpha) = \sum_{\beta\supseteq\alpha} P(B_\beta).$$
+So the number of times a $k$-index $B$ is considered in the $r$-th
+stage is $\binom{k}{r}.$ 
+<a href="javascript:hideShow('ie');">(Click here for more explanation.)</a>
+<div id="ie" style="display:none;background-color:#ffcccc;">
+In the $r$-th stage we are considering the sum
+of $P(A_\alpha)$ for all $\alpha$ of size $r.$ 
+<p></p>
+Fix any $\beta.$
+<p></p>
+Then $P(B_\beta)$ occurs only for those $P(A_\alpha)$'s
+where $\alpha\subseteq\beta.$ 
+<p></p>
+Thus, $P(B_\beta)$ occurs as many times as there are subsets
+of $\beta$ of size $k.$
+<p></p>
+If $|\beta|=k,$ then this number is $\binom{k}{r}.$
+</div>
+More precisely, 
+$$
+\sum_{|\alpha|=r} P(A_\alpha) = \sum_{k=1}^r \binom{k}{r}
+\sum_{|\beta|=k} P(B_\beta).
+$$
+<p></p>
+Hence total number of inclusion of a $k$-index $B$ is
+$$
+\binom{k}{1}-\binom{k}{2}+-\cdots+(-1)^{n+1} \binom{k}{n} = 1-(1-1)^k=1,
+$$
+using binomial theorem.
+<p></p>
+Hence every $B$ is included exactly once in the RHS. Thus,
+$$
+P(\cup_{\alpha\in T}B_\alpha) =  RHS,
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+Notice that the proof has used only the third axiom of probability. 
+So if we have any function $P(\cdot)$  that satisfies the third axiom, the theorem is valid for that 
+function as well. Examples of such functions include length, area, volume, mass, number of elements (for
+ finite sets). In short, it is
+ true for any measure of size.
+<p></p>
+ Indeed, all functions that satisfy  axiom three are called <b>(signed) measure</b>s, and 
+meaure theory is the branch of mathematics that deals with them. 
+<p></p>
+
+<h2><a
+name="Countable sample spaces">Countable sample spaces</a></h2>
+If the sample space $S$ is countable (finite/infinite), say 
+$$
+S = \{x_1,x_2,...\},
+$$
+then take any sequence $p_1,p_2,...$ of nonnegative numbers
+ading up to $1.$ Defining $P(\{x_i\})=p_i$ completely
+specifies a probability. Conversely, any probability can be
+constructed like this.
+<p></p>
+
+<h3><a
+name="Equally likely cases">Equally likely cases</a></h3>
+The simplest special case is when the sample space $\Omega$ is finite
+(say $|\Omega|=n$) and we take $p_1=\cdots=p_n=\frac 1n.$
+<p></p>
+In this case, for any $A\subseteq \Omega$ we have $P(A) =|A|/|\Omega|.$
+<p></p>
+Many interesting problems fall in this category. They are
+basically problems of combinatorics. One type of problem is
+<i>occupancy problems</i>, where we have some boxes and some
+balls are distributed over them following various
+conditions. 
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+There are three distinct boxes and 10 distinct balls. The balls are dropped randomly among the boxes so that all possible
+ configurations are equally likely. (No ball is outside a box.) What is the probability that the first box is empty?
+<p></p>
+<b>SOLUTION:</b>
+Each of the 10 balls has 3 possible destinations, irreespective of the other balls. So the total 
+number of configurations is $3^{10}.$  So $|\Omega|=3^{10}.$
+<p></p>
+Let $A$  be the event that the first ball remains empty. Then $A$  occurs if and only if all the balls land in
+ the other 2 boxes. So $|A|=2^{10}.$  
+<p></p>
+Since all outocmes are equally likely hence 
+$$P(A)= \frac{|A|}{|\Omega|} = \left(\frac 23\right)^{10}.$$
+ ///
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+Same problem as above, except that the balls are now identical. The boxes are still distinct. 
+What is the answer now?
+<p></p>
+<b>SOLUTION:</b>
+By the bar-star argument $|\Omega| = \binom{12}{2}=66.$
+<p></p>
+Similarly, $|A| = \binom{11}{1} = 11.$
+<p></p>
+So the answer is $\frac 16.$
+ ///
+</p>
+
+<p></p>
+Certain real-life scenarios may be modelled like
+this. Here are a few examples from physics (no need to cram these
+terms for the exams!).
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+There are $r$ (identical/distinct) particles. Each particle may be in
+one of $n$ distinct states. We can think of the particles as
+balls and the states as boxes. For example, if the states are UP
+and DOWN, and there are $r=12$ <i>identical</i> particles, among which 5 are
+in UP state and 7 in DOWN, we can visualise this as:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/occ1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If there are $r=3$ <i>distinct</i> particles and the same two
+states, then the picture could be like:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/occ2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Physicists assume various types of probabilities on
+these. 
+<ul>
+
+<li>
+<b>Maxwell-Boltzmann distribution:</b> The balls are
+distinct. Then there are $n^r$ many possible configurations (each
+of the $r$ balls has $n$ possible destinations).
+All these $n^r$ configurations are assumed equally likely.
+No real life particle shows this behaviour.</li>
+
+<p></p>
+
+<li>
+<b>Bose-Einstein distribution:</b> The balls are
+identical. So, by the bar-star argument, we know that there
+are ${n+r-1\choose n-1}$ configurations possible. These are
+assumed equally likely.</li>
+
+<p></p>
+
+<li>
+<b>Fermi-Dirac distribution:</b> Here $n\geq r$ and no
+box can hold more than one ball. Balls are
+identical. So ${n\choose r}$ distinct configurations are
+possible (since a configuration is determined completely by which
+of the boxes have one ball in it). All these 
+configurations are assumed equally likely.</li>
+
+</ul>
+ ///
+</p>
+
+<p></p>
+
+<h2><a
+name="Simulations">Simulations</a></h2>
+Often we come across events that easily described in words, but
+whose probabilities are rather hard to compute. Computer
+simulation comes handy in such cases. Computer simulations help
+in detecting theoretical mistakes too. 
+<p></p>
+
+<p>
+<b>EXAMPLE ():</b>&nbsp;
+A deck of 10 cards labelled 1,...,10 is shuffled thoroughly. We shall
+say that the $i$-th card is <i>at home</i>, if it is in
+the $i$-th positon after the shuffle. Write an R code to
+estimate the probability that exactly 3 cards are at home. 
+<p></p>
+<b>SOLUTION:</b>
+<font color="red">
+<pre>
+event = numeric(5000)
+for(k in 1:5000) {
+  x = sample(10,10)
+  at.home = sum(x==(1:10))
+  event[k] = (sum(at.home)==3)
+}
+mean(event)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+event = numeric(5000)
+for(k in 1:5000) {
+  x = sample(10,10)
+  at.home = sum(x==(1:10))
+  event[k] = (sum(at.home)==3)
+}
+mean(event)
+`));"/>
+ ///
+</p>
+
+<h2><a
+name="Problems for practice">Problems for practice</a></h2>
+
+<ol type="">
+
+<li>Let $E,F,G$ be any three events. Find expressions for
+the event that of $E,F,G$
+<ol type="">
+
+<li>only $F$ occurs</li>
+
+<li>both $E$ and $F$ but not $G$ occur</li>
+
+<li>at least one event occurs</li>
+
+<li>at least two events occur</li>
+
+<li>all three events occur</li>
+
+<li>none occurs</li>
+
+<li>at most one occurs</li>
+
+<li>at most two occur</li>
+
+<li>exactly two occur</li>
+
+<li>exactly one occurs.</li>
+
+</ol>
+
+</li>
+
+<li>Show that $E\cap (F\cup G) = (E\cap F)\cup (E\cap
+G).$</li>
+
+<li>Show that $(A\cup B)^c = A^c \cap B^c.$</li>
+
+<li>State (with proof) which of the following statements is
+correct/incorrect:
+<ol type="">
+
+<li>$(A\cup B)\setminus C = A\cup (B\setminus C).$</li>
+
+<li>$A\cap B\cap C = A\cap  B(C\cup B).$</li>
+
+<li>$A\cup B\cup C = A\cup (B\setminus (A\cap B))\cup
+(C\setminus (A\cap C)).$</li>
+
+<li>$(A\cap B)\cup (B\cap C) \cup (C\cap A)\subseteq A\cup B\cup C.$</li>
+
+</ol>
+
+</li>
+
+<li>Take $S = \{0,1,2\}.$ Obtain
+functions $P_i:S\rightarrow{\mathbb R}$ for $i=1,2,3$ such
+that $P_i$ violates axiom $i$, but satisfies the other
+two.</li>
+
+<li>If $P(A)=0.9$ and $P(B)=0.8,$ show that $P(A\cap
+B)\geq 0.7.$ In general, show that $P(A\cap B)\geq
+P(A)+P(B)-1.$ This is known as Bonferroni's inequality.</li>
+
+<li>Show that 
+$$
+P\left( \cup_1^n A_i\right) \leq \sum_1^n P(A_i).
+$$
+</li>
+
+<p></p>
+
+<li>An SRSWOR of size 2 is drawn from $\{1,2,3,4,5\}.$ What
+is the probability that (a) the first selected digit is odd?
+(b) the second selected digit is odd? (c) both are odd? (d) at
+least one is odd?
+</li>
+
+<li>A fair coin is tossed 6 times. What is the probability that
+the first head occurs (a) at the third toss? (b) not before the
+third toss?</li>
+
+<li>10 distinct balls are dropped randomly in 3 distinct
+boxes. What is the probability that none of the boxes remain empty?</li>
+
+<li>Two fair dice are tossed, what is the probability that the
+sum is $i$ for $i=2,3,...,12?$</li>
+
+<li>Two cards are randomly selected from a deck of 52 playing
+cards. What is the probability that they are of the same
+denomination?</li>
+
+<li>10 light bulbs are shining in a row. If a lightning strikes, then
+some (or all or none) of the light bulbs may go out (all possibilities
+being equally likely). What is the chance that after a
+lightning  at least two consecutive light bulbs are still shining.</li>
+
+<li>We have 4 letters and their respective addressed
+envelopes. If the letters are placed randomly in the envelopes,
+then find the probability that exactly $k$ letters are in their correct
+envelopes for $k=1,2,3,4.$ </li>
+
+<li>The numbers $1,2,...,n$ are arranged in random
+order. Find the probability that the digits $1,2,3$ appear
+as neighbours in this order.</li>
+
+<li>$A$ throws six dice and wins if scores at least one
+ace. $B$ throws twelve dice and wins if he scores at least
+two aces. Who has the greater probability to win?</li>
+
+<li>Find the probability that among three random digits there
+appear exactly 1,2 or 3 different digits. Also do the same for
+four random digits.</li>
+
+<li>Find the probability $p_r$ that in a sample of $r$
+random digits no two are equal.</li>
+
+<li>If $n$ balls are placed at random among $n$ cells,
+find the probability that exactly one cell remains empty.</li>
+
+<li>A man is given $n$ keys of which only one fits his
+door. He tries them successively using SRSWOR until he finds the
+right key. Show that the probability that he will try $k$
+keys is $\frac 1n$ for $k=1,...,n.$</li>
+
+<li>Suppose that each of $n$ sticks is broken into one long
+and one short part. The resulting $2n$ pieces are combined
+pairwise in a random fashion. What is the probability that the
+original pairings are restored? What is the probability that each
+long piece gets a short partner?</li>
+
+<li>A box contains 90 good and 10 defective screws. If 10 screws
+are selected at random (SRSWOR), then find the probability that
+none of these are defective.</li>
+
+<li>From the set $\{a,b,c,d,e\}$ we draw an SRSWR of size
+25. What is the probability that the sample will have 5
+occurrences of each of the letters?</li>
+
+<li>If $n$ men (including $A$ and $B$) stand in a
+row in random order, what is the probability that there will be
+exactly $r$ men between $A$ and $B?$</li>
+
+<li>What is the probability that two throws with three dice each
+will show the same configuration if (a) the dice are distinct
+(b) the dice are identical?</li>
+
+<li>A town has $n+1$  people: $p_1,...,p_{n+1}.$ 
+A news is spreading as rumour in this town as follows. Initially,
+only $p_1$  knows the news. He communicates the news to
+ one of the
+remaining $n$ people randomly. This person again
+communicates the news to one of the other $n$ persons (may
+be $p_1$ again) randomly, and so on. Find the probability that the
+rumour spreads $r$ times without returning to $p_1.$
+Also, find the probability that the rumour spreads $r$ times
+without being repeated to any person.
+ </li>
+
+<li>There are $n$ persons in a room. Assuming that each
+person is equally likely to be born in any day of the year (1
+year=365 days), find the probability that at least two persons
+share the same birthday. </li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most8.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most19.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most27.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most28.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most31.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most32.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>Let $A_1,A_2,A_3$ be threee events. Let $p_1 = \sum
+P(A_i)$ and $p_2 = \sum_{i&lt; j} P(A_i\cap A_j)$ and $p_3 = P(A_1\cap A_2\cap A_3).$
+Find (in terms of $p_i$'s) the probability that exactly one of the
+events $A_1,A_2,A_3$ has occurred. Generalise to $n$
+events. Also find (and prove) a formula (in terms of
+the $p_i$'s) for the probability that exactly $r$ of
+the $n$ events has occurred.</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/basic.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "basic"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

@@ -1,0 +1,453 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Independence">Independence</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Two events">Two events</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#More than two events">More than two events</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Product space">Product space</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Infinite product">Infinite product</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Independence">Independence</a></h1>
+
+<h2><a
+name="Two events">Two events</a></h2>
+
+<fieldset>
+<legend><b>Definition: Independence</b></legend>
+Suppose we have a random experiment with sample
+space $\Omega,$ and two
+events $A,B\subseteq\Omega.$ We shall say that $A,B$
+are <b>independent</b> if $P(A\cap B) = P(A)P(B).$
+</fieldset>
+It is easy to see why this definition is natural. For example, consider the statement 
+<blockquote>"Lefthandedness is indepdendent of a person's gender."</blockquote> 
+If there are about 5% lefties in the entire population, then this statement will imply that
+these 5% is more or less equally divided among men and women. In particular, if there are 40% men and 60% women, then 
+the proportion of female lefties should be 5% of 60%, <i>i.e.</i>, 5% $\times$  60%. Thus, the
+ multiplication comes naturally. 
+<p></p>
+Here is a more mathematical example. 
+<p>
+<b>EXAMPLE:</b>
+Suppose that we
+toss a fair coin twice. So the sample space is $\Omega = \{HH,
+HT, TH, T T\}.$
+Let $A$ be the event that the first toss shows $H,$
+and $B$ be the event that the second toss shows $H.$ In
+other words, $A=\{HH,HT\}$ and $B=\{HH,TH\}.$ As the
+outcome of one toss can have no influence on the outcome of
+another, so intuitively $A,B$ should be "independent". 
+From the definition also $P(A\cap B) = P(\{HH\}) = \frac 14 = \frac 12\times \frac 12 = P(A)P(B).$
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>
+Consider a single roll of a fair die. Write down
+two events, $A,B$  such that $A,B$ are
+independent. Also, write down two events $C,D$ 
+that are dependent. 
+<img src="../image/box.png"></p>
+
+Sometimes two events that are somehow related actually turns out to be indepedent. Here is an example.
+
+<p>
+<b>EXAMPLE:</b>
+A fair coin is tossed twice. The outcome of the first toss is written down. 
+If the second toss shows a head, then the first
+outcome is written again. If the second outcome is a tail, then the opposite 
+of the first outome is written. For example, if the both the outcomes  are tails,  then we first write
+ tail (the first outcome),
+ and then we write head (opposite of the first outcome).  Let $A$  be the event that we first write "head", and $B$ 
+ be the event that we write "head" in the second position. Are $A,B$  independent?
+<p></p>
+<b>SOLUTION:</b>
+Apparently the first toss plays a role in both the writings. But still a simple computation shows that 
+$P(A)=P(B)=\frac 12$  and $P(A\cap B)=\frac 14.$  So we have independence.
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXERCISE:</b>
+Same problem as above, but this time the coin is biased. Say, $P(H)=0.6.$  
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="More than two events">More than two events</a></h2>
+When you have more than two events, the definition of
+independence becomes a bit counter-intuitive. 
+
+<fieldset>
+<legend><b>Definition: Mutual independence</b></legend>
+Suppose we have a random experiment with sample
+space $\Omega,$ and let $A_1,...,A_n\subseteq\Omega$ be
+any $n$ events. We shall say that these events
+are <b>mutually independent</b> if 
+$$
+\forall \mbox{ nonempty } I\subseteq\{1,...,n\}~~P(\cap_{i\in I} A_i) = \prod_{i\in I} P(A_i).
+$$
+</fieldset>
+This may look scary. But it only means that if you take <i>any</i> number of
+the $A_i$', say $A_1, A_4$ and $A_7,$ then their
+probabilities multiply: $P(A_1\cap A_4\cap A_7) =
+P(A_1)P(A_4)P(A_7).$ Notice that it is not enough to have each
+pair $A_i,A_j$ to be independent according to the first
+definition. Indeed, this case has a special name, <b>pairwise
+independence</b>:
+<fieldset>
+<legend><b>Definition: Pairwise independence</b></legend>
+Suppose we have a random experiment with sample
+space $\Omega,$ and let $A_1,...,A_n\subseteq\Omega$ be
+any $n$ events. We shall say that these events
+are <b>pairwise independent</b> if 
+$$
+\forall i\neq j\in\{1,...,n\}~~P(A_i\cap A_j) = P(A_i)P(A_j).
+$$
+</fieldset>
+
+"Mutual independence" is what we intuitively feel when we think
+that the occurencess of $A_1,...,A_n$ do not influence each
+other. The following interesting example shows why pairwise
+independence is not enough.
+
+<p>
+<b>EXAMPLE:</b>
+Consider the random experiment where a fair coin is tossed
+thrice. For $i\neq j\in\{1,2,3\},$ let  $A_{ij}$ be the event that the $i$-th and $j$-th tosses have
+the same outcome. Do you intuitively feel that $A_{12},
+A_{23}$ and $A_{13}$ are "independent"? Now check if they
+are pairwise independent. Also check if they are mutually
+independent.
+<p></p>
+<b>SOLUTION:</b>
+<a href="javascript:hideShow('1');">Since the solution is very easy, why not try yourself
+first, before clicking here?</a>
+<div id="1" style="display:none;background-color:#ffcccc;">
+No, $A_{12}, A_{23}$ and $A_{13}$ cannot be
+independent, since occurence of any two implies the occurence of
+the third. 
+<p></p>
+Here $\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}.$ 
+
+Also 
+$$\begin{eqnarray*}
+A_{12} &amp; = &amp; \{HHH, HHT, TTH, TTT\},\\
+A_{23} &amp; = &amp; \{HHH, THH, HTT, TTT\},\\
+A_{13} &amp; = &amp; \{HHH, HTH, THT, TTT\}.
+\end{eqnarray*}$$
+The intersections are all $\{HHH,TTT\}.$ So pairwise
+independence holds: $\frac 14 = \frac 12\times \frac 12.$ But
+mutual independence fails, since $\frac 14 \neq \frac 12\times \frac 12\times\frac 12.$
+</div>
+
+<img src="../image/box.png"></p>
+
+
+<p>
+<b>EXAMPLE:</b>
+Can you give three events $A,B,C$ such that $P(A\cap B\cap
+C) = P(A)P(B)P(C)$ but still $A,B,C$ are not mutually
+independent?
+<p></p>
+<b>SOLUTION:</b>
+<a href="javascript:hideShow('2');">Use the fact $P(\phi)=0$ to get a trivial such example.</a>
+<div id="2" style="display:none;background-color:#ffcccc;">
+Single fair coin toss. $A = \phi,$ $B=\{H\}$ and $C=\{T\}.$
+</div>
+
+<img src="../image/box.png"></p>
+
+<h2><a
+name="Product space">Product space</a></h2>
+We often talk about two random experiments being performed indepndently. 
+For example, tossing a coin and rolling a die in parallel.  Let's carefully understand what we mean by this
+in the case where <i>both the sample spaces are countable (finite/infinite):</i>
+
+<blockquote>
+Let $\Omega_1$  and $\Omega_2$  be the 
+two sample spaces with corresponding probability functions $P_1,P_2.$ 
+ 
+ We first combine these to form 
+the Cartesian product $\Omega = \Omega_1\times\Omega_2.$  Notice that $\Omega$  is again countable.
+For the "coin toss $\times$  die roll" example, this gives
+$$\Omega = \{(H,1),(H,2),(H,3),(H,4),(H,5),(H,6),(T,1),(T,2),(T,3),(T,4),(T,5),(T,6)\}.$$
+Now for each singleton set of the form $\{(a,b)\}$  we define the probability 
+$P(\{(a,b)\}) = P_1(\{a\})\times P_2(\{b\}).$  This uniquely determines $P(A)$  for all $A\subseteq\Omega$  via
+ the probability axioms.</blockquote>
+The same construction may be generalised easily for any finite number of random experiments. 
+<p></p>
+Any $A_1\subseteq\Omega_1$  has a natural counterpart in $A\subseteq \Omega$  as 
+$$A =\{(a,b)~:~a\in A_1,~b\in\Omega_2\}.$$
+We rarely use different symbols for $A$  and $A_1.$  Just as a real number is considered
+ also to be a complex number. Similarly for
+ any $A_2\subseteq\Omega_2.$
+<p></p>
+For example, in the "coin toss$\times$ die roll" example, the event $\{$ die shows 3$\}$  becomes 
+$\{(H,3), (T,3)\}.$
+<p></p>
+With this natural extension, we have the following important theorem.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\Omega_1,\Omega_2,\Omega,P_1,P_2,P$  be as above. Then for any $A_1\subseteq \Omega_1$  and any 
+$A_2\subseteq \Omega_2$  we have $P(A_1\cap A_2)  = P(A_1)P(A_2).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The proof is easy if $A_1$  and $A_2$  are both finite. 
+<p></p>
+For the case where at least one of $A_1,A_2$  is infinite, we need to use the fact that 
+infinite series of nonnegative terms may be 
+rearranged without changing the value of the series. 
+<b><i>[QED]</i></b>
+</p>
+
+
+<h2><a
+name="Infinite product">Infinite product</a></h2>
+We shall often talk about an infinite sequence of random experiments, <i>e.g.</i>, keep on tossing a coin again and again. Mathematically,
+ we have $\Omega_n$  and $P_n$  for $n=1,2,3,...$  and want to combine them into a single $\Omega.$ 
+ Conceptually, this is done much like the finite case. 
+$$\Omega = \Omega_1\times\Omega_2\times\cdots,$$
+which means each element of $\Omega$  is a sequence $(a_1,a_2,...),$  where $a_n\in\Omega_n.$  Any $A_n\subseteq \Omega_n$ 
+ is lifted to a subset of $\Omega$  as $\{(a_1,...)~:~a_n\in A_n~,~\forall i\neq n~~a_i\in\Omega_i\}.$
+Then we want a probability $P$  on $\Omega$  such that for any $A_{n_i}\subseteq \Omega_{n_i}$  for $i=1,...,k$ 
+ we have them mutually indepndent under $P.$  Such a $P$  indeed exists adn is unique. Unfortunately,
+ this is rather  technical to prove. 
+<p></p>
+A few of the difficulties are:
+<ul>
+<li>$\Omega$  is uncountable even if all the $\Omega_n$'s are finite (with at least two elements).</li>
+
+<li>This $\Omega$  will have "bad" subsets, that we need to avoid.</li>
+
+</ul>
+In this course, we shall assume the existence and uniqueness of infinite product spaces.
+
+<p>
+<b>EXAMPLE:</b>
+A coin with $P(head)=p\in(0,1)$ is tossed again and
+again independently. Show that we must get a head eventually.
+<p></p>
+<b>SOLUTION:</b>
+Here we are working over an infinite product space. For any
+finite sequence of $H$'s and $T$'s of length $n$
+with exactly $k$ many $H$'s, the probability is $p^k(1-p)^{n-k}.$
+<p></p>
+Let $A_n$ be the event that the first $n$ tosses have
+produced no $H.$ Also let $A$ denote the event that
+no $H$ ever occurs.
+<p></p>
+Then clearly $A_1\supseteq A_2\supseteq A_3\supseteq\cdots$ and $A = \cap
+A_n.$ 
+<p></p>
+Thus $A_n\searrow A.$
+<p></p>
+Hence $P(A_n)\rightarrow P(A).$
+<p></p>
+Now $P(A_n) = (1-p)^n\rightarrow 0$ since $p\in (0,1).$
+<p></p>
+So $P(A)=0.$ Hence $P(A^c) = 1,$ as required.
+<img src="../image/box.png"></p>
+
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<ol>
+<li>If $A,B$  are independent, then show that $A^c,B$  are also independent. Are
+ $A^c,B^c$  also independent?</li>
+
+<li>Is it possible to have an event that is independent of itself? If so, find all such events. If not, prove why not.</li>
+
+<li>Is it possible to have an event that is independent of all other events? If so, find all such events. If
+ not, prove why not.</li>
+
+<li>If $A,B$  are independent, and $A,C$  are also independent, then is it true that
+ $A$  and $B\cup C$  must also be independent?</li>
+
+<li>If $A$  and $B$  are mutually exclusive, then must $A,B$  be independent? Must they be dependent?</li>
+
+<li>The numbers $-10,...,-1,1,...,10$  are written on 20 pieces of papers. One of the papers
+ is drawn at random. Let $A$  be the event that the selected number is negative, and $B$
+  be the event that the selected number has absolute value $&gt;5.$  Are $A,B$  independent?</li>
+
+<li>Same set up as above. Find an event $C$  such that $A,B,C$  are mutually independent.</li>
+
+<li>If $A\subseteq B$  are two events, can $A,B$  be independent?</li>
+
+<li>If $P(A_i)=p_i$  for $i=1,2,3,$  and $A_i$'s are mutually independent, then find $P(A_1\cup A_2\cup A_3).$</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most18.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most20.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+</ol>
+
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/indep.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "indep"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

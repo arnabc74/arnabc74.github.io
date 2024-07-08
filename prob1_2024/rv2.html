@@ -1,0 +1,452 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Finite existence of $E(X)$">Finite existence of $E(X)$</a>
+</li>
+<li>
+<a href="#Variance">Variance</a>
+</li>
+<li>
+<a href="#Moments">Moments</a>
+</li>
+<li>
+<a href="#Moment generating function">Moment generating function</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+
+<h1><a
+name="Finite existence of $E(X)$">Finite existence of $E(X)$</a></h1>
+We know from the definition of expectation that it exists
+finitely if and only if the sum defining the expectation converges absolutely. It
+sometimes helps to know some sufficient conditions for this that
+are easier to check.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$ takes only finitely many values,
+then $E(X)$ must exist finitely. 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+No infinite series involved here at all. Just a finite sum!
+<b><i>[QED]</i></b>
+</p>
+
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">We shall use a concept from real analysis
+called <a href="comptest.html">the comparison test</a>
+repeatedly below. Click on the link to learn about it.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$ is bounded,
+then $E(X)$ must exist finitely. 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $X$ take values $x_1,x_2,...$ with
+probabilities $p_1,p_2,...$ We are assumin $\exists
+B\in{\mathbb R}~~\forall i~~|x_i|\leq B.$
+
+So 
+$$
+\sum_n |x_n|p_n\leq \sum_n B p_n = B\sum p_n.
+$$
+We know the $\sum p_n$ converges (to $1$). 
+<p></p>
+So, by comparison test, $\sum |x_n|p_n$ must converge.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ be a random variable and  $f,g$ be two
+functions such that $P(|f(x)|\leq |g(X)|) =1$
+and $E|g(X)|&lt;\infty.$ 
+Then $E(f(X))$ must also have finite expectation.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Use comparison test between $\sum |f(x_n)|p_n$ and $\sum |g(x_n)|p_n.$
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $f,g:{\mathbb R}\rightarrow{\mathbb R}$ be such that $E(f(X))$
+and $E(g(X))$ both exist finitely.
+Let $h:{\mathbb R}\rightarrow{\mathbb R}$ be defined as $h(x) = \max\{f(x),g(x)\}.$
+Then $E(h(X))$ must also exist finitely.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Apply comparison test between $\sum \max\{f(x_n)p_n,g(x_n)p_n\}$ and $\sum (f(x_n)+g(x_n))p_n.$
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $m&lt;n$ be any two positive integers. If $E(X^n)$
+exists finitely, then $E(X^m)$ must also exist finitely.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Use the fact that $|X^m| \leq \max\{1,|X^n|\}.$ Now use the
+last theorem.
+<b><i>[QED]</i></b>
+</p>
+
+
+
+<h1><a
+name="Variance">Variance</a></h1>
+Of course, a random variable is random, and so may differ from
+its expectation. By how much? A lot or a little? We can use
+expectation to find that out. 
+
+<fieldset>
+<legend><b>Definition: Variance</b></legend>
+If $E|X|&lt;\infty,$ the we define <b>variance</b> of $X$ as
+$$
+V(X) = E\big[ (X-E(X))^2 \big].
+$$
+It is either finite or $\infty.$
+</fieldset>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(X)\geq 0.$
+</fieldset>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $E(X^2)&lt;\infty,$ then $V(X)$ exists finitely, and $V(X) = E(X^2)-\big( E(X) \big)^2.$
+</fieldset>
+
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(aX+b) = a^2 V(X).$
+</fieldset>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(X)=0$ if and only if $X$ is a degenerate random variable.
+</fieldset>
+
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Chebyshev is also credited with designing a <a href="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
+robot-like linkage</a>.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Chebyshev inequality</i></b></legend>
+Let $V(X)&lt;\infty.$ Then 
+$$
+\forall \epsilon&gt;0~~P(|X-E(X)| \geq \epsilon) \leq \frac{V(X)}{\epsilon^2}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Take any $\epsilon&gt;0.$
+<p></p>
+Let $E(X)$ be denoted by $\mu.$
+<p></p>
+Define 
+$$
+f(x) = \left\{\begin{array}{ll}
+\epsilon^2 &\text{if }|x-\mu|\geq \epsilon\\
+0 &\text{otherwise.}
+\end{array}\right.
+$$
+
+Then $\forall x~~f(x)\leq (x-\mu)^2.$
+<p></p>
+
+So
+$$\begin{eqnarray*}
+V(X) 
+&amp; = &amp; E(X-\mu)^2\\
+&amp; \geq &amp; E(f(X))\\
+&amp; = &amp; \epsilon^2 P(|X_i-\mu| \geq\epsilon) + 0\times P(|X_i-\mu| &lt;\epsilon).
+\end{eqnarray*}$$
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+
+<h1><a
+name="Moments">Moments</a></h1>
+
+
+<fieldset>
+<legend><b>Definition: Raw and central moments</b></legend>
+The $k$-th raw moment of $X$ is 
+$$
+E(X^k)
+$$
+and the $k$-th central moment of $X$ is
+$$
+E\big[ (X-E(X))^k \big].
+$$
+</fieldset>
+
+
+<h1><a
+name="Moment generating function">Moment generating function</a></h1>
+
+
+<fieldset>
+<legend><b>Definition: Moment generating function (MGF)</b></legend>
+For any random variable $X$ we define its <b>moment generating
+function</b> as the function 
+$$
+m_X(t) =  E(e^{tX}).
+$$
+The domain of this function conists of all $t\in{\mathbb R}$ for
+which the expectation exists.
+</fieldset>
+
+Clearly, $m_X(0)$ always exists and equals $1.$
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If, for some $k\in{\mathbb N}$, the moment $E(X^k)$ exists
+finitely, then the $k$-th derivative  of $m_X(t)$
+exists at $t=0,$ and equals $E(X^k).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall not do the proof here. But here is the main idea: 
+$$
+e^{tX} = 1 + \frac{tX}{1!} + \frac{t^2X^2}{2!} + \frac{t^3X^3}{3!} + \cdots.
+$$
+From this we want to write 
+$$
+E(e^{tX}) = 1 + \frac{tE(X)}{1!} + \frac{t^2E(X^2)}{2!} + \frac{t^3E(X^3)}{3!} + \cdots.
+$$
+This is not a precise statement, because we do not know if all
+raw moments of $X$ exist finitely. Also, even if they do, is
+it valid to "distribute" expectation over an <i>infinite</i> sum?
+<p></p>
+Answers to these questions require deeper real analysis results
+than we know at this point.
+<p></p>
+However, assuming that this is valid, we may try to differentiate
+both sides to get
+$$
+\frac{d}{dt} E(e^{tX}) = E(X) + \frac{2tE(X^2)}{2!} + \frac{3t^2E(X^3)}{3!} + \cdots.
+$$
+Again this step needs justification. Can we "distribute"
+differentiation over an <i>infinite</i> sum?
+<p></p>
+Assuming that we can, puting $t=0$ indeed gives us $E(X).$
+<p></p>
+SImilarly, differentiating once again, and putting $t=0$
+gives us $E(X^2),$ and so on.
+<b><i>[QED]</i></b>
+</p>
+
+We shall not spend much time with MGFs, because there is a better
+alternative called the <b>characteristic function (CF)</b>.
+
+<fieldset>
+<legend><b>Definition: Characteristic function (CF)</b></legend>
+For any (real-valued) random variable $X$ we define its <b>characteristic
+function</b> as the function 
+$$
+\phi_X(t) =  E(e^{itX}),~~t\in{\mathbb R}.
+$$
+</fieldset>
+Don't be nervous to see expectation of a complex random
+variable. It is simply 
+$$
+E(\cos tX) + i E(\sin tX).
+$$
+CFs are better than MGFs because of two reasons, that we give as
+theorems below.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+For any (real-valued) random variable, the CF is defined over
+entire ${\mathbb R}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This is obvious, since $\sin tX$ and $\cos tX$ are both
+bounded random variables, and hence have finite expectations.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$ are two random variables with the same CF, then
+they must have the same distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Not in this course. 
+<b><i>[QED]</i></b>
+</p>
+Indeed, this property has earned characteristic functions their name.
+<p></p>
+MGFs do not have this proprty. It is possible to get (rather
+ugly) counter-examples of random variables $X$ and $Y$
+that both have the same MGF (in particluar both have the same
+domain $D\subseteq{\mathbb R}$), but still $X$ and $Y$ have
+different distributions. However, if the domain includes a
+neighbourhood of $0,$ then $X,Y$ must have the same
+distribution. This is stated in the following theorem.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $m_X(t)$ be defined for $t\in (-a,a)$ for
+some $a&gt;0.$ Let $Y$ be a random variable with the same
+MGF. Then $X$ and $Y$ must have the same
+distribution.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Too difficult for this course.
+<b><i>[QED]</i></b>
+</p>
+
+
+<b>We shall not spend proving any result on MGF here. We shall
+learn the proofs for CFs in the next semester.</b>
+
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<ol>
+
+<li>A box has 6 red balls an 4 black balls. An SRSWR of
+size $n$ is selected. If $X$ is the number of red
+balls selectrd, then find PMF and $E(X).$ Also solve the
+problem in the case of SRSWOR.</li>
+
+<li>Let $N$ be a positive integer. Let 
+$$
+f(x) = \left\{\begin{array}{ll}c 2^x &\text{if }x=1,2,...,N\\0&\text{otherwise.}\end{array}\right.
+$$
+be a PMF. Find $c.$ Find $E(X)$ and $V(X)$ if $X$ has this PMF.
+</li>
+
+<li>An SRSWR of size 2 is drawn from $\{1,2,...,12\}.$
+Let $X$ be the maximum of the two numbers
+selected. Find $E(X).$</li>
+
+<li>An SRSWR of size $n$ is selected
+from $\{1,2,...,12\}.$ Let $a_n $ be the expected
+value of the maximum of the sample. Show that $a_n \leq
+a_{n+1}$ without explicily finding $a_n$ in terms of $n.$</li>
+
+
+</ol>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

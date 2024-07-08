@@ -1,0 +1,313 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Probability Theory I">Probability Theory I</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Class notes">Class notes</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Survival tips">Survival tips</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Textbooks">Textbooks</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Syllabus">Syllabus</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Probability Theory I">Probability Theory I</a></h1>
+This is the class webpage for Probablity Theory I
+(2024).
+<ul>
+
+<li>
+<b>Teacher:</b> Arnab Chakraborty</li>
+
+<li>
+<b>Office:</b> Room 914, ASU, 9-th floor of S N Bose
+Bhavan.</li>
+
+<li>
+<b>Email:</b>arnabc at isical dot ac in</li>
+
+</ul>
+Alternatively, you may use this diagram to contact me:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/phone.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If you want to leave an anonymous note for me, just use the
+comment box provided at the bottom of each page. 
+<h2><a
+name="Class notes">Class notes</a></h2>
+All the lecture notes are available from the <a href="notes.html">class notes page</a>. These notes are the
+definitive source of material for this course. The practice
+problems given in the notes are indicative of the problems you
+are likely to face in the exams.
+<h2><a
+name="Survival tips">Survival tips</a></h2>
+Be sure to read the <a href="survival.html">survival
+tips</a>. 
+<h2><a
+name="Textbooks">Textbooks</a></h2>
+We shall not follow any single textbook. All the material that we
+shall cover may be found in the following
+books. 
+<ul>
+
+<li>
+<b>A First Course in Probability Theory</b> by <i>Sheldon
+Ross</i>: The book is easy to
+read. We shall cover only about half the book in this
+semester. Cheap Indian edition available.</li>
+
+<li>
+<b>Probability Theory (Vol 1)</b> by <i>William Feller</i>:
+A classic book which (in my opinion) is not very
+well-organised. But it contains lots of discussions on practical
+applications of probability. We shall pick some advanced topics
+from this book from time to time. Cheap Indian edition
+available. Most students buy one copy of this book, and then
+never read it.</li>
+
+<li>
+<b>Counterexamples in Probability</b> by <i>Jordan M
+Stoyanov</i>: Lots of fun examples to baffle (and improve) your
+intuition. We shall borrow some of these examples.</li>
+
+<li>
+<b>Fifty challenging problem in probability with
+solutions</b> by <i>Frederick Mosteller</i>
+</li>
+
+</ul>
+
+<h2><a
+name="Syllabus">Syllabus</a></h2>
+
+<b>Up to midsem:</b> Elementary   concepts:  experiments,  outcomes,  sample space,
+events.  
+<p></p>
+Discrete sample  spaces  and  probability  models.  
+<p></p>
+Equally  likely  set-up  and  combinatorial probability. 
+<p></p>
+Fluctuations in coin tossing and random walks, 
+<p></p>
+Combination of events. 
+<p></p>
+Composite experiments, conditional probability, Polya's urn scheme, Bayes theorem,  
+<p></p>
+independence. 
+<p></p>
+Discrete random  
+variables.  
+<p></p>
+Expectation/mean,
+functions  of  discrete  random  
+variables,  
+<p></p>
+
+<p></p>
+
+<b>After midsem:</b>
+
+<p></p>
+ Variance,  moments,  
+moment  generating functions
+<p></p>
+probability generating functions.
+<p></p>
+Standard  discrete  distributions.  
+<p></p>
+Joint  distributions  of   discrete  random 
+variables, 
+independence,  
+conditional distributions, conditional expectation. 
+<p></p>
+Distribution of  sum of  two independent random 
+variables. Functions of more than one discrete random 
+variables.
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/index.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "index"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

@@ -1,0 +1,506 @@
+<NOTE>@{<E>
+<M>\newcommand{\ev}{{\mathcal F}}</M>
+<HEAD1>Basic concepts</HEAD1>
+A <B>random experiment</B> is an activity whose outcome we cannot
+predict. The set of all outcomes is called its <B>sample space</B>. Each
+element of this set is called a <B>sample point</B>. 
+By the term <B>event</B>  we understand a subset of the sample
+space. 
+<EXM>A coin toss is a random experiment. Its sample space is <M>\{head,tail\}.</M>  There are four
+ different events possible here: 
+<M>\phi, \{head\},\{tail\},\{head,tail\}.</M>
+</EXM>
+
+<EXM>Rolling a die is another random experiment. The sample space here is <M>\{1,2,3,4,5,6\}.</M> 
+ One possible event is the set of all even numbers, <M>\{2,4,6\}.</M></EXM>
+
+I give you a coin to toss. Before tossing, you carefully inspect
+it. You find no difference at all between the two sides (except
+for the pictures on them). So you infer that both head and tail
+are <I>equally likely</I> (i.e., you are equally ignorant about
+both sides). It is common to express this situation as "50-50"
+chance, or <M>50\%</M> chance of a head (or a tail), or probability of a head (or a tail) is <M>[[12]].</M>
+<P/>
+The main idea is that the chance of a head equals the chance of a
+tail. We like to express this by first imagining a totality and
+then halving it. This totality may be taken as 100 or 100% or 1 or any other positive number.
+<P/>
+In probability theory we take the total as <M>1.</M>  
+<P/>
+With each event we assign a probability
+which is a number from <M>[0,1].</M> 
+<FNOTE>If the sample space is uncountably infinite, then there may be some <LINK to="vit.html">bad
+subsets</LINK> for which probability cannot be defined! These are not called events. Fortunately, 
+we shall not come across them any time soon.</FNOTE> 
+<P/>
+Let <M>\ev</M>  be the set of all events in a sample space. Then a <B>probability</B>  is a function <M>P:\ev\to[0,1].</M>
+<P/>
+Of course, not all such functions  can be a probability. A function needs to satisfy certain
+ common sense conditions to be called a probability function. 
+
+<EXM>
+A report says that the health condition in a country is so bad, that the chance of a newborn baby surviving for at least
+ 1 year is only 50%. However, the chance that he survives for at least 5 years is 90%. Does it sound odd?
+<SOLN/>
+Yes. Any baby survuvung for at least 5 years has of course survived the first year as well. So how can the latter chance
+ is larger?
+</EXM>
+
+This example gives one common sense condition that a probability function must satisfy: if <M>A\seq B</M> then we should
+have <M>P(A)\leq P(B).</M> 
+<P/>
+Of course, there are many many such common sense conditions and it is difficult to come up with a complete list. 
+A Russian mathematician named 
+Kolmogorov reduced this list to only 3 conditions, called the <B>probability axioms</B>.
+
+<HEAD2>Probability axioms</HEAD2>
+<FNOTE>A collection of sets is called <B>disjoint</B> if the intersection of any two sets from the collection is
+ empty. They are also called
+ <B>mutually exclusive</B></FNOTE>
+<BOX name="Probability axioms">
+Let <M>\Omega</M> denote the sample space. Let <M>\ev</M>  denote the set of all events. Then 
+<OL>
+<LI>For any event <M>A\in\ev</M> we have <M>P(A)\geq 0</M></LI>
+<LI><M>P(\Omega)=1</M></LI>
+<LI>If <M>A_1,A_2,...\in\ev</M> are countably many (finite/infinite) disjoint events then 
+<D>
+P(\cup A_n) = \sum P(A_n).
+</D>
+</LI>
+</OL>
+</BOX>
+
+It is remarkable fact that whatever other common sense condition one has been able to think of so far
+actually follows as a consequence of these! Also, you cannot drop
+any of these requirements, in the sense that no two of these
+imply the other. Can you show this?
+
+
+
+It is an interesting exercise to derive various common sense
+conditions from these axioms. Here is one.
+
+<EXM>
+If <M>A\seq B</M> then show that <M>P(A)\leq P(B).</M>
+<SOLN/>
+Split <M>B</M> as <M>B=A\cup A^c\cap B.</M>
+<CIMG web="ax1.png"/>
+ The two events in RHS  are
+disjoint. So by Axiom 3 we have
+<D>
+P(B) = P(A) + P(A^c\cap B).
+</D>
+The second probability in the RHS is <M>\geq 0</M> (by Axiom
+1). So done.
+</EXM>
+
+Try your hand at these:
+
+<EXR>
+Show <M>P(A^c) = 1-P(A).</M>
+</EXR>
+
+<EXR>Show <M>P(\phi)=0.</M></EXR>
+
+<EXR>If <M>A_1\seq A_2\seq A_3,</M>  then show that <M>P(A_1\cup A_1\cup A_3) = P(A_1)+P(A_2\cap A_1^c)+P(A_3\cap A_2^c).</M></EXR>
+
+<EXR>
+Show <M>P(A\cup B) = P(A)+P(B)-P(A\cap B).</M>
+</EXR>
+
+Next we shall prove some common sense properties that will require more effort.
+
+<HEAD3>Continuity of probability function</HEAD3>
+We know that if <M>f(x)</M>  is a continuous function and <M>x_n\to a</M>  then <M>f(x_n)\to f(a).</M>  Any probability function
+ has a similar property.
+
+<DEFN name="Increasing limit">
+Let <M>A_1,A_2,...</M> be a sequence of events. Let <M>A</M> be
+any event. We say that <M>A_n</M>'s increase to <M>A</M> (and
+write <M>A_n\nearrow A</M>) if 
+<D>A_1\seq A_2\seq A_3\seq\cdots</D>
+and 
+<D>A = \cup_n A_n.</D>
+</DEFN>
+
+<DEFN name="Decreasing limit">
+Let <M>A_1,A_2,...</M> be a sequence of events. Let <M>A</M> be
+any event. We say that <M>A_n</M>'s decrease to <M>A</M> (and
+write <M>A_n\searrow A</M>) if 
+<D>A_1\supseteq A_2\supseteq A_3\supseteq \cdots</D>
+and 
+<D>A = \cap_n A_n.</D>
+</DEFN>
+
+<THM>
+If <M>A_n\nearrow A</M> or <M>A_n\searrow A</M> then <M>P(A_n)\to P(A).</M> 
+</THM>
+<PF>
+Let's do the <M>A_n\nearrow A</M> case first. 
+<P/>
+Define <M>B_1=A_1</M> and for <M>n\geq 2</M> let <M>B_n
+=A_n\setminus A_{n-1}.</M> 
+<CIMG web="rings.png"/>
+Then <M>B_1,B_2,B_3,...</M> are all disjoint. <HIDE lab="cwh"><MSG>(Why? Don't just say
+ "obvious!". Write a one line proof.)</MSG>
+<HIDDEN>Take any <M>i < j.</M>  Then <M>B_i\seq A_i\seq A_j.</M>  But <M>B_j\seq A_j^c.</M>  So <M>B_i\cap B_j=\phi.</M></HIDDEN>
+</HIDE> 
+Also, for <M>n\in\nn,</M> we have <M>A_n = B_1\cup\cdots\cup B_n.</M>
+<P/>
+So <M>A = B_1\cup B_2\cup\cdots.</M><HIDE lab="wh2"><MSG>(Why?)</MSG>
+<HIDDEN>
+If <M>x\in A</M>  then <M>x\in A_n</M>  for some <M>n\in\nn.</M>  Let <M>n_0</M>  be the least <M>n\in\nn</M>  for which
+ <M>x\in A_{n_0}.</M>  If <M>n_0=1,</M>  then <M>x\in A_1 = B_1.</M>  If <M>n_0>1,</M>  then <M>x\in A_{n_0}\setminus A_{n_0-1} = B_{n_0}.</M>
+<P/>
+Hence <M>A\seq \cup B_n.</M>
+<P/>
+Conversely, let <M>y\in \cup_n B_n.</M>  Then <M>y\in A_n\seq A.</M>
+<P/>
+So <M>\cup B_n \seq A.</M><P/>
+Combining, <M>\cup B_n = A.</M>
+</HIDDEN>
+</HIDE>
+<P/>
+Hence, by the third axiom, <M>P(A) = \sum_1^\infty P(B_i) =
+\lim_n \sum_1^n P(B_i) = \lim_n P(A_n),</M> as required.
+<P/>
+<HIDE lab="cont"><MSG>The <M>A_n\searrow A</M> case follows on taking complements. 
+</MSG><HIDDEN>
+If <M>A_n\searrow A</M>, then <M>A_n^c\nearrow A^c.</M>
+<P/>
+Hence, by what we have proved, <M>P(A_n^c)\to P(A^c),</M>
+<P/>
+or <M>1-P(A_n)\to 1-P(A),</M> or <M>P(A_n)\to P(A),</M> as required.
+</HIDDEN></HIDE>
+
+</PF>
+
+<HEAD3>Inclusion-Exclusion formula</HEAD3>
+Just now we have mentioned the result <M>P(A\cup B) = P(A)+P(B)-P(A\cap B).</M>  
+We can think of this like 
+<Q><M>P(A)+P(B)</M>  overestimates <M>P(A\cup B)</M>  because the <M>P(A\cap B)</M>  part is included
+ twice. So we need to exclude it once.</Q>
+ This idea of inclusion and exclusion works for any finite number of events. 
+
+<THM name="Inclusion-Exclusion formula">
+Let <M>A_1,...,A_n</M> be any <M>n</M>
+events. Let <M>T</M> denote the set of all subsets of <M>\{1,...,n\}.</M> Then 
+<D>P(A_1\cup \cdots \cup A_n) = \sum_{k=1}^n [*[(-1)^{k+1} \sum_{\alpha\in T,|\alpha|=k} P(A_\alpha)]*],</D>
+where for any <M>\alpha\seq T</M> we define 
+<D>A_\alpha = \cap_{i\in \alpha} A_i.</D>
+</THM>
+<PF>
+The notation is a bit complicated. Let's understand it first with the <M>n=3</M> case. 
+Here the first term of the outer sum consists of the sum of all <M>A_\alpha</M>  where <M>\alpha\in T</M>  
+and <M>|\alpha|=1</M>  (i.e., all singleton  subsets of <M>\{1,2,3\}</M>). 
+This sum is simply 
+<D>P(A_1)+P(A_2)+P(A_3).</D> 
+ Similarly, the next term consists of 
+all <M>A_\alpha,</M>  where <M>\alpha</M>  is a doubleton subset of <M>\{1,2,3\}.</M>  Remember that 
+<M>A_{\{1,2\}} = A_1\cap A_2</M>  and so on. So the second term (for <M>k=2</M>) becomes 
+<D>-[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_1\cap A_3)].</D> 
+ The third term (for <M>k=3</M>) similarly is 
+<M>P(A_1\cap A_2\cap A_3).</M>  So the entire sum looks like 
+<D>P(A_1\cup A_2\cup A_3) = [P(A_1)+P(A_2)+P(A_3)]-[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_1\cap A_3)]+P(A_1\cap A_2\cap A_3).</D>
+ The Venn diagram shows why this formula is correct. But a Venn diagram cannot be 
+considered as a proof, as it shows only one possible case. However, a Venn diagram does indicate 
+how to construct a general proof.
+Note that <M>A_1\cup A_2\cup A_3</M> is made of certain disjoint
+events:
+<CIMG web="ie1.png">Cells</CIMG>
+We have coloured these using blue, green and red. Blue cells
+consist of points belonging to exactly one <M>A_i.</M> For
+example, <M>B_1</M> is the set of points that belong only
+to <M>A_1.</M> The green
+cells consist of points belonging to exactly two <M>A_i</M>'s,
+and so on. So 
+<D>A_1 =  B_1\cup B_{12}\cup B_{13} \cup B_{123},</D>
+and similarly for <M>A_2,</M> and <M>A_3.</M> Note the pattern:
+all the <M>B's</M> with <M>1</M> somewhere in the subscript has
+occurred in the RHS. Since the events in the RHS are
+disjoint, so we have 
+<D>P(A_1) =  P(B_1)+P(B_{12})+P(B_{13})+P(B_{123}).</D>
+Now, the first stage (inclusion) is
+<MULTILINE>
+P(A_1)+P(A_2)+P(A_3) 
+& = & [P(B_1)+P(B_{12})+P(B_{13})+P(B_{123})]\\
+& & +[P(B_2)+P(B_{12})+P(B_{23})+P(B_{123})]\\
+& & +[P(B_3)+P(B_{13})+P(B_{23})+P(B_{123})]
+</MULTILINE>
+
+Note that here each <M>B</M> with a single subscript occurs once,
+each <M>B</M> with two subscripts occur twice, and so on. This 
+is of course natural, since for example, <M>B_{12}</M> occurs once as
+part of <M>A_1</M> and then again as part of <M>A_2.</M>
+<P/>
+Next, we have 
+<D>A_{12} =  B_{12}\cup  B_{123}.</D>
+Here all the <M>B</M>'s with <M>12</M> in the subscript occur in
+the RHS. Again, since the <M>B</M>'s are all disjoint, 
+<D>
+P(A_{12}) =  P(B_{12})+P(B_{123}).
+</D>
+Similarly for <M>A_{23}</M> and <M>A_{13}.</M> Using these, 
+the second stage (exclusion) is 
+<MULTILINE>
+P(A_{12})+P(A_{23})+P(A_{13}) 
+& = & [P(B_{12})+P(B_{123})]\\
+& & +[P(B_{23})+P(B_{123})]\\
+& & +[P(B_{13})+P(B_{123})]
+</MULTILINE>
+Note that no <M>B</M> with a single subscript occurs at
+all. The <M>B</M>'s with two subscripts occur once each, while
+the <M>B</M> with three subscripts occur thrice. Do you see the
+pattern? Each <M>B</M> is like <M>B_\beta,</M> where <M>\beta</M>
+is a nonempty subset of <M>\{1,2,3\}.</M> Similarly, each <M>A</M> is
+like <M>A_\alpha,</M> where <M>\alpha </M> is also a nonempty
+subset of <M>\{1,2,3\}.</M> Now <M>B_\beta</M>  occurs as a part
+of <M>A_\alpha</M> if and only if <M>\alpha\seq \beta.</M>
+So the number of times we see <M>B_{123}</M> in the RHS is same
+as the number of subsets of size 2 of <M>\{1,2,3\},</M> which
+is <M>\binom{3}{2}=3.</M> The same technique will also explain
+why <M>B_{23},</M> for example, occurs only once: the number of
+subsets of size 2 of <M>\{2,3\}</M> is <M>\binom{2}{2}=1.</M>
+In fact, the same approach also explains the absence
+of <M>B</M>'s with single indices. Each single index <M>B</M>
+occurs <M>\binom{1}{2}=0</M> times!
+<P/>
+The third stage (inclusion) is similar, though
+simpler. Here <M>A_{123} = B_{123},</M> and so <M>P(A_{123}) =
+P(B_{123}).</M> Our basic pattern holds here also: The
+3-index <M>B</M> occurs <M>\binom33=1</M>
+time. The <M>2</M>-index <M>B</M>'s occur <M>\binom23=0</M> time,
+and the 1-index <M>B</M>'s occur <M>\binom13=0</M> time.
+<P/>
+The following table gives a summary:
+<TABLE>
+<TR><TD rowspan="2">No. of indices
+of <M>B</M></TD><TD colspan="3">Considered how many times in</TD><TD>Total</TD></TR>
+<TR>
+<TD>Stage 1 (incl)</TD>
+<TD>Stage 2 (excl)</TD>
+<TD>Stage 3 (incl)</TD>
+</TR>
+<TR><TD>1</TD><TD><M>\binom11</M></TD><TD><M>\binom12</M></TD><TD><M>\binom13</M></TD><TD>1-0+0=1</TD></TR>
+<TR><TD>2</TD><TD><M>\binom21</M></TD><TD><M>\binom22</M></TD><TD><M>\binom23</M></TD><TD>2-1+0=1</TD></TR>
+<TR><TD>3</TD><TD><M>\binom31</M></TD><TD><M>\binom32</M></TD><TD><M>\binom33</M></TD><TD>3-3+1=1</TD></TR>
+</TABLE>
+Now we head for the general case for any given <M>n.</M> 
+<P/>
+For any <M>\alpha\in T</M> define
+<Q>
+<M>B_\alpha=</M> the set of all those points that belong to <M>A_i</M> iff <M>i\in \alpha.</M>
+</Q>
+Clearly, by definition, <M>B_\alpha</M>'s are all disjoint and 
+<D>A_1\cup\cdots\cup A_n = \cup_{\alpha\in T} B_\alpha.</D>
+Now observe that for any <M>\alpha \in T</M>
+<D>A_\alpha = \cup_{\beta\supseteq\alpha} B_\beta.</D>
+So
+<D>P(A_\alpha) = \sum_{\beta\supseteq\alpha} P(B_\beta).</D>
+So the number of times a <M>k</M>-index <M>B</M> is considered in the <M>r</M>-th
+stage is <M>\binom{k}{r}.</M> More precisely, 
+<D>
+\sum_{|\alpha|=r} P(A_\alpha) = \sum_{k=1}^r \binom{k}{r}
+\sum_{|\beta|=k} P(B_\beta).
+</D>
+<P/>
+Hence total number of inclusion of a <M>k</M>-index <M>B</M> is
+<D>
+\binom{k}{1}-\binom{k}{2}+-\cdots+(-1)^{n+1} \binom{k}{n} = 1-(1-1)^k=1,
+</D>
+using binomial theorem.
+<P/>
+Hence every <M>B</M> is included exactly once in the RHS. Thus,
+<D>
+P(\cup_{\alpha\in T}B_\alpha) =  RHS,
+</D>
+as required.
+</PF>
+Notice that the proof has used only the third axiom of probability. 
+So if we have any function <M>P(\cdot)</M>  that satisfies the third axiom, the theorem is valid for that 
+function as well. Examples of such functions include length, area, volume, mass, number of elements (for
+ finite sets). In short, it is
+ true for any measure of size.
+<P/>
+ Indeed, all functions that satisfy  axiom three are called <B>(signed) measure</B>s, and 
+meaure theory is the branch of mathematics that deals with them. 
+
+ 
+<HEAD2>Countable sample spaces</HEAD2>
+If the sample space <M>S</M> is countable (finite/infinite), say 
+<D>
+S = \{x_1,x_2,...\},
+</D>
+then take any sequence <M>p_1,p_2,...</M> of nonnegative numbers
+ading up to <M>1.</M> Defining <M>P(\{x_i\})=p_i</M> completely
+specifies a probability. Conversely, any probability can be
+constructed like this.
+
+<HEAD3>Equally likely cases</HEAD3>
+The simplest special case is when the sample space <M>\Omega</M> is finite
+(say <M>|\Omega|=n</M>) and we take <M>p_1=\cdots=p_n=[[1n]].</M>
+<P/>
+In this case, for any <M>A\seq \Omega</M> we have <M>P(A) =|A|/|\Omega|.</M>
+<P/>
+Many interesting problems fall in this category. They are
+basically problems of combinatorics. One type of problem is
+<I>occupancy problems</I>, where we have some boxes and some
+balls are distributed over them following various
+conditions. 
+
+<EXM>
+There are three distinct boxes and 10 distinct balls. The balls are dropped randomly among the boxes so that all possible
+ configurations are equally likely. (No ball is outside a box.) What is the probability that the first box is empty?
+<SOLN/>
+Each of the 10 balls has 3 possible destinations, irreespective of the other balls. So the total 
+number of configurations is <M>3^{10}.</M>  So <M>|\Omega|=3^{10}.</M>
+<P/>
+Let <M>A</M>  be the event that the first ball remains empty. Then <M>A</M>  occurs if and only if all the balls land in
+ the other 2 boxes. So <M>|A|=2^{10}.</M>  
+<P/>
+Since all outocmes are equally likely hence 
+<D>P(A)= [[|A|][|\Omega|]] = (*([p23]])*)^{10}.</D>
+</EXM>
+
+<EXM>
+Same problem as above, except that the balls are now identical. The boxes are still distinct. 
+What is the answer now?
+<SOLN/>
+By the bar-star argument <M>|\Omega| = \binom{12}{2}=66.</M>
+
+Similarly, <M>|A| = \binom{11}{1} = 11.</M>
+
+So the answer
+</EXM>
+
+Certain real-life scenarios may be modelled like
+this. Here are a few examples from physics.
+
+<EXM>
+There are <M>r</M> (identical/distinct) particles. Each particle may be in
+one of <M>n</M> distinct states. We can think of the particles as
+balls and the states as boxes. For example, if the states are UP
+and DOWN, and there are <M>r=12</M> <I>identical</I> particles, among which 5 are
+in UP state and 7 in DOWN, we can visualise this as:
+<CIMG web="occ1.png"/>
+If there are <M>r=3</M> <I>distinct</I> particles and the same two
+states, then the picture could be like:
+<CIMG web="occ2.png"/>
+Physicists assume various types of probabilities on
+these. 
+<UL>
+<LI><B>Maxwell-Boltzmann distribution:</B> The balls are
+distinct. Then there are <M>n^r</M> many possible configurations (each
+of the <M>r</M> balls has <M>n</M> possible destinations).
+All these <M>n^r</M> configurations are assumed equally likely.
+No real life particle shows this behaviour.</LI>
+
+
+<LI><B>Bose-Einstein distribution:</B> The balls are
+identical. So, by the bar-star argument, we know that there
+are <M>{n+r-1\choose n-1}</M> configurations possible. These are
+assumed equally likely.</LI>
+
+<LI><B>Fermi-Dirac distribution:</B> Here <M>n\geq r</M> and no
+box can hold more than one ball. Balls are
+identical. So <M>{n\choose r}</M> distinct configurations are
+possible (since a configuration is determined completely by which
+of the boxes have one ball in it). All these 
+configurations are assumed equally likely.</LI>
+</UL>
+</EXM>
+
+<HEAD2>Problems for practice</HEAD2>
+<OL>
+<LI>Let <M>E,F,G</M> be any three events. Find expressions for
+the event that of <M>E,F,G</M>
+<OL>
+<LI>only <M>F</M> occurs</LI>
+<LI>both <M>E</M> and <M>F</M> but not <M>G</M> occur</LI>
+<LI>at least one event occurs</LI>
+<LI>at least two events occur</LI>
+<LI>all three events occur</LI>
+<LI>none occurs</LI>
+<LI>at most one occurs</LI>
+<LI>at most two occur</LI>
+<LI>exactly two occur</LI>
+<LI>exactly one occurs.</LI>
+</OL>
+</LI>
+<LI>Show that <M>E\cap (F\cup G) = (E\cap F)\cup (E\cap
+G).</M></LI>
+<LI>Show that <M>(A\cup B)^c = A^c \cap B^c.</M></LI>
+<LI>Take <M>S = \{0,1,2\}.</M> Obtain
+functions <M>P_i:S\to\rr</M> for <M>i=1,2,3</M> such
+that <M>P_i</M> violates axiom <M>i</M>, but satisfies the other
+two.</LI>
+<LI>If <M>P(A)=0.9</M> and <M>P(B)=0.8,</M> show that <M>P(A\cap
+B)\geq 0.7.</M> In general, show that <M>P(A\cap B)\geq
+P(A)+P(B)-1.</M> This is known as Bonferroni's inequality.</LI>
+<LI>Show that 
+<D>
+P(*( \cup_1^n A_i)*) \leq \sum_1^n P(A_i).
+</D>
+</LI>
+<LI>Two fair dice are tossed, what is the probability that the
+sum is <M>i</M> for <M>i=2,3,...,12?</M></LI>
+<LI>Two cards are randomly selected from a deck of 52 playing
+cards. What is the probability that they are of the same
+denomination?</LI>
+<LI>We have 4 letters and their respective addressed
+envelopes. If the letters are placed randomly in the envelopes,
+then find the probability that exactly <M>k</M> letters are in their correct
+envelopes for <M>k=1,2,3,4.</M> </LI>
+<LI>The numbers <M>1,2,...,n</M> are arranged in random
+order. Find the probability that the digits <M>1,2,3</M> appear
+as neighbours in this order.</LI>
+<LI><M>A</M> throws six dice and wins if scores at least one
+ace. <M>B</M> throws twelve dice and wins if he scores at least
+two aces. Who has the greater probability to win?</LI>
+<LI>Find the probability that among three random digits there
+appear exactly 1,2 or 3 different digits. Also do the same for
+four random digits.</LI>
+<LI>Find the probability <M>p_r</M> that in a sample of <M>r</M>
+random digits no two are equal.</LI>
+<LI>If <M>n</M> balls are placed at random among <M>n</M> cells,
+find the probability that exactly one cell remains empty.</LI>
+<LI>A man is given <M>n</M> keys of which only one fits his
+door. He tries them successively using SRSWOR until he finds the
+right key. Show that the probability that he will try <M>k</M>
+keys is <M>[[1n]]</M> for <M>k=1,...,n.</M></LI>
+<LI>Suppose that each of <M>n</M> sticks is broken into one long
+and one short part. The resulting <M>2n</M> pieces are combined
+pairwise in a random fashion. What is the probability that the
+original pairings are restored? What is the probability that each
+long piece gets a short partner?</LI>
+<LI>A box contains 90 good and 10 defective screws. If 10 screws
+are selected at random (SRSWOR), then find the probability that
+none of these are defective.</LI>
+<LI>From the set <M>\{a,b,c,d,e\}</M> we draw an SRSWR of size
+25. What is the probability that the sample will have 5
+occurrences of each of the letters?</LI>
+<LI>If <M>n</M> men (including <M>A</M> and <M>B</M>) stand in a
+row in random order, what is the probability that there will be
+exactly <M>r</M> men between <M>A</M> and <M>B?</M></LI>
+<LI>What is the probability that two throws with three dice each
+will show the same configuration if (a) the dice are distinct
+(b) the dice are identical?</LI>
+<LI>A town has <M>n+1</M>  people: <M>p_1,...,p_{n+1}.</M> 
+A news is spreading as rumour in this town as follows. Initially,
+only <M>p_1</M>  knows the news. He communicates the news to
+ one of the
+remaining <M>n</M> people randomly. This person again
+communicates the news to one of the other <M>n</M> persons (may
+be <M>p_1</M> again) randomly, and so on. Find the probability that the
+rumour spreads <M>r</M> times without returning to <M>p_1.</M>
+Also, find the probability that the rumour spreads <M>r</M> times
+without being repeated to any person.
+ </LI>
+<LI>There are <M>n</M> persons in a room. Assuming that each
+person is equally likely to be born in any day of the year (1
+year=365 days), find the probability that at least two persons
+share the same birthday. </LI>
+</OL>
+<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/basic.html"
+id="basic"/>
+</E>@}</NOTE>

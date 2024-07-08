@@ -1,0 +1,252 @@
+<NOTE>
+@{<E>
+<HEAD1>Conditional distribution</HEAD1>
+<DEFN name="Conditional distribution">
+Let <M>X:\Omega\to S</M> and <M>Y:\Omega\to T</M> be joint distributed discrete random
+variables. Let <M>x\in S</M> be some constant such
+that <M>P(X=x)> 0.</M> Then the <B>conditional
+distribution of <M>Y</M> given <M>X=x</M></B> is the probability
+distribution on <M>T</M> 
+<D>
+A\mapsto P(Y\in A | X = x).
+</D>
+</DEFN>
+
+<EXM>
+A 7-segment display shows any number from 0 to 9 at random (equal
+probabilities). 
+<CIMG web="7seg.png"/>
+Let <M>X</M> be the indicator random variable of
+whether the blue segment is on. Similarly, <M>Y</M> is the
+indicator for the red segment. Find the conditional distribution
+of <M>Y</M> given <M>X.</M>
+<SOLN/>
+Here <M>X,Y</M> both take values in <M>\{0,1\}.</M> 
+We need to find <M>P(Y=y | X=x)</M> for <M>x,y\in\{0,1\}.</M>
+<P/>
+Now <M>P(Y=1|X=1) = P(X=1,Y=1)/P(X=1).</M> 
+<P/>
+Both the blue and the red segments are on in only the numbers
+3,4,5,6,8,9. So <M>P(X=1,Y=1) = [[6][10]].</M>
+<P/>
+The blue segment is on in the numbers 2,3,4,5,6,8,9. So <M>P(X=1) =[[7][10]].</M>
+<P/>
+Hence <M>P(Y=1|X=1) = P(X=1,Y=1)/P(X=1) = [[67]].</M>
+<P/>
+You should now be able to work out the other three conditional
+probabilities similarly.
+</EXM>
+
+We can define conditional CDF or conditional PMF in the obvious
+way.
+
+<DEFN name="Conditional expectation / variance">
+Expectation (or variance) computed baed on a conditional distribution is
+called <B>conditional expectation (variance)</B>.
+</DEFN>
+
+It is important to understand that the conditional
+expectation/variance is a random variable, which is a function of
+the conditioning random variable.
+
+<HEAD2>Unconditionals in terms of conditionals</HEAD2>
+Remember the throm of total probability: 
+<D>
+P(A) = P(B) P(A|B) + P(B^c)P(A|B^c),
+</D>
+where combined the two conditional probabilities of <M>A</M> to
+arrive at the (unconditional) probability of <M>A?</M> 
+<P/>
+Well, we can do similar things with conditional
+expectation/variance also. 
+
+<THM name="Tower property">
+<M>E(Y) = E(E(Y|X)).</M>
+</THM>
+<PF>
+Let <M>X</M> take values <M>x_1,x_2,...</M> and <M>Y</M> take
+values <M>y_1,y_2,...</M>. Let the joint PMF of <M>(X,Y)</M> be 
+<D>
+P(X=x_i~\&~Y=y_j) = p_{ij}.
+</D>
+Then <M>P(Y=y_j | X=x_i) = [[p_{ij}][p_{i\bullet}]].</M>
+<P/>
+So <M>E(Y|X=x_i) = \sum_j y_j [[p_{ij}][p_{i\bullet}]].</M>
+<P/>
+Expectation of this is 
+<D>
+\sum_i E(Y|X=x_i) p_{i\bullet} = \sum_i \sum_j y_j
+[[p_{ij}][p_{i\bullet}]]p_{i\bullet} = \sum_i \sum_j y_j p_{ij} =
+\sum_j y_j  \sum_i p_{ij} = \sum_j y_j   p_{\bullet j} = E(Y),
+</D>
+as required.
+</PF>
+
+Many expectation problems can be handled step-bystep using this
+result. Here are some examples.
+
+<EXM>
+A casino has two gambling games:
+<OL>
+<LI>Roll a fair die, and win Rs. <M>D</M> if <M>D</M> is the
+outcome. </LI>
+<LI>Roll two fair dice, and win Rs 5 if both show the same
+number, but lose Rs 5 otherwise.</LI>
+</OL>
+You throw a coin with <M>P(Head)=[[13]]</M> and decide to play game
+1 if <M>Head,</M> and game 2 if <M>Tail.</M> What is your
+expected gain?
+<SOLN/>
+Let <M>X</M> be your gain (in Rs), and let <M>Y</M> be the outcome of the
+toss. 
+<P/>
+Then <M>E(X|Y=Head) = 3.5</M> and <M>E(X|Y=Tail) = 5\times[[6-30][36]]=-[[10][3]].</M> 
+<P/>
+So, by the tower property, <M>E(X) = P(X|Y=Head)\times P(Y=Head)+P(X|Y=Tail)\times P(Y=Tail) = \cdots.</M>
+</EXM>
+
+The tower property is very useful for computing expectations
+involving a random number of random variables. Here is an
+example.
+
+<EXM>
+A random number <M>N</M> of customers enter a shop in a
+day, where <M>N</M> takes values in <M>\{1,...,100\}</M> with
+equal probabilities. The <M>i</M>-th customer pays a random amount <M>X_i</M>,
+where <M>X_i</M> takes values in <M>\{1,2,...,10+i\}</M>
+ith equal probabilities. Assuming that <M>N,X_1,...,X_N</M> are
+all independent, find the total expected payments by the
+customers on that day.
+<SOLN/>
+We have <M>E(X_i) = [[11+i][2]].</M> 
+<P/>
+So <M>E(*(\sum_1^N X_i|N)*) = \sum_1^N E(X_i|N) = \sum_1^N E(X_i) = \sum_1^N [[11+i][2]] = 5.5N+[[N(N+1)][4]].</M>
+<P/>
+By tower property, the required answer is <M>E(*(5.5N+[[N(N+1)][4]])*)=\cdots.</M>
+</EXM>
+
+<EXM>
+10 holes, numbered 1 to 10, in a row. 5 balls are dropped
+randomly in them (a hole may contain any number of balls). Call a
+ball "lonely" if there is no other ball in its hole or the
+adjacent holes. Find the expected number of lonely balls. 
+<SOLN/>
+Define the indicators <M>I_1,...,I_5</M> as
+<D>
+I_i = <CASES>1<IF>i\mbox{-th ball is lonely}</IF>0<ELSE/></CASES>
+</D>
+Then the total number of lonely balls is <M>X = \sum I_i.</M>
+<P/>
+So we are to find <M>E(X) = \sum E(I_i).</M>
+<P/>
+Let <M>Y_i = </M> the hole where the <M>i</M>-th ball has fallen.
+<P/>
+Then <M>E(I_i|Y_i=1)</M> is the conditional probability that
+all the balls except the <M>i</M>-th one has landed in
+holes <M>2,...,10</M> given that the <M>i</M>-th ball has landed
+in hole 1.
+<P/>
+You should be able to compute this easily. Similarly, you can
+compute <M>E(I_i|Y_i=k)</M> for <M>k=1,...,10.</M>
+<P/>
+Notice that <M>Y_i</M> can take values <M>1,...,10</M> with equal probabilities.
+<P/>
+So tower property should provide the answer as
+<D>
+E(X) = \sum E(E(I_i|Y_i)) = \cdots.
+</D>
+</EXM>
+
+<THM>
+<M>V(Y) = E(V(Y|X)) + V(E(Y|X)).</M>
+</THM>
+<PF>
+This follows directly from the tower property. 
+<P/>
+We know
+<D>
+V(Y|X) = E(Y^2|X) - E^2(Y|X),
+</D>
+and hence
+<D>
+E(V(Y|X)) = E(E(Y^2|X)) - E(E^2(Y|X)) = E(Y^2) -  E(E^2(Y|X)).
+</D>
+Again, 
+<D>
+V(E(Y|X)) = E(E^2(Y|X)) - E^2(E(Y|X)) = E(E^2(Y|X)) - E^2(Y). 
+</D>
+So 
+<D>
+E(V(Y|X)) + V(E(Y|X)) = E(Y^2)-E^2(Y) = V(Y),
+</D>
+as required.
+</PF>
+
+<HEAD2>More than 2 variables</HEAD2>
+If <M>X,Y,Z</M> are jointly distributed random variables, then we
+can talk about conditional distribution of <M>Z</M>
+given <M>(X,Y)</M> or <M>X</M> given <M>Z</M> or <M>(X,Z)</M>
+given <M>Y,</M> etc. We can even condition step by step. For
+example, we can talk about <M>E(E(Z|X,Y)|X).</M> This is a
+function of <M>X</M> alone. 
+
+<HEAD2>Substitution</HEAD2>
+<THM name="Substition property">
+Conditional distribution of <M>f(X,Y)</M> given <M>X=x</M> if
+same as the conditional distribution of <M>f(x,Y)</M> given <M>X=x.</M>
+</THM>
+<PF>
+This follows immediately from the definition of conditional probability.
+</PF>
+<HEAD1>Problems for practice</HEAD1>
+<OL>
+<LI><EIMG web="condist1.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist2.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist3.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist4.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist5.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist6.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist7.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist8.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist9.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist10.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist11.png"></EIMG><HR/></LI>
+<LI><EIMG web="condist12.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond1.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond2.png"></EIMG>
+Let <M>I_j</M> be the indicator variable for whether there is a
+record at position <M>j.</M> Then <M>P(I_j=1)</M> may be computed
+by total probability:
+<D>
+P(I_j=1) = \sum_{k=j}^n P(X_j=k)P(I_j=1|X_j=k).
+</D>
+Similarly for <M>P(I_jI_k=1).</M>
+<HR/></LI>
+<LI><EIMG web="morecond3.png"></EIMG>
+The problem is basically optimising <M>\sum P_i^2</M> subject
+to <M>\sum P_i</M> being fixed. Cauchy-Scwartz might help.  
+<HR/></LI>
+<LI><EIMG web="morecond4.png"></EIMG><P/>This problem (from Ross)
+refers to Example 2m. <LINK to="image/kirti1.png">Here is that example.</LINK><HR/></LI>
+<LI><EIMG web="morecond5.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond6.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond7.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond8.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond9.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond10.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond11.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond12.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond13.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond14.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond15.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond16.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond17.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond18.png"></EIMG><HR/></LI>
+
+<LI><EIMG web="morecond19.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond20.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond21.png"></EIMG><HR/></LI>
+<LI><EIMG web="morecond22.png"></EIMG><HR/></LI>
+</OL>
+</E>@}
+</NOTE>

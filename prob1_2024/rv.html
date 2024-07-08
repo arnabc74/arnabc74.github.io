@@ -1,0 +1,1049 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Random variables">Random variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What they are">What they are</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Combining different random variables">Combining different random variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Different types">Different types</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Functions of a random variable">Functions of a random variable</a>
+</li>
+<li>
+<a href="#CDF">CDF</a>
+</li>
+<li>
+<a href="#PMF">PMF</a>
+</li>
+<li>
+<a href="#Expectation">Expectation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Expectation of a function">Expectation of a function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Properties of expectation">Properties of expectation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Relation of $E(X)$ with values of $X$">Relation of $E(X)$ with values of $X$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Transformation properties">Transformation properties</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Random variables">Random variables</a></h1>
+
+<h2><a
+name="What they are">What they are</a></h2>
+Suppose that I toss a fair coin, and offer you Rs 10 for a head,
+and demand $Rs 20$ for a tail. In other words, your gain (in Rs)
+from this deal is $10$ for head and $-20$ for
+tail. Both $10$ and $-20$ are constants, but since you
+do not know which of these two constants you are going to get,
+you gain is a variable. Since it varies with chance, we call it
+a <b>random variable</b>.
+<p></p>
+Notice that here we have a function from $\{head,~tail\}$
+to $\{10,-20\}$ defined as 
+$$\begin{eqnarray*}
+head &amp; \mapsto &amp; 10,\\
+tail &amp; \mapsto &amp; -20.
+\end{eqnarray*}$$
+There is nothing random about this <i>function</i>. The randomness comes
+from mechanism that decides what gois <i>into</i> this: head or tail?
+<p></p>
+We use this idea to define random variables mathematically. We
+start with a random experiment which is the provider of the
+randomness. Then any function defined on its sample space is
+called a random variable. To be precise, it is the function
+(which is not at all random) that is called the random
+variable. Thus, if in the above coin toss example, we replace the
+fair coin with a biased coin, but keep the payment rules the
+same, then we still have the same random variable. 
+<p></p>
+Beginners often find it odd: a random variable is neither random
+nor a variable!
+<p></p>
+However, it is not as unnatural as it sounds. In calculus also we
+write $y = x^2$ and say $y$ is a variable as well
+as $y$ is a function of $x.$
+<p></p>
+
+<p>
+<b>EXAMPLE:</b>
+In the coin tossing example with a fair coin, let your gain be
+denoted by $X.$ (or sometimes $X(w)$, if you want to emphasize
+that it is a function).  Find $P(X=10).$
+<p></p>
+<b>SOLUTION:</b>
+The immediate answer is $\frac 12.$ Let's see the steps that led
+to this answer. $P(X=10)$ is the probability that $X$
+is $10,$ <i>i.e.</i>, the probability that the coin toss has
+produced an outcome for which the function $X$ takes the
+value $10.$ Thus 
+$$
+P(X=10) = P\big\{w\in\{head,tail\}~:~X(w)=10\big\}.
+$$
+Now $\big\{w\in\{head,tail\}~:~X(w)=10\big\} = \{head\},$ and so
+the problem now reduces to finding $P(\{head\}),$ which is $\frac 12.$
+<img src="../image/box.png"></p>
+
+The general case, then, looks like this: We have a random
+experiment with sample space $\Omega.$ A random
+variable $X$ is a function $X:\Omega\rightarrow S$
+where $S$ is any codomain of our choice. If some one gives
+us some $A\subseteq S$ and asks us to find $P(X\in A),$ we
+are to actually find 
+$$
+P\big(\big\{w\in\Omega~:~X(w)\in A\big\}\big).
+$$
+Remember that this is the <i>definition</i> of $P(X\in A).$
+The complicated looking set $\big\{w\in\Omega~:~X(w)\in A\big\}$ is
+often abbreviated to $\{X\in A\}$ or $X ^{-1} (A).$<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Earlier we had
+talked about "good" sets and "bad" sets. What if someone asks us
+to find $P(X\in A),$ where $X ^{-1} (A)$ is a "bad"
+subset of $\Omega?$ Well, the answer is: We shall
+simply refuse to find $P(X\in A)$ for such an $A.$ We shall
+call such an $A$ a "bad" subset of $S$
+(w.r.t. this $X$). A subset $A\subseteq S$ is "good" or
+"bad" according as $X ^{-1} (A)$ is "good" or "bad" in $\Omega.$</td>
+</tr>
+</table>
+
+
+<p>
+<b>EXAMPLE:</b>
+A fair die is rolled. I shall pay you Rs 10 if the die shows an
+even number, you'll pay me Rs 20 otherwise. Again, let's denote
+by $X$ your gain (in Rs). Express $X$ as a function
+(as codomain you can take ${\mathbb R}$ or ${\mathbb C}$ or ${\mathbb Z}$
+or $\{10,-20\}$ or any other superset of $\{10,-20\}$).
+Let $A = \{10\}.$ Find $X ^{-1} (A)$ and using it
+find $P(X\in A).$ 
+<p></p>
+<b>SOLUTION:</b>
+Here $X ^{-1}(A) = \{2,4,6\}.$ So $P(X=10) = P(\{2,4,6\}) = \frac 16+\frac 16+\frac 16 = \frac 12.$
+<img src="../image/box.png"></p>
+
+In each of  these examples we had a random variable $X$ that
+took only two values $10$ and $-20.$ Which $X$ do
+you think is more profitable for you? Well, both are actually the
+same so far as profit goes. Understand this carefully: the two
+different $X$'s are completely different as functions (their
+domains are also different), but in terms of the behaviour of the
+output of the functions they are identical. This behaviour is
+called the <b>distribution</b> of the random variable. It is the
+distribution which we care about mostly in real applications. So
+we often start a discussion as 
+<blockquote>
+Let $X$ be a random variable taking values $10$
+and $-20$ each with probability $\frac 12.$
+</blockquote>
+We understand implicitly that there is <i>some</i> random experiment (say
+the coin toss experiment or the die roll experiment or something
+similar) and <i>some</i> function from its sample space
+to $\{10,-20\}$ such that the distribution is as
+specified. In this
+course, we shall often omit  the sample space or
+the function.
+
+<h2><a
+name="Combining different random variables">Combining different random variables</a></h2>
+Sometimes we need to combine the values of two or more random
+variables. Say $X,Y$ are both random variables and we want
+to compute $X+Y.$ Since random variables are actually
+functions, so this sum can be formed only when $X$
+and $Y$ have the same domain. This simple point sometimes
+needs careful handling as the following example shows.
+
+<p>
+<b>EXAMPLE:</b>
+I am playing against two gamblers simultaneosly. One gambler
+tosses a fair coin and pays Rs 10 for a head and  takes Rs 20 for  a
+tail. The other gambler takes Rs 3 from me, rolls a fair die and pays me as many
+rupees as the outcome. What is my total gain? 
+<p></p>
+<b>SOLUTION:</b>
+If I call the gain
+from the first gambler $X,$ then $X$ is a function
+from $\{head,tail\}$ to ${\mathbb R},$ while the gain from the
+second gambler is a function $Y:\{1,2,3,4,5,6\}\rightarrow{\mathbb R}.$
+Obviously, $X+Y$ does not make any sense here. We need to
+first combine the two random experiments to get the product
+sample space: $\{head,tail\}\times\{1,2,3,4,5,6\}$ and then
+consider $X,Y$ both as functions from $\Omega$
+to ${\mathbb R}.$ For example, $X(head,4) = 10$
+and $Y(head,4) = 4-3 = 1.$
+<p></p>
+Now it is meaningful to talk about $X+Y.$
+<img src="../image/box.png"></p>
+
+
+<h2><a
+name="Different types">Different types</a></h2>
+Depending on the distribution, a random variable may be of 3
+types:
+<ul>
+
+<li>
+<b>Discrete:</b> These random variables take only countably
+many (finite/infinitely many) values.</li>
+
+<li>
+<b>Continuous:</b> If a random variable takes values in some
+set $S$ such that $\forall a\in S~~P(X=a)=0,$ then we
+call it a continuous random variable. Notice that
+a continuous
+random variable is not defined as a random variable that takes a
+"continuous stretch of values". Howeever, most continuous random
+variables do indeed take all values in an interval, <i>e.g.</i>, height
+of a randomly selected person.</li>
+
+<li>
+<b>Neither discrete nor continuous:</b> These take
+uncountably many values and for at least one value $a$ we
+have $P(X=a)&gt;0.$ </li>
+
+</ul>
+In this course we shall focus on discrete random variables only.
+
+<p></p>
+The distribution of a discrete random variable is completely
+specified by the countable set of values it can take, and the
+probability with which it takes each of those values. These two
+specifications together are called the <b>probability mass
+function (PMF)</b> of the rv. 
+
+<h2><a
+name="Functions of a random variable">Functions of a random variable</a></h2> 
+Any function of a random variable is again a random
+variable. This is immediate from the definition of a random
+variable (since composition of two functions is again a
+function). 
+<p></p>
+Notice that any function of a discrete random variable must again
+be a discrete random variable. 
+
+<h1><a
+name="CDF">CDF</a></h1>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+Let $X$ be any real valued random variable. Then
+its <b>(cumulative) distribution function (CDF)</b> is defined as
+the function $F:{\mathbb R}\rightarrow[0,1]$ where $\forall x\in{\mathbb R}~~F(x) = P(X\leq x).$
+</fieldset>
+This definition holds for <i>all</i> real-valued random variables
+(not just the discrete ones).
+<p></p>
+The following properties are easy to prove.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $F(x)$ be the CDF of some rv $X.$ Then 
+<ol>
+
+<li>$F(x)$ must be nondecreasing, <i>i.e.</i>, $\forall x &lt; y\in{\mathbb R}~F(x)\leq F(y).$</li>
+
+<li>$\lim_{x\rightarrow-\infty} F(x) = 0.$</li>
+
+<li>$\lim_{x\rightarrow\infty} F(x) = 1.$</li>
+
+<li>$F(x)$ must be right continuous, <i>i.e.</i>,
+$\forall a\in{\mathbb R}~~F(a+)=F(a).$
+ </li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+
+<ol>
+
+<li>Since $\{X\leq x\} \subseteq \{X\leq y\},$ hence $P(\{X\leq
+x\}) \leq P(\{X\leq y\}),$ <i>i.e.</i>, $F(x)\leq F(y).$</li>
+
+
+<li>
+Shall show 
+$$
+\forall \epsilon&gt;0 ~~ \exists M \in{\mathbb R} ~~ \forall x &lt; M~~ |F(x)-0| &lt; \epsilon.
+$$
+(Actually we may drop the absolute value sign around $F(x)$
+since it is anyway $\geq 0$).
+
+<p></p>
+
+Take any $\epsilon&gt;0.$
+
+<p></p>
+
+
+Let $A_n$ be the event that $\{X \leq -n\}$
+for $n\in{\mathbb N}.$ Then $F(-n) = P(A_n).$
+Clearly, $A_1\supseteq A_2\supseteq A_3\supseteq\cdots$
+and $\cap A_n=\phi.$
+<p></p>
+So $P(A_n)\rightarrow 0,$ <i>i.e.</i>, $F(-n)\rightarrow 0.$
+<p></p>
+So $N\in{\mathbb N} ~~F(-N)&lt;\epsilon.$ 
+<p></p>
+Choose $M = -N.$
+<p></p>
+Take any $x &lt; M.$
+<p></p>
+Then $0\leq F(x) \leq F(M)&lt;\epsilon,$ since $F(\cdot)$ is nondecreasing.
+<p></p>
+So $|F(x)-0| &lt; \epsilon,$ as required.
+</li> 
+
+<li>
+
+<a href="javascript:hideShow('sim');">Very similar. Try yourself first, before clicking here.</a>
+<div id="sim" style="display:none;background-color:#ffcccc;">Shall show 
+$$
+\forall \epsilon&gt;0 ~~ \exists M \in{\mathbb R} ~~ \forall x &gt; M~~ |F(x)-1| &lt; \epsilon.
+$$
+(Actually we may drop the absolute value sign
+around $|F(x)-1|$ is $1-F(x)$,
+since $F(x)\leq 1,$ anyway.)
+<p></p>
+
+
+Take any $\epsilon&gt;0.$
+
+<p></p>
+
+
+Let $A_n$ be the event that $\{X \leq n\}$
+for $n\in{\mathbb N}.$ Then $P(A_n)=F(n).$
+<p></p>
+
+Clearly, $A_1\subseteq A_2\subseteq A_3\subseteq\cdots$
+and $\cup A_n=\Omega.$
+<p></p>
+So $P(A_n)\rightarrow 1,$ <i>i.e.</i>, $F(n)\rightarrow1.$ 
+<p></p>
+So $N\in{\mathbb N} ~~|F(N)-1|&lt;\epsilon.$ 
+<p></p>
+Choose $M = N.$
+<p></p>
+Take any $x &gt; M.$
+<p></p>
+Then $0\leq 1-F(x) \leq 1-F(M) &lt;\epsilon,$ since $F(\cdot)$ is nondecreasing.
+<p></p>
+So $|F(x)-1| &lt; \epsilon,$ as required.
+</div>
+</li>
+
+
+<li>
+Shall show:
+$$
+\forall a\in{\mathbb R}~~\forall \epsilon&gt;0~~\exists \delta&gt;0~~ \forall
+x\in (a,a+\delta)~~|F(x)-F(a)| &lt; \epsilon.
+$$
+Take any $a\in{\mathbb R}$ and any $\epsilon&gt;0.$
+<p></p>
+Let $A_n$ be the event that $\left\{X\leq a+\frac 1n\right\}$ for $n\in{\mathbb N}.$
+
+Also let $A$ be the event that $\{X\leq a\}.$
+<p></p>
+
+<a href="javascript:hideShow('try');">Try the rest yourself.</a>
+<div id="try" style="display:none;background-color:#ffcccc;">
+Then $A_1\supseteq A_2\supseteq\cdots$ and $\cap A_n = A.$
+<p></p>
+So $P(A_n)\rightarrow P(A)$ and hence $F\left(a+\frac 1n\right)\rightarrow F(a).$
+<p></p>
+Hence $\exists N\in{\mathbb N} ~~ |F\left(a+\frac 1N\right)-F(a)|&lt;\epsilon.$
+<p></p>
+Choose $\delta = \frac 1N&gt;0.$
+<p></p>
+Take any $x\in (a,a+\delta).$
+<p></p>
+Since $F(\cdot)$ is nondecreasing, hence $F(a)\leq F(x)
+\leq F(a+\delta) &lt; F(a)+ \epsilon.$
+<p></p>
+So $|F(a+x)-F(a)|&lt;\epsilon,$ as required.
+</div>
+
+</li>
+
+</ol>
+
+<b><i>[QED]</i></b>
+</p>
+
+
+A rather nontrivial  theorem is that the converse is also
+true. This converse is called the <b>fundamental theorem of
+probability</b>.
+
+
+<fieldset>
+<legend><b><i>Fundamental theorem of probability</i></b></legend>
+Let $F:{\mathbb R}\rightarrow[0,1]$ be any function satisfying the
+properties listed in the last theorem. Then there must exist a real-valued
+rv $X$ with this $F(x)$ as its CDF.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Too technical for this course.<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Any nondecreasing function bounded from above (and hence all
+CDF's) must have finite
+left hand limit at each point.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $F:{\mathbb R}\rightarrow{\mathbb R}$ be nondecreasing and bounded from above.
+<p></p>
+Take any $a\in {\mathbb R}.$
+<p></p>
+We shall show that $\lim_{x\rightarrow a-} F(x)$ exists as a finite
+number, <i>i.e.</i>,
+$$
+\exists\ell\in{\mathbb R}~~\forall \epsilon&gt;0~~\exists \delta&gt;0~~\forall x\in(a-\delta,a)~~|F(x)-\ell|\leq\epsilon.
+$$
+Consider the set $A=\{F(x)~:~x &lt; a\}.$ Then $A\neq\phi$
+and bounded from above (by $F(a)$). 
+<p></p>
+So $\sup(A)\in{\mathbb R}.$
+<p></p>
+Choose $\ell = \sup(A).$
+<p></p>
+Take any $\epsilon&gt;0.$
+<p></p>
+Then $\exists y &lt; a~~F(y) &gt; \ell-\epsilon.$ 
+<p></p>
+Choose $\delta = a-y &gt; 0.$
+<p></p>
+Take any $x\in(a-\delta,a) = (y,a).$
+<p></p>
+Then $F(y)\leq F(x) \leq \ell,$ or, in other words, $\ell-\epsilon\leq F(x)\leq \ell.$
+<p></p>
+So $|F(x)-\ell|\leq \epsilon,$ as required.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ have CDF $F.$ Then 
+$$
+\forall a\in{\mathbb R}~~F(a-) = P(X &lt; a).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Take any $a\in{\mathbb R}.$
+<p></p>
+Let $A = \{X &lt; a\}$ and let $A_n
+= \left\{X \leq a-\frac 1n\right\}$ for $n\in{\mathbb N}.$
+<p></p>
+Then $A_n\nearrow A.$
+<p></p>
+Hence $P(A_n)\rightarrow P(A).$
+<p></p>
+So $F\left(a-\frac 1n\right)\rightarrow P(A).$
+<p></p>
+But $F\left(a-\frac 1n\right)\rightarrow F(a-),$ since $F(a-)$ exists.
+<p></p>
+Hence $P(X &lt; a) = F(a-),$ as required.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ have CDF $F.$ Then 
+$$
+\forall a\in{\mathbb R}~~P(X=a) = F(a)-F(a-).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$P(X=a) = P(X\leq a)-P(X &lt; a).$
+<b><i>[QED]</i></b>
+</p>
+
+The following theorem justifies the adjective "continuous" for a
+random variable.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A random variable is continuous if and only if its CDF is
+continuous everywhere.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Obvious from the last theorem.
+<b><i>[QED]</i></b>
+</p>
+
+
+<h1><a
+name="PMF">PMF</a></h1>
+
+
+<fieldset>
+<legend><b>Definition: Probability Mass Function (PMF)</b></legend>
+Let $X$ be a discrete random variable taking
+values $x_1,x_2,...$ with
+probabilities $p_1,p_2,...$. Then the <b>probability mass
+function (PMF)</b> of $X$ is defined as $p(x)$ where 
+$$
+\forall i~~p(x_i) = p_i.
+$$
+</fieldset>
+There is no clear guideline as to the choice of the domain of the
+PMF, except that it must be a superset of $\{x_1,x_2,...\}.$
+If you take the domain to be a strict superset, then you define
+the PMF as 
+$$
+p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
+$$
+Clearly, $\sum p_i = 1$ and $\forall i~~p_i\geq 0.$ A
+consequence of the fundamental theorem of probability is that for
+any countable set $\{x_1,x_2,...\}$ and for any
+sequence $(p_i)_i,$ for which $\forall i~~p_i\geq 0$
+and $\sum p_i=1,$ there is a (discrete) random variable of
+which the PMF is 
+$$
+p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
+$$
+
+The CDF of a discrete random variable is like a step function. 
+<h1><a
+name="Expectation">Expectation</a></h1>
+
+For many random variables we see a striking example of
+statistical regularity. 
+
+<font color="red">
+<pre>
+w = sample(6,1000,rep=T)
+profit =c(-20,10,-20,10,-20,10)
+X = profit[w]
+avgX = cumsum(X)/(1:1000)
+plot(avgX,ty='l')
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+w = sample(6,1000,rep=T)
+profit =c(-20,10,-20,10,-20,10)
+X = profit[w]
+avgX = cumsum(X)/(1:1000)
+plot(avgX,ty='l')
+`));"/>
+In fact, it is this phenomenon that first let man to study
+probability. If you run a gambling game a large number of time
+the average profit becomes more and more stable. Gamblers wanted
+to guess this stable value beforehand. They argued as follows:
+<blockquote>
+If I play this game a large number of times (say $n$ times),
+then
+approximately $\frac n2$ times I should get $10$
+and the remaining $\frac n2$ times I should get $-20.$ So
+approximately my total gain would be approximately 
+$$
+\frac n2\times 10 + \frac n2\times (-20).
+$$
+So the average would be approximately this divided by $n,$
+<i>i.e.</i>,
+$$
+\frac 12\times 10 + \frac 12\times (-20) = -5.
+$$
+</blockquote>
+Indeed, this simple argument turns out to be remarkably
+accurate. Gamblers could not understand why it becomes so
+accurate as $n$ becomes large. But they used this formula to
+find out what they could expect the random variable to do in the
+long run.
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">There is a wierd point in the definition of $E(X).$
+We are working with $\sum p_i x_i.$ But then why is the
+condition on $\sum |p_i x_i|$? The reason for taking this absolute
+value should be clear from our <a href="series.html">crash course on infinite series</a>.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b>Definition: Expectation</b></legend>
+Let a (discrete) random variable $X$ take
+values $x_1,x_2,...$ with
+probabilities $p_1,p_2,...$. If $\sum |p_i x_i|
+&lt;\infty,$ then we define the expectation of $X$ as
+$$
+E(X) = \sum p_i x_i.
+$$
+If  $\sum |p_i x_i|
+=\infty,$ then
+<ul>
+
+<li>if all but finitely many $x_i$'s are $&gt;
+0,$ (resp, $&lt; 0$) then we say that the expectation
+is $\infty$ (resp, $-\infty$)</li>
+
+<li>Otherwise, we say that the expectation does not exist.</li>
+
+</ul>
+
+</fieldset>
+
+
+<h2><a
+name="Expectation of a function">Expectation of a function</a></h2>
+
+<p>
+<b>EXAMPLE:</b>
+Suppose I have a rv that takes values $-1,0$ and $1$
+with probabilities $0.1, 0.5$ and $0.4,$ respectively.
+What is $E(X^2)?$
+<p></p>
+<b>SOLUTION:</b>
+Here $X^2$ is a new rv. Call it $Y,$ say. Then $Y$
+takes values $0$ and $1$ with probabilities $0.5$
+each.
+
+<p></p>
+So $E(Y) = \frac 12.$
+<img src="../image/box.png"></p>
+
+Here is another technique to arrive at the same result. 
+$$
+E(X^2) = 0.1\times (-1)^2 + 0.5\times 0^2 + 0.4\times 1^2 = 0.5.
+$$
+This technique is often easier because here we do not need to
+find the distribution of $Y=X^2$ first. Both these
+techniques will always give the same answer. 
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let a (discrete) random variable $X$ take
+values $x_1,x_2,...$ with
+probabilities $p_1,p_2,...$. Let $h(\cdot)$ be any
+function defined on the set $\{x_1,x_2,...\}.$ If $\sum |p_i h(x_i)|
+&lt;\infty,$ then we must have 
+$$
+E(h(X)) = \sum p_i h(x_i).
+$$
+Also, if $\sum|p_i h(x_i)|=\infty$ and all but finitely many
+$h(x_i)$'s are $&gt;0$ (resp, $&lt;0$),
+then $E(h(X))=\infty $(resp, $-\infty$).
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+If $X$ takes only finitely many values, then the result
+follows from distributivity of multiplication over addition. 
+<p></p>
+For the countably infinite case, the result follows from rearrangement
+property of absolutely convergent series. 
+<b><i>[QED]</i></b>
+</p>
+
+
+<h2><a
+name="Properties of expectation">Properties of expectation</a></h2>
+
+<h3><a
+name="Relation of $E(X)$ with values of $X$">Relation of $E(X)$ with values of $X$</a></h3>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$ is a degenerate rv (<i>i.e.</i>, takes only one value with
+probability 1), then $E(X)$ equals that value.
+</fieldset>
+
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Here $X\leq Y$ means 
+$$
+\forall w\in\Omega~~X(w)\leq Y(w).
+$$
+</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ be a discrete random variable. Let $f(x), g(x)$ be
+functions such that $P(f(X)\leq g(X))=1$ and both $E(f(X))$
+and $E(g(X))$ exist. Then 
+$E(f(X))\leq E(g(X)).$
+<p></p>
+A similar result holds if $P(X\geq f(X))=1.$
+</fieldset>
+
+An immediate consequence of the above theorems is the following
+theorem.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$ always takes values in $[a,b],$ then $E(X)$
+must exist finitely, and lie in $[a,b].$
+</fieldset>
+
+The condition "$X$ always lies in $[a,b]$" may be
+written as $P(X\in[a,b])=1.$
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $a\in{\mathbb R}$ be any number. If $P(X\leq a)=1,$
+then $E(X)=a$ if and only if $X$ is degenerate at $a.$
+</fieldset>
+
+However, if $a\in{\mathbb R}$ is replaced by $\infty,$ then the
+result fails, <i>i.e.</i>, it is possible to have a random
+variable $X$ that is always finite (any real-valued random
+variable will do, since $\infty\not\in{\mathbb R}$) such
+that $E(X)=\infty.$ 
+
+<p>
+<b>EXAMPLE:</b>
+It is a standard fact that $\sum\frac{1}{n^2}&lt;\infty.$ Let the
+sum be $c.$ (The exact value of $c$
+which is $\frac{\pi^2}{6},$ is of no importance here).
+<p></p>
+Then consider a random variable $X$ that takes values
+in ${\mathbb N}$ and $P(X=n)=\frac{1}{cn^2}.$ 
+<p></p>
+Then $E(X) = \frac 1c\sum\frac 1n=\infty.$
+<img src="../image/box.png"></p>
+By the way, if $X$ can take values $x_1,x_2,...$, there
+is no guaranty that $E(X)$ will equal any of
+the $x_i$'s. For example, if the $X$ is the outcome of
+a fair die, then $E(X)=3.5,$ which is not a possible
+outcome.
+
+<h3><a
+name="Transformation properties">Transformation properties</a></h3>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ be a discrete rv such that $E(X)$ is defined. If $a,b$ are constants, then $E(a+bX) = a+bE(X).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Trivial.
+<b><i>[QED]</i></b>
+</p>
+
+
+<p>
+<b>EXERCISE:</b>
+If $E(X) = \mu,$ then what is $E(X-\mu)?$
+<img src="../image/box.png"></p>
+
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ be a random variable and $f,g$ be two functions
+such that $E(f(x))$ and $E(g(x))$ both exist finitely.
+<p></p>
+Then $E(f(X)+ g(X))$ also exists finitely and we have
+$$
+E(f(X)+ g(X)) = E(f(X))+ E(g(X)).
+$$
+</fieldset>
+
+Next we shall need a new concept, that of a convex
+function. Graphically, $f(x)$ is a convex function if its
+graph is like a bowl opening upwards (possibly slanted). Some
+examples are shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/convexex.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Mathematically we may define a convex function as follows.
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">While this definition is graphically quite intuitive, you
+may have seen other definitions of convexity
+elsewhere. Read <a href="convex.html">here</a> to learn more
+about equivalences between different definitions of convexity.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b>Definition: Convex function</b></legend>
+A function $f:{\mathbb R}\rightarrow{\mathbb R}$ is called <b>convex</b>
+if $\forall a\in{\mathbb R}$ there is a line $y = \ell_a(x)$
+through $(a,f(a))$ that lies on or below the graph
+of $f(x),$ <i>i.e.</i>, 
+$$
+\forall x\in{\mathbb R}~~ \ell_a(x) \leq f(x).
+$$
+</fieldset>
+In the following diagram the blue line is $\ell_a.$ Both the
+red lines are candidates for $\ell_b.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/suppline.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<fieldset>
+<legend><b><i>Jensen's inequality</i></b></legend>
+Let $X$ be a discrete rv such that $E(X)$ is
+defined. If $f:{\mathbb R}\rightarrow{\mathbb R}$ is any convex function for
+which $E(f(X))$ exists,  then $f(E(X))\leq E(f(X)).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\mu = E(X).$ Consider $\ell_\mu(x)$ as mentioned
+in the definition of convexity.
+<p></p>
+Since the graph of $\ell_\mu(x)$ is a straight line passing
+through $(\mu,f(\mu)),$ hence it must be of the form
+$$
+\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in{\mathbb R}.
+$$
+So 
+$$
+E(f(X)) \leq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+
+<p>
+<b>EXERCISE:</b>Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
+that both exist finitely.<img src="../image/box.png"></p>
+
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<ol>
+
+<li>
+What is $E(X)$ if $X$ takes the
+values $1,2,...,n$ with probability $\frac 1n$ each.</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most6.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most14.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most15.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most34.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+<li>
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most40.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/rv.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "rv"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

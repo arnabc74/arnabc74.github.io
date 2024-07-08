@@ -1,0 +1,9 @@
+rw = function(x) {
+    y = c(0,cumsum(2*x-1))
+    col = rep(1,length(x))
+    col[4]=2
+    plot(y,ty='b',xlab='time',ylab='',asp=1,lwd=2,col=col)
+    abline(h=0)
+    grid()
+}
+rw(sample(0:1,10,rep=T))

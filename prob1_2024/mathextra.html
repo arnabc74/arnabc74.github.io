@@ -1,0 +1,278 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Mathematical background">Mathematical background</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Result 1">Result 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Result 2">Result 2</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Result 3">Result 3</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Result 4">Result 4</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Infinite series">Infinite series</a>
+</li>
+</ul>
+<hr/>
+
+
+$\newcommand{\ddr}{\frac{d}{dr}}$
+<h1><a
+name="Mathematical background">Mathematical background</a></h1>
+
+<h3><a
+name="Result 1">Result 1</a></h3>
+
+<p></p>
+The following results are easy to prove.
+<fieldset>
+<legend><b><i></i></b></legend>
+$$\begin{eqnarray*}
+r{n\choose r}&amp;=&amp; n{n-1\choose r-1}\\
+r(r-1){n\choose r}&amp;=&amp; n(n-1){n-2\choose r-2}
+\end{eqnarray*}$$
+</fieldset>
+
+
+<h3><a
+name="Result 2">Result 2</a></h3>
+
+<p></p>
+Many useful results follow from the
+ <b>binomial theorem</b> which is given below.
+<fieldset>
+<legend><b><i></i></b></legend>
+$(a+b)^n = \sum_{r=0}^n {n\choose r} a^r b^{n-r}.$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE:</b> Learn the following argument carefully.
+$$\begin{eqnarray*}\sum_{r=0}^n r{n\choose r}a^rb^{n-r}
+                  &amp;=&amp; n\sum_{r=1}^n {n-1 \choose r-1}a^rb^{n-r}\\
+                  &amp;=&amp; na\sum_{r=1}^n {n-1 \choose r-1}a^{r-1}b^{(n-1)-(r-1)}\\
+                  &amp;=&amp; na\sum_{s=0}^{n-1} {n-1 \choose s}a^{s}b^{(n-1)-s}\\
+                  &amp;=&amp; na(a+b)^{n-1}.
+\end{eqnarray*}$$
+Here we have put $s=r-1.$
+<img src="../image/box.png"></p>
+
+<p></p>
+
+<p>
+<b>EXERCISE:</b>
+Show that
+$$
+\sum_{r=0}^n r(r-1){n\choose r}a^rb^{n-r} = n(n-1)a(a-1)(a+b)^{n-2}.
+$$
+<img src="../image/box.png"></p>
+
+<p></p>
+
+<h3><a
+name="Result 3">Result 3</a></h3>
+
+<p></p>
+Here is another useful result
+<fieldset>
+<legend><b><i></i></b></legend>
+$$
+\sum_{i=0}^r {m\choose i}{n\choose r-i} = {m+n\choose r}.
+$$
+</fieldset>
+
+<p></p>
+To prove this consider the obvious identity
+$$
+(x+1)^m (x+1)^n = (x+1)^{m+n}.
+$$
+By the binomial theorem
+$$\begin{eqnarray*}
+(x+1)^m &amp;=&amp; \sum_{r=0}^m {m\choose r} x^r\\
+(x+1)^n &amp;=&amp; \sum_{r=0}^n {n\choose r} x^r\\
+(x+1)^{m+n} &amp;=&amp; \sum_{r=0}^{m+n} {m+n\choose r} x^r\\
+\end{eqnarray*}$$
+Notice that the coefficient of $x^r$ in the product 
+$(x+1)^m (x+1)^n$ is 
+$$
+\sum_{i=0}^r {m\choose i}{n\choose r-i},
+$$
+and the  coefficient of $x^r$ in $(x+1)^{m+n}$ is 
+$$
+{m+n\choose r}.
+$$
+Equating these two coefficients we get the required result.
+<p></p>
+
+<h3><a
+name="Result 4">Result 4</a></h3>
+There is a technique to interchange the top and bottom quantities in a
+binomial coefficent. This is given below.
+<p></p>
+
+<fieldset>
+<legend><b><i></i></b></legend>
+$$
+{x-1\choose r-1} = (-1)^{x-r} {r\choose x-r}.
+$$
+</fieldset>
+This proved as follows.
+$$\begin{eqnarray*}
+{x-1\choose r-1} 
+&amp;=&amp; {x-1\choose x-r}\\
+&amp;=&amp;\frac{(x-1)(x-2)\cdots(\not x-\not 1-\not x+r+\not1)}{(x-r)!}\\
+&amp;=&amp;\frac{(x-1)(x-2)\cdots(r)}{(x-r)!}\\
+&amp;=&amp;(-1)^{x-r}\frac{(-r)(-r-1)\cdots(-r-(x-r)+1)}{(x-r)!}\\
+&amp;=&amp;(-1)^{x-r}{ r \choose x-r}.
+\end{eqnarray*}$$
+<p></p>
+
+<h2><a
+name="Infinite series">Infinite series</a></h2>
+We know how to add finitely many numbers. For example, in the sum 
+$(2+4+6.7)$ we adding three numbers, while $\sum_{n=1}^5 n^5$
+is a sum of 5 numbers. Sometimes, however, we may need to add {\em
+infinitely many} numbers, as in
+$$
+\sum_{n=0}^\infty \left(\frac12\right)^n = 
+1+\frac12+\left(\frac12\right)^2+\left(\frac12\right)^3+\cdots
+$$
+Such sums are called <b>infinite series</b> and we need special techniques
+to add an infinite series. However, 
+not all infinite series can be added. For example, if you are
+to add $1+2+3+4+\cdots$ then the sum will get bigger and bigger
+and blow up to infinity. 
+<p></p>
+
+<fieldset>
+<legend><b><i></i></b></legend>
+\centerline{<b>Geometric series</b>}
+$$
+1+r+r^2+r^3+\cdots = \frac1{1-r}.
+$$
+where $-1&lt;r&lt;1.$ If $r\leq-1$ or $r\geq1$ then the
+series cannot be added. 
+</fieldset>
+
+<p></p>
+The geometric series can be
+differentiated  term by term to produce new infinite series if
+$-1&lt;r&lt;1.$ 
+
+Thus,
+$$
+ \ddr1 + \ddr r + \ddr r^2 + \ddr r^3 + \cdots= \ddr\frac{1}{1-r}
+$$
+Hence,
+<fieldset>
+<legend><b><i></i></b></legend>
+If $-1&lt;r&lt;1,$
+$$
+ 1+2r+3r^2+\cdots=\sum_{i=1}^\infty ir^{i-1}=\frac{1}{(1-r)^2}.
+$$
+</fieldset>
+
+<p></p>
+You can again differentiate term by term to get the following.
+<fieldset>
+<legend><b><i></i></b></legend>
+If $-1&lt;r&lt;1,$
+$$
+ \sum_{i=2}^\infty i(i-1)r^{i-2}=\frac{2}{(1-r)^3}.
+$$
+</fieldset>
+
+<p></p>
+Here is another useful series.
+<fieldset>
+<legend><b><i></i></b></legend>
+\centerline{<b>Exponential series</b>}
+$$
+e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots,
+$$
+where $x$ is any number. 
+</fieldset>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>
