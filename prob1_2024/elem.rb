@@ -158,7 +158,7 @@ sample(2,100,rep=T)
 Here instead of Heads and Tails you get 1's and 2's. You can tell
 R explicitly to use the labels "H" and "T" as follows.
 <RC>
-sample( c("H", "T"), 100, rep=T)
+sample( c('H', 'T'), 100, rep=T)
 </RC>
 Note the <CODE>c(...)</CODE>. That is R's way of making an array
 of things. Here the things are the two labels "H" and "T". Note
@@ -175,11 +175,11 @@ always (no. of H's so far)/(no. of tosses so far). We shall plot
 these five proportions against (no. of tosses so far). The R
 command is
 <RC>
-outcomes = sample(c("H","T"),1000,rep=T)
-heads.so.far = cumsum(outcomes == "H")
+outcomes = sample(c('H','T'),1000,rep=T)
+heads.so.far = cumsum(outcomes == 'H')
 tosses.so.far = 1:1000
 prop = heads.so.far/tosses.so.far
-plot(prop, type="l")
+plot(prop, type='l')
 </RC>
 Explanation of the code:
 <UL>
@@ -213,7 +213,7 @@ do this as
 sample(52,5).
 </RC>
 
-<HEAD1>Practice problems</HEAD1>
+<HEAD1>Problems for practice</HEAD1>
 The following problems will help you to enjoy the course
 better. However, no coding problem will be asked in the exams.
 <OL>
