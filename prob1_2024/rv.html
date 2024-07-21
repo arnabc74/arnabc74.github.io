@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -149,7 +223,7 @@ as $y$ is a function of $x.$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 In the coin tossing example with a fair coin, let your gain be
 denoted by $X.$ (or sometimes $X(w)$, if you want to emphasize
 that it is a function).  Find $P(X=10).$
@@ -165,8 +239,10 @@ P(X=10) = P\big\{w\in\{head,tail\}~:~X(w)=10\big\}.
 $$
 Now $\big\{w\in\{head,tail\}~:~X(w)=10\big\} = \{head\},$ and so
 the problem now reduces to finding $P(\{head\}),$ which is $\frac 12.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 The general case, then, looks like this: We have a random
 experiment with sample space $\Omega.$ A random
 variable $X$ is a function $X:\Omega\rightarrow S$
@@ -191,9 +267,10 @@ call such an $A$ a "bad" subset of $S$
 </tr>
 </table>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 A fair die is rolled. I shall pay you Rs 10 if the die shows an
 even number, you'll pay me Rs 20 otherwise. Again, let's denote
 by $X$ your gain (in Rs). Express $X$ as a function
@@ -204,8 +281,10 @@ find $P(X\in A).$
 <p></p>
 <b>SOLUTION:</b>
 Here $X ^{-1}(A) = \{2,4,6\}.$ So $P(X=10) = P(\{2,4,6\}) = \frac 16+\frac 16+\frac 16 = \frac 12.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 In each of  these examples we had a random variable $X$ that
 took only two values $10$ and $-20.$ Which $X$ do
 you think is more profitable for you? Well, both are actually the
@@ -227,6 +306,7 @@ to $\{10,-20\}$ such that the distribution is as
 specified. In this
 course, we shall often omit  the sample space or
 the function.
+<p></p>
 
 <h2><a
 name="Combining different random variables">Combining different random variables</a></h2>
@@ -236,9 +316,10 @@ to compute $X+Y.$ Since random variables are actually
 functions, so this sum can be formed only when $X$
 and $Y$ have the same domain. This simple point sometimes
 needs careful handling as the following example shows.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 I am playing against two gamblers simultaneosly. One gambler
 tosses a fair coin and pays Rs 10 for a head and  takes Rs 20 for  a
 tail. The other gambler takes Rs 3 from me, rolls a fair die and pays me as many
@@ -257,8 +338,10 @@ to ${\mathbb R}.$ For example, $X(head,4) = 10$
 and $Y(head,4) = 4-3 = 1.$
 <p></p>
 Now it is meaningful to talk about $X+Y.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <h2><a
 name="Different types">Different types</a></h2>
@@ -287,6 +370,7 @@ have $P(X=a)&gt;0.$ </li>
 
 </ul>
 In this course we shall focus on discrete random variables only.
+<p></p>
 
 <p></p>
 The distribution of a discrete random variable is completely
@@ -294,6 +378,7 @@ specified by the countable set of values it can take, and the
 probability with which it takes each of those values. These two
 specifications together are called the <b>probability mass
 function (PMF)</b> of the rv. 
+<p></p>
 
 <h2><a
 name="Functions of a random variable">Functions of a random variable</a></h2> 
@@ -304,6 +389,7 @@ function).
 <p></p>
 Notice that any function of a discrete random variable must again
 be a discrete random variable. 
+<p></p>
 
 <h1><a
 name="CDF">CDF</a></h1>
@@ -318,11 +404,12 @@ This definition holds for <i>all</i> real-valued random variables
 (not just the discrete ones).
 <p></p>
 The following properties are easy to prove.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $F(x)$ be the CDF of some rv $X.$ Then 
-<ol>
+<ol type="">
 
 <li>$F(x)$ must be nondecreasing, <i>i.e.</i>, $\forall x &lt; y\in{\mathbb R}~F(x)\leq F(y).$</li>
 
@@ -341,11 +428,12 @@ $\forall a\in{\mathbb R}~~F(a+)=F(a).$
 <p>
 <b><i>Proof:</i></b>
 
-<ol>
+<ol type="">
 
 <li>Since $\{X\leq x\} \subseteq \{X\leq y\},$ hence $P(\{X\leq
 x\}) \leq P(\{X\leq y\}),$ <i>i.e.</i>, $F(x)\leq F(y).$</li>
 
+<p></p>
 
 <li>
 Shall show 
@@ -354,14 +442,17 @@ $$
 $$
 (Actually we may drop the absolute value sign around $F(x)$
 since it is anyway $\geq 0$).
+<p></p>
 
 <p></p>
 
+<p></p>
 Take any $\epsilon&gt;0.$
+<p></p>
 
 <p></p>
 
-
+<p></p>
 Let $A_n$ be the event that $\{X \leq -n\}$
 for $n\in{\mathbb N}.$ Then $F(-n) = P(A_n).$
 Clearly, $A_1\supseteq A_2\supseteq A_3\supseteq\cdots$
@@ -392,16 +483,18 @@ around $|F(x)-1|$ is $1-F(x)$,
 since $F(x)\leq 1,$ anyway.)
 <p></p>
 
-
+<p></p>
 Take any $\epsilon&gt;0.$
+<p></p>
 
 <p></p>
 
-
+<p></p>
 Let $A_n$ be the event that $\{X \leq n\}$
 for $n\in{\mathbb N}.$ Then $P(A_n)=F(n).$
 <p></p>
 
+<p></p>
 Clearly, $A_1\subseteq A_2\subseteq A_3\subseteq\cdots$
 and $\cup A_n=\Omega.$
 <p></p>
@@ -419,6 +512,7 @@ So $|F(x)-1| &lt; \epsilon,$ as required.
 </div>
 </li>
 
+<p></p>
 
 <li>
 Shall show:
@@ -429,7 +523,7 @@ $$
 Take any $a\in{\mathbb R}$ and any $\epsilon&gt;0.$
 <p></p>
 Let $A_n$ be the event that $\left\{X\leq a+\frac 1n\right\}$ for $n\in{\mathbb N}.$
-
+<p></p>
 Also let $A$ be the event that $\{X\leq a\}.$
 <p></p>
 
@@ -458,11 +552,11 @@ So $|F(a+x)-F(a)|&lt;\epsilon,$ as required.
 <b><i>[QED]</i></b>
 </p>
 
-
+<p></p>
 A rather nontrivial  theorem is that the converse is also
 true. This converse is called the <b>fundamental theorem of
 probability</b>.
-
+<p></p>
 
 <fieldset>
 <legend><b><i>Fundamental theorem of probability</i></b></legend>
@@ -475,6 +569,7 @@ rv $X$ with this $F(x)$ as its CDF.
 <b><i>Proof:</i></b>Too technical for this course.<b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -515,6 +610,7 @@ So $|F(x)-\ell|\leq \epsilon,$ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -543,6 +639,7 @@ Hence $P(X &lt; a) = F(a-),$ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -558,8 +655,10 @@ $P(X=a) = P(X\leq a)-P(X &lt; a).$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 The following theorem justifies the adjective "continuous" for a
 random variable.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -573,10 +672,12 @@ Obvious from the last theorem.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h1><a
 name="PMF">PMF</a></h1>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Probability Mass Function (PMF)</b></legend>
@@ -604,13 +705,15 @@ which the PMF is
 $$
 p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
 $$
-
+<p></p>
 The CDF of a discrete random variable is like a step function. 
 <h1><a
 name="Expectation">Expectation</a></h1>
 
+<p></p>
 For many random variables we see a striking example of
 statistical regularity. 
+<p></p>
 
 <font color="red">
 <pre>
@@ -685,12 +788,13 @@ is $\infty$ (resp, $-\infty$)</li>
 
 </fieldset>
 
+<p></p>
 
 <h2><a
 name="Expectation of a function">Expectation of a function</a></h2>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 4:</b>&nbsp;
 Suppose I have a rv that takes values $-1,0$ and $1$
 with probabilities $0.1, 0.5$ and $0.4,$ respectively.
 What is $E(X^2)?$
@@ -699,11 +803,14 @@ What is $E(X^2)?$
 Here $X^2$ is a new rv. Call it $Y,$ say. Then $Y$
 takes values $0$ and $1$ with probabilities $0.5$
 each.
+<p></p>
 
 <p></p>
 So $E(Y) = \frac 12.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 Here is another technique to arrive at the same result. 
 $$
 E(X^2) = 0.1\times (-1)^2 + 0.5\times 0^2 + 0.4\times 1^2 = 0.5.
@@ -711,6 +818,7 @@ $$
 This technique is often easier because here we do not need to
 find the distribution of $Y=X^2$ first. Both these
 techniques will always give the same answer. 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -737,6 +845,7 @@ property of absolutely convergent series.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h2><a
 name="Properties of expectation">Properties of expectation</a></h2>
@@ -744,6 +853,7 @@ name="Properties of expectation">Properties of expectation</a></h2>
 <h3><a
 name="Relation of $E(X)$ with values of $X$">Relation of $E(X)$ with values of $X$</a></h3>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -751,6 +861,7 @@ If $X$ is a degenerate rv (<i>i.e.</i>, takes only one value with
 probability 1), then $E(X)$ equals that value.
 </fieldset>
 
+<p></p>
 
 <table align="right" width="20%" border="1">
 <tr>
@@ -772,8 +883,10 @@ $E(f(X))\leq E(g(X)).$
 A similar result holds if $P(X\geq f(X))=1.$
 </fieldset>
 
+<p></p>
 An immediate consequence of the above theorems is the following
 theorem.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -781,8 +894,10 @@ If $X$ always takes values in $[a,b],$ then $E(X)$
 must exist finitely, and lie in $[a,b].$
 </fieldset>
 
+<p></p>
 The condition "$X$ always lies in $[a,b]$" may be
 written as $P(X\in[a,b])=1.$
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -790,14 +905,16 @@ Let $a\in{\mathbb R}$ be any number. If $P(X\leq a)=1,$
 then $E(X)=a$ if and only if $X$ is degenerate at $a.$
 </fieldset>
 
+<p></p>
 However, if $a\in{\mathbb R}$ is replaced by $\infty,$ then the
 result fails, <i>i.e.</i>, it is possible to have a random
 variable $X$ that is always finite (any real-valued random
 variable will do, since $\infty\not\in{\mathbb R}$) such
 that $E(X)=\infty.$ 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 5:</b>&nbsp;
 It is a standard fact that $\sum\frac{1}{n^2}&lt;\infty.$ Let the
 sum be $c.$ (The exact value of $c$
 which is $\frac{\pi^2}{6},$ is of no importance here).
@@ -806,12 +923,14 @@ Then consider a random variable $X$ that takes values
 in ${\mathbb N}$ and $P(X=n)=\frac{1}{cn^2}.$ 
 <p></p>
 Then $E(X) = \frac 1c\sum\frac 1n=\infty.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 By the way, if $X$ can take values $x_1,x_2,...$, there
 is no guaranty that $E(X)$ will equal any of
 the $x_i$'s. For example, if the $X$ is the outcome of
 a fair die, then $E(X)=3.5,$ which is not a possible
 outcome.
+<p></p>
 
 <h3><a
 name="Transformation properties">Transformation properties</a></h3>
@@ -827,12 +946,14 @@ Trivial.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 1:</b>&nbsp;
 If $E(X) = \mu,$ then what is $E(X-\mu)?$
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -845,6 +966,7 @@ E(f(X)+ g(X)) = E(f(X))+ E(g(X)).
 $$
 </fieldset>
 
+<p></p>
 Next we shall need a new concept, that of a convex
 function. Graphically, $f(x)$ is a convex function if its
 graph is like a bowl opening upwards (possibly slanted). Some
@@ -917,16 +1039,18 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
-that both exist finitely.<img src="../image/box.png"></p>
+<b>EXERCISE 2:</b>&nbsp;Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
+that both exist finitely.</p>
 
+<p></p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
+<ol type="">
 
 <li>
 What is $E(X)$ if $X$ takes the
@@ -1023,7 +1147,7 @@ begin disqus code --> <div id="disqus_thread"></div>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/prob1/rv.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = "https://arnabc74.github.io/prob1_2024/rv.html"; // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = "rv"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
@@ -1044,6 +1168,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

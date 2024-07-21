@@ -97,20 +97,9 @@ home. Make friends (take the initiative), play, read story books,
 and above all don't skip meals or sleep. Also explore the nooks
 and corners of the campus, the rooftops, ponds, and the strange
 hidden stairways (I leave you to find them!). 
-<HEAD1>Unofficial help</HEAD1>
-If you are in some kind of distress and would like some
-unofficial private advice, you may contact the following faculty
-members (email addresses shown in parentheses. All emails are @isical.ac.in) 
-<OL>
-<LI>Bimal Roy (bimal)</LI>
-<LI>Sandip Das (sandipdas)</LI>
-<LI>Arijit Bishnu (arijit)</LI>
-<LI>Arnab Chakraborty (arnabc)</LI>
-</OL>
-These professors were all students here and are enthusiastic
-about helping students in distress.
 
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/survival.html" id="survival"/></E>@}
+
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/survival.html" id="survival"/></E>@}
 
 
 </NOTE>

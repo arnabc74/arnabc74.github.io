@@ -22,5 +22,5 @@ After midsem:
 <LI><LINK to="distrib2.html">Infinite support</LINK></LI></UL></LI>
 </UL>
 <LINK to="index.html">Back to class webpage</LINK>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/notes.html" id="notes"/></E>@}
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/notes.html" id="notes"/></E>@}
 </NOTE>

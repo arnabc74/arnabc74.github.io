@@ -90,6 +90,9 @@ mean(event)
 </RC>
 </EXR>
 
+Now we are going to learn some theorems that are
+interconnected. There interconnections are shown below:
+<CIMG web="pflink.png"/>
 <HEAD2>Reflection principle</HEAD2>
 <BOX name="Reflection principle">
 Draw any horizontal line <M>L</M> at an integer height. Pick any two
@@ -226,6 +229,76 @@ after the first step. So the last exercise may be applied
 between <M>A:(1,1)</M> and <M>B:(10,3).</M>
 </EXM>
 
+<HEAD2>First passage theorem</HEAD2>
+<THM name="First passage theorem">
+Consider all paths of length <M>n</M> starting at <M>(0,0).</M>
+Let <M>r\in\{1,...,n\}.</M> Then the number of paths that attain
+height <M>r</M> for the first time at time <M>n</M> is 
+<D>
+N_{n-1,r-1}-N_{n-1,r+1}.
+</D>
+</THM>
+<PF>
+Such a path must pass through <M>(n-1,r-1)</M> and <M>(n,r).</M>
+Also it must never meet the the line at height <M>r</M> up to and
+including time <M>n-1.</M>
+<P/>
+By reflection principle the path up to time <M>n-1</M> may be
+chosen in <M>N_{n-1,r-1}-N_{n-1,r+1}</M> ways. The step from
+time <M>n-1</M> to <M>n</M> is forced (it has to move up). 
+<P/>
+Hence the result.
+</PF>
+
+
+<HEAD2>Maximum theorem</HEAD2>
+<THM name="Maximum theorem">
+Consider all paths of length <M>n</M> starting from <M>(0,0).</M>
+Let <M>r\in\{0,...,n\}.</M> Then 
+the number of paths with maximum <M>r</M> is <M>N_{n,r}</M>
+if <M>n,r</M> have the same parity, and <M>N_{n,r+1}</M> else.
+</THM>
+<PF>
+We need to  find the number of paths with maximum <M>r.</M>
+<P/>
+We shall split the set of all such paths
+based on where the path ends. Clearly, it can end somewhere <M>\leq r.</M>
+<P/>
+Fix any end point <M>A:(n,k)</M> for <M>k\leq r.</M> 
+So enough to count all paths with maximum <M>r</M> and ending at
+some given <M>A.</M>
+<P/>
+<HIDE lab="why">
+<MSG>Notice that it is enough to count all paths with maximum <M>\geq
+r</M> and ending at <M>A.</M></MSG>
+<HIDDEN>If this number is <M>M_r</M> then our answer is <M>M_r-M_{r+1}.</M>
+</HIDDEN></HIDE>
+This is <M>N_{n,2r-k}</M> by the <B>reflection principle</B>. 
+<P/>
+So the number of paths with maximum <M>r</M> and ending
+at <M>A</M> is 
+<D>
+N_{n,2r-k} - N_{n,2(r+1)-k}.
+</D>
+We shall now sum this over <M>k\leq r.</M> Two points are to
+be noted about this: 
+<UL>
+<LI>If <M>N_{n,2r-k}</M> is denoted by <M>a_k,</M> then we are
+summing 
+<D>
+(a_r-a_{r-2}) + (a_{r-1}-a_{r-3}) + (a_{r-2}-a_{r-4}) + \cdots 
+</D>
+Notice the two-step telescoping structure: each negative term
+cancels the positive term two steps ahead. 
+</LI>
+<LI>The sequence <M>(a_k)</M> eventually becomes 0, as <M>k</M>
+goes down. </LI></UL>
+So only the first two two terms survive, i.e., <M>a_r+a_{r-1}</M>
+or <M>N_{n,r}+N_{n,r+1}.</M>
+<P/>
+We know that <M>N_{a,b}</M> is 0 if <M>a,b</M> have opposite
+parities. Hence the result.
+</PF>
 
 
 <HEAD2>No 0-return theorem</HEAD2>
@@ -497,79 +570,9 @@ sum? </MSG><HIDDEN>
 </HIDDEN></HIDE>
 </PF>
 
-<HEAD2>Maximum theorem</HEAD2>
-<THM name="Maximum theorem">
-Consider all paths of length <M>n</M> starting from <M>(0,0).</M>
-Let <M>r\in\{0,...,n\}.</M> Then 
-the number of paths with maximum <M>r</M> is <M>N_{n,r}</M>
-if <M>n,r</M> have the same parity, and <M>N_{n,r+1}</M> else.
-</THM>
-<PF>
-We need to  find the number of paths with maximum <M>r.</M>
-<P/>
-We shall split the set of all such paths
-based on where the path ends. Clearly, it can end somewhere <M>\leq r.</M>
-<P/>
-Fix any end point <M>A:(n,k)</M> for <M>k\leq r.</M> 
-So enough to count all paths with maximum <M>r</M> and ending at
-some given <M>A.</M>
-<P/>
-<HIDE lab="why">
-<MSG>Notice that it is enough to count all paths with maximum <M>\geq
-r</M> and ending at <M>A.</M></MSG>
-<HIDDEN>If this number is <M>M_r</M> then our answer is <M>M_r-M_{r+1}.</M>
-</HIDDEN></HIDE>
-This is <M>N_{n,2r-k}</M> by the <B>reflection principle</B>. 
-<P/>
-So the number of paths with maximum <M>r</M> and ending
-at <M>A</M> is 
-<D>
-N_{n,2r-k} - N_{n,2(r+1)-k}.
-</D>
-We shall now sum this over <M>k\leq r.</M> Two points are to
-be noted about this: 
-<UL>
-<LI>If <M>N_{n,2r-k}</M> is denoted by <M>a_k,</M> then we are
-summing 
-<D>
-(a_r-a_{r-2}) + (a_{r-1}-a_{r-3}) + (a_{r-2}-a_{r-4}) + \cdots 
-</D>
-Notice the two-step telescoping structure: each negative term
-cancels the positive term two steps ahead. 
-</LI>
-<LI>The sequence <M>(a_k)</M> eventually becomes 0, as <M>k</M>
-goes down. </LI></UL>
-So only the first two two terms survive, i.e., <M>a_r+a_{r-1}</M>
-or <M>N_{n,r}+N_{n,r+1}.</M>
-<P/>
-We know that <M>N_{a,b}</M> is 0 if <M>a,b</M> have opposite
-parities. Hence the result.
-</PF>
-
-<HEAD2>First passage theorem</HEAD2>
-<THM name="First passage theorem">
-Consider all paths of length <M>n</M> starting at <M>(0,0).</M>
-Let <M>r\in\{1,...,n\}.</M> Then the number of paths that attain
-height <M>r</M> for the first time at time <M>n</M> is 
-<D>
-N_{n-1,r-1}-N_{n-1,r+1}.
-</D>
-</THM>
-<PF>
-Such a path must pass through <M>(n-1,r-1)</M> and <M>(n,r).</M>
-Also it must never meet the the line at height <M>r</M> up to and
-including time <M>n-1.</M>
-<P/>
-By reflection principle the path up to time <M>n-1</M> may be
-chosen in <M>N_{n-1,r-1}-N_{n-1,r+1}</M> ways. The step from
-time <M>n-1</M> to <M>n</M> is forced (it has to move up). 
-<P/>
-Hence the result.
-</PF>
 
 <HEAD2>Problems for practice</HEAD2>
-<OL>
-<LI>
+<EXR>
 (Ballot problem) two candidates are contesting in
 a vote. There are <M>n</M> voters who have cast their votes. The
 votes are being counted with the <M>n</M> ballot papers ordered
@@ -581,30 +584,105 @@ is
 <D>
 [[p-q][p+q]].
 </D>
-</LI>
-<LI>Let <M>a,b>0.</M> Show that the number of paths from <M>(0,0)</M> to <M>(n,a)</M> that is
-always <M>>-b</M> is <M>N_{n,a}-N_{n,a+2b}.</M> </LI>
-<LI>Let <M>b> a> 0.</M> Show that the number of paths
+<ANS>
+Let <M>y_i</M> be the lead of <M>A</M> over <M>B</M>
+after <M>i</M> ballot papers have been counted. If we
+plot <M>y_i</M> against <M>i,</M> we shall get a random walk
+starting from <M>(0,0)</M> and ending at <M>(p+q,p-q).</M> 
+
+The total number of outcomes is <M>N_{p+q,p-q} = {p+q\choose p}
+= [[(p+q)!][p!q!]].</M> 
+
+The
+favourable oucomes correspond to the paths that always remains
+positive 0 after starting from (0,0).
+ These paths must visit (1,1) after <M>(0,0).</M> 
+
+Hence #{paths from (0,0) to <M>(p+q,p-q)</M> ever returning to 0}
+= #{paths from (1,1) to <M>(p+q,p-q)</M> never visiting  0}<BR/>
+= #{paths from (1,1) to <M>(p+q,p-q)</M>}
+- #{paths from (1,1) to <M>(p+q,p-q)</M>  visiting  0}<BR/>
+= #{paths from (1,1) to <M>(p+q,p-q)</M>}
+- #{paths from (1,1) to <M>(p+q,q-p)</M>  visiting  0}<BR/>
+= <M>N_{p+q-1,p-q-1}-N_{p+q-1,q-p-1}</M><BR/>
+ = <M>{p+q-1\choose p-1}- {p+q-1\choose q-1} =
+[[(p+q-1)!][p!q!]](p-q).</M>
+
+So the required probability is <M>[[p-q][p+q]],</M> as required.
+</ANS>
+</EXR>
+<EXR><CIMG web="most22.png"/>
+<ANS>This is just the complement of the last problem. So the answer is <M>1-[[a-b][a+b]]=[[2b][a+b]].</M></ANS>
+</EXR>
+
+<EXR>Let <M>a,b>0.</M> Show that the number of paths from <M>(0,0)</M> to <M>(n,a)</M> that are
+always <M>>-b</M> is <M>N_{n,a}-N_{n,a+2b}.</M> <ANS>
+#{paths from <M>(0,0)</M> to <M>(n,a)</M> that are always <M>>-b</M>}<BR/>
+=#{paths from <M>(0,0)</M> to <M>(n,a)</M>}-#{paths from <M>(0,0)</M> to <M>(n,-a-2b)</M>} by reflection principle<BR/>
+ = <M>N_{n,a}-N_{n,-a-2b}</M><BR/> 
+ = <M>N_{n,a}-N_{n,a+2b}</M> by symmetry.
+
+</ANS></EXR>
+
+<EXR>Let <M>b> a> 0.</M> Show that the number of paths
 from <M>(0,0)</M> to <M>(n,a)</M> that are
-always <M><b</M> is <M>N_{n,a}-N_{n,2b-a}.</M> (Thanks to
-Aadrita for pointing out a mistake here, which I have now corrected).</LI>
-<LI>Let <M>a>c>0</M> and <M>b>0.</M> Show that the number of
+always <M><b</M> is <M>N_{n,a}-N_{n,2b-a}.</M>
+<ANS>
+#{paths from <M>(0,0)</M> to <M>(n,a)</M> that are always <M><b</M>}<BR/>
+=#{paths from <M>(0,0)</M> to <M>(n,a)</M>}-#{paths from <M>(0,0)</M> to <M>(n,2b-a)</M>} by reflection principle<BR/>
+ = <M>N_{n,a}-N_{n,2b-a}.</M> 
+</ANS></EXR>
+
+<EXR>Show that if <M>a> c> 0</M>  and <M>b>0</M>, then  the number of paths from (0,0) to <M>(n,c)</M>
+  that attain height <M>a</M>  and <I>then</I>  attain height <M>-b</M>  before finishing at <M>(n,c),</M>  is <M>N_{n,2a+2b+c}.</M> 
+ The paths may have also attained height <M>-b</M>  before attaining height  <M>a.</M>
+<ANS>
+<CIMG web="drefl.png"/>
+</ANS> </EXR>
+<EXR>Let <M>a>c>0</M> and <M>b>0.</M> Show that the number of
 paths from <M>(0,0)</M> which touch the
 horizontal line at height <M>a</M> and then lead to <M>(n,c)</M>
 without having touched the horizontal line at height <M>-b</M> is  
 <M>N_{n,2a-c}-N_{n,2a+2b+c}.</M> (Note that the path may touch
 the horizontal line at height <M>-b</M> <I>before</I> hitting
-the line at height <M>a.</M>)</LI>
-<LI>Prove that there are as many paths from (0,0)
+the line at height <M>a.</M>)<ANS>
+Let <M>A = </M> {paths from <M>(0,0)</M> which touch the
+horizontal line at height <M>a</M> and then lead to <M>(n,c)</M> }.
+Let <M>B = </M>{paths in <M>A</M>  that do not attain height <M>-b</M>  <I>after</I>  attaining height <M>a</M> }.
+
+Then the answer is <M>|A|-|B|.</M>   By reflection principle <M>|A| = N_{n,2a-c}</M>  and <M>|B| = N_{n,2a+2b+c}.</M>
+Hence the result.
+</ANS></EXR>
+
+<EXR>Prove that there are as many paths from (0,0)
 to <M>(2n+2,0)</M> with all interior vertices <M>>0</M> as there
 are paths from (0,0) to <M>(2n,0)</M> where all interior
-vertices are <M>\geq 0.</M></LI>
-<LI>The probability that before time <M>2n</M> there occur
+vertices are <M>\geq 0.</M><ANS>
+Any path from (0,0)
+to <M>(2n+2,0)</M> with all interior vertices <M>>0</M> must
+visit (1,1) after <M>(0,0)</M>, and <M>(2n+1,1)</M>
+before <M>(2n+2,0).</M>
+So #{paths from (0,0)
+to <M>(2n+2,0)</M> with all interior vertices <M>>0</M>}<BR/>
+= #{paths from (1,1)
+to <M>(2n+1,1)</M> with all interior vertices <M>>0</M>}<BR/>
+= #{paths from (1,0)
+to <M>(2n+1,0)</M> with all interior vertices <M>\geq 0</M>}<BR/>
+= #{paths from (0,0)
+to <M>(2n,0)</M> with all interior vertices <M>\geq 0</M>}.
+</ANS></EXR>
+
+
+<EXR>True or false: The probability that before time <M>2n</M> there occur
 exactly <M>r</M> returns to the origin equals the probability
-that a return occurs at time <M>2n</M> is preceded by at
-least <M>r</M> returns.</LI>
-<LI>Consider random paths of length <M>2n</M> starting
-from <M>(0,0).</M> Let <M>k\in\zz.</M> Consider the two events:
+that a return occurs at time <M>2n</M>  preceded by at
+least <M>r</M> returns.
+<ANS>False. Consider <M>r=1</M>  and <M>n=2.</M>  Then the first probability is <M>[[12]].</M> 
+ But the second probability is <M>[[14]].</M></ANS>
+</EXR>
+
+<EXR>Consider random paths of length <M>2n</M> starting
+from <M>(0,0).</M> Let <M>k\in\{1,...,n\}.</M> Consider the two events:
 <Q>
 <M>A = </M> the path passes through <M>(2n,0)</M> and the maximum
 height of the interior vertices is <M>\geq k.</M>
@@ -613,10 +691,13 @@ and
 <Q>
 <M>B = </M> the path passes through <M>(2n,2k).</M>
 </Q>
-Show that <M>P(A) = P(B).</M> [Thanks to Avinash for pointing out
-a mistake in this problem, which is now corrected.]
-</LI>
-<LI>Find the fallacy in the following argument:
+Show that <M>P(A) = P(B).</M>  Is this true if <M>k\leq 0?</M>  Is it true if <M>k>n?</M>
+<ANS>
+For <M>k\in\{1,...,n\},</M>  the result follows directly from reflection principle. The result fails if <M>k\leq 0.</M> 
+ One counterexample, if when <M>k=-10</M>  and <M>n=1.</M>  The result holds if <M>k>n,</M>  because then <M>P(A)=P(B)=0.</M>
+</ANS></EXR>
+
+<EXR>Find the fallacy in the following argument:
 Consider the set of all paths of length 10 starting
 from <M>(0,0).</M>
 <P/>
@@ -624,20 +705,31 @@ Let <M>A = </M>set of paths that never return to 0.
 <P/>
 Let <M>B = </M>set of paths that never return to 0 at or before time 8.
 
-<P/>
 Now define <M>C_k</M> as the set of all paths
 that do not hit 0 at time <M>2k.</M> Then <M>A = \cap_1^5 C_k</M>
 while <M>B = \cap_1^4 C_k.</M> So <M>|A|\leq |B|.</M>
-<P/>
+
 Again,  any path that has not hit 0 at or before time 8 can be
 continued for two more time units without hitting
 0. So <M>|B| \leq |A|.</M> 
-<P/>
+
 Hence <M>|A|=|B|.</M> 
- </LI>
-<LI><CIMG web="most22.png"/></LI>
-<LI><CIMG web="most56.png"/></LI>
-</OL>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/fluc.html" id="fluc"/>
+<ANS>The "<M>|B|\leq |A|</M> " argument is wrong. What it says is: number of paths <I>of length 8</I>
+ that never return to 0 is <M>\leq |A|</M> ".</ANS> </EXR>
+
+<EXR><CIMG web="most56.png"/>
+<ANS>
+Let the total number of balls in either box be <M>k.</M>  Let there be <M>w_i</M>  white balls in box <M>i.</M>  Then the
+ given condition says 
+<D>(*([[w_1][k]])*)^n = (*([[w_2][k]])*)^n + (*(1-[[w_2][k]])*)^n,</D>
+or
+<D>w_1^n = w_2^n + (*(k-w_2)*)^n.</D>
+Since <M>n\geq 3,</M>  hence by Fermat's last theorem, there cannot be any nonzero integer solution for this. 
+So either <M>w_1 = 0</M>  or <M>w_2 = 0</M>  or <M>k-w_2 = 0.</M>  Here <M>w_1</M>  cannot be zero, since then the lhs is
+ zero, while the rhs is positive. If <M>w_2 = 0</M>, then the first box has all whites and the second all blacks. If <M>k-w_2=0,</M> 
+ then both the boxes has all whites.
+</ANS>
+</EXR>
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/fluc.html" id="fluc"/>
 </E>@}
 </NOTE>

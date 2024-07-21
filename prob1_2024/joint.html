@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -94,6 +168,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <h1><a
 name="Joint distribution">Joint distribution</a></h1>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Jointly distributed random variables</b></legend>
@@ -108,6 +183,7 @@ distributed real-valued random variables, then you may consider
 them as components of an ${\mathbb R}^n$-valued random
 variable. Sometimes we call such a random variable a <b>multivariate</b>
 random variable, as opposed to a <b>univariate</b> one.
+<p></p>
 
 <p></p>
 We shall now extend the various familiar concepts about ${\mathbb R}$-valued  random
@@ -124,7 +200,9 @@ F(x_1,...,x_n) = P(X_1\leq x_1~\&amp;~\cdots~\&amp;~X_n\leq x_n).
 $$
 </fieldset>
 
+<p></p>
 The extension of the concept of discreteness is straightforward.
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Discrete</b></legend>
@@ -145,6 +223,7 @@ For an ${\mathbb R}^n$-valued random variable, these two conditions
 are not equivalent (the latter is stronger). We use the stronger
 condition as the defintion of continuity of
 an ${\mathbb R}^n$-valued random variable.
+<p></p>
 
 <table align="right" width="20%" border="1">
 <tr>
@@ -163,11 +242,13 @@ An ${\mathbb R}^n$-valued random variable $X$ is
 called <b>continuous</b> if its joint CDF is continuous.
 </fieldset>
 
+<p></p>
 The following example shows that the first condition is indeed
 weaker than the second.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 Consider the function with the following graph:
 <center>
 <table width="100%">
@@ -198,14 +279,18 @@ F(a,b) = P(X\leq a~\&amp;~1\leq b) = \left\{\begin{array}{ll}0&\text{if }b &lt;
 $$
 If we take $(a_n,b_n) =\left( \frac 12, 1-\frac 1n\right),$
 then $(a_n,b_n)\rightarrow \left(\frac 12,1\right).$ 
+<p></p>
 
 <p></p>
 Now $F(a_n,b_n)\equiv 0,$ and so $F(a_n,b_n)\rightarrow 0.$
+<p></p>
 
 <p></p>
 But $F\left(\frac 12,1\right) = \frac 12\neq 0.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Joint PMF</b></legend>
@@ -217,6 +302,7 @@ p(x_1,...,x_n)= P(X_1=x_1~\&amp;~\cdots~\&amp;~X_n=x_n).
 $$
 </fieldset>
 
+<p></p>
 
 <h2><a
 name="Marginal distributions">Marginal distributions</a></h2>
@@ -232,6 +318,7 @@ $P(X\in B) = P(X\in B~\&amp;~ Y\in{\mathbb R}) = P((X,Y)\in A),$
 where $A = B\times{\mathbb R}.$ Similarly, for $Y.$
 </blockquote>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Marginal distribution</b></legend>
@@ -242,6 +329,7 @@ a $k$-dimensional <b>marginal</b> for the joint distribution
 of $X.$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -256,12 +344,15 @@ F_Y(y) = P(Y\leq y) = \lim_{x\rightarrow \infty} F(x,y).
 $$
 </fieldset>
 
+<p></p>
 
 <h2><a
 name="Expectation">Expectation</a></h2>
 
+<p></p>
 The definition of expectation is  straightforward extension of
 the univariate case. 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Expectation</b></legend>
@@ -277,7 +368,7 @@ $$
 </li>
 
 <li>If $\sum_x |h(x)| p(x) = \infty,$ then 
-<ol>
+<ol type="">
 
 <li>if all but finitely many terms in the sum are positive, we
 define $E(h(X))=\infty.$</li>
@@ -294,15 +385,18 @@ then $E(h(X))$ is undefined.</li>
 
 </ul>
 
+<p></p>
 
 </fieldset>
 
+<p></p>
 If $X$ is an ${\mathbb R}^n$-valued random variable,
 and $h:{\mathbb R}^n\rightarrow {\mathbb R}^m$ is any function, 
 then $E(h(X))$ is defined component by component, and is said
 to exists finitely iff all the component expectations exist finitely.
 <p></p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -321,7 +415,7 @@ discrete random
 variables.
 <p></p>
 First, notice that $X+Y$ is again discrete. 
-<blockquote>
+<blockquote class="scrpt">
 <b>Because:</b>
 If $X$ takes values in the countable
 set $\{x_1,x_2,...\}$ and $Y$ take values in the
@@ -344,6 +438,7 @@ So $\sum_i\sum_j |x_i p_{ij}|&lt; \infty,$ and $\sum_j\sum_i |y_j p_{ij}|&lt; \i
 <p></p>
 Now $|x_i+y_j|\leq |x_i|+|y_j|$ by triangle
 inequality.
+<p></p>
 
 <p></p>
 Hence $\sum_{i,j} |(x_i+y_j)p_{ij}| &lt;\infty$ and
@@ -356,7 +451,9 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 This result leads to simple trick that we discuss next.
+<p></p>
 
 <h3><a
 name="Indicator trick">Indicator trick</a></h3>
@@ -388,6 +485,7 @@ correctly. This is has probability $\frac{(n-1)!}{n!} = \frac 1n.$
 So $E(X) = n\times \frac 1n = 1.$ 
 <p></p>
 It's a bit surprising that $E(X)$ does not depend on $n.$
+<p></p>
 
 <h2><a
 name="Independent random variables">Independent random variables</a></h2>
@@ -400,6 +498,7 @@ S.$ Similarly, if $X:\Omega\rightarrow S$ and $Y:\Omega\rightarrow
 T$ are jointly distributed random
 variables, then "an event in terms of $X,Y$" means 
 $\{w\in\Omega~:~ (X(w),Y(w))\in A\},$ where $A\subseteq S\times T.$
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Indepdendent random variables</b></legend>
@@ -410,15 +509,18 @@ of $\{X_i~:~i\in A\}$ is independent of any event in terms
 of $\{X_i~:~i\in B\}.$
 </fieldset>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 If $X,Y,Z$ are independent random variables, then 
 $$
 P(X^2+Y^2 \leq 4~\&amp;~ Z\neq 5) = P(X^2+Y^2 \leq 4)P(Z\neq 5).
 $$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -433,6 +535,7 @@ Split $\{1,...,n\}$ into two disjoint
 subsets $\{i_1,...,i_k\}$ and $\{j_1,...,j_{n-k}\}.$
 <p></p>
 
+<p></p>
 Let $Y = f(X_{i_1,...,i_k})$ and $Z =
 g(X_{j_1,...,j_{n-k}}),$ where $f,g$ are any two
 functions. 
@@ -447,6 +550,7 @@ $$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -459,6 +563,7 @@ their joint PMF is $h(x,y) = p(x)q(y).$
 <b><i>Proof:</i></b>Immediate from the definition of independence.<b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -471,6 +576,7 @@ their joint CDF is $H(x,y) = F(x)G(y).$
 <b><i>Proof:</i></b>Immediate from the definition of independence.<b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -482,6 +588,7 @@ expectations, then $E(XY) = E(X)E(Y).$
 <b><i>Proof:</i></b>
 We shall prove this for the case where $X,Y$ are both
 discrete (hence so is $(X,Y)$). 
+<p></p>
 
 <p></p>
 Let $p(x,y), p_X(x)$ and $p_Y(y)$ be the joint and
@@ -497,6 +604,7 @@ absolutely convergent.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h2><a
 name="Covariance">Covariance</a></h2>
@@ -510,6 +618,7 @@ cov(X,Y) = E[(X-E(X))(Y-E(Y))].
 $$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -522,6 +631,7 @@ By direct algebraic expansion.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -544,47 +654,55 @@ But $P(X=0~\&amp;~Y=1) = 0 \neq P(X=0)P(Y=1).$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 The $cov(\cdot,\cdot)$ function behaves much like ordinary
 multiplication. The following theorems show this.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $cov(X,Y)=cov(Y,X).$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $cov(\sum a_i X_i, \sum b_j Y_j) = \sum_{i,j} a_ib_jcov(X_i,Y_j).$
 </fieldset>
 
+<p></p>
 Also we have 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $cov(X,X) = V(X).$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $cov(aX+b,cY+d) = ac cov(X,Y).$
 </fieldset>
 
-
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 The analog of $(a+b)^2 = a^2+2ab+b^2$ here is $V(X+Y) =
 V(X)+2 cov(X,Y) +V(Y).$ This also shows that if $X,Y$ are
 independent, then $V(X+Y) = V(X)+V(Y).$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 If $X$ or $Y$ is a degenerate random variable, then $cov(X,Y)=0.$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Cauchy-Scwartz inequality</i></b></legend>
@@ -615,12 +733,14 @@ Since this is $\geq0,$ the inequality follows immediately.
 Also equality holds iff $V(Z)=0$, <i>i.e.</i>, $Z$ is degenerate.
 <p></p>
 So we have $V(X) X - cov(X,Y) Y = kV(X)$ for some $k\in{\mathbb R}.$
+<p></p>
 
 <p></p>
 This completes the proof.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Correlation</b></legend>
@@ -638,7 +758,7 @@ if $X,Y$ are linearly linearly related with probability 1,
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
+<ol type="">
 
 <li>
 <center>
@@ -887,6 +1007,7 @@ name="Problems for practice">Problems for practice</a></h1>
 </center>
 </li>
 
+<p></p>
 
 </ol>
 
@@ -921,6 +1042,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

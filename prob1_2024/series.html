@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -107,6 +181,7 @@ The sum $a_1+\cdots+a_n$ is called
 the $n$-th <b>partial sum</b>.
 <p></p>
 
+<p></p>
 
 <ul>
 
@@ -133,10 +208,12 @@ which clearly oscillates.</li>
 
 </ul>
 
+<p></p>
 The definition of an infinite series as the limit of its partial sums
 is a natural extension of the concept of usual addition. However,
 an infinite series may show certain counterintuitive behaviours,
 as we shall see next.
+<p></p>
 
 <h2><a
 name="Strange things">Strange things</a></h2>
@@ -166,12 +243,14 @@ $$
 1+(-1+1)+(-1+1)+()+()\cdots,
 $$
 then you'll a get a series converging to $1.$
+<p></p>
 
 <h3><a
 name="Not commutative">Not commutative</a></h3>
 Changinf the order of the summands does not change a sum. This is
 called commutativity of addition. Unfortunately, this may fail
 for an infinite series.
+<p></p>
 
 <p></p>
 Consider again our old friend
@@ -194,6 +273,7 @@ $$
 The pattern is simple it goes up 2 steps then comes down by 1. So
 effectively it is increasing, and increasing without bounds. In
 short, the rearranged series diverges to $\infty.$ 
+<p></p>
 
 <h2><a
 name="Nice series">Nice series</a></h2>
@@ -202,7 +282,7 @@ and commutativity makes it a bit difficult to work with infinite
 series. Thankfully, there are certain types of infinite series
 that behave nicely (<i>i.e.</i>, regrouping and rearranging them do not change
 the sums). One type is mentioned in the next theorem.
-
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -210,14 +290,17 @@ An infinite series consisting of only nonnegative terms will
 never change the sum howsoever your regroup or rearrange the terms.
 </fieldset>
 
+<p></p>
 Thanks to this result, we never need to worry about adding
 infinitely many probabilities when using the 3rd axiom. 
 <p></p>
 
+<p></p>
 Later in this course, we shall need to work with infinite series
 with negative as well as positive terms. The following theorem
 gives us a condition under which these series will behave
 nicely. 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -229,6 +312,7 @@ limit), then the terms in the original series may be regrouped
 and rearranged without affecting the sum.
 </fieldset>
 
+<p></p>
 If this condition is met (i.e, the absolute series converges),
 then we call the original series <b>absolutely convergent</b>. It
 is an interesting and <i>very useful</i> fact that any absolutely
@@ -241,7 +325,7 @@ In our probability course We shall  work with <i>only</i> infinite series of non
 absolutely convergent series in our course. So for us infinite
 series are as good as school level addition: associative and commutative!
 
-
+<p></p>
 <hr/>
 <table width="100%" border="0">
 <tr>
@@ -249,6 +333,4 @@ series are as good as school level addition: associative and commutative!
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

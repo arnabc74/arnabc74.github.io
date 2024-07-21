@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -116,6 +190,7 @@ $\newcommand{\ev}{{\mathcal F}}$
 <h1><a
 name="Conditional Probability">Conditional Probability</a></h1>
 
+<p></p>
 Probability that a coin toss would result in a head is a
 statement more about our ignorance regarding the outcome than an
 absolute property of the coin.  If our ignorance level changes
@@ -123,7 +198,7 @@ absolute property of the coin.  If our ignorance level changes
 change. We deal with this mathematically using the concept of
 conditional probability.
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 Here is a box full of shapes.
 <center>
 <table width="100%">
@@ -161,8 +236,10 @@ information. The new notation
 is $P(\mbox{triangle}|\mbox{green}).$ We call it the
 <b>conditional probability</b> of the selected shape being a triangle
 <b>given</b> that it is green.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 In general, the notation is $P(A|B)$ where $A,B$ are
 any two events. The mathematical definition is just as it should
 be. Instead of the entire sample space $\Omega$ you now narrow
@@ -177,6 +254,7 @@ $$P(A|B) = \frac{P(A\cap B)}{P(B)}.$$
 If $P(B)=0,$ then $P(A|B)$ is undefined.
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -189,6 +267,7 @@ is again a probability.
 <p>
 <b><i>Proof:</i></b>
 We have to check that the three axioms are satisfied by $P'.$
+<p></p>
 
 <a href="javascript:hideShow('coax');">The first two axioms obviously hold!</a>
 <div id="coax" style="display:none;background-color:#ffcccc;">
@@ -206,20 +285,23 @@ $$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>Show that if $P(A|B)=P(A)$  then $A,B$  must be independent. Is the converse true?
- Be careful with the second part!<img src="../image/box.png"></p>
+<b>EXERCISE 1:</b>&nbsp;Show that if $P(A|B)=P(A)$  then $A,B$  must be independent. Is the converse true?
+ Be careful with the second part!</p>
 
+<p></p>
 
 <h2><a
 name="Multiplication rule">Multiplication rule</a></h2>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 2:</b>&nbsp;
 Show that if $P(A)&gt;0$ then $P(A\cap B) = P(A)P(B|A).$
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 This result is just a minor rearrangement of the definition. But
 it has an intuitive interpretation. $A\cap B$ means
 both $A$ and $B$ has happened. We are finding its
@@ -240,9 +322,10 @@ happened. This is often represented diagrammatically:
 This form is particularly useful when $A,B$ are events such
 that $A$ indeed occurs before $B$ in the real
 world. Here is an example.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 A box contains 5 red and 3 green balls. One ball is drawn at
 random, its colour is noted, and is replaced back. Then one more
 ball of the same colour is added. Then a second ball is
@@ -291,7 +374,8 @@ event[i] = (first.draw=='g' &amp;&amp; second.draw=='g')
 }
 mean(event)
 `));"/>
-<img src="../image/box.png"></p>
+ ///
+</p>
 Often, in case of multistage random experiments, it is easier to
 think about the diagram than about the definition of conditional
 probability.
@@ -306,8 +390,10 @@ probability.
 </table>
 </center>
 
+<p></p>
 In a similar way, you can prove (by induction)
 the following theorem.
+<p></p>
 
 <fieldset>
 <legend><b><i>Multiplication rule</i></b></legend>
@@ -315,11 +401,13 @@ Let $A_1,...,A_n,B$  be events such that $P(A_1\cap \cdots \cap A_n)&gt;0.$  The
 $$P(A_1\cap\cdots\cap A_n\cap B) = P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\cdots P(B|A_1\cap\cdots\cap A_n).$$
 </fieldset>
 
+<p></p>
 
 <h2><a
 name="Theorem of total probability">Theorem of total probability</a></h2>
 Sometimes an event can occur via different paths. To find the probability of such an event 
 we need to add the probabilitis of all the paths. This is leads to the theorem of total probability.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem of total probability</i></b></legend>
@@ -360,6 +448,7 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h2><a
 name="Rejection sampling">Rejection sampling</a></h2>
@@ -372,9 +461,10 @@ One way is to use <b>rejection sampling</b>. In this technique you draw one elem
 continue like this. 
  <p></p>
 This procedure is bound to terminate after a finite number of steps. The output will be a random sample from $A.$  
+<p></p>
 
 <p>
-<b>EXERCISE:</b>How to choose between 5 friends with equal probability using only a fair die? The following R code 
+<b>EXERCISE 3:</b>&nbsp;How to choose between 5 friends with equal probability using only a fair die? The following R code 
 will give a hint.
 <font color="red">
 <pre>
@@ -382,6 +472,7 @@ repeat {
   x = sample(6,1) 
 if (x&lt;=5) break
 }
+<p></p>
 
 </pre>
 </font><input type="button"
@@ -391,10 +482,11 @@ repeat {
   x = sample(6,1) 
 if (x&lt;=5) break
 }
-
+<p></p>
 `));"/>
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 
 <h2><a
 name="Bayes' theorem">Bayes' theorem</a></h2>
@@ -406,6 +498,7 @@ layer to look deeper.
 <p></p>
 The theorem of total probability lets us move forward along the arrows, while Bayes' theorem 
 lets us move backwards.
+<p></p>
 
 <fieldset>
 <legend><b><i>Bayes' theorem (version 1)</i></b></legend>
@@ -435,6 +528,7 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Bayes' theorem (version 2)</i></b></legend>
@@ -445,9 +539,10 @@ for any $k=1,...,n,$
 $$P(A_k|B) = \frac{P(A_k)P(B|A)}{\sum_{i=1}^n P(A_i)P(B|A_i)}.$$
 </fieldset>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>Look at the following diagram and write down the proof.
+<b>EXERCISE 4:</b>&nbsp;Look at the following diagram and write down the proof.
 <center>
 <table width="100%">
 <tr>
@@ -459,20 +554,22 @@ $$P(A_k|B) = \frac{P(A_k)P(B|A)}{\sum_{i=1}^n P(A_i)P(B|A_i)}.$$
 </table>
 </center>
 
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 The main idea behind Bayes' theorem goes beyond these two
 versions. Whenever, you can draw an arrow diagram connecting
 events, and know all the labelling probabilities, you can apply
 Bayes' theorem. 
+<p></p>
 
 <h2><a
 name="Use of Bayes' theorem">Use of Bayes' theorem</a></h2>
 
-
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 I live in a locality where burglary is uncommon. The chance that a burglar
 breaks into my house is 0.1. I have a dog that is highly likely  to bark 
 (say, with  0.95 probability) if a burglar enters. However, otherwise my
@@ -497,6 +594,7 @@ So we get the following diagram.
 </table>
 </center>
 
+<p></p>
 We want to find $P(A|B).$ To apply Bayes theorem we need to find
 $P(B).$
 $$\begin{eqnarray*}
@@ -516,8 +614,10 @@ from start to B <i>through</i> $A.$
 Here $P(A \cap B)=0.1 \times 0.95.$
 <p></p>
 So now you can find $P(A|B)=\frac{P(A \cap B)}{P(B)}.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 This is an example of a two stage random experiment. The first stage is
 whether a burglar enters or not. The second stage is whether the dog
 barks or not.
@@ -528,10 +628,11 @@ probability of the second stage given the first. Only the
 outcome of the second stage is observed, and the problem is to find the
 conditional probability of the first stage given the outcome of the second
 stage. 
-
+<p></p>
 
 <p></p>
 The same approach is applicable to any similar multistage experiment.
+<p></p>
 
 <h2><a
 name="Urn Models">Urn Models</a></h2>
@@ -544,9 +645,10 @@ balls having the same colour). Balls are drawn at random (using
 SRSWR or SRSWOR) and depending on the outcome, some balls are
 added/removed/transferred. Then again a few balls are drawn, and
 so on. Here is one example.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 4:</b>&nbsp;
 An urn contains 3 red and 3 green balls. One ball is drawn at
 random, its colour noted, and returned to the urn. Then another
 ball of the same colour is added to the urn. Then the same
@@ -563,7 +665,7 @@ this:
 </table>
 </center>
 Typical questions of interest here are:
-<ol>
+<ol type="">
 
 <li>What is the probability that at the $10$-th stage we
 shall have 12 red and 4 green balls?</li>
@@ -576,33 +678,37 @@ the (conditional) probability that we had exactly 4 red balls at
 the 6-th stage?</li>
 
 </ol>
+ ///
+</p>
 
-<img src="../image/box.png"></p>
-
+<p></p>
 All such questions may be answered by using the theorem of total
 probability and Bayes' theorem. By the way, one of the above
 three questions may be answered immediately. 
 <a href="javascript:hideShow('sym');">Which one? What is the answer?</a>
 <div id="sym" style="display:none;background-color:#ffcccc;">The second one. The answer is $\frac 12$  by symmetry argument.</div>
 
+<p></p>
 
 <p></p>
 The above urn model is an example of the <b>Polya Urn Model</b>, where in general we
 start with $a$ red and $b$ green balls, and at each
 stage a random ball is selected, replaced and $c$ more
 ball(s) of its colour is(are) added. 
-
+<p></p>
 
 <h3><a
 name="Why care?">Why care?</a></h3>
 You may see this link for <a href="http://www.stat.yale.edu/~pollard/Courses/241.fall97/Symmetry.pdf">further discussion</a>.
 Some real life scenarios can be mathematically treated as urn models.
+<p></p>
 
 <p></p>
 We shall discuss two such examples.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 5:</b>&nbsp;
 Most people form their opinions based on random personal
 experience, instead of a carefully planned overall survey of a
 situation. Polya's urn model is a simple  version of this, as the following story shows.
@@ -653,12 +759,15 @@ everybody.
 <p></p>
 However, one must understand that the real situation is far too
 complex to be captured adequately by Polya's urn model.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 Here is another real life situation captured by urn models. 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 6:</b>&nbsp;
 In the <i>Ehrenfest model of heat exchange</i> physicists
 consider two connected containers with $k$ particles distributed
 between them. At each step a particle is chosen at random and
@@ -669,14 +778,16 @@ which are red and the rest green. A ball is drawn at random,
 removed, and another ball of the opposite colour is added. Here
 red balls play the role of particles in the first container, and
 green balls those in the other.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
-
+<p></p>
 
 <h1><a
 name="Fallacies regarding conditional probability">Fallacies regarding conditional probability</a></h1>
 Conditional probabilities are often used wrongly in our everyday
 life. Here are three examples.
+<p></p>
 
 <h2><a
 name="Mistaking $P(A|B)$ for $P(B|A)$">Mistaking $P(A|B)$ for $P(B|A)$</a></h2>
@@ -700,6 +811,7 @@ that $P(B|A)$ is large. This does not imply in any way
 that $P(A|B)$ is large. They should have surveyed the
 coaching goers and figured out the proportion that got
 admitted. This proportion could have been (and most often is) microscopically low.
+<p></p>
 
 <h2><a
 name="Simpson's Paradox">Simpson's Paradox</a></h2>
@@ -715,6 +827,7 @@ by $P(B^c)$ and add. The result now follows from the theorem
 of total probability.
 </div>
 
+<p></p>
 
 <p></p>
 Now consider the following real life data set. 
@@ -743,6 +856,7 @@ The red and green parts give the actual
 data, the remaining numbers are derived from them. For example
 the 11.3 is obtained as $53/(53+414).$ The blue part is
 obtained by adding the red and green parts. For example, $414+16=430.$
+<p></p>
 
 <p></p>
 Now consider the cases where the victim is white (the red part
@@ -771,6 +885,7 @@ So let's ignore the victim's race. This basically means adding
 the red and green tables to get the blue table. Similar argument
 based on this combined table, however, seems to indicate $P(A_1) &gt;
 P(A_2)$ since $11.0 &gt; 7.9.$
+<p></p>
 
 <p></p>
 What went wrong? This is called <b>Simpson's paradox</b> and
@@ -788,6 +903,7 @@ has been awarded. There are $53+0$ such
 cases. Similarly $A_2$ has size $11+4.$ 
 <p></p>
 Now $P(A_1|B) = \frac{P(A_1\cap B)}{P(B)}.$ 
+<p></p>
 
 <p></p>
 Here $|A_1\cap B|=53$ and $|A_2\cap B|=11.$
@@ -795,6 +911,7 @@ Here $|A_1\cap B|=53$ and $|A_2\cap B|=11.$
 So our rash conclusion that $P(A_1|B) &lt; P(A_2|B)$ was wrong.
 </div>
 
+<p></p>
 
 <h2><a
 name="Monty Hall problem">Monty Hall problem</a></h2>
@@ -815,7 +932,7 @@ You can play this game online <a href="http://www.mathwarehouse.com/monty-hall-s
 <p></p>
 Here are two ways to think about this, both natural but leading
 to opposite conclusions:
-<ol>
+<ol type="">
 
 <li>Whether your original selection was right or wrong, there is
 always at least another door hiding a goat. So the host will
@@ -836,11 +953,13 @@ Here the sample space is $\{1,2,3\},$ the numbers denoting
 the possible positions
 of the car. The unconditional probabilities were $\frac 13$
 each. The conditional probabilities are $\frac 12, 0, \frac 12.$ 
+<p></p>
 
 <p></p>
 
+<p></p>
 Does the confusion go away now? Unfortnately, no:
-<ol>
+<ol type="">
 
 <li>since $\frac 12 &gt; \frac 13$ you should switch.</li>
 
@@ -849,6 +968,7 @@ are $\frac 12.$ So nothing is to be gained by switching.</li>
 
 </ol>
 
+<p></p>
 
 <a href="javascript:hideShow('monty');">How to resolve the paradox?</a>
 <div id="monty" style="display:none;background-color:#ffcccc;">
@@ -887,66 +1007,109 @@ true position to door to be kept closed. If the car is not behind door
 keeping 3 closed. So the function is $host[1]=3, host[2]=3$
 and $host[3]=2.$ In other words, the strategy is the
 array $(3,2,3).$
-
+<p></p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
+<p></p>
 
-<li>Is it true that $P(A|B)+P(A^c|B)=1?$  Is it true that $P(A|B)+P(A|B^c)=1?$</li>
+<p>
+<b>EXERCISE 5:</b>&nbsp;Is it true that $P(A|B)+P(A^c|B)=1?$  Is it true
+that $P(A|B)+P(A|B^c)=1?$
 
-<li>"It is possible to have events $A,B$ such that $P(A|B)=1$
-but $P(B|A)\neq 1$" Prove or provide a counterexample to
-this statement.</li>
+</p>
 
+<p>
+<b>EXERCISE 6:</b>&nbsp;"It is possible to have events $A,B$ such that $P(A|B)=1$
+but $P(B|A)\neq 1$" Disprove or provide an example.
 
-<li>"It is possible to have events $A,B$ such that $P(A|B)&gt;0.99$
-but $P(B|A) &lt; 0.01$" Prove or provide a counterexample to
-this statement.</li>
+</p>
 
+<p></p>
 
+<p>
+<b>EXERCISE 7:</b>&nbsp;"It is possible to have events $A,B$ such that $P(A|B)&gt;0.99$
+but $P(B|A) &lt; 0.01$" Disprove or provide an example to
+this statement.
 
+</p>
 
-<li>Let $u_{2n}$ denote the probability that a random path
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Let $u_{2n}$ denote the probability that a random path
 of length $2n$ starting from $(0,0)$ passes
-through $(2n,0).$ Also, let $u_0=1.$ Then show without using the explicit form
-of $u_{2n}$ that
+through $(2n,0).$ Also, let $u_0=1.$ Let $v_{2n}$
+denote the probability that a random path of length $2n$
+starting from $(0,0)$ returns to 0 for the first time
+at $2n.$ Here also we define $v_0=1.$ Then show without using the explicit form
+of $u_{2n}$ and $v_{2n}$ that
 $$
-u_0u_{2n}+u_2 u_{2n-2} + \cdots + u_{2n} u_0 = 1.
+v_0u_{2n}+v_2 u_{2n-2} + \cdots + v_{2n} u_0 = 1.
 $$
-</li>
+<p></p>
 
-<li>$P(A\cap B)&gt;0.$ Show that $P(A|B) = P(B|A)$ if and
-only if $P(A)=P(B).$</li>
 
-<li>Modern digital communication relies on transmitting 0's and 1's from one
-centre to another centre. Suppose that centre A transmits a 0 with
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;$P(A\cap B)&gt;0.$ Show that $P(A|B) = P(B|A)$ if and
+only if $P(A)=P(B).$
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Modern digital communication relies on transmitting 0's and 1's from one
+device to another. Suppose that device A transmits a 0 with
 probability 0.4 and a 1 with probability 0.6. The communication channel is
-noisy, so if a 1 is transmitted, it changes by mistake to a 0 in 1%
-cases. If a 0 is transmitted it corrupts into a 1 in 5% cases. Given that
-centre B has received a 1, what is the chance that it is
+noisy, so if a 1 is transmitted, it may get corrupted to a 0 in
+1% of the cases. If a 0 is transmitted, it may be corrupted into a 1 in 5% cases. Given that
+device B has received a 1, what is the chance that it is
 uncorrupted?
-</li>
+<p></p>
 
-<li>A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
 wrong, the patient dies with probability 50%. Even for a correct diagnosis
 the patient dies in 10% cases. Given that a patient has died find the
-conditional probability that the diagnosis was correct.</li>
+conditional probability that the diagnosis was correct.
 
+</p>
 
-<li>Two fair dice are rolled. What is the conditional probability
-that at least one shows 6 given that the dice show different
-numbers?</li>
+<p></p>
 
+<p>
+<b>EXERCISE 12:</b>&nbsp;Two fair dice are rolled. What is the conditional probability
+that at least one shows a 6 given that the dice show different
+numbers?
 
-<li>If two fair dice are rolled, what is the conditional
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;If two fair dice are rolled, what is the conditional
 probability that the first one shows 6 given that the sum
 of the outcomes of the dice is $i?$ Compute for all possible
 values
-of $i.$</li>
+of $i.$
 
-<li>Here is part of a Ludo board. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Here is part of a Ludo board. 
 <center>
 <table width="100%">
 <tr>
@@ -960,11 +1123,18 @@ of $i.$</li>
 What is the probability that
 the counter will arive at 10 in exactly two moves? Assume that
 the die shows $i$ with probability $p_i$
-for $i=1,...,6.$ Also find the probability that the counter
-will arrive at 14 (starting from 1) in exactly 3 moves.</li>
+for $i=1,...,6.$ Let $T_{15\times15}$ be a matrix
+with $(i,j)$-th entry $p_{j-i}$
+whenever $j-i\in\{1,...,6\}$ and 0 else. Show that the probability that the counter
+arrives at 14 (starting from 1) in exactly 3 moves equals
+the $(1,14)$-th entry of $T^3.$
 
+</p>
 
-<li>Let $A_{n\times n} = ((p_{ij}))$ be a matrix where
+<p></p>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;Let $A_{n\times n} = ((p_{ij}))$ be a matrix where
 each $p_{ij}\geq 0$ and for each $i$ we have $\sum_j
 p_{ij}=1.$ (Such a matrix is called a <b>stochastic</b> matrix.)
 We have a ludo board with $n$ positions:
@@ -986,23 +1156,28 @@ probability $p_{ij}.$ (If $i=j,$  then the counter stays put.)
 All moves are independent. Show that the
 probability of the counter moving from $i$ to $j$ in
 exactly $k$ moves is the $(i,j)$-th entry of the matrix $A^k.$
-</li>
+<p></p>
 
-<li>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;
 We have $N+1$ urns, labelled $0,1,...,N.$ The urn with
 label $k$ contains $k$ red and $N-k$ green
 balls. One urn is selected at random, and an SRSWR of
-size $N$ is drawn. All the $N$ balls are found to be
-red. One more ball is drawn from the same urn. Show that the
-conditional probability that this ball is also red is 
-$$
-\frac{1^n + 2^n +\cdots + N^n}{N^n(N+1)}.
-$$
-</li>
+size $n$ is drawn. All the $n$ balls are found to be
+red. One more ball is drawn from the same urn. Find  the
+conditional probability that this ball is also red.
 
+</p>
 
-<li>
-<center>
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond1.png"></th>
@@ -1012,10 +1187,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond2.png"></th>
@@ -1025,10 +1202,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 19:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond3.png"></th>
@@ -1038,10 +1217,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond4.png"></th>
@@ -1051,10 +1232,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond5.png"></th>
@@ -1064,10 +1247,16 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+<p></p>
+$P($ exactly 2 white and white from $A$$)=\frac 13\times\frac 23\times\frac 34+\frac 13\times\frac 13\times\frac 14=\frac{7}{36}.$
+<p></p>
+So the required conditional probability is $\frac{7}{11}.$ 
+</p>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond6.png"></th>
@@ -1077,10 +1266,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond7.png"></th>
@@ -1090,10 +1281,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond8.png"></th>
@@ -1103,10 +1296,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond9.png"></th>
@@ -1116,10 +1311,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond10.png"></th>
@@ -1129,10 +1326,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond11.png"></th>
@@ -1142,10 +1341,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 28:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond12.png"></th>
@@ -1155,10 +1356,14 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 29:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond13.png"></th>
@@ -1168,10 +1373,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 30:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond14.png"></th>
@@ -1181,10 +1388,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 31:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond15.png"></th>
@@ -1194,10 +1403,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 32:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond16.png"></th>
@@ -1207,10 +1418,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 33:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond17.png"></th>
@@ -1220,10 +1433,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 34:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond18.png"></th>
@@ -1233,10 +1448,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 35:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond19.png"></th>
@@ -1246,10 +1463,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 36:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond20.png"></th>
@@ -1259,10 +1478,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 37:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond21.png"></th>
@@ -1272,10 +1493,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 38:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond22.png"></th>
@@ -1285,10 +1508,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 39:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond23.png"></th>
@@ -1298,10 +1523,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 40:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond24.png"></th>
@@ -1311,10 +1538,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 41:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond25.png"></th>
@@ -1324,10 +1553,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 42:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond26.png"></th>
@@ -1337,10 +1568,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 43:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond27.png"></th>
@@ -1350,10 +1583,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 44:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond28.png"></th>
@@ -1363,10 +1598,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 45:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond29.png"></th>
@@ -1376,10 +1613,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 46:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond30.png"></th>
@@ -1389,10 +1628,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 47:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond31.png"></th>
@@ -1402,10 +1643,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 48:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rosscond32.png"></th>
@@ -1415,10 +1658,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 49:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most9.png"></th>
@@ -1428,10 +1673,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 50:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most21.png"></th>
@@ -1441,9 +1688,12 @@ $$
 </tr>
 </table>
 </center>
-</li>
 
-<li>Let $a,b,c\in{\mathbb N}.$ Suppose that we start with $a$ red and $b$ green
+
+</p>
+
+<p>
+<b>EXERCISE 51:</b>&nbsp;Let $a,b,c\in{\mathbb N}.$ Suppose that we start with $a$ red and $b$ green
 balls in an urn. We draw a ball at random, note its colour, replace it, and
 add $c$ more balls of that color. We continue this process
 again and again. What is the probability that at the $n$-th
@@ -1475,14 +1725,20 @@ Now the result follows immediately.
 </blockquote>
 </p>
 
-</li>
+<p></p>
 
-<li>Same set up as in the last problem. Fix two natural
+
+</p>
+
+<p>
+<b>EXERCISE 52:</b>&nbsp;Same set up as in the last problem. Fix two natural
 numbers $m &lt; n.$ What is the probability that the ball
 drawn at stage $m$ is green and the ball drawn at
-stage $n$ is red? Does the answer depend on $m$ and $n$?</li>
+stage $n$ is red? Does the answer depend on $m$ and $n$?
 
-</ol>
+</p>
+
+<p></p>
 
 <h3>Comments</h3>
 To post an anonymous comment, click on the "Name" field. This
@@ -1495,7 +1751,7 @@ begin disqus code --> <div id="disqus_thread"></div>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/prob1/bayes.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = "https://arnabc74.github.io/prob1_2024/bayes.html"; // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = "bayes"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
@@ -1515,6 +1771,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

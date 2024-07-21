@@ -211,26 +211,61 @@ So <M>P(A)=0.</M> Hence <M>P(A^c) = 1,</M> as required.
 </EXM>
 
 <HEAD1>Problems for practice</HEAD1>
-<OL><LI>If <M>A,B</M>  are independent, then show that <M>A^c,B</M>  are also independent. Are
- <M>A^c,B^c</M>  also independent?</LI>
-<LI>Is it possible to have an event that is independent of itself? If so, find all such events. If not, prove why not.</LI>
-<LI>Is it possible to have an event that is independent of all other events? If so, find all such events. If
- not, prove why not.</LI>
-<LI>If <M>A,B</M>  are independent, and <M>A,C</M>  are also independent, then is it true that
- <M>A</M>  and <M>B\cup C</M>  must also be independent?</LI>
-<LI>If <M>A</M>  and <M>B</M>  are mutually exclusive, then must <M>A,B</M>  be independent? Must they be dependent?</LI>
-<LI>The numbers <M>-10,...,-1,1,...,10</M>  are written on 20 pieces of papers. One of the papers
+<OL><EXR>If <M>A,B</M>  are independent, then show that <M>A^c,B</M>  are also independent. Are
+ <M>A^c,B^c</M>  also independent?</EXR>
+<EXR>Is it possible to have an event that is independent of itself? If so, find all such events. If not, prove why not.</EXR>
+<EXR>Is it possible to have an event that is independent of all other events? If so, find all such events. If
+ not, prove why not.</EXR>
+<EXR>If <M>A,B</M>  are independent, and <M>A,C</M>  are also independent, then is it true that
+ <M>A</M>  and <M>B\cup C</M>  must also be independent?</EXR>
+<EXR>If <M>A</M>  and <M>B</M>  are mutually exclusive, then must <M>A,B</M>  be independent? Must they be dependent?</EXR>
+<EXR>The numbers <M>-10,...,-1,1,...,10</M>  are written on 20 pieces of papers. One of the papers
  is drawn at random. Let <M>A</M>  be the event that the selected number is negative, and <M>B</M>
-  be the event that the selected number has absolute value <M>>5.</M>  Are <M>A,B</M>  independent?</LI>
-<LI>Same set up as above. Find an event <M>C</M>  such that <M>A,B,C</M>  are mutually independent.</LI>
-<LI>If <M>A\seq B</M>  are two events, can <M>A,B</M>  be independent?</LI>
-<LI>If <M>P(A_i)=p_i</M>  for <M>i=1,2,3,</M>  and <M>A_i</M>'s are mutually independent, then find <M>P(A_1\cup A_2\cup A_3).</M></LI>
-<LI><CIMG web="most2.png"/></LI>
-<LI><CIMG web="most3.png"/></LI>
-<LI><CIMG web="most18.png"/></LI>
-<LI><CIMG web="most20.png"/></LI>
+  be the event that the selected number has absolute value <M>>5.</M>  Are <M>A,B</M>  independent?</EXR>
+<EXR>Same set up as above. Find an event <M>C</M>  such that <M>A,B,C</M>  are mutually independent.</EXR>
+<EXR>If <M>A\seq B</M>  are two events, can <M>A,B</M>  be independent?</EXR>
+<EXR>If <M>P(A_i)=p_i</M>  for <M>i=1,2,3,</M>  and <M>A_i</M>'s are mutually independent, then find <M>P(A_1\cup A_2\cup A_3).</M></EXR>
+<EXR><CIMG web="most2.png"/>
+<ANS>
+Let <M>f = P(</M>Elmer beats father<M>),</M> and <M>c =
+P(</M>Elmer beats champion<M>).</M> Then Elmer's chance of
+winning for the father-champion-father case is <M>2fc(1-f) +
+f^2(1-c) + f^2c=A,</M> say.
+
+The winning probability for the other case is: <M>2cf(1-c) +
+c^2(1-f) + c^2f=B,</M> say.
+
+We have <M>f > c.</M> 
+
+So <M>A-B = (f-c)(f(1-c)+c(1-f)) > 0.</M> Hence Elmer should play father-champion-father.
+</ANS>
+</EXR>
+
+<EXR><CIMG web="most3.png"/>
+<ANS>
+Let <M>A,B</M> and <M>C</M>, respecively, be the probabilities
+that the first, second and third man in the three man jury  
+reaches the correct conclusion. Then <M>P(A)=P(B)=p</M>
+and <M>P(C)=[[12]],</M> ad the three events are independent. 
+Then the event that this jury makes the correct decision is 
+<M>(A\cap B\cap C^c)\cup(A\cap B^c\cap C)\cup(A^c\cap B\cap
+C)\cup(A\cap B\cap C).</M>
+
+This is <M>[[12]](p^2+2p(1-p)) = p-[[12]]p^2,</M> which is
+clearly <M><p.</M>
+
+So the one man jury is more likely to reach the correct decision. 
+
+</ANS>
+</EXR>
+<EXR><CIMG web="most18.png"/>
+<ANS>
+<M>2^{-100}{100 \choose 50}\approx 0.08.</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="most20.png"/></EXR>
 </OL>
 
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/indep.html" id="indep"/>
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/indep.html" id="indep"/>
 </E>@}
 </NOTE>

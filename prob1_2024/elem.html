@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -123,11 +197,12 @@ exactly do we mean when we say that we study randomness? The
 answer is not at all obvious! 
 <p></p>
 Let's do a little experiment to get an idea. 
+<p></p>
 
 <p></p>
 We take four pieces of paper and write the following formulae
 on them:
-<ol>
+<ol type="">
 
 <li>
 $X_{new} = 0.8 X_{old}+0.1$
@@ -172,6 +247,7 @@ have as many dots on the paper. What will these dots look like? A
 random jumble? A circle? A line? or what?
 <p></p>
 Play this game <i>now</i> by clicking <a href="https://arnab-chakraborty.shinyapps.io/shny">here</a>. 
+<p></p>
 
 <p></p>
 You'll be surprised by the outcome. Somehow all the randomness
@@ -183,6 +259,7 @@ These are the questions that probability theory wants to answer.
 <p></p>
 This "regular pattern out of randomness" phenomenon has a
 name. It is called <b>Statistical Regularity</b>.
+<p></p>
 
 <h2><a
 name="Statistical Regularity">Statistical Regularity</a></h2>
@@ -198,6 +275,7 @@ The quite predictable profit of the Casino owner or insurance
 companies are examples.
 <p></p>
 
+<p></p>
 Statistical regularity takes many forms, some
 more dramatic, some less.  The simplest occurrence of the
 phenomenon was first proved mathematically by Jakob 
@@ -206,6 +284,7 @@ completely. But it took 25 years to figure out how to tackle
 randomness using mathematics to arrive at the proof!
 <p></p>
 Welcome to the world of probability!
+<p></p>
 
 <h1><a
 name="Computer simulation">Computer simulation</a></h1>
@@ -257,7 +336,7 @@ value="Run in cloud"
 onclick="javascript:aha(encodeURI(`
 sample(6,100,replace=TRUE)
 `));"/>
-By the way, R is case-sensitive, so the <code>TRUE</code> must be
+By the way, R is case-sensitive, so the <font size="+1" color="red"><code>TRUE</code></font> must be
 in capitals. This may be abbreviated to 
 <font color="red">
 <pre>
@@ -270,6 +349,7 @@ sample(6,100,rep=T)
 `));"/>
 Toissing a coin is similar, except that we have only two pieces
 of paper:
+<p></p>
 
 <font color="red">
 <pre>
@@ -291,11 +371,11 @@ value="Run in cloud"
 onclick="javascript:aha(encodeURI(`
 sample( c("H", "T"), 100, rep=T)
 `));"/>
-Note the <code>c(...)</code>. That is R's way of making an array
+Note the <font size="+1" color="red"><code>c(...)</code></font>. That is R's way of making an array
 of things. Here the things are the two labels "H" and "T". Note
-the quotes around them. <code>"T"</code>, for example, is just a
-label, which is different from <code>T</code>, an abbreviation
-for <code>TRUE</code>. 
+the quotes around them. <font size="+1" color="red"><code>"T"</code></font>, for example, is just a
+label, which is different from <font size="+1" color="red"><code>T</code></font>, an abbreviation
+for <font size="+1" color="red"><code>TRUE</code></font>. 
 <p></p>
 Now you can see some statistical regularity at work. Toss a coin,
 say 1000 times, and plot the cumulative proportion of
@@ -325,18 +405,18 @@ plot(prop, type="l")
 Explanation of the code:
 <ul>
 
-<li>Here <code>outcomes == "H"</code> checks which outcomes
+<li>Here <font size="+1" color="red"><code>outcomes == "H"</code></font> checks which outcomes
 are "H" and creates an array of 1 (yes) and 0 (no). </li>
 
 <li>
-<code>cumsum</code> finds cumultative sums. 
+<font size="+1" color="red"><code>cumsum</code></font> finds cumultative sums. 
 </li>
 
 <li>
-<code>1:1000</code> is just the array 1,2,...,1000. </li>
+<font size="+1" color="red"><code>1:1000</code></font> is just the array 1,2,...,1000. </li>
 
 <li>
-<code>plot</code> makes a plot. The <code>type="l"</code>
+<font size="+1" color="red"><code>plot</code></font> makes a plot. The <font size="+1" color="red"><code>type="l"</code></font>
 tells it to make a line plot.</li> 
 
 </ul>
@@ -345,6 +425,7 @@ initially, but eventually stabilises and seems to approach a
 fixed value. Run the same code a number of times to see how the
 initial part changes drastically from run to run, but the final
 stable section remains unperturbed. 
+<p></p>
 
 <h2><a
 name="SRSWOR">SRSWOR</a></h2>
@@ -371,12 +452,13 @@ value="Run in cloud"
 onclick="javascript:aha(encodeURI(`
 sample(52,5).
 `));"/>
+<p></p>
 
 <h1><a
 name="Practice problems">Practice problems</a></h1>
 The following problems will help you to enjoy the course
 better. However, no coding problem will be asked in the exams.
-<ol>
+<ol type="">
 
 <li>Simulate a Europian Roullette wheel. It is wheel with the
 numbers 0,1,...,38 written along the circumference. The wheel is
@@ -408,7 +490,7 @@ begin disqus code --> <div id="disqus_thread"></div>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/prob1/elem.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = "https://arnabc74.github.io/prob1_2024/elem.html"; // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = "elem"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
@@ -428,6 +510,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

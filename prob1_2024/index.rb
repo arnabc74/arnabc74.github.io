@@ -5,14 +5,8 @@ This is the class webpage for Probablity Theory I
 (2024).
 <UL>
 <LI><B>Teacher:</B> Arnab Chakraborty</LI>
-<LI><B>Office:</B> Room 914, ASU, 9-th floor of S N Bose
-Bhavan.</LI>
 <LI><B>Email:</B>arnabc at isical dot ac in</LI>
 </UL>
-Alternatively, you may use this diagram to contact me:
-<CIMG web="phone.png"/>
-If you want to leave an anonymous note for me, just use the
-comment box provided at the bottom of each page. 
 <HEAD2>Class notes</HEAD2>
 All the lecture notes are available from the <LINK to="notes.html">class notes page</LINK>. These notes are the
 definitive source of material for this course. The practice
@@ -86,6 +80,6 @@ conditional distributions, conditional expectation.
 Distribution of  sum of  two independent random 
 variables. Functions of more than one discrete random 
 variables.
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/index.html" id="index"/>
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/index.html" id="index"/>
 </E>@}
 </NOTE>

@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -110,7 +184,7 @@ the proportion of female lefties should be 5% of 60%, <i>i.e.</i>, 5% $\times$  
 <p></p>
 Here is a more mathematical example. 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 Suppose that we
 toss a fair coin twice. So the sample space is $\Omega = \{HH,
 HT, TH, T T\}.$
@@ -120,21 +194,25 @@ other words, $A=\{HH,HT\}$ and $B=\{HH,TH\}.$ As the
 outcome of one toss can have no influence on the outcome of
 another, so intuitively $A,B$ should be "independent". 
 From the definition also $P(A\cap B) = P(\{HH\}) = \frac 14 = \frac 12\times \frac 12 = P(A)P(B).$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 1:</b>&nbsp;
 Consider a single roll of a fair die. Write down
 two events, $A,B$  such that $A,B$ are
 independent. Also, write down two events $C,D$ 
 that are dependent. 
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 Sometimes two events that are somehow related actually turns out to be indepedent. Here is an example.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 A fair coin is tossed twice. The outcome of the first toss is written down. 
 If the second toss shows a head, then the first
 outcome is written again. If the second outcome is a tail, then the opposite 
@@ -146,19 +224,23 @@ of the first outome is written. For example, if the both the outcomes  are tails
 <b>SOLUTION:</b>
 Apparently the first toss plays a role in both the writings. But still a simple computation shows that 
 $P(A)=P(B)=\frac 12$  and $P(A\cap B)=\frac 14.$  So we have independence.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 2:</b>&nbsp;
 Same problem as above, but this time the coin is biased. Say, $P(H)=0.6.$  
-<img src="../image/box.png"></p>
+</p>
 
+<p></p>
 
 <h2><a
 name="More than two events">More than two events</a></h2>
 When you have more than two events, the definition of
 independence becomes a bit counter-intuitive. 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Mutual independence</b></legend>
@@ -188,13 +270,15 @@ $$
 $$
 </fieldset>
 
+<p></p>
 "Mutual independence" is what we intuitively feel when we think
 that the occurencess of $A_1,...,A_n$ do not influence each
 other. The following interesting example shows why pairwise
 independence is not enough.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 Consider the random experiment where a fair coin is tossed
 thrice. For $i\neq j\in\{1,2,3\},$ let  $A_{ij}$ be the event that the $i$-th and $j$-th tosses have
 the same outcome. Do you intuitively feel that $A_{12},
@@ -211,7 +295,7 @@ independent, since occurence of any two implies the occurence of
 the third. 
 <p></p>
 Here $\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}.$ 
-
+<p></p>
 Also 
 $$\begin{eqnarray*}
 A_{12} &amp; = &amp; \{HHH, HHT, TTH, TTT\},\\
@@ -222,12 +306,13 @@ The intersections are all $\{HHH,TTT\}.$ So pairwise
 independence holds: $\frac 14 = \frac 12\times \frac 12.$ But
 mutual independence fails, since $\frac 14 \neq \frac 12\times \frac 12\times\frac 12.$
 </div>
+ ///
+</p>
 
-<img src="../image/box.png"></p>
-
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 4:</b>&nbsp;
 Can you give three events $A,B,C$ such that $P(A\cap B\cap
 C) = P(A)P(B)P(C)$ but still $A,B,C$ are not mutually
 independent?
@@ -237,8 +322,8 @@ independent?
 <div id="2" style="display:none;background-color:#ffcccc;">
 Single fair coin toss. $A = \phi,$ $B=\{H\}$ and $C=\{T\}.$
 </div>
-
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <h2><a
 name="Product space">Product space</a></h2>
@@ -249,7 +334,7 @@ in the case where <i>both the sample spaces are countable (finite/infinite):</i>
 <blockquote>
 Let $\Omega_1$  and $\Omega_2$  be the 
 two sample spaces with corresponding probability functions $P_1,P_2.$ 
- 
+<p></p>
  We first combine these to form 
 the Cartesian product $\Omega = \Omega_1\times\Omega_2.$  Notice that $\Omega$  is again countable.
 For the "coin toss $\times$  die roll" example, this gives
@@ -285,6 +370,7 @@ rearranged without changing the value of the series.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h2><a
 name="Infinite product">Infinite product</a></h2>
@@ -306,9 +392,10 @@ A few of the difficulties are:
 
 </ul>
 In this course, we shall assume the existence and uniqueness of infinite product spaces.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 5:</b>&nbsp;
 A coin with $P(head)=p\in(0,1)$ is tossed again and
 again independently. Show that we must get a head eventually.
 <p></p>
@@ -331,38 +418,49 @@ Hence $P(A_n)\rightarrow P(A).$
 Now $P(A_n) = (1-p)^n\rightarrow 0$ since $p\in (0,1).$
 <p></p>
 So $P(A)=0.$ Hence $P(A^c) = 1,$ as required.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
-<li>If $A,B$  are independent, then show that $A^c,B$  are also independent. Are
- $A^c,B^c$  also independent?</li>
+<ol type="">
+<p>
+<b>EXERCISE 3:</b>&nbsp;If $A,B$  are independent, then show that $A^c,B$  are also independent. Are
+ $A^c,B^c$  also independent?</p>
 
-<li>Is it possible to have an event that is independent of itself? If so, find all such events. If not, prove why not.</li>
+<p>
+<b>EXERCISE 4:</b>&nbsp;Is it possible to have an event that is independent of itself? If so, find all such events. If not, prove why not.</p>
 
-<li>Is it possible to have an event that is independent of all other events? If so, find all such events. If
- not, prove why not.</li>
+<p>
+<b>EXERCISE 5:</b>&nbsp;Is it possible to have an event that is independent of all other events? If so, find all such events. If
+ not, prove why not.</p>
 
-<li>If $A,B$  are independent, and $A,C$  are also independent, then is it true that
- $A$  and $B\cup C$  must also be independent?</li>
+<p>
+<b>EXERCISE 6:</b>&nbsp;If $A,B$  are independent, and $A,C$  are also independent, then is it true that
+ $A$  and $B\cup C$  must also be independent?</p>
 
-<li>If $A$  and $B$  are mutually exclusive, then must $A,B$  be independent? Must they be dependent?</li>
+<p>
+<b>EXERCISE 7:</b>&nbsp;If $A$  and $B$  are mutually exclusive, then must $A,B$  be independent? Must they be dependent?</p>
 
-<li>The numbers $-10,...,-1,1,...,10$  are written on 20 pieces of papers. One of the papers
+<p>
+<b>EXERCISE 8:</b>&nbsp;The numbers $-10,...,-1,1,...,10$  are written on 20 pieces of papers. One of the papers
  is drawn at random. Let $A$  be the event that the selected number is negative, and $B$
-  be the event that the selected number has absolute value $&gt;5.$  Are $A,B$  independent?</li>
+  be the event that the selected number has absolute value $&gt;5.$  Are $A,B$  independent?</p>
 
-<li>Same set up as above. Find an event $C$  such that $A,B,C$  are mutually independent.</li>
+<p>
+<b>EXERCISE 9:</b>&nbsp;Same set up as above. Find an event $C$  such that $A,B,C$  are mutually independent.</p>
 
-<li>If $A\subseteq B$  are two events, can $A,B$  be independent?</li>
+<p>
+<b>EXERCISE 10:</b>&nbsp;If $A\subseteq B$  are two events, can $A,B$  be independent?</p>
 
-<li>If $P(A_i)=p_i$  for $i=1,2,3,$  and $A_i$'s are mutually independent, then find $P(A_1\cup A_2\cup A_3).$</li>
+<p>
+<b>EXERCISE 11:</b>&nbsp;If $P(A_i)=p_i$  for $i=1,2,3,$  and $A_i$'s are mutually independent, then find $P(A_1\cup A_2\cup A_3).$</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 12:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most2.png"></th>
@@ -372,10 +470,14 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most3.png"></th>
@@ -385,10 +487,12 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most18.png"></th>
@@ -398,10 +502,12 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
 
-<li>
-<center>
+
+</p>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most20.png"></th>
@@ -411,10 +517,11 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
 </ol>
 
+<p></p>
 
 <h3>Comments</h3>
 To post an anonymous comment, click on the "Name" field. This
@@ -427,7 +534,7 @@ begin disqus code --> <div id="disqus_thread"></div>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/prob1/indep.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = "https://arnabc74.github.io/prob1_2024/indep.html"; // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = "indep"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
@@ -448,6 +555,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

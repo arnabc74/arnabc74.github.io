@@ -231,5 +231,5 @@ reels start turning randomly in different/same directions and
 stop at random positions. One digit of each reel is visible
 through a window. Simulate this in R.</LI>
 </OL>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/elem.html" id="elem"/></E>@}
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/elem.html" id="elem"/></E>@}
 </NOTE>

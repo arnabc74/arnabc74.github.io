@@ -580,59 +580,95 @@ array <M>(3,2,3).</M>
 
 
 <HEAD1>Problems for practice</HEAD1>
-<OL>
-<LI>Is it true that <M>P(A|B)+P(A^c|B)=1?</M>  Is it true that <M>P(A|B)+P(A|B^c)=1?</M></LI>
-<LI>"It is possible to have events <M>A,B</M> such that <M>P(A|B)=1</M>
-but <M>P(B|A)\neq 1</M>" Prove or provide a counterexample to
-this statement.</LI>
 
-<LI>"It is possible to have events <M>A,B</M> such that <M>P(A|B)>0.99</M>
-but <M>P(B|A) < 0.01</M>" Prove or provide a counterexample to
-this statement.</LI>
+<EXR>Is it true that <M>P(A|B)+P(A^c|B)=1?</M>  Is it true
+that <M>P(A|B)+P(A|B^c)=1?</M>
+<ANS>Yes. Not necessarily.</ANS>
+</EXR>
+<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)=1</M>
+but <M>P(B|A)\neq 1</M>" Disprove or provide an example.
+<ANS>Take <M>B\seq A</M> with <M>P(A\setminus B)>0.</M></ANS>
+</EXR>
+
+<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)>0.99</M>
+but <M>P(B|A) < 0.01</M>" Disprove or provide an example to
+this statement.
+<ANS><M>B=\{1\}</M>, <M>A = \{1,...,1000\}.</M> The random
+experiment is to draw one element of <M>A</M> with equal probabilities. </ANS>
+</EXR>
 
 
 
-<LI>Let <M>u_{2n}</M> denote the probability that a random path
+<EXR>Let <M>u_{2n}</M> denote the probability that a random path
 of length <M>2n</M> starting from <M>(0,0)</M> passes
-through <M>(2n,0).</M> Also, let <M>u_0=1.</M> Then show without using the explicit form
-of <M>u_{2n}</M> that
+through <M>(2n,0).</M> Also, let <M>u_0=1.</M> Let <M>v_{2n}</M>
+denote the probability that a random path of length <M>2n</M>
+starting from <M>(0,0)</M> returns to 0 for the first time
+at <M>2n.</M> Here also we define <M>v_0=1.</M> Then show without using the explicit form
+of <M>u_{2n}</M> and <M>v_{2n}</M> that
 <D>
-u_0u_{2n}+u_2 u_{2n-2} + \cdots + u_{2n} u_0 = 1.
+v_0u_{2n}+v_2 u_{2n-2} + \cdots + v_{2n} u_0 = 1.
 </D>
-</LI>
-<LI><M>P(A\cap B)>0.</M> Show that <M>P(A|B) = P(B|A)</M> if and
-only if <M>P(A)=P(B).</M></LI>
-<LI>Modern digital communication relies on transmitting 0's and 1's from one
-centre to another centre. Suppose that centre A transmits a 0 with
+
+<ANS>Condition on the first time the path hits zero.</ANS>
+</EXR>
+
+<EXR><M>P(A\cap B)>0.</M> Show that <M>P(A|B) = P(B|A)</M> if and
+only if <M>P(A)=P(B).</M>
+<ANS>Easy</ANS>
+</EXR>
+
+<EXR>Modern digital communication relies on transmitting 0's and 1's from one
+device to another. Suppose that device A transmits a 0 with
 probability 0.4 and a 1 with probability 0.6. The communication channel is
-noisy, so if a 1 is transmitted, it changes by mistake to a 0 in 1%
-cases. If a 0 is transmitted it corrupts into a 1 in 5% cases. Given that
-centre B has received a 1, what is the chance that it is
+noisy, so if a 1 is transmitted, it may get corrupted to a 0 in
+1% of the cases. If a 0 is transmitted, it may be corrupted into a 1 in 5% cases. Given that
+device B has received a 1, what is the chance that it is
 uncorrupted?
-</LI>
-<LI>A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
+
+<ANS><M>[[0.6\times0.95][0.6\times0.95+0.4\times0.01]].</M></ANS>
+</EXR>
+
+<EXR>A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
 wrong, the patient dies with probability 50%. Even for a correct diagnosis
 the patient dies in 10% cases. Given that a patient has died find the
-conditional probability that the diagnosis was correct.</LI>
+conditional probability that the diagnosis was correct.
+<ANS><M>[[0.9\times0.1][0.9\times0.1+0.1\times0.5]].</M></ANS>
+</EXR>
 
-<LI>Two fair dice are rolled. What is the conditional probability
-that at least one shows 6 given that the dice show different
-numbers?</LI>
+<EXR>Two fair dice are rolled. What is the conditional probability
+that at least one shows a 6 given that the dice show different
+numbers?
+<ANS>Let <M>A=</M>{the dice show difference numbers},
+and <M>B=</M>{at least one show a 6}. 
 
-<LI>If two fair dice are rolled, what is the conditional
+Then <M>P(A) = [[6\times 5][6\times 6]]</M> and <M>P(A\cap B) =
+[[10][6\times 6]],</M> because <M>A\cap B=</M>{(1,6),...,(5,6)}\cup{(6,1),...,(6,5)}.</ANS>
+</EXR>
+
+<EXR>If two fair dice are rolled, what is the conditional
 probability that the first one shows 6 given that the sum
 of the outcomes of the dice is <M>i?</M> Compute for all possible
 values
-of <M>i.</M></LI>
-<LI>Here is part of a Ludo board. 
+of <M>i.</M>
+<ANS><M>0</M> for <M>i=2,...,6.</M> Then, for <M>i=7,...,12</M>
+the conditional probability is <M>[[1][13-i]].</M></ANS>
+</EXR>
+
+<EXR>Here is part of a Ludo board. 
 <CIMG web="ludo1.png"/>
 What is the probability that
 the counter will arive at 10 in exactly two moves? Assume that
 the die shows <M>i</M> with probability <M>p_i</M>
-for <M>i=1,...,6.</M> Also find the probability that the counter
-will arrive at 14 (starting from 1) in exactly 3 moves.</LI>
+for <M>i=1,...,6.</M> Let <M>T_{15\times15}</M> be a matrix
+with <M>(i,j)</M>-th entry <M>p_{j-i}</M>
+whenever <M>j-i\in\{1,...,6\}</M> and 0 else. Show that the probability that the counter
+arrives at 14 (starting from 1) in exactly 3 moves equals
+the <M>(1,14)</M>-th entry of <M>T^3.</M>
+<ANS><M>p_4p_6 + p_5p_5+p_6p_4.</M></ANS>
+</EXR>
 
-<LI>Let <M>A_{n\times n} = ((p_{ij}))</M> be a matrix where
+<EXR>Let <M>A_{n\times n} = ((p_{ij}))</M> be a matrix where
 each <M>p_{ij}\geq 0</M> and for each <M>i</M> we have <M>\sum_j
 p_{ij}=1.</M> (Such a matrix is called a <B>stochastic</B> matrix.)
 We have a ludo board with <M>n</M> positions:
@@ -645,54 +681,182 @@ probability <M>p_{ij}.</M> (If <M>i=j,</M>  then the counter stays put.)
 All moves are independent. Show that the
 probability of the counter moving from <M>i</M> to <M>j</M> in
 exactly <M>k</M> moves is the <M>(i,j)</M>-th entry of the matrix <M>A^k.</M>
-</LI>
-<LI>
+
+<ANS>Proof</ANS>
+</EXR>
+
+<EXR>
 We have <M>N+1</M> urns, labelled <M>0,1,...,N.</M> The urn with
 label <M>k</M> contains <M>k</M> red and <M>N-k</M> green
 balls. One urn is selected at random, and an SRSWR of
-size <M>N</M> is drawn. All the <M>N</M> balls are found to be
-red. One more ball is drawn from the same urn. Show that the
-conditional probability that this ball is also red is 
-<D>
-[[1^n + 2^n +\cdots + N^n][N^n(N+1)]].
-</D>
-</LI>
+size <M>n</M> is drawn. All the <M>n</M> balls are found to be
+red. One more ball is drawn from the same urn. Find  the
+conditional probability that this ball is also red.
+<ANS><M>[[1^{n+1} + 2^{n+1} +\cdots + N^{n+1}][N(1^n + 2^n +\cdots + N^n)]].</M>
+</ANS>
+</EXR>
 
-<LI><CIMG web="rosscond1.png"/></LI>
-<LI><CIMG web="rosscond2.png"/></LI>
-<LI><CIMG web="rosscond3.png"/></LI>
-<LI><CIMG web="rosscond4.png"/></LI>
-<LI><CIMG web="rosscond5.png"/></LI>
-<LI><CIMG web="rosscond6.png"/></LI>
-<LI><CIMG web="rosscond7.png"/></LI>
-<LI><CIMG web="rosscond8.png"/></LI>
-<LI><CIMG web="rosscond9.png"/></LI>
-<LI><CIMG web="rosscond10.png"/></LI>
-<LI><CIMG web="rosscond11.png"/></LI>
-<LI><CIMG web="rosscond12.png"/></LI>
-<LI><CIMG web="rosscond13.png"/></LI>
-<LI><CIMG web="rosscond14.png"/></LI>
-<LI><CIMG web="rosscond15.png"/></LI>
-<LI><CIMG web="rosscond16.png"/></LI>
-<LI><CIMG web="rosscond17.png"/></LI>
-<LI><CIMG web="rosscond18.png"/></LI>
-<LI><CIMG web="rosscond19.png"/></LI>
-<LI><CIMG web="rosscond20.png"/></LI>
-<LI><CIMG web="rosscond21.png"/></LI>
-<LI><CIMG web="rosscond22.png"/></LI>
-<LI><CIMG web="rosscond23.png"/></LI>
-<LI><CIMG web="rosscond24.png"/></LI>
-<LI><CIMG web="rosscond25.png"/></LI>
-<LI><CIMG web="rosscond26.png"/></LI>
-<LI><CIMG web="rosscond27.png"/></LI>
-<LI><CIMG web="rosscond28.png"/></LI>
-<LI><CIMG web="rosscond29.png"/></LI>
-<LI><CIMG web="rosscond30.png"/></LI>
-<LI><CIMG web="rosscond31.png"/></LI>
-<LI><CIMG web="rosscond32.png"/></LI>
-<LI><CIMG web="most9.png"/></LI>
-<LI><CIMG web="most21.png"/></LI>
-<LI>Let <M>a,b,c\in\nn.</M> Suppose that we start with <M>a</M> red and <M>b</M> green
+<EXR><CIMG web="rosscond1.png"/>
+<ANS><M>[[6\times5\times9\times8][15\times14\times13\times12]].</M>  Send to basic.</ANS>
+</EXR>
+<EXR><CIMG web="rosscond2.png"/>
+<ANS>
+WOR: <M>P(</M> exactly 3 white<M>)=[[4\times4\times8\times7\times6][12\times11\times10\times9]].</M>
+
+<M>P(</M> exactly 3 white and 1st,3rd white<M>)=[[2\times4\times8\times7\times6][12\times11\times10\times9]].</M>
+
+So the required conditional probability is <M>[[12]].</M>
+
+WR: <M>P(</M> exactly 3 white<M>)=[[4\times4\times8^3][12^4]].</M>
+
+<M>P(</M> exactly 3 white and 1st,3rd white<M>)=[[2\times4\times8^3][12^4]].</M>
+
+So the required conditional probability is again <M>[[12]].</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond3.png"/>
+<ANS>Model this as: toss a fair coin twice. Given that at least one is a head, what is the
+ conditional probability that the other is a tail? 
+
+Answer is <M>[[23]]/[[34]]=[[23]].
+</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond4.png"/>
+<ANS><M>[[12]].</M></ANS>
+</EXR>
+<EXR><CIMG web="rosscond5.png"/>
+<ANS><M>P(</M> exactly 2 white<M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]+
+[[23]]\times[[23]]\times[[14]]=[[11][36]]</M></ANS>
+
+<M>P(</M> exactly 2 white and white from <M>A</M><M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]=[[7][36]].</M>
+
+So the required conditional probability is <M>[[7][11]].</M> 
+</EXR>
+<EXR><CIMG web="rosscond6.png"/>
+<ANS><M>P(</M> 2nd and 3rd cards spades<M>)=[[13\times12][52\times51]].</M>
+
+<M>P(</M> All three spades<M>)=[[13\times12\times11][52\times51\times50]].</M>
+
+Hence the required probability is <M>[[11][50]].</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond7.png"/>
+<ANS>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond8.png"/>
+<ANS>
+<CIMG web="csec.png"></CIMG>
+<M>0.85p+0.15\times0.96 = 0.98.</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond9.png"/>
+<ANS>(a) <M>0.36\times0.22.</M>
+
+(b) <M>[[0.36\times0.22][0.36\times0.22+0.30]].</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond10.png"/>
+<ANS>
+(a) <M>[[0.46\times0.35][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
+
+(b) <M>[[0.3\times0.62][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
+
+(c) <M>[[0.24\times0.58][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
+
+(d) <M>0.46\times0.35+0.3\times0.62+0.24\times0.58.</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="rosscond11.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond12.png"/>
+<ANS>Can be done directly by counting. Or stepwise using conditional probability.</ANS>
+</EXR>
+
+<EXR><CIMG web="rosscond13.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond14.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond15.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond16.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond17.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond18.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond19.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond20.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond21.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond22.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond23.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond24.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond25.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond26.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond27.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond28.png"/>
+<ANS>9.</ANS>
+</EXR>
+<EXR><CIMG web="rosscond29.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond30.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond31.png"/>
+<ANS></ANS>
+</EXR>
+<EXR><CIMG web="rosscond32.png"/>
+<ANS>You may either list all the paths and then compute the
+probability of their union using inclusion-exclusion, or you may
+you conditional probability. In the latter approach, you take
+the switches one by one, and consider the cases when it is on and
+when it is off. This approach is better for complicated circuits.
+</ANS>
+</EXR>
+<EXR><CIMG web="most9.png"/>
+<ANS>
+<M>A_i=</M> {first throw shows <M>i</M> } for <M>i=2,3,...,12.</M>
+
+Let <M>p_i = P(A_i).</M>  
+
+Then <M>P(win)=\sum_i p_iP(win|A_i).</M>
+
+It is easy to compute <M>p_i</M>'s. Also <M>P(win|A_7) = P(win|A_{11}) = 1</M>  and <M>P(win|A_i) = 0</M>  for <M>i=2,3,12.</M> 
+ 
+For any other <M>i</M>  we have <M>P(win|A_i) = p_i + (1-p_i-p_7)p_i + (1-p_i-p_7)^2p_i + \cdots = [[p_i][p_i+p_7]].</M>
+</ANS>
+</EXR>
+<EXR><CIMG web="most21.png"/>
+<ANS>Don't replace.</ANS>
+</EXR>
+<EXR>Let <M>a,b,c\in\nn.</M> Suppose that we start with <M>a</M> red and <M>b</M> green
 balls in an urn. We draw a ball at random, note its colour, replace it, and
 add <M>c</M> more balls of that color. We continue this process
 again and again. What is the probability that at the <M>n</M>-th
@@ -720,11 +884,15 @@ Similarly, <M>P(X_n=\red|X_1=\grn) = [[a][a+b+c]].</M>
 <P/>
 Now the result follows immediately.
 </HINT>
-</LI>
-<LI>Same set up as in the last problem. Fix two natural
+
+<ANS></ANS>
+</EXR>
+<EXR>Same set up as in the last problem. Fix two natural
 numbers <M>m < n.</M> What is the probability that the ball
 drawn at stage <M>m</M> is green and the ball drawn at
-stage <M>n</M> is red? Does the answer depend on <M>m</M> and <M>n</M>?</LI>
-</OL>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/bayes.html" id="bayes"/></E>@}
+stage <M>n</M> is red? Does the answer depend on <M>m</M> and <M>n</M>?
+<ANS></ANS>
+</EXR>
+
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/bayes.html" id="bayes"/></E>@}
 </NOTE>

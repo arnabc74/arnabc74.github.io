@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -85,6 +159,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 </ul>
 <hr/>
 
+<p></p>
 
 <h1><a
 name="Finite existence of $E(X)$">Finite existence of $E(X)$</a></h1>
@@ -92,6 +167,7 @@ We know from the definition of expectation that it exists
 finitely if and only if the sum defining the expectation converges absolutely. It
 sometimes helps to know some sufficient conditions for this that
 are easier to check.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -105,6 +181,7 @@ No infinite series involved here at all. Just a finite sum!
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <table align="right" width="20%" border="1">
 <tr>
@@ -125,7 +202,7 @@ then $E(X)$ must exist finitely.
 Let $X$ take values $x_1,x_2,...$ with
 probabilities $p_1,p_2,...$ We are assumin $\exists
 B\in{\mathbb R}~~\forall i~~|x_i|\leq B.$
-
+<p></p>
 So 
 $$
 \sum_n |x_n|p_n\leq \sum_n B p_n = B\sum p_n.
@@ -136,6 +213,7 @@ So, by comparison test, $\sum |x_n|p_n$ must converge.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -151,6 +229,7 @@ Use comparison test between $\sum |f(x_n)|p_n$ and $\sum |g(x_n)|p_n.$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -166,6 +245,7 @@ Apply comparison test between $\sum \max\{f(x_n)p_n,g(x_n)p_n\}$ and $\sum (f(x_
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -180,13 +260,14 @@ last theorem.
 <b><i>[QED]</i></b>
 </p>
 
-
+<p></p>
 
 <h1><a
 name="Variance">Variance</a></h1>
 Of course, a random variable is random, and so may differ from
 its expectation. By how much? A lot or a little? We can use
 expectation to find that out. 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Variance</b></legend>
@@ -197,31 +278,35 @@ $$
 It is either finite or $\infty.$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $V(X)\geq 0.$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 If $E(X^2)&lt;\infty,$ then $V(X)$ exists finitely, and $V(X) = E(X^2)-\big( E(X) \big)^2.$
 </fieldset>
 
-
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $V(aX+b) = a^2 V(X).$
 </fieldset>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 $V(X)=0$ if and only if $X$ is a degenerate random variable.
 </fieldset>
 
+<p></p>
 
 <table align="right" width="20%" border="1">
 <tr>
@@ -251,10 +336,11 @@ f(x) = \left\{\begin{array}{ll}
 0 &\text{otherwise.}
 \end{array}\right.
 $$
-
+<p></p>
 Then $\forall x~~f(x)\leq (x-\mu)^2.$
 <p></p>
 
+<p></p>
 So
 $$\begin{eqnarray*}
 V(X) 
@@ -266,10 +352,12 @@ Hence the result.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h1><a
 name="Moments">Moments</a></h1>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Raw and central moments</b></legend>
@@ -283,10 +371,12 @@ E\big[ (X-E(X))^k \big].
 $$
 </fieldset>
 
+<p></p>
 
 <h1><a
 name="Moment generating function">Moment generating function</a></h1>
 
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Moment generating function (MGF)</b></legend>
@@ -299,7 +389,9 @@ The domain of this function conists of all $t\in{\mathbb R}$ for
 which the expectation exists.
 </fieldset>
 
+<p></p>
 Clearly, $m_X(0)$ always exists and equals $1.$
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -340,8 +432,10 @@ gives us $E(X^2),$ and so on.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 We shall not spend much time with MGFs, because there is a better
 alternative called the <b>characteristic function (CF)</b>.
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Characteristic function (CF)</b></legend>
@@ -358,6 +452,7 @@ E(\cos tX) + i E(\sin tX).
 $$
 CFs are better than MGFs because of two reasons, that we give as
 theorems below.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -372,6 +467,7 @@ bounded random variables, and hence have finite expectations.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -393,6 +489,7 @@ domain $D\subseteq{\mathbb R}$), but still $X$ and $Y$ have
 different distributions. However, if the domain includes a
 neighbourhood of $0,$ then $X,Y$ must have the same
 distribution. This is stated in the following theorem.
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>Let $m_X(t)$ be defined for $t\in (-a,a)$ for
@@ -406,15 +503,17 @@ Too difficult for this course.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <b>We shall not spend proving any result on MGF here. We shall
 learn the proofs for CFs in the next semester.</b>
 
+<p></p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
+<ol type="">
 
 <li>A box has 6 red balls an 4 black balls. An SRSWR of
 size $n$ is selected. If $X$ is the number of red
@@ -437,6 +536,7 @@ from $\{1,2,...,12\}.$ Let $a_n $ be the expected
 value of the maximum of the sample. Show that $a_n \leq
 a_{n+1}$ without explicily finding $a_n$ in terms of $n.$</li>
 
+<p></p>
 
 </ol>
 
@@ -447,6 +547,4 @@ a_{n+1}$ without explicily finding $a_n$ in terms of $n.$</li>
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

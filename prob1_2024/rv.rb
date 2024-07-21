@@ -661,6 +661,6 @@ values <M>1,2,...,n</M> with probability <M>[[1n]]</M> each.</LI>
 <LI><CIMG web="most34.png"/></LI>
 <LI><CIMG web="most40.png"/></LI>
 </OL>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/rv.html" id="rv"/>
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/rv.html" id="rv"/>
 </E>@}
 </NOTE>

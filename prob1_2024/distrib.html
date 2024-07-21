@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -142,17 +216,18 @@ variable, and write $X\sim$<b>DUnif</b>$(S).$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 Consider a fair die---a die that is  equally 
 likely to land on any of the six faces. If $X$ denotes the outcome of
 a roll of this die then $X$ has <b>DUnif</b>$\{1,2,3,4,5,6\}$
 distribution. 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 If you toss a fair coin (<i>i.e.</i>, a coin that is equally heavy on
 either side) and 
 $$
@@ -162,12 +237,13 @@ Y = \left\{\begin{array}{ll}
     \end{array}\right.,
 $$
 then $Y\sim$<b>DUnif</b>$\{-5,10\}.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 $Y$ has <b>DUnif</b>$\{0,1,2,3\}$ distribution. Find $P(Y=2)$ and 
 $P(Y\mbox{ is odd}).$
 <p></p>
@@ -176,13 +252,15 @@ likely. Since the total of the probabilities must be 1, each outcome has
 probability $\frac14.$ In particular, $P(Y=2)=\frac14.$ Also,
 $P(Y\mbox{ is odd}) = P(Y=1\mbox{ or }Y=3) =
 P(Y=1)+P(Y=3)=\frac14+\frac14=\frac12.$ 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 1:</b>&nbsp;
 $X$ follows <b>DUnif</b>$\{1,2,3,4,5\}$ distribution. Find the
 following probabilities.
 <ol>
@@ -200,13 +278,13 @@ following probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 2:</b>&nbsp;
 $U$ is a <b>DUnif</b>$\{-2,-1,0,1,2\}$ random variable. Find the
 following probabilities.
 <ol>
@@ -220,16 +298,16 @@ following probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 3:</b>&nbsp;
 Express the distributions of the following random variables in terms of the
 discrete uniform distribution.
-<ol>
+<ol type="">
 
 <li>The top card is drawn from a well-shuffled deck of cards. 
 $$
@@ -251,7 +329,7 @@ $$
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -289,7 +367,7 @@ $$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 4:</b>&nbsp;
 Compute mean and variance of a <b>DUnif</b>$\{1,...,n\}$ random variable,
 $X.$
 <p></p>
@@ -298,15 +376,16 @@ for $i=1,...,n.$
 $E(X)=\frac1n\sum_{i=1}^n i = \frac{n+1}2.$
 $E(X^2)=\frac1n\sum_{i=1}^n i^2 = \frac{(n+1)(2n+1)}{6}.$
 Hence, $Var(X) = E(X^2)-(E(X))^2 = \frac{n^2-1}{6}.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 4:</b>&nbsp;
 If $Y$ has <b>DUnif</b>$\{0,1,...,n\}$ distribution, then compute 
 $E(Y)$ and $Var(Y).$
-<img src="../image/box.png"></p>
+</p>
 
 
 <h2><a
@@ -338,11 +417,12 @@ variable, and write $X\sim$<b>Bern</b>$(\theta).$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 5:</b>&nbsp;
 Coin toss has two possible outcomes, head and tail. If we call head as `1'
 and tail as `0' then we have <b>Bern</b>($\theta$) random variable
 where $\theta=P(head).$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
@@ -359,20 +439,22 @@ So $Var(X)=E(X^2)-(E(X))^2=\theta-\theta^2=\theta(1-\theta)).$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 6:</b>&nbsp;
 $X$ is a <b>Bern</b>$(\frac45)$ random variable. Find $E(X)$ and
 $Var(X).$
 <p></p>
 <b>SOLUTION:</b> Here $\theta=\frac45.$ So $E(X) = \theta = \frac45,$
 and
 $Var(X) = \theta(1-\theta) = \frac45(1-\frac45)=\frac4{25}.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 5:</b>&nbsp;
 Find $E(Z)$ and $Var(Z)$ if $Z\sim$<b>Bern</b>$(\theta),$ where
 <ol>
 <li>$\theta=\frac13$
@@ -387,13 +469,13 @@ Find $E(Z)$ and $Var(Z)$ if $Z\sim$<b>Bern</b>$(\theta),$ where
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 7:</b>&nbsp;
 $X$ is a <b>Bern</b>(0.5) random variable. $Y$ has a <b>Bern</b>(0.2)
 distribution. $X$ and $Y$ are independent. Let $Z=XY.$ Show
 that $Z$ has <b>Bern</b>(0.01) distribution. Hence compute $Var(Z)$. 
@@ -419,7 +501,8 @@ So by property of Bernoulli distribution we have
 $$
 Var(Z)=0.01(1-0.01)=0.0099
 $$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
@@ -481,7 +564,7 @@ tosses.
 <table style="" border="1">
 
 <tr>
-<th>Outcome </th><th> Probability</th>
+<th colspan="" rowspan="">Outcome </th><th colspan="" rowspan=""> Probability</th>
 </tr>
 
 <tr>
@@ -538,17 +621,17 @@ which is the binomial PMF
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 6:</b>&nbsp;
 List all the possible outcomes of $n=4$ tosses having exactly
 $x=2$ heads. For example, one possible outcome is $HTHT.$ How
 many such outcomes are there?
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 8:</b>&nbsp;
 $U$ is distributed as <b>Bin</b>$(5,\frac14).$ Find $P(U=2).$
 <p></p>
 <b>SOLUTION:</b> 
@@ -559,12 +642,13 @@ P(U=2)&amp;=&amp;{5\choose2}\left(\frac14\right)^2\left(1-\frac14\right)^{5-2}\\
 &amp;=&amp;\frac{5\times4}{2}\cdot\frac{27}{1024}\\
 &amp;=&amp;\frac{135}{512}.
 \end{eqnarray*}$$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 7:</b>&nbsp;
 $Y$ is distributed as <b>Bin</b>$(4,\frac23).$ Find the following
 probabilities.
 <ol>
@@ -578,12 +662,12 @@ probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 8:</b>&nbsp;
 $Z\sim$<b>Bin</b>$(5,\frac12).$ Find the following.
 <ol>
 <li>$P(Z\mbox{ is odd})$
@@ -596,17 +680,17 @@ $Z\sim$<b>Bin</b>$(5,\frac12).$ Find the following.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 9:</b>&nbsp;
 If $X$ has <b>Bin</b>$(100,0.5)$ distribution. Then find $a\neq37$ such
 that $$
 P(X=a) = P(X = 37).
 $$
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -620,7 +704,7 @@ symmetric, <i>i.e.</i>, $$\begin{eqnarray*}P(X=x) &amp;=&amp; {n\choose x}0.5^x(
 </p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 9:</b>&nbsp;
 A couple plans to have 6 babies (Good heavens!). The chance of a boy being
 born is 
 0.4. Let $X$ be the number of sons born to this couple. What is the
@@ -633,20 +717,21 @@ girl. Let us call boy as `1' and girl as `0'. We assume that the outcome
 of one birth is independent of the others. So here a <b>Bern</b>(0.4) random
 experiment has been repeated independently 6 times, and $X$ denotes
 the number of `1' s. Hence $X$ has <b>Bin</b>(6, 0.4) distribution.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 10:</b>&nbsp;
 In the above example let $Y$ be the number of girls. What is the
 distribution of $Y$? 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 10:</b>&nbsp;
 A mobile tower is sending 10 signals to another mobile tower.Owing to
 mechanical problems a signal may become corrupted during transmission with
 probability 0.1. Corruption of one signal is independent of that of the
@@ -671,7 +756,8 @@ P(X \leq 2) &amp;=&amp; P(X=0) + P(X=1) + P(X=2)\\
             &amp; &amp; {10\choose 1}(0.1)^1(0.9)^{10-1} + {10\choose 2}(0.1)^2(0.9)^{10-2}\\
             &amp;=&amp; 0.93
 \end{eqnarray*}$$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
@@ -739,9 +825,10 @@ Var(X) &amp;=&amp; E(X^2)-(E(X))^2\\
 \end{eqnarray*}$$
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 11:</b>&nbsp;
 Assuming that $T\sim$<b>Bin</b>$(100,\frac15),$ find $E(T)$ and
 standard deviation 
 of $T.$
@@ -751,12 +838,13 @@ $E(T) = n \theta = 100\times \frac15 = 20.$ Similarly,
 $Var(T) = n \theta(1-\theta) = 
 100\times\frac15\times(1-\frac15)= 16.$
 Hence standard deviation of $T$ is $\sqrt{16} = 4.$ 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 11:</b>&nbsp;
 Find $E(Z)$ and $Var(Z)$ if $Z\sim$<b>Bin</b>$(n,p),$ where
 <ol>
 <li>$n=20,p=\frac13$
@@ -769,13 +857,12 @@ Find $E(Z)$ and $Var(Z)$ if $Z\sim$<b>Bin</b>$(n,p),$ where
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <fieldset>
-<legend><b><i></i></b></legend>
 If $X$ is a <b>Bin</b>($m,\theta$) random variable, and $Y$
 is a <b>Bin</b>($n,\theta$) random variable (same $\theta$ for
 both!) and $X,Y$ are independent, then
@@ -795,23 +882,25 @@ $P(head) = \theta,$ hence we see that $X+Y$ has
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 12:</b>&nbsp;
 What is the distribution of $U+V,$ if $U\sim$<b>Bin</b>$(10,0.1)$ and
 $V\sim$<b>Bin</b>$(6,0.1)?$
 <p></p>
 <b>SOLUTION:</b> $U+V\sim$<b>Bin</b>$(16,0.1).$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 12:</b>&nbsp;
 If $X_1,X_2$ and $X_3$ are independent random variables with 
 <b>Bin</b>$(5,\frac13),$ <b>Bin</b>$(10,\frac13)$ and
 <b>Bin</b>$(6,\frac13)$ distributions, respectively.
 Find the distribution of $(X_1+X_2+X_3).$
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -891,7 +980,7 @@ The same argument gives you the hypergeometric PMF as shown below.
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 13:</b>&nbsp;
 Find $P(Y=2)$ where $Y\sim$<b>HypGeom</b>$(5,3,4).$
 <p></p>
 <b>SOLUTION:</b> Here $N=5, M=3$ and $n=4.$ So
@@ -901,12 +990,13 @@ P(Y=2) = \frac{{M\choose 2}{N-M\choose n-2}}{{N\choose n}}
 $$
 Now, ${3\choose2}=3,$ ${2\choose 2}=1$ and ${5\choose4}=5.$
 So $P(Y=2) = \frac35.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 13:</b>&nbsp;
 $X$ is known to follow <b>HypGeom</b>$(10,4,8).$ Find the following
 probabilities.
 <ol>
@@ -922,19 +1012,19 @@ probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 14:</b>&nbsp;
 Suppose that $Y$ has <b>HypGeom</b>$(100,30,40)$ distribution and $Z$ has 
 <b>HypGeom</b>$(100,70,40)$ distribution. Then which of the following two
 probabilities is larger and why?
 $$
 P(Y=10),\quad P(Z=30)
 $$
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -946,7 +1036,7 @@ number of <i>white</i> balls that you get, and $Z$ is the number of
 </p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 14:</b>&nbsp;
 In a class of 10 students there are 4 girls. If 3 students are selected at
 random from this class what is the chance that exactly 2 girls are
 selected? 
@@ -965,7 +1055,8 @@ $$
 P(X=2) = \frac{{4\choose 2} {10-4\choose 3-2}}{{10\choose 3}} = 
   \frac{6\times 6}{120} = \frac3{10}.
 $$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
@@ -1017,7 +1108,7 @@ Var(X) &amp;=&amp; E(X^2) - (E(X))^2 \\
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 15:</b>&nbsp;
 Compute $E(X)$ and $Var(X)$ where $X$ has <b>HypGeom</b>$(N,M,n)$
 distribution with
 <ol>
@@ -1031,7 +1122,7 @@ distribution with
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <h1><a
@@ -1083,7 +1174,7 @@ which is the <b>Geom</b>$(\theta)$ PMF
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 15:</b>&nbsp;
 If $X\sim$<b>Geom</b>$(0.3),$ find $P(X&gt;2).$
 <p></p>
 <b>SOLUTION:</b> 
@@ -1093,12 +1184,13 @@ P(X&gt;2) &amp;=&amp; 1-P(X\leq 2)\\
        &amp;=&amp; 1-(1-0.3)^{1-1}0.3 - (1-0.3)^{2-1}0.3\\
        &amp;=&amp; 1-0.3-0.21 = 0.49.
 \end{eqnarray*}$$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 16:</b>&nbsp;
 If $G$ is a <b>Geom</b>$(0.2)$ random variable, then compute the
 following probabilities.
 <ol>
@@ -1114,15 +1206,16 @@ following probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 17:</b>&nbsp;
 Find $P(T\mbox{ is even})$ where $T\sim$<b>Geom</b>$(0.4).$ 
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -1138,7 +1231,7 @@ $$\begin{eqnarray*}P(X\mbox{ is even})&amp;=&amp; P(X=2)+P(X=4)+\cdots\\
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 16:</b>&nbsp;
 Some versions of Ludo require you to get a `6' on the die before your
 counter can move. Sometimes it takes frustratingly long time before you
 finally roll a `6'. Let $X$ denote the number of rolls required to
@@ -1148,27 +1241,28 @@ probability 1/6 of turning up), then what is the distribution of $X?$
 
 <p></p>
 <b>SOLUTION:</b> $X$ is a <b>Geom</b>(1/6) random variable. 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 18:</b>&nbsp;
 In the above example compute the probability of getting the first `6' within
 the first 3 rolls. 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 19:</b>&nbsp;
 Some couples are so keen about having a son that they go on producing
 babies until they get their first son, and then they stop having children. 
  Assume that at each birth a baby of
 either gender is equally likely. Also assume that the births are
 independent. Compute the probability that such a  couple has exactly 2
 daughters. 
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -1220,7 +1314,7 @@ Var(X) &amp;=&amp; E(X^2) - (E(X))^2 \\
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 20:</b>&nbsp;
 Find the mean and standard deviation of a <b>Geom</b>$(\theta)$ random
 variable for the following values of $\theta.$
 <ol>
@@ -1232,13 +1326,13 @@ variable for the following values of $\theta.$
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 17:</b>&nbsp;
 When a computer tries to connect to another computer, it
  sends a connection request to the second. Depending on how busy the
  second computer is, this request may be honoured (and so the connection is
@@ -1256,14 +1350,15 @@ When a computer tries to connect to another computer, it
 $$
 E(X) = 1/0.8 = 1.25
 $$ 
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 21:</b>&nbsp;
 Compute $E(D)$ and $Var(D)$ in Exercise \ref{geo4} above.
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
@@ -1329,7 +1424,7 @@ $$
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 22:</b>&nbsp;
 If $X$ follows <b>NegBin</b>$(3,\frac14)$ distribution, find the following
 probabilities.
 <ol>
@@ -1343,7 +1438,7 @@ probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
@@ -1356,7 +1451,7 @@ Var(X) &amp; = &amp; \frac{r(1-\theta)}{\theta^2}
 <p></p>
 
 <p>
-<b>EXERCISE:</b> $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
+<b>EXERCISE 23:</b>&nbsp; $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
 $Var(Y)$ for the following values of $r$ and $\theta.$
 <ol>
 <li>$r=3, \theta=\frac12$
@@ -1369,7 +1464,7 @@ $Var(Y)$ for the following values of $r$ and $\theta.$
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
@@ -1382,7 +1477,7 @@ distribution.
 <p></p>
 
 <fieldset>
-<legend><b><i></i></b></legend>
+
 <b>NegBin</b>$(\theta,1)$ is the same as <b>Geom</b>$(\theta).$
 </fieldset>
 
@@ -1391,7 +1486,6 @@ Here is another connection.
 <p></p>
 
 <fieldset>
-<legend><b><i></i></b></legend>
 If $X\sim$<b>NegBin</b>$(\theta,r), $$Y\sim$<b>NegBin</b>$(\theta,s)$ and they are
 independent, then 
 <blockquote>
@@ -1403,7 +1497,6 @@ $X+Y\sim$<b>NegBin</b>$(\theta,r+s).$
 <p></p>
 
 <fieldset>
-<legend><b><i></i></b></legend>
 If $X_1,...,X_r$ are independent <b>Geom</b>$(\theta)$ random
 variables, then 
 $$
@@ -1412,11 +1505,11 @@ $$
 </fieldset>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 24:</b>&nbsp;
 Using the above result and the mean and variance of
 <b>Geom</b>$(\theta),$
 derive the formula for mean and variance of <b>NegBin</b>$(r,\theta).$
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -1457,7 +1550,7 @@ variable, and write $X\sim$<b>Poi</b>$(\lambda).$
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 25:</b>&nbsp;
 If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 <ol>
 <li>$P(X=4)$
@@ -1470,14 +1563,14 @@ If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 26:</b>&nbsp;
 What is the probability that a <b>Poi</b>$(5)$ random variable is even?
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
@@ -1486,7 +1579,6 @@ Binomial distribution.
 <p></p>
 
 <fieldset>
-<legend><b><i></i></b></legend>
 If $n$ is large and $\lambda $ is small, then
 <b>Bin</b>$(n,\lambda)$ is approximately same as <b>Poi</b>$(\lambda)$
 where $\lambda  = n \lambda. $
@@ -1495,7 +1587,7 @@ where $\lambda  = n \lambda. $
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 18:</b>&nbsp;
 $X$ has <b>Bin</b>(1000,0.01) distribution. Compute $P(X=5)$
 approximately by using Poisson approximation. 
 <p></p>
@@ -1511,19 +1603,20 @@ It is instructive to compare this with the exact value, which is
 $$
 P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
 $$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 27:</b>&nbsp;
 A box has 100 items, each of which either passes a quality control test
 (OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
 box is rejected by the quality control inspector. It is known that each
 item is OK with probability 0.01, and that the items are independent. Use
 Poisson approximation to compute the probability that a box is not
 rejected.
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
@@ -1586,7 +1679,7 @@ Var(X)   &amp;=&amp; E(X^2) - (E(X))^2\\
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 28:</b>&nbsp;
 Find the expected values of the following random variables.
 <ol>
 <li>$X\sim$<b>Poi</b>$(2).$
@@ -1597,13 +1690,13 @@ Find the expected values of the following random variables.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 29:</b>&nbsp;
 Find the variance of a <b>Poi</b>$(\lambda)$ random variable for the
 following values of $\lambda.$
 <ol>
@@ -1615,13 +1708,12 @@ following values of $\lambda.$
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 
 <p></p>
 
 <fieldset>
-<legend><b><i></i></b></legend>
 If $X$ is a <b>Poi</b>$(\alpha)$ random variable, $Y$ is a
 <b>Poi</b>$(\beta)$ random variable, and $X,Y$ are independent,
 then $X+Y$ is a <b>Poi</b>$(\alpha+\beta)$ random variable.
@@ -1630,15 +1722,16 @@ then $X+Y$ is a <b>Poi</b>$(\alpha+\beta)$ random variable.
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 30:</b>&nbsp;
 If $X_1,X_2,X_3,X_4$ are independent random variables with
  distributions <b>Poi</b>$(1),<b>Poi</b>(2),<b>Poi</b>(4)$ and <b>Poi</b>$(5),$
  respectively.
 Find the distribution of $(X_1+\cdots+X_4).$
-<img src="../image/box.png"></p>
+</p>
 
 <p></p>
 
+<p></p>
 
 <p></p>
 
@@ -1674,6 +1767,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

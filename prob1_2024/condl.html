@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -55,15 +59,85 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -100,9 +174,10 @@ A\mapsto P(Y\in A | X = x).
 $$
 </fieldset>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 A 7-segment display shows any number from 0 to 9 at random (equal
 probabilities). 
 <center>
@@ -135,10 +210,13 @@ Hence $P(Y=1|X=1) = P(X=1,Y=1)/P(X=1) = \frac 67.$
 <p></p>
 You should now be able to work out the other three conditional
 probabilities similarly.
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 We can define conditional CDF or conditional PMF in the obvious
 way.
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Conditional expectation / variance</b></legend>
@@ -146,9 +224,11 @@ Expectation (or variance) computed baed on a conditional distribution is
 called <b>conditional expectation (variance)</b>.
 </fieldset>
 
+<p></p>
 It is important to understand that the conditional
 expectation/variance is a random variable, which is a function of
 the conditioning random variable.
+<p></p>
 
 <h2><a
 name="Unconditionals in terms of conditionals">Unconditionals in terms of conditionals</a></h2>
@@ -161,6 +241,7 @@ arrive at the (unconditional) probability of $A?$
 <p></p>
 Well, we can do similar things with conditional
 expectation/variance also. 
+<p></p>
 
 <fieldset>
 <legend><b><i>Tower property</i></b></legend>
@@ -188,13 +269,15 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 Many expectation problems can be handled step-bystep using this
 result. Here are some examples.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 A casino has two gambling games:
-<ol>
+<ol type="">
 
 <li>Roll a fair die, and win Rs. $D$ if $D$ is the
 outcome. </li>
@@ -214,14 +297,17 @@ toss.
 Then $E(X|Y=Head) = 3.5$ and $E(X|Y=Tail) = 5\times\frac{6-30}{36}=-\frac{10}{3}.$ 
 <p></p>
 So, by the tower property, $E(X) = P(X|Y=Head)\times P(Y=Head)+P(X|Y=Tail)\times P(Y=Tail) = \cdots.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 The tower property is very useful for computing expectations
 involving a random number of random variables. Here is an
 example.
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 A random number $N$ of customers enter a shop in a
 day, where $N$ takes values in $\{1,...,100\}$ with
 equal probabilities. The $i$-th customer pays a random amount $X_i$,
@@ -236,11 +322,13 @@ We have $E(X_i) = \frac{11+i}{2}.$
 So $E\left(\sum_1^N X_i|N\right) = \sum_1^N E(X_i|N) = \sum_1^N E(X_i) = \sum_1^N \frac{11+i}{2} = 5.5N+\frac{N(N+1)}{4}.$
 <p></p>
 By tower property, the required answer is $E\left(5.5N+\frac{N(N+1)}{4}\right)=\cdots.$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 4:</b>&nbsp;
 10 holes, numbered 1 to 10, in a row. 5 balls are dropped
 randomly in them (a hole may contain any number of balls). Call a
 ball "lonely" if there is no other ball in its hole or the
@@ -271,8 +359,10 @@ So tower property should provide the answer as
 $$
 E(X) = \sum E(E(I_i|Y_i)) = \cdots.
 $$
-<img src="../image/box.png"></p>
+ ///
+</p>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -303,6 +393,7 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
 
 <h2><a
 name="More than 2 variables">More than 2 variables</a></h2>
@@ -312,6 +403,7 @@ given $(X,Y)$ or $X$ given $Z$ or $(X,Z)$
 given $Y,$ etc. We can even condition step by step. For
 example, we can talk about $E(E(Z|X,Y)|X).$ This is a
 function of $X$ alone. 
+<p></p>
 
 <h2><a
 name="Substitution">Substitution</a></h2>
@@ -331,7 +423,7 @@ This follows immediately from the definition of conditional probability.
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
+<ol type="">
 
 <li>
 <img width="" src="image/condist1.png" style="vertical-align:text-top;"><hr>
@@ -466,6 +558,7 @@ refers to Example 2m. <a href="image/kirti1.png">Here is that example.</a>
 <img width="" src="image/morecond18.png" style="vertical-align:text-top;"><hr>
 </li>
 
+<p></p>
 
 <li>
 <img width="" src="image/morecond19.png" style="vertical-align:text-top;"><hr>
@@ -492,6 +585,4 @@ refers to Example 2m. <a href="image/kirti1.png">Here is that example.</a>
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

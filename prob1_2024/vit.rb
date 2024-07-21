@@ -142,5 +142,5 @@ This completes the proof
 But as you can see, such "bad" sets are pretty difficult to come
 across. So ignoring them will never cause any problem during our
 course. 
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/vit.html" id="vit"/></E>@}
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/vit.html" id="vit"/></E>@}
 </NOTE>
