@@ -214,9 +214,10 @@ If <M>x\in A</M>  then <M>x\in A_n</M>  for some <M>n\in\nn.</M>  Let <M>n_0</M>
 <P/>
 Hence <M>A\seq \cup B_n.</M>
 <P/>
-Conversely, let <M>y\in \cup_n B_n.</M>  Then <M>y\in A_n\seq A.</M>
-<P/>
-So <M>\cup B_n \seq A.</M><P/>
+Conversely, let <M>B_n\seq A_n.</M> 
+
+So <M>\cup B_n \seq\cup_n A_n =  A.</M>
+
 Combining, <M>\cup B_n = A.</M>
 </HIDDEN>
 </HIDE>
@@ -234,6 +235,38 @@ or <M>1-P(A_n)\to 1-P(A),</M> or <M>P(A_n)\to P(A),</M> as required.
 </HIDDEN></HIDE>
 
 </PF>
+
+<EXR><B>(A puzzle)</B>  You are approached by a gambler at a casino. "Hmm, youngester", he remarks
+ as he looks you up and down, "you seem to be new here. Let me offer you some money." He comes
+ closer, sits beside you, and continues in a friendly voice, "Here I have a die, a fair one. You
+ shall roll it again and again. After each roll, we shall do a little transaction like this: if the die shows six,
+ you  pay me some positive  amount, say <M>t.</M> But if it shows
+ any other number I shall pay you ten times that amount. Does that sound like a good game to you?"
+
+ Being freshly admitted to ISI, you are of course proud of your probability skills, and reply
+ "Yes". 
+
+"That's very good for you, very good indeed", exclaims the man in glee, "but it is not
+ good for <I>me</I>, you see. I just made the offer because I took a liking to you. I hope that you would
+ keep two requests in return." 
+
+You get cautious, but agree to hear them anyway. 
+
+"The first request
+ is that <I>I</I> shall dictate the value of <M>t</M>  before each roll". Noticing a cloud of worry upon your face, he adds,
+ "Don't worry, <M>t </M> will always be
+ positive, and I shall fix the amount <I>before</I>  the roll." 
+
+You see no harm in that, and ask him to proceed.
+
+ "The seond favour that I ask for is to call it quits whenever I like. That means I shall decide when the game
+ will stop.  It is only the barest protection for me, you see. I shall soon become bankrupt, and then
+ I at least need to have my right to go back home! Surely you would not deny me <I>that</I> !" 
+
+You find the entire offer  reasonable enough, and so
+accept it.
+
+Have you done a wise thing? [Hint: the die is indeed fair, and there is no word play. It is a pure mathematical puzzle.]  </EXR>
 
 <HEAD3>Inclusion-Exclusion formula</HEAD3>
 Just now we have mentioned the result <M>P(A\cup B) = P(A)+P(B)-P(A\cap B).</M>  
