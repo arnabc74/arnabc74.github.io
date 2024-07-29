@@ -477,7 +477,7 @@ Since all outocmes are equally likely hence
 Same problem as above, except that the balls are now identical. The boxes are still distinct. 
 What is the answer now?
 <SOLN/>
-By the bar-star argument <M>|\Omega| = \binom{12}{2}=66.</M>
+By the <LINK to="barstar.html">bar-star argument</LINK> <M>|\Omega| = \binom{12}{2}=66.</M>
 <P/>
 Similarly, <M>|A| = \binom{11}{1} = 11.</M>
 <P/>
@@ -509,7 +509,7 @@ No real life particle shows this behaviour.</LI>
 
 
 <LI><B>Bose-Einstein distribution:</B> The balls are
-identical. So, by the bar-star argument, we know that there
+identical. So, by the <LINK to="barstar.html">bar-star argument</LINK>, we know that there
 are <M>{n+r-1\choose n-1}</M> configurations possible. These are
 assumed equally likely.</LI>
 
