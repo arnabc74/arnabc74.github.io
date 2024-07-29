@@ -147,7 +147,7 @@ pretty=:srt@comb
 gpbad=: 4 : 'comb ,/ x mult"1/ y'
 
 NB. The prettified versions that are actually used.
-gp=:comb@,/@(mult"1/)
+gp=:pretty@,/@(mult"1/)
 
 
 dp=:pretty@,/@(dmult"1/)
