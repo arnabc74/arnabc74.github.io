@@ -91,7 +91,7 @@ mean(event)
 </EXR>
 
 Now we are going to learn some theorems that are
-interconnected. There interconnections are shown below:
+interconnected. Their interconnections are shown below:
 <CIMG web="pflink.png"/>
 <HEAD2>Reflection principle</HEAD2>
 <BOX name="Reflection principle">

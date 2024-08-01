@@ -236,7 +236,7 @@ or <M>1-P(A_n)\to 1-P(A),</M> or <M>P(A_n)\to P(A),</M> as required.
 
 </PF>
 
-<EXR><B>(A puzzle)</B>  You are approached by a gambler at a casino. "Hmm, youngester", he remarks
+<EXR><B>(A puzzle)</B>  You are approached by a gambler at a casino. "Hmm, youngster", he remarks
  as he looks you up and down, "you seem to be new here. Let me offer you some money." He comes
  closer, sits beside you, and continues in a friendly voice, "Here I have a die, a fair one. You
  shall roll it again and again. After each roll, we shall do a little transaction like this: if the die shows six,
@@ -259,7 +259,7 @@ You get cautious, but agree to hear them anyway.
 
 You see no harm in that, and ask him to proceed.
 
- "The seond favour that I ask for is to call it quits whenever I like. That means I shall decide when the game
+ "The second favour that I ask for is to call it quits whenever I like. That means I shall decide when the game
  will stop.  It is only the barest protection for me, you see. I shall soon become bankrupt, and then
  I at least need to have my right to go back home! Surely you would not deny me <I>that</I> !" 
 
@@ -433,7 +433,7 @@ function as well. Examples of such functions include length, area, volume, mass,
  true for any measure of size.
 <P/>
  Indeed, all functions that satisfy  axiom three are called <B>(signed) measure</B>s, and 
-meaure theory is the branch of mathematics that deals with them. 
+measure theory is the branch of mathematics that deals with them. 
 
  
 <HEAD2>Countable sample spaces</HEAD2>
@@ -442,7 +442,7 @@ If the sample space <M>S</M> is countable (finite/infinite), say
 S = \{x_1,x_2,...\},
 </D>
 then take any sequence <M>p_1,p_2,...</M> of nonnegative numbers
-ading up to <M>1.</M> Defining <M>P(\{x_i\})=p_i</M> completely
+adding up to <M>1.</M> Defining <M>P(\{x_i\})=p_i</M> completely
 specifies a probability. Conversely, any probability can be
 constructed like this.
 
@@ -463,13 +463,13 @@ There are three distinct boxes and 10 distinct balls. The balls are dropped rand
  configurations are equally likely. (No ball is outside a box,
  and each box can hold all the balls.) What is the probability that the first box is empty?
 <SOLN/>
-Each of the 10 balls has 3 possible destinations, irreespective of the other balls. So the total 
+Each of the 10 balls has 3 possible destinations, irrespective of the other balls. So the total 
 number of configurations is <M>3^{10}.</M>  So <M>|\Omega|=3^{10}.</M>
 <P/>
 Let <M>A</M>  be the event that the first ball remains empty. Then <M>A</M>  occurs if and only if all the balls land in
  the other 2 boxes. So <M>|A|=2^{10}.</M>  
 <P/>
-Since all outocmes are equally likely hence 
+Since all outcomes are equally likely hence 
 <D>P(A)= [[|A|][|\Omega|]] = (*([[23]])*)^{10}.</D>
 </EXM>
 
@@ -531,7 +531,7 @@ in detecting theoretical mistakes too.
 <EXM>
 A deck of 10 cards labelled 1,...,10 is shuffled thoroughly. We shall
 say that the <M>i</M>-th card is <I>at home</I>, if it is in
-the <M>i</M>-th positon after the shuffle. Write an R code to
+the <M>i</M>-th positron after the shuffle. Write an R code to
 estimate the probability that exactly 3 cards are at home. 
 <SOLN/>
 <RC>
@@ -779,7 +779,7 @@ Hence the required probability is <M>[[3][51]] = [[1][17]].</M>
 some (or all or none) of the light bulbs may go out (all possibilities
 being equally likely). What is the chance that after a
 lightning  at least two consecutive light bulbs are still
-shining.<ANS>Each light may be either on or off (noth both). So total
+shining.<ANS>Each light may be either on or off (not both). So total
 number of outcomes is <M>2^{10}.</M> To count number of
 favourable outcomes we start by counting the complement. If no
 two consecutive bulbs are shining, then the number of
@@ -894,7 +894,7 @@ door. He tries them successively using SRSWOR until he finds the
 right key. Show that the probability that he will try <M>k</M>
 keys is <M>[[1n]]</M> for <M>k=1,...,n.</M><ANS>The probability that he tries <M>k</M> keys is the
 probability that he picks wrong keys the first <M>k-1</M> times,
-and ten pickes the right key. The total number of outcomes
+and then picks the right key. The total number of outcomes
 is <M>(n)_k.</M> The total number of favourable outcomes
 is <M>(n-1)_{k-1}.</M> So the required probability is 
 <D>
@@ -967,7 +967,7 @@ probability is <M>6^{-3}.</M>
  (<M>6\times 5\times 3\times 3=270</M> ways). Case 3: All same (6
  ways).
 
-So total number of favourable outcomes is <M>996.</M> Hene the
+So total number of favourable outcomes is <M>996.</M> Here the
 probability is approximately <M>0.02.</M> 
 
 <R>
@@ -1060,7 +1060,7 @@ events <M>A_1,A_2,A_3</M> has occurred. Generalise to <M>n</M>
 events. Also find (and prove) a formula (in terms of
 the <M>p_i</M>'s) for the probability that exactly <M>r</M> of
 the <M>n</M> events has occurred.<ANS>Probability that exactly one event of <M>A_1,A_2,A_3</M> has
-occured is <M>p_1-2p_2+3p_3.</M> For <M>n</M> events it will be 
+occurred is <M>p_1-2p_2+3p_3.</M> For <M>n</M> events it will be 
 <M>\sum_{i=1}^n (-1)^{i-1} ip_i.</M> For exactly <M>r</M> out
 of <M>n</M> events:
 <D>
