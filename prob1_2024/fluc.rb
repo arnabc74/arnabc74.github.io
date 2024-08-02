@@ -93,6 +93,56 @@ mean(event)
 Now we are going to learn some theorems that are
 interconnected. Their interconnections are shown below:
 <CIMG web="pflink.png"/>
+
+We shall start with a discrete version of the intermediate value
+theorem. 
+
+<BOX name="Inermediate value theorem for paths">
+Let <M>\alpha:(m,p)</M> and <M>\beta:(n,q)</M> with
+<M>m,n,p,q\in\zz</M> and <M>m<n.</M> Let <M>L</M> be any integer
+strictly between <M>p</M> and <M>q.</M> 
+Then any path from <M>\alpha </M>
+to <M>\beta </M> must have a point on it of the form <M>(t,L)</M>
+where <M>t</M> is some integer strictly between <M>m</M> and <M>n.</M>
+</BOX>
+The situation is illustrated in the diagram below:
+<CIMG web="inter.png">Here either <M>t_1</M> or <M>t_2</M> may be
+chosen as <M>t.</M></CIMG> 
+The theorem may appear trivial at first. If you think so, just try to
+write down a proof before reading further.
+
+Here is my proof:
+
+<PF>
+Take any path from <M>\alpha</M> to <M>\beta.</M>
+
+Let <M>M</M> be the set of all points on it that are
+below <M>L.</M> 
+<P/>
+Clearly, <M>M</M> is finite (since the path has
+finite length).
+
+<P/>
+Also <M>M\neq \phi,</M> since <M>\alpha'\in M.</M>
+<P/>
+Let the
+maximum time coordinate be <M>k</M> among all the points
+in <M>M.</M> (Well-defined, since <M>M</M> is finite and nonempty).
+<P/>
+Clearly, <M>k < </M> the length of the path (since <M>\beta </M>
+is above <M>L</M>).
+<P/>
+
+Then the path must meet <M>L</M> at time <M>k+1.</M>
+<P/>
+Otherwise, at time <M>k+1,</M> the path  must
+<OL>
+<LI>either be below <M>L</M> (impossible, since <M>k</M> was the maximum)</LI>
+<LI>or be above <M>L</M> (impossible, since then <M>q</M> has to
+move more than one step from time <M>k</M> to <M>k+1.</M>)</LI>
+</OL>
+</PF>
+
 <HEAD2>Reflection principle</HEAD2>
 <BOX name="Reflection principle">
 Draw any horizontal line <M>L</M> at an integer height. Pick any two
@@ -119,44 +169,22 @@ Enough to show that there is a bijection from <M>f:S\to T.</M>
 <P/>
 
 Take any path <M>p\in S.</M> Let <M>\gamma</M> be the first point where the
-path meets <M>L.</M> Reflect along <M>L</M> the part of the path
+path meets <M>L.</M> This is well-defined thanks to the
+intermediate value theorem for paths.
+
+Reflect along <M>L</M> the part of the path
 between <M>\alpha</M> and <M>\gamma.</M> This will give a path
 from <M>\alpha'</M> to <M>\beta.</M> Define <M>f(p)</M> to be
 this path.
+
+We shall now show that it is a bijection. The following diagram is an example showing the effect of this map:
+<CIMG web="reflecexm.png">The purple part is reflected</CIMG>
 <P/><B>Step 2: Showing onto</B>:
 <P/>
 Take any <M>q\in T.</M> Since <M>\alpha'</M> and <M>\beta</M> are
 on opposite sides of <M>L,</M> so the path must
 intersect <M>L</M> some time or other. 
-<HIDE lab="bolz"><MSG>(Actually this needs a little proof.)</MSG>
-<HIDDEN>
-Let <M>M</M> be the set of all points on <M>q</M> that are
-below <M>L.</M> 
-<P/>
-Clearly, <M>M</M> is finite (since <M>q</M> has
-finite length).
 
-<P/>
-Also <M>M\neq \phi,</M> since <M>\alpha'\in M.</M>
-<P/>
-Let the
-maximum time coordinate be <M>k</M> among all the points
-in <M>M.</M> (Well-defined, since <M>M</M> is finite and nonempty).
-<P/>
-Clearly, <M>k < </M> the length of <M>q</M> (since <M>\beta </M>
-is above <M>L</M>).
-<P/>
-
-Then <M>q</M> must meet <M>L</M> at time <M>k+1.</M>
-<P/>
-Otherwise, at time <M>k+1,</M> the path <M>q</M> must
-<OL>
-<LI>either be below <M>L</M> (impossible, since <M>k</M> was the maximum)</LI>
-<LI>or be above <M>L</M> (impossible, since then <M>q</M> has to
-move more than one step from time <M>k</M> to <M>k+1.</M>)</LI>
-</OL>
-</HIDDEN>
-</HIDE>
 Let <M>\gamma</M> be the
 first such point. Reflect the part of <M>q</M> between <M>\alpha
 '</M> and <M>\gamma </M> to get a path <M>p\in S.</M>

@@ -522,6 +522,116 @@ configurations are assumed equally likely.</LI>
 </UL>
 </EXM>
 
+Next we discuss a type of problems that are used in statistical
+quality control. 
+
+<EXM>An electronic component is packaged 100 per box. Each
+component may be either good or defective. We want to accept a box
+if and only if it has no defective component in it. Testing all
+the 100 components one by one is too time consuming (and also
+useless if the test is destructive). So instead we draw a simple
+random sample without replacement (SRSWOR) of size 10 and reject
+the box if any of these 10 turns out to be defective. Find the
+probability that a box containing exactly 5 defectives will be
+rejected. 
+<SOLN/>
+Let <M>\Omega = </M> all samples of size 10. What is its size?
+Instead of writing <M>{100\choose 10}</M>, we shall follow the
+steps that a typical quality control officer would take: pick
+one, then pick the next, then the next and so on. This stepwise
+approach is generally better 
+<HIDE lab="why"><MSG>(Why?)</MSG><HIDDEN>Such formulae
+make tacit assumptions about whether order is important or
+not. These assumptions may not be compatible with a given
+problem. Also, not all answers are expressible in terms of these formulae.</HIDDEN></HIDE>
+than jumping into a <M>^nC_r</M>
+or <M>^nP_r</M> formula. 
+
+Here the first step may be done in 100 ways, the next in 99 ways,
+etc all the way upto <M>100-10+1=91</M> ways. 
+
+So <M>|\Omega| = 100\times 99\times\cdots\times 91.</M>
+
+By the given condition,  all the outcomes are equally likely. 
+
+Let <M>A = </M> the event that the box is rejected. 
+
+Thus <M>A</M> is the event that the box contains 1 or more
+defectives.
+
+There are 5 possible cases here: exactly <M>i</M> defectives,
+where <M>i=1,...,5.</M> These are disjoint cases. So we may try
+to find the probabilities of each and add up. But we can save the
+work by working with <M>A^c</M> instead. 
+
+Here 
+<M>A^c=</M> the event that the box contains no defective. Again
+we shall find <M>|A^c|</M> stepwise. 
+
+The first component may be selected in 95 ways (avoiding the 5
+defectives). The next in 94 ways, etc up to the 10-th component,
+which may be selected in <M>95-10+1 = 86</M> ways. 
+
+Hence <M>|A^c| = 95\times94\times\cdots\times86.</M>
+
+Thus, 
+<D>
+P(A^c) = [[|A^c|][|\Omega|]] = [[95\times94\times\cdots\times86][100\times99\times\cdots\times91]].
+</D>
+</EXM>
+
+Here is one example where we shall need the inclusion-exclusion
+formula.
+
+<EXM>
+10 distinct balls are dropped randomly over 3 (distinct) boxes. Each box
+can hold any number of balls. What is the probability that at
+least one box will remain empty?
+<SOLN/>
+Such "at least" problems usually mean that our event is the union
+of some simpler events. Since the simpler events may not be
+disjoint, we need the inclusion-exclusion formula.
+
+Let <M>\Omega=</M> the set of all possible ways of dropping the
+balls. Then <M>|\Omega| = 3^{10}.</M>
+
+We assume that all the outcomes are equally likely.
+
+Let <M>A_i=</M>the event that the <M>i</M>-th box remains empty,
+where <M>i=1,2,3.</M> 
+
+Then we are looking for <M>P(A_1 \cup A_2\cup A_3).</M>
+
+By the inclusion-exclusion formula, this is the same as
+<D>
+P(A_1)+P(A_2)+P(A_3)-[#[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_3\cap
+A_1) ]#] + P(A_1\cap A_2\cup A_3).
+</D>
+Since the labelling of the boxes are arbitrary, we have <M>P(A_1)
+= P(A_2)=P(A_3).</M> 
+
+Similarly, the three probabilities inside the exclusion term are
+also equal to each other. Thus we are left with 
+<D>
+3P(A_1)-3P(A_1\cap A_2)+ P(A_1\cap A_2\cup A_3).
+</D>
+Now <M>|A_1| = 2^{10}</M> and <M>|A_1\cap A_2| = 1^{10}</M>
+<HIDE lab="box"><MSG>(Why?)</MSG><HIDDEN>Since all the 10 balls
+must now land in the third box.</HIDDEN></HIDE>.
+
+Also <M>|A_1\cap A_2\cap A_3| = 0</M>
+<HIDE lab="nobox"><MSG>(Why?)</MSG><HIDDEN>This is
+impossible. If <I>all</I> the boxes remain empty,  where
+have the balls gone?</HIDDEN></HIDE>.
+
+So <M>P(A_1) = [[|A_1|][|\Omega|]] = (*([[23]])*)^{10}</M>
+and <M>P(A_1\cap A_2) = [[|A_1\cap A_2|][|\Omega|]] =
+(*([[13]])*)^{10}. </M>
+
+Hence the required answer is <M>3\times [*[ (*([[23]])*)^{10}-(*([[13]])*)^{10} ]*] = [[2^{10}-1][3^9]].</M>
+
+</EXM>
+
 <HEAD2>Simulations</HEAD2>
 Often we come across events that easily described in words, but
 whose probabilities are rather hard to compute. Computer

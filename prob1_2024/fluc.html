@@ -240,7 +240,7 @@ It is the
 total number of paths from $(0,0)$ to $(10,0)$ divided
 by $2^{10}.$ Now, each such path must have the same number
 of up's and down's. So the number is $\binom{10}{5}.$ 
- ///
+ ■
 </p>
 
 <p></p>
@@ -286,7 +286,7 @@ Then $|A| = N_{2n,0}.$
 So $P(A) = \frac{|A|}{|\Omega|} =  
 \frac{N_{2n,0}}{2^{2n}}.
 $
- ///
+ ■
 </p>
 
 <p></p>
@@ -331,6 +331,78 @@ interconnected. Their interconnections are shown below:
 </table>
 </center>
 
+<p></p>
+We shall start with a discrete version of the intermediate value
+theorem. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Inermediate value theorem for paths</i></b></legend>
+Let $\alpha:(m,p)$ and $\beta:(n,q)$ with
+$m,n,p,q\in{\mathbb Z}$ and $m&lt;n.$ Let $L$ be any integer
+strictly between $p$ and $q.$ 
+Then any path from $\alpha $
+to $\beta $ must have a point on it of the form $(t,L)$
+where $t$ is some integer strictly between $m$ and $n.$
+</fieldset>
+The situation is illustrated in the diagram below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/inter.png"></th>
+</tr>
+<tr>
+<th>Here either $t_1$ or $t_2$ may be
+chosen as $t.$</th>
+</tr>
+</table>
+</center> 
+The theorem may appear trivial at first. If you think so, just try to
+write down a proof before reading further.
+<p></p>
+Here is my proof:
+<p></p>
+
+<p>
+<b><i>Proof:</i></b>
+Take any path from $\alpha$ to $\beta.$
+<p></p>
+Let $M$ be the set of all points on it that are
+below $L.$ 
+<p></p>
+Clearly, $M$ is finite (since the path has
+finite length).
+<p></p>
+
+<p></p>
+Also $M\neq \phi,$ since $\alpha'\in M.$
+<p></p>
+Let the
+maximum time coordinate be $k$ among all the points
+in $M.$ (Well-defined, since $M$ is finite and nonempty).
+<p></p>
+Clearly, $k &lt; $ the length of the path (since $\beta $
+is above $L$).
+<p></p>
+
+<p></p>
+Then the path must meet $L$ at time $k+1.$
+<p></p>
+Otherwise, at time $k+1,$ the path  must
+<ol type="">
+
+<li>either be below $L$ (impossible, since $k$ was the maximum)</li>
+
+<li>or be above $L$ (impossible, since then $q$ has to
+move more than one step from time $k$ to $k+1.$)</li>
+
+</ol>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
 <h2><a
 name="Reflection principle">Reflection principle</a></h2>
 
@@ -373,50 +445,33 @@ Enough to show that there is a bijection from $f:S\rightarrow T.$
 
 <p></p>
 Take any path $p\in S.$ Let $\gamma$ be the first point where the
-path meets $L.$ Reflect along $L$ the part of the path
+path meets $L.$ This is well-defined thanks to the
+intermediate value theorem for paths.
+<p></p>
+Reflect along $L$ the part of the path
 between $\alpha$ and $\gamma.$ This will give a path
 from $\alpha'$ to $\beta.$ Define $f(p)$ to be
 this path.
+<p></p>
+We shall now show that it is a bijection. The following diagram is an example showing the effect of this map:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/reflecexm.png"></th>
+</tr>
+<tr>
+<th>The purple part is reflected</th>
+</tr>
+</table>
+</center>
+
 <p></p>
 <b>Step 2: Showing onto</b>:
 <p></p>
 Take any $q\in T.$ Since $\alpha'$ and $\beta$ are
 on opposite sides of $L,$ so the path must
 intersect $L$ some time or other. 
-<a href="javascript:hideShow('bolz');">(Actually this needs a little proof.)</a>
-<div id="bolz" style="display:none;background-color:#ffcccc;">
-Let $M$ be the set of all points on $q$ that are
-below $L.$ 
 <p></p>
-Clearly, $M$ is finite (since $q$ has
-finite length).
-<p></p>
-
-<p></p>
-Also $M\neq \phi,$ since $\alpha'\in M.$
-<p></p>
-Let the
-maximum time coordinate be $k$ among all the points
-in $M.$ (Well-defined, since $M$ is finite and nonempty).
-<p></p>
-Clearly, $k &lt; $ the length of $q$ (since $\beta $
-is above $L$).
-<p></p>
-
-<p></p>
-Then $q$ must meet $L$ at time $k+1.$
-<p></p>
-Otherwise, at time $k+1,$ the path $q$ must
-<ol type="">
-
-<li>either be below $L$ (impossible, since $k$ was the maximum)</li>
-
-<li>or be above $L$ (impossible, since then $q$ has to
-move more than one step from time $k$ to $k+1.$)</li>
-
-</ol>
-
-</div>
 Let $\gamma$ be the
 first such point. Reflect the part of $q$ between $\alpha
 '$ and $\gamma $ to get a path $p\in S.$
@@ -483,7 +538,7 @@ The reflection of $A$ along $L$ is at $A':(a,2h-p).$
 So the required number is $N_{b-a,q-2h+p}.$
 <p></p>
 Hence the final answer is $N_{b-a,q-p}-N_{b-a,q-2h+p}.$
- ///
+ ■
 </p>
 
 <p></p>
@@ -501,7 +556,7 @@ on the line itself.
 However, it is obvious that our path must go to $(1,1)$
 after the first step. So the last exercise may be applied
 between $A:(1,1)$ and $B:(10,3).$
- ///
+ ■
 </p>
 
 <p></p>
@@ -763,7 +818,7 @@ spends exactly 5 time units in the positive side.
 <div id="fun" style="display:none;background-color:#ffcccc;">Impossible! Each $0$-hit occurs at even time points, and the
 path ends at 10, which is also even. 
 </div>
- ///
+ ■
 </p>
 
 <p></p>
