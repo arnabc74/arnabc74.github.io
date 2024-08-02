@@ -134,13 +134,15 @@ is above <M>L</M>).
 <P/>
 
 Then the path must meet <M>L</M> at time <M>k+1.</M>
-<P/>
+<BECAUSE>
 Otherwise, at time <M>k+1,</M> the path  must
-<OL>
+<Q><OL>
 <LI>either be below <M>L</M> (impossible, since <M>k</M> was the maximum)</LI>
 <LI>or be above <M>L</M> (impossible, since then <M>q</M> has to
 move more than one step from time <M>k</M> to <M>k+1.</M>)</LI>
-</OL>
+</OL></Q>
+</BECAUSE>
+So taking <M>t = k+1</M> will complete the proof.
 </PF>
 
 <HEAD2>Reflection principle</HEAD2>
