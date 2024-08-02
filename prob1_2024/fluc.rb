@@ -97,7 +97,7 @@ interconnected. Their interconnections are shown below:
 We shall start with a discrete version of the intermediate value
 theorem. 
 
-<BOX name="Inermediate value theorem for paths">
+<BOX name="Intermediate value theorem for paths">
 Let <M>\alpha:(m,p)</M> and <M>\beta:(n,q)</M> with
 <M>m,n,p,q\in\zz</M> and <M>m<n.</M> Let <M>L</M> be any integer
 strictly between <M>p</M> and <M>q.</M> 
