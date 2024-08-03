@@ -7,3 +7,4 @@ rw = function(x) {
     grid()
 }
 rw(sample(0:1,10,rep=T))
+rw(c(0,1,1,1,0,1))

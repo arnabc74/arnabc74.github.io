@@ -273,6 +273,9 @@ height <M>r</M> for the first time at time <M>n</M> is
 N_{n-1,r-1}-N_{n-1,r+1}.
 </D>
 </THM>
+First let us look at some sample paths for <M>n=6</M> and <M>r=2:</M>
+<CIMG web="first.png">(a) Does not end at <M>(n,r).</M> (b)
+OK. (c) Attains <M>r</M> before <M>n.</M></CIMG>
 <PF>
 Such a path must pass through <M>(n-1,r-1)</M> and <M>(n,r).</M>
 Also it must never meet the the line at height <M>r</M> up to and
