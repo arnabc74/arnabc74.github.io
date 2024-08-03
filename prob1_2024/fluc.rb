@@ -93,6 +93,11 @@ mean(event)
 Now we are going to learn some theorems that are
 interconnected. Their interconnections are shown below:
 <CIMG web="pflink.png"/>
+Since we are assuming that all paths in the sample space are
+equally likely, computing probabilities of different events
+amounts to finding the size of the events (i.e., counting the
+number of paths in the event). So the theorems are presented in
+terms of sizes of events rather than in terms of their probabilities. 
 
 We shall start with a discrete version of the intermediate value
 theorem. 
