@@ -149,6 +149,9 @@ function myFunction() {
 <a href="#Basics">Basics</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Notation">Notation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Reflection principle">Reflection principle</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
@@ -252,26 +255,83 @@ $k\in{\mathbb Z}$ in exactly $n$ steps.</p>
 
 <p></p>
 
+<h2><a
+name="Notation">Notation</a></h2>
+Any path from time $m$ to $n$ (with $m&lt;n$)
+will be considered as a function $\pi:\{m,...,n\}\rightarrow{\mathbb Z}.$ 
+If, for example,
+the path passes through some $(3,4)$ then we
+have $\pi(3)=4.$
+<p></p>
+The set of all paths from a point $\alpha$ to a
+point $\beta$ will be denoted by $PATH(\alpha,\beta).$
+For example, if $\alpha = (0,0)$ and $\beta = (5,2)$,
+then we have 
+<blockquote>
+$PATH(\alpha,\beta) = \{\pi:\{0,...,5\}\rightarrow{\mathbb Z}~:~\pi(0)=0,~\pi(5)=2\}.$
+</blockquote>
+
+<p></p>
+
 <fieldset>
 <legend><b>Definition: Number of paths</b></legend>
 Let the number of paths from $(0,0)$ to $(n,x)$ be
-denoted by $N_{n,x}.$
+denoted by $N_{n,x}.$ In other words,
+$$
+N_{n,x} = |PATH\big((0,0), (n,x)\big)|.
+$$
+In particular,  $N_{0,0}=1.$
+</fieldset>
+
 <p></p>
-Clearly, 
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
 $$
 N_{n,x} = \binom{n}{\frac{n+x}{2}}.
 $$
 This is $0$ if $\frac{n+x}{2}$ is
-outside $\{0,1,...,n\}.$ Also, note the trivial case $N_{0,0}=1.$
+outside $\{0,1,...,n\}.$ Also, note the trivial case
 </fieldset>
 
-<p></p>
-Clearly, the total number of paths from $(a,p)$
-to $(b,q)$ is $N_{b-a,q-p}.$
 <p></p>
 
 <p>
 <b>EXAMPLE 2:</b>&nbsp;
+Find $|PATH\big( (2,3), (15,2) \big)|.$
+<p></p>
+<b>SOLUTION:</b>
+Any path from $PATH\big( (2,3), (15,2) \big)$ may be shifted 2
+units to the left and 3 units downwards to arrive at a path
+in $PATH\big( (0,0), (13,-1) \big).$ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/shift.png"></th>
+</tr>
+<tr>
+<th>The red path is shifted to the blue path.</th>
+</tr>
+</table>
+</center>
+This shift establishes a
+bijection between $PATH\big( (0,0), (13,-1) \big)$
+and $PATH\big( (2,3), (15,2) \big).$ So they have the same
+size. Hence the answer is $N_{13,-1} = \binom{13}{6}.$ 
+ ■
+</p>
+Similar argument leads to the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$|PATH\big( (a,p),(b,q) \big)| = N_{b-a,q-p}.$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
 Consider all paths of length $2n$ starting from $(0,0).$
 What is the probability that the path returns 
 to $0$ at time $2n$?
@@ -338,76 +398,74 @@ number of paths in the event). So the theorems are presented in
 terms of sizes of events rather than in terms of their probabilities. 
 <p></p>
 We shall start with a discrete version of the intermediate value
-theorem. 
-<p></p>
-
-<fieldset>
-<legend><b><i>Intermediate value theorem for paths</i></b></legend>
-Let $\alpha:(m,p)$ and $\beta:(n,q)$ with
-$m,n,p,q\in{\mathbb Z}$ and $m&lt;n.$ Let $L$ be any integer
-strictly between $p$ and $q.$ 
-Then any path from $\alpha $
-to $\beta $ must have a point on it of the form $(t,L)$
-where $t$ is some integer strictly between $m$ and $n.$
-</fieldset>
-The situation is illustrated in the diagram below:
+theorem. See the followin diagram.
 <center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/inter.png"></th>
 </tr>
 <tr>
-<th>Here either $t_1$ or $t_2$ may be
-chosen as $t.$</th>
+<th>The path meets the horizontal line twice.</th>
 </tr>
 </table>
-</center> 
+</center>
+Here we have taken a horizontal line at an integer height and two points on two sides
+of it. Then any path between these two points must meet this
+horizontal line somewhere.
+<p></p>
+
+<fieldset>
+<legend><b><i>Intermediate value theorem for paths</i></b></legend>
+Let $m, n, a, b, L$  be integers with $m&lt;n$
+and $L$ strictly between $a,b.$
+Then
+$$
+\forall p\in PATH\big((m,a),(n,b) \big)~~\exists t\in\{m+1,...,n-1\}~~p(t)=L.
+$$
+</fieldset>
+In the diagram above either $t_1$ or $t_2$ may be
+chosen as $t.$
+<p></p>
 The theorem may appear trivial at first. If you think so, just try to
 write down a proof before reading further.
 <p></p>
-Here is my proof:
-<p></p>
 
 <p>
-<b><i>Proof:</i></b>
-Take any path from $\alpha$ to $\beta.$
+<b><i>Proof:</i></b>We shall assume w.l.g. that $a &lt; b$ (the other case is
+similar).
 <p></p>
-Let $M$ be the set of all points on it that are
-below $L.$ 
-<p></p>
-Clearly, $M$ is finite (since the path has
-finite length).
+To show
 <p></p>
 
-<p></p>
-Also $M\neq \phi,$ since $\alpha'\in M.$
-<p></p>
-Let the
-maximum time coordinate be $k$ among all the points
-in $M.$ (Well-defined, since $M$ is finite and nonempty).
-<p></p>
-Clearly, $k &lt; $ the length of the path (since $\beta $
-is above $L$).
+<div class="box">Target</div>$\forall p\in PATH\big((m,a),(n,b) \big)~~\exists
+t\in\{m+1,...,n-1\}~~p(t)=L.$
 <p></p>
 
+<div class="box">$\forall p$</div>Take any $p\in PATH\big((m,a),(n,b) \big)$
 <p></p>
-Then the path must meet $L$ at time $k+1.$
+Let $M = \{r\in\{m,...,n\}~:~p(r)&lt; L\},$ <i>i.e.</i>, the times
+spent under the horizontal line. 
+<p></p>
+Clearly, $M$ is finite.
+<p></p>
+Also $M\neq \phi,$ since $m\in M.$
+<p></p>
+Let $k=\max(M)$ (well-defined, since $M$ is finite and nonempty).
+<p></p>
+Clearly, $k \leq n-2.$ (Why is $k\neq n$? Why is $k\neq n-1$?)
+<p></p>
+
+<div class="box">$\exists t$</div>Choose $t=k+1\in\{m+1,...,n-1\}.$
+<p></p>
+
+<div class="box">Check</div>Then $p(t)=L.$
 <blockquote class="scrpt">
 <b>Because:</b>
-Otherwise, at time $k+1,$ the path  must
-<blockquote>
-<ol type="">
-
-<li>either be below $L$ (impossible, since $k$ was the maximum)</li>
-
-<li>or be above $L$ (impossible, since then $q$ has to
-move more than one step from time $k$ to $k+1.$)</li>
-
-</ol>
+We cannot have $p(t)&lt; L$, since $t &gt; \max(M).$
+<p></p>
+Also since $p(k) &lt; L,$ hence $p(t)=p(k+1)&lt; L+1.$
 </blockquote>
 
-</blockquote>
-So taking $t = k+1$ will complete the proof.
 <b><i>[QED]</i></b>
 </p>
 
@@ -415,16 +473,42 @@ So taking $t = k+1$ will complete the proof.
 
 <h2><a
 name="Reflection principle">Reflection principle</a></h2>
+Our aim here is to find probabilities of various sets of paths, or, equivalently to find the sizes of
+of these sets. We can often express them easily using the $N_{n,r}$ notation.
+This is thanks to the <i>reflection principle</i>,  which we discuss now.
+<p></p>
+Draw the horizontal line at  height $5,$  say. Consider two
+points $\alpha=(2,6)$  and $\beta=(6,4)$, say, that are  on the <i>same</i>
+side of the line.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/reflmot.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ We want to count the number of paths from $\alpha$  to $\beta$  that 
+ meets (<i>i.e.</i>, touches or cuts) $L.$  One such path is shown in the diagram. 
+<p></p>
+To find this number we employ a trick. 
+Let
+ $\alpha'$ be the reflection
+of $\alpha$ along $L.$ Thus here, $\alpha' = (2,4).$  
+Then the required number 
+the same as $|PATH(\alpha',\beta).$
+<p></p>
 
 <fieldset>
 <legend><b><i>Reflection principle</i></b></legend>
 Draw any horizontal line $L$ at an integer height. Pick any two
 points $\alpha:(m,p)$ and $\beta:(n,q)$ with $m&lt;n$ on the same
 side of the line ($m,n,p,q\in{\mathbb Z}$). Let $\alpha'$ be the reflection
-of $(m,p)$ along $L.$ Then the number of paths
+of $(m,p)$ around $L.$ Then the number of paths
 from $\alpha$
-to $\beta$ that meets (<i>i.e.</i>, touches or cuts) $L$ is the same as the
-number of paths from $\alpha'$ to $\beta.$
+to $\beta$ that meets (<i>i.e.</i>, touches or cuts) $L$ is $|PATH(\alpha',\beta)|.$
 </fieldset>
 
 <p>
@@ -443,22 +527,18 @@ Keep an eye on this picture while reading the proof:
 Let $S$ be the set of all paths from $\alpha $
 to $\beta $ that meets $L.$ 
 <p></p>
-Let $T$ be the set of all paths from $\alpha'$
-to $\beta.$
+Shall show that $|S|=|PATH(\alpha',\beta)|.$
 <p></p>
-Shall show that $|S|=|T|.$
-<p></p>
-Enough to show that there is a bijection from $f:S\rightarrow T.$
-<p></p>
-<b>Step 1: Constructing $f$</b>:
+Enough to show that there is a bijection  $f:S\rightarrow PATH(\alpha',\beta).$
 <p></p>
 
+<b>Step 1: Constructing $f$</b>:
 <p></p>
 Take any path $p\in S.$ Let $\gamma$ be the first point where the
 path meets $L.$ This is well-defined thanks to the
 intermediate value theorem for paths.
 <p></p>
-Reflect along $L$ the part of the path
+Reflect around $L$ the part of the path
 between $\alpha$ and $\gamma.$ This will give a path
 from $\alpha'$ to $\beta.$ Define $f(p)$ to be
 this path.
@@ -478,13 +558,12 @@ We shall now show that it is a bijection. The following diagram is an example sh
 <p></p>
 <b>Step 2: Showing onto</b>:
 <p></p>
-Take any $q\in T.$ Since $\alpha'$ and $\beta$ are
+Take any $q\in PATH(\alpha',\beta).$ Since $\alpha'$ and $\beta$ are
 on opposite sides of $L,$ so the path must
 intersect $L$ some time or other. 
 <p></p>
 Let $\gamma$ be the
-first such point. Reflect the part of $q$ between $\alpha
-'$ and $\gamma $ to get a path $p\in S.$
+first such point. Reflect the part of $q$ between $\alpha'$ and $\gamma $ to get a path $p\in S.$
 Clearly $f(p)=q.$ 
 <p></p>
 <b>Step 3: Showing one-one</b>:
@@ -521,7 +600,7 @@ Hence $p_1=p_2,$ as required.
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;
+<b>EXAMPLE 4:</b>&nbsp;
 Again take a horizontal line $L$ (at height $h$) and two
 points $A:(a,p)$ and $B:(b,q)$ both above (not on)
 $L.$ Here $a&lt;b.$ How many paths are there
@@ -554,7 +633,7 @@ Hence the final answer is $N_{b-a,q-p}-N_{b-a,q-2h+p}.$
 <p></p>
 
 <p>
-<b>EXAMPLE 4:</b>&nbsp;
+<b>EXAMPLE 5:</b>&nbsp;
 How many paths are there from $(0,0)$ to $(10,3)$ that
 are strictly positive at all times $&gt;0?$
 <p></p>
@@ -574,6 +653,34 @@ between $A:(1,1)$ and $B:(10,3).$
 <h2><a
 name="First passage theorem">First passage theorem</a></h2>
 
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+How many paths are there from $(0,0)$ to $(6,2)$ that do not attain the value $2$ 
+ before time 6? Pictorially,  we are counting  paths like the second one in the following diagram. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/first.png"></th>
+</tr>
+<tr>
+<th>(a) Does not end at $(6,2).$ (b)
+OK. (c) Attains 2 before times 6.</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>SOLUTION:</b>
+Notice that any valid path must pass through $(5,1)$, and
+you have no choice about the last segment (it must be upwards).  So we are
+ counting all paths from
+ $(0,0)$  to $(5,1)$   not
+ meeting the horizontal line at 6. 
+<p></p>
+The answer may now be obtained easily using the reflection principle.
+ ■
+</p>
+This logic immediately leads to the next theorem.
 <fieldset>
 <legend><b><i>First passage theorem</i></b></legend>
 Consider all paths of length $n$ starting at $(0,0).$
@@ -584,18 +691,6 @@ N_{n-1,r-1}-N_{n-1,r+1}.
 $$
 </fieldset>
 First let us look at some sample paths for $n=6$ and $r=2:$
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/first.png"></th>
-</tr>
-<tr>
-<th>(a) Does not end at $(n,r).$ (b)
-OK. (c) Attains $r$ before $n.$</th>
-</tr>
-</table>
-</center>
-
 <p>
 <b><i>Proof:</i></b>
 Such a path must pass through $(n-1,r-1)$ and $(n,r).$
@@ -614,6 +709,49 @@ Hence the result.
 
 <h2><a
 name="Maximum theorem">Maximum theorem</a></h2>
+Here is another application of the reflection principle.
+<p>
+<b>EXAMPLE 7:</b>&nbsp;
+How many paths are there from $(0,0)$  to $(11,1)$  that have maximum height
+ $4$ (<i>i.e.</i>, touches 4, but does not cross it)?
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/max.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>SOLUTION:</b>
+Find the number of paths from (0,0) to (11,1) that meet 4 (may or may not cross it). This is easy to compute using the reflection
+ principle. The answer is $N_{11,7}.$
+<p></p>
+Next find similarly 
+the number of paths from (0,0) to (11,1) that meet 5 (may or may not cross it). The answer is $N_{11,9}.$
+<p></p>
+The difference should give your the answer: $N_{11,7}-N_{11,9}.$
+  ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 8:</b>&nbsp;
+How many paths of length 11 are there from $(0,0)$   that have maximum height
+ $4$?
+<p></p>
+<b>SOLUTION:</b>
+This is very much like the last problem, except that the final height is not specified. Clearly the final height is something
+ $\leq 4.$  and $\geq -11.$  
+<p></p>
+Find the number of all such paths with each of these final heights, and add. Don't worry, the sum is telescopic, and a massive
+ cancellation will save computational labour. 
+ ■
+</p>
 
 <fieldset>
 <legend><b><i>Maximum theorem</i></b></legend>
@@ -627,42 +765,46 @@ if $n,r$ have the same parity, and $N_{n,r+1}$ else.
 <b><i>Proof:</i></b>
 We need to  find the number of paths with maximum $r.$
 <p></p>
-We shall split the set of all such paths
+Let $A$ be the set of all such paths. 
+<p></p>
+We shall split this set
 based on where the path ends. Clearly, it can end somewhere $\leq r.$
 <p></p>
-Fix any end point $A:(n,k)$ for $k\leq r.$ 
-So enough to count all paths with maximum $r$ and ending at
-some given $A.$
+Fix any $k\leq r.$ 
 <p></p>
+Let  $B_k=$set of all paths with maximum $r$ and ending at
+$k.$
+<p></p>
+Instead of working with $B_k$'s directly, we prefer to work with
+<blockquote>$C_k=$ the set of all paths with <font color="#ff0000">maximum $\geq
+r$</font> and ending at $k.$</blockquote>
 
-<a href="javascript:hideShow('why');">Notice that it is enough to count all paths with maximum $\geq
-r$ and ending at $A.$</a>
-<div id="why" style="display:none;background-color:#ffcccc;">If this number is $M_r$ then our answer is $M_r-M_{r+1}.$
-</div>
-This is $N_{n,2r-k}$ by the <b>reflection principle</b>. 
 <p></p>
-So the number of paths with maximum $r$ and ending
-at $A$ is 
+Then we can compute $|C_k|$ easily, and also use the fact
+that $|B_k| = |C_k|-|C_{k+1}|.$
+<p></p>
+Now $|C_k|=N_{n,2r-k}$ by the <b>reflection principle</b>. 
+<p></p>
+So
 $$
-N_{n,2r-k} - N_{n,2(r+1)-k}.
+|B_k|=N_{n,2r-k} - N_{n,2(r+1)-k}.
 $$
-We shall now sum this over $k\leq r.$ Two points are to
+We shall now sum this over $k\leq r$ to obtain $|A|.$ Two points are to
 be noted about this: 
 <ul>
 
-<li>If $N_{n,2r-k}$ is denoted by $a_k,$ then we are
-summing 
+<li>The sum
 $$
-(a_r-a_{r-2}) + (a_{r-1}-a_{r-3}) + (a_{r-2}-a_{r-4}) + \cdots 
+(|C_r|-|C_{r-2}|) + (|C_{r-1}|-|C_{r-3}|) + (|C_{r-2}|-|C_{r-4}|) + \cdots 
 $$
-Notice the two-step telescoping structure: each negative term
+has a two-step telescoping structure: each negative term
 cancels the positive term two steps ahead. 
 </li>
 
-<li>The sequence $(a_k)$ eventually becomes 0, as $k$
+<li>The sequence $(|C_k|)$ eventually becomes 0, as $k$
 goes down. </li>
 </ul>
-So only the first two two terms survive, <i>i.e.</i>, $a_r+a_{r-1}$
+So only the first halves of the first two terms survive, <i>i.e.</i>, $|C_r|+|C_{r-1}|$
 or $N_{n,r}+N_{n,r+1}.$
 <p></p>
 We know that $N_{a,b}$ is 0 if $a,b$ have opposite
@@ -831,7 +973,7 @@ positive sides.
 </center>
 
 <p>
-<b>EXAMPLE 5:</b>&nbsp;
+<b>EXAMPLE 9:</b>&nbsp;
 Draw a path of length 10 starting from $(0,0)$ that
 spends exactly 5 time units in the positive side.
 <p></p>

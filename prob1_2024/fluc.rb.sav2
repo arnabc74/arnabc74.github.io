@@ -44,20 +44,57 @@ of up's and down's. So the number is <M>\binom{10}{5}.</M>
 <EXR>Find the probability that the drunkard ends up at any given
 <M>k\in\zz</M> in exactly <M>n</M> steps.</EXR>
 
+<HEAD2>Notation</HEAD2>
+Any path from time <M>m</M> to <M>n</M> (with <M>m<n</M>)
+will be considered as a function <M>\pi:\{m,...,n\}\to\zz.</M> 
+If, for example,
+the path passes through some <M>(3,4)</M> then we
+have <M>\pi(3)=4.</M>
+
+The set of all paths from a point <M>\alpha</M> to a
+point <M>\beta</M> will be denoted by <M>PATH(\alpha,\beta).</M>
+For example, if <M>\alpha = (0,0)</M> and <M>\beta = (5,2)</M>,
+then we have 
+<Q>
+<M>PATH(\alpha,\beta) = \{\pi:\{0,...,5\}\to\zz~:~\pi(0)=0,~\pi(5)=2\}.</M>
+</Q>
+
 <DEFN name="Number of paths">
 Let the number of paths from <M>(0,0)</M> to <M>(n,x)</M> be
-denoted by <M>N_{n,x}.</M>
-<P/>
-Clearly, 
+denoted by <M>N_{n,x}.</M> In other words,
+<D>
+N_{n,x} = |PATH(#((0,0), (n,x))#)|.
+</D>
+In particular,  <M>N_{0,0}=1.</M>
+</DEFN>
+
+<THM>
 <D>
 N_{n,x} = \binom{n}{[[n+x][2]]}.
 </D>
 This is <M>0</M> if <M>[[n+x][2]]</M> is
-outside <M>\{0,1,...,n\}.</M> Also, note the trivial case <M>N_{0,0}=1.</M>
-</DEFN>
+outside <M>\{0,1,...,n\}.</M> Also, note the trivial case
+</THM>
 
-Clearly, the total number of paths from <M>(a,p)</M>
-to <M>(b,q)</M> is <M>N_{b-a,q-p}.</M>
+<EXM>
+Find <M>|PATH(#( (2,3), (15,2) )#)|.</M>
+<SOLN/>
+Any path from <M>PATH(#( (2,3), (15,2) )#)</M> may be shifted 2
+units to the left and 3 units downwards to arrive at a path
+in <M>PATH(#( (0,0), (13,-1) )#).</M> 
+<CIMG web="shift.png">The red path is shifted to the blue path.</CIMG>
+This shift establishes a
+bijection between <M>PATH(#( (0,0), (13,-1) )#)</M>
+and <M>PATH(#( (2,3), (15,2) )#).</M> So they have the same
+size. Hence the answer is <M>N_{13,-1} = \binom{13}{6}.</M> 
+</EXM>
+Similar argument leads to the following theorem.
+
+<THM>
+<M>|PATH(#( (a,p),(b,q) )#)| = N_{b-a,q-p}.</M>
+</THM>
+
+
 
 <EXM>
 Consider all paths of length <M>2n</M> starting from <M>(0,0).</M>
@@ -93,15 +130,91 @@ mean(event)
 Now we are going to learn some theorems that are
 interconnected. Their interconnections are shown below:
 <CIMG web="pflink.png"/>
+Since we are assuming that all paths in the sample space are
+equally likely, computing probabilities of different events
+amounts to finding the size of the events (i.e., counting the
+number of paths in the event). So the theorems are presented in
+terms of sizes of events rather than in terms of their probabilities. 
+
+We shall start with a discrete version of the intermediate value
+theorem. See the followin diagram.
+<CIMG web="inter.png">The path meets the horizontal line twice.</CIMG>
+Here we have taken a horizontal line at an integer height and two points on two sides
+of it. Then any path between these two points must meet this
+horizontal line somewhere.
+
+<BOX name="Intermediate value theorem for paths">
+Let <M>m, n, a, b, L</M>  be integers with <M>m<n</M>
+and <M>L</M> strictly between <M>a,b.</M>
+Then
+<D>
+\forall p\in PATH(#((m,a),(n,b) )#)~~\exists t\in\{m+1,...,n-1\}~~p(t)=L.
+</D>
+</BOX>
+In the diagram above either <M>t_1</M> or <M>t_2</M> may be
+chosen as <M>t.</M>
+
+The theorem may appear trivial at first. If you think so, just try to
+write down a proof before reading further.
+
+<PF>We shall assume w.l.g. that <M>a < b</M> (the other case is
+similar).
+
+To show
+
+<TGT>\forall p\in PATH(#((m,a),(n,b) )#)~~\exists
+t\in\{m+1,...,n-1\}~~p(t)=L.</TGT>
+
+
+<FLL>p</FLL>Take any <M>p\in PATH(#((m,a),(n,b) )#)</M>
+
+Let <M>M = \{r\in\{m,...,n\}~:~p(r)< L\},</M> i.e., the times
+spent under the horizontal line. 
+
+Clearly, <M>M</M> is finite.
+
+Also <M>M\neq \phi,</M> since <M>m\in M.</M>
+
+Let <M>k=\max(M)</M> (well-defined, since <M>M</M> is finite and nonempty).
+<P/>
+Clearly, <M>k \leq n-2.</M> (Why is <M>k\neq n</M>? Why is <M>k\neq n-1</M>?)
+
+<EXS>t</EXS>Choose <M>t=k+1\in\{m+1,...,n-1\}.</M>
+
+<CHK/>Then <M>p(t)=L.</M>
+<BECAUSE>
+We cannot have <M>p(t)< L</M>, since <M>t > \max(M).</M>
+
+Also since <M>p(k) < L,</M> hence <M>p(t)=p(k+1)< L+1.</M>
+</BECAUSE>
+</PF>
+
 <HEAD2>Reflection principle</HEAD2>
+Our aim here is to find probabilities of various sets of paths, or, equivalently to find the sizes of
+of these sets. We can often express them easily using the <M>N_{n,r}</M> notation.
+This is thanks to the <I>reflection principle</I>,  which we discuss now.
+
+Draw the horizontal line at  height <M>5,</M>  say. Consider two
+points <M>\alpha=(2,6)</M>  and <M>\beta=(6,4)</M>, say, that are  on the <I>same</I>
+side of the line.
+<CIMG web="reflmot.png"></CIMG>
+ We want to count the number of paths from <M>\alpha</M>  to <M>\beta</M>  that 
+ meets (i.e., touches or cuts) <M>L.</M>  One such path is shown in the diagram. 
+
+To find this number we employ a trick. 
+Let
+ <M>\alpha'</M> be the reflection
+of <M>\alpha</M> along <M>L.</M> Thus here, <M>\alpha' = (2,4).</M>  
+Then the required number 
+the same as <M>|PATH(\alpha',\beta).</M>
+
 <BOX name="Reflection principle">
 Draw any horizontal line <M>L</M> at an integer height. Pick any two
 points <M>\alpha:(m,p)</M> and <M>\beta:(n,q)</M> with <M>m<n</M> on the same
 side of the line (<M>m,n,p,q\in\zz</M>). Let <M>\alpha'</M> be the reflection
-of <M>(m,p)</M> along <M>L.</M> Then the number of paths
+of <M>(m,p)</M> around <M>L.</M> Then the number of paths
 from <M>\alpha</M>
-to <M>\beta</M> that meets (i.e., touches or cuts) <M>L</M> is the same as the
-number of paths from <M>\alpha'</M> to <M>\beta.</M>
+to <M>\beta</M> that meets (i.e., touches or cuts) <M>L</M> is <M>|PATH(\alpha',\beta)|.</M>
 </BOX>
 <PF>
 Keep an eye on this picture while reading the proof:
@@ -109,60 +222,31 @@ Keep an eye on this picture while reading the proof:
 Let <M>S</M> be the set of all paths from <M>\alpha </M>
 to <M>\beta </M> that meets <M>L.</M> 
 <P/>
-Let <M>T</M> be the set of all paths from <M>\alpha'</M>
-to <M>\beta.</M>
+Shall show that <M>|S|=|PATH(\alpha',\beta)|.</M>
 <P/>
-Shall show that <M>|S|=|T|.</M>
-<P/>
-Enough to show that there is a bijection from <M>f:S\to T.</M>
-<P/><B>Step 1: Constructing <M>f</M></B>:
-<P/>
+Enough to show that there is a bijection  <M>f:S\to PATH(\alpha',\beta).</M>
+
+<B>Step 1: Constructing <M>f</M></B>:
 
 Take any path <M>p\in S.</M> Let <M>\gamma</M> be the first point where the
-path meets <M>L.</M> Reflect along <M>L</M> the part of the path
+path meets <M>L.</M> This is well-defined thanks to the
+intermediate value theorem for paths.
+
+Reflect around <M>L</M> the part of the path
 between <M>\alpha</M> and <M>\gamma.</M> This will give a path
 from <M>\alpha'</M> to <M>\beta.</M> Define <M>f(p)</M> to be
 this path.
 
 We shall now show that it is a bijection. The following diagram is an example showing the effect of this map:
-<CIMG web="reflexm.png">The purple part
+<CIMG web="reflecexm.png">The purple part is reflected</CIMG>
 <P/><B>Step 2: Showing onto</B>:
 <P/>
-Take any <M>q\in T.</M> Since <M>\alpha'</M> and <M>\beta</M> are
+Take any <M>q\in PATH(\alpha',\beta).</M> Since <M>\alpha'</M> and <M>\beta</M> are
 on opposite sides of <M>L,</M> so the path must
 intersect <M>L</M> some time or other. 
-<HIDE lab="bolz"><MSG>(Actually this needs a little proof.)</MSG>
-<HIDDEN>
-Let <M>M</M> be the set of all points on <M>q</M> that are
-below <M>L.</M> 
-<P/>
-Clearly, <M>M</M> is finite (since <M>q</M> has
-finite length).
 
-<P/>
-Also <M>M\neq \phi,</M> since <M>\alpha'\in M.</M>
-<P/>
-Let the
-maximum time coordinate be <M>k</M> among all the points
-in <M>M.</M> (Well-defined, since <M>M</M> is finite and nonempty).
-<P/>
-Clearly, <M>k < </M> the length of <M>q</M> (since <M>\beta </M>
-is above <M>L</M>).
-<P/>
-
-Then <M>q</M> must meet <M>L</M> at time <M>k+1.</M>
-<P/>
-Otherwise, at time <M>k+1,</M> the path <M>q</M> must
-<OL>
-<LI>either be below <M>L</M> (impossible, since <M>k</M> was the maximum)</LI>
-<LI>or be above <M>L</M> (impossible, since then <M>q</M> has to
-move more than one step from time <M>k</M> to <M>k+1.</M>)</LI>
-</OL>
-</HIDDEN>
-</HIDE>
 Let <M>\gamma</M> be the
-first such point. Reflect the part of <M>q</M> between <M>\alpha
-'</M> and <M>\gamma </M> to get a path <M>p\in S.</M>
+first such point. Reflect the part of <M>q</M> between <M>\alpha'</M> and <M>\gamma </M> to get a path <M>p\in S.</M>
 Clearly <M>f(p)=q.</M> 
 <P/><B>Step 3: Showing one-one</B>:
 <P/>
@@ -233,6 +317,21 @@ between <M>A:(1,1)</M> and <M>B:(10,3).</M>
 </EXM>
 
 <HEAD2>First passage theorem</HEAD2>
+<EXM>
+How many paths are there from <M>(0,0)</M> to <M>(6,2)</M> that do not attain the value <M>2</M> 
+ before time 6? Pictorially,  we are counting  paths like the second one in the following diagram. 
+<CIMG web="first.png">(a) Does not end at <M>(6,2).</M> (b)
+OK. (c) Attains 2 before times 6.</CIMG>
+<SOLN/>
+Notice that any valid path must pass through <M>(5,1)</M>, and
+you have no choice about the last segment (it must be upwards).  So we are
+ counting all paths from
+ <M>(0,0)</M>  to <M>(5,1)</M>   not
+ meeting the horizontal line at 6. 
+
+The answer may now be obtained easily using the reflection principle.
+</EXM>
+This logic immediately leads to the next theorem.
 <THM name="First passage theorem">
 Consider all paths of length <M>n</M> starting at <M>(0,0).</M>
 Let <M>r\in\{1,...,n\}.</M> Then the number of paths that attain
@@ -241,6 +340,7 @@ height <M>r</M> for the first time at time <M>n</M> is
 N_{n-1,r-1}-N_{n-1,r+1}.
 </D>
 </THM>
+First let us look at some sample paths for <M>n=6</M> and <M>r=2:</M>
 <PF>
 Such a path must pass through <M>(n-1,r-1)</M> and <M>(n,r).</M>
 Also it must never meet the the line at height <M>r</M> up to and
@@ -255,6 +355,31 @@ Hence the result.
 
 
 <HEAD2>Maximum theorem</HEAD2>
+Here is another application of the reflection principle.
+<EXM>
+How many paths are there from <M>(0,0)</M>  to <M>(11,1)</M>  that have maximum height
+ <M>4</M> (i.e., touches 4, but does not cross it)?
+<CIMG web="max.png"></CIMG>
+<SOLN/>
+Find the number of paths from (0,0) to (11,1) that meet 4 (may or may not cross it). This is easy to compute using the reflection
+ principle. The answer is <M>N_{11,7}.</M>
+
+Next find similarly 
+the number of paths from (0,0) to (11,1) that meet 5 (may or may not cross it).
+
+The difference should give your the answer. 
+ </EXM>
+
+<EXM>
+How many paths of length 11 are there from <M>(0,0)</M>   that have maximum height
+ <M>4</M>?
+<SOLN/>
+This is very much like the last problem, except that the final height is not specified. Clearly the final height is something
+ <M>\leq 4.</M>  and <M>\geq -11.</M>  
+
+Find the number of all such paths with each of these final heights, and add. Don't worry, the sum is telescopic, and a massive
+ cancellation will save computational labour. 
+</EXM>
 <THM name="Maximum theorem">
 Consider all paths of length <M>n</M> starting from <M>(0,0).</M>
 Let <M>r\in\{0,...,n\}.</M> Then 
@@ -263,42 +388,47 @@ if <M>n,r</M> have the same parity, and <M>N_{n,r+1}</M> else.
 </THM>
 <PF>
 We need to  find the number of paths with maximum <M>r.</M>
+
+Let <M>A</M> be the set of all such paths. 
 <P/>
-We shall split the set of all such paths
+We shall split this set
 based on where the path ends. Clearly, it can end somewhere <M>\leq r.</M>
 <P/>
-Fix any end point <M>A:(n,k)</M> for <M>k\leq r.</M> 
-So enough to count all paths with maximum <M>r</M> and ending at
-some given <M>A.</M>
-<P/>
-<HIDE lab="why">
-<MSG>Notice that it is enough to count all paths with maximum <M>\geq
-r</M> and ending at <M>A.</M></MSG>
-<HIDDEN>If this number is <M>M_r</M> then our answer is <M>M_r-M_{r+1}.</M>
-</HIDDEN></HIDE>
-This is <M>N_{n,2r-k}</M> by the <B>reflection principle</B>. 
-<P/>
-So the number of paths with maximum <M>r</M> and ending
-at <M>A</M> is 
+Fix any <M>k\leq r.</M> 
+
+Let  <M>B_k=</M>set of all paths with maximum <M>r</M> and ending at
+<M>k.</M>
+
+Instead of working with <M>B_k</M>'s directly, we prefer to work with
+<Q><M>C_k=</M> the set of all paths with <RED>maximum <M>\geq
+r</M></RED> and ending at <M>k.</M></Q>
+
+Then we can compute <M>|C_k|</M> easily, and also use the fact
+that <M>|B_k| = |C_k|-|C_{k+1}|.</M>
+
+
+Now <M>|C_k|=N_{n,2r-k}</M> by the <B>reflection principle</B>. 
+
+
+So
 <D>
-N_{n,2r-k} - N_{n,2(r+1)-k}.
+|B_k|=N_{n,2r-k} - N_{n,2(r+1)-k}.
 </D>
-We shall now sum this over <M>k\leq r.</M> Two points are to
+We shall now sum this over <M>k\leq r</M> to obtain <M>|A|.</M> Two points are to
 be noted about this: 
 <UL>
-<LI>If <M>N_{n,2r-k}</M> is denoted by <M>a_k,</M> then we are
-summing 
+<LI>The sum
 <D>
-(a_r-a_{r-2}) + (a_{r-1}-a_{r-3}) + (a_{r-2}-a_{r-4}) + \cdots 
+(|C_r|-|C_{r-2}|) + (|C_{r-1}|-|C_{r-3}|) + (|C_{r-2}|-|C_{r-4}|) + \cdots 
 </D>
-Notice the two-step telescoping structure: each negative term
+has a two-step telescoping structure: each negative term
 cancels the positive term two steps ahead. 
 </LI>
-<LI>The sequence <M>(a_k)</M> eventually becomes 0, as <M>k</M>
+<LI>The sequence <M>(|C_k|)</M> eventually becomes 0, as <M>k</M>
 goes down. </LI></UL>
-So only the first two two terms survive, i.e., <M>a_r+a_{r-1}</M>
+So only the first halves of the first two terms survive, i.e., <M>|C_r|+|C_{r-1}|</M>
 or <M>N_{n,r}+N_{n,r+1}.</M>
-<P/>
+
 We know that <M>N_{a,b}</M> is 0 if <M>a,b</M> have opposite
 parities. Hence the result.
 </PF>
