@@ -1,0 +1,141 @@
+ <NOTE>
+<CIMG web="q1.png"/>
+skule baRa ekTA yetAm nA. a.nka shikhtAm bAbAr kAchhe. @{<E>British Council Library</E>@}-te
+ takhan ekTA @{<E>Children's Section</E>@}  chhila (ekhan fer chAlu hayechhe, yadio sei baigulo Ar nei). bAbA sei lAibrarIr 
+bai byabahAr kare  a.nka shekhAten. AmAr a.nka shekhA shuru hayechhila @{<E>set</E>@}-er a.nka
+ diye. mejhete chak diye gol e,nke tAr madhye bibhinna paysA Ar t,netul bichi sAjAno hata (bARir
+ khub kAchhei ekTA mas+ta t,netul gAchh thAkAy bichir abhAb chhila nA). tArpar gol nay eman paysAder
+@{<E>set</E>@}  theke @{<E>compement</E>@}-er dharaNA, sab Dheu-khelAno paysAder @{<E>set</E>@}  theke @{<E>union</E>@}-er 
+dharaNA (dui Ar dash duidharaNer paysArai pAsh Dheu khelAno hata), ityAdi. 
+tArpar esechhila goNA, eba.n bibhinna sa.nkhyAr @{<E>base</E>@}-e goNA. ekTA bai chhila tAte ekekTA pAtAy ekekTA jantur 
+kathA chhila, yAder pAyer sa.nkhyA bibhinna. ghoRAr chAr pA, tAi tArA chArer @{<E>base</E>@}-e
+ goNe, ak+TopAs goNe ATer @{<E>base</E>@}-e. bAbAr kAchhe shekhA sab a.nker matai eTAo khub hAte
+ kalame byApAr. ekrAsh t,netul bichi niye basA hata. ghoRAr hiseb karAr samaye seguloke chAre
+ guchchha kare kare rAkhA hata, ye kaTA paRe thAkta, ghoRA khAli seguloi guNte pAre. erpar chArTe kare chArer guchchha 
+karAr hata. fer dekhA hata kaTA paRe thAke. eibhAbe chArer @{<E>base</E>@}-e goNA hata. kono
+ pAnDitya falAnor cheSTA chhila nA, guNlei a.nka sheS.  AmAke ekak dashak shatak ityAdi AlAdA kare shekhAno hayni. bA ek 
+theke eksha parYanta sa.nkhyAo konodin mukhastha karAno hayni. er pare ye baigulo Ase segulo hala @{<E>Discovering Mathematics.</E>@}  
+egulo takhankAr i.nlanDer skuler pAThya bai chhila. pratiTA adhyAye ati alpa ekTu bojhAno thAkta, kintu khub pranjalbhAbe, 
+tArpare ekTA ki baRakor duTo udAharaN, eba.n tArparei ekdam ekairakamer goTA kuRi a.nka. a.nkagulo sAdhAraNata.H joR-bijoR 
+kare sAjAno thakta, mAne @{<M>1</M>@}  Ar @{<M>2 </M>@} nambar a.nka prayei ekai hata, khAli sa.nkhyAr sAmAnya tafAt. fale 
+@{<M>1</M>@} nambarTA yadi bAbAr sAhAYya nite hay, tabe @{<M>2</M>@}-TA nijei chASTA karA yAy. bAigulo lekhak kothAo kono 
+kAloyAti karAr cheSTA karten nA,  ThakAno prashna, ekaker kAr~sAji, jaTil guNbhAg esab kichhui
+ lAgta nA. pichhane uttar thakta. seTA melAte khub majA lAgta. bAbA ekebAre niyam mene pratidin
+ basten. Ami kichhu bujhte nA pArle aparisIm dh\oirYa niye bojhAten, Ami amanoYogI hale atyanta
+ rege yeten, kakhano khAtA chh,nuRe felten. a.nkagulo paribeshita hata katakTA gabeSaNAr bhangIte.
+ yeman @{<M>y=2x+3</M>@}-er grAf A,nkte deoyA hala. erakam kayekTA grAf a,nkAr par bAbA hayto abAk
+ haye ballen ye, sabguloi to saralrekhA hachchhe. Ami mane karlAm grAf mAtrei saralrekhA hay. bAbA
+ moTei sei bhul bhA\ngAnor kono cheSTA karlen nA. kadin pare @{<M>y=x^2-2x+1</M>@}-er grAf ela.
+ seTA ye saralrekhA hala nA, seTA dekhe bAbA fer bhArI abAk haye gelen. kakhan ye saralrekhA habe,
+ Ar kakhan habe nA, seTA AmAr kAchhei jAn~te chAilen, shixaker mata na, gobechArA mAnuSer mata
+ (gobechArAr abhinay karte pArATA yekono shixakerai mahat guN, eba.n bAbAr se guNTA khubai
+ chhila). Ami khAnikxaN behbe kichhui balte pArlAm nA. yehetu bAbAo gobechAra haye Achhen, tA
+ nijer axamatAr janya AmAr lajjita habAr kono karaNai janmAla nA. parer din prashnaTA fer uThla. balAi bAhulya baite bAbAte 
+mile udAharaNgulo emanbhAbe deoyA hachchhila ye uttarTA ati baRa AkATao eksamaye nA bujhe pArbe nA. Amio eksamaye pArlAm, 
+kintu mane karlAm yena nijei AbiskAr karechhi. mane Achhe kichhu din pare bAbA fer uttarTA bhule giye AmAke jijnAsA karechhilen. 
+eba.n Amio uttarTA bhule giye bejAy lajjAy paRe giyechhilAm. kintu bAbA gobechArA mukhe chup karei chhilen. 
+
+skuler a.nka parIxAy Ami yog-biyog prAyai bhul kartAm. fale chhAtrer sa.nkhyA @{<M>-5</M>@}  Ar chhAtrIr sa.nkhyA @{<M>5.6</M>@}  
+berota. nambar kATA yeta. AmrA mA sei subAde AmAke bejAy peTAten. tini nije paRAshonAy atyanta
+ k,nAchA eba.n anAgrahI chhilen, eba.n mane karten santaner madhye adhyabasAy janmAnor sar+bottam
+ panthA hala tAke dhare prahAr karA. bAbAr anek cheSTAy a.nker prati ye bhAlo lAgA pradIper
+ mata jwale uThchhila, mAyer ei AcharaN sei pradIper kAchhe jhaRer hAoyA haye d,nARAlo. shikhA nibhe yAbAr upak+ram hachchhe 
+dekhe AmAr gobechArA bAbA si.nhamUr+ti dhAraN karlen. mA AmAke prashnapatrer pAshe uttar likhe
+ An~te balten, yAr bhittite prahArer parimAN Thik hata. ekhan bAbAr has+taxepe parIxAr
+ prashnaptrer yAbatIya AlochanA to
+ niSiddha halai, eman ki parIxAr par prashnapatra DAs+Tbine fele AsAr hukum bahAl hala. mA chaTe asthir haleo Ami   s+was+tir 
+ni.HshwAs fellAm. a.nker prati AmAr AkarSaNer nir+bApitaprAy pradIp fer satej hate lAgla. 
+abashya  saral a.nka karte klAs eiTeo pade pade bhul kartAm.   kintu tA niye mAthA ghAmAtAm nA.  
+
+<CIMG web="q2.png"/>
+AmAr meye klAs fore paRe. oke a.nke panDit karAr cheSTA bhuleo kari nA. bA a.nker prati bhAlobAsA janmAnorao cheSTAo kichhu 
+kari nA. jIbane a.nka kothAy kothAy lAge, tAr ekTA tAlikA mane mane sthir kare niyechhi. eba.n segulo yena o swachchhande 
+karte pAre, seTA dekhi. tAr madhye kAgaj keTe bARi bAnAno Achhe, kampAs diye ful A,nkAo Achhe,
+ AbAr desh~lAi kAThi diye dh,nAdhAo Achhe. kAgaj diye bARi bAnAor samaye nAnArakam jinis AmrA
+ byabahAr kari, yeman k,nAchi, pithAgorAs, AThA, ch,nAdA ityAdi. ei hAtiyAr~gulor madhye kono
+ mUlyabhed karA hay nA.  or priya biSay hala
+ A,nkA. 
+
+<CIMG web="q3.png"/>
+bAp re, nijer chintrA @{<E>trajectory</E>@}-rai khei rAkhte pAri nA, to AbAr meyer chintAr
+ @{<E>trajectory!</E>@}  
+yadi oke jijnAsA karA hay sabcheye kI bhAlobAse, tabe bale A,nkte. a.nka karte bhAlobAso?
+ uttar--nA. priya biSayer shhIrSasthAnAdhikArI hala an+kan, eba.n tAr sheSer
+ 'na'-TA lopAT karte meye bA tAr bAp keui  moTei byas+ta nai.     
+
+<CIMG web="q4.png"/>
+prashner bhASA emanai ye uttar~dAtAr mukhe uttar jugiye dichchhe. yeman Apni kI mane karen nA ye, prrithibIr khArAp jinisgulor 
+cheye bhAlo jinisguloi beshI shreya.H? Amio tAi nitAnta nAchAr hayei balte bAdhya ye majAdAr jinisguloi beshI majA lAge. 
+kintu mAjAdAr a.nka, @{<E>recreational mathematics</E>@}  gaNiter majA ityAdi nAnAbidh nAme ek dharaNer gANitik rAbishe 
+AjkAl bAjAr chheye gechhe. @{<E>Math Olympiad</E>@}  nAme ekTi bilitigandhI eba.n bhabiSyater
+sambhAbya  arthakaritAr hAtchhAni sambalita ekTi prahasan tAr sAthe  yuk+ta hayechhe. er theke yathAsambhab dUre thAkAi 
+Ami shreya.H mane kari. tAr cheye darkAr kAje lAgAr a.nka yeman grAf, jyAmitir mUl upapAdyagulo, bA samIkaraN samAdhAner 
+mata jinisgulo shekhAr eba.n jIbane prayog karte pArA. Aj parYanta yatarakam @{<E>recreational mathematics</E>@}  dekhechhi, 
+ekmAtra @{<E>Martin Gardner</E>@}-er kichhu baigulo eba.n ekTu baRder belAy @{<E>Raymond
+ Smullyan</E>@}-er kichhu bai chhARA bAkI konoTAi khub swAsthyakar bale mane hay ni. kono chhatrer
+ segulo bhAlo lAgle Apatti nei, kintu jor kare oguloke bhAlo lAgAnor cheSTA karA moTei bidheya nay.
+
+<CIMG web="q5.png"/>
+a.nker kAraNe teman kono samasyA hayni, yadio @{<E>rigour </E>@} byApArTA kI, seTA bujhte besh khAnikTA asubidhA hayechhila 
+prathame. kintu Asal asubidhA chhila anyatra--hos+Teler jIbaner sange nijeke khAp khAoyAno. eba.n kono nirdiSTa silebAs 
+chhARA chalA klAser sange tAl rAkhA. 
+
+<CIMG web="q6.png"/>
+AmAder samayer theke khub kono pArthakya dekhi nA, khAli duTo xetra chhARA. ek, erA anek beshI @{<E>careerist.</E>@}  AmAder 
+samaye etaTA @{<E>careerist</E>@}-rA @{<E>IIT</E>@}  ityAdi jAygAy yeta, @{<E>ISI</E>@}-er chhAyA mARAta kam. kintu ekhan dinkAl 
+pAl+Techhe. kono ek bachhar pratham klAsei ekjan bhArI byas+ta haye @{<E>M.Stat</E>@}-er pare
+ @{<E>payscale</E>@}  kI habe 
+jAn~te cheyechhila. eba.n @{<E>IIM</E>@}-er cheye kam hate pAre shune bhArI muSRe paRechhila. sambhabta.H sei dhAk+kATA 
+bechArI sAm~lAte pAre ni, parer bachharai se @{<E>ISI</E>@} theke ekTi ardhachandra lAbh kare bidAygrahaN karechhe. 
+ekTi chhAtrI Tenshaner samAdhAn chAite esechhila. rAte galper bai paRe shute yAbAr kathA balAy tAr uttar--Age seTA abhyAs 
+chhila, kintu mA bake bake seTA bandha kare diyechhe. satyii to, ghumer Age ataTA samay, khAnikTA paRAr bai mukhstha karleo 
+to @{<E>career</E>@}-er sambhbanA uj+jwal hay. se jAygAy khAmokhA galper bai paRe samay naSTa karle kon mAyer nA rAg habe? 
+dwitIya pArthakya hala mAnsik abasAder oSudhgras+ta chhAtrachhAtrI. AjkAl mAnuSer hAte prachur TAkA. kintu mUlyabrriddhi 
+ye hAre hachchhe, tAte Ajker dhanad\oulat kAlker khaRkuTor sAmil.  er hAt theke paritrANer Ashu
+ path hala TAkATA santAner shixAr pichhane DhAlA, yAte se Aro moTA mAynAr chAkrI pAy. kintu Thik
+ kon fuToy sei telTA Dhalle bhabiSyater gARi gaRgaRiye chalbe, seTA ThAhar karA muskil. tAi fuTo
+ mAtrei khAnikTA tel Dhele dena u.tkanThita bApmAyerA. sei tAlegole kinchit kAmAbAr AshAy 
+ fuTo sAjiye base thAke   ekdal byabsAyI. eder madhye sabcheye baRa hala kochi.n senTAr chAlAneoyAlArA. idAni.n eder sange 
+yog diye ekdal hAtuRe DAk+tAr, yArA nijeder mAnasik roger chiki.tsak bale dAbI kare. Age mAnik
+ roger DAk+terer kAchhe yAoyATA sAmAjik lajjAr  kathA bale gaNya hata. kintu AjkAl tA styATAs simbale pariNata hayechhe. 
+bAbAmAo TAkA Dhele shAnti pAoyAr ekTA path peyechhen. yhetu samAje erA ekekbArei AnkorA AmdAnI, tAi yuk+titar+ka pUr+bAbhijnatA 
+ityAdir prashna nei. nAi sammukher drriSTi, nAi nibAraN pashchAter, shudhu nimne ghor AkArSaN, nidAruN nipAter. fale klAse 
+dekhA yAy mAnasik oSudher shikAr bahu chhAtrachhAtrIke. yAder sange khelAdhUlo galpr baiyer kono sampar+ka nei, khAli niuroNTAke 
+s+TimuleT kare rAkhAr oShudh. yeTA dumAs TAnA khele hrri.tpinDaTA AbAr dhar+maghaT karte chAy. sei
+ janya miDsemer samaye oSudhTA ekTu bandha rAkhte hay, tAi parIxAgulo khArAp haye gechhe. kintu
+ chintA nei, oSudhTA fer chAlu haye gelei paRAshonAy bhAlo haye yAba syAr. sange er akATya pramAN  hisebe ekrAsh DAktAri 
+kAgajpatra. e ekhan nityadrrishya.  
+
+<CIMG web="q7.png"/>
+seTA ekTA mas+ta galpa. sa.nxepe ei--prathame puroi bA.nlAy likhba bhebechhilAm. ekdal chhAtrake bA.nlA hyAnD AuT deoyAte, 
+tArA keu seTA chh,nuyeo dekhla nA, balla ye orA bA.nlA paRte pAre nA. abashya orA bA\ngAlI.
+ chorAgoptA pathe Asal satyaTA jAn~te pArlAm--bA.nlATA Thikai bujhechhe. kintu oTAke buddhi
+ khATiye i.nrAjIte tarjamA kare parIxAy guchhiye lekhAr mata i.nrAjijnAn  nei. asubidhAtTA anas+wIkArYa. tAi
+parer @{<E>handout</E>@}-e  puroTAi i.nrAjIte dilAm. 
+ebAr sabAi khub khushi. @{<E>Handout</E>@}-TAr madhye khAnikTA chhila yeTA parIxAy likhte habe seTA, Ar bAkiTA chhila tAr 
+AlochanA. puroTAi i.nrAjIte. chhAtrarA pabananandaner yogya uttar~sUrI, bishalyakaraNi bAchhbAr
+ samay tAder nei. parIxAr khAtAy @{<E>handout</E>@}-er goTA gandhamAdanTAi dekhi ugRe diyechhe.   bujhlAm bishalyakaraNiTAke 
+AlAdA kare chenAbAr darkAr Achhe. tAi AlAdA @{<E>font</E>@}  byabahAr karlAm. bojhAnoTA sAdhAraN @{<E>font</E>@}-e, Ar parIxAy 
+teTuku likhte habe, seTA AlAdA hAter lekhAr mata @{<E>font</E>@}-e. chhAtrarA ete Aro khushi. kintu chorA-goptA pathe jAn~te 
+pArlAm ye, chhAtrarA khAli oi hAter lekhA @{<E>font</E>@}  a.nshaTukui mukhasthA karchhe, bAkiTA
+ paReo dekhchhe nA. seTA as+wabhAbik nay,  i.nrAjI paRte AmAder kaSTa hay, yeTA parIxAte likhte habe nA, sekhAne ei bARti 
+kaSTTuku kena tArA karbe? tAi bhebechinte bojhAno a.nshTukuke bA.nlA bAnAlAm. ei natun @{<E>handout</E>@}  dekhe chhAtrader 
+prathamei birUp pratik+riyA hala. yy,n, AbAr bA.nlAy karechhen kena? tArpar oderai ekjan balla nA, re Thikai Achhe, parIxAr 
+a.nshaTA i.nrAjItei Achhe. takhan tArA Ashwasta hala, kAraN tArA jAnta ye oi hArer lekhAr bAire tArA kichhui paRbe nA, ataeb 
+seTA bA.nlA nA i,nrAjI tAe kI ese yAy? kintu bA.nlA hala giye mAtrribhASA. Ar bA.nlAy yeTA
+ likhechhi, seTA saras. i.nrAjIr belAy sei rasTA chhokhe paRe ni etadin. bA.nlAr belAy o jinisTA
+ chokhe nA parr kaThin. chorAgoptA pathe jAnA gela ye ebAr rasTA yathAsthAne p,n\ouchhachchhe!   
+
+<CIMG web="q8.png"/>
+Ase b\oi ki! prati diner sheSei Ase. sei janya rAte Ar bai nA likhe ekTu ghumiye nii. 
+
+<CIMG web="q9.png"/>
+bai lekhATA hala shixAbis+tArer ekTA a.nsha. kintu eTAi pratham a.nsha nay. yadi baiTA loker
+ kAchhe nA p,n\ouchhay, eba.n tArA baiTA nA paRe, tabe bai lekhA nirarthak. sutarA.n sei baii likhi, yekhAne ei duTo samasyAr 
+moTAmuTi ekTA samAdhAn bA karA gechhe. prAthamik stare oi duTo samasyA bhayAbaha. kAraN skuler adhikA.nsha shixakshixikAi 
+nijer sAmrAjyaraxAy byas+ta. bihArer pratyanta grAme khAki urdir jore yeman sAmAnya dArogA
+ asAmAnya haye uThte pAre, eba.n grAmr sa.nkIrNa balayer madhye suprIm korTer cheyeo shaktishAlI
+ haye oThe, mAnbAdhikAr kamishan tAr kAyemI s+warthe d,nAt foTAte pAre nA, temani ei
+ shixakshixikAder ganDi periye shixA p,n\ouchhe deoyA khAli bai likhe karA du.HsAdhya. tAr janya
+ anek pUr+bapras+tuti darkAr. yatadin seTA nA hachchhe, tatadin bai likhe samay naSTa karAr mAne hAy nA.    
+</NOTE>

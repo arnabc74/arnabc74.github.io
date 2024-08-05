@@ -73,7 +73,7 @@ In particular,  <M>N_{0,0}=1.</M>
 N_{n,x} = \binom{n}{[[n+x][2]]}.
 </D>
 This is <M>0</M> if <M>[[n+x][2]]</M> is
-outside <M>\{0,1,...,n\}.</M> Also, note the trivial case
+outside <M>\{0,1,...,n\}.</M>
 </THM>
 
 <EXM>
@@ -367,7 +367,7 @@ Find the number of paths from (0,0) to (11,1) that meet 4 (may or may not cross 
 Next find similarly 
 the number of paths from (0,0) to (11,1) that meet 5 (may or may not cross it). The answer is <M>N_{11,9}.</M>
 
-The difference should give your the answer: <M>N_{11,7}-N_{11,9}.</M>
+The difference should give you the answer: <M>N_{11,7}-N_{11,9}.</M>
  </EXM>
 
 <EXM>
