@@ -841,9 +841,9 @@ some $r\in\{1,...,n\}.$
 <p></p>
 By the <b>reflection principle</b>, 
 the total number of all-positive paths from $(1,1)$
-to $(2n,2r)$ is the total number of $(1,1)\rightarrow(2n,2r)$ paths
-minus the total number of $(1,-1)\rightarrow(2n,2r)$ paths, <i>i.e.</i>, 
-$N_{2n-1,2r-1}-N_{2n-1,2r+1}.$
+to $(2n,2r)$ is 
+$$|PATH\big((1,1),(2n,2r)\big)|-|PATH\big((1,-1),(2n,2r)\big)|,$$ 
+ <i>i.e.</i>, $N_{2n-1,2r-1}-N_{2n-1,2r+1}.$
 <p></p>
 
 <p></p>
@@ -863,9 +863,9 @@ $2N_{2n-1,1} =
 =\binom{2n}{n} = N_{2n,0}.$
 <b><i>[QED]</i></b>
 </p>
-
-<p></p>
-
+Isn't this surprising? The number of $2n$-length paths never returning to 0
+equals the number of $2n$-length paths ending at 0. Could you prove it directly by establishing a bijection between
+ these two sets of paths?
 <h2><a
 name="First 0-return theorem">First 0-return theorem</a></h2>
 
@@ -878,11 +878,10 @@ for the first time is $4N_{2n-2,0}-N_{2n,0}=\frac{N_{2n,0}}{2n-1}.$
 
 <p>
 <b><i>Proof:</i></b>
-Let $A$ be the set of all the paths that never return to 0.
+Let $A$ be the set of all $2n$-length paths that never return to 0.
 <p></p>
-Let $B$ be the set of all the paths that never return to
-before or at time $2n-2.$ (We are always considering paths
-of length $2n.$)
+Let $B$ be the set of all $2n$-length paths that never return to
+before or at time $2n-2.$ 
 <p></p>
 Then we want to find $|B\setminus A|.$
 <p></p>
@@ -989,13 +988,30 @@ path ends at 10, which is also even.
 
 <fieldset>
 <legend><b><i>Positive duration theorem</i></b></legend>
-Consider all paths of length $2n$ starting at $(0,0).$
-Take any $k\in\{1,...,n\}.$ The number of these paths that
-remain positive for exactly $2k$ time units is $N_{2k,0}\times N_{2n-2k,0}.$
+Let $A_{a,b}=$   {all $a$-length paths from (0,0) that remain positive for
+ exactly $b$  time units}.
+<p></p>
+Then
+$$\forall n\in{\mathbb N}~~\forall k\in\{0,...,n\}~~|A_{2n,2k}|=N_{2k,0}\times N_{2n-2k,0}.$$
 </fieldset>
+
+<p></p>
 
 <p>
 <b><i>Proof:</i></b>
+<u><b>Case 1: $k=0$ or $n$</b></u>:
+Note that $k=0$ means the path is always below the $x$-axis, and
+$k=n$ means the path is always above the $x$-axis.
+<p></p>
+In both these cases the result follows immediately
+from the <b>No 0-return theorem</b>.
+<p></p>
+
+<u><b>Case 2: $1\leq k\leq n-1$</b></u>:
+<p></p>
+Here we are considering paths with at least one 0-return. We shall group them by the time of their first 0-return and 
+where the return occurs from the positive or the negative side. 
+<p></p>
 Let's warm up by looking at an example with $n=7$ and $k=4.$
 
 <center>
@@ -1010,154 +1026,93 @@ Let's warm up by looking at an example with $n=7$ and $k=4.$
 </center>
 
 <p></p>
-We shall split the set of all such paths into some disjoint
-subsets based on when the first 0-return occurs and from which
-side. For example, in the above example, it occurs at 4,
-and from the positive side. In general, here are
-all the possible cases:
+Here the first 0-return occurs at 4,
+and from the positive side. 
 <p></p>
-
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/pathcases.png"></th>
-</tr>
-<tr>
-<th>Different cases</th>
-</tr>
-</table>
-</center>
-Let's first deal with the red case (<i>i.e.</i>, when the path never
-returns to 0). Obviously, this situation can occur only
-when $2k=0$ (the path is always below the $x$-axis) or
-when $2k=2n$ (the path is always above the $x$-axis).
+Let $B_{a,t}= $ {all $a$-length paths from (0,0) that first 0-return at time $t$  from positive side}.
 <p></p>
-In both these cases the result follows immediately
-from the <b>No 0-return theorem</b>.
+Let $C_{a,t}= $ {all $a$-length paths from (0,0) that first 0-return at time $t$  from negative side}.
 <p></p>
-
-<p></p>
-
-<p></p>
-Next let's consider the green case.
-<p></p>
-How many such
-paths are possible such that the first 0-hit occurs at $2r$
-from the positive side? The
-answer is
-<blockquote>
-#($2r$ length paths with first 0-hit from positive side at $2r$)$\times$ #($2n-2r$ length paths
-with exactly  $2k-2r$ positive segments).
-</blockquote>
-Out of the two factors we already know a nice formula for the
-first one from the <b>First 0-return theorem</b>.
- Also, the
-second factor is precisely of the type that we want to find in
-this theorem. However, it is for a shorter path (length
-being $2n-2r$ instead of $2n$). So induction on
-path-length may help.
-<p></p>
-
-<p></p>
-Notice that here $r\in\{1,...,k\}.$ (Otherwise, you get more
-than $2k$ segments above the $x$-axis.)
-<p></p>
-Next look at the blue case.
-<p></p>
-How many such
-paths are possible such that the first 0-hit occurs at $2r$
-from the negative side? The
-answer is
-<blockquote>
-#($2r$ length paths with first 0-hit from negative side at $2r$)$\times$ #($2n-2r$ length paths
-with exactly  $2k$ positive segments).
-</blockquote>
-Again, the first factor is tractable by the <b>First 0-return
-theorem</b>, and the second factor may hopefully be dealt with by
-induction. 
-<p></p>
-Notice that here $r\in\{1,...,n-k\}.$ (Otherwise, you get less
-than $2k$ segments above the $x$-axis.)
-<p></p>
-
-<p></p>
-
-<p></p>
-We shall use induction on $n\geq k.$ (Here we are
-holding $k$ fixed.)
-<p></p>
-
-<b>Basis</b>: Here we consider  $n=k,$ <i>i.e.</i>, the case where
-all the segments are above the $x$axis. We shall employ a
-trick here. Shift the path by $(1,1).$ and
-connect $(0,0)$ to $(1,1)$ The following diagrams would
-help you to understand the transformation.
-
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/was.png"></th>
-</tr>
-<tr>
-<th>The original path</th>
-</tr>
-</table>
-</center>
-
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/is.png"></th>
-</tr>
-<tr>
-<th>The transformed path (the extra segment shown
-in red)</th>
-</tr>
-</table>
-</center>
-Notice that this gives a bijection between 
+Note the following points about these sets:
 <ul>
 
-<li>the set of paths of length $2n$ where all the segments
-are above the $x$-axis</li>
+<li>The $B$'s and  $C$'s are all disjoint.</li>
 
-<li>the set of positive paths of length $2n+1$ that never return to 0.</li>
+<li>By symmetry $|B_{a,t}| = |C_{a,t}|$</li>
 
+<li>$A_{2n,2k}\subseteq \cup_{r=1}^k B_{2n,2r} \bigcup
+ \cup_{r=1}^{n-k} C_{2n,2r}.$
+Do you see <a href="javascript:hideShow('newwhy');">why</a>
+<div id="newwhy" style="display:none;background-color:#ffcccc;">
+If the first 0-return from positive side is later than $2k,$  then we have already spent more
+ than $2k$  time units above the $x$-axis. SImilarly, if the first 0-return is later
+ than $2n-2k$  from the negative side, then we have less than $2k$  time units left, and
+ we have not spent any time above the $x$-axis yet!</div> it is
+ enough to take $r$  up
+ to $k$  in the first
+ union, and up to $n-k$
+  in the second?</li>
 </ul>
-Now the size of the 
-latter set is $N_{2n,0}$<a href="javascript:hideShow('baje');">(Why?)</a>
-<div id="baje" style="display:none;background-color:#ffcccc;">
-Since $2n+1$ is odd, so each element of this set is a
-positive path that does not return to 0 up to and including
-time  $2n$, and then it is free to move wherever it wants at
-time $2n+1$ (since it can never hit 0 at an odd time point).
-<p></p>
 
 <p></p>
-So the size is $\frac 12\times N_{2n,0}\times 2.$
-The $\frac 12$ because we are considering
-only <i>positive</i> paths. The 2 because the path is free to
-move from time $2n$ to $2n+1.$
-</div>, completing the proof of the basis.
+Thus 
+$$|A_{2n,2k}| = \sum_{r=1}^k |A_{2n,2k}\cap B_{2n,2r}| + \sum_{r=1}^{n-k} |A_{2n,2k}\cap C_{2n,2r}|.$$
+Now we shall find $|A_{2n,2k}\cap B_{2n,2r}|$  and $|A_{2n,2k}\cap C_{2n,2r}|$  separately. 
+<p></p>
+The paths in $A_{2n,2k}\cap B_{2n,2r}$  are positive up to time $2r$, when they return to 0 for the first time,
+ and then during the remaining $2n-2r$  times units  spend exactly $2k-2r$  time units in the positive side. So
+ $$|A_{2n,2k}\cap B_{2n,2r}| = |B_{2r,2r}|\times |A_{2n-2r,2k-2r}|.$$
+<img src="image/alert.png">This is the crucial step. Take time to understand it! 
+<p></p>
+Similarly
+ $$|A_{2n,2k}\cap C_{2n,2r}| = |C_{2r,2r}|\times |A_{2n-2r,2k}|.$$
+Combining these two we get
+ $$|A_{2n,2k}| =  \sum_{r=1}^k |B_{2r,2r}|\times |A_{2n-2r,2k-2r}|+ \sum_{r=1}^{n-k}|C_{2r,2r}|\times |A_{2n-2r,2k}|.$$
+Notice that $|B_{2r,2r}|$  and $|C_{2r,2r}|$  are the same, and each is equal to
+ $\frac 12|Z_r|,$  where $Z_{2r} = $  number of $2r$-length paths with first 0-return
+ at $2r.$  Thus, we get our <font color="#ff0000">master equality</font>:
+ $$|A_{2n,2k}| = \frac 12 \sum_{r=1}^k |Z_{2r}|\times |A_{2n-2r,2k-2r}|+ \frac 12\sum_{r=1}^{n-k}|Z_{2r}|\times |A_{2n-2r,2k}|.$$
+Since $|Z_{2r}|$  is already known from the <b>first 0-return theorem</b>,
+this equality expresses $A_{2n,2k}$  in terms of $A_{a,b}$'s with $a &lt; 2n.$
+ This suggests that we should try induction on the path length.  
+<p></p>
+We shall use induction on $n$ to prove the statement 
+$$S(n)~:~\forall k\in\{1,...,n-1\}~~|A_{2n,2k}|=N_{2k,0}\times N_{2n-2k,0}.$$
+Here $n=2,3,4,...$  
+<p></p>
+The following diagram shows the possible $(n,k)$  pairs as dots. The red dots were already dealt
+ with in <b>case 1</b>.   
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/basis.png"></th>
+</tr>
+<tr>
+<th>Each dot represents one  $(n,k)$  pair.</th>
+</tr>
+</table>
+</center>
+We are applying induction for the blue dots only. $S(n)$  is the combined statement for all the
+blue dots in the $n$-th
+ row. The basis corresponds to the topmost blue dot.
 <p></p>
 
-<b>Hypothesis</b>: Assume the result for $n\in\{k,k+1,...,m-1\}$ for some $m&gt; k.$
+<b>Basis</b>: Here $n=2$  and $k=1.$   Do this case yourself by direct counting. There
+ should be exactly 4 such paths.   
+<p></p>
+
+<b>Hypothesis</b>: Assume $S(n)$  for $n=2,...,m-1.$  
 <p></p>
 
 <b>Step</b>: Shall show for $n=m.$
 <p></p>
-Here the required number is 
-<blockquote>
-$\frac 12\sum_{r=1}^k$ #{$2r$ length paths with first 0-return at $2r$}$N_{2n-2k,0} N_{2k-2r,0}$
-+$\frac 12\sum_{r=1}^{n-k}$ #{$2r$ length paths with
-first 0-return at $2r$}$N_{2k,0} N_{2n-2k-2r,0}$ 
-</blockquote>
-Take terms free of $r$ out of the summations:
-<blockquote>
-$\frac 12N_{2n-2k,0}\sum_{r=1}^k$ #{$2r$ length paths with first 0-return at $2r$}$N_{2k-2r,0}$
-+$\frac 12N_{2k,0}\sum_{r=1}^{n-k}$ #{$2r$ length paths with first 0-return at $2r$}$ N_{2n-2k-2r,0}$ 
-</blockquote>
-Of course, you can now use the <b>First 0-return theorem</b> and
+Take any $k\in\{1,...,n-1\}.$
+<p></p>
+From the <font color="#ff0000">master equality</font>, the required number is 
+ $$|A_{2n,2k}| = \frac 12 \sum_{r=1}^k |Z_{2r}| N_{2n-2k}N_{2k-2r}+ \frac 12\sum_{r=1}^{n-k}|Z_{2r}| N_{2k,0}N_{2n-2k-2r,0}.$$
+Move the $r$-free terms  out of the summations:
+ $$|A_{2n,2k}| = \frac 12 N_{2n-2k,0}\sum_{r=1}^k |Z_{2r}| N_{2k-2r,0}+ \frac 12N_{2k,0}\sum_{r=1}^{n-k}|Z_{2r}| N_{2n-2k-2r,0}.$$
+Of course, you can now use the formula for $|Z_{2r}|$  from the <b>first 0-return theorem</b> and
 start algebraic manipulations. 
 <a href="javascript:hideShow('spl1');">But can you see directly that the
 first sum is just $N_{2k,0}?$ 
@@ -1179,7 +1134,9 @@ sum? </a>
 <div id="spl2" style="display:none;background-color:#ffcccc;">
 $N_{2n-2k,0}.$
 </div>
-
+This immediately leads to 
+ $$|A_{2n,2k}| = N_{2k,0}N_{2n-2k,0},$$
+as required. 
 <b><i>[QED]</i></b>
 </p>
 
