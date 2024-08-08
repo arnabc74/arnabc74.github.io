@@ -625,7 +625,7 @@ Similarly
 Combining these two we get
  <D>|A_{2n,2k}| =  \sum_{r=1}^k |B_{2r,2r}|\times |A_{2n-2r,2k-2r}|+ \sum_{r=1}^{n-k}|C_{2r,2r}|\times |A_{2n-2r,2k}|.</D>
 Notice that <M>|B_{2r,2r}|</M>  and <M>|C_{2r,2r}|</M>  are the same, and each is equal to
- <M>[[12]]|Z_r|,</M>  where <M>Z_{2r} = </M>  number of <M>2r</M>-length paths with first 0-return
+ <M>[[12]]|Z_{2r}|,</M>  where <M>Z_{2r} = </M>  number of <M>2r</M>-length paths with first 0-return
  at <M>2r.</M>  Thus, we get our <RED>master equality</RED>:
  <D>|A_{2n,2k}| = [[12]] \sum_{r=1}^k |Z_{2r}|\times |A_{2n-2r,2k-2r}|+ [[12]]\sum_{r=1}^{n-k}|Z_{2r}|\times |A_{2n-2r,2k}|.</D>
 Since <M>|Z_{2r}|</M>  is already known from the <B>first 0-return theorem</B>,
