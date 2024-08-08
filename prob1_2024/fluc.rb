@@ -396,38 +396,33 @@ based on where the path ends. Clearly, it can end somewhere <M>\leq r.</M>
 <P/>
 Fix any <M>k\leq r.</M> 
 
-Let  <M>B_k=</M>set of all paths with maximum <M>r</M> and ending at
+Let  <M>B_k=</M>set of all <M>n</M>-length paths with maximum <M>r</M> and ending at
 <M>k.</M>
 
 Instead of working with <M>B_k</M>'s directly, we prefer to work with
-<Q><M>C_k=</M> the set of all paths with <RED>maximum <M>\geq
-r</M></RED> and ending at <M>k.</M></Q>
+<Q><M>C=</M> the set of all paths with <RED>maximum <M>\geq
+r</M></RED> and ending at <M>k</M></Q>
+and
+<Q><M>D=</M> the set of all paths with <RED>maximum <M>\geq
+r+1</M></RED> and ending at <M>k</M></Q>
 
-Then we can compute <M>|C_k|</M> easily, and also use the fact
-that <M>|B_k| = |C_k|-|C_{k+1}|.</M>
+
+Then we can compute <M>|C|</M>  and <M>|D|</M>   easily, and also use the fact
+that <M>|B_k| = |C|-|D|.</M>
 
 
-Now <M>|C_k|=N_{n,2r-k}</M> by the <B>reflection principle</B>. 
-
+Now <M>|C|=N_{n,2r-k}</M> and <M>|D|=N_{n,2(r+1)-k}= N_{n,2r-k+2}</M>  by the <B>reflection principle</B>. 
 
 So
 <D>
-|B_k|=N_{n,2r-k} - N_{n,2(r+1)-k}.
+|B_k|=N_{n,2r-k} - N_{n,2r-k+2}.
 </D>
-We shall now sum this over <M>k\leq r</M> to obtain <M>|A|.</M> Two points are to
-be noted about this: 
-<UL>
-<LI>The sum
-<D>
-(|C_r|-|C_{r-2}|) + (|C_{r-1}|-|C_{r-3}|) + (|C_{r-2}|-|C_{r-4}|) + \cdots 
-</D>
+We shall now sum this over <M>k\in\{-n,..., r\}</M> to obtain <M>|A|</M>:
+<D>A=\sum_{k=-n}^r (N_{n,2r-k} - N_{n,2r-k+2}).</D>
+The sum
 has a two-step telescoping structure: each negative term
 cancels the positive term two steps ahead. 
-</LI>
-<LI>The sequence <M>(|C_k|)</M> eventually becomes 0, as <M>k</M>
-goes down. </LI></UL>
-So only the first halves of the first two terms survive, i.e., <M>|C_r|+|C_{r-1}|</M>
-or <M>N_{n,r}+N_{n,r+1}.</M>
+So only the first halves of the first two terms survive, i.e., <M>N_{n,r}+N_{n,r+1}.</M>
 
 We know that <M>N_{a,b}</M> is 0 if <M>a,b</M> have opposite
 parities. Hence the result.
@@ -570,11 +565,15 @@ Then
 
 <PF>
 <U><B>Case 1: <M>k=0</M> or <M>n</M></B></U>:
-Note that <M>k=0</M> means the path is always below the <M>x</M>-axis, and
-<M>k=n</M> means the path is always above the <M>x</M>-axis.
 
-In both these cases the result follows immediately
-from the <B>No 0-return theorem</B>.
+We shall show the case for <M>k=n.</M>  The <M>k=0</M>  is similar. 
+Note that <M>k=n</M> means the path is always above the <M>x</M>-axis (though it may touch the
+ axis). We shall convert it bijectively into a <M>(2n+1)</M>-length  path not returning to 0. This conversion is done by
+ shifting the path 1 unit upwards and to the right, and joining <M>(0,0)</M>  with <M>(1,1).</M>  
+<VID src="anim.webm">Click on the figure for animation</VID>
+The number of <M>(2n+1)</M>-length paths not returning to 0 is the same as the number of <M>2n</M>-length paths not returning
+ to 0 (since a path cannot return to 0 at time <M>2n+1</M>). So the number is
+ <M>N_{2n,0}=N_{2k,0}\times N_{2n-2k,0}</M>, as required. 
 
 <U><B>Case 2: <M>1\leq k\leq n-1</M></B></U>:
 

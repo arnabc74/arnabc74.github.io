@@ -772,40 +772,32 @@ based on where the path ends. Clearly, it can end somewhere $\leq r.$
 <p></p>
 Fix any $k\leq r.$ 
 <p></p>
-Let  $B_k=$set of all paths with maximum $r$ and ending at
+Let  $B_k=$set of all $n$-length paths with maximum $r$ and ending at
 $k.$
 <p></p>
 Instead of working with $B_k$'s directly, we prefer to work with
-<blockquote>$C_k=$ the set of all paths with <font color="#ff0000">maximum $\geq
-r$</font> and ending at $k.$</blockquote>
+<blockquote>$C=$ the set of all paths with <font color="#ff0000">maximum $\geq
+r$</font> and ending at $k$</blockquote>
+and
+<blockquote>$D=$ the set of all paths with <font color="#ff0000">maximum $\geq
+r+1$</font> and ending at $k$</blockquote>
 
 <p></p>
-Then we can compute $|C_k|$ easily, and also use the fact
-that $|B_k| = |C_k|-|C_{k+1}|.$
+Then we can compute $|C|$  and $|D|$   easily, and also use the fact
+that $|B_k| = |C|-|D|.$
 <p></p>
-Now $|C_k|=N_{n,2r-k}$ by the <b>reflection principle</b>. 
+Now $|C|=N_{n,2r-k}$ and $|D|=N_{n,2(r+1)-k}= N_{n,2r-k+2}$  by the <b>reflection principle</b>. 
 <p></p>
 So
 $$
-|B_k|=N_{n,2r-k} - N_{n,2(r+1)-k}.
+|B_k|=N_{n,2r-k} - N_{n,2r-k+2}.
 $$
-We shall now sum this over $k\leq r$ to obtain $|A|.$ Two points are to
-be noted about this: 
-<ul>
-
-<li>The sum
-$$
-(|C_r|-|C_{r-2}|) + (|C_{r-1}|-|C_{r-3}|) + (|C_{r-2}|-|C_{r-4}|) + \cdots 
-$$
+We shall now sum this over $k\in\{-n,..., r\}$ to obtain $|A|$:
+$$A=\sum_{k=-n}^r (N_{n,2r-k} - N_{n,2r-k+2}).$$
+The sum
 has a two-step telescoping structure: each negative term
 cancels the positive term two steps ahead. 
-</li>
-
-<li>The sequence $(|C_k|)$ eventually becomes 0, as $k$
-goes down. </li>
-</ul>
-So only the first halves of the first two terms survive, <i>i.e.</i>, $|C_r|+|C_{r-1}|$
-or $N_{n,r}+N_{n,r+1}.$
+So only the first halves of the first two terms survive, <i>i.e.</i>, $N_{n,r}+N_{n,r+1}.$
 <p></p>
 We know that $N_{a,b}$ is 0 if $a,b$ have opposite
 parities. Hence the result.
@@ -1000,11 +992,19 @@ $$\forall n\in{\mathbb N}~~\forall k\in\{0,...,n\}~~|A_{2n,2k}|=N_{2k,0}\times N
 <p>
 <b><i>Proof:</i></b>
 <u><b>Case 1: $k=0$ or $n$</b></u>:
-Note that $k=0$ means the path is always below the $x$-axis, and
-$k=n$ means the path is always above the $x$-axis.
 <p></p>
-In both these cases the result follows immediately
-from the <b>No 0-return theorem</b>.
+We shall show the case for $k=n.$  The $k=0$  is similar. 
+Note that $k=n$ means the path is always above the $x$-axis (though it may touch the
+ axis). We shall convert it bijectively into a $(2n+1)$-length  path not returning to 0. This conversion is done by
+ shifting the path 1 unit upwards and to the right, and joining $(0,0)$  with $(1,1).$  
+<center>
+<video onclick="this.play()">
+<source type="video/webm" src="image/anim.webm"></source>
+</video>
+</center>
+The number of $(2n+1)$-length paths not returning to 0 is the same as the number of $2n$-length paths not returning
+ to 0 (since a path cannot return to 0 at time $2n+1$). So the number is
+ $N_{2n,0}=N_{2k,0}\times N_{2n-2k,0}$, as required. 
 <p></p>
 
 <u><b>Case 2: $1\leq k\leq n-1$</b></u>:
