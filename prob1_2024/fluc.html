@@ -30,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -79,6 +79,10 @@ body,table {
   //color: #fff;
 }
 
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
 .sticky {
   position: fixed;
@@ -1159,6 +1163,34 @@ is
 $$
 \frac{p-q}{p+q}.
 $$
+<p><a
+href="javascript:hideShow('lab1')"><b>Answer:</b></a><div
+class="ans" id="lab1">
+Let $y_i$ be the lead of $A$ over $B$
+after $i$ ballot papers have been counted. If we
+plot $y_i$ against $i,$ we shall get a random walk
+starting from $(0,0)$ and ending at $(p+q,p-q).$ 
+<p></p>
+The total number of outcomes is $N_{p+q,p-q} = {p+q\choose p}
+= \frac{(p+q)!}{p!q!}.$ 
+<p></p>
+The
+favourable oucomes correspond to the paths that always remains
+positive 0 after starting from (0,0).
+ These paths must visit (1,1) after $(0,0).$ 
+<p></p>
+Hence #{paths from (0,0) to $(p+q,p-q)$ ever returning to 0}
+= #{paths from (1,1) to $(p+q,p-q)$ never visiting  0}<br>
+= #{paths from (1,1) to $(p+q,p-q)$}
+- #{paths from (1,1) to $(p+q,p-q)$  visiting  0}<br>
+= #{paths from (1,1) to $(p+q,p-q)$}
+- #{paths from (1,1) to $(p+q,q-p)$  visiting  0}<br>
+= $N_{p+q-1,p-q-1}-N_{p+q-1,q-p-1}$<br>
+ = ${p+q-1\choose p-1}- {p+q-1\choose q-1} =
+\frac{(p+q-1)!}{p!q!}(p-q).$
+<p></p>
+So the required probability is $\frac{p-q}{p+q},$ as required.
+</div></p>
 
 </p>
 
@@ -1174,6 +1206,9 @@ $$
 </table>
 </center>
 
+<p><a
+href="javascript:hideShow('lab2')"><b>Answer:</b></a><div
+class="ans" id="lab2">This is just the complement of the last problem. So the answer is $1-\frac{a-b}{a+b}=\frac{2b}{a+b}.$</div></p>
 
 </p>
 
@@ -1181,7 +1216,16 @@ $$
 
 <p>
 <b>EXERCISE 6:</b>&nbsp;Let $a,b&gt;0.$ Show that the number of paths from $(0,0)$ to $(n,a)$ that are
-always $&gt;-b$ is $N_{n,a}-N_{n,a+2b}.$ </p>
+always $&gt;-b$ is $N_{n,a}-N_{n,a+2b}.$ <p><a
+href="javascript:hideShow('lab3')"><b>Answer:</b></a><div
+class="ans" id="lab3">
+#{paths from $(0,0)$ to $(n,a)$ that are always $&gt;-b$}<br>
+=#{paths from $(0,0)$ to $(n,a)$}-#{paths from $(0,0)$ to $(n,-a-2b)$} by reflection principle<br>
+ = $N_{n,a}-N_{n,-a-2b}$<br> 
+ = $N_{n,a}-N_{n,a+2b}$ by symmetry.
+<p></p>
+</div></p>
+</p>
 
 <p></p>
 
@@ -1189,6 +1233,13 @@ always $&gt;-b$ is $N_{n,a}-N_{n,a+2b}.$ </p>
 <b>EXERCISE 7:</b>&nbsp;Let $b&gt; a&gt; 0.$ Show that the number of paths
 from $(0,0)$ to $(n,a)$ that are
 always $&lt;b$ is $N_{n,a}-N_{n,2b-a}.$
+<p><a
+href="javascript:hideShow('lab4')"><b>Answer:</b></a><div
+class="ans" id="lab4">
+#{paths from $(0,0)$ to $(n,a)$ that are always $&lt;b$}<br>
+=#{paths from $(0,0)$ to $(n,a)$}-#{paths from $(0,0)$ to $(n,2b-a)$} by reflection principle<br>
+ = $N_{n,a}-N_{n,2b-a}.$ 
+</div></p>
 </p>
 
 <p></p>
@@ -1197,7 +1248,21 @@ always $&lt;b$ is $N_{n,a}-N_{n,2b-a}.$
 <b>EXERCISE 8:</b>&nbsp;Show that if $a&gt; c&gt; 0$  and $b&gt;0$, then  the number of paths from (0,0) to $(n,c)$
   that attain height $a$  and <i>then</i>  attain height $-b$  before finishing at $(n,c),$  is $N_{n,2a+2b+c}.$ 
  The paths may have also attained height $-b$  before attaining height  $a.$
- </p>
+<p><a
+href="javascript:hideShow('lab5')"><b>Answer:</b></a><div
+class="ans" id="lab5">
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/drefl.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</div></p> 
+</p>
 
 <p>
 <b>EXERCISE 9:</b>&nbsp;Let $a&gt;c&gt;0$ and $b&gt;0.$ Show that the number of
@@ -1206,7 +1271,17 @@ horizontal line at height $a$ and then lead to $(n,c)$
 without having touched the horizontal line at height $-b$ is  
 $N_{n,2a-c}-N_{n,2a+2b+c}.$ (Note that the path may touch
 the horizontal line at height $-b$ <i>before</i> hitting
-the line at height $a.$)</p>
+the line at height $a.$)<p><a
+href="javascript:hideShow('lab6')"><b>Answer:</b></a><div
+class="ans" id="lab6">
+Let $A = $ {paths from $(0,0)$ which touch the
+horizontal line at height $a$ and then lead to $(n,c)$ }.
+Let $B = ${paths in $A$  that do not attain height $-b$  <i>after</i>  attaining height $a$ }.
+<p></p>
+Then the answer is $|A|-|B|.$   By reflection principle $|A| = N_{n,2a-c}$  and $|B| = N_{n,2a+2b+c}.$
+Hence the result.
+</div></p>
+</p>
 
 <p></p>
 
@@ -1214,7 +1289,23 @@ the line at height $a.$)</p>
 <b>EXERCISE 10:</b>&nbsp;Prove that there are as many paths from (0,0)
 to $(2n+2,0)$ with all interior vertices $&gt;0$ as there
 are paths from (0,0) to $(2n,0)$ where all interior
-vertices are $\geq 0.$</p>
+vertices are $\geq 0.$<p><a
+href="javascript:hideShow('lab7')"><b>Answer:</b></a><div
+class="ans" id="lab7">
+Any path from (0,0)
+to $(2n+2,0)$ with all interior vertices $&gt;0$ must
+visit (1,1) after $(0,0)$, and $(2n+1,1)$
+before $(2n+2,0).$
+So #{paths from (0,0)
+to $(2n+2,0)$ with all interior vertices $&gt;0$}<br>
+= #{paths from (1,1)
+to $(2n+1,1)$ with all interior vertices $&gt;0$}<br>
+= #{paths from (1,0)
+to $(2n+1,0)$ with all interior vertices $\geq 0$}<br>
+= #{paths from (0,0)
+to $(2n,0)$ with all interior vertices $\geq 0$}.
+</div></p>
+</p>
 
 <p></p>
 
@@ -1223,6 +1314,10 @@ vertices are $\geq 0.$</p>
 exactly $r$ returns to the origin equals the probability
 that a return occurs at time $2n$  preceded by at
 least $r$ returns.
+<p><a
+href="javascript:hideShow('lab8')"><b>Answer:</b></a><div
+class="ans" id="lab8">False. Consider $r=1$  and $n=2.$  Then the first probability is $\frac 12.$ 
+ But the second probability is $\frac 14.$</div></p>
 
 </p>
 
@@ -1240,6 +1335,12 @@ and
 $B = $ the path passes through $(2n,2k).$
 </blockquote>
 Show that $P(A) = P(B).$  Is this true if $k\leq 0?$  Is it true if $k&gt;n?$
+<p><a
+href="javascript:hideShow('lab9')"><b>Answer:</b></a><div
+class="ans" id="lab9">
+For $k\in\{1,...,n\},$  the result follows directly from reflection principle. The result fails if $k\leq 0.$ 
+ One counterexample, if when $k=-10$  and $n=1.$  The result holds if $k&gt;n,$  because then $P(A)=P(B)=0.$
+</div></p>
 </p>
 
 <p></p>
@@ -1262,7 +1363,11 @@ continued for two more time units without hitting
 0. So $|B| \leq |A|.$ 
 <p></p>
 Hence $|A|=|B|.$ 
- </p>
+<p><a
+href="javascript:hideShow('lab10')"><b>Answer:</b></a><div
+class="ans" id="lab10">The "$|B|\leq |A|$ " argument is wrong. What it says is: number of paths <i>of length 8</i>
+ that never return to 0 is $\leq |A|$ ".</div></p> 
+</p>
 
 <p></p>
 
@@ -1278,6 +1383,19 @@ Hence $|A|=|B|.$
 </table>
 </center>
 
+<p><a
+href="javascript:hideShow('lab11')"><b>Answer:</b></a><div
+class="ans" id="lab11">
+Let the total number of balls in either box be $k.$  Let there be $w_i$  white balls in box $i.$  Then the
+ given condition says 
+$$\left(\frac{w_1}{k}\right)^n = \left(\frac{w_2}{k}\right)^n + \left(1-\frac{w_2}{k}\right)^n,$$
+or
+$$w_1^n = w_2^n + \left(k-w_2\right)^n.$$
+Since $n\geq 3,$  hence by Fermat's last theorem, there cannot be any nonzero integer solution for this. 
+So either $w_1 = 0$  or $w_2 = 0$  or $k-w_2 = 0.$  Here $w_1$  cannot be zero, since then the lhs is
+ zero, while the rhs is positive. If $w_2 = 0$, then the first box has all whites and the second all blacks. If $k-w_2=0,$ 
+ then both the boxes has all whites.
+</div></p>
 
 </p>
 
