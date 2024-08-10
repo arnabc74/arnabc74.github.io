@@ -752,18 +752,19 @@ always <M><b</M> is <M>N_{n,a}-N_{n,2b-a}.</M>
 <CIMG web="drefl.png"/>
 </ANS> </EXR>
 <EXR>Let <M>a>c>0</M> and <M>b>0.</M> Show that the number of
-paths from <M>(0,0)</M> which touch the
+paths from <M>(0,0)</M> which hit the
 horizontal line at height <M>a</M> and then lead to <M>(n,c)</M>
 without having touched the horizontal line at height <M>-b</M> is  
 <M>N_{n,2a-c}-N_{n,2a+2b+c}.</M> (Note that the path may touch
 the horizontal line at height <M>-b</M> <I>before</I> hitting
 the line at height <M>a.</M>)<ANS>
-Let <M>A = </M> {paths from <M>(0,0)</M> which touch the
+Let <M>A = </M> {paths from <M>(0,0)</M> which hit the
 horizontal line at height <M>a</M> and then lead to <M>(n,c)</M> }.
-Let <M>B = </M>{paths in <M>A</M>  that do not attain height <M>-b</M>  <I>after</I>  attaining height <M>a</M> }.
+Let <M>B = </M>{paths in <M>A</M>  that  attain height <M>-b</M>  <I>after</I>  attaining height <M>a</M> }.
 
 Then the answer is <M>|A|-|B|.</M>   By reflection principle <M>|A| = N_{n,2a-c}</M>  and <M>|B| = N_{n,2a+2b+c}.</M>
-Hence the result.
+Hence the result. 
+<CIMG web="flucex9.png">How <M>|B|</M>  is found by 2 reflections</CIMG>
 </ANS></EXR>
 
 <EXR>Prove that there are as many paths from (0,0)
