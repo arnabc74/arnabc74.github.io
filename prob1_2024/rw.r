@@ -1,8 +1,6 @@
-rw = function(x) {
+rw = function(x,col=rep(1,length(x)+1)) {
     y = c(0,cumsum(2*x-1))
-    col = rep(1,length(x))
-    col[4]=2
-    plot(y,ty='b',xlab='time',ylab='',asp=1,lwd=2,col=col)
+    plot(0:length(x),y,ty='b',xlab='time',ylab='',asp=1,lwd=2,col=col)
     abline(h=0)
     grid()
 }

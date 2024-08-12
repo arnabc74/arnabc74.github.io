@@ -568,18 +568,20 @@ Then
 
 We shall show the case for <M>k=n.</M>  The <M>k=0</M>  is similar. 
 Note that <M>k=n</M> means the path is always above the <M>x</M>-axis (though it may touch the
- axis). We shall convert it bijectively into a <M>(2n+1)</M>-length  path not returning to 0. This conversion is done by
+ axis). We shall convert it bijectively into a <M>(2n+1)</M>-length  positive path not returning to
+ 0. This conversion is done by
  shifting the path 1 unit upwards and to the right, and joining <M>(0,0)</M>  with <M>(1,1).</M>  Click on the figure below
  to see the conversion as an animation.
 <VID src="anim.webm"></VID>
-The number of <M>(2n+1)</M>-length paths not returning to 0 is the same as the number of <M>2n</M>-length paths not returning
- to 0 (since a path cannot return to 0 at time <M>2n+1</M>). So the number is
+The number of <M>(2n+1)</M>-length paths not returning to 0 is twice  the number of <M>2n</M>-length paths not returning
+ to 0 (since the last step is arbitrary). Out of these exactly half is positive. So the number of
+ <M>(2n+1)</M>-length positive paths not returning to 0 is
  <M>N_{2n,0}=N_{2k,0}\times N_{2n-2k,0}</M>, as required. 
 
 <U><B>Case 2: <M>1\leq k\leq n-1</M></B></U>:
 
 Here we are considering paths with at least one 0-return. We shall group them by the time of their first 0-return and 
-where the return occurs from the positive or the negative side. 
+whether the return occurs from the positive or the negative side. 
 
 Let's warm up by looking at an example with <M>n=7</M> and <M>k=4.</M>
 <COMMENT>
@@ -591,9 +593,9 @@ rw(x,'pathlead')
 Here the first 0-return occurs at 4,
 and from the positive side. 
 
-Let <M>B_{a,t}= </M> {all <M>a</M>-length paths from (0,0) that first 0-return at time <M>t</M>  from positive side}.
+Let <M>B_{a,t}= </M> {all <M>a</M>-length paths from (0,0) with first 0-return at time <M>t</M>  from positive side}.
 
-Let <M>C_{a,t}= </M> {all <M>a</M>-length paths from (0,0) that first 0-return at time <M>t</M>  from negative side}.
+Let <M>C_{a,t}= </M> {all <M>a</M>-length paths from (0,0) with first 0-return at time <M>t</M>  from negative side}.
 
 Note the following points about these sets:
 <UL>
@@ -603,7 +605,7 @@ Note the following points about these sets:
  \cup_{r=1}^{n-k} C_{2n,2r}.</M>
 Do you see <HIDE lab="newwhy"><MSG>why</MSG><HIDDEN>
 If the first 0-return from positive side is later than <M>2k,</M>  then we have already spent more
- than <M>2k</M>  time units above the <M>x</M>-axis. SImilarly, if the first 0-return is later
+ than <M>2k</M>  time units above the <M>x</M>-axis. Similarly, if the first 0-return is later
  than <M>2n-2k</M>  from the negative side, then we have less than <M>2k</M>  time units left, and
  we have not spent any time above the <M>x</M>-axis yet!</HIDDEN></HIDE> it is
  enough to take <M>r</M>  up
@@ -616,8 +618,17 @@ Thus
 Now we shall find <M>|A_{2n,2k}\cap B_{2n,2r}|</M>  and <M>|A_{2n,2k}\cap C_{2n,2r}|</M>  separately. 
 
 The paths in <M>A_{2n,2k}\cap B_{2n,2r}</M>  are positive up to time <M>2r</M>, when they return to 0 for the first time,
- and then during the remaining <M>2n-2r</M>  times units  spend exactly <M>2k-2r</M>  time units in the positive side. So
- <D>|A_{2n,2k}\cap B_{2n,2r}| = |B_{2r,2r}|\times |A_{2n-2r,2k-2r}|.</D>
+ and then during the remaining <M>2n-2r</M>  times units  spend exactly <M>2k-2r</M>  time units in the positive side.
+<COMMENT>
+source("rw.r")
+png("image/postepraw.png")
+rw(c(1,1,0,1,0,0,0,1,1,0,0,0),c(2,2,2,2,2,2,3,3,3,3,3,3))
+dev.off()
+</COMMENT>
+<CIMG web="postep.png">A typical path in <M>A_{12,8}\cap B_{12,6}.</M></CIMG>
+ So
+ <D>|A_{2n,2k}\cap B_{2n,2r}| = \underbrace{|B_{2r,2r}|}_{\small red}\times
+ \underbrace{|A_{2n-2r,2k-2r}|}_{\small green}.</D>
 <ALERT/>This is the crucial step. Take time to understand it! 
 
 Similarly
@@ -654,7 +665,7 @@ blue dots in the <M>n</M>-th
 Take any <M>k\in\{1,...,n-1\}.</M>
 
 From the <RED>master equality</RED>, the required number is 
- <D>|A_{2n,2k}| = [[12]] \sum_{r=1}^k |Z_{2r}| N_{2n-2k}N_{2k-2r}+ [[12]]\sum_{r=1}^{n-k}|Z_{2r}| N_{2k,0}N_{2n-2k-2r,0}.</D>
+ <D>|A_{2n,2k}| = [[12]] \sum_{r=1}^k |Z_{2r}| N_{2k-2r,0}N_{2n-2k,0}+ [[12]]\sum_{r=1}^{n-k}|Z_{2r}| N_{2k,0}N_{2n-2k-2r,0}.</D>
 Move the <M>r</M>-free terms  out of the summations:
  <D>|A_{2n,2k}| = [[12]] N_{2n-2k,0}\sum_{r=1}^k |Z_{2r}| N_{2k-2r,0}+ [[12]]N_{2k,0}\sum_{r=1}^{n-k}|Z_{2r}| N_{2n-2k-2r,0}.</D>
 Of course, you can now use the formula for <M>|Z_{2r}|</M>  from the <B>first 0-return theorem</B> and
