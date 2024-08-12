@@ -30,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -72,13 +72,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   });
 </script>
 <style>
-body {
+body,table {
   margin: 0;
   font-size: 40;
   //background: #000;
   //color: #fff;
 }
 
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
 .sticky {
   position: fixed;
@@ -97,6 +101,7 @@ body {
 }
 
 .scrpt {
+  margin:10px;
   border-left: 5px solid black;
 }
 
@@ -194,7 +199,7 @@ other words, $A=\{HH,HT\}$ and $B=\{HH,TH\}.$ As the
 outcome of one toss can have no influence on the outcome of
 another, so intuitively $A,B$ should be "independent". 
 From the definition also $P(A\cap B) = P(\{HH\}) = \frac 14 = \frac 12\times \frac 12 = P(A)P(B).$
- ///
+ ■
 </p>
 
 <p></p>
@@ -224,7 +229,7 @@ of the first outome is written. For example, if the both the outcomes  are tails
 <b>SOLUTION:</b>
 Apparently the first toss plays a role in both the writings. But still a simple computation shows that 
 $P(A)=P(B)=\frac 12$  and $P(A\cap B)=\frac 14.$  So we have independence.
- ///
+ ■
 </p>
 
 <p></p>
@@ -253,7 +258,7 @@ $$
 $$
 </fieldset>
 This may look scary. But it only means that if you take <i>any</i> number of
-the $A_i$', say $A_1, A_4$ and $A_7,$ then their
+the $A_i$'s, say $A_1, A_4$ and $A_7,$ then their
 probabilities multiply: $P(A_1\cap A_4\cap A_7) =
 P(A_1)P(A_4)P(A_7).$ Notice that it is not enough to have each
 pair $A_i,A_j$ to be independent according to the first
@@ -306,7 +311,7 @@ The intersections are all $\{HHH,TTT\}.$ So pairwise
 independence holds: $\frac 14 = \frac 12\times \frac 12.$ But
 mutual independence fails, since $\frac 14 \neq \frac 12\times \frac 12\times\frac 12.$
 </div>
- ///
+ ■
 </p>
 
 <p></p>
@@ -322,7 +327,7 @@ independent?
 <div id="2" style="display:none;background-color:#ffcccc;">
 Single fair coin toss. $A = \phi,$ $B=\{H\}$ and $C=\{T\}.$
 </div>
- ///
+ ■
 </p>
 
 <h2><a
@@ -381,7 +386,7 @@ $$\Omega = \Omega_1\times\Omega_2\times\cdots,$$
 which means each element of $\Omega$  is a sequence $(a_1,a_2,...),$  where $a_n\in\Omega_n.$  Any $A_n\subseteq \Omega_n$ 
  is lifted to a subset of $\Omega$  as $\{(a_1,...)~:~a_n\in A_n~,~\forall i\neq n~~a_i\in\Omega_i\}.$
 Then we want a probability $P$  on $\Omega$  such that for any $A_{n_i}\subseteq \Omega_{n_i}$  for $i=1,...,k$ 
- we have them mutually indepndent under $P.$  Such a $P$  indeed exists adn is unique. Unfortunately,
+ we have them mutually indepndent under $P.$  Such a $P$  indeed exists and is unique. Unfortunately,
  this is rather  technical to prove. 
 <p></p>
 A few of the difficulties are:
@@ -418,7 +423,7 @@ Hence $P(A_n)\rightarrow P(A).$
 Now $P(A_n) = (1-p)^n\rightarrow 0$ since $p\in (0,1).$
 <p></p>
 So $P(A)=0.$ Hence $P(A^c) = 1,$ as required.
- ///
+ ■
 </p>
 
 <p></p>
@@ -471,6 +476,21 @@ name="Problems for practice">Problems for practice</a></h1>
 </table>
 </center>
 
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1">
+Let $f = P($Elmer beats father$),$ and $c =
+P($Elmer beats champion$).$ Then Elmer's chance of
+winning for the father-champion-father case is $2fc(1-f) +
+f^2(1-c) + f^2c=A,$ say.
+<p></p>
+The winning probability for the other case is: $2cf(1-c) +
+c^2(1-f) + c^2f=B,$ say.
+<p></p>
+We have $f &gt; c.$ 
+<p></p>
+So $A-B = (f-c)(f(1-c)+c(1-f)) &gt; 0.$ Hence Elmer should play father-champion-father.
+</div></p>
 
 </p>
 
@@ -488,6 +508,23 @@ name="Problems for practice">Problems for practice</a></h1>
 </table>
 </center>
 
+<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2">
+Let $A,B$ and $C$, respecively, be the probabilities
+that the first, second and third man in the three man jury  
+reaches the correct conclusion. Then $P(A)=P(B)=p$
+and $P(C)=\frac 12,$ ad the three events are independent. 
+Then the event that this jury makes the correct decision is 
+$(A\cap B\cap C^c)\cup(A\cap B^c\cap C)\cup(A^c\cap B\cap
+C)\cup(A\cap B\cap C).$
+<p></p>
+This is $\frac 12(p^2+2p(1-p)) = p-\frac 12p^2,$ which is
+clearly $&lt;p.$
+<p></p>
+So the one man jury is more likely to reach the correct decision. 
+<p></p>
+</div></p>
 
 </p>
 
@@ -503,6 +540,11 @@ name="Problems for practice">Problems for practice</a></h1>
 </table>
 </center>
 
+<p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">
+$2^{-100}{100 \choose 50}\approx 0.08.$
+</div></p>
 
 </p>
 

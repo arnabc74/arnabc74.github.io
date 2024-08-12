@@ -717,11 +717,11 @@ The total number of outcomes is <M>N_{p+q,p-q} = {p+q\choose p}
 = [[(p+q)!][p!q!]].</M> 
 
 The
-favourable oucomes correspond to the paths that always remains
-positive 0 after starting from (0,0).
+favourable oucomes correspond to the paths that always remain
+positive after starting from (0,0).
  These paths must visit (1,1) after <M>(0,0).</M> 
 
-Hence #{paths from (0,0) to <M>(p+q,p-q)</M> ever returning to 0}
+Hence #{paths from (0,0) to <M>(p+q,p-q)</M> never returning to 0}
 = #{paths from (1,1) to <M>(p+q,p-q)</M> never visiting  0}<BR/>
 = #{paths from (1,1) to <M>(p+q,p-q)</M>}
 - #{paths from (1,1) to <M>(p+q,p-q)</M>  visiting  0}<BR/>
