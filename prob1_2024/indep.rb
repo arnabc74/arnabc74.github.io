@@ -166,7 +166,7 @@ The proof is easy if <M>A_1</M>  and <M>A_2</M>  are both finite.
 <P/>
 For the case where at least one of <M>A_1,A_2</M>  is infinite, we need to use the fact that 
 infinite series of nonnegative terms may be 
-rearranged without changing the value of the series. 
+<LINK to="series.html">rearranged without changing the value</LINK> of the series. 
 </PF>
 
 <HEAD2>Infinite product</HEAD2>
