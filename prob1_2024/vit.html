@@ -30,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -72,13 +72,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   });
 </script>
 <style>
-body {
+body,table {
   margin: 0;
   font-size: 40;
   //background: #000;
   //color: #fff;
 }
 
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
 .sticky {
   position: fixed;
@@ -97,6 +101,7 @@ body {
 }
 
 .scrpt {
+  margin:10px;
   border-left: 5px solid black;
 }
 
@@ -142,6 +147,9 @@ function myFunction() {
 <h3>Table of contents</h3>
 <ul>
 <li>
+<a href="#First taste of measure theory">First taste of measure theory</a>
+</li>
+<li>
 <a href="#A &quot;bad&quot; set">A "bad" set</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
@@ -150,10 +158,62 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#A set without a probability">A set without a probability</a>
 </li>
+<li>
+<a href="#Some terminology from measure theory">Some terminology from measure theory</a>
+</li>
 </ul>
 <hr/>
 
 $\newcommand{\ev}{{\mathcal F}}$
+<h1><a
+name="First taste of measure theory">First taste of measure theory</a></h1>
+If we keep on tossing a coin again and again, we are bound to get head sometime or other (assuming that $P(H)&gt;0$). 
+A proof of this may be given like this:
+<blockquote>Let $A_n$  be the event that the first $n$  tosses have all resulted in heads. Let
+ $A$  be the event that we never get a head. Then clearly $A_n\searrow A$. So by
+ continuity of probability we must have $P(A_n)\rightarrow P(A).$  Now $P(A_n) = \left(\frac 12\right)^n \rightarrow
+ 0.$  Hence $P(A)=0.$  Hence $P(A^c)=1,$  <i>i.e.</i>, we are bound to get a head some time or other.</blockquote>
+However, we must understand that in order to write $A_n\searrow A$, we need all the $A_n$'s and $A$  to be
+ subsets of some common $\Omega.$  Each element of this  $\Omega$  is an infinite sequence of heads and tails.
+ If you feel uncomfortable with sets of ininite sequences, just think of $\Omega$  as the set of all functions from
+ ${\mathbb N}$  to $\{H,T\}.$  
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>This $\Omega$  is uncountable.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let, possible, $\Omega$  be countable. Let $\omega_1,\omega_2,...$  be an enumeration of $\Omega.$   Here
+ is a typical example:
+<blockquote>
+$\omega_1 = $ <font color="#ff0000">H</font> T H T T T H T H ...<br>
+$\omega_2 = $ H <font color="#ff0000">H</font> T H H T H T H  ...<br>
+$\omega_3 = $ T T <font color="#ff0000">H</font> T T T H H T  ...<br>
+$\omega_4 = $ H T T <font color="#ff0000">T</font> H T T H H  ...<br>
+$\omega_5 = $ H H H H <font color="#ff0000">T</font> H T H T ...<br>
+$\omega_6 = $ T H T T T <font color="#ff0000">H</font> H H T  ...<br>
+...
+</blockquote> 
+Now define $\omega$  as the sequence that flips the diagonal entries (shown in red above). 
+<p></p>
+In our example, 
+<blockquote>$\omega=$  T T T H H T ...</blockquote>
+Clearly, this $\omega$  is distinct rom all the $\omega_i$'s (since the $i$-th entry of  $\omega$  is
+ different from that of $\omega_i$).  
+<p></p>
+But this contradicts the assumption that the $\omega_i$'s constitute an enumeration of $\Omega.$
+<b><i>[QED]</i></b>
+</p>  
+
+So far in our course, we were working with countable (finite/infinite)  $\Omega.$  For these we considered a probability
+ to be a mapping from ${\mathcal P}(\Omega)$  to $[0,1].$   In other words, we could defined $P(A)$  for <i>every</i> 
+ $A\subseteq\Omega.$  Unfortunately this may fail when $\Omega$  is uncountable. Here we may have "bad" subsets of $\Omega$ 
+ for whcih probability cannot be defined. 
+<p></p>
+We shall discuss such an example next. 
+<p></p>
+
 <h1><a
 name="A "bad" set">A "bad" set</a></h1>
 Let $\Omega$ be the following circle (only the circumference, not the
@@ -352,6 +412,90 @@ This completes the proof
 But as you can see, such "bad" sets are pretty difficult to come
 across. So ignoring them will never cause any problem during our
 course. 
+<p></p>
+Still, to keep our discussion general, we need to modify the defintion of probability slightly.
+Hence we should learn the following terminology.
+<p></p>
+ The modification will consist of an explicit specification of the "good" sets. In other words,
+ instead of taking $P:{\mathcal P}(\Omega)\rightarrow[0,1],$  we shall now take $P:{\mathcal
+ A}\rightarrow[0,1],$  where ${\mathcal F}\subseteq{\mathcal P}(\Omega)$  is the collection of all the
+ "good" subsets of $\Omega.$  What properties should these "good" subsets have? Well, since
+ we are not going to manipulate the events using set theory, ${\mathcal F}$   should naturally be closed under the set
+ operations: union, intersection and complementation. Since we want to use axiom 3, we actually need ${\mathcal F}$ 
+ be closed under <i>countable</i>  unions (and hence <i>countable</i>  intersections, by de Morgan). 
+<h1><a
+name="Some terminology from measure theory">Some terminology from measure theory</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $\sigma$-algebra/$\sigma$-field</b></legend>
+Let $\Omega$  be any non-empty set. Then any non-empty ${\mathcal F}\subseteq{\mathcal P}(\Omega)$ 
+ that is closed under complementation and countable union (and intersection) is called a
+ <b><font color="red" size="40">$\sigma$-algebra</font></b>  or<b><font color="red" size="40">$\sigma$-field</font></b>  over $\Omega.$ 
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;For any non-empty $\Omega$  we have the following two $\sigma$-algbras:
+ $\{\phi,\Omega\}$  and ${\mathcal P}(\Omega).$  In all our examples with countable
+ $\Omega$, we were using the latter.  ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Show that any $\sigma$-algebra over $\Omega$  must contain $\phi$  and $\Omega.$</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Probability space</b></legend>
+By a <b><font color="red" size="40">probability space</font></b>  we mean $(\Omega,{\mathcal F},P)$, where $\Omega$  is any non-empty set, ${\mathcal F}\subseteq{\mathcal P}(\Omega)$ 
+ and $P:{\mathcal F}\rightarrow[0,1]$  satisfies the three axioms of probability.
+</fieldset>
+The elements of ${\mathcal F}$  are called <b><font color="red" size="40">event</font></b>s. 
+<p></p>
+Also, we want ${\mathcal F}$ 
+ to contain all the subsets that we care about in a given problem. So it is only naturall that we choose ${\mathcal F}$ 
+ differently for different problems. There are two approaches: In the first approach, we
+ characterise the "bad" sets and eliminate them from ${\mathcal P}(\Omega).$  In the other approach (the more popular
+ one) we list all the sets that we want to work with and consider the smallest $\sigma$-algebra containing them. 
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;Find the smallest $\sigma$-algebra over $\Omega=\{1,2,3\}$  that contains $\{1,2\}.$ ■
+</p>
+
+<p></p>
+In many problems we work with $\Omega={\mathbb R},$  the real line. Then it is common to include all open sets
+ in our collection of  "good" sets.  So the smallest $\sigma$-algebra containing them is a very popular $\sigma$-algebra.
+ It is called the <b><font color="red" size="40">Borel $\sigma$-algebra</font></b>.
+<p></p>
+The problem of "good" and "bad" sets comes up not just in probability theory, but whenever you want to measure the size of
+ a set. For instance, the circle example could as well be posed in terms of <i>length</i> of a set instead of its <i>probability</i>.
+ Any way to "measure the size of a set" must follow the axioms that we stated for probability (except the $P(\Omega)=1$).
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Measure space</b></legend>
+By a <b><font color="red" size="40">measure space</font></b>  we mean $(\Omega,{\mathcal F},\mu)$, where $\Omega$  is any non-empty set, 
+${\mathcal F}$  is any $\sigma$-algebra over $\Omega$ 
+ and $\mu:{\mathcal F}\rightarrow[0,\infty]$  satisfies the following axioms:
+<ol type="">
+<li>
+$\mu(\phi)=0$
+</li>
+
+<li>$\forall A_1,A_2,...\in{\mathcal F}~~\mu(\cup A_n)=\sum\mu(A_n).$</li>
+
+</ol>
+
+</fieldset>
+As you may easily see, "length", "area", "mass", "volume", "cardinality" (for finite sets) are all examples of measures.
+<p></p>
+
 <h3>Comments</h3>
 To post an anonymous comment, click on the "Name" field. This
 will bring up an option saying "I'd rather post as a guest."
