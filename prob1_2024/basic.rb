@@ -1174,8 +1174,10 @@ occurred is <M>p_1-2p_2+3p_3.</M> For <M>n</M> events it will be
 <M>\sum_{i=1}^n (-1)^{i-1} ip_i.</M> For exactly <M>r</M> out
 of <M>n</M> events:
 <D>
-p_r - (r+1)p_{r+1} + (r+2)p_{r+2} -+\cdots.
-</D></ANS></EXR>
+p_r - \binom{r+1}{r}p_{r+1} + \binom{r+2}{r}p_{r+2} -+\cdots.
+</D>
+[Thanks to Ahan Chakraborty for pointing out a mistake here. It has now been corrected.]
+</ANS></EXR>
 
 <DISQUSE url="https://arnabc74.github.io/prob1_2024/basic.html"
 id="basic"/>
