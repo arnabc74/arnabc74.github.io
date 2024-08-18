@@ -229,15 +229,15 @@ So <M>P(A)=0.</M> Hence <M>P(A^c) = 1,</M> as required.
 <ANS>
 Let <M>f = P(</M>Elmer beats father<M>),</M> and <M>c =
 P(</M>Elmer beats champion<M>).</M> Then Elmer's chance of
-winning for the father-champion-father case is <M>2fc(1-f) +
-f^2(1-c) + f^2c=A,</M> say.
+winning for the father-champion-father case is <M>2fc(1-f) 
+ + f^2c=A,</M> say.
 
 The winning probability for the other case is: <M>2cf(1-c) +
-c^2(1-f) + c^2f=B,</M> say.
+  c^2f=B,</M> say.
 
 We have <M>f > c.</M> 
 
-So <M>A-B = (f-c)(f(1-c)+c(1-f)) > 0.</M> Hence Elmer should play father-champion-father.
+So <M>A-B < 0.</M> Hence Elmer should play champion-father-champion.
 </ANS>
 </EXR>
 
