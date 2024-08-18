@@ -238,6 +238,8 @@ The winning probability for the other case is: <M>2cf(1-c) +
 We have <M>f > c.</M> 
 
 So <M>A-B < 0.</M> Hence Elmer should play champion-father-champion.
+
+[Corrected a mistake pointed out by Arnab Sanyal.]
 </ANS>
 </EXR>
 
