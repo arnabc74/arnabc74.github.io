@@ -769,23 +769,70 @@ Hence the required probability is <M>[[11][50]].</M>
 </ANS>
 </EXR>
 <EXR><CIMG web="rosscond11.png"/>
-<ANS></ANS>
+<ANS>(a) <M>[[25]].</M>  (b) <M>[[2][52]].</M></ANS>
 </EXR>
 <EXR><CIMG web="rosscond12.png"/>
-<ANS>Can be done directly by counting. Or stepwise using conditional probability.</ANS>
+<ANS>Can be done directly by counting. Or stepwise using conditional probability. The event is
+ "Each of the fours hands has exactly one ace". 
+
+<B>Direct counting:</B>  <UL><LI>Order the four aces: 4! ways</LI>
+<LI>Order the non-aces: 48! ways.</LI>
+<LI>Place the first ace among the first 12 non-aces: 13 ways.</LI>
+<LI>Place the second ace among the next 12 non-aces: 13 ways.</LI>
+<LI>Place the third ace among the next 12 non-aces: 13 ways.</LI>
+<LI>Place the fourth ace among the last 12 non-aces: 13 ways.</LI>
+</UL> 
+Total number of ways: <M>4!\times48!\times 13^4.</M>
+
+<M>|\Omega| = 52!.</M>  So the reqired probability is <M>[[4!\times48!\times 13^4][52!]].</M>
+
+<B>Using conditional probability:</B>
+<M>P(E_1E_2E_3E_4) = P(E_1)P(E_2|E_1)P(E_3|E_1E_2)P(E_4|E_1E_2E_3).</M>
+
+Now <M>P(E_1) = [[4\times (48\times 47\times\cdots\times(48-12+1)][52\times\times 51\times\cdots\times (52-13+1)]].</M>
+
+Now <M>P(E_2|E_1)</M> is similar except that now we start with a deck of 39 cards among which exactly 3 are aces. 
+
+Similarly for the other two conditional probabilities. The last conditional probability is of course 1.  
+</ANS>
 </EXR>
 
 <EXR><CIMG web="rosscond13.png"/>
-<ANS></ANS>
+<ANS>Let <M>B_i=</M> the event that <M>i</M>-th draw gives black. Similarly for <M>W_i.</M>  Then
+ in (a) we want <M>P(B_1B_2W_3W_4)=P(B_1)P(B_2|B_1)P(W_3|B_1B_2)P(W_4|B_1B_2W_3).</M>
+
+Here <M>P(B_1) = [[7][5+7]].</M>  Also <M>P(B_2|B_1) = [[9][5+9]]</M>, <M>P(W_3|B_1B_2) = [[5][5+11]]</M>  and <M>P(W_4|B_1B_2W_3) = [[7][7+11]].</M>
+
+In (b) the black balls could occur in <M>{4 \choose 2} = 6</M> ways among the 4 draws. The probability of each of these 6
+ cases is the same as that in (a). So the answer is 6 times that of (a).
+</ANS>
 </EXR>
 <EXR><CIMG web="rosscond14.png"/>
-<ANS></ANS>
+<ANS>
+(a) <CIMG web="urns.png"><M>[[26]]\times[[23]]+[[46]]\times[[13]]</M></CIMG>
+
+(b) Focus only on the upper path in the diagram above: <M>[[ [[2][6]]\times[[2][3]] ][ [[2][6]]\times[[2][3]]+[[4][6]]\times[[1][3]] ]]</M>
+</ANS>
 </EXR>
 <EXR><CIMG web="rosscond15.png"/>
-<ANS></ANS>
+<ANS>The first is more likely to give an over estimate, since employees in larger car pools are
+ more likely to be selected. The second is better.</ANS>
 </EXR>
 <EXR><CIMG web="rosscond16.png"/>
-<ANS></ANS>
+<ANS>Let <M>\Omega=</M> all the ways the deck may be ordered. Then <M>|\Omega|=52!</M>  and we
+ assume that all these are equally likely.  
+
+Let <M>A=</M> the event that the first 19 are non aces and the 20-th is an ace.
+
+Let <M>B=</M> the event that the 21-st is the ace of spades.
+
+Let <M>C=</M> the event that the 21-st is the two of clubs.
+
+To find <M>P(B|A)=[[P(A\cap B)][P(A)]]</M>  and <M>P(C|A)=[[P(A\cap C)][P(A)]].</M>
+
+Here <M>|A|=4\times 51\times\cdots\times(51-19+1)</M>, <M>|A\cap B| = 1\times 3\times
+ 50\times\cdots\times(50-19+1)</M>  and <M>|A\cap B| = 1\times 4\times 50\times\cdots\times(50-19+1).</M>
+</ANS>
 </EXR>
 <EXR><CIMG web="rosscond17.png"/>
 <ANS></ANS>
@@ -862,7 +909,7 @@ add <M>c</M> more balls of that color. We continue this process
 again and again. What is the probability that at the <M>n</M>-th
 stage the ball drawn will be red? Does the probability depend
 on <M>n?</M>
-<HINT>
+<ANS>
 Let <M>X_n</M> be the colour of the <M>n</M>-th ball drawn. Then 
 <M>
 \newcommand{\red}{\mathrm{red}}
@@ -883,9 +930,7 @@ By induction hypothesis, this is <M>[[a+c][a+b+c]].</M>
 Similarly, <M>P(X_n=\red|X_1=\grn) = [[a][a+b+c]].</M>
 <P/>
 Now the result follows immediately.
-</HINT>
-
-<ANS></ANS>
+</ANS>
 </EXR>
 <EXR>Same set up as in the last problem. Fix two natural
 numbers <M>m < n.</M> What is the probability that the ball
