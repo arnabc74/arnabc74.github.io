@@ -10,7 +10,7 @@ A proof of this may be given like this:
  0.</M>  Hence <M>P(A)=0.</M>  Hence <M>P(A^c)=1,</M>  i.e., we are bound to get a head some time or other.</Q>
 However, we must understand that in order to write <M>A_n\searrow A</M>, we need all the <M>A_n</M>'s and <M>A</M>  to be
  subsets of some common <M>\Omega.</M>  Each element of this  <M>\Omega</M>  is an infinite sequence of heads and tails.
- If you feel uncomfortable with sets of ininite sequences, just think of <M>\Omega</M>  as the set of all functions from
+ If you feel uncomfortable with sets of infinite sequences, just think of <M>\Omega</M>  as the set of all functions from
  <M>\nn</M>  to <M>\{H,T\}.</M>  
 
 <THM>This <M>\Omega</M>  is uncountable.</THM>
@@ -30,8 +30,8 @@ Now define <M>\omega</M>  as the sequence that flips the diagonal entries (shown
 
 In our example, 
 <Q><M>\omega=</M>  T T T H H T ...</Q>
-Clearly, this <M>\omega</M>  is distinct rom all the <M>\omega_i</M>'s (since the <M>i</M>-th entry of  <M>\omega</M>  is
- different from that of <M>\omega_i.</M>  
+Clearly, this <M>\omega</M>  is distinct from all the <M>\omega_i</M>'s (since the <M>i</M>-th entry of  <M>\omega</M>  is
+ different from that of <M>\omega_i</M>).  
 
 But this contradicts the assumption that the <M>\omega_i</M>'s constitute an enumeration of <M>\Omega.</M>
 </PF>  
@@ -41,7 +41,7 @@ for(i in 1:6) cat(sample(c('H','T'),9,rep=TRUE),'\n',sep=' ')
 So far in our course, we were working with countable (finite/infinite)  <M>\Omega.</M>  For these we considered a probability
  to be a mapping from <M>{\mathcal P}(\Omega)</M>  to <M>[0,1].</M>   In other words, we could defined <M>P(A)</M>  for <I>every</I> 
  <M>A\seq\Omega.</M>  Unfortunately this may fail when <M>\Omega</M>  is uncountable. Here we may have "bad" subsets of <M>\Omega</M> 
- for whcih probability cannot be defined. 
+ for which probability cannot be defined. 
 
 We shall discuss such an example next. 
 
@@ -74,23 +74,17 @@ conditions simultaneously, i.e.,
 have <M>P(A) = P(A+\theta).</M></LI>
 </UL>
 Thus, we are claiming that we cannot have a function <M>P</M>
- definied on the entire power set of <M>\Omega</M> that satisfies
+ defined on the entire power set of <M>\Omega</M> that satisfies
  the three probability axioms as well as these two extra conditions.
 <P/>
 
- We shall provide  a quick proof of
-this here by contradiction. Let, if posible, there be such a
+ We shall provide  a  proof of
+this here by contradiction. Let, if possible, there be such a
 function <M>P.</M> We shall demonstrate a "bad" set <M>M</M> for
 which <M>P(M)</M> cannot be defined, contradicting the assumption
 that <M>P</M> is defined for all subsets of <M>\Omega.</M> 
-<P/>
-So in this scenario, we have
-to leave out "bad" sets like this from <M>\ev.</M> However, 
-all subsets that we shall ever need for practical pursposes are
-still in <M>\ev.</M> That is why, this technical point may safely
-be ignored during a first course on probability.
-<P/>
-Now for the proof. Let's warm up first.
+
+We shall start with a bit warm up first.
 
 <HEAD2>Warming up</HEAD2>
 Imagine the circle split up into
@@ -187,10 +181,9 @@ But as you can see, such "bad" sets are pretty difficult to come
 across. So ignoring them will never cause any problem during our
 course. 
 
-Still, to keep our discussion general, we need to modify the defintion of probability slightly.
+Still, to keep our discussion general, we need to modify the definition of probability slightly.
 Hence we should learn the following terminology.
 
-<HEAD2>Some terminology from measure theory</HEAD2>
  The modification will consist of an explicit specification of the "good" sets. In other words,
  instead of taking <M>P:{\mathcal P}(\Omega)\to[0,1],</M>  we shall now take <M>P:{\mathcal
  A}\to[0,1],</M>  where <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M>  is the collection of all the
@@ -198,6 +191,7 @@ Hence we should learn the following terminology.
  we are not going to manipulate the events using set theory, <M>{\mathcal F}</M>   should naturally be closed under the set
  operations: union, intersection and complementation. Since we want to use axiom 3, we actually need <M>{\mathcal F}</M> 
  be closed under <I>countable</I>  unions (and hence <I>countable</I>  intersections, by de Morgan). 
+<HEAD1>Some terminology from measure theory</HEAD1>
 
 <DEFN name="$\sigma$-algebra/$\sigma$-field">
 Let <M>\Omega</M>  be any non-empty set. Then any non-empty <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M> 
@@ -205,7 +199,7 @@ Let <M>\Omega</M>  be any non-empty set. Then any non-empty <M>{\mathcal F}\seq{
  <TERM>$\sigma$-algebra</TERM>  or<TERM>$\sigma$-field</TERM>  over <M>\Omega.</M> 
 </DEFN>
 
-<EXM>For any non-empty <M>\Omega</M>  we have the following two <M>\sigma</M>-algbras:
+<EXM>For any non-empty <M>\Omega</M>  we have the following two <M>\sigma</M>-algebras:
  <M>\{\phi,\Omega\}</M>  and <M>{\mathcal P}(\Omega).</M>  In all our examples with countable
  <M>\Omega</M>, we were using the latter. </EXM>
 
@@ -219,7 +213,7 @@ The elements of <M>{\mathcal F}</M>  are called <TERM>event</TERM>s.
 
 
 Also, we want <M>{\mathcal F}</M> 
- to contain all the subsets that we care about in a given problem. So it is only naturall that we choose <M>{\mathcal F}</M> 
+ to contain all the subsets that we care about in a given problem. So it is only natural that we choose <M>{\mathcal F}</M> 
  differently for different problems. There are two approaches: In the first approach, we
  characterise the "bad" sets and eliminate them from <M>{\mathcal P}(\Omega).</M>  In the other approach (the more popular
  one) we list all the sets that we want to work with and consider the smallest <M>\sigma</M>-algebra containing them. 
@@ -244,6 +238,7 @@ By a <TERM>measure space</TERM>  we mean <M>(\Omega,{\mathcal F},\mu)</M>, where
 <LI><M>\forall A_1,A_2,...\in{\mathcal F}~~\mu(\cup A_n)=\sum\mu(A_n).</M></LI>
 </OL>
 </DEFN>
-As you may easily see, "length", "area", "mass", "volume", "cardinality" (for finite sets) are all examples of
+As you may easily see, "length", "area", "mass", "volume", "cardinality" (for finite sets) are all examples of measures.
+
 <DISQUSE url="https://arnabc74.github.io/prob1_2024/vit.html" id="vit"/></E>@}
 </NOTE>

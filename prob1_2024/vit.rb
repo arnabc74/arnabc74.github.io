@@ -78,19 +78,13 @@ Thus, we are claiming that we cannot have a function <M>P</M>
  the three probability axioms as well as these two extra conditions.
 <P/>
 
- We shall provide  a quick proof of
+ We shall provide  a  proof of
 this here by contradiction. Let, if possible, there be such a
 function <M>P.</M> We shall demonstrate a "bad" set <M>M</M> for
 which <M>P(M)</M> cannot be defined, contradicting the assumption
 that <M>P</M> is defined for all subsets of <M>\Omega.</M> 
-<P/>
-So in this scenario, we have
-to leave out "bad" sets like this from <M>\ev.</M> However, 
-all subsets that we shall ever need for practical purposes are
-still in <M>\ev.</M> That is why, this technical point may safely
-be ignored during a first course on probability.
-<P/>
-Now for the proof. Let's warm up first.
+
+We shall start with a bit of  warming up.
 
 <HEAD2>Warming up</HEAD2>
 Imagine the circle split up into
@@ -192,7 +186,7 @@ Hence we should learn the following terminology.
 
  The modification will consist of an explicit specification of the "good" sets. In other words,
  instead of taking <M>P:{\mathcal P}(\Omega)\to[0,1],</M>  we shall now take <M>P:{\mathcal
- A}\to[0,1],</M>  where <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M>  is the collection of all the
+ F}\to[0,1],</M>  where <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M>  is the collection of all the
  "good" subsets of <M>\Omega.</M>  What properties should these "good" subsets have? Well, since
  we are not going to manipulate the events using set theory, <M>{\mathcal F}</M>   should naturally be closed under the set
  operations: union, intersection and complementation. Since we want to use axiom 3, we actually need <M>{\mathcal F}</M> 

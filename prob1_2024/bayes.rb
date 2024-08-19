@@ -67,11 +67,11 @@ B)][P(B)]]=\sum [[P(A_i\cap B)][P(B)]]=\sum P(A_i|B)  = \sum P'(A_i).
 </D>
 </PF>
 
-<EXR>Show that if <M>P(A|B)=P(A)</M>  then <M>A,B</M>  must be independent. Is the converse true?
+::<EXR>Show that if <M>P(A|B)=P(A)</M>  then <M>A,B</M>  must be independent. Is the converse true?
  Be careful with the second part!</EXR>
 
 <HEAD2>Multiplication rule</HEAD2>
-<EXR>
+::<EXR>
 Show that if <M>P(A)>0</M> then <M>P(A\cap B) = P(A)P(B|A).</M>
 </EXR>
 
@@ -176,7 +176,7 @@ continue like this.
  <P/>
 This procedure is bound to terminate after a finite number of steps. The output will be a random sample from <M>A.</M>  
 
-<EXR>How to choose between 5 friends with equal probability using only a fair die? The following R code 
+::<EXR>How to choose between 5 friends with equal probability using only a fair die? The following R code 
 will give a hint.
 <RC>
 repeat { 
@@ -220,7 +220,7 @@ for any <M>k=1,...,n,</M>
 <D>P(A_k|B) = [[P(A_k)P(B|A)][\sum_{i=1}^n P(A_i)P(B|A_i)]].</D>
 </THM>
 
-<EXR>Look at the following diagram and write down the proof.
+::<EXR>Look at the following diagram and write down the proof.
 <CIMG web="bayes2.png">More general form of Bayes' theorem</CIMG>
 </EXR>
 
@@ -581,16 +581,16 @@ array <M>(3,2,3).</M>
 
 <HEAD1>Problems for practice</HEAD1>
 
-<EXR>Is it true that <M>P(A|B)+P(A^c|B)=1?</M>  Is it true
+::<EXR>Is it true that <M>P(A|B)+P(A^c|B)=1?</M>  Is it true
 that <M>P(A|B)+P(A|B^c)=1?</M>
 <ANS>Yes. Not necessarily.</ANS>
 </EXR>
-<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)=1</M>
+::<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)=1</M>
 but <M>P(B|A)\neq 1</M>" Disprove or provide an example.
 <ANS>Take <M>B\seq A</M> with <M>P(A\setminus B)>0.</M></ANS>
 </EXR>
 
-<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)>0.99</M>
+::<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)>0.99</M>
 but <M>P(B|A) < 0.01</M>" Disprove or provide an example to
 this statement.
 <ANS><M>B=\{1\}</M>, <M>A = \{1,...,1000\}.</M> The random
@@ -599,7 +599,7 @@ experiment is to draw one element of <M>A</M> with equal probabilities. </ANS>
 
 
 
-<EXR>Let <M>u_{2n}</M> denote the probability that a random path
+::<EXR>Let <M>u_{2n}</M> denote the probability that a random path
 of length <M>2n</M> starting from <M>(0,0)</M> passes
 through <M>(2n,0).</M> Also, let <M>u_0=1.</M> Let <M>v_{2n}</M>
 denote the probability that a random path of length <M>2n</M>
@@ -613,12 +613,12 @@ v_0u_{2n}+v_2 u_{2n-2} + \cdots + v_{2n} u_0 = 1.
 <ANS>Condition on the first time the path hits zero.</ANS>
 </EXR>
 
-<EXR><M>P(A\cap B)>0.</M> Show that <M>P(A|B) = P(B|A)</M> if and
+::<EXR><M>P(A\cap B)>0.</M> Show that <M>P(A|B) = P(B|A)</M> if and
 only if <M>P(A)=P(B).</M>
 <ANS>Easy</ANS>
 </EXR>
 
-<EXR>Modern digital communication relies on transmitting 0's and 1's from one
+::<EXR>Modern digital communication relies on transmitting 0's and 1's from one
 device to another. Suppose that device A transmits a 0 with
 probability 0.4 and a 1 with probability 0.6. The communication channel is
 noisy, so if a 1 is transmitted, it may get corrupted to a 0 in
@@ -629,14 +629,14 @@ uncorrupted?
 <ANS><M>[[0.6\times0.95][0.6\times0.95+0.4\times0.01]].</M></ANS>
 </EXR>
 
-<EXR>A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
+::<EXR>A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
 wrong, the patient dies with probability 50%. Even for a correct diagnosis
 the patient dies in 10% cases. Given that a patient has died find the
 conditional probability that the diagnosis was correct.
 <ANS><M>[[0.9\times0.1][0.9\times0.1+0.1\times0.5]].</M></ANS>
 </EXR>
 
-<EXR>Two fair dice are rolled. What is the conditional probability
+::<EXR>Two fair dice are rolled. What is the conditional probability
 that at least one shows a 6 given that the dice show different
 numbers?
 <ANS>Let <M>A=</M>{the dice show difference numbers},
@@ -646,7 +646,7 @@ Then <M>P(A) = [[6\times 5][6\times 6]]</M> and <M>P(A\cap B) =
 [[10][6\times 6]],</M> because <M>A\cap B=</M>{(1,6),...,(5,6)}\cup{(6,1),...,(6,5)}.</ANS>
 </EXR>
 
-<EXR>If two fair dice are rolled, what is the conditional
+::<EXR>If two fair dice are rolled, what is the conditional
 probability that the first one shows 6 given that the sum
 of the outcomes of the dice is <M>i?</M> Compute for all possible
 values
@@ -655,7 +655,7 @@ of <M>i.</M>
 the conditional probability is <M>[[1][13-i]].</M></ANS>
 </EXR>
 
-<EXR>Here is part of a Ludo board. 
+::<EXR>Here is part of a Ludo board. 
 <CIMG web="ludo1.png"/>
 What is the probability that
 the counter will arive at 10 in exactly two moves? Assume that
@@ -668,7 +668,7 @@ the <M>(1,14)</M>-th entry of <M>T^3.</M>
 <ANS><M>p_4p_6 + p_5p_5+p_6p_4.</M></ANS>
 </EXR>
 
-<EXR>Let <M>A_{n\times n} = ((p_{ij}))</M> be a matrix where
+::<EXR>Let <M>A_{n\times n} = ((p_{ij}))</M> be a matrix where
 each <M>p_{ij}\geq 0</M> and for each <M>i</M> we have <M>\sum_j
 p_{ij}=1.</M> (Such a matrix is called a <B>stochastic</B> matrix.)
 We have a ludo board with <M>n</M> positions:
@@ -685,7 +685,7 @@ exactly <M>k</M> moves is the <M>(i,j)</M>-th entry of the matrix <M>A^k.</M>
 <ANS>Proof</ANS>
 </EXR>
 
-<EXR>
+::<EXR>
 We have <M>N+1</M> urns, labelled <M>0,1,...,N.</M> The urn with
 label <M>k</M> contains <M>k</M> red and <M>N-k</M> green
 balls. One urn is selected at random, and an SRSWR of
@@ -696,10 +696,10 @@ conditional probability that this ball is also red.
 </ANS>
 </EXR>
 
-<EXR><CIMG web="rosscond1.png"/>
+::<EXR><CIMG web="rosscond1.png"/>
 <ANS><M>[[6\times5\times9\times8][15\times14\times13\times12]].</M>  Send to basic.</ANS>
 </EXR>
-<EXR><CIMG web="rosscond2.png"/>
+::<EXR><CIMG web="rosscond2.png"/>
 <ANS>
 WOR: <M>P(</M> exactly 3 white<M>)=[[4\times4\times8\times7\times6][12\times11\times10\times9]].</M>
 
@@ -714,7 +714,7 @@ WR: <M>P(</M> exactly 3 white<M>)=[[4\times4\times8^3][12^4]].</M>
 So the required conditional probability is again <M>[[12]].</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond3.png"/>
+::<EXR><CIMG web="rosscond3.png"/>
 <ANS>Model this as: toss a fair coin twice. Given that at least one is a head, what is the
  conditional probability that the other is a tail? 
 
@@ -722,10 +722,10 @@ Answer is <M>[[23]]/[[34]]=[[23]].
 </M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond4.png"/>
+::<EXR><CIMG web="rosscond4.png"/>
 <ANS><M>[[12]].</M></ANS>
 </EXR>
-<EXR><CIMG web="rosscond5.png"/>
+::<EXR><CIMG web="rosscond5.png"/>
 <ANS><M>P(</M> exactly 2 white<M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]+
 [[23]]\times[[23]]\times[[14]]=[[11][36]]</M></ANS>
 
@@ -733,7 +733,7 @@ Answer is <M>[[23]]/[[34]]=[[23]].
 
 So the required conditional probability is <M>[[7][11]].</M> 
 </EXR>
-<EXR><CIMG web="rosscond6.png"/>
+::<EXR><CIMG web="rosscond6.png"/>
 <ANS><M>P(</M> 2nd and 3rd cards spades<M>)=[[13\times12][52\times51]].</M>
 
 <M>P(</M> All three spades<M>)=[[13\times12\times11][52\times51\times50]].</M>
@@ -741,23 +741,23 @@ So the required conditional probability is <M>[[7][11]].</M>
 Hence the required probability is <M>[[11][50]].</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond7.png"/>
+::<EXR><CIMG web="rosscond7.png"/>
 <ANS>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond8.png"/>
+::<EXR><CIMG web="rosscond8.png"/>
 <ANS>
 <CIMG web="csec.png"></CIMG>
 <M>0.85p+0.15\times0.96 = 0.98.</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond9.png"/>
+::<EXR><CIMG web="rosscond9.png"/>
 <ANS>(a) <M>0.36\times0.22.</M>
 
 (b) <M>[[0.36\times0.22][0.36\times0.22+0.30]].</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond10.png"/>
+::<EXR><CIMG web="rosscond10.png"/>
 <ANS>
 (a) <M>[[0.46\times0.35][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
 
@@ -768,10 +768,10 @@ Hence the required probability is <M>[[11][50]].</M>
 (d) <M>0.46\times0.35+0.3\times0.62+0.24\times0.58.</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond11.png"/>
+::<EXR><CIMG web="rosscond11.png"/>
 <ANS>(a) <M>[[25]].</M>  (b) <M>[[2][52]].</M></ANS>
 </EXR>
-<EXR><CIMG web="rosscond12.png"/>
+::<EXR><CIMG web="rosscond12.png"/>
 <ANS>Can be done directly by counting. Or stepwise using conditional probability. The event is
  "Each of the fours hands has exactly one ace". 
 
@@ -797,7 +797,7 @@ Similarly for the other two conditional probabilities. The last conditional prob
 </ANS>
 </EXR>
 
-<EXR><CIMG web="rosscond13.png"/>
+::<EXR><CIMG web="rosscond13.png"/>
 <ANS>Let <M>B_i=</M> the event that <M>i</M>-th draw gives black. Similarly for <M>W_i.</M>  Then
  in (a) we want <M>P(B_1B_2W_3W_4)=P(B_1)P(B_2|B_1)P(W_3|B_1B_2)P(W_4|B_1B_2W_3).</M>
 
@@ -807,18 +807,18 @@ In (b) the black balls could occur in <M>{4 \choose 2} = 6</M> ways among the 4 
  cases is the same as that in (a). So the answer is 6 times that of (a).
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond14.png"/>
+::<EXR><CIMG web="rosscond14.png"/>
 <ANS>
 (a) <CIMG web="urns.png"><M>[[26]]\times[[23]]+[[46]]\times[[13]]</M></CIMG>
 
 (b) Focus only on the upper path in the diagram above: <M>[[ [[2][6]]\times[[2][3]] ][ [[2][6]]\times[[2][3]]+[[4][6]]\times[[1][3]] ]]</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond15.png"/>
+::<EXR><CIMG web="rosscond15.png"/>
 <ANS>The first is more likely to give an over estimate, since employees in larger car pools are
  more likely to be selected. The second is better.</ANS>
 </EXR>
-<EXR><CIMG web="rosscond16.png"/>
+::<EXR><CIMG web="rosscond16.png"/>
 <ANS>Let <M>\Omega=</M> all the ways the deck may be ordered. Then <M>|\Omega|=52!</M>  and we
  assume that all these are equally likely.  
 
@@ -834,52 +834,92 @@ Here <M>|A|=4\times 51\times\cdots\times(51-19+1)</M>, <M>|A\cap B| = 1\times 3\
  50\times\cdots\times(50-19+1)</M>  and <M>|A\cap B| = 1\times 4\times 50\times\cdots\times(50-19+1).</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="rosscond17.png"/>
+::<EXR><CIMG web="rosscond17.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond18.png"/>
+::<EXR><CIMG web="rosscond18.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond19.png"/>
+::<EXR><CIMG web="rosscond19.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond20.png"/>
+::<EXR><CIMG web="rosscond20.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond21.png"/>
+::<EXR><CIMG web="rosscond21.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond22.png"/>
+::<EXR><CIMG web="rosscond22.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond23.png"/>
+::<EXR><CIMG web="rosscond23.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond24.png"/>
+::<EXR><CIMG web="rosscond24.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond25.png"/>
+::<EXR><CIMG web="rosscond25.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond26.png"/>
+::<EXR><CIMG web="rosscond26.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond27.png"/>
+::<EXR><CIMG web="rosscond27.png"/>
 <ANS></ANS>
 </EXR>
-<EXR><CIMG web="rosscond28.png"/>
+::<EXR><CIMG web="rosscond28.png"/>
 <ANS>9.</ANS>
 </EXR>
-<EXR><CIMG web="rosscond29.png"/>
-<ANS></ANS>
+::<EXR><CIMG web="rosscond29.png"/>
+In other words, we have a random experiment that can output <M>1,2,...,m</M>  with probabilities
+ <M>p_1,...,p_m.</M>  The experiment is run <M>n</M>  times. What is the chance that the last
+ outcome is different from all the earlier ones? 
+<ANS>
+Let <M>A</M>  be this event. Let <M>B_i</M>  be the event that the last coupon is of type <M>i.</M>  
+
+Then <M>P(A) = \sum_{i=1}^m P(B_i)P(A|B_i).</M>
+
+Now <M>P(B_i) = p_i.</M>  Also <M>A\cap B_i</M>  is the event that the <M>i</M>-th coupon does not show up among the first
+ <M>n-1</M>  draws, but shows up at the <M>n</M>-th draw. So <M>P(A\cap B_i) = (1-p_i)^{n-1} p_i.</M>  
+
+So <M>P(A|B_i) = [[P(A\cap B_i)][P(B_i)]] = (1-p_i)^{n-1}.</M>
+
+Hence <M>P(A) = \sum_{i=1}^m p_i (1-p_i)^{n-1}.</M>
+</ANS>
 </EXR>
-<EXR><CIMG web="rosscond30.png"/>
-<ANS></ANS>
+::<EXR><CIMG web="rosscond30.png"/>
+<ANS>
+(a) <M>2p(1-p).</M>
+
+(b) <M>\binom{3}{1}p^2(1-p),</M>  because there are three such paths:
+<CIMG web="asym.png"></CIMG>
+
+(c) <M>[[23]],</M>  because out of the 3 (equally likely) outcomes, we are caring about only the first 2 here.
+</ANS>
 </EXR>
-<EXR><CIMG web="rosscond31.png"/>
-<ANS></ANS>
+::<EXR><CIMG web="rosscond31.png"/>
+<ANS>
+(a) The procedure may be modelled by this random experiment: toss the coin
+twice, report "Head" if the outcome is HT, report "Tail" if the outcome is TH, and report
+ "Failure" otherwise. Then we are to show that the conditional probability that the outcome is
+ "Head" given that it is not "Failure" is <M>[[12]].</M>  
+i.e., 
+<MULTILINE>& & P(Head|\mbox{not }Failure)\\
+& = & [[P(Head \cap \mbox{not }Failure)][P(\mbox{not }Failure]]\\
+& = & [[P(HT)][P(HT)+P(TH)]]\\
+& = & [[p(1-p)][p(1-p)+p(1-p)]] = [[12]],
+</MULTILINE>
+as required.
+
+(b) The "simpler" procedure reports "Head" if the original outcome
+is <M>TH, TTH, TTTH,...</M>  
+
+The probability is 
+<D>(1-p)p + (1-p)^2p + (1-p)^3p+\cdots= (1-p)p \times [[1][1-(1-p)]] = 1-p,</D>
+which may not equal <M>[[12]].</M>
+</ANS>
 </EXR>
-<EXR><CIMG web="rosscond32.png"/>
+::<EXR><CIMG web="rosscond32.png"/>
 <ANS>You may either list all the paths and then compute the
 probability of their union using inclusion-exclusion, or you may
 you conditional probability. In the latter approach, you take
@@ -887,7 +927,7 @@ the switches one by one, and consider the cases when it is on and
 when it is off. This approach is better for complicated circuits.
 </ANS>
 </EXR>
-<EXR><CIMG web="most9.png"/>
+::<EXR><CIMG web="most9.png"/>
 <ANS>
 <M>A_i=</M> {first throw shows <M>i</M> } for <M>i=2,3,...,12.</M>
 
@@ -900,10 +940,10 @@ It is easy to compute <M>p_i</M>'s. Also <M>P(win|A_7) = P(win|A_{11}) = 1</M>  
 For any other <M>i</M>  we have <M>P(win|A_i) = p_i + (1-p_i-p_7)p_i + (1-p_i-p_7)^2p_i + \cdots = [[p_i][p_i+p_7]].</M>
 </ANS>
 </EXR>
-<EXR><CIMG web="most21.png"/>
+::<EXR><CIMG web="most21.png"/>
 <ANS>Don't replace.</ANS>
 </EXR>
-<EXR>Let <M>a,b,c\in\nn.</M> Suppose that we start with <M>a</M> red and <M>b</M> green
+::<EXR>Let <M>a,b,c\in\nn.</M> Suppose that we start with <M>a</M> red and <M>b</M> green
 balls in an urn. We draw a ball at random, note its colour, replace it, and
 add <M>c</M> more balls of that color. We continue this process
 again and again. What is the probability that at the <M>n</M>-th
@@ -932,7 +972,7 @@ Similarly, <M>P(X_n=\red|X_1=\grn) = [[a][a+b+c]].</M>
 Now the result follows immediately.
 </ANS>
 </EXR>
-<EXR>Same set up as in the last problem. Fix two natural
+::<EXR>Same set up as in the last problem. Fix two natural
 numbers <M>m < n.</M> What is the probability that the ball
 drawn at stage <M>m</M> is green and the ball drawn at
 stage <M>n</M> is red? Does the answer depend on <M>m</M> and <M>n</M>?
