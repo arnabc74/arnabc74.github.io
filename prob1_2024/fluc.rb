@@ -304,7 +304,7 @@ Hence the final answer is <M>N_{b-a,q-p}-N_{b-a,q-2h+p}.</M>
 </EXM>
 
 <EXM>
-How many paths are there from <M>(0,0)</M> to <M>(10,3)</M> that
+How many paths are there from <M>(0,0)</M> to <M>(10,4)</M> that
 are strictly positive at all times <M>>0?</M>
 <SOLN/>
 This is very similar to the exercise above (with <M>L</M> given
@@ -313,7 +313,7 @@ on the line itself.
 <P/>
 However, it is obvious that our path must go to <M>(1,1)</M>
 after the first step. So the last exercise may be applied
-between <M>A:(1,1)</M> and <M>B:(10,3).</M>
+between <M>A:(1,1)</M> and <M>B:(10,4).</M>
 </EXM>
 
 <HEAD2>First passage theorem</HEAD2>
