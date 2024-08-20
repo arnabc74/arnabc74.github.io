@@ -306,6 +306,8 @@ Hence the final answer is <M>N_{b-a,q-p}-N_{b-a,q-2h+p}.</M>
 <EXM>
 How many paths are there from <M>(0,0)</M> to <M>(10,4)</M> that
 are strictly positive at all times <M>>0?</M>
+
+[Thanks to Krishnam Baregama for pointing out an inconsistency in the problem, which has now been corrected.]
 <SOLN/>
 This is very similar to the exercise above (with <M>L</M> given
 by the horizontal line at height <M>0</M>), except that we start
