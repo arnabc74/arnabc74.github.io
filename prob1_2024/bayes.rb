@@ -682,7 +682,17 @@ All moves are independent. Show that the
 probability of the counter moving from <M>i</M> to <M>j</M> in
 exactly <M>k</M> moves is the <M>(i,j)</M>-th entry of the matrix <M>A^k.</M>
 
-<ANS>Proof</ANS>
+<ANS>Use induction on <M>k</M>. Let <M>b_{ij}</M>  be the probability that we move from <M>i</M> 
+ to <M>j</M>  in exactly <M>k-1</M>  steps. Then the theorem of total probability implies that the
+ probability of moving from <M>i</M>  to <M>j</M>  in exactly <M>k</M>  steps is 
+<D>c_{j} = \sum_{r=1}^n b_{ir}a_{rj}.</D>
+In other words, if you construct the matrices <M>B</M>  and <M>C,</M>  you have
+<D>C = BA.</D>
+The basis of induction is for <M>k=1.</M>  
+
+By induction hypothesis <M>B = A^{k-1}.</M>  So the induction step is 
+<M>C = A^{k-1}A = A^k.</M>
+</ANS>
 </EXR>
 
 ::<EXR>
@@ -697,7 +707,7 @@ conditional probability that this ball is also red.
 </EXR>
 
 ::<EXR><CIMG web="rosscond1.png"/>
-<ANS><M>[[6\times5\times9\times8][15\times14\times13\times12]].</M>  Send to basic.</ANS>
+<ANS><M>[[6\times5\times9\times8][15\times14\times13\times12]].</M>  </ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond2.png"/>
 <ANS>
@@ -743,6 +753,15 @@ Hence the required probability is <M>[[11][50]].</M>
 </EXR>
 ::<EXR><CIMG web="rosscond7.png"/>
 <ANS>
+Let <M>A=</M>  event that a randomly selected woman has ectopic pregnancy.
+
+Let <M>B=</M>  she is a smoker. 
+
+Given <M>P(A|B) = 2P(A|B^c) =2b</M>, say, where <M>b>0.</M>  and <M>P(B) = 0.32.</M>  
+
+Use Bayes theorem to get 
+<D>P(B|A) = [[0.32\times2b][0.32\times2b+0.68\times b]]. </D>
+Notice that <M>b>0</M>  cancels out.
 </ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond8.png"/>
@@ -835,7 +854,7 @@ Here <M>|A|=4\times 51\times\cdots\times(51-19+1)</M>, <M>|A\cap B| = 1\times 3\
 </ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond17.png"/>
-<ANS></ANS>
+<ANS><CIMG web="ballex.png">Label the arrows with probabilities and use total theorem of probability</CIMG></ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond18.png"/>
 <ANS></ANS>
