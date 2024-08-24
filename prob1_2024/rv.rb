@@ -134,7 +134,7 @@ and <M>Y(head,4) = 4-3 = 1.</M>
 Now it is meaningful to talk about <M>X+Y.</M>
 </EXM>
 
-<HEAD2>Different types</HEAD2>
+<HEAD1>Different types of random variables</HEAD1>
 Depending on the distribution, a random variable may be of 3
 types:
 <UL>
@@ -161,7 +161,7 @@ probability with which it takes each of those values. These two
 specifications together are called the <B>probability mass
 function (PMF)</B> of the rv. 
 
-<HEAD2>Functions of a random variable</HEAD2> 
+<HEAD1>Functions of a random variable</HEAD1> 
 Any function of a random variable is again a random
 variable. This is immediate from the definition of a random
 variable (since composition of two functions is again a
@@ -420,7 +420,7 @@ p(x) = <CASES>p_i<IF>x=x_i</IF>0<ELSE/></CASES>.
 </D>
 
 The CDF of a discrete random variable is like a step function. 
-<HEAD1>Expectation</HEAD1>
+<HEAD1>Expectation of a random variable</HEAD1>
 
 For many random variables we see a striking example of
 statistical regularity. 
@@ -478,7 +478,7 @@ is <M>\infty</M> (resp, <M>-\infty</M>)</LI>
 </UL>
 </DEFN>
 
-<HEAD2>Expectation of a function</HEAD2>
+<HEAD1>Expectation of a function</HEAD1>
 <EXM>
 Suppose I have a rv that takes values <M>-1,0</M> and <M>1</M>
 with probabilities <M>0.1, 0.5</M> and <M>0.4,</M> respectively.
@@ -521,8 +521,8 @@ For the countably infinite case, the result follows from rearrangement
 property of absolutely convergent series. 
 </PF>
 
-<HEAD2>Properties of expectation</HEAD2>
-<HEAD3>Relation of <M>E(X)</M> with values of <M>X</M></HEAD3>
+<HEAD1>Properties of expectation</HEAD1>
+<HEAD2>Relation of <M>E(X)</M> with values of <M>X</M></HEAD2>
 
 <THM>
 If <M>X</M> is a degenerate rv (i.e., takes only one value with
@@ -581,7 +581,7 @@ the <M>x_i</M>'s. For example, if the <M>X</M> is the outcome of
 a fair die, then <M>E(X)=3.5,</M> which is not a possible
 outcome.
 
-<HEAD3>Transformation properties</HEAD3>
+<HEAD2>Transformation properties</HEAD2>
 <THM>
 Let <M>X</M> be a discrete rv such that <M>E(X)</M> is defined. If <M>a,b</M> are constants, then <M>E(a+bX) = a+bE(X).</M>
 </THM>
@@ -594,12 +594,12 @@ If <M>E(X) = \mu,</M> then what is <M>E(X-\mu)?</M>
 </EXR>
 
 <THM>
-Let <M>X</M> be a random variable and <M>f,g</M> be two functions
-such that <M>E(f(x))</M> and <M>E(g(x))</M> both exist finitely.
+Let <M>X,Y</M> be two random variables both defined on the same probability space.
+We assume that both <M>E(X)</M> and <M>E(Y)</M> both exist finitely.
 <P/>
-Then <M>E(f(X)+ g(X))</M> also exists finitely and we have
+Then <M>E(X+Y)</M> also exists finitely and we have
 <D>
-E(f(X)+ g(X)) = E(f(X))+ E(g(X)).
+E(X+Y) = E(X)+ E(Y).
 </D>
 </THM>
 
@@ -646,9 +646,35 @@ E(f(X)) \leq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
 as required.
 </PF>
 
-<EXR>Which is larger <M>(E(X))^2</M> or <M>E(X^2)?</M> Assume
+::<EXR>Which is larger <M>(E(X))^2</M> or <M>E(X^2)?</M> Assume
 that both exist finitely.</EXR>
+<HEAD1>Indicator trick</HEAD1>
+Often we have to find <M>E(X)</M>  where <M>X</M>  is the count of something, e.g., number of heads in 100 tosses of coin,
+ or number of times something interesting happens. If you want to find <M>E(X)</M>  directly from the definition, then you
+ need to find the distribution of <M>X</M>  first, which is often difficult. In such situatons the
+ <TERM>indicator trick</TERM> may provide a short cut. 
 
+<EXM>We have a ring of 20 lamps. A wind blows and a random subset of lamps go out. Find
+ the expected number of singleton lights (i.e., lighted lamps with both neighbours off).
+<CIMG web="lamps.png">The singletons are shown with arrowheads</CIMG>
+<SOLN/>
+Let <M>X</M>  be the number of singletons. Finding the distribution of <M>X</M>  is not easy. 
+
+Instead we shall use the arrowheads as our random variables. Let the lamps be numbered from 1 to 20. Define <M>L_i=1</M> 
+ if <M>i</M>-th lamp is on, and <M>0</M>  else. In other words, <M>L_i=1</M>  means we have put an arrow head at position
+ <M>i.</M>  
+
+Each <M>L_i</M>  is called an <TERM>indicator variable</TERM>. 
+
+Clearly <M>X = L_1+\cdots+L_{20}.</M>
+
+So <M>E(X) = E(L_1)+\cdots+E(L_{20}) = 20 E(L_1),</M>  since by symmetry all the <M>L_i</M>'s have the same distribution.
+
+To find <M>E(L_1)</M>  we need to find just <M>P(L_1=1)</M>, which involves only lamp 1 and its two neighbours. It should
+ be clear that <M>P(L_1) = [[1][8]].</M>  
+
+Hence <M>E(X) = [[20][8]] = [[52]].</M>  
+   </EXM>
 <HEAD1>Problems for practice</HEAD1>
 ::<EXR>
 What is <M>E(X)</M> if <M>X</M> takes the
@@ -678,18 +704,54 @@ values <M>1,2,...,n</M> with probability <M>[[1n]]</M> each?
 
 ::<EXR><CIMG web="fellrv1.png"/></EXR>
 ::<EXR><CIMG web="fellrv2.png"/></EXR>
-::<EXR><CIMG web="most4.png"/></EXR>
-::<EXR><CIMG web="most6.png"/></EXR>
-::<EXR><CIMG web="most14.png"/>
+::<EXR><CIMG web="most4.png"/>
 <ANS>Let <M>X = </M> the number of trials needed to get the first 6. 
 
 Then <M>P(X=k) = (*([[56]])*)^{k-1}[[16]]</M>  for <M>k=1,2,3,....</M>
 
 So <M>E(X) = \sum_{k=1}^\infty k (*([[56]])*)^{k-1}[[16]].</M>
 
+Now, we know that <M>[[1][1-x]] = 1+x+x^2+x^3+\cdots</M>
+if <M>|x|<1.</M>  This may be differentiated term by term (needs a justification that you should learn in your real analysis
+ class) to give
+<D>[[1][(1-x)^2]] = 1+2x + 3x^2+\cdots.</D>
+Put <M>x=[[56]]</M>  to find the required expectation.
 </ANS>
 </EXR>
-::<EXR><CIMG web="most15.png"/></EXR>
+::<EXR><CIMG web="most6.png"/></EXR>
+::<EXR><CIMG web="most14.png"/>
+</EXR>
+::<EXR><CIMG web="most15.png"/>
+<ANS>
+<CIMG web="bachmod.png">The same person may be part of two marriageable couples.</CIMG>
+The guys are all distinct, and so are the girls (though it is not clear from my wonderful artwork!). 
+
+The diagram shows 8 <I>run</I>s, i.e., stretches of same gender. A single girl or a single guy consitute the shortest possible
+ run. Notice that the number of marriageable couples  is one less than the number of runs.
+
+Thus, the number of arrangements with <M>k</M>  marriageable couples is
+ the same as the number of arrangements with <M>k+1</M> runs.
+ Here <M>k</M>  can take any value between <M>1</M>  and 14.
+
+As an example let us find <M>P(k=3).</M>  
+
+The total number of arrangements is of course <M>15!.</M>
+
+We need <M>3+1=4</M>  runs: either male-female-male-female or female-male-female-male. 
+
+<UL><LI><B>Step 1:</B> Arrange the guys: 8! ways</LI>
+<LI><B>Step 2:</B> Arrange the girls: 7! ways</LI>
+<LI><B>Step 3:</B> Insert a separator to split  the guys into two runs: 7 ways</LI>
+<LI><B>Step 4:</B> Insert a separator to split  the girls into two runs: 6 ways</LI>
+<LI><B>Step 5:</B> Mix them: 2 ways (M-F-M-F or F-M-F-M)</LI>
+</UL>
+So 
+<D>P(k=3) = [[8!\times7!\times7\times6\times2][15!]].</D>
+Find these for all possible values <M>k</M>, and then compute expectation. 
+
+Or...use the indicator trick!!!
+</ANS>
+</EXR>
 ::<EXR><CIMG web="most34.png"/></EXR>
 ::<EXR><CIMG web="most40.png"/></EXR>
 

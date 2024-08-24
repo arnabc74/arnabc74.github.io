@@ -155,10 +155,10 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Combining different random variables">Combining different random variables</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Different types">Different types</a>
+<li>
+<a href="#Different types of random variables">Different types of random variables</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>
 <a href="#Functions of a random variable">Functions of a random variable</a>
 </li>
 <li>
@@ -168,19 +168,22 @@ function myFunction() {
 <a href="#PMF">PMF</a>
 </li>
 <li>
-<a href="#Expectation">Expectation</a>
+<a href="#Expectation of a random variable">Expectation of a random variable</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>
 <a href="#Expectation of a function">Expectation of a function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>
 <a href="#Properties of expectation">Properties of expectation</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Relation of $E(X)$ with values of $X$">Relation of $E(X)$ with values of $X$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Transformation properties">Transformation properties</a>
+</li>
+<li>
+<a href="#Indicator trick">Indicator trick</a>
 </li>
 <li>
 <a href="#Problems for practice">Problems for practice</a>
@@ -348,8 +351,8 @@ Now it is meaningful to talk about $X+Y.$
 
 <p></p>
 
-<h2><a
-name="Different types">Different types</a></h2>
+<h1><a
+name="Different types of random variables">Different types of random variables</a></h1>
 Depending on the distribution, a random variable may be of 3
 types:
 <ul>
@@ -385,8 +388,8 @@ specifications together are called the <b>probability mass
 function (PMF)</b> of the rv. 
 <p></p>
 
-<h2><a
-name="Functions of a random variable">Functions of a random variable</a></h2> 
+<h1><a
+name="Functions of a random variable">Functions of a random variable</a></h1> 
 Any function of a random variable is again a random
 variable. This is immediate from the definition of a random
 variable (since composition of two functions is again a
@@ -713,7 +716,7 @@ $$
 <p></p>
 The CDF of a discrete random variable is like a step function. 
 <h1><a
-name="Expectation">Expectation</a></h1>
+name="Expectation of a random variable">Expectation of a random variable</a></h1>
 
 <p></p>
 For many random variables we see a striking example of
@@ -795,8 +798,8 @@ is $\infty$ (resp, $-\infty$)</li>
 
 <p></p>
 
-<h2><a
-name="Expectation of a function">Expectation of a function</a></h2>
+<h1><a
+name="Expectation of a function">Expectation of a function</a></h1>
 
 <p>
 <b>EXAMPLE 4:</b>&nbsp;
@@ -852,11 +855,11 @@ property of absolutely convergent series.
 
 <p></p>
 
-<h2><a
-name="Properties of expectation">Properties of expectation</a></h2>
+<h1><a
+name="Properties of expectation">Properties of expectation</a></h1>
 
-<h3><a
-name="Relation of $E(X)$ with values of $X$">Relation of $E(X)$ with values of $X$</a></h3>
+<h2><a
+name="Relation of $E(X)$ with values of $X$">Relation of $E(X)$ with values of $X$</a></h2>
 
 <p></p>
 
@@ -937,8 +940,8 @@ a fair die, then $E(X)=3.5,$ which is not a possible
 outcome.
 <p></p>
 
-<h3><a
-name="Transformation properties">Transformation properties</a></h3>
+<h2><a
+name="Transformation properties">Transformation properties</a></h2>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -961,12 +964,12 @@ If $E(X) = \mu,$ then what is $E(X-\mu)?$
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $X$ be a random variable and $f,g$ be two functions
-such that $E(f(x))$ and $E(g(x))$ both exist finitely.
+Let $X,Y$ be two random variables both defined on the same probability space.
+We assume that both $E(X)$ and $E(Y)$ both exist finitely.
 <p></p>
-Then $E(f(X)+ g(X))$ also exists finitely and we have
+Then $E(X+Y)$ also exists finitely and we have
 $$
-E(f(X)+ g(X)) = E(f(X))+ E(g(X)).
+E(X+Y) = E(X)+ E(Y).
 $$
 </fieldset>
 
@@ -1044,12 +1047,52 @@ as required.
 </p>
 
 <p></p>
-
-<p>
+::<p>
 <b>EXERCISE 2:</b>&nbsp;Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
 that both exist finitely.</p>
 
+<h1><a
+name="Indicator trick">Indicator trick</a></h1>
+Often we have to find $E(X)$  where $X$  is the count of something, <i>e.g.</i>, number of heads in 100 tosses of coin,
+ or number of times something interesting happens. If you want to find $E(X)$  directly from the definition, then you
+ need to find the distribution of $X$  first, which is often difficult. In such situatons the
+ <b><font color="red" size="40">indicator trick</font></b> may provide a short cut. 
 <p></p>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;We have a ring of 20 lamps. A wind blows and a random subset of lamps go out. Find
+ the expected number of singleton lights (<i>i.e.</i>, lighted lamps with both neighbours off).
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lamps.png"></th>
+</tr>
+<tr>
+<th>The singletons are shown with arrowheads</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>SOLUTION:</b>
+Let $X$  be the number of singletons. Finding the distribution of $X$  is not easy. 
+<p></p>
+Instead we shall use the arrowheads as our random variables. Let the lamps be numbered from 1 to 20. Define $L_i=1$ 
+ if $i$-th lamp is on, and $0$  else. In other words, $L_i=1$  means we have put an arrow head at position
+ $i.$  
+<p></p>
+Each $L_i$  is called an <b><font color="red" size="40">indicator variable</font></b>. 
+<p></p>
+Clearly $X = L_1+\cdots+L_{20}.$
+<p></p>
+So $E(X) = E(L_1)+\cdots+E(L_{20}) = 20 E(L_1),$  since by symmetry all the $L_i$'s have the same distribution.
+<p></p>
+To find $E(L_1)$  we need to find just $P(L_1=1)$, which involves only lamp 1 and its two neighbours. It should
+ be clear that $P(L_1) = \frac{1}{8}.$  
+<p></p>
+Hence $E(X) = \frac{20}{8} = \frac 52.$  
+    ■
+</p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
@@ -1264,6 +1307,22 @@ class="ans" id="lab1">$\frac{n+1}{2}.$</div></p>
 </tr>
 </table>
 </center>
+
+<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2">Let $X = $ the number of trials needed to get the first 6. 
+<p></p>
+Then $P(X=k) = \left(\frac 56\right)^{k-1}\frac 16$  for $k=1,2,3,....$
+<p></p>
+So $E(X) = \sum_{k=1}^\infty k \left(\frac 56\right)^{k-1}\frac 16.$
+<p></p>
+Now, we know that $\frac{1}{1-x} = 1+x+x^2+x^3+\cdots$
+if $|x|&lt;1.$  This may be differentiated term by term (needs a justification that you should learn in your real analysis
+ class) to give
+$$\frac{1}{(1-x)^2} = 1+2x + 3x^2+\cdots.$$
+Put $x=\frac 56$  to find the required expectation.
+</div></p>
+
 </p>
 ::<p>
 <b>EXERCISE 22:</b>&nbsp;<center>
@@ -1289,16 +1348,6 @@ class="ans" id="lab1">$\frac{n+1}{2}.$</div></p>
 </table>
 </center>
 
-<p><a
-href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
-class="ans" id="lab2">Let $X = $ the number of trials needed to get the first 6. 
-<p></p>
-Then $P(X=k) = \left(\frac 56\right)^{k-1}\frac 16$  for $k=1,2,3,....$
-<p></p>
-So $E(X) = \sum_{k=1}^\infty k \left(\frac 56\right)^{k-1}\frac 16.$
-<p></p>
-</div></p>
-
 </p>
 ::<p>
 <b>EXERCISE 24:</b>&nbsp;<center>
@@ -1311,6 +1360,60 @@ So $E(X) = \sum_{k=1}^\infty k \left(\frac 56\right)^{k-1}\frac 16.$
 </tr>
 </table>
 </center>
+
+<p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bachmod.png"></th>
+</tr>
+<tr>
+<th>The same person may be part of two marriageable couples.</th>
+</tr>
+</table>
+</center>
+The guys are all distinct, and so are the girls (though it is not clear from my wonderful artwork!). 
+<p></p>
+The diagram shows 8 <i>run</i>s, <i>i.e.</i>, stretches of same gender. A single girl or a single guy consitute the shortest possible
+ run. Notice that the number of marriageable couples  is one less than the number of runs.
+<p></p>
+Thus, the number of arrangements with $k$  marriageable couples is
+ the same as the number of arrangements with $k+1$ runs.
+ Here $k$  can take any value between $1$  and 14.
+<p></p>
+As an example let us find $P(k=3).$  
+<p></p>
+The total number of arrangements is of course $15!.$
+<p></p>
+We need $3+1=4$  runs: either male-female-male-female or female-male-female-male. 
+<p></p>
+
+<ul>
+<li>
+<b>Step 1:</b> Arrange the guys: 8! ways</li>
+
+<li>
+<b>Step 2:</b> Arrange the girls: 7! ways</li>
+
+<li>
+<b>Step 3:</b> Insert a separator to split  the guys into two runs: 7 ways</li>
+
+<li>
+<b>Step 4:</b> Insert a separator to split  the girls into two runs: 6 ways</li>
+
+<li>
+<b>Step 5:</b> Mix them: 2 ways (M-F-M-F or F-M-F-M)</li>
+
+</ul>
+So 
+$$P(k=3) = \frac{8!\times7!\times7\times6\times2}{15!}.$$
+Find these for all possible values $k$, and then compute expectation. 
+<p></p>
+Or...use the indicator trick!!!
+</div></p>
+
 </p>
 ::<p>
 <b>EXERCISE 25:</b>&nbsp;<center>
