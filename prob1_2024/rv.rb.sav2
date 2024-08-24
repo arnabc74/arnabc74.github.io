@@ -681,6 +681,23 @@ What is <M>E(X)</M> if <M>X</M> takes the
 values <M>1,2,...,n</M> with probability <M>[[1n]]</M> each?
 <ANS><M>[[n+1][2]].</M></ANS>
 </EXR>
+::<EXR>Show that if <M>X</M>  is a random variable taking only non-negative
+integer values, then 
+<D>E(X) = \sum_{k=1}^\infty P(X\geq k).</D>
+This formula often proves useful for finding
+<ANS>
+Let <M>p_n = P(X=n)</M>  for <M>n=0,1,2,3,...</M>
+Then
+<MULTILINE>
+P(X\geq 1) & = & p_1 + p_2 + p_3+\cdots\\
+P(X\geq 2) & = & \phantom{p_1 +} p_2 + p_3+\cdots\\
+P(X\geq 1) & = & \phantom{p_1 + p_2 +} p_3+\cdots\\
+\cdots
+</MULTILINE>
+Now add columnwise. Non-negative series do not change value when 
+you rearrange the terms.
+</ANS>
+</EXR>
 ::<EXR>For a group of <M>n</M>  people find the expected number of days of the year which are
  birthdays of exactly <M>k</M>  people. (Assume 365 days and that all arrangements are equally
  probable.) Also find the expected number of multiple birthdays. How large should <M>n</M>  be to
@@ -702,7 +719,32 @@ values <M>1,2,...,n</M> with probability <M>[[1n]]</M> each?
 ::<EXR><CIMG web="rossrv13.png"/></EXR>
 ::<EXR><CIMG web="rossrv14.png"/></EXR>
 
-::<EXR><CIMG web="fellrv1.png"/></EXR>
+::<EXR><CIMG web="fellrv1.png"/>
+You may use some approximations in parts (c) and (d) of this problem. For instamce there are
+ <M>[[nk]]</M>  groups of <M>k</M>  patients each, even if <M>[[nk]]</M>  is not an integer. You
+ may also differentiate w.r.t. <M>k.</M> 
+<ANS>(a) <M>1-(1-p)^k.</M>
+
+(b) For a group of size <M>k</M>  the random variable <M>X</M>  takes the value 
+<M>k+1</M>  with probability <M>1-(1-p)^k</M>  and the value <M>1</M>  with probability <M>(1-p)^k.</M>  
+
+So <M>E(X) = (k+1)(1-(1-p)^k)+(1-p)^k = k+1-k(1-p)^k.</M>
+
+If there are <M>N</M>  people in all, where <M>N = qk+r</M>  with <M>r\in\{0,...,k-1\}</M>, 
+then this applies to each of the <M>q</M>  groups and also the reaminder group of size <M>r.</M>  
+
+So the required expectation is 
+ <D>q(k+1-k(1-p)^k)+r+1-r(1-p)^r.</D>
+If <M>k</M>  divides <M>N</M>, then this is 
+<D>[[Nk]](k+1-k(1-p)^k) = N+[[Nk]]-N(1-p)^k = N(*(1+[[1k]]-(1-p)^k)*).</D>
+
+(c) Enough to minimise <M>1+[[1k]]-(1-p)^k</M>  wrt <M>k</M>  for given <M>p.</M>
+
+Treating <M>k </M> as a continuous variable, the derivative is 
+<D>-[[1][k^2]]-(1-p)^k\log(1-p).</D>
+
+</ANS>
+</EXR>
 ::<EXR><CIMG web="fellrv2.png"/></EXR>
 ::<EXR><CIMG web="most4.png"/>
 <ANS>Let <M>X = </M> the number of trials needed to get the first 6. 
@@ -749,7 +791,7 @@ So
 <D>P(k=3) = [[8!\times7!\times7\times6\times2][15!]].</D>
 Find these for all possible values <M>k</M>, and then compute expectation. 
 
-Or...use the
+Or...use the indicator trick!!!
 </ANS>
 </EXR>
 ::<EXR><CIMG web="most34.png"/></EXR>
