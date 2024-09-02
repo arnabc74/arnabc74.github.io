@@ -622,7 +622,7 @@ only if <M>P(A)=P(B).</M>
 device to another. Suppose that device A transmits a 0 with
 probability 0.4 and a 1 with probability 0.6. The communication channel is
 noisy, so if a 1 is transmitted, it may get corrupted to a 0 in
-1% of the cases. If a 0 is transmitted, it may be corrupted into a 1 in 5% cases. Given that
+5% of the cases. If a 0 is transmitted, it may be corrupted into a 1 in 1% cases. Given that
 device B has received a 1, what is the chance that it is
 uncorrupted?
 
