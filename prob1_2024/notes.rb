@@ -10,10 +10,10 @@ Before midsem:
 <LI><LINK to="indep.html">Independence</LINK></LI>
 <LI><LINK to="vit.html">First taste of measure theory</LINK> (important, but not in syllabus)</LI>
 <LI><LINK to="bayes.html">Conditional probability</LINK></LI>
-<LI><LINK to="rv.html">Random variables</LINK></LI>
 </UL>
 After midsem:
 <UL>
+<LI><LINK to="rv.html">Random variables</LINK></LI>
 <LI><LINK to="rv2.html">Random variables (contd)</LINK></LI>
 <LI><LINK to="joint.html">Joint distribution</LINK></LI>
 <LI><LINK to="condl.html">Conditional distribution</LINK></LI>
