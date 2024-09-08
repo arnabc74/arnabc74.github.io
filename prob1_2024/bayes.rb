@@ -849,8 +849,13 @@ Let <M>C=</M> the event that the 21-st is the two of clubs.
 
 To find <M>P(B|A)=[[P(A\cap B)][P(A)]]</M>  and <M>P(C|A)=[[P(A\cap C)][P(A)]].</M>
 
-Here <M>|A|=4\times 51\times\cdots\times(51-19+1)</M>, <M>|A\cap B| = 1\times 3\times
- 50\times\cdots\times(50-19+1)</M>  and <M>|A\cap B| = 1\times 4\times 50\times\cdots\times(50-19+1).</M>
+Here <M>|A|=4\times 48\times\cdots\times(48-19+1)</M>, 
+
+<M>|A\cap B| = 1\times 3\times
+ 48\times\cdots\times(48-19+1)</M>  and 
+<M>|A\cap C| = 1\times 4\times 48\times\cdots\times(48-19+1).</M>
+
+[Corrected a mistake pointed out by Arnab Nayak.]
 </ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond17.png"/>
