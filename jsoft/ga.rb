@@ -49,6 +49,8 @@ symbolically by <M>\langle v\rangle_k.</M> In J
 </J>
 
 <PRE>
+load 'trig'
+
 cin=: 4 :0"0 2
  vy=:{:"1 y  NB. Extract the array of e's.
  cy=:;{."1 y NB. Extract the array of coefficients
@@ -147,14 +149,14 @@ pretty=:srt@comb
 gpbad=: 4 : 'comb ,/ x mult"1/ y'
 
 NB. The prettified versions that are actually used.
-gp=:pretty@,/@(mult"1/)
+gp=:pretty@(,/@(mult"1/))
 
 
-dp=:pretty@,/@(dmult"1/)
+dp=:pretty@(,/@(dmult"1/))
 
-op=:pretty@,/@(omult"1/)
-lp=:pretty@,/@(lmult"1/)
-rp=:pretty@,/@(rmult"1/)
+op=:pretty@(,/@(omult"1/))
+lp=:pretty@(,/@(lmult"1/))
+rp=:pretty@(,/@(rmult"1/))
 
 ip=: 0 & gx @ gp
 
@@ -173,11 +175,11 @@ len=: gr"1 y
 )
 
 
-e=: 3 :  'y(;"0 1) 1, 2 ,:3'
+p=: 3 :  'y(;"0 1) 1, 2 ,:3'
 
 c=: 3 :0
-  p=: e y
-  o ad p ad 0.5 sm p gp p gp i
+  tmp=. p y
+  o ad tmp ad 0.5 sm tmp gp tmp gp i
 )
 
 ci=: 3 :0
@@ -193,7 +195,27 @@ rev=: 3 :0"1
 newa=.a*1-2*2 3 e.~ 4|#b
 newa;b
 )
+
+ov=: 3 : 0
+'a b c d e'=.y
+(a sm e1) ad (b sm e2) ad (c sm e3) ad (d sm e4) ad e sm e5
+)
+NB. Monad for creating arbitrary 1-vector
+norm=:%:@sp@(gp rev) NB. Square root of gp with own rev
+unit=:sm~ %@norm NB. Scalar mult by reciprocal of norm
+pseudo=:{{unit (p x) op p y}} NB. Unit pseudovector of plane with basis {x, y}.  
+I=:0.5; 1 2 3 4 5 NB. Conformal pseudovector
+Ii=:_2;1 2 3 4 5 NB. Inverse of I
+dl=:lp&Ii NB. dual
+tvrsr=:{{one sb 0.5 sm (p y) gp i}} NB. translation versor
+rvrsr=:{{(cos x%2) sm one sb (sin x%2) sm y}} NB. rotation versor
+vrsr=:{{y gp x gp recip y}} NB. applying versor 
+eq=:*/@(e.,e.~) NB. equality for multivectors.
+mn=:zero&sb NB. Negative of a multivector
 v=: (3.4;1 3),(6.5; 1 4 5),: (_4; 1 3)
+one=:1;i.0
+zero=:0 2$i.0
+mn=:zero&sb
 e1=:1 2$1;1#1
 e2=:1 2$1;1#2
 e3=:1 2$1;1#3
@@ -205,7 +227,15 @@ i=: 0.5 sm e5 sb e4
 scr=: 4 :'(c x) sb (0.5**:y) sm i'
 scp=: 4 :'(c y) dp (c x) op  i'
 
-
-9!:7'+++++++++|-'
+NB. Dual representations
+dplpn=: 4 :0
+ pn=.p (% %:@+/@:*:)y
+ pn ad((c x)ip pn)gp i
+)
+dplpp=:{{(c x) sb c y}}
+dpldn=: 4 :0
+ pn=.p (% %:@+/@:*:)y
+ pn ad x sm i
+)
 </PRE>
 </NOTE>@}

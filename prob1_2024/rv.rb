@@ -661,7 +661,8 @@ Often we have to find <M>E(X)</M>  where <M>X</M>  is the count of something, e.
 Let <M>X</M>  be the number of singletons. Finding the distribution of <M>X</M>  is not easy. 
 
 Instead we shall use the arrowheads as our random variables. Let the lamps be numbered from 1 to 20. Define <M>L_i=1</M> 
- if <M>i</M>-th lamp is on, and <M>0</M>  else. In other words, <M>L_i=1</M>  means we have put an arrow head at position
+ if <M>i</M>-th lamp is on and is a singleton, and <M>0</M>  else. In other words, <M>L_i=1</M>  means we have put an
+ arrow head at position
  <M>i.</M>  
 
 Each <M>L_i</M>  is called an <TERM>indicator variable</TERM>. 
