@@ -170,7 +170,22 @@ function myFunction() {
 <li>
 <a href="#Expectation of a random variable">Expectation of a random variable</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Finite case">Finite case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nonnegative case">Nonnegative case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#General case">General case</a>
+</li>
 <li>
+<a href="#How to compute expectation easily?">How to compute expectation easily?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Random variables taking countably many values">Random variables taking countably many values</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Expectation of a function">Expectation of a function</a>
 </li>
 <li>
@@ -720,16 +735,29 @@ name="Expectation of a random variable">Expectation of a random variable</a></h1
 
 <p></p>
 For many random variables we see a striking example of
-statistical regularity. 
-<p></p>
-
+statistical regularity. As an example, consider this gambling game: 
+<blockquote>A fair die is rolled. If it shows an odd number then I pay you Rs 20, else you pay me Rs 10.</blockquote>
+A typical plot of my running average gain per game against number of games is as follows:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/explotnow.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+It is produced by the following code. 
 <font color="red">
 <pre>
 w = sample(6,1000,rep=T)
 profit =c(-20,10,-20,10,-20,10)
 X = profit[w]
 avgX = cumsum(X)/(1:1000)
-plot(avgX,ty='l')
+#png('image/explotnow.png')
+plot(avgX,ty='l',xlab="#games played",ylab="My running avg gain")
+#dev.off()
 </pre>
 </font><input type="button"
 value="Run in cloud"
@@ -738,22 +766,24 @@ w = sample(6,1000,rep=T)
 profit =c(-20,10,-20,10,-20,10)
 X = profit[w]
 avgX = cumsum(X)/(1:1000)
-plot(avgX,ty='l')
+#png('image/explotnow.png')
+plot(avgX,ty='l',xlab="#games played",ylab="My running avg gain")
+#dev.off()
 `));"/>
 In fact, it is this phenomenon that first let man to study
 probability. If you run a gambling game a large number of time
-the average profit becomes more and more stable. Gamblers wanted
+the running average profit per game becomes more and more stable. Gamblers wanted
 to guess this stable value beforehand. They argued as follows:
 <blockquote>
 If I play this game a large number of times (say $n$ times),
 then
 approximately $\frac n2$ times I should get $10$
 and the remaining $\frac n2$ times I should get $-20.$ So
-approximately my total gain would be approximately 
+approximately my total gain would be
 $$
 \frac n2\times 10 + \frac n2\times (-20).
 $$
-So the average would be approximately this divided by $n,$
+So the average should be approximately this divided by $n,$
 <i>i.e.</i>,
 $$
 \frac 12\times 10 + \frac 12\times (-20) = -5.
@@ -761,54 +791,273 @@ $$
 </blockquote>
 Indeed, this simple argument turns out to be remarkably
 accurate. Gamblers could not understand why it becomes so
-accurate as $n$ becomes large. But they used this formula to
+accurate as $n$ becomes large. But nevertheless they used this formula to
 find out what they could expect the random variable to do in the
 long run.
-<table align="right" width="20%" border="1">
-<tr>
-<td bgcolor="pink">There is a wierd point in the definition of $E(X).$
-We are working with $\sum p_i x_i.$ But then why is the
-condition on $\sum |p_i x_i|$? The reason for taking this absolute
-value should be clear from our <a href="series.html">crash course on infinite series</a>.</td>
-</tr>
-</table>
+<p></p>
+
+<h2><a
+name="Finite case">Finite case</a></h2>
+
+<p></p>
 
 <fieldset>
-<legend><b>Definition: Expectation</b></legend>
-Let a (discrete) random variable $X$ take
-values $x_1,x_2,...$ with
-probabilities $p_1,p_2,...$. If $\sum |p_i x_i|
-&lt;\infty,$ then we define the expectation of $X$ as
+<legend><b>Definition: Expectation (finite case)</b></legend>
+Let a random variable $X$ take only finitely many
+values $x_1,x_2,...,x_k$ with
+probabilities $p_1,p_2,..., p_k$.
+Then we define the <b><font color="red" size="40">expectation</font></b> of $X$ as
 $$
-E(X) = \sum p_i x_i.
+E(X) = \sum_1^k p_i x_i.
 $$
-If  $\sum |p_i x_i|
-=\infty,$ then
-<ul>
-
-<li>if all but finitely many $x_i$'s are $&gt;
-0,$ (resp, $&lt; 0$) then we say that the expectation
-is $\infty$ (resp, $-\infty$)</li>
-
-<li>Otherwise, we say that the expectation does not exist.</li>
-
-</ul>
-
 </fieldset>
 
 <p></p>
 
+<p>
+<b>EXERCISE 1:</b>&nbsp;A random variable $X$  takes the values $-2, -1, 0, 1 $  and $2$  with
+ probabilities $p,q,1-2p-2q, p$  and $q,$  respectively. Find $E(X).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;A random variable takes the values $1,2,...,10$  with probabilities
+ $p_1,p_2,...,p_{10},$  respectively, where $\sum_i p_i = 1.$  Prove that $1\leq
+ E(X)\leq 10.$  Also find $p_i$'s if $E(X) = 10.$  </p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $X$  and $Y$  be random variables taking only finitely many values, and  $X\leq
+ Y.$  Then  $E(X)\leq E(Y).$  </fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Here $X\leq Y$  means $\forall \omega\in\Omega~~X(\omega)\leq Y(\omega).$
+<p></p>
+Let $X$ take values $x_1,...,x_m,$  and $Y$  take values $y_1,...,y_n.$
+<p></p>
+Let $p_{ij} = P(X=x_i, Y=y_j).$  
+<p></p>
+Clearly, if $p_{ij}&gt;0,$  then we must have $x_i\leq y_j.$  
+<p></p>
+Now 
+$$\begin{eqnarray*}E(X) &amp; = &amp; \sum_i x_i P(X=x_i) = \sum_i (x_i \sum_j p_{ij}) =\sum_i\sum_j (x_i p_{ij})\\
+&amp; \leq &amp;  \sum_i\sum_j (y_j p_{ij}) ~~[\because p_{ij}&gt;0\Rightarrow x_i\leq y_j]\\
+&amp; = &amp;  \sum_j\sum_i (y_j p_{ij})[\because \mbox{addition is associative and commutative}]\\
+&amp; = &amp; \sum_j (y_j \sum_i p_{ij}) = \sum_j y_j P(Y=y_j) = E(Y).
+\end{eqnarray*}$$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+So far we have defined expectation for only  random variables that take finitely many values. 
+We shall call such random variables <b><font color="red" size="40">simple</font></b>.
+However, not all random variables are simple. We shall now generalise 
+the definition of expectation for those cases as well. The generalisation turns out to be slightly tricky. 
+So read this part very carefully. 
+<p></p>
+
+<h2><a
+name="Nonnegative case">Nonnegative case</a></h2>
+First, we shall consider a random variable, $X$, taking only nonnegative values. Now consider
+ a simple random variable $U$  such that $U\leq X.$ 
+Visualise $X$  and $U$  like this (we are taking $\Omega$  an interval in the diagram):   
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lebmot1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ Then we can compute $E(U).$  Also     it is natural to
+ define $E(X)$  so that $E(U)\leq E(X).$ 
+<p></p>
+Now look at $U$  taken as follows. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lebmot2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This $U$  still takes finitely many values, but is much closer to $X $ than before. You can feel that if $U$ 
+ is made finer and finer (but still remaining simple), you can make it come arbitrarily closer to $X.$
+ This leads to the following approach for defining expectation of $X:$
+<blockquote>Define $E(X)$  as supremum of $\{E(U)~:~U\mbox{ simple, }U\leq X\}.$  </blockquote>
+Of course, before we can take supremum we need to make sure that the set is non-empty and bounded. 
+<ul>
+<li>It is easy to see that the set is non-empty (<i>i.e.</i>, for all nonnegative random variable $X$, there is at
+ least one simple random variable $U$  such that $U\leq X.$  Just take $U\equiv 0.$  </li>
+
+<li>Unfortunately, the set need not be bounded above. But that is not a serious problem. We shall
+ just define $E(X)$  to be $\infty$  in those cases.</li>
+
+</ul>
+
+<fieldset>
+<legend><b>Definition: Expectation (nonnegative case)</b></legend>
+Let $X$  be any nonnegative random variable.
+Then we define the <b><font color="red" size="40">expectation</font></b> of $X$ as
+$$
+E(X) = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}
+$$
+if the set is bounded above, and $\infty$  otherwise.
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Suppose $X$  is a nonnegative
+ random variable that is also a simple random variable. Then we have two definitions of
+ $E(X),$  as a simple random variable and as a non-empty random variable. Show that both
+ definitions match in this case.</p> 
+
+<p></p>
+
+<h2><a
+name="General case">General case</a></h2>
+Finally, we attack the general case, where $X $ can take both positive and negative values. 
+Here we apply our approach to the positive and the negative parts separately.  More precisely, we define 
+$$X_+ = \max\{X,0\} \mbox{ and } X_- = -\max\{-X,0\}.$$
+Note that
+<ul>
+<li>Both $X_+$  and $X_-$  are nonnegative,</li>
+
+<li>$X = X_+-X_-.$</li>
+
+</ul>
+We already know how to define $E(X_+)$ and $E(X_-).$  We shall combine them in the obvious way to define $E(X):$
+<fieldset>
+<legend><b>Definition: Expectation (general case)</b></legend>
+$$E(X) = \left\{\begin{array}{ll}
+E(X_+)-E(X_-)&\text{if }E(X_+),E(X_-)&lt;\infty\\
+\infty&\text{if }E(X_+)=\infty,~E(X_-)&lt;\infty\\
+-\infty&\text{if }E(X_+)&lt;\infty,~E(X_-)=\infty\\
+\end{array}\right..$$
+We shall say $E(X)$  is undefined if $E(X_+)=E(X_-)=\infty.$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;If $X$  is a nonnegative random variable, then we have two definitions for $E(X).$ 
+ Check that they match.</p>
+
+<p></p>
+This expectation is also called the <b><font color="red" size="40">Lebesgue integral</font></b>  of $X$  <b><font color="red" size="40">wrt</font></b>  the given probability,
+ and written as $\int X\, dP.$  However, we shall not use this notation here. 
+<p></p>
+
 <h1><a
-name="Expectation of a function">Expectation of a function</a></h1>
+name="How to compute expectation easily?">How to compute expectation easily?</a></h1>
+The general definition is not easy to use for computing expectation numerically, except when the random variable is simple.
+ Here we discuss a few other cases where we have alternative (though equivalent) formulae for computing expectation. 
+<h2><a
+name="Random variables taking countably many values">Random variables taking countably many values</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X$  takes the nonnegative values $x_1&lt;x_2&lt;\cdots$   with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1,$  then 
+$$E(X) = \sum p_i x_i.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+To show 
+$$\sum p_i x_i = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}.$$
+Let $L= \sum_i p_i x_i,$  and ${\mathcal D}=\{E(U)~:~U\mbox{ simple, }U\leq X\}.$
+<p></p>
+This requires showing two things: 
+<ul>
+<li>$L$  is an upper bound of ${\mathcal D},$</li>
+
+<li>no number less than $L$  is an upper bound of ${\mathcal D}.$</li>
+</ul>
+
+<p></p>
+
+<b>Step 1:</b>  To show
+<p></p>
+$$\forall U\in{\mathcal D}~~E(U)\leq L.$$
+<p></p>
+Take any  $U\in{\mathcal D}$  be any simple random variable. 
+<p></p>
+Let $U$  take only the values $u_1,...,u_k.$  
+<p></p>
+Let $p_{ij} = (X=x_i, U=u_j).$
+<p></p>
+Then $E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.$  
+<p></p>
+Also $L = \sum_i x_i \sum_j
+ p_{ij}=\sum_i  \sum_j x_i p_{ij}=\sum_j \sum_i x_i p_{ij}.$
+<a href="javascript:hideShow('pf');">[Why?]</a>
+<div id="pf" style="display:none;background-color:#ffcccc;">
+A finite sum can always be interchanged with an infinite sum, when the summands are all nonnegative. For example,
+$$\sum (a_n+b_n) = \sum a_n + \sum b_n.$$
+If we write $c_{1,n}=a_n$  and $ c_{2,n}=b_n$  then this is 
+$$\sum_n \sum_i c_{i,n} = \sum_i \sum_n c_{i,n}.$$  
+</div>
+Now $p_{ij}&gt;0\Rightarrow u_j\leq x_i.$  
+<p></p>
+Hence $\sum_i   u_j p_{ij}\leq \sum_i   x_i p_{ij},$  and so $\sum_j\sum_i   u_j p_{ij}\leq \sum_j\sum_i   x_i p_{ij}.$
+<p></p>
+Thus, $E(U)\leq L,$  as required.
+<p></p>
+
+<b>Step 2:</b>  Shall show that no $L'&lt; L$  is an upper bound of ${\mathcal D},$  <i>i.e.</i>,
+<p></p>
+$$\forall L'&lt; L~~\exists U\in{\mathcal D}~~E(U)&gt; L'.$$  
+<p></p>
+Let $U_n$  be the random variable $\min\{X,x_n\}.$  Then $U_n$  is a simple random variable such that $U_n\leq X.$ 
+<p></p>
+So $U_n\in{\mathcal D}.$
+<p></p>
+Also $E(U_n)
+ =\sum_{i=1}^n p_i x_i\rightarrow L.$  
+<p></p>
+Hence $\exists N\in{\mathbb N}~~E(U_N) &gt; L'.$  
+<p></p>
+Choose this $U_N$  as our $U\in{\mathcal D}.$
+<p></p>
+Since $E(U) &gt; L',$ this completes the proof.
+ <b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|&lt;\infty,$ then 
+$$E(X) = \sum p_i x_i.$$
+</p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|=\infty,$ then what are the possibilities for $E(X):$ 
+ finite, $\infty$, $-\infty$  or undefined? Give one example of each of the possibilities. Prove the impossibility
+ of the other(s).
+</p>
+
+<p></p>
+
+<h2><a
+name="Expectation of a function">Expectation of a function</a></h2>
 
 <p>
 <b>EXAMPLE 4:</b>&nbsp;
-Suppose I have a rv that takes values $-1,0$ and $1$
+Suppose I have a random variable that takes values $-1,0$ and $1$
 with probabilities $0.1, 0.5$ and $0.4,$ respectively.
 What is $E(X^2)?$
 <p></p>
 <b>SOLUTION:</b>
-Here $X^2$ is a new rv. Call it $Y,$ say. Then $Y$
+Here $X^2$ is a new random variable. Call it $Y,$ say. Then $Y$
 takes values $0$ and $1$ with probabilities $0.5$
 each.
 <p></p>
@@ -869,29 +1118,55 @@ If $X$ is a degenerate rv (<i>i.e.</i>, takes only one value with
 probability 1), then $E(X)$ equals that value.
 </fieldset>
 
-<p></p>
+<p>
+<b><i>Proof:</i></b>Easy.<b><i>[QED]</i></b>
+</p>
 
-<table align="right" width="20%" border="1">
-<tr>
-<td bgcolor="pink">Here $X\leq Y$ means 
-$$
-\forall w\in\Omega~~X(w)\leq Y(w).
-$$
-</td>
-</tr>
-</table>
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $X$ be a discrete random variable. Let $f(x), g(x)$ be
-functions such that $P(f(X)\leq g(X))=1$ and both $E(f(X))$
-and $E(g(X))$ exist. Then 
-$E(f(X))\leq E(g(X)).$
-<p></p>
-A similar result holds if $P(X\geq f(X))=1.$
+Let $X, Y$ be any two random variables (defined on the same probability space) with $X\leq Y.$
+If $E(X)$  and $E(Y)$  are both defined (may be $\infty$  or $-\infty$), then
+$E(X)\leq E(Y).$
 </fieldset>
 
+<p>
+<b><i>Proof:</i></b>
+The result is trivial if $E(Y)=\infty.$  So we shall focus on the $E(Y)&lt;\infty$  case. 
 <p></p>
+We had defined expectation in three steps: simple, nonnegative and general. Our proof will accordingly have three steps.
+<p></p>
+
+<b>Step 1: Simple:</b>
+
+<p></p>
+We have already seen this earlier in this page.
+<p></p>
+
+<b>Step 2: Nonnegative:</b>
+
+<p></p>
+To show $E(X)\leq E(Y),$  <i>i.e.</i>, 
+$$\sup\{E(U)~:~U \mbox{ simple}, U\leq X\} \leq \sup\{E(V)~:~V \mbox{ simple}, V\leq Y\}.$$
+Enough the show that  $\{E(U)~:~U \mbox{ simple}, U\leq X\}\subseteq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.$
+<p></p>
+Take any  simple $U\leq X.$  Then, since $X\leq Y,$  we also have $U\leq Y.$  Hence the result.
+<p></p>
+
+<b>Step 3: General:</b>
+
+<p></p>
+Let $X = X_+-X_-$
+ and $Y = Y_+-Y_-$. 
+<p></p>
+Since $X\leq Y,$  we must have $X_+\leq Y_+$  and $Y_-\leq X_-.$  
+<p></p>
+Hence, by step 2, $E(X_+)\leq E(Y_+)$  and $E(Y_-)\leq E(X_-).$  
+<p></p>
+So $E(X_+)-E(X_-)\leq E(Y_+)-E(Y_-),$  as required.
+<b><i>[QED]</i></b>
+</p>
 An immediate consequence of the above theorems is the following
 theorem.
 <p></p>
@@ -902,7 +1177,11 @@ If $X$ always takes values in $[a,b],$ then $E(X)$
 must exist finitely, and lie in $[a,b].$
 </fieldset>
 
-<p></p>
+<p>
+<b><i>Proof:</i></b>
+Easy.
+<b><i>[QED]</i></b>
+</p>
 The condition "$X$ always lies in $[a,b]$" may be
 written as $P(X\in[a,b])=1.$
 <p></p>
@@ -950,13 +1229,13 @@ Let $X$ be a discrete rv such that $E(X)$ is defined. If $a,b$ are constants, th
 
 <p>
 <b><i>Proof:</i></b>
-Trivial.
+Do it yourself. Hint: Here also you need to proceed in three steps: simple, nonnegative, general.
 <b><i>[QED]</i></b>
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 1:</b>&nbsp;
+<b>EXERCISE 7:</b>&nbsp;
 If $E(X) = \mu,$ then what is $E(X-\mu)?$
 </p>
 
@@ -972,6 +1251,12 @@ $$
 E(X+Y) = E(X)+ E(Y).
 $$
 </fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Another three step proof. Give it a try.
+<b><i>[QED]</i></b>
+</p>
 
 <p></p>
 Next we shall need a new concept, that of a convex
@@ -1048,7 +1333,7 @@ as required.
 
 <p></p>
 ::<p>
-<b>EXERCISE 2:</b>&nbsp;Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
+<b>EXERCISE 8:</b>&nbsp;Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
 that both exist finitely.</p>
 
 <h1><a
@@ -1098,7 +1383,7 @@ Hence $E(X) = \frac{20}{8} = \frac 52.$
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;
+<b>EXERCISE 9:</b>&nbsp;
 What is $E(X)$ if $X$ takes the
 values $1,2,...,n$ with probability $\frac 1n$ each?
 <p><a
@@ -1107,7 +1392,7 @@ class="ans" id="lab1">$\frac{n+1}{2}.$</div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;Show that if $X$  is a random variable taking only non-negative
+<b>EXERCISE 10:</b>&nbsp;Show that if $X$  is a random variable taking only non-negative
 integer values, then 
 $$E(X) = \sum_{k=1}^\infty P(X\geq k).$$
 This formula often proves useful for finding expected counts.
@@ -1128,16 +1413,16 @@ you rearrange the terms.
 
 </p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;For a group of $n$  people find the expected number of days of the year which are
+<b>EXERCISE 11:</b>&nbsp;For a group of $n$  people find the expected number of days of the year which are
  birthdays of exactly $k$  people. (Assume 365 days and that all arrangements are equally
  probable.) Also find the expected number of multiple birthdays. How large should $n$  be to
  make this expectation exceed 1?</p>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;A man with $n$  keys wants to open a door (where exactly one keys works). He tries the
+<b>EXERCISE 12:</b>&nbsp;A man with $n$  keys wants to open a door (where exactly one keys works). He tries the
  keys independently at random. Find the expected number of trials needed to open the door if 
  keys are tried (a) with replacement (b) without replacement.</p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<center>
+<b>EXERCISE 13:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv1.png"></th>
@@ -1149,7 +1434,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;<center>
+<b>EXERCISE 14:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv2.png"></th>
@@ -1161,7 +1446,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;<center>
+<b>EXERCISE 15:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv3.png"></th>
@@ -1173,7 +1458,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;<center>
+<b>EXERCISE 16:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv4.png"></th>
@@ -1185,7 +1470,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<center>
+<b>EXERCISE 17:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv5.png"></th>
@@ -1197,7 +1482,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<center>
+<b>EXERCISE 18:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv6.png"></th>
@@ -1209,7 +1494,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;<center>
+<b>EXERCISE 19:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv7.png"></th>
@@ -1221,7 +1506,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;<center>
+<b>EXERCISE 20:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv8.png"></th>
@@ -1233,7 +1518,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<center>
+<b>EXERCISE 21:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv9.png"></th>
@@ -1245,7 +1530,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<center>
+<b>EXERCISE 22:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv11.png"></th>
@@ -1257,7 +1542,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<center>
+<b>EXERCISE 23:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv12.png"></th>
@@ -1269,7 +1554,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<center>
+<b>EXERCISE 24:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv13.png"></th>
@@ -1281,7 +1566,7 @@ you rearrange the terms.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<center>
+<b>EXERCISE 25:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv14.png"></th>
@@ -1295,7 +1580,7 @@ you rearrange the terms.
 
 <p></p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<center>
+<b>EXERCISE 26:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/fellrv1.png"></th>
@@ -1334,7 +1619,7 @@ $$-\frac{1}{k^2}-(1-p)^k\log(1-p).$$
 
 </p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<center>
+<b>EXERCISE 27:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/fellrv2.png"></th>
@@ -1346,7 +1631,7 @@ $$-\frac{1}{k^2}-(1-p)^k\log(1-p).$$
 </center>
 </p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<center>
+<b>EXERCISE 28:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most4.png"></th>
@@ -1374,7 +1659,7 @@ Put $x=\frac 56$  to find the required expectation.
 
 </p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<center>
+<b>EXERCISE 29:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most6.png"></th>
@@ -1386,7 +1671,7 @@ Put $x=\frac 56$  to find the required expectation.
 </center>
 </p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<center>
+<b>EXERCISE 30:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most14.png"></th>
@@ -1399,7 +1684,7 @@ Put $x=\frac 56$  to find the required expectation.
 
 </p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<center>
+<b>EXERCISE 31:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most15.png"></th>
@@ -1465,7 +1750,7 @@ Or...use the indicator trick!!!
 
 </p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<center>
+<b>EXERCISE 32:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most34.png"></th>
@@ -1477,7 +1762,7 @@ Or...use the indicator trick!!!
 </center>
 </p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;<center>
+<b>EXERCISE 33:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most40.png"></th>

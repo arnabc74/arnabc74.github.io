@@ -423,29 +423,34 @@ The CDF of a discrete random variable is like a step function.
 <HEAD1>Expectation of a random variable</HEAD1>
 
 For many random variables we see a striking example of
-statistical regularity. 
-
+statistical regularity. As an example, consider this gambling game: 
+<Q>A fair die is rolled. If it shows an odd number then I pay you Rs 20, else you pay me Rs 10.</Q>
+A typical plot of my running average gain per game against number of games is as follows:
+<CIMG web="explotnow.png"/>
+It is produced by the following code. 
 <RC>
 w = sample(6,1000,rep=T)
 profit =c(-20,10,-20,10,-20,10)
 X = profit[w]
 avgX = cumsum(X)/(1:1000)
-plot(avgX,ty='l')
+#png('image/explotnow.png')
+plot(avgX,ty='l',xlab="#games played",ylab="My running avg gain")
+#dev.off()
 </RC>
 In fact, it is this phenomenon that first let man to study
 probability. If you run a gambling game a large number of time
-the average profit becomes more and more stable. Gamblers wanted
+the running average profit per game becomes more and more stable. Gamblers wanted
 to guess this stable value beforehand. They argued as follows:
 <Q>
 If I play this game a large number of times (say <M>n</M> times),
 then
 approximately <M>[[n2]]</M> times I should get <M>10</M>
 and the remaining <M>[[n2]]</M> times I should get <M>-20.</M> So
-approximately my total gain would be approximately 
+approximately my total gain would be
 <D>
 [[n2]]\times 10 + [[n2]]\times (-20).
 </D>
-So the average would be approximately this divided by <M>n,</M>
+So the average should be approximately this divided by <M>n,</M>
 i.e.,
 <D>
 [[12]]\times 10 + [[12]]\times (-20) = -5.
@@ -453,38 +458,190 @@ i.e.,
 </Q>
 Indeed, this simple argument turns out to be remarkably
 accurate. Gamblers could not understand why it becomes so
-accurate as <M>n</M> becomes large. But they used this formula to
+accurate as <M>n</M> becomes large. But nevertheless they used this formula to
 find out what they could expect the random variable to do in the
 long run.
-<FNOTE>There is a wierd point in the definition of <M>E(X).</M>
-We are working with <M>\sum p_i x_i.</M> But then why is the
-condition on <M>\sum |p_i x_i|</M>? The reason for taking this absolute
-value should be clear from our <LINK to="series.html">crash course on infinite series</LINK>.</FNOTE>
-<DEFN name="Expectation">
-Let a (discrete) random variable <M>X</M> take
-values <M>x_1,x_2,...</M> with
-probabilities <M>p_1,p_2,...</M>. If <M>\sum |p_i x_i|
-<\infty,</M> then we define the expectation of <M>X</M> as
+
+<HEAD2>Finite case</HEAD2>
+
+<DEFN name="Expectation (finite case)">
+Let a random variable <M>X</M> take only finitely many
+values <M>x_1,x_2,...,x_k</M> with
+probabilities <M>p_1,p_2,..., p_k</M>.
+Then we define the <TERM>expectation</TERM> of <M>X</M> as
 <D>
-E(X) = \sum p_i x_i.
+E(X) = \sum_1^k p_i x_i.
 </D>
-If  <M>\sum |p_i x_i|
-=\infty,</M> then
-<UL>
-<LI>if all but finitely many <M>x_i</M>'s are <M>>
-0,</M> (resp, <M>< 0</M>) then we say that the expectation
-is <M>\infty</M> (resp, <M>-\infty</M>)</LI>
-<LI>Otherwise, we say that the expectation does not exist.</LI>
-</UL>
 </DEFN>
 
-<HEAD1>Expectation of a function</HEAD1>
+<EXR>A random variable <M>X</M>  takes the values <M>-2, -1, 0, 1 </M>  and <M>2</M>  with
+ probabilities <M>p,q,1-2p-2q, p</M>  and <M>q,</M>  respectively. Find <M>E(X).</M></EXR>
+
+<EXR>A random variable takes the values <M>1,2,...,10</M>  with probabilities
+ <M>p_1,p_2,...,p_{10},</M>  respectively, where <M>\sum_i p_i = 1.</M>  Prove that <M>1\leq
+ E(X)\leq 10.</M>  Also find <M>p_i</M>'s if <M>E(X) = 10.</M>  </EXR>
+
+<THM>Let <M>X</M>  and <M>Y</M>  be random variables taking only finitely many values, and  <M>X\leq
+ Y.</M>  Then  <M>E(X)\leq E(Y).</M>  </THM>
+<PF>
+Here <M>X\leq Y</M>  means <M>\forall \omega\in\Omega~~X(\omega)\leq Y(\omega).</M>
+
+Let <M>X</M> take values <M>x_1,...,x_m,</M>  and <M>Y</M>  take values <M>y_1,...,y_n.</M>
+
+Let <M>p_{ij} = P(X=x_i, Y=y_j).</M>  
+
+Clearly, if <M>p_{ij}>0,</M>  then we must have <M>x_i\leq y_j.</M>  
+
+Now 
+<MULTILINE>E(X) & = & \sum_i x_i P(X=x_i) = \sum_i (x_i \sum_j p_{ij}) =\sum_i\sum_j (x_i p_{ij})\\
+& \leq &  \sum_i\sum_j (y_j p_{ij}) ~~[\because p_{ij}>0\implies x_i\leq y_j]\\
+& = &  \sum_j\sum_i (y_j p_{ij})[\because \mbox{addition is associative and commutative}]\\
+& = & \sum_j (y_j \sum_i p_{ij}) = \sum_j y_j P(Y=y_j) = E(Y).
+</MULTILINE>
+</PF>
+
+So far we have defined expectation for only  random variables that take finitely many values. 
+We shall call such random variables <TERM>simple</TERM>.
+However, not all random variables are simple. We shall now generalise 
+the definition of expectation for those cases as well. The generalisation turns out to be slightly tricky. 
+So read this part very carefully. 
+
+<HEAD2>Nonnegative case</HEAD2>
+First, we shall consider a random variable, <M>X</M>, taking only nonnegative values. Now consider
+ a simple random variable <M>U</M>  such that <M>U\leq X.</M> 
+Visualise <M>X</M>  and <M>U</M>  like this (we are taking <M>\Omega</M>  an interval in the diagram):   
+<CIMG web="lebmot1.png"></CIMG>
+ Then we can compute <M>E(U).</M>  Also     it is natural to
+ define <M>E(X)</M>  so that <M>E(U)\leq E(X).</M> 
+
+Now look at <M>U</M>  taken as follows. 
+<CIMG web="lebmot2.png"></CIMG>
+This <M>U</M>  still takes finitely many values, but is much closer to <M>X </M> than before. You can feel that if <M>U</M> 
+ is made finer and finer (but still remaining simple), you can make it come arbitrarily closer to <M>X.</M>
+ This leads to the following approach for defining expectation of <M>X:</M>
+<Q>Define <M>E(X)</M>  as supremum of <M>\{E(U)~:~U\mbox{ simple, }U\leq X\}.</M>  </Q>
+Of course, before we can take supremum we need to make sure that the set is non-empty and bounded. 
+<UL><LI>It is easy to see that the set is non-empty (i.e., for all nonnegative random variable <M>X</M>, there is at
+ least one simple random variable <M>U</M>  such that <M>U\leq X.</M>  Just take <M>U\equiv 0.</M>  </LI>
+<LI>Unfortunately, the set need not be bounded above. But that is not a serious problem. We shall
+ just define <M>E(X)</M>  to be <M>\infty</M>  in those cases.</LI>
+</UL>
+<DEFN name="Expectation (nonnegative case)">
+Let <M>X</M>  be any nonnegative random variable.
+Then we define the <TERM>expectation</TERM> of <M>X</M> as
+<D>
+E(X) = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}
+</D>
+if the set is bounded above, and <M>\infty</M>  otherwise.
+</DEFN>
+
+<EXR>Suppose <M>X</M>  is a nonnegative
+ random variable that is also a simple random variable. Then we have two definitions of
+ <M>E(X),</M>  as a simple random variable and as a non-empty random variable. Show that both
+ definitions match in this case.</EXR> 
+
+<HEAD2>General case</HEAD2>
+Finally, we attack the general case, where <M>X </M> can take both positive and negative values. 
+Here we apply our approach to the positive and the negative parts separately.  More precisely, we define 
+<D>X_+ = \max\{X,0\} \mbox{ and } X_- = -\max\{-X,0\}.</D>
+Note that
+<UL><LI>Both <M>X_+</M>  and <M>X_-</M>  are nonnegative,</LI>
+<LI><M>X = X_+-X_-.</M></LI>
+</UL>
+We already know how to define <M>E(X_+)</M> and <M>E(X_-).</M>  We shall combine them in the obvious way to define <M>E(X):</M>
+<DEFN name="Expectation (general case)">
+<D>E(X) = <CASES>
+E(X_+)-E(X_-)<IF>E(X_+),E(X_-)<\infty</IF>
+\infty<IF>E(X_+)=\infty,~E(X_-)<\infty</IF>
+-\infty<IF>E(X_+)<\infty,~E(X_-)=\infty</IF>
+</CASES>.</D>
+We shall say <M>E(X)</M>  is undefined if <M>E(X_+)=E(X_-)=\infty.</M>
+</DEFN>
+
+<EXR>If <M>X</M>  is a nonnegative random variable, then we have two definitions for <M>E(X).</M> 
+ Check that they match.</EXR>
+
+This expectation is also called the <TERM>Lebesgue integral</TERM>  of <M>X</M>  <TERM>wrt</TERM>  the given probability,
+ and written as <M>\int X\, dP.</M>  However, we shall not use this notation here. 
+
+<HEAD1>How to compute expectation easily?</HEAD1>
+The general definition is not easy to use for computing expectation numerically, except when the random variable is simple.
+ Here we discuss a few other cases where we have alternative (though equivalent) formulae for computing expectation. 
+<HEAD2>Random variables taking countably many values</HEAD2>
+<THM>If <M>X</M>  takes the nonnegative values <M>x_1<x_2<\cdots</M>   with probabilities
+ <M>p_1,p_2,...</M>  where <M>\sum p_i = 1,</M>  then 
+<D>E(X) = \sum p_i x_i.</D>
+</THM>
+<PF>
+To show 
+<D>\sum p_i x_i = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}.</D>
+Let <M>L= \sum_i p_i x_i,</M>  and <M>{\mathcal D}=\{E(U)~:~U\mbox{ simple, }U\leq X\}.</M>
+
+This requires showing two things: 
+<UL><LI><M>L</M>  is an upper bound of <M>{\mathcal D},</M></LI>
+<LI>no number less than <M>L</M>  is an upper bound of <M>{\mathcal D}.</M></LI></UL>
+
+<B>Step 1:</B>  To show
+
+<D>\forall U\in{\mathcal D}~~E(U)\leq L.</D>
+
+Take any  <M>U\in{\mathcal D}</M>  be any simple random variable. 
+
+Let <M>U</M>  take only the values <M>u_1,...,u_k.</M>  
+
+Let <M>p_{ij} = (X=x_i, U=u_j).</M>
+
+Then <M>E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.</M>  
+
+Also <M>L = \sum_i x_i \sum_j
+ p_{ij}=\sum_i  \sum_j x_i p_{ij}=\sum_j \sum_i x_i p_{ij}.</M>
+<HIDE lab="pf"><MSG>[Why?]</MSG><HIDDEN>
+A finite sum can always be interchanged with an infinite sum, when the summands are all nonnegative. For example,
+<D>\sum (a_n+b_n) = \sum a_n + \sum b_n.</D>
+If we write <M>c_{1,n}=a_n</M>  and <M> c_{2,n}=b_n</M>  then this is 
+<D>\sum_n \sum_i c_{i,n} = \sum_i \sum_n c_{i,n}.</D>  
+</HIDDEN></HIDE>
+Now <M>p_{ij}>0\implies u_j\leq x_i.</M>  
+
+Hence <M>\sum_i   u_j p_{ij}\leq \sum_i   x_i p_{ij},</M>  and so <M>\sum_j\sum_i   u_j p_{ij}\leq \sum_j\sum_i   x_i p_{ij}.</M>
+
+Thus, <M>E(U)\leq L,</M>  as required.
+
+<B>Step 2:</B>  Shall show that no <M>L'< L</M>  is an upper bound of <M>{\mathcal D},</M>  i.e.,
+
+<D>\forall L'< L~~\exists U\in{\mathcal D}~~E(U)> L'.</D>  
+
+Let <M>U_n</M>  be the random variable <M>\min\{X,x_n\}.</M>  Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
+
+So <M>U_n\in{\mathcal D}.</M>
+ 
+Also <M>E(U_n)
+ =\sum_{i=1}^n p_i x_i\to L.</M>  
+
+Hence <M>\exists N\in\nn~~E(U_N) > L'.</M>  
+
+Choose this <M>U_N</M>  as our <M>U\in{\mathcal D}.</M>
+
+Since <M>E(U) > L',</M> this completes the proof.
+ </PF>
+
+<EXR>If <M>X</M>  takes the  values <M>x_1,x_2,...</M>  (not necessarily all nonnegative) with probabilities
+ <M>p_1,p_2,...</M>  where <M>\sum p_i = 1</M> and <M>\sum |p_i x_i|<\infty,</M> then 
+<D>E(X) = \sum p_i x_i.</D>
+</EXR>
+<EXR>If <M>X</M>  takes the  values <M>x_1,x_2,...</M>  (not necessarily all nonnegative) with probabilities
+ <M>p_1,p_2,...</M>  where <M>\sum p_i = 1</M> and <M>\sum |p_i x_i|=\infty,</M> then what are the possibilities for <M>E(X):</M> 
+ finite, <M>\infty</M>, <M>-\infty</M>  or undefined? Give one example of each of the possibilities. Prove the impossibility
+ of the other(s).
+</EXR>
+
+<HEAD2>Expectation of a function</HEAD2>
 <EXM>
-Suppose I have a rv that takes values <M>-1,0</M> and <M>1</M>
+Suppose I have a random variable that takes values <M>-1,0</M> and <M>1</M>
 with probabilities <M>0.1, 0.5</M> and <M>0.4,</M> respectively.
 What is <M>E(X^2)?</M>
 <SOLN/>
-Here <M>X^2</M> is a new rv. Call it <M>Y,</M> say. Then <M>Y</M>
+Here <M>X^2</M> is a new random variable. Call it <M>Y,</M> say. Then <M>Y</M>
 takes values <M>0</M> and <M>1</M> with probabilities <M>0.5</M>
 each.
 
@@ -528,21 +685,41 @@ property of absolutely convergent series.
 If <M>X</M> is a degenerate rv (i.e., takes only one value with
 probability 1), then <M>E(X)</M> equals that value.
 </THM>
+<PF>Easy.</PF>
 
-<FNOTE>Here <M>X\leq Y</M> means 
-<D>
-\forall w\in\Omega~~X(w)\leq Y(w).
-</D>
-</FNOTE>
 <THM>
-Let <M>X</M> be a discrete random variable. Let <M>f(x), g(x)</M> be
-functions such that <M>P(f(X)\leq g(X))=1</M> and both <M>E(f(X))</M>
-and <M>E(g(X))</M> exist. Then 
-<M>E(f(X))\leq E(g(X)).</M>
-<P/>
-A similar result holds if <M>P(X\geq f(X))=1.</M>
+Let <M>X, Y</M> be any two random variables (defined on the same probability space) with <M>X\leq Y.</M>
+If <M>E(X)</M>  and <M>E(Y)</M>  are both defined (may be <M>\infty</M>  or <M>-\infty</M>), then
+<M>E(X)\leq E(Y).</M>
 </THM>
+<PF>
+The result is trivial if <M>E(Y)=\infty.</M>  So we shall focus on the <M>E(Y)<\infty</M>  case. 
 
+We had defined expectation in three steps: simple, nonnegative and general. Our proof will accordingly have three steps.
+
+<B>Step 1: Simple:</B>
+
+We have already seen this earlier in this page.
+
+<B>Step 2: Nonnegative:</B>
+
+To show <M>E(X)\leq E(Y),</M>  i.e., 
+<D>\sup\{E(U)~:~U \mbox{ simple}, U\leq X\} \leq \sup\{E(V)~:~V \mbox{ simple}, V\leq Y\}.</D>
+Enough the show that  <M>\{E(U)~:~U \mbox{ simple}, U\leq X\}\seq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.</M>
+
+Take any  simple <M>U\leq X.</M>  Then, since <M>X\leq Y,</M>  we also have <M>U\leq Y.</M>  Hence the result.
+
+<B>Step 3: General:</B>
+
+Let <M>X = X_+-X_-</M>
+ and <M>Y = Y_+-Y_-</M>. 
+
+Since <M>X\leq Y,</M>  we must have <M>X_+\leq Y_+</M>  and <M>Y_-\leq X_-.</M>  
+
+Hence, by step 2, <M>E(X_+)\leq E(Y_+)</M>  and <M>E(Y_-)\leq E(X_-).</M>  
+
+So <M>E(X_+)-E(X_-)\leq E(Y_+)-E(Y_-),</M>  as required.
+</PF>
 An immediate consequence of the above theorems is the following
 theorem.
 
@@ -550,7 +727,9 @@ theorem.
 If <M>X</M> always takes values in <M>[a,b],</M> then <M>E(X)</M>
 must exist finitely, and lie in <M>[a,b].</M>
 </THM>
-
+<PF>
+Easy.
+</PF>
 The condition "<M>X</M> always lies in <M>[a,b]</M>" may be
 written as <M>P(X\in[a,b])=1.</M>
 
@@ -586,7 +765,7 @@ outcome.
 Let <M>X</M> be a discrete rv such that <M>E(X)</M> is defined. If <M>a,b</M> are constants, then <M>E(a+bX) = a+bE(X).</M>
 </THM>
 <PF>
-Trivial.
+Do it yourself. Hint: Here also you need to proceed in three steps: simple, nonnegative, general.
 </PF>
 
 ::<EXR>
@@ -602,6 +781,9 @@ Then <M>E(X+Y)</M> also exists finitely and we have
 E(X+Y) = E(X)+ E(Y).
 </D>
 </THM>
+<PF>
+Another three step proof. Give it a try.
+</PF>
 
 Next we shall need a new concept, that of a convex
 function. Graphically, <M>f(x)</M> is a convex function if its
