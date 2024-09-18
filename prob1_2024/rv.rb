@@ -10,19 +10,22 @@ do not know which of these two constants you are going to get,
 you gain is a variable. Since it varies with chance, we call it
 a <B>random variable</B>.
 <P/>
-Notice that here we have a function from <M>\{head,~tail\}</M>
-to <M>\{10,-20\}</M> defined as 
+Think of this as made of two stages. In the first stage we have a random
+ experiment with <M>\Omega = </M>
+ {Head, Tail}. In the second stage we have a function
+ <M>X:\Omega\to \rr</M>
+defined as 
 <MULTILINE>
-head & \mapsto & 10,\\
-tail & \mapsto & -20.
+X(head) & = & 10,\\
+X(tail) & = & -20.
 </MULTILINE>
 There is nothing random about this <I>function</I>. The randomness comes
 from mechanism that decides what gois <I>into</I> this: head or tail?
 <P/>
 We use this idea to define random variables mathematically. We
 start with a random experiment which is the provider of the
-randomness. Then any function defined on its sample space is
-called a random variable. To be precise, it is the function
+randomness. Then any (real valued) function defined on its sample space is
+called a random variable. In probability theory, it is the function
 (which is not at all random) that is called the random
 variable. Thus, if in the above coin toss example, we replace the
 fair coin with a biased coin, but keep the payment rules the
@@ -54,59 +57,41 @@ the problem now reduces to finding <M>P(\{head\}),</M> which is <M>[[12]].</M>
 
 The general case, then, looks like this: We have a random
 experiment with sample space <M>\Omega.</M> A random
-variable <M>X</M> is a function <M>X:\Omega\to S</M>
-where <M>S</M> is any codomain of our choice. If some one gives
-us some <M>A\seq S</M> and asks us to find <M>P(X\in A),</M> we
+variable <M>X</M> is a function <M>X:\Omega\to \rr</M>
+where <M>\rr</M> is any codomain of our choice. If some one gives
+us some <M>A\seq \rr</M> and asks us to find <M>P(X\in A),</M> we
 are to actually find 
 <D>
 P(#({#{w\in\Omega~:~X(w)\in A}#})#).
 </D>
 Remember that this is the <I>definition</I> of <M>P(X\in A).</M>
 The complicated looking set <M>{#{w\in\Omega~:~X(w)\in A}#}</M> is
-often abbreviated to <M>\{X\in A\}</M> or <M>X ^{-1} (A).</M><FNOTE>Earlier we had
-talked about "good" sets and "bad" sets. What if someone asks us
+often abbreviated to <M>\{X\in A\}</M> or <M>X ^{-1} (A).</M>
+
+<HEAD3>A little measure theory again</HEAD3>
+Earlier we had
+talked about "good" sets and "bad" sets. The "good" sets constitute a <M>\sigma</M>-algebra. 
+
+What if someone asks us
 to find <M>P(X\in A),</M> where <M>X ^{-1} (A)</M> is a "bad"
 subset of <M>\Omega?</M> Well, the answer is: We shall
 simply refuse to find <M>P(X\in A)</M> for such an <M>A.</M> We shall
 call such an <M>A</M> a "bad" subset of <M>S</M>
 (w.r.t. this <M>X</M>). A subset <M>A\seq S</M> is "good" or
-"bad" according as <M>X ^{-1} (A)</M> is "good" or "bad" in <M>\Omega.</M></FNOTE>
+"bad" according as <M>X ^{-1} (A)</M> is "good" or "bad" in <M>\Omega.</M>
 
-<EXM>
-A fair die is rolled. I shall pay you Rs 10 if the die shows an
-even number, you'll pay me Rs 20 otherwise. Again, let's denote
-by <M>X</M> your gain (in Rs). Express <M>X</M> as a function
-(as codomain you can take <M>\rr</M> or <M>\cc</M> or <M>\zz</M>
-or <M>\{10,-20\}</M> or any other superset of <M>\{10,-20\}</M>).
-Let <M>A = \{10\}.</M> Find <M>X ^{-1} (A)</M> and using it
-find <M>P(X\in A).</M> 
-<SOLN/>
-Here <M>X ^{-1}(A) = \{2,4,6\}.</M> So <M>P(X=10) = P(\{2,4,6\}) = [[16]]+[[16]]+[[16]] = [[12]].</M>
-</EXM>
+Now intervals are very useful  subsets of <M>\rr.</M> It would be a pity if an interval turns out to be a "bad" subset.
+So we work with only those <M>X:\Omega\to\rr</M>  where for all intervals <M>A</M> , the set <M>X^{-1}(A)</M>  is a
+ good subset of <M>\Omega.</M>   Such functions <M>X</M>  are called <TERM>Borel measurable</TERM>. 
 
-In each of  these examples we had a random variable <M>X</M> that
-took only two values <M>10</M> and <M>-20.</M> Which <M>X</M> do
-you think is more profitable for you? Well, both are actually the
-same so far as profit goes. Understand this carefully: the two
-different <M>X</M>'s are completely different as functions (their
-domains are also different), but in terms of the behaviour of the
-output of the functions they are identical. This behaviour is
-called the <B>distribution</B> of the random variable. It is the
-distribution which we care about mostly in real applications. So
-we often start a discussion as 
-<Q>
-Let <M>X</M> be a random variable taking values <M>10</M>
-and <M>-20</M> each with probability <M>[[12]].</M>
-</Q>
-We understand implicitly that there is <I>some</I> random experiment (say
-the coin toss experiment or the die roll experiment or something
-similar) and <I>some</I> function from its sample space
-to <M>\{10,-20\}</M> such that the distribution is as
-specified. In this
-course, we shall often omit  the sample space or
-the function.
+<DEFN name="Random variable">
+Let <M>\Omega</M> be a  non-empty set equipped with a <M>\sigma</M>-algebra <M> {\mathcal F}.</M> 
+ Then by a <TERM>random variable</TERM>  we understand a map <M>X:\Omega\to\rr</M>  such that for
+ all intervals <M>A\seq\rr</M>  we have <M>X^{-1}(A)\in{\mathcal F}.</M> 
+</DEFN>
 
-<HEAD2>Combining different random variables</HEAD2>
+<HEAD1>New random variables from old ones</HEAD1>
+<HEAD2>Addition, multiplication etc</HEAD2>
 Sometimes we need to combine the values of two or more random
 variables. Say <M>X,Y</M> are both random variables and we want
 to compute <M>X+Y.</M> Since random variables are actually
@@ -133,35 +118,7 @@ and <M>Y(head,4) = 4-3 = 1.</M>
 <P/>
 Now it is meaningful to talk about <M>X+Y.</M>
 </EXM>
-
-<HEAD1>Different types of random variables</HEAD1>
-Depending on the distribution, a random variable may be of 3
-types:
-<UL>
-<LI><B>Discrete:</B> These random variables take only countably
-many (finite/infinitely many) values.</LI>
-<LI><B>Continuous:</B> If a random variable takes values in some
-set <M>S</M> such that <M>\forall a\in S~~P(X=a)=0,</M> then we
-call it a continuous random variable. Notice that
-a continuous
-random variable is not defined as a random variable that takes a
-"continuous stretch of values". Howeever, most continuous random
-variables do indeed take all values in an interval, e.g., height
-of a randomly selected person.</LI>
-<LI><B>Neither discrete nor continuous:</B> These take
-uncountably many values and for at least one value <M>a</M> we
-have <M>P(X=a)>0.</M> </LI>
-</UL>
-In this course we shall focus on discrete random variables only.
-
-<P/>
-The distribution of a discrete random variable is completely
-specified by the countable set of values it can take, and the
-probability with which it takes each of those values. These two
-specifications together are called the <B>probability mass
-function (PMF)</B> of the rv. 
-
-<HEAD1>Functions of a random variable</HEAD1> 
+<HEAD2>Functions of a random variable</HEAD2> 
 Any function of a random variable is again a random
 variable. This is immediate from the definition of a random
 variable (since composition of two functions is again a
@@ -169,17 +126,69 @@ function).
 <P/>
 Notice that any function of a discrete random variable must again
 be a discrete random variable. 
+<HEAD1>Distribution of a random variable</HEAD1>
+Consider another gambling game. 
+<EXM>
+A fair die is rolled. I shall pay you Rs 10 if the die shows an
+even number, you'll pay me Rs 20 otherwise. Again, let's denote
+by <M>X</M> your gain (in Rs). Express <M>X</M> as a function from <M>\{1,2,3,4,5,6\}</M>  to <M>\rr.</M>
+Let <M>A = \{10\}.</M> Find <M>X ^{-1} (A)</M> and using it
+find <M>P(X\in A).</M> 
+<SOLN/>
+Here <M>X ^{-1}(A) = \{2,4,6\}.</M> So <M>P(X=10) = P(\{2,4,6\}) = [[16]]+[[16]]+[[16]] = [[12]].</M>
+</EXM>
 
-<HEAD1>CDF</HEAD1>
+In each of  these examples we had a random variable <M>X</M> that
+took only two values <M>10</M> and <M>-20.</M> Which <M>X</M> do
+you think is more profitable for you? Well, both are actually the
+same so far as profit goes. Understand this carefully: the two
+different <M>X</M>'s are completely different as functions (their
+domains are also different), but in terms of the "behaviour of the
+output" of the functions they are identical. This "behaviour of the output" is
+called the <TERM>distribution</TERM> of the random variable. It is the
+distribution which we care about mostly in real applications. So
+we often start a discussion as 
+<Q>
+Let <M>X</M> be a random variable taking values <M>10</M>
+and <M>-20</M> each with probability <M>[[12]].</M>
+</Q>
+We understand implicitly that there is <I>some</I> random experiment (say
+the coin toss experiment or the die roll experiment or something
+similar) and <I>some</I> function from its sample space
+to <M>\rr</M> such that the distribution is as
+specified. In this
+course, we shall often omit  the sample space or
+the function.
+
+<DEFN name="Distribution of a random variable">
+By the <TERM>distribution</TERM> of a random variable <M>X</M>  we mean any statement that gives us <M>P(X\in B)</M>  for
+ any "good" set <M>B\seq\rr.</M>  
+</DEFN>
+
+How do we specify the distribution of a random variable? Do we make a list of all the "good" sets, and label them with
+their probabilities? That would woul be insane, because there are uncountaly infinitely many "good" sets. 
+It turns out that specifying the probabilities of intervals like <M>(-\infty, a]</M>  is enough.
+ This is what we discuss next.  
+<HEAD2>CDF</HEAD2>
 <DEFN>
 Let <M>X</M> be any real valued random variable. Then
 its <B>(cumulative) distribution function (CDF)</B> is defined as
 the function <M>F:\rr\to[0,1]</M> where <M>\forall x\in\rr~~F(x) = P(X\leq x).</M>
 </DEFN>
-This definition holds for <I>all</I> real-valued random variables
-(not just the discrete ones).
-<P/>
-The following properties are easy to prove.
+
+<EXM>Consider the gambling game that tosses a coin, and has payoffs <M>-10</M>  for head, and
+ <M>20</M>  for tail. Let <M>X</M>  denote the payoff. What is its CDF?
+<SOLN/>
+Here <M>X</M>  takes only two values <M>-10</M>  and 20, each with probability <M>[[12]].</M>  
+
+So  <M>F(a) = P(X\leq a) = 0</M>  whenever <M>a<-10.</M>  
+
+But <M>F(-10)=P(X\leq -10) = [[12]].</M>  Indeed, as long as <M>a\in[-10,20)</M>  we have <M>F(a) = [[12]].</M> 
+
+At <M>a=20,</M>  we have <M>F(a) = 1.</M>  In fact, <M>\forall a\geq 20~~F(a) = 1.</M>  So the graph looks like this:
+<CIMG web="cdfexm.png"/> 
+</EXM>
+The following properties of a CDF are more or less obvious. 
 
 <THM>
 Let <M>F(x)</M> be the CDF of some rv <M>X.</M> Then 
@@ -277,8 +286,6 @@ Let <M>A_n</M> be the event that <M>{*{X\leq a+[[1n]]}*}</M> for <M>n\in\nn.</M>
 
 Also let <M>A</M> be the event that <M>\{X\leq a\}.</M>
 <P/>
-<HIDE lab="try"><MSG>Try the rest yourself.</MSG>
-<HIDDEN>
 Then <M>A_1\supseteq A_2\supseteq\cdots</M> and <M>\cap A_n = A.</M>
 <P/>
 So <M>P(A_n)\to P(A)</M> and hence <M>F(*(a+[[1n]])*)\to F(a).</M>
@@ -293,8 +300,6 @@ Since <M>F(\cdot)</M> is nondecreasing, hence <M>F(a)\leq F(x)
 \leq F(a+\delta) < F(a)+ \epsilon.</M>
 <P/>
 So <M>|F(a+x)-F(a)|<\epsilon,</M> as required.
-</HIDDEN>
-</HIDE>
 </LI>
 </OL>
 </PF>
@@ -391,6 +396,37 @@ continuous everywhere.
 Obvious from the last theorem.
 </PF>
 
+
+
+<HEAD2>Different types of random variables</HEAD2>
+Depending on the distribution, a random variable may be of 3
+types:
+<UL>
+<LI><B>Discrete:</B> These random variables take only countably
+many (finite/infinitely many) values.</LI>
+<LI><B>Continuous:</B> If a random variable takes values in some
+set <M>S</M> such that <M>\forall a\in S~~P(X=a)=0,</M> then we
+call it a continuous random variable. Notice that
+a continuous
+random variable is not defined as a random variable that takes a
+"continuous stretch of values". However, most continuous random
+variables in practice do indeed take all values in an interval, e.g., height
+of a randomly selected person.</LI>
+<LI><B>Neither discrete nor continuous:</B> These take
+uncountably many values and for at least one value <M>a</M> we
+have <M>P(X=a)>0.</M> </LI>
+</UL>
+In this course we shall focus on discrete random variables only.
+
+<P/>
+The distribution of a discrete random variable is completely
+specified by the countable set of values it can take, and the
+probability with which it takes each of those values. These two
+specifications together are called the <B>probability mass
+function (PMF)</B> of the rv. 
+
+
+
 <HEAD1>PMF</HEAD1>
 
 <DEFN name="Probability Mass Function (PMF)">
@@ -402,9 +438,7 @@ function (PMF)</B> of <M>X</M> is defined as <M>p(x)</M> where
 \forall i~~p(x_i) = p_i.
 </D>
 </DEFN>
-There is no clear guideline as to the choice of the domain of the
-PMF, except that it must be a superset of <M>\{x_1,x_2,...\}.</M>
-If you take the domain to be a strict superset, then you define
+We take the domain to be the entire <M>\rr.</M>  So  we define
 the PMF as 
 <D>
 p(x) = <CASES>p_i<IF>x=x_i</IF>0<ELSE/></CASES>.
@@ -419,7 +453,8 @@ which the PMF is
 p(x) = <CASES>p_i<IF>x=x_i</IF>0<ELSE/></CASES>.
 </D>
 
-The CDF of a discrete random variable is like a step function. 
+The CDF of a discrete random variable is a step function like the one we saw in our example.
+
 <HEAD1>Expectation of a random variable</HEAD1>
 
 For many random variables we see a striking example of

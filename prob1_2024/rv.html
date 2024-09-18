@@ -152,17 +152,26 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#What they are">What they are</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#A little measure theory again">A little measure theory again</a>
+</li>
+<li>
+<a href="#New random variables from old ones">New random variables from old ones</a>
+</li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Combining different random variables">Combining different random variables</a>
+<a href="#Addition, multiplication etc">Addition, multiplication etc</a>
 </li>
-<li>
-<a href="#Different types of random variables">Different types of random variables</a>
-</li>
-<li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Functions of a random variable">Functions of a random variable</a>
 </li>
 <li>
+<a href="#Distribution of a random variable">Distribution of a random variable</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#CDF">CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Different types of random variables">Different types of random variables</a>
 </li>
 <li>
 <a href="#PMF">PMF</a>
@@ -219,19 +228,22 @@ do not know which of these two constants you are going to get,
 you gain is a variable. Since it varies with chance, we call it
 a <b>random variable</b>.
 <p></p>
-Notice that here we have a function from $\{head,~tail\}$
-to $\{10,-20\}$ defined as 
+Think of this as made of two stages. In the first stage we have a random
+ experiment with $\Omega = $
+ {Head, Tail}. In the second stage we have a function
+ $X:\Omega\rightarrow {\mathbb R}$
+defined as 
 $$\begin{eqnarray*}
-head &amp; \mapsto &amp; 10,\\
-tail &amp; \mapsto &amp; -20.
+X(head) &amp; = &amp; 10,\\
+X(tail) &amp; = &amp; -20.
 \end{eqnarray*}$$
 There is nothing random about this <i>function</i>. The randomness comes
 from mechanism that decides what gois <i>into</i> this: head or tail?
 <p></p>
 We use this idea to define random variables mathematically. We
 start with a random experiment which is the provider of the
-randomness. Then any function defined on its sample space is
-called a random variable. To be precise, it is the function
+randomness. Then any (real valued) function defined on its sample space is
+called a random variable. In probability theory, it is the function
 (which is not at all random) that is called the random
 variable. Thus, if in the above coin toss example, we replace the
 fair coin with a biased coin, but keep the payment rules the
@@ -268,71 +280,50 @@ the problem now reduces to finding $P(\{head\}),$ which is $\frac 12.$
 <p></p>
 The general case, then, looks like this: We have a random
 experiment with sample space $\Omega.$ A random
-variable $X$ is a function $X:\Omega\rightarrow S$
-where $S$ is any codomain of our choice. If some one gives
-us some $A\subseteq S$ and asks us to find $P(X\in A),$ we
+variable $X$ is a function $X:\Omega\rightarrow {\mathbb R}$
+where ${\mathbb R}$ is any codomain of our choice. If some one gives
+us some $A\subseteq {\mathbb R}$ and asks us to find $P(X\in A),$ we
 are to actually find 
 $$
 P\big(\big\{w\in\Omega~:~X(w)\in A\big\}\big).
 $$
 Remember that this is the <i>definition</i> of $P(X\in A).$
 The complicated looking set $\big\{w\in\Omega~:~X(w)\in A\big\}$ is
-often abbreviated to $\{X\in A\}$ or $X ^{-1} (A).$<table align="right" width="20%" border="1">
-<tr>
-<td bgcolor="pink">Earlier we had
-talked about "good" sets and "bad" sets. What if someone asks us
+often abbreviated to $\{X\in A\}$ or $X ^{-1} (A).$
+<p></p>
+
+<h3><a
+name="A little measure theory again">A little measure theory again</a></h3>
+Earlier we had
+talked about "good" sets and "bad" sets. The "good" sets constitute a $\sigma$-algebra. 
+<p></p>
+What if someone asks us
 to find $P(X\in A),$ where $X ^{-1} (A)$ is a "bad"
 subset of $\Omega?$ Well, the answer is: We shall
 simply refuse to find $P(X\in A)$ for such an $A.$ We shall
 call such an $A$ a "bad" subset of $S$
 (w.r.t. this $X$). A subset $A\subseteq S$ is "good" or
-"bad" according as $X ^{-1} (A)$ is "good" or "bad" in $\Omega.$</td>
-</tr>
-</table>
+"bad" according as $X ^{-1} (A)$ is "good" or "bad" in $\Omega.$
+<p></p>
+Now intervals are very useful  subsets of ${\mathbb R}.$ It would be a pity if an interval turns out to be a "bad" subset.
+So we work with only those $X:\Omega\rightarrow{\mathbb R}$  where for all intervals $A$ , the set $X^{-1}(A)$  is a
+ good subset of $\Omega.$   Such functions $X$  are called <b><font color="red" size="40">Borel measurable</font></b>. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Random variable</b></legend>
+Let $\Omega$ be a  non-empty set equipped with a $\sigma$-algebra $ {\mathcal F}.$ 
+ Then by a <b><font color="red" size="40">random variable</font></b>  we understand a map $X:\Omega\rightarrow{\mathbb R}$  such that for
+ all intervals $A\subseteq{\mathbb R}$  we have $X^{-1}(A)\in{\mathcal F}.$ 
+</fieldset>
 
 <p></p>
 
-<p>
-<b>EXAMPLE 2:</b>&nbsp;
-A fair die is rolled. I shall pay you Rs 10 if the die shows an
-even number, you'll pay me Rs 20 otherwise. Again, let's denote
-by $X$ your gain (in Rs). Express $X$ as a function
-(as codomain you can take ${\mathbb R}$ or ${\mathbb C}$ or ${\mathbb Z}$
-or $\{10,-20\}$ or any other superset of $\{10,-20\}$).
-Let $A = \{10\}.$ Find $X ^{-1} (A)$ and using it
-find $P(X\in A).$ 
-<p></p>
-<b>SOLUTION:</b>
-Here $X ^{-1}(A) = \{2,4,6\}.$ So $P(X=10) = P(\{2,4,6\}) = \frac 16+\frac 16+\frac 16 = \frac 12.$
- ■
-</p>
-
-<p></p>
-In each of  these examples we had a random variable $X$ that
-took only two values $10$ and $-20.$ Which $X$ do
-you think is more profitable for you? Well, both are actually the
-same so far as profit goes. Understand this carefully: the two
-different $X$'s are completely different as functions (their
-domains are also different), but in terms of the behaviour of the
-output of the functions they are identical. This behaviour is
-called the <b>distribution</b> of the random variable. It is the
-distribution which we care about mostly in real applications. So
-we often start a discussion as 
-<blockquote>
-Let $X$ be a random variable taking values $10$
-and $-20$ each with probability $\frac 12.$
-</blockquote>
-We understand implicitly that there is <i>some</i> random experiment (say
-the coin toss experiment or the die roll experiment or something
-similar) and <i>some</i> function from its sample space
-to $\{10,-20\}$ such that the distribution is as
-specified. In this
-course, we shall often omit  the sample space or
-the function.
-<p></p>
+<h1><a
+name="New random variables from old ones">New random variables from old ones</a></h1>
 
 <h2><a
-name="Combining different random variables">Combining different random variables</a></h2>
+name="Addition, multiplication etc">Addition, multiplication etc</a></h2>
 Sometimes we need to combine the values of two or more random
 variables. Say $X,Y$ are both random variables and we want
 to compute $X+Y.$ Since random variables are actually
@@ -342,7 +333,7 @@ needs careful handling as the following example shows.
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;
+<b>EXAMPLE 2:</b>&nbsp;
 I am playing against two gamblers simultaneosly. One gambler
 tosses a fair coin and pays Rs 10 for a head and  takes Rs 20 for  a
 tail. The other gambler takes Rs 3 from me, rolls a fair die and pays me as many
@@ -364,47 +355,8 @@ Now it is meaningful to talk about $X+Y.$
  ■
 </p>
 
-<p></p>
-
-<h1><a
-name="Different types of random variables">Different types of random variables</a></h1>
-Depending on the distribution, a random variable may be of 3
-types:
-<ul>
-
-<li>
-<b>Discrete:</b> These random variables take only countably
-many (finite/infinitely many) values.</li>
-
-<li>
-<b>Continuous:</b> If a random variable takes values in some
-set $S$ such that $\forall a\in S~~P(X=a)=0,$ then we
-call it a continuous random variable. Notice that
-a continuous
-random variable is not defined as a random variable that takes a
-"continuous stretch of values". Howeever, most continuous random
-variables do indeed take all values in an interval, <i>e.g.</i>, height
-of a randomly selected person.</li>
-
-<li>
-<b>Neither discrete nor continuous:</b> These take
-uncountably many values and for at least one value $a$ we
-have $P(X=a)&gt;0.$ </li>
-
-</ul>
-In this course we shall focus on discrete random variables only.
-<p></p>
-
-<p></p>
-The distribution of a discrete random variable is completely
-specified by the countable set of values it can take, and the
-probability with which it takes each of those values. These two
-specifications together are called the <b>probability mass
-function (PMF)</b> of the rv. 
-<p></p>
-
-<h1><a
-name="Functions of a random variable">Functions of a random variable</a></h1> 
+<h2><a
+name="Functions of a random variable">Functions of a random variable</a></h2> 
 Any function of a random variable is again a random
 variable. This is immediate from the definition of a random
 variable (since composition of two functions is again a
@@ -412,10 +364,59 @@ function).
 <p></p>
 Notice that any function of a discrete random variable must again
 be a discrete random variable. 
+<h1><a
+name="Distribution of a random variable">Distribution of a random variable</a></h1>
+Consider another gambling game. 
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+A fair die is rolled. I shall pay you Rs 10 if the die shows an
+even number, you'll pay me Rs 20 otherwise. Again, let's denote
+by $X$ your gain (in Rs). Express $X$ as a function from $\{1,2,3,4,5,6\}$  to ${\mathbb R}.$
+Let $A = \{10\}.$ Find $X ^{-1} (A)$ and using it
+find $P(X\in A).$ 
+<p></p>
+<b>SOLUTION:</b>
+Here $X ^{-1}(A) = \{2,4,6\}.$ So $P(X=10) = P(\{2,4,6\}) = \frac 16+\frac 16+\frac 16 = \frac 12.$
+ ■
+</p>
+
+<p></p>
+In each of  these examples we had a random variable $X$ that
+took only two values $10$ and $-20.$ Which $X$ do
+you think is more profitable for you? Well, both are actually the
+same so far as profit goes. Understand this carefully: the two
+different $X$'s are completely different as functions (their
+domains are also different), but in terms of the "behaviour of the
+output" of the functions they are identical. This "behaviour of the output" is
+called the <b><font color="red" size="40">distribution</font></b> of the random variable. It is the
+distribution which we care about mostly in real applications. So
+we often start a discussion as 
+<blockquote>
+Let $X$ be a random variable taking values $10$
+and $-20$ each with probability $\frac 12.$
+</blockquote>
+We understand implicitly that there is <i>some</i> random experiment (say
+the coin toss experiment or the die roll experiment or something
+similar) and <i>some</i> function from its sample space
+to ${\mathbb R}$ such that the distribution is as
+specified. In this
+course, we shall often omit  the sample space or
+the function.
 <p></p>
 
-<h1><a
-name="CDF">CDF</a></h1>
+<fieldset>
+<legend><b>Definition: Distribution of a random variable</b></legend>
+By the <b><font color="red" size="40">distribution</font></b> of a random variable $X$  we mean any statement that gives us $P(X\in B)$  for
+ any "good" set $B\subseteq{\mathbb R}.$  
+</fieldset>
+
+<p></p>
+How do we specify the distribution of a random variable? Do we make a list of all the "good" sets, and label them with
+their probabilities? That would woul be insane, because there are uncountaly infinitely many "good" sets. 
+It turns out that specifying the probabilities of intervals like $(-\infty, a]$  is enough.
+ This is what we discuss next.  
+<h2><a
+name="CDF">CDF</a></h2>
 
 <fieldset>
 <legend><b>Definition: </b></legend>
@@ -423,10 +424,34 @@ Let $X$ be any real valued random variable. Then
 its <b>(cumulative) distribution function (CDF)</b> is defined as
 the function $F:{\mathbb R}\rightarrow[0,1]$ where $\forall x\in{\mathbb R}~~F(x) = P(X\leq x).$
 </fieldset>
-This definition holds for <i>all</i> real-valued random variables
-(not just the discrete ones).
+
 <p></p>
-The following properties are easy to prove.
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Consider the gambling game that tosses a coin, and has payoffs $-10$  for head, and
+ $20$  for tail. Let $X$  denote the payoff. What is its CDF?
+<p></p>
+<b>SOLUTION:</b>
+Here $X$  takes only two values $-10$  and 20, each with probability $\frac 12.$  
+<p></p>
+So  $F(a) = P(X\leq a) = 0$  whenever $a&lt;-10.$  
+<p></p>
+But $F(-10)=P(X\leq -10) = \frac 12.$  Indeed, as long as $a\in[-10,20)$  we have $F(a) = \frac 12.$ 
+<p></p>
+At $a=20,$  we have $F(a) = 1.$  In fact, $\forall a\geq 20~~F(a) = 1.$  So the graph looks like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cdfexm.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center> 
+ ■
+</p>
+The following properties of a CDF are more or less obvious. 
 <p></p>
 
 <fieldset>
@@ -549,9 +574,6 @@ Let $A_n$ be the event that $\left\{X\leq a+\frac 1n\right\}$ for $n\in{\mathbb 
 <p></p>
 Also let $A$ be the event that $\{X\leq a\}.$
 <p></p>
-
-<a href="javascript:hideShow('try');">Try the rest yourself.</a>
-<div id="try" style="display:none;background-color:#ffcccc;">
 Then $A_1\supseteq A_2\supseteq\cdots$ and $\cap A_n = A.$
 <p></p>
 So $P(A_n)\rightarrow P(A)$ and hence $F\left(a+\frac 1n\right)\rightarrow F(a).$
@@ -566,8 +588,6 @@ Since $F(\cdot)$ is nondecreasing, hence $F(a)\leq F(x)
 \leq F(a+\delta) &lt; F(a)+ \epsilon.$
 <p></p>
 So $|F(a+x)-F(a)|&lt;\epsilon,$ as required.
-</div>
-
 </li>
 
 </ol>
@@ -697,6 +717,43 @@ Obvious from the last theorem.
 
 <p></p>
 
+<h2><a
+name="Different types of random variables">Different types of random variables</a></h2>
+Depending on the distribution, a random variable may be of 3
+types:
+<ul>
+
+<li>
+<b>Discrete:</b> These random variables take only countably
+many (finite/infinitely many) values.</li>
+
+<li>
+<b>Continuous:</b> If a random variable takes values in some
+set $S$ such that $\forall a\in S~~P(X=a)=0,$ then we
+call it a continuous random variable. Notice that
+a continuous
+random variable is not defined as a random variable that takes a
+"continuous stretch of values". However, most continuous random
+variables in practice do indeed take all values in an interval, <i>e.g.</i>, height
+of a randomly selected person.</li>
+
+<li>
+<b>Neither discrete nor continuous:</b> These take
+uncountably many values and for at least one value $a$ we
+have $P(X=a)&gt;0.$ </li>
+
+</ul>
+In this course we shall focus on discrete random variables only.
+<p></p>
+
+<p></p>
+The distribution of a discrete random variable is completely
+specified by the countable set of values it can take, and the
+probability with which it takes each of those values. These two
+specifications together are called the <b>probability mass
+function (PMF)</b> of the rv. 
+<p></p>
+
 <h1><a
 name="PMF">PMF</a></h1>
 
@@ -712,9 +769,7 @@ $$
 \forall i~~p(x_i) = p_i.
 $$
 </fieldset>
-There is no clear guideline as to the choice of the domain of the
-PMF, except that it must be a superset of $\{x_1,x_2,...\}.$
-If you take the domain to be a strict superset, then you define
+We take the domain to be the entire ${\mathbb R}.$  So  we define
 the PMF as 
 $$
 p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
@@ -729,7 +784,9 @@ $$
 p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
 $$
 <p></p>
-The CDF of a discrete random variable is like a step function. 
+The CDF of a discrete random variable is a step function like the one we saw in our example.
+<p></p>
+
 <h1><a
 name="Expectation of a random variable">Expectation of a random variable</a></h1>
 
@@ -1051,7 +1108,7 @@ $$E(X) = \sum p_i x_i.$$
 name="Expectation of a function">Expectation of a function</a></h2>
 
 <p>
-<b>EXAMPLE 4:</b>&nbsp;
+<b>EXAMPLE 5:</b>&nbsp;
 Suppose I have a random variable that takes values $-1,0$ and $1$
 with probabilities $0.1, 0.5$ and $0.4,$ respectively.
 What is $E(X^2)?$
@@ -1201,7 +1258,7 @@ that $E(X)=\infty.$
 <p></p>
 
 <p>
-<b>EXAMPLE 5:</b>&nbsp;
+<b>EXAMPLE 6:</b>&nbsp;
 It is a standard fact that $\sum\frac{1}{n^2}&lt;\infty.$ Let the
 sum be $c.$ (The exact value of $c$
 which is $\frac{\pi^2}{6},$ is of no importance here).
@@ -1345,7 +1402,7 @@ Often we have to find $E(X)$  where $X$  is the count of something, <i>e.g.</i>,
 <p></p>
 
 <p>
-<b>EXAMPLE 6:</b>&nbsp;We have a ring of 20 lamps. A wind blows and a random subset of lamps go out. Find
+<b>EXAMPLE 7:</b>&nbsp;We have a ring of 20 lamps. A wind blows and a random subset of lamps go out. Find
  the expected number of singleton lights (<i>i.e.</i>, lighted lamps with both neighbours off).
 <center>
 <table width="100%">
