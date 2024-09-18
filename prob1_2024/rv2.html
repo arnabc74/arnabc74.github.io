@@ -30,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -72,13 +72,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   });
 </script>
 <style>
-body {
+body,table {
   margin: 0;
   font-size: 40;
   //background: #000;
   //color: #fff;
 }
 
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
 .sticky {
   position: fixed;
@@ -97,6 +101,7 @@ body {
 }
 
 .scrpt {
+  margin:10px;
   border-left: 5px solid black;
 }
 
@@ -163,53 +168,69 @@ function myFunction() {
 
 <h1><a
 name="Finite existence of $E(X)$">Finite existence of $E(X)$</a></h1>
-We know from the definition of expectation that it exists
-finitely if and only if the sum defining the expectation converges absolutely. It
-sometimes helps to know some sufficient conditions for this that
-are easier to check.
+We know from the definition of expectation that it may come in four varieties: it may be finite, or $\infty$  or $-\infty$ 
+ or undefined. 
+The finite case is the most useful, and it 
+sometimes helps to know some sufficient conditions for this.
 <p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $X$ takes only finitely many values,
-then $E(X)$ must exist finitely. 
+If $X$ is simple, 
+then $E(X)$ must be finite. 
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-No infinite series involved here at all. Just a finite sum!
+Goes without saying!
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Non-negative random variables have the advantage that their expectation is always defined (though may be $\infty$). Now,
+ from any random variable $X$  we can easily manufacture a non-negative random variable, viz, $|X|.$  It is 
+good to be able to relate $E(X)$  with $E(|X|).$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$E(|X|)$  is finite if and only if $E(X)$  is finite. 
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+We define $X_+, X_-$  as usual. 
+<p></p>
+Then $X = X_+-X_-$  and $|X| = X_++X_-$. 
+<p></p>
+Then finiteness of $E(|X|)$  is equivalent to finiteness of both  $E(X_+), E(X_-).$  
+<p></p>
+Again, finiteness of $E(X)$  is equivalent to finiteness of both  $E(X_+), E(X_-).$  
+<p></p>
+Hence the result.
 <b><i>[QED]</i></b>
 </p>
 
 <p></p>
 
-<table align="right" width="20%" border="1">
-<tr>
-<td bgcolor="pink">We shall use a concept from real analysis
-called <a href="comptest.html">the comparison test</a>
-repeatedly below. Click on the link to learn about it.</td>
-</tr>
-</table>
+<p>
+<b>EXERCISE 1:</b>&nbsp;If $E(|X|)=\infty,$  then what can you say about $E(X)?$
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1">May be $\infty$  or $-\infty$  or undefined.</div></p>
+
+</p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $X$ is bounded,
-then $E(X)$ must exist finitely. 
+Let $X,Y$ be random variables defined on the same probability space. Let $|X|\leq|Y|.$
+  If $E(Y)$  is finite, then $E(X)$  must also be finite. 
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-Let $X$ take values $x_1,x_2,...$ with
-probabilities $p_1,p_2,...$ We are assumin $\exists
-B\in{\mathbb R}~~\forall i~~|x_i|\leq B.$
-<p></p>
-So 
-$$
-\sum_n |x_n|p_n\leq \sum_n B p_n = B\sum p_n.
-$$
-We know the $\sum p_n$ converges (to $1$). 
-<p></p>
-So, by comparison test, $\sum |x_n|p_n$ must converge.
+Since $E(Y)$  is finite, hence  $E(|Y|)$  is finite. So $E(|X|)\leq E(|Y|)$ 
+ is also finite. Hence $E(X)$  is finite. 
 <b><i>[QED]</i></b>
 </p>
 
@@ -217,31 +238,13 @@ So, by comparison test, $\sum |x_n|p_n$ must converge.
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $X$ be a random variable and  $f,g$ be two
-functions such that $P(|f(x)|\leq |g(X)|) =1$
-and $E|g(X)|&lt;\infty.$ 
-Then $E(f(X))$ must also have finite expectation.
+Let $X,Y$  be random variables defined on the same probability space. Let $E(X)$  and $E(Y)$  both be finite.
+ Then $E(\max\{X,Y\})$  must also be finite.
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-Use comparison test between $\sum |f(x_n)|p_n$ and $\sum |g(x_n)|p_n.$
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $f,g:{\mathbb R}\rightarrow{\mathbb R}$ be such that $E(f(X))$
-and $E(g(X))$ both exist finitely.
-Let $h:{\mathbb R}\rightarrow{\mathbb R}$ be defined as $h(x) = \max\{f(x),g(x)\}.$
-Then $E(h(X))$ must also exist finitely.
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Apply comparison test between $\sum \max\{f(x_n)p_n,g(x_n)p_n\}$ and $\sum (f(x_n)+g(x_n))p_n.$
+ Do it yourself.
 <b><i>[QED]</i></b>
 </p>
 
@@ -261,17 +264,46 @@ last theorem.
 </p>
 
 <p></p>
+The following theorem often proves very useful. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$  be a non-negative random variable. Let $\epsilon&gt;0.$  Then 
+$$E(X)\geq \epsilon P(X\geq\epsilon).$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/exeps.png"></th>
+</tr>
+<tr>
+<th>Look at this diagram and see if you can prove the theorem.</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
 
 <h1><a
 name="Variance">Variance</a></h1>
-Of course, a random variable is random, and so may differ from
+A random variable is, well,  random. So it may very well differ from
 its expectation. By how much? A lot or a little? We can use
 expectation to find that out. 
 <p></p>
 
 <fieldset>
 <legend><b>Definition: Variance</b></legend>
-If $E|X|&lt;\infty,$ the we define <b>variance</b> of $X$ as
+If $E|X|&lt;\infty,$ then we define <b>variance</b> of $X$ as
 $$
 V(X) = E\big[ (X-E(X))^2 \big].
 $$
