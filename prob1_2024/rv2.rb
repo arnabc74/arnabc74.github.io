@@ -65,8 +65,8 @@ last theorem.
 
 The following theorem often proves very useful. 
 
-<THM>
-Let <M>X</M>  be a non-negative random variable. Let <M>\epsilon>0.</M>  Then 
+<THM name="Markov inequality">
+Let <M>X</M>  be any non-negative random variable. Let <M>\epsilon>0.</M>  Then 
 <D>E(X)\geq \epsilon P(X\geq\epsilon).</D>
 </THM>
 <PF>
