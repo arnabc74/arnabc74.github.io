@@ -138,6 +138,28 @@ V(X)
 Hence the result.
 </PF>
 
+At last we shall be able to prove our first theorem about
+statistical regularity. This is essentially what we had started
+our class with.
+
+<THM name="Weak Law of Large Numbers (WLLN)">
+Let <M>X_1,X_2,...</M> be a sequence of independent and
+identically distributed (IID) random variables (defined
+on the same probability space) with <M>E(X_1)=\mu</M> and
+<M>V(X_1)=\sigma^2<\infty.</M> Let, for <M>n\in\nn</M>, 
+<D>
+\overline X_n = [[1n]]\sum_{i=1}^n X_i.
+</D>
+Then 
+<D>
+\forall \epsilon > 0~~ P(|\overline X_n-\mu|> \epsilon) \to
+0\mbox{ as } n\to \infty.
+</D>
+</THM>
+<PF>
+Do it yourself using Chebyshev inequality.
+</PF>
+
 <HEAD1>Moments</HEAD1>
 
 <DEFN name="Raw and central moments">
@@ -256,25 +278,27 @@ Too difficult for this course.
 learn the proofs for CFs in the next semester.</B>
 
 <HEAD1>Problems for practice</HEAD1>
-<OL>
-<LI>A box has 6 red balls an 4 black balls. An SRSWR of
+
+<EXR>A box has 6 red balls an 4 black balls. An SRSWR of
 size <M>n</M> is selected. If <M>X</M> is the number of red
 balls selectrd, then find PMF and <M>E(X).</M> Also solve the
-problem in the case of SRSWOR.</LI>
-<LI>Let <M>N</M> be a positive integer. Let 
+problem in the case of SRSWOR.</EXR>
+<EXR>Let <M>N</M> be a positive integer. Let 
 <D>
 f(x) = <CASES>c 2^x <IF>x=1,2,...,N</IF>0<ELSE/></CASES>
 </D>
 be a PMF. Find <M>c.</M> Find <M>E(X)</M> and <M>V(X)</M> if <M>X</M> has this PMF.
-</LI>
-<LI>An SRSWR of size 2 is drawn from <M>\{1,2,...,12\}.</M>
+</EXR>
+<EXR>An SRSWR of size 2 is drawn from <M>\{1,2,...,12\}.</M>
 Let <M>X</M> be the maximum of the two numbers
-selected. Find <M>E(X).</M></LI>
-<LI>An SRSWR of size <M>n</M> is selected
+selected. Find <M>E(X).</M></EXR>
+<EXR>An SRSWR of size <M>n</M> is selected
 from <M>\{1,2,...,12\}.</M> Let <M>a_n </M> be the expected
 value of the maximum of the sample. Show that <M>a_n \leq
-a_{n+1}</M> without explicily finding <M>a_n</M> in terms of <M>n.</M></LI>
-
-</OL>
+a_{n+1}</M> without explicily finding <M>a_n</M> in terms of <M>n.</M></EXR>
+<EXR><CIMG web="rossexp1.png"></CIMG></EXR>
+<EXR><CIMG web="rossexp2.png"></CIMG></EXR>
+<EXR><CIMG web="rossexp3.png"></CIMG></EXR>
+<EXR><CIMG web="rossexp4.png"></CIMG></EXR>
 </E>@}
 </NOTE>
