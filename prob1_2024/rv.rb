@@ -119,13 +119,14 @@ and <M>Y(head,4) = 4-3 = 1.</M>
 Now it is meaningful to talk about <M>X+Y.</M>
 </EXM>
 <HEAD2>Functions of a random variable</HEAD2> 
-Any function of a random variable is again a random
-variable. This is immediate from the definition of a random
-variable (since composition of two functions is again a
-function). 
-<P/>
-Notice that any function of a discrete random variable must again
-be a discrete random variable. 
+Is any function of a random variable is again a random
+variable? Well, for all practical purposes the answer is "yes".  But technically speaking, we have to 
+avoid the "bad" subsets. This is how we do it.
+
+Let <M>X:\Omega\to\rr</M>  be any random variable. Let <M>f:\rr\to\rr</M>  be any Borel-mesurable function, i.e., if <M>B\in {\mathcal B}</M> 
+ then <M>f^{-1}(B)\in {\mathcal B}.</M>  Then <M>f(X)</M>  is again a random variable. Remember that <M>f(X)</M>  actually
+ means the composition function <M>(f\circ X):\Omega\to\rr.</M>
+
 <HEAD1>Distribution of a random variable</HEAD1>
 Consider another gambling game. 
 <EXM>
