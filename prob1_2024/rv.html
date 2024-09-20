@@ -701,23 +701,6 @@ $P(X=a) = P(X\leq a)-P(X &lt; a).$
 </p>
 
 <p></p>
-The following theorem justifies the adjective "continuous" for a
-random variable.
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-A random variable is continuous if and only if its CDF is
-continuous everywhere.
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Obvious from the last theorem.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
 
 <h2><a
 name="Different types of random variables">Different types of random variables</a></h2>
@@ -745,6 +728,21 @@ uncountably many values and for at least one value $a$ we
 have $P(X=a)&gt;0.$ </li>
 
 </ul>
+The following theorem justifies the adjective "continuous" for a
+random variable.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A random variable is continuous if and only if its CDF is
+continuous everywhere.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Obvious from the last theorem.
+<b><i>[QED]</i></b>
+</p>
 In this course we shall focus on discrete random variables only.
 <p></p>
 
@@ -766,25 +764,17 @@ name="PMF">PMF</a></h1>
 Let $X$ be a discrete random variable taking
 values $x_1,x_2,...$ with
 probabilities $p_1,p_2,...$. Then the <b>probability mass
-function (PMF)</b> of $X$ is defined as $p(x)$ where 
-$$
-\forall i~~p(x_i) = p_i.
-$$
-</fieldset>
-We take the domain to be the entire ${\mathbb R}.$  So  we define
-the PMF as 
+function (PMF)</b> of $X$ is defined as $p:{\mathbb R}\rightarrow[0,1]$ where 
 $$
 p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
 $$
+</fieldset>
 Clearly, $\sum p_i = 1$ and $\forall i~~p_i\geq 0.$ A
 consequence of the fundamental theorem of probability is that for
 any countable set $\{x_1,x_2,...\}$ and for any
 sequence $(p_i)_i,$ for which $\forall i~~p_i\geq 0$
 and $\sum p_i=1,$ there is a (discrete) random variable of
-which the PMF is 
-$$
-p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
-$$
+which the PMF is $p(x)$  given above.
 <p></p>
 The CDF of a discrete random variable is a step function like the one we saw in our example.
 <p></p>
@@ -1367,9 +1357,8 @@ red lines are candidates for $\ell_b.$
 
 <fieldset>
 <legend><b><i>Jensen's inequality</i></b></legend>
-Let $X$ be a discrete rv such that $E(X)$ is
-defined. If $f:{\mathbb R}\rightarrow{\mathbb R}$ is any convex function for
-which $E(f(X))$ exists,  then $f(E(X))\leq E(f(X)).$
+Let $X$ be a random variable and $f:{\mathbb R}\rightarrow{\mathbb R}$  be any convex function. We assume that $E(X)$ 
+and $E(f(X))$ both exist finitely.  Then $f(E(X))\leq E(f(X)).$
 </fieldset>
 
 <p>
@@ -1379,12 +1368,10 @@ in the definition of convexity.
 <p></p>
 Since the graph of $\ell_\mu(x)$ is a straight line passing
 through $(\mu,f(\mu)),$ hence it must be of the form
-$$
-\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in{\mathbb R}.
-$$
+$$\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in{\mathbb R}.$$
 So 
 $$
-E(f(X)) \leq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
+E(f(X)) \geq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
 $$
 as required.
 <b><i>[QED]</i></b>

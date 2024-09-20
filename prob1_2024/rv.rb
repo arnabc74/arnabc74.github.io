@@ -386,16 +386,6 @@ Let <M>X</M> have CDF <M>F.</M> Then
 <M>P(X=a) = P(X\leq a)-P(X < a).</M>
 </PF>
 
-The following theorem justifies the adjective "continuous" for a
-random variable.
-
-<THM>
-A random variable is continuous if and only if its CDF is
-continuous everywhere.
-</THM>
-<PF>
-Obvious from the last theorem.
-</PF>
 
 
 
@@ -417,6 +407,16 @@ of a randomly selected person.</LI>
 uncountably many values and for at least one value <M>a</M> we
 have <M>P(X=a)>0.</M> </LI>
 </UL>
+The following theorem justifies the adjective "continuous" for a
+random variable.
+
+<THM>
+A random variable is continuous if and only if its CDF is
+continuous everywhere.
+</THM>
+<PF>
+Obvious from the last theorem.
+</PF>
 In this course we shall focus on discrete random variables only.
 
 <P/>
@@ -434,25 +434,17 @@ function (PMF)</B> of the rv.
 Let <M>X</M> be a discrete random variable taking
 values <M>x_1,x_2,...</M> with
 probabilities <M>p_1,p_2,...</M>. Then the <B>probability mass
-function (PMF)</B> of <M>X</M> is defined as <M>p(x)</M> where 
-<D>
-\forall i~~p(x_i) = p_i.
-</D>
-</DEFN>
-We take the domain to be the entire <M>\rr.</M>  So  we define
-the PMF as 
+function (PMF)</B> of <M>X</M> is defined as <M>p:\rr\to[0,1]</M> where 
 <D>
 p(x) = <CASES>p_i<IF>x=x_i</IF>0<ELSE/></CASES>.
 </D>
+</DEFN>
 Clearly, <M>\sum p_i = 1</M> and <M>\forall i~~p_i\geq 0.</M> A
 consequence of the fundamental theorem of probability is that for
 any countable set <M>\{x_1,x_2,...\}</M> and for any
 sequence <M>(p_i)_i,</M> for which <M>\forall i~~p_i\geq 0</M>
 and <M>\sum p_i=1,</M> there is a (discrete) random variable of
-which the PMF is 
-<D>
-p(x) = <CASES>p_i<IF>x=x_i</IF>0<ELSE/></CASES>.
-</D>
+which the PMF is <M>p(x)</M>  given above.
 
 The CDF of a discrete random variable is a step function like the one we saw in our example.
 
@@ -844,9 +836,8 @@ In the following diagram the blue line is <M>\ell_a.</M> Both the
 red lines are candidates for <M>\ell_b.</M>
 <CIMG web="suppline.png"/>
 <THM name="Jensen's inequality">
-Let <M>X</M> be a discrete rv such that <M>E(X)</M> is
-defined. If <M>f:\rr\to\rr</M> is any convex function for
-which <M>E(f(X))</M> exists,  then <M>f(E(X))\leq E(f(X)).</M>
+Let <M>X</M> be a random variable and <M>f:\rr\to\rr</M>  be any convex function. We assume that <M>E(X)</M> 
+and <M>E(f(X))</M> both exist finitely.  Then <M>f(E(X))\leq E(f(X)).</M>
 </THM>
 <PF>
 Let <M>\mu = E(X).</M> Consider <M>\ell_\mu(x)</M> as mentioned
@@ -854,12 +845,10 @@ in the definition of convexity.
 <P/>
 Since the graph of <M>\ell_\mu(x)</M> is a straight line passing
 through <M>(\mu,f(\mu)),</M> hence it must be of the form
-<D>
-\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in\rr.
-</D>
+<D>\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in\rr.</D>
 So 
 <D>
-E(f(X)) \leq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
+E(f(X)) \geq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
 </D>
 as required.
 </PF>
