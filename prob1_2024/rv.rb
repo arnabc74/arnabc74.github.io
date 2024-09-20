@@ -617,7 +617,7 @@ Take any  <M>U\in{\mathcal D}</M>  be any simple random variable.
 
 Let <M>U</M>  take only the values <M>u_1,...,u_k.</M>  
 
-Let <M>p_{ij} = (X=x_i, U=u_j).</M>
+Let <M>p_{ij} = P(X=x_i, U=u_j).</M>
 
 Then <M>E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.</M>  
 
@@ -733,7 +733,7 @@ We have already seen this earlier in this page.
 
 To show <M>E(X)\leq E(Y),</M>  i.e., 
 <D>\sup\{E(U)~:~U \mbox{ simple}, U\leq X\} \leq \sup\{E(V)~:~V \mbox{ simple}, V\leq Y\}.</D>
-Enough the show that  <M>\{E(U)~:~U \mbox{ simple}, U\leq X\}\seq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.</M>
+Enough to show that  <M>\{E(U)~:~U \mbox{ simple}, U\leq X\}\seq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.</M>
 
 Take any  simple <M>U\leq X.</M>  Then, since <M>X\leq Y,</M>  we also have <M>U\leq Y.</M>  Hence the result.
 
@@ -761,13 +761,15 @@ Easy.
 The condition "<M>X</M> always lies in <M>[a,b]</M>" may be
 written as <M>P(X\in[a,b])=1.</M>
 
+<COMMENT>
 <THM>
 Let <M>a\in\rr</M> be any number. If <M>P(X\leq a)=1,</M>
 then <M>E(X)=a</M> if and only if <M>X</M> is degenerate at <M>a.</M>
 </THM>
 
 However, if <M>a\in\rr</M> is replaced by <M>\infty,</M> then the
-result fails, i.e., it is possible to have a random
+result fails, i.e., 
+It is possible to have a random
 variable <M>X</M> that is always finite (any real-valued random
 variable will do, since <M>\infty\not\in\rr</M>) such
 that <M>E(X)=\infty.</M> 
@@ -782,9 +784,10 @@ in <M>\nn</M> and <M>P(X=n)=[[1][cn^2]].</M>
 <P/>
 Then <M>E(X) = [[1c]]\sum[[1n]]=\infty.</M>
 </EXM>
+</COMMENT>
 By the way, if <M>X</M> can take values <M>x_1,x_2,...</M>, there
 is no guaranty that <M>E(X)</M> will equal any of
-the <M>x_i</M>'s. For example, if the <M>X</M> is the outcome of
+the <M>x_i</M>'s. For example, if  <M>X</M> is the outcome of
 a fair die, then <M>E(X)=3.5,</M> which is not a possible
 outcome.
 
