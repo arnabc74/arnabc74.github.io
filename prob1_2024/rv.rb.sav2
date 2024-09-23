@@ -617,7 +617,7 @@ Take any  <M>U\in{\mathcal D}</M>  be any simple random variable.
 
 Let <M>U</M>  take only the values <M>u_1,...,u_k.</M>  
 
-Let <M>p_{ij} = (X=x_i, U=u_j).</M>
+Let <M>p_{ij} = P(X=x_i, U=u_j).</M>
 
 Then <M>E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.</M>  
 
@@ -733,7 +733,7 @@ We have already seen this earlier in this page.
 
 To show <M>E(X)\leq E(Y),</M>  i.e., 
 <D>\sup\{E(U)~:~U \mbox{ simple}, U\leq X\} \leq \sup\{E(V)~:~V \mbox{ simple}, V\leq Y\}.</D>
-Enough the show that  <M>\{E(U)~:~U \mbox{ simple}, U\leq X\}\seq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.</M>
+Enough to show that  <M>\{E(U)~:~U \mbox{ simple}, U\leq X\}\seq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.</M>
 
 Take any  simple <M>U\leq X.</M>  Then, since <M>X\leq Y,</M>  we also have <M>U\leq Y.</M>  Hence the result.
 
@@ -761,13 +761,15 @@ Easy.
 The condition "<M>X</M> always lies in <M>[a,b]</M>" may be
 written as <M>P(X\in[a,b])=1.</M>
 
+<COMMENT>
 <THM>
 Let <M>a\in\rr</M> be any number. If <M>P(X\leq a)=1,</M>
 then <M>E(X)=a</M> if and only if <M>X</M> is degenerate at <M>a.</M>
 </THM>
 
 However, if <M>a\in\rr</M> is replaced by <M>\infty,</M> then the
-result fails, i.e., it is possible to have a random
+result fails, i.e., 
+It is possible to have a random
 variable <M>X</M> that is always finite (any real-valued random
 variable will do, since <M>\infty\not\in\rr</M>) such
 that <M>E(X)=\infty.</M> 
@@ -782,9 +784,10 @@ in <M>\nn</M> and <M>P(X=n)=[[1][cn^2]].</M>
 <P/>
 Then <M>E(X) = [[1c]]\sum[[1n]]=\infty.</M>
 </EXM>
+</COMMENT>
 By the way, if <M>X</M> can take values <M>x_1,x_2,...</M>, there
 is no guaranty that <M>E(X)</M> will equal any of
-the <M>x_i</M>'s. For example, if the <M>X</M> is the outcome of
+the <M>x_i</M>'s. For example, if  <M>X</M> is the outcome of
 a fair die, then <M>E(X)=3.5,</M> which is not a possible
 outcome.
 
@@ -837,7 +840,7 @@ red lines are candidates for <M>\ell_b.</M>
 <CIMG web="suppline.png"/>
 <THM name="Jensen's inequality">
 Let <M>X</M> be a random variable and <M>f:\rr\to\rr</M>  be any convex function. We assume that <M>E(X)</M> 
-and <M>E(f(X))</M> both exist  Then <M>f(E(X))\leq E(f(X)).</M>
+and <M>E(f(X))</M> both exist finitely.  Then <M>f(E(X))\leq E(f(X)).</M>
 </THM>
 <PF>
 Let <M>\mu = E(X).</M> Consider <M>\ell_\mu(x)</M> as mentioned
@@ -845,9 +848,7 @@ in the definition of convexity.
 <P/>
 Since the graph of <M>\ell_\mu(x)</M> is a straight line passing
 through <M>(\mu,f(\mu)),</M> hence it must be of the form
-<D>
-\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in\rr.
-</D>
+<D>\ell_\mu(x) = f(\mu)+m(x-\mu),~~x\in\rr.</D>
 So 
 <D>
 E(f(X)) \geq E(\ell_\mu(X)) = E(f(\mu))+mE(X-\mu) = f(\mu)+0 = f(E(X)),
@@ -857,6 +858,7 @@ as required.
 
 ::<EXR>Which is larger <M>(E(X))^2</M> or <M>E(X^2)?</M> Assume
 that both exist finitely.</EXR>
+
 <HEAD1>Indicator trick</HEAD1>
 Often we have to find <M>E(X)</M>  where <M>X</M>  is the count of something, e.g., number of heads in 100 tosses of coin,
  or number of times something interesting happens. If you want to find <M>E(X)</M>  directly from the definition, then you
@@ -867,7 +869,8 @@ Often we have to find <M>E(X)</M>  where <M>X</M>  is the count of something, e.
  the expected number of singleton lights (i.e., lighted lamps with both neighbours off).
 <CIMG web="lamps.png">The singletons are shown with arrowheads</CIMG>
 <SOLN/>
-Let <M>X</M>  be the number of singletons. Finding the distribution of <M>X</M>  is not easy. 
+Let <M>X</M>  be the number of singletons. Finding the distribution of <M>X</M>  is not very difficult, but still we shall
+ demonstrate the use of the
 
 Instead we shall use the arrowheads as our random variables. Let the lamps be numbered from 1 to 20. Define <M>L_i=1</M> 
  if <M>i</M>-th lamp is on and is a singleton, and <M>0</M>  else. In other words, <M>L_i=1</M>  means we have put an
@@ -885,6 +888,7 @@ To find <M>E(L_1)</M>  we need to find just <M>P(L_1=1)</M>, which involves only
 
 Hence <M>E(X) = [[20][8]] = [[52]].</M>  
    </EXM>
+
 <HEAD1>Problems for practice</HEAD1>
 ::<EXR>
 What is <M>E(X)</M> if <M>X</M> takes the
