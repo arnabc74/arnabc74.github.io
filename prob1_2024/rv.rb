@@ -639,7 +639,11 @@ Thus, <M>E(U)\leq L,</M>  as required.
 
 <D>\forall L'< L~~\exists U\in{\mathcal D}~~E(U)> L'.</D>  
 
-Let <M>U_n</M>  be the random variable <M>\min\{X,x_n\}.</M>  Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
+Let <M>U_n</M>  be the random variable 
+<D>
+U =<CASES>X<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>.
+</D>  
+Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
 
 So <M>U_n\in{\mathcal D}.</M>
  
