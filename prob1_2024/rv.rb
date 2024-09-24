@@ -20,7 +20,7 @@ X(head) & = & 10,\\
 X(tail) & = & -20.
 </MULTILINE>
 There is nothing random about this <I>function</I>. The randomness comes
-from mechanism that decides what gois <I>into</I> this: head or tail?
+from the mechanism that decides what goes <I>into</I> this: head or tail?
 <P/>
 We use this idea to define random variables mathematically. We
 start with a random experiment which is the provider of the
