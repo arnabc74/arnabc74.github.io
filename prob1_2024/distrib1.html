@@ -3,7 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -26,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -55,15 +59,90 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   MathJax.Hub.Config({
     extensions: ["tex2jax.js","color.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
   });
-</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -136,17 +215,18 @@ variable, and write $X\sim$<b>DUnif</b>$(S).$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 1:</b>&nbsp;
 Consider a fair die---a die that is  equally 
 likely to land on any of the six faces. If $X$ denotes the outcome of
 a roll of this die then $X$ has <b>DUnif</b>$\{1,2,3,4,5,6\}$
 distribution. 
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 2:</b>&nbsp;
 If you toss a fair coin (<i>i.e.</i>, a coin that is equally heavy on
 either side) and 
 $$
@@ -156,12 +236,13 @@ Y = \left\{\begin{array}{ll}
     \end{array}\right.,
 $$
 then $Y\sim$<b>DUnif</b>$\{-5,10\}.$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 3:</b>&nbsp;
 $Y$ has <b>DUnif</b>$\{0,1,2,3\}$ distribution. Find $P(Y=2)$ and 
 $P(Y\mbox{ is odd}).$
 <p></p>
@@ -170,13 +251,15 @@ likely. Since the total of the probabilities must be 1, each outcome has
 probability $\frac14.$ In particular, $P(Y=2)=\frac14.$ Also,
 $P(Y\mbox{ is odd}) = P(Y=1\mbox{ or }Y=3) =
 P(Y=1)+P(Y=3)=\frac14+\frac14=\frac12.$ 
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 1:</b>&nbsp;
 $X$ follows <b>DUnif</b>$\{1,2,3,4,5\}$ distribution. Find the
 following probabilities.
 <ol>
@@ -194,13 +277,27 @@ following probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
+<ol>
+<li>$\frac15$
+</li>
+<li>$\frac15$
+</li>
+<li>$0$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac45$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 2:</b>&nbsp;
 $U$ is a <b>DUnif</b>$\{-2,-1,0,1,2\}$ random variable. Find the
 following probabilities.
 <ol>
@@ -214,16 +311,26 @@ following probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
+<ol>
+<li>$\frac25$
+</li>
+<li>$0$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac45$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 3:</b>&nbsp;
 Express the distributions of the following random variables in terms of the
 discrete uniform distribution.
-<ol>
+<ol type="">
 
 <li>The top card is drawn from a well-shuffled deck of cards. 
 $$
@@ -245,7 +352,7 @@ $$
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
 <p>
 <b>Hint:</b>
@@ -254,7 +361,13 @@ diamonds, 13 clubs and 13 spades. When you pick the top card of a
 well-shuffled deck any of the 52 cards are equally likely to occur.
 </blockquote>
 </p>
- 
+
+<ol>
+<li>
+<b>DUnif</b>$\{1,2,3,4\}.$</li>
+<li>
+<b>DUnif</b>$\{0,1\}.$</li>
+</ol> 
 
 <b>Expectation and variance:</b>
 If $X\sim$<b>DUnif</b>$\{x_1,x_2,...,x_n\}$ then 
@@ -283,7 +396,7 @@ $$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 4:</b>&nbsp;
 Compute mean and variance of a <b>DUnif</b>$\{1,...,n\}$ random variable,
 $X.$
 <p></p>
@@ -292,19 +405,19 @@ for $i=1,...,n.$
 $E(X)=\frac1n\sum_{i=1}^n i = \frac{n+1}2.$
 $E(X^2)=\frac1n\sum_{i=1}^n i^2 = \frac{(n+1)(2n+1)}{6}.$
 Hence, $Var(X) = E(X^2)-(E(X))^2 = \frac{n^2-1}{12}.$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 4:</b>&nbsp;
 If $Y$ has <b>DUnif</b>$\{0,1,...,n\}$ distribution, then compute 
 $E(Y)$ and $Var(Y).$ But before you start algebraic
 manipulations, think if $E(X)$ and $Var(X)$ should be
 less, equal or more than what we obtained above.
-<img src="../image/box.png"></p>
-
-
+</p>
+\frac{n}2,\frac{n(n+2)}{12}.
 <h2><a
 name="Bernoulli">Bernoulli</a></h2>
 
@@ -334,11 +447,12 @@ variable, and write $X\sim$<b>Bern</b>$(\theta).$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 5:</b>&nbsp;
 Coin toss has two possible outcomes, head and tail. If we call head as `1'
 and tail as `0' then we have <b>Bern</b>($\theta$) random variable
 where $\theta=P(head).$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
@@ -354,9 +468,10 @@ This is because $E(X^2)=(1-\theta) \times 0^2 + \theta \times
 So $Var(X)=E(X^2)-(E(X))^2=\theta-\theta^2=\theta(1-\theta).$
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 6:</b>&nbsp;
 $X$ is a <b>Bern</b>(0.5) random variable. $Y$ has a <b>Bern</b>(0.2)
 distribution. $X$ and $Y$ are independent. Let $Z=XY.$ Show
 that $Z$ has <b>Bern</b>(0.01) distribution. Hence compute $Var(Z)$. 
@@ -382,8 +497,10 @@ So by property of Bernoulli distribution we have
 $$
 Var(Z)=0.01(1-0.01)=0.0099
 $$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
+<p></p>
 
 <h2><a
 name="Binomial">Binomial</a></h2>
@@ -443,7 +560,7 @@ tosses.
 <table style="" border="1">
 
 <tr>
-<th>Outcome </th><th> Probability</th>
+<th colspan="" rowspan="">Outcome </th><th colspan="" rowspan=""> Probability</th>
 </tr>
 
 <tr>
@@ -500,17 +617,16 @@ which is the binomial PMF.
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 5:</b>&nbsp;
 List all the possible outcomes of $n=4$ tosses having exactly
 $x=2$ heads. For example, one possible outcome is $HTHT.$ How
 many such outcomes are there?
-<img src="../image/box.png"></p>
-
-
+</p>
+HHTT,HTHT,HTTH,THHT,THTH,TTHH. There are 6.
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 7:</b>&nbsp;
 $U$ is distributed as <b>Bin</b>$(5,\frac14).$ Find $P(U=2).$
 <p></p>
 <b>SOLUTION:</b> 
@@ -521,12 +637,13 @@ P(U=2)&amp;=&amp;{5\choose2}\left(\frac14\right)^2\left(1-\frac14\right)^{5-2}\\
 &amp;=&amp;\frac{5\times4}{2}\cdot\frac{27}{1024}\\
 &amp;=&amp;\frac{135}{512}.
 \end{eqnarray*}$$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 6:</b>&nbsp;
 $Y$ is distributed as <b>Bin</b>$(4,\frac23).$ Find the following
 probabilities.
 <ol>
@@ -540,12 +657,22 @@ probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
+<ol>
+<li>$\frac1{81}$
+</li>
+<li>$\frac{16}{81}$
+</li>
+<li>$\frac{40}{81}$
+</li>
+<li>$\frac{55}{81}$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 7:</b>&nbsp;
 $Z\sim$<b>Bin</b>$(5,\frac12).$ Find the following.
 <ol>
 <li>$P(Z\mbox{ is odd})$
@@ -558,18 +685,27 @@ $Z\sim$<b>Bin</b>$(5,\frac12).$ Find the following.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
+<ol>
+<li>$\frac12$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 8:</b>&nbsp;
 If $X$ has <b>Bin</b>$(100,0.5)$ distribution. Then find $a\neq37$ such
 that $$
 P(X=a) = P(X = 37).
 $$
-<img src="../image/box.png"></p>
-
+</p>$a=100-37=63.$
 <p>
 <b>Hint:</b>
 <blockquote>Notice that for any $n$ the <b>Bin</b>$(n,0.5)$
@@ -582,7 +718,7 @@ symmetric, <i>i.e.</i>, $$\begin{eqnarray*}P(X=x) &amp;=&amp; {n\choose x}0.5^x(
 </p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 8:</b>&nbsp;
 A couple plans to have 6 babies (Good heavens!). The chance of a boy being
 born is 
 0.4. Let $X$ be the number of sons born to this couple. What is the
@@ -595,20 +731,20 @@ girl. Let us call boy as `1' and girl as `0'. We assume that the outcome
 of one birth is independent of the others. So here a <b>Bern</b>(0.4) random
 experiment has been repeated independently 6 times, and $X$ denotes
 the number of `1' s. Hence $X$ has <b>Bin</b>(6, 0.4) distribution.
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 9:</b>&nbsp;
 In the above example let $Y$ be the number of girls. What is the
 distribution of $Y$? 
-<img src="../image/box.png"></p>
-
+</p>$Y\sim$<b>Bin</b>$(6,0.6).$
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 9:</b>&nbsp;
 A mobile tower is sending 10 signals to another mobile tower.Owing to
 mechanical problems a signal may become corrupted during transmission with
 probability 0.1. Corruption of one signal is independent of that of the
@@ -633,7 +769,8 @@ P(X \leq 2) &amp;=&amp; P(X=0) + P(X=1) + P(X=2)\\
             &amp; &amp; {10\choose 1}(0.1)^1(0.9)^{10-1} + {10\choose 2}(0.1)^2(0.9)^{10-2}\\
             &amp;=&amp; 0.93
 \end{eqnarray*}$$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
@@ -701,9 +838,10 @@ Var(X) &amp;=&amp; E(X^2)-(E(X))^2\\
 \end{eqnarray*}$$
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 10:</b>&nbsp;
 Assuming that $T\sim$<b>Bin</b>$(100,\frac15),$ find $E(T)$ and
 standard deviation 
 of $T.$
@@ -713,11 +851,14 @@ $E(T) = n \theta = 100\times \frac15 = 20.$ Similarly,
 $Var(T) = n \theta(1-\theta) = 
 100\times\frac15\times(1-\frac15)= 16.$
 Hence standard deviation of $T$ is $\sqrt{16} = 4.$ 
-<img src="../image/box.png"></p>
-
+ ■
+</p>
 
 <p></p>
 
+<p></p>
+
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -740,24 +881,25 @@ $P(head) = \theta,$ hence we see that $X+Y$ has
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 11:</b>&nbsp;
 What is the distribution of $U+V,$ if $U\sim$<b>Bin</b>$(10,0.1)$ and
 $V\sim$<b>Bin</b>$(6,0.1)?$
 <p></p>
 <b>SOLUTION:</b> $U+V\sim$<b>Bin</b>$(16,0.1).$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 10:</b>&nbsp;
 If $X_1,X_2$ and $X_3$ are independent random variables with 
 <b>Bin</b>$(5,\frac13),$ <b>Bin</b>$(10,\frac13)$ and
 <b>Bin</b>$(6,\frac13)$ distributions, respectively.
 Find the distribution of $(X_1+X_2+X_3).$
-<img src="../image/box.png"></p>
-
+</p>$(X_1+X_2+X_3)\sim$<b>Bin</b>$(21,\frac13).$
 <p>
 <b>Hint:</b>
 <blockquote>First add $X_1$ and $X_2.$ Now notice that 
@@ -841,9 +983,10 @@ The same argument gives you the hypergeometric PMF as shown below.
 </table>
 </center>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 12:</b>&nbsp;
 Find $P(Y=2)$ where $Y\sim$<b>HypGeom</b>$(5,3,4).$
 <p></p>
 <b>SOLUTION:</b> Here $N=5, M=3$ and $n=4.$ So
@@ -853,12 +996,13 @@ P(Y=2) = \frac{{M\choose 2}{N-M\choose n-2}}{{N\choose n}}
 $$
 Now, ${3\choose2}=3,$ ${2\choose 2}=1$ and ${5\choose4}=5.$
 So $P(Y=2) = \frac35.$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 11:</b>&nbsp;
 $X$ is known to follow <b>HypGeom</b>$(10,4,8).$ Find the following
 probabilities.
 <ol>
@@ -874,20 +1018,31 @@ probabilities.
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
+<ol>
+<li>$\frac2{15}$
+</li>
+<li>$\frac8{15}$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+<li>$\frac13$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 12:</b>&nbsp;
 Suppose that $Y$ has <b>HypGeom</b>$(100,30,40)$ distribution and $Z$ has 
 <b>HypGeom</b>$(100,70,40)$ distribution. Then which of the following two
 probabilities is larger and why?
 $$
 P(Y=10),\quad P(Z=30)
 $$
-<img src="../image/box.png"></p>
-
+</p>Equal.
 <p>
 <b>Hint:</b>
 <blockquote>Think of the following descriptions of $Y$ and
@@ -898,7 +1053,7 @@ number of <i>white</i> balls that you get, and $Z$ is the number of
 </p>
 
 <p>
-<b>EXAMPLE:</b>
+<b>EXAMPLE 13:</b>&nbsp;
 In a class of 10 students there are 4 girls. If 3 students are selected at
 random from this class what is the chance that exactly 2 girls are
 selected? 
@@ -917,7 +1072,8 @@ $$
 P(X=2) = \frac{{4\choose 2} {10-4\choose 3-2}}{{10\choose 3}} = 
   \frac{6\times 6}{120} = \frac3{10}.
 $$
-<img src="../image/box.png"></p>
+ ■
+</p>
 
 <p></p>
 
@@ -969,7 +1125,7 @@ Var(X) &amp;=&amp; E(X^2) - (E(X))^2 \\
 <p></p>
 
 <p>
-<b>EXERCISE:</b>
+<b>EXERCISE 13:</b>&nbsp;
 Compute $E(X)$ and $Var(X)$ where $X$ has <b>HypGeom</b>$(N,M,n)$
 distribution with
 <ol>
@@ -983,9 +1139,20 @@ distribution with
 </li>
 </ol>
 
-<img src="../image/box.png"></p>
+</p>
 
+<ol>
+<li>$3,\frac23.$
+</li>
+<li>$\frac{3}{10},\frac{459}{1900}.$
+</li>
+<li>$\frac43,\frac{64}{99}.$
+</li>
+<li>$15,0$
+</li>
+</ol>
 
+<p></p>
 
 <h2><a
 name="Relation between binomial and hypergeometric">Relation between binomial and hypergeometric</a></h2>
@@ -1004,18 +1171,57 @@ P(X_1=x_1|X_1+X_2=k)
 &amp; = &amp; \frac{P(X_1=x_1~\&amp;~X_1+X_2=k)}{P(X_1+X_2=k)}\\
 &amp; = &amp; \frac{P(X_1=x_1~\&amp;~X_2=k-x_1)}{P(X_1+X_2=k)}\\
 &amp; = &amp; \frac{P(X_1=x_1)P(X_2=k-x_1)}{P(X_1+X_2=k)}\\
-&amp; = &amp; \frac{\binom{n_1}{x_1}p^{x_1}(1-p)^{n_1-x_1}\binom{n_2}{k-x_1}p^{k-x_1}(1-p)^{x_1}}{\binom{n_1+n_2}{k}p^k(1-p)^{n_1+n_2-k}}.
+&amp; = &amp; \frac{\binom{n_1}{x_1}p^{x_1}(1-p)^{n_1-x_1}\binom{n_2}{k-x_1}p^{k-x_1}(1-p)^{x_1}}{\binom{n_1+n_2}{k}p^k(1-p)^{n_1+n_2-k}}\\
+&amp; = &amp; \frac{\binom{n_1}{x_1}\binom{n_2}{k-x_1}}{\binom{n_1+n_2}{k}},
 \end{eqnarray*}$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $p\in (0,1).$ Let $N,M\rightarrow \infty $ so that $\frac{M
+N}\rightarrow p.$ Let $n,k\in{\mathbb N}$ be fixed. Then 
+$$
+         \frac{\binom{M}{k} \binom{N-M}{n-k} }{ \binom{N}{n} } \rightarrow
+         \binom{n}{k} p^k (1-p)^{n-k}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This should be intuitively obvious, because as the number of
+balls in the box becomes very large picking a ball hardly has any
+effect on its composition. So SRSWOR starts behaving like SRSWR. 
+<p></p>
+More precisely, writing $R = N-M$ and $r = n-k,$ we have
+$$\begin{eqnarray*}
+         \frac{\binom{M}{k} \binom{N-M}{n-k} }{ \binom{N}{n} } 
+&amp; = &amp; \frac{ M(M-1)\cdots (M-k+1) }{N(N-1)\cdots (N-k+1) } \times 
+\frac{R(R-1)\cdots(R-r+1) }{ (N-k)\cdots (N-n+1)} \times \frac{ n! }{ k!
+(n-k)! }.
+\end{eqnarray*}$$
+Now $\frac M N\rightarrow p$ and so $\frac R N\rightarrow 1-p.$ 
+<p></p>
+So, since $n,k$ are fixed, we have
+$$
+\frac{ M(M-1)\cdots (M-k+1) }{N(N-1)\cdots (N-k+1) } \rightarrow p^k
+$$
+and
+<p></p>
+
 <b><i>[QED]</i></b>
 </p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol>
+<p></p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 14:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo1.png"></th>
@@ -1025,10 +1231,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 15:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo2.png"></th>
@@ -1038,10 +1244,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 16:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo3.png"></th>
@@ -1051,10 +1257,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 17:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo4.png"></th>
@@ -1064,10 +1270,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 18:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo5.png"></th>
@@ -1077,10 +1283,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 19:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo6.png"></th>
@@ -1090,10 +1296,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 20:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo7.png"></th>
@@ -1103,10 +1309,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 21:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo8.png"></th>
@@ -1116,10 +1322,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 22:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo9.png"></th>
@@ -1129,10 +1335,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 23:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo10.png"></th>
@@ -1142,10 +1348,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 24:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo11.png"></th>
@@ -1155,10 +1361,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 25:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo12.png"></th>
@@ -1168,10 +1374,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 26:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo13.png"></th>
@@ -1181,10 +1387,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 27:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo14.png"></th>
@@ -1194,10 +1400,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 28:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo15.png"></th>
@@ -1207,10 +1413,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 29:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo16.png"></th>
@@ -1220,10 +1426,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 30:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo17.png"></th>
@@ -1233,10 +1439,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 31:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo18.png"></th>
@@ -1246,10 +1452,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 32:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo19.png"></th>
@@ -1259,10 +1465,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 33:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo20.png"></th>
@@ -1272,10 +1478,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 34:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo21.png"></th>
@@ -1285,10 +1491,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 35:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo22.png"></th>
@@ -1298,10 +1504,10 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 36:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo23.png"></th>
@@ -1311,14 +1517,15 @@ name="Problems for practice">Problems for practice</a></h1>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>At a party $N$ men throw their hats into a corner, and
+<p>
+<b>EXERCISE 37:</b>&nbsp;At a party $N$ men throw their hats into a corner, and
 each man picks up a hat randomly. Let $X$ be the number of
-men who get their own hats. Find $E(X)$ and $V(X).$</li>
+men who get their own hats. Find $E(X)$ and $V(X).$</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 38:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo25.png"></th>
@@ -1328,10 +1535,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 39:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo26.png"></th>
@@ -1341,10 +1548,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 40:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo27.png"></th>
@@ -1354,10 +1561,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 41:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo28.png"></th>
@@ -1367,10 +1574,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 42:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo29.png"></th>
@@ -1380,10 +1587,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 43:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo30.png"></th>
@@ -1393,10 +1600,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 44:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo31.png"></th>
@@ -1406,10 +1613,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 45:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo32.png"></th>
@@ -1419,10 +1626,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 46:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo33.png"></th>
@@ -1432,10 +1639,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 47:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo34.png"></th>
@@ -1445,10 +1652,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 48:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo35.png"></th>
@@ -1458,10 +1665,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 49:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo36.png"></th>
@@ -1471,10 +1678,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 50:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo37.png"></th>
@@ -1484,10 +1691,10 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-<li>
-<center>
+<p>
+<b>EXERCISE 51:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/dtwo38.png"></th>
@@ -1497,9 +1704,9 @@ men who get their own hats. Find $E(X)$ and $V(X).$</li>
 </tr>
 </table>
 </center>
-</li>
+</p>
 
-</ol>
+<p></p>
 
 <p></p>
 
@@ -1535,6 +1742,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>

@@ -736,48 +736,48 @@ and
 
 </PF>
 <HEAD1>Problems for practice</HEAD1>
-<OL>
-<LI><CIMG web="dtwo1.png"/></LI>
-<LI><CIMG web="dtwo2.png"/></LI>
-<LI><CIMG web="dtwo3.png"/></LI>
-<LI><CIMG web="dtwo4.png"/></LI>
-<LI><CIMG web="dtwo5.png"/></LI>
-<LI><CIMG web="dtwo6.png"/></LI>
-<LI><CIMG web="dtwo7.png"/></LI>
-<LI><CIMG web="dtwo8.png"/></LI>
-<LI><CIMG web="dtwo9.png"/></LI>
-<LI><CIMG web="dtwo10.png"/></LI>
-<LI><CIMG web="dtwo11.png"/></LI>
-<LI><CIMG web="dtwo12.png"/></LI>
-<LI><CIMG web="dtwo13.png"/></LI>
-<LI><CIMG web="dtwo14.png"/></LI>
-<LI><CIMG web="dtwo15.png"/></LI>
-<LI><CIMG web="dtwo16.png"/></LI>
-<LI><CIMG web="dtwo17.png"/></LI>
-<LI><CIMG web="dtwo18.png"/></LI>
-<LI><CIMG web="dtwo19.png"/></LI>
-<LI><CIMG web="dtwo20.png"/></LI>
-<LI><CIMG web="dtwo21.png"/></LI>
-<LI><CIMG web="dtwo22.png"/></LI>
-<LI><CIMG web="dtwo23.png"/></LI>
-<LI>At a party <M>N</M> men throw their hats into a corner, and
+
+<EXR><CIMG web="dtwo1.png"/></EXR>
+<EXR><CIMG web="dtwo2.png"/></EXR>
+<EXR><CIMG web="dtwo3.png"/></EXR>
+<EXR><CIMG web="dtwo4.png"/></EXR>
+<EXR><CIMG web="dtwo5.png"/></EXR>
+<EXR><CIMG web="dtwo6.png"/></EXR>
+<EXR><CIMG web="dtwo7.png"/></EXR>
+<EXR><CIMG web="dtwo8.png"/></EXR>
+<EXR><CIMG web="dtwo9.png"/></EXR>
+<EXR><CIMG web="dtwo10.png"/></EXR>
+<EXR><CIMG web="dtwo11.png"/></EXR>
+<EXR><CIMG web="dtwo12.png"/></EXR>
+<EXR><CIMG web="dtwo13.png"/></EXR>
+<EXR><CIMG web="dtwo14.png"/></EXR>
+<EXR><CIMG web="dtwo15.png"/></EXR>
+<EXR><CIMG web="dtwo16.png"/></EXR>
+<EXR><CIMG web="dtwo17.png"/></EXR>
+<EXR><CIMG web="dtwo18.png"/></EXR>
+<EXR><CIMG web="dtwo19.png"/></EXR>
+<EXR><CIMG web="dtwo20.png"/></EXR>
+<EXR><CIMG web="dtwo21.png"/></EXR>
+<EXR><CIMG web="dtwo22.png"/></EXR>
+<EXR><CIMG web="dtwo23.png"/></EXR>
+<EXR>At a party <M>N</M> men throw their hats into a corner, and
 each man picks up a hat randomly. Let <M>X</M> be the number of
-men who get their own hats. Find <M>E(X)</M> and <M>V(X).</M></LI>
-<LI><CIMG web="dtwo25.png"/></LI>
-<LI><CIMG web="dtwo26.png"/></LI>
-<LI><CIMG web="dtwo27.png"/></LI>
-<LI><CIMG web="dtwo28.png"/></LI>
-<LI><CIMG web="dtwo29.png"/></LI>
-<LI><CIMG web="dtwo30.png"/></LI>
-<LI><CIMG web="dtwo31.png"/></LI>
-<LI><CIMG web="dtwo32.png"/></LI>
-<LI><CIMG web="dtwo33.png"/></LI>
-<LI><CIMG web="dtwo34.png"/></LI>
-<LI><CIMG web="dtwo35.png"/></LI>
-<LI><CIMG web="dtwo36.png"/></LI>
-<LI><CIMG web="dtwo37.png"/></LI>
-<LI><CIMG web="dtwo38.png"/></LI>
-</OL>
+men who get their own hats. Find <M>E(X)</M> and <M>V(X).</M></EXR>
+<EXR><CIMG web="dtwo25.png"/></EXR>
+<EXR><CIMG web="dtwo26.png"/></EXR>
+<EXR><CIMG web="dtwo27.png"/></EXR>
+<EXR><CIMG web="dtwo28.png"/></EXR>
+<EXR><CIMG web="dtwo29.png"/></EXR>
+<EXR><CIMG web="dtwo30.png"/></EXR>
+<EXR><CIMG web="dtwo31.png"/></EXR>
+<EXR><CIMG web="dtwo32.png"/></EXR>
+<EXR><CIMG web="dtwo33.png"/></EXR>
+<EXR><CIMG web="dtwo34.png"/></EXR>
+<EXR><CIMG web="dtwo35.png"/></EXR>
+<EXR><CIMG web="dtwo36.png"/></EXR>
+<EXR><CIMG web="dtwo37.png"/></EXR>
+<EXR><CIMG web="dtwo38.png"/></EXR>
+
 <P/>
 <DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/distrib.html" id="distrib"/>
 </E>@}

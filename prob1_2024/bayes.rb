@@ -1011,7 +1011,7 @@ Now the result follows immediately.
 numbers <M>m < n.</M> What is the probability that the ball
 drawn at stage <M>m</M> is green and the ball drawn at
 stage <M>n</M> is red? Does the answer depend on <M>m</M> and <M>n</M>?
-<ANS></ANS>
+<ANS>Proceed just as in the last problem.</ANS>
 </EXR>
 
 <DISQUSE url="https://arnabc74.github.io/prob1_2024/bayes.html" id="bayes"/></E>@}
