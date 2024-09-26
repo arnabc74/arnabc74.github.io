@@ -437,27 +437,26 @@ By  Cauchy-Scwartz inequality, <M>rho(X,Y) \in [-1,1].</M> Also,
 if <M>X,Y</M> are linearly linearly related with probability 1,
 i.e., <M>\exists a,b,c\in\rr</M> such that <M>P(aX+bY=c)=1.</M>
 <HEAD1>Problems for practice</HEAD1>
-<OL>
-<LI><CIMG web="most45.png"/></LI>
-<LI><CIMG web="jt1.png"></CIMG></LI>
-<LI><CIMG web="jt2.png"></CIMG></LI>
-<LI><CIMG web="jt3.png"></CIMG></LI>
-<LI><CIMG web="jt4.png"></CIMG></LI>
-<LI><CIMG web="jt5.png"></CIMG></LI>
-<LI><CIMG web="jt6.png"></CIMG></LI>
-<LI><CIMG web="jt7.png"></CIMG></LI>
-<LI><CIMG web="jt8.png"></CIMG></LI>
-<LI><CIMG web="jt9.png"></CIMG></LI>
-<LI><CIMG web="jt10.png"></CIMG></LI>
-<LI><CIMG web="jt11.png"></CIMG></LI>
-<LI><CIMG web="jt12.png"></CIMG></LI>
-<LI><CIMG web="jt13.png"></CIMG></LI>
-<LI><CIMG web="jt14.png"></CIMG></LI>
-<LI><CIMG web="jt15.png"></CIMG></LI>
-<LI><CIMG web="jt16.png"></CIMG></LI>
-<LI><CIMG web="jt17.png"></CIMG></LI>
-<LI><CIMG web="jt18.png"></CIMG></LI>
 
-</OL>
+<EXR><CIMG web="most45.png"/></EXR>
+<EXR><CIMG web="jt1.png"></CIMG></EXR>
+<EXR><CIMG web="jt2.png"></CIMG></EXR>
+<EXR><CIMG web="jt3.png"></CIMG></EXR>
+<EXR><CIMG web="jt4.png"></CIMG></EXR>
+<EXR><CIMG web="jt5.png"></CIMG></EXR>
+<EXR><CIMG web="jt6.png"></CIMG></EXR>
+<EXR><CIMG web="jt7.png"></CIMG></EXR>
+<EXR><CIMG web="jt8.png"></CIMG></EXR>
+<EXR><CIMG web="jt9.png"></CIMG></EXR>
+<EXR><CIMG web="jt10.png"></CIMG></EXR>
+<EXR><CIMG web="jt11.png"></CIMG></EXR>
+<EXR><CIMG web="jt12.png"></CIMG></EXR>
+<EXR><CIMG web="jt13.png"></CIMG></EXR>
+<EXR><CIMG web="jt14.png"></CIMG></EXR>
+<EXR><CIMG web="jt15.png"></CIMG></EXR>
+<EXR><CIMG web="jt16.png"></CIMG></EXR>
+<EXR><CIMG web="jt17.png"></CIMG></EXR>
+<EXR><CIMG web="jt18.png"></CIMG></EXR>
+
 <DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/joint.html" id="joint"/></E>@}
 </NOTE>
