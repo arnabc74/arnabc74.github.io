@@ -571,7 +571,7 @@ if the set is bounded above, and <M>\infty</M>  otherwise.
 <HEAD2>General case</HEAD2>
 Finally, we attack the general case, where <M>X </M> can take both positive and negative values. 
 Here we apply our approach to the positive and the negative parts separately.  More precisely, we define 
-<D>X_+ = \max\{X,0\} \mbox{ and } X_- = -\max\{-X,0\}.</D>
+<D>X_+ = \max\{X,0\} \mbox{ and } X_- = \max\{-X,0\}.</D>
 Note that
 <UL><LI>Both <M>X_+</M>  and <M>X_-</M>  are nonnegative,</LI>
 <LI><M>X = X_+-X_-.</M></LI>
