@@ -138,27 +138,7 @@ V(X)
 Hence the result.
 </PF>
 
-At last we shall be able to prove our first theorem about
-statistical regularity. This is essentially what we had started
-our class with.
 
-<THM name="Weak Law of Large Numbers (WLLN)">
-Let <M>X_1,X_2,...</M> be a sequence of independent and
-identically distributed (IID) random variables (defined
-on the same probability space) with <M>E(X_1)=\mu</M> and
-<M>V(X_1)=\sigma^2<\infty.</M> Let, for <M>n\in\nn</M>, 
-<D>
-\overline X_n = [[1n]]\sum_{i=1}^n X_i.
-</D>
-Then 
-<D>
-\forall \epsilon > 0~~ P(|\overline X_n-\mu|> \epsilon) \to
-0\mbox{ as } n\to \infty.
-</D>
-</THM>
-<PF>
-Do it yourself using Chebyshev inequality.
-</PF>
 
 <HEAD1>Moments</HEAD1>
 
