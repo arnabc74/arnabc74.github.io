@@ -641,7 +641,7 @@ Thus, <M>E(U)\leq L,</M>  as required.
 
 Let <M>U_n</M>  be the random variable 
 <D>
-U =<CASES>X<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>.
+U_n =<CASES>X<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>.
 </D>  
 Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
 
@@ -705,9 +705,12 @@ then <M>E(h(X))=\infty </M>(resp, <M>-\infty</M>).
 <PF>
 If <M>X</M> takes only finitely many values, then the result
 follows from distributivity of multiplication over addition. 
-<P/>
-For the countably infinite case, the result follows from rearrangement
-property of absolutely convergent series. 
+
+If <M>X </M> takes countably infinitely many values, and <M>h(X)</M>  is non-negative, then define 
+<D>
+U_n =<CASES>h(X)<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>
+</D>  
+and proceed as for the proof of <M>E(X)=\sum p_i x_i.</M> 
 </PF>
 
 <HEAD1>Properties of expectation</HEAD1>

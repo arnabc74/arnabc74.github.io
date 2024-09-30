@@ -20,7 +20,7 @@ X(head) & = & 10,\\
 X(tail) & = & -20.
 </MULTILINE>
 There is nothing random about this <I>function</I>. The randomness comes
-from mechanism that decides what gois <I>into</I> this: head or tail?
+from the mechanism that decides what goes <I>into</I> this: head or tail?
 <P/>
 We use this idea to define random variables mathematically. We
 start with a random experiment which is the provider of the
@@ -571,7 +571,7 @@ if the set is bounded above, and <M>\infty</M>  otherwise.
 <HEAD2>General case</HEAD2>
 Finally, we attack the general case, where <M>X </M> can take both positive and negative values. 
 Here we apply our approach to the positive and the negative parts separately.  More precisely, we define 
-<D>X_+ = \max\{X,0\} \mbox{ and } X_- = -\max\{-X,0\}.</D>
+<D>X_+ = \max\{X,0\} \mbox{ and } X_- = \max\{-X,0\}.</D>
 Note that
 <UL><LI>Both <M>X_+</M>  and <M>X_-</M>  are nonnegative,</LI>
 <LI><M>X = X_+-X_-.</M></LI>
@@ -641,8 +641,9 @@ Thus, <M>E(U)\leq L,</M>  as required.
 
 Let <M>U_n</M>  be the random variable 
 <D>
-U =<CASES>U</CASES>
-</D>  Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
+U_n =<CASES>X<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>.
+</D>  
+Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
 
 So <M>U_n\in{\mathcal D}.</M>
  
@@ -704,9 +705,12 @@ then <M>E(h(X))=\infty </M>(resp, <M>-\infty</M>).
 <PF>
 If <M>X</M> takes only finitely many values, then the result
 follows from distributivity of multiplication over addition. 
-<P/>
-For the countably infinite case, the result follows from rearrangement
-property of absolutely convergent series. 
+
+If <M>X </M> takes countably infinitely many values, and <M>h(X)</M>  is non-negative, then define 
+<D>
+U_n =<CASES>h(X)<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>
+</D>  
+and proceed as for the proof of <M>E(X)=\sum p_i.</M> 
 </PF>
 
 <HEAD1>Properties of expectation</HEAD1>
