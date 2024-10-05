@@ -200,23 +200,23 @@ This follows immediately from the definition of conditional probability.
 </PF>
 <HEAD1>Problems for practice</HEAD1>
 
-<EXR><EIMG web="condist1.png"></EIMG>
+::<EXR><EIMG web="condist1.png"></EIMG>
 
 Here the word "density" is used to mean "PMF". 
 <HR/></EXR>
-<EXR><EIMG web="condist2.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist3.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist4.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist5.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist6.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist7.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist8.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist9.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist10.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist11.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="condist12.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond1.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond2.png"></EIMG>
+::<EXR><EIMG web="condist2.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist3.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist4.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist5.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist6.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist7.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist8.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist9.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist10.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist11.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="condist12.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond1.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond2.png"></EIMG>
 Let <M>I_j</M> be the indicator variable for whether there is a
 record at position <M>j.</M> Then <M>P(I_j=1)</M> may be computed
 by total probability:
@@ -225,30 +225,39 @@ P(I_j=1) = \sum_{k=j}^n P(X_j=k)P(I_j=1|X_j=k).
 </D>
 Similarly for <M>P(I_jI_k=1).</M>
 <HR/></EXR>
-<EXR><EIMG web="morecond3.png"></EIMG>
+::<EXR><EIMG web="morecond3.png"></EIMG>
 The problem is basically optimising <M>\sum P_i^2</M> subject
 to <M>\sum P_i</M> being fixed. Cauchy-Scwartz might help.  
 <HR/></EXR>
-<EXR><EIMG web="morecond4.png"></EIMG><P/>This problem (from Ross)
+::<EXR><EIMG web="morecond4.png"></EIMG><P/>This problem (from Ross)
 refers to Example 2m. <LINK to="image/kirti1.png">Here is that example.</LINK><HR/></EXR>
-<EXR><EIMG web="morecond5.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond6.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond7.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond8.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond9.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond10.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond11.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond12.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond13.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond14.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond15.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond16.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond17.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond18.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond5.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond6.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond7.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond8.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond9.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond10.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond11.png"></EIMG>
 
-<EXR><EIMG web="morecond19.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond20.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond21.png"></EIMG><HR/></EXR>
-<EXR><EIMG web="morecond22.png"></EIMG><HR/></EXR>
+Will the result hold in general if the <M>X_i</M>'s are not independent?
+<ANS>No, the result may not hold if the <M>X_i</M>'s have a dependence structure that is
+ asymetric. A counterexample is as follows. 
+
+<M>X_1 = </M>  outcome of a roll of a fair die. <M>X_2</M>  is obtained from <M>X_1</M>  by
+ swapping 1 and 2. <M>X_3</M>  is obtained from <M>X_1</M>  by swapping 1 and 3. Then <M>E(X_1|X_1+X_2+X_3=6)=1\neq [[63]].</M> 
+</ANS>
+<HR/></EXR>
+::<EXR><EIMG web="morecond12.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond13.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond14.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond15.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond16.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond17.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond18.png"></EIMG><HR/></EXR>
+
+::<EXR><EIMG web="morecond19.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond20.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond21.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond22.png"></EIMG><HR/></EXR>
 </E>@}
 </NOTE>
