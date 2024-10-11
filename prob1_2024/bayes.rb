@@ -737,11 +737,12 @@ Answer is <M>[[23]]/[[34]]=[[23]].
 </EXR>
 ::<EXR><CIMG web="rosscond5.png"/>
 <ANS><M>P(</M> exactly 2 white<M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]+
-[[23]]\times[[23]]\times[[14]]=[[11][36]]</M></ANS>
+[[23]]\times[[23]]\times[[14]]=[[11][36]]</M>
 
 <M>P(</M> exactly 2 white and white from <M>A</M><M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]=[[7][36]].</M>
 
 So the required conditional probability is <M>[[7][11]].</M> 
+</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond6.png"/>
 <ANS><M>P(</M> 2nd and 3rd cards spades<M>)=[[13\times12][52\times51]].</M>
