@@ -922,10 +922,17 @@ you rearrange the terms.
 ::<EXR>For a group of <M>n</M>  people find the expected number of days of the year which are
  birthdays of exactly <M>k</M>  people. (Assume 365 days and that all arrangements are equally
  probable.) Also find the expected number of multiple birthdays. How large should <M>n</M>  be to
- make this expectation exceed 1?</EXR>
-::<EXR>A man with <M>n</M>  keys wants to open a door (where exactly one keys works). He tries the
+ make this expectation exceed 1?
+<ANS> Expected number of days of the year which are  birthdays of exactly <M>k</M>  people is <M>\binom{n}{k}[[364^{n-k}][365^{n-1}]].</M>
+
+Expected number of multiple birthdays is <M>365{*{1-(*([[364][365]])*)^n + [[n\times 364^{n-1}][365^n]]}*}.</M>
+</ANS>
+</EXR>
+::<EXR>A man with <M>n</M>  keys wants to open a door (where exactly one key works). He tries the
  keys independently at random. Find the expected number of trials needed to open the door if 
- keys are tried (a) with replacement (b) without replacement.</EXR>
+ keys are tried (a) with replacement (b) without replacement.
+
+</EXR>
 ::<EXR><CIMG web="rossrv1.png"/></EXR>
 ::<EXR><CIMG web="rossrv2.png"/></EXR>
 ::<EXR><CIMG web="rossrv3.png"/></EXR>
