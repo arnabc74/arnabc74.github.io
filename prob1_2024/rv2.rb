@@ -34,7 +34,7 @@ Again, finiteness of <M>E(X)</M>  is equivalent to finiteness of both  <M>E(X_+)
 Hence the result.
 </PF>
 
-<EXR>If <M>E(|X|)=\infty,</M>  then what can you say about <M>E(X)?</M>
+::<EXR>If <M>E(|X|)=\infty,</M>  then what can you say about <M>E(X)?</M>
 <ANS>May be <M>\infty</M>  or <M>-\infty</M>  or undefined.</ANS>
 </EXR>
 <THM>
@@ -259,26 +259,55 @@ learn the proofs for CFs in the next semester.</B>
 
 <HEAD1>Problems for practice</HEAD1>
 
-<EXR>A box has 6 red balls an 4 black balls. An SRSWR of
+::<EXR>A box has 6 red balls an 4 black balls. An SRSWR of
 size <M>n</M> is selected. If <M>X</M> is the number of red
-balls selectrd, then find PMF and <M>E(X).</M> Also solve the
-problem in the case of SRSWOR.</EXR>
-<EXR>Let <M>N</M> be a positive integer. Let 
+balls selected, then find PMF of <M>X</M>  and <M>E(X).</M> Also solve the
+problem in the case of SRSWOR.
+<ANS>
+<U>For SRSWR:</U>  <M>P(X=x) = \binom{n}{x} (*([[6][10]])*)^x(*([[4][10]])*)^{n-x}</M>  for <M>x=0,1,...,n.</M>
+
+<U>For SRSWOR:</U>  
+<M>P(X=x) = [[\binom{6}{x} \binom{4}{n-x}][\binom{10}{n}]]</M> 
+ for <M>x=0,1,...,n.</M>
+
+By the way, this does not mean that <M>X</M>  can indeed take all the values from 0 to <M>n.</M>  For some of these values
+ the probability is zero.
+</ANS>
+</EXR>
+::<EXR>Let <M>N</M> be a positive integer. Let 
 <D>
 f(x) = <CASES>c 2^x <IF>x=1,2,...,N</IF>0<ELSE/></CASES>
 </D>
 be a PMF. Find <M>c.</M> Find <M>E(X)</M> and <M>V(X)</M> if <M>X</M> has this PMF.
-</EXR>
-<EXR>An SRSWR of size 2 is drawn from <M>\{1,2,...,12\}.</M>
+<ANS>
+For <M>f(x)</M>  to be a PMF we need 
+<D>f(1)+\cdots+f(N)=1.</D>
+Hence 
+<D>c = [[1][2^N-2]].</D>
+So
+<D>E(X) = \sum_1^N x f(x) = c\sum_1^N x 2^x = ...</D>
+Similarly, you can find <M>V(X).</M>
+</ANS></EXR>
+::<EXR>An SRSWR of size 2 is drawn from <M>\{1,2,...,12\}.</M>
 Let <M>X</M> be the maximum of the two numbers
-selected. Find <M>E(X).</M></EXR>
-<EXR>An SRSWR of size <M>n</M> is selected
+selected. Find <M>E(X).</M>
+<ANS>
+Here <M>X</M>  can take only the values <M>1,2,...,12.</M>  
+
+For <M>k\in\{1,2,...,12\}</M>  we have
+<D>P(X\leq k) = P(X_1, X_2 \leq k) = (*([[k][12]])*)^2.</D>
+So <M>P(X=k) = [[k^2-(k-1)^2][144]] = [[2k-1][144]].</M>
+
+Hence <M>E(X) = \sum_1^{12} [[2k^2-k][144]]=....</M>
+</ANS>
+</EXR>
+::<EXR>An SRSWR of size <M>n</M> is selected
 from <M>\{1,2,...,12\}.</M> Let <M>a_n </M> be the expected
 value of the maximum of the sample. Show that <M>a_n \leq
 a_{n+1}</M> without explicily finding <M>a_n</M> in terms of <M>n.</M></EXR>
-<EXR><CIMG web="rossexp1.png"></CIMG></EXR>
-<EXR><CIMG web="rossexp2.png"></CIMG></EXR>
-<EXR><CIMG web="rossexp3.png"></CIMG></EXR>
-<EXR><CIMG web="rossexp4.png"></CIMG></EXR>
+::<EXR><CIMG web="rossexp1.png"></CIMG></EXR>
+::<EXR><CIMG web="rossexp2.png"></CIMG></EXR>
+::<EXR><CIMG web="rossexp3.png"></CIMG></EXR>
+::<EXR><CIMG web="rossexp4.png"></CIMG></EXR>
 </E>@}
 </NOTE>
