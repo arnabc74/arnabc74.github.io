@@ -294,16 +294,70 @@ selected. Find <M>E(X).</M>
 <ANS>
 Here <M>X</M>  can take only the values <M>1,2,...,12.</M>  
 
-For <M>k\in\{1,2,...,12\}</M> 
+For <M>k\in\{1,2,...,12\}</M>  we have
+<D>P(X\leq k) = P(X_1, X_2 \leq k) = (*([[k][12]])*)^2.</D>
+So <M>P(X=k) = [[k^2-(k-1)^2][144]] = [[2k-1][144]].</M>
+
+Hence <M>E(X) = \sum_1^{12} [[2k^2-k][144]]=....</M>
 </ANS>
 </EXR>
 ::<EXR>An SRSWR of size <M>n</M> is selected
 from <M>\{1,2,...,12\}.</M> Let <M>a_n </M> be the expected
 value of the maximum of the sample. Show that <M>a_n \leq
-a_{n+1}</M> without explicily finding <M>a_n</M> in terms of <M>n.</M></EXR>
-::<EXR><CIMG web="rossexp1.png"></CIMG></EXR>
-::<EXR><CIMG web="rossexp2.png"></CIMG></EXR>
-::<EXR><CIMG web="rossexp3.png"></CIMG></EXR>
-::<EXR><CIMG web="rossexp4.png"></CIMG></EXR>
+a_{n+1}</M> without explicily finding <M>a_n</M> in terms of <M>n.</M>
+<ANS>
+Let <M>X_1,...,X_{n+1}</M>  be an SRSWR of size <M>n+1</M>  from <M>\{1,...,12\}.</M>
+
+Then <M>X_1,...,X_n</M>  is an SRSWR of size <M>n</M>  from <M>\{1,...,12\}.</M>
+
+Let <M>U = \max\{X_1,...,x_{n+1}\}</M>  and <M>V = \max\{X_1,...,x_n\}.</M>
+
+Then <M>U = \max\{V,X_n\} \geq V.</M>
+
+So <M>E(U)\geq E(V).</M>
+
+Hence <M>a_{n+1}\geq a_n,</M>  as required. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="rossexp1.png"></CIMG>
+<ANS>
+<M>P(0\leq X\leq 40) = 1-P(|X-\mu|>20)</M>  where <M>\mu=E(X)=20.</M>
+
+By Chebyshev inequality <M>P(|X-\mu|> 20)\leq [[V(X)][400]] = [[1][20]].</M>
+
+Hence <M>P(0\leq X\leq 40)\geq 1-[[1][20]] = [[19][20]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rossexp2.png"></CIMG>
+<ANS>
+(a) By Markov inequality, <M>E(X)\geq 85 P(X> 85).</M>  
+
+So <M>P(X> 85) \leq [[75][85]].</M>
+
+(b) <M>P(65\leq X \leq 85) = 
+P(|X-75|\leq 10) = 1- P(|X-75|> 10)\geq 1-[[V(X)][100]] = [[34]]</M>  by Chebyshev.
+
+(c) Let the answer be <M>n</M>, and class average be <M>\bar X.</M>  
+
+Then <M>E(\bar X) = 75</M>  and <M>V(\bar X) = [[25][n]].</M>  
+
+So, by the Chebyshev inequality, <M>P(|\bar X-75|\geq 5) \leq [[25][5^2n]] = [[1n]].  </M>
+
+So we need <M>1-[[1n]] \geq 0.9</M>  or <M>n\geq 10.</M>  
+</ANS>
+</EXR>
+::<EXR><CIMG web="rossexp3.png"></CIMG>
+<ANS>
+Here <M>P(X\leq x) = F_X(x) = F_Y(*([[x-a][b]])*) = P(*(Y\leq [[x-a][b]])*) = P(a+bY\leq x).</M>
+
+Since this holds for all <M>x\in\rr,</M>  hence <M>X</M>  and <M>a+bY</M>  have the same CDF.
+
+Since <M>CDF</M>  characterises the distribution, hence <M>X</M>  and <M>a+bY</M>  have the same distribution.
+
+(a) <M>E(X) = E(a+bY) = a+bE(Y).</M>
+
+(b) <M>V(X) = V(a+bY) = b^2 V(Y).</M> 
+</ANS>
+</EXR>
 </E>@}
 </NOTE>
