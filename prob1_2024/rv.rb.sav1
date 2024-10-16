@@ -1025,14 +1025,39 @@ Then <M>E(X_i) = P(i</M>-th draw is white<M>)=[[17][40]].</M>
 
 So <M>E(X) = 10\times [[17][40]] = [[17][4]].</M>  
 
-(b) Let <M>Y_i = <CASES>1<IF>i\mbox{-th white ball is selected}</IF> 0<ELSE/></CASES>.</M>
+(b) Let <M>Y_i = <CASES>1<IF>i\mbox{-th white ball is selected}</IF> 0<ELSE/></CASES></M>  for <M>i=1,...,17.</M>
 
-Then <M>E(Y_i) = P(i</M>-th white ball
+Then <M>E(Y_i) = P(i</M>-th white ball is delected<M>)=[[14]].</M>  
+
+So <M>E(X) = 17\times [[14]] = [[17][4]].</M>  
+
 </ANS>
 </EXR>
-::<EXR><CIMG web="rossrv12.png"/></EXR>
-::<EXR><CIMG web="rossrv13.png"/></EXR>
-::<EXR><CIMG web="rossrv14.png"/></EXR>
+::<EXR><CIMG web="rossrv12.png"/><ANS>
+Let <M>X_i</M>  be as given in the hint. 
+
+Let <M>X = </M> number of intact marriages.
+
+Then <M>X = \sum_1^{100} X_i</M>
+
+Now <M>E(X_i) = \binom{198}{50}/\binom{200}{50}=[[150\times149][200\times199]].</M>
+
+So <M>E(X) = [[150\times149][2\times199]].</M>
+</ANS></EXR>
+::<EXR><CIMG web="rossrv13.png"/>
+<ANS>
+<M>E(X) = [[52]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rossrv14.png"/>
+Here we assume that <M>E(X)</M>  exists finitely. The inequality holds even if 
+<M>E(X^2)</M>  is not finite (with the interpretation that <M>\forall a\in\rr~~\infty \geq a</M>.)
+<ANS>
+You may either use Jensen's inequality with the convex function <M>f(x)=x^2</M>  or the fact that <M>V(X)\geq 0.</M>
+
+Equality if and only if <M>V(X)= 0</M>, i.e., if <M>X</M>  is a degenerate random variable.
+</ANS>
+</EXR>
 
 ::<EXR><CIMG web="fellrv1.png"/>
 You may use some approximations in parts (c) and (d) of this problem. For instamce there are
@@ -1060,7 +1085,21 @@ Treating <M>k </M> as a continuous variable, the derivative is
 
 </ANS>
 </EXR>
-::<EXR><CIMG web="fellrv2.png"/></EXR>
+::<EXR><CIMG web="fellrv2.png"/>
+<ANS>
+Here <M>P(X=k) = \binom{k-1}{r-1}p^rq^{k-r}</M>  for <M>k=r,r+1,...</M>  where <M>q = 1-p.</M>
+
+So 
+<D>E(*([[rX]])*) = \sum_{k=r}^\infty \binom{k-1}{r-1}p^rq^{k-r}[[rk]].</D>
+Ignoring the  terms free of <M>k</M>, and massaging the rest a little, the sum  reduces to 
+<D>\sum_{k=0}^\infty [[k(k-1)\cdots(k-r+2)][k+1]] q^k.</D>
+This may be handled by repeated term by term integration and differentiation of the power series
+<D>1+q+q^2+\cdots = [[1][1-q]]</D>
+for <M>|q|<1.</M>
+
+You may like to deal with the <M>r=1</M>  case first.
+</ANS>
+</EXR>
 ::<EXR><CIMG web="most4.png"/>
 <ANS>Let <M>X = </M> the number of trials needed to get the first 6. 
 
@@ -1075,10 +1114,73 @@ if <M>|x|<1.</M>  This may be differentiated term by term (needs a justification
 Put <M>x=[[56]]</M>  to find the required expectation.
 </ANS>
 </EXR>
-::<EXR><CIMG web="most6.png"/></EXR>
+::<EXR><CIMG web="most6.png"/>
+<ANS>
+Assuming the dice to be fair, the answer does not depend on the number 
+the gambler bets on. 
+
+Let <M>X</M>  be the loss for unit stake on 1.
+Then
+<D>X = <CASES>
+1<IF>\mbox{no die shows 1}</IF>
+-1<IF>\mbox{exactly 1 die shows 1}</IF>
+-2<IF>\mbox{exactly 2 dice show 1}</IF>
+-3<IF>\mbox{all 3 dice show 1}</IF>
+</CASES>.</D>
+So <M>P(X=1) = (*([[56]])*)^3</M>, <M>P(X=-1) = 3(*([[16]])*)(*([[56]])*)^2</M>, 
+<M>P(X=-2) =
+ 3(*([[16]])*)^2(*([[56]])*)</M>  and <M>P(X=-3) = (*([[16]])*)^3.</M>
+
+Hence   
+<D>E(X) = (*([[16]])*)^3(5^3-3\times 5^2-6\times5-3).</D>
+</ANS>
+</EXR>
 ::<EXR><CIMG web="most14.png"/>
+<ANS>
+Let <M>T_1 = 1.</M>
+
+Let <M>T_i = </M>  waiting time for the <M>i</M>-th new coupon after the <M>(i-1)</M>-th coupon has been encountered, for
+ <M>i=2,3,4,5.</M>
+
+Consider the following example to understand the definition of <M>T_i</M>'s. Suppose that the coupons arive in the order:
+<Q> <RED>3</RED> 3 <RED>4</RED> 3 <RED>5</RED> 4 3 4 <RED>2</RED> 3 4 5 <RED>1</RED>.</Q>
+The first occurences of each type of coupon have been shown in red. They are at positions 
+<D>S_1 = 1, S_2 = 3, S_3 = 5, S_4=9\mbox{ and } S_5=13.</D>
+We are defining <M>T_i = S_i-S_{i-1}</M>  for <M>i=1,...,5</M>  where <M>S_0=0.</M>
+
+Then the <M>T_i</M>'s are independent random variables. 
+
+<M>T_1</M>  is degenerate at 1,  and for <M>i=2,...,5</M>  we have
+<D>P(T_i = k) = q_i^{k-1}p_i</D>  for <M>k\in\nn</M>  where <M>p_i = [[i-1][5]]</M>  and <M>q_i = 1-p_i.</M>
+
+We can easily find <M>E(T_i)</M>'s. 
+
+The answer to the problem is <M>E(T_1+\cdots+T_5) = 1+E(T_2)+\cdots+E(T_5).</M>
+</ANS>
 </EXR>
 ::<EXR><CIMG web="most15.png"/>
+<ANS>
+Let there be <M>n</M>  workers. Let <M>X</M>  be the number of working days. 
+
+Let <M>X_i=<CASES>1<IF>i\mbox{-th day is a working day}</IF> 0<ELSE/></CASES>.</M>
+
+Then <M>X = \sum_1^{365} X_i.</M>
+
+Now <M>E(X_i) = P(i</M>-th day is a working day<M>)= (*([[364][365]])*)^n.</M>
+
+So <M>E(X) = 365\times (*([[364][365]])*)^n.</M>
+
+Hence expected number of man-days is 
+<M>365n\times (*([[364][365]])*)^n=f(n)</M>, say.
+
+We want to maximise this wrt <M>n.</M>  
+
+Now 
+<D>[[f(n+1)][f(n)]] = [[n+1][n]]\times [[364][365]].</D>
+This is <M>>/=/< 1</M>  according as <M>364 >/+/< n.</M>
+
+So the function is maximised
+</ANS>
 <ANS>
 <CIMG web="bachmod.png">The same person may be part of two marriageable couples.</CIMG>
 The guys are all distinct, and so are the girls (though it is not clear from my wonderful artwork!). 
