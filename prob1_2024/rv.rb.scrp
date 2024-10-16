@@ -1,9 +1,23 @@
--1<IF>\mbox{no die shows 1}</IF>
--------EOD-------
+<ANS>
+Let there be <M>n</M>  workers. Let <M>X</M>  be the number of working days. 
 
-this is equivalent to maximising 
-<D>f(n) = \log n +An,</D>
-where <M>A = \log [[364][365]].</M>
+Let <M>X_i=<CASES>1<IF>i\mbox{-th day is a working day}</IF> 0<ELSE/></CASES>.</M>
 
-Let's consider the function defined over 
+Then <M>X = \sum_1^{365} X_i.</M>
+
+Now <M>E(X_i) = P(i</M>-th day is a working day<M>)= (*([[364][365]])*)^n.</M>
+
+So <M>E(X) = 365\times (*([[364][365]])*)^n.</M>
+
+Hence expected number of man-days is 
+<M>365n\times (*([[364][365]])*)^n=f(n)</M>, say.
+
+We want to maximise this wrt <M>n.</M>  
+
+Now 
+<D>[[f(n+1)][f(n)]] = [[n+1][n]]\times [[364][365]].</D>
+This is <M>>/=/< 1</M>  according as <M>364 >/+/< n.</M>
+
+So the function is maximised at <M>n=364</M>  and <M>365.</M>
+</ANS>
 -------EOD-------
