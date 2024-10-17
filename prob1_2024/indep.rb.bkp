@@ -52,6 +52,26 @@ Apparently the first toss plays a role in both the writings. But still a simple 
 
 <EXR>
 Same problem as above, but this time the coin is biased. Say, <M>P(H)=0.6.</M>  
+<ANS>
+Possible outcomes are still <M>HH, HT, TH</M>  and <M>TT.</M>  Let's work out the probabilities. 
+
+<M>P(HH) = P(</M> first toss gives head, second toss is head<M>) = 0.6^2 = 0.36.</M>
+
+<M>P(HT) = P(</M> first toss gives head, second toss gives tail<M>) = 0.6\times(1-0.6) = 0.24.</M>
+
+<M>P(TH) = P(</M> first toss gives tail, second toss gives tail<M>) = (1-0.6)^2 = 0.16.</M>
+
+<M>P(TT) = P(</M> first toss gives tail, second toss gives head<M>) = (1-0.6)\times 0.6 = 0.24.</M>
+
+So <M>P(A) = P(\{HH, HT\}) = 0.36+0.24 = 0.6.</M>
+
+<M>P(B) = P(\{HH, TH\}) = 0.36+0.16 = 0.52.</M>
+
+Now 
+<M>P(A\cap B) = P(HH) = 0.36 \neq P(A)P(B).</M>
+ 
+So <M>A,B</M>  are not independent.
+</ANS>
 </EXR>
 
 <HEAD2>More than two events</HEAD2>
