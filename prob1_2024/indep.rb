@@ -181,7 +181,7 @@ With this natural extension, we have the following important theorem.
 Let <M>\Omega_1,\Omega_2,\Omega,P_1,P_2,P</M>  be as above. Then for any <M>A_1\seq \Omega_1</M>  and any 
 <M>A_2\seq \Omega_2</M>  we have <M>P(A_1\times A_2)  = P_1(A_1)P_2(A_2).</M>
 </THM>
-The statement of this theorem had a serious flaw, which was pointed out by Bhrajishnu. The flaw has now been corrected.
+The statement of this theorem had a serious flaw, which was pointed out by Vrajishnu. The flaw has now been corrected.
 <PF>
 The proof is easy if <M>A_1</M>  and <M>A_2</M>  are both finite. 
 <P/>
