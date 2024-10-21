@@ -575,22 +575,22 @@ Finally, since <M>k</M> is fixed, we have
 completing the proof.
 </PF>
 <HEAD1>Problems for practice</HEAD1>
-<OL>
-<LI><EIMG web="infdist1.png"/><HR/></LI>
-<LI><EIMG web="infdist2.png"/><HR/></LI>
-<LI><EIMG web="infdist3.png"/><HR/></LI>
-<LI><EIMG web="infdist4.png"/><HR/></LI>
-<LI><EIMG web="infdist5.png"/><HR/></LI>
-<LI><EIMG web="infdist6.png"/><HR/></LI>
-<LI><EIMG web="infdist7.png"/><HR/></LI>
-<LI><EIMG web="infdist8.png"/><HR/></LI>
-<LI><EIMG web="infdist9.png"/><HR/></LI>
-<LI><EIMG web="infdist10.png"/><HR/></LI>
-<LI><EIMG web="infdist11.png"/><HR/></LI>
-<LI><EIMG web="infdist12.png"/><HR/></LI>
-<LI><EIMG web="infdist13.png"/><HR/></LI>
-<LI><EIMG web="infdist14.png"/><HR/></LI>
-<LI>Show that 
+
+<EXR><EIMG web="infdist1.png"/><HR/></EXR>
+<EXR><EIMG web="infdist2.png"/><HR/></EXR>
+<EXR><EIMG web="infdist3.png"/><HR/></EXR>
+<EXR><EIMG web="infdist4.png"/><HR/></EXR>
+<EXR><EIMG web="infdist5.png"/><HR/></EXR>
+<EXR><EIMG web="infdist6.png"/><HR/></EXR>
+<EXR><EIMG web="infdist7.png"/><HR/></EXR>
+<EXR><EIMG web="infdist8.png"/><HR/></EXR>
+<EXR><EIMG web="infdist9.png"/><HR/></EXR>
+<EXR><EIMG web="infdist10.png"/><HR/></EXR>
+<EXR><EIMG web="infdist11.png"/><HR/></EXR>
+<EXR><EIMG web="infdist12.png"/><HR/></EXR>
+<EXR><EIMG web="infdist13.png"/><HR/></EXR>
+<EXR><EIMG web="infdist14.png"/><HR/></EXR>
+<EXR>Show that 
 <D>
 [[\lambda^k][k!]] (*(1-[[\lambda n]])*)^{n-k} 
 \geq
@@ -598,8 +598,8 @@ completing the proof.
 [[\lambda^k][k!]] (*(1-[[kn]] )*)^k(*(1-[[\lambda n]])*)^{n-k}, 
 </D>
 where <M>\lambda = np.</M>
-<HR/></LI>
-<LI>Use the above inequality to show that 
+<HR/></EXR>
+<EXR>Use the above inequality to show that 
 <D>
 [[e^{-\lambda}\lambda^k][k!]] e^{k \lambda/n}
 >
@@ -607,8 +607,8 @@ where <M>\lambda = np.</M>
 >
 [[e^{-\lambda}\lambda^k][k!]] e^{-k^2/(n-k)-\lambda^2/(n-\lambda)}.
 </D>
-<HR/></LI>
-<LI>(Banach's matchbox problem)
+<HR/></EXR>
+<EXR>(Banach's matchbox problem)
 A certain mathematician has two matchboxes (containing <M>n</M>
 matches each), one in his left pocket, the other in the
 right. When he needs to light a cigar (smoking which, BTW, is
@@ -621,8 +621,8 @@ the other box? [Hint: To get yourself started first
 find <M>P(X=n).</M> This means he has been using the same
 box <M>n</M> times without ever using the other box.]
 <HR/>
-</LI>
-</OL>
+</EXR>
+
 <P/>
 <DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/distrib.html" id="distrib"/>
 </E>@}

@@ -491,6 +491,16 @@ Will the result hold in general if the <M>X_i</M>'s are not independent?
 ::<EXR><EIMG web="morecond19.png"></EIMG><HR/></EXR>
 ::<EXR><EIMG web="morecond20.png"></EIMG><HR/></EXR>
 ::<EXR><EIMG web="morecond21.png"></EIMG><HR/></EXR>
-::<EXR><EIMG web="morecond22.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond22.png"></EIMG>
+<ANS>
+(a) Let's take an example with <M>n=10</M>  and <M>k=3.</M>  We are showing the selected balls in red:
+<Q>
+1 <RED>2 3</RED> 4 5 <RED>6</RED> 7 8 9 10
+</Q>
+Here <M>X = 6</M>  and <M>R = 4.</M>  
+
+You should be able to see directly that in general <M>X+R=n.</M>
+</ANS>
+<HR/></EXR>
 </E>@}
 </NOTE>

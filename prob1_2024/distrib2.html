@@ -3,8 +3,11 @@
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
-<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -27,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -69,12 +72,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   });
 </script>
 <style>
-body {
+body,table {
   margin: 0;
+  font-size: 40;
   //background: #000;
   //color: #fff;
 }
 
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
 .sticky {
   position: fixed;
@@ -93,7 +101,13 @@ body {
 }
 
 .scrpt {
+  margin:10px;
   border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
 }
 </style>
 <script>
@@ -127,8 +141,7 @@ function myFunction() {
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head>
-<body>
+</head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
@@ -201,6 +214,7 @@ barplot(dgeom(0:10, prob=0.5))
 `));"/>
 <p></p>
 
+<p></p>
 In R each distribution has a short name. It is <font size="+1" color="red"><code>geom</code></font>
 for the Geometric distribution. For each distribution there are 4
 functions in R: these are formed by appending the
@@ -225,6 +239,7 @@ data = rgeom(1000, prob=0.5)
 table(data)
 barplot(table(data))
 `));"/>
+<p></p>
 
 <p></p>
 
@@ -255,7 +270,7 @@ which is the <b>Geom</b>$(\theta)$ PMF
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE 1:</b>&nbsp;
 If $X\sim$<b>Geom</b>$(0.3),$ find $P(X&gt;2).$
 <p></p>
 <b>SOLUTION:</b> 
@@ -265,13 +280,13 @@ P(X&gt;2) &amp;=&amp; 1-P(X\leq 2)\\
        &amp;=&amp; 1-(1-0.3)^{1-1}0.3 - (1-0.3)^{2-1}0.3\\
        &amp;=&amp; 1-0.3-0.21 = 0.49.
 \end{eqnarray*}$$
- ///
+ ■
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 1:</b>&nbsp;
 If $G$ is a <b>Geom</b>$(0.2)$ random variable, then compute the
 following probabilities.
 <ol>
@@ -288,15 +303,27 @@ following probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$0.128$
+</li>
+<li>$0$
+</li>
+<li>$0.2$
+</li>
+<li>$0.488$
+</li>
+<li>$1-0.488=0.512.$
+</li>
+</ol>
 
 <p></p>
 
+<p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 2:</b>&nbsp;
 Find $P(T\mbox{ is even})$ where $T\sim$<b>Geom</b>$(0.4).$ 
-</p>
-
+</p>$\frac{1-\theta}{2-\theta}.$
 <p>
 <b>Hint:</b>
 <blockquote> You will need the geometric series here.
@@ -308,9 +335,10 @@ $$\begin{eqnarray*}P(X\mbox{ is even})&amp;=&amp; P(X=2)+P(X=4)+\cdots\\
 \end{eqnarray*}$$</blockquote>
 </p>
 
+<p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE 2:</b>&nbsp;
 Some versions of Ludo require you to get a `6' on the die before your
 counter can move. Sometimes it takes frustratingly long time before you
 finally roll a `6'. Let $X$ denote the number of rolls required to
@@ -320,29 +348,27 @@ probability 1/6 of turning up), then what is the distribution of $X?$
 
 <p></p>
 <b>SOLUTION:</b> $X$ is a <b>Geom</b>(1/6) random variable. 
- ///
+ ■
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 3:</b>&nbsp;
 In the above example compute the probability of getting the first `6' within
 the first 3 rolls. 
-</p>
-
+</p>$\frac{91}{216}$
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 4:</b>&nbsp;
 Some couples are so keen about having a son that they go on producing
 babies until they get their first son, and then they stop having children. 
  Assume that at each birth a baby of
 either gender is equally likely. Also assume that the births are
 independent. Compute the probability that such a  couple has exactly 2
 daughters. 
-</p>
-
+</p>$\frac18$
 <p>
 <b>Hint:</b>
 <blockquote>
@@ -372,11 +398,11 @@ The term corresponding to `$x=1$' is zero. So we can as well start
      the sum from $x=2.$
 $$\begin{eqnarray*}
 \sum_{x=1}^\infty x(x-1)(1-\theta)^{x-1}\theta 
-	  &amp;=&amp; \sum_{x=2}^\infty x(x-1)(1-\theta)^{x-1}\theta \\
-	  &amp;=&amp; \theta(1-\theta)\sum_{x=2}^\infty x(x-1)(1-\theta)^{x-2} \\
-	  &amp;=&amp; \theta(1-\theta)\frac2{(1-(1-\theta))^3}\\
-	  &amp;=&amp; \frac{2\theta(1-\theta)}{\theta^3} \\
-	  &amp;=&amp; \frac{2(1-\theta)}{\theta^2}
+     &amp;=&amp; \sum_{x=2}^\infty x(x-1)(1-\theta)^{x-1}\theta \\
+     &amp;=&amp; \theta(1-\theta)\sum_{x=2}^\infty x(x-1)(1-\theta)^{x-2} \\
+     &amp;=&amp; \theta(1-\theta)\frac2{(1-(1-\theta))^3}\\
+     &amp;=&amp; \frac{2\theta(1-\theta)}{\theta^3} \\
+     &amp;=&amp; \frac{2(1-\theta)}{\theta^2}
 \end{eqnarray*}$$
 <p></p>
 $$\begin{eqnarray*}
@@ -393,7 +419,7 @@ Var(X) &amp;=&amp; E(X^2) - (E(X))^2 \\
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 5:</b>&nbsp;
 Find the mean and standard deviation of a <b>Geom</b>$(\theta)$ random
 variable for the following values of $\theta.$
 <ol>
@@ -407,11 +433,19 @@ variable for the following values of $\theta.$
 
 </p>
 
+<ol>
+<li>$\frac43,\frac23.$
+</li>
+<li>$\frac95,\frac65.$
+</li>
+<li>$\frac98 \frac38.$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE 3:</b>&nbsp;
 When a computer tries to connect to another computer, it
  sends a connection request to the second. Depending on how busy the
  second computer is, this request may be honoured (and so the connection is
@@ -429,16 +463,16 @@ When a computer tries to connect to another computer, it
 $$
 E(X) = 1/0.8 = 1.25
 $$ 
- ///
+ ■
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 6:</b>&nbsp;
 Compute $E(D)$ and $Var(D)$ in the son-daughter exercise above.
-</p>
-
+</p>$E(D)=2,$ $Var(D)=2.$
+<p></p>
 
 <h2><a
 name="Negative binomial">Negative binomial</a></h2>
@@ -502,7 +536,7 @@ $$
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 7:</b>&nbsp;
 If $X$ follows <b>NegBin</b>$(3,\frac14)$ distribution, find the following
 probabilities.
 <ol>
@@ -517,6 +551,16 @@ probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$\frac{27}{512}$
+</li>
+<li>$0$
+</li>
+<li>$\frac3{32}$
+</li>
+<li>$\frac9{128}$
+</li>
+</ol>
 
 <p></p>
 
@@ -529,7 +573,7 @@ Var(X) &amp; = &amp; \frac{r(1-\theta)}{\theta^2}
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp; $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
+<b>EXERCISE 8:</b>&nbsp; $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
 $Var(Y)$ for the following values of $r$ and $\theta.$
 <ol>
 <li>$r=3, \theta=\frac12$
@@ -544,6 +588,16 @@ $Var(Y)$ for the following values of $r$ and $\theta.$
 
 </p>
 
+<ol>
+<li>$6,r=3, \theta=\frac12$
+</li>
+<li>$10, 40 r=2.$
+</li>
+<li>$\frac32,\frac34.$
+</li>
+<li>$15, 30.$
+</li>
+</ol>
 
 <p></p>
 It should be apparent from the description of the distribution that
@@ -584,7 +638,7 @@ $X_1+\cdots+X_r\sim $<b>NegBin</b>$(\theta,r)$.
 </fieldset>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 9:</b>&nbsp;
 Using the above result and the mean and variance of
 <b>Geom</b>$(\theta),$
 derive the formula for mean and variance of <b>NegBin</b>$(r,\theta).$
@@ -614,6 +668,7 @@ value="Run in cloud"
 onclick="javascript:aha(encodeURI(`
 barplot(dnbinom(0:10, size=3, prob=0.5))
 `));"/>
+<p></p>
 
 <h2><a
 name="Poisson distribution">Poisson distribution</a></h2>
@@ -637,7 +692,7 @@ variable, and write $X\sim$<b>Poi</b>$(\lambda).$
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 10:</b>&nbsp;
 If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 <ol>
 <li>$P(X=4)$
@@ -651,14 +706,23 @@ If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$27e^{-3}/8$
+</li>
+<li>$e^{-3}$
+</li>
+<li>$0$
+</li>
+<li>$43e^{-3}/4$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 11:</b>&nbsp;
 What is the probability that a <b>Poi</b>$(5)$ random variable is even?
-</p>
-
+</p>$(e^5+e^{-5})/2$
 <p></p>
 
 <b>Where used:</b> One use of Poisson distribution is in approximating
@@ -674,7 +738,7 @@ where $\lambda  = n \lambda. $
 <p></p>
 
 <p>
-<b>EXAMPLE:</b>&nbsp;
+<b>EXAMPLE 4:</b>&nbsp;
 $X$ has <b>Bin</b>(1000,0.01) distribution. Compute $P(X=5)$
 approximately by using Poisson approximation. 
 <p></p>
@@ -690,21 +754,20 @@ It is instructive to compare this with the exact value, which is
 $$
 P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
 $$
- ///
+ ■
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 12:</b>&nbsp;
 A box has 100 items, each of which either passes a quality control test
 (OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
 box is rejected by the quality control inspector. It is known that each
 item is OK with probability 0.01, and that the items are independent. Use
 Poisson approximation to compute the probability that a box is not
 rejected.
-</p>
-
+</p>$1-\frac{8}{3e}$
 <p></p>
 
 <b>Expectation and variance:</b> If $X$ has <b>Poi</b>$(\lambda)$
@@ -766,7 +829,7 @@ Var(X)   &amp;=&amp; E(X^2) - (E(X))^2\\
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 13:</b>&nbsp;
 Find the expected values of the following random variables.
 <ol>
 <li>$X\sim$<b>Poi</b>$(2).$
@@ -779,11 +842,19 @@ Find the expected values of the following random variables.
 
 </p>
 
+<ol>
+<li>$E(X)=2.$
+</li>
+<li>$E(Y)=\frac12.$
+</li>
+<li>$E(Z)=2.5.$
+</li>
+</ol>
 
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 14:</b>&nbsp;
 Find the variance of a <b>Poi</b>$(\lambda)$ random variable for the
 following values of $\lambda.$
 <ol>
@@ -797,6 +868,14 @@ following values of $\lambda.$
 
 </p>
 
+<ol>
+<li>$1$
+</li>
+<li>$9$
+</li>
+<li>$0.01$
+</li>
+</ol>
 
 <p></p>
 
@@ -809,13 +888,14 @@ then $X+Y$ is a <b>Poi</b>$(\alpha+\beta)$ random variable.
 <p></p>
 
 <p>
-<b>EXERCISE:</b>&nbsp;
+<b>EXERCISE 15:</b>&nbsp;
 If $X_1,X_2,X_3,X_4$ are independent random variables with
  distributions <b>Poi</b>(1),<b>Poi</b>(2),<b>Poi</b>(4) and <b>Poi</b>(5),
  respectively.
 Find the distribution of $(X_1+\cdots+X_4).$
 </p>
-
+<b>Poi</b>(12)
+<p></p>
 
 <h3><a
 name="Sum of independent Poissons">Sum of independent Poissons</a></h3>
@@ -857,6 +937,7 @@ as required.
 <h3><a
 name="Poisson aproximation to Binomial">Poisson aproximation to Binomial</a></h3>
 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -898,65 +979,66 @@ completing the proof.
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 
-<ol type="">
+<p></p>
 
-<li>
-<img width="" src="image/infdist1.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/infdist1.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist2.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/infdist2.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist3.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/infdist3.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist4.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/infdist4.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist5.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/infdist5.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist6.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/infdist6.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist7.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/infdist7.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist8.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/infdist8.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist9.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/infdist9.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist10.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/infdist10.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist11.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/infdist11.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist12.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 27:</b>&nbsp;<img width="" src="image/infdist12.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist13.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 28:</b>&nbsp;<img width="" src="image/infdist13.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>
-<img width="" src="image/infdist14.png" style="vertical-align:text-top;"><hr>
-</li>
+<p>
+<b>EXERCISE 29:</b>&nbsp;<img width="" src="image/infdist14.png" style="vertical-align:text-top;"><hr>
+</p>
 
-<li>Show that 
+<p>
+<b>EXERCISE 30:</b>&nbsp;Show that 
 $$
 \frac{\lambda^k}{k!} \left(1-\frac \lambda n\right)^{n-k} 
 \geq
@@ -965,9 +1047,10 @@ $$
 $$
 where $\lambda = np.$
 <hr>
-</li>
+</p>
 
-<li>Use the above inequality to show that 
+<p>
+<b>EXERCISE 31:</b>&nbsp;Use the above inequality to show that 
 $$
 \frac{e^{-\lambda}\lambda^k}{k!} e^{k \lambda/n}
 &gt;
@@ -976,9 +1059,10 @@ $$
 \frac{e^{-\lambda}\lambda^k}{k!} e^{-k^2/(n-k)-\lambda^2/(n-\lambda)}.
 $$
 <hr>
-</li>
+</p>
 
-<li>(Banach's matchbox problem)
+<p>
+<b>EXERCISE 32:</b>&nbsp;(Banach's matchbox problem)
 A certain mathematician has two matchboxes (containing $n$
 matches each), one in his left pocket, the other in the
 right. When he needs to light a cigar (smoking which, BTW, is
@@ -992,9 +1076,9 @@ find $P(X=n).$ This means he has been using the same
 box $n$ times without ever using the other box.]
 <hr>
 
-</li>
+</p>
 
-</ol>
+<p></p>
 
 <p></p>
 
@@ -1030,6 +1114,4 @@ s.setAttribute('data-timestamp', +new Date());
 <td align="right"/>
 </tr>
 </table>
-<hr/>
-</body>
-</html>
+<hr/></body></html>
