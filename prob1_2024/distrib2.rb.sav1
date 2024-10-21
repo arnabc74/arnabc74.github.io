@@ -247,7 +247,8 @@ Hence <M>[[P(X\geq x+1)][P( X\geq x)]] = (1-p)^a,</M>  free of <M>x.</M>
 </EXR>
 
 What other distributions are there that are also memoryless? Or is Geometric the only case?
-You may like to explore this for intger
+You may like to explore this for integer-valued random variables.
+
 <HEAD2>Negative binomial</HEAD2>
 <B>Notation:</B> <B>NegBin</B><M>(\theta,r),</M> where <M>\theta > 0</M> and
 <M>r</M> is some positive integer.
@@ -612,6 +613,23 @@ Finally, since <M>k</M> is fixed, we have
 </D>
 completing the proof.
 </PF>
+
+This theorem is often interpreted as: number of rare events follows Poisson distribution. This is
+ more of a myth than anything real. But since it is very popular belief, let me explain how this
+ interpretation arises:
+<Q>
+Consider accidents occuring at a crossing. Everytime two cars come close, there is a chance of an
+ accident. But most of the time an accident  does not occur. So we may think of "two cars coming close" as a "coin toss"
+ and an "accident" as "head". Since accidents are rare, we shall consider <M>P(H)</M>  to be very small. Also at a busy crossing
+ two cars often come close, i.e., the coin is being tossed a large number of times. With this interpretation the nuber of
+ accidents should follow <M>Binom(n,\theta)</M>   distribution with large <M>n</M>  and small <M>\theta.</M>  Hence <M>Poisson(\lambda)</M> 
+ with <M>\lambda=n \theta</M>  should be a good approximation.
+</Q>
+This interpretation is clearly an over-simplification of the situation. However, this myth is fuelled by a well-known (and
+ useless) data set regarding number of deaths of Prussian soldiers  by kicks of their own
+ horses. Here is a <LINK to="horsekick.csv">data set</LINK>. This form os death is pretty rare (thankfully!). If we make
+ a bar plot of the relative frequencies, we get a very good match with a Poisson
+ 
 <HEAD1>Problems for practice</HEAD1>
 
 <EXR><EIMG web="infdist1.png"/><HR/></EXR>
