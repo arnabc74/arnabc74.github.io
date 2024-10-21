@@ -152,6 +152,9 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Geometric distribution">Geometric distribution</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Memoryless property">Memoryless property</a>
+</li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Negative binomial">Negative binomial</a>
 </li>
@@ -474,6 +477,63 @@ Compute $E(D)$ and $Var(D)$ in the son-daughter exercise above.
 </p>$E(D)=2,$ $Var(D)=2.$
 <p></p>
 
+<h3><a
+name="Memoryless property">Memoryless property</a></h3>
+Suppose you pick a random man of 18 years. What is the probability that he would survive for one more year? Let's say it
+ 0.99, since young men do not die too often. Now pick a random man of 80 years. What is the probability that <i>he</i>  would
+ suruve for one more year? Well, now the probability would be consierably lower, say 0.5, as old men have a high risk of
+ death. This is the effect of ageing, <i>i.e.</i>, the body remembering the age. Let's write this in probability language. 
+<p></p>
+Let $X$  be the life time of a random selected man. Then the two probabilities are  $P(X\geq
+ 20+1 | X\geq 20)$  and $P(X\geq 80+1 | X\geq 80).$  We saw that $P(X\geq 80+1 | X\geq
+ 80) &lt; P(X\geq 20+1 | X\geq 20).$  In fact, if we plot $P(X\geq x+1 | X\geq x)$  against
+ $x$  then we shall get a plot like 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mem.png"></th>
+</tr>
+<tr>
+<th>$P(X\geq x+1 | X\geq x)$  against $x$</th>
+</tr>
+</table>
+</center> 
+Is it possible for a random variable $X$  to have a distribution such that $P(X\geq x+1 | X\geq x)$  is free of
+ $x?$  Such a random variable is called <b><font color="red" size="40">memoryless</font></b>  in the sense that is cannot
+ remember its age. Here is exact definition:
+<fieldset>
+<legend><b>Definition: Memoryless</b></legend>
+A random variable $X$  is called <b><font color="red" size="40">memoryless</font></b>  if for all $x$  and all
+ $a&gt;0$  the conditional probability  $\frac{P(X\geq x+a)}{P( X\geq
+ x)}$  is free of $x$  (need not be free of $a$). 
+</fieldset>
+The lifespans of certain types of
+ electronic components are believed to be memoryless. Such components die only due to sudden random shocks, and not due to
+ ageing. 
+<p></p>
+The Geometric distributions are all memoryless. The next exercise asks you to prove this.
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;
+Let $X\sim Geom(p).$  Let $x\in{\mathbb N}$  show that $P(X\geq x+a | X\geq x)$  is free of $x.$
+<p><a
+href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+class="ans" id="lab7">
+$P(X\geq x+a | X\geq x) = \frac{P(X\geq x+a \&amp; X\geq x)}{P( X\geq x)} = \frac{P(X\geq x+a)}{P( X\geq x)}$
+<p></p>
+Now $P(X\geq x) = \sum_{i\geq x}p^{i-1}p = (1-p)^{x-1}$  (check!). 
+<p></p>
+Hence $\frac{P(X\geq x+1)}{P( X\geq x)} = (1-p)^a,$  free of $x.$
+</div></p>
+
+</p>
+
+<p></p>
+What other distributions are there that are also memoryless? Or is Geometric the only case?
+You may like to explore this for integer-valued random variables.
+<p></p>
+
 <h2><a
 name="Negative binomial">Negative binomial</a></h2>
 
@@ -536,7 +596,7 @@ $$
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;
+<b>EXERCISE 8:</b>&nbsp;
 If $X$ follows <b>NegBin</b>$(3,\frac14)$ distribution, find the following
 probabilities.
 <ol>
@@ -573,7 +633,7 @@ Var(X) &amp; = &amp; \frac{r(1-\theta)}{\theta^2}
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp; $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
+<b>EXERCISE 9:</b>&nbsp; $Y\sim$<b>NegBin</b>$(r,\theta).$ Compute $E(Y)$ and
 $Var(Y)$ for the following values of $r$ and $\theta.$
 <ol>
 <li>$r=3, \theta=\frac12$
@@ -638,7 +698,7 @@ $X_1+\cdots+X_r\sim $<b>NegBin</b>$(\theta,r)$.
 </fieldset>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;
+<b>EXERCISE 10:</b>&nbsp;
 Using the above result and the mean and variance of
 <b>Geom</b>$(\theta),$
 derive the formula for mean and variance of <b>NegBin</b>$(r,\theta).$
@@ -692,7 +752,7 @@ variable, and write $X\sim$<b>Poi</b>$(\lambda).$
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;
+<b>EXERCISE 11:</b>&nbsp;
 If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 <ol>
 <li>$P(X=4)$
@@ -720,7 +780,7 @@ If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;
+<b>EXERCISE 12:</b>&nbsp;
 What is the probability that a <b>Poi</b>$(5)$ random variable is even?
 </p>$(e^5+e^{-5})/2$
 <p></p>
@@ -760,7 +820,7 @@ $$
 <p></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;
+<b>EXERCISE 13:</b>&nbsp;
 A box has 100 items, each of which either passes a quality control test
 (OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
 box is rejected by the quality control inspector. It is known that each
@@ -829,7 +889,7 @@ Var(X)   &amp;=&amp; E(X^2) - (E(X))^2\\
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;
+<b>EXERCISE 14:</b>&nbsp;
 Find the expected values of the following random variables.
 <ol>
 <li>$X\sim$<b>Poi</b>$(2).$
@@ -854,7 +914,7 @@ Find the expected values of the following random variables.
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;
+<b>EXERCISE 15:</b>&nbsp;
 Find the variance of a <b>Poi</b>$(\lambda)$ random variable for the
 following values of $\lambda.$
 <ol>
@@ -888,7 +948,7 @@ then $X+Y$ is a <b>Poi</b>$(\alpha+\beta)$ random variable.
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;
+<b>EXERCISE 16:</b>&nbsp;
 If $X_1,X_2,X_3,X_4$ are independent random variables with
  distributions <b>Poi</b>(1),<b>Poi</b>(2),<b>Poi</b>(4) and <b>Poi</b>(5),
  respectively.
@@ -982,63 +1042,63 @@ name="Problems for practice">Problems for practice</a></h1>
 <p></p>
 
 <p>
-<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/infdist1.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/infdist1.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/infdist2.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/infdist2.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/infdist3.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/infdist3.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/infdist4.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/infdist4.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/infdist5.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/infdist5.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/infdist6.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/infdist6.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/infdist7.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/infdist7.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/infdist8.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/infdist8.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/infdist9.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/infdist9.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/infdist10.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/infdist10.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/infdist11.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 27:</b>&nbsp;<img width="" src="image/infdist11.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 27:</b>&nbsp;<img width="" src="image/infdist12.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 28:</b>&nbsp;<img width="" src="image/infdist12.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 28:</b>&nbsp;<img width="" src="image/infdist13.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 29:</b>&nbsp;<img width="" src="image/infdist13.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 29:</b>&nbsp;<img width="" src="image/infdist14.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 30:</b>&nbsp;<img width="" src="image/infdist14.png" style="vertical-align:text-top;"><hr>
 </p>
 
 <p>
-<b>EXERCISE 30:</b>&nbsp;Show that 
+<b>EXERCISE 31:</b>&nbsp;Show that 
 $$
 \frac{\lambda^k}{k!} \left(1-\frac \lambda n\right)^{n-k} 
 \geq
@@ -1050,7 +1110,7 @@ where $\lambda = np.$
 </p>
 
 <p>
-<b>EXERCISE 31:</b>&nbsp;Use the above inequality to show that 
+<b>EXERCISE 32:</b>&nbsp;Use the above inequality to show that 
 $$
 \frac{e^{-\lambda}\lambda^k}{k!} e^{k \lambda/n}
 &gt;
@@ -1062,7 +1122,7 @@ $$
 </p>
 
 <p>
-<b>EXERCISE 32:</b>&nbsp;(Banach's matchbox problem)
+<b>EXERCISE 33:</b>&nbsp;(Banach's matchbox problem)
 A certain mathematician has two matchboxes (containing $n$
 matches each), one in his left pocket, the other in the
 right. When he needs to light a cigar (smoking which, BTW, is
