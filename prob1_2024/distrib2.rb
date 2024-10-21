@@ -627,8 +627,8 @@ Consider accidents occuring at a crossing. Everytime two cars come close, there 
 </Q>
 This interpretation is clearly an over-simplification of the situation. However, this myth is fuelled by a well-known (and
  useless) data set regarding number of deaths of Prussian soldiers  by kicks of their own
- horses. Here is a <LINK to="horsekick.csv">data set</LINK>. This form os death is pretty rare (thankfully!). If we make
- a bar plot of the relative frequencies, we get a very good match with a Poisson distribution.
+ horses. Here is the <LINK to="horsekick.csv">data set</LINK>. This form os death is pretty rare (thankfully!). If we make
+ a bar plot of the relative frequencies, we get a very good match with a Poisson distribution. 
  
 <HEAD1>Problems for practice</HEAD1>
 
