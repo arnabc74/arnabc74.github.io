@@ -283,7 +283,7 @@ be a PMF. Find <M>c.</M> Find <M>E(X)</M> and <M>V(X)</M> if <M>X</M> has this P
 For <M>f(x)</M>  to be a PMF we need 
 <D>f(1)+\cdots+f(N)=1.</D>
 Hence 
-<D>c = [[1][2^N-2]].</D>
+<D>c = [[1][2^{N+1}-2]].</D>
 So
 <D>E(X) = \sum_1^N x f(x) = c\sum_1^N x 2^x = ...</D>
 Similarly, you can find <M>V(X).</M>
@@ -312,7 +312,7 @@ Then <M>X_1,...,X_n</M>  is an SRSWR of size <M>n</M>  from <M>\{1,...,12\}.</M>
 
 Let <M>U = \max\{X_1,...,x_{n+1}\}</M>  and <M>V = \max\{X_1,...,x_n\}.</M>
 
-Then <M>U = \max\{V,X_n\} \geq V.</M>
+Then <M>U = \max\{V,X_{n+1}\} \geq V.</M>
 
 So <M>E(U)\geq E(V).</M>
 

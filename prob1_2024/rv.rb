@@ -131,19 +131,19 @@ Let <M>X:\Omega\to\rr</M>  be any random variable. Let <M>f:\rr\to\rr</M>  be an
 Consider another gambling game. 
 <EXM>
 A fair die is rolled. I shall pay you Rs 10 if the die shows an
-even number, you'll pay me Rs 20 otherwise. Again, let's denote
-by <M>X</M> your gain (in Rs). Express <M>X</M> as a function from <M>\{1,2,3,4,5,6\}</M>  to <M>\rr.</M>
-Let <M>A = \{10\}.</M> Find <M>X ^{-1} (A)</M> and using it
-find <M>P(X\in A).</M> 
+even number, you'll pay me Rs 20 otherwise. Let's denote
+by <M>Y</M> your gain (in Rs). Express <M>Y</M> as a function from <M>\{1,2,3,4,5,6\}</M>  to <M>\rr.</M>
+Let <M>A = \{10\}.</M> Find <M>Y ^{-1} (A)</M> and using it
+find <M>P(Y\in A).</M> 
 <SOLN/>
-Here <M>X ^{-1}(A) = \{2,4,6\}.</M> So <M>P(X=10) = P(\{2,4,6\}) = [[16]]+[[16]]+[[16]] = [[12]].</M>
+Here <M>Y^{-1}(A) = \{2,4,6\}.</M> So <M>P(Y=10) = P(\{2,4,6\}) = [[16]]+[[16]]+[[16]] = [[12]].</M>
 </EXM>
 
-In each of  these examples we had a random variable <M>X</M> that
-took only two values <M>10</M> and <M>-20.</M> Which <M>X</M> do
-you think is more profitable for you? Well, both are actually the
-same so far as profit goes. Understand this carefully: the two
-different <M>X</M>'s are completely different as functions (their
+In each of  these examples we had a random variable  that
+took only two values <M>10</M> and <M>-20.</M> Which random variable do
+you think is more profitable for you, <M>X</M>  or <M>Y</M>? Well, both are actually the
+same so far as profit goes. Understand this carefully: <M>X</M>  and <M>Y</M>
+ are completely different as functions (their
 domains are also different), but in terms of the "behaviour of the
 output" of the functions they are identical. This "behaviour of the output" is
 called the <TERM>distribution</TERM> of the random variable. It is the
@@ -923,7 +923,14 @@ you rearrange the terms.
  birthdays of exactly <M>k</M>  people. (Assume 365 days and that all arrangements are equally
  probable.) Also find the expected number of multiple birthdays. How large should <M>n</M>  be to
  make this expectation exceed 1?
-<ANS> Expected number of days of the year which are  birthdays of exactly <M>k</M>  people is <M>\binom{n}{k}[[364^{n-k}][365^{n-1}]].</M>
+<ANS> 
+Let <M>X_i = <CASES>1<IF>\mbox{exactly $k$ people have birthdays on day} i</IF> 0<ELSE/></CASES>.</M>
+
+Then <M>X = \sum_1^{365} X_i.</M>  
+
+So <M>E(X) = \sum_1^{365} E(X_i).</M>
+
+Expected number of days of the year which are  birthdays of exactly <M>k</M>  people is <M>\binom{n}{k}[[364^{n-k}][365^{n-1}]].</M>
 
 Expected number of multiple birthdays is <M>365{*{1-(*([[364][365]])*)^n + [[n\times 364^{n-1}][365^n]]}*}.</M>
 </ANS>

@@ -131,7 +131,7 @@ Let <M>X:\Omega\to\rr</M>  be any random variable. Let <M>f:\rr\to\rr</M>  be an
 Consider another gambling game. 
 <EXM>
 A fair die is rolled. I shall pay you Rs 10 if the die shows an
-even number, you'll pay me Rs 20 otherwise. Again, let's denote
+even number, you'll pay me Rs 20 otherwise. Let's denote
 by <M>X</M> your gain (in Rs). Express <M>X</M> as a function from <M>\{1,2,3,4,5,6\}</M>  to <M>\rr.</M>
 Let <M>A = \{10\}.</M> Find <M>X ^{-1} (A)</M> and using it
 find <M>P(X\in A).</M> 
@@ -923,7 +923,14 @@ you rearrange the terms.
  birthdays of exactly <M>k</M>  people. (Assume 365 days and that all arrangements are equally
  probable.) Also find the expected number of multiple birthdays. How large should <M>n</M>  be to
  make this expectation exceed 1?
-<ANS> Expected number of days of the year which are  birthdays of exactly <M>k</M>  people is <M>\binom{n}{k}[[364^{n-k}][365^{n-1}]].</M>
+<ANS> 
+Let <M>X_i = <CASES>1<IF>\mbox{exactly $k$ people have birthdays on day} i</IF> 0<ELSE/></CASES>.</M>
+
+Then <M>X = \sum_1^{365} X_i.</M>  
+
+So <M>E(X) = \sum_1^{365} E(X_i).</M>
+
+Expected number of days of the year which are  birthdays of exactly <M>k</M>  people is <M>\binom{n}{k}[[364^{n-k}][365^{n-1}]].</M>
 
 Expected number of multiple birthdays is <M>365{*{1-(*([[364][365]])*)^n + [[n\times 364^{n-1}][365^n]]}*}.</M>
 </ANS>
@@ -1217,7 +1224,9 @@ So the function is maximised at <M>n=364</M>  and <M>365.</M>
 <ANS>
 Let <M>X=</M> number of cards required to be turned. 
 
-Then <M>P(X=k) = q^{k-1}p</M> 
+Then <M>P(X=k) = q^{k-1}p</M>  for <M>k=1,2,3,...</M>  where <M>p=[[4][52]]</M>  and <M>q=1-p.</M>
+
+So <M>E(X) =\sum_{k=1}^\infty k q^{k-1}p = [[1p]]  = 13.</M>
 </ANS>
 </EXR>
 
