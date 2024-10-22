@@ -949,7 +949,7 @@ Expected number of multiple birthdays is <M>365{*{1-(*([[364][365]])*)^n + [[n\t
 </ANS>
 </EXR>
 ::<EXR><CIMG web="rossrv2.png"/>
-<ANS>If <M>n</M>  is even, then all even values between <M>-n</M>  and <M>n.</M>  If <M>n</M>  is
+<ANS>If <M>n</M>  is even, then all even values between <M>0</M>  and <M>n.</M>  If <M>n</M>  is
  odd, then all the odd values in the same range.</ANS>
 </EXR>
 ::<EXR><CIMG web="rossrv3.png"/>
@@ -1224,9 +1224,9 @@ So the function is maximised at <M>n=364</M>  and <M>365.</M>
 <ANS>
 Let <M>X=</M> number of cards required to be turned. 
 
-Then <M>P(X=k) = q^{k-1}p</M>  for <M>k=1,2,3,...</M>  where <M>p=[[4][52]]</M>  and <M>q=1-p.</M>
+Then <M>P(X=k)=[[4\times {}^48P_{k-1}(52-k)!][52!]].</M>
 
-So <M>E(X) =\sum_{k=1}^\infty k q^{k-1}p = [[1p]]  = 13.</M>
+So
 </ANS>
 </EXR>
 
