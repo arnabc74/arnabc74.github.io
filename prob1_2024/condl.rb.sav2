@@ -490,14 +490,38 @@ Will the result hold in general if the <M>X_i</M>'s are not independent?
 
 ::<EXR><EIMG web="morecond19.png"></EIMG><HR/></EXR>
 ::<EXR><EIMG web="morecond20.png"></EIMG><HR/></EXR>
-::<EXR><EIMG web="morecond21.png"></EIMG><HR/></EXR>
+::<EXR><EIMG web="morecond21.png"></EIMG>
+<ANS>
+Let <M>X_i</M>  be the indicator for <M>i</M>-th red ball being a win. 
+
+There are <M>\binom{2n}{n}</M>  sequences of <M>n</M>  R's and <M>n</M>  B's in all. Let us count
+ how many of these lead to  <M>\{X_i=1\}.</M> 
+
+Split each such sequence into two parts, the part before the <M>i</M>-th R, and the part after.
+ For instance, for <M>n=4</M>  and <M>i=3</M>   the sequence RRBRBRBB is split as <RED>RRB</RED>R<BLUE>BRBB</BLUE>. 
+
+For general <M>n</M>  and <M>i,</M>  the red part must consist of exactly <M>i-1</M>  R's and at
+ most <M>i-1</M>  B's. The blue part consists of exactly <M>n-i</M>  R's and the remaining B's. 
+
+Let <M>N_{r,b} = </M>  number of sequences with exactly <M>r</M>  R's and <M>b</M>  B's. In other words, <M>N_{r,b} =\binom{r+b}{r} = \binom{r+b}{b}. </M>
+
+Then, for any sequence in <M>\{X_i=1\}</M>  the red part may be selected in 
+<D>\sum_{j=0}^{i-1} \binom{i-1}{j}</D>
+ways. Here <M>j</M>  denotes the number of B's in the red part. Once we count the matching number
+ of blue parts for each value of <M>j</M>, we get the size of <M>\{X_i=1\}</M>  as
+<D>\sum_{j=0}^{i-1} \binom{i-1}{j}\binom{2n-i-j}{n-j}.</D>
+Now you should be able to     
+</ANS>
+<HR/></EXR>
 ::<EXR><EIMG web="morecond22.png"></EIMG>
 <ANS>
 (a) Let's take an example with <M>n=10</M>  and <M>k=3.</M>  We are showing the selected balls in red:
 <Q>
 1 <RED>2 3</RED> 4 5 <RED>6</RED> 7 8 9 10
 </Q>
-Here <M>X = 6</M>  and <M>R = 4.</M>  You should be able to see directly
+Here <M>X = 6</M>  and <M>R = 4.</M>  
+
+You should be able to see directly that in general <M>X+R=n.</M>
 </ANS>
 <HR/></EXR>
 </E>@}
