@@ -507,7 +507,7 @@ Let <M>N_{r,b} = </M>  number of sequences with exactly <M>r</M>  R's and <M>b</
 
 Then, for any sequence in <M>\{X_i=1\}</M>  the red part may be selected in 
 <D>\sum_{j=0}^{i-1} \binom{i-1}{j}</D>
-ways. Here <M>j</M>  denotes the number of B's in the red part. Once we count the matching number
+ways. Here <M>j</M>  denotes the number of B's in the red part. Once we also count the matching number
  of blue parts for each value of <M>j</M>, we get the size of <M>\{X_i=1\}</M>  as
 <D>\sum_{j=0}^{i-1} \binom{i-1}{j}\binom{2n-i-j}{n-j}.</D>
 Now you should be able to complete the rest.     
