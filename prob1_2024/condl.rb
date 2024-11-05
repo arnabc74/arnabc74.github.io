@@ -248,13 +248,13 @@ Here Exercise 14 means the last exercise (i.e., Exercise 4 according to our numb
 <ANS>
 (a) Let <M>U = \min(X,Y).</M>   Then <M>U</M>  can take values <M>0,...,N.</M>  
 
-<M>P(U=k) = P(U\geq k-1)-P(U\geq k).</M>
+<M>P(U=k) = P(U\geq k)-P(U\geq k+1).</M>
 
-Now <M>P(U\geq k) = P(X,Y\geq k) = P(X\geq k)P(Y\geq k) = (*([[N-k+1][N]])*)^2.</M>
+Now <M>P(U\geq k) = P(X,Y\geq k) = P(X\geq k)P(Y\geq k) = (*([[N-k+1][N+1]])*)^2.</M>
 
-Similarly, <M>P(U\geq k-1) = (*([[N-k+2][N]])*)^2.</M>
+Similarly, <M>P(U\geq k+1) = (*([[N-k][N+1]])*)^2.</M>
 
-So <M>P(U=k) = (*([[(N-k+2)^2-(N-k+1)^2][N^2]] = [[2N-2k+3][N^2]].</M>
+So <M>P(U=k) = [[(N-k)^2-(N-k+1)^2][(N+1)^2]] = ... .</M>
 
 (b) Let <M>T = \max(X,Y).</M>   Then <M>T</M>  can take values <M>0,...,N.</M>  
 
@@ -305,7 +305,7 @@ Here "density" means "PMF".
  
 We consider the random experiment of dropping the balls one by one into the boxes. For each ball have <M>r </M> posible destinations.
  
-So <M>|\Omega| = (2r)^r.</M>
+So <M>|\Omega| = r^{2r}.</M>
 
 Now fix some <M>(x_1,...,x_r)</M>  as above. The event <M>A=\{(X_1,...,X_r) = (x_1,...,x_r)\}</M>  may be obtained as follows.
 
