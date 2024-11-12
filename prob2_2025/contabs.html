@@ -147,18 +147,112 @@ function myFunction() {
 <h3>Table of contents</h3>
 <ul>
 <li>
-<a href="#Continuous distribution">Continuous distribution</a>
+<a href="#Absolutely continuous distribution">Absolutely continuous distribution</a>
 </li>
 </ul>
 <hr/>
 <h1><a
-name="Continuous distribution">Continuous distribution</a></h1>
-
+name="Absolutely continuous distribution">Absolutely continuous distribution</a></h1>
+We already know this definition:
 <fieldset>
 <legend><b>Definition: </b></legend>A random variable $X$  is said to be  <b><font color="red" size="40">continuous</font></b>  or to have a
  <b><font color="red" size="40">continuous distribution</font></b>  if its CDF is continuous.</fieldset>
+A special class of such random variables is given in the following definition:
+<fieldset>
+<legend><b>Definition: </b></legend>A random variable $X$  is said to be <b><font color="red" size="40">absolutely continuous</font></b>  or to have an
+ <b><font color="red" size="40">absolutely continuous distribution</font></b>  if there is some $f:{\mathbb R}\rightarrow[0,\infty)$  such
+ that for every $a\leq b\in{\mathbb R}$  we have 
+$$P(X\in(a,b]) = \int_a^b f(x)\, dx.$$
+Any such $f$  is called a <b><font color="red" size="40">probability density function (PDF)</font></b>  of $X.$  
+</fieldset>
 
 <p></p>
+The following facts all come from continuity of probability. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$  have a density $f(x).$  Then 
+<ol type="">
+
+<li>$\forall a\in{\mathbb R}~~P(X=a) = 0.$</li>
+
+<li>$\forall a&lt;b\in{\mathbb R}~~P(a &lt; X &lt; b) =P(a &lt; X \leq b) =P(a \leq X &lt; b) =P(a \leq X \leq b) = \int_a^b f(x)\, dx.$</li>
+
+<li>$\forall a\in{\mathbb R}~~P(a &lt; X )  = P(a\leq X)=\int_a^\infty f(x)\, dx.$</li>
+
+<li>$\forall a\in{\mathbb R}~~P(X &lt; a)  = P(X\leq a)=\int_ \infty^a f(x)\, dx.$</li>
+
+<li>$\int_ \infty^ \infty f(x)\, dx = 1.$</li>
+
+</ol>
+
+</fieldset>
+
+<p></p>
+This last condition is particularly useful. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If we have some $f:{\mathbb R}\rightarrow[0,\infty)$  with $\int_ {-\infty} ^\infty f(x)\, dx = 1,$ 
+ then the function $F:{\mathbb R}\rightarrow{\mathbb R}$  defined as 
+$$F(x) =\int_{-\infty}^x f(t)\, dt$$
+is a CDF.
+</fieldset>
+
+<p></p>
+Hence by the fundamental theorem of probability we have the following corollary:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A function $f:{\mathbb R}\rightarrow[0,\infty)$  is a density of some random variable if and only if with $\int_ {-\infty}
+ ^\infty f(x)\, dx = 1.$ 
+</fieldset>
+It is  a somewhat disconcerting fact that density of an absolutely continuous distribution is not unique. For intance, if
+ changing at any countable numbr of points would still keep it a density (assuming non-negativity). So there cannot be any
+ way to recover <i>the</i>  density given the CDF. However, the following result provides some relief.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $f(x)$  and $g(x)$  are both densities for the same distribution and both are continuous at some $a\in{\mathbb R},$ 
+ then $f(a)=g(a).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let, if possible, $f(a)\neq g(a).$  Say $f(a)&gt; g(a).$  
+<p></p>
+Let $h(x) = f(x)-g(x).$  Then $h(x)$  is continuous at $x=a$  and $h(a)&gt;0.$  
+<p></p>
+So $\exists\delta&gt;0~~\forall x\in (a-\delta,a+\delta)~~h(x)&gt;\frac{h(a)}{2}.$
+<p></p>
+Hence $\int_{a-\delta}^{a+\delta} h(x)\, dx \geq \delta h(a) &gt; 0.$
+<p></p>
+But this is impossible, since $\int_{a-\delta}^{a+\delta} f(x)\, dx =\int_{a-\delta}^{a+\delta} g(x)\, dx, $  since
+ both are equal to $P(a-\delta&lt; X &lt; a + \delta).$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+It is possible to recover a density from the CDF as follows. Let $F$  be the CDF. Then define $f$  as folllows;
+$$f(x) = \left\{\begin{array}{ll}F'(x)&\text{if }\mbox{it exists}\\ 0&\text{otherwise.}\end{array}\right. $$
+Of course, if the distribution is not absolutely continuous, then this may lead to meaningless reult. For example, for a
+ discrete distribution, the CDF is a step function, and so the above prescription would lead to $f(x)\equiv 0.$
+It is possible to characterise CDFs arising out of densities. 
+<p></p>
+We had already defined expectation of a random variable in general. That definition reduces to the following:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$  be a random variable with density $f.$  Let $h:{\mathbb R}\rightarrow[0,\infty)$  be a any function such that $h(X)$ 
+ is  a random variable. Then $E(h(X))=\int_{-\infty}^\infty h(x) f(x)\, dx.$  This may be $\infty.$
+</fieldset>
+
+<p></p>
+If $h:{\mathbb R}\rightarrow{\mathbb R}$, then $E(h(X)) = E((h(X))_+) - E((h(X))_-)$, as dictated by the general definition of expectation.
+ This may be finite, $\infty$, $-\infty$  or may not exist.
+<p></p>
+Since this is a special case of the general definition, all the properties (like linearity, monotonicity) are intact. 
+<p></p>
+We define $V(X)$  and the other moments as usual. Their properties (<i>e.g.</i>, Chebyshev inequality) are intact.
 <hr/>
 <table width="100%" border="0">
 <tr>

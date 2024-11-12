@@ -1,0 +1,245 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Standard absolutely continuous distributions">Standard absolutely continuous distributions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#$Unif(a,b)$">$Unif(a,b)$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Exponential distribution">Exponential distribution</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Standard absolutely continuous distributions">Standard absolutely continuous distributions</a></h1>
+Here we shall consider some standard absolutely continuous distributions. 
+<p></p>
+
+<h2><a
+name="$Unif(a,b)$">$Unif(a,b)$</a></h2>
+This distribution captures the idea of a random variable that take any value in $(a,b)$  with equal probability. It
+ has PDF $f(x) =\left\{\begin{array}{ll}\frac{1}{b-a}&\text{if }a &lt; x &lt; b\\ 0&\text{otherwise.}\end{array}\right. $
+Notice that a PDF must be defined over entire ${\mathbb R}.$  Hence we need the "else" clause. Also $a&lt; x &lt; b$  could be
+ replaced by $a\leq x &lt; b$  or $a\leq x \leq b$  or $a&lt; x \leq b$  without any change in meaning. 
+<p></p>
+The CDF is 
+$$F(x) = \left\{\begin{array}{ll}0&\text{if }x &lt; a\\ \frac{x-a}{b-a}&\text{if }a\geq x &lt; b\\ 1&\text{if }b\geq x\\\end{array}\right..$$
+<p></p>
+Of a great importance is the special case $Unif(0,1).$  It plays a crucial role in the proof of the fundamentant theorem
+ of probability as well as random number generation using a computer. Both these applications come from the same theorem.
+ To prepeare for the theorem we define a right-inverse of any CDF. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+Let $F$  be any CDF. Then define $F^-:(0,1)\rightarrow{\mathbb R}$  as 
+$$F^-(x) = \inf\{t~:~F(t)\geq x\}.$$
+</fieldset>
+This is well-defined since if $a\in (0,1)$  then $\{t~:~F(t)\geq a\}$  is nonempty (as
+ $\lim_{x\rightarrow \infty}F(x)= 1$), and is bounded below (as $\lim_{x\rightarrow -\infty}F(x)= 0$  and $F$  is non-decreasing).
+<p></p>
+A couple of properties of $F^-$  are in order:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $F$  be any CDF. Then $F^-$  is non-decreasing. Also $\forall x\in(0,1)~~F(F^-(x))=x.$ 
+</fieldset>
+Now for the all-important theorem.  
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $U\sim Unif(0,1).$  Let $F(x)$  be any CDF.
+ Then $F^-(U)$  must have CDF $F.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+ Let $Y = F^-(U).$  Then for any $a\in{\mathbb R}$  we have 
+$$P(Y\leq a) = P(F^-(U)\leq a) = P(U\leq F(a)) = F(a),$$
+completing the proof.
+<b><i>[QED]</i></b>
+</p>
+This shows that if we can show the existence of (or generate random numbers from)  $Unif(0,1)$, then we can do so for
+ any CDF.
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Show that $f(x) = \left\{\begin{array}{ll}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  is a PDF. Suggest how you
+ may generate a random variable with this PDF starting from a $Unif(0,1)$  random variable.</p>
+SS
+It has a partial converse, which is also important.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$  is a continuous random variable with CDF $F,$  then $F(X)\sim Unif(0,1).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Clearly, $Y=F(X)$  can only take values in $[0,1].$  So $P(Y\leq y) = 0$  if
+ $y&lt;0$  or if $y&gt;1.$  
+<p></p>
+Take any $y\in[0,1].$  Then $P(Y\leq y) = P(F(X)\leq y)= P(X\leq F^-(y))= F(F^-(y))=y.$ 
+<b><i>[QED]</i></b>
+</p>
+This is used to construct a P-P plot.
+<p></p>
+
+<h2><a
+name="Exponential distribution">Exponential distribution</a></h2>
+
+<fieldset>
+<legend><b>Definition: </b></legend>We say that $X$  has an <b><font color="red" size="40">Exponential distribution</font></b>  with <b><font color="red" size="40">rate</font></b> 
+ $\lambda$  if it has PDF $f(x)=\left\{\begin{array}{ll}\lambdae^{-\lambda x}\end{array}\right.$</fieldset>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

@@ -1,0 +1,247 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Joint distribution">Joint distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Computing probabilities of non-rectangular regions">Computing probabilities of non-rectangular regions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Marginals">Marginals</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Conditional distribution">Conditional distribution</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Joint distribution">Joint distribution</a></h1>
+Just as we had encountered joint distribution while learning about discrete random variables, we have the
+concept of joint distribution for absolutely continuous distributions as well. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+Let $X,Y$  be jointly distributed random variables. We say that they are <b><font color="red" size="40">jointly absolutely continuous</font></b> if 
+ there is some $f:{\mathbb R}^2\rightarrow[0,\infty)$  such that 
+$$\forall a \leq b, c \leq d~~P\big( (X,Y)\in[a,b]\times[c,d] \big) = \int_a^b \int_c^d f(x,y)\, dxdy.$$
+Any such $f$  is called a <b><font color="red" size="40">joint PDF</font></b>  of $(X,Y).$ 
+</fieldset>
+Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
+having their joint PMF. But not so in case of absolutely continuous distributions. Even if
+ $X$  and $Y$  are each absolutely continuous, still $(X,Y)$  may fail to be <i>jointly</i>  absolutely continuous.
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;Suppose $X\sim Unif(0,1)$  and $Y = X.$  Then show that $(X,Y)$  is not
+ jointly absolutely continuous. 
+<p></p>
+<b>SOLUTION:</b>
+Here the CDF of $(X,Y)$  is 
+$$
+F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ 1&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
+$$
+Hence, if $(X,Y)$  is jointly absolutely continuous, then a joint density would be given by $f(x,y)$, where 
+$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
+This forces $f(x,y)\equiv 0,$  which is not a PDF.
+   ■
+</p>
+However, if $(X,Y)$  is jointly absolutely continuous, then both $X$  and $Y$  must also be absolutely continuous.
+<p></p>
+
+<h2><a
+name="Computing probabilities of non-rectangular regions">Computing probabilities of non-rectangular regions</a></h2>
+
+<h2><a
+name="Marginals">Marginals</a></h2>
+
+<p></p>
+
+<h2><a
+name="Conditional distribution">Conditional distribution</a></h2>
+So far the absolutely continuous case closely mimics the discrete case, with integration replacing summation.  
+But we cannot follow the same path for conditional distribution. If $(X,Y)$  are jointly discrete then we defined the
+ conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y}{P(Y=y)}.$  
+<p></p>
+So for the jointly absolutely continuous case, we define the <b><font color="red" size="40">conditional PDF</font></b>  of $X$  given $Y=y$ 
+ as $f(x,y)/f_Y(y).$  There are, however, a couple of points here:
+<ol type="">
+
+<li>It is possible to have $f_Y(y)=0.$  Then we define the conditional density as 0.</li>
+
+<li>Unlike conditional PMF, the conditional PDF is not a conditional probability, since $P(Y=y)=0.$
+</li>
+
+<li>$\int_a^bf_{X|Y}(x,y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$</li>
+
+<li>However, $\int_c^d \int_a^bf_{X|Y}(x,y)\, dxdy$  does indeed give $P(X\in [a,b], Y\in[c,d]).$
+</li>
+
+</ol>
+It is this last step (which is the analog of total probability) that justifies the definition of conditional PDF.
+<p></p>
+Other than this difference, the rest follows as in the discrete case. We have the concepts of
+ conditional expectation, conditional variance etc as usual. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+If $(X,Y)$  is jointly absolutely continuous, then $E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx$  and 
+$$V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).$$
+</fieldset> 
+The tower property also works as before. 
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
