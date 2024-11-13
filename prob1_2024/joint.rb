@@ -674,9 +674,9 @@ Also <M>V(X) = E(X-\mu)^2 = 0^2\times [[16][18]]+1^2\times [[2][18]] = [[19]].</
 
 So we are looking for <M>\delta</M>  such that <M>P(|X-\mu|\geq\delta) = [[1][9\delta^2]].</M>
 
-Now, for <M>\delta>0,</M>  the LHS is either 0 or 1 (according as <M>\delta</M>  is <M>> 1</M>  or not). 
+Now, for <M>\delta>0,</M>  the LHS is either 0 or <M>[[19]]</M> (according as <M>\delta</M>  is <M>> 1</M>  or not). 
 
-So <M>\delta=[[13]]</M>  makes both sides <M>1.</M>
+So <M>\delta=1</M>  makes both sides <M>[[19]].</M>
 </ANS>
 </EXR>
 ::<EXR><CIMG web="jt17.png">

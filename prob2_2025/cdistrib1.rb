@@ -56,5 +56,5 @@ This is used to construct a P-P plot.
 
 <HEAD2>Exponential distribution</HEAD2>
 <DEFN>We say that <M>X</M>  has an <TERM>Exponential distribution</TERM>  with <TERM>rate</TERM> 
- <M>\lambda</M>  if it has PDF <M>f(x)=<CASES>\lambdae^{-\lambda x}</CASES></M></DEFN>
+ <M>\lambda</M>  if it has PDF <M>f(x)=<CASES>\lambda e^{-\lambda x}</CASES></M></DEFN>
 </NOTE>@}

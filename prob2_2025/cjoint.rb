@@ -55,5 +55,29 @@ If <M>(X,Y)</M>  is jointly absolutely continuous, then <M>E(X|Y=y) = \int_{-\in
 </DEFN> 
 The tower property also works as before. 
 
-
+<HEAD1>Problems for practice</HEAD1>
+::<EXR><EIMG web="hpsjoint1.png"/></EXR>
+::<EXR><EIMG web="hpsjoint2.png"/></EXR>
+::<EXR><EIMG web="hpsjoint3.png"/></EXR>
+::<EXR><EIMG web="hpsjoint4.png"/></EXR>
+::<EXR><EIMG web="hpsjoint5.png"/></EXR>
+::<EXR><EIMG web="hpsjoint6.png"/></EXR>
+::<EXR><EIMG web="hpsjoint7.png"/></EXR>
+::<EXR><EIMG web="hpsjoint8.png"/></EXR>
+::<EXR><EIMG web="hpsjoint9.png"/></EXR>
+::<EXR><EIMG web="hpsjoint10.png"/></EXR>
+::<EXR><EIMG web="hpsjoint11.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint1.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint2.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint3.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint4.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint5.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint6.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint8.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint9.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint10.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint11.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint12.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint13.png"/></EXR>
 </NOTE>@}
