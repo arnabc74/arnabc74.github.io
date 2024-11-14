@@ -159,6 +159,9 @@ function myFunction() {
 <a href="#Conditional distribution">Conditional distribution</a>
 </li>
 <li>
+<a href="#Exchangeable distribution">Exchangeable distribution</a>
+</li>
+<li>
 <a href="#Problems for practice">Problems for practice</a>
 </li>
 </ul>
@@ -239,58 +242,145 @@ If $(X,Y)$  is jointly absolutely continuous, then $E(X|Y=y) = \int_{-\infty}^\i
 $$V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).$$
 </fieldset> 
 The tower property also works as before. 
+<h1><a
+name="Exchangeable distribution">Exchangeable distribution</a></h1>
+If $X_1, X_2, X_3$  are IID, then the joint distribution of $(X_1,X_2,X_3)$  is the same
+ as that of $(X_2,X_3,X_1)$  or $(X_1,X_3,X_2)$   or any other permutation of the three random variables. 
+This "invariance under permutation" property is called <b><font color="red" size="40">exchangability</font></b>, and is found in many joint distributions
+ other than the IID set up. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+We say that the jointly distributed random variables $X_1,...,X_n$  are <b><font color="red" size="40">exchangable</font></b>  if for any permutation
+ $\pi$  of $(1,...,n)$  the joint distribution of $(X_1,...,X_n)$  is the same as that of $(X_{\pi(1)},...,X_{\pi(n)}).$
+</fieldset> 
+Here is a non-IID example.
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+In a box we have 10 balls 4 of which are black, the rest being light magenta (with a tinge of yellow on one side). 2 balls
+ are drawn one by one using SRSWOR. Let $X_1=$ the indicator of the $i$-th selected ball being black ($i=1,2$).
+ Then show that $X_1,X_2$  are exchangeable. 
+<p></p>
+<b>SOLUTION:</b>
+
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan=""></th><td colspan="" rowspan="">$X_2=0$</td><td colspan="" rowspan="">$X_2=1$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$X_1=0$</td><td colspan="" rowspan="">$\frac{6\times5}{10\times9}$</td><td colspan="" rowspan="">$\frac{6\times4}{10\times9}$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$X_1=1$</td><td colspan="" rowspan="">$\frac{4\times6}{10\times9}$</td><td colspan="" rowspan="">$\frac{4\times3}{10\times9}$</td>
+</tr>
+
+</table>
+</center>
+Since this matrix is symmetric, hence the result.
+ ■
+</p>
+Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
+proceed more systematically to answer the next problem.
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
+ $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
+ are exchangeable.
+</p> 
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+ replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
+ $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are exchangeable, then for any $\{i_1,...,i_k\}\subseteq \{1,...,n\}$  the joint distribution of $(X_{i_1},...,X_{i_k})$ 
+depends only on $k,$  and not on  $i_1,...,i_k.$  
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $F(x_1,...,x_n)$  be the joint CDF of $(X_1,...,X_n).$  
+<p></p>
+Let $\pi$  be any permutation $\{1,...,n\}$  with $\pi(1)=i_1, ..., \pi(k)=i_k.$  Then 
+by exchangeability $F(x_1,...,x_n)$  is the joint CDF of $(X_{\pi(1)},...,X_{\pi(n)})$  as well. 
+<p></p>
+Then the joint CDF of $(X_{i_1},...,X_{i_k})$  is $F(x_1,...,x_k,\infty,...,\infty),$  which is free of $i_1,...,i_k,$ 
+ as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Exchangeable random variables allow for symmetry arguments. The next problem is one example. 
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;
+If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
+</p>
+
 <p></p>
 
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 1:</b>&nbsp;<img width="" src="image/hpsjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 4:</b>&nbsp;<img width="" src="image/hpsjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 2:</b>&nbsp;<img width="" src="image/hpsjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 5:</b>&nbsp;<img width="" src="image/hpsjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;<img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 6:</b>&nbsp;<img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;<img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 7:</b>&nbsp;<img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;<img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 8:</b>&nbsp;<img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;<img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 9:</b>&nbsp;<img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;<img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 11:</b>&nbsp;<img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;<img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 12:</b>&nbsp;<img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;<img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 13:</b>&nbsp;<img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 14:</b>&nbsp;<img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 15:</b>&nbsp;<img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;<img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;<img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/rossipmjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/rossipmjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

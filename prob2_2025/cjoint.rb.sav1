@@ -53,5 +53,84 @@ Other than this difference, the rest follows as in the discrete case. We have th
 If <M>(X,Y)</M>  is jointly absolutely continuous, then <M>E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx</M>  and 
 <D>V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).</D>
 </DEFN> 
-The tower property also works as
+The tower property also works as before. 
+<HEAD1>Exchangeable distribution</HEAD1>
+If <M>X_1, X_2, X_3</M>  are IID, then the joint distribution of <M>(X_1,X_2,X_3)</M>  is the same
+ as that of <M>(X_2,X_3,X_1)</M>  or <M>(X_1,X_3,X_2)</M>   or any other permutation of the three random variables. 
+This "invariance under permutation" property is called <TERM>exchangability</TERM>, and is found in many joint distributions
+ other than the IID set up. 
+
+<DEFN>
+We say that the jointly distributed random variables <M>X_1,...,X_n</M>  are <TERM>exchangable</TERM>  if for any permutation
+ <M>\pi</M>  of <M>(1,...,n)</M>  the joint distribution of <M>(X_1,...,X_n)</M>  is the same as that of <M>(X_{\pi(1)},...,X_{\pi(n)}).</M>
+</DEFN> 
+Here is a non-IID example.
+<EXM>
+In a box we have 10 balls 4 of which are black, the rest being light magenta (with a tinge of yellow on one side). 2 balls
+ are drawn one by one using SRSWOR. Let <M>X_1=</M> the indicator of the <M>i</M>-th selected ball being black (<M>i=1,2</M>).
+ Then show that <M>X_1,X_2</M>  are exchangeable. 
+<SOLN/>
+<TABLE>
+<TR><TH/><TD><M>X_2=0</M></TD><TD><M>X_2=1</M></TD></TR>
+<TR><TD><M>X_1=0</M></TD><TD><M>[[6\times5][10\times9]]</M></TD><TD><M>[[6\times4][10\times9]]</M></TD></TR>
+<TR><TD><M>X_1=1</M></TD><TD><M>[[4\times6][10\times9]]</M></TD><TD><M>[[4\times3][10\times9]]</M></TD></TR>
+</TABLE>
+Since this matrix is symmetric, hence the result.
+</EXM>
+Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
+proceed more systematically to answer the next problem.
+<EXR>
+We have <M>n</M>  balls <M>m</M>  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
+ <M>k</M>  balls. Let <M>X_i=</M>  the indicator of the <M>i</M>-th selected ball being dark purple. Show that <M>X_1,...,X_k</M> 
+ are exchangeable.
+</EXR> 
+
+<EXR>Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+ replaced and 1 more ball of the observed colour added). Let <M>X_i=</M> indicator of the
+ <M>i</M>-th drawn ball being black. Show that <M>X_1,X_2,...,X_n</M>  are exchangeable for <M>n\in\nn.</M> </EXR>
+
+<THM>
+If <M>X_1,...,X_n</M>  are exchangeable, then for any <M>\{i_1,...,i_k\}\seq \{1,...,n\}</M>  the joint distribution of <M>(X_{i_1},...,X_{i_k})</M> 
+depends only on <M>k,</M>  and not on  <M>i_1,...,i_k.</M>  
+</THM>
+<PF>
+Let <M>F(x_1,...,x_n)</M>  be the joint CDF of <M>(X_1,...,X_n).</M>  
+
+Let <M>\pi</M>  be any permutation <M>\{1,...,n\}</M>  with <M>\pi(1)=i_1, ..., \pi(k)=i_k.</M>  Then 
+by exchangeability <M>F(x_1,...,x_n)</M>  is the joint CDF of <M>(X_{\pi(1)},...,X_{\pi(n)})</M>  as well. 
+
+Then the joint CDF of <M>(X_{i_1},...,X_{i_k})</M>  is <M>F(x_1,...,x_k,\infty,...,\infty),</M>  which is free of <M>i_1,...,i_k,</M> 
+ as required.
+</PF>
+
+Exchangeable random variables allow for symmetry arguments. The next problem is one
+<EXR>
+If <M>X_1,...,X_n</M>  are exchangeable positive random variables with finite expectations,  then find <M>E((X_1+X_2)/(X_1+\cdots+X_n)).</M>
+</EXR>
+
+<HEAD1>Problems for practice</HEAD1>
+::<EXR><EIMG web="hpsjoint1.png"/></EXR>
+::<EXR><EIMG web="hpsjoint2.png"/></EXR>
+::<EXR><EIMG web="hpsjoint3.png"/></EXR>
+::<EXR><EIMG web="hpsjoint4.png"/></EXR>
+::<EXR><EIMG web="hpsjoint5.png"/></EXR>
+::<EXR><EIMG web="hpsjoint6.png"/></EXR>
+::<EXR><EIMG web="hpsjoint7.png"/></EXR>
+::<EXR><EIMG web="hpsjoint8.png"/></EXR>
+::<EXR><EIMG web="hpsjoint9.png"/></EXR>
+::<EXR><EIMG web="hpsjoint10.png"/></EXR>
+::<EXR><EIMG web="hpsjoint11.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint1.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint2.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint3.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint4.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint5.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint6.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint8.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint9.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint10.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint11.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint12.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint13.png"/></EXR>
 </NOTE>@}
