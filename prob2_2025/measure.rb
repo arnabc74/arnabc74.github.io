@@ -1,4 +1,8 @@
  @{<NOTE>
+<M>
+\newcommand{\calF}{{\mathcal F}}
+\newcommand{\calB}{{\mathcal B}}
+</M>
 <HEAD1>Uncountable sample space</HEAD1>
 We have already seen last semester that for an uncountable <M>\Omega</M>  we may not always be able
  to define a function <M>P:{\mathcal P}(\Omega)\to[0,1]</M> 
@@ -10,10 +14,27 @@ Hence we defined <M>\sigma</M>-algebra. While the simplest <M>\sigma</M>-algebra
 
 Closely related to this is the idea of a measurable function.
 <HEAD2>Measurable function</HEAD2>
+Let <M>(\Omega_1,\calF_1)</M>  and <M>(\Omega_2,\calF_2)</M>  be measurable spaces. Then a function <M>f:\Omega_1\to\Omega_2</M> 
+ is called <TERM>measurable</TERM>  if 
+<D>\forall B\in\calF_2~~f ^{-1} (B)\in \calF_1.</D>
+The most common application of this our course is when <M>(\Omega,\calF,P)</M>  is a probability
+ space (i.e., a random experiment) and <M>X:\Omega\to\rr</M>  is a random variable. Here we take
+ <M>(\Omega_1,\calF_1) = (\Omega,\calF)</M>  and <M>(\Omega_2,\calF_2) = (\rr,\calB),</M>  where
+ <M>\calB</M>  is the Borel sigma-field on <M>\rr.</M>
 
-
+<DEFN>
+By a <TERM>random variable</TERM>  on a probability space <M>(\Omega,\calF,P)</M>  we mean a measurable function <M>X</M> 
+ from <M>(\Omega,\calF)</M>  to <M>(\rr,\calB).</M>  Note that <M>P</M>  plays no role in the definition. 
+</DEFN> 
+We need the measurability condition on <M>X</M>  so that we can talk about <M>P(X\in (a,b)).</M>  For this we need 
+<M>\{w\in\Omega~:~X(w)\in (a,b)\}\equiv X ^{-1} (a,b)\in \calF.</M>
 <HEAD2>Simple funtion to approx measurable function</HEAD2>
+While defining <M>E(X)</M>  we had proceeded in three steps: simple, non-negative and general. We took a supremum in the
+ second step. This is motivated by the following result. 
 
+<THM>
+
+</THM>
 <HEAD2>Lebesgue integral</HEAD2>
 
 <HEAD3>Additivity</HEAD3>

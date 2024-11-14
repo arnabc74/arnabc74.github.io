@@ -348,7 +348,9 @@ Direct computation shows <M>n\geq 4.</M>
 
 Imagine this set up: A coin with <M>P(H)=p</M>  is repeadly tossed. Success means <M>H.</M>
 <ANS>
-<M>(1-p)^{\sum_1^r (x_i-1)} p^r.</M>
+<M>(1-p)^{x_r-r} p^r.</M>
+
+Thanks to Amit Prakash Jena for correcting a mistake here.
 </ANS>
 
 <HR/></EXR>
