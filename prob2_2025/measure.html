@@ -106,7 +106,8 @@ body,table {
 }
 
 .box {
-  border: 2px solid black;
+  background-color: yellow; 
+  //border: 2px solid black;
   display: inline-block;
 }
 </style>
@@ -177,13 +178,14 @@ function myFunction() {
 <a href="#Riemann vs Lebesgue">Riemann vs Lebesgue</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Existence of Lebesgue measure">Existence of Lebesgue measure</a>
+<a href="#Existence of $Unif(0,1)$">Existence of $Unif(0,1)$</a>
 </li>
 </ul>
 <hr/>
 $
 \newcommand{\calF}{{\mathcal F}}
 \newcommand{\calB}{{\mathcal B}}
+\newcommand{\ind}{{\mathbb 1}}
 $
 <h1><a
 name="Uncountable sample space">Uncountable sample space</a></h1>
@@ -222,10 +224,143 @@ While defining $E(X)$  we had proceeded in three steps: simple, non-negative and
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
+If $f:\Omega\rightarrow[0,\infty)$  is any function, then there is a non-decreasing sequence $(f_n)$  where each
+ $f_n:\Omega\rightarrow [0,\infty)$  and 
+$$\forall \omega\in\Omega~~f_n(\omega) \uparrow f(\omega).$$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $f_n$  as follows. First partition
+ $[0,\infty)$  into $2$  intervals $[0,n)$  and $[n,\infty)$  and then
+ subdivide the first into equal subintervals of length $2^{-n}.$  So you get $N=n2^n+1$  subintervals in all. Call
+ these $[a_1,b_1),...,[a_N,b_N).$  These constitute a partition of $[0,\infty).$
+<p></p>
+Now  set $f_n(\omega) = a_k$  if $f_n(\omega) \in[ a_k,b_k).$  
+<p></p>
+The following picture shows this process for $n=1$  and $n=2.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/subdiv.png"></th>
+</tr>
+<tr>
+<th>Notice how the subdivisions for $n=2$  fit into those for $n=1.$</th>
+</tr>
+</table>
+</center>     
+
+<p></p>
+For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $f_n(\omega)\leq f_{n+1}(\omega).$
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+If $f_n(\omega) = a$   and $f_{n+1}(\omega) = b,$  then $f(\omega)\in[a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
+<p></p>
+So, by the contruction of the partitions, $[b+2^{-n-1})\subseteq[a,2^{-n}).$
+<p></p>
+Thus, $a\leq b,$  as required.
+</div></blockquote>
+
+<p></p>
+Again, for each $\omega\in\Omega$  we have $f_n(\omega)\rightarrow f(\omega).$  
+<blockquote><a
+href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
+class="ans" id="reason2">
+To show:
+<p></p>
+
+<div class="box">Target</div>$\forall \omega\in\Omega~~\forall \epsilon&gt;0~~\exists M\in{\mathbb N}~~\forall n\geq M ~~|f(\omega)-f_n(\omega)| &lt; \epsilon.$
+<p></p>
+
+<div class="box">$\forall \omega$</div> Take any $\omega\in\Omega.$
+<p></p>
+
+<div class="box">$\forall \epsilon$</div> Take any $\epsilon&gt;0.$
+<p></p>
+
+<div class="box">$\exists M$</div> Choose $M\in{\mathbb N}$  such that $M&gt; f(\omega)$  and $2^{-M} &lt; \epsilon.$  (Possible since ${\mathbb N}$ 
+ is unbounded above and $2^{-n}\rightarrow 0$  as $n\rightarrow \infty.$
+<p></p>
+
+<div class="box">$\forall n$</div> Take any $n\geq M.$
+<p></p>
+
+<div class="box">Check</div>Since $f(\omega) &lt; M\leq n,$  hence $f_n(\omega) &lt; n.$  
+<p></p>
+Thus, $f(\omega) \in [f_n(\omega),f_n(\omega)+2^{-n}).$
+</div></blockquote>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
 
 <p></p>
 
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+Show that the convergence is uniform if $f$  is bounded.
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;
+Show that if, in the theorem above,  $f$  is measurable (w.r.t. any given $\sigma$-field $\calF$
+ over $\Omega$  and the Borel $\sigma$-field over ${\mathbb R}$), then so must be each $f_n.$ 
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+Since $f_n$  can take only finitely many value, it is enough (why?) to show that for any $a\in{\mathbb R}$  the set $f_n
+ ^{-1}\{a\}\in\calF.$   
+<p></p>
+Express $f_n ^{-1}\{a\}$  as $f ^{-1}$(some set). 
+</div></p>
+
+</p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$  is a non-negative random variable, and $X_n$'s are simple random variables with $X_n\uparrow X,$ 
+ then $E(X_n)\uparrow E(X).$
 </fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Shall show
+<p></p>
+
+<div class="box">Target</div>$\forall \epsilon&gt;0~~\exists N\in{\mathbb N}~~\forall n\geq N~~ E(X_n)&gt; E(X)-\epsilon.$
+<p></p>
+This will complete the proof, since anyway $(E(X_n))$  is a non-decreasing sequence bounded from above by $E(X)$ 
+  (The case $E(X)=\infty$  is trivially
+ included in it). 
+<p></p>
+Since $E(X) = \sup\{E(Z)~:~  Z\leq X,~~Z \mbox{ simple}\},$
+<p></p>
+hence $\exists$ simple $ Z\leq X$  with $E(Z) &gt; E(X)-\epsilon.$ 
+<p></p>
+Fix some $\delta&gt;0.$
+<p></p>
+Let $A_n =\{X_n &gt; Z-\delta\}.$
+<p></p>
+Then $P(A_n)\rightarrow 1.$
+<blockquote><a
+href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
+class="ans" id="reason3">
+Since $X_n$'s are non-decreasing, hence $A_1\subseteq A_2\subseteq A_3\subseteq\cdots.$  
+<p></p>
+Also since $\forall\omega\in\Omega~~X_n(w)\uparrow X(w),$  hence $\cup_n A_n=\Omega.$  
+</div></blockquote>  
+
+<p></p>
+So $E(X_n)\geq E(X_n\ind_{A_n}) \geq E(Z\ind_{A_n}) \geq E(Z)-MP(A_n^c)-\delta,$
+where $M = \max Z.$  
+<p></p>
+Taking limit $\lim E(X_n) \geq Z- \delta.$  
+<p></p>
+Since $\delta&gt;0$  is arbitrary, we have $\lim E(X_n) \geq E(Z).$  
+<b><i>[QED]</i></b>
+</p>
 
 <h2><a
 name="Lebesgue integral">Lebesgue integral</a></h2>
@@ -238,6 +373,59 @@ name="Additivity">Additivity</a></h3>
 <h3><a
 name="MCT">MCT</a></h3>
 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_n$ 's be non-negative simple random variables with $X_n\uparrow X$  for some random variable $X.$
+ Then $E(X_n)\uparrow E(X).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
+class="ans" id="reason4">
+We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
+</div></blockquote>
+Let $(Z_{n,k})_k$  be the simplification of $X_n.$  
+<p></p>
+Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$
+<p></p>
+Then $Y_1\leq Y_2\leq\cdots$
+<blockquote><a
+href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
+class="ans" id="reason5">
+$$\begin{eqnarray*}
+Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
+&amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
+&amp; \geq &amp; \max\{Z_{1,n},...,Z_{n,n}\},
+\end{eqnarray*}$$
+by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
+</div></blockquote>
+Also $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
+class="ans" id="reason6">
+$Z_{k,n}\leq X_k\leq X_n.$
+</div></blockquote>
+Finally, $Y_n\uparrow X.$
+<blockquote><a
+href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
+class="ans" id="reason7">
+We have $Z_{n,k} \leq Y_k.$  
+<p></p>
+Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$
+<p></p>
+Now taking limit as $n\rightarrow \infty,$  we have $X\leq \lim_k Y_k.$  
+<p></p>
+Also we have $Y_n\leq X_n\leq X.$  So $\lim_k Y_k\leq X.$  
+<p></p>
+Hence $\lim_k Y_k= X.$
+</div></blockquote>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
 <h3><a
 name="BCT and DCT">BCT and DCT</a></h3>
 
@@ -245,17 +433,124 @@ name="BCT and DCT">BCT and DCT</a></h3>
 
 <h2><a
 name="Special cases">Special cases</a></h2>
+We have defined $E(X)$  in three steps: simple, non-negative and general. But we have given a computational formula
+ only in case of simple random variables. If $X$  takes countably infinite values, $x_1,x_2,...$  with probabilities
+ $p_1,p_2,...,$  respectively, then we have mentioned that $E(X) = \sum_n x_n p_n$  if this sum is absolutely convergent.
+ This formula actually follows from the general definition, as we now show.
+<p></p>
 
 <h3><a
 name="Countable case">Countable case</a></h3>
 
-<h3><a
-name="Riemann vs Lebesgue">Riemann vs Lebesgue</a></h3>
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X$  takes the nonnegative values $x_1&lt;x_2&lt;\cdots$   with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1,$  then 
+$$E(X) = \sum p_i x_i.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+To show 
+$$\sum p_i x_i = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}.$$
+Let $L= \sum_i p_i x_i,$  and ${\mathcal D}=\{E(U)~:~U\mbox{ simple, }U\leq X\}.$
+<p></p>
+This requires showing two things: 
+<ul>
+<li>$L$  is an upper bound of ${\mathcal D},$</li>
+
+<li>no number less than $L$  is an upper bound of ${\mathcal D}.$</li>
+</ul>
 
 <p></p>
 
+<b>Step 1:</b>  To show
+<p></p>
+$$\forall U\in{\mathcal D}~~E(U)\leq L.$$
+<p></p>
+Take any  $U\in{\mathcal D}$  be any simple random variable. 
+<p></p>
+Let $U$  take only the values $u_1,...,u_k.$  
+<p></p>
+Let $p_{ij} = P(X=x_i, U=u_j).$
+<p></p>
+Then $E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.$  
+<p></p>
+Also $L = \sum_i x_i \sum_j
+ p_{ij}=\sum_i  \sum_j x_i p_{ij}=\sum_j \sum_i x_i p_{ij}.$
+<blockquote><a
+href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
+class="ans" id="reason8">
+A finite sum can always be interchanged with an infinite sum, when the summands are all nonnegative. For example,
+$$\sum (a_n+b_n) = \sum a_n + \sum b_n.$$
+If we write $c_{1,n}=a_n$  and $ c_{2,n}=b_n$  then this is 
+$$\sum_n \sum_i c_{i,n} = \sum_i \sum_n c_{i,n}.$$  
+</div></blockquote>
+Now $p_{ij}&gt;0\Rightarrow u_j\leq x_i.$  
+<p></p>
+Hence $\sum_i   u_j p_{ij}\leq \sum_i   x_i p_{ij},$  and so $\sum_j\sum_i   u_j p_{ij}\leq \sum_j\sum_i   x_i p_{ij}.$
+<p></p>
+Thus, $E(U)\leq L,$  as required.
+<p></p>
+
+<b>Step 2:</b>  Shall show that no $L'&lt; L$  is an upper bound of ${\mathcal D},$  <i>i.e.</i>,
+<p></p>
+$$\forall L'&lt; L~~\exists U\in{\mathcal D}~~E(U)&gt; L'.$$  
+<p></p>
+Let $U_n$  be the random variable 
+$$
+U_n =\left\{\begin{array}{ll}X&\text{if }X=x_1,...,x_n\\ 0&\text{otherwise.}\end{array}\right..
+$$  
+Then $U_n$  is a simple random variable such that $U_n\leq X.$ 
+<p></p>
+So $U_n\in{\mathcal D}.$
+<p></p>
+Also $E(U_n)
+ =\sum_{i=1}^n p_i x_i\rightarrow L.$  
+<p></p>
+Hence $\exists N\in{\mathbb N}~~E(U_N) &gt; L'.$  
+<p></p>
+Choose this $U_N$  as our $U\in{\mathcal D}.$
+<p></p>
+Since $E(U) &gt; L',$ this completes the proof.
+ <b><i>[QED]</i></b>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|&lt;\infty,$ then 
+$$E(X) = \sum p_i x_i.$$
+</p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|=\infty,$ then what are the possibilities for $E(X):$ 
+ finite, $\infty$, $-\infty$  or undefined? Give one example of each of the possibilities. Prove the impossibility
+ of the other(s).
+</p>
+
+<p></p>
+
+<h3><a
+name="Riemann vs Lebesgue">Riemann vs Lebesgue</a></h3>
+If a function is Riemann integrable (proper or improper), then it is also Lebesgue integrable, and the two integrals match. Indeed,
+ that is why we could use Riemann integraion to compute expectation in the absolutely continuous case.
+<p></p>
+
 <h2><a
-name="Existence of Lebesgue measure">Existence of Lebesgue measure</a></h2>
+name="Existence of $Unif(0,1)$">Existence of $Unif(0,1)$</a></h2>
+We had talked about the fundamental theorem of probability in the last semester: for any CDF there is a random variable with
+ that CDF. Indeed, this is the therem that powers every statement of the form "Let $X$  be a random variable with a
+ given distribution." 
+<p></p>
+We had given a partial proof earlier in this course: We assumed the existence of a random variable with the $Unif(0,1)$ 
+ distribution, and provided a way to manufacture random variables following any given distribution using this.
+<p></p>
+So the only thing that remains to be checked is the existence of $Unif(0,1)$  random variables. 
+For this we take $\Omega = (0,1)$  and $X:\Omega\rightarrow{\mathbb R}$  as $X(\omega)=\omega.$  We take the Borel $\sigma$-field
+ on $\Omega.$  Need to show the existence of $P:\calB\rightarrow[0,1]$  such that $\forall a&lt;b\in(0,1)~~P(a,b) = b-a.$
+<p></p>
+This proof turns out to be surprisingly tricky, and will be not be dealt with in this course.
+<p></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

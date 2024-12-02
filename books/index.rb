@@ -1,7 +1,7 @@
  <NOTE>
-@{<UPDT>SUN JUL 11 IST 2021</UPDT>@}
+@{<UPDT></UPDT>@}
 <HEAD1>arNab chak+rabar+tIr bA.nlAy bojhAno i.nrAji bai</HEAD1>
-bA.nlAy-bojhAno-i.nrAji-bai bale ekTA baiyer sirij karechhi. tAte bAroTA a.nka bai likhechhi e parYanta. ei pAtATA
+bA.nlAy-bojhAno-i.nrAji-bai bale ekTA baiyer sirij karechhi. tAte teroTA a.nka bai likhechhi e parYanta. ei pAtATA
  tAder niye. baigulo hala--
 <OL>
 <LI>@{<E>Real Analysis</E>@} (<LINK to="../real1/index.html">pratham khanDa</LINK>) </LI>
@@ -16,6 +16,7 @@ bA.nlAy-bojhAno-i.nrAji-bai bale ekTA baiyer sirij karechhi. tAte bAroTA a.nka b
 <LI><LINK to="../complex/index.html">@{<E>Complex Analysis</E>@}</LINK> </LI>
 <LI><LINK to="../intcal/index.html">@{<E>Integral Calculus</E>@}</LINK>  (@{<E>+2 level</E>@}-er janya) </LI>
 <LI><LINK to="../hscomplex/index.html">@{<E>Complex Algebra</E>@}</LINK> (@{<E>+2 level</E>@}-er janya) </LI>
+<LI><LINK to="https://arnabc74.github.io/mult/index.html">@{<E>Multivariable Calculus</E>@}</LINK></LI>
 </OL>
 baigulote kI Achhe, kena likhechhi, ityAdi gurugambhIr prashne yAoyAr Age sahaj kayekTA prashner jabAb diye neoyA yAk. 
 <UL><LI>baigulo kArA bAr karechhe?  shara.t buk hAus (orafe @{<E>Levant Publishers</E>@}).</LI>

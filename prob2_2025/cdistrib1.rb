@@ -39,7 +39,7 @@ completing the proof.
 This shows that if we can show the existence of (or generate random numbers from)  <M>Unif(0,1)</M>, then we can do so for
  any CDF.
 
-<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
+::<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
  may generate a random variable with this PDF starting from a <M>Unif(0,1)</M>  random variable.</EXR>
 SS
 It has a partial converse, which is also important.
@@ -57,4 +57,43 @@ This is used to construct a P-P plot.
 <HEAD2>Exponential distribution</HEAD2>
 <DEFN>We say that <M>X</M>  has an <TERM>Exponential distribution</TERM>  with <TERM>rate</TERM> 
  <M>\lambda</M>  if it has PDF <M>f(x)=<CASES>\lambda e^{-\lambda x}</CASES></M></DEFN>
+
+<HEAD1>Problems for practice</HEAD1>
+::<EXR><EIMG web="rossdistrib1.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib2.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib3.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib4.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib6.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib7.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib8.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib9.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib11.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib13.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib14.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib15.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib16.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib17.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib18.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib19.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib20.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib21.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib22.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib23.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib24.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib25.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib26.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib27.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib28.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib29.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib30.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib31.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib32.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib33.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib34.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib35.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib36.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib37.png"></EIMG></EXR>
 </NOTE>@}

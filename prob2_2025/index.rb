@@ -4,8 +4,8 @@
 <OL>
 <LI><LINK to="contabs.html">Absolutely continuous distributions</LINK></LI>
 <LI><LINK to="cjoint.html">Joint, marginal and conditional PDF</LINK></LI>
-<LI><LINK to="cdistrib1.html">Some standard absolutely continuous distributions</LINK></LI>
 <LI><LINK to="trans.html">Transformations of random variables</LINK></LI>
+<LI><LINK to="cdistrib1.html">Some standard absolutely continuous distributions</LINK></LI>
 <LI><LINK to="normal.html">Multivariate normal and related distributions</LINK></LI>
 <LI><LINK to="measure.html">Notions from measure theory</LINK></LI>
 

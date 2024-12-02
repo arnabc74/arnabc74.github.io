@@ -76,5 +76,96 @@ If <M>h:\rr\to\rr</M>, then <M>E(h(X)) = E((h(X))_+) - E((h(X))_-)</M>, as dicta
 
 Since this is a special case of the general definition, all the properties (like linearity, monotonicity) are intact. 
 
-We define <M>V(X)</M>  and the other moments as usual. Their properties (e.g., Chebyshev inequality) are intact.
+We define <M>V(X)</M>  and the other moments as usual. Their
+properties (e.g., Chebyshev inequality) are intact.
+
+<HEAD1>Practice problems</HEAD1>
+::<EXR><EIMG web="rosspdf1.png"/></EXR>
+::<EXR><EIMG web="rosspdf2.png"/></EXR>
+::<EXR><EIMG web="rosspdf3.png"/></EXR>
+::<EXR><EIMG web="rosspdf4.png"/></EXR>
+::<EXR><EIMG web="rosspdf5.png"/></EXR>
+::<EXR><EIMG web="rosspdf6.png"/></EXR>
+::<EXR><EIMG web="rosspdf7.png"/></EXR>
+::<EXR><EIMG web="rosspdf8.png"/></EXR>
+::<EXR><EIMG web="rosspdf9.png"/>
+
+Here is Example 5b that is refered above:
+<IMG web="rosspdf10.png">Example 5b</IMG>
+</EXR>
+::<EXR><EIMG web="rosspdf11.png"/></EXR>
+::<EXR><EIMG web="rosspdf12.png"/></EXR>
+::<EXR><EIMG web="rosspdf13.png"/></EXR>
+::<EXR><EIMG web="rosspdf14.png"/></EXR>
+::<EXR><EIMG web="rosspdf15.png"/></EXR>
+::<EXR><EIMG web="rosspdf16.png"/></EXR>
+::<EXR><EIMG web="rosspdf17.png"/></EXR>
+::<EXR><EIMG web="rosspdf18.png"/></EXR>
+::<EXR><EIMG web="rosspdf19.png"/></EXR>
+::<EXR><EIMG web="rosspdf20.png"/></EXR>
+::<EXR><EIMG web="rosspdf21.png"/></EXR>
+::<EXR><EIMG web="rosspdf22.png"/></EXR>
+::<EXR><EIMG web="rosspdf23.png"/></EXR>
+::<EXR><EIMG web="rosspdf24.png"/></EXR>
+::<EXR><EIMG web="rosspdf25.png"/></EXR>
+::<EXR><EIMG web="rosspdf26.png"/></EXR>
+::<EXR><EIMG web="rosspdf27.png"/></EXR>
+::<EXR><EIMG web="rosspdf28.png"/></EXR>
+::<EXR><EIMG web="rosspdf29.png"/></EXR>
+::<EXR><EIMG web="rosspdf30.png"/></EXR>
+::<EXR><EIMG web="rosspdf31.png"/></EXR>
+::<EXR><EIMG web="rosspdf32.png"/></EXR>
+::<EXR><EIMG web="rosspdf33.png"/></EXR>
+::<EXR><EIMG web="rosspdf34.png"/></EXR>
+::<EXR><EIMG web="rosspdf35.png"/></EXR>
+::<EXR><EIMG web="rosspdf36.png"/></EXR>
+::<EXR><EIMG web="rosspdf37.png"/></EXR>
+::<EXR><EIMG web="rosspdf38.png"/></EXR>
+::<EXR><EIMG web="rosspdf39.png"/></EXR>
+::<EXR><EIMG web="rosspdf40.png"/></EXR>
+::<EXR><EIMG web="hpspdf1.png"/></EXR>
+::<EXR><EIMG web="hpspdf2.png"/></EXR>
+::<EXR><EIMG web="hpspdf3.png"/></EXR>
+::<EXR><EIMG web="hpspdf4.png"/></EXR>
+::<EXR><EIMG web="hpspdf5.png"/></EXR>
+::<EXR><EIMG web="hpspdf6.png"/></EXR>
+::<EXR><EIMG web="hpspdf7.png"/></EXR>
+::<EXR><EIMG web="hpspdf8.png"/></EXR>
+::<EXR><EIMG web="hpspdf9.png"/></EXR>
+::<EXR><EIMG web="hpspdf10.png"/></EXR>
+::<EXR><EIMG web="hpspdf11.png"/></EXR>
+::<EXR><EIMG web="hpspdf12.png"/></EXR>
+::<EXR><EIMG web="hpspdf13.png"/></EXR>
+::<EXR><EIMG web="hpspdf14.png"/></EXR>
+::<EXR><EIMG web="hpspdf15.png"/></EXR>
+::<EXR><EIMG web="hpspdf16.png"/></EXR>
+::<EXR><EIMG web="hpspdf17.png"/></EXR>
+::<EXR><EIMG web="hpspdf18.png"/></EXR>
+::<EXR><EIMG web="hpspdf19.png"/></EXR>
+::<EXR><EIMG web="hpspdf20.png"/></EXR>
+::<EXR><EIMG web="hpspdf21.png"/></EXR>
+::<EXR><EIMG web="hpspdf22.png"/></EXR>
+::<EXR><EIMG web="hpspdf23.png"/></EXR>
+::<EXR><EIMG web="hpspdf24.png"/></EXR>
+::<EXR><EIMG web="hpspdf25.png"/></EXR>
+::<EXR><EIMG web="hpspdf26.png"/></EXR>
+::<EXR><EIMG web="hpspdf27.png"/></EXR>
+::<EXR><EIMG web="hpspdf28.png"/></EXR>
+::<EXR><EIMG web="hpspdf29.png"/></EXR>
+::<EXR><EIMG web="hpspdf30.png"/></EXR>
+::<EXR><EIMG web="hpspdf31.png"/></EXR>
+::<EXR><EIMG web="hpspdf32.png"/></EXR>
+::<EXR><EIMG web="hpspdf33.png"/></EXR>
+::<EXR><EIMG web="hpspdf34.png"/></EXR>
+::<EXR><EIMG web="hpspdf35.png"/></EXR>
+::<EXR><EIMG web="hpspdf36.png"/></EXR>
+::<EXR><EIMG web="hpspdf37.png"/></EXR>
+::<EXR><EIMG web="hpspdf38.png"/></EXR>
+::<EXR><EIMG web="hpspdf39.png"/></EXR>
+::<EXR><EIMG web="hpspdf40.png"/></EXR>
+::<EXR><EIMG web="hpspdf41.png"/></EXR>
+::<EXR><EIMG web="hpspdf42.png"/></EXR>
+::<EXR><EIMG web="hpspdf43.png"/></EXR>
+::<EXR><EIMG web="hpspdf44.png"/></EXR>
+::<EXR><EIMG web="hpspdf45.png"/></EXR>
 </NOTE>@}

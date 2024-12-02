@@ -67,6 +67,59 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
       }
     }
   });
+</script>
+<style>
+body {
+  margin: 0;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
 </script><script type="text/javascript" src="https://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
 <link href="../tools/rgl.css" rel="stylesheet"></link>
 <script src="../tools/rglClass.src.js"></script>
@@ -74,6 +127,7 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <script src="../tools/rglWebGL.js"></script>
 </head>
 <body>
+<div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Table of contents</h3>
 <ul>
@@ -98,13 +152,13 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 <tr>
 <td align="right"><i>Last
 updated on:
-SUN JUL 11 IST 2021</i></td>
+</i></td>
 </tr>
 </table>
 
 <h1><a
 name="অর্ণব চক্রবর্তীর বাংলায় বোঝানো ইংরাজি বই">অর্ণব চক্রবর্তীর বাংলায় বোঝানো ইংরাজি বই</a></h1>
-বাংলায়-বোঝানো-ইংরাজি-বই বলে একটা বইয়ের সিরিজ করেছি৷ তাতে বারোটা অংক বই লিখেছি এ পর্যন্ত৷ এই পাতাটা
+বাংলায়-বোঝানো-ইংরাজি-বই বলে একটা বইয়ের সিরিজ করেছি৷ তাতে তেরোটা অংক বই লিখেছি এ পর্যন্ত৷ এই পাতাটা
  তাদের নিয়ে৷ বইগুলো হল--
 <ol type="">
 
@@ -145,6 +199,10 @@ name="অর্ণব চক্রবর্তীর বাংলায় বো�
 
 <li>
 <a href="../hscomplex/index.html">Complex Algebra</a> (+2 level-এর জন্য) </li>
+
+<li>
+<a href="https://arnabc74.github.io/mult/index.html">Multivariable Calculus</a>
+</li>
 
 </ol>
 বইগুলোতে কী আছে, কেন লিখেছি, ইত্যাদি গুরুগম্ভীর প্রশ্নে যাওয়ার আগে সহজ কয়েকটা প্রশ্নের জবাব দিয়ে নেওয়া যাক৷ 
