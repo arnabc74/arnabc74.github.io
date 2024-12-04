@@ -106,7 +106,8 @@ body,table {
 }
 
 .box {
-  border: 2px solid black;
+  background-color: yellow; 
+  //border: 2px solid black;
   display: inline-block;
 }
 </style>
@@ -144,13 +145,16 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Table of contents</h3>
+<h3/>
 <ul>
 <li>
 <a href="#Transformations">Transformations</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Via CDF">Via CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Minimum, maximum and other order statistics">Minimum, maximum and other order statistics</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Using Jacobian">Using Jacobian</a>
@@ -166,6 +170,8 @@ function myFunction() {
 </li>
 </ul>
 <hr/>
+$\newcommand{\x}[1]{X_{(#1)}}$
+$\newcommand{\v}[1]{{\mathbold #1}}$
 <h1><a
 name="Transformations">Transformations</a></h1>
 We often work with functions of random variables. New random variables are created out of existing ones via functions. 
@@ -175,9 +181,210 @@ So a natural requirement is to be able to work out the distributions of the new 
 
 <h2><a
 name="Via CDF">Via CDF</a></h2>
+If we working with univariate distributions, then the most general (and often the simplest)
+ technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+If $X$  is uniformaly distributed over $[0,2],$  then find a density for $X^2.$  
+<p></p>
+<b>SOLUTION:</b>
+Let $Y = X^2.$  A density for $X$  is $f(x) = \frac 12$  if $0\leq x\leq 2$  (and 0 else). We shall pass
+ to the CDF of $X:$
+$$F(x) = \left\{\begin{array}{ll}0&\text{if }x &lt; 0\\ \frac x2&\text{if }0\leq x &lt; 2\\ 1&\text{otherwise.}\end{array}\right. $$
+From this we shall compute the CDF of $Y.$  Clearly, $Y$  cannot take values outside $[0,4].$  So $G(y) = 0$ 
+ if $y&lt;0$ and $G(y) = 1$  if $y\geq 2.$  
+<p></p>
+Let $y\in[0,2).$
+<p></p>
+Then 
+$$G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = \frac 12\sqrt y.$$
+Differentiating this, we arrive at the required density of $Y$  as
+$$g(y) = G'(y) = \left\{\begin{array}{ll}\frac{1}{4y}&\text{if }y\in[0,2]\\ 0&\text{otherwise.}\end{array}\right.$$
+ ■
+</p> 
+You see the advantage of monotonicity. Even though $x\mapsto x^2$  is a not a monotone function over ${\mathbb R},$  it
+ is so when restricted to $[0,2].$  The CDF technique can handle even some simple non-monotonic cases, as we show now.
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Let $X$  be uniform over $[-1,1].$  Find the density of $X^2.$  
+<p></p>
+<b>SOLUTION:</b>
+Clearly, $Y=X^2$  cannot go outside $[0,1].$  So its CDF $G(y)$  must have $G(y)=0$  for $y&lt;0$ 
+ and $G(y)=1$  for $y\geq 1.$  
+<p></p>
+For $y\in[0,1)$  we have
+$$G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.$$
+Differentiating we get the density
+$$g(y) = \left\{\begin{array}{ll}\frac{1}{2\sqrt y}&\text{if }y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right. $$
+ ■
+</p>
+
+<h2><a
+name="Minimum, maximum and other order statistics">Minimum, maximum and other order statistics</a></h2>
+An interesting application of non-monotonic transformation that can be handled by CDF is about
+ <b><font color="red" size="40">order statistic</font></b>s.   If we have a random sample $X_1,...,X_n$, and sort them as $X_{(1)}\leq X_{(2)}\leq \cdots X_{(n)},$ 
+ then $X_{(i)}$  is called the <b><font color="red" size="40">$i$-th order statistic</font></b>. 
+<p></p>
+We shall start with the simplest case $\x n$, the maximum. Let $X_i$'s be IID with common density $f(x)$ 
+ and CDF $F(x).$  Let us find the density of $\x n.$  
+<p></p>
+We shall first compute the CDF $G(x)$of $\x n.$  
+$$G(x) = P(\x n\leq x) = P(\forall i~~X_i\leq x) = P(X_1\leq x)\cdots P(X_n\leq x) =(F(x))^n.$$
+Hence a density of $\x n$  is $g(x) = G'(x) = n(F(x))^{n-1}f(x).$  
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Use a similar argument to find a density for $\x 1$, the minimum.</p>
+
+<p></p>
+There is a particularly simple formula for the joint density of $(\x 1,...,\x n)$  if we know
+ the joint density of $(X_1,...,X_n).$  Before giving the general form, let us warn up with a simple example.
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Let $(X_1,X_2)$  have joint density $f(x_1,x_2).$  Then find the joint density of $(\x 1, \x 2).$
+<p></p>
+<b>SOLUTION:</b>
+We shall first compute the joint CDF of $(\x 1, \x 2).$  Let us find $G(3,2) = P(\x 1\leq 3,\x 2\leq 2) = P(\x 2\leq 2),$ 
+ since $\{\x _1\leq 3,\, \x 2\leq 2\} = \{\x 2\leq 2\}. $  
+<p></p>
+More generally, if $x &gt; y,$  then $G(x,y)$  is going to be free of $x.$
+<p></p>
+Remember that our final goal is to find the joint density of $(\x 1, \x 2)$, and for that we are going to differentiate
+ partially
+ w.r.t. both the arguments. So if $G(x,y)$  does not depend on either $x$  or $y$  then the density will be
+ zero. 
+<p></p>
+So if $x &gt; y,$  we have $g(x,y)=0.$  
+<p></p>
+Now let us explore $G(2,3) = P(\x 1\leq 2,\, \x 2\leq 3).$ 
+By the inclusion-exclusion principle, this is $P(X_1\leq 2,\, X_2\leq 3)+P(X_1\leq 3,\, X_2\leq 2)-P(X_1\leq 2,\, X_2\leq 2)=F(2,3)+F(3,2)+F(2,2).$
+<p></p>
+In general, for $x &lt; y$  we have $G(x,y) = F(x,y)+F(y,x)-F(x,x).$
+<p></p>
+The last term will be killed when we differentiate wrt $y.$  The first two terms will
+ produce $f(x,y)+f(y,x).$     
+<p></p>
+So the required joint density of $(\x 1, \x 2)$  will be $f(u,v),$  where
+$$f(u,v)=\left\{\begin{array}{ll}f(u,v)+f(v,u)&\text{if }u &lt; v\\ 0&\text{otherwise.}\end{array}\right.$$
+ ■
+</p> 
+ Once you notice that only the first inclusion terms will survive the differentiations, you can easily generalise to 
+any finite number of variables. This produces the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are jointly distributed random variables with joint pdf $f(x_1,...,x_n),$  then the joint density
+ of the order statistics $(\x 1,...,\x n)$  is 
+$$g(u_1,...,u_n)=\left\{\begin{array}{ll}\sum_\pi f(u_{\pi(1)},...,u_{\pi(n)})&\text{if }u_1 &lt; \cdots &lt; u_n\\ 0&\text{otherwise.}\end{array}\right.,$$
+where the sum is over all $n!$  permutations $\pi$  of $\{1,...,n\}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The proof is exactly as for the bivariate case. The only point that is slightly non-trivial is the inclusion-exclusion, and
+ the vanishing of all but the first inclusion terms upon differentiation. 
+<p></p>
+To see this notice that their are $n!$  inclusion terms in the first step.
+A typical of these terms is like $P(A_\pi),$  where
+$$A_\pi = \{X_1\leq u_{\pi(1)},...,X_n\leq u_{\pi(n)}\},$$  
+where $\pi$  is some permutation of $\{1,...,n\}.$  If we take some other permutation $\xi$  we get $A_\xi.$ 
+ Then the intesection is 
+$$A_\pi\cap A_\xi = \{\forall i~~X_i\leq \min\{u_{\pi(i)},u_{\xi(i)}\}\}.$$
+This is bound to be free of at least one $u_i.$  
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+Since $\pi\neq\xi,$  hence $\pi(i)\neq \xi(i)$  for some $i.$  Let $\pi(i) = a$  and $\xi(i) =b.$ 
+ Then it involves only the smaller of $u_a$  and $u_b.$
+</div></blockquote> 
+
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+ In the IID case we have the following special case:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are IID with density $f(x),$  then the joint density
+ of the order statistics $(\x 1,...,\x n)$  is 
+$$g(u_1,...,u_n)=\left\{\begin{array}{ll}n!f(u_1)\cdots f(u_n)&\text{if }u_1 &lt; \cdots &lt; u_n\\ 0&\text{otherwise.}\end{array}\right..$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+It follows immediately from the above theorem on noticing that the joint density of $(X_1,...,X_n)$  is $f(x_1)\cdots f(x_n).$
+<b><i>[QED]</i></b>
+</p>
 
 <h2><a
 name="Using Jacobian">Using Jacobian</a></h2>
+To understand the Jacobian method, it will help to look at the univariate CDF method. Let $f(x)$  be a density of $X$ 
+ and let $Y=h(X),$  where $h(\cdot)$  is a bijection with differentiable $h ^{-1}(y).$
+<p></p>
+Then the CDF of $Y$  is $G(y) = P(Y\leq y) = P(X\leq h ^{-1}(y)) = F(h ^{-1}(y)),$  where $F(\cdot)$  is the
+ CDF of $X.$  
+<p></p>
+So a density of $Y$  is 
+$$g(y) = G'(y) = \frac{d}{dy}F(h ^{-1}(y)) = f(h ^{-1}(y))\frac{d}{dy}h ^{-1}(y).$$
+Now we know that $h(h ^{-1} (y))\equiv y.$
+<p></p>
+Differentiating this wrt $y$  we have $h'(h ^{-1} (y))\frac{d}{dy} h ^{-1}(y) \equiv 1,$  <i>i.e.</i>, 
+$$\frac{d}{dy} h ^{-1}(y) = \frac{1}{h'(h ^{-1}(y)}.$$
+So we get 
+$$g(y) = \frac{f(h ^{-1}(y))}{h'(h ^{-1}(y))}.$$
+If we write $x = h ^{-1}(y),$  this will look less complicated:
+$$g(y) = \frac{f(x)}{h'(x)}.$$
+So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$   
+<p></p>
+This has an intuitive interpretation. Suppose that $X$  has uniform distribution over $[0,1],$  and we compute
+ $Y=X^2.$  We actually generate 500 points from $[0,1].$  And compute $Y$  for each of them. We show
+ the $X$'s along a number line, and also, separately, the $Y$'s to get:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/befaft.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+To appreciate the difference, imagine 10 equal length subintervals along $[0,1].$  Each subinterval is expected to get
+ about 10 points for $X.$  When you compute $Y=X^2,$  the intervals close to 0 get squeezed further down to 0,
+ while those closer to 1 are squeezzed less. So the points near 0 are now more tightly together than the onces near 1. This
+ leads to $Y$  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
+ squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. 
+<p></p>
+Now we look at the bivariate case. First a simple case. Suppose we start with soe $(X,Y)$  and transform it to $(U,V) = \frac 12(X,Y).$ 
+ If we have a scatterplot of $(X,Y)$  then the scatterplot of $(U,V)$  is obtained by scaling everything down by
+ half. So the areas get shrunk by $\frac 14,$  and density becomes 4 times as much. This $4$  is the reciprocal of
+ $\frac 14,$  which is the area of the transformed unit square. 
+<p></p>
+More generally for a linear transformation $$\left[\begin{array}{ccccccccccc}U\\V
+\end{array}\right]  = A\left[\begin{array}{ccccccccccc}X\\Y
+\end{array}\right],$$
+the role of $\frac 14$  is played by $det(A).$  So the density is to be divided by $det(A).$  
+<p></p>
+A differentiable nonlinear transformation can be locally approximated by a linear transformation at each point, where the
+ matrix is the Jacobian. So we have divide by its determinant. Sometimes it is more conveneint to think of this as multiplying
+ by the determinant of the Jacobian inverse. Formally, we get the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a differentiable function. Let $\v Y = h(\v X).$ 
+ Then $\v Y$  has density
+$$f(h ^{-1}(\v y)) J,$$
+where $J$  is the absolute determinant of Jacobian inverse evaluated at $h ^{-1}(\v y).$
+</fieldset>
+
+<p></p>
 
 <h2><a
 name="Sum">Sum</a></h2>
@@ -188,57 +395,96 @@ name="Quotient">Quotient</a></h2>
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 1:</b>&nbsp;<img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 2:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 2:</b>&nbsp;<img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 3:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;<img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 4:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;<img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 5:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;<img width="" src="image/hpstrans5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 6:</b>&nbsp;<font size="-2">[hpstrans5.png]</font><img width="" src="image/hpstrans5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;<img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 7:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 8:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;<img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 9:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;<img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;<img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 11:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 12:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 13:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;<img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 14:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;<img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 15:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 16:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 17:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 18:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 19:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 20:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 21:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 22:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 23:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 24:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 25:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 26:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
+Which is Theo Exr 2??</p>
+::<p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

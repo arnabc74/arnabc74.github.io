@@ -106,7 +106,8 @@ body,table {
 }
 
 .box {
-  border: 2px solid black;
+  background-color: yellow; 
+  //border: 2px solid black;
   display: inline-block;
 }
 </style>
@@ -144,30 +145,68 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Table of contents</h3>
+<h3>Joint distribution</h3>
 <ul>
 <li>
-<a href="#Joint distribution">Joint distribution</a>
+<a href="#Basics">Basics</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
 <a href="#Computing probabilities of non-rectangular regions">Computing probabilities of non-rectangular regions</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Finding probability using geometry">Finding probability using geometry</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Using iterated integrals">Using iterated integrals</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+<li>
+<a href="#CDF">CDF</a>
+</li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 4">Problem set 4</a>
+</li>
+<li>
 <a href="#Marginals">Marginals</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 5">Problem set 5</a>
+</li>
+<li>
+<a href="#Independence">Independence</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
 <a href="#Conditional distribution">Conditional distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
 <a href="#Exchangeable distribution">Exchangeable distribution</a>
+</li>
+<li>
+<a href="#A subtle point">A subtle point</a>
 </li>
 <li>
 <a href="#Problems for practice">Problems for practice</a>
 </li>
 </ul>
 <hr/>
+<title>Joint distribution</title>
+
 <h1><a
-name="Joint distribution">Joint distribution</a></h1>
+name="Basics">Basics</a></h1>
 Just as we had encountered joint distribution while learning about discrete random variables, we have the
 concept of joint distribution for absolutely continuous distributions as well. 
 <p></p>
@@ -179,58 +218,334 @@ Let $X,Y$  be jointly distributed random variables. We say that they are <b><fon
 $$\forall a \leq b, c \leq d~~P\big( (X,Y)\in[a,b]\times[c,d] \big) = \int_a^b \int_c^d f(x,y)\, dxdy.$$
 Any such $f$  is called a <b><font color="red" size="40">joint PDF</font></b>  of $(X,Y).$ 
 </fieldset>
-Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
-having their joint PMF. But not so in case of absolutely continuous distributions. Even if
- $X$  and $Y$  are each absolutely continuous, still $(X,Y)$  may fail to be <i>jointly</i>  absolutely continuous.
+Of course, this may be generalised to any finite number of jointly distributed random variables in the obvious way. 
+<p></p>
+The following theorem is not unexpected.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A function $f:{\mathbb R}^2\rightarrow[0,\infty)$  is a joint PDF if and only if $\int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)\, dxdy = 1.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>This, as you may have guessed, is an application of the fundamental theorem of probability. We
+ shall not go into the details of the proof in this course.<b><i>[QED]</i></b>
+</p>
+
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;Suppose $X\sim Unif(0,1)$  and $Y = X.$  Then show that $(X,Y)$  is not
- jointly absolutely continuous. 
+<b>EXAMPLE 1:</b>&nbsp;If $f(x,y) = \left\{\begin{array}{ll}c&\text{if }x^2+y^2\leq 1\\ 0&\text{otherwise.}\end{array}\right.$  is a density, then find $c.$
+<p></p>
+<b>SOLUTION:</b> The total area under the density is the volume of the cylinder with unit radius and height $c.$  This volume
+ is $\pi c.$  So we need $\pi c = 1,$  <i>i.e.</i>, $c [ \frac 1\pi.$
+ ■
+</p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}c(x+y)&\text{if }0\leq x,y,\leq 2\\ 0&\text{otherwise.}\end{array}\right. $  is a density.
 <p></p>
 <b>SOLUTION:</b>
-Here the CDF of $(X,Y)$  is 
-$$
-F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ 1&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
-$$
-Hence, if $(X,Y)$  is jointly absolutely continuous, then a joint density would be given by $f(x,y)$, where 
-$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
-This forces $f(x,y)\equiv 0,$  which is not a PDF.
-   ■
+We need $\int_{-\infty}^\infty\int_{-\infty}^\inftyf(x,y)\, dx dy = 1,$  <i>i.e.</i>, 
+$$\int_0^2\int_0^2 c(x+y)\, dx dy = 1.$$
+Now
+$$\int_0^2\int_0^2 c(x+y)\, dx dy = c\int_0^2\left[\int_0^2 c(x+y)\, dx\right] dy = c\int_0^2\left[ \frac 12x^2+xy\right]_0^2 dy=c\int_0^2( 2+2y)\, dy=8c.$$
+So we need $8c=1$  or $c = \frac 18.$
+ ■
 </p>
-However, if $(X,Y)$  is jointly absolutely continuous, then both $X$  and $Y$  must also be absolutely continuous.
+This solution shows a very useful technique of performing a iterated integral (<i>i.e.</i>, one integral inside another). The variable
+ for the outer integral is considered a constant in the inner integral. 
 <p></p>
 
 <h2><a
-name="Computing probabilities of non-rectangular regions">Computing probabilities of non-rectangular regions</a></h2>
+name="Problem set 1">Problem set 1</a></h2>
 
-<h2><a
-name="Marginals">Marginals</a></h2>
+<p></p>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cxy&\text{if }0\leq x,y,\leq 2\\ 0&\text{otherwise.}\end{array}\right. $  is a density.</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;If $ax+by$  is a density on the unit square, what are the possible values for $a,b?$</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}ce^{-x-y}&\text{if }0\leq x,y,&lt; \infty\\ 0&\text{otherwise.}\end{array}\right.$
+is a density.</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cye^{-x}&\text{if }0\leq x,y,&lt; \infty\\ 0&\text{otherwise.}\end{array}\right.
+ $  is a density<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">Impossible since the integral is divergent.</div></p>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cxy&\text{if }(x,y)\in[-1,1]\times[0,1]\\ 0&\text{otherwise.}\end{array}\right. $  is a density.
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">Impossible, $f(x,y)$  takes negative values.</div></p>
+</p>
 
 <p></p>
 
+<h1><a
+name="Computing probabilities of non-rectangular regions">Computing probabilities of non-rectangular regions</a></h1>  
+Visualise the graph of the density as the roof of a tent. Then $P((X,Y)\in A)$  is the volume
+ of the cylinder-like region inside the tent with $A$  as its floor. For many simple cases,
+ the volume may be computed using geometric considerations. For more complicated cases we resort
+ to iterated integrals. Let us start with the geometric case.
+<h3><a
+name="Finding probability using geometry">Finding probability using geometry</a></h3>
+The most important special case when the roof of the tent is flat and horizontal. In this case we call the distribution uniform,
+ as we have already learned. 
+<h3><a
+name="Problem set 2">Problem set 2</a></h3>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<font size="-2">[hpsjoint1.png]</font><img width="" src="image/hpsjoint1.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<font size="-2">[hpsjoint2.png]</font><img width="" src="image/hpsjoint2.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+
+<h3><a
+name="Using iterated integrals">Using iterated integrals</a></h3>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Let $(X,Y)$  have density $f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right..$  Find $P(Y\leq X^2).$
+<p></p>
+<b>SOLUTION:</b>
+The random point $(X,Y)$  always lies in the unit square. Our set of interest is shown in
+ red below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jsq.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ We need to integrate
+ the density over this set. In other words, we are trying to find the volume of the tent with the density as its roof and
+ the red region as its floor. This may be computed as follows:
+$$\int_0^1 \left[\int_0^{x^2} (x+y)\, dy\right] dx = \int_0^1 \left[ xy+\frac 12y^2 \right]_0^{x^2} \,
+ dx=\int_0^1 x^3+\frac 12x^4\, dx = \frac 14 + \frac{1}{10} = \frac{7}{20}.$$
+We could have done it the other way around, too:
+$$\int_0^1 \left[\int_{\sqrt y}^1 (x+y)\, dx\right] dy = \cdots.$$
+This should also lead to the same answer (check!). 
+ ■
+</p>
+
+<h3><a
+name="Problem set 3">Problem set 3</a></h3>
+
+<h1><a
+name="CDF">CDF</a></h1>
+We have already learned the definition of joint CDF in the last semester:
+<p></p>
+
+<fieldset>
+<legend><b>Definition: CDF</b></legend>
+If $X,Y$  are jointly distributed random variables, then their <b><font color="red" size="40">joint cumulative distribution function</font></b> is defined as
+ $F:{\mathbb R}^2\rightarrow[0,1]$, where
+$$F(x,y) = P(X\leq x,\, Y\leq y).$$
+ </fieldset>
+This definition does not care if $X,Y$  are discrete, continuous or absolutely continuous or something else.
+<p></p>
+Since the CDF is defined in terms probability, we can compute it by iterated integrals of the density. 
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Let $(X,Y)$  have uniform distribution over the unit square. Find its CDF, $F(x,y).$
+<p></p>
+<b>SOLUTION:</b>
+The values of $F(x,y)$  over certain regions of ${\mathbb R}^2$  should be clear, as shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/clearcdf.png"></th>
+</tr>
+<tr>
+<th>The unit square is shown in red</th>
+</tr>
+</table>
+</center>
+The red square is the floor of the tent. Since its area is 1, and the roof of the tent is flat, horizontal, the height must
+ be $\frac 11=1$  to keep the total volume $1.$  
+So to find $F(x,y)$  for $(x,y)$  in the red region we just divide the area of the shaded rectangle by the red
+ square. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/redcdf.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This gives $F(x,y) = xy.$
+<p></p>
+Similarly, if $(x,y)$  is in the blue region, we need to consider only the red part of the shaded rectangle. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bluecdf.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This gives $y.$
+<p></p>
+Similar consideration shows $F(x,y) = x$  over the green part. 
+<p></p>
+So the CDF is
+$$F(x,y) = \left\{\begin{array}{ll}xy&\text{if }0&lt; x,y\leq 1\\ 
+x&\text{if }0&lt;x\leq 1, y&gt;1\\
+y&\text{if }0&lt;y\leq 1, x&gt;1\\
+0&\text{if }x\leq 0\mbox{ or } y\leq 0\\
+1&\text{if }x, y&gt;1\\
+\end{array}\right.. 
+$$
+ ■
+</p>
+In this example we could avoid integration because the distribution was uniform. The next example is more general. 
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;Let $(X,Y)$  have density $f(x,y)=x+y$ over the unit square. Find its CDF, $F(x,y).$
+<p></p>
+<b>SOLUTION:</b>
+The red-blue-green break up remains the same here as in the last example, as the support of the distribution is the unit
+ square. The values (0 and 1) of the CDF over the white regions are also as before. 
+<p></p>
+For $(x,y)$  in the red region,
+$$F(x,y) = \int_0^x\int_0^y (u+v)\, dudv  = \int_0^x\frac 12y^2+yv\,dv = \frac 12xy^2+xy.$$
+Similarly, work out the values for the blue and green regions. ■
+</p>
+
+<p></p>
+Finding the CDF from the density requires quite a bit of effort. But going the other way around is a lot easier. You just
+ need to differentiate twice partially, once wrt $x$  and once wrt $y$  (in either order). Thus,
+$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y)=\frac{\partial^2}{\partial y\partial x} F(x,y).$$
+For $(x,y)$  where the partial derivatives
+ fail to exist, set $f(x,y) = 0$  (or any arbitrary non-negative value).
+<p></p>
+
+<img src="image/alert.png">But remember that this formula works only when we know that a density exists! 
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+Let our CDF be
+$$F(x,y) = \left\{\begin{array}{ll}xy&\text{if }0&lt; x,y\leq 1\\ 
+x&\text{if }0&lt;x\leq 1, y&gt;1\\
+y&\text{if }0&lt;y\leq 1, x&gt;1\\
+0&\text{if }x\leq 0\mbox{ or } y\leq 0\\
+1&\text{if }x, y&gt;1\\
+\end{array}\right.. 
+$$
+Given that a density exists, find it. 
+<p></p>
+<b>SOLUTION:</b>
+Since we are about differentiate wrt both $x$  and $y,$  the parts of $F(x,y)$  that do not involve both the
+ variables must vanish. So we need to work with only the $xy$  part, which after the two differentiations would yield
+ $1.$  So a denity is 
+$f(x,y) = \left\{\begin{array}{ll}1&\text{if }0&lt;x,y&lt;1\\ 0&\text{otherwise.}.\end{array}\right. $
+ ■
+</p>
+
 <h2><a
-name="Conditional distribution">Conditional distribution</a></h2>
+name="Problem set 4">Problem set 4</a></h2>
+
+<h1><a
+name="Marginals">Marginals</a></h1>
+We can find the distribution of $X$  and $Y$  separately given the joint distribution of $(X,Y).$  
+In particular, a marginal density of $X$  is given by 
+$$f_X(x) = \int_{-\infty}^\infty f(x,y)\, dy$$
+and a marginal density of $Y$  by 
+$$f_Y(y) = \int_{-\infty}^\infty f(x,y)\, dx.$$
+<p></p>
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<h1><a
+name="Independence">Independence</a></h1>
+We already know the following general definition of  jointly distributed random variables being independent:
+<fieldset>
+<legend><b>Definition: Independence</b></legend>
+Let $X_1,...,X_n$  be jointly distributed random variables. We say they are <b><font color="red" size="40">(mutually) independent</font></b>  if
+ for all $\{i_1,...,i_k\}\subseteq \{1,...,n\}$  and any $B_1,...,B_k\in{\mathcal B}$  we have
+$$P(X_{i_1}\in B_1, ..., X_{i_k}\in B_k) = P(X_{i_1}\in B_1)\times\cdotsP( X_{i_k}\in B_k).$$
+</fieldset> 
+Incidentally, it is not enough to have $P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i)P( X_j\in B_j)$  for all $i\neq j.$ 
+ If only this holds, then we call $X_1,...,X_n$  only <b><font color="red" size="40">pairwise independent</font></b>, which is weaker than mutual
+ independent.
+<p></p>
+This is the general case. For the absolutely continuous case, if $f(x,y)$  is a joint density, then $f(x,y)$  can
+ be factored as $f(x,y) = f_X(x)f_Y(y)$, where $f_X,$  $f_Y$  are marginal densities of $X$  and $Y.$ 
+<p></p>
+
+<h2><a
+name="Problem set 6">Problem set 6</a></h2>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;If two independent random variables $X,Y$  have marginal densities $f(t) = e^{-\lambda t}$  for
+ $t&gt;0$  (and 0 else), then find the joint density of $(X,Y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;$(X,Y)$  is distributed uniformly over the unit disc in ${\mathbb R}^2.$  Are $X,Y$  independent?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;If the joint density of $(X,Y)$  is of the form $f(x)g(y),$  then show that
+ $X$  and $Y$  must be independent. Also show that $f_X\propto f$  and $f_Y\propto g.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;If $(X,Y)$  are independent, then is it true that the joint CDF
+is the product of the marginal CDFs?
+</p>
+
+<h1><a
+name="Conditional distribution">Conditional distribution</a></h1>
 So far the absolutely continuous case closely mimics the discrete case, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If $(X,Y)$  are jointly discrete then we defined the
- conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y}{P(Y=y)}.$  
+ conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y}{P(Y=y)},$  and we did this only
+ for $y$  in the support of $Y,$  as that guaranteed $P(Y=y)&gt;0.$
 <p></p>
-So for the jointly absolutely continuous case, we define the <b><font color="red" size="40">conditional PDF</font></b>  of $X$  given $Y=y$ 
- as $f(x,y)/f_Y(y).$  There are, however, a couple of points here:
-<ol type="">
+So for the jointly absolutely continuous case, we define a <b><font color="red" size="40">conditional PDF</font></b>  of $X$  given $Y=y$ 
+ as 
+$$f_{X|Y}(x|y) =\frac{f(x,y)}{f_Y(y)}$$ 
+where $f_Y$  is a marginal density of $Y$  and $f_Y(y)&gt;0.$ Don't feel uncomfortable
+ with the arguments of $f_{Y|X}$  being written as $x|y$. You could have written it as
+ $f_{Y|X}(x,y)$,  as well.   
+<p></p>
+The most glaring difference between conditional PDF and conditional PMF is that the conditional PDF is not a
+ conditional probability,
+ since $P(Y=y)=0.$  Due to the same reason,
+$\int_a^bf_{X|Y}(x|y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$
+<p></p>
+However, the theorem of total probability is still valid:
+<p></p>
 
-<li>It is possible to have $f_Y(y)=0.$  Then we define the conditional density as 0.</li>
+<fieldset>
+<legend><b><i>Total probability</i></b></legend>$\int_c^d \int_a^bf_{X|Y}(x|y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).$</fieldset>
 
-<li>Unlike conditional PMF, the conditional PDF is not a conditional probability, since $P(Y=y)=0.$
-</li>
-
-<li>$\int_a^bf_{X|Y}(x,y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$</li>
-
-<li>However, $\int_c^d \int_a^bf_{X|Y}(x,y)\, dxdy$  does indeed give $P(X\in [a,b], Y\in[c,d]).$
-</li>
-
-</ol>
-It is this last step (which is the analog of total probability) that justifies the definition of conditional PDF.
+<p>
+<b><i>Proof:</i></b>  This is obvious
+ from the definition of $f_{Y|X}(x|y).$<b><i>[QED]</i></b>
+</p>
+It is this theorem that justifies the definition of conditional PDF.
 <p></p>
 Other than this difference, the rest follows as in the discrete case. We have the concepts of
  conditional expectation, conditional variance etc as usual. 
@@ -242,6 +557,31 @@ If $(X,Y)$  is jointly absolutely continuous, then $E(X|Y=y) = \int_{-\infty}^\i
 $$V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).$$
 </fieldset> 
 The tower property also works as before. 
+<h2><a
+name="Problem set 7">Problem set 7</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
+ 0\leq y\leq 1\}.$  Guess a conditional density of $X$  given $Y=y?$  First try
+ to guess, and then check it from the definition.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x|y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
+ 0&\text{otherwise.}\end{array}\right.$, where $c_y$  is free of $x.$ 
+Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y|x).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
+then find $E(X|Y=y)$  and $V(Y|X=x).$</p>
+
+<p></p>
+
 <h1><a
 name="Exchangeable distribution">Exchangeable distribution</a></h1>
 If $X_1, X_2, X_3$  are IID, then the joint distribution of $(X_1,X_2,X_3)$  is the same
@@ -251,13 +591,13 @@ This "invariance under permutation" property is called <b><font color="red" size
 <p></p>
 
 <fieldset>
-<legend><b>Definition: </b></legend>
+<legend><b>Definition: Exchangeable</b></legend>
 We say that the jointly distributed random variables $X_1,...,X_n$  are <b><font color="red" size="40">exchangable</font></b>  if for any permutation
  $\pi$  of $(1,...,n)$  the joint distribution of $(X_1,...,X_n)$  is the same as that of $(X_{\pi(1)},...,X_{\pi(n)}).$
 </fieldset> 
 Here is a non-IID example.
 <p>
-<b>EXAMPLE 2:</b>&nbsp;
+<b>EXAMPLE 7:</b>&nbsp;
 In a box we have 10 balls 4 of which are black, the rest being light magenta (with a tinge of yellow on one side). 2 balls
  are drawn one by one using SRSWOR. Let $X_1=$ the indicator of the $i$-th selected ball being black ($i=1,2$).
  Then show that $X_1,X_2$  are exchangeable. 
@@ -287,7 +627,7 @@ Since this matrix is symmetric, hence the result.
 Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
 proceed more systematically to answer the next problem.
 <p>
-<b>EXERCISE 1:</b>&nbsp;
+<b>EXERCISE 15:</b>&nbsp;
 We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
  $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
  are exchangeable.
@@ -296,7 +636,7 @@ We have $n$  balls $m$  of which are dark purple (the rest being of a nondescrip
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+<b>EXERCISE 16:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
  replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
  $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
 
@@ -325,62 +665,80 @@ Exchangeable random variables allow for symmetry arguments. The next problem is 
 <p></p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;
+<b>EXERCISE 17:</b>&nbsp;
 If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
 </p>
 
 <p></p>
 
 <h1><a
+name="A subtle point">A subtle point</a></h1>
+Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
+having their joint PMF. But not so in case of absolutely continuous distributions. Even if
+ $X$  and $Y$  are each absolutely continuous, still $(X,Y)$  may fail to be <i>jointly</i>  absolutely continuous.
+<p></p>
+
+<p>
+<b>EXAMPLE 8:</b>&nbsp;Suppose $X\sim Unif(0,1)$  and $Y = X.$  Then show that $(X,Y)$  is not
+ jointly absolutely continuous. 
+<p></p>
+<b>SOLUTION:</b>
+Here the CDF of $(X,Y)$  is 
+$$
+F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ 1&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
+$$
+Hence, if $(X,Y)$  is jointly absolutely continuous, then a joint density would be given by $f(x,y)$, where 
+$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
+This forces $f(x,y)\equiv 0,$  which is not a PDF.
+   ■
+</p>
+However, if $(X,Y)$  is jointly absolutely continuous, then both $X$  and $Y$  must also be absolutely continuous.
+<h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;<img width="" src="image/hpsjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 18:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;<img width="" src="image/hpsjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 19:</b>&nbsp;<font size="-2">[hpsjoint4.png]</font><img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;<img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 20:</b>&nbsp;<font size="-2">[hpsjoint5.png]</font><img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 21:</b>&nbsp;<font size="-2">[hpsjoint6.png]</font><img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;<img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 22:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;<img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 23:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;<img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 24:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 25:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 26:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;<img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;<img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rossipmjoint7.png]</font><img width="" src="image/rossipmjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/rossipmjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 27:</b>&nbsp;<img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

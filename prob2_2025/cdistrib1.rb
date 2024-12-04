@@ -96,4 +96,33 @@ This is used to construct a P-P plot.
 ::<EXR><EIMG web="rossdistrib35.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib36.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib37.png"></EIMG></EXR>
+::<EXR><EIMG web="rosspdf9.png"/>
+
+Here is Example 5b that is refered above:
+<IMG web="rosspdf10.png">Example 5b</IMG>
+</EXR>
+
+::<EXR><EIMG web="rosspdf15.png"/></EXR>
+::<EXR><EIMG web="hpspdf21.png"/></EXR>
+::<EXR><EIMG web="hpspdf23.png"/></EXR>
+::<EXR><EIMG web="hpspdf25.png"/></EXR>
+::<EXR><EIMG web="hpspdf27.png"/></EXR>
+---
+::<EXR><EIMG web="hpspdf28.png"/></EXR>
+::<EXR><EIMG web="hpspdf29.png"/></EXR>
+::<EXR><EIMG web="hpspdf30.png"/></EXR>
+::<EXR><EIMG web="hpspdf31.png"/></EXR>
+::<EXR><EIMG web="hpspdf32.png"/></EXR>
+::<EXR><EIMG web="hpspdf33.png"/></EXR>
+::<EXR><EIMG web="hpspdf34.png"/></EXR>
+::<EXR><EIMG web="hpspdf35.png"/></EXR>
+::<EXR><EIMG web="hpspdf36.png"/></EXR>
+::<EXR><EIMG web="hpspdf37.png"/></EXR>
+::<EXR><EIMG web="hpspdf38.png"/></EXR>
+::<EXR><EIMG web="hpspdf39.png"/></EXR>
+---
+::<EXR><EIMG web="hpspdf41.png"/></EXR>
+::<EXR><EIMG web="hpspdf42.png"/></EXR>
+::<EXR><EIMG web="hpspdf43.png"/></EXR>
+::<EXR><EIMG web="hpspdf44.png"/></EXR>
 </NOTE>@}

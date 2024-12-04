@@ -8,7 +8,8 @@ A special class of such random variables is given in the following definition:
  <TERM>absolutely continuous distribution</TERM>  if there is some <M>f:\rr\to[0,\infty)</M>  such
  that for every <M>a\leq b\in\rr</M>  we have 
 <D>P(X\in(a,b]) = \int_a^b f(x)\, dx.</D>
-Any such <M>f</M>  is called a <TERM>probability density function (PDF)</TERM>  of <M>X.</M>  
+Any such <M>f</M>  is called a <TERM>probability density function (PDF)</TERM>  or just
+ <TERM>density</TERM> of <M>X.</M>  
 </DEFN>
 
 The following facts all come from continuity of probability. 
@@ -34,11 +35,65 @@ is a CDF.
 
 Hence by the fundamental theorem of probability we have the following corollary:
 <THM>
-A function <M>f:\rr\to[0,\infty)</M>  is a density of some random variable if and only if with <M>\int_ {-\infty}
+A function <M>f:\rr\to[0,\infty)</M>  is a density of some random variable if and only if  <M>\int_ {-\infty}
  ^\infty f(x)\, dx = 1.</M> 
 </THM>
+<PF>
+Let <M>F(x) = \int_{- \infty}^x f(t)\, dt.</M>  
+
+Then it is easy to see that <M>F(x)</M>  is a CDF. (The following exercises explore the steps).
+
+So by the fundamental theorem of probability, there exists a random variable <M>X</M>  with CDF  <M>F(x).</M>
+
+To complete the proof we need to show that <M>X</M>  has PDF <M>f(x),</M>  i.e., 
+
+<TGT>\forall a \leq b~~P(a \leq X \leq b) = \int_a^b f(t)\, dt.</TGT>
+
+<FLL>a,b</FLL> Take any <M>a\leq b.</M>
+
+Here <M>F</M>  is a continuous function. So <M>P(X=a) = 0.</M>
+
+Hence 
+<D>P(a\leq X\leq b) = P(a < X\leq b) = P(X\leq b)-P(X\leq a) = F(b)-F(a) = \int_{-\infty}^b f(t)\, dt-\int_{-\infty}^a f(t)\, dt = \int_a^b f(t)\, dt,</D>
+as required.
+</PF>
+<HEAD2>PDF from CDF</HEAD2>
+It is possible to recover a density from the CDF as follows. Let <M>F</M>  be the CDF. Then define <M>f</M>  as follows;
+<D>f(x) = <CASES>F'(x)<IF>\mbox{it exists}</IF> 0<ELSE/></CASES> </D>
+If the distribution is absolutely continuous, then <M>f</M>  would be a PDF. If the distribution is not absolutely continuous, 
+then this may lead to meaningless result. For example, for a
+ discrete distribution, the CDF is a step function, and so the above prescription would lead to <M>f(x)\equiv 0.</M>
+It is possible to characterise CDFs for absolutely continuous distributions. As the result is not
+ very simple, we shall postpone it to the end of the course. 
+
+<HEAD2>Problems for practice: set 1</HEAD2>
+::<EXR><EIMG web="rosspdf31.png"/></EXR>
+::<EXR><EIMG web="rosspdf32.png"/></EXR>
+::<EXR><EIMG web="rosspdf1.png"/></EXR>
+::<EXR><EIMG web="rosspdf2.png"/></EXR>
+::<EXR><EIMG web="rosspdf3.png"/></EXR>
+::<EXR><EIMG web="rosspdf4.png"/></EXR>
+::<EXR><EIMG web="rosspdf5.png"/></EXR>
+::<EXR><EIMG web="rosspdf21.png"/></EXR>
+::<EXR><EIMG web="hpspdf1.png"/>
+The answer should not involve any limit of <M>F_X.</M>
+</EXR>
+
+::<EXR><EIMG web="hpspdf8.png"/>
+
+Here is Equation (3) mentioned above:
+
+<IMG web="hpspdf9.png">Equation 3</IMG></EXR>
+::<EXR><EIMG web="hpspdf10.png"/>
+
+Equation (3) is as given in the exercise above.
+</EXR>
+::<EXR><EIMG web="hpspdf13.png"/></EXR>
+::<EXR><EIMG web="hpspdf14.png"/></EXR>
+::<EXR><EIMG web="hpspdf22.png"/></EXR>
+<HEAD2>A subtle point: Nonuniqueness of PDF</HEAD2>
 It is  a somewhat disconcerting fact that density of an absolutely continuous distribution is not unique. For intance, if
- changing at any countable numbr of points would still keep it a density (assuming non-negativity). So there cannot be any
+ changing at any countable number of points would still keep it a density (assuming non-negativity). So there cannot be any
  way to recover <I>the</I>  density given the CDF. However, the following result provides some relief.
 
 <THM>
@@ -57,24 +112,165 @@ Hence <M>\int_{a-\delta}^{a+\delta} h(x)\, dx \geq \delta h(a) > 0.</M>
 But this is impossible, since <M>\int_{a-\delta}^{a+\delta} f(x)\, dx =\int_{a-\delta}^{a+\delta} g(x)\, dx, </M>  since
  both are equal to <M>P(a-\delta< X < a + \delta).</M>
 </PF>
+<HEAD2>Physical interpretation of density</HEAD2>
+If <M>X</M>  has a density <M>f(x)</M>  which is continuous at <M>x=a</M>  then <M>f(a)</M>  is
+ "something like <M>P(X\approx a)</M>". The precise statement is 
+<D>f(a) = \lim_{\epsilon\to 0+} [[P(X\in (a-\epsilon, a+\epsilon))][2 \epsilon]].</D>
+Thus, if we have a density like the following, then <M>X</M>  is more likely to take values near <M>B</M>  than near <M>A</M> 
+ or <M>C.</M>
+ <CIMG web="pdfpeaks.png"/>
+The most useful way to think about a continuous density is as the limit of a histogram as the sample size goes to infinity,
+ and the bins are made finer and finer. Values tightly together contribute to the peaks, while sparser regions have lower
+ density values. Indeed, this visualisation has given density its name. 
 
-It is possible to recover a density from the CDF as follows. Let <M>F</M>  be the CDF. Then define <M>f</M>  as folllows;
-<D>f(x) = <CASES>F'(x)<IF>\mbox{it exists}</IF> 0<ELSE/></CASES> </D>
-Of course, if the distribution is not absolutely continuous, then this may lead to meaningless reult. For example, for a
- discrete distribution, the CDF is a step function, and so the above prescription would lead to <M>f(x)\equiv 0.</M>
-It is possible to characterise CDFs arising out of densities. 
+<HEAD1>Moment</HEAD1>
 
-
-We had already defined expectation of a random variable in general. That definition reduces to the following:
+We had already defined expectation of a random variable in general. That definition reduces to the following.
 <THM>
-Let <M>X</M>  be a random variable with density <M>f.</M>  Let <M>h:\rr\to[0,\infty)</M>  be a any function such that <M>h(X)</M> 
- is  a random variable. Then <M>E(h(X))=\int_{-\infty}^\infty h(x) f(x)\, dx.</M>  This may be <M>\infty.</M>
+Let <M>X</M>  be a random variable with density <M>f.</M> 
+Then <M>E(X)=\int_{-\infty}^\infty x f(x)\, dx</M> if <M>\int_{-\infty}^\infty |x f(x)|\, dx <
+ \infty.</M>  If <M>\int_{-\infty}^\infty |x f(x)|\, dx = \infty,</M>  then 
+ <M>E(X)</M>  does not exist. 
 </THM>
+We shall prove this near the end of this course. Until then we shall treat this as the definition
+ of <M>E(X)</M>  when <M>X</M>  has density <M>f.</M>
 
-If <M>h:\rr\to\rr</M>, then <M>E(h(X)) = E((h(X))_+) - E((h(X))_-)</M>, as dictated by the general definition of expectation.
- This may be finite, <M>\infty</M>, <M>-\infty</M>  or may not exist.
+The following familiar properties of expectation (which are actually consequences of the general
+ definition) can be easily shown to hold in this special case:
+<THM>
+If <M>X, Y</M>  are jointly distributed  random variables with expectations defined (may be <M>\infty</M> 
+ or <M>-\infty</M>), and <M>X\leq Y,</M> then <M>E(X)\leq E(Y).</M>
+</THM> 
 
-Since this is a special case of the general definition, all the properties (like linearity, monotonicity) are intact. 
+<THM name="Linearlity of expectation">
+If <M>X,Y</M>  are jointly distributed random variables with finite expectations and
+ <M>a,b\in\rr</M>, then <M>aX+bY</M>  also has finite expectation, <M>E(aX+bY) = aE(X)+bE(Y).</M>
+</THM>
+Both these properties follow directly from properties of integration.
 
-We define <M>V(X)</M>  and the other moments as usual. Their properties (e.g., Chebyshev inequality)
+The following theorem is also of a familiar form:
+<THM>
+Let <M>X</M>  be a random variable with density <M>f.</M>  Let <M>h:\rr\to\rr</M>  be a any function such that <M>h(X)</M> 
+ is  a random variable. Then <M>E(h(X))=\int_{-\infty}^\infty h(x) f(x)\, dx</M>  if <M>\int_{-\infty}^\infty |h(x) f(x)|\, dx < \infty.</M> 
+ If <M>\int_{-\infty}^\infty |h(x) f(x)|\, dx = \infty,</M>  then <M>E(h(X))</M>  does not exist.
+</THM>
+While we shall not prove this here, you should be aware of one subtle implication. Suppose that
+ <M>X</M>  has density <M>f</M>  and we are trying to find <M>E(X^2).</M>  Then here are two ways of proceeding:
+<OL><LI>Work out the distribution of <M>Y=X^2</M>  and find <M>E(Y)</M>  using the general
+ definition, this may be very compicated to do in practice, but at least one can do this in principle.</LI>
+<LI>Use the above theorem.</LI>
+</OL> 
+ Both the approaches should produce the same result. This is the main implication of the theorem. The usefulness of the theorem
+lies in the fact that the second approach is usually much easier than the first. 
+
+
+We define <M>V(X)</M>  and the other moments as usual. Their
+properties (e.g., Chebyshev inequality) are intact.
+
+
+<HEAD2>Problems for practice: set 2</HEAD2>
+::<EXR><EIMG web="rosspdf6.png"/></EXR>
+::<EXR><EIMG web="rosspdf7.png"/></EXR>
+::<EXR><EIMG web="rosspdf8.png"/></EXR>
+::<EXR><EIMG web="rosspdf26.png"/></EXR>
+::<EXR><EIMG web="rosspdf27.png"/></EXR>
+::<EXR><EIMG web="rosspdf33.png"/></EXR>
+::<EXR><EIMG web="rosspdf34.png"/></EXR>
+<HEAD1>Hazard rate</HEAD1>
+An important class of distributions are called <TERM>life span distributions</TERM>. Imagine a
+ huge population of perishable objects that have a well-defined life span. (e.g., animals,
+ electronic components, but not vegetables, as "death" is not well-defined there). 
+We pick one element at random and follow it until it dies.  Let <M>X</M>  be the age at death. Clearly, <M>X</M>  is a non-negative
+ random variable. Typically we consider it as having a density. Then a quantity of interest is what is the chance of death
+ at a given age. This gives rise to the following definition.
+<DEFN name="Hazard rate">
+If a non-negative <M>X</M>  has density <M>f</M>  and CDF <M>F,</M>  then its its <TERM>hazard rate</TERM>  at time <M>t\leq 0</M> 
+ is 
+<D>h(t) = [[f(t)][1-F(t)]],</D>
+when <M>F(t) < 1.</M>
+</DEFN>
+We can think of it as 
+<D>\lim_{\delta t\to 0+} P(X\leq t+\delta t | X > t) =\lim_{\delta t\to 0+} [[P(X\in [t,t+\delta t] ][ P(X > t) ]].</D>
+
+<EXM>Let <M>X</M>  have density 
+<D>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES>. </D>
+Find its hazard rate function.
+<SOLN/>
+<M>F(x) = <CASES>0<IF>x\leq 0</IF>1-e^{-x}<IF>x> 0</IF></CASES>.</M>  So 
+<D>h(t) = [[e^{-t}][1-(1-e^{-t})]] = 1.</D>
+</EXM>
+<HEAD2>Problems for practice: set 3</HEAD2>
+::<EXR><EIMG web="rosspdf17.png"/></EXR>
+::<EXR><EIMG web="rosspdf18.png"/></EXR>
+::<EXR><EIMG web="rosspdf28.png"/></EXR>
+::<EXR><EIMG web="rosspdf29.png"/></EXR>
+::<EXR><EIMG web="rosspdf39.png"/></EXR>
+::<EXR><EIMG web="rosspdf40.png"/></EXR>
+<HEAD1>Uniform distribution</HEAD1>
+Last semester we often worked wih the discrete uniform distribution, e.g., fair coin toss, fair die roll, drawing a card
+ from a well-shuffled deck, picking a ball at random, etc. For the continuous case, the analog is
+ the <TERM>uniform distribution</TERM>. 
+<DEFN name="Uniform distribution">
+Let <M>A\seq \rr</M> (<M>\rr^2</M>  or <M>\rr^3</M>) have finite length (area or volume), <M>|A|.</M>   We say
+ that <M>X</M>  has uniform
+ distribution over <M>A</M>  if for any <M>B\seq A</M>  with length (area or volume) <M>|B|</M>  we have
+<D>P(X\in B) = [[ |B| ][ |A| ]].</D>
+</DEFN> 
+<EXM>Let <M>Q</M>  be chosen randomly from the unit square in <M>\rr^2.</M>  If
+ <M>Q\equiv(X,Y)</M>, then find <M>P(X< Y).</M><SOLN/>
+Look at the following diagram. 
+<CIMG web="unifsq.png"/>
+Here <M>|A| = 1</M>  and <M>|B| = [[12]].</M>  So <M>P(X < Y) = P( (X,Y)\in B) = [[ |B| ][ |A| ]] = [[12]].</M>
+</EXM>
+
+<EXM>Let <M>X</M>  be uniformly distirbuted over <M>[0,1].</M>  Then find 
+<FL>
+<LI><M>P(X\leq -1)</M></LI>
+<LI><M>P(X\leq 0)</M></LI>
+<LI><M>P(*(X\leq [[12]])*)</M></LI>
+<LI><M>P(X\leq 1)</M></LI>
+<LI><M>P(X\leq 2)</M></LI>
+</FL>
+Sketch the CDF of <M>X.</M>  Does <M>X</M>  have a PDF?
+<SOLN/>
+<FL>
+<LI><M>P(X\leq -1)=0,</M></LI>
+<LI><M>P(X\leq 0)=0,</M></LI>
+<LI><M>P(*(X\leq [[12]])*)=[[12]],</M></LI>
+<LI><M>P(X\leq 1)=1,</M></LI>
+<LI><M>P(X\leq 2)=1.</M></LI>
+</FL>
+<CIMG web="unifcdf.png">Sketch of the CDF</CIMG>
+Yes, by differentiating it, we get a PDF 
+<D>f(x) = <CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES>. </D>
+We could replace <M>(0,1)</M>  by <M>[0,1]</M>  or <M>(0,1]</M>  or <M>[1,0).</M>
+</EXM>
+<HEAD2>Problems for practice: set 4</HEAD2>
+::<EXR><EIMG web="hpspdf2.png"/></EXR>
+::<EXR><EIMG web="hpspdf3.png"/></EXR>
+::<EXR><EIMG web="hpspdf4.png"/></EXR>
+::<EXR><EIMG web="hpspdf5.png"/></EXR>
+::<EXR><EIMG web="hpspdf6.png"/></EXR>
+::<EXR><EIMG web="hpspdf12.png"/></EXR>
+::<EXR><EIMG web="hpspdf26.png"/></EXR>
+::<EXR><EIMG web="rosspdf37.png"/></EXR>
+::<EXR><EIMG web="rosspdf38.png"/></EXR>
+
+::<EXR><EIMG web="rosspdf11.png"/></EXR>
+::<EXR><EIMG web="rosspdf12.png"/></EXR>
+::<EXR><EIMG web="rosspdf13.png"/></EXR>
+::<EXR><EIMG web="rosspdf14.png"/></EXR>
+::<EXR><EIMG web="rosspdf16.png"/></EXR>
+::<EXR><EIMG web="rosspdf20.png"/></EXR>
+
+<HEAD1>Miscellaneous</HEAD1>
+<HEAD2>Problems for practice: set 5</HEAD2>
+
+
+::<EXR><EIMG web="rosspdf22.png"/></EXR>
+::<EXR><EIMG web="rosspdf25.png"/></EXR>
+::<EXR><EIMG web="rosspdf37.png"/></EXR>
+::<EXR><EIMG web="rosspdf38.png"/></EXR>
+::<EXR><EIMG web="rosspdf36.png"/></EXR>
+
 </NOTE>@}
