@@ -106,7 +106,8 @@ body,table {
 }
 
 .box {
-  border: 2px solid black;
+  background-color: yellow; 
+  //border: 2px solid black;
   display: inline-block;
 }
 </style>
@@ -144,28 +145,22 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Table of contents</h3>
+<h3>Multivariate normal and related distributions</h3>
 <ul>
 <li>
-<a href="#Multivariate normal and related distributions">Multivariate normal and related distributions</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
 <a href="#Multivariate normal">Multivariate normal</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Nonsingular">Nonsingular</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Singular">Singular</a>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nonsignular and singular">Nonsignular and singular</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Properties">Properties</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Related distributions">Related distributions</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<li>
 <a href="#$\chi^2$  distribution">$\chi^2$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Geometry of $\k k$">Geometry of $\k k$</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#$t$  distribution">$t$  distribution</a>
@@ -181,30 +176,178 @@ function myFunction() {
 </li>
 </ul>
 <hr/>
+$\newcommand{\v}[1]{{\mathbf #1}}$
+$\newcommand{\k}[1]{\chi^2_{(#1)}}$
+<title>Multivariate normal and related distributions</title>
+
 <h1><a
-name="Multivariate normal and related distributions">Multivariate normal and related distributions</a></h1>
+name="Multivariate normal">Multivariate normal</a></h1>
+Here we shall discuss the most commonly used multivariate distribution, the multivarite normal distribution. 
+<fieldset>
+<legend><b>Definition:  Multivariate normal</b></legend>
+Let $\v X = (X_1,...,X_n)'$  be a random vector, where  $X_1,...,X_n$  are IID
+ $N(0,1).$ Let $A_{m\times n}$  be any fixed matrix, and $\v b_{m\times1}$  be any
+ fixed vector. Then the joint distribution of $\v Y=A\v X + \v b$  is called $m$-dimensional
+ multivariate normal. 
+</fieldset>
+Clearly, the distribution depends on $A$  and $\v b.$ However, different values of $A$  and $\v b$  may
+ lead to the same multivariate normal. To explore this dependence we first consider $\v X,$  which has characteristic function 
+$$E(\exp(i\v t'\v X) = \exp\left(-\frac 12\v t'\v t\right).$$ 
+So the characteristic function of $\v Y = A\v X + \v b$  is 
+$$E(\exp(i\v t'(A\v X+\v b)) =E(\exp(i((A'\v t)'\v X+\v t'\v b)) = \exp\left(-\frac 12\v t'AA'\v t+i\v t'\v b\right).$$
+This involves $\v b$  directly, but $A$  only through $AA'.$  So we parametrise
+ multivariate normal by $\v b$  and $AA'.$  It will turn out that $E(\v Y)=\v b$   and $V(\v Y) = AA'.$ 
+ These are more commonly denoted by $\v \mu$  and $\Sigma,$  and $m$-dimensional multivariate normal with
+ these parameters is denoted by $N_m(\v mu, \Sigma).$  The abbreviation MVN is also used for multivariate normal.
+<p></p>
 
 <h2><a
-name="Multivariate normal">Multivariate normal</a></h2>
-
-<h3><a
-name="Nonsingular">Nonsingular</a></h3>
-
-<h3><a
-name="Singular">Singular</a></h3>
-
+name="Nonsignular and singular">Nonsignular and singular</a></h2>
+The density of $\v X$  is 
+$$(2\pi)^{-\frac n2}\exp\left(-\frac 12\v x'\v x\right)\mbox{ for }\vx\in{\mathbb R}^n.$$
+If $A$  is a nonsingular matrix, then the transform $\v X\mapsto A\v X+\v b$  is a bijection. So the Jacobian formula
+ gives the following density for $\v Y = A\v X+\v b$
+$$(2\pi det(AA'))^{-\frac n2}\exp\left(-\frac 12\v y'(AA') ^{-1}\v y\right)\mbox{ for }\vy\in{\mathbb R}^n.$$ 
+This is sometimes called a nonsingular multivariate normal to distinguish from the case where $A$  is singular, where
+ $\v Y$  does not admit a density. 
 <p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Describe $N_1(5,0)$  distribution.</p>
 
 <h3><a
 name="Properties">Properties</a></h3>
-Affine transform. Uncorrelated iff independent. IID normal sample.
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are IID $N(\mu, \sigma^2),$  then  $\v X = (X_1,...,X_n)'\sim N_n((\mu,...,\mu)',\sigma^2 I_n).$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X\sim N_n(\v \mu, \Sigma)$  and $B_{m\times n}$  and $\v c_{m\times 1$  are fixed, then $B\v X+\v c\sim N_m(B\v \mu + \v c, B\Sigma B').$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Directly from definition. Just be careful that the variance matrix is $B\Sigma B'$  and not $B'\Sigma B.$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+In particular, we have the following corrolary.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),$  then any subvector of  $\v X$  has multivariate normal distribution
+ with the corresponding subsector of $\v \mu$  and principal submatrix of $\Sigma.$
+</fieldset>
+
+<p></p>
+If two random variables are
+independent, they must also be uncorrelated. However, the converse is not true. For multivariate normal the converse is also
+ true.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),$  then $X_i$  and $X_j$  are
+ independent if and only if $\sigma_{ij} = 0.$</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+First obtain the joint distribution of $(X_i,X_j)$  using the last theorem. Then show that characteristic function factors
+ out.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Next we shall discuss some distributions related to the normal distribution.
+<h1><a
+name="$\chi^2$  distribution">$\chi^2$  distribution</a></h1>
+If $X_1,...,X_n$  are IID $N(0,1)$  then the distribution of $\sum_1^n X_i^2$  is called <b><font color="red" size="40">chi-square distribution wit degrees of freedom</font></b> 
+ $n.$  We write 
+$$\sum_1^n X_i^2\sim \chi_{(n)}^2.$$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$\k n$  is the same as $Gamma\left(\frac n2,\frac 12\right).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall proceed by induction.
+<p></p>
+
+<u>Basis</u>: $n=1$: Let $X\sim N(0,1).$
+<p></p>
+Then $X^2$  has CDF $F(\cdot),$  where $F(a)=0$  for $a&lt;0$  and for $a\geq 0$  we have
+$$F(a) = P(X^2\leq a) =\frac{1}{\sqrt{2\pi}} \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=\frac{2}{\sqrt{2\pi}} \int_0^{\sqrt a} e^{-x^2/2}\, dx.$$
+Differentiating wrt $a$  we get the density
+$$f(a) = F'(a) = \frac{2}{\sqrt{2\pi}} e^{-a/2}\mbox{ for }a&gt;0.$$
+We immediately recognise it as the $\k 1$  density, completing the basis.
+<p></p>
+
+<u>Hypothesis</u>: Assume the result for $n=1,...,m$  fir some $m\geq 1.$
+<p></p>
+
+<u>Step</u>: Shall show for $n=m+1.$  
+<p></p>
+Let $X_1,....,X_m,X_{m+1}$  be IID $N(0,1).$  
+<p></p>
+Then $\sum_1^{m+1} X_i^2 = \underbrace{\sum_1^m X_i^2}_Y + \underbrace{X_{m+1}^2}_Z.$
+<p></p>
+By the inducion hypothesis both $Y\sim Gamma\left(\frac m2,\frac 12\right)$  and $Z\simGamma\left(\frac 12,\frac 12\right).$ 
+<p></p>
+Also they are independent. 
+<p></p>
+So $Y+Z\sim Gamma\left(\frac{m+1}{2},\frac 12\right),$  as required. 
+<b><i>[QED]</i></b>
+</p>
+
 <p></p>
 
 <h2><a
-name="Related distributions">Related distributions</a></h2>
+name="Geometry of $\k k$">Geometry of $\k k$</a></h2>
+If we consider a random vetor $\v X$  in ${\mathbb R}^k$  with IID $N(0,1)$  components, $\|\v X\|^2\sim \k k.$ 
+ This is little more than the definition. 
+<p></p>
 
-<h3><a
-name="$\chi^2$  distribution">$\chi^2$  distribution</a></h3>
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Now let be $\v X\sim N_n(\v 0, I).$  Let $S$  be any $k$-dimensional subspace of
+ ${\mathbb R}^n. $  Consider the orthogonal projection $\v Y$  of $\v X$  onto $S.$ Then $$\|\v Y\|^2\sim \k k.$$ 
+ </fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We take any ONB of $S$  and extend it to an ONB of ${\mathbb R}^n. $  Pack the ONB as rows to get an orthogonal matrix
+ $Q.$  
+<p></p>
+Then $\v Z=Q\v X\sim N_n(\v 0, I).$
+<p></p>
+Also $\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,$  as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;
+Let $A$  be a symmetric, idempotent matrix. Let $\v X'A\v X\sim\k{r(A)}.$  Show tjis. 
+</p>
+The following result is used in linear models. 
+<p>
+<b>EXERCISE 3:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
+ containing $\v \mu.$  Then show that the orthogonal projection of $\v X$  onto
+ $S^\perp$  must have $\k {n-k}$  distribution.</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Non-central $\k$</b></legend>
+If $X_1,...,X_n$  are independent $N(\mu_i,1),$  then the distribution $\sum X_i^2$  is
+ called <b><font color="red" size="40">noncentral $\k n$  with noncentralty parameter $\sum_i\mu_i^2.$</font></b> 
+
+</fieldset>
 
 <h3><a
 name="$t$  distribution">$t$  distribution</a></h3>
@@ -223,22 +366,22 @@ name="Sampling distributions for normal sample">Sampling distributions for norma
 name="Problems for practice">Problems for practice</a></h1>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
+<b>EXERCISE 4:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
  find $E(X)$  and $V(X)$  in terms of $a,b,c.$  Also find median of $X.$</p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
+<b>EXERCISE 5:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
 and $Y$ have $N(0,1)$ distribution, but $(X,Y)$
 is not bivariate normal.</p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
+<b>EXERCISE 6:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
 $\mu\in{\mathbb R}^n$  and  $\Sigma$  be any $n\times n$  PD matrix. Suggest how you can
  use the software to generate a single observation from $N_n(\mu,\Sigma).$  Assume that the
  software can perform matrix operations.</p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
+<b>EXERCISE 7:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
  $(X,Y)$  lies in the annulus shown below?
 <center>
 <table width="100%">
@@ -254,39 +397,39 @@ Express you answer in terms CDF of some standard distribution.
 </p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
+<b>EXERCISE 8:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
  $\mu\in{\mathbb R}$  and $\sigma^2&gt;0.$  Find $a&lt;b$  such that $P\left(a&lt; \frac{\bar
  X-\mu}{S/\sqrt{n}} &lt; b\right) = 0.95$  and $b-a$  is the least possible subject to this.</p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;<img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 9:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;<img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;<img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 11:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;<img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 12:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;<img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 13:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;<img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 14:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;<img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 15:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;<img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 16:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;<img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 17:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;<img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 18:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

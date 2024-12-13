@@ -1,6 +1,6 @@
  @{<NOTE>
 <M>\newcommand{\x}[1]{X_{(#1)}}</M>
-<M>\newcommand{\x}[1]{X_{(#1)}}</M>
+<M>\newcommand{\v}[1]{{\mathbf #1}}</M>
 <HEAD1>Transformations</HEAD1>
 We often work with functions of random variables. New random variables are created out of existing ones via functions. 
 So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
@@ -136,48 +136,120 @@ If we write <M>x = h ^{-1}(y),</M>  this will look less complicated:
 <D>g(y) = [[f(x)][h'(x)]].</D>
 So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>h'.</M>   
 
-This has an intuitive interpretation. Suppose that <M>X</M>  has uniform distribution over <M>[0,1],</M>  and we compute
- <M>Y=X^2.</M>  We actually generate 500 points from <M>[0,1].</M>  And compute <M>Y</M>  for each of them. We show
- the <M>X</M>'s along a number line, and also, separately, the <M>Y</M>'s to get:
-<CIMG web="befaft.png"></CIMG>
-<COMMENT>
-svg('image/befaft%draw.svg',onefile=FALSE);
-n = 100
-x = runif(n)
-y = x*x
-dummy = rep(0,n)
-bareplot(x,dummy)
-abline(h=0)
-bareplot(y,dummy)
-abline(h=0)
-dev.off()
-</COMMENT>
-To appreciate the difference, imagine 10 equal length subintervals along <M>[0,1].</M>  Each subinterval is expected to get
- about 10 points for <M>X.</M>  When you compute <M>Y=X^2,</M>  the intervals close to 0 get squeezed further down to 0,
- while those closer to 1 are squeezzed less. So the points near 0 are now more tightly together than the onces near 1. This
+This has an intuitive interpretation. Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
+Consider the density of <M>X.</M>   Imagine 10 equal length subintervals along <M>[0,1].</M>  Since the total 
+area under the density is 1, the rectangle on each  subinterval has area <M>[1][10]].</M>  You may
+ say that each subinterval accounts for <M>[1][10]]</M>  mass. 
+<CIMG web="squeeze1.png">All the rectangles are identical</CIMG>
+When you compute <M>Y=X^2,</M>  the intervals close to 0 get squeezed further down to 0,
+ while those closer to 1 are stretched. 
+<CIMG web="squeeze2.png">Rectangles are squeezed and stretched</CIMG>
+But still rectangle has to account for <M>[[1][10]]</M>  mass. So the squeezed rectangles have compensate by growing taller,
+ while the stretched ones do so by getting shorter.
+<CIMG web="squeeze3.png">All rectnagles now again have area <M>[[1][10]].</M></CIMG>
+ This
  leads to <M>Y</M>  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
  squeezing of the transforming function, i.e., the derivative. Smaller the derivative, higher the density. 
 
-Now we look at the bivariate case. First a simple case. Suppose we start with soe <M>(X,Y)</M>  and transform it to <M>(U,V) = [[12]](X,Y).</M> 
- If we have a scatterplot of <M>(X,Y)</M>  then the scatterplot of <M>(U,V)</M>  is obtained by scaling everything down by
- half. So the areas get shrunk by <M>[[14]],</M>  and density becomes 4 times as much. This <M>4</M>  is the reciprocal of
- <M>[[14]],</M>  which is the area of the transformed unit square. 
+Now we look at the bivariate case. First a simple case. Suppose we start with some <M>(X,Y)</M>
+ distributed uniformly on the unit square. As in the univariate case, we split <M>[0,1]</M>  into  10 equal subintervals.
+ We do this along both the axes, creating a square grid.
+<CIMG web="bivsq1.png"></CIMG>
+The total mass is 1. Each square accounts for <M>[[1][100]]</M>  mass. Next we transform it to <M>(U,V) = (X^2,Y^2).</M> The
+ grid now changes to the following.
+<CIMG web="bivsq2.png"></CIMG>
+To account for same mass a before, the cuboids standing on small bases must have large heights.
+<COMMENT>
+source('/home/asu/na/s/othernotes/talks/obj.r')
+x=y=(0:2/2)^2
+dx = diff(x)
+dy = diff(y)
+h=1/outer(dx,dy)
+sink('image/hist.obj')
+histObj(x,y,h)
+sink()
+</COMMENT>
 
 More generally for a linear transformation <D><MAT>U\\V</MAT>  = A<MAT>X\\Y</MAT>,</D>
 the role of <M>[[14]]</M>  is played by <M>det(A).</M>  So the density is to be divided by <M>det(A).</M>  
 
 A differentiable nonlinear transformation can be locally approximated by a linear transformation at each point, where the
  matrix is the Jacobian. So we have divide by its determinant. Sometimes it is more conveneint to think of this as multiplying
- by the determinant of the Jacobian inverse. Formally, we get the following theorem.
+ by the determinant of the Jacobian of the inverse function. Formally, we get the following theorem.
 
 <THM>
-Let <M>\b X</M>  be an <M>\rr^n</M>-valued random vector. Let <M>h:\rr^n\to\rr^n</M>  be a differentiable function. Let <M>\b Y = h(\v X).</M> 
+Let <M>\v X</M>  be an <M>\rr^n</M>-valued random vector. Let <M>h:\rr^n\to\rr^n</M>  be a
+bijection function with differentiable inverse. Let <M>\v Y = h(\v X).</M> 
  Then <M>\v Y</M>  has density
-<D>f(h ^{-1}(\b y)) J,</D>
-where <M>J</M>  is the absolute determinant of Jacobian inverse evaluated at <M>h ^{-1}(\b y).</M>
+<D>f(h ^{-1}(\v y)) J,</D>
+where <M>J</M>  is the absolute determinant of Jacobian inverse evaluated at <M>h ^{-1}(\v y).</M>
 </THM>
  
+<EXM>
+Let <M>(X,Y)</M>  be uniformly distributed over the unit square. Let <M>U = X^2+Y</M>  and <M>V = X+Y^2.</M>  Find the joint
+ density of <M>(U,V).</M>  
+<SOLN/>
+
+</EXM>
 <HEAD2>Sum</HEAD2>
+Suppose that we are given the joint density of <M>(X,Y).</M>  We want to find the density of
+ <M>X+Y.</M>  Can we use Jacobians for this? Yes, but not directly. The Jacobian technique works
+ directly only when we are dealing with transformations from <M>\rr^n</M>  to <M>\rr^n,</M>  and
+ the transformation must be bijective with nonsingular Jacobian. Unfortunately, <M>(X,Y)\mapsto
+ X+Y</M>  does not satisfy any of these conditions, it is from <M>\rr^2</M>  to <M>\rr,</M>  and
+ is not bijective. But we can remdy this by considering the transformation <M>h(X,Y) =
+ (X+Y,Y).</M>  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
+
+<EXM>
+Let <M>(X,Y)</M>  be uniformly distributed over the unit square. Find the density of <M>X+Y.</M>
+<SOLN/>
+Consider <M>(U,V) = (X+Y,Y).</M>  
+
+The support of <M>(X,Y)</M>  was <M>[0,1]\times[0,1].</M>  We need to find that of <M>(U,V).</M> 
+In other words, we are looking for <M>S\seq\rr^2</M>  such that <M>(U,V)\in S</M>  if and only
+ if <M>(X,Y)\in[0,1]\times[0,1].</M>
+
+We have the constraints <M>X\geq 0,</M>  <M>X\leq 1,</M>  <M>Y\geq 0,</M>  and <M>Y\leq 1.</M>  We shall convert each of
+ them to constraints on <M>U,V</M>  in two ways, forward and backward. We have <M>U=X+Y</M>  and also <M>X\geq 0</M>  and
+ <M>Y\geq 0</M>. So <M>U\geq 0.</M>  That is an example of a forward constraint. Again <M>X = U-V.</M>  So <M>U-V\geq 0.</M> 
+ That is an example of a backward constraint. 
+
+Combining everything we get <M>S=\{(u,v)~:~0\leq u+v\leq 1,~0\leq v\leq 1\}.</M>
+
+A little sketch would keep things clear. 
+
+The absolute determinant of the Jacobian is 1. So the required density is 
+<D>f(u,v) = <CASES>1<IF>(u,v)\in S</IF> 0<ELSE/></CASES> </D>
+Now we need to find the marginal density of <M>U.</M>  This is 
+<D>f_U(u) = \int_{-\infty}^\infty f(u,v)\, dv = \int_0^u 1\, dv = u</D>
+when <M>0\leq u\leq .</M>  and 0 else.
+</EXM>   
+Note that the difficuly in the above example lay in working with the constraints. 
+If <M>(X,Y)</M>  had joint density <M>f(x,y)</M> 
+ for <M>(x,y)\in\rr^2</M>  
+then the following general theorem is easy to prove.
+
+<THM>
+If <M>(X,Y)</M>  had joint density <M>f(x,y)</M> 
+ for <M>(x,y)\in\rr^2</M>, then  the density of <M>X+Y</M>  is 
+<D>f_{X+Y}(u) = \int_{-\infty}^\infty f(x,u-x)\, dx.</D>
+</THM>
+
+::<EXR>Prove it using Jacobian.</EXR>
+<THM>If <M>X,Y</M>  are indenedent random variables with densities <M>f(x)</M>  and <M>g(y),</M>  respectively, then 
+the density of <M>X+Y</M>  is 
+<D>f_{X+Y}(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.</D>
+</THM>
+This gives us a way to manufacture a new density by combining two existing densities. This is called <TERM>convolution</TERM>.
+
+<DEFN name="Convolution">
+If <M>f,g</M>  are two densities, then their <TERM>convolution</TERM>  is the density <M>f*g</M>  given by
+<D>(f*g)(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.</D>
+</DEFN>
+
+<EXR>Show that <M>f*g = g*f.</M></EXR>
+
+<EXR>If <M>X,Y</M>  are IID with common density <M>\lambda e^{-\lambda x}</M>  (<M>x>0</M>), then find the</EXR>
 <HEAD2>Quotient</HEAD2>
 <HEAD1>Problems for practice</HEAD1>
 ::<EXR><EIMG web="hpstrans1.png"/></EXR>

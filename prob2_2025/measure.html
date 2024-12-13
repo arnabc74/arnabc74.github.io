@@ -145,7 +145,7 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Table of contents</h3>
+<h3/>
 <ul>
 <li>
 <a href="#Uncountable sample space">Uncountable sample space</a>
@@ -153,31 +153,28 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Measurable function">Measurable function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Simple funtion to approx measurable function">Simple funtion to approx measurable function</a>
+<li>
+<a href="#Simple functions to approximate measurable functions">Simple functions to approximate measurable functions</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Lebesgue integral">Lebesgue integral</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<li>
 <a href="#Additivity">Additivity</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#MCT">MCT</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#BCT and DCT">BCT and DCT</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>
 <a href="#Special cases">Special cases</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Countable case">Countable case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Riemann vs Lebesgue">Riemann vs Lebesgue</a>
-</li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Absolutely continuous case">Absolutely continuous case</a>
+</li>
+<li>
+<a href="#Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a>
+</li>
+<li>
+<a href="#Fatou and DCT">Fatou and DCT</a>
+</li>
+<li>
 <a href="#Existence of $Unif(0,1)$">Existence of $Unif(0,1)$</a>
 </li>
 </ul>
@@ -185,7 +182,9 @@ function myFunction() {
 $
 \newcommand{\calF}{{\mathcal F}}
 \newcommand{\calB}{{\mathcal B}}
+\newcommand{\calD}{{\mathcal D}}
 \newcommand{\ind}{{\mathbb 1}}
+\newcommand{\area}{\mathrm {area}}
 $
 <h1><a
 name="Uncountable sample space">Uncountable sample space</a></h1>
@@ -216,27 +215,27 @@ By a <b><font color="red" size="40">random variable</font></b>  on a probability
 </fieldset> 
 We need the measurability condition on $X$  so that we can talk about $P(X\in (a,b)).$  For this we need 
 $\{w\in\Omega~:~X(w)\in (a,b)\}\equiv X ^{-1} (a,b)\in \calF.$
-<h2><a
-name="Simple funtion to approx measurable function">Simple funtion to approx measurable function</a></h2>
+<h1><a
+name="Simple functions to approximate measurable functions">Simple functions to approximate measurable functions</a></h1>
 While defining $E(X)$  we had proceeded in three steps: simple, non-negative and general. We took a supremum in the
  second step. This is motivated by the following result. 
 <p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $f:\Omega\rightarrow[0,\infty)$  is any function, then there is a non-decreasing sequence $(f_n)$  where each
- $f_n:\Omega\rightarrow [0,\infty)$  and 
-$$\forall \omega\in\Omega~~f_n(\omega) \uparrow f(\omega).$$ 
+If $X:\Omega\rightarrow[0,\infty)$  is any random variable, then there is a non-decreasing sequence $(S_n)$  of simple
+ random variables such that
+$$\forall \omega\in\Omega~~S_n(\omega) \uparrow X(\omega).$$ 
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $f_n$  as follows. First partition
+For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $S_n$  as follows. First partition
  $[0,\infty)$  into $2$  intervals $[0,n)$  and $[n,\infty)$  and then
  subdivide the first into equal subintervals of length $2^{-n}.$  So you get $N=n2^n+1$  subintervals in all. Call
  these $[a_1,b_1),...,[a_N,b_N).$  These constitute a partition of $[0,\infty).$
 <p></p>
-Now  set $f_n(\omega) = a_k$  if $f_n(\omega) \in[ a_k,b_k).$  
+Now  set $S_n(\omega) = a_k$  if $S_n(\omega) \in[ a_k,b_k).$  
 <p></p>
 The following picture shows this process for $n=1$  and $n=2.$
 <center>
@@ -251,11 +250,11 @@ The following picture shows this process for $n=1$  and $n=2.$
 </center>     
 
 <p></p>
-For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $f_n(\omega)\leq f_{n+1}(\omega).$
+For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $S_n(\omega)\leq S_{n+1}(\omega).$
 <blockquote><a
 href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
 class="ans" id="reason1">
-If $f_n(\omega) = a$   and $f_{n+1}(\omega) = b,$  then $f(\omega)\in[a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
+If $S_n(\omega) = a$   and $S_{n+1}(\omega) = b,$  then $X(\omega)\in[a+2^{-n})$  and also $X(\omega)\in[b+2^{-n-1}).$ 
 <p></p>
 So, by the contruction of the partitions, $[b+2^{-n-1})\subseteq[a,2^{-n}).$
 <p></p>
@@ -263,14 +262,14 @@ Thus, $a\leq b,$  as required.
 </div></blockquote>
 
 <p></p>
-Again, for each $\omega\in\Omega$  we have $f_n(\omega)\rightarrow f(\omega).$  
+Again, for each $\omega\in\Omega$  we have $S_n(\omega)\rightarrow X(\omega).$  
 <blockquote><a
 href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
 class="ans" id="reason2">
 To show:
 <p></p>
 
-<div class="box">Target</div>$\forall \omega\in\Omega~~\forall \epsilon&gt;0~~\exists M\in{\mathbb N}~~\forall n\geq M ~~|f(\omega)-f_n(\omega)| &lt; \epsilon.$
+<div class="box">Target</div>$\forall \omega\in\Omega~~\forall \epsilon&gt;0~~\exists M\in{\mathbb N}~~\forall n\geq M ~~|X(\omega)-S_n(\omega)| &lt; \epsilon.$
 <p></p>
 
 <div class="box">$\forall \omega$</div> Take any $\omega\in\Omega.$
@@ -286,9 +285,9 @@ To show:
 <div class="box">$\forall n$</div> Take any $n\geq M.$
 <p></p>
 
-<div class="box">Check</div>Since $f(\omega) &lt; M\leq n,$  hence $f_n(\omega) &lt; n.$  
+<div class="box">Check</div>Since $X(\omega) &lt; M\leq n,$  hence $S_n(\omega) &lt; n.$  
 <p></p>
-Thus, $f(\omega) \in [f_n(\omega),f_n(\omega)+2^{-n}).$
+Thus, $X(\omega) \in [S_n(\omega),f_n(\omega)+2^{-n}).$
 </div></blockquote>
 This completes the proof.
 <b><i>[QED]</i></b>
@@ -362,85 +361,42 @@ Since $\delta&gt;0$  is arbitrary, we have $\lim E(X_n) \geq E(Z).$
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Lebesgue integral">Lebesgue integral</a></h2>
-
 <p></p>
 
-<h3><a
-name="Additivity">Additivity</a></h3>
-
-<h3><a
-name="MCT">MCT</a></h3>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $X_n$ 's be non-negative simple random variables with $X_n\uparrow X$  for some random variable $X.$
- Then $E(X_n)\uparrow E(X).$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
-<blockquote><a
-href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
-class="ans" id="reason4">
-We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
-</div></blockquote>
-Let $(Z_{n,k})_k$  be the simplification of $X_n.$  
+<h1><a
+name="Additivity">Additivity</a></h1>
+We had stated last semester that if $X,Y$  are two jointly distributed random variables with expectations, and $a,b\in{\mathbb R}$ 
+ are any two numbers, then $aX+bY$  is also a random variable with expectation, and $E(aX+bY) = aE(X)+bE(Y).$
 <p></p>
-Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$
-<p></p>
-Then $Y_1\leq Y_2\leq\cdots$
-<blockquote><a
-href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
-class="ans" id="reason5">
-$$\begin{eqnarray*}
-Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
-&amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
-&amp; \geq &amp; \max\{Z_{1,n},...,Z_{n,n}\},
-\end{eqnarray*}$$
-by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
-</div></blockquote>
-Also $Y_n\leq X_n.$
-<blockquote><a
-href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
-class="ans" id="reason6">
-$Z_{k,n}\leq X_k\leq X_n.$
-</div></blockquote>
-Finally, $Y_n\uparrow X.$
-<blockquote><a
-href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
-class="ans" id="reason7">
-We have $Z_{n,k} \leq Y_k.$  
-<p></p>
-Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$
-<p></p>
-Now taking limit as $n\rightarrow \infty,$  we have $X\leq \lim_k Y_k.$  
-<p></p>
-Also we have $Y_n\leq X_n\leq X.$  So $\lim_k Y_k\leq X.$  
-<p></p>
-Hence $\lim_k Y_k= X.$
-</div></blockquote>
-This completes the proof.
-<b><i>[QED]</i></b>
-</p>
-
-<h3><a
-name="BCT and DCT">BCT and DCT</a></h3>
-
+First we show that $E(X+Y) = E(X)+E(Y)$  in three steps.
 <p></p>
 
-<h2><a
-name="Special cases">Special cases</a></h2>
+<u>Step 1</u>: Show this when $X,Y$  are  simple random variables. We have already done this last semester.
+<p></p>
+
+<u>Step 2</u>: Show this for non-negative $X,Y.$  Let $(S_n)$  and $(T_n)$  be simplifications for $X$ 
+ and $Y,$  respectively. Then $(S_n+T_n)$  is a simplification for $X+Y.$  
+<p></p>
+Also $E(S_n+T_n) = E(S_n)+E(T_n).$  Te result now follows on taking limit of both sides.
+<p></p>
+
+<u>Step 3</u>: Show this for general $X,Y.$  Here we apply step 2 to $X_+, X_-, Y_+$  and $Y_-.$  
+<p></p>
+Then we show that for $a&gt;0$  we have $E(aX) = E(X).$  This proof also proceeds in three steps (left as an exercise).
+<p></p>
+Finally, we show $E(-X)= -E(X).$  Let $Y = -X.$  Then $Y_+ = X_-$  and $Y_- = X_+.$  So $E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).$
+<p></p>
+
+<h1><a
+name="Special cases">Special cases</a></h1>
 We have defined $E(X)$  in three steps: simple, non-negative and general. But we have given a computational formula
  only in case of simple random variables. If $X$  takes countably infinite values, $x_1,x_2,...$  with probabilities
  $p_1,p_2,...,$  respectively, then we have mentioned that $E(X) = \sum_n x_n p_n$  if this sum is absolutely convergent.
  This formula actually follows from the general definition, as we now show.
 <p></p>
 
-<h3><a
-name="Countable case">Countable case</a></h3>
+<h2><a
+name="Countable case">Countable case</a></h2>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $X$  takes the nonnegative values $x_1&lt;x_2&lt;\cdots$   with probabilities
@@ -478,8 +434,8 @@ Then $E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.$
 Also $L = \sum_i x_i \sum_j
  p_{ij}=\sum_i  \sum_j x_i p_{ij}=\sum_j \sum_i x_i p_{ij}.$
 <blockquote><a
-href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
-class="ans" id="reason8">
+href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
+class="ans" id="reason4">
 A finite sum can always be interchanged with an infinite sum, when the summands are all nonnegative. For example,
 $$\sum (a_n+b_n) = \sum a_n + \sum b_n.$$
 If we write $c_{1,n}=a_n$  and $ c_{2,n}=b_n$  then this is 
@@ -530,14 +486,262 @@ $$E(X) = \sum p_i x_i.$$
 
 <p></p>
 
-<h3><a
-name="Riemann vs Lebesgue">Riemann vs Lebesgue</a></h3>
+<h2><a
+name="Absolutely continuous case">Absolutely continuous case</a></h2>
 If a function is Riemann integrable (proper or improper), then it is also Lebesgue integrable, and the two integrals match. Indeed,
  that is why we could use Riemann integraion to compute expectation in the absolutely continuous case.
 <p></p>
+Riemann integration is defined in terms of step function with finitely many steps. Lebesgue integral is defined in terms of
+ simple functions. Now any step function with finitelt many steps is also a simple function, though the converse is not true
+ in general. For instance the function $f:(0,1)\rightarrow{\mathbb R}$  defined by $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in{\mathbb Q}\cap(0,1)\\ 0&\text{otherwise.}\end{array}\right.$ is
+ a simple function, but not s step function with finitely many steps. 
+<p></p>
+Thus, Lebesgue integrals may be expected to be more powerful than Riemann integrals. 
+<p></p>
 
-<h2><a
-name="Existence of $Unif(0,1)$">Existence of $Unif(0,1)$</a></h2>
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $f:[a,b]\rightarrow{\mathbb R}$  be any Riemann integrable function. Then it is also Lebesgue integrable and the Lebesgue integral
+ equals the Riemann integral.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $S$  be the collection of all steps functions with finitely many steps defined on $[a,b].$
+<p></p>
+Let $T$  be the collection of all simple functions  defined on $[a,b].$
+<p></p>
+Since $f$  is Riemann integrable, its 
+ lower and upper integrals match:
+$$\sup\{\area(s)~:~s\in S~s\leq f\} = \inf\{\area(s)~:~s\in S~s\geq f\}=R,\mbox{ say.}$$
+Since $f$  is Riemann integrable, hence it is bounded. Also it can be approximated by simple
+ functions. So it is measurable. 
+<p></p>
+Now 
+$\{\area(s)~:~s\in T~s\leq f\}$  is a bounded nonempty set. So $f$  is Lebesgue
+ integrable over $[a,b].$  The value of the Lebesgue integral is the supremum, $L$, say.
+<p></p>
+Shall show $L=R.$
+Since $S\subseteq T,$  hence $$\{\area(s)~:~s\in S~s\leq f\} \subseteq \{\area(s)~:~s\in T~s\leq f\}.$$
+So $L\geq R.$
+<p></p>
+Now,  $\forall s\in S$  with $s\geq f,$  and $\forall t\in T$  with $t\leq f,$  we have
+$t\leq s$  and  so $\int t \leq \int s=\area(s).$  
+<p></p>
+Taking sup over $t$  and inf over $s$, we see that $L\leq R.$
+<p></p>
+So $L = R.$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $f$  be a nonnegative function defined on $[a,\infty)$  such that $\forall b&gt;a~~f$  is Riemann integrable
+ on $[a,b].$  Then the Lebesgue integral $\int_{[a,\infty)} f $ equals the
+improper Riemann integral $\int_0^\infty f(x)\, dx$ (both may be $\infty$).
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+We already have $\int_a^{a+n} f(x)\, dx = \int_{[a,a+n]}f.$
+<p></p>
+Let $I_n$  be the common value. Then $(I_n)$  is a nondecreasing sequence. So the limit exists (may be $\infty$).
+<p></p>
+By definition  of improper Riemann integral,  $I_n\rightarrow \int_a^\infty f(x)\,dx.$
+<p></p>
+Again, by MCT $I_n\rightarrow \int_{[a,\infty)} f.$
+<p></p>
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a></h1>
+
+<fieldset>
+<legend><b><i>MCT (simple version)</i></b></legend>
+Let $X_n$ 's be non-negative  random variables with $X_n\uparrow X$  for some random variable $X.$
+ Then $E(X_n)\uparrow E(X).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
+class="ans" id="reason5">
+We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
+</div></blockquote>
+Let $(Z_{n,k})_k$  be the simplification of $X_n.$  
+<p></p>
+Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$
+<p></p>
+Then $Y_1\leq Y_2\leq\cdots$
+<blockquote><a
+href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
+class="ans" id="reason6">
+$$\begin{eqnarray*}
+Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
+&amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
+&amp; \geq &amp; \max\{Z_{1,n},...,Z_{n,n}\},
+\end{eqnarray*}$$
+by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
+</div></blockquote>
+Also $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
+class="ans" id="reason7">
+$Z_{k,n}\leq X_k\leq X_n.$
+</div></blockquote>
+Finally, $Y_n\uparrow X.$
+<blockquote><a
+href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
+class="ans" id="reason8">
+We have $Z_{n,k} \leq Y_k.$  
+<p></p>
+Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$
+<p></p>
+Now taking limit as $n\rightarrow \infty,$  we have $X\leq \lim_k Y_k.$  
+<p></p>
+Also we have $Y_n\leq X_n\leq X.$  So $\lim_k Y_k\leq X.$  
+<p></p>
+Hence $\lim_k Y_k= X.$
+</div></blockquote>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;
+If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
+ and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
+ dropped?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;
+Suppose that $X_n$'s are nonnegative random variables. Show that 
+$$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
+</p>
+In the simple version we assumed that the limit of $(X_n)$  is a random variable. In particular, we assumed that for
+ each $\omega\in\Omega$  the sequence $(X_n(\omega))$  converges to some real number. We may actually drop these
+ assumptions. We may allow $(X_n(\omega))$  to diverge. Then the limit $X(\omega)$  is a function from $\Omega$ 
+ to $[0,\infty].$  One can then <i>show</i>  (not <i>assume</i>) that this $X$  is a random variable. We do this
+ below.
+<p></p>
+
+<fieldset>
+<legend><b><i>MCT (less simple version)</i></b></legend>
+Let $(X_n)$  be a sequence of random variables defined on $(\Omega,\calF,P)$  such that 
+$$\forall\omega\in\Omega~~0\leq X_1(\omega)\leq X_2(\omega)\leq\cdots.$$
+Let $X(\omega) = \sup\{ X_n(\omega)~:~n\in{\mathbb N}\}$  (may be $\infty$). 
+Then $X$  is also a random variable, and $E(X_n)\rightarrow E(X).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The proof is somewhat long. But it may be split into a number of well-motivated steps.
+<p></p>
+
+<u>Step 1</u>: <b>Here we shall show that $X$  is a random variable.</b>
+
+<p></p>
+We need to show that $\forall B\in  \calB~~X ^{-1}(B)\in\calF.$
+<p></p>
+Since $\calB$  is generated by $\{(-\infty, t]~:~t\in{\mathbb R}\},$  hence enough to show 
+$\forall t\in{\mathbb R}~~X ^{-1} ((-\infty,t])\in\calF,$  <i>i.e.</i>, 
+$$\forall t\in{\mathbb R}~~\{X\leq t\}\in\calF.$$
+But $\{X\leq t\} = \cap_n \{X_n\leq t\}.$
+<blockquote><a
+href="javascript:hideShow('reason9')"><b>[Because...]</b></a><div
+class="ans" id="reason9">
+$\because X = \sup X_n$, $\therefore (X\leq t)\Leftrightarrow(\forall n~~X_n\leq t). $
+</div></blockquote>
+Since $X_n$'s are random variables, hence $\forall n~~\{X_n\leq t\}\in\calF.$  
+<p></p>
+Again, since $\calF$  is closed under countable intersection, $\cap_n\{X_n\leq t\}\in\calF,$  completing step
+ 1.
+<p></p>
+
+<u>Step 2</u>: <b>Here we shall show $\lim_n E(X_n) \leq E(X).$</b>
+
+<p></p>
+But $(E(X_n))$  being a non-decreasing sequence, $\lim_n E(X_n) = \sup \{E(X_n)~:~n\in{\mathbb N}\}.$
+<p></p>
+Again, since $X$  is a random variable (which is clearly nonnegative, since
+ $X_n$'s are), $E(X)$ 
+ exists (may be $\infty$). 
+<p></p>
+Since $\forall n\in{\mathbb N}~~X_n\leq X,$  hence $E(X_n)\leq E(X).$  So $\sup \{E(X_n)~:~n\in{\mathbb N}\}\leq E(X).$  
+<p></p>
+Hence $\lim_n E(X_n) \leq E(X).$
+<p></p>
+
+<u>Step 3</u>: Here we shall show $\lim_n E(X_n) \geq E(X).$
+<p></p>
+We know that $E(X) = \sup\{E(S)~:~S\in \calD\},$  where $\calD = $  the set of all
+ non-negative simple functions "strictly below"
+ $X.$
+<p></p>
+Pick any $S\in \calD.$  
+<p></p>
+Our plan is to say ''Some $X_n$   must exceed $S.$ '' But since we are dealing with
+ functions, we have to be careful. 
+<p></p>
+Let $B_n = \{\omega\in\Omega~:~X_n(\omega) &gt; S(\omega)\}.$  
+<p></p>
+Then $E(S\ind_{B_n})\leq E(X_n\ind_{B_n})\leq E(X_n).$
+Our plan is to take limit over $n$  and claim that $E(S\ind_{B_n})\uparrow E(S).$
+<p></p>
+Then $B_n\subseteq B_{n+1}.$  
+<blockquote><a
+href="javascript:hideShow('reason10')"><b>[Because...]</b></a><div
+class="ans" id="reason10">
+$\forall\omega\in\Omega~~X_n(\omega)\leq X_{n+1}(\omega).$
+</div></blockquote> 
+Also $\cup_n B_n =\Omega.$
+<blockquote><a
+href="javascript:hideShow('reason11')"><b>[Because...]</b></a><div
+class="ans" id="reason11">
+Clearly, $\cup_n B_n \subseteq\Omega.$
+<p></p>
+Take any $\omega\in\Omega.$  
+<p></p>
+Since $X_n(\omega)\uparrow X(\omega), $  and $S(\omega) &lt; X(\omega),$  hence $\exists n\in{\mathbb N} ~~X_n(\omega) &gt; S(\omega).$
+<p></p>
+So $\omega\in B_n.$
+</div></blockquote>
+Hence, by continuity of probability,  $E(S \ind_{B_n})\uparrow E(S).$  
+<blockquote><a
+href="javascript:hideShow('reason12')"><b>[Because...]</b></a><div
+class="ans" id="reason12">
+Let $S = \sum_1^r c_k \ind_{A_k}.$
+<p></p>
+Then $E(S\ind_{B_n}) = \sum_1^r c_k E(\ind_{A_k}\ind_{B_n}) = \sum_1^r c_k E(\ind_{A_k\cap B_n})=\sum_1^r c_k P(A_k\cap B_n).$
+<p></p>
+But $\lim_n(A_k\cap B_n) = A_k.$  
+<p></p>
+Hence, by continuity of probability, $\lim_n P(A_k\cap B_n) = P(A_k).$
+</div></blockquote>
+So we are now able to execute our plan, taking limit over $n$  of $E(S\ind_{B_n})\leq E(X_n)$
+to get $E(S)\leq \lim E(X_n). $
+<p></p>
+But since this holds for all $S$  strictly less than $X,$  hence $E(X)\leq \lim_n E(X_n),$  
+completing the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Fatou and DCT">Fatou and DCT</a></h1>
+
+<h1><a
+name="Existence of $Unif(0,1)$">Existence of $Unif(0,1)$</a></h1>
 We had talked about the fundamental theorem of probability in the last semester: for any CDF there is a random variable with
  that CDF. Indeed, this is the therem that powers every statement of the form "Let $X$  be a random variable with a
  given distribution." 
@@ -549,7 +753,34 @@ So the only thing that remains to be checked is the existence of $Unif(0,1)$  ra
 For this we take $\Omega = (0,1)$  and $X:\Omega\rightarrow{\mathbb R}$  as $X(\omega)=\omega.$  We take the Borel $\sigma$-field
  on $\Omega.$  Need to show the existence of $P:\calB\rightarrow[0,1]$  such that $\forall a&lt;b\in(0,1)~~P(a,b) = b-a.$
 <p></p>
-This proof turns out to be surprisingly tricky, and will be not be dealt with in this course.
+For this we shall use a technical result called <b><font color="red" size="40">Caratheodory extension</font></b>, which we shall not prove in this course.
+<p></p>
+
+<fieldset>
+<legend><b><i> Caratheodory extension</i></b></legend>
+Let $\Omega$  be a nonempty set and $\calF$  be an algebra over it. Let $\mu:\calF\rightarrow[0,\infty)$  be 
+any countable additive function. Then $\mu$  can be extended to a unique measure over $\sigma(\calF).$
+</fieldset>
+
+<p></p>
+Thanks to this result, we do not have to work with the entire $\calB.$  Instead, we shall choose a convenient $\calF$ 
+ such that $\calB = \sigma(\calF).$  
+<p></p>
+One such convenient $\calF$  is the collection of finite, disjoint unions of intervals in $[0,1].$  Some typical
+ members are $(0,1),$  $(0,0.1]\cup [0.4,0.6).$  Since the union of two overlapping
+ intervals is again an interval, it is not difficult to see that this $\calF$  is an algebra.
+ We define $\mu$  over this as follows:
+$$\mu\left(\cup_1^n I_k) = \sum_1^n (b_k-a_k),$$
+where $I_k$'s are disjoint open/closed/semiopen intervals with end points $a_k$  and $b_k.$  
+<p></p>
+To see countable additivity, we take disjoint $A_1,A_2,...\in\calF.$     As each $A_n$  is a disjoint union of
+ intervals inside $(0,1),$  hence $\cup A_n$  is a countable union of disjoint intervals, $I_1,I_2,...$
+<p></p>
+Let $m_i =\mu(I_i).$  
+<p></p>
+Since $m_i\geq 0$  we ge the result by rearrangement. 
+<p></p>
+The unique Caratheodory extension of this is our required $Unif(0,1)$  probability. 
 <p></p>
 <hr/>
 <table width="100%" border="0">
