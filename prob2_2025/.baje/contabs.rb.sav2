@@ -1,17 +1,30 @@
  @{<NOTE>
-<HEAD1>Absolutely continuous distribution</HEAD1>
-We already know this definition:
-<DEFN>A random variable <M>X</M>  is said to be  <TERM>continuous</TERM>  or to have a
- <TERM>continuous distribution</TERM>  if its CDF is continuous.</DEFN>
-A special class of such random variables is given in the following definition:
-<DEFN>A random variable <M>X</M>  is said to be <TERM>absolutely continuous</TERM>  or to have an
- <TERM>absolutely continuous distribution</TERM>  if there is some <M>f:\rr\to[0,\infty)</M>  such
- that for every <M>a\leq b\in\rr</M>  we have 
-<D>P(X\in(a,b]) = \int_a^b f(x)\, dx.</D>
-Any such <M>f</M>  is called a <TERM>probability density function (PDF)</TERM>  or just
- <TERM>density</TERM> of <M>X.</M>  
+<TITLE>Distributions with density</TITLE>
+<HEAD1>The concept of density</HEAD1>
+We already know the following two definitions.
+<DEFN name="Cumulative distribution function (CDF)">
+Let <M>X</M>  be a random variable. By its <TERM>cumulative distribution function (CDF)</TERM> we mean the function <M>F:\rr\to[0,1]</M> 
+ given by
+<D>F(x) = P(X\leq x),\quad x\in\rr.</D>
 </DEFN>
 
+<DEFN name="Continuous distribution">A random variable <M>X</M>  is said to be  <TERM>continuous</TERM>  or to have a
+ <TERM>continuous distribution</TERM>  if its CDF is continuous.</DEFN>
+A special class of such random variables is given in the following definition:
+<DEFN>A random variable <M>X</M>  is said to have <TERM>probability density function (PDF)</TERM> 
+(or, more simply, a <TERM>density</TERM>) <M>f:\rr\to[0,\infty)</M>
+if for every <M>a\leq b\in\rr</M>  we have 
+<D>P(X\in[a,b]) = \int_a^b f(x)\, dx.</D>
+</DEFN>
+<ALERT/>A little point about integration is in order here. There are different types of integration possible, all denoted by the
+ familiar <M>\int</M>  symbol. The type of integration that we learn at school is called Riemann integration. In probability
+ theory, we use a generalisation of Riemann integration called <TERM>Lebesgue integration</TERM>. We shall introduce Lebesgue
+ integration formally later in this course. Until then all our integrations will be in the familiar Riemann sense (possibly improper). So, in particular, we are assuming
+ <M>f</M>  to be (improper) Riemann integrable over every interval. Since Riemann integration is a special case of Lebesgue
+ integration, this will not cause any problem. 
+
+
+<HEAD2>Properties of PDF</HEAD2>
 The following facts all come from continuity of probability. 
 <THM>
 Let <M>X</M>  have a density <M>f(x).</M>  Then 
@@ -24,16 +37,32 @@ Let <M>X</M>  have a density <M>f(x).</M>  Then
 </OL>
 </THM>
 
-This last condition is particularly useful. 
+<HEAD2>Problem set 1</HEAD2>
+::<EXR><EIMG web="rosspdf31.png"/></EXR>
+::<EXR><EIMG web="rosspdf32.png"/></EXR>
+::<EXR><EIMG web="rosspdf2.png"/></EXR>
+::<EXR><EIMG web="rosspdf3.png"/></EXR>
+::<EXR><EIMG web="rosspdf5.png"/></EXR>
+::<EXR><EIMG web="rosspdf21.png"/></EXR>
 
-<THM>
-If we have some <M>f:\rr\to[0,\infty)</M>  with <M>\int_ {-\infty} ^\infty f(x)\, dx = 1,</M> 
- then the function <M>F:\rr\to\rr</M>  defined as 
-<D>F(x) =\int_{-\infty}^x f(t)\, dt</D>
-is a CDF.
-</THM>
 
-Hence by the fundamental theorem of probability we have the following corollary:
+::<EXR><EIMG web="hpspdf13.png"/></EXR>
+::<EXR><EIMG web="hpspdf22.png"/></EXR>
+
+<HEAD1>Relation between PDF and CDF</HEAD1>
+<HEAD2>From PDF to CDF</HEAD2>
+We know that the CDF of a random variable must satisfy the following conditions:
+<OL><LI><M>F(x)</M>  must be non-decreasing.</LI>
+<LI><M>F</M>  must be right continuous.</LI>
+<LI><M>\lim_{x\to-\infty} F(x) = 0.</M></LI>
+<LI><M>\lim_{x\to\infty} F(x) = 1.</M></LI>
+</OL>
+Conversely, the <TERM>fundamental theorem of probability</TERM>  guarantees that any <M>F:\rr\to[0,1]</M>  with these properties must
+ be the CDF of some random variable (i.e., there must exist some probability space and a random variable defined on it with
+<M>F</M>  as the CDF.
+
+We have a similar characterisation for densities as well. This is given in the next theorem. 
+ 
 <THM>
 A function <M>f:\rr\to[0,\infty)</M>  is a density of some random variable if and only if  <M>\int_ {-\infty}
  ^\infty f(x)\, dx = 1.</M> 
@@ -41,7 +70,16 @@ A function <M>f:\rr\to[0,\infty)</M>  is a density of some random variable if an
 <PF>
 Let <M>F(x) = \int_{- \infty}^x f(t)\, dt.</M>  
 
-Then it is easy to see that <M>F(x)</M>  is a CDF. (The following exercises explore the steps).
+Then it is easy to see that <M>F(x)</M>  is a CDF. 
+<BECAUSE>
+Since <M>f(x)\geq 0,</M>  hence <M>F</M>  is non-decreasing. 
+
+Also <M>F</M>  is continuous (property of indefinite integral), and so right continuous.
+
+Since <M>\int_{-\infty}^\infty f(x)\, dx = 1,</M>  hence <M>\lim_{x\to\infty} F(x) = 1.</M>  
+
+Finally, by definition of improper integral <M>\lim_{x\to-\infty} F(x) = \lim_{x\to-\infty}\int_{-\infty}^x f(x)\, dx = 0.</M>
+</BECAUSE>
 
 So by the fundamental theorem of probability, there exists a random variable <M>X</M>  with CDF  <M>F(x).</M>
 
@@ -57,24 +95,21 @@ Hence
 <D>P(a\leq X\leq b) = P(a < X\leq b) = P(X\leq b)-P(X\leq a) = F(b)-F(a) = \int_{-\infty}^b f(t)\, dt-\int_{-\infty}^a f(t)\, dt = \int_a^b f(t)\, dt,</D>
 as required.
 </PF>
-<HEAD2>PDF from CDF</HEAD2>
-It is possible to recover a density from the CDF as follows. Let <M>F</M>  be the CDF. Then define <M>f</M>  as follows;
+<HEAD2>From CDF to PDF</HEAD2>
+It is possible to recover a density from the CDF as follows. Let <M>F</M>  be the CDF. First, make
+ sure that the <M>F</M> is continuous, and is differentiable everywhere except possibly at countably many points. Then
+ define <M>f</M>  as follows;
 <D>f(x) = <CASES>F'(x)<IF>\mbox{it exists}</IF> 0<ELSE/></CASES> </D>
-If the distribution is absolutely continuous, then <M>f</M>  would be a PDF. If the distribution is not absolutely continuous, 
-then this may lead to meaningless result. For example, for a
- discrete distribution, the CDF is a step function, and so the above prescription would lead to <M>f(x)\equiv 0.</M>
-It is possible to characterise CDFs for absolutely continuous distributions. As the result is not
- very simple, we shall postpone it to the end of the course. 
+This <M>f</M>  must be a PDF for our CDF. For most applications, <M>F</M>  will fail to be differentiable at only finitely
+ many points.
 
-<HEAD2>Problems for practice: set 1</HEAD2>
-::<EXR><EIMG web="rosspdf31.png"/></EXR>
-::<EXR><EIMG web="rosspdf32.png"/></EXR>
+<ALERT/> If the distribution is not continuous (but differentiable everywhere except at countably
+ many points), then this approach would lead to meaningless result. For example, for a
+ discrete distribution, the CDF is a step function, and so the above prescription would lead to <M>f(x)\equiv 0.</M>
+
+<HEAD2>Problem set 2</HEAD2>
 ::<EXR><EIMG web="rosspdf1.png"/></EXR>
-::<EXR><EIMG web="rosspdf2.png"/></EXR>
-::<EXR><EIMG web="rosspdf3.png"/></EXR>
 ::<EXR><EIMG web="rosspdf4.png"/></EXR>
-::<EXR><EIMG web="rosspdf5.png"/></EXR>
-::<EXR><EIMG web="rosspdf21.png"/></EXR>
 ::<EXR><EIMG web="hpspdf1.png"/>
 The answer should not involve any limit of <M>F_X.</M>
 </EXR>
@@ -88,13 +123,19 @@ Here is Equation (3) mentioned above:
 
 Equation (3) is as given in the exercise above.
 </EXR>
-::<EXR><EIMG web="hpspdf13.png"/></EXR>
 ::<EXR><EIMG web="hpspdf14.png"/></EXR>
-::<EXR><EIMG web="hpspdf22.png"/></EXR>
-<HEAD2>A subtle point: Nonuniqueness of PDF</HEAD2>
-It is  a somewhat disconcerting fact that density of an absolutely continuous distribution is not unique. For intance, if
- changing at any countable number of points would still keep it a density (assuming non-negativity). So there cannot be any
- way to recover <I>the</I>  density given the CDF. However, the following result provides some relief.
+<HEAD1>A couple of points to ponder</HEAD1>
+<HEAD2>Nonuniqueness of PDF</HEAD2>
+It is  a somewhat disconcerting fact that density of a distribution is not unique. For intance, 
+ changing a density at any countable number of points to arbitrary non-negative values would still
+ keep it a density for the same distribution.
+
+<EXM>
+<M>f(x)=<CASES>2e^{-2x}<IF>x>0</IF> 0<ELSE/></CASES></M>   and
+<M>f(x)=<CASES>2e^{-2x}<IF>x>0,\,x\neq3</IF> 10000<IF>x=3</IF> 0<ELSE/></CASES></M>  
+are both densities
+</EXM>
+ However, the following result provides some relief.
 
 <THM>
 If <M>f(x)</M>  and <M>g(x)</M>  are both densities for the same distribution and both are continuous at some <M>a\in\rr,</M> 
@@ -112,28 +153,91 @@ Hence <M>\int_{a-\delta}^{a+\delta} h(x)\, dx \geq \delta h(a) > 0.</M>
 But this is impossible, since <M>\int_{a-\delta}^{a+\delta} f(x)\, dx =\int_{a-\delta}^{a+\delta} g(x)\, dx, </M>  since
  both are equal to <M>P(a-\delta< X < a + \delta).</M>
 </PF>
+
+Indeed, we shall mostly work with random variables <M>X,</M> for which there will be an density which will
+ be continuous over an interval
+ <M>I,</M>  for which <M>P(X\in I)=1.</M>
 <HEAD2>Physical interpretation of density</HEAD2>
-If <M>X</M>  has a density <M>f(x)</M>  which is continuous at <M>x=a</M>  then <M>f(a)</M>  is
- "something like <M>P(X\approx a)</M>". The precise statement is 
+If <M>X</M>  has a density <M>f(x)</M>  which is continuous at <M>x=a</M>  then <M>f(a)</M>  measures
+ "something like <M>P(X\approx a)</M>". However, there are not even approximately equal. In
+ particular, <M>f(a)</M>  may very well exceed <M>1.</M>  The precise statement is 
 <D>f(a) = \lim_{\epsilon\to 0+} [[P(X\in (a-\epsilon, a+\epsilon))][2 \epsilon]].</D>
 Thus, if we have a density like the following, then <M>X</M>  is more likely to take values near <M>B</M>  than near <M>A</M> 
  or <M>C.</M>
  <CIMG web="pdfpeaks.png"/>
-The most useful way to think about a continuous density is as the limit of a histogram as the sample size goes to infinity,
- and the bins are made finer and finer. Values tightly together contribute to the peaks, while sparser regions have lower
- density values. Indeed, this visualisation has given density its name. 
+Just like everything else in probability theory, densities are also born out of statistical
+ regularity. You might remember that probability came out of limit of proportions, and hence PMF
+ was born out of barplots of relative frequencies. Similarly, densities are born of histograms, a graphical device to show
+ relative frequency densities. Suppose that we have a random variable <M>X</M>  that can assume all values in an interval
+ <M>[a,b].</M>  If we repeat the underlying random experiment a large number of times independently, then we shall get many
+ values of <M>X</M>, that we can show along a number line:
+<CIMG web="hist1.png">Random values of <M>X</M>  along the number line.</CIMG>
+This plot, however, is too clutterred as many points get plotted on top of each other. A more lucid plot is the histogram:
+<CIMG web="hist2.png">A histogram of the same random values of <M>X</M>.</CIMG>
+ Here we have partitioned the range of <M>X</M>  into a number of subintervals (or
+ <TERM>bin</TERM> s) and have computed the
+<TERM>relative frequency density</TERM>
+ for each bin as 
+<D>\mbox{rel. freq density of a bin} = [[\mbox{number of points in the bin}][\mbox{sample size}\times
+ \mbox{bin width}]].</D>
+Then we have erected a rectangle on each bin with height equal to the relative frequency density for that bin. As sample
+ size tends to infinity, the shape of the histogram stabilises due to statistical regularity. If we now make the bins finer
+ and finer, then the limiting shape of the histogram approaches a certain shape, which is the PDF. 
 
+<COMMENT>
+png('image/hist%d.png')
+x = rbeta(1000,3,6)
+bareplot(x,rep(0,length(x)), ylim=c(-0.1,0.1))
+abline(h=0)
+hist(x,prob=T,ylab="Relative frequency density")
+dev.off()
+</COMMENT>
+
+<HEAD2>Are continuous distributions counterintuitive?</HEAD2>
+It may seem counterintuitive that  <M>\forall a\in\rr~~P(X=a)=0</M>, and yet <M>P(X\in\rr)=1.</M>  There are two ways to
+ think about it:
+<OL><LI>A straight line segment consists of individual points, each of which has lenth zero, yet
+ the segment does have strictly positive length. The intuituion that lengths of constituents add
+ up to the length of thw whole works only for the countable case.</LI>
+<LI>But when we carry out the random experiment behind <M>X</M>  we do get some value <M>a.</M> 
+ If <M>P(X=a)=0,</M>  then shouldn't <M>\{X=a\}</M>  be an impossible event? Actually, when we say
+ <M>\{X=a\}</M>  we are making a measurement, and all measurements have finite precision. If the
+ precision of the measurement is <M>\epsilon,</M>  then the satement ''<M>X</M>  is found to be
+ <M>a</M>'' actually means <M>X\in[*[a-[[\epsilon2]], a+[[\epsilon2]])*),</M>  which indeed has some positive probability.</LI>
+</OL>
+
+
+<HEAD2>Problem set 3</HEAD2>
+::<EXR>
+If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show that 
+<D>\lim_{\epsilonto0+}[[P(1-\epsilon,1+\epsilon)][2 \epsilon]] = [[1e]].</D>
+</EXR>
+::<EXR>
+If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show that 
+<D>\lim_{\epsilonto0+}[[P[2,2+\epsilon)][\epsilon]] = e^{-2}.</D>
+</EXR>
+
+<EXR>
+If <M>X</M>  has density <M>f(x)</M>  which is continuous at <M>x=a,</M>  then prove that
+<D>\lim_{\epsilonto0+}[[P(a-\epsilon,a+\epsilon)][2 \epsilon]] = f(a).</D>
+Can you drop the continuity assumption?
+</EXR>
+
+<EXR>
+Let <M>X</M>  have density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M>  Find 
+<D>\lim_{\epsilonto0+}[[P(1-\epsilon,1+\epsilon)][2 \epsilon]].</D>  
+</EXR>
 <HEAD1>Moment</HEAD1>
 
 We had already defined expectation of a random variable in general. That definition reduces to the following.
 <THM>
-Let <M>X</M>  be a random variable with density <M>f.</M> 
-Then <M>E(X)=\int_{-\infty}^\infty x f(x)\, dx</M> if <M>\int_{-\infty}^\infty |x f(x)|\, dx <
- \infty.</M>  If <M>\int_{-\infty}^\infty |x f(x)|\, dx = \infty,</M>  then 
- <M>E(X)</M>  does not exist. 
+Let <M>X</M>  be a non-negative random variable with density <M>f.</M> 
+Then <M>E(X)=\int_0^\infty x f(x)\, dx</M> (which may be <M>\infty</M>).
 </THM>
 We shall prove this near the end of this course. Until then we shall treat this as the definition
  of <M>E(X)</M>  when <M>X</M>  has density <M>f.</M>
+
+If <M>X</M>  can take negative values, then we again use the <M>X_+</M>, <M>X_-</M>  technique.
 
 The following familiar properties of expectation (which are actually consequences of the general
  definition) can be easily shown to hold in this special case:
@@ -168,7 +272,7 @@ We define <M>V(X)</M>  and the other moments as usual. Their
 properties (e.g., Chebyshev inequality) are intact.
 
 
-<HEAD2>Problems for practice: set 2</HEAD2>
+<HEAD2>Problem set 4</HEAD2>
 ::<EXR><EIMG web="rosspdf6.png"/></EXR>
 ::<EXR><EIMG web="rosspdf7.png"/></EXR>
 ::<EXR><EIMG web="rosspdf8.png"/></EXR>
@@ -199,7 +303,7 @@ Find its hazard rate function.
 <M>F(x) = <CASES>0<IF>x\leq 0</IF>1-e^{-x}<IF>x> 0</IF></CASES>.</M>  So 
 <D>h(t) = [[e^{-t}][1-(1-e^{-t})]] = 1.</D>
 </EXM>
-<HEAD2>Problems for practice: set 3</HEAD2>
+<HEAD2>Problem set 5</HEAD2>
 ::<EXR><EIMG web="rosspdf17.png"/></EXR>
 ::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf28.png"/></EXR>
@@ -245,7 +349,7 @@ Yes, by differentiating it, we get a PDF
 <D>f(x) = <CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES>. </D>
 We could replace <M>(0,1)</M>  by <M>[0,1]</M>  or <M>(0,1]</M>  or <M>[1,0).</M>
 </EXM>
-<HEAD2>Problems for practice: set 4</HEAD2>
+<HEAD2>Problem set 6</HEAD2>
 ::<EXR><EIMG web="hpspdf2.png"/></EXR>
 ::<EXR><EIMG web="hpspdf3.png"/></EXR>
 ::<EXR><EIMG web="hpspdf4.png"/></EXR>
@@ -264,7 +368,7 @@ We could replace <M>(0,1)</M>  by <M>[0,1]</M>  or <M>(0,1]</M>  or <M>[1,0).</M
 ::<EXR><EIMG web="rosspdf20.png"/></EXR>
 
 <HEAD1>Miscellaneous</HEAD1>
-<HEAD2>Problems for practice: set 5</HEAD2>
+<HEAD2>Problem set 7</HEAD2>
 
 
 ::<EXR><EIMG web="rosspdf22.png"/></EXR>

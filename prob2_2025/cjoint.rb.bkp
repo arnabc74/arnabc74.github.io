@@ -51,19 +51,19 @@ is a density.</EXR>
 <ANS>Impossible, <M>f(x,y)</M>  takes negative values.</ANS></EXR>
 
 
-<HEAD1>Computing probabilities of non-rectangular regions</HEAD1>  
+<HEAD1>Computing probabilities using geometry</HEAD1>  
 Visualise the graph of the density as the roof of a tent. Then <M>P((X,Y)\in A)</M>  is the volume
  of the cylinder-like region inside the tent with <M>A</M>  as its floor. For many simple cases,
  the volume may be computed using geometric considerations. For more complicated cases we resort
- to iterated integrals. Let us start with the geometric case.
-<HEAD3>Finding probability using geometry</HEAD3>
+ to iterated integrals. We shall discuss the geometric approach first. 
+
 The most important special case when the roof of the tent is flat and horizontal. In this case we call the distribution uniform,
  as we have already learned. 
-<HEAD3>Problem set 2</HEAD3>
+<HEAD2>Problem set 2</HEAD2>
 ::<EXR><EIMG web="hpsjoint1.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint2.png"/></EXR>
 
-<HEAD3>Using iterated integrals</HEAD3>
+<HEAD1>Computing probability using iterated integrals</HEAD1>
 <EXM>
 Let <M>(X,Y)</M>  have density <M>f(x,y) = <CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>.</M>  Find <M>P(Y\leq X^2).</M>
 <SOLN/>
@@ -79,7 +79,17 @@ We could have done it the other way around, too:
 <D>\int_0^1 [*[\int_{\sqrt y}^1 (x+y)\, dx]*] dy = \cdots.</D>
 This should also lead to the same answer (check!). 
 </EXM>
-<HEAD3>Problem set 3</HEAD3>
+<HEAD2>Problem set 3</HEAD2>
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x)=<CASES>cxy<IF>x,y\in[0,1],\,x\leq y</IF>
+ 0<ELSE/></CASES>.</M>  Find <M>P(Y< \sqrt{X}).</M></EXR>
+
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x)=<CASES>c(x+y)<IF>x,y\in[0,1]</IF>
+ 0<ELSE/></CASES>.</M>  Find <M>P(*(Y< [[12]])*).</M></EXR>
+
+<EXR>Let <M>X,Y</M>  be IID <M>Unif(0,1).</M>  Find <M>P(X^2\leq Y \leq X).</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  has joint density <M>e^{-(x+y)}</M>  for <M>x,y>0,</M>  (and 0 else), then find <M>P(X^2+Y^2<1).</M></EXR>
+
 <HEAD1>CDF</HEAD1>
 We have already learned the definition of joint CDF in the last semester:
 
@@ -152,6 +162,13 @@ Since we are about differentiate wrt both <M>x</M>  and <M>y,</M>  the parts of 
 <M>f(x,y) = <CASES>1<IF>0<x,y<1</IF> 0<ELSE/>.</CASES> </M>
 </EXM>
 <HEAD2>Problem set 4</HEAD2>
+<EXR>Find the joint CDF of <M>(X,Y)</M>  if <M>X\sim Bern(1/2)</M>  and <M>Y\sim Unif(0,1)</M>  and they are independent.</EXR>
+
+<EXR>Let <M>F(x,y)=\min\{x,y\}</M>  for <M>0\leq x,y\leq 1</M>  be the joint CDF of <M>(X,Y).</M> 
+ Find <M>P(*(X\leq [[12]], Y\leq [[12]])*)).</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  have joint density <M>c(x^2+y)</M>  over the unit square, then find the joint CDF.</EXR>
+
 <HEAD1>Marginals</HEAD1>
 We can find the distribution of <M>X</M>  and <M>Y</M>  separately given the joint distribution of <M>(X,Y).</M>  
 In particular, a marginal density of <M>X</M>  is given by 
@@ -160,6 +177,10 @@ and a marginal density of <M>Y</M>  by
 <D>f_Y(y) = \int_{-\infty}^\infty f(x,y)\, dx.</D>
 
 <HEAD2>Problem set 5</HEAD2>
+::<EXR><EIMG web="hpsjoint4.png"/></EXR>
+::<EXR><EIMG web="hpsjoint5.png"/></EXR>
+::<EXR><EIMG web="hpsjoint6.png"/></EXR>
+
 <HEAD1>Independence</HEAD1>
 We already know the following general definition of  jointly distributed random variables being independent:
 <DEFN name="Independence">
@@ -229,7 +250,8 @@ The tower property also works as before.
  0<ELSE/></CASES></M>, where <M>c_y</M>  is free of <M>x.</M> 
 Let <M>Y</M>  be uniformly distributed over <M>[0,1]</M>.  Find <M>f_{Y|X=x}(y|x).</M></EXR>
 
-<EXR>If <M>(X,Y)</M>  has joint density</EXR>
+<EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y)=<CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>,</M>
+then find <M>E(X|Y=y)</M>  and <M>V(Y|X=x).</M></EXR>
 
 <HEAD1>Exchangeable distribution</HEAD1>
 If <M>X_1, X_2, X_3</M>  are IID, then the joint distribution of <M>(X_1,X_2,X_3)</M>  is the same
@@ -281,12 +303,21 @@ Then the joint CDF of <M>(X_{i_1},...,X_{i_k})</M>  is <M>F(x_1,...,x_k,\infty,.
 </PF>
 
 Exchangeable random variables allow for symmetry arguments. The next problem is one example. 
-
+<HEAD2>Problem set 8</HEAD2>
 <EXR>
 If <M>X_1,...,X_n</M>  are exchangeable positive random variables with finite expectations,  then find <M>E((X_1+X_2)/(X_1+\cdots+X_n)).</M>
 </EXR>
 
-<HEAD1>A subtle point</HEAD1>
+<EXR>Three dice are rolled and their outcomes are called <M>X_1,X_2</M>   and <M>X_3.</M>  Let
+ <M>Y_1 = X_1+X_2,</M>  <M>Y_2 = X_2+X_3,</M>  and <M>Y_3 = X_3+X_1.</M>  Is <M>(Y_1,Y_2,Y_3)</M> 
+ exchangeable? Justify your answer.</EXR>
+
+<EXR>A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
+ Without replacing the ball, another ball is drawn at random from the rest, and its number is also
+ noted. If the two numbers are <M>X</M>  and <M>Y</M>, respectively, then is <M>(X,Y)</M>  exchangeable?</EXR>
+
+<HEAD1>Points to ponder</HEAD1>
+<HEAD2>Marginal densities <M>\not\Rightarrow</M>  joint density</HEAD2>
 Note that if <M>X</M>  and <M>Y</M>  are jointly distributed discrete random variables, then immediatly we are assured of
 having their joint PMF. But not so in case of absolutely continuous distributions. Even if
  <M>X</M>  and <M>Y</M>  are each absolutely continuous, still <M>(X,Y)</M>  may fail to be <I>jointly</I>  absolutely continuous.
@@ -303,11 +334,56 @@ Hence, if <M>(X,Y)</M>  is jointly absolutely continuous, then a joint density w
 This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
   </EXM>
 However, if <M>(X,Y)</M>  is jointly absolutely continuous, then both <M>X</M>  and <M>Y</M>  must also be absolutely continuous.
-<HEAD1>Problems for practice</HEAD1>
+
+<HEAD2>Point mass and jointly continuous</HEAD2>
+Let <M>X</M>  be a random variable with CDF <M>F.</M>  Then the following two statements are equivalent:
+<OL>
+<LI><M>F</M>  is continuous everywhere.</LI>
+<LI><M>\forall a\in\rr~~P(X=a)=0.</M></LI>
+</OL>
+Consider the corresponding statements in the bivariate scenario. <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Then the statements
+ are 
+<OL>
+<LI><M>F</M>  is continuous everywhere.</LI>
+<LI><M>\forall (a,b)\in\rr^2~~P(X=a,\,Y=b)=0.</M></LI>
+</OL>
+Here the first statement implies the second statement, but the converse is not true in general. 
+Can you think of a counterexample? An exercise below will given you a hint.
+<HEAD2>Problem set 9</HEAD2>
+<EXR>Let <M>X\sim Bernoulli(*([[12]])*)</M>  and <M>Y\sim Unif(0,1)</M>  be independent random
+ variables. Write down their joint CDF. Is it continuous everywhere? What is <M>P(X=a,\,Y=b)</M>  for any given <M>(a,b)?</M></EXR>
+
+Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
+<BECAUSE>You can put rationals
+ in the gaps.</BECAUSE>
+However, for bivariate or higher dimensional CDFs, the situation is drastically different. 
+<EXR>
+There are different ways to approach a point in <M>\rr^2.</M>  The following diagram shows some of them. 
+<CIMG web="limdir.png"><M>(a,b)</M>  is the point at the centre.</CIMG>
+In each case find
+ <M>\lim_{(x,y)\to(a,b)} F(x,y).</M>  In each case the limit will be one of  
+<Q>
+<M>P(X < a,\, Y< b)</M>, <M>P(X \leq a,\, Y< b)</M>, <M>P(X < a,\, Y\leq b)</M>  and <M>P(X \leq a,\, Y\leq b).</M>
+</Q> 
+</EXR>
+
+<EXR>(Continuation of the last exercise) In exactly three of the cases above we must have
+ <M>\lim_{(x,y)\to(a,b)} F(x,y) = F(a,b).</M>  Which three?</EXR>
+
+<EXR>(Continuation of the last exercise) Argue that <M>F(x,y)</M>  is discontinuous at
+ <M>(a,b)</M>  if and only if <M>P(X < a,\, Y< b) < P(X \leq a,\, Y\leq b).</M></EXR>
+
+<EXR>(Continuation of the last exercise) Argue that <M>F(x,y)</M>  is discontinuous at
+ <M>(a,b)</M>  if and only if <M>P(X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b)>0.</M></EXR>
+<EXR>(Continuation of the last exercise) Sketch the set <M>\{X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b\}</M>  in the
+ <M>XY</M>-plane for <M>(a,b) = (1,2)</M>  and also for <M>(a,b) = (1,3).</M>  Argue that either
+ <M>F(x,y)</M>  has no discontinuity, has
+ or uncountably many discontinuities.
+</EXR>
+
+
+<HEAD1>Miscellaneous problems</HEAD1>
 ::<EXR><EIMG web="hpsjoint3.png"/></EXR>
-::<EXR><EIMG web="hpsjoint4.png"/></EXR>
-::<EXR><EIMG web="hpsjoint5.png"/></EXR>
-::<EXR><EIMG web="hpsjoint6.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint7.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint8.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint9.png"/></EXR>
@@ -319,7 +395,6 @@ However, if <M>(X,Y)</M>  is jointly absolutely continuous, then both <M>X</M>  
 ::<EXR><EIMG web="rossipmjoint4.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint5.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint6.png"/></EXR>
-::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint8.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint9.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint10.png"/></EXR>

@@ -1,8 +1,9 @@
  @{<NOTE>
-<HEAD1>Standard absolutely continuous distributions</HEAD1>
-Here we shall consider some standard absolutely continuous distributions. 
+<TITLE>Sone standard densities</TITLE>
+Last semester, we had learned some standard discrete distributions like binomial and geometric. Similarly, here we shall
+ learn about some standard distributions with densities. 
 
-<HEAD2><M>Unif(a,b)</M></HEAD2>
+<HEAD1><M>Unif(a,b)</M></HEAD1>
 This distribution captures the idea of a random variable that take any value in <M>(a,b)</M>  with equal probability. It
  has PDF <M>f(x) =<CASES>[[1][b-a]]<IF>a < x < b</IF> 0<ELSE/></CASES> </M>
 Notice that a PDF must be defined over entire <M>\rr.</M>  Hence we need the "else" clause. Also <M>a< x < b</M>  could be
@@ -11,9 +12,33 @@ Notice that a PDF must be defined over entire <M>\rr.</M>  Hence we need the "el
 The CDF is 
 <D>F(x) = <CASES>0<IF>x < a</IF> [[x-a][b-a]]<IF>a\geq x < b</IF> 1<IF>b\geq x</IF></CASES>.</D>
 
-Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentant theorem
- of probability as well as random number generation using a computer. Both these applications come from the same theorem.
- To prepeare for the theorem we define a right-inverse of any CDF. 
+Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
+ of probability as well as random number generation using a computer. Both these applications come from the same theorem,
+ which we shall discuss <LINK to="trans.html">later</LINK> in the course.
+
+<HEAD2>Problem set 1</HEAD2>
+
+<EXR>Let <M>X\sim Unif(0,1),</M>  <M>Y\sim Unif(10,20),</M>  and <M>Z\sim Unif(100,101).</M>
+  Without explicitly computing their variances pick the correct option below:
+<OL type="A">
+<LI><M>V(X) <  V(Y) <  V(Z)</M></LI>
+<LI><M>V(X) >  V(Y) >  V(Z)</M></LI>
+<LI><M>V(X) = V(Z) <  V(Y)</M></LI>
+<LI><M>V(Y) =  V(Z) <  V(X)</M></LI>
+</OL>
+</EXR>
+<EXR>If <M>X\sim Unif(a,b),</M>  then find <M>E(X),</M>  <M>V(X)</M>  and MGF of <M>X.</M></EXR>
+
+<EXR>If <M>X\sim Unif(0,\theta),</M> for some <M>\theta>0.</M>  Fix any density <M>f_\theta(x)</M> of <M>X.</M>
+Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
+
+<EXR>Let <M>X\sim Unif(0,1).</M>  Let <M>a_i = [[in]]</M>  for
+ <M>i=0,...,n.</M>  Fix any permutation <M>\pi</M>  of <M>\{1,2,...,n\}.</M>  We shall
+ ''scramble'' <M>X</M>  using <M>\pi</M>  to obtain <M>Y.</M>  If <M>Y = f(X)</M>, where <M>f(x) =
+ a_{\pi(i-1)}+(x-a_i)</M>  if <M>x\in [a_{i-1},a_i).</M>  What is the distribution of <M>Y?</M></EXR>
+
+<HEAD1>A step towards proving the fundamental theorem of probability</HEAD1>
+ To prepare for the theorem we define a right-inverse of any CDF. 
 
 <DEFN>
 Let <M>F</M>  be any CDF. Then define <M>F^-:(0,1)\to\rr</M>  as 
@@ -54,7 +79,7 @@ Take any <M>y\in[0,1].</M>  Then <M>P(Y\leq y) = P(F(X)\leq y)= P(X\leq F^-(y))=
 </PF>
 This is used to construct a P-P plot.
 
-<HEAD2>Exponential distribution</HEAD2>
+<HEAD1>Exponential distribution</HEAD1>
 <DEFN>We say that <M>X</M>  has an <TERM>Exponential distribution</TERM>  with <TERM>rate</TERM> 
  <M>\lambda</M>  if it has PDF <M>f(x)=<CASES>\lambda e^{-\lambda x}</CASES></M></DEFN>
 
@@ -161,6 +186,8 @@ If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then <M>\sim_1^n X_i\sim G
 <PF>
 Use induction on <M>n.</M>  The last theorem provides the basis, and the additivity property provides the step.
 </PF>
+
+::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
 
 <HEAD1>Beta distribution</HEAD1>
 <DEFN name="Beta distribution"> 

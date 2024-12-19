@@ -1,0 +1,314 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Solution to problem 1">Solution to problem 1</a>
+</li>
+<li>
+<a href="#Solution to problem 2">Solution to problem 2</a>
+</li>
+<li>
+<a href="#Solution to problem 3">Solution to problem 3</a>
+</li>
+<li>
+<a href="#Solution to problem 4">Solution to problem 4</a>
+</li>
+<li>
+<a href="#Solution to problem 5">Solution to problem 5</a>
+</li>
+<li>
+<a href="#Solution to problem 6">Solution to problem 6</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Part 1">Part 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Part 2">Part 2</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="Solution to problem 1">Solution to problem 1</a></h1>
+Let $X=$ number of draws needed until first repetion.
+<p></p>
+Then $X$ takes values 2,3,4,...
+<p></p>
+Take any $k\in\{2,3,4,...\}.$
+<p></p>
+The event $\{X=k\}$ occurs in the following steps:
+<ul>
+
+<li>Choose first digit: 10 ways</li>
+
+<li>Choose next  digit avoiding the previous: $(10-1)$ ways</li>
+
+<li>Continue like this up to $(k-1)$-st draw.</li>
+
+<li>Choose the $k$-th same as the previous: $1$ way.</li>
+
+</ul> 
+Total number of ways: $10\times 9^{k-2}\times 1.$
+<p></p>
+Possibly number of ways to draw the first $k$ digits
+is $10^k,$ all equally likely.
+<p></p>
+So $P(X=k) = \frac{10\times 9^{k-2}\times 1}{10^k} =
+(0.9)^{k-1}0.1.$
+<p></p>
+Hence $E(X) = \sum_2^ \infty k  (0.9)^{k-1}0.1=\cdots.$
+<p></p>
+
+<h1><a
+name="Solution to problem 2">Solution to problem 2</a></h1>
+$X$ takes the values $-1,0,1,2$ with
+probabilities $0.1,0.2,0.2,0.5,$ respectively. So,
+conditional on $X&gt;0,$ it takes the values 1 and 2 with
+probabilities $\frac{0.2}{0.2+0.5}$
+and $\frac{0.5}{0.2+0.5}$.
+<p></p>
+So $E(X|X&gt;0) = \cdots = \frac{12}{7}.$ Also, $E(X^2|X&gt;0) =
+\cdots = \frac{22}{7}.$
+<p></p>
+So $V(X|X&gt;0)=E(X^2|X&gt;0) -E^2(X|X&gt;0) = \cdots.$
+<p></p>
+
+<h1><a
+name="Solution to problem 3">Solution to problem 3</a></h1>
+No, they are not equal in general. Let  $X\sim
+Bern\left(\frac 12\right).$ Then $Y=X.$
+So $E(XY)=E(X^2)=E(X)=\frac 12.$
+<p></p>
+But conditional on $X&gt;0,$ the distribution of $X$ is
+degenerate at $1. $ So $E(X|X&gt;0) = 1.$
+<p></p>
+
+<h1><a
+name="Solution to problem 4">Solution to problem 4</a></h1>
+$cov(X,Y|Z)=E(XY|Z)-E(X|Z)E(Y|Z).$
+<p></p>
+So, by tower property, $E(cov(X,Y|Z))=E(XY)-E(E(X|Z)E(Y|Z)).$
+<p></p>
+Again, $cov(E(X|Z),E(Y|Z))=
+E(E(X|Z)E(Y|Z))-E(E(X|Z))E(E(Y|Z))=E(E(X|Z)E(Y|Z))-E(X)E(Y),$
+by tower property.
+<p></p>
+Hence $E(cov(X,Y|Z))+cov(E(X|Z),E(Y|Z))=
+E(XY)-E(X)E(Y)=cov(X,Y),$ as required.
+<h1><a
+name="Solution to problem 5">Solution to problem 5</a></h1>
+Yes they must be uncorrelated. Since non-degenerate, enough to
+show $cov(X,Z)=0.$
+<p></p>
+Now
+$$\begin{eqnarray*}
+cov(X,Z) 
+&amp; = &amp; E(XZ)-E(X)E(Z)\\
+&amp; = &amp; E(XY)-E(XE(Y|X))-E(X)E(Y-E(Y|X))\\
+&amp; = &amp; E(XY)-E(XE(Y|X))-E(X)[E(Y)-E(E(Y|X))]\\
+&amp; = &amp; E(XY)-E(XE(Y|X))-E(X)[E(Y)-E(Y)]~~\left[\mbox{by tower property.}\right]\\
+&amp; = &amp; E(XY)-E(XE(Y|X))\\
+&amp; = &amp; E(XY)-E(E(XY|X))~~\left[\mbox{by substitution property.}\right]\\
+&amp; = &amp; E(XY)-E(XY)~~\left[\mbox{by tower property.}\right]\\
+&amp; = &amp; 0,
+\end{eqnarray*}$$
+as required.
+<p></p>
+
+<h1><a
+name="Solution to problem 6">Solution to problem 6</a></h1>
+
+<h2><a
+name="Part 1">Part 1</a></h2>
+Let $X\sim Geometric(p).$
+<p></p>
+$P(X\geq n+r|X\geq n)=\frac{P(X\geq n+r, X\geq n)}{P(X\geq n)} =
+\frac{P(X\geq n+r)}{P(X\geq n)}.$
+<p></p>
+Now, $\forall k\in{\mathbb N}~~P(X\geq k) = \sum_{i=k}^\infty (1-p)^{i-1}p = (1-p)^{k-1}.$
+<p></p>
+So $P(X\geq n+r|X\geq n)= (1-p)^r,$ free of $n,$ as
+required.
+<h2><a
+name="Part 2">Part 2</a></h2>
+Let $X$ be ${\mathbb N}$-valued and memoryless.
+<p></p>
+Let $P(X=i) = p_i$ for $i\in{\mathbb N}.$
+<p></p>
+Then $\theta = P(X\geq n+1|X\geq n)$ is free of $n.$
+<p></p>
+Now $P(X\geq 1) = 1$, since $X$ is ${\mathbb N}$-valued.
+<p></p>
+Again, for $k\geq 2,$
+$$\begin{eqnarray*}
+P(X\geq k)
+&amp; = &amp; P(X\geq k|X \geq 1)~~\left[\mbox{$\because P(X\geq 1) = 1$}\right]\\
+&amp; = &amp; \frac{P(X\geq k)}{P(X\geq 1)}\\
+&amp; = &amp;  
+\frac{P(X\geq 2)}{P(X\geq 1)} \times \frac{P(X\geq 3)}{P(X\geq 2)}
+\times\cdots\times \frac{P(X\geq k)}{P(X\geq k-1)}\\
+&amp;= &amp; \theta ^{k-1}.
+\end{eqnarray*}$$
+<p></p>
+So $P(X= k)=P(X\geq k)-P(X\geq k+1) = \theta^{k-1}-\theta^k =
+\theta ^{k-1}(1-\theta).$
+<p></p>
+So $X\sim Geometric(1-\theta),$ as required.
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

@@ -110,6 +110,10 @@ body,table {
   //border: 2px solid black;
   display: inline-block;
 }
+
+.hl {
+  list-style-type: upper-alpha;
+}
 </style>
 <script>
 window.onscroll = function() {myFunction()};
@@ -145,8 +149,11 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3/>
+<h3>Notions from measure theory</h3>
 <ul>
+<li>
+<a href="#Introduction">Introduction</a>
+</li>
 <li>
 <a href="#Uncountable sample space">Uncountable sample space</a>
 </li>
@@ -179,7 +186,7 @@ function myFunction() {
 </li>
 </ul>
 <hr/>
-$
+<title>Notions from measure theory</title>$
 \newcommand{\calF}{{\mathcal F}}
 \newcommand{\calB}{{\mathcal B}}
 \newcommand{\calD}{{\mathcal D}}
@@ -187,13 +194,114 @@ $
 \newcommand{\area}{\mathrm {area}}
 $
 <h1><a
+name="Introduction">Introduction</a></h1>
+We often talk about the "size" of different sets. There are various ways to measure the size, length, area, volume, mass,
+ cardinality. All these measures share some common properties: they are defined over subsets of
+ some universal set (<i>e.g.</i>, length for subsets of ${\mathbb R},$  while area for subsets of
+ ${\mathbb R}^2$), they are always nonnegative
+ and they add up over disjoint sets. 
+<p></p>
+Let $\Omega$  be our universal set. Let $\calP(\Omega)$  be its power set. Then $\mu:\calP(\Omega)\rightarrow[0,\infty)$ 
+ is called a <b><font color="red" size="40">measure</font></b>  if for disjoint $A_1,A_2,...\in\calP(\Omega)$  we have $\mu(\cup A_i) = \sum \mu(A_i).$
+<p></p>
+This definition has a couple of problems. First, if we think of "length" for $\Oemga={\mathbb R},$ 
+ then surely we would like to say that "length" of ${\mathbb R}$  is $\infty.$  But our
+ definition needs finite length for every subset of ${\mathbb R}.$  So we have to include
+ $\infty$  in the range of $\mu.$  This will not cause any problem with the countable
+ additivity condition, since we are not working with both $\infty$  and $-\infty.$  So
+ addition is still well-defined, as $\forall a\in{\mathbb R}~~a+\infty = \infty+a = \infty$  and
+ $\infty + \infty= \infty.$  
+<p></p>
+The second problem is more subtle. Sometimes we want the measure to satisfy additional "nice" conditions. 
+Often we find that no measure with those "nice" conditions exists. If, however, we define it only for a subcollection of
+ subsets of $\Omega,$  then the problem goes away. The subcollection must of course be rich enough to allow interesting
+mathematical  manipulations. So we want a subcollection that is closed under countable union, intrsection and complementation.
+ Any such subcollection is called a <b><font color="red" size="40">$\sigma$-algebra</font></b>. 
+<p></p>
+So we get the final definition of measure.
+<fieldset>
+<legend><b>Definition: Measure</b></legend>
+Let $\Omega$  be any non-empty set. Let $\calF$  be any $\sigma$-algebra on $\Omega.$  Then we called
+ $(\Omega,\calF)$  a <b><font color="red" size="40">measurable space</font></b>  and any $\mu:\calF\rightarrow[0,\infty]$  such that 
+$$\forall \mbox{disjoint }A_1,A_2,...\in\calF~~\mu(\cup A_i) = \sum\mu(A_i)$$
+is called a <b><font color="red" size="40">measure</font></b>. The triple $(\Omega,\calF,\mu)$  is called a <b><font color="red" size="40">measure space</font></b>. 
+ </fieldset>
+Notice that the conditions in this definition are much like the probability axioms, except that there we had one extra conditions
+ $P(\Omega)=1.$  This shows that probability is a measure. However, a measure $\mu$  need not have $\mu(\Omega)$ 
+ equal to $1.$  It could be any finite positive number or even $\infty.$  If $\mu(\Omega)&lt; \infty,$  we naturally
+ call $\mu$  a <b><font color="red" size="40">finite measure</font></b>. These are generally easier to work with. Infinite measres are harder to
+ deal. But there is an useful intermediate type of measure that allows $\mu(\Omega)=\infty$  and yet retains much of
+ the advantages of a finite measure. These are what we work with most of the time. Th definition goes like this.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $\sigma$-finite meaaure</b></legend>
+A measure $\mu$  on $(\Omega,\calB)$  is called <b><font color="red" size="40">$\sigma$-finite</font></b>  if there are disjoints $B_1,B_2,...\in\calB$ 
+ such that $\Omega = \cup_i B_i.$
+</fieldset>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Show that for any measure $\mu(\phi)=0.$</p>  
+
+<p></p>
+ How do we construct a measure? Typically we start with some subsets of $\Omega$  for which the value is obvious. Then
+ we use the countable additivity to define it for less obvious sets. Let's do it for "length". We all agree that the length
+ of $(a,b)$  is $b-a$  for $a&lt;b.$  Then what should the length of $(0,1)\cup
+ (3,5)$  be? The answer is $1+2=3.$  Even less obvious is the length of ${\mathbb Q}.$  It
+ turns out to be $0+0+\cdots=0$  and so  the length of ${\mathbb Q}^c$  must be $\infty.$  
+<p></p>
+Can we do this for all subsets? Or may we run into some difficulty? The answer is very heartening:
+ If you have enough "obvious" cases, and there is no inconsistency
+among them, then you may extend them uniquely. This is formalised as a famous theorem:
+<p></p>
+
+<fieldset>
+<legend><b><i> Caratheodory extension</i></b></legend>
+Let $\Omega$  be a nonempty set and $\calB$  be a $\sigma$-algebra on it. We want to specify a measure $\mu$ 
+ on it. For this it it enough to specify $\mu$  on a subcollection $\calF$   collection of subsets if  
+<ol type="">
+<li>$\mu$  is nonnegative and countably additive,</li>
+
+<li>$\calB$  is generated by $\calF$</li>
+
+<li>$\calF$  is closed under finite intersection,</li>
+
+<li>$\forall A\in\calF~~\exists \mbox{disjoint }B_1,...,B_n\in\calF~~A^c = \cup_1^n B_i.$</li>
+
+</ol>
+
+</fieldset>
+We shall not prove this in this course. But let us understand the significance of the conditions. The first condition is
+ clearly necessary. If $\mu$  already fails to be nonnegative or countably additive on $\calF$  how can we expect
+ it to be a measure when extended to  $\calB?$  If we specify $\mu$  for each and every set in $\calB,$  then
+ of course it would suffice. But that woluld be too much work. Our aim is to specify $\mu$  for only a smaller number
+ of the sets. Clearly, we cannot fall below a generating set. So that condition puts a lower bound on how low we can go.
+ But that lower bound is actually too low, as not all generating collection would do. It must be "rich" enough. If you specify
+ $\mu$  on $A$  and $B,$  then you should also specify it for $A\cap B,$  to help determine how much
+ $A,B$  overlap each other. Also, for each $A$  we should be able to express $A^c$  as a finite union of sets
+ for which $\mu$  has been specified. This will help us to place $A$  in the background of $\Omega.$  
+<p></p>
+This for example, shows that we may define "length" for all subsets in $\calB.$
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Show that there is a unique measure $\mu$  on $({\mathbb R},\calB)$  such that
+ $\mu(\phi)=0$  and $\forall a &lt; b~~\mu\big( (a,b) \big) = b-a$
+<p></p>
+<b>SOLUTION:</b>
+Here the obvious specification is given for open intervals and the empty subset of ${\mathbb R}.$
+ Now, the intersection of two
+ open intervals is either an open interval or $\phi.$  So the first cndition of Caratheordory extension is met.
+ ■
+</p>
+
+<h1><a
 name="Uncountable sample space">Uncountable sample space</a></h1>
 We have already seen last semester that for an uncountable $\Omega$  we may not always be able
  to define a function $P:{\mathcal P}(\Omega)\rightarrow[0,1]$ 
  satisfying all the probability axioms.  Please see <a href="../prob1_2024/vitali.html">this page
  from the last semester</a>  to brush up on this. 
 <p></p>
-Hence we defined $\sigma$-algebra. While the simplest $\sigma$-algebras are the trivial one and the entore power
+Hence we defined $\sigma$-algebra. While the simplest $\sigma$-algebras are the trivial one and the entire power
  set, the most commonly used is the Borel $\sigma$-algebra. 
 <p></p>
 Closely related to this is the idea of a measurable function.
@@ -215,9 +323,63 @@ By a <b><font color="red" size="40">random variable</font></b>  on a probability
 </fieldset> 
 We need the measurability condition on $X$  so that we can talk about $P(X\in (a,b)).$  For this we need 
 $\{w\in\Omega~:~X(w)\in (a,b)\}\equiv X ^{-1} (a,b)\in \calF.$
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Distribution</b></legend>
+Let $(\Omega,\calF,P)$  be a probability space. Let $X:\Omega\rightarrow{\mathbb R}$  be a random variable. By the
+ <b><font color="red" size="40">distribution</font></b> of 
+ $X$  we mean the function
+ $P_X:\calB\rightarrow[0,1]$  given by 
+$$P_X(B) = P(X ^{-1}(B))\mbox{ for } B\in\calB.$$
+</fieldset>
+
 <h1><a
 name="Simple functions to approximate measurable functions">Simple functions to approximate measurable functions</a></h1>
-While defining $E(X)$  we had proceeded in three steps: simple, non-negative and general. We took a supremum in the
+While defining $E(X)$  we had proceeded in three steps: simple, non-negative and general.
+ Let us quickly recall what we did. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Simple random variable</b></legend>
+A random variable is called <b><font color="red" size="40">simple</font></b>  if it takes only finitely many values.
+</fieldset>
+If we visualise $\Omega$  as an interval, a simple random variable is "somewhat like" a step function:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/simpstep1.png"></th>
+</tr>
+<tr>
+<th>Both the red steps have the same height.</th>
+</tr>
+</table>
+</center>
+Note, however, that the same value may give rise to multiple steps of the same height.
+Indeed, there may be infinitely many "steps" of the same height! For instance, the function
+$$f(x) =\left\{\begin{array}{ll}1&\text{if }x\in{\mathbb Q}\cap[0,1]\\ 0&\text{otherwise.}\end{array}\right. $$ 
+is a simple function on $[0,1].$  This is of course not a step function (with finitely many steps). 
+<p></p>
+We can  express a simple function mathematically using indicator functions. Let a simple function take only the values $c_1,...,c_k$ 
+ (all distinct). Let $A_i = \{\omega\in\Omega~:~f(\omega) = c_i\}.$  For instance, for the simple function shown above,
+ we have the following $A_i$'s.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/simpstep2.png"></th>
+</tr>
+<tr>
+<th>Clearly the $A_i$'s partition $\Omega$.</th>
+</tr>
+</table>
+</center>
+The $A_i$'s need not always be just finite union of intervals. For example, in case of the Dirichlet function, we have
+ just two $A_i$'s, one is ${\mathbb Q}\cap [0,1]$  and the other ${\mathbb Q}^c\cap [0,1].$  However, we always have only
+ finitely many $A_i$'s. We can now write the simple function as 
+$$f(\omega) = \sum_{i=1}^k c_i\ind_{A_i}(\omega).$$
+So far we have not talked about measurability. It should be easy to check that $f$  is measureable if and only if $\forall i~~A_i\in\calF.$
+<p></p>
+We took a supremum in the
  second step. This is motivated by the following result. 
 <p></p>
 
@@ -235,7 +397,7 @@ For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $S_n$  as follows. First
  subdivide the first into equal subintervals of length $2^{-n}.$  So you get $N=n2^n+1$  subintervals in all. Call
  these $[a_1,b_1),...,[a_N,b_N).$  These constitute a partition of $[0,\infty).$
 <p></p>
-Now  set $S_n(\omega) = a_k$  if $S_n(\omega) \in[ a_k,b_k).$  
+Now  set $S_n(\omega) = a_k$  if $X_n(\omega) \in[ a_k,b_k).$  
 <p></p>
 The following picture shows this process for $n=1$  and $n=2.$
 <center>
@@ -296,14 +458,14 @@ This completes the proof.
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;
+<b>EXERCISE 2:</b>&nbsp;
 Show that the convergence is uniform if $f$  is bounded.
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;
+<b>EXERCISE 3:</b>&nbsp;
 Show that if, in the theorem above,  $f$  is measurable (w.r.t. any given $\sigma$-field $\calF$
  over $\Omega$  and the Borel $\sigma$-field over ${\mathbb R}$), then so must be each $f_n.$ 
 <p><a
@@ -473,12 +635,12 @@ Since $E(U) &gt; L',$ this completes the proof.
 
 <p></p>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+<b>EXERCISE 4:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
  $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|&lt;\infty,$ then 
 $$E(X) = \sum p_i x_i.$$
 </p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+<b>EXERCISE 5:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
  $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|=\infty,$ then what are the possibilities for $E(X):$ 
  finite, $\infty$, $-\infty$  or undefined? Give one example of each of the possibilities. Prove the impossibility
  of the other(s).
@@ -616,7 +778,7 @@ This completes the proof.
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;
+<b>EXERCISE 6:</b>&nbsp;
 If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
  and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
  dropped?
@@ -625,7 +787,7 @@ If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables c
 <p></p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;
+<b>EXERCISE 7:</b>&nbsp;
 Suppose that $X_n$'s are nonnegative random variables. Show that 
 $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 </p>

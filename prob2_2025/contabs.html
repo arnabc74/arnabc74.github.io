@@ -145,68 +145,105 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Absolutely continuous distribution</h3>
+<h3>Distributions with density</h3>
 <ul>
 <li>
-<a href="#Basics">Basics</a>
+<a href="#The concept of density">The concept of density</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#PDF from CDF">PDF from CDF</a>
+<a href="#Properties of PDF">Properties of PDF</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problems for practice: set 1">Problems for practice: set 1</a>
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Relation between PDF and CDF">Relation between PDF and CDF</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#A subtle point: Nonuniqueness of PDF">A subtle point: Nonuniqueness of PDF</a>
+<a href="#From PDF to CDF">From PDF to CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#From CDF to PDF">From CDF to PDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#A couple of points to ponder">A couple of points to ponder</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nonuniqueness of PDF">Nonuniqueness of PDF</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Physical interpretation of density">Physical interpretation of density</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Are continuous distributions counterintuitive?">Are continuous distributions counterintuitive?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
 </li>
 <li>
 <a href="#Moment">Moment</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problems for practice: set 2">Problems for practice: set 2</a>
+<a href="#Problem set 4">Problem set 4</a>
 </li>
 <li>
 <a href="#Hazard rate">Hazard rate</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problems for practice: set 3">Problems for practice: set 3</a>
+<a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
 <a href="#Uniform distribution">Uniform distribution</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problems for practice: set 4">Problems for practice: set 4</a>
+<a href="#Problem set 6">Problem set 6</a>
 </li>
 <li>
 <a href="#Miscellaneous">Miscellaneous</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problems for practice: set 5">Problems for practice: set 5</a>
+<a href="#Problem set 7">Problem set 7</a>
 </li>
 </ul>
 <hr/>
-<title>Absolutely continuous distribution</title>
+<title>Distributions with density</title>
 
 <h1><a
-name="Basics">Basics</a></h1>
-We already know this definition:
+name="The concept of density">The concept of density</a></h1>
+We already know the following two definitions.
 <fieldset>
-<legend><b>Definition: </b></legend>A random variable $X$  is said to be  <b><font color="red" size="40">continuous</font></b>  or to have a
- <b><font color="red" size="40">continuous distribution</font></b>  if its CDF is continuous.</fieldset>
-A special class of such random variables is given in the following definition:
-<fieldset>
-<legend><b>Definition: </b></legend>A random variable $X$  is said to be <b><font color="red" size="40">absolutely continuous</font></b>  or to have an
- <b><font color="red" size="40">absolutely continuous distribution</font></b>  if there is some $f:{\mathbb R}\rightarrow[0,\infty)$  such
- that for every $a\leq b\in{\mathbb R}$  we have 
-$$P(X\in(a,b]) = \int_a^b f(x)\, dx.$$
-Any such $f$  is called a <b><font color="red" size="40">probability density function (PDF)</font></b>  (or, more simply,
-a <b><font color="red" size="40">density</font></b>)  of $X.$  
+<legend><b>Definition: Cumulative distribution function (CDF)</b></legend>
+Let $X$  be a random variable. By its <b><font color="red" size="40">cumulative distribution function (CDF)</font></b> we mean the function $F:{\mathbb R}\rightarrow[0,1]$ 
+ given by
+$$F(x) = P(X\leq x),\quad x\in{\mathbb R}.$$
 </fieldset>
 
 <p></p>
+
+<fieldset>
+<legend><b>Definition: Continuous distribution</b></legend>A random variable $X$  is said to be  <b><font color="red" size="40">continuous</font></b>  or to have a
+ <b><font color="red" size="40">continuous distribution</font></b>  if its CDF is continuous.</fieldset>
+A special class of such random variables is given in the following definition:
+<fieldset>
+<legend><b>Definition: </b></legend>A random variable $X$  is said to have <b><font color="red" size="40">probability density function (PDF)</font></b> 
+(or, more simply, a <b><font color="red" size="40">density</font></b>) $f:{\mathbb R}\rightarrow[0,\infty)$
+if for every $a\leq b\in{\mathbb R}$  we have 
+$$P(X\in[a,b]) = \int_a^b f(x)\, dx.$$
+</fieldset>
+
+<img src="image/alert.png">A little point about integration is in order here. There are different types of integration possible, all denoted by the
+ familiar $\int$  symbol. The type of integration that we learn at school is called Riemann integration. In probability
+ theory, we use a generalisation of Riemann integration called <b><font color="red" size="40">Lebesgue integration</font></b>. We shall introduce Lebesgue
+ integration formally later in this course. Until then all our integrations will be in the familiar Riemann sense (possibly improper). So, in particular, we are assuming
+ $f$  to be (improper) Riemann integrable over every interval. Since Riemann integration is a special case of Lebesgue
+ integration, this will not cause any problem. 
+<p></p>
+
+<h2><a
+name="Properties of PDF">Properties of PDF</a></h2>
 The following facts all come from continuity of probability. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -228,19 +265,53 @@ Let $X$  have a density $f(x).$  Then
 </fieldset>
 
 <p></p>
-This last condition is particularly useful. 
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;<font size="-2">[rosspdf31.png]</font><img width="" src="image/rosspdf31.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;<font size="-2">[rosspdf32.png]</font><img width="" src="image/rosspdf32.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;<font size="-2">[rosspdf2.png]</font><img width="" src="image/rosspdf2.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;<font size="-2">[rosspdf3.png]</font><img width="" src="image/rosspdf3.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;<font size="-2">[rosspdf5.png]</font><img width="" src="image/rosspdf5.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<font size="-2">[rosspdf21.png]</font><img width="" src="image/rosspdf21.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<font size="-2">[hpspdf13.png]</font><img width="" src="image/hpspdf13.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;<font size="-2">[hpspdf22.png]</font><img width="" src="image/hpspdf22.png" style="vertical-align:text-top;"></p>
+
 <p></p>
 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If we have some $f:{\mathbb R}\rightarrow[0,\infty)$  with $\int_ {-\infty} ^\infty f(x)\, dx = 1,$ 
- then the function $F:{\mathbb R}\rightarrow{\mathbb R}$  defined as 
-$$F(x) =\int_{-\infty}^x f(t)\, dt$$
-is a CDF.
-</fieldset>
+<h1><a
+name="Relation between PDF and CDF">Relation between PDF and CDF</a></h1>
 
+<h2><a
+name="From PDF to CDF">From PDF to CDF</a></h2>
+We know that the CDF of a random variable must satisfy the following conditions:
+<ol type="">
+<li>$F(x)$  must be non-decreasing.</li>
+
+<li>$F$  must be right continuous.</li>
+
+<li>$\lim_{x\rightarrow-\infty} F(x) = 0.$</li>
+
+<li>$\lim_{x\rightarrow\infty} F(x) = 1.$</li>
+
+</ol>
+Conversely, the <b><font color="red" size="40">fundamental theorem of probability</font></b>  guarantees that any $F:{\mathbb R}\rightarrow[0,1]$  with these properties must
+ be the CDF of some random variable (<i>i.e.</i>, there must exist some probability space and a random variable defined on it with
+$F$  as the CDF.
 <p></p>
-Hence by the fundamental theorem of probability we have the following corollary:
+We have a similar characterisation for densities as well. This is given in the next theorem. 
+<p></p>
+
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 A function $f:{\mathbb R}\rightarrow[0,\infty)$  is a density of some random variable if and only if  $\int_ {-\infty}
@@ -251,7 +322,19 @@ A function $f:{\mathbb R}\rightarrow[0,\infty)$  is a density of some random var
 <b><i>Proof:</i></b>
 Let $F(x) = \int_{- \infty}^x f(t)\, dt.$  
 <p></p>
-Then it is easy to see that $F(x)$  is a CDF. (The following exercises explore the steps).
+Then it is easy to see that $F(x)$  is a CDF. 
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+Since $f(x)\geq 0,$  hence $F$  is non-decreasing. 
+<p></p>
+Also $F$  is continuous (property of indefinite integral), and so right continuous.
+<p></p>
+Since $\int_{-\infty}^\infty f(x)\, dx = 1,$  hence $\lim_{x\rightarrow\infty} F(x) = 1.$  
+<p></p>
+Finally, by definition of improper integral $\lim_{x\rightarrow-\infty} F(x) = \lim_{x\rightarrow-\infty}\int_{-\infty}^x f(x)\, dx = 0.$
+</div></blockquote>
+
 <p></p>
 So by the fundamental theorem of probability, there exists a random variable $X$  with CDF  $F(x).$
 <p></p>
@@ -272,42 +355,34 @@ as required.
 </p>
 
 <h2><a
-name="PDF from CDF">PDF from CDF</a></h2>
-It is possible to recover a density from the CDF as follows. Let $F$  be the CDF. Then define $f$  as follows;
+name="From CDF to PDF">From CDF to PDF</a></h2>
+It is possible to recover a density from the CDF as follows. Let $F$  be the CDF. First, make
+ sure that the $F$ is continuous, and is differentiable everywhere except possibly at countably many points. Then
+ define $f$  as follows;
 $$f(x) = \left\{\begin{array}{ll}F'(x)&\text{if }\mbox{it exists}\\ 0&\text{otherwise.}\end{array}\right. $$
-If the distribution is absolutely continuous, then $f$  would be a PDF. If the distribution is not absolutely continuous, 
-then this may lead to meaningless result. For example, for a
+This $f$  must be a PDF for our CDF. For most applications, $F$  will fail to be differentiable at only finitely
+ many points.
+<p></p>
+
+<img src="image/alert.png"> If the distribution is not continuous (but differentiable everywhere except at countably
+ many points), then this approach would lead to meaningless result. For example, for a
  discrete distribution, the CDF is a step function, and so the above prescription would lead to $f(x)\equiv 0.$
-It is possible to characterise CDFs for absolutely continuous distributions. As the result is not
- very simple, we shall postpone it to the end of the course. 
 <p></p>
 
 <h2><a
-name="Problems for practice: set 1">Problems for practice: set 1</a></h2>
+name="Problem set 2">Problem set 2</a></h2>
 ::<p>
-<b>EXERCISE 1:</b>&nbsp;<font size="-2">[rosspdf31.png]</font><img width="" src="image/rosspdf31.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 9:</b>&nbsp;<font size="-2">[rosspdf1.png]</font><img width="" src="image/rosspdf1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 2:</b>&nbsp;<font size="-2">[rosspdf32.png]</font><img width="" src="image/rosspdf32.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<font size="-2">[rosspdf4.png]</font><img width="" src="image/rosspdf4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;<font size="-2">[rosspdf1.png]</font><img width="" src="image/rosspdf1.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 4:</b>&nbsp;<font size="-2">[rosspdf2.png]</font><img width="" src="image/rosspdf2.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 5:</b>&nbsp;<font size="-2">[rosspdf3.png]</font><img width="" src="image/rosspdf3.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 6:</b>&nbsp;<font size="-2">[rosspdf4.png]</font><img width="" src="image/rosspdf4.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 7:</b>&nbsp;<font size="-2">[rosspdf5.png]</font><img width="" src="image/rosspdf5.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 8:</b>&nbsp;<font size="-2">[rosspdf21.png]</font><img width="" src="image/rosspdf21.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 9:</b>&nbsp;<font size="-2">[hpspdf1.png]</font><img width="" src="image/hpspdf1.png" style="vertical-align:text-top;">
+<b>EXERCISE 11:</b>&nbsp;<font size="-2">[hpspdf1.png]</font><img width="" src="image/hpspdf1.png" style="vertical-align:text-top;">
 The answer should not involve any limit of $F_X.$
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;<font size="-2">[hpspdf8.png]</font><img width="" src="image/hpspdf8.png" style="vertical-align:text-top;">
+<b>EXERCISE 12:</b>&nbsp;<font size="-2">[hpspdf8.png]</font><img width="" src="image/hpspdf8.png" style="vertical-align:text-top;">
 <p></p>
 Here is Equation (3) mentioned above:
 <p></p>
@@ -318,22 +393,31 @@ Here is Equation (3) mentioned above:
 </center>
 </p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<font size="-2">[hpspdf10.png]</font><img width="" src="image/hpspdf10.png" style="vertical-align:text-top;">
+<b>EXERCISE 13:</b>&nbsp;<font size="-2">[hpspdf10.png]</font><img width="" src="image/hpspdf10.png" style="vertical-align:text-top;">
 <p></p>
 Equation (3) is as given in the exercise above.
 </p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<font size="-2">[hpspdf13.png]</font><img width="" src="image/hpspdf13.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 13:</b>&nbsp;<font size="-2">[hpspdf14.png]</font><img width="" src="image/hpspdf14.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 14:</b>&nbsp;<font size="-2">[hpspdf22.png]</font><img width="" src="image/hpspdf22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 14:</b>&nbsp;<font size="-2">[hpspdf14.png]</font><img width="" src="image/hpspdf14.png" style="vertical-align:text-top;"></p>
+
+<h1><a
+name="A couple of points to ponder">A couple of points to ponder</a></h1>
 
 <h2><a
-name="A subtle point: Nonuniqueness of PDF">A subtle point: Nonuniqueness of PDF</a></h2>
-It is  a somewhat disconcerting fact that density of an absolutely continuous distribution is not unique. For intance, if
- changing at any countable number of points would still keep it a density (assuming non-negativity). So there cannot be any
- way to recover <i>the</i>  density given the CDF. However, the following result provides some relief.
+name="Nonuniqueness of PDF">Nonuniqueness of PDF</a></h2>
+It is  a somewhat disconcerting fact that density of a distribution is not unique. For intance, 
+ changing a density at any countable number of points to arbitrary non-negative values would still
+ keep it a density for the same distribution.
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+$f(x)=\left\{\begin{array}{ll}2e^{-2x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$   and
+$f(x)=\left\{\begin{array}{ll}2e^{-2x}&\text{if }x&gt;0,\,x\neq3\\ 10000&\text{if }x=3\\ 0&\text{otherwise.}\end{array}\right.$  
+are both densities corresponding to the same distribution.
+ ■
+</p>
+ However, the following result provides some relief.
 <p></p>
 
 <fieldset>
@@ -357,10 +441,15 @@ But this is impossible, since $\int_{a-\delta}^{a+\delta} f(x)\, dx =\int_{a-\de
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
+Indeed, we shall mostly work with random variables $X,$ for which there will be an density which will
+ be continuous over an interval
+ $I,$  for which $P(X\in I)=1.$
 <h2><a
 name="Physical interpretation of density">Physical interpretation of density</a></h2>
-If $X$  has a density $f(x)$  which is continuous at $x=a$  then $f(a)$  is
- "something like $P(X\approx a)$". The precise statement is 
+If $X$  has a density $f(x)$  which is continuous at $x=a$  then $f(a)$  measures
+ "something like $P(X\approx a)$". However, there are not even approximately equal. In
+ particular, $f(a)$  may very well exceed $1.$  The precise statement is 
 $$f(a) = \lim_{\epsilon\rightarrow 0+} \frac{P(X\in (a-\epsilon, a+\epsilon))}{2 \epsilon}.$$
 Thus, if we have a density like the following, then $X$  is more likely to take values near $B$  than near $A$ 
  or $C.$
@@ -374,10 +463,95 @@ Thus, if we have a density like the following, then $X$  is more likely to take 
 </tr>
 </table>
 </center>
-The most useful way to think about a continuous density is as the limit of a histogram as the sample size goes to infinity,
- and the bins are made finer and finer. Values tightly together contribute to the peaks, while sparser regions have lower
- density values. Indeed, this visualisation has given density its name. 
+Just like everything else in probability theory, densities are also born out of statistical
+ regularity. You might remember that probability came out of limit of proportions, and hence PMF
+ was born out of barplots of relative frequencies. Similarly, densities are born of histograms, a graphical device to show
+ relative frequency densities. Suppose that we have a random variable $X$  that can assume all values in an interval
+ $[a,b].$  If we repeat the underlying random experiment a large number of times independently, then we shall get many
+ values of $X$, that we can show along a number line:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hist1.png"></th>
+</tr>
+<tr>
+<th>Random values of $X$  along the number line.</th>
+</tr>
+</table>
+</center>
+This plot, however, is too clutterred as many points get plotted on top of each other. A more lucid plot is the histogram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hist2.png"></th>
+</tr>
+<tr>
+<th>A histogram of the same random values of $X$.</th>
+</tr>
+</table>
+</center>
+ Here we have partitioned the range of $X$  into a number of subintervals (or
+ <b><font color="red" size="40">bin</font></b> s) and have computed the
+<b><font color="red" size="40">relative frequency density</font></b>
+ for each bin as 
+$$\mbox{rel. freq density of a bin} = \frac{\mbox{number of points in the bin}}{\mbox{sample size}\times
+ \mbox{bin width}}.$$
+Then we have erected a rectangle on each bin with height equal to the relative frequency density for that bin. As sample
+ size tends to infinity, the shape of the histogram stabilises due to statistical regularity. If we now make the bins finer
+ and finer, then the limiting shape of the histogram approaches a certain shape, which is the PDF. 
 <p></p>
+
+
+<p></p>
+
+<h2><a
+name="Are continuous distributions counterintuitive?">Are continuous distributions counterintuitive?</a></h2>
+It may seem counterintuitive that  $\forall a\in{\mathbb R}~~P(X=a)=0$, and yet $P(X\in{\mathbb R})=1.$  There are two ways to
+ think about it:
+<ol type="">
+<li>A straight line segment consists of individual points, each of which has lenth zero, yet
+ the segment does have strictly positive length. The intuituion that lengths of constituents add
+ up to the length of thw whole works only for the countable case.</li>
+
+<li>But when we carry out the random experiment behind $X$  we do get some value $a.$ 
+ If $P(X=a)=0,$  then shouldn't $\{X=a\}$  be an impossible event? Actually, when we say
+ $\{X=a\}$  we are making a measurement, and all measurements have finite precision. If the
+ precision of the measurement is $\epsilon,$  then the satement ''$X$  is found to be
+ $a$'' actually means $X\in\left[a-\frac \epsilon2, a+\frac \epsilon2\right),$  which indeed has some positive probability.</li>
+
+</ol>
+
+<p></p>
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+::<p>
+<b>EXERCISE 15:</b>&nbsp;
+If $X$  has density $e^{-x}$  for $x&gt;0$  (and 0 else), then show that 
+$$\lim_{\epsilon\rightarrow0+}\frac{P(1-\epsilon,1+\epsilon)}{2 \epsilon} = \frac 1e.$$
+</p>
+::<p>
+<b>EXERCISE 16:</b>&nbsp;
+If $X$  has density $e^{-x}$  for $x&gt;0$  (and 0 else), then show that 
+$$\lim_{\epsilon\rightarrow0+}\frac{P[2,2+\epsilon)}{\epsilon} = e^{-2}.$$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;
+If $X$  has density $f(x)$  which is continuous at $x=a,$  then prove that
+$$\lim_{\epsilon\rightarrow0+}\frac{P(a-\epsilon,a+\epsilon)}{2 \epsilon} = f(a).$$
+Can you drop the continuity assumption?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;
+Let $X$  have density $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$  Find 
+$$\lim_{\epsilon\rightarrow0+}\frac{P(1-\epsilon,1+\epsilon)}{2 \epsilon}.$$  
+</p>
 
 <h1><a
 name="Moment">Moment</a></h1>
@@ -386,13 +560,13 @@ name="Moment">Moment</a></h1>
 We had already defined expectation of a random variable in general. That definition reduces to the following.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $X$  be a random variable with density $f.$ 
-Then $E(X)=\int_{-\infty}^\infty x f(x)\, dx$ if $\int_{-\infty}^\infty |x f(x)|\, dx &lt;
- \infty.$  If $\int_{-\infty}^\infty |x f(x)|\, dx = \infty,$  then 
- $E(X)$  does not exist. 
+Let $X$  be a non-negative random variable with density $f.$ 
+Then $E(X)=\int_0^\infty x f(x)\, dx$ (which may be $\infty$).
 </fieldset>
 We shall prove this near the end of this course. Until then we shall treat this as the definition
  of $E(X)$  when $X$  has density $f.$
+<p></p>
+If $X$  can take negative values, then we again use the $X_+$, $X_-$  technique.
 <p></p>
 The following familiar properties of expectation (which are actually consequences of the general
  definition) can be easily shown to hold in this special case:
@@ -435,21 +609,21 @@ properties (<i>e.g.</i>, Chebyshev inequality) are intact.
 <p></p>
 
 <h2><a
-name="Problems for practice: set 2">Problems for practice: set 2</a></h2>
+name="Problem set 4">Problem set 4</a></h2>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<font size="-2">[rosspdf6.png]</font><img width="" src="image/rosspdf6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 19:</b>&nbsp;<font size="-2">[rosspdf6.png]</font><img width="" src="image/rosspdf6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<font size="-2">[rosspdf7.png]</font><img width="" src="image/rosspdf7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 20:</b>&nbsp;<font size="-2">[rosspdf7.png]</font><img width="" src="image/rosspdf7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<font size="-2">[rosspdf8.png]</font><img width="" src="image/rosspdf8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 21:</b>&nbsp;<font size="-2">[rosspdf8.png]</font><img width="" src="image/rosspdf8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<font size="-2">[rosspdf26.png]</font><img width="" src="image/rosspdf26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 22:</b>&nbsp;<font size="-2">[rosspdf26.png]</font><img width="" src="image/rosspdf26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<font size="-2">[rosspdf27.png]</font><img width="" src="image/rosspdf27.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rosspdf27.png]</font><img width="" src="image/rosspdf27.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<font size="-2">[rosspdf33.png]</font><img width="" src="image/rosspdf33.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rosspdf33.png]</font><img width="" src="image/rosspdf33.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<font size="-2">[rosspdf34.png]</font><img width="" src="image/rosspdf34.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rosspdf34.png]</font><img width="" src="image/rosspdf34.png" style="vertical-align:text-top;"></p>
 
 <h1><a
 name="Hazard rate">Hazard rate</a></h1>
@@ -471,7 +645,7 @@ $$\lim_{\delta t\rightarrow 0+} P(X\leq t+\delta t | X &gt; t) =\lim_{\delta t\r
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;Let $X$  have density 
+<b>EXAMPLE 2:</b>&nbsp;Let $X$  have density 
 $$f(x) = \left\{\begin{array}{ll}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.. $$
 Find its hazard rate function.
 <p></p>
@@ -482,19 +656,19 @@ $$h(t) = \frac{e^{-t}}{1-(1-e^{-t})} = 1.$$
 </p>
 
 <h2><a
-name="Problems for practice: set 3">Problems for practice: set 3</a></h2>
+name="Problem set 5">Problem set 5</a></h2>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<font size="-2">[rosspdf17.png]</font><img width="" src="image/rosspdf17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rosspdf17.png]</font><img width="" src="image/rosspdf17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rosspdf18.png]</font><img width="" src="image/rosspdf18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rosspdf18.png]</font><img width="" src="image/rosspdf18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rosspdf28.png]</font><img width="" src="image/rosspdf28.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rosspdf28.png]</font><img width="" src="image/rosspdf28.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rosspdf29.png]</font><img width="" src="image/rosspdf29.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rosspdf29.png]</font><img width="" src="image/rosspdf29.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rosspdf39.png]</font><img width="" src="image/rosspdf39.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rosspdf39.png]</font><img width="" src="image/rosspdf39.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rosspdf40.png]</font><img width="" src="image/rosspdf40.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rosspdf40.png]</font><img width="" src="image/rosspdf40.png" style="vertical-align:text-top;"></p>
 
 <h1><a
 name="Uniform distribution">Uniform distribution</a></h1>
@@ -510,7 +684,7 @@ $$P(X\in B) = \frac{ |B| }{ |A| }.$$
 </fieldset> 
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;Let $Q$  be chosen randomly from the unit square in ${\mathbb R}^2.$  If
+<b>EXAMPLE 3:</b>&nbsp;Let $Q$  be chosen randomly from the unit square in ${\mathbb R}^2.$  If
  $Q\equiv(X,Y)$, then find $P(X&lt; Y).$<p></p>
 <b>SOLUTION:</b>
 Look at the following diagram. 
@@ -531,7 +705,7 @@ Here $|A| = 1$  and $|B| = \frac 12.$  So $P(X &lt; Y) = P( (X,Y)\in B) = \frac{
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;Let $X$  be uniformly distirbuted over $[0,1].$  Then find 
+<b>EXAMPLE 4:</b>&nbsp;Let $X$  be uniformly distirbuted over $[0,1].$  Then find 
 <ol>
 
 <li>$P(X\leq -1)$</li>
@@ -580,39 +754,39 @@ We could replace $(0,1)$  by $[0,1]$  or $(0,1]$  or $[1,0).$
 </p>
 
 <h2><a
-name="Problems for practice: set 4">Problems for practice: set 4</a></h2>
+name="Problem set 6">Problem set 6</a></h2>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpspdf2.png]</font><img width="" src="image/hpspdf2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[hpspdf2.png]</font><img width="" src="image/hpspdf2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpspdf3.png]</font><img width="" src="image/hpspdf3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[hpspdf3.png]</font><img width="" src="image/hpspdf3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpspdf4.png]</font><img width="" src="image/hpspdf4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[hpspdf4.png]</font><img width="" src="image/hpspdf4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 31:</b>&nbsp;<font size="-2">[hpspdf5.png]</font><img width="" src="image/hpspdf5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[hpspdf5.png]</font><img width="" src="image/hpspdf5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 32:</b>&nbsp;<font size="-2">[hpspdf6.png]</font><img width="" src="image/hpspdf6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[hpspdf6.png]</font><img width="" src="image/hpspdf6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 33:</b>&nbsp;<font size="-2">[hpspdf12.png]</font><img width="" src="image/hpspdf12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpspdf12.png]</font><img width="" src="image/hpspdf12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 34:</b>&nbsp;<font size="-2">[hpspdf26.png]</font><img width="" src="image/hpspdf26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpspdf26.png]</font><img width="" src="image/hpspdf26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 37:</b>&nbsp;<font size="-2">[rosspdf11.png]</font><img width="" src="image/rosspdf11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rosspdf11.png]</font><img width="" src="image/rosspdf11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[rosspdf12.png]</font><img width="" src="image/rosspdf12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rosspdf12.png]</font><img width="" src="image/rosspdf12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rosspdf13.png]</font><img width="" src="image/rosspdf13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[rosspdf13.png]</font><img width="" src="image/rosspdf13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rosspdf14.png]</font><img width="" src="image/rosspdf14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[rosspdf14.png]</font><img width="" src="image/rosspdf14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rosspdf16.png]</font><img width="" src="image/rosspdf16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[rosspdf16.png]</font><img width="" src="image/rosspdf16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rosspdf20.png]</font><img width="" src="image/rosspdf20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[rosspdf20.png]</font><img width="" src="image/rosspdf20.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 
@@ -620,19 +794,19 @@ name="Problems for practice: set 4">Problems for practice: set 4</a></h2>
 name="Miscellaneous">Miscellaneous</a></h1>
 
 <h2><a
-name="Problems for practice: set 5">Problems for practice: set 5</a></h2>
+name="Problem set 7">Problem set 7</a></h2>
 
 <p></p>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[rosspdf22.png]</font><img width="" src="image/rosspdf22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[rosspdf22.png]</font><img width="" src="image/rosspdf22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[rosspdf25.png]</font><img width="" src="image/rosspdf25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[rosspdf25.png]</font><img width="" src="image/rosspdf25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[rosspdf36.png]</font><img width="" src="image/rosspdf36.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rosspdf36.png]</font><img width="" src="image/rosspdf36.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

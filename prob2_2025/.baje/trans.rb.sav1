@@ -1,12 +1,12 @@
  @{<NOTE>
 <M>\newcommand{\x}[1]{X_{(#1)}}</M>
 <M>\newcommand{\v}[1]{{\mathbf #1}}</M>
-<HEAD1>Transformations</HEAD1>
+<TITLE>Transformations</TITLE>
 We often work with functions of random variables. New random variables are created out of existing ones via functions. 
 So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
  ones. There are quite a few techniques to do this. 
 
-<HEAD2>Via CDF</HEAD2>
+<HEAD1>Via CDF</HEAD1>
 If we working with univariate distributions, then the most general (and often the simplest)
  technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
 <EXM>
@@ -39,7 +39,26 @@ For <M>y\in[0,1)</M>  we have
 Differentiating we get the density
 <D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in[0,1]</IF> 0<ELSE/></CASES> </D>
 </EXM>
-<HEAD2>Minimum, maximum and other order statistics</HEAD2>
+<HEAD2>Problem set 1</HEAD2>
+<EXR>
+If <M>X</M>  has density <M>f(x)=<CASES>2x<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M>, then find density of <M>X^2.</M>
+</EXR>
+
+<EXR>If <M>X</M>  has constant density over <M>(0,1)</M>  and zero outside it, then guess the
+ density of <M>1-X</M>, and prove your guess.</EXR>
+
+<EXR>If <M>X</M>  has density <M>f(x)</M>, then the density of <M>-X</M>  is 
+<OL type="A"><LI><M>f(x)</M></LI><LI><M>-f(x)</M></LI><LI><M>f(-x)</M></LI><LI><M>-f(-x)</M></LI></OL>
+</EXR>
+
+<EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y) = [[1][2\pi]] e^{-[[12]](x^2+y^2)},</M>  then
+ find the density of <M>R = \sqrt{X^2+Y^2}.</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  is uniformly distributed over the unit disc in <M>\rr^2,</M>  and we write
+ <M>(X,Y)</M>  as <M>(R,\Theta)</M>  in polar coordinates where <M>\Theta\in[0,2\pi),</M>  then
+ find density of <M>R</M>  and also the density of <M>\Theta.</M></EXR>
+
+<HEAD1>Minimum, maximum and other order statistics</HEAD1>
 An interesting application of non-monotonic transformation that can be handled by CDF is about
  <TERM>order statistic</TERM>s.   If we have a random sample <M>X_1,...,X_n</M>, and sort them as <M>X_{(1)}\leq X_{(2)}\leq \cdots X_{(n)},</M> 
  then <M>X_{(i)}</M>  is called the <TERM><M>i</M>-th order statistic</TERM>. 
@@ -51,7 +70,6 @@ We shall first compute the CDF <M>G(x)</M>of <M>\x n.</M>
 <D>G(x) = P(\x n\leq x) = P(\forall i~~X_i\leq x) = P(X_1\leq x)\cdots P(X_n\leq x) =(F(x))^n.</D>
 Hence a density of <M>\x n</M>  is <M>g(x) = G'(x) = n(F(x))^{n-1}f(x).</M>  
 
-<EXR>Use a similar argument to find a density for <M>\x 1</M>, the minimum.</EXR>
 
 There is a particularly simple formula for the joint density of <M>(\x 1,...,\x n)</M>  if we know
  the joint density of <M>(X_1,...,X_n).</M>  Before giving the general form, let us warn up with a simple example.
@@ -117,7 +135,29 @@ If <M>X_1,...,X_n</M>  are IID with density <M>f(x),</M>  then the joint density
 <PF>
 It follows immediately from the above theorem on noticing that the joint density of <M>(X_1,...,X_n)</M>  is <M>f(x_1)\cdots f(x_n).</M>
 </PF>
-<HEAD2>Using Jacobian</HEAD2>
+
+<HEAD2>Problem set 2</HEAD2>
+<EXR>Let <M>X_1,...,X_n</M>  be IID with density <M>f(x).</M>  Find a density for <M>\x 1</M>, the minimum.</EXR>
+
+<EXR>If <M>X_1,...,X_5</M>  are IID with density <M>f(x)=<CASES>2 e^{-2x}<IF>x>0</IF>
+ 0<ELSE/></CASES></M>, find density of <M>\x 5.</M></EXR>
+
+<EXR>If <M>X_1,...,X_n</M>  are IID with density 
+<M>f(x)=<CASES>[[1\theta]]<IF>x\in(0,\theta)</IF>
+ 0<ELSE/></CASES></M>, find a constant <M>c</M>  such that <M>E(c\x n)=\theta.</M></EXR>
+
+<EXR>If <M>X_1,X_2,X_3</M>  are IID with density 
+<M>f(x)=<CASES>1<IF>x\in(0,1)</IF>
+ 0<ELSE/></CASES></M>, find density of <M>\x 2.</M></EXR>
+
+<EXR>If <M>X_1,...,X_n</M>  are IID with common CDF <M>F(x),</M>  then show that the CDF of <M>\x k</M>  is
+<D>P(\x k\leq x) = \sum_{j=k}^n \binom n j F(x)^j(1-F(x))^{n-j}.</D>
+</EXR>
+<EXR>If <M>X_1,...,X_n</M>  are IID with common density <M>f(x),</M>  then find density of <M>\x k.</M>
+</EXR>
+
+
+<HEAD1>Using Jacobian</HEAD1>
 To understand the Jacobian method, it will help to look at the univariate CDF method. Let <M>f(x)</M>  be a density of <M>X</M> 
  and let <M>Y=h(X),</M>  where <M>h(\cdot)</M>  is a bijection with differentiable <M>h ^{-1}(y).</M>
 
@@ -191,7 +231,17 @@ Let <M>(X,Y)</M>  be uniformly distributed over the unit square. Let <M>U = X^2+
 <SOLN/>
 
 </EXM>
-<HEAD2>Sum</HEAD2>
+<HEAD2>Problem set 3</HEAD2>
+<EXR>If <M>(X,Y)</M>  has joint density <M>f(x)=<CASES>x+y<IF>x,y\in[0,1]</IF> 0<ELSE/></CASES></M>,
+ then find the joint density of <M>(X+Y, X-Y).</M> </EXR>
+
+<EXR>If <M>(X,Y)</M>  is uniformly distributed over <M>[0,1]\times[0,2]</M>, then find the joint density of <M>(X^2,X+Y).</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  is uniformly distributed over the red rectangle below, then find
+non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>  are independent.
+<CIMG web="rotrect.png"></CIMG>
+</EXR>
+<HEAD1>Sum</HEAD1>
 Suppose that we are given the joint density of <M>(X,Y).</M>  We want to find the density of
  <M>X+Y.</M>  Can we use Jacobians for this? Yes, but not directly. The Jacobian technique works
  directly only when we are dealing with transformations from <M>\rr^n</M>  to <M>\rr^n,</M>  and
@@ -234,8 +284,6 @@ If <M>(X,Y)</M>  had joint density <M>f(x,y)</M>
  for <M>(x,y)\in\rr^2</M>, then  the density of <M>X+Y</M>  is 
 <D>f_{X+Y}(u) = \int_{-\infty}^\infty f(x,u-x)\, dx.</D>
 </THM>
-
-::<EXR>Prove it using Jacobian.</EXR>
 <THM>If <M>X,Y</M>  are indenedent random variables with densities <M>f(x)</M>  and <M>g(y),</M>  respectively, then 
 the density of <M>X+Y</M>  is 
 <D>f_{X+Y}(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.</D>
@@ -247,16 +295,45 @@ If <M>f,g</M>  are two densities, then their <TERM>convolution</TERM>  is the de
 <D>(f*g)(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.</D>
 </DEFN>
 
+<HEAD2>Problem set 4</HEAD2>
+
+<EXR>Prove the two theorems above using Jacobian.</EXR>
 <EXR>Show that <M>f*g = g*f.</M></EXR>
 
-<EXR>If <M>X,Y</M>  are IID with common density <M>\lambda e^{-\lambda x}</M>  (<M>x>0</M>), then find the</EXR>
-<HEAD2>Quotient</HEAD2>
+<EXR>Does there exist a density <M>i(x)</M>  such that for all densities <M>f</M>  we have <M>i*f = f?</M></EXR>
+
+<EXR>If <M>X,Y</M>  are IID with common density <M>\lambda e^{-\lambda x}</M>  (<M>x>0</M>), then
+ find the density of <M>X+Y.</M></EXR>
+
+<EXR>If <M>X,Y</M>  are independently distributed uniformly over <M>(0,1),</M>  the sketch density of <M>X+Y.</M></EXR>
+
+
+<EXR>If <M>X,Y</M>  are independent with common density <M>f(x)</M>, what will density of <M>X-Y</M>  be? </EXR>
+<HEAD1>Quotient</HEAD1>
+Sometimes we need to work with the quotient of two independent random variables. The following theorem helps when the random variables
+ are both positive and independent.
+
+<THM>
+If <M>X,Y</M>  are independent positive random variables with densities <M>f_X(x)</M>  and <M>f_Y(y),</M>  respectively,
+ then <M>Z=X/Y</M>  has density
+<D>f_Z(z) = \int_0^\infty xf_X(x)f_Y(xz)\, dx</D>
+for <M>z>0.</M>
+</THM>
+<HEAD2>Problem set 5</HEAD2>
+<EXR>Prove the above therem using Jacobian.</EXR>
+
+<EXR>If <M>X,Y</M>  are independent and uniformly distributed over <M>[1,2],</M>  then find density of <M>X/Y.</M></EXR>
+
+<EXR>If <M>X,Y</M>  are IID with common density <M>f(x)=<CASES>e^-x<IF>x>0</IF> 0<ELSE/></CASES></M>,
+  then find density of <M>X/Y.</M></EXR>
+
+<EXR>A point <M>P</M>  is chosen at random from the unit square. Let <M>P</M>  be
+ <M>(R,\Theta)</M>  in polar coordinates. Find</EXR>
 <HEAD1>Problems for practice</HEAD1>
 ::<EXR><EIMG web="hpstrans1.png"/></EXR>
 ::<EXR><EIMG web="hpstrans2.png"/></EXR>
 ::<EXR><EIMG web="hpstrans3.png"/></EXR>
 ::<EXR><EIMG web="hpstrans4.png"/></EXR>
-::<EXR><EIMG web="hpstrans5.png"/></EXR>
 ::<EXR><EIMG web="hpstrans6.png"/></EXR>
 ::<EXR><EIMG web="hpstrans7.png"/></EXR>
 ::<EXR><EIMG web="hpstrans8.png"/></EXR>

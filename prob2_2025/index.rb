@@ -2,13 +2,12 @@
 <HEAD1>Probability II (B1, 2025)</HEAD1>
 <HEAD2>Class notes</HEAD2>
 <OL>
-<LI><LINK to="contabs.html">Absolutely continuous distributions</LINK></LI>
+<LI><LINK to="contabs.html">Distributions with densities</LINK></LI>
 <LI><LINK to="cjoint.html">Joint, marginal and conditional PDF</LINK></LI>
 <LI><LINK to="trans.html">Transformations of random variables</LINK></LI>
-<LI><LINK to="cdistrib1.html">Some standard absolutely continuous distributions</LINK></LI>
+<LI><LINK to="cdistrib1.html">Some standard distributions with densities</LINK></LI>
 <LI><LINK to="normal.html">Multivariate normal and related distributions</LINK></LI>
 <LI><LINK to="measure.html">Notions from measure theory</LINK></LI>
-
 </OL>
 <HEAD2>References</HEAD2>
 The class notes constitute the main reference. It is based on the following books:

@@ -22,15 +22,15 @@ This involves <M>\v b</M>  directly, but <M>A</M>  only through <M>AA'.</M>  So 
 
 <HEAD2>Nonsignular and singular</HEAD2>
 The density of <M>\v X</M>  is 
-<D>(2\pi)^{-[[n2]]}\exp(*(-[[12]]\v x'\v x)*)\mbox{ for }\vx\in\rr^n.</D>
+<D>(2\pi)^{-[[n2]]}\exp(*(-[[12]]\v x'\v x)*)\mbox{ for }\v x\in\rr^n.</D>
 If <M>A</M>  is a nonsingular matrix, then the transform <M>\v X\mapsto A\v X+\v b</M>  is a bijection. So the Jacobian formula
  gives the following density for <M>\v Y = A\v X+\v b</M>
-<D>(2\pi det(AA'))^{-[[n2]]}\exp(*(-[[12]]\v y'(AA') ^{-1}\v y)*)\mbox{ for }\vy\in\rr^n.</D> 
+<D>(2\pi det(AA'))^{-[[n2]]}\exp(*(-[[12]]\v y'(AA') ^{-1}\v y)*)\mbox{ for }\v y\in\rr^n.</D> 
 This is sometimes called a nonsingular multivariate normal to distinguish from the case where <M>A</M>  is singular, where
  <M>\v Y</M>  does not admit a density. 
 
 <EXR>Describe <M>N_1(5,0)</M>  distribution.</EXR>
-<HEAD3>Properties</HEAD3>
+<HEAD2>Properties</HEAD2>
 <THM>
 If <M>X_1,...,X_n</M>  are IID <M>N(\mu, \sigma^2),</M>  then  <M>\v X = (X_1,...,X_n)'\sim N_n((\mu,...,\mu)',\sigma^2 I_n).</M>
 </THM>
@@ -57,7 +57,7 @@ independent, they must also be uncorrelated. However, the converse is not true. 
 First obtain the joint distribution of <M>(X_i,X_j)</M>  using the last theorem. Then show that characteristic function factors
  out.
 </PF>
-
+<HEAD2>Problem set 1</HEAD2>
 
 Next we shall discuss some distributions related to the normal distribution.
 <HEAD1><M>\chi^2</M>  distribution</HEAD1>
@@ -87,14 +87,13 @@ Let <M>X_1,....,X_m,X_{m+1}</M>  be IID <M>N(0,1).</M>
 
 Then <M>\sum_1^{m+1} X_i^2 = \underbrace{\sum_1^m X_i^2}_Y + \underbrace{X_{m+1}^2}_Z.</M>
 
-By the inducion hypothesis both <M>Y\sim Gamma(*([[m2]],[[12]])*)</M>  and <M>Z\simGamma(*([[12]],[[12]])*).</M> 
+By the inducion hypothesis both <M>Y\sim Gamma(*([[m2]],[[12]])*)</M>  and <M>Z\sim Gamma(*([[12]],[[12]])*).</M> 
 
 Also they are independent. 
 
 So <M>Y+Z\sim Gamma(*([[m+1][2]],[[12]])*),</M>  as required. 
 </PF>
-
-<HEAD2>Geometry of <M>\k k</M></HEAD2>
+<HEAD2>Geometry of <M>\chi^2_{(k)}</M></HEAD2>
 If we consider a random vetor <M>\v X</M>  in <M>\rr^k</M>  with IID <M>N(0,1)</M>  components, <M>\|\v X\|^2\sim \k k.</M> 
  This is little more than the definition. 
 
@@ -122,10 +121,11 @@ The following result is used in linear models.
 If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution <M>\sum X_i^2</M>  is
  called <TERM>noncentral <M>\k n</M>  with noncentralty parameter <M>\sum_i\mu_i^2.</M></TERM> 
 </DEFN>
-<HEAD3><M>t</M>  distribution</HEAD3>
-<HEAD3><M>F</M>  distribution</HEAD3>
-
-<HEAD2>Sampling distributions for normal sample</HEAD2>
+<HEAD2>Problem set 2</HEAD2>
+<HEAD1><M>t</M>  and <M>F</M>  distributions</HEAD1>
+<HEAD2>Problem set 3</HEAD2>
+<HEAD1>Sampling distributions for normal sample</HEAD1>
+<HEAD2>Problem set 4</HEAD2>
 
 <HEAD1>Problems for practice</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then
