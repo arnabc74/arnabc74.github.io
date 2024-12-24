@@ -152,19 +152,52 @@ function myFunction() {
 <h3>Notions from measure theory</h3>
 <ul>
 <li>
-<a href="#Introduction">Introduction</a>
-</li>
-<li>
-<a href="#Uncountable sample space">Uncountable sample space</a>
+<a href="#Measure">Measure</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Measurable function">Measurable function</a>
+<a href="#Problem set 1">Problem set 1</a>
 </li>
 <li>
-<a href="#Simple functions to approximate measurable functions">Simple functions to approximate measurable functions</a>
+<a href="#Constructing a measure from intuition">Constructing a measure from intuition</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#Measurable function">Measurable function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+<li>
+<a href="#Lebesgue integration: the idea">Lebesgue integration: the idea</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 4">Problem set 4</a>
+</li>
+<li>
+<a href="#Lebesgue integration: details">Lebesgue integration: details</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
 <a href="#Additivity">Additivity</a>
+</li>
+<li>
+<a href="#Radon-Nikodym theorem">Radon-Nikodym theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
+<a href="#Uses in probability theory">Uses in probability theory</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Expectation">Expectation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Absolute continuity">Absolute continuity</a>
 </li>
 <li>
 <a href="#Special cases">Special cases</a>
@@ -188,13 +221,14 @@ function myFunction() {
 <hr/>
 <title>Notions from measure theory</title>$
 \newcommand{\calF}{{\mathcal F}}
+\newcommand{\calP}{{\mathcal P}}
 \newcommand{\calB}{{\mathcal B}}
 \newcommand{\calD}{{\mathcal D}}
 \newcommand{\ind}{{\mathbb 1}}
 \newcommand{\area}{\mathrm {area}}
 $
 <h1><a
-name="Introduction">Introduction</a></h1>
+name="Measure">Measure</a></h1>
 We often talk about the "size" of different sets. There are various ways to measure the size, length, area, volume, mass,
  cardinality. All these measures share some common properties: they are defined over subsets of
  some universal set (<i>e.g.</i>, length for subsets of ${\mathbb R},$  while area for subsets of
@@ -204,7 +238,7 @@ We often talk about the "size" of different sets. There are various ways to meas
 Let $\Omega$  be our universal set. Let $\calP(\Omega)$  be its power set. Then $\mu:\calP(\Omega)\rightarrow[0,\infty)$ 
  is called a <b><font color="red" size="40">measure</font></b>  if for disjoint $A_1,A_2,...\in\calP(\Omega)$  we have $\mu(\cup A_i) = \sum \mu(A_i).$
 <p></p>
-This definition has a couple of problems. First, if we think of "length" for $\Oemga={\mathbb R},$ 
+This definition has a couple of problems. First, if we think of "length" for $\Omega={\mathbb R},$ 
  then surely we would like to say that "length" of ${\mathbb R}$  is $\infty.$  But our
  definition needs finite length for every subset of ${\mathbb R}.$  So we have to include
  $\infty$  in the range of $\mu.$  This will not cause any problem with the countable
@@ -235,15 +269,32 @@ Notice that the conditions in this definition are much like the probability axio
 <p></p>
 
 <fieldset>
-<legend><b>Definition: $\sigma$-finite meaaure</b></legend>
+<legend><b>Definition: $\sigma$-finite measure</b></legend>
 A measure $\mu$  on $(\Omega,\calB)$  is called <b><font color="red" size="40">$\sigma$-finite</font></b>  if there are disjoints $B_1,B_2,...\in\calB$ 
- such that $\Omega = \cup_i B_i.$
+ such that $\Omega = \cup_i B_i$  and $\forall i~~\mu(B_i)&lt;\infty.$
 </fieldset>
+One example is "length" or ${\mathbb R}.$  Entire ${\mathbb R}$  has infinite length, but ${\mathbb R}$  may be split up into $[n,n+1)$ 
+ for $n\in{\mathbb Z}$  and each of these has finite length.
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;Is $\calP(\Omega)$  a $\sigma$-algebra on $\Omega?$
+<p></p>
+<b>SOLUTION:</b>
+Yes. It is the largest $\sigma$-algebra on $\Omega.$
+ ■
+</p>
 
 <p>
 <b>EXERCISE 1:</b>&nbsp;Show that for any measure $\mu(\phi)=0.$</p>  
 
 <p></p>
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<h1><a
+name="Constructing a measure from intuition">Constructing a measure from intuition</a></h1>
  How do we construct a measure? Typically we start with some subsets of $\Omega$  for which the value is obvious. Then
  we use the countable additivity to define it for less obvious sets. Let's do it for "length". We all agree that the length
  of $(a,b)$  is $b-a$  for $a&lt;b.$  Then what should the length of $(0,1)\cup
@@ -281,32 +332,67 @@ We shall not prove this in this course. But let us understand the significance o
  $A,B$  overlap each other. Also, for each $A$  we should be able to express $A^c$  as a finite union of sets
  for which $\mu$  has been specified. This will help us to place $A$  in the background of $\Omega.$  
 <p></p>
-This for example, shows that we may define "length" for all subsets in $\calB.$
-<p>
-<b>EXAMPLE 1:</b>&nbsp;
-Show that there is a unique measure $\mu$  on $({\mathbb R},\calB)$  such that
- $\mu(\phi)=0$  and $\forall a &lt; b~~\mu\big( (a,b) \big) = b-a$
+
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+The following exercises will apply this concept to define "length" for all
+ subsets in $\calB.$  This measure is called <b><font color="red" size="40">Lebesgue measure</font></b>  on $({\mathbb R},\calB).$
 <p></p>
-<b>SOLUTION:</b>
-Here the obvious specification is given for open intervals and the empty subset of ${\mathbb R}.$
- Now, the intersection of two
- open intervals is either an open interval or $\phi.$  So the first cndition of Caratheordory extension is met.
- ■
+Let  $\calF$  be the collection of all intervals (bounded, unbounded, open, closed,
+ semi-open) in ${\mathbb R}.$  Also we include $\phi$  in $\calF.$  
+We can define the length of an interval by intuition: $(a,b), [a,b], [a,b)$  and $(a,b]$  all should have length
+ $b-a.$  Unbounded intervals should have length $\infty.$
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;
+Show that
+ $\forall A,B\in\calF~~A\cap B\in\calF.$  
 </p>
 
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Is it true that $\forall A\in\calF~~\exists \mbox{disjoint }B_1,...,B_n\in\calF~~A^c = \cup B_i?$  
+Let $A = (0,1).$  How many $B_i$'s would you need? What if $B  = [0,1]?$  or $\frac{a, \infty)?$  or $(-\infty,5)?$ 
+</p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;
+In each case below we give some sequence $(A_n)$ of sets in $\calF$.  check if the sets are disjoint,
+ and whether their union
+ is again in $\calF.$  If so check if  $\sum_n\mu(A_n) = \mu\left(\cup_n A_n\right).$
+<ol type="">
+
+<li>$A_n = [0,n))$  for $n\in{\mathbb N}.$</li>
+
+<li>$A_n = [n,n+1]$  for $n\in{\mathbb N}.$</li>
+
+<li>$A_n = [n,n+1)$  for $n\in{\mathbb N}.$</li>
+
+<li>$A_n = \left[ 2^{-n}, 2^{-n+1}\right))$  for $n\in{\mathbb N}.$</li>
+
+<li>Let $(a_n)$  be a positive sequence with $\sum a_n &lt; \infty.$  Let $S_n = \sum_1^n a_i.$  Let $A_n = (2+S_{n-1}, 2+S_n].$</li>
+
+</ol>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;Is our$\mu$  here $\sigma$-finite on $\calF?$ </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;
+Show that there is a unique measure $\mu$  on $({\mathbb R},\calB)$  such that
+ $\mu(\phi)=0$  and $\forall a &lt; b~~\mu\big( (a,b) \big) = b-a$  and unbounded intervals having length $\infty$
+</p>
+
+
 <h1><a
-name="Uncountable sample space">Uncountable sample space</a></h1>
-We have already seen last semester that for an uncountable $\Omega$  we may not always be able
- to define a function $P:{\mathcal P}(\Omega)\rightarrow[0,1]$ 
- satisfying all the probability axioms.  Please see <a href="../prob1_2024/vitali.html">this page
- from the last semester</a>  to brush up on this. 
-<p></p>
-Hence we defined $\sigma$-algebra. While the simplest $\sigma$-algebras are the trivial one and the entire power
- set, the most commonly used is the Borel $\sigma$-algebra. 
-<p></p>
-Closely related to this is the idea of a measurable function.
-<h2><a
-name="Measurable function">Measurable function</a></h2>
+name="Measurable function">Measurable function</a></h1>
 Let $(\Omega_1,\calF_1)$  and $(\Omega_2,\calF_2)$  be measurable spaces. Then a function $f:\Omega_1\rightarrow\Omega_2$ 
  is called <b><font color="red" size="40">measurable</font></b>  if 
 $$\forall B\in\calF_2~~f ^{-1} (B)\in \calF_1.$$
@@ -334,35 +420,98 @@ Let $(\Omega,\calF,P)$  be a probability space. Let $X:\Omega\rightarrow{\mathbb
 $$P_X(B) = P(X ^{-1}(B))\mbox{ for } B\in\calB.$$
 </fieldset>
 
-<h1><a
-name="Simple functions to approximate measurable functions">Simple functions to approximate measurable functions</a></h1>
-While defining $E(X)$  we had proceeded in three steps: simple, non-negative and general.
- Let us quickly recall what we did. 
-<p></p>
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
 
-<fieldset>
-<legend><b>Definition: Simple random variable</b></legend>
-A random variable is called <b><font color="red" size="40">simple</font></b>  if it takes only finitely many values.
-</fieldset>
-If we visualise $\Omega$  as an interval, a simple random variable is "somewhat like" a step function:
+<h1><a
+name="Lebesgue integration: the idea">Lebesgue integration: the idea</a></h1>
+Now we shall discuss a concept that is very important, and is something we have already seen many times. We all know about
+ Riemann integration. The idea is to measure the area under the graph of a positive function, by approximating it with steps
+ functions with finitely many steps. We do this from both above and below. For this we partition the domain of the function
+ into finitely many intervals and raise step functions on them.
 <center>
 <table width="100%">
 <tr>
-<th><img width="" src="image/simpstep1.png"></th>
+<th><img width="" src="image/rul.png"></th>
 </tr>
 <tr>
-<th>Both the red steps have the same height.</th>
+<th></th>
 </tr>
 </table>
 </center>
-Note, however, that the same value may give rise to multiple steps of the same height.
-Indeed, there may be infinitely many "steps" of the same height! For instance, the function
+The intuition is that if we take finer and finer partitions and raise the red rectangles as much as we can under the graph,
+ we shall come arbitrarily close to the area under the graph. If we do the same from above  the graph using the blue rectangles,
+ then also we should come arbitrarily close to the same area. So our intuition dictates that 
+<blockquote>
+sup (red area) = inf(blue area),
+</blockquote>
+and we plan to use this common value as the area under the curve. This brilliant intuition has just one loop hole, for some
+ functions the sup does not equal the inf! We get very anglry with them, and call them non-Riemann integrable. However, these
+ bad functions cannot be completely avoided, as they crop up natirally from time to time, usually as the limit of Riemann integrable
+ functions. 
+<p></p>
+Lebesgue had another brilliant idea. Instead of partitionaing the domain is plan was to partition the codomain. So he also
+ got red rectangles below the graph and blue rectangles above.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lul.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ And like Riemann he also hoped that
+<blockquote>
+sup (red area) = inf(blue area),
+</blockquote>
+and he wanted to call the common area the area under the curve. 
+Just based on these diagrams, you may think that Lebesgue's idea is no different from Riemann's idea. Actually, Lebesgue's
+approximations are more flexible than Riemann's. To understand this look at the graph below, where
+ we have shown the lower Lebesgue approximation using just 4 points in the codomain.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lul2.png"></th>
+</tr>
+<tr>
+<th>Just three heights, but so many rectangles!</th>
+</tr>
+</table>
+</center>
+Each value in the codomain, can give birth to many rectangles, depending on the ups and downs of the curve. 
+<p></p>
+Indeed, a single height can give rise to infinitely many "rectangles"! 
+For instance, the function
 $$f(x) =\left\{\begin{array}{ll}1&\text{if }x\in{\mathbb Q}\cap[0,1]\\ 0&\text{otherwise.}\end{array}\right. $$ 
-is a simple function on $[0,1].$  This is of course not a step function (with finitely many steps). 
+takes only two values, 0 and 1. Yet each value is taken infinitely often. 
+So you can now feel why Lebesgues approximations are more flexible than Riemann's:
+<blockquote>
+Riemann's approximations are special cases of Lebesgue's approximations, but
+ not <i>vice versa</i>. 
+</blockquote>
+
+<p></p>
+As a result here
+ the sup(red) and inf(blue)
+ match for a more general class
+ of functions. In fact, they match for all measurable functions. 
+This  also shows that if Riemann's sup(red) and inf(blue) areas meet, then so must Lebesgue's, and the meeting
+ point would be the same. 
+<p></p>
+Now we shall take a rigourous look at Lebesgue's idea. First we need a name for the functions that Lebesgue is using to approximate
+ areas. We shall call them <b><font color="red" size="40">simple</font></b>  functions.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Simple function</b></legend>
+A function is called <b><font color="red" size="40">simple</font></b>  if it takes only finitely many values.
+</fieldset>
+
 <p></p>
 We can  express a simple function mathematically using indicator functions. Let a simple function take only the values $c_1,...,c_k$ 
- (all distinct). Let $A_i = \{\omega\in\Omega~:~f(\omega) = c_i\}.$  For instance, for the simple function shown above,
- we have the following $A_i$'s.
+ (all distinct). Let $A_i = \{\omega\in\Omega~:~f(\omega) = c_i\}.$  An example is shown below.
 <center>
 <table width="100%">
 <tr>
@@ -377,27 +526,51 @@ The $A_i$'s need not always be just finite union of intervals. For example, in c
  just two $A_i$'s, one is ${\mathbb Q}\cap [0,1]$  and the other ${\mathbb Q}^c\cap [0,1].$  However, we always have only
  finitely many $A_i$'s. We can now write the simple function as 
 $$f(\omega) = \sum_{i=1}^k c_i\ind_{A_i}(\omega).$$
-So far we have not talked about measurability. It should be easy to check that $f$  is measureable if and only if $\forall i~~A_i\in\calF.$
+Lebesgue wanted to think that each $c_i$  constributes a "rectangle" with  height $c_i$  on
+ the base $A_i.$ Such a "rectangle" should have
+ area $c_i\times$ length
+ of $A_i$. But how to measure length of $A_i$'s, if they are not just 
+ countable unions of intervals? It is this thing that first
+ led him to create measure
+ theory. As we have already
+ stated, not all subsets
+ are measurable. So naturally he restrited his attention to only those simple functions $\sum_i
+ c_i\ind_{A_i}$, where the $A_i$'s are measurable. In modern language he assumed $A_i\in\calB.$  (By the way,
+ he had originally used a much larger $\sigma$-algebra called the Lebesgue
+ $\sigma$-algebra, which we rarely use nowadays).  
 <p></p>
-We took a supremum in the
- second step. This is motivated by the following result. 
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Prove that  $\sum_i c_i\ind_{A_i}$    is measureable if and only if $\forall i~~A_i\in\calF.$</p>
+
 <p></p>
+The next step in Lebesgue's intuition is to approximate the given function using simple functions,
+ from below and from above. It turns out that this is possible for <i>every</i>  measurable non-negative function. Indeed,
+the next theorem actually constructs a non-decreasing sequence of simple functions that approach the given
+ function from below.  A very similar construction works for approximating the function from above. 
+<p></p>
+
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+
+<h1><a
+name="Lebesgue integration: details">Lebesgue integration: details</a></h1>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $X:\Omega\rightarrow[0,\infty)$  is any random variable, then there is a non-decreasing sequence $(S_n)$  of simple
- random variables such that
-$$\forall \omega\in\Omega~~S_n(\omega) \uparrow X(\omega).$$ 
+If $f:\Omega\rightarrow[0,\infty)$  is any measurable function, then there is a non-decreasing sequence $(s_n)$  of simple
+measurable functions such that
+$$\forall \omega\in\Omega~~s_n(\omega) \uparrow f(\omega).$$ 
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $S_n$  as follows. First partition
+For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $s_n$  as follows. First partition the codomain
  $[0,\infty)$  into $2$  intervals $[0,n)$  and $[n,\infty)$  and then
  subdivide the first into equal subintervals of length $2^{-n}.$  So you get $N=n2^n+1$  subintervals in all. Call
- these $[a_1,b_1),...,[a_N,b_N).$  These constitute a partition of $[0,\infty).$
+ these $[a_1,b_1),...,[a_N,b_N).$  These constitute a partition of the codomain.
 <p></p>
-Now  set $S_n(\omega) = a_k$  if $X_n(\omega) \in[ a_k,b_k).$  
+Now  set $s_n(\omega) = a_k$  if $f(\omega) \in[ a_k,b_k).$  
 <p></p>
 The following picture shows this process for $n=1$  and $n=2.$
 <center>
@@ -412,11 +585,11 @@ The following picture shows this process for $n=1$  and $n=2.$
 </center>     
 
 <p></p>
-For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $S_n(\omega)\leq S_{n+1}(\omega).$
+For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $s_n(\omega)\leq s_{n+1}(\omega).$
 <blockquote><a
 href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
 class="ans" id="reason1">
-If $S_n(\omega) = a$   and $S_{n+1}(\omega) = b,$  then $X(\omega)\in[a+2^{-n})$  and also $X(\omega)\in[b+2^{-n-1}).$ 
+If $s_n(\omega) = a$   and $s_{n+1}(\omega) = b,$  then $f(\omega)\in[a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
 <p></p>
 So, by the contruction of the partitions, $[b+2^{-n-1})\subseteq[a,2^{-n}).$
 <p></p>
@@ -424,14 +597,14 @@ Thus, $a\leq b,$  as required.
 </div></blockquote>
 
 <p></p>
-Again, for each $\omega\in\Omega$  we have $S_n(\omega)\rightarrow X(\omega).$  
+Again, for each $\omega\in\Omega$  we have $s_n(\omega)\rightarrow f(\omega).$  
 <blockquote><a
 href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
 class="ans" id="reason2">
 To show:
 <p></p>
 
-<div class="box">Target</div>$\forall \omega\in\Omega~~\forall \epsilon&gt;0~~\exists M\in{\mathbb N}~~\forall n\geq M ~~|X(\omega)-S_n(\omega)| &lt; \epsilon.$
+<div class="box">Target</div>$\forall \omega\in\Omega~~\forall \epsilon&gt;0~~\exists M\in{\mathbb N}~~\forall n\geq M ~~|f(\omega)-s_n(\omega)| &lt; \epsilon.$
 <p></p>
 
 <div class="box">$\forall \omega$</div> Take any $\omega\in\Omega.$
@@ -447,9 +620,9 @@ To show:
 <div class="box">$\forall n$</div> Take any $n\geq M.$
 <p></p>
 
-<div class="box">Check</div>Since $X(\omega) &lt; M\leq n,$  hence $S_n(\omega) &lt; n.$  
+<div class="box">Check</div>Since $f(\omega) &lt; M\leq n,$  hence $s_n(\omega) &lt; n.$  
 <p></p>
-Thus, $X(\omega) \in [S_n(\omega),f_n(\omega)+2^{-n}).$
+Thus, $f(\omega) \in [s_n(\omega),s_n(\omega)+2^{-n}).$
 </div></blockquote>
 This completes the proof.
 <b><i>[QED]</i></b>
@@ -458,31 +631,24 @@ This completes the proof.
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;
+<b>EXERCISE 8:</b>&nbsp;
 Show that the convergence is uniform if $f$  is bounded.
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;
+<b>EXERCISE 9:</b>&nbsp;
 Show that if, in the theorem above,  $f$  is measurable (w.r.t. any given $\sigma$-field $\calF$
- over $\Omega$  and the Borel $\sigma$-field over ${\mathbb R}$), then so must be each $f_n.$ 
-<p><a
-href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
-class="ans" id="lab1">
-Since $f_n$  can take only finitely many value, it is enough (why?) to show that for any $a\in{\mathbb R}$  the set $f_n
- ^{-1}\{a\}\in\calF.$   
-<p></p>
-Express $f_n ^{-1}\{a\}$  as $f ^{-1}$(some set). 
-</div></p>
-
+ over $\Omega$  and the Borel $\sigma$-field over ${\mathbb R}$), then so must be each $s_n.$ 
 </p>
 
+<p></p>
+The next step is to show that the red areas indeed converge to the supremum. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $X$  is a non-negative random variable, and $X_n$'s are simple random variables with $X_n\uparrow X,$ 
- then $E(X_n)\uparrow E(X).$
+If $f$  is a non-negative measurable function, and $s_n$'s are simple random variables with $s_n\uparrow f,$ 
+ then $\int s_n \uparrow \int f.$
 </fieldset>
 
 <p>
@@ -490,40 +656,42 @@ If $X$  is a non-negative random variable, and $X_n$'s are simple random variabl
 Shall show
 <p></p>
 
-<div class="box">Target</div>$\forall \epsilon&gt;0~~\exists N\in{\mathbb N}~~\forall n\geq N~~ E(X_n)&gt; E(X)-\epsilon.$
+<div class="box">Target</div>$\forall \epsilon&gt;0~~\exists N\in{\mathbb N}~~\forall n\geq N~~ \int s_n &gt; \int f-\epsilon.$
 <p></p>
-This will complete the proof, since anyway $(E(X_n))$  is a non-decreasing sequence bounded from above by $E(X)$ 
-  (The case $E(X)=\infty$  is trivially
+This will complete the proof, since anyway $\left(\int s_n\right)$  is a non-decreasing sequence bounded
+ from above by $\int f$ 
+  (The case $\int f=\infty$  is trivially
  included in it). 
 <p></p>
-Since $E(X) = \sup\{E(Z)~:~  Z\leq X,~~Z \mbox{ simple}\},$
+Since $\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},$
 <p></p>
-hence $\exists$ simple $ Z\leq X$  with $E(Z) &gt; E(X)-\epsilon.$ 
+hence $\exists$ simple $ z\leq f$  with $\int z &gt; \int f-\epsilon.$ 
 <p></p>
 Fix some $\delta&gt;0.$
 <p></p>
-Let $A_n =\{X_n &gt; Z-\delta\}.$
+Let $A_n =\{s_n &gt; z-\delta\}.$
 <p></p>
-Then $P(A_n)\rightarrow 1.$
+Then $A_n\uparrow\Omega.$
 <blockquote><a
 href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
 class="ans" id="reason3">
-Since $X_n$'s are non-decreasing, hence $A_1\subseteq A_2\subseteq A_3\subseteq\cdots.$  
+Since $s_n$'s are non-decreasing, hence $A_1\subseteq A_2\subseteq A_3\subseteq\cdots.$  
 <p></p>
-Also since $\forall\omega\in\Omega~~X_n(w)\uparrow X(w),$  hence $\cup_n A_n=\Omega.$  
+Also since $\forall\omega\in\Omega~~s_n(w)\uparrow f(w),$  hence $\cup_n A_n=\Omega.$  
 </div></blockquote>  
 
 <p></p>
-So $E(X_n)\geq E(X_n\ind_{A_n}) \geq E(Z\ind_{A_n}) \geq E(Z)-MP(A_n^c)-\delta,$
+So $\int s_n\geq \int_{A_n} s_n \geq \int_{A_n}z  \geq \int z-M\mu(A_n^c)-\delta,$
 where $M = \max Z.$  
 <p></p>
-Taking limit $\lim E(X_n) \geq Z- \delta.$  
+Taking limit $\lim \int s_n \geq z- \delta.$  
 <p></p>
-Since $\delta&gt;0$  is arbitrary, we have $\lim E(X_n) \geq E(Z).$  
+Since $\delta&gt;0$  is arbitrary, we have $\lim \int s_n \geq \int z.$  
 <b><i>[QED]</i></b>
 </p>
 
-<p></p>
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
 
 <h1><a
 name="Additivity">Additivity</a></h1>
@@ -547,6 +715,25 @@ Also $E(S_n+T_n) = E(S_n)+E(T_n).$  Te result now follows on taking limit of bot
 Then we show that for $a&gt;0$  we have $E(aX) = E(X).$  This proof also proceeds in three steps (left as an exercise).
 <p></p>
 Finally, we show $E(-X)= -E(X).$  Let $Y = -X.$  Then $Y_+ = X_-$  and $Y_- = X_+.$  So $E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).$
+<p></p>
+
+<h1><a
+name="Radon-Nikodym theorem">Radon-Nikodym theorem</a></h1>
+
+<h2><a
+name="Problem set 6">Problem set 6</a></h2>
+
+<p></p>
+
+<h1><a
+name="Uses in probability theory">Uses in probability theory</a></h1>
+
+<h2><a
+name="Expectation">Expectation</a></h2>
+
+<h2><a
+name="Absolute continuity">Absolute continuity</a></h2>
+
 <p></p>
 
 <h1><a
@@ -635,12 +822,12 @@ Since $E(U) &gt; L',$ this completes the proof.
 
 <p></p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+<b>EXERCISE 10:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
  $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|&lt;\infty,$ then 
 $$E(X) = \sum p_i x_i.$$
 </p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+<b>EXERCISE 11:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
  $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|=\infty,$ then what are the possibilities for $E(X):$ 
  finite, $\infty$, $-\infty$  or undefined? Give one example of each of the possibilities. Prove the impossibility
  of the other(s).
@@ -778,7 +965,7 @@ This completes the proof.
 <p></p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;
+<b>EXERCISE 12:</b>&nbsp;
 If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
  and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
  dropped?
@@ -787,7 +974,7 @@ If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables c
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;
+<b>EXERCISE 13:</b>&nbsp;
 Suppose that $X_n$'s are nonnegative random variables. Show that 
 $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 </p>
