@@ -1,0 +1,48 @@
+//[Update:[Sun Dec 30 IST 2018]]
+/*History:
+**Fri Oct 05 2018
+First working version
+**Sat Oct 06 2018
+  Added ::
+  **Sun Oct 21 2018
+Added the shift feature.
+**Sun Dec 30 2018
+Now to-do images may be listed without the preceding ::
+
+ */
+parser grammar ChitraParser;
+options { tokenVocab=ChitraLexer;}
+
+puro : before island? after;
+
+before: DONTCARE*;
+
+after: DONTCARE*;
+
+island: OPEN patalata+ CLOSE;
+
+patalata: pata | lata;
+
+lata:  PLUS NUM;
+pata : NUM body;
+
+body : upar | nich | upar nich ;
+
+upar: TOP guchchha ;
+
+nich: BOT guchchha ;
+
+guchchha: height? pic+;
+
+pic: COL2? name ityadi?;
+
+height: NUM;
+
+name: TEXT;
+
+ityadi: LBRA lab? scl? wdth? RBRA;
+
+lab: LAB EQ TEXT;
+scl: SCL EQ NUM;
+wdth: WDTH EQ NUM;
+

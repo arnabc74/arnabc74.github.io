@@ -1,0 +1,37 @@
+%%
+
+%class JPrint
+%{
+int lev = 0;
+boolean hide = false;
+int base = 0;
+%}
+%standalone
+
+%%
+"{{{ "\*.+  
+     { 
+       if(!hide)
+          System.out.println(yytext());
+       lev++; 
+     }
+
+"{{{ "[^\*].+  
+    {
+         if(!hide) {
+            System.out.println(yytext()+"...");
+            base = lev;
+         }
+         hide = true;
+         lev++;
+    }    
+
+.+"}}}".+\n  
+  {
+     lev--;
+    if(!hide) System.out.print(yytext());
+    if(lev==base) hide = false;
+  }
+
+.|\n    {if(!hide) System.out.print(yytext());}
+

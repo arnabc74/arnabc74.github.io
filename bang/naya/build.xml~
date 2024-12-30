@@ -1,0 +1,54 @@
+<project name="BangEditor">
+ <target name="compile">
+  <mkdir dir="classes"/>
+  <javac srcdir="." 
+         destdir="classes" 
+         includesFile="include.txt"
+         debug="true"
+         debuglevel="lines,vars,source" 
+         includeantruntime="false"/>
+ </target>
+
+ <target name="biltu" depends="compile">
+  <delete file="BangEditor.jar"/>
+  <copy file="LIPI_B.TTF" todir="classes"/>
+  <copy file="biltu.prop" 
+        tofile="classes/edit.prop" 
+        overwrite="true"/>
+  <jar jarfile="BangEditor.jar" 
+       basedir="classes" 
+       manifest="manifest.txt"/>
+ </target>
+
+ <target name="baba" depends="compile">
+  <delete file="BangEditorSimp.jar"/>
+  <copy file="LIPI_B.TTF" todir="classes"/>
+  <copy file="baba.prop" 
+        tofile="classes/edit.prop" 
+        overwrite="true"/>
+  <jar jarfile="BangEditorSimp.jar" 
+       basedir="classes" 
+       manifest="manifest.txt"/>
+ </target>
+
+ <target name="public" depends="compile">
+  <delete file="BangEditorPub.jar"/>
+  <copy file="ALIPI_B1.TTF" todir="classes"/>
+  <copy file="public.prop" 
+        tofile="classes/edit.prop" 
+        overwrite="true"/>
+  <jar jarfile="BangEditorPub.jar" 
+       basedir="classes" 
+       manifest="manifest.txt"/>
+  <signjar jar="BangEditorPub.jar" 
+           alias="signFiles"
+           keystore="compstore"
+           keypass="kpi135"
+           storepass="ab987c"/>
+ </target>
+
+
+ <target name="clean">
+  <delete dir="classes"/>
+ </target>
+</project>

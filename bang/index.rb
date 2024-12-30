@@ -1,0 +1,61 @@
+<NOTE>
+<TITLE>arNab chak+rabar+tIr bA.nlA pAtA</TITLE>
+<HEAD1>galpa</HEAD1>
+<UL>
+<LI><LINK to="bhut.html">bhUt</LINK>- barAnagar s+Teshane nAki bhUt Achhe! </LI>
+<LI><LINK to="goyenda.html">ekTA anyarakam goyendA galpa</LINK>- byAngAlore ekdin barSAy hoTeler ghare
+ATke basechhilAm . takhn lekhA . </LI>
+<LI>
+<LINK to="awaj.html">AoyAj</LINK>- eTA ekebArei bAs+tab ghaTanA . 
+yadio ghaTanATA yakhan ghaTechhila takhan likhba likhba kareo lekhA hay ni . 
+bachhar khAnek pare kalkAtAr ch,nAdni chake ekTA khas.h khaser dokAne base thAkte hayechhila ghan+TAkhAnek.
+khas.h khas.h shabdaTA mAthAy ghurpAk khAchchhila,   tA thekei puraNo smrriti jege uThe sei dokAne basei  lekhA . 
+</LI>
+<LI>
+<LINK to="rang.html">ra.n</LINK>- Trek karte khub bhAlo lAge . ei gal+pe yeTA likhechhi tAr kAchhAkAchhi ekTA byApAr
+ hayechhila ekbAr sAndAkphu yAbAr pathe . pherAr samaye Trene base likhechhilAm ei galpaTA .   
+</LI>
+</UL>
+<HEAD2>kabitA</HEAD2>
+kabitA lekhATA katakTA bAtiker mata . shabder sAthe shabda mille mane ekTA akAraN phur+ti hay . 
+kAuke u.tsAh kare shonAte gelei Ter pAi ye phur+tiTA nitAntai srriSTir Anande . u.tkarSer kAraNe nay . beshI shonAte 
+gele bujhi shrotA santras+ta haye uThchhe--ei re AbAr kabitA shonAte Aschhe! sedik diye @{<E>internet</E>@} jAygATA 
+nirApad, AmAr paxeo baTe pAThakder paxeo! 
+<UL>
+<LI><LINK to="invictus.html">@{<E>Invictus</E>@}</LINK> bale ekTA i.nrAjI kabitAr tarjamA. oi nAme @{<E>Clint Eastwood</E>@}  
+parichAlita ekTA asAdhAraN sinemA Achhe, yAte ei kabitAr kathA ghurefire esechhe. sinemATA dekhAr par thekei anubAdTA karAr 
+ichchhA jege uThechhila. 
+</LI>
+<LI><LINK to="tyapa.html">si.nha-T,nyApA sa.nbAd</LINK> eTA ekTA i.nrAjI hAsir kabitAr anubAd.</LI>
+<LI>kono ek surasik (eba.n surArasik)  bhadralok nijer surAsak+tir dAy bhagabAner upar chApAnor 
+abhiprAye ekTA majAr kabitA likhechhilen. tAr bangAnubAd <LINK to="god.html">eTA</LINK> .</LI>
+<LI>@{<E>Oliver Wendell Holmes</E>@}-er ekTA kabitAr 
+<LINK to="buro.html">anubAd</LINK> .</LI>
+<LI>@{<E>Oliver Goldsmith</E>@}-er pichhane @{<E>Hillaire Belloc</E>@}-er TippanI, bA.nlAy tAr 
+<LINK to="wealth.html">anubAd</LINK> .</LI> 
+<LI>TippanIr  kh,nochA theke <LINK to="newton.html">@{<E>Pope</E>@}</LINK>-i bA bAd thAke kena?</LI> 
+<LI>ebAr ekTA <LINK to="bandibar.html">pyAroDi</LINK>,  rabi ThAkurer ``bandI bIr'' kabitAr .  
+nAm diyechhi ``bandI bar'' . </LI>
+<LI>ebAr ekTA <LINK to="patal.html">udbhaT kabitA</LINK>, eTA pyAroDi bA anubAd nay, 
+ekebArei swarachita. </LI>
+</UL>    
+<COMMENT>
+<HEAD2>s+walpa-Adrrita o anAdrrita</HEAD2> 
+<UL>
+<LI><LINK to="sukumar/suchi.html">sukumAr rAyer prabandhasa.ngraha (jIbanI o jIb~jantu)</LINK></LI>
+<LI><LINK to="nazrul/suchi.html">kichhu naj~rul gIti</LINK></LI>
+<LI><LINK to="rajani/suchi.html">kichhu rajanIkAnter gAn</LINK></LI>
+</UL>
+ </COMMENT>
+<HEAD2>@{<E>Internet</E>@}-er anyatra</HEAD2> 
+<UL><LI>@{<E><LINK to="http://www.geetabitan.com">www.geetabitan.com</LINK></E>@} ekTA 
+dAruN @{<E>website.</E>@} puro swarabitAnTA @{<E>scan</E>@} kare tolA Achhe ekhAne . rabi ThAkurer gAn~guloke nAnAbhAbe 
+bhAg bhAg kare sAjiye rAkhA Achhe, parYAy anuYAyI, tAl anuYAyI, rAg anuYAyI, eirakam .    </LI>
+<LI> @{<E><LINK to="http://www.banglainternet.com">www.banglainternet.com</LINK></E>@} ekTA bA.nlAdeshI 
+@{<E>website.</E>@} bijnAnbiSayak nAnArakam bA.nlA bai pAoyA yAy . Thik @{<E>physics, chemistry,</E>@} a.nka shekhAr bai nay.
+mUlata.H bijnAn niye AlochanA, bijnAnIder jIbanI, ki.nbA
+d\oinandin jIbane bijnAner dhAraNA,  eisab.</LI>
+</UL>
+
+</NOTE>
+ 

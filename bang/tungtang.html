@@ -1,0 +1,666 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#টুং টাঙের টিউটোরিয়াল">টুং টাঙের টিউটোরিয়াল</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#ব্যাপারটা কী? ">ব্যাপারটা কী? </a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#টুং টাঙের মূল কথা">টুং টাঙের মূল কথা</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#কি যন্ত্র">কি যন্ত্র</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#কী-বোর্ডের সঙ্গে প্রথম পরিচয়">কী-বোর্ডের সঙ্গে প্রথম পরিচয়</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#বাজাব কি করে?">বাজাব কি করে?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#আর কি বাজানো যায়?">আর কি বাজানো যায়?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#এক গুচ্ছ গানের টুং টাং সুর">এক গুচ্ছ গানের টুং টাং সুর</a>
+</li>
+</ul>
+<hr/>
+<title>টুং টাঙের টিউটোরিয়াল</title>
+
+<h1><a
+name="টুং টাঙের টিউটোরিয়াল">টুং টাঙের টিউটোরিয়াল</a></h1> 
+
+<h2><a
+name="ব্যাপারটা কী? ">ব্যাপারটা কী? </a></h2>
+ যদি জিজ্ঞাসা করি কোন ধরণের গান সারা বিশ্বে সর্বকালে সবচেয়ে বেশী জনপ্রিয়, তবে হয়তো অনেকেই 
+ধন্দে পড়ে যাবে ৷ কিন্তু এর অতি সহজ উত্তর হল--গুন্ গুন্ করে গান! বাসে-ট্রামে-ট্রেনে-খনিতে এমন কি 
+নাৎসী ক্যাম্পেও গুন্ গুন্ করে গান গাইবার লোকের অভাব হয় না ৷ এর জন্য কেউ কাউকে পয়সা দেয় না, এমন কি 
+একজনের গুনগুনানিতে অন্যেরা অনেক সময়ে বিরক্তও হয়, তবু মানুষ নিজের আনন্দে নিতান্ত হেঁড়ে গলাতেও 
+গুন্ গুন্ করে থাকে ৷ 
+<p></p>
+কন্ঠ সঙ্গীতের জগতে যেমন গুন্&zwnj;&zwnj;গুনানি, তেমনি   যন্ত্রসঙ্গীতের জগতে হল  টুংটাং করা ৷ হাতের কাছে 
+একটা গীটার আছে, অমনি ইচ্ছা করে তারগুলোয় একটু টংকার করে  শব্দ করি ৷ হার্মোনিয়মের রীড টিপে 
+প্যাঁ পোঁ আওয়াজ করি, পাশের বাড়ির ছেলেটার মাউথ অর্গানে ফুঁ মেরে দেখি সুর বেরোয় কিনা ৷ 
+দুঃখের কথা অধিকাংশ সময়েই যেটা বেরোয় সেটার সঙ্গে সুরের চেয়ে অসুরের মিলই বেশী ৷ টুংটাঙের সঙ্গে 
+গুন্&zwnj;&zwnj;গুনাণির এই একটা মস্ত তফাৎ ৷ নিজের গুন্ গুনানি নিজের কানে সাধারণতঃ  ভালোই শোনায়, কিন্তু 
+নিজের টুংটাঙের শব্দ নিজের কানেই এমন বেসুরো ঠেকে যে তাড়াতাড়ি চারদিকে চেয়ে দেখি--কেউ শুনে ফেলল 
+কিনা!    
+
+<p></p>
+এই নিয়ে প্রাণে ভারী দুঃখ ছিল ৷ ওস্তাদ গায়ক হতে চাই নে, নিজের মনে গুন্ গুন্ করেই আমি খুশী ৷ 
+তেমনি ওস্তাদ বাজিয়ে হবারও সাধ নেই, খালি যদি সহজ কোনো যন্ত্রে টুং টাং করে সুর তুলতে পারতাম ৷ 
+একবার একটি ছেলেকে দেখেছিলাম, সে পাতা দিয়ে কি করে একটা ভেঁপু বানিয়ে তাতে দিব্যি সুন্দর 
+একটা মেঠো সুর বাজিয়ে শুনিয়েছিল ৷ সত্যি বলব, মনে মনে  Einstein হতে যতটা ইচ্ছে
+ হয়েছে, তার চেয়েও অনেক বেশী ইচ্ছে হয়েছে এই কৌশলটা রপ্ত করতে ৷ ভেঁপু বানানোটা ততটা নয়,
+অনায়াসে একটা সহজ সুর বাজাতে পারার অশিক্ষিতপটুত্বকে মনে মনে ঈর্ষা করেছি ৷       
+<p></p>
+বিভিন্ন সময়ে অনেকের সান্নিধ্যে এসেছি যারা একেকটা যন্ত্র ভালো বাজাতে পারে ৷ তারা ওস্তাদ, কিন্তু সেই 
+চট্ করে টুং টাং করতে পারার রহস্য কেউই বলতে  পারে নি ৷  ৷ মনের বাসনা এদের কাছে ব্যক্ত করতে 
+গেলে অনুকম্পার হাসি হেসেছে--যেন আমি বহুবছরের আয়াস-সাধ্য ধন ফাঁকি দিয়ে মেরে দেবার চেষ্টা 
+করছি ৷   
+<p></p>
+মজার কথা হল টুং টাং করার একটা সহজ কায়দা কিন্তু সত্যিই আছে ৷ যে কায়দা জানলে অনেক যন্ত্র 
+থেকেই নিজের ইচ্ছে মত সুর বার করা সম্ভব ৷ সেটা শেখানোই এই ''টুং টাঙের টিউটোরিয়ালের''   উদ্দেশ্য ৷ 
+<h2><a
+name="টুং টাঙের মূল কথা">টুং টাঙের মূল কথা</a></h2>
+যে কোনো বাজনারই মূল উদ্দেশ্য হল শ্রুতিমধুর শব্দ উৎপাদন ৷ শ্রুতিমধুর শব্দ আমাদের চারধারে বিস্তর 
+হয়ে চলেছে--পাখীর ডাক, ঝরণার শব্দ ইত্যাদি ৷ কিন্তু সাধারণতঃ কোনো  বাজনাই এই সব শব্দের 
+অনুকরণ করে না ৷ যে ধরণের শব্দকে অনুকরণ করতে গিয়ে বিভিন্ন সুরেলা যন্ত্রের উৎপত্তি 
+সেটা হল মানুষের কন্ঠস্বর ৷  মানুষের কানে মানুষের গলাটা বড়ই মধুর শোনায় ৷ এবং যে কোনো 
+বাজনার পিছনেই মূল অনুপ্রেরণা হল আমাদের কন্ঠস্বর ৷ আমরা সবাই প্রচুর কথা বলে থাকি, এবং কথার 
+মাধ্যমে ভাবপ্রকাশ করাটা আমাদের পক্ষে খুবই সহজ ৷ এই অতি পরিচিত অভ্যাসটার সঙ্গে বাজানোর যোগসূত্রটা 
+বুঝতে পারলেই টুং টাং করাটা অতি সহজে আসে ৷ এই যোগসূত্রটা কি বোঝা যাক ৷         
+<p></p>
+আমরা কথা বলতে গিয়ে শব্দ করি ৷ এই শব্দটা দু রকমের ৷ এক, যখন আমরা একটা নতুন আওয়াজ  শুরু করি,
+ এবং দুই, যখন  একটা আওয়াজকে টানতে থাকি ৷  একটা 
+উদাহরণ নিই ৷ ধরো তুমি বলছ 
+<blockquote>''আমি ভাত খাই''৷</blockquote> 
+তুমি এই কথাটাই বলার চেষ্টা কর মুখ বন্ধ
+ করে, কেবল হুঁ হুঁ 
+শব্দ করে ৷ ঠিক যেমন করে আমরা কোনো গানের কথা ভুলে গেলে খালি হুঁ হুঁ করে সুরটা ভাঁজতে 
+থাকি--
+<blockquote>''এই পথ যদি না শেষ হয়, তবে হুঁ হুঁ হুঁ হুঁ হুঁ হুঁ হুঁ হুঁ হুঁ!''</blockquote>
+ কয়েকবার ''আমি ভাত খাই'' 
+বাক্যটা এইরকম হুঁ হুঁ করে বল ৷ লক্ষ কর যে তুমি সব সময়েই ''আ''-তে একবার হুঁ করছ, ''মি''-তে 
+আরেকবার, ''ভা''-তে তৃতীয়বার, এবং ''খা''-তে শেষবার ৷ এখানে প্রত্যেকটা হুঁ হল আওয়াজের শুরু ৷ তার মানে 
+আওয়াজের শুরুগুলো হল 
+<blockquote>আ মি ভা খা৷</blockquote>
+ বাদ রইল ভাত-এর ত এবং খাই-এর ই ৷ এরা হচ্ছে আওয়াজকে টেনে নিয়ে
+যাওয়ার উদাহরণ ৷ তার মানে এখানে আওয়াজের চারটে খণ্ড আছে, যাদেরকে আমরা এইভাবে দেখাতে পারি--
+<blockquote>
+
+<span class="token">আ</span> <span class="token">মি</span> <span class="token">ভাত</span> <span class="token">খাই</span> 
+
+</blockquote>
+
+আরেকটা বাক্য দেখি--''আমি বাড়ি যাই৷'' এটাকেও হুঁ হুঁ করে বলার চেষ্টা কর ৷ লক্ষ করবে যে এখানে আওয়াজের 
+শুরুগুলো হল 
+<blockquote>আ মি বা ড়ি যা ৷</blockquote>
+ খালি যাই-এর ই-টাতে আওয়াজকে টেনে যাওয়া হচ্ছে ৷ সুতরাং এখানে পাচ্ছি পাঁচটা 
+খণ্ড--
+<blockquote>
+
+<span class="token">আ</span> <span class="token">মি</span> <span class="token">বা</span> <span class="token">ড়ি</span> <span class="token">যাই</span> 
+
+</blockquote> 
+
+যাকে আমরা আওয়াজের শুরু বললাম, তাকে বোধহয় ভদ্র ভাষায় স্বরাঘাত বা শ্বাসাঘাত জাতীয় কিছু একটা বলে ৷ 
+ইংরাজীতে syllable বলে যে ব্যাপারটা আছে সেটা বোধহয় আমরা যাকে আওয়াজের খণ্ড 
+বললাম সেটারই আরেকটা নাম৷
+তবে ঠিক জোর দিয়ে বলতে পারব না ৷      
+<p></p>
+এই বার একটা গানের লাইন নিয়ে একই কাজ করা যাক ৷ হেমন্ত মুখোপাধ্যায়ের এই গানটা  সবাই শুনেছে--
+<blockquote>''আমি গান গাই, তোমাদের অনুরোধে যে গান করেছি শুরু কেমনে করব সারা সে তো জানা নাই৷''</blockquote>
+ এর মধ্যে 
+''আমি গান গাই'' অংশটা প্রথমে নিতান্ত গদ্যময়ভাবে বল, ঠিক যেমন করে ''আমি ভাত খাই'' বলে ৷ যদি 
+হুঁ হুঁ করে বলার চেষ্টা কর তবে দেখবে এখানেও আওয়াজের খণ্ডগুলো একেবারেই ''আমি ভাত খাই''-এর মতই--
+<blockquote>
+
+<span class="token">আ</span> <span class="token">মি</span> <span class="token">গান</span> <span class="token">গাই</span> 
+
+</blockquote> 
+এবার গানটা সুর দিয়ে গাও ৷ হুঁ হুঁ করে সুর ভাঁজার মত করে ৷ লক্ষকরবে যে যতই সুর দাও না কেন, 
+আওয়াজের খণ্ডগুলো কিন্তু একটুও বদলাচ্ছে না! বস্তুতঃ চাইলে তুমি অতি বিটকেল কোনো সুরেও গেয়ে দেখার চেষ্টা 
+করতে পারো, কিন্তু যতই যা কর না কেন, আওয়াজের খণ্ডগুলো বদলানো অসম্ভব! তাই বলতে পারো যে যেকোনো 
+গানেরই মূল কাঠামোটা আসে মানুষের প্রতিদিনের বলা কথার ভঙ্গী থেকে ৷ তার জন্য একটুও গান 
+বা পিয়ানো, তবলা কি তানপুরা কিচ্ছু জানতে হয় না! 
+<p></p>
+সুতরাং যখনই কোনো গানের লাইন টুং টাং করে বাজাতে চাইবে, প্রথম ধাপটা হবে লাইনটা  নিতান্ত 
+গদ্যময়ভাবে বলা, এবং তারপর সেটাকে হুঁ হুঁ করে বলার চেষ্টা করা ৷ এ থেকে তুমি আওয়াজের খণ্ডগুলো 
+পেয়ে যাবে ৷ কয়েকটা উদাহরণ দেখি ৷ ধরো বাজাতে চাও ''কফি হাউসের সেই আড্ডাটা আজ আর নেই৷'' হুঁ হুঁ 
+করলেই বুঝবে আওয়াজের খণ্ডগুলো এইরকম--
+<blockquote>
+
+<span class="token">ক</span> <span class="token">ফি</span> <span class="token">হাউ</span> <span class="token">সের</span> <span class="token">সেই</span> <span class="token">আড্</span> <span class="token">ডা</span> 
+<span class="token">টা</span> <span class="token">আজ</span> <span class="token">আর</span> <span class="token">নেই</span>  
+
+</blockquote>
+<p class="clear"></p>    
+
+যদি বলি ''পুরাণো সেই দিনের কথা'' তবে হবে
+<blockquote>
+
+<span class="token">পু</span> <span class="token">রা</span> <span class="token">ণো</span> <span class="token">সেই</span> <span class="token">দি</span> <span class="token">নের</span> <span class="token">ক</span> <span class="token">থা</span>
+
+</blockquote>
+ যদি খুব দাঁতভাঙা উদাহরণ নিতে চাও, যেমন ''অজ্ঞানতিমিরান্ধস্য জ্ঞানাঞ্জনশলাকয়া'', তবে পাবে
+<blockquote>
+
+<span class="token">অগ্</span> <span class="token">গা</span> <span class="token">ন</span> <span class="token">তি</span> <span class="token">মি</span> <span class="token">রান্</span> <span class="token">ধস্</span> <span class="token">স</span> 
+<span class="token">জ্ঞা</span> <span class="token">নান্</span> <span class="token">জ</span> <span class="token">ন</span><span class="token">শ</span> <span class="token">লা</span> <span class="token">ক</span> <span class="token">য়া</span>  
+
+</blockquote> 
+
+
+<h2><a
+name="কি যন্ত্র">কি যন্ত্র</a></h2> 
+এই বার এই প্রত্যেকটা আওয়াজের খণ্ডে সুর লাগিয়ে টুং টাং করতে হবে ৷ সেটা কি করে করতে হবে সেটা 
+নির্ভর করছে তুমি কি যন্ত্রে বাজাচ্ছ তার উপরে ৷ যদি হার্মোনিয়াম, বা পিয়ানো বা সিন্থেসাইজার জাতীয় 
+কী-বোর্ডে বাজাও, তবে মনে রাখবে যে এই যন্ত্রগুলো কেবলমাত্র আওয়াজের শুরুগুলোই বাজাতে পারে, টানতে পারে
+না (যদিও আঙুলের আলতো চাপে এমন শ্রুতিবিভ্রম ঘটানো সম্ভব, যাতে মনে হয় যেন একই আওয়াজকে 
+ইনিয়ে বিনিয়ে টেনে নিয়ে যাওয়া হচ্ছে, তবে টুং টাং করার জন্য সেই সব সূক্ষ্ম কায়দা লাগবে না) ৷ যদি 
+হাওয়াইয়ান গীটারে বাজাতে চাও, তবে জানবে যে প্রত্যেকবার তারটাকে আঙুল দিয়ে টানলে নতুন আওয়াজের শুরু হয়, 
+এবং স্টীলটাকে তারের উপর বোলালে একই আওয়াজ টেনে চলতে থাকে ৷ 
+অন্যান্য যন্ত্রের ক্ষেত্রেও একইরকম ব্যপার হওয়া উচিত, যদিও কোনো দিন বাজিয়ে দেখি নি, তাই ঠিক জানি না ৷  
+যদি বেহালা জাতীয় ছড়ের বাজনা হয়, তবে বোধহয়  
+যখনই ছড়ের গতির অভিমুখ নতুন করে শুরু হবে (মানে টানা শুরু হবে বা ঠেলা শুরু হবে) তখনই
+নতুন আওয়াজের শুরু ৷    ছড়টা যতক্ষণ একইদিকে টানতে থাকবে ততক্ষণ একই আওয়াজ ইনিয়ে বিনিয়ে চলতে থাকবে ৷ 
+অবশ্য এটা আমার অনুমান মাত্র ৷
+
+<p></p>
+আমরা এখানে কী-বোর্ড ব্যবহার করে বোঝাব ৷ তার প্রধান কারণ হল এতে আওয়াজের শুরুগুলো নিয়ে মাথা 
+ঘামালেই চলবে (যে সব গানে একই আওয়াজকে অনেকক্ষণ টেনে নিয়ে যাওয়ার ব্যাপার আছে, সেগুলো অবশ্য 
+কী বোর্ডের টুং টাং দিয়ে ভালো উঠবে না) ৷ তবে বহু গানই চমৎকার শোনাবে ৷ দ্বিতীয় কারণ হল 
+কী-বোর্ড খুব সস্তায় পাওয়া যায় ৷  কলকাতায় ফড়িয়াপুকুরে  বাচ্চাদের বেশ কয়েকটা খেলনার দোকান
+আছে, সেখানে  
+এক ধরণের 
+made in China খেলনা কী বোর্ড পাওয়া যায়, সাড়ে তিনশো টাকা দাম (এটা 2015-এর কথা),
+ তাতে টুং টাঙের কাজ দিব্যি 
+চলে ৷ ভেবো না যেন এটা ফড়িয়াপুকুরের দোকানগুলোর  কিংবা ওই কী-বোর্ড কোম্পানির বিজ্ঞাপন৷ আগেভাগেই বলে
+দিই যে এই কী-বোর্ডের আওয়াজ ভীষণ শ্রুতিসুখকর কিছু নয়, তবে আমাদের কাজ চলার পক্ষে যথেষ্ট৷  
+জনৈক উৎসাহী বন্ধু সম্প্রতি  <a href="http://virtualpiano.net">virtualpiano.net</a> নামের
+একটি website-এর কথা জানিয়েছেন, সেখানে একটি online piano আছে, যেটা কম্পিউটারের 
+কী-বোর্ড টিপেই দিব্যি বাজানো যায়, এবং তার জন্য কোনো পয়সাও লাগে না৷ হাতের কাছে অন্য পথ না থাকলে  সেই
+ বিনাপয়সার বীণা দিয়েই শুরু করতে পারো৷ 
+
+<center>
+<fieldset>
+<legend><b>একটা সস্তা কী-বোর্ড</b></legend><img width="80%" src="image/keyboard.jpg"></fieldset>
+</center> 
+ধরা যাক তোমার হাতে এখন দুটো জিনিস--এক, কোনো একটা পরিচিত গানের লাইন যেটা তুমি বাজাতে 
+চাও, আর দুই, একটা কী-বোর্ড ৷ প্রথমেই তুমি গানের লাইনটাকে হুঁ হুঁ করে গেয়ে  ছোটো ছোটো আওয়াজের 
+খণ্ডে ভেঙে নেবে ৷ এরপর খালি বাকি থাকে একটাই জিনিস-- প্রত্যেকটা খণ্ডের জন্য কোন রীডটা টিপতে হবে, এবং 
+টিপে কতক্ষণ ধরে রাখতে হবে ৷ এদের মধ্যে দ্বিতীয়টা তুমি কানে শুনেই অনায়াসে বুঝতে পারবে ৷ কিন্তু 
+কোন খণ্ডের জন্য কোন রীডটা টিপতে হবে সেটা বলে না দিলে বার করা সহজ নাও হতে পারে ৷ একটা 
+উদাহরণ নিয়ে দেখি ৷ ধরো এই লাইনটা 
+<blockquote>''মুক্তির মন্দির সোপানতলে কত প্রাণ্ হল বলিদান্''</blockquote>
+কিভাবে প্রাণ না লিখে প্রাণ্ লিখেছি লক্ষ কর ৷ কিন্তু মন্দির্ লিখিনি ৷ এতেই বোঝা যাচ্ছে যে এখানে মন্দির 
+উচ্চারণ হবে মন্দির-অ ৷ যাই হোক, এই লাইনটা আশা করি তুমি বহুবার শুনেছ, তাই উচ্চারণগুলো ভালো 
+করেই জানো ৷   আওয়াজের খণ্ডে ভেঙে নিলে হবে 
+<blockquote>
+
+<span class="token">মুক্</span> <span class="token">তি</span> <span class="token">র</span> <span class="token">মন্</span> <span class="token">দি</span> <span class="token">র</span> <span class="token">সো</span> <span class="token">পা</span> <span class="token">ন</span>
+<span class="token">ত</span> <span class="token">লে</span> <span class="token">ক</span> <span class="token">ত</span> <span class="token">প্রাণ্</span> <span class="token">হ</span> <span class="token">ল</span> <span class="token">ব</span> <span class="token">লি</span>
+<span class="token">দান্</span>
+
+</blockquote>
+
+<h2><a
+name="কী-বোর্ডের সঙ্গে প্রথম পরিচয়">কী-বোর্ডের সঙ্গে প্রথম পরিচয়</a></h2>
+কখন কোন রীডটা টিপতে হবে সেটা বোঝানোর জন্য রীডগুলোর নামকরণ করে নিলে সুবিধা হবে ৷ নানাভাবে 
+এই কাজ করা যায় ৷ কেউ a,b,c ইত্যাদি অক্ষর দিয়ে নাম দিতে ভালোবাসেন, কেউ লেখেন do, re, mi ইত্যাদি 
+নাম ৷ তবে আমরা ভারতীয়রা ব্যবহার করি সা রে গা মা পা ধা নি নামগুলো৷ এক্ষুণি যে কী-বোর্ডের ছবিটা 
+দিয়েছি সেটার দিকে তাকালেই 
+দেখবে যে কালো রীডগুলো দুই এবং তিনের দলে সাজানো৷ এরকম একটা 
+দুয়ের দল এবং একটা তিনের দল, এবং তাদের গায় লেগে থাকা সাদা রীডগুলোকে একত্রে বলে 
+একটা সপ্তক৷ 
+নীচের ছবিটা দেখলে ব্যাপারটা স্পষ্ট হবে৷ 
+<center>
+<fieldset>
+<legend><b>সাদা রীডদের নাম</b></legend><img width="80%" src="image/keys.png"></fieldset>
+</center>  
+কী-বোর্ডের মঝামাঝি জায়গায় যে সপ্তকটা আছে সেটা দ্যাখো৷ এর মধ্যে সবচেয়ে  বাঁদিকের সাদা
+ রীডটাকে বলব সা৷ তার ডানদিকের 
+সাদাটার নাম রে, ইত্যাদি৷ সুতরাং এইভাবে কী-বোর্ডের মাঝামাঝি জায়গায় যে সপ্তকটা আছে তার সবগুলো সাদা 
+রীডের নাম দেওয়া হল৷ এর ডানদিকের সপ্তকের সাদা রীডগুলোরও একই নাম, খালি মাথায় একটা করে
+রেফ্ থাকবে ৷ বাঁদিকের সপ্তকের বেলায় রেফের বদলে হসন্ত (ছবিতে কমা দিয়ে বুঝিয়েছি) ৷  
+কালো রীডগুলোর নাম দেওয়া হয় এইভাবে-- 
+<center>
+<fieldset>
+<legend><b>কালো রীডদের নাম</b></legend><img width="80%" src="image/kalo.png"></fieldset>
+</center>  
+সুতরাং আমরা কোথায় কোন রীড টিপতে হবে সেটা এইভাবে লিখে দিতে পারি-- 
+<center>
+<table cellspacing="10" border="0">
+<tr>
+<td align="center">&zwnj;&zwnj;গা</td><td align="center">গা</td><td align="center">গা</td><td align="center">&zwnj;&zwnj;গা</td><td align="center">গা</td><td align="center">গা</td><td align="center">মা</td><td align="center">গা</td><td align="center">রে</td><td align="center">সা</td><td align="center">নি,</td>
+</tr>
+<tr>
+<td align="center" class="token">মুক্</td><td align="center" class="token">তি</td><td align="center" class="token">র</td><td align="center" class="token">মন্</td><td align="center" class="token">দি</td><td align="center" class="token">র</td><td align="center" class="token">সো</td><td align="center" class="token">পা</td><td align="center" class="token">ন</td><td align="center" class="token">ত</td><td align="center" class="token">লে</td>
+</tr>
+</table>
+</center>
+এটা হল  <b>স্বরলিপি</b> ৷
+<p></p> 
+এইভাবে লিখে বোঝানোর একটা অসুবিধা হল পড়বার সময়ে মাথা গুলিয়ে যায়৷
+রীডগুলোর নামও অক্ষর দিয়ে, আবার গানের কথাগুলোও অক্ষর দিয়ে, যেমন ''সোপানতলে''-এর ''পা''-এর জন্য ''গা'' 
+টিপতে হবে৷ প্রথম প্রথম ভুল করে ''পা'' রীডটা টিপে দেবার প্রবণতা আসে৷ দ্বিতীয় সমস্যাটা হল 
+খালি একরাশ অক্ষরের স্তূপ দেখে সুরের ওঠানামা আন্দাজ করা যায় না, ফলে মনে রাখাটা সহজ হয় না৷ সেই 
+কারণে অনেকে আরেকটা notation ব্যবহার করে, যেটাতে পুরো সুরটা ছবি এঁকে প্রকাশ করা হয়৷    
+বোঝার সুবিধার জন্য প্রথমে কী-বোর্ডটাকে বাঁদিকের মার্জিনে খাড়া করে আঁকব, 
+আর কয়েকটা লম্বা লাইন টেনে নেব ৷ এবার গানের কথাগুলোকে উঠিয়ে নামিয়ে লিখব, এইভাবে-   
+<center>
+<fieldset>
+<legend><b></b></legend><img width="80%" src="image/keys1.png"></fieldset>
+</center> 
+তবে এভাবে আঁকাটা বেশ কঠিন ৷ তাই আরেকটু সহজ করব এইভাবে ৷ বাঁদিকের কী-বোর্ডটা আর কষ্ট করে আঁকব 
+না ৷ খালি একটা বিশেষ চিহ্ন এঁকে দেব--  
+<center>
+<fieldset>
+<legend><b>ডানদিক আর বাঁদিকের ছবিদুটোর মানে একই</b></legend><img width="80%" src="image/keys2.png"></fieldset>
+</center> 
+এইভাবে যে notation-টা পাব তাকে বলে staff notation. এই
+ notation-এর অবশ্য আরও অনেক খুঁটিনাটি আছে, যেগুলো টুং টাং করার জন্য প্রয়োজন হবে না৷
+ আমাদের উদাহরণে জিনিসটা দাঁড়াচ্ছে এইরকম- 
+<center>
+<img width="100%" src="image/mukti1.svg"></center> 
+
+<h2><a
+name="বাজাব কি করে?">বাজাব কি করে?</a></h2>
+এই কাজটা খুবই সহজ৷ প্রথমে ভালো করে দেখে নাও যে প্রথম ছয়বার একই রীড টিপতে হবে, তার পর 
+''সোপানতলে''-র গোড়ায় একঘর ডানদিকে সরে পরপর বাঁদিকে যেতে হবে৷ এইবার যেমন যেমন রীড টিপবে 
+মুখে গানের সেই অংশের কথাটুকু বলবে, ফিস্ ফিস্ করে নয়, জোরে জোরে স্পষ্ট উচ্চারণে, যাতে তুমি নিজে 
+স্পষ্ট শুনতে পাও৷ বার কয়েক বাজালেই বুঝবে যে গানের অতি পরিচিত সুরটাই তোমার হাত থেকে বেরোচ্ছে!    
+<h2><a
+name="আর কি বাজানো যায়?">আর কি বাজানো যায়?</a></h2> 
+বাজানোর জন্য গানের অভাব নেই ৷ তবে সহজ গান দিয়ে শুরু করাই ভালো ৷ এই ধরো একটা লাইন--
+<center>
+<img width="100%" src="image/fagun1.svg"></center> 
+এখানে একটা নতুন চিহ্ন আছে, ছোটো হাতের b-এর মত দেখতে৷ ওই চিহ্নটা না থাকলে যে রীডটা টিপতে,
+ওই চিহ্নটা থাকার ফলে টিপবে তার বাঁদিকের কালো রীডটা ৷ একে ইংরাজীতে বলে flat, আর
+ বাংলায় বলে ''কোমল'' ৷
+<p></p>
+যদি স্বরলিপি দিয়ে লিখতাম তবে হত 
+<center>
+<table cellspacing="10" border="0">
+<tr>
+<td align="center">র্সা</td><td align="center">নি</td><td align="center">র্সা</td><td align="center">পা</td><td align="center">দ</td><td align="center">দ</td><td align="center">পা</td><td align="center">মা</td><td align="center">পা</td><td align="center">দ</td><td align="center">নি</td><td align="center">র্সা</td>
+</tr>
+<tr>
+<td align="center" class="token">ও</td><td align="center" class="token">রে</td><td align="center" class="token">ভাই</td><td align="center" class="token">ফা</td><td align="center" class="token">গুন</td><td align="center" class="token">লে</td><td align="center" class="token">গে</td><td align="center" class="token">ছে</td><td align="center" class="token">ব</td><td align="center" class="token">নে</td><td align="center" class="token">ব</td><td align="center" class="token">নে</td>
+</tr>
+</table>
+</center>  
+
+<h2><a
+name="এক গুচ্ছ গানের টুং টাং সুর">এক গুচ্ছ গানের টুং টাং সুর</a></h2>
+এই সুরগুলো জোগাড় করেছি দুই জায়গা থেকে--এক, সুভাষ চৌধুরী সংকলিত 'মুক্তির গান' নামের 
+দুই খণ্ড বই থেকে, আর দুই, স্বরবিতান থেকে ৷ স্বরবিতানের scan
+ করা পাতাগুলো পেয়েছি
+ <a href="http://www.geetabitan.com">http://www.geetabitan.com</a>
+থেকে ৷ এই সব জায়গায় সুরগুলো অবশ্য অনেক বেশী সূক্ষ্মভাবে  দেওয়া আছে ৷ টুং টাঙের জন্য অত সূক্ষ্ম 
+কারুকার্যের দরকার নেই ৷ তাই সে সব ছেঁটে বাদ দিয়েছি ৷ প্রত্যেকটা সুরই বাজালে চমৎকার চিনতে পারা যায় ৷      
+<ol>
+
+<li>
+<a href="pdf/balo.pdf">বলো বলো বলো সবে</a>
+</li>
+
+<li>
+<a href="pdf/bango.pdf">বঙ্গ আমার জননী আমার </a>
+</li>
+
+<li>ও আমার দেশের মাটি
+[<a href="pdf/deshermati1.pdf">প্রথম পাতা</a> | 
+<a href="pdf/deshermati2.pdf">দ্বিতীয় পাতা</a>]</li>
+
+<li>
+<a href="pdf/duihate.pdf">দুই হাতে কালের মন্দিরা যে</a>
+</li>
+
+<li>
+<a href="pdf/ekdin.pdf">এক দিন যারা মেরেছিল তাঁরে গিয়ে</a>
+</li>
+
+<li>
+<a href="pdf/fagun.pdf">ওরে ভাই ফাগুন লেগেছে বনে বনে</a>
+</li>
+
+<li>
+<a href="pdf/kathakosne.pdf">কথা কোস নে লো রাই</a>
+</li>
+
+<li>
+<a href="pdf/mamachitte.pdf">মম চিত্তে নিতি নৃত্যে</a>
+</li>
+
+<li>
+<a href="pdf/mukti.pdf">মুক্তির মন্দিরসোপানতলে</a>
+</li>
+
+<li>
+<a href="pdf/pranami.pdf">আমি প্রণমি তোমারে চলিব নাথ</a>
+</li>
+
+<li>
+<a href="pdf/pranchay.pdf">প্রাণ চায়, চক্ষু না চায়</a>
+</li>
+
+<li>
+<a href="pdf/sedindujane.pdf">সেদিন দুজনে দুলেছিনু বনে</a>
+</li>
+
+<li>
+<a href="pdf/shyamalasundara.pdf">এসো শ্যামলসুন্দর</a>
+</li>
+
+<li>
+<a href="pdf/tomarkhola.pdf">তোমার খোলা হাওয়া</a>
+</li>
+
+<li>
+<a href="pdf/bipade.pdf">বিপদে মোরে রক্ষা করো</a>
+</li>
+
+<li>
+<a href="pdf/phule.pdf">ফুলে ফুলে ঢলে ঢলে</a>
+</li>
+
+<li>
+<a href="pdf/mallika.pdf">আমার মল্লিকাবনে </a>
+</li>
+
+<li>
+<a href="pdf/jonaki.pdf">ও জোনাকি</a>
+</li>
+
+<li>
+<a href="pdf/adhekghume1.pdf">আধেকঘুমে নয়ন চুমে (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/adhekghume2.pdf">আধেকঘুমে নয়ন চুমে (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/ajibangla1.pdf">আজি বাংলাদেশের হৃদয় হতে  (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/ajibangla2.pdf">আজি বাংলাদেশের হৃদয় হতে  (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/ajibangla3.pdf">আজি বাংলাদেশের হৃদয় হতে  (তৃতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/akashamay1.pdf">আকাশ আমায় ভরল আলোয়  (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/akashamay2.pdf">আকাশ আমায় ভরল আলোয়  (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/amiyar1.pdf">আমি যার নূপুরের ছন্দ   (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/amiyar2.pdf">আমি যার নূপুরের ছন্দ   (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/amraadbhut1.pdf">আমরা অদ্ভুত</a>
+</li>
+
+<li>
+<a href="pdf/amradujana1.pdf">আমরা দুজনা    (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/amradujana2.pdf">আমরা দুজনা    (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/amradujana3.pdf">আমরা দুজনা    (তৃতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/bango.pdf">বঙ্গ আমার জননী আমার</a>
+</li>
+
+<li>
+<a href="pdf/byartho1.pdf">ব্যর্থ প্রাণের আবর্জনা    (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/byartho2.pdf">ব্যর্থ প্রাণের আবর্জনা    (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/chaitrapabane.pdf">চৈত্রপবনে মম চিত্তবনে</a>
+</li>
+
+<li>
+<a href="pdf/chandana.pdf">ও আমার ছোট্টো পাখি চন্দনা </a>
+</li>
+
+<li>
+<a href="pdf/chaxe1.pdf">চক্ষে আমরা তৃষ্ণা </a>
+</li>
+
+<li>
+<a href="pdf/chokhgela.pdf">চোখ গেল চোখ গেল কেন ডাকিস রে  </a>
+</li>
+
+<li>
+<a href="pdf/dinguli1.pdf">দিনগুলি মোর সোনার খাঁচায়  (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/dinguli2.pdf">দিনগুলি মোর সোনার খাঁচায়  (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/dip1.pdf">ডীপ নিভিয়াছে ঝড়ে</a>
+</li>
+
+<li>
+<a href="pdf/durdwip.pdf">দূরদ্বীপবাসিনী </a>
+</li>
+
+<li>
+<a href="pdf/ekdin.pdf">একদিন যারা মেরেছিল তাঁরে গিয়ে</a>
+</li>
+
+<li>
+<a href="pdf/ghumghum1.pdf">ঘুম ঘুম চাঁদ</a>
+</li>
+
+<li>
+<a href="pdf/harekrishna1.pdf">হরেকৃষ্ণ নাম দিল প্রিয় বলরাম</a>
+</li>
+
+<li>
+<a href="pdf/hattimatim.pdf">হাট্টিমাটিম </a>
+</li>
+
+<li>
+<a href="pdf/jharuthechhe1.pdf">ঝড় উঠেছে বাউল বাতাস</a>
+</li>
+
+<li>
+<a href="pdf/kanpeterai1.pdf">আমি কান পেতে রই (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/kanpeterai2.pdf">আমি কান পেতে রই (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/krishnachura1.pdf">কৃষ্ণচূড়া আগুন তুমি</a>
+</li>
+
+<li>
+<a href="pdf/lalan1.pdf">সব লোকে কয় লালন কী জাত</a>
+</li>
+
+<li>
+<a href="pdf/megherkole1.pdf">মেঘের কোলে রোদ হেসেছে  (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/megherkole2.pdf">মেঘের কোলে রোদ হেসেছে  (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/nachmayuri1.pdf">নাচ ময়ূরী নাচ রে</a>
+</li>
+
+<li>
+<a href="pdf/oakash.pdf">ও আকাশ সোনা সোনা </a>
+</li>
+
+<li>
+<a href="pdf/pathbhola1.pdf">আমি পথভোলা এক পথিক এসেছি  (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/pathbhola2.pdf">আমি পথভোলা এক পথিক এসেছি  (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/pathbhola3.pdf">আমি পথভোলা এক পথিক এসেছি  (তৃতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/phule.pdf">ফুলে ফুলে ঢলে ঢলে</a>
+</li>
+
+<li>
+<a href="pdf/prajapati.pdf">প্রজাপতি প্রজাপতি কোথায় পেলে ভাই </a>
+</li>
+
+<li>
+<a href="pdf/pranami.pdf">আমি প্রণমি তোমারে</a>
+</li>
+
+<li>
+<a href="pdf/pranermanus1.pdf">আমার প্রাণের মানুষ আছে প্রাণে    (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/pranermanus2.pdf">আমার প্রাণের মানুষ আছে প্রাণে    (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/puranosei.pdf">পুরানো সেই দিনের কথা</a>
+</li>
+
+<li>
+<a href="pdf/sankoch1.pdf">সংকোচের বিহ্বলতা   (প্রথম পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/sankoch2.pdf">সংকোচের বিহ্বলতা   (দ্বিতীয় পাতা)</a>
+</li>
+
+<li>
+<a href="pdf/bristi1.pdf"> বৃষ্টি বৃষ্টি বৃষ্টি</a>
+</li>
+
+<li>
+<a href="pdf/amaderchhuti1.pdf"> আমাদের ছুটি ছুটি</a>
+</li>
+
+<li>
+<a href="pdf/nabale1.pdf">না বলে এসেছি তা বলে
+ভেবো না</a>
+</li>
+
+</ol>
+<!-- begin htmlcommentbox.com --> <div id="HCB_comment_box">
+<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet">
+<script id="hcb" type="text/javascript">
+/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

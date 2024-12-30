@@ -1,0 +1,130 @@
+<NOTE>
+<TITLE>galpo</TITLE>
+<HEAD1>AoyAj</HEAD1>
+ekTA AoyAje ghum bhe\nge gela.
+<P/>
+--khas.hkhas.h!
+<P/>
+gARha andhakAr. chokh chale nA. mane karte pArinA kichhuxaN kothAy Achhi. bichhAnAy shuye
+Achhi eTuku bujhte pAri. AdhA upuR haye. nithar haye kAn pete thAki--
+<P/>
+--khas.hkhas.h khas.h khas.h!
+<P/>
+nA.H shonAr bhul nay. khub jore nay. mrridu kintu suspaS+Ta. DAn hAter A\ngule ki yena ekTA
+sparsha hachchhe. manoYog diye bojhAr cheS+TA kari ki seTA. ek tARA kAgaj, ekTA phAiler
+konA. Ami bichhAnAy shuye Achhi, ekTA kholA phAiler pAshe--
+<P/>
+h(n)yA, mane paRechhe Ami kothAy. jAygATAr nAm kAbhAlur, byAngAlorer kAchhe. ekhAne
+bhAratIya jyotir+bijnAn sa.nsthAr ekTA mAn~mandir Achhe. Ami sekhAne esechhi ekTA @{<E>seminar</E>@}-e.
+gatakAl diner belAy AmAr pratham lekchAr chhila, kAl ArekTA. Aj rAte oder kyAmpAser
+geS+T hAuse rayechhi.
+<P/>
+Ami ekhanao anaR haye shuye Achhi. kintu mAthATA ekhan puro sAph haye giyechhe. kintu
+tabu ekTA anirdeshya bhay yena SaSThendriyake jAgiye tulechhe, naRte dichchhe nA.
+pratiTA shabda kAn khARA kare shunchhi. fyAner shabda. puroNo fyAn. ekTA chApA jh(n)ijhir shabda.
+jAnAlAy bhArI pardA, bAirer kono Alo bA shabda DhokA kaThin.
+<P/>
+--khas.hkhas.h. khas.hs.hs.h--
+<P/>
+ebAr yena shabdaTA kichhu beshIxaN sthAyI hala. AoyAjTA hachchhe AmAr pAyer dik theke,
+gharer konAy, mejher kAchhe. shabdaTAr u.tsaTA kalpanA karAr cheS+TA kari. mejhete jAygAy jAygAy
+nArkeler chhobRAr mAdur pAtA Achhe. sei mAdurer gAy kichhu ghaS.hTe egolei erakam shabda
+sambhab.
+<P/>
+ei kathATA mane haoyAmAtrai ekTA ThAnDA srot khele gela shir~d(n)ARA beye. jAygATA ghana
+baner madhye ekTA anuchcha pAhARer upare. shunechhi chAr~dhArer jangle banyajantu
+Achhe. puro kyAmpAs ye b\oidyutik tAre gherA seTA dekhiyechhilen udyok+tArAi.
+<P/>
+`ki Achhe oi jangale?' nichhak k\outUhale jijnAsA karechhilAm.
+<P/>
+`ek samaye nAki chitAbAgh chhila,' tAchchhilyabhare balechhilen AmAr pathpradarshikA,
+`tabe ekhan osab kichhu nei, bodhhay kichhu buno shuyor-Tuyor Achhe. tabe mAjhe mAjhe hAtir
+upadrab hay. kintu se kAle bhadre. tabe yeTAr bhay sabcheye beshI, seTA hala sAp.' oi
+prANITike b\oidyutik tAre ATke rAkhA kaThin. kyAmpAser bibhinna
+jAygAy baRa baRa gar+ta dekhiye balechhilen besh kichhu romaharSak galpa.
+rAter belA sAper upadrab beshI. mAn~mandirer kAje byAghAt habAr bhaye ekhAne sandhyA
+thekei niSpradIp abasthA chale. takhan chlAr pathe sAb~dhAn. Tarch chhARA beroben nA, Ar
+shobAr Age gharer konAgulo bhAlo kare dekhe neben.
+<P/>
+takhan chokh baRa baRa kare mAthA neRechhilAm.
+<P/>
+kintu gatarAte shobAr Age konAgulo satyai dekhe shuyechhilAm ki?
+<P/>
+AmAr pratiTi snAyu ekhan atyanta sajAg haye uThechhe. manshchaxe sApTAr gatibidhi AndAj
+karAr cheS+TA karchhi. AoyAjTA anekxaN hachchhe nA. seTA bhAlo kathA nay. hayto sApTA
+nArkel chhobRAr mAdur pAr kare masrriNgatite ekhan mejher upar diye gaRiye khATer
+dike Aschhe. hayto bA pAyA beye uThchhe. Ami sampUrNa anaR haye thAki. shunechhi
+sAp khub bokA hay. gAyer upar diye chale geleo bojhenA. khAli naRte dekhlei chhobal mAre.
+<P/>
+--khas.hkhas.h!
+<P/>
+ghAm diye jwar chhARla. AoyAjTA  ekai konA theke Aschhe. tAr mAne sApTA antata.H
+khATer khub kAchhe nei. antata.H oi sApTA nei. ghare Aro katagulo kilbil karchhe ke jAne!
+kintu ebhAbe bhAble mAnasik d\our+balya bARbe bai kam~be nA. mAthA ThAnDA rekhe gharer
+bhUgolTA e(n)ke nebAr cheS+TA kari mane mane.
+<P/>
+gharTA nirandhra andhakAr. gatakAl shobAr Age yeTuku dekhechhilAm sei smrritii bhar~sA.
+ghare duTo chhoTo khAT chhila mane Achhe. mAjhe miTArkhAnek ph(n)Ak. sekhAneo
+mejhete khAnikTA chhobRAr mAdur pAtA. darjA diye Dhukei ye khATTA tAr upare Ami
+AmAr byAg eba.n jAmAkApaR D(n)Ai kare rekhechhilAm shobAr Age. jinis~patra guchhiye
+rAkhAr abhyAs AmAr nei. tAchhARA pratham diner klAntir par ghar gochhAno niye mAthA
+ghAmAini. bisheSata.H ekTA ph(n)AkA khAT yakhan Achhei. khAli ei diker khATTAy ekTA
+fAil niye shuye paRechhi. ki ki Achhe ei bichhAnAy hAter kAchhe? bAlish nei, o bas+tuTA
+Ami byabahAr kari nA. tAi duTo bAlishai pAsher khATe. abashya biSadhar sAper biruddhe
+bAlish ye khub yu.tsai as+tra eman balA yAy nA. ekTA pAtlA kambal Achhe, seTA bara.n sAper
+udyata phaNAr upar chApA deoyAr paxe bhAlo. Ar Achhe fAilTA. kintu TarchTA kothAy? spaS+Ta mane
+Achhe byAg theke bAr karechhi gatarAte. tArpar oTA rekhechhilAm @{<E>CD</E>@}-r bAk+ser upar
+seTAo spaS+Ta smaraN hachchhe.  kintu seTA chhila oi khATe. ei khATe to shobAr samaye
+fAil chhARA kichhui chhila nA hAte.      tAr mAne TarchTA paRe Achhe pAsher khATei. mAtra
+miTAr~khAnek dUre. AmAr khAT theke mejhete khAli ek pA phele hAt bARAlei peye yAba. hayto
+bA ekTu hAtRAte habe. kintu seTA baRa kathA nay. baRa kathA hachchhe ekTA pA mejhete
+rAkhA. ye mejhete ghure beRAchchhe ajAnA sarIsrrip.
+<P/>
+AoyAjTA anekxaN hachchhe nA. tAte dushchintA Aro bARchhe. AoyAjTA theke shatrupaxer
+gatibidhi AndAj karA yAy. mejher alpa a.nshai mAdure DhAkA. abashiS+Ta unmuk+ta a.nsha
+khATer chaturdikei chhaRiye Achhe. kAn khARA kare thAkte thAkte kAn byathA haye yAchchhe.
+ekTA Alo chAi. phaNA tolA udyata rUp yatai bhaya.nkar hok, adrrishya shatrur cheye antata.H
+bhAlo. Tarch ab~dhi p(n)\ouchhano yAbe nA. gharer lAiTer suichTA kothAy chhila? mane mane
+sArA gharer deoyAlTA hAtRe dekhi. nA.H, mane paRchhe nA. tabe bAth~rumer suichTA kothAy
+seTA abashya mane Achhe. AmAr khATer mAthAr dike bAth~rumer darjA, tAr pAshei deyAle
+bAth~rumer suich. sutarA.n eklAphe uThe oi suichTA ekbAr an kare dite pArlei hay.
+kintu samasyA ekTAi. AmAr khATer mAthA theke suicher madhye antata.H deRmiTAr fArAk.
+eba.n oi khAne kono mAdur nei. sApTAr anekxaN kono AoyAj pAchchhi nA. tAr mAne oTA
+ApAtata.H kono mAdur~bihIn a.nshei rayechhe. ataeb?
+<P/>
+--khas.hkhas.h!
+<P/>
+ki AshcharYa, sApTA ekhanao sei ekai konAy rayechhe! kintu AshcharYa haye samay naS+Ta
+karAr abas+thAy Ami  nei. ei subarNa suYog! Ami eklAphe khATer mAthAr dik diye neme paRi,
+jhaRer bege deyAl hAtRe suich Tipe dii.
+<P/>
+bAth~rumer AdhkholA darjA diye bAl+ber halud ra\nger Alo chhaRiye paRla ghare.
+AmAr ek pA ekhanao khATer prAnte. anya pA mejhete. ek hAt suiche. nA, AmAr pAyer
+dhArekAchhe antata.H kono bipajjanak sarIsrrip  chokhe paRchhe nA. kintu shabdaTA
+ye konA theke Aschhila seTA khATer oi dike, ekhanao AmAr chokher ARAle. shabdaTA ApAtata.H
+hachchhe nA. haThA.t Aloy AmAr shatrupaxer chokh dh(n)Adhiye gechhe hayto. hay to
+ThAhar karAr cheS+TA karchhe kon dik diye Ak+ramaN karA yAy. AmAr bar+tamAn abasthAn
+thekei sArA gharTA nirIxaN kare nii. ei rakam konA theke gharTA dekhi ni Age. khATer ekebAre nIche
+deyAler kAchhe ekTA oyeS+T pepAr bAs+keT chokhe paRla. gatarAte ekTA bis+kuTer
+p+lAS+Tik phelAr janya ekTA oyeS+T pepAr bAs+keTer dar~kAr chhila. shrImAn bichhAnAr
+talAy eman gabhIre s(n)edhiye chhilen ye takhan prayojaner samaye kh(n)uje pAi ni.
+kintu oyeS+T pepAr bAs+keT Abis+kAr karei xAnta dite pAri nA. tAr cheye anek gurutara
+jinis apexA karchhe khATer oiprAnte, ye prAntTA ekhanao AmAr chokher ARAle. ati santar+pane
+pA Tipe Tipe bichhAnAy uThi, pAchhe khATer talA diye chhuTe ese chhobal dey pAy.
+tArpar bichhAnAr chAdarTA bAgiye nii ek hAte. faNA tullei deba chApA diye. tArpar
+s+tabdhani.HshwAse u(n)ki mAri sei rahasyamay prAnte.
+<P/>
+kintu nA.H, kono AshcharYa sarIsrrip nei sekhAne. satyi balte ki kichhui nei. khAli ekTA chhoTo
+gar+ta Achhe deyAle. oTAr bhitarei ki s(n)edhiyechhe sApTA? santar+pane khATer nIche
+tAkAi. sekhAneo kichhumAtra nei. bismaye bimURha haba ki nA bhAbchhi, eman samaye--
+<P/>
+AbAr `khas.hkhas.h!'
+<P/>
+jhaTite bichhAnAr chAdar hAte tule niye sei rahasyamay konAr dike tAkAi. ek muhUr+ta Ageo
+bhebechhilAm okhAne kichhui nei. ebAr bujhlAm kichhu ekTA Achhe--
+<P/>
+nArkelchhobRAr mAdurer upar phyAner hAoyAy bis+kuTer parityak+ta plAs+Tik ye
+aman khas.hkhas.h shabda kare ke jAn~ta?
+
+</NOTE>
+

@@ -1,0 +1,1452 @@
+//[Update:[Sat Nov 12 IST 2016]]
+//**Tue Oct 08 2013:Music worngly breaks supti and oi
+//**Mon Oct 14 2013:Music wrongly breaks bhagabAn
+
+/**
+ ** Tue Aug 05 2014
+ Added FileChooser start directory
+
+ **Wed Nov 04 2015
+ Maxima support যোগ করলাম 
+
+ **Thu Nov 19 2015
+ ব্র্যাকেট মেলানোর জন্য "মেলাও" নামে একটা function লিখলাম. 
+
+ **Sun Jan 17 2016
+ Added audio support
+
+ **Sun Feb 21 2016
+ Updated audio support: Using audio folder, direct "enter" in textfield.
+
+ **Wed Apr 27 2016
+ Added unicode copying feature for selected lines (hitting u)
+
+  **Tue Aug 30 2016
+  Added line-based sorting for dabbrev 
+  **Thu Sep 01 2016
+  Added popup menu for dabbrev
+  **Mon Oct 10 2016
+  বাবার বেলায় R আর Maxima বন্ধ করে দিলাম. 
+
+ **Tue Nov 08 2016
+  - mergeWithNextLine now correctly updates statLab to "**".
+  - Introduced  .sav1, .sav2.
+ */
+
+import java.util.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.border.*;
+import java.util.regex.*;
+
+public class Finalise extends JFrame 
+    implements F18Listener, ActionListener, KeyListener {
+
+    boolean invis;
+    private Clipper clpr;
+
+    private Vector<Integer> srchRes;
+    private final int 
+        NDISP = 10,
+        ACTIVEPOS = NDISP/2;
+    private TreeSet<String> wordList, freshList;
+    private JTextField tf;
+    private boolean atLeastOneError;    
+    private TagEditor ta;
+
+    private BTex staTex;
+    private JLabel statLab;
+    static boolean bengFlag = true;
+    JScrollPane sta;
+    JButton jcb;
+    //Integer[] lst;
+    String base;
+    JFileChooser chooser;
+    private JFrame errShow;
+    private JLabel errLab;
+
+    public void reqFocus() {
+        setState(Frame.NORMAL);
+        ta.requestFocus();
+    }
+
+    void mergeWithNextLine(int cursorPos) {
+        statLab.setText("**");
+        int ekhanKothAy = currLine.getValue();
+        if(ekhanKothAy < ln.size()-1) {//parer lAin Achhe
+            Line now = ln.elementAt(ekhanKothAy);
+            Line next = ln.elementAt(ekhanKothAy+1);
+            String ei = ta.getText();
+            String oi = next.getPlain();
+            Line natun = new Line(ei+oi,now.getStartsInBeng());
+            ln.remove(ekhanKothAy+1);//eTA Age
+            ln.remove(ekhanKothAy);//eTA pare
+            ln.add(ekhanKothAy,natun);
+        }
+        /*
+        else {//eTAi sheS lAin
+            ln.remove(ekhanKothAy);
+        }
+        */  
+        dekhao(cursorPos);
+    }
+
+
+    void fillUp(TreeSet<Completion> dabbrevLst, String wordToComplete) {
+        dabbrevLst.clear();
+        int nowAt = currLine.getValue();
+        int startLine = nowAt-80;
+        if(startLine<0) startLine = 0;
+        int endLine = nowAt+80;
+        if(endLine>= ln.size()) endLine = ln.size()-1;
+
+        for(int i=startLine;i<=endLine;i++) {
+            ln.elementAt(i).fillUp(dabbrevLst,wordToComplete,i-nowAt);
+        }
+    }
+
+    void goToLine(int which) {
+        currLine.setValue(which);
+        dekhao();
+        ta.requestFocus();
+    }
+
+    boolean startsInEnglish() {
+        return !currLine.contents().getStartsInBeng();
+    }
+
+    void insertBeng() {
+        int now = currLine.getValue();
+        Line prev = ln.elementAt(now-1);
+        if(prev.endsInBeng()) return;
+        ln.add(now,new Line("</WR>@}",false));
+        System.err.println("Ends in "+ln.elementAt(now).endsInBeng());
+        ln.add(now+1,new Line("",true));
+        System.err.println("Ends in "+ln.elementAt(now+1).endsInBeng());
+        ln.add(now+2,new Line("@{<WR>",true));
+        System.err.println("Ends in "+ln.elementAt(now+2).endsInBeng());
+
+        dekhao();
+        currLine.moveBy(1);
+    }
+
+    private boolean isLineOK(int which) {
+        if(!editing) return true;
+        Line now = ln.elementAt(which);
+        boolean expected = true;
+
+        if(which<ln.size()-1) 
+            expected = ln.elementAt(which+1).getStartsInBeng();
+
+        //System.err.println("next line = ["+ln.elementAt(which+1)+"]");
+        //System.err.println("Starts in beng: "+expected);
+        
+        now.setPlain(ta.getText());
+        if(now.endsInBeng()== expected) {
+            ta.setBackground(Color.WHITE);
+            return true;
+        }
+        else {
+            ta.setBackground(Color.RED);
+            return false;
+        }
+    }
+
+    int nLines() {
+        return ln.size();
+    }
+
+    public void placeCursor(int nSpace) {
+        ta.placeCursor(nSpace);
+    }
+
+    private void createChooser() {
+        chooser = new JFileChooser("C:/Documents and Settings/Arnab/Desktop/bee");
+        javax.swing.filechooser.FileFilter 
+            filter = new javax.swing.filechooser.FileFilter() {
+		    public boolean accept(File f) {
+			return f.isDirectory()||f.getName().endsWith(".rb");
+		    }
+			
+		    public String getDescription() {
+			return "Romanised Bengali files (.rb)";
+		    }
+		};
+
+        chooser.setFileFilter(filter);
+        chooser.setCurrentDirectory(new File("f:/notes/cdac"));
+    }
+ 
+    JCheckBox bOrE;
+    Vector<Line> ln;
+    LineShow[] l, ll;
+    private TrackBar trbr;
+    CardLayout crd;
+    JPanel deck;
+    RConn rc;
+    MConn mc;
+    JLabel lineLab;
+    private String fnroot;
+    Commentary cmtry;
+
+    public Finalise(String rbloc, String dictloc, String fnroot) {
+	super("Bangla Editor");
+        base = dictloc+"/";
+        stk = new Stack<StringPos>();
+        errShow = new JFrame("Error");
+        errLab = new JLabel();
+        errShow.add(errLab);
+        errShow.pack();
+        errShow.setSize(600,100);
+        
+        cmtry = new Commentary();
+        if(!autoSave) { //বাবার R বা Maxima লাগে না.
+            rc = new RConn(".");
+            mc = new MConn(".");
+        }
+        clpr = new Clipper();
+        selection = new Vector<Integer>();
+        selLines =  new Vector<Line>();
+        clonedLines = new Vector<Line>();
+        this.fnroot = fnroot;
+        Properties props = new Properties();
+        try {
+            props.load(getClass().
+                       getClassLoader().
+                       getResourceAsStream("edit.prop"));
+
+                autoSave = 
+                    Boolean.
+                    parseBoolean(props.
+                                 getProperty("autosave","false"));
+
+                System.err.println("Loaded property autoSave="+autoSave);
+                shiftLock = 
+                    Boolean.
+                    parseBoolean(props.
+                                 getProperty("shiftlock","false"));
+
+                System.err.println("Loaded property shiftLock="+shiftLock);
+
+                noMouse = 
+                    Boolean.
+                    parseBoolean(props.
+                                 getProperty("nomouse","false"));
+                System.err.println("Loaded property noMouse="+noMouse);
+
+                fontSize = 
+                    Integer.
+                    parseInt(props.
+                             getProperty("fontsize","5"));
+                             System.err.println("Loaded property fontSize="+fontSize);
+
+                invis = 
+                    Boolean.
+                    parseBoolean(props.
+                             getProperty("invis","true"));
+                             System.err.println("Loaded property invis="+invis);
+        }
+        catch(Exception ex) {
+            System.err.println("Can't load properties");
+            ex.printStackTrace();
+            System.exit(1);
+        }
+
+
+        Line.setFontSize(fontSize);
+        TagEditor.setMaxLineLen(100);
+        try {
+            Font fnt= Font.createFont(Font.TRUETYPE_FONT,
+                                      getClass().
+                                      getClassLoader().
+                                      getResourceAsStream("LIPI_B.TTF"));
+            
+            fnt = fnt.deriveFont(30f);
+            
+            GraphicsEnvironment genv = 
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+            genv.registerFont(fnt);
+        }
+        catch(Exception ex) {
+            System.err.println("Can't load/register font.");
+            ex.printStackTrace();
+            System.exit(1);
+        }
+
+        addWindowListener(new WindowAdapter() {
+
+                public void windowClosing(WindowEvent we) {
+                    saveWords(base+"fresh.dict.rb");
+                    setVisible(false);
+                    dispose();
+                    System.exit(0);
+                }});
+
+        createChooser();
+
+        loadWords(base+"some.dict");
+
+
+        //The trackbar
+        trbr = new TrackBar(this);
+        add(trbr,BorderLayout.EAST);
+        srchRes = new Vector<Integer>();
+        //The menus
+	JMenuBar mbar = new JMenuBar();
+	setJMenuBar(mbar);
+	JMenu fl = new JMenu("File");
+	mbar.add(fl);
+	JMenuItem open = new JMenuItem("Open");
+	JMenuItem rld = new JMenuItem("Reload");
+	JMenuItem sv = new JMenuItem("Save");
+	JMenuItem svas = new JMenuItem("Save as...");
+	open.addActionListener(this);
+	rld.addActionListener(this);
+	sv.addActionListener(this);
+	svas.addActionListener(this);
+	fl.add(open);
+	fl.add(rld);
+	fl.add(sv);
+	fl.add(svas);
+
+
+        //The processors
+        ln = new Vector<Line>();
+
+        //The display deck
+        crd = new CardLayout();
+        deck = new JPanel(crd);
+        add(deck);
+
+        deck.add(createShowCard(),"show");
+        deck.add(createEditCard(),"edit");
+
+        //The controls
+	JPanel sth = new JPanel();
+	JButton exr = new JButton("List");
+	JButton re = new JButton("ListRE");
+	jcb = new JButton("Check");
+	statLab = new JLabel("--");
+        tf = new JTextField(15);
+        tf.addActionListener(this);
+        JButton fload = new JButton("Go to");
+        fload.addActionListener(this);
+        JButton uc = new JButton("UC");
+        uc.addActionListener(this);
+        JButton uc1 = new JButton("<UC>");
+        uc1.addActionListener(this);
+        JButton mu = new JButton("M");
+        mu.addActionListener(this);
+
+        /*
+        JCheckBox asav = new JCheckBox("Baba",isBaba);
+        autoSave = isBaba;
+        asav.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    autoSave = ! autoSave;
+                    ta.requestFocus();
+                }
+            });
+        */
+        
+        /*
+        bOrE = new JCheckBox("Beng?",true);
+        bOrE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    bengFlag = !bengFlag;
+                    ta.requestFocus();
+                }
+            });
+        sth.add(bOrE);
+        */
+        //sth.add(asav);
+
+        lineLab = new JLabel();
+        sth.add(lineLab);
+	sth.add(jcb);
+	sth.add(exr);
+	sth.add(statLab);
+	sth.add(tf);
+	sth.add(re);
+	sth.add(fload);
+	sth.add(uc);
+	sth.add(uc1);
+	sth.add(mu);
+	add(sth,BorderLayout.SOUTH);
+
+	exr.addActionListener(this);
+	re.addActionListener(this);
+	jcb.addActionListener(this);
+	Image myIcon = getToolkit().getImage("myIcon.gif");
+	setIconImage(myIcon);
+	pack();
+        setSize(1000,600);
+	setVisible(true);
+
+	//dynTex not needed: dynTex = new BTex(rdr,bp);
+	//staTex = new BTex(bp);
+	//dynTex not needed: dynTex.setTolerance(BTex.HI);
+	staTex.setTolerance(BTex.LO);
+        currLine = new CurrentLine();
+        dekhao();
+        if(rbloc.equals("."))
+            loadFile(new File(fnroot+".rb"));
+        else
+            loadFile(new File(rbloc+"/"+fnroot+".rb"));
+    }
+
+    private JPanel createShowCard() {
+        JPanel showMe = new JPanel();
+        showMe.setLayout(new GridLayout(NDISP+1,1));
+        ll = new LineShow[NDISP+1];
+
+        for(int i=0;i<=NDISP;i++) {
+            ll[i] = new LineShow(i);
+            showMe.add(ll[i]);
+            if(i==ACTIVEPOS) {
+                ll[i].setFocusable(true);
+                ll[i].requestFocus();
+                ll[i].addKeyListener(this);
+                ll[i].setBorder(
+                  BorderFactory.
+                    createBevelBorder(BevelBorder.RAISED)
+                );
+            }
+        } 
+        return showMe;
+    }
+    private JPanel createEditCard() {
+        JPanel editMe = new JPanel();
+        editMe.setLayout(new GridLayout(NDISP+1,1));
+        l = new LineShow[NDISP];
+
+        for(int i=0;i<NDISP;i++) {
+            l[i] = new LineShow(i);
+            editMe.add(l[i]);
+            if(i==ACTIVEPOS) {
+                l[i].setBorder(
+                  BorderFactory.
+                    createBevelBorder(BevelBorder.RAISED)
+                );
+                staTex = new BTex(null);
+                ta = new TagEditor(this,staTex,base);
+                editMe.add(ta);
+            }
+        } 
+        return editMe;
+    }
+
+    public void keyTyped(KeyEvent ke) {}
+    public void keyPressed(KeyEvent ke) {}
+    public void keyReleased(KeyEvent ke) {
+        switch(ke.getKeyCode()) {
+        case KeyEvent.VK_PAGE_UP:
+            currLine.moveBy(-NDISP);
+            break;
+        case KeyEvent.VK_PAGE_DOWN:
+            currLine.moveBy(NDISP);
+            break;
+        case KeyEvent.VK_UP:
+            currLine.moveBy(-1);
+            break;
+        case KeyEvent.VK_DOWN:
+            currLine.moveBy(1);
+            break;
+        case KeyEvent.VK_M:
+            markCurrent();
+            break;
+        case KeyEvent.VK_C:
+            grabSelLines();
+            break;
+        case KeyEvent.VK_ESCAPE:
+            clearSel();
+            break;
+        case KeyEvent.VK_V:
+            copySel();
+            break;
+        case KeyEvent.VK_B:
+            matchPair();
+            break;
+        case KeyEvent.VK_R:
+            if(autoSave) break; //বাবার R বা Maxima লাগে না. 
+            if(ke.isControlDown())
+                sendToMaxima();
+            else
+                sendToR();
+            break;
+        case KeyEvent.VK_ENTER:
+            editing = true;
+            crd.next(deck);
+            dekhao();
+            ta.requestFocus();
+            break;
+	case KeyEvent.VK_S:
+	    if(ke.isControlDown()) {
+		saveNow();
+	    }
+            break;
+	case KeyEvent.VK_X:
+            killSel();
+	    break;
+        case KeyEvent.VK_L:
+            if(ke.isControlDown()) loadCommentary();
+            break;
+        case KeyEvent.VK_P:
+            if(ke.isControlDown()) playPause();
+            break;
+        case KeyEvent.VK_F:
+            if(ke.isControlDown()) resumePlaying();
+            break;
+
+        case KeyEvent.VK_U:
+            grabSelLines();
+            String ucStr = "";
+            for(Line tmp : selLines) {
+                String newStr = tmp.toUnicode(true);
+                ucStr += newStr+"\n";
+            }
+            clpr.setString(ucStr);
+            clearSel();
+            break;
+        }
+    }
+
+    void loadCommentary() {
+        cmtry.load(new File("audio/"+tf.getText().trim()));
+    }
+
+    boolean isPlaying = false;
+    void playPause() {
+        if(isPlaying) {
+            cmtry.pause();
+            isPlaying = false;
+            tf.setText(""+cmtry.getNowAt());
+        }
+        else {
+            cmtry.encore();
+            isPlaying = true;
+        }
+    }
+    
+    void resumePlaying() {
+        int hadPausedAt = Integer.parseInt(tf.getText());
+        cmtry.playFrom(hadPausedAt-5000);
+    }
+
+    /*The selection procedure:
+        M to mark
+        C to copy (prereq: M)
+        V to paste (prereq: C)
+        X to delete (prereq: M)
+        ESC to cancel (prereq: M)
+        R to submit to R (prereq: M)
+     */
+    private void clearSel() {
+        grabSelLines();
+        System.err.println("Clearing...");
+        for(Line l:selLines) {
+            l.toggleSelected();
+        }
+        selection.clear();
+        selLines.clear();
+        khAliDekhao();
+    }
+
+    private void sendToR() {
+        grabSelLines();
+        System.err.println("Sending to R...");
+        try {
+            for(Line l:selLines) {
+                l.sendToR(rc);
+            }
+            rc.tellR("cat('over\\n')");
+            rc.fromRtoSink();
+            clearSel();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            rc.showError(""+ex);
+        }
+    }
+
+
+    private void sendToMaxima() {
+        grabSelLines();
+        System.err.println("Sending to Maxima...");
+        try {
+            for(Line l:selLines) {
+                l.sendToMaxima(mc);
+            }
+            mc.tellR("\"over\";");
+            mc.fromRtoSink();
+            clearSel();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            mc.showError(""+ex);
+        }
+    }
+
+    private void matchPair() {
+        grabSelLines();
+        String লেখা = "";
+        for(Line l:selLines) {
+            লেখা += l.getPlain()+"\n";
+        }
+        if(!মেলাও(লেখা)) {
+            if(শুরু < 0) {
+                errShow.setTitle("Extra closing symbol");
+                errLab.setText("<html>"+লেখা.substring(0,শেষ)+"<font color=red>"+লেখা.substring(শেষ,শেষ+1)+"</font>"+লেখা.substring(শেষ+1)+"</html>");
+                errShow.setVisible(true);
+            }
+            else if(শেষ < 0) {
+                errShow.setTitle("Extra opening symbol");
+                errLab.setText("<html>"+লেখা.substring(0,শুরু)+"<font color=red>"+লেখা.substring(শুরু,শুরু+1)+"</font>"+লেখা.substring(শুরু+1)+"</html>");
+                errShow.setVisible(true);
+            }
+            else {
+                errShow.setTitle("Symbol mismatch");
+                errLab.setText("<html>"+লেখা.substring(0,শুরু)+"<font color=red>"+লেখা.substring(শুরু,শুরু+1)+"</font>"+লেখা.substring(শুরু+1,শেষ)
+                +"<font color=red>"+লেখা.substring(শেষ,শেষ+1)+"</font>"+লেখা.substring(শেষ+1)+"</html>");
+                errShow.setVisible(true);
+            }
+        }
+        else
+            System.err.println("OK");
+        clearSel();
+    }
+
+        
+    private Vector<Integer> selection;
+    private Vector<Line> selLines, clonedLines;
+    private boolean grabbed = false;
+
+ 
+    private void markCurrent() {
+        System.err.println("Marked!");
+        int tmp = currLine.getValue();
+        currLine.contents().toggleSelected();
+        if(selection.contains(tmp))
+            selection.remove(tmp);
+        else
+            selection.add(tmp);
+        //dumpSel();
+        currLine.moveBy(1);
+        grabbed = false;
+    }
+
+    private void grabSelLines() {
+        if(grabbed) return;
+        System.err.println("Grabbing...");
+        if(selection.isEmpty()) return;
+        Collections.sort(selection);
+        selLines.clear();
+        for(int i:selection)
+            selLines.add(ln.elementAt(i));
+       
+        grabbed = true;
+    }
+
+    private void cloneSelLines() { 
+        if(!grabbed) throw new RuntimeException("Can't clone before grabbing!");
+        clonedLines.clear();
+        for(Line l: selLines) {
+            clonedLines.add(l.clone());
+        }
+    }
+
+    private void copySel() {
+        cloneSelLines();
+        int where = currLine.getValue();
+        ln.addAll(where,clonedLines);
+        statLab.setText("**");
+        khAliDekhao();
+    }
+
+    private void killSel() {
+        grabSelLines();
+        for(Line l:selLines) {
+            pw.println(l);
+            pw.flush();
+            ln.remove(l);
+        }
+        pw.println("-------EOD-------");
+        pw.flush();
+        selection.clear();
+        selLines.clear();
+        statLab.setText("**");
+        khAliDekhao();
+    }
+
+    private void dumpSel() {
+        for(int i:selection) {
+            System.err.println(i);
+        }
+        System.err.println("---------");
+    }
+
+    private CurrentLine currLine;
+    public void dekhao() {
+        lineLab.setText(currLine.getValue()+" / "+ln.size());
+        if(editing)
+            dekhao(ta.getCaret().getDot());
+        else
+            khAliDekhao();
+    }
+
+    public void dekhao(int cp) {
+        int nL = ln.size();
+        if(nL==0) return;
+
+        int temp = currLine.getValue() - ACTIVEPOS;
+        for(int i=0;i<NDISP;i++) {
+            int lno = temp + i;
+            if(lno>=0 && lno < nL) 
+                ln.elementAt(lno).display(l[i]);
+            else {
+                l[i].setEnabled(false);
+            }
+        }
+        ta.linkLine(currLine.contents(),cp);
+    }
+
+    public void khAliDekhao() {
+        int nL = ln.size();
+        if(nL==0) return;
+
+        int temp = currLine.getValue() - ACTIVEPOS;
+        for(int i=0;i<=NDISP;i++) {
+            int lno = temp + i;
+            if(lno>=0 && lno < nL) {
+                ln.elementAt(lno).display(ll[i]);
+            }
+            else {
+                ll[i].setEnabled(false);
+            }
+        }
+
+        ll[ACTIVEPOS].requestFocus();
+    }
+
+    int getCurr() {
+        return currLine.getValue();
+    }
+
+    void breakLine(String prefix, String suffix, 
+                   int dLine, int cp) {
+        if(!isLineOK(currLine.getValue())) return;
+        //System.err.println("This line OK");
+        Line now = currLine.contents();
+        boolean tmp = now.getStartsInBeng();
+        //System.err.println("This line starts in beng: "+tmp);
+        ln.remove(now);
+        //System.err.println("Removed this line.");
+
+        Line line1 = new Line(prefix,tmp);
+        //System.err.println("New line with prefix.");
+
+        tmp = line1.endsInBeng();
+        //System.err.println("Prefix line ends in beng: "+tmp);
+
+        Line line2 = new Line(suffix,tmp);
+        //System.err.println("Suffix line created.");
+        tmp = line2.endsInBeng();
+        //System.err.println("Suffix line ends in beng: "+tmp);
+
+        int index = currLine.getValue();
+        ln.add(index, line1);
+        ln.add(index+1, line2);
+        //System.err.println("Added the two lines.");
+
+        ta.setText(prefix);
+        currLine.moveBy(dLine);
+        dekhao(cp);
+    }
+
+    void selectBeng(boolean isItBeng) {
+            bengFlag = isItBeng;
+            bOrE.setSelected(isItBeng);
+    }        
+
+    boolean isInBeng() {
+        if(ta.isInEng()) {
+            bengFlag = false;
+            bOrE.setSelected(false);
+            return false;
+        }
+        return true;
+    }
+
+    void toggleLang() {
+        bOrE.doClick();
+    }
+
+    private static final String mName[] = {
+	"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"
+    };
+
+    private String fname;
+
+    public boolean getScrollableTracksViewportHeight() {
+	return false;
+    }
+
+    public boolean getScrollableTracksViewportWidth() {
+	return false;
+    }
+
+    Point vpos;
+    int cpos;
+
+    public String grabText() {
+        return ta.getMoveTxt();
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+	String comm = ae.getActionCommand();
+        Object src = ae.getSource();
+        if(src==tf) {
+            String temp = tf.getText().trim();
+            if(temp.endsWith(".wav")) {
+                loadCommentary();
+            }
+            else {
+                try {
+                    Integer.parseInt(temp);
+                    resumePlaying();
+                }
+                catch(Exception ex) {
+                    System.err.println("Not a number");
+                }
+            }
+            ta.requestFocus();
+            return;
+        }
+
+        //System.err.println("Command = "+comm);
+
+	else if(comm.equals("List")) {
+            srchRes.clear();
+            int i = 0;
+            for(Line tmp : ln) {
+                if(tmp.contains(tf.getText()))
+                    srchRes.add(i);
+                i++;
+            }
+            if((ae.getModifiers() & ae.CTRL_MASK)!=0) 
+                trbr.addMarks(srchRes);
+            else
+                trbr.showMarks(srchRes);
+	}
+	else if(comm.equals("ListRE")) {
+            srchRes.clear();
+            int i = 0;
+            Pattern p = Pattern.compile(tf.getText());
+            for(Line tmp : ln) {
+                if(tmp.contains(p))
+                    srchRes.add(i);
+                i++;
+            }
+            if((ae.getModifiers() & ae.CTRL_MASK)!=0) 
+                trbr.addMarks(srchRes);
+            else
+                trbr.showMarks(srchRes);
+	    //lst = ta.lookUpRE(tf.getText());
+
+	}
+	else if(comm.equals("Go to")) {
+            try {
+                int where = Integer.parseInt(tf.getText());
+                goToLine(where);
+            }
+            catch(Exception ex) {}
+           
+        }
+        else if(comm.equals("Check")) {
+            srchRes.clear();
+            int i = 0;
+            for(Line tmp : ln) {
+                if(tmp.hasRBTrouble())
+                    srchRes.add(i);
+                i++;
+            }
+            System.err.println("Number of erronious lines = "+srchRes.size());
+            trbr.showMarks(srchRes);
+	}
+        else if(comm.equals("UC")) {
+            if((ae.getModifiers() & ae.CTRL_MASK)!=0) {
+                clpr.setString(currLine.contents().toUnicode(true));
+            }
+            else {
+                String ucStr = "";
+                for(Line tmp : ln) {
+                    String newStr = tmp.toUnicode(true);
+                    ucStr += newStr+"\n";
+                }
+                clpr.setString(ucStr);
+            }
+	}
+        else if(comm.equals("<UC>")) {
+            saveHtml(fnroot+".xml");
+	}
+        else if(comm.equals("M")) {
+            if((ae.getModifiers() & ae.CTRL_MASK)!=0) {
+                clpr.setString(currLine.contents().toMusic());
+            }
+            else {
+                String muStr = "";
+                for(Line tmp : ln) {
+                    String newStr = tmp.toMusic();
+                    muStr += newStr;
+                }
+                clpr.setString(muStr);
+            }
+	}
+	else if(comm.equals("Open")) {
+            System.err.println(comm);
+            int returnVal = chooser.showOpenDialog(this);
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                File f = chooser.getSelectedFile();
+                String fullName = f.getPath();
+                if(!fullName.endsWith(".rb"))
+                    f = new File(fullName+".rb");
+                loadFile(f);
+            }
+        }
+	else if(comm.equals("Reload")) {
+            System.err.println(comm);
+            if(currFile!=null) {
+                SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            cpos = ta.getCaretPosition();
+                            loadFile(currFile);
+                        }});
+            }
+        }
+        else if(comm.equals("Save")) {
+            if(fname!=null) {
+                saveNow();
+                return;
+            }
+            int returnVal = chooser.showSaveDialog(this);
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                File f = chooser.getSelectedFile();
+                setFName(f.getPath());
+                saveNow();
+            }
+        }
+        else if(comm.equals("Save as...")) {
+            int returnVal = chooser.showSaveDialog(this);
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                File f = chooser.getSelectedFile();
+                String fullName = f.getPath();
+                if(!fullName.endsWith(".rb"))
+                    f = new File(fullName+".rb");
+                setFName(f.getPath());
+                saveNow();
+            }
+        }
+    }
+     
+    int splChkLine;
+
+    void spellCheck() {
+        System.err.println("Line = "+splChkLine);
+        if(splChkLine >= ln.size()) return;
+
+        Line now = ln.elementAt(splChkLine);
+        if(now.getJustFound()) {
+            freshList.add(now.getRawLexeme());
+        }
+        for(;splChkLine < ln.size(); splChkLine++) {
+            try {
+                currLine.setValue(splChkLine);
+                Line tmp = ln.elementAt(splChkLine);
+                if(!tmp.spellCheck(wordList, freshList)) {
+                    tmp.display(l[ACTIVEPOS]);
+                    ta.getCaret().setDot(tmp.getNewPos());
+                    break;
+                }
+            }
+            catch(Exception ex) {
+                System.err.println("Spell checking problem at line "+splChkLine);
+                ex.printStackTrace();
+            }
+        }
+        if(splChkLine == ln.size()) {
+            saveWords(base+"fresh.dict.rb");
+        }    
+    }
+
+    private File currFile;
+
+    private void setFName(String fullFileName) {
+        fname = fullFileName;
+        setTitle(fname);
+    }
+
+    private PrintWriter pw;
+
+    private void loadFile(File f) {
+        setFName(f.getPath());
+        Line.startPicCount();
+        System.err.println(fname);
+
+        try {
+            if(f.exists()) {
+
+                BufferedReader bis = 
+                    new BufferedReader(new FileReader(f));
+                ln.clear();
+                String tmp;
+                boolean tmpStart = true;
+                while((tmp=bis.readLine())!=null) {
+                    Line newBorn = new Line(tmp,tmpStart);
+                    ln.add(newBorn);
+                    tmpStart = newBorn.endsInBeng();
+                }
+                bis.close();
+                if(ln.size()==0) ln.add(new Line(" ",true));
+            }
+            else {
+                ln.clear();
+                if(f.createNewFile()) {
+                    ln.add(new Line(" ",true));
+                    ta.setText("New file.");
+                }
+                else { 
+                    ta.setText("Can't open new file.");
+                }
+            }
+            dekhao();
+            currFile = f;
+            //fontify();
+            pw = new PrintWriter(new FileOutputStream(f.getPath()+".scrp"));
+        }
+        catch(Exception ex) {
+            ta.setText("Problem with file!");
+        }
+    }
+
+    public void saveNow() {
+        try {
+            //System.err.println("fname = ["+fname+"]");
+            File f = new File(fname);
+            boolean newFile = true;
+            File fnew=null;
+            if(f.exists()) {
+                newFile = false;
+                fnew = new File(fname+".bkp");
+                fnew.delete();
+            }
+
+            if(newFile || f.renameTo(fnew)) {
+                PrintWriter pw = new PrintWriter(f);
+                for(Line tmp : ln) 
+                    pw.println(tmp);
+                pw.flush();
+                pw.close();
+                statLab.setText("--");
+                freshCharCount = 0;
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void saveTemp() {
+        //System.err.println("saveTemp");
+        try {
+            //System.err.println("fname = ["+fname+"]");
+            File f = new File(fname);
+            if(!f.exists()) {
+                //System.err.println(f+" does not exist!");
+                return;
+            }
+            
+            File f1 = new File(fname+".sav1");
+            File f2 = new File(fname+".sav2");
+
+            if(f2.exists()) {
+                //System.err.println(f2+" exists!");
+                f2.delete();
+            }
+
+            if(!f1.exists() || f1.renameTo(f2)) {
+                PrintWriter pw = new PrintWriter(f1);
+                for(Line tmp : ln) 
+                    pw.println(tmp);
+                pw.flush();
+                pw.close();
+                statLab.setText("*-");
+                freshCharCount = 0;
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    public void saveHtml(String hname) {
+        try {
+            //System.err.println("fname = ["+fname+"]");
+            File f = new File(hname);
+            boolean newFile = true;
+            File fnew=null;
+            if(f.exists()) {
+                newFile = false;
+                fnew = new File(hname+".bkp");
+                fnew.delete();
+            }
+
+            if(newFile || f.renameTo(fnew)) {
+                PrintWriter pw = new PrintWriter(f);
+                for(Line tmp : ln) 
+                    pw.println(tmp.toUnicode(false));
+                pw.flush();
+                pw.close();
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void showThisLine() {
+        currLine.contents().setPlain(ta.getText());
+        currLine.contents().display(l[ACTIVEPOS]);
+        F1Hit = true;
+    }
+
+        /*ei a.nshata age lagta:
+        try {
+            int pos = ta.getCaret().getDot();
+            System.err.println("pos = "+pos);
+            String str = ta.getText().replace("\r\n","\n");
+            String prefix = str.substring(0,pos);
+            System.err.println("["+prefix+"]");
+            System.err.println("pos = "+pos);
+            String suffix = str.substring(pos);
+            int pos1 = prefix.lastIndexOf('\n');
+            System.err.println("pos = "+pos);
+            System.err.println("pos1 = "+pos1);
+
+            if(pos1 == pos-1) {
+                pos--;
+                prefix = str.substring(0,pos);
+                suffix = str.substring(pos);
+                pos1 = prefix.lastIndexOf('\n');
+            }
+
+            if(pos1 == -1) pos1 = 0;
+            
+            int pos2 = suffix.indexOf('\n');
+            if(pos2 == -1) pos2 = suffix.length();
+            //System.err.println("Prefix: ["+prefix.substring(pos1)+"]");
+            //System.err.println("Suffix: ["+suffix.substring(0,pos2)+"]");
+            String thisLine = prefix.substring(pos1) + 
+                suffix.substring(0,pos2); 
+            //System.err.println("This line  : "+thisLine);
+            //staTex.display(thisLine);
+
+            currLine.contents().setPlain(thisLine);
+            currLine.contents().display(l[ACTIVEPOS]);
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        */
+        //dynTex not needed: dynTex.init();
+
+    private boolean F1Hit = false;
+
+
+    public void f1Hit() {
+        showThisLine();
+    }    
+
+    private void loadWords(String dictFile) {
+        wordList = new TreeSet<String>();
+        freshList = new TreeSet<String>();
+        try {
+            BufferedReader dictin = new BufferedReader(new FileReader(dictFile));
+            while(true) {
+                String line = dictin.readLine();
+                if(line==null) break;
+                wordList.add(line);
+            }
+            dictin.close();
+        }
+        catch(IOException ioe) {
+            System.err.println("Can't load dictionary ["+dictFile+"].");
+        }
+    }
+
+    private void saveWords(String dictFile) {
+        System.err.println("Appending new words to ["+dictFile+"]");
+        try {
+            PrintWriter dictout = 
+                new PrintWriter(new FileOutputStream(dictFile,true));
+            
+            for(String s:freshList)
+                dictout.println(s);
+            dictout.close();
+            freshList.clear();
+        }
+        catch(IOException ioe) {
+            System.err.println("Can't save dictionary ["+dictFile+"].");
+        }
+    }
+
+
+    boolean spellCheckDone = false;
+    public void f8Hit() {
+        splChkLine = currLine.getValue();
+        spellCheck();
+    }
+
+    /*
+    public void f8Hit() {
+        try {
+            int origPos = ta.getCaretPosition();
+            String nw = tf.getText().trim();
+            if(nw.length()>0) {
+                freshList.add(nw);
+                System.err.println("["+nw+"]");
+            }
+            String sab = ta.getText().substring(origPos);
+            
+            //System.err.println(sab);
+            DictLex dicLex = new DictLex(new StringReader(sab));
+            
+            Position lexeme;
+            do {
+                lexeme = dicLex.yylex();
+                if(lexeme==null) {
+                    System.err.println("Spell checking done!");
+                    saveWords(base+"/fresh.dict");
+                    return;
+                }
+            } while(freshList.contains(lexeme.str) ||
+                    wordList.contains(lexeme.str));
+
+            staTex.display(lexeme.str);
+            tf.setText(lexeme.str);
+
+            Caret crt = ta.getCaret();
+            crt.setDot(origPos+lexeme.from);
+            crt.moveDot(origPos+lexeme.to);
+        }
+        catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+    */
+
+    private int freshCharCount;
+    private boolean 
+        autoSave = false,
+        noMouse = false,
+        shiftLock = false;
+    private int fontSize;
+
+    boolean getNoMouse() {
+        return noMouse;
+    }
+
+    boolean getShiftLock() {
+        return shiftLock;
+    }
+
+    public void charHit(char c) {
+        statLab.setText("**");
+        freshCharCount++;
+        //System.err.println("freshCharCount="+freshCharCount);
+        if(freshCharCount>=10) {
+            if(autoSave) 
+                saveNow();
+            else 
+                saveTemp();
+        }
+
+        if(c=='\n') { 
+            if(bengFlag) showThisLine();
+        }
+        else {
+            if(F1Hit) {
+                F1Hit = false;
+            }
+            if(c==' ' && bengFlag) {
+                showThisLine();
+                ta.handleOverFull();
+            }
+        }
+    }
+
+    private boolean editing = false;
+    public void changeLine(boolean upwards) {
+        showThisLine();
+        crd.next(deck);
+        editing = !editing;
+        currLine.moveBy(upwards? -1 : 1);
+        dekhao();
+    }
+
+    private String getPrefix() {
+        int pos = ta.getCaret().getDot();
+
+        String str = ta.getText().replace("\r\n","\n");
+        String prefix = str.substring(0,pos);
+        int pos1 = prefix.lastIndexOf('\n');
+        if(pos1 == -1) pos1 = 0;
+        //System.err.println("Showing: ["+prefix.substring(pos1)+"]");
+        return prefix.substring(pos1);
+    }
+
+    public static void main(String args[]) {
+	
+        final String[] a = args;
+
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    switch(a.length) {
+                    case 0:
+                        new Finalise(".",".","unnamed");
+                        break;
+                    case 2:
+                        new Finalise(a[0],a[1],"unnamed");
+                        break;
+                    case 3:
+                        new Finalise(a[0],a[1],a[2].replaceAll("\\.rb$",""));
+                        break;
+                    default:
+                        System.err.println("Usage: loc dic [file]");
+                    }}});
+    }
+
+    class CurrentLine {
+        private int currLine = 0;
+
+        void reset() {
+            currLine = 0;
+        }
+
+        void setValue(int what) {
+            if(!isLineOK(currLine)) return;
+            if(what < 0) return;
+            if(what >= ln.size()) return;
+
+            currLine = what;
+            dekhao();
+        }
+
+        int getValue() {
+            return currLine;
+        }
+
+        void moveBy(int amt) {
+            setValue(currLine + amt);
+        }
+
+        Line contents() {
+            try {
+                return ln.elementAt(currLine);
+            }
+            catch(Exception ex) {
+                ex.printStackTrace();
+                System.err.println("No. of lines = "+ln.size());
+                System.err.println("Current line = "+currLine);
+            }
+            return null;
+        }
+    }
+
+    private int শুরু, শেষ;
+    private Stack<StringPos> stk;
+    private boolean মেলাও(String লেখা) {
+        শুরু = শেষ = -1;
+        for(int i=0;i<লেখা.length();i++) {
+            char অক্ষর = লেখা.charAt(i);
+            if(অক্ষর=='('||অক্ষর=='{'||অক্ষর=='[') {
+                stk.push(new StringPos(অক্ষর,i)); 
+            }
+            else {
+                try {
+                    if(অক্ষর==')') {
+                        StringPos ছিল = stk.pop();
+                        if(ছিল.অক্ষর != '(') {
+                            শুরু = ছিল.কোথায়;
+                            শেষ = i;
+                            return false;
+                        }
+                    }
+                    else if(অক্ষর=='}') {
+                        StringPos ছিল = stk.pop();
+                        if(ছিল.অক্ষর != '{') {
+                            শুরু = ছিল.কোথায়;
+                            শেষ = i;
+                            return false;
+                        }
+                    }
+                    else if(অক্ষর==']') {
+                        StringPos ছিল = stk.pop();
+                        if(ছিল.অক্ষর != '[') {
+                            শুরু = ছিল.কোথায়;
+                            শেষ = i;
+                            return false;
+                        }
+                    }
+                }
+                catch(EmptyStackException ese) {
+                    শেষ = i;
+                    return false;
+                }
+            }
+        }
+        if(!stk.empty()) {
+            শুরু = stk.pop().কোথায়;
+            return false;
+        }
+        return true;
+    }
+}
+
+
+
+/*
+  Downloaded from:
+  http://stackoverflow.com/questions/60302/starting-a-process-with-inherited-stdin-stdout-stderr-in-java-6
+
+  private static void pipeOutput(Process process) {
+  pipe(process.getErrorStream(), System.err);
+  pipe(process.getInputStream(), System.out);
+  }
+
+  private static void pipe(final InputStream src, final PrintStream dest) {
+  new Thread(new Runnable() {
+  public void run() {
+  try {
+  byte[] buffer = new byte[1024];
+  for (int n = 0; n != -1; n = src.read(buffer)) {
+  dest.write(buffer, 0, n);
+  }
+  } catch (IOException e) { // just exit
+  }
+  }
+  }).start();
+  }
+*/
+
+class StringPos {
+    char অক্ষর;
+    int কোথায়; 
+    StringPos(char কী_অক্ষর, int কোথায়_আছে) {
+        অক্ষর = কী_অক্ষর;
+        কোথায় = কোথায়_আছে;
+    }
+  }

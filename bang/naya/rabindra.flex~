@@ -1,0 +1,26 @@
+%%
+
+%class DictLex
+%type Position
+%standalone
+
+%{
+   int count;
+%}
+
+%state SKIP
+
+%eofval{
+  return null;
+%eofval}
+
+%%
+<YYINITIAL> {
+  "clm1" {yybegin(SKIP);}
+  .|\n {}
+}
+
+<SKIP> {
+  "@}" {count += yylength(); yybegin(YYINITIAL);}
+  .|\n    {count += yylength();}
+}

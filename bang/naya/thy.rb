@@ -1,0 +1,3 @@
+tAte to asubidhA
+tAte to asubidhA
+tAte to asubidhA nei. @{<E>Edit</E>@} karA gelei

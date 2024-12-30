@@ -1,0 +1,26 @@
+import java.util.*;
+%%
+
+%unicode
+%state DRAMA
+%class IdxLex
+%standalone
+
+%{
+   String filter(String what) {
+        String tmp = what.trim();
+        return tmp.substring(0,1).toUpperCase()+tmp.substring(1);
+   }   
+%}
+
+
+%%
+
+<YYINITIAL> {
+"\\indexentry{" {System.out.print(yytext()); yybegin(DRAMA);}
+}
+
+<DRAMA> {
+[^}]+ {System.out.print(filter(yytext()));}
+"}" {yybegin(YYINITIAL);}
+}

@@ -1,0 +1,103 @@
+/*[Update:[Fri Oct 15 IST 2021]]
+ **Mon Oct 11 2021
+ Now showMarks accepts the localStart explicitly. So we are not querying Finalize
+ from paintComponent for the current line.
+ */
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class TrackBar extends JPanel 
+    implements MouseListener {
+    private Finalise f;
+    Vector<ColPos> pos=new Vector<ColPos>();
+    int curr = -1;
+
+    public TrackBar(Finalise fnl) {
+        f = fnl;
+        setBackground(new Color(175,202,202));
+        addMouseListener(this);
+   }
+
+    private int tot;
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.BLACK);
+        tot = f.nLines();
+        if(tot <= 0) return;
+        if(pos==null) return;
+        for(ColPos cp : pos) {
+            int y = (int)((cp.pos/(float)tot) * getHeight());
+            g.setColor(cp.col);
+            g.drawLine(0,y,getWidth(),y);
+        }
+        int y = (int)((localStart/(float)tot) * getHeight());
+        g.setColor(Color.RED);
+        g.drawLine(0,y,getWidth(),y);
+    }
+
+
+    private int localStart = -1, colIndex;
+    public void showMarks(Vector<Integer> p, int locStart) {
+        pos.clear();
+        colIndex = 0;
+        localStart = locStart;
+        //System.err.println("Show marks.");
+        addMarks(p);
+    }
+
+    public void addMarks(Vector<Integer> p) {
+        //System.err.println("Add marks.");
+        if(p!=null) {
+            for(int i : p) {
+                pos.add(new ColPos(colIndex,i));
+            }
+            colIndex++;
+        }
+        repaint();
+    }
+
+
+    public void mouseClicked(MouseEvent me) {
+        int y = me.getY();
+        int which = (int)(y/(float) getHeight() * tot);
+
+        if(me.getButton()==MouseEvent.BUTTON3) {
+            if(localStart>=0) f.goToLine(localStart, false);
+            return;
+        }
+
+        int minDiff = tot+1;
+        int best = -1;
+
+        for(ColPos cp : pos) {
+            int i = cp.pos;
+            int diff = i-which;
+            if(diff < 0) diff = -diff;
+            if(diff < minDiff) {
+                minDiff = diff;
+                best = i;
+            }
+        }
+
+        //f.getGlassPane().setVisible(true);
+        f.goToLine(best, false);
+    }
+
+    public void mousePressed(MouseEvent me) {}
+    public void mouseReleased(MouseEvent me) {}
+    public void mouseEntered(MouseEvent me) {}
+    public void mouseExited(MouseEvent me) {}
+}
+
+class ColPos {
+    Color col;
+    int pos;
+    private static Color colList[] = {Color.BLACK,Color.YELLOW,Color.GREEN,Color.MAGENTA};
+    ColPos(int ci, int p) {
+        col = colList[ci<4? ci: 3];
+        pos = p;
+    }
+}

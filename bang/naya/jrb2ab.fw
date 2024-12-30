@@ -1,0 +1,765 @@
+@t title titlefont centre "Translating RB to AB"
+@t title smalltitlefont centre "(BTex.java)"
+@t table_of_contents
+@p maximum_output_line_length = 200
+@A@<DFA driver@>
+@$@<Private fields@>+=@{
+private int state;
+private boolean hasYaphala;
+private int lastPrim;
+@}
+
+@$@<Public methods@>+=@{
+private Emitter emtr;
+public void process() throws IOException {
+  int c=-1,tabEntry;
+  boolean forceYukta = false;
+  String texStr="";
+  dbg = 0;
+
+  while(true) {
+    if(dbg!=0) {
+        System.err.print("State = "+state+"\n");
+    }
+
+    @<Get next token@>
+
+    switch(state) {
+    case 0 :
+        @<Handle state 0@>
+        break;
+    case 1 :
+        @<Handle state 1@>
+        break;
+    case 2 :
+        @<Handle state 2@>
+        break;
+    case 3 : 
+        if(c==Common.EOT) {
+          if(dbg!=0) System.err.print( "<END OF TEX>\n");
+          state = 0;
+        }
+        else {
+          if(dbg!=0)System.err.println("**"+texStr);
+          emtr.emitEng(texStr);
+        }
+        break;
+    case 4 :
+     @<Handle state 4@>
+     break;
+    }
+  }
+}
+@}
+
+@B@<Initializing@>
+@$@<Private fields@>+=@{
+private boolean inError;
+private boolean buffered;
+private BengLex blex;
+@}
+
+@$@<Constructors@>==@{
+public BTex(Emitter emtr1) {
+  emtr = emtr1;
+  loadYukta();
+}
+
+public void init() {
+  state = 0;
+  buffered = false;
+  inError = false;
+}
+
+public void display(String str) throws IOException {
+  blex = new BengLex(new StringReader(str));
+  process();
+}
+
+public BTex(Reader rdr, Emitter emtr1) {
+  emtr = emtr1;
+  init();
+  loadYukta();
+
+  blex = new BengLex(rdr);
+}
+@}
+@$@<Private methods@>+=@{
+private void loadYukta() {
+  int i,count;
+  int row=-1,col=-1, yuktaState;
+
+  count = yuktaState = i = 0;
+  while(YuktaDat.yuktaList[i] != YuktaDat.EOY) {
+     @<Mini automaton@>
+  }
+
+  System.err.print("Loaded "+count+" yuktaxars\n");
+}
+@}
+
+Here is how the mini automaton works. It starts at state 0, reads the next
+entry (@{row@}, say)in the @{YuktaDat.yuktaList@} array, and moves to 
+state 1. If
+it meets a -1 in state 1, then it reverts back to state 0. Otherwise, it
+reads two consecutive entries of @{YuktaDat.yukataList@}. 
+Call them @{col@} and
+@{x@}, say. Then the automaton loads the fact that letter @{row@} followed
+by letter @{col@} produces yuktaxar @{x@}.
+@$@<Private fields@>+=@{
+private int tab[][] = new int[Common.MAXLENIENT+1][50];
+@}
+
+@$@<Mini automaton@>==@{
+switch(yuktaState) {
+  case 0 :
+   row = YuktaDat.yuktaList[i++];
+   yuktaState = 1;
+   break;
+  case 1 :
+   if(YuktaDat.yuktaList[i] == -1) {
+       i++;
+       yuktaState = 0;
+   }
+   else {
+       col = YuktaDat.yuktaList[i++];
+       if(dbg>1) System.err.print("("+row+","+col+")\n");
+       if(row>Common.MAXLENIENT) {
+         System.err.println("Error!");
+         System.exit(1);
+       }
+       tab[row][col] = YuktaDat.yuktaList[i++];
+       count++;
+       if(dbg>1) System.err.print(""+Common.haraph1[row]+" + "+
+                                  Common.haraph1[col]+" = "+
+                  Common.haraph1[Math.abs(tab[row][col])]+"\n");
+
+   }
+   break;
+}
+@}
+
+@B@<Reading the tokens@>
+Reading the next token from the input RB file is somewhat trickier than it
+sounds. We have to take care of error conditions and left overs from past
+calls.
+@$@<Get next token@>==@{
+if(!buffered) {
+  @<Read a fresh token@>
+}
+else {
+  if(dbg!=0) System.err.print("Continuing with last token...\n");
+  buffered = false;
+}
+
+if(c==0) {
+  if(dbg!=0) System.err.print("Goodbye\n");
+  return;
+}
+@}
+
+As the automaton reads input tokens, it may happen that when it reaches an
+acceptance state, it cannot process the current token in that pass of the
+loop. Then that token is left unused  in the variable @{c@}, to be used
+during the next pass. We call this  situation "buffering" and  indicate
+this by making the flag @{buffered@} true.@+
+At EOF @{LX.yylex@} return 0. Then we stop the automaton.
+
+
+@$@<Read a fresh token@>==@{
+if(inError) {
+  System.err.print("Skipping upto next punctuation/SOE/EOF...\n\n");
+  do {
+    Symbol tmp = blex.yylex();
+    if(tmp==null) {System.err.println("Done."); return;}
+    c = tmp.token;
+    yylval = tmp.lexeme;
+  } while(c!=Common.PUNCT && c!=0 && c!=Common.SOE);
+  inError = false;
+}
+else {
+  Symbol tmp = blex.yylex();
+    if(tmp==null) {
+      if(state!=0) emit(first,second,0);
+      System.err.println("Done."); 
+      return;
+    }
+  c = tmp.token;
+  if(c==Common.SPL)
+    texStr = tmp.lexStr;
+  else
+    yylval = tmp.lexeme;
+  if(dbg!=0) System.err.println("lexeme = "+yylval);
+}
+if(dbg!=0) 
+  if(state==3)
+    System.err.print("Reading new E token... ["+texStr+"]("+c+")\n");
+  else
+    System.err.print("Reading new B token... ["+yylval+"]\n");
+@}
+If the automaton has met with an error (flagged by a true @{inError@})
+we simply skip upto the next punctuation/SOE/EOF. Note that we cannot
+ignore a SOE, since otherwise the lexer will remain in its @{INITIAL@}
+start condition inside an embedded English, and all sorts of chaos might
+ensue!
+@B@<The actions@>
+
+@$@<Private fields@>+=@{
+private int first, second;
+@}
+
+It restores
+the automaton to state 0, and turns on the flag @{inError@}. Also, it
+prints the line number using the flex global @{LX.yylineno@}. It is for this
+reason that the flex input has the @{%option yylineno@} directive.
+@$@<Private methods@>+=@{
+private void error(String s) {
+  //System.err.print("ERROR at line "+LX.yylineno+
+  //                 " character "+wordCount+": "+s+"\n");
+  System.err.print("State = "+state+"\n");
+  //System.err.print("Offending input is ["+LX.yytext+"] \n");
+  
+  //System.err.print("ERROR at line "+
+  //                  LX.yylineno+" character "+wordCount+":"+s+"\n"); 
+  //System.err.print("Offending input is ["+LX.yytext+"] \n");
+  
+  inError = true;
+  state = 0;
+  buffered = false;
+}
+@}
+
+@C@<Actions at state 0@>@+
+This is the starting state of the automaton. In this state we expect any
+token other than @{+@} and @{~@} and End of English marker. @+
+Handling the expected token is pretty straightforward. However, if we get
+a byanjan we go to state 1 or state 2 according as that byanjan can become
+a yuktaxar or not.@+
+In case of a swar we just have to guard against a HAS sign, since a swar
+at this state cannot be a kAr.
+@$@<Handle state 0@>==@{
+switch(c) {
+@<On PUNCT, NUM, MISC stay at state 0@>
+
+case Common.SWAR :
+    if(yylval==Common.HAS) {  /* cannot start with a HAS sign! */
+        error("Badly applied HAS sign\n");
+    }
+    //LX.start=0;
+    if(dbg!=0) System.err.print("Swar...\n");
+    first = yylval;
+    state = 4;
+    break;
+
+case Common.BYAN :
+    //LX.start=0;
+    first = yylval;
+    if(dbg!=0) System.err.print("Byanjan\n");
+    state = 1;
+    break;
+
+case Common.SOT :
+    if(dbg!=0) System.err.print("<Start Of TEX>\n");
+    state = 3;
+    break;
+
+default :
+    error("Unexpected token ["+c+"] at state 0");
+    break;
+}
+@}
+
+@$@<On PUNCT, NUM, MISC stay at state 0@>==@{
+case Common.PUNCT :
+    if(dbg!=0) System.err.print("Punctuation...dumped\n");
+    emit(yylval,0,0);
+    break;
+case Common.NUM :
+    //LX.start=1;
+    if(dbg!=0) System.err.print("Number...dumped\n");
+    emit(yylval,0,0);
+    break;
+
+case Common.MISC :
+    if(dbg!=0) System.err.print("miscel...dumped\n");
+    emit(yylval,0,0);
+    break;
+@}
+
+@C@<Actions at state 1@>@+
+State 1 is reached when we have already read exactly one byanjan. At state
+1 we may expect either a swar (the kAr of the byanjan), or new byanjan
+(which may or may not form a yuktaxar with
+the first byanjan), or a connectivity directive (ie, + or ~), or a
+chandrabindu. If we get anything else (eg, punctuation) then we simply
+output the byanjan that we already have, and buffer this token for the
+next pass.
+@$@<Handle state 1@>==@{
+switch(c) {
+case Common.SWAR :
+    if(dbg!=0) System.err.print("Swar...dumped\n");
+    buffered = true;
+    state = 2;
+    //emit(first,second,yylval-A);
+    break;
+
+case Common.PLUS :
+    if(dbg!=0) System.err.print("Plus\n");
+    forceYukta = true;
+    state = 1;
+    break;
+
+case Common.CHANDRA :
+    if(dbg!=0) System.err.print("chandrabindu\n");
+    second = collSec(Common.CHANDRA);
+    state = 1;
+    break;
+
+case Common.BYAN :
+    if(dbg!=0) System.err.print("byanjan\n");
+    @<Process consecutive byanjans@>
+    break;
+
+case Common.TILDE :
+    if(dbg!=0) System.err.print("Tilde...dumped\n");
+    emit(first,0,0);
+    break;
+
+default :
+    buffered = true;
+    emit(first,second,0);
+    break;
+}
+@}
+
+The trickiest part in the above switch is, of course, handling the
+consecutive byanjans. First we deal with the yaphala (YY) case.
+If we do not have YY, then we consult the yuktaxar table.
+
+@$@<Process consecutive byanjans@>==@{
+if(yylval==Common.YY) {
+    hasYaphala = true;
+    state = 2;  //no more combining after yaphala
+}
+else {
+    tabEntry = lookUp(first,yylval); /* consult yuktaxar table*/
+    if(dbg!=0) {
+      System.err.print("\ttab["+NameDat.primName[first]+
+                     "("+first+")]["+NameDat.primName[yylval]+
+                     "("+yylval+")] = "+tabEntry+"\n");
+    }
+    if(tabEntry==0) {
+        @<When the byanjans cannot combine@>
+    }
+    else if(tabEntry>2) {
+       if(dbg!=0) System.err.print(""+NameDat.primName[first]+" + "+
+                                      NameDat.primName[yylval]+" = "+
+                                      NameDat.primName[tabEntry]+"\n");
+
+       @<When the byanjans can and should combine@>
+    }
+    else if(tabEntry<0) {
+       @<When the byanjans can, but should not combine@>
+    }
+    else if(tabEntry==Common.RAPHALA) { /* raphala*/
+       if(dbg!=0) System.err.print("Doing raphala\n");
+       second = collSec(Common.RAPHALA);
+       forceYukta = false;
+       state = 1; 
+    }
+    else if(tabEntry==Common.REF) { /* ref */
+       if(dbg!=0) System.err.print("Doing ref\n");
+       second = collSec(Common.REF);
+       first = yylval;
+       forceYukta = false;
+    }
+    else {
+       error("What is this?");
+    }
+}
+@}
+
+The first case is pretty straightforward.
+@$@<When the byanjans cannot combine@>==@{
+if(dbg!=0) System.err.print("Keeping separate\n");
+if(!forceYukta) {
+    emit(first,second,0);
+}
+else {
+    emit(first,second,Common.HAS);
+}
+
+buffered = true;
+@}
+
+The next case is simpler still. If the byanjans @/should@/ combine, then
+just go ahead and combine them! Notice that in case the user used a @{~@}
+to separate them, the automaton would not have come to this point!
+If th resulting yuktaxar cannot take any more byanjan, then go  to state
+2.
+@$@<When the byanjans can and should combine@>==@{
+first = tabEntry;
+forceYukta = false;
+if(dbg!=0) System.err.print("Combining\n");
+state = 1;
+@}
+
+@$@<When the byanjans can, but should not combine@>==@{
+if(dbg!=0) System.err.print("Can combine, but should not\n");
+if(forceYukta) {
+    int temp;
+    temp = -tabEntry;
+    if(temp==Common.RAPHALA) {
+       second = Common.RAPHALA;
+       state = 2; //nomore yukta after raphala
+    }
+    else if(temp==Common.REF) {
+       first = yylval;
+       second = Common.REF;
+    }
+    else {
+       first = temp;
+       state = 1;
+    }
+}
+else {
+    emit(first,second,0);
+    buffered = true;
+}
+
+forceYukta = false;
+@}
+
+The secondaries may occur over more than one tokens. The program has to
+collate and combine them in a single secondary. The entire procedure is
+governed by the @{combSec@} matrix.
+@$@<Private fields@>+=@{
+private int combSec[][]= {
+  {Common.NOTHING, Common.RAPHALA, Common.REF, Common.CHANDRA},
+  {Common.NOTHING, Common.NOTHING, Common.REF_RAPHALA, Common.RAPHALA_CHANDRA},
+  {Common.NOTHING, Common.REF_RAPHALA, Common. NOTHING, Common.REF_CHANDRA},
+  {Common.NOTHING, Common.RAPHALA_CHANDRA, Common.REF_CHANDRA,  Common.NOTHING}
+};
+@}
+If @{i@}-th secondary is followed by the @{j@}-th
+secondary then the software combines them into the @{combSec[i][j]@}-th
+secondary. Notice that the diagonals are all zero. So repeated secondaries
+cancel out.
+
+
+@$@<Private methods@>+=@{
+private int collSec(int newSec) {
+  if(combSec[second][newSec]!=0) {
+    return combSec[second][newSec];
+  }
+  else {
+    error("Insensible secondaries");
+  }
+  return 0;
+}
+@}
+
+
+@C@<Actions at state 2@>@+
+State 2 means we already have a byanjan (simple/yukta) that cannot bear
+extra load. So
+now only a swar or a punctuation can relieve it, ie send it back to state
+0. However, it might still care for a yaphala or raphala, which will take
+it on to state 3.
+
+@$@<Handle state 2@>==@{
+switch(c) {
+case Common.SWAR:
+   if(dbg!=0) System.err.print("swar...dumped\n");
+   if(hasYaphala) 
+      emit(first,second,Common.YAPH+yylval-Common.A);
+   else
+      emit(first,second,yylval-Common.A);    
+   break;
+
+default:
+   error("Expecting swar or chandrabindu.");
+   break;
+}
+@}
+
+@$@<Handle state 4@>==@{
+switch(c) {
+case Common.CHANDRA :
+    if(dbg!=0) System.err.print("chandrabindu\n");
+    second = collSec(Common.CHANDRA);
+    if(dbg!=0) System.err.print("******first = "+first+
+                                " second = "+second+"\n");
+    emit(first, second, 0);
+    break;
+default:
+    if(dbg!=0) System.err.print("dumping the swar\n");
+    buffered = true;
+    emit(first, second, 0);
+    break;
+}
+@}
+
+
+@A@<Miscel private methods@>
+@B@<The highlevel output function@>
+
+This function is supposed to write one AB character corresponding to the
+triple (@{p@},@{s@},@{v@}). @+
+@/Caution:@/@+
+1. It has the side effect that it sets restores the automaton to
+state 0, and reinitializes @{first@} and @{second@} to 0.@+
+2.Never use this function to emit embedded English!@+
+If @{p@} is a number/punctuation then it simply dumps @{p@}. Else, it
+checks if there is any secondary part. If not, then it dumps a single 0
+bit. Otherwise, it dumps @{s@} after a single 1 bit. Finally it dumps @{v@}.
+
+
+@$@<Private methods@>+=@{
+private int lookUp(int r, int c) {
+  if(r>Common.MAXLENIENT) {
+    if(c==Common.R) return Common.RAPHALA;
+    return 0;
+  }
+  return tab[r][c];
+}
+@}
+
+@$@<Private methods@>+=@{
+private void emit(int p , int s, int v) {
+  state = first = second = 0;
+  hasYaphala = false;
+  emtr.emit(p,s,v);
+}  
+private void emit1(int p , int s, int v) {
+  boolean yaphalaPresent;
+
+
+  if(dbg!=0) System.err.print("***p = "+p+" s = "+s+" v = "+v+"\n");
+  left = mod1 = mid = mod2 = right1 = right2 = "";
+  yaphalaPresent = false;
+  @<Check presence of yaphala@>
+
+  switch(v) {
+    @<Cases for different vowel signs@>
+    default :
+      error("Unknown vowel sign: "+v+"\n");
+  }
+
+  primSec(p,s);
+  printIt();
+  state = first = second = 0;
+  hasYaphala = false;
+}
+@}
+
+@$@<Check presence of yaphala@>==@{
+if(v>=Common.YAPH) {
+    v -= Common.YAPH;
+    yaphalaPresent = true;
+}
+else {
+    yaphalaPresent = false;
+}
+@}
+
+@$@<Private fields@>+=@{
+private String left,mod1,mid,mod2,right1,right2;
+@}
+
+@$@<Cases for different vowel signs@>==@{
+case Common.AA_KAR : 
+   if(yaphalaPresent) {
+     right1="Y";
+     right2="a";
+   }
+   else {
+     right1="a";
+   }
+   break;
+case Common.II_KAR : 
+   right1="ii";
+   if(yaphalaPresent) right2="Y";
+   break;
+case Common.HAS_KAR :
+   right1=":/";
+   if(yaphalaPresent) right2="Y";
+   break;
+case Common.O_KAR :
+   left = "e";
+   right1 = "a";
+   if(yaphalaPresent) right2="Y";
+   break;
+case Common.OU_KAR :
+   left="e";
+   if(yaphalaPresent) {
+     right1="Y";
+     right2="ou";
+   }
+   else {
+       right1="ou";
+   }
+   break;
+case Common.OI_KAR :
+   left="{oi}";
+   if(yaphalaPresent) right1="Y";
+   break;
+case Common.E_KAR :
+   left="e";
+   if(yaphalaPresent) right1="Y";
+   break;
+case Common.I_KAR :
+   left="i";
+   if(yaphalaPresent) right1="Y";
+   break;
+case Common.U1_KAR :
+   right1="u";
+   if(yaphalaPresent) right2="Y";
+   break;
+case Common.UU_KAR :
+   right1="uu";
+   if(yaphalaPresent) right2="Y";
+   break;
+case Common.RRI_KAR:
+   right1="rR";
+   if(yaphalaPresent) right2="Y";
+   break;
+case Common.A_KAR:
+   if(yaphalaPresent) right1="Y";
+   break;
+@}
+
+@$@<Private methods@>+=@{
+private void primSec(int p, int s) {
+  switch(s) {
+   case Common.RAPHALA:
+     if(!raphAbsorbed(p)) {
+       mid=NameDat.primName[p];
+       mod2="R";
+     }
+     break;
+   case Common.REF:
+     mod1="r/";
+     mid=NameDat.primName[p];
+     break;
+   case Common.CHANDRA:
+     mid=NameDat.primName[p];
+     mod2="NN";
+     break;
+   case Common.REF_RAPHALA:
+     mod1="r/";
+     if(!raphAbsorbed(p)) {
+       mid=NameDat.primName[p];
+       mod2="R";
+     }
+     break;
+   case Common.REF_CHANDRA:
+     mod1="r/";
+     mod2="NN";
+     break;
+   case Common.NOTHING:
+     mid=NameDat.primName[p];
+     break;
+   }
+}
+@}
+
+@$@<Private methods@>+=@{
+boolean raphAbsorbed(int p) {
+  switch(p) {
+    case Common.K :
+     mid="kR";
+     return true;
+    case Common.T :
+     mid="tR";
+     return true;
+    case Common.BH :
+     mid="bhR";
+     return true;
+    case Common.N_T :
+     mid="n/tR";
+     return true;
+    case Common.S_T :
+     mid="s/tR";
+     return true;
+    case Common.S_K :
+     mid="s/kR";
+     return true;
+   }
+  return false;
+}
+@}
+
+@$@<Private methods@>+=@{
+private void printIt() {
+  System.out.print(left);
+  System.out.print(mod1);
+  System.out.print(mid);
+  System.out.print(mod2);
+  System.out.print(right1);
+  System.out.print(right2);
+  System.out.flush();
+}
+@}
+
+
+
+@A@<Chores@>
+@B@<Test harness@>
+@$@<Test harness@>==@{
+public void main(String args[]) throws Exception {
+   int i,j,k;
+/*
+   @<Open files@>
+  */ 
+
+   dbg = 0;
+
+   //process(new FileReader(args[0]));
+}
+@}
+
+
+@$@<Open files@>==@{
+if(argc==2){
+    sprintf(fileName,""+argv[1]+".rb");
+    //LX.yyin = fopen(fileName,"r");
+    sprintf(fileName,""+argv[1]+".tex");
+    fOut = fopen(fileName,"w");
+    sprintf(fileName,""+argv[1]+".lis");
+    fErr = fopen(fileName,"w");
+   }
+else {
+    System.err.print("Usage: rb2ab <fileRoot>\n");
+    exit(1);
+   }
+@}
+
+@B@<File layout@>
+@O@<BTex.java@>@{
+import java.io.*;
+
+public class BTex {
+ 
+int yylval;
+
+@<Private fields@>
+@<Constructors@>
+@<Public methods@>
+@<Private methods@>
+@<Test harness@>
+}
+@}
+
+It is important that flex (@/and NOT lex@/) be
+used to produce this file. It is obtained by running flex on the  file
+@{beng.lex@}.  @+
+The file @{yukta.h@} has the  yuktaxar codes defined in it.
+
+
+
+@$@<Private fields@>+=@{
+private int dbg;
+@}
+
+

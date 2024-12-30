@@ -1,0 +1,63 @@
+<NOTE>
+<TITLE>ra.n</TITLE>
+
+<HEAD1>ra.n</HEAD1>
+Treker dale janA chhayek. pather dhAre b,nAsher jangal.
+<P/>
+tham.hke d,nARiye paRla ekjan.
+<P/>
+``dyAkh.h dyAkh.h, oi ye--''
+<P/>
+``ki? ki?''
+<P/>
+``oi ye--''
+<P/>
+``kothAy?'' 
+<P/>
+``oi ye okhAne-- ki ekTA baRa matan chhuTe gela!''
+<P/>
+``baRa matan? jangle? o mA, kothAy? kothAy?''
+<P/>
+``chale gela to!''
+<P/>
+``ki rakam dekhte? bhAluker mata? e bane nAki bhAluk  Achhe!''
+<P/>
+``nA nA, ata baRa nA, kukurer mata bodhhay, chokher bhulao hate pAre.''
+<P/>
+@{<CENTER>*****</CENTER>@}
+<P/>
+``yyi shon.h nA! bhUto ekTA baRa jantu dekhte peyechhe!''
+<P/>
+``ki jantu? lAl ra.n?'' 
+<P/>
+``balla to kAlo. kena lAl hale ki hata?''
+<P/>
+``ki hata ki kare? lAl mAne to @{<E>red panda!</E>@}''
+<P/>
+``o mA, @{<E>red panda!</E>@} tabe kAlo balla ye!''
+<P/>
+``yA b,nAsher jangal, Aloi to Dhoke nA. lAl kAlo bujhbe ki kare?''
+<P/>
+``tabe bodhhay lAl~i habe. ore bhUto ekTA @{<E>red panda</E>@} dekhechhe re! kukurer mata d\ouRe 
+gela!'' 
+<P/>
+``dhu.t @{<E>red panda</E>@} to b,nAsher DAle jhule jhule pAtA khAy. kukurer mata d\ouRabe kena?''
+<P/>
+``tui thAm.h to! kena d\ouRabe tA ki kare balba? lAl ra\nger jantu mAnei @{<E>red panda!</E>@}''
+<P/>
+@{<CENTER>*****</CENTER>@}
+<P/>
+``ore ekhAne @{<E>tower</E>@} peyechhe!''
+<P/>
+``man+Tuke ekTA phon kar.h!''
+<P/>
+``d,nARA nA, ri.n hachchhe@{<E>...</E>@} hyAlo man+Tu? of.h AmrA sabAi ekTA dAruN jinis dekhechhi.
+@{<E>Red panda!</E>@}  @{<E>...</E>@}   Are dur.h DAnDA nay, @{<E>panda, panda!</E>@} sei ye b,nAsher DAle jhule jhule
+pAtA khAy, lAphiye lAphiye yAy. dekhAi yAy nA. ekhAne to jangal bhISaN ghana! tAr 
+madhye diye d\ouRe d\ouRe yAchchhila. AmrA spaSTa dekhlAm. of.h ki bhISaN sundar!
+naram naram lAl ra.n! @{<E>...</E>@} 
+dur.h, chhabi tulba ki kare? bhISaN jore chhuTe gela ye! esab ki kyAmerAy dharA yAy bhAi? 
+chokher kyAmerAy dharte hay! tui to eli nA, ele dekhte peti. AmAder Trek bhAi sArthak 
+haye gela@{<E>...</E>@}'' 
+</NOTE> 
+  

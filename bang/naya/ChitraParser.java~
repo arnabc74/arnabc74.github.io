@@ -1,0 +1,23 @@
+parser grammar Chitra;
+options { tokenVocab=ChitraLex;}
+
+puro : pata* ;
+
+pata : NUM body;
+
+body : upar | nich | upar nich ;
+
+upar: TOP guchchha ;
+
+nich: BOT guchchha ;
+
+guchchha: height? name ityadi?;
+
+height: NUM;
+
+name: TEXT;
+
+ityadi: LBRA spec (COMMA spec)* RBRA;
+
+spec: ID EQ TEXT;
+

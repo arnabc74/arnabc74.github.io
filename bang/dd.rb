@@ -1,0 +1,170 @@
+<NOTE>
+<HEAD1> duSTu d\oitya</HEAD1>
+pratidin bikele pAThshAlA theke pherAr pathe bAchchArA khelte yeta
+d\oityapurIr bAgAne.
+<P/>
+d\oityapurIr mas+ta bAgAn. makhmaler naram tAr sabuj ghAs. ghAser upar 
+chama.tkAr sab phul phuTe thAk~ta, Thik yena AkAsher tArAr mato. Ar 
+basantakAle bAgAner bAroTA phaler gAchh bhore gOlApI Ar muk+to-ra\nger 
+k(n)uRi phuTto, Ar shara.tkAle tArA nuiye paRto phaler bhAre. takhan 
+gAchher DAle DAle pAkhIr gAn shun~te shun~te khelA thAmiye bAchchArA bhAbto 
+`ish, Am~rA ki bhISaN sukhe Achhi!'
+<P/>
+ekdin sheSe d\oitya phire elo. se giyechhila tAr bandhu mAmdobhUter bARI, 
+prANer duTO kathA kaite. tabe d\oitya kinA nitAnta kam kathAr mAnuS, tAi 
+mOTe sAt bachharei tAr sab kathA balA haye gela. takhan se talpitalpA
+guTiye nijer purIte phire elo. Ar phire ese dekhte pelo purIr bAgAne 
+bAchchAr dal khelA kare beRAchchhe.
+<P/>
+`tabe re, ekhAne kI karA hachchhe!'  bole se emni ek h(n)Ak pARla ye 
+bAchchArA ye yedike pAr~lo chhuTe pAlAlo.
+<P/>
+`AmAr purIr bAgAn! Ar sekhAne kinA anye ese khelA karbe? eki anyAy kathA?  
+AmAr bAgAne khAli Amii khelA kor~bo.' ei bole gaj.hgaj.h karte karte
+d\oityamshAy bAgAner chAr~dhAre pellAy u(n)chu p(n)Achil tule ek mas+to baRo
+sAin~bOrD laTke dilen ---
+<Q>
+`binA anumatite prabesh karile kaThor shAs+ti haibe.'
+</Q>
+satyi, hi.nsuTe d\oityer e bhArI swArthaparatA!
+<P/>
+bechArI bAchchArA ekhon kOthAy khelA kare? tArA gelo rAs+tAr upor
+khelte. kintu rAs+tAte emni dhulO, Ar rAs+tAr pAthor~gulO emni bhISaN shakto
+ye sekhAne mOTei khelA jom~lo nA. ekhon pAThshAlA chhuTi hoye gele pore
+tArA d\oityopurIr bAgAner u(n)chu deOyAler bAire ghure beRAy, Ar parospar
+balAboli kare, `AhA re, Age Am~rA kato bhAlO chhilAm!'\p 
+
+tAr~par basanto elo. sArA rAjyo phuler shObhAy Ar pAkhIr gAne mete
+uThlo. kintu hi.nsuTe d\oityer bAgAne kebol hARkan.hkane utture hAOyA chhARA
+kichchhu boilo nA. pAkhIrA bol~lo o chhAi d\oityopurIr bAgAne bAchchArA
+Dhuk~te pAy nA, sekhAne AmAder gAite boyei gechhe. tAi sekhAne Ar pAkhIO
+DAke nA, phul~O phOTe nA. ek~bAr ek~TA chhOT+To phul ghAser bhitor theke
+mAthA tule cheyechhilo, kintu sei mas+to sAin~bOrDkhAnA dekhe mane bhArI
+du.Hkho peye AbAr mATir talAy Dhuke ghumiye poRlo. hi.nsuTe d\oityer mas+to
+bAgAne kebol roilo h(n)ARkApAnO himel hAOyA Ar himkan.hkane
+tuSAr~buRO. tArA dhei dhei kore sArA bAgAn juRe nAchte nAchte bolte lAg~lo,
+`kemon majA, kemon majA, ei bAgAne phul~O nei, pAkhIO nei, basantoO
+nei. eikhAn theke Am~rA sArA bachchhar ek pAO noRchhi nA.'\p
+
+tuSAr~buRO tAr sAdA barapher AlkhAllAr talAy bAgAner sab sobuj ghAs
+bemAlum Dheke phel~lo. Ar himel hAOyAr dApoTe bechArI gAchhgulO d(n)Ate
+d(n)At lege ThakAThak.h k(n)epei sArA! tAteO ki rokkhe Achhe? himel hAOyA
+Deke niye elo tAr prANer bondhu ghurNijhaRke. se esei bAgAn juRe bhayAnak
+chor.hki nAchan neche dh(n)OyA berObAr chim.hnIgulO sab bebAk chur~mAr
+kore phel~lo. kore bol~lo, `e tO khAsA jAygA!' bole kOthA theke juTiye An~lo
+tAr mAs~tutO bhAi shilAbrriSTike. shilAbrriSTir se ki tANDab yodi
+dekhte! protidin tin ghan+TA dhore d\oityopurIr chhAde ek~TAnA lAphiye
+jh(n)Apiye chhAder purO daphAraphA tO kore diloi, tAr~par AbAr ek~TA chhAyA
+ra\nger jObbA pore, tuhin shItal ni.HshwAs phelte phelte bAgAner chAr~dike
+p(n)Ai p(n)Ai kore chhuTe beRAte lAg~lo.\p
+
+d\oityopurIr mas+to bAgAn baraphe sAdA. sedike tAkiye jAnAlAy bose hi.nsuTe
+d\oityo dIrghoshwAs phele bale, `e bachhar chhAi basanto ye kabe As~be!'\p
+
+kintu basanto Ar elo nA. basanter par ye grISma seO d\oityopurIr bAgAne
+Dhuk~lo nA. sArA deshe gAchhe gAchhe sOnAra\nger phal dhor~lo. kintu
+d\oityopurIr shUnyo bAgAn yeman ph(n)AkA tem~ni roilo. d\oityopurIr si.n
+darOjAr sAm~ne diye shara.tkAl mukh phiriye chole gelo, bol~lo, `amon
+swArthopar d\oityer bARI Ami kakkhaNO yAbo nA!' tAi d\oityer bAgAne roilo
+kebal himel hAOyA, Ar tuSAr~buRO, Ar ghurNijhaR, Ar tAr mAs~tutO bhAi
+shilAbrriSTi.\p
+ekdin sakAle d\oityo tAr pellAy bichhAnAy shuye Achhe. haTha.t tAr kAne
+elo bhArI miSTi ek sur. se sur shune d\oityer bhISaN bhAlO lAg~lo. `AhA ,
+Aj bujhi rAj~bARIte sAnAi bAjchhe,' ei nA bole jAnAlA khule dekhe ki --
+jAnAlAr dhAre gAchher DAle bose ek~TA dOyel pAkhI gAn gAichhe! d\oityo
+kinA katodin pAkhIr gAn shun~te pAyni, tAi dOyel pAkhIr gAn shune tAr mane
+holo `emon sundar gAn~O prrithibIte Achhe!' edike dOyel pAkhIr miSTi gAn
+shune himel hAOyA thomke gelo. mAthAr upar tAth\oi tAth\oi nAch~chhilo
+ghurNijhaR, se nAch thAmiye bhArI thatomato kheye cheye roilo. Ar bAgAner
+theke ek man mAtAnO sugandho bhese elo d\oityer nAke.\p
+
+d\oityo bhAb~lo `etodine bujhi AmAr bAgAne basanto esechhe!' ei bhebe
+d\oityo yei nA dar~jA khule beriyechhe am~ni O mA -- ki AshcharYya! dyAkhe
+ki, bAgAner chAr~dhAre mas+to u(n)chu p(n)Achiler gAy chhOT+To ek~TA phOkar,
+Ar sei phOkar gale bAchchAr dal bAgAne Dhuke nechek(n)ude gAchher DAle
+DAle khele beRAchchhe. protyek gAchhe ek~TA kore bAchchA uThechhe, Ar
+etodin pare tAder kAchhe peye gAchherA khushIte phule phule bhore uThe,
+Anande Dagamaga hoye dulchhe. pAkhIrA uRchhe bAchchAder ghire ghire, ghAse
+ghAse hAschhe chhOTO chhOTO phuler dal. se ek bhArI sundar
+drrishyo. khAli bAgAner ek kOne takhanO khushIr chh(n)OyA lAgeni. sei
+dUrer kOnAy d(n)ARiye Achhe chhOT+To etoTukun ek~TA chhele. eto chhOT+To ye
+bechArA gAchhe choRbe ki, gAchher sabcheye nIcher DAl~TAO nAgAl pAchchhe
+nA. gAchher upar takhanO tuSAr~buRO hi hi kore hAschhe, Ar gAchhTA byAkul
+hoye nuye poRe chheleTAke phis.h phis.h kore kAchhe DAkchhe. kintu chhOT+To
+chhele tAr chhOT+To hAte tobu nAgAl pAchchhe nA, Ar tAi tAr duchOkh beye
+kebal~i ajhOre jal paRchhe.\p
+
+sei drrishyo dekhe d\oityer buker modhye mOchaR diye uThlo. nijer etodin~kAr
+swArthoparatAr kathA bhebe tAr mane bejAy dhikkAr janmAlo, bal~lo `AhA, oi
+chhOTO chheleTike Ami kOle kore tule debo.' ei bhebe se pA Tipe Tipe
+bAgAne beriye elo. yei nA d\oityoke dekhA am~ni bAchchAr dal `o mA bAbA
+re' bole ye yedike pAr~lo chhuT lAgAlo. khAli sei chhOT+To chheleTi, tAr
+chOkh kinA jale bhorechhilo, tAi se d\oityoke dekhtei pAyni. d\oityo chupi
+chupi tAr pichhane ese tAke kOle niye gAchher DAle bosiye dilo. Ar am~ni se
+gAchhe phul phuTe uThlo, pAkhIr dal DAle DAle gAn gAite lAg~lo. Ar anyo
+bAchchArA yakhan dekhlo ye d\oityo Ar mOTei duSTu nei, takhan tArAO
+mahAnande nAchte nAchte phire elo. Ar tAder sange elo basanto, tAr
+nAnAra\nger DAli niye.\p
+
+Ar d\oityo takhan ki kor~lo? se birAT ek~TA hAtuRI diye bAgAner chAr~dhArer
+mas+to u(n)chu p(n)Achil~TA khAn.h khAn.h kore bhe\nge phel~lo.\p
+
+bikel belAy g(n)Ayer lOk hATe yAbAr pathe dekhte pelo pather dhAre
+d\oityopurIr mas+to bAgAne shishur daler sange d\oityo khelA kor~chhe. teman
+sundar bAgAn tArA kakkhaNO dekhe ni!\p
+
+sArA diner khelAr pare yakhan sandhyA nAm~lo, takhan elo ghare pherAr
+pAlA. eke eke bAchchAr dal elo d\oityer kAchh theke bidAy nite. elo nA
+kebol sei chhOT+To chheleTi. sei chheleTi kinA  tAke Ador kore joRiye
+dhorechhilo, tAi d\oityo tAke  bhAlObese
+phelechhilo sabcheye beshI. tAi tAke dekhte nA peye d\oityo bhArI byas+to
+hoye poRlo.\p 
+
+kintu xudeder dal se chheleTir kOnO khabar dite pAr~lo nA. tArA tAke Age
+kakhanO dekhei ni. ki Ar karA! d\oityo bechArIr bhArI man khArAp hoye
+gelo.\p
+
+seidin theke rOj bikele pAThshAl chhuTi habAr par bAchchArA d\oityer
+bAgAne d\oityer sAthe khelA kor~te Ase. kintu sei chheleTi Ar Ase
+nA. d\oityo rOjai bhAbe, `AhA re, yodi se Aj Ase!' kintu diner par din
+gelo, se Ar elo nA.\p
+
+diner par din gelo, bachharer par bachhar gelo. d\oityo ekhan buRO hoye
+giyechhe. Ar se chhOTOder sAthe tAl diye khele beRAte pAre nA, ekhan se
+tAr ArAmkedArAy helAn diye shuye shuye tAder khelA dekhe, Ar bhAbe, `AhA,
+bAgAne eto sundar sab phul, kintu oi bAchchArA sundar sabAr chAite
+beshI!'\p 
+
+ekdin shIter sakAl~belAy ghum bhe\nge uThe d\oityo tAr bAgAne ghur~te
+beRiyechhe. ekhan Ar tAr shIt dekhle kaSTo hoy nA. kAraN se jene giyechhe
+ye shIter parei AbAr basanto Ase. tatodin parYanto phulerA ghumiye
+thAke.\p
+
+eman samaye haThA.t se dekhe ki -- o mA, bAgAner dUrer ek prAnte ek~TA
+gAchh phule phule jhal.hmal.h kor~chhe! tAr DAle DAle sOnA ra.n legechhe,
+Ar tAte thOkA thOkA rUpOr phal dhore Achhe. Ar sei gAchher talAy d(n)ARiye
+Achhe sediner sei chhOT+To chheleTi!\p
+
+tAi nA dekhe d\oityo tO mahA AhlAde chhuTe gelo tAr dike. kintu yakhan
+kAchhe ese tAr dike cheye dekhlo, rAge tAr mukh k(n)epe uThlo thar.hthar.h
+kore, tAr du chOkhe Agun Thik~re poRlo, se chi.tkAr kore bol~lo, `ke tOke
+ebhAbe merechhe?'
+kAraN sei chhOTO chheleTAr du hAte chhilo duTO perek p(n)OtAr dAg, Ar
+perek p(n)OtAr dAg chhilo tAr chhOT+To duTO pAyer pAtAy.\p
+
+d\oityo bol~lo `ke tOke ebhAbe merechhe? tAr nAm bal.h, Ami tAke AmAr
+tarOyAl diye keTe phel~bo!'\p
+
+kintu sei chheleTi bole uThlo, `ogO nA, e ye bhAlObAsAr chihna gO!'\p
+
+sei kathA shune d\oityer bhitore keman yeno kore uThlo, ek~TA ajAnA
+shiharaNe k(n)epe uThlo tAr deho. chheleTir sAmne h(n)ATu g(n)eRe bose se
+jijnAsA kor~lo, `ke tumi?'\p
+
+d\oityer dike cheye chhOT+To chhele miSTi hese bol~lo, `ekdin tumi tOmAr
+bAgAne AmAke khelte diyechhile, Aj esO, tumi AmAr swarger nandan~kAnone
+khel~be chalO.'\p
+
+sedin bikele khelte ese bAchchAr dal dekhte pelo sei gAchher talAy
+d\oityer prAN~hIn deho poRe royechhe, Ar tAr upor chhaRiye Achhe sAdA
+phuler rAshi.\p

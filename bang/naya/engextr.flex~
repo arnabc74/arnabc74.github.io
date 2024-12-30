@@ -1,0 +1,39 @@
+import java.util.*;
+%%
+
+%state ENG, TAG
+
+%implements Common
+%class EngExtr
+%type Object
+%standalone
+%line
+%column
+
+
+%eofval{
+  return null;
+%eofval}
+
+%yylexthrow BadInputException
+
+
+%%
+<YYINITIAL> {
+  "@{" {yybegin(ENG);}
+  \n {System.out.println();}
+  "<" {yybegin(TAG); System.out.print("<");}
+  " " {System.out.print(" ");}
+  . {if(!dotsDone) {System.out.print(" ... "); dotsDone = true;}}
+}
+
+<ENG>{
+  "@}" {yybegin(YYINITIAL); System.out.print(" ... ");}
+  .|\n {System.out.print(yytext());}
+}
+
+<TAG>{
+  ">" {System.out.print("> ... ");yybegin(YYINITIAL);}
+  .|\n {System.out.print(yytext());}
+}
+

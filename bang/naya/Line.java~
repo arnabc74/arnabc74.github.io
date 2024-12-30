@@ -1,0 +1,355 @@
+//[Update:[Wed Oct 31 IST 2018]]
+/*
+
+ *Tue Feb 02 2016
+ Added PIC counting
+ **Thu Jul 07 2016
+ Corrected dabbrev to avoid splitting .n
+ **Tue Aug 30 2016
+ Added line-based sorting for dabbrev 
+ **Tue Oct 24 2017 and **Wed Oct 25 2017
+ Can now jump to a position in a line at start of editing using number keys.
+**Sat Oct 06 2018
+ Changed PIC counting to :: counting.
+ */
+import java.awt.*;
+import java.util.regex.*;
+import java.io.*;
+import java.util.*;
+
+public class Line 
+    implements Emitter {
+
+    private String plain, html;
+    private static BTex  bt = new BTex(null);
+    UniTranslator 
+        ut = new UniTranslator(null, new Proshika());
+    static UniEmitter ue = new UniEmitter(); 
+    static ScoreFilter sf = new ScoreFilter(); 
+    
+    private boolean 
+        startsInBeng = true,
+        gotError = false;
+
+    private static int fontSize=5;
+
+    
+    static void setFontSize(int sz) {
+        fontSize = sz;
+    }
+
+    public Line(String s, boolean startsInBeng) {
+        langIsBeng = this.startsInBeng = startsInBeng;
+        setPlain(s);
+    }
+
+    public boolean contains(String what) {
+        return plain.contains(what);
+    }
+
+    public boolean contains(Pattern p) {
+        return p.matcher(plain).find(0);
+    }
+
+    public Line clone() {
+        return new Line(plain,startsInBeng);
+    }
+
+
+    public void sendToR(RConn rc) throws Exception {
+        rc.tellR(plain);
+    }
+
+    public void sendToMaxima(MConn mc) throws Exception {
+        mc.tellR(plain+";");
+    }
+
+    public void fillUp(TreeSet<Completion> dabbrevLst, String wordToComplete, int lineNo) {
+        //System.err.println("Plain = ["+plain+"]");
+        String[] tukro = plain.split("\\.[^nthH]|,[^n]|</?[A-Z][^>]*>|[ &<>?!(){}@=|']");
+        int nTukro= tukro.length;
+        for(int i=0;i<nTukro;i++) {
+            if(tukro[i].startsWith(wordToComplete)) { 
+                dabbrevLst.add(new Completion(tukro[i],lineNo,i));
+            }
+        }
+    }
+
+    public String getPlain() {
+        return plain;
+    }
+
+    public boolean endsInBeng() {
+        return langIsBeng;
+    }
+
+    public boolean getStartsInBeng() {
+        return startsInBeng;
+    }
+
+    public void setPlain(String p) {
+        plain = p;
+        langIsBeng = startsInBeng;
+        try {
+            html = "<html><font size="+fontSize+">";
+            if(startsInBeng) {
+                
+                html += "<font size="+fontSize+" face=\"Lipi1Bold\">";
+            }
+            langIsBeng = bt.display(startsInBeng,plain,this);
+            html += "</html>";
+            processHtml();
+            justFound = false;
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    boolean hasRBTrouble() {
+        try {
+            gotError = false;
+            bt.display(startsInBeng,plain,this);
+            return gotError;
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    
+    final Color 
+        TRANS = new Color(255,217,83),
+        ENG = new Color(120,236,251);
+    
+    final GradientPaint
+        TRANS1 = new GradientPaint(0f,0f,TRANS, 10f, 0f, Color.WHITE),
+        ENG1 = new GradientPaint(0f,0f,ENG, 10f, 0f, Color.WHITE);
+
+    private static int nPic = 0;
+
+    static void startPicCount() {
+        nPic = 0;
+    }
+
+    private void processHtml() {
+        html = html.replaceAll("&lt;M>","<i><font color=red>")
+            .replaceAll("&lt;/M>","</font></i>")
+            .replaceAll("&lt;D>","<blockquote>&laquo;<i><font color=blue>")
+            .replaceAll("&lt;/D>","</i></font>&raquo;</blockquote>")
+            .replaceAll("&lt;U2?>","<u>")
+            .replaceAll("&lt;/U2?>","</u>")
+            .replaceAll("&lt;EXM>","<font color=green>Example:</font> ")
+            .replaceAll("&lt;EXR>","<font color=green>Exercise:</font> ")
+            .replaceAll("&lt;/?E>","")
+            .replaceAll("&lt;R>","<font size=-2 color=yellow>R code starts:</font>")
+            .replaceAll("&lt;/R>","<font size=-2 color=yellow>R code ends.</font>")
+            .replaceAll("&lt;/?[A-Z0-9=\"]+>","<font size=-2 color=green>$0</font>");
+
+        //System.err.println("Before:["+html+"]");
+        if(html.contains("::")) {
+            //System.err.println("Yes!");
+            nPic++;
+            html = html.replaceAll("::","<font color=red>"+nPic+"</font>$0");
+            //System.err.println("After:["+html+"]");
+        }
+    }
+    public void display(LineShow where) {
+        where.setEnabled(true);
+        where.setEnds(startsInBeng, langIsBeng);
+        where.setSelected(isSelected);
+        where.setText(html);
+    }
+
+    private boolean isSelected, langIsBeng;
+
+    public boolean toggleSelected() {
+        isSelected = !isSelected;
+        return isSelected;
+    }
+
+    public void emit(int p, int s, int v) {
+        ut.translate(p,s,v,this);
+        String str = ut.getString();
+
+        if(!langIsBeng) {
+            langIsBeng = true;
+            html += "</font><font size="+fontSize+" face=\"LipiBold\">";
+            
+        }
+        html += str.replaceAll("<","&lt;");
+        
+    }
+
+    public void emitEng(String str) {
+        str = str.replaceAll("<","&lt;");
+
+        if(langIsBeng) {
+            langIsBeng = false;
+            html += "</font><font size="+fontSize+" family=\"serif\">";
+            
+        }
+        html += str;
+        
+    }
+
+    public void emitError(String msg) {
+        html += "<font size="+fontSize+" color='red'>???</font>";
+        gotError = true;
+    }
+    
+
+    void append(Line another) {
+        setPlain(plain+another.getPlain());
+    }
+
+    public String toString() {
+        return plain; //.trim(); messes with C indentation
+    }
+
+    private void d(int i) {
+        System.err.println("\tBBBBAAAADDDD : "+i);
+        System.err.flush();
+    }
+
+    String toUnicode(boolean removeTag) {
+        ue.clear();
+        try {
+            bt.display(startsInBeng,plain,ue);
+            if(removeTag) 
+                return ue.getString().replaceAll("<[^>]+>","");
+            else
+                return ue.getString();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return "ERROR";
+    }
+
+    String toMusic() {
+        sf.clear();
+        try {
+            bt.display(startsInBeng,plain,sf);
+            return " \nw: "+sf.getString();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return "ERROR";        
+    }
+
+    private boolean justFound = false;
+    private String rawLexeme;
+    public boolean spellCheck(TreeSet<String> wordList,
+                              TreeSet<String> freshList) throws Exception {
+
+        String tmp = (startsInBeng? "" : "@{") + plain;
+        DictLex dicLex = new DictLex(new StringReader(tmp));
+            
+        Position lexeme;
+        do {
+            lexeme = dicLex.yylex();
+            if(lexeme==null) {
+                //System.err.println("keu aparichita nay.");
+                return true;
+            }
+        } while(freshList.contains(lexeme.str) ||
+                wordList.contains(lexeme.str));        
+        //Display the new word and allow editing.
+        String plain1 = 
+            plain.substring(0,lexeme.from)
+            +"@{[@}"
+            +lexeme.str
+            +"@{]@}"
+            +plain.substring(lexeme.to);
+
+        html = "<html>";
+        if(startsInBeng) {
+            html += "<font size="+fontSize+" face=\"LipiBold\">";
+        }
+        bt.display(startsInBeng,plain1,this);
+        html += "</html>";
+        processHtml();
+        justFound = true;
+        rawLexeme = lexeme.str;
+        newPos = lexeme.from;
+        return false;
+    }
+
+    PosBag curPosList;
+
+    private void findCurPos() {
+        TukroLex tl = new TukroLex(new StringReader(plain));
+        try {
+            curPosList = tl.yylex();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /*0 means the very end.
+     *1,2,... means start of that token 
+     *-1,-2,...means from end.
+     */
+    int getCurPos(int which) {
+        if(which==0) return plain.length();
+        findCurPos();
+        int len = curPosList.size();
+        if(which < 0) {
+            which += len;
+            if(which < 0) which = 0;
+            return curPosList.elementAt(which);
+        }
+        
+        if(which>len) which = len;
+        return curPosList.elementAt(which-1);
+
+    }
+    
+    private int newPos;
+    public int getNewPos() {
+        return newPos;
+    }
+
+    public boolean getJustFound() {
+        return justFound;
+    }
+
+    public String getRawLexeme() {
+        return rawLexeme;
+    }
+
+    public static void main(String args[]) {
+        Line l = new Line("ogo priyatamA kario xamA",true);
+        System.err.println(l.toUnicode(false));
+    }
+}
+
+class UniEmitter implements Emitter {
+    String body="";
+    UniTranslator2
+        ut = new UniTranslator2(null, new BUnicode());
+    public void emit(int p, int s, int v) {
+        ut.translate(p,s,v,this);
+        body += ut.getString();
+    }
+
+    public void emitEng(String str) {
+        body += str;
+    }
+
+    public void emitError(String msg) {
+        body += "!!!";
+    }
+
+    public String getString() {
+        return body;
+    }
+
+
+    public void clear() {
+        body = "";
+    }
+}

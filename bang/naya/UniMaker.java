@@ -1,0 +1,27 @@
+import java.io.*;
+
+public class UniMaker {
+    private BTex b;
+    private UEmitter te;
+
+    public UniMaker(String fin, String fout) throws Exception{
+        FileReader f = new FileReader(fin);
+        te = new UEmitter(new FileOutputStream(fout));
+        b = new BTex(f,te);
+        b.setTolerance(BTex.LO);
+        
+        b.init();
+        if(b.process()) throw new Exception();
+    }
+
+    public static void main(String args[]) {
+	try {
+	    new UniMaker(args[0],args[1]);
+	}
+	catch(Exception ex) {
+            ex.printStackTrace(System.err);
+	    System.exit(1);
+	}
+    }
+}
+

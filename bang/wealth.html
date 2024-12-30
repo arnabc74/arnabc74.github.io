@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="http://www.isical.ac.in/~arnabc/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#মূল">মূল</a>
+</li>
+<li>
+<a href="#টিপ্পনী">টিপ্পনী</a>
+</li>
+<li>
+<a href="#অনুবাদ">অনুবাদ</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="মূল">মূল</a></h1>
+ Oliver Goldsmith-এর একটা লম্বা কবিতা আছে, যার নাম
+The Deserted Village. তার দুটো বিখ্যাত লাইন হল--<p></p>
+
+Ill fares the land, to hastening ills a prey,<br>
+Where wealth accumulates, and men decay;
+
+<h1><a
+name="টিপ্পনী">টিপ্পনী</a></h1>
+Hillaire Belloc আরেকজন কবি, ইনি সরস ব্যঙ্গ
+রচনার জন্য বিখ্যাত৷ তিনি এরপরে আরও দুটো লাইন জুড়ে দিয়েছিলেন--<p></p>
+
+But how much more unfortunate are those,<br>
+ Where wealth declines and population grows.
+
+<h1><a
+name="অনুবাদ">অনুবাদ</a></h1>
+সব মিলিয়ে অনুবাদ করা যায় এইরকম--<p></p>
+
+সর্বনাশের কবলে সে জাতি, ধ্বংস সুনিশ্চয়,<br>
+সম্পদ যেথা বেড়ে চলে শুধু, মানুষের হয় ক্ষয়৷<br>
+কিন্তু যে দেশে সম্পদ কমে জনসংখ্যাই বাড়ে<br>
+সর্বনাশের আরও বড় রূপ বোঝে তারা হাড়ে হাড়ে৷
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/><!-- begin htmlcommentbox.com --> 
+<div id="HCB_comment_box">
+<a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+<link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" type="text/css" rel="stylesheet"/>
+<script id="hcb" type="text/javascript">
+/*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24lckcltsY3CN2VEJyeg3Fu%2F"+"&opts=16862&num=10&ts=1462348859392");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script><!-- end htmlcommentbox.com --> </body>
+</html>

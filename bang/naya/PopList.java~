@@ -1,0 +1,33 @@
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class PopList extends JWindow 
+ implements ListSelectionListener {
+    JList<String> lst;
+    String[] data;
+    public PopList() {
+        lst = new JList<String>();
+        data = {"one", "two", "three", "four"};
+        lst = new JList<String>(data);
+        lst.addListSelectionListener(this);
+        add(lst);
+
+        setSize(300, 300);
+
+        // Show the window
+        setVisible(true);
+        requestFocus();
+    }
+
+    public void valueChanged(ListSelectionEvent lse) {
+        if(!lse.getValueIsAdjusting()) {
+            System.err.println("["+data[lse.getFirstIndex()]+"]");
+        }
+    }
+
+    public static void main(String args[]) {
+
+        new PopList();
+    }
+}

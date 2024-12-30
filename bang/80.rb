@@ -1,0 +1,282 @@
+<NOTE>
+<TITLE> yyrAunD dya oyar+l+D.h in eiTi Deij </TITLE>
+<L> yyrAunD dya oyar+l+D.h in eiTi Deij </L>
+<L/>
+<L/>
+<L>
+ anek din Age i.nlyAnDer lanDan shahare thAkten ek bhadralok Ar t,nAr chAkar.  bhadraloker  nAm filiyAs fag, Ar chAkarer 
+nAm pAsepAr+tu.
+<P/> 
+bhadralok bhArI ekrokhA, yA karben bale bhAben tA karei chhARen. Ar t,nAr chAkarTio
+ temni prabhubhak+ta.  
+</L><L>
+ekdin filiyAs fag bhAblen, prrithibITA to gol, tAhale ekbAr puro prrithibITAke ekbAr chak+kar diye
+ Asi nA kena! 
+<P/>
+takhankAr dine to Ar eroplen ityAdi chhila nA, jAhAj Ar Trenai bharsA, tArAo chalta dhIre susthe. tAo filiyAs 
+fag hiseb kSe dekhlen ye mAtra Ashi dinei duniyA safar kare felA yAbe. 
+</L>
+
+<L>
+lokerA shune bhAbla, fag sAheber mAthAy chhiT Achhe. pAsepAr+tuo maniber parikalpanA shune h,nA! 
+<P/>
+kintu fag sAheber yeman 
+kathA teman kAj. talpitalpA b,nedhe tini raonA haye paRlen.  sange challa shrImAn pAsepAr+tu. 
+</L>
+
+<L>
+bandare anek jAhAj. tArai ekTAy TikiT keTe chaRe baslen dujane. 
+<P/>
+dekhte dekhte jAhAj chheRe dila.
+</L>
+
+<L>
+jAhAj chalechhe bhUmadhyasAgar diye.
+<P/>
+bhUmadhyasAgar yekhAne  sheS, sekhAne jAhAj Dhuke paRla ekTA saru jalapathe. tAr nAm suyej. <P/>
+Ar tAr pare yA dekhla tAte pAsepAr+tu to abAk! 
+</L>
+
+<L>
+omA, samudrer jal to nIl hay, ekhAne eman lAl kena?   Asale jaler madhye 
+anek lAl lAl sheolA bhese Achhe, tAi jalTAi puro lAl dekhAchchhe. <P/>
+lAler Arek nAm kinA lohit, tAi loke
+ samudraTAr nAmai diyechhe lohit sAgar. 
+</L>
+
+<L>
+eDen bandar ese gechhe. ebAr nAmAr pAlA.   
+<P/>
+anek din pare pAyer nIche shak+ta mATi peye 
+filiyAs fag Ar pAsepAr+tu dujanerai mane bejAy Ananda. tabe hAte samay moTe ekdin. par~din fer jAhAje
+ uThe yAba bombe, yAke ekhan AmrA bali mumbai. 
+</L>
+
+<L>
+Arab sAgarer buk chire chalechhe jAhAj. oi dekhA yAchchhe bhArater upakUl.
+<P/>
+jAhAjer pAlA ApAtata.H sheS. ebAr Trene chaRte habe. 
+<P/>
+kintu tAr Agei ghaTla ek bipatti-- 
+</L>
+
+<L>
+ekTA sundar mandir dekhe pAsepAr+tu Dhukechhe tAr bhitar. <P/>
+ pAsepAr+tu to Age kakhano bhArate
+ Aseni, tAi jAne nA ye
+juto pAy mandire Dhukte nei.  mandirer purohit~rA tAte
+ bejAy khAp+pA, pAsepAr+tuke dhare ei mAre to sei mAre.<P/>
+ pAsepAr+tur mejAjTio baRa ThAnDA nay. fale
+ ekTA mArAmAri b,nedhe uThte derI hala nA, eba.n pAsepAr+tu yakhan mandir theke lambA lambA pA
+ fele piThTAn dila, takhan ekjan purohit mATite chi.tpaTA.n, Ar Arekjan nAker rak+ta muchhchhe. 
+</L>
+
+
+<L>
+ebAr Tren.  Tren chalchhe pAhARer gA beye, ghana jangaler madhye diye.
+<P/> se Amale Tren chalta 
+s+TIm injine. egota As+te As+te, shab+da karta bikaT, Ar dh,noyA yA chhARta se Ar ki balba! kintu bAirer drrishya eta sundar 
+ye, dujanei mugdha haye tAi dekhchhen, Ar bhAbchhen AhA duniyA dekhte nA berole eman sab sundar jinis dekhAi hata nA! 
+</L>
+
+<L>
+tin din chalAr par Tren haThA.t gela theme. kI byApAr? nA, Trener lAin ekhAnei sheS!<P/>
+ fag sAheber mAthAy hAt! e ye ghana 
+ban. ekhAn theke beroben kI kare? yAke bale ekebAre ki.nkar+tabyabimURha abasthA! kI karA yAy
+yAy  bojhAi yAchchhe nA!<P/>
+eman samaye sAmne cheye dekhen ki--</L>
+<L>
+ekTA hAti charchhe.<P/>
+ amni Thik kare fellen oi hAtir piThe chaRei yAben tini. 
+pAsepAr+tu h,nA, hAti chAlAno to sahaj kathA nay! manib balen ki!
+ hAti yArA charAy, tAder bale
+ mAhut. dekhte dekhte ekjan mAhutao jogAR haye gela. hAtir piThe  basAr janya ye gadi thAke tAke bale hAodA, baner madhye 
+Ar se sab kothAy pAoyA yAbe, tAi dui dike duTo bAk+sa b,nedhe tArai ekTAy fag sAheb Ar anyaTAy pAsepAr+tu chaRe basla. Ar 
+mAhutbhAyA basla hAtir ghARer upar. oi dyAkho, hAte a.nkush, oiTe diye hAtir kAn Tene dilei hAti bujhte pAre kon dike chalte 
+habe. 
+</L>
+
+<L>
+
+hAti chhuTechhe jangal bhe\nge. jh,nAkunir choTe fag Ar pAsepAr+tur abasthA karuN.  
+<P/>
+eman samaye--
+</L>
+
+<L>
+baner madhya diye saru path diye mas+ta baRa michhil. ekTA shab~deha niye chalechhe.  kintu oi meyeTi
+ ke?
+<P/>
+mAhut filiyAs fager kAne kAne balla, oke satI karte niye yAchchhe. oi mrritadehaTA or swAmIr. or swAmI mArA gechhe bale 
+okeo swAmIr chitAy puRiye mArA habe. 
+</L>
+
+<L>
+o mA seki? bale shiure oThen fag. 
+<P/>
+h,nyA, eke bale satIdAha prathA, balla mAhut. eman 
+kare kata anAthA meyer prAN yAy.
+<P/>
+ fag ta.txaNA.t Thik kare fellen ye karei hok ei bar+bar prathAr hAt theke meyeTike b,nAchAte 
+habe. kintu kI kare?
+</L>
+
+<L>
+fag~rA moTe tin~jan, Ar odike etajan pAhArA dichchhe hatabhAginI meyeTike. 
+<P/>
+ kAl sakAle meyeTike chitAy tolA habe. takhan fager mAthAy ekTA  chama.tkAr 
+buddhi ela.
+<P/>
+sei mata   pAsepAr+tu chitAr dike pA bARAlo,  rAter andhakAre gA DhAkA  diye--
+</L>
+
+<L>
+bhor hate nA hatei lokjan sabAi meyeTike b,nedhe chitAr dike ela. 
+<P/>
+eman samaye haThA.t--</L>
+<L>o mA, mrritadehaTA chitAr upare uThe baslo ye!
+lokjan to bhay peye bAbAre mA re bale meyeTike fele rekhei ye yedike pArla d\ouR.</L>
+<L> mrritadeha takhan suYog bujhe meyeTir 
+kAchhe giye tAke piThe niye sojA filiyAs fager kAchhe upasthit. <P/>
+ke ye rAter andhakAre mrritadeha sariye tAr jAygAy  chitAr upar shuye apexA karchhila se to
+ bujhtei pArchha. 
+</L>
+
+<L>
+lokjan khAnikpare fire ese yakhan Asal mrritadehaTA dekhte pela, takhan tAder yA rAgTA hala! kintu tataxaNe hAtir piThe 
+chepe fag Ar pAsepAr+tu meyeTike niye anek dUre p,n\ouchhe gechhen. 
+</L>
+
+<L>
+meyeTir nAm AudA. bhArI miSTi meye. ebhAbe tAr prAN b,nAchAnor janya fag Ar pAsepAr+tuke ye se katabAr dhanyabAd dila se 
+Ar ki balba! 
+</L>
+
+<L>
+ekdin abasheSe orA kalkAtAy ese p,n\ouchhala.  kintu ekhAne b,nAdhla ek bipatti. 
+<P/>
+sei ye bombete pAsepAr+tu ekTA mandire mArAmAri karechhila mane Achhe? sei purohit~rA  pulishe giye nAlish karechhila. 
+kalkAtAy Astei  pulish  pAsepAr+tuke grep+tAr karla.
+<P/>
+ fag agatyA  pulishke 
+anek kare bojhAlen ye pAsepAr+tu edesher rItinIti nA jene anyAy kare felechhe. sei kathA shune pulish 
+pAsepAr+tuke jele nA pure kichhu 
+jarimAnA karei chheRe dila. 
+</L>
+
+<L>
+kalkAtA theke 
+ jAhAje chepe dekhte dekhte filiyAs fag p,n\ouchhe 
+gelen chIn desher h.nka.ne. eikhAne ghaTla ekTA bipad! 
+</L>
+
+<L>
+ha.nka.ne ekTA hoTele uThlen fag sAheb, sange AudA. Ar pAsepAr+tu gela jAhAjer TikiT kATte. jAhAj chhARAr kathA par din 
+bikele. kintu bandare p,n\ouchhe pAse pAsepAr+tu shone ki, jAhAj nAki sei dinai sandhyey chhARbe! tabe to manibke khabarTA 
+ekhanai deoyA darkAr! 
+kintu hoTele firte giye pAsepAr+tur path gela hAriye. 
+<P/>
+anek rAs+tA ghure sheS~mesh dekhe ki fer bandarei fire esechhe, 
+Ar jAhAj chheRe dichchhe. takhan pAsepAr+tu bhAbla ki jAni yadi manib konobhAbe khabar peye jAhAje
+ uThe paRe thAken! ei bhebe 
+seo jAhAje uThe paRla. uThe dekhla jAhAje fag bA AudA kothAo nei. odike jAhAjao chheRe diyechhe!
+ takhan pAsepAr+tur maner abasthA bujhtei pAro! 
+</L>
+
+<L>
+edike pAsepAr+tur derI dekhe filiyAs fag Ar AudA bejAy chintita. par~din bandare giye dekhen jAhAj gata sandhyAtei chheRe 
+gechhe! parer jAhAj chhARte anekdin derI.  AudA to bhay peyei Akul. 
+<P/>
+kintu fag sAheber mAthA khub
+ ThAnDA. tini prathamei pulishke jAniye rAkhlen ye pAsepAr+tur kh,noj pele yena t,nAke khabar
+ deoyA hay.
+<P/>
+ tArpar ekTA chhoTo n\ouko kine fellen. mas+ta baRa samudra kI kare ekTA chhoTo n\oukoy
+ pARi deoyA sambhab! kintu fag sAheb abichal. Ashi dine tini puro prrithibI ghure Asbenai. tAi
+ jAhAjer janya derI karA saibe nA, n\oukotei yAben. 
+</L>
+
+<L>
+kata jhaRjal bhe\nge n\ouko ye sheS parYanta jApAne p,n\ouchhal se shudhu fagai jAnen. Ar jAne
+ AudA, se prathame bhaye thar thar   kare k,nApchhila. kintu fager sAhas dekhe tArao As+te As+te sAhas hayechhila. 
+</L>
+
+<L>
+odike pAsepAr+tu to jAhAje kare Agei jApAne p,n\ouchhe gechhe. tAr pakeTe ekTAo paysA nei. se bechArI
+ ki kare. bhAgye, o chhoTobelAy 
+khAnikTA jimnAs+Tiks shikhechhila. tAr jore o ekTA
+ sAr+kAser khelA dekhAnor 
+kAj 
+peye gela. ekdin ekTA byAlAnser khelA dekhAchchhe, eman samaye dekhe ki--
+</L>
+
+<L>o mA, oi ye darshaker Asane 
+fag Ar AudA base Achhe. 
+
+ khelATelA fele pAsepAr+tu ek lAfe fag Ar AudAr kAchhe hAjir! takhan oder sakaler ki Ananda ye hala! 
+</L>
+
+<L>
+jApAn theke yete habe AmerikA. tAr janya jAhAjer abhAb nei. dekhte dekhte orA p,n\ouchhe gela sAn frAnsis~ko  bandare. 
+</L>
+
+<L>
+AmerikA mas+ta desh. epAr theke opAr yAoyAr janya Trene chAp~te habe.  e Tren kintu bhArater Trener mata jangaler 
+madhye diye yAy nA, chAridike dhU dhU prAntar tAr madhye dike sojA chale gechhe Trener lAin. 
+<P/>
+ e anchale DAkAter bhArI upadrab. 
+tAi  lAiner pAshe pAshe jAygAy jAygAy  s\oinya motAyen. s\oinyader sheS gh,nATi yekhAne tArpar anekTA juRe DAkAtder rAjatwa. 
+seikhAne Tren Dhuktei 
+DAkAter
+ pAl+lAy paRlen filiyAs fag. 
+</L>
+
+<L>
+se Amaler Tren chalta dhIre dhIre. tAi chalnta  Trenei  DAkAt~rA  hA re 
+re re re re kare ese sadalbale uThe paRla. takhano s\oinyader gh,nATi theke Tren beshI dUre egoy
+ ni. Tren theme gelei s\oinyarA p,n\ouchhe yete pAre. kint Tren thAmAbe ke? Tren chAlakkei 
+DAkAt~rA prathame 
+ dharAshAyI kare diyechhe.
+<P/>
+ bipad dekhe pAsepAr+tu chupichupi 
+giye injinTA dila khule. byas Trenao d,nARiye gela. 
+</L>
+<L>pAsepAr+tur ei upasthit  buddhite DAkAt~rA nAjehAl haye pAlAlo baTe, kintu yAbAr samaye pAsepAr+tuke b,nedhe niye gela. 
+</L>
+
+<L>
+kichhu pare s\oinyerA ele Tren AbAr raonA dila. kintu fag sAheb AudAke niye neme paRlen. t,nAr param~p+riya pAsepAr+tuke DAkAtder 
+kabale fele rekhe to Ar tini chale yete pAre nA. kichhu sAhasI s\oinya sange niye filiyAs fag kIkare ye dasyuder hAt theke 
+pAsepAr+tuke uddhAr kare Anlen, se ki chhAi Amii jAni ye tomAder balba! Ami khAli jAni sei samayTA AudA 
+u.tkanThAy  thar~thariye 
+k,nApchhila, Ar yakhan pAsepAr+tuke niye fag fire elen, takhan Anande tAr duchokh diye jhar~jhar kare jal gaRiye paRechhila. 
+</L>
+
+<L>
+yA hok, parer diner Trene chepe AbAr sabAi raonA dila. Anander kathA ei ye, erpar Ar kono bipad hay ni. Tren p,n\ouchhala 
+niu iyar+ke. sekhAn theke jAhAje chepe ATlAn+Tik mahAsAgar pAr karte habe. tabei filiyAs fag AbAr deshe firte pArben. hAte 
+samay baRa nei. baRa baRa jAhAj chhARte ekhanao anek derI. tAi fag sAheb ekTA chhoTo sTImAre
+ chAp~len. 
+<P/>
+takhankAr dine sTImAr chalta  kaylA puRiye. ATlAn+Tik  mahAsAgar peronor janya yata kaylA darkAr tataTA neoyAr 
+mata jAygAi nei se sTImAre.  kintu fag sAheber tAte bhrUxepai nei. mAjhsAgare yakhan kaylA furolo, takhan sabAi balla kI 
+upAy? upAy ekTA fag sAheb Agei bhebe rekhechhilen. seimata hukum dilen, sTImAre yata kATher jinis Achhe kaylAr badale seguloke 
+poRAo.
+natun kare Agun peye sTImAr fer chhuTe challa. 
+</L>
+
+<L>
+emani kare sTImAr yakhan fag sAheber desh i.nlyAnDe p,n\ouchhala, takhan sTImArer lohAr kholTuku
+ abashiSTa Achhe mAtra!
+tAte abashya fag sAheb bichalita nan. tini bichalita anya kAraNe.  
+<P/>
+AudA ye t,nAke chupichupi biye karte cheyechhe! ebAr mahA samArohe fag Ar AudAr biye habe. Ar
+ pAsepAr+tu? tAr Ananda dekhe 
+ke? oi dekho se keman biyer toRjor karte chhuTechhe!
+</L>
+
+
+
+
+
+</NOTE>

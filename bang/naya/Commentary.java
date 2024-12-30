@@ -1,0 +1,80 @@
+//[Update:[Mon Mar 18 IST 2019]]
+/*
+**Sun Jan 17 2016
+Created. 
+**Mon Jan 18 2016
+Added volume control
+**Wed Apr 26 2017
+Removed volume control: possibly ruining HP laptop speakers
+**Fri May 19 2017
+load(...) now returns length so that the length may be displayed via GUI
+**Thu Oct 19 2017
+Updated the back shift amount from 80000 to 240000 to adapt to new recorder.
+**Mon Mar 18 2019
+Updated for the new java feature, where the format needs to be explicitly determined.
+*/
+
+import java.awt.*;
+import javax.swing.*;
+import javax.sound.sampled.*;
+import java.io.*;
+
+public class Commentary {
+    Clip voice;
+    FloatControl gainControl;
+
+    public int load(File audioFile) {
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new BufferedInputStream(new FileInputStream(audioFile)));
+            AudioFormat format = ais.getFormat();
+            System.err.println("Format = ["+format+"]");
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            voice = (Clip)AudioSystem.getLine(info);
+            voice.open(ais);
+            return voice.getFrameLength();
+            //gainControl = (FloatControl) voice.getControl(FloatControl.Type.MASTER_GAIN);
+            //volumeUpDown(true);
+        }
+        catch(Exception ex) {
+            System.err.println("oops!");
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+
+    void volumeUpDown(boolean up) {
+        voice.stop();
+        gainControl.setValue(gainControl.getMaximum());
+    }
+
+    void encore() {
+        pause();
+        playFrom(nowAt < 240000? 0: nowAt-240000);
+    }
+        
+    void playFrom(int where) {
+        voice.stop();
+        voice.setFramePosition((where>=0? where: 0));
+        voice.start();
+    }
+    
+    private int nowAt;
+
+    int getNowAt() {
+        return nowAt;
+    }
+    void pause() {
+        nowAt = voice.getFramePosition();
+        voice.stop();
+    }
+
+    public static void main(String args[]) throws Exception {
+        Commentary c = new Commentary();
+        c.load(new File(args[0]));
+        c.playFrom(0);
+        Thread.sleep(10000);
+        c.encore();
+        Thread.sleep(10000);
+    }
+}

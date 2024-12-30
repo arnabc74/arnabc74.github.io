@@ -1,0 +1,76 @@
+ <NOTE>
+@{<HEAD1>Invictus</HEAD1>@}
+@{<E>W E Henley</E>@}-r ekTA bikhyAta  kabitA Achhe, nAm @{<E>Invictus</E>@}  (aparAjeya). nelsan myAnDelAr nAki priya kabitA 
+chhila seTA. 
+
+kabitATAr ekTA bhAbAbAnubAd karechhi. 
+<TABLE><TR><TH>@{Invictus@}</TH><TH>aparAjeya</TH></TR><TR><TD>@{Out of the night that covers me,
+
+Black as the pit from pole to pole,
+
+I thank whatever gods may be
+
+For my unconquerable soul.@}</TD><TD>
+nibiR tamasAbeSTane mor
+
+andha amAy ruddha drriSTi. 
+
+tathApi hrriday hArAyni jor
+
+dhanya bidhir amogh srriSTi. 
+</TD></TR>
+<TR><TD>@{
+In the fell clutch of circumstance
+
+I have not winced nor cried aloud.
+
+Under the bludgeonings of chance
+
+My head is bloody, but unbowed.
+@}</TD><TD>
+
+niThur niyati  dila yata  klesh 
+
+kaThin oSThe karechhi tuchchha
+
+rudhirApluta mor shirodesh
+
+sudhIr bIrYe rekhechhi uchcha. 
+</TD></TR>
+<TR><TD>@{
+Beyond this place of wrath and tears
+
+Looms but the Horror of the shade.
+
+And yet the menace of the years
+
+Finds and shall find me unafraid.
+@}</TD><TD>
+
+krodhe-krandane gaRA e jaga.t 
+
+yata ghire thAk   shatek sha.nkA 
+
+kAler pIRaNe thAme ni eba.n 
+
+thAmibe nA mor bijayDa.nkA.
+</TD></TR>
+<TR><TD>@{
+It matters not how strait the gate,
+
+How charged with punishments the scroll,
+
+I am the master of my fate,
+
+ I am the captain of my soul.
+@}</TD><TD>
+
+sammukhe path durgam ati?
+
+lalATe bidhir kopaNdrriSTi?
+
+nija bhuje gaRi nijer niyati 
+
+AmAr At+mA AmArai srriSTi! 
+</TD></TR></TABLE>
+</NOTE>

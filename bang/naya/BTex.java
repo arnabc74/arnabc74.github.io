@@ -1,0 +1,588 @@
+/**[Update:[Mon Oct 10 IST 2016]]
+ **Mon Mar 07 2016
+ Allowed yaphala after raphala (modifying handleState2)
+ **Sun Oct 09 2016
+ Allowed Chandrabindu in state 2 (eg, for fr,nA)
+ */
+import java.io.*;
+
+public class BTex {
+ 
+    int yylval;
+    public static final int
+	HI = 0,
+	LO = 1;
+
+    private int state;
+    private boolean hasYaphala, noSwarYet;
+    private int lastPrim;
+
+    private boolean inError, atLeastOneError;
+    private boolean buffered;
+    private BengLex blex;
+
+    private int tab[][] = new int[Common.MAXLENIENT+1][50];
+
+    private int first, second, vow;
+
+    private int combSec[][]= {
+	{Common.NOTHING, Common.RAPHALA, Common.REF, Common.CHANDRA},
+	{Common.NOTHING, Common.NOTHING, Common.REF_RAPHALA, Common.RAPHALA_CHANDRA},
+	{Common.NOTHING, Common.REF_RAPHALA, Common. NOTHING, Common.REF_CHANDRA},
+	{Common.NOTHING, Common.RAPHALA_CHANDRA, Common.REF_CHANDRA,  Common.NOTHING}
+    };
+
+    private String left,mod1,mid,mod2,right1,right2;
+
+    private int dbg;
+    private int tolerance = HI;
+
+    public void setTolerance(int level) {
+	tolerance = level;
+    }
+
+    public BTex(Emitter emtr1) {
+	emtr = emtr1;
+	loadYukta();
+    }
+
+    public void init() {
+	state = 0;
+	buffered = false;
+	inError = false;
+        noSwarYet = true;
+    }
+
+    public boolean display(String str) throws IOException {
+	blex = new BengLex(new StringReader(str));
+        buffered = false;
+        state = 0;
+	process();
+        logError("marar parer dasha = "+state);
+        switch(state) {
+        case 0:
+            //emit(Common.NL,0,0); eta kena diyechhilam mane nei.
+            return true;
+        case 3:
+            return false;
+        default:
+            emtr.emitError("Birbahu patal tulila akale...");
+            return true;
+        }
+    }
+
+    public boolean display(boolean startsInBeng, 
+                           String str, 
+                           Emitter e) 
+        throws IOException {
+        emtr = e;
+        return display((startsInBeng? "":"@{")+str);
+    }
+
+    public BTex(Reader rdr, Emitter emtr1) {
+	emtr = emtr1;
+	init();
+	loadYukta();
+
+	blex = new BengLex(rdr);
+    }
+
+
+    private Emitter emtr;
+    private boolean forceYukta = false;
+    private String texStr="";
+    //private 	int tok=-1;
+
+    public boolean process() throws IOException {
+        try {
+            while(true) {
+                if(dbg!=0) {
+                    System.err.print("BTex state = "+state+"\n");
+                }
+    
+                if(buffered) {
+                    if(dbg!=0) System.err.print("Continuing with last token...\n");
+                    buffered = false;
+                }
+                else {
+                    if(inError) {
+                        if(skipBad()==hitEOF) 
+                            logError("pAlAte giye h,nochaT!");
+                            return atLeastOneError;
+                    }
+                    logError("marar ektu ager dasha = "+state);
+
+                    if(readToken()==hitEOF) {
+                        logError("marar ager dasha = "+state);
+                        logError("paRte giye h,nochaT!");
+                        return atLeastOneError;
+                    }
+                    /*
+                    if(currTok.token==0) {
+                        if(dbg!=0) System.err.print("Goodbye\n");
+                        logError("sajnAne paralokgaman.");
+                        return atLeastOneError;
+                    }
+                    */
+                }
+
+                switch(state) {
+                case 0 :
+                    handleState0();
+                    break;
+
+                case 1 :
+                    handleState1();
+                    break;
+
+                case 2 :
+                    handleState2();
+                    break;
+        
+                case 3 : 
+                    handleState3();
+                    break;
+
+                case 4 :
+                    handleState4();
+                    break;
+
+                }
+            }
+        }
+        catch(ImpatientException iex) {
+            logError("dhoiryer abhAbe mrrityu!");
+            return true;
+        }
+    }
+
+    private void logError(String errMsg) {
+        //System.err.println("log: "+errMsg);
+        /*
+        try {
+            PrintWriter pw = new PrintWriter(
+              new File("lasterr"));
+            pw.println(errMsg);
+        }
+        catch(Exception e) {
+            System.err.println("marAr Age uilTAo karte dibi nA?");
+        }
+        */
+    } 
+
+    private void loadYukta() {
+	int i,count;
+	int row=-1,col=-1, yuktaState;
+
+	count = yuktaState = i = 0;
+	while(YuktaDat.yuktaList[i] != YuktaDat.EOY) {
+     
+	    switch(yuktaState) {
+	    case 0 :
+		row = YuktaDat.yuktaList[i++];
+		yuktaState = 1;
+		break;
+	    case 1 :
+		if(YuktaDat.yuktaList[i] == -1) {
+		    i++;
+		    yuktaState = 0;
+		}
+		else {
+		    col = YuktaDat.yuktaList[i++];
+		    if(dbg>1) System.err.print("("+row+","+col+")\n");
+		    if(row>Common.MAXLENIENT) {
+			System.err.println("Error!");
+			System.exit(1);
+		    }
+		    tab[row][col] = YuktaDat.yuktaList[i++];
+		    count++;
+		    if(dbg>1) System.err.print(""+Common.haraph1[row]+" + "+
+					       Common.haraph1[col]+" = "+
+					       Common.haraph1[Math.abs(tab[row][col])]+"\n");
+     
+		}
+		break;
+	    }
+     
+	}
+
+	System.err.print("Loaded "+count+" yuktaxars\n");
+    }
+
+    private void error(String s) {
+	atLeastOneError = true;
+        errMsg = "(State="+state+", offending input="+currTok+")";
+	System.err.print("Error: "+errMsg+"\n");
+
+        
+	inError = true;
+	state = 0;
+	buffered = false;
+        emtr.emitError(s+": "+errMsg);
+    }
+
+    private String errMsg;
+
+    private int collSec(int newSec) {
+	if(combSec[second][newSec]!=0) {
+	    return combSec[second][newSec];
+	}
+	else {
+	    error("Insensible secondaries");
+	}
+	return 0;
+    }
+
+    private int lookUp(int r, int tok) {
+	if(r>Common.MAXLENIENT) {
+	    if(tok==Common.R) return -Common.RAPHALA; //**Tue Apr 14 2015 '-' added
+	    return 0;
+	}
+	return tab[r][tok];
+    }
+
+    private void emit(int p , int s, int v) {
+	state = first = second = 0; vow = Common.NO_KAR;
+	hasYaphala = false;
+        if(dbg!=0) System.err.println("BTex/emit: p = "+p+", s = "+s+", v = "+v);
+	emtr.emit(p,s,v);
+    }  
+
+
+    public void main(String args[]) throws Exception {
+	int i,j,k;
+	/*
+   
+          if(argc==2){
+          sprintf(fileName,""+argv[1]+".rb");
+          //LX.yyin = fopen(fileName,"r");
+          sprintf(fileName,""+argv[1]+".tex");
+          fOut = fopen(fileName,"w");
+          sprintf(fileName,""+argv[1]+".lis");
+          fErr = fopen(fileName,"w");
+          }
+          else {
+          System.err.print("Usage: rb2ab <fileRoot>\n");
+          exit(1);
+          }
+   
+	*/ 
+
+	dbg = 1;
+
+	//process(new FileReader(args[0]));
+    }
+
+    private void handleState0() throws ImpatientException {
+        switch(currTok.token) {
+        
+        case Common.PUNCT :
+            if(dbg!=0) System.err.print("Punctuation...dumped\n");
+            emit(yylval,0,Common.NO_KAR);
+            noSwarYet = true;
+            break;
+        case Common.NUM :
+            //LX.start=1;
+            if(dbg!=0) System.err.print("Number...dumped\n");
+            emit(yylval,0,Common.NO_KAR);
+            noSwarYet = true;
+            break;
+        
+        case Common.MISC :
+            if(dbg!=0) System.err.print("miscel...dumped\n");
+            emit(yylval,0,Common.NO_KAR);
+            noSwarYet = true;
+            break;
+        
+        
+        case Common.SWAR :
+            noSwarYet = false;
+            if(yylval==Common.HAS) {  /* cannot start with a HAS sign! */
+                error("Badly applied HAS sign\n");
+            }
+            //LX.start=0;
+            if(dbg!=0) System.err.print("Swar...\n");
+            first = yylval;
+            state = 4;
+            break;
+        
+        case Common.BYAN :
+            //LX.start=0;
+            first = yylval;
+            if(dbg!=0) System.err.print("Byanjan\n");
+            state = 1;
+            break;
+        
+        case Common.SOT :
+            if(dbg!=0) System.err.print("<Start Of TEX>\n");
+            state = 3;
+            break;
+        
+        default :
+            error("Unexpected token");
+            if(tolerance==LO) 
+                throw new ImpatientException();
+            break;
+        }
+        
+    }
+
+    //State 1: Here we take care of byanjan combination
+    //When we are satisfied that no more combination can be done
+    //we check if there is any pending swar/yapahala. If none,
+    //then we produce output (and thus return to state 0).
+    //Othwerwise, we move to state 2 to deal with the swar.
+    private void handleState1() {
+        int tabEntry;
+
+        switch(currTok.token) {
+        case Common.SWAR :
+            noSwarYet = false;
+            if(dbg!=0) System.err.print("Swar\n");
+            buffered = true;
+            state = 2;
+            break;
+        
+        case Common.PLUS :
+            if(dbg!=0) System.err.print("Plus\n");
+            forceYukta = true;
+            state = 1;
+            break;
+        
+        case Common.CHANDRABINDU :
+            if(dbg!=0) System.err.print("chandrabindu\n");
+            second = collSec(Common.CHANDRA);
+            state = 1;
+            break;
+        
+        case Common.BYAN :
+            if(dbg!=0) System.err.print("byanjan\n");
+            
+            if(yylval==Common.YY) {
+                hasYaphala = true;
+                state = 2;  //no more combining after yaphala
+            }
+            else {
+                tabEntry = lookUp(first,yylval); /* consult yuktaxar table*/
+                if(dbg!=0) {
+                    System.err.print("\ttab["+NameDat.primName[first]+
+                                     "("+first+")]["+NameDat.primName[yylval]+
+                                     "("+yylval+")] = "+tabEntry+"\n");
+                }
+                if(tabEntry==0) {
+                    
+                    if(dbg!=0) System.err.print("Keeping separate\n");
+                    if(!forceYukta) {
+                        emit(first,second,Common.NO_KAR);
+                    }
+                    else {
+                        emit(first,second,Common.HAS);
+                    }
+                    
+                    buffered = true;
+                    
+                }
+                else if(tabEntry>2) {
+                    if(dbg!=0) System.err.print(""+NameDat.primName[first]+" + "+
+                                                NameDat.primName[yylval]+" = "+
+                                                NameDat.primName[tabEntry]+"\n");
+            
+                   
+                    first = tabEntry;
+                    forceYukta = false;
+                    if(dbg!=0) System.err.print("Combining\n");
+                    state = 1;
+                   
+                }
+                else if(tabEntry<0) {
+                   
+                    if(dbg!=0) System.err.print("Can combine, but should not\n");
+                    if(forceYukta || noSwarYet) {
+                        int temp;
+                        temp = -tabEntry;
+                        if(temp==Common.RAPHALA) {
+                            second = Common.RAPHALA;
+                            state = 2; //nomore yukta after raphala
+                        }
+                        else if(temp==Common.REF) {
+                            first = yylval;
+                            second = Common.REF;
+                        }
+                        else {
+                            first = temp;
+                            state = 1;
+                        }
+                    }
+                    else {
+                        emit(first,second,Common.NO_KAR);
+                        buffered = true;
+                    }
+                   
+                    forceYukta = false;
+                   
+                }
+                else if(tabEntry==Common.RAPHALA) { /* raphala*/
+                    if(dbg!=0) System.err.print("Doing raphala\n");
+                    second = collSec(Common.RAPHALA);
+                    forceYukta = false;
+                    state = 1; 
+                }
+                else if(tabEntry==Common.REF) { /* ref */
+                    if(dbg!=0) System.err.print("Doing ref\n");
+                    second = collSec(Common.REF);
+                    first = yylval;
+                    forceYukta = false;
+                }
+                else {
+                    error("What is this?");
+                }
+            }
+            
+            break;
+        
+        case Common.TILDE :
+            if(dbg!=0) System.err.print("Tilde...dumped\n");
+            emit(first,0,Common.NO_KAR);
+            break;
+        
+        default :
+            buffered = true;
+            emit(first,second,Common.NO_KAR);
+            break;
+        }
+        
+    }
+
+    //State 2: Here we create the vowel sign. No output is
+    //produced here, as we do not know if there is a
+    //chandrabindu coming up next. So we move to state 4, where
+    //the check for chandrabindu is done.
+    private void handleState2() {
+        //System.err.println("I am in state 2 now! Facing "+currTok);
+        switch(currTok.token) {
+        case Common.SWAR:
+            noSwarYet = false;
+
+            if(hasYaphala) 
+                vow = Common.YAPH+yylval-Common.A;
+            else
+                vow = yylval-Common.A;    
+
+            state = 4;
+            break;
+        case Common.BYAN :
+            if(dbg!=0) System.err.print("byanjan\n");
+            
+            if(yylval==Common.YY) {
+                hasYaphala = true;
+                state = 2;  //no more combining after yaphala
+            }
+            else {
+                error("A swarbarna is expected here.");
+            }
+            break;
+        case Common.CHANDRABINDU :
+            if(dbg!=0) System.err.print("chandrabindu\n");
+            second = collSec(Common.CHANDRA);
+            state = 2;
+            break;
+        default: 
+            error("A swarbarna should follow yaphala");
+            break;
+        }
+    }
+
+    private void handleState3() {
+        if(currTok.token==Common.EOT) {
+            if(dbg!=0) System.err.print( "<END OF TEX>\n");
+            state = 0;
+        }
+        else {
+            if(dbg!=0)System.err.println("**"+texStr);
+            emtr.emitEng(texStr);
+            texStr = "";
+        }
+    }
+
+    //State 4: We come here after deciding primary and
+    //vowel sign. The only thing that prevents us from producing
+    //output is whether the next token is a chandrabindu. In this
+    //state we first check if the next token is indeed a
+    //chandrabindu. In either case we produce output.
+
+    private void handleState4() {
+        switch(currTok.token) {
+        case Common.CHANDRABINDU:
+            if(dbg!=0) System.err.print("chandrabindu...");
+            second = collSec(Common.CHANDRA);
+            break;
+        default:
+            buffered = true;
+            break;
+        }
+        if(dbg!=0) System.err.print("dumped\n");
+        emit(first, second, vow);
+    }
+
+    private final int
+        OK = 0,
+        hitEOF = 1;
+
+    private int skipBad() throws IOException, ImpatientException {
+        int c1;
+        System.err.print("Skipping upto next punctuation/SOE/EOF...\n\n");
+        emtr.emitError("2: "+errMsg);
+        do {
+            Symbol tmp=null;
+            try {
+                tmp = blex.yylex();
+            }
+            catch(BadInputException bie) {
+                System.err.println(bie);
+                emtr.emitError("3: "+bie);
+                if(tolerance==LO) 
+                    throw new ImpatientException();//System.exit(1);
+            }
+            if(tmp==null) {
+                return hitEOF;
+            }
+            c1 = tmp.token;
+            yylval = tmp.lexeme;
+        } while(c1!=Common.PUNCT && c1!=0 && c1!=Common.SOE);
+        inError = false;
+        return OK;
+    }
+
+    private Symbol currTok;
+
+    private int readToken() throws IOException, ImpatientException {
+        try {
+            currTok = blex.yylex();
+        }
+        catch(BadInputException bie) {
+            System.err.println(bie);
+            emtr.emitError("1: "+bie);
+            if(tolerance==LO) 
+                throw new ImpatientException(); //System.exit(1);
+        }
+        if(currTok==null) {
+            if(state!=0 && state!=3) emit(first,second,vow);
+            return hitEOF;
+        }
+
+        if(currTok.token==Common.SPL)
+            texStr = currTok.getLexStr();
+        else
+            yylval = currTok.lexeme;
+        if(dbg!=0) System.err.println("lexeme = "+yylval);
+		
+
+        if(dbg!=0) 
+            if(state==3)
+                System.err.print("Read new E token... ["+texStr+"]("+currTok.token+")\n");
+            else
+                System.err.print("Read new B token... ["+yylval+"]\n");
+
+        return OK;
+    }
+}
