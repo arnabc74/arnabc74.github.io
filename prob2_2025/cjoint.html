@@ -152,104 +152,310 @@ function myFunction() {
 <h3>Joint distribution</h3>
 <ul>
 <li>
-<a href="#Basics">Basics</a>
+<a href="#Quick primer on multivariate calculus (part 1)">Quick primer on multivariate calculus (part 1)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Graph">Graph</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Continuity">Continuity</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Differentiability">Differentiability</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Mixed partials">Mixed partials</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 1">Problem set 1</a>
 </li>
 <li>
-<a href="#Computing probabilities using geometry">Computing probabilities using geometry</a>
+<a href="#Quick primer on multivariate calculus (part 2)">Quick primer on multivariate calculus (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Iterated integrals">Iterated integrals</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 2">Problem set 2</a>
 </li>
 <li>
-<a href="#Computing probability using iterated integrals">Computing probability using iterated integrals</a>
+<a href="#Joint density">Joint density</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 3">Problem set 3</a>
 </li>
 <li>
-<a href="#CDF">CDF</a>
+<a href="#Computing probability using iterated integrals">Computing probability using iterated integrals</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 4">Problem set 4</a>
 </li>
 <li>
-<a href="#Marginals">Marginals</a>
+<a href="#Joint CDF">Joint CDF</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
-<a href="#Independence">Independence</a>
+<a href="#Joint density from CDF">Joint density from CDF</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 6">Problem set 6</a>
 </li>
 <li>
-<a href="#Conditional distribution">Conditional distribution</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 7">Problem set 7</a>
-</li>
-<li>
-<a href="#Exchangeable distribution">Exchangeable distribution</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 8">Problem set 8</a>
-</li>
-<li>
-<a href="#Points to ponder">Points to ponder</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a>
+<a href="#Properties of joint distribution">Properties of joint distribution</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Point mass and jointly continuous">Point mass and jointly continuous</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
+</li>
+<li>
+<a href="#Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 8">Problem set 8</a>
+</li>
+<li>
+<a href="#Marginals">Marginals</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 9">Problem set 9</a>
+</li>
+<li>
+<a href="#Independence">Independence</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 10">Problem set 10</a>
+</li>
+<li>
+<a href="#Conditional distribution">Conditional distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 11">Problem set 11</a>
+</li>
+<li>
+<a href="#Exchangeable distribution">Exchangeable distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 12">Problem set 12</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
 </li>
 </ul>
 <hr/>
+$\newcommand{\v}[1]{{\mathbf #1}}$
 <title>Joint distribution</title>
 
 <h1><a
-name="Basics">Basics</a></h1>
+name="Quick primer on multivariate calculus (part 1)">Quick primer on multivariate calculus (part 1)</a></h1>
+<a href="https://youtu.be/wOwkJg5bjg0">Video for this section</a>
+<p></p>
+We are going to use certain results from multivariate calculus that you will learn rigourously in the Analysis 3 course.
+ For now, we shall only learn some definitions and results from multivariate calculus. 
+<h2><a
+name="Graph">Graph</a></h2>
+When we
+ work with $f:{\mathbb R}\rightarrow{\mathbb R}$  we often think about its graph which  we visualise as a curve. When
+ we deal with $f:{\mathbb R}^2\rightarrow{\mathbb R}$ 
+ we visualise its graph as a surface. 
+<p></p>
+
+<h2><a
+name="Continuity">Continuity</a></h2>
+For  $f:{\mathbb R}\rightarrow{\mathbb R}$  continuity means its graph has no break. Similarly, $f:{\mathbb R}^2\rightarrow{\mathbb R}$  is called continuous,
+ when its graph is an unbroken surface, no hole, cut or gap. More rigourously, you can think of 
+ continuity in terms limits:
+<p></p>
+ $f:{\mathbb R}^2\rightarrow{\mathbb R}$  is continuous at $\v a$  means, whenever $\v x\rightarrow \v a$ 
+ we have $f(\v x)\rightarrow f(\v a).$  
+<p></p>
+
+<h2><a
+name="Differentiability">Differentiability</a></h2>
+We say that $f:{\mathbb R}\rightarrow{\mathbb R}$  is differentiable at some point $a$  if the graph is smooth
+ above $x=a$  (<i>i.e.</i>, may be well-approximated by a straight line passing through $(a,f(a))$ , and the line is not
+ vertical. This line is called the tangent to the curve at that point. Any such line has equation of the form $y= f(a)+m\cdot(x-a).$ 
+ This $m$   is called the
+ derivative of the $f$ 
+ at $a.$  
+<p></p>
+Similarly, $f:{\mathbb R}^2\rightarrow{\mathbb R}$  is called differentiable at some point $(a,b)$  if the surface is smooth over that
+ point (<i>i.e.</i>, is well-approximated by a plane passing through $(a,b,f(a,b))$, which is not vertical. Any such 
+plane has equation of the form $y= f(a,b)+m_1\cdot(x-a)+m_2\cdot (y-b).$  The pair $(m_1,m_2)$  (which is commonly
+ considered as a $1\times 2$  matrix) is called the derivative of $f$  at $(a,b).$  
+<p></p>
+It turns out that if $f$  is differentiable at $(a,b),$  then $m_1 = \frac{\partial
+ f}{\partial x}$  and $m_2 = \frac{\partial f}{\partial y}$  at $(a,b).$  
+<p></p>
+$\frac{\partial f}{\partial x}$  is obtained by differentiating $f(x,y)$  wrt $x$ 
+ along <i>keeping $y$  fixed</i>. Similarly for $\frac{\partial f}{\partial y}.$
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+If $f(x,y)  = xy^2+y + e^x,$  then $\frac{\partial f}{\partial x} = y^2+e^x.$
+ ■
+</p>
+
+<p></p>
+Just
+ the existence of $\frac{\partial f}{\partial x}$  and $\frac{\partial f}{\partial y}$  is not enough to guarantee the
+ differentiability of $f.$  However, if the partial derivatives are also continuous over a neighbourhood of $(a,b),$ 
+ then $f$  must be differentiable at $(a,b).$
+<h2><a
+name="Mixed partials">Mixed partials</a></h2>
+We can also talk about the mixed partial derivatives $\frac{\partial^2 f}{\partial y\partial x}$  and $\frac{\partial^2 f}{\partial x\partial y}.$ 
+<p></p>
+Here $\frac{\partial^2 f}{\partial y\partial x}$  means $\frac{\partial}{\partial y}\left(\frac{\partial f}{\partial x} \right),$ 
+ and 
+$\frac{\partial^2 f}{\partial x\partial y}$  means $\frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y} \right).$ 
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+If $f(x,y)  = xy^2+y + e^x,$  then 
+$\frac{\partial^2 f}{\partial y\partial x} =
+ \frac{\partial}{\partial y}\left(\frac{\partial f}{\partial x} \right) = \frac{\partial}{\partial y}(y^2+e^x) = 2y.$
+<p></p>
+Also 
+$\frac{\partial^2 f}{\partial x\partial y} =
+ \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y} \right) = \frac{\partial}{\partial x}(2xy+1) = 2y.$
+ ■
+</p>
+Notice that they turn out to be equal in this example. This is mostly the case. 
+There are pathological examples, where they are unequal. However, for all the cases we shall need they will be equal. 
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+For each of the following functions  find $\frac{\partial f}{\partial x}$, $\frac{\partial
+ f}{\partial y}$  $\frac{\partial^2
+ f}{\partial y\partial x}$  and $\frac{\partial^2 f}{\partial x\partial y}.$
+<ol type="">
+
+<li>$f(x,y)  = e^{-x^2-y^2+2x}.$</li>
+
+<li>$f(x,y)  = \frac xy$</li>
+
+<li>$f(x,y)  = \sin x+\cos y.$</li>
+
+<li>$f(x,y)  = xy.$</li>
+
+</ol>
+
+</p>
+
+<p></p>
+
+<h1><a
+name="Quick primer on multivariate calculus (part 2)">Quick primer on multivariate calculus (part 2)</a></h1>
+<a href="https://youtu.be/ITbIeZdJTCc">Video for this section</a>
+<p></p>
+
+<h2><a
+name="Iterated integrals">Iterated integrals</a></h2>
+Just as we can differentiate $f(x,y)$  wrt a single variable at a time, we can
+ integrate it wrt a single variable
+ at a time, as well. This is called an <b><font color="red" size="40">iterated integral</font></b>.
+The integrand
+ is a function of two variables, $x,y.$  Each integral is done wrt one variable. When you do
+ the inner integral, you treat the variable for the outer integration as a constant.
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+$\int_0^1\int_0^{y^2} xy\,dxdy = \int_0^1\left. \frac{x^2y}{2} \right|_0^{y^2} dy = \frac 12\int_0^1
+ y^5\,dy = \frac{1}{12}.$
+ ■
+</p> 
+Just as a single variable integrals may be thought of as an area, an iterated integral in two
+ variables may be considered as a volume. The iterated integral above gives the volume under the
+ surface over the region shown below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/floor.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center> 
+
+<p></p>
+Here we have integrated first wrt $x$  (the inner integral) and then wrt $y$  (the outer integral). We could have
+ done it the otherway around: then the iterated integral would have been 
+$$\int_0^1 \int_{\sqrt{x}}^1 xy\, dydx.$$  
+Check that this also gives the same answer. 
+<p></p>
+In this example, both the iterated integrals give the same answer. This is the case for
+a very general class of integrans (including all nonnegative integrands). However, there are pathological examples where
+ they may not be equal. In our course we shall always assume them to be equal. 
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Find $\int_0^1 \int_{\sqrt{x}}^1 xy\, dydx.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;What is the volume under the graph of $f(x,y) = x^2+y$  over the region
+ $[0,1]\times[1,3]?$ Try both orders of integration ($x$  followed by $y$, and also 
+ $y $ followed by $x$).</p>
+
+<h1><a
+name="Joint density">Joint density</a></h1>
+<a href="https://youtu.be/sKen_7PFUh4">Video for this section</a>
+<p></p>
 Just as we had encountered joint distribution while learning about discrete random variables, we have the
-concept of joint distribution for absolutely continuous distributions as well. 
+concept of joint probability density, as well. 
 <p></p>
 
 <fieldset>
 <legend><b>Definition: </b></legend>
-Let $X,Y$  be jointly distributed random variables. We say that they are <b><font color="red" size="40">jointly absolutely continuous</font></b> if 
- there is some $f:{\mathbb R}^2\rightarrow[0,\infty)$  such that 
+Let $X,Y$  be jointly distributed random variables. We say that they have <b><font color="red" size="40">joint probability density</font></b>  
+$f:{\mathbb R}^2\rightarrow[0,\infty)$ if
 $$\forall a \leq b, c \leq d~~P\big( (X,Y)\in[a,b]\times[c,d] \big) = \int_a^b \int_c^d f(x,y)\, dxdy.$$
-Any such $f$  is called a <b><font color="red" size="40">joint PDF</font></b>  of $(X,Y).$ 
 </fieldset>
-Of course, this may be generalised to any finite number of jointly distributed random variables in the obvious way. 
+If you are new to this "integral inside integral" notation, it is called an <b><font color="red" size="40">iterated integral</font></b>. 
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;
+$\int_0^1\int_0^1 xy^2\,dxdy = \int_0^1\left[\int_0^1 xy^2\,dx\right]dy = \int_0^1\left[y^2\int_0^1 x\,dx\right]dy =\int_0^1\frac 12y^2\,dy =\frac 16.$
+ ■
+</p>  
+To visualise a joint density function, think of its graph as a surface hanging like a roof over
+ the $xy$-plane. Then, for any rectangle in the $xy$-plane, the probability of
+ $(X,Y)$  being inside that rectangle is the volume of the "tent" with the rectangle as its
+ floor, and the surface as its roof. Indeed, thanks to the probability axioms, we can use this "volume of
+ tent" idea for floors of shapes other than rectangles as well (<i>e.g.</i>, countable
+ unions/intersections of rectangles, and their complements).
 <p></p>
 The following theorem is not unexpected.
 <p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-A function $f:{\mathbb R}^2\rightarrow[0,\infty)$  is a joint PDF if and only if $\int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)\, dxdy = 1.$
+If $f:{\mathbb R}^2\rightarrow[0,\infty)$  is  joint density of some $(X,Y)$, then 
+ $\int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)\, dxdy = 1.$
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>This, as you may have guessed, is an application of the fundamental theorem of probability. We
- shall not go into the details of the proof in this course.<b><i>[QED]</i></b>
+<b><i>Proof:</i></b>This is because the double integral denotes $P(X\in{\mathbb R},\,Y\in{\mathbb R})=1.$.<b><i>[QED]</i></b>
 </p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;If $f(x,y) = \left\{\begin{array}{ll}c&\text{if }x^2+y^2\leq 1\\ 0&\text{otherwise.}\end{array}\right.$  is a density, then find $c.$
+<b>EXAMPLE 5:</b>&nbsp;If $f(x,y) = \left\{\begin{array}{ll}c&\text{if }x^2+y^2\leq 1\\ 0&\text{otherwise.}\end{array}\right.$  is a density, then find $c.$
 <p></p>
 <b>SOLUTION:</b> The total area under the density is the volume of the cylinder with unit radius and height $c.$  This volume
  is $\pi c.$  So we need $\pi c = 1,$  <i>i.e.</i>, $c [ \frac 1\pi.$
@@ -257,7 +463,7 @@ A function $f:{\mathbb R}^2\rightarrow[0,\infty)$  is a joint PDF if and only if
 </p>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}c(x+y)&\text{if }0\leq x,y,\leq 2\\ 0&\text{otherwise.}\end{array}\right. $  is a density.
+<b>EXAMPLE 6:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}c(x+y)&\text{if }0\leq x,y,\leq 2\\ 0&\text{otherwise.}\end{array}\right. $  is a density.
 <p></p>
 <b>SOLUTION:</b>
 We need $\int_{-\infty}^\infty\int_{-\infty}^\inftyf(x,y)\, dx dy = 1,$  <i>i.e.</i>, 
@@ -267,29 +473,28 @@ $$\int_0^2\int_0^2 c(x+y)\, dx dy = c\int_0^2\left[\int_0^2 c(x+y)\, dx\right] d
 So we need $8c=1$  or $c = \frac 18.$
  ■
 </p>
-This solution shows a very useful technique of performing a iterated integral (<i>i.e.</i>, one integral inside another). The variable
- for the outer integral is considered a constant in the inner integral. 
+
 <p></p>
 
 <h2><a
-name="Problem set 1">Problem set 1</a></h2>
+name="Problem set 3">Problem set 3</a></h2>
 
 <p></p>
 ::<p>
-<b>EXERCISE 1:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cxy&\text{if }0\leq x,y,\leq 2\\ 0&\text{otherwise.}\end{array}\right. $  is a density.</p>
+<b>EXERCISE 4:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cxy&\text{if }0\leq x,y,\leq 2\\ 0&\text{otherwise.}\end{array}\right. $  is a density.</p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 2:</b>&nbsp;If $ax+by$  is a density on the unit square, what are the possible values for $a,b?$</p>
+<b>EXERCISE 5:</b>&nbsp;If $ax+by$  is a density on the unit square, what are the possible values for $a,b?$</p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}ce^{-x-y}&\text{if }0\leq x,y,&lt; \infty\\ 0&\text{otherwise.}\end{array}\right.$
+<b>EXERCISE 6:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}ce^{-x-y}&\text{if }0\leq x,y,&lt; \infty\\ 0&\text{otherwise.}\end{array}\right.$
 is a density.</p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cye^{-x}&\text{if }0\leq x,y,&lt; \infty\\ 0&\text{otherwise.}\end{array}\right.
+<b>EXERCISE 7:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cye^{-x}&\text{if }0\leq x,y,&lt; \infty\\ 0&\text{otherwise.}\end{array}\right.
  $  is a density<p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">Impossible since the integral is divergent.</div></p>
@@ -297,37 +502,28 @@ class="ans" id="lab1">Impossible since the integral is divergent.</div></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cxy&\text{if }(x,y)\in[-1,1]\times[0,1]\\ 0&\text{otherwise.}\end{array}\right. $  is a density.
+<b>EXERCISE 8:</b>&nbsp;Find $c\in{\mathbb R}$  such that $f(x,y) =\left\{\begin{array}{ll}cxy&\text{if }(x,y)\in[-1,1]\times[0,1]\\ 0&\text{otherwise.}\end{array}\right. $  is a density.
 <p><a
 href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
 class="ans" id="lab2">Impossible, $f(x,y)$  takes negative values.</div></p>
 </p>
 
 <p></p>
-
-<h1><a
-name="Computing probabilities using geometry">Computing probabilities using geometry</a></h1>  
-Visualise the graph of the density as the roof of a tent. Then $P((X,Y)\in A)$  is the volume
- of the cylinder-like region inside the tent with $A$  as its floor. For many simple cases,
- the volume may be computed using geometric considerations. For more complicated cases we resort
- to iterated integrals. We shall discuss the geometric approach first. 
-<p></p>
-The most important special case when the roof of the tent is flat and horizontal. In this case we call the distribution uniform,
- as we have already learned. 
-<h2><a
-name="Problem set 2">Problem set 2</a></h2>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;<font size="-2">[hpsjoint1.png]</font><img width="" src="image/hpsjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 9:</b>&nbsp;<font size="-2">[hpsjoint1.png]</font><img width="" src="image/hpsjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<font size="-2">[hpsjoint2.png]</font><img width="" src="image/hpsjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<font size="-2">[hpsjoint2.png]</font><img width="" src="image/hpsjoint2.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 
 <h1><a
 name="Computing probability using iterated integrals">Computing probability using iterated integrals</a></h1>
-
+<a href="https://youtu.be/eAOWy_idRSE">Video for this section</a>
+<p></p>
+So far we have been finding volumnes under the joint density graph using geometry. This works only for very simple shapes.
+ For more complicated cases we need to use iterated integrals. 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;
+<b>EXAMPLE 7:</b>&nbsp;
 Let $(X,Y)$  have density $f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right..$  Find $P(Y\leq X^2).$
 <p></p>
 <b>SOLUTION:</b>
@@ -345,7 +541,27 @@ The random point $(X,Y)$  always lies in the unit square. Our set of interest is
 </center>
  We need to integrate
  the density over this set. In other words, we are trying to find the volume of the tent with the density as its roof and
- the red region as its floor. This may be computed as follows:
+ the red region as its floor. 
+<font color="red">
+<pre>
+source("/home/asu/na/s/othernotes/talks/obj.r")
+x = seq(0,1,len=20)
+t = x
+xx = outer(x,t,function(x,t) {x})
+yy = outer(x,t,function(x,t) {t*x*x})
+zz = xx+yy
+paraObj(xx,yy,zz,'image/surfex1.obj')
+xx = outer(x,t,function(x,t) {x})
+yy = outer(x,t); yy[,]=0
+zz = outer(x,t,function(x,t) {t*x*x})
+paraObj(xx,yy,zz,'image/surfex2.obj')
+xx = outer(x,t,function(x,t) {x})
+yy = outer(x,t,function(x,t) {x*x})
+zz = xx+yy
+paraObj(xx,yy,zz,'image/surfex3.obj')
+</pre>
+</font>
+This may be computed as follows:
 $$\int_0^1 \left[\int_0^{x^2} (x+y)\, dy\right] dx = \int_0^1 \left[ xy+\frac 12y^2 \right]_0^{x^2} \,
  dx=\int_0^1 x^3+\frac 12x^4\, dx = \frac 14 + \frac{1}{10} = \frac{7}{20}.$$
 We could have done it the other way around, too:
@@ -355,32 +571,34 @@ This should also lead to the same answer (check!).
 </p>
 
 <h2><a
-name="Problem set 3">Problem set 3</a></h2>
+name="Problem set 4">Problem set 4</a></h2>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Let $(X,Y)$  have joint density $f(x)=\left\{\begin{array}{ll}cxy&\text{if }x,y\in[0,1],\,x\leq y\\
+<b>EXERCISE 11:</b>&nbsp;Let $(X,Y)$  have joint density $f(x)=\left\{\begin{array}{ll}cxy&\text{if }x,y\in[0,1],\,x\leq y\\
  0&\text{otherwise.}\end{array}\right..$  Find $P(Y&lt; \sqrt{X}).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let $(X,Y)$  have joint density $f(x)=\left\{\begin{array}{ll}c(x+y)&\text{if }x,y\in[0,1]\\
+<b>EXERCISE 12:</b>&nbsp;Let $(X,Y)$  have joint density $f(x)=\left\{\begin{array}{ll}c(x+y)&\text{if }x,y\in[0,1]\\
  0&\text{otherwise.}\end{array}\right..$  Find $P\left(Y&lt; \frac 12\right).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Let $X,Y$  be IID $Unif(0,1).$  Find $P(X^2\leq Y \leq X).$</p>
+<b>EXERCISE 13:</b>&nbsp;Let $X,Y$  be IID $Unif(0,1).$  Find $P(X^2\leq Y \leq X).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;If $(X,Y)$  has joint density $e^{-(x+y)}$  for $x,y&gt;0,$  (and 0 else), then find $P(X^2+Y^2&lt;1).$</p>
+<b>EXERCISE 14:</b>&nbsp;If $(X,Y)$  has joint density $e^{-(x+y)}$  for $x,y&gt;0,$  (and 0 else), then find $P(X^2+Y^2&lt;1).$</p>
 
 <p></p>
 
 <h1><a
-name="CDF">CDF</a></h1>
+name="Joint CDF">Joint CDF</a></h1>
+<a href="https://youtu.be/0pRDbb0_fsk">Video for this section</a>
+<p></p>
 We have already learned the definition of joint CDF in the last semester:
 <p></p>
 
@@ -390,11 +608,24 @@ If $X,Y$  are jointly distributed random variables, then their <b><font color="r
  $F:{\mathbb R}^2\rightarrow[0,1]$, where
 $$F(x,y) = P(X\leq x,\, Y\leq y).$$
  </fieldset>
-This definition does not care if $X,Y$  are discrete, continuous or absolutely continuous or something else.
+This definition does not care if $X,Y$  are discrete, continuous or has density or not.
 <p></p>
-Since the CDF is defined in terms probability, we can compute it by iterated integrals of the density. 
+Note that for any given $(x,y),$  the value of the CDF, $F(x,y)$  is the probability that the random point $(X,Y)$ 
+ lies in the infinite rectangle lying south-west of $(x,y):$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/sw.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Since the CDF is defined in terms of probability, we can compute it by geometry in simple cases, and iterated
+ integrals in more compicated cases.
 <p>
-<b>EXAMPLE 4:</b>&nbsp;Let $(X,Y)$  have uniform distribution over the unit square. Find its CDF, $F(x,y).$
+<b>EXAMPLE 8:</b>&nbsp;Let $(X,Y)$  have uniform distribution over the unit square. Find its CDF, $F(x,y).$
 <p></p>
 <b>SOLUTION:</b>
 The values of $F(x,y)$  over certain regions of ${\mathbb R}^2$  should be clear, as shown below.
@@ -447,13 +678,24 @@ y&\text{if }0&lt;y\leq 1, x&gt;1\\
 1&\text{if }x, y&gt;1\\
 \end{array}\right.. 
 $$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/unit.png"></th>
+</tr>
+<tr>
+<th>The graph of the CDF</th>
+</tr>
+</table>
+</center>
  ■
 </p>
+
 In this example we could avoid integration because the distribution was uniform. The next example is more general. 
 <p></p>
 
 <p>
-<b>EXAMPLE 5:</b>&nbsp;Let $(X,Y)$  have density $f(x,y)=x+y$ over the unit square. Find its CDF, $F(x,y).$
+<b>EXAMPLE 9:</b>&nbsp;Let $(X,Y)$  have density $f(x,y)=x+y$ over the unit square. Find its CDF, $F(x,y).$
 <p></p>
 <b>SOLUTION:</b>
 The red-blue-green break up remains the same here as in the last example, as the support of the distribution is the unit
@@ -465,16 +707,36 @@ Similarly, work out the values for the blue and green regions. ■
 </p>
 
 <p></p>
-Finding the CDF from the density requires quite a bit of effort. But going the other way around is a lot easier. You just
- need to differentiate twice partially, once wrt $x$  and once wrt $y$  (in either order). Thus,
-$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y)=\frac{\partial^2}{\partial y\partial x} F(x,y).$$
-For $(x,y)$  where the partial derivatives
- fail to exist, set $f(x,y) = 0$  (or any arbitrary non-negative value).
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;Compute the remaining parts of the CDF in the  example above.</p>
+
 <p></p>
 
-<img src="image/alert.png">But remember that this formula works only when we know that a density exists! 
 <p>
-<b>EXAMPLE 6:</b>&nbsp;
+<b>EXERCISE 16:</b>&nbsp;Find the CDF of $(X,Y)$  is the joint density is $f(x,y) = \left\{\begin{array}{ll}e^{-x-y}&\text{if }x,y&gt;0\\ 0&\text{otherwise.}\end{array}\right.$</p>
+
+<p></p>
+
+<h1><a
+name="Joint density from CDF">Joint density from CDF</a></h1>
+<a href="https://youtu.be/yzjbQ_qotqQ">Video for this section</a>
+<p></p>
+Finding the CDF from the density requires quite a bit of effort. But going the other way around is a lot easier. 
+<p></p>
+Suppose that you are given a CDF, $F(x,y)$  for a distribution having a density.  
+Then let
+$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y)=\frac{\partial^2}{\partial y\partial x} F(x,y).$$
+For $(x,y)$  where the partial derivatives
+ fail to exist, set $f(x,y) = 0$  (or any arbitrary non-negative value). This $f(x,y)$  will be a density for CDF
+ $F(x,y).$
+<p></p>
+
+<p>
+<b>EXAMPLE 10:</b>&nbsp;
 Let our CDF be
 $$F(x,y) = \left\{\begin{array}{ll}xy&\text{if }0&lt; x,y\leq 1\\ 
 x&\text{if }0&lt;x\leq 1, y&gt;1\\
@@ -483,52 +745,238 @@ y&\text{if }0&lt;y\leq 1, x&gt;1\\
 1&\text{if }x, y&gt;1\\
 \end{array}\right.. 
 $$
-Given that a density exists, find it. 
+You are told that there is a density corresponding to it. Find one such density.
 <p></p>
 <b>SOLUTION:</b>
-Since we are about differentiate wrt both $x$  and $y,$  the parts of $F(x,y)$  that do not involve both the
+Since we are about to differentiate wrt both $x$  and $y,$  the parts of $F(x,y)$ 
+ that do not involve both the
  variables must vanish. So we need to work with only the $xy$  part, which after the two differentiations would yield
- $1.$  So a denity is 
+ $1.$  So a density is 
 $f(x,y) = \left\{\begin{array}{ll}1&\text{if }0&lt;x,y&lt;1\\ 0&\text{otherwise.}.\end{array}\right. $
  ■
 </p>
 
 <h2><a
-name="Problem set 4">Problem set 4</a></h2>
+name="Problem set 6">Problem set 6</a></h2>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;Find the joint CDF of $(X,Y)$  if $X\sim Bern(1/2)$  and $Y\sim Unif(0,1)$  and they are independent.</p>
+<b>EXERCISE 17:</b>&nbsp;Find the joint CDF of $(X,Y)$  if $X\sim Bern(1/2)$  and $Y\sim Unif(0,1)$  and they are independent.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;Let $F(x,y)=\min\{x,y\}$  for $0\leq x,y\leq 1$  be the joint CDF of $(X,Y).$ 
+<b>EXERCISE 18:</b>&nbsp;Let $F(x,y)=\min\{x,y\}$  for $0\leq x,y\leq 1$  be the joint CDF of $(X,Y).$ 
  Find $P\left(X\leq \frac 12, Y\leq \frac 12\right)).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;If $(X,Y)$  have joint density $c(x^2+y)$  over the unit square, then find the joint CDF.</p>
+<b>EXERCISE 19:</b>&nbsp;If $(X,Y)$  have joint density $c(x^2+y)$  over the unit square, then find the joint CDF.</p>
+
+<p></p>
+
+<h1><a
+name="Properties of joint distribution">Properties of joint distribution</a></h1>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $F(x,y)$  be a bivariate CDF. Then 
+<ol type="">
+
+<li>for each fixed value of $y$, the function $x\mapsto F(x,y)$  is non-decreasing.</li>
+
+<li>for each fixed value of $x$, the function $y\mapsto F(x,y)$  is non-decreasing.</li>
+
+<li>$\forall x,y\in{\mathbb R}~~\forall a,b \geq 0~~ F(x+a,y+b)-F(x,y+b)-F(x+a,y)+F(x,y)\geq 0.$</li>
+
+</ol> 
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Easy.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Point mass and jointly continuous">Point mass and jointly continuous</a></h2>
+Let $X$  be a random variable with CDF $F.$  Then the following two statements are equivalent:
+<ol type="">
+
+<li>$F$  is continuous everywhere.</li>
+
+<li>$\forall a\in{\mathbb R}~~P(X=a)=0.$</li>
+
+</ol>
+Consider the corresponding statements in the bivariate scenario. $(X,Y)$  have joint CDF $F(x,y).$  Then the statements
+ are 
+<ol type="">
+
+<li>$F$  is continuous everywhere.</li>
+
+<li>$\forall (a,b)\in{\mathbb R}^2~~P(X=a,\,Y=b)=0.$</li>
+
+</ol>
+Here the first statement implies the second statement, but the converse is not true in general. 
+Can you think of a counterexample? An exercise below will given you a hint.
+<h2><a
+name="Problem set 7">Problem set 7</a></h2>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;Let $X\sim Bernoulli\left(\frac 12\right)$  and $Y\sim Unif(0,1)$  be independent random
+ variables. Write down their joint CDF. Is it continuous everywhere? What is $P(X=a,\,Y=b)$  for any given $(a,b)?$</p>
+
+<p></p>
+Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">You can put rationals
+ in the gaps.</div></blockquote>
+However, for bivariate or higher dimensional CDFs, the situation is drastically different. 
+<p>
+<b>EXERCISE 21:</b>&nbsp;
+There are different ways to approach a point in ${\mathbb R}^2.$  The following diagram shows some of them. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/limdir.png"></th>
+</tr>
+<tr>
+<th>$(a,b)$  is the point at the centre.</th>
+</tr>
+</table>
+</center>
+In each case find
+ $\lim_{(x,y)\rightarrow(a,b)} F(x,y).$  In each case the limit will be one of  
+<blockquote>
+$P(X &lt; a,\, Y&lt; b)$, $P(X \leq a,\, Y&lt; b)$, $P(X &lt; a,\, Y\leq b)$  and $P(X \leq a,\, Y\leq b).$
+</blockquote> 
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;(Continuation of the last exercise) In exactly three of the cases above we must have
+ $\lim_{(x,y)\rightarrow(a,b)} F(x,y) = F(a,b).$  Which three?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
+ $(a,b)$  if and only if $P(X &lt; a,\, Y&lt; b) &lt; P(X \leq a,\, Y\leq b).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
+ $(a,b)$  if and only if $P(X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b)&gt;0.$</p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;(Continuation of the last exercise) Sketch the set $\{X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b\}$  in the
+ $XY$-plane for $(a,b) = (1,2)$  and also for $(a,b) = (1,3).$  Argue that either
+ $F(x,y)$  has no discontinuity, or has
+uncountably many discontinuities.
+</p>
+
+<p></p>
+
+<h1><a
+name="Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a></h1>
+Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
+having their joint PMF. But not so in case of densities. Even if
+ $X$  and $Y$  each has its own density, still $(X,Y)$  may fail to have a
+ <i>joint</i>  density.
+<p></p>
+
+<p>
+<b>EXAMPLE 11:</b>&nbsp;Suppose $X$ has density $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$ and $Y = X.$  
+Then show that $(X,Y)$  does not have a joint density.
+<p></p>
+<b>SOLUTION:</b>
+Here the CDF of $(X,Y)$  is 
+$$
+F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ \min\{x,y\}&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
+$$
+Hence, if $(X,Y)$  indeed had a joint density, then a joint density would be given
+ by $f(x,y)$, where 
+$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
+This forces $f(x,y)\equiv 0,$  which is not a PDF.
+   ■
+</p>
+However, if $(X,Y)$  has a joint density, then both $X$  and $Y$  must also have (marginal) densities.
+<p></p>
+
+<h2><a
+name="Problem set 8">Problem set 8</a></h2>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;If $X$  has density as above, then does $(X,X^2)$  have a joint density?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;Does there exist a CDF  such that if $X$  has that CDF, then $(X,X)$  has a joint density?</p>
 
 <p></p>
 
 <h1><a
 name="Marginals">Marginals</a></h1>
 We can find the distribution of $X$  and $Y$  separately given the joint distribution of $(X,Y).$  
-In particular, a marginal density of $X$  is given by 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let the joint CDF of $(X,Y)$  be $F(x,y).$  Let the marginal CDFs of $X$  and $Y$  be, respectively,
+ $F_X(x)$  and $F_Y(y).$  Then
+<ul>
+
+<li>$\forall x\in{\mathbb R}~~\lim_{y\rightarrow \infty} F(x,y) =F_X(x),$</li>
+
+<li>$\forall y\in{\mathbb R}~~\lim_{x\rightarrow \infty} F(x,y) =F_Y(y).$</li>
+
+</ul>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The event $\{X\leq x,\,Y\leq y\}$  increases to $\{X\leq x\}$ and $y\rightarrow \infty$ 
+ and to $\{Y\leq y\}$  as $x\rightarrow \infty.$
+<p></p>
+ Applying continuity of
+ probability, we get the result.
+<b><i>[QED]</i></b>
+</p>
+If $(X,Y)$  has a joint density, then we can obtain  (marginal) densities of $X$  and $Y$  as follows.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $(X,Y)$  has a joint density $f(x,y)$, then a marginal density of $X$  is given by 
 $$f_X(x) = \int_{-\infty}^\infty f(x,y)\, dy$$
 and a marginal density of $Y$  by 
-$$f_Y(y) = \int_{-\infty}^\infty f(x,y)\, dx.$$
+$$f_Y(y) = \int_{-\infty}^\infty f(x,y)\, dx$$
+provided these are continuous and $\forall x\in{\mathbb R}~~\int_{-\infty}^x f_X(t)\, dt = F_X(x)$  and $\forall
+ y\in{\mathbb R}~~\int_{-\infty}^y f_Y(t)\, dt = F_Y(y).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We have $F_X(x)  = \int_{-\infty}^x \int_{-\infty}^\infty f(s,t)\,dt\,ds.$
 <p></p>
+This is a (univariate) CDF. We know how to find a density for it (if one exists): we have to
+ differentiate it and check if integral of the derivative gives back the CDF. 
+<p></p>
+Here, by the fundamental theorem of calculus,  $F_X'(x)  = \int_{-\infty}^\infty f(x,t)\,dt.$  Hence the result.
+<b><i>[QED]</i></b>
+</p>
 
 <h2><a
-name="Problem set 5">Problem set 5</a></h2>
+name="Problem set 9">Problem set 9</a></h2>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<font size="-2">[hpsjoint4.png]</font><img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpsjoint4.png]</font><img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<font size="-2">[hpsjoint5.png]</font><img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpsjoint5.png]</font><img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<font size="-2">[hpsjoint6.png]</font><img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpsjoint6.png]</font><img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 
@@ -545,49 +993,89 @@ Incidentally, it is not enough to have $P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i
  If only this holds, then we call $X_1,...,X_n$  only <b><font color="red" size="40">pairwise independent</font></b>, which is weaker than mutual
  independent.
 <p></p>
-This is the general case. For the absolutely continuous case, if $f(x,y)$  is a joint density, then $f(x,y)$  can
- be factored as $f(x,y) = f_X(x)f_Y(y)$, where $f_X,$  $f_Y$  are marginal densities of $X$  and $Y.$ 
+So in particular if $X,Y$  are independent, then 
+$$\forall x,y\in{\mathbb R}~~P(X\leq x,\, Y\leq y) = P(X\leq x)\times P(Y\leq y).$$
+In other words, the joint CDF factors into the marginal CDFs:
+$$\forall x,y\in{\mathbb R}~~F(x,y) = F_X(x)F_Y(y).$$
+We had mentioned last semester that CDF characterises the entire distribution (<i>i.e.</i>, if we know the probabilities of all
+ events of the form $\{X\leq x\},$  then we can work out $P(X\in B)$  for every event $B$). 
+So the next theorem is anticipated.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Two jointly distributed random variables $X,Y$  are independent if and only if
+$$\forall x,y\in{\mathbb R}~~F(x,y) = F_X(x)F_Y(y).$$
+</fieldset>
+This is the general case. Now, if there is a joint density, then that can be factored
+ into marginal densities, as well:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Two jointly distributed random variables $X,Y$ having joint density $f(x,y)$ are independent if and only if
+$$\forall x,y\in{\mathbb R}~~f(x,y) = f_X(x)f_Y(y),$$
+for some marginal densities $f_X$  and $f_Y.$
+</fieldset>
+ 
+<p>
+<b><i>Proof:</i></b>
+<u>If part</u>: For any $x,y\in{\mathbb R}$  we have
+$$F(x,y) = P(X\leq x,\,Y\leq y) = \int_{-\infty}^y\int_{-\infty}^x f(x,y)\, dx\,dy =\int_{-\infty}^y\int_{-\infty}^x f_X(x)f_Y(y)\, dx\,dy = \left[\int_{-\infty}^xf_X(x)\,dx\right]\times\left[\int_{-\infty}^y f_Y(y)\,dy\right] = F_X(x)F_Y(y).$$
 <p></p>
 
+<u>Only if part</u>: Let $X,Y$  be independent. Let $f_X$  and $f_Y$  be densities for $X$ and $Y.$
+Then for any $[a,b]$ and $[c,d]$ we have 
+$$\int_a^b\int_c^d f_X(x)f_Y(y)\,dy\,dx =\int_a^b f_X(x) \, dx \int_c^d f_Y(y)\,dy =
+ P(X\in[a,b])P(Y\in[c,d]) = P(X\in[a,b],\,Y\in[c,d]).$$
+Hence $f_X(x)f_Y(y)$  is a joint density for $(X,Y).$  
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+As in the discrete case, here also we have the result that if $X,Y$  are independent, and $E(X), E(Y)$  exist,
+ then $E(XY)$  exists and equals $E(X)E(Y).$  The proof is straightforward using factorisation of joint density. 
 <h2><a
-name="Problem set 6">Problem set 6</a></h2>
+name="Problem set 10">Problem set 10</a></h2>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;If two independent random variables $X,Y$  have marginal densities $f(t) = e^{-\lambda t}$  for
+<b>EXERCISE 31:</b>&nbsp;If two independent random variables $X,Y$  have marginal densities $f(t) = e^{-\lambda t}$  for
  $t&gt;0$  (and 0 else), then find the joint density of $(X,Y).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;$(X,Y)$  is distributed uniformly over the unit disc in ${\mathbb R}^2.$  Are $X,Y$  independent?</p>
+<b>EXERCISE 32:</b>&nbsp;$(X,Y)$  is distributed uniformly over the unit disc in ${\mathbb R}^2.$  Are $X,Y$  independent?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;If the joint density of $(X,Y)$  is of the form $f(x)g(y),$  then show that
+<b>EXERCISE 33:</b>&nbsp;If the joint density of $(X,Y)$  is of the form $f(x)g(y),$  then show that
  $X$  and $Y$  must be independent. Also show that $f_X\propto f$  and $f_Y\propto g.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;If $(X,Y)$  are independent, then is it true that the joint CDF
+<b>EXERCISE 34:</b>&nbsp;If $(X,Y)$  are independent, then is it true that the joint CDF
 is the product of the marginal CDFs?
 </p>
 
 <h1><a
 name="Conditional distribution">Conditional distribution</a></h1>
-So far the absolutely continuous case closely mimics the discrete case, with integration replacing summation.  
+So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If $(X,Y)$  are jointly discrete then we defined the
- conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y}{P(Y=y)},$  and we did this only
- for $y$  in the support of $Y,$  as that guaranteed $P(Y=y)&gt;0.$
+ conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y}{P(Y=y)},$  
+and we did this only  for those $y$ for which $P(Y=y)&gt;0.$
 <p></p>
-So for the jointly absolutely continuous case, we define a <b><font color="red" size="40">conditional PDF</font></b>  of $X$  given $Y=y$ 
+But if $(X,Y)$  has a joint density, then $P(Y=y)$  is always 0. So instead, we follow a slightly different path:
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Conditional density</b></legend>
+If $(X,Y)$  has joint density, $f(x,y),$  then we define a <b><font color="red" size="40">conditional density</font></b>  of
+ $X$  given $Y=y$ 
  as 
-$$f_{X|Y}(x|y) =\frac{f(x,y)}{f_Y(y)}$$ 
-where $f_Y$  is a marginal density of $Y$  and $f_Y(y)&gt;0.$ Don't feel uncomfortable
- with the arguments of $f_{Y|X}$  being written as $x|y$. You could have written it as
- $f_{Y|X}(x,y)$,  as well.   
-<p></p>
+$$f_{X|Y}(x,y) =\frac{f(x,y)}{f_Y(y)}$$ 
+where $f_Y(y)=\int_{-\infty}^\infty f(x,y)\, dx &gt; 0.$
+</fieldset>
+It is obvious that this is a density, since it is non-negative, and 
+$\int_{-\infty}^\infty f_{X|Y}(x,y)\, dx = \frac{\int_{-\infty}^\infty f(x,y)\, dx}{f_Y(y)}=1.$
 The most glaring difference between conditional PDF and conditional PMF is that the conditional PDF is not a
  conditional probability,
  since $P(Y=y)=0.$  Due to the same reason,
@@ -611,31 +1099,57 @@ Other than this difference, the rest follows as in the discrete case. We have th
 
 <fieldset>
 <legend><b>Definition: </b></legend>
-If $(X,Y)$  is jointly absolutely continuous, then $E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx$  and 
+If $(X,Y)$  has a joint density $f(x,y),$ then $E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx$  and 
 $$V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).$$
 </fieldset> 
-The tower property also works as before. 
+The tower property also works as before, as do the relation between conditional and unconditional variances.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $(X,Y)$  has a joint density, then
+<ol type="">
+
+<li>$E(X) = E(E(X|Y)).$</li>
+
+<li>$V(X) = E(V(X|Y)) + V(E(X|Y))$.</li>
+
+</ol>
+
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+Enough to show the first, since the other two follow from it (as we have already seen last semester). 
+<p></p>
+Let $f(x,y)$  be a joint density of $(X,Y).$  Then 
+$$E(X|Y=y) = \int_{-\infty}^\infty xf_{X|Y}(x,y)\, dx = \frac{\int_{-\infty}^\infty xf_(x,y)\, dx}{f_Y(y)}.$$
+<p></p>
+So 
+$$E(E(X|Y)) = \int_{-\infty}^\infty\frac{\int_{-\infty}^\infty xf_(x,y)\, dx}{f_Y(y)}f_Y(y)\, dy = \int_{-\infty}^\infty\int_{-\infty}^\infty xf_(x,y)\, dx\, dy =E(X),$$
+as required. 
+<b><i>[QED]</i></b>
+</p>
+
 <h2><a
-name="Problem set 7">Problem set 7</a></h2>
+name="Problem set 11">Problem set 11</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
+<b>EXERCISE 35:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
  0\leq y\leq 1\}.$  Guess a conditional density of $X$  given $Y=y?$  First try
  to guess, and then check it from the definition.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x|y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
+<b>EXERCISE 36:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x|y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
  0&\text{otherwise.}\end{array}\right.$, where $c_y$  is free of $x.$ 
 Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y|x).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
+<b>EXERCISE 37:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
 then find $E(X|Y=y)$  and $V(Y|X=x).$</p>
 
 <p></p>
@@ -655,7 +1169,7 @@ We say that the jointly distributed random variables $X_1,...,X_n$  are <b><font
 </fieldset> 
 Here is a non-IID example.
 <p>
-<b>EXAMPLE 7:</b>&nbsp;
+<b>EXAMPLE 12:</b>&nbsp;
 In a box we have 10 balls 4 of which are black, the rest being light magenta (with a tinge of yellow on one side). 2 balls
  are drawn one by one using SRSWOR. Let $X_1=$ the indicator of the $i$-th selected ball being black ($i=1,2$).
  Then show that $X_1,X_2$  are exchangeable. 
@@ -685,7 +1199,7 @@ Since this matrix is symmetric, hence the result.
 Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
 proceed more systematically to answer the next problem.
 <p>
-<b>EXERCISE 25:</b>&nbsp;
+<b>EXERCISE 38:</b>&nbsp;
 We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
  $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
  are exchangeable.
@@ -694,7 +1208,7 @@ We have $n$  balls $m$  of which are dark purple (the rest being of a nondescrip
 <p></p>
 
 <p>
-<b>EXERCISE 26:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+<b>EXERCISE 39:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
  replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
  $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
 
@@ -721,142 +1235,32 @@ Then the joint CDF of $(X_{i_1},...,X_{i_k})$  is $F(x_1,...,x_k,\infty,...,\inf
 <p></p>
 Exchangeable random variables allow for symmetry arguments. The next problem is one example. 
 <h2><a
-name="Problem set 8">Problem set 8</a></h2>
+name="Problem set 12">Problem set 12</a></h2>
 
 <p>
-<b>EXERCISE 27:</b>&nbsp;
+<b>EXERCISE 40:</b>&nbsp;
 If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 28:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
+<b>EXERCISE 41:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
  $Y_1 = X_1+X_2,$  $Y_2 = X_2+X_3,$  and $Y_3 = X_3+X_1.$  Is $(Y_1,Y_2,Y_3)$ 
  exchangeable? Justify your answer.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 29:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
+<b>EXERCISE 42:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
  Without replacing the ball, another ball is drawn at random from the rest, and its number is also
  noted. If the two numbers are $X$  and $Y$, respectively, then is $(X,Y)$  exchangeable?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 30:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
+<b>EXERCISE 43:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
  number $i$  on it  is selected with probability proportional to $i.$
-</p>
-
-<p></p>
-
-<h1><a
-name="Points to ponder">Points to ponder</a></h1>
-
-<h2><a
-name="Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a></h2>
-Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
-having their joint PMF. But not so in case of absolutely continuous distributions. Even if
- $X$  and $Y$  are each absolutely continuous, still $(X,Y)$  may fail to be <i>jointly</i>  absolutely continuous.
-<p></p>
-
-<p>
-<b>EXAMPLE 8:</b>&nbsp;Suppose $X\sim Unif(0,1)$  and $Y = X.$  Then show that $(X,Y)$  is not
- jointly absolutely continuous. 
-<p></p>
-<b>SOLUTION:</b>
-Here the CDF of $(X,Y)$  is 
-$$
-F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ 1&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
-$$
-Hence, if $(X,Y)$  is jointly absolutely continuous, then a joint density would be given by $f(x,y)$, where 
-$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
-This forces $f(x,y)\equiv 0,$  which is not a PDF.
-   ■
-</p>
-However, if $(X,Y)$  is jointly absolutely continuous, then both $X$  and $Y$  must also be absolutely continuous.
-<p></p>
-
-<h2><a
-name="Point mass and jointly continuous">Point mass and jointly continuous</a></h2>
-Let $X$  be a random variable with CDF $F.$  Then the following two statements are equivalent:
-<ol type="">
-
-<li>$F$  is continuous everywhere.</li>
-
-<li>$\forall a\in{\mathbb R}~~P(X=a)=0.$</li>
-
-</ol>
-Consider the corresponding statements in the bivariate scenario. $(X,Y)$  have joint CDF $F(x,y).$  Then the statements
- are 
-<ol type="">
-
-<li>$F$  is continuous everywhere.</li>
-
-<li>$\forall (a,b)\in{\mathbb R}^2~~P(X=a,\,Y=b)=0.$</li>
-
-</ol>
-Here the first statement implies the second statement, but the converse is not true in general. 
-Can you think of a counterexample? An exercise below will given you a hint.
-<h2><a
-name="Problem set 9">Problem set 9</a></h2>
-
-<p>
-<b>EXERCISE 31:</b>&nbsp;Let $X\sim Bernoulli\left(\frac 12\right)$  and $Y\sim Unif(0,1)$  be independent random
- variables. Write down their joint CDF. Is it continuous everywhere? What is $P(X=a,\,Y=b)$  for any given $(a,b)?$</p>
-
-<p></p>
-Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
-<blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">You can put rationals
- in the gaps.</div></blockquote>
-However, for bivariate or higher dimensional CDFs, the situation is drastically different. 
-<p>
-<b>EXERCISE 32:</b>&nbsp;
-There are different ways to approach a point in ${\mathbb R}^2.$  The following diagram shows some of them. 
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/limdir.png"></th>
-</tr>
-<tr>
-<th>$(a,b)$  is the point at the centre.</th>
-</tr>
-</table>
-</center>
-In each case find
- $\lim_{(x,y)\rightarrow(a,b)} F(x,y).$  In each case the limit will be one of  
-<blockquote>
-$P(X &lt; a,\, Y&lt; b)$, $P(X \leq a,\, Y&lt; b)$, $P(X &lt; a,\, Y\leq b)$  and $P(X \leq a,\, Y\leq b).$
-</blockquote> 
-
-</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 33:</b>&nbsp;(Continuation of the last exercise) In exactly three of the cases above we must have
- $\lim_{(x,y)\rightarrow(a,b)} F(x,y) = F(a,b).$  Which three?</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 34:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
- $(a,b)$  if and only if $P(X &lt; a,\, Y&lt; b) &lt; P(X \leq a,\, Y\leq b).$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 35:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
- $(a,b)$  if and only if $P(X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b)&gt;0.$</p>
-
-<p>
-<b>EXERCISE 36:</b>&nbsp;(Continuation of the last exercise) Sketch the set $\{X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b\}$  in the
- $XY$-plane for $(a,b) = (1,2)$  and also for $(a,b) = (1,3).$  Argue that either
- $F(x,y)$  has no discontinuity, has
- or uncountably many discontinuities.
 </p>
 
 <p></p>
@@ -864,41 +1268,41 @@ $P(X &lt; a,\, Y&lt; b)$, $P(X \leq a,\, Y&lt; b)$, $P(X &lt; a,\, Y\leq b)$  an
 <h1><a
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 ::<p>
-<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

@@ -1,6 +1,6 @@
  @{<NOTE>
 <TITLE>Distributions with density</TITLE>
-<HEAD1>The concept of density</HEAD1>
+<HEAD1 u="https://youtu.be/AwB5Xw7Hedw">The concept of density</HEAD1>
 We already know the following two definitions.
 <DEFN name="Cumulative distribution function (CDF)">
 Let <M>X</M>  be a random variable. By its <TERM>cumulative distribution function (CDF)</TERM> we mean the function <M>F:\rr\to[0,1]</M> 
@@ -16,13 +16,13 @@ A special class of such random variables is given in the following definition:
 if for every <M>a\leq b\in\rr</M>  we have 
 <D>P(X\in[a,b]) = \int_a^b f(x)\, dx.</D>
 </DEFN>
-<ALERT/>A little point about integration is in order here. There are different types of integration possible, all denoted by the
+<COMMENT><ALERT/>A little point about integration is in order here. There are different types of integration possible, all denoted by the
  familiar <M>\int</M>  symbol. The type of integration that we learn at school is called Riemann integration. In probability
  theory, we use a generalisation of Riemann integration called <TERM>Lebesgue integration</TERM>. We shall introduce Lebesgue
  integration formally later in this course. Until then all our integrations will be in the familiar Riemann sense (possibly improper). So, in particular, we are assuming
  <M>f</M>  to be (improper) Riemann integrable over every interval. Since Riemann integration is a special case of Lebesgue
  integration, this will not cause any problem. 
-
+</COMMENT>
 
 <HEAD2>Properties of PDF</HEAD2>
 The following facts all come from continuity of probability. 
@@ -37,7 +37,7 @@ Let <M>X</M>  have a density <M>f(x).</M>  Then
 </OL>
 </THM>
 
-<HEAD2>Problem set 1</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="rosspdf31.png"/></EXR>
 ::<EXR><EIMG web="rosspdf32.png"/></EXR>
 ::<EXR><EIMG web="rosspdf2.png"/></EXR>
@@ -49,13 +49,52 @@ Let <M>X</M>  have a density <M>f(x).</M>  Then
 ::<EXR><EIMG web="hpspdf13.png"/></EXR>
 ::<EXR><EIMG web="hpspdf22.png"/></EXR>
 
-<HEAD1>Relation between PDF and CDF</HEAD1>
-<HEAD2>From PDF to CDF</HEAD2>
+<HEAD1 u="https://youtu.be/gNzIXFDJ5C8">More about PDF</HEAD1>
+A PDF can look surprisingly complicated. We shall explore the general form later when we shall
+ learn about something called the Lebesgue integral.  Fortunately, for all practical applications the PDF is quite simple:
+ it is positive and Riemann integrable (in fact, usually continuous) on some interval, and vanishes outside it. We
+ shall exclusively work with such PDFs.  There
+ is a simple characterisation of such densities:
+<THM>
+Let <M>I</M>  be any interval in <M>\rr.</M>  Let <M>f:\rr\to[0,\infty)</M>  vanish outside <M>I.</M>  Then <M>f</M>  is
+ a density of some random variable if and only if <M>\int_{-\infty}^\infty f(x)\, dx = 1.</M>
+</THM>
+We shall prove it soon. But first some examples.
+
+<EXM>
+<M>f(x) = <CASES>3x^2<IF>x\in (0,1)</IF> 0<ELSE/></CASES></M>
+is one density.
+</EXM>
+The supporting interval may be unbounded. 
+<EXM>
+<M>f(x) = <CASES>2e^{-2x}<IF>x\in (0,\infty)</IF> 0<ELSE/></CASES></M>
+is a density.
+</EXM>
+The density may be unbounded. 
+<EXM>
+<M>f(x) = <CASES>[[1][\pi\sqrt{x(1-x)}]]<IF>x\in (0,1)</IF> 0<ELSE/></CASES></M>
+is a density.
+</EXM>
+Both the density and the supporting interval may be unbounded.
+<EXM>
+<M>f(x) = <CASES>cx^{-[[12]]} e^{-x/2}<IF>x\in (0,\infty)</IF> 0<ELSE/></CASES></M>
+is a density.
+</EXM>
+
+<HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>Is <M>f(x) = [[1][\pi(1+x^2]]</M>  a density?</EXR>
+
+<EXR>Is it possible to find <M>c\in\rr</M>  such that <M>f(x)=ce^{-|x|}</M>  is a density? Sketch the graph of <M>f(x).</M></EXR>
+
+<EXR>Is it possible to find <M>c\in\rr</M>  such that <M>f(x)=<CASES>[[c][x]]<IF>x>0</IF> 0<ELSE/></CASES></M>  is a density?</EXR>
+
+<HEAD1 u="https://youtu.be/RKzORDfHLSY">Proving the theorem (part 1)</HEAD1>
 We know that the CDF of a random variable must satisfy the following conditions:
 <OL><LI><M>F(x)</M>  must be non-decreasing.</LI>
-<LI><M>F</M>  must be right continuous.</LI>
 <LI><M>\lim_{x\to-\infty} F(x) = 0.</M></LI>
 <LI><M>\lim_{x\to\infty} F(x) = 1.</M></LI>
+<LI><M>F</M>  must be right continuous.</LI>
 </OL>
 Conversely, the <TERM>fundamental theorem of probability</TERM>  guarantees that any <M>F:\rr\to[0,1]</M>  with these properties must
  be the CDF of some random variable (i.e., there must exist some probability space and a random variable defined on it with
@@ -67,19 +106,55 @@ We have a similar characterisation for densities as well. This is given in the n
 A function <M>f:\rr\to[0,\infty)</M>  is a density of some random variable if and only if  <M>\int_ {-\infty}
  ^\infty f(x)\, dx = 1.</M> 
 </THM>
-<PF>
+Let us start proving the theorem.
+
 Let <M>F(x) = \int_{- \infty}^x f(t)\, dt.</M>  
 
-Then it is easy to see that <M>F(x)</M>  is a CDF. 
+Then 
+<OL><LI> <M>F(x)</M>  is non-decreasing, because <M>f</M>  is non-negative.
+</LI><LI>
+<M>\lim_{x\to\infty} F(x) = 1</M>, since <M>\int_{-\infty}^\infty f(x)\, dx = 1.</M>  
+</LI><LI>
+<M>\lim_{x\to-\infty} F(x) = 0</M>.
 <BECAUSE>
-Since <M>f(x)\geq 0,</M>  hence <M>F</M>  is non-decreasing. 
+<M> F(x) =\int_{-\infty}^x f(x)\, dx = \int_{-\infty}^0 f(x)\, dx-\int_x^0 f(x)\, dx.</M>
 
-Also <M>F</M>  is continuous (property of indefinite integral), and so right continuous.
+So 
+<MULTILINE>
+\lim_{x\to-\infty} F(x) 
+& = & \lim_{x\to-\infty} [*[ \int_{-\infty}^0 f(x)\, dx-\int_x^0 f(x)\, dx]*]\\
+& = & \int_{-\infty}^0 f(x)\, dx-\lim_{x\to-\infty} \int_x^0 f(x)\,dx\\
+ = \int_{-\infty}^0 f(x)\, dx-\int_{-\infty}^0 f(x)\, dx = 0.
+</MULTILINE>
+</BECAUSE></LI>
+<LI>
+Also <M>F</M>  is continuous (and so right continuous) everywhere.
+<BECAUSE>
+Take any <M>a\in\rr.</M>
+<U>Case 1: <M>f</M>  is bounded by some <M>B>0</M>  in a neighbourhood of <M>a</M></U>:  
+Then for any <M>x</M>  in that neighbourhood, we have
+<M>|F(x)-F(a)| = [|[\int_a^{x} f(x)\, dx]|]\leq B|x-a|\to 0</M>
+as <M>x\to a.</M>
 
-Since <M>\int_{-\infty}^\infty f(x)\, dx = 1,</M>  hence <M>\lim_{x\to\infty} F(x) = 1.</M>  
-
-Finally, by definition of improper integral <M>\lim_{x\to-\infty} F(x) = \lim_{x\to-\infty}\int_{-\infty}^x f(x)\, dx = 0.</M>
+<U>Case 2: <M>f</M>  is unbounded in every neighbourhood of <M>a</M></U>: Here the result will follow from property of 
+improper Riemann integrals. We shall explore this in the exercies below.
 </BECAUSE>
+</LI></OL>
+The proof is not yet over. But let us solve some problems to digest the argument so far.
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+Consider a density with a graph as shown below.
+<CIMG web="densunb.png"></CIMG>
+Find <M>F(a).</M>  Then express <M>F(x)-F(a)</M>  as the difference of two integrals (you may use
+ <M>b</M>  for this). Finally show that <M>\lim_{x\to a+} F(x)-F(a) = 0.</M> 
+</EXR>
+<EXR>
+Consider the same density as in the last exercise.
+Show (trivially) that <M>\lim_{y\to a-} F(y)-F(a) = 0.</M> 
+</EXR>
+
+
+<HEAD1 u="https://youtu.be/lSVLrhkst1Y">Proving the theorem (part 2)</HEAD1>
 
 So by the fundamental theorem of probability, there exists a random variable <M>X</M>  with CDF  <M>F(x).</M>
 
@@ -93,21 +168,23 @@ Here <M>F</M>  is a continuous function. So <M>P(X=a) = 0.</M>
 
 Hence 
 <D>P(a\leq X\leq b) = P(a < X\leq b) = P(X\leq b)-P(X\leq a) = F(b)-F(a) = \int_{-\infty}^b f(t)\, dt-\int_{-\infty}^a f(t)\, dt = \int_a^b f(t)\, dt,</D>
-as required.
-</PF>
+completing the proof.
 <HEAD2>From CDF to PDF</HEAD2>
-It is possible to recover a density from the CDF as follows. Let <M>F</M>  be the CDF. First, make
- sure that the <M>F</M> is continuous, and is differentiable everywhere except possibly at countably many points. Then
- define <M>f</M>  as follows;
+It is possible to recover a density from the CDF as follows. Let <M>F</M>  be the CDF having a density. Then
+<M>F</M> must be continuous.  Define <M>f</M>  as follows;
 <D>f(x) = <CASES>F'(x)<IF>\mbox{it exists}</IF> 0<ELSE/></CASES> </D>
 This <M>f</M>  must be a PDF for our CDF. For most applications, <M>F</M>  will fail to be differentiable at only finitely
  many points.
 
-<ALERT/> If the distribution is not continuous (but differentiable everywhere except at countably
- many points), then this approach would lead to meaningless result. For example, for a
+For this technique to work <M>F</M>  must actually have a density. Otherwise, the
+ <M>f(x)</M>  obtained by this procedure will not be a density. 
+For example, for a
  discrete distribution, the CDF is a step function, and so the above prescription would lead to <M>f(x)\equiv 0.</M>
 
-<HEAD2>Problem set 2</HEAD2>
+If you are given a CDF <M>F</M>, and you do not know if it has a density, then you should stll define <M>f</M>  as above,
+ and actually check if <M>\forall x\in\rr~~F(x) = \int_{-\infty}^x f(t)\, dt.</M>  
+
+<HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="rosspdf1.png"/></EXR>
 ::<EXR><EIMG web="rosspdf4.png"/></EXR>
 ::<EXR><EIMG web="hpspdf1.png"/>
@@ -124,8 +201,7 @@ Here is Equation (3) mentioned above:
 Equation (3) is as given in the exercise above.
 </EXR>
 ::<EXR><EIMG web="hpspdf14.png"/></EXR>
-<HEAD1>A couple of points to ponder</HEAD1>
-<HEAD2>Nonuniqueness of PDF</HEAD2>
+<HEAD1 u="https://youtu.be/e7osUxY0sUU">Nonuniqueness of density</HEAD1>
 It is  a somewhat disconcerting fact that density of a distribution is not unique. For intance, 
  changing a density at any countable number of points to arbitrary non-negative values would still
  keep it a density for the same distribution.
@@ -157,7 +233,23 @@ But this is impossible, since <M>\int_{a-\delta}^{a+\delta} f(x)\, dx =\int_{a-\
 Indeed, we shall mostly work with random variables <M>X,</M> for which there will be an density which will
  be continuous over an interval
  <M>I,</M>  for which <M>P(X\in I)=1.</M>
-<HEAD2>Physical interpretation of density</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+State true or false: if <M>f(x)</M>  is a density, and <M>g(x)</M>  is obtained by changing <M>f(x)</M>  at only countably
+ many points, then <M>g(x)</M>  is also a density corresponding to the same distribution. (Assume that <M>g(x)</M>  is non-negative).
+</EXR>
+
+<EXR>State true or false: If a distribution has a density, then it also has a continuous density.</EXR>
+
+<EXR>In this problem we shall say that a density  <M>f</M> "sits on"  an interval
+ <M>I</M>  if<Q> <M>\forall
+ x\in I~~f(x)>0</M>  and <M>f(x)</M>  vanishes outside <M>I.</M></Q>
+  Let <M>f,g</M>  be two densities
+ for the same distribution. If <M>f</M>  "sits on"an interval  <M>I</M>  and <M>g</M>  "sits on"
+ an interval <M>J</M>, then show that the closure if <M>I</M>  and <M>J</M>   must match. (This closure is called the
+<TERM>support</TERM>  of the distribution).
+  </EXR>
+<HEAD1 u="https://youtu.be/SDGTjfYfOZ4">Physical interpretation of density</HEAD1>
 If <M>X</M>  has a density <M>f(x)</M>  which is continuous at <M>x=a</M>  then <M>f(a)</M>  measures
  "something like <M>P(X\approx a)</M>". However, there are not even approximately equal. In
  particular, <M>f(a)</M>  may very well exceed <M>1.</M>  The precise statement is 
@@ -192,8 +284,42 @@ abline(h=0)
 hist(x,prob=T,ylab="Relative frequency density")
 dev.off()
 </COMMENT>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Get/download a large data set on some continuous variable (height, weight, blood pressure
+ etc). Make a histogram of the first half using R:
+<R>
+hist(dat[1:(n/2)], prob=T)
+</R>
+Here <CODE>dat</CODE>  is the array storing the values. The length of the array is <CODE>n</CODE>. Notice the shape.
+Now make a histogram of the rest of the data:
+<R>
+hist(dat[(n/2):n], prob=T)
+</R>
+If <CODE>n</CODE>  is large enough (say at least 5000), then you should see striking similarity between the shapes of these
+ two histograms.
+</EXR>
 
-<HEAD2>Are continuous distributions counterintuitive?</HEAD2>
+<EXR>This is a more specific version of the last exercise, where we shall work with audio data.
+ Record some audio data of ambitent noise (e.g., sound of fan, AC, crowded place) using your laptop
+ or mobile. (You should get a
+ file with <CODE>.wav</CODE>
+  or <CODE>.mp3</CODE>  extension).  If you cannot record yourself, you may use this hardly audible audio file <LINK
+ to="test.wav">test.wav</LINK>  of me rubbing my hands together. Download it your machine. Load it using R:
+<R>
+install.packages('tuneR') #You need to do this only once.
+library(tuneR)
+dat = readWave('test.wav') #You may need to give the entire path of the file
+hist(dat@left,probability=TRUE)
+hist(dat@left,breaks=20,probability=TRUE) #finer histogram
+</R>
+</EXR>
+<EXR>
+Let <M>X_1,X_2,...</M>  be IID with some common density <M>f(x).</M>  Fix any <M>a<b.</M>  Let <M>Y_n</M>  be the proportion
+ of the <M>X_1,...,X_n</M>  landing in <M>[a,b].</M>  (i.e., you count the number of <M>X_i</M>'s inside <M>[a,b]</M>  for
+ <M>i=1,...,n,</M>  and divide that number by <M>n</M>). Show that <M>Y_n</M>  converges <M>\int_a^b f(x)\, dx.</M>  [Hint:
+ Use the weak law of large numbers that you learned last semester.]
+</EXR>
+<HEAD1 u="https://youtu.be/JMx3Wcx37M4">Are continuous distributions counterintuitive?</HEAD1>
 It may seem counterintuitive that  <M>\forall a\in\rr~~P(X=a)=0</M>, and yet <M>P(X\in\rr)=1.</M>  There are two ways to
  think about it:
 <OL><LI>A straight line segment consists of individual points, each of which has lenth zero, yet
@@ -207,7 +333,7 @@ It may seem counterintuitive that  <M>\forall a\in\rr~~P(X=a)=0</M>, and yet <M>
 </OL>
 
 
-<HEAD2>Problem set 3</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 ::<EXR>
 If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show that 
 <D>\lim_{\epsilon\to0+}[[P(1-\epsilon,1+\epsilon)][2 \epsilon]] = [[1e]].</D>
@@ -227,7 +353,7 @@ Can you drop the continuity assumption?
 Let <M>X</M>  have density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M>  Find 
 <D>\lim_{\epsilon\to0+}[[P(1-\epsilon,1+\epsilon)][2 \epsilon]].</D>  
 </EXR>
-<HEAD1>Moment</HEAD1>
+<HEAD1 u="https://youtu.be/NbjZeS88QkE">Expectation and moments</HEAD1>
 
 We had already defined expectation of a random variable in general. That definition reduces to the following.
 <THM>
@@ -272,7 +398,7 @@ We define <M>V(X)</M>  and the other moments as usual. Their
 properties (e.g., Chebyshev inequality) are intact.
 
 
-<HEAD2>Problem set 4</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="rosspdf6.png"/></EXR>
 ::<EXR><EIMG web="rosspdf7.png"/></EXR>
 ::<EXR><EIMG web="rosspdf8.png"/></EXR>
@@ -303,14 +429,14 @@ Find its hazard rate function.
 <M>F(x) = <CASES>0<IF>x\leq 0</IF>1-e^{-x}<IF>x> 0</IF></CASES>.</M>  So 
 <D>h(t) = [[e^{-t}][1-(1-e^{-t})]] = 1.</D>
 </EXM>
-<HEAD2>Problem set 5</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="rosspdf17.png"/></EXR>
 ::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf28.png"/></EXR>
 ::<EXR><EIMG web="rosspdf29.png"/></EXR>
 ::<EXR><EIMG web="rosspdf39.png"/></EXR>
 ::<EXR><EIMG web="rosspdf40.png"/></EXR>
-<HEAD1>Uniform distribution</HEAD1>
+<HEAD1 u="https://youtu.be/PKqSKFayRZ0">Uniform distribution</HEAD1>
 Last semester we often worked wih the discrete uniform distribution, e.g., fair coin toss, fair die roll, drawing a card
  from a well-shuffled deck, picking a ball at random, etc. For the continuous case, the analog is
  the <TERM>uniform distribution</TERM>. 
@@ -349,7 +475,7 @@ Yes, by differentiating it, we get a PDF
 <D>f(x) = <CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES>. </D>
 We could replace <M>(0,1)</M>  by <M>[0,1]</M>  or <M>(0,1]</M>  or <M>[1,0).</M>
 </EXM>
-<HEAD2>Problem set 6</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="hpspdf2.png"/></EXR>
 ::<EXR><EIMG web="hpspdf3.png"/></EXR>
 ::<EXR><EIMG web="hpspdf4.png"/></EXR>
@@ -368,7 +494,7 @@ We could replace <M>(0,1)</M>  by <M>[0,1]</M>  or <M>(0,1]</M>  or <M>[1,0).</M
 ::<EXR><EIMG web="rosspdf20.png"/></EXR>
 
 <HEAD1>Miscellaneous</HEAD1>
-<HEAD2>Problem set 7</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 
 
 ::<EXR><EIMG web="rosspdf22.png"/></EXR>
