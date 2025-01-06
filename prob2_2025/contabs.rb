@@ -235,6 +235,36 @@ Indeed, we shall mostly work with random variables <M>X,</M> for which there wil
  <M>I,</M>  for which <M>P(X\in I)=1.</M>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
+If <M>f,g:\rr\to\rr</M>  are two functions such that <M>\forall a\leq b~~\int_a^b f(x)\, dx = \int_a^b g(x)\, dx,</M>  and
+ they are both continuous at <M>x=c,</M>   then show that <M>f(c)=g(c).</M>  
+<ANS>
+Let, if possible,  <M>f(c)\neq g(c).</M>  Without loss of generality <M>f(c)< g(c),</M>  say. 
+
+Consider <M>h(x) = g(x)-h(x).</M>
+
+Then <M>h</M>  is continuous at <M>c</M>  and <M>h(c)>0.</M>  
+
+Note that it is enough to show that
+<D lab="*">\exists \delta>0~~\int_{a-\delta}^{a+\delta} h(x)\, dx>0.</D>
+<BECAUSE> 
+ This will complete the
+ contradiction, because then <M>\int_{a-\delta}^{a+\delta} g(x)\, dx>\int_{a-\delta}^{a+\delta} f(x)\, dx,</M>  
+contradicting the given condition. 
+</BECAUSE>
+Since <M>h(x)</M>  is continuous at <M>x=c,</M>  we have
+<D>\forall \epsilon>0~~\exists \delta>0~~\forall x\in(c-\delta,c+\delta)~~h(x)\in(h(c)-\epsilon,h(c)+\epsilon).</D>
+Choose <M>\epsilon= [[h(c)][2]]>0.</M>
+
+Then  
+<D>\exists \delta>0~~\forall x\in(c-\delta,c+\delta)~~h(x)\in(h(c)-\epsilon,h(c)+\epsilon).</D>
+For any <M>x\in(c-\delta,c+\delta)</M>  we have <M>h(x)> h(c)-\epsilon = 2 \epsilon-\epsilon = \epsilon>0.</M>
+
+So <M>\int_{a-\delta}^{a+\delta} h(x)\, dx\geq 2\delta \epsilon>0.</M>
+
+Hence we have shown (*), completing the proof.
+</ANS>
+</EXR>
+<EXR>
 State true or false: if <M>f(x)</M>  is a density, and <M>g(x)</M>  is obtained by changing <M>f(x)</M>  at only countably
  many points, then <M>g(x)</M>  is also a density corresponding to the same distribution. (Assume that <M>g(x)</M>  is non-negative).
 </EXR>

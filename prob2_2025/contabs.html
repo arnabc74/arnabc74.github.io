@@ -589,6 +589,43 @@ name="Problem set 5">Problem set 5</a></h2>
 
 <p>
 <b>EXERCISE 20:</b>&nbsp;
+If $f,g:{\mathbb R}\rightarrow{\mathbb R}$  are two functions such that $\forall a\leq b~~\int_a^b f(x)\, dx = \int_a^b g(x)\, dx,$  and
+ they are both continuous at $x=c,$   then show that $f(c)=g(c).$  
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+Let, if possible,  $f(c)\neq g(c).$  Without loss of generality $f(c)&lt; g(c),$  say. 
+<p></p>
+Consider $h(x) = g(x)-h(x).$
+<p></p>
+Then $h$  is continuous at $c$  and $h(c)&gt;0.$  
+<p></p>
+Note that it is enough to show that
+$$\exists \delta&gt;0~~\int_{a-\delta}^{a+\delta} h(x)\, dx&gt;0.\hspace{1in} \mbox{*}$$
+<blockquote><a
+href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
+class="ans" id="reason3"> 
+ This will complete the
+ contradiction, because then $\int_{a-\delta}^{a+\delta} g(x)\, dx&gt;\int_{a-\delta}^{a+\delta} f(x)\, dx,$  
+contradicting the given condition. 
+</div></blockquote>
+Since $h(x)$  is continuous at $x=c,$  we have
+$$\forall \epsilon&gt;0~~\exists \delta&gt;0~~\forall x\in(c-\delta,c+\delta)~~h(x)\in(h(c)-\epsilon,h(c)+\epsilon).$$
+Choose $\epsilon= \frac{h(c)}{2}&gt;0.$
+<p></p>
+Then  
+$$\exists \delta&gt;0~~\forall x\in(c-\delta,c+\delta)~~h(x)\in(h(c)-\epsilon,h(c)+\epsilon).$$
+For any $x\in(c-\delta,c+\delta)$  we have $h(x)&gt; h(c)-\epsilon = 2 \epsilon-\epsilon = \epsilon&gt;0.$
+<p></p>
+So $\int_{a-\delta}^{a+\delta} h(x)\, dx\geq 2\delta \epsilon&gt;0.$
+<p></p>
+Hence we have shown (*), completing the proof.
+</div></p>
+
+</p>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;
 State true or false: if $f(x)$  is a density, and $g(x)$  is obtained by changing $f(x)$  at only countably
  many points, then $g(x)$  is also a density corresponding to the same distribution. (Assume that $g(x)$  is non-negative).
 </p>
@@ -596,12 +633,12 @@ State true or false: if $f(x)$  is a density, and $g(x)$  is obtained by changin
 <p></p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;State true or false: If a distribution has a density, then it also has a continuous density.</p>
+<b>EXERCISE 22:</b>&nbsp;State true or false: If a distribution has a density, then it also has a continuous density.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;In this problem we shall say that a density  $f$ "sits on"  an interval
+<b>EXERCISE 23:</b>&nbsp;In this problem we shall say that a density  $f$ "sits on"  an interval
  $I$  if<blockquote> $\forall
  x\in I~~f(x)&gt;0$  and $f(x)$  vanishes outside $I.$</blockquote>
   Let $f,g$  be two densities
@@ -673,7 +710,7 @@ Then we have erected a rectangle on each bin with height equal to the relative f
 name="Problem set 6">Problem set 6</a></h2>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;Get/download a large data set on some continuous variable (height, weight, blood pressure
+<b>EXERCISE 24:</b>&nbsp;Get/download a large data set on some continuous variable (height, weight, blood pressure
  etc). Make a histogram of the first half using R:
 <font color="red">
 <pre>
@@ -694,7 +731,7 @@ If <font size="+1" color="red"><code>n</code></font>  is large enough (say at le
 <p></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;This is a more specific version of the last exercise, where we shall work with audio data.
+<b>EXERCISE 25:</b>&nbsp;This is a more specific version of the last exercise, where we shall work with audio data.
  Record some audio data of ambitent noise (<i>e.g.</i>, sound of fan, AC, crowded place) using your laptop
  or mobile. (You should get a
  file with <font size="+1" color="red"><code>.wav</code></font>
@@ -712,7 +749,7 @@ hist(dat@left,breaks=20,probability=TRUE) #finer histogram
 </p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;
+<b>EXERCISE 26:</b>&nbsp;
 Let $X_1,X_2,...$  be IID with some common density $f(x).$  Fix any $a&lt;b.$  Let $Y_n$  be the proportion
  of the $X_1,...,X_n$  landing in $[a,b].$  (<i>i.e.</i>, you count the number of $X_i$'s inside $[a,b]$  for
  $i=1,...,n,$  and divide that number by $n$). Show that $Y_n$  converges $\int_a^b f(x)\, dx.$  [Hint:
@@ -743,12 +780,12 @@ It may seem counterintuitive that  $\forall a\in{\mathbb R}~~P(X=a)=0$, and yet 
 <h2><a
 name="Problem set 7">Problem set 7</a></h2>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;
+<b>EXERCISE 27:</b>&nbsp;
 If $X$  has density $e^{-x}$  for $x&gt;0$  (and 0 else), then show that 
 $$\lim_{\epsilon\rightarrow0+}\frac{P(1-\epsilon,1+\epsilon)}{2 \epsilon} = \frac 1e.$$
 </p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;
+<b>EXERCISE 28:</b>&nbsp;
 If $X$  has density $e^{-x}$  for $x&gt;0$  (and 0 else), then show that 
 $$\lim_{\epsilon\rightarrow0+}\frac{P[2,2+\epsilon)}{\epsilon} = e^{-2}.$$
 </p>
@@ -756,7 +793,7 @@ $$\lim_{\epsilon\rightarrow0+}\frac{P[2,2+\epsilon)}{\epsilon} = e^{-2}.$$
 <p></p>
 
 <p>
-<b>EXERCISE 28:</b>&nbsp;
+<b>EXERCISE 29:</b>&nbsp;
 If $X$  has density $f(x)$  which is continuous at $x=a,$  then prove that
 $$\lim_{\epsilon\rightarrow0+}\frac{P(a-\epsilon,a+\epsilon)}{2 \epsilon} = f(a).$$
 Can you drop the continuity assumption?
@@ -765,7 +802,7 @@ Can you drop the continuity assumption?
 <p></p>
 
 <p>
-<b>EXERCISE 29:</b>&nbsp;
+<b>EXERCISE 30:</b>&nbsp;
 Let $X$  have density $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$  Find 
 $$\lim_{\epsilon\rightarrow0+}\frac{P(1-\epsilon,1+\epsilon)}{2 \epsilon}.$$  
 </p>
@@ -830,19 +867,19 @@ properties (<i>e.g.</i>, Chebyshev inequality) are intact.
 <h2><a
 name="Problem set 8">Problem set 8</a></h2>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rosspdf6.png]</font><img width="" src="image/rosspdf6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rosspdf6.png]</font><img width="" src="image/rosspdf6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rosspdf7.png]</font><img width="" src="image/rosspdf7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rosspdf7.png]</font><img width="" src="image/rosspdf7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rosspdf8.png]</font><img width="" src="image/rosspdf8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rosspdf8.png]</font><img width="" src="image/rosspdf8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rosspdf26.png]</font><img width="" src="image/rosspdf26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rosspdf26.png]</font><img width="" src="image/rosspdf26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rosspdf27.png]</font><img width="" src="image/rosspdf27.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rosspdf27.png]</font><img width="" src="image/rosspdf27.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rosspdf33.png]</font><img width="" src="image/rosspdf33.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rosspdf33.png]</font><img width="" src="image/rosspdf33.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rosspdf34.png]</font><img width="" src="image/rosspdf34.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[rosspdf34.png]</font><img width="" src="image/rosspdf34.png" style="vertical-align:text-top;"></p>
 
 <h1><a
 name="Hazard rate">Hazard rate</a></h1>
@@ -877,17 +914,17 @@ $$h(t) = \frac{e^{-t}}{1-(1-e^{-t})} = 1.$$
 <h2><a
 name="Problem set 9">Problem set 9</a></h2>
 ::<p>
-<b>EXERCISE 37:</b>&nbsp;<font size="-2">[rosspdf17.png]</font><img width="" src="image/rosspdf17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[rosspdf17.png]</font><img width="" src="image/rosspdf17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[rosspdf18.png]</font><img width="" src="image/rosspdf18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rosspdf18.png]</font><img width="" src="image/rosspdf18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rosspdf28.png]</font><img width="" src="image/rosspdf28.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rosspdf28.png]</font><img width="" src="image/rosspdf28.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rosspdf29.png]</font><img width="" src="image/rosspdf29.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rosspdf29.png]</font><img width="" src="image/rosspdf29.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rosspdf39.png]</font><img width="" src="image/rosspdf39.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rosspdf39.png]</font><img width="" src="image/rosspdf39.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rosspdf40.png]</font><img width="" src="image/rosspdf40.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[rosspdf40.png]</font><img width="" src="image/rosspdf40.png" style="vertical-align:text-top;"></p>
 
 <h1><a
 name="Uniform distribution">Uniform distribution</a></h1>
@@ -977,37 +1014,37 @@ We could replace $(0,1)$  by $[0,1]$  or $(0,1]$  or $[1,0).$
 <h2><a
 name="Problem set 10">Problem set 10</a></h2>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpspdf2.png]</font><img width="" src="image/hpspdf2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpspdf2.png]</font><img width="" src="image/hpspdf2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpspdf3.png]</font><img width="" src="image/hpspdf3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpspdf3.png]</font><img width="" src="image/hpspdf3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpspdf4.png]</font><img width="" src="image/hpspdf4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpspdf4.png]</font><img width="" src="image/hpspdf4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpspdf5.png]</font><img width="" src="image/hpspdf5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpspdf5.png]</font><img width="" src="image/hpspdf5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpspdf6.png]</font><img width="" src="image/hpspdf6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpspdf6.png]</font><img width="" src="image/hpspdf6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpspdf12.png]</font><img width="" src="image/hpspdf12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpspdf12.png]</font><img width="" src="image/hpspdf12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpspdf26.png]</font><img width="" src="image/hpspdf26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpspdf26.png]</font><img width="" src="image/hpspdf26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rosspdf11.png]</font><img width="" src="image/rosspdf11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rosspdf11.png]</font><img width="" src="image/rosspdf11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rosspdf12.png]</font><img width="" src="image/rosspdf12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rosspdf12.png]</font><img width="" src="image/rosspdf12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rosspdf13.png]</font><img width="" src="image/rosspdf13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rosspdf13.png]</font><img width="" src="image/rosspdf13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rosspdf14.png]</font><img width="" src="image/rosspdf14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rosspdf14.png]</font><img width="" src="image/rosspdf14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rosspdf16.png]</font><img width="" src="image/rosspdf16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rosspdf16.png]</font><img width="" src="image/rosspdf16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rosspdf20.png]</font><img width="" src="image/rosspdf20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rosspdf20.png]</font><img width="" src="image/rosspdf20.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 
@@ -1019,15 +1056,15 @@ name="Problem set 11">Problem set 11</a></h2>
 
 <p></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rosspdf22.png]</font><img width="" src="image/rosspdf22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rosspdf22.png]</font><img width="" src="image/rosspdf22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rosspdf25.png]</font><img width="" src="image/rosspdf25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rosspdf25.png]</font><img width="" src="image/rosspdf25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rosspdf37.png]</font><img width="" src="image/rosspdf37.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rosspdf38.png]</font><img width="" src="image/rosspdf38.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rosspdf36.png]</font><img width="" src="image/rosspdf36.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rosspdf36.png]</font><img width="" src="image/rosspdf36.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

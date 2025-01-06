@@ -235,6 +235,36 @@ Indeed, we shall mostly work with random variables <M>X,</M> for which there wil
  <M>I,</M>  for which <M>P(X\in I)=1.</M>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
+If <M>f,g:\rr\to\rr</M>  are two functions such that <M>\forall a\leq b~~\int_a^b f(x)\, dx = \int_a^b g(x)\, dx,</M>  and
+ they are both continuous at <M>x=c,</M>   then show that <M>f(c)=g(c).</M>  
+<ANS>
+Let, ig possible,  <M>f(c)\neq g(c).</M>  Without loss of generality <M>f(c)< g(c),</M>  say. 
+
+Consider <M>h(x) = g(x)-h(x).</M>
+
+Then <M>h</M>  is continuous at <M>c</M>  and <M>h(c)>0.</M>  
+
+Note that it is enough to show that
+<D lab="*">\exists \delta>0~~\int_{a-\delta}^{a+\delta} h(x)\, dx>0.</D>
+ 
+ This will complete the
+ contradiction, because then <M>\int_{a-\delta}^{a+\delta} g(x)\, dx>\int_{a-\delta}^{a+\delta} f(x)\, dx,</M>  
+contradicting the given condition. 
+
+Since <M>h(x)</M>  is continuous at <M>x=c,</M>  we have
+<D>\forall \epsilon>0~~\exists \delta>0~~\forall x\in(c-\delta,c+\delta)~~h(x)\in(h(c)-\epsilon,h(c)+exchangeable).</D>
+Choose <M>\epsilon= [[h(c)][2]]>0.</M>
+
+Then  
+<D>\exists \delta>0~~\forall x\in(c-\delta,c+\delta)~~h(x)\in(h(c)-\epsilon,h(c)+\epsilon).</D>
+For any <M>x\in(c-\delta,c+\delta)</M>  we have <M>h(x)> h(c)-\epsilon = 2 \epsilon-\epsilon = \epsilon>0.</M>
+
+So <M>\int_{a-\delta}^{a+\delta} h(x)\, dx\geq 2\delta \epsilon>0.</M>
+
+Hence we have shown (*), completing the proof.
+</ANS>
+</EXR>
+<EXR>
 State true or false: if <M>f(x)</M>  is a density, and <M>g(x)</M>  is obtained by changing <M>f(x)</M>  at only countably
  many points, then <M>g(x)</M>  is also a density corresponding to the same distribution. (Assume that <M>g(x)</M>  is non-negative).
 </EXR>
@@ -307,10 +337,10 @@ If <CODE>n</CODE>  is large enough (say at least 5000), then you should see stri
  to="test.wav">test.wav</LINK>  of me rubbing my hands together. Download it your machine. Load it using R:
 <R>
 install.packages('tuneR') #You need to do this only once.
-
+library(tuneR)
 dat = readWave('test.wav') #You may need to give the entire path of the file
-hist(dat@left,probabality=TRUE)
-hist(dat@left,breaks=20,probabality=TRUE) #finer histogram
+hist(dat@left,probability=TRUE)
+hist(dat@left,breaks=20,probability=TRUE) #finer histogram
 </R>
 </EXR>
 <EXR>
