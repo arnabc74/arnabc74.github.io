@@ -1,5 +1,6 @@
  @{<NOTE>
 <HEAD1>Probability II (B1, 2025)</HEAD1>
+URL: <CODE>https://arnabc74.github.io/prob2_2025/</CODE>
 <HEAD2>Class notes</HEAD2>
 <OL>
 <LI><LINK to="contabs.html">Distributions with densities</LINK></LI>
@@ -13,9 +14,9 @@
 The class notes constitute the main reference. It is based on the following books:
 <UL>
 <LI>Ross: A First Course in Probability Theory</LI>
-<LI>Ross: Introduction to Probability Models</LI>
 <LI>Hoel, Port and Stone: Probability Theory</LI>
-<LI>Kai Lai Chung: A Course in Probability Theory</LI>
+<LI>Ross: Introduction to Probability Models</LI>
+<LI>Royden and Fitzpatrick: Real Analysis</LI>
 <LI>Allan Gut: Probability--A Graduate Course</LI>
 </UL> 
 </NOTE>@}
