@@ -1,6 +1,6 @@
  @{<NOTE>
 <HEAD1>Probability II (B1, 2025)</HEAD1>
-URL: <CODE>https://arnabc74.github.io/prob2_2025/</CODE>
+URL: https://arnabc74.github.io/prob2_2025/
 <HEAD2>Class notes</HEAD2>
 <OL>
 <LI><LINK to="contabs.html">Distributions with densities</LINK></LI>
