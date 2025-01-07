@@ -247,7 +247,7 @@ Consider <M>h(x) = g(x)-h(x).</M>
 Then <M>h</M>  is continuous at <M>c</M>  and <M>h(c)>0.</M>  
 
 Note that it is enough to show that
-<D lab="*">\exists \delta>0~~\int_{a-\delta}^{a+\delta} h(x)\, dx>0.</D>
+<D lab="(*)">\exists \delta>0~~\int_{a-\delta}^{a+\delta} h(x)\, dx>0.</D>
 <BECAUSE> 
  This will complete the
  contradiction, because then <M>\int_{a-\delta}^{a+\delta} g(x)\, dx>\int_{a-\delta}^{a+\delta} f(x)\, dx,</M>  

@@ -1,0 +1,248 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#A curious fact about independence">A curious fact about independence</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Intuition 1: Approximately same distribution">Intuition 1: Approximately same distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Independent and completely dependent">Independent and completely dependent</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The paradox">The paradox</a>
+</li>
+<li>
+<a href="#The proof">The proof</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Step 1: Simplest case">Step 1: Simplest case</a>
+</li>
+</ul>
+<hr/>
+<h1><a
+name="A curious fact about independence">A curious fact about independence</a></h1>
+We are going to discuss a paradox here. A paradox is born when two intuitive notions contradict each other. Let us start
+ with discussing the contending intuitions for our paradox.
+<h2><a
+name="Intuition 1: Approximately same distribution">Intuition 1: Approximately same distribution</a></h2>
+Suppose that we have two random variables $X,Y$. Then their joint CDF is $F(X\leq x,Y\leq y).$ 
+This CDF characterises the joint distribution of $(X,Y)$, <i>i.e.</i>, if we have two other random variables $S,T$  with
+ same joint CDF, then $(X,Y)$  and $(S,T)$  has the same joint distribution. So it is only natrual to expect 
+that if $(X,Y)$  and $(S,T)$  have approximately same joint CDF, then their distributions will also be approximately
+ the same. By "approximately  same" we mean for some very small $\epsilon$  we have 
+$$\forall a,b\in{\mathbb R}~~|F_{XY}(a,b)-F_{ST}(a,b)|&lt;\epsilon.$$
+Here $F_{XY}$  and $F_{ST}$  are the joint CDFs of $(X,Y)$  and $(S,T),$  respectively. This belief
+is what powers statistics, where we really do not handle the random variables directly, but only through their observed values.
+ If we have a large number of observatons of a random variable, all that we can hope to be able to get from them is an approximation
+ of the underlying distribution. So if $F_{XY}\approx F_{ST}$, then there is no way you can distinguish them from data.
+ In other words, data from $(X,Y)$  can be mistaken for that from $(S,T)$  and <i>vice versa</i>. 
+<p></p>
+
+<h2><a
+name="Independent and completely dependent">Independent and completely dependent</a></h2>
+We know what is meant by two random variables being independent. In terms of CDF this means 
+$$\forall x,y\in{\mathbb R}~~F_{XY}(x,y) = F_X(x)F_Y(y).$$ 
+ We shall abbreviate this to $F_{XY}\stackrel{\epsilon}{\approx}F_{ST}.$
+<p></p>
+Intuitively, this means knowledge about one of the variables sheds no light on the value of the other. What is the opposite
+ extreme? Knowing one variable completely specifies the other variable: one is a deterministic function of the other. 
+<p></p>
+
+<h2><a
+name="The paradox">The paradox</a></h2>
+Given two independent random variables $X,Y$  and some $\epsilon&gt;0$  we can manufacture two random variables $S,T$ 
+ such that $F_{XY}\stackrel{\epsilon}{\approx}F_{ST}$
+and yet $S$  and $T$  are deterministic bijective functions of each other!!
+<p></p>
+More specifically, we have the following theorem.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X,Y$  be independent random variables with density $f(x) = \left\{\begin{array}{ll}1&\text{if }0 &lt; x &lt; 1\\ 0&\text{otherwise.}\end{array}\right.$  
+Let $\epsilon&gt;0.$  Then we can find random variables $S,T$  such that
+<ol type="">
+
+<li>$F_S = F_X$  and $F_T = F_Y$</li>
+
+<li>$F_{XY}\stackrel{\epsilon}{\approx}F_{ST}$</li>
+
+<li>$S$  and $T$  are deterministic functions of each other.</li>
+
+</ol>
+
+</fieldset>
+In plain words, this means data from perfectly dependent variables are indistinguishable from the
+ data from independent variables!!!
+<p></p>
+ This surprising theorem has a constructive proof. Indeed, you can write a simple program to actually manufacture data from
+ $(S,T)$  to see the counter-intuitive behaviour for yourself! The project is to explore the proof. 
+<p></p>
+By the way, the theorem can be easily generalised to work with any continuous distributions for $X$  and $Y.$
+<h1><a
+name="The proof">The proof</a></h1>
+We shall present the idea behind the proof step by step. We start with $S=X$  and $T=S.$  Then we shall make $T$ 
+ more and more complicated (but always piecewise linear!) functions of $S.$  
+<h2><a
+name="Step 1: Simplest case">Step 1: Simplest case</a></h2>
+ We have $S=X$  and $T=S.$  Write down the joint CDF of $(S,T).$  Also write down the joint CDF of $(X,Y).$ 
+ It would be instructive to try to make 3D sketches of $F_{XY}$  and $F_{ST}.$
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
