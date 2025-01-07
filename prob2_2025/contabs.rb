@@ -43,7 +43,9 @@ Let <M>X</M>  have a density <M>f(x).</M>  Then
 ::<EXR><EIMG web="rosspdf2.png"/></EXR>
 ::<EXR><EIMG web="rosspdf3.png"/></EXR>
 ::<EXR><EIMG web="rosspdf5.png"/></EXR>
-::<EXR><EIMG web="rosspdf21.png"/></EXR>
+::<EXR><EIMG web="rosspdf21.png"/>
+<ANS>Use integration by parts (twice). Also you need to know this fact: <M>\int_0^\infty e^{-x^2/2}\, dx = \sqrt{[[\pi2]]}.</M></ANS>
+</EXR>
 
 
 ::<EXR><EIMG web="hpspdf13.png"/></EXR>
