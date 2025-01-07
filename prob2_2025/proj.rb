@@ -38,8 +38,11 @@ Let <M>\epsilon>0.</M>  Then we can find random variables <M>S,T</M>  such that
 <LI><M>S</M>  and <M>T</M>  are deterministic functions of each other.</LI>
 </OL>
 </THM>
-In plain words, this means data from perfectly dependent variables are indistinguishable from the
- data from independent variables!!!
+In plain words, this means: If you choose <M>\epsilon</M>  to be the smallest positive number your
+ computer can hold (e.g. <M>2^{-31},</M>  then  no program running in that computer will be able
+ to distinguish data from
+the  perfectly dependent variables <M>S,T</M>   from 
+ data from independent variables, <M>X,Y</M>!!!
 
  This surprising theorem has a constructive proof. Indeed, you can write a simple program to actually manufacture data from
  <M>(S,T)</M>  to see the counter-intuitive behaviour for yourself! The project is to explore the proof. 
