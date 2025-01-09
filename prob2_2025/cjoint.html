@@ -203,43 +203,52 @@ function myFunction() {
 <a href="#Problem set 6">Problem set 6</a>
 </li>
 <li>
-<a href="#Properties of joint distribution">Properties of joint distribution</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Point mass and jointly continuous">Point mass and jointly continuous</a>
+<a href="#Properties of joint distribution: Non-decreasing">Properties of joint distribution: Non-decreasing</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
-<a href="#Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a>
+<a href="#Properties of joint distribution: Limits at $\pm\infty$, right continuity">Properties of joint distribution: Limits at $\pm\infty$, right continuity</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 8">Problem set 8</a>
 </li>
 <li>
-<a href="#Marginals">Marginals</a>
+<a href="#Properties of joint distribution: Point mass and continuous">Properties of joint distribution: Point mass and continuous</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 9">Problem set 9</a>
 </li>
 <li>
-<a href="#Independence">Independence</a>
+<a href="#Marginals">Marginals</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 10">Problem set 10</a>
 </li>
 <li>
-<a href="#Conditional distribution">Conditional distribution</a>
+<a href="#Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 11">Problem set 11</a>
 </li>
 <li>
-<a href="#Exchangeable distribution">Exchangeable distribution</a>
+<a href="#Independence">Independence</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 12">Problem set 12</a>
+</li>
+<li>
+<a href="#Conditional distribution">Conditional distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 13">Problem set 13</a>
+</li>
+<li>
+<a href="#Exchangeable distribution">Exchangeable distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 14">Problem set 14</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
@@ -776,7 +785,9 @@ name="Problem set 6">Problem set 6</a></h2>
 <p></p>
 
 <h1><a
-name="Properties of joint distribution">Properties of joint distribution</a></h1>
+name="Properties of joint distribution: Non-decreasing">Properties of joint distribution: Non-decreasing</a></h1>
+<a href="https://youtu.be/xPX68qZ12Q0">Video for this section</a>
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -787,7 +798,88 @@ Let $F(x,y)$  be a bivariate CDF. Then
 
 <li>for each fixed value of $x$, the function $y\mapsto F(x,y)$  is non-decreasing.</li>
 
-<li>$\forall x,y\in{\mathbb R}~~\forall a,b \geq 0~~ F(x+a,y+b)-F(x,y+b)-F(x+a,y)+F(x,y)\geq 0.$</li>
+</ol> 
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Fix any $y.$  Fix any $x_1 &lt; x_2.$  Then $F(x_2,y)-F(x_1,y) = P(X\leq x_2, Y\leq
+ y)-P(X\leq x_1, Y\leq y)=P(x_1&lt; X\leq x_2, Y\leq y)\geq0.$
+<p></p>
+Hence the first result. Similarly for the other.
+<b><i>[QED]</i></b>
+</p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $F(x,y)$  be a bivariate CDF. Then 
+$\forall x,y\in{\mathbb R}~~\forall a,b \geq 0~~ F(x,y)-F(x,y-b)-F(x-a,y)+F(x-a,y-b)\geq 0.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $A = \{x-a &lt; X \leq x,\, y-b &lt; Y \leq y\}$, $B = \{x-a &lt; X \leq x,\, Y \leq y\}$, $C = \{ X \leq x,\, y-b &lt; Y \leq y\}$,
+ and $C = \{ X \leq x-a,\, Y \leq y-b\}.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/parts.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then
+$$\begin{eqnarray*}
+F(x,y) &amp; = &amp; P(A)+P(B)+P(C)+P(D),\\
+F(x,y-b) &amp; = &amp; P(B)+P(D),\\
+F(x-a,y) &amp; = &amp; P(C)+P(D),\\
+F(x-a,y-b) &amp; = &amp; P(D).
+\end{eqnarray*}$$
+So $F(x,y)-F(x-a,y)-F(x,y-b)+F(x-a,y-b)=P(A)\geq 0.$
+<b><i>[QED]</i></b>
+</p>
+This property is stronger than the non-decreasing properties mentioned earlier.
+<p></p>
+
+<h2><a
+name="Problem set 7">Problem set 7</a></h2>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;Let $F(x,y)$  be CDF of $(X,Y).$  Then express
+$$\lim_{a,b\rightarrow0+} (F(x,y)-F(x-a,y)-F(x,y-b)+F(x-a,y-b))$$
+as the probability of some familiar event.
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;For a univariate CDF $F(x)$,  the non-decreasing property was $\forall
+ x\in{\mathbb R}~~\forall a&gt;0~~F(x)-F(x-a)\geq 0.$  The proof was to note that this is $P(X\in(x-a,x])).$  
+<p></p>
+For bivariate CDF $F(x,y)$  the non-decreasing property is 
+$\forall x,y\in{\mathbb R}~~\forall a,b \geq 0~~ F(x,y)-F(x,y-b)-F(x-a,y)+F(x-a,y-b)\geq 0.$
+<p></p>
+The proof is to equate the lefd hand side to $P((X,Y)\in(x-a,x]\times(y-b,y]).$
+<p></p>
+Generalise this for trivariate CDFs. Drawing a picture would help. Remember the inclusion-exclusion principle.
+</p>
+
+<h1><a
+name="Properties of joint distribution: Limits at $\pm\infty$, right continuity">Properties of joint distribution: Limits at $\pm\infty$, right continuity</a></h1>
+<a href="https://youtu.be/3sl9R0h2gpM">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $F(x,y)$  be a bivariate CDF. Then 
+<ol type="">
+
+<li>as $\min\{x,y\}\rightarrow \infty$, we have $F(x,y)\rightarrow 1$.</li>
+
+<li>as $\min\{x,y\}\rightarrow -\infty$, we have $F(x,y)\rightarrow 0$.</li>
 
 </ol> 
 
@@ -795,12 +887,60 @@ Let $F(x,y)$  be a bivariate CDF. Then
 
 <p>
 <b><i>Proof:</i></b>
-Easy.
+To show
+$$\forall \epsilon&gt;0~~\exists M\in{\mathbb R}~~\forall x,y~~(\min\{x,y\}&gt;M\Rightarrow F(x,y)&gt;1-\epsilon).$$
+<p></p>
+Take any $\epsilon&gt;0.$
+<p></p>
+Let $A_n\subseteq\Omega$  be defined as $A_n=\{X\leq n,\, Y\leq n\}.$ 
+<p></p>
+Then $A_n$'s increase and $\cup_n A_n = \Omega.$
+<p></p>
+So $P(A_n)\rightarrow 1.$  <i>i.e.</i>, $F(n,n)\rightarrow 1$  as $n\rightarrow \infty.$
+<p></p>
+Hence $\exists M\in{\mathbb N}~~F(M,M)&gt; 1-\epsilon.$
+<p></p>
+Choose this $M.$
+<p></p>
+Take any $x,y$  with $\min\{x,y\} &gt; M.$
+<p></p>
+Then $F(x,y) \geq F(M,y) \geq F(M,M) &gt; 1-\epsilon,$  as required.
+<p></p>
+This completes the proof of the first result. 
+<p></p>
+The second result as a similar proof.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $F(x,y)$  is the CDF of some $(X,Y)$, then $F$  is "north-east continuous" <i>i.e.</i>, at each $(a,b)\in{\mathbb R}^2$ 
+ if $x_n\downarrow a$  and $y_n\downarrow b$, then $F(x_n,y_n)\rightarrow F(a,b).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $A_n=\{X\leq x_n,\, Y\leq y_n\}$   and $A=\{X\leq a,\, Y\leq b\}.$
+<p></p>
+Since $x_n\downarrow a$  and $y_n\downarrow b$, we have $A_n\downarrow A.$
+<p></p>
+Hence the theorem follows by continuity of probability.  
 <b><i>[QED]</i></b>
 </p>
 
 <h2><a
-name="Point mass and jointly continuous">Point mass and jointly continuous</a></h2>
+name="Problem set 8">Problem set 8</a></h2>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;Let $(X,Y)$  have joint CDF $F(x,y).$  Let $a_n\uparrow a$  and 
+$b_n\uparrow  b.$  Then show that 
+$$F(a,b)-F(a_n,b)-F(a,b_n)+F(a_n,b_n)\rightarrow P(X=a,\, Y=b).$$
+</p>
+
+<h1><a
+name="Properties of joint distribution: Point mass and continuous">Properties of joint distribution: Point mass and continuous</a></h1>
 Let $X$  be a random variable with CDF $F.$  Then the following two statements are equivalent:
 <ol type="">
 
@@ -809,8 +949,9 @@ Let $X$  be a random variable with CDF $F.$  Then the following two statements a
 <li>$\forall a\in{\mathbb R}~~P(X=a)=0.$</li>
 
 </ol>
-Consider the corresponding statements in the bivariate scenario. $(X,Y)$  have joint CDF $F(x,y).$  Then the statements
- are 
+Consider the corresponding statements in the bivariate scenario. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $(X,Y)$  have joint CDF $F(x,y).$ Consider  the statements
 <ol type="">
 
 <li>$F$  is continuous everywhere.</li>
@@ -819,13 +960,46 @@ Consider the corresponding statements in the bivariate scenario. $(X,Y)$  have j
 
 </ol>
 Here the first statement implies the second statement, but the converse is not true in general. 
-Can you think of a counterexample? An exercise below will given you a hint.
-<h2><a
-name="Problem set 7">Problem set 7</a></h2>
+</fieldset>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;Let $X\sim Bernoulli\left(\frac 12\right)$  and $Y\sim Unif(0,1)$  be independent random
- variables. Write down their joint CDF. Is it continuous everywhere? What is $P(X=a,\,Y=b)$  for any given $(a,b)?$</p>
+<b><i>Proof:</i></b>
+Let $a,b\in{\mathbb R}^2$  and $a_n\uparrow a$  and $b_n\uparrow b.$  We have
+$$F(a,b)-F(x_n,b)-F(a,y_n)+F(x_n,y_n)=P(X\in(a_n,a],\, Y\in(b_n,b]).$$
+As $n\rightarrow \infty,$  the left hand side tends to $0,$  since $F(x,y)$  is
+ continuous at $(a,b).$  Also the events $\{X\in(a_n,a],\,Y\in(b_n,b]\}\downarrow \{X=a,\,
+ Y=b\}.$  
+<p></p>
+So we have $P(X=a,\, Y=b)=0,$  as required.
+<p></p>
+A counterexample for the converse is discussed in the exercise below.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 9">Problem set 9</a></h2>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;Let $X\sim Bernoulli\left(\frac 12\right)$  and $Y$ and density 
+$$f(x)=\left\{\begin{array}{ll}1&\text{if }x\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$$
+Let $X$  and $Y$   be independent random
+ variables. Write down and sketch the CDFs $F_X(x)$  and $F_Y(y)$  of $X$  and $Y.$
+Their joint
+ CDF  is $F(x,y)=P(X\leq x,\, Y\leq y) =P(X\leq x)P( Y\leq y) = F_X(x)F_Y(y).$
+Find it and fill in the cells below with appropriate formulae for $F(x,y).$  One cell has already been filled in for
+ you.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fexp.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ Is it continuous everywhere? What is
+ $P(X=a,\,Y=b)$  for any given $(a,b)?$</p>
 
 <p></p>
 Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
@@ -835,7 +1009,7 @@ class="ans" id="reason1">You can put rationals
  in the gaps.</div></blockquote>
 However, for bivariate or higher dimensional CDFs, the situation is drastically different. 
 <p>
-<b>EXERCISE 21:</b>&nbsp;
+<b>EXERCISE 24:</b>&nbsp;
 There are different ways to approach a point in ${\mathbb R}^2.$  The following diagram shows some of them. 
 <center>
 <table width="100%">
@@ -858,66 +1032,27 @@ $P(X &lt; a,\, Y&lt; b)$, $P(X \leq a,\, Y&lt; b)$, $P(X &lt; a,\, Y\leq b)$  an
 <p></p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;(Continuation of the last exercise) In exactly three of the cases above we must have
+<b>EXERCISE 25:</b>&nbsp;(Continuation of the last exercise) In exactly three of the cases above we must have
  $\lim_{(x,y)\rightarrow(a,b)} F(x,y) = F(a,b).$  Which three?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
+<b>EXERCISE 26:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
  $(a,b)$  if and only if $P(X &lt; a,\, Y&lt; b) &lt; P(X \leq a,\, Y\leq b).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
+<b>EXERCISE 27:</b>&nbsp;(Continuation of the last exercise) Argue that $F(x,y)$  is discontinuous at
  $(a,b)$  if and only if $P(X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b)&gt;0.$</p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;(Continuation of the last exercise) Sketch the set $\{X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b\}$  in the
+<b>EXERCISE 28:</b>&nbsp;(Continuation of the last exercise) Sketch the set $\{X \leq a,\, Y= b \mbox{ or }X = a,\, Y\leq b\}$  in the
  $XY$-plane for $(a,b) = (1,2)$  and also for $(a,b) = (1,3).$  Argue that either
  $F(x,y)$  has no discontinuity, or has
 uncountably many discontinuities.
 </p>
-
-<p></p>
-
-<h1><a
-name="Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a></h1>
-Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
-having their joint PMF. But not so in case of densities. Even if
- $X$  and $Y$  each has its own density, still $(X,Y)$  may fail to have a
- <i>joint</i>  density.
-<p></p>
-
-<p>
-<b>EXAMPLE 11:</b>&nbsp;Suppose $X$ has density $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$ and $Y = X.$  
-Then show that $(X,Y)$  does not have a joint density.
-<p></p>
-<b>SOLUTION:</b>
-Here the CDF of $(X,Y)$  is 
-$$
-F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ \min\{x,y\}&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
-$$
-Hence, if $(X,Y)$  indeed had a joint density, then a joint density would be given
- by $f(x,y)$, where 
-$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
-This forces $f(x,y)\equiv 0,$  which is not a PDF.
-   ■
-</p>
-However, if $(X,Y)$  has a joint density, then both $X$  and $Y$  must also have (marginal) densities.
-<p></p>
-
-<h2><a
-name="Problem set 8">Problem set 8</a></h2>
-
-<p>
-<b>EXERCISE 26:</b>&nbsp;If $X$  has density as above, then does $(X,X^2)$  have a joint density?</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 27:</b>&nbsp;Does there exist a CDF  such that if $X$  has that CDF, then $(X,X)$  has a joint density?</p>
 
 <p></p>
 
@@ -970,13 +1105,52 @@ Here, by the fundamental theorem of calculus,  $F_X'(x)  = \int_{-\infty}^\infty
 </p>
 
 <h2><a
-name="Problem set 9">Problem set 9</a></h2>
+name="Problem set 10">Problem set 10</a></h2>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpsjoint4.png]</font><img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpsjoint4.png]</font><img width="" src="image/hpsjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpsjoint5.png]</font><img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpsjoint5.png]</font><img width="" src="image/hpsjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpsjoint6.png]</font><img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[hpsjoint6.png]</font><img width="" src="image/hpsjoint6.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+
+<h1><a
+name="Marginal densities $\not\Rightarrow$  joint density">Marginal densities $\not\Rightarrow$  joint density</a></h1>
+Note that if $X$  and $Y$  are jointly distributed discrete random variables, then immediatly we are assured of
+having their joint PMF. But not so in case of densities. Even if
+ $X$  and $Y$  each has its own density, still $(X,Y)$  may fail to have a
+ <i>joint</i>  density.
+<p></p>
+
+<p>
+<b>EXAMPLE 11:</b>&nbsp;Suppose $X$ has density $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$ and $Y = X.$  
+Then show that $(X,Y)$  does not have a joint density.
+<p></p>
+<b>SOLUTION:</b>
+Here the CDF of $(X,Y)$  is 
+$$
+F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = \left\{\begin{array}{ll}0&\text{if }\min\{x,y\}&lt;0\\ \min\{x,y\}&\text{if }0\leq \min\{x,y\} &lt; 1\\ 1&\text{if }\min\{x,y\} \geq 1\\\end{array}\right..
+$$
+Hence, if $(X,Y)$  indeed had a joint density, then a joint density would be given
+ by $f(x,y)$, where 
+$$f(x,y) = \frac{\partial^2}{\partial x\partial y} F(x,y).$$
+This forces $f(x,y)\equiv 0,$  which is not a PDF.
+   ■
+</p>
+However, if $(X,Y)$  has a joint density, then both $X$  and $Y$  must also have (marginal) densities.
+<p></p>
+
+<h2><a
+name="Problem set 11">Problem set 11</a></h2>
+
+<p>
+<b>EXERCISE 32:</b>&nbsp;If $X$  has density as above, then does $(X,X^2)$  have a joint density?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 33:</b>&nbsp;Does there exist a CDF  such that if $X$  has that CDF, then $(X,X)$  has a joint density?</p>
 
 <p></p>
 
@@ -986,7 +1160,7 @@ We already know the following general definition of  jointly distributed random 
 <fieldset>
 <legend><b>Definition: Independence</b></legend>
 Let $X_1,...,X_n$  be jointly distributed random variables. We say they are <b><font color="red" size="40">(mutually) independent</font></b>  if
- for all $\{i_1,...,i_k\}\subseteq \{1,...,n\}$  and any $B_1,...,B_k\in{\mathcal B}$  we have
+ for all $\{i_1,...,i_k\}\subseteq \{1,...,n\}$  and any $B_1,...,B_k\subseteq{\mathbb R}$  we have
 $$P(X_{i_1}\in B_1, ..., X_{i_k}\in B_k) = P(X_{i_1}\in B_1)\times\cdotsP( X_{i_k}\in B_k).$$
 </fieldset> 
 Incidentally, it is not enough to have $P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i)P( X_j\in B_j)$  for all $i\neq j.$ 
@@ -1032,27 +1206,34 @@ Hence $f_X(x)f_Y(y)$  is a joint density for $(X,Y).$
 As in the discrete case, here also we have the result that if $X,Y$  are independent, and $E(X), E(Y)$  exist,
  then $E(XY)$  exists and equals $E(X)E(Y).$  The proof is straightforward using factorisation of joint density. 
 <h2><a
-name="Problem set 10">Problem set 10</a></h2>
+name="Problem set 12">Problem set 12</a></h2>
 
 <p>
-<b>EXERCISE 31:</b>&nbsp;If two independent random variables $X,Y$  have marginal densities $f(t) = e^{-\lambda t}$  for
+<b>EXERCISE 34:</b>&nbsp;We toss two fair coins independently, and define 3 random variables $X,Y,Z$  based on
+ the outcomes as follows. $X=1$  or $0$  according as the first toss shows head or not.
+Similarly, $Y=1$  or $0$  according as the second toss shows head or not. $Z=X$ if
+ $Y=1$, else $Z=1-X.$  Show that $X,Y,Z$  are pairwise independent, but not mutually independent. 
+</p>
+
+<p>
+<b>EXERCISE 35:</b>&nbsp;If two independent random variables $X,Y$  have marginal densities $f(t) = e^{-\lambda t}$  for
  $t&gt;0$  (and 0 else), then find the joint density of $(X,Y).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 32:</b>&nbsp;$(X,Y)$  is distributed uniformly over the unit disc in ${\mathbb R}^2.$  Are $X,Y$  independent?</p>
+<b>EXERCISE 36:</b>&nbsp;$(X,Y)$  is distributed uniformly over the unit disc in ${\mathbb R}^2.$  Are $X,Y$  independent?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 33:</b>&nbsp;If the joint density of $(X,Y)$  is of the form $f(x)g(y),$  then show that
+<b>EXERCISE 37:</b>&nbsp;If the joint density of $(X,Y)$  is of the form $f(x)g(y),$  then show that
  $X$  and $Y$  must be independent. Also show that $f_X\propto f$  and $f_Y\propto g.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 34:</b>&nbsp;If $(X,Y)$  are independent, then is it true that the joint CDF
+<b>EXERCISE 38:</b>&nbsp;If $(X,Y)$  are independent, then is it true that the joint CDF
 is the product of the marginal CDFs?
 </p>
 
@@ -1079,17 +1260,17 @@ $\int_{-\infty}^\infty f_{X|Y}(x,y)\, dx = \frac{\int_{-\infty}^\infty f(x,y)\, 
 The most glaring difference between conditional PDF and conditional PMF is that the conditional PDF is not a
  conditional probability,
  since $P(Y=y)=0.$  Due to the same reason,
-$\int_a^bf_{X|Y}(x|y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$
+$\int_a^bf_{X|Y}(x,y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$
 <p></p>
 However, the theorem of total probability is still valid:
 <p></p>
 
 <fieldset>
-<legend><b><i>Total probability</i></b></legend>$\int_c^d \int_a^bf_{X|Y}(x|y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).$</fieldset>
+<legend><b><i>Total probability</i></b></legend>$\int_c^d \int_a^bf_{X|Y}(x,y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).$</fieldset>
 
 <p>
 <b><i>Proof:</i></b>  This is obvious
- from the definition of $f_{Y|X}(x|y).$<b><i>[QED]</i></b>
+ from the definition of $f_{Y|X}(x,y).$<b><i>[QED]</i></b>
 </p>
 It is this theorem that justifies the definition of conditional PDF.
 <p></p>
@@ -1121,35 +1302,35 @@ If $(X,Y)$  has a joint density, then
 Enough to show the first, since the other two follow from it (as we have already seen last semester). 
 <p></p>
 Let $f(x,y)$  be a joint density of $(X,Y).$  Then 
-$$E(X|Y=y) = \int_{-\infty}^\infty xf_{X|Y}(x,y)\, dx = \frac{\int_{-\infty}^\infty xf_(x,y)\, dx}{f_Y(y)}.$$
+$$E(X|Y=y) = \int_{-\infty}^\infty xf_{X|Y}(x,y)\, dx = \frac{\int_{-\infty}^\infty xf(x,y)\, dx}{f_Y(y)}.$$
 <p></p>
 So 
-$$E(E(X|Y)) = \int_{-\infty}^\infty\frac{\int_{-\infty}^\infty xf_(x,y)\, dx}{f_Y(y)}f_Y(y)\, dy = \int_{-\infty}^\infty\int_{-\infty}^\infty xf_(x,y)\, dx\, dy =E(X),$$
+$$E(E(X|Y)) = \int_{-\infty}^\infty\frac{\int_{-\infty}^\infty xf(x,y)\, dx}{f_Y(y)}f_Y(y)\, dy = \int_{-\infty}^\infty\int_{-\infty}^\infty xf(x,y)\, dx\, dy =E(X),$$
 as required. 
 <b><i>[QED]</i></b>
 </p>
 
 <h2><a
-name="Problem set 11">Problem set 11</a></h2>
+name="Problem set 13">Problem set 13</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 35:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
+<b>EXERCISE 39:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
  0\leq y\leq 1\}.$  Guess a conditional density of $X$  given $Y=y?$  First try
  to guess, and then check it from the definition.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 36:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x|y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
+<b>EXERCISE 40:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
  0&\text{otherwise.}\end{array}\right.$, where $c_y$  is free of $x.$ 
-Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y|x).$</p>
+Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y,x).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 37:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
+<b>EXERCISE 41:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
 then find $E(X|Y=y)$  and $V(Y|X=x).$</p>
 
 <p></p>
@@ -1199,7 +1380,7 @@ Since this matrix is symmetric, hence the result.
 Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
 proceed more systematically to answer the next problem.
 <p>
-<b>EXERCISE 38:</b>&nbsp;
+<b>EXERCISE 42:</b>&nbsp;
 We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
  $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
  are exchangeable.
@@ -1208,7 +1389,7 @@ We have $n$  balls $m$  of which are dark purple (the rest being of a nondescrip
 <p></p>
 
 <p>
-<b>EXERCISE 39:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+<b>EXERCISE 43:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
  replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
  $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
 
@@ -1235,31 +1416,31 @@ Then the joint CDF of $(X_{i_1},...,X_{i_k})$  is $F(x_1,...,x_k,\infty,...,\inf
 <p></p>
 Exchangeable random variables allow for symmetry arguments. The next problem is one example. 
 <h2><a
-name="Problem set 12">Problem set 12</a></h2>
+name="Problem set 14">Problem set 14</a></h2>
 
 <p>
-<b>EXERCISE 40:</b>&nbsp;
+<b>EXERCISE 44:</b>&nbsp;
 If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 41:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
+<b>EXERCISE 45:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
  $Y_1 = X_1+X_2,$  $Y_2 = X_2+X_3,$  and $Y_3 = X_3+X_1.$  Is $(Y_1,Y_2,Y_3)$ 
  exchangeable? Justify your answer.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 42:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
+<b>EXERCISE 46:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
  Without replacing the ball, another ball is drawn at random from the rest, and its number is also
  noted. If the two numbers are $X$  and $Y$, respectively, then is $(X,Y)$  exchangeable?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 43:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
+<b>EXERCISE 47:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
  number $i$  on it  is selected with probability proportional to $i.$
 </p>
 
@@ -1268,41 +1449,41 @@ If $X_1,...,X_n$  are exchangeable positive random variables with finite expecta
 <h1><a
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

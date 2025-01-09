@@ -287,7 +287,7 @@ Similarly, work out the values for the blue and green regions.</EXM>
 <EXR>Find the CDF of <M>(X,Y)</M>  is the joint density is <M>f(x,y) = <CASES>e^{-x-y}<IF>x,y>0</IF> 0<ELSE/></CASES></M></EXR>
 
 
-<HEAD1>Density from CDF</HEAD1>
+<HEAD1 u="https://youtu.be/yzjbQ_qotqQ">Joint density from CDF</HEAD1>
 Finding the CDF from the density requires quite a bit of effort. But going the other way around is a lot easier. 
 
 Suppose that you are given a CDF, <M>F(x,y)</M>  for a distribution having a density.  
@@ -322,35 +322,141 @@ Since we are about to differentiate wrt both <M>x</M>  and <M>y,</M>  the parts 
 
 <EXR>If <M>(X,Y)</M>  have joint density <M>c(x^2+y)</M>  over the unit square, then find the joint CDF.</EXR>
 
-<HEAD1>Properties of joint distribution</HEAD1>
+<HEAD1 u="https://youtu.be/xPX68qZ12Q0">Properties of joint distribution: Non-decreasing</HEAD1>
 <THM>
 Let <M>F(x,y)</M>  be a bivariate CDF. Then 
 <OL>
 <LI>for each fixed value of <M>y</M>, the function <M>x\mapsto F(x,y)</M>  is non-decreasing.</LI>
 <LI>for each fixed value of <M>x</M>, the function <M>y\mapsto F(x,y)</M>  is non-decreasing.</LI>
-<LI><M>\forall x,y\in\rr~~\forall a,b \geq 0~~ F(x+a,y+b)-F(x,y+b)-F(x+a,y)+F(x,y)\geq 0.</M></LI>
 </OL> 
 </THM>
 <PF>
-Easy.
+Fix any <M>y.</M>  Fix any <M>x_1 < x_2.</M>  Then <M>F(x_2,y)-F(x_1,y) = P(X\leq x_2, Y\leq
+ y)-P(X\leq x_1, Y\leq y)=P(x_1< X\leq x_2, Y\leq y)\geq0.</M>
+
+Hence the first result. Similarly for the other.
 </PF>
-<HEAD2>Point mass and jointly continuous</HEAD2>
+<THM>
+Let <M>F(x,y)</M>  be a bivariate CDF. Then 
+<M>\forall x,y\in\rr~~\forall a,b \geq 0~~ F(x,y)-F(x,y-b)-F(x-a,y)+F(x-a,y-b)\geq 0.</M>
+</THM>
+<PF>
+Let <M>A = \{x-a < X \leq x,\, y-b < Y \leq y\}</M>, <M>B = \{x-a < X \leq x,\, Y \leq y\}</M>, <M>C = \{ X \leq x,\, y-b < Y \leq y\}</M>,
+ and <M>C = \{ X \leq x-a,\, Y \leq y-b\}.</M>
+<CIMG web="parts.png"/>
+Then
+<MULTILINE>
+F(x,y) & = & P(A)+P(B)+P(C)+P(D),\\
+F(x,y-b) & = & P(B)+P(D),\\
+F(x-a,y) & = & P(C)+P(D),\\
+F(x-a,y-b) & = & P(D).
+</MULTILINE>
+So <M>F(x,y)-F(x-a,y)-F(x,y-b)+F(x-a,y-b)=P(A)\geq 0.</M>
+</PF>
+This property is stronger than the non-decreasing properties mentioned earlier.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Let <M>F(x,y)</M>  be CDF of <M>(X,Y).</M>  Then express
+<D>\lim_{a,b\to0+} (F(x,y)-F(x-a,y)-F(x,y-b)+F(x-a,y-b))</D>
+as the probability of some familiar event.
+</EXR>
+
+<EXR>For a univariate CDF <M>F(x)</M>,  the non-decreasing property was <M>\forall
+ x\in\rr~~\forall a>0~~F(x)-F(x-a)\geq 0.</M>  The proof was to note that this is <M>P(X\in(x-a,x])).</M>  
+
+For bivariate CDF <M>F(x,y)</M>  the non-decreasing property is 
+<M>\forall x,y\in\rr~~\forall a,b \geq 0~~ F(x,y)-F(x,y-b)-F(x-a,y)+F(x-a,y-b)\geq 0.</M>
+
+The proof is to equate the lefd hand side to <M>P((X,Y)\in(x-a,x]\times(y-b,y]).</M>
+
+Generalise this for trivariate CDFs. Drawing a picture would help. Remember the inclusion-exclusion principle.
+</EXR>
+<HEAD1>Properties of joint distribution: Limits at <M>\pm\infty</M>, right continuity</HEAD1>
+<THM>
+Let <M>F(x,y)</M>  be a bivariate CDF. Then 
+<OL>
+<LI>as <M>\min\{x,y\}\to \infty</M>, we have <M>F(x,y)\to 1</M>.</LI>
+<LI>as <M>\min\{x,y\}\to -\infty</M>, we have <M>F(x,y)\to 0</M>.</LI>
+</OL> 
+</THM>
+<PF>
+To show
+<D>\forall \epsilon>0~~\exists M\in\rr~~\forall x,y~~(\min\{x,y\}>M\Rightarrow F(x,y)>1-\epsilon).</D>
+
+Take any <M>\epsilon>0.</M>
+
+Let <M>A_n\seq\Omega</M>  be defined as <M>A_n=\{X\leq n,\, Y\leq n\}.</M> 
+
+Then <M>A_n</M>'s increase and <M>\cup_n A_n = \Omega.</M>
+
+So <M>P(A_n)\to 1.</M>  i.e., <M>F(n,n)\to 1</M>  as <M>n\to \infty.</M>
+
+Hence <M>\exists M\in\nn~~F(M,M)> 1-\epsilon.</M>
+
+Choose this <M>M.</M>
+
+Take any <M>x,y</M>  with <M>\min\{x,y\} > M.</M>
+
+Then <M>F(x,y) \geq F(M,y) \geq F(M,M) > 1-\epsilon,</M>  as required.
+
+This completes the proof of the first result. 
+
+The second result as a similar proof.
+</PF>
+
+<THM>
+If <M>F(x,y)</M>  is the CDF of some <M>(X,Y)</M>, then <M>F</M>  is "north-east continuous" i.e., at each <M>(a,b)\in\rr^2</M> 
+ if <M>x_n\downarrow a</M>  and <M>y_n\downarrow b</M>, then <M>F(x_n,y_n)\to F(a,b).</M>
+</THM>
+<PF>
+Let <M>A_n=\{X\leq x_n,\, Y\leq y_n\}</M>   and <M>A=\{X\leq a,\, Y\leq b\}.</M>
+
+Since <M>x_n\downarrow a</M>  and <M>y_n\downarrow b</M>, we have <M>A_n\downarrow A.</M>
+
+Hence the theorem follows by continuity of probability.  
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Let <M>a_n\uparrow a</M>  and 
+<M>b_n\uparrow  b.</M>  Then show that 
+<D>F(a,b)-F(a_n,b)-F(a,b_n)+F(a_n,b_n)\to P(X=a,\, Y=b).</D>
+</EXR>
+<HEAD1>Properties of joint distribution: Point mass and continuous</HEAD1>
 Let <M>X</M>  be a random variable with CDF <M>F.</M>  Then the following two statements are equivalent:
 <OL>
 <LI><M>F</M>  is continuous everywhere.</LI>
 <LI><M>\forall a\in\rr~~P(X=a)=0.</M></LI>
 </OL>
-Consider the corresponding statements in the bivariate scenario. <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Then the statements
- are 
+Consider the corresponding statements in the bivariate scenario. 
+<THM>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M> Consider  the statements
 <OL>
 <LI><M>F</M>  is continuous everywhere.</LI>
 <LI><M>\forall (a,b)\in\rr^2~~P(X=a,\,Y=b)=0.</M></LI>
 </OL>
 Here the first statement implies the second statement, but the converse is not true in general. 
-Can you think of a counterexample? An exercise below will given you a hint.
+</THM>
+<PF>
+Let <M>a,b\in\rr^2</M>  and <M>a_n\uparrow a</M>  and <M>b_n\uparrow b.</M>  We have
+<D>F(a,b)-F(x_n,b)-F(a,y_n)+F(x_n,y_n)=P(X\in(a_n,a],\, Y\in(b_n,b]).</D>
+As <M>n\to \infty,</M>  the left hand side tends to <M>0,</M>  since <M>F(x,y)</M>  is
+ continuous at <M>(a,b).</M>  Also the events <M>\{X\in(a_n,a],\,Y\in(b_n,b]\}\downarrow \{X=a,\,
+ Y=b\}.</M>  
+
+So we have <M>P(X=a,\, Y=b)=0,</M>  as required.
+
+A counterexample for the converse is discussed in the exercise below.
+</PF>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Let <M>X\sim Bernoulli(*([[12]])*)</M>  and <M>Y\sim Unif(0,1)</M>  be independent random
- variables. Write down their joint CDF. Is it continuous everywhere? What is <M>P(X=a,\,Y=b)</M>  for any given <M>(a,b)?</M></EXR>
+<EXR>Let <M>X\sim Bernoulli(*([[12]])*)</M>  and <M>Y</M> and density 
+<D>f(x)=<CASES>1<IF>x\in[0,1]</IF> 0<ELSE/></CASES></D>
+Let <M>X</M>  and <M>Y</M>   be independent random
+ variables. Write down and sketch the CDFs <M>F_X(x)</M>  and <M>F_Y(y)</M>  of <M>X</M>  and <M>Y.</M>
+Their joint
+ CDF  is <M>F(x,y)=P(X\leq x,\, Y\leq y) =P(X\leq x)P( Y\leq y) = F_X(x)F_Y(y).</M>
+Find it and fill in the cells below with appropriate formulae for <M>F(x,y).</M>  One cell has already been filled in for
+ you.
+<CIMG web="fexp.png"></CIMG>
+ Is it continuous everywhere? What is
+ <M>P(X=a,\,Y=b)</M>  for any given <M>(a,b)?</M></EXR>
 
 Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
 <BECAUSE>You can put rationals
@@ -379,31 +485,6 @@ In each case find
  <M>F(x,y)</M>  has no discontinuity, or has
 uncountably many discontinuities.
 </EXR>
-
-<HEAD1>Marginal densities <M>\not\Rightarrow</M>  joint density</HEAD1>
-Note that if <M>X</M>  and <M>Y</M>  are jointly distributed discrete random variables, then immediatly we are assured of
-having their joint PMF. But not so in case of densities. Even if
- <M>X</M>  and <M>Y</M>  each has its own density, still <M>(X,Y)</M>  may fail to have a
- <I>joint</I>  density.
-
-<EXM>Suppose <M>X</M> has density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M> and <M>Y = X.</M>  
-Then show that <M>(X,Y)</M>  does not have a joint density.
-<SOLN/>
-Here the CDF of <M>(X,Y)</M>  is 
-<D>
-F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = <CASES>0<IF>\min\{x,y\}<0</IF> \min\{x,y\}<IF>0\leq \min\{x,y\} < 1</IF> 1<IF>\min\{x,y\} \geq 1</IF></CASES>.
-</D>
-Hence, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
- by <M>f(x,y)</M>, where 
-<D>f(x,y) = [[\partial^2][\partial x\partial y]] F(x,y).</D>
-This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
-  </EXM>
-However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M>  must also have (marginal) densities.
-
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>If <M>X</M>  has density as above, then does <M>(X,X^2)</M>  have a joint density?</EXR>
-
-<EXR>Does there exist a CDF  such that if <M>X</M>  has that CDF, then <M>(X,X)</M>  has a joint density?</EXR>
 
 <HEAD1>Marginals</HEAD1>
 We can find the distribution of <M>X</M>  and <M>Y</M>  separately given the joint distribution of <M>(X,Y).</M>  
@@ -444,11 +525,36 @@ Here, by the fundamental theorem of calculus,  <M>F_X'(x)  = \int_{-\infty}^\inf
 ::<EXR><EIMG web="hpsjoint5.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint6.png"/></EXR>
 
+<HEAD1>Marginal densities <M>\not\Rightarrow</M>  joint density</HEAD1>
+Note that if <M>X</M>  and <M>Y</M>  are jointly distributed discrete random variables, then immediatly we are assured of
+having their joint PMF. But not so in case of densities. Even if
+ <M>X</M>  and <M>Y</M>  each has its own density, still <M>(X,Y)</M>  may fail to have a
+ <I>joint</I>  density.
+
+<EXM>Suppose <M>X</M> has density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M> and <M>Y = X.</M>  
+Then show that <M>(X,Y)</M>  does not have a joint density.
+<SOLN/>
+Here the CDF of <M>(X,Y)</M>  is 
+<D>
+F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = <CASES>0<IF>\min\{x,y\}<0</IF> \min\{x,y\}<IF>0\leq \min\{x,y\} < 1</IF> 1<IF>\min\{x,y\} \geq 1</IF></CASES>.
+</D>
+Hence, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
+ by <M>f(x,y)</M>, where 
+<D>f(x,y) = [[\partial^2][\partial x\partial y]] F(x,y).</D>
+This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
+  </EXM>
+However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M>  must also have (marginal) densities.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X</M>  has density as above, then does <M>(X,X^2)</M>  have a joint density?</EXR>
+
+<EXR>Does there exist a CDF  such that if <M>X</M>  has that CDF, then <M>(X,X)</M>  has a joint density?</EXR>
+
 <HEAD1>Independence</HEAD1>
 We already know the following general definition of  jointly distributed random variables being independent:
 <DEFN name="Independence">
 Let <M>X_1,...,X_n</M>  be jointly distributed random variables. We say they are <TERM>(mutually) independent</TERM>  if
- for all <M>\{i_1,...,i_k\}\seq \{1,...,n\}</M>  and any <M>B_1,...,B_k\in{\mathcal B}</M>  we have
+ for all <M>\{i_1,...,i_k\}\seq \{1,...,n\}</M>  and any <M>B_1,...,B_k\seq\rr</M>  we have
 <D>P(X_{i_1}\in B_1, ..., X_{i_k}\in B_k) = P(X_{i_1}\in B_1)\times\cdotsP( X_{i_k}\in B_k).</D>
 </DEFN> 
 Incidentally, it is not enough to have <M>P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i)P( X_j\in B_j)</M>  for all <M>i\neq j.</M> 
@@ -487,6 +593,11 @@ Hence <M>f_X(x)f_Y(y)</M>  is a joint density for <M>(X,Y).</M>
 As in the discrete case, here also we have the result that if <M>X,Y</M>  are independent, and <M>E(X), E(Y)</M>  exist,
  then <M>E(XY)</M>  exists and equals <M>E(X)E(Y).</M>  The proof is straightforward using factorisation of joint density. 
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>We toss two fair coins independently, and define 3 random variables <M>X,Y,Z</M>  based on
+ the outcomes as follows. <M>X=1</M>  or <M>0</M>  according as the first toss shows head or not.
+Similarly, <M>Y=1</M>  or <M>0</M>  according as the second toss shows head or not. <M>Z=X</M> if
+ <M>Y=1</M>, else <M>Z=1-X.</M>  Show that <M>X,Y,Z</M>  are pairwise independent, but not mutually independent. 
+</EXR>
 <EXR>If two independent random variables <M>X,Y</M>  have marginal densities <M>f(t) = e^{-\lambda t}</M>  for
  <M>t>0</M>  (and 0 else), then find the joint density of <M>(X,Y).</M></EXR>
 
@@ -518,13 +629,13 @@ It is obvious that this is a density, since it is non-negative, and
 The most glaring difference between conditional PDF and conditional PMF is that the conditional PDF is not a
  conditional probability,
  since <M>P(Y=y)=0.</M>  Due to the same reason,
-<M>\int_a^bf_{X|Y}(x|y)\, dx</M>  does not give <M>P(X\in [a,b]|Y=y),</M>  as <M>P(Y=y)=0.</M>
+<M>\int_a^bf_{X|Y}(x,y)\, dx</M>  does not give <M>P(X\in [a,b]|Y=y),</M>  as <M>P(Y=y)=0.</M>
 
 However, the theorem of total probability is still valid:
 
-<THM name="Total probability"><M>\int_c^d \int_a^bf_{X|Y}(x|y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).</M></THM>
+<THM name="Total probability"><M>\int_c^d \int_a^bf_{X|Y}(x,y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).</M></THM>
 <PF>  This is obvious
- from the definition of <M>f_{Y|X}(x|y).</M></PF>
+ from the definition of <M>f_{Y|X}(x,y).</M></PF>
 It is this theorem that justifies the definition of conditional PDF.
 
 Other than this difference, the rest follows as in the discrete case. We have the concepts of
@@ -546,10 +657,10 @@ If <M>(X,Y)</M>  has a joint density, then
 Enough to show the first, since the other two follow from it (as we have already seen last semester). 
 
 Let <M>f(x,y)</M>  be a joint density of <M>(X,Y).</M>  Then 
-<D>E(X|Y=y) = \int_{-\infty}^\infty xf_{X|Y}(x,y)\, dx = [[\int_{-\infty}^\infty xf_(x,y)\, dx][f_Y(y)]].</D>
+<D>E(X|Y=y) = \int_{-\infty}^\infty xf_{X|Y}(x,y)\, dx = [[\int_{-\infty}^\infty xf(x,y)\, dx][f_Y(y)]].</D>
 
 So 
-<D>E(E(X|Y)) = \int_{-\infty}^\infty[[\int_{-\infty}^\infty xf_(x,y)\, dx][f_Y(y)]]f_Y(y)\, dy = \int_{-\infty}^\infty\int_{-\infty}^\infty xf_(x,y)\, dx\, dy =E(X),</D>
+<D>E(E(X|Y)) = \int_{-\infty}^\infty[[\int_{-\infty}^\infty xf(x,y)\, dx][f_Y(y)]]f_Y(y)\, dy = \int_{-\infty}^\infty\int_{-\infty}^\infty xf(x,y)\, dx\, dy =E(X),</D>
 as required. 
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
@@ -558,9 +669,9 @@ as required.
  0\leq y\leq 1\}.</M>  Guess a conditional density of <M>X</M>  given <M>Y=y?</M>  First try
  to guess, and then check it from the definition.</EXR>
 
-<EXR>Let <M>X|Y=y</M>  have density <M>f_{X|Y}(x|y) = <CASES>c_y x^2<IF>x\in[0,y]</IF>
+<EXR>Let <M>X|Y=y</M>  have density <M>f_{X|Y}(x,y) = <CASES>c_y x^2<IF>x\in[0,y]</IF>
  0<ELSE/></CASES></M>, where <M>c_y</M>  is free of <M>x.</M> 
-Let <M>Y</M>  be uniformly distributed over <M>[0,1]</M>.  Find <M>f_{Y|X=x}(y|x).</M></EXR>
+Let <M>Y</M>  be uniformly distributed over <M>[0,1]</M>.  Find <M>f_{Y|X=x}(y,x).</M></EXR>
 
 <EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y)=<CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>,</M>
 then find <M>E(X|Y=y)</M>  and <M>V(Y|X=x).</M></EXR>

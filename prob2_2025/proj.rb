@@ -39,7 +39,7 @@ Let <M>\epsilon>0.</M>  Then we can find random variables <M>S,T</M>  such that
 </OL>
 </THM>
 In plain words, this means: If you choose <M>\epsilon</M>  to be the smallest positive number your
- computer can hold (e.g. <M>2^{-31},</M>  then  no program running in that computer will be able
+ computer can hold (e.g. <M>2^{-31},</M>)  then  no program running in that computer will be able
  to distinguish data from
 the  perfectly dependent variables <M>S,T</M>   from 
  data from independent variables, <M>X,Y</M>!!!
