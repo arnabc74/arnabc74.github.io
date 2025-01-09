@@ -322,7 +322,7 @@ Since we are about to differentiate wrt both <M>x</M>  and <M>y,</M>  the parts 
 
 <EXR>If <M>(X,Y)</M>  have joint density <M>c(x^2+y)</M>  over the unit square, then find the joint CDF.</EXR>
 
-<HEAD1>Properties of joint distribution: Non-decreasing</HEAD1>
+<HEAD1 u="https://youtu.be/xPX68qZ12Q0">Properties of joint distribution: Non-decreasing</HEAD1>
 <THM>
 Let <M>F(x,y)</M>  be a bivariate CDF. Then 
 <OL>
@@ -369,9 +369,9 @@ For bivariate CDF <M>F(x,y)</M>  the non-decreasing property is
 
 The proof is to equate the lefd hand side to <M>P((X,Y)\in(x-a,x]\times(y-b,y]).</M>
 
-Generalise this for trivariate CDFs. Drawing a picture would help. Remember the inclusion-exclusion
+Generalise this for trivariate CDFs. Drawing a picture would help. Remember the inclusion-exclusion principle.
 </EXR>
-<HEAD1>Limits at <M>\infty</M>  and <M>-\infty</M></HEAD1>
+<HEAD1 u="https://youtu.be/3sl9R0h2gpM">Properties of joint distribution: Limits at <M>\pm\infty</M>, right continuity</HEAD1>
 <THM>
 Let <M>F(x,y)</M>  be a bivariate CDF. Then 
 <OL>
@@ -416,11 +416,30 @@ Since <M>x_n\downarrow a</M>  and <M>y_n\downarrow b</M>, we have <M>A_n\downarr
 Hence the theorem follows by continuity of probability.  
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Let <M>a_n\uparrow a</M>  and 
-<M>b_n\uparrow  b.</M>  Then show that 
-<D>F(a,b)-F(a_n,b)-F(a,b_n)+F(a_n,b_n)\to P(X=a,\, Y=b).</D>
+<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Let <M>x_n\uparrow a</M>  and 
+<M>y_n\uparrow  b.</M>  Then is it true that <M>F(x_n,y_n)\uparrow F(a,b)</M>?
 </EXR>
-<HEAD1>Point mass and continuous</HEAD1>
+
+<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>
+Find 
+<M>\lim_{n\to \infty} F(x_n,y_n)</M>  in each of the following cases. Express the limit as the probability of some event
+ in terms of <M>X,Y</M>,
+<OL>
+<LI><M>x_n\to \infty, y_n\to \infty.</M></LI>
+<LI><M>x_n\to \infty, y_n\to -\infty.</M></LI>
+<LI><M>x_n\to -\infty, y_n\to -\infty.</M></LI>
+<LI><M>x_n\to -\infty, y_n\to \infty.</M></LI>
+<LI><M>x_n\equiv a, y_n\to \infty.</M></LI>
+<LI><M>x_n\equiv a, y_n\to -\infty.</M></LI>
+<LI><M>x_n\to \infty, y_n\equiv b.</M></LI>
+<LI><M>x_n\to -\infty, y_n\equiv b.</M></LI>
+<LI><M>x_n\uparrow a, y_n\uparrow b.</M></LI>
+<LI><M>x_n\downarrow a, y_n\uparrow b.</M></LI>
+<LI><M>x_n\uparrow a, y_n\downarrow b.</M></LI>
+<LI><M>x_n\downarrow a, y_n\downarrow b.</M></LI>
+</OL>
+</EXR>
+<HEAD1>Properties of joint distribution: Point mass and continuous</HEAD1>
 Let <M>X</M>  be a random variable with CDF <M>F.</M>  Then the following two statements are equivalent:
 <OL>
 <LI><M>F</M>  is continuous everywhere.</LI>
@@ -486,31 +505,6 @@ In each case find
 uncountably many discontinuities.
 </EXR>
 
-<HEAD1>Marginal densities <M>\not\Rightarrow</M>  joint density</HEAD1>
-Note that if <M>X</M>  and <M>Y</M>  are jointly distributed discrete random variables, then immediatly we are assured of
-having their joint PMF. But not so in case of densities. Even if
- <M>X</M>  and <M>Y</M>  each has its own density, still <M>(X,Y)</M>  may fail to have a
- <I>joint</I>  density.
-
-<EXM>Suppose <M>X</M> has density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M> and <M>Y = X.</M>  
-Then show that <M>(X,Y)</M>  does not have a joint density.
-<SOLN/>
-Here the CDF of <M>(X,Y)</M>  is 
-<D>
-F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = <CASES>0<IF>\min\{x,y\}<0</IF> \min\{x,y\}<IF>0\leq \min\{x,y\} < 1</IF> 1<IF>\min\{x,y\} \geq 1</IF></CASES>.
-</D>
-Hence, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
- by <M>f(x,y)</M>, where 
-<D>f(x,y) = [[\partial^2][\partial x\partial y]] F(x,y).</D>
-This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
-  </EXM>
-However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M>  must also have (marginal) densities.
-
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>If <M>X</M>  has density as above, then does <M>(X,X^2)</M>  have a joint density?</EXR>
-
-<EXR>Does there exist a CDF  such that if <M>X</M>  has that CDF, then <M>(X,X)</M>  has a joint density?</EXR>
-
 <HEAD1>Marginals</HEAD1>
 We can find the distribution of <M>X</M>  and <M>Y</M>  separately given the joint distribution of <M>(X,Y).</M>  
 <THM>
@@ -549,6 +543,31 @@ Here, by the fundamental theorem of calculus,  <M>F_X'(x)  = \int_{-\infty}^\inf
 ::<EXR><EIMG web="hpsjoint4.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint5.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint6.png"/></EXR>
+
+<HEAD1>Marginal densities <M>\not\Rightarrow</M>  joint density</HEAD1>
+Note that if <M>X</M>  and <M>Y</M>  are jointly distributed discrete random variables, then immediatly we are assured of
+having their joint PMF. But not so in case of densities. Even if
+ <M>X</M>  and <M>Y</M>  each has its own density, still <M>(X,Y)</M>  may fail to have a
+ <I>joint</I>  density.
+
+<EXM>Suppose <M>X</M> has density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M> and <M>Y = X.</M>  
+Then show that <M>(X,Y)</M>  does not have a joint density.
+<SOLN/>
+Here the CDF of <M>(X,Y)</M>  is 
+<D>
+F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = <CASES>0<IF>\min\{x,y\}<0</IF> \min\{x,y\}<IF>0\leq \min\{x,y\} < 1</IF> 1<IF>\min\{x,y\} \geq 1</IF></CASES>.
+</D>
+Hence, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
+ by <M>f(x,y)</M>, where 
+<D>f(x,y) = [[\partial^2][\partial x\partial y]] F(x,y).</D>
+This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
+  </EXM>
+However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M>  must also have (marginal) densities.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X</M>  has density as above, then does <M>(X,X^2)</M>  have a joint density?</EXR>
+
+<EXR>Does there exist a CDF  such that if <M>X</M>  has that CDF, then <M>(X,X)</M>  has a joint density?</EXR>
 
 <HEAD1>Independence</HEAD1>
 We already know the following general definition of  jointly distributed random variables being independent:

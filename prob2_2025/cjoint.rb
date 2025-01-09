@@ -416,9 +416,28 @@ Since <M>x_n\downarrow a</M>  and <M>y_n\downarrow b</M>, we have <M>A_n\downarr
 Hence the theorem follows by continuity of probability.  
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Let <M>a_n\uparrow a</M>  and 
-<M>b_n\uparrow  b.</M>  Then show that 
-<D>F(a,b)-F(a_n,b)-F(a,b_n)+F(a_n,b_n)\to P(X=a,\, Y=b).</D>
+<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>  Let <M>x_n\uparrow a</M>  and 
+<M>y_n\uparrow  b.</M>  Then is it true that <M>F(x_n,y_n)\uparrow F(a,b)</M>?
+</EXR>
+
+<EXR>Let <M>(X,Y)</M>  have joint CDF <M>F(x,y).</M>
+Find 
+<M>\lim_{n\to \infty} F(x_n,y_n)</M>  in each of the following cases. Express the limit as the probability of some event
+ in terms of <M>X,Y</M>, whenever possible.
+<OL>
+<LI><M>x_n\to \infty, y_n\to \infty.</M></LI>
+<LI><M>x_n\to \infty, y_n\to -\infty.</M></LI>
+<LI><M>x_n\to -\infty, y_n\to -\infty.</M></LI>
+<LI><M>x_n\to -\infty, y_n\to \infty.</M></LI>
+<LI><M>x_n\equiv a, y_n\to \infty.</M></LI>
+<LI><M>x_n\equiv a, y_n\to -\infty.</M></LI>
+<LI><M>x_n\to \infty, y_n\equiv b.</M></LI>
+<LI><M>x_n\to -\infty, y_n\equiv b.</M></LI>
+<LI><M>x_n\uparrow a, y_n\uparrow b.</M></LI>
+<LI><M>x_n\downarrow a, y_n\uparrow b.</M></LI>
+<LI><M>x_n\uparrow a, y_n\downarrow b.</M></LI>
+<LI><M>x_n\downarrow a, y_n\downarrow b.</M></LI>
+</OL>
 </EXR>
 <HEAD1>Properties of joint distribution: Point mass and continuous</HEAD1>
 Let <M>X</M>  be a random variable with CDF <M>F.</M>  Then the following two statements are equivalent:
