@@ -338,11 +338,11 @@ If <CODE>n</CODE>  is large enough (say at least 5000), then you should see stri
   or <CODE>.mp3</CODE>  extension).  If you cannot record yourself, you may use this hardly audible audio file <LINK
  to="test.wav">test.wav</LINK>  of me rubbing my hands together. Download it your machine. Load it using R:
 <R>
-install.packages('tuneR') #You need to do this only once.
+install.packages('tuneR') #You need to do this only once (with net connection)
 library(tuneR)
 dat = readWave('test.wav') #You may need to give the entire path of the file
 hist(dat@left,probability=TRUE)
-hist(dat@left,breaks=20,probability=TRUE) #finer histogram
+hist(dat@left,breaks=200,probability=TRUE) #finer histogram
 </R>
 </EXR>
 <EXR>
