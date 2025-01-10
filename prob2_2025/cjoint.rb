@@ -439,7 +439,7 @@ Find
 <LI><M>x_n\downarrow a, y_n\downarrow b.</M></LI>
 </OL>
 </EXR>
-<HEAD1>A difference between univariate and joint CDF</HEAD1>
+<HEAD1 u="https://youtu.be/uk4u5koiPr0">Univariate vs multivariate CDF</HEAD1>
 Let <M>X</M>  be a random variable with CDF <M>F.</M>  Then the following two statements are equivalent:
 <OL>
 <LI><M>F</M>  is continuous everywhere.</LI>
@@ -505,10 +505,10 @@ In each case find
 uncountably many discontinuities.
 </EXR>
 
-<HEAD1>Marginals</HEAD1>
+<HEAD1 u="https://youtu.be/SABBZjtYCE8">Marginals</HEAD1>
 We can find the distribution of <M>X</M>  and <M>Y</M>  separately given the joint distribution of <M>(X,Y).</M>  
 The distributions of <M>X</M>  and <M>Y</M>  separately are called their <TERM>marginal</TERM> 
- distributions. The term "marginal" is actually redundant "distribution of <M>X</M> " is the same
+ distributions. The term "marginal" is actually redundant. "Distribution of <M>X</M> " is the same
  as "marginal distribution of <M>X</M> ". The term is used just to contrast with "joint".  
 <THM>
 Let the joint CDF of <M>(X,Y)</M>  be <M>F(x,y).</M>  Let the marginal CDFs of <M>X</M>  and <M>Y</M>  be, respectively,
