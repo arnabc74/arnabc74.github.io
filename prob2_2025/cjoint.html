@@ -215,7 +215,7 @@ function myFunction() {
 <a href="#Problem set 8">Problem set 8</a>
 </li>
 <li>
-<a href="#Properties of joint distribution: Point mass and continuous">Properties of joint distribution: Point mass and continuous</a>
+<a href="#A difference between univariate and joint CDF">A difference between univariate and joint CDF</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 9">Problem set 9</a>
@@ -976,7 +976,7 @@ $\lim_{n\rightarrow \infty} F(x_n,y_n)$  in each of the following cases. Express
 </p>
 
 <h1><a
-name="Properties of joint distribution: Point mass and continuous">Properties of joint distribution: Point mass and continuous</a></h1>
+name="A difference between univariate and joint CDF">A difference between univariate and joint CDF</a></h1>
 Let $X$  be a random variable with CDF $F.$  Then the following two statements are equivalent:
 <ol type="">
 
@@ -1095,6 +1095,9 @@ uncountably many discontinuities.
 <h1><a
 name="Marginals">Marginals</a></h1>
 We can find the distribution of $X$  and $Y$  separately given the joint distribution of $(X,Y).$  
+The distributions of $X$  and $Y$  separately are called their <b><font color="red" size="40">marginal</font></b> 
+ distributions. The term "marginal" is actually redundant "distribution of $X$ " is the same
+ as "marginal distribution of $X$ ". The term is used just to contrast with "joint".  
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let the joint CDF of $(X,Y)$  be $F(x,y).$  Let the marginal CDFs of $X$  and $Y$  be, respectively,
@@ -1131,12 +1134,15 @@ provided these are continuous and $\forall x\in{\mathbb R}~~\int_{-\infty}^x f_X
 
 <p>
 <b><i>Proof:</i></b>
-We have $F_X(x)  = \int_{-\infty}^x \int_{-\infty}^\infty f(s,t)\,dt\,ds.$
+Enough to show that $\forall a\leq b\in{\mathbb R}~~P(a\leq X\leq b) = \int_a^b f_X(x)\, dx.$
 <p></p>
-This is a (univariate) CDF. We know how to find a density for it (if one exists): we have to
- differentiate it and check if integral of the derivative gives back the CDF. 
+Take any $a\leq b\in{\mathbb R}.$  
 <p></p>
-Here, by the fundamental theorem of calculus,  $F_X'(x)  = \int_{-\infty}^\infty f(x,t)\,dt.$  Hence the result.
+Then 
+$$P(a\leq X\leq b) = P(a\leq X\leq b,\, -\infty &lt; Y &lt; \infty) = \int_a^b \int_{-\infty}^\infty f(x,y)\, dy\, dx = \int_a^b f_X(x)\, dx,$$
+as required. 
+<p></p>
+Similarly for $f_Y(y).$
 <b><i>[QED]</i></b>
 </p>
 

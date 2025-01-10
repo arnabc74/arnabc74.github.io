@@ -146,7 +146,7 @@ The proof is not yet over. But let us solve some problems to digest the argument
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
 Consider a density with a graph as shown below.
-<CIMG web="densunb.png"></CIMG>
+<CIMG web="lunb.png"></CIMG>
 Find <M>F(a).</M>  Then express <M>F(x)-F(a)</M>  as the difference of two integrals (you may use
  <M>b</M>  for this). Finally show that <M>\lim_{x\to a+} F(x)-F(a) = 0.</M> 
 </EXR>
@@ -466,7 +466,10 @@ Find its hazard rate function.
 ::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf28.png"/></EXR>
 ::<EXR><EIMG web="rosspdf29.png"/></EXR>
-::<EXR><EIMG web="rosspdf39.png"/></EXR>
+::<EXR><EIMG web="rosspdf39.png"/>
+
+You may like to use the result <M>\int_0^\infty e^{-x^2/2}, dx = \sqrt{[[\pi2]]}.</M>
+</EXR>
 ::<EXR><EIMG web="rosspdf40.png"/></EXR>
 <HEAD1 u="https://youtu.be/PKqSKFayRZ0">Uniform distribution</HEAD1>
 Last semester we often worked wih the discrete uniform distribution, e.g., fair coin toss, fair die roll, drawing a card
