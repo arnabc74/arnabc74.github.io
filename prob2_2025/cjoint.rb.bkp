@@ -575,7 +575,7 @@ However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M> 
 
 <EXR>Does there exist a CDF  such that if <M>X</M>  has that CDF, then <M>(X,X)</M>  has a joint density?</EXR>
 
-<HEAD1>Independence</HEAD1>
+<HEAD1 u="https://youtu.be/MYxgNQkhVhY">Independence</HEAD1>
 We already know the following general definition of  jointly distributed random variables being independent:
 <DEFN name="Independence">
 Let <M>X_1,...,X_n</M>  be jointly distributed random variables. We say they are <TERM>(mutually) independent</TERM>  if
@@ -673,6 +673,17 @@ Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a  ran
 This must be finite.
 </THM>
 
+We have the definition of covariance and correlation as before:
+<D>cov(X,Y) = E[(X-E(X))(Y-E(Y))] = E(XY)-E(X)E(Y),</D>
+and
+<D>cor(X,Y) = [[cov(X,Y)][\sqrt{V(X)V(Y)}]].</D>
+ Cauchy-Schwartz inequality is also the same:
+<D>cov(X,Y)^2\leq V(X) V(Y),</D>
+where iequality hold if and only <M>V(aX+bY) = 0</M>  for some <M>a,b\in\rr.</M>
+The
+ proof that we showed in Probability I was general. An immediate coensequence is that <M>-1\leq cor(X,Y) \leq 1.</M>  Also
+ <M>cor(X,Y)=1</M>  if and only if <M>V(Y-aX) = 0</M>  for some <M>a>0.</M>  SImilarly, <M>cor(X,Y)=-1</M>  holds if and
+ only if <M>V(Y-aX) = 0</M>  for some <M>a < 0.</M>  Check if you remember the proofs. 
 <HEAD2>Independence</HEAD2>
 <THM>If <M>X,Y</M>  are independent, and <M>E(X)</M>, <M>E(Y)</M>  both are finite, then
  <M>E(XY)</M>  must also be finite, and <M>E(XY)=E(X)E(Y).</M></THM>
@@ -693,6 +704,18 @@ Two points to be noted about this theorem:
 </OL>
 
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>Real analysis tells us that <M>\sum [[1][n^3]] < \infty.</M>  Call this <M>c.</M>
+ We can manufacture the following PMF from this:
+<D>p(x) = <CASES>[[1][c x^3]]<IF>x\in\nn</IF> 0<ELSE/></CASES></D>
+Let <M>X</M>  be a random variable with this PMF. Let <M>Y = X.</M>  Show that <M>E(X), E(Y)</M>  are both finite, though
+ <M>E(XY)</M>  is not finite. 
+</EXR>
+
+<EXR>Play with the last exercise to come up with a counterexample where <M>E(X), E(Y)</M>  are
+ both fnite, but <M>E(XY)</M>  does not exists.<ANS>
+Let <M>X</M>  take value <M>(-1)^n n</M>  with probability <M>[[1][cn^3]]</M>  where <M>c = \sum [[1][n^3]] < \infty.</M> 
+ Take <M>Y = |X|.</M>
+</ANS></EXR>
 <HEAD1>Conditional distribution</HEAD1>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If <M>(X,Y)</M>  are jointly discrete then we defined the

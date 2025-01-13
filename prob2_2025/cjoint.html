@@ -1348,7 +1348,17 @@ This must be finite.
 </fieldset>
 
 <p></p>
-
+We have the definition of covariance and correlation as before:
+$$cov(X,Y) = E[(X-E(X))(Y-E(Y))] = E(XY)-E(X)E(Y),$$
+and
+$$cor(X,Y) = \frac{cov(X,Y)}{\sqrt{V(X)V(Y)}}.$$
+ Cauchy-Schwartz inequality is also the same:
+$$cov(X,Y)^2\leq V(X) V(Y),$$
+where iequality hold if and only $V(aX+bY) = 0$  for some $a,b\in{\mathbb R}.$
+The
+ proof that we showed in Probability I was general. An immediate coensequence is that $-1\leq cor(X,Y) \leq 1.$  Also
+ $cor(X,Y)=1$  if and only if $V(Y-aX) = 0$  for some $a&gt;0.$  SImilarly, $cor(X,Y)=-1$  holds if and
+ only if $V(Y-aX) = 0$  for some $a &lt; 0.$  Check if you remember the proofs. 
 <h2><a
 name="Independence">Independence</a></h2>
 
@@ -1381,6 +1391,34 @@ Two points to be noted about this theorem:
 
 <h2><a
 name="Problem set 13">Problem set 13</a></h2>
+
+<p>
+<b>EXERCISE 41:</b>&nbsp;Real analysis tells us that $\sum \frac{1}{n^3} &lt; \infty.$  Call this $c.$
+ We can manufacture the following PMF from this:
+$$p(x) = \left\{\begin{array}{ll}\frac{1}{c x^3}&\text{if }x\in{\mathbb N}\\ 0&\text{otherwise.}\end{array}\right.$$
+Let $X$  be a random variable with this PMF. Let $Y = X.$  Show that $E(X), E(Y)$  are both finite, though
+ $E(XY)$  is not finite. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 42:</b>&nbsp;Play with the last exercise to come up with a counterexample where $E(X), E(Y)$  are
+ both fnite, but $E(XY)$  does not exists.<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
+Let $X$  take value $(-1)^n n$  with probability $\frac{1}{cn^3}$  where $c = \sum \frac{1}{n^3} &lt; \infty.$ 
+ Take $Y = |X|.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 43:</b>&nbsp;
+Let $X$  have density $f(x) =\left\{\begin{array}{ll}\frac 12&\text{if }|x| &lt; 1\\ 0&\text{otherwise.}\end{array}\right. $
+Let $Y = X^2.$  Are $X,Y$  independent? Show that $E(XY) = E(X)E(Y).$
+</p>
 
 <h1><a
 name="Conditional distribution">Conditional distribution</a></h1>
@@ -1461,21 +1499,21 @@ name="Problem set 14">Problem set 14</a></h2>
 <p></p>
 
 <p>
-<b>EXERCISE 41:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
+<b>EXERCISE 44:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
  0\leq y\leq 1\}.$  Guess a conditional density of $X$  given $Y=y?$  First try
  to guess, and then check it from the definition.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 42:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
+<b>EXERCISE 45:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
  0&\text{otherwise.}\end{array}\right.$, where $c_y$  is free of $x.$ 
 Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y,x).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 43:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
+<b>EXERCISE 46:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
 then find $E(X|Y=y)$  and $V(Y|X=x).$</p>
 
 <p></p>
@@ -1525,7 +1563,7 @@ Since this matrix is symmetric, hence the result.
 Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
 proceed more systematically to answer the next problem.
 <p>
-<b>EXERCISE 44:</b>&nbsp;
+<b>EXERCISE 47:</b>&nbsp;
 We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
  $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
  are exchangeable.
@@ -1534,7 +1572,7 @@ We have $n$  balls $m$  of which are dark purple (the rest being of a nondescrip
 <p></p>
 
 <p>
-<b>EXERCISE 45:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+<b>EXERCISE 48:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
  replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
  $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
 
@@ -1564,28 +1602,28 @@ Exchangeable random variables allow for symmetry arguments. The next problem is 
 name="Problem set 15">Problem set 15</a></h2>
 
 <p>
-<b>EXERCISE 46:</b>&nbsp;
+<b>EXERCISE 49:</b>&nbsp;
 If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 47:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
+<b>EXERCISE 50:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
  $Y_1 = X_1+X_2,$  $Y_2 = X_2+X_3,$  and $Y_3 = X_3+X_1.$  Is $(Y_1,Y_2,Y_3)$ 
  exchangeable? Justify your answer.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 48:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
+<b>EXERCISE 51:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
  Without replacing the ball, another ball is drawn at random from the rest, and its number is also
  noted. If the two numbers are $X$  and $Y$, respectively, then is $(X,Y)$  exchangeable?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 49:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
+<b>EXERCISE 52:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
  number $i$  on it  is selected with probability proportional to $i.$
 </p>
 
@@ -1594,41 +1632,41 @@ If $X_1,...,X_n$  are exchangeable positive random variables with finite expecta
 <h1><a
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 67:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 68:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 66:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 69:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 67:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 70:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>
