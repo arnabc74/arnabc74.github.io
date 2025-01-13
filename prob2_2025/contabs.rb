@@ -274,8 +274,11 @@ State true or false: if <M>f(x)</M>  is a density, and <M>g(x)</M>  is obtained 
 <EXR>State true or false: If a distribution has a density, then it also has a continuous density.</EXR>
 
 <EXR>In this problem we shall say that a density  <M>f</M> "sits on"  an interval
- <M>I</M>  if<Q> <M>\forall
- x\in I~~f(x)>0</M>  and <M>f(x)</M>  vanishes outside <M>I.</M></Q>
+ <M>I</M>  if all the three conditions hold:
+<UL><LI> <M>\forall
+ x\in I~~f(x)>0</M></LI>
+<LI><M>f(x)</M>  vanishes outside <M>I.</M></LI>
+<LI><M>f</M>  is continuous on <M>I</M>.</LI></UL>
   Let <M>f,g</M>  be two densities
  for the same distribution. If <M>f</M>  "sits on"an interval  <M>I</M>  and <M>g</M>  "sits on"
  an interval <M>J</M>, then show that the closure if <M>I</M>  and <M>J</M>   must match. (This closure is called the
