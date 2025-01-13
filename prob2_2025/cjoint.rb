@@ -550,7 +550,7 @@ Similarly for <M>f_Y(y).</M>
 ::<EXR><EIMG web="hpsjoint5.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint6.png"/></EXR>
 
-<HEAD1>Marginal densities <M>\not\Rightarrow</M>  joint density</HEAD1>
+<HEAD1 u="https://youtu.be/srZbN5JKwDE">A subtle difference between joint PDF and PMF</HEAD1>
 Note that if <M>X</M>  and <M>Y</M>  are jointly distributed discrete random variables, then immediatly we are assured of
 having their joint PMF. But not so in case of densities. Even if
  <M>X</M>  and <M>Y</M>  each has its own density, still <M>(X,Y)</M>  may fail to have a
@@ -575,7 +575,7 @@ However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M> 
 
 <EXR>Does there exist a CDF  such that if <M>X</M>  has that CDF, then <M>(X,X)</M>  has a joint density?</EXR>
 
-<HEAD1>Independence</HEAD1>
+<HEAD1 u="https://youtu.be/MYxgNQkhVhY">Independence</HEAD1>
 We already know the following general definition of  jointly distributed random variables being independent:
 <DEFN name="Independence">
 Let <M>X_1,...,X_n</M>  be jointly distributed random variables. We say they are <TERM>(mutually) independent</TERM>  if
@@ -634,6 +634,65 @@ Similarly, <M>Y=1</M>  or <M>0</M>  according as the second toss shows head or n
 <EXR>If <M>(X,Y)</M>  are independent, then is it true that the joint CDF
 is the product of the marginal CDFs?
 </EXR>
+
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x,y) = g(x) h(y),</M>  where <M>g(\cdot)</M>  and
+ <M>h(\cdot)</M>  are not necessarily density functions. Find margial densities of <M>X</M>  and
+ <M>Y</M>, and show that <M>X</M>  and <M>Y</M>  must be independent.</EXR>
+
+<HEAD1>Expectation using joint density</HEAD1>
+Suppose <M>X,Y</M>  are jointly  distributed. We often need to find the expectation of <M>h(X,Y)</M>  for some given function
+ <M>h(x,y).</M>  For this we can of course employ the definition by first defining a new random
+ variable,  <M>Z=h(X,Y)</M>. This will take us back to the univariate set up, that we already know to handle. But often a
+But a simpler alternative exists. 
+<THM>
+Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a non-negative random variable, then 
+<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)\, dx\,dy.</D>
+This always exists (though may be <M>\infty</M>). 
+</THM>
+This theorem is the obvious generalisation of the univatiate density case, and like that will be proved once we learn about
+ Lebesgue integral later in this course. If <M>h(X,Y)</M>  can take both positive and negative values, then we proceed in
+ the usual way.
+<THM>
+Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  Let <M>h(X,Y)</M>  be a random variable. Let 
+<MULTILINE>
+h(x,y)_+ & = & \max\{h(x,y),0\},\\
+h(x,y)_- & = & \max\{-h(x,y),0\}.
+</MULTILINE> 
+Then
+<D>E(h(X,Y)) = E(h(X,Y)_+)-E(h(X,Y)_-),</D>
+unless both the expectation on the rhs are <M>\infty</M>, in which case <M>E(h(X,Y))</M>  is undefined.
+</THM>
+<PF>
+This follows immediately from the general definition of expectation.
+</PF>
+
+Again, as in univriate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
+<THM>
+Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a  random variable with <M>E(|h(X,Y)|) < \infty</M>,, then 
+<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)\, dx\,dy.</D>
+This must be finite.
+</THM>
+
+<HEAD2>Independence</HEAD2>
+<THM>If <M>X,Y</M>  are independent, and <M>E(X)</M>, <M>E(Y)</M>  both are finite, then
+ <M>E(XY)</M>  must also be finite, and <M>E(XY)=E(X)E(Y).</M></THM>
+<PF>The result in generally true for any random variables, whether or not densities exist. Indeed,
+ we have already encountered and proved the result for simle random variables in our Probability I
+ course. Here we shall learn the proof in the case when <M>X</M>  and <M>Y</M>  both have
+ densities, <M>f_X(x)</M>  and <M>f_Y(y)</M>, say. 
+
+Since <M>X,Y</M>  are independent, then <M>(X,Y)</M>  has joint density
+<D>f(x,y) = f_X(x)f_Y(y).</D>
+So <M>E(XY) = \int_{-\infty}^\infty\int_{-\infty}^\inftyxy f(x,y)\, dx\, dy = \int_{-\infty}^\infty\int_{-\infty}^\inftyxy f_X(x)f_Y(y)\, dx\, dy = \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy = E(X)E(Y),</M>
+as required.
+</PF>
+Two points to be noted about this theorem:
+<OL><LI>The converse is not true. We have seen counterexamples even in the simple case.</LI>
+<LI>If <M>X,Y</M>  are jointly distributed, and both <M>E(X)</M>  and <M>E(Y)</M>  are finite,
+ even then <M>E(XY)</M>  may fail to be finite, or even exist. The exercises below will give some counterexamples.</LI>
+</OL>
+
+<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Conditional distribution</HEAD1>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If <M>(X,Y)</M>  are jointly discrete then we defined the
