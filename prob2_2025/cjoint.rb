@@ -144,7 +144,7 @@ If <M>f:\rr^2\to[0,\infty)</M>  is  joint density of some <M>(X,Y)</M>, then
 </EXM>
 <EXM>Find <M>c\in\rr</M>  such that <M>f(x,y) =<CASES>c(x+y)<IF>0\leq x,y,\leq 2</IF> 0<ELSE/></CASES> </M>  is a density.
 <SOLN/>
-We need <M>\int_{-\infty}^\infty\int_{-\infty}^\inftyf(x,y)\, dx dy = 1,</M>  i.e., 
+We need <M>\int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)\, dx dy = 1,</M>  i.e., 
 <D>\int_0^2\int_0^2 c(x+y)\, dx dy = 1.</D>
 Now
 <D>\int_0^2\int_0^2 c(x+y)\, dx dy = c\int_0^2[*[\int_0^2 c(x+y)\, dx]*] dy = c\int_0^2[*[ [[12]]x^2+xy]*]_0^2 dy=c\int_0^2( 2+2y)\, dy=8c.</D>
@@ -694,7 +694,8 @@ The
 
 Since <M>X,Y</M>  are independent, then <M>(X,Y)</M>  has joint density
 <D>f(x,y) = f_X(x)f_Y(y).</D>
-So <M>E(XY) = \int_{-\infty}^\infty\int_{-\infty}^\inftyxy f(x,y)\, dx\, dy = \int_{-\infty}^\infty\int_{-\infty}^\inftyxy f_X(x)f_Y(y)\, dx\, dy = \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy = E(X)E(Y),</M>
+So <M>E(XY) = \int_{-\infty}^\infty\int_{-\infty}^\infty xy f(x,y)\, dx\, dy =
+ \int_{-\infty}^\infty\int_{-\infty}^\infty xy f_X(x)f_Y(y)\, dx\, dy = \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy = E(X)E(Y),</M>
 as required.
 </PF>
 Two points to be noted about this theorem:
