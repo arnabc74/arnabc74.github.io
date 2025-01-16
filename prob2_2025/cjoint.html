@@ -242,22 +242,31 @@ function myFunction() {
 <a href="#Expectation using joint density">Expectation using joint density</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Independence">Independence</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 13">Problem set 13</a>
 </li>
 <li>
-<a href="#Conditional distribution">Conditional distribution</a>
+<a href="#Expectation of product of independent random variables">Expectation of product of independent random variables</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 14">Problem set 14</a>
 </li>
 <li>
-<a href="#Exchangeable distribution">Exchangeable distribution</a>
+<a href="#Conditional density (intuition)">Conditional density (intuition)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 15">Problem set 15</a>
+</li>
+<li>
+<a href="#Conditional density (rigour)">Conditional density (rigour)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 16">Problem set 16</a>
+</li>
+<li>
+<a href="#Exchangeable distribution">Exchangeable distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 17">Problem set 17</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
@@ -1307,9 +1316,11 @@ is the product of the marginal CDFs?
 
 <h1><a
 name="Expectation using joint density">Expectation using joint density</a></h1>
+<a href="https://youtu.be/61Se7jsTTkk">Video for this section</a>
+<p></p>
 Suppose $X,Y$  are jointly  distributed. We often need to find the expectation of $h(X,Y)$  for some given function
  $h(x,y).$  For this we can of course employ the definition by first defining a new random
- variable,  $Z=h(X,Y)$. This will take us back to the univariate set up, that we already know to handle. But often a
+ variable,  $Z=h(X,Y)$. This will take us back to the univariate set up, that we already know to handle. 
 But a simpler alternative exists. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -1360,23 +1371,79 @@ The
  $cor(X,Y)=1$  if and only if $V(Y-aX) = 0$  for some $a&gt;0.$  SImilarly, $cor(X,Y)=-1$  holds if and
  only if $V(Y-aX) = 0$  for some $a &lt; 0.$  Check if you remember the proofs. 
 <h2><a
-name="Independence">Independence</a></h2>
+name="Problem set 13">Problem set 13</a></h2>
 
+<p>
+<b>EXERCISE 41:</b>&nbsp;
+Let $(X,Y)$  be uniformly distributed over $S=\{(x,y)~:~0\leq x\leq 1,~x\geq y\}.$
+<ol type="">
+<li>Sketch the set $S$  as a shaded subset of ${\mathbb R}^2.$</li>
+
+<li>Write down a joint density for $(X,Y).$</li>
+
+<li>Evaluate $cov(X,Y).$</li>
+
+</ol>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 42:</b>&nbsp;
+Find $E(X^2Y)$  when $(X,Y)$  has joint density 
+$$f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }0&lt; x &lt; 1\\ 0&\text{otherwise.}\end{array}\right.$$
+</p>
+
+<p></p>
+
+<h1><a
+name="Expectation of product of independent random variables">Expectation of product of independent random variables</a></h1>
+<a href="https://youtu.be/BYH9b8FLE3I">Video for this section</a>
+<p></p>
+Last semester we had worked with simple random variables, and had seen the result that if
+ $X,Y$  are independent simple random variables, then $E(XY)=E(X)E(Y).$  This result is useful and can be generalised
+ to other random variables, as well. However, for a general random variable  expectation may be infinite or undefined. In
+ order to avoid $\infty\times 0$  situations, we restrict ourselves to only the random variables with finite
+ expectations. Then we have the
+ following theorem. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $X,Y$  are independent, and $E(X)$, $E(Y)$  both are finite, then
  $E(XY)$  must also be finite, and $E(XY)=E(X)E(Y).$</fieldset>
 
 <p>
-<b><i>Proof:</i></b>The result in generally true for any random variables, whether or not densities exist. Indeed,
- we have already encountered and proved the result for simle random variables in our Probability I
- course. Here we shall learn the proof in the case when $X$  and $Y$  both have
- densities, $f_X(x)$  and $f_Y(y)$, say. 
+<b><i>Proof:</i></b>
+While the theorem holds for general random variables, we shall prove it here only for the case when $X,Y$  both have
+densitities, $f_X(x)$  and $f_Y(y)$, say.
 <p></p>
-Since $X,Y$  are independent, then $(X,Y)$  has joint density
-$$f(x,y) = f_X(x)f_Y(y).$$
-So $E(XY) = \int_{-\infty}^\infty\int_{-\infty}^\infty xy f(x,y)\, dx\, dy =
- \int_{-\infty}^\infty\int_{-\infty}^\infty xy f_X(x)f_Y(y)\, dx\, dy = \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy = E(X)E(Y),$
-as required.
+Since $X,Y$  are independent, hence $(X,Y)$  must have joint density $f(x,y) = f_X(x)f_Y(y).$
+<p></p>
+We have to work with expectation of $XY$, which may take both positive and negative values.
+ So we cannot immediately apply the integration formula for expectation. 
+<p></p>
+Here this result will come to our help: for a random variable $Z$  we have $E(Z)$ 
+ finite if and only $E(|Z|)&lt; \infty.$  We had seen its proof in Probability I (easy proof: $Z=Z_+-Z_-$  and $|Z|=Z_++Z_-$).
+The advantage of working with $E(|Z|)$  instead of $E(Z)$  is that $|Z|$  is
+ non-negative, and hence always has well-defined expectation (though possibly $\infty$). 
+<p></p>
+We shall first show that
+ $E(|XY|)&lt; \infty,$  which will show the $E(XY)$  is finite, and will let us apply the integration formula. 
+<p></p>
+Since $|XY|$  is non-negative, hence we can use the integration formula for it:
+$$\begin{eqnarray*}
+E(|XY|) &amp; = &amp; \int_{-\infty}^\infty\int_{-\infty}^\infty |xy| f(x,y)\, dx\, dy\\
+&amp; = &amp;  \int_{-\infty}^\infty\int_{-\infty}^\infty |xy| f_X(x)f_Y(y)\, dx\, dy\\
+&amp; = &amp; \int_{-\infty}^\infty |x|f_X(x)\,dx\int_{-\infty}^\infty |y| f_Y(y)\, dy\\
+&amp; = &amp; E(|X|)E(|Y|)&lt;\infty.
+\end{eqnarray*}$$
+<p></p>
+Now we are entitled to use the integration formula for $E(XY),$  and so the same logic as above gives
+$$\begin{eqnarray*}
+E(XY) &amp; = &amp; \int_{-\infty}^\infty\int_{-\infty}^\infty xy f(x,y)\, dx\, dy\\
+&amp; = &amp;  \int_{-\infty}^\infty\int_{-\infty}^\infty xyf_X(x)f_Y(y)\, dx\, dy\\
+&amp; = &amp; \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy\\
+&amp; = &amp; E(X)E(Y).
+\end{eqnarray*}$$
 <b><i>[QED]</i></b>
 </p>
 Two points to be noted about this theorem:
@@ -1391,10 +1458,10 @@ Two points to be noted about this theorem:
 <p></p>
 
 <h2><a
-name="Problem set 13">Problem set 13</a></h2>
+name="Problem set 14">Problem set 14</a></h2>
 
 <p>
-<b>EXERCISE 41:</b>&nbsp;Real analysis tells us that $\sum \frac{1}{n^3} &lt; \infty.$  Call this $c.$
+<b>EXERCISE 43:</b>&nbsp;Real analysis tells us that $\sum \frac{1}{n^3} &lt; \infty.$  Call this $c.$
  We can manufacture the following PMF from this:
 $$p(x) = \left\{\begin{array}{ll}\frac{1}{c x^3}&\text{if }x\in{\mathbb N}\\ 0&\text{otherwise.}\end{array}\right.$$
 Let $X$  be a random variable with this PMF. Let $Y = X.$  Show that $E(X), E(Y)$  are both finite, though
@@ -1404,8 +1471,8 @@ Let $X$  be a random variable with this PMF. Let $Y = X.$  Show that $E(X), E(Y)
 <p></p>
 
 <p>
-<b>EXERCISE 42:</b>&nbsp;Play with the last exercise to come up with a counterexample where $E(X), E(Y)$  are
- both fnite, but $E(XY)$  does not exists.<p><a
+<b>EXERCISE 44:</b>&nbsp;Play with the last exercise to come up with a counterexample where $E(X), E(Y)$  are
+ both fnite, but $E(XY)$  does not exist.<p><a
 href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
 class="ans" id="lab3">
 Let $X$  take value $(-1)^n n$  with probability $\frac{1}{cn^3}$  where $c = \sum \frac{1}{n^3} &lt; \infty.$ 
@@ -1416,28 +1483,50 @@ Let $X$  take value $(-1)^n n$  with probability $\frac{1}{cn^3}$  where $c = \s
 <p></p>
 
 <p>
-<b>EXERCISE 43:</b>&nbsp;
+<b>EXERCISE 45:</b>&nbsp;
 Let $X$  have density $f(x) =\left\{\begin{array}{ll}\frac 12&\text{if }|x| &lt; 1\\ 0&\text{otherwise.}\end{array}\right. $
 Let $Y = X^2.$  Are $X,Y$  independent? Show that $E(XY) = E(X)E(Y).$
 </p>
 
 <h1><a
-name="Conditional distribution">Conditional distribution</a></h1>
+name="Conditional density (intuition)">Conditional density (intuition)</a></h1>
+<a href="https://youtu.be/ThHaLNSDZKI">Video for this section</a>
+<p></p>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If $(X,Y)$  are jointly discrete then we defined the
- conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y}{P(Y=y)},$  
+ conditional PMF of $X$  given $Y=y$  as $x\mapsto P(X=x|Y=y) = \frac{P(x=x,Y=y)}{P(Y=y)},$  
 and we did this only  for those $y$ for which $P(Y=y)&gt;0.$
 <p></p>
-But if $(X,Y)$  has a joint density, then $P(Y=y)$  is always 0. So instead, we follow a slightly different path:
-<p></p>
-
+But if $(X,Y)$  has a joint density, then $P(Y=y)$  is always 0. So we employ a little trick. For a discrete random variable
+ $X$  with PMF $f(x)$  we have $\forall a\in{\mathbb R}~~f(a) = P(X=a).$  But had $f(x)$  been a
+ density, then we could not write this anymore,
+since $\forall a\in{\mathbb R}~~P(X=a)=0.$  However, if $f$  is
+ continuous at $a$, then  we could think 
+$$P(X\approx a) = P\left(X\in\left(a-\frac \epsilon2,a+\frac \epsilon2\right) \right) \approx f(a) \epsilon.\hspace{1in} \mbox{(*)}$$
+Similarly, if $(X,Y)$  has joint density $f(x,y)$, which is continuous at $(a,b)$  we can say 
+$$\begin{eqnarray*}
+P(X\approx a,\, Y\approx b) 
+&amp; = &amp; P\left(X\in \left(a-\frac \epsilon2, a+\frac \epsilon2\right) ,\,  Y\in \left(b-\frac \epsilon2,b+\frac \epsilon2\right) \right)\\
+&amp; \approx &amp; f(a,b)\epsilon^2.
+\end{eqnarray*}$$
+So instead of working with $P(X=a | Y=b)$  we shall instead work with
+$$P(X\approx a | Y\approx b) = \frac{P(X\approx a,\, Y\approx b)}{P(Y \approx b)} \approx \frac{f(a,b) \epsilon^2}{f_Y(b) \epsilon} = \frac{f(a,b)}{f_Y(b)} \epsilon.$$
+The similarity between this and (*) immediately leads us to define <b><font color="red" size="40">conditional density</font></b>  of $X$  given $Y=y$ 
+ as 
+$$f_{X|Y}(x,y) =\frac{f(x,y)}{f_Y(y)}.$$ 
+Since we are dividing by $f_Y(y)$, we naturally want $f_Y(y)&gt;0.$  But $f_Y$  being a density can be given
+ arbitrary non-negative
+ value at any fixed $y.$  To uniquely specify $f_Y(y)$  we naturally assume continuity of $f_Y$  at that point.
+ So we arrive at thefollowing definition.
 <fieldset>
 <legend><b>Definition: Conditional density</b></legend>
-If $(X,Y)$  has joint density, $f(x,y),$  then we define a <b><font color="red" size="40">conditional density</font></b>  of
+Let $(X,Y)$  have joint density, $f(x,y).$  
+Then we define <b><font color="red" size="40">conditional density</font></b>  of
  $X$  given $Y=y$ 
  as 
-$$f_{X|Y}(x,y) =\frac{f(x,y)}{f_Y(y)}$$ 
-where $f_Y(y)=\int_{-\infty}^\infty f(x,y)\, dx &gt; 0.$
+$$f_{X|Y}(x,y) =\frac{f(x,y)}{f_Y(y)}.$$ 
+Here we are assuming that  $y$  is such that  $f_Y$
+is continuous and positive at  $y.$
 </fieldset>
 It is obvious that this is a density, since it is non-negative, and 
 $\int_{-\infty}^\infty f_{X|Y}(x,y)\, dx = \frac{\int_{-\infty}^\infty f(x,y)\, dx}{f_Y(y)}=1.$
@@ -1446,7 +1535,18 @@ The most glaring difference between conditional PDF and conditional PMF is that 
  since $P(Y=y)=0.$  Due to the same reason,
 $\int_a^bf_{X|Y}(x,y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$
 <p></p>
-However, the theorem of total probability is still valid:
+
+<h2><a
+name="Problem set 15">Problem set 15</a></h2>
+
+<p>
+<b>EXERCISE 46:</b>&nbsp;Find conditional density of $X$  given $Y=\frac 12$  if the joint density of $(X,Y)$  is </p>
+$$f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }0&lt; x &lt; 1\\ 0&\text{otherwise.}\end{array}\right.$$
+<h1><a
+name="Conditional density (rigour)">Conditional density (rigour)</a></h1>
+<a href="https://youtu.be/-7x_sra_fyg">Video for this section</a>
+<p></p>
+We defined conditional density in a heuristic way. However, the theorem of total probability is still valid perfectly rigourously:
 <p></p>
 
 <fieldset>
@@ -1495,26 +1595,26 @@ as required.
 </p>
 
 <h2><a
-name="Problem set 14">Problem set 14</a></h2>
+name="Problem set 16">Problem set 16</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 44:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
+<b>EXERCISE 47:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
  0\leq y\leq 1\}.$  Guess a conditional density of $X$  given $Y=y?$  First try
  to guess, and then check it from the definition.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 45:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
+<b>EXERCISE 48:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
  0&\text{otherwise.}\end{array}\right.$, where $c_y$  is free of $x.$ 
 Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y,x).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 46:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
+<b>EXERCISE 49:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
 then find $E(X|Y=y)$  and $V(Y|X=x).$</p>
 
 <p></p>
@@ -1564,7 +1664,7 @@ Since this matrix is symmetric, hence the result.
 Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
 proceed more systematically to answer the next problem.
 <p>
-<b>EXERCISE 47:</b>&nbsp;
+<b>EXERCISE 50:</b>&nbsp;
 We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
  $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
  are exchangeable.
@@ -1573,7 +1673,7 @@ We have $n$  balls $m$  of which are dark purple (the rest being of a nondescrip
 <p></p>
 
 <p>
-<b>EXERCISE 48:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+<b>EXERCISE 51:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
  replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
  $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
 
@@ -1600,31 +1700,31 @@ Then the joint CDF of $(X_{i_1},...,X_{i_k})$  is $F(x_1,...,x_k,\infty,...,\inf
 <p></p>
 Exchangeable random variables allow for symmetry arguments. The next problem is one example. 
 <h2><a
-name="Problem set 15">Problem set 15</a></h2>
+name="Problem set 17">Problem set 17</a></h2>
 
 <p>
-<b>EXERCISE 49:</b>&nbsp;
+<b>EXERCISE 52:</b>&nbsp;
 If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 50:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
+<b>EXERCISE 53:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
  $Y_1 = X_1+X_2,$  $Y_2 = X_2+X_3,$  and $Y_3 = X_3+X_1.$  Is $(Y_1,Y_2,Y_3)$ 
  exchangeable? Justify your answer.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 51:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
+<b>EXERCISE 54:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
  Without replacing the ball, another ball is drawn at random from the rest, and its number is also
  noted. If the two numbers are $X$  and $Y$, respectively, then is $(X,Y)$  exchangeable?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 52:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
+<b>EXERCISE 55:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
  number $i$  on it  is selected with probability proportional to $i.$
 </p>
 
@@ -1633,41 +1733,41 @@ If $X_1,...,X_n$  are exchangeable positive random variables with finite expecta
 <h1><a
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 67:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 68:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 66:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 69:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 67:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 70:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 68:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 71:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 69:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 72:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 70:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 73:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

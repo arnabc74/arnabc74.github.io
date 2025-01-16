@@ -144,7 +144,7 @@ If <M>f:\rr^2\to[0,\infty)</M>  is  joint density of some <M>(X,Y)</M>, then
 </EXM>
 <EXM>Find <M>c\in\rr</M>  such that <M>f(x,y) =<CASES>c(x+y)<IF>0\leq x,y,\leq 2</IF> 0<ELSE/></CASES> </M>  is a density.
 <SOLN/>
-We need <M>\int_{-\infty}^\infty\int_{-\infty}^\inftyf(x,y)\, dx dy = 1,</M>  i.e., 
+We need <M>\int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)\, dx dy = 1,</M>  i.e., 
 <D>\int_0^2\int_0^2 c(x+y)\, dx dy = 1.</D>
 Now
 <D>\int_0^2\int_0^2 c(x+y)\, dx dy = c\int_0^2[*[\int_0^2 c(x+y)\, dx]*] dy = c\int_0^2[*[ [[12]]x^2+xy]*]_0^2 dy=c\int_0^2( 2+2y)\, dy=8c.</D>
@@ -642,7 +642,7 @@ is the product of the marginal CDFs?
 <HEAD1>Expectation using joint density</HEAD1>
 Suppose <M>X,Y</M>  are jointly  distributed. We often need to find the expectation of <M>h(X,Y)</M>  for some given function
  <M>h(x,y).</M>  For this we can of course employ the definition by first defining a new random
- variable,  <M>Z=h(X,Y)</M>. This will take us back to the univariate set up, that we already know to handle. But often a
+ variable,  <M>Z=h(X,Y)</M>. This will take us back to the univariate set up, that we already know to handle. 
 But a simpler alternative exists. 
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a non-negative random variable, then 
@@ -684,18 +684,61 @@ The
  proof that we showed in Probability I was general. An immediate coensequence is that <M>-1\leq cor(X,Y) \leq 1.</M>  Also
  <M>cor(X,Y)=1</M>  if and only if <M>V(Y-aX) = 0</M>  for some <M>a>0.</M>  SImilarly, <M>cor(X,Y)=-1</M>  holds if and
  only if <M>V(Y-aX) = 0</M>  for some <M>a < 0.</M>  Check if you remember the proofs. 
-<HEAD2>Independence</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\geq y\}.</M>
+<OL><LI>Sketch the set <M>S</M>  as a shaded subset of <M>\rr^2.</M></LI>
+<LI>Write down a joint density for <M>(X,Y).</M></LI>
+<LI>Evaluate <M>cov(X,Y).</M></LI>
+</OL>
+</EXR>
+
+<EXR>
+Find <M>E(X^2Y)</M>  when <M>(X,Y)</M>  has joint density 
+<D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
+</EXR>
+
+<HEAD1>Expectation of product of independent random variables</HEAD1>
+Last semester we had worked with simple random variables, and had seen the result that if
+ <M>X,Y</M>  are independent simple random variables, then <M>E(XY)=E(X)E(Y).</M>  This result is useful and can be generalised
+ to other random variables, as well. However, for a general random variable  expectation may be infinite or undefined. In
+ order to avoid <M>\infty\times 0</M>  situations, we restrict ourselves to only the random variables with finite
+ expectations. Then we have the
+ following theorem. 
 <THM>If <M>X,Y</M>  are independent, and <M>E(X)</M>, <M>E(Y)</M>  both are finite, then
  <M>E(XY)</M>  must also be finite, and <M>E(XY)=E(X)E(Y).</M></THM>
-<PF>The result in generally true for any random variables, whether or not densities exist. Indeed,
- we have already encountered and proved the result for simle random variables in our Probability I
- course. Here we shall learn the proof in the case when <M>X</M>  and <M>Y</M>  both have
- densities, <M>f_X(x)</M>  and <M>f_Y(y)</M>, say. 
+<PF>
+While the theorem holds for general random variables, we shall prove it here only for the case when <M>X,Y</M>  both have
+densitities, <M>f_X(x)</M>  and <M>f_Y(y)</M>, say.
 
-Since <M>X,Y</M>  are independent, then <M>(X,Y)</M>  has joint density
-<D>f(x,y) = f_X(x)f_Y(y).</D>
-So <M>E(XY) = \int_{-\infty}^\infty\int_{-\infty}^\inftyxy f(x,y)\, dx\, dy = \int_{-\infty}^\infty\int_{-\infty}^\inftyxy f_X(x)f_Y(y)\, dx\, dy = \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy = E(X)E(Y),</M>
-as required.
+Since <M>X,Y</M>  are independent, hence <M>(X,Y)</M>  must have joint density <M>f(x,y) = f_X(x)f_Y(y).</M>
+
+We have to work with expectation of <M>XY</M>, which may take both positive and negative values.
+ So we cannot immediately apply the integration formula for expectation. 
+
+Here this result will come to our help: for a random variable <M>Z</M>  we have <M>E(Z)</M> 
+ finite if and only <M>E(|Z|)< \infty.</M>  We had seen its proof in Probability I (easy proof: <M>Z=Z_+-Z_-</M>  and <M>|Z|=Z_++Z_-</M>).
+The advantage of working with <M>E(|Z|)</M>  instead of <M>E(Z)</M>  is that <M>|Z|</M>  is
+ non-negative, and hence always has well-defined expectation (though possibly <M>\infty</M>). 
+  
+We shall first show that
+ <M>E(|XY|)< \infty,</M>  which will show the <M>E(XY)</M>  is finite, and will let us apply the integration formula. 
+
+Since <M>|XY|</M>  is non-negative, hence we can use the integration formula for it:
+<MULTILINE>
+E(|XY|) & = & \int_{-\infty}^\infty\int_{-\infty}^\infty |xy| f(x,y)\, dx\, dy\\
+& = &  \int_{-\infty}^\infty\int_{-\infty}^\infty |xy| f_X(x)f_Y(y)\, dx\, dy\\
+& = & \int_{-\infty}^\infty |x|f_X(x)\,dx\int_{-\infty}^\infty |y| f_Y(y)\, dy\\
+& = & E(|X|)E(|Y|)<\infty.
+</MULTILINE>
+
+Now we are entitled to use the integration formula for <M>E(XY),</M>  and so the same logic as above gives
+<MULTILINE>
+E(XY) & = & \int_{-\infty}^\infty\int_{-\infty}^\infty xy f(x,y)\, dx\, dy\\
+& = &  \int_{-\infty}^\infty\int_{-\infty}^\infty xyf_X(x)f_Y(y)\, dx\, dy\\
+& = & \int_{-\infty}^\infty xf_X(x)\,dx\int_{-\infty}^\infty y f_Y(y)\, dy\\
+& = & E(X)E(Y).
+</MULTILINE>
 </PF>
 Two points to be noted about this theorem:
 <OL><LI>The converse is not true. We have seen counterexamples even in the simple case.</LI>
@@ -712,29 +755,50 @@ Let <M>X</M>  be a random variable with this PMF. Let <M>Y = X.</M>  Show that <
 </EXR>
 
 <EXR>Play with the last exercise to come up with a counterexample where <M>E(X), E(Y)</M>  are
- both fnite, but <M>E(XY)</M>  does not exists.<ANS>
+ both fnite, but <M>E(XY)</M>  does not exist.<ANS>
 Let <M>X</M>  take value <M>(-1)^n n</M>  with probability <M>[[1][cn^3]]</M>  where <M>c = \sum [[1][n^3]] < \infty.</M> 
  Take <M>Y = |X|.</M>
 </ANS></EXR>
 
 <EXR>
 Let <M>X</M>  have density <M>f(x) =<CASES>[[12]]<IF>|x| < 1</IF> 0<ELSE/></CASES> </M>
-Let <M>Y = X^2.</M>  Are <M>X,Y</M>  independent?
+Let <M>Y = X^2.</M>  Are <M>X,Y</M>  independent? Show that <M>E(XY) = E(X)E(Y).</M>
 </EXR>
-<HEAD1>Conditional distribution</HEAD1>
+<HEAD1>Conditional density (part 1)</HEAD1>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If <M>(X,Y)</M>  are jointly discrete then we defined the
- conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(x=x,Y=y][P(Y=y)]],</M>  
+ conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(x=x,Y=y)][P(Y=y)]],</M>  
 and we did this only  for those <M>y</M> for which <M>P(Y=y)>0.</M>
 
-But if <M>(X,Y)</M>  has a joint density, then <M>P(Y=y)</M>  is always 0. So instead, we follow a slightly different path:
-
+But if <M>(X,Y)</M>  has a joint density, then <M>P(Y=y)</M>  is always 0. So we employ a little trick. For a discrete random variable
+ <M>X</M>  with PMF <M>f(x)</M>  we have <M>\forall a\in\rr~~f(a) = P(X=a).</M>  But had <M>f(x)</M>  been a
+ density, then we could not write this anymore,
+since <M>\forall a\in\rr~~P(X=a)=0.</M>  However, if <M>f</M>  is
+ continuous at <M>a</M>, then  we could think 
+<D lab="(*)">P(X\approx a) = P(*(X\in(*(a-[[\epsilon2]],a+[[\epsilon2]])*) )*) \approx f(a) \epsilon.</D>
+Similarly, if <M>(X,Y)</M>  has joint density <M>f(x,y)</M>, which is continuous at <M>(a,b)</M>  we can say 
+<MULTILINE>
+P(X\approx a,\, Y\approx b) 
+& = & P(*(X\in (*(a-[[\epsilon2]], a+[[\epsilon2]])*) ,\,  Y\in (*(b-[[\epsilon2]],b+[[\epsilon2]])*) )*)\\
+& \approx & f(a,b)\epsilon^2.
+</MULTILINE>
+So instead of working with <M>P(X=a | Y=b)</M>  we shall instead work with
+<D>P(X\approx a | Y\approx b) = [[P(X\approx a,\, Y\approx b)][P(Y \approx b)]] \approx [[f(a,b) \epsilon^2][f_Y(b) \epsilon]] = [[f(a,b)][f_Y(b)]] \epsilon.</D>
+The similarity between this and (*) immediately leads us to define <TERM>conditional density</TERM>  of <M>X</M>  given <M>Y=y</M> 
+ as 
+<D>f_{X|Y}(x,y) =[[f(x,y)][f_Y(y)]].</D> 
+Since we are dividing by <M>f_Y(y)</M>, we naturally want <M>f_Y(y)>0.</M>  But <M>f_Y</M>  being a density can be given
+ arbitrary non-negative
+ value at any fixed <M>y.</M>  To uniquely specify <M>f_Y(y)</M>  we naturally assume continuity of <M>f_Y</M>  at that point.
+ So we arrive at thefollowing definition.
 <DEFN name="Conditional density">
-If <M>(X,Y)</M>  has joint density, <M>f(x,y),</M>  then we define a <TERM>conditional density</TERM>  of
+Let <M>(X,Y)</M>  have joint density, <M>f(x,y).</M>  
+Then we define <TERM>conditional density</TERM>  of
  <M>X</M>  given <M>Y=y</M> 
  as 
-<D>f_{X|Y}(x,y) =[[f(x,y)][f_Y(y)]]</D> 
-where <M>f_Y(y)=\int_{-\infty}^\infty f(x,y)\, dx > 0.</M>
+<D>f_{X|Y}(x,y) =[[f(x,y)][f_Y(y)]].</D> 
+Here we are assuming that  <M>y</M>  is such that  <M>f_Y</M>
+is continuous and positive at  <M>y.</M>
 </DEFN>
 It is obvious that this is a density, since it is non-negative, and 
 <M>\int_{-\infty}^\infty f_{X|Y}(x,y)\, dx = [[\int_{-\infty}^\infty f(x,y)\, dx][f_Y(y)]]=1.</M>
@@ -743,7 +807,11 @@ The most glaring difference between conditional PDF and conditional PMF is that 
  since <M>P(Y=y)=0.</M>  Due to the same reason,
 <M>\int_a^bf_{X|Y}(x,y)\, dx</M>  does not give <M>P(X\in [a,b]|Y=y),</M>  as <M>P(Y=y)=0.</M>
 
-However, the theorem of total probability is still valid:
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find conditional density of <M>X</M>  given <M>Y=[[12]]</M>  if the joint density of <M>(X,Y)</M>  is </EXR>
+<D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
+<HEAD1>Conditional density</HEAD1>
+We defined conditional density in a heuristic way. However, the theorem of total probability is still valid perfectly rigourously:
 
 <THM name="Total probability"><M>\int_c^d \int_a^bf_{X|Y}(x,y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).</M></THM>
 <PF>  This is obvious

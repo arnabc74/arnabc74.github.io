@@ -158,28 +158,43 @@ function myFunction() {
 <a href="#Problem set 1">Problem set 1</a>
 </li>
 <li>
-<a href="#Minimum, maximum and other order statistics">Minimum, maximum and other order statistics</a>
+<a href="#Order statistics (part 1)">Order statistics (part 1)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 2">Problem set 2</a>
 </li>
 <li>
-<a href="#Using Jacobian">Using Jacobian</a>
+<a href="#Order statistics (part 2)">Order statistics (part 2)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 3">Problem set 3</a>
 </li>
 <li>
-<a href="#Sum">Sum</a>
+<a href="#Order statistics (part 3)">Order statistics (part 3)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 4">Problem set 4</a>
 </li>
 <li>
-<a href="#Quotient">Quotient</a>
+<a href="#Using Jacobian (part 1)">Using Jacobian (part 1)</a>
+</li>
+<li>
+<a href="#Using Jacobian (part 2)">Using Jacobian (part 2)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 5">Problem set 5</a>
+</li>
+<li>
+<a href="#Sum">Sum</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
+<a href="#Quotient">Quotient</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
 <a href="#Problems for practice">Problems for practice</a>
@@ -196,11 +211,13 @@ So a natural requirement is to be able to work out the distributions of the new 
 
 <h1><a
 name="Via CDF">Via CDF</a></h1>
+<a href="https://youtu.be/I-bRxjHDWNU">Video for this section</a>
+<p></p>
 If we working with univariate distributions, then the most general (and often the simplest)
  technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
 <p>
 <b>EXAMPLE 1:</b>&nbsp;
-If $X$  is uniformaly distributed over $[0,2],$  then find a density for $X^2.$  
+If $X$  is uniformly distributed over $[0,2],$  then find a density for $X^2.$  
 <p></p>
 <b>SOLUTION:</b>
 Let $Y = X^2.$  A density for $X$  is $f(x) = \frac 12$  if $0\leq x\leq 2$  (and 0 else). We shall pass
@@ -214,7 +231,7 @@ Let $y\in[0,2).$
 Then 
 $$G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = \frac 12\sqrt y.$$
 Differentiating this, we arrive at the required density of $Y$  as
-$$g(y) = G'(y) = \left\{\begin{array}{ll}\frac{1}{4y}&\text{if }y\in[0,2]\\ 0&\text{otherwise.}\end{array}\right.$$
+$$g(y) = G'(y) = \left\{\begin{array}{ll}\frac{1}{4\sqrt y}&\text{if }y\in[0,2]\\ 0&\text{otherwise.}\end{array}\right.$$
  ■
 </p> 
 You see the advantage of monotonicity. Even though $x\mapsto x^2$  is a not a monotone function over ${\mathbb R},$  it
@@ -279,7 +296,9 @@ If $X$  has density $f(x)=\left\{\begin{array}{ll}2x&\text{if }x\in(0,1)\\ 0&\te
 <p></p>
 
 <h1><a
-name="Minimum, maximum and other order statistics">Minimum, maximum and other order statistics</a></h1>
+name="Order statistics (part 1)">Order statistics (part 1)</a></h1>
+<a href="https://youtu.be/iXBVeR0qeEA">Video for this section</a>
+<p></p>
 An interesting application of non-monotonic transformation that can be handled by CDF is about
  <b><font color="red" size="40">order statistic</font></b>s.   If we have a random sample $X_1,...,X_n$, and sort them as $X_{(1)}\leq X_{(2)}\leq \cdots X_{(n)},$ 
  then $X_{(i)}$  is called the <b><font color="red" size="40">$i$-th order statistic</font></b>. 
@@ -290,91 +309,6 @@ We shall start with the simplest case $\x n$, the maximum. Let $X_i$'s be IID wi
 We shall first compute the CDF $G(x)$of $\x n.$  
 $$G(x) = P(\x n\leq x) = P(\forall i~~X_i\leq x) = P(X_1\leq x)\cdots P(X_n\leq x) =(F(x))^n.$$
 Hence a density of $\x n$  is $g(x) = G'(x) = n(F(x))^{n-1}f(x).$  
-<p></p>
-There is a particularly simple formula for the joint density of $(\x 1,...,\x n)$  if we know
- the joint density of $(X_1,...,X_n).$  Before giving the general form, let us warn up with a simple example.
-<p></p>
-
-<p>
-<b>EXAMPLE 3:</b>&nbsp;
-Let $(X_1,X_2)$  have joint density $f(x_1,x_2).$  Then find the joint density of $(\x 1, \x 2).$
-<p></p>
-<b>SOLUTION:</b>
-We shall first compute the joint CDF of $(\x 1, \x 2).$  Let us find $G(3,2) = P(\x 1\leq 3,\x 2\leq 2) = P(\x 2\leq 2),$ 
- since $\{\x _1\leq 3,\, \x 2\leq 2\} = \{\x 2\leq 2\}. $  
-<p></p>
-More generally, if $x &gt; y,$  then $G(x,y)$  is going to be free of $x.$
-<p></p>
-Remember that our final goal is to find the joint density of $(\x 1, \x 2)$, and for that we are going to differentiate
- partially
- w.r.t. both the arguments. So if $G(x,y)$  does not depend on either $x$  or $y$  then the density will be
- zero. 
-<p></p>
-So if $x &gt; y,$  we have $g(x,y)=0.$  
-<p></p>
-Now let us explore $G(2,3) = P(\x 1\leq 2,\, \x 2\leq 3).$ 
-By the inclusion-exclusion principle, this is $P(X_1\leq 2,\, X_2\leq 3)+P(X_1\leq 3,\, X_2\leq 2)-P(X_1\leq 2,\, X_2\leq 2)=F(2,3)+F(3,2)+F(2,2).$
-<p></p>
-In general, for $x &lt; y$  we have $G(x,y) = F(x,y)+F(y,x)-F(x,x).$
-<p></p>
-The last term will be killed when we differentiate wrt $y.$  The first two terms will
- produce $f(x,y)+f(y,x).$     
-<p></p>
-So the required joint density of $(\x 1, \x 2)$  will be $f(u,v),$  where
-$$f(u,v)=\left\{\begin{array}{ll}f(u,v)+f(v,u)&\text{if }u &lt; v\\ 0&\text{otherwise.}\end{array}\right.$$
- ■
-</p> 
- Once you notice that only the first inclusion terms will survive the differentiations, you can easily generalise to 
-any finite number of variables. This produces the following theorem.
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $X_1,...,X_n$  are jointly distributed random variables with joint pdf $f(x_1,...,x_n),$  then the joint density
- of the order statistics $(\x 1,...,\x n)$  is 
-$$g(u_1,...,u_n)=\left\{\begin{array}{ll}\sum_\pi f(u_{\pi(1)},...,u_{\pi(n)})&\text{if }u_1 &lt; \cdots &lt; u_n\\ 0&\text{otherwise.}\end{array}\right.,$$
-where the sum is over all $n!$  permutations $\pi$  of $\{1,...,n\}.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-The proof is exactly as for the bivariate case. The only point that is slightly non-trivial is the inclusion-exclusion, and
- the vanishing of all but the first inclusion terms upon differentiation. 
-<p></p>
-To see this notice that their are $n!$  inclusion terms in the first step.
-A typical of these terms is like $P(A_\pi),$  where
-$$A_\pi = \{X_1\leq u_{\pi(1)},...,X_n\leq u_{\pi(n)}\},$$  
-where $\pi$  is some permutation of $\{1,...,n\}.$  If we take some other permutation $\xi$  we get $A_\xi.$ 
- Then the intesection is 
-$$A_\pi\cap A_\xi = \{\forall i~~X_i\leq \min\{u_{\pi(i)},u_{\xi(i)}\}\}.$$
-This is bound to be free of at least one $u_i.$  
-<blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">
-Since $\pi\neq\xi,$  hence $\pi(i)\neq \xi(i)$  for some $i.$  Let $\pi(i) = a$  and $\xi(i) =b.$ 
- Then it involves only the smaller of $u_a$  and $u_b.$
-</div></blockquote> 
-
-<p></p>
-
-<b><i>[QED]</i></b>
-</p>
- In the IID case we have the following special case:
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $X_1,...,X_n$  are IID with density $f(x),$  then the joint density
- of the order statistics $(\x 1,...,\x n)$  is 
-$$g(u_1,...,u_n)=\left\{\begin{array}{ll}n!f(u_1)\cdots f(u_n)&\text{if }u_1 &lt; \cdots &lt; u_n\\ 0&\text{otherwise.}\end{array}\right..$$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-It follows immediately from the above theorem on noticing that the joint density of $(X_1,...,X_n)$  is $f(x_1)\cdots f(x_n).$
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
 <h2><a
 name="Problem set 2">Problem set 2</a></h2>
 
@@ -396,6 +330,68 @@ $f(x)=\left\{\begin{array}{ll}\frac 1\theta&\text{if }x\in(0,\theta)\\
 
 <p></p>
 
+<h1><a
+name="Order statistics (part 2)">Order statistics (part 2)</a></h1>
+<a href="https://youtu.be/4Jm_oZYM4xY">Video for this section</a>
+<p></p>
+If $X_1,...,X_n$  are IID with density $f(x)$  then there is a particularly simple formula for the joint density of $(\x 1,...,\x n).$
+Before giving the general form, let us warm up with a simple example.
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Let $X_1, X_2$  be IID with density $f(x)$  and CDF $F(x).$
+Show that the joint CDF of $(\x 1, \x 2)$  (call it $G(x,y)$, say)  is free of
+ $x$  when $x&gt;y.$  So what will be $\frac{\partial^2}{\partial x\partial y} G(x,y)$  in this case?
+<p></p>
+<b>SOLUTION:</b>
+To keep things concrete, let's first work with $x=3$  and $y=2.$  Then
+$G(3,2) = P(\x 1\leq 3,\x 2\leq 2) = P(\x 2\leq 2),$ 
+ since $\{\x 1\leq 3,\, \x 2\leq 2\} = \{\x 2\leq 2\}. $  
+<p></p>
+More generally, if $x &gt; y,$  then $G(x,y)$  is going to be free of $x.$
+<p></p>
+So we have $\frac{\partial^2}{\partial x\partial y} G(x,y) = 0$  if $x &gt; y.$
+ ■
+</p>
+If we work with $X_1,...,X_n$  instead of just $X_1,X_2,$  then the same argument would show that 
+$\frac{\partial^n}{\partial x_1\cdots\partial x_n} G(x_1,...,x_n) = 0$  unless $x_1\leq x_2\leq\cdots\leq x_n.$ 
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Same set up as in the last example. Now find $G(x,y)$  for $x &lt; y.$  Again find $\frac{\partial^2}{\partial x\partial y} G(x,y).$
+<p></p>
+<b>SOLUTION:</b>
+Let us start with $x=3$  and $y=2.$  Then
+$G(2,3) = P(\x 1\leq 2,\, \x 2\leq 3).$ 
+<p></p>
+By the inclusion-exclusion principle, this is $P(X_1\leq 2,\, X_2\leq 3)+P(X_1\leq 3,\, X_2\leq 2)-P(X_1\leq 2,\, X_2\leq 2)=F(2)F(3)+F(3)F(2)-F(2)^2.$
+<p></p>
+In general, for $x &lt; y$  we have $G(x,y) = 2F(x)F(y)-F(x)^2.$
+<p></p>
+The last term will be killed when we differentiate wrt $y.$  The first term will
+ produce $2f(x)f(y).$     So $\frac{\partial^2}{\partial x\partial y} G(x,y)= 2f(x)f(y).$
+ ■
+</p> 
+Again, if we work with $X_1,...,X_n$  instead of just $X_1,X_2,$  then the same argument would show that 
+$\frac{\partial^n}{\partial x_1\cdots\partial x_n} G(x_1,...,x_n) = n!f(x_1)f(x_2)\cdots f(x_n)$ if
+ $x_1\leq x_2\leq\cdots\leq x_n.$ 
+<p></p>
+Combining our findings from the two example,  
+we get the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are IID with density $f(x),$  then the joint density
+ of the order statistics $(\x 1,...,\x n)$  is 
+$$g(x_1,...,x_n)=\left\{\begin{array}{ll}n!f(x_1)\cdots f(x_n)&\text{if }x_1 &lt; \cdots &lt; x_n\\ 0&\text{otherwise.}\end{array}\right..$$
+</fieldset>
+
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
 <p>
 <b>EXERCISE 9:</b>&nbsp;If $X_1,X_2,X_3$  are IID with density 
 $f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\
@@ -415,7 +411,67 @@ $$P(\x k\leq x) = \sum_{j=k}^n \binom n j F(x)^j(1-F(x))^{n-j}.$$
 <p></p>
 
 <h1><a
-name="Using Jacobian">Using Jacobian</a></h1>
+name="Order statistics (part 3)">Order statistics (part 3)</a></h1>
+Here we shall dicuss an interesting heuristics. 
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;If $X_1,...,X_{20}$  are IID with density $f(x),$  then write down the joint density of $(\x 3, \x 4, \x 7, \x {15}).$
+<p></p>
+<b>SOLUTION:</b>
+We can of course derive the required joint density by starting with the joint density of $(\x 1,...,\x {20})$  and then
+ integrating over all $\x i$  for $i\not\in\{3,4,7,15\}.$  But there is a simple heuristic alternative worth learning.
+<p></p>
+Let the required joint density be $g(a,b,c,d).$  Think of it like this: if, for some very
+ small $\epsilon &gt; 0$  we write $x\approx y$  to mean $x\in\left(y-\frac \epsilon2,y+\frac \epsilon2\right),$  then
+$$P(\x 3\approx a,\, \x 4\approx b,\, \x 7\approx c,\, \x {15}\approx d)\approx g(a,b,c,d) \epsilon^4.$$
+The heuristic technique tries to find the probability directly using combinatorics (and a pinch of salt). Consider the number
+ line below, and think of how the $\x i$'s are scattered along it.
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ordline0.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+From this we can see how many $X_i$'s need to be where:
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ordline1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Partition $\{1,2,...,20\}$  into $2+1+1+2+1+7+5.$  This may be done in $\frac{20!}{2!2!7!5!}$  ways.
+Now we write down the probability for each "block". The singleton blocks have approximate probability as "density $\times \epsilon.$ 
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ordline2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Multiplying everything we get the final answer
+$$g(a,b,c,d) = \left\{\begin{array}{ll}\frac{20!}{2!2!7!5!} f(a)f(b)f(c)f(d)(F(a))^2(F(c)-F(b))^2 (F(d)-F(c))^7 (1-F(d))^5&\text{if }a &lt; b &lt; c &lt; d\\ 0&\text{otherwise.}\end{array}\right.$$
+ ■
+</p>
+
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+
+<p></p>
+
+<h1><a
+name="Using Jacobian (part 1)">Using Jacobian (part 1)</a></h1>
 To understand the Jacobian method, it will help to look at the univariate CDF method. Let $f(x)$  be a density of $X$ 
  and let $Y=h(X),$  where $h(\cdot)$  is a bijection with differentiable $h ^{-1}(y).$
 <p></p>
@@ -436,8 +492,8 @@ So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$
 <p></p>
 This has an intuitive interpretation. Suppose that $X$  has uniform distribution over $[0,1].$
 Consider the density of $X.$   Imagine 10 equal length subintervals along $[0,1].$  Since the total 
-area under the density is 1, the rectangle on each  subinterval has area $[1}{10}.$  You may
- say that each subinterval accounts for $[1}{10}$  mass. 
+area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
+ say that each subinterval accounts for $\frac{1}{10}$  mass. 
 <center>
 <table width="100%">
 <tr>
@@ -460,8 +516,9 @@ When you compute $Y=X^2,$  the intervals close to 0 get squeezed further down to
 </tr>
 </table>
 </center>
-But still rectangle has to account for $\frac{1}{10}$  mass. So the squeezed rectangles have compensate by growing taller,
- while the stretched ones do so by getting shorter.
+But still each rectangle has to account for $\frac{1}{10}$  mass. So the squeezed rectangles have
+to  compensate by growing taller,
+ while the stretched ones compensate by getting shorter.
 <center>
 <table width="100%">
 <tr>
@@ -476,6 +533,9 @@ But still rectangle has to account for $\frac{1}{10}$  mass. So the squeezed rec
  leads to $Y$  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
  squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. 
 <p></p>
+
+<h1><a
+name="Using Jacobian (part 2)">Using Jacobian (part 2)</a></h1>
 Now we look at the bivariate case. First a simple case. Suppose we start with some $(X,Y)$
  distributed uniformly on the unit square. As in the univariate case, we split $[0,1]$  into  10 equal subintervals.
  We do this along both the axes, creating a square grid.
@@ -501,16 +561,17 @@ The total mass is 1. Each square accounts for $\frac{1}{100}$  mass. Next we tra
 </tr>
 </table>
 </center>
-To account for same mass a before, the cuboids standing on small bases must have large heights.
+To account for same mass as before, the cuboids standing on smaller bases must have largeer heights.
 
 <p></p>
-More generally for a linear transformation $$\left[\begin{array}{ccccccccccc}U\\V
+More generally, for a linear transformation $$\left[\begin{array}{ccccccccccc}U\\V
 \end{array}\right]  = A\left[\begin{array}{ccccccccccc}X\\Y
 \end{array}\right],$$
 the role of $\frac 14$  is played by $det(A).$  So the density is to be divided by $det(A).$  
 <p></p>
 A differentiable nonlinear transformation can be locally approximated by a linear transformation at each point, where the
- matrix is the Jacobian. So we have divide by its determinant. Sometimes it is more conveneint to think of this as multiplying
+ matrix is the Jacobian. So we have to divide by its determinant. Sometimes it is more conveneint
+ to think of this as multiplying
  by the determinant of the Jacobian of the inverse function. Formally, we get the following theorem.
 <p></p>
 
@@ -526,7 +587,7 @@ where $J$  is the absolute determinant of Jacobian inverse evaluated at $h ^{-1}
 <p></p>
 
 <p>
-<b>EXAMPLE 4:</b>&nbsp;
+<b>EXAMPLE 6:</b>&nbsp;
 Let $(X,Y)$  be uniformly distributed over the unit square. Let $U = X^2+Y$  and $V = X+Y^2.$  Find the joint
  density of $(U,V).$  
 <p></p>
@@ -537,7 +598,7 @@ Let $(X,Y)$  be uniformly distributed over the unit square. Let $U = X^2+Y$  and
 </p>
 
 <h2><a
-name="Problem set 3">Problem set 3</a></h2>
+name="Problem set 5">Problem set 5</a></h2>
 
 <p>
 <b>EXERCISE 12:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
@@ -578,7 +639,7 @@ Suppose that we are given the joint density of $(X,Y).$  We want to find the den
 <p></p>
 
 <p>
-<b>EXAMPLE 5:</b>&nbsp;
+<b>EXAMPLE 7:</b>&nbsp;
 Let $(X,Y)$  be uniformly distributed over the unit square. Find the density of $X+Y.$
 <p></p>
 <b>SOLUTION:</b>
@@ -634,7 +695,7 @@ $$(f*g)(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.$$
 <p></p>
 
 <h2><a
-name="Problem set 4">Problem set 4</a></h2>
+name="Problem set 6">Problem set 6</a></h2>
 
 <p></p>
 
@@ -675,12 +736,12 @@ Sometimes we need to work with the quotient of two independent random variables.
 <legend><b><i>Theorem</i></b></legend>
 If $X,Y$  are independent positive random variables with densities $f_X(x)$  and $f_Y(y),$  respectively,
  then $Z=X/Y$  has density
-$$f_Z(z) = \int_0^\infty xf_X(x)f_Y(xz)\, dx$$
+$$f_Z(z) = \int_0^\infty xf_X(x)f_Y(x  /z)\, dx$$
 for $z&gt;0.$
 </fieldset>
 
 <h2><a
-name="Problem set 5">Problem set 5</a></h2>
+name="Problem set 7">Problem set 7</a></h2>
 
 <p>
 <b>EXERCISE 21:</b>&nbsp;Prove the above therem using Jacobian.</p>
