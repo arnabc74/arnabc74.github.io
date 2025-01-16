@@ -213,7 +213,21 @@ to  compensate by growing taller,
  squeezing of the transforming function, i.e., the derivative. Smaller the derivative, higher the density. 
 
 <HEAD1>Using Jacobian (part 2)</HEAD1>
-Now we look at the bivariate case. First a simple case. Suppose we start with some <M>(X,Y)</M>
+Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
+ make use of a concept called the Jacobian. 
+<Q><ALERT/>You might benefit from <LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+ that I have made for Jacobians</LINK>. The video is about 21 min long, which is too long for my taste. You may like to navigate
+ to relevant portions of it using the following guideline:
+<UL>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=0s">0:00</LINK>: Casting univariate
+ differentiation into a form suitable for generalisation. </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=271s">4:31</LINK>: Differentiation of <M>f:\rr^n\to\rr^m</M> </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=514s">8:34</LINK>: Geometric
+ interpretation of Jacobian matrices </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</LINK>: Determinant of Jacobian </LI>
+</UL>
+</Q>
+First we look at the bivariate case using  a simple example. Suppose we start with some <M>(X,Y)</M>
  distributed uniformly on the unit square. As in the univariate case, we split <M>[0,1]</M>  into  10 equal subintervals.
  We do this along both the axes, creating a square grid.
 <CIMG web="bivsq1.png"></CIMG>
