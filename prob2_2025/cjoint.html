@@ -251,22 +251,40 @@ function myFunction() {
 <a href="#Problem set 14">Problem set 14</a>
 </li>
 <li>
-<a href="#Conditional density (intuition)">Conditional density (intuition)</a>
+<a href="#Expectation, variance of random vectors">Expectation, variance of random vectors</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 15">Problem set 15</a>
 </li>
 <li>
-<a href="#Conditional density (rigour)">Conditional density (rigour)</a>
+<a href="#Motivation behind the definition of dispersion matrix">Motivation behind the definition of dispersion matrix</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 16">Problem set 16</a>
 </li>
 <li>
-<a href="#Exchangeable distribution">Exchangeable distribution</a>
+<a href="#Properties of expectation, variance of random vectors">Properties of expectation, variance of random vectors</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 17">Problem set 17</a>
+</li>
+<li>
+<a href="#Conditional density (intuition)">Conditional density (intuition)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 18">Problem set 18</a>
+</li>
+<li>
+<a href="#Conditional density (rigour)">Conditional density (rigour)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 19">Problem set 19</a>
+</li>
+<li>
+<a href="#Exchangeable distribution">Exchangeable distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 20">Problem set 20</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
@@ -485,7 +503,7 @@ If $f:{\mathbb R}^2\rightarrow[0,\infty)$  is  joint density of some $(X,Y)$, th
 <b>EXAMPLE 5:</b>&nbsp;If $f(x,y) = \left\{\begin{array}{ll}c&\text{if }x^2+y^2\leq 1\\ 0&\text{otherwise.}\end{array}\right.$  is a density, then find $c.$
 <p></p>
 <b>SOLUTION:</b> The total area under the density is the volume of the cylinder with unit radius and height $c.$  This volume
- is $\pi c.$  So we need $\pi c = 1,$  <i>i.e.</i>, $c [ \frac 1\pi.$
+ is $\pi c.$  So we need $\pi c = 1,$  <i>i.e.</i>, $c = \frac 1\pi.$
  ■
 </p>
 
@@ -569,25 +587,7 @@ The random point $(X,Y)$  always lies in the unit square. Our set of interest is
  We need to integrate
  the density over this set. In other words, we are trying to find the volume of the tent with the density as its roof and
  the red region as its floor. 
-<font color="red">
-<pre>
-source("/home/asu/na/s/othernotes/talks/obj.r")
-x = seq(0,1,len=20)
-t = x
-xx = outer(x,t,function(x,t) {x})
-yy = outer(x,t,function(x,t) {t*x*x})
-zz = xx+yy
-paraObj(xx,yy,zz,'image/surfex1.obj')
-xx = outer(x,t,function(x,t) {x})
-yy = outer(x,t); yy[,]=0
-zz = outer(x,t,function(x,t) {t*x*x})
-paraObj(xx,yy,zz,'image/surfex2.obj')
-xx = outer(x,t,function(x,t) {x})
-yy = outer(x,t,function(x,t) {x*x})
-zz = xx+yy
-paraObj(xx,yy,zz,'image/surfex3.obj')
-</pre>
-</font>
+
 This may be computed as follows:
 $$\int_0^1 \left[\int_0^{x^2} (x+y)\, dy\right] dx = \int_0^1 \left[ xy+\frac 12y^2 \right]_0^{x^2} \,
  dx=\int_0^1 x^3+\frac 12x^4\, dx = \frac 14 + \frac{1}{10} = \frac{7}{20}.$$
@@ -1489,6 +1489,242 @@ Let $Y = X^2.$  Are $X,Y$  independent? Show that $E(XY) = E(X)E(Y).$
 </p>
 
 <h1><a
+name="Expectation, variance of random vectors">Expectation, variance of random vectors</a></h1>
+<a href="https://youtu.be/v25yBxM0laU">Video for this section</a>
+<p></p>
+If $X_1,...,X_n$  are jointly distributed random variables, then $\v X=(X_1,...,X_n)'$ 
+ is called a <b><font color="red" size="40">random vector</font></b>, and is usually considered as an $n\times 1$  column vector. We define 
+$E(\v X)$  as
+$$E(\v X) = \left[\begin{array}{ccccccccccc}E(X_1)\\\vdots\\E(X_n)
+\end{array}\right].$$
+The motivation is again from statistical regularity. If you take many IID replications of 
+$\v X$  and average them, then (under very general conditions) the average will converge to $E(\v X).$ 
+<p></p>
+The case of dispersion is slightly trickier. We shall start with the main definition and provide the motivation later. 
+<fieldset>
+<legend><b>Definition: Dispersion matrix</b></legend>
+Let $\v X$  be a random vector with components $X_1,...,X_n.$  Then its <b><font color="red" size="40">dispersion matrix</font></b>  or <b><font color="red" size="40">variance matrix</font></b> 
+ or <b><font color="red" size="40">variance-covariance matrix</font></b>  is defined as the $n\times n$  symmetric matrix with $(i,j)$-th entry
+ $cov(X_i,X_j).$  In particular, its $i$-th diagonal entry is $V(X_i).$
+</fieldset> 
+
+<p></p>
+
+<h2><a
+name="Problem set 15">Problem set 15</a></h2>
+
+<p>
+<b>EXERCISE 46:</b>&nbsp;If $X_1,...,X_n$  are IID with mean 2 and variance 5, and $\v X = (X_1,...,X_n)'$,
+ then find $E(\v X)$  and $V(\v X).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 47:</b>&nbsp;If $X_1\sim Binom\left(10,\frac 13\right)$  and $X_2=10-X_1$  and $\v X = (X_1,X_2)'$ 
+ then find $E(\v X)$  and $V(\v X).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 48:</b>&nbsp;Let $\v X = (X_1,X_2,X_3)'$  have 
+$$V(\v X) = \left[\begin{array}{ccccccccccc}
+3 &amp; 2 &amp; 1\\
+2 &amp; 4 &amp; 2\\
+1 &amp; 2 &amp; 5
+
+\end{array}\right].$$
+Find $cor(X_1,X_3).$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 49:</b>&nbsp;In the last problem, also find $V(X_1-3X_2)$  and $cov(X_1+X_2,X_3).$</p>
+
+<h1><a
+name="Motivation behind the definition of dispersion matrix">Motivation behind the definition of dispersion matrix</a></h1>
+<a href="https://youtu.be/G5A8ZtFMy84">Video for this section</a>
+<p></p>
+To motivate the definition of dispersion matrixconsider the bivariate case. Let the two components of our random
+ vector be $X$  and $Y.$  If we take
+ many IID replications, we get points like $(X_1,Y_1),...,(X_n,Y_n).$  Think of these like a scatterplot. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/scat1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If you look at this cloud of points from position A, then the points appear more scatterred than when we look from B. This
+ is an interesting feature of multivariate dispersion, it depends on how you look at it. A good  measure of dispersion
+ should not depend on the direction you are looking from, rather it should capture the comprehensive picture,
+from which we should be able to work out the dispersion from any desired direction. To achieve 
+ this, imagine a ruler placed on the scatterplot with its 0 mark at the origin. Parallel rays of
+ light are shining perpendicularly down on the ruler from both
+ sides, casting shadows of the points on the ruler:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/scat2.png"></th>
+</tr>
+<tr>
+<th>Light rays (shown in red) are dropping perpendicularly on the ruler</th>
+</tr>
+</table>
+</center>
+Then each bivariate point reduces to a single number along the scale, and we may compute variance of the numbers to measure
+ the dispersion when looking from that particular direction. To quantify the placement of the ruler, imagine a unit
+ vector $\v u$  along the
+ ruler from its 0 mark (at the origin) reaching up to its 1 mark.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/scat3.png"></th>
+</tr>
+<tr>
+<th>Projecting a typical point perpendicularly on the ruler</th>
+</tr>
+</table>
+</center>
+Then
+ a point $\v v \equiv (X,Y)$ 
+ will project to the vector  
+$$\frac{\v v'\v u}{\v u'\v u} \v u,$$
+shown in blue. Measured in units of $\v u$,  this will show up at the mark $\frac{\v v'\v u}{\v u'\v u}$  of the ruler.
+<p></p>
+Now, $\frac{\v v'\v u}{\v u'\v u} = pX+qY$ for some $p,q\in{\mathbb R}.$  
+Then the
+ variance of $pX+qY$ 
+ will be $p^2 V(X)+q^2 V(Y) + 2pq\, cov(X,Y),$  which may be written as  (check!)
+$$\left[\begin{array}{ccccccccccc}p &amp; q
+\end{array}\right]\left[\begin{array}{ccccccccccc}V(X) &amp; cov(X,Y)\\cov(X,Y) &amp; V(Y)
+\end{array}\right]\left[\begin{array}{ccccccccccc}p\\q
+\end{array}\right].$$
+Here $p,q$  are controlled by the ruler. Notice that the matrix in the middle does not
+ involve $p,q.$  Thus, it contains
+ information about dispersion for every
+ possible way of placing the ruler.
+ This matrix is indeed the dispersion matrix we  defined above.
+<p></p>
+
+<h2><a
+name="Problem set 16">Problem set 16</a></h2>
+
+<p>
+<b>EXERCISE 50:</b>&nbsp;Consider the toy bivariate data set $(1, 2), (3, 4), (2.1, 3.1), (4, 5).$  Draw the
+ scatterplot. Imagine that we are looking down as shown. Guess the variance as seen from that
+ direction. Check your guess by actual computation.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lookex.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 51:</b>&nbsp;Let the dispersion matrix of $(X,Y)$  be $\left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 2
+\end{array}\right]$. Find
+ $\theta\in [0,\pi)$  such that $V(\cos (\theta) X + \sin(\theta) Y)$  is maximum. When is the variance minimum.</p>
+
+<p></p>
+ 
+<h1><a
+name="Properties of expectation, variance of random vectors">Properties of expectation, variance of random vectors</a></h1>
+<a href="https://youtu.be/7hEYnZoKuJg">Video for this section</a>
+<p></p>
+The following facts are immediate from the definition.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $E(\v X)=\v\mu$  and $V(\v X) = \Sigma,$  then for any matrix $A_{m\times n}$  and any vector $\v b_{m\times 1}$ 
+ we have
+<ol type="">
+
+<li>$E(A\v X+\v b) = A\v\mu+\v b$,</li>
+
+<li>$V(A\v X+\v b) = A\Sigma A'$</li>
+
+</ol>
+
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v Y = A\v X+\v b.$  Then $\v Y = (Y_1,...,Y_m)'$, where $Y_i = \sum_j a_{ij}X_j + b_i.$  Here I have
+ denoted the $(i,j)$-th entry of $A$  by $a_{ij}.$  
+<p></p>
+Now compute $E(Y_i)$  and $cov(Y_i,Y_j)$  directly to get the result. 
+<p></p>
+By the way, the $(i,j)$-th entry of $A\Sigma A'$  is $\sum_r\sum_s a_{ir} \sigma_{rs} a_{js}.$  
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Any dispersion matrix is NND. In other words, if $\Sigma_{n\times n}=V(\v X)$, then $\forall \v\ell\in{\mathbb R}^n~~\v\ell'\Sigma\v\ell\geq 0.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+By the last theorem, $\v\ell'\Sigma\v\ell=V(\v\ell'\v X)\geq 0.$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The converse is also true:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\Sigma_{n\times n}$  is any NND matrix, then it $V(\v X)$  for some random vector $\v X_{n\times 1}.$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $U_1,...,U_n$  be independent with $\forall i~~V(U_i)=1.$    Then $\v U=
+ (U_1,...,U_n)'$  has $V(\v U) = I_n.$  
+<p></p>
+Since $\Sigma$  is NND, hence $\Sigma = AA'$  for some $A_{n\times n}.$  
+<p></p>
+Let $\v X = A\v U.$  Then $V(\v X) = A I_n A' = AA' = \Sigma.$ 
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 17">Problem set 17</a></h2>
+
+<p>
+<b>EXERCISE 52:</b>&nbsp;Show that for $\left[\begin{array}{ccccccccccc}a &amp; b\\b &amp; c
+\end{array}\right]$  to be a dispersion matrix, a necessary
+ condition is that $b^2\leq ac.$  Is it a sufficient condition?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 53:</b>&nbsp;Show that $V(\v X)$  is singular if and only if $P(a_1X_1+\cdots+a_n X_n=c)=1$  for
+ some constants $a_i$'s and $c$  such that not all $a_i$'s are zero.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 54:</b>&nbsp;If $\v X=(X,Y)'$  and $V(\v X)$  is a singular, then how will a scatterplot of
+ replications from $\v X$  look like? Here we are running the random experiment underlying $\v
+ X$  repeatedly, and getting $(X_1,Y_1), (X_2,Y_2),...,(X_n,Y_n),$  and plotting these
+ $n$  points as a scatterplot. Your job is a to identify some geometric pattern in the plot. </p>
+
+<p></p>
+
+<h1><a
 name="Conditional density (intuition)">Conditional density (intuition)</a></h1>
 <a href="https://youtu.be/ThHaLNSDZKI">Video for this section</a>
 <p></p>
@@ -1537,10 +1773,10 @@ $\int_a^bf_{X|Y}(x,y)\, dx$  does not give $P(X\in [a,b]|Y=y),$  as $P(Y=y)=0.$
 <p></p>
 
 <h2><a
-name="Problem set 15">Problem set 15</a></h2>
+name="Problem set 18">Problem set 18</a></h2>
 
 <p>
-<b>EXERCISE 46:</b>&nbsp;Find conditional density of $X$  given $Y=\frac 12$  if the joint density of $(X,Y)$  is </p>
+<b>EXERCISE 55:</b>&nbsp;Find conditional density of $X$  given $Y=\frac 12$  if the joint density of $(X,Y)$  is </p>
 $$f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }0&lt; x &lt; 1\\ 0&\text{otherwise.}\end{array}\right.$$
 <h1><a
 name="Conditional density (rigour)">Conditional density (rigour)</a></h1>
@@ -1554,12 +1790,17 @@ We defined conditional density in a heuristic way. However, the theorem of total
 
 <p>
 <b><i>Proof:</i></b>  This is obvious
- from the definition of $f_{Y|X}(x,y).$<b><i>[QED]</i></b>
+ from the definition of $f_{Y|X}(x,y):$
+$$\begin{eqnarray*}
+\int_c^d \int_a^bf_{X|Y}(x,y)f_Y(y)\, dx\,dy &amp; = &amp; \int_c^d \int_a^b\frac{f(x,y)}{f_Y(y)}f_Y(y)\, dx\,dy\\
+&amp; = &amp; \int_c^d \int_a^b f(x,y)\,dx\,dy\\
+&amp; = &amp; P(X\in [a,b], Y\in[c,d]).\end{eqnarray*}$$
+<b><i>[QED]</i></b>
 </p>
 It is this theorem that justifies the definition of conditional PDF.
 <p></p>
-Other than this difference, the rest follows as in the discrete case. We have the concepts of
- conditional expectation, conditional variance etc as usual. 
+As in the discrete case, here also  we have  concepts of
+ conditional expectation, conditional variance etc.
 <p></p>
 
 <fieldset>
@@ -1567,7 +1808,7 @@ Other than this difference, the rest follows as in the discrete case. We have th
 If $(X,Y)$  has a joint density $f(x,y),$ then $E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx$  and 
 $$V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).$$
 </fieldset> 
-The tower property also works as before, as do the relation between conditional and unconditional variances.
+The tower property also works as before, as do the relation between conditional and unconditional variances:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 If $(X,Y)$  has a joint density, then
@@ -1595,26 +1836,26 @@ as required.
 </p>
 
 <h2><a
-name="Problem set 16">Problem set 16</a></h2>
+name="Problem set 19">Problem set 19</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 47:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
+<b>EXERCISE 56:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the triangle $\{(x,y)~:~0\leq x \leq y,\,
  0\leq y\leq 1\}.$  Guess a conditional density of $X$  given $Y=y?$  First try
  to guess, and then check it from the definition.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 48:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
+<b>EXERCISE 57:</b>&nbsp;Let $X|Y=y$  have density $f_{X|Y}(x,y) = \left\{\begin{array}{ll}c_y x^2&\text{if }x\in[0,y]\\
  0&\text{otherwise.}\end{array}\right.$, where $c_y$  is free of $x.$ 
 Let $Y$  be uniformly distributed over $[0,1]$.  Find $f_{Y|X=x}(y,x).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 49:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
+<b>EXERCISE 58:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right.,$
 then find $E(X|Y=y)$  and $V(Y|X=x).$</p>
 
 <p></p>
@@ -1664,7 +1905,7 @@ Since this matrix is symmetric, hence the result.
 Obviously such brute force computation will be infeasible if the number of random variables increase. So you will need to
 proceed more systematically to answer the next problem.
 <p>
-<b>EXERCISE 50:</b>&nbsp;
+<b>EXERCISE 59:</b>&nbsp;
 We have $n$  balls $m$  of which are dark purple (the rest being of a nondescript colour). We draw an SRSWOR of
  $k$  balls. Let $X_i=$  the indicator of the $i$-th selected ball being dark purple. Show that $X_1,...,X_k$ 
  are exchangeable.
@@ -1673,7 +1914,7 @@ We have $n$  balls $m$  of which are dark purple (the rest being of a nondescrip
 <p></p>
 
 <p>
-<b>EXERCISE 51:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
+<b>EXERCISE 60:</b>&nbsp;Consider Polya's urn scheme (5 black 5 white to start with, 1 ball drawn at each step,
  replaced and 1 more ball of the observed colour added). Let $X_i=$ indicator of the
  $i$-th drawn ball being black. Show that $X_1,X_2,...,X_n$  are exchangeable for $n\in{\mathbb N}.$ </p>
 
@@ -1700,31 +1941,31 @@ Then the joint CDF of $(X_{i_1},...,X_{i_k})$  is $F(x_1,...,x_k,\infty,...,\inf
 <p></p>
 Exchangeable random variables allow for symmetry arguments. The next problem is one example. 
 <h2><a
-name="Problem set 17">Problem set 17</a></h2>
+name="Problem set 20">Problem set 20</a></h2>
 
 <p>
-<b>EXERCISE 52:</b>&nbsp;
+<b>EXERCISE 61:</b>&nbsp;
 If $X_1,...,X_n$  are exchangeable positive random variables with finite expectations,  then find $E((X_1+X_2)/(X_1+\cdots+X_n)).$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 53:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
+<b>EXERCISE 62:</b>&nbsp;Three dice are rolled and their outcomes are called $X_1,X_2$   and $X_3.$  Let
  $Y_1 = X_1+X_2,$  $Y_2 = X_2+X_3,$  and $Y_3 = X_3+X_1.$  Is $(Y_1,Y_2,Y_3)$ 
  exchangeable? Justify your answer.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 54:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
+<b>EXERCISE 63:</b>&nbsp;A box contains 10 balls numbered 1 to 10. A ball is drawn at random, and its number noted.
  Without replacing the ball, another ball is drawn at random from the rest, and its number is also
  noted. If the two numbers are $X$  and $Y$, respectively, then is $(X,Y)$  exchangeable?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 55:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
+<b>EXERCISE 64:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
  number $i$  on it  is selected with probability proportional to $i.$
 </p>
 
@@ -1733,41 +1974,41 @@ If $X_1,...,X_n$  are exchangeable positive random variables with finite expecta
 <h1><a
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpsjoint3.png]</font><img width="" src="image/hpsjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpsjoint7.png]</font><img width="" src="image/hpsjoint7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpsjoint8.png]</font><img width="" src="image/hpsjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpsjoint9.png]</font><img width="" src="image/hpsjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpsjoint10.png]</font><img width="" src="image/hpsjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpsjoint11.png]</font><img width="" src="image/hpsjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 71:</b>&nbsp;<font size="-2">[rossipmjoint1.png]</font><img width="" src="image/rossipmjoint1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 72:</b>&nbsp;<font size="-2">[rossipmjoint2.png]</font><img width="" src="image/rossipmjoint2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 73:</b>&nbsp;<font size="-2">[rossipmjoint3.png]</font><img width="" src="image/rossipmjoint3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 74:</b>&nbsp;<font size="-2">[rossipmjoint4.png]</font><img width="" src="image/rossipmjoint4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 66:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 75:</b>&nbsp;<font size="-2">[rossipmjoint5.png]</font><img width="" src="image/rossipmjoint5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 67:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 76:</b>&nbsp;<font size="-2">[rossipmjoint6.png]</font><img width="" src="image/rossipmjoint6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 68:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 77:</b>&nbsp;<font size="-2">[rossipmjoint8.png]</font><img width="" src="image/rossipmjoint8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 69:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 78:</b>&nbsp;<font size="-2">[rossipmjoint9.png]</font><img width="" src="image/rossipmjoint9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 70:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 79:</b>&nbsp;<font size="-2">[rossipmjoint10.png]</font><img width="" src="image/rossipmjoint10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 71:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 80:</b>&nbsp;<font size="-2">[rossipmjoint11.png]</font><img width="" src="image/rossipmjoint11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 72:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 81:</b>&nbsp;<font size="-2">[rossipmjoint12.png]</font><img width="" src="image/rossipmjoint12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 73:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 82:</b>&nbsp;<font size="-2">[rossipmjoint13.png]</font><img width="" src="image/rossipmjoint13.png" style="vertical-align:text-top;"></p>
 <hr/>
 <table width="100%" border="0">
 <tr>

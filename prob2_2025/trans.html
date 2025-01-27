@@ -178,23 +178,29 @@ function myFunction() {
 <li>
 <a href="#Using Jacobian (part 1)">Using Jacobian (part 1)</a>
 </li>
-<li>
-<a href="#Using Jacobian (part 2)">Using Jacobian (part 2)</a>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Intuitive interpretation">Intuitive interpretation</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
-<a href="#Sum">Sum</a>
+<a href="#Using Jacobian (part 2)">Using Jacobian (part 2)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 6">Problem set 6</a>
 </li>
 <li>
-<a href="#Quotient">Quotient</a>
+<a href="#Sum">Sum</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 7">Problem set 7</a>
+</li>
+<li>
+<a href="#Quotient">Quotient</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 8">Problem set 8</a>
 </li>
 <li>
 <a href="#Problems for practice">Problems for practice</a>
@@ -473,14 +479,22 @@ name="Problem set 4">Problem set 4</a></h2>
 <h1><a
 name="Using Jacobian (part 1)">Using Jacobian (part 1)</a></h1>
 To understand the Jacobian method, it will help to look at the univariate CDF method. Let $f(x)$  be a density of $X$ 
- and let $Y=h(X),$  where $h(\cdot)$  is a bijection with differentiable $h ^{-1}(y).$
+ and let $Y=h(X),$  where $h(\cdot)$  is an increasing bijection with differentiable $h ^{-1}(y).$
 <p></p>
-Then the CDF of $Y$  is $G(y) = P(Y\leq y) = P(X\leq h ^{-1}(y)) = F(h ^{-1}(y)),$  where $F(\cdot)$  is the
+Then the CDF of $Y$  is $G(y) = P(Y\leq y) = P(h(X)\leq y) = P(X\leq h ^{-1}(y)) = F(h
+ ^{-1}(y)),$  where $F(\cdot)$  is the
  CDF of $X.$  
 <p></p>
-So a density of $Y$  is 
+So $Y$  has density given by
 $$g(y) = G'(y) = \frac{d}{dy}F(h ^{-1}(y)) = f(h ^{-1}(y))\frac{d}{dy}h ^{-1}(y).$$
-Now we know that $h(h ^{-1} (y))\equiv y.$
+So far we are assuming that $h(\cdot)$  is an increasing function. A very similar argument works for a decreasing function
+ as well. In general for any bijection $h(\cdot),$  we have
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|.\hspace{1in} \mbox{(*)}$$
+<p></p>
+
+<h2><a
+name="Intuitive interpretation">Intuitive interpretation</a></h2>
+Let's first massage (*) into a more elegant form. We know that $h(h ^{-1} (y))\equiv y.$
 <p></p>
 Differentiating this wrt $y$  we have $h'(h ^{-1} (y))\frac{d}{dy} h ^{-1}(y) \equiv 1,$  <i>i.e.</i>, 
 $$\frac{d}{dy} h ^{-1}(y) = \frac{1}{h'(h ^{-1}(y)}.$$
@@ -490,7 +504,7 @@ If we write $x = h ^{-1}(y),$  this will look less complicated:
 $$g(y) = \frac{f(x)}{h'(x)}.$$
 So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$   
 <p></p>
-This has an intuitive interpretation. Suppose that $X$  has uniform distribution over $[0,1].$
+ Suppose that $X$  has uniform distribution over $[0,1].$
 Consider the density of $X.$   Imagine 10 equal length subintervals along $[0,1].$  Since the total 
 area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
  say that each subinterval accounts for $\frac{1}{10}$  mass. 
@@ -525,21 +539,68 @@ to  compensate by growing taller,
 <th><img width="" src="image/squeeze3.png"></th>
 </tr>
 <tr>
-<th>All rectnagles now again have area $\frac{1}{10}.$</th>
+<th>All rectangles now again have area $\frac{1}{10}.$</th>
 </tr>
 </table>
 </center>
  This
  leads to $Y$  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
  squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. 
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Let $X$  have density $f(x) = \left\{\begin{array}{ll}2 e^{-2x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  Find
+ density of $Y=X^2$  using (*).</p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Let $X$  have density $f(x).$  Find
+ density of $Y=a X+b$  using (*) if $a\neq 0.$  </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Let $X$  have uniform distribution over $(-1,1).$  Find density of $Y=\sin X$  using (*).</p>
+
 <p></p>
 
 <h1><a
 name="Using Jacobian (part 2)">Using Jacobian (part 2)</a></h1>
 Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
- make use of a concept called the Jacobian. 
+ make use of a concept called the <b><font color="red" size="40">Jacobian</font></b>, which we introduce through an example.
+<p></p>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find its determinant.
+<p></p>
+<b>SOLUTION:</b>
+Note that $f$  consists of two function $f_1,f_2:{\mathbb R}^2,\rightarrow{\mathbb R}.$  These are its <b><font color="red" size="40">component</font></b>  functions,
+ $f_1(x_1,x_2) = \sin(x_1x_2)$  and $f_2(x_1,x_2) = x_1-x_2^2.$  
+<p></p>
+The Jacobian is a $2\times 2$  matrix with $(i,j)$-th entry $\frac{\partial f_i}{\partial x_j}.$  Note that each
+ row is devoted to a single $f_i$  and each column to a single $x_j.$  In general, if we had $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ 
+ the matrix would have been $m\times n.$  
+<p></p>
+In our case 
+$$\begin{eqnarray*}
+\frac{\partial f_1}{\partial x_1} &amp; = &amp; x_2\cos (x_1x_2),\\
+\frac{\partial f_1}{\partial x_2} &amp; = &amp; x_1\cos (x_1x_2),\\
+\frac{\partial f_2}{\partial x_1} &amp; = &amp; 1\\
+\frac{\partial f_2}{\partial x_2} &amp; = &amp; -2x_2.
+\end{eqnarray*}$$
+So the Jacobian is 
+$$\left[\begin{array}{ccccccccccc}x_2\cos (x_1x_2) &amp; x_1\cos (x_1x_2)\\ 1 &amp; -2x_2
+\end{array}\right].$$
+Its determinant is 
+$$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).$$
+ ■
+</p>  
+
+<p></p>
+
 <blockquote>
-<img src="image/alert.png">You might benefit from <a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+<img src="image/alert.png">If all this looks like unmotivated magic, you might benefit from <a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
  that I have made for Jacobians</a>. The video is about 21 min long, which is too long for my taste. You may like to navigate
  to relevant portions of it using the following guideline:
 <ul>
@@ -556,88 +617,94 @@ Now we are about to generalise the idea we learned in the last section to the bi
  interpretation of Jacobian matrices </li>
 
 <li>
-<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</a>: Determinant of Jacobian </li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</a>: Why
+ care about the determinant of Jacobian </li>
 
 </ul>
 
 </blockquote>
-First we look at the bivariate case using  a simple example. Suppose we start with some $(X,Y)$
- distributed uniformly on the unit square. As in the univariate case, we split $[0,1]$  into  10 equal subintervals.
- We do this along both the axes, creating a square grid.
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/bivsq1.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
-The total mass is 1. Each square accounts for $\frac{1}{100}$  mass. Next we transform it to $(U,V) = (X^2,Y^2).$ The
- grid now changes to the following.
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/bivsq2.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
-To account for same mass as before, the cuboids standing on smaller bases must have largeer heights.
 
-<p></p>
-More generally, for a linear transformation $$\left[\begin{array}{ccccccccccc}U\\V
-\end{array}\right]  = A\left[\begin{array}{ccccccccccc}X\\Y
-\end{array}\right],$$
-the role of $\frac 14$  is played by $det(A).$  So the density is to be divided by $det(A).$  
-<p></p>
-A differentiable nonlinear transformation can be locally approximated by a linear transformation at each point, where the
- matrix is the Jacobian. So we have to divide by its determinant. Sometimes it is more conveneint
- to think of this as multiplying
- by the determinant of the Jacobian of the inverse function. Formally, we get the following theorem.
-<p></p>
-
+In (*) above we had
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|.$$
+We shall imitate this to get the following theorem. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
-bijection function with differentiable inverse. Let $\v Y = h(\v X).$ 
+bijection with differentiable inverse. Let $\v Y = h(\v X).$ 
  Then $\v Y$  has density
-$$f(h ^{-1}(\v y)) J,$$
-where $J$  is the absolute determinant of Jacobian inverse evaluated at $h ^{-1}(\v y).$
+$$g(\v y) = f(h ^{-1}(\v y)) J,$$
+where $J$  is the absolute determinant of Jacobian of $h ^{-1}(\v y).$
 </fieldset>
-
+ We shall not prove this theorem here. But the intuitive argument is just as in the univariate case. 
 <p></p>
 
 <p>
-<b>EXAMPLE 6:</b>&nbsp;
-Let $(X,Y)$  be uniformly distributed over the unit square. Let $U = X^2+Y$  and $V = X+Y^2.$  Find the joint
- density of $(U,V).$  
+<b>EXAMPLE 7:</b>&nbsp;
+Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y_1 =
+ X_1X_2$  and $Y_2 = X_1.$  Find the joint
+ density of $\v Y = (Y_1,Y_2).$  
 <p></p>
 <b>SOLUTION:</b>
-
+Let $S = [1,2]\times[3,4].$  
+<p></p>
+Here the transform is $h(x_1,x_2) = (x_1x_2,x_1).$
+<p></p>
+Clearly, $h:S\rightarrow h(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $x_1$  and $x_2$ 
+ uniquely. 
+<p></p>
+The inverse transform is $h ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
+The Jacobian of this is 
+$$\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac{1}{y_2} &amp; -\frac{y_1}{y_2^2}
+\end{array}\right],$$
+which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
+<p></p>
+So the required density will be 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in h(S)\\ 0&\text{otherwise.}\end{array}\right.$$
+It is easy up to this point. But it usually gets messy to describe $h(S)$  in a way such that given
+ some $(y_1,y_2)$  you can quickly check if $(y_1,y_2)\in h(S)$  or not.
+<p></p>
+To do this we list all the  constraints in terms of  $y_1,y_2.$  Based on the forward transorm we get 
+$$3\leq y_1\leq 8 \mbox{ and } 1\leq y_2 \leq 2.$$
+Based on the inverse transform we get
+$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 8. $$
+Sketching all these restrictions we get this region:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jreg.png"></th>
+</tr>
+<tr>
+<th>$h(S)$  shown in red</th>
+</tr>
+</table>
+</center>
+Notice how the constraints $y_1\geq 3$ and $y_2\geq \frac{y_1}{8}$   happen to play no role
+ at all. It is hard to
+ decide which constraints are going
+ to determine the region, unless you make sketches. 
+<p></p>
+So the final answer is 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }3\leq y_1\leq 8 \mbox{ &amp; } 1\leq y_2\leq \min\left\{2,\frac{y_1}{3}\right\}\\ 0&\text{otherwise.}\end{array}\right.$$
 <p></p>
  ■
 </p>
 
 <h2><a
-name="Problem set 5">Problem set 5</a></h2>
+name="Problem set 6">Problem set 6</a></h2>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
+<b>EXERCISE 15:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
  then find the joint density of $(X+Y, X-Y).$ </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
+<b>EXERCISE 16:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
+<b>EXERCISE 17:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
 non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independent.
 <center>
 <table width="100%">
@@ -664,45 +731,30 @@ Suppose that we are given the joint density of $(X,Y).$  We want to find the den
 <p></p>
 
 <p>
-<b>EXAMPLE 7:</b>&nbsp;
-Let $(X,Y)$  be uniformly distributed over the unit square. Find the density of $X+Y.$
+<b>EXAMPLE 8:</b>&nbsp;
+Let $(X_1,X_2)$  have joint density $f(x_1,x_2).$ Find  density of $X_1+X_2.$
 <p></p>
 <b>SOLUTION:</b>
-Consider $(U,V) = (X+Y,Y).$  
+Consider $(Y_1,Y_2) = (X_1,X_1+X_2).$  
 <p></p>
-The support of $(X,Y)$  was $[0,1]\times[0,1].$  We need to find that of $(U,V).$ 
-In other words, we are looking for $S\subseteq{\mathbb R}^2$  such that $(U,V)\in S$  if and only
- if $(X,Y)\in[0,1]\times[0,1].$
+Here the transform is $h(x_1,x_2) = (x_1,x_1+x_2).$  This is a bijection from ${\mathbb R}^2$  to ${\mathbb R}^2$  with inverse
+ $h ^{-1}(y_1,y_2) = (y_1,y_2-y_1).$
 <p></p>
-We have the constraints $X\geq 0,$  $X\leq 1,$  $Y\geq 0,$  and $Y\leq 1.$  We shall convert each of
- them to constraints on $U,V$  in two ways, forward and backward. We have $U=X+Y$  and also $X\geq 0$  and
- $Y\geq 0$. So $U\geq 0.$  That is an example of a forward constraint. Again $X = U-V.$  So $U-V\geq 0.$ 
- That is an example of a backward constraint. 
-<p></p>
-Combining everything we get $S=\{(u,v)~:~0\leq u+v\leq 1,~0\leq v\leq 1\}.$
-<p></p>
-A little sketch would keep things clear. 
-<p></p>
-The absolute determinant of the Jacobian is 1. So the required density is 
-$$f(u,v) = \left\{\begin{array}{ll}1&\text{if }(u,v)\in S\\ 0&\text{otherwise.}\end{array}\right. $$
-Now we need to find the marginal density of $U.$  This is 
-$$f_U(u) = \int_{-\infty}^\infty f(u,v)\, dv = \int_0^u 1\, dv = u$$
-when $0\leq u\leq .$  and 0 else.
+The Jacobian matrix is $\left[\begin{array}{ccccccccccc}1 &amp; 0\\-1 &amp; 1
+\end{array}\right]$, with absolute determinant  1. So the required density is 
+$$g(y_1,y_2) = f(y_1,y_2-y_1). $$
+Now we need to find the marginal density of $Y_2.$  This is 
+$$g_2(y_2) = \int_{-\infty}^\infty g(y_1,y_2)\, dy_1 = \int_{-\infty}^\infty f(y_1,y_2-y_1)\, dy_1.$$
  ■
-</p>   
-Note that the difficuly in the above example lay in working with the constraints. 
-If $(X,Y)$  had joint density $f(x,y)$ 
- for $(x,y)\in{\mathbb R}^2$  
-then the following general theorem is easy to prove.
-<p></p>
-
+</p>
+The result is quite useful, and worth recording as a theorem:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 If $(X,Y)$  had joint density $f(x,y)$ 
  for $(x,y)\in{\mathbb R}^2$, then  the density of $X+Y$  is 
 $$f_{X+Y}(u) = \int_{-\infty}^\infty f(x,u-x)\, dx.$$
 </fieldset>
-
+A special case is when the two random variables are independent:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $X,Y$  are indenedent random variables with densities $f(x)$  and $g(y),$  respectively, then 
 the density of $X+Y$  is 
@@ -719,37 +771,54 @@ $$(f*g)(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.$$
 
 <p></p>
 
+<p>
+<b>EXAMPLE 9:</b>&nbsp;
+If $X,Y$  are independent uniform over $(0,1),$  then find  density of $X+Y.$  
+<p></p>
+<b>SOLUTION:</b>
+The answer is $f*f,$  where $f(x) =\left\{\begin{array}{ll}1&\text{if }0 &lt; x &lt; 1\\ 0&\text{otherwise.}\end{array}\right. $  
+<p></p>
+So 
+$$(f*f)(u) = \int_{-\infty}^\infty f(x)f(u-x)\, dx = \int_{\max\{0,u-1\}}^{\min\{1,u\}}dx=\left\{\begin{array}{ll}u&\text{if }0 &lt;u &lt; 1\\ 2-u&\text{if }1 &lt;u &lt; 2\\ 0&\text{otherwise.}\end{array}\right.$$
+To see this notice that for  $f(x)$  to be nonzero we need $0 &lt; x &lt; 1,$  while for $f(u-x)$  to be non-zero
+ we need $0 &lt; u-x &lt; 1,$  or $u &gt; x &gt;u-1.$  So for $f(x)f(u-x)$  to be non-zero we need $1,u &gt; x &gt;0,u-1.$ 
+ Also, the non-zero value of $f(x)f(u-x)$  is 1.
+ ■
+</p>
+
 <h2><a
-name="Problem set 6">Problem set 6</a></h2>
+name="Problem set 7">Problem set 7</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;Prove the two theorems above using Jacobian.</p>
-
-<p>
-<b>EXERCISE 16:</b>&nbsp;Show that $f*g = g*f.$</p>
+<b>EXERCISE 18:</b>&nbsp;Show that $f*g = g*f.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;Does there exist a density $i(x)$  such that for all densities $f$  we have $i*f = f?$</p>
+<b>EXERCISE 19:</b>&nbsp;Does there exist a density $i(x)$  such that for all densities $f$  we have $i*f = f?$
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">Think in terms of random variables.</div></p>
+
+</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;If $X,Y$  are IID with common density $\lambda e^{-\lambda x}$  ($x&gt;0$), then
+<b>EXERCISE 20:</b>&nbsp;If $X,Y$  are IID with common density $\lambda e^{-\lambda x}$  ($x&gt;0$), then
  find the density of $X+Y.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;If $X,Y$  are independently distributed uniformly over $(0,1),$  the sketch density of $X+Y.$</p>
+<b>EXERCISE 21:</b>&nbsp;If $X,Y$  are independently distributed uniformly over $(0,1),$  the sketch density of $X+Y.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;If $X,Y$  are independent with common density $f(x)$, what will density of $X-Y$  be? </p>
+<b>EXERCISE 22:</b>&nbsp;If $X,Y$  are independent with common density $f(x)$, what will density of $X-Y$  be? </p>
 
 <h1><a
 name="Quotient">Quotient</a></h1>
@@ -759,33 +828,39 @@ Sometimes we need to work with the quotient of two independent random variables.
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $X,Y$  are independent positive random variables with densities $f_X(x)$  and $f_Y(y),$  respectively,
- then $Z=X/Y$  has density
-$$f_Z(z) = \int_0^\infty xf_X(x)f_Y(x  /z)\, dx$$
-for $z&gt;0.$
+Let $X,Y$  are independent  random variables with densities $f_X(x)$  and $f_Y(y),$  respectively. Let $Y$ 
+ be always positive. 
+ Then $Z=X/Y$  has density
+$$f_Z(z) = \int_0^\infty uf_X(zu)f_Y(u)\, du.$$
 </fieldset>
 
+<p>
+<b><i>Proof:</i></b>
+Use the Jacobian technique for the transform $(X,Y)\mapsto \left(\frac XY,Y\right)\equiv(Z,U).$
+<b><i>[QED]</i></b>
+</p>
+
 <h2><a
-name="Problem set 7">Problem set 7</a></h2>
+name="Problem set 8">Problem set 8</a></h2>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;Prove the above therem using Jacobian.</p>
+<b>EXERCISE 23:</b>&nbsp;Prove the above theorem using Jacobian.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;If $X,Y$  are independent and uniformly distributed over $[1,2],$  then find density of $X/Y.$</p>
+<b>EXERCISE 24:</b>&nbsp;If $X,Y$  are independent and uniformly distributed over $[1,2],$  then find density of $X/Y.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;If $X,Y$  are IID with common density $f(x)=\left\{\begin{array}{ll}e^-x&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$,
+<b>EXERCISE 25:</b>&nbsp;If $X,Y$  are IID with common density $f(x)=\left\{\begin{array}{ll}e^-x&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$,
   then find density of $X/Y.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;A point $Q$  is chosen at random from the unit square. Let $Q$  be
+<b>EXERCISE 26:</b>&nbsp;A point $Q$  is chosen at random from the unit square. Let $Q$  be
  $(R,\Theta)$  in polar coordinates. Find density of $\tan\Theta.$</p>
 
 <p></p>
@@ -793,94 +868,94 @@ name="Problem set 7">Problem set 7</a></h2>
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 29:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 31:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 32:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 33:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 34:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 35:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 36:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
 Which is Theo Exr 2??</p>
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

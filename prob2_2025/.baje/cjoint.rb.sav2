@@ -140,7 +140,7 @@ If <M>f:\rr^2\to[0,\infty)</M>  is  joint density of some <M>(X,Y)</M>, then
 
 <EXM>If <M>f(x,y) = <CASES>c<IF>x^2+y^2\leq 1</IF> 0<ELSE/></CASES></M>  is a density, then find <M>c.</M>
 <SOLN/> The total area under the density is the volume of the cylinder with unit radius and height <M>c.</M>  This volume
- is <M>\pi c.</M>  So we need <M>\pi c = 1,</M>  i.e., <M>c [ [[1\pi]].</M>
+ is <M>\pi c.</M>  So we need <M>\pi c = 1,</M>  i.e., <M>c = [[1\pi]].</M>
 </EXM>
 <EXM>Find <M>c\in\rr</M>  such that <M>f(x,y) =<CASES>c(x+y)<IF>0\leq x,y,\leq 2</IF> 0<ELSE/></CASES> </M>  is a density.
 <SOLN/>
@@ -182,7 +182,7 @@ The random point <M>(X,Y)</M>  always lies in the unit square. Our set of intere
  We need to integrate
  the density over this set. In other words, we are trying to find the volume of the tent with the density as its roof and
  the red region as its floor. 
-<R>
+<COMMENT>
 source("/home/asu/na/s/othernotes/talks/obj.r")
 x = seq(0,1,len=20)
 t = x
@@ -198,7 +198,7 @@ xx = outer(x,t,function(x,t) {x})
 yy = outer(x,t,function(x,t) {x*x})
 zz = xx+yy
 paraObj(xx,yy,zz,'image/surfex3.obj')
-</R>
+</COMMENT>
 This may be computed as follows:
 <D>\int_0^1 [*[\int_0^{x^2} (x+y)\, dy]*] dx = \int_0^1 [*[ xy+[[12]]y^2 ]*]_0^{x^2} \,
  dx=\int_0^1 x^3+[[12]]x^4\, dx = [[14]] + [[1][10]] = [[7][20]].</D>
@@ -639,7 +639,7 @@ is the product of the marginal CDFs?
  <M>h(\cdot)</M>  are not necessarily density functions. Find margial densities of <M>X</M>  and
  <M>Y</M>, and show that <M>X</M>  and <M>Y</M>  must be independent.</EXR>
 
-<HEAD1>Expectation using joint density</HEAD1>
+<HEAD1 u="https://youtu.be/61Se7jsTTkk">Expectation using joint density</HEAD1>
 Suppose <M>X,Y</M>  are jointly  distributed. We often need to find the expectation of <M>h(X,Y)</M>  for some given function
  <M>h(x,y).</M>  For this we can of course employ the definition by first defining a new random
  variable,  <M>Z=h(X,Y)</M>. This will take us back to the univariate set up, that we already know to handle. 
@@ -698,7 +698,7 @@ Find <M>E(X^2Y)</M>  when <M>(X,Y)</M>  has joint density
 <D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
 </EXR>
 
-<HEAD1>Expectation of product of independent random variables</HEAD1>
+<HEAD1 u="https://youtu.be/BYH9b8FLE3I">Expectation of product of independent random variables</HEAD1>
 Last semester we had worked with simple random variables, and had seen the result that if
  <M>X,Y</M>  are independent simple random variables, then <M>E(XY)=E(X)E(Y).</M>  This result is useful and can be generalised
  to other random variables, as well. However, for a general random variable  expectation may be infinite or undefined. In
@@ -764,7 +764,135 @@ Let <M>X</M>  take value <M>(-1)^n n</M>  with probability <M>[[1][cn^3]]</M>  w
 Let <M>X</M>  have density <M>f(x) =<CASES>[[12]]<IF>|x| < 1</IF> 0<ELSE/></CASES> </M>
 Let <M>Y = X^2.</M>  Are <M>X,Y</M>  independent? Show that <M>E(XY) = E(X)E(Y).</M>
 </EXR>
-<HEAD1>Conditional density (part 1)</HEAD1>
+<HEAD1>Expectation, variance of random vectors</HEAD1>
+If <M>X_1,...,X_n</M>  are jointly distributed random variables, then <M>\v X=(X_1,...,X_n)'</M> 
+ is called a <TERM>random vector</TERM>, and is usually considered as an <M>n\times 1</M>  column vector. We define 
+<M>E(\v X)</M>  as
+<D>E(\v X) = <MAT>E(X_1)\\\vdots\\E(X_n)</MAT>.</D>
+The motivation is again from statistical regularity. If you take many IID replications of 
+<M>\v X</M>  and average them, then (under very general conditions) the average will converge to <M>E(\v X).</M> 
+
+The case of dispersion is slightly trickier. We shall start with the main definition and provide the motivation later. 
+<DEFN name="Dispersion matrix">
+Let <M>\v X</M>  be a random vector with components <M>X_1,...,X_n.</M>  Then its <TERM>dispersion matrix</TERM>  or <TERM>variance matrix</TERM> 
+ or <TERM>variance-covariance matrix</TERM>  is defined as the <M>n\times n</M>  symmetric matrix with <M>(i,j)</M>-th entry
+ <M>cov(X_i,X_j).</M>  In particular, its <M>i</M>-th diagonal entry is <M>V(X_i).</M>
+</DEFN> 
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X_1,...,X_n</M>  are IID with mean 2 and variance 5, and <M>\v X = (X_1,...,X_n)'</M>,
+ then find <M>E(\v X)</M>  and <M>V(\v X).</M></EXR>
+
+<EXR>If <M>X_1\sim Binom(*(10,[[13]])*)</M>  and <M>X_2=10-X_1</M>  and <M>\v X = (X_1,X_2)'</M> 
+ then find <M>E(\v X)</M>  and <M>V(\v X).</M></EXR>
+
+
+<EXR>Let <M>\v X = (X_1,X_2,X_3)'</M>  have 
+<D>V(\v X) = <MAT>
+3 & 2 & 1\\
+2 & 4 & 2\\
+1 & 2 & 5
+</MAT>.</D>
+Find <M>cor(X_1,X_3).</M>
+</EXR>
+
+<EXR>In the last problem, also find <M>V(X_1-3X_2)</M>  and <M>cov(X_1+X_2,X_3).</M></EXR>
+<HEAD1>Motivation behind the definition of dispersion matrix</HEAD1>
+To motivate the definition of dispersion matrixconsider the bivariate case. Let the two components of our random
+ vector be <M>X</M>  and <M>Y.</M>  If we take
+ many IID replications, we get points like <M>(X_1,Y_1),...,(X_n,Y_n).</M>  Think of these like a scatterplot. 
+<CIMG web="scat1.png"></CIMG>
+If you look at this cloud of points from position A, then the points appear more scatterred than when we look from B. This
+ is an interesting feature of multivariate dispersion, it depends on how you look at it. A good  measure of dispersion
+ should not depend on the direction you are looking from, rather it should capture the comprehensive picture,
+from which we should be able to work out the dispersion from any desired direction. To achieve 
+ this, imagine a ruler placed on the scatterplot with its 0 mark at the origin. Parallel rays of
+ light are shining perpendicularly down on the ruler from both
+ sides, casting shadows of the points on the ruler:
+<CIMG web="scat2.png">Light rays (shown in red) are dropping perpendicularly on the ruler</CIMG>
+Then each bivariate point reduces to a single number along the scale, and we may compute variance of the numbers to measure
+ the dispersion when looking from that particular direction. To quantify the placement of the ruler, imagine a unit
+ vector <M>\v u</M>  along the
+ ruler from its 0 mark (at the origin) reaching up to its 1 mark.
+<CIMG web="scat3.png">Projecting a typical point perpendicularly on the ruler</CIMG>
+Then
+ a point <M>\v v \equiv (X,Y)</M> 
+ will project to the vector  
+<D>[[\v v'\v u][\v u'\v u]] \v u,</D>
+shown in blue. Measured in units of <M>\v u</M>,  this will show up at the mark <M>[[\v v'\v u][\v u'\v u]]</M>  of the ruler.
+
+Now, <M>[[\v v'\v u][\v u'\v u]] = pX+qY</M> for some <M>p,q\in\rr.</M>  
+Then the
+ variance of <M>pX+qY</M> 
+ will be <M>p^2 V(X)+q^2 V(Y) + 2pq\, cov(X,Y),</M>  which may be written as  (check!)
+<D><MAT>p & q</MAT><MAT>V(X) & cov(X,Y)\\cov(X,Y) & V(Y)</MAT><MAT>p\\q</MAT>.</D>
+Here <M>p,q</M>  are controlled by the ruler. Notice that the matrix in the middle does not
+ involve <M>p,q.</M>  Thus, it contains
+ information about dispersion for every
+ possible way of placing the ruler.
+ This matrix is indeed the dispersion matrix we  defined above.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Consider the toy bivariate data set <M>(1, 2), (3, 4), (2.1, 3.1), (4, 5).</M>  Draw the
+ scatterplot. Imagine that we are looking down as shown. Guess the variance as seen from that
+ direction. Check your guess by actual computation.
+<CIMG web="lookex.png"></CIMG>
+</EXR>
+
+<EXR>Let the dispersion matrix of <M>(X,Y)</M>  be <M><MAT>1 & 0\\0 & 2</MAT></M>. Find
+ <M>\theta\in [0,\pi)</M>  such that <M>V(\cos (\theta) X + \sin(\theta) Y)</M>  is maximum. When is the</EXR>
+ <HEAD1>Properties of expectation, variance of random vectors</HEAD1>
+The following facts are immediate from the definition.
+<THM>
+If <M>E(\v X)=\v\mu</M>  and <M>V(\v X) = \Sigma,</M>  then for any matrix <M>A_{m\times n}</M>  and any vector <M>\v b_{m\times 1}</M> 
+ we have
+<OL>
+<LI><M>E(A\v X+\v b) = A\v\mu+\v b</M>,</LI>
+<LI><M>V(A\v X+\v b) = A\Sigma A'</M></LI>
+</OL>
+</THM> 
+<PF>
+Let <M>\v Y = A\v X+\v b.</M>  Then <M>\v Y = (Y_1,...,Y_m)'</M>, where <M>Y_i = \sum_j a_{ij}X_j + b_i.</M>  Here I have
+ denoted the <M>(i,j)</M>-th entry of <M>A</M>  by <M>a_{ij}.</M>  
+
+Now compute <M>E(Y_i)</M>  and <M>cov(Y_i,Y_j)</M>  directly to get the result. 
+
+By the way, the <M>(i,j)</M>-th entry of <M>A\Sigma A'</M>  is <M>\sum_r\sum_s a_{ir} \sigma_{rs} a_{js}.</M>  
+</PF>
+
+<THM>
+Any dispersion matrix is NND. In other words, if <M>\Sigma_{n\times n}=V(\v X)</M>, then <M>\forall \v\ell\in\rr^n~~\v\ell'\Sigma\v\ell\geq 0.</M>
+</THM>
+<PF>
+By the last theorem, <M>\v\ell'\Sigma\v\ell=V(\v\ell'\v X)\geq 0.</M>
+</PF>
+
+The converse is also true:
+<THM>
+If <M>\Sigma_{n\times n}</M>  is any NND matrix, then it <M>V(\v X)</M>  for some random vector <M>\v X_{n\times 1}.</M> 
+</THM>
+<PF>
+Let <M>U_1,...,U_n</M>  be independent with <M>\forall i~~V(U_i)=1.</M>    Then <M>\v U=
+ (U_1,...,U_n)'</M>  has <M>V(\v U) = I_n.</M>  
+
+Since <M>\Sigma</M>  is NND, hence <M>\Sigma = AA'</M>  for some <M>A_{n\times n}.</M>  
+
+Let <M>\v X = A\v U.</M>  Then <M>V(\v X) = A I_n A' = AA' = \Sigma.</M> 
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Show that for <M><MAT>a & b\\b & c</MAT></M>  to be a dispersion matrix, a necessary
+ condition is that <M>b^2\leq ac.</M>  Is it a sufficient condition?</EXR>
+
+<EXR>Show that <M>V(\v X)</M>  is singular if and only if <M>P(a_1X_1+\cdots+a_n X_n=c)=1</M>  for
+ some constants <M>a_i</M>'s and <M>c</M>  such that not all <M>a_i</M>'s are zero.</EXR>
+
+
+<EXR>If <M>\v X=(X,Y)'</M>  and <M>V(\v X)</M>  is a singular, then how will a scatterplot of
+ replications from <M>\v X</M>  look like? Here we are running the random experiment underlying <M>\v
+ X</M>  repeatedly, and getting <M>(X_1,Y_1), (X_2,Y_2),...,(X_n,Y_n),</M>  and plotting these
+ <M>n</M>  points as a scatterplot. Your job is a to identify some geometric pattern in the plot. </EXR>
+
+<HEAD1 u="https://youtu.be/ThHaLNSDZKI">Conditional density (intuition)</HEAD1>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If <M>(X,Y)</M>  are jointly discrete then we defined the
  conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(x=x,Y=y)][P(Y=y)]],</M>  
@@ -810,22 +938,27 @@ The most glaring difference between conditional PDF and conditional PMF is that 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find conditional density of <M>X</M>  given <M>Y=[[12]]</M>  if the joint density of <M>(X,Y)</M>  is </EXR>
 <D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
-<HEAD1>Conditional density</HEAD1>
+<HEAD1 u="https://youtu.be/-7x_sra_fyg">Conditional density (rigour)</HEAD1>
 We defined conditional density in a heuristic way. However, the theorem of total probability is still valid perfectly rigourously:
 
 <THM name="Total probability"><M>\int_c^d \int_a^bf_{X|Y}(x,y)f_Y(y)\, dxdy=P(X\in [a,b], Y\in[c,d]).</M></THM>
 <PF>  This is obvious
- from the definition of <M>f_{Y|X}(x,y).</M></PF>
+ from the definition of <M>f_{Y|X}(x,y):</M>
+<MULTILINE>
+\int_c^d \int_a^bf_{X|Y}(x,y)f_Y(y)\, dx\,dy & = & \int_c^d \int_a^b[[f(x,y)][f_Y(y)]]f_Y(y)\, dx\,dy\\
+& = & \int_c^d \int_a^b f(x,y)\,dx\,dy\\
+& = & P(X\in [a,b], Y\in[c,d]).</MULTILINE>
+</PF>
 It is this theorem that justifies the definition of conditional PDF.
 
-Other than this difference, the rest follows as in the discrete case. We have the concepts of
- conditional expectation, conditional variance etc as usual. 
+As in the discrete case, here also  we have  concepts of
+ conditional expectation, conditional variance etc.
 
 <DEFN>
 If <M>(X,Y)</M>  has a joint density <M>f(x,y),</M> then <M>E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx</M>  and 
 <D>V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).</D>
 </DEFN> 
-The tower property also works as before, as do the relation between conditional and unconditional variances.
+The tower property also works as before, as do the relation between conditional and unconditional variances:
 <THM>
 If <M>(X,Y)</M>  has a joint density, then
 <OL>

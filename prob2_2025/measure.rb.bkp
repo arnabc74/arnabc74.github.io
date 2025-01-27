@@ -7,101 +7,263 @@
 \newcommand{\ind}{{\mathbb 1}}
 \newcommand{\area}{\mathrm {area}}
 </M>
-<HEAD1>Measure</HEAD1>
-We often talk about the "size" of different sets. There are various ways to measure the size, length, area, volume, mass,
- cardinality. All these measures share some common properties: they are defined over subsets of
- some universal set (e.g., length for subsets of <M>\rr,</M>  while area for subsets of
- <M>\rr^2</M>), they are always nonnegative
- and they add up over disjoint sets. 
+<HEAD1>Lebesgue integration: the idea</HEAD1>
+<HEAD2>Problem with Riemann integration</HEAD2>
+We all know about
+ Riemann integration. We shall illustrate the idea with a positive, bounded function
+ <M>f:[a,b]\to\rr</M>. The idea is to measure
+ the area under its graph by  approximating it with steps
+ functions with finitely many steps. We do this from both above and below. For this we partition the domain of the function
+ into finitely many intervals and raise rectangles on them as follows.
+<CIMG web="rul.png"></CIMG>
+The intuition is that if we take finer and finer partitions and raise the red rectangles as much as we can under the graph,
+ we shall come arbitrarily close to the area under the graph. If we do the same from above  the graph using the blue rectangles,
+ then also we should come arbitrarily close to the same area. So our intuition dictates that 
+<Q>
+sup (red area) = inf(blue area),
+</Q>
+and we plan to use this common value as the area under the curve. This brilliant intuition has just one loop hole, for many
+ functions the sup does not equal the inf! We call such functions non-Riemann integrable, and try
+ to avoid them at all costs.  However, these
+ bad functions cannot be completely avoided, as they crop up naturally from time to time, usually as the limit of Riemann integrable
+ functions. 
+<HEAD2>Lebesgue's solution</HEAD2>
+Lebesgue had a solution for this. Instead of partitioning the domain his plan was to partition the codomain. So he also
+ got red rectangles below the graph and blue rectangles above as follows.
+<CIMG web="lul.png"></CIMG>
+ And like Riemann he also hoped that
+<Q>
+sup (red area) = inf(blue area),
+</Q>
+and he wanted to call this the area under the curve. Before exploring this idea further, let's get comfortable with splitting
+ the codomain. 
 
-Measure theory is a unified approach to deal with all these mathematically. 
-Let <M>\Omega</M>  be our universal set. We denote the measure of some <M>A\seq\Omega</M>  by
- <M>\mu(A).</M>  
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Consider the following graph of a bounded positive function. Finitely many values are marked
+ on the <M>y</M>-axis.
+<CIMG web="splitex1.png"></CIMG>
+ Draw horizontal lines through them, and obtain the red and blue areas. </EXR>
 
-<EXM>If we are talking about "length" of subsetsof <M>\rr,</M>  then we take <M>\Omega=\rr.</M>  For
- <M>A = (0,3)</M>  we have <M>\mu(A) = 3.</M></EXM>
+<EXR>Repeat for the following function.
+<CIMG web="splitex2.png"></CIMG>
+</EXR>
 
-<EXM>If we are talking about "area" of subsets of <M>\rr^2</M>,  then we take <M>\Omega=\rr^2.</M>  For
- <M>A = [0,3]\times[-1,1]</M>  we have <M>\mu(A) = 3\times2=6.</M></EXM>
+<HEAD1>Why Lebesgue's solution works</HEAD1>
+Just based on these diagrams, you may think that Lebesgue's idea is no different from Riemann's
+ idea. But actually, Lebesgue's
+approximations are more flexible than Riemann's. To understand this look at the graph below, where
+ we have shown the lower Lebesgue approximation using just 4 points in the codomain.
+<CIMG web="lul2.png">Just three heights, but so many rectangles!</CIMG>
+Each value in the codomain, can give birth to many rectangles, depending on the ups and downs of the curve. 
 
-<EXM>If we are talking about "cardinality" of subsets of <M>\{1,2,...,10\}</M>,  then we take <M>\Omega=\{1,2,...,10\}.</M>  For
- <M>A = \{2,4,6,8,10\}</M>  we have <M>\mu(A) = 5.</M></EXM>
+Indeed, a single height can give rise to infinitely many "rectangles"! 
+For instance, the function
+<D>f(x) =<CASES>1<IF>x\in\qq\cap[0,1]</IF> 0<ELSE/></CASES> </D> 
+takes only two values, 0 and 1. Yet each value is taken infinitely often. 
+So you can now feel why Lebesgues approximations are more flexible than Riemann's:
+<Q>
+Riemann's approximations are special cases of Lebesgue's approximations, but
+ not <I>vice versa</I>. 
+</Q>
 
-In general, for <M>A\seq\Omega</M>, we require <M>\mu(A)</M>  to be a nonnegative number, and for any disjoint countable
- collection of subsets 
- <M>A_1,A_2,...\seq\Omega</M>  we want <M>\mu(\cup A_i) = \sum \mu(A_i).</M>
+As a result here
+ the sup(red) and inf(blue)
+ match for a more general class
+ of functions. 
+This  also shows that if Riemann's sup(red) and inf(blue) areas meet, then so must Lebesgue's, and the meeting
+ point would be the same. 
 
-This may sound simple, but there are a couple of problems.
-<UL><LI>To see the first problem,  let's consider the example of "length"
- of subsets of <M>\rr.</M>  Here we would like to say that  <M>\mu(A)= \infty</M>  if <M>A</M>  is
- <M>\rr</M>  or <M>(0,\infty)</M>  or <M>[4,\infty)</M>  etc. So we have consider the symbol
- <M>\infty</M>  as a nonnegative number.
-This will not cause any problem with the countable
- additivity condition, since we are not working with both <M>\infty</M>  and <M>-\infty.</M>  So
- addition is still well-defined, as <M>\forall a\in\rr~~a+\infty = \infty+a = \infty</M>  and
- <M>\infty + \infty= \infty.</M>  
-</LI>
-<LI>The second problem is more subtle. Sometimes we want the measure to satisfy additional "nice" conditions. 
-Often we find that no measure with those "nice" conditions exists.
-See <LINK to="vitali.html">this discussion</LINK>  for one such example. 
- If, however, we define it only for a subcollection of
- subsets of <M>\Omega,</M>  then the problem goes away. The subcollection must of course be rich enough to allow interesting
-mathematical  manipulations. So we want a nonempty subcollection that is closed under countable
- union, intrsection and complementation.
- Any such subcollection is called a <TERM><M>\sigma</M>-algebra</TERM>  on <M>\Omega.</M>
-</LI></UL>
+Now we shall take a rigourous look at Lebesgue's idea. First we need a name for the functions that Lebesgue is using to approximate
+ areas. We shall call them <TERM>simple</TERM>  functions.
 
-<EXM>Let <M>\Omega = \{1,2,...,10\}.</M>  Is <M>{#{ \{1,2,3\}, \{2,3,4\} }#}</M>  a <M>\sigma</M>-algebra over <M>\Omega</M>?
-<SOLN/>
-No. Here <M>\{1,2,3\}</M>  and <M>\{2,3,4\}</M>  are both in the collection, but their intersection <M>\{2,3\}</M>  is not.
-</EXM>
-
-<EXM>Which subsets of <M>\Omega</M>  do we need to  the above collection in order to turn it into a <M>\sigma</M>-algebra?
-<SOLN/>
-Let <M>A=\{1,2,3\}</M>  and <M>B=\{2,3,4\}.</M>  Drawing them as a Venn diagram we get 4 basic sets. 
-<CIMG web="basic.png">The 4 basic sets</CIMG>
-The smallest <M>\sigma</M>-algebra consists of all possible unions of these. There are <M>2^4=16</M>  sets in the <M>\sigma</M>-algebra.
-</EXM>
-The idea behind this example is important. We often start with some collection of subsets, and
- turn it into a simple by adding as few extra subsets to it as possible. The resulting <M>\sigma</M>-algebra is the smallest
- <M>\sigma</M>-algebra containing the given collection. We call it the <M>\sigma</M>-algebra <TERM>generated</TERM>  by the
- collection. 
-
-If the initial collection is finite, then we can always proceed as in the above example. But more often the initial collection
- is infinite. Then there is no simple way to describe the <M>\sigma</M>-algebra generated by it. The most prominent example
- is given by the <TERM>Borel <M>\sigma</M>-algebra</TERM>  defined below.
-<DEFN name="Borel $\sigma$-algebra">
-Let <M>\Oemga=\rr.</M>  The <M>\sigma</M>-algebra generated by the collection of all open intervals is called the <TERM>Borel <M>\sigma</M>-algebra</TERM> 
- on <M>\rr.</M>  It is commonly denoted by <M>\calB.</M>
+<DEFN name="Simple function">
+A function is called <TERM>simple</TERM>  if it takes only finitely many values.
 </DEFN>
 
-Combining all these, we get the  definition of measure.
+We can  express a simple function mathematically using indicator functions. Let a simple function take only the values <M>c_1,...,c_k</M> 
+ (all distinct). Let <M>A_i = \{\omega\in\Omega~:~f(\omega) = c_i\}.</M>  An example is shown below.
+<CIMG web="simpstep2.png">Clearly the <M>A_i</M>'s partition <M>\Omega</M>.</CIMG>
+The <M>A_i</M>'s need not always be just finite union of intervals. For example, in case of the Dirichlet function, we have
+ just two <M>A_i</M>'s, one is <M>\qq\cap [0,1]</M>  and the other <M>\qq^c\cap [0,1].</M>  However, we always have only
+ finitely many <M>A_i</M>'s. We can now write the simple function as 
+<D>f(\omega) = \sum_{i=1}^k c_i\ind_{A_i}(\omega).</D>
+Lebesgue wanted to think that each <M>c_i</M>  constributes a "rectangle" with  height <M>c_i</M>  on
+ the base <M>A_i.</M> Such a "rectangle" should have
+ area <M>c_i\times</M> length
+ of <M>A_i</M>. But how to measure length of <M>A_i</M>'s? 
+It is this question that first
+ led him to create measure
+ theory. 
+
+<HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>There are two countries <M>T</M>  and <M>S.</M>  Every inhabitant of <M>T</M>  is at least as
+ tall as every inhabitant of <M>B.</M>  Consider the two statements:
+<OL>
+<LI>the height of shortest inhabitant of <M>T</M>  equals that of the tallest inhabitant of <M>S.</M></LI>
+<LI>the height of shortest lady of <M>T</M>  equals that of the tallest lady of <M>S.</M></LI>
+</OL>
+Then which of the following is/are true?
+<HL>
+<LI><M>1\Rightarrow 2</M>  but <M>2\not\Rightarrow 1</M></LI>
+<LI><M>2\Rightarrow 1</M>  but <M>1\not\Rightarrow 2</M></LI>
+<LI><M>1\Leftrightarrow 2</M></LI>
+<LI><M>1\not\Rightarrow 2</M>  and <M>2\not\Rightarrow 1</M></LI>
+</HL>
+ </EXR>
+<EXR>Let <M>A</M>  be the set of all step functions with domain <M>[0,1]</M>  with finitely many steps.
+ Let <M>B</M>  be the set of all simple functions with the same domain. Then which of the following is true?
+<OL>
+<LI><M>A\subsetneq B</M></LI>
+<LI><M>B\subsetneq A</M></LI>
+</OL>
+</EXR>
+
+
+<HEAD1>Defining "length"</HEAD1>
+We are trying to define lengths of subsets of <M>\rr.</M>
+<UL><LI>
+We know that intervals like <M>[a,b]</M> have length <M>b-a.</M>
+</LI><LI>
+In particular, <M>[a,a]=\{a\}</M> have length 0, and
+so <M>(a,b)</M>, <M>(a,b]</M> and <M>[a,b)</M> also have the same
+length as <M>[a,b].</M>
+</LI>
+<LI> The length of <M>[a,\infty)</M>
+or <M>(-\infty, a)</M> or <M>(-\infty, \infty)</M> should
+be <M>\infty.</M>
+</LI><LI>
+The length of <M>[1,2]\cup(100,102)</M>
+should be <M>(2-1)+(102-100) = 1+2 = 3.</M>
+</LI><LI> 
+We can extend this
+idea to even countably many disjoint intervals (using infinite
+series). Thus the "length" of the set of all rationals in <M>[0,1]</M> should
+be 0.</LI> <LI>
+The "length" of all irrationals in <M>[0,1]</M> should
+be <M>1-0=1.</M></LI></UL>
+ Proceeding in this way we can extend the
+definition of length to a class of subsets of <M>\rr</M> which
+contains all the intervals, and is
+closed wrt countable union, interrsection and complementation.
+The smallest such  class is a called 
+the  <TERM>Borel <M>\sigma </M>-algebra</TERM>, and denoted by <M>\calB.</M>  Its members are called <TERM>Borel measurable sets</TERM> 
+ or just <TERM>Borel sets</TERM>.
+
+The "length" of a Borel set, <M>B</M>, will be called
+its <TERM>Lebesgue measure</TERM>, and will be a denoted
+by <M>\lambda(B).</M>
+If <M>B</M>  is not Borel, then <M>\lambda(B)</M>  is undefined.
+
+
+As 
+not all subsets
+ are measurable. So naturally he restrited his attention to only those simple functions <M>\sum_i
+ c_i\ind_{A_i}</M>, where the <M>A_i\in\calB.</M>
+ 
+
+The next step in Lebesgue's intuition is to approximate the given function using simple functions,
+ from below and from above. 
+
+We want to  make sup(red) and inf(blue) equal. This will happen if and only if 
+<D>\forall B\in\calB~~f ^{-1} (B)\in \calB.</D>
+Such  functions are called <TERM>measurable</TERM> 
+ functions.
+
+ 
+<HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>Find <M>\int f\, d \lambda,</M>  where 
+<D>f(x) = <CASES>1<IF>x\in\qq^c\cap [0,1]</IF> 0<ELSE/></CASES> </D>
+What is <M>\int_0^1 f(x)\, dx</M>  using Riemann integration?
+</EXR>
+
+<EXR>Prove that  <M>\sum_i c_i\ind_{A_i}</M>    is measureable if and only if <M>\forall i~~A_i\in\calB.</M></EXR>
+
+<HEAD1>Generalising the solution</HEAD1>
+Lebesgue's approach can be generalised in different ways. We shall discuss these now.
+<HEAD2>Allowing unbounded functions and unbounded domains</HEAD2>
+Since the Lebesgue integral exists for all bounded, non-negative measurable functions, hence it is enough to consider only
+ the sup of the approximations from below. This immediately allows us to define Lebesgue integral
+ for unbounded, measurable functions
+ as well. We just allow the sup to be <M>\infty.</M>  
+
+Similarly we may now carry out the procedure
+ over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  Any "rectangle" with base
+length <M>\infty</M>  and positive height has area <M>\infty</M>, and any "rectangle" with zero
+ height has zero area (even if its base has measure <M>\infty</M>).  
+
+<HEAD2>Allowing negative values</HEAD2>
+Moving from non-negative functions to general functions is easy. For <M>f:\rr\to\rr</M>  we define <M>f_+ =\max\{f,0\}</M> 
+ and <M>f_- =\max\{-f,0\}.</M>  Then <M>f = f_+-f_-.</M>  We define <M>\int f\, d \lambda = \int f_+\, d \lambda -\int f_-\, d \lambda,</M>  if
+ both the integrals on the rhs are not <M>\infty.</M>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find <M>\int f(x)\, d \lambda</M>  where <M>f:\rr\to\rr</M>  is defined as  <M>f(x)
+ =<CASES>2<IF>x\in\qq^c</IF>-1<ELSE/></CASES></M></EXR>
+
+<EXR>Find <M>\int f(x)\, d \lambda</M>  where <M>f(x)=x.</M></EXR>
+
+<HEAD1>General measures</HEAD1>
+For a simple function <M>\sum_{i=1}^n c_i 1_{A_i}</M> we defined the Lebesgue integral as
+<D>\sum_{i=1}^n c_i \lambda(A_i),</D>
+where <M>c_i</M>  is the height of the <M>i</M>-th rectangle, and <M>\lambda(A_i)</M>  is the "length" of its base. Then
+ we took supremum and infimum etc. It
+ turns out that the entire process of defining Lebesgue integrals need only two properties of
+ Lebesgue measure: its non-negativity and countable additivity over disjoint sets. The fact that
+ the length of <M>(a,b)</M>  is <M>b-a</M>  is not important. This motivates the following
+ generalisation of the concept of "length":
+<UL><LI>
+Our <M>f:\rr\to\rr</M>   may be replaced by <M>f:\Omega\to\rr</M>  for any non-empty set <M>\Omega.</M>  Typical choices
+ for <M>\Omega</M>  could be <M>\rr^2</M>  or <M>\rr^3</M>  or some finite set. However, any non-empty set would do in general. 
+</LI>
+<LI>We just need some way to measuring the size of subsets of <M>\Omega.</M>  For <M>\rr</M>  we
+ used "length". For subsets of
+ <M>\rr^2</M>  we may use "area", while "volume" may be used for subsets of <M>\rr^3.</M>  For a
+ finite <M>\Omega</M>  we may use "cardinality". All
+ that we need is that the measure
+ should be non-negative, and should add up over countably many disjoint sets, i.e., if
+ we denote the "measure of size" of a set <M>A\seq\Omega</M>  by <M>\mu(A)</M>  then we want
+ <M>\mu(A)\geq 0</M>  and 
+<M>\mu(\cup_i A_i) = \sum_i\mu(A_i)</M>  for disjoint subsets  <M>A_1,A_2,...</M>
+ of <M>\Omega.</M>
+</LI>
+<LI>As in the case of "length", it may not be possible  in general to define such <M>\mu</M>  for
+ <I>all</I>  subsets of <M>\Omega.</M>  It is enough to be able to define it for a class of
+ subsets of <M>\Omega</M>. But in order to do mathematical manipulations, that class should be
+ closed under countable set
+ operations (union, intersection,
+ complementation). Any such class, as we have already learned, is called a  <M>\sigma</M>-algebra.
+Once we have decided upon the <M>\sigma</M>-algebra and the measure to use, we shall work with simple functions
+ <M>\sum_{i=1}^n c_i  1_{A_i}</M>  where the
+ <M>A_i</M>'s are in the <M>\sigma</M>-algebra, so that we may compute <M>\mu(A_i).</M></LI></UL>
+
+Let us write down the definition of a <TERM>measure</TERM>  clearly.
+
 <DEFN name="Measure">
 Let <M>\Omega</M>  be any non-empty set. Let <M>\calF</M>  be any <M>\sigma</M>-algebra on
  <M>\Omega.</M>  Then by a <TERM>measure</TERM>  we understand a function <M>\mu:\calF\to[0,\infty]</M>  such that 
 <D>\forall \mbox{disjoint }A_1,A_2,...\in\calF~~\mu(\cup A_i) = \sum\mu(A_i)</D>
 </DEFN>
-Here are a couple of related terms: the pair  <M>(\Omega,\calF)</M> is called a <TERM>measurable space</TERM>,  and
-the triple <M>(\Omega,\calF,\mu)</M>  is called a <TERM>measure space</TERM>. Note that if <M>A\not\in\calF</M>,  then 
- <M>\mu(A)</M>  is undefined.
+Notice that we have allowed <M>\mu(A) = \infty.</M>  For instance, "length" of <M>(0,\infty)</M>  is <M>\infty,</M>  and
+ "area" of <M>\rr^2</M>  is also <M>\infty.</M>
 
-Notice that the conditions in this definition are much like the probability axioms, except that there we had one extra conditions
- <M>P(\Omega)=1.</M>  This shows that probability is a measure. However, a measure <M>\mu</M>  need not have <M>\mu(\Omega)</M> 
- equal to <M>1.</M>  It could be any finite positive number or even <M>\infty.</M>  If <M>\mu(\Omega)< \infty,</M>  we naturally
- call <M>\mu</M>  a <TERM>finite measure</TERM>. These are generally easier to work with. Infinite measres are harder to
- deal. But there is an useful intermediate type of measure that allows <M>\mu(\Omega)=\infty</M>  and yet retains much of
- the advantages of a finite measure. These are what we work with most of the time. Th definition goes like this.
-
-<DEFN name="$\sigma$-finite measure">
-A measure <M>\mu</M>  on <M>(\Omega,\calB)</M>  is called <TERM><M>\sigma</M>-finite</TERM>  if there are disjoints <M>B_1,B_2,...\in\calB</M> 
- such that <M>\Omega = \cup_i B_i</M>  and <M>\forall i~~\mu(B_i)<\infty.</M>
-</DEFN>
-One example is "length" or <M>\rr.</M>  Entire <M>\rr</M>  has infinite length, but <M>\rr</M>  may be split up into <M>[n,n+1)</M> 
- for <M>n\in\zz</M>  and each of these has finite length.
-
+Everything else now follows as in case of "length", we have "red rectangles" from below and "blue
+ rectangles" from above. For a very general class of functions we have sup(red) = inf(blue). For
+any such nice function, <M>f</M>,  we define this common value to be the <TERM>Lebesgue
+ integral</TERM>  of <M>f</M>  wrt <M>\mu</M>, and write it as 
+<D>\int f\, d\mu.</D>
+In particular, if <M>f</M>  is itself a simple function 
+<D>f(x) = \sum_{i=1}^n c_i 1_{A_i},</D> 
+then we have 
+<D>\int f\, d\mu = \sum_{i=1}^n c_i \mu(A_i).</D> 
+Of course, we need all the <M>A_i</M>'s to be in the <M>\sigma</M>-algebra we are using. Otherwise, <M>\mu(A_i)</M>  would
+ not make any sense.
 
 <HEAD2>Problem set <PS/></HEAD2>
-
+<EXR>Let <M>\Omega = \{1,...,9\}.</M>  We defne, for any <M>A\seq\Omega</M>, its measure as
+<M>\mu(A) = |A|,</M>  the
+ number of elements in <M>A.</M>  Consider <M>f:\Omega\to\rr</M>  as <M>f(i) = i (\mbox{mod }2) + 1.</M>  Find <M>\int f\, d\mu.</M></EXR>
 <EXR>Show that any <M>\sigma</M>-algebra on <M>\Omega</M>  must contain <M>\phi</M>  and <M>\Omega.</M></EXR>
 <EXR>Is <M>\calP(\Omega)</M>  a <M>\sigma</M>-algebra on <M>\Omega?</M>
 <ANS>
@@ -114,7 +276,10 @@ Yes. It is the largest <M>\sigma</M>-algebra on <M>\Omega.</M>
 
 <EXR>If <M>\mu(A) = 3</M>  and <M>\mu(B) = 5.5</M>  and <M>\mu(A\cap B) = 2</M>, then what is <M>\mu(A\cup B)?</M></EXR>
 
-<HEAD1>Constructing a measure from intuition</HEAD1>
+When we take some probability measure in place of <M>\mu,</M>  we get the familiar definition of expectation. 
+
+<COMMENT>
+<THEAD1>Constructing a measure from intuition</THEAD1>
  How do we construct a measure? Typically we start with some subsets of <M>\Omega</M>  for which the value is obvious. Then
  we use the countable additivity to define it for less obvious sets. Let's do it for "length". We all agree that the length
  of <M>(a,b)</M>  is <M>b-a</M>  for <M>a<b.</M>  Then what should the length of <M>(0,1)\cup
@@ -144,7 +309,7 @@ We shall not prove this in this course. But let us understand the significance o
  <M>A,B</M>  overlap each other. Also, for each <M>A</M>  we should be able to express <M>A^c</M>  as a finite union of sets
  for which <M>\mu</M>  has been specified. This will help us to place <M>A</M>  in the background of <M>\Omega.</M>  
 
-<HEAD2>Problem set <PS/></HEAD2>
+<THEAD2>Problem set <PS/></THEAD2>
 The following exercises will apply this concept to define "length" for all
  subsets in <M>\calB.</M>  This measure is called <TERM>Lebesgue measure</TERM>  on <M>(\rr,\calB).</M>
 
@@ -187,7 +352,6 @@ The next exercise asks you to prove the existence of <M>Unif(0,1),</M>  thus com
  on <M>\Omega = (0,1)</M>  such that for each <M>0 \leq a \leq b\leq 1</M>  we have
  <M>\mu((a,b))=\mu((a,b]) =\mu([a,b)) =\mu([a,b])=b-a.</M>  Show that this <M>\mu</M>  is a
  probability. This is called <M>Unif(0,1).</M>    </EXR>
-<COMMENT>
 <THEAD1>Uncountable sample space</THEAD1>
 We have already seen last semester that for an uncountable <M>\Omega</M>  we may not always be able
  to define a function <M>P:{\mathcal P}(\Omega)\to[0,1]</M> 
@@ -200,164 +364,43 @@ Hence we defined <M>\sigma</M>-algebra. While the simplest <M>\sigma</M>-algebra
 Closely related to this is the idea of a measurable function.
 </COMMENT>
 <HEAD1>Measurable function</HEAD1>
-We have talked about random variables as real-valued functions defined on <M>(\Omega,\calF).</M>   Thus, <M>X:\Omega\to\rr.</M> 
-Suppose that we want to compute  <M>P(X\in B)</M> for some <M>B\seq \rr.</M>   Now, the event <M>\{X\in B\}</M>  is actually
-<D>A=\{w\in\Omega~:~X(w)\in (a,b)\}\equiv X ^{-1} (a,b).</D> 
- In order to be able to compute probability of this,
- we need to have <M>X ^{-1}(B)\in\calF.</M>  Typically we want to be able to compute <M>P(X\in B)</M>  for
- each <M>B\in\calB.</M>  So we need <M>\forall B\in\calB~~X ^{-1}(B)\in\calF.</M>
+We have mentioned earlier that for Lebesgue integrals sup(red)=inf(blue) for a rather general class
+ of functions. In particular, when we worked with <M>f</M>  defined on   <M>\rr</M>  equipped with <M>\calB</M>
+  and <M>\lambda</M>, we had given a characterisation of all functions for which the Lebesgue
+ integral <M>\int f\, d \lambda</M>  exists: 
+<D>\forall B\in\calB~~f ^{-1}(B)\in\calB.</D>
+It is not unexpected that if <M>f</M>  is defined on <M>\Omega</M>  equipped with <M>\calF</M>  and <M>\mu,</M>  then the
+ characterisation is
+<D>\forall B\in\calB~~f ^{-1}(B)\in\calF.</D>
+Such functions are called <TERM>measurable</TERM>  functions. These functions are very nicely behaved. In particular limits
+ of measurable functions are again measurable. This is the most important reason for preferring Lebesgue integration over Riemann integration.
+ If <M>f_n\to f</M>  pointwise, and <M>\int f_n\, d \mu</M>  exist for each <M>n,</M>  then the existence of <M>\int f\, d \mu</M> 
+ is immediately guaraneteed. 
 
-This motivates the following definition.
-<DEFN name="Measurable function">
-Let <M>(\Omega_1,\calF_1)</M>  and <M>(\Omega_2,\calF_2)</M>  be measurable spaces. Then a function <M>f:\Omega_1\to\Omega_2</M> 
- is called <TERM>measurable</TERM>  if 
-<D>\forall B\in\calF_2~~f ^{-1} (B)\in \calF_1.</D>
+Interestingly, the concept of a measurable function also arises in a different way in probability theory. Let <M>X</M>  be
+ a random variable. We know that underlying every random variable there is a random experiment, or
+ more precisely, a  probability space
+ <M>(\Omega,\calF, P)</M>  such that
+ <M>X:\Omega\to\rr.</M>  When we want to talk
+ about things like  <M>P(X\in
+ B)</M>  we actually mean
+ <M>P(\{\omega~:~X(\omega)\in B\})</M> or <M>P(X ^{-1}(B)).</M> In order for this to be defined we need <M>X ^{-1}(B)\in\calF.</M> 
+ In other words, we need a random variable to be measurable. Indeed, this is part of the definition of a random variable.
+ 
+<DEFN name="Random variable">
+Let <M>(\Omega,\calF, P)</M>  be a probability space. By a <TERM>random variable</TERM>  we mean a measurable function <M>X:\Omega\to\rr,</M> 
+ i.e., 
+<D>\forall B\in\calB~~X^{-1}(B)\in\calF.</D>
 </DEFN>
 
-<THM>
-Countable operations with measurable functions produce measurable functions. 
-</THM>
-The following two definitions express the familiar concepts of a random variable and its distribution in terms of measure
- theory.
 
-<DEFN>
-By a <TERM>random variable</TERM>  on a probability space <M>(\Omega,\calF,P)</M>  we mean a measurable function <M>X</M> 
- from <M>(\Omega,\calF)</M>  to <M>(\rr,\calB).</M>  Note that <M>P</M>  plays no role in the definition. 
-</DEFN> 
-
-<DEFN name="Distribution">
-Let <M>(\Omega,\calF,P)</M>  be a probability space. Let <M>X:\Omega\to\rr</M>  be a random variable. By the
- <TERM>distribution</TERM> of 
- <M>X</M>  we mean the function
- <M>P_X:\calB\to[0,1]</M>  given by 
-<D>P_X(B) = P(X ^{-1}(B))\mbox{ for } B\in\calB.</D>
-</DEFN>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Characterise measurable functions from <M>(\rr,\calp(\rr))</M>  to <M>(\rr,\{\phi,\rr\}).</M> 
+<EXR>Characterise measurable functions from <M>(\rr,\calP(\rr))</M>  to <M>(\rr,\{\phi,\rr\}).</M> 
 </EXR>
-<EXR>Characterise measurable functions from  <M>(\rr,\{\phi,\rr\})</M>  to <M>(\rr,\calp(\rr))</M>. 
+<EXR>Characterise measurable functions from  <M>(\rr,\{\phi,\rr\})</M>  to <M>(\rr,\calP(\rr))</M>. 
 </EXR>
 
 
-<HEAD1>Lebesgue integration: the idea</HEAD1>
-<HEAD2>Problem with Riemann integration</HEAD2>
-We all know about
- Riemann integration. We shall illustrate the idea with a positive, bounded function
- <M>f:[a,b]\to\rr</M>. The idea is to measure
- the area under its graph by  approximating it with steps
- functions with finitely many steps. We do this from both above and below. For this we partition the domain of the function
- into finitely many intervals and raise rectangles on them as follows.
-<CIMG web="rul.png"></CIMG>
-The intuition is that if we take finer and finer partitions and raise the red rectangles as much as we can under the graph,
- we shall come arbitrarily close to the area under the graph. If we do the same from above  the graph using the blue rectangles,
- then also we should come arbitrarily close to the same area. So our intuition dictates that 
-<Q>
-sup (red area) = inf(blue area),
-</Q>
-and we plan to use this common value as the area under the curve. This brilliant intuition has just one loop hole, for many
- functions the sup does not equal the inf! We call such functions non-Riemann integrable, and try
- to avoid them at all costs.  However, these
- bad functions cannot be completely avoided, as they crop up naturally from time to time, usually as the limit of Riemann integrable
- functions. 
-<HEAD2>Lebesgue's solution</HEAD2>
-Lebesgue had a solution for this. Instead of partitioning the domain is plan was to partition the codomain. So he also
- got red rectangles below the graph and blue rectangles above as follows.
-<CIMG web="lul.png"></CIMG>
- And like Riemann he also hoped that
-<Q>
-sup (red area) = inf(blue area),
-</Q>
-and he wanted to call this the area under the curve. 
-
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>Consider the following graph of a bounded positive function. Finitely many values are marked
- on the <M>y</M>-axis. Draw horizontal lines through them, and obtain the red and blue areas. </EXR>
-
-<EXR>Repeat for the following function.</EXR>
-
-<HEAD1>Why Lebesgue's solution works</HEAD1>
-Just based on these diagrams, you may think that Lebesgue's idea is no different from Riemann's idea. Actually, Lebesgue's
-approximations are more flexible than Riemann's. To understand this look at the graph below, where
- we have shown the lower Lebesgue approximation using just 4 points in the codomain.
-<CIMG web="lul2.png">Just three heights, but so many rectangles!</CIMG>
-Each value in the codomain, can give birth to many rectangles, depending on the ups and downs of the curve. 
-
-Indeed, a single height can give rise to infinitely many "rectangles"! 
-For instance, the function
-<D>f(x) =<CASES>1<IF>x\in\qq\cap[0,1]</IF> 0<ELSE/></CASES> </D> 
-takes only two values, 0 and 1. Yet each value is taken infinitely often. 
-So you can now feel why Lebesgues approximations are more flexible than Riemann's:
-<Q>
-Riemann's approximations are special cases of Lebesgue's approximations, but
- not <I>vice versa</I>. 
-</Q>
-
-As a result here
- the sup(red) and inf(blue)
- match for a more general class
- of functions. In fact, they match for all measurable functions. 
-This  also shows that if Riemann's sup(red) and inf(blue) areas meet, then so must Lebesgue's, and the meeting
- point would be the same. 
-
-Now we shall take a rigourous look at Lebesgue's idea. First we need a name for the functions that Lebesgue is using to approximate
- areas. We shall call them <TERM>simple</TERM>  functions.
-
-<DEFN name="Simple function">
-A function is called <TERM>simple</TERM>  if it takes only finitely many values.
-</DEFN>
-
-We can  express a simple function mathematically using indicator functions. Let a simple function take only the values <M>c_1,...,c_k</M> 
- (all distinct). Let <M>A_i = \{\omega\in\Omega~:~f(\omega) = c_i\}.</M>  An example is shown below.
-<CIMG web="simpstep2.png">Clearly the <M>A_i</M>'s partition <M>\Omega</M>.</CIMG>
-The <M>A_i</M>'s need not always be just finite union of intervals. For example, in case of the Dirichlet function, we have
- just two <M>A_i</M>'s, one is <M>\qq\cap [0,1]</M>  and the other <M>\qq^c\cap [0,1].</M>  However, we always have only
- finitely many <M>A_i</M>'s. We can now write the simple function as 
-<D>f(\omega) = \sum_{i=1}^k c_i\ind_{A_i}(\omega).</D>
-Lebesgue wanted to think that each <M>c_i</M>  constributes a "rectangle" with  height <M>c_i</M>  on
- the base <M>A_i.</M> Such a "rectangle" should have
- area <M>c_i\times</M> length
- of <M>A_i</M>. But how to measure length of <M>A_i</M>'s? 
-It is this question that first
- led him to create measure
- theory. As we have already
- stated, not all subsets
- are measurable. So naturally he restrited his attention to only those simple functions <M>\sum_i
- c_i\ind_{A_i}</M>, where the <M>A_i\in\calB.</M>
- 
-
-The next step in Lebesgue's intuition is to approximate the given function using simple functions,
- from below and from above. This is where Lebesgue's approach beats Riemann's approach:
-
-<THM><I>Every</I>  measurable
- non-negative function is Lebesgue integrable.</THM> 
-
-
- 
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>Prove that  <M>\sum_i c_i\ind_{A_i}</M>    is measureable if and only if <M>\forall i~~A_i\in\calF.</M></EXR>
-
-<HEAD1>Generalising the solution</HEAD1>
-Lebesgue's approach can be generalised in different ways. We shall discuss these now.
-<HEAD2>Allowing unbounded functions</HEAD2>
-Since the Lebesgue integral exists for all bounded, non-negative measurable functions, hence it is enough to consider only
- the sup of the approximations from below. This immediately allows us to define Lebesgue integral
- for unbounded, measurable functions
- as well. We just allow the sup to be <M>\infty.</M>  Similarly we may now carry out the procedure
- over any measurable domain, not just intervals like <M>[a,b].</M>  Any "rectangle" with base
- measure <M>\infty</M>  and positive height has area <M>\infty</M>, and any "rectangle" with zero
- height has zero area (even if its base has measure <M>\infty</M>).  
-
-<HEAD2>Allowing negative values</HEAD2>
-Moving from non-negative functions to general functions is easy. For <M>f:\rr\to\rr</M>  we define <M>f_+ =\max\{f,0\}</M> 
- and <M>f_- =\max\{-f,0\}.</M>  Then <M>f = f_+-f_-.</M>  We define <M>\int f\, d \lambda = \int f_+\, d \lambda -\int f_-\, d \lambda,</M>  if
- both the integrals on the rhs are not <M>\infty.</M>
-<HEAD2>Allowing other measures</HEAD2>
-The construction so far has used "length" of measure the bases of the rectangles. We can use any
- other measure, <M>\mu</M>, as well, as
- long as the measure of the domain has finite measure. Then we shall write the Lebesgue integral as <M>\int f\, d\mu.</M>
-
-When we take some probability measure in place of <M>\mu,</M>  we get the familiar definition of expectation. 
-<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Two technical results</HEAD1>
 <THM>
 If <M>f:\Omega\to[0,\infty)</M>  is any measurable function, then there is a non-decreasing sequence <M>(s_n)</M>  of simple
@@ -406,14 +449,6 @@ Thus, <M>f(\omega) \in [s_n(\omega),s_n(\omega)+2^{-n}).</M>
 This completes the proof.
 </PF>
 
-<EXR>
-Show that the convergence is uniform if <M>f</M>  is bounded.
-</EXR>
-
-<EXR>
-Show that if, in the theorem above,  <M>f</M>  is measurable (w.r.t. any given <M>\sigma</M>-field <M>\calF</M>
- over <M>\Omega</M>  and the Borel <M>\sigma</M>-field over <M>\rr</M>), then so must be each <M>s_n.</M> 
-</EXR>
 
 The next step is to show that the red areas indeed converge to the supremum. 
 <THM>
@@ -454,6 +489,15 @@ Taking limit <M>\lim \int s_n \geq z- \delta.</M>
 Since <M>\delta>0</M>  is arbitrary, we have <M>\lim \int s_n \geq \int z.</M>  
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+Show that the convergence in the first theorem is uniform if <M>f</M>  is bounded.
+</EXR>
+
+<EXR>
+Show that if, in the first theorem above,  <M>f</M>  is measurable (w.r.t. any given <M>\sigma</M>-field <M>\calF</M>
+ over <M>\Omega</M>  and the Borel <M>\sigma</M>-field over <M>\rr</M>), then so must be each <M>s_n.</M> 
+</EXR>
+
 <HEAD1>Additivity</HEAD1>
 We had stated last semester that if <M>X,Y</M>  are two jointly distributed random variables with expectations, and <M>a,b\in\rr</M> 
  are any two numbers, then <M>aX+bY</M>  is also a random variable with expectation, and <M>E(aX+bY) = aE(X)+bE(Y).</M>
@@ -474,7 +518,7 @@ Then we show that for <M>a>0</M>  we have <M>E(aX) = E(X).</M>  This proof also 
 Finally, we show <M>E(-X)= -E(X).</M>  Let <M>Y = -X.</M>  Then <M>Y_+ = X_-</M>  and <M>Y_- = X_+.</M>  So <M>E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).</M>
 
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
-<THM name="MCT (simple version)">
+<THM name="Monotone convergence theorem (MCT)">
 Let <M>X_n</M> 's be non-negative  random variables with <M>X_n\uparrow X</M>  for some random variable <M>X.</M>
  Then <M>E(X_n)\uparrow E(X).</M>
 </THM>

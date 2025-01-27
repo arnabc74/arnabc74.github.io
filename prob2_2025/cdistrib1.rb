@@ -1,5 +1,5 @@
  @{<NOTE>
-<TITLE>Sone standard densities</TITLE>
+<TITLE>Some standard densities</TITLE>
 Last semester, we had learned some standard discrete distributions like binomial and geometric. Similarly, here we shall
  learn about some standard distributions with densities. 
 
@@ -16,7 +16,7 @@ Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial 
  of probability as well as random number generation using a computer. Both these applications come from the same theorem,
  which we shall discuss <LINK to="trans.html">later</LINK> in the course.
 
-<HEAD2>Problem set 1</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 
 <EXR>Let <M>X\sim Unif(0,1),</M>  <M>Y\sim Unif(10,20),</M>  and <M>Z\sim Unif(100,101).</M>
   Without explicitly computing their variances pick the correct option below:
@@ -36,6 +36,7 @@ Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
  <M>i=0,...,n.</M>  Fix any permutation <M>\pi</M>  of <M>\{1,2,...,n\}.</M>  We shall
  ''scramble'' <M>X</M>  using <M>\pi</M>  to obtain <M>Y.</M>  If <M>Y = f(X)</M>, where <M>f(x) =
  a_{\pi(i-1)}+(x-a_i)</M>  if <M>x\in [a_{i-1},a_i).</M>  What is the distribution of <M>Y?</M></EXR>
+
 
 <HEAD1>A step towards proving the fundamental theorem of probability</HEAD1>
  To prepare for the theorem we define a right-inverse of any CDF. 
@@ -64,9 +65,6 @@ completing the proof.
 This shows that if we can show the existence of (or generate random numbers from)  <M>Unif(0,1)</M>, then we can do so for
  any CDF.
 
-::<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
- may generate a random variable with this PDF starting from a <M>Unif(0,1)</M>  random variable.</EXR>
-SS
 It has a partial converse, which is also important.
 <THM>
 If <M>X</M>  is a continuous random variable with CDF <M>F,</M>  then <M>F(X)\sim Unif(0,1).</M>
@@ -78,6 +76,13 @@ Clearly, <M>Y=F(X)</M>  can only take values in <M>[0,1].</M>  So <M>P(Y\leq y) 
 Take any <M>y\in[0,1].</M>  Then <M>P(Y\leq y) = P(F(X)\leq y)= P(X\leq F^-(y))= F(F^-(y))=y.</M> 
 </PF>
 This is used to construct a P-P plot.
+
+<HEAD2>Problem set <PS/></HEAD2>
+::<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
+ may generate a random variable with this PDF starting from a <M>Unif(0,1)</M>  random variable.</EXR>
+::<EXR>Suggest how you
+ may generate a random variable with <M>Unif(-2,3)</M>  distribution starting from a <M>Unif(0,1)</M> 
+ random variable.</EXR>
 
 <HEAD1>Exponential distribution</HEAD1>
 <DEFN>We say that <M>X</M>  has an <TERM>Exponential distribution</TERM>  with <TERM>rate</TERM> 
@@ -111,6 +116,12 @@ dev.off()
 
 <EXR>Find MGF of <M>Expo(\lambda)</M>  for <M>\lambda>0.</M>  </EXR>
 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>1-X\sim Expo(\lambda)</M>, then show that <M>[X]</M>  has a geometric distribution.
+ Find the parameter of the Geometric distribution.</EXR>
+
+<EXR>If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then show that <M>\min\{X_1,...,X_n\}\sim Expo(n \lambda).</M>
+</EXR>
 <HEAD1>Gamma distribution</HEAD1>
 <DEFN name="Gamma distribution">
 Here we need to know about the gamma function <M>\Gamma:(0,\infty)\to(0,\infty)</M>  defined as
@@ -189,6 +200,8 @@ Use induction on <M>n.</M>  The last theorem provides the basis, and the additiv
 
 ::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
 
+<HEAD2>Problem set <PS/></HEAD2>
+
 <HEAD1>Beta distribution</HEAD1>
 <DEFN name="Beta distribution"> 
 The distribution with density
@@ -224,6 +237,9 @@ Answer by thinking about the density. Now prove it mathematically.
 
 <EXR>If <M>X\sim Beta(a,b)</M>, then find <M>V(X).</M></EXR>
 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X\sim Beta(a,b)</M>  then show that <M>1-X\sim Beta(b,a).</M></EXR>
+
 <HEAD1>Cauchy distribution</HEAD1>
 <DEFN name="Cauchy distribution">
 By <TERM>Cauchy distribution</TERM>  we mean the distribution with density
@@ -243,6 +259,20 @@ If <M>X</M>  has <M>Cauchy</M>  distribution, then <M>E(X)</M>  does not exist. 
 <PF>
 <M>\int_0^\infty [[x][1+x^2]]dx\sim \int_0^\infty [[1x]]dx = \infty.</M>
 </PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Show that if <M>X</M>  and <M>Y</M>  are independent Cauchy random variables, then for any <M>a\in[0,1]</M>  
+ <M>aX+(1-a)Y</M>  is also a Cauchy variate. Hence conclude that if <M>X_1,...,X_n</M>  are IID
+ Cauchy, then <M>\overline X</M>  is also Cauchy.</EXR>
+
+<EXR>How can you generate a Cauchy random variable from a <M>Unif(0,1)</M>  random variable?</EXR>
+
+<EXR>Consider the unit semicircle shown below.
+<CIMG web="caupt.png"></CIMG>
+ We pick a point at random on it, and extend the ray
+  through it from the origin until it hits the <M>x=1</M>  line at some <M>(1,Y).</M>  Find the distribution of <M>Y.</M></EXR>
+
+<EXR>If <M>X</M>  is a Cauchy random variable, then show that <M>[[1X]]</M>  is also a Cauchy random variable.</EXR>
 
 <HEAD1>Normal distribution</HEAD1>
 This is the most commonly used distribution in statistics.
@@ -265,19 +295,13 @@ lines(x,y3)
 abline(h=0,v=c(0,2))
 dev.off()
 </COMMENT>
-Proving thst this is indeed a density is not entirely straightforward. Louiville showed that its CDF
+Proving that this is indeed a density is not entirely straightforward. Louiville showed that its CDF
 <D>\Phi(x) = \int_{-\infty}^x \phi(t)\, dt</D>
 cannot be expressed in terms of elementary functions (trigonometric, exponential, logarithmic,
  square root, cube root etc).  However, its value may be computed nuerically for any given <M>x.</M>  
 
-<EXR>SHow that if <M>X\sim N(\mu,\sigma^2),</M>  then <M>E(X)=\mu</M>  and <M>V(X)=\sigma^2.</M></EXR>
+<THM>If <M>X\sim N(\mu,\sigma^2),</M>  then <M>E(X)=\mu</M>  and <M>V(X)=\sigma^2.</M></THM>
 
-<EXR>If <M>X\sim N(0,1),</M>  then express the following probabilities in terms of <M>\Phi(\cdot).</M>  
-<FL><LI><M><M>P(X<1)</M></M></LI>
-<LI><M><M>P(|X|<1)</M></M></LI>
-<LI><M><M>P(|X|>2)</M></M></LI>
-</FL>
-</EXR>
 
 <THM>
 If <M>X\sim N(\mu,\sigma^2),</M>  then for any <M>a\in\rr</M>  and <M>b\neq 0</M>  we have
@@ -294,12 +318,22 @@ If <M>X\sim N(\mu,\sigma^2),</M>  then <M>[[X-\mu][\sigma]]\sim N(0,1).</M>
 </THM>
 The transformation from <M>X</M>  to <M>[[X-\mu][\sigma]]</M>  is called <TERM>standardisation</TERM>.
 
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X\sim N(0,1),</M>  then express the following probabilities in terms of <M>\Phi(\cdot).</M>  
+<OL><LI><M>P(X<1)</M></LI>
+<LI><M>P(|X|<1)</M></LI>
+<LI><M>P(|X|>2)</M></LI>
+</OL>
+</EXR>
 <EXR>If <M>X\sim N(2,3^2),</M>  then express the following probabilities in terms of <M>\Phi(\cdot).</M>  
-<FL><LI><M><M>P(X<1)</M></M></LI>
-<LI><M><M>P(|X|<1)</M></M></LI>
-<LI><M><M>P(|X|>2)</M></M></LI>
+<FL><LI><M>P(X<1)</M></LI>
+<LI><M>P(|X|<1)</M></LI>
+<LI><M>P(|X|>2)</M></LI>
 </FL>
 </EXR>
+
+<EXR>If <M>\Phi ^{-1}(0.95)=1.64</M>, then find <M>c\in\rr</M>  such that <M>P(|X-1|>c) = 0.1 </M>  where <M>X\sim N(1,1^2).</M></EXR>
 
 <HEAD1>Problems for practice</HEAD1>
 ::<EXR><EIMG web="rossdistrib1.png"></EIMG></EXR>

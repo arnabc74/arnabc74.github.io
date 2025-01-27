@@ -179,14 +179,20 @@ Multiplying everything we get the final answer
 
 <HEAD1>Using Jacobian (part 1)</HEAD1>
 To understand the Jacobian method, it will help to look at the univariate CDF method. Let <M>f(x)</M>  be a density of <M>X</M> 
- and let <M>Y=h(X),</M>  where <M>h(\cdot)</M>  is a bijection with differentiable <M>h ^{-1}(y).</M>
+ and let <M>Y=h(X),</M>  where <M>h(\cdot)</M>  is an increasing bijection with differentiable <M>h ^{-1}(y).</M>
 
-Then the CDF of <M>Y</M>  is <M>G(y) = P(Y\leq y) = P(X\leq h ^{-1}(y)) = F(h ^{-1}(y)),</M>  where <M>F(\cdot)</M>  is the
+Then the CDF of <M>Y</M>  is <M>G(y) = P(Y\leq y) = P(h(X)\leq y) = P(X\leq h ^{-1}(y)) = F(h
+ ^{-1}(y)),</M>  where <M>F(\cdot)</M>  is the
  CDF of <M>X.</M>  
 
-So a density of <M>Y</M>  is 
+So <M>Y</M>  has density given by
 <D>g(y) = G'(y) = [[d][dy]]F(h ^{-1}(y)) = f(h ^{-1}(y))[[d][dy]]h ^{-1}(y).</D>
-Now we know that <M>h(h ^{-1} (y))\equiv y.</M>
+So far we are assuming that <M>h(\cdot)</M>  is an increasing function. A very similar argument works for a decreasing function
+ as well. In general for any bijection <M>h(\cdot),</M>  we have
+<D lab="(*)">g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
+ 
+<HEAD2>Intuitive interpretation</HEAD2>
+Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))\equiv y.</M>
 
 Differentiating this wrt <M>y</M>  we have <M>h'(h ^{-1} (y))[[d][dy]] h ^{-1}(y) \equiv 1,</M>  i.e., 
 <D>[[d][dy]] h ^{-1}(y) = [[1][h'(h ^{-1}(y)]].</D>
@@ -196,7 +202,7 @@ If we write <M>x = h ^{-1}(y),</M>  this will look less complicated:
 <D>g(y) = [[f(x)][h'(x)]].</D>
 So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>h'.</M>   
 
-This has an intuitive interpretation. Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
+ Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
 Consider the density of <M>X.</M>   Imagine 10 equal length subintervals along <M>[0,1].</M>  Since the total 
 area under the density is 1, the rectangle on each  subinterval has area <M>[[1][10]].</M>  You may
  say that each subinterval accounts for <M>[[1][10]]</M>  mass. 
@@ -207,15 +213,47 @@ When you compute <M>Y=X^2,</M>  the intervals close to 0 get squeezed further do
 But still each rectangle has to account for <M>[[1][10]]</M>  mass. So the squeezed rectangles have
 to  compensate by growing taller,
  while the stretched ones compensate by getting shorter.
-<CIMG web="squeeze3.png">All rectnagles now again have area <M>[[1][10]].</M></CIMG>
+<CIMG web="squeeze3.png">All rectangles now again have area <M>[[1][10]].</M></CIMG>
  This
  leads to <M>Y</M>  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
  squeezing of the transforming function, i.e., the derivative. Smaller the derivative, higher the density. 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Let <M>X</M>  have density <M>f(x) = <CASES>2 e^{-2x}<IF>x>0</IF> 0<ELSE/></CASES></M>  Find
+ density of <M>Y=X^2</M>  using (*).</EXR>
+<EXR>Let <M>X</M>  have density <M>f(x).</M>  Find
+ density of <M>Y=a X+b</M>  using (*) if <M>a\neq 0.</M>  </EXR>
+
+<EXR>Let <M>X</M>  have uniform distribution over <M>(-1,1).</M>  Find density of <M>Y=\sin X</M>  using (*).</EXR>
 
 <HEAD1>Using Jacobian (part 2)</HEAD1>
 Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
- make use of a concept called the Jacobian. 
-You might benefit from <LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+ make use of a concept called the <TERM>Jacobian</TERM>, which we introduce through an example.
+
+<EXM>
+Let <M>f:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find its determinant.
+<SOLN/>
+Note that <M>f</M>  consists of two function <M>f_1,f_2:\rr^2,\to\rr.</M>  These are its <TERM>component</TERM>  functions,
+ <M>f_1(x_1,x_2) = \sin(x_1x_2)</M>  and <M>f_2(x_1,x_2) = x_1-x_2^2.</M>  
+
+The Jacobian is a <M>2\times 2</M>  matrix with <M>(i,j)</M>-th entry <M>[[\partial f_i][\partial x_j]].</M>  Note that each
+ row is devoted to a single <M>f_i</M>  and each column to a single <M>x_j.</M>  In general, if we had <M>f:\rr^n\to\rr^m</M> 
+ the matrix would have been <M>m\times n.</M>  
+
+In our case 
+<MULTILINE>
+[[\partial f_1][\partial x_1]] & = & x_2\cos (x_1x_2),\\
+[[\partial f_1][\partial x_2]] & = & x_1\cos (x_1x_2),\\
+[[\partial f_2][\partial x_1]] & = & 1\\
+[[\partial f_2][\partial x_2]] & = & -2x_2.
+</MULTILINE>
+So the Jacobian is 
+<D><MAT>x_2\cos (x_1x_2) & x_1\cos (x_1x_2)\\ 1 & -2x_2</MAT>.</D>
+Its determinant is 
+<D>x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).</D>
+</EXM>  
+
+<Q><ALERT/>If all this looks like unmotivated magic, you might benefit from <LINK
+ to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
  that I have made for Jacobians</LINK>. The video is about 21 min long, which is too long for my taste. You may like to navigate
  to relevant portions of it using the following guideline:
 <UL>
@@ -224,8 +262,11 @@ You might benefit from <LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3
 <LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=271s">4:31</LINK>: Differentiation of <M>f:\rr^n\to\rr^m</M> </LI>
 <LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=514s">8:34</LINK>: Geometric
  interpretation of Jacobian matrices </LI>
-<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</LINK>: Determinant of Jacobian </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</LINK>: Why
+ care about the determinant of Jacobian </LI>
 </UL>
+</Q>
+<COMMENT>
 First we look at the bivariate case using  a simple example. Suppose we start with some <M>(X,Y)</M>
  distributed uniformly on the unit square. As in the univariate case, we split <M>[0,1]</M>  into  10 equal subintervals.
  We do this along both the axes, creating a square grid.
@@ -252,19 +293,54 @@ A differentiable nonlinear transformation can be locally approximated by a linea
  matrix is the Jacobian. So we have to divide by its determinant. Sometimes it is more conveneint
  to think of this as multiplying
  by the determinant of the Jacobian of the inverse function. Formally, we get the following theorem.
-
+</COMMENT>
+In (*) above we had
+<D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
+We shall imitate this to get the following theorem. 
 <THM>
 Let <M>\v X</M>  be an <M>\rr^n</M>-valued random vector. Let <M>h:\rr^n\to\rr^n</M>  be a
-bijection function with differentiable inverse. Let <M>\v Y = h(\v X).</M> 
+bijection with differentiable inverse. Let <M>\v Y = h(\v X).</M> 
  Then <M>\v Y</M>  has density
-<D>f(h ^{-1}(\v y)) J,</D>
-where <M>J</M>  is the absolute determinant of Jacobian inverse evaluated at <M>h ^{-1}(\v y).</M>
+<D>g(\v y) = f(h ^{-1}(\v y)) J,</D>
+where <M>J</M>  is the absolute determinant of Jacobian of <M>h ^{-1}(\v y).</M>
 </THM>
- 
+ We shall not prove this theorem here. But the intuitive argument is just as in the univariate case. 
+
 <EXM>
-Let <M>(X,Y)</M>  be uniformly distributed over the unit square. Let <M>U = X^2+Y</M>  and <M>V = X+Y^2.</M>  Find the joint
- density of <M>(U,V).</M>  
+Let <M>\v X = (X_1,X_2)</M>  be uniformly distributed over <M>[1,2]\times[3,4].</M> Let <M>Y_1 =
+ X_1X_2</M>  and <M>Y_2 = X_1.</M>  Find the joint
+ density of <M>\v Y = (Y_1,Y_2).</M>  
 <SOLN/>
+Let <M>S = [1,2]\times[3,4].</M>  
+
+Here the transform is <M>h(x_1,x_2) = (x_1x_2,x_1).</M>
+
+Clearly, <M>h:S\to h(S)</M>  is a bijection,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>x_1</M>  and <M>x_2</M> 
+ uniquely. 
+
+The inverse transform is <M>h ^{-1}(y_1,y_2) = (*(y_2,[[y_1][y_2]])*).</M>
+The Jacobian of this is 
+<D><MAT>0 & 1\\[[1][y_2]] & -[[y_1][y_2^2]]</MAT>,</D>
+which has absolute determinant <M>[[1][y_2]],</M>  since <M>y_2 > 0.</M>
+
+So the required density will be 
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(y_1,y_2)\in h(S)</IF> 0<ELSE/></CASES></D>
+It is easy up to this point. But it usually gets messy to describe <M>h(S)</M>  in a way such that given
+ some <M>(y_1,y_2)</M>  you can quickly check if <M>(y_1,y_2)\in h(S)</M>  or not.
+
+To do this we list all the  constraints in terms of  <M>y_1,y_2.</M>  Based on the forward transorm we get 
+<D>3\leq y_1\leq 8 \mbox{ and } 1\leq y_2 \leq 2.</D>
+Based on the inverse transform we get
+<D>1\leq y_2 \leq 2 \mbox{ and } 3\leq [[y_1][y_2]]\leq 8. </D>
+Sketching all these restrictions we get this region:
+<CIMG web="jreg.png"><M>h(S)</M>  shown in red</CIMG>
+Notice how the constraints <M>y_1\geq 3</M> and <M>y_2\geq [[y_1][8]]</M>   happen to play no role
+ at all. It is hard to
+ decide which constraints are going
+ to determine the region, unless you make sketches. 
+
+So the final answer is 
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>3\leq y_1\leq 8 \mbox{ & } 1\leq y_2\leq \min{*{2,[[y_1][3]]}*}</IF> 0<ELSE/></CASES></D>
 
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
@@ -287,39 +363,25 @@ Suppose that we are given the joint density of <M>(X,Y).</M>  We want to find th
  (X+Y,Y).</M>  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
 
 <EXM>
-Let <M>(X,Y)</M>  be uniformly distributed over the unit square. Find the density of <M>X+Y.</M>
+Let <M>(X_1,X_2)</M>  have joint density <M>f(x_1,x_2).</M> Find  density of <M>X_1+X_2.</M>
 <SOLN/>
-Consider <M>(U,V) = (X+Y,Y).</M>  
+Consider <M>(Y_1,Y_2) = (X_1,X_1+X_2).</M>  
 
-The support of <M>(X,Y)</M>  was <M>[0,1]\times[0,1].</M>  We need to find that of <M>(U,V).</M> 
-In other words, we are looking for <M>S\seq\rr^2</M>  such that <M>(U,V)\in S</M>  if and only
- if <M>(X,Y)\in[0,1]\times[0,1].</M>
+Here the transform is <M>h(x_1,x_2) = (x_1,x_1+x_2).</M>  This is a bijection from <M>\rr^2</M>  to <M>\rr^2</M>  with inverse
+ <M>h ^{-1}(y_1,y_2) = (y_1,y_2-y_1).</M>
 
-We have the constraints <M>X\geq 0,</M>  <M>X\leq 1,</M>  <M>Y\geq 0,</M>  and <M>Y\leq 1.</M>  We shall convert each of
- them to constraints on <M>U,V</M>  in two ways, forward and backward. We have <M>U=X+Y</M>  and also <M>X\geq 0</M>  and
- <M>Y\geq 0</M>. So <M>U\geq 0.</M>  That is an example of a forward constraint. Again <M>X = U-V.</M>  So <M>U-V\geq 0.</M> 
- That is an example of a backward constraint. 
-
-Combining everything we get <M>S=\{(u,v)~:~0\leq u+v\leq 1,~0\leq v\leq 1\}.</M>
-
-A little sketch would keep things clear. 
-
-The absolute determinant of the Jacobian is 1. So the required density is 
-<D>f(u,v) = <CASES>1<IF>(u,v)\in S</IF> 0<ELSE/></CASES> </D>
-Now we need to find the marginal density of <M>U.</M>  This is 
-<D>f_U(u) = \int_{-\infty}^\infty f(u,v)\, dv = \int_0^u 1\, dv = u</D>
-when <M>0\leq u\leq .</M>  and 0 else.
-</EXM>   
-Note that the difficuly in the above example lay in working with the constraints. 
-If <M>(X,Y)</M>  had joint density <M>f(x,y)</M> 
- for <M>(x,y)\in\rr^2</M>  
-then the following general theorem is easy to prove.
-
+The Jacobian matrix is <M><MAT>1 & 0\\-1 & 1</MAT></M>, with absolute determinant  1. So the required density is 
+<D>g(y_1,y_2) = f(y_1,y_2-y_1). </D>
+Now we need to find the marginal density of <M>Y_2.</M>  This is 
+<D>g_2(y_2) = \int_{-\infty}^\infty g(y_1,y_2)\, dy_1 = \int_{-\infty}^\infty f(y_1,y_2-y_1)\, dy_1.</D>
+</EXM>
+The result is quite useful, and worth recording as a theorem:
 <THM>
 If <M>(X,Y)</M>  had joint density <M>f(x,y)</M> 
  for <M>(x,y)\in\rr^2</M>, then  the density of <M>X+Y</M>  is 
 <D>f_{X+Y}(u) = \int_{-\infty}^\infty f(x,u-x)\, dx.</D>
 </THM>
+A special case is when the two random variables are independent:
 <THM>If <M>X,Y</M>  are indenedent random variables with densities <M>f(x)</M>  and <M>g(y),</M>  respectively, then 
 the density of <M>X+Y</M>  is 
 <D>f_{X+Y}(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.</D>
@@ -331,12 +393,24 @@ If <M>f,g</M>  are two densities, then their <TERM>convolution</TERM>  is the de
 <D>(f*g)(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.</D>
 </DEFN>
 
+<EXM>
+If <M>X,Y</M>  are independent uniform over <M>(0,1),</M>  then find  density of <M>X+Y.</M>  
+<SOLN/>
+The answer is <M>f*f,</M>  where <M>f(x) =<CASES>1<IF>0 < x < 1</IF> 0<ELSE/></CASES> </M>  
+
+So 
+<D>(f*f)(u) = \int_{-\infty}^\infty f(x)f(u-x)\, dx = \int_{\max\{0,u-1\}}^{\min\{1,u\}}dx=<CASES>u<IF>0 <u < 1</IF> 2-u<IF>1 <u < 2</IF> 0<ELSE/></CASES></D>
+To see this notice that for  <M>f(x)</M>  to be nonzero we need <M>0 < x < 1,</M>  while for <M>f(u-x)</M>  to be non-zero
+ we need <M>0 < u-x < 1,</M>  or <M>u > x >u-1.</M>  So for <M>f(x)f(u-x)</M>  to be non-zero we need <M>1,u > x >0,u-1.</M> 
+ Also, the non-zero value of <M>f(x)f(u-x)</M>  is 1.
+</EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 
-<EXR>Prove the two theorems above using Jacobian.</EXR>
 <EXR>Show that <M>f*g = g*f.</M></EXR>
 
-<EXR>Does there exist a density <M>i(x)</M>  such that for all densities <M>f</M>  we have <M>i*f = f?</M></EXR>
+<EXR>Does there exist a density <M>i(x)</M>  such that for all densities <M>f</M>  we have <M>i*f = f?</M>
+<ANS>Think in terms of random variables.</ANS>
+</EXR>
 
 <EXR>If <M>X,Y</M>  are IID with common density <M>\lambda e^{-\lambda x}</M>  (<M>x>0</M>), then
  find the density of <M>X+Y.</M></EXR>
@@ -350,13 +424,16 @@ Sometimes we need to work with the quotient of two independent random variables.
  are both positive and independent.
 
 <THM>
-If <M>X,Y</M>  are independent positive random variables with densities <M>f_X(x)</M>  and <M>f_Y(y),</M>  respectively,
- then <M>Z=X/Y</M>  has density
-<D>f_Z(z) = \int_0^\infty xf_X(x)f_Y(x  /z)\, dx</D>
-for <M>z>0.</M>
+Let <M>X,Y</M>  are independent  random variables with densities <M>f_X(x)</M>  and <M>f_Y(y),</M>  respectively. Let <M>Y</M> 
+ be always positive. 
+ Then <M>Z=X/Y</M>  has density
+<D>f_Z(z) = \int_{-\infty}^\infty yf_X(zv)f_Y(v)\, dv.</D>
 </THM>
+<PF>
+Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*(X,[[XY]])*).</M>
+</PF>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Prove the above therem using Jacobian.</EXR>
+<EXR>Prove the above theorem using Jacobian.</EXR>
 
 <EXR>If <M>X,Y</M>  are independent and uniformly distributed over <M>[1,2],</M>  then find density of <M>X/Y.</M></EXR>
 
