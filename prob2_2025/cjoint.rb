@@ -216,7 +216,7 @@ This should also lead to the same answer (check!).
 <EXR>Let <M>X,Y</M>  be IID <M>Unif(0,1).</M>  Find <M>P(X^2\leq Y \leq X).</M></EXR>
 
 <EXR>If <M>(X,Y)</M>  has joint density <M>e^{-(x+y)}</M>  for <M>x,y>0,</M>  (and 0 else), then find <M>P(X^2+Y^2<1).</M>
-Leave the answer in terms of a single-variable integral.
+ Leave the answer in terms of a single-variable integral.
 </EXR>
 
 <HEAD1 u="https://youtu.be/0pRDbb0_fsk">Joint CDF</HEAD1>
