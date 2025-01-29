@@ -176,6 +176,13 @@ Multiplying everything we get the final answer
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 
+<EXR>Check that this heutistic method gives the same density for <M>\x 1</M>  and <M>\x n</M>  that we obtained earlier.</EXR>
+
+<EXR>Write down the joint density of <M>(\x 1, \x n)</M>  using this heuristic method.</EXR>
+
+<EXR>Let <M>X_1,...,X_{15}</M>  be a random sample from a distribution with density <M>f(x).</M> 
+ Write down a density for the sample median. Sample median is the central value among the
+ <M>X_i</M>'s, i.e., <M>\x 8</M>  in this case.</EXR>
 
 <HEAD1>Using Jacobian (part 1)</HEAD1>
 To understand the Jacobian method, it will help to look at the univariate CDF method. Let <M>f(x)</M>  be a density of <M>X</M> 
@@ -190,12 +197,19 @@ So <M>Y</M>  has density given by
 So far we are assuming that <M>h(\cdot)</M>  is an increasing function. A very similar argument works for a decreasing function
  as well. In general for any bijection <M>h(\cdot),</M>  we have
 <D lab="(*)">g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
+
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X</M>  has density <M>f(x)</M>, then find</EXR>
+<EXR>If <M>X</M>  has density <M>f(x) =<CASES>c\, x e^{-x}<IF>x>0</IF> 0<ELSE/></CASES> </M>, then
+ find density of <M>Y = \sqrt{X}.</M></EXR>
+
+<HEAD1>Using Jacobian (part 2)</HEAD1>
  
-<HEAD2>Intuitive interpretation</HEAD2>
 Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))\equiv y.</M>
 
 Differentiating this wrt <M>y</M>  we have <M>h'(h ^{-1} (y))[[d][dy]] h ^{-1}(y) \equiv 1,</M>  i.e., 
-<D>[[d][dy]] h ^{-1}(y) = [[1][h'(h ^{-1}(y)]].</D>
+<D>[[d][dy]] h ^{-1}(y) = [[1][h'(h ^{-1}(y))]].</D>
 So we get 
 <D>g(y) = [[f(h ^{-1}(y))][h'(h ^{-1}(y))]].</D>
 If we write <M>x = h ^{-1}(y),</M>  this will look less complicated:
@@ -225,7 +239,7 @@ to  compensate by growing taller,
 
 <EXR>Let <M>X</M>  have uniform distribution over <M>(-1,1).</M>  Find density of <M>Y=\sin X</M>  using (*).</EXR>
 
-<HEAD1>Using Jacobian (part 2)</HEAD1>
+<HEAD1>Using Jacobian (part 3)</HEAD1>
 Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
  make use of a concept called the <TERM>Jacobian</TERM>, which we introduce through an example.
 
@@ -294,6 +308,13 @@ A differentiable nonlinear transformation can be locally approximated by a linea
  to think of this as multiplying
  by the determinant of the Jacobian of the inverse function. Formally, we get the following theorem.
 </COMMENT>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Compute the Jacobian matrix for <M>h(x,y) = (x+y,x-y).</M></EXR>
+
+<EXR>What is the Jacobian matrix for the transform <M>h:\rr^n\to\rr^n</M>  where <M>h(\v x) = A\v
+ x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
+
+<HEAD1>Using Jacobian (part 4)</HEAD1>
 In (*) above we had
 <D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
 We shall imitate this to get the following theorem. 
@@ -427,11 +448,10 @@ Sometimes we need to work with the quotient of two independent random variables.
 Let <M>X,Y</M>  are independent  random variables with densities <M>f_X(x)</M>  and <M>f_Y(y),</M>  respectively. Let <M>Y</M> 
  be always positive. 
  Then <M>Z=X/Y</M>  has density
-<D>f_Z(z) = \int_0^\infty xf_X(x)f_Y(x  /z)\, dx</D>
-for <M>z>0.</M>
+<D>f_Z(z) = \int_0^\infty uf_X(zu)f_Y(u)\, du.</D>
 </THM>
 <PF>
-Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*(X,[[XY]])*).</M>
+Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*([[XY]],Y)*)\equiv(Z,U).</M>
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Prove the above theorem using Jacobian.</EXR>
