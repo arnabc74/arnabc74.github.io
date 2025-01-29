@@ -379,7 +379,7 @@ If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show 
 </EXR>
 
 <EXR>
-If <M>X</M>  has density <M>f(x)</M>  which is continuous at <M>x=a,</M>  then prove that
+If <M>X</M>  has density <M>f(x)</M>  which is continuous over a neighbourhood of <M>x=a,</M>  then prove that
 <D>\lim_{\epsilon\to0+}[[P(a-\epsilon,a+\epsilon)][2 \epsilon]] = f(a).</D>
 Can you drop the continuity assumption?
 </EXR>

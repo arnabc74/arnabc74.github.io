@@ -455,7 +455,8 @@ If a non-negative <M>X</M>  has density <M>f</M>  and CDF <M>F,</M>  then its it
 when <M>F(t) < 1.</M>
 </DEFN>
 We can think of it as 
-<D>\lim_{\delta t\to 0+} P(X\leq t+\delta t | X > t) =\lim_{\delta t\to 0+} [[P(X\in [t,t+\delta t] ][ P(X > t) ]].</D>
+<D>\lim_{\delta t\to 0+} [[P(X\leq t+\delta t | X > t)][\delta t]] =\lim_{\delta t\to 0+} [[P(X\in
+ [t,t+\delta t] ][ P(X > t) \delta t]].</D>
 
 <EXM>Let <M>X</M>  have density 
 <D>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES>. </D>
