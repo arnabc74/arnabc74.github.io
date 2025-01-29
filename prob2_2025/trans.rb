@@ -153,7 +153,7 @@ Since <M>\pi\neq\xi,</M>  hence <M>\pi(i)\neq \xi(i)</M>  for some <M>i.</M>  Le
 </EXR>
 
 <HEAD1 u="https://youtu.be/7HN_a4n5oDo">Order statistics (part 3)</HEAD1>
-Here we shall dicuss an interesting heuristics. 
+ Here we shall dicuss an interesting heuristics. 
 
 <EXM>If <M>X_1,...,X_{20}</M>  are IID with density <M>f(x),</M>  then write down the joint density of <M>(\x 3, \x 4, \x 7, \x {15}).</M>
 <SOLN/>
