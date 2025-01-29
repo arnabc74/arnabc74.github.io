@@ -466,14 +466,19 @@ Find its hazard rate function.
 <D>h(t) = [[e^{-t}][1-(1-e^{-t})]] = 1.</D>
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
-::<EXR><EIMG web="rosspdf17.png"/></EXR>
-::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf28.png"/></EXR>
 ::<EXR><EIMG web="rosspdf29.png"/></EXR>
 ::<EXR><EIMG web="rosspdf39.png"/>
 
 You may like to use the result <M>\int_0^\infty e^{-x^2/2}, dx = \sqrt{[[\pi2]]}.</M>
 </EXR>
+For the next three problems you need to work out the distribution from a given hazard function. Use <M>f = F'</M>  to turn
+ the definition of hazard function into a differential equation:
+<D>[[F'(x)][1-F(x)]] = h(x),</D>
+and then solve it. Find the value for the constant of integration by using the fact that <M>F(x)\to 0</M>  as <M>x\to -\infty.</M>
+
+::<EXR><EIMG web="rosspdf17.png"/></EXR>
+::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf40.png"/></EXR>
 <HEAD1 u="https://youtu.be/PKqSKFayRZ0">Uniform distribution</HEAD1>
 Last semester we often worked wih the discrete uniform distribution, e.g., fair coin toss, fair die roll, drawing a card

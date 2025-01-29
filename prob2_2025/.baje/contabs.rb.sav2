@@ -379,7 +379,7 @@ If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show 
 </EXR>
 
 <EXR>
-If <M>X</M>  has density <M>f(x)</M>  which is continuous over a <M>x=a,</M>  then prove that
+If <M>X</M>  has density <M>f(x)</M>  which is continuous over a neighbourhood of <M>x=a,</M>  then prove that
 <D>\lim_{\epsilon\to0+}[[P(a-\epsilon,a+\epsilon)][2 \epsilon]] = f(a).</D>
 Can you drop the continuity assumption?
 </EXR>
@@ -455,7 +455,8 @@ If a non-negative <M>X</M>  has density <M>f</M>  and CDF <M>F,</M>  then its it
 when <M>F(t) < 1.</M>
 </DEFN>
 We can think of it as 
-<D>\lim_{\delta t\to 0+} P(X\leq t+\delta t | X > t) =\lim_{\delta t\to 0+} [[P(X\in [t,t+\delta t] ][ P(X > t) ]].</D>
+<D>\lim_{\delta t\to 0+} [[P(X\leq t+\delta t | X > t)][\delta t]] =\lim_{\delta t\to 0+} [[P(X\in
+ [t,t+\delta t] ][ P(X > t) \delta t]].</D>
 
 <EXM>Let <M>X</M>  have density 
 <D>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES>. </D>
@@ -465,14 +466,18 @@ Find its hazard rate function.
 <D>h(t) = [[e^{-t}][1-(1-e^{-t})]] = 1.</D>
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
-::<EXR><EIMG web="rosspdf17.png"/></EXR>
-::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf28.png"/></EXR>
 ::<EXR><EIMG web="rosspdf29.png"/></EXR>
 ::<EXR><EIMG web="rosspdf39.png"/>
 
 You may like to use the result <M>\int_0^\infty e^{-x^2/2}, dx = \sqrt{[[\pi2]]}.</M>
 </EXR>
+For the next three problems you need to work out the distribution from a given hazard function. Use <M>f = F'</M>  to turn
+ the definition of hazard function into a differential equation:
+<D>[[F'(x)][1-F(x)]] = h(x),</D>
+and then solve it. Find the value for the constant of integration by using the
+::<EXR><EIMG web="rosspdf17.png"/></EXR>
+::<EXR><EIMG web="rosspdf18.png"/></EXR>
 ::<EXR><EIMG web="rosspdf40.png"/></EXR>
 <HEAD1 u="https://youtu.be/PKqSKFayRZ0">Uniform distribution</HEAD1>
 Last semester we often worked wih the discrete uniform distribution, e.g., fair coin toss, fair die roll, drawing a card
