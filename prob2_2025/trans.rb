@@ -184,7 +184,7 @@ Multiplying everything we get the final answer
  Write down a density for the sample median. Sample median is the central value among the
  <M>X_i</M>'s, i.e., <M>\x 8</M>  in this case.</EXR>
 
-<HEAD1>Using Jacobian (part 1)</HEAD1>
+<HEAD1 u="https://youtu.be/lw4-9KY6MW0">Jacobian formula (1 dim)</HEAD1>
 To understand the Jacobian method, it will help to look at the univariate CDF method. Let <M>f(x)</M>  be a density of <M>X</M> 
  and let <M>Y=h(X),</M>  where <M>h(\cdot)</M>  is an increasing bijection with differentiable <M>h ^{-1}(y).</M>
 
@@ -205,7 +205,13 @@ So far we are assuming that <M>h(\cdot)</M>  is an increasing function. A very s
 <EXR>If <M>X</M>  has density <M>f(x) =<CASES>c\, x e^{-x}<IF>x>0</IF> 0<ELSE/></CASES> </M>, then
  find density of <M>Y = \sqrt{X}.</M></EXR>
 
-<HEAD1>Using Jacobian (part 2)</HEAD1>
+<EXR>Let <M>X</M>  have density <M>f(x) = <CASES>2 e^{-2x}<IF>x>0</IF> 0<ELSE/></CASES></M>  Find
+ density of <M>Y=X^2</M>  using (*).</EXR>
+<EXR>Let <M>X</M>  have density <M>f(x).</M>  Find
+ density of <M>Y=a X+b</M>  using (*) if <M>a\neq 0.</M>  </EXR>
+
+<EXR>Let <M>X</M>  have uniform distribution over <M>(-1,1).</M>  Find density of <M>Y=\sin X</M>  using (*).</EXR>
+<HEAD1 u="https://youtu.be/sGlCID43YeE">Jacobian formula (intuition)</HEAD1>
  
 Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))\equiv y.</M>
 
@@ -233,14 +239,21 @@ to  compensate by growing taller,
  leads to <M>Y</M>  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
  squeezing of the transforming function, i.e., the derivative. Smaller the derivative, higher the density. 
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Let <M>X</M>  have density <M>f(x) = <CASES>2 e^{-2x}<IF>x>0</IF> 0<ELSE/></CASES></M>  Find
- density of <M>Y=X^2</M>  using (*).</EXR>
-<EXR>Let <M>X</M>  have density <M>f(x).</M>  Find
- density of <M>Y=a X+b</M>  using (*) if <M>a\neq 0.</M>  </EXR>
+<EXR>
+If <M>X</M>  has uniform distribution over (2,4)
+then roughly sketch the density of <M>Y = [[1X]].</M>  Don't apply the Jacobian formula
+ algeraically. Think in terms of which part
+ gets squeezed/expanded. 
+</EXR>
 
-<EXR>Let <M>X</M>  have uniform distribution over <M>(-1,1).</M>  Find density of <M>Y=\sin X</M>  using (*).</EXR>
+<EXR>Suppose that <M>X</M>  is uniform over <M>(-1,1)</M>  and <M>Y=X^2.</M>  (not a bijection!).
+ Guess the form of the density of <M>Y.</M>  Do you see why we needed the transform to be bijective in our intuition?
+<ANS>We were assuming that density of <M>Y</M>  at any given point was controlled by the density
+ of <M>X</M>  at only one point. But in this example, the density of <M>Y</M>  at, say,
+ <M>y=[[14]]</M>  is governed by the density of <M>X</M>  at <M>x=[[12]]</M>  as well as <M>x=-[[12]].</M></ANS>
+ </EXR>
 
-<HEAD1>Using Jacobian (part 3)</HEAD1>
+<HEAD1>Jacobian matrix</HEAD1>
 Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
  make use of a concept called the <TERM>Jacobian</TERM>, which we introduce through an example.
 
@@ -315,7 +328,7 @@ A differentiable nonlinear transformation can be locally approximated by a linea
 <EXR>What is the Jacobian matrix for the transform <M>h:\rr^n\to\rr^n</M>  where <M>h(\v x) = A\v
  x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
 
-<HEAD1>Using Jacobian (part 4)</HEAD1>
+<HEAD1>Jacobian formula (2 dim)</HEAD1>
 In (*) above we had
 <D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
 We shall imitate this to get the following theorem. 
