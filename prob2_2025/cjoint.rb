@@ -641,14 +641,14 @@ is the product of the marginal CDFs?
  <M>h(\cdot)</M>  are not necessarily density functions. Find margial densities of <M>X</M>  and
  <M>Y</M>, and show that <M>X</M>  and <M>Y</M>  must be independent.</EXR>
 
-<HEAD1 u="https://youtu.be/61Se7jsTTkk">Expectation using joint density</HEAD1>
+<HEAD1 u="https://youtu.be/udq0I74hJMs">Expectation using joint density</HEAD1>
 Suppose <M>X,Y</M>  are jointly  distributed. We often need to find the expectation of <M>h(X,Y)</M>  for some given function
  <M>h(x,y).</M>  For this we can of course employ the definition by first defining a new random
  variable,  <M>Z=h(X,Y)</M>. This will take us back to the univariate set up, that we already know to handle. 
 But a simpler alternative exists. 
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a non-negative random variable, then 
-<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)\, dx\,dy.</D>
+<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)f(x,y)\, dx\,dy.</D>
 This always exists (though may be <M>\infty</M>). 
 </THM>
 This theorem is the obvious generalisation of the univatiate density case, and like that will be proved once we learn about
@@ -671,7 +671,7 @@ This follows immediately from the general definition of expectation.
 Again, as in univriate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a  random variable with <M>E(|h(X,Y)|) < \infty</M>,, then 
-<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)\, dx\,dy.</D>
+<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)f(x,y)\, dx\,dy.</D>
 This must be finite.
 </THM>
 
