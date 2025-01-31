@@ -688,7 +688,7 @@ The
  only if <M>V(Y-aX) = 0</M>  for some <M>a < 0.</M>  Check if you remember the proofs. 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
-Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\geq y\}.</M>
+Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\geq y\geq0\}.</M>
 <OL><LI>Sketch the set <M>S</M>  as a shaded subset of <M>\rr^2.</M></LI>
 <LI>Write down a joint density for <M>(X,Y).</M></LI>
 <LI>Evaluate <M>cov(X,Y).</M></LI>

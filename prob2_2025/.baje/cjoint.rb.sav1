@@ -216,7 +216,7 @@ This should also lead to the same answer (check!).
 <EXR>Let <M>X,Y</M>  be IID <M>Unif(0,1).</M>  Find <M>P(X^2\leq Y \leq X).</M></EXR>
 
 <EXR>If <M>(X,Y)</M>  has joint density <M>e^{-(x+y)}</M>  for <M>x,y>0,</M>  (and 0 else), then find <M>P(X^2+Y^2<1).</M>
-Leave the answer in terms of a single-variable
+ Leave the answer in terms of a single-variable integral.
 </EXR>
 
 <HEAD1 u="https://youtu.be/0pRDbb0_fsk">Joint CDF</HEAD1>
@@ -641,14 +641,14 @@ is the product of the marginal CDFs?
  <M>h(\cdot)</M>  are not necessarily density functions. Find margial densities of <M>X</M>  and
  <M>Y</M>, and show that <M>X</M>  and <M>Y</M>  must be independent.</EXR>
 
-<HEAD1 u="https://youtu.be/61Se7jsTTkk">Expectation using joint density</HEAD1>
+<HEAD1 u="https://youtu.be/udq0I74hJMs">Expectation using joint density</HEAD1>
 Suppose <M>X,Y</M>  are jointly  distributed. We often need to find the expectation of <M>h(X,Y)</M>  for some given function
  <M>h(x,y).</M>  For this we can of course employ the definition by first defining a new random
  variable,  <M>Z=h(X,Y)</M>. This will take us back to the univariate set up, that we already know to handle. 
 But a simpler alternative exists. 
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a non-negative random variable, then 
-<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)\, dx\,dy.</D>
+<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)f(x,y)\, dx\,dy.</D>
 This always exists (though may be <M>\infty</M>). 
 </THM>
 This theorem is the obvious generalisation of the univatiate density case, and like that will be proved once we learn about
@@ -671,7 +671,7 @@ This follows immediately from the general definition of expectation.
 Again, as in univriate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a  random variable with <M>E(|h(X,Y)|) < \infty</M>,, then 
-<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)\, dx\,dy.</D>
+<D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)f(x,y)\, dx\,dy.</D>
 This must be finite.
 </THM>
 
@@ -688,7 +688,7 @@ The
  only if <M>V(Y-aX) = 0</M>  for some <M>a < 0.</M>  Check if you remember the proofs. 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
-Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\geq y\}.</M>
+Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\geq y\geq0\}.</M>
 <OL><LI>Sketch the set <M>S</M>  as a shaded subset of <M>\rr^2.</M></LI>
 <LI>Write down a joint density for <M>(X,Y).</M></LI>
 <LI>Evaluate <M>cov(X,Y).</M></LI>
@@ -834,6 +834,11 @@ Here <M>p,q</M>  are controlled by the ruler. Notice that the matrix in the midd
  possible way of placing the ruler.
  This matrix is indeed the dispersion matrix we  defined above.
 
+Here we talked about 1-dim projection of 2-dim. In general, we do 1-dim projection of <D>n</D>-dim
+ data. To see this visually on a computer screen you may like to consider 2-dim projection of
+ 3-dim data. Run <LINK to="3dcloud.r">this R code</LINK>  on <LINK to="3ddata.txt">this data
+ set</LINK>  to get a 3D scatterplot that you can turn with your mouse. Depending on how you turn
+ it, the points will appear to be closely/loosely  
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Consider the toy bivariate data set <M>(1, 2), (3, 4), (2.1, 3.1), (4, 5).</M>  Draw the
  scatterplot. Imagine that we are looking down as shown. Guess the variance as seen from that
