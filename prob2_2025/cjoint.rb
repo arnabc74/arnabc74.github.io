@@ -945,7 +945,7 @@ The most glaring difference between conditional PDF and conditional PMF is that 
 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find conditional density of <M>X</M>  given <M>Y=[[12]]</M>  if the joint density of <M>(X,Y)</M>  is </EXR>
-<D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
+<D>f(x,y) = <CASES>x+y<IF>0< x,y < 1</IF> 0<ELSE/></CASES></D>
 <HEAD1 u="https://youtu.be/-7x_sra_fyg">Conditional density (rigour)</HEAD1>
 We defined conditional density in a heuristic way. However, the theorem of total probability is still valid perfectly rigourously:
 

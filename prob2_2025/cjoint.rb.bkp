@@ -834,7 +834,7 @@ Here <M>p,q</M>  are controlled by the ruler. Notice that the matrix in the midd
  possible way of placing the ruler.
  This matrix is indeed the dispersion matrix we  defined above.
 
-Here we talked about 1-dim projection of 2-dim. In general, we do 1-dim projection of <D>n</D>-dim
+Here we talked about 1-dim projection of 2-dim. In general, we do 1-dim projection of <M>n</M>-dim
  data. To see this visually on a computer screen you may like to consider 2-dim projection of
  3-dim data. Run <LINK to="3dcloud.r">this R code</LINK>  on <LINK to="3ddata.txt">this data
  set</LINK>  to get a 3D scatterplot that you can turn with your mouse. Depending on how you turn

@@ -253,7 +253,7 @@ then roughly sketch the density of <M>Y = [[1X]].</M>  Don't apply the Jacobian 
  <M>y=[[14]]</M>  is governed by the density of <M>X</M>  at <M>x=[[12]]</M>  as well as <M>x=-[[12]].</M></ANS>
  </EXR>
 
-<HEAD1>Jacobian matrix</HEAD1>
+<HEAD1 u="https://youtu.be/GMC3sHP9HWg">Jacobian matrix</HEAD1>
 In (*) above we had
 <D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|],</D>
 where <M>h</M>  was assumed to be a bijection with differentiable <M>h ^{-1}.</M>  
@@ -267,14 +267,14 @@ we need to compute derivative of such functions.</LI></UL>
 <M>f:\rr\to\rr</M>  is called differentiable at some <M>a</M>, if 
 <D>\lim_{x\to a} [[f(x)-f(a)][x-a]]\mbox{ exists finitely.}</D>
 If this limit is called <M>m</M>, then this can be recast in the geometrically more applealing way as 
-<D>\exists m\in\rr~~ \lim_{x\to a}[[f(x)-\{f(a)-m\cdot(x-a)\}][x-a]] = 0.</D>
+<D>\exists m\in\rr~~ \lim_{x\to a}[[f(x)-\{f(a)+m\cdot(x-a)\}][x-a]] = 0.</D>
 This is geometrically more appealing because you can think of this as <M>f(x)-f(a)\approx m\cdot(x-a),</M>  i.e., near <M>a</M> 
  the graph of <M>f</M>  looks like the line passing through <M>(a,f(a))</M>  with slope <M>m.</M>  
 
 This immediately generalises to <M>f:\rr^n\to\rr^m</M>  as follows.
 <DEFN name="Multivariate differentiation">
 Call <M>f:\rr^n\to\rr^m</M>  <TERM>differentiable</TERM> at <M>\v a\in\rr^n</M>  if 
-<D>\exists M_{m\times n} ~~ \lim_{\v x\to \v a}[[f(\v x)-\{f(\v a)-M\cdot(\v x-\v a)\}][\|\v x-\v a\|]] = \v 0.</D>
+<D>\exists M_{m\times n} ~~ \lim_{\v x\to \v a}[[f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}][\|\v x-\v a\|]] = \v 0.</D>
 </DEFN>
 Such a matrix <M>M</M>  may depend on <M>\v a,</M>  and will be unique, and its <M>(i,j)</M>-th entry will be given by 
 <D>m_{ij} = [[\partial f_i][\partial x_j]].</D>
@@ -355,7 +355,7 @@ A differentiable nonlinear transformation can be locally approximated by a linea
 <EXR>What is the Jacobian matrix for the transform <M>h:\rr^n\to\rr^n</M>  where <M>h(\v x) = A\v
  x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
 
-<HEAD1>Jacobian formula (2 dim)</HEAD1>
+<HEAD1 u="https://youtu.be/9pWai6cA7no">Multivariate Jacobian formula</HEAD1>
 We shall imitate our familiar  univariate Jacobian formula
 <D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|]</D>
 to get the following theorem. 
@@ -392,21 +392,9 @@ Often we want to write it as
 for some suitably defined <M>T.</M>  This may be done as follows.  
 
 <M>(*(y_2,[[y_1][y_2]])*)\in S</M>  means 
-It is easy up to this point. But it usually gets messy to describe <M>h(S)</M>  in a way such that given
- some <M>(y_1,y_2)</M>  you can quickly check if <M>(y_1,y_2)\in h(S)</M>  or not.
-
-To do this we list all the  constraints in terms of  <M>y_1,y_2.</M>  Based on the forward transorm we get 
 <D>1\leq y_2 \leq 2 \mbox{ and } 3\leq [[y_1][y_2]]\leq 4.</D>
-Sketching all these restrictions we get this region
-<CIMG web="jreg.png"><M>h(S)</M>  shown in red</CIMG>
-Notice how the constraints <M>y_1\geq 3</M> and <M>y_1\leq 8</M>   happen to play no role
- at all. It is hard to
- decide which constraints are going
- to determine the region, unless you make sketches. 
-
-So the final answer is 
-<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>\max{*{1,[[y_1][4]]}*}\leq y_2\leq \min{*{2,[[y_1][3]]}*}</IF> 0<ELSE/></CASES></D>
-
+Sketching these restrictions we get this region:
+<CIMG web="jreg.png"><M>T</M>  shown in red</CIMG>
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>If <M>(X,Y)</M>  has joint density <M>f(x)=<CASES>x+y<IF>x,y\in[0,1]</IF> 0<ELSE/></CASES></M>,
@@ -508,8 +496,12 @@ Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*([[XY]],Y)*)\equi
 <EXR>A point <M>Q</M>  is chosen at random from the unit square. Let <M>Q</M>  be
  <M>(R,\Theta)</M>  in polar coordinates. Find density of <M>\tan\Theta.</M></EXR>
 
-<HEAD1>Moment generating function (MGF)</HEAD1>
-We have already come across the concept of a <TERM>moment generating function</TERM>  last semester. Here is the definition
+<HEAD1>Characteristic function (CF)</HEAD1>
+We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
+ you have forgotten about  the
+ concept of a <TERM>moment
+ generating function (MGF)</TERM> that we briefly touched upon last
+ semester, here is the definition
  again:
 <DEFN name=" Moment generating function (MGF)">
 The MGF of a random variable <M>X</M>  is defined as the function 
@@ -517,49 +509,71 @@ The MGF of a random variable <M>X</M>  is defined as the function
 for whatever <M>t\in\rr</M>  the expectation is finite. (Since <M>e^{Xt}</M>  is a positive random
  variable, it's expectation is always defined.)  
 </DEFN>
+Out of these only CDF is guaranteed to exist for any random variable. And also uniquely determines
+  a distribution (i.e., if the CDFs of two random variables match, then their distributions must
+ also match). Unfortunately, CDF does not "play well" with convolution, i.e., if <M>X,Y</M>  are
+ independent then there is no nice formula expressing  the CDF of <M>X+Y</M>  in terms of those of <M>X</M>  and <M>Y.</M> 
+ There is, however, one such function that combines all the good properties: it exists finitely
+ for all random variables, it uniquely determines a distribution and "plays well" with
+ convolution. Its definition is given below.
+<DEFN name="Characteristic function (CF)">
+The  <TERM>characteristic function (CF)</TERM>  of a random variable <M>X</M>  is defined as the
+ function <M>\xi_X:\rr\to\cc</M>  as 
+<M>\xi_X(t) = E(e^{iXt})</M>
+for  <M>t\in\rr.</M>
+</DEFN>
+You may be scared by the unexpected appearance of complex numbers inside the expectation! Just remember that <M>e^{iXt} = \cos (Xt)+i\sin(Xt).</M> 
+ So <M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
+Since <M>\cos</M>  and <M>\sin</M>  are both bounded, finite existence of the expectation is not a problem. 
+
+In order to do math with <M>e^{ix}</M>, , just treat it like any
+ <M>e^{\mbox{const}\times x}</M>  e.g., <M>e^{3x}</M>, say. For instance, <M>[[d][dx]]e^{ix} = i e^{ix}</M>  and <M>\int e^{ix}\, dx = [[1i]]e^{ix}+</M> arbit
+ constant.
+
+All these will be justified later (quite easily) in your complex analysis course! 
 
 <EXM>
-Find the MGF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
+Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 <SOLN/>
-<D>E(e^{Xt}) = 3\int_0^ \infty e^{xt}e^{-3x}\, dx = [[3][t-3]],</D>
-for <M>t<3.</M>  
+<D>E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = [[3][it-3]]</D>
+for <M>t\in\rr.</M>  
 </EXM>
-Clearly, for any random variable <M>X</M>  we have <M>M_X(0) = 1.</M>
+Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
 
-The following two theorems are what make MGF useful.
+The following two theorems are what make CF useful.
 
 <THM>
-If <M>X,Y</M>  are two random variables such that  <M>\exists \epsilon>0~~\forall
- t\in(-\epsilon,\epsilon)~~M_X(t) = M_Y(t) < \infty,</M>   then <M>X</M>  and <M>Y</M>  must have the same distribution.
+If <M>X,Y</M>  are two random variables such that 
+<M>\xi_X(t) \equiv \xi_Y(t)</M>,   then <M>X</M>  and <M>Y</M>  must have the same distribution.
 </THM>
-<PF>Later in this course.</PF>
+<PF>Wil be done next semester.</PF>
 
 <THM>
-If <M>X,Y</M>  are independent random variables amd <M>M_X(t), M_Y(t) < \infty</M>  for some <M>t\in\rr,</M>  then <M>M_{X+Y}(t) = M_X(t)M_Y(t).</M>
+If <M>X,Y</M>  are independent random variables, then <M>\xi_{X+Y}(t) = \xi_X(t)\xi_Y(t)</M>  for <M>t\in\rr.</M>
 </THM>
 <PF>
-Since <M>X,Y</M>  are independent, hence so are their functions <M>e^{Xt}</M>  and <M>e^{Yt}.</M>  
+Since <M>X,Y</M>  are independent, hence so are their functions <M>e^{iXt}</M>  and <M>e^{iYt}.</M>  
 
-Since their expectations are finite, so <M>E(e^{Xt}\times e^{Yt}) = E(e^{Xt})\times E(e^{Yt}).</M>  Hence the result. 
+Since their expectations are finite, so <M>E(e^{iXt}\times e^{iYt}) = E(e^{iXt})\times E(e^{iYt}).</M>  Hence the result. 
 
 </PF>
 
-If we know a list of MGFs for some standard distributions, then these two results often help us to
+If we know a list of CFs for some standard distributions, then these two results often help us to
  identify if the convolution
  of two distributions in our list again belong to the list. 
 Here is an example.
 
 <EXM>
 Suppose that you are told that, for <M>a>0</M>, the distribution with density 
-<M>f_a(x) = <CASES>c x^{a-1}e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  has MGF
- <M>M_a(t) = (t-1)^{-a}.</M> for <M>t< 1.</M>  
+<M>f_a(x) = <CASES>c x^{a-1}e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  has CF
+ <M>M_a(t) = (it-1)^{-a}.</M> for <M>t< 1.</M>  
 
 Show that for <M>a,b>0</M>  we have <M>f_a\star f_b = f_{a+b}.</M>
 <SOLN/>
 You can of course show this directly using the definition of convolution. But that would require you to compute an integral.
- But it is trivial using MGF: <M>M_a(t)M_b(t) = (t-1)^{-a} (t-1)^{-b} = (t-1)^{-(a+b)}</M>  for <M>t < 1.</M>  
+ But it is trivial using CF: <M>\xi_a(t)\xi_b(t) = (it-1)^{-a} (it-1)^{-b} = (it-1)^{-(a+b)}</M>  for <M>t \in\rr.</M>  
 
-Since the MGF is finite for <M>t\in (-1,1),</M>  hence the result.
+Since CF uniquely determines theis finite for <M>t\in (-1,1),</M>  hence the result.
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find MGF for the degenerate distribution at <M>5.</M></EXR>
