@@ -191,10 +191,13 @@ function myFunction() {
 <a href="#Jacobian matrix">Jacobian matrix</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Multivariate differentiation">Multivariate differentiation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
-<a href="#Jacobian formula (2 dim)">Jacobian formula (2 dim)</a>
+<a href="#Multivariate Jacobian formula">Multivariate Jacobian formula</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 8">Problem set 8</a>
@@ -210,6 +213,12 @@ function myFunction() {
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 10">Problem set 10</a>
+</li>
+<li>
+<a href="#Moment generating function (MGF)">Moment generating function (MGF)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 11">Problem set 11</a>
 </li>
 <li>
 <a href="#Problems for practice">Problems for practice</a>
@@ -635,13 +644,47 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 
 <h1><a
 name="Jacobian matrix">Jacobian matrix</a></h1>
-Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
- make use of a concept called the <b><font color="red" size="40">Jacobian</font></b>, which we introduce through an example.
+<a href="https://youtu.be/GMC3sHP9HWg">Video for this section</a>
+<p></p>
+In (*) above we had
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|,$$
+where $h$  was assumed to be a bijection with differentiable $h ^{-1}.$  
+<p></p>
+In order to  generalise this  to the multivariate set up, we need to work with a bijection $h:{\mathbb R}^n\rightarrow{\mathbb R}^n.$ 
+   We need to do two things:
+<ul>
+<li>we need to define differentiability for functions from ${\mathbb R}^n$  to ${\mathbb R}^n.$
+</li>
+<li>
+we need to compute derivative of such functions.</li>
+</ul>
+
+<h2><a
+name="Multivariate differentiation">Multivariate differentiation</a></h2>
+$f:{\mathbb R}\rightarrow{\mathbb R}$  is called differentiable at some $a$, if 
+$$\lim_{x\rightarrow a} \frac{f(x)-f(a)}{x-a}\mbox{ exists finitely.}$$
+If this limit is called $m$, then this can be recast in the geometrically more applealing way as 
+$$\exists m\in{\mathbb R}~~ \lim_{x\rightarrow a}\frac{f(x)-\{f(a)+m\cdot(x-a)\}}{x-a} = 0.$$
+This is geometrically more appealing because you can think of this as $f(x)-f(a)\approx m\cdot(x-a),$  <i>i.e.</i>, near $a$ 
+ the graph of $f$  looks like the line passing through $(a,f(a))$  with slope $m.$  
+<p></p>
+This immediately generalises to $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  as follows.
+<fieldset>
+<legend><b>Definition: Multivariate differentiation</b></legend>
+Call $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  <b><font color="red" size="40">differentiable</font></b> at $\v a\in{\mathbb R}^n$  if 
+$$\exists M_{m\times n} ~~ \lim_{\v x\rightarrow \v a}\frac{f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}}{\|\v x-\v a\|} = \v 0.$$
+</fieldset>
+Such a matrix $M$  may depend on $\v a,$  and will be unique, and its $(i,j)$-th entry will be given by 
+$$m_{ij} = \frac{\partial f_i}{\partial x_j}.$$
+Here $f_i$  is the $i$-th component of $f.$  
+<p></p>
+Let us digest this using an example. 
 <p></p>
 
 <p>
 <b>EXAMPLE 6:</b>&nbsp;
-Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find its determinant.
+Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
+ of the Jacobian.
 <p></p>
 <b>SOLUTION:</b>
 Note that $f$  consists of two function $f_1,f_2:{\mathbb R}^2,\rightarrow{\mathbb R}.$  These are its <b><font color="red" size="40">component</font></b>  functions,
@@ -709,10 +752,12 @@ name="Problem set 7">Problem set 7</a></h2>
 <p></p>
 
 <h1><a
-name="Jacobian formula (2 dim)">Jacobian formula (2 dim)</a></h1>
-In (*) above we had
-$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|.$$
-We shall imitate this to get the following theorem. 
+name="Multivariate Jacobian formula">Multivariate Jacobian formula</a></h1>
+<a href="https://youtu.be/9pWai6cA7no">Video for this section</a>
+<p></p>
+We shall imitate our familiar  univariate Jacobian formula
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|$$
+to get the following theorem. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
@@ -735,7 +780,7 @@ Let $S = [1,2]\times[3,4].$
 <p></p>
 Here the transform is $h(x_1,x_2) = (x_1x_2,x_1).$
 <p></p>
-Clearly, $h:S\rightarrow h(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $x_1$  and $x_2$ 
+Clearly, $h:S\rightarrow h(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
  uniquely. 
 <p></p>
 The inverse transform is $h ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
@@ -745,33 +790,24 @@ $$\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac{1}{y_2} &amp; -\frac{y_1}{y_2
 which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
 <p></p>
 So the required density will be 
-$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in h(S)\\ 0&\text{otherwise.}\end{array}\right.$$
-It is easy up to this point. But it usually gets messy to describe $h(S)$  in a way such that given
- some $(y_1,y_2)$  you can quickly check if $(y_1,y_2)\in h(S)$  or not.
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }\left(y_2,\frac{y_1}{y_2}\right)\in S\\ 0&\text{otherwise.}\end{array}\right.$$
+Often we want to write it as 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in T\\ 0&\text{otherwise.}\end{array}\right.$$
+for some suitably defined $T.$  This may be done as follows.  
 <p></p>
-To do this we list all the  constraints in terms of  $y_1,y_2.$  Based on the forward transorm we get 
-$$3\leq y_1\leq 8 \mbox{ and } 1\leq y_2 \leq 2.$$
-Based on the inverse transform we get
-$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 8. $$
-Sketching all these restrictions we get this region:
+$\left(y_2,\frac{y_1}{y_2}\right)\in S$  means 
+$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 4.$$
+Sketching these restrictions we get this region:
 <center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jreg.png"></th>
 </tr>
 <tr>
-<th>$h(S)$  shown in red</th>
+<th>$T$  shown in red</th>
 </tr>
 </table>
 </center>
-Notice how the constraints $y_1\geq 3$ and $y_2\geq \frac{y_1}{8}$   happen to play no role
- at all. It is hard to
- decide which constraints are going
- to determine the region, unless you make sketches. 
-<p></p>
-So the final answer is 
-$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }3\leq y_1\leq 8 \mbox{ &amp; } 1\leq y_2\leq \min\left\{2,\frac{y_1}{3}\right\}\\ 0&\text{otherwise.}\end{array}\right.$$
-<p></p>
  ■
 </p>
 
@@ -952,96 +988,187 @@ name="Problem set 10">Problem set 10</a></h2>
 <p></p>
 
 <h1><a
+name="Moment generating function (MGF)">Moment generating function (MGF)</a></h1>
+We have already come across the concept of a <b><font color="red" size="40">moment generating function</font></b>  last semester. Here is the definition
+ again:
+<fieldset>
+<legend><b>Definition:  Moment generating function (MGF)</b></legend>
+The MGF of a random variable $X$  is defined as the function 
+$M_X(t) = E(e^{Xt})$
+for whatever $t\in{\mathbb R}$  the expectation is finite. (Since $e^{Xt}$  is a positive random
+ variable, it's expectation is always defined.)  
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 10:</b>&nbsp;
+Find the MGF of $X$  having density $f(x) = \left\{\begin{array}{ll} 3 e^{-3x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+<b>SOLUTION:</b>
+$$E(e^{Xt}) = 3\int_0^ \infty e^{xt}e^{-3x}\, dx = \frac{3}{t-3},$$
+for $t&lt;3.$  
+ ■
+</p>
+Clearly, for any random variable $X$  we have $M_X(0) = 1.$
+<p></p>
+The following two theorems are what make MGF useful.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$  are two random variables such that  $\exists \epsilon&gt;0~~\forall
+ t\in(-\epsilon,\epsilon)~~M_X(t) = M_Y(t) &lt; \infty,$   then $X$  and $Y$  must have the same distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Later in this course.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$  are independent random variables amd $M_X(t), M_Y(t) &lt; \infty$  for some $t\in{\mathbb R},$  then $M_{X+Y}(t) = M_X(t)M_Y(t).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Since $X,Y$  are independent, hence so are their functions $e^{Xt}$  and $e^{Yt}.$  
+<p></p>
+Since their expectations are finite, so $E(e^{Xt}\times e^{Yt}) = E(e^{Xt})\times E(e^{Yt}).$  Hence the result. 
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+If we know a list of MGFs for some standard distributions, then these two results often help us to
+ identify if the convolution
+ of two distributions in our list again belong to the list. 
+Here is an example.
+<p></p>
+
+<p>
+<b>EXAMPLE 11:</b>&nbsp;
+Suppose that you are told that, for $a&gt;0$, the distribution with density 
+$f_a(x) = \left\{\begin{array}{ll}c x^{a-1}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  has MGF
+ $M_a(t) = (t-1)^{-a}.$ for $t&lt; 1.$  
+<p></p>
+Show that for $a,b&gt;0$  we have $f_a\star f_b = f_{a+b}.$
+<p></p>
+<b>SOLUTION:</b>
+You can of course show this directly using the definition of convolution. But that would require you to compute an integral.
+ But it is trivial using MGF: $M_a(t)M_b(t) = (t-1)^{-a} (t-1)^{-b} = (t-1)^{-(a+b)}$  for $t &lt; 1.$  
+<p></p>
+Since the MGF is finite for $t\in (-1,1),$  hence the result.
+ ■
+</p>
+
+<h2><a
+name="Problem set 11">Problem set 11</a></h2>
+
+<p>
+<b>EXERCISE 36:</b>&nbsp;Find MGF for the degenerate distribution at $5.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 37:</b>&nbsp;Let $X$  have MGF $M_X(t).$  Let $Y = ax+b.$  Find $M_Y(t),$  the MGF of $Y.$</p>
+
+<p></p>
+
+<h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 36:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 71:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 72:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 71:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 73:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 72:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 74:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 73:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
+<b>EXERCISE 75:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
 Which is Theo Exr 2??</p>
 ::<p>
-<b>EXERCISE 74:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 76:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 75:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 77:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

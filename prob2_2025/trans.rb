@@ -253,12 +253,39 @@ then roughly sketch the density of <M>Y = [[1X]].</M>  Don't apply the Jacobian 
  <M>y=[[14]]</M>  is governed by the density of <M>X</M>  at <M>x=[[12]]</M>  as well as <M>x=-[[12]].</M></ANS>
  </EXR>
 
-<HEAD1>Jacobian matrix</HEAD1>
-Now we are about to generalise the idea we learned in the last section to the bivariate (or multivariate) set up. This will
- make use of a concept called the <TERM>Jacobian</TERM>, which we introduce through an example.
+<HEAD1 u="https://youtu.be/GMC3sHP9HWg">Jacobian matrix</HEAD1>
+In (*) above we had
+<D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|],</D>
+where <M>h</M>  was assumed to be a bijection with differentiable <M>h ^{-1}.</M>  
+
+In order to  generalise this  to the multivariate set up, we need to work with a bijection <M>h:\rr^n\to\rr^n.</M> 
+   We need to do two things:
+<UL><LI>we need to define differentiability for functions from <M>\rr^n</M>  to <M>\rr^n.</M>
+</LI><LI>
+we need to compute derivative of such functions.</LI></UL>
+<HEAD2>Multivariate differentiation</HEAD2>
+<M>f:\rr\to\rr</M>  is called differentiable at some <M>a</M>, if 
+<D>\lim_{x\to a} [[f(x)-f(a)][x-a]]\mbox{ exists finitely.}</D>
+If this limit is called <M>m</M>, then this can be recast in the geometrically more applealing way as 
+<D>\exists m\in\rr~~ \lim_{x\to a}[[f(x)-\{f(a)+m\cdot(x-a)\}][x-a]] = 0.</D>
+This is geometrically more appealing because you can think of this as <M>f(x)-f(a)\approx m\cdot(x-a),</M>  i.e., near <M>a</M> 
+ the graph of <M>f</M>  looks like the line passing through <M>(a,f(a))</M>  with slope <M>m.</M>  
+
+This immediately generalises to <M>f:\rr^n\to\rr^m</M>  as follows.
+<DEFN name="Multivariate differentiation">
+Call <M>f:\rr^n\to\rr^m</M>  <TERM>differentiable</TERM> at <M>\v a\in\rr^n</M>  if 
+<D>\exists M_{m\times n} ~~ \lim_{\v x\to \v a}[[f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}][\|\v x-\v a\|]] = \v 0.</D>
+</DEFN>
+Such a matrix <M>M</M>  may depend on <M>\v a,</M>  and will be unique, and its <M>(i,j)</M>-th entry will be given by 
+<D>m_{ij} = [[\partial f_i][\partial x_j]].</D>
+Here <M>f_i</M>  is the <M>i</M>-th component of <M>f.</M>  
+
+Let us digest this using an example. 
+
 
 <EXM>
-Let <M>f:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find its determinant.
+Let <M>f:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find the determinant
+ of the Jacobian.
 <SOLN/>
 Note that <M>f</M>  consists of two function <M>f_1,f_2:\rr^2,\to\rr.</M>  These are its <TERM>component</TERM>  functions,
  <M>f_1(x_1,x_2) = \sin(x_1x_2)</M>  and <M>f_2(x_1,x_2) = x_1-x_2^2.</M>  
@@ -328,10 +355,10 @@ A differentiable nonlinear transformation can be locally approximated by a linea
 <EXR>What is the Jacobian matrix for the transform <M>h:\rr^n\to\rr^n</M>  where <M>h(\v x) = A\v
  x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
 
-<HEAD1>Jacobian formula (2 dim)</HEAD1>
-In (*) above we had
-<D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
-We shall imitate this to get the following theorem. 
+<HEAD1 u="https://youtu.be/9pWai6cA7no">Multivariate Jacobian formula</HEAD1>
+We shall imitate our familiar  univariate Jacobian formula
+<D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|]</D>
+to get the following theorem. 
 <THM>
 Let <M>\v X</M>  be an <M>\rr^n</M>-valued random vector. Let <M>h:\rr^n\to\rr^n</M>  be a
 bijection with differentiable inverse. Let <M>\v Y = h(\v X).</M> 
@@ -350,7 +377,7 @@ Let <M>S = [1,2]\times[3,4].</M>
 
 Here the transform is <M>h(x_1,x_2) = (x_1x_2,x_1).</M>
 
-Clearly, <M>h:S\to h(S)</M>  is a bijection,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>x_1</M>  and <M>x_2</M> 
+Clearly, <M>h:S\to h(S)</M>  is a bijection,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>(x_1,x_2)\in[1,2]\times[3,4]</M> 
  uniquely. 
 
 The inverse transform is <M>h ^{-1}(y_1,y_2) = (*(y_2,[[y_1][y_2]])*).</M>
@@ -359,24 +386,15 @@ The Jacobian of this is
 which has absolute determinant <M>[[1][y_2]],</M>  since <M>y_2 > 0.</M>
 
 So the required density will be 
-<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(y_1,y_2)\in h(S)</IF> 0<ELSE/></CASES></D>
-It is easy up to this point. But it usually gets messy to describe <M>h(S)</M>  in a way such that given
- some <M>(y_1,y_2)</M>  you can quickly check if <M>(y_1,y_2)\in h(S)</M>  or not.
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(*(y_2,[[y_1][y_2]])*)\in S</IF> 0<ELSE/></CASES></D>
+Often we want to write it as 
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(y_1,y_2)\in T</IF> 0<ELSE/></CASES></D>
+for some suitably defined <M>T.</M>  This may be done as follows.  
 
-To do this we list all the  constraints in terms of  <M>y_1,y_2.</M>  Based on the forward transorm we get 
-<D>3\leq y_1\leq 8 \mbox{ and } 1\leq y_2 \leq 2.</D>
-Based on the inverse transform we get
-<D>1\leq y_2 \leq 2 \mbox{ and } 3\leq [[y_1][y_2]]\leq 8. </D>
-Sketching all these restrictions we get this region:
-<CIMG web="jreg.png"><M>h(S)</M>  shown in red</CIMG>
-Notice how the constraints <M>y_1\geq 3</M> and <M>y_2\geq [[y_1][8]]</M>   happen to play no role
- at all. It is hard to
- decide which constraints are going
- to determine the region, unless you make sketches. 
-
-So the final answer is 
-<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>3\leq y_1\leq 8 \mbox{ & } 1\leq y_2\leq \min{*{2,[[y_1][3]]}*}</IF> 0<ELSE/></CASES></D>
-
+<M>(*(y_2,[[y_1][y_2]])*)\in S</M>  means 
+<D>1\leq y_2 \leq 2 \mbox{ and } 3\leq [[y_1][y_2]]\leq 4.</D>
+Sketching these restrictions we get this region:
+<CIMG web="jreg.png"><M>T</M>  shown in red</CIMG>
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>If <M>(X,Y)</M>  has joint density <M>f(x)=<CASES>x+y<IF>x,y\in[0,1]</IF> 0<ELSE/></CASES></M>,
@@ -477,6 +495,64 @@ Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*([[XY]],Y)*)\equi
 
 <EXR>A point <M>Q</M>  is chosen at random from the unit square. Let <M>Q</M>  be
  <M>(R,\Theta)</M>  in polar coordinates. Find density of <M>\tan\Theta.</M></EXR>
+
+<HEAD1>Moment generating function (MGF)</HEAD1>
+We have already come across the concept of a <TERM>moment generating function</TERM>  last semester. Here is the definition
+ again:
+<DEFN name=" Moment generating function (MGF)">
+The MGF of a random variable <M>X</M>  is defined as the function 
+<M>M_X(t) = E(e^{Xt})</M>
+for whatever <M>t\in\rr</M>  the expectation is finite. (Since <M>e^{Xt}</M>  is a positive random
+ variable, it's expectation is always defined.)  
+</DEFN>
+
+<EXM>
+Find the MGF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
+<SOLN/>
+<D>E(e^{Xt}) = 3\int_0^ \infty e^{xt}e^{-3x}\, dx = [[3][t-3]],</D>
+for <M>t<3.</M>  
+</EXM>
+Clearly, for any random variable <M>X</M>  we have <M>M_X(0) = 1.</M>
+
+The following two theorems are what make MGF useful.
+
+<THM>
+If <M>X,Y</M>  are two random variables such that  <M>\exists \epsilon>0~~\forall
+ t\in(-\epsilon,\epsilon)~~M_X(t) = M_Y(t) < \infty,</M>   then <M>X</M>  and <M>Y</M>  must have the same distribution.
+</THM>
+<PF>Later in this course.</PF>
+
+<THM>
+If <M>X,Y</M>  are independent random variables amd <M>M_X(t), M_Y(t) < \infty</M>  for some <M>t\in\rr,</M>  then <M>M_{X+Y}(t) = M_X(t)M_Y(t).</M>
+</THM>
+<PF>
+Since <M>X,Y</M>  are independent, hence so are their functions <M>e^{Xt}</M>  and <M>e^{Yt}.</M>  
+
+Since their expectations are finite, so <M>E(e^{Xt}\times e^{Yt}) = E(e^{Xt})\times E(e^{Yt}).</M>  Hence the result. 
+
+</PF>
+
+If we know a list of MGFs for some standard distributions, then these two results often help us to
+ identify if the convolution
+ of two distributions in our list again belong to the list. 
+Here is an example.
+
+<EXM>
+Suppose that you are told that, for <M>a>0</M>, the distribution with density 
+<M>f_a(x) = <CASES>c x^{a-1}e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  has MGF
+ <M>M_a(t) = (t-1)^{-a}.</M> for <M>t< 1.</M>  
+
+Show that for <M>a,b>0</M>  we have <M>f_a\star f_b = f_{a+b}.</M>
+<SOLN/>
+You can of course show this directly using the definition of convolution. But that would require you to compute an integral.
+ But it is trivial using MGF: <M>M_a(t)M_b(t) = (t-1)^{-a} (t-1)^{-b} = (t-1)^{-(a+b)}</M>  for <M>t < 1.</M>  
+
+Since the MGF is finite for <M>t\in (-1,1),</M>  hence the result.
+</EXM>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find MGF for the degenerate distribution at <M>5.</M></EXR>
+
+<EXR>Let <M>X</M>  have MGF <M>M_X(t).</M>  Let <M>Y = ax+b.</M>  Find <M>M_Y(t),</M>  the MGF of <M>Y.</M></EXR>
 
 <HEAD1>Problems for practice</HEAD1>
 ::<EXR><EIMG web="hpstrans1.png"/></EXR>
