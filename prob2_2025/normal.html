@@ -200,6 +200,9 @@ function myFunction() {
 <a href="#Problem set 6">Problem set 6</a>
 </li>
 <li>
+<a href="#Dirichlet distribution">Dirichlet distribution</a>
+</li>
+<li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
 </li>
 </ul>
@@ -572,6 +575,46 @@ Let $X_1,...,X_n$  be IID $N(\mu, \sigma^2).$  Then
 <h2><a
 name="Problem set 6">Problem set 6</a></h2>
 
+<p></p>
+
+<h1><a
+name="Dirichlet distribution">Dirichlet distribution</a></h1>
+Now we are going to work with a multivariate distribution called the <b><font color="red" size="40">Dirichlet distribution</font></b>, which has no direct
+ relation with multivariate normal. It is a multivariate generalisation of the Beta distribution. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Dirichlet distribution</b></legend>
+We say that $(X_1,...,X_p)$  has <b><font color="red" size="40">Dirichlet distribution</font></b>  with parameters $a_1,...,a_p&gt;0$  if the joint
+density is 
+$$f(x_1,...,x_p) = \left\{\begin{array}{ll}c x_1^{a_1-1}x_2^{a_2-1}\cdots x_p^{a_p-1}&\text{if }(x_1,...,x_p)\in D\\ 0&\text{otherwise.}\end{array}\right.
+ $$
+where 
+$$D = \{(x_1,...,x_p)~:~\forall i~~x_i\geq 0,~~\sum_1^p x_i=1\},$$
+and 
+$$c = \frac{\Gamma(a_1)\cdots \Gamma(a_p)}{\Gamma(a_1+\cdots+a_p)}.$$
+</fieldset>
+It is not immediately obvious that the total integral of this function is indeed 1. However, it is easy for $p=2,$ because
+ if $(X_1,X_2)\sim Dir(a_1,a_2)$  then $X_1\sim Beta(a_1,a_2)$  and $X_2 = 1-X_1.$
+Starting with this as the basis, we can use induction over $p$  to establish the general case (easy, try it!).
+<p></p>
+The following properties are all obvious from the definition.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $(X_1,X_2,...,X_p)\sim Dir(a_1,a_2,...,a_p)$, then 
+<ol type="">
+
+<li>for any $k\geq 2$  and distinct $i_1,...,i_k\in\{1,...,p\}$  we have
+ $(X_{i_1},...,X_{i_k})\sim Dir(a_{i_1},...,a_{i_k}).$</li>
+
+<li>each $X_i\sim Beta\left(a_i,\sum_{j\neq i} a_j\right).$</li>
+
+</ol>
+
+</fieldset>
+
+<p></p>
+We can immediately write down the mean (<i>i.e.</i>, expectation) and variance of each $X_i$  from results of Beta distribution.
 <p></p>
 
 <h1><a

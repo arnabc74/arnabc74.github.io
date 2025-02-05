@@ -218,7 +218,22 @@ function myFunction() {
 <a href="#Characteristic function (CF)">Characteristic function (CF)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Complex random variables">Complex random variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Complex calculus">Complex calculus</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#An example">An example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 11">Problem set 11</a>
+</li>
+<li>
+<a href="#Properties of CF">Properties of CF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 12">Problem set 12</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
@@ -569,9 +584,9 @@ Let's first massage (*) into a more elegant form. We know that $h(h ^{-1} (y))\e
 Differentiating this wrt $y$  we have $h'(h ^{-1} (y))\frac{d}{dy} h ^{-1}(y) \equiv 1,$  <i>i.e.</i>, 
 $$\frac{d}{dy} h ^{-1}(y) = \frac{1}{h'(h ^{-1}(y))}.$$
 So we get 
-$$g(y) = \frac{f(h ^{-1}(y))}{h'(h ^{-1}(y))}.$$
+$$g(y) = \frac{f(h ^{-1}(y))}{ |h'(h ^{-1}(y))| }.$$
 If we write $x = h ^{-1}(y),$  this will look less complicated:
-$$g(y) = \frac{f(x)}{h'(x)}.$$
+$$g(y) = \frac{f(x)}{ |h'(x)| }.$$
 So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$   
 <p></p>
  Suppose that $X$  has uniform distribution over $[0,1].$
@@ -946,6 +961,8 @@ class="ans" id="lab2">Think in terms of random variables.</div></p>
 
 <h1><a
 name="Quotient">Quotient</a></h1>
+<a href="https://youtu.be/8XC0IhfmOUM">Video for this section</a>
+<p></p>
 Sometimes we need to work with the quotient of two independent random variables. The following theorem helps when the random variables
  are both positive and independent.
 <p></p>
@@ -978,7 +995,7 @@ name="Problem set 10">Problem set 10</a></h2>
 <p></p>
 
 <p>
-<b>EXERCISE 34:</b>&nbsp;If $X,Y$  are IID with common density $f(x)=\left\{\begin{array}{ll}e^-x&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$,
+<b>EXERCISE 34:</b>&nbsp;If $X,Y$  are IID with common density $f(x)=\left\{\begin{array}{ll}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$,
   then find density of $X/Y.$</p>
 
 <p></p>
@@ -991,6 +1008,8 @@ name="Problem set 10">Problem set 10</a></h2>
 
 <h1><a
 name="Characteristic function (CF)">Characteristic function (CF)</a></h1>
+<a href="https://youtu.be/Hb_7jyd_GAI">Video for this section</a>
+<p></p>
 We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
  you have forgotten about  the
  concept of a <b><font color="red" size="40">moment
@@ -1018,27 +1037,59 @@ The  <b><font color="red" size="40">characteristic function (CF)</font></b>  of 
 $\xi_X(t) = E(e^{iXt})$
 for  $t\in{\mathbb R}.$
 </fieldset>
-You may be scared by the unexpected appearance of complex numbers inside the expectation! Just remember that $e^{iXt} = \cos (Xt)+i\sin(Xt).$ 
- So $\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).$
+You may be scared by the unexpected appearance of complex numbers inside the expectation! 
+Let's learn about complex random variables.
+<p></p>
+
+<h2><a
+name="Complex random variables">Complex random variables</a></h2>
+Just remember that 
+A complex random variable $Z$   means $Z = X+i Y,$  where $X,Y$  are (real) random variables. We define $E(Z)=E(X)+iE(Y)$ 
+ (and say $E(Z)$  does not exist if at least one of $E(X), E(Y)$  does not). 
+<p></p>
+Since we have $e^{iXt} = \cos (Xt)+i\sin(Xt)$, the characteristic function is just 
+$\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).$
 Since $\cos$  and $\sin$  are both bounded, finite existence of the expectation is not a problem. 
 <p></p>
-In order to do math with $e^{ix}$, , just treat it like any
- $e^{\mbox{const}\times x}$  <i>e.g.</i>, $e^{3x}$, say. For instance, $\frac{d}{dx}e^{ix} = i e^{ix}$  and $\int e^{ix}\, dx = \frac 1ie^{ix}+$ arbit
+
+<h2><a
+name="Complex calculus">Complex calculus</a></h2>
+For $f:{\mathbb R}\rightarrow{\mathbb C}$  write $f(x) = g(x) + i h(x) $  for $g,h:{\mathbb R}\rightarrow{\mathbb R}.$  Then differentiation and integration
+ are defined in the obvious way:
+$$\begin{eqnarray*}
+f'(x) &amp; = &amp; g'(x) + i h'(x),\\
+\int f(x)\, dx &amp; = &amp; \int g(x)\, dx + i\int h(x)\, dx.
+\end{eqnarray*}$$
+From this it immediate follows (check!) that
+$\frac{d}{dx}e^{ix} = i e^{ix}$  and $\int e^{ix}\, dx = \frac 1ie^{ix}+$ arbit
  constant.
-<p></p>
-All these will be justified later (quite easily) in your complex analysis course! 
-<p></p>
+<h2><a
+name="An example">An example</a></h2>
 
 <p>
 <b>EXAMPLE 10:</b>&nbsp;
 Find the CF of $X$  having density $f(x) = \left\{\begin{array}{ll} 3 e^{-3x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
 <p></p>
 <b>SOLUTION:</b>
-$$E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = \frac{3}{it-3}$$
+$$E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = \frac{3}{3-it}$$
 for $t\in{\mathbb R}.$  
  ■
 </p>
 Clearly, for any random variable $X$  we have $\xi_X(0) = 1.$
+<h2><a
+name="Problem set 11">Problem set 11</a></h2>
+
+<p>
+<b>EXERCISE 36:</b>&nbsp;Find CF for the degenerate distribution at $5.$</p>
+
+<p>
+<b>EXERCISE 37:</b>&nbsp;Find CF for the uniform distribution over $(-1,1).$</p>
+
+<p></p>
+
+<h1><a
+name="Properties of CF">Properties of CF</a></h1>
+<a href="https://youtu.be/9lsO1kR9OaQ">Video for this section</a>
 <p></p>
 The following two theorems are what make CF useful.
 <p></p>
@@ -1050,7 +1101,7 @@ $\xi_X(t) \equiv \xi_Y(t)$,   then $X$  and $Y$  must have the same distribution
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>Wil be done next semester.<b><i>[QED]</i></b>
+<b><i>Proof:</i></b>Will be done next semester.<b><i>[QED]</i></b>
 </p>
 
 <p></p>
@@ -1081,122 +1132,119 @@ Here is an example.
 <b>EXAMPLE 11:</b>&nbsp;
 Suppose that you are told that, for $a&gt;0$, the distribution with density 
 $f_a(x) = \left\{\begin{array}{ll}c x^{a-1}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  has CF
- $M_a(t) = (it-1)^{-a}.$ for $t&lt; 1.$  
+ $\xi_a(t) = (1-it)^{-a}.$ for $t&lt; 1.$  
 <p></p>
 Show that for $a,b&gt;0$  we have $f_a* f_b = f_{a+b}.$
 <p></p>
 <b>SOLUTION:</b>
 You can of course show this directly using the definition of convolution. But that would require you to compute an integral.
- But it is trivial using CF: $\xi_a(t)\xi_b(t) = (it-1)^{-a} (it-1)^{-b} = (it-1)^{-(a+b)}$  for $t \in{\mathbb R}.$  
+ But it is trivial using CF: $\xi_a(t)\xi_b(t) = (1-it)^{-a} (1-it)^{-b} = (1-it)^{-(a+b)}$  for $t \in{\mathbb R}.$  
 <p></p>
 Since CF uniquely determines the distribution, we get the result.
  ■
 </p>
 
 <h2><a
-name="Problem set 11">Problem set 11</a></h2>
-
-<p>
-<b>EXERCISE 36:</b>&nbsp;Find CF for the degenerate distribution at $5.$</p>
+name="Problem set 12">Problem set 12</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 37:</b>&nbsp;Let $X$  have CF $\xi_X(t).$  Let $Y = ax+b.$  Find $\xi_Y(t),$  the CF of $Y.$</p>
+<b>EXERCISE 38:</b>&nbsp;Let $X$  have CF $\xi_X(t).$  Let $Y = ax+b.$  Find $\xi_Y(t),$  the CF of $Y.$</p>
 
 <p></p>
 
 <h1><a
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 71:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 71:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 72:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 72:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 73:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 73:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 74:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 74:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 75:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 75:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
+<b>EXERCISE 76:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
 Which is Theo Exr 2??</p>
 ::<p>
-<b>EXERCISE 76:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 77:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 77:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 78:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

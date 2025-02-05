@@ -218,9 +218,9 @@ Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))
 Differentiating this wrt <M>y</M>  we have <M>h'(h ^{-1} (y))[[d][dy]] h ^{-1}(y) \equiv 1,</M>  i.e., 
 <D>[[d][dy]] h ^{-1}(y) = [[1][h'(h ^{-1}(y))]].</D>
 So we get 
-<D>g(y) = [[f(h ^{-1}(y))][h'(h ^{-1}(y))]].</D>
+<D>g(y) = [[f(h ^{-1}(y))][ |h'(h ^{-1}(y))| ]].</D>
 If we write <M>x = h ^{-1}(y),</M>  this will look less complicated:
-<D>g(y) = [[f(x)][h'(x)]].</D>
+<D>g(y) = [[f(x)][ |h'(x)| ]].</D>
 So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>h'.</M>   
 
  Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
@@ -472,7 +472,7 @@ To see this notice that for  <M>f(x)</M>  to be nonzero we need <M>0 < x < 1,</M
 
 
 <EXR>If <M>X,Y</M>  are independent with common density <M>f(x)</M>, what will density of <M>X-Y</M>  be? </EXR>
-<HEAD1>Quotient</HEAD1>
+<HEAD1 u="https://youtu.be/8XC0IhfmOUM">Quotient</HEAD1>
 Sometimes we need to work with the quotient of two independent random variables. The following theorem helps when the random variables
  are both positive and independent.
 
@@ -490,13 +490,13 @@ Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*([[XY]],Y)*)\equi
 
 <EXR>If <M>X,Y</M>  are independent and uniformly distributed over <M>[1,2],</M>  then find density of <M>X/Y.</M></EXR>
 
-<EXR>If <M>X,Y</M>  are IID with common density <M>f(x)=<CASES>e^-x<IF>x>0</IF> 0<ELSE/></CASES></M>,
+<EXR>If <M>X,Y</M>  are IID with common density <M>f(x)=<CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>,
   then find density of <M>X/Y.</M></EXR>
 
 <EXR>A point <M>Q</M>  is chosen at random from the unit square. Let <M>Q</M>  be
  <M>(R,\Theta)</M>  in polar coordinates. Find density of <M>\tan\Theta.</M></EXR>
 
-<HEAD1>Characteristic function (CF)</HEAD1>
+<HEAD1 u="https://youtu.be/Hb_7jyd_GAI">Characteristic function (CF)</HEAD1>
 We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
  you have forgotten about  the
  concept of a <TERM>moment
@@ -522,31 +522,48 @@ The  <TERM>characteristic function (CF)</TERM>  of a random variable <M>X</M>  i
 <M>\xi_X(t) = E(e^{iXt})</M>
 for  <M>t\in\rr.</M>
 </DEFN>
-You may be scared by the unexpected appearance of complex numbers inside the expectation! Just remember that <M>e^{iXt} = \cos (Xt)+i\sin(Xt).</M> 
- So <M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
+You may be scared by the unexpected appearance of complex numbers inside the expectation! 
+Let's learn about complex random variables.
+
+<HEAD2>Complex random variables</HEAD2>
+Just remember that 
+A complex random variable <M>Z</M>   means <M>Z = X+i Y,</M>  where <M>X,Y</M>  are (real) random variables. We define <M>E(Z)=E(X)+iE(Y)</M> 
+ (and say <M>E(Z)</M>  does not exist if at least one of <M>E(X), E(Y)</M>  does not). 
+
+Since we have <M>e^{iXt} = \cos (Xt)+i\sin(Xt)</M>, the characteristic function is just 
+<M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
 Since <M>\cos</M>  and <M>\sin</M>  are both bounded, finite existence of the expectation is not a problem. 
 
-In order to do math with <M>e^{ix}</M>, , just treat it like any
- <M>e^{\mbox{const}\times x}</M>  e.g., <M>e^{3x}</M>, say. For instance, <M>[[d][dx]]e^{ix} = i e^{ix}</M>  and <M>\int e^{ix}\, dx = [[1i]]e^{ix}+</M> arbit
+<HEAD2>Complex calculus</HEAD2>
+For <M>f:\rr\to\cc</M>  write <M>f(x) = g(x) + i h(x) </M>  for <M>g,h:\rr\to\rr.</M>  Then differentiation and integration
+ are defined in the obvious way:
+<MULTILINE>
+f'(x) & = & g'(x) + i h'(x),\\
+\int f(x)\, dx & = & \int g(x)\, dx + i\int h(x)\, dx.
+</MULTILINE>
+From this it immediate follows (check!) that
+<M>[[d][dx]]e^{ix} = i e^{ix}</M>  and <M>\int e^{ix}\, dx = [[1i]]e^{ix}+</M> arbit
  constant.
-
-All these will be justified later (quite easily) in your complex analysis course! 
-
+<HEAD2>An example</HEAD2>
 <EXM>
 Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 <SOLN/>
-<D>E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = [[3][it-3]]</D>
+<D>E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = [[3][3-it]]</D>
 for <M>t\in\rr.</M>  
 </EXM>
 Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find CF for the degenerate distribution at <M>5.</M></EXR>
+<EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
 
+<HEAD1 u="https://youtu.be/9lsO1kR9OaQ">Properties of CF</HEAD1>
 The following two theorems are what make CF useful.
 
 <THM>
 If <M>X,Y</M>  are two random variables such that 
 <M>\xi_X(t) \equiv \xi_Y(t)</M>,   then <M>X</M>  and <M>Y</M>  must have the same distribution.
 </THM>
-<PF>Wil be done next semester.</PF>
+<PF>Will be done next semester.</PF>
 
 <THM>
 If <M>X,Y</M>  are independent random variables, then <M>\xi_{X+Y}(t) = \xi_X(t)\xi_Y(t)</M>  for <M>t\in\rr.</M>
@@ -566,17 +583,16 @@ Here is an example.
 <EXM>
 Suppose that you are told that, for <M>a>0</M>, the distribution with density 
 <M>f_a(x) = <CASES>c x^{a-1}e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  has CF
- <M>M_a(t) = (it-1)^{-a}.</M> for <M>t< 1.</M>  
+ <M>\xi_a(t) = (1-it)^{-a}.</M> for <M>t< 1.</M>  
 
 Show that for <M>a,b>0</M>  we have <M>f_a* f_b = f_{a+b}.</M>
 <SOLN/>
 You can of course show this directly using the definition of convolution. But that would require you to compute an integral.
- But it is trivial using CF: <M>\xi_a(t)\xi_b(t) = (it-1)^{-a} (it-1)^{-b} = (it-1)^{-(a+b)}</M>  for <M>t \in\rr.</M>  
+ But it is trivial using CF: <M>\xi_a(t)\xi_b(t) = (1-it)^{-a} (1-it)^{-b} = (1-it)^{-(a+b)}</M>  for <M>t \in\rr.</M>  
 
 Since CF uniquely determines the distribution, we get the result.
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Find CF for the degenerate distribution at <M>5.</M></EXR>
 
 <EXR>Let <M>X</M>  have CF <M>\xi_X(t).</M>  Let <M>Y = ax+b.</M>  Find <M>\xi_Y(t),</M>  the CF of <M>Y.</M></EXR>
 
