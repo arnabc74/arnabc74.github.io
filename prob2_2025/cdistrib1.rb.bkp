@@ -1,5 +1,5 @@
  @{<NOTE>
-<TITLE>Sone standard densities</TITLE>
+<TITLE>Some standard densities</TITLE>
 Last semester, we had learned some standard discrete distributions like binomial and geometric. Similarly, here we shall
  learn about some standard distributions with densities. 
 
@@ -11,13 +11,27 @@ Notice that a PDF must be defined over entire <M>\rr.</M>  Hence we need the "el
 
 The CDF is 
 <D>F(x) = <CASES>0<IF>x < a</IF> [[x-a][b-a]]<IF>a\geq x < b</IF> 1<IF>b\geq x</IF></CASES>.</D>
+Of a great importance is the special case <M>Unif(0,1)</M>, whose <M>CDF</M>  you must never forget:
+<CIMG web="ucdf.png">CDF of <M>Unif(0,1)</M>  distribution</CIMG>
 
-Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
- of probability as well as random number generation using a computer. Both these applications come from the same theorem,
- which we shall discuss <LINK to="trans.html">later</LINK> in the course.
+<THM>If <M>X\sim Unif(0,1)</M>, then <M>E(X) = [[12]]</M>  and <M>V(X)= [[1][12]].</M></THM>
+<PF>Direct computation.</PF>
 
-<HEAD2>Problem set <PS/></HEAD2>
+<THM>If <M>X\sim Unif(0,1)</M>, and <M>a>0</M>  and <M>b\in\rr</M>, then <M>aX+b\sim Unif(b,a+b).</M></THM>
+<PF>Can prove using CDF or Jacobian. But most importantly you should <I>feel</I>  why this should be true.</PF>
 
+<HEAD2>Problem set<PS/></HEAD2>
+<EXR>Using the last theorem (and <I>not</I>  direct computation, find <M>V(X)</M>  if <M>X\sim
+ Unif(a,b)</M>  for some <M>a<b.</M></EXR>
+
+<EXR>Find CF of <M>X\sim Unif(0,1).</M></EXR>
+
+<EXR>If <M>X,Y</M>  are IID <M>Unif(0,1)</M>  find densities of 
+<OL><LI>
+<M>X+Y.</M>
+</LI><LI><M>\min\{X,Y\}</M>
+</LI><LI><M>\max\{X,Y\}.</M></LI></OL>
+  </EXR>
 <EXR>Let <M>X\sim Unif(0,1),</M>  <M>Y\sim Unif(10,20),</M>  and <M>Z\sim Unif(100,101).</M>
   Without explicitly computing their variances pick the correct option below:
 <OL type="A">
@@ -27,7 +41,6 @@ Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial 
 <LI><M>V(Y) =  V(Z) <  V(X)</M></LI>
 </OL>
 </EXR>
-<EXR>If <M>X\sim Unif(a,b),</M>  then find <M>E(X),</M>  <M>V(X)</M>  and MGF of <M>X.</M></EXR>
 
 <EXR>If <M>X\sim Unif(0,\theta),</M> for some <M>\theta>0.</M>  Fix any density <M>f_\theta(x)</M> of <M>X.</M>
 Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
@@ -38,7 +51,58 @@ Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
  a_{\pi(i-1)}+(x-a_i)</M>  if <M>x\in [a_{i-1},a_i).</M>  What is the distribution of <M>Y?</M></EXR>
 
 
-<HEAD1>A step towards proving the fundamental theorem of probability</HEAD1>
+<HEAD1>Any continuous distribution to <M>Unif(0,1)</M></HEAD1>
+In this and the following sections we shall present two surprising properties of the <M>Unif(0,1)</M>  distribution. The
+ first property says that you arrive at the <M>Unif(0,1)</M>  distribution starting from <I>any</I>  continuous distribution!
+<THM>
+Let <M>X</M>  be any random variable with continuous CDF <M>F(x).</M>  Then the random variable <M>F(X)</M>  has <M>Unif(0,1)</M> 
+ distribution.
+</THM>
+<PF>
+Let <M>Y=F(X).</M>  Shall show that it has the CDF of <M>Unif(0,1)</M>  distribution:
+<D>P(Y\leq y) = <CASES>0<IF>y<0</IF> y<IF>0\leq y < 1</IF> 1<IF>1 \leq y</IF></CASES></D>
+This will complete the proof, since <M>CDF</M>  uniquely determines a distribution. 
+
+We know that <M>F:\rr\to[0,1].</M>  So <M>Y = F(X)\in[0,1].</M>  Hence <M>G(y) = 0</M>  if <M>y \leq 0</M>  and <M>G(y)=1</M> 
+ if <M>y\geq 1.</M>
+
+Take any <M>y\in(0,1).</M>
+What we plan to do now is best understood with a diagram:
+<CIMG web="interf.png">Want to find <M>b</M>, the rightmost point with <M>F(b)=y</M></CIMG>
+This <M>b</M>  will be useful, because <M>\{F(x)\leq y\}= \{x\leq b\}.</M>  
+
+We shall obtain <M>b</M>  as the supremum of the set <M>A = \{x~:~F(x)\leq y\}.</M>  Then <M>A</M> is non-empty and bounded above.
+<BECAUSE> Non-empty: <M>\because \lim_{x\to -\infty} F(x) = 0</M>  and <M>y>0,</M>  <M>\therefore \exists t\in\rr ~~F(t) < y.</M>
+
+Bounded above:  <M>\because\lim_{x\to \infty} F(x) = 1</M>,
+ and <M>y < 1,</M>  hence <M>\exists s\in\rr ~~F(s) > y.</M>  
+
+<M>F</M>  is non-decreasing,  hence <M>F</M>  is bounded above by this <M>s.</M>
+</BECAUSE> 
+
+Let <M>b = \sup(A).</M>  
+
+By continuity of <M>F,</M>  we have <M>F(b) = y.</M>  (Use the argument you used to prove intermediate value theorem
+ in you Analysis 1 course.)
+<BECAUSE>If <M>F(b) < y</M>  then no value in <M>(F(b),y)</M>  can be taken by <M>F</M>, which is
+impossible since <M>F</M>  is continuous.
+
+If <M>F(b) > y</M>, then consider any <M>t\in (y,F(b)).</M>  We shall have some <M>r\in\rr~~F(r)=t.</M>  Then <M>r < b</M> 
+ will also be an upper bound for <M>A.</M>
+</BECAUSE>
+Also <M>\{Y\leq y\}=\{X\leq b\}.</M>
+
+So <M>G(y) = P(X\leq b) = F(b) =y,</M>
+as required.
+</PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+
+
+<HEAD1><M>Unif(0,1)</M> to any distribution</HEAD1>
+Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
+ of probability as well as random number generation using a computer.
+
  To prepare for the theorem we define a right-inverse of any CDF. 
 
 <DEFN>
@@ -48,10 +112,31 @@ Let <M>F</M>  be any CDF. Then define <M>F^-:(0,1)\to\rr</M>  as
 This is well-defined since if <M>a\in (0,1)</M>  then <M>\{t~:~F(t)\geq a\}</M>  is nonempty (as
  <M>\lim_{x\to \infty}F(x)= 1</M>), and is bounded below (as <M>\lim_{x\to -\infty}F(x)= 0</M>  and <M>F</M>  is non-decreasing).
 
-A couple of properties of <M>F^-</M>  are in order:
+Here are some properties of <M>F^-</M>:
 <THM>
-Let <M>F</M>  be any CDF. Then <M>F^-</M>  is non-decreasing. Also <M>\forall x\in(0,1)~~F(F^-(x))=x.</M> 
+Let <M>F</M>  be any CDF. Then 
+<OL>
+<LI>  <M>\forall x\in(0,1)~~F(F^-(x))=x.</M> 
+</LI>
+<LI>
+<M>\forall x\in\rr, y\in(0,1)~~(F^-(y)\leq x \iff y \leq F(x)).</M>
+</LI>
+</OL>
 </THM>
+<PF>
+<OL>
+<LI>Follows from right continuity of <M>F.</M>
+</LI>
+<LI>
+Take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>F^-(y)\leq x.</M>  Since
+ <M>F</M>  is non-decreasing, hence
+ <M>F(F^-(y))\leq F(x)</M>, i.e., <M>y\leq F(x)</M>, since <M>F(F^-(y))=y.</M>  
+
+Conversely, take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>y\leq F(x).</M> 
+
+Then <M>x\in \{t~:~y\leq F(t)\}</M>. So <M>x\geq \inf\{t~:~y\leq F(t)\} = F^-(y).</M>
+</LI></OL>
+</PF>
 Now for the all-important theorem.  
 <THM>
 Let <M>U\sim Unif(0,1).</M>  Let <M>F(x)</M>  be any CDF.
@@ -75,9 +160,9 @@ Clearly, <M>Y=F(X)</M>  can only take values in <M>[0,1].</M>  So <M>P(Y\leq y) 
 
 Take any <M>y\in[0,1].</M>  Then <M>P(Y\leq y) = P(F(X)\leq y)= P(X\leq F^-(y))= F(F^-(y))=y.</M> 
 </PF>
-This is used to construct a P-P plot.
-
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>Show that <M>F^-</M>  is a non-decreasing.</EXR>
+
 ::<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
  may generate a random variable with this PDF starting from a <M>Unif(0,1)</M>  random variable.</EXR>
 ::<EXR>Suggest how you
@@ -402,4 +487,19 @@ Here is Example 5b that is refered above:
 ::<EXR><EIMG web="hpspdf42.png"/></EXR>
 ::<EXR><EIMG web="hpspdf43.png"/></EXR>
 ::<EXR><EIMG web="hpspdf44.png"/></EXR>
+----
+::<EXR><EIMG web="hpstrans3.png"/></EXR>
+::<EXR><EIMG web="hpstrans6.png"/></EXR>
+::<EXR><EIMG web="hpstrans10.png"/></EXR>
+::<EXR><EIMG web="hpstrans11.png"/></EXR>
+::<EXR><EIMG web="hpstrans13.png"/></EXR>
+::<EXR><EIMG web="hpstrans15.png"/></EXR>
+::<EXR><EIMG web="hpstrans16.png"/></EXR>
+::<EXR><EIMG web="hpstrans17.png"/></EXR>
+::<EXR><EIMG web="hpstrans18.png"/></EXR>
+::<EXR><EIMG web="hpstrans20.png"/></EXR>
+::<EXR><EIMG web="hpstrans22.png"/></EXR>
+::<EXR><EIMG web="hpstrans25.png"/></EXR>
+::<EXR><EIMG web="hpstrans26.png"/></EXR>
+
 </NOTE>@}

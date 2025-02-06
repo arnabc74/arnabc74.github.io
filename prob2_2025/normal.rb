@@ -316,4 +316,6 @@ Express you answer in terms CDF of some standard distribution.
 <EXR><EIMG web="rossfcpnorm8.png"/></EXR>
 <EXR><EIMG web="rossipmnorm1.png"/></EXR>
 <EXR><EIMG web="rossipmnorm2.png"/></EXR>
+::<EXR><EIMG web="hpstrans19.png"/></EXR>
+
 </NOTE>@}

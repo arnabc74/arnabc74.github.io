@@ -413,7 +413,7 @@ Suppose that we are given the joint density of <M>(X,Y).</M>  We want to find th
  the transformation must be bijective with nonsingular Jacobian. Unfortunately, <M>(X,Y)\mapsto
  X+Y</M>  does not satisfy any of these conditions, it is from <M>\rr^2</M>  to <M>\rr,</M>  and
  is not bijective. But we can remdy this by considering the transformation <M>h(X,Y) =
- (X+Y,Y).</M>  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
+ (X,X+Y).</M>  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
 
 <EXM>
 Let <M>(X_1,X_2)</M>  have joint density <M>f(x_1,x_2).</M> Find  density of <M>X_1+X_2.</M>
@@ -599,29 +599,15 @@ Since CF uniquely determines the distribution, we get the result.
 <HEAD1>Miscellaneous problems</HEAD1>
 ::<EXR><EIMG web="hpstrans1.png"/></EXR>
 ::<EXR><EIMG web="hpstrans2.png"/></EXR>
-::<EXR><EIMG web="hpstrans3.png"/></EXR>
 ::<EXR><EIMG web="hpstrans4.png"/></EXR>
-::<EXR><EIMG web="hpstrans6.png"/></EXR>
 ::<EXR><EIMG web="hpstrans7.png"/></EXR>
 ::<EXR><EIMG web="hpstrans8.png"/></EXR>
 ::<EXR><EIMG web="hpstrans9.png"/></EXR>
-::<EXR><EIMG web="hpstrans10.png"/></EXR>
-::<EXR><EIMG web="hpstrans11.png"/></EXR>
 ::<EXR><EIMG web="hpstrans12.png"/></EXR>
-::<EXR><EIMG web="hpstrans13.png"/></EXR>
 ::<EXR><EIMG web="hpstrans14.png"/></EXR>
-::<EXR><EIMG web="hpstrans15.png"/></EXR>
-::<EXR><EIMG web="hpstrans16.png"/></EXR>
-::<EXR><EIMG web="hpstrans17.png"/></EXR>
-::<EXR><EIMG web="hpstrans18.png"/></EXR>
-::<EXR><EIMG web="hpstrans19.png"/></EXR>
-::<EXR><EIMG web="hpstrans20.png"/></EXR>
 ::<EXR><EIMG web="hpstrans21.png"/></EXR>
-::<EXR><EIMG web="hpstrans22.png"/></EXR>
 ::<EXR><EIMG web="hpstrans23.png"/></EXR>
 ::<EXR><EIMG web="hpstrans24.png"/></EXR>
-::<EXR><EIMG web="hpstrans25.png"/></EXR>
-::<EXR><EIMG web="hpstrans26.png"/></EXR>
 ::<EXR><EIMG web="hpspdf7.png"/></EXR>
 ::<EXR><EIMG web="hpspdf11.png"/></EXR>
 
