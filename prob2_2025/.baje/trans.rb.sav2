@@ -218,9 +218,9 @@ Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))
 Differentiating this wrt <M>y</M>  we have <M>h'(h ^{-1} (y))[[d][dy]] h ^{-1}(y) \equiv 1,</M>  i.e., 
 <D>[[d][dy]] h ^{-1}(y) = [[1][h'(h ^{-1}(y))]].</D>
 So we get 
-<D>g(y) = [[f(h ^{-1}(y))][h'(h ^{-1}(y))]].</D>
+<D>g(y) = [[f(h ^{-1}(y))][ |h'(h ^{-1}(y))| ]].</D>
 If we write <M>x = h ^{-1}(y),</M>  this will look less complicated:
-<D>g(y) = [[f(x)][h'(x)]].</D>
+<D>g(y) = [[f(x)][ |h'(x)| ]].</D>
 So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>h'.</M>   
 
  Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
@@ -413,7 +413,7 @@ Suppose that we are given the joint density of <M>(X,Y).</M>  We want to find th
  the transformation must be bijective with nonsingular Jacobian. Unfortunately, <M>(X,Y)\mapsto
  X+Y</M>  does not satisfy any of these conditions, it is from <M>\rr^2</M>  to <M>\rr,</M>  and
  is not bijective. But we can remdy this by considering the transformation <M>h(X,Y) =
- (X+Y,Y).</M>  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
+ (X,X+Y).</M>  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
 
 <EXM>
 Let <M>(X_1,X_2)</M>  have joint density <M>f(x_1,x_2).</M> Find  density of <M>X_1+X_2.</M>
@@ -472,7 +472,7 @@ To see this notice that for  <M>f(x)</M>  to be nonzero we need <M>0 < x < 1,</M
 
 
 <EXR>If <M>X,Y</M>  are independent with common density <M>f(x)</M>, what will density of <M>X-Y</M>  be? </EXR>
-<HEAD1>Quotient</HEAD1>
+<HEAD1 u="https://youtu.be/8XC0IhfmOUM">Quotient</HEAD1>
 Sometimes we need to work with the quotient of two independent random variables. The following theorem helps when the random variables
  are both positive and independent.
 
@@ -496,7 +496,8 @@ Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*([[XY]],Y)*)\equi
 <EXR>A point <M>Q</M>  is chosen at random from the unit square. Let <M>Q</M>  be
  <M>(R,\Theta)</M>  in polar coordinates. Find density of <M>\tan\Theta.</M></EXR>
 
-<HEAD1>Characteristic function (CF)</HEAD1>
+<HEAD1 u="https://youtu.be/VwmX-rmTLUw">Characteristic function (CF)</HEAD1>
+(The video has
 We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
  you have forgotten about  the
  concept of a <TERM>moment
@@ -523,7 +524,9 @@ The  <TERM>characteristic function (CF)</TERM>  of a random variable <M>X</M>  i
 for  <M>t\in\rr.</M>
 </DEFN>
 You may be scared by the unexpected appearance of complex numbers inside the expectation! 
-Let's learn about
+Let's learn about complex random variables.
+
+<HEAD2>Complex random variables</HEAD2>
 Just remember that 
 A complex random variable <M>Z</M>   means <M>Z = X+i Y,</M>  where <M>X,Y</M>  are (real) random variables. We define <M>E(Z)=E(X)+iE(Y)</M> 
  (and say <M>E(Z)</M>  does not exist if at least one of <M>E(X), E(Y)</M>  does not). 
@@ -532,6 +535,7 @@ Since we have <M>e^{iXt} = \cos (Xt)+i\sin(Xt)</M>, the characteristic function 
 <M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
 Since <M>\cos</M>  and <M>\sin</M>  are both bounded, finite existence of the expectation is not a problem. 
 
+<HEAD2>Complex calculus</HEAD2>
 For <M>f:\rr\to\cc</M>  write <M>f(x) = g(x) + i h(x) </M>  for <M>g,h:\rr\to\rr.</M>  Then differentiation and integration
  are defined in the obvious way:
 <MULTILINE>
@@ -541,7 +545,7 @@ f'(x) & = & g'(x) + i h'(x),\\
 From this it immediate follows (check!) that
 <M>[[d][dx]]e^{ix} = i e^{ix}</M>  and <M>\int e^{ix}\, dx = [[1i]]e^{ix}+</M> arbit
  constant.
-
+<HEAD2>An example</HEAD2>
 <EXM>
 Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 <SOLN/>
@@ -549,11 +553,11 @@ Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 
 for <M>t\in\rr.</M>  
 </EXM>
 Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
-<HEAD2>Problem let <PS/></HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find CF for the degenerate distribution at <M>5.</M></EXR>
 <EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
 
-<HEAD1>Properties of CF</HEAD1>
+<HEAD1 u="https://youtu.be/9lsO1kR9OaQ">Properties of CF</HEAD1>
 The following two theorems are what make CF useful.
 
 <THM>
@@ -596,29 +600,15 @@ Since CF uniquely determines the distribution, we get the result.
 <HEAD1>Miscellaneous problems</HEAD1>
 ::<EXR><EIMG web="hpstrans1.png"/></EXR>
 ::<EXR><EIMG web="hpstrans2.png"/></EXR>
-::<EXR><EIMG web="hpstrans3.png"/></EXR>
 ::<EXR><EIMG web="hpstrans4.png"/></EXR>
-::<EXR><EIMG web="hpstrans6.png"/></EXR>
 ::<EXR><EIMG web="hpstrans7.png"/></EXR>
 ::<EXR><EIMG web="hpstrans8.png"/></EXR>
 ::<EXR><EIMG web="hpstrans9.png"/></EXR>
-::<EXR><EIMG web="hpstrans10.png"/></EXR>
-::<EXR><EIMG web="hpstrans11.png"/></EXR>
 ::<EXR><EIMG web="hpstrans12.png"/></EXR>
-::<EXR><EIMG web="hpstrans13.png"/></EXR>
 ::<EXR><EIMG web="hpstrans14.png"/></EXR>
-::<EXR><EIMG web="hpstrans15.png"/></EXR>
-::<EXR><EIMG web="hpstrans16.png"/></EXR>
-::<EXR><EIMG web="hpstrans17.png"/></EXR>
-::<EXR><EIMG web="hpstrans18.png"/></EXR>
-::<EXR><EIMG web="hpstrans19.png"/></EXR>
-::<EXR><EIMG web="hpstrans20.png"/></EXR>
 ::<EXR><EIMG web="hpstrans21.png"/></EXR>
-::<EXR><EIMG web="hpstrans22.png"/></EXR>
 ::<EXR><EIMG web="hpstrans23.png"/></EXR>
 ::<EXR><EIMG web="hpstrans24.png"/></EXR>
-::<EXR><EIMG web="hpstrans25.png"/></EXR>
-::<EXR><EIMG web="hpstrans26.png"/></EXR>
 ::<EXR><EIMG web="hpspdf7.png"/></EXR>
 ::<EXR><EIMG web="hpspdf11.png"/></EXR>
 

@@ -3,7 +3,7 @@
 Last semester, we had learned some standard discrete distributions like binomial and geometric. Similarly, here we shall
  learn about some standard distributions with densities. 
 
-<HEAD1><M>Unif(a,b)</M></HEAD1>
+<HEAD1 u="https://youtu.be/AFBXben1hRE"><M>Unif(a,b)</M></HEAD1>
 This distribution captures the idea of a random variable that take any value in <M>(a,b)</M>  with equal probability. It
  has PDF <M>f(x) =<CASES>[[1][b-a]]<IF>a < x < b</IF> 0<ELSE/></CASES> </M>
 Notice that a PDF must be defined over entire <M>\rr.</M>  Hence we need the "else" clause. Also <M>a< x < b</M>  could be
@@ -51,7 +51,7 @@ Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
  a_{\pi(i-1)}+(x-a_i)</M>  if <M>x\in [a_{i-1},a_i).</M>  What is the distribution of <M>Y?</M></EXR>
 
 
-<HEAD1>Any continuous distribution to <M>Unif(0,1)</M></HEAD1>
+<HEAD1 u="https://youtu.be/JKZDQ_xFhH4">Any continuous distribution to <M>Unif(0,1)</M></HEAD1>
 In this and the following sections we shall present two surprising properties of the <M>Unif(0,1)</M>  distribution. The
  first property says that you can turn any continuous random variable into a
  <M>Unif(0,1)</M>  random variable!
@@ -100,7 +100,7 @@ as required.
 <HEAD2>Problem set <PS/></HEAD2>
 
 
-<HEAD1><M>Unif(0,1)</M> to any distribution</HEAD1>
+<HEAD1 u="https://youtu.be/u3jd8k-WJjw"><M>Unif(0,1)</M> to any distribution</HEAD1>
 Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
  of probability as well as random number generation using a computer.
 

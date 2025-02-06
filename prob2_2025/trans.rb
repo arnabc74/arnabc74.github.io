@@ -496,7 +496,9 @@ Use the Jacobian technique for the transform <M>(X,Y)\mapsto (*([[XY]],Y)*)\equi
 <EXR>A point <M>Q</M>  is chosen at random from the unit square. Let <M>Q</M>  be
  <M>(R,\Theta)</M>  in polar coordinates. Find density of <M>\tan\Theta.</M></EXR>
 
-<HEAD1 u="https://youtu.be/Hb_7jyd_GAI">Characteristic function (CF)</HEAD1>
+<HEAD1 u="https://youtu.be/VwmX-rmTLUw">Characteristic function (CF)</HEAD1>
+<ALERT/>(The video has been corrected.)
+
 We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
  you have forgotten about  the
  concept of a <TERM>moment
