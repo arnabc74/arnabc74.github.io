@@ -116,7 +116,7 @@ concept of joint probability density, as well.
 <DEFN>
 Let <M>X,Y</M>  be jointly distributed random variables. We say that they have <TERM>joint probability density</TERM>  
 <M>f:\rr^2\to[0,\infty)</M> if
-<D>\forall a \leq b, c \leq d~~P(#( (X,Y)\in[a,b]\times[c,d] )#) = \int_a^b \int_c^d f(x,y)\, dxdy.</D>
+<D>\forall a \leq b, c \leq d~~P(#( (X,Y)\in[a,b]\times[c,d] )#) = \int_a^b \int_c^d f(x,y)\, dydx.</D>
 </DEFN>
 If you are new to this "integral inside integral" notation, it is called an <TERM>iterated integral</TERM>. 
 

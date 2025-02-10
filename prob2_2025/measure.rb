@@ -311,7 +311,7 @@ We shall not prove this in this course. But let us understand the significance o
  <M>A,B</M>  overlap each other. Also, for each <M>A</M>  we should be able to express <M>A^c</M>  as a finite union of sets
  for which <M>\mu</M>  has been specified. This will help us to place <M>A</M>  in the background of <M>\Omega.</M>  
 
-<THEAD2>Problem set <PS/></THEAD2>
+<THEAD2>Problem set <TPS/></THEAD2>
 The following exercises will apply this concept to define "length" for all
  subsets in <M>\calB.</M>  This measure is called <TERM>Lebesgue measure</TERM>  on <M>(\rr,\calB).</M>
 
@@ -519,6 +519,7 @@ Then we show that for <M>a>0</M>  we have <M>E(aX) = E(X).</M>  This proof also 
 
 Finally, we show <M>E(-X)= -E(X).</M>  Let <M>Y = -X.</M>  Then <M>Y_+ = X_-</M>  and <M>Y_- = X_+.</M>  So <M>E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).</M>
 
+<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
 <THM name="Monotone convergence theorem (MCT)">
 Let <M>X_n</M> 's be non-negative  random variables with <M>X_n\uparrow X</M>  for some random variable <M>X.</M>
@@ -576,6 +577,7 @@ In the simple version we assumed that the limit of <M>(X_n)</M>  is a random var
  assumptions. We may allow <M>(X_n(\omega))</M>  to diverge. Then the limit <M>X(\omega)</M>  is a function from <M>\Omega</M> 
  to <M>[0,\infty].</M>  One can then <I>show</I>  (not <I>assume</I>) that this <M>X</M>  is a random variable. We do this
  below.
+<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Fatou and DCT</HEAD1>
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
@@ -619,6 +621,7 @@ or <M>\limsup E|X-n-X|\leq 0.</M>
 
 Hence <M>E|X_n-X|\to 0,</M>  as required.
 </PF>
+<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Radon-Nikodym theorem</HEAD1>
 <THM name="Radon-Nikodym theorem">
 Let <M>\mu</M>  be any <M>sigma</M>-finite measure on <M>(\Omega,\calF).</M>  Let <M>\nu</M>  be another meaure on <M>(\Omega,\calF)</M> 

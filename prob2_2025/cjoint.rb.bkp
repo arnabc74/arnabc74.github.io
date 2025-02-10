@@ -697,7 +697,7 @@ Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\
 
 <EXR>
 Find <M>E(X^2Y)</M>  when <M>(X,Y)</M>  has joint density 
-<D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
+<D>f(x,y) = <CASES>x+y<IF>0< x,y < 1</IF> 0<ELSE/></CASES></D>
 </EXR>
 
 <HEAD1 u="https://youtu.be/BYH9b8FLE3I">Expectation of product of independent random variables</HEAD1>
