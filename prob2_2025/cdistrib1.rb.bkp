@@ -100,7 +100,7 @@ as required.
 <HEAD2>Problem set <PS/></HEAD2>
 
 
-<HEAD1><M>Unif(0,1)</M> to any distribution</HEAD1>
+<HEAD1 u="https://youtu.be/u3jd8k-WJjw"><M>Unif(0,1)</M> to any distribution</HEAD1>
 Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
  of probability as well as random number generation using a computer.
 
@@ -170,9 +170,9 @@ Take any <M>y\in[0,1].</M>  Then <M>P(Y\leq y) = P(F(X)\leq y)= P(X\leq F^-(y))=
  may generate a random variable with <M>Unif(-2,3)</M>  distribution starting from a <M>Unif(0,1)</M> 
  random variable.</EXR>
 
-<HEAD1>Exponential distribution</HEAD1>
+<HEAD1 u="https://youtu.be/97jNaookC_Q">Exponential distribution</HEAD1>
 <DEFN>We say that <M>X</M>  has an <TERM>Exponential distribution</TERM>  with <TERM>rate</TERM> 
- <M>\lambda</M>  if it has PDF <M>f(x)=<CASES>\lambda e^{-\lambda x}</CASES></M></DEFN>
+ <M>\lambda>0</M>  if it has PDF <M>f(x)=<CASES>\lambda e^{-\lambda x}<IF>x>0</IF> 0<ELSE/></CASES></M></DEFN>
 
 Some typical exponential densities  are shown  below.
 <CIMG web="expodens.png">Higher <M>\lambda</M>  means faster decay</CIMG>
@@ -188,44 +188,111 @@ lines(x,y3)
 abline(h=0,v=0)
 dev.off()
 </COMMENT>
+<HEAD2>Problem set <PS/></HEAD2>
 <EXR>If <M>X\sim Expo(\lambda)</M>  for <M>\lambda>0,</M>  find <M>E(X)</M>  and <M>V(X).</M></EXR>
 
-<EXR>Show that <M>Expo(\lambda)</M>  for <M>\lambda>0</M>  is memoryless, i.e., if <M>X\sim
- Expo(\lambda)</M>, then <M>\forall a, b>
- 0~~P(X>a+b|X>a)</M>  is free of <M>a.</M></EXR>
-
-<EXR>Let <M>X</M>  be any nonnegative absolutely continuous memoryless random variable, i.e.,
- <M>\forall a, b> 0~~P(X>a+b|X>a)</M>  is free of <M>a.</M>  Show that <M>X\sim Expo(\lambda)</M>  for some <M>\lambda>0.</M> </EXR>
 
 <EXR>Find the CDF of <M>Expo(\lambda)</M>  for <M>\lambda>0.</M>  If you have <M>X\sim
  Unif(0,1),</M>  suggest a function <M>f(\cdot)</M>  such that <M>f(X)\sim Expo(\lambda).</M></EXR>
 
-<EXR>Find MGF of <M>Expo(\lambda)</M>  for <M>\lambda>0.</M>  </EXR>
 
-<HEAD2>Problem set <PS/></HEAD2>
 <EXR>If <M>1-X\sim Expo(\lambda)</M>, then show that <M>[X]</M>  has a geometric distribution.
  Find the parameter of the Geometric distribution.</EXR>
 
 <EXR>If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then show that <M>\min\{X_1,...,X_n\}\sim Expo(n \lambda).</M>
 </EXR>
-<HEAD1>Gamma distribution</HEAD1>
-<DEFN name="Gamma distribution">
-Here we need to know about the gamma function <M>\Gamma:(0,\infty)\to(0,\infty)</M>  defined as
-<D>\Gamma(x) = \int_0^\infty t^{x-1}e^{-t}\, dt.</D>
+
+<HEAD1 u="https://youtu.be/zi44GVvRKJU">Memorylessness of exponential</HEAD1>
+Suppose that we have a light bulb that we turn on at time 0, and keep it on as long as it lasts. We note the time when it
+ finally burns itself out. This time is the lifespan of the bulb, and is clearly a random variable. It is a non-negative
+ variable. Let us denote it by <M>X.</M>  
+
+For any such lifespan random variable,  we are generally interested in <M>P(X\geq a+b|X\geq a)</M>  for <M>a,b\geq 0.</M> 
+In plain words, in means 
+<Q>"If I take a bulb at has already been used continuously for <M>a</M>  units of time, then what is
+ the chance that it will last for at least <M>b</M>  more time units?" </Q>
+From our everyday experience with light bulbs, we know that for a fixed <M>b</M>, this probability will go down with <M>a</M>,
+ as older bulbs are less likely to burn longer.
+
+However, if <M>X\sim Expo(\lambda)</M>  for some <M>\lambda>0</M>, then this "aging effect" is curiously absent, the bulb
+ simply "forgets its age": 
+<MULTILINE>
+P(X\geq a+b|X\geq a)
+& = & [[P(X\geq a+b,\,X\geq a)][P(X\geq a)]]\\
+& = & [[P(X\geq a+b)][P(X\geq a)]]<SINCE><M>\because \{X\geq a+b\}\seq\{X\geq a\}</M></SINCE>\\
+& = & [[\int_{a+b}^iy \lambda e^{-\lambda x}\, dx][\int_a^iy \lambda e^{-\lambda x}\, dx]]\\
+& = & \cdots = e^{\lambda b},
+</MULTILINE>
+ which is free of <M>a.</M>  
+
+This is called the <TERM>memorylessness</TERM>  of the exponential distribution.
+
+We had encountered another memoryless distribution earlier: the geometric distribution. That was a discrete distribution
+ supported on <M>\nn.</M>  Indeed, it was the only memoryless discrete distribution supported on <M>\nn.</M>  
+
+Similarly, one may show that <M>Expo(\lambda)</M>  is the only memoryless distribution with density supported on <M>[0,\infty).</M> 
+ 
+<HEAD2>Problem set <PS/></HEAD2>
 <EXR>
-Find <M>\Gamma(1)</M>  and <M>\Gamma(2).</M>
+Show that if <M>X\sim Expo(\lambda)</M>  then <M>\lceil X\rceil\sim(Geom(\theta).</M>   Express <M>\theta</M>  in terms of
+ <M>\lambda.</M>
 </EXR>
 
-<EXR>Use integration by parts to show that for <M>x>1</M>  we have <M>\Gamma(x) = (x-1)\Gamma(x-1).</M>
-Hence argue that for <M>n\in\nn</M> 
- we have <M>\Gamma(n) = (n-1)!.</M></EXR>
+<EXR>
+If the definition of memorylessness is changed from 
+<Q>
+''For <M>a,b\geq 0~~</M><M>P(X\geq a+b|X\geq a)</M>  is free of <M>a</M>''
+</Q>
+to 
+<Q>
+''For <M>a,b\geq 0~~</M><M>P(X> a+b|X> a)</M>  is free of <M>a</M>''
+</Q>
+then the only discrete memoryless distribution is <M>Geom(\theta)</M>  distribution supported on <M>\{0\}\cup\nn</M>  (counting
+ number of failures before the first success). Show that this geometric is the distribution of <M>\lfloor X\rfloor</M>  for
+ <M>X\sim Expo(\lambda).</M>
+</EXR>
 
-<TERM>Gamma distribution with parameters</TERM>  <M>a,p</M>  is the distribution with density
-<D>f(x) =<CASES> [[p^a][\Gamma(a)]] x^{a-1} e^{-px}<IF>x>0</IF> 0<ELSE/></CASES></D>
-We shall denote it by <M>Gamma(p,a).</M>  The order of the two parameters in this notation is not standard. 
-Often <M>p</M>  is called the <TERM>rate</TERM>  and <M>a</M>
- is called the <TERM>shape</TERM>  parameter.
+
+<HEAD1 u="https://youtu.be/71p1B5aO6KI">Gamma distribution</HEAD1>
+We are about to learn a new distribution called the gamma distribution. We need some mathematical preliminaries to get started.
+ 
+It may be shown (using comparison test with <M>e^{-x}</M>) that the improper integral 
+<D>\int_0^\infty x^{\alpha-1} e^{-x}\, dx</D>
+converges. Clearly, its value depends on <M>\alpha</M>, i.e., it is a function of <M>\alpha.</M>
+  However, it may also be shown (though
+ not easily) that this function cannot be expressed in terms of any algebraic, logarithmic, exponential or triginometric
+ function. Yet, this function occurs in many computation. So we give it a name, the <TERM>gamma function</TERM>:
+<DEFN name="Gamma function">
+The   <TERM>gamma function</TERM> <M>\Gamma:(0,\infty)\to(0,\infty)</M>  is defined as
+<D>\Gamma(x) = \int_0^\infty t^{x-1}e^{-t}\, dt.</D>
 </DEFN>
+There are numerical methods to compute its value. All standard mathematical softwares have means
+ to compute it (e.g., <CODE>Gamma(x)</CODE> 
+ in R). 
+
+The gamma function has an interesting property similar to that of factorials.
+
+<THM>
+<OL><LI><M>\Gamma(x+1) = x\Gamma(x)</M>  for <M>x>0</M></LI>
+<LI><M>\Gamma(n) = (n-1)!</M>  for <M>n\in\nn.</M></LI>
+</OL>
+</THM>
+<PF>
+
+</PF>
+It is easy to show (using the substitution <M>u = px</M>) that 
+<D>\int_0^\infty x^{\alpha-1} e^{-px}\, dx = p^{-\alpha}\int_0^\infty u^{\alpha-1} e^{-u}\, du = [[\Gamma(\alpha)][p^\alpha]].</D>
+This motivates the definion of a density:
+
+<DEFN name="Gamma distribution">
+We say that a random variable <M>X</M>  has <TERM>Gamma distribution</TERM>  with
+ <TERM>shape</TERM>  parameter <M>\alpha</M> and <TERM>rate</TERM> parameter <M>p</M>  if <M>X</M>  has
+density
+<D>f(x) =<CASES> [[p^\alpha][\Gamma(\alpha)]] x^{\alpha-1} e^{-px}<IF>x>0</IF> 0<ELSE/></CASES></D>
+</DEFN>
+We shall denote it by <M>Gamma(p,\alpha).</M>  The order of the two parameters in this notation is not standard. Some books
+ use the reverse order.
+
 Some typical gamma densities  are shown  below.
 <CIMG web="gammadens1.png">All these have <M>p=1.</M>  Note how <M>a</M>  controls the position of the ''knee''</CIMG>
 <CIMG web="gammadens2.png">All these have <M>p=2.</M>  Again, <M>a</M>  controls the position of the ''knee''</CIMG>
@@ -261,6 +328,39 @@ abline(h=0,v=0)
 dev.off()
 </COMMENT>
 
+The gamma density is a product of a power of <M>x</M>  and an exponential of <M>x.</M>  So  if you multiply a
+ gamma density with further powers
+of
+ <M>x</M>  , then you again get  a function of the same form, which may be integrated in terms of the gamma function. Hence
+ it is easy to find moments of gamma distribution:
+<THM>
+If <M>X\sim Gamma(p,\alpha,)</M>  then 
+<D>E(X^k) = [[\Gamma(\alpha+k)][\Gamma(\alpha)p^k]] = [[\alpha(\alpha+1)\cdots(\alpha+k-1)][p^k]]  \mbox{ for } k\in\nn.</D>
+</THM>
+<HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>
+Find <M>\Gamma(1)</M>  and <M>\Gamma(2).</M>
+</EXR>
+
+<EXR>Use integration by parts to show that for <M>x>0</M>  we have <M>\Gamma(x) = x\Gamma(x).</M>
+Hence argue that for <M>n\in\nn</M> 
+ we have <M>\Gamma(n) = (n-1)!.</M></EXR>
+<EXR>Simplify <M>[[\Gamma(\alpha+5)][\Gamma(\alpha)]]</M>  for <M>\alpha>0.</M></EXR>
+
+<EXR>If <M>X\sim Gamma(p,\alpha)</M>, then find <M>V(X).</M></EXR>
+
+<HEAD1>Transformation properties of gamma distribution</HEAD1>
+As we have already seen, the gamma density is a product of a power of <M>x</M>  and an exponential of
+ <M>x.</M>  So  if you multiply a
+ gamma density with further  exponentials of
+ <M>x</M>  , then you again get  a function of the same form, which may be integrated in terms of the gamma function. Hence
+ it is easy to find th CF of gamma distribution:
+<THM>
+If <M>X\sim Gamma(p,\alpha)</M>,  then its CF is given by
+<D>\xi_X(t) = E(e^{itX}) = (*([[p][p-it]])*)^{\alpha} \mbox{ for } t\in\rr..</D>
+</THM>
+
 <THM name="Additivity of gamma">
 If <M>X, Y</M>  are independent <M>Gamma(p,a_1)</M>  and <M>Gamma(p,a_2)</M>  (same rate), then <M>X+Y\sim Gamma(p,a_1+a_2).</M>
 </THM>
@@ -281,12 +381,16 @@ Hardly anything to prove.
 If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then <M>\sim_1^n X_i\sim Gamma(\lambda,n).</M>
 </THM>
 <PF>
-Use induction on <M>n.</M>  The last theorem provides the basis, and the additivity property provides the step.
+Direct application of CF.
 </PF>
 
-::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
 
 <HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>If <M>X_1,...,X_{10}</M>  constitute a random sample from <M>Expo(2)</M>  distribution, then
+ find <M>P(\bar X \leq 1)</M>  in terms of <M>Gamma(p,\alpha)</M>  CDF for suitable <M>p</M>  and <M>\alpha.</M></EXR>
+
+::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
 
 <HEAD1>Beta distribution</HEAD1>
 <DEFN name="Beta distribution"> 
