@@ -963,7 +963,7 @@ As in the discrete case, here also  we have  concepts of
  conditional expectation, conditional variance etc.
 
 <DEFN>
-If <M>(X,Y)</M>  has a joint density <M>f(x,y),</M> then <M>E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx</M>  and 
+If <M>(X,Y)</M>  has a joint density <M>f(x,y),</M> then <M>E(X|Y=y) = \int_{-\infty}^\infty x\,f_{X|Y}(x,y)\, dx</M>  and 
 <D>V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).</D>
 </DEFN> 
 The tower property also works as before, as do the relation between conditional and unconditional variances:
