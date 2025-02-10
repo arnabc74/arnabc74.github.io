@@ -903,7 +903,7 @@ Let <M>\v X = A\v U.</M>  Then <M>V(\v X) = A I_n A' = AA' = \Sigma.</M>
 <HEAD1 u="https://youtu.be/ThHaLNSDZKI">Conditional density (intuition)</HEAD1>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If <M>(X,Y)</M>  are jointly discrete then we defined the
- conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(x=x,Y=y)][P(Y=y)]],</M>  
+ conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(X=x,Y=y)][P(Y=y)]],</M>  
 and we did this only  for those <M>y</M> for which <M>P(Y=y)>0.</M>
 
 But if <M>(X,Y)</M>  has a joint density, then <M>P(Y=y)</M>  is always 0. So we employ a little trick. For a discrete random variable
@@ -1072,7 +1072,12 @@ If <M>X_1,...,X_n</M>  are exchangeable positive random variables with finite ex
 ::<EXR><EIMG web="hpsjoint8.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint9.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint10.png"/></EXR>
-::<EXR><EIMG web="hpsjoint11.png"/></EXR>
+::<EXR><EIMG web="hpsjoint11.png"/>
+
+Here <M>X_i = U_{(i)}</M>  in our notation, and  <M>R=U_{(n)}-U_{(1)}</M>  is the range of the <M>U_i</M>'s.
+
+I think this problem should better be attacked after learning about order statistics <LINK to="trans.html">in the next chapter</LINK>.
+</EXR>
 ::<EXR><EIMG web="rossipmjoint1.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint2.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint3.png"/></EXR>

@@ -116,7 +116,7 @@ concept of joint probability density, as well.
 <DEFN>
 Let <M>X,Y</M>  be jointly distributed random variables. We say that they have <TERM>joint probability density</TERM>  
 <M>f:\rr^2\to[0,\infty)</M> if
-<D>\forall a \leq b, c \leq d~~P(#( (X,Y)\in[a,b]\times[c,d] )#) = \int_a^b \int_c^d f(x,y)\, dxdy.</D>
+<D>\forall a \leq b, c \leq d~~P(#( (X,Y)\in[a,b]\times[c,d] )#) = \int_a^b \int_c^d f(x,y)\, dydx.</D>
 </DEFN>
 If you are new to this "integral inside integral" notation, it is called an <TERM>iterated integral</TERM>. 
 
@@ -697,7 +697,7 @@ Let <M>(X,Y)</M>  be uniformly distributed over <M>S=\{(x,y)~:~0\leq x\leq 1,~x\
 
 <EXR>
 Find <M>E(X^2Y)</M>  when <M>(X,Y)</M>  has joint density 
-<D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
+<D>f(x,y) = <CASES>x+y<IF>0< x,y < 1</IF> 0<ELSE/></CASES></D>
 </EXR>
 
 <HEAD1 u="https://youtu.be/BYH9b8FLE3I">Expectation of product of independent random variables</HEAD1>
@@ -834,11 +834,11 @@ Here <M>p,q</M>  are controlled by the ruler. Notice that the matrix in the midd
  possible way of placing the ruler.
  This matrix is indeed the dispersion matrix we  defined above.
 
-Here we talked about 1-dim projection of 2-dim. In general, we do 1-dim projection of <D>n</D>-dim
+Here we talked about 1-dim projection of 2-dim. In general, we do 1-dim projection of <M>n</M>-dim
  data. To see this visually on a computer screen you may like to consider 2-dim projection of
  3-dim data. Run <LINK to="3dcloud.r">this R code</LINK>  on <LINK to="3ddata.txt">this data
  set</LINK>  to get a 3D scatterplot that you can turn with your mouse. Depending on how you turn
- it, the points will appear to be  
+ it, the points will appear to be closely/loosely clustered.  
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Consider the toy bivariate data set <M>(1, 2), (3, 4), (2.1, 3.1), (4, 5).</M>  Draw the
  scatterplot. Imagine that we are looking down as shown. Guess the variance as seen from that
@@ -903,7 +903,7 @@ Let <M>\v X = A\v U.</M>  Then <M>V(\v X) = A I_n A' = AA' = \Sigma.</M>
 <HEAD1 u="https://youtu.be/ThHaLNSDZKI">Conditional density (intuition)</HEAD1>
 So far distributions with densities  behave very similarly to the discrete distributions, with integration replacing summation.  
 But we cannot follow the same path for conditional distribution. If <M>(X,Y)</M>  are jointly discrete then we defined the
- conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(x=x,Y=y)][P(Y=y)]],</M>  
+ conditional PMF of <M>X</M>  given <M>Y=y</M>  as <M>x\mapsto P(X=x|Y=y) = [[P(X=x,Y=y)][P(Y=y)]],</M>  
 and we did this only  for those <M>y</M> for which <M>P(Y=y)>0.</M>
 
 But if <M>(X,Y)</M>  has a joint density, then <M>P(Y=y)</M>  is always 0. So we employ a little trick. For a discrete random variable
@@ -945,7 +945,7 @@ The most glaring difference between conditional PDF and conditional PMF is that 
 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find conditional density of <M>X</M>  given <M>Y=[[12]]</M>  if the joint density of <M>(X,Y)</M>  is </EXR>
-<D>f(x,y) = <CASES>x+y<IF>0< x < 1</IF> 0<ELSE/></CASES></D>
+<D>f(x,y) = <CASES>x+y<IF>0< x,y < 1</IF> 0<ELSE/></CASES></D>
 <HEAD1 u="https://youtu.be/-7x_sra_fyg">Conditional density (rigour)</HEAD1>
 We defined conditional density in a heuristic way. However, the theorem of total probability is still valid perfectly rigourously:
 
@@ -963,7 +963,7 @@ As in the discrete case, here also  we have  concepts of
  conditional expectation, conditional variance etc.
 
 <DEFN>
-If <M>(X,Y)</M>  has a joint density <M>f(x,y),</M> then <M>E(X|Y=y) = \int_{-\infty}^\infty f_{X|Y}(x,y)\, dx</M>  and 
+If <M>(X,Y)</M>  has a joint density <M>f(x,y),</M> then <M>E(X|Y=y) = \int_{-\infty}^\infty x\,f_{X|Y}(x,y)\, dx</M>  and 
 <D>V(X|Y=y) = E((X-E(X|Y=y))^2|Y=y).</D>
 </DEFN> 
 The tower property also works as before, as do the relation between conditional and unconditional variances:
@@ -1072,7 +1072,12 @@ If <M>X_1,...,X_n</M>  are exchangeable positive random variables with finite ex
 ::<EXR><EIMG web="hpsjoint8.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint9.png"/></EXR>
 ::<EXR><EIMG web="hpsjoint10.png"/></EXR>
-::<EXR><EIMG web="hpsjoint11.png"/></EXR>
+::<EXR><EIMG web="hpsjoint11.png"/>
+
+Here <M>X_i = U_{(i)}</M>  in our notation, and  <M>R=U_{(n)}-U_{(1)}</M>  is the range of the <M>U_i</M>'s.
+
+I think this problem should better be attacked after learning about order statistics in the next
+</EXR>
 ::<EXR><EIMG web="rossipmjoint1.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint2.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint3.png"/></EXR>
