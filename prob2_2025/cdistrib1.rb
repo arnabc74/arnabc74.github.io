@@ -104,7 +104,7 @@ as required.
 Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
  of probability as well as random number generation using a computer.
 
- To prepare for the theorem we define a right-inverse of any CDF. 
+ To prepare for the theorem we define a sort of inverse of any CDF. 
 
 <DEFN>
 Let <M>F</M>  be any CDF. Then define <M>F^-:(0,1)\to\rr</M>  as 
@@ -117,7 +117,7 @@ Here are some properties of <M>F^-</M>:
 <THM>
 Let <M>F</M>  be any CDF. Then 
 <OL>
-<LI>  <M>\forall x\in(0,1)~~F(F^-(x))=x.</M> 
+<LI>  <M>\forall x\in(0,1)~~x\leq F(F^-(x)).</M> 
 </LI>
 <LI>
 <M>\forall x\in\rr, y\in(0,1)~~(F^-(y)\leq x \iff y \leq F(x)).</M>
@@ -131,7 +131,7 @@ Let <M>F</M>  be any CDF. Then
 <LI>
 Take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>F^-(y)\leq x.</M>  Since
  <M>F</M>  is non-decreasing, hence
- <M>F(F^-(y))\leq F(x)</M>, i.e., <M>y\leq F(x)</M>, since <M>F(F^-(y))=y.</M>  
+ <M>F(F^-(y))\leq F(x)</M>, i.e., <M>y\leq F(x)</M>, since <M>y\leq F(F^-(y)).</M>  
 
 Conversely, take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>y\leq F(x).</M> 
 
