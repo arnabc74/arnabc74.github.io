@@ -101,7 +101,18 @@ as required.
 
 
 <HEAD1 u="https://youtu.be/u3jd8k-WJjw"><M>Unif(0,1)</M> to any distribution</HEAD1>
-Of a great importance is the special case <M>Unif(0,1).</M>  It plays a crucial role in the proof of the fundamentanl theorem
+
+<ALERT/>Please note that the video contains a mistake (and so does not match the text below, which has been corrected). In
+ the video I have wrongly stated <M>F(F^-(y))=y</M>, while actually we should have <M>F(F^-(y))\geq y</M>, as we have given
+in the theorem below. I shall correct the video soon.
+
+We have seen how we can arrive at the  <M>Unif(0,1)</M> from any <I>continuous</I>  distribution.
+ Here we shall see its converse which is even stronger: Given <M>X\sim Unif(0,1)</M>  we can
+ manufacture a random variable <M>Y</M>  with <I>any</I>  given distribution (not necessairily continuous)!
+
+This result plays a
+ crucial role in the proof of
+ the fundamental theorem
  of probability as well as random number generation using a computer.
 
  To prepare for the theorem we define a sort of inverse of any CDF. 
@@ -117,7 +128,7 @@ Here are some properties of <M>F^-</M>:
 <THM>
 Let <M>F</M>  be any CDF. Then 
 <OL>
-<LI>  <M>\forall x\in(0,1)~~x\leq F(F^-(x)).</M> 
+<LI>  <M>\forall y\in(0,1)~~y\leq F(F^-(y)).</M> 
 </LI>
 <LI>
 <M>\forall x\in\rr, y\in(0,1)~~(F^-(y)\leq x \iff y \leq F(x)).</M>
@@ -129,9 +140,13 @@ Let <M>F</M>  be any CDF. Then
 <LI>Follows from right continuity of <M>F.</M>
 </LI>
 <LI>
-Take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>F^-(y)\leq x.</M>  Since
+Take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>F^-(y)\leq x.</M>  
+
+Since
  <M>F</M>  is non-decreasing, hence
- <M>F(F^-(y))\leq F(x)</M>, i.e., <M>y\leq F(x)</M>, since <M>y\leq F(F^-(y)).</M>  
+ <M>F(F^-(y))\leq F(x)</M>.
+
+Hence <M>y\leq F(x)</M>, since <M>y\leq F(F^-(y))</M>  by part 1.
 
 Conversely, take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>y\leq F(x).</M> 
 
@@ -151,16 +166,6 @@ completing the proof.
 This shows that if we can show the existence of (or generate random numbers from)  <M>Unif(0,1)</M>, then we can do so for
  any CDF.
 
-It has a partial converse, which is also important.
-<THM>
-If <M>X</M>  is a continuous random variable with CDF <M>F,</M>  then <M>F(X)\sim Unif(0,1).</M>
-</THM>
-<PF>
-Clearly, <M>Y=F(X)</M>  can only take values in <M>[0,1].</M>  So <M>P(Y\leq y) = 0</M>  if
- <M>y<0</M>  or if <M>y>1.</M>  
-
-Take any <M>y\in[0,1].</M>  Then <M>P(Y\leq y) = P(F(X)\leq y)= P(X\leq F^-(y))= F(F^-(y))=y.</M> 
-</PF>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Show that <M>F^-</M>  is a non-decreasing.</EXR>
 
