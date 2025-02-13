@@ -7,7 +7,7 @@ As this diagram shows, there are distributions that are neither discrete nor con
  there are continuous distributions
  that do not admit a density (blue dot). We shall now take  a closer look at two such examples.
 
-<HEAD1>Neither continuous nor discrete</HEAD1>
+<HEAD2>Neither continuous nor discrete</HEAD2>
 Such distributions abound in reality. Here is a simple example. Imagine a random light bulb with
  light span <M>X.</M>  This means if you turn it on, and never switch it off, and monitor it
  continuously to record the time when it gets fused, then that time is <M>X.</M>   Now, lifespans need to be found for lamps
@@ -24,7 +24,7 @@ then <M>Y</M>  has a CDF like this:
 Though, strictly speaking it is neither continuous nor discrete, yet, colloqually, we often say
  that here we have <I>both</I>  density and mass. The density is up to <M>t,</M>  and the mass is at <M>t.</M>
  
-<HEAD1>A continuous distribution without density</HEAD1>
+<HEAD1>Cantor distribution (graphically)</HEAD1>
 
 The example we are going to describe is called <TERM>Cantor distribution</TERM>. As it has neither a PMF nor a density, we
  shall describe it using its CDF. But its CDF is not easy to write down directly. Instead, we shall construct a sequence
@@ -53,6 +53,7 @@ dev.off()
 It is possible to write down an algebraic formula for <M>F_n.</M>  But it is preferable to think
  in terms of graphs to appreciate
  the following discussion.
+
 <HEAD2>Convergence of <M>F_n</M></HEAD2>
 We are going to claim that <M>F_n</M>'s converge. Indeed, they converge uniformly. This should be readily apparent if we
  overlay their graphs. 
@@ -60,9 +61,15 @@ We are going to claim that <M>F_n</M>'s converge. Indeed, they converge uniforml
 To move from one <M>F_n</M>  to the next we are leaving horizontal parts unchanged and replacing each oblique segment like
  this:
 <CIMG web="repl.png">Replace the black with the red</CIMG>
-To formally prove uniform convergence of <M>(F_n)</M>  we shall employ te uniform Cauchy criterion, i.e., we shall show that
+Thus, the change from <M>F_n</M>  to any <M>F_m</M>   for <M>m>n</M>  is at most <M>2^{-n}.</M> 
+ Digest this well from the graphs, as this will form the main argument in the proof coming up in the next video.  
+<HEAD1>Cantor distribution (rigorously)</HEAD1>
+Here we shall  formally prove the uniform convergence of <M>(F_n).</M>  We shall employ the uniform Cauchy
+ criterion, i.e., we shall show that
 
 <TGT>\forall \epsilon>0~~\exists N\in\nn~~ \forall m,n\geq N~~ \forall x\in\rr~~|F_m(x)-F_n(x)| < \epsilon.</TGT>
+
+You should know from your analysis course that this is equivalent to uniform conergence of <M>(F_n).</M>  
 
 <FLL>\epsilon</FLL> Take any <M>\epsilon>0.</M>
 
@@ -97,7 +104,7 @@ Next we claim that <M>F</M>, the uniform limit of <M>F_n</M>'s, is indeed a CDF.
 By the fundamental theorem of probability, this <M>F</M>  must be the CDF of the distribution of some random variable. It
  is this distribution that we call the <TERM>Cantor distribution</TERM>. 
 
-<HEAD2>Properties</HEAD2>
+<HEAD1>Cantor distribution (properties)</HEAD1>
 We have already seen that <M>F</M>  is continuous. Let us consider <M>T_n = [0,1]\setminus S_n</M>  for <M>n=0,1,2,...</M> 
  This is the set of points where the graph of <M>F_n</M>  is horizontal.   Then the length of <M>T_n</M>  increases to <M>1.</M> 
 Now, <M>F</M>  is differentiable at each point of <M>\cup T_n.</M>  and the derivtive is 0. If we set the derivative 0 everywhere

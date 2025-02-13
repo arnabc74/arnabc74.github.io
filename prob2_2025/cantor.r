@@ -1,4 +1,4 @@
-cantor = function(n,add=F) {
+cantor = function(n,add=F,...) {
     if(n==0) {
         x = c(-0.3,0,1,1.3)
         y = c(0,0,1,1)
@@ -13,7 +13,7 @@ cantor = function(n,add=F) {
         y = c(0,y/cnst2,1)
     }
     if(add)
-        lines(x,y)
+        lines(x,y,...)
     else
         plot(x,y,ty='l')
 }
@@ -28,3 +28,5 @@ chop = function(x) {
     k=round((n-1)/3)
     c(chop(x[1:(k+1)]),chop(x[(2*k+1):n]))
 }
+cantor(4)
+cantor(6,T,col='red')

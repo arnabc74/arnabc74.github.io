@@ -101,7 +101,7 @@ as required.
 
 
 <HEAD1 u="https://youtu.be/W80bkQQyEYA"><M>Unif(0,1)</M> to any distribution</HEAD1>
-
+<ALERT/>The video has been corrected.
 
 We have seen how we can arrive at the  <M>Unif(0,1)</M> from any <I>continuous</I>  distribution.
  Here we shall see its converse which is even stronger: Given <M>X\sim Unif(0,1)</M>  we can
