@@ -50,7 +50,8 @@ svg('image/cangrallraw.svg')
 cantor(0);cantor(1,T);cantor(2,T);
 dev.off()
 </COMMENT>
-It is not hard to write down algebraic formulae for <M>F_n.</M>  But it is preferable to think in terms of graphs to appreciate
+It is possible to write down an algebraic formula for <M>F_n.</M>  But it is preferable to think
+ in terms of graphs to appreciate
  the following discussion.
 <HEAD2>Convergence of <M>F_n</M></HEAD2>
 We are going to claim that <M>F_n</M>'s converge. Indeed, they converge uniformly. This should be readily apparent if we
@@ -59,7 +60,7 @@ We are going to claim that <M>F_n</M>'s converge. Indeed, they converge uniforml
 To move from one <M>F_n</M>  to the next we are leaving horizontal parts unchanged and replacing each oblique segment like
  this:
 <CIMG web="repl.png">Replace the black with the red</CIMG>
-To formally prove uniform convergence of <M>(F_n)</M>  we shall employ te uniform Cauchy criterion, i.e., we shall show that
+To formally prove uniform convergence of <M>(F_n)</M>  we shall employ the uniform Cauchy criterion, i.e., we shall show that
 
 <TGT>\forall \epsilon>0~~\exists N\in\nn~~ \forall m,n\geq N~~ \forall x\in\rr~~|F_m(x)-F_n(x)| < \epsilon.</TGT>
 
