@@ -45,10 +45,15 @@ Of a great importance is the special case <M>Unif(0,1)</M>, whose <M>CDF</M>  yo
 <EXR>If <M>X\sim Unif(0,\theta),</M> for some <M>\theta>0.</M>  Fix any density <M>f_\theta(x)</M> of <M>X.</M>
 Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
 
-<EXR>Let <M>X\sim Unif(0,1).</M>  Let <M>a_i = [[in]]</M>  for
- <M>i=0,...,n.</M>  Fix any permutation <M>\pi</M>  of <M>\{1,2,...,n\}.</M>  We shall
- ''scramble'' <M>X</M>  using <M>\pi</M>  to obtain <M>Y.</M>  If <M>Y = f(X)</M>, where <M>f(x) =
- a_{\pi(i-1)}+(x-a_i)</M>  if <M>x\in [a_{i-1},a_i).</M>  What is the distribution of <M>Y?</M></EXR>
+<EXR>Let <M>X\sim Unif(0,1].</M>
+Define, for <M>k=1,...,n</M>,  the interval <M>I_k =
+ (*( [[k-1][n]], [[kn]] ]*].</M>  Fix any
+ permutation <M>\pi</M>  of
+ <M>\{1,2,...,n\}.</M>  We shall
+ ''scramble'' <M>X</M>  using <M>\pi</M>  to obtain <M>Y.</M>  More precisely, we define <M>Y =
+ f(X)</M>, where for each <M>x\in (0,1],</M>  if <M>x\in I_k,</M>  then we define <M>f(x)</M> to be the corresponding point
+ in <M>I_{\pi(k)}.</M>  
+ What is the distribution of <M>Y?</M></EXR>
 
 
 <HEAD1 u="https://youtu.be/JKZDQ_xFhH4">Any continuous distribution to <M>Unif(0,1)</M></HEAD1>
