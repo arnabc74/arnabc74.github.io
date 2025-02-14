@@ -45,13 +45,13 @@ Of a great importance is the special case <M>Unif(0,1)</M>, whose <M>CDF</M>  yo
 <EXR>If <M>X\sim Unif(0,\theta),</M> for some <M>\theta>0.</M>  Fix any density <M>f_\theta(x)</M> of <M>X.</M>
 Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
 
-<EXR>Let <M>X\sim Unif(0,1).</M>
- <M>i=0,...,n.</M>  Define <M>I_1 = [*[ 0, [[1n]] ]*]</M>  and for <M>k=2,...,n</M>  let <M>I_k =
+<EXR>Let <M>X\sim Unif(0,1].</M>
+Define, for <M>k=1,...,n</M>,  the interval <M>I_k =
  (*( [[k-1][n]], [[kn]] ]*].</M>  Fix any
  permutation <M>\pi</M>  of
  <M>\{1,2,...,n\}.</M>  We shall
  ''scramble'' <M>X</M>  using <M>\pi</M>  to obtain <M>Y.</M>  More precisely, we define <M>Y =
- f(X)</M>, where for each <M>x\in [0,1],</M>  if <M>x\in I_k,</M>  then we define <M>f(x)</M> to be the corresponding point
+ f(X)</M>, where for each <M>x\in (0,1],</M>  if <M>x\in I_k,</M>  then we define <M>f(x)</M> to be the corresponding point
  in <M>I_{\pi(k)}.</M>  
  What is the distribution of <M>Y?</M></EXR>
 
@@ -69,8 +69,13 @@ Let <M>Y=F(X).</M>  Shall show that it has the CDF of <M>Unif(0,1)</M>  distribu
 <D>P(Y\leq y) = <CASES>0<IF>y<0</IF> y<IF>0\leq y < 1</IF> 1<IF>1 \leq y</IF></CASES></D>
 This will complete the proof, since <M>CDF</M>  uniquely determines a distribution. 
 
-We know that <M>F:\rr\to[0,1].</M>  So <M>Y = F(X)\in[0,1].</M>  Hence <M>G(y) = 0</M>  if <M>y \leq 0</M>  and <M>G(y)=1</M> 
- if <M>y\geq 1.</M>
+We know that <M>F:\rr\to[0,1].</M>  So <M>Y = F(X)\in[0,1].</M>  Hence <M>G(y) = 0</M>  if <M>y < 0</M>  and <M>G(y)=1</M> 
+ if <M>y\geq 1.</M>  Also <M>G(0) = 0.</M>
+<BECAUSE>
+<M>G(0) = P(Y\leq 0) = P(F(X)\leq 0) = P(X\leq a)</M> , where <M>a = \sup\{x~:~F(x)=0\}.</M>  
+
+Then <M>F(a-) = 0.</M>  By continuity of <M>F,</M> 
+</BECAUSE>
 
 Take any <M>y\in(0,1).</M>
 What we plan to do now is best understood with a diagram:
