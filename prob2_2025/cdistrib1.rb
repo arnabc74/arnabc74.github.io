@@ -10,7 +10,7 @@ Notice that a PDF must be defined over entire <M>\rr.</M>  Hence we need the "el
  replaced by <M>a\leq x < b</M>  or <M>a\leq x \leq b</M>  or <M>a< x \leq b</M>  without any change in meaning. 
 
 The CDF is 
-<D>F(x) = <CASES>0<IF>x < a</IF> [[x-a][b-a]]<IF>a\geq x < b</IF> 1<IF>b\geq x</IF></CASES>.</D>
+<D>F(x) = <CASES>0<IF>x < a</IF> [[x-a][b-a]]<IF>a\leq x < b</IF> 1<IF>b\leq x</IF></CASES>.</D>
 Of a great importance is the special case <M>Unif(0,1)</M>, whose <M>CDF</M>  you must never forget:
 <CIMG web="ucdf.png">CDF of <M>Unif(0,1)</M>  distribution</CIMG>
 
