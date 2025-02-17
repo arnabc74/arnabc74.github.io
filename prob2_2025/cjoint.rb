@@ -1064,6 +1064,29 @@ If <M>X_1,...,X_n</M>  are exchangeable positive random variables with finite ex
  number <M>i</M>  on it  is selected with probability proportional to <M>i.</M>
 </EXR>
 
+<HEAD1>Joint distribution of mixed type</HEAD1>
+So far we have been considering joint distributions of <M>(X,Y)</M>  where either both <M>X</M>  and <M>Y</M>  were discrete,
+ or both had densities. It is possible to work with joint (and conditional) distributions when one is discrete and the other
+ has density. Let us start with an example.
+
+<EXM>
+I pick a random coin. So its probability of head is also a random variable (just as the height of
+ a randomly selected person is considered random). Let <M>\Pi</M>  denote this random variable. Now I toss this coin 5 times.
+ Let <M>X</M>  be the number of heads. Then what is the joint distribution of <M>(\Pi,X)?</M>  Also find the conditional
+ distribution of <M>\Pi</M>  given <M>X=x.</M>
+<SOLN/>
+If I tell you the value of <M>\Pi</M>  (say <M>\Pi=0.5</M>), then clearly <M>X\sim Binom(5,0.5).</M>  
+
+So, in general, <M>Y|\Pi=p\sim Binom(5,p).</M>
+
+Hence the joint distribution has a probability density-cum-mass function (which is often called just a <I>density</I>  with
+ some abuse of notation): 
+<D>g(p,x) = <CASES>f(p)\binom{5}{x} p^x(1-p)^{5-x}<IF>p\in(0,1),~~x\in\{0,1,...,5\}</IF> 0<ELSE/></CASES></D>
+To find <M>P(\Pi\in A,\, X\in B)</M>  just sum this over <M>p\in A</M>  and integrate over <M>x\in B.</M>
+
+Conditional density of <M>\Pi</M>  given <M>X=x</M>  is <M>g(p, x) / P(X=x),</M>  where <M>P(X=x) = \int_{-\infty}^\infty g(p,x)\, dp.</M>
+</EXM>
+
 
 
 <HEAD1>Miscellaneous problems</HEAD1>

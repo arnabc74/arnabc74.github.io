@@ -287,6 +287,9 @@ function myFunction() {
 <a href="#Problem set 20">Problem set 20</a>
 </li>
 <li>
+<a href="#Joint distribution of mixed type">Joint distribution of mixed type</a>
+</li>
+<li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
 </li>
 </ul>
@@ -1973,6 +1976,36 @@ If $X_1,...,X_n$  are exchangeable positive random variables with finite expecta
 <p>
 <b>EXERCISE 64:</b>&nbsp;(Continuation of the last exercise) Solve the last problem if at each step the ball with
  number $i$  on it  is selected with probability proportional to $i.$
+</p>
+
+<p></p>
+
+<h1><a
+name="Joint distribution of mixed type">Joint distribution of mixed type</a></h1>
+So far we have been considering joint distributions of $(X,Y)$  where either both $X$  and $Y$  were discrete,
+ or both had densities. It is possible to work with joint (and conditional) distributions when one is discrete and the other
+ has density. Let us start with an example.
+<p></p>
+
+<p>
+<b>EXAMPLE 13:</b>&nbsp;
+I pick a random coin. So its probability of head is also a random variable (just as the height of
+ a randomly selected person is considered random). Let $\Pi$  denote this random variable. Now I toss this coin 5 times.
+ Let $X$  be the number of heads. Then what is the joint distribution of $(\Pi,X)?$  Also find the conditional
+ distribution of $\Pi$  given $X=x.$
+<p></p>
+<b>SOLUTION:</b>
+If I tell you the value of $\Pi$  (say $\Pi=0.5$), then clearly $X\sim Binom(5,0.5).$  
+<p></p>
+So, in general, $Y|\Pi=p\sim Binom(5,p).$
+<p></p>
+Hence the joint distribution has a probability density-cum-mass function (which is often called just a <i>density</i>  with
+ some abuse of notation): 
+$$g(p,x) = \left\{\begin{array}{ll}f(p)\binom{5}{x} p^x(1-p)^{5-x}&\text{if }p\in(0,1),~~x\in\{0,1,...,5\}\\ 0&\text{otherwise.}\end{array}\right.$$
+To find $P(\Pi\in A,\, X\in B)$  just sum this over $p\in A$  and integrate over $x\in B.$
+<p></p>
+Conditional density of $\Pi$  given $X=x$  is $g(p, x) / P(X=x),$  where $P(X=x) = \int_{-\infty}^\infty g(p,x)\, dp.$
+ ■
 </p>
 
 <p></p>
