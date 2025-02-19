@@ -1,0 +1,53 @@
+If we keep on tossing a coin again and again, we are bound to get head sometime or other (assuming that <M>P(H)>0</M>). 
+A proof of this may be given like this:
+<Q>Let <M>A_n</M>  be the event that the first <M>n</M>  tosses have all resulted in heads. Let
+ <M>A</M>  be the event that we never get a head. Then clearly <M>A_n\searrow A</M>. So by
+ continuity of probability we must have <M>P(A_n)\to P(A).</M>  Now <M>P(A_n) = (*([[12]])*)^n \to
+ 0.</M>  Hence <M>P(A)=0.</M>  Hence <M>P(A^c)=1,</M>  i.e., we are bound to get a head some time or other.</Q>
+However, we must understand that in order to write <M>A_n\searrow A</M>, we need all the <M>A_n</M>'s and <M>A</M>  to be
+ subsets of some common <M>\Omega.</M>  Each element of this  <M>\Omega</M>  is an infinite sequence of heads and tails.
+ If you feel uncomfortable with sets of infinite sequences, just think of <M>\Omega</M>  as the set of all functions from
+ <M>\nn</M>  to <M>\{H,T\}.</M>  
+
+<THM>This <M>\Omega</M>  is uncountable.</THM>
+<PF>
+Let, possible, <M>\Omega</M>  be countable. Let <M>\omega_1,\omega_2,...</M>  be an enumeration of <M>\Omega.</M>   Here
+ is a typical example:
+<Q>
+<M>\omega_1 = </M> <RED>H</RED> T H T T T H T H ...<BR/>
+<M>\omega_2 = </M> H <RED>H</RED> T H H T H T H  ...<BR/>
+<M>\omega_3 = </M> T T <RED>H</RED> T T T H H T  ...<BR/>
+<M>\omega_4 = </M> H T T <RED>T</RED> H T T H H  ...<BR/>
+<M>\omega_5 = </M> H H H H <RED>T</RED> H T H T ...<BR/>
+<M>\omega_6 = </M> T H T T T <RED>H</RED> H H T  ...<BR/>
+...
+</Q> 
+Now define <M>\omega</M>  as the sequence that flips the diagonal entries (shown in red above). 
+
+In our example, 
+<Q><M>\omega=</M>  T T T H H T ...</Q>
+Clearly, this <M>\omega</M>  is distinct from all the <M>\omega_i</M>'s (since the <M>i</M>-th entry of  <M>\omega</M>  is
+ different from that of <M>\omega_i</M>).  
+
+But this contradicts the assumption that the <M>\omega_i</M>'s constitute an enumeration of <M>\Omega.</M>
+</PF>  
+<COMMENT>
+for(i in 1:6) cat(sample(c('H','T'),9,rep=TRUE),'\n',sep=' ')
+</COMMENT>
+So far in our course, we were working with countable (finite/infinite)  <M>\Omega.</M>  For these we considered a probability
+ to be a mapping from <M>{\mathcal P}(\Omega)</M>  to <M>[0,1].</M>   In other words, we could defined <M>P(A)</M>  for <I>every</I> 
+ <M>A\seq\Omega.</M>  Unfortunately this may fail when <M>\Omega</M>  is uncountable. Here we may have "bad" subsets of <M>\Omega</M> 
+ for which probability cannot be defined. 
+
+We shall discuss such an example next. 
+-------EOD-------
+<HEAD1>A "bad" set</HEAD1>
+-------EOD-------
+If I pick a point "at random" from this circle, what is the
+chance that it lands in the upper semicircle? The obvious answer
+is <M>[[12]].</M> What is the chance that it would land in any
+given quadrant? The obvious answer this time is <M>[[14]].</M>
+<P/>
+In fact, for any arc, the probability equals the length of the arc.
+<P/>
+-------EOD-------

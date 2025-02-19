@@ -602,16 +602,24 @@ Since CF uniquely determines the distribution, we get the result.
 ::<EXR><EIMG web="hpstrans1.png"/></EXR>
 ::<EXR><EIMG web="hpstrans2.png"/></EXR>
 ::<EXR><EIMG web="hpstrans4.png"/></EXR>
-::<EXR><EIMG web="hpstrans7.png"/></EXR>
+::<EXR><EIMG web="hpstrans7.png"/>
+<IMG web="hpsref8.png">Here is Exercise 8:</IMG> 
+</EXR>
 ::<EXR><EIMG web="hpstrans8.png"/></EXR>
 ::<EXR><EIMG web="hpstrans9.png"/></EXR>
 ::<EXR><EIMG web="hpstrans12.png"/></EXR>
-::<EXR><EIMG web="hpstrans14.png"/></EXR>
+::<EXR><EIMG web="hpstrans14.png"/>
+<IMG web="hpsref19.png">Here is Exercise 19:</IMG> 
+</EXR>
 ::<EXR><EIMG web="hpstrans21.png"/></EXR>
-::<EXR><EIMG web="hpstrans23.png"/></EXR>
+::<EXR><EIMG web="hpstrans23.png"/>
+<IMG web="hpsrefs1.png">Here is Exercise 38:</IMG> 
+</EXR>
 ::<EXR><EIMG web="hpstrans24.png"/></EXR>
 ::<EXR><EIMG web="hpspdf7.png"/></EXR>
-::<EXR><EIMG web="hpspdf11.png"/></EXR>
+::<EXR><EIMG web="hpspdf11.png"/>
+<IMG web="hpsrefs2.png">Here is Exercise 4:</IMG> 
+</EXR>
 
 ::<EXR><EIMG web="hpspdf15.png"/></EXR>
 ::<EXR><EIMG web="hpspdf16.png"/></EXR>
@@ -628,7 +636,8 @@ Since CF uniquely determines the distribution, we get the result.
 
 
 ::<EXR><EIMG web="rosspdf23.png"/>
-Which is Theo Exr 2??</EXR>
+<IMG web="rossrefs1.png">Here is Theoretical Exercise 2:</IMG> 
+</EXR>
 ::<EXR><EIMG web="rosspdf24.png"/></EXR>
 ::<EXR><EIMG web="rosspdf35.png"/></EXR>
 
