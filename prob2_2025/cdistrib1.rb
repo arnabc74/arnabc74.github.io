@@ -305,9 +305,9 @@ We shall denote it by <M>Gamma(p,\alpha).</M>  The order of the two parameters i
  use the reverse order.
 
 Some typical gamma densities  are shown  below.
-<CIMG web="gammadens1.png">All these have <M>p=1.</M>  Note how <M>a</M>  controls the position of the ''knee''</CIMG>
-<CIMG web="gammadens2.png">All these have <M>p=2.</M>  Again, <M>a</M>  controls the position of the ''knee''</CIMG>
-<CIMG web="gammadens3.png">All these have <M>p=0.5.</M>  Here also <M>a</M>  controls the position of the ''knee''</CIMG>
+<CIMG web="gammadens1.png">All these have <M>p=1.</M>  Note how <M>a</M>  controls the overall shape</CIMG>
+<CIMG web="gammadens2.png">All these have <M>p=2.</M>  Again, <M>a</M>  controls the overall shape</CIMG>
+<CIMG web="gammadens3.png">All these have <M>p=0.5.</M>  Here also <M>a</M>  controls the overall shape</CIMG>
 <COMMENT>
 svg("image/gammadens%draw.svg")
 x = seq(0,5,len=1000)
