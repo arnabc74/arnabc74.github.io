@@ -251,20 +251,13 @@ We had encountered another memoryless distribution earlier: the geometric distri
 Similarly, one may show that <M>Expo(\lambda)</M>  is the only memoryless distribution with density supported on <M>[0,\infty).</M> 
  
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>
+<EXR>Consider the <M>Geom(\theta)</M>  distribution supported on <M>\{0,1,2,3,...\}.</M>  It is the number of tails you get
+ before the first head in an IID sequence of tosses of a coin with <M>P(head)=\theta.</M>  
 Show that if <M>X\sim Expo(\lambda)</M>  then <M>\lceil X\rceil\sim(Geom(\theta).</M>   Express <M>\theta</M>  in terms of
  <M>\lambda.</M>
 </EXR>
 
 <EXR>
-If the definition of memorylessness is changed from 
-<Q>
-''For <M>a,b\geq 0~~</M><M>P(X\geq a+b|X\geq a)</M>  is free of <M>a</M>''
-</Q>
-to 
-<Q>
-''For <M>a,b\geq 0~~</M><M>P(X> a+b|X> a)</M>  is free of <M>a</M>''
-</Q>
 then the only discrete memoryless distribution is <M>Geom(\theta)</M>  distribution supported on <M>\{0\}\cup\nn</M>  (counting
  number of failures before the first success). Show that this geometric is the distribution of <M>\lfloor X\rfloor</M>  for
  <M>X\sim Expo(\lambda).</M>
