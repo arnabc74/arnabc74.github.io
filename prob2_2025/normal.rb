@@ -258,36 +258,6 @@ Let <M>X_1,...,X_n</M>  be IID <M>N(\mu, \sigma^2).</M>  Then
 </THM>
 <HEAD2>Problem set <PS/></HEAD2>
 
-<HEAD1>Dirichlet distribution</HEAD1>
-Now we are going to work with a multivariate distribution called the <TERM>Dirichlet distribution</TERM>, which has no direct
- relation with multivariate normal. It is a multivariate generalisation of the Beta distribution. 
-
-<DEFN name="Dirichlet distribution">
-We say that <M>(X_1,...,X_p)</M>  has <TERM>Dirichlet distribution</TERM>  with parameters <M>a_1,...,a_p>0</M>  if the joint
-density is 
-<D>f(x_1,...,x_p) = <CASES>c x_1^{a_1-1}x_2^{a_2-1}\cdots x_p^{a_p-1}<IF>(x_1,...,x_p)\in D</IF> 0<ELSE/></CASES>
- </D>
-where 
-<D>D = \{(x_1,...,x_p)~:~\forall i~~x_i\geq 0,~~\sum_1^p x_i=1\},</D>
-and 
-<D>c = [[\Gamma(a_1)\cdots \Gamma(a_p)][\Gamma(a_1+\cdots+a_p)]].</D>
-</DEFN>
-It is not immediately obvious that the total integral of this function is indeed 1. However, it is easy for <M>p=2,</M> because
- if <M>(X_1,X_2)\sim Dir(a_1,a_2)</M>  then <M>X_1\sim Beta(a_1,a_2)</M>  and <M>X_2 = 1-X_1.</M>
-Starting with this as the basis, we can use induction over <M>p</M>  to establish the general case (easy, try it!).
-
-The following properties are all obvious from the definition.
-<THM>
-If <M>(X_1,X_2,...,X_p)\sim Dir(a_1,a_2,...,a_p)</M>, then 
-<OL>
-<LI>for any <M>k\geq 2</M>  and distinct <M>i_1,...,i_k\in\{1,...,p\}</M>  we have
- <M>(X_{i_1},...,X_{i_k})\sim Dir(a_{i_1},...,a_{i_k}).</M></LI>
-<LI>each <M>X_i\sim Beta(*(a_i,\sum_{j\neq i} a_j)*).</M></LI>
-</OL>
-</THM>
- 
-We can immediately write down the mean (i.e., expectation) and variance of each <M>X_i</M>  from results of Beta distribution.
-
 <HEAD1>Miscellaneous problems</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then
  find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>

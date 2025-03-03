@@ -16,6 +16,7 @@ After midsem:
 <OL>
 <LI><LINK to="cdistrib2.html">Some more standard distributions with densities</LINK></LI>
 <LI><LINK to="normal.html">Multivariate normal and related distributions</LINK></LI>
+<LI><LINK to="dirichlet.html">Dirichlet distribution</LINK></LI>
 <LI><LINK to="measure.html">Lebesgue integration</LINK></LI>
 </OL>
 <HEAD2>References</HEAD2>
