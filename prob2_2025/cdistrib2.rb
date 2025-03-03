@@ -149,9 +149,9 @@ Proving that this is indeed a density is not entirely straightforward. Howeer, w
 <PF>Omitted.</PF>
 To use this result in order to show that the total integral of the <M>N(\mu,\sigma^2)</M>  density is indeed 1, we proceed
  as follows.
-<D>\int_0^\infty e^{-x^2/2}\, dx= [[1][\sqrt2]]\int_0^\infty t^{-1/2} e^-t \, dt</D>
+<D>\int_0^\infty e^{-x^2/2}\, dx= [[1][\sqrt2]]\int_0^\infty t^{-1/2} e^{-t} \, dt</D>
 by using <M>t = x^2/2.</M>  This new integral is just 
-<D>\int_0^\infty t^{[[12]]-1} e^-t \, dt = \Gamma(*([[12]])*) = \sqrt\pi.</D>
+<D>\int_0^\infty t^{[[12]]-1} e^{-t} \, dt = \Gamma(*([[12]])*) = \sqrt\pi.</D>
 So
 <D>\int_{-\infty}^\infty e^{-x^2/2}\, dx=2\int_0^\infty e^{-x^2/2}\, dx= \sqrt{2\pi}.</D>
 Hence we have shown that the <M>N(0,1)</M>  density integrates up to 1. To prove for any general <M>N(\mu,\sigma^2)</M> 
