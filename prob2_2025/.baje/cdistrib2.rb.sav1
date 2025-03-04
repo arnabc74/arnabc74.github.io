@@ -1,7 +1,7 @@
  @{<NOTE>
 <TITLE>Some more standard densities</TITLE>
 
-<HEAD1>Beta distribution</HEAD1>
+<HEAD1>Beta function</HEAD1>
 The next distribution that we shall discuss is the Beta distribution. Just as we needed to know about the Gamma function
  in order to talk about the Gamma distribution, we need to know about the Beta function before we can get into Beta distribution.
 
@@ -21,6 +21,12 @@ For <M>a,b>0</M>  we have
 <PF>The proof is quite easy using a bivariate change of variable. However, since that result will
  be proved in Analysis III, we shall omit the proof of this theorem here.</PF>
 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find <M>B(4,5).</M>  Remember that <M>\Gamma(n) = (n-1)!</M>  for <M>n\in\nn.</M></EXR>
+
+<EXR>Writing the factorials in terms of the Gamma function, express <M>\binom{10}{6}</M>  in terms of the Beta function</EXR>
+
+<HEAD1>Beta distribution</HEAD1>
 Now that we see that for <M>a,b>0</M>  the function <M>x^{a-1}(1-x)^{b-1}</M>  is  nonnegative and integrable 
 over  <M>(0,1)</M>  with integral <M>B(a,b),</M> 
  we can immediately manufacture a density out of it:
@@ -48,16 +54,18 @@ abline(h=0,v=0:1)
 dev.off()
 </COMMENT>
 
-The main use of the beta distribution in statistics is as a "distribution of probability". To
- understand this, consider the large collection of coins, both biased and unbiased. If you pick
- one of them at random and let <M>\Pi</M>  denote its <M>P(head),</M>  then <M>\Pi</M>  is a
- random variable, just as the height of a random person is considered a random variable. Now
- <M>\Pi</M>, being a probability, must have a distribution supported on on <M>[0,1].</M>  Also,
- since <M>\Pi</M>  depends on various physical properties of the coin, it is natural to expect
- that it will have a density. The members of the Beta family   are suitable choices. 
-This was a toy example. More often we have some event and we ask for expert opinion about its probability. Then <M>\Pi</M> 
- denotes the opinion of a randomly selected expert. If there is a peak in its density, then that's the value most experts
- vote for. In this sense, <M>Beta(1,1)\equiv Unif(0,1)</M>  denotes absolute ignorance.
+<THM>
+If <M>X\sim Beta(a,b)</M>  then <M>E(X) = [[a][a+b]].</M>
+</THM>
+<PF>
+<D>E(X) = [[1][B(a,b)]]\int_0^1 x\times x^{a-1} (1-x)^{b-1}\, dx = [[1][B(a,b)]]\int_0^1  x^{(a+1)-1} (1-x)^{b-1}\, dx = [[B(a+1,b)][B(a,b)]].</D>
+Now we shall express the Beta functions in terms of the Gamma function to get
+<D>[[B(a+1,b)][B(a,b)]] = [[\Gamma(a+1)\Gamma(b)][\Gamma(a+b+1)]]\times[[\Gamma(a+b)][\Gamma(a)\Gamma(b)]].</D>
+We know that <M>\forall \alpha >0~~\Gamma(\alpha+1) = \alpha \Gamma(\alpha).</M>
+Hence <M>[[\Gamma(a+1)][\Gamma(a)]]= a</M>  and <M>[[\Gamma(a+b)][\Gamma(a+b+1)]]=[[1][a+b]].</M>
+Hence the result.
+</PF>
+
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>For particular values of <M>a,b</M>  we get the <M>Unif(0,1)</M>  distribution. Which values?</EXR>
 <EXR>
@@ -72,7 +80,80 @@ Answer by thinking about the density. Now prove it mathematically.
 <EXR>If <M>X\sim Beta(a,b)</M>, then find <M>V(X).</M></EXR>
 
 <EXR>If <M>X\sim Beta(a,b)</M>  then show that <M>1-X\sim Beta(b,a).</M></EXR>
+<HEAD1>Bayesian machine learning</HEAD1>
+The main use of the beta distribution in statistics is as a "distribution of probability". To
+ understand this, consider the large collection of coins, both biased and unbiased. If you pick
+ one of them at random and let <M>\Pi</M>  denote its <M>P(head),</M>  then <M>\Pi</M>  is a
+ random variable, just as the height of a random person is considered a random variable. Now
+ <M>\Pi</M>, being a probability, must have a distribution supported  on <M>[0,1].</M>  Also,
+ since <M>\Pi</M>  depends on various physical properties of the coin, it is natural to expect
+ that it will have a density. The members of the Beta family   are suitable choices. 
+This was a toy example. More often we have some event and we ask for expert opinion about its probability. Then <M>\Pi</M> 
+ denotes the opinion of a randomly selected expert. If there is a peak in its density, then that's the value most experts
+ vote for. In this sense, <M>Beta(1,1)\equiv Unif(0,1)</M>  denotes absolute ignorance.
 
+As a warm up towards the use of Beta distribution plays a role in Bayesian machine
+ learning, consider the simple set up from last semester. We have a box containing 3 white and 2 black balls. An SRSWOR of
+ size 3 is drawn from it, and transferred to a new box. Now an SRSWR of size 5 is drawn from the second box. If all the balls
+ in the SRSWR are found to be black, then what is the (conditional) probability that all the balls
+ in the first SRSWOR were black?
+ I hope you remember the following diagrammatic representation for this:
+<CIMG web="bayesdiag.png">Diagram for the above problem</CIMG>
+There are four paths. The <M>i</M>-th path has probability <M>p_iq_i</M>  for <M>i=0,1,2,3.</M>  The required probability
+ is <M>[[p_3q_3][\sum_i p_iq_i]].</M>
+
+You may think of the first stage of this experiment as "constructing a random coin" whose <M>P(head)</M>  is <M>0</M>  or
+ <M>[[13]]</M>  or <M>[[23]]</M>  or <M>1.</M>  These have probabilities <M>p_0,...,p_3,</M>  respectively. The second stage
+ is tossing the coin 5 times. Given that we get 5 heads, we want to find the probability that our coin has <M>P(head)=1.</M>
+
+In this toy example, our "random coin" could have only finitely many possible <M>P(head)</M>'s. Now let's make it more realistic.
+ We shall start by picking a random coin from th population of all coins. Let <M>\Pi</M>  denote its <M>P(head).</M>  Just
+ as the height of a randomly selected person is a random variable, similarly this <M>\Pi</M>  is a random variable. 
+It can takes values in <M>[0,1].</M>  Let us assume that <M>\Pi\sim Beta(1,1)\equiv Unif(0,1).</M>  This means we consider
+ any value of <M>\Pi</M>  in <M>[0,1]</M>  equally likely (this is one way to formalising "absolute ignorance"). 
+We shall
+now toss this coin 5 times. Given that all the tosses result in heads, what is the conditional distribution
+ of <M>\Pi?</M>  We had started with a <M>Beta(1,1)</M>  distribution. This is often called the <TERM>prior</TERM>  distribution,
+ as it represented the state of our knowledge about <M>\Pi</M>  <I>prior</I>  to collection of data. In this sense, the conditional
+ distribution we are seeking is the <TERM>posterior</TERM>  distribution, which represents our state of knowledge after seeing
+the data (the outcomes of the coin tosses). We plan to draw a diagram similar to the earlier one for this problem. But here
+ the random coin can have any <M>P(head)</M>  in <M>[0,1].</M>  So we have a contnuum of arrows, which is hard to draw:
+<CIMG web="bayesdiag2.png">Diagram with continuous sprays of arrows</CIMG>
+The 1 labelling the left hand arrow is the density of the prior <M>Beta(1,1).</M>  The <M>p^5</M>  labelling the right hand
+ arrow is the (binomial) probability of obtaining <M>5</M>  heads out of 5 tosses of a coin with <M>P(head)=p.</M>  
+Following the Bayes theorem idea as before we get the posterior density 
+<D>[[1\times p^5][\int_0^1 1\times p^5\, dp]]=6p^5,</D>
+which is the <M>Beta(6,1)</M>  density. 
+
+It is instructive to draw the two densities side by side to understand how our state of belief has been updated in light
+ of the data:
+<CIMG web="priopost1.png">After seeing the data our belief is concentrated more near 1.</CIMG>
+In this way, whenever the prior is from the Beta family, our data is <M>X|\Pi=p\sim Binom(n,p)</M>,  the
+ posterior will also be from the
+ same family. We express this by saying:
+<Q>
+Beta is the conjugate prior family for
+</Q>
+An exercise below
+ asks you to prove this. For now let us toss the same coin 5 more times. Suppose now we get 4 tails and 1 head. If we carry
+ out the same exercise again (but this time with <M>Beta(6,1)</M>  playing the role of the prior, and "1 head, 4 tails"
+ as our data), we again get a Beta posterior that we plot below:
+<CIMG web="priopost2.png">Our belief is now peaked closer to the centre.</CIMG>
+In this way the Beta family can express our ever-changing state of belief as more and more data stream in.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find the posterior for <M>\Pi</M>  if the prior is <M>Beta(6,1)</M>  and the data consist of
+ 1 head and 4 tails out of 5
+ independent tosses of the coin. The answer should be a Beta distribution with parameters that you are determine.</EXR> 
+
+<EXR>Show that if  <M>\Pi</M>  has prior <M>Beta(a,b)</M>  and our data consist of exactly
+ <M>X</M>  heads out of <M>n</M>  tosses, then the posterior is again a Beta distribution. What are its parameters?</EXR>
+
+<EXR>Suppose that we have coin with <M>P(head)</M>  having prior <M>Unif(0,1).</M>  We toss the
+ coin <M>n</M>  times independently and obtain exactly <M>X</M>  heads. Let <M>f(p)</M>  be the
+ (continuous) density of the posterior. It is natural to estimate <M>p</M>  using the value where
+ <M>f</M>  is the maximum. This is called the (maximum a posteriori) MAP estimator. Derive its
+ formula in terms of <M>n</M>  and <M>X.</M> Is it the same as the "usual" estimator <M>[[Xn]]?</M></EXR>
 <HEAD1>Cauchy distribution</HEAD1>
 <DEFN name="Cauchy distribution">
 By <TERM>Cauchy distribution</TERM>  we mean the distribution with density
@@ -149,9 +230,9 @@ Proving that this is indeed a density is not entirely straightforward. Howeer, w
 <PF>Omitted.</PF>
 To use this result in order to show that the total integral of the <M>N(\mu,\sigma^2)</M>  density is indeed 1, we proceed
  as follows.
-<D>\int_0^\infty e^{-x^2/2}\, dx= [[1][\sqrt2]]\int_0^\infty t^{-1/2} e^-t \, dt</D>
+<D>\int_0^\infty e^{-x^2/2}\, dx= [[1][\sqrt2]]\int_0^\infty t^{-1/2} e^{-t} \, dt</D>
 by using <M>t = x^2/2.</M>  This new integral is just 
-<D>\int_0^\infty t^{[[12]]-1} e^-t \, dt = \Gamma(*([[12]])*) = \sqrt\pi.</D>
+<D>\int_0^\infty t^{[[12]]-1} e^{-t} \, dt = \Gamma(*([[12]])*) = \sqrt\pi.</D>
 So
 <D>\int_{-\infty}^\infty e^{-x^2/2}\, dx=2\int_0^\infty e^{-x^2/2}\, dx= \sqrt{2\pi}.</D>
 Hence we have shown that the <M>N(0,1)</M>  density integrates up to 1. To prove for any general <M>N(\mu,\sigma^2)</M> 
@@ -196,7 +277,7 @@ Here we can show directly that for any  <M>s\in\rr</M>  we have <M>E(e^{sX}) = e
  where <M>X\sim N(0,1).</M>   This is easily shown using a simple  substitution.  
  
 Now, if you replace <M>s</M>  with <M>it,</M>  you get the result. This replacement is justified
- using arguments from complex analysis beyond the 
+ using arguments from complex analysis beyond the present scope. 
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>If <M>X\sim N(0,1),</M>  then express the following probabilities in terms of <M>\Phi(\cdot).</M>  
@@ -221,7 +302,7 @@ Generally, Gauss is credited with the "discovery" of the normal distribution, wh
 Imagine a gas without any overall flow. We know that the molecules are moving tis way and that
  randomly. Maxwell was interested in
  finding the distribution of velocities. Of course, he had no way of grabbing a molecule and measuring its velocity. So he
- did a briliant logical argument starting with little more than common sense notions available to anybody. 
+ did a brilliant logical argument starting with little more than common sense notions available to anybody. 
 
 His first step was to set up three axes <M>x</M> , <M>y</M>  and <M>z.</M>  Then the velocity could be expressed as <M>(V_1,V_2,V_3).</M> 
 Since there is no overall flow and we have no reason to favour any one direction over the other hence <M>V_1,V_2,V_3</M>  must
