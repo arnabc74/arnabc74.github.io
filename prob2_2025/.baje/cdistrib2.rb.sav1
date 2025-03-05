@@ -26,7 +26,7 @@ For <M>a,b>0</M>  we have
 
 <EXR>Writing the factorials in terms of the Gamma function, express <M>\binom{10}{6}</M>  in terms of the Beta function</EXR>
 
-<HEAD1>Beta distribution</HEAD1>
+<HEAD1 u="https://youtu.be/8U3mGT60ZJQ">Beta distribution</HEAD1>
 Now that we see that for <M>a,b>0</M>  the function <M>x^{a-1}(1-x)^{b-1}</M>  is  nonnegative and integrable 
 over  <M>(0,1)</M>  with integral <M>B(a,b),</M> 
  we can immediately manufacture a density out of it:
@@ -80,7 +80,7 @@ Answer by thinking about the density. Now prove it mathematically.
 <EXR>If <M>X\sim Beta(a,b)</M>, then find <M>V(X).</M></EXR>
 
 <EXR>If <M>X\sim Beta(a,b)</M>  then show that <M>1-X\sim Beta(b,a).</M></EXR>
-<HEAD1>Bayesian machine learning</HEAD1>
+<HEAD1 u="https://youtu.be/u2KcYDA1yFs">Bayesian machine learning</HEAD1>
 The main use of the beta distribution in statistics is as a "distribution of probability". To
  understand this, consider the large collection of coins, both biased and unbiased. If you pick
  one of them at random and let <M>\Pi</M>  denote its <M>P(head),</M>  then <M>\Pi</M>  is a
@@ -154,7 +154,7 @@ In this way the Beta family can express our ever-changing state of belief as mor
  (continuous) density of the posterior. It is natural to estimate <M>p</M>  using the value where
  <M>f</M>  is the maximum. This is called the (maximum a posteriori) MAP estimator. Derive its
  formula in terms of <M>n</M>  and <M>X.</M> Is it the same as the "usual" estimator <M>[[Xn]]?</M></EXR>
-<HEAD1>Cauchy distribution</HEAD1>
+<HEAD1 u="https://youtu.be/qZPe1VVsWZ4">Cauchy distribution</HEAD1>
 <DEFN name="Cauchy distribution">
 By <TERM>Cauchy distribution</TERM>  we mean the distribution with density
 <D>f(x) = [[1][\pi(1+x^2)]],\quad x\in\rr.</D>
@@ -178,20 +178,8 @@ If <M>X</M>  has <M>Cauchy</M>  distribution, then <M>E(X)</M>  does not exist. 
 The characteristic function of the Cauchy distribution is <M>e^{-|t|}.</M>
 </THM>
 <PF>Needs techniques (complex contour integration/differentiation under intergal) beyond the present level.</PF>
-<HEAD2>Cauchy defines the laws of large numbers</HEAD2>
-The following R snippet will plot the running means of 10000 IID Cauchy random variables. The plot does not converge.
-<R>
-n = 10000
-x= rcauchy(n)
-y=cumsum(x)/(1:n)
-plot(y,ty='l')
-</R>
-This demonstration is theoretically justified in the exercise below.
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>Show that if <M>X</M>  and <M>Y</M>  are independent Cauchy random variables, then for any <M>a\in[0,1]</M>  
- <M>aX+(1-a)Y</M>  is also a Cauchy variate. Hence conclude that if <M>X_1,...,X_n</M>  are IID
- Cauchy, then <M>\overline X</M>  is also Cauchy.</EXR>
 
+<HEAD2>Problem set <PS/></HEAD2>
 <EXR>How can you generate a Cauchy random variable from a <M>Unif(0,1)</M>  random variable?</EXR>
 
 <EXR>Consider the unit semicircle shown below.
@@ -201,7 +189,48 @@ This demonstration is theoretically justified in the exercise below.
 
 <EXR>If <M>X</M>  is a Cauchy random variable, then show that <M>[[1X]]</M>  is also a Cauchy random variable.</EXR>
 
-<HEAD1>Normal distribution</HEAD1>
+<HEAD1 u="https://youtu.be/PpZTTaKJbbg">Cauchy baffles the laws of large numbers</HEAD1>
+The following R snippet will plot the running means of 10000 IID Cauchy random variables. The plot does not converge.
+<R>
+n = 10000
+x= rcauchy(n)
+y=cumsum(x)/(1:n)
+plot(y,ty='l')
+</R>
+This demonstration is theoretically justified using the following theorem.
+<THM>If <M>X</M>  and <M>Y</M>  are independent Cauchy random variables, then for any <M>a\in[0,1]</M>  
+ <M>aX+(1-a)Y</M>  is also a Cauchy variate.
+</THM>
+<PF>
+This may be proved using Jacobians, or more directly using characteristic function. The characteristic function of <M>aX+(1-a)Y</M> 
+ is 
+<D>E(e^{it(aX+(1-a)Y)}) = E(e^{itaX+it(1-a)Y}) = E(e^{itaX}\cdot e^{it(1-a)Y}) = E(e^{itaX})E(e^{it(1-a)Y}),</D>
+since <M>X,Y</M>  are independent. Now, we know that <M>E(e^{itX}) = E(e^{itY}) = e^{-|t|}.</M>  Hence
+<D> E(e^{itaX})E(e^{it(1-a)Y}) =  e^{-|ta|})\times e^{-|t(1-a)|}) = e^{-|ta|-|t(1-a)|}  = e^{-|t|},</D>
+since <M>a\in[0,1].</M>
+
+This completes the proof.
+</PF>
+The next theorem, which is a simple corollary to this theorem, shows why <M>\bar X_n</M>  failed to
+ converge to a number in
+ our simulation of the law
+ of large numbers. 
+<THM>
+If <M>X_1,...,X_n</M>  are IID
+ Cauchy, then <M>\bar X_n= [[1n]]\sum_1^n X_i</M>  is also Cauchy.
+</THM>
+<PF>
+See the exercise below.
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Prove the above theorem using induction on <M>n.</M>  You may like to use the identity
+<D>\bar X_n = [[(n-1)\bar X_{n-1} + X_n][n]].</D>
+</EXR>
+
+<EXR>If <M>X,Y</M>  are independent Cauchy random variables, and we take <M>a\not\in[0,1],</M> 
+ then is it possible for <M>aX+(1-a)Y</M>  to have Cauchy distribution? </EXR>
+
+<HEAD1 u="https://youtu.be/YWHxhk3vok4">Normal distribution</HEAD1>
 This is the most commonly used distribution in statistics.
 
 <DEFN name="Normal distribution">

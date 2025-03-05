@@ -173,22 +173,25 @@ function myFunction() {
 <a href="#Cauchy distribution">Cauchy distribution</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Cauchy defines the laws of large numbers">Cauchy defines the laws of large numbers</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 4">Problem set 4</a>
 </li>
 <li>
-<a href="#Normal distribution">Normal distribution</a>
+<a href="#Cauchy baffles the laws of large numbers">Cauchy baffles the laws of large numbers</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
-<a href="#Maxwell's derivation of the normal distribution">Maxwell's derivation of the normal distribution</a>
+<a href="#Normal distribution">Normal distribution</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
+<a href="#Maxwell's derivation of the normal distribution">Maxwell's derivation of the normal distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
 <a href="#Problems for practice">Problems for practice</a>
@@ -446,6 +449,8 @@ name="Problem set 3">Problem set 3</a></h2>
 
 <h1><a
 name="Cauchy distribution">Cauchy distribution</a></h1>
+<a href="https://youtu.be/qZPe1VVsWZ4">Video for this section</a>
+<p></p>
 
 <fieldset>
 <legend><b>Definition: Cauchy distribution</b></legend>
@@ -484,35 +489,18 @@ The characteristic function of the Cauchy distribution is $e^{-|t|}.$
 <b><i>Proof:</i></b>Needs techniques (complex contour integration/differentiation under intergal) beyond the present level.<b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Cauchy defines the laws of large numbers">Cauchy defines the laws of large numbers</a></h2>
-The following R snippet will plot the running means of 10000 IID Cauchy random variables. The plot does not converge.
-<font color="red">
-<pre>
-n = 10000
-x= rcauchy(n)
-y=cumsum(x)/(1:n)
-plot(y,ty='l')
-</pre>
-</font>
-This demonstration is theoretically justified in the exercise below.
+<p></p>
+
 <h2><a
 name="Problem set 4">Problem set 4</a></h2>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Show that if $X$  and $Y$  are independent Cauchy random variables, then for any $a\in[0,1]$  
- $aX+(1-a)Y$  is also a Cauchy variate. Hence conclude that if $X_1,...,X_n$  are IID
- Cauchy, then $\overline X$  is also Cauchy.</p>
+<b>EXERCISE 10:</b>&nbsp;How can you generate a Cauchy random variable from a $Unif(0,1)$  random variable?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;How can you generate a Cauchy random variable from a $Unif(0,1)$  random variable?</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 12:</b>&nbsp;Consider the unit semicircle shown below.
+<b>EXERCISE 11:</b>&nbsp;Consider the unit semicircle shown below.
 <center>
 <table width="100%">
 <tr>
@@ -529,12 +517,77 @@ name="Problem set 4">Problem set 4</a></h2>
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;If $X$  is a Cauchy random variable, then show that $\frac 1X$  is also a Cauchy random variable.</p>
+<b>EXERCISE 12:</b>&nbsp;If $X$  is a Cauchy random variable, then show that $\frac 1X$  is also a Cauchy random variable.</p>
+
+<p></p>
+
+<h1><a
+name="Cauchy baffles the laws of large numbers">Cauchy baffles the laws of large numbers</a></h1>
+<a href="https://youtu.be/PpZTTaKJbbg">Video for this section</a>
+<p></p>
+The following R snippet will plot the running means of 10000 IID Cauchy random variables. The plot does not converge.
+<font color="red">
+<pre>
+n = 10000
+x= rcauchy(n)
+y=cumsum(x)/(1:n)
+plot(y,ty='l')
+</pre>
+</font>
+This demonstration is theoretically justified using the following theorem.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X$  and $Y$  are independent Cauchy random variables, then for any $a\in[0,1]$  
+ $aX+(1-a)Y$  is also a Cauchy variate.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This may be proved using Jacobians, or more directly using characteristic function. The characteristic function of $aX+(1-a)Y$ 
+ is 
+$$E(e^{it(aX+(1-a)Y)}) = E(e^{itaX+it(1-a)Y}) = E(e^{itaX}\cdot e^{it(1-a)Y}) = E(e^{itaX})E(e^{it(1-a)Y}),$$
+since $X,Y$  are independent. Now, we know that $E(e^{itX}) = E(e^{itY}) = e^{-|t|}.$  Hence
+$$ E(e^{itaX})E(e^{it(1-a)Y}) =  e^{-|ta|})\times e^{-|t(1-a)|}) = e^{-|ta|-|t(1-a)|}  = e^{-|t|},$$
+since $a\in[0,1].$
+<p></p>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+The next theorem, which is a simple corollary to this theorem, shows why $\bar X_n$  failed to
+ converge to a number in
+ our simulation of the law
+ of large numbers. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are IID
+ Cauchy, then $\bar X_n= \frac 1n\sum_1^n X_i$  is also Cauchy.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+See the exercise below.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Prove the above theorem using induction on $n.$  You may like to use the identity
+$$\bar X_n = \frac{(n-1)\bar X_{n-1} + X_n}{n}.$$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;If $X,Y$  are independent Cauchy random variables, and we take $a\not\in[0,1],$ 
+ then is it possible for $aX+(1-a)Y$  to have Cauchy distribution? </p>
 
 <p></p>
 
 <h1><a
 name="Normal distribution">Normal distribution</a></h1>
+<a href="https://youtu.be/YWHxhk3vok4">Video for this section</a>
+<p></p>
 This is the most commonly used distribution in statistics.
 <p></p>
 
@@ -636,10 +689,10 @@ Now, if you replace $s$  with $it,$  you get the result. This replacement is jus
 </p>
 
 <h2><a
-name="Problem set 5">Problem set 5</a></h2>
+name="Problem set 6">Problem set 6</a></h2>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;If $X\sim N(0,1),$  then express the following probabilities in terms of $\Phi(\cdot).$  
+<b>EXERCISE 15:</b>&nbsp;If $X\sim N(0,1),$  then express the following probabilities in terms of $\Phi(\cdot).$  
 <ol type="">
 <li>$P(X&lt;1)$</li>
 
@@ -652,7 +705,7 @@ name="Problem set 5">Problem set 5</a></h2>
 </p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;If $X\sim N(2,3^2),$  then express the following probabilities in terms of $\Phi(\cdot).$  
+<b>EXERCISE 16:</b>&nbsp;If $X\sim N(2,3^2),$  then express the following probabilities in terms of $\Phi(\cdot).$  
 <ol>
 <li>$P(X&lt;1)$</li>
 
@@ -667,12 +720,14 @@ name="Problem set 5">Problem set 5</a></h2>
 <p></p>
 
 <p>
-<b>EXERCISE 16:</b>&nbsp;If $\Phi ^{-1}(0.95)=1.64$, then find $c\in{\mathbb R}$  such that $P(|X-1|&gt;c) = 0.1 $  where $X\sim N(1,1^2).$</p>
+<b>EXERCISE 17:</b>&nbsp;If $\Phi ^{-1}(0.95)=1.64$, then find $c\in{\mathbb R}$  such that $P(|X-1|&gt;c) = 0.1 $  where $X\sim N(1,1^2).$</p>
 
 <p></p>
 
 <h1><a
 name="Maxwell's derivation of the normal distribution">Maxwell's derivation of the normal distribution</a></h1>
+<a href="https://youtu.be/NYFoXVF7xkE">Video for this section</a>
+<p></p>
 Generally, Gauss is credited with the "discovery" of the normal distribution, which he derived via his famous central limit
  theorem. However, a lesser known derivation is due to James Clerk Maxwell, which we shall discuss now. 
 <p></p>
@@ -713,23 +768,23 @@ Since $f$  is a density, hence its total intergral must be 1. Hence $k &lt; 0$  
 <p></p>
 
 <h2><a
-name="Problem set 6">Problem set 6</a></h2>
+name="Problem set 7">Problem set 7</a></h2>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;If $X$  is a random variable with density proportional to $\exp((1-x)(3+4x))$  for
+<b>EXERCISE 18:</b>&nbsp;If $X$  is a random variable with density proportional to $\exp((1-x)(3+4x))$  for
  $x\in{\mathbb R}$,  then find the distribution of $X.$ </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;Let $\vec V = (V_1,V_2,V_3)$  have the joint distribution as in Maxwell's derivation.
+<b>EXERCISE 19:</b>&nbsp;Let $\vec V = (V_1,V_2,V_3)$  have the joint distribution as in Maxwell's derivation.
  Consider $\vec U = \frac{\vec V}{\|\vec V\|}$, the unit vector along $\vec V.$  Describe
  the distribution of $\vec U.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;If $X$  has density proportional to $e^{ax^2+bx+c}$  for $x\in{\mathbb R}$, for some
+<b>EXERCISE 20:</b>&nbsp;If $X$  has density proportional to $e^{ax^2+bx+c}$  for $x\in{\mathbb R}$, for some
  constants $a,b,c$, then find $E(X)$  and $V(X).$</p>
 
 <p></p>
@@ -737,81 +792,81 @@ name="Problem set 6">Problem set 6</a></h2>
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<font size="-2">[rossdistrib1.png]</font><img width="" src="image/rossdistrib1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 21:</b>&nbsp;<font size="-2">[rossdistrib1.png]</font><img width="" src="image/rossdistrib1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<font size="-2">[rossdistrib2.png]</font><img width="" src="image/rossdistrib2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 22:</b>&nbsp;<font size="-2">[rossdistrib2.png]</font><img width="" src="image/rossdistrib2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<font size="-2">[rossdistrib3.png]</font><img width="" src="image/rossdistrib3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rossdistrib3.png]</font><img width="" src="image/rossdistrib3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rossdistrib4.png]</font><img width="" src="image/rossdistrib4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rossdistrib4.png]</font><img width="" src="image/rossdistrib4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rossdistrib5.png]</font><img width="" src="image/rossdistrib5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rossdistrib5.png]</font><img width="" src="image/rossdistrib5.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rossdistrib6.png]</font><img width="" src="image/rossdistrib6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rossdistrib6.png]</font><img width="" src="image/rossdistrib6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rossdistrib7.png]</font><img width="" src="image/rossdistrib7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossdistrib7.png]</font><img width="" src="image/rossdistrib7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossdistrib8.png]</font><img width="" src="image/rossdistrib8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossdistrib8.png]</font><img width="" src="image/rossdistrib8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossdistrib9.png]</font><img width="" src="image/rossdistrib9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossdistrib9.png]</font><img width="" src="image/rossdistrib9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossdistrib10.png]</font><img width="" src="image/rossdistrib10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossdistrib10.png]</font><img width="" src="image/rossdistrib10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossdistrib11.png]</font><img width="" src="image/rossdistrib11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rossdistrib11.png]</font><img width="" src="image/rossdistrib11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rossdistrib12.png]</font><img width="" src="image/rossdistrib12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossdistrib12.png]</font><img width="" src="image/rossdistrib12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossdistrib13.png]</font><img width="" src="image/rossdistrib13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rossdistrib13.png]</font><img width="" src="image/rossdistrib13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rossdistrib14.png]</font><img width="" src="image/rossdistrib14.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rossdistrib14.png]</font><img width="" src="image/rossdistrib14.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rossdistrib15.png]</font><img width="" src="image/rossdistrib15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rossdistrib15.png]</font><img width="" src="image/rossdistrib15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rossdistrib16.png]</font><img width="" src="image/rossdistrib16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rossdistrib16.png]</font><img width="" src="image/rossdistrib16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rossdistrib17.png]</font><img width="" src="image/rossdistrib17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[rossdistrib17.png]</font><img width="" src="image/rossdistrib17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 37:</b>&nbsp;<font size="-2">[rossdistrib18.png]</font><img width="" src="image/rossdistrib18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[rossdistrib18.png]</font><img width="" src="image/rossdistrib18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 38:</b>&nbsp;<font size="-2">[rossdistrib19.png]</font><img width="" src="image/rossdistrib19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rossdistrib19.png]</font><img width="" src="image/rossdistrib19.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 39:</b>&nbsp;<font size="-2">[rossdistrib20.png]</font><img width="" src="image/rossdistrib20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rossdistrib20.png]</font><img width="" src="image/rossdistrib20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 40:</b>&nbsp;<font size="-2">[rossdistrib21.png]</font><img width="" src="image/rossdistrib21.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rossdistrib21.png]</font><img width="" src="image/rossdistrib21.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 41:</b>&nbsp;<font size="-2">[rossdistrib22.png]</font><img width="" src="image/rossdistrib22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rossdistrib22.png]</font><img width="" src="image/rossdistrib22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 42:</b>&nbsp;<font size="-2">[rossdistrib23.png]</font><img width="" src="image/rossdistrib23.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[rossdistrib23.png]</font><img width="" src="image/rossdistrib23.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 43:</b>&nbsp;<font size="-2">[rossdistrib24.png]</font><img width="" src="image/rossdistrib24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[rossdistrib24.png]</font><img width="" src="image/rossdistrib24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 44:</b>&nbsp;<font size="-2">[rossdistrib25.png]</font><img width="" src="image/rossdistrib25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[rossdistrib25.png]</font><img width="" src="image/rossdistrib25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 45:</b>&nbsp;<font size="-2">[rossdistrib26.png]</font><img width="" src="image/rossdistrib26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[rossdistrib26.png]</font><img width="" src="image/rossdistrib26.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 46:</b>&nbsp;<font size="-2">[rossdistrib27.png]</font><img width="" src="image/rossdistrib27.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[rossdistrib27.png]</font><img width="" src="image/rossdistrib27.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 47:</b>&nbsp;<font size="-2">[rossdistrib28.png]</font><img width="" src="image/rossdistrib28.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[rossdistrib28.png]</font><img width="" src="image/rossdistrib28.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 48:</b>&nbsp;<font size="-2">[rossdistrib29.png]</font><img width="" src="image/rossdistrib29.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[rossdistrib29.png]</font><img width="" src="image/rossdistrib29.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 49:</b>&nbsp;<font size="-2">[rossdistrib30.png]</font><img width="" src="image/rossdistrib30.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rossdistrib30.png]</font><img width="" src="image/rossdistrib30.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 50:</b>&nbsp;<font size="-2">[rossdistrib31.png]</font><img width="" src="image/rossdistrib31.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rossdistrib31.png]</font><img width="" src="image/rossdistrib31.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 51:</b>&nbsp;<font size="-2">[rossdistrib32.png]</font><img width="" src="image/rossdistrib32.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rossdistrib32.png]</font><img width="" src="image/rossdistrib32.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 52:</b>&nbsp;<font size="-2">[rossdistrib33.png]</font><img width="" src="image/rossdistrib33.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rossdistrib33.png]</font><img width="" src="image/rossdistrib33.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 53:</b>&nbsp;<font size="-2">[rossdistrib34.png]</font><img width="" src="image/rossdistrib34.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rossdistrib34.png]</font><img width="" src="image/rossdistrib34.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 54:</b>&nbsp;<font size="-2">[rossdistrib35.png]</font><img width="" src="image/rossdistrib35.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rossdistrib35.png]</font><img width="" src="image/rossdistrib35.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 55:</b>&nbsp;<font size="-2">[rossdistrib36.png]</font><img width="" src="image/rossdistrib36.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rossdistrib36.png]</font><img width="" src="image/rossdistrib36.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 56:</b>&nbsp;<font size="-2">[rossdistrib37.png]</font><img width="" src="image/rossdistrib37.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rossdistrib37.png]</font><img width="" src="image/rossdistrib37.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 57:</b>&nbsp;<font size="-2">[rosspdf9.png]</font><img width="" src="image/rosspdf9.png" style="vertical-align:text-top;">
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rosspdf9.png]</font><img width="" src="image/rosspdf9.png" style="vertical-align:text-top;">
 <p></p>
 Here is Example 5b that is refered above:
 <center>
@@ -823,76 +878,76 @@ Here is Example 5b that is refered above:
 
 <p></p>
 ::<p>
-<b>EXERCISE 58:</b>&nbsp;<font size="-2">[rosspdf15.png]</font><img width="" src="image/rosspdf15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[rosspdf15.png]</font><img width="" src="image/rosspdf15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpspdf21.png]</font><img width="" src="image/hpspdf21.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpspdf21.png]</font><img width="" src="image/hpspdf21.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpspdf23.png]</font><img width="" src="image/hpspdf23.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpspdf23.png]</font><img width="" src="image/hpspdf23.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 61:</b>&nbsp;<font size="-2">[hpspdf25.png]</font><img width="" src="image/hpspdf25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpspdf25.png]</font><img width="" src="image/hpspdf25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 62:</b>&nbsp;<font size="-2">[hpspdf27.png]</font><img width="" src="image/hpspdf27.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[hpspdf27.png]</font><img width="" src="image/hpspdf27.png" style="vertical-align:text-top;"></p>
 ---
 ::<p>
-<b>EXERCISE 63:</b>&nbsp;<font size="-2">[hpspdf28.png]</font><img width="" src="image/hpspdf28.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[hpspdf28.png]</font><img width="" src="image/hpspdf28.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 64:</b>&nbsp;<font size="-2">[hpspdf29.png]</font><img width="" src="image/hpspdf29.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpspdf29.png]</font><img width="" src="image/hpspdf29.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 65:</b>&nbsp;<font size="-2">[hpspdf30.png]</font><img width="" src="image/hpspdf30.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpspdf30.png]</font><img width="" src="image/hpspdf30.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 66:</b>&nbsp;<font size="-2">[hpspdf31.png]</font><img width="" src="image/hpspdf31.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpspdf31.png]</font><img width="" src="image/hpspdf31.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 67:</b>&nbsp;<font size="-2">[hpspdf32.png]</font><img width="" src="image/hpspdf32.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpspdf32.png]</font><img width="" src="image/hpspdf32.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 68:</b>&nbsp;<font size="-2">[hpspdf33.png]</font><img width="" src="image/hpspdf33.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpspdf33.png]</font><img width="" src="image/hpspdf33.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 69:</b>&nbsp;<font size="-2">[hpspdf34.png]</font><img width="" src="image/hpspdf34.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpspdf34.png]</font><img width="" src="image/hpspdf34.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 70:</b>&nbsp;<font size="-2">[hpspdf35.png]</font><img width="" src="image/hpspdf35.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 71:</b>&nbsp;<font size="-2">[hpspdf35.png]</font><img width="" src="image/hpspdf35.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 71:</b>&nbsp;<font size="-2">[hpspdf36.png]</font><img width="" src="image/hpspdf36.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 72:</b>&nbsp;<font size="-2">[hpspdf36.png]</font><img width="" src="image/hpspdf36.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 72:</b>&nbsp;<font size="-2">[hpspdf37.png]</font><img width="" src="image/hpspdf37.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 73:</b>&nbsp;<font size="-2">[hpspdf37.png]</font><img width="" src="image/hpspdf37.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 73:</b>&nbsp;<font size="-2">[hpspdf38.png]</font><img width="" src="image/hpspdf38.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 74:</b>&nbsp;<font size="-2">[hpspdf38.png]</font><img width="" src="image/hpspdf38.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 74:</b>&nbsp;<font size="-2">[hpspdf39.png]</font><img width="" src="image/hpspdf39.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 75:</b>&nbsp;<font size="-2">[hpspdf39.png]</font><img width="" src="image/hpspdf39.png" style="vertical-align:text-top;"></p>
 ---
 ::<p>
-<b>EXERCISE 75:</b>&nbsp;<font size="-2">[hpspdf41.png]</font><img width="" src="image/hpspdf41.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 76:</b>&nbsp;<font size="-2">[hpspdf41.png]</font><img width="" src="image/hpspdf41.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 76:</b>&nbsp;<font size="-2">[hpspdf42.png]</font><img width="" src="image/hpspdf42.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 77:</b>&nbsp;<font size="-2">[hpspdf42.png]</font><img width="" src="image/hpspdf42.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 77:</b>&nbsp;<font size="-2">[hpspdf43.png]</font><img width="" src="image/hpspdf43.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 78:</b>&nbsp;<font size="-2">[hpspdf43.png]</font><img width="" src="image/hpspdf43.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 78:</b>&nbsp;<font size="-2">[hpspdf44.png]</font><img width="" src="image/hpspdf44.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 79:</b>&nbsp;<font size="-2">[hpspdf44.png]</font><img width="" src="image/hpspdf44.png" style="vertical-align:text-top;"></p>
 ----
 ::<p>
-<b>EXERCISE 79:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 80:</b>&nbsp;<font size="-2">[hpstrans3.png]</font><img width="" src="image/hpstrans3.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 80:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 81:</b>&nbsp;<font size="-2">[hpstrans6.png]</font><img width="" src="image/hpstrans6.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 81:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 82:</b>&nbsp;<font size="-2">[hpstrans10.png]</font><img width="" src="image/hpstrans10.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 82:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 83:</b>&nbsp;<font size="-2">[hpstrans11.png]</font><img width="" src="image/hpstrans11.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 83:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 84:</b>&nbsp;<font size="-2">[hpstrans13.png]</font><img width="" src="image/hpstrans13.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 84:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 85:</b>&nbsp;<font size="-2">[hpstrans15.png]</font><img width="" src="image/hpstrans15.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 85:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 86:</b>&nbsp;<font size="-2">[hpstrans16.png]</font><img width="" src="image/hpstrans16.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 86:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 87:</b>&nbsp;<font size="-2">[hpstrans17.png]</font><img width="" src="image/hpstrans17.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 87:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 88:</b>&nbsp;<font size="-2">[hpstrans18.png]</font><img width="" src="image/hpstrans18.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 88:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 89:</b>&nbsp;<font size="-2">[hpstrans20.png]</font><img width="" src="image/hpstrans20.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 89:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 90:</b>&nbsp;<font size="-2">[hpstrans22.png]</font><img width="" src="image/hpstrans22.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 90:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 91:</b>&nbsp;<font size="-2">[hpstrans25.png]</font><img width="" src="image/hpstrans25.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 91:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 92:</b>&nbsp;<font size="-2">[hpstrans26.png]</font><img width="" src="image/hpstrans26.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>
