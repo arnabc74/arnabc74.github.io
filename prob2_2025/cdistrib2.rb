@@ -1,7 +1,7 @@
  @{<NOTE>
 <TITLE>Some more standard densities</TITLE>
 
-<HEAD1>Beta function</HEAD1>
+<HEAD1 u="https://youtu.be/0PoToYKWusE">Beta function</HEAD1>
 The next distribution that we shall discuss is the Beta distribution. Just as we needed to know about the Gamma function
  in order to talk about the Gamma distribution, we need to know about the Beta function before we can get into Beta distribution.
 
@@ -26,7 +26,7 @@ For <M>a,b>0</M>  we have
 
 <EXR>Writing the factorials in terms of the Gamma function, express <M>\binom{10}{6}</M>  in terms of the Beta function</EXR>
 
-<HEAD1>Beta distribution</HEAD1>
+<HEAD1 u="https://youtu.be/8U3mGT60ZJQ">Beta distribution</HEAD1>
 Now that we see that for <M>a,b>0</M>  the function <M>x^{a-1}(1-x)^{b-1}</M>  is  nonnegative and integrable 
 over  <M>(0,1)</M>  with integral <M>B(a,b),</M> 
  we can immediately manufacture a density out of it:
@@ -80,7 +80,7 @@ Answer by thinking about the density. Now prove it mathematically.
 <EXR>If <M>X\sim Beta(a,b)</M>, then find <M>V(X).</M></EXR>
 
 <EXR>If <M>X\sim Beta(a,b)</M>  then show that <M>1-X\sim Beta(b,a).</M></EXR>
-<HEAD1>Bayesian machine learning</HEAD1>
+<HEAD1 u="https://youtu.be/u2KcYDA1yFs">Bayesian machine learning</HEAD1>
 The main use of the beta distribution in statistics is as a "distribution of probability". To
  understand this, consider the large collection of coins, both biased and unbiased. If you pick
  one of them at random and let <M>\Pi</M>  denote its <M>P(head),</M>  then <M>\Pi</M>  is a
