@@ -155,22 +155,22 @@ function myFunction() {
 <a href="#Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Mean and dispersion">Mean and dispersion</a>
+</li>
+<li>
+<a href="#Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Nonsingular and singular">Nonsingular and singular</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 1">Problem set 1</a>
 </li>
 <li>
-<a href="#Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 2">Problem set 2</a>
-</li>
-<li>
 <a href="#Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 3">Problem set 3</a>
+<a href="#Problem set 2">Problem set 2</a>
 </li>
 <li>
 <a href="#$\chi^2$  distribution">$\chi^2$  distribution</a>
@@ -179,7 +179,7 @@ function myFunction() {
 <a href="#Geometry of $\chi^2_{(k)}$">Geometry of $\chi^2_{(k)}$</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 4">Problem set 4</a>
+<a href="#Problem set 3">Problem set 3</a>
 </li>
 <li>
 <a href="#$t$  and $F$  distributions">$t$  and $F$  distributions</a>
@@ -191,13 +191,13 @@ function myFunction() {
 <a href="#$F$  distributions">$F$  distributions</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 5">Problem set 5</a>
+<a href="#Problem set 4">Problem set 4</a>
 </li>
 <li>
 <a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 6">Problem set 6</a>
+<a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
@@ -210,7 +210,7 @@ $\newcommand{\k}[1]{\chi^2_{(#1)}}$
 
 <h1><a
 name="Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a></h1>
-Here we shall discuss the most commonly used multivariate distribution, the multivarite normal distribution. 
+Here we shall discuss the most commonly used multivariate distribution, the multivariate normal distribution. 
 <fieldset>
 <legend><b>Definition:  Multivariate normal</b></legend>
 Let $\v X = (X_1,...,X_n)'$  be a random vector, where  $X_1,...,X_n$  are IID
@@ -218,8 +218,49 @@ Let $\v X = (X_1,...,X_n)'$  be a random vector, where  $X_1,...,X_n$  are IID
  fixed vector. Then the joint distribution of $\v Y=A\v X + \v b$  is called $m$-dimensional
 <b><font color="red" size="40">multivariate normal</font></b>. 
 </fieldset>
-Clearly, the distribution depends on $A$  and $\v b.$ However, different values of $A$  and $\v b$  may
- lead to the same multivariate normal. It turns out that $A_1,\v b_1$  and $A_2,\v
+It turns out that $\v Y$  may not have joint density for certain choices of $A.$  Also, the joint CDF of $\v Y$ 
+ not easy to write down. So, in order to deal with the multivariate normal family of distributions in general, we use characteristic function.
+First, let us define characteristic function for a multivariate distribution.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: multivariate characteristic function</b></legend>
+Let $\v U = (U_1,...,U_m)'$  be a random vector. Then its <b><font color="red" size="40">characteristic function</font></b>  is defined as $\xi:{\mathbb R}^m\rightarrow{\mathbb C}$ 
+ where
+$$\xi(t_1,...,t_m)\equiv \xi(\v t) = E(e^{i\v t'\v U}).$$
+</fieldset>
+The followin theorem, which is an obvious analogue for the corresponding univariate theorem, is what makes characteristic function
+ useful.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+For any ${\mathbb R}^m$-valued random vector, its characteristic function exists. Also, the characteristic function uniquely
+ determines the distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Not in this course.<b><i>[QED]</i></b>
+</p>
+Now let us return to multivariate normal, and find its characteristic function.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$  be IID $N(0,1).$  Let $A_{m\times n}$  be any fixed matrix and let $\v b_{m\times 1}$ 
+ be any fixed vector. Then $\v Y_{m\times 1} = A\v X+\v b$  has characteristic function
+$\exp\left(-\frac 12\v t'AA'\v t+i\v t'\v b\right).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Here $\v X$ has characteristic function 
+$$E(\exp(i\v t'\v X) = E(e^{it_1X_1+\cdots it_nX_n}) =E(e^{it_1X_1}\cdots e^{it_nX_n})=
+ E(e^{it_1X_1})\cdots E(e^{it_nX_n})) = e^{-t_1^2/2}\cdots e^{-t_n^2/2} = \exp\left(-\frac 12\v t'\v t\right).$$ 
+So the characteristic function of $A\v X + \v \mu$  is 
+$$E(\exp(i\v t'(A\v X+\v b)) =E(\exp(i((A'\v t)'\v X+\v t'\v b)) = \exp\left(-\frac 12\v t'AA'\v t+i\v t'\v b\right),$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+Thus, we see that
+ different values of $A$  and $\v b$  may
+ lead to the same multivariate normal. The characteristic function shows that $A_1,\v b_1$  and $A_2,\v
  b_2$  lead to the same distribution if and only if $A_1A_1' = A_2A_2'$  and $\v b_1=\v
  b_2.$  
 In other words, the distribution involves $\v b$  directly, but $A$  only through $AA'.$ 
@@ -228,11 +269,14 @@ So we parametrise
  These are more commonly denoted by $\v \mu$  and $\Sigma,$  and $m$-dimensional multivariate normal with
  these parameters is denoted by $N_m(\v \mu, \Sigma).$  The abbreviation MVN is also used for multivariate normal.
 <p></p>
-Notice that $\v\mu$  can be any vector in ${\mathbb R}^m$  and $\Sigma$  can be any $m\times m$  NND matrix.
- Here we used the following fact from linear algebra:
+What are the possible values for $\v\mu$  and $\Sigma$? Well, since $\v\mu$  is just $\v b,$  which was
+ any arbitrary vector in ${\mathbb R}^m,$  so $\v \mu$  can be any vector in ${\mathbb R}^m.$  The situation is slightly more
+ tricky for $\Sigma.$   , because it is any matrix of the form $AA'$  where $A_{m\times n}$  is any arbitrary
+ real matrix (for arbitrary $n\in{\mathbb N}$). Thanks to the following theorem from linear algebra, we see that
+$\Sigma$  can be any $m\times m$  NND matrix.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-A matrix $\Sigma_{m\times m}$  is NND if and only if $\Sigma = AA'$  for some $A_{m\times m}.$  
+A matrix $\Sigma_{m\times m}$  is NND if and only if $\Sigma = AA'$  for some $A_{m\times n}$  for some $n\in{\mathbb N}.$
 </fieldset>
 
 <p>
@@ -240,24 +284,9 @@ A matrix $\Sigma_{m\times m}$  is NND if and only if $\Sigma = AA'$  for some $A
 </p>
 
 <p></p>
-Since the MVN is a family of distributions some of which have density while others don't, we generally work in terms of the
- characteristic function in general. 
-<p></p>
 
 <h2><a
-name="Nonsingular and singular">Nonsingular and singular</a></h2>
-The density of $\v X$  is 
-$$\frac{1}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12\v x'\v x\right)\mbox{ for }\v x\in{\mathbb R}^n.$$
-If $A$  is a nonsingular matrix, then the transform $\v X\mapsto A\v X+\v b$  is a bijection. So the Jacobian formula
- gives the following density for $\v Y = A\v X+\v b$
-$$\frac{1}{\sqrt{(2\pi)^n det(AA')}}\exp\left(-\frac 12\v y'(AA') ^{-1}\v y\right)\mbox{ for }\v y\in{\mathbb R}^n.$$ 
-Here we have used the fact that $\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.$
-<p></p>
-The case where $A$  is nonsingular  is sometimes called a nonsingular multivariate normal to
- distinguish from the case where
- $A$  is singular, where
- $\v Y$  does not admit a density. 
-<p></p>
+name="Mean and dispersion">Mean and dispersion</a></h2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -276,36 +305,85 @@ and $V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.$
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
-
-<p>
-<b>EXERCISE 1:</b>&nbsp;Describe $N_1(5,0)$  distribution.</p>
-
 <h1><a
 name="Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a></h1>
-One trouble with multivariate normal distribution is that not all members of this famiy admit a density. Also there is no
- closed form expression for the CDF. Fortunately, its characteristic function has a simple form, and is the best way to deal
- with all members of the multivariate normal distribution family in general. 
+As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
+ special case, it does. This case is called the nonsingular
+ case, while the other case is called singular. We discuss these next.
+<p></p>
+
+<h2><a
+name="Nonsingular and singular">Nonsingular and singular</a></h2>
+
 <fieldset>
-<legend><b><i>Theorem</i></b></legend>
-The characteristic function of $N_m(\v\mu,\Sigma)$  is $\exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right).$
+<legend><b><i>Theorem</i></b></legend>$N_m(\v\mu,\Sigma)$  admits a density if and only if $\Sigma$  is a nonsingular  matrix. 
+In this case, the density is 
+$$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n,$$ 
+<p></p>
+
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-Let $\Sigma = AA'.$  Then we can think of $N_m(\v\mu,\Sigma)$  as the distribution of $A\v X+\v\mu$  where
- $\v X$  has IID $N(0,1)$  components.
+ Since $\Sigma$ 
+ is anyway NND, this extra assumption is equivalent to $\Sigma$  being PD.
 <p></p>
-Then $\v X$ has characteristic function 
-$$E(\exp(i\v t'\v X) = \exp\left(-\frac 12\v t'\v t\right).$$ 
-So the characteristic function of $A\v X + \v \mu$  is 
-$$E(\exp(i\v t'(A\v X+\v b)) =E(\exp(i((A'\v t)'\v X+\v t'\v b)) = \exp\left(-\frac 12\v t'AA'\v t+i\v t'\v b\right)=\exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right).$$
+
+<u>If part</u>: Since $\Sigma$  is PD, we can write $\Sigma = AA'$  for some nonsingular $A.$  So $N_m(\v\mu,\Sigma)$ 
+ is the distribution of $A\v X+\v\mu,$  where $\v X$  has IID $N(0,1)$  components.
+<p></p>
+Clearly, the density of $\v X$  is 
+$$\frac{1}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12\v x'\v x\right)\mbox{ for }\v x\in{\mathbb R}^n.$$
+Since $A$  is  nonsingular,  the transform $\v X\mapsto A\v X+\v \mu$  is a bijection. So the Jacobian formula
+ gives (check!) the following density for $\v Y = A\v X+\v \mu$
+$$\frac{1}{\sqrt{(2\pi)^n det(AA')}}\exp\left(-\frac 12(\v y-\v\mu)'(AA') ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n.$$ 
+Here we have used the fact that $\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.$
+The density may be written as
+$$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n,$$ 
+as required.
+<p></p>
+
+<u>Only if part</u>: Actually, this part does not even require normality. Let $\v Y$  have dispersion matrix $\Sigma$ 
+ which is singular. 
+<p></p>
+Let, if possible, $\v Y$  have density.
+<p></p>
+Then $\exists \v a\neq\v0~~\Sigma \v a = \v 0.$  So $\v a'\Sigma \v a = 0.$   
+<p></p>
+But $\v a'\Sigma \v a = V(\v a' \v Y),$  hence we see that $\v a'\v Y$  must be a constant with probability 1.
+<p></p>
+We can extend $\{\v a\}$  to a basis $\{\v a,...\}$  of ${\mathbb R}^m.$ 
+<p></p>
+Let $P = \left[\begin{array}{ccccccccccc}\v a &amp; \cdots 
+\end{array}\right]$  be the matrix with these as columns.
+<p></p>
+Then $P$  is nonsingular, and so $\v Z = P'\v Y$  is a bijective transform of $\v Y.$
+<p></p>
+So, by the Jacobian formula, $\v Z$  must also have joint density. Then its first component $\v a'\v Y$  must also
+ have a (marginal) density. But that is impossible, since it is a degenrate random variable.
+<p></p>
+Hence the result. 
+<p></p>
+
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
+
 <h2><a
-name="Problem set 2">Problem set 2</a></h2>
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Describe $N_2(\v0,I)$  distribution.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Let $J_2$  be the $2\times2$  matrix with all entries equal to 1. Let 
+$$\left[\begin{array}{ccccccccccc}X\\Y
+\end{array}\right] \sim N_2(\v 0, J_2).$$
+If we take data $(x_1,y_1),...,(x_n,y_n)$  from $(X,Y)$ , what will the scatterplot look like?
+</p>
 
 <p></p>
 
@@ -379,7 +457,7 @@ and hence $\v X_1$  and $\v X_2$  are independent, as required.
 <p></p>
 
 <h2><a
-name="Problem set 3">Problem set 3</a></h2>
+name="Problem set 2">Problem set 2</a></h2>
 
 <p></p>
 Next we shall discuss some distributions related to the normal distribution.
@@ -451,12 +529,12 @@ Also $\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,$  as required.
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;
+<b>EXERCISE 3:</b>&nbsp;
 Let $A$  be a symmetric, idempotent matrix. Let $\v X'A\v X\sim\k{r(A)}.$  Show tjis. 
 </p>
 The following result is used in linear models. 
 <p>
-<b>EXERCISE 3:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
+<b>EXERCISE 4:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
  containing $\v \mu.$  Then show that the orthogonal projection of $\v X$  onto
  $S^\perp$  must have $\k {n-k}$  distribution.</p>
 
@@ -470,7 +548,7 @@ If $X_1,...,X_n$  are independent $N(\mu_i,1),$  then the distribution $\sum X_i
 </fieldset>
 
 <h2><a
-name="Problem set 4">Problem set 4</a></h2>
+name="Problem set 3">Problem set 3</a></h2>
 
 <h1><a
 name="$t$  and $F$  distributions">$t$  and $F$  distributions</a></h1>
@@ -540,7 +618,7 @@ $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2
 <p></p>
 
 <h2><a
-name="Problem set 5">Problem set 5</a></h2>
+name="Problem set 4">Problem set 4</a></h2>
 
 <h1><a
 name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
@@ -570,7 +648,7 @@ Let $X_1,...,X_n$  be IID $N(\mu, \sigma^2).$  Then
 </fieldset>
 
 <h2><a
-name="Problem set 6">Problem set 6</a></h2>
+name="Problem set 5">Problem set 5</a></h2>
 
 <p></p>
 
@@ -578,22 +656,22 @@ name="Problem set 6">Problem set 6</a></h2>
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
+<b>EXERCISE 5:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
  find $E(X)$  and $V(X)$  in terms of $a,b,c.$  Also find median of $X.$</p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
+<b>EXERCISE 6:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
 and $Y$ have $N(0,1)$ distribution, but $(X,Y)$
 is not bivariate normal.</p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
+<b>EXERCISE 7:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
 $\mu\in{\mathbb R}^n$  and  $\Sigma$  be any $n\times n$  PD matrix. Suggest how you can
  use the software to generate a single observation from $N_n(\mu,\Sigma).$  Assume that the
  software can perform matrix operations.</p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
+<b>EXERCISE 8:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
  $(X,Y)$  lies in the annulus shown below?
 <center>
 <table width="100%">
@@ -609,41 +687,41 @@ Express you answer in terms CDF of some standard distribution.
 </p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
+<b>EXERCISE 9:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
  $\mu\in{\mathbb R}$  and $\sigma^2&gt;0.$  Find $a&lt;b$  such that $P\left(a&lt; \frac{\bar
  X-\mu}{S/\sqrt{n}} &lt; b\right) = 0.95$  and $b-a$  is the least possible subject to this.</p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 11:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 12:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 13:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 14:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 15:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 16:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 16:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 17:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 18:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 19:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 20:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>
