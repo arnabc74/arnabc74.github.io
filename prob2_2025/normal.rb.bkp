@@ -2,7 +2,7 @@
 <M>\newcommand{\v}[1]{{\mathbf #1}}</M>
 <M>\newcommand{\k}[1]{\chi^2_{(#1)}}</M>
 <TITLE>Multivariate normal and related distributions</TITLE>
-<HEAD1>Multivariate normal distribution (part 1)</HEAD1>
+<HEAD1 u="https://youtu.be/3EQggZLAYKY">Multivariate normal distribution (part 1)</HEAD1>
 Here we shall discuss the most commonly used multivariate distribution, the multivariate normal distribution. 
 
 First we shall recast the defnition of univariate normal from the last chapter to a form suitable for generalisation to higher
@@ -27,12 +27,23 @@ For any <M>\v\mu\in\rr^m</M>  and any NND <M>\Sigma_{m\times m}</M>  we define  
  <M>A_{m\times m}</M>  is any matrix
  such that <M>\Sigma = AA'.</M>
 </DEFN>
-The only point that one feels uncomfortable about is the choice of <M>A.</M>  in the univariate case, obtaining <M>\sigma</M> 
- from <M>\sigma^2</M>  was straightforward, just take the unique nonnegative square root. But in the multivariate set up
- there are, ingeneral infinitely many choices for <M>A</M>  such that <M>\Sigma=AA'.</M>  Which one should we take. Fortunately
- it dows not matter here, because as we are going to show now, any choice leads to the same distribution of <M>A\v X+\v\mu.</M> 
+The only point that you might feel uncomfortable about is the choice of <M>A.</M>  In the univariate
+ case, obtaining <M>\sigma</M> 
+ from <M>\sigma^2</M>  was straightforward: we could just take the (unique) nonnegative square root. But in
+ the multivariate set up
+ there are, in general, infinitely many choices for <M>A</M>  such that <M>\Sigma=AA'.</M>  Which
+ one should we take? Fortunately
+ it does not matter here, because as we are going to show now, any choice leads to the same distribution of <M>A\v X+\v\mu.</M> 
  
-For this purpose we shall use characteristic functions. In the multivariate set up, they are defined as follows.
+For this purpose we shall use characteristic functions. 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Follow the definition to obtain the density of <M>\v Y = <MAT>Y_1\\Y_2</MAT>\sim N_2(*(<MAT>10\\20</MAT>,<MAT>1 & 0\\0 & 4</MAT>)*).</M>
+You may use <M>A = <MAT>1 & 0\\0 & 2</MAT>.</M>  
+</EXR>
+
+<HEAD1 u="https://youtu.be/EJd_YvDzI_s">Multivariate normal distribution (part 2)</HEAD1>
+<HEAD2>Justifying the defintion using characteristic function</HEAD2>
+In the multivariate set up, characteristic function is  defined as follows.
 
 <DEFN name="Multivariate characteristic function">
 Let <M>\v U = (U_1,...,U_m)'</M>  be a random vector. Then its <TERM>characteristic function</TERM>  is defined as <M>\xi:\rr^m\to\cc</M> 
@@ -46,7 +57,10 @@ For any <M>\rr^m</M>-valued random vector, its characteristic function exists. A
  determines the distribution.
 </THM>
 <PF>Not in this course.</PF>
-Now let us return to the definition multivariate normal. We shall take any <M>A</M>  with
+Now let us return to the definition multivariate normal. 
+
+<HEAD2>Back to normal</HEAD2>
+We shall take any <M>A</M>  with
  <M>\Sigma=AA',</M>  and show that the 
  characteristic function of <M>\Sigma\v X+\v\mu</M>  will depend on <M>A</M>  only through <M>AA'=\Sigma.</M>  So the particular
  choice of <M>A</M>  will not matter.
@@ -63,7 +77,20 @@ E(\exp(i\v t'(A\v X+\v \mu))
 </MULTILINE>
 which indeed does not involve <M>A.</M> 
 
+As a by product of the above steps we also get the characteristic function of <M>N_m(\v\mu,\Sigma).</M> 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Write down the characteristic function of <M>N_2(\v\mu,\Sigma)</M>  where <M>\v\mu=<MAT>1\\2</MAT></M>  and <M>\Sigma=<MAT>2&1\\1&3</MAT>.</M></EXR>
 
+<EXR>There are algorithms that will take <M>\Sigma</M>  as input and produce an <M>A</M>  as
+ output suh that <M>\Sigma=AA'.</M>  The Cholsesky (read as ko-less-key) decomposition algorithm is
+ one such (implemeted in the R function <TT>chol</TT>). But for small matrices, it is possible to
+ construct <M>A</M>  by hand. Suppose <M>\Sigma=<MAT>2&1\\1&3</MAT>.</M>  Find a lower triangular <M>A</M>  with <M>\Sigma=AA'.</M> </EXR>
+
+<EXR>Find <M><M>\v\mu</M> </M>  and <M>\Sigma</M>  if <M>N_2(\v\mu,\Sigma)</M>  has characteristic function
+ <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
+<EXR>True or false: The characteristic function of <M>N_m(\v\mu,\Sigma)</M>  is real-valued if and only if <M>\v\mu=\v0.</M></EXR>
+
+<HEAD1>Multivariate normal distribution (part 2)</HEAD1>
 <HEAD2>Mean and dispersion</HEAD2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <THM>
@@ -85,7 +112,7 @@ and <M>V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.</M>
 <EXR>If <M>\v X\sim N_m(\v\mu,\Sigma)</M>  and the components of <M>\v X</M>  are all independent,
  then what can you say about the structure of <M>\Sigma?</M></EXR>
 
-<HEAD1>Multivariate normal distribution (part 2)</HEAD1>
+<HEAD1>Multivariate normal distribution (part 3)</HEAD1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
  case, while the other case is called singular. We discuss these next.
@@ -143,7 +170,7 @@ Hence the result.
 If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M> , what will the scatterplot look like?
 </EXR>
 
-<HEAD1>Multivariate normal distribution (part 3)</HEAD1>
+<HEAD1>Multivariate normal distribution (part 4)</HEAD1>
 <THM>
 If <M>X_1,...,X_n</M>  are IID <M>N(\mu, \sigma^2),</M>  then  <M>\v X = (X_1,...,X_n)'\sim N_n((\mu,...,\mu)',\sigma^2 I_n).</M>
 </THM>
@@ -155,7 +182,7 @@ If <M>\v X\sim N_n(\v \mu, \Sigma)</M>  and <M>B_{m\times n}</M>  and <M>\v c_{m
 Directly from definition. Just be careful that the variance matrix is <M>B\Sigma B'</M>  and not <M>B'\Sigma B.</M>
 </PF>
 
-In particular, we have the following corrolary.
+In particular, we have the following corollary.
 <THM>
 If <M>\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),</M>  then any subvector of  <M>\v X</M>  has multivariate normal distribution
  with the corresponding subsector of <M>\v \mu</M>  and principal submatrix of <M>\Sigma.</M>
@@ -197,9 +224,26 @@ and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
 </PF>
 
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>Let <M><MAT>\v X\_{m\times 1}\\\v Y</MAT> \sim N_{m+n}(*(\v 0, <MAT>A_{m\times m} & B\\B' &
+ C</MAT>)*).</M>  What is the distribution of <M>\v X</M>  and <M>\v Y</M>  separately? </EXR>
 
-Next we shall discuss some distributions related to the normal distribution.
+<EXR>(Continuation of the last problem) If <M><MAT>A & B\\B' & C</MAT></M>  is nonsingular, then
+ show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
+<M>N_{n-m} (B'A ^{-1}\v x, D-B'A ^{-1} B).</M>
+
+[You will need the following not-so-well-known result from linear algebra: If <M>P = <MAT>A & B \\ C & D</MAT></M>  is a nonsingular
+ matrix, where <M>A</M>  is also nonsingular, then
+<D>P ^{-1} = <MAT>A ^{-1} + A ^{-1}BXC A ^{-1} & -A ^{-1} BX\\ -XC A ^{-1} & X</MAT>,</D> 
+where <M>X = (D-CA ^{-1} B) ^{-1}.</M> 
+
+Also, be warned! The proof is somewhat long!]
+</EXR>
+
+<EXR>Let <M>\v X\sim N_n(\v\mu,I).</M>  Let <M>\v a, \v b\in\rr^n</M>  be orthogonal to each
+ other. Show that <M>\v a'\v X</M>  and <M>\v b'\v X</M>  must be independent.</EXR>
+
 <HEAD1><M>\chi^2</M>  distribution</HEAD1>
+Starting from this section, we shall discuss some distributions related to the normal distribution.
 <DEFN name="$\chi^2$">If <M>X_1,...,X_n</M>  are IID <M>N(0,1)</M>  then the distribution of <M>\sum_1^n X_i^2</M> 
  is called <TERM>chi-square distribution with degrees of freedom</TERM> 
  <M>n.</M>  We write 
