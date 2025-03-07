@@ -90,7 +90,63 @@ As a by product of the above steps we also get the characteristic function of <M
  <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
 <EXR>True or false: The characteristic function of <M>N_m(\v\mu,\Sigma)</M>  is real-valued if and only if <M>\v\mu=\v0.</M></EXR>
 
-<HEAD1>Multivariate normal distribution (part 3)</HEAD1>
+<HEAD1 u="https://youtu.be/r5R0ZXMAOYw">Multivariate normal distribution (part 3)</HEAD1>
+
+<THM>
+If <M>\v Y\sim N_m(\v \mu, \Sigma)</M>  and <M>B_{n\times m}</M>  and <M>\v c_{n\times 1}</M>  are
+ fixed, then <M>\v Z = B\v Y+\v c\sim N_n(B\v \mu + \v c, B\Sigma B').</M>
+</THM>
+<PF>
+Be careful that the variance matrix is <M>B\Sigma B'</M>  and not <M>B'\Sigma B.</M>
+
+Let <M>\Sigma = AA'.</M>  Then, by definition,  <M>\v Y</M>  has the same distribution as that of <M>A\v
+ X+\v\mu,</M>  where <M>\v X\sim N_m(\v,I).</M> 
+ 
+So <M>B\v Y+\v c</M>  has the same distribution as that of <M>B(A\v X+\v\mu)+\v c = BA\v X + (B\v\mu+\v c).</M>  This is,
+ by definition, <M>N_n(B\v\mu+\v c, BAA'B') = N_n(B\v\mu+\v c, B \Sigma B').</M>
+</PF>
+The theorem could also be proved using characteristic function. 
+
+<HEAD2>Two corollaries</HEAD2>
+Here is the first corollary.
+<THM>
+If <M>\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),</M>  then any subvector of  <M>\v X</M>  has multivariate normal distribution
+ with the corresponding subsector of <M>\v \mu</M>  and corresponding principal submatrix of <M>\Sigma.</M>
+</THM>
+<PF>
+Extracting a subvector is same as premultiplying by a matrix. The matrix is obtained by selecting appropriate rows of the
+ identity matrix. 
+
+Apply the affine transform result with <M>B=</M> this matrix and <M>\v c=\v0</M>  to prove this theorem.
+</PF>
+
+The second corollary is the multivariate analogue of univariate standardisation: If <M>X\sim N(\mu,\sigma^2)</M>  for <M>\sigma^2>0,</M> 
+ then <M>[[X-\mu][ss]]\sim N(0,1).</M>
+
+<THM>
+Let <M>\v X\sim N_n(\v\mu,\Sigma)</M>  where <M>\Sigma</M>  is nonsingular. Let <M>\Sigma = AA'</M>  for <M>A_{n\times n}.</M>
+Then <M>A ^{-1} (\v X-\v\mu)\sim N_n(\v0,I).</M>
+</THM>
+<PF>
+Direct application of the theorem. Just notice that <M>A</M>  must be nonsingular, because had it
+ been singular,  <M>AA'</M> 
+ would have been singular, as well. 
+</PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<COMMENT>
+A = matrix(sample(5,25,rep=T),5,5)
+A%*%t(A)
+mat2lat(A%*%t(A))
+</COMMENT>
+<EXR>Let 
+<D><MAT>X_1\\X_2\\X_3\\X_5\\X_5</MAT>\sim N_5(*(<MAT>1\\2\\3\\4\\5</MAT>,<MAT>50 & 42 & 41 & 48 & 27\\ 42 & 40 & 38 & 40 & 25\\
+ 41 & 38 & 51 & 53 & 39\\ 48 & 40 & 53 & 61 & 39\\ 27 & 25 & 39 & 39 & 38</MAT>)*). </D>
+Find the distribution of <M>\v Y = (2X_1-3X_4+X_5,~~X_1+X_4)'.</M>
+
+[Hint: Don't struggle with the full <M>5\times5</M>  matrix.]
+</EXR>
+<HEAD1>Multivariate normal distribution (part 4)</HEAD1>
 <HEAD2>Mean and dispersion</HEAD2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <THM>
@@ -105,14 +161,68 @@ So <M>E(\v X) = \v 0</M>  and <M>V(\v X) = I.</M>
 Hence <M>E(\v Y) = E(A\v X+\v\mu) = A E(\v X)+\v\mu = \v\mu,</M>
 and <M>V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.</M> 
 </PF>
+
+
+<HEAD2>Independent vs zero covariance</HEAD2>
+If two random variables are
+independent, they must also have covariance zero. However, the converse is not true in general. For multivariate
+ normal the converse is also
+ true. For this we need the following result about characteristic function:
+
+<THM>
+If <M>\v X</M>  and <M>\v Y</M>  are two random vectors with characteristic functions <M>\xi_X(\v s)</M>  and
+ <M>\xi_Y(\v t)</M>, then the characteristic function of <M>\v Z = <MAT>\v X\\\v
+ Y</MAT></M>  is <M>\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)</M>  if and only if <M>\v X</M>  and
+ <M>\v Y </M> are independent.
+</THM>
+<PF>Direct application of definition.</PF>
+
+<THM>If 
+<D>\v X = <MAT>\v X_1\\\v X_2</MAT>'\sim N_n(*(\underbrace{<MAT>\v \mu_1\\\v \mu_2</MAT> }_{\v\mu},
+\underbrace{<MAT>\Sigma_{11} &  \Sigma_{12}\\\Sigma_{12}' & \Sigma_{22}</MAT> }_\Sigma)*),</D>  then
+ <M>\v X_1</M>  and <M>\v X_2</M>  are
+ independent if and only if <M>\Sigma_{12} = O.</M></THM>
+<PF>
+The characteristic function of <M>\v X</M>  is 
+<M>\xi_{\v X}(\v t)=\exp(*(-[[12]]\v t'\Sigma\v t+i\v t'\v \mu)*).</M>
+
+Writing <M>\v t =<MAT>\v t_1\\\v t_2</MAT>, </M>  we have
+<D>\v t'\Sigma\v t =<MAT>\v t_1' & \v t_2'</MAT><MAT>\Sigma_{11} &  \Sigma_{12}\\\Sigma_{12}' & \Sigma_{22}</MAT><MAT>\v t_1\\\v t_2</MAT>
+= \v t_1'\Sigma_{11}\v t_1+ \v t_1'\Sigma_{22}\v t_2,</D>
+since <M>\Sigma_{12}=O.</M>
+
+Again
+<D>\v t'\v \mu = <MAT>\v t_1' & \v t_2'</MAT><MAT>\v \mu_1 & \v \mu_2</MAT>  = \v t_1'\v \mu+\v t_2'\v \mu_2</D>
+So the characteristic function factorises as
+<D>\xi_{\v X}(\v t)\equiv \xi_{\v X_1}(\v t_1)\xi_{\v X_1}(\v t_2),</D>
+and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
+</PF>
+
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find <M>E(\v X)</M>  and <M>V(\v X)</M>  if <M>\v X</M>  has characteristic function
  <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
 
 <EXR>If <M>\v X\sim N_m(\v\mu,\Sigma)</M>  and the components of <M>\v X</M>  are all independent,
  then what can you say about the structure of <M>\Sigma?</M></EXR>
+<EXR>Let <M><MAT>\v X\_{m\times 1}\\\v Y</MAT> \sim N_{m+n}(*(\v 0, <MAT>A_{m\times m} & B\\B' &
+ C</MAT>)*).</M>  What is the distribution of <M>\v X</M>  and <M>\v Y</M>  separately? </EXR>
 
-<HEAD1>Multivariate normal distribution (part 4)</HEAD1>
+<EXR>(Continuation of the last problem) If <M><MAT>A & B\\B' & C</MAT></M>  is nonsingular, then
+ show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
+<M>N_{n-m} (B'A ^{-1}\v x, D-B'A ^{-1} B).</M>
+
+[You will need the following not-so-well-known result from linear algebra: If <M>P = <MAT>A & B \\ C & D</MAT></M>  is a nonsingular
+ matrix, where <M>A</M>  is also nonsingular, then
+<D>P ^{-1} = <MAT>A ^{-1} + A ^{-1}BXC A ^{-1} & -A ^{-1} BX\\ -XC A ^{-1} & X</MAT>,</D> 
+where <M>X = (D-CA ^{-1} B) ^{-1}.</M> 
+
+Also, be warned! The proof is somewhat long! You may like to first do the case <M>m=1</M>  and <M>n=2.</M>]
+</EXR>
+
+<EXR>Let <M>\v X\sim N_n(\v\mu,I).</M>  Let <M>\v a, \v b\in\rr^n</M>  be orthogonal to each
+ other. Show that <M>\v a'\v X</M>  and <M>\v b'\v X</M>  must be independent.</EXR>
+
+<HEAD1>Multivariate normal distribution (part 5)</HEAD1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
  case, while the other case is called singular. We discuss these next.
@@ -170,77 +280,6 @@ Hence the result.
 If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M> , what will the scatterplot look like?
 </EXR>
 
-<HEAD1>Multivariate normal distribution (part 5)</HEAD1>
-<THM>
-If <M>X_1,...,X_n</M>  are IID <M>N(\mu, \sigma^2),</M>  then  <M>\v X = (X_1,...,X_n)'\sim N_n((\mu,...,\mu)',\sigma^2 I_n).</M>
-</THM>
-
-<THM>
-If <M>\v X\sim N_n(\v \mu, \Sigma)</M>  and <M>B_{m\times n}</M>  and <M>\v c_{m\times 1}</M>  are fixed, then <M>B\v X+\v c\sim N_m(B\v \mu + \v c, B\Sigma B').</M>
-</THM>
-<PF>
-Directly from definition. Just be careful that the variance matrix is <M>B\Sigma B'</M>  and not <M>B'\Sigma B.</M>
-</PF>
-
-In particular, we have the following corollary.
-<THM>
-If <M>\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),</M>  then any subvector of  <M>\v X</M>  has multivariate normal distribution
- with the corresponding subsector of <M>\v \mu</M>  and principal submatrix of <M>\Sigma.</M>
-</THM>
-
-<HEAD2>Independent vs uncorrelated</HEAD2>
-If two random variables are
-independent, they must also be uncorrelated. However, the converse is not true in general. For multivariate
- normal the converse is also
- true. For this we need the following result about characteristic function:
-
-<THM>
-If <M>\v X</M>  and <M>\v Y</M>  are two random vectors with characteristic functions <M>\xi_X(\v s)</M>  and
- <M>\xi_Y(\v t)</M>, then the characteristic function of <M>\v Z = <MAT>\v X\\\v
- Y</MAT></M>  is <M>\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)</M>  if and only if <M>\v X</M>  and
- <M>\v Y </M> are independent.
-</THM>
-<PF>Direct application of definition.</PF>
-
-<THM>If 
-<D>\v X = <MAT>\v X_1\\\v X_2</MAT>'\sim N_n(*(\underbrace{<MAT>\v \mu_1\\\v \mu_2</MAT> }_{\v\mu},
-\underbrace{<MAT>\Sigma_{11} &  \Sigma_{12}\\\Sigma_{12}' & \Sigma_{22}</MAT> }_\Sigma)*),</D>  then
- <M>\v X_1</M>  and <M>\v X_2</M>  are
- independent if and only if <M>\Sigma_{12} = O.</M></THM>
-<PF>
-The characteristic function of <M>\v X</M>  is 
-<M>\xi_{\v X}(\v t)=\exp(*(-[[12]]\v t'\Sigma\v t+i\v t'\v \mu)*).</M>
-
-Writing <M>\v t =<MAT>\v t_1\\\v t_2</MAT>, </M>  we have
-<D>\v t'\Sigma\v t =<MAT>\v t_1' & \v t_2'</MAT><MAT>\Sigma_{11} &  \Sigma_{12}\\\Sigma_{12}' & \Sigma_{22}</MAT><MAT>\v t_1\\\v t_2</MAT>
-= \v t_1'\Sigma_{11}\v t_1+ \v t_1'\Sigma_{22}\v t_2,</D>
-since <M>\Sigma_{12}=O.</M>
-
-Again
-<D>\v t'\v \mu = <MAT>\v t_1' & \v t_2'</MAT><MAT>\v \mu_1 & \v \mu_2</MAT>  = \v t_1'\v \mu+\v t_2'\v \mu_2</D>
-So the characteristic function factorises as
-<D>\xi_{\v X}(\v t)\equiv \xi_{\v X_1}(\v t_1)\xi_{\v X_1}(\v t_2),</D>
-and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
-</PF>
-
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>Let <M><MAT>\v X\_{m\times 1}\\\v Y</MAT> \sim N_{m+n}(*(\v 0, <MAT>A_{m\times m} & B\\B' &
- C</MAT>)*).</M>  What is the distribution of <M>\v X</M>  and <M>\v Y</M>  separately? </EXR>
-
-<EXR>(Continuation of the last problem) If <M><MAT>A & B\\B' & C</MAT></M>  is nonsingular, then
- show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
-<M>N_{n-m} (B'A ^{-1}\v x, D-B'A ^{-1} B).</M>
-
-[You will need the following not-so-well-known result from linear algebra: If <M>P = <MAT>A & B \\ C & D</MAT></M>  is a nonsingular
- matrix, where <M>A</M>  is also nonsingular, then
-<D>P ^{-1} = <MAT>A ^{-1} + A ^{-1}BXC A ^{-1} & -A ^{-1} BX\\ -XC A ^{-1} & X</MAT>,</D> 
-where <M>X = (D-CA ^{-1} B) ^{-1}.</M> 
-
-Also, be warned! The proof is somewhat long!]
-</EXR>
-
-<EXR>Let <M>\v X\sim N_n(\v\mu,I).</M>  Let <M>\v a, \v b\in\rr^n</M>  be orthogonal to each
- other. Show that <M>\v a'\v X</M>  and <M>\v b'\v X</M>  must be independent.</EXR>
 
 <HEAD1><M>\chi^2</M>  distribution</HEAD1>
 Starting from this section, we shall discuss some distributions related to the normal distribution.

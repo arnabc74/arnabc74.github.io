@@ -173,7 +173,7 @@ function myFunction() {
 <a href="#Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Mean and dispersion">Mean and dispersion</a>
+<a href="#Two corollaries">Two corollaries</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 3">Problem set 3</a>
@@ -182,7 +182,10 @@ function myFunction() {
 <a href="#Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Nonsingular and singular">Nonsingular and singular</a>
+<a href="#Mean and dispersion">Mean and dispersion</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Independent vs zero covariance">Independent vs zero covariance</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 4">Problem set 4</a>
@@ -191,7 +194,7 @@ function myFunction() {
 <a href="#Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Independent vs uncorrelated">Independent vs uncorrelated</a>
+<a href="#Nonsingular and singular">Nonsingular and singular</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 5">Problem set 5</a>
@@ -369,6 +372,88 @@ name="Problem set 2">Problem set 2</a></h2>
 
 <h1><a
 name="Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a></h1>
+<a href="https://youtu.be/r5R0ZXMAOYw">Video for this section</a>
+<p></p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v Y\sim N_m(\v \mu, \Sigma)$  and $B_{n\times m}$  and $\v c_{n\times 1}$  are
+ fixed, then $\v Z = B\v Y+\v c\sim N_n(B\v \mu + \v c, B\Sigma B').$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Be careful that the variance matrix is $B\Sigma B'$  and not $B'\Sigma B.$
+<p></p>
+Let $\Sigma = AA'.$  Then, by definition,  $\v Y$  has the same distribution as that of $A\v
+ X+\v\mu,$  where $\v X\sim N_m(\v,I).$ 
+<p></p>
+So $B\v Y+\v c$  has the same distribution as that of $B(A\v X+\v\mu)+\v c = BA\v X + (B\v\mu+\v c).$  This is,
+ by definition, $N_n(B\v\mu+\v c, BAA'B') = N_n(B\v\mu+\v c, B \Sigma B').$
+<b><i>[QED]</i></b>
+</p>
+The theorem could also be proved using characteristic function. 
+<p></p>
+
+<h2><a
+name="Two corollaries">Two corollaries</a></h2>
+Here is the first corollary.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),$  then any subvector of  $\v X$  has multivariate normal distribution
+ with the corresponding subsector of $\v \mu$  and corresponding principal submatrix of $\Sigma.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Extracting a subvector is same as premultiplying by a matrix. The matrix is obtained by selecting appropriate rows of the
+ identity matrix. 
+<p></p>
+Apply the affine transform result with $B=$ this matrix and $\v c=\v0$  to prove this theorem.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The second corollary is the multivariate analogue of univariate standardisation: If $X\sim N(\mu,\sigma^2)$  for $\sigma^2&gt;0,$ 
+ then $\frac{X-\mu}{ss}\sim N(0,1).$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X\sim N_n(\v\mu,\Sigma)$  where $\Sigma$  is nonsingular. Let $\Sigma = AA'$  for $A_{n\times n}.$
+Then $A ^{-1} (\v X-\v\mu)\sim N_n(\v0,I).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Direct application of the theorem. Just notice that $A$  must be nonsingular, because had it
+ been singular,  $AA'$ 
+ would have been singular, as well. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let 
+$$\left[\begin{array}{ccccccccccc}X_1\\X_2\\X_3\\X_5\\X_5
+\end{array}\right]\sim N_5\left(\left[\begin{array}{ccccccccccc}1\\2\\3\\4\\5
+\end{array}\right],\left[\begin{array}{ccccccccccc}50 &amp; 42 &amp; 41 &amp; 48 &amp; 27\\ 42 &amp; 40 &amp; 38 &amp; 40 &amp; 25\\
+ 41 &amp; 38 &amp; 51 &amp; 53 &amp; 39\\ 48 &amp; 40 &amp; 53 &amp; 61 &amp; 39\\ 27 &amp; 25 &amp; 39 &amp; 39 &amp; 38
+\end{array}\right]\right). $$
+Find the distribution of $\v Y = (2X_1-3X_4+X_5,~~X_1+X_4)'.$
+<p></p>
+[Hint: Don't struggle with the full $5\times5$  matrix.]
+</p>
+
+<h1><a
+name="Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a></h1>
 
 <h2><a
 name="Mean and dispersion">Mean and dispersion</a></h2>
@@ -390,23 +475,114 @@ and $V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.$
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
+
 <h2><a
-name="Problem set 3">Problem set 3</a></h2>
+name="Independent vs zero covariance">Independent vs zero covariance</a></h2>
+If two random variables are
+independent, they must also have covariance zero. However, the converse is not true in general. For multivariate
+ normal the converse is also
+ true. For this we need the following result about characteristic function:
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X$  and $\v Y$  are two random vectors with characteristic functions $\xi_X(\v s)$  and
+ $\xi_Y(\v t)$, then the characteristic function of $\v Z = \left[\begin{array}{ccccccccccc}\v X\\\v
+ Y
+\end{array}\right]$  is $\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)$  if and only if $\v X$  and
+ $\v Y $ are independent.
+</fieldset>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Find $E(\v X)$  and $V(\v X)$  if $\v X$  has characteristic function
+<b><i>Proof:</i></b>Direct application of definition.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If 
+$$\v X = \left[\begin{array}{ccccccccccc}\v X_1\\\v X_2
+\end{array}\right]'\sim N_n\left(\underbrace{\left[\begin{array}{ccccccccccc}\v \mu_1\\\v \mu_2
+\end{array}\right] }_{\v\mu},
+\underbrace{\left[\begin{array}{ccccccccccc}\Sigma_{11} &amp;  \Sigma_{12}\\\Sigma_{12}' &amp; \Sigma_{22}
+\end{array}\right] }_\Sigma\right),$$  then
+ $\v X_1$  and $\v X_2$  are
+ independent if and only if $\Sigma_{12} = O.$</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The characteristic function of $\v X$  is 
+$\xi_{\v X}(\v t)=\exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right).$
+<p></p>
+Writing $\v t =\left[\begin{array}{ccccccccccc}\v t_1\\\v t_2
+\end{array}\right], $  we have
+$$\v t'\Sigma\v t =\left[\begin{array}{ccccccccccc}\v t_1' &amp; \v t_2'
+\end{array}\right]\left[\begin{array}{ccccccccccc}\Sigma_{11} &amp;  \Sigma_{12}\\\Sigma_{12}' &amp; \Sigma_{22}
+\end{array}\right]\left[\begin{array}{ccccccccccc}\v t_1\\\v t_2
+\end{array}\right]
+= \v t_1'\Sigma_{11}\v t_1+ \v t_1'\Sigma_{22}\v t_2,$$
+since $\Sigma_{12}=O.$
+<p></p>
+Again
+$$\v t'\v \mu = \left[\begin{array}{ccccccccccc}\v t_1' &amp; \v t_2'
+\end{array}\right]\left[\begin{array}{ccccccccccc}\v \mu_1 &amp; \v \mu_2
+\end{array}\right]  = \v t_1'\v \mu+\v t_2'\v \mu_2$$
+So the characteristic function factorises as
+$$\xi_{\v X}(\v t)\equiv \xi_{\v X_1}(\v t_1)\xi_{\v X_1}(\v t_2),$$
+and hence $\v X_1$  and $\v X_2$  are independent, as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Find $E(\v X)$  and $V(\v X)$  if $\v X$  has characteristic function
  $\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)$  for $(t_1,t_2)\in{\mathbb R}^2.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;If $\v X\sim N_m(\v\mu,\Sigma)$  and the components of $\v X$  are all independent,
+<b>EXERCISE 8:</b>&nbsp;If $\v X\sim N_m(\v\mu,\Sigma)$  and the components of $\v X$  are all independent,
  then what can you say about the structure of $\Sigma?$</p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;Let $\left[\begin{array}{ccccccccccc}\v X\_{m\times 1}\\\v Y
+\end{array}\right] \sim N_{m+n}\left(\v 0, \left[\begin{array}{ccccccccccc}A_{m\times m} &amp; B\\B' &amp;
+ C
+\end{array}\right]\right).$  What is the distribution of $\v X$  and $\v Y$  separately? </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;(Continuation of the last problem) If $\left[\begin{array}{ccccccccccc}A &amp; B\\B' &amp; C
+\end{array}\right]$  is nonsingular, then
+ show that the conditional distribution of $\v Y$  given $\v X=\v x$  is 
+$N_{n-m} (B'A ^{-1}\v x, D-B'A ^{-1} B).$
+<p></p>
+[You will need the following not-so-well-known result from linear algebra: If $P = \left[\begin{array}{ccccccccccc}A &amp; B \\ C &amp; D
+\end{array}\right]$  is a nonsingular
+ matrix, where $A$  is also nonsingular, then
+$$P ^{-1} = \left[\begin{array}{ccccccccccc}A ^{-1} + A ^{-1}BXC A ^{-1} &amp; -A ^{-1} BX\\ -XC A ^{-1} &amp; X
+\end{array}\right],$$ 
+where $X = (D-CA ^{-1} B) ^{-1}.$ 
+<p></p>
+Also, be warned! The proof is somewhat long! You may like to first do the case $m=1$  and $n=2.$]
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Let $\v X\sim N_n(\v\mu,I).$  Let $\v a, \v b\in{\mathbb R}^n$  be orthogonal to each
+ other. Show that $\v a'\v X$  and $\v b'\v X$  must be independent.</p>
 
 <p></p>
 
 <h1><a
-name="Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a></h1>
+name="Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a></h1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
  case, while the other case is called singular. We discuss these next.
@@ -470,144 +646,19 @@ Hence the result.
 <p></p>
 
 <h2><a
-name="Problem set 4">Problem set 4</a></h2>
+name="Problem set 5">Problem set 5</a></h2>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Describe $N_2(\v0,I)$  distribution.</p>
+<b>EXERCISE 12:</b>&nbsp;Describe $N_2(\v0,I)$  distribution.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let $J_2$  be the $2\times2$  matrix with all entries equal to 1. Let 
+<b>EXERCISE 13:</b>&nbsp;Let $J_2$  be the $2\times2$  matrix with all entries equal to 1. Let 
 $$\left[\begin{array}{ccccccccccc}X\\Y
 \end{array}\right] \sim N_2(\v 0, J_2).$$
 If we take data $(x_1,y_1),...,(x_n,y_n)$  from $(X,Y)$ , what will the scatterplot look like?
 </p>
-
-<p></p>
-
-<h1><a
-name="Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a></h1>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $X_1,...,X_n$  are IID $N(\mu, \sigma^2),$  then  $\v X = (X_1,...,X_n)'\sim N_n((\mu,...,\mu)',\sigma^2 I_n).$
-</fieldset>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $\v X\sim N_n(\v \mu, \Sigma)$  and $B_{m\times n}$  and $\v c_{m\times 1}$  are fixed, then $B\v X+\v c\sim N_m(B\v \mu + \v c, B\Sigma B').$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Directly from definition. Just be careful that the variance matrix is $B\Sigma B'$  and not $B'\Sigma B.$
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-In particular, we have the following corollary.
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),$  then any subvector of  $\v X$  has multivariate normal distribution
- with the corresponding subsector of $\v \mu$  and principal submatrix of $\Sigma.$
-</fieldset>
-
-<p></p>
-
-<h2><a
-name="Independent vs uncorrelated">Independent vs uncorrelated</a></h2>
-If two random variables are
-independent, they must also be uncorrelated. However, the converse is not true in general. For multivariate
- normal the converse is also
- true. For this we need the following result about characteristic function:
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $\v X$  and $\v Y$  are two random vectors with characteristic functions $\xi_X(\v s)$  and
- $\xi_Y(\v t)$, then the characteristic function of $\v Z = \left[\begin{array}{ccccccccccc}\v X\\\v
- Y
-\end{array}\right]$  is $\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)$  if and only if $\v X$  and
- $\v Y $ are independent.
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>Direct application of definition.<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>If 
-$$\v X = \left[\begin{array}{ccccccccccc}\v X_1\\\v X_2
-\end{array}\right]'\sim N_n\left(\underbrace{\left[\begin{array}{ccccccccccc}\v \mu_1\\\v \mu_2
-\end{array}\right] }_{\v\mu},
-\underbrace{\left[\begin{array}{ccccccccccc}\Sigma_{11} &amp;  \Sigma_{12}\\\Sigma_{12}' &amp; \Sigma_{22}
-\end{array}\right] }_\Sigma\right),$$  then
- $\v X_1$  and $\v X_2$  are
- independent if and only if $\Sigma_{12} = O.$</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-The characteristic function of $\v X$  is 
-$\xi_{\v X}(\v t)=\exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right).$
-<p></p>
-Writing $\v t =\left[\begin{array}{ccccccccccc}\v t_1\\\v t_2
-\end{array}\right], $  we have
-$$\v t'\Sigma\v t =\left[\begin{array}{ccccccccccc}\v t_1' &amp; \v t_2'
-\end{array}\right]\left[\begin{array}{ccccccccccc}\Sigma_{11} &amp;  \Sigma_{12}\\\Sigma_{12}' &amp; \Sigma_{22}
-\end{array}\right]\left[\begin{array}{ccccccccccc}\v t_1\\\v t_2
-\end{array}\right]
-= \v t_1'\Sigma_{11}\v t_1+ \v t_1'\Sigma_{22}\v t_2,$$
-since $\Sigma_{12}=O.$
-<p></p>
-Again
-$$\v t'\v \mu = \left[\begin{array}{ccccccccccc}\v t_1' &amp; \v t_2'
-\end{array}\right]\left[\begin{array}{ccccccccccc}\v \mu_1 &amp; \v \mu_2
-\end{array}\right]  = \v t_1'\v \mu+\v t_2'\v \mu_2$$
-So the characteristic function factorises as
-$$\xi_{\v X}(\v t)\equiv \xi_{\v X_1}(\v t_1)\xi_{\v X_1}(\v t_2),$$
-and hence $\v X_1$  and $\v X_2$  are independent, as required.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<h2><a
-name="Problem set 5">Problem set 5</a></h2>
-
-<p>
-<b>EXERCISE 10:</b>&nbsp;Let $\left[\begin{array}{ccccccccccc}\v X\_{m\times 1}\\\v Y
-\end{array}\right] \sim N_{m+n}\left(\v 0, \left[\begin{array}{ccccccccccc}A_{m\times m} &amp; B\\B' &amp;
- C
-\end{array}\right]\right).$  What is the distribution of $\v X$  and $\v Y$  separately? </p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 11:</b>&nbsp;(Continuation of the last problem) If $\left[\begin{array}{ccccccccccc}A &amp; B\\B' &amp; C
-\end{array}\right]$  is nonsingular, then
- show that the conditional distribution of $\v Y$  given $\v X=\v x$  is 
-$N_{n-m} (B'A ^{-1}\v x, D-B'A ^{-1} B).$
-<p></p>
-[You will need the following not-so-well-known result from linear algebra: If $P = \left[\begin{array}{ccccccccccc}A &amp; B \\ C &amp; D
-\end{array}\right]$  is a nonsingular
- matrix, where $A$  is also nonsingular, then
-$$P ^{-1} = \left[\begin{array}{ccccccccccc}A ^{-1} + A ^{-1}BXC A ^{-1} &amp; -A ^{-1} BX\\ -XC A ^{-1} &amp; X
-\end{array}\right],$$ 
-where $X = (D-CA ^{-1} B) ^{-1}.$ 
-<p></p>
-Also, be warned! The proof is somewhat long!]
-</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 12:</b>&nbsp;Let $\v X\sim N_n(\v\mu,I).$  Let $\v a, \v b\in{\mathbb R}^n$  be orthogonal to each
- other. Show that $\v a'\v X$  and $\v b'\v X$  must be independent.</p>
 
 <p></p>
 
@@ -682,12 +733,12 @@ Also $\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,$  as required.
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;
+<b>EXERCISE 14:</b>&nbsp;
 Let $A$  be a symmetric, idempotent matrix. Let $\v X'A\v X\sim\k{r(A)}.$  Show tjis. 
 </p>
 The following result is used in linear models. 
 <p>
-<b>EXERCISE 14:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
+<b>EXERCISE 15:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
  containing $\v \mu.$  Then show that the orthogonal projection of $\v X$  onto
  $S^\perp$  must have $\k {n-k}$  distribution.</p>
 
@@ -809,22 +860,22 @@ name="Problem set 8">Problem set 8</a></h2>
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
+<b>EXERCISE 16:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
  find $E(X)$  and $V(X)$  in terms of $a,b,c.$  Also find median of $X.$</p>
 
 <p>
-<b>EXERCISE 16:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
+<b>EXERCISE 17:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
 and $Y$ have $N(0,1)$ distribution, but $(X,Y)$
 is not bivariate normal.</p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
+<b>EXERCISE 18:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
 $\mu\in{\mathbb R}^n$  and  $\Sigma$  be any $n\times n$  PD matrix. Suggest how you can
  use the software to generate a single observation from $N_n(\mu,\Sigma).$  Assume that the
  software can perform matrix operations.</p>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
+<b>EXERCISE 19:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
  $(X,Y)$  lies in the annulus shown below?
 <center>
 <table width="100%">
@@ -840,41 +891,41 @@ Express you answer in terms CDF of some standard distribution.
 </p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
+<b>EXERCISE 20:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
  $\mu\in{\mathbb R}$  and $\sigma^2&gt;0.$  Find $a&lt;b$  such that $P\left(a&lt; \frac{\bar
  X-\mu}{S/\sqrt{n}} &lt; b\right) = 0.95$  and $b-a$  is the least possible subject to this.</p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 21:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 22:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>
