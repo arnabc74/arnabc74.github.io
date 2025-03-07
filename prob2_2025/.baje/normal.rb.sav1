@@ -4,62 +4,66 @@
 <TITLE>Multivariate normal and related distributions</TITLE>
 <HEAD1>Multivariate normal distribution (part 1)</HEAD1>
 Here we shall discuss the most commonly used multivariate distribution, the multivariate normal distribution. 
-<DEFN name=" Multivariate normal">
-Let <M>\v X = (X_1,...,X_n)'</M>  be a random vector, where  <M>X_1,...,X_n</M>  are IID
- <M>N(0,1).</M> Let <M>A_{m\times n}</M>  be any fixed matrix, and <M>\v b_{m\times1}</M>  be any
- fixed vector. Then the joint distribution of <M>\v Y=A\v X + \v b</M>  is called <M>m</M>-dimensional
-<TERM>multivariate normal</TERM>. 
-</DEFN>
-It turns out that <M>\v Y</M>  may not have joint density for certain choices of <M>A.</M>  Also, the joint CDF of <M>\v Y</M> 
- not easy to write down. So, in order to deal with the multivariate normal family of distributions in general, we use characteristic function.
-First, let us define characteristic function for a multivariate distribution.
 
-<DEFN name="multivariate characteristic function">
+First we shall recast the defnition of univariate normal from the last chapter to a form suitable for generalisation to higher
+ dimensions. Instead of defining <M>N(\mu,\sigma^2)</M>  via density, we shall start with just <M>N(0,1)</M>  and define
+ it via the density <M>[[1][\sqrt{2\pi}]] e^{-x^2/2},~~x\in\rr.</M>  Then for any <M>\sigma^2 \geq 0</M>  we can define <M>N(\mu,\sigma^2)</M> 
+ as the distribution of <M>\sigma X+\mu,</M>  whre <M>X\sim N(0,1).</M>  Convince yourself that this is equivalent to what
+the definition of univariate normal given  in the last chapter, and that this includes the <M>\sigma^2=0</M>  case also.
+ 
+Now we are ready for the multivariate generalisation. For <M>N(\mu, \sigma^2)</M>  the parameters were <M>\mu\in\rr</M> 
+ and <M>\sigma^2\geq 0.</M>  In <M>m</M>-dim our parameters will be a vector <M>\v\mu\in\rr^m</M>  and a NND matrix
+ <M>\Sigma_{m\times m}. </M>  We shall need the following fact about NND matrices from linear algebra:
+<THM>
+A matrix <M>\Sigma_{m\times m}</M>  is NND if and only if <M>\Sigma = AA'</M>  for some <M>A_{m\times n}</M>  for some <M>n\in\nn.</M>
+</THM>
+<PF>Should be covered in your Vectors and Matrices course.</PF>
+
+At last we come to the definition of multivariate normal.
+<DEFN name=" Multivariate normal">
+For any <M>\v\mu\in\rr^m</M>  and any NND <M>\Sigma_{m\times m}</M>  we define  <M>N_m(\v\mu, \Sigma)</M>, the <M>m</M>-dimensional
+ <TERM>multivariate normal distribution</TERM>  as the distribution of 
+ <M>\v Y=A\v X + \v b</M>, where <M>\v X_{m\times 1}</M>  has IID <M>N(0,1)</M>  components, and
+ <M>A_{m\times m}</M>  is any matrix
+ such that <M>\Sigma = AA'.</M>
+</DEFN>
+The only point that one feels uncomfortable about is the choice of <M>A.</M>  in the univariate case, obtaining <M>\sigma</M> 
+ from <M>\sigma^2</M>  was straightforward, just take the unique nonnegative square root. But in the multivariate set up
+ there are, ingeneral infinitely many choices for <M>A</M>  such that <M>\Sigma=AA'.</M>  Which one should we take. Fortunately
+ it dows not matter here, because as we are going to show now, any choice leads to the same distribution of <M>A\v X+\v\mu.</M> 
+ 
+For this purpose we shall use characteristic functions. In the multivariate set up, they are defined as follows.
+
+<DEFN name="Multivariate characteristic function">
 Let <M>\v U = (U_1,...,U_m)'</M>  be a random vector. Then its <TERM>characteristic function</TERM>  is defined as <M>\xi:\rr^m\to\cc</M> 
  where
 <D>\xi(t_1,...,t_m)\equiv \xi(\v t) = E(e^{i\v t'\v U}).</D>
 </DEFN>
-The followin theorem, which is an obvious analogue for the corresponding univariate theorem, is what makes characteristic function
+The following theorem, which is an obvious analogue for the corresponding univariate theorem, is what makes characteristic function
  useful.
 <THM>
 For any <M>\rr^m</M>-valued random vector, its characteristic function exists. Also, the characteristic function uniquely
  determines the distribution.
 </THM>
 <PF>Not in this course.</PF>
-Now let us return to multivariate normal, and find its characteristic function.
-<THM>
-Let <M>X_1,...,X_n</M>  be IID <M>N(0,1).</M>  Let <M>A_{m\times n}</M>  be any fixed matrix and let <M>\v b_{m\times 1}</M> 
- be any fixed vector. Then <M>\v Y_{m\times 1} = A\v X+\v b</M>  has characteristic function
-<M>\exp(*(-[[12]]\v t'AA'\v t+i\v t'\v b)*).</M>
-</THM>
-<PF>
-Here <M>\v X</M> has characteristic function 
+Now let us return to the definition multivariate normal. We shall take any <M>A</M>  with
+ <M>\Sigma=AA',</M>  and show that the 
+ characteristic function of <M>\Sigma\v X+\v\mu</M>  will depend on <M>A</M>  only through <M>AA'=\Sigma.</M>  So the particular
+ choice of <M>A</M>  will not matter.
+
+We shall start with the characteristic function of  <M>\v X</M>:
 <D>E(\exp(i\v t'\v X) = E(e^{it_1X_1+\cdots it_nX_n}) =E(e^{it_1X_1}\cdots e^{it_nX_n})=
  E(e^{it_1X_1})\cdots E(e^{it_nX_n})) = e^{-t_1^2/2}\cdots e^{-t_n^2/2} = \exp(*(-[[12]]\v t'\v t)*).</D> 
 So the characteristic function of <M>A\v X + \v \mu</M>  is 
-<D>E(\exp(i\v t'(A\v X+\v b)) =E(\exp(i((A'\v t)'\v X+\v t'\v b)) = \exp(*(-[[12]]\v t'AA'\v t+i\v t'\v b)*),</D>
-as required.
-</PF>
-Thus, we see that
- different values of <M>A</M>  and <M>\v b</M>  may
- lead to the same multivariate normal. The characteristic function shows that <M>A_1,\v b_1</M>  and <M>A_2,\v
- b_2</M>  lead to the same distribution if and only if <M>A_1A_1' = A_2A_2'</M>  and <M>\v b_1=\v
- b_2.</M>  
-In other words, the distribution involves <M>\v b</M>  directly, but <M>A</M>  only through <M>AA'.</M> 
-So we parametrise
- multivariate normal by <M>\v b</M>  and <M>AA'.</M> 
- These are more commonly denoted by <M>\v \mu</M>  and <M>\Sigma,</M>  and <M>m</M>-dimensional multivariate normal with
- these parameters is denoted by <M>N_m(\v \mu, \Sigma).</M>  The abbreviation MVN is also used for multivariate normal.
+<MULTILINE>
+E(\exp(i\v t'(A\v X+\v \mu)) 
+& = & E(\exp(i((A'\v t)'\v X+\v t'\v \mu))\\
+& = & \exp(*(-[[12]]\v t'AA'\v t+i\v t'\v\mu)*)\\
+& = & \exp(*(-[[12]]\v t'\Sigma\v t+i\v t'\v \mu)*),
+</MULTILINE>
+which indeed does not involve <M>A.</M> 
 
-What are the possible values for <M>\v\mu</M>  and <M>\Sigma</M>? Well, since <M>\v\mu</M>  is just <M>\v b,</M>  which was
- any arbitrary vector in <M>\rr^m,</M>  so <M>\v \mu</M>  can be any vector in <M>\rr^m.</M>  The situation is slightly more
- tricky for <M>\Sigma.</M>   , because it is any matrix of the form <M>AA'</M>  where <M>A_{m\times n}</M>  is any arbitrary
- real matrix (for arbitrary <M>n\in\nn</M>). Thanks to the following theorem from linear algebra, we see that
-<M>\Sigma</M>  can be any <M>m\times m</M>  NND matrix.
-<THM>
-A matrix <M>\Sigma_{m\times m}</M>  is NND if and only if <M>\Sigma = AA'</M>  for some <M>A_{m\times n}</M>  for some <M>n\in\nn.</M>
-</THM>
-<PF>Should be covered in your Vectors and Matrices course.</PF>
+As a by product of the above steps we also get the characteristic function
 
 <HEAD2>Mean and dispersion</HEAD2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
@@ -94,15 +98,15 @@ In this case, the density is
 
 </THM>
 <PF>
- Since <M>\Sigma</M> 
- is anyway NND, this extra assumption is equivalent to <M>\Sigma</M>  being PD.
-
-<U>If part</U>: Since <M>\Sigma</M>  is PD, we can write <M>\Sigma = AA'</M>  for some nonsingular <M>A.</M>  So <M>N_m(\v\mu,\Sigma)</M> 
+<U>If part</U>: Since <M>\Sigma</M>  is NND, we can write <M>\Sigma = AA'</M>  for some 
+ <M>A_{m\times m}.</M> 
+ So <M>N_m(\v\mu,\Sigma)</M> 
  is the distribution of <M>A\v X+\v\mu,</M>  where <M>\v X</M>  has IID <M>N(0,1)</M>  components.
 
 Clearly, the density of <M>\v X</M>  is 
 <D>[[1][\sqrt{(2\pi)^n}]]\exp(*(-[[12]]\v x'\v x)*)\mbox{ for }\v x\in\rr^n.</D>
-Since <M>A</M>  is  nonsingular,  the transform <M>\v X\mapsto A\v X+\v \mu</M>  is a bijection. So the Jacobian formula
+Now, since <M>\Sigma</M>  is nonsingular, so must be <M>A</M>, and hence
+ the transform <M>\v X\mapsto A\v X+\v \mu</M>  is a bijection. So the Jacobian formula
  gives (check!) the following density for <M>\v Y = A\v X+\v \mu</M>
 <D>[[1][\sqrt{(2\pi)^n det(AA')}]]\exp(*(-[[12]](\v y-\v\mu)'(AA') ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n.</D> 
 Here we have used the fact that <M>\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.</M>
@@ -158,9 +162,20 @@ If <M>\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),</M>  then any subvector of  
  with the corresponding subsector of <M>\v \mu</M>  and principal submatrix of <M>\Sigma.</M>
 </THM>
 
+<HEAD2>Independent vs uncorrelated</HEAD2>
 If two random variables are
-independent, they must also be uncorrelated. However, the converse is not true. For multivariate normal the converse is also
- true. 
+independent, they must also be uncorrelated. However, the converse is not true in general. For multivariate
+ normal the converse is also
+ true. For this we need the following result about characteristic function:
+
+<THM>
+If <M>\v X</M>  and <M>\v Y</M>  are two random vectors with characteristic functions <M>\xi_X(\v s)</M>  and
+ <M>\xi_Y(\v t)</M>, then the characteristic function of <M>\v Z = <MAT>\v X\\\v
+ Y</MAT></M>  is <M>\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)</M>  if and only if <M>\v X</M>  and
+ <M>\v Y </M> are independent.
+</THM>
+<PF>Direct application of definition.</PF>
+
 <THM>If 
 <D>\v X = <MAT>\v X_1\\\v X_2</MAT>'\sim N_n(*(\underbrace{<MAT>\v \mu_1\\\v \mu_2</MAT> }_{\v\mu},
 \underbrace{<MAT>\Sigma_{11} &  \Sigma_{12}\\\Sigma_{12}' & \Sigma_{22}</MAT> }_\Sigma)*),</D>  then
@@ -186,11 +201,11 @@ and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
 
 Next we shall discuss some distributions related to the normal distribution.
 <HEAD1><M>\chi^2</M>  distribution</HEAD1>
-<DEFNIf <M>X_1,...,X_n</M>  are IID <M>N(0,1)</M>  then the distribution of <M>\sum_1^n X_i^2</M> 
- is called <TERM>chi-square distribution wit degrees of freedom</TERM> 
+<DEFN name="$\chi^2$">If <M>X_1,...,X_n</M>  are IID <M>N(0,1)</M>  then the distribution of <M>\sum_1^n X_i^2</M> 
+ is called <TERM>chi-square distribution with degrees of freedom</TERM> 
  <M>n.</M>  We write 
 <D>\sum_1^n X_i^2\sim \chi_{(n)}^2.</D>
-
+</DEFN>
 <THM>
 <M>\k n</M>  is the same as <M>Gamma(*([[n2]],[[12]])*).</M>
 </THM>

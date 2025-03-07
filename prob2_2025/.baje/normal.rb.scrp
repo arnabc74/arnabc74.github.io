@@ -1,17 +1,40 @@
-<D>[[1][\sqrt{(2\pi)^n det(\Sigma)}]]\exp(*(-[[12]](\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
+Let <M>\v X = (X_1,...,X_n)'</M>  be a random vector, where  <M>X_1,...,X_n</M>  are IID
+ <M>N(0,1).</M> Let <M>A_{m\times n}</M>  be any fixed matrix, and <M>\v b_{m\times1}</M>  be any
 -------EOD-------
-<D>[[1][\sqrt{(2\pi)^n det(AA')}]]\exp(*(-[[12]](\v y-\v\mu)'(AA') ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
+<TERM>multivariate normal</TERM>. 
 -------EOD-------
-Here we have used the fact that <M>\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.</M>
+It turns out that <M>\v Y</M>  may not have joint density for certain choices of <M>A.</M>  Also, the joint CDF of <M>\v Y</M> 
+ not easy to write down. So, in order to deal with the multivariate normal family of distributions in general, we use characteristic function.
+First, let us define characteristic function for a multivariate distribution.
 -------EOD-------
-The case where <M>A</M>  is nonsingular  is sometimes called a nonsingular multivariate normal to
- distinguish from the case where
- <M>A</M>  is singular, where
- <M>\v Y</M>  does not admit a density. 
+<THM>
+Let <M>X_1,...,X_n</M>  be IID <M>N(0,1).</M>  Let <M>A_{m\times n}</M>  be any fixed matrix and let <M>\v b_{m\times 1}</M> 
+ be any fixed vector. Then <M>\v Y_{m\times 1} = A\v X+\v b</M>  has characteristic function
+<M>\exp(*(-[[12]]\v t'AA'\v t+i\v t'\v b)*).</M>
+</THM>
+<PF>
 -------EOD-------
-<HEAD1>Multivariate normal distribution (part 2)</HEAD1>
-One trouble with multivariate normal distribution is that not all members of this famiy admit a density. Also there is no
- closed form expression for the CDF. Fortunately, its characteristic function has a simple form, and is the best way to deal
- with all members of the multivariate normal distribution family in general. 
-<HEAD2>Problem set <PS/></HEAD2>
+</PF>
+-------EOD-------
+Thus, we see that
+ different values of <M>A</M>  and <M>\v b</M>  may
+ lead to the same multivariate normal. The characteristic function shows that <M>A_1,\v b_1</M>  and <M>A_2,\v
+ b_2</M>  lead to the same distribution if and only if <M>A_1A_1' = A_2A_2'</M>  and <M>\v b_1=\v
+ b_2.</M>  
+In other words, the distribution involves <M>\v b</M>  directly, but <M>A</M>  only through <M>AA'.</M> 
+So we parametrise
+ multivariate normal by <M>\v b</M>  and <M>AA'.</M> 
+ These are more commonly denoted by <M>\v \mu</M>  and <M>\Sigma,</M>  and <M>m</M>-dimensional multivariate normal with
+ these parameters is denoted by <M>N_m(\v \mu, \Sigma).</M>  The abbreviation MVN is also used for multivariate normal.
+
+What are the possible values for <M>\v\mu</M>  and <M>\Sigma</M>? Well, since <M>\v\mu</M>  is just <M>\v b,</M>  which was
+ any arbitrary vector in <M>\rr^m,</M>  so <M>\v \mu</M>  can be any vector in <M>\rr^m.</M>  The situation is slightly more
+ tricky for <M>\Sigma.</M>   , because it is any matrix of the form <M>AA'</M>  where <M>A_{m\times n}</M>  is any arbitrary
+ real matrix (for arbitrary <M>n\in\nn</M>). Thanks to the following theorem from linear algebra, we see that
+<M>\Sigma</M>  can be any <M>m\times m</M>  NND matrix.
+-------EOD-------
+<THM>
+A matrix <M>\Sigma_{m\times m}</M>  is NND if and only if <M>\Sigma = AA'</M>  for some <M>A_{m\times n}</M>  for some <M>n\in\nn.</M>
+</THM>
+<PF>Should be covered in your Vectors and Matrices course.</PF>
 -------EOD-------

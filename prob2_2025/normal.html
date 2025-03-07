@@ -173,6 +173,9 @@ function myFunction() {
 <a href="#Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Independent vs uncorrelated">Independent vs uncorrelated</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 3">Problem set 3</a>
 </li>
 <li>
@@ -214,25 +217,50 @@ $\newcommand{\k}[1]{\chi^2_{(#1)}}$
 <h1><a
 name="Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a></h1>
 Here we shall discuss the most commonly used multivariate distribution, the multivariate normal distribution. 
+<p></p>
+First we shall recast the defnition of univariate normal from the last chapter to a form suitable for generalisation to higher
+ dimensions. Instead of defining $N(\mu,\sigma^2)$  via density, we shall start with just $N(0,1)$  and define
+ it via the density $\frac{1}{\sqrt{2\pi}} e^{-x^2/2},~~x\in{\mathbb R}.$  Then for any $\sigma^2 \geq 0$  we can define $N(\mu,\sigma^2)$ 
+ as the distribution of $\sigma X+\mu,$  whre $X\sim N(0,1).$  Convince yourself that this is equivalent to what
+the definition of univariate normal given  in the last chapter, and that this includes the $\sigma^2=0$  case also.
+<p></p>
+Now we are ready for the multivariate generalisation. For $N(\mu, \sigma^2)$  the parameters were $\mu\in{\mathbb R}$ 
+ and $\sigma^2\geq 0.$  In $m$-dim our parameters will be a vector $\v\mu\in{\mathbb R}^m$  and a NND matrix
+ $\Sigma_{m\times m}. $  We shall need the following fact about NND matrices from linear algebra:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A matrix $\Sigma_{m\times m}$  is NND if and only if $\Sigma = AA'$  for some $A_{m\times n}$  for some $n\in{\mathbb N}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Should be covered in your Vectors and Matrices course.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+At last we come to the definition of multivariate normal.
 <fieldset>
 <legend><b>Definition:  Multivariate normal</b></legend>
-Let $\v X = (X_1,...,X_n)'$  be a random vector, where  $X_1,...,X_n$  are IID
- $N(0,1).$ Let $A_{m\times n}$  be any fixed matrix, and $\v b_{m\times1}$  be any
- fixed vector. Then the joint distribution of $\v Y=A\v X + \v b$  is called $m$-dimensional
-<b><font color="red" size="40">multivariate normal</font></b>. 
+For any $\v\mu\in{\mathbb R}^m$  and any NND $\Sigma_{m\times m}$  we define  $N_m(\v\mu, \Sigma)$, the $m$-dimensional
+ <b><font color="red" size="40">multivariate normal distribution</font></b>  as the distribution of 
+ $\v Y=A\v X + \v b$, where $\v X_{m\times 1}$  has IID $N(0,1)$  components, and
+ $A_{m\times m}$  is any matrix
+ such that $\Sigma = AA'.$
 </fieldset>
-It turns out that $\v Y$  may not have joint density for certain choices of $A.$  Also, the joint CDF of $\v Y$ 
- not easy to write down. So, in order to deal with the multivariate normal family of distributions in general, we use characteristic function.
-First, let us define characteristic function for a multivariate distribution.
+The only point that one feels uncomfortable about is the choice of $A.$  in the univariate case, obtaining $\sigma$ 
+ from $\sigma^2$  was straightforward, just take the unique nonnegative square root. But in the multivariate set up
+ there are, ingeneral infinitely many choices for $A$  such that $\Sigma=AA'.$  Which one should we take. Fortunately
+ it dows not matter here, because as we are going to show now, any choice leads to the same distribution of $A\v X+\v\mu.$ 
+<p></p>
+For this purpose we shall use characteristic functions. In the multivariate set up, they are defined as follows.
 <p></p>
 
 <fieldset>
-<legend><b>Definition: multivariate characteristic function</b></legend>
+<legend><b>Definition: Multivariate characteristic function</b></legend>
 Let $\v U = (U_1,...,U_m)'$  be a random vector. Then its <b><font color="red" size="40">characteristic function</font></b>  is defined as $\xi:{\mathbb R}^m\rightarrow{\mathbb C}$ 
  where
 $$\xi(t_1,...,t_m)\equiv \xi(\v t) = E(e^{i\v t'\v U}).$$
 </fieldset>
-The followin theorem, which is an obvious analogue for the corresponding univariate theorem, is what makes characteristic function
+The following theorem, which is an obvious analogue for the corresponding univariate theorem, is what makes characteristic function
  useful.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -243,49 +271,24 @@ For any ${\mathbb R}^m$-valued random vector, its characteristic function exists
 <p>
 <b><i>Proof:</i></b>Not in this course.<b><i>[QED]</i></b>
 </p>
-Now let us return to multivariate normal, and find its characteristic function.
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $X_1,...,X_n$  be IID $N(0,1).$  Let $A_{m\times n}$  be any fixed matrix and let $\v b_{m\times 1}$ 
- be any fixed vector. Then $\v Y_{m\times 1} = A\v X+\v b$  has characteristic function
-$\exp\left(-\frac 12\v t'AA'\v t+i\v t'\v b\right).$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Here $\v X$ has characteristic function 
+Now let us return to the definition multivariate normal. We shall take any $A$  with
+ $\Sigma=AA',$  and show that the 
+ characteristic function of $\Sigma\v X+\v\mu$  will depend on $A$  only through $AA'=\Sigma.$  So the particular
+ choice of $A$  will not matter.
+<p></p>
+We shall start with the characteristic function of  $\v X$:
 $$E(\exp(i\v t'\v X) = E(e^{it_1X_1+\cdots it_nX_n}) =E(e^{it_1X_1}\cdots e^{it_nX_n})=
  E(e^{it_1X_1})\cdots E(e^{it_nX_n})) = e^{-t_1^2/2}\cdots e^{-t_n^2/2} = \exp\left(-\frac 12\v t'\v t\right).$$ 
 So the characteristic function of $A\v X + \v \mu$  is 
-$$E(\exp(i\v t'(A\v X+\v b)) =E(\exp(i((A'\v t)'\v X+\v t'\v b)) = \exp\left(-\frac 12\v t'AA'\v t+i\v t'\v b\right),$$
-as required.
-<b><i>[QED]</i></b>
-</p>
-Thus, we see that
- different values of $A$  and $\v b$  may
- lead to the same multivariate normal. The characteristic function shows that $A_1,\v b_1$  and $A_2,\v
- b_2$  lead to the same distribution if and only if $A_1A_1' = A_2A_2'$  and $\v b_1=\v
- b_2.$  
-In other words, the distribution involves $\v b$  directly, but $A$  only through $AA'.$ 
-So we parametrise
- multivariate normal by $\v b$  and $AA'.$ 
- These are more commonly denoted by $\v \mu$  and $\Sigma,$  and $m$-dimensional multivariate normal with
- these parameters is denoted by $N_m(\v \mu, \Sigma).$  The abbreviation MVN is also used for multivariate normal.
+$$\begin{eqnarray*}
+E(\exp(i\v t'(A\v X+\v \mu)) 
+&amp; = &amp; E(\exp(i((A'\v t)'\v X+\v t'\v \mu))\\
+&amp; = &amp; \exp\left(-\frac 12\v t'AA'\v t+i\v t'\v\mu\right)\\
+&amp; = &amp; \exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right),
+\end{eqnarray*}$$
+which indeed does not involve $A.$ 
 <p></p>
-What are the possible values for $\v\mu$  and $\Sigma$? Well, since $\v\mu$  is just $\v b,$  which was
- any arbitrary vector in ${\mathbb R}^m,$  so $\v \mu$  can be any vector in ${\mathbb R}^m.$  The situation is slightly more
- tricky for $\Sigma.$   , because it is any matrix of the form $AA'$  where $A_{m\times n}$  is any arbitrary
- real matrix (for arbitrary $n\in{\mathbb N}$). Thanks to the following theorem from linear algebra, we see that
-$\Sigma$  can be any $m\times m$  NND matrix.
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-A matrix $\Sigma_{m\times m}$  is NND if and only if $\Sigma = AA'$  for some $A_{m\times n}$  for some $n\in{\mathbb N}.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>Should be covered in your Vectors and Matrices course.<b><i>[QED]</i></b>
-</p>
-
+As a by product of the above steps we also get the characteristic function of $N_m(\v\mu,\Sigma).$ 
 <p></p>
 
 <h2><a
@@ -343,16 +346,15 @@ $$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{
 
 <p>
 <b><i>Proof:</i></b>
- Since $\Sigma$ 
- is anyway NND, this extra assumption is equivalent to $\Sigma$  being PD.
-<p></p>
-
-<u>If part</u>: Since $\Sigma$  is PD, we can write $\Sigma = AA'$  for some nonsingular $A.$  So $N_m(\v\mu,\Sigma)$ 
+<u>If part</u>: Since $\Sigma$  is NND, we can write $\Sigma = AA'$  for some 
+ $A_{m\times m}.$ 
+ So $N_m(\v\mu,\Sigma)$ 
  is the distribution of $A\v X+\v\mu,$  where $\v X$  has IID $N(0,1)$  components.
 <p></p>
 Clearly, the density of $\v X$  is 
 $$\frac{1}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12\v x'\v x\right)\mbox{ for }\v x\in{\mathbb R}^n.$$
-Since $A$  is  nonsingular,  the transform $\v X\mapsto A\v X+\v \mu$  is a bijection. So the Jacobian formula
+Now, since $\Sigma$  is nonsingular, so must be $A$, and hence
+ the transform $\v X\mapsto A\v X+\v \mu$  is a bijection. So the Jacobian formula
  gives (check!) the following density for $\v Y = A\v X+\v \mu$
 $$\frac{1}{\sqrt{(2\pi)^n det(AA')}}\exp\left(-\frac 12(\v y-\v\mu)'(AA') ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n.$$ 
 Here we have used the fact that $\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.$
@@ -435,9 +437,30 @@ If $\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),$  then any subvector of  $\v X
 </fieldset>
 
 <p></p>
+
+<h2><a
+name="Independent vs uncorrelated">Independent vs uncorrelated</a></h2>
 If two random variables are
-independent, they must also be uncorrelated. However, the converse is not true. For multivariate normal the converse is also
- true. 
+independent, they must also be uncorrelated. However, the converse is not true in general. For multivariate
+ normal the converse is also
+ true. For this we need the following result about characteristic function:
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X$  and $\v Y$  are two random vectors with characteristic functions $\xi_X(\v s)$  and
+ $\xi_Y(\v t)$, then the characteristic function of $\v Z = \left[\begin{array}{ccccccccccc}\v X\\\v
+ Y
+\end{array}\right]$  is $\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)$  if and only if $\v X$  and
+ $\v Y $ are independent.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Direct application of definition.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If 
 $$\v X = \left[\begin{array}{ccccccccccc}\v X_1\\\v X_2
