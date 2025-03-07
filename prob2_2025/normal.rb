@@ -3,6 +3,8 @@
 <M>\newcommand{\k}[1]{\chi^2_{(#1)}}</M>
 <TITLE>Multivariate normal and related distributions</TITLE>
 <HEAD1 u="https://youtu.be/3EQggZLAYKY">Multivariate normal distribution (part 1)</HEAD1>
+
+
 Here we shall discuss the most commonly used multivariate distribution, the multivariate normal distribution. 
 
 First we shall recast the defnition of univariate normal from the last chapter to a form suitable for generalisation to higher
@@ -91,7 +93,7 @@ As a by product of the above steps we also get the characteristic function of <M
 <EXR>True or false: The characteristic function of <M>N_m(\v\mu,\Sigma)</M>  is real-valued if and only if <M>\v\mu=\v0.</M></EXR>
 
 <HEAD1 u="https://youtu.be/r5R0ZXMAOYw">Multivariate normal distribution (part 3)</HEAD1>
-
+ 
 <THM>
 If <M>\v Y\sim N_m(\v \mu, \Sigma)</M>  and <M>B_{n\times m}</M>  and <M>\v c_{n\times 1}</M>  are
  fixed, then <M>\v Z = B\v Y+\v c\sim N_n(B\v \mu + \v c, B\Sigma B').</M>
