@@ -1,5 +1,5 @@
  @{<NOTE>
-<M>\newcommand{\v}[1]{{\mathbf #1}}</M>
+<M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <M>\newcommand{\k}[1]{\chi^2_{(#1)}}</M>
 <TITLE>Multivariate normal and related distributions</TITLE>
 <HEAD1 u="https://youtu.be/3EQggZLAYKY">Multivariate normal distribution (part 1)</HEAD1>
@@ -206,23 +206,24 @@ and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
 
 <EXR>If <M>\v X\sim N_m(\v\mu,\Sigma)</M>  and the components of <M>\v X</M>  are all independent,
  then what can you say about the structure of <M>\Sigma?</M></EXR>
-<EXR>Let <M><MAT>\v X\_{m\times 1}\\\v Y</MAT> \sim N_{m+n}(*(\v 0, <MAT>A_{m\times m} & B\\B' &
- C</MAT>)*).</M>  What is the distribution of <M>\v X</M>  and <M>\v Y</M>  separately? </EXR>
-
-<EXR>(Continuation of the last problem) If <M><MAT>A & B\\B' & C</MAT></M>  is nonsingular, then
- show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
-<M>N_{n-m} (B'A ^{-1}\v x, D-B'A ^{-1} B).</M>
-
-[You will need the following not-so-well-known result from linear algebra: If <M>P = <MAT>A & B \\ C & D</MAT></M>  is a nonsingular
- matrix, where <M>A</M>  is also nonsingular, then
-<D>P ^{-1} = <MAT>A ^{-1} + A ^{-1}BXC A ^{-1} & -A ^{-1} BX\\ -XC A ^{-1} & X</MAT>,</D> 
-where <M>X = (D-CA ^{-1} B) ^{-1}.</M> 
-
-Also, be warned! The proof is somewhat long! You may like to first do the case <M>m=1</M>  and <M>n=2.</M>]
-</EXR>
 
 <EXR>Let <M>\v X\sim N_n(\v\mu,I).</M>  Let <M>\v a, \v b\in\rr^n</M>  be orthogonal to each
  other. Show that <M>\v a'\v X</M>  and <M>\v b'\v X</M>  must be independent.</EXR>
+
+
+<EXR>Let <M><MAT>\v X_{m\times 1}\\\v Y</MAT> \sim N_{m+n}(*(<MAT>\v \mu_1\\\v\mu_2</MAT>, <MAT>A_{m\times m} & B\\B' &
+ C</MAT>)*).</M>  What is the distribution of <M>\v X</M>  and <M>\v Y</M>  separately? </EXR>
+
+<EXR>(Continuation of the last problem) If <M>A</M> is nonsingular, then show that <M>\v
+ Y-B'A ^{-1}\v X</M>  and
+ <M>\v X</M>  are independent.
+</EXR>
+
+<EXR>(Continuation of the last problem) Write <M>\v Y = B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)</M>  and 
+ show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
+<M>N_{n-m} (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), D-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
+</EXR>
+
 
 <HEAD1>Multivariate normal distribution (part 5)</HEAD1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
