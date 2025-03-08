@@ -148,7 +148,7 @@ Find the distribution of <M>\v Y = (2X_1-3X_4+X_5,~~X_1+X_4)'.</M>
 
 [Hint: Don't struggle with the full <M>5\times5</M>  matrix.]
 </EXR>
-<HEAD1>Multivariate normal distribution (part 4)</HEAD1>
+<HEAD1 u="https://youtu.be/wFf2WTW_5M0">Multivariate normal distribution (part 4)</HEAD1>
 <HEAD2>Mean and dispersion</HEAD2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <THM>
@@ -163,7 +163,14 @@ So <M>E(\v X) = \v 0</M>  and <M>V(\v X) = I.</M>
 Hence <M>E(\v Y) = E(A\v X+\v\mu) = A E(\v X)+\v\mu = \v\mu,</M>
 and <M>V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.</M> 
 </PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find <M>E(\v X)</M>  and <M>V(\v X)</M>  if <M>\v X</M>  has characteristic function
+ <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
 
+<EXR>If <M>\v X\sim N_m(\v\mu,\Sigma)</M>  and the components of <M>\v X</M>  are all independent,
+ then what can you say about the structure of <M>\Sigma?</M></EXR>
+
+<HEAD1 u="https://youtu.be/Y9Y1bHsltoA">Multivariate normal distribution (part 5)</HEAD1>
 
 <HEAD2>Independent vs zero covariance</HEAD2>
 If two random variables are
@@ -194,18 +201,33 @@ Writing <M>\v t =<MAT>\v t_1\\\v t_2</MAT>, </M>  we have
 since <M>\Sigma_{12}=O.</M>
 
 Again
-<D>\v t'\v \mu = <MAT>\v t_1' & \v t_2'</MAT><MAT>\v \mu_1 & \v \mu_2</MAT>  = \v t_1'\v \mu+\v t_2'\v \mu_2</D>
+<D>\v t'\v \mu = <MAT>\v t_1' & \v t_2'</MAT><MAT>\v \mu_1 & \v \mu_2</MAT>  = \v t_1'\v \mu_1+\v t_2'\v \mu_2</D>
 So the characteristic function factorises as
 <D>\xi_{\v X}(\v t)\equiv \xi_{\v X_1}(\v t_1)\xi_{\v X_1}(\v t_2),</D>
 and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
 </PF>
 
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>Find <M>E(\v X)</M>  and <M>V(\v X)</M>  if <M>\v X</M>  has characteristic function
- <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
+An important corollary is the following result.
 
-<EXR>If <M>\v X\sim N_m(\v\mu,\Sigma)</M>  and the components of <M>\v X</M>  are all independent,
- then what can you say about the structure of <M>\Sigma?</M></EXR>
+<THM>If <M>\v X\sim N_n(\v\mu, I)</M>  and <M>A_{p\times n}</M>  qr <M>B_{q\times n}</M>  are any
+ two fixed matrices with <M>AB'=O,</M>  then <M>A\v X</M>  and <M>B\v X</M>  must be independent.</THM>
+<PF>
+Immediate rom the theorem (try it!).
+</PF>
+
+A further corollary is 
+<THM>Suppose that <M>\v X\sim N_n(\v\mu, I)</M>  and let <M>S, T</M>  be two mutually orthogonal
+ subspaces of <M>\rr^n.</M>  Let <M>\v Y</M> and <M>\v Z</M>  be orthogonal projections of <M>\v
+ X</M>  on <M>S</M>  and <M>T,</M>  respectively. Then <M>\v Y</M>  and <M>\v Z</M>  must be independent.</THM>
+<PF>
+
+Let <M>P_S</M>  and <M>P_T</M>  be the orthogonal projection operators for <M>S</M>  and <M>T.</M>
+  Then they are both symmetric idempotent matrices with <M>P_SP_T = 0.</M>
+
+Now apply the last theorem.
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+
 
 <EXR>Let <M>\v X\sim N_n(\v\mu,I).</M>  Let <M>\v a, \v b\in\rr^n</M>  be orthogonal to each
  other. Show that <M>\v a'\v X</M>  and <M>\v b'\v X</M>  must be independent.</EXR>
@@ -224,20 +246,25 @@ and hence <M>\v X_1</M>  and <M>\v X_2</M>  are independent, as required.
 <M>N_{n-m} (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), D-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
 </EXR>
 
+<EXR>Let <M>\v X\sim N_n(\v0,I).</M>  We take some subspace of <M>\rr^n,</M>  and project <M>\v
+ X</M>  on it to get a vector <M>\v Y.</M>  Let <M>\v Z = \v X-\v Y.</M>  The situation is
+ depicted pictorially below.
+<CIMG web="projrej.png"></CIMG>
+Show that <M>\v Y</M>  and <M>\v Z</M>  are independent.
+</EXR>
 
-<HEAD1>Multivariate normal distribution (part 5)</HEAD1>
+<HEAD1>Multivariate normal distribution (part 6)</HEAD1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
  case, while the other case is called singular. We discuss these next.
 
 <HEAD2>Nonsingular and singular</HEAD2>
-<THM><M>N_m(\v\mu,\Sigma)</M>  admits a density if and only if <M>\Sigma</M>  is a nonsingular  matrix. 
-In this case, the density is 
+<THM>If <M>\Sigma</M>  is a nonsingular  matrix, then <M>N_m(\v\mu,\Sigma)</M>  has density  
 <D>[[1][\sqrt{(2\pi)^n det(\Sigma)}]]\exp(*(-[[12]](\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
-
+If <M>\Sigma</M>  is singular, then the distribution does not admit a density.
 </THM>
 <PF>
-<U>If part</U>: Since <M>\Sigma</M>  is NND, we can write <M>\Sigma = AA'</M>  for some 
+<U>Nonsingular case</U>: Since <M>\Sigma</M>  is NND, we can write <M>\Sigma = AA'</M>  for some 
  <M>A_{m\times m}.</M> 
  So <M>N_m(\v\mu,\Sigma)</M> 
  is the distribution of <M>A\v X+\v\mu,</M>  where <M>\v X</M>  has IID <M>N(0,1)</M>  components.
@@ -253,7 +280,8 @@ The density may be written as
 <D>[[1][\sqrt{(2\pi)^n det(\Sigma)}]]\exp(*(-[[12]](\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
 as required.
 
-<U>Only if part</U>: Actually, this part does not even require normality. Let <M>\v Y</M>  have dispersion matrix <M>\Sigma</M> 
+<U>Singular case</U>: Actually, this part does not even require normality. Let <M>\v Y</M>  have
+ dispersion matrix <M>\Sigma</M> 
  which is singular. 
 
 Let, if possible, <M>\v Y</M>  have density.
@@ -295,29 +323,22 @@ Starting from this section, we shall discuss some distributions related to the n
 <M>\k n</M>  is the same as <M>Gamma(*([[n2]],[[12]])*).</M>
 </THM>
 <PF>
-We shall proceed by induction.
+Let <M>X_1,...,X_n</M>  be IID <M>N(0,1).</M>
 
-<U>Basis</U>: <M>n=1</M>: Let <M>X\sim N(0,1).</M>
-
-Then <M>X^2</M>  has CDF <M>F(\cdot),</M>  where <M>F(a)=0</M>  for <M>a<0</M>  and for <M>a\geq 0</M>  we have
-<D>F(a) = P(X^2\leq a) =[[1][\sqrt{2\pi}]] \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=[[2][\sqrt{2\pi}]] \int_0^{\sqrt a} e^{-x^2/2}\, dx.</D>
+Then <M>X_1^2</M>  has CDF <M>F(\cdot),</M>  where <M>F(a)=0</M>  for <M>a<0</M>  and for <M>a\geq 0</M>  we have
+<D>F(a) = P(X_1^2\leq a) =[[1][\sqrt{2\pi}]] \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=[[2][\sqrt{2\pi}]] \int_0^{\sqrt a} e^{-x^2/2}\, dx.</D>
 Differentiating wrt <M>a</M>  we get the density
 <D>f(a) = F'(a) = [[2][\sqrt{2\pi}]] e^{-a/2}\mbox{ for }a>0.</D>
-We immediately recognise it as the <M>\k 1</M>  density, completing the basis.
+We immediately recognise it as the <M>Gamma(*([[12]],[[12]])*)</M>  density.
 
-<U>Hypothesis</U>: Assume the result for <M>n=1,...,m</M>  fir some <M>m\geq 1.</M>
-
-<U>Step</U>: Shall show for <M>n=m+1.</M>  
-
-Let <M>X_1,....,X_m,X_{m+1}</M>  be IID <M>N(0,1).</M>  
-
-Then <M>\sum_1^{m+1} X_i^2 = \underbrace{\sum_1^m X_i^2}_Y + \underbrace{X_{m+1}^2}_Z.</M>
-
-By the inducion hypothesis both <M>Y\sim Gamma(*([[m2]],[[12]])*)</M>  and <M>Z\sim Gamma(*([[12]],[[12]])*).</M> 
+So <M>X_i^2\sim Gamma(*([[12]],[[12]])*)</M>   for <M>i=1,2,...,n.</M>
 
 Also they are independent. 
 
-So <M>Y+Z\sim Gamma(*([[m+1][2]],[[12]])*),</M>  as required. 
+So, by the additivity property of the <M>Gamma</M>  distribution, we have 
+ <M>\sum_1^n X_i^2 \sim  Gamma(*([[n][2]],[[12]])*).</M>
+
+Hence <M>\k n\equiv  Gamma(*([[n][2]],[[12]])*),</M>   as required. 
 </PF>
 <HEAD2>Geometry of <M>\chi^2_{(k)}</M></HEAD2>
 If we consider a random vetor <M>\v X</M>  in <M>\rr^k</M>  with IID <M>N(0,1)</M>  components, <M>\|\v X\|^2\sim \k k.</M> 
@@ -336,7 +357,7 @@ Also <M>\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,</M>  as required.
 </PF>
 
 <EXR>
-Let <M>A</M>  be a symmetric, idempotent matrix. Let <M>\v X'A\v X\sim\k{r(A)}.</M>  Show tjis. 
+Let <M>A</M>  be a symmetric, idempotent matrix. Let <M>\v X'A\v X\sim\k{r(A)}.</M>  Show this. 
 </EXR>
 The following result is used in linear models. 
 <EXR>Let <M>\v X\sim N_n(\v \mu, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace
@@ -408,18 +429,35 @@ Hence the density of <M>[[nm]]Z</M>  is
 
 <HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Sampling distributions for normal sample</HEAD1>
-<THM>
-If <M>X_1,...,X_n</M>  are IID <M>N(\mu, \sigma^2),</M>  then for <M>a_1,...,a_n\in\rr</M>   we have <M>\sum a_i X_i\sim N(*(\mu\sum a_i, \sigma^2\sum a_i^2)*).</M>
-</THM>
-<PF>Easy.</PF>
 
 <THM>
-Let <M>X_1,...,X_n</M>  be IID <M>N(\mu, \sigma^2).</M>  Then 
+Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
+ the sampe mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
 <OL>
-<LI><M>\overline X\sim N(*(\mu,[[\sigma^2][n]]])*)</M></LI>
+<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
+<LI>nS^2\sim \k {n-1}</LI>
+<LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
 </OL>
-
 </THM>
+<PF>
+In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
+ <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
+
+We have learnt that in <M>\rr^n</M>  the component (i.e., orthogonal projection) of one vector <M>\v v</M>  along
+ another vector <M>\v u</M>  is <M>[[\v u'\v v][\v u'\v u]]\v u.</M> 
+
+So the orthogonal projection of <M>\v X</M>  along <M>\v 1</M>  (i.e., on <M>V</M>) is <M>\bar X\v 1.</M>  
+
+Hence the orthogonal projection of <M>\v X</M>  on <M>V^\perp</M>  is  
+<D>\v Y = \v X-\bar X\v 1 = <MAT>X_1-\bar X\\\vdots\\X_n-\bar X</MAT>.</D>
+So from earlier result, we immediately see that these two projections must be independent.
+
+Now <M>\bar X</M>  is a function of the first projection, while <M>S^2</M>  is a function of the second. So they are independent.
+
+Also <M>nS^2 = \|\v Y\|^2\sim \k{n-1}.</M>
+
+The distribution of <M>\bar X</M>  is obvious from an earlier theorem.
+</PF>
 <HEAD2>Problem set <PS/></HEAD2>
 
 <HEAD1>Miscellaneous problems</HEAD1>
