@@ -200,7 +200,10 @@ function myFunction() {
 <a href="#Multivariate normal distribution (part 6)">Multivariate normal distribution (part 6)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Nonsingular and singular">Nonsingular and singular</a>
+<a href="#Nonsingular: When density exists">Nonsingular: When density exists</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Singular: when density does not exist">Singular: when density does not exist</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 6">Problem set 6</a>
@@ -215,22 +218,22 @@ function myFunction() {
 <a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
-<a href="#$t$  and $F$  distributions">$t$  and $F$  distributions</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#$t$  distributions">$t$  distributions</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#$F$  distributions">$F$  distributions</a>
+<a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 8">Problem set 8</a>
 </li>
 <li>
-<a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
+<a href="#$t$  distribution">$t$  distribution</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 9">Problem set 9</a>
+</li>
+<li>
+<a href="#$F$  distribution">$F$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 10">Problem set 10</a>
 </li>
 <li>
 <a href="#Miscellaneous problems">Miscellaneous problems</a>
@@ -655,21 +658,21 @@ Show that $\v Y$  and $\v Z$  are independent.
 name="Multivariate normal distribution (part 6)">Multivariate normal distribution (part 6)</a></h1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
- case, while the other case is called singular. We discuss these next.
+ case, while the other case is called singular. The  case is determined by the $\Sigma$ 
+ matrix. If it is nonsingular, then we have density, else not.  We prove these next.
 <p></p>
 
 <h2><a
-name="Nonsingular and singular">Nonsingular and singular</a></h2>
+name="Nonsingular: When density exists">Nonsingular: When density exists</a></h2>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $\Sigma$  is a nonsingular  matrix, then $N_m(\v\mu,\Sigma)$  has density  
 $$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n,$$ 
-If $\Sigma$  is singular, then the distribution does not admit a density.
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-<u>Nonsingular case</u>: Since $\Sigma$  is NND, we can write $\Sigma = AA'$  for some 
+Since $\Sigma$  is NND, we can write $\Sigma = AA'$  for some 
  $A_{m\times m}.$ 
  So $N_m(\v\mu,\Sigma)$ 
  is the distribution of $A\v X+\v\mu,$  where $\v X$  has IID $N(0,1)$  components.
@@ -677,16 +680,36 @@ If $\Sigma$  is singular, then the distribution does not admit a density.
 Clearly, the density of $\v X$  is 
 $$\frac{1}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12\v x'\v x\right)\mbox{ for }\v x\in{\mathbb R}^n.$$
 Now, since $\Sigma$  is nonsingular, so must be $A$, and hence
- the transform $\v X\mapsto A\v X+\v \mu$  is a bijection. So the Jacobian formula
+ the transform $\v Y =  A\v X+\v \mu$  is a bijection. 
+<p></p>
+The inverse transform is $\v X = A ^{-1}(\v Y-\v\mu).$
+<p></p>
+The Jacobian of this inverse transform is $A ^{-1}.$
+<p></p>
+So the Jacobian formula
  gives (check!) the following density for $\v Y = A\v X+\v \mu$
-$$\frac{1}{\sqrt{(2\pi)^n det(AA')}}\exp\left(-\frac 12(\v y-\v\mu)'(AA') ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n.$$ 
-Here we have used the fact that $\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.$
-The density may be written as
+$$\frac{|det(A ^{-1})|}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12(\v y-\v\mu)'(A ^{-1})'A ^{-1}(\v y-\v\mu)\right)\mbox{
+ for }\v y\in{\mathbb R}^n.$$ 
+Since $\Sigma = AA',$  hence  $|det(A ^{-1})| = \frac{1}{\sqrt{det(\Sigma)}}$  and $(A ^{-1})'A ^{-1} = (AA') ^{-1} = \Sigma ^{-1}.$
+<p></p>
+So the density may be written as
 $$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n,$$ 
 as required.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Singular: when density does not exist">Singular: when density does not exist</a></h2>
+The other half does not even need any normality assumption.
 <p></p>
 
-<u>Singular case</u>: Actually, this part does not even require normality. Let $\v Y$  have
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $V(\v Y)$  is a singular  matrix, then $\v Y$  cannot have a density.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v Y$  have
  dispersion matrix $\Sigma$ 
  which is singular. 
 <p></p>
@@ -704,11 +727,9 @@ Let $P = \left[\begin{array}{ccccccccccc}\v a &amp; \cdots
 Then $P$  is nonsingular, and so $\v Z = P'\v Y$  is a bijective transform of $\v Y.$
 <p></p>
 So, by the Jacobian formula, $\v Z$  must also have joint density. Then its first component $\v a'\v Y$  must also
- have a (marginal) density. But that is impossible, since it is a degenrate random variable.
+ have a (marginal) density. But that is impossible, since it is a degenerate random variable.
 <p></p>
 Hence the result. 
-<p></p>
-
 <b><i>[QED]</i></b>
 </p>
 
@@ -726,7 +747,7 @@ name="Problem set 6">Problem set 6</a></h2>
 <b>EXERCISE 15:</b>&nbsp;Let $J_2$  be the $2\times2$  matrix with all entries equal to 1. Let 
 $$\left[\begin{array}{ccccccccccc}X\\Y
 \end{array}\right] \sim N_2(\v 0, J_2).$$
-If we take data $(x_1,y_1),...,(x_n,y_n)$  from $(X,Y)$ , what will the scatterplot look like?
+If we take data $(x_1,y_1),...,(x_n,y_n)$  from $(X,Y)$, what will the scatterplot look like?
 </p>
 
 <p></p>
@@ -795,11 +816,6 @@ Also $\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,$  as required.
 <b>EXERCISE 16:</b>&nbsp;
 Let $A$  be a symmetric, idempotent matrix. Let $\v X'A\v X\sim\k{r(A)}.$  Show this. 
 </p>
-The following result is used in linear models. 
-<p>
-<b>EXERCISE 17:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
- containing $\v \mu.$  Then show that the orthogonal projection of $\v X$  onto
- $S^\perp$  must have $\k {n-k}$  distribution.</p>
 
 <p></p>
 
@@ -813,11 +829,71 @@ If $X_1,...,X_n$  are independent $N(\mu_i,1),$  then the distribution $\sum X_i
 <h2><a
 name="Problem set 7">Problem set 7</a></h2>
 
+<p>
+<b>EXERCISE 17:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
+ containing $\v \mu.$  Then show that the orthogonal projection of $\v X$  onto
+ $S^\perp$  must have $\k {n-k}$  distribution.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;(Continuation of the last problem) How will the answer to the last problem change if $\v\mu\not\in S?$</p>
+
 <h1><a
-name="$t$  and $F$  distributions">$t$  and $F$  distributions</a></h1>
+name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, IID) from $N(\mu, \sigma^2).$ We consider
+ the sampe mean $\bar X=\frac 1n\sum _1^nX_i$  and sample variance $S^2=\frac 1n\sum_1^n (X_i-\bar X)^2.$   Then 
+<ol type="">
+
+<li>$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)$</li>
+
+<li>$nS^2\sim \k {n-1}$</li>
+
+<li>$\bar X$  and $S^2$  are independent.</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+In ${\mathbb R}^n$  consider the subspace $V=span\{\v 1\},$  where $\v 1$  is the vector of al $1$'s. Clearly,
+ $dim(V)=1$  and $dim(V^\perp)=n-1.$
+<p></p>
+We have learnt that in ${\mathbb R}^n$  the component (<i>i.e.</i>, orthogonal projection) of one vector $\v v$  along
+ another vector $\v u$  is $\frac{\v u'\v v}{\v u'\v u}\v u.$ 
+<p></p>
+So the orthogonal projection of $\v X$  along $\v 1$  (<i>i.e.</i>, on $V$) is $\bar X\v 1.$  
+<p></p>
+Hence the orthogonal projection of $\v X$  on $V^\perp$  is  
+$$\v Y = \v X-\bar X\v 1 = \left[\begin{array}{ccccccccccc}X_1-\bar X\\\vdots\\X_n-\bar X
+\end{array}\right].$$
+So from earlier result, we immediately see that these two projections must be independent.
+<p></p>
+Now $\bar X$  is a function of the first projection, while $S^2$  is a function of the second. So they are independent.
+<p></p>
+Also $nS^2 = \|\v Y\|^2\sim \k{n-1}.$
+<p></p>
+The distribution of $\bar X$  is obvious from an earlier theorem.
+<b><i>[QED]</i></b>
+</p>
 
 <h2><a
-name="$t$  distributions">$t$  distributions</a></h2>
+name="Problem set 8">Problem set 8</a></h2>
+
+<p>
+<b>EXERCISE 19:</b>&nbsp;
+Same set up as in the theorem above. What will  the distribution of $\sum_1^n (X_i-a)^2$ be, where $a\in{\mathbb R}$  is
+a fixed number?
+</p>
+
+<h1><a
+name="$t$  distribution">$t$  distribution</a></h1>
 
 <fieldset>
 <legend><b>Definition: $t$-distribution</b></legend>
@@ -854,8 +930,20 @@ It should not be difficult to see that $t$-density is symmetric around 0. The de
  density. They lie somewhere in-between the Cauchy density and $N(0,1)$  density. As the degrees of freedom increase
  to $\infty,$  the $t$-distribution approaches $N(0,1).$  For degrees of freedom more than 40, the $t$-density
  is virtually indisguishable from that of $N(0,1)$  density.
+<p></p>
+
 <h2><a
-name="$F$  distributions">$F$  distributions</a></h2>
+name="Problem set 9">Problem set 9</a></h2>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
+$$\frac{\sqrt n(\bar X-\mu)}{\sqrt{\sum(X_i-\bar X)^2/(n-1)}}?$$
+</p>
+
+<p></p>
+
+<h1><a
+name="$F$  distribution">$F$  distribution</a></h1>
 
 <fieldset>
 <legend><b>Definition: $F$-distribution</b></legend>
@@ -881,54 +969,15 @@ $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2
 <p></p>
 
 <h2><a
-name="Problem set 8">Problem set 8</a></h2>
-
-<h1><a
-name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, IID) from $N(\mu, \sigma^2).$ We consider
- the sampe mean $\bar X=\frac 1n\sum _1^nX_i$  and sample variance $S^2=\frac 1n\sum_1^n (X_i-\bar X)^2.$   Then 
-<ol type="">
-
-<li>$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)$</li>
-
-<li>nS^2\sim \k {n-1}</li>
-
-<li>$\bar X$  and $S^2$  are independent.</li>
-
-</ol>
-
-</fieldset>
+name="Problem set 10">Problem set 10</a></h2>
 
 <p>
-<b><i>Proof:</i></b>
-In ${\mathbb R}^n$  consider the subspace $V=span\{\v 1\},$  where $\v 1$  is the vector of al $1$'s. Clearly,
- $dim(V)=1$  and $dim(V^\perp)=n-1.$
-<p></p>
-We have learnt that in ${\mathbb R}^n$  the component (<i>i.e.</i>, orthogonal projection) of one vector $\v v$  along
- another vector $\v u$  is $\frac{\v u'\v v}{\v u'\v u}\v u.$ 
-<p></p>
-So the orthogonal projection of $\v X$  along $\v 1$  (<i>i.e.</i>, on $V$) is $\bar X\v 1.$  
-<p></p>
-Hence the orthogonal projection of $\v X$  on $V^\perp$  is  
-$$\v Y = \v X-\bar X\v 1 = \left[\begin{array}{ccccccccccc}X_1-\bar X\\\vdots\\X_n-\bar X
-\end{array}\right].$$
-So from earlier result, we immediately see that these two projections must be independent.
-<p></p>
-Now $\bar X$  is a function of the first projection, while $S^2$  is a function of the second. So they are independent.
-<p></p>
-Also $nS^2 = \|\v Y\|^2\sim \k{n-1}.$
-<p></p>
-The distribution of $\bar X$  is obvious from an earlier theorem.
-<b><i>[QED]</i></b>
+<b>EXERCISE 21:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from
+ $N(\mu_1,\sigma^2)$  and $N(\mu_2,\sigma^2)$, respectively (same $\sigma^2).$  
+Then what
+ is the distribution of 
+$$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 </p>
-
-<h2><a
-name="Problem set 9">Problem set 9</a></h2>
 
 <p></p>
 
@@ -936,22 +985,22 @@ name="Problem set 9">Problem set 9</a></h2>
 name="Miscellaneous problems">Miscellaneous problems</a></h1>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
+<b>EXERCISE 22:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
  find $E(X)$  and $V(X)$  in terms of $a,b,c.$  Also find median of $X.$</p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
+<b>EXERCISE 23:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
 and $Y$ have $N(0,1)$ distribution, but $(X,Y)$
 is not bivariate normal.</p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
+<b>EXERCISE 24:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
 $\mu\in{\mathbb R}^n$  and  $\Sigma$  be any $n\times n$  PD matrix. Suggest how you can
  use the software to generate a single observation from $N_n(\mu,\Sigma).$  Assume that the
  software can perform matrix operations.</p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
+<b>EXERCISE 25:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
  $(X,Y)$  lies in the annulus shown below?
 <center>
 <table width="100%">
@@ -967,41 +1016,41 @@ Express you answer in terms CDF of some standard distribution.
 </p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
+<b>EXERCISE 26:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
  $\mu\in{\mathbb R}$  and $\sigma^2&gt;0.$  Find $a&lt;b$  such that $P\left(a&lt; \frac{\bar
  X-\mu}{S/\sqrt{n}} &lt; b\right) = 0.95$  and $b-a$  is the least possible subject to this.</p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 26:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
 
 <p>
-<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 33:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 <hr/>

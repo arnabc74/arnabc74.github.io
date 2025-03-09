@@ -256,15 +256,15 @@ Show that <M>\v Y</M>  and <M>\v Z</M>  are independent.
 <HEAD1>Multivariate normal distribution (part 6)</HEAD1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
- case, while the other case is called singular. We discuss these next.
+ case, while the other case is called singular. The  case is determined by the <M>\Sigma</M> 
+ matrix. If it is nonsingular, then we have density, else not.  We prove these next.
 
-<HEAD2>Nonsingular and singular</HEAD2>
+<HEAD2>Nonsingular: When density exists</HEAD2>
 <THM>If <M>\Sigma</M>  is a nonsingular  matrix, then <M>N_m(\v\mu,\Sigma)</M>  has density  
 <D>[[1][\sqrt{(2\pi)^n det(\Sigma)}]]\exp(*(-[[12]](\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
-If <M>\Sigma</M>  is singular, then the distribution does not admit a density.
 </THM>
 <PF>
-<U>Nonsingular case</U>: Since <M>\Sigma</M>  is NND, we can write <M>\Sigma = AA'</M>  for some 
+Since <M>\Sigma</M>  is NND, we can write <M>\Sigma = AA'</M>  for some 
  <M>A_{m\times m}.</M> 
  So <M>N_m(\v\mu,\Sigma)</M> 
  is the distribution of <M>A\v X+\v\mu,</M>  where <M>\v X</M>  has IID <M>N(0,1)</M>  components.
@@ -272,15 +272,30 @@ If <M>\Sigma</M>  is singular, then the distribution does not admit a density.
 Clearly, the density of <M>\v X</M>  is 
 <D>[[1][\sqrt{(2\pi)^n}]]\exp(*(-[[12]]\v x'\v x)*)\mbox{ for }\v x\in\rr^n.</D>
 Now, since <M>\Sigma</M>  is nonsingular, so must be <M>A</M>, and hence
- the transform <M>\v X\mapsto A\v X+\v \mu</M>  is a bijection. So the Jacobian formula
+ the transform <M>\v Y =  A\v X+\v \mu</M>  is a bijection. 
+
+The inverse transform is <M>\v X = A ^{-1}(\v Y-\v\mu).</M>
+
+The Jacobian of this inverse transform is <M>A ^{-1}.</M>
+
+
+So the Jacobian formula
  gives (check!) the following density for <M>\v Y = A\v X+\v \mu</M>
-<D>[[1][\sqrt{(2\pi)^n det(AA')}]]\exp(*(-[[12]](\v y-\v\mu)'(AA') ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n.</D> 
-Here we have used the fact that <M>\sqrt{det(AA')} = \sqrt{det(A)det(A')} = |det(A)|.</M>
-The density may be written as
+<D>[[|det(A ^{-1})|][\sqrt{(2\pi)^n}]]\exp(*(-[[12]](\v y-\v\mu)'(A ^{-1})'A ^{-1}(\v y-\v\mu))*)\mbox{
+ for }\v y\in\rr^n.</D> 
+Since <M>\Sigma = AA',</M>  hence  <M>|det(A ^{-1})| = [[1][\sqrt{det(\Sigma)}]]</M>  and <M>(A ^{-1})'A ^{-1} = (AA') ^{-1} = \Sigma ^{-1}.</M>
+
+So the density may be written as
 <D>[[1][\sqrt{(2\pi)^n det(\Sigma)}]]\exp(*(-[[12]](\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
 as required.
+</PF>
+<HEAD2>Singular: when density does not exist</HEAD2>
+The other half does not even need any normality assumption.
 
-<U>Singular case</U>: Actually, this part does not even require normality. Let <M>\v Y</M>  have
+<THM>If <M>V(\v Y)</M>  is a singular  matrix, then <M>\v Y</M>  cannot have a density.
+</THM>
+<PF>
+Let <M>\v Y</M>  have
  dispersion matrix <M>\Sigma</M> 
  which is singular. 
 
@@ -297,10 +312,9 @@ Let <M>P = <MAT>\v a & \cdots </MAT></M>  be the matrix with these as columns.
 Then <M>P</M>  is nonsingular, and so <M>\v Z = P'\v Y</M>  is a bijective transform of <M>\v Y.</M>
 
 So, by the Jacobian formula, <M>\v Z</M>  must also have joint density. Then its first component <M>\v a'\v Y</M>  must also
- have a (marginal) density. But that is impossible, since it is a degenrate random variable.
+ have a (marginal) density. But that is impossible, since it is a degenerate random variable.
 
 Hence the result. 
-
 </PF>
 
 <HEAD2>Problem set <PS/></HEAD2>
@@ -308,7 +322,7 @@ Hence the result.
 
 <EXR>Let <M>J_2</M>  be the <M>2\times2</M>  matrix with all entries equal to 1. Let 
 <D><MAT>X\\Y</MAT> \sim N_2(\v 0, J_2).</D>
-If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M> , what will the scatterplot look like?
+If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M>, what will the scatterplot look like?
 </EXR>
 
 
@@ -359,18 +373,53 @@ Also <M>\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,</M>  as required.
 <EXR>
 Let <M>A</M>  be a symmetric, idempotent matrix. Let <M>\v X'A\v X\sim\k{r(A)}.</M>  Show this. 
 </EXR>
-The following result is used in linear models. 
-<EXR>Let <M>\v X\sim N_n(\v \mu, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace
- containing <M>\v \mu.</M>  Then show that the orthogonal projection of <M>\v X</M>  onto
- <M>S^\perp</M>  must have <M>\k {n-k}</M>  distribution.</EXR>
 
 <DEFN name="Non-central $\chi^2$">
 If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution <M>\sum X_i^2</M>  is
  called <TERM>noncentral <M>\k n</M>  with noncentralty parameter <M>\sum_i\mu_i^2.</M></TERM> 
 </DEFN>
 <HEAD2>Problem set <PS/></HEAD2>
-<HEAD1><M>t</M>  and <M>F</M>  distributions</HEAD1>
-<HEAD2><M>t</M>  distributions</HEAD2>
+<EXR>Let <M>\v X\sim N_n(\v \mu, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace
+ containing <M>\v \mu.</M>  Then show that the orthogonal projection of <M>\v X</M>  onto
+ <M>S^\perp</M>  must have <M>\k {n-k}</M>  distribution.</EXR>
+
+<EXR>(Continuation of the last problem) How will the answer to the last problem change if <M>\v\mu\not\in S?</M></EXR>
+<HEAD1>Sampling distributions for normal sample</HEAD1>
+
+<THM>
+Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
+ the sampe mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
+<OL>
+<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
+<LI><M>nS^2\sim \k {n-1}</M></LI>
+<LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
+</OL>
+</THM>
+<PF>
+In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
+ <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
+
+We have learnt that in <M>\rr^n</M>  the component (i.e., orthogonal projection) of one vector <M>\v v</M>  along
+ another vector <M>\v u</M>  is <M>[[\v u'\v v][\v u'\v u]]\v u.</M> 
+
+So the orthogonal projection of <M>\v X</M>  along <M>\v 1</M>  (i.e., on <M>V</M>) is <M>\bar X\v 1.</M>  
+
+Hence the orthogonal projection of <M>\v X</M>  on <M>V^\perp</M>  is  
+<D>\v Y = \v X-\bar X\v 1 = <MAT>X_1-\bar X\\\vdots\\X_n-\bar X</MAT>.</D>
+So from earlier result, we immediately see that these two projections must be independent.
+
+Now <M>\bar X</M>  is a function of the first projection, while <M>S^2</M>  is a function of the second. So they are independent.
+
+Also <M>nS^2 = \|\v Y\|^2\sim \k{n-1}.</M>
+
+The distribution of <M>\bar X</M>  is obvious from an earlier theorem.
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+Same set up as in the theorem above. What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
+a fixed number?
+</EXR>
+<HEAD1><M>t</M>  distribution</HEAD1>
 <DEFN name="$t$-distribution">
 If <M>X\sim N(0,1)</M>  and <M>Y\sim\k n</M>  and they are independent, then the distribution of <M>X/(\sqrt{Y/n})</M>  is
  called <M>t</M>-distribution with <M>n</M>  degrees of freedom. Here <M>n>0</M>  need not be an integer.
@@ -405,7 +454,14 @@ It should not be difficult to see that <M>t</M>-density is symmetric around 0. T
  density. They lie somewhere in-between the Cauchy density and <M>N(0,1)</M>  density. As the degrees of freedom increase
  to <M>\infty,</M>  the <M>t</M>-distribution approaches <M>N(0,1).</M>  For degrees of freedom more than 40, the <M>t</M>-density
  is virtually indisguishable from that of <M>N(0,1)</M>  density.
-<HEAD2><M>F</M>  distributions</HEAD2>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Let <M>X_1,...,X_n</M>  be a random sample from <M>N(\mu,\sigma^2).</M>  Then what is the distribution of 
+<D>[[\sqrt n(\bar X-\mu)][\sqrt{\sum(X_i-\bar X)^2/(n-1)}]]?</D>
+</EXR>
+
+
+<HEAD1><M>F</M>  distribution</HEAD1>
 <DEFN name="$F$-distribution">
 If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, then the distribution of <M>[[X/m][Y/n]]</M>  is
  called <M>F</M> -distribution with numerator degrees of freedom <M>m</M>  and denominator degrees of freedom <M>n.</M>
@@ -428,37 +484,12 @@ Hence the density of <M>[[nm]]Z</M>  is
 <D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES> </D>
 
 <HEAD2>Problem set <PS/></HEAD2>
-<HEAD1>Sampling distributions for normal sample</HEAD1>
-
-<THM>
-Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
- the sampe mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
-<OL>
-<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
-<LI>nS^2\sim \k {n-1}</LI>
-<LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
-</OL>
-</THM>
-<PF>
-In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
- <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
-
-We have learnt that in <M>\rr^n</M>  the component (i.e., orthogonal projection) of one vector <M>\v v</M>  along
- another vector <M>\v u</M>  is <M>[[\v u'\v v][\v u'\v u]]\v u.</M> 
-
-So the orthogonal projection of <M>\v X</M>  along <M>\v 1</M>  (i.e., on <M>V</M>) is <M>\bar X\v 1.</M>  
-
-Hence the orthogonal projection of <M>\v X</M>  on <M>V^\perp</M>  is  
-<D>\v Y = \v X-\bar X\v 1 = <MAT>X_1-\bar X\\\vdots\\X_n-\bar X</MAT>.</D>
-So from earlier result, we immediately see that these two projections must be independent.
-
-Now <M>\bar X</M>  is a function of the first projection, while <M>S^2</M>  is a function of the second. So they are independent.
-
-Also <M>nS^2 = \|\v Y\|^2\sim \k{n-1}.</M>
-
-The distribution of <M>\bar X</M>  is obvious from an earlier theorem.
-</PF>
-<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Let <M>X_1,...,X_m</M>  and <M>Y_1,...,Y_n</M>  be random samples from
+ <M>N(\mu_1,\sigma^2)</M>  and <M>N(\mu_2,\sigma^2)</M>, respectively (same <M>\sigma^2).</M>  
+Then what
+ is the distribution of 
+<D>[[\sum(X_i-\bar X)^2/(m-1)][\sum(Y_i-\bar Y)^2/(n-1)]]?</D>
+</EXR>
 
 <HEAD1>Miscellaneous problems</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then

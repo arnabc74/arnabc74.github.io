@@ -1,6 +1,52 @@
-<EXR>Find <M>E(\v X)</M>  and <M>V(\v X)</M>  if <M>\v X</M>  has characteristic function
- <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
+If <M>\Sigma</M>  is singular, then the distribution does not admit a density.
 -------EOD-------
-<EXR>If <M>\v X\sim N_m(\v\mu,\Sigma)</M>  and the components of <M>\v X</M>  are all independent,
- then what can you say about the structure of <M>\Sigma?</M></EXR>
+Here we have used the fact that the Jacobian is <M>A</M>  itself with absolute determinant
+-------EOD-------
+ <M>|det(A ^{-1})| = [[1][\sqrt{det(\Sigma)}]].</M>
+-------EOD-------
+<D>[[1][\sqrt{(2\pi)^n det(\Sigma)}]]\exp(*(-[[12]](\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu))*)\mbox{ for }\v y\in\rr^n,</D> 
+-------EOD-------
+ does not admit a density.
+-------EOD-------
+
+-------EOD-------
+<HEAD1>Sampling distributions for normal sample</HEAD1>
+
+<THM>
+Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
+ the sampe mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
+<OL>
+<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
+<LI><M>nS^2\sim \k {n-1}</M></LI>
+<LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
+</OL>
+</THM>
+<PF>
+In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
+ <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
+
+We have learnt that in <M>\rr^n</M>  the component (i.e., orthogonal projection) of one vector <M>\v v</M>  along
+ another vector <M>\v u</M>  is <M>[[\v u'\v v][\v u'\v u]]\v u.</M> 
+
+So the orthogonal projection of <M>\v X</M>  along <M>\v 1</M>  (i.e., on <M>V</M>) is <M>\bar X\v 1.</M>  
+
+Hence the orthogonal projection of <M>\v X</M>  on <M>V^\perp</M>  is  
+<D>\v Y = \v X-\bar X\v 1 = <MAT>X_1-\bar X\\\vdots\\X_n-\bar X</MAT>.</D>
+So from earlier result, we immediately see that these two projections must be independent.
+
+Now <M>\bar X</M>  is a function of the first projection, while <M>S^2</M>  is a function of the second. So they are independent.
+
+Also <M>nS^2 = \|\v Y\|^2\sim \k{n-1}.</M>
+
+The distribution of <M>\bar X</M>  is obvious from an earlier theorem.
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+-------EOD-------
+<HEAD1><M>t</M>  and <M>F</M>  distributions</HEAD1>
+-------EOD-------
+The following result is used in linear models. 
+-------EOD-------
+<EXR>Let <M>\v X\sim N_n(\v \mu, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace
+ containing <M>\v \mu.</M>  Then show that the orthogonal projection of <M>\v X</M>  onto
+ <M>S^\perp</M>  must have <M>\k {n-k}</M>  distribution.</EXR>
 -------EOD-------
