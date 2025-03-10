@@ -253,7 +253,7 @@ Now apply the last theorem.
 Show that <M>\v Y</M>  and <M>\v Z</M>  are independent.
 </EXR>
 
-<HEAD1>Multivariate normal distribution (part 6)</HEAD1>
+<HEAD1 u="https://youtu.be/rawtkxZq4fA">Multivariate normal distribution (part 6)</HEAD1>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
  special case, it does. This case is called the nonsingular
  case, while the other case is called singular. The  case is determined by the <M>\Sigma</M> 
@@ -320,8 +320,8 @@ Hence the result.
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Describe <M>N_2(\v0,I)</M>  distribution.</EXR>
 
-<EXR>Let <M>J_2</M>  be the <M>2\times2</M>  matrix with all entries equal to 1. Let 
-<D><MAT>X\\Y</MAT> \sim N_2(\v 0, J_2).</D>
+<EXR>Let
+<D><MAT>X\\Y</MAT> \sim N_2(*(<MAT>1\\2</MAT>, <MAT>1 & -1\\-1 & 1</MAT>).</D>
 If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M>, what will the scatterplot look like?
 </EXR>
 
