@@ -123,7 +123,7 @@ Apply the affine transform result with <M>B=</M> this matrix and <M>\v c=\v0</M>
 </PF>
 
 The second corollary is the multivariate analogue of univariate standardisation: If <M>X\sim N(\mu,\sigma^2)</M>  for <M>\sigma^2>0,</M> 
- then <M>[[X-\mu][ss]]\sim N(0,1).</M>
+ then <M>[[X-\mu][\sigma]]\sim N(0,1).</M>
 
 <THM>
 Let <M>\v X\sim N_n(\v\mu,\Sigma)</M>  where <M>\Sigma</M>  is nonsingular. Let <M>\Sigma = AA'</M>  for <M>A_{n\times n}.</M>
