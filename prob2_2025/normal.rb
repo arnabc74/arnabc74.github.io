@@ -328,7 +328,7 @@ Hence the result.
 <EXR>Describe <M>N_2(\v0,I)</M>  distribution.</EXR>
 
 <EXR>Let
-<D><MAT>X\\Y</MAT> \sim N_2(*(<MAT>1\\2</MAT>, <MAT>1 & -1\\-1 & 1</MAT>).</D>
+<D><MAT>X\\Y</MAT> \sim N_2(*(<MAT>1\\2</MAT>, <MAT>1 & -1\\-1 & 1</MAT>)*).</D>
 If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M>, what will the scatterplot look like?
 </EXR>
 
@@ -411,7 +411,7 @@ Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).
 </THM>
 <PF>Without loss of generality, we take <M>\mu=0.</M>
 <BECAUSE>Once we have proved the <M>\mu=0</M>  case, we can add <M>\mu</M>  to each <M>X_i</M>  to
- get a general form. This will add <M>\mu</M>  to <M>\bar X.</M>  Also <M>S^2</M>  will be unchanged.</BECAUSE>
+ get the general form. This will add <M>\mu</M>  to <M>\bar X.</M>  Also <M>S^2</M>  will be unchanged.</BECAUSE>
 In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
  <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
 
