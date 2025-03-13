@@ -409,7 +409,9 @@ Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).
 <LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
 </OL>
 </THM>
-<PF>
+<PF>Without loss of generality, we take <M>\mu=0.</M>
+<BECAUSE>Once we have proved the <M>\mu=0</M>  case, we can add <M>\mu</M>  to each <M>X_i</M>  to
+ get a general form. This will add <M>\mu</M>  to <M>\bar X.</M>  Also <M>S^2</M> </BECAUSE>
 In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
  <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
 
@@ -525,19 +527,19 @@ Now <M>\v Y=P\v X\sim N_n(\v0,I)</M>  and so we can write <M>(P\v X)' D (P\v X) 
 Now match characteristic function of this with the characteristic function of <M>\k r</M>  to see that each <M>d_1=\cdots=d_k=1</M> 
  and <M>r = k.</M>  
 </PF>
-We know that sum of independent <M>\k</M>  random variables is a again a <M>\k</M>  random variable with degrees of freedom
+We know that sum of independent <M>\chi^2</M>  random variables is a again a <M>\chi^2</M>  random variable with degrees of freedom
  adding up. Here is a partial converse.
 <THM>
 If <M>X\sim\k m</M>  and <M>Y</M>  is a nondegenerate independent random variable such that <M>X+Y\sim\k n</M>,
  then we must have <M>n> m</M> and <M>Y\sim\k{n-m}.</M>
  </THM>
 <PF>
-Let <M>Y</M>  have characteristic function <M>\xi(t).</M>  Then we have <M>(1-2it)^{m/2} \xi(t) = (1-2it)^{n/2}.</M>  
+Let <M>Y</M>  have characteristic function <M>\xi(t).</M>  Then we have <M>(1-2it)^{-m/2} \xi(t) = (1-2it)^{-n/2}.</M>  
 
-Hence we must have <M>\xi(t) = (1-2it)^{(n-m)/2}.</M>  
+Hence we must have <M>\xi(t) = (1-2it)^{-(n-m)/2}.</M>  
 
 Since <M>\xi(t)</M>  is the characteristic function of some nondegenerate random variable, hence
- <M>\xi(t)</M>  must be bounded and not0dentically
+ <M>\xi(t)</M>  must be bounded and not identically
  equal to 1. So <M>n > m.</M>  
 
 Since characteristic function determines the distribution, hence <M>Y\sim\k{n-m},</M>  as required.
@@ -564,10 +566,11 @@ Why do we care about the Fisher-Cochran theorem in probability or statistics? Be
  <M>\v X\sim N_n(0,I),</M>  and split it up into some parts <M>\v X = \v X_1+\cdots+\v
  X_k</M>  such that <M>\|\v X\|^2 = \|v X_1\|^2+\cdots+\|v X_k\|^2.</M>  Typically <M>\v X_i</M> 
  is the orthogonal projection of <M>\v X</M>  onto some subspace <M>S_i.</M>  If we can show that
- <M>\|v X_i\|^2</M>'s are <M>\k</M>  random variables, then FisherCochran theorem allows us to
+ <M>\|v X_i\|^2</M>'s are <M>\chi^2</M>  random variables, then Fisher-Cochran theorem allows us to
  conclude that they are independent (and <I>vice versa</I>).   However, in most practical situations you can directly show
  that <M>S_i</M>'s are mutually orthogonal and sum up to <M>\rr^n.</M>  So you can directly get the conclusion without using
- Fisher-Cochran
+the  Fisher-Cochran theorem.
+
 <HEAD1>Miscellaneous problems</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then
  find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>
