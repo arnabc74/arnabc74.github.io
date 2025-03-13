@@ -328,7 +328,7 @@ Hence the result.
 <EXR>Describe <M>N_2(\v0,I)</M>  distribution.</EXR>
 
 <EXR>Let
-<D><MAT>X\\Y</MAT> \sim N_2(*(<MAT>1\\2</MAT>, <MAT>1 & -1\\-1 & 1</MAT>).</D>
+<D><MAT>X\\Y</MAT> \sim N_2(*(<MAT>1\\2</MAT>, <MAT>1 & -1\\-1 & 1</MAT>)*).</D>
 If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M>, what will the scatterplot look like?
 </EXR>
 
@@ -405,13 +405,13 @@ Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).
  the sampe mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
 <OL>
 <LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
-<LI><M>nS^2\sim \k {n-1}</M></LI>
+<LI><M>[[nS^2][\sigma^2]]\sim \k {n-1}</M></LI>
 <LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
 </OL>
 </THM>
-<PF>Without loss of generality, we take <M>\mu=0.</M>
-<BECAUSE>Once we have proved the <M>\mu=0</M>  case, we can add <M>\mu</M>  to each <M>X_i</M>  to
- get a general form. This will add <M>\mu</M>  to <M>\bar X.</M>  Also <M>S^2</M>  will be</BECAUSE>
+<PF>Without loss of generality, we take <M>\mu=0</M>  and <M>\sigma=1.</M>
+<BECAUSE>Once we have proved the <M>\mu=0</M>  case, we can work with <M>\mu+\sigma X_i</M>  to
+ get the general form.</BECAUSE>
 In <M>\rr^n</M>  consider the subspace <M>V=span\{\v 1\},</M>  where <M>\v 1</M>  is the vector of al <M>1</M>'s. Clearly,
  <M>dim(V)=1</M>  and <M>dim(V^\perp)=n-1.</M>
 
@@ -507,9 +507,35 @@ Then what
 <D>[[\sum(X_i-\bar X)^2/(m-1)][\sum(Y_i-\bar Y)^2/(n-1)]]?</D>
 </EXR>
 <HEAD1>Distribution of quadratic forms</HEAD1>
-Since a matrix is an orthogonal projection matrix iff it is symmetric and idempotent, we have the following result. 
+<DEFN name="Quadratic form">
+By a <TERM>quadratic form</TERM>  in <M>n</M>-variables we understand a function <M>q:\rr^n\to\rr</M>  of the form
+<D>q(\v x) = \v x' A \v x</D>
+for some fixed real, symmetric matrix.
+</DEFN>
+Any quadratic form is a linear combination of terms like <M>x_i^2</M>  or <M>x_ix_j</M>  (for <M>i\neq j</M>). The definition
+ implies that every real, symmetric matrix produces a quadratic form. Conversely, every quadratic form has a unique real,
+ symmetric matrix associated with it. 
+<EXM>
+Write down the real, symmetric matrix associated with the quadratic form <M>q(x,y) = x_1x_2-x_2^2.</M>
+<SOLN/>
+There are two variables, so the matrix will be a <M>2\times 2</M>  one. The diagonal entries will come from the coefficcients
+ of the square terms: <M><MAT>0 & ?\\? & -1</MAT></M>, and the off-diagonal entries will come from the cross product terms:
+<M><MAT>0 & [[12]]\\[[12]] & -1</MAT>.</M>  The rule is: <M>(i,j)</M>-th entry is half the coefficient of <M>x_ix_j.</M>
+</EXM>
+In this section we shall deal with the following set up:
+<Q>
+<M>X_1,...,X_n</M>  are IID <M>N(0,1),</M>  or, equivalently <M>\v X = (X_1,...,X_n)'\sim N_N(\v0,I).</M>  We have some real, symmetric matrix
+ <M>A.</M>  We want to explore various necessary and sufficient condtions under which the quadratic form <M>\v X'A\v X</M> 
+ will have a <M>\k k</M>  distribution, and how <M>k</M>  is related with <M>A.</M>
+</Q>
+
+We had seen earlier that if <M>\v Y</M>  is the orthogonal projection of <M>\v X</M>  onto some subspace <M>T</M>  of <M>\rr^n,</M> 
+ then <M>\|\v Y\|^2\sim \k {dim(T)}.</M>  
+Since a matrix is an orthogonal projection matrix iff it is symmetric and idempotent, and the rank
+ of he matrix equals the dimension of the space we project on, we
+get  the following result. 
 <THM>
-Let <M>A</M>  be a symmetric, idempotent matrix. Let <M>\v X'A\v X\sim\k{r(A)}.</M> 
+Let <M>A</M>  be a symmetric, idempotent matrix. Then <M>\v X'A\v X\sim\k{r(A)}.</M> 
 </THM>
 A  sort of converse is also true, as shown in the next theorem.
 <THM>
@@ -524,8 +550,20 @@ Then <M>\v X' A\v X = \v X'P' D P \v X = (P\v X)' D (P\v X).</M>
 
 Now <M>\v Y=P\v X\sim N_n(\v0,I)</M>  and so we can write <M>(P\v X)' D (P\v X) = \sum_1^k d_i Y_i^2</M>, where <M>k=r(A).</M>
 
-Now match characteristic function of this with the characteristic function of <M>\k r</M>  to see that each <M>d_1=\cdots=d_k=1</M> 
- and <M>r = k.</M>  
+The <M>Y_j</M>'s are IID <M>N(0,1)</M>  and so <M>Y_j^2</M>'s are IID <M>\k 1</M>  random variables with characteristic function
+ <M>(1-2it)^{-1/2}.</M>
+
+So the characteristic function of <M>\sum_1^k d_i Y_i^2</M>  is
+<D>E[*[\exp(*(it\sum_1^k d_j Y_j^2)*)]*] = \prod_1^k E[*[\exp(*(it d_j Y_j^2)*)]*] = \prod_1^k \xi(t d_j) = \prod_1^k (1-2it d_j)^{-1/2}.</D>
+We want this to be the characteristic function of <M>\k r</M>  for some <M>r.</M>  So 
+<D>\prod_1^k (1-2it d_j)^{-1/2}=(1-2it)^{-r/2}.</D>
+In other words, we need 
+<D>(1-2it d_1)\cdots (1-2it d_k)=(1-2it)^r.</D>
+Matching degrees of sides, we see <M>r=k.</M>  
+
+Also, matching coefficients of powers of <M>t,</M>  we 
+ see that <M>d_1=\cdots=d_k=1.</M>  Hence <M>A = P'<MAT>I & O\\O & O</MAT>P</M>. We know that any matrix of this form must
+ be idempotent. This completes the proof.
 </PF>
 We know that sum of independent <M>\chi^2</M>  random variables is a again a <M>\chi^2</M>  random variable with degrees of freedom
  adding up. Here is a partial converse.
@@ -545,7 +583,7 @@ Since <M>\xi(t)</M>  is the characteristic function of some nondegenerate random
 Since characteristic function determines the distribution, hence <M>Y\sim\k{n-m},</M>  as required.
 </PF>
 
-<THM name="Fisher-Cochran theorem">
+<THM>
 If <M>A_1+\cdots A_k = I_{n\times n}</M>  then the following are equivalent:
 <OL>
 <LI><M>\forall i~~A_i^2=A_i.</M></LI>
@@ -562,15 +600,22 @@ This is <B>Theorem 3.7.7</B>  from RB2. Instead of looking up the proof from the
 </UL>
 </PF>
 
+<THM name="Fisher-Cochran theorem">
+Let <M>A_1,...,A_k</M>  be some <M>n\times n</M>  real, symmetric matrices with <M>A_1+\cdots+A_k = I.</M>  Then the following
+ are equivalent:
+<OL>
+<LI><M>\forall i~~ A_i^2 =A_i.</M></LI>
+<LI><M>\forall i\neq j~~ A_iA_j =O.</M></LI>
+<LI><M>r(A_1)+\cdots+r(A_k) = n.</M></LI>
+</OL>
+</THM>
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
- <M>\v X\sim N_n(0,I),</M>  and split it up into some parts <M>\v X = \v X_1+\cdots+\v
- X_k</M>  such that <M>\|\v X\|^2 = \|v X_1\|^2+\cdots+\|v X_k\|^2.</M>  Typically <M>\v X_i</M> 
- is the orthogonal projection of <M>\v X</M>  onto some subspace <M>S_i.</M>  If we can show that
- <M>\|v X_i\|^2</M>'s are <M>\chi^2</M>  random variables, then Fisher-Cochran theorem allows us to
- conclude that they are independent (and <I>vice versa</I>).   However, in most practical situations you can directly show
- that <M>S_i</M>'s are mutually orthogonal and sum up to <M>\rr^n.</M>  So you can directly get the conclusion without using
-the  Fisher-Cochran theorem.
-
+ <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
+Then the Fisher-Cochran theorem says that if the quadratic forms are independent, they must each
+ <M>\v X'A_i\v X</M>  be a <M>\k{n_i}</M>  random variable with <M>\sum n_i = n.</M>  
+Conversely, if each of the quadratic forms are chi-square random variables, then they must be independent.
+However, in most applications, we start with <M>\rr^n = S_1\oplus\cdots\oplus S_k,</M>  where the <M>S_i</M>'s are mutual
+ orthogonal
 <HEAD1>Miscellaneous problems</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then
  find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>
