@@ -510,7 +510,7 @@ Then what
 <DEFN name="Quadratic form">
 By a <TERM>quadratic form</TERM>  in <M>n</M>-variables we understand a function <M>q:\rr^n\to\rr</M>  of the form
 <D>q(\v x) = \v x' A \v x</D>
-for some fixed real, symmetric matrix.
+for some fixed real, symmetric matrix <M>A</M>.
 </DEFN>
 Any quadratic form is a linear combination of terms like <M>x_i^2</M>  or <M>x_ix_j</M>  (for <M>i\neq j</M>). The definition
  implies that every real, symmetric matrix produces a quadratic form. Conversely, every quadratic form has a unique real,
