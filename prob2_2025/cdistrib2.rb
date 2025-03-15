@@ -387,21 +387,7 @@ Since <M>f</M>  is a density, hence its total intergral must be 1. Hence <M>k < 
 ::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib11.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib13.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib14.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib15.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib16.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib17.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib18.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib19.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib20.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib21.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib22.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib23.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib24.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib25.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib26.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib27.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib28.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib29.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib30.png"></EIMG></EXR>
@@ -410,18 +396,11 @@ Since <M>f</M>  is a density, hence its total intergral must be 1. Hence <M>k < 
 ::<EXR><EIMG web="rossdistrib33.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib34.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib35.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib36.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib37.png"></EIMG></EXR>
-::<EXR><EIMG web="rosspdf9.png"/>
 
-Here is Example 5b that is refered above:
-<IMG web="rosspdf10.png">Example 5b</IMG>
-</EXR>
 
 ::<EXR><EIMG web="rosspdf15.png"/></EXR>
-::<EXR><EIMG web="hpspdf21.png"/></EXR>
 ::<EXR><EIMG web="hpspdf23.png"/></EXR>
-::<EXR><EIMG web="hpspdf25.png"/></EXR>
 ::<EXR><EIMG web="hpspdf27.png"/></EXR>
 ---
 ::<EXR><EIMG web="hpspdf28.png"/></EXR>
@@ -431,29 +410,22 @@ Here is Example 5b that is refered above:
 ::<EXR><EIMG web="hpspdf32.png"/></EXR>
 ::<EXR><EIMG web="hpspdf33.png"/></EXR>
 ::<EXR><EIMG web="hpspdf34.png"/></EXR>
-::<EXR><EIMG web="hpspdf35.png"/></EXR>
-::<EXR><EIMG web="hpspdf36.png"/></EXR>
-::<EXR><EIMG web="hpspdf37.png"/></EXR>
-::<EXR><EIMG web="hpspdf38.png"/></EXR>
-::<EXR><EIMG web="hpspdf39.png"/></EXR>
----
-::<EXR><EIMG web="hpspdf41.png"/></EXR>
+
 ::<EXR><EIMG web="hpspdf42.png"/></EXR>
 ::<EXR><EIMG web="hpspdf43.png"/></EXR>
 ::<EXR><EIMG web="hpspdf44.png"/></EXR>
 ----
 ::<EXR><EIMG web="hpstrans3.png"/></EXR>
-::<EXR><EIMG web="hpstrans6.png"/></EXR>
 ::<EXR><EIMG web="hpstrans10.png"/></EXR>
 ::<EXR><EIMG web="hpstrans11.png"/></EXR>
 ::<EXR><EIMG web="hpstrans13.png"/></EXR>
-::<EXR><EIMG web="hpstrans15.png"/></EXR>
-::<EXR><EIMG web="hpstrans16.png"/></EXR>
+
 ::<EXR><EIMG web="hpstrans17.png"/></EXR>
-::<EXR><EIMG web="hpstrans18.png"/></EXR>
 ::<EXR><EIMG web="hpstrans20.png"/></EXR>
-::<EXR><EIMG web="hpstrans22.png"/></EXR>
-::<EXR><EIMG web="hpstrans25.png"/></EXR>
+
 ::<EXR><EIMG web="hpstrans26.png"/></EXR>
+
+::<EXR><EIMG web="wilks7.png"/></EXR>
+::<EXR><EIMG web="wilks10.png"/></EXR>
 
 </NOTE>@}
