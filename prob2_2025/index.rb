@@ -3,7 +3,8 @@
 URL: https://arnabc74.github.io/prob2_2025/
 <HEAD2>Assignment and projects</HEAD2>
 You need to submit solution to the <LINK to="hw.html">assigned problems</LINK>  before the study leave starts. The assignment
- carries 10 marks. 
+ carries 10 marks. You must submit the solutions as handwritten hard copies. No pdf, doc, scans
+ sent via email/github will be accepted.
 
 The <LINK to="projects.html">projects</LINK>  are optional and carry no marks.
 
