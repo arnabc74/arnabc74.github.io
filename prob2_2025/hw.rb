@@ -2,7 +2,7 @@
 <M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <TITLE>Assignment</TITLE>
 You need to submit solutions to these before the study leave starts. The
- assignment carries 10 marks.
+ assignment carries 10 marks. Only hand-written hard copies will be accepted. 
    <HEAD1>Problems</HEAD1>
 <EXR><EIMG web="hpspdf28.png"></EIMG></EXR>
 <EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
