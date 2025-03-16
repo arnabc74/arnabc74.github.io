@@ -235,7 +235,7 @@ This is the most commonly used distribution in statistics.
 
 <DEFN name="Normal distribution">
 We say that <M>X\sim N(\mu,\sigma^2)</M>  to mean <M>X</M>  has density 
-<D>\phi(x) = [[1][\sqrt{2\pi\sigma^2}]] \exp(*(-[[(x-\mu)^2][\sigma^2]] )*),\quad x\in\rr.</D>
+<D>\phi(x) = [[1][\sqrt{2\pi\sigma^2}]] \exp(*(-[[(x-\mu)^2][2\sigma^2]] )*),\quad x\in\rr.</D>
 </DEFN>
 The density looks like the following: 
 <CIMG web="normdens.png"><M>\mu</M>  controls centre, <M>\sigma</M>  controls spread</CIMG>
