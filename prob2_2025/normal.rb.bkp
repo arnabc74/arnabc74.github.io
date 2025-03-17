@@ -583,32 +583,41 @@ Since <M>\xi(t)</M>  is the characteristic function of some nondegenerate random
 Since characteristic function determines the distribution, hence <M>Y\sim\k{n-m},</M>  as required.
 </PF>
 
-<THM>
-If <M>A_1+\cdots A_k = I_{n\times n}</M>  then the following are equivalent:
-<OL>
-<LI><M>\forall i~~A_i^2=A_i.</M></LI>
-<LI><M>\forall i\neq j~~A_iA_j=O.</M></LI>
-<LI><M>r(A_1)+\cdots+r(A_k) = n.</M></LI>
-</OL>
+<THM name="Fact from linear algebra">
+If <M>A</M>  is idempotent, then <M>r(A)=tr(A).</M>
 </THM>
-<PF>
-This is <B>Theorem 3.7.7</B>  from RB2. Instead of looking up the proof from there, you may like to prove the theorem yourself
- using the following two facts: 
-<UL>
-<LI>If <M>A</M>  is idempotent, then <M>r(A)=tr(A).</M></LI>
-<LI>If a matrix <M>A</M>  has rank factorisation <M>PQ</M>, then <M>A</M>  is idempotent if and only if <M>QP = I.</M></LI>
-</UL>
-</PF>
 
 <THM name="Fisher-Cochran theorem">
-Let <M>A_1,...,A_k</M>  be some <M>n\times n</M>  real, symmetric matrices with <M>A_1+\cdots+A_k = I.</M>  Then the following
+Let <M>A_1,...,A_k</M>  be some <M>n\times n</M>  nonzero, real, symmetric matrices with
+ <M>A_1+\cdots+A_k = I.</M>  Then the following
  are equivalent:
 <OL>
 <LI><M>\forall i~~ A_i^2 =A_i.</M></LI>
-<LI><M>\forall i\neq j~~ A_iA_j =O.</M></LI>
 <LI><M>r(A_1)+\cdots+r(A_k) = n.</M></LI>
+<LI><M>\forall i\neq j~~ A_iA_j =O.</M></LI>
 </OL>
 </THM>
+<PF>
+<U>(2) implies (1), (3)</U>: Let <M>A_i = B_iC_i</M>  be a rank factorisation. Then 
+<D>I = B_1C_1+\cdots+B_kC_k = \underbrace{<MAT>B_1 & \cdots & B_k</MAT> }_B\underbrace{<MAT>C_1\\ \vdots \\ C_k</MAT> }_C. </D>
+By (2) <M>B</M>  and <M>C</M>  are  <M>n\times n.</M>  So they are inverse of each other. 
+
+Hence <M>CB = I,</M>  as well. In other words,
+ <D><MAT>C_1\\ \vdots \\ C_k</MAT><MAT>B_1 & \cdots & B_k</MAT>=I.</D>
+Hence <M>\forall i~~C_iB_i = I</M>  and <M>\forall i\neq j~~C_iB_j = O.</M>
+
+So <M>A_i^2 = B_iC_iB_iC_i = B_iC_i= A_i.</M>  
+
+Also for <M>i\neq j</M>  we have  <M>A_iA_j = B_iC_iB_jC_j = O.</M>
+
+<U>(3) implies (1)</U>: We have <M>A_1+\cdots+A_k=I.</M>  Multiplying both sides with <M>A_i</M>  we get <M>A_iA_1+\cdots+A_iA_k=A_i.</M> 
+ 
+Thanks to (3), only the <M>i</M>-th term survives in the LHS. So we have <M>A_i^2 = A_i,</M>  as required.
+
+<U>(1) implies (2)</U>: We have <M>tr(A_1)+\cdots+tr(A_k) = tr(I)=n.</M>
+
+Since we have assumed (1), hence <M>tr(A_i)=r(A_i).</M>  So (2) follows.
+</PF>
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
  <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
 Then the Fisher-Cochran theorem says that if the quadratic forms are independent, they must each

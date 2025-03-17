@@ -1110,48 +1110,24 @@ Since characteristic function determines the distribution, hence $Y\sim\k{n-m},$
 <p></p>
 
 <fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $A_1+\cdots A_k = I_{n\times n}$  then the following are equivalent:
-<ol type="">
-
-<li>$\forall i~~A_i^2=A_i.$</li>
-
-<li>$\forall i\neq j~~A_iA_j=O.$</li>
-
-<li>$r(A_1)+\cdots+r(A_k) = n.$</li>
-
-</ol>
-
+<legend><b><i>Fact from linear algebra</i></b></legend>
+If $A$  is idempotent, then $r(A)=tr(A).$
 </fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-This is <b>Theorem 3.7.7</b>  from RB2. Instead of looking up the proof from there, you may like to prove the theorem yourself
- using the following two facts: 
-<ul>
-
-<li>If $A$  is idempotent, then $r(A)=tr(A).$</li>
-
-<li>If a matrix $A$  has rank factorisation $PQ$, then $A$  is idempotent if and only if $QP = I.$</li>
-
-</ul>
-
-<b><i>[QED]</i></b>
-</p>
 
 <p></p>
 
 <fieldset>
 <legend><b><i>Fisher-Cochran theorem</i></b></legend>
-Let $A_1,...,A_k$  be some $n\times n$  real, symmetric matrices with $A_1+\cdots+A_k = I.$  Then the following
+Let $A_1,...,A_k$  be some $n\times n$  nonzero, real, symmetric matrices with
+ $A_1+\cdots+A_k = I.$  Then the following
  are equivalent:
 <ol type="">
 
 <li>$\forall i~~ A_i^2 =A_i.$</li>
 
-<li>$\forall i\neq j~~ A_iA_j =O.$</li>
-
 <li>$r(A_1)+\cdots+r(A_k) = n.$</li>
+
+<li>$\forall i\neq j~~ A_iA_j =O.$</li>
 
 </ol>
 
@@ -1159,14 +1135,40 @@ Let $A_1,...,A_k$  be some $n\times n$  real, symmetric matrices with $A_1+\cdot
 
 <p>
 <b><i>Proof:</i></b>
-Immediate from the theorem above, taking $A=I.$
+<u>(2) implies (1), (3)</u>: Let $A_i = B_iC_i$  be a rank factorisation. Then 
+$$I = B_1C_1+\cdots+B_kC_k = \underbrace{\left[\begin{array}{ccccccccccc}B_1 &amp; \cdots &amp; B_k
+\end{array}\right] }_B\underbrace{\left[\begin{array}{ccccccccccc}C_1\\ \vdots \\ C_k
+\end{array}\right] }_C. $$
+By (2) $B$  and $C$  are  $n\times n.$  So they are inverse of each other. 
+<p></p>
+Hence $CB = I,$  as well. In other words,
+ $$\left[\begin{array}{ccccccccccc}C_1\\ \vdots \\ C_k
+\end{array}\right]\left[\begin{array}{ccccccccccc}B_1 &amp; \cdots &amp; B_k
+\end{array}\right]=I.$$
+Hence $\forall i~~C_iB_i = I$  and $\forall i\neq j~~C_iB_j = O.$
+<p></p>
+So $A_i^2 = B_iC_iB_iC_i = B_iC_i= A_i.$  
+<p></p>
+Also for $i\neq j$  we have  $A_iA_j = B_iC_iB_jC_j = O.$
+<p></p>
+
+<u>(3) implies (1)</u>: We have $A_1+\cdots+A_k=I.$  Multiplying both sides with $A_i$  we get $A_iA_1+\cdots+A_iA_k=A_i.$ 
+<p></p>
+Thanks to (3), only the $i$-th term survives in the LHS. So we have $A_i^2 = A_i,$  as required.
+<p></p>
+
+<u>(1) implies (2)</u>: We have $tr(A_1)+\cdots+tr(A_k) = tr(I)=n.$
+<p></p>
+Since we have assumed (1), hence $tr(A_i)=r(A_i).$  So (2) follows.
 <b><i>[QED]</i></b>
 </p>
+
+<p></p>
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
  $\v X\sim N_n(0,I),$  and split $\|\v X\|^2$  into some quadratic forms $\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.$
-Then the Fisher-Cochran theorem says that if the quadratic forms are independent, they must each
- $\v X'A_i\v X$  be a $\k{n_i}$  random variable with $\sum n_i = n.$  
-Conversely, if each of the quadratic forms are chi-square random variables, then they must be independent.
+Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
+ $\chi^2$-distributions, then must also be independent, and their degrees of freedom must add
+ up to $n.$
 <p></p>
 
 <h1><a
