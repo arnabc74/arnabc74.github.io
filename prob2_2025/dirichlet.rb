@@ -3,10 +3,13 @@
 <TITLE>Multinomial and Dirichlet distributions</TITLE>
 <HEAD1>Multinomial distribution</HEAD1>
 The multinomial distribution is a direct generalisation of the binomial distribution. We often think of the <M>Binom(n,p)</M> 
- distribution as the distribution of <M>X,</M>  the number of heads obtained in <M>n</M>  independent tosses of a coin with
- <M>P(head)=p.</M>  Iwe replace the coin with a die with probabilities <M>p_1,...,p_6</M>  for th different faces, and let
- <M>X_i</M>  denote the frequency of <M>i</M>  in <M>n</M>  independent rolls of the die, then the joint distribution of
- <M>(X_1,...,X_n)</M>  is called <TERM>multinomial</TERM>  with parameters <M>n,\v p</M>, where <M>\v p=(p_1,...,p_n)'.</M>
+ distribution as the distribution of the number, <M>X</M>, of heads obtained in <M>n</M> 
+ independent tosses of a coin with
+ <M>P(head)=p.</M>  If we replace the coin with a die with probabilities <M>p_1,...,p_6</M>  for the
+ different faces, and let
+ <M>X_i</M>  denote the frequency of the <M>i</M>-th face  in <M>n</M>  independent rolls of the die, then
+ the joint distribution of
+ <M>(X_1,...,X_6)</M>  is called <TERM>multinomial</TERM>  with parameters <M>n,\v p</M>, where <M>\v p=(p_1,...,p_6)'.</M>
 
 In general, we have the following definition.
 <DEFN name="Multinomial distribution">

@@ -609,6 +609,9 @@ Let <M>A_1,...,A_k</M>  be some <M>n\times n</M>  real, symmetric matrices with 
 <LI><M>r(A_1)+\cdots+r(A_k) = n.</M></LI>
 </OL>
 </THM>
+<PF>
+Immediate from the theorem above, taking <M>A=I.</M>
+</PF>
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
  <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
 Then the Fisher-Cochran theorem says that if the quadratic forms are independent, they must each
