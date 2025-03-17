@@ -628,7 +628,7 @@ Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
 
 <HEAD1>Miscellaneous problems</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then
- find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>
+find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>
 <EXR>Construct <M>(X,Y)</M> such that marginally <M>X</M>
 and <M>Y</M> have <M>N(0,1)</M> distribution, but <M>(X,Y)</M>
 is not bivariate normal.</EXR>
