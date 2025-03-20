@@ -170,7 +170,10 @@ function myFunction() {
 <a href="#Problem set 2">Problem set 2</a>
 </li>
 <li>
-<a href="#Defining &quot;length&quot;">Defining "length"</a>
+<a href="#Defining 'length'">Defining 'length'</a>
+</li>
+<li>
+<a href="#Back to Lebesgue integral">Back to Lebesgue integral</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 3">Problem set 3</a>
@@ -447,60 +450,129 @@ Then which of the following is/are true?
 <p></p>
 
 <h1><a
-name="Defining "length"">Defining "length"</a></h1>
-We are trying to define lengths of subsets of ${\mathbb R}.$
+name="Defining 'length'">Defining 'length'</a></h1>
+Suppose that we are trying to defined Lebesgue integral over an
+interval $[a,b].$ Then we need to define 'length's of subsets of $[a,b].$
+Instead of writing 'length', we shall use the
+letter $\lambda(A)$ to mean 'length' of $A\subseteq[a,b].$
 <ul>
 <li>
-We know that intervals like $[a,b]$ have length $b-a.$
-</li>
-<li>
-In particular, $[a,a]=\{a\}$ have length 0, and
-so $(a,b)$, $(a,b]$ and $[a,b)$ also have the same
-length as $[a,b].$
+We know that if $A = [s,t]$, then $\lambda(A)=t-s.$
+<p></p>
+In particular, $\lambda(\{t\}) = \lambda([a,a]= 0$ have length 0, and
+so $\lambda((s,t))=\lambda((s,t])=\lambda([s,t))=t-s.$
 </li>
 
-<li> The length of $[a,\infty)$
-or $(-\infty, a)$ or $(-\infty, \infty)$ should
-be $\infty.$
-</li>
-<li>
-The length of $[1,2]\cup(100,102)$
-should be $(2-1)+(102-100) = 1+2 = 3.$
-</li>
-<li> 
-We can extend this
-idea to even countably many disjoint intervals (using infinite
-series). Thus the "length" of the set of all rationals in $[0,1]$ should
-be 0.</li> 
-<li>
-The "length" of all irrationals in $[0,1]$ should
-be $1-0=1.$</li>
-</ul>
- Proceeding in this way we can extend the
-definition of length to a class of subsets of ${\mathbb R}$ which
-contains all the intervals, and is
-closed wrt countable union, interrsection and complementation.
-The smallest such  class is a called 
-the  <b><font color="red" size="40">Borel $\sigma $-algebra</font></b>, and denoted by $\calB.$  Its members are called <b><font color="red" size="40">Borel measurable sets</font></b> 
- or just <b><font color="red" size="40">Borel sets</font></b>.
+<li>Length should satisfy  countable additivity of disjoint
+sets. In other words, if $A_1,A_2,...\subseteq [a,b]$ are
+disjoint sets for which we have defined length,
+then $\lambda(\cup A_n)$ should be $\sum \lambda (A_n).$ 
 <p></p>
-The "length" of a Borel set, $B$, will be called
-its <b><font color="red" size="40">Lebesgue measure</font></b>, and will be a denoted
-by $\lambda(B).$
+Thus, the "length" of the set of all rationals
+in $\lambda({\mathbb Q}\cap [a,b])=0,$ and hence 
+The "length" of all irrationals in $\lambda({\mathbb Q}^c\cap[0,1])=b-a.$
+</li>
+</ul>
+ Proceeding in this way we can <i>reasonably hope</i> to extend the
+definition of $\lambda$ to a class of subsets of ${\mathbb R}$ which
+contains all the intervals, and is
+closed wrt countable union, intersection and complementation. Can
+ we really do this? The short answer is "Yes". But let us learn a
+ more detailed answer.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $ \sigma $-algebra</b></legend>
+If a collection of subsets of some set $\Omega$ is closed
+under countable set operations (intersection, union,
+complementation) and contains $\Omega$ we call it a <b><font color="red" size="40">$\sigma $-algebra</font></b> over $\Omega.$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Borel $ \sigma $-algebra</b></legend>
+The <b><font color="red" size="40">Borel $ \sigma $-algebra</font></b> over $[a,b]$ is
+defined as the smallest $ \sigma $-algebra over $[a,b]$
+containing all the interval subsets of $[a,b].$
+</fieldset>
+
+<p></p>
+Here the term "smallest" needs some attention. How do we know
+there is indeed such "the smallest" $ \sigma $-algebra? 
+<p></p>
+
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+The power set of $[a,b]$ is a $\sigma$-algebra containing all the interval subsets. Also, the intersection of 
+two $\sigma$-algebras is again a $\sigma$-algebra, as is trivially obvious from the definition.
+</div></blockquote>
+
+<p></p>
+We shall denote the  <b><font color="red" size="40">Borel $\sigma $-algebra</font></b> by $\calB.$  Its members are
+ called <b><font color="red" size="40">Borel sets</font></b>.
+<p></p>
+As we have already commented it seems to be a <i>reasonable hope</i>  that we should be able to define $\lambda(B)$ 
+ for all $B\in\calB.$  
+<p></p>
+
+<fieldset>
+<legend><b><i> Caratheodory extension</i></b></legend>
+Let $\Omega$  be a nonempty set and $\calD$  be a $\sigma$-algebra on it. We want to specify a measure $\mu$ 
+ on it. For this it it enough to specify $\mu$  on a subcollection $\calF$   collection of subsets if  
+<ol type="">
+
+<li>$\mu$  is nonnegative and countably additive,</li>
+
+<li>$\mu(\Omega) &lt; \infty,$</li>
+
+<li>$\calD$  is the smallest $\sigma$-algebra containing $\calF$</li>
+
+<li>$\calF$  is closed under finite intersection,</li>
+
+<li>$\forall A\in\calF~~\exists \mbox{disjoint }B_1,...,B_n\in\calF~~A^c = \cup_1^n B_i.$</li>
+
+</ol>
+
+</fieldset>
+We shall not prove this in this course. But let us understand the significance of the conditions. The first condition is
+ clearly necessary. If $\mu$  already fails to be nonnegative or countably additive on $\calF$  how can we expect
+ it to be a measure when extended to  $\calB?$  If we specify $\mu$  for each and every set in $\calB,$  then
+ of course it would suffice. But that woluld be too much work. Our aim is to specify $\mu$  for only a smaller number
+ of the sets. Clearly, we cannot fall below a generating set. So that condition puts a lower bound on how low we can go.
+ But that lower bound may actually prove to be too low. $\calF$ must
+ be "rich" enough. If you specify
+ $\mu$  on $A$  and $B,$  then you should also specify it for $A\cap B,$  to help determine how much
+ $A,B$  overlap each other. Also, for each $A$  we should be able to express $A^c$  as a finite union of sets
+ for which $\mu$  has been specified. This will help us to place $A$  in the background of $\Omega.$  
+<p></p>
+Our <i>reasonable hope</i>  comes true once we take $\calF$  to the collection of all intervals in $[a,b]$  and
+ $\calD = \calB.$
+<p></p>
+Thus we are now able to define $\lambda (B)$  for all Borel $B\subseteq[a,b].$
+Usually, $\lambda(B)$ is called
+the <b><font color="red" size="40">Lebesgue measure</font></b>  of $B.$
 If $B$  is not Borel, then $\lambda(B)$  is undefined.
 <p></p>
-As 
-not all subsets
- are measurable. So naturally he restrited his attention to only those simple functions $\sum_i
+
+<h1><a
+name="Back to Lebesgue integral">Back to Lebesgue integral</a></h1>
+
+<p></p>
+As not all subsets  are measurable, he naturally  restricted his attention to only those simple functions $\sum_i
  c_i\ind_{A_i}$, where the $A_i\in\calB.$
 <p></p>
 The next step in Lebesgue's intuition is to approximate the given function using simple functions,
  from below and from above. 
 <p></p>
-We want to  make sup(red) and inf(blue) equal. This will happen if and only if 
+We want to  make sup(red) and inf(blue) equal. It turns out (a non-trivial theorem) that this will
+ happen if and only if 
 $$\forall B\in\calB~~f ^{-1} (B)\in \calB.$$
 Such  functions are called <b><font color="red" size="40">measurable</font></b> 
  functions.
+You will recall that we had arrived at precisely the same condition while defining random variables. So we may say that all
+ random variables are Lebesgue integrable. 
 <p></p>
 
 <h2><a
@@ -532,7 +604,14 @@ Since the Lebesgue integral exists for all bounded, non-negative measurable func
  as well. We just allow the sup to be $\infty.$  
 <p></p>
 Similarly we may now carry out the procedure
- over an unbounded  domain, like ${\mathbb R}$  or $(0,\infty)$  etc.  Any "rectangle" with base
+ over an unbounded  domain, like ${\mathbb R}$  or $(0,\infty)$  etc.  There are just one
+ problem. In Caratheodory extension theorem we had a condition $\mu(|Omega)&lt; \infty.$ This worked well with us since
+ for any $a \leq b $ we had $\lambda([a,b]) = b-a &lt; \infty.$  But clearly $\lambda({\mathbb R}) =\infty.$  Fortunately,
+ Caratheodory extension theorem has a version that replaces the condition $\mu(\Omega)&lt; \infty$  with $\mu(\Omega_i) &lt; \infty$ 
+ where $\Omega = \cup_{i=1}^\infty \Omega_i$  is a disjoint union. This condition is satisfied here as $\lambda((n,n+1]) &lt; \infty.$ 
+<p></p>
+There is also a minor trouble involving defining area of rectangles with base length infinite. 
+ Any "rectangle" with base
 length $\infty$  and positive height has area $\infty$, and any "rectangle" with zero
  height has zero area (even if its base has measure $\infty$).  
 <p></p>
@@ -752,8 +831,8 @@ The following picture shows this process for $n=1$  and $n=2.$
 <p></p>
 For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $s_n(\omega)\leq s_{n+1}(\omega).$
 <blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">
+href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
+class="ans" id="reason2">
 If $s_n(\omega) = a$   and $s_{n+1}(\omega) = b,$  then $f(\omega)\in[a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
 <p></p>
 So, by the contruction of the partitions, $[b+2^{-n-1})\subseteq[a,2^{-n}).$
@@ -764,8 +843,8 @@ Thus, $a\leq b,$  as required.
 <p></p>
 Again, for each $\omega\in\Omega$  we have $s_n(\omega)\rightarrow f(\omega).$  
 <blockquote><a
-href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
-class="ans" id="reason2">
+href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
+class="ans" id="reason3">
 To show:
 <p></p>
 
@@ -823,8 +902,8 @@ Let $A_n =\{s_n &gt; z-\delta\}.$
 <p></p>
 Then $A_n\uparrow\Omega.$
 <blockquote><a
-href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
-class="ans" id="reason3">
+href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
+class="ans" id="reason4">
 Since $s_n$'s are non-decreasing, hence $A_1\subseteq A_2\subseteq A_3\subseteq\cdots.$  
 <p></p>
 Also since $\forall\omega\in\Omega~~s_n(w)\uparrow f(w),$  hence $\cup_n A_n=\Omega.$  
@@ -898,8 +977,8 @@ Let $X_n$ 's be non-negative  random variables with $X_n\uparrow X$  for some ra
 <b><i>Proof:</i></b>
 Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
 <blockquote><a
-href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
-class="ans" id="reason4">
+href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
+class="ans" id="reason5">
 We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
 </div></blockquote>
 Let $(Z_{n,k})_k$  be the simplification of $X_n.$  
@@ -908,8 +987,8 @@ Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$
 <p></p>
 Then $Y_1\leq Y_2\leq\cdots$
 <blockquote><a
-href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
-class="ans" id="reason5">
+href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
+class="ans" id="reason6">
 $$\begin{eqnarray*}
 Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
 &amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
@@ -919,14 +998,14 @@ by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
 </div></blockquote>
 Also $Y_n\leq X_n.$
 <blockquote><a
-href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
-class="ans" id="reason6">
+href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
+class="ans" id="reason7">
 $Z_{k,n}\leq X_k\leq X_n.$
 </div></blockquote>
 Finally, $Y_n\uparrow X.$
 <blockquote><a
-href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
-class="ans" id="reason7">
+href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
+class="ans" id="reason8">
 We have $Z_{n,k} \leq Y_k.$  
 <p></p>
 Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$

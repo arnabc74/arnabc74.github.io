@@ -120,56 +120,106 @@ Then which of the following is/are true?
 </EXR>
 
 
-<HEAD1>Defining "length"</HEAD1>
-We are trying to define lengths of subsets of <M>\rr.</M>
+<HEAD1>Defining 'length'</HEAD1>
+Suppose that we are trying to defined Lebesgue integral over an
+interval <M>[a,b].</M> Then we need to define 'length's of subsets of <M>[a,b].</M>
+Instead of writing 'length', we shall use the
+letter <M>\lambda(A)</M> to mean 'length' of <M>A\seq[a,b].</M>
 <UL><LI>
-We know that intervals like <M>[a,b]</M> have length <M>b-a.</M>
-</LI><LI>
-In particular, <M>[a,a]=\{a\}</M> have length 0, and
-so <M>(a,b)</M>, <M>(a,b]</M> and <M>[a,b)</M> also have the same
-length as <M>[a,b].</M>
-</LI>
-<LI> The length of <M>[a,\infty)</M>
-or <M>(-\infty, a)</M> or <M>(-\infty, \infty)</M> should
-be <M>\infty.</M>
-</LI><LI>
-The length of <M>[1,2]\cup(100,102)</M>
-should be <M>(2-1)+(102-100) = 1+2 = 3.</M>
-</LI><LI> 
-We can extend this
-idea to even countably many disjoint intervals (using infinite
-series). Thus the "length" of the set of all rationals in <M>[0,1]</M> should
-be 0.</LI> <LI>
-The "length" of all irrationals in <M>[0,1]</M> should
-be <M>1-0=1.</M></LI></UL>
- Proceeding in this way we can extend the
-definition of length to a class of subsets of <M>\rr</M> which
-contains all the intervals, and is
-closed wrt countable union, interrsection and complementation.
-The smallest such  class is a called 
-the  <TERM>Borel <M>\sigma </M>-algebra</TERM>, and denoted by <M>\calB.</M>  Its members are called <TERM>Borel measurable sets</TERM> 
- or just <TERM>Borel sets</TERM>.
+We know that if <M>A = [s,t]</M>, then <M>\lambda(A)=t-s.</M>
 
-The "length" of a Borel set, <M>B</M>, will be called
-its <TERM>Lebesgue measure</TERM>, and will be a denoted
-by <M>\lambda(B).</M>
+In particular, <M>\lambda(\{t\}) = \lambda([a,a]= 0</M> have length 0, and
+so <M>\lambda((s,t))=\lambda((s,t])=\lambda([s,t))=t-s.</M>
+</LI>
+<LI>Length should satisfy  countable additivity of disjoint
+sets. In other words, if <M>A_1,A_2,...\seq [a,b]</M> are
+disjoint sets for which we have defined length,
+then <M>\lambda(\cup A_n)</M> should be <M>\sum \lambda (A_n).</M> 
+
+Thus, the "length" of the set of all rationals
+in <M>\lambda(\qq\cap [a,b])=0,</M> and hence 
+The "length" of all irrationals in <M>\lambda(\qq^c\cap[0,1])=b-a.</M>
+</LI></UL>
+ Proceeding in this way we can <I>reasonably hope</I> to extend the
+definition of <M>\lambda</M> to a class of subsets of <M>\rr</M> which
+contains all the intervals, and is
+closed wrt countable union, intersection and complementation. Can
+ we really do this? The short answer is "Yes". But let us learn a
+ more detailed answer.
+
+<DEFN name="$ \sigma $-algebra">
+If a collection of subsets of some set <M>\Omega</M> is closed
+under countable set operations (intersection, union,
+complementation) and contains <M>\Omega</M> we call it a <TERM>$\sigma $-algebra</TERM> over <M>\Omega.</M>
+</DEFN>
+
+
+<DEFN name="Borel $ \sigma $-algebra">
+The <TERM>Borel $ \sigma $-algebra</TERM> over <M>[a,b]</M> is
+defined as the smallest $ \sigma $-algebra over <M>[a,b]</M>
+containing all the interval subsets of <M>[a,b].</M>
+</DEFN>
+
+Here the term "smallest" needs some attention. How do we know
+there is indeed such "the smallest" $ \sigma $-algebra? 
+
+<BECAUSE>
+The power set of <M>[a,b]</M> is a <M>\sigma</M>-algebra containing all the interval subsets. Also, the intersection of 
+two <M>\sigma</M>-algebras is again a <M>\sigma</M>-algebra, as is trivially obvious from the definition.
+</BECAUSE>
+
+We shall denote the  <TERM>Borel <M>\sigma </M>-algebra</TERM> by <M>\calB.</M>  Its members are
+ called <TERM>Borel sets</TERM>.
+
+As we have already commented it seems to be a <I>reasonable hope</I>  that we should be able to define <M>\lambda(B)</M> 
+ for all <M>B\in\calB.</M>  
+
+<THM name=" Caratheodory extension">
+Let <M>\Omega</M>  be a nonempty set and <M>\calD</M>  be a <M>\sigma</M>-algebra on it. We want to specify a measure <M>\mu</M> 
+ on it. For this it it enough to specify <M>\mu</M>  on a subcollection <M>\calF</M>   collection of subsets if  
+<OL>
+<LI><M>\mu</M>  is nonnegative and countably additive,</LI>
+<LI><M>\mu(\Omega) < \infty,</M></LI>
+<LI><M>\calD</M>  is the smallest <M>\sigma</M>-algebra containing <M>\calF</M></LI>
+<LI><M>\calF</M>  is closed under finite intersection,</LI>
+<LI><M>\forall A\in\calF~~\exists \mbox{disjoint }B_1,...,B_n\in\calF~~A^c = \cup_1^n B_i.</M></LI>
+</OL>
+</THM>
+We shall not prove this in this course. But let us understand the significance of the conditions. The first condition is
+ clearly necessary. If <M>\mu</M>  already fails to be nonnegative or countably additive on <M>\calF</M>  how can we expect
+ it to be a measure when extended to  <M>\calB?</M>  If we specify <M>\mu</M>  for each and every set in <M>\calB,</M>  then
+ of course it would suffice. But that woluld be too much work. Our aim is to specify <M>\mu</M>  for only a smaller number
+ of the sets. Clearly, we cannot fall below a generating set. So that condition puts a lower bound on how low we can go.
+ But that lower bound may actually prove to be too low. <M>\calF</M> must
+ be "rich" enough. If you specify
+ <M>\mu</M>  on <M>A</M>  and <M>B,</M>  then you should also specify it for <M>A\cap B,</M>  to help determine how much
+ <M>A,B</M>  overlap each other. Also, for each <M>A</M>  we should be able to express <M>A^c</M>  as a finite union of sets
+ for which <M>\mu</M>  has been specified. This will help us to place <M>A</M>  in the background of <M>\Omega.</M>  
+
+Our <I>reasonable hope</I>  comes true once we take <M>\calF</M>  to the collection of all intervals in <M>[a,b]</M>  and
+ <M>\calD = \calB.</M>
+
+Thus we are now able to define <M>\lambda (B)</M>  for all Borel <M>B\seq[a,b].</M>
+Usually, <M>\lambda(B)</M> is called
+the <TERM>Lebesgue measure</TERM>  of <M>B.</M>
 If <M>B</M>  is not Borel, then <M>\lambda(B)</M>  is undefined.
 
+<HEAD1>Back to Lebesgue integral</HEAD1>
 
-As 
-not all subsets
- are measurable. So naturally he restrited his attention to only those simple functions <M>\sum_i
+As not all subsets  are measurable, he naturally  restricted his attention to only those simple functions <M>\sum_i
  c_i\ind_{A_i}</M>, where the <M>A_i\in\calB.</M>
  
 
 The next step in Lebesgue's intuition is to approximate the given function using simple functions,
  from below and from above. 
 
-We want to  make sup(red) and inf(blue) equal. This will happen if and only if 
+We want to  make sup(red) and inf(blue) equal. It turns out (a non-trivial theorem) that this will
+ happen if and only if 
 <D>\forall B\in\calB~~f ^{-1} (B)\in \calB.</D>
 Such  functions are called <TERM>measurable</TERM> 
  functions.
-
+You will recall that we had arrived at precisely the same condition while defining random variables. So we may say that all
+ random variables are Lebesgue integrable. 
  
 <HEAD2>Problem set <PS/></HEAD2>
 
@@ -189,7 +239,14 @@ Since the Lebesgue integral exists for all bounded, non-negative measurable func
  as well. We just allow the sup to be <M>\infty.</M>  
 
 Similarly we may now carry out the procedure
- over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  Any "rectangle" with base
+ over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  There are just one
+ problem. In Caratheodory extension theorem we had a condition <M>\mu(|Omega)< \infty.</M> This worked well with us since
+ for any <M>a \leq b </M> we had <M>\lambda([a,b]) = b-a < \infty.</M>  But clearly <M>\lambda(\rr) =\infty.</M>  Fortunately,
+ Caratheodory extension theorem has a version that replaces the condition <M>\mu(\Omega)< \infty</M>  with <M>\mu(\Omega_i) < \infty</M> 
+ where <M>\Omega = \cup_{i=1}^\infty \Omega_i</M>  is a disjoint union. This condition is satisfied here as <M>\lambda((n,n+1]) < \infty.</M> 
+ 
+There is also a minor trouble involving defining area of rectangles with base length infinite. 
+ Any "rectangle" with base
 length <M>\infty</M>  and positive height has area <M>\infty</M>, and any "rectangle" with zero
  height has zero area (even if its base has measure <M>\infty</M>).  
 
@@ -519,6 +576,7 @@ Then we show that for <M>a>0</M>  we have <M>E(aX) = E(X).</M>  This proof also 
 
 Finally, we show <M>E(-X)= -E(X).</M>  Let <M>Y = -X.</M>  Then <M>Y_+ = X_-</M>  and <M>Y_- = X_+.</M>  So <M>E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).</M>
 
+<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
 <THM name="Monotone convergence theorem (MCT)">
 Let <M>X_n</M> 's be non-negative  random variables with <M>X_n\uparrow X</M>  for some random variable <M>X.</M>
@@ -576,6 +634,7 @@ In the simple version we assumed that the limit of <M>(X_n)</M>  is a random var
  assumptions. We may allow <M>(X_n(\omega))</M>  to diverge. Then the limit <M>X(\omega)</M>  is a function from <M>\Omega</M> 
  to <M>[0,\infty].</M>  One can then <I>show</I>  (not <I>assume</I>) that this <M>X</M>  is a random variable. We do this
  below.
+<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Fatou and DCT</HEAD1>
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
