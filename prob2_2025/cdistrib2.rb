@@ -324,6 +324,69 @@ Now, if you replace <M>s</M>  with <M>it,</M>  you get the result. This replacem
 
 <EXR>If <M>\Phi ^{-1}(0.95)=1.64</M>, then find <M>c\in\rr</M>  such that <M>P(|X-1|>c) = 0.1 </M>  where <M>X\sim N(1,1^2).</M></EXR>
 
+<HEAD1>Central Limit Theorem</HEAD1>
+The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
+ and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
+
+<THM name="Central imit Theorem (CLT)">
+Let <M>X_1,X_2,...</M>  be IID with <M>E(X_i) = \mu</M>  and <M>V(X_i) = \sigma^2 < \infty.</M>  Let 
+<D>\bar X_n = [[X_1+\cdots+X_n][n]]\mbox{ for } n\in\nn.</D>
+Then the distribution of <M>[[\sqrt n(\bar X_n-\mu)][\sigma]]</M>  tends to <M>N(0,1)</M>  as <M>n\to \infty.</M>
+More precisely, if <M>F_n(\cdot)</M>  denotes the CDF of <M>[[\sqrt n(\bar X_n-\mu)][\sigma]],</M>  and <M>\Phi(\cdot)</M> 
+ denotes the <M>N(0,1)</M>  CDF, then
+<D>\forall t\in\rr~~F_n(t)\to \Phi(t) \mbox{ as } n\to \infty.</D>
+</THM>
+<PF>Next semester.</PF>
+ This theorem is a manifestation of statistical regularity. Whatever may the true
+ distribution of the <M>X_i</M>'s be, if you average a large number of <M>X_i</M>'s you get close
+ approximation to the normal distribution. This allows
+statistician to deal with averages of a large number of IID observations without knowing the true
+ underlying distribution. 
+
+Let's look at a typical example. 
+
+<EXM>If 40% of the population of a city supports a poll candidate, then what is the approximate
+ probability that a random sample of 500 persons from the city will have at least 250 supporters?
+<SOLN/>
+Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
+ from the population of the city. 
+
+We shall assume that the trials are IID. Now here we are introducing an approximation: the first
+ membr of the sample was drawn from the entire population, but since we generally sample
+ <I>without replacement</I>  in such a scenario, the second member of the sample was drawn from a
+ population of size one less than in the case of the first member. So the radom experiment has
+ actually changed, and they are not independent also. But since the population is large (much
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
+
+We also have a random variable: 
+<D>X(\omega) = <CASES>1 <IF>\omega\mbox{ supports the candiate}</IF> 0<ELSE/></CASES></D> 
+Here<M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
+<M>X_1,...,X_{500}</M>  IID <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
+
+By CLT we have 
+<D>[[\sqrt n (\bar X_n-\mu)][\sigma]]\to N(0,1)</D>
+as <M>n\to \infty,</M>  where <M>\mu = E(X_i)</M>  and <M>\sigma^2 = V(X_i)< \infty.</M>  We shall write this as 
+<D>\bar X_n \stackrel{\bullet}{\sim} N(*(\mu,[[\sigma^2][n]])*)</D>
+for large <M>n.</M>  Here <M>\stackrel\bullet\sim</M>  means "approximately distributed as".
+
+In our case, <M>\mu = 0.40</M>, <M>\sigma^2 = 0.4(1-0.4) = 0.24</M>  and <M>n=500.</M>  So 
+<D>\bar X_{500} \stackrel{\bullet}{\sim} N(*(0.40,[[0.24][500]])*),</D>
+or 
+<D>\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
+Nowe we can find the required probability as
+<D>P(\sum_1^{500} X_i \geq 200) \approx 1-\Phi(*([[250-200][\sqrt{500}]])*).</D>
+This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or using R as
+<R>
+1-pnorm((250-200)/sqrt(500))
+</R>
+ </EXM>
+In this problem we knew the distribution of the <M>X_i</M>'s, but we never really made any use of it, except to compute <M>E(X_i)</M> 
+ and <M>V(X_i).</M>  
+<HEAD2>Problem set <PS/></HEAD2>
+::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib8.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
+
 <HEAD1 u="https://youtu.be/NYFoXVF7xkE">Maxwell's derivation of the normal distribution</HEAD1>
 Generally, Gauss is credited with the "discovery" of the normal distribution, which he derived via his famous central limit
  theorem. However, a lesser known derivation is due to James Clerk Maxwell, which we shall discuss now. 
@@ -379,12 +442,9 @@ Since <M>f</M>  is a density, hence its total intergral must be 1. Hence <M>k < 
 ::<EXR><EIMG web="rossdistrib2.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib3.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib4.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib6.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib7.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib8.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib9.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib11.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib18.png"></EIMG></EXR>
