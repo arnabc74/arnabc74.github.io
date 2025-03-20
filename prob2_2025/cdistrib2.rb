@@ -384,7 +384,9 @@ In this problem we knew the distribution of the <M>X_i</M>'s, but we never reall
  and <M>V(X_i).</M>  
 <HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib8.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib8.png"></EIMG>
+<ANS>For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</ANS>
+</EXR>
 ::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
 
 <HEAD1 u="https://youtu.be/NYFoXVF7xkE">Maxwell's derivation of the normal distribution</HEAD1>
@@ -438,6 +440,8 @@ Since <M>f</M>  is a density, hence its total intergral must be 1. Hence <M>k < 
  constants <M>a,b,c</M>, then find <M>E(X)</M>  and <M>V(X).</M></EXR>
 
 <HEAD1>Problems for practice</HEAD1>
+You may leave the answers in terms the <M>N(0,1)</M>  CDF <M>\Phi(x)</M>  or its inverse <M>\Phi ^{-1}(x).</M>
+
 ::<EXR><EIMG web="rossdistrib1.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib2.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib3.png"></EIMG></EXR>
