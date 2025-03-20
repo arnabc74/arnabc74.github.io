@@ -39,7 +39,7 @@ and he wanted to call this the area under the curve. Before exploring this idea 
  the codomain. 
 
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Consider the following graph of a bounded positive function. Finitely many values are marked
+<EXR>Consider the following graph of a bounded, nonnegative function. Finitely many values are marked
  on the <M>y</M>-axis.
 <CIMG web="splitex1.png"></CIMG>
  Draw horizontal lines through them, and obtain the red and blue areas. </EXR>
@@ -144,8 +144,8 @@ The "length" of all irrationals in <M>\lambda(\qq^c\cap[0,1])=b-a.</M>
 definition of <M>\lambda</M> to a class of subsets of <M>\rr</M> which
 contains all the intervals, and is
 closed wrt countable union, intersection and complementation. Can
- we really do this? The short answer is "Yes". But let us learn a
- more detailed answer.
+ we really do this? The short answer is "Yes". A
+ more detailed answer starts with a few definitions.
 
 <DEFN name="$ \sigma $-algebra">
 If a collection of subsets of some set <M>\Omega</M> is closed
@@ -168,11 +168,15 @@ The power set of <M>[a,b]</M> is a <M>\sigma</M>-algebra containing all the inte
 two <M>\sigma</M>-algebras is again a <M>\sigma</M>-algebra, as is trivially obvious from the definition.
 </BECAUSE>
 
+Instead of saying the "smallest <M>\sigma</M>-algebra containing such-n-such sets" we more often
+ say "<M>\sigma</M>-algebra <TERM>generated</TERM>
+ by such-n-such sets."
+
 We shall denote the  <TERM>Borel <M>\sigma </M>-algebra</TERM> by <M>\calB.</M>  Its members are
  called <TERM>Borel sets</TERM>.
 
 As we have already commented it seems to be a <I>reasonable hope</I>  that we should be able to define <M>\lambda(B)</M> 
- for all <M>B\in\calB.</M>  
+ for all <M>B\in\calB.</M>  This hope indeed comes true, thanks to the following theorem. 
 
 <THM name=" Caratheodory extension">
 Let <M>\Omega</M>  be a nonempty set and <M>\calD</M>  be a <M>\sigma</M>-algebra on it. We want to specify a measure <M>\mu</M> 
@@ -180,21 +184,30 @@ Let <M>\Omega</M>  be a nonempty set and <M>\calD</M>  be a <M>\sigma</M>-algebr
 <OL>
 <LI><M>\mu</M>  is nonnegative and countably additive,</LI>
 <LI><M>\mu(\Omega) < \infty,</M></LI>
-<LI><M>\calD</M>  is the smallest <M>\sigma</M>-algebra containing <M>\calF</M></LI>
+<LI><M>\calF</M>  generates <M>\calD</M>,</LI>
 <LI><M>\calF</M>  is closed under finite intersection,</LI>
 <LI><M>\forall A\in\calF~~\exists \mbox{disjoint }B_1,...,B_n\in\calF~~A^c = \cup_1^n B_i.</M></LI>
 </OL>
 </THM>
-We shall not prove this in this course. But let us understand the significance of the conditions. The first condition is
+We shall not prove this in this course. But let us understand the significance of the conditions.
+<OL>
+<LI> The first condition is
  clearly necessary. If <M>\mu</M>  already fails to be nonnegative or countably additive on <M>\calF</M>  how can we expect
- it to be a measure when extended to  <M>\calB?</M>  If we specify <M>\mu</M>  for each and every set in <M>\calB,</M>  then
+ it to be a measure when extended to  <M>\calB?</M></LI>
+<LI>The finiteness condition is just a technical condtion, that we shall relax later.</LI>
+<LI>  If we specify <M>\mu</M>
+  for each and every set
+ in <M>\calB,</M>  then
  of course it would suffice. But that woluld be too much work. Our aim is to specify <M>\mu</M>  for only a smaller number
- of the sets. Clearly, we cannot fall below a generating set. So that condition puts a lower bound on how low we can go.
+ of the sets. Clearly, we cannot fall below a generating set. So the third condition puts a lower bound on how low we can go.</LI>
+<LI>
  But that lower bound may actually prove to be too low. <M>\calF</M> must
  be "rich" enough. If you specify
  <M>\mu</M>  on <M>A</M>  and <M>B,</M>  then you should also specify it for <M>A\cap B,</M>  to help determine how much
- <M>A,B</M>  overlap each other. Also, for each <M>A</M>  we should be able to express <M>A^c</M>  as a finite union of sets
- for which <M>\mu</M>  has been specified. This will help us to place <M>A</M>  in the background of <M>\Omega.</M>  
+ <M>A,B</M>  overlap each other.</LI>
+<LI>This condition takes care of the complementation.  For each <M>A</M>  we should be able to express <M>A^c</M>  as
+ a finite union of sets
+ for which <M>\mu</M>  has been specified.</LI></OL>
 
 Our <I>reasonable hope</I>  comes true once we take <M>\calF</M>  to the collection of all intervals in <M>[a,b]</M>  and
  <M>\calD = \calB.</M>
@@ -209,6 +222,11 @@ If <M>B</M>  is not Borel, then <M>\lambda(B)</M>  is undefined.
 As not all subsets  are measurable, he naturally  restricted his attention to only those simple functions <M>\sum_i
  c_i\ind_{A_i}</M>, where the <M>A_i\in\calB.</M>
  
+<ALERT/>Historically, Lebesgue did not use Borel <M>\sigma</M>-algebra. He had constructed his own <M>\sigma</M>-algebra
+ (which is now called the Lebesgue <M>\sigma</M>-algebra). It is a much larger superset of the
+ Borel <M>\sigma</M>-algebra,
+ and is also more difficult to work with. That is why most modern treatments of measure theory
+ work with the Borel <M>\sigma</M>-algebra instead of  the Lebesgues <M>\sigma</M>-algebra. 
 
 The next step in Lebesgue's intuition is to approximate the given function using simple functions,
  from below and from above. 
@@ -217,8 +235,15 @@ We want to  make sup(red) and inf(blue) equal. It turns out (a non-trivial theor
  happen if and only if 
 <D>\forall B\in\calB~~f ^{-1} (B)\in \calB.</D>
 Such  functions are called <TERM>measurable</TERM> 
- functions.
+ functions. A word or warning here: Don't forget that we are working with only nonnegative, bounded functions over <M>[a,b].</M> 
+ 
+ functions here. So we are stating that <I>such a function</I> is Lebesgue integrable iff it is measurable. 
+
+If we allow functions that take both positive and negative values, and are unbounded, then the result may fail. But don't
+ worry, we shall take care of that soon, by considering the positive and the negative parts separately. 
+
 You will recall that we had arrived at precisely the same condition while defining random variables. So we may say that all
+ nonnegative, bounded
  random variables are Lebesgue integrable. 
  
 <HEAD2>Problem set <PS/></HEAD2>
@@ -240,7 +265,7 @@ Since the Lebesgue integral exists for all bounded, non-negative measurable func
 
 Similarly we may now carry out the procedure
  over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  There are just one
- problem. In Caratheodory extension theorem we had a condition <M>\mu(|Omega)< \infty.</M> This worked well with us since
+ problem. In Caratheodory extension theorem we had a condition <M>\mu(\Omega)< \infty.</M> This worked well with us since
  for any <M>a \leq b </M> we had <M>\lambda([a,b]) = b-a < \infty.</M>  But clearly <M>\lambda(\rr) =\infty.</M>  Fortunately,
  Caratheodory extension theorem has a version that replaces the condition <M>\mu(\Omega)< \infty</M>  with <M>\mu(\Omega_i) < \infty</M> 
  where <M>\Omega = \cup_{i=1}^\infty \Omega_i</M>  is a disjoint union. This condition is satisfied here as <M>\lambda((n,n+1]) < \infty.</M> 
@@ -250,10 +275,16 @@ There is also a minor trouble involving defining area of rectangles with base le
 length <M>\infty</M>  and positive height has area <M>\infty</M>, and any "rectangle" with zero
  height has zero area (even if its base has measure <M>\infty</M>).  
 
+Now that we are allowing the Lebesgue integral to equal <M>\infty,</M>  we need a little shift in terminology: We shall say
+ that a nonnegative function is <TERM>Lebesgue integrable</TERM>  if its Lebesgue integral is finite.
+
 <HEAD2>Allowing negative values</HEAD2>
 Moving from non-negative functions to general functions is easy. For <M>f:\rr\to\rr</M>  we define <M>f_+ =\max\{f,0\}</M> 
  and <M>f_- =\max\{-f,0\}.</M>  Then <M>f = f_+-f_-.</M>  We define <M>\int f\, d \lambda = \int f_+\, d \lambda -\int f_-\, d \lambda,</M>  if
  both the integrals on the rhs are not <M>\infty.</M>
+
+We shall say a function <M>f</M>  (possibly taking both positive and negative values)
+ <TERM>Lebesgue integrable</TERM>  if both <M>f_+</M>  and <M>f_-</M>  are Lebesgue integrable.
 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find <M>\int f(x)\, d \lambda</M>  where <M>f:\rr\to\rr</M>  is defined as  <M>f(x)
@@ -422,7 +453,7 @@ Hence we defined <M>\sigma</M>-algebra. While the simplest <M>\sigma</M>-algebra
 
 Closely related to this is the idea of a measurable function.
 </COMMENT>
-<HEAD1>Measurable function</HEAD1>
+<HEAD1>Expectation as Lebesgue integral</HEAD1>
 We have mentioned earlier that for Lebesgue integrals sup(red)=inf(blue) for a rather general class
  of functions. In particular, when we worked with <M>f</M>  defined on   <M>\rr</M>  equipped with <M>\calB</M>
   and <M>\lambda</M>, we had given a characterisation of all functions for which the Lebesgue
@@ -431,7 +462,7 @@ We have mentioned earlier that for Lebesgue integrals sup(red)=inf(blue) for a r
 It is not unexpected that if <M>f</M>  is defined on <M>\Omega</M>  equipped with <M>\calF</M>  and <M>\mu,</M>  then the
  characterisation is
 <D>\forall B\in\calB~~f ^{-1}(B)\in\calF.</D>
-Such functions are called <TERM>measurable</TERM>  functions. These functions are very nicely behaved. In particular limits
+Such functions are called <TERM>measurable</TERM>  functions. These functions are very nicely behaved. In particular, limits
  of measurable functions are again measurable. This is the most important reason for preferring Lebesgue integration over Riemann integration.
  If <M>f_n\to f</M>  pointwise, and <M>\int f_n\, d \mu</M>  exist for each <M>n,</M>  then the existence of <M>\int f\, d \mu</M> 
  is immediately guaraneteed. 
@@ -509,20 +540,22 @@ This completes the proof.
 </PF>
 
 
-The next step is to show that the red areas indeed converge to the supremum. 
+The next step is to show that the red areas indeed converge to the supremum (since we are also
+ allowing the supremum to be <M>\infty</M>, we should better say <I>diverge</I> to the supremum in that case). 
 <THM>
 If <M>f</M>  is a non-negative measurable function, and <M>s_n</M>'s are simple random variables with <M>s_n\uparrow f,</M> 
  then <M>\int s_n \uparrow \int f.</M>
 </THM>
 <PF>
+We shall only deal with the case <M>\int f < \infty.</M>  The case <M>\int f = \infty</M>  is left as an exercise.
+
 Shall show
 
 <TGT>\forall \epsilon>0~~\exists N\in\nn~~\forall n\geq N~~ \int s_n > \int f-\epsilon.</TGT>
 
 This will complete the proof, since anyway <M>(*(\int s_n)*)</M>  is a non-decreasing sequence bounded
  from above by <M>\int f</M> 
-  (The case <M>\int f=\infty</M>  is trivially
- included in it). 
+
 
 Since <M>\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},</M>
 
@@ -546,6 +579,10 @@ where <M>M = \max Z.</M>
 Taking limit <M>\lim \int s_n \geq z- \delta.</M>  
 
 Since <M>\delta>0</M>  is arbitrary, we have <M>\lim \int s_n \geq \int z.</M>  
+
+But we had <M>\int z > \int f- \epsilon.</M>
+
+Hence <M>\lim \int s_n > \int f- \epsilon,</M>  as required.
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
