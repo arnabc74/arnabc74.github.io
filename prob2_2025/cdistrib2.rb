@@ -426,7 +426,7 @@ for some constant <M>k.</M>   Solving the differerntial equation we get
 <M>\log f(x) = [[k x^2][2]]+</M> constant,   or 
 <D>f(x) \propto e^{k x^2/2}.</D>
 Since <M>f</M>  is a density, hence its total intergral must be 1. Hence <M>k < 0</M>  and we get
- the density of <M>N(*(0,-[[1][2k]])*).</M>
+ the density of <M>N(*(0,-[[1][k]])*).</M>
 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>If <M>X</M>  is a random variable with density proportional to <M>\exp((1-x)(3+4x))</M>  for
