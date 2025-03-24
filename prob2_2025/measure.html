@@ -172,11 +172,14 @@ function myFunction() {
 <li>
 <a href="#Defining 'length'">Defining 'length'</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
 <li>
 <a href="#Back to Lebesgue integral">Back to Lebesgue integral</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 3">Problem set 3</a>
+<a href="#Problem set 4">Problem set 4</a>
 </li>
 <li>
 <a href="#Generalising the solution">Generalising the solution</a>
@@ -188,49 +191,49 @@ function myFunction() {
 <a href="#Allowing negative values">Allowing negative values</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 4">Problem set 4</a>
+<a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
 <a href="#General measures">General measures</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 5">Problem set 5</a>
+<a href="#Problem set 6">Problem set 6</a>
 </li>
 <li>
 <a href="#Expectation as Lebesgue integral">Expectation as Lebesgue integral</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 6">Problem set 6</a>
+<a href="#Problem set 7">Problem set 7</a>
 </li>
 <li>
 <a href="#Two technical results">Two technical results</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 7">Problem set 7</a>
+<a href="#Problem set 8">Problem set 8</a>
 </li>
 <li>
 <a href="#Additivity">Additivity</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 8">Problem set 8</a>
+<a href="#Problem set 9">Problem set 9</a>
 </li>
 <li>
 <a href="#Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 9">Problem set 9</a>
+<a href="#Problem set 10">Problem set 10</a>
 </li>
 <li>
 <a href="#Fatou and DCT">Fatou and DCT</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 10">Problem set 10</a>
+<a href="#Problem set 11">Problem set 11</a>
 </li>
 <li>
 <a href="#Radon-Nikodym theorem">Radon-Nikodym theorem</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 11">Problem set 11</a>
+<a href="#Problem set 12">Problem set 12</a>
 </li>
 </ul>
 <hr/>
@@ -454,126 +457,180 @@ name="Defining 'length'">Defining 'length'</a></h1>
 Suppose that we are trying to defined Lebesgue integral over an
 interval $[a,b].$ Then we need to define 'length's of subsets of $[a,b].$
 Instead of writing 'length', we shall use the
-letter $\lambda(A)$ to mean 'length' of $A\subseteq[a,b].$
+letter $length(A)$ to mean 'length' of $A\subseteq[a,b].$
 <ul>
 <li>
-We know that if $A = [s,t]$, then $\lambda(A)=t-s.$
+We know that if $A = [s,t]$, then $length(A)=t-s.$
 <p></p>
-In particular, $\lambda(\{t\}) = \lambda([a,a]= 0$ have length 0, and
-so $\lambda((s,t))=\lambda((s,t])=\lambda([s,t))=t-s.$
+In particular, $length(\{t\}) = length([a,a]= 0$ have length 0, and
+so $length((s,t))=length((s,t])=length([s,t))=t-s.$
 </li>
 
-<li>Length should satisfy  countable additivity of disjoint
-sets. In other words, if $A_1,A_2,...\subseteq [a,b]$ are
+<li>Length should satisfy  countable additivity (over disjoint
+sets). In other words, if $A_1,A_2,...\subseteq [a,b]$ are
 disjoint sets for which we have defined length,
-then $\lambda(\cup A_n)$ should be $\sum \lambda (A_n).$ 
+then $length(\cup A_n)$ should be $\sum length (A_n).$ 
 <p></p>
 Thus, the "length" of the set of all rationals
-in $\lambda({\mathbb Q}\cap [a,b])=0,$ and hence 
-The "length" of all irrationals in $\lambda({\mathbb Q}^c\cap[0,1])=b-a.$
+in $length({\mathbb Q}\cap [a,b])=0,$ and hence 
+The "length" of all irrationals in $length({\mathbb Q}^c\cap[0,1])=b-a.$
 </li>
 </ul>
  Proceeding in this way we can <i>reasonably hope</i> to extend the
-definition of $\lambda$ to a class of subsets of ${\mathbb R}$ which
+definition of $length$ to a class of subsets of ${\mathbb R}$ which
 contains all the intervals, and is
 closed wrt countable union, intersection and complementation. Can
- we really do this? The short answer is "Yes". A
- more detailed answer starts with a few definitions.
+ we really do this? The short answer is "Yes". 
+<p></p>
+Before we head for a  more detailed answer, let us first warm up with a simple example. Suppose that you have some
+ $A \subseteq [a,b](\equiv\Omega)$  for which you know the length. What other set(s) can you manufacture out of
+ this $A$  using union, intersection
+ and complementation only? Since you have only one set at your disposal, union or intersection won't help. However, complementation
+ would give you $A^c.$   Now that you have two sets to work with, $A$  and $A^c,$  you can use union and intersection
+ to get $\Omega$  and $\phi.$  Play with these for some time to convince yourself, that no more new set can be
+ manufactured. So from the initial collection $\{A\}$  you could generate $\{\phi, A, A^c,\Omega\}.$ 
+ Now suppose I tell you the
+ length of $A.$  (You know length of $\Omega=[0,1],$  of course!) Can you tell me the length of all
+ the 4 generated sets? Well, length of
+ $\phi$  is obviously 0. Also length of $A^c$  should be $length(\Omega)-length(A).$  So from $length(A)$ 
+ you could indeed find (uniquely) the lengths of all the sets in the generated collection. 
+<p></p>
+Let's do the same thing now starting with two sets $A,B\subseteq\Omega.$  Convince yourself that you can generate
+a collection of 16 sets starting with these.
+If you are confused, then look at the following diagram.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/caravenn.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ I again ask you
+ the same question: if I tell you the lengths of $A$  and $B$, can you find out the lengths of all these? Now,
+ the answer will be "No", because you need to know how much $A$  and $B$  overlap. So you also need to know $length(A\cap B).$ 
+<p></p>
+It should not be difficult to see that this works for any finite initial collection,
+ $\{A_1,...,A_n\}.$  If I tell you their
+ lengths and the lengths of all the possible intersections, then you can find out the lengths of
+ all the sets in the collection generated by
+ these. 
+This result has direct proof by induction.
+<p></p>
+Now, in our case, we know the lengths of all intervals in $[a,b].$  So we are starting with
+ an infinite collection of sets for which the lengths are known. Since intersections of intervals are again intervals (possibly
+ empty), we indeed know the lengths of all possible intersections, as well. Unfortunately, our induction argument does not
+work in  the infinite case. Of course, intuitive imagination leads us to hope that it would be so. But
+ intuitive imagination
+sometimes leads to wrong results:
+<blockquote>Sum of two natural numbers is a natural number. So by induction the sum of any finite of
+ number of natural numbers is also a natural number. So by the law of intuitive imagination, the sum
+ of all natural numbers
+ $1+2+3+\cdots$ should again be a natural number! Proof: Just keep on adding!</blockquote>
+ However, intuitive imagination is not always a liar. It does lead us to a plausible guess, which
+ we need to prove/disprove using rigorous argument (in this case, using limits). 
+And that's precisely what we shall do now.
+<p></p>
+First, let
+ us make it clear what we
+ mean by sets generated by a (possibly infinite) collection of subsets of $\Omega.$  For the finite case, we expanded
+ the collection of sets step by step, and the procedure had stopped after the finitely many steps. If we start with infinitely
+ many sets, the process won't end. So we need a careful definition of what we mean by the collection of sets generated by
+ a given initial collection of sets:
 <p></p>
 
 <fieldset>
-<legend><b>Definition: $ \sigma $-algebra</b></legend>
-If a collection of subsets of some set $\Omega$ is closed
-under countable set operations (intersection, union,
-complementation) and contains $\Omega$ we call it a <b><font color="red" size="40">$\sigma $-algebra</font></b> over $\Omega.$
+<legend><b>Definition: Generated $ \sigma $-algebra</b></legend>
+Let $\calF$  be the initial (nonempty) collection of subsets of $\Omega.$  We shall call a
+ collection (denoted by $\sigma(\calF)$)  of subsets of $\Omega$  the <b><font color="red" size="40">$\sigma$-algebra generated by</font></b>
+ $\calF$  if 
+<ul>
+
+<li>$\sigma(\calF)$  is closed under countable set operations (union, intersection, complementation)</li>
+
+<li>$\calF\subseteq \sigma(\calF)$</li>
+
+<li>$\sigma(\calF)$  is the smallest collection subject to the two condtions above.</li>
+
+</ul>
+By the way, any nonempty collection satisfying the first condition is called a <b><font color="red" size="40">$\sigma$-algebra</font></b>.
 </fieldset>
-
-<p></p>
-
-<fieldset>
-<legend><b>Definition: Borel $ \sigma $-algebra</b></legend>
-The <b><font color="red" size="40">Borel $ \sigma $-algebra</font></b> over $[a,b]$ is
-defined as the smallest $ \sigma $-algebra over $[a,b]$
-containing all the interval subsets of $[a,b].$
-</fieldset>
-
-<p></p>
 Here the term "smallest" needs some attention. How do we know
-there is indeed such "the smallest" $ \sigma $-algebra? 
+there is indeed such "the smallest" collection? 
 <p></p>
 
 <blockquote><a
 href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
 class="ans" id="reason1">
-The power set of $[a,b]$ is a $\sigma$-algebra containing all the interval subsets. Also, the intersection of 
-two $\sigma$-algebras is again a $\sigma$-algebra, as is trivially obvious from the definition.
+The power set of $\Omega$ is a $\sigma$-algebra containing $\calF$. Also, the intersection of any arbitrary
+ number of $\sigma$-algebras is again a $\sigma$-algebra, as is trivially obvious from the definition. So we can
+ take $\sigma(\calF)$  to be the interection of all $\sigma$-algebras containing $\calF.$  
 </div></blockquote>
 
 <p></p>
-Instead of saying the "smallest $\sigma$-algebra containing such-n-such sets" we more often
- say "$\sigma$-algebra <b><font color="red" size="40">generated</font></b>
- by such-n-such sets."
+For our case, the initial collection consists of all the intervals. 
 <p></p>
-We shall denote the  <b><font color="red" size="40">Borel $\sigma $-algebra</font></b> by $\calB.$  Its members are
- called <b><font color="red" size="40">Borel sets</font></b>.
+
+<fieldset>
+<legend><b>Definition: Borel $ \sigma $-algebra</b></legend>
+The <b><font color="red" size="40">Borel $ \sigma $-algebra</font></b> over $[a,b]$ is
+defined as the $\sigma$-algebra over $[a,b]$  generated by 
+all the intervals in $[a,b].$
+</fieldset>
+
 <p></p>
-As we have already commented it seems to be a <i>reasonable hope</i>  that we should be able to define $\lambda(B)$ 
+We shall denote the  <b><font color="red" size="40">Borel $\sigma $-algebra</font></b> over $[a,b]$  by
+ $\calB([a,b])$ or just $\calB$  if $[a,b]$  is obvious from the context. The members of $\calB([a,b]).$are
+ called <b><font color="red" size="40">Borel sets</font></b>  of $[a,b].$
+<p></p>
+As we have already commented it seems to be a <i>reasonable hope</i>  that we should be able to define $length(B)$ 
  for all $B\in\calB.$  This hope indeed comes true, thanks to the following theorem. 
 <p></p>
 
 <fieldset>
 <legend><b><i> Caratheodory extension</i></b></legend>
-Let $\Omega$  be a nonempty set and $\calD$  be a $\sigma$-algebra on it. We want to specify a measure $\mu$ 
- on it. For this it it enough to specify $\mu$  on a subcollection $\calF$   collection of subsets if  
-<ol type="">
-
-<li>$\mu$  is nonnegative and countably additive,</li>
-
-<li>$\mu(\Omega) &lt; \infty,$</li>
-
-<li>$\calF$  generates $\calD$,</li>
-
-<li>$\calF$  is closed under finite intersection,</li>
-
-<li>$\forall A\in\calF~~\exists \mbox{disjoint }B_1,...,B_n\in\calF~~A^c = \cup_1^n B_i.$</li>
-
-</ol>
-
+Let $\Omega$  be a nonempty set and $\calF$  be a collection of its subsets, closed
+ under (finite) intersection with $\Omega\in\calF.$  . We
+ have a function $\lambda:\calF\rightarrow[0,\infty)$  that is countably additive, and $\lambda(\Omega) &lt; \infty.$ Then we can
+ uniqely extend it to $\sigma(\calF).$
 </fieldset>
-We shall not prove this in this course. But let us understand the significance of the conditions.
-<ol type="">
 
-<li> The first condition is
- clearly necessary. If $\mu$  already fails to be nonnegative or countably additive on $\calF$  how can we expect
- it to be a measure when extended to  $\calB?$</li>
-
-<li>The finiteness condition is just a technical condtion, that we shall relax later.</li>
-
-<li>  If we specify $\mu$
-  for each and every set
- in $\calB,$  then
- of course it would suffice. But that woluld be too much work. Our aim is to specify $\mu$  for only a smaller number
- of the sets. Clearly, we cannot fall below a generating set. So the third condition puts a lower bound on how low we can go.</li>
-
-<li>
- But that lower bound may actually prove to be too low. $\calF$ must
- be "rich" enough. If you specify
- $\mu$  on $A$  and $B,$  then you should also specify it for $A\cap B,$  to help determine how much
- $A,B$  overlap each other.</li>
-
-<li>This condition takes care of the complementation.  For each $A$  we should be able to express $A^c$  as
- a finite union of sets
- for which $\mu$  has been specified.</li>
-</ol>
+<p>
+<b><i>Proof:</i></b>We shall not prove this in this course.<b><i>[QED]</i></b>
+</p>
 
 <p></p>
-Our <i>reasonable hope</i>  comes true once we take $\calF$  to the collection of all intervals in $[a,b]$  and
- $\calD = \calB.$
+Our <i>reasonable hope</i>  comes true once we take $\calF$  to be the collection of all
+ intervals in $[a,b].$
 <p></p>
-Thus we are now able to define $\lambda (B)$  for all Borel $B\subseteq[a,b].$
-Usually, $\lambda(B)$ is called
-the <b><font color="red" size="40">Lebesgue measure</font></b>  of $B.$
-If $B$  is not Borel, then $\lambda(B)$  is undefined.
+Thus we are now able to define $length(B)$  for all Borel $B\subseteq[a,b].$
+Usually, $length(B)$ is called
+the <b><font color="red" size="40">Lebesgue measure</font></b>  of $B,$  and is denoted by $\lambda(B).$
+If $B$  is not Borel, then we take $\lambda(B)$  to be undefined.
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+The following exercises show that what we did with "length" can be done with "probability", as well.
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;
+Consider two a nonempty set $\Omega$  and two subsets $A,B$  in it. What is the smallest collection of subsets
+of $\Omega$  that contains $A,B$  and is closed under  union, intesection and complementation? In other
+ words, make a list of all subsets of $\Omega$  that you can make using union, intersection and complementation starting
+ with $\Omega.$  Call this collection $\calB.$  Is this is a $\sigma$-algebra? 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;(Continuation of the last exercise) Take $\calF = \{A,B\}.$  Then clearly $\calB$ 
+ is the $\sigma$-algebra generated by $\calF.$  Does this mean that if I specify
+ probabilities for all elements of $\calF,$  then that would uniquely determine probabilities
+ of all elements of $\calB?$  Just to get you started, I am specifying $P(A) = 0.4$  and
+ $P(B) = 0.5.$  Compute (if possible) the probabilities of all events in $\calB.$</p>
+
 <p></p>
 
 <h1><a
@@ -598,24 +655,21 @@ We want to  make sup(red) and inf(blue) equal. It turns out (a non-trivial theor
 $$\forall B\in\calB~~f ^{-1} (B)\in \calB.$$
 Such  functions are called <b><font color="red" size="40">measurable</font></b> 
  functions. A word or warning here: Don't forget that we are working with only nonnegative, bounded functions over $[a,b].$ 
+So we are stating that <i>such a function</i> is Lebesgue integrable iff it is measurable. 
 <p></p>
- functions here. So we are stating that <i>such a function</i> is Lebesgue integrable iff it is measurable. 
-<p></p>
-If we allow functions that take both positive and negative values, and are unbounded, then the result may fail. But don't
+If we allow functions that take both positive and negative values, and/or are unbounded, then the result may fail. But don't
  worry, we shall take care of that soon, by considering the positive and the negative parts separately. 
 <p></p>
-You will recall that we had arrived at precisely the same condition while defining random variables. So we may say that all
- nonnegative, bounded
- random variables are Lebesgue integrable. 
+You will recall that we had arrived at precisely the same condition while defining random variables. 
 <p></p>
 
 <h2><a
-name="Problem set 3">Problem set 3</a></h2>
+name="Problem set 4">Problem set 4</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Find $\int f\, d \lambda,$  where 
+<b>EXERCISE 7:</b>&nbsp;Find $\int f\, d \lambda,$  where 
 $$f(x) = \left\{\begin{array}{ll}1&\text{if }x\in{\mathbb Q}^c\cap [0,1]\\ 0&\text{otherwise.}\end{array}\right. $$
 What is $\int_0^1 f(x)\, dx$  using Riemann integration?
 </p>
@@ -623,7 +677,7 @@ What is $\int_0^1 f(x)\, dx$  using Riemann integration?
 <p></p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Prove that  $\sum_i c_i\ind_{A_i}$    is measureable if and only if $\forall i~~A_i\in\calB.$</p>
+<b>EXERCISE 8:</b>&nbsp;Prove that  $\sum_i c_i\ind_{A_i}$    is measureable if and only if $\forall i~~A_i\in\calB.$</p>
 
 <p></p>
 
@@ -638,17 +692,30 @@ Since the Lebesgue integral exists for all bounded, non-negative measurable func
  as well. We just allow the sup to be $\infty.$  
 <p></p>
 Similarly we may now carry out the procedure
- over an unbounded  domain, like ${\mathbb R}$  or $(0,\infty)$  etc.  There are just one
- problem. In Caratheodory extension theorem we had a condition $\mu(\Omega)&lt; \infty.$ This worked well with us since
+ over an unbounded  domain, like ${\mathbb R}$  or $(0,\infty)$  etc.  There are just a few 
+ problems that are easily sorted out:
+<ul>
+
+<li> In Caratheodory extension theorem we had a condition $\mu(\Omega)&lt; \infty.$ This worked well with us since
  for any $a \leq b $ we had $\lambda([a,b]) = b-a &lt; \infty.$  But clearly $\lambda({\mathbb R}) =\infty.$  Fortunately,
  Caratheodory extension theorem has a version that replaces the condition $\mu(\Omega)&lt; \infty$  with $\mu(\Omega_i) &lt; \infty$ 
- where $\Omega = \cup_{i=1}^\infty \Omega_i$  is a disjoint union. This condition is satisfied here as $\lambda((n,n+1]) &lt; \infty.$ 
-<p></p>
+ where $\Omega = \cup_{i=1}^\infty \Omega_i$  is a disjoint union, and each $\Omega_i\in\calF.$
+ This condition is
+ satisfied here as $\lambda((n,n+1]) &lt; \infty.$ 
+</li>
+<li>
+Also, now we need to make
+ sure that for every set in the initial collection, we also know the length of its complement
+ (earlier we could infer $length(A^c)$  as $length(\Omega)-length(A),$  which now may
+ lead to $\infty-\infty.$).
+ </li>
+<li>
 There is also a minor trouble involving defining area of rectangles with base length infinite. 
  Any "rectangle" with base
 length $\infty$  and positive height has area $\infty$, and any "rectangle" with zero
- height has zero area (even if its base has measure $\infty$).  
-<p></p>
+ height has zero area (even if its base has length $\infty$).  
+</li>
+</ul>
 Now that we are allowing the Lebesgue integral to equal $\infty,$  we need a little shift in terminology: We shall say
  that a nonnegative function is <b><font color="red" size="40">Lebesgue integrable</font></b>  if its Lebesgue integral is finite.
 <p></p>
@@ -664,21 +731,21 @@ We shall say a function $f$  (possibly taking both positive and negative values)
 <p></p>
 
 <h2><a
-name="Problem set 4">Problem set 4</a></h2>
+name="Problem set 5">Problem set 5</a></h2>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Find $\int f(x)\, d \lambda$  where $f:{\mathbb R}\rightarrow{\mathbb R}$  is defined as  $f(x)
+<b>EXERCISE 9:</b>&nbsp;Find $\int f(x)\, d \lambda$  where $f:{\mathbb R}\rightarrow{\mathbb R}$  is defined as  $f(x)
  =\left\{\begin{array}{ll}2&\text{if }x\in{\mathbb Q}^c\\-1&\text{otherwise.}\end{array}\right.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Find $\int f(x)\, d \lambda$  where $f(x)=x.$</p>
+<b>EXERCISE 10:</b>&nbsp;Find $\int f(x)\, d \lambda$  where $f(x)=x.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Show that $\int f\, d \lambda$  exists, then so must $\int (-f)\, d \lambda$  and $\int (-f)\, d \lambda = -\int f\, d \lambda.$</p>
+<b>EXERCISE 11:</b>&nbsp;Show that $\int f\, d \lambda$  exists, then so must $\int (-f)\, d \lambda$  and $\int (-f)\, d \lambda = -\int f\, d \lambda.$</p>
 
 <p></p>
 
@@ -748,18 +815,18 @@ Of course, we need all the $A_i$'s to be in the $\sigma$-algebra we are using. O
 <p></p>
 
 <h2><a
-name="Problem set 5">Problem set 5</a></h2>
+name="Problem set 6">Problem set 6</a></h2>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Let $\Omega = \{1,...,9\}.$  We defne, for any $A\subseteq\Omega$, its measure as
+<b>EXERCISE 12:</b>&nbsp;Let $\Omega = \{1,...,9\}.$  We defne, for any $A\subseteq\Omega$, its measure as
 $\mu(A) = |A|,$  the
  number of elements in $A.$  Consider $f:\Omega\rightarrow{\mathbb R}$  as $f(i) = i (\mbox{mod }2) + 1.$  Find $\int f\, d\mu.$</p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;Show that any $\sigma$-algebra on $\Omega$  must contain $\phi$  and $\Omega.$</p>
+<b>EXERCISE 13:</b>&nbsp;Show that any $\sigma$-algebra on $\Omega$  must contain $\phi$  and $\Omega.$</p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;Is $\calP(\Omega)$  a $\sigma$-algebra on $\Omega?$
+<b>EXERCISE 14:</b>&nbsp;Is $\calP(\Omega)$  a $\sigma$-algebra on $\Omega?$
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">
@@ -768,7 +835,7 @@ Yes. It is the largest $\sigma$-algebra on $\Omega.$
 </p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;Is $\{\phi,\Omega\}$  a $\sigma$-algebra on $\Omega?$
+<b>EXERCISE 15:</b>&nbsp;Is $\{\phi,\Omega\}$  a $\sigma$-algebra on $\Omega?$
 <p><a
 href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
 class="ans" id="lab2">Yes, it is the smallest $\sigma$-algebra on $\Omega.$</div></p>
@@ -777,12 +844,12 @@ class="ans" id="lab2">Yes, it is the smallest $\sigma$-algebra on $\Omega.$</div
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;Show that for any measure $\mu(\phi)=0.$</p>  
+<b>EXERCISE 16:</b>&nbsp;Show that for any measure $\mu(\phi)=0.$</p>  
 
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;If $\mu(A) = 3$  and $\mu(B) = 5.5$  and $\mu(A\cap B) = 2$, then what is $\mu(A\cup B)?$</p>
+<b>EXERCISE 17:</b>&nbsp;If $\mu(A) = 3$  and $\mu(B) = 5.5$  and $\mu(A\cap B) = 2$, then what is $\mu(A\cup B)?$</p>
 
 <p></p>
 When we take some probability measure in place of $\mu,$  we get the familiar definition of expectation. 
@@ -825,14 +892,14 @@ $$\forall B\in\calB~~X^{-1}(B)\in\calF.$$
 <p></p>
 
 <h2><a
-name="Problem set 6">Problem set 6</a></h2>
+name="Problem set 7">Problem set 7</a></h2>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;Characterise measurable functions from $({\mathbb R},\calP({\mathbb R}))$  to $({\mathbb R},\{\phi,{\mathbb R}\}).$ 
+<b>EXERCISE 24:</b>&nbsp;Characterise measurable functions from $({\mathbb R},\calP({\mathbb R}))$  to $({\mathbb R},\{\phi,{\mathbb R}\}).$ 
 </p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;Characterise measurable functions from  $({\mathbb R},\{\phi,{\mathbb R}\})$  to $({\mathbb R},\calP({\mathbb R}))$. 
+<b>EXERCISE 25:</b>&nbsp;Characterise measurable functions from  $({\mathbb R},\{\phi,{\mathbb R}\})$  to $({\mathbb R},\calP({\mathbb R}))$. 
 </p>
 
 <p></p>
@@ -965,17 +1032,17 @@ Hence $\lim \int s_n &gt; \int f- \epsilon,$  as required.
 </p>
 
 <h2><a
-name="Problem set 7">Problem set 7</a></h2>
+name="Problem set 8">Problem set 8</a></h2>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;
+<b>EXERCISE 26:</b>&nbsp;
 Show that the convergence in the first theorem is uniform if $f$  is bounded.
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;
+<b>EXERCISE 27:</b>&nbsp;
 Show that if, in the first theorem above,  $f$  is measurable (w.r.t. any given $\sigma$-field $\calF$
  over $\Omega$  and the Borel $\sigma$-field over ${\mathbb R}$), then so must be each $s_n.$ 
 </p>
@@ -1007,7 +1074,7 @@ Finally, we show $E(-X)= -E(X).$  Let $Y = -X.$  Then $Y_+ = X_-$  and $Y_- = X_
 <p></p>
 
 <h2><a
-name="Problem set 8">Problem set 8</a></h2>
+name="Problem set 9">Problem set 9</a></h2>
 
 <h1><a
 name="Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a></h1>
@@ -1068,7 +1135,7 @@ This completes the proof.
 <p></p>
 
 <p>
-<b>EXERCISE 26:</b>&nbsp;
+<b>EXERCISE 28:</b>&nbsp;
 If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
  and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
  dropped?
@@ -1077,7 +1144,7 @@ If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables c
 <p></p>
 
 <p>
-<b>EXERCISE 27:</b>&nbsp;
+<b>EXERCISE 29:</b>&nbsp;
 Suppose that $X_n$'s are nonnegative random variables. Show that 
 $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 </p>
@@ -1087,7 +1154,7 @@ In the simple version we assumed that the limit of $(X_n)$  is a random variable
  to $[0,\infty].$  One can then <i>show</i>  (not <i>assume</i>) that this $X$  is a random variable. We do this
  below.
 <h2><a
-name="Problem set 9">Problem set 9</a></h2>
+name="Problem set 10">Problem set 10</a></h2>
 
 <h1><a
 name="Fatou and DCT">Fatou and DCT</a></h1>
@@ -1146,7 +1213,7 @@ Hence $E|X_n-X|\rightarrow 0,$  as required.
 </p>
 
 <h2><a
-name="Problem set 10">Problem set 10</a></h2>
+name="Problem set 11">Problem set 11</a></h2>
 
 <h1><a
 name="Radon-Nikodym theorem">Radon-Nikodym theorem</a></h1>
@@ -1172,7 +1239,7 @@ We have used a special case of this theorem, where $\nu$  is a probability measu
 <p></p>
 
 <h2><a
-name="Problem set 11">Problem set 11</a></h2>
+name="Problem set 12">Problem set 12</a></h2>
 
 <p></p>
 <hr/>
