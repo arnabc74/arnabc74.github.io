@@ -7,8 +7,9 @@
 \newcommand{\ind}{{\mathbb 1}}
 \newcommand{\area}{\mathrm {area}}
 </M>
-<HEAD1>Lebesgue integration: the idea</HEAD1>
-<HEAD2>Problem with Riemann integration</HEAD2>
+
+This page will develop the concept of Lebesgue integration starting from Riemann integration. 
+<HEAD1 u="https://youtu.be/dU4iTBrXbaI">Riemann's approach</HEAD1>
 We all know about
  Riemann integration. We shall illustrate the idea with a positive, bounded function
  <M>f:[a,b]\to\rr</M>. The idea is to measure
@@ -27,7 +28,12 @@ and we plan to use this common value as the area under the curve. This brilliant
  to avoid them at all costs.  However, these
  bad functions cannot be completely avoided, as they crop up naturally from time to time, usually as the limit of Riemann integrable
  functions. 
-<HEAD2>Lebesgue's solution</HEAD2>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+Draw the upper and lower set of rectangles for the following function using the given partition of the domain. 
+<CIMG web="exfun1.png"></CIMG>
+</EXR>
+<HEAD1 u="https://youtu.be/Wwig5sZ0IN4">Lebesgue's approach</HEAD1>
 Lebesgue had a solution for this. Instead of partitioning the domain his plan was to partition the codomain. So he also
  got red rectangles below the graph and blue rectangles above as follows.
 <CIMG web="lul.png"></CIMG>
@@ -36,7 +42,12 @@ Lebesgue had a solution for this. Instead of partitioning the domain his plan wa
 sup (red area) = inf(blue area),
 </Q>
 and he wanted to call this the area under the curve. Before exploring this idea further, let's get comfortable with splitting
- the codomain. 
+ the codomain. Here is how you get the red approaximation: draw horizontal lines through the given partition of the codomain.
+ This gives you some storeys as in a multi-storeyed building. For each point of the graph in a storey, bring it down to the
+ floor of the storey to get
+ the red approximation. Raise it to the ceiling of the storey to get the blue approximation. 
+<CIMG web="astep.png">The black point gives rise to the red and blue points.</CIMG>
+
 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Consider the following graph of a bounded, nonnegative function. Finitely many values are marked
@@ -284,8 +295,6 @@ Such  functions are called <TERM>measurable</TERM>
  functions. A word or warning here: Don't forget that we are working with only nonnegative, bounded functions over <M>[a,b].</M> 
 So we are stating that <I>such a function</I> is Lebesgue integrable iff it is measurable. 
 
-If we allow functions that take both positive and negative values, and/or are unbounded, then the result may fail. But don't
- worry, we shall take care of that soon, by considering the positive and the negative parts separately. 
 
 You will recall that we had arrived at precisely the same condition while defining random variables. 
  
@@ -330,13 +339,16 @@ length <M>\infty</M>  and positive height has area <M>\infty</M>, and any "recta
 Now that we are allowing the Lebesgue integral to equal <M>\infty,</M>  we need a little shift in terminology: We shall say
  that a nonnegative function is <TERM>Lebesgue integrable</TERM>  if its Lebesgue integral is finite.
 
+With this shift in terminology it is possible to have measurable functions that are not Lebesgue
+ integrable (just take some unbounded, measurable function with Lebesgue integral infinite).  
 <HEAD2>Allowing negative values</HEAD2>
 Moving from non-negative functions to general functions is easy. For <M>f:\rr\to\rr</M>  we define <M>f_+ =\max\{f,0\}</M> 
  and <M>f_- =\max\{-f,0\}.</M>  Then <M>f = f_+-f_-.</M>  We define <M>\int f\, d \lambda = \int f_+\, d \lambda -\int f_-\, d \lambda,</M>  if
  both the integrals on the rhs are not <M>\infty.</M>
 
 We shall say a function <M>f</M>  (possibly taking both positive and negative values)
- <TERM>Lebesgue integrable</TERM>  if both <M>f_+</M>  and <M>f_-</M>  are Lebesgue integrable.
+ <TERM>Lebesgue integrable</TERM>  if both <M>f_+</M>  and <M>f_-</M>  are Lebesgue integrable. This is equivalent to requiring
+ <M>|f|</M>  to be Lebesgue integrable.
 
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Find <M>\int f(x)\, d \lambda</M>  where <M>f:\rr\to\rr</M>  is defined as  <M>f(x)
@@ -598,7 +610,7 @@ The next step is to show that the red areas indeed converge to the supremum (sin
  allowing the supremum to be <M>\infty</M>, we should better say <I>diverge</I> to the supremum in that case). 
 <THM>
 If <M>f</M>  is a non-negative measurable function, and <M>s_n</M>'s are simple
- measurablefunctions with <M>s_n\uparrow f,</M> 
+ measurable functions with <M>s_n\uparrow f,</M> 
  then <M>\int s_n \uparrow \int f.</M>
 </THM>
 <PF>
