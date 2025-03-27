@@ -590,11 +590,11 @@ As we have already commented it seems to be a <i>reasonable hope</i>  that we sh
 <p></p>
 
 <fieldset>
-<legend><b><i> Caratheodory extension</i></b></legend>
+<legend><b><i>Caratheodory extension (one version)</i></b></legend>
 Let $\Omega$  be a nonempty set and $\calF$  be a collection of its subsets, closed
- under (finite) intersection with $\Omega\in\calF.$  . We
- have a function $\lambda:\calF\rightarrow[0,\infty)$  that is countably additive, and $\lambda(\Omega) &lt; \infty.$ Then we can
- uniqely extend it to $\sigma(\calF).$
+ under (finite) intersection  such that $\Omega\in\calF.$ We
+ have a function $\mu:\calF\rightarrow[0,\infty)$  that is countably additive, and $\mu(\Omega) &lt; \infty.$ Then we can
+ uniquely extend it to $\sigma(\calF).$
 </fieldset>
 
 <p>
@@ -919,9 +919,10 @@ $$\forall \omega\in\Omega~~s_n(\omega) \uparrow f(\omega).$$
 For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $s_n$  as follows. First partition the codomain
  $[0,\infty)$  into $2$  intervals $[0,n)$  and $[n,\infty)$  and then
  subdivide the first into equal subintervals of length $2^{-n}.$  So you get $N=n2^n+1$  subintervals in all. Call
- these $[a_1,b_1),...,[a_N,b_N).$  These constitute a partition of the codomain.
+ these $[a_1,a_2),[a_2,a_3),...,[a_N,a_{N+1}),$  where $a_N=n$  and $a_{N+1}=\infty$.   These
+ constitute a partition of the codomain.
 <p></p>
-Now  set $s_n(\omega) = a_k$  if $f(\omega) \in[ a_k,b_k).$  
+Now  set $s_n(\omega) = a_k$  if $f(\omega) \in[ a_k,a_{k+1})$  for $k\in\{1,...,N\}$.
 <p></p>
 The following picture shows this process for $n=1$  and $n=2.$
 <center>
@@ -937,12 +938,23 @@ The following picture shows this process for $n=1$  and $n=2.$
 
 <p></p>
 For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $s_n(\omega)\leq s_{n+1}(\omega).$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/onestep.png"></th>
+</tr>
+<tr>
+<th>A blue point cannot fall below the corresponding red point</th>
+</tr>
+</table>
+</center>
+
 <blockquote><a
 href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
 class="ans" id="reason2">
-If $s_n(\omega) = a$   and $s_{n+1}(\omega) = b,$  then $f(\omega)\in[a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
+If $s_n(\omega) = a$   and $s_{n+1}(\omega) = b,$  then $f(\omega)\in[a,a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
 <p></p>
-So, by the contruction of the partitions, $[b+2^{-n-1})\subseteq[a,2^{-n}).$
+So, by the contruction of the partitions, $[b,b+2^{-n-1})\subseteq[a,2^{-n}).$
 <p></p>
 Thus, $a\leq b,$  as required.
 </div></blockquote>
@@ -984,7 +996,8 @@ The next step is to show that the red areas indeed converge to the supremum (sin
  allowing the supremum to be $\infty$, we should better say <i>diverge</i> to the supremum in that case). 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-If $f$  is a non-negative measurable function, and $s_n$'s are simple random variables with $s_n\uparrow f,$ 
+If $f$  is a non-negative measurable function, and $s_n$'s are simple
+ measurablefunctions with $s_n\uparrow f,$ 
  then $\int s_n \uparrow \int f.$
 </fieldset>
 
@@ -992,26 +1005,41 @@ If $f$  is a non-negative measurable function, and $s_n$'s are simple random var
 <b><i>Proof:</i></b>
 We shall only deal with the case $\int f &lt; \infty.$  The case $\int f = \infty$  is left as an exercise.
 <p></p>
-Shall show
+The proof proceeds in a somewhat counterintuitive way. So read carefully. 
 <p></p>
+We shall start by noticing that $\lim\int s_n$  indeed exists. 
+<blockquote><a
+href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
+class="ans" id="reason4">$\left(\int s_n\right)$  is a non-decreasing sequence bounded above (by \$int f$). </div></blockquote>
+We want to show that this limit equals $\int f$. For this it is enough to show 
+it is $\geq \int z$ 
+ for any nonnegative, simple function $z\leq f$. 
+<blockquote><a
+href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
+class="ans" id="reason5">
+$\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},$
+</div></blockquote>
+For this it is enough to show that 
+ $\forall \delta&gt;0~~\lim \int s_n \geq z- \delta.$  
+<blockquote><a
+href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
+class="ans" id="reason6">
+Then  $\lim \int s_n - \int z\geq -\delta.$  
+<p></p>
+Since  $\delta&gt;0$  is arbitrary, this means $\lim \int s_n - \int z &gt; $  all negative numbers. Only non-negative
+ numbers can have that property!</div></blockquote>
 
-<div class="box">Target</div>$\forall \epsilon&gt;0~~\exists N\in{\mathbb N}~~\forall n\geq N~~ \int s_n &gt; \int f-\epsilon.$
 <p></p>
-This will complete the proof, since anyway $\left(\int s_n\right)$  is a non-decreasing sequence bounded
- from above by $\int f$ 
+So far, we have been just rewording our target. Now we start the main argument. 
 <p></p>
-Since $\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},$
-<p></p>
-hence $\exists$ simple $ z\leq f$  with $\int z &gt; \int f-\epsilon.$ 
-<p></p>
-Fix some $\delta&gt;0.$
+Take any $\delta&gt;0.$
 <p></p>
 Let $A_n =\{s_n &gt; z-\delta\}.$
 <p></p>
 Then $A_n\uparrow\Omega.$
 <blockquote><a
-href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
-class="ans" id="reason4">
+href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
+class="ans" id="reason7">
 Since $s_n$'s are non-decreasing, hence $A_1\subseteq A_2\subseteq A_3\subseteq\cdots.$  
 <p></p>
 Also since $\forall\omega\in\Omega~~s_n(w)\uparrow f(w),$  hence $\cup_n A_n=\Omega.$  
@@ -1019,15 +1047,9 @@ Also since $\forall\omega\in\Omega~~s_n(w)\uparrow f(w),$  hence $\cup_n A_n=\Om
 
 <p></p>
 So $\int s_n\geq \int_{A_n} s_n \geq \int_{A_n}z  \geq \int z-M\mu(A_n^c)-\delta,$
-where $M = \max Z.$  
+where $M = \max Z$  (exists finitely, since $z$  is simple).  
 <p></p>
-Taking limit $\lim \int s_n \geq z- \delta.$  
-<p></p>
-Since $\delta&gt;0$  is arbitrary, we have $\lim \int s_n \geq \int z.$  
-<p></p>
-But we had $\int z &gt; \int f- \epsilon.$
-<p></p>
-Hence $\lim \int s_n &gt; \int f- \epsilon,$  as required.
+Hence $\lim \int s_n &gt; \int z- M\times 0-\delta,$  completing the proof.
 <b><i>[QED]</i></b>
 </p>
 
@@ -1089,8 +1111,8 @@ Let $X_n$ 's be non-negative  random variables with $X_n\uparrow X$  for some ra
 <b><i>Proof:</i></b>
 Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
 <blockquote><a
-href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
-class="ans" id="reason5">
+href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
+class="ans" id="reason8">
 We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
 </div></blockquote>
 Let $(Z_{n,k})_k$  be the simplification of $X_n.$  
@@ -1099,8 +1121,8 @@ Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$
 <p></p>
 Then $Y_1\leq Y_2\leq\cdots$
 <blockquote><a
-href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
-class="ans" id="reason6">
+href="javascript:hideShow('reason9')"><b>[Because...]</b></a><div
+class="ans" id="reason9">
 $$\begin{eqnarray*}
 Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
 &amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
@@ -1110,14 +1132,14 @@ by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
 </div></blockquote>
 Also $Y_n\leq X_n.$
 <blockquote><a
-href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
-class="ans" id="reason7">
+href="javascript:hideShow('reason10')"><b>[Because...]</b></a><div
+class="ans" id="reason10">
 $Z_{k,n}\leq X_k\leq X_n.$
 </div></blockquote>
 Finally, $Y_n\uparrow X.$
 <blockquote><a
-href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
-class="ans" id="reason8">
+href="javascript:hideShow('reason11')"><b>[Because...]</b></a><div
+class="ans" id="reason11">
 We have $Z_{n,k} \leq Y_k.$  
 <p></p>
 Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$

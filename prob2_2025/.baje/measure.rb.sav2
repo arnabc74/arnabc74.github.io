@@ -232,11 +232,11 @@ We shall denote the  <TERM>Borel <M>\sigma </M>-algebra</TERM> over <M>[a,b]</M>
 As we have already commented it seems to be a <I>reasonable hope</I>  that we should be able to define <M>length(B)</M> 
  for all <M>B\in\calB.</M>  This hope indeed comes true, thanks to the following theorem. 
 
-<THM name=" Caratheodory extension">
+<THM name="Caratheodory extension (one version)">
 Let <M>\Omega</M>  be a nonempty set and <M>\calF</M>  be a collection of its subsets, closed
- under (finite) intersection with <M>\Omega\in\calF.</M>  . We
- have a function <M>\lambda:\calF\to[0,\infty)</M>  that is countably additive, and <M>\lambda(\Omega) < \infty.</M> Then we can
- uniqely extend it to <M>\sigma(\calF).</M>
+ under (finite) intersection  such that <M>\Omega\in\calF.</M> We
+ have a function <M>\mu:\calF\to[0,\infty)</M>  that is countably additive, and <M>\mu(\Omega) < \infty.</M> Then we can
+ uniquely extend it to <M>\sigma(\calF).</M>
 </THM>
 <PF>We shall not prove this in this course.</PF>
 
@@ -308,7 +308,7 @@ Since the Lebesgue integral exists for all bounded, non-negative measurable func
 
 Similarly we may now carry out the procedure
  over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  There are just a few 
- problems that:
+ problems that are easily sorted out:
 <UL>
 <LI> In Caratheodory extension theorem we had a condition <M>\mu(\Omega)< \infty.</M> This worked well with us since
  for any <M>a \leq b </M> we had <M>\lambda([a,b]) = b-a < \infty.</M>  But clearly <M>\lambda(\rr) =\infty.</M>  Fortunately,
@@ -553,18 +553,20 @@ measurable functions such that
 For <M>n\in\nn</M>  and <M>\omega\in\Omega</M>  we define <M>s_n</M>  as follows. First partition the codomain
  <M>[0,\infty)</M>  into <M>2</M>  intervals <M>[0,n)</M>  and <M>[n,\infty)</M>  and then
  subdivide the first into equal subintervals of length <M>2^{-n}.</M>  So you get <M>N=n2^n+1</M>  subintervals in all. Call
- these <M>[a_1,b_1),...,[a_N,b_N).</M>  These constitute a partition of the codomain.
+ these <M>[a_1,a_2),[a_2,a_3),...,[a_N,a_{N+1}),</M>  where <M>a_N=n</M>  and <M>a_{N+1}=\infty</M>.   These
+ constitute a partition of the codomain.
 
-Now  set <M>s_n(\omega) = a_k</M>  if <M>f(\omega) \in[ a_k,b_k).</M>  
+Now  set <M>s_n(\omega) = a_k</M>  if <M>f(\omega) \in[ a_k,a_{k+1})</M>  for <M>k\in\{1,...,N\}</M>.
 
 The following picture shows this process for <M>n=1</M>  and <M>n=2.</M>
 <CIMG web="subdiv.png">Notice how the subdivisions for <M>n=2</M>  fit into those for <M>n=1.</M></CIMG>     
 
 For each <M>\omega\in\Omega</M>  and for each <M>n\in\nn</M>  we have <M>s_n(\omega)\leq s_{n+1}(\omega).</M>
+<CIMG web="onestep.png">A blue point cannot fall below the corresponding red point</CIMG>
 <BECAUSE>
-If <M>s_n(\omega) = a</M>   and <M>s_{n+1}(\omega) = b,</M>  then <M>f(\omega)\in[a+2^{-n})</M>  and also <M>f(\omega)\in[b+2^{-n-1}).</M> 
+If <M>s_n(\omega) = a</M>   and <M>s_{n+1}(\omega) = b,</M>  then <M>f(\omega)\in[a,a+2^{-n})</M>  and also <M>f(\omega)\in[b+2^{-n-1}).</M> 
  
-So, by the contruction of the partitions, <M>[b+2^{-n-1})\seq[a,2^{-n}).</M>
+So, by the contruction of the partitions, <M>[b,b+2^{-n-1})\seq[a,2^{-n}).</M>
 
 Thus, <M>a\leq b,</M>  as required.
 </BECAUSE>
@@ -601,20 +603,27 @@ If <M>f</M>  is a non-negative measurable function, and <M>s_n</M>'s are simple 
 <PF>
 We shall only deal with the case <M>\int f < \infty.</M>  The case <M>\int f = \infty</M>  is left as an exercise.
 
-Shall show
+The proof proceeds in a somewhat counterintuitive way. So read carefully. 
 
-<TGT>\forall \epsilon>0~~\exists N\in\nn~~\forall n\geq N~~ \int s_n > \int f-\epsilon.</TGT>
+We shall start by noticing that <M>\lim\int s_n</M>  indeed exists. 
+<BECAUSE><M>(*(\int s_n)*)</M>  is a non-decreasing sequence bounded above (by \<M>int f</M>). </BECAUSE>
+We want to show that this limit equals <M>\int f</M>. For this it is enough to show 
+it is <M>\geq \int z</M> 
+ for any nonnegative, simple function <M>z\leq f</M>. 
+<BECAUSE>
+<M>\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},</M>
+</BECAUSE>
+For this it is enough to show that 
+ <M>\forall \delta>0~~\lim \int s_n \geq z- \delta.</M>  
+<BECAUSE>
+Then  <M>\lim \int s_n - \int z\geq -\delta.</M>  
 
-This will complete the proof, since anyway <M>(*(\int s_n)*)</M>  is a non-decreasing sequence bounded
- from above by <M>\int f</M> 
+Since  <M>\delta>0</M>  is arbitrary, this means <M>\lim \int s_n - \int z > </M>  all negative numbers. Only non-negative
+ numbers can have that property!</BECAUSE>
 
+So far, we have been just rewording our target. Now we start the main argument. 
 
-Since <M>\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},</M>
-
-hence <M>\exists</M> simple <M> z\leq f</M>  with <M>\int z > \int f-\epsilon.</M> 
-
-
-Fix some <M>\delta>0.</M>
+Take any <M>\delta>0.</M>
 
 Let <M>A_n =\{s_n > z-\delta\}.</M>
 
@@ -626,15 +635,9 @@ Also since <M>\forall\omega\in\Omega~~s_n(w)\uparrow f(w),</M>  hence <M>\cup_n 
 </BECAUSE>  
 
 So <M>\int s_n\geq \int_{A_n} s_n \geq \int_{A_n}z  \geq \int z-M\mu(A_n^c)-\delta,</M>
-where <M>M = \max Z.</M>  
+where <M>M = \max Z</M>  (exists finitely, since <M>z</M>  is simple).  
 
-Taking limit <M>\lim \int s_n \geq z- \delta.</M>  
-
-Since <M>\delta>0</M>  is arbitrary, we have <M>\lim \int s_n \geq \int z.</M>  
-
-But we had <M>\int z > \int f- \epsilon.</M>
-
-Hence <M>\lim \int s_n > \int f- \epsilon,</M>  as required.
+Hence <M>\lim \int s_n > \int z- M\times 0-\delta,</M>  completing the
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
