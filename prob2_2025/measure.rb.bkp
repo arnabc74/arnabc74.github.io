@@ -59,7 +59,7 @@ and he wanted to call this the area under the curve. Before exploring this idea 
 <CIMG web="splitex2.png"></CIMG>
 </EXR>
 
-<HEAD1>Why Lebesgue's solution works</HEAD1>
+<HEAD1 u="https://youtu.be/8XY4dBDhOkQ">Riemann vs Lebesgue</HEAD1>
 Just based on these diagrams, you may think that Lebesgue's idea is no different from Riemann's
  idea. But actually, Lebesgue's
 approximations are more flexible than Riemann's. To understand this look at the graph below, where

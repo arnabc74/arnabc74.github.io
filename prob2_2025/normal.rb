@@ -25,7 +25,7 @@ At last we come to the definition of multivariate normal.
 <DEFN name=" Multivariate normal">
 For any <M>\v\mu\in\rr^m</M>  and any NND <M>\Sigma_{m\times m}</M>  we define  <M>N_m(\v\mu, \Sigma)</M>, the <M>m</M>-dimensional
  <TERM>multivariate normal distribution</TERM>  as the distribution of 
- <M>\v Y=A\v X + \v b</M>, where <M>\v X_{m\times 1}</M>  has IID <M>N(0,1)</M>  components, and
+ <M>\v Y=A\v X + \v \mu</M>, where <M>\v X_{m\times 1}</M>  has IID <M>N(0,1)</M>  components, and
  <M>A_{m\times m}</M>  is any matrix
  such that <M>\Sigma = AA'.</M>
 </DEFN>
@@ -159,7 +159,7 @@ since <M>A</M>  is orthogonal.
 <HEAD2>Mean and dispersion</HEAD2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <THM>
-If <M>\v Y\sim N_m(\v\mu,\Sigma)</M>, then  <M>E(\v Y)=\v b</M>   and <M>V(\v Y) = \Sigma.</M> 
+If <M>\v Y\sim N_m(\v\mu,\Sigma)</M>, then  <M>E(\v Y)=\v \mu</M>   and <M>V(\v Y) = \Sigma.</M> 
 </THM>
 <PF>
 Let <M>\Sigma = AA'.</M>  Then <M>\v Y</M>  has the same distribution as <M>A\v X+\v \mu</M>  where the <M>\v X</M>  has
