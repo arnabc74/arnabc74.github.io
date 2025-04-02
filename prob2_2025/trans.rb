@@ -16,14 +16,14 @@ Let <M>Y = X^2.</M>  A density for <M>X</M>  is <M>f(x) = [[12]]</M>  if <M>0\le
  to the CDF of <M>X:</M>
 <D>F(x) = <CASES>0<IF>x < 0</IF> [[x2]]<IF>0\leq x < 2</IF> 1<ELSE/></CASES> </D>
 From this we shall compute the CDF of <M>Y.</M>  Clearly, <M>Y</M>  cannot take values outside <M>[0,4].</M>  So <M>G(y) = 0</M> 
- if <M>y<0</M> and <M>G(y) = 1</M>  if <M>y\geq 2.</M>  
+ if <M>y<0</M> and <M>G(y) = 1</M>  if <M>y\geq 4.</M>  
 
-Let <M>y\in[0,2).</M>
+Let <M>y\in[0,4).</M>
 
 Then 
 <D>G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = [[12]]\sqrt y.</D>
 Differentiating this, we arrive at the required density of <M>Y</M>  as
-<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in[0,2]</IF> 0<ELSE/></CASES></D>
+<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in[0,4]</IF> 0<ELSE/></CASES></D>
 </EXM> 
 You see the advantage of monotonicity. Even though <M>x\mapsto x^2</M>  is a not a monotone function over <M>\rr,</M>  it
  is so when restricted to <M>[0,2].</M>  The CDF technique can handle even some simple non-monotonic cases, as we show now.
