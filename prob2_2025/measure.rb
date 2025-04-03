@@ -552,10 +552,12 @@ Let <M>(\Omega,\calF, P)</M>  be a probability space. By a <TERM>random variable
 
 <HEAD1>Two technical results</HEAD1>
 <THM>
-If <M>f:\Omega\to[0,\infty)</M>  is any measurable function, then there is a non-decreasing sequence <M>(s_n)</M>  of simple
-measurable functions such that
+If <M>f:\Omega\to[0,\infty)</M>  is any  function, then there is a non-decreasing sequence <M>(s_n)</M>  of simple
+functions such that
 <D>\forall \omega\in\Omega~~s_n(\omega) \uparrow f(\omega).</D> 
 </THM>
+In our course we shall call any such sequence <M>(s_n)</M>   a <TERM>simplification</TERM>  of
+ <M>f</M>   It is not a standard term.
 <PF>
 For <M>n\in\nn</M>  and <M>\omega\in\Omega</M>  we define <M>s_n</M>  as follows. First partition the codomain
  <M>[0,\infty)</M>  into <M>2</M>  intervals <M>[0,n)</M>  and <M>[n,\infty)</M>  and then
@@ -604,36 +606,42 @@ This completes the proof.
 The next step is to show that the red areas indeed converge to the supremum (since we are also
  allowing the supremum to be <M>\infty</M>, we should better say <I>diverge</I> to the supremum in that case). 
 <THM>
-If <M>f</M>  is a non-negative measurable function, and <M>s_n</M>'s are simple
- measurable functions with <M>s_n\uparrow f,</M> 
- then <M>\int s_n \uparrow \int f.</M>
+Let <M>P</M>  be a probability on <M>\Omega</M>. 
+If <M>f:\Omega\to[0,\infty)</M>  is  measurable, and <M>s_n:\Omega\to[0,\infty)</M>'s constitute a
+ measurable simplification of <M>f</M>,
+ then <M>\int s_n\, dP\uparrow \int f\, dP.</M>
 </THM>
 <PF>
-We shall only deal with the case <M>\int f < \infty.</M>  The case <M>\int f = \infty</M>  is left as an exercise.
+We shall only deal with the case <M>\int f\, dP < \infty.</M>  The case <M>\int f\, dP = \infty</M> 
+ is left as an exercise.
 
 The proof proceeds in a somewhat counterintuitive way. So read carefully. 
 
-We shall start by noticing that <M>\lim\int s_n</M>  indeed exists. 
-<BECAUSE><M>(*(\int s_n)*)</M>  is a non-decreasing sequence bounded above (by \<M>int f</M>). </BECAUSE>
-We want to show that this limit equals <M>\int f</M>. For this it is enough to show 
-it is <M>\geq \int z</M> 
+We shall start by noticing that <M>\lim\int s_n\, dP</M>  indeed exists. 
+<BECAUSE><M>(*(\int s_n\, dP)*)</M>  is a non-decreasing sequence bounded above (by <M>\int f\, dP</M>). </BECAUSE>
+We want to show that this limit equals <M>\int f\, dP</M>. For this it is enough to show 
+it is <M>\geq \int z\, dP</M> 
  for any nonnegative, simple function <M>z\leq f</M>. 
 <BECAUSE>
-<M>\int f = \sup\{\int z~:~  z\leq f,~~z \mbox{ simple}\},</M>
+<M>\int f\, dP = \sup\{\int z\, dP~:~  z\leq f,~~z \mbox{ simple}\},</M>
 </BECAUSE>
 For this it is enough to show that 
- <M>\forall \delta>0~~\lim \int s_n \geq z- \delta.</M>  
+ <M>\forall \delta>0~~\lim \int s_n\, dP \geq z- \delta.</M>  
 <BECAUSE>
-Then  <M>\lim \int s_n - \int z\geq -\delta.</M>  
+Then  <M>\lim \int s_n\, dP - \int z\, dP\geq -\delta.</M>  
 
-Since  <M>\delta>0</M>  is arbitrary, this means <M>\lim \int s_n - \int z > </M>  all negative numbers. Only non-negative
+Since  <M>\delta>0</M>  is arbitrary, this means <M>\lim \int s_n\, dP - \int z\, dP \geq </M>  all negative numbers. Only non-negative
  numbers can have that property!</BECAUSE>
 
 So far, we have been just rewording our target. Now we start the main argument. 
+We are showing: 
+<Q><M>\forall</M> simple measurable <M>0\leq z\leq f~~\forall \delta>0~~\lim \int s_n\, dP \geq z- \delta.</M>  </Q>
+
+Take  any simple, measurable function <M>0\leq z\leq f</M>. 
 
 Take any <M>\delta>0.</M>
 
-Let <M>A_n =\{s_n > z-\delta\}.</M>
+Let <M>A_n =\{s_n\geq z-\delta\}.</M>
 
 Then <M>A_n\uparrow\Omega.</M>
 <BECAUSE>
@@ -642,12 +650,28 @@ Since <M>s_n</M>'s are non-decreasing, hence <M>A_1\seq A_2\seq A_3\seq\cdots.</
 Also since <M>\forall\omega\in\Omega~~s_n(w)\uparrow f(w),</M>  hence <M>\cup_n A_n=\Omega.</M>  
 </BECAUSE>  
 
-So <M>\int s_n\geq \int_{A_n} s_n \geq \int_{A_n}z  \geq \int z-M\mu(A_n^c)-\delta,</M>
+So 
+<MULTILINE>
+\int s_n\, dP & \geq & \int_{A_n} s_n\, dP <SINCE><M>\because s_n\geq 0</M></SINCE> \\
+& \geq & \int_{A_n}z-\delta\, dP<SINCE><M>\because s_n \geq z-\delta</M>  over <M>A_n</M>.</SINCE>\\
+&  = & \int z\, dP-\int_{A_n^c}z\, dP-\delta P(A_n)\\
+&  = & \int z\, dP-\int_{A_n^c}z\, dP-\delta<SINCE><M>\because P(A_n)\leq 1</M>.</SINCE>\\
+&  \geq & \int z\, dP-M\mu(A_n^c)-\delta,
+</MULTILINE>
 where <M>M = \max Z</M>  (exists finitely, since <M>z</M>  is simple).  
 
-Hence <M>\lim \int s_n > \int z- M\times 0-\delta,</M>  completing the proof.
+Hence <M>\lim \int s_n\, dP > \int z\, dP- M\times 0-\delta,</M>  completing the proof.
 </PF>
+Since this last result deals with a probability, hence the integral is just expectation. So we can write the result as follows.
+<Q>
+If <M>X</M>  is a non-negative random variable, and <M>X_n</M>'s are non-negative simple random variables such that <M>X_n\uparrow X</M>,
+ then <M>E(X_n)\uparrow E(X)</M>.
+</Q>
+ 
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>Show that if <M>f</M>  in the first theorem is a measurable function, then the simplification
+ constructed in the proof is also measurable.</EXR>
+
 <EXR>
 Show that the convergence in the first theorem is uniform if <M>f</M>  is bounded.
 </EXR>
@@ -678,18 +702,40 @@ Finally, we show <M>E(-X)= -E(X).</M>  Let <M>Y = -X.</M>  Then <M>Y_+ = X_-</M>
 
 <HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
+We would have been very happy, had there been a result saying: Whenever <M>X_n\to X</M>  we have <M>E(X_n)\to E(X)</M>. Unfortunately,
+ this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
+
+The following theorem is just a restatement of the second technical result discussed earlier:
+<THM>
+Let <M>X_n\to X</M>. Assume
+<UL><LI><M>(X_n)</M>  is a non-negative, non-decreasing sequence,</LI>
+<LI><M>X_n</M>'s are all simple.</LI>
+</UL>
+Then <M>E(X_n) \to E(X)</M>.
+</THM>
+ Interestingly, the last condition may be dropped (i.e., <M>X_n</M>'s need not be simple). This gives rise to the theorem
+ below.
+ 
 <THM name="Monotone convergence theorem (MCT)">
-Let <M>X_n</M> 's be non-negative  random variables with <M>X_n\uparrow X</M>  for some random variable <M>X.</M>
- Then <M>E(X_n)\uparrow E(X).</M>
+Let <M>X_n\to X</M>. Assume
+<UL><LI><M>(X_n)</M>  is a non-negative, non-decreasing sequence.</LI>
+</UL>
+Then <M>E(X_n) \to E(X)</M>.
 </THM>
 <PF>
 Enough to show simple random variables <M>Y_n</M>  such that <M>Y_n\uparrow X </M> and <M>Y_n\leq X_n.</M>
 <BECAUSE>
 We already know <M>E(Y_n)\uparrow E(X).</M>  But <M>E(X_n)</M>  is sandwiched between <M>E(Y_n)</M>  and <M>E(X).</M>
 </BECAUSE>
-Let <M>(Z_{n,k})_k</M>  be the simplification of <M>X_n.</M>  
+Let <M>(Z_{n,k})_k</M>  be a simplification of <M>X_n.</M>  
+<CIMG web="mctarr.png">Think of the <M>Z_{n,k}</M>'s like an infinite "matrix".</CIMG>
+Each row of this "matrix" is a non-decreasing sequence. 
 
-Let <M>Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.</M>
+Let <M>Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.</M>  
+
+It is like extracting the upper triangular half of the "matrix" and taking maximum
+ of each column.
+<CIMG web="mctarr2.png">How <M>Y_n</M>'s are computed</CIMG>
 
 Then <M>Y_1\leq Y_2\leq\cdots</M>
 <BECAUSE>
@@ -706,18 +752,20 @@ Also <M>Y_n\leq X_n.</M>
 </BECAUSE>
 Finally, <M>Y_n\uparrow X.</M>
 <BECAUSE>
-We have <M>Z_{n,k} \leq Y_k.</M>  
+We have <M>Y_k\leq X_k\leq X</M>. So <M>(Y_k)</M>  is a non-decreasing sequence bounded from above. So <M>\lim_k Y_k</M> 
+ exists and <M>\lim_k Y_k\leq X</M>.
+
+We have <M>Z_{n,k} \leq Y_k</M>  for <M>k\geq n</M>.  
 
 Taking limit as <M>k\to \infty,</M>  we have <M>X_n\leq \lim_k Y_k.</M>
 
 Now taking limit as <M>n\to \infty,</M>  we have <M>X\leq \lim_k Y_k.</M>  
 
-Also we have <M>Y_n\leq X_n\leq X.</M>  So <M>\lim_k Y_k\leq X.</M>  
-
 Hence <M>\lim_k Y_k= X.</M>
 </BECAUSE>
 This completes the proof.
 </PF>
+<HEAD2>Problem set <PS/></HEAD2>
 
 <EXR>
 If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variables converging to some random variable <M>X,</M> 
@@ -729,12 +777,6 @@ If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variab
 Suppose that <M>X_n</M>'s are nonnegative random variables. Show that 
 <D>E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).</D>
 </EXR>
-In the simple version we assumed that the limit of <M>(X_n)</M>  is a random variable. In particular, we assumed that for
- each <M>\omega\in\Omega</M>  the sequence <M>(X_n(\omega))</M>  converges to some real number. We may actually drop these
- assumptions. We may allow <M>(X_n(\omega))</M>  to diverge. Then the limit <M>X(\omega)</M>  is a function from <M>\Omega</M> 
- to <M>[0,\infty].</M>  One can then <I>show</I>  (not <I>assume</I>) that this <M>X</M>  is a random variable. We do this
- below.
-<HEAD2>Problem set <PS/></HEAD2>
 <HEAD1>Fatou and DCT</HEAD1>
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
@@ -743,11 +785,11 @@ Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
 <PF>
 Let <M>Y_n = \inf\{X_k~:~k\geq n\}.</M>
 
-Then <M>Y_n\uparrow \liminf X_n.</M>
+Then, by the definition of <M>\liminf</M>, we have  <M>Y_n\uparrow \liminf X_n.</M>
 
 So, by MCT, <M>E(Y_n)\to E(\liminf X_n).</M>
 
-Now <M>E(X_n) \geq E(Y_n).</M>
+Now <M>Y_n \leq X_n,</M>  and hence <M>E(Y_n) \leq E(X_n).</M>
 
 Hence 
 <D>E(\liminf X_n) \leq \liminf E(X_n),</D>
@@ -755,9 +797,8 @@ as required.
 </PF>
 
 <THM name="Dominated Convergence Theorem (DCT)">
-Let <M>(X_n)</M>  be a a sequence of random variables with <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  
-with <M>E(|Y|)< \infty.</M> Also let <M>X_n\to X.</M>  
- Then <M>E|X_n-X|\to 0</M>  and so, in particular, <M>E(X_n)\to E(X).</M>
+Let <M>X_n\to X.</M>  If  <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  with <M>E(|Y|)< \infty</M>, 
+ then <M>E|X_n-X|\to 0</M>  and so, in particular, <M>E(X_n)\to E(X).</M>
 </THM>
 <PF>
 Clearly, <M>|X|\leq Y.</M>
@@ -767,18 +808,28 @@ So, by triangle inequality, <M>|X_n-X|\leq |X_n|+|X|\leq 2Y.</M>
 Let <M>Z_n = 2Y-|X_n-X|.</M>  Then <M>Z_n</M>'s are all nonnegative random variables. 
 
 Applying Fatou's lemma to <M>(Z_n)</M>, we have 
-<D>E(\liminf Z_n)\leq \liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| = 2E(Y).</D>
+<D lab="(*)">E(\liminf Z_n)\leq \liminf E(Z_n).</D>
 Now 
 <D>\liminf Z_n = 2Y-\limsup|X_n-X| = 2Y,</D>
 and 
 <D>\liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| .</D>
-So we have 
-<D>2Y\leq 2Y-\limsup E|X_n-X|,</D>
-or <M>\limsup E|X-n-X|\leq 0.</M>
+So (*) becomes 
+<D>2E(Y)\leq 2E(Y)-\limsup E|X_n-X|,</D>
+or <M>\limsup E|X_n-X|\leq 0.</M>
 
 Hence <M>E|X_n-X|\to 0,</M>  as required.
 </PF>
 <HEAD2>Problem set <PS/></HEAD2>
+<EXR>Show that <M>E(|X_n-X|)\to 0</M>  implies <M>E(X_n)\to E(X)</M>. Show that the converse is not true in general.
+<ANS>
+Toss an unbaised coin. For each <M>n\in\nn</M>  we let <M>X_n = <CASES>1<IF>\mbox{head}</IF>-1<ELSE/></CASES>.</M>  Thus
+ all the <M>X_n</M>'s are exactly the same (based on the <I>same</I>  toss). Also take <M>X\equiv 0</M>.
+
+Then <M>\forall n\in\nn~~E(X_n) =0</M>, and hence <M>E(X_n)\to E(X)</M>.
+
+But <M>|X_n-X| \equiv 1</M>. SO <M>E(|X_n-X|) \not\to0</M>. 
+</ANS>
+</EXR>
 <HEAD1>Radon-Nikodym theorem</HEAD1>
 <THM name="Radon-Nikodym theorem">
 Let <M>\mu</M>  be any <M>sigma</M>-finite measure on <M>(\Omega,\calF).</M>  Let <M>\nu</M>  be another meaure on <M>(\Omega,\calF)</M> 
