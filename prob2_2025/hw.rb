@@ -31,9 +31,9 @@ Then show that  the conditional distribution
  of <M>\v \Pi</M>  given <M>\v X</M>  is <M>Dir(a_1+X_1,...,a_{k+1}+X_{k+1}).</M>
 </EXR>
 
-<EXR>If <M>X_1,X_2</M>  are independent <M>Gamma(a,p_1)</M>  and <M>Gamma(a,p_2)</M>  random
+<EXR>If <M>X_1,X_2</M>  are independent <M>Gamma(a_1,p)</M>  and <M>Gamma(a_2,p)</M>  random
  variables, then show that 
-<D>[[X_1][X_1+X_2]]\sim Beta(p_1,p_2).</D>
+<D>[[X_1][X_1+X_2]]\sim Beta(a_1,a_2).</D>
 </EXR>
 
 <EXR>Let <M>\v X\sim N_n(\v 0, I)</M>  and <M>J_{n\times n}</M>  have all entries equal to 1. Find
