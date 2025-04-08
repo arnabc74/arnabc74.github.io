@@ -84,10 +84,12 @@ Starting with this as the basis, we can use induction over <M>p</M>  to establis
 
 The following properties are all obvious from the definition.
 <THM>
-If <M>(X_1,X_2,...,X_p)\sim Dir(a_1,a_2,...,a_p)</M>, then 
+If <M>(X_1,X_2,...,X_p)\sim Dir(a_1,a_2,...,a_p,a_{p+1})</M>, then 
 <OL>
 <LI>for any <M>k\geq 2</M>  and distinct <M>i_1,...,i_k\in\{1,...,p\}</M>  we have
- <M>(X_{i_1},...,X_{i_k})\sim Dir(a_{i_1},...,a_{i_k}).</M></LI>
+ <M>(X_{i_1},...,X_{i_k})\sim Dir(a_{i_1},...,a_{i_k},a-(a_{i_1}+\cdots+a_{i_k})),</M>
+where <M>a = a_1+\cdots+a_{p+1}</M>.
+</LI>
 <LI>each <M>X_i\sim Beta(*(a_i,\sum_{j\neq i} a_j)*).</M></LI>
 </OL>
 </THM>
