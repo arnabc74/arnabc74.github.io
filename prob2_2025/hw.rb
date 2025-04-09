@@ -24,9 +24,9 @@ You need to submit solutions to these before the study leave starts. The
 Show this by direct computation (not as a corollary to some other exercise from the class webpage). 
 </EXR>
 
-<EXR>Let <M>\v \Pi</M>  be a random vector <M>(\Pi_1,...,\Pi_k,1-\Pi_1-\cdots\Pi_k),</M>  where
- <M>(\Pi_1,...,\Pi_k)\sim Dir(a_1,...,a_{k+1}).</M>  Let the conditional distribution of <M>\v
- X</M>  given <M>(\Pi_1,...,\Pi_k)</M>  be <M>Multinom(n,\v \Pi).</M> 
+<EXR>Let <M>\v \Pi</M>  be a random vector <M>(\Pi_1,...,\Pi_k)</M>  having distribution
+ <M>\v \Pi\sim Dir(a_1,...,a_{k+1}).</M>  Let the conditional distribution of <M>\v
+ X</M>  given <M>\v\Pi</M>  be <M>Multinom(n,(\Pi_1,...,\Pi_k,1-\Pi_1-\cdots\Pi_k),).</M> 
 Then show that  the conditional distribution
  of <M>\v \Pi</M>  given <M>\v X</M>  is <M>Dir(a_1+X_1,...,a_{k+1}+X_{k+1}).</M>
 </EXR>
