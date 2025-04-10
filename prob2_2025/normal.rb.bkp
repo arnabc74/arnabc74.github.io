@@ -250,7 +250,7 @@ Now apply the last theorem.
 
 <EXR>(Continuation of the last problem) Write <M>\v Y = B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)</M>  and 
  show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
-<M>N_{n-m} (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), D-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
+<M>N_n (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), C-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
 </EXR>
 
 <EXR>Let <M>\v X\sim N_n(\v0,I).</M>  We take some subspace of <M>\rr^n,</M>  and project <M>\v
