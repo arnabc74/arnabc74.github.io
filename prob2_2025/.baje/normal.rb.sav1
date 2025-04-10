@@ -25,7 +25,7 @@ At last we come to the definition of multivariate normal.
 <DEFN name=" Multivariate normal">
 For any <M>\v\mu\in\rr^m</M>  and any NND <M>\Sigma_{m\times m}</M>  we define  <M>N_m(\v\mu, \Sigma)</M>, the <M>m</M>-dimensional
  <TERM>multivariate normal distribution</TERM>  as the distribution of 
- <M>\v Y=A\v X + \v b</M>, where <M>\v X_{m\times 1}</M>  has IID <M>N(0,1)</M>  components, and
+ <M>\v Y=A\v X + \v \mu</M>, where <M>\v X_{m\times 1}</M>  has IID <M>N(0,1)</M>  components, and
  <M>A_{m\times m}</M>  is any matrix
  such that <M>\Sigma = AA'.</M>
 </DEFN>
@@ -159,7 +159,7 @@ since <M>A</M>  is orthogonal.
 <HEAD2>Mean and dispersion</HEAD2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <THM>
-If <M>\v Y\sim N_m(\v\mu,\Sigma)</M>, then  <M>E(\v Y)=\v b</M>   and <M>V(\v Y) = \Sigma.</M> 
+If <M>\v Y\sim N_m(\v\mu,\Sigma)</M>, then  <M>E(\v Y)=\v \mu</M>   and <M>V(\v Y) = \Sigma.</M> 
 </THM>
 <PF>
 Let <M>\Sigma = AA'.</M>  Then <M>\v Y</M>  has the same distribution as <M>A\v X+\v \mu</M>  where the <M>\v X</M>  has
@@ -250,8 +250,8 @@ Now apply the last theorem.
 
 <EXR>(Continuation of the last problem) Write <M>\v Y = B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)</M>  and 
  show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
-<M>N_{n-m} (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), D-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
-</EXR>
+<M>N_n (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), C-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
+</EXR> 
 
 <EXR>Let <M>\v X\sim N_n(\v0,I).</M>  We take some subspace of <M>\rr^n,</M>  and project <M>\v
  X</M>  on it to get a vector <M>\v Y.</M>  Let <M>\v Z = \v X-\v Y.</M>  The situation is
@@ -535,12 +535,12 @@ Since a matrix is an orthogonal projection matrix iff it is symmetric and idempo
  of he matrix equals the dimension of the space we project on, we
 get  the following result. 
 <THM>
-Let <M>A</M>  be a symmetric, idempotent matrix. Then <M>\v X'A\v X\sim\k{r(A)}.</M> 
+Let <M>A</M>  be a symmetric, idempotent matrix. Then <M>\v X'A\v X\sim\k{rank(A)}.</M> 
 </THM>
 A  sort of converse is also true, as shown in the next theorem.
 <THM>
 Let <M>\v X\sim N_n(\v 0,I).</M>  Let <M>A</M>  be a real symmetric matrix.  Then <M>\v X'A\v X\sim \k r</M>  for some <M>r\in\nn.</M> 
- Then <M>A</M>  must be idempotent, and <M>r = r(A).</M>
+ Then <M>A</M>  must be idempotent, and <M>r = rank(A).</M>
 </THM> 
 <PF>
 This proof requires spectral representation of real, symmetric matrices whch allows us to write <M>A</M>  as <M>A = P'DP</M> 
@@ -548,7 +548,7 @@ This proof requires spectral representation of real, symmetric matrices whch all
 
 Then <M>\v X' A\v X = \v X'P' D P \v X = (P\v X)' D (P\v X).</M>  
 
-Now <M>\v Y=P\v X\sim N_n(\v0,I)</M>  and so we can write <M>(P\v X)' D (P\v X) = \sum_1^k d_i Y_i^2</M>, where <M>k=r(A).</M>
+Now <M>\v Y=P\v X\sim N_n(\v0,I)</M>  and so we can write <M>(P\v X)' D (P\v X) = \sum_1^k d_i Y_i^2</M>, where <M>k=rank(A).</M>
 
 The <M>Y_j</M>'s are IID <M>N(0,1)</M>  and so <M>Y_j^2</M>'s are IID <M>\k 1</M>  random variables with characteristic function
  <M>(1-2it)^{-1/2}.</M>
@@ -623,13 +623,12 @@ Since we have assumed (1), hence <M>tr(A_i)=r(A_i).</M>  So (2) follows.
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
  <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
 Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
- <M>\chi^2</M>-distributions, then must also be independent, and their degrees of freedom must add up, they must each
- <M>\v X'A_i\v X</M>  be a <M>\k{n_i}</M>  random variable with <M>\sum n_i = n.</M>  
-Conversely, if each of the quadratic forms are chi-square random variables, then they must be independent.
+ <M>\chi^2</M>-distributions, then must also be independent, and their degrees of freedom must add
+ up to <M>n.</M>
 
 <HEAD1>Miscellaneous problems</HEAD1>
 <EXR>If <M>X</M>  has a density of the form <M>f(x) \propto \exp(a+b+cx^2),~~x\in\rr,</M>  then
- find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>
+find <M>E(X)</M>  and <M>V(X)</M>  in terms of <M>a,b,c.</M>  Also find median of <M>X.</M></EXR>
 <EXR>Construct <M>(X,Y)</M> such that marginally <M>X</M>
 and <M>Y</M> have <M>N(0,1)</M> distribution, but <M>(X,Y)</M>
 is not bivariate normal.</EXR>

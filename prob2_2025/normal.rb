@@ -535,12 +535,12 @@ Since a matrix is an orthogonal projection matrix iff it is symmetric and idempo
  of he matrix equals the dimension of the space we project on, we
 get  the following result. 
 <THM>
-Let <M>A</M>  be a symmetric, idempotent matrix. Then <M>\v X'A\v X\sim\k{r(A)}.</M> 
+Let <M>A</M>  be a symmetric, idempotent matrix. Then <M>\v X'A\v X\sim\k{rank(A)}.</M> 
 </THM>
 A  sort of converse is also true, as shown in the next theorem.
 <THM>
 Let <M>\v X\sim N_n(\v 0,I).</M>  Let <M>A</M>  be a real symmetric matrix.  Then <M>\v X'A\v X\sim \k r</M>  for some <M>r\in\nn.</M> 
- Then <M>A</M>  must be idempotent, and <M>r = r(A).</M>
+ Then <M>A</M>  must be idempotent, and <M>r = rank(A).</M>
 </THM> 
 <PF>
 This proof requires spectral representation of real, symmetric matrices whch allows us to write <M>A</M>  as <M>A = P'DP</M> 
@@ -548,7 +548,7 @@ This proof requires spectral representation of real, symmetric matrices whch all
 
 Then <M>\v X' A\v X = \v X'P' D P \v X = (P\v X)' D (P\v X).</M>  
 
-Now <M>\v Y=P\v X\sim N_n(\v0,I)</M>  and so we can write <M>(P\v X)' D (P\v X) = \sum_1^k d_i Y_i^2</M>, where <M>k=r(A).</M>
+Now <M>\v Y=P\v X\sim N_n(\v0,I)</M>  and so we can write <M>(P\v X)' D (P\v X) = \sum_1^k d_i Y_i^2</M>, where <M>k=rank(A).</M>
 
 The <M>Y_j</M>'s are IID <M>N(0,1)</M>  and so <M>Y_j^2</M>'s are IID <M>\k 1</M>  random variables with characteristic function
  <M>(1-2it)^{-1/2}.</M>
@@ -584,7 +584,7 @@ Since characteristic function determines the distribution, hence <M>Y\sim\k{n-m}
 </PF>
 
 <THM name="Fact from linear algebra">
-If <M>A</M>  is idempotent, then <M>r(A)=tr(A).</M>
+If <M>A</M>  is idempotent, then <M>rank(A)=tr(A).</M>
 </THM>
 
 <THM name="Fisher-Cochran theorem">
