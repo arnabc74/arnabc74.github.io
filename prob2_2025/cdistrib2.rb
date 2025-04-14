@@ -354,7 +354,7 @@ Here we think of the sampling procedure as 500 trials of the same  random experi
 We shall assume that the trials are IID. Now here we are introducing an approximation: the first
  membr of the sample was drawn from the entire population, but since we generally sample
  <I>without replacement</I>  in such a scenario, the second member of the sample was drawn from a
- population of size one less than in the case of the first member. So the radom experiment has
+ population of size one less than in the case of the first member. So the random experiment has
  actually changed, and they are not independent also. But since the population is large (much
  larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
 
@@ -374,7 +374,7 @@ In our case, <M>\mu = 0.40</M>, <M>\sigma^2 = 0.4(1-0.4) = 0.24</M>  and <M>n=50
 or 
 <D>\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
 Nowe we can find the required probability as
-<D>P(\sum_1^{500} X_i \geq 200) \approx 1-\Phi(*([[250-200][\sqrt{500}]])*).</D>
+<D>P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi(*([[250-200][\sqrt{500}]])*).</D>
 This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or using R as
 <R>
 1-pnorm((250-200)/sqrt(500))
