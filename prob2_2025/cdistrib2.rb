@@ -374,10 +374,10 @@ In our case, <M>\mu = 0.40</M>, <M>\sigma^2 = 0.4(1-0.4) = 0.24</M>  and <M>n=50
 or 
 <D>\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
 Nowe we can find the required probability as
-<D>P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi(*([[250-200][\sqrt{500}]])*).</D>
+<D>P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi(*([[250-200][\sqrt{120}]])*).</D>
 This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or using R as
 <R>
-1-pnorm((250-200)/sqrt(500))
+1-pnorm((250-200)/sqrt(120))
 </R>
  </EXM>
 In this problem we knew the distribution of the <M>X_i</M>'s, but we never really made any use of it, except to compute <M>E(X_i)</M> 
