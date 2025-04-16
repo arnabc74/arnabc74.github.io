@@ -78,8 +78,8 @@ For <M>p=2</M>  and <M>p=3</M>  the supports are shown below.
 <CIMG web="dirsupp.png">Supports of Dirichlet distribution</CIMG>  
 In general, shapes like <M>D_p</M>  are called <TERM>simplices</TERM>  (singular <TERM>simplex</TERM>) in <M>\rr^p.</M>
  
-It is not immediately obvious that the total integral of this function is indeed 1. However, it is easy for <M>p=2,</M> because
- if <M>(X_1,X_2)\sim Dir(a_1,a_2)</M>  then <M>X_1\sim Beta(a_1,a_2)</M>  and <M>X_2 = 1-X_1.</M>
+It is not immediately obvious that the total integral of this function is indeed 1. However, it is easy for <M>p=1,</M> because
+ if <M>X_1\sim Dir(a_1,a_2)</M>  then <M>X_1\sim Beta(a_1,a_2).</M> 
 Starting with this as the basis, we can use induction over <M>p</M>  to establish the general case (easy, try it!).
 
 The following properties are all obvious from the definition.
