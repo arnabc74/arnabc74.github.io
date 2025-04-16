@@ -465,7 +465,7 @@ Substituting <M>v = [[u^2][2]]</M>  we have
 & = & \mbox{const } (t^2+n)^{-[[n+1][2]]}.
 </MULTILINE>
 If you keep track of the constants, you will find that it is
-<D>[[\Gamma(*([[n+1][2]])*)][\sqrt{n\pi}\Gamma(*([[n][2]])*)]].</D>
+<D>[[\Gamma(*([[n+1][2]])*)][\sqrt{n\pi}\Gamma(*([[n][2]])*)]]\times n^{[[n+1][2]]}.</D>
 It should not be difficult to see that <M>t</M>-density is symmetric around 0. The densities are much like the <M>N(0,1)</M> 
  density. They lie somewhere in-between the Cauchy density and <M>N(0,1)</M>  density. As the degrees of freedom increase
  to <M>\infty,</M>  the <M>t</M>-distribution approaches <M>N(0,1).</M>  For degrees of freedom more than 40, the <M>t</M>-density
