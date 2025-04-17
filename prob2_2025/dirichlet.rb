@@ -116,6 +116,9 @@ The abbreviation "p.f." means PMF.  Equation  (6.3.3) referred to in the problem
 ::<EXR><EIMG web="wilks3.png"/></EXR>
 ::<EXR><EIMG web="wilks4.png"/></EXR>
 ::<EXR><EIMG web="wilks5.png"/></EXR>
-::<EXR><EIMG web="wilks6.png"/></EXR>
+::<EXR><EIMG web="wilks6.png"/>
+
+This problem is wrong. The distribution should be <M>Dir(*([[12]],...,[[12]])*)</M>. 
+</EXR>
 ::<EXR><EIMG web="wilks8.png"/></EXR>
 </NOTE>@}
