@@ -24,7 +24,7 @@ then <M>Y</M>  has a CDF like this:
 Though, strictly speaking it is neither continuous nor discrete, yet, colloqually, we often say
  that here we have <I>both</I>  density and mass. The density is up to <M>t,</M>  and the mass is at <M>t.</M>
  
-<HEAD1>Cantor distribution (graphically)</HEAD1>
+<HEAD1 u="https://youtu.be/VKjHQ4K-3D0">Cantor distribution (graphically)</HEAD1>
 
 The example we are going to describe is called <TERM>Cantor distribution</TERM>. As it has neither a PMF nor a density, we
  shall describe it using its CDF. But its CDF is not easy to write down directly. Instead, we shall construct a sequence
@@ -65,7 +65,7 @@ To move from one <M>F_n</M>  to the next we are leaving horizontal parts unchang
 <CIMG web="repl.png">Replace the black with the red</CIMG>
 Thus, the change from <M>F_n</M>  to any <M>F_m</M>   for <M>m>n</M>  is at most <M>2^{-n}.</M> 
  Digest this well from the graphs, as this will form the main argument in the proof coming up in the next video.  
-<HEAD1>Cantor distribution (rigorously)</HEAD1>
+<HEAD1>Cantor distribution (rigorously) (part 1)</HEAD1>
 Here we shall  formally prove the uniform convergence of <M>(F_n).</M>  We shall employ the uniform Cauchy
  criterion, i.e., we shall show that
 
@@ -97,6 +97,7 @@ So <M>F_N(a) \leq F_m(x)\leq F_N(b).</M>  Similarly, <M>F_N(a) \leq F_n(x)\leq F
 
 Hence <M>|F_m(x)-F_n(x)|\leq F_N(b)-F_N(a) = 2^{-N} < \epsilon</M>, as required. 
 
+<HEAD1 u="https://youtu.be/9YGu4b8x9dA">Cantor distribution (rigorously) (part 2)</HEAD1>
 <HEAD2>The limit is a CDF</HEAD2>
 Next we claim that <M>F</M>, the uniform limit of <M>F_n</M>'s, is indeed a CDF. Each <M>F_n</M>  is continuous, and 
  uniform limits of continuous functions must be continuous. So <M>F</M>  is continuous (and hence, in particular, right continuous).
@@ -106,6 +107,7 @@ Next we claim that <M>F</M>, the uniform limit of <M>F_n</M>'s, is indeed a CDF.
 By the fundamental theorem of probability, this <M>F</M>  must be the CDF of the distribution of some random variable. It
  is this distribution that we call the <TERM>Cantor distribution</TERM>. 
 
+
 <HEAD1>Cantor distribution (properties)</HEAD1>
 We have already seen that <M>F</M>  is continuous. Let us consider <M>T_n = [0,1]\setminus S_n</M>  for <M>n=0,1,2,...</M> 
  This is the set of points where the graph of <M>F_n</M>  is horizontal.   Then the length of <M>T_n</M>  increases to <M>1.</M> 
@@ -114,4 +116,14 @@ Now, <M>F</M>  is differentiable at each point of <M>\cup T_n.</M>  and the deri
 
 For <M>F</M>  to admit a density, this <M>f</M>  must be a density. But clearly this <M>f</M>  cannot be a density. Hence
  <M>F</M>  cannot admit a density.
+
+
+Some books provide the following loose definition of the Cantor distribution:
+They start by defining the <TERM>Cantor set</TERM>  as <M>S = \cap_n S_n</M>.  Then the define the Cantor distribution as
+ the uniform distribution on <M>S</M>.
+
+While this does capture the spirit of the distribution, it is not a rigourous definition, because we have not defined "uniform
+ distribution" only for finite sample spaces, and for distributions with densities. The Cantor distribution does not have
+ PMF or density (shall show in the next section). So it is not clear what "uniform distribution" means here. 
+
 </NOTE>@}
