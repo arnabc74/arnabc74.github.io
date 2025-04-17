@@ -24,7 +24,7 @@ then <M>Y</M>  has a CDF like this:
 Though, strictly speaking it is neither continuous nor discrete, yet, colloqually, we often say
  that here we have <I>both</I>  density and mass. The density is up to <M>t,</M>  and the mass is at <M>t.</M>
  
-<HEAD1>Cantor distribution (graphically)</HEAD1>
+<HEAD1 u="https://youtu.be/VKjHQ4K-3D0">Cantor distribution (graphically)</HEAD1>
 
 The example we are going to describe is called <TERM>Cantor distribution</TERM>. As it has neither a PMF nor a density, we
  shall describe it using its CDF. But its CDF is not easy to write down directly. Instead, we shall construct a sequence
