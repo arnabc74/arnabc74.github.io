@@ -107,17 +107,7 @@ Next we claim that <M>F</M>, the uniform limit of <M>F_n</M>'s, is indeed a CDF.
 By the fundamental theorem of probability, this <M>F</M>  must be the CDF of the distribution of some random variable. It
  is this distribution that we call the <TERM>Cantor distribution</TERM>. 
 
-
-<HEAD1>Cantor distribution (properties)</HEAD1>
-We have already seen that <M>F</M>  is continuous. Let us consider <M>T_n = [0,1]\setminus S_n</M>  for <M>n=0,1,2,...</M> 
- This is the set of points where the graph of <M>F_n</M>  is horizontal.   Then the length of <M>T_n</M>  increases to <M>1.</M> 
-Now, <M>F</M>  is differentiable at each point of <M>\cup T_n.</M>  and the derivtive is 0. If we set the derivative 0 everywhere
- else, we get <M>f(x)\equiv 0.</M>  
-
-For <M>F</M>  to admit a density, this <M>f</M>  must be a density. But clearly this <M>f</M>  cannot be a density. Hence
- <M>F</M>  cannot admit a density.
-
-
+<HEAD2>A "loose" definition</HEAD2>
 Some books provide the following loose definition of the Cantor distribution:
 They start by defining the <TERM>Cantor set</TERM>  as <M>S = \cap_n S_n</M>.  Then the define the Cantor distribution as
  the uniform distribution on <M>S</M>.
@@ -126,4 +116,28 @@ While this does capture the spirit of the distribution, it is not a rigourous de
  distribution" only for finite sample spaces, and for distributions with densities. The Cantor distribution does not have
  PMF or density (shall show in the next section). So it is not clear what "uniform distribution" means here. 
 
+
+<HEAD1 u="https://youtu.be/aEVbWTCPLwE">Cantor distribution (properties)</HEAD1>
+We have already seen that <M>F</M>  is continuous. However, it does not admit a density, as we show below.
+
+<THM>Cantor distribution does not admit a density.</THM>
+<PF>
+Let us consider <M>T_n = [0,1]\setminus S_n</M>  for <M>n=0,1,2,...</M> 
+ This is the set of points where the graph of <M>F_n</M>  is horizontal.   Then the length of <M>T_n</M>  increases to <M>1.</M> 
+Now, <M>F</M>  is differentiable at each point of <M>\cup T_n.</M>  and the derivtive is 0. If we set the derivative 0 everywhere
+ else, we get <M>f(x)\equiv 0.</M>  
+
+For <M>F</M>  to admit a density, this <M>f</M>  must be a density. But clearly this <M>f</M> 
+ cannot be a density (since its total integral is 0, not 1). Hence
+ <M>F</M>  cannot admit a density.
+</PF>
+<HEAD2>Moments</HEAD2>
+If <M>X</M> is a random variable having the  Cantor distribution, then <M>X</M>  is a bounded,
+ nonnegative random variable (since it must lie in <M>[0,1]</M>). So all its moments must exist
+ finitely. However, computing them may not appear easy. 
+
+For <M>E(X)</M>  we note that <M>1-X</M>  is again a Cantor random variable (since flipping the unit interval around <M>[[12]]</M> 
+ does not change the <M>S_n</M>'s). So by symmetry argument, we have <M>E(X) = [[12]]</M>.
+
+We need machinery beyond the present syllabus to  compute <M>E(X^k)</M>  for general <M>k\in\nn</M>.
 </NOTE>@}
