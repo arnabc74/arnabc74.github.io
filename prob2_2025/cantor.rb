@@ -97,7 +97,7 @@ So <M>F_N(a) \leq F_m(x)\leq F_N(b).</M>  Similarly, <M>F_N(a) \leq F_n(x)\leq F
 
 Hence <M>|F_m(x)-F_n(x)|\leq F_N(b)-F_N(a) = 2^{-N} < \epsilon</M>, as required. 
 
-<HEAD1>Cantor distribution (rigorously) (part 2)</HEAD1>
+<HEAD1 u="https://youtu.be/ry7jBBkmGNw">Cantor distribution (rigorously) (part 2)</HEAD1>
 <HEAD2>The limit is a CDF</HEAD2>
 Next we claim that <M>F</M>, the uniform limit of <M>F_n</M>'s, is indeed a CDF. Each <M>F_n</M>  is continuous, and 
  uniform limits of continuous functions must be continuous. So <M>F</M>  is continuous (and hence, in particular, right continuous).
