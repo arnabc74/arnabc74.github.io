@@ -1,6 +1,6 @@
 @{<NOTE>
-<TITLE>Different types of distributions</TITLE>
-<HEAD1>Wierd distributions</HEAD1>
+<TITLE>Wierd distributions</TITLE>
+<HEAD1 u="https://youtu.be/FbfrRKz1-54">Different types of distributions</HEAD1>
 We hae talked about many different types of distributions. Here is a Venn diagram for the different types. 
 <CIMG web="vendis.png"></CIMG>
 As this diagram shows, there are distributions that are neither discrete nor continuous (green dot in the diagram). Also
