@@ -333,7 +333,7 @@ If we take data <M>(x_1,y_1),...,(x_n,y_n)</M>  from <M>(X,Y)</M>, what will the
 </EXR>
 
 
-<HEAD1><M>\chi^2</M>  distribution</HEAD1>
+<HEAD1 u="https://youtu.be/3r6klLqHPpA"><M>\chi^2</M>  distribution</HEAD1>
 Starting from this section, we shall discuss some distributions related to the normal distribution.
 <DEFN name="$\chi^2$">If <M>X_1,...,X_n</M>  are IID <M>N(0,1)</M>  then the distribution of <M>\sum_1^n X_i^2</M> 
  is called <TERM>chi-square distribution with degrees of freedom</TERM> 
@@ -341,7 +341,7 @@ Starting from this section, we shall discuss some distributions related to the n
 <D>\sum_1^n X_i^2\sim \chi_{(n)}^2.</D>
 </DEFN>
 <THM>
-<M>\k n</M>  is the same as <M>Gamma(*([[n2]],[[12]])*).</M>
+<M>\k n</M>  is the same as <M>Gamma(*([[12]],[[n2]])*).</M>
 </THM>
 <PF>
 Let <M>X_1,...,X_n</M>  be IID <M>N(0,1).</M>
@@ -357,9 +357,9 @@ So <M>X_i^2\sim Gamma(*([[12]],[[12]])*)</M>   for <M>i=1,2,...,n.</M>
 Also they are independent. 
 
 So, by the additivity property of the <M>Gamma</M>  distribution, we have 
- <M>\sum_1^n X_i^2 \sim  Gamma(*([[n][2]],[[12]])*).</M>
+ <M>\sum_1^n X_i^2 \sim  Gamma(*([[1][2]],[[n2]])*).</M>
 
-Hence <M>\k n\equiv  Gamma(*([[n][2]],[[12]])*),</M>   as required. 
+Hence <M>\k n\equiv  Gamma(*([[1][2]],[[n2]])*),</M>   as required. 
 </PF>
 
 Since we have already learned that the characteristic function of <M>Gamma(p,\alpha)</M>  is <M>(*([[p][p-it]])*)^\alpha,</M> 
@@ -371,7 +371,7 @@ The characteristic function of <M>\k n</M>  is <M>\xi(t) = (1-2it)^{-n/2}</M>  f
 <PF>
 Put <M>p=[[12]]</M>  and <M>\alpha=[[n2]]</M>  in the characteristic function of <M>Gamma(p,\alpha).</M>
 </PF>
-<HEAD2>Geometry of <M>\chi^2_{(k)}</M></HEAD2>
+<HEAD1 u="https://youtu.be/xDLG6SCBg_Q">Geometry of <M>\chi^2_{(k)}</M></HEAD1>
 If we consider a random vetor <M>\v X</M>  in <M>\rr^k</M>  with IID <M>N(0,1)</M>  components, <M>\|\v X\|^2\sim \k k.</M> 
  This is little more than the definition. 
 
