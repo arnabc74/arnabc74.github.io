@@ -251,6 +251,21 @@ Now apply the last theorem.
 <EXR>(Continuation of the last problem) Write <M>\v Y = B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)</M>  and 
  show that the conditional distribution of <M>\v Y</M>  given <M>\v X=\v x</M>  is 
 <M>N_n (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), C-B'A ^{-1} B).</M>  [Does this remind you of multiple regression?]
+<ANS>
+Let us write the condl distribution as <M>Distr(\v Y|\v X=\v x)</M>.
+
+Then 
+<MULTILINE>
+Distr(\v Y|\v X=\v x) 
+& = & Distr(B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)|\v X=\v x)\\
+& = & Distr(B'A ^{-1} \v x + (\v Y-B'A ^{-1}\v X)|\v X=\v x)\\
+& = & B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X|\v X=\v x)\\
+& = & B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X)<SINCE><M>\because</M>  indep</SINCE>
+</MULTILINE>
+Now 
+<D>\v Y-B'A ^{-1}\v X = <MAT>-B A ^{-1} & I </MAT><MAT>\v X\\\v Y</MAT>.</D>
+So <M>Distr( \v Y-B'A ^{-1}\v X)</M>  may be computed easily.
+</ANS>
 </EXR> 
 
 <EXR>Let <M>\v X\sim N_n(\v0,I).</M>  We take some subspace of <M>\rr^n,</M>  and project <M>\v
