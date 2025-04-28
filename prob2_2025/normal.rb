@@ -413,7 +413,7 @@ If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution
  <M>S^\perp</M>  must have <M>\k {n-k}</M>  distribution.</EXR>
 
 <EXR>(Continuation of the last problem) How will the answer to the last problem change if <M>\v\mu\not\in S?</M></EXR>
-<HEAD1>Sampling distributions for normal sample</HEAD1>
+<HEAD1 u="https://youtu.be/BRwFMYfb4rE">Sampling distributions for normal sample</HEAD1>
 
 <THM>
 Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
