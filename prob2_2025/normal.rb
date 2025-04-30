@@ -521,7 +521,7 @@ Then what
  is the distribution of 
 <D>[[\sum(X_i-\bar X)^2/(m-1)][\sum(Y_i-\bar Y)^2/(n-1)]]?</D>
 </EXR>
-<HEAD1>Distribution of quadratic forms</HEAD1>
+<HEAD1 u="https://youtu.be/XCtgYh2ux7M">Distribution of quadratic forms (part 1)</HEAD1>
 <DEFN name="Quadratic form">
 By a <TERM>quadratic form</TERM>  in <M>n</M>-variables we understand a function <M>q:\rr^n\to\rr</M>  of the form
 <D>q(\v x) = \v x' A \v x</D>
@@ -580,6 +580,7 @@ Also, matching coefficients of powers of <M>t,</M>  we
  see that <M>d_1=\cdots=d_k=1.</M>  Hence <M>A = P'<MAT>I & O\\O & O</MAT>P</M>. We know that any matrix of this form must
  be idempotent. This completes the proof.
 </PF>
+<HEAD1 u="https://youtu.be/ObK-yPeTs7E">Distribution of quadratic forms (part 2)</HEAD1>
 We know that sum of independent <M>\chi^2</M>  random variables is a again a <M>\chi^2</M>  random variable with degrees of freedom
  adding up. Here is a partial converse.
 <THM>
