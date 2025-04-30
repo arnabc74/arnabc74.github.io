@@ -539,7 +539,7 @@ There are two variables, so the matrix will be a <M>2\times 2</M>  one. The diag
 </EXM>
 In this section we shall deal with the following set up:
 <Q>
-<M>X_1,...,X_n</M>  are IID <M>N(0,1),</M>  or, equivalently <M>\v X = (X_1,...,X_n)'\sim N_N(\v0,I).</M>  We have some real, symmetric matrix
+<M>X_1,...,X_n</M>  are IID <M>N(0,1),</M>  or, equivalently <M>\v X = (X_1,...,X_n)'\sim N_n(\v0,I).</M>  We have some real, symmetric matrix
  <M>A.</M>  We want to explore various necessary and sufficient condtions under which the quadratic form <M>\v X'A\v X</M> 
  will have a <M>\k k</M>  distribution, and how <M>k</M>  is related with <M>A.</M>
 </Q>
@@ -574,7 +574,7 @@ We want this to be the characteristic function of <M>\k r</M>  for some <M>r.</M
 <D>\prod_1^k (1-2it d_j)^{-1/2}=(1-2it)^{-r/2}.</D>
 In other words, we need 
 <D>(1-2it d_1)\cdots (1-2it d_k)=(1-2it)^r.</D>
-Matching degrees of sides, we see <M>r=k.</M>  
+Matching degrees of both sides, we see <M>r=k.</M>  
 
 Also, matching coefficients of powers of <M>t,</M>  we 
  see that <M>d_1=\cdots=d_k=1.</M>  Hence <M>A = P'<MAT>I & O\\O & O</MAT>P</M>. We know that any matrix of this form must
