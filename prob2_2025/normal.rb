@@ -450,7 +450,7 @@ The distribution of <M>\bar X</M>  is obvious from an earlier theorem.
 Same set up as in the theorem above. What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
 a fixed number?
 </EXR>
-<HEAD1><M>t</M>  distribution</HEAD1>
+<HEAD1 u="https://youtu.be/mv62pUoznVI"><M>t</M>  distribution</HEAD1>
 <DEFN name="$t$-distribution">
 If <M>X\sim N(0,1)</M>  and <M>Y\sim\k n</M>  and they are independent, then the distribution of <M>X/(\sqrt{Y/n})</M>  is
  called <M>t</M>-distribution with <M>n</M>  degrees of freedom. Here <M>n>0</M>  need not be an integer.
@@ -492,7 +492,7 @@ It should not be difficult to see that <M>t</M>-density is symmetric around 0. T
 </EXR>
 
 
-<HEAD1><M>F</M>  distribution</HEAD1>
+<HEAD1 u="https://youtu.be/xTL6asmWxA8"><M>F</M>  distribution</HEAD1>
 <DEFN name="$F$-distribution">
 If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, then the distribution of <M>[[X/m][Y/n]]</M>  is
  called <M>F</M> -distribution with numerator degrees of freedom <M>m</M>  and denominator degrees of freedom <M>n.</M>
