@@ -1,7 +1,7 @@
 @{<NOTE>
 <M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <TITLE>Multinomial and Dirichlet distributions</TITLE>
-<HEAD1>Multinomial distribution</HEAD1>
+<HEAD1 u="https://youtu.be/VGn9MEDk888">Multinomial distribution (part 1)</HEAD1>
 The multinomial distribution is a direct generalisation of the binomial distribution. We often think of the <M>Binom(n,p)</M> 
  distribution as the distribution of the number, <M>X</M>, of heads obtained in <M>n</M> 
  independent tosses of a coin with
@@ -30,6 +30,7 @@ If <M>\v X\sim Multinom(m,\v p)</M>  and <M>\v Y\sim Multinom(n,\v p)</M>  are i
 </THM>
 In particular, we can think of <M>Multinom(n,\v p)</M>  as the distribution of the sum of <M>n</M>  independent <M>Multinom(1,\v p)</M> 
  random vectors. 
+<HEAD1 u="https://youtu.be/tyckoyNxRXQ">Multinomial distribution (part 2)</HEAD1>
 
 Suppose we roll the same die twice independently. Accordingly we get 
 <M>\v X,\v Y</M>  both having <M> Multinom(1,\v p)</M>  distribution.  Let <M>\v
