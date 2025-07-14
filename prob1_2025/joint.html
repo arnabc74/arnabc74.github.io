@@ -1,0 +1,1376 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Joint distribution">Joint distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Marginal distributions">Marginal distributions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Expectation">Expectation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Indicator trick">Indicator trick</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Independent random variables">Independent random variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Covariance">Covariance</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Joint distribution">Joint distribution</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Jointly distributed random variables</b></legend>
+When we say that some random variables are <b>jointly
+distributed</b>, we mean that they are all defined on the same
+probability space. 
+</fieldset>
+If we want to combine values of different random variables (<i>e.g.</i>,
+by addition, subtraction etc or comparison like $\leq$), then
+they must be jointly distributed. If we have $n$ jointly
+distributed real-valued random variables, then you may consider
+them as components of an ${\mathbb R}^n$-valued random
+variable. Sometimes we call such a random variable a <b>multivariate</b>
+random variable, as opposed to a <b>univariate</b> one.
+<p></p>
+
+<p></p>
+We shall now extend the various familiar concepts about ${\mathbb R}$-valued  random
+variables to ${\mathbb R}^n$-valued random variables. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Joint CDF</b></legend>
+Let $X = (X_1,...,X_n)$ be an ${\mathbb R}^n$-valued random
+variable. Its joint CDF is defined as $F:{\mathbb R}^n\rightarrow{\mathbb R}$ where for
+all $(x_1,...,x_n)\in{\mathbb R}^n$
+$$
+F(x_1,...,x_n) = P(X_1\leq x_1~\&amp;~\cdots~\&amp;~X_n\leq x_n).
+$$
+</fieldset>
+
+<p></p>
+The extension of the concept of discreteness is straightforward.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Discrete</b></legend>
+An ${\mathbb R}^n$-valued random variable $X$ is called <b>discrete</b>
+if there is a countable set $A\subseteq{\mathbb R}^n$ such that $P(X\in A)=1.$
+</fieldset>
+The definition of continuous random variable is slightly more
+confusing. For ${\mathbb R}$-valued random variables we had two
+equivalent definitions:
+<ul>
+
+<li>ever singleton set has probability zero,</li>
+
+<li>CDF is continuous.</li>
+
+</ul>
+For an ${\mathbb R}^n$-valued random variable, these two conditions
+are not equivalent (the latter is stronger). We use the stronger
+condition as the defintion of continuity of
+an ${\mathbb R}^n$-valued random variable.
+<p></p>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">
+<b>Caution:</b> Most books take a much stronger definition of
+continuity for joint distribution. More precisely, that
+definition should be called <b>absolute continuity</b>, which we
+shall learn later.
+</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b>Definition: Continuous</b></legend>
+An ${\mathbb R}^n$-valued random variable $X$ is
+called <b>continuous</b> if its joint CDF is continuous.
+</fieldset>
+
+<p></p>
+The following example shows that the first condition is indeed
+weaker than the second.
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Consider the function with the following graph:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/unifcdf.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Clearly it satisfies the 4 conditions of being a CDF. Hence we
+know that there is a random variable $X$ with this CDF (by
+the fundamental theorem).
+<p></p>
+Define a ${\mathbb R}^2$-valued random variable 
+as $Y=(X,1).$  Show that for any $(a,b)\in{\mathbb R}^2$ we have $P(Y=(a,b))=0.$
+Also show that the CDF of $Y$ is not continuous.
+<p></p>
+<b>SOLUTION:</b>
+$P(Y=(a,b))= P(X=a~\&amp;~1=b)\leq P(X=a)=0,$ since $X$ is
+a continuous random variable.
+<p></p>
+Also, the joint CDF is 
+$$
+F(a,b) = P(X\leq a~\&amp;~1\leq b) = \left\{\begin{array}{ll}0&\text{if }b &lt;
+1\\F(a)&\text{if }b\geq 1.\\\end{array}\right.
+$$
+If we take $(a_n,b_n) =\left( \frac 12, 1-\frac 1n\right),$
+then $(a_n,b_n)\rightarrow \left(\frac 12,1\right).$ 
+<p></p>
+
+<p></p>
+Now $F(a_n,b_n)\equiv 0,$ and so $F(a_n,b_n)\rightarrow 0.$
+<p></p>
+
+<p></p>
+But $F\left(\frac 12,1\right) = \frac 12\neq 0.$
+ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Joint PMF</b></legend>
+Let $X$ be an ${\mathbb R}^n$-valued discrete random
+variable. Then its <b>joint PMF</b> is the
+function $p:{\mathbb R}^n\rightarrow{\mathbb R}$ defined as 
+$$
+p(x_1,...,x_n)= P(X_1=x_1~\&amp;~\cdots~\&amp;~X_n=x_n).
+$$
+</fieldset>
+
+<p></p>
+
+<h2><a
+name="Marginal distributions">Marginal distributions</a></h2>
+If you are given two jointly distributed random
+variables $X,Y$ and you know their joint distribution,
+<i>i.e.</i> given any $A\subseteq{\mathbb R}^2$ you know $P((X,Y)\in A),$
+then you can work out the probability distribution of $X$
+and $Y$ separately from this, <i>i.e.</i>, for any
+fiven $B\subseteq{\mathbb R}$ you can find $P(X\in B)$ and $P(Y\in
+B)$ as follows:
+<blockquote>
+$P(X\in B) = P(X\in B~\&amp;~ Y\in{\mathbb R}) = P((X,Y)\in A),$
+where $A = B\times{\mathbb R}.$ Similarly, for $Y.$
+</blockquote>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Marginal distribution</b></legend>
+Let $X=(X_1,...,X_n)$ be an ${\mathbb R}^n$-valued
+random variable. For any $\{i_1,...,i_k\}\subseteq\{1,2,...,n\}$ the joint
+distribution of $(X_{i_1},...,X_{i_k})$ is called
+a $k$-dimensional <b>marginal</b> for the joint distribution
+of $X.$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $(X,Y)$ be an ${\mathbb R}^2$-valued random variable with
+joint CDF $F(x,y).$ Then the marginal CDF of $X$ is 
+$$
+F_X(x) = P(X\leq x) = \lim_{y\rightarrow \infty} F(x,y)
+$$
+and the marginal CDF of $X$ is 
+$$
+F_Y(y) = P(Y\leq y) = \lim_{x\rightarrow \infty} F(x,y).
+$$
+</fieldset>
+
+<p></p>
+
+<h2><a
+name="Expectation">Expectation</a></h2>
+
+<p></p>
+The definition of expectation is  straightforward extension of
+the univariate case. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Expectation</b></legend>
+Let $X$ be an ${\mathbb R}^n$-valued discrete random
+variable with PMF $p(x)$. Let $f:{\mathbb R}^n\rightarrow {\mathbb R}$ be any
+function. Then $E(h(X))$ is defined as follows.
+<ul>
+
+<li>If $\sum_x |h(x)| p(x) &lt; \infty,$ then 
+$$
+E(h(X)) = \sum_x h(x) p(x).
+$$
+</li>
+
+<li>If $\sum_x |h(x)| p(x) = \infty,$ then 
+<ol type="">
+
+<li>if all but finitely many terms in the sum are positive, we
+define $E(h(X))=\infty.$</li>
+
+<li>if all but finitely many terms in the sum are negative, we
+define $E(h(X))=-\infty.$</li>
+
+<li>if there are infinitely many positive and negative terms,
+then $E(h(X))$ is undefined.</li>
+
+</ol>
+
+</li>
+
+</ul>
+
+<p></p>
+
+</fieldset>
+
+<p></p>
+If $X$ is an ${\mathbb R}^n$-valued random variable,
+and $h:{\mathbb R}^n\rightarrow {\mathbb R}^m$ is any function, 
+then $E(h(X))$ is defined component by component, and is said
+to exists finitely iff all the component expectations exist finitely.
+<p></p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X, Y$ are jointly distributed real-valued random
+variables, each with finite expectation, then $X+Y$ also has
+finite expectation
+$$
+E(X+Y) = E(X)+E(Y).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+In this course we shall prove this  only when $X,Y$ are both
+discrete random
+variables.
+<p></p>
+First, notice that $X+Y$ is again discrete. 
+<blockquote class="scrpt">
+<b>Because:</b>
+If $X$ takes values in the countable
+set $\{x_1,x_2,...\}$ and $Y$ take values in the
+countable set $\{y_1,y_2,...\},$ then each possible value
+of $X+Y$ must be of the form $x_i+y_j.$ There are only
+countably many such values.
+</blockquote>
+Let $p_{ij} = P(X=x_i~\&amp;~ Y=y_j).$
+<p></p>
+Then $P(X=x_i) = \sum_j p_{ij}$ and $P(Y=y_j) = \sum_i p_{ij}.$
+<p></p>
+So $E(X) = \sum_i x_i P(X=x_i) =  \sum_i x_i \sum_j p_{ij},$
+and $E(Y) = \sum_j y_j P(Y=y_j) =  \sum_j y_j \sum_i p_{ij} .$
+<p></p>
+By the given condition both these series converges absolutely,
+and may be grouped and arranged in any way without changing the
+sum. 
+<p></p>
+So $\sum_i\sum_j |x_i p_{ij}|&lt; \infty,$ and $\sum_j\sum_i |y_j p_{ij}|&lt; \infty.$
+<p></p>
+Now $|x_i+y_j|\leq |x_i|+|y_j|$ by triangle
+inequality.
+<p></p>
+
+<p></p>
+Hence $\sum_{i,j} |(x_i+y_j)p_{ij}| &lt;\infty$ and
+so $E(X+Y)$ exists finitely. Also 
+$$
+E(X+Y) = \sum_{i,j} (x_i+y_j)p_{ij} = \sum_i\sum_j x_ip_{ij} +
+\sum_j\sum_i y_jp_{ij}  = E(X)+E(Y),
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+This result leads to simple trick that we discuss next.
+<p></p>
+
+<h3><a
+name="Indicator trick">Indicator trick</a></h3>
+Suppose that you are to find expected number of something. For
+example, $n$ letters are randomly put into $n$
+addressed envelops, and you are to find $E(X),$
+where $X$ is the number of correctly placed letters. 
+would you count $X$ In any given situation like the 
+following, you can find $X$ by first putting a check mark
+for each correctly placed letter and then counting the total
+number of check marks. 
+<p></p>
+Mathematically each ckec mark is an <b>indicator</b>. For
+example, the indicator for the $i$-th letter is 
+$$
+I_i = \left\{\begin{array}{ll}1&\text{if }i\mbox{-th letter is placed correctly}\\0&\text{otherwise.}\end{array}\right..
+$$
+Counting the number of check marks amounts to
+summing $I_i$'.s Thus, $X = \sum I_i.$ 
+<p></p>
+Notice that each $I_i$ is a random variable, and $E(X) = \sum E(I_i).$
+<p></p>
+Since each $I_i$ takes only the values $1$
+and $0,$ hence $E(I_i) = P(I_i=1).$
+<p></p>
+Now $I_i=1$ means $i$-th letter has been placed
+correctly. This is has probability $\frac{(n-1)!}{n!} = \frac 1n.$
+<p></p>
+So $E(X) = n\times \frac 1n = 1.$ 
+<p></p>
+It's a bit surprising that $E(X)$ does not depend on $n.$
+<p></p>
+
+<h2><a
+name="Independent random variables">Independent random variables</a></h2>
+An important special case of jointly distributed random variables
+is that of independent random variables. To state the definition
+we shall intriduce a new terminology: If $X:\Omega\rightarrow S$ is
+a random variable, then by "an event in terms of $X$" we
+shall mean $\{w\in\Omega~:~ X(w)\in A\}$ for some $A\in
+S.$ Similarly, if $X:\Omega\rightarrow S$ and $Y:\Omega\rightarrow
+T$ are jointly distributed random
+variables, then "an event in terms of $X,Y$" means 
+$\{w\in\Omega~:~ (X(w),Y(w))\in A\},$ where $A\subseteq S\times T.$
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Indepdendent random variables</b></legend>
+Let $X_1,...,X_n$ be jointly distributed random variables.
+We say that they are <b>independent</b> if for all  disjoint
+subsets $A,B\subseteq\{1,...,n\}$ any event in terms
+of $\{X_i~:~i\in A\}$ is independent of any event in terms
+of $\{X_i~:~i\in B\}.$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+If $X,Y,Z$ are independent random variables, then 
+$$
+P(X^2+Y^2 \leq 4~\&amp;~ Z\neq 5) = P(X^2+Y^2 \leq 4)P(Z\neq 5).
+$$
+ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$ are independent random variables, then any
+function of some of the $X$'s is independent of any
+function of the remaining $X$'s.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Split $\{1,...,n\}$ into two disjoint
+subsets $\{i_1,...,i_k\}$ and $\{j_1,...,j_{n-k}\}.$
+<p></p>
+
+<p></p>
+Let $Y = f(X_{i_1,...,i_k})$ and $Z =
+g(X_{j_1,...,j_{n-k}}),$ where $f,g$ are any two
+functions. 
+<p></p>
+Take any two sets $A,B.$ Then 
+$$P(Y\in A~\&amp;~Z\in B) = 
+P(f(X_{i_1,...,i_k})\in
+A~\&amp;~g(X_{j_1,...,j_{n-k}})\in B) = 
+P(f(X_{i_1,...,i_k})\in A)P(g(X_{j_1,...,j_{n-k}})\in B) = P(Y\in
+A)P(Z\in B).
+$$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X,Y$ be jointly distributed discrete random variables, with
+PMFs $p(x)$ and $q(x).$ If they are independent, then
+their joint PMF is $h(x,y) = p(x)q(y).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Immediate from the definition of independence.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X,Y$ be jointly distributed random variables, with
+CDFs $F(x)$ and $G(x).$ If they are independent, then
+their joint CDF is $H(x,y) = F(x)G(y).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Immediate from the definition of independence.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$ are independent random variables with finite
+expectations, then $E(XY) = E(X)E(Y).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall prove this for the case where $X,Y$ are both
+discrete (hence so is $(X,Y)$). 
+<p></p>
+
+<p></p>
+Let $p(x,y), p_X(x)$ and $p_Y(y)$ be the joint and
+marginal PMFs, respectively.
+<p></p>
+Then 
+$$
+E(XY) = \sum_{x,y} xy p(x,y) = \sum_{x,y} xy p_X(x)p_Y(y) =
+\sum_x x p_X(x)\times \sum _y yp_Y(y) = E(X)E(Y).
+$$
+The grouping and rearranging were justified since the series were
+absolutely convergent. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Covariance">Covariance</a></h2>
+
+<fieldset>
+<legend><b>Definition: Covariance</b></legend>
+If $X,Y$ are jointly distributed random variables, then
+their <b>covariance</b> is defined as
+$$
+cov(X,Y) = E[(X-E(X))(Y-E(Y))].
+$$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$cov(X,Y) = E(XY)-E(X)E(Y).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+By direct algebraic expansion.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$ are independent and  $E(X^2),
+E(Y^2) &lt; \infty,$then $cov(X,Y)=0.$ The
+converse is not true.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The first part follows immediately from the fact that $E(XY)=E(X)E(Y).$
+<p></p>
+A counter example for the second part is as follows.
+<p></p>
+$X$ takes values $-1,0,1$ with equal
+probabilities. $Y = |X|.$ Direct computation
+shows $E(X)=E(XY)=0$ and so $cov(X,Y)=0.$
+<p></p>
+But $P(X=0~\&amp;~Y=1) = 0 \neq P(X=0)P(Y=1).$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The $cov(\cdot,\cdot)$ function behaves much like ordinary
+multiplication. The following theorems show this.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$cov(X,Y)=cov(Y,X).$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$cov(\sum a_i X_i, \sum b_j Y_j) = \sum_{i,j} a_ib_jcov(X_i,Y_j).$
+</fieldset>
+
+<p></p>
+Also we have 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$cov(X,X) = V(X).$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$cov(aX+b,cY+d) = ac cov(X,Y).$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+The analog of $(a+b)^2 = a^2+2ab+b^2$ here is $V(X+Y) =
+V(X)+2 cov(X,Y) +V(Y).$ This also shows that if $X,Y$ are
+independent, then $V(X+Y) = V(X)+V(Y).$
+ ■
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;
+If $X$ and $Y$ have finite first moments, and at least one of them  is a degenerate random variable, then show
+ that $cov(X,Y)=0.$  
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1">
+If $X$  is degenerate, say $P(X=c)=1,$  then $\cov(X,Y) = E(XY)-E(X)E(Y) = E(xY)-cE(Y) = 0.$
+</div></p>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;Let $X_1,X_2,...,X_n$  be identically distributed independent random variables with $V(X_1) = \sigma^2 &lt; \infty.$  Then what is 
+$V(\overline X_n)?$  Here $\overline X_n = \frac 1n\sum_1^n X_i.$
+<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2">$V(\overline X_n) = \frac{\sigma^2}{n}.$</div></p>
+</p>
+
+<p></p>
+At last we shall be able to prove our first theorem about
+statistical regularity. This is essentially what we had started
+our class with.
+<p></p>
+
+<fieldset>
+<legend><b><i>Weak Law of Large Numbers (WLLN)</i></b></legend>
+Let $X_1,X_2,...$ be a sequence of independent and
+identically distributed (IID) random variables (defined
+on the same probability space) with $E(X_1)=\mu$ and
+$V(X_1)=\sigma^2&lt;\infty.$ Let, for $n\in{\mathbb N}$, 
+$$
+\overline X_n = \frac 1n\sum_{i=1}^n X_i.
+$$
+Then 
+$$
+\forall \epsilon &gt; 0~~ P(|\overline X_n-\mu|&gt; \epsilon) \rightarrow
+0\mbox{ as } n\rightarrow \infty.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Use the exercise above and Chebyshev inequality.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Cauchy-Scwartz inequality</i></b></legend>
+$cov(X,Y)^2 \leq V(X)V(Y).$
+Equality holds iff $\exists a,b,c\in{\mathbb R}~~P(aX+bY=c)=1.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The result is obvious if $X$ is degenerate. So let's
+consider the case where $X$ is not degenerate. Then $V(X)&gt;0.$
+<p></p>
+Define $Z = Y-\underbrace{\frac{cov(X,Y)}{V(X)}}_\beta  X.$ 
+<p></p>
+We know that $V(Z)\geq 0.$
+<p></p>
+Now, 
+$$
+V(Z) = V(Y) + V(\beta X) - 2cov(Y,\beta X) = V(Y) + \beta^2 V(X)
+- 2 \beta cov(X,Y).
+$$
+Since $\beta = \frac{cov(X,Y)}{V(X)},$ this reduces to 
+$$
+V(Y) - \frac{cov(X,Y)^2}{V(X)}.
+$$
+Since this is $\geq0,$ the inequality follows immediately.
+<p></p>
+Also equality holds iff $V(Z)=0$, <i>i.e.</i>, $Z$ is degenerate.
+<p></p>
+So we have $V(X) X - cov(X,Y) Y = kV(X)$ for some $k\in{\mathbb R}.$
+<p></p>
+
+<p></p>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Correlation</b></legend>
+If $X,Y$ are jointly distributed random variables
+with $V(X), V(Y)&gt;0,$ then their <b>correlation</b> is defined
+as 
+$$
+\rho(X,Y)= \frac{ cov(X,Y) }{ \sqrt{V(X)V(Y)} }.
+$$
+</fieldset>
+By  Cauchy-Scwartz inequality, $rho(X,Y) \in [-1,1].$ Also,
+$\rho(X,Y)=-1$ or $\rho(X,Y)=1$ if and only
+if $X,Y$ are linearly linearly related with probability 1,
+<i>i.e.</i>, $\exists a,b,c\in{\mathbb R}$ such that $P(aX+bY=c)=1.$
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<p></p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most45.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">
+(a) 
+Let $X$  be the number of matching pairs.
+<p></p>
+Let $X_i = \left\{\begin{array}{ll}1&\text{if }i\mbox{-th pair match}\\ 0&\text{otherwise.}\end{array}\right..$
+<p></p>
+Then $X = \sum_1^{52} X_i.$
+<p></p>
+Now, $E(X_i) = P(i$-th pair match$)=\frac{1}{52}.$
+<p></p>
+So $E(X) = 1.$
+<p></p>
+(b) 1.
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here "discrete density" means "PMF".
+<p><a
+href="javascript:hideShow('lab4')"><b>Hint:</b></a><div
+class="ans" id="lab4">
+We need to check that $\forall x\in{\mathbb R}~~f(x)\geq 0$  and $\sum_{x=1}^N f(x) = 1.$
+<p></p>
+Both are immediate.
+<p></p>
+The mean is $E(X)$  where $X$  has this PMF.
+<p></p>
+$E(X) = \sum_{x=1}^N x f(x) = \frac{2}{N(N+1)}\sum_{x=1}^N x^2 = \frac{2}{N(N+1)}\times\frac{N(N+1)(2N+1)}{6} = \frac{2N+1}{3}.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab5')"><b>Hint:</b></a><div
+class="ans" id="lab5">Since $P(|X-Y|\leq M)=1$,  hence $E|X-Y| \leq E(M) = M.$
+<p></p>
+Also we know that $X = Y + (X-Y)$  and so, by triangle inequality, 
+$|X| \leq |Y| + |X-Y|.$
+<p></p>
+Now $E|X|$  always exists (may be $\infty$) and $E|X|\leq E|Y| + E|X-Y| &lt;\infty,$  since $E|Y|&lt;\infty$ 
+ and $E|X-Y|\leq M.$
+<p></p>
+Hence $E(X)$  exists finitely. 
+<p></p>
+Also $|E(X)-E(Y)| = |E(X-Y)| \leq E|X-Y|$  by Jensen's inequality, since $|x|$  is a convex function. 
+<p></p>
+Hence $|E(X)-E(Y)| \leq M,$  as required.
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab6')"><b>Hint:</b></a><div
+class="ans" id="lab6">
+$E(X) = \frac N2$  and $V(X) = \frac{N(2n+1)}{6}-\frac{N^2}{4} = \frac{N^2+2N}{12}. $
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+Here "density" means "PMF".
+<p><a
+href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+class="ans" id="lab7">
+We know from analysis that $\sum_1^\infty x^{-(r+2)} &lt;\infty$  since $r&gt;0.$  
+<p></p>
+Let $c = \frac{1}{\sum_1^\infty x^{-(r+2)}}.$
+<p></p>
+Then $p(x) = \left\{\begin{array}{ll}c x^{-(r+2)}&\text{if }x\in{\mathbb N}\\ 0&\text{otherwise.}\end{array}\right. $
+is a PMF with the required property. 
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab8')"><b>Hint:</b></a><div
+class="ans" id="lab8">
+$V(X^2Y) =E(X^4Y^2)-E^2(X^2Y) = E(X^4)E(Y^2)-E^2(X^2)E^2(Y),$
+since $X,Y$  are independent (and so any function of $X$  is independent of any function of $Y$). 
+<p></p>
+Now $E(X^4)E(Y^2)-E^2(X^2)E^2(Y) = E(X^4)E(Y^2) -0 = 2\times1 = 2.$ 
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 9:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt6.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab9')"><b>Hint:</b></a><div
+class="ans" id="lab9">
+$E(2X+3Y) = 2E(X)+3E(Y)$  and $V(2X+3Y) = 4V(X)+9V(Y).$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 10:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt7.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab10')"><b>Hint:</b></a><div
+class="ans" id="lab10">
+(a) Use the fact that $\sum_{k=1}^n (X_k-\overline X) = 0.$
+<p></p>
+(b) 
+$E\left(\sum (X_k-\overline X)^2\right) = E\left(\sum (X_k-\mu)^2\right) - n E(\overline X-\mu)^2. $
+<p></p>
+Now $E(X_k)=\mu$  and $E(\overline X)=\mu.$
+<p></p>
+So $E\left(\sum (X_k-\mu)^2\right) = \sum E(X_k-\mu)^2 = n\sigma^2$
+and $E(\overline X-\mu)^2 = V(\overline X) = \frac{\sigma^2}{n}. $
+<p></p>
+Hence $E\left(\sum (X_k-\overline X)^2\right) = n\sigma^2- n\times \frac{\sigma^2}{n} = (n01)\sigma^2,$  as required.
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 11:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt8.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab11')"><b>Hint:</b></a><div
+class="ans" id="lab11">
+(a) $E(X_i) = P(i$-th box empty$) = \left(\frac{r-1}{r}\right)^n.$
+<p></p>
+(b) Let $i\neq j.$  Then $E(X_iX_j) = P(i$-th and $j$-th boxes empty$) = \left(\frac{r-2}{r}\right)^n.$
+<p></p>
+(c) $E(S) = \frac{(r-1)^n}{r^{n-1}}.$ 
+<p></p>
+(d) $V(S) = E(S^2)-E^2(S).$
+<p></p>
+Now $E(S^2) = E\left(\sum X_i\right)^2 = \sum E(X_i^2) + \sum_{i\neq j} E(X_iX_j) =\sum E(X_i) +
+ \sum_{i\neq j} E(X_iX_j) = \frac{(r-1)^n}{r^{n-1}} + r(r-1)\times\frac{(r-2)^n}{r^n}. $
+<p></p>
+Now simplify. 
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 12:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt9.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab12')"><b>Hint:</b></a><div
+class="ans" id="lab12">
+(a) 1.
+<p></p>
+(b) $E(X_i^2) = E(X_i) = \frac 1n.$  Also for $i\neq j$  we have $E(X_iX_j) = \frac{1}{n(n-1)}.$
+<p></p>
+So 
+$$\begin{eqnarray*}
+V(S_n) 
+&amp; = &amp; E(S_n^2)-E^2(S_n)\\
+&amp; = &amp; E(S_n^2)-1\\
+&amp; = &amp; \sum E(X_i^2) + \sum_{i\neq j} E(X_iX_j)-1\\
+&amp; = &amp; n\times\frac 1n + n(n-1)\times \frac{1}{n(n-1)}-1 = 1.
+\end{eqnarray*}$$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 13:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt10.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab13')"><b>Hint:</b></a><div
+class="ans" id="lab13">
+$cor(X_1-X_2,X_2+X_3) = \frac{cov(X_1-X_2,X_2+X_3)}{\sqrt{V(X_1-X_2)\cdot V(X_2+X_3)}}.$
+<p></p>
+Now $V(X_1-X_2) = V(X_1)+V(X_2) = \sigma_1^2 + \sigma_2^2,$  since $X_1,X_2$  independent.
+<p></p>
+Similarly, $V(X_2+X_3) = \sigma_2^2+\sigma_3^2.$
+<p></p>
+Also $cov(X_1-X_2,X_2+X_3) = cov(X_1,X_2)+\cov(X_1,X_3)-cov(X_2,X_2)-cov(X_2,X_3) = -\sigma_2^2.$
+<p></p>
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 14:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt11.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab14')"><b>Hint:</b></a><div
+class="ans" id="lab14">
+$V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times \frac 12\times \sqrt{1\times 2}.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 15:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt12.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab15')"><b>Hint:</b></a><div
+class="ans" id="lab15">
+Here $U+V=2.$  Since $V=2-U$  is a linear relation with negative slope, 
+$cor(U,V)=-1.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 16:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt13.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab16')"><b>Hint:</b></a><div
+class="ans" id="lab16">
+The joint PMF of $(X,Y)$  is 
+<center>
+<table style="" border="1">
+
+<tr>
+<td colspan="" rowspan=""></td><td colspan="" rowspan="">$Y=1$</td><td colspan="" rowspan="">$Y=2$</td><td colspan="" rowspan="">$Y=3$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$X=1$</td><td colspan="" rowspan="">$0$</td><td colspan="" rowspan="">$\frac 16$</td><td colspan="" rowspan="">$\frac 16$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$X=2$</td><td colspan="" rowspan="">$\frac 16$</td><td colspan="" rowspan="">$0$</td><td colspan="" rowspan="">$\frac 16$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$X=1$</td><td colspan="" rowspan="">$\frac 16$</td><td colspan="" rowspan="">$\frac 16$</td><td colspan="" rowspan="">$0$</td>
+</tr>
+
+</table>
+</center>
+So $XY$  takes the values $2,3,6$  each with probability $\frac 13.$  Hence
+$E(XY) = \frac{11}{3}.$  
+<p></p>
+Also $E(X) = E(Y) = 2$  and $E(X^2) = E(Y^2) = \frac{14}{3}.$
+<p></p>
+So $V(X)=V(Y) = \frac{14}{3}-4 = \frac 23.$  Also $cov(X,Y)=\frac{11}{3}-4=-\frac 13.$
+<p></p>
+Hence $cor(X,Y) =-\frac 12. $
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 17:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt14.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab17')"><b>Hint:</b></a><div
+class="ans" id="lab17">
+(a) This is because the $i$-th trial cannot produce both 1 and 2 together!
+<p></p>
+(b) The trials are indep. So $E(I_iJ_j) = E(I_i)E(J_j) = p_ip_j.$
+<p></p>
+(c), (d), (e): SImple algebra.
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 18:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt15.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab18')"><b>Hint:</b></a><div
+class="ans" id="lab18">
+(a) $E(I_i) = P(i$-th elt in sample is of type 1$)=\frac{r_1}{r}.$
+<p></p>
+SImilarly, $E(J_i) = \frac{r_2}{r}.$
+<p></p>
+(b) $E(I_iJ_j) = $ probability that the $i$-th and $j$-th elts in the sample are, repectively, of types 1
+ and 2. 
+<p></p>
+Now these two elements may be chosen in $r(r-1)$  ways in all. 
+These are all equally likely. Total number of favourable cases is $r_1r_2.$  Hence 
+the probability is $\frac{r_1r_2}{r(r-1)}.$
+<p></p>
+(c) $E(XY) = E\big[(\sum I_i)(\sum_j J_j)\big] = \sum_{i,j} E(I_iJ_j)=
+\sum_{i\neq j} E(I_iJ_j),$  since $E(I_iJ_i)=0.$  
+<p></p>
+So $E(XY) = n(n-1)\times\frac{r_1r_2}{r(r-1)}.$
+<p></p>
+Also $E(X^2) = E\left(\sum I_i\right)^2 = \sum E(I_i^2) + \sum_{i\neq j} E(I_iI_j)
+=n\times\frac{r_1}{r} + n(n-1) \times\frac{r_1(r_1-1)}{r(r-1)}.$
+<p></p>
+The rest follows using simpe algebra. 
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 19:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt16.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+Here "density" means "PMF". Also $\mu=E(X).$
+<p><a
+href="javascript:hideShow('lab19')"><b>Hint:</b></a><div
+class="ans" id="lab19">
+By symmtry around $2$  we see that $\mu = 2.$
+<p></p>
+Also $V(X) = E(X-\mu)^2 = 0^2\times \frac{16}{18}+1^2\times \frac{2}{18} = \frac 19.$
+<p></p>
+So we are looking for $\delta$  such that $P(|X-\mu|\geq\delta) = \frac{1}{9\delta^2}.$
+<p></p>
+Now, for $\delta&gt;0,$  the LHS is either 0 or $\frac 19$ (according as $\delta$  is $&gt; 1$  or not). 
+<p></p>
+So $\delta=1$  makes both sides $\frac 19.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 20:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt17.png"></th>
+</tr>
+<tr>
+<th>
+</th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab20')"><b>Hint:</b></a><div
+class="ans" id="lab20">
+Let $X=$ number of defective bolts in a random shipment. 
+<p></p>
+We want to choose $a$  such that $P(X&gt; a) &lt; 0.05.$
+<p></p>
+Here $X$  can take values 0,1,2,...,10000 with the probabilities
+$$P(X=k) = \binom{10000}{k} 0.05^k 0.95^{10000-k}=p_k,\mbox{ say.}$$
+The probability of refund is $\sum_{k&gt;a} p_k.$  
+<p></p>
+So $a$  needs to be chosen such that 
+$$\sum_{k&gt;a} p_k \leq 0.01 &lt;\sum_{k\geq a} p_k.$$
+Finding this $a$  is not easy by hand, though trivial using a computer. 
+<p></p>
+There is a theorem called the
+ Central Limit Theorem which allows a simple approximate way to find $a.$  We shall learn it in the next semester.
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 21:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt18.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+A brief note about probability generating functions: If $X$  takes non-negative integer values with $p_i = P(X=i)$ 
+ for $i=0,1,2,...$ then its probability genrating function is 
+$$\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.$$
+Clearly this converges absolutely for $|t|\leq 1.$   In this problem we are assuming that it converges for all $t\in{\mathbb R}.$
+<p><a
+href="javascript:hideShow('lab21')"><b>Hint:</b></a><div
+class="ans" id="lab21">
+(a) Let $Y =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\leq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
+<p></p>
+Then, for $t\in[0,1],$  we have $Y\leq t^X.$    (Remember that $x\mapsto t^x$  is a non-increasing function
+ for $t\in[0,1]$). 
+<p></p>
+So $E(Y)\leq E(t^X).$  Now $E(Y) = t^{x_0}P(X\leq x_0).$  
+<p></p>
+Hence the result.
+<p></p>
+(b) Let $Z =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\geq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
+<p></p>
+Then, for $t\geq 1,$  we have $Z \leq t^X.$  
+<p></p>
+Hence the result follows as in (a).
+</div></p>
+
+</p>
+
+<p></p>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/joint.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "joint"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

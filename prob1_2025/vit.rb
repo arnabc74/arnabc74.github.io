@@ -1,0 +1,439 @@
+@{<NOTE>
+<M>\newcommand{\ev}{{\mathcal F}}</M>
+<HEAD1>First taste of measure theory</HEAD1>
+If we keep on tossing a coin again and again, we are bound to get head sometime or other (assuming that <M>P(H)>0</M>). 
+A proof of this may be given like this:
+<Q>Let <M>A_n</M>  be the event that the first <M>n</M>  tosses have all resulted in heads. Let
+ <M>A</M>  be the event that we never get a head. Then clearly <M>A_n\searrow A</M>. So by
+ continuity of probability we must have <M>P(A_n)\to P(A).</M>  Now <M>P(A_n) = (*([[12]])*)^n \to
+ 0.</M>  Hence <M>P(A)=0.</M>  Hence <M>P(A^c)=1,</M>  i.e., we are bound to get a head some time or other.</Q>
+However, we must understand that in order to write <M>A_n\searrow A</M>, we need all the <M>A_n</M>'s and <M>A</M>  to be
+ subsets of some common <M>\Omega.</M>  Each element of this  <M>\Omega</M>  is an infinite sequence of heads and tails.
+ If you feel uncomfortable with sets of infinite sequences, just think of <M>\Omega</M>  as the set of all functions from
+ <M>\nn</M>  to <M>\{H,T\}.</M>  
+
+<THM>This <M>\Omega</M>  is uncountable.</THM>
+<PF>
+Let, possible, <M>\Omega</M>  be countable. Let <M>\omega_1,\omega_2,...</M>  be an enumeration of <M>\Omega.</M>   Here
+ is a typical example:
+<Q>
+<M>\omega_1 = </M> <RED>H</RED> T H T T T H T H ...<BR/>
+<M>\omega_2 = </M> H <RED>H</RED> T H H T H T H  ...<BR/>
+<M>\omega_3 = </M> T T <RED>H</RED> T T T H H T  ...<BR/>
+<M>\omega_4 = </M> H T T <RED>T</RED> H T T H H  ...<BR/>
+<M>\omega_5 = </M> H H H H <RED>T</RED> H T H T ...<BR/>
+<M>\omega_6 = </M> T H T T T <RED>H</RED> H H T  ...<BR/>
+...
+</Q> 
+Now define <M>\omega</M>  as the sequence that flips the diagonal entries (shown in red above). 
+
+In our example, 
+<Q><M>\omega=</M>  T T T H H T ...</Q>
+Clearly, this <M>\omega</M>  is distinct from all the <M>\omega_i</M>'s (since the <M>i</M>-th entry of  <M>\omega</M>  is
+ different from that of <M>\omega_i</M>).  
+
+But this contradicts the assumption that the <M>\omega_i</M>'s constitute an enumeration of <M>\Omega.</M>
+</PF>  
+<COMMENT>
+for(i in 1:6) cat(sample(c('H','T'),9,rep=TRUE),'\n',sep=' ')
+</COMMENT>
+So far in our course, we were working with countable (finite/infinite)  <M>\Omega.</M>  For these we considered a probability
+ to be a mapping from <M>{\mathcal P}(\Omega)</M>  to <M>[0,1].</M>   In other words, we could defined <M>P(A)</M>  for <I>every</I> 
+ <M>A\seq\Omega.</M>  Unfortunately this may fail when <M>\Omega</M>  is uncountable. Here we may have "bad" subsets of <M>\Omega</M> 
+ for which probability cannot be defined. 
+
+We shall discuss such an example next. 
+
+<HEAD1>A "bad" set</HEAD1>
+Let <M>\Omega</M> be the following circle (only the circumference, not the
+inside). Let the circumference have length 1.
+<CIMG web="vitalli1.png">A circle</CIMG>
+If I pick a point "at random" from this circle, what is the
+chance that it lands in the upper semicircle? The obvious answer
+is <M>[[12]].</M> What is the chance that it would land in any
+given quadrant? The obvious answer this time is <M>[[14]].</M>
+<P/>
+In fact, for any arc, the probability equals the length of the arc.
+<P/>
+Also, suppose that <M>A</M> is some subset of the
+circle. Let us denote by <M>A+\theta</M> the subset obtained by
+rotating <M>A</M> by an angle <M>\theta.</M> Which subset has the
+larger probability, <M>A</M> or <M>A+\theta?</M> Since we are
+picking the point "at random" without any bias for any particular
+direction, hence both <M>A</M> and <M>A+\theta</M> should have
+the same probability. 
+<P/>
+It might come as a surprise
+that there is <B>no</B> probability function <M>P</M> from the power set
+of <M>\Omega</M> to <M>\rr</M> that satisfies these two
+conditions simultaneously, i.e.,
+<UL>
+<LI>for any arc <M>A</M> we must have <M>P(A)=length(A).</M></LI>
+<LI>for any <M>A\seq\Omega</M> and for any <M>\theta</M> we must
+have <M>P(A) = P(A+\theta).</M></LI>
+</UL>
+Thus, we are claiming that we cannot have a function <M>P</M>
+ defined on the entire power set of <M>\Omega</M> that satisfies
+ the three probability axioms as well as these two extra conditions.
+<P/>
+
+ We shall provide  a  proof of
+this here by contradiction. Let, if possible, there be such a
+function <M>P.</M> We shall demonstrate a "bad" set <M>M</M> for
+which <M>P(M)</M> cannot be defined, contradicting the assumption
+that <M>P</M> is defined for all subsets of <M>\Omega.</M> 
+
+We shall start with a bit of  warming up.
+
+<HEAD2>Warming up</HEAD2>
+Imagine the circle split up into
+12 equal parts like the face of the clock. 
+<CIMG web="vitalli2.png">Split up into 12 arcs</CIMG>
+We have grouped the arcs into 3 different groups of size 4 each
+(shown by the colours red, green and blue). The grouping is done
+like this: Give any colour to any arc to start with. Then start
+counting clockwise and use the
+same colour to every 3rd arc. Then pick an uncoloured arc and
+proceed similarly with another colour, and so on. Notice that the
+parts of the different colours are all identical in shape and
+size. One is just a rotated version of another. So the total
+length of all the parts must be the same. 
+<P/>
+ <CIMG web="vitalli3.png">One arc of each colour</CIMG>
+Now pick any one arc of each colour. This gives you a set. Call
+it <M>M.</M> Rotate <M>M</M>
+by <M>90^\circ</M> clockwise. The new set is <M>M+90^\circ.</M>
+Then, notice that <M>M,
+M+90^\circ, M+180^\circ</M> and <M>M+270^\circ</M> are all disjoint and build up
+the entire circle.
+ <CIMG web="vitalli4.png">Partitioning the circle</CIMG>
+Well, that's all the warm up we need! Now for the actual thing.
+
+<HEAD2>A set without a probability</HEAD2>
+We again start with the circle, whose
+circumference is 1. Also, for two points <M>x,y\in
+S</M>, we shall denote the (shorter) arc length between them
+by <M>|xy|.</M> This will always be in <M>[0,1/2].</M>
+<P/>
+
+Pick any point on the circle, colour
+it red. Also mark all points that are at a rational distance from
+this point with the same colour. Now pick a point that has not
+been coloured. Colour it green, and do the same thing again: mark
+all points at a rational distance from it with green. Continue
+like this until all the points are coloured. Of course, this will
+take infinite amount of time. What we mean mathematically, is
+that for each point <M>x\in S</M> we define 
+<D>
+A_x = \{p\in S~:~ |px|\in\qq\}.
+</D>
+Note the following points:
+<UL>
+<LI>If <M>y\in A_x</M> then <M>x\in A_y.</M> So all
+the <M>A_x</M>'s are not distinct. For example, if <M>x,y</M>
+are diametrically opposite each other, then <M>A_x=A_y.</M></LI>
+<LI>Each <M>A_x</M> is countable, since there are only countably
+many rationals.</LI>
+<LI>There are uncountably many distinct <M>A_x</M>'s (since
+total number of points on the circle is uncountable).</LI>
+</UL>
+Now pick exactly one point from each distinct <M>A_x.</M> Call the set
+of all these picked points <M>M.</M>
+<P/>
+This is a troublesome set. I claim that you cannot define its
+probability <M>P(M).</M>
+<P/>
+
+For any rational number <M>r\in [0,1)</M> we denote
+by <M>M+r</M> the set <M>M</M> rotated clockwise by distance <M>r.</M>
+<P/>
+Then note that
+<UL>
+<LI>If <M>r\neq s</M> are two rational points in <M>[0,1)</M>
+then <M>M+r</M> and <M>M+s</M> are disjoint.</LI>
+<LI>Let <M>\{r_1,r_2,...\}</M> be a listing all rationals
+in <M>[0,1).</M>
+Then 
+<D>
+\cup_{i=1}^\infty (M+r_i)
+</D>
+equals the entire circle.
+</LI>
+</UL>
+Now, let's say that <M>M</M> has <M>P(M)=\ell.</M>
+Clearly, <M>\forall r\in[0,1)</M> we must have <M>P(M+r)=\ell,</M>
+as well.
+
+<P/>
+Now, if <M>\ell = 0</M> then the second
+condition above implies that <M>P(\Omega)</M>
+is <M>0+0+\cdots = 0,</M> which is wrong, since length
+of <M>P(\Omega)</M> must be 1.
+<P/>
+If <M>\ell>0,</M> then <M>P(\Omega)</M> becomes <M>\ell+\ell+\cdots =
+\infty,</M> again a contradiction! 
+<P/>
+This completes the proof
+<P/>
+
+But as you can see, such "bad" sets are pretty difficult to come
+across. So ignoring them will never cause any problem during our
+course. 
+
+Still, to keep our discussion general, we need to modify the definition of probability slightly.
+Hence we should learn the following terminology.
+
+ The modification will consist of an explicit specification of the "good" sets. In other words,
+ instead of taking <M>P:{\mathcal P}(\Omega)\to[0,1],</M>  we shall now take <M>P:{\mathcal
+ F}\to[0,1],</M>  where <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M>  is the collection of all the
+ "good" subsets of <M>\Omega.</M>  What properties should these "good" subsets have? Well, since
+ we are  going to manipulate the events using set theory, <M>{\mathcal F}</M>   should naturally be closed under the set
+ operations: union, intersection and complementation. Since we want to use axiom 3, we actually need <M>{\mathcal F}</M> 
+ be closed under <I>countable</I>  unions (and hence <I>countable</I>  intersections, by de Morgan). 
+<HEAD1>Some terminology from measure theory</HEAD1>
+
+<DEFN name="$\sigma$-algebra/$\sigma$-field">
+Let <M>\Omega</M>  be any non-empty set. Then any non-empty <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M> 
+ that is closed under complementation and countable union (and intersection) is called a
+ <TERM>$\sigma$-algebra</TERM>  or<TERM>$\sigma$-field</TERM>  over <M>\Omega.</M> 
+</DEFN>
+
+<EXM>For any non-empty <M>\Omega</M>  we have the following two <M>\sigma</M>-algebras:
+ <M>\{\phi,\Omega\}</M>  and <M>{\mathcal P}(\Omega).</M>  In all our examples with countable
+ <M>\Omega</M>, we were using the latter. </EXM>
+
+<EXR>Show that any <M>\sigma</M>-algebra over <M>\Omega</M>  must contain <M>\phi</M>  and <M>\Omega.</M></EXR>
+
+<DEFN name="Probability space">
+By a <TERM>probability space</TERM>  we mean <M>(\Omega,{\mathcal F},P)</M>, where <M>\Omega</M>  is any non-empty set, <M>{\mathcal F}\seq{\mathcal P}(\Omega)</M> 
+ and <M>P:{\mathcal F}\to[0,1]</M>  satisfies the three axioms of probability.
+</DEFN>
+The elements of <M>{\mathcal F}</M>  are called <TERM>event</TERM>s. 
+
+
+Also, we want <M>{\mathcal F}</M> 
+ to contain all the subsets that we care about in a given problem. So it is only natural that we choose <M>{\mathcal F}</M> 
+ differently for different problems. There are two approaches: In the first approach, we
+ characterise the "bad" sets and eliminate them from <M>{\mathcal P}(\Omega).</M>  In the other approach (the more popular
+ one) we list all the sets that we want to work with and consider the smallest <M>\sigma</M>-algebra containing them. 
+
+<EXM>Find the smallest <M>\sigma</M>-algebra over <M>\Omega=\{1,2,3\}</M>  that contains <M>\{1,2\}.</M></EXM>
+
+In many problems we work with <M>\Omega=\rr,</M>  the real line. Then it is common to include all open sets
+ in our collection of  "good" sets.  So the smallest <M>\sigma</M>-algebra containing them is a very popular <M>\sigma</M>-algebra.
+ It is called the <TERM>Borel <M>\sigma</M>-algebra</TERM>.
+
+The problem of "good" and "bad" sets comes up not just in probability theory, but whenever you want to measure the size of
+ a set. For instance, the circle example could as well be posed in terms of <I>length</I> of a set instead of its <I>probability</I>.
+ Any way to "measure the size of a set" must follow the axioms that we stated for probability (except the <M>P(\Omega)=1</M>).
+
+<DEFN name="Measure space">
+By a <TERM>measure space</TERM>  we mean <M>(\Omega,{\mathcal F},\mu)</M>, where <M>\Omega</M>  is any non-empty set, 
+<M>{\mathcal F}</M>  is any <M>\sigma</M>-algebra over <M>\Omega</M> 
+ and <M>\mu:{\mathcal F}\to[0,\infty]</M>  satisfies the following axioms:
+<OL><LI>
+<M>\mu(\phi)=0</M>
+</LI>
+<LI><M>\forall \mbox{ disjoint } A_1,A_2,...\in{\mathcal F}~~\mu(\cup A_n)=\sum\mu(A_n).</M></LI>
+</OL>
+</DEFN>
+Corrected a typo pointed out by Vrajishnu.
+
+As you may easily see, "length", "area", "mass", "volume", "cardinality" (for finite sets) are all examples of measures.
+<HEAD3>A little measure theory again</HEAD3>
+Earlier we had
+talked about "good" sets and "bad" sets. The "good" sets constitute a <M>\sigma</M>-algebra. 
+
+What if someone asks us
+to find <M>P(X\in A),</M> where <M>X ^{-1} (A)</M> is a "bad"
+subset of <M>\Omega?</M> Well, the answer is: We shall
+simply refuse to find <M>P(X\in A)</M> for such an <M>A.</M> We shall
+call such an <M>A</M> a "bad" subset of <M>S</M>
+(w.r.t. this <M>X</M>). A subset <M>A\seq S</M> is "good" or
+"bad" according as <M>X ^{-1} (A)</M> is "good" or "bad" in <M>\Omega.</M>
+
+Now intervals are very useful  subsets of <M>\rr.</M> It would be a pity if an interval turns out to be a "bad" subset.
+So we work with only those <M>X:\Omega\to\rr</M>  where for all intervals <M>A</M> , the set <M>X^{-1}(A)</M>  is a
+ good subset of <M>\Omega.</M>   Such functions <M>X</M>  are called <TERM>Borel measurable</TERM>. 
+
+<DEFN name="Random variable">
+Let <M>\Omega</M> be a  non-empty set equipped with a <M>\sigma</M>-algebra <M> {\mathcal F}.</M> 
+ Then by a <TERM>random variable</TERM>  we understand a map <M>X:\Omega\to\rr</M>  such that for
+ all intervals <M>A\seq\rr</M>  we have <M>X^{-1}(A)\in{\mathcal F}.</M> 
+</DEFN>
+
+
+<HEAD1>Expectation</HEAD1>
+
+So far we have defined expectation for only  random variables that take finitely many values. 
+We shall call such random variables <TERM>simple</TERM>.
+However, not all random variables are simple. We shall now generalise 
+the definition of expectation for those cases as well. The generalisation turns out to be slightly tricky. 
+So read this part very carefully. 
+
+<HEAD2>Nonnegative case</HEAD2>
+First, we shall consider a random variable, <M>X</M>, taking only nonnegative values. Now consider
+ a simple random variable <M>U</M>  such that <M>U\leq X.</M> 
+Visualise <M>X</M>  and <M>U</M>  like this (we are taking <M>\Omega</M>  an interval in the diagram):   
+<CIMG web="lebmot1.png"></CIMG>
+ Then we can compute <M>E(U).</M>  Also     it is natural to
+ define <M>E(X)</M>  so that <M>E(U)\leq E(X).</M> 
+
+Now look at <M>U</M>  taken as follows. 
+<CIMG web="lebmot2.png"></CIMG>
+This <M>U</M>  still takes finitely many values, but is much closer to <M>X </M> than before. You can feel that if <M>U</M> 
+ is made finer and finer (but still remaining simple), you can make it come arbitrarily closer to <M>X.</M>
+ This leads to the following approach for defining expectation of <M>X:</M>
+<Q>Define <M>E(X)</M>  as supremum of <M>\{E(U)~:~U\mbox{ simple, }U\leq X\}.</M>  </Q>
+Of course, before we can take supremum we need to make sure that the set is non-empty and bounded. 
+<UL><LI>It is easy to see that the set is non-empty (i.e., for all nonnegative random variable <M>X</M>, there is at
+ least one simple random variable <M>U</M>  such that <M>U\leq X.</M>  Just take <M>U\equiv 0.</M>  </LI>
+<LI>Unfortunately, the set need not be bounded above. But that is not a serious problem. We shall
+ just define <M>E(X)</M>  to be <M>\infty</M>  in those cases.</LI>
+</UL>
+<DEFN name="Expectation (nonnegative case)">
+Let <M>X</M>  be any nonnegative random variable.
+Then we define the <TERM>expectation</TERM> of <M>X</M> as
+<D>
+E(X) = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}
+</D>
+if the set is bounded above, and <M>\infty</M>  otherwise.
+</DEFN>
+
+::<EXR>Suppose <M>X</M>  is a nonnegative
+ random variable that is also a simple random variable. Then we have two definitions of
+ <M>E(X),</M>  as a simple random variable and as a non-empty random variable. Show that both
+ definitions match in this case.</EXR> 
+
+<HEAD2>General case</HEAD2>
+Finally, we attack the general case, where <M>X </M> can take both positive and negative values. 
+Here we apply our approach to the positive and the negative parts separately.  More precisely, we define 
+<D>X_+ = \max\{X,0\} \mbox{ and } X_- = \max\{-X,0\}.</D>
+Note that
+<UL><LI>Both <M>X_+</M>  and <M>X_-</M>  are nonnegative,</LI>
+<LI><M>X = X_+-X_-.</M></LI>
+</UL>
+We already know how to define <M>E(X_+)</M> and <M>E(X_-).</M>  We shall combine them in the obvious way to define <M>E(X):</M>
+<DEFN name="Expectation (general case)">
+<D>E(X) = <CASES>
+E(X_+)-E(X_-)<IF>E(X_+),E(X_-)<\infty</IF>
+\infty<IF>E(X_+)=\infty,~E(X_-)<\infty</IF>
+-\infty<IF>E(X_+)<\infty,~E(X_-)=\infty</IF>
+</CASES>.</D>
+We shall say <M>E(X)</M>  is undefined if <M>E(X_+)=E(X_-)=\infty.</M>
+</DEFN>
+
+::<EXR>If <M>X</M>  is a nonnegative random variable, then we have two definitions for <M>E(X).</M> 
+ Check that they match.</EXR>
+
+This expectation is also called the <TERM>Lebesgue integral</TERM>  of <M>X</M>  <TERM>wrt</TERM>  the given probability,
+ and written as <M>\int X\, dP.</M>  However, we shall not use this notation here. 
+
+<THM>If <M>X</M>  takes the nonnegative values <M>x_1<x_2<\cdots</M>   with probabilities
+ <M>p_1,p_2,...</M>  where <M>\sum p_i = 1,</M>  then 
+<D>E(X) = \sum p_i x_i.</D>
+</THM>
+<PF>
+To show 
+<D>\sum p_i x_i = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}.</D>
+Let <M>L= \sum_i p_i x_i,</M>  and <M>{\mathcal D}=\{E(U)~:~U\mbox{ simple, }U\leq X\}.</M>
+
+This requires showing two things: 
+<UL><LI><M>L</M>  is an upper bound of <M>{\mathcal D},</M></LI>
+<LI>no number less than <M>L</M>  is an upper bound of <M>{\mathcal D}.</M></LI></UL>
+
+<B>Step 1:</B>  To show
+
+<D>\forall U\in{\mathcal D}~~E(U)\leq L.</D>
+
+Take any  <M>U\in{\mathcal D}</M>  be any simple random variable. 
+
+Let <M>U</M>  take only the values <M>u_1,...,u_k.</M>  
+
+Let <M>p_{ij} = P(X=x_i, U=u_j).</M>
+
+Then <M>E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.</M>  
+
+Also <M>L = \sum_i x_i \sum_j
+ p_{ij}=\sum_i  \sum_j x_i p_{ij}=\sum_j \sum_i x_i p_{ij}.</M>
+<HIDE lab="pf"><MSG>[Why?]</MSG><HIDDEN>
+A finite sum can always be interchanged with an infinite sum, when the summands are all nonnegative. For example,
+<D>\sum (a_n+b_n) = \sum a_n + \sum b_n.</D>
+If we write <M>c_{1,n}=a_n</M>  and <M> c_{2,n}=b_n</M>  then this is 
+<D>\sum_n \sum_i c_{i,n} = \sum_i \sum_n c_{i,n}.</D>  
+</HIDDEN></HIDE>
+Now <M>p_{ij}>0\implies u_j\leq x_i.</M>  
+
+Hence <M>\sum_i   u_j p_{ij}\leq \sum_i   x_i p_{ij},</M>  and so <M>\sum_j\sum_i   u_j p_{ij}\leq \sum_j\sum_i   x_i p_{ij}.</M>
+
+Thus, <M>E(U)\leq L,</M>  as required.
+
+<B>Step 2:</B>  Shall show that no <M>L'< L</M>  is an upper bound of <M>{\mathcal D},</M>  i.e.,
+
+<D>\forall L'< L~~\exists U\in{\mathcal D}~~E(U)> L'.</D>  
+
+Let <M>U_n</M>  be the random variable 
+<D>
+U_n =<CASES>X<IF>X=x_1,...,x_n</IF> 0<ELSE/></CASES>.
+</D>  
+Then <M>U_n</M>  is a simple random variable such that <M>U_n\leq X.</M> 
+
+So <M>U_n\in{\mathcal D}.</M>
+ 
+Also <M>E(U_n)
+ =\sum_{i=1}^n p_i x_i\to L.</M>  
+
+Hence <M>\exists N\in\nn~~E(U_N) > L'.</M>  
+
+Choose this <M>U_N</M>  as our <M>U\in{\mathcal D}.</M>
+
+Since <M>E(U) > L',</M> this completes the proof.
+ </PF>
+
+::<EXR>If <M>X</M>  takes the  values <M>x_1,x_2,...</M>  (not necessarily all nonnegative) with probabilities
+ <M>p_1,p_2,...</M>  where <M>\sum p_i = 1</M> and <M>\sum |p_i x_i|<\infty,</M> then 
+<D>E(X) = \sum p_i x_i.</D>
+</EXR>
+::<EXR>If <M>X</M>  takes the  values <M>x_1,x_2,...</M>  (not necessarily all nonnegative) with probabilities
+ <M>p_1,p_2,...</M>  where <M>\sum p_i = 1</M> and <M>\sum |p_i x_i|=\infty,</M> then what are the possibilities for <M>E(X):</M> 
+ finite, <M>\infty</M>, <M>-\infty</M>  or undefined? Give one example of each of the possibilities. Prove the impossibility
+ of the other(s).
+</EXR>
+
+
+<THM>
+Let <M>X, Y</M> be any two random variables (defined on the same probability space) with <M>X\leq Y.</M>
+If <M>E(X)</M>  and <M>E(Y)</M>  are both defined (may be <M>\infty</M>  or <M>-\infty</M>), then
+<M>E(X)\leq E(Y).</M>
+</THM>
+<PF>
+The result is trivial if <M>E(Y)=\infty.</M>  So we shall focus on the <M>E(Y)<\infty</M>  case. 
+
+We had defined expectation in three steps: simple, nonnegative and general. Our proof will accordingly have three steps.
+
+<B>Step 1: Simple:</B>
+
+We have already seen this earlier in this page.
+
+<B>Step 2: Nonnegative:</B>
+
+To show <M>E(X)\leq E(Y),</M>  i.e., 
+<D>\sup\{E(U)~:~U \mbox{ simple}, U\leq X\} \leq \sup\{E(V)~:~V \mbox{ simple}, V\leq Y\}.</D>
+Enough to show that  <M>\{E(U)~:~U \mbox{ simple}, U\leq X\}\seq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.</M>
+
+Take any  simple <M>U\leq X.</M>  Then, since <M>X\leq Y,</M>  we also have <M>U\leq Y.</M>  Hence the result.
+
+<B>Step 3: General:</B>
+
+Let <M>X = X_+-X_-</M>
+ and <M>Y = Y_+-Y_-</M>. 
+
+Since <M>X\leq Y,</M>  we must have <M>X_+\leq Y_+</M>  and <M>Y_-\leq X_-.</M>  
+
+Hence, by step 2, <M>E(X_+)\leq E(Y_+)</M>  and <M>E(Y_-)\leq E(X_-).</M>  
+
+So <M>E(X_+)-E(X_-)\leq E(Y_+)-E(Y_-),</M>  as required.
+</PF>
+An immediate consequence of the above theorems is the following
+theorem.
+</NOTE>@}

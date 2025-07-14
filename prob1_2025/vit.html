@@ -1,0 +1,781 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#First taste of measure theory">First taste of measure theory</a>
+</li>
+<li>
+<a href="#A &quot;bad&quot; set">A "bad" set</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Warming up">Warming up</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A set without a probability">A set without a probability</a>
+</li>
+<li>
+<a href="#Some terminology from measure theory">Some terminology from measure theory</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#A little measure theory again">A little measure theory again</a>
+</li>
+<li>
+<a href="#Expectation">Expectation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nonnegative case">Nonnegative case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#General case">General case</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\ev}{{\mathcal F}}$
+<h1 xmlns=""><a
+name="First taste of measure theory">First taste of measure theory</a></h1>
+If we keep on tossing a coin again and again, we are bound to get head sometime or other (assuming that $P(H)&gt;0$). 
+A proof of this may be given like this:
+<blockquote>Let $A_n$  be the event that the first $n$  tosses have all resulted in heads. Let
+ $A$  be the event that we never get a head. Then clearly $A_n\searrow A$. So by
+ continuity of probability we must have $P(A_n)\rightarrow P(A).$  Now $P(A_n) = \left(\frac 12\right)^n \rightarrow
+ 0.$  Hence $P(A)=0.$  Hence $P(A^c)=1,$  <i>i.e.</i>, we are bound to get a head some time or other.</blockquote>
+However, we must understand that in order to write $A_n\searrow A$, we need all the $A_n$'s and $A$  to be
+ subsets of some common $\Omega.$  Each element of this  $\Omega$  is an infinite sequence of heads and tails.
+ If you feel uncomfortable with sets of infinite sequences, just think of $\Omega$  as the set of all functions from
+ ${\mathbb N}$  to $\{H,T\}.$  
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>This $\Omega$  is uncountable.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let, possible, $\Omega$  be countable. Let $\omega_1,\omega_2,...$  be an enumeration of $\Omega.$   Here
+ is a typical example:
+<blockquote>
+$\omega_1 = $ <font color="#ff0000">H</font> T H T T T H T H ...<br>
+$\omega_2 = $ H <font color="#ff0000">H</font> T H H T H T H  ...<br>
+$\omega_3 = $ T T <font color="#ff0000">H</font> T T T H H T  ...<br>
+$\omega_4 = $ H T T <font color="#ff0000">T</font> H T T H H  ...<br>
+$\omega_5 = $ H H H H <font color="#ff0000">T</font> H T H T ...<br>
+$\omega_6 = $ T H T T T <font color="#ff0000">H</font> H H T  ...<br>
+...
+</blockquote> 
+Now define $\omega$  as the sequence that flips the diagonal entries (shown in red above). 
+<p></p>
+In our example, 
+<blockquote>$\omega=$  T T T H H T ...</blockquote>
+Clearly, this $\omega$  is distinct from all the $\omega_i$'s (since the $i$-th entry of  $\omega$  is
+ different from that of $\omega_i$).  
+<p></p>
+But this contradicts the assumption that the $\omega_i$'s constitute an enumeration of $\Omega.$
+<b><i>[QED]</i></b>
+</p>  
+
+So far in our course, we were working with countable (finite/infinite)  $\Omega.$  For these we considered a probability
+ to be a mapping from ${\mathcal P}(\Omega)$  to $[0,1].$   In other words, we could defined $P(A)$  for <i>every</i> 
+ $A\subseteq\Omega.$  Unfortunately this may fail when $\Omega$  is uncountable. Here we may have "bad" subsets of $\Omega$ 
+ for which probability cannot be defined. 
+<p></p>
+We shall discuss such an example next. 
+<p></p>
+
+<h1><a
+name="A "bad" set">A "bad" set</a></h1>
+Let $\Omega$ be the following circle (only the circumference, not the
+inside). Let the circumference have length 1.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli1.png"></th>
+</tr>
+<tr>
+<th>A circle</th>
+</tr>
+</table>
+</center>
+If I pick a point "at random" from this circle, what is the
+chance that it lands in the upper semicircle? The obvious answer
+is $\frac 12.$ What is the chance that it would land in any
+given quadrant? The obvious answer this time is $\frac 14.$
+<p></p>
+In fact, for any arc, the probability equals the length of the arc.
+<p></p>
+Also, suppose that $A$ is some subset of the
+circle. Let us denote by $A+\theta$ the subset obtained by
+rotating $A$ by an angle $\theta.$ Which subset has the
+larger probability, $A$ or $A+\theta?$ Since we are
+picking the point "at random" without any bias for any particular
+direction, hence both $A$ and $A+\theta$ should have
+the same probability. 
+<p></p>
+It might come as a surprise
+that there is <b>no</b> probability function $P$ from the power set
+of $\Omega$ to ${\mathbb R}$ that satisfies these two
+conditions simultaneously, <i>i.e.</i>,
+<ul>
+
+<li>for any arc $A$ we must have $P(A)=length(A).$</li>
+
+<li>for any $A\subseteq\Omega$ and for any $\theta$ we must
+have $P(A) = P(A+\theta).$</li>
+
+</ul>
+Thus, we are claiming that we cannot have a function $P$
+ defined on the entire power set of $\Omega$ that satisfies
+ the three probability axioms as well as these two extra conditions.
+<p></p>
+
+<p></p>
+ We shall provide  a  proof of
+this here by contradiction. Let, if possible, there be such a
+function $P.$ We shall demonstrate a "bad" set $M$ for
+which $P(M)$ cannot be defined, contradicting the assumption
+that $P$ is defined for all subsets of $\Omega.$ 
+<p></p>
+We shall start with a bit of  warming up.
+<p></p>
+
+<h2><a
+name="Warming up">Warming up</a></h2>
+Imagine the circle split up into
+12 equal parts like the face of the clock. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli2.png"></th>
+</tr>
+<tr>
+<th>Split up into 12 arcs</th>
+</tr>
+</table>
+</center>
+We have grouped the arcs into 3 different groups of size 4 each
+(shown by the colours red, green and blue). The grouping is done
+like this: Give any colour to any arc to start with. Then start
+counting clockwise and use the
+same colour to every 3rd arc. Then pick an uncoloured arc and
+proceed similarly with another colour, and so on. Notice that the
+parts of the different colours are all identical in shape and
+size. One is just a rotated version of another. So the total
+length of all the parts must be the same. 
+<p></p>
+ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli3.png"></th>
+</tr>
+<tr>
+<th>One arc of each colour</th>
+</tr>
+</table>
+</center>
+Now pick any one arc of each colour. This gives you a set. Call
+it $M.$ Rotate $M$
+by $90^\circ$ clockwise. The new set is $M+90^\circ.$
+Then, notice that $M,
+M+90^\circ, M+180^\circ$ and $M+270^\circ$ are all disjoint and build up
+the entire circle.
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vitalli4.png"></th>
+</tr>
+<tr>
+<th>Partitioning the circle</th>
+</tr>
+</table>
+</center>
+Well, that's all the warm up we need! Now for the actual thing.
+<p></p>
+
+<h2><a
+name="A set without a probability">A set without a probability</a></h2>
+We again start with the circle, whose
+circumference is 1. Also, for two points $x,y\in
+S$, we shall denote the (shorter) arc length between them
+by $|xy|.$ This will always be in $[0,1/2].$
+<p></p>
+
+<p></p>
+Pick any point on the circle, colour
+it red. Also mark all points that are at a rational distance from
+this point with the same colour. Now pick a point that has not
+been coloured. Colour it green, and do the same thing again: mark
+all points at a rational distance from it with green. Continue
+like this until all the points are coloured. Of course, this will
+take infinite amount of time. What we mean mathematically, is
+that for each point $x\in S$ we define 
+$$
+A_x = \{p\in S~:~ |px|\in{\mathbb Q}\}.
+$$
+Note the following points:
+<ul>
+
+<li>If $y\in A_x$ then $x\in A_y.$ So all
+the $A_x$'s are not distinct. For example, if $x,y$
+are diametrically opposite each other, then $A_x=A_y.$</li>
+
+<li>Each $A_x$ is countable, since there are only countably
+many rationals.</li>
+
+<li>There are uncountably many distinct $A_x$'s (since
+total number of points on the circle is uncountable).</li>
+
+</ul>
+Now pick exactly one point from each distinct $A_x.$ Call the set
+of all these picked points $M.$
+<p></p>
+This is a troublesome set. I claim that you cannot define its
+probability $P(M).$
+<p></p>
+
+<p></p>
+For any rational number $r\in [0,1)$ we denote
+by $M+r$ the set $M$ rotated clockwise by distance $r.$
+<p></p>
+Then note that
+<ul>
+
+<li>If $r\neq s$ are two rational points in $[0,1)$
+then $M+r$ and $M+s$ are disjoint.</li>
+
+<li>Let $\{r_1,r_2,...\}$ be a listing all rationals
+in $[0,1).$
+Then 
+$$
+\cup_{i=1}^\infty (M+r_i)
+$$
+equals the entire circle.
+</li>
+
+</ul>
+Now, let's say that $M$ has $P(M)=\ell.$
+Clearly, $\forall r\in[0,1)$ we must have $P(M+r)=\ell,$
+as well.
+<p></p>
+
+<p></p>
+Now, if $\ell = 0$ then the second
+condition above implies that $P(\Omega)$
+is $0+0+\cdots = 0,$ which is wrong, since length
+of $P(\Omega)$ must be 1.
+<p></p>
+If $\ell&gt;0,$ then $P(\Omega)$ becomes $\ell+\ell+\cdots =
+\infty,$ again a contradiction! 
+<p></p>
+This completes the proof
+<p></p>
+
+<p></p>
+But as you can see, such "bad" sets are pretty difficult to come
+across. So ignoring them will never cause any problem during our
+course. 
+<p></p>
+Still, to keep our discussion general, we need to modify the definition of probability slightly.
+Hence we should learn the following terminology.
+<p></p>
+ The modification will consist of an explicit specification of the "good" sets. In other words,
+ instead of taking $P:{\mathcal P}(\Omega)\rightarrow[0,1],$  we shall now take $P:{\mathcal
+ F}\rightarrow[0,1],$  where ${\mathcal F}\subseteq{\mathcal P}(\Omega)$  is the collection of all the
+ "good" subsets of $\Omega.$  What properties should these "good" subsets have? Well, since
+ we are  going to manipulate the events using set theory, ${\mathcal F}$   should naturally be closed under the set
+ operations: union, intersection and complementation. Since we want to use axiom 3, we actually need ${\mathcal F}$ 
+ be closed under <i>countable</i>  unions (and hence <i>countable</i>  intersections, by de Morgan). 
+<h1><a
+name="Some terminology from measure theory">Some terminology from measure theory</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $\sigma$-algebra/$\sigma$-field</b></legend>
+Let $\Omega$  be any non-empty set. Then any non-empty ${\mathcal F}\subseteq{\mathcal P}(\Omega)$ 
+ that is closed under complementation and countable union (and intersection) is called a
+ <b><font color="red" size="40">$\sigma$-algebra</font></b>  or<b><font color="red" size="40">$\sigma$-field</font></b>  over $\Omega.$ 
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;For any non-empty $\Omega$  we have the following two $\sigma$-algebras:
+ $\{\phi,\Omega\}$  and ${\mathcal P}(\Omega).$  In all our examples with countable
+ $\Omega$, we were using the latter.  ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Show that any $\sigma$-algebra over $\Omega$  must contain $\phi$  and $\Omega.$</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Probability space</b></legend>
+By a <b><font color="red" size="40">probability space</font></b>  we mean $(\Omega,{\mathcal F},P)$, where $\Omega$  is any non-empty set, ${\mathcal F}\subseteq{\mathcal P}(\Omega)$ 
+ and $P:{\mathcal F}\rightarrow[0,1]$  satisfies the three axioms of probability.
+</fieldset>
+The elements of ${\mathcal F}$  are called <b><font color="red" size="40">event</font></b>s. 
+<p></p>
+Also, we want ${\mathcal F}$ 
+ to contain all the subsets that we care about in a given problem. So it is only natural that we choose ${\mathcal F}$ 
+ differently for different problems. There are two approaches: In the first approach, we
+ characterise the "bad" sets and eliminate them from ${\mathcal P}(\Omega).$  In the other approach (the more popular
+ one) we list all the sets that we want to work with and consider the smallest $\sigma$-algebra containing them. 
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;Find the smallest $\sigma$-algebra over $\Omega=\{1,2,3\}$  that contains $\{1,2\}.$ ■
+</p>
+
+<p></p>
+In many problems we work with $\Omega={\mathbb R},$  the real line. Then it is common to include all open sets
+ in our collection of  "good" sets.  So the smallest $\sigma$-algebra containing them is a very popular $\sigma$-algebra.
+ It is called the <b><font color="red" size="40">Borel $\sigma$-algebra</font></b>.
+<p></p>
+The problem of "good" and "bad" sets comes up not just in probability theory, but whenever you want to measure the size of
+ a set. For instance, the circle example could as well be posed in terms of <i>length</i> of a set instead of its <i>probability</i>.
+ Any way to "measure the size of a set" must follow the axioms that we stated for probability (except the $P(\Omega)=1$).
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Measure space</b></legend>
+By a <b><font color="red" size="40">measure space</font></b>  we mean $(\Omega,{\mathcal F},\mu)$, where $\Omega$  is any non-empty set, 
+${\mathcal F}$  is any $\sigma$-algebra over $\Omega$ 
+ and $\mu:{\mathcal F}\rightarrow[0,\infty]$  satisfies the following axioms:
+<ol type="">
+<li>
+$\mu(\phi)=0$
+</li>
+
+<li>$\forall \mbox{ disjoint } A_1,A_2,...\in{\mathcal F}~~\mu(\cup A_n)=\sum\mu(A_n).$</li>
+
+</ol>
+
+</fieldset>
+Corrected a typo pointed out by Vrajishnu.
+<p></p>
+As you may easily see, "length", "area", "mass", "volume", "cardinality" (for finite sets) are all examples of measures.
+<h3><a
+name="A little measure theory again">A little measure theory again</a></h3>
+Earlier we had
+talked about "good" sets and "bad" sets. The "good" sets constitute a $\sigma$-algebra. 
+<p></p>
+What if someone asks us
+to find $P(X\in A),$ where $X ^{-1} (A)$ is a "bad"
+subset of $\Omega?$ Well, the answer is: We shall
+simply refuse to find $P(X\in A)$ for such an $A.$ We shall
+call such an $A$ a "bad" subset of $S$
+(w.r.t. this $X$). A subset $A\subseteq S$ is "good" or
+"bad" according as $X ^{-1} (A)$ is "good" or "bad" in $\Omega.$
+<p></p>
+Now intervals are very useful  subsets of ${\mathbb R}.$ It would be a pity if an interval turns out to be a "bad" subset.
+So we work with only those $X:\Omega\rightarrow{\mathbb R}$  where for all intervals $A$ , the set $X^{-1}(A)$  is a
+ good subset of $\Omega.$   Such functions $X$  are called <b><font color="red" size="40">Borel measurable</font></b>. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Random variable</b></legend>
+Let $\Omega$ be a  non-empty set equipped with a $\sigma$-algebra $ {\mathcal F}.$ 
+ Then by a <b><font color="red" size="40">random variable</font></b>  we understand a map $X:\Omega\rightarrow{\mathbb R}$  such that for
+ all intervals $A\subseteq{\mathbb R}$  we have $X^{-1}(A)\in{\mathcal F}.$ 
+</fieldset>
+
+<p></p>
+
+<h1><a
+name="Expectation">Expectation</a></h1>
+
+<p></p>
+So far we have defined expectation for only  random variables that take finitely many values. 
+We shall call such random variables <b><font color="red" size="40">simple</font></b>.
+However, not all random variables are simple. We shall now generalise 
+the definition of expectation for those cases as well. The generalisation turns out to be slightly tricky. 
+So read this part very carefully. 
+<p></p>
+
+<h2><a
+name="Nonnegative case">Nonnegative case</a></h2>
+First, we shall consider a random variable, $X$, taking only nonnegative values. Now consider
+ a simple random variable $U$  such that $U\leq X.$ 
+Visualise $X$  and $U$  like this (we are taking $\Omega$  an interval in the diagram):   
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lebmot1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ Then we can compute $E(U).$  Also     it is natural to
+ define $E(X)$  so that $E(U)\leq E(X).$ 
+<p></p>
+Now look at $U$  taken as follows. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lebmot2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This $U$  still takes finitely many values, but is much closer to $X $ than before. You can feel that if $U$ 
+ is made finer and finer (but still remaining simple), you can make it come arbitrarily closer to $X.$
+ This leads to the following approach for defining expectation of $X:$
+<blockquote>Define $E(X)$  as supremum of $\{E(U)~:~U\mbox{ simple, }U\leq X\}.$  </blockquote>
+Of course, before we can take supremum we need to make sure that the set is non-empty and bounded. 
+<ul>
+<li>It is easy to see that the set is non-empty (<i>i.e.</i>, for all nonnegative random variable $X$, there is at
+ least one simple random variable $U$  such that $U\leq X.$  Just take $U\equiv 0.$  </li>
+
+<li>Unfortunately, the set need not be bounded above. But that is not a serious problem. We shall
+ just define $E(X)$  to be $\infty$  in those cases.</li>
+
+</ul>
+
+<fieldset>
+<legend><b>Definition: Expectation (nonnegative case)</b></legend>
+Let $X$  be any nonnegative random variable.
+Then we define the <b><font color="red" size="40">expectation</font></b> of $X$ as
+$$
+E(X) = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}
+$$
+if the set is bounded above, and $\infty$  otherwise.
+</fieldset>
+
+<p></p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;Suppose $X$  is a nonnegative
+ random variable that is also a simple random variable. Then we have two definitions of
+ $E(X),$  as a simple random variable and as a non-empty random variable. Show that both
+ definitions match in this case.</p> 
+
+<p></p>
+
+<h2><a
+name="General case">General case</a></h2>
+Finally, we attack the general case, where $X $ can take both positive and negative values. 
+Here we apply our approach to the positive and the negative parts separately.  More precisely, we define 
+$$X_+ = \max\{X,0\} \mbox{ and } X_- = \max\{-X,0\}.$$
+Note that
+<ul>
+<li>Both $X_+$  and $X_-$  are nonnegative,</li>
+
+<li>$X = X_+-X_-.$</li>
+
+</ul>
+We already know how to define $E(X_+)$ and $E(X_-).$  We shall combine them in the obvious way to define $E(X):$
+<fieldset>
+<legend><b>Definition: Expectation (general case)</b></legend>
+$$E(X) = \left\{\begin{array}{ll}
+E(X_+)-E(X_-)&\text{if }E(X_+),E(X_-)&lt;\infty\\
+\infty&\text{if }E(X_+)=\infty,~E(X_-)&lt;\infty\\
+-\infty&\text{if }E(X_+)&lt;\infty,~E(X_-)=\infty\\
+\end{array}\right..$$
+We shall say $E(X)$  is undefined if $E(X_+)=E(X_-)=\infty.$
+</fieldset>
+
+<p></p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;If $X$  is a nonnegative random variable, then we have two definitions for $E(X).$ 
+ Check that they match.</p>
+
+<p></p>
+This expectation is also called the <b><font color="red" size="40">Lebesgue integral</font></b>  of $X$  <b><font color="red" size="40">wrt</font></b>  the given probability,
+ and written as $\int X\, dP.$  However, we shall not use this notation here. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X$  takes the nonnegative values $x_1&lt;x_2&lt;\cdots$   with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1,$  then 
+$$E(X) = \sum p_i x_i.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+To show 
+$$\sum p_i x_i = \sup\{E(U)~:~U\mbox{ simple, }U\leq X\}.$$
+Let $L= \sum_i p_i x_i,$  and ${\mathcal D}=\{E(U)~:~U\mbox{ simple, }U\leq X\}.$
+<p></p>
+This requires showing two things: 
+<ul>
+<li>$L$  is an upper bound of ${\mathcal D},$</li>
+
+<li>no number less than $L$  is an upper bound of ${\mathcal D}.$</li>
+</ul>
+
+<p></p>
+
+<b>Step 1:</b>  To show
+<p></p>
+$$\forall U\in{\mathcal D}~~E(U)\leq L.$$
+<p></p>
+Take any  $U\in{\mathcal D}$  be any simple random variable. 
+<p></p>
+Let $U$  take only the values $u_1,...,u_k.$  
+<p></p>
+Let $p_{ij} = P(X=x_i, U=u_j).$
+<p></p>
+Then $E(U) =\sum_j (u_j \sum_i p_{ij}) = \sum_j\sum_i u_j p_{ij}.$  
+<p></p>
+Also $L = \sum_i x_i \sum_j
+ p_{ij}=\sum_i  \sum_j x_i p_{ij}=\sum_j \sum_i x_i p_{ij}.$
+<a href="javascript:hideShow('pf');">[Why?]</a>
+<div id="pf" style="display:none;background-color:#ffcccc;">
+A finite sum can always be interchanged with an infinite sum, when the summands are all nonnegative. For example,
+$$\sum (a_n+b_n) = \sum a_n + \sum b_n.$$
+If we write $c_{1,n}=a_n$  and $ c_{2,n}=b_n$  then this is 
+$$\sum_n \sum_i c_{i,n} = \sum_i \sum_n c_{i,n}.$$  
+</div>
+Now $p_{ij}&gt;0\Rightarrow u_j\leq x_i.$  
+<p></p>
+Hence $\sum_i   u_j p_{ij}\leq \sum_i   x_i p_{ij},$  and so $\sum_j\sum_i   u_j p_{ij}\leq \sum_j\sum_i   x_i p_{ij}.$
+<p></p>
+Thus, $E(U)\leq L,$  as required.
+<p></p>
+
+<b>Step 2:</b>  Shall show that no $L'&lt; L$  is an upper bound of ${\mathcal D},$  <i>i.e.</i>,
+<p></p>
+$$\forall L'&lt; L~~\exists U\in{\mathcal D}~~E(U)&gt; L'.$$  
+<p></p>
+Let $U_n$  be the random variable 
+$$
+U_n =\left\{\begin{array}{ll}X&\text{if }X=x_1,...,x_n\\ 0&\text{otherwise.}\end{array}\right..
+$$  
+Then $U_n$  is a simple random variable such that $U_n\leq X.$ 
+<p></p>
+So $U_n\in{\mathcal D}.$
+<p></p>
+Also $E(U_n)
+ =\sum_{i=1}^n p_i x_i\rightarrow L.$  
+<p></p>
+Hence $\exists N\in{\mathbb N}~~E(U_N) &gt; L'.$  
+<p></p>
+Choose this $U_N$  as our $U\in{\mathcal D}.$
+<p></p>
+Since $E(U) &gt; L',$ this completes the proof.
+ <b><i>[QED]</i></b>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|&lt;\infty,$ then 
+$$E(X) = \sum p_i x_i.$$
+</p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;If $X$  takes the  values $x_1,x_2,...$  (not necessarily all nonnegative) with probabilities
+ $p_1,p_2,...$  where $\sum p_i = 1$ and $\sum |p_i x_i|=\infty,$ then what are the possibilities for $E(X):$ 
+ finite, $\infty$, $-\infty$  or undefined? Give one example of each of the possibilities. Prove the impossibility
+ of the other(s).
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X, Y$ be any two random variables (defined on the same probability space) with $X\leq Y.$
+If $E(X)$  and $E(Y)$  are both defined (may be $\infty$  or $-\infty$), then
+$E(X)\leq E(Y).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The result is trivial if $E(Y)=\infty.$  So we shall focus on the $E(Y)&lt;\infty$  case. 
+<p></p>
+We had defined expectation in three steps: simple, nonnegative and general. Our proof will accordingly have three steps.
+<p></p>
+
+<b>Step 1: Simple:</b>
+
+<p></p>
+We have already seen this earlier in this page.
+<p></p>
+
+<b>Step 2: Nonnegative:</b>
+
+<p></p>
+To show $E(X)\leq E(Y),$  <i>i.e.</i>, 
+$$\sup\{E(U)~:~U \mbox{ simple}, U\leq X\} \leq \sup\{E(V)~:~V \mbox{ simple}, V\leq Y\}.$$
+Enough to show that  $\{E(U)~:~U \mbox{ simple}, U\leq X\}\subseteq \{E(V)~:~V \mbox{ simple}, V\leq Y\}.$
+<p></p>
+Take any  simple $U\leq X.$  Then, since $X\leq Y,$  we also have $U\leq Y.$  Hence the result.
+<p></p>
+
+<b>Step 3: General:</b>
+
+<p></p>
+Let $X = X_+-X_-$
+ and $Y = Y_+-Y_-$. 
+<p></p>
+Since $X\leq Y,$  we must have $X_+\leq Y_+$  and $Y_-\leq X_-.$  
+<p></p>
+Hence, by step 2, $E(X_+)\leq E(Y_+)$  and $E(Y_-)\leq E(X_-).$  
+<p></p>
+So $E(X_+)-E(X_-)\leq E(Y_+)-E(Y_-),$  as required.
+<b><i>[QED]</i></b>
+</p>
+An immediate consequence of the above theorems is the following
+theorem.
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

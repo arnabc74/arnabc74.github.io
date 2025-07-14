@@ -1,0 +1,591 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Variance">Variance</a>
+</li>
+<li>
+<a href="#Moments">Moments</a>
+</li>
+<li>
+<a href="#Moment generating function">Moment generating function</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+
+<p xmlns=""></p>
+
+<h1><a
+name="Variance">Variance</a></h1>
+A random variable is, well,  random. So it may very well differ from
+its expectation. By how much? A lot or a little? We can use
+expectation to find that out. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Variance</b></legend>
+If $E|X|&lt;\infty,$ then we define <b>variance</b> of $X$ as
+$$
+V(X) = E\big[ (X-E(X))^2 \big].
+$$
+It is either finite or $\infty.$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(X)\geq 0.$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $E(X^2)&lt;\infty,$ then $V(X)$ exists finitely, and $V(X) = E(X^2)-\big( E(X) \big)^2.$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(aX+b) = a^2 V(X).$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(X)=0$ if and only if $X$ is a degenerate random variable.
+</fieldset>
+
+<p></p>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Chebyshev is also credited with designing a <a href="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
+robot-like linkage</a>.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Chebyshev inequality</i></b></legend>
+Let $V(X)&lt;\infty.$ Then 
+$$
+\forall \epsilon&gt;0~~P(|X-E(X)| \geq \epsilon) \leq \frac{V(X)}{\epsilon^2}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Take any $\epsilon&gt;0.$
+<p></p>
+Let $E(X)$ be denoted by $\mu.$
+<p></p>
+Define 
+$$
+f(x) = \left\{\begin{array}{ll}
+\epsilon^2 &\text{if }|x-\mu|\geq \epsilon\\
+0 &\text{otherwise.}
+\end{array}\right.
+$$
+<p></p>
+Then $\forall x~~f(x)\leq (x-\mu)^2.$
+<p></p>
+
+<p></p>
+So
+$$\begin{eqnarray*}
+V(X) 
+&amp; = &amp; E(X-\mu)^2\\
+&amp; \geq &amp; E(f(X))\\
+&amp; = &amp; \epsilon^2 P(|X_i-\mu| \geq\epsilon) + 0\times P(|X_i-\mu| &lt;\epsilon).
+\end{eqnarray*}$$
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h1><a
+name="Moments">Moments</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Raw and central moments</b></legend>
+The $k$-th raw moment of $X$ is 
+$$
+E(X^k)
+$$
+and the $k$-th central moment of $X$ is
+$$
+E\big[ (X-E(X))^k \big].
+$$
+</fieldset>
+
+<p></p>
+
+<h1><a
+name="Moment generating function">Moment generating function</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Moment generating function (MGF)</b></legend>
+For any random variable $X$ we define its <b>moment generating
+function</b> as the function 
+$$
+m_X(t) =  E(e^{tX}).
+$$
+The domain of this function conists of all $t\in{\mathbb R}$ for
+which the expectation exists.
+</fieldset>
+
+<p></p>
+Clearly, $m_X(0)$ always exists and equals $1.$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If, for some $k\in{\mathbb N}$, the moment $E(X^k)$ exists
+finitely, then the $k$-th derivative  of $m_X(t)$
+exists at $t=0,$ and equals $E(X^k).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall not do the proof here. But here is the main idea: 
+$$
+e^{tX} = 1 + \frac{tX}{1!} + \frac{t^2X^2}{2!} + \frac{t^3X^3}{3!} + \cdots.
+$$
+From this we want to write 
+$$
+E(e^{tX}) = 1 + \frac{tE(X)}{1!} + \frac{t^2E(X^2)}{2!} + \frac{t^3E(X^3)}{3!} + \cdots.
+$$
+This is not a precise statement, because we do not know if all
+raw moments of $X$ exist finitely. Also, even if they do, is
+it valid to "distribute" expectation over an <i>infinite</i> sum?
+<p></p>
+Answers to these questions require deeper real analysis results
+than we know at this point.
+<p></p>
+However, assuming that this is valid, we may try to differentiate
+both sides to get
+$$
+\frac{d}{dt} E(e^{tX}) = E(X) + \frac{2tE(X^2)}{2!} + \frac{3t^2E(X^3)}{3!} + \cdots.
+$$
+Again this step needs justification. Can we "distribute"
+differentiation over an <i>infinite</i> sum?
+<p></p>
+Assuming that we can, puting $t=0$ indeed gives us $E(X).$
+<p></p>
+SImilarly, differentiating once again, and putting $t=0$
+gives us $E(X^2),$ and so on.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+We shall not spend much time with MGFs, because there is a better
+alternative called the <b>characteristic function (CF)</b>.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Characteristic function (CF)</b></legend>
+For any (real-valued) random variable $X$ we define its <b>characteristic
+function</b> as the function 
+$$
+\phi_X(t) =  E(e^{itX}),~~t\in{\mathbb R}.
+$$
+</fieldset>
+Don't be nervous to see expectation of a complex random
+variable. It is simply 
+$$
+E(\cos tX) + i E(\sin tX).
+$$
+CFs are better than MGFs because of two reasons, that we give as
+theorems below.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+For any (real-valued) random variable, the CF is defined over
+entire ${\mathbb R}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This is obvious, since $\sin tX$ and $\cos tX$ are both
+bounded random variables, and hence have finite expectations.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$ are two random variables with the same CF, then
+they must have the same distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Not in this course. 
+<b><i>[QED]</i></b>
+</p>
+Indeed, this property has earned characteristic functions their name.
+<p></p>
+MGFs do not have this proprty. It is possible to get (rather
+ugly) counter-examples of random variables $X$ and $Y$
+that both have the same MGF (in particluar both have the same
+domain $D\subseteq{\mathbb R}$), but still $X$ and $Y$ have
+different distributions. However, if the domain includes a
+neighbourhood of $0,$ then $X,Y$ must have the same
+distribution. This is stated in the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $m_X(t)$ be defined for $t\in (-a,a)$ for
+some $a&gt;0.$ Let $Y$ be a random variable with the same
+MGF. Then $X$ and $Y$ must have the same
+distribution.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Too difficult for this course.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<b>We shall not spend proving any result on MGF here. We shall
+learn the proofs for CFs in the next semester.</b>
+
+<p></p>
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<p></p>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;A box has 6 red balls an 4 black balls. An SRSWR of
+size $n$ is selected. If $X$ is the number of red
+balls selected, then find PMF of $X$  and $E(X).$ Also solve the
+problem in the case of SRSWOR.
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+<u>For SRSWR:</u>  $P(X=x) = \binom{n}{x} \left(\frac{6}{10}\right)^x\left(\frac{4}{10}\right)^{n-x}$  for $x=0,1,...,n.$
+<p></p>
+
+<u>For SRSWOR:</u>  
+$P(X=x) = \frac{\binom{6}{x} \binom{4}{n-x}}{\binom{10}{n}}$ 
+ for $x=0,1,...,n.$
+<p></p>
+By the way, this does not mean that $X$  can indeed take all the values from 0 to $n.$  For some of these values
+ the probability is zero.
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;Let $N$ be a positive integer. Let 
+$$
+f(x) = \left\{\begin{array}{ll}c 2^x &\text{if }x=1,2,...,N\\0&\text{otherwise.}\end{array}\right.
+$$
+be a PMF. Find $c.$ Find $E(X)$ and $V(X)$ if $X$ has this PMF.
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">
+For $f(x)$  to be a PMF we need 
+$$f(1)+\cdots+f(N)=1.$$
+Hence 
+$$c = \frac{1}{2^{N+1}-2}.$$
+So
+$$E(X) = \sum_1^N x f(x) = c\sum_1^N x 2^x = ...$$
+Similarly, you can find $V(X).$
+</div></p>
+</p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;An SRSWR of size 2 is drawn from $\{1,2,...,12\}.$
+Let $X$ be the maximum of the two numbers
+selected. Find $E(X).$
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
+Here $X$  can take only the values $1,2,...,12.$  
+<p></p>
+For $k\in\{1,2,...,12\}$  we have
+$$P(X\leq k) = P(X_1, X_2 \leq k) = \left(\frac{k}{12}\right)^2.$$
+So $P(X=k) = \frac{k^2-(k-1)^2}{144} = \frac{2k-1}{144}.$
+<p></p>
+Hence $E(X) = \sum_1^{12} \frac{2k^2-k}{144}=....$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;An SRSWR of size $n$ is selected
+from $\{1,2,...,12\}.$ Let $a_n $ be the expected
+value of the maximum of the sample. Show that $a_n \leq
+a_{n+1}$ without explicily finding $a_n$ in terms of $n.$
+<p><a
+href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
+class="ans" id="lab4">
+Let $X_1,...,X_{n+1}$  be an SRSWR of size $n+1$  from $\{1,...,12\}.$
+<p></p>
+Then $X_1,...,X_n$  is an SRSWR of size $n$  from $\{1,...,12\}.$
+<p></p>
+Let $U = \max\{X_1,...,x_{n+1}\}$  and $V = \max\{X_1,...,x_n\}.$
+<p></p>
+Then $U = \max\{V,X_{n+1}\} \geq V.$
+<p></p>
+So $E(U)\geq E(V).$
+<p></p>
+Hence $a_{n+1}\geq a_n,$  as required. 
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossexp1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab5')"><b>[Hint]</b></a><div
+class="ans" id="lab5">
+$P(0\leq X\leq 40) = 1-P(|X-\mu|&gt;20)$  where $\mu=E(X)=20.$
+<p></p>
+By Chebyshev inequality $P(|X-\mu|&gt; 20)\leq \frac{V(X)}{400} = \frac{1}{20}.$
+<p></p>
+Hence $P(0\leq X\leq 40)\geq 1-\frac{1}{20} = \frac{19}{20}.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossexp2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab6')"><b>[Hint]</b></a><div
+class="ans" id="lab6">
+(a) By Markov inequality, $E(X)\geq 85 P(X&gt; 85).$  
+<p></p>
+So $P(X&gt; 85) \leq \frac{75}{85}.$
+<p></p>
+(b) $P(65\leq X \leq 85) = 
+P(|X-75|\leq 10) = 1- P(|X-75|&gt; 10)\geq 1-\frac{V(X)}{100} = \frac 34$  by Chebyshev.
+<p></p>
+(c) Let the answer be $n$, and class average be $\bar X.$  
+<p></p>
+Then $E(\bar X) = 75$  and $V(\bar X) = \frac{25}{n}.$  
+<p></p>
+So, by the Chebyshev inequality, $P(|\bar X-75|\geq 5) \leq \frac{25}{5^2n} = \frac 1n.  $
+<p></p>
+So we need $1-\frac 1n \geq 0.9$  or $n\geq 10.$  
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossexp3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab7')"><b>[Hint]</b></a><div
+class="ans" id="lab7">
+Here $P(X\leq x) = F_X(x) = F_Y\left(\frac{x-a}{b}\right) = P\left(Y\leq \frac{x-a}{b}\right) = P(a+bY\leq x).$
+<p></p>
+Since this holds for all $x\in{\mathbb R},$  hence $X$  and $a+bY$  have the same CDF.
+<p></p>
+Since $CDF$  is unique for a distribution, hence $X$  and $a+bY$  have the same distribution.
+<p></p>
+(a) $E(X) = E(a+bY) = a+bE(Y).$
+<p></p>
+(b) $V(X) = V(a+bY) = b^2 V(Y).$ 
+</div></p>
+
+</p>
+
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

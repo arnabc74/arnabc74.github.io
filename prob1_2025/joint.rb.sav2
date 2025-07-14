@@ -1,0 +1,726 @@
+<NOTE>
+@{<E>
+<HEAD1>Joint distribution</HEAD1>
+
+<DEFN name="Jointly distributed random variables">
+When we say that some random variables are <B>jointly
+distributed</B>, we mean that they are all defined on the same
+probability space. 
+</DEFN>
+If we want to combine values of different random variables (e.g.,
+by addition, subtraction etc or comparison like <M>\leq</M>), then
+they must be jointly distributed. If we have <M>n</M> jointly
+distributed real-valued random variables, then you may consider
+them as components of an <M>\rr^n</M>-valued random
+variable. Sometimes we call such a random variable a <B>multivariate</B>
+random variable, as opposed to a <B>univariate</B> one.
+
+<P/>
+We shall now extend the various familiar concepts about <M>\rr</M>-valued  random
+variables to <M>\rr^n</M>-valued random variables. 
+<P/>
+<DEFN name="Joint CDF">
+Let <M>X = (X_1,...,X_n)</M> be an <M>\rr^n</M>-valued random
+variable. Its joint CDF is defined as <M>F:\rr^n\to\rr</M> where for
+all <M>(x_1,...,x_n)\in\rr^n</M>
+<D>
+F(x_1,...,x_n) = P(X_1\leq x_1~\&~\cdots~\&~X_n\leq x_n).
+</D>
+</DEFN>
+
+The extension of the concept of discreteness is straightforward.
+
+<DEFN name="Discrete">
+An <M>\rr^n</M>-valued random variable <M>X</M> is called <B>discrete</B>
+if there is a countable set <M>A\seq\rr^n</M> such that <M>P(X\in A)=1.</M>
+</DEFN>
+The definition of continuous random variable is slightly more
+confusing. For <M>\rr</M>-valued random variables we had two
+equivalent definitions:
+<UL>
+<LI>ever singleton set has probability zero,</LI>
+<LI>CDF is continuous.</LI>
+</UL>
+For an <M>\rr^n</M>-valued random variable, these two conditions
+are not equivalent (the latter is stronger). We use the stronger
+condition as the defintion of continuity of
+an <M>\rr^n</M>-valued random variable.
+
+<FNOTE>
+<B>Caution:</B> Most books take a much stronger definition of
+continuity for joint distribution. More precisely, that
+definition should be called <B>absolute continuity</B>, which we
+shall learn later.
+</FNOTE>
+<DEFN name="Continuous">
+An <M>\rr^n</M>-valued random variable <M>X</M> is
+called <B>continuous</B> if its joint CDF is continuous.
+</DEFN>
+
+The following example shows that the first condition is indeed
+weaker than the second.
+
+<EXM>
+Consider the function with the following graph:
+<CIMG web="unifcdf.png"/>
+Clearly it satisfies the 4 conditions of being a CDF. Hence we
+know that there is a random variable <M>X</M> with this CDF (by
+the fundamental theorem).
+<P/>
+Define a <M>\rr^2</M>-valued random variable 
+as <M>Y=(X,1).</M>  Show that for any <M>(a,b)\in\rr^2</M> we have <M>P(Y=(a,b))=0.</M>
+Also show that the CDF of <M>Y</M> is not continuous.
+<SOLN/>
+<M>P(Y=(a,b))= P(X=a~\&~1=b)\leq P(X=a)=0,</M> since <M>X</M> is
+a continuous random variable.
+<P/>
+Also, the joint CDF is 
+<D>
+F(a,b) = P(X\leq a~\&~1\leq b) = <CASES>0<IF>b <
+1</IF>F(a)<IF>b\geq 1.</IF></CASES>
+</D>
+If we take <M>(a_n,b_n) =(*( [[12]], 1-[[1n]])*),</M>
+then <M>(a_n,b_n)\to (*([[12]],1)*).</M> 
+
+<P/>
+Now <M>F(a_n,b_n)\equiv 0,</M> and so <M>F(a_n,b_n)\to 0.</M>
+
+<P/>
+But <M>F(*([[12]],1)*) = [[12]]\neq 0.</M>
+</EXM>
+
+<DEFN name="Joint PMF">
+Let <M>X</M> be an <M>\rr^n</M>-valued discrete random
+variable. Then its <B>joint PMF</B> is the
+function <M>p:\rr^n\to\rr</M> defined as 
+<D>
+p(x_1,...,x_n)= P(X_1=x_1~\&~\cdots~\&~X_n=x_n).
+</D>
+</DEFN>
+
+<HEAD2>Marginal distributions</HEAD2>
+If you are given two jointly distributed random
+variables <M>X,Y</M> and you know their joint distribution,
+i.e. given any <M>A\seq\rr^2</M> you know <M>P((X,Y)\in A),</M>
+then you can work out the probability distribution of <M>X</M>
+and <M>Y</M> separately from this, i.e., for any
+fiven <M>B\seq\rr</M> you can find <M>P(X\in B)</M> and <M>P(Y\in
+B)</M> as follows:
+<Q>
+<M>P(X\in B) = P(X\in B~\&~ Y\in\rr) = P((X,Y)\in A),</M>
+where <M>A = B\times\rr.</M> Similarly, for <M>Y.</M>
+</Q>
+
+<DEFN name="Marginal distribution">
+Let <M>X=(X_1,...,X_n)</M> be an <M>\rr^n</M>-valued
+random variable. For any <M>\{i_1,...,i_k\}\seq\{1,2,...,n\}</M> the joint
+distribution of <M>(X_{i_1},...,X_{i_k})</M> is called
+a <M>k</M>-dimensional <B>marginal</B> for the joint distribution
+of <M>X.</M>
+</DEFN>
+
+<THM>
+Let <M>(X,Y)</M> be an <M>\rr^2</M>-valued random variable with
+joint CDF <M>F(x,y).</M> Then the marginal CDF of <M>X</M> is 
+<D>
+F_X(x) = P(X\leq x) = \lim_{y\to \infty} F(x,y)
+</D>
+and the marginal CDF of <M>X</M> is 
+<D>
+F_Y(y) = P(Y\leq y) = \lim_{x\to \infty} F(x,y).
+</D>
+</THM>
+
+<HEAD2>Expectation</HEAD2>
+
+The definition of expectation is  straightforward extension of
+the univariate case. 
+
+<DEFN name="Expectation">
+Let <M>X</M> be an <M>\rr^n</M>-valued discrete random
+variable with PMF <M>p(x)</M>. Let <M>f:\rr^n\to \rr</M> be any
+function. Then <M>E(h(X))</M> is defined as follows.
+<UL>
+<LI>If <M>\sum_x |h(x)| p(x) < \infty,</M> then 
+<D>
+E(h(X)) = \sum_x h(x) p(x).
+</D>
+</LI>
+<LI>If <M>\sum_x |h(x)| p(x) = \infty,</M> then 
+<OL>
+<LI>if all but finitely many terms in the sum are positive, we
+define <M>E(h(X))=\infty.</M></LI>
+<LI>if all but finitely many terms in the sum are negative, we
+define <M>E(h(X))=-\infty.</M></LI>
+<LI>if there are infinitely many positive and negative terms,
+then <M>E(h(X))</M> is undefined.</LI>
+</OL>
+</LI>
+</UL>
+
+</DEFN>
+
+If <M>X</M> is an <M>\rr^n</M>-valued random variable,
+and <M>h:\rr^n\to \rr^m</M> is any function, 
+then <M>E(h(X))</M> is defined component by component, and is said
+to exists finitely iff all the component expectations exist finitely.
+<P/>
+
+<THM>
+If <M>X, Y</M> are jointly distributed real-valued random
+variables, each with finite expectation, then <M>X+Y</M> also has
+finite expectation
+<D>
+E(X+Y) = E(X)+E(Y).
+</D>
+</THM>
+<PF>
+In this course we shall prove this  only when <M>X,Y</M> are both
+discrete random
+variables.
+<P/>
+First, notice that <M>X+Y</M> is again discrete. 
+<BECAUSE>
+If <M>X</M> takes values in the countable
+set <M>\{x_1,x_2,...\}</M> and <M>Y</M> take values in the
+countable set <M>\{y_1,y_2,...\},</M> then each possible value
+of <M>X+Y</M> must be of the form <M>x_i+y_j.</M> There are only
+countably many such values.
+</BECAUSE>
+Let <M>p_{ij} = P(X=x_i~\&~ Y=y_j).</M>
+<P/>
+Then <M>P(X=x_i) = \sum_j p_{ij}</M> and <M>P(Y=y_j) = \sum_i p_{ij}.</M>
+<P/>
+So <M>E(X) = \sum_i x_i P(X=x_i) =  \sum_i x_i \sum_j p_{ij},</M>
+and <M>E(Y) = \sum_j y_j P(Y=y_j) =  \sum_j y_j \sum_i p_{ij} .</M>
+<P/>
+By the given condition both these series converges absolutely,
+and may be grouped and arranged in any way without changing the
+sum. 
+<P/>
+So <M>\sum_i\sum_j |x_i p_{ij}|< \infty,</M> and <M>\sum_j\sum_i |y_j p_{ij}|< \infty.</M>
+<P/>
+Now <M>|x_i+y_j|\leq |x_i|+|y_j|</M> by triangle
+inequality.
+
+<P/>
+Hence <M>\sum_{i,j} |(x_i+y_j)p_{ij}| <\infty</M> and
+so <M>E(X+Y)</M> exists finitely. Also 
+<D>
+E(X+Y) = \sum_{i,j} (x_i+y_j)p_{ij} = \sum_i\sum_j x_ip_{ij} +
+\sum_j\sum_i y_jp_{ij}  = E(X)+E(Y),
+</D>
+as required.
+</PF>
+
+This result leads to simple trick that we discuss next.
+
+<HEAD3>Indicator trick</HEAD3>
+Suppose that you are to find expected number of something. For
+example, <M>n</M> letters are randomly put into <M>n</M>
+addressed envelops, and you are to find <M>E(X),</M>
+where <M>X</M> is the number of correctly placed letters. 
+would you count <M>X</M> In any given situation like the 
+following, you can find <M>X</M> by first putting a check mark
+for each correctly placed letter and then counting the total
+number of check marks. 
+<P/>
+Mathematically each ckec mark is an <B>indicator</B>. For
+example, the indicator for the <M>i</M>-th letter is 
+<D>
+I_i = <CASES>1<IF>i\mbox{-th letter is placed correctly}</IF>0<ELSE/></CASES>.
+</D>
+Counting the number of check marks amounts to
+summing <M>I_i</M>'.s Thus, <M>X = \sum I_i.</M> 
+<P/>
+Notice that each <M>I_i</M> is a random variable, and <M>E(X) = \sum E(I_i).</M>
+<P/>
+Since each <M>I_i</M> takes only the values <M>1</M>
+and <M>0,</M> hence <M>E(I_i) = P(I_i=1).</M>
+<P/>
+Now <M>I_i=1</M> means <M>i</M>-th letter has been placed
+correctly. This is has probability <M>[[(n-1)!][n!]] = [[1n]].</M>
+<P/>
+So <M>E(X) = n\times [[1n]] = 1.</M> 
+<P/>
+It's a bit surprising that <M>E(X)</M> does not depend on <M>n.</M>
+
+<HEAD2>Independent random variables</HEAD2>
+An important special case of jointly distributed random variables
+is that of independent random variables. To state the definition
+we shall intriduce a new terminology: If <M>X:\Omega\to S</M> is
+a random variable, then by "an event in terms of <M>X</M>" we
+shall mean <M>\{w\in\Omega~:~ X(w)\in A\}</M> for some <M>A\in
+S.</M> Similarly, if <M>X:\Omega\to S</M> and <M>Y:\Omega\to
+T</M> are jointly distributed random
+variables, then "an event in terms of <M>X,Y</M>" means 
+<M>\{w\in\Omega~:~ (X(w),Y(w))\in A\},</M> where <M>A\seq S\times T.</M>
+
+<DEFN name="Indepdendent random variables">
+Let <M>X_1,...,X_n</M> be jointly distributed random variables.
+We say that they are <B>independent</B> if for all  disjoint
+subsets <M>A,B\seq\{1,...,n\}</M> any event in terms
+of <M>\{X_i~:~i\in A\}</M> is independent of any event in terms
+of <M>\{X_i~:~i\in B\}.</M>
+</DEFN>
+
+<EXM>
+If <M>X,Y,Z</M> are independent random variables, then 
+<D>
+P(X^2+Y^2 \leq 4~\&~ Z\neq 5) = P(X^2+Y^2 \leq 4)P(Z\neq 5).
+</D>
+</EXM>
+
+<THM>
+If <M>X_1,...,X_n</M> are independent random variables, then any
+function of some of the <M>X</M>'s is independent of any
+function of the remaining <M>X</M>'s.
+</THM>
+<PF>
+Split <M>\{1,...,n\}</M> into two disjoint
+subsets <M>\{i_1,...,i_k\}</M> and <M>\{j_1,...,j_{n-k}\}.</M>
+<P/>
+
+Let <M>Y = f(X_{i_1,...,i_k})</M> and <M>Z =
+g(X_{j_1,...,j_{n-k}}),</M> where <M>f,g</M> are any two
+functions. 
+<P/>
+Take any two sets <M>A,B.</M> Then 
+<D>P(Y\in A~\&~Z\in B) = 
+P(f(X_{i_1,...,i_k})\in
+A~\&~g(X_{j_1,...,j_{n-k}})\in B) = 
+P(f(X_{i_1,...,i_k})\in A)P(g(X_{j_1,...,j_{n-k}})\in B) = P(Y\in
+A)P(Z\in B).
+</D>
+</PF>
+
+<THM>
+Let <M>X,Y</M> be jointly distributed discrete random variables, with
+PMFs <M>p(x)</M> and <M>q(x).</M> If they are independent, then
+their joint PMF is <M>h(x,y) = p(x)q(y).</M>
+</THM>
+<PF>Immediate from the definition of independence.</PF>
+
+<THM>
+Let <M>X,Y</M> be jointly distributed random variables, with
+CDFs <M>F(x)</M> and <M>G(x).</M> If they are independent, then
+their joint CDF is <M>H(x,y) = F(x)G(y).</M>
+</THM>
+<PF>Immediate from the definition of independence.</PF>
+
+<THM>
+If <M>X,Y</M> are independent random variables with finite
+expectations, then <M>E(XY) = E(X)E(Y).</M>
+</THM>
+<PF>
+We shall prove this for the case where <M>X,Y</M> are both
+discrete (hence so is <M>(X,Y)</M>). 
+
+<P/>
+Let <M>p(x,y), p_X(x)</M> and <M>p_Y(y)</M> be the joint and
+marginal PMFs, respectively.
+<P/>
+Then 
+<D>
+E(XY) = \sum_{x,y} xy p(x,y) = \sum_{x,y} xy p_X(x)p_Y(y) =
+\sum_x x p_X(x)\times \sum _y yp_Y(y) = E(X)E(Y).
+</D>
+The grouping and rearranging were justified since the series were
+absolutely convergent. 
+</PF>
+
+<HEAD2>Covariance</HEAD2>
+<DEFN name="Covariance">
+If <M>X,Y</M> are jointly distributed random variables, then
+their <B>covariance</B> is defined as
+<D>
+cov(X,Y) = E[(X-E(X))(Y-E(Y))].
+</D>
+</DEFN>
+
+<THM>
+<M>cov(X,Y) = E(XY)-E(X)E(Y).</M>
+</THM>
+<PF>
+By direct algebraic expansion.
+</PF>
+
+<THM>
+If <M>X,Y</M> are independent and  <M>E(X^2),
+E(Y^2) < \infty,</M>then <M>cov(X,Y)=0.</M> The
+converse is not true.
+</THM>
+<PF>
+The first part follows immediately from the fact that <M>E(XY)=E(X)E(Y).</M>
+<P/>
+A counter example for the second part is as follows.
+<P/>
+<M>X</M> takes values <M>-1,0,1</M> with equal
+probabilities. <M>Y = |X|.</M> Direct computation
+shows <M>E(X)=E(XY)=0</M> and so <M>cov(X,Y)=0.</M>
+<P/>
+But <M>P(X=0~\&~Y=1) = 0 \neq P(X=0)P(Y=1).</M>
+</PF>
+
+The <M>cov(\cdot,\cdot)</M> function behaves much like ordinary
+multiplication. The following theorems show this.
+
+<THM>
+<M>cov(X,Y)=cov(Y,X).</M>
+</THM>
+
+<THM>
+<M>cov(\sum a_i X_i, \sum b_j Y_j) = \sum_{i,j} a_ib_jcov(X_i,Y_j).</M>
+</THM>
+
+Also we have 
+<THM>
+<M>cov(X,X) = V(X).</M>
+</THM>
+
+<THM>
+<M>cov(aX+b,cY+d) = ac cov(X,Y).</M>
+</THM>
+
+
+<EXM>
+The analog of <M>(a+b)^2 = a^2+2ab+b^2</M> here is <M>V(X+Y) =
+V(X)+2 cov(X,Y) +V(Y).</M> This also shows that if <M>X,Y</M> are
+independent, then <M>V(X+Y) = V(X)+V(Y).</M>
+</EXM>
+
+::<EXR>
+If <M>X</M> and <M>Y</M> have finite first moments, and at least one of them  is a degenerate random variable, then show
+ that <M>cov(X,Y)=0.</M>  
+<ANS>
+If <M>X</M>  is degenerate, say <M>P(X=c)=1,</M>  then <M>\cov(X,Y) = E(XY)-E(X)E(Y) = E(xY)-cE(Y) = 0.</M>
+</ANS></EXR>
+
+::<EXR>Let <M>X_1,X_2,...,X_n</M>  be identically distributed independent random variables with <M>V(X_1) = \sigma^2 < \infty.</M>  Then what is 
+<M>V(\overline X_n)?</M>  Here <M>\overline X_n = [[1n]]\sum_1^n X_i.</M>
+<ANS><M>V(\overline X_n) = [[\sigma^2][n]].</M></ANS></EXR>
+
+At last we shall be able to prove our first theorem about
+statistical regularity. This is essentially what we had started
+our class with.
+
+<THM name="Weak Law of Large Numbers (WLLN)">
+Let <M>X_1,X_2,...</M> be a sequence of independent and
+identically distributed (IID) random variables (defined
+on the same probability space) with <M>E(X_1)=\mu</M> and
+<M>V(X_1)=\sigma^2<\infty.</M> Let, for <M>n\in\nn</M>, 
+<D>
+\overline X_n = [[1n]]\sum_{i=1}^n X_i.
+</D>
+Then 
+<D>
+\forall \epsilon > 0~~ P(|\overline X_n-\mu|> \epsilon) \to
+0\mbox{ as } n\to \infty.
+</D>
+</THM>
+<PF>
+Use the exercise above and Chebyshev inequality.
+</PF>
+
+<THM name="Cauchy-Scwartz inequality">
+<M>cov(X,Y)^2 \leq V(X)V(Y).</M>
+Equality holds iff <M>\exists a,b,c\in\rr~~P(aX+bY=c)=1.</M>
+</THM>
+<PF>
+The result is obvious if <M>X</M> is degenerate. So let's
+consider the case where <M>X</M> is not degenerate. Then <M>V(X)>0.</M>
+<P/>
+Define <M>Z = Y-\underbrace{[[cov(X,Y)][V(X)]]}_\beta  X.</M> 
+<P/>
+We know that <M>V(Z)\geq 0.</M>
+<P/>
+Now, 
+<D>
+V(Z) = V(Y) + V(\beta X) - 2cov(Y,\beta X) = V(Y) + \beta^2 V(X)
+- 2 \beta cov(X,Y).
+</D>
+Since <M>\beta = [[cov(X,Y)][V(X)]],</M> this reduces to 
+<D>
+V(Y) - [[cov(X,Y)^2][V(X)]].
+</D>
+Since this is <M>\geq0,</M> the inequality follows immediately.
+<P/>
+Also equality holds iff <M>V(Z)=0</M>, i.e., <M>Z</M> is degenerate.
+<P/>
+So we have <M>V(X) X - cov(X,Y) Y = kV(X)</M> for some <M>k\in\rr.</M>
+
+<P/>
+This completes the proof.
+</PF>
+
+<DEFN name="Correlation">
+If <M>X,Y</M> are jointly distributed random variables
+with <M>V(X), V(Y)>0,</M> then their <B>correlation</B> is defined
+as 
+<D>
+\rho(X,Y)= [[ cov(X,Y) ][ \sqrt{V(X)V(Y)} ]].
+</D>
+</DEFN>
+By  Cauchy-Scwartz inequality, <M>rho(X,Y) \in [-1,1].</M> Also,
+<M>\rho(X,Y)=-1</M> or <M>\rho(X,Y)=1</M> if and only
+if <M>X,Y</M> are linearly linearly related with probability 1,
+i.e., <M>\exists a,b,c\in\rr</M> such that <M>P(aX+bY=c)=1.</M>
+<HEAD1>Problems for practice</HEAD1>
+
+::<EXR><CIMG web="most45.png"/>
+<ANS>
+(a) 
+Let <M>X</M>  be the number of matching pairs.
+
+Let <M>X_i = <CASES>1<IF>i\mbox{-th pair match}</IF> 0<ELSE/></CASES>.</M>
+
+Then <M>X = \sum_1^{52} X_i.</M>
+
+Now, <M>E(X_i) = P(i</M>-th pair match<M>)=[[1][52]].</M>
+
+So <M>E(X) = 1.</M>
+
+(b) 1.
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt1.png"></CIMG>
+Here "discrete density" means "PMF".
+<ANS>
+We need to check that <M>\forall x\in\rr~~f(x)\geq 0</M>  and <M>\sum_{x=1}^N f(x) = 1.</M>
+
+Both are immediate.
+
+The mean is <M>E(X)</M>  where <M>X</M>  has this PMF.
+
+<M>E(X) = \sum_{x=1}^N x f(x) = [[2][N(N+1)]]\sum_{x=1}^N x^2 = [[2][N(N+1)]]\times[[N(N+1)(2N+1)][6]] = [[2N+1][3]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt2.png"></CIMG>
+<ANS>Since <M>P(|X-Y|\leq M)=1</M>,  hence <M>E|X-Y| \leq E(M) = M.</M>
+
+Also we know that <M>X = Y + (X-Y)</M>  and so, by triangle inequality, 
+<M>|X| \leq |Y| + |X-Y|.</M>
+
+Now <M>E|X|</M>  always exists (may be <M>\infty</M>) and <M>E|X|\leq E|Y| + E|X-Y| <\infty,</M>  since <M>E|Y|<\infty</M> 
+ and <M>E|X-Y|\leq M.</M>
+
+Hence <M>E(X)</M>  exists finitely. 
+
+Also <M>|E(X)-E(Y)| = |E(X-Y)| \leq E|X-Y|</M>  by Jensen's inequality, since <M>|x|</M>  is a convex function. 
+
+Hence <M>|E(X)-E(Y)| \leq M,</M>  as required.
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt3.png"></CIMG>
+<ANS>
+<M>E(X) = [[N2]]</M>  and <M>V(X) = [[N(2n+1)][6]]-[[N^2][4]] = [[N^2+2N][12]]. </M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt4.png"></CIMG>
+
+Here "density" means "PMF".
+<ANS>
+We know from analysis that <M>\sum_1^\infty x^{-(r+2)} <\infty</M>  since <M>r>0.</M>  
+
+Let <M>c = [[1][\sum_1^\infty x^{-(r+2)}]].</M>
+
+Then <M>p(x) = <CASES>c x^{-(r+2)}<IF>x\in\nn</IF> 0<ELSE/></CASES> </M>
+is a PMF with the required property. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt5.png"></CIMG>
+<ANS>
+<M>V(X^2Y) =E(X^4Y^2)-E^2(X^2Y) = E(X^4)E(Y^2)-E^2(X^2)E^2(Y),</M>
+since <M>X,Y</M>  are independent (and so any function of <M>X</M>  is independent of any function of <M>Y</M>). 
+
+Now <M>E(X^4)E(Y^2)-E^2(X^2)E^2(Y) = E(X^4)E(Y^2) -0 = 2\times1 = 2.</M> 
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt6.png"></CIMG>
+<ANS>
+<M>E(2X+3Y) = 2E(X)+3E(Y)</M>  and <M>V(2X+3Y) = 4V(X)+9V(Y).</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt7.png"></CIMG>
+<ANS>
+(a) Use the fact that <M>\sum_{k=1}^n (X_k-\overline X) = 0.</M>
+
+(b) 
+<M>E(*(\sum (X_k-\overline X)^2)*) = E(*(\sum (X_k-\mu)^2)*) - n E(\overline X-\mu)^2. </M>
+
+Now <M>E(X_k)=\mu</M>  and <M>E(\overline X)=\mu.</M>
+
+So <M>E(*(\sum (X_k-\mu)^2)*) = \sum E(X_k-\mu)^2 = n\sigma^2</M>
+and <M>E(\overline X-\mu)^2 = V(\overline X) = [[\sigma^2][n]]. </M>
+
+Hence <M>E(*(\sum (X_k-\overline X)^2)*) = n\sigma^2- n\times [[\sigma^2][n]] = (n01)\sigma^2,</M>  as required.
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt8.png"></CIMG>
+<ANS>
+(a) <M>E(X_i) = P(i</M>-th box empty<M>) = (*([[r-1][r]])*)^n.</M>
+
+(b) Let <M>i\neq j.</M>  Then <M>E(X_iX_j) = P(i</M>-th and <M>j</M>-th boxes empty<M>) = (*([[r-2][r]])*)^n.</M>
+
+(c) <M>E(S) = [[(r-1)^n][r^{n-1}]].</M> 
+
+(d) <M>V(S) = E(S^2)-E^2(S).</M>
+
+Now <M>E(S^2) = E(*(\sum X_i)*)^2 = \sum E(X_i^2) + \sum_{i\neq j} E(X_iX_j) =\sum E(X_i) +
+ \sum_{i\neq j} E(X_iX_j) = [[(r-1)^n][r^{n-1}]] + r(r-1)\times[[(r-2)^n][r^n]]. </M>
+
+Now simplify. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt9.png"></CIMG>
+<ANS>
+(a) 1.
+
+(b) <M>E(X_i^2) = E(X_i) = [[1n]].</M>  Also for <M>i\neq j</M>  we have <M>E(X_iX_j) = [[1][n(n-1)]].</M>
+
+So 
+<MULTILINE>
+V(S_n) 
+& = & E(S_n^2)-E^2(S_n)\\
+& = & E(S_n^2)-1\\
+& = & \sum E(X_i^2) + \sum_{i\neq j} E(X_iX_j)-1\\
+& = & n\times[[1n]] + n(n-1)\times [[1][n(n-1)]]-1 = 1.
+</MULTILINE>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt10.png"></CIMG>
+<ANS>
+<M>cor(X_1-X_2,X_2+X_3) = [[cov(X_1-X_2,X_2+X_3)][\sqrt{V(X_1-X_2)\cdot V(X_2+X_3)}]].</M>
+
+Now <M>V(X_1-X_2) = V(X_1)+V(X_2) = \sigma_1^2 + \sigma_2^2,</M>  since <M>X_1,X_2</M>  independent.
+
+Similarly, <M>V(X_2+X_3) = \sigma_2^2+\sigma_3^2.</M>
+
+Also <M>cov(X_1-X_2,X_2+X_3) = cov(X_1,X_2)+\cov(X_1,X_3)-cov(X_2,X_2)-cov(X_2,X_3) = -\sigma_2^2.</M>
+
+
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt11.png"></CIMG>
+<ANS>
+<M>V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times [[12]]\times \sqrt{1\times 2}.</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt12.png"></CIMG>
+<ANS>
+Here <M>U+V=2.</M>  Since <M>V=2-U</M>  is a linear relation with negative slope, 
+<M>cor(U,V)=-1.</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt13.png"></CIMG>
+<ANS>
+The joint PMF of <M>(X,Y)</M>  is 
+<TABLE>
+<TR><TD></TD><TD><M>Y=1</M></TD><TD><M>Y=2</M></TD><TD><M>Y=3</M></TD></TR>
+<TR><TD><M>X=1</M></TD><TD><M>0</M></TD><TD><M>[[16]]</M></TD><TD><M>[[16]]</M></TD></TR>
+<TR><TD><M>X=2</M></TD><TD><M>[[16]]</M></TD><TD><M>0</M></TD><TD><M>[[16]]</M></TD></TR>
+<TR><TD><M>X=1</M></TD><TD><M>[[16]]</M></TD><TD><M>[[16]]</M></TD><TD><M>0</M></TD></TR>
+</TABLE>
+So <M>XY</M>  takes the values <M>2,3,6</M>  each with probability <M>[[13]].</M>  Hence
+<M>E(XY) = [[11][3]].</M>  
+
+Also <M>E(X) = E(Y) = 2</M>  and <M>E(X^2) = E(Y^2) = [[14][3]].</M>
+
+So <M>V(X)=V(Y) = [[14][3]]-4 = [[23]].</M>  Also <M>cov(X,Y)=[[11][3]]-4=-[[13]].</M>
+
+Hence <M>cor(X,Y) =-[[12]]. </M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt14.png"></CIMG>
+<ANS>
+(a) This is because the <M>i</M>-th trial cannot produce both 1 and 2 together!
+
+(b) The trials are indep. So <M>E(I_iJ_j) = E(I_i)E(J_j) = p_ip_j.</M>
+
+(c), (d), (e): SImple algebra.
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt15.png"></CIMG>
+<ANS>
+(a) <M>E(I_i) = P(i</M>-th elt in sample is of type 1<M>)=[[r_1][r]].</M>
+
+SImilarly, <M>E(J_i) = [[r_2][r]].</M>
+
+(b) <M>E(I_iJ_j) = </M> probability that the <M>i</M>-th and <M>j</M>-th elts in the sample are, repectively, of types 1
+ and 2. 
+
+Now these two elements may be chosen in <M>r(r-1)</M>  ways in all. 
+These are all equally likely. Total number of favourable cases is <M>r_1r_2.</M>  Hence 
+the probability is <M>[[r_1r_2][r(r-1)]].</M>
+
+(c) <M>E(XY) = E[#[(\sum I_i)(\sum_j J_j)]#] = \sum_{i,j} E(I_iJ_j)=
+\sum_{i\neq j} E(I_iJ_j),</M>  since <M>E(I_iJ_i)=0.</M>  
+
+So <M>E(XY) = n(n-1)\times[[r_1r_2][r(r-1)]].</M>
+
+Also <M>E(X^2) = E(*(\sum I_i)*)^2 = \sum E(I_i^2) + \sum_{i\neq j} E(I_iI_j)
+=n\times[[r_1][r]] + n(n-1) \times[[r_1(r_1-1)][r(r-1)]].</M>
+
+The rest follows using simpe algebra. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt16.png"></CIMG>
+
+Here "density" means "PMF". Also <M>\mu=E(X).</M>
+<ANS>
+By symmtry around <M>2</M>  we see that <M>\mu = 2.</M>
+
+Also <M>V(X) = E(X-\mu)^2 = 0^2\times [[16][18]]+1^2\times [[2][18]] = [[19]].</M>
+
+So we are looking for <M>\delta</M>  such that <M>P(|X-\mu|\geq\delta) = [[1][9\delta^2]].</M>
+
+Now, for <M>\delta>0,</M>  the LHS is either 0 or 1 (according as <M>\delta</M>  is <M>> 1</M>  or not). 
+
+So <M>\delta=[[13]]</M>  makes both sides <M>1.</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt17.png">
+</CIMG>
+<ANS>
+Let <M>X=</M> number of defective bolts in a random shipment. 
+
+We want to choose <M>a</M>  such that <M>P(X> a) < 0.05.</M>
+
+Here <M>X</M>  can take values 0,1,2,...,10000 with the probabilities
+<D>P(X=k) = \binom{10000}{k} 0.05^k 0.95^{10000-k}=p_k,\mbox{ say.}</D>
+The probability of refund is <M>\sum_{k>a} p_k.</M>  
+
+So <M>a</M>  needs to be chosen such that 
+<D>\sum_{k>a} p_k \leq 0.01 <\sum_{k\geq a} p_k.</D>
+Finding this <M>a</M>  is not easy by hand, though trivial using a computer. 
+
+There is a theorem called the
+ Central Limit Theorem which allows a simple approximate way to find <M>a.</M>  We shall learn it in the next semester.
+</ANS>
+</EXR>
+::<EXR><CIMG web="jt18.png"></CIMG>
+
+A brief note about probability generating functions: If <M>X</M>  takes non-negative integer values with <M>p_i = P(X=i)</M> 
+ for <M>i=0,1,2,...</M> then its probability genrating function is 
+<D>\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.</D>
+Clearly this converges absolutely for <M>|t|\leq 1.</M>   In this problem we are assuming that it converges for all <M>t\in\rr.</M>
+<ANS>
+(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
+ for <M>t\in[0,1]</M>). 
+
+So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
+
+Hence the result.
+
+(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
+
+Hence the result
+</ANS>
+</EXR>
+
+<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/joint.html" id="joint"/></E>@}
+</NOTE>

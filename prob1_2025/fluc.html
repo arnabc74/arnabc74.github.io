@@ -1,0 +1,1461 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Random walks">Random walks</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Basics">Basics</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Notation">Notation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Reflection principle">Reflection principle</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#First passage theorem">First passage theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Maximum theorem">Maximum theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#No 0-return theorem">No 0-return theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#First 0-return theorem">First 0-return theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Last 0-return theorem">Last 0-return theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Positive duration theorem">Positive duration theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Random walks">Random walks</a></h1>
+The material here is taken from chapter 3 of Feller, Volume
+1.
+<h2><a
+name="Basics">Basics</a></h2>
+A drunkard stands at some integer on a number line. At each step he moves
+either left or right to the adjacent number. He chooses the left
+or right with equal probability. 
+Let $S_n$ be his position after $n$ steps,
+for $n=0,...,10.$ We may draw a graph of $S_n$
+versus $n$ using a zigzag line like the one shown below.
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rw1.png"></th>
+</tr>
+<tr>
+<th>Random walk</th>
+</tr>
+</table>
+</center>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">The <font size="+1" color="red"><code>asp=1</code></font> in the <font size="+1" color="red"><code>plot</code></font> command
+keeps the plot area aspect ratio equal to 1, <i>i.e.</i>, a
+square. The <font size="+1" color="red"><code>abline</code></font> command draws a horizontal line
+through 0.</td>
+</tr>
+</table>
+
+<font color="red">
+<pre>
+x = sample(c(-1,1), 100, rep=T)
+plot(cumsum(x),ylab='random walk', xlab='time', ty='l',asp=1)
+abline(h=0)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(c(-1,1), 100, rep=T)
+plot(cumsum(x),ylab='random walk', xlab='time', ty='l',asp=1)
+abline(h=0)
+`));"/>
+<p></p>
+
+<p></p>
+Share market values show such behaviour. 
+<p></p>
+
+<p></p>
+Clearly, there are $2^{10}$ such possible paths. Since the
+man is a drunkard we assume that all these are equally likely. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Find the probability that he ends up at his starting position
+after 10 steps.<p></p>
+<b>SOLUTION:</b>
+It is the
+total number of paths from $(0,0)$ to $(10,0)$ divided
+by $2^{10}.$ Now, each such path must have the same number
+of up's and down's. So the number is $\binom{10}{5}.$ 
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Find the probability that the drunkard ends up at any given
+$k\in{\mathbb Z}$ in exactly $n$ steps.</p>
+
+<p></p>
+
+<h2><a
+name="Notation">Notation</a></h2>
+Any path from time $m$ to $n$ (with $m&lt;n$)
+will be considered as a function $\pi:\{m,...,n\}\rightarrow{\mathbb Z}.$ 
+If, for example,
+the path passes through some $(3,4)$ then we
+have $\pi(3)=4.$
+<p></p>
+The set of all paths from a point $\alpha$ to a
+point $\beta$ will be denoted by $PATH(\alpha,\beta).$
+For example, if $\alpha = (0,0)$ and $\beta = (5,2)$,
+then we have 
+<blockquote>
+$PATH(\alpha,\beta) = \{\pi:\{0,...,5\}\rightarrow{\mathbb Z}~:~\pi(0)=0,~\pi(5)=2\}.$
+</blockquote>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Number of paths</b></legend>
+Let the number of paths from $(0,0)$ to $(n,x)$ be
+denoted by $N_{n,x}.$ In other words,
+$$
+N_{n,x} = |PATH\big((0,0), (n,x)\big)|.
+$$
+In particular,  $N_{0,0}=1.$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$$
+N_{n,x} = \binom{n}{\frac{n+x}{2}}.
+$$
+This is $0$ if $\frac{n+x}{2}$ is
+outside $\{0,1,...,n\}.$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Find $|PATH\big( (2,3), (15,2) \big)|.$
+<p></p>
+<b>SOLUTION:</b>
+Any path from $PATH\big( (2,3), (15,2) \big)$ may be shifted 2
+units to the left and 3 units downwards to arrive at a path
+in $PATH\big( (0,0), (13,-1) \big).$ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/shift.png"></th>
+</tr>
+<tr>
+<th>The red path is shifted to the blue path.</th>
+</tr>
+</table>
+</center>
+This shift establishes a
+bijection between $PATH\big( (0,0), (13,-1) \big)$
+and $PATH\big( (2,3), (15,2) \big).$ So they have the same
+size. Hence the answer is $N_{13,-1} = \binom{13}{6}.$ 
+ ■
+</p>
+Similar argument leads to the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$|PATH\big( (a,p),(b,q) \big)| = N_{b-a,q-p}.$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Consider all paths of length $2n$ starting from $(0,0).$
+What is the probability that the path returns 
+to $0$ at time $2n$?
+<p></p>
+<b>SOLUTION:</b>
+There are $2^{2n}$ paths, all equally likely. So $|\Omega| =
+2^{2n}.$ 
+<p></p>
+Let $A$ be the event that the path ends at $(2n,0).$
+<p></p>
+Then $|A| = N_{2n,0}.$
+<p></p>
+So $P(A) = \frac{|A|}{|\Omega|} =  
+\frac{N_{2n,0}}{2^{2n}}.
+$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;
+Find the numerical value of the probability you found in the
+above example for $n=5.$ Check it by running the following
+code:
+<font color="red">
+<pre>
+event = c() 
+for(k in 1:5000) {
+  x = sample(c(-1,1), 10, rep=T)
+  event[k] = (sum(x)==0)
+}
+mean(event)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+event = c() 
+for(k in 1:5000) {
+  x = sample(c(-1,1), 10, rep=T)
+  event[k] = (sum(x)==0)
+}
+mean(event)
+`));"/>
+</p>
+
+<p></p>
+Now we are going to learn some theorems that are
+interconnected. Their interconnections are shown below:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pflink.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Since we are assuming that all paths in the sample space are
+equally likely, computing probabilities of different events
+amounts to finding the size of the events (<i>i.e.</i>, counting the
+number of paths in the event). So the theorems are presented in
+terms of sizes of events rather than in terms of their probabilities. 
+<p></p>
+We shall start with a discrete version of the intermediate value
+theorem. See the followin diagram.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/inter.png"></th>
+</tr>
+<tr>
+<th>The path meets the horizontal line twice.</th>
+</tr>
+</table>
+</center>
+Here we have taken a horizontal line at an integer height and two points on two sides
+of it. Then any path between these two points must meet this
+horizontal line somewhere.
+<p></p>
+
+<fieldset>
+<legend><b><i>Intermediate value theorem for paths</i></b></legend>
+Let $m, n, a, b, L$  be integers with $m&lt;n$
+and $L$ strictly between $a,b.$
+Then
+$$
+\forall p\in PATH\big((m,a),(n,b) \big)~~\exists t\in\{m+1,...,n-1\}~~p(t)=L.
+$$
+</fieldset>
+In the diagram above either $t_1$ or $t_2$ may be
+chosen as $t.$
+<p></p>
+The theorem may appear trivial at first. If you think so, just try to
+write down a proof before reading further.
+<p></p>
+
+<p>
+<b><i>Proof:</i></b>We shall assume w.l.g. that $a &lt; b$ (the other case is
+similar).
+<p></p>
+To show
+<p></p>
+
+<div class="box">Target</div>$\forall p\in PATH\big((m,a),(n,b) \big)~~\exists
+t\in\{m+1,...,n-1\}~~p(t)=L.$
+<p></p>
+
+<div class="box">$\forall p$</div>Take any $p\in PATH\big((m,a),(n,b) \big)$
+<p></p>
+Let $M = \{r\in\{m,...,n\}~:~p(r)&lt; L\},$ <i>i.e.</i>, the times
+spent under the horizontal line. 
+<p></p>
+Clearly, $M$ is finite.
+<p></p>
+Also $M\neq \phi,$ since $m\in M.$
+<p></p>
+Let $k=\max(M)$ (well-defined, since $M$ is finite and nonempty).
+<p></p>
+Clearly, $k \leq n-2.$ (Why is $k\neq n$? Why is $k\neq n-1$?)
+<p></p>
+
+<div class="box">$\exists t$</div>Choose $t=k+1\in\{m+1,...,n-1\}.$
+<p></p>
+
+<div class="box">Check</div>Then $p(t)=L.$
+<blockquote class="scrpt">
+<b>Because:</b>
+We cannot have $p(t)&lt; L$, since $t &gt; \max(M).$
+<p></p>
+Also since $p(k) &lt; L,$ hence $p(t)=p(k+1)&lt; L+1.$
+</blockquote>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Reflection principle">Reflection principle</a></h2>
+Our aim here is to find probabilities of various sets of paths, or, equivalently to find the sizes of
+of these sets. We can often express them easily using the $N_{n,r}$ notation.
+This is thanks to the <i>reflection principle</i>,  which we discuss now.
+<p></p>
+Draw the horizontal line at  height $5,$  say. Consider two
+points $\alpha=(2,6)$  and $\beta=(6,4)$, say, that are  on the <i>same</i>
+side of the line.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/reflmot.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ We want to count the number of paths from $\alpha$  to $\beta$  that 
+ meets (<i>i.e.</i>, touches or cuts) $L.$  One such path is shown in the diagram. 
+<p></p>
+To find this number we employ a trick. 
+Let
+ $\alpha'$ be the reflection
+of $\alpha$ along $L.$ Thus here, $\alpha' = (2,4).$  
+Then the required number 
+the same as $|PATH(\alpha',\beta).$
+<p></p>
+
+<fieldset>
+<legend><b><i>Reflection principle</i></b></legend>
+Draw any horizontal line $L$ at an integer height. Pick any two
+points $\alpha:(m,p)$ and $\beta:(n,q)$ with $m&lt;n$ on the same
+side of the line ($m,n,p,q\in{\mathbb Z}$). Let $\alpha'$ be the reflection
+of $(m,p)$ around $L.$ Then the number of paths
+from $\alpha$
+to $\beta$ that meets (<i>i.e.</i>, touches or cuts) $L$ is $|PATH(\alpha',\beta)|.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Keep an eye on this picture while reading the proof:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/refl.png"></th>
+</tr>
+<tr>
+<th>Reflection principle</th>
+</tr>
+</table>
+</center>
+Let $S$ be the set of all paths from $\alpha $
+to $\beta $ that meets $L.$ 
+<p></p>
+Shall show that $|S|=|PATH(\alpha',\beta)|.$
+<p></p>
+Enough to show that there is a bijection  $f:S\rightarrow PATH(\alpha',\beta).$
+<p></p>
+
+<b>Step 1: Constructing $f$</b>:
+<p></p>
+Take any path $p\in S.$ Let $\gamma$ be the first point where the
+path meets $L.$ This is well-defined thanks to the
+intermediate value theorem for paths.
+<p></p>
+Reflect around $L$ the part of the path
+between $\alpha$ and $\gamma.$ This will give a path
+from $\alpha'$ to $\beta.$ Define $f(p)$ to be
+this path.
+<p></p>
+We shall now show that it is a bijection. The following diagram is an example showing the effect of this map:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/reflecexm.png"></th>
+</tr>
+<tr>
+<th>The purple part is reflected</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>Step 2: Showing onto</b>:
+<p></p>
+Take any $q\in PATH(\alpha',\beta).$ Since $\alpha'$ and $\beta$ are
+on opposite sides of $L,$ so the path must
+intersect $L$ some time or other. 
+<p></p>
+Let $\gamma$ be the
+first such point. Reflect the part of $q$ between $\alpha'$ and $\gamma $ to get a path $p\in S.$
+Clearly $f(p)=q.$ 
+<p></p>
+<b>Step 3: Showing one-one</b>:
+<p></p>
+Let $p_1,p_2\in S$ be such that $f(p_1)=f(p_2)=q,$
+say. Shall
+show that $p_1=p_2.$
+<p></p>
+Pick the first point $\gamma$ where $q$ meets $L.$
+Then by property of $f$, the part of $q$
+from $\gamma$ to $\beta$ is the same as the part
+of $p_1$ from $\gamma$ to $\beta.$ 
+<p></p>
+Similarly,  the part of $q$
+from $\gamma$ to $\beta$ is the same as the part
+of $p_2$ from $\gamma$ to $\beta.$ 
+<p></p>
+
+<p></p>
+So $p_1$ matches $p_2$ between $\gamma $ and $\beta.$
+<p></p>
+Also, the part of $p_1$ from $\alpha$ to $\gamma$
+is the reflection of the part of $q$ from $\alpha'$ to $\gamma.$
+<p></p>
+Similarly, the part of $p_2$ from $\alpha$ to $\gamma$
+is the reflection of the part of $q$ from $\alpha'$ to $\gamma.$
+<p></p>
+So $p_1$ matches $p_2$ between $\alpha$ and $\gamma.$
+<p></p>
+Hence $p_1=p_2,$ as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;
+Again take a horizontal line $L$ (at height $h$) and two
+points $A:(a,p)$ and $B:(b,q)$ both above (not on)
+$L.$ Here $a&lt;b.$ How many paths are there
+from $A$ to $B$ that does <i>not</i> meet $L?$ 
+<p></p>
+<b>SOLUTION:</b>
+First count all paths from $A$ to $B.$ From it subtract
+the number of paths that meet $L.$
+<p></p>
+Total number of paths from $A$ to $B$
+is $N_{b-a,q-p}.$
+<p></p>
+
+<p></p>
+
+<p></p>
+The number of paths from $A$ to $B$ that
+meet $L$ may be found using the <b>reflection principle</b>.
+<p></p>
+The reflection of $A$ along $L$ is at $A':(a,2h-p).$ 
+<p></p>
+
+<p></p>
+So the required number is $N_{b-a,q-2h+p}.$
+<p></p>
+Hence the final answer is $N_{b-a,q-p}-N_{b-a,q-2h+p}.$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;
+How many paths are there from $(0,0)$ to $(10,4)$ that
+are strictly positive at all times $&gt;0?$
+<p></p>
+[Thanks to Krishnam Baregama for pointing out an inconsistency in the problem, which has now been corrected.]
+<p></p>
+<b>SOLUTION:</b>
+This is very similar to the exercise above (with $L$ given
+by the horizontal line at height $0$), except that we start
+on the line itself. 
+<p></p>
+However, it is obvious that our path must go to $(1,1)$
+after the first step. So the last exercise may be applied
+between $A:(1,1)$ and $B:(10,4).$
+ ■
+</p>
+
+<p></p>
+
+<h2><a
+name="First passage theorem">First passage theorem</a></h2>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+How many paths are there from $(0,0)$ to $(6,2)$ that do not attain the value $2$ 
+ before time 6? Pictorially,  we are counting  paths like the second one in the following diagram. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/first.png"></th>
+</tr>
+<tr>
+<th>(a) Does not end at $(6,2).$ (b)
+OK. (c) Attains 2 before times 6.</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>SOLUTION:</b>
+Notice that any valid path must pass through $(5,1)$, and
+you have no choice about the last segment (it must be upwards).  So we are
+ counting all paths from
+ $(0,0)$  to $(5,1)$   not
+ meeting the horizontal line at 6. 
+<p></p>
+The answer may now be obtained easily using the reflection principle.
+ ■
+</p>
+This logic immediately leads to the next theorem.
+<fieldset>
+<legend><b><i>First passage theorem</i></b></legend>
+Consider all paths of length $n$ starting at $(0,0).$
+Let $r\in\{1,...,n\}.$ Then the number of paths that attain
+height $r$ for the first time at time $n$ is 
+$$
+N_{n-1,r-1}-N_{n-1,r+1}.
+$$
+</fieldset>
+First let us look at some sample paths for $n=6$ and $r=2:$
+<p>
+<b><i>Proof:</i></b>
+Such a path must pass through $(n-1,r-1)$ and $(n,r).$
+Also it must never meet the the line at height $r$ up to and
+including time $n-1.$
+<p></p>
+By reflection principle the path up to time $n-1$ may be
+chosen in $N_{n-1,r-1}-N_{n-1,r+1}$ ways. The step from
+time $n-1$ to $n$ is forced (it has to move up). 
+<p></p>
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Maximum theorem">Maximum theorem</a></h2>
+Here is another application of the reflection principle.
+<p>
+<b>EXAMPLE 7:</b>&nbsp;
+How many paths are there from $(0,0)$  to $(11,1)$  that have maximum height
+ $4$ (<i>i.e.</i>, touches 4, but does not cross it)?
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/max.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+<b>SOLUTION:</b>
+Find the number of paths from (0,0) to (11,1) that meet 4 (may or may not cross it). This is easy to compute using the reflection
+ principle. The answer is $N_{11,7}.$
+<p></p>
+Next find similarly 
+the number of paths from (0,0) to (11,1) that meet 5 (may or may not cross it). The answer is $N_{11,9}.$
+<p></p>
+The difference should give you the answer: $N_{11,7}-N_{11,9}.$
+  ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 8:</b>&nbsp;
+How many paths of length 11 are there from $(0,0)$   that have maximum height
+ $4$?
+<p></p>
+<b>SOLUTION:</b>
+This is very much like the last problem, except that the final height is not specified. Clearly the final height is something
+ $\leq 4.$  and $\geq -11.$  
+<p></p>
+Find the number of all such paths with each of these final heights, and add. Don't worry, the sum is telescopic, and a massive
+ cancellation will save computational labour. 
+ ■
+</p>
+
+<fieldset>
+<legend><b><i>Maximum theorem</i></b></legend>
+Consider all paths of length $n$ starting from $(0,0).$
+Let $r\in\{0,...,n\}.$ Then 
+the number of paths with maximum $r$ is $N_{n,r}$
+if $n,r$ have the same parity, and $N_{n,r+1}$ else.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We need to  find the number of paths with maximum $r.$
+<p></p>
+Let $A$ be the set of all such paths. 
+<p></p>
+We shall split this set
+based on where the path ends. Clearly, it can end somewhere $\leq r.$
+<p></p>
+Fix any $k\leq r.$ 
+<p></p>
+Let  $B_k=$set of all $n$-length paths with maximum $r$ and ending at
+$k.$
+<p></p>
+Instead of working with $B_k$'s directly, we prefer to work with
+<blockquote>$C=$ the set of all paths with <font color="#ff0000">maximum $\geq
+r$</font> and ending at $k$</blockquote>
+and
+<blockquote>$D=$ the set of all paths with <font color="#ff0000">maximum $\geq
+r+1$</font> and ending at $k$</blockquote>
+
+<p></p>
+Then we can compute $|C|$  and $|D|$   easily, and also use the fact
+that $|B_k| = |C|-|D|.$
+<p></p>
+Now $|C|=N_{n,2r-k}$ and $|D|=N_{n,2(r+1)-k}= N_{n,2r-k+2}$  by the <b>reflection principle</b>. 
+<p></p>
+So
+$$
+|B_k|=N_{n,2r-k} - N_{n,2r-k+2}.
+$$
+We shall now sum this over $k\in\{-n,..., r\}$ to obtain $|A|$:
+$$A=\sum_{k=-n}^r (N_{n,2r-k} - N_{n,2r-k+2}).$$
+The sum
+has a two-step telescoping structure: each negative term
+cancels the positive term two steps ahead. 
+So only the first halves of the first two terms survive, <i>i.e.</i>, $N_{n,r}+N_{n,r+1}.$
+<p></p>
+We know that $N_{a,b}$ is 0 if $a,b$ have opposite
+parities. Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="No 0-return theorem">No 0-return theorem</a></h2>
+
+<fieldset>
+<legend><b><i>No 0-return theorem</i></b></legend>
+Consider all paths of length $2n$ starting
+at $(0,0)$. The number of these paths
+that never return to $0$ is $N_{2n,0}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Such a path must either always be positive. Or always be
+negative. Clearly, the number of all-positive paths is the same
+as that of all-negative paths.
+<p></p>
+An all-positive path must visit $(1,1)$ immediately
+after $(0,0).$ So enough to compute the number of
+all-positive paths starting from $(1,1).$
+<p></p>
+Where can such a path end? It can end at $2r$ for
+some $r\in\{1,...,n\}.$
+<p></p>
+
+<p></p>
+By the <b>reflection principle</b>, 
+the total number of all-positive paths from $(1,1)$
+to $(2n,2r)$ is 
+$$|PATH\big((1,1),(2n,2r)\big)|-|PATH\big((1,-1),(2n,2r)\big)|,$$ 
+ <i>i.e.</i>, $N_{2n-1,2r-1}-N_{2n-1,2r+1}.$
+<p></p>
+
+<p></p>
+So the total number of all-positive paths is the telescoping sum
+$$
+(N_{2n-1,1}-N_{2n-1,3}) +
+(N_{2n-1,3}-N_{2n-1,5}) + \cdots + (N_{2n-1,2n-1}-N_{2n-1,2n+1})
+= N_{2n-1,1}-N_{2n-1,2n+1} = N_{2n-1,1},
+$$
+since $N_{2n-1,2n+1}=0$ ($\because 2n+1 &gt; 2n-1$).
+<p></p>
+
+<p></p>
+Combining all-positive and all-negative paths, the total count is
+$2N_{2n-1,1} =
+2\binom{2n-1}{n}=\frac{2(2n-1)!}{(n-1)!n!} =\frac{(2n!)}{n!n!}
+=\binom{2n}{n} = N_{2n,0}.$
+<b><i>[QED]</i></b>
+</p>
+Isn't this surprising? The number of $2n$-length paths never returning to 0
+equals the number of $2n$-length paths ending at 0. Could you prove it directly by establishing a bijection between
+ these two sets of paths?
+<h2><a
+name="First 0-return theorem">First 0-return theorem</a></h2>
+
+<fieldset>
+<legend><b><i>First 0-return theorem</i></b></legend>
+Consider all paths of length $2n$ starting at $(0,0).$
+The number of these paths that return to $0$ at $2n$
+for the first time is $4N_{2n-2,0}-N_{2n,0}=\frac{N_{2n,0}}{2n-1}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $A$ be the set of all $2n$-length paths that never return to 0.
+<p></p>
+Let $B$ be the set of all $2n$-length paths that never return to
+before or at time $2n-2.$ 
+<p></p>
+Then we want to find $|B\setminus A|.$
+<p></p>
+Since $A\subseteq B,$ this is $|B|-|A|.$
+<p></p>
+Now $|A| = N_{2n,0}$ by the <b>No 0-return theorem</b>.
+<p></p>
+Also, by the same theorem, $|B| = 2^2N_{2n-2,0}.$
+<a href="javascript:hideShow('ext');">(Why?)</a>
+<div id="ext" style="display:none;background-color:#ffcccc;">By the <b>No 0-return theorem</b>, total number of paths
+of length $2n-2$ that never returns to $0$
+is $N_{2n-2,0}.$ Then we are free to choose the next two
+steps (from time $2n-2$ to time $2n$), which may be
+done in $2^2$ ways.</div>
+
+<p></p>
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;
+Consider all paths of length $2n$ starting at $(0,0).$
+What is the number of these paths that return to $0$
+at $2r$ for some given $r &lt; n?$ Also, how many of these
+return to 0 from the positive side?
+</p>
+
+<p></p>
+
+<h2><a
+name="Last 0-return theorem">Last 0-return theorem</a></h2>
+
+<fieldset>
+<legend><b><i>Last 0-return theorem</i></b></legend>
+Consider all paths of length $2n$ starting at $(0,0).$
+Take any $k\in\{1,...,n\}.$ The number of these paths that
+hit 0 for last time at $2k$ is $N_{2k,0}\times N_{2n-2k,0}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pathrg.png"></th>
+</tr>
+<tr>
+<th>A typical such path</th>
+</tr>
+</table>
+</center>
+The red dot shows the last 0 hit, which occurs at time $2k.$
+<p></p>
+
+<p></p>
+We can choose the part before the red dot in $N_{2k,0}$ ways. Also
+independently of that, we can choose the part after the red dot
+in $N_{2n-2k,0}$ ways, by the <b>no 0-return theorem</b>. Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Positive duration theorem">Positive duration theorem</a></h2>
+We shall now consider the amount of time a path spends in the
+positive side. 
+<p></p>
+
+
+<p></p>
+For example, the following path spends 8 times units in the
+positive sides.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/posdur.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p>
+<b>EXAMPLE 9:</b>&nbsp;
+Draw a path of length 10 starting from $(0,0)$ that
+spends exactly 5 time units in the positive side.
+<p></p>
+<b>SOLUTION:</b>
+<a href="javascript:hideShow('fun');">First try yourself. Else, you'll miss the fun!</a>
+<div id="fun" style="display:none;background-color:#ffcccc;">Impossible! Each $0$-hit occurs at even time points, and the
+path ends at 10, which is also even. 
+</div>
+ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Positive duration theorem</i></b></legend>
+Let $A_{a,b}=$   {all $a$-length paths from (0,0) that remain positive for
+ exactly $b$  time units}.
+<p></p>
+Then
+$$\forall n\in{\mathbb N}~~\forall k\in\{0,...,n\}~~|A_{2n,2k}|=N_{2k,0}\times N_{2n-2k,0}.$$
+</fieldset>
+
+<p></p>
+
+<p>
+<b><i>Proof:</i></b>
+<u><b>Case 1: $k=0$ or $n$</b></u>:
+<p></p>
+We shall show the case for $k=n.$  The $k=0$  is similar. 
+Note that $k=n$ means the path is always above the $x$-axis (though it may touch the
+ axis). We shall convert it bijectively into a $(2n+1)$-length  positive path not returning to
+ 0. This conversion is done by
+ shifting the path 1 unit upwards and to the right, and joining $(0,0)$  with $(1,1).$  Click on the figure below
+ to see the conversion as an animation.
+<center>
+<video onclick="this.play()">
+<source type="video/webm" src="image/anim.webm"></source>
+</video>
+</center>
+The number of $(2n+1)$-length paths not returning to 0 is twice  the number of $2n$-length paths not returning
+ to 0 (since the last step is arbitrary). Out of these exactly half is positive. So the number of
+ $(2n+1)$-length positive paths not returning to 0 is
+ $N_{2n,0}=N_{2k,0}\times N_{2n-2k,0}$, as required. 
+<p></p>
+
+<u><b>Case 2: $1\leq k\leq n-1$</b></u>:
+<p></p>
+Here we are considering paths with at least one 0-return. We shall group them by the time of their first 0-return and 
+whether the return occurs from the positive or the negative side. 
+<p></p>
+Let's warm up by looking at an example with $n=7$ and $k=4.$
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pathlead.png"></th>
+</tr>
+<tr>
+<th>First 0-return  at $4$</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+Here the first 0-return occurs at 4,
+and from the positive side. 
+<p></p>
+Let $B_{a,t}= $ {all $a$-length paths from (0,0) with first 0-return at time $t$  from positive side}.
+<p></p>
+Let $C_{a,t}= $ {all $a$-length paths from (0,0) with first 0-return at time $t$  from negative side}.
+<p></p>
+Note the following points about these sets:
+<ul>
+
+<li>The $B$'s and  $C$'s are all disjoint.</li>
+
+<li>By symmetry $|B_{a,t}| = |C_{a,t}|$</li>
+
+<li>$A_{2n,2k}\subseteq \cup_{r=1}^k B_{2n,2r} \bigcup
+ \cup_{r=1}^{n-k} C_{2n,2r}.$
+Do you see <a href="javascript:hideShow('newwhy');">why</a>
+<div id="newwhy" style="display:none;background-color:#ffcccc;">
+If the first 0-return from positive side is later than $2k,$  then we have already spent more
+ than $2k$  time units above the $x$-axis. Similarly, if the first 0-return is later
+ than $2n-2k$  from the negative side, then we have less than $2k$  time units left, and
+ we have not spent any time above the $x$-axis yet!</div> it is
+ enough to take $r$  up
+ to $k$  in the first
+ union, and up to $n-k$
+  in the second?</li>
+</ul>
+
+<p></p>
+Thus 
+$$|A_{2n,2k}| = \sum_{r=1}^k |A_{2n,2k}\cap B_{2n,2r}| + \sum_{r=1}^{n-k} |A_{2n,2k}\cap C_{2n,2r}|.$$
+Now we shall find $|A_{2n,2k}\cap B_{2n,2r}|$  and $|A_{2n,2k}\cap C_{2n,2r}|$  separately. 
+<p></p>
+The paths in $A_{2n,2k}\cap B_{2n,2r}$  are positive up to time $2r$, when they return to 0 for the first time,
+ and then during the remaining $2n-2r$  times units  spend exactly $2k-2r$  time units in the positive side.
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/postep.png"></th>
+</tr>
+<tr>
+<th>A typical path in $A_{12,8}\cap B_{12,6}.$</th>
+</tr>
+</table>
+</center>
+ So
+ $$|A_{2n,2k}\cap B_{2n,2r}| = \underbrace{|B_{2r,2r}|}_{\small red}\times
+ \underbrace{|A_{2n-2r,2k-2r}|}_{\small green}.$$
+<img src="image/alert.png">This is the crucial step. Take time to understand it! 
+<p></p>
+Similarly
+ $$|A_{2n,2k}\cap C_{2n,2r}| = |C_{2r,2r}|\times |A_{2n-2r,2k}|.$$
+Combining these two we get
+ $$|A_{2n,2k}| =  \sum_{r=1}^k |B_{2r,2r}|\times |A_{2n-2r,2k-2r}|+ \sum_{r=1}^{n-k}|C_{2r,2r}|\times |A_{2n-2r,2k}|.$$
+Notice that $|B_{2r,2r}|$  and $|C_{2r,2r}|$  are the same, and each is equal to
+ $\frac 12|Z_{2r}|,$  where $Z_{2r} = $  number of $2r$-length paths with first 0-return
+ at $2r.$  Thus, we get our <font color="#ff0000">master equality</font>:
+ $$|A_{2n,2k}| = \frac 12 \sum_{r=1}^k |Z_{2r}|\times |A_{2n-2r,2k-2r}|+ \frac 12\sum_{r=1}^{n-k}|Z_{2r}|\times |A_{2n-2r,2k}|.$$
+Since $|Z_{2r}|$  is already known from the <b>first 0-return theorem</b>,
+this equality expresses $A_{2n,2k}$  in terms of $A_{a,b}$'s with $a &lt; 2n.$
+ This suggests that we should try induction on the path length.  
+<p></p>
+We shall use induction on $n$ to prove the statement 
+$$S(n)~:~\forall k\in\{1,...,n-1\}~~|A_{2n,2k}|=N_{2k,0}\times N_{2n-2k,0}.$$
+Here $n=2,3,4,...$  
+<p></p>
+The following diagram shows the possible $(n,k)$  pairs as dots. The red dots were already dealt
+ with in <b>case 1</b>.   
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/basis.png"></th>
+</tr>
+<tr>
+<th>Each dot represents one  $(n,k)$  pair.</th>
+</tr>
+</table>
+</center>
+We are applying induction for the blue dots only. $S(n)$  is the combined statement for all the
+blue dots in the $n$-th
+ row. The basis corresponds to the topmost blue dot.
+<p></p>
+
+<b>Basis</b>: Here $n=2$  and $k=1.$   Do this case yourself by direct counting. There
+ should be exactly 4 such paths.   
+<p></p>
+
+<b>Hypothesis</b>: Assume $S(n)$  for $n=2,...,m-1.$  
+<p></p>
+
+<b>Step</b>: Shall show for $n=m.$
+<p></p>
+Take any $k\in\{1,...,n-1\}.$
+<p></p>
+From the <font color="#ff0000">master equality</font>, the required number is 
+ $$|A_{2n,2k}| = \frac 12 \sum_{r=1}^k |Z_{2r}| N_{2k-2r,0}N_{2n-2k,0}+ \frac 12\sum_{r=1}^{n-k}|Z_{2r}| N_{2k,0}N_{2n-2k-2r,0}.$$
+Move the $r$-free terms  out of the summations:
+ $$|A_{2n,2k}| = \frac 12 N_{2n-2k,0}\sum_{r=1}^k |Z_{2r}| N_{2k-2r,0}+ \frac 12N_{2k,0}\sum_{r=1}^{n-k}|Z_{2r}| N_{2n-2k-2r,0}.$$
+Of course, you can now use the formula for $|Z_{2r}|$  from the <b>first 0-return theorem</b> and
+start algebraic manipulations. 
+<a href="javascript:hideShow('spl1');">But can you see directly that the
+first sum is just $N_{2k,0}?$ 
+</a>
+<div id="spl1" style="display:none;background-color:#ffcccc;">
+The $r$-th sumand is (the number of $2r$ length paths
+with first 0-return at $2r$) $\times$ (the number
+of $2k-2r$ paths starting and finishing at height 0). This
+product is the number of $2r+(2k-2r)=2k$ length paths
+starting and ending at height 0 with
+first 0-return at $2r.$
+<p></p>
+Since we are summing over all possible values of $r$, the
+sum is the number of $2k$ length paths starting and ending
+at height 0. This is precisely $N_{2k,0}.$
+</div>
+Similarly,<a href="javascript:hideShow('spl2');"> what is the second
+sum? </a>
+<div id="spl2" style="display:none;background-color:#ffcccc;">
+$N_{2n-2k,0}.$
+</div>
+This immediately leads to 
+ $$|A_{2n,2k}| = N_{2k,0}N_{2n-2k,0},$$
+as required. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Problems for practice">Problems for practice</a></h2>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;
+(Ballot problem) two candidates are contesting in
+a vote. There are $n$ voters who have cast their votes. The
+votes are being counted with the $n$ ballot papers ordered
+randomly. 
+Candidate $A$ has $p$ votes and
+candidate $B$ gets $q=n-p (&lt;p)$ votes.  Show that the 
+probability that during the counting $A$ was always leading
+is 
+$$
+\frac{p-q}{p+q}.
+$$
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1">
+Let $y_i$ be the lead of $A$ over $B$
+after $i$ ballot papers have been counted. If we
+plot $y_i$ against $i,$ we shall get a random walk
+starting from $(0,0)$ and ending at $(p+q,p-q).$ 
+<p></p>
+The total number of outcomes is $N_{p+q,p-q} = {p+q\choose p}
+= \frac{(p+q)!}{p!q!}.$ 
+<p></p>
+The
+favourable oucomes correspond to the paths that always remain
+positive after starting from (0,0).
+ These paths must visit (1,1) after $(0,0).$ 
+<p></p>
+Hence #{paths from (0,0) to $(p+q,p-q)$ never returning to 0}
+= #{paths from (1,1) to $(p+q,p-q)$ never visiting  0}<br>
+= #{paths from (1,1) to $(p+q,p-q)$}
+- #{paths from (1,1) to $(p+q,p-q)$  visiting  0}<br>
+= #{paths from (1,1) to $(p+q,p-q)$}
+- #{paths from (1,1) to $(p+q,q-p)$  visiting  0}<br>
+= $N_{p+q-1,p-q-1}-N_{p+q-1,q-p-1}$<br>
+ = ${p+q-1\choose p-1}- {p+q-1\choose q-1} =
+\frac{(p+q-1)!}{p!q!}(p-q).$
+<p></p>
+So the required probability is $\frac{p-q}{p+q},$ as required.
+</div></p>
+
+</p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most22.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2">This is just the complement of the last problem. So the answer is $1-\frac{a-b}{a+b}=\frac{2b}{a+b}.$</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let $a,b&gt;0.$ Show that the number of paths from $(0,0)$ to $(n,a)$ that are
+always $&gt;-b$ is $N_{n,a}-N_{n,a+2b}.$ <p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">
+#{paths from $(0,0)$ to $(n,a)$ that are always $&gt;-b$}<br>
+=#{paths from $(0,0)$ to $(n,a)$}-#{paths from $(0,0)$ to $(n,-a-2b)$} by reflection principle<br>
+ = $N_{n,a}-N_{n,-a-2b}$<br> 
+ = $N_{n,a}-N_{n,a+2b}$ by symmetry.
+<p></p>
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Let $b&gt; a&gt; 0.$ Show that the number of paths
+from $(0,0)$ to $(n,a)$ that are
+always $&lt;b$ is $N_{n,a}-N_{n,2b-a}.$
+<p><a
+href="javascript:hideShow('lab4')"><b>Hint:</b></a><div
+class="ans" id="lab4">
+#{paths from $(0,0)$ to $(n,a)$ that are always $&lt;b$}<br>
+=#{paths from $(0,0)$ to $(n,a)$}-#{paths from $(0,0)$ to $(n,2b-a)$} by reflection principle<br>
+ = $N_{n,a}-N_{n,2b-a}.$ 
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Show that if $a&gt; c&gt; 0$  and $b&gt;0$, then  the number of paths from (0,0) to $(n,c)$
+  that attain height $a$  and <i>then</i>  attain height $-b$  before finishing at $(n,c),$  is $N_{n,2a+2b+c}.$ 
+ The paths may have also attained height $-b$  before attaining height  $a.$
+<p><a
+href="javascript:hideShow('lab5')"><b>Hint:</b></a><div
+class="ans" id="lab5">
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/drefl.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</div></p> 
+</p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;Let $a&gt;c&gt;0$ and $b&gt;0.$ Show that the number of
+paths from $(0,0)$ which hit the
+horizontal line at height $a$ and then lead to $(n,c)$
+without having touched the horizontal line at height $-b$ is  
+$N_{n,2a-c}-N_{n,2a+2b+c}.$ (Note that the path may touch
+the horizontal line at height $-b$ <i>before</i> hitting
+the line at height $a.$)<p><a
+href="javascript:hideShow('lab6')"><b>Hint:</b></a><div
+class="ans" id="lab6">
+Let $A = $ {paths from $(0,0)$ which hit the
+horizontal line at height $a$ and then lead to $(n,c)$ }.
+Let $B = ${paths in $A$  that  attain height $-b$  <i>after</i>  attaining height $a$ }.
+<p></p>
+Then the answer is $|A|-|B|.$   By reflection principle $|A| = N_{n,2a-c}$  and $|B| = N_{n,2a+2b+c}.$
+Hence the result. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/flucex9.png"></th>
+</tr>
+<tr>
+<th>How $|B|$  is found by 2 reflections</th>
+</tr>
+</table>
+</center>
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Prove that there are as many paths from (0,0)
+to $(2n+2,0)$ with all interior vertices $&gt;0$ as there
+are paths from (0,0) to $(2n,0)$ where all interior
+vertices are $\geq 0.$<p><a
+href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+class="ans" id="lab7">
+Any path from (0,0)
+to $(2n+2,0)$ with all interior vertices $&gt;0$ must
+visit (1,1) after $(0,0)$, and $(2n+1,1)$
+before $(2n+2,0).$
+So #{paths from (0,0)
+to $(2n+2,0)$ with all interior vertices $&gt;0$}<br>
+= #{paths from (1,1)
+to $(2n+1,1)$ with all interior vertices $&gt;0$}<br>
+= #{paths from (1,0)
+to $(2n+1,0)$ with all interior vertices $\geq 0$}<br>
+= #{paths from (0,0)
+to $(2n,0)$ with all interior vertices $\geq 0$}.
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;True or false: The probability that before time $2n$ there occur
+exactly $r$ returns to the origin equals the probability
+that a return occurs at time $2n$  preceded by at
+least $r$ returns.
+<p><a
+href="javascript:hideShow('lab8')"><b>Hint:</b></a><div
+class="ans" id="lab8">False. Consider $r=1$  and $n=2.$  Then the first probability is $\frac 12.$ 
+ But the second probability is $\frac 14.$</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Consider random paths of length $2n$ starting
+from $(0,0).$ Let $k\in\{1,...,n\}.$ Consider the two events:
+<blockquote>
+$A = $ the path passes through $(2n,0)$ and the maximum
+height of the interior vertices is $\geq k.$
+</blockquote>
+and 
+<blockquote>
+$B = $ the path passes through $(2n,2k).$
+</blockquote>
+Show that $P(A) = P(B).$  Is this true if $k\leq 0?$  Is it true if $k&gt;n?$
+<p><a
+href="javascript:hideShow('lab9')"><b>Hint:</b></a><div
+class="ans" id="lab9">
+For $k\in\{1,...,n\},$  the result follows directly from reflection principle. The result fails if $k\leq 0.$ 
+ One counterexample, if when $k=-10$  and $n=1.$  The result holds if $k&gt;n,$  because then $P(A)=P(B)=0.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Find the fallacy in the following argument:
+Consider the set of all paths of length 10 starting
+from $(0,0).$
+<p></p>
+Let $A = $set of paths that never return to 0. 
+<p></p>
+Let $B = $set of paths that never return to 0 at or before time 8.
+<p></p>
+Now define $C_k$ as the set of all paths
+that do not hit 0 at time $2k.$ Then $A = \cap_1^5 C_k$
+while $B = \cap_1^4 C_k.$ So $|A|\leq |B|.$
+<p></p>
+Again,  any path that has not hit 0 at or before time 8 can be
+continued for two more time units without hitting
+0. So $|B| \leq |A|.$ 
+<p></p>
+Hence $|A|=|B|.$ 
+<p><a
+href="javascript:hideShow('lab10')"><b>Hint:</b></a><div
+class="ans" id="lab10">The "$|B|\leq |A|$ " argument is wrong. What it says is: number of paths <i>of length 8</i>
+ that never return to 0 is $\leq |A|$ ".</div></p> 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most56.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab11')"><b>Hint:</b></a><div
+class="ans" id="lab11">
+Let the total number of balls in either box be $k.$  Let there be $w_i$  white balls in box $i.$  Then the
+ given condition says 
+$$\left(\frac{w_1}{k}\right)^n = \left(\frac{w_2}{k}\right)^n + \left(1-\frac{w_2}{k}\right)^n,$$
+or
+$$w_1^n = w_2^n + \left(k-w_2\right)^n.$$
+Since $n\geq 3,$  hence by Fermat's last theorem, there cannot be any nonzero integer solution for this. 
+So either $w_1 = 0$  or $w_2 = 0$  or $k-w_2 = 0.$  Here $w_1$  cannot be zero, since then the lhs is
+ zero, while the rhs is positive. If $w_2 = 0$, then the first box has all whites and the second all blacks. If $k-w_2=0,$ 
+ then both the boxes has all whites.
+</div></p>
+
+</p>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/prob1_2024/fluc.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "fluc"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

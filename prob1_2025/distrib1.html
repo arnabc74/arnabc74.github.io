@@ -1,0 +1,1725 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Standard discrete distributions ">Standard discrete distributions </a>
+</li>
+<li>
+<a href="#Finite sample space">Finite sample space</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Discrete uniform">Discrete uniform</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Bernoulli">Bernoulli</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Binomial">Binomial</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Hypergeometric">Hypergeometric</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Relation between binomial and hypergeometric">Relation between binomial and hypergeometric</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Standard discrete distributions ">Standard discrete distributions </a></h1>
+
+<h1><a
+name="Finite sample space">Finite sample space</a></h1>
+We shall now discuss four different PMF's: discrete uniform, Bernoulli,
+binomial and hypergeometric. In all these cases the sample space is a
+finite set.
+<h2><a
+name="Discrete uniform">Discrete uniform</a></h2>
+
+<b>Notation:</b> <b>DUnif</b>($S$), where $S$ is any finite set.
+<p></p>
+
+<b>Sample space:</b> Any finite set $S.$
+<p></p>
+
+<b>PMF:</b> Let $S$ have $n$ outcomes.
+$$P(X=x) = \left\{\begin{array}{ll}
+              \frac{1}{n} &\text{if }x\mbox{ is in }S\\
+              0 &\text{if }x\mbox{ is not in }S.\\
+            \end{array}\right.
+$$
+<b>Where used:</b> Often we have a random variable, $X,$ that can
+take finitely 
+many values, and all the values are <i>equally likely.</i> Such a random
+variable has discrete uniform distribution. 
+<p></p>
+Let us see how one arrives at
+the PMF given above. The sample space $S$ has 
+$n$ outcomes. All these
+outcomes are equally likely. So $P(X=x)$ must be the same
+for all $x$ in $S.$ Now, the sum of the probabilities of all the
+outcomes in $S$ must be 1. So each $P(X=x)$ must be $1/n.$
+<p></p>
+
+<b>Terminology:</b> Such an $X$ is said to have (or follow) <b>DUnif</b>$(S)$
+distribution. We also say that $X$ is a <b>DUnif</b>$(S)$ random
+variable, and write $X\sim$<b>DUnif</b>$(S).$
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Consider a fair die---a die that is  equally 
+likely to land on any of the six faces. If $X$ denotes the outcome of
+a roll of this die then $X$ has <b>DUnif</b>$\{1,2,3,4,5,6\}$
+distribution. 
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+If you toss a fair coin (<i>i.e.</i>, a coin that is equally heavy on
+either side) and 
+$$
+Y = \left\{\begin{array}{ll}
+      -5 &\text{if }head\\
+      10 &\text{if }tail\\
+    \end{array}\right.,
+$$
+then $Y\sim$<b>DUnif</b>$\{-5,10\}.$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+$Y$ has <b>DUnif</b>$\{0,1,2,3\}$ distribution. Find $P(Y=2)$ and 
+$P(Y\mbox{ is odd}).$
+<p></p>
+<b>SOLUTION:</b> The sample space has 4 outcomes in it. Each outcome is equally
+likely. Since the total of the probabilities must be 1, each outcome has
+probability $\frac14.$ In particular, $P(Y=2)=\frac14.$ Also,
+$P(Y\mbox{ is odd}) = P(Y=1\mbox{ or }Y=3) =
+P(Y=1)+P(Y=3)=\frac14+\frac14=\frac12.$ 
+ ■
+</p>
+
+<p></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;
+$X$ follows <b>DUnif</b>$\{1,2,3,4,5\}$ distribution. Find the
+following probabilities.
+<ol>
+<li>$P(X=2)$
+</li>
+<li>$P(X=3)$
+</li>
+<li>$P(X=6)$
+</li>
+<li>$P(X=2\mbox{ or }X=1)$
+</li>
+<li>$P(X\mbox{ is even})$
+</li>
+<li>$P(X\geq2)$
+</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1"><ol>
+<li>$\frac15$
+</li>
+<li>$\frac15$
+</li>
+<li>$0$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac45$
+</li>
+</ol></div></p>
+
+</p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;
+$U$ is a <b>DUnif</b>$\{-2,-1,0,1,2\}$ random variable. Find the
+following probabilities.
+<ol>
+<li>$P(U^2=1)$
+</li>
+<li>$P(2U-9=2)$
+</li>
+<li>$P(U^2-3U+2=0)$
+</li>
+<li>$P(U\neq0)$
+</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2"><ol>
+<li>$\frac25$
+</li>
+<li>$0$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac45$
+</li>
+</ol></div></p>
+
+</p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;
+Express the distributions of the following random variables in terms of the
+discrete uniform distribution.
+<ol type="">
+
+<li>The top card is drawn from a well-shuffled deck of cards. 
+$$
+Y = \left\{\begin{array}{ll}
+      1 &\text{if }heart\\
+      2 &\text{if }diamond\\
+      3 &\text{if }club\\
+      4 &\text{if }spade\\
+    \end{array}\right..
+$$
+</li>
+<li> A fair die is rolled.
+$$
+Z = \left\{\begin{array}{ll}
+      0 &\text{if }even\\
+      1 &\text{if }odd\\
+    \end{array}\right..
+$$
+</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">A deck has 52 cards: 13 of them are hearts, 13 are
+diamonds, 13 clubs and 13 spades. When you pick the top card of a
+well-shuffled deck any of the 52 cards are equally likely to occur.
+<p></p>
+
+<ol>
+<li>
+<b>DUnif</b>$\{1,2,3,4\}.$</li>
+<li>
+<b>DUnif</b>$\{0,1\}.$</li>
+</ol></div></p> 
+
+</p>
+
+<b>Expectation and variance:</b>
+If $X\sim$<b>DUnif</b>$\{x_1,x_2,...,x_n\}$ then 
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; \frac{1}{n}\sum_{i=1}^nx_i\\
+Var(X) &amp;=&amp; \frac1n\sum_{i=1}^n x_i^2 - \left(\frac{1}{n}\sum_{i=1}^nx_i\right)^2.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; \sum_{i=1}^n x_iP(X=x_i)\\
+     &amp;=&amp; \sum_{i=1}^n x_i\frac1n\\
+     &amp;=&amp; \frac1n\sum_{i=1}^n x_i.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X^2) &amp;=&amp; \sum_{i=1}^n x_i^2P(X=x_i)\\
+     &amp;=&amp; \sum_{i=1}^n x_i^2\frac1n\\
+     &amp;=&amp; \frac1n\sum_{i=1}^n x_i^2.
+\end{eqnarray*}$$
+<p></p>
+So
+$$
+Var(X) = E(X^2) - (E(X))^2 = \frac1n\sum_{i=1}^n
+x_i^2-\left(\frac{1}{n}\sum_{i=1}^nx_i\right)^2. 
+$$
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;
+Compute mean and variance of a <b>DUnif</b>$\{1,...,n\}$ random variable,
+$X.$
+<p></p>
+<b>SOLUTION:</b>Here $x_1=1,x_2=2,...,x_n=n.$ In other words,, $x_i=i$
+for $i=1,...,n.$
+$E(X)=\frac1n\sum_{i=1}^n i = \frac{n+1}2.$
+$E(X^2)=\frac1n\sum_{i=1}^n i^2 = \frac{(n+1)(2n+1)}{6}.$
+Hence, $Var(X) = E(X^2)-(E(X))^2 = \frac{n^2-1}{12}.$
+ ■
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;
+If $Y$ has <b>DUnif</b>$\{0,1,...,n\}$ distribution, then compute 
+$E(Y)$ and $Var(Y).$ But before you start algebraic
+manipulations, think if $E(X)$ and $Var(X)$ should be
+less, equal or more than what we obtained above.
+<p><a
+href="javascript:hideShow('lab4')"><b>Hint:</b></a><div
+class="ans" id="lab4">\frac{n}2,\frac{n(n+2)}{12}.</div></p>
+
+</p>
+
+<h2><a
+name="Bernoulli">Bernoulli</a></h2>
+
+<p></p>
+
+<b>Notation:</b> <b>Bern</b>($\theta$), where $0 &lt; \theta &lt;
+1.$
+<p></p>
+
+<b>Sample space:</b> $\{0,1\}.$
+<p></p>
+
+<b>PMF:</b> $P(X=0)=1- \theta, P(X=1)=\theta$
+<p></p>
+
+<b>Where used:</b>
+As mentioned above <b>Bern</b>($\theta$) random variable can take only
+two values, 0 and 1. In fact `0' and `1' are used merely as names. The
+probability of any random experiment with only two possible outcomes is a
+Bernoulli distribution, if we call one of the outcomes as `0' and the
+other as `1'.
+<p></p>
+
+<b>Terminology:</b> Such an $X$ is said to have (or follow) <b>Bern</b>$(\theta)$
+distribution. We also say that $X$ is a <b>Bern</b>$(\theta)$ random
+variable, and write $X\sim$<b>Bern</b>$(\theta).$
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;
+Coin toss has two possible outcomes, head and tail. If we call head as `1'
+and tail as `0' then we have <b>Bern</b>($\theta$) random variable
+where $\theta=P(head).$
+ ■
+</p>
+
+<p></p>
+
+<b>Expectation and variance:</b>
+If $X$ is a <b>Bern</b>($\theta$) random variable, then 
+$$\begin{eqnarray*}
+E(X)&amp;=&amp;(1-\theta) \times 0 + \theta \times 1 = \theta\\ 
+Var(X)&amp;=&amp;\theta(1-\theta). 
+\end{eqnarray*}$$
+This is because $E(X^2)=(1-\theta) \times 0^2 + \theta \times
+1^2=\theta$
+<p></p>
+So $Var(X)=E(X^2)-(E(X))^2=\theta-\theta^2=\theta(1-\theta).$
+<p></p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+$X$ is a <b>Bern</b>(0.5) random variable. $Y$ has a <b>Bern</b>(0.2)
+distribution. $X$ and $Y$ are independent. Let $Z=XY.$ Show
+that $Z$ has <b>Bern</b>(0.01) distribution. Hence compute $Var(Z)$. 
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b> Since X and Y can take only the values 0 and 1, hence their product, Z,
+can be only 0 or 1. So, Z must have  a <b>Bern</b>$(\theta)$
+distribution for some $\theta$. We have to show that
+$\theta=0.01.$
+<p></p>
+Now,
+$$\begin{eqnarray*}
+\theta &amp;=&amp; P(Z=1)\\
+       &amp;=&amp; P(XY=1)\\
+       &amp;=&amp; P(X=1 \mbox{ and } Y=1)\\
+       &amp;=&amp; P(X=1)P(Y=1) \mbox{ since $X,Y$ independent} \\
+       &amp;=&amp; 0.5 \times 0.2\\
+       &amp;=&amp; 0.01
+\end{eqnarray*}$$  
+<p></p>
+So by property of Bernoulli distribution we have
+$$
+Var(Z)=0.01(1-0.01)=0.0099
+$$
+ ■
+</p>
+
+<p></p>
+
+<h2><a
+name="Binomial">Binomial</a></h2>
+
+<b>Notation :</b> <b>Bin</b>($n, \theta$), where n is some positive
+integer and $0 &lt; \theta &lt; 1.$
+<p></p>
+
+<b>Sample Space :</b> $\{0,1,\cdots,n\}.$
+<p></p>
+
+<b>PMF:</b>
+$$
+P(X=x)=\left\{\begin{array}{ll}
+          {n\choose x} \theta ^x (1-\theta)^{n-x}&\text{if }x=0,1,...,n\\
+          0 &\text{otherwise.}
+       \end{array}\right.
+$$
+<p></p>
+
+<b>Terminology:</b> Such an $X$ is said to have (or follow) <b>Bin</b>$(n,\theta)$
+distribution. We also say that $X$ is a <b>Bin</b>$(n,\theta)$ random
+variable, and write $X\sim$<b>Bin</b>$(n,\theta).$
+<p></p>
+
+<b>Where used :</b> Suppose that we have some random experiment with only
+two possible outcomes. Let us call one of the outcomes `0', and the other
+`1'. If the probability of `1' is $\theta,$ then the outcome is a
+<b>Bern</b>($\theta$) random variable, that we have already seen. Now
+suppose that we perform the experiment $n$ times $independently$ and
+count the number of times we see `1'. Suppose that this number is
+$X$. Then $X$ is a random variable with <b>Bin</b>($n,
+\theta$) distribution.
+<p></p>
+Let us see how this description leads to the formula for the binomial
+PMF. For easy understanding, we shall work with 3 coin tosses. The coin
+has $P(head)=\theta.$ So here $n=4.$ Let us find out the
+probability of having exactly 2 heads among the 3 tosses. A typical
+outcome of the 4 tosses is 
+$$ HHT.$$
+ Here `H' means `Head' and `T' means
+`Tail'. Thus, the above outcome means that the first two tosses have produced
+heads, the third toss has produced a tail.
+The probability of this is 
+$$
+\theta\times \theta\times (1-\theta) = \theta^2(1-\theta).
+$$
+The $\theta$'s in the left hand side are for the heads, and the
+$(1-\theta)$ is for the tail. These are multiplied together because
+the coin tosses are independent. 
+<p></p>
+The following table shows all the $2^3=8$ possible outcomes of the 3
+tosses. 
+<p></p>
+
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">Outcome </th><th colspan="" rowspan=""> Probability</th>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$HHH$ </td><td colspan="" rowspan=""> $\theta^3$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan=""><b>HHT</b> </td><td colspan="" rowspan=""> $\theta^2(1-\theta)$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan=""><b>HTH</b> </td><td colspan="" rowspan=""> $\theta^2(1-\theta)$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$HTT$ </td><td colspan="" rowspan=""> $\theta(1-\theta)^2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan=""><b>THH</b> </td><td colspan="" rowspan=""> $\theta^2(1-\theta)$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$THT$ </td><td colspan="" rowspan=""> $\theta(1-\theta)^2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$TTH$ </td><td colspan="" rowspan="">$ \theta(1-\theta)^2$</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">$TTT$ </td><td colspan="" rowspan=""> $(1-\theta)^3$</td>
+</tr>
+
+</table>
+</center>
+
+<p></p>
+The outcomes for which we have exactly two heads have been shown in bold. 
+Notice that there are exactly ${3 \choose 2} = 3$ such cases. Each of
+these has probability $\theta^2(1-\theta).$ Adding these we get the
+probability of having exactly two heads as
+$$
+{3 \choose 2}\theta^2(1-\theta) = 3 \theta^2(1-\theta).
+$$
+<p></p>
+This method is general and can be used to find out the probability that
+there are exactly $x$ heads out of $n$ independent coin tosses:
+<p></p>
+$$
+{n \choose x}\theta^x(1-\theta)^{n-x},
+$$
+which is the binomial PMF.
+<p></p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;
+List all the possible outcomes of $n=4$ tosses having exactly
+$x=2$ heads. For example, one possible outcome is $HTHT.$ How
+many such outcomes are there?
+<p><a
+href="javascript:hideShow('lab5')"><b>Hint:</b></a><div
+class="ans" id="lab5">HHTT,HTHT,HTTH,THHT,THTH,TTHH. There are 6.</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 7:</b>&nbsp;
+$U$ is distributed as <b>Bin</b>$(5,\frac14).$ Find $P(U=2).$
+<p></p>
+<b>SOLUTION:</b> 
+$$\begin{eqnarray*}
+P(U=2)&amp;=&amp;{5\choose2}\left(\frac14\right)^2\left(1-\frac14\right)^{5-2}\\
+&amp;=&amp;\frac{5!}{2!(5-2)!}\left(\frac14\right)^2\left(\frac34\right)^3\\
+&amp;=&amp;\frac{5!}{2!3!}\cdot\frac{27}{1024}\\
+&amp;=&amp;\frac{5\times4}{2}\cdot\frac{27}{1024}\\
+&amp;=&amp;\frac{135}{512}.
+\end{eqnarray*}$$
+ ■
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;
+$Y$ is distributed as <b>Bin</b>$(4,\frac23).$ Find the following
+probabilities.
+<ol>
+<li>$P(Y=0)$
+</li>
+<li>$P(Y=4)$
+</li>
+<li>$P(Y=1\mbox{ or }Y=3)$
+</li>
+<li>$P(Y\leq 3)$
+</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab6')"><b>Hint:</b></a><div
+class="ans" id="lab6"><ol>
+<li>$\frac1{81}$
+</li>
+<li>$\frac{16}{81}$
+</li>
+<li>$\frac{40}{81}$
+</li>
+<li>$\frac{55}{81}$
+</li>
+</ol></div></p>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;
+$Z\sim$<b>Bin</b>$(5,\frac12).$ Find the following.
+<ol>
+<li>$P(Z\mbox{ is odd})$
+</li>
+<li>$P(Z=-1)$
+</li>
+<li>$P(Z=2)-P(Z=3)$
+</li>
+<li>$P(Z=1)-P(Z=4)$
+</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+class="ans" id="lab7"><ol>
+<li>$\frac12$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+</ol></div></p>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;
+If $X$ has <b>Bin</b>$(100,0.5)$ distribution. Then find $a\neq37$ such
+that $$
+P(X=a) = P(X = 37).
+$$
+<p><a
+href="javascript:hideShow('lab8')"><b>Hint:</b></a><div
+class="ans" id="lab8">$a=100-37=63.$
+<p></p>
+Notice that for any $n$ the <b>Bin</b>$(n,0.5)$
+distribution is 
+symmetric, <i>i.e.</i>, $$\begin{eqnarray*}P(X=x) &amp;=&amp; {n\choose x}0.5^x(1-0.5)^{n-x}\\
+&amp; =&amp;{n\choose n-x}0.5^{n-x}(1-0.5)^x\\
+&amp; =&amp; P(X=n-x).
+\end{eqnarray*}$$
+</div></p>
+</p>
+
+<p>
+<b>EXAMPLE 8:</b>&nbsp;
+A couple plans to have 6 babies (Good heavens!). The chance of a boy being
+born is 
+0.4. Let $X$ be the number of sons born to this couple. What is the
+distribution of $X$.
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b> Here, each birth is a random experiment with two possible outcomes: boy or
+girl. Let us call boy as `1' and girl as `0'. We assume that the outcome
+of one birth is independent of the others. So here a <b>Bern</b>(0.4) random
+experiment has been repeated independently 6 times, and $X$ denotes
+the number of `1' s. Hence $X$ has <b>Bin</b>(6, 0.4) distribution.
+ ■
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 9:</b>&nbsp;
+In the above example let $Y$ be the number of girls. What is the
+distribution of $Y$? 
+<p><a
+href="javascript:hideShow('lab9')"><b>Hint:</b></a><div
+class="ans" id="lab9">$Y\sim$<b>Bin</b>$(6,0.6).$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 9:</b>&nbsp;
+A mobile tower is sending 10 signals to another mobile tower.Owing to
+mechanical problems a signal may become corrupted during transmission with
+probability 0.1. Corruption of one signal is independent of that of the
+others. Find the probability distribution of the number of corrupted
+signals. The communication is OK if 2 or less signals have been
+corrupted. Find the chance that communication is OK.
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b> Let $X =$ number of corrupted signals. Sending each
+signal is a 
+random experiment with two possible outcomes: `corrupted' and `not
+corrupted'. Let us call `corrupted' as `1' and `not corrupted' as
+'0'. Then the random experiment has a <b>Bern</b>(0.1) outcome. We are
+repeating it 10 times independently and $X$ is the number of `1's. So
+$X$ has <b>Bin</b>(10, 0.1) distribution.
+<p></p>
+The probability that the communication is OK is
+$$\begin{eqnarray*}
+P(X \leq 2) &amp;=&amp; P(X=0) + P(X=1) + P(X=2)\\
+            &amp;=&amp; {10\choose 0}(0.1)^0(0.9)^{10-0} +\\
+            &amp; &amp; {10\choose 1}(0.1)^1(0.9)^{10-1} + {10\choose 2}(0.1)^2(0.9)^{10-2}\\
+            &amp;=&amp; 0.93
+\end{eqnarray*}$$
+ ■
+</p>
+
+<p></p>
+
+<b>Expectation and variance:</b> If $X$ has a
+<b>Bin</b>($n,\theta$) distribution, then 
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; n\theta\\ Var(X)&amp; =&amp; n\theta(1-\theta)
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; \sum_{x=0}^n x P(X=x)\\
+     &amp;=&amp; \sum_{x=0}^n x {n\choose x}\theta^x (1-\theta)^{n-x}
+\end{eqnarray*}$$
+The first term in the sum (<i>i.e.</i>, the term for $x=0$) is 0. So
+     we can drop that term to get
+$$\begin{eqnarray*}    
+\sum_{x=0}^n x {n\choose x}\theta^x (1-\theta)^{n-x} 
+     &amp;=&amp; \sum_{x=1}^n x {n\choose x}\theta^x (1-\theta)^{n-x}\\
+     &amp;=&amp; n \sum_{x=1}^n {n-1\choose x-1}\theta^x (1-\theta)^{n-x}\\
+     &amp;=&amp; n \theta \sum_{x=1}^n {n-1\choose
+                 x-1}\theta^{x-1}(1-\theta)^{n-x}
+\end{eqnarray*}$$
+Now we shall put $y=x-1$ to get
+$$\begin{eqnarray*}
+n \theta \sum_{x=1}^n {n-1\choose
+                 x-1}\theta^{x-1}(1-\theta)^{n-x}
+     &amp;=&amp; n \theta \sum_{y=0}^n {n-1\choose y}\theta^{y}
+     (1-\theta)^{n-1-y}\\ 
+&amp;=&amp; n \theta \left(\theta + (1-\theta)\right)^{n-1}\\
+&amp;=&amp; n \theta.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X(X-1)) &amp;=&amp; \sum_{x=0}^n x(x-1) P(X=x)\\
+     &amp;=&amp; \sum_{x=0}^n x(x-1) {n\choose x}\theta^x (1-\theta)^{n-x}
+\end{eqnarray*}$$
+The first <i>two</i> terms (the terms corresponding to `$x=0$' and
+     `$x=1$') are both zeros. Dropping them from the sum we get
+$$\begin{eqnarray*}
+\sum_{x=0}^n x(x-1) {n\choose x}\theta^x (1-\theta)^{n-x}
+     &amp;=&amp; \sum_{x=2}^n x(x-1) {n\choose x}\theta^x (1-\theta)^{n-x}\\
+     &amp;=&amp; n(n-1) \sum_{x=2}^n {n-2\choose x-2}\theta^x
+     (1-\theta)^{n-x}\\
+     &amp;=&amp; n(n-1) \theta^2 \sum_{x=2}^n {n-2\choose x-2}\theta^{x-2}
+     (1-\theta)^{n-x}.
+\end{eqnarray*}$$
+Putting $y=x-2$ this becomes
+$$\begin{eqnarray*}
+n(n-1) \theta^2 \sum_{y=0}^n {n-2\choose y}\theta^{y}
+     (1-\theta)^{(n-2)-y}\\
+= n(n-1) \theta^2 \left(\theta + (1-\theta)\right)^{n-2}
+&amp;=&amp; n(n-1) \theta^2 
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X^2) &amp;=&amp; E(X(X-1))+ E(X) \\
+&amp;=&amp; n(n-1) \theta^2 + n \theta\\
+&amp;=&amp; n^2\theta^2 -n \theta^2+ n \theta
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+Var(X) &amp;=&amp; E(X^2)-(E(X))^2\\
+&amp;=&amp;  n^2\theta^2 -n \theta^2+ n \theta+ n^2 \theta^2\\
+&amp;=&amp; n\theta(1-\theta)
+\end{eqnarray*}$$
+<p></p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 10:</b>&nbsp;
+Assuming that $T\sim$<b>Bin</b>$(100,\frac15),$ find $E(T)$ and
+standard deviation 
+of $T.$
+<p></p>
+<b>SOLUTION:</b> Here $n=100$ and $\theta=\frac15.$ So 
+$E(T) = n \theta = 100\times \frac15 = 20.$ Similarly,
+$Var(T) = n \theta(1-\theta) = 
+100\times\frac15\times(1-\frac15)= 16.$
+Hence standard deviation of $T$ is $\sqrt{16} = 4.$ 
+ ■
+</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$ is a <b>Bin</b>($m,\theta$) random variable, and $Y$
+is a <b>Bin</b>($n,\theta$) random variable (same $\theta$ for
+both!) and $X,Y$ are independent, then
+$$
+(X+Y)\sim Bin(m+n,\theta).
+$$
+</fieldset>
+
+<p></p>
+This result may be intuitively understood as follows. Suppose that we have
+a coin with $P(head) = \theta.$ Then $X$ is like the number of
+heads out of $m$ tosses of the coin, and $Y$ is like the number
+of heads out of $n$ other tosses. So $X+Y$ is like the total
+number of heads among $m+n$ tosses of the coin. Since the coin has
+$P(head) = \theta,$ hence we see that $X+Y$ has
+<b>Bin</b>$(m+n,\theta)$ distribution. 
+<p></p>
+
+<p>
+<b>EXAMPLE 11:</b>&nbsp;
+What is the distribution of $U+V,$ if $U\sim$<b>Bin</b>$(10,0.1)$ and
+$V\sim$<b>Bin</b>$(6,0.1)?$
+<p></p>
+<b>SOLUTION:</b> $U+V\sim$<b>Bin</b>$(16,0.1).$
+ ■
+</p>
+
+<p></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 10:</b>&nbsp;
+If $X_1,X_2$ and $X_3$ are independent random variables with 
+<b>Bin</b>$(5,\frac13),$ <b>Bin</b>$(10,\frac13)$ and
+<b>Bin</b>$(6,\frac13)$ distributions, respectively.
+Find the distribution of $(X_1+X_2+X_3).$
+<p><a
+href="javascript:hideShow('lab10')"><b>Hint:</b></a><div
+class="ans" id="lab10">$(X_1+X_2+X_3)\sim$<b>Bin</b>$(21,\frac13).$
+<p></p>
+First add $X_1$ and $X_2.$ Now notice that 
+$(X_1+X_2)$ is independent of $X_3.$</div></p>
+</p>
+
+<h2><a
+name="Hypergeometric">Hypergeometric</a></h2>
+
+<b>Notation:</b> <b>HypGeom</b>($N,M,n$), where $N,M,n$ are all
+positive integers such that $M\leq N$ and $n\leq N.$
+<p></p>
+
+<b>Sample Space:</b> $\{\max\{0,n-(N-M)\},1,\cdots,\min\{n,M\}\}.$
+<p></p>
+
+<b>PMF:</b>
+$$
+P(X=x)=\left\{\begin{array}{ll}
+         \frac{{M\choose x} {N-M\choose n-x}}{{N\choose
+         n}}&\text{if }x=0,...,n\\
+         0 &\text{otherwise.}
+       \end{array}\right.
+$$
+<p></p>
+
+<b>Terminology:</b> Such a random variable
+ $X$ is said to have (or follow) <b>HypGeom</b>$(N,M,n)$
+distribution. We also say that $X$ is a <b>HypGeom</b>$(N,M,n)$ random
+variable, and write $X\sim$<b>HypGeom</b>$(N,M,n).$
+<p></p>
+
+<b>Where used:</b> Suppose that in a box there are $N$ balls, among
+which $M$ are white and the remaining $N-M$ are black. You put
+your hand in the box and collect $n$ balls at random. Let $X$ be
+the number of white balls among those $n$ balls. Then $X$ is
+distributed as <b>HypGeom</b>($N,M,n$).
+<p></p>
+Let us derive the hypergeometric PMF using an example. Suppose we have
+$N=5$ balls out of which $M=3$ are white, the remaining
+$N-M=5-3=2$  being
+black. We pick $n=2$ balls at random. We want to find out the
+probability that exactly $x=1$ of these two picked balls is
+white. First, there are ${5\choose 2} = 10$  ways to pick 2 balls out
+of 5. These are:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/balls.png"></th>
+</tr>
+<tr>
+<th>Sampling 2 balls from 5</th>
+</tr>
+</table>
+</center>
+All these are equally likely. So each has probability
+$\frac{1}{10}.$ 
+Out of these there are 6 cases where exactly one white ball has been
+picked. These cases are shown inside dashed boxes. This number 6 comes as follows. To get exactly 1 white ball you
+need to pick 1 ball from the $M=3$ white balls and the other $1$
+ball from the $N-M=2$ black balls. This can be done in 
+$$
+{3\choose 1}{2\choose 1} = 3\times2 = 6
+$$
+ways. So the probability of having exactly one white ball in the sample of 2
+balls is
+$$
+\frac{{3\choose 1}{2\choose 1}}{{5\choose 2}} = \frac{6}{10} = \frac35.
+$$
+The same argument gives you the hypergeometric PMF as shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hyper.png"></th>
+</tr>
+<tr>
+<th>Components of <b>HypGeom</b>$(N,M,n)$ PMF</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 12:</b>&nbsp;
+Find $P(Y=2)$ where $Y\sim$<b>HypGeom</b>$(5,3,4).$
+<p></p>
+<b>SOLUTION:</b> Here $N=5, M=3$ and $n=4.$ So
+$$
+P(Y=2) = \frac{{M\choose 2}{N-M\choose n-2}}{{N\choose n}}
+=\frac{{3\choose2}{2\choose 2}}{{5\choose4}}.
+$$
+Now, ${3\choose2}=3,$ ${2\choose 2}=1$ and ${5\choose4}=5.$
+So $P(Y=2) = \frac35.$
+ ■
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 11:</b>&nbsp;
+$X$ is known to follow <b>HypGeom</b>$(10,4,8).$ Find the following
+probabilities.
+<ol>
+<li>$P(X=2)$
+</li>
+<li>$P(X=3)$
+</li>
+<li>$P(X=5)$
+</li>
+<li>$P(X=1)$
+</li>
+<li>$P(X=4)$
+</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab11')"><b>Hint:</b></a><div
+class="ans" id="lab11"><ol>
+<li>$\frac2{15}$
+</li>
+<li>$\frac8{15}$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+<li>$\frac13$
+</li>
+</ol></div></p>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 12:</b>&nbsp;
+Suppose that $Y$ has <b>HypGeom</b>$(100,30,40)$ distribution and $Z$ has 
+<b>HypGeom</b>$(100,70,40)$ distribution. Then which of the following two
+probabilities is larger and why?
+$$
+P(Y=10),\quad P(Z=30)
+$$
+<p><a
+href="javascript:hideShow('lab12')"><b>Hint:</b></a><div
+class="ans" id="lab12">Equal.
+Think of the following descriptions of $Y$ and
+$Z.$ In a box there are 100 balls, 30 of which are white, the
+remaining 70 being black. You pick 40 balls at random. $Y$ is the
+number of <i>white</i> balls that you get, and $Z$ is the number of
+<i>black</i> balls that you get.</div></p>
+</p>
+
+<p>
+<b>EXAMPLE 13:</b>&nbsp;
+In a class of 10 students there are 4 girls. If 3 students are selected at
+random from this class what is the chance that exactly 2 girls are
+selected? 
+<p></p>
+
+<p></p>
+<b>SOLUTION:</b>This is very much like the balls-in-a-box situation, where the 10 students are
+like 10 balls, the girls being the white balls, and the boys the black balls.
+Here $N=10,M=4,n=3.$ If $X$ is the number of girls selected then 
+$$
+X\sim HypGeom(10,4,3).
+$$
+So $P($exactly 2 girls are selected$) = P(X=2),$ which is given
+by
+$$
+P(X=2) = \frac{{4\choose 2} {10-4\choose 3-2}}{{10\choose 3}} = 
+  \frac{6\times 6}{120} = \frac3{10}.
+$$
+ ■
+</p>
+
+<p></p>
+
+<b>Expectation and variance:</b>
+If $X$ is a <b>HypGeom</b>($N,M,n$) random variable then 
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; n\frac{M}{N},\\
+Var(X) &amp;=&amp; \frac{(N-M)(N-n)Mn}{N^2(N-1)}.
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X) &amp;=&amp; \sum_{x=0}^n xP(X=x) =\sum_{x=0}^n x\frac{{M \choose x} {N-M \choose n-x}} {{N \choose n}}\\
+     &amp;=&amp; \frac1{{N \choose n}}\sum_{x=0}^n x {M \choose x} {N-M \choose
+     n-x} 
+\end{eqnarray*}$$
+The `$x=0$' term is zero. We drop it to get
+$$\begin{eqnarray*}
+\frac1{{N \choose n}}\sum_{x=0}^n x {M \choose x} {N-M \choose
+     n-x} 
+&amp;=&amp; \frac1{{N \choose n}}\sum_{x=1}^n x {M \choose x} {N-M \choose
+     n-x}\\
+     &amp;=&amp; \frac1{{N \choose n}}M \sum_{x=1}^n {M-1 \choose x-1} {N-M \choose
+     n-x} \\
+     &amp;=&amp; \frac1{{N \choose n}} {N-1 \choose n-1} \\
+     &amp;=&amp; M\frac{n! (N-n)!}{N!}\times\frac{(N-1)!}{(n-1)!(N-n)!} \\
+     &amp;=&amp; \frac{M}{N}n
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X(X-1)) &amp;=&amp; \sum_{x=0}^n x(x-1)P(X=x) \\
+          &amp;=&amp; \sum_{x=0}^n x(x-1)\frac{{M \choose x}{N-M \choose n-x}}{{N
+          \choose n}} \\
+     &amp;=&amp; \frac1{{N \choose n}}M(M-2) \sum_{x=2}^n {M-2 \choose
+          x-2}{N-M \choose n-x} \\
+     &amp;=&amp; \frac1{{N \choose n}}M(M-2) {N-2 \choose n-2} \\
+     &amp;=&amp; \frac{M(M-1)}{N(N-1)}n(n-1)
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+E(X^2) &amp;=&amp; E(X(X-1)) + E(X) \\
+       &amp;=&amp; \frac{M(M-1)}{N(N-1)}n(n-1) + \frac{M}{N}n
+\end{eqnarray*}$$
+<p></p>
+$$\begin{eqnarray*}
+Var(X) &amp;=&amp; E(X^2) - (E(X))^2 \\
+       &amp;=&amp; \frac{M(M-1)}{N(N-1)}n(n-1) + \frac{M}{N}n-\left(\frac{M}{N}n\right)^2 \\
+       &amp;=&amp; \frac{(N-M)(N-n)Mn}{N^2(N-1)}.
+\end{eqnarray*}$$
+<p></p>
+::<p>
+<b>EXERCISE 13:</b>&nbsp;
+Compute $E(X)$ and $Var(X)$ where $X$ has <b>HypGeom</b>$(N,M,n)$
+distribution with
+<ol>
+<li>$N=10,M=5,n=6$
+</li>
+<li>$N=20,M=3,n=2$
+</li>
+<li>$N=12,M=4,n=4$
+</li>
+<li>$N=15,M=15,n=15$
+</li>
+</ol>
+
+<p></p>
+
+<p><a
+href="javascript:hideShow('lab13')"><b>Hint:</b></a><div
+class="ans" id="lab13"><ol>
+<li>$3,\frac23.$
+</li>
+<li>$\frac{3}{10},\frac{459}{1900}.$
+</li>
+<li>$\frac43,\frac{64}{99}.$
+</li>
+<li>$15,0$
+</li>
+</ol></div></p>
+
+</p>
+
+<h2><a
+name="Relation between binomial and hypergeometric">Relation between binomial and hypergeometric</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_i\sim Binom(n_i,p)$ for $i=1,2,$
+where $X_1,X_2$ are independent. Then the conditional
+distribution of $X_1$ given $X_1+X_2=k$ is $HyperGeom(n_1+n_2,n_1,k).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$$\begin{eqnarray*}
+P(X_1=x_1|X_1+X_2=k)
+&amp; = &amp; \frac{P(X_1=x_1~\&amp;~X_1+X_2=k)}{P(X_1+X_2=k)}\\
+&amp; = &amp; \frac{P(X_1=x_1~\&amp;~X_2=k-x_1)}{P(X_1+X_2=k)}\\
+&amp; = &amp; \frac{P(X_1=x_1)P(X_2=k-x_1)}{P(X_1+X_2=k)}\\
+&amp; = &amp; \frac{\binom{n_1}{x_1}p^{x_1}(1-p)^{n_1-x_1}\binom{n_2}{k-x_1}p^{k-x_1}(1-p)^{x_1}}{\binom{n_1+n_2}{k}p^k(1-p)^{n_1+n_2-k}}\\
+&amp; = &amp; \frac{\binom{n_1}{x_1}\binom{n_2}{k-x_1}}{\binom{n_1+n_2}{k}},
+\end{eqnarray*}$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $p\in (0,1).$ Let $N,M\rightarrow \infty $ so that $\frac MN\rightarrow p.$ Let $n,k\in{\mathbb N}$ be fixed. Then 
+$$
+         \frac{\binom{M}{k} \binom{N-M}{n-k} }{ \binom{N}{n} } \rightarrow
+         \binom{n}{k} p^k (1-p)^{n-k}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This should be intuitively obvious, because as the number of
+balls in the box becomes very large picking a ball hardly has any
+effect on its composition. So SRSWOR starts behaving like SRSWR. 
+<p></p>
+More precisely, writing $R = N-M$ and $r = n-k,$ we have
+$$\begin{eqnarray*}
+         \frac{\binom{M}{k} \binom{N-M}{n-k} }{ \binom{N}{n} } 
+&amp; = &amp; \frac{ M(M-1)\cdots (M-k+1) }{N(N-1)\cdots (N-k+1) } \times 
+\frac{R(R-1)\cdots(R-r+1) }{ (N-k)\cdots (N-n+1)} \times \frac{ n! }{ k!
+(n-k)! }.
+\end{eqnarray*}$$
+Now $\frac M N\rightarrow p$ and so $\frac R N\rightarrow 1-p.$ 
+<p></p>
+So, since $n,k$ are fixed, we have
+$$
+\frac{ M(M-1)\cdots (M-k+1) }{N(N-1)\cdots (N-k+1) } \rightarrow p^k
+$$
+and similarly
+$$\frac{R(R-1)\cdots(R-r+1) }{ (N-k)\cdots (N-n+1)} \rightarrow (1-p)^{n-k}.$$
+Hence the result.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<p></p>
+::<p>
+<b>EXERCISE 14:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 15:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 16:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 17:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 18:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 19:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo6.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 20:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo7.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 21:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo8.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 22:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo9.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 23:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo10.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 24:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo11.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 25:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo12.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 26:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo13.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 27:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo14.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 28:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo15.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 29:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo16.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab14')"><b>Hint:</b></a><div
+class="ans" id="lab14">
+Let $X_i$  be indicator for there being a changeover at position $i$  for $i=2,...,n.$  By definition, there
+ cannot be a changeover at $i=1.$  
+<p></p>
+Then the answer is $\sum_2^n E(X_i). $  Now $X_i = 1$  iff the $(i-1)$-th and
+ $i$-th tosses result in either $HT$  or $TH.$  
+<p></p>
+So $E(X_i) = \cdots.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 30:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo17.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 31:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo18.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 32:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo19.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 33:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo20.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 34:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo21.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 35:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo22.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 36:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo23.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 37:</b>&nbsp;At a party $N$ men throw their hats into a corner, and
+each man picks up a hat randomly. Let $X$ be the number of
+men who get their own hats. Find $E(X)$ and $V(X).$</p>
+::<p>
+<b>EXERCISE 38:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo25.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 39:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo26.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 40:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo27.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 41:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo28.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 42:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo29.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 43:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo30.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 44:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo31.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 45:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo32.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 46:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo33.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 47:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo34.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 48:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo35.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 49:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo36.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 50:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo37.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 51:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dtwo38.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+
+<p></p>
+
+<p></p>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://www.isical.ac.in/~arnabc/prob1/distrib.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "distrib"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

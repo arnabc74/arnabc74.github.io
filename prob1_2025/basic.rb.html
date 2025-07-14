@@ -1,0 +1,570 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE0592.woff) format("opentype");</style>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script><script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head>
+<body>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Independence">Independence</a>
+</li>
+<li>
+<a href="#Conditional Probability">Conditional Probability</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Use of Bayes' theorem">Use of Bayes' theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Urn Models">Urn Models</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#What are they?">What are they?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Why care?">Why care?</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Independence">Independence</a></h1>
+
+<fieldset>
+<legend><b>Definition</b></legend>
+Suppose we have a random experiment with sample
+space $\Omega,$ and two
+events $A,B\subseteq\Omega.$ We shall say that $A,B$
+are <b>independent</b> if $P(A\cap B) = P(A)P(B).$
+</fieldset>
+It is easy to see why this definition is natural. Suppose that we
+toss a fair coin twice. So the sample space is $\Omega = \{HH,
+HT, TH, T T\}.$
+Let $A$ be the event that the first toss shows $H,$
+and $B$ be the event that the seond toss shows $H.$ In
+other words, $A=\{HH,HT\}$ and $B=\{HH,TH\}.$ As the
+outcome of one toss can have no influence on the outcome of
+another, so intuitively $A,B$ should be "independent". 
+From the definition also $P(A\cap B) = P(\{HH\}) = \frac 14 = \frac 12\times \frac 12 = P(A)P(B).$
+<p></p>
+
+<p>
+<b>EXERCISE:</b>
+Consider a single roll of a fair die. Write down three distinct
+pairs $A,B$ of events such that $A,B$ are
+independent. Also, write down three distinct pairs $C,D$ of
+events that are dependent. 
+</p>
+When you have more than two events, the definition of
+independence becomes a bit counter-intuitive. 
+
+<fieldset>
+<legend><b>Definition</b></legend>
+Suppose we have a random experiment with sample
+space $\Omega,$ and let $A_1,...,A_n\subseteq\Omega$ be
+any $n$ events. We shall say that these events
+are <b>mutually independent</b> if 
+$$
+\forall I\subseteq\{1,...,n\}~~P(\cap_{i\in I} A_i) = \prod_{i\in I} P(A_i).
+$$
+</fieldset>
+This may look scary. But it only means that if you <i>any</i> number of
+the $A_i$', say $A_1, A_4$ and $A_7,$ then their
+probabilities multiply: $P(A_1\cap A_4\cap A_7) =
+P(A_1)P(A_4)P(A_7).$ Notice that it is not enough to have each
+pair $A_i,A_j$ to be independent according to the first
+definition. Indeed, this case has a special name, <b>pairwise
+independence</b>:
+<fieldset>
+<legend><b>Definition</b></legend>
+Suppose we have a random experiment with sample
+space $\Omega,$ and let $A_1,...,A_n\subseteq\Omega$ be
+any $n$ events. We shall say that these events
+are <b>pairwise independent</b> if 
+$$
+\forall i\neqj\in\{1,...,n\}~~P(A_i\cap A_j) = P(A_i)P(A_j).
+$$
+</fieldset>
+
+"Mutual independence" is what we intuitively feel when we think
+that the occurencess of $A_1,...,A_n$ do not influence each
+other. The following interesting example shows why pairwise
+independence is not enough.
+
+<p>
+<b>EXAMPLE:</b>
+Consider the random experiment where a fair coin is tossed
+thrice. Let, for $i\neq j\in\{1,2,3},$  $A_{ij}$ be the event that the $i$-th and $j$-th tosses have
+the same outcome. Do you intuitively feel that $A_{12},
+A_{23}$ and $A_{13}$ are "independent"? Now check if they
+are pairwise independent. Also check if they are mutually
+independent.
+<p></p>
+<b>SOLUTION:</b>
+<a href="javascript:hideShow('1');">Since the solution is very easy, why not try yourself
+first, before clicking here?</a>
+<div id="1" style="display:none;background-color:#ffcccc;">
+No, $A_{12}, A_{23}$ and $A_{13}$ cannot be
+independent, since occurence of any two implies the occurence of
+the third. 
+<p></p>
+Here $\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}.$ 
+
+Also 
+$$\begin{eqnarray*}
+A_{12} &amp; = &amp; \{HHH, HHT, TTH, TTT\},\\
+A_{23} &amp; = &amp; \{HHH, THH, HTT, TTT\},\\
+A_{13} &amp; = &amp; \{HHH, HTH, THT, TTT\}.
+\end{eqnarray*}$$
+The intersections are all $\{HHH,TTT\}.$ So pairwise
+independence holds: $\frac 14 = \frac 12\times \frac 12.$ But
+mutual independence fails, since $\frac 14 \neq \frac 12\times \frac 12\times\frac 12.$
+</div>
+
+</p>
+
+
+<p>
+<b>EXAMPLE:</b>
+Can you give three events $A,B,C$ such that $P(A\cap B\cap
+C) = P(A)P(B)P(C)$ but still $A,B,C$ are not mutually
+independent?
+<p></p>
+<b>SOLUTION:</b>
+<a href="javascript:hideShow('2');">Use the fact $P(\phi)=0$ to get a trivial such example.</a>
+<div id="2" style="display:none;background-color:#ffcccc;">
+Single fair coin toss. $A = \phi,$ $B=\{H\}$ and $C=\{T\}.$
+</div>
+
+</p>
+
+
+<h1><a
+name="Conditional Probability">Conditional Probability</a></h1>
+
+Probability that a coin toss would result in a head is a
+statement more about our ignorance about the outcome than an
+absolute property of the coin.  If our ignorance level changes
+(eg, if we get some new information) the probability may
+change. We deal with this mathematically usign the concept of
+conditional probability.
+<p>
+<b>EXAMPLE:</b>
+Here is a box full of shapes.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cond1.png"></th>
+</tr>
+<tr>
+<th>A box of shapes</th>
+</tr>
+</table>
+</center>
+I pick one at random. What is the probability that it a triangle?
+The answer is $P(\mbox{triangle})=\frac{5}{12}.$
+<p></p>
+Now, someone gives me a bit extra information: the randomly
+selected shape happens to be red in colour. What is the
+probability of its being triangle in light of this extra information?
+<p></p>
+Now my sample space is narrowed down to only the red shapes.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cond2.png"></th>
+</tr>
+<tr>
+<th>Narrowed sample space</th>
+</tr>
+</table>
+</center>
+Here the probability of triangle is different $\frac{2}{17}.$
+<p></p>
+We cannot use the same notation $P(\mbox{triangle})$ for
+this new quantity. We need a new notation that reflects our extra
+information. The new notation
+is $P(\mbox{triangle}|\mbox{red}).$ We call it the
+conditional probability of the selected shape being a triangle
+given that it is red.
+</p>
+
+In general, the notation is $P(A|B)$ where $A,B$ are
+any two events. The mathematical definition is just as it should
+be. Instead of the entire sample space $S$ you now narrow
+you focus down to only $B.$ So $A$ is now narrowed down
+to $A\cap B.$ So $P(A|B)$ actually measures
+the $P(A\cap B)$ relative to $P(B).$ Hence the
+definition is:
+<fieldset>
+<legend><b>Definition</b></legend>
+If $A,B$ are any two events with $P(B)&gt;0$ then 
+$$
+P(A|B) = \frac{P(A\cap B)}{P(B)}.
+$$
+If $P(B)=0,$ then $P(A|B)$ is undefined.
+</fieldset>
+
+
+<p>
+<b>EXERCISE:</b>
+Show that if $P(A)&gt;0$ then $P(A\cap B) = P(A)P(B|A).$
+</p>
+
+This result is just a minor rearrangement of the definition. But
+it has an intuitive interpreation. $A\cap B$ means
+both $A$ and $B$ has happened. We are finding it
+probability in two steps: first the probability that $A$
+has happened, $P(A).$ Then, $P(B|A),$ the conditional
+probability that $B$ has happened <i>given</i> that $A$ has
+happened. This is often represented diagrammatically:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/condiag1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This form is particularly useful when $A,B$ are events such
+that $A$ indeed occurs before $B$ in the real
+world. Here is an example.
+
+<p>
+<b>EXAMPLE:</b>
+A box contains 5 red and 3 green balls. One ball is drawn at
+random, its colour is noted, and is replaced back. Then one more
+ball of the same colour is added. Then a second ball is
+drawn. What is the probability that both the balls are green?
+<p></p>
+<b>SOLUTION:</b>
+Notice that the randomness enters in two stages, since there are
+two random selections involved. Let $A$ be the event that
+the first ball is green, and $B$ be the event that the
+second ball is green.
+<p></p>
+We are to find $P(A\cap B) = P(A)P(B|A).$
+<p></p>
+What is the probability that the first ball is green? The answer
+is $P(A) = \frac 38.$ Before drawing the second ball, the
+composition of the box has changed depending on the outome of the
+first stage. This is where conditional probability helps. Given
+that the first ball was green, we know the composition of the box
+before the second drawing: 5 red and $3+1=4$ green. So $P(B|A) = \frac 49.$
+<p></p>
+The final answer therefore is $\frac 38\times\frac 49 = \frac 16.$
+</p>
+Often, in case of multistage random experiments, it is easier to
+think about the diagram than about te definition of conditional
+probability.
+<fieldset>
+<legend><b><i>Theorem of total probability</i></b></legend>
+Let $A_1,...,A_n$ be mutually exclusive and exhaustive
+events, where $\forall i~~P(A_i)&gt;0.$ Let $B$ be any
+event. Then 
+$$
+P(B) = \sum_1^n P(A_i)P(B|A_i).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$\bc A_1\cup\cdots\cup A_n=S,$ 
+
+<p></p>
+$\tf B = B\cap S = (B\cap A_1)\cup\cdots\cup (B\cap A_n).$
+
+<p></p>
+Also, since $A_i$'s are disjoint, hence $B\cap A_i$'s
+are disjoint as well. 
+<p></p>
+So 
+$P(B) = \sum_1^n P(B\cap A_i) = \sum_1^n P(A_i) P(B| A_i),$
+as required.
+<b><i>[QED]</i></b>
+</p>
+The diagrammatic way of remembering this is as shown below. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/condiag3.png"></th>
+</tr>
+<tr>
+<th>Theorem of total probability</th>
+</tr>
+</table>
+</center>
+Add the probabilities from all the paths from Start to $B.$
+The probability of a path is computed by multiplying the
+probabilities along each of the arrows along it. 
+
+<fieldset>
+<legend><b><i>Bayes' theorem (version 1)</i></b></legend>
+Let $A,B$ be any two events with $P(A), P(B)&gt;0.$ Then
+$$
+P(A|B) = \frac{P(A)P(B|A)}{P(A)P(B|A)+P(A^c)P(B|A^c)}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+First think of the formula in terms of the following diagram. The
+denominator is the probability of reaching $B$ from
+Start. The numerator is the probability of only the red path.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bayes1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The proof is very simple:
+$$
+P(A|B) = \frac{P(A\cap B}{P(B)} = \frac{P(A)P(B|A)}{P(B)} = \frac{P(A)P(B|A)}{P(A)P(B|A)+P(A^c)P(B|A^c)}, 
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+
+<fieldset>
+<legend><b><i>Bayes' theorem (version 2)</i></b></legend>
+Let $A_1,...,A_n$ be mutually exclusive and exhaustive
+events. Let $B$ be any event. We
+assume $P(A_1),...,P(A_n), P(B)&gt;0.$ Then
+for any $k=1,...,n,$
+$$
+P(A_k|B) = \frac{P(A_k)P(B|A)}{\sum_{i=1}^n P(A_i)P(B|A_i)}.
+$$
+</fieldset>
+
+
+<p>
+<b>EXERCISE:</b>Look at the following diagram and write down the proof.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bayes2.png"></th>
+</tr>
+<tr>
+<th>More general form of Bayes' theorem</th>
+</tr>
+</table>
+</center>
+
+</p>
+
+The main idea behind Bayes' theorem goes beyond these two
+versions. Whenever, you can draw an arrow diagram connecting
+events, and know all the labelling probabilities, you can apply
+Bayes' theorem. 
+
+<h2><a
+name="Use of Bayes' theorem">Use of Bayes' theorem</a></h2>
+Multi-stage random experiments are all around us. Many processes
+in nature occur step by step, and each step involves some
+randomness. Often the last layer of randomness is due to the
+measurement error. Bayes' theorem is a way to "remove" this last
+layer to look deeper. 
+
+<h2><a
+name="Urn Models">Urn Models</a></h2>
+
+<h3><a
+name="What are they?">What are they?</a></h3>
+An urn model is a multistage random experiment. It consists of one or more boxes (called urns),
+each containing coloured balls (balls are all distinct, even
+balls havin gthe same colour). Balls are drawn at random (using
+SRSWR or SRSWOR) and depdending on the outcome, some balls are
+added/removed/transferred. Then again a few balls are drawn, and
+so on. Here is one example.
+
+<p>
+<b>EXAMPLE:</b>
+An urn contains 3 red and 3 green balls. One ball is drawn at
+random, its colour noted, and returned to the urn. Then another
+ball of the same colour is added to the urn. Then the same
+process is repeated again and again. The possibilities grow like
+this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/urn1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Typical questions of interest here are:
+<ol>
+
+<li>What is the probability that at the $10$-th stage we
+shall have 12 red and 4 green balls?</li>
+
+<li>What is the probability that the ball drawn at
+stage $n$ is red?</li>
+
+<li>Given that we have exactly 6 red balls at the 9-th stage, what is
+the (conditional) probability that we had exactly 4 red balls at
+the 6-th stage?</li>
+
+</ol>
+
+</p>
+
+All such questions may be answered by using the theorem of total
+probability and Bayes' theorem. By the way, one of the above
+three questions may be answered immediately. Which one? What is
+the answer?
+
+<p></p>
+The above urn model is an example of Polya Urn Model, where we
+start with $m$ red and $n$ green balls, and at each
+stage add one
+ball of the same colour as the randomly selected ball. 
+<h3><a
+name="Why care?">Why care?</a></h3>
+Some real life scenarios can be mathematically treated as urn models.
+
+<p></p>
+We shall discuss two such examples.
+
+<p>
+<b>EXAMPLE:</b>
+Most people form their opinions based on random personal
+experience, instead of a carefully planned overall survey of a
+situation. Polya's urn model is a simple  version of this. 
+<p></p>
+An American lady comes to India. She has heard about the
+unheigenic condition prevaling here, and is apprehensive about
+flu. Well, as luck would have it, on her way from the air port
+she meets a man suffering from flu. "Oh my," she shudders, "so
+the rumour about flu is not unfounded, it seems!". The very next
+day her city tour is cancelled, because the guide is down with
+flu. "Oh boy, what a terrible country this is. It is full of
+flu!" the lady starts to worry. So imagine her panic when on the
+third day she learns that waiter in the hotel has caught the
+disease. 
+<p></p>
+Now here is the story of another American visitor to our
+country. He is also apprehensive of flu. But one the first day
+he does not meet any flu-case. "May be this fear of flu in India
+is a rumour after all," he thinks with some relief at the end of
+the day. The next day passes, and still he does not meet a single
+person with flu. He is now quite confident that the apprehension
+about flu is not serious. When yet another day further supports
+his optimistic belief, he starts thinking that the expensive
+flu-vaccine he took back home was a wastage of money.
+<p></p>
+Which of these view points is  reasonable? Neither. They both
+formed their own ideas based on their persoal random
+experience. The prevalence of flu is the same for both of them,
+but their personal beliefs about it are dratically different. 
+<p></p>
+Polya's urn model captures this idea. Red ball means fear of flu,
+green ball means the opposite. Initially the were equal in
+number. The lady met a flu case on day 1 (<i>i.e.</i>, randonly selected
+a red ball), and her fear deepened (one more red ball added). The
+man did not meet any flu case in day 1 (green ball selected), so
+his courage increased (one more green ball added). Yet, what is
+the chance of selecting a red ball at stage 1? It is
+still $\frac 12$ as before (ie, the true prevalence rate of
+flu has not changed from stage 0).
+<p></p>
+This model also demonstates a common phenomenon: once you
+randomly select balls of a certain in the first few stages, the
+(conditional) probability of selecting more balls of that colour
+increases. Indeed, people who has met more good people in their
+childhood tend to see more good peple around them. Similarly,
+people who has met more bad people are more likely to grow
+suspicious of everybody. 
+<p></p>
+However, one must understand that the real situation is too
+complex to be captured adequately by Polya's urn model.
+</p>
+
+
+
+<p>
+<b>EXAMPLE:</b>
+We have $N+1$ urns, labelled $0,1,...,N.$ The urn with
+label $k$ contains $k$ red and $N-k$ green
+balls. One urn is selected at random, and an SRSWR of
+size $N$ is drawn. All the $N$ balls are found to be
+red. One more ball is drawn from the same urn. What is the
+conditional probability that this ball is also red?
+</p>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/>
+</body>
+</html>

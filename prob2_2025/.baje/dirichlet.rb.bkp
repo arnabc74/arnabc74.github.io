@@ -56,7 +56,7 @@ If <M>\v X\sim Multinom(n,\v p)</M>  where <M>\v X=(X_1,...,X_k)</M>  and <M>\v 
 <EXR>If <M>(X_1,...,X_k)\sim Multinom(n,(p_1,...,p_k))</M>  for <M>k\geq 3,</M>  then find the
  distribution of <M>X_1+X_3.</M></EXR>
 
-<HEAD1>Dirichlet distribution</HEAD1>
+<HEAD1 u="https://youtu.be/eby4pP_vWQA">Dirichlet distribution</HEAD1>
 Now we are going to work with a multivariate distribution called the <TERM>Dirichlet distribution</TERM>,
  which is a multivariate generalisation of the Beta distribution. 
 

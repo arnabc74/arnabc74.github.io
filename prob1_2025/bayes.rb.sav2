@@ -1,0 +1,1018 @@
+<NOTE>
+@{<E>
+<M>\newcommand{\ev}{{\mathcal F}}</M>
+<HEAD1>Conditional Probability</HEAD1>
+
+Probability that a coin toss would result in a head is a
+statement more about our ignorance regarding the outcome than an
+absolute property of the coin.  If our ignorance level changes
+(eg, if we get some new information) the probability may
+change. We deal with this mathematically using the concept of
+conditional probability.
+<EXM>
+Here is a box full of shapes.
+<CIMG web="cond1.png">A box of shapes</CIMG>
+I pick one at random. What is the probability that it is a triangle?
+The answer is <M>P(\mbox{triangle})=[[5][12]].</M>
+<P/>
+Now, someone gives me some extra information: the randomly
+selected shape happens to be green in colour. What is the
+probability of its being triangle in light of this extra information?
+<P/>
+Now my sample space is narrowed down to only the green shapes.
+<CIMG web="cond2.png">Narrowed sample space</CIMG>
+Here the probability of triangle is different <M>[[27]].</M>
+<P/>
+We cannot use the same notation <M>P(\mbox{triangle})</M> for
+this new quantity. We need a new notation that reflects our extra
+information. The new notation
+is <M>P(\mbox{triangle}|\mbox{green}).</M> We call it the
+<B>conditional probability</B> of the selected shape being a triangle
+<B>given</B> that it is green.
+</EXM>
+
+In general, the notation is <M>P(A|B)</M> where <M>A,B</M> are
+any two events. The mathematical definition is just as it should
+be. Instead of the entire sample space <M>\Omega</M> you now narrow
+you focus down to only <M>B.</M> So <M>A</M> is now narrowed down
+to <M>A\cap B.</M> So <M>P(A|B)</M> actually measures
+the <M>P(A\cap B)</M> relative to <M>P(B).</M> Hence the
+definition is:
+<DEFN name="Conditional probability">
+If <M>A,B</M> are any two events with <M>P(B)>0</M> then 
+<D>P(A|B) = [[P(A\cap B)][P(B)]].</D>
+If <M>P(B)=0,</M> then <M>P(A|B)</M> is undefined.
+</DEFN>
+
+<THM>
+Consider a probability <M>P</M>  on some sample space. 
+Fix any event <M>B</M> with <M>P(B)>0.</M> For all event <M>A</M>  define <M>P'(A)</M>  as
+<M>P'(A) = P(A|B).</M>  Then <M>P'</M>
+is again a probability.
+</THM>
+<PF>
+We have to check that the three axioms are satisfied by <M>P'.</M>
+
+<HIDE lab="coax"><MSG>The first two axioms obviously hold!</MSG><HIDDEN>
+Clearly, <M>P'(A) = [[P(A\cap B)][P(B)]]\geq 0.</M>
+<P/>
+Also if <M>\Omega</M>  denotes the sample space, 
+then <M>P'(\Omega) = [[P(\Omega\cap B)][P(B)]] = [[P(B)][P(B)]]=1.</M>
+</HIDDEN></HIDE>
+For the third axiom, let <M>A_1,A_2,...</M> be countably many disjoint events. Then 
+<D>
+P'(A_1\cup A_2\cup\cdots) = [[P((A_1\cup A_2\cup\cdots)\cap B)][P(B)]] =
+[[P((A_1\cap B)\cup(A_2\cap B)\cdots)][P(B)]] = [[\sum P(A_i\cap
+B)][P(B)]]=\sum [[P(A_i\cap B)][P(B)]]=\sum P(A_i|B)  = \sum P'(A_i).
+</D>
+</PF>
+
+::<EXR>Show that if <M>P(A|B)=P(A)</M>  then <M>A,B</M>  must be independent. Is the converse true?
+ Be careful with the second part!</EXR>
+
+<HEAD2>Multiplication rule</HEAD2>
+::<EXR>
+Show that if <M>P(A)>0</M> then <M>P(A\cap B) = P(A)P(B|A).</M>
+</EXR>
+
+This result is just a minor rearrangement of the definition. But
+it has an intuitive interpretation. <M>A\cap B</M> means
+both <M>A</M> and <M>B</M> has happened. We are finding its
+probability in two steps: first the probability that <M>A</M>
+has happened, <M>P(A).</M> Then, <M>P(B|A),</M> the conditional
+probability that <M>B</M> has happened <I>given</I> that <M>A</M> has
+happened. This is often represented diagrammatically:
+<CIMG web="condiag1.png"></CIMG>
+This form is particularly useful when <M>A,B</M> are events such
+that <M>A</M> indeed occurs before <M>B</M> in the real
+world. Here is an example.
+
+<EXM>
+A box contains 5 red and 3 green balls. One ball is drawn at
+random, its colour is noted, and is replaced back. Then one more
+ball of the same colour is added. Then a second ball is
+drawn. What is the probability that both the balls are green?
+<SOLN/>
+Notice that randomness enters in two stages, since there are
+two random selections involved. Let <M>A</M> be the event that
+the first ball is green, and <M>B</M> be the event that the
+second ball is green.
+<P/>
+We are to find <M>P(A\cap B) = P(A)P(B|A).</M>
+<P/>
+What is the probability that the first ball is green? The answer
+is <M>P(A) = [[38]].</M> Before drawing the second ball, the
+composition of the box has changed depending on the outcome of the
+first stage. This is where conditional probability helps. Given
+that the first ball was green, we know the composition of the box
+before the second drawing: 5 red and <M>3+1=4</M> green. So <M>P(B|A) = [[49]].</M>
+<P/>
+The final answer therefore is <M>[[38]]\times[[49]] = [[16]].</M>
+<P/>
+It is instructive to check this by simulation. 
+<RC>
+balls = c('r','r','r','r','r','g','g','g')
+event = c()
+for(i in 1:5000) {
+  first.draw = sample(balls,1)
+newballs = c(balls,first.draw)
+second.draw = sample(newballs,1)
+event[i] = (first.draw=='g' && second.draw=='g')
+}
+mean(event)
+</RC>
+</EXM>
+Often, in case of multistage random experiments, it is easier to
+think about the diagram than about the definition of conditional
+probability.
+<CIMG web="ardi.png"/>
+
+In a similar way, you can prove (by induction)
+the following theorem.
+
+<THM name="Multiplication rule">
+Let <M>A_1,...,A_n,B</M>  be events such that <M>P(A_1\cap \cdots \cap A_n)>0.</M>  Then 
+<D>P(A_1\cap\cdots\cap A_n\cap B) = P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\cdots P(B|A_1\cap\cdots\cap A_n).</D>
+</THM>
+
+<HEAD2>Theorem of total probability</HEAD2>
+Sometimes an event can occur via different paths. To find the probability of such an event 
+we need to add the probabilitis of all the paths. This is leads to the theorem of total probability.
+
+<THM name="Theorem of total probability">
+Let <M>A_1,...,A_n</M> be mutually exclusive and exhaustive
+events, where <M>\forall i~~P(A_i)>0.</M> Let <M>B</M> be any
+event. Then 
+<D>P(B) = \sum_1^n P(A_i)P(B|A_i).</D>
+</THM>
+<PF>
+The following diagram illustrates the situation. 
+<CIMG web="condiag3.png">Theorem of total probability</CIMG>
+We need to add the probabilities from all the paths from Start to <M>B.</M>
+The probability of a path is computed by multiplying the
+probabilities along each of the arrows along it. 
+<P/>Now let's write down the formal proof.
+<P/>
+Since <M>A_1\cup\cdots\cup A_n=\Omega,</M> 
+<P/>
+hence <M> B = B\cap \Omega = (B\cap A_1)\cup\cdots\cup (B\cap A_n).</M>
+<P/>
+Also, since <M>A_i</M>'s are disjoint, hence <M>B\cap A_i</M>'s
+are disjoint as well. 
+<P/>
+So 
+<M>P(B) = \sum_1^n P(B\cap A_i) = \sum_1^n P(A_i) P(B| A_i),</M>
+as required.
+</PF>
+
+<HEAD2>Rejection sampling</HEAD2>
+Suppose that <M>\phi\neq A\seq B</M>  are finite sets. You have a list of all elements of <M>B.</M>  But
+ you do not have a list of all elements of <M>A.</M>  However, given any element of <M>B</M>  you can check if it is in <M>A</M> 
+ or not. In this case how can you draw one element randomly from <M>A?</M>   
+<P/>
+One way is to use <B>rejection sampling</B>. In this technique you draw one element of <M>B</M>  randomly. If it is in <M>A</M>,
+ then stop and output that element. Else, you again draw a random element from <M>B</M>  (with replacement), and 
+continue like this. 
+ <P/>
+This procedure is bound to terminate after a finite number of steps. The output will be a random sample from <M>A.</M>  
+
+::<EXR>How to choose between 5 friends with equal probability using only a fair die? The following R code 
+will give a hint.
+<RC>
+repeat { 
+  x = sample(6,1) 
+if (x<=5) break
+}
+
+</RC>
+</EXR>
+
+<HEAD2>Bayes' theorem</HEAD2>
+Multi-stage random experiments are all around us. Many processes
+in nature occur step by step, and each step involves some
+randomness. Often the last layer of randomness is due to the
+measurement error. Bayes' theorem is a way to "remove" this last
+layer to look deeper. 
+<P/>
+The theorem of total probability lets us move forward along the arrows, while Bayes' theorem 
+lets us move backwards.
+
+<THM name="Bayes' theorem (version 1)">
+Let <M>A,B</M> be any two events with <M>P(A), P(B)>0.</M> Then
+<D>P(A|B) = [[P(A)P(B|A)][P(A)P(B|A)+P(A^c)P(B|A^c)]].</D>
+</THM>
+<PF>
+First think of the formula in terms of the following diagram. The
+denominator is the probability of reaching <M>B</M> from
+Start. The numerator is the probability of only the red path.
+<CIMG web="bayes1.png"></CIMG>
+The proof is very simple:
+<D>P(A|B) =  [[P(A\cap B)][P(B)]] = 
+[[P(A)P(B|A)][P(B)]] = [[P(A)P(B|A)][P(A)P(B|A)+P(A^c)P(B|A^c)]], </D>
+as required.
+</PF>
+
+<THM name="Bayes' theorem (version 2)">
+Let <M>A_1,...,A_n</M> be mutually exclusive and exhaustive
+events. Let <M>B</M> be any event. We
+assume <M>P(A_1),...,P(A_n), P(B)>0.</M> Then
+for any <M>k=1,...,n,</M>
+<D>P(A_k|B) = [[P(A_k)P(B|A)][\sum_{i=1}^n P(A_i)P(B|A_i)]].</D>
+</THM>
+
+::<EXR>Look at the following diagram and write down the proof.
+<CIMG web="bayes2.png">More general form of Bayes' theorem</CIMG>
+</EXR>
+
+The main idea behind Bayes' theorem goes beyond these two
+versions. Whenever, you can draw an arrow diagram connecting
+events, and know all the labelling probabilities, you can apply
+Bayes' theorem. 
+
+<HEAD2>Use of Bayes' theorem</HEAD2>
+
+
+<EXM>
+I live in a locality where burglary is uncommon. The chance that a burglar
+breaks into my house is 0.1. I have a dog that is highly likely  to bark 
+(say, with  0.95 probability) if a burglar enters. However, otherwise my
+dog is a quiet one. If there is no burglar around, he barks with  
+probability only 0.01. I hear my dog
+bark. What is the chance that a burglar has entered?
+<SOLN/>
+Let <M>A=</M> {burglar has entered } and <M>B=</M> {dog barks}.
+<P/>
+We are given that
+<D>P(A)=0.1, ~~ P(B|A)=0.95,~~ P(B|A^c)=0.01.</D>
+So we get the following diagram.
+<CIMG web="bayes3.png"/>
+
+We want to find <M>P(A|B).</M> To apply Bayes theorem we need to find
+<M>P(B).</M>
+<MULTILINE>
+P(B)&=&P(A)\cdot P(B|A)+P(A^c)\cdot P(B|A^c) \\
+    &=& 0.1 \times 0.95 + (1-0.1) \times 0.01 \\
+    &=& 0.104
+</MULTILINE>
+Now apply Bayes theorem to get
+<D>P(A|B)=\frac{0.1 \times 0.95}{0.104}=0.913.</D>
+Diagrammatically, 
+you can think like this. To find <M>P(B)</M>, we
+consider all paths from start to <M>B</M>. Multiply the probabilities along each
+path and add. Thus <M>P(B)=0.1 \times 0.95 + 0.9 \times 0.01=\cdots</M>
+Similarly to find <M>(A\cap B)</M> add the probabilities of all the paths
+from start to B <I>through</I> <M>A.</M>
+<P/>
+Here <M>P(A \cap B)=0.1 \times 0.95.</M>
+<P/>
+So now you can find <M>P(A|B)=\frac{P(A \cap B)}{P(B)}.</M>
+</EXM>
+
+This is an example of a two stage random experiment. The first stage is
+whether a burglar enters or not. The second stage is whether the dog
+barks or not.
+<P/>
+As in the above example, a typical problem starts by telling you
+unconditional probability of the first stage, and the conditional
+probability of the second stage given the first. Only the
+outcome of the second stage is observed, and the problem is to find the
+conditional probability of the first stage given the outcome of the second
+stage. 
+
+
+<P/>
+The same approach is applicable to any similar multistage experiment.
+
+<HEAD2>Urn Models</HEAD2>
+<HEAD3>What are they?</HEAD3>
+An urn model is a multistage random experiment. It consists of one or more boxes (called urns),
+each containing coloured balls (balls are all distinct, even
+balls having the same colour). Balls are drawn at random (using
+SRSWR or SRSWOR) and depending on the outcome, some balls are
+added/removed/transferred. Then again a few balls are drawn, and
+so on. Here is one example.
+
+<EXM>
+An urn contains 3 red and 3 green balls. One ball is drawn at
+random, its colour noted, and returned to the urn. Then another
+ball of the same colour is added to the urn. Then the same
+process is repeated again and again. The possibilities grow like
+this:
+<CIMG web="urn1.png"/>
+Typical questions of interest here are:
+<OL>
+<LI>What is the probability that at the <M>10</M>-th stage we
+shall have 12 red and 4 green balls?</LI>
+<LI>What is the probability that the ball drawn at
+stage <M>n</M> is red?</LI>
+<LI>Given that we have exactly 6 red balls at the 9-th stage, what is
+the (conditional) probability that we had exactly 4 red balls at
+the 6-th stage?</LI>
+</OL>
+</EXM>
+
+All such questions may be answered by using the theorem of total
+probability and Bayes' theorem. By the way, one of the above
+three questions may be answered immediately. 
+<HIDE lab="sym"><MSG>Which one? What is the answer?</MSG>
+<HIDDEN>The second one. The answer is <M>[[12]]</M>  by symmetry argument.</HIDDEN>
+</HIDE>
+
+<P/>
+The above urn model is an example of the <B>Polya Urn Model</B>, where in general we
+start with <M>a</M> red and <M>b</M> green balls, and at each
+stage a random ball is selected, replaced and <M>c</M> more
+ball(s) of its colour is(are) added. 
+
+
+<HEAD3>Why care?</HEAD3>
+You may see this link for <LINK to="http://www.stat.yale.edu/~pollard/Courses/241.fall97/Symmetry.pdf">further discussion</LINK>.
+Some real life scenarios can be mathematically treated as urn models.
+
+<P/>
+We shall discuss two such examples.
+
+<EXM>
+Most people form their opinions based on random personal
+experience, instead of a carefully planned overall survey of a
+situation. Polya's urn model is a simple  version of this, as the following story shows.
+<P/>
+An American lady comes to India. She has heard about the
+unheigenic condition prevaling here, and is apprehensive about
+flu. Well, as luck would have it, on her way from the airport
+she meets a man suffering from flu. "Oh my," she shudders, "so
+the rumour about flu is not unfounded, it seems!". The very next
+day her city tour is cancelled, because the guide is down with
+flu. "What a terrible country this is!", the lady starts to worry,  "It is full of
+flu!" So imagine her panic when on the
+third day she learns that a waiter in the hotel has caught the
+disease. 
+<P/>
+Now here is the story of another American visitor to our
+country. He is also apprehensive of flu. But on the first day
+he does not meet any flu-case. "May be this fear of flu in India
+is a rumour after all," he thinks with some relief at the end of
+the day. The next day passes, and still he does not meet a single
+person with flu. He is now quite confident that the apprehension
+about flu is not serious. When yet another day further supports
+his optimistic belief, he starts thinking that the expensive
+flu-vaccine he took back home was a wastage of money.
+<P/>
+Which of these two view points is  reasonable? Neither. They both
+formed their own ideas based on their personal random
+experience. The true prevalence of flu in India is the same for both of them,
+but their personal beliefs about it are drastically different. 
+<P/>
+Polya's urn model captures this idea. A red ball means fear of flu,
+a green ball means the opposite. Initially they were equal in
+number. The lady met a flu case on day 1 (i.e., randonly selected
+a red ball), and her fear deepened (one more red ball added). The
+man did not meet any flu case in day 1 (green ball selected), so
+his courage increased (one more green ball added). Yet, what is
+the chance of selecting a red ball at stage 1? It is
+still <M>[[12]]</M> same as stage 0 (ie, the true prevalence rate of
+flu has not changed from stage 0).
+<P/>
+This model also demonstates a common phenomenon: once you
+randomly select balls of a certain colour in the first few stages, the
+(conditional) probability of selecting more balls of that colour
+increases. Indeed, people who has met more good people in their
+childhood tend to see more good people around them. Similarly,
+people who has met more bad people during their childhood are more likely to find faults with
+everybody. 
+<P/>
+However, one must understand that the real situation is far too
+complex to be captured adequately by Polya's urn model.
+</EXM>
+
+Here is another real life situation captured by urn models. 
+
+<EXM>
+In the <I>Ehrenfest model of heat exchange</I> physicists
+consider two connected containers with <M>k</M> particles distributed
+between them. At each step a particle is chosen at random and
+transferred to the other container. The question is: What is the
+distribution of particles at the <M>n</M>-th stage. This may be
+thought of as follows: one urn contains <M>k</M> balls some of
+which are red and the rest green. A ball is drawn at random,
+removed, and another ball of the opposite colour is added. Here
+red balls play the role of particles in the first container, and
+green balls those in the other.
+</EXM>
+
+
+<HEAD1>Fallacies regarding conditional probability</HEAD1>
+Conditional probabilities are often used wrongly in our everyday
+life. Here are three examples.
+
+<HEAD2>Mistaking <M>P(A|B)</M> for <M>P(B|A)</M></HEAD2>
+Parents of most prospective candidates for ISI admission wonder: "Does a particular coaching centre
+ increase the chance of
+admission to the ISI?"  Stated in terms of probabilities this is
+a question involving <M>P(A|B)</M> where <M>A</M> is that a (randomly
+selected) student gets admitted to ISI, and <M>B</M> is that the
+student went to that coaching centre.
+<P/>
+Most parents go about guessing <M>P(A|B)</M> as follows. They
+would enquire from successful students from the previous years if
+they had studied at that coaching centre or not. When they hear
+that out of the 90% students came from that centre, they are
+impressed about its performance.
+<P/>
+Is this decision logically valid?
+<P/>
+No, what the parents learned from their survey was
+that <M>P(B|A)</M> is large. This does not imply in any way
+that <M>P(A|B)</M> is large. They should have surveyed the
+coaching goers and figured out the proportion that got
+admitted. This proportion could have been (and most often is) microscopically low.
+
+<HEAD2>Simpson's Paradox</HEAD2>
+Suppose that <M>A_1,A_2</M> and <M>B</M> are three events such
+that <M>P(A_1|B) < P(A_2|B)</M> and also <M>P(A_1|B^c) <
+P(A_2|B^c).</M> 
+<P/>
+Can you conclude from this that <M>P(A_1) < P(A_2)?</M>
+<HIDE lab="par2">
+<MSG>(Think before clicking here.)</MSG><HIDDEN>
+Yes, multiply the first inequality by <M>P(B)</M> and the second
+by <M>P(B^c)</M> and add. The result now follows from the theorem
+of total probability.
+</HIDDEN>
+</HIDE>
+
+<P/>
+Now consider the following real life data set. 
+<CIMG web="simp.png"/>
+It is about number of death penalties given for murder cases. The
+cases have been classified by three factors:
+<UL>
+<LI>the race of the victim (i.e., the person murdered): white or black</LI>
+<LI>the race of the defendant (i.e., the person accused): white or black</LI>
+<LI>whether death penalty was given: yes or no.</LI>
+</UL>
+The red and green parts give the actual
+data, the remaining numbers are derived from them. For example
+the 11.3 is obtained as <M>53/(53+414).</M> The blue part is
+obtained by adding the red and green parts. For example, <M>414+16=430.</M>
+
+<P/>
+Now consider the cases where the victim is white (the red part
+in the table). Notice that
+for white defendants 11.3% got a death penalty, while for black
+defendants the percentage is 22.9%. Thus if 
+<UL><LI><M>A_1</M> denotes
+the event "White defendant gets death penalty"</LI>
+<LI> <M>A_2</M> is the event that "Black defendant gets death penalty",</LI>
+<LI> <M>B</M>
+is the event that "the victim is white",</LI></UL>
+then we infer <M>P(A_1|B) < P(A_2|B).</M>
+<P/>
+Again, focusing on the green part we get a similar observation
+(0.0 < 2.8). So we infer <M>P(A_1|B^c) < P(A_2|B^c).</M>
+<P/>
+So we combine these to conclude <M>P(A_1) < P(A_2).</M> Thus, it seems that the
+victim's race does not matter: a white defendant is
+always less likely to get a death penalty.
+<P/>
+So let's ignore the victim's race. This basically means adding
+the red and green tables to get the blue table. Similar argument
+based on this combined table, however, seems to indicate <M>P(A_1) >
+P(A_2)</M> since <M>11.0 > 7.9.</M>
+
+<P/>
+What went wrong? This is called <B>Simpson's paradox</B> and
+often crops up in practice. 
+<P/>
+<HIDE lab="simp"><MSG>(Think before clicking here.)</MSG>
+<HIDDEN>
+Here the sample space is the
+set of all the <M>53+430+15+176</M> cases involved. The
+event <M>A_1</M> is
+"White defendant gets death penalty". It is the subset consisting
+of all those cases where the defendant is white and death penalty
+has been awarded. There are <M>53+0</M> such
+cases. Similarly <M>A_2</M> has size <M>11+4.</M> 
+<P/>
+Now <M>P(A_1|B) = [[P(A_1\cap B)][P(B)]].</M> 
+
+<P/>
+Here <M>|A_1\cap B|=53</M> and <M>|A_2\cap B|=11.</M>
+<P/>
+So our rash conclusion that <M>P(A_1|B) < P(A_2|B)</M> was wrong.
+</HIDDEN>
+</HIDE>
+
+<HEAD2>Monty Hall problem</HEAD2>
+This is based on a popular TV reality show. 
+<Q> The host of the program shows you three closed doors.
+You know that a
+random one of these hides a car (considered a prize), the remaining two doors hide goats
+(considered valueless).
+ You are to guess which 
+door has the car. If you guess correctly, then you get
+the car. Once you choose a door, the host opens some other door and
+shows that there is a goat behind it. Now you are given an option
+to switch to the other closed door. Should you switch? Remember
+that the host knows the contents behind each door and will always
+show you a door with a goat.
+</Q>
+You can play this game online <LINK to="http://www.mathwarehouse.com/monty-hall-simulation-online/">here</LINK>.
+<P/>
+Here are two ways to think about this, both natural but leading
+to opposite conclusions:
+<OL>
+<LI>Whether your original selection was right or wrong, there is
+always at least another door hiding a goat. So the host will
+always open that. There is no extra info in it. Thus, nothing
+can be gained by switiching.</LI>
+<LI>Earlier you had three doors and knew nothing about their
+contents. Now you at least know the content behind one door. In
+light of this extra information, switiching is justified. </LI>
+</OL>
+The confusion remains even if you do some conditional probability
+computations. Let's label the the door you chose originally by the number
+1. Also let's label with the number 2 the door opened by the
+host. The remaining door is labelled 3. 
+<P/>
+Here the sample space is <M>\{1,2,3\},</M> the numbers denoting
+the possible positions
+of the car. The unconditional probabilities were <M>[[13]]</M>
+each. The conditional probabilities are <M>[[12]], 0, [[12]].</M> 
+
+<P/>
+
+Does the confusion go away now? Unfortnately, no:
+<OL>
+<LI>since <M>[[12]] > [[13]]</M> you should switch.</LI>
+<LI>But the conditional probability of both doors 1 and 3
+are <M>[[12]].</M> So nothing is to be gained by switching.</LI>
+</OL>
+
+<HIDE lab="monty"><MSG>How to resolve the paradox?</MSG>
+<HIDDEN>
+All the views are wrong! The true conditional probabilities are <M>[[13]]</M>  
+for not switching and <M>[[23]]</M>  for switching.
+ So you should switch. 
+</HIDDEN>
+</HIDE>
+You might like to simulate the situation using R. Allegedly, the
+famous mathematician G Polya was not convinced about the correct
+answer until he was shown a computer simulation!
+<RC>
+car = sample(3,1000,rep=T)
+host  = c(3,2,3)
+other = host[car]
+sum(car==1)
+sum(car==other)
+</RC>
+Here is an explanation of the code. We shall play the game 1000
+times. Each time we freshly randomize the position of the
+car. This is done in the first line of the code. We need a
+strategy for the host. Remember that the door you selected first is called door 1.
+  So the host's strategy is like a function that maps car's
+true position to door to be kept closed. If the car is not behind door
+1, then the host has only one choice. If the car is behind door
+1, then the host can open either 2 or 3. Here, w.l.g., we are
+keeping 3 closed. So the function is <M>host[1]=3, host[2]=3</M>
+and <M>host[3]=2.</M> In other words, the strategy is the
+array <M>(3,2,3).</M>
+
+
+<HEAD1>Problems for practice</HEAD1>
+
+::<EXR>Is it true that <M>P(A|B)+P(A^c|B)=1?</M>  Is it true
+that <M>P(A|B)+P(A|B^c)=1?</M>
+<ANS>Yes. Not necessarily.</ANS>
+</EXR>
+::<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)=1</M>
+but <M>P(B|A)\neq 1</M>" Disprove or provide an example.
+<ANS>Take <M>B\seq A</M> with <M>P(A\setminus B)>0.</M></ANS>
+</EXR>
+
+::<EXR>"It is possible to have events <M>A,B</M> such that <M>P(A|B)>0.99</M>
+but <M>P(B|A) < 0.01</M>" Disprove or provide an example to
+this statement.
+<ANS><M>B=\{1\}</M>, <M>A = \{1,...,1000\}.</M> The random
+experiment is to draw one element of <M>A</M> with equal probabilities. </ANS>
+</EXR>
+
+
+
+::<EXR>Let <M>u_{2n}</M> denote the probability that a random path
+of length <M>2n</M> starting from <M>(0,0)</M> passes
+through <M>(2n,0).</M> Also, let <M>u_0=1.</M> Let <M>v_{2n}</M>
+denote the probability that a random path of length <M>2n</M>
+starting from <M>(0,0)</M> returns to 0 for the first time
+at <M>2n.</M>  Then show without using the explicit form
+of <M>u_{2n}</M> and <M>v_{2n}</M> that
+<D>
+v_2 u_{2n-2} + \cdots + v_{2n} u_0 = u_{2n}.
+</D>
+[Corrected an error pointed out by Krishnam Baregama.]
+<ANS>Condition on the first time the path returns to zero, and then use the theorem of total probability.</ANS>
+</EXR>
+
+::<EXR><M>P(A\cap B)>0.</M> Show that <M>P(A|B) = P(B|A)</M> if and
+only if <M>P(A)=P(B).</M>
+<ANS>Easy</ANS>
+</EXR>
+
+::<EXR>Modern digital communication relies on transmitting 0's and 1's from one
+device to another. Suppose that device A transmits a 0 with
+probability 0.4 and a 1 with probability 0.6. The communication channel is
+noisy, so if a 1 is transmitted, it may get corrupted to a 0 in
+5% of the cases. If a 0 is transmitted, it may be corrupted into a 1 in 1% cases. Given that
+device B has received a 1, what is the chance that it is
+uncorrupted?
+
+<ANS><M>[[0.6\times0.95][0.6\times0.95+0.4\times0.01]].</M></ANS>
+</EXR>
+
+::<EXR>A doctor diagnoses a disease correctly in 90% cases. If the diagnosis is
+wrong, the patient dies with probability 50%. Even for a correct diagnosis
+the patient dies in 10% cases. Given that a patient has died find the
+conditional probability that the diagnosis was correct.
+<ANS><M>[[0.9\times0.1][0.9\times0.1+0.1\times0.5]].</M></ANS>
+</EXR>
+
+::<EXR>Two fair dice are rolled. What is the conditional probability
+that at least one shows a 6 given that the dice show different
+numbers?
+<ANS>Let <M>A=</M>{the dice show difference numbers},
+and <M>B=</M>{at least one show a 6}. 
+
+Then <M>P(A) = [[6\times 5][6\times 6]]</M> and <M>P(A\cap B) =
+[[10][6\times 6]],</M> because <M>A\cap B=</M>{(1,6),...,(5,6)}\cup{(6,1),...,(6,5)}.</ANS>
+</EXR>
+
+::<EXR>If two fair dice are rolled, what is the conditional
+probability that the first one shows 6 given that the sum
+of the outcomes of the dice is <M>i?</M> Compute for all possible
+values
+of <M>i.</M>
+<ANS><M>0</M> for <M>i=2,...,6.</M> Then, for <M>i=7,...,12</M>
+the conditional probability is <M>[[1][13-i]].</M></ANS>
+</EXR>
+
+::<EXR>Here is part of a Ludo board. 
+<CIMG web="ludo1.png"/>
+What is the probability that
+the counter will arive at 10 in exactly two moves? Assume that
+the die shows <M>i</M> with probability <M>p_i</M>
+for <M>i=1,...,6.</M> Let <M>T_{15\times15}</M> be a matrix
+with <M>(i,j)</M>-th entry <M>p_{j-i}</M>
+whenever <M>j-i\in\{1,...,6\}</M> and 0 else. Show that the probability that the counter
+arrives at 14 (starting from 1) in exactly 3 moves equals
+the <M>(1,14)</M>-th entry of <M>T^3.</M>
+<ANS><M>p_4p_6 + p_5p_5+p_6p_4.</M></ANS>
+</EXR>
+
+::<EXR>Let <M>A_{n\times n} = ((p_{ij}))</M> be a matrix where
+each <M>p_{ij}\geq 0</M> and for each <M>i</M> we have <M>\sum_j
+p_{ij}=1.</M> (Such a matrix is called a <B>stochastic</B> matrix.)
+We have a ludo board with <M>n</M> positions:
+ <CIMG web="ludo2.png"/>
+The matrix governs the random motion of a counter jumping back
+and forth over this board  in the following way: 
+If the
+counter is at <M>i</M> then it moves to <M>j</M> with
+probability <M>p_{ij}.</M> (If <M>i=j,</M>  then the counter stays put.) 
+All moves are independent. Show that the
+probability of the counter moving from <M>i</M> to <M>j</M> in
+exactly <M>k</M> moves is the <M>(i,j)</M>-th entry of the matrix <M>A^k.</M>
+
+<ANS>Use induction on <M>k</M>. Let <M>b_{ij}</M>  be the probability that we move from <M>i</M> 
+ to <M>j</M>  in exactly <M>k-1</M>  steps. Then the theorem of total probability implies that the
+ probability of moving from <M>i</M>  to <M>j</M>  in exactly <M>k</M>  steps is 
+<D>c_{j} = \sum_{r=1}^n b_{ir}a_{rj}.</D>
+In other words, if you construct the matrices <M>B</M>  and <M>C,</M>  you have
+<D>C = BA.</D>
+The basis of induction is for <M>k=1.</M>  
+
+By induction hypothesis <M>B = A^{k-1}.</M>  So the induction step is 
+<M>C = A^{k-1}A = A^k.</M>
+</ANS>
+</EXR>
+
+::<EXR>
+We have <M>N+1</M> urns, labelled <M>0,1,...,N.</M> The urn with
+label <M>k</M> contains <M>k</M> red and <M>N-k</M> green
+balls. One urn is selected at random, and an SRSWR of
+size <M>n</M> is drawn. All the <M>n</M> balls are found to be
+red. One more ball is drawn from the same urn. Find  the
+conditional probability that this ball is also red.
+<ANS><M>[[1^{n+1} + 2^{n+1} +\cdots + N^{n+1}][N(1^n + 2^n +\cdots + N^n)]].</M>
+</ANS>
+</EXR>
+
+::<EXR><CIMG web="rosscond1.png"/>
+<ANS><M>[[6\times5\times9\times8][15\times14\times13\times12]].</M>  </ANS>
+</EXR>
+::<EXR><CIMG web="rosscond2.png"/>
+<ANS>
+WOR: <M>P(</M> exactly 3 white<M>)=[[4\times4\times8\times7\times6][12\times11\times10\times9]].</M>
+
+<M>P(</M> exactly 3 white and 1st,3rd white<M>)=[[2\times4\times8\times7\times6][12\times11\times10\times9]].</M>
+
+So the required conditional probability is <M>[[12]].</M>
+
+WR: <M>P(</M> exactly 3 white<M>)=[[4\times4\times8^3][12^4]].</M>
+
+<M>P(</M> exactly 3 white and 1st,3rd white<M>)=[[2\times4\times8^3][12^4]].</M>
+
+So the required conditional probability is again <M>[[12]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond3.png"/>
+<ANS>Model this as: toss a fair coin twice. Given that at least one is a head, what is the
+ conditional probability that the other is a tail? 
+
+Answer is <M>[[23]]/[[34]]=[[23]].
+</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond4.png"/>
+<ANS><M>[[12]].</M></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond5.png"/>
+<ANS><M>P(</M> exactly 2 white<M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]+
+[[23]]\times[[23]]\times[[14]]=[[11][36]]</M></ANS>
+
+<M>P(</M> exactly 2 white and white from <M>A</M><M>)=[[13]]\times[[23]]\times[[34]]+[[13]]\times[[13]]\times[[14]]=[[7][36]].</M>
+
+So the required conditional probability is <M>[[7][11]].</M> 
+</EXR>
+::<EXR><CIMG web="rosscond6.png"/>
+<ANS><M>P(</M> 2nd and 3rd cards spades<M>)=[[13\times12][52\times51]].</M>
+
+<M>P(</M> All three spades<M>)=[[13\times12\times11][52\times51\times50]].</M>
+
+Hence the required probability is <M>[[11][50]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond7.png"/>
+<ANS>
+Let <M>A=</M>  event that a randomly selected woman has ectopic pregnancy.
+
+Let <M>B=</M>  she is a smoker. 
+
+Given <M>P(A|B) = 2P(A|B^c) =2b</M>, say, where <M>b>0.</M>  and <M>P(B) = 0.32.</M>  
+
+Use Bayes theorem to get 
+<D>P(B|A) = [[0.32\times2b][0.32\times2b+0.68\times b]]. </D>
+Notice that <M>b>0</M>  cancels out.
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond8.png"/>
+<ANS>
+<CIMG web="csec.png"></CIMG>
+<M>0.85p+0.15\times0.96 = 0.98.</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond9.png"/>
+<ANS>(a) <M>0.36\times0.22.</M>
+
+(b) <M>[[0.36\times0.22][0.36\times0.22+0.30]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond10.png"/>
+<ANS>
+(a) <M>[[0.46\times0.35][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
+
+(b) <M>[[0.3\times0.62][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
+
+(c) <M>[[0.24\times0.58][0.46\times0.35+0.3\times0.62+0.24\times0.58]].</M>
+
+(d) <M>0.46\times0.35+0.3\times0.62+0.24\times0.58.</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond11.png"/>
+<ANS>(a) <M>[[25]].</M>  (b) <M>[[2][52]].</M></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond12.png"/>
+<ANS>Can be done directly by counting. Or stepwise using conditional probability. The event is
+ "Each of the fours hands has exactly one ace". 
+
+<B>Direct counting:</B>  <UL><LI>Order the four aces: 4! ways</LI>
+<LI>Order the non-aces: 48! ways.</LI>
+<LI>Place the first ace among the first 12 non-aces: 13 ways.</LI>
+<LI>Place the second ace among the next 12 non-aces: 13 ways.</LI>
+<LI>Place the third ace among the next 12 non-aces: 13 ways.</LI>
+<LI>Place the fourth ace among the last 12 non-aces: 13 ways.</LI>
+</UL> 
+Total number of ways: <M>4!\times48!\times 13^4.</M>
+
+<M>|\Omega| = 52!.</M>  So the reqired probability is <M>[[4!\times48!\times 13^4][52!]].</M>
+
+<B>Using conditional probability:</B>
+<M>P(E_1E_2E_3E_4) = P(E_1)P(E_2|E_1)P(E_3|E_1E_2)P(E_4|E_1E_2E_3).</M>
+
+Now <M>P(E_1) = [[4\times (48\times 47\times\cdots\times(48-12+1)][52\times\times 51\times\cdots\times (52-13+1)]].</M>
+
+Now <M>P(E_2|E_1)</M> is similar except that now we start with a deck of 39 cards among which exactly 3 are aces. 
+
+Similarly for the other two conditional probabilities. The last conditional probability is of course 1.  
+</ANS>
+</EXR>
+
+::<EXR><CIMG web="rosscond13.png"/>
+<ANS>Let <M>B_i=</M> the event that <M>i</M>-th draw gives black. Similarly for <M>W_i.</M>  Then
+ in (a) we want <M>P(B_1B_2W_3W_4)=P(B_1)P(B_2|B_1)P(W_3|B_1B_2)P(W_4|B_1B_2W_3).</M>
+
+Here <M>P(B_1) = [[7][5+7]].</M>  Also <M>P(B_2|B_1) = [[9][5+9]]</M>, <M>P(W_3|B_1B_2) = [[5][5+11]]</M>  and <M>P(W_4|B_1B_2W_3) = [[7][7+11]].</M>
+
+In (b) the black balls could occur in <M>{4 \choose 2} = 6</M> ways among the 4 draws. The probability of each of these 6
+ cases is the same as that in (a). So the answer is 6 times that of (a).
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond14.png"/>
+<ANS>
+(a) <CIMG web="urns.png"><M>[[26]]\times[[23]]+[[46]]\times[[13]]</M></CIMG>
+
+(b) Focus only on the upper path in the diagram above: <M>[[ [[2][6]]\times[[2][3]] ][ [[2][6]]\times[[2][3]]+[[4][6]]\times[[1][3]] ]]</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond15.png"/>
+<ANS>The first is more likely to give an over estimate, since employees in larger car pools are
+ more likely to be selected. The second is better.</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond16.png"/>
+<ANS>Let <M>\Omega=</M> all the ways the deck may be ordered. Then <M>|\Omega|=52!</M>  and we
+ assume that all these are equally likely.  
+
+Let <M>A=</M> the event that the first 19 are non aces and the 20-th is an ace.
+
+Let <M>B=</M> the event that the 21-st is the ace of spades.
+
+Let <M>C=</M> the event that the 21-st is the two of clubs.
+
+To find <M>P(B|A)=[[P(A\cap B)][P(A)]]</M>  and <M>P(C|A)=[[P(A\cap C)][P(A)]].</M>
+
+Here <M>|A|=4\times 48\times\cdots\times(48-19+1)</M>, 
+
+<M>|A\cap B| = 1\times 3\times
+ 48\times\cdots\times(48-19+1)</M>  and 
+<M>|A\cap C| = 1\times 4\times 48\times\cdots\times(48-19+1).</M>
+
+[Corrected a mistake pointed out by Arnab Nayak.]
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond17.png"/>
+<ANS><CIMG web="ballex.png">Label the arrows with probabilities and use total theorem of probability</CIMG></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond18.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond19.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond20.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond21.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond22.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond23.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond24.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond25.png"/>
+<ANS></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond26.png"/>
+<ANS><M>[[5][1+2+\cdots+10]].</M></ANS>
+</EXR>
+::<EXR><CIMG web="rosscond27.png"/>
+<ANS>
+Let <M>A</M>  be any sequence of distinct  cards
+ other than the ace of spades.  Then by a strategy we mean any subset <M>B\seq A</M> such that no
+  element of <M>B</M>  occurs as a prefix in another distinct element. 
+ The interpretation is that we say "next" after sequence of cards seen so far matches some element of <M>B.</M>  
+
+Now use the hint given. 
+
+Another technique (possibly an easier one) is to consider the deck as made of one ace of spade and
+ 51 identical dummy cards.  
+</ANS>
+
+</EXR>
+::<EXR><CIMG web="rosscond28.png"/>
+<ANS>9.</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond29.png"/>
+In other words, we have a random experiment that can output <M>1,2,...,m</M>  with probabilities
+ <M>p_1,...,p_m.</M>  The experiment is run <M>n</M>  times. What is the chance that the last
+ outcome is different from all the earlier ones? 
+<ANS>
+Let <M>A</M>  be this event. Let <M>B_i</M>  be the event that the last coupon is of type <M>i.</M>  
+
+Then <M>P(A) = \sum_{i=1}^m P(B_i)P(A|B_i).</M>
+
+Now <M>P(B_i) = p_i.</M>  Also <M>A\cap B_i</M>  is the event that the <M>i</M>-th coupon does not show up among the first
+ <M>n-1</M>  draws, but shows up at the <M>n</M>-th draw. So <M>P(A\cap B_i) = (1-p_i)^{n-1} p_i.</M>  
+
+So <M>P(A|B_i) = [[P(A\cap B_i)][P(B_i)]] = (1-p_i)^{n-1}.</M>
+
+Hence <M>P(A) = \sum_{i=1}^m p_i (1-p_i)^{n-1}.</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond30.png"/>
+<ANS>
+(a) <M>2p(1-p).</M>
+
+(b) <M>\binom{3}{1}p^2(1-p),</M>  because there are three such paths:
+<CIMG web="asym.png"></CIMG>
+
+(c) <M>[[23]],</M>  because out of the 3 (equally likely) outcomes, we are caring about only the first 2 here.
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond31.png"/>
+<ANS>
+(a) The procedure may be modelled by this random experiment: toss the coin
+twice, report "Head" if the outcome is HT, report "Tail" if the outcome is TH, and report
+ "Failure" otherwise. Then we are to show that the conditional probability that the outcome is
+ "Head" given that it is not "Failure" is <M>[[12]].</M>  
+i.e., 
+<MULTILINE>& & P(Head|\mbox{not }Failure)\\
+& = & [[P(Head \cap \mbox{not }Failure)][P(\mbox{not }Failure]]\\
+& = & [[P(HT)][P(HT)+P(TH)]]\\
+& = & [[p(1-p)][p(1-p)+p(1-p)]] = [[12]],
+</MULTILINE>
+as required.
+
+(b) The "simpler" procedure reports "Head" if the original outcome
+is <M>TH, TTH, TTTH,...</M>  
+
+The probability is 
+<D>(1-p)p + (1-p)^2p + (1-p)^3p+\cdots= (1-p)p \times [[1][1-(1-p)]] = 1-p,</D>
+which may not equal <M>[[12]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="rosscond32.png"/>
+<ANS>You may either list all the paths and then compute the
+probability of their union using inclusion-exclusion, or you may
+you conditional probability. In the latter approach, you take
+the switches one by one, and consider the cases when it is on and
+when it is off. This approach is better for complicated circuits.
+</ANS>
+</EXR>
+::<EXR><CIMG web="most9.png"/>
+<ANS>
+<M>A_i=</M> {first throw shows <M>i</M> } for <M>i=2,3,...,12.</M>
+
+Let <M>p_i = P(A_i).</M>  
+
+Then <M>P(win)=\sum_i p_iP(win|A_i).</M>
+
+It is easy to compute <M>p_i</M>'s. Also <M>P(win|A_7) = P(win|A_{11}) = 1</M>  and <M>P(win|A_i) = 0</M>  for <M>i=2,3,12.</M> 
+ 
+For any other <M>i</M>  we have <M>P(win|A_i) = p_i + (1-p_i-p_7)p_i + (1-p_i-p_7)^2p_i + \cdots = [[p_i][p_i+p_7]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="most21.png"/>
+<ANS>Don't replace.</ANS>
+</EXR>
+::<EXR>Let <M>a,b,c\in\nn.</M> Suppose that we start with <M>a</M> red and <M>b</M> green
+balls in an urn. We draw a ball at random, note its colour, replace it, and
+add <M>c</M> more balls of that color. We continue this process
+again and again. What is the probability that at the <M>n</M>-th
+stage the ball drawn will be red? Does the probability depend
+on <M>n?</M>
+<ANS>
+Let <M>X_n</M> be the colour of the <M>n</M>-th ball drawn. Then 
+<M>
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\grn}{\mathrm{green}}
+</M>
+<D>
+P(X_n=\red) = P(X_1=\red)P(X_n=\red|X_1=\red) + P(X_1=\grn)P(X_n=\red|X_1=\grn).
+</D>
+Now <M>P(X_1=\red) = [[a][a+b]]</M> and <M>P(X_1=\grn) = [[b][a+b]].</M>
+<P/>
+Now observe that <M>P(X_n=\red|X_1=\red)</M> is same as the
+probability of getting a red ball at <M>(n-1)</M>-th draw
+starting with the configuration <M>a+c</M> red balls
+plus <M>b</M> green balls.
+<P/>
+By induction hypothesis, this is <M>[[a+c][a+b+c]].</M>
+<P/>
+Similarly, <M>P(X_n=\red|X_1=\grn) = [[a][a+b+c]].</M>
+<P/>
+Now the result follows immediately.
+</ANS>
+</EXR>
+::<EXR>Same set up as in the last problem. Fix two natural
+numbers <M>m < n.</M> What is the probability that the ball
+drawn at stage <M>m</M> is green and the ball drawn at
+stage <M>n</M> is red? Does the answer depend on <M>m</M> and <M>n</M>?
+<ANS>Proceed just as in</ANS>
+</EXR>
+
+<DISQUSE url="https://arnabc74.github.io/prob1_2024/bayes.html" id="bayes"/></E>@}
+</NOTE>

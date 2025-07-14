@@ -1,0 +1,513 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Elementary concepts">Elementary concepts</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Statistical Regularity">Statistical Regularity</a>
+</li>
+<li>
+<a href="#Computer simulation">Computer simulation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#SRSWR">SRSWR</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#SRSWOR">SRSWOR</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Elementary concepts">Elementary concepts</a></h1>
+Toss a coin. You can't be sure whether it will come up head first
+or tail first. Wait, is that true? After all, the coin is
+governed by the laws of physics. So if you know its initial
+position, the force of the toss, friction of the air, the nature
+of the surface where it will land,  etc etc,
+then you <i>should</i> know exactly what it going to
+happen. Yes! That's what physics tells you. But the truth is that
+in reality we do <i>not</i> have all those pieces of
+information. <table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">A magician-turned-mathematician named <a href="refs/headswithJ.pdf">Persi Diaconis</a> has so much control on
+his fingers, that he can make the coin come up whichever way he
+likes! He once constructed a mechanical coin
+tossing machine that could be controlled to produce any desired
+outcome!</td>
+</tr>
+</table> So we say that the outcome of the coin toss
+is <i>random</i>. The adjective random actually is not a property
+of of the outcome, it is more about <i>our</i> ignorance behind
+the procedure generating it.
+<p></p>
+Probability theory is the branch of science dealing with
+randomness. Just as biology is the branch of science dealing with
+living form, and chemistry is the branch dealing with materials
+things are made of. 
+<p></p>
+But there is a great conceptual difference between traditional
+branches like biology and chemistry, and probability theory. The
+aims of those branches are clear even to a layman. But what
+exactly do we mean when we say that we study randomness? The
+answer is not at all obvious! 
+<p></p>
+Let's do a little experiment to get an idea. 
+<p></p>
+
+<p></p>
+We take four pieces of paper and write the following formulae
+on them:
+<ol type="">
+
+<li>
+$X_{new} = 0.8 X_{old}+0.1$
+<p></p>
+$Y_{new} = 0.8 Y_{old}+0.04$
+</li>
+
+<li>
+$X_{new} = 0.5 X_{old}+0.25$
+<p></p>
+$Y_{new} = 0.5 Y_{old}+0.4$
+</li>
+
+<li>
+$X_{new} = 0.355 X_{old}-0.355Y_{old}+0.266$
+<p></p>
+$Y_{new} = 0.355 X_{old}+0.355 Y_{old}+0.078$
+</li>
+
+<li>
+$X_{new} = 0.355 X_{old}+0.355Y_{old}+0.378$
+<p></p>
+$Y_{new} = -0.355 X_{old}+0.355 Y_{old}+0.434$
+</li>
+
+</ol>
+These are all formulae to compute two numbers, $X_{new}$
+and $Y_{new}$ from two other numbers $X_{old}$
+and $Y_{old}.$ 
+<p></p>
+We shall play a game of Ludo with these! The Ludo board will be
+${\mathbb R}^2,$ and the counter will be a single point, which is
+initially at $(X,Y)=(0,0).$ Draw one of the four pieces of
+paper at random and apply the formula on it to compute the new
+position of the counter. Keep on doing this. A every step you are
+drawing one of the four papers at random (same paper may get
+picked many times). All the counter positions are marked as
+dots.
+<p></p>
+So after you have played this game for, say, 10000 times, you
+have as many dots on the paper. What will these dots look like? A
+random jumble? A circle? A line? or what?
+<p></p>
+Play this game <i>now</i> by clicking <a href="https://arnab-chakraborty.shinyapps.io/shny">here</a>. 
+<p></p>
+
+<p></p>
+You'll be surprised by the outcome. Somehow all the randomness
+has vanished, and a very regular pattern has emerged!
+<p></p>
+How? Will this always happen? What if I change those formulae? 
+<p></p>
+These are the questions that probability theory wants to answer.
+<p></p>
+This "regular pattern out of randomness" phenomenon has a
+name. It is called <b>Statistical Regularity</b>.
+<p></p>
+
+<h2><a
+name="Statistical Regularity">Statistical Regularity</a></h2>
+Statistical regularity is different from mathematical patterns in
+the sense that it is rarely exactly replicated, it is extremely
+similar but not the same. We see this all around us. Our finger
+prints, for example, or the leaves on a tree. Statistical
+regularity is like a mysterious black box which takes random
+unpredictable input and somehow digests the randomness to produce
+regular output. No doubt, if we can master this technique then it
+should help the predictable output from unpredictable inputs!
+The quite predictable profit of the Casino owner or insurance
+companies are examples.
+<p></p>
+
+<p></p>
+Statistical regularity takes many forms, some
+more dramatic, some less.  The simplest occurrence of the
+phenomenon was first proved mathematically by Jakob 
+Bernoulli. We shall learn it in this course. The theorem and its proof will hardly fill a page
+completely. But it took 25 years to figure out how to tackle
+randomness using mathematics to arrive at the proof!
+<p></p>
+Welcome to the world of probability!
+<p></p>
+
+<h1><a
+name="Computer simulation">Computer simulation</a></h1>
+Random experiments sit at the heart of probability theory. The
+theory actually tries to predict what you are going to see if you
+repeat a random experiment a <i>large</i> number of
+times. Unfortunately, even a simple random experiment like a coin
+toss is difficult to be repeated many times by hand. So we shall
+use a computer to carry out a random experiment. We shall use a software
+called R, which is particularly easy to use for this
+purpose. Also, it is free and easy to install. You can even run
+it on the cloud from your smart phone without installing
+anything!
+<h2><a
+name="SRSWR">SRSWR</a></h2>
+Consider a fair die roll. It is like randomly drawing one out of 6 pieces of paper
+with 1,2,...,6 written on them. Since you give each piece an
+equal chance, we call it <b>simple random sampling (SRS)</b>. The
+R code for this is 
+<font color="red">
+<pre>
+sample(6,1)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+sample(6,1)
+`));"/>
+The first 6 refers to the number of pieces of paper (R
+automatically labells them with 1,...,6), and the 1 tells R to
+select only one paper.
+<p></p>
+Repeat the same command once again to roll the die once more
+(you'll possiby get a different outcome). Of course, it is
+tedious to repeat the command 100 times to roll the die 100 times.
+So we use <b>simple random
+sampling with replacement (SRSWR)</b>. It is 
+like drawing 100 
+random pieces of paper from those 6 pieces  <i>each drawn paper
+being replaced before the next draw.</i>
+In this way you can roll
+the die any number of times. The R code is 
+<font color="red">
+<pre>
+sample(6,100,replace=TRUE)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+sample(6,100,replace=TRUE)
+`));"/>
+By the way, R is case-sensitive, so the <font size="+1" color="red"><code>TRUE</code></font> must be
+in capitals. This may be abbreviated to 
+<font color="red">
+<pre>
+sample(6,100,rep=T)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+sample(6,100,rep=T)
+`));"/>
+Toissing a coin is similar, except that we have only two pieces
+of paper:
+<p></p>
+
+<font color="red">
+<pre>
+sample(2,100,rep=T)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+sample(2,100,rep=T)
+`));"/>
+Here instead of Heads and Tails you get 1's and 2's. You can tell
+R explicitly to use the labels "H" and "T" as follows.
+<font color="red">
+<pre>
+sample( c('H', 'T'), 100, rep=T)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+sample( c('H', 'T'), 100, rep=T)
+`));"/>
+Note the <font size="+1" color="red"><code>c(...)</code></font>. That is R's way of making an array
+of things. Here the things are the two labels "H" and "T". Note
+the quotes around them. <font size="+1" color="red"><code>"T"</code></font>, for example, is just a
+label, which is different from <font size="+1" color="red"><code>T</code></font>, an abbreviation
+for <font size="+1" color="red"><code>TRUE</code></font>. 
+<p></p>
+Now you can see some statistical regularity at work. Toss a coin,
+say 1000 times, and plot the cumulative proportion of
+heads. Let's understand what I mean with a small example, say 5
+tosses. If the outcomes are H, T, T, H, H, then the cumulative
+proportions are $1,\frac 12,\frac 13,\frac 24,\frac 35.$ It is
+always (no. of H's so far)/(no. of tosses so far). We shall plot
+these five proportions against (no. of tosses so far). The R
+command is
+<font color="red">
+<pre>
+outcomes = sample(c('H','T'),1000,rep=T)
+heads.so.far = cumsum(outcomes == 'H')
+tosses.so.far = 1:1000
+prop = heads.so.far/tosses.so.far
+plot(prop, type='l')
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+outcomes = sample(c('H','T'),1000,rep=T)
+heads.so.far = cumsum(outcomes == 'H')
+tosses.so.far = 1:1000
+prop = heads.so.far/tosses.so.far
+plot(prop, type='l')
+`));"/>
+Explanation of the code:
+<ul>
+
+<li>Here <font size="+1" color="red"><code>outcomes == "H"</code></font> checks which outcomes
+are "H" and creates an array of 1 (yes) and 0 (no). </li>
+
+<li>
+<font size="+1" color="red"><code>cumsum</code></font> finds cumultative sums. 
+</li>
+
+<li>
+<font size="+1" color="red"><code>1:1000</code></font> is just the array 1,2,...,1000. </li>
+
+<li>
+<font size="+1" color="red"><code>plot</code></font> makes a plot. The <font size="+1" color="red"><code>type="l"</code></font>
+tells it to make a line plot.</li> 
+
+</ul>
+Notice how the line (which is random) jumps around a lot
+initially, but eventually stabilises and seems to approach a
+fixed value. Run the same code a number of times to see how the
+initial part changes drastically from run to run, but the final
+stable section remains unperturbed. 
+<p></p>
+
+<h2><a
+name="SRSWOR">SRSWOR</a></h2>
+Another popular random experiment is picking a number of cards at
+random from a deck of cards. <table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">A standard deck of playing
+cards consists of 52 cards. There are 4 <i>suits</i>
+(spade <img width="20" align="" src="image/spade.png">
+diamond <img width="20" align="" src="image/diamond.png">, heart
+<img width="20" align="" src="image/heart.png"> and club <img width="20" align="" src="image/club.png">). There are 13 denominations under each suit: 2,...,10,
+Jack, Queen, King and Ace. The cards of the three denominations
+Jack, Queen and King are called picture cards.</td>
+</tr>
+</table>
+Suppose that we want to pick 5 random cards from a deck. We can
+do this as
+<font color="red">
+<pre>
+sample(52,5).
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+sample(52,5).
+`));"/>
+<p></p>
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+The following problems will help you to enjoy the course
+better. However, no coding problem will be asked in the exams.
+<ol type="">
+
+<li>Simulate a Europian Roullette wheel. It is wheel with the
+numbers 0,1,...,38 written along the circumference. The wheel is
+spun and ball is dropped on it. When the wheel stops spinning the
+ball is at one of the numbers randomly.
+ </li>
+
+<li>Roll a fair die 5000 times. Make a line plot showing the
+running proportions of 6.</li>
+
+<li>Suggest how you can shuffle a deck of 52 cards using R. </li>
+
+<li>A slot machine consists of three reels (rings showing the
+numbers 0,1,...,9). When it is activated by pulling a handle the
+reels start turning randomly in different/same directions and
+stop at random positions. One digit of each reel is visible
+through a window. Simulate this in R.</li>
+
+</ol>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/prob1_2024/elem.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "elem"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

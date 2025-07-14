@@ -1,0 +1,685 @@
+<NOTE>
+@{<E>
+<HEAD1>Infinite sample space</HEAD1>
+<HEAD2>Geometric distribution</HEAD2>
+<B>Notation:</B> <B>Geom</B><M>(\theta),</M> where <M>0 < \theta <1.</M>
+<P/>
+<B>Sample space:</B> {1,2,3,...}.
+<P/>
+<B>PMF:</B> 
+<D>
+P(X=x) = <CASES>
+            (1-\theta)^{x-1}\theta <IF>x=1,2,3,...</IF>
+            0 <ELSE/>
+         </CASES>
+</D>
+<B>Terminology:</B> Such an <M>X</M> is said to have (or follow) <B>Geom</B><M>(\theta)</M>
+distribution. We also say that <M>X</M> is a <B>Geom</B><M>(\theta)</M> random
+variable, and write <M>X\sim</M><B>Geom</B><M>(\theta).</M>
+<P/>
+<FNOTE>Some people (including those who created the R software)
+use a slightly different convention. For them the number
+of '<M>0</M>'s preceding the first '<M>1</M>' is a Geometric
+random variable.</FNOTE>
+<RC>
+barplot(dgeom(0:10, prob=0.5))
+</RC>
+<P/>
+
+In R each distribution has a short name. It is <CODE>geom</CODE>
+for the Geometric distribution. For each distribution there are 4
+functions in R: these are formed by appending the
+prefixes <CODE>d</CODE>, <CODE>p</CODE>, <CODE>q</CODE>
+and <CODE>r</CODE> before the short name. The <CODE>d</CODE>
+prefix gives the PMF, e.g., <CODE>dgeom</CODE>. The
+prefix <CODE>p</CODE> gives the CDF,
+e.g., <CODE>pgeom</CODE>. The prefix <CODE>q</CODE> gives the
+"inverse" of the CDF, also called the <B>quantile</B>
+function. Finally, the <CODE>r</CODE> prefix generates random
+number from the distribution. 
+<RC>
+data = rgeom(1000, prob=0.5)
+table(data)
+barplot(table(data))
+</RC>
+
+<P/>
+<B>Where used:</B> Suppose that we have a <B>Bern</B><M>(\theta)</M> 
+random experiment. Let us perform the experiment again and again
+independently until we obtain the first `1'. Then count the total
+number of
+experiments you have done (among these all but the last one have produced 
+outcome `0'.) The total number of experiments performed is a random
+variable with <B>Geom</B><M>(\theta)</M> distribution.  
+<P/>
+Let us derive the PMF using the above description. Suppose that we
+have a coin with <M>P(head)=\theta.</M> We keep on tossing it until we get
+the first head. Suppose that the first head comes at the <M>x</M>-th
+toss. Then the first <M>x-1</M> tosses are all tails:
+<D>
+\underbrace{TT\cdots TT}_{x-1}H
+</D>
+Each of these tails occurs with probability <M>(1-\theta)</M> and the
+final head occurs with probability <M>\theta.</M> So the
+probability of
+having the first head at the <M>x</M>-th toss is
+<D>
+\underbrace{(1-\theta)\times\cdots\times(1-\theta)}_{x-1}\times \theta
+ = (1-\theta)^{x-1} \theta, 
+</D>
+which is the <B>Geom</B><M>(\theta)</M> PMF
+<P/>
+<EXM>
+If <M>X\sim</M><B>Geom</B><M>(0.3),</M> find <M>P(X>2).</M>
+<SOLN/> 
+<MULTILINE>
+P(X>2) &=& 1-P(X\leq 2)\\
+       &=& 1-\left(P(X=1) + P(X=2)\right)\\
+       &=& 1-(1-0.3)^{1-1}0.3 - (1-0.3)^{2-1}0.3\\
+       &=& 1-0.3-0.21 = 0.49.
+</MULTILINE>
+</EXM>
+<P/>
+<EXR ref="geo1">
+If <M>G</M> is a <B>Geom</B><M>(0.2)</M> random variable, then compute the
+following probabilities.
+<FL><LI><M>P(G=3)</M>
+</LI><LI><M>P(G=0)</M>
+</LI><LI><M>P(G=1)</M>
+</LI><LI><M>P(G\leq 3)</M>
+</LI><LI><M>P(G>3)</M>
+</LI></FL>
+</EXR><ANS ref="geo1"><FL><LI><M>0.128</M>
+</LI><LI><M>0</M>
+</LI><LI><M>0.2</M>
+</LI><LI><M>0.488</M>
+</LI><LI><M>1-0.488=0.512.</M>
+</LI></FL></ANS>
+<P/>
+
+<EXR ref="geo2">
+Find <M>P(T\mbox{ is even})</M> where <M>T\sim</M><B>Geom</B><M>(0.4).</M> 
+</EXR><ANS ref="geo2"><M>\frac{1-\theta}{2-\theta}.</M></ANS>
+<HINT ref="geo2"> You will need the geometric series here.
+<MULTILINE>P(X\mbox{ is even})&=& P(X=2)+P(X=4)+\cdots\\
+                   &=&(1-\theta)\theta +(1-\theta)^3 \theta+
+                              (1-\theta)^5 \theta+\cdots\\
+                   &=& \theta(1-\theta)\left[
+1+(1-\theta)^2 + (1-\theta)^4+\cdots\right].
+</MULTILINE></HINT>
+
+<EXM>
+Some versions of Ludo require you to get a `6' on the die before your
+counter can move. Sometimes it takes frustratingly long time before you
+finally roll a `6'. Let <M>X</M> denote the number of rolls required to
+get the first `6'. If we assume the die is fair (i.e., each side has
+probability 1/6 of turning up), then what is the distribution of <M>X?</M>
+<P/>
+<SOLN/> <M>X</M> is a <B>Geom</B>(1/6) random variable. 
+</EXM>
+<P/>
+<EXR ref="geo3">
+In the above example compute the probability of getting the first `6' within
+the first 3 rolls. 
+</EXR><ANS ref="geo3"><M>\frac{91}{216}</M></ANS>
+<P/>
+<EXR ref="geo4">
+Some couples are so keen about having a son that they go on producing
+babies until they get their first son, and then they stop having children. 
+ Assume that at each birth a baby of
+either gender is equally likely. Also assume that the births are
+independent. Compute the probability that such a  couple has exactly 2
+daughters. 
+</EXR><ANS ref="geo4"><M>\frac18</M></ANS>
+<HINT ref="geo4">
+Let <M>D</M> denote the number of daughters. Then notice that 
+<M>D+1</M>
+is a <B>Geom</B>(0.5) random variable.
+</HINT>
+<B>Expectation and variance:</B> If <M>X</M> is a <B>Geom</B><M>(\theta)</M>
+random variable, then
+<MULTILINE>
+E(X)& =& 1/\theta\\Var(X)& =& (1-\theta)/\theta^2.
+</MULTILINE>
+<P/>
+<MULTILINE>
+E(X) &=& \sum_{x=1}^\infty x(1-\theta)^{x-1}\theta\\
+     &=& \theta \sum_{x=1}^\infty x(1-\theta)^{x-1}\\
+     &=& \theta\cdot\frac1{(1-(1-\theta))^2}\\
+     &=& \frac{\theta}{\theta^2} = \frac1{\theta}
+</MULTILINE>
+<MULTILINE>
+E(X(X-1)) &=& \sum_{x=1}^\infty x(x-1)P(X=x) \\
+          &=& \sum_{x=1}^\infty x(x-1)(1-\theta)^{x-1}\theta 
+</MULTILINE>
+The term corresponding to `<M>x=1</M>' is zero. So we can as well start
+     the sum from <M>x=2.</M>
+<MULTILINE>
+\sum_{x=1}^\infty x(x-1)(1-\theta)^{x-1}\theta 
+	  &=& \sum_{x=2}^\infty x(x-1)(1-\theta)^{x-1}\theta \\
+	  &=& \theta(1-\theta)\sum_{x=2}^\infty x(x-1)(1-\theta)^{x-2} \\
+	  &=& \theta(1-\theta)\frac2{(1-(1-\theta))^3}\\
+	  &=& \frac{2\theta(1-\theta)}{\theta^3} \\
+	  &=& \frac{2(1-\theta)}{\theta^2}
+</MULTILINE>
+<P/>
+<MULTILINE>
+E(X^2) &=& E(X(X-1)) + E(X) \\
+       &=& \frac{2(1-\theta)}{\theta^2} + \frac1{\theta} \\
+       &=& \frac2{\theta^2} - \frac1{\theta}
+</MULTILINE>
+<P/>
+<MULTILINE>
+Var(X) &=& E(X^2) - (E(X))^2 \\
+       &=& \frac2{\theta^2} - \frac1\theta - \left(\frac1\theta\right)^2\\
+       &=& \frac{1-\theta}{\theta^2}
+</MULTILINE>
+<P/>
+<EXR ref="geoxv1">
+Find the mean and standard deviation of a <B>Geom</B><M>(\theta)</M> random
+variable for the following values of <M>\theta.</M>
+<FL><LI><M>\theta = \frac34.</M>
+</LI><LI><M>\theta = \frac59.</M>
+</LI><LI><M>\theta = \frac89.</M>
+</LI></FL>
+</EXR>
+<ANS ref="geoxv1"><FL><LI><M>\frac43,\frac23.</M>
+</LI><LI><M>\frac95,\frac65.</M>
+</LI><LI><M>\frac98 \frac38.</M>
+</LI></FL></ANS>
+<P/>
+<EXM>
+When a computer tries to connect to another computer, it
+ sends a connection request to the second. Depending on how busy the
+ second computer is, this request may be honoured (and so the connection is
+ established) or refused (hence connection is not established.) In the
+ latter case, the first computer waits for some time, and sends the
+ same request again. In this way the first computer keeps on trying until
+ connection is established. If the attempts are independent and if the
+ probability of a refusal at each attempt is 0.2, then what is the
+ expected number of attempts?
+<P/>
+<SOLN/> If <M>X</M> denotes the number of attempts required then <M>X</M> is a
+<B>Geom</B><M>(0.8)</M> random variable. So 
+<D>
+E(X) = 1/0.8 = 1.25
+</D> 
+</EXM>
+<P/>
+<EXR ref="geo5">
+Compute <M>E(D)</M> and <M>Var(D)</M> in the son-daughter exercise above.
+</EXR><ANS ref="geo5"><M>E(D)=2,</M> <M>Var(D)=2.</M></ANS>
+
+<HEAD3>Memoryless property</HEAD3>
+Suppose you pick a random man of 18 years. What is the probability that he would survive for one more year? Let's say it
+ 0.99, since young men do not die too often. Now pick a random man of 80 years. What is the probability that <I>he</I>  would
+ suruve for one more year? Well, now the probability would be consierably lower, say 0.5, as old men have a high risk of
+ death. This is the effect of ageing, i.e., the body remembering the age. Let's write this in probability language. 
+
+Let <M>X</M>  be the life time of a random selected man. Then the two probabilities are  <M>P(X\geq
+ 20+1 | X\geq 20)</M>  and <M>P(X\geq 80+1 | X\geq 80).</M>  We saw that <M>P(X\geq 80+1 | X\geq
+ 80) < P(X\geq 20+1 | X\geq 20).</M>  In fact, if we plot <M>P(X\geq x+1 | X\geq x)</M>  against
+ <M>x</M>  then we shall get a plot like 
+<CIMG web="mem.png"><M>P(X\geq x+1 | X\geq x)</M>  against <M>x</M></CIMG> 
+Is it possible for a random variable <M>X</M>  to have a distribution such that <M>P(X\geq x+1 | X\geq x)</M>  is free of
+ <M>x?</M>  Such a random variable is called <TERM>memoryless</TERM>  in the sense that is cannot
+ remember its age. Here is exact definition:
+<DEFN name="Memoryless">
+A random variable <M>X</M>  is called <TERM>memoryless</TERM>  if for all <M>x</M>  and all
+ <M>a>0</M>  the conditional probability  <M>[[P(X\geq x+a)][P( X\geq
+ x)]]</M>  is free of <M>x</M>  (need not be free of <M>a</M>). 
+</DEFN>
+The lifespans of certain types of
+ electronic components are believed to be memoryless. Such components die only due to sudden random shocks, and not due to
+ ageing. 
+
+The Geometric distributions are all memoryless. The next exercise asks you to prove this.
+
+<EXR>
+Let <M>X\sim Geom(p).</M>  Let <M>x\in\nn</M>  show that <M>P(X\geq x+a | X\geq x)</M>  is free of <M>x.</M>
+<ANS>
+<M>P(X\geq x+a | X\geq x) = [[P(X\geq x+a \& X\geq x)][P( X\geq x)]] = [[P(X\geq x+a)][P( X\geq x)]]</M>
+
+Now <M>P(X\geq x) = \sum_{i\geq x}p^{i-1}p = (1-p)^{x-1}</M>  (check!). 
+
+Hence <M>[[P(X\geq x+1)][P( X\geq x)]] = (1-p)^a,</M>  free of <M>x.</M>
+</ANS>
+</EXR>
+
+What other distributions are there that are also memoryless? Or is Geometric the only case?
+You may like to explore this for integer-valued random variables.
+
+<HEAD2>Negative binomial</HEAD2>
+<B>Notation:</B> <B>NegBin</B><M>(\theta,r),</M> where <M>\theta > 0</M> and
+<M>r</M> is some positive integer.
+<P/>
+<B>Sample space:</B> <M>\{r,r+1,r+2,...\}</M>
+<P/>
+<B>PMF:</B> 
+<D>
+P(X=x) = <CASES>
+            {x-1\choose r-1}\theta^r (1-\theta)^{x-r}<IF><M>x=r,r+1,...</M></IF>
+            0 <ELSE/>
+         </CASES>
+</D>
+<B>Terminology:</B> Such an <M>X</M> is said to have (or follow) <B>NegBin</B><M>(r,\theta)</M>
+distribution. We also say that <M>X</M> is a <B>NegBin</B><M>(r,\theta)</M> random
+variable, and write <M>X\sim</M><B>NegBin</B><M>(r,\theta).</M>
+<P/>
+<B>Where used:</B>
+Suppose that you have a coin with <M>P(head) = \theta.</M> You keep on
+tossing it until you get the first <M>r</M> heads, and then you stop. For
+instance, if <M>r=3,</M> a typical tossing session may be like this:
+<D>
+T,T,H,T,H,T,T,H.
+</D>
+If <M>X</M> denotes the total number of tosses you require, then
+<M>X</M> has <B>NegBin</B>(<M>\theta,r)</M> distribution. In the tossing session
+above there are 8 tosses, so <M>X=8.</M> Note that the 8 tosses could not
+have been 
+<D>
+T,T,H,T,H,T,H,T.
+</D>
+Because, here you have got the third head at your seventh toss, so you
+will not do the eighth toss at all. 
+<P/>
+Let us derive the PMF of negative binomial using an example. We are
+tossing a coin with <M>P(head)=\theta</M> until we get 3 heads. We shall
+find <M>P(X=5),</M> i.e., the probability that the third head comes
+at the fifth toss. This can happen in the following ways:
+<MULTILINE>
+HHTTH&HTHTH&HTTHH\\
+THHTH&THTHH&TTHHH
+</MULTILINE>
+<P/>
+Note that in all these cases the fifth toss is a <M>H,</M> while there are
+exactly <M>3-1=2</M> heads among the first <M>5-1=4</M> tosses. Thus the total number
+of cases is <M>{5-1\choose 3-1} = {4\choose2}=6.</M> Each of these 6 cases has 3 heads and 2
+tails, and hence has probability 
+<D>
+\theta^3(1-\theta)^2.
+</D>  
+So 
+<D>
+P(X=5) = {5-1\choose 3-1}  \theta^3(1-\theta)^2 = 6\theta^3(1-\theta)^2.
+</D>
+<P/>
+<EXR ref="nb1">
+If <M>X</M> follows <B>NegBin</B><M>(3,\frac14)</M> distribution, find the following
+probabilities.
+<FL><LI><M>P(T=5)</M>
+</LI><LI><M>P(T=2)</M>
+</LI><LI><M>P(T=3)</M>
+</LI><LI><M>P(T\leq5)</M>
+</LI></FL>
+</EXR><ANS ref="nb1"><FL><LI><M>\frac{27}{512}</M>
+</LI><LI><M>0</M>
+</LI><LI><M>\frac3{32}</M>
+</LI><LI><M>\frac9{128}</M>
+</LI></FL></ANS>
+<P/>
+<B>Expectation and variance:</B> 
+If <M>X\sim</M><B>NegBin</B><M>(\theta,r),</M> then
+<MULTILINE>
+E(X) & = & \frac{r}{\theta}\\ 
+Var(X) & = & \frac{r(1-\theta)}{\theta^2} 
+</MULTILINE>
+<P/>
+<EXR ref="nbxv1"> <M>Y\sim</M><B>NegBin</B><M>(r,\theta).</M> Compute <M>E(Y)</M> and
+<M>Var(Y)</M> for the following values of <M>r</M> and <M>\theta.</M>
+<FL><LI><M>r=3, \theta=\frac12</M>
+</LI><LI><M>r=2, \theta=\frac15</M>
+</LI><LI><M>r=1, \theta=\frac23</M>
+</LI><LI><M>r=5, \theta=\frac13</M>
+</LI></FL>
+</EXR>
+<ANS ref="nbxv1"><FL><LI><M>6,r=3, \theta=\frac12</M>
+</LI><LI><M>10, 40 r=2.</M>
+</LI><LI><M>\frac32,\frac34.</M>
+</LI><LI><M>15, 30.</M>
+</LI></FL></ANS>
+<P/>
+It should be apparent from the description of the distribution that
+Negative Binomial distribution is related with the Geometric
+distribution. In Geometric distribution we keep on tossing until we get the
+first head, while for the Negative Binomial distribution we toss until the
+first <M>r</M> heads. If <M>r=1</M> then this is same as the Geometric
+distribution. 
+<P/>
+<BOX>
+<B>NegBin</B><M>(\theta,1)</M> is the same as <B>Geom</B><M>(\theta).</M>
+</BOX>
+<P/>
+Here is another connection.
+<P/>
+<BOX>
+If <M>X\sim</M><B>NegBin</B><M>(\theta,r), </M><M>Y\sim</M><B>NegBin</B><M>(\theta,s)</M> and they are
+independent, then 
+<Q>
+<M>X+Y\sim</M><B>NegBin</B><M>(\theta,r+s).</M>
+</Q>
+</BOX>
+<P/>
+<BOX>
+If <M>X_1,...,X_r</M> are independent <B>Geom</B><M>(\theta)</M> random
+variables, then 
+<Q>
+<M>X_1+\cdots+X_r\sim </M><B>NegBin</B><M>(\theta,r)</M>.
+</Q>
+</BOX>
+<EXR ref="nbxv2">
+Using the above result and the mean and variance of
+<B>Geom</B><M>(\theta),</M>
+derive the formula for mean and variance of <B>NegBin</B><M>(r,\theta).</M>
+</EXR>
+<HINT ref="nbxv2">Use the result that <M>E(X_1+\cdots+X_r)=
+E(X_1)+\cdots+E(X_r).</M> Also, since <M>X_1,...,X_r</M> are independent,
+so  <M>Var(X_1+\cdots+X_r)=
+Var(X_1)+\cdots+Var(X_r).</M></HINT>
+<P/>
+It is also possible to derive these directly without using the Geometric
+distribution. The direct proof is more complicated and uses the result 
+<D>
+{x-1\choose r-1} = (-1)^{x-r} {r\choose x-r},
+</D>
+which is proved in the appendix.
+<RC>
+barplot(dnbinom(0:10, size=3, prob=0.5))
+</RC>
+
+<HEAD2>Poisson distribution</HEAD2>
+<B>Notation:</B> <B>Poi</B><M>(\lambda),</M> where <M>\lambda > 0.</M>
+<P/>
+<B>Sample space:</B> \{0,1,2,...\}
+<P/>
+<B>PMF:</B> 
+<D>
+P(X=x) = <CASES>
+            e^{-\lambda}\cdot\frac{\lambda^x}{x!} <IF><M>x=0,1,2,...</M></IF>
+            0 <ELSE/>
+         </CASES>
+</D>
+<B>Terminology:</B> Such an <M>X</M> is said to have (or follow) <B>Poi</B><M>(\lambda)</M>
+distribution. We also say that <M>X</M> is a <B>Poi</B><M>(\lambda)</M> random
+variable, and write <M>X\sim</M><B>Poi</B><M>(\lambda).</M>
+<P/>
+<EXR ref="poi1">
+If <M>X\sim</M><B>Poi</B><M>(3),</M> then find the following probabilities.
+<FL><LI><M>P(X=4)</M>
+</LI><LI><M>P(X=0)</M>
+</LI><LI><M>P(X= -1)</M>
+</LI><LI><M>P(X\leq 3)</M>
+</LI></FL>
+</EXR><ANS ref="poi1"><FL><LI><M>27e^{-3}/8</M>
+</LI><LI><M>e^{-3}</M>
+</LI><LI><M>0</M>
+</LI><LI><M>43e^{-3}/4</M>
+</LI></FL></ANS>
+<P/>
+<EXR ref="poi2">
+What is the probability that a <B>Poi</B><M>(5)</M> random variable is even?
+</EXR><ANS ref="poi2"><M>(e^5+e^{-5})/2</M></ANS>
+<P/>
+<B>Where used:</B> One use of Poisson distribution is in approximating
+Binomial distribution.
+<P/>
+<BOX>
+If <M>n</M> is large and <M>\lambda </M> is small, then
+<B>Bin</B><M>(n,\lambda)</M> is approximately same as <B>Poi</B><M>(\lambda)</M>
+where <M>\lambda  = n \lambda. </M>
+</BOX>
+<P/>
+<EXM>
+<M>X</M> has <B>Bin</B>(1000,0.01) distribution. Compute <M>P(X=5)</M>
+approximately by using Poisson approximation. 
+<P/>
+<SOLN/> Here <M>n=1000</M> and <M>\lambda  = 0.01.</M> So we should take <M>\lambda
+= 1000\times 0.01 = 10.</M> By Poisson approximation, <M>X</M> is
+approximately a <B>Poi</B>(10) random variable. Hence
+<D>
+P(X=5)\approx e^{-10}10^{5}/5! = 0.03783.
+</D>
+It is instructive to compare this with the exact value, which is
+<D>
+P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
+</D>
+</EXM>
+<P/>
+<EXR ref="poi3">
+A box has 100 items, each of which either passes a quality control test
+(OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
+box is rejected by the quality control inspector. It is known that each
+item is OK with probability 0.01, and that the items are independent. Use
+Poisson approximation to compute the probability that a box is not
+rejected.
+</EXR><ANS ref="poi3"><M>1-\frac{8}{3e}</M></ANS>
+<P/>
+<B>Expectation and variance:</B> If <M>X</M> has <B>Poi</B><M>(\lambda)</M>
+distribution then
+<MULTILINE>
+E(X)&=&\lambda\\ Var(X)& =& \lambda.
+</MULTILINE>
+<P/>
+<MULTILINE>
+E(X) &=& \sum_{x=0}^\infty xP(X=x)\\
+     &=& \sum_{x=0}^\infty x\frac{e^{-\lambda}\lambda^x}{x!}\\
+</MULTILINE>
+The term for `<M>x=0</M>' is zero in this sum. So we can drop it to get
+<MULTILINE>
+\sum_{x=0}^\infty x\frac{e^{-\lambda}\lambda^x}{x!}
+     &=& \sum_{x=1}^\infty x\frac{e^{-\lambda}\lambda^x}{x!}\\
+     &=& e^{-\lambda}\sum_{x=1}^\infty x\frac{\lambda^x}{x!}\\
+     &=& e^{-\lambda}\sum_{x=1}^\infty \frac{\lambda^x}{(x-1)!}\\
+</MULTILINE>
+Now put <M>y=x-1.</M>
+<MULTILINE>
+e^{-\lambda}\sum_{x=1}^\infty \frac{\lambda^x}{(x-1)!}
+     &=& e^{-\lambda}\sum_{y=0}^\infty \frac{\lambda^{y+1}}{y!}\\
+     &=& e^{-\lambda}\lambda\sum_{y=0}^\infty \frac{\lambda^{y}}{y!}\\
+     &=& e^{-\lambda}\lambda e^\lambda\\
+     &=& \lambda.
+</MULTILINE>
+<P/>
+<MULTILINE>
+E(X(X-1))&=& \sum_{x=0}^\infty x(x-1)P(X=x)\\      
+         &=& \sum_{x=0}^\infty x(x-1)\frac{e^{-\lambda}\lambda^x}{x!}\\
+</MULTILINE>
+Drop the first two terms (which are both zeroes) to obtain
+<MULTILINE>
+\sum_{x=0}^\infty x(x-1)\frac{e^{-\lambda}\lambda^x}{x!}
+         &=& \sum_{x=2}^\infty x(x-1)\frac{e^{-\lambda}\lambda^x}{x!}\\
+         &=& e^{-\lambda}\sum_{x=2}^\infty x(x-1)\frac{\lambda^x}{x!}\\
+         &=& e^{-\lambda}\sum_{x=2}^\infty \frac{\lambda^x}{(x-2)!}\\
+</MULTILINE>
+Substitute <M>y=x-2</M> to see that
+<MULTILINE>
+e^{-\lambda}\sum_{x=2}^\infty \frac{\lambda^x}{(x-2)!}
+         &=& e^{-\lambda}\sum_{y=0}^\infty \frac{\lambda^{y+2}}{y!}\\
+         &=& e^{-\lambda}\lambda^2\sum_{y=0}^\infty \frac{\lambda^{y}}{y!}\\
+         &=& e^{-\lambda}\lambda^2 e^\lambda\\
+         &=& \lambda^2.\\
+</MULTILINE>
+<P/>
+<MULTILINE>
+E(X^2)   &=& E(X(X-1)+E(X)\\
+         &=& \lambda^2 +\lambda.
+</MULTILINE>
+<P/>
+<MULTILINE>
+Var(X)   &=& E(X^2) - (E(X))^2\\
+         &=& \lambda^2 +\lambda - \lambda^2\\
+         &=& \lambda.
+</MULTILINE>
+<P/>
+<EXR ref="poixv1">
+Find the expected values of the following random variables.
+<FL><LI><M>X\sim</M><B>Poi</B><M>(2).</M>
+</LI><LI><M>Y\sim</M><B>Poi</B><M>(\frac12).</M>
+</LI><LI><M>Z\sim</M><B>Poi</B><M>(2.5).</M>
+</LI></FL>
+</EXR>
+<ANS ref="poixv1"><FL><LI><M>E(X)=2.</M>
+</LI><LI><M>E(Y)=\frac12.</M>
+</LI><LI><M>E(Z)=2.5.</M>
+</LI></FL></ANS>
+<P/>
+<EXR ref="poixv2">
+Find the variance of a <B>Poi</B><M>(\lambda)</M> random variable for the
+following values of <M>\lambda.</M>
+<FL><LI><M>1</M>
+</LI><LI><M>9</M>
+</LI><LI><M>0.01</M>
+</LI></FL>
+</EXR>
+<ANS ref="poixv2"><FL><LI><M>1</M>
+</LI><LI><M>9</M>
+</LI><LI><M>0.01</M>
+</LI></FL></ANS>
+<P/>
+<BOX>
+If <M>X</M> is a <B>Poi</B><M>(\alpha)</M> random variable, <M>Y</M> is a
+<B>Poi</B><M>(\beta)</M> random variable, and <M>X,Y</M> are independent,
+then <M>X+Y</M> is a <B>Poi</B><M>(\alpha+\beta)</M> random variable.
+</BOX>
+<P/>
+<EXR ref="poi4">
+If <M>X_1,X_2,X_3,X_4</M> are independent random variables with
+ distributions <B>Poi</B>(1),<B>Poi</B>(2),<B>Poi</B>(4) and <B>Poi</B>(5),
+ respectively.
+Find the distribution of <M>(X_1+\cdots+X_4).</M>
+</EXR><ANS ref="poi4"><B>Poi</B>(12)</ANS>
+
+<HEAD3>Sum of independent Poissons</HEAD3>
+<THM>
+If <M>X\sim</M><B>Poi</B><M>(\lambda)</M>
+and <M>Y\sim</M><B>Poi</B><M>(\mu)</M> and they are independent,
+then <M>X+Y\sim</M><B>Poi</B><M>(\lambda+\mu)</M>.
+</THM>
+<PF>
+Clearly, <M>X+Y</M> takes non-negative integer values.
+<P/>
+Let <M>k</M> be any such value.
+<P/>
+Then 
+<MULTILINE>
+P(X+Y = k)
+&= & P(*(\cup_0^k \{X=i~\& Y=k-i\})*)\\
+&= & \sum_0^kP( X=i~\& Y=k-i)<SINCE><M>\because</M>
+disjoint</SINCE>\\
+&= & \sum_0^kP( X=i)P(Y=k-i)<SINCE><M>\because</M>
+independent</SINCE>\\
+&= & \sum_0^k [[ e^{-\lambda} \lambda^i][i !]]\times [[e^{-\mu} \mu^{k-i}][(k-i)!]]\\
+&= & \sum_0^k [[ e^{-(\lambda+\mu)}][i! (k-i)!]] \times \lambda^i
+\mu^{k-i}\\
+&= & \sum_0^k [[ e^{-(\lambda+\mu)}][k!]] \times \binom{k}{i}\lambda^i
+\mu^{k-i}\\
+&= &  [[ e^{-(\lambda+\mu)}][k!]] \times \sum_0^k \binom{k}{i}\lambda^i
+\mu^{k-i}\\
+&= &  [[ e^{-(\lambda+\mu)}][k!]] \times (\lambda+\mu)^k,
+</MULTILINE>
+as required.
+</PF>
+<HEAD3>Poisson aproximation to Binomial</HEAD3>
+
+<THM>
+Let <M>\lambda > 0.</M> If <M>n\to\infty</M> and <M>p = [[\lambda n]],</M>
+then for any <M>k\in\{0,1,2,...\}</M> 
+<D>
+\binom{n}{k} p^k (1-p)^{n-k} \to e^{-\lambda} [[\lambda^k][k!]].
+</D>
+</THM>
+<PF>
+Since <M>p = [[ \lambda n]],</M> hence
+<D>
+\binom{n}{k} p^k (1-p)^{n-k}  = [[n! ][k!(n-k)!  ]]\times
+[[\lambda^k][n^k]]\times (*(1-[[\lambda n]] )*)^{n-k}.
+</D>
+Separate out all factors free of <M>n</M> to rewrite this as
+<D>
+[[ \lambda^k][k!]] \times [[ n! ][(n-k)! n^k ]](*(1-[[\lambda n]] )*)^{n-k}.
+</D>
+Now 
+<D>
+(*(1-[[\lambda n]] )*)^{-k}\to 1,
+</D>
+since <M>k</M> is fixed. Also
+and 
+<D>
+(*(1-[[\lambda n]] )*)^n \to e^{-\lambda}.
+</D>
+Finally, since <M>k</M> is fixed, we have
+<D>
+[[ n(n-1)\cdots(n-k+1) ][ n^k ]]\to 1,
+</D>
+completing the proof.
+</PF>
+
+This theorem is often interpreted as: number of rare events follows Poisson distribution. This is
+ more of a myth than anything real. But since it is very popular belief, let me explain how this
+ interpretation arises:
+<Q>
+Consider accidents occuring at a crossing. Everytime two cars come close, there is a chance of an
+ accident. But most of the time an accident  does not occur. So we may think of "two cars coming close" as a "coin toss"
+ and an "accident" as "head". Since accidents are rare, we shall consider <M>P(H)</M>  to be very small. Also at a busy crossing
+ two cars often come close, i.e., the coin is being tossed a large number of times. With this interpretation the nuber of
+ accidents should follow <M>Binom(n,\theta)</M>   distribution with large <M>n</M>  and small <M>\theta.</M>  Hence <M>Poisson(\lambda)</M> 
+ with <M>\lambda=n \theta</M>  should be a good approximation.
+</Q>
+This interpretation is clearly an over-simplification of the situation. However, this myth is fuelled by a well-known (and
+ useless) data set regarding number of deaths of Prussian soldiers  by kicks of their own
+ horses. Here is a <LINK to="horsekick.csv">data set</LINK>. This form os death is pretty rare (thankfully!). If we make
+ a bar plot of the relative frequencies, we get a very good match with a Poisson distribution.
+ 
+<HEAD1>Problems for practice</HEAD1>
+
+<EXR><EIMG web="infdist1.png"/><HR/></EXR>
+<EXR><EIMG web="infdist2.png"/><HR/></EXR>
+<EXR><EIMG web="infdist3.png"/><HR/></EXR>
+<EXR><EIMG web="infdist4.png"/><HR/></EXR>
+<EXR><EIMG web="infdist5.png"/><HR/></EXR>
+<EXR><EIMG web="infdist6.png"/><HR/></EXR>
+<EXR><EIMG web="infdist7.png"/><HR/></EXR>
+<EXR><EIMG web="infdist8.png"/><HR/></EXR>
+<EXR><EIMG web="infdist9.png"/><HR/></EXR>
+<EXR><EIMG web="infdist10.png"/><HR/></EXR>
+<EXR><EIMG web="infdist11.png"/><HR/></EXR>
+<EXR><EIMG web="infdist12.png"/><HR/></EXR>
+<EXR><EIMG web="infdist13.png"/><HR/></EXR>
+<EXR><EIMG web="infdist14.png"/><HR/></EXR>
+<EXR>Show that 
+<D>
+[[\lambda^k][k!]] (*(1-[[\lambda n]])*)^{n-k} 
+\geq
+\binom{n}{k}p^k(1-p)^{n-k} \geq
+[[\lambda^k][k!]] (*(1-[[kn]] )*)^k(*(1-[[\lambda n]])*)^{n-k}, 
+</D>
+where <M>\lambda = np.</M>
+<HR/></EXR>
+<EXR>Use the above inequality to show that 
+<D>
+[[e^{-\lambda}\lambda^k][k!]] e^{k \lambda/n}
+>
+\binom{n}{k}p^k(1-p)^{n-k} 
+>
+[[e^{-\lambda}\lambda^k][k!]] e^{-k^2/(n-k)-\lambda^2/(n-\lambda)}.
+</D>
+<HR/></EXR>
+<EXR>(Banach's matchbox problem)
+A certain mathematician has two matchboxes (containing <M>n</M>
+matches each), one in his left pocket, the other in the
+right. When he needs to light a cigar (smoking which, BTW, is
+injurious to health) he chooses one of the two pockets at random,
+and takes a match from the box in that pocket. (Choices of
+pockets are assumed independent.) One day for the first time he
+discovers that his chosen box is empty. What is the probability
+distribution of the number (<M>X</M>) of matches remaining in 
+the other box? [Hint: To get yourself started first
+find <M>P(X=n).</M> This means he has been using the same
+box <M>n</M> times without ever using the other box.]
+<HR/>
+</EXR>
+
+<P/>
+<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/distrib.html" id="distrib"/>
+</E>@}
+</NOTE>

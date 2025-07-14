@@ -1,0 +1,991 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Random variables">Random variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What they are">What they are</a>
+</li>
+<li>
+<a href="#New random variables from old ones">New random variables from old ones</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Addition, multiplication etc">Addition, multiplication etc</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Functions of a random variable">Functions of a random variable</a>
+</li>
+<li>
+<a href="#Distribution of a random variable">Distribution of a random variable</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#CDF">CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Different types of random variables">Different types of random variables</a>
+</li>
+<li>
+<a href="#PMF">PMF</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1 xmlns=""><a
+name="Random variables">Random variables</a></h1>
+
+<h2><a
+name="What they are">What they are</a></h2>
+Suppose that I toss a fair coin, and offer you Rs 10 for a head,
+and demand $Rs 20$ for a tail. In other words, your gain (in Rs)
+from this deal is $10$ for head and $-20$ for
+tail. Both $10$ and $-20$ are constants, but since you
+do not know which of these two constants you are going to get,
+you gain is a variable. Since it varies with chance, we call it
+a <b>random variable</b>.
+<p></p>
+Think of this as made of two stages. In the first stage we have a random
+ experiment with $\Omega = $
+ {Head, Tail}. In the second stage we have a function
+ $X:\Omega\rightarrow {\mathbb R}$
+defined as 
+$$\begin{eqnarray*}
+X(head) &amp; = &amp; 10,\\
+X(tail) &amp; = &amp; -20.
+\end{eqnarray*}$$
+There is nothing random about this <i>function</i>. The randomness comes
+from the mechanism that decides what goes <i>into</i> this: head or tail?
+<p></p>
+We use this idea to define random variables mathematically. We
+start with a random experiment which is the provider of the
+randomness. Then any (real valued) function defined on its sample space is
+called a random variable. In probability theory, it is the function
+(which is not at all random) that is called the random
+variable. Thus, if in the above coin toss example, we replace the
+fair coin with a biased coin, but keep the payment rules the
+same, then we still have the same random variable. 
+<p></p>
+Beginners often find it odd: a random variable is neither random
+nor a variable!
+<p></p>
+However, it is not as unnatural as it sounds. In calculus also we
+write $y = x^2$ and say $y$ is a variable as well
+as $y$ is a function of $x.$
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+In the coin tossing example with a fair coin, let your gain be
+denoted by $X.$ (or sometimes $X(w)$, if you want to emphasize
+that it is a function).  Find $P(X=10).$
+<p></p>
+<b>SOLUTION:</b>
+The immediate answer is $\frac 12.$ Let's see the steps that led
+to this answer. $P(X=10)$ is the probability that $X$
+is $10,$ <i>i.e.</i>, the probability that the coin toss has
+produced an outcome for which the function $X$ takes the
+value $10.$ Thus 
+$$
+P(X=10) = P\big\{w\in\{head,tail\}~:~X(w)=10\big\}.
+$$
+Now $\big\{w\in\{head,tail\}~:~X(w)=10\big\} = \{head\},$ and so
+the problem now reduces to finding $P(\{head\}),$ which is $\frac 12.$
+ ■
+</p>
+
+<p></p>
+The general case, then, looks like this: We have a random
+experiment with sample space $\Omega.$ A random
+variable $X$ is a function $X:\Omega\rightarrow {\mathbb R}$
+where ${\mathbb R}$ is any codomain of our choice. If some one gives
+us some $A\subseteq {\mathbb R}$ and asks us to find $P(X\in A),$ we
+are to actually find 
+$$
+P\big(\big\{w\in\Omega~:~X(w)\in A\big\}\big).
+$$
+Remember that this is the <i>definition</i> of $P(X\in A).$
+The complicated looking set $\big\{w\in\Omega~:~X(w)\in A\big\}$ is
+often abbreviated to $\{X\in A\}$ or $X ^{-1} (A).$
+<p></p>
+
+<h1><a
+name="New random variables from old ones">New random variables from old ones</a></h1>
+
+<h2><a
+name="Addition, multiplication etc">Addition, multiplication etc</a></h2>
+Sometimes we need to combine the values of two or more random
+variables. Say $X,Y$ are both random variables and we want
+to compute $X+Y.$ Since random variables are actually
+functions, so this sum can be formed only when $X$
+and $Y$ have the same domain. This simple point sometimes
+needs careful handling as the following example shows.
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+I am playing against two gamblers simultaneosly. One gambler
+tosses a fair coin and pays Rs 10 for a head and  takes Rs 20 for  a
+tail. The other gambler takes Rs 3 from me, rolls a fair die and pays me as many
+rupees as the outcome. What is my total gain? 
+<p></p>
+<b>SOLUTION:</b>
+If I call the gain
+from the first gambler $X,$ then $X$ is a function
+from $\{head,tail\}$ to ${\mathbb R},$ while the gain from the
+second gambler is a function $Y:\{1,2,3,4,5,6\}\rightarrow{\mathbb R}.$
+Obviously, $X+Y$ does not make any sense here. We need to
+first combine the two random experiments to get the product
+sample space: $\{head,tail\}\times\{1,2,3,4,5,6\}$ and then
+consider $X,Y$ both as functions from $\Omega$
+to ${\mathbb R}.$ For example, $X(head,4) = 10$
+and $Y(head,4) = 4-3 = 1.$
+<p></p>
+Now it is meaningful to talk about $X+Y.$
+ ■
+</p>
+
+<h2><a
+name="Functions of a random variable">Functions of a random variable</a></h2> 
+Is any function of a random variable is again a random
+variable? Well, for all practical purposes the answer is "yes".  But technically speaking, we have to 
+avoid the "bad" subsets. This is how we do it.
+<p></p>
+Let $X:\Omega\rightarrow{\mathbb R}$  be any random variable. Let $f:{\mathbb R}\rightarrow{\mathbb R}$  be any Borel-mesurable function, <i>i.e.</i>, if $B\in {\mathcal B}$ 
+ then $f^{-1}(B)\in {\mathcal B}.$  Then $f(X)$  is again a random variable. Remember that $f(X)$  actually
+ means the composition function $(f\circ X):\Omega\rightarrow{\mathbb R}.$
+<p></p>
+
+<h1><a
+name="Distribution of a random variable">Distribution of a random variable</a></h1>
+Consider another gambling game. 
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+A fair die is rolled. I shall pay you Rs 10 if the die shows an
+even number, you'll pay me Rs 20 otherwise. Let's denote
+by $Y$ your gain (in Rs). Express $Y$ as a function from $\{1,2,3,4,5,6\}$  to ${\mathbb R}.$
+Let $A = \{10\}.$ Find $Y ^{-1} (A)$ and using it
+find $P(Y\in A).$ 
+<p></p>
+<b>SOLUTION:</b>
+Here $Y^{-1}(A) = \{2,4,6\}.$ So $P(Y=10) = P(\{2,4,6\}) = \frac 16+\frac 16+\frac 16 = \frac 12.$
+ ■
+</p>
+
+<p></p>
+In each of  these examples we had a random variable  that
+took only two values $10$ and $-20.$ Which random variable do
+you think is more profitable for you, $X$  or $Y$? Well, both are actually the
+same so far as profit goes. Understand this carefully: $X$  and $Y$
+ are completely different as functions (their
+domains are also different), but in terms of the "behaviour of the
+output" of the functions they are identical. This "behaviour of the output" is
+called the <b><font color="red" size="40">distribution</font></b> of the random variable. It is the
+distribution which we care about mostly in real applications. So
+we often start a discussion as 
+<blockquote>
+Let $X$ be a random variable taking values $10$
+and $-20$ each with probability $\frac 12.$
+</blockquote>
+We understand implicitly that there is <i>some</i> random experiment (say
+the coin toss experiment or the die roll experiment or something
+similar) and <i>some</i> function from its sample space
+to ${\mathbb R}$ such that the distribution is as
+specified. In this
+course, we shall often omit  the sample space or
+the function.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Distribution of a random variable</b></legend>
+By the <b><font color="red" size="40">distribution</font></b> of a random variable $X$  we mean any statement that gives us $P(X\in B)$  for
+ any "good" set $B\subseteq{\mathbb R}.$  
+</fieldset>
+
+<p></p>
+How do we specify the distribution of a random variable? Do we make a list of all the "good" sets, and label them with
+their probabilities? That would woul be insane, because there are uncountaly infinitely many "good" sets. 
+It turns out that specifying the probabilities of intervals like $(-\infty, a]$  is enough.
+ This is what we discuss next.  
+<h2><a
+name="CDF">CDF</a></h2>
+
+<fieldset>
+<legend><b>Definition: </b></legend>
+Let $X$ be any real valued random variable. Then
+its <b>(cumulative) distribution function (CDF)</b> is defined as
+the function $F:{\mathbb R}\rightarrow[0,1]$ where $\forall x\in{\mathbb R}~~F(x) = P(X\leq x).$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Consider the gambling game that tosses a coin, and has payoffs $-10$  for head, and
+ $20$  for tail. Let $X$  denote the payoff. What is its CDF?
+<p></p>
+<b>SOLUTION:</b>
+Here $X$  takes only two values $-10$  and 20, each with probability $\frac 12.$  
+<p></p>
+So  $F(a) = P(X\leq a) = 0$  whenever $a&lt;-10.$  
+<p></p>
+But $F(-10)=P(X\leq -10) = \frac 12.$  Indeed, as long as $a\in[-10,20)$  we have $F(a) = \frac 12.$ 
+<p></p>
+At $a=20,$  we have $F(a) = 1.$  In fact, $\forall a\geq 20~~F(a) = 1.$  So the graph looks like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cdfexm.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center> 
+ ■
+</p>
+The following properties of a CDF are more or less obvious. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $F(x)$ be the CDF of some rv $X.$ Then 
+<ol type="">
+
+<li>$F(x)$ must be nondecreasing, <i>i.e.</i>, $\forall x &lt; y\in{\mathbb R}~F(x)\leq F(y).$</li>
+
+<li>$\lim_{x\rightarrow-\infty} F(x) = 0.$</li>
+
+<li>$\lim_{x\rightarrow\infty} F(x) = 1.$</li>
+
+<li>$F(x)$ must be right continuous, <i>i.e.</i>,
+$\forall a\in{\mathbb R}~~F(a+)=F(a).$
+ </li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+
+<ol type="">
+
+<li>Since $\{X\leq x\} \subseteq \{X\leq y\},$ hence $P(\{X\leq
+x\}) \leq P(\{X\leq y\}),$ <i>i.e.</i>, $F(x)\leq F(y).$</li>
+
+<p></p>
+
+<li>
+Shall show 
+$$
+\forall \epsilon&gt;0 ~~ \exists M \in{\mathbb R} ~~ \forall x &lt; M~~ |F(x)-0| &lt; \epsilon.
+$$
+(Actually we may drop the absolute value sign around $F(x)$
+since it is anyway $\geq 0$).
+<p></p>
+
+<p></p>
+
+<p></p>
+Take any $\epsilon&gt;0.$
+<p></p>
+
+<p></p>
+
+<p></p>
+Let $A_n$ be the event that $\{X \leq -n\}$
+for $n\in{\mathbb N}.$ Then $F(-n) = P(A_n).$
+Clearly, $A_1\supseteq A_2\supseteq A_3\supseteq\cdots$
+and $\cap A_n=\phi.$
+<p></p>
+So $P(A_n)\rightarrow 0,$ <i>i.e.</i>, $F(-n)\rightarrow 0.$
+<p></p>
+So $N\in{\mathbb N} ~~F(-N)&lt;\epsilon.$ 
+<p></p>
+Choose $M = -N.$
+<p></p>
+Take any $x &lt; M.$
+<p></p>
+Then $0\leq F(x) \leq F(M)&lt;\epsilon,$ since $F(\cdot)$ is nondecreasing.
+<p></p>
+So $|F(x)-0| &lt; \epsilon,$ as required.
+</li> 
+
+<li>
+
+<a href="javascript:hideShow('sim');">Very similar. Try yourself first, before clicking here.</a>
+<div id="sim" style="display:none;background-color:#ffcccc;">Shall show 
+$$
+\forall \epsilon&gt;0 ~~ \exists M \in{\mathbb R} ~~ \forall x &gt; M~~ |F(x)-1| &lt; \epsilon.
+$$
+(Actually we may drop the absolute value sign
+around $|F(x)-1|$ is $1-F(x)$,
+since $F(x)\leq 1,$ anyway.)
+<p></p>
+
+<p></p>
+Take any $\epsilon&gt;0.$
+<p></p>
+
+<p></p>
+
+<p></p>
+Let $A_n$ be the event that $\{X \leq n\}$
+for $n\in{\mathbb N}.$ Then $P(A_n)=F(n).$
+<p></p>
+
+<p></p>
+Clearly, $A_1\subseteq A_2\subseteq A_3\subseteq\cdots$
+and $\cup A_n=\Omega.$
+<p></p>
+So $P(A_n)\rightarrow 1,$ <i>i.e.</i>, $F(n)\rightarrow1.$ 
+<p></p>
+So $N\in{\mathbb N} ~~|F(N)-1|&lt;\epsilon.$ 
+<p></p>
+Choose $M = N.$
+<p></p>
+Take any $x &gt; M.$
+<p></p>
+Then $0\leq 1-F(x) \leq 1-F(M) &lt;\epsilon,$ since $F(\cdot)$ is nondecreasing.
+<p></p>
+So $|F(x)-1| &lt; \epsilon,$ as required.
+</div>
+</li>
+
+<p></p>
+
+<li>
+Shall show:
+$$
+\forall a\in{\mathbb R}~~\forall \epsilon&gt;0~~\exists \delta&gt;0~~ \forall
+x\in (a,a+\delta)~~|F(x)-F(a)| &lt; \epsilon.
+$$
+Take any $a\in{\mathbb R}$ and any $\epsilon&gt;0.$
+<p></p>
+Let $A_n$ be the event that $\left\{X\leq a+\frac 1n\right\}$ for $n\in{\mathbb N}.$
+<p></p>
+Also let $A$ be the event that $\{X\leq a\}.$
+<p></p>
+Then $A_1\supseteq A_2\supseteq\cdots$ and $\cap A_n = A.$
+<p></p>
+So $P(A_n)\rightarrow P(A)$ and hence $F\left(a+\frac 1n\right)\rightarrow F(a).$
+<p></p>
+Hence $\exists N\in{\mathbb N} ~~ |F\left(a+\frac 1N\right)-F(a)|&lt;\epsilon.$
+<p></p>
+Choose $\delta = \frac 1N&gt;0.$
+<p></p>
+Take any $x\in (a,a+\delta).$
+<p></p>
+Since $F(\cdot)$ is nondecreasing, hence $F(a)\leq F(x)
+\leq F(a+\delta) &lt; F(a)+ \epsilon.$
+<p></p>
+So $|F(a+x)-F(a)|&lt;\epsilon,$ as required.
+</li>
+
+</ol>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+A rather nontrivial  theorem is that the converse is also
+true. This converse is called the <b>fundamental theorem of
+probability</b>.
+<p></p>
+
+<fieldset>
+<legend><b><i>Fundamental theorem of probability</i></b></legend>
+Let $F:{\mathbb R}\rightarrow[0,1]$ be any function satisfying the
+properties listed in the last theorem. Then there must exist a real-valued
+rv $X$ with this $F(x)$ as its CDF.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Too technical for this course.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Any nondecreasing function bounded from above (and hence all
+CDF's) must have finite
+left hand limit at each point.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $F:{\mathbb R}\rightarrow{\mathbb R}$ be nondecreasing and bounded from above.
+<p></p>
+Take any $a\in {\mathbb R}.$
+<p></p>
+We shall show that $\lim_{x\rightarrow a-} F(x)$ exists as a finite
+number, <i>i.e.</i>,
+$$
+\exists\ell\in{\mathbb R}~~\forall \epsilon&gt;0~~\exists \delta&gt;0~~\forall x\in(a-\delta,a)~~|F(x)-\ell|\leq\epsilon.
+$$
+Consider the set $A=\{F(x)~:~x &lt; a\}.$ Then $A\neq\phi$
+and bounded from above (by $F(a)$). 
+<p></p>
+So $\sup(A)\in{\mathbb R}.$
+<p></p>
+Choose $\ell = \sup(A).$
+<p></p>
+Take any $\epsilon&gt;0.$
+<p></p>
+Then $\exists y &lt; a~~F(y) &gt; \ell-\epsilon.$ 
+<p></p>
+Choose $\delta = a-y &gt; 0.$
+<p></p>
+Take any $x\in(a-\delta,a) = (y,a).$
+<p></p>
+Then $F(y)\leq F(x) \leq \ell,$ or, in other words, $\ell-\epsilon\leq F(x)\leq \ell.$
+<p></p>
+So $|F(x)-\ell|\leq \epsilon,$ as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ have CDF $F.$ Then 
+$$
+\forall a\in{\mathbb R}~~F(a-) = P(X &lt; a).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Take any $a\in{\mathbb R}.$
+<p></p>
+Let $A = \{X &lt; a\}$ and let $A_n
+= \left\{X \leq a-\frac 1n\right\}$ for $n\in{\mathbb N}.$
+<p></p>
+Then $A_n\nearrow A.$
+<p></p>
+Hence $P(A_n)\rightarrow P(A).$
+<p></p>
+So $F\left(a-\frac 1n\right)\rightarrow P(A).$
+<p></p>
+But $F\left(a-\frac 1n\right)\rightarrow F(a-),$ since $F(a-)$ exists.
+<p></p>
+Hence $P(X &lt; a) = F(a-),$ as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X$ have CDF $F.$ Then 
+$$
+\forall a\in{\mathbb R}~~P(X=a) = F(a)-F(a-).
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$P(X=a) = P(X\leq a)-P(X &lt; a).$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Different types of random variables">Different types of random variables</a></h2>
+Depending on the distribution, a random variable may be of 3
+types:
+<ul>
+
+<li>
+<b>Discrete:</b> These random variables take only countably
+many (finite/infinitely many) values.</li>
+
+<li>
+<b>Continuous:</b> If a random variable takes values in some
+set $S$ such that $\forall a\in S~~P(X=a)=0,$ then we
+call it a continuous random variable. Notice that
+a continuous
+random variable is not defined as a random variable that takes a
+"continuous stretch of values". However, most continuous random
+variables in practice do indeed take all values in an interval, <i>e.g.</i>, height
+of a randomly selected person.</li>
+
+<li>
+<b>Neither discrete nor continuous:</b> These take
+uncountably many values and for at least one value $a$ we
+have $P(X=a)&gt;0.$ </li>
+
+</ul>
+The following theorem justifies the adjective "continuous" for a
+random variable.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A random variable is continuous if and only if its CDF is
+continuous everywhere.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Obvious from the last theorem.
+<b><i>[QED]</i></b>
+</p>
+In this course we shall focus on discrete random variables only.
+<p></p>
+
+<p></p>
+The distribution of a discrete random variable is completely
+specified by the countable set of values it can take, and the
+probability with which it takes each of those values. These two
+specifications together are called the <b>probability mass
+function (PMF)</b> of the rv. 
+<p></p>
+
+<h1><a
+name="PMF">PMF</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Probability Mass Function (PMF)</b></legend>
+Let $X$ be a discrete random variable taking
+values $x_1,x_2,...$ with
+probabilities $p_1,p_2,...$. Then the <b>probability mass
+function (PMF)</b> of $X$ is defined as $p:{\mathbb R}\rightarrow[0,1]$ where 
+$$
+p(x) = \left\{\begin{array}{ll}p_i&\text{if }x=x_i\\0&\text{otherwise.}\end{array}\right..
+$$
+</fieldset>
+Clearly, $\sum p_i = 1$ and $\forall i~~p_i\geq 0.$ A
+consequence of the fundamental theorem of probability is that for
+any countable set $\{x_1,x_2,...\}$ and for any
+sequence $(p_i)_i,$ for which $\forall i~~p_i\geq 0$
+and $\sum p_i=1,$ there is a (discrete) random variable of
+which the PMF is $p(x)$  given above.
+<p></p>
+The CDF of a discrete random variable is a step function like the one we saw in our example.
+<p></p>
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossrv1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+$P(X=i) = \frac{^5P_{i-1}\times 5\times (10-i)!}{10!}$  for $i=1,2,3,4,5,6.$  The probability is
+ 0 for $i=7,8,9,10.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossrv2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">If $n$  is even, then all even values between $0$  and $n.$  If $n$  is
+ odd, then all the odd values in the same range.</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossrv3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
+(a) <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cdf.png"></th>
+</tr>
+<tr>
+<th>Plot of CDF</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+(b) $P\left(X &gt; \frac 12 \right) = 1-F\left(\frac 12\right) = \frac 34.$
+<p></p>
+(c) $P(2&lt; X \leq 4) = F(4)-F(2) = \frac{1}{12}.$
+<p></p>
+(d) $P(X &lt; 3) = F(3-) = \frac{11}{12}.$
+<p></p>
+(e) $P(X=1) = F(1)-F(1-) = \frac 16.$
+</div></p>
+
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rossrv4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p><a
+href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
+class="ans" id="lab4">$P(X=1) = P(X\leq 1)-P(X&lt; 1).$
+<p></p>
+Now $\{X &lt; 1\} = \lim_n \left\{X\leq 1-\frac 1n\right\}.$  Since this is an increasing limit, hence by continuity of 
+probability, we have $P(X&lt;1) = \lim_n P\left(X\leq 1-\frac 1n\right) = \lim_n F\left(1-\frac 1n\right) = F(1-).$
+<p></p>
+Hence $P(X=1) = F(1)-F(1-).$
+</div></p>
+
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+In all the following problems the term "density" stands for "PMF".
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 9:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 10:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv6.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 11:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsrv7.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+The nex two problems refer to the following CDF:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsmore1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+::<p>
+<b>EXERCISE 12:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsmore2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 13:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsmore3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 14:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsmore4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+</p>
+::<p>
+<b>EXERCISE 15:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsmore5.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here are the properties (i)-(iv) from section 5.1.1:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/hpsmore6.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

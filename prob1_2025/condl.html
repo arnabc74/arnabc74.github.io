@@ -1,0 +1,907 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Conditional distribution">Conditional distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Unconditionals in terms of conditionals">Unconditionals in terms of conditionals</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#More than 2 variables">More than 2 variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Substitution">Substitution</a>
+</li>
+<li>
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Conditional distribution">Conditional distribution</a></h1>
+
+<fieldset>
+<legend><b>Definition: Conditional distribution</b></legend>
+Let $X:\Omega\rightarrow S$ and $Y:\Omega\rightarrow T$ be joint distributed discrete random
+variables. Let $x\in S$ be some constant such
+that $P(X=x)&gt; 0.$ Then the <b>conditional
+distribution of $Y$ given $X=x$</b> is the probability
+distribution on $T$ 
+$$
+A\mapsto P(Y\in A | X = x).
+$$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+A 7-segment display shows any number from 0 to 9 at random (equal
+probabilities). 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/7seg.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Let $X$ be the indicator random variable of
+whether the blue segment is on. Similarly, $Y$ is the
+indicator for the red segment. Find the conditional distribution
+of $Y$ given $X.$
+<p></p>
+<b>SOLUTION:</b>
+Here $X,Y$ both take values in $\{0,1\}.$ 
+We need to find $P(Y=y | X=x)$ for $x,y\in\{0,1\}.$
+<p></p>
+Now $P(Y=1|X=1) = P(X=1,Y=1)/P(X=1).$ 
+<p></p>
+Both the blue and the red segments are on in only the numbers
+3,4,5,6,8,9. So $P(X=1,Y=1) = \frac{6}{10}.$
+<p></p>
+The blue segment is on in the numbers 2,3,4,5,6,8,9. So $P(X=1) =\frac{7}{10}.$
+<p></p>
+Hence $P(Y=1|X=1) = P(X=1,Y=1)/P(X=1) = \frac 67.$
+<p></p>
+You should now be able to work out the other three conditional
+probabilities similarly.
+ ■
+</p>
+
+<p></p>
+We can define conditional CDF or conditional PMF in the obvious
+way.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Conditional expectation / variance</b></legend>
+Expectation (or variance) computed baed on a conditional distribution is
+called <b>conditional expectation (variance)</b>.
+</fieldset>
+
+<p></p>
+It is important to understand that the conditional
+expectation/variance is a random variable, which is a function of
+the conditioning random variable.
+<p></p>
+
+<h2><a
+name="Unconditionals in terms of conditionals">Unconditionals in terms of conditionals</a></h2>
+Remember the throm of total probability: 
+$$
+P(A) = P(B) P(A|B) + P(B^c)P(A|B^c),
+$$
+where combined the two conditional probabilities of $A$ to
+arrive at the (unconditional) probability of $A?$ 
+<p></p>
+Well, we can do similar things with conditional
+expectation/variance also. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Tower property</i></b></legend>
+$E(Y) = E(E(Y|X)).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $X$ take values $x_1,x_2,...$ and $Y$ take
+values $y_1,y_2,...$. Let the joint PMF of $(X,Y)$ be 
+$$
+P(X=x_i~\&amp;~Y=y_j) = p_{ij}.
+$$
+Then $P(Y=y_j | X=x_i) = \frac{p_{ij}}{p_{i\bullet}}.$
+<p></p>
+So $E(Y|X=x_i) = \sum_j y_j \frac{p_{ij}}{p_{i\bullet}}.$
+<p></p>
+Expectation of this is 
+$$
+\sum_i E(Y|X=x_i) p_{i\bullet} = \sum_i \sum_j y_j
+\frac{p_{ij}}{p_{i\bullet}}p_{i\bullet} = \sum_i \sum_j y_j p_{ij} =
+\sum_j y_j  \sum_i p_{ij} = \sum_j y_j   p_{\bullet j} = E(Y),
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Many expectation problems can be handled step-bystep using this
+result. Here are some examples.
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+A casino has two gambling games:
+<ol type="">
+
+<li>Roll a fair die, and win Rs. $D$ if $D$ is the
+outcome. </li>
+
+<li>Roll two fair dice, and win Rs 5 if both show the same
+number, but lose Rs 5 otherwise.</li>
+
+</ol>
+You throw a coin with $P(Head)=\frac 13$ and decide to play game
+1 if $Head,$ and game 2 if $Tail.$ What is your
+expected gain?
+<p></p>
+<b>SOLUTION:</b>
+Let $X$ be your gain (in Rs), and let $Y$ be the outcome of the
+toss. 
+<p></p>
+Then $E(X|Y=Head) = 3.5$ and $E(X|Y=Tail) = 5\times\frac{6-30}{36}=-\frac{10}{3}.$ 
+<p></p>
+So, by the tower property, $E(X) = P(X|Y=Head)\times P(Y=Head)+P(X|Y=Tail)\times P(Y=Tail) = \cdots.$
+ ■
+</p>
+
+<p></p>
+The tower property is very useful for computing expectations
+involving a random number of random variables. Here is an
+example.
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+A random number $N$ of customers enter a shop in a
+day, where $N$ takes values in $\{1,...,100\}$ with
+equal probabilities. The $i$-th customer pays a random amount $X_i$,
+where $X_i$ takes values in $\{1,2,...,10+i\}$
+ith equal probabilities. Assuming that $N,X_1,...,X_N$ are
+all independent, find the total expected payments by the
+customers on that day.
+<p></p>
+<b>SOLUTION:</b>
+We have $E(X_i) = \frac{11+i}{2}.$ 
+<p></p>
+So $E\left(\sum_1^N X_i|N\right) = \sum_1^N E(X_i|N) = \sum_1^N E(X_i) = \sum_1^N \frac{11+i}{2} = 5.5N+\frac{N(N+1)}{4}.$
+<p></p>
+By tower property, the required answer is $E\left(5.5N+\frac{N(N+1)}{4}\right)=\cdots.$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;
+10 holes, numbered 1 to 10, in a row. 5 balls are dropped
+randomly in them (a hole may contain any number of balls). Call a
+ball "lonely" if there is no other ball in its hole or the
+adjacent holes. Find the expected number of lonely balls. 
+<p></p>
+<b>SOLUTION:</b>
+Define the indicators $I_1,...,I_5$ as
+$$
+I_i = \left\{\begin{array}{ll}1&\text{if }i\mbox{-th ball is lonely}\\0&\text{otherwise.}\end{array}\right.
+$$
+Then the total number of lonely balls is $X = \sum I_i.$
+<p></p>
+So we are to find $E(X) = \sum E(I_i).$
+<p></p>
+Let $Y_i = $ the hole where the $i$-th ball has fallen.
+<p></p>
+Then $E(I_i|Y_i=1)$ is the conditional probability that
+all the balls except the $i$-th one has landed in
+holes $2,...,10$ given that the $i$-th ball has landed
+in hole 1.
+<p></p>
+You should be able to compute this easily. Similarly, you can
+compute $E(I_i|Y_i=k)$ for $k=1,...,10.$
+<p></p>
+Notice that $Y_i$ can take values $1,...,10$ with equal probabilities.
+<p></p>
+So tower property should provide the answer as
+$$
+E(X) = \sum E(E(I_i|Y_i)) = \cdots.
+$$
+ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$V(Y) = E(V(Y|X)) + V(E(Y|X)).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This follows directly from the tower property. 
+<p></p>
+We know
+$$
+V(Y|X) = E(Y^2|X) - E^2(Y|X),
+$$
+and hence
+$$
+E(V(Y|X)) = E(E(Y^2|X)) - E(E^2(Y|X)) = E(Y^2) -  E(E^2(Y|X)).
+$$
+Again, 
+$$
+V(E(Y|X)) = E(E^2(Y|X)) - E^2(E(Y|X)) = E(E^2(Y|X)) - E^2(Y). 
+$$
+So 
+$$
+E(V(Y|X)) + V(E(Y|X)) = E(Y^2)-E^2(Y) = V(Y),
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="More than 2 variables">More than 2 variables</a></h2>
+If $X,Y,Z$ are jointly distributed random variables, then we
+can talk about conditional distribution of $Z$
+given $(X,Y)$ or $X$ given $Z$ or $(X,Z)$
+given $Y,$ etc. We can even condition step by step. For
+example, we can talk about $E(E(Z|X,Y)|X).$ This is a
+function of $X$ alone. 
+<p></p>
+
+<h2><a
+name="Substitution">Substitution</a></h2>
+
+<fieldset>
+<legend><b><i>Substition property</i></b></legend>
+Conditional distribution of $f(X,Y)$ given $X=x$ is the
+same as the conditional distribution of $f(x,Y)$ given $X=x.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This follows immediately from the definition of conditional probability.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Problems for practice">Problems for practice</a></h1>
+
+<p></p>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;<img width="" src="image/condist1.png" style="vertical-align:text-top;">
+<p></p>
+Here the word "density" is used to mean "PMF". 
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1">
+(a) Once you realise that $f_X(x) = P(X=x)$, $f_Y(y) = P(Y=y)$  and 
+$f_{Y|X}(y|x) = P(Y=y|X=x),$  the given equality is just theorem of total probability. 
+<p></p>
+(b) The RHS is $E(E(Y|X))$  and so the equality is just the tower property.
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;<img width="" src="image/condist2.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2">
+$E(S_N) = E(E(S_N|N)) = E(N\mu) = \mu E(N).$
+<p></p>
+E(S_N^2) = E(E(S_N^2|N)) = E(N\sigma^2 + N^2\mu^2  ) = \sigma^2E(N^2)+\mu^2E(N^2).
+<p></p>
+The third equality follows directly from these two.
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;<img width="" src="image/condist3.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">
+(a) $\frac 23.$
+<p></p>
+(b) $\frac 29.$
+<p></p>
+(c) $\frac{13}{27}.$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;<img width="" src="image/condist4.png" style="vertical-align:text-top;">
+<p></p>
+You might like to solve (b) first.
+<p><a
+href="javascript:hideShow('lab4')"><b>Hint:</b></a><div
+class="ans" id="lab4">
+(b) $P(X=Y) = \frac 1N.$
+<p></p>
+(a) $P(X&lt; Y) = P(Y &lt; X) $  and $P(X&lt; Y) + P(Y &lt; X) P(X=Y)=1.$
+<p></p>
+Hence $P(X&gt; Y) = \frac 12\times\left(1-\frac 19\right) = \frac 49.$
+<p></p>
+So $P(X\geq Y) = \frac 49+\frac 19=\frac 59.$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;<img width="" src="image/condist5.png" style="vertical-align:text-top;">
+<p></p>
+Here Exercise 14 means the last exercise (<i>i.e.</i>, Exercise 4 according to our numbering).
+<hr>
+
+<p><a
+href="javascript:hideShow('lab5')"><b>Hint:</b></a><div
+class="ans" id="lab5">
+(a) Let $U = \min(X,Y).$   Then $U$  can take values $0,...,N.$  
+<p></p>
+$P(U=k) = P(U\geq k)-P(U\geq k+1).$
+<p></p>
+Now $P(U\geq k) = P(X,Y\geq k) = P(X\geq k)P(Y\geq k) = \left(\frac{N-k+1}{N+1}\right)^2.$
+<p></p>
+Similarly, $P(U\geq k+1) = \left(\frac{N-k}{N+1}\right)^2.$
+<p></p>
+So $P(U=k) = \frac{(N-k)^2-(N-k+1)^2}{(N+1)^2} = ... .$
+<p></p>
+(b) Let $T = \max(X,Y).$   Then $T$  can take values $0,...,N.$  
+<p></p>
+$P(T=k) = P(U\leq k)-P(T\leq k-1).$
+<p></p>
+Now $P(T\leq k) = P(X,Y\leq k) = P(X\leq k)P(Y\leq k) = \left(\frac{k+1}{N}\right)^2.$
+<p></p>
+Similarly, $P(T\leq k-1) = \left(\frac{k}{N}\right)^2.$
+<p></p>
+So $P(T=k) = \left(\frac{(k+1)^2-k^2}{N^2} = \frac{2k+1}{N^2}.$
+<p></p>
+(c)   $R=|Y-X|$  can take values in 0,1,...,$N.$ 
+<p></p>
+$P(R=0) = P(X=Y) = \frac{1}{N+1}.$
+<p></p>
+For $k=1,...,N,$  we have $P(R=k) = P(R=k \&amp; X &lt; Y) + P(R=k \&amp; X=Y) + P(R=k \&amp; X &gt; Y).$
+<p></p>
+Now $P(R=k \&amp; X=Y) =0.$
+<p></p>
+Also $P(R=k \&amp; X &lt; Y) =P(R=k \&amp; X &gt; Y).$
+<p></p>
+For $\{R=k\ &amp; X &lt; Y\}$  to happen we must have $X = 0,...,N-k$  and correspondingly $Y = k,...,N.$  
+<p></p>
+So $P(R=k\ &amp; X &lt; Y) = \frac{N-k+1}{N}.$
+<p></p>
+Hence $P(R=k) = \frac{2(N-k+1)}{N}.$
+</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<img width="" src="image/condist6.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab6')"><b>Hint:</b></a><div
+class="ans" id="lab6">
+(a) $P(X=x) = \sum_y P(X=x,Y=y) = \sum_y g(x)h(y) = g(x)\sum_y h(y).$
+<p></p>
+(b) $P(Y=y) = \sum_x P(X=x,Y=y) = \sum_x g(x)h(y) = h(y)\sum_x g(x).$
+<p></p>
+(c) We know that $\sum_x\sum_y P(X=x,Y=y) = 1.$  Hence $\sum_x\sum_y g(x)h(y) = 1,$  <i>i.e.</i>, $\sum_xg(x)\sum_y h(y) = 1.$
+<p></p>
+(d) To show $\forall x, y~~P(X=x,Y=y) = P(X=x)P(Y=y).$
+<p></p>
+Take any $x,y.$
+<p></p>
+Then $P(X=x)P(Y=y) = \big[\sum_y h(y) \big]g(x)\big[\sum_x g(x) \big]h(y) = g(x)h(y) = P(X=x,Y=y).$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<img width="" src="image/condist7.png" style="vertical-align:text-top;">
+Here "density" means "PMF". 
+<p><a
+href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+class="ans" id="lab7">
+(a) $(X_1,...,X_r)$  can take values $(x_1,...,x_r)$  where each $x_i$  is a nonnegative integer and $\sum_1^r x_i = 2r.$ 
+<p></p>
+We consider the random experiment of dropping the balls one by one into the boxes. For each ball have $r $ posible destinations.
+<p></p>
+So $|\Omega| = r^{2r}.$
+<p></p>
+Now fix some $(x_1,...,x_r)$  as above. The event $A=\{(X_1,...,X_r) = (x_1,...,x_r)\}$  may be obtained as follows.
+<p></p>
+Pick and order $x_i$  balls to drop into box $i$ one by one. 
+<p></p>
+So $|A| = \frac{(2r)!}{x_1!\times\cdots\times x_r!}.$
+<p></p>
+Hence 
+$P\{(X_1,...,X_r) = (x_1,...,x_r)\}= \frac{ |A| }{ |\Omega| }.$
+<p></p>
+(b) $\frac{ (2r)!}{(4r)^r}. $
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;<img width="" src="image/condist8.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab8')"><b>Hint:</b></a><div
+class="ans" id="lab8">
+(a) $P(X_1+X_2=k) = \binom{n}{k} (p_1+p_2)^k p_3^{n-k}$  for $k=0,1,...,n.$
+<p></p>
+(b) 
+$$\begin{eqnarray*}
+P(X_2=y|X_1+X_2 = z)
+&amp; = &amp; \frac{P(X_2=y \&amp; X_1+X_2=z)}{P(X_1+X_2=z)} \\
+&amp; = &amp; \frac{P(X_1=z-y\&amp;X_2=y)}{P(X_1+X_2=z)} \\
+&amp;  = &amp; \frac{ \frac{n!}{(z-y)!y!(n-z)!} p_1^{z-y} p_2^y p_3^{n-z} }{ \binom{n}{z} (p_1+p_2)^z p_3^{n-z} }
+&amp; = &amp; \cdots.
+\end{eqnarray*}$$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 9:</b>&nbsp;<img width="" src="image/condist9.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab9')"><b>Hint:</b></a><div
+class="ans" id="lab9">
+(a) $1-\left(\frac{5}{6}\right)^6.$
+<p></p>
+(b) For $n$  rolls $P($ at least one 6$)=1-\left(\frac 56\right)^n.$
+<p></p>
+We need $n$  such that $1-\left(\frac 56\right)^n\geq \frac 12.$  
+<p></p>
+Direct computation shows $n\geq 4.$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 10:</b>&nbsp;<img width="" src="image/condist10.png" style="vertical-align:text-top;">
+<p></p>
+Imagine this set up: A coin with $P(H)=p$  is repeadly tossed. Success means $H.$
+<p><a
+href="javascript:hideShow('lab10')"><b>Hint:</b></a><div
+class="ans" id="lab10">
+$(1-p)^{x_r-r} p^r.$
+<p></p>
+Thanks to Amit Prakash Jena for correcting a mistake here.
+</div></p>
+
+<p></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 11:</b>&nbsp;<img width="" src="image/condist11.png" style="vertical-align:text-top;">
+<p></p>
+This is a continuation of the last problem.
+<p><a
+href="javascript:hideShow('lab11')"><b>Hint:</b></a><div
+class="ans" id="lab11">
+$P(T_1=x|N_n=1) = \frac{P(T_1=x\&amp; N_n=1)}{P(N_n=1)} = \frac{p(1-p)^{n-1}}{np(1-p)^{n-1}}] = \frac 1n.$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 12:</b>&nbsp;<img width="" src="image/condist12.png" style="vertical-align:text-top;">
+<p></p>
+This is a continuation of the last problem.
+<p><a
+href="javascript:hideShow('lab12')"><b>Hint:</b></a><div
+class="ans" id="lab12">
+Same logic as in the last solution.
+</div></p>
+<hr>
+</p>
+::<p>
+<b>EXERCISE 13:</b>&nbsp;<img width="" src="image/morecond1.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab13')"><b>Hint:</b></a><div
+class="ans" id="lab13">
+By symmetry, the answer is $\frac 1n$  if $k=1.$  So, for general $k$  the answer is $\frac kn.$
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 14:</b>&nbsp;<img width="" src="image/morecond2.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab14')"><b>Hint:</b></a><div
+class="ans" id="lab14">Let $I_j$ be the indicator variable for whether there is a
+record at position $j.$ Then $P(I_j=1)$ may be computed
+by total probability:
+$$
+P(I_j=1) = \sum_{k=j}^n P(X_j=k)P(I_j=1|X_j=k).
+$$
+Similarly for $P(I_jI_k=1).$</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 15:</b>&nbsp;<img width="" src="image/morecond3.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab15')"><b>Hint:</b></a><div
+class="ans" id="lab15">The problem is basically optimising $\sum P_i^2$ subject
+to $\sum P_i$ being fixed. Cauchy-Scwartz might help.  </div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 16:</b>&nbsp;<img width="" src="image/morecond4.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab16')"><b>Hint:</b></a><div
+class="ans" id="lab16">
+Let the black balls be labelled $b_1,...,b_m.$  
+<p></p>
+Let $X_i=\left\{\begin{array}{ll}1&\text{if }\mbox{no white drawn before }b_i\\
+0&\text{otherwise.}\end{array}\right..$
+<p></p>
+Then $X= 1+\sum_1^m X_i.$
+<p></p>
+Also, $E(X_i) = \frac{1}{n+1}$. To see this consider the $n$  white balls plus $b_i.$  Out of these $n+1$ 
+ balls $b_i$  has the chance $\frac{1}{n+1}$  to come first. 
+<p></p>
+(a) $V(X_i) = \frac{n}{(n+1)^2}.$  
+<p></p>
+Also for $i\neq j$  we have $E(X_iX_j) = \frac{2}{(n+2)(n+1)}$    (because out of the $n$  white balls plus $b_i$ 
+ and $b_j$  any of the $\binom{n+2}{2}$  pairs can come first with equal probability).
+<p></p>
+(b) Let $Y_i$  be as given in the hint. Let's take an example to 
+understand how $Y_i$'s are defined. Suppose that we have $m=20$  black and $n=3$  white balls. 
+Here is one way they may turn up:
+<blockquote>
+B B Y Y B B B B B  Y
+</blockquote>
+Then $Y_1 = 2$  (as there are two B's preceding the first W), $Y_2=0$  (since the second W is immediately after
+ the first), and $Y_3 = 5$  (because there are as many B's between the second and third W). 
+<p></p>
+We shall argue using bijection that $Y_i$'s are all identically distributed. Let's 
+try to show that $P(Y_1=0) = P(Y_2=0).$  The outcome shown above is in the event $\{Y_2=0\}.$  
+<p></p>
+Now just swap the first two W's (along with B's  immediately preceding it) to get:
+<blockquote>
+ Y B B Y B B B B B  Y
+</blockquote>
+Clearly, this is another possible outcome which is inside $\{Y_1=0\}.$  
+It is not difficult to see (check!) that this swap is a bijection between the events $\{Y_1=0\}.$  and $\{Y_2=0\}.$ 
+If the bijection is denoted by $f,$  then $\forall \omega\in\Omega~~P(\omega) = P(f(\omega))$  (why?)
+<p></p>
+Hence $P\{Y_1=0\} = P\{Y_2=0\}.$
+<p></p>
+In general, we see that $Y_i$'s are all identically distributed. Now (b) follows immediately from (a) applied to each
+ $Y_i$  separately. 
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 17:</b>&nbsp;<img width="" src="image/morecond5.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab17')"><b>Hint:</b></a><div
+class="ans" id="lab17">
+Let $T = \lambda X_1+ (1-\lambda) X_2.$  
+<p></p>
+Then $V(T) = \lambda^2 V(X_1) + (1-\lambda)^2 V(X_2),$  since $X_1,X_2$  are independent.
+<p></p>
+Thus, $V(T) = \lambda^2 \sigma_1^2 + (1-\lambda)^2 \sigma_2^2 = f(\lambda),$  say. 
+<p></p>
+Then $f'(\lambda) = 2 \sigma^2_1 \lambda - 2 \sigma^2_2(1-\lambda).$
+<p></p>
+Solving $f'(\lambda) = 0$  we get $\lambda = \frac{\sigma^2_2}{\sigma^2_1+\sigma^2_2}.$
+<p></p>
+This is desirable because we are giving more weight to the $X_i$  that has less variance (<i>i.e.</i>, is more stable). 
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 18:</b>&nbsp;<img width="" src="image/morecond6.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab18')"><b>Hint:</b></a><div
+class="ans" id="lab18">
+Just like $(a+b)(a-b) = a^2-b^2.$  
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 19:</b>&nbsp;<img width="" src="image/morecond7.png" style="vertical-align:text-top;">
+<p></p>
+Do this only for discrete $X.$
+<p><a
+href="javascript:hideShow('lab19')"><b>Hint:</b></a><div
+class="ans" id="lab19">
+$E(X|Y=y) = \sum_x x P(X=x|Y=y) = \sum_x x P(X=x),$
+since $X,Y$  independent. 
+<p></p>
+Hence the result.
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 20:</b>&nbsp;<img width="" src="image/morecond8.png" style="vertical-align:text-top;">
+<p></p>
+Do this for discrete $X, Y$  only. If $X$  can take values $x_1,x_2,x_3,...$  with
+ positive probabilities, then
+ you are prove
+$$\forall i~~E(g(X)Y|X=x_i] = g(x_i)E(Y|X=x_i).$$
+<p><a
+href="javascript:hideShow('lab20')"><b>Hint:</b></a><div
+class="ans" id="lab20">
+Take any $i.$
+<p></p>
+Then $E(g(X)Y|X=x_i) = \sum_y g(x_i) y P(Y=y|X=x_i) = g(x_i) \sum_y y P(Y=y|X=x_i) = g(x_i) E(Y|X=x_i),$  as required.
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 21:</b>&nbsp;<img width="" src="image/morecond9.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 22:</b>&nbsp;<img width="" src="image/morecond10.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 23:</b>&nbsp;<img width="" src="image/morecond11.png" style="vertical-align:text-top;">
+<p></p>
+Will the result hold in general if the $X_i$'s are not independent?
+<p><a
+href="javascript:hideShow('lab21')"><b>Hint:</b></a><div
+class="ans" id="lab21">No, the result may not hold if the $X_i$'s have a dependence structure that is
+ asymetric. A counterexample is as follows. 
+<p></p>
+$X_1 = $  outcome of a roll of a fair die. $X_2$  is obtained from $X_1$  by
+ swapping 1 and 2. $X_3$  is obtained from $X_1$  by swapping 1 and 3. Then $E(X_1|X_1+X_2+X_3=6)=1\neq \frac 63.$ 
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 24:</b>&nbsp;<img width="" src="image/morecond12.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 25:</b>&nbsp;<img width="" src="image/morecond13.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 26:</b>&nbsp;<img width="" src="image/morecond14.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 27:</b>&nbsp;<img width="" src="image/morecond15.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 28:</b>&nbsp;<img width="" src="image/morecond16.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 29:</b>&nbsp;<img width="" src="image/morecond17.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 30:</b>&nbsp;<img width="" src="image/morecond18.png" style="vertical-align:text-top;"><hr>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 31:</b>&nbsp;<img width="" src="image/morecond19.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 32:</b>&nbsp;<img width="" src="image/morecond20.png" style="vertical-align:text-top;"><hr>
+</p>
+::<p>
+<b>EXERCISE 33:</b>&nbsp;<img width="" src="image/morecond21.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab22')"><b>Hint:</b></a><div
+class="ans" id="lab22">
+Let $X_i$  be the indicator for $i$-th red ball being a win. 
+<p></p>
+There are $\binom{2n}{n}$  sequences of $n$  R's and $n$  B's in all. Let us count
+ how many of these lead to  $\{X_i=1\}.$ 
+<p></p>
+Split each such sequence into two parts, the part before the $i$-th R, and the part after.
+ For instance, for $n=4$  and $i=3$   the sequence RRBRBRBB is split as <font color="#ff0000">RRB</font>R<font color="#0000ff">BRBB</font>. 
+<p></p>
+For general $n$  and $i,$  the red part must consist of exactly $i-1$  R's and at
+ most $i-1$  B's. The blue part consists of exactly $n-i$  R's and the remaining B's. 
+<p></p>
+Let $N_{r,b} = $  number of sequences with exactly $r$  R's and $b$  B's. In other words, $N_{r,b} =\binom{r+b}{r} = \binom{r+b}{b}. $
+<p></p>
+Then, for any sequence in $\{X_i=1\}$  the red part may be selected in 
+$$\sum_{j=0}^{i-1} \binom{i+j-1}{j}$$
+ways. Here $j$  denotes the number of B's in the red part. Once we also count the matching number
+ of blue parts for each value of $j$, we get the size of $\{X_i=1\}$  as
+$$\sum_{j=0}^{i-1} \binom{i+j-1}{j}\binom{2n-i-j}{n-j}.$$
+Now you should be able to complete the rest.     
+<p></p>
+[Thanks to Arnab Nayak for correcting a typo.]
+</div></p>
+
+<hr>
+</p>
+::<p>
+<b>EXERCISE 34:</b>&nbsp;<img width="" src="image/morecond22.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab23')"><b>Hint:</b></a><div
+class="ans" id="lab23">
+(a) Let's take an example with $n=10$  and $k=3.$  We are showing the selected balls in red:
+<blockquote>
+1 <font color="#ff0000">2 3</font> 4 5 <font color="#ff0000">6</font> 7 8 9 10
+</blockquote>
+Here $X = 6$  and $R = 4.$  
+<p></p>
+You should be able to see directly that in general $X+R=n.$
+</div></p>
+
+<hr>
+</p>
+
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

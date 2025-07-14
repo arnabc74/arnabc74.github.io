@@ -1,0 +1,2041 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Basic concepts">Basic concepts</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Probability axioms">Probability axioms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Continuity of probability function">Continuity of probability function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Inclusion-Exclusion formula">Inclusion-Exclusion formula</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Countable sample spaces">Countable sample spaces</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Equally likely cases">Equally likely cases</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Simulations">Simulations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problems for practice">Problems for practice</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Sets and Venn diagrams">Sets and Venn diagrams</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Axioms">Axioms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Equally likely">Equally likely</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Harder">Harder</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\ev}{{\mathcal F}}$
+<h1><a
+name="Basic concepts">Basic concepts</a></h1>
+A <b>random experiment</b> is an activity whose outcome we cannot
+predict. The set of all outcomes is called its <b>sample space</b>. Each
+element of this set is called a <b>sample point</b>. 
+By the term <b>event</b>  we understand a subset of the sample
+space. 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;A coin toss is a random experiment. Its sample space is $\{head,tail\}.$  There are four
+ different events possible here: 
+$\phi, \{head\},\{tail\},\{head,tail\}.$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;Rolling a die is another random experiment. The sample space here is $\{1,2,3,4,5,6\}.$ 
+ One possible event is the set of all even numbers, $\{2,4,6\}.$ ■
+</p>
+
+<p></p>
+I give you a coin to toss. Before tossing, you carefully inspect
+it. You find no difference at all between the two sides (except
+for the pictures on them). So you infer that both head and tail
+are <i>equally likely</i> (<i>i.e.</i>, you are equally ignorant about
+both sides). It is common to express this situation as "50-50"
+chance, or $50\%$ chance of a head (or a tail), or probability of a head (or a tail) is $\frac 12.$
+<p></p>
+The main idea is that the chance of a head equals the chance of a
+tail. We like to express this by first imagining a totality and
+then halving it. This totality may be taken as 100 or 100% or 1 or any other positive number.
+<p></p>
+In probability theory we take the total as $1.$  This choice
+is justified by statistical regularity, as the following example
+shows.
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Consider rolling a fair die. Let $A$ be the event that we
+get a prime number, <i>i.e.</i>, $A=\{2,3,5\}.$ Intuitively, the
+probability of $A$ should be $\frac 12.$  We shall use R to 
+perform  5000 trials of this random experiment and check the running proportion of
+cases that the event $A$ happens.
+<font color="red">
+<pre>
+x = sample(6,5000,rep=T)
+A = x %in% c(2,3,5)
+plot(cumsum(A)/(1:5000), ty='l')
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(6,5000,rep=T)
+A = x %in% c(2,3,5)
+plot(cumsum(A)/(1:5000), ty='l')
+`));"/> 
+Notice that the proportions indeed tend towards $\frac 12.$
+<p></p>
+
+<p></p>
+Similarly, we can get an idea of the probability of $B=\{1,3,4,5\}$ using
+the following R code.
+<font color="red">
+<pre>
+x = sample(6,5000,rep=T)
+B = x %in% c(1,3,4,5)
+mean(B)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(6,5000,rep=T)
+B = x %in% c(1,3,4,5)
+mean(B)
+`));"/>
+ ■
+</p>
+
+<p></p>
+With each event we assign a probability
+which is a number from $[0,1].$ In practice it is difficult
+(<a href="refs/headswithJ.pdf">impossible?</a>) to get a biased coin (<i>i.e.</i>, a coin which is more likely
+to show one side than the other). It is very easy to <i>simulate</i>
+such a coin though:
+<font color="red">
+<pre>
+x = sample(c('h', 't'), 1000, prob=c(0.7,0.3), rep=T)
+sum(x=='h')
+sum(x=='t')
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+x = sample(c('h', 't'), 1000, prob=c(0.7,0.3), rep=T)
+sum(x=='h')
+sum(x=='t')
+`));"/>
+The <font size="+1" color="red"><code>prob=c(0.7,0.3)</code></font> specifies the probabilities. 
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">If the sample space is countable (finite/infinite), then
+generally $\ev$ is just the power set of $\Omega.$
+If $\Omega$ is uncountable, then there may be some <a href="vit.html">"bad"
+subsets</a> for which probability cannot be defined! These are
+not called events, and so are not considered as members of $\ev.$ In this case
+$\ev$ is a strict subset of the power set of $\Omega.$ Fortunately, 
+we shall not come across such "bad" subsets any time soon.</td>
+</tr>
+</table> 
+
+<p></p>
+Let $\ev$  be the set of all events in a sample space. For
+example, if $\Omega = \{head, tail\}$ then $\ev$
+is $\big\{\phi,\{head\},\{tail\},\{head,tail\} \big\}.$
+<p></p>
+
+<p></p>
+Then a <b>probability</b>  is a function $P:\ev\rightarrow[0,1].$
+<p></p>
+Of course, not all such functions  can be a probability. A function needs to satisfy certain
+ common sense conditions to be called a probability function. 
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;
+A report says that the health condition in a country is so bad, that the chance of a newborn baby surviving for at least
+ 1 year is only 50%. However, the chance that he survives for at least 5 years is 90%. Does it sound odd?
+<p></p>
+<b>SOLUTION:</b>
+Yes. Any baby surviving for at least 5 years has of course survived the first year as well. So how can the latter chance
+ be larger?
+ ■
+</p>
+
+<p></p>
+This example gives one common sense condition that a probability function must satisfy: if $A\subseteq B$ then we should
+have $P(A)\leq P(B).$ 
+<p></p>
+Of course, there are many many such common sense conditions and it is difficult to come up with a complete list. 
+A Russian mathematician named 
+Kolmogorov reduced this list to only 3 conditions, called the <b>probability axioms</b>.
+<p></p>
+
+<h2><a
+name="Probability axioms">Probability axioms</a></h2>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">A collection of sets is called <b>disjoint</b> if the intersection of any two sets from the collection is
+ empty. They are also called
+ <b>mutually exclusive</b></td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Probability axioms</i></b></legend>
+Let $\Omega$ denote the sample space. Let $\ev$  denote the set of all events. Then 
+<ol type="">
+
+<li>For any event $A\in\ev$ we have $P(A)\geq 0$</li>
+
+<li>$P(\Omega)=1$</li>
+
+<li>If $A_1,A_2,...\in\ev$ are countably many (finite/infinite) disjoint events then 
+$$
+P(\cup A_n) = \sum P(A_n).
+$$
+</li>
+
+</ol>
+
+</fieldset>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">You'll often see this sentence: 
+<blockquote>"$(\Omega,\ev,P)$ is a
+<b>probability space</b>".</blockquote>
+ This is a shorthand for:
+<ul>
+<li> $\Omega$
+is a nonempty set (sample space),</li> 
+
+<li>$\ev$ is the collection
+of all events,</li>
+
+<li>$P:\ev\rightarrow{\mathbb R}$ is a probability (<i>i.e.</i>, a
+function satisfying the three probability axioms).</li>
+</ul>
+</td>
+</tr>
+</table>
+Notice the last axiom. Here the sum may involve infinitely many
+terms. Such a sum is called an infinite series. You'll learn
+about them in details in your analysis course. But for now you
+may quickly read this
+<a href="series.html">crash course on infinite series</a>.
+<p></p>
+
+<p></p>
+It is a remarkable fact that whatever other common sense condition one has been able to think of so far
+actually follows as a consequence of these! Also, you cannot drop
+any of these requirements, in the sense that no two of these
+imply the other. Can you show this?
+<p></p>
+
+<p></p>
+
+<p></p>
+It is an interesting exercise to derive various common sense
+conditions from these axioms. Here is one.
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;
+If $A\subseteq B$ then show that $P(A)\leq P(B).$
+<p></p>
+<b>SOLUTION:</b>
+Split $B$ as $B=A\cup (A^c\cap B).$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ax1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ The two events in RHS  are
+disjoint. So by Axiom 3 we have
+$$
+P(B) = P(A) + P(A^c\cap B).
+$$
+The second probability in the RHS is $\geq 0$ (by Axiom
+1). So done.
+ ■
+</p>
+
+<p></p>
+Try your hand at these:
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+Show $P(A^c) = 1-P(A).$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Show $P(\phi)=0.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;If $A_1\subseteq A_2\subseteq A_3,$  then show that $P(A_1\cup A_1\cup A_3) = P(A_1)+P(A_2\cap A_1^c)+P(A_3\cap A_2^c).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;
+Show $P(A\cup B) = P(A)+P(B)-P(A\cap B).$
+</p>
+
+<p></p>
+Next we shall prove some common sense properties that will require more effort.
+<p></p>
+
+<h3><a
+name="Continuity of probability function">Continuity of probability function</a></h3>
+We know that if $f(x)$  is a continuous function and $x_n\rightarrow a$  then $f(x_n)\rightarrow f(a).$  Any probability function
+ has a similar property.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Increasing limit</b></legend>
+Let $A_1,A_2,...$ be a sequence of events. Let $A$ be
+any event. We say that $A_n$'s increase to $A$ (and
+write $A_n\nearrow A$) if 
+$$A_1\subseteq A_2\subseteq A_3\subseteq\cdots$$
+and 
+$$A = \cup_n A_n.$$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Decreasing limit</b></legend>
+Let $A_1,A_2,...$ be a sequence of events. Let $A$ be
+any event. We say that $A_n$'s decrease to $A$ (and
+write $A_n\searrow A$) if 
+$$A_1\supseteq A_2\supseteq A_3\supseteq \cdots$$
+and 
+$$A = \cap_n A_n.$$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $A_n\nearrow A$ or $A_n\searrow A$ then $P(A_n)\rightarrow P(A).$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let's do the $A_n\nearrow A$ case first. 
+<p></p>
+Define $B_1=A_1$ and for $n\geq 2$ let $B_n
+=A_n\setminus A_{n-1}.$ 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rings.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then $B_1,B_2,B_3,...$ are all disjoint. <a href="javascript:hideShow('cwh');">(Why? Don't just say
+ "obvious!". Write a one line proof.)</a>
+<div id="cwh" style="display:none;background-color:#ffcccc;">Take any $i &lt; j.$  Then $B_i\subseteq A_i\subseteq A_j.$  But $B_j\subseteq A_i^c.$  So $B_i\cap B_j=\phi.$</div> 
+Also, for $n\in{\mathbb N},$ we have $A_n = B_1\cup\cdots\cup B_n.$
+<p></p>
+So $A = B_1\cup B_2\cup\cdots.$<a href="javascript:hideShow('wh2');">(Why?)</a>
+<div id="wh2" style="display:none;background-color:#ffcccc;">
+If $x\in A$  then $x\in A_n$  for some $n\in{\mathbb N}.$  Let $n_0$  be the least $n\in{\mathbb N}$  for which
+ $x\in A_{n_0}.$  If $n_0=1,$  then $x\in A_1 = B_1.$  If $n_0&gt;1,$  then $x\in A_{n_0}\setminus A_{n_0-1} = B_{n_0}.$
+<p></p>
+Hence $A\subseteq \cup B_n.$
+<p></p>
+Conversely, let $B_n\subseteq A_n.$ 
+<p></p>
+So $\cup B_n \subseteq\cup_n A_n =  A.$
+<p></p>
+Combining, $\cup B_n = A.$
+</div>
+
+<p></p>
+Hence, by the third axiom, $P(A) = \sum_1^\infty P(B_i) =
+\lim_n \sum_1^n P(B_i) = \lim_n P(A_n),$ as required.
+<p></p>
+
+<a href="javascript:hideShow('cont');">The $A_n\searrow A$ case follows on taking complements. 
+</a>
+<div id="cont" style="display:none;background-color:#ffcccc;">
+If $A_n\searrow A$, then $A_n^c\nearrow A^c.$
+<p></p>
+Hence, by what we have proved, $P(A_n^c)\rightarrow P(A^c),$
+<p></p>
+or $1-P(A_n)\rightarrow 1-P(A),$ or $P(A_n)\rightarrow P(A),$ as required.
+</div>
+
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;<b>(A puzzle)</b>  You are approached by a gambler at a casino. "Hmm, youngster", he remarks
+ as he looks you up and down, "you seem to be new here. Let me offer you some money." He comes
+ closer, sits beside you, and continues in a friendly voice, "Here I have a die, a fair one. You
+ shall roll it again and again. After each roll, we shall do a little transaction like this: if the die shows six,
+ you  pay me some positive  amount, say $t.$ But if it shows
+ any other number I shall pay you ten times that amount. Does that sound like a good game to you?"
+<p></p>
+ Being freshly admitted to ISI, you are of course proud of your probability skills, and reply
+ "Yes". 
+<p></p>
+"That's very good for you, very good indeed", exclaims the man in glee, "but it is not
+ good for <i>me</i>, you see. I just made the offer because I took a liking to you. I hope that you would
+ keep two requests in return." 
+<p></p>
+You get cautious, but agree to hear them anyway. 
+<p></p>
+"The first request
+ is that <i>I</i> shall dictate the value of $t$  before each roll". Noticing a cloud of worry upon your face, he adds,
+ "Don't worry, $t $ will always be
+ positive, and I shall fix the amount <i>before</i>  the roll." 
+<p></p>
+You see no harm in that, and ask him to proceed.
+<p></p>
+ "The second favour that I ask for is to call it quits whenever I like. That means I shall decide when the game
+ will stop.  It is only the barest protection for me, you see. I shall soon become bankrupt, and then
+ I at least need to have my right to go back home! Surely you would not deny me <i>that</i> !" 
+<p></p>
+You find the entire offer  reasonable enough, and so
+accept it.
+<p></p>
+Have you done a wise thing? [Hint: the die is indeed fair, and there is no word play. It is a pure mathematical puzzle.]  </p>
+
+<p></p>
+
+<h3><a
+name="Inclusion-Exclusion formula">Inclusion-Exclusion formula</a></h3>
+Just now we have mentioned the result $P(A\cup B) = P(A)+P(B)-P(A\cap B).$  
+We can think of this like 
+<blockquote>$P(A)+P(B)$  overestimates $P(A\cup B)$  because the $P(A\cap B)$  part is included
+ twice. So we need to exclude it once.</blockquote>
+ This idea of inclusion and exclusion works for any finite number of events. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Inclusion-Exclusion formula</i></b></legend>
+Let $A_1,...,A_n$ be any $n$
+events. Let $T$ denote the set of all subsets of $\{1,...,n\}.$ Then 
+$$P(A_1\cup \cdots \cup A_n) = \sum_{k=1}^n \left[(-1)^{k+1} \sum_{\alpha\in T,|\alpha|=k} P(A_\alpha)\right],$$
+where for any $\alpha\subseteq T$ we define 
+$$A_\alpha = \cap_{i\in \alpha} A_i.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The notation is a bit complicated. Let's understand it first with the $n=3$ case. 
+Here the first term of the outer sum consists of the sum of all $A_\alpha$  where $\alpha\in T$  
+and $|\alpha|=1$  (<i>i.e.</i>, all singleton  subsets of $\{1,2,3\}$). 
+This sum is simply 
+$$P(A_1)+P(A_2)+P(A_3).$$ 
+ Similarly, the next term consists of 
+all $A_\alpha,$  where $\alpha$  is a doubleton subset of $\{1,2,3\}.$  Remember that 
+$A_{\{1,2\}} = A_1\cap A_2$  and so on. So the second term (for $k=2$) becomes 
+$$-[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_1\cap A_3)].$$ 
+ The third term (for $k=3$) similarly is 
+$P(A_1\cap A_2\cap A_3).$  So the entire sum looks like 
+$$P(A_1\cup A_2\cup A_3) = [P(A_1)+P(A_2)+P(A_3)]-[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_1\cap A_3)]+P(A_1\cap A_2\cap A_3).$$
+ The Venn diagram shows why this formula is correct. But a Venn diagram cannot be 
+considered as a proof, as it shows only one possible case. However, a Venn diagram does indicate 
+how to construct a general proof.
+Note that $A_1\cup A_2\cup A_3$ is made of certain disjoint
+events:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ie1.png"></th>
+</tr>
+<tr>
+<th>Cells</th>
+</tr>
+</table>
+</center>
+We have coloured these using blue, green and red. Blue cells
+consist of points belonging to exactly one $A_i.$ For
+example, $B_1$ is the set of points that belong only
+to $A_1.$ The green
+cells consist of points belonging to exactly two $A_i$'s,
+and so on. So 
+$$A_1 =  B_1\cup B_{12}\cup B_{13} \cup B_{123},$$
+and similarly for $A_2,$ and $A_3.$ Note the pattern:
+all the $B's$ with $1$ somewhere in the subscript has
+occurred in the RHS. Since the events in the RHS are
+disjoint, so we have 
+$$P(A_1) =  P(B_1)+P(B_{12})+P(B_{13})+P(B_{123}).$$
+Now, the first stage (inclusion) is
+$$\begin{eqnarray*}
+P(A_1)+P(A_2)+P(A_3) 
+&amp; = &amp; [P(B_1)+P(B_{12})+P(B_{13})+P(B_{123})]\\
+&amp; &amp; +[P(B_2)+P(B_{12})+P(B_{23})+P(B_{123})]\\
+&amp; &amp; +[P(B_3)+P(B_{13})+P(B_{23})+P(B_{123})]
+\end{eqnarray*}$$
+<p></p>
+Note that here each $B$ with a single subscript occurs once,
+each $B$ with two subscripts occur twice, and so on. This 
+is of course natural, since for example, $B_{12}$ occurs once as
+part of $A_1$ and then again as part of $A_2.$
+<p></p>
+Next, we have 
+$$A_{12} =  B_{12}\cup  B_{123}.$$
+Here all the $B$'s with $12$ in the subscript occur in
+the RHS. Again, since the $B$'s are all disjoint, 
+$$
+P(A_{12}) =  P(B_{12})+P(B_{123}).
+$$
+Similarly for $A_{23}$ and $A_{13}.$ Using these, 
+the second stage (exclusion) is 
+$$\begin{eqnarray*}
+P(A_{12})+P(A_{23})+P(A_{13}) 
+&amp; = &amp; [P(B_{12})+P(B_{123})]\\
+&amp; &amp; +[P(B_{23})+P(B_{123})]\\
+&amp; &amp; +[P(B_{13})+P(B_{123})]
+\end{eqnarray*}$$
+Note that no $B$ with a single subscript occurs at
+all. The $B$'s with two subscripts occur once each, while
+the $B$ with three subscripts occur thrice. Do you see the
+pattern? Each $B$ is like $B_\beta,$ where $\beta$
+is a nonempty subset of $\{1,2,3\}.$ Similarly, each $A$ is
+like $A_\alpha,$ where $\alpha $ is also a nonempty
+subset of $\{1,2,3\}.$ Now $B_\beta$  occurs as a part
+of $A_\alpha$ if and only if $\alpha\subseteq \beta.$
+So the number of times we see $B_{123}$ in the RHS is same
+as the number of subsets of size 2 of $\{1,2,3\},$ which
+is $\binom{3}{2}=3.$ The same technique will also explain
+why $B_{23},$ for example, occurs only once: the number of
+subsets of size 2 of $\{2,3\}$ is $\binom{2}{2}=1.$
+In fact, the same approach also explains the absence
+of $B$'s with single indices. Each single index $B$
+occurs $\binom{1}{2}=0$ times!
+<p></p>
+The third stage (inclusion) is similar, though
+simpler. Here $A_{123} = B_{123},$ and so $P(A_{123}) =
+P(B_{123}).$ Our basic pattern holds here also: The
+3-index $B$ occurs $\binom33=1$
+time. The $2$-index $B$'s occur $\binom23=0$ time,
+and the 1-index $B$'s occur $\binom13=0$ time.
+<p></p>
+The following table gives a summary:
+<center>
+<table style="" border="1">
+
+<tr>
+<td colspan="" rowspan="2">No. of indices
+of $B$</td><td colspan="3" rowspan="">Considered how many times in</td><td colspan="" rowspan="">Total</td>
+</tr>
+
+<tr>
+
+<td colspan="" rowspan="">Stage 1 (incl)</td>
+<td colspan="" rowspan="">Stage 2 (excl)</td>
+<td colspan="" rowspan="">Stage 3 (incl)</td>
+
+</tr>
+
+<tr>
+<td colspan="" rowspan="">1</td><td colspan="" rowspan="">$\binom11$</td><td colspan="" rowspan="">$\binom12$</td><td colspan="" rowspan="">$\binom13$</td><td colspan="" rowspan="">1-0+0=1</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">2</td><td colspan="" rowspan="">$\binom21$</td><td colspan="" rowspan="">$\binom22$</td><td colspan="" rowspan="">$\binom23$</td><td colspan="" rowspan="">2-1+0=1</td>
+</tr>
+
+<tr>
+<td colspan="" rowspan="">3</td><td colspan="" rowspan="">$\binom31$</td><td colspan="" rowspan="">$\binom32$</td><td colspan="" rowspan="">$\binom33$</td><td colspan="" rowspan="">3-3+1=1</td>
+</tr>
+
+</table>
+</center>
+Now we head for the general case for any given $n.$ 
+<p></p>
+For any $\alpha\in T$ define
+<blockquote>
+$B_\alpha=$ the set of all those points that belong to $A_i$ iff $i\in \alpha.$
+</blockquote>
+Clearly, by definition, $B_\alpha$'s are all disjoint and 
+$$A_1\cup\cdots\cup A_n = \cup_{\alpha\in T} B_\alpha.$$
+Now observe that for any $\alpha \in T$
+$$A_\alpha = \cup_{\beta\supseteq\alpha} B_\beta.$$
+So
+$$P(A_\alpha) = \sum_{\beta\supseteq\alpha} P(B_\beta).$$
+So the number of times a $k$-index $B$ is considered in the $r$-th
+stage is $\binom{k}{r}.$ 
+<a href="javascript:hideShow('ie');">(Click here for more explanation.)</a>
+<div id="ie" style="display:none;background-color:#ffcccc;">
+In the $r$-th stage we are considering the sum
+of $P(A_\alpha)$ for all $\alpha$ of size $r.$ 
+<p></p>
+Fix any $\beta.$
+<p></p>
+Then $P(B_\beta)$ occurs only for those $P(A_\alpha)$'s
+where $\alpha\subseteq\beta.$ 
+<p></p>
+Thus, $P(B_\beta)$ occurs as many times as there are subsets
+of $\beta$ of size $k.$
+<p></p>
+If $|\beta|=k,$ then this number is $\binom{k}{r}.$
+</div>
+More precisely, 
+$$
+\sum_{|\alpha|=r} P(A_\alpha) = \sum_{k=1}^r \binom{k}{r}
+\sum_{|\beta|=k} P(B_\beta).
+$$
+<p></p>
+Hence total number of inclusion of a $k$-index $B$ is
+$$
+\binom{k}{1}-\binom{k}{2}+-\cdots+(-1)^{n+1} \binom{k}{n} = 1-(1-1)^k=1,
+$$
+using binomial theorem.
+<p></p>
+Hence every $B$ is included exactly once in the RHS. Thus,
+$$
+P(\cup_{\alpha\in T}B_\alpha) =  RHS,
+$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+Notice that the proof has used only the third axiom of probability. 
+So if we have any function $P(\cdot)$  that satisfies the third axiom, the theorem is valid for that 
+function as well. Examples of such functions include length, area, volume, mass, number of elements (for
+ finite sets). In short, it is
+ true for any measure of size.
+<p></p>
+ Indeed, all functions that satisfy  axiom three are called <b>(signed) measure</b>s, and 
+measure theory is the branch of mathematics that deals with them. 
+<p></p>
+
+<h2><a
+name="Countable sample spaces">Countable sample spaces</a></h2>
+If the sample space $S$ is countable (finite/infinite), say 
+$$
+S = \{x_1,x_2,...\},
+$$
+then take any sequence $p_1,p_2,...$ of nonnegative numbers
+adding up to $1.$ Defining $P(\{x_i\})=p_i$ completely
+specifies a probability. Conversely, any probability can be
+constructed like this.
+<p></p>
+
+<h3><a
+name="Equally likely cases">Equally likely cases</a></h3>
+The simplest special case is when the sample space $\Omega$ is finite
+(say $|\Omega|=n$) and we take $p_1=\cdots=p_n=\frac 1n.$
+<p></p>
+In this case, for any $A\subseteq \Omega$ we have $P(A) =|A|/|\Omega|.$
+<p></p>
+Many interesting problems fall in this category. They are
+basically problems of combinatorics. One type of problem is
+<i>occupancy problems</i>, where we have some boxes and some
+balls are distributed over them following various
+conditions. 
+<p></p>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+There are three distinct boxes and 10 distinct balls. The balls are dropped randomly among the boxes so that all possible
+ configurations are equally likely. (No ball is outside a box,
+ and each box can hold all the balls.) What is the probability that the first box is empty?
+<p></p>
+<b>SOLUTION:</b>
+Each of the 10 balls has 3 possible destinations, irrespective of the other balls. So the total 
+number of configurations is $3^{10}.$  So $|\Omega|=3^{10}.$
+<p></p>
+Let $A$  be the event that the first ball remains empty. Then $A$  occurs if and only if all the balls land in
+ the other 2 boxes. So $|A|=2^{10}.$  
+<p></p>
+Since all outcomes are equally likely hence 
+$$P(A)= \frac{|A|}{|\Omega|} = \left(\frac 23\right)^{10}.$$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 7:</b>&nbsp;
+Same problem as above, except that the balls are now identical. The boxes are still distinct. 
+What is the answer now?
+<p></p>
+<b>SOLUTION:</b>
+By the <a href="barstar.html">bar-star argument</a> $|\Omega| = \binom{12}{2}=66.$
+<p></p>
+Similarly, $|A| = \binom{11}{1} = 11.$
+<p></p>
+So the answer is $\frac 16.$
+ ■
+</p>
+
+<p></p>
+Certain real-life scenarios may be modelled like
+this. Here are a few examples from physics (no need to cram these
+terms for the exams!).
+<p></p>
+
+<p>
+<b>EXAMPLE 8:</b>&nbsp;
+There are $r$ (identical/distinct) particles. Each particle may be in
+one of $n$ distinct states. We can think of the particles as
+balls and the states as boxes. For example, if the states are UP
+and DOWN, and there are $r=12$ <i>identical</i> particles, among which 5 are
+in UP state and 7 in DOWN, we can visualise this as:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/occ1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If there are $r=3$ <i>distinct</i> particles and the same two
+states, then the picture could be like:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/occ2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Physicists assume various types of probabilities on
+these. 
+<ul>
+
+<li>
+<b>Maxwell-Boltzmann distribution:</b> The balls are
+distinct. Then there are $n^r$ many possible configurations (each
+of the $r$ balls has $n$ possible destinations).
+All these $n^r$ configurations are assumed equally likely.
+No real life particle shows this behaviour.</li>
+
+<p></p>
+
+<li>
+<b>Bose-Einstein distribution:</b> The balls are
+identical. So, by the <a href="barstar.html">bar-star argument</a>, we know that there
+are ${n+r-1\choose n-1}$ configurations possible. These are
+assumed equally likely.</li>
+
+<p></p>
+
+<li>
+<b>Fermi-Dirac distribution:</b> Here $n\geq r$ and no
+box can hold more than one ball. Balls are
+identical. So ${n\choose r}$ distinct configurations are
+possible (since a configuration is determined completely by which
+of the boxes have one ball in it). All these 
+configurations are assumed equally likely.</li>
+
+</ul>
+ ■
+</p>
+
+<p></p>
+Next we discuss a type of problems that are used in statistical
+quality control. 
+<p></p>
+
+<p>
+<b>EXAMPLE 9:</b>&nbsp;An electronic component is packaged 100 per box. Each
+component may be either good or defective. We want to accept a box
+if and only if it has no defective component in it. Testing all
+the 100 components one by one is too time consuming (and also
+useless if the test is destructive). So instead we draw a simple
+random sample without replacement (SRSWOR) of size 10 and reject
+the box if any of these 10 turns out to be defective. Find the
+probability that a box containing exactly 5 defectives will be
+rejected. 
+<p></p>
+<b>SOLUTION:</b>
+Let $\Omega = $ all samples of size 10. What is its size?
+Instead of writing ${100\choose 10}$, we shall follow the
+steps that a typical quality control officer would take: pick
+one, then pick the next, then the next and so on. This stepwise
+approach is generally better 
+<a href="javascript:hideShow('why');">(Why?)</a>
+<div id="why" style="display:none;background-color:#ffcccc;">Such formulae
+make tacit assumptions about whether order is important or
+not. These assumptions may not be compatible with a given
+problem. Also, not all answers are expressible in terms of these formulae.</div>
+than jumping into a $^nC_r$
+or $^nP_r$ formula. 
+<p></p>
+Here the first step may be done in 100 ways, the next in 99 ways,
+etc all the way upto $100-10+1=91$ ways. 
+<p></p>
+So $|\Omega| = 100\times 99\times\cdots\times 91.$
+<p></p>
+By the given condition,  all the outcomes are equally likely. 
+<p></p>
+Let $A = $ the event that the box is rejected. 
+<p></p>
+Thus $A$ is the event that the box contains 1 or more
+defectives.
+<p></p>
+There are 5 possible cases here: exactly $i$ defectives,
+where $i=1,...,5.$ These are disjoint cases. So we may try
+to find the probabilities of each and add up. But we can save the
+work by working with $A^c$ instead. 
+<p></p>
+Here 
+$A^c=$ the event that the box contains no defective. Again
+we shall find $|A^c|$ stepwise. 
+<p></p>
+The first component may be selected in 95 ways (avoiding the 5
+defectives). The next in 94 ways, etc up to the 10-th component,
+which may be selected in $95-10+1 = 86$ ways. 
+<p></p>
+Hence $|A^c| = 95\times94\times\cdots\times86.$
+<p></p>
+Thus, 
+$$
+P(A^c) = \frac{|A^c|}{|\Omega|} = \frac{95\times94\times\cdots\times86}{100\times99\times\cdots\times91}.
+$$
+ ■
+</p>
+
+<p></p>
+Here is one example where we shall need the inclusion-exclusion
+formula.
+<p></p>
+
+<p>
+<b>EXAMPLE 10:</b>&nbsp;
+10 distinct balls are dropped randomly over 3 (distinct) boxes. Each box
+can hold any number of balls. What is the probability that at
+least one box will remain empty?
+<p></p>
+<b>SOLUTION:</b>
+Such "at least" problems usually mean that our event is the union
+of some simpler events. Since the simpler events may not be
+disjoint, we need the inclusion-exclusion formula.
+<p></p>
+Let $\Omega=$ the set of all possible ways of dropping the
+balls. Then $|\Omega| = 3^{10}.$
+<p></p>
+We assume that all the outcomes are equally likely.
+<p></p>
+Let $A_i=$the event that the $i$-th box remains empty,
+where $i=1,2,3.$ 
+<p></p>
+Then we are looking for $P(A_1 \cup A_2\cup A_3).$
+<p></p>
+By the inclusion-exclusion formula, this is the same as
+$$
+P(A_1)+P(A_2)+P(A_3)-\big[P(A_1\cap A_2)+P(A_2\cap A_3)+P(A_3\cap
+A_1) \big] + P(A_1\cap A_2\cup A_3).
+$$
+Since the labelling of the boxes are arbitrary, we have $P(A_1)
+= P(A_2)=P(A_3).$ 
+<p></p>
+Similarly, the three probabilities inside the exclusion term are
+also equal to each other. Thus we are left with 
+$$
+3P(A_1)-3P(A_1\cap A_2)+ P(A_1\cap A_2\cup A_3).
+$$
+Now $|A_1| = 2^{10}$ and $|A_1\cap A_2| = 1^{10}$
+<a href="javascript:hideShow('box');">(Why?)</a>
+<div id="box" style="display:none;background-color:#ffcccc;">Since all the 10 balls
+must now land in the third box.</div>.
+<p></p>
+Also $|A_1\cap A_2\cap A_3| = 0$
+<a href="javascript:hideShow('nobox');">(Why?)</a>
+<div id="nobox" style="display:none;background-color:#ffcccc;">This is
+impossible. If <i>all</i> the boxes remain empty,  where
+have the balls gone?</div>.
+<p></p>
+So $P(A_1) = \frac{|A_1|}{|\Omega|} = \left(\frac 23\right)^{10}$
+and $P(A_1\cap A_2) = \frac{|A_1\cap A_2|}{|\Omega|} =
+\left(\frac 13\right)^{10}. $
+<p></p>
+Hence the required answer is $3\times \left[ \left(\frac 23\right)^{10}-\left(\frac 13\right)^{10} \right] = \frac{2^{10}-1}{3^9}.$
+<p></p>
+ ■
+</p>
+
+<p></p>
+
+<h2><a
+name="Simulations">Simulations</a></h2>
+Often we come across events that easily described in words, but
+whose probabilities are rather hard to compute. Computer
+simulation comes handy in such cases. Computer simulations help
+in detecting theoretical mistakes too. 
+<p></p>
+
+<p>
+<b>EXAMPLE 11:</b>&nbsp;
+A deck of 10 cards labelled 1,...,10 is shuffled thoroughly. We shall
+say that the $i$-th card is <i>at home</i>, if it is in
+the $i$-th positron after the shuffle. Write an R code to
+estimate the probability that exactly 3 cards are at home. 
+<p></p>
+<b>SOLUTION:</b>
+<font color="red">
+<pre>
+event = numeric(5000)
+for(k in 1:5000) {
+  x = sample(10,10)
+  at.home = sum(x==(1:10))
+  event[k] = (sum(at.home)==3)
+}
+mean(event)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+event = numeric(5000)
+for(k in 1:5000) {
+  x = sample(10,10)
+  at.home = sum(x==(1:10))
+  event[k] = (sum(at.home)==3)
+}
+mean(event)
+`));"/>
+ ■
+</p>
+
+<h2><a
+name="Problems for practice">Problems for practice</a></h2>
+
+<p></p>
+
+<h3><a
+name="Sets and Venn diagrams">Sets and Venn diagrams</a></h3>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let $E,F,G$ be any three events. Find expressions for
+the event that of $E,F,G$
+<ol type="">
+
+<li>only $F$ occurs</li>
+
+<li>both $E$ and $F$ but not $G$ occur</li>
+
+<li>at least one event occurs</li>
+
+<li>at least two events occur</li>
+
+<li>all three events occur</li>
+
+<li>none occurs</li>
+
+<li>at most one occurs</li>
+
+<li>at most two occur</li>
+
+<li>exactly two occur</li>
+
+<li>exactly one occurs.</li>
+
+</ol>
+
+<p><a
+href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+class="ans" id="lab1">
+<ol type="">
+<li>$E^c\cap F\cap G^c.$</li>
+
+<li>$E\cap F\cap G^c.$</li>
+
+<li>$E\cup F\cup G.$</li>
+
+<li>$E\cap F\cup F\cap G\cup E\cap G.$</li>
+
+<li>$E\cap F\cap G.$</li>
+
+<li>$E^c\cap F^c\cap G^c.$</li>
+
+<li>$(E\cap F^c\cap G^c)\cup ((E\cap F^c\cap G^c)\cup (E\cap
+F^c\cap G^c)\cup (E^c\cap F^c\cap G^c).$ (Can you come up
+with something simpler?)</li>
+
+<li>$(E\cap F\cap G)^c.$</li>
+
+<li>$(E\cap F\cap G^c)\cup (E\cap F^c\cap G)\cup (E^c\cap F\cap G).$</li>
+
+<li>$(E\cap F^c\cap G^c)\cup (E^c\cap F\cap G^c)\cup (E^c\cap
+F^c\cap G).$</li>
+</ol>
+</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Show that $E\cap (F\cup G) = (E\cap F)\cup (E\cap
+G).$<p><a
+href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+class="ans" id="lab2">Let $x\in E\cap (F\cup G).$ To show $x\in (E\cap
+F)$ or $x\in (E\cap G).$
+<p></p>
+Let $x\not\in (E\cap F).$
+<p></p>
+Shall show that $x\in E\cap G.$
+<p></p>
+Since $x\in E\cap (F\cup G),$ hence $x\in E.$
+<p></p>
+So $x\not\in F.$ 
+<p></p>
+Since $x\in F\cup G,$ hence $x\in G.$
+<p></p>
+So $x\in E\cap G,$ as required.
+<p></p>
+Conversely, let $x\in (E\cap F)\cup (E\cap G).$
+<p></p>
+Shall show that $x\in E\cap (F\cup G).$
+<p></p>
+Now $E\cap F\subseteq E\cap (F\cup G)$ and $E\cap G\subseteq E\cap
+(F\cup G).$
+<p></p>
+Hence $x\in (E\cap F\cup G),$ as required.
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Show that $(A\cup B)^c = A^c \cap B^c.$<p><a
+href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+class="ans" id="lab3">Let $x\in (A\cup B)^c.$ Shall show $x\in A^c\cup
+B^c$, <i>i.e.</i>, $x\not\in A$ and $x\not\in B.$
+<p></p>
+Then $x$ is not in $A\cup B.$ So $x\not\in A,$
+<i>i.e.</i>, $x\in A^c.$ 
+<p></p>
+Similarly, $x\in B^c.$ Hence $x\in A^c\cap B^c.$
+<p></p>
+Conversely, let $x\in A^c\cap B^c.$
+<p></p>
+Then $x$ is neither in $A$ nor in $B.$ Hence $x\in (A\cup B)^c.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;State (with proof/counterexample) which of the following statements is
+correct/incorrect:
+<ol type="">
+
+<li>$(A\cup B)\setminus C = A\cup (B\setminus C).$</li>
+
+<li>$A\cap B\cap C = A\cap  (C\cup B).$</li>
+
+<li>$A\cup B\cup C = A\cup (B\setminus (A\cap B))\cup
+(C\setminus (A\cap C)).$</li>
+
+<li>$(A\cap B)\cup (B\cap C) \cup (C\cap A)\subseteq A\cup B\cup C.$</li>
+
+</ol>
+
+<p><a
+href="javascript:hideShow('lab4')"><b>Hint:</b></a><div
+class="ans" id="lab4"><ol type="">
+
+<li>False: Venn diagram for the lhs is
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/e1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>. Clearly it is not a superset of $A.$
+A counterexample is $A=C\{1\}$ and $B=\{2\}.$</li>
+
+<li>False: Venn diagram for the rhs is
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/e2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>. Clearly it is not $A\cap
+B\cap C.$ A counterexample is $A=\{1\},C=\{1\},B=\phi.$
+</li>
+
+<li>True. Venn diagram for the rhs is <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/e3.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>. The
+red set is indeed $A\cup B\cup C.$ </li>
+
+<li>True: Venn diagram for the lhs is <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/e4.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>. The
+red set is indeed $A\cup B\cup C.$</li>
+
+</ol>
+</div></p>
+</p>
+
+<p></p>
+
+<h3><a
+name="Axioms">Axioms</a></h3>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Take $\Omega = \{0,1,2\}.$ Obtain
+functions $P_i:\Omega\rightarrow{\mathbb R}$ for $i=1,2,3$ such
+that $P_i$ violates axiom $i$, but satisfies the other
+two.<p><a
+href="javascript:hideShow('lab5')"><b>Hint:</b></a><div
+class="ans" id="lab5">Here is $P_1:$
+$P_1(\phi)=0$,
+$P_1(\{0\})=-1$,
+$P_1(\{1\})=1$,
+$P_1(\{2\})=1$,
+$P_1(\{0,1\})=0$,
+$P_1(\{1,2\})=2$,
+$P_1(\{0,2\})=0$,
+$P_1(\{0,1,2\})=1.$
+Here is $P_2:$
+$P_2(\phi)=0$,
+$P_2(\{0\})=1$,
+$P_2(\{1\})=1$,
+$P_2(\{2\})=1$,
+$P_2(\{0,1\})=2$,
+$P_2(\{1,2\})=2$,
+$P_2(\{0,2\})=2$,
+$P_2(\{0,1,2\})=3.$
+Here is $P_3:$
+$P_3(\phi)=0$,
+$P_3(\{0\})=1$,
+$P_3(\{1\})=1$,
+$P_3(\{2\})=1$,
+$P_3(\{0,1\})=2$,
+$P_3(\{1,2\})=2$,
+$P_3(\{0,2\})=2$,
+$P_3(\{0,1,2\})=1.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;If $P(A)=0.9$ and $P(B)=0.8,$ show that $P(A\cap
+B)\geq 0.7.$ In general, show that $P(A\cap B)\geq
+P(A)+P(B)-1.$ This is known as Bonferroni's
+inequality.
+<p><a
+href="javascript:hideShow('lab6')"><b>Hint:</b></a><div
+class="ans" id="lab6">$P(A\cup B) \leq 1.$ Hence $P(A)+P(B)-P(A\cap B)\leq
+1.$ So $P(A)+P(B)-1\geq P(A\cap B).$ Hence $P(A\cap B)\geq 0.9+0.8-1 = 0.7.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Show that 
+$$
+P\left( \cup_1^n A_i\right) \leq \sum_1^n P(A_i).
+$$
+<p><a
+href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+class="ans" id="lab7">(Induction on $n$) If $n=1,$ then both sides are
+the same. 
+<p></p>
+If $n=2,$ then $P(A_1\cup A_2) = P(A_1\cup (A_1^c\cap
+A_2)) = P(A_1)+P(A_1^c\cap A_2)\leq P(A_1)+P(A_2),$ since $A_1^c\cap A_2\subseteq A_2.$
+<p></p>
+We assume the result for $n=1,...,m-1$ for
+some $m\geq3.$ Shall show for $n=m.$
+<p></p>
+$P(\cup_1^m A_i) = P(\underbrace{\cup_1^{m-1} A_i}_{B_1} \cup
+\underbrace{A_m}_{B_2})\leq P(B_1)+P(B_2)$ (by the $n=2$
+case).
+<p></p>
+Now $P(B_1) = P(\cup_1^{m-1} A_i) \leq \sum_1^{m-1} P(A_i).$ 
+<p></p>
+Also $P(B_2) = P(A_m).$
+<p></p>
+Hence the result.
+</div></p>
+</p>
+
+<p></p>
+
+<h3><a
+name="Equally likely">Equally likely</a></h3>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;An SRSWOR of size 2 is drawn from $\{1,2,3,4,5\}.$ What
+is the probability that (a) the first selected digit is odd?
+(b) the second selected digit is odd? (c) both are odd? (d) at
+least one is odd?
+<p><a
+href="javascript:hideShow('lab8')"><b>Hint:</b></a><div
+class="ans" id="lab8">There are $5\times4$ possible outcomes. (a)
+Exactly $3\times4$ outcomes have the first digit odd. So the
+probability is $\frac 35.$ (b) 
+Exactly $3\times4$ outcomes have the second digit odd. So the
+probability is again $\frac 35.$ (c) Exactly $3\times2$
+outcomes have both the digits odd. So the probability
+is $\frac{3}{10}.$ (d) By inclusion-exclusion principle the
+required probability is $\frac 35+\frac 35-\frac{3}{10} = \frac{9}{10}.$  
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;A fair coin is tossed 6 times. What is the probability that
+the first head occurs (a) at the third toss? (b) not before the
+third toss?<p><a
+href="javascript:hideShow('lab9')"><b>Hint:</b></a><div
+class="ans" id="lab9">Total number of outcomes is $2^6.$ All are equally
+likely. (a) Number of favorable outcomes is $2^3.$ So the
+probability is $2^{-3}.$ (b) Similarly, the probability that
+the first head occurs at the $i$-th toss is $2^{i-6}.$
+So the required probability is $1-2^{-5}-2^{-4}.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;10 distinct balls are dropped randomly in 3 distinct
+boxes. What is the probability that none of the boxes remain
+empty?<p><a
+href="javascript:hideShow('lab10')"><b>Hint:</b></a><div
+class="ans" id="lab10">Each ball can drop in any box. So $3^{10}$ outcomes in
+all. All equally likely. The probability that box $i$ is empty
+is $\left(\frac 23\right)^{10}$  for $i=1,2,3.$ The probability that
+boxes $i\neq j$ are both empty is $3^{-10}.$ So, by
+inclusion-exclusion principle, the probability that at least one
+box is empty is 
+$$
+3\times \left(\frac 23\right)^{10} - 3\times \left(\frac 13\right)^{10} + 0\approx 0.95
+$$
+the last 0 is because all the boxes cannot remain empty.
+<p></p>
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;Two fair dice are tossed, what is the probability that the
+sum is $i$ for $i=2,3,...,12?$<p><a
+href="javascript:hideShow('lab11')"><b>Hint:</b></a><div
+class="ans" id="lab11"><center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">$i$</th><th colspan="" rowspan="">Number of favorable
+outcomes</th><th colspan="" rowspan="">Probability</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">2</th><th colspan="" rowspan="">1</th><th colspan="" rowspan="">$\frac{1}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">3</th><th colspan="" rowspan="">2</th><th colspan="" rowspan="">$\frac{2}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">4</th><th colspan="" rowspan="">3</th><th colspan="" rowspan="">$\frac{3}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">5</th><th colspan="" rowspan="">4</th><th colspan="" rowspan="">$\frac{4}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">6</th><th colspan="" rowspan="">5</th><th colspan="" rowspan="">$\frac{5}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">7</th><th colspan="" rowspan="">6</th><th colspan="" rowspan="">$\frac{6}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">8</th><th colspan="" rowspan="">5</th><th colspan="" rowspan="">$\frac{5}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">9</th><th colspan="" rowspan="">4</th><th colspan="" rowspan="">$\frac{4}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">10</th><th colspan="" rowspan="">3</th><th colspan="" rowspan="">$\frac{3}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">11</th><th colspan="" rowspan="">2</th><th colspan="" rowspan="">$\frac{2}{36}$</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">12</th><th colspan="" rowspan="">1</th><th colspan="" rowspan="">$\frac{1}{36}$</th>
+</tr>
+
+</table>
+</center>
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;Two cards are randomly selected from a deck of 52 playing
+cards. What is the probability that they are of the same
+denomination?<p><a
+href="javascript:hideShow('lab12')"><b>Hint:</b></a><div
+class="ans" id="lab12">Total number of outcomes is $52\times51.$ All equally
+likely. To compute number of favorable outcomes: pick the first
+card (52 ways), pick the second card with same denomination (3
+ways). So number of favourable outcomes is $52\times 3.$
+Hence the required probability is $\frac{3}{51} = \frac{1}{17}.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;10 light bulbs are shining in a row. If a lightning strikes, then
+some (or all or none) of the light bulbs may go out (all possibilities
+being equally likely). What is the chance that after a
+lightning  at least two consecutive light bulbs are still
+shining.<p><a
+href="javascript:hideShow('lab13')"><b>Hint:</b></a><div
+class="ans" id="lab13">Each light may be either on or off (not both). So total
+number of outcomes is $2^{10}.$ To count number of
+favourable outcomes we start by counting the complement. If no
+two consecutive bulbs are shining, then the number of
+shining bulbs must be at most 5. Let $N_i = $ number of
+ways exactly $i$ shining bulbs can be placed
+non-consecutively. Then 
+$N_i = {11-i\choose i}$. So the required probability is $1-\frac{N_0+\cdots+N_5}{2^{10}}$.
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 19:</b>&nbsp;We have 4 letters and their respective addressed
+envelopes. If the letters are placed randomly in the envelopes,
+then find the probability that exactly $k$ letters are in their correct
+envelopes for $k=1,2,3,4.$ <p><a
+href="javascript:hideShow('lab14')"><b>Hint:</b></a><div
+class="ans" id="lab14">Let $p_k = $ probability that exactly $k$ letters
+are in their correct envelopes. Then $p_4 = \frac{1}{4!}.$
+Also $p_3 = 0,$ since if 3 letters are in their correct
+envelopes, the remaining one must also be in its correct
+envelope.
+<p></p>
+For $k=2,$ pick the two letters to be correctly placed
+(${5\choose 2} = 10$ ways), then swap the other two (1
+way). So $p_2 = \frac{10}{24} = \frac{5}{12}.$ 
+<p></p>
+For $k=1$, the remaining three must all be misplaced. So we
+need a cyclic permutation. Since there are only 2 such, $p_1 =
+\frac{4\times2}{24} = \frac 13.$ 
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;The numbers $1,2,...,n$ are arranged in random
+order. Find the probability that the digits $1,2,3$ appear
+as neighbours in this order.<p><a
+href="javascript:hideShow('lab15')"><b>Hint:</b></a><div
+class="ans" id="lab15">Treat $1,2,3$ as a
+bunch. So the probability is $\frac{3!\times(n-2)!}{n!} =
+\frac{6}{n(n-1)}.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;$A$ throws six dice and wins if he scores at least one
+ace. $B$ throws twelve dice and wins if he scores at least
+two aces. Who has the greater probability to win?<p><a
+href="javascript:hideShow('lab16')"><b>Hint:</b></a><div
+class="ans" id="lab16">
+$P(A) = 1-\frac{5^6}{6^6} = 0.67.$ 
+<p></p>
+$P(B) = 1 - P(no ace) -
+P(exactly one ace).$ 
+<p></p>
+Now $P(no ace) = \left(\frac 56\right)^{12}.$ $P(exactly one ace) =
+\frac{12\times5^{11}}{6^{12}}.$
+<p></p>
+So$P(B) \approx 0.62.$ 
+<p></p>
+$P(A) &gt; P(B).$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;Find the probability that among three random digits there
+appear exactly 1,2 or 3 different digits. Also do the same for
+four random digits.<p><a
+href="javascript:hideShow('lab17')"><b>Hint:</b></a><div
+class="ans" id="lab17">Let $p_k = $ the probability that there are
+exactly $k$ different digits among 3 random digits. Total
+number of outcomes is $10^3.$ For $k=1,$ the number of
+favourable outcomes is 10. So $p_1 = \frac{1}{100}.$
+<p></p>
+For $k=2,$ pick the digit to be repeated  (10 ways),
+pick the digit to be chosen once (9 ways), pick the position of
+the unique digit (3 ways). So $p_2 = \frac{10\times9\times3}{10^3}
+= \frac{27}{100}.$  
+<p></p>
+For $k=3$, pick the first digit (10 ways), pick the next (9
+ways), pick the third (8 ways). So $p_3 = \frac{72}{100}.$ It
+could be also found as $1-p_1-p_2.$
+<p></p>
+Let $q_k = $ the probability of exactly $k$ distinct
+digits for $4$ digits. The same technique works here
+also. But now $q_3\neq 1-q_1-q_2.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;Find, for $r=1,2,3,...$, the probability $p_r$ that in a sample of $r$
+random digits no two are equal.<p><a
+href="javascript:hideShow('lab18')"><b>Hint:</b></a><div
+class="ans" id="lab18">Clearly, $p_1 = 1$ and $p_r = 0$ for $r&gt;10.$
+For $r\in\{2,...,9\},$ the total number of outcomes
+is $10^r$ and number of favourable outcomes
+is $(10)_r.$ So $p_r = \frac{(10)_r}{10^r}.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;If $n$ balls are placed at random among $n$ cells,
+find the probability that exactly one cell remains
+empty.<p><a
+href="javascript:hideShow('lab19')"><b>Hint:</b></a><div
+class="ans" id="lab19">Let $p = $ the probability that only the first cell
+remains empty.
+The final answer would be $np.$ Now, for $k=2,...,n,$ let $A_k = $ the
+event  "the first cell and the  $k$-th cell is
+empty." 
+<p></p>
+Then $\cup_2^n A_k = $ the event "the first cell
+is empty and at least one of the remaining cells is empty." 
+<p></p>
+Let $A = $ the event "the first cell is empty".
+<p></p>
+Then $\cup_2^n A_k \subseteq A $ and the required probability is $P(A)-P(\cup_2^n A_k).$
+<p></p>
+Clearly, $P(A) = \frac{(n-1)^n}{n^n}.$ 
+<p></p>
+Also $P(A_k) = \frac{(n-2)^n}{n^n}$ for $k=2,...,n.$
+<p></p>
+Similarly, for $k\neq \ell$ we have $P(A_k\cap A_\ell) =
+\frac{(n-3)^n}{n^n},$ and so on. 
+<p></p>
+Hence, by inclusion-exclusion principle, 
+$$
+P(\cup_2^n A_k) = \sum_{i=1}^{n-1} (-1)^{i-1}\times{n-1\choose i} \frac{(n-i-1)^n}{n^n}.
+$$
+So the final answer is 
+$$
+\frac{(n-1)^n}{n^n}+\sum_{i=1}^{n-1} (-1)^i\times{n-1\choose i}
+\frac{(n-i-1)^n}{n^n}= \sum_{i=0}^{n-1} (-1)^i\times {n-1\choose i} \left(1-\frac{i+1}{n}\right)^n.
+$$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;A man is given $n$ keys of which only one fits his
+door. He tries them successively using SRSWOR until he finds the
+right key. Show that the probability that he will try $k$
+keys is $\frac 1n$ for $k=1,...,n.$<p><a
+href="javascript:hideShow('lab20')"><b>Hint:</b></a><div
+class="ans" id="lab20">The probability that he tries $k$ keys is the
+probability that he picks wrong keys the first $k-1$ times,
+and then picks the right key. The total number of outcomes
+is $(n)_k.$ The total number of favourable outcomes
+is $(n-1)_{k-1}.$ So the required probability is 
+$$
+\frac{(n-1)(n-2)\cdots (n-1-k+1+1)}{n(n-1)(n-2)\cdots (n-k+1)} = \frac 1n,
+$$
+as required.</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;Suppose that each of $n$ sticks is broken into one long
+and one short part. The resulting $2n$ pieces are combined
+pairwise in a random fashion. What is the probability that the
+original pairings are restored? What is the probability that each
+long piece gets a short partner?<p><a
+href="javascript:hideShow('lab21')"><b>Hint:</b></a><div
+class="ans" id="lab21">
+Let the long pieces be $A_1,...,A_n$ and the
+corresponding short pieces be $A_{n+1},...,A_{2n}.$ Then the total
+number of pairings may be found like this: Let $A =
+\{1,...,2n\}$ be the set of available pieces. We pick the
+smallest element (1 way), and pick its mate ($|A|-1$
+ways). Remove both these from $A.$ Continue for $n$
+steps like this. The total number of pairings is 
+$$
+(2n-1)(2n-3)\times\cdot\times3\times1 = \frac{(2n)!}{2^n n!}.
+$$
+Only one of these pairings gives the original ordering. This has
+probability $\frac{2^n n!}{(2n)!}.$
+<p></p>
+The number of favourable outcomes in the second part
+is $n!.$ So the probability is $\frac{2^n (n!)^2}{(2n)!} = \frac{2^n}{{2n\choose n}}.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;A box contains 90 good and 10 defective screws. If 10 screws
+are selected at random (SRSWOR), then find the probability that
+none of these are defective.<p><a
+href="javascript:hideShow('lab22')"><b>Hint:</b></a><div
+class="ans" id="lab22">
+Total number of outcomes is ${100\choose 10}.$ Number of
+favourable outcomes is ${90\choose 10}.$ So the required prob
+is $\frac{90\times\cdots\times81}{100\times\cdots\times91}.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 28:</b>&nbsp;From the set $\{a,b,c,d,e\}$ we draw an SRSWR of size
+25. What is the probability that the sample will have 5
+occurrences of each of the letters?<p><a
+href="javascript:hideShow('lab23')"><b>Hint:</b></a><div
+class="ans" id="lab23">
+Total number of possible outcomes is $5^{25}$, all
+equally likely. The
+total number of favourable outcomes
+is $\frac{25!}{5!5!5!5!5!}.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 29:</b>&nbsp;If $n$ men (including $A$ and $B$) stand in a
+row in random order, what is the probability that there will be
+exactly $r$ men between $A$ and $B?$<p><a
+href="javascript:hideShow('lab24')"><b>Hint:</b></a><div
+class="ans" id="lab24">
+Total number of possible outcomes is $n!.$ To find
+total number of favourable outcomes make the other $n-2$
+men stand in a row ($(n-2)!$ ways), take a stretch of
+length $r$ ($n-r+1$ ways), place $A,B$ at two
+ends (2 ways). So the required probability
+is $\frac{(n-2)!\times(n-r+1)\times 2}{n!} =
+\frac{2(n-r+1)}{n(n-1)}.$ 
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 30:</b>&nbsp;What is the probability that two throws with three dice each
+will show the same configuration if (a) the dice are distinct
+(<i>e.g.</i>, $(2,3,6)$ is not the same as $(3,2,6)$).
+(b) the dice are identical (<i>e.g.</i>, $\{2,3,6\}$ is the same
+as $\{3,2,6\}$)?<p><a
+href="javascript:hideShow('lab25')"><b>Hint:</b></a><div
+class="ans" id="lab25">Distinct dice case: Total number of outcomes is $6^6,$
+all equally likely. Number of favourable outcomes is $6^3$
+(only free to choose the results of the first throw). So
+probability is $6^{-3}.$
+<p></p>
+ Identical dice case: Total number of outcomes is $6^6.$
+ To count number of favourable outcomes: case 1: All distinct
+ (${6\choose 3}\times 3!\times 3!= 720$ ways). Case 2: One occurs exactly twice:
+ ($6\times 5\times 3\times 3=270$ ways). Case 3: All same (6
+ ways).
+<p></p>
+So total number of favourable outcomes is $996.$ Here the
+probability is approximately $0.02.$ 
+<p></p>
+
+<font color="red">
+<pre>
+res = c()
+for(i in 1:1000) {
+first = sample(6,3,rep=T)
+second = sample(6,3,rep=T)
+res = c(res,all(sort(first)==sort(second)))
+}
+mean(res)
+</pre>
+</font>
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 31:</b>&nbsp;There are $n$ persons in a room. Assuming that each
+person is equally likely to be born in any day of the year (1
+year=365 days), find the probability that at least two persons
+share the same birthday. <p><a
+href="javascript:hideShow('lab26')"><b>Hint:</b></a><div
+class="ans" id="lab26">Total number of outcomes is $365^n.$ The number of
+outcomes where no two share the same birthday
+is $(365)_n.$ So the required probability is 
+$1-\frac{(365)_n}{365^n}.$</div></p>
+</p>
+
+<p></p>
+
+<h3><a
+name="Harder">Harder</a></h3>
+
+<p>
+<b>EXERCISE 32:</b>&nbsp;A town has $n+1$  people: $p_1,...,p_{n+1}.$ 
+A news is spreading as rumour in this town as follows. Initially,
+only $p_1$  knows the news. He communicates the news to
+ one of the
+remaining $n$ people randomly. This person again
+communicates the news to one of the other $n$ persons (may
+be $p_1$ again) randomly, and so on. Find the probability that the
+rumour spreads $r$ times without returning to $p_1.$
+Also, find the probability that the rumour spreads $r$ times
+without being repeated to any person.
+ <p><a
+href="javascript:hideShow('lab27')"><b>Hint:</b></a><div
+class="ans" id="lab27">Total number of outcomes is $n^r.$ In the first part
+the total number of favourable outcomes is $n(n-1)^{r-1}.$ So
+the probability is $\left(1-\frac 1n\right)^{r-1}.$ In the second
+case the number of favourable outcomes
+is $n(n-1)(n-2)\cdots(n-r+1).$ So the probability is
+\frac{(n)_r}{n^r}.</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 33:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab28')"><b>Hint:</b></a><div
+class="ans" id="lab28">Let the drawer have $r$ red and $b$ black
+socks. Then we have
+<p></p>
+$$
+\frac{r(r-1)}{(r+b)(r+b-1)}=\frac 12.
+$$
+So $r+b\equiv 0,1 (\mod 4).$
+<p></p>
+The least case is when $r=3$ and $b=1.$ For
+even $b$ it is $r=15,$ $b=6.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 34:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most8.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab29')"><b>Hint:</b></a><div
+class="ans" id="lab29">$\frac{13!}{52!}\approx 10^{-60}.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 35:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most19.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab30')"><b>Hint:</b></a><div
+class="ans" id="lab30">First experiment:$1-(\frac 56)^6\approx 0.67.$
+<p></p>
+Second experiment:$1-\left(\frac 56\right)^{12} -
+12\times\frac 16\left(\frac 56\right)^{11} \approx 0.62.$
+<p></p>
+Third experiment:$1-\left(\frac 56\right)^{18} -
+18\times\frac 16\left(\frac 56\right)^{17}- {18\choose 2}
+\left(\frac 16\right)^2\left(\frac 56\right)^{16} \approx 0.37.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 36:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most27.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab31')"><b>Hint:</b></a><div
+class="ans" id="lab31">(a) $\left(1-\frac{1}{100}\right)^{100}\approx \frac 1e\approx
+0.37.$
+<p></p>
+(b) $\left(1-\frac 1n\right)^n.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 37:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most28.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab32')"><b>Hint:</b></a><div
+class="ans" id="lab32">${n\choose r}\left(\frac mn\right)^r\left(1-\frac mn\right)^{n-r}.$</div></p>
+</p>
+
+<p>
+<b>EXERCISE 38:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most31.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab33')"><b>Hint:</b></a><div
+class="ans" id="lab33">$1-\frac{(365)_n}{365^n}&gt;\frac 12.$ Here are some values:
+<center>
+<table style="" border="1">
+
+<tr>
+<th colspan="" rowspan="">20</th><th colspan="" rowspan="">21</th><th colspan="" rowspan="">22</th><th colspan="" rowspan="">23</th><th colspan="" rowspan="">24</th>
+</tr>
+
+<tr>
+<th colspan="" rowspan="">0.411438</th><th colspan="" rowspan=""> 0.443688</th> <th colspan="" rowspan="">0.475695</th> <th colspan="" rowspan="">0.507297</th> <th colspan="" rowspan="">0.538344</th>
+</tr>
+
+</table>
+</center>
+The answer is 23.
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 39:</b>&nbsp;<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/most32.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+<p><a
+href="javascript:hideShow('lab34')"><b>Hint:</b></a><div
+class="ans" id="lab34">If I ask $n$ persons, then the probability
+is $1-\left(\frac{364}{365}\right)^n.$ I want this to
+be $&gt;\frac 12.$
+So $\left(\frac{364}{365}\right)^n &lt; \frac 12,$ or $n\geq 253.$
+</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 40:</b>&nbsp;Let $A_1,A_2,A_3$ be three events. Let $p_1 = \sum
+P(A_i)$ and $p_2 = \sum_{i&lt; j} P(A_i\cap A_j)$ and $p_3 = P(A_1\cap A_2\cap A_3).$
+Find (in terms of $p_i$'s) the probability that exactly one of the
+events $A_1,A_2,A_3$ has occurred. Generalise to $n$
+events. Also find (and prove) a formula (in terms of
+the $p_i$'s) for the probability that exactly $r$ of
+the $n$ events has occurred.<p><a
+href="javascript:hideShow('lab35')"><b>Hint:</b></a><div
+class="ans" id="lab35">Probability that exactly one event of $A_1,A_2,A_3$ has
+occurred is $p_1-2p_2+3p_3.$ For $n$ events it will be 
+$\sum_{i=1}^n (-1)^{i-1} ip_i.$ For exactly $r$ out
+of $n$ events:
+$$
+p_r - \binom{r+1}{r}p_{r+1} + \binom{r+2}{r}p_{r+2} -+\cdots.
+$$
+[Thanks to Ahan Chakraborty for pointing out a mistake here. It has now been corrected.]
+</div></p>
+</p>
+
+<p></p>
+
+<h3>Comments</h3>
+To post an anonymous comment, click on the "Name" field. This
+will bring up an option saying "I'd rather post as a guest."
+<p></p><!--
+begin disqus code --> <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://arnabc74.github.io/prob1_2024/basic.html"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "basic"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://txtbk.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript><!-- end disqus code --> 
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

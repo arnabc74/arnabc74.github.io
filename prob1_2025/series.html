@@ -1,0 +1,336 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  border-left: 5px solid black;
+}
+
+.box {
+  border: 2px solid black;
+  display: inline-block;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Table of contents</h3>
+<ul>
+<li>
+<a href="#Infinite series">Infinite series</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#What it is">What it is</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Strange things">Strange things</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Not associative">Not associative</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Not commutative">Not commutative</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nice series">Nice series</a>
+</li>
+</ul>
+<hr/>
+
+<h1><a
+name="Infinite series">Infinite series</a></h1>
+
+<h2><a
+name="What it is">What it is</a></h2>
+A (real) infinite series is an expression of the form 
+$$
+a_1+a_2+a_3+\cdots,
+$$
+where $a_i$'s are all real numbers. Of course, we cannot
+really add up infinitely many numbers (we shall die before it is
+over). So what we mean by this sum is 
+$$
+\lim_{n\rightarrow\infty} (a_1+\cdots + a_n).
+$$
+The sum $a_1+\cdots+a_n$ is called
+the $n$-th <b>partial sum</b>.
+<p></p>
+
+<p></p>
+
+<ul>
+
+<li>If this limit exists, then we say that the series <b>converges</b> to
+that value. An example is $1+\frac 12+\frac{1}{2^2}+\frac{1}{2^3}+\cdots = 2.$
+</li>
+
+<li>If the limit is $\infty $ or $-\infty $
+then we say that the series <b>diverges</b> to $\infty $
+or $-\infty.$ A trivial example is $1+1+1+\cdots = \infty.$
+</li>
+
+<li>It is possible that the series neither
+converges nor diverges. We then say that the 
+series <b>oscillates</b>. An example is 
+$$
+1-1+1-1+1-1+-+-\cdots.
+$$
+Here the partial sum are
+$$
+1,0,1,0,1,0,...,
+$$
+which clearly oscillates.</li>
+
+</ul>
+
+<p></p>
+The definition of an infinite series as the limit of its partial sums
+is a natural extension of the concept of usual addition. However,
+an infinite series may show certain counterintuitive behaviours,
+as we shall see next.
+<p></p>
+
+<h2><a
+name="Strange things">Strange things</a></h2>
+
+<h3><a
+name="Not associative">Not associative</a></h3>
+Ordinary addition is associative, <i>i.e.</i> you group the numbers as
+you please without affecting the sum. For instance, $(a+b)+(c+d) = (((a+b)+c)+d).$
+<p></p>
+Not so for an infinite series. For example, the oscillating series
+$$
+1-1+1-1+1-+-+\cdots,
+$$
+when grouped like this
+$$
+(1-1)+(1-1)+(1-1)+(-)+(-)+\cdots,
+$$
+actually becomes
+$$
+0+0+0+\cdots,
+$$
+which converges to $0.$ (Don't think of $0\times
+\infty=$ undefined. Here the partial sums are all $0,$
+and so the limit of partial sums is $0.$) If you group the
+terms like 
+$$
+1+(-1+1)+(-1+1)+()+()\cdots,
+$$
+then you'll a get a series converging to $1.$
+<p></p>
+
+<h3><a
+name="Not commutative">Not commutative</a></h3>
+Changinf the order of the summands does not change a sum. This is
+called commutativity of addition. Unfortunately, this may fail
+for an infinite series.
+<p></p>
+
+<p></p>
+Consider again our old friend
+$$
+1-1+1-1+1-+-+\cdots.
+$$
+All the even terms are $1$ and all the odd terms
+are $-1,$ right? We shall rearrange these a bit to get
+$$
+1+1-1+1+1-1++-++-\cdots.
+$$
+Don't think that we have increased the number of $1's.$ We
+still have countably infinitely many $1$'s and just as
+many $-1$'s. 
+<p></p>
+This rearranged series has partial sums
+$$
+1,2,1,2,3,2,...
+$$
+The pattern is simple it goes up 2 steps then comes down by 1. So
+effectively it is increasing, and increasing without bounds. In
+short, the rearranged series diverges to $\infty.$ 
+<p></p>
+
+<h2><a
+name="Nice series">Nice series</a></h2>
+Absence of the helpful and familiar properties like associativity
+and commutativity makes it a bit difficult to work with infinite
+series. Thankfully, there are certain types of infinite series
+that behave nicely (<i>i.e.</i>, regrouping and rearranging them do not change
+the sums). One type is mentioned in the next theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+An infinite series consisting of only nonnegative terms will
+never change the sum howsoever your regroup or rearrange the terms.
+</fieldset>
+
+<p></p>
+Thanks to this result, we never need to worry about adding
+infinitely many probabilities when using the 3rd axiom. 
+<p></p>
+
+<p></p>
+Later in this course, we shall need to work with infinite series
+with negative as well as positive terms. The following theorem
+gives us a condition under which these series will behave
+nicely. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Consider an infinite series $a_1+a_2+a_3+\cdots,$
+where $a_i$'s are any real numbers
+(positive/negative/zero). If the infinite series of the absolute
+terms $|a_1|+|a_2|+|a_3|+\cdots$ converges (to some finite
+limit), then the terms in the original series may be regrouped
+and rearranged without affecting the sum.
+</fieldset>
+
+<p></p>
+If this condition is met (i.e, the absolute series converges),
+then we call the original series <b>absolutely convergent</b>. It
+is an interesting and <i>very useful</i> fact that any absolutely
+convergent series must also be convergent. 
+<p></p>
+You'll learn the proofs of all these theorems in you analysis
+course. 
+<p></p>
+In our probability course We shall  work with <i>only</i> infinite series of nonnegative terms or
+absolutely convergent series in our course. So for us infinite
+series are as good as school level addition: associative and commutative!
+
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
