@@ -1,12 +1,13 @@
 <NOTE>
 @{<E>
 <HEAD1>Probability Theory I</HEAD1>
-This is the class webpage for Probablity Theory I
+This is the class webpage for Probability Theory I
 (2025).
 <UL>
 <LI><B>Teacher:</B> Arnab Chakraborty</LI>
 <LI><B>Email:</B>arnabc at isical dot ac in</LI>
 </UL>
+<NEWS src="news.html"/>
 <HEAD2>Class notes</HEAD2>
 Before midsem:
 <UL>
