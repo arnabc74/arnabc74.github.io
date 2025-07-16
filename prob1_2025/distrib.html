@@ -30,7 +30,7 @@ hideShow = function(lb) {
    if(me.style.display=="block"){
      me.style.display="none";
    }
-   else if (me.style.display=="none"){
+   else {
      me.style.display="block";
    }
 }
@@ -72,13 +72,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
   });
 </script>
 <style>
-body {
+body,table {
   margin: 0;
   font-size: 40;
   //background: #000;
   //color: #fff;
 }
 
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
 .sticky {
   position: fixed;
@@ -97,12 +101,18 @@ body {
 }
 
 .scrpt {
+  margin:10px;
   border-left: 5px solid black;
 }
 
 .box {
-  border: 2px solid black;
+  background-color: yellow; 
+  //border: 2px solid black;
   display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
 }
 </style>
 <script>
@@ -138,8 +148,8 @@ function myFunction() {
 <script src="../tools/rglWebGL.js"></script>
 </head><body>
 <div class="sticky" id="topholder"> </div>
-<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Table of contents</h3>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
 <ul>
 <li>
 <a href="#Standard discrete distributions ">Standard discrete distributions </a>
@@ -174,7 +184,8 @@ function myFunction() {
 </ul>
 <hr/>
 
-<h1><a
+
+<h1 xmlns=""><a
 name="Standard discrete distributions ">Standard discrete distributions </a></h1>
 
 <h1><a
@@ -221,7 +232,7 @@ Consider a fair die---a die that is  equally
 likely to land on any of the six faces. If $X$ denotes the outcome of
 a roll of this die then $X$ has <b>DUnif</b>$\{1,2,3,4,5,6\}$
 distribution. 
- ///
+ ■
 </p>
 
 <p></p>
@@ -237,7 +248,7 @@ Y = \left\{\begin{array}{ll}
     \end{array}\right.,
 $$
 then $Y\sim$<b>DUnif</b>$\{-5,10\}.$
- ///
+ ■
 </p>
 
 <p></p>
@@ -252,7 +263,7 @@ likely. Since the total of the probabilities must be 1, each outcome has
 probability $\frac14.$ In particular, $P(Y=2)=\frac14.$ Also,
 $P(Y\mbox{ is odd}) = P(Y=1\mbox{ or }Y=3) =
 P(Y=1)+P(Y=3)=\frac14+\frac14=\frac12.$ 
- ///
+ ■
 </p>
 
 <p></p>
@@ -280,6 +291,20 @@ following probabilities.
 
 </p>
 
+<ol>
+<li>$\frac15$
+</li>
+<li>$\frac15$
+</li>
+<li>$0$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac45$
+</li>
+</ol>
 
 <p></p>
 
@@ -300,6 +325,16 @@ following probabilities.
 
 </p>
 
+<ol>
+<li>$\frac25$
+</li>
+<li>$0$
+</li>
+<li>$\frac25$
+</li>
+<li>$\frac45$
+</li>
+</ol>
 
 <p></p>
 
@@ -338,7 +373,13 @@ diamonds, 13 clubs and 13 spades. When you pick the top card of a
 well-shuffled deck any of the 52 cards are equally likely to occur.
 </blockquote>
 </p>
- 
+
+<ol>
+<li>
+<b>DUnif</b>$\{1,2,3,4\}.$</li>
+<li>
+<b>DUnif</b>$\{0,1\}.$</li>
+</ol> 
 
 <b>Expectation and variance:</b>
 If $X\sim$<b>DUnif</b>$\{x_1,x_2,...,x_n\}$ then 
@@ -376,7 +417,7 @@ for $i=1,...,n.$
 $E(X)=\frac1n\sum_{i=1}^n i = \frac{n+1}2.$
 $E(X^2)=\frac1n\sum_{i=1}^n i^2 = \frac{(n+1)(2n+1)}{6}.$
 Hence, $Var(X) = E(X^2)-(E(X))^2 = \frac{n^2-1}{6}.$
- ///
+ ■
 </p>
 
 <p></p>
@@ -386,8 +427,7 @@ Hence, $Var(X) = E(X^2)-(E(X))^2 = \frac{n^2-1}{6}.$
 If $Y$ has <b>DUnif</b>$\{0,1,...,n\}$ distribution, then compute 
 $E(Y)$ and $Var(Y).$
 </p>
-
-
+\frac{n}2,\frac{n(n+2)}{12}.
 <h2><a
 name="Bernoulli">Bernoulli</a></h2>
 
@@ -421,7 +461,7 @@ variable, and write $X\sim$<b>Bern</b>$(\theta).$
 Coin toss has two possible outcomes, head and tail. If we call head as `1'
 and tail as `0' then we have <b>Bern</b>($\theta$) random variable
 where $\theta=P(head).$
- ///
+ ■
 </p>
 
 <p></p>
@@ -446,7 +486,7 @@ $Var(X).$
 <b>SOLUTION:</b> Here $\theta=\frac45.$ So $E(X) = \theta = \frac45,$
 and
 $Var(X) = \theta(1-\theta) = \frac45(1-\frac45)=\frac4{25}.$
- ///
+ ■
 </p>
 
 <p></p>
@@ -471,6 +511,18 @@ Find $E(Z)$ and $Var(Z)$ if $Z\sim$<b>Bern</b>$(\theta),$ where
 
 </p>
 
+<ol>
+<li>$\frac13,\frac{2}9$
+</li>
+<li>$\frac12,\frac{1}4$
+</li>
+<li>$\frac25,\frac{6}{25}$
+</li>
+<li>$0.001,0.000999$
+</li>
+<li>$0.999,0.000999$
+</li>
+</ol>
 
 <p></p>
 
@@ -501,7 +553,7 @@ So by property of Bernoulli distribution we have
 $$
 Var(Z)=0.01(1-0.01)=0.0099
 $$
- ///
+ ■
 </p>
 
 <p></p>
@@ -626,8 +678,7 @@ List all the possible outcomes of $n=4$ tosses having exactly
 $x=2$ heads. For example, one possible outcome is $HTHT.$ How
 many such outcomes are there?
 </p>
-
-
+HHTT,HTHT,HTTH,THHT,THTH,TTHH. There are 6.
 <p></p>
 
 <p>
@@ -642,7 +693,7 @@ P(U=2)&amp;=&amp;{5\choose2}\left(\frac14\right)^2\left(1-\frac14\right)^{5-2}\\
 &amp;=&amp;\frac{5\times4}{2}\cdot\frac{27}{1024}\\
 &amp;=&amp;\frac{135}{512}.
 \end{eqnarray*}$$
- ///
+ ■
 </p>
 
 <p></p>
@@ -663,6 +714,16 @@ probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$\frac1{81}$
+</li>
+<li>$\frac{16}{81}$
+</li>
+<li>$\frac{40}{81}$
+</li>
+<li>$\frac{55}{81}$
+</li>
+</ol>
 
 <p></p>
 
@@ -681,6 +742,16 @@ $Z\sim$<b>Bin</b>$(5,\frac12).$ Find the following.
 </ol>
 
 </p>
+<ol>
+<li>$\frac12$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+</ol>
 
 <p></p>
 
@@ -690,8 +761,7 @@ If $X$ has <b>Bin</b>$(100,0.5)$ distribution. Then find $a\neq37$ such
 that $$
 P(X=a) = P(X = 37).
 $$
-</p>
-
+</p>$a=100-37=63.$
 <p>
 <b>Hint:</b>
 <blockquote>Notice that for any $n$ the <b>Bin</b>$(n,0.5)$
@@ -717,7 +787,7 @@ girl. Let us call boy as `1' and girl as `0'. We assume that the outcome
 of one birth is independent of the others. So here a <b>Bern</b>(0.4) random
 experiment has been repeated independently 6 times, and $X$ denotes
 the number of `1' s. Hence $X$ has <b>Bin</b>(6, 0.4) distribution.
- ///
+ ■
 </p>
 
 <p></p>
@@ -726,8 +796,7 @@ the number of `1' s. Hence $X$ has <b>Bin</b>(6, 0.4) distribution.
 <b>EXERCISE 10:</b>&nbsp;
 In the above example let $Y$ be the number of girls. What is the
 distribution of $Y$? 
-</p>
-
+</p>$Y\sim$<b>Bin</b>$(6,0.6).$
 <p></p>
 
 <p>
@@ -756,7 +825,7 @@ P(X \leq 2) &amp;=&amp; P(X=0) + P(X=1) + P(X=2)\\
             &amp; &amp; {10\choose 1}(0.1)^1(0.9)^{10-1} + {10\choose 2}(0.1)^2(0.9)^{10-2}\\
             &amp;=&amp; 0.93
 \end{eqnarray*}$$
- ///
+ ■
 </p>
 
 <p></p>
@@ -838,7 +907,7 @@ $E(T) = n \theta = 100\times \frac15 = 20.$ Similarly,
 $Var(T) = n \theta(1-\theta) = 
 100\times\frac15\times(1-\frac15)= 16.$
 Hence standard deviation of $T$ is $\sqrt{16} = 4.$ 
- ///
+ ■
 </p>
 
 <p></p>
@@ -859,6 +928,16 @@ Find $E(Z)$ and $Var(Z)$ if $Z\sim$<b>Bin</b>$(n,p),$ where
 
 </p>
 
+<ol>
+<li>$\frac{20}3,\frac{40}9$
+</li>
+<li>$5,\frac{10}4$
+</li>
+<li>$8,\frac{24}5$
+</li>
+<li>$10,9.9.$
+</li>
+</ol>
 
 <p></p>
 
@@ -887,7 +966,7 @@ What is the distribution of $U+V,$ if $U\sim$<b>Bin</b>$(10,0.1)$ and
 $V\sim$<b>Bin</b>$(6,0.1)?$
 <p></p>
 <b>SOLUTION:</b> $U+V\sim$<b>Bin</b>$(16,0.1).$
- ///
+ ■
 </p>
 
 <p></p>
@@ -900,8 +979,7 @@ If $X_1,X_2$ and $X_3$ are independent random variables with
 <b>Bin</b>$(5,\frac13),$ <b>Bin</b>$(10,\frac13)$ and
 <b>Bin</b>$(6,\frac13)$ distributions, respectively.
 Find the distribution of $(X_1+X_2+X_3).$
-</p>
-
+</p>$(X_1+X_2+X_3)\sim$<b>Bin</b>$(21,\frac13).$
 <p>
 <b>Hint:</b>
 <blockquote>First add $X_1$ and $X_2.$ Now notice that 
@@ -990,7 +1068,7 @@ P(Y=2) = \frac{{M\choose 2}{N-M\choose n-2}}{{N\choose n}}
 $$
 Now, ${3\choose2}=3,$ ${2\choose 2}=1$ and ${5\choose4}=5.$
 So $P(Y=2) = \frac35.$
- ///
+ ■
 </p>
 
 <p></p>
@@ -1013,6 +1091,18 @@ probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$\frac2{15}$
+</li>
+<li>$\frac8{15}$
+</li>
+<li>$0$
+</li>
+<li>$0$
+</li>
+<li>$\frac13$
+</li>
+</ol>
 
 <p></p>
 
@@ -1024,8 +1114,7 @@ probabilities is larger and why?
 $$
 P(Y=10),\quad P(Z=30)
 $$
-</p>
-
+</p>Equal.
 <p>
 <b>Hint:</b>
 <blockquote>Think of the following descriptions of $Y$ and
@@ -1055,7 +1144,7 @@ $$
 P(X=2) = \frac{{4\choose 2} {10-4\choose 3-2}}{{10\choose 3}} = 
   \frac{6\times 6}{120} = \frac3{10}.
 $$
- ///
+ ■
 </p>
 
 <p></p>
@@ -1089,10 +1178,10 @@ $$\begin{eqnarray*}
 E(X(X-1)) &amp;=&amp; \sum_{x=0}^n x(x-1)P(X=x) \\
           &amp;=&amp; \sum_{x=0}^n x(x-1)\frac{{M \choose x}{N-M \choose n-x}}{{N
           \choose n}} \\
-	  &amp;=&amp; \frac1{{N \choose n}}M(M-2) \sum_{x=2}^n {M-2 \choose
+     &amp;=&amp; \frac1{{N \choose n}}M(M-2) \sum_{x=2}^n {M-2 \choose
           x-2}{N-M \choose n-x} \\
-	  &amp;=&amp; \frac1{{N \choose n}}M(M-2) {N-2 \choose n-2} \\
-	  &amp;=&amp; \frac{M(M-1)}{N(N-1)}n(n-1)
+     &amp;=&amp; \frac1{{N \choose n}}M(M-2) {N-2 \choose n-2} \\
+     &amp;=&amp; \frac{M(M-1)}{N(N-1)}n(n-1)
 \end{eqnarray*}$$
 <p></p>
 $$\begin{eqnarray*}
@@ -1124,6 +1213,16 @@ distribution with
 
 </p>
 
+<ol>
+<li>$3,\frac23.$
+</li>
+<li>$\frac{3}{10},\frac{459}{1900}.$
+</li>
+<li>$\frac43,\frac{64}{99}.$
+</li>
+<li>$15,0$
+</li>
+</ol>
 
 <h1><a
 name="Infinite sample space">Infinite sample space</a></h1>
@@ -1184,7 +1283,7 @@ P(X&gt;2) &amp;=&amp; 1-P(X\leq 2)\\
        &amp;=&amp; 1-(1-0.3)^{1-1}0.3 - (1-0.3)^{2-1}0.3\\
        &amp;=&amp; 1-0.3-0.21 = 0.49.
 \end{eqnarray*}$$
- ///
+ ■
 </p>
 
 <p></p>
@@ -1207,6 +1306,18 @@ following probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$0.128$
+</li>
+<li>$0$
+</li>
+<li>$0.2$
+</li>
+<li>$0.488$
+</li>
+<li>$1-0.488=0.512.$
+</li>
+</ol>
 
 <p></p>
 
@@ -1215,8 +1326,7 @@ following probabilities.
 <p>
 <b>EXERCISE 17:</b>&nbsp;
 Find $P(T\mbox{ is even})$ where $T\sim$<b>Geom</b>$(0.4).$ 
-</p>
-
+</p>$\frac{1-\theta}{2-\theta}.$
 <p>
 <b>Hint:</b>
 <blockquote> You will need the geometric series here.
@@ -1241,7 +1351,7 @@ probability 1/6 of turning up), then what is the distribution of $X?$
 
 <p></p>
 <b>SOLUTION:</b> $X$ is a <b>Geom</b>(1/6) random variable. 
- ///
+ ■
 </p>
 
 <p></p>
@@ -1250,8 +1360,7 @@ probability 1/6 of turning up), then what is the distribution of $X?$
 <b>EXERCISE 18:</b>&nbsp;
 In the above example compute the probability of getting the first `6' within
 the first 3 rolls. 
-</p>
-
+</p>$\frac{91}{216}$
 <p></p>
 
 <p>
@@ -1262,8 +1371,7 @@ babies until they get their first son, and then they stop having children.
 either gender is equally likely. Also assume that the births are
 independent. Compute the probability that such a  couple has exactly 2
 daughters. 
-</p>
-
+</p>$\frac18$
 <p>
 <b>Hint:</b>
 <blockquote>
@@ -1293,11 +1401,11 @@ The term corresponding to `$x=1$' is zero. So we can as well start
      the sum from $x=2.$
 $$\begin{eqnarray*}
 \sum_{x=1}^\infty x(x-1)(1-\theta)^{x-1}\theta 
-	  &amp;=&amp; \sum_{x=2}^\infty x(x-1)(1-\theta)^{x-1}\theta \\
-	  &amp;=&amp; \theta(1-\theta)\sum_{x=2}^\infty x(x-1)(1-\theta)^{x-2} \\
-	  &amp;=&amp; \theta(1-\theta)\frac2{(1-(1-\theta))^3}\\
-	  &amp;=&amp; \frac{2\theta(1-\theta)}{\theta^3} \\
-	  &amp;=&amp; \frac{2(1-\theta)}{\theta^2}
+     &amp;=&amp; \sum_{x=2}^\infty x(x-1)(1-\theta)^{x-1}\theta \\
+     &amp;=&amp; \theta(1-\theta)\sum_{x=2}^\infty x(x-1)(1-\theta)^{x-2} \\
+     &amp;=&amp; \theta(1-\theta)\frac2{(1-(1-\theta))^3}\\
+     &amp;=&amp; \frac{2\theta(1-\theta)}{\theta^3} \\
+     &amp;=&amp; \frac{2(1-\theta)}{\theta^2}
 \end{eqnarray*}$$
 <p></p>
 $$\begin{eqnarray*}
@@ -1328,6 +1436,14 @@ variable for the following values of $\theta.$
 
 </p>
 
+<ol>
+<li>$\frac43,\frac23.$
+</li>
+<li>$\frac95,\frac65.$
+</li>
+<li>$\frac98 \frac38.$
+</li>
+</ol>
 
 <p></p>
 
@@ -1350,7 +1466,7 @@ When a computer tries to connect to another computer, it
 $$
 E(X) = 1/0.8 = 1.25
 $$ 
- ///
+ ■
 </p>
 
 <p></p>
@@ -1358,8 +1474,7 @@ $$
 <p>
 <b>EXERCISE 21:</b>&nbsp;
 Compute $E(D)$ and $Var(D)$ in Exercise \ref{geo4} above.
-</p>
-
+</p>$E(D)=2,$ $Var(D)=2.$
 <p></p>
 
 <h2><a
@@ -1439,6 +1554,16 @@ probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$\frac{27}{512}$
+</li>
+<li>$0$
+</li>
+<li>$\frac3{32}$
+</li>
+<li>$\frac9{128}$
+</li>
+</ol>
 
 <p></p>
 
@@ -1466,6 +1591,16 @@ $Var(Y)$ for the following values of $r$ and $\theta.$
 
 </p>
 
+<ol>
+<li>$6,r=3, \theta=\frac12$
+</li>
+<li>$10, 40 r=2.$
+</li>
+<li>$\frac32,\frac34.$
+</li>
+<li>$15, 30.$
+</li>
+</ol>
 
 <p></p>
 It should be apparent from the description of the distribution that
@@ -1564,14 +1699,23 @@ If $X\sim$<b>Poi</b>$(3),$ then find the following probabilities.
 </ol>
 
 </p>
+<ol>
+<li>$27e^{-3}/8$
+</li>
+<li>$e^{-3}$
+</li>
+<li>$0$
+</li>
+<li>$43e^{-3}/4$
+</li>
+</ol>
 
 <p></p>
 
 <p>
 <b>EXERCISE 26:</b>&nbsp;
 What is the probability that a <b>Poi</b>$(5)$ random variable is even?
-</p>
-
+</p>$(e^5+e^{-5})/2$
 <p></p>
 
 <b>Where used:</b> One use of Poisson distribution is in approximating
@@ -1603,7 +1747,7 @@ It is instructive to compare this with the exact value, which is
 $$
 P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
 $$
- ///
+ ■
 </p>
 
 <p></p>
@@ -1616,8 +1760,7 @@ box is rejected by the quality control inspector. It is known that each
 item is OK with probability 0.01, and that the items are independent. Use
 Poisson approximation to compute the probability that a box is not
 rejected.
-</p>
-
+</p>$1-\frac{8}{3e}$
 <p></p>
 
 <b>Expectation and variance:</b> If $X$ has <b>Poi</b>$(\lambda)$
@@ -1692,6 +1835,14 @@ Find the expected values of the following random variables.
 
 </p>
 
+<ol>
+<li>$E(X)=2.$
+</li>
+<li>$E(Y)=\frac12.$
+</li>
+<li>$E(Z)=2.5.$
+</li>
+</ol>
 
 <p></p>
 
@@ -1710,6 +1861,14 @@ following values of $\lambda.$
 
 </p>
 
+<ol>
+<li>$1$
+</li>
+<li>$9$
+</li>
+<li>$0.01$
+</li>
+</ol>
 
 <p></p>
 
@@ -1728,39 +1887,15 @@ If $X_1,X_2,X_3,X_4$ are independent random variables with
  respectively.
 Find the distribution of $(X_1+\cdots+X_4).$
 </p>
-
+<b>Poi</b>$(12)$
 <p></p>
 
 <p></p>
 
 <p></p>
 
-<h3>Comments</h3>
-To post an anonymous comment, click on the "Name" field. This
-will bring up an option saying "I'd rather post as a guest."
-<p></p><!--
-begin disqus code --> <div id="disqus_thread"></div>
-<script>
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
-var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/prob1/distrib.html"; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "distrib"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://txtbk.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript><!-- end disqus code --> 
-
-<hr/>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>
 <td align="left"/>

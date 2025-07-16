@@ -106,8 +106,13 @@ body,table {
 }
 
 .box {
-  border: 2px solid black;
+  background-color: yellow; 
+  //border: 2px solid black;
   display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
 }
 </style>
 <script>
@@ -143,8 +148,8 @@ function myFunction() {
 <script src="../tools/rglWebGL.js"></script>
 </head><body>
 <div class="sticky" id="topholder"> </div>
-<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
-<h3>Table of contents</h3>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
 <ul>
 <li>
 <a href="#Joint distribution">Joint distribution</a>
@@ -170,7 +175,8 @@ function myFunction() {
 </ul>
 <hr/>
 
-<h1><a
+
+<h1 xmlns=""><a
 name="Joint distribution">Joint distribution</a></h1>
 
 <p></p>
@@ -420,14 +426,15 @@ discrete random
 variables.
 <p></p>
 First, notice that $X+Y$ is again discrete. 
-<blockquote class="scrpt">
-<b>Because:</b>
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
 If $X$ takes values in the countable
 set $\{x_1,x_2,...\}$ and $Y$ take values in the
 countable set $\{y_1,y_2,...\},$ then each possible value
 of $X+Y$ must be of the form $x_i+y_j.$ There are only
 countably many such values.
-</blockquote>
+</div></blockquote>
 Let $p_{ij} = P(X=x_i~\&amp;~ Y=y_j).$
 <p></p>
 Then $P(X=x_i) = \sum_j p_{ij}$ and $P(Y=y_j) = \sum_i p_{ij}.$
@@ -706,7 +713,7 @@ independent, then $V(X+Y) = V(X)+V(Y).$
 If $X$ and $Y$ have finite first moments, and at least one of them  is a degenerate random variable, then show
  that $cov(X,Y)=0.$  
 <p><a
-href="javascript:hideShow('lab1')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">
 If $X$  is degenerate, say $P(X=c)=1,$  then $\cov(X,Y) = E(XY)-E(X)E(Y) = E(xY)-cE(Y) = 0.$
 </div></p>
@@ -717,7 +724,7 @@ If $X$  is degenerate, say $P(X=c)=1,$  then $\cov(X,Y) = E(XY)-E(X)E(Y) = E(xY)
 <b>EXERCISE 2:</b>&nbsp;Let $X_1,X_2,...,X_n$  be identically distributed independent random variables with $V(X_1) = \sigma^2 &lt; \infty.$  Then what is 
 $V(\overline X_n)?$  Here $\overline X_n = \frac 1n\sum_1^n X_i.$
 <p><a
-href="javascript:hideShow('lab2')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
 class="ans" id="lab2">$V(\overline X_n) = \frac{\sigma^2}{n}.$</div></p>
 </p>
 
@@ -819,7 +826,7 @@ name="Problems for practice">Problems for practice</a></h1>
 </center>
 
 <p><a
-href="javascript:hideShow('lab3')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
 class="ans" id="lab3">
 (a) 
 Let $X$  be the number of matching pairs.
@@ -849,7 +856,7 @@ So $E(X) = 1.$
 </center>
 Here "discrete density" means "PMF".
 <p><a
-href="javascript:hideShow('lab4')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
 class="ans" id="lab4">
 We need to check that $\forall x\in{\mathbb R}~~f(x)\geq 0$  and $\sum_{x=1}^N f(x) = 1.$
 <p></p>
@@ -874,7 +881,7 @@ $E(X) = \sum_{x=1}^N x f(x) = \frac{2}{N(N+1)}\sum_{x=1}^N x^2 = \frac{2}{N(N+1)
 </center>
 
 <p><a
-href="javascript:hideShow('lab5')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab5')"><b>[Hint]</b></a><div
 class="ans" id="lab5">Since $P(|X-Y|\leq M)=1$,  hence $E|X-Y| \leq E(M) = M.$
 <p></p>
 Also we know that $X = Y + (X-Y)$  and so, by triangle inequality, 
@@ -904,7 +911,7 @@ Hence $|E(X)-E(Y)| \leq M,$  as required.
 </center>
 
 <p><a
-href="javascript:hideShow('lab6')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab6')"><b>[Hint]</b></a><div
 class="ans" id="lab6">
 $E(X) = \frac N2$  and $V(X) = \frac{N(2n+1)}{6}-\frac{N^2}{4} = \frac{N^2+2N}{12}. $
 </div></p>
@@ -925,7 +932,7 @@ $E(X) = \frac N2$  and $V(X) = \frac{N(2n+1)}{6}-\frac{N^2}{4} = \frac{N^2+2N}{1
 <p></p>
 Here "density" means "PMF".
 <p><a
-href="javascript:hideShow('lab7')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab7')"><b>[Hint]</b></a><div
 class="ans" id="lab7">
 We know from analysis that $\sum_1^\infty x^{-(r+2)} &lt;\infty$  since $r&gt;0.$  
 <p></p>
@@ -949,7 +956,7 @@ is a PMF with the required property.
 </center>
 
 <p><a
-href="javascript:hideShow('lab8')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab8')"><b>[Hint]</b></a><div
 class="ans" id="lab8">
 $V(X^2Y) =E(X^4Y^2)-E^2(X^2Y) = E(X^4)E(Y^2)-E^2(X^2)E^2(Y),$
 since $X,Y$  are independent (and so any function of $X$  is independent of any function of $Y$). 
@@ -971,7 +978,7 @@ Now $E(X^4)E(Y^2)-E^2(X^2)E^2(Y) = E(X^4)E(Y^2) -0 = 2\times1 = 2.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab9')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab9')"><b>[Hint]</b></a><div
 class="ans" id="lab9">
 $E(2X+3Y) = 2E(X)+3E(Y)$  and $V(2X+3Y) = 4V(X)+9V(Y).$
 </div></p>
@@ -990,7 +997,7 @@ $E(2X+3Y) = 2E(X)+3E(Y)$  and $V(2X+3Y) = 4V(X)+9V(Y).$
 </center>
 
 <p><a
-href="javascript:hideShow('lab10')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab10')"><b>[Hint]</b></a><div
 class="ans" id="lab10">
 (a) Use the fact that $\sum_{k=1}^n (X_k-\overline X) = 0.$
 <p></p>
@@ -1019,7 +1026,7 @@ Hence $E\left(\sum (X_k-\overline X)^2\right) = n\sigma^2- n\times \frac{\sigma^
 </center>
 
 <p><a
-href="javascript:hideShow('lab11')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab11')"><b>[Hint]</b></a><div
 class="ans" id="lab11">
 (a) $E(X_i) = P(i$-th box empty$) = \left(\frac{r-1}{r}\right)^n.$
 <p></p>
@@ -1049,7 +1056,7 @@ Now simplify.
 </center>
 
 <p><a
-href="javascript:hideShow('lab12')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab12')"><b>[Hint]</b></a><div
 class="ans" id="lab12">
 (a) 1.
 <p></p>
@@ -1079,7 +1086,7 @@ V(S_n)
 </center>
 
 <p><a
-href="javascript:hideShow('lab13')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab13')"><b>[Hint]</b></a><div
 class="ans" id="lab13">
 $cor(X_1-X_2,X_2+X_3) = \frac{cov(X_1-X_2,X_2+X_3)}{\sqrt{V(X_1-X_2)\cdot V(X_2+X_3)}}.$
 <p></p>
@@ -1105,7 +1112,7 @@ Also $cov(X_1-X_2,X_2+X_3) = cov(X_1,X_2)+\cov(X_1,X_3)-cov(X_2,X_2)-cov(X_2,X_3
 </center>
 
 <p><a
-href="javascript:hideShow('lab14')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab14')"><b>[Hint]</b></a><div
 class="ans" id="lab14">
 $V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times \frac 12\times \sqrt{1\times 2}.$
 </div></p>
@@ -1124,7 +1131,7 @@ $V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times \frac 12\times \sqrt{1\times 2}.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab15')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab15')"><b>[Hint]</b></a><div
 class="ans" id="lab15">
 Here $U+V=2.$  Since $V=2-U$  is a linear relation with negative slope, 
 $cor(U,V)=-1.$
@@ -1144,7 +1151,7 @@ $cor(U,V)=-1.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab16')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab16')"><b>[Hint]</b></a><div
 class="ans" id="lab16">
 The joint PMF of $(X,Y)$  is 
 <center>
@@ -1192,7 +1199,7 @@ Hence $cor(X,Y) =-\frac 12. $
 </center>
 
 <p><a
-href="javascript:hideShow('lab17')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab17')"><b>[Hint]</b></a><div
 class="ans" id="lab17">
 (a) This is because the $i$-th trial cannot produce both 1 and 2 together!
 <p></p>
@@ -1215,7 +1222,7 @@ class="ans" id="lab17">
 </center>
 
 <p><a
-href="javascript:hideShow('lab18')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab18')"><b>[Hint]</b></a><div
 class="ans" id="lab18">
 (a) $E(I_i) = P(i$-th elt in sample is of type 1$)=\frac{r_1}{r}.$
 <p></p>
@@ -1255,7 +1262,7 @@ The rest follows using simpe algebra.
 <p></p>
 Here "density" means "PMF". Also $\mu=E(X).$
 <p><a
-href="javascript:hideShow('lab19')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab19')"><b>[Hint]</b></a><div
 class="ans" id="lab19">
 By symmtry around $2$  we see that $\mu = 2.$
 <p></p>
@@ -1283,7 +1290,7 @@ So $\delta=1$  makes both sides $\frac 19.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab20')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab20')"><b>[Hint]</b></a><div
 class="ans" id="lab20">
 Let $X=$ number of defective bolts in a random shipment. 
 <p></p>
@@ -1320,7 +1327,7 @@ A brief note about probability generating functions: If $X$  takes non-negative 
 $$\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.$$
 Clearly this converges absolutely for $|t|\leq 1.$   In this problem we are assuming that it converges for all $t\in{\mathbb R}.$
 <p><a
-href="javascript:hideShow('lab21')"><b>Hint:</b></a><div
+href="javascript:hideShow('lab21')"><b>[Hint]</b></a><div
 class="ans" id="lab21">
 (a) Let $Y =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\leq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
 <p></p>
@@ -1342,31 +1349,7 @@ Hence the result follows as in (a).
 
 <p></p>
 
-<h3>Comments</h3>
-To post an anonymous comment, click on the "Name" field. This
-will bring up an option saying "I'd rather post as a guest."
-<p></p><!--
-begin disqus code --> <div id="disqus_thread"></div>
-<script>
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-var disqus_config = function () {
-this.page.url = "http://www.isical.ac.in/~arnabc/prob1/joint.html"; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "joint"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://txtbk.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript><!-- end disqus code --> 
-<hr/>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>
 <td align="left"/>
