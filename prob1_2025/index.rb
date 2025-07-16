@@ -6,6 +6,7 @@ This is the class webpage for Probability Theory I
 <UL>
 <LI><B>Teacher:</B> Arnab Chakraborty</LI>
 <LI><B>Email:</B>arnabc at isical dot ac in</LI>
+<LI><B>Office hour (time slot for students to meet me in my office):</B> Friday 5pm to 6pm.</LI>
 </UL>
 <NEWS src="news.html"/>
 <HEAD2>Class notes</HEAD2>
@@ -104,6 +105,5 @@ conditional distributions, conditional expectation.
 Distribution of  sum of  two independent random 
 variables. Functions of more than one discrete random 
 variables.
-<DISQUSE url="https://arnabc74.github.io/prob1_2024/index.html" id="index"/>
 </E>@}
 </NOTE>
