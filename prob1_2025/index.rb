@@ -5,7 +5,8 @@ This is the class webpage for Probability Theory I
 (2025).
 <UL>
 <LI><B>Teacher:</B> Arnab Chakraborty</LI>
-<LI><B>Email:</B>arnabc at isical dot ac in</LI>
+<LI><B>Email:</B>arnabc74 at gmail</LI>
+<LI><B>Office:</B> Applied Statistics Unit (ASU) Room 914 (S N Bose Bhavan 9th floor)</LI>
 <LI><B>Office hour (time slot for students to meet me in my office):</B> Friday 5pm to 6pm.</LI>
 </UL>
 <NEWS src="news.html"/>
