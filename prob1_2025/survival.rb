@@ -63,10 +63,12 @@ notes on daily basis. Do not get stuck up with any single problem
 before you finish doing the above to all the notes for that
 day. It is like appearing in a competivie exam with lots of
 MCQs. Spending too much time on one may mean missing an easy
-question later on!  <P/> It is not very difficult. But this
+question later on!  
+
+ It is not very difficult. But this
 single technique will allow you to survive quite merrily at
 ISI. Many of your problems will automatically go away when you go
-though your annotated notes before the exam, because many
+though your annotated notes before the exam, because often
 questions get answered down the way. Also, you'll have precise
 questions to ask your teachers instead of a confused request like
 "Could not follow anything for the last month, please help!".
@@ -79,10 +81,13 @@ you, you must first inform the teacher. Doing so collectively is
 a good idea. There are teachers who appear unfriendly in class,
 but area actually quite friendly when you visit them in their
 offices personally. Do not get irritated with a teacher before
-talking to him/her personally at least once.  <P/> If the
-teacher's response is not satisfactory, then talk to the class
+talking to him/her personally at least once. 
+
+
+If the teacher's response is not satisfactory, then talk to the class
 teacher about it. If even that does not solve your problem, well,
 then start believing in God so that you can blame Him!
+
 
 <HEAD2>How to cope with hostel life</HEAD2>
 If you are new to hostel life or are not familiar with Bengali or
