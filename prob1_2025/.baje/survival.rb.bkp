@@ -104,7 +104,7 @@ and corners of the campus, the rooftops, ponds, and the strange
 hidden stairways (I leave you to find them!). 
 
 <HEAD2>Three scenarios of disaster</HEAD2>
-Here are three scenarios that ruin students at ISI.
+Here are three scenarios that ruin students at ISI. This, by the way, is <I>not</I>  a complete list!
 <HEAD3>Scenario 1: The puzzle-loving kid</HEAD3>
  You are very serious, study the lectures extremely carefully, and notice some intriguing point
  somewhere. You smell a puzzle, get interested,
