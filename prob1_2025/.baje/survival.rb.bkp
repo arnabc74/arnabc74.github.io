@@ -111,7 +111,7 @@ Here are three scenarios that ruin students at ISI. This, by the way, is <I>not<
 try to understand it, and start ignoring the other subjects.
 Your time is spent in  Google searches, unearthing tonnes of research papers, sending emails to
  professors about your findings. You even get encouragement from some of them. You start thinking that you
- are well on your way to a brilliant research career. The other subjects lie neglected. After two
+ are well on your way to a brilliant research career. The other subjects lie neglected. After two 
  weeks the excitement subsides leaving you with a bunch of confusion and a huge lag in your
  regular study. You find yourself tottering on the verge of a downfall. 
 
