@@ -81,10 +81,11 @@ Taking notes in the class is not easy, and may look like a wastage of time when,
  time to check your social media? Well, if you feel that way, then imagine this scenario: You are
  lost in a big city. Completely clueless where you are. No GPS connection. You pray to God for help, and God drops a
  detailed road map of the city right before you. You look at it, zillions of roads crisscrossing
- each other. Only the major roads are labelled with names, the myriad others are just jumble of
+ each other. Only the major roads are labelled with names, the myriad others are just a jumble of
  lines. And you have no clue <I>where you are   in this map</I>. Will this map be of any use? No! Well, your smart class
- mate's online notes are like that. Now imagine God drops another map, a very rough crude map, but with a clear arrow marking
- where you are right now. Will this help you more? Yes, certainly! Well, that's like the notes you maintain.
+ mate's online notes are like that. Now imagine God drops another map, a very crude map, but with a clear arrow marking
+ where you are right now. Will this help you more? Yes, certainly! Well, that's like the notes you maintain yourself. 
+
 <HEAD2>How to cope with teachers</HEAD2> 
 
 Teachers at ISI sometimes experiment with the course
