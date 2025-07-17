@@ -1,0 +1,154 @@
+@{<NOTE>
+<HEAD1>Probability Generating Function (PGF)</HEAD1>
+<DEFN>Let a random variable take only nonnegative integer values. Then its <TERM>probability
+ generating function (PGF)</TERM>  is defined as the power series
+<D>p(t) = p_0 + p_1 t + p_2 t^2 +\cdots, </D>
+where <M>p_k = P(X=k)</M>  for <M>k=0,1,2,..</M>.
+</DEFN>
+
+<EXM>A random variable takes the values <M>1,2,5</M>  each with probability <M>[[13]].</M>  Find its PGF.<SOLN/>
+<M>p(t) = [[13]](t+t^2+t^5)</M>.
+ </EXM>
+
+<EXR>Find the PGF of a random variable with <M>Binom(n,p)</M>  distribution.</EXR>
+
+We have defined  PGF as a power series, but we have not mentioned anything about its convergence yet. 
+
+<THM>
+Any PGF <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>. 
+</THM>
+<PF>If <M>|t|\leq 1</M>, then <M>\sum_k |p_k t^k| \leq \sum_k p_k = 1</M>.</PF>
+
+<THM>A power series can be differentiated term by term any number of times in the interior of its
+ interval of convergence.</THM><PF>Standard theorem from real analysis</PF>.
+Thanks to this theorem, 
+we can recover the probabilities from the PGF by repeated differentiation at <M>t=0</M>:
+<D>p_n = [[p^{(n)}(0)][n!]]</D>.
+Hence we get the following theorem.
+<THM>
+If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative integer values, and they have PGFs matching
+ over any open neighbourhood of <M>0</M>, then their distributions must match.
+</THM>
+
+<EXR>Show that for <M>n\in\nn</M>  we have
+<D>E(X(X-1)\cdots (X-n+1)) = p^{(n)}(1)</D>.
+</EXR>
+
+<EXR>Show that <M>E(t^X) = p(t)</M>.</EXR>
+
+<EXR>Show that if <M>X,Y</M>  are independent random variables taking nonnegative integer values,
+ with PGFs <M>\xi(t)</M>  and <M>\psi(t)</M>, then the PGF of <M>X+Y</M>  is
+ <M>\xi(t)\psi(t)</M>.<HINT>Use the</HINT></EXR>
+
+<HEAD1>An application: Branching process</HEAD1>
+Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
+ will again split into two. If it goes on like this, then we shall have<M>2^n</M>  cells in the <M>n</M>-th generation. Clearly
+ understand how the generations are numbered. The initial cell belonged to generation 0. We shall
+ call the number of cells in the <M>n</M>-th generation <M>X_n</M>. Thus, <M>X_n = 2^n</M>. Also,
+ notice that when a cell splits into children, the original cell ceases to exist. 
+
+  This
+ branching process is a deterministic
+ one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus <M>X_0 = 1</M>.
+ After a minute this cell "splits into" a random number of cells. The number may be any
+ nonnegative integer. In particular, we allow the number to be 0 or 1 with the following interpretations:
+<UL><LI>If the number is 0, then the
+ original cell has died without leaving any children. </LI><LI>If the number is 1, then the original cell
+ just continues into the next generation.  </LI></UL>
+This number is the size of generation 1. We shall call it <M>X_1</M>. Let the distribution of <M>X_1</M>  be
+given by <M>P(X_1=k) = p_k</M>  for <M>k=0,1,2,...</M>. 
+
+After one more minute each cell in generation 1 will independently split into children following the same distribution. And
+ the process will continue. 
+
+As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
+
+We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
+ address is "What is the <TERM>extinction probability</TERM> for this process?" 
+
+By extinction we mean the event that <M>X_n=0</M>  for some <M>n\in\nn</M>. Notice that if some <M>X_n=0</M>, then we must
+ have <M>X_{n+1}= X_{n+2}=\cdots = 0</M>  also. So the extinction event is 
+<D>\bigcup_{n\in\nn}\{X_n=0\}</D>.
+Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probability is
+ <M>\lim_{n\to\infty} P(X_n=0)=\theta</M>, say.  
+
+How to find it in terms of <M>p_0,p1_,p_2,..</M>.?
+
+<HEAD2>Simple cases</HEAD2>
+ If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then the extinction probability is surely 1. 
+
+If <M>p_0>0</M>,  but <M>p_0+p_1 =1</M>  (which implies <M>p_2=p_3=\cdots=0</M>), then also  the extinction probability is
+ 1 (why?) 
+
+In these cases, we had no births to counter the deaths. 
+But if <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have births, and the interaction between
+ births and deaths becomes rather complicated. That is where PGFs come to our help.
+
+<HEAD2>Using PGF</HEAD2>
+Let <M>\xi(t)</M>  be the PGF of <M>X_1</M>. In other words, 
+<D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
+<EXR>Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>.</EXR>
+
+<EXR>In general show that for <M>n\in\nn</M>  the PGF of <M>X_n</M>  is <M>\xi_n(t) = \xi(\xi_{n-1}(t))</M>.</EXR>
+
+Now <M>P(X_n=0) = \xi_n(0)</M>. 
+
+So the extinction probability is <M>\theta = \lim_n \xi_n(0)</M>. 
+
+Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)</M>. In other words, <M>\theta</M>  must
+ be a <I>fixed point</I>  of the PGF. 
+
+<HEAD2>Exploring fixed points</HEAD2>
+How many fixed points can <M>\xi(t) </M> have. Surely <M>1</M>  is one, since <M>\xi(1) = 1</M>. If it is the only one, then
+ <M>\theta</M>  must be <M>1</M>.
+
+<EXR>Show that in the simple cases discussed earlier <M>1</M>  is the only fixed point.</EXR>
+
+Notice that <M>\xi'(t)</M>  is always nonnegative. In fact, except in the trivial case of
+ <M>p_0=1</M>, it is positive. So <M>\xi(t)</M>  is a strictly increasing function. Again, except
+ in the case where <M>p_0+p_1=1</M>, the second derivative <M>\xi''(t)</M>  is positive, and so
+ <M>\xi(t)</M>  is a convex function. Such a function can intersect the <M>y=x </M> line at most twice. 
+
+<COMMENT>
+png("image/pgfplot.png")
+xi = function(t) 0.1*(1+t*(5+4*t))
+t = seq(0,1,0.05)
+plot(t,xi(t), ty='l', lwd=3,xlim=c(0,1),ylim=c(0,1))
+abline(a=0,b=1, lwd=3,col="red")
+dev.off()
+</COMMENT>
+<EXM>If <M>p_0=0.1, p_1=0.5</M>  and <M>p_2=0.4</M>  (so the other <M>p_k</M>'s are all zeroes),
+ then the graph of <M>\xi(t)</M>  looks as shown below.
+<CIMG web="pgfplot.png"></CIMG>
+</EXM>       
+You can notice two fixed points (i.e., points where the black curve cuts the red diagonal). One of the fixed points is at
+ <M>t=1</M>. The other is in <M>(0,1)</M>. Which of the two fixed points will <M>\theta</M>  equal? 
+
+The answer is <M>\theta</M>  will always be the <I>smallest</I>  fixed point. This follows from the exercises below.
+
+<EXR>Let <M>\mu</M>  be any fixed point of <M>\xi(t)</M>. Then show that <M>\forall n\in\nn~~\xi_n(0)\leq \mu</M>.</EXR>
+
+<EXR>Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed points of <M>\xi(t)</M>.</EXR>
+
+<HEAD2>Wrapping up</HEAD2>
+
+We have seen that (excepting the trivial case <M>p_0=0</M>) there are only two possibilities:
+ exactly one fixed point (which must be
+ <M>1</M>) or exactly two. In the first case, <M>\theta=1</M>  and in the second it is the smaller fixed point. 
+
+It will be nice if we have a quick way to know (based on the <M>p_n</M>'s) which case we are in. 
+
+The two cases are shown below graphically: 
+<CIMG web="pgfcases.png"></CIMG>
+ One simple way to distinguish them is by <M>\xi'(1)</M>. In the first case <M>\xi'(1) \leq 1</M>  and in the other <M>\xi'(1) > 1</M>.
+ Just a little point here: we know that <M>\xi(t)</M>  converges over <M>[-1,1]</M>, but may not converge beyond <M>1</M>.
+ So when we talk about the derivative at <M>1</M>, we mean the left hand derivative. But fortunately, the term by term differentiation
+ rule works for finding this one-sided derivative as well. So <M>\xi'(1) = p_1+2p_2+3p_3+\cdots</M>  (may be <M>\infty</M>).
+
+So the final answer is:
+<UL><LI>If <M>p_0=0</M>, the <M>\theta=0</M>.</LI>
+<LI>If <M>p_1+2p_2+3p_3+\cdots \leq 1</M>, then <M>\theta=1</M>.</LI>
+<LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
+ </UL>
+Could you arrive at this impressive answer without using PGF?  
+</NOTE>@} 

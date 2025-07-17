@@ -73,6 +73,18 @@ questions get answered down the way. Also, you'll have precise
 questions to ask your teachers instead of a confused request like
 "Could not follow anything for the last month, please help!".
 
+<HEAD3>What's wrong with notes taken by others?</HEAD3>
+Taking notes in the class is not easy, and may look like a wastage of time when, after all, there are smart philanthropic
+ class mates who are willing to share their notes with you. Indeed, some great souls use their iPads and tablets to write
+ elaborate notes and even upload them to online platforms like Trello. Also, for some courses (like this one), the instructor
+ provides online notes. So why bother to take your own notes, especially when you can use that
+ time to check your social media? Well, if you feel that way, then imagine this scenario: You are
+ lost in a big city. Completely clueless where you are. No GPS connection. You pray to God for help, and God drops a
+ detailed road map of the city right before you. You look at it, zillions of roads crisscrossing
+ each other. Only the major roads are labelled with names, the myriad others are just jumble of
+ lines. And you have no clue <I>where you are   in this map</I>. Will this map be of any use? No! Well, your smart class
+ mate's online notes are like that. Now imagine God drops another map, a very rough crude map, but with a clear arrow marking
+ where you are right now. Will this help you more? Yes, certainly! Well, that's like the notes you maintain.
 <HEAD2>How to cope with teachers</HEAD2> 
 
 Teachers at ISI sometimes experiment with the course
