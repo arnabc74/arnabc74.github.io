@@ -41,10 +41,11 @@ accurate as <M>n</M> becomes large. But nevertheless they used this formula to
 find out what they could expect the random variable to do in the
 long run.
 
-<HEAD2>Finite case</HEAD2>
+<HEAD2>Simple random variables</HEAD2>
+A random variable is called <TERM>simple</TERM>  if takes only finitely many values. 
 
-<DEFN name="Expectation (finite case)">
-Let a random variable <M>X</M> take only finitely many
+<DEFN name="Expectation of simple random variables">
+Let  <M>X</M> be a simpe random variable taking only the values
 values <M>x_1,x_2,...,x_k</M> with
 probabilities <M>p_1,p_2,..., p_k</M>.
 Then we define the <TERM>expectation</TERM> of <M>X</M> as
@@ -104,6 +105,11 @@ If <M>X</M>  takes only countably many values <M>x_1, x_2, ...</M>   with probab
 <D>E(X) = \sum p_i x_i.</D>
 </THM>
 
+It is possible to define expectation of random variables that are more general (taking uncountably many values). We shall
+ give most general definition in the next semester. The following properties actually hold for the genral definition. 
+Unless noted otherwise, we
+ shall only prove them for the case of simple random variables. These proofs are actually the first steps in the general proofs
+ that will come next semester. 
 
 
 <HEAD1>Properties of expectation</HEAD1>
@@ -131,6 +137,8 @@ written as <M>P(X\in[a,b])=1.</M>
 <PF>
 Here <M>X\leq Y</M>  means <M>\forall \omega\in\Omega~~X(\omega)\leq Y(\omega).</M>
 
+As already mentioned, we shall restrict the proof to only the case where <M>X</M>  and <M>Y</M>  are both simple.
+
 Let <M>X</M> take values <M>x_1,...,x_m,</M>  and <M>Y</M>  take values <M>y_1,...,y_n.</M>
 
 Let <M>p_{ij} = P(X=x_i, Y=y_j).</M>  
@@ -146,18 +154,20 @@ Now
 </PF>
 
 
-<COMMENT>
+
 <THM>
 Let <M>a\in\rr</M> be any number. If <M>P(X\leq a)=1,</M>
 then <M>E(X)=a</M> if and only if <M>X</M> is degenerate at <M>a.</M>
 </THM>
+<EXR>Prove this for simple <M>X</M>.</EXR>
 
 However, if <M>a\in\rr</M> is replaced by <M>\infty,</M> then the
 result fails, i.e., 
 It is possible to have a random
 variable <M>X</M> that is always finite (any real-valued random
 variable will do, since <M>\infty\not\in\rr</M>) such
-that <M>E(X)=\infty.</M> 
+that <M>E(X)=\infty.</M> Of course, we cannot get a counterexample using simple random variables.
+ However, such counterexamples exist for random variables taking countably many values, as shown below. 
 
 <EXM>
 It is a standard fact that <M>\sum[[1][n^2]]<\infty.</M> Let the
@@ -169,7 +179,6 @@ in <M>\nn</M> and <M>P(X=n)=[[1][cn^2]].</M>
 <P/>
 Then <M>E(X) = [[1c]]\sum[[1n]]=\infty.</M>
 </EXM>
-</COMMENT>
 By the way, if <M>X</M> can take values <M>x_1,x_2,...</M>, there
 is no guaranty that <M>E(X)</M> will equal any of
 the <M>x_i</M>'s. For example, if  <M>X</M> is the outcome of
@@ -178,18 +187,18 @@ outcome.
 
 <HEAD2>Transformation properties</HEAD2>
 <THM>
-Let <M>X</M> be a discrete rv such that <M>E(X)</M> is defined. If <M>a,b</M> are constants, then <M>E(a+bX) = a+bE(X).</M>
+Let <M>X</M> be a random variable and let  <M>a,b</M> be constants. Then <M>E(a+bX) = a+bE(X).</M>
 </THM>
 <PF>
-Do it yourself. Hint: Here also you need to proceed in three steps: simple, nonnegative, general.
+Prove it for simple <M>X</M>.
 </PF>
 
 ::<EXR>
-If <M>E(X) = \mu,</M> then what is <M>E(X-\mu)?</M>
+If <M>E(X) = \mu\in\rr,</M> then what is <M>E(X-\mu)?</M>
 </EXR>
 
 <THM>
-Let <M>X,Y</M> be two discrete random variables both defined on the same probability space.
+Let <M>X,Y</M> be two random variables both defined on the same probability space.
 We assume that both <M>E(X)</M> and <M>E(Y)</M> both exist finitely.
 <P/>
 Then <M>E(X+Y)</M> also exists finitely and we have
@@ -387,8 +396,8 @@ Let <M>X</M>  be any non-negative random variable. Let <M>\epsilon>0.</M>  Then
 <D>E(X)\geq \epsilon P(X\geq\epsilon).</D>
 </THM>
 <PF>
-<CIMG web="exeps.png">Look at this diagram and see if you can prove the theorem.</CIMG>
-
+Let <M>Y =<CASES>\epsilon<IF>X\geq \epsilon</IF> 0<ELSE/></CASES>. </M>
+Then clearly, <M>X\geq Y</M>. So <M>E(X)\geq E(Y) = \epsilon P(X\geq \epsilon)</M>.
 </PF>
 
 <HEAD1>Problems for practice</HEAD1>

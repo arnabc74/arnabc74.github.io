@@ -155,7 +155,7 @@ function myFunction() {
 <a href="#Expectation of a random variable">Expectation of a random variable</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Finite case">Finite case</a>
+<a href="#Simple random variables">Simple random variables</a>
 </li>
 <li>
 <a href="#Random variables taking countably many values">Random variables taking countably many values</a>
@@ -251,13 +251,13 @@ long run.
 <p></p>
 
 <h2><a
-name="Finite case">Finite case</a></h2>
-
+name="Simple random variables">Simple random variables</a></h2>
+A random variable is called <b><font color="red" size="40">simple</font></b>  if takes only finitely many values. 
 <p></p>
 
 <fieldset>
-<legend><b>Definition: Expectation (finite case)</b></legend>
-Let a random variable $X$ take only finitely many
+<legend><b>Definition: Expectation of simple random variables</b></legend>
+Let  $X$ be a simpe random variable taking only the values
 values $x_1,x_2,...,x_k$ with
 probabilities $p_1,p_2,..., p_k$.
 Then we define the <b><font color="red" size="40">expectation</font></b> of $X$ as
@@ -339,6 +339,12 @@ $$E(X) = \sum p_i x_i.$$
 </fieldset>
 
 <p></p>
+It is possible to define expectation of random variables that are more general (taking uncountably many values). We shall
+ give most general definition in the next semester. The following properties actually hold for the genral definition. 
+Unless noted otherwise, we
+ shall only prove them for the case of simple random variables. These proofs are actually the first steps in the general proofs
+ that will come next semester. 
+<p></p>
 
 <h1><a
 name="Properties of expectation">Properties of expectation</a></h1>
@@ -383,6 +389,8 @@ written as $P(X\in[a,b])=1.$
 <b><i>Proof:</i></b>
 Here $X\leq Y$  means $\forall \omega\in\Omega~~X(\omega)\leq Y(\omega).$
 <p></p>
+As already mentioned, we shall restrict the proof to only the case where $X$  and $Y$  are both simple.
+<p></p>
 Let $X$ take values $x_1,...,x_m,$  and $Y$  take values $y_1,...,y_n.$
 <p></p>
 Let $p_{ij} = P(X=x_i, Y=y_j).$  
@@ -400,6 +408,37 @@ $$\begin{eqnarray*}E(X) &amp; = &amp; \sum_i x_i P(X=x_i) = \sum_i (x_i \sum_j p
 
 <p></p>
 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $a\in{\mathbb R}$ be any number. If $P(X\leq a)=1,$
+then $E(X)=a$ if and only if $X$ is degenerate at $a.$
+</fieldset>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Prove this for simple $X$.</p>
+
+<p></p>
+However, if $a\in{\mathbb R}$ is replaced by $\infty,$ then the
+result fails, <i>i.e.</i>, 
+It is possible to have a random
+variable $X$ that is always finite (any real-valued random
+variable will do, since $\infty\not\in{\mathbb R}$) such
+that $E(X)=\infty.$ Of course, we cannot get a counterexample using simple random variables.
+ However, such counterexamples exist for random variables taking countably many values, as shown below. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+It is a standard fact that $\sum\frac{1}{n^2}&lt;\infty.$ Let the
+sum be $c.$ (The exact value of $c$
+which is $\frac{\pi^2}{6},$ is of no importance here).
+<p></p>
+Then consider a random variable $X$ that takes values
+in ${\mathbb N}$ and $P(X=n)=\frac{1}{cn^2}.$ 
+<p></p>
+Then $E(X) = \frac 1c\sum\frac 1n=\infty.$
+ ■
+</p>
 By the way, if $X$ can take values $x_1,x_2,...$, there
 is no guaranty that $E(X)$ will equal any of
 the $x_i$'s. For example, if  $X$ is the outcome of
@@ -412,26 +451,26 @@ name="Transformation properties">Transformation properties</a></h2>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $X$ be a discrete rv such that $E(X)$ is defined. If $a,b$ are constants, then $E(a+bX) = a+bE(X).$
+Let $X$ be a random variable and let  $a,b$ be constants. Then $E(a+bX) = a+bE(X).$
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-Do it yourself. Hint: Here also you need to proceed in three steps: simple, nonnegative, general.
+Prove it for simple $X$.
 <b><i>[QED]</i></b>
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;
-If $E(X) = \mu,$ then what is $E(X-\mu)?$
+<b>EXERCISE 5:</b>&nbsp;
+If $E(X) = \mu\in{\mathbb R},$ then what is $E(X-\mu)?$
 </p>
 
 <p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $X,Y$ be two discrete random variables both defined on the same probability space.
+Let $X,Y$ be two random variables both defined on the same probability space.
 We assume that both $E(X)$ and $E(Y)$ both exist finitely.
 <p></p>
 Then $E(X+Y)$ also exists finitely and we have
@@ -512,7 +551,7 @@ as required.
 
 <p></p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
+<b>EXERCISE 6:</b>&nbsp;Which is larger $(E(X))^2$ or $E(X^2)?$ Assume
 that both exist finitely.</p>
 
 <p></p>
@@ -671,7 +710,7 @@ Hence the result.
 
 <p></p>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;If $E(|X|)=\infty,$  then what can you say about $E(X)?$
+<b>EXERCISE 7:</b>&nbsp;If $E(|X|)=\infty,$  then what can you say about $E(X)?$
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">May be $\infty$  or $-\infty$  or undefined.</div></p>
@@ -732,20 +771,8 @@ $$E(X)\geq \epsilon P(X\geq\epsilon).$$
 
 <p>
 <b><i>Proof:</i></b>
-
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/exeps.png"></th>
-</tr>
-<tr>
-<th>Look at this diagram and see if you can prove the theorem.</th>
-</tr>
-</table>
-</center>
-
-<p></p>
-
+Let $Y =\left\{\begin{array}{ll}\epsilon&\text{if }X\geq \epsilon\\ 0&\text{otherwise.}\end{array}\right.. $
+Then clearly, $X\geq Y$. So $E(X)\geq E(Y) = \epsilon P(X\geq \epsilon)$.
 <b><i>[QED]</i></b>
 </p>
 
@@ -754,7 +781,7 @@ $$E(X)\geq \epsilon P(X\geq\epsilon).$$
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;
+<b>EXERCISE 8:</b>&nbsp;
 What is $E(X)$ if $X$ takes the
 values $1,2,...,n$ with probability $\frac 1n$ each?
 <p><a
@@ -763,7 +790,7 @@ class="ans" id="lab2">$\frac{n+1}{2}.$</div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;Show that if $X$  is a random variable taking only non-negative
+<b>EXERCISE 9:</b>&nbsp;Show that if $X$  is a random variable taking only non-negative
 integer values, then 
 $$E(X) = \sum_{k=1}^\infty P(X\geq k).$$
 This formula often proves useful for finding expected counts.
@@ -784,7 +811,7 @@ you rearrange the terms.
 
 </p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;For a group of $n$  people find the expected number of days of the year which are
+<b>EXERCISE 10:</b>&nbsp;For a group of $n$  people find the expected number of days of the year which are
  birthdays of exactly $k$  people. (Assume 365 days and that all arrangements are equally
  probable.) Also find the expected number of multiple birthdays. How large should $n$  be to
  make this expectation exceed 1?
@@ -805,7 +832,7 @@ Expected number of multiple birthdays is $365\left\{1-\left(\frac{364}{365}\righ
 
 </p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;A man with $n$  keys wants to open a door (where exactly one key works). He tries the
+<b>EXERCISE 11:</b>&nbsp;A man with $n$  keys wants to open a door (where exactly one key works). He tries the
  keys independently at random. Find the expected number of trials needed to open the door if 
  keys are tried (a) with replacement (b) without replacement.
 <p><a
@@ -816,7 +843,7 @@ class="ans" id="lab5">(a) $\sum_1^ \infty k\cdot \left(1-\frac 1n\right)^{k-1}\c
 
 </p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<center>
+<b>EXERCISE 12:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv5.png"></th>
@@ -842,7 +869,7 @@ Differentiate (or think of the graph) to see that the maximising value of $p$  i
 
 </p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<center>
+<b>EXERCISE 13:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv6.png"></th>
@@ -865,7 +892,7 @@ Suppose that it charges $B.$  Then expected profit is $B-pA.$  To keep it 10% of
 
 </p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;<center>
+<b>EXERCISE 14:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv7.png"></th>
@@ -892,7 +919,7 @@ $E(Y) = \frac{40+33+25+50}{4}.$
 
 </p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;<center>
+<b>EXERCISE 15:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv8.png"></th>
@@ -921,7 +948,7 @@ This is maximised when $pq = p(1-p)$  is maximised, which is when $p=\frac 12.$
 </div></p>
 </p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<center>
+<b>EXERCISE 16:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv9.png"></th>
@@ -933,7 +960,7 @@ This is maximised when $pq = p(1-p)$  is maximised, which is when $p=\frac 12.$
 </center>
 </p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<center>
+<b>EXERCISE 17:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv11.png"></th>
@@ -963,7 +990,7 @@ So $E(X) = 17\times \frac 14 = \frac{17}{4}.$
 
 </p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<center>
+<b>EXERCISE 18:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv12.png"></th>
@@ -988,7 +1015,7 @@ So $E(X) = \frac{150\times149}{2\times199}.$
 </div></p>
 </p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<center>
+<b>EXERCISE 19:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv13.png"></th>
@@ -1007,7 +1034,7 @@ $E(X) = \frac 52.$
 
 </p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<center>
+<b>EXERCISE 20:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/rossrv14.png"></th>
@@ -1031,7 +1058,7 @@ Equality if and only if $V(X)= 0$, <i>i.e.</i>, if $X$  is a degenerate random v
 
 <p></p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<center>
+<b>EXERCISE 21:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/fellrv1.png"></th>
@@ -1070,7 +1097,7 @@ $$-\frac{1}{k^2}-(1-p)^k\log(1-p).$$
 
 </p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<center>
+<b>EXERCISE 22:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/fellrv2.png"></th>
@@ -1099,7 +1126,7 @@ You may like to deal with the $r=1$  case first.
 
 </p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<center>
+<b>EXERCISE 23:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most4.png"></th>
@@ -1127,7 +1154,7 @@ Put $x=\frac 56$  to find the required expectation.
 
 </p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<center>
+<b>EXERCISE 24:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most6.png"></th>
@@ -1162,7 +1189,7 @@ $$E(X) = \left(\frac 16\right)^3(5^3-3\times 5^2-6\times5-3).$$
 
 </p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<center>
+<b>EXERCISE 25:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most14.png"></th>
@@ -1200,7 +1227,7 @@ The answer to the problem is $E(T_1+\cdots+T_5) = 1+E(T_2)+\cdots+E(T_5).$
 
 </p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<center>
+<b>EXERCISE 26:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most15.png"></th>
@@ -1266,7 +1293,7 @@ Or...use the indicator trick!!!
 
 </p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<center>
+<b>EXERCISE 27:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most34.png"></th>
@@ -1306,7 +1333,7 @@ So the function is maximised at $n=364$  and $365.$
 
 <p></p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;<center>
+<b>EXERCISE 28:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most40.png"></th>
