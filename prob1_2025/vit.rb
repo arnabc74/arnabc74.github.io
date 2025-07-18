@@ -237,7 +237,6 @@ By a <TERM>measure space</TERM>  we mean <M>(\Omega,{\mathcal F},\mu)</M>, where
 <LI><M>\forall \mbox{ disjoint } A_1,A_2,...\in{\mathcal F}~~\mu(\cup A_n)=\sum\mu(A_n).</M></LI>
 </OL>
 </DEFN>
-Corrected a typo pointed out by Vrajishnu.
 
 As you may easily see, "length", "area", "mass", "volume", "cardinality" (for finite sets) are all examples of measures.
 <HEAD1>Measure theoretic definition of a random variable</HEAD1>

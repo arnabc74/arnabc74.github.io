@@ -136,7 +136,7 @@ Your time is spent in  Google searches, unearthing tonnes of research papers, se
 <HEAD3>Scenario 2: The math whiz kid</HEAD3>
 You are a superb math whiz kid cracking the hardest math nuts as easily as if your brain
  were just a giant nut cracker. You know that great mathematicians were all eccentric persons who
- disliked there regular studies. You already know the things taught at Masters level,
+ disliked their regular studies. You already know the things taught at Masters level,
  and are eager to do advanced math project under some professor who is impressed with your abilities.
  You find statistics a most boring subject. You start bunking stat classes. "After all, ISI cannot
  punish a bright math student like me for   flunking in stats", you think. You are wrong. ISI is a cruel place. You'll
