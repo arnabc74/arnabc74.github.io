@@ -1,0 +1,192 @@
+// script.js
+alert("Started")
+// --- Configuration ---
+var SVG_WIDTH = document.getElementById('branchingTree').width.baseVal.value;
+var SVG_HEIGHT = document.getElementById('branchingTree').height.baseVal.value;
+var NODE_RADIUS = 5;
+var NODE_SPACING_X = 20; // Horizontal spacing between nodes in a generation
+var GENERATION_SPACING_Y = 60; // Vertical spacing between generations
+
+var currentSimulation = null; // To hold the interval ID for animation control
+
+// --- DOM Elements ---
+var generationsInput = document.getElementById('generations');
+//var offspringMeanInput = document.getElementById('offspringMean');
+//var animationSpeedInput = document.getElementById('animationSpeed');
+var startButton = document.getElementById('startSimulation');
+var resetButton = document.getElementById('resetSimulation');
+var svg = document.getElementById('branchingTree');
+
+// --- Tree Data Structure (Node Class) ---
+class Node {
+    varructor(id, parentId = null, generation = 0, position = { x: 0, y: 0 }) {
+        this.id = id;
+        this.parentId = parentId;
+        this.children = [];
+        this.generation = generation;
+        this.position = position;
+        this.isVisible = false; // For animation, nodes appear gradually
+        this.isAnimating = false;
+    }
+}
+
+// --- Branching Process Logic ---
+function getOffspringCount() {
+    // Example: A simple distribution, adjust probabilities for different behaviors
+    var rand = Math.random();
+    if (rand < 0.2) return 0; 
+    if (rand < 0.7) return 1; 
+    if (rand < 0.9) return 2; 
+    return 3;                
+}
+
+var maxGen;
+function simulateBranchingProcess(maxGenerations) {
+    maxGen = maxGenerations;
+    let nodes = new Map(); // Store nodes by ID for easy access
+    let nextNodeId = 0;
+    let generationData = []; // Array to store nodes for each generation
+
+    // Initial individual
+    var rootNode = new Node(nextNodeId++, null, 0, { x: SVG_WIDTH / 2, y: GENERATION_SPACING_Y });
+    nodes.set(rootNode.id, rootNode);
+    generationData.push([rootNode]);
+
+    for (let gen = 0; gen < maxGenerations; gen++) {
+        var currentGenerationNodes = generationData[gen] || [];
+        var nextGenerationNodes = [];
+
+        currentGenerationNodes.forEach(parentNode => {
+            // Simulate offspring count (using Poisson distribution approximation for simplicity)
+            var numOffspring = getOffspringCount();
+
+            for (let i = 0; i < numOffspring; i++) {
+                var childNode = new Node(nextNodeId++, parentNode.id, gen + 1);
+                parentNode.children.push(childNode.id);
+                nodes.set(childNode.id, childNode);
+                nextGenerationNodes.push(childNode);
+            }
+        });
+        if (nextGenerationNodes.length > 0) {
+            generationData.push(nextGenerationNodes);
+        } else {
+            // If no offspring, stop generating
+            break;
+        }
+    }
+    return { nodes, generationData };
+}
+
+// --- Layout Calculation ---
+// This is a simplified layout. For complex trees, consider a force-directed layout or a hierarchical layout algorithm.
+function calculateNodePositions(generationData) {
+    var totalGenerations = generationData.length;
+
+    generationData.forEach((genNodes, genIndex) => {
+        var numNodesInGen = genNodes.length;
+        if (numNodesInGen === 0) return;
+
+        // Calculate initial x-position for the first node in the generation
+        var startX = SVG_WIDTH / 2 - (numNodesInGen - 1) * NODE_SPACING_X / 2;
+        var y = (genIndex + 1) * GENERATION_SPACING_Y;
+
+        genNodes.forEach((node, nodeIndex) => {
+            node.position.x = startX + nodeIndex * NODE_SPACING_X;
+            node.position.y = y;
+        });
+    });
+}
+
+// --- SVG Drawing and Animation ---
+function drawTree(nodesMap, generationData, currentGenerationToDisplay) {
+    // Clear previous drawings
+    svg.innerHTML = '';
+
+    var nodesToDraw = [];
+    var linksToDraw = [];
+
+    // Collect nodes and links up to the current generation
+    for (let i = 0; i <= currentGenerationToDisplay && i < generationData.length; i++) {
+        generationData[i].forEach(node => {
+            node.isVisible = true; // Mark nodes as visible for drawing
+            nodesToDraw.push(node);
+
+            // Add links from parent to child
+            node.children.forEach(childId => {
+                var childNode = nodesMap.get(childId);
+                if (childNode) {// && childNode.isVisible) { // Only draw link if child is also visible
+                    linksToDraw.push({
+                        source: node.position,
+                        target: childNode.position
+                    });
+                }
+            });
+        });
+    }
+
+    // Draw links first (so nodes appear on top)
+    linksToDraw.forEach(link => {
+        var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", link.source.x);
+        line.setAttribute("y1", link.source.y);
+        line.setAttribute("x2", link.target.x);
+        line.setAttribute("y2", link.target.y);
+        line.classList.add("link");
+        svg.appendChild(line);
+    });
+
+    // Draw nodes
+    nodesToDraw.forEach(node => {
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", node.position.x);
+        circle.setAttribute("cy", node.position.y);
+        circle.setAttribute("r", NODE_RADIUS);
+        circle.classList.add(node.generation<maxGen && node.children.length==0? "nodestop":"node");
+        circle.setAttribute("id", `node-${node.id}`); // For potential future interaction/animation
+        svg.appendChild(circle);
+
+    });
+}
+
+// --- Animation Loop ---
+function animateBranchingProcess(simulationData, maxGenerations, animationSpeed) {
+    let currentGen = 0;
+
+    function frame() {
+        if (currentGen <= maxGenerations) {
+            drawTree(simulationData.nodes, simulationData.generationData, currentGen);
+            currentGen++;
+            currentSimulation = setTimeout(() => requestAnimationFrame(frame), animationSpeed);
+        } else {
+            console.log("Animation finished.");
+            currentSimulation = null; // Clear the timer ID
+        }
+    }
+    requestAnimationFrame(frame);
+}
+
+// Start the simulation
+initializeSimulation();
+requestAnimationFrame(animate);
+
+// --- Event Handlers ---
+function doit() {
+    alert("I am here!")
+    if (currentSimulation) {
+        clearTimeout(currentSimulation); // Stop any ongoing simulation
+        currentSimulation = null;
+    }
+
+    var generations = parseInt(document.getElementById("generations").value);
+    //var offspringMean = parseFloat(offspringMeanInput.value);
+    var animationSpeed = 500;//parseInt(animationSpeedInput.value);
+
+    var simulationResult = simulateBranchingProcess(generations);
+    calculateNodePositions(simulationResult.generationData); // Calculate positions before animating
+    console.log("Simulation Result:", simulationResult); // For debugging
+    animateBranchingProcess(simulationResult, generations, animationSpeed);
+}
+
+
+// Initial draw (empty canvas)
+drawTree(new Map(), [], -1);

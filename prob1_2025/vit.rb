@@ -261,7 +261,7 @@ Let <M>\Omega</M> be a  non-empty set equipped with a <M>\sigma</M>-algebra <M> 
  all intervals <M>A\seq\rr</M>  we have <M>X^{-1}(A)\in{\mathcal F}.</M> 
 </DEFN>
 
-
+<COMMENT>
 <HEAD1>Expectation</HEAD1>
 
 So far we have defined expectation for only  random variables that take finitely many values. 
@@ -435,4 +435,5 @@ So <M>E(X_+)-E(X_-)\leq E(Y_+)-E(Y_-),</M>  as required.
 </PF>
 An immediate consequence of the above theorems is the following
 theorem.
+</COMMENT>
 </NOTE>@}

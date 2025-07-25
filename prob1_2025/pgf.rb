@@ -1,4 +1,5 @@
 @{<NOTE>
+<CSS>branch.css</CSS>
 <HEAD1>Probability Generating Function (PGF)</HEAD1>
 <DEFN>Let a random variable take only nonnegative integer values. Then its <TERM>probability
  generating function (PGF)</TERM>  is defined as the power series
@@ -63,6 +64,17 @@ After one more minute each cell in generation 1 will independently split into ch
 
 As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
 
+<HEAD2>Animation</HEAD2>
+<NUMINP id="generations" value="5" min="1"/>
+<BUTTON o="doit()">(Re)start</BUTTON>
+
+Cells will be shown as dots. The red dots denote cells that 
+have died without leaving any child. Try the animation a number of times to explore various possibilities. 
+<SVG id="branchingTree" width="100%" height="600"/>
+<LOCSCRIPT>branch.js</LOCSCRIPT>
+
+
+<HEAD2>Math</HEAD2>
 We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
  address is "What is the <TERM>extinction probability</TERM> for this process?" 
 
@@ -74,7 +86,7 @@ Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probabilit
 
 How to find it in terms of <M>p_0,p_1,p_2,..</M>.?
 
-<HEAD2>Simple cases</HEAD2>
+<HEAD3>Simple cases</HEAD3>
  If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then the extinction probability is surely 1. 
 
 If <M>p_0>0</M>,  but <M>p_0+p_1 =1</M>  (which implies <M>p_2=p_3=\cdots=0</M>), then also  the extinction probability is
@@ -84,7 +96,7 @@ In these cases, we had no births to counter the deaths.
 But if <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have births, and the interaction between
  births and deaths becomes rather complicated. That is where PGFs come to our help.
 
-<HEAD2>Using PGF</HEAD2>
+<HEAD3>Using PGF</HEAD3>
 Let <M>\xi(t)</M>  be the PGF of <M>X_1</M>. In other words, 
 <D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
 <EXR>Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>.</EXR>
@@ -98,7 +110,7 @@ So the extinction probability is <M>\theta = \lim_n \xi_n(0)</M>.
 Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)</M>. In other words, <M>\theta</M>  must
  be a <I>fixed point</I>  of the PGF. 
 
-<HEAD2>Exploring fixed points</HEAD2>
+<HEAD3>Exploring fixed points</HEAD3>
 How many fixed points can <M>\xi(t) </M> have. Surely <M>1</M>  is one, since <M>\xi(1) = 1</M>. If it is the only one, then
  <M>\theta</M>  must be <M>1</M>.
 
@@ -130,7 +142,7 @@ The answer is <M>\theta</M>  will always be the <I>smallest</I>  fixed point. Th
 
 <EXR>Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed points of <M>\xi(t)</M>.</EXR>
 
-<HEAD2>Wrapping up</HEAD2>
+<HEAD3>Wrapping up</HEAD3>
 
 We have seen that (excepting the trivial case <M>p_0=0</M>) there are only two possibilities:
  exactly one fixed point (which must be

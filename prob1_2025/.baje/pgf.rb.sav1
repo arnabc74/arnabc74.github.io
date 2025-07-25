@@ -1,4 +1,5 @@
 @{<NOTE>
+<CSS>branch.css</CSS>
 <HEAD1>Probability Generating Function (PGF)</HEAD1>
 <DEFN>Let a random variable take only nonnegative integer values. Then its <TERM>probability
  generating function (PGF)</TERM>  is defined as the power series
@@ -38,7 +39,7 @@ If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative
 
 <EXR>Show that if <M>X,Y</M>  are independent random variables taking nonnegative integer values,
  with PGFs <M>\xi(t)</M>  and <M>\psi(t)</M>, then the PGF of <M>X+Y</M>  is
- <M>\xi(t)\psi(t)</M>.<HINT>Use the last</HINT></EXR>
+ <M>\xi(t)\psi(t)</M>.<ANS>Use the last exercise.</ANS></EXR>
 
 <HEAD1>An application: Branching process</HEAD1>
 Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
@@ -63,6 +64,17 @@ After one more minute each cell in generation 1 will independently split into ch
 
 As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
 
+<HEAD2>Animation</HEAD2>
+<NUMINP id="generations" value="5" min="1"/>
+<BUTTON o="doit()">(Re)start</BUTTON>
+
+Cells will be shown as dots. The red dots denote cells that 
+have died without leaving any child. Try the animation a number of times to explore various possibilities. 
+<SVG id="branchingTree" width="100%" height="600"/>
+<LOCSCRIPT>branch.js</LOCSCRIPT>
+
+
+<HEAD2>Math</HEAD2>
 We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
  address is "What is the <TERM>extinction probability</TERM> for this process?" 
 
@@ -72,9 +84,9 @@ By extinction we mean the event that <M>X_n=0</M>  for some <M>n\in\nn</M>. Noti
 Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probability is
  <M>\lim_{n\to\infty} P(X_n=0)=\theta</M>, say.  
 
-How to find it in terms of <M>p_0,p1_,p_2,..</M>.?
+How to find it in terms of <M>p_0,p_1,p_2,..</M>.?
 
-<HEAD2>Simple cases</HEAD2>
+<HEAD3>Simple cases</HEAD3>
  If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then the extinction probability is surely 1. 
 
 If <M>p_0>0</M>,  but <M>p_0+p_1 =1</M>  (which implies <M>p_2=p_3=\cdots=0</M>), then also  the extinction probability is
@@ -84,7 +96,7 @@ In these cases, we had no births to counter the deaths.
 But if <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have births, and the interaction between
  births and deaths becomes rather complicated. That is where PGFs come to our help.
 
-<HEAD2>Using PGF</HEAD2>
+<HEAD3>Using PGF</HEAD3>
 Let <M>\xi(t)</M>  be the PGF of <M>X_1</M>. In other words, 
 <D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
 <EXR>Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>.</EXR>

@@ -146,7 +146,8 @@ function myFunction() {
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-</head><body>
+<link
+rel="stylesheet" href="branch.css">Dummy</link></head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
 <h3/>
@@ -158,20 +159,26 @@ function myFunction() {
 <a href="#An application: Branching process">An application: Branching process</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Animation">Animation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Math">Math</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Simple cases">Simple cases</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Using PGF">Using PGF</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Exploring fixed points">Exploring fixed points</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#Wrapping up">Wrapping up</a>
 </li>
 </ul>
 <hr/>
-
+branch.css
 <h1 xmlns=""><a
 name="Probability Generating Function (PGF)">Probability Generating Function (PGF)</a></h1>
 
@@ -278,6 +285,25 @@ After one more minute each cell in generation 1 will independently split into ch
 <p></p>
 As before, $X_n$  will denote the number of cells in the $n$-th generation. 
 <p></p>
+
+<h2><a
+name="Animation">Animation</a></h2>
+
+<input min="1" value="5" style="font-size:30px;" id="generations" type="number">
+
+<input type="button" style="font-size:30px;" 
+value="(Re)start" 
+onclick="doit()"/>
+<p></p>
+Cells will be shown as dots. The red dots denote cells that 
+have died without leaving any child. Try the animation a number of times to explore various possibilities. 
+<svg height="600" id="branchingTree" width="100%">svg</svg>
+<script
+language="javascript" src="branch.js">Dummy</script>
+<p></p>
+
+<h2><a
+name="Math">Math</a></h2>
 We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
  address is "What is the <b><font color="red" size="40">extinction probability</font></b> for this process?" 
 <p></p>
@@ -290,8 +316,8 @@ Since $\{X_1=0\}\subseteq \{X_2=0\}\subseteq\cdots, $ hence the extinction proba
 How to find it in terms of $p_0,p_1,p_2,..$.?
 <p></p>
 
-<h2><a
-name="Simple cases">Simple cases</a></h2>
+<h3><a
+name="Simple cases">Simple cases</a></h3>
  If $p_0 = 1$  (which implies $p_1=p_2=\cdots=0$), then the extinction probability is surely 1. 
 <p></p>
 If $p_0&gt;0$,  but $p_0+p_1 =1$  (which implies $p_2=p_3=\cdots=0$), then also  the extinction probability is
@@ -302,8 +328,8 @@ But if $p_n&gt;0 $ for some $n\geq 2$, then we have births, and the interaction 
  births and deaths becomes rather complicated. That is where PGFs come to our help.
 <p></p>
 
-<h2><a
-name="Using PGF">Using PGF</a></h2>
+<h3><a
+name="Using PGF">Using PGF</a></h3>
 Let $\xi(t)$  be the PGF of $X_1$. In other words, 
 $$\xi(t) = p_0+p_1t+p_2t^2+\cdots.$$
 <p>
@@ -323,8 +349,8 @@ Clearly, since $\xi(t)$  is a continuous function, $\theta = \xi(\theta)$. In ot
  be a <i>fixed point</i>  of the PGF. 
 <p></p>
 
-<h2><a
-name="Exploring fixed points">Exploring fixed points</a></h2>
+<h3><a
+name="Exploring fixed points">Exploring fixed points</a></h3>
 How many fixed points can $\xi(t) $ have. Surely $1$  is one, since $\xi(1) = 1$. If it is the only one, then
  $\theta$  must be $1$.
 <p></p>
@@ -371,8 +397,8 @@ The answer is $\theta$  will always be the <i>smallest</i>  fixed point. This fo
 
 <p></p>
 
-<h2><a
-name="Wrapping up">Wrapping up</a></h2>
+<h3><a
+name="Wrapping up">Wrapping up</a></h3>
 
 <p></p>
 We have seen that (excepting the trivial case $p_0=0$) there are only two possibilities:

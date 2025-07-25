@@ -1,4 +1,5 @@
 @{<NOTE>
+<CSS>branch.css</CSS>
 <HEAD1>Probability Generating Function (PGF)</HEAD1>
 <DEFN>Let a random variable take only nonnegative integer values. Then its <TERM>probability
  generating function (PGF)</TERM>  is defined as the power series
@@ -63,6 +64,17 @@ After one more minute each cell in generation 1 will independently split into ch
 
 As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
 
+<HEAD3>Animation</HEAD3>
+<NUMINP id="generations" value="5" min="1"/>
+<BUTTON o="doit()">(Re)start</BUTTON>
+
+Cells will be shown as dots. The red dots denote cells that 
+have died without leaving any child. Try the animation a number of times to explore various possibilities. 
+<SVG id="branchingTree" width="100%" height="600"/>
+<LOCSCRIPT>branch.js</LOCSCRIPT>
+
+
+<HEAD3>Math</HEAD3>
 We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
  address is "What is the <TERM>extinction probability</TERM> for this process?" 
 
@@ -72,7 +84,7 @@ By extinction we mean the event that <M>X_n=0</M>  for some <M>n\in\nn</M>. Noti
 Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probability is
  <M>\lim_{n\to\infty} P(X_n=0)=\theta</M>, say.  
 
-How to find it in terms of <M>p_0,p1_,p_2,..</M>.?
+How to find it in terms of <M>p_0,p_1,p_2,..</M>.?
 
 <HEAD2>Simple cases</HEAD2>
  If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then the extinction probability is surely 1. 
