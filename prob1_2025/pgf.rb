@@ -1,7 +1,8 @@
 @{<NOTE>
 <CSS>branch.css</CSS>
 <HEAD1>Probability Generating Function (PGF)</HEAD1>
-<DEFN>Let a random variable take only nonnegative integer values. Then its <TERM>probability
+<DEFN name="Probability generating function (PGF)">Let a random variable <M>X</M>  take only nonnegative integer values. Then
+ its <TERM>probability
  generating function (PGF)</TERM>  is defined as the power series
 <D>p(t) = p_0 + p_1 t + p_2 t^2 +\cdots, </D>
 where <M>p_k = P(X=k)</M>  for <M>k=0,1,2,..</M>.
