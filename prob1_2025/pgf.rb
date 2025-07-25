@@ -111,7 +111,8 @@ Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)<
  be a <I>fixed point</I>  of the PGF. 
 
 <HEAD3>Exploring fixed points</HEAD3>
-How many fixed points can <M>\xi(t) </M> have. Surely <M>1</M>  is one, since <M>\xi(1) = 1</M>. If it is the only one, then
+How many fixed points can <M>\xi(t) </M> have? Surely <M>1</M>  is a fixed point, since <M>\xi(1) = 1</M>. If
+ it is the only one, then
  <M>\theta</M>  must be <M>1</M>.
 
 <EXR>Show that in the simple cases discussed earlier <M>1</M>  is the only fixed point.</EXR>
