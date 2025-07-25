@@ -21,8 +21,12 @@ Any PGF <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>.
 </THM>
 <PF>If <M>|t|\leq 1</M>, then <M>\sum_k |p_k t^k| \leq \sum_k p_k = 1</M>.</PF>
 
+<EXR>Think of a case where the radius of convergence is <M>\infty</M>.</EXR>
+
+<EXR>Think of a case where the radius of convergence is <M>1</M>.</EXR>
+
 <THM>A power series can be differentiated term by term any number of times in the interior of its
- interval of convergence.</THM><PF>Standard theorem from real analysis</PF>.
+ interval of convergence.</THM><PF>Standard theorem from real analysis.</PF>
 Thanks to this theorem, 
 we can recover the probabilities from the PGF by repeated differentiation at <M>t=0</M>:
 <D>p_n = [[p^{(n)}(0)][n!]]</D>.
