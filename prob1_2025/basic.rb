@@ -654,15 +654,15 @@ in detecting theoretical mistakes too.
 <EXM>
 A deck of 10 cards labelled 1,...,10 is shuffled thoroughly. We shall
 say that the <M>i</M>-th card is <I>at home</I>, if it is in
-the <M>i</M>-th positron after the shuffle. Write an R code to
+the <M>i</M>-th position after the shuffle. Write an R code to
 estimate the probability that exactly 3 cards are at home. 
 <SOLN/>
 <RC>
 event = numeric(5000)
 for(k in 1:5000) {
-  x = sample(10,10)
-  at.home = sum(x==(1:10))
-  event[k] = (sum(at.home)==3)
+	x = sample(10,10)
+	at.home = sum(x==(1:10))
+	event[k] = (at.home==3)
 }
 mean(event)
 </RC>

@@ -1073,7 +1073,7 @@ in detecting theoretical mistakes too.
 <b>EXAMPLE 11:</b>&nbsp;
 A deck of 10 cards labelled 1,...,10 is shuffled thoroughly. We shall
 say that the $i$-th card is <i>at home</i>, if it is in
-the $i$-th positron after the shuffle. Write an R code to
+the $i$-th position after the shuffle. Write an R code to
 estimate the probability that exactly 3 cards are at home. 
 <p></p>
 <b>SOLUTION:</b>
@@ -1081,9 +1081,9 @@ estimate the probability that exactly 3 cards are at home.
 <pre>
 event = numeric(5000)
 for(k in 1:5000) {
-  x = sample(10,10)
-  at.home = sum(x==(1:10))
-  event[k] = (sum(at.home)==3)
+   x = sample(10,10)
+   at.home = sum(x==(1:10))
+   event[k] = (at.home==3)
 }
 mean(event)
 </pre>
@@ -1092,9 +1092,9 @@ value="Run in cloud"
 onclick="javascript:aha(encodeURI(`
 event = numeric(5000)
 for(k in 1:5000) {
-  x = sample(10,10)
-  at.home = sum(x==(1:10))
-  event[k] = (sum(at.home)==3)
+   x = sample(10,10)
+   at.home = sum(x==(1:10))
+   event[k] = (at.home==3)
 }
 mean(event)
 `));"/>
