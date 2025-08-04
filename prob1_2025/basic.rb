@@ -980,20 +980,36 @@ For <M>r\in\{2,...,9\},</M> the total number of outcomes
 is <M>10^r</M> and number of favourable outcomes
 is <M>(10)_r.</M> So <M>p_r = [[(10)_r][10^r]].</M></ANS></EXR>
 
-<EXR>If <M>n</M> balls are placed at random among <M>n</M> cells,
+<EXR>If <M>n</M> distinct balls are placed at random among <M>n</M> distinct cells,
 find the probability that exactly one cell remains
-empty.<ANS>Let <M>p = </M> the probability that only the first cell
+empty.<ANS>
+Here is an elegant solution suggested by a student who is too modest to tell me his name:
+
+Since the numbers of balls and cells are the same, and <I>exactly</I>  one cell is to main empty, exactly one cell must contain
+ exactly two balls, while all other nonempty cells contain one ball each. 
+
+<UL><LI><B>Step 1:</B>  Choose the cell to remain empty: <M>n</M>  ways.</LI>
+<LI><B>Step 2:</B>  Choose the cell to hold two balls: <M>n-1</M>  ways. </LI>
+<LI><B>Step 3:</B>  Put one ball in each of the other nonempty cells: <M>n(n-1)\cdots3</M>  ways. </LI>
+<LI><B>Step 4:</B>  Put the remaining two balls in the cell chosen in <B>Step 2</B>: 1 way. </LI></UL>
+Total number of ways to put the <M>n</M>  balls in <M>n</M>  cells is <M>n^n=|\Omega|</M>.
+
+So the answer is <M>[[n(n-1)n!][2n^n]]</M>.
+
+This elegant solution used the fact that we have as many balls as cells, and that exactly one ball
+ was to remain empty. The next (somewhat messy) solution can deal with a general number of balls and boxes.
+  
+Let <M>p = </M> the probability that only the first cell
 remains empty.
 The final answer would be <M>np.</M> Now, for <M>k=2,...,n,</M> let <M>A_k = </M> the
-event  "the first cell and the  <M>k</M>-th cell is
-empty." 
+event  "the first cell and the  <M>k</M>-th cell are empty." 
 
 Then <M>\cup_2^n A_k = </M> the event "the first cell
 is empty and at least one of the remaining cells is empty." 
 
 Let <M>A = </M> the event "the first cell is empty".
 
-Then <M>\cup_2^n A_k \seq A </M> and the required probability is <M>P(A)-P(\cup_2^n A_k).</M>
+Then <M>\cup_2^n A_k \seq A </M> and  <M>p = P(A)-P(\cup_2^n A_k).</M>
 
 Clearly, <M>P(A) = [[(n-1)^n][n^n]].</M> 
 
@@ -1006,11 +1022,14 @@ Hence, by inclusion-exclusion principle,
 <D>
 P(\cup_2^n A_k) = \sum_{i=1}^{n-1} (-1)^{i-1}\times{n-1\choose i} [[(n-i-1)^n][n^n]].
 </D>
-So the final answer is 
-<D>
-[[(n-1)^n][n^n]]+\sum_{i=1}^{n-1} (-1)^i\times{n-1\choose i}
-[[(n-i-1)^n][n^n]]= \sum_{i=0}^{n-1} (-1)^i\times {n-1\choose i} (*(1-[[i+1][n]])*)^n.
-</D></ANS></EXR>
+So we have
+<MULTILINE>
+p & = &
+[[(n-1)^n][n^n]]+\sum_{i=1}^{n-1} (-1)^i\times{n-1\choose i} [[(n-i-1)^n][n^n]]\\
+& = & \sum_{i=0}^{n-1} (-1)^i\times {n-1\choose i} (*(1-[[i+1][n]])*)^n.
+</MULTILINE>
+Then the final answer is, as we have already mentioned, <M>np</M>.
+</ANS></EXR>
 
 <EXR>A man is given <M>n</M> keys of which only one fits his
 door. He tries them successively using SRSWOR until he finds the

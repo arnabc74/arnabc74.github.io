@@ -1640,22 +1640,48 @@ is $(10)_r.$ So $p_r = \frac{(10)_r}{10^r}.$</div></p>
 <p></p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;If $n$ balls are placed at random among $n$ cells,
+<b>EXERCISE 24:</b>&nbsp;If $n$ distinct balls are placed at random among $n$ distinct cells,
 find the probability that exactly one cell remains
 empty.<p><a
 href="javascript:hideShow('lab19')"><b>[Hint]</b></a><div
-class="ans" id="lab19">Let $p = $ the probability that only the first cell
+class="ans" id="lab19">
+Here is an elegant solution suggested by a student who is too modest to tell me his name:
+<p></p>
+Since the numbers of balls and cells are the same, and <i>exactly</i>  one cell is to main empty, exactly one cell must contain
+ exactly two balls, while all other nonempty cells contain one ball each. 
+<p></p>
+
+<ul>
+<li>
+<b>Step 1:</b>  Choose the cell to remain empty: $n$  ways.</li>
+
+<li>
+<b>Step 2:</b>  Choose the cell to hold two balls: $n-1$  ways. </li>
+
+<li>
+<b>Step 3:</b>  Put one ball in each of the other nonempty cells: $n(n-1)\cdots3$  ways. </li>
+
+<li>
+<b>Step 4:</b>  Put the remaining two balls in the cell chosen in <b>Step 2</b>: 1 way. </li>
+</ul>
+Total number of ways to put the $n$  balls in $n$  cells is $n^n=|\Omega|$.
+<p></p>
+So the answer is $\frac{n(n-1)n!}{2n^n}$.
+<p></p>
+This elegant solution used the fact that we have as many balls as cells, and that exactly one ball
+ was to remain empty. The next (somewhat messy) solution can deal with a general number of balls and boxes.
+<p></p>
+Let $p = $ the probability that only the first cell
 remains empty.
 The final answer would be $np.$ Now, for $k=2,...,n,$ let $A_k = $ the
-event  "the first cell and the  $k$-th cell is
-empty." 
+event  "the first cell and the  $k$-th cell are empty." 
 <p></p>
 Then $\cup_2^n A_k = $ the event "the first cell
 is empty and at least one of the remaining cells is empty." 
 <p></p>
 Let $A = $ the event "the first cell is empty".
 <p></p>
-Then $\cup_2^n A_k \subseteq A $ and the required probability is $P(A)-P(\cup_2^n A_k).$
+Then $\cup_2^n A_k \subseteq A $ and  $p = P(A)-P(\cup_2^n A_k).$
 <p></p>
 Clearly, $P(A) = \frac{(n-1)^n}{n^n}.$ 
 <p></p>
@@ -1668,11 +1694,14 @@ Hence, by inclusion-exclusion principle,
 $$
 P(\cup_2^n A_k) = \sum_{i=1}^{n-1} (-1)^{i-1}\times{n-1\choose i} \frac{(n-i-1)^n}{n^n}.
 $$
-So the final answer is 
-$$
-\frac{(n-1)^n}{n^n}+\sum_{i=1}^{n-1} (-1)^i\times{n-1\choose i}
-\frac{(n-i-1)^n}{n^n}= \sum_{i=0}^{n-1} (-1)^i\times {n-1\choose i} \left(1-\frac{i+1}{n}\right)^n.
-$$</div></p>
+So we have
+$$\begin{eqnarray*}
+p &amp; = &amp;
+\frac{(n-1)^n}{n^n}+\sum_{i=1}^{n-1} (-1)^i\times{n-1\choose i} \frac{(n-i-1)^n}{n^n}\\
+&amp; = &amp; \sum_{i=0}^{n-1} (-1)^i\times {n-1\choose i} \left(1-\frac{i+1}{n}\right)^n.
+\end{eqnarray*}$$
+Then the final answer is, as we have already mentioned, $np$.
+</div></p>
 </p>
 
 <p></p>
