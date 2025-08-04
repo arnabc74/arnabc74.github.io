@@ -15,7 +15,7 @@ This is the class webpage for Probability Theory I
 Before midsem:
 <UL>
 <LI><LINK to="elem.html">Motivation</LINK></LI>
-<LI><LINK to="basic.html">Basic definitions</LINK></LI>
+<LI><LINK to="basic.html">Basic concepts</LINK></LI>
 <LI><LINK to="indep.html">Independence</LINK></LI>
 <LI><LINK to="bayes.html">Conditional probability</LINK></LI>
 <LI><LINK to="rv.html">Random variables</LINK></LI>
