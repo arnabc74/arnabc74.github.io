@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Random walks</HEAD1>
 The material here is taken from chapter 3 of Feller, Volume
 1.
@@ -857,5 +856,4 @@ So either <M>w_1 = 0</M>  or <M>w_2 = 0</M>  or <M>k-w_2 = 0.</M>  Here <M>w_1</
 </ANS>
 </EXR>
 <DISQUSE url="https://arnabc74.github.io/prob1_2024/fluc.html" id="fluc"/>
-</E>@}
-</NOTE>
+</NOTE>@}

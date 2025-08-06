@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Conditional distribution</HEAD1>
 <DEFN name="Conditional distribution">
 Let <M>X:\Omega\to S</M> and <M>Y:\Omega\to T</M> be joint distributed discrete random
@@ -527,5 +526,4 @@ Here <M>X = 6</M>  and <M>R = 4.</M>
 You should be able to see directly that in general <M>X+R=n.</M>
 </ANS>
 <HR/></EXR>
-</E>@}
-</NOTE>
+</NOTE>@}

@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Joint distribution</HEAD1>
 
 <DEFN name="Jointly distributed random variables">
@@ -722,5 +721,4 @@ Hence the result follows as in (a).
 </ANS>
 </EXR>
 
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/joint.html" id="joint"/></E>@}
-</NOTE>
+</NOTE>@}

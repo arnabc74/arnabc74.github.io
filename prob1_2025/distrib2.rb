@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Infinite sample space</HEAD1>
 <HEAD2>Geometric distribution</HEAD2>
 <B>Notation:</B> <B>Geom</B><M>(\theta),</M> where <M>0 < \theta <1.</M>
@@ -680,6 +679,4 @@ box <M>n</M> times without ever using the other box.]
 </EXR>
 
 <P/>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/distrib.html" id="distrib"/>
-</E>@}
-</NOTE>
+</NOTE>@}

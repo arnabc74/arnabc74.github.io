@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Standard discrete distributions </HEAD1>
 <HEAD1>Finite sample space</HEAD1>
 We shall now discuss four different PMF's: discrete uniform, Bernoulli,
@@ -788,6 +787,4 @@ men who get their own hats. Find <M>E(X)</M> and <M>V(X).</M></EXR>
 ::<EXR><CIMG web="dtwo38.png"/></EXR>
 
 <P/>
-<DISQUSE url="http://www.isical.ac.in/~arnabc/prob1/distrib.html" id="distrib"/>
-</E>@}
-</NOTE>
+</NOTE>@}

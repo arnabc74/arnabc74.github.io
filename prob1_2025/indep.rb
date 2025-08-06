@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Independence</HEAD1>
 <HEAD2>Two events</HEAD2>
 <DEFN name="Independence">
@@ -192,6 +191,27 @@ infinite series of nonnegative terms may be
 
 </PF>
 
+<EXM>I have two dice with probabilities 
+<M>(*([[1][16]], [[2][16]], [[4][16]], [[3][16]], [[1][16]], [[5][16]])*)</M>  and <M>(*([[2][12]], [[1][12]], [[2][12]], [[1][12]], [[4][12]], [[2][12]])*)</M>.
+ These ar rolled independently. What is the probability that both of the show the same number?<SOLN/>
+Let <M>A = </M>  the event in question.
+
+Then <M>A = A_1\cup \cdots \cup A_6</M>, where <M>A_i = </M>  the event that both the dice show <M>i</M>. 
+
+Since a die cannot show two different numbers simulataneously, hence <M>A_i</M>'s are disjoint.
+
+Now <M>P(A_i) = P(\mbox{first die shows }i)\times P(\mbox{second die shows }i)</M>, since the ice are rolled independently.
+ So 
+<MULTILINE>
+P(A_1) & = & [[1][16]]\times[[2][12]]\\
+P(A_2) & = & [[2][16]]\times[[1][12]]\\
+P(A_3) & = & [[4][16]]\times[[2][12]]\\
+P(A_4) & = & [[3][16]]\times[[1][12]]\\
+P(A_5) & = & [[4][16]]\times[[1][12]]\\
+P(A_6) & = & [[2][16]]\times[[5][12]].
+</MULTILINE>
+Since the <M>A_i</M>'s are independent, hence <M>P(A) = \sum_1^6 P(A_i)</M>.
+</EXM>
 <HEAD2>Infinite product</HEAD2>
 We shall often talk about an infinite sequence of random experiments, e.g., keep on tossing a coin again and again. Mathematically,
  we have <M>\Omega_n</M>  and <M>P_n</M>  for <M>n=1,2,3,...</M>  and want to combine them into a single <M>\Omega.</M> 
@@ -248,6 +268,11 @@ So <M>P(A)=0.</M> Hence <M>P(A^c) = 1,</M> as required.
 <EXR>Same set up as above. Find an event <M>C</M>  such that <M>A,B,C</M>  are mutually independent.</EXR>
 <EXR>If <M>A\seq B</M>  are two events, can <M>A,B</M>  be independent?</EXR>
 <EXR>If <M>P(A_i)=p_i</M>  for <M>i=1,2,3,</M>  and <M>A_i</M>'s are mutually independent, then find <M>P(A_1\cup A_2\cup A_3).</M></EXR>
+<EXR>If two fair dice are rolled independently, find the probability that the first shows a number
+ strictly larger than the second. </EXR>
+<EXR>If two fair dice are rolled independently, find the probability that the first number
+divides the second. </EXR>
+
 <EXR><CIMG web="most2.png"/>
 <ANS>
 Let <M>f = P(</M>Elmer beats father<M>),</M> and <M>c =
@@ -292,5 +317,5 @@ So both the jury are equally likely to reach the correct decision.
 <ANS>Deliberately missing (e.g., firing in the air) is also a possible option!</ANS>
 </EXR>
 </OL>
-</E>@}
-</NOTE>
+
+</NOTE>@}

@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <HEAD1>Convex function</HEAD1>
 Here are two possible definitions of a convex function. We have
 already given the first definition:
@@ -113,5 +112,4 @@ slope <M>m.</M> In other words, <M>\ell_a(x) = f(a) + m(x-a).</M>
 <P/>
 It is easy to see that this <M>\ell_a(x)</M> works for us.
 </PF>
-<DISQUSE url="https://arnabc74.github.io/prob1_2024/convex.html" id="convex"/></E>@}
-</NOTE>
+</NOTE>@}

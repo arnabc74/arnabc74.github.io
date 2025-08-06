@@ -1,7 +1,4 @@
-<NOTE>
-@{<E>
-
-
+@{<NOTE>
 
 <HEAD1>Variance</HEAD1>
 A random variable is, well,  random. So it may very well differ from
@@ -288,5 +285,4 @@ Since <M>CDF</M>  is unique for a distribution, hence <M>X</M>  and <M>a+bY</M> 
 (b) <M>V(X) = V(a+bY) = b^2 V(Y).</M> 
 </ANS>
 </EXR>
-</E>@}
-</NOTE>
+</NOTE>@}

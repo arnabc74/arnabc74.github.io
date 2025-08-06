@@ -1,5 +1,4 @@
-<NOTE>
-@{<E>
+@{<NOTE>
 <M>\newcommand{\ev}{{\mathcal F}}</M>
 <HEAD1>Conditional Probability</HEAD1>
 
@@ -1015,5 +1014,4 @@ stage <M>n</M> is red? Does the answer depend on <M>m</M> and <M>n</M>?
 <ANS>Proceed just as in the last problem.</ANS>
 </EXR>
 
-<DISQUSE url="https://arnabc74.github.io/prob1_2024/bayes.html" id="bayes"/></E>@}
-</NOTE>
+</NOTE>@}
