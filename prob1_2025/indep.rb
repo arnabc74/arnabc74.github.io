@@ -164,6 +164,20 @@ For the "coin toss <M>\times</M>  die roll" example, this gives
 Now for each singleton set of the form <M>\{(a,b)\}</M>  we define the probability 
 <M>P(\{(a,b)\}) = P_1(\{a\})\times P_2(\{b\}).</M>  This uniquely determines <M>P(A)</M>  for all <M>A\seq\Omega</M>  via
  the probability axioms.</Q>
+
+<EXM>If the two random experiments are rolling a (fair) die, and these are carried out
+ independently, then the product space may be visualised as 36 points arranged in a square:
+<CIMG web="prod1.png">Product space of two die rolls</CIMG>
+The space is the Cartesian product of the individual spaces. The sample points are the Cartesian products of the individual
+ sample points. But the events in this product space need not always be Cartesian products of
+ events of the two random experiments. Consider the two events shown below:
+<CIMG web="prod2.png">Two events in the product space</CIMG>
+ Here <M>A</M>  is indeed the Cartesian product of two events (one from each experiment): 
+<D>A = \{2,3,4\}\times\{2,3,4,5\}</D>.
+But <M>B</M>  cannot be exprssed as a similar Cartesian product. Notice that <M>A</M>  looks like a box in the diagram. Indeed,
+ events that can be expressed as Cartesian products of events from the individual random experimnts are sometimes called
+ <TERM>box</TERM> events. These play important role when working with infinitely many random experiments.
+ </EXM>
 The same construction may be generalised easily for any finite number of random experiments. 
 <P/>
 Any <M>A_1\seq\Omega_1</M>  has a natural counterpart in <M>A\seq \Omega</M>  as 
@@ -175,12 +189,11 @@ We rarely use different symbols for <M>A</M>  and <M>A_1.</M>  Just as a real nu
 For example, in the "coin toss<M>\times</M> die roll" example, the event <M>\{</M> die shows 3<M>\}</M>  becomes 
 <M>\{(H,3), (T,3)\}.</M>
 <P/>
-With this natural extension, we have the following important theorem.
+With this natural extension, we have the following important theorem about box events.
 <THM>
 Let <M>\Omega_1,\Omega_2,\Omega,P_1,P_2,P</M>  be as above. Then for any <M>A_1\seq \Omega_1</M>  and any 
 <M>A_2\seq \Omega_2</M>  we have <M>P(A_1\times A_2)  = P_1(A_1)P_2(A_2).</M>
 </THM>
-The statement of this theorem had a serious flaw, which was pointed out by Vrajishnu. The flaw has now been corrected.
 <PF>
 The proof is easy if <M>A_1</M>  and <M>A_2</M>  are both finite. 
 <P/>
@@ -220,12 +233,13 @@ We shall often talk about an infinite sequence of random experiments, e.g., keep
 which means each element of <M>\Omega</M>  is a sequence <M>(a_1,a_2,...),</M>  where <M>a_n\in\Omega_n.</M>  Any <M>A_n\seq \Omega_n</M> 
  is lifted to a subset of <M>\Omega</M>  as <M>\{(a_1,...)~:~a_n\in A_n~,~\forall i\neq n~~a_i\in\Omega_i\}.</M>
 Then we want a probability <M>P</M>  on <M>\Omega</M>  such that for any <M>A_{n_i}\seq \Omega_{n_i}</M>  for <M>i=1,...,k</M> 
- we have them mutually indepndent under <M>P.</M>  Such a <M>P</M>  indeed exists and is unique. Unfortunately,
+(for any  <M>k\in\nn</M>)
+ we have them mutually independent under <M>P.</M>  Such a <M>P</M>  indeed exists and is unique. Unfortunately,
  this is rather  technical to prove. 
 <P/>
 A few of the difficulties are:
 <UL><LI><M>\Omega</M>  is uncountable even if all the <M>\Omega_n</M>'s are finite (with at least two elements).</LI>
-<LI>This <M>\Omega</M>  will have "bad" subsets, that we need to avoid.</LI>
+<LI>This <M>\Omega</M>  will have "bad" subsets for which probability cannot be defined!</LI>
 </UL>
 In this course, we shall assume the existence and uniqueness of infinite product spaces.
 

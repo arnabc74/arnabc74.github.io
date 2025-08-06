@@ -1,6 +1,7 @@
 **August 06, 2025:**
 
-:   Added an example and two exercises to the [Independence](indep.html){target="naya"} page.
+:   -   Added an example and two exercises to the [Independence](indep.html){target="naya"} page.
+    -   Introduced the concept of box events in the same page.
 
 **August 04, 2025:**
 
