@@ -849,11 +849,17 @@ required probability is <M>[[35]]+[[35]]-[[3][10]] = [[9][10]].</M>
 
 <EXR>A fair coin is tossed 6 times. What is the probability that
 the first head occurs (a) at the third toss? (b) not before the
-third toss?<ANS>Total number of outcomes is <M>2^6.</M> All are equally
+third toss? (Here in part (b) we also allow the case where no head occurs.) <ANS>Total number of outcomes is
+ <M>2^6.</M> All are equally
 likely. (a) Number of favorable outcomes is <M>2^3.</M> So the
 probability is <M>2^{-3}.</M> (b) Similarly, the probability that
-the first head occurs at the <M>i</M>-th toss is <M>2^{i-6}.</M>
-So the required probability is <M>1-2^{-5}-2^{-4}.</M>
+the first head occurs at the <M>i</M>-th toss is <M>[[2^{6-i}][2^6]] = 2^{-i}.</M>
+So the required probability is <M>1-2^{-1}-2^{-2} = [[14]].</M>  
+
+A simpler way for part (b) is to notice that the event is same as "First
+ two tosses result in tails". So the probability is <M>[[2^4][2^6]] = [[14]]</M>.
+
+[Thanks to the students for a correction here.]
 </ANS></EXR>
 
 <EXR>10 distinct balls are dropped randomly in 3 distinct

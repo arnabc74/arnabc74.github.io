@@ -1,3 +1,8 @@
+**August 07, 2025:**
+
+:   Correction to a solution in the [basic concepts](basic.html){target="naya"} page
+    suggested by the students.
+
 **August 06, 2025:**
 
 :   -   Added an example and two exercises to the [Independence](indep.html){target="naya"} page.
