@@ -928,7 +928,7 @@ envelopes, the remaining one must also be in its correct
 envelope.
 
 For <M>k=2,</M> pick the two letters to be correctly placed
-(<M>{5\choose 2} = 10</M> ways), then swap the other two (1
+(<M>{4\choose 2} = 6</M> ways), then swap the other two (1
 way). So <M>p_2 = [[10][24]] = [[5][12]].</M> 
 
 For <M>k=1</M>, the remaining three must all be misplaced. So we

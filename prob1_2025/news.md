@@ -1,6 +1,11 @@
+**August 08, 2025:**
+
+:   Correction to the solution of exercise 19 in the [basic concepts](basic.html){target="naya"} page
+    suggested by the students.
+
 **August 07, 2025:**
 
-:   Correction to a solution in the [basic concepts](basic.html){target="naya"} page
+:   Correction to the solution of exercise 14 in the [basic concepts](basic.html){target="naya"} page
     suggested by the students.
 
 **August 06, 2025:**
