@@ -2,7 +2,7 @@
 
 :   Removed an exercise (it was Exercise 8) from the 
     [conditional probabilty](bayes.html){target="naya"} page.
-    It has been moved to topic to be covered near the end of the course.
+    It has been moved to a topic to be covered near the end of the course.
 
 **August 08, 2025:**
 
