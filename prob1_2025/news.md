@@ -1,3 +1,9 @@
+**August 17, 2025:**
+
+:   Removed an exercise (it was Exercise 8) from the 
+    [conditional probabilty](bayes.html){target="naya"} page.
+    It has been moved to topic to be covered near the end of the course.
+
 **August 08, 2025:**
 
 :   Correction to the solution of exercise 19 in the [basic concepts](basic.html){target="naya"} page

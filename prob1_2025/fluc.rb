@@ -855,5 +855,19 @@ So either <M>w_1 = 0</M>  or <M>w_2 = 0</M>  or <M>k-w_2 = 0.</M>  Here <M>w_1</
  then both the boxes has all whites.
 </ANS>
 </EXR>
+::<EXR>Let <M>u_{2n}</M> denote the probability that a random path
+of length <M>2n</M> starting from <M>(0,0)</M> passes
+through <M>(2n,0).</M> Also, let <M>u_0=1.</M> Let <M>v_{2n}</M>
+denote the probability that a random path of length <M>2n</M>
+starting from <M>(0,0)</M> returns to 0 for the first time
+at <M>2n.</M>  Then show without using the explicit form
+of <M>u_{2n}</M> and <M>v_{2n}</M> that
+<D>
+v_2 u_{2n-2} + \cdots + v_{2n} u_0 = u_{2n}.
+</D>
+[Corrected an error pointed out by Krishnam Baregama.]
+<ANS>Condition on the first time the path returns to zero, and then use the theorem of total probability.</ANS>
+</EXR>
+
 <DISQUSE url="https://arnabc74.github.io/prob1_2024/fluc.html" id="fluc"/>
 </NOTE>@}
