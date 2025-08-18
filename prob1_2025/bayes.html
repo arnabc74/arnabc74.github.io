@@ -1996,7 +1996,33 @@ For any other $i$  we have $P(win|A_i) = p_i + (1-p_i-p_7)p_i + (1-p_i-p_7)^2p_i
 
 <p><a
 href="javascript:hideShow('lab45')"><b>[Hint]</b></a><div
-class="ans" id="lab45">Don't replace.</div></p>
+class="ans" id="lab45">
+[Thanks to Rishit Garg for correcting a serious mistake here, which has now been corrected.]
+<p></p>
+Intuitive argument for the draw strategy: If you draw a red ball first, then the remaining balls in the urn have an equal
+ composition for either urn. So if you choose WOR, then the second ball gives no information. If you get black in the first
+ draw, then the second ball gives more information for WOR. So the best drawing strategy should be WR if the first ball is
+ red, and WOR otherwise. 
+<p></p>
+If you are not convinced by this argument, you may proceed rigourously as follows. Here are
+ all  possible second draw strategies: <ol type="">
+<li>always WR</li>
+<li>always WOR</li>
+<li>WR if first is R, WOR otherwise</li>
+<li>WOR if first is R, WR otherwise.</li>
+</ol>
+Also the best urn guessing strategy is to go for the urn that maximises the conditional probability. 
+<p></p>
+Now for each of the second draw strategies you need to compute probability of correct guess. 
+<p></p>
+Let me show the computation for the first strategy "always WR". Here
+$$P_1(\mbox{correct}) = \sum_X P_1(X)P_1(\mbox{correct}|X),$$
+where the sum is over $X\in\{$ RR, RB, BR, BB$\}$. Here I am writing $P_1$  to mean
+ probability under strategy 1.  $P_1(RR) = \frac 12\times \left[ \left(\frac 23\right)^2 + \left(\frac{101}{201}\right)^2 \right]$. Also we shall
+ guess urn A for outcome RR. So $P_1(\mbox{correct}|RR) = \frac{\left(\frac{2}{3}\right)^2}{ \left(\frac{2}{3}\right)^2 + \left(\frac{101}{201}\right)^2}$.
+<p></p>
+Proceed with the other terms similarly. 
+</div></p>
 
 </p>
 ::<p>

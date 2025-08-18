@@ -136,7 +136,7 @@ Let <M>A_1,...,A_n,B</M>  be events such that <M>P(A_1\cap \cdots \cap A_n)>0.</
 
 <HEAD2>Theorem of total probability</HEAD2>
 Sometimes an event can occur via different paths. To find the probability of such an event 
-we need to add the probabilitis of all the paths. This is leads to the theorem of total probability.
+we need to add the probabilitis of all the paths. This leads to the theorem of total probability.
 
 <THM name="Theorem of total probability">
 Let <M>A_1,...,A_n</M> be mutually exclusive and exhaustive
@@ -598,19 +598,6 @@ experiment is to draw one element of <M>A</M> with equal probabilities. </ANS>
 
 
 
-::<EXR>Let <M>u_{2n}</M> denote the probability that a random path
-of length <M>2n</M> starting from <M>(0,0)</M> passes
-through <M>(2n,0).</M> Also, let <M>u_0=1.</M> Let <M>v_{2n}</M>
-denote the probability that a random path of length <M>2n</M>
-starting from <M>(0,0)</M> returns to 0 for the first time
-at <M>2n.</M>  Then show without using the explicit form
-of <M>u_{2n}</M> and <M>v_{2n}</M> that
-<D>
-v_2 u_{2n-2} + \cdots + v_{2n} u_0 = u_{2n}.
-</D>
-[Corrected an error pointed out by Krishnam Baregama.]
-<ANS>Condition on the first time the path returns to zero, and then use the theorem of total probability.</ANS>
-</EXR>
 
 ::<EXR><M>P(A\cap B)>0.</M> Show that <M>P(A|B) = P(B|A)</M> if and
 only if <M>P(A)=P(B).</M>
@@ -976,7 +963,28 @@ For any other <M>i</M>  we have <M>P(win|A_i) = p_i + (1-p_i-p_7)p_i + (1-p_i-p_
 </ANS>
 </EXR>
 ::<EXR><CIMG web="most21.png"/>
-<ANS>Don't replace.</ANS>
+<ANS>
+[Thanks to Rishit Garg for correcting a serious mistake here, which has now been corrected.]
+
+Intuitive argument for the draw strategy: If you draw a red ball first, then the remaining balls in the urn have an equal
+ composition for either urn. So if you choose WOR, then the second ball gives no information. If you get black in the first
+ draw, then the second ball gives more information for WOR. So the best drawing strategy should be WR if the first ball is
+ red, and WOR otherwise. 
+
+If you are not convinced by this argument, you may proceed rigourously as follows. Here are
+ all  possible second draw strategies: <OL><LI>always WR</LI><LI>always WOR</LI><LI>WR if first is R, WOR otherwise</LI><LI>WOR if first is R, WR otherwise.</LI></OL>
+Also the best urn guessing strategy is to go for the urn that maximises the conditional probability. 
+
+Now for each of the second draw strategies you need to compute probability of correct guess. 
+
+Let me show the computation for the first strategy "always WR". Here
+<D>P_1(\mbox{correct}) = \sum_X P_1(X)P_1(\mbox{correct}|X),</D>
+where the sum is over <M>X\in\{</M> RR, RB, BR, BB<M>\}</M>. Here I am writing <M>P_1</M>  to mean
+ probability under strategy 1.  <M>P_1(RR) = [[12]]\times [*[ (*([[23]])*)^2 + (*([[101][201]])*)^2 ]*]</M>. Also we shall
+ guess urn A for outcome RR. So <M>P_1(\mbox{correct}|RR) = [[(*([[2][3]])*)^2][ (*([[2][3]])*)^2 + (*([[101][201]])*)^2]]</M>.
+ 
+Proceed with the other terms similarly. 
+</ANS>
 </EXR>
 ::<EXR>Let <M>a,b,c\in\nn.</M> Suppose that we start with <M>a</M> red and <M>b</M> green
 balls in an urn. We draw a ball at random, note its colour, replace it, and

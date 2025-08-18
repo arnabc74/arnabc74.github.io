@@ -1,8 +1,14 @@
+**August 18, 2025:**
+
+:   Corrected the hint to Exercise 49 in the 
+    [conditional probabilty](bayes.html){target="naya"} page.
+    Thanks to Rishit Garg.
+
 **August 17, 2025:**
 
 :   Removed an exercise (it was Exercise 8) from the 
     [conditional probabilty](bayes.html){target="naya"} page.
-    It has been moved to a topic to be covered near the end of the course.
+    It has been moved to a topic near the end of the course.
 
 **August 08, 2025:**
 
