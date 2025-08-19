@@ -1,3 +1,9 @@
+**August 19, 2025:**
+
+:   Corrected the hint to Exercise 31 in the 
+    [conditional probabilty](bayes.html){target="naya"} page.
+    Thanks to Roshan.
+
 **August 18, 2025:**
 
 :   Corrected the hint to Exercise 49 in the 

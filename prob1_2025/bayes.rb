@@ -840,9 +840,9 @@ Here <M>|A|=4\times 48\times\cdots\times(48-19+1)</M>,
 
 <M>|A\cap B| = 1\times 3\times
  48\times\cdots\times(48-19+1)</M>  and 
-<M>|A\cap C| = 1\times 4\times 48\times\cdots\times(48-19+1).</M>
+<M>|A\cap C| = 1\times 4\times 47\times\cdots\times(47-19+1).</M>
 
-[Corrected a mistake pointed out by Arnab Nayak.]
+[Corrected a mistake pointed out by Roshan.]
 </ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond17.png"/>
