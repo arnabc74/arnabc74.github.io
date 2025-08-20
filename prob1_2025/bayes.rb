@@ -849,28 +849,53 @@ Here <M>|A|=4\times 48\times\cdots\times(48-19+1)</M>,
 <ANS><CIMG web="ballex.png">Label the arrows with probabilities and use total theorem of probability</CIMG></ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond18.png"/>
-<ANS></ANS>
+<ANS><M>[[0.40\times [[1][2]] ][ 0.40\times [[1][2]] + 0.60\times [[2][5]] ]]</M>.</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond19.png"/>
-<ANS></ANS>
+<ANS><M>[[ [[1][2]]\times (*([[1][3]]\times[[1][2]])*) ][  [[1][2]]\times (*([[1][3]]\times[[1][2]])*)+ [[1][2]]\times (*([[1][3]]\times[[1][6]])*) ]]</M>.</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond20.png"/>
-<ANS></ANS>
+This problem is not very clear. Interpret it like this. God picks up a random employee (from the totality
+ of all the 225 employees) and puts the idea of resignation into his/her head. Given that this employee is a woman, what
+ is the conditional probability that she works in store C.
+<ANS>0, of course! She has already resigned. So how can she work for store C <I>now</I>? (Just kidding!)
+
+But if we want the conditional probability that she <I>worked</I>  for store C, it is <M>[[100\times0.7][50\times0.5+75\times0.6+100\times0.7]]</M>.
+</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond21.png"/>
-<ANS></ANS>
+<ANS>(a) <M>[[ [[1][2]]\times[[1][2]] ][ [[1][2]]\times[[1][2]]+[[1][2]]\times1 ]]</M>.
+
+(b) <M>[[ [[1][2]]\times[[1][2]] ][ [[1][2]]\times[[1][4]]+[[1][2]]\times1 ]]</M>.
+
+(c) <M>1</M>.
+</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond22.png"/>
-<ANS></ANS>
+<ANS><M>[[ [[1][2]]\times[[3][15]] ][ [[1][2]]\times[[5][12]]+[[1][2]]\times[[3][15]] ]]</M></ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond23.png"/>
-<ANS></ANS>
+<ANS>(a) <M>[[7\times 8\times 9][12\times13\times14]]</M>.
+
+(b) <M>3\times [[7\times 8\times 5][12\times13\times14]]</M>.
+
+(c) <M>[[5\times 6\times 7][12\times13\times14]].</M>
+
+(d) <M>3\times [[5\times 6\times 7][12\times13\times14]]</M>.
+</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond24.png"/>
-<ANS></ANS>
+<ANS>Let <M>B = </M>  the event that the drawn card is an ace. Let <M>A = </M>  the event that the
+ interchanged card is selected. 
+
+Then <M>P(A) = [[1][27]]</M>. Also <M>P(B|A) = 1</M>  and<M>P(B|A^c) = [[1][13]]</M>. 
+
+Now apply the theorem of total probability.
+</ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond25.png"/>
-<ANS></ANS>
+<ANS>Jailer's reasoning is incorrect. It is just the Monty Hall paradox. Here <M>P(A)</M>  remains
+ <M>[[13]]</M>. The other guy (after the jailor has eliminated the third) rises from <M>[[13]]</M>  to <M>[[23]]</M>. </ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond26.png"/>
 <ANS><M>[[5][1+2+\cdots+10]].</M></ANS>

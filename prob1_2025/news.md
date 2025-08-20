@@ -1,7 +1,9 @@
 **August 20, 2025:**
 
-:   Slightly simplified the discussion in the 
-    [random variables](rv.html){target="naya"} page.
+:   - Blank hints filled in the 
+      [conditional probabilty](bayes.html){target="naya"} page.
+    - Slightly simplified the discussion in the 
+      [random variables](rv.html){target="naya"} page.
 
 **August 19, 2025:**
 
