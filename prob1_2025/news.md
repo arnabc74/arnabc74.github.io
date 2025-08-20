@@ -1,3 +1,8 @@
+**August 20, 2025:**
+
+:   Slightly simplified the discussion in the 
+    [random variables](rv.html){target="naya"} page.
+
 **August 19, 2025:**
 
 :   Corrected the hint to Exercise 31 in the 
