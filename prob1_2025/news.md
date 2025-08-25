@@ -1,3 +1,9 @@
+**August 25, 2025:**
+
+:   Corrected the answer to Exercise 13 in the 
+      [conditional probabilty](bayes.html){target="naya"} page.
+    Thanks to Anant Raj.
+
 **August 20, 2025:**
 
 :   - Blank hints filled in the 
