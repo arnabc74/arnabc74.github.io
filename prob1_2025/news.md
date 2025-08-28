@@ -1,3 +1,10 @@
+**August 28, 2025:**
+
+:   Added a [video](https://youtu.be/nhcusJwHeOw){target="naya"}
+     providing complete discussion of Exercise 42 in the 
+      [conditional probabilty](bayes.html){target="naya"} page.
+    This is the Ace of Spades problem asked by Nipam. 
+
 **August 25, 2025:**
 
 :   Corrected the answer to Exercise 13 in the 

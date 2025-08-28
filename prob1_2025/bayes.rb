@@ -901,17 +901,8 @@ Now apply the theorem of total probability.
 <ANS><M>[[5][1+2+\cdots+10]].</M></ANS>
 </EXR>
 ::<EXR><CIMG web="rosscond27.png"/>
-<ANS>
-Let <M>A</M>  be any sequence of distinct  cards
- other than the ace of spades.  Then by a strategy we mean any subset <M>B\seq A</M> such that no
-  element of <M>B</M>  occurs as a prefix in another distinct element. 
- The interpretation is that we say "next" after sequence of cards seen so far matches some element of <M>B.</M>  
 
-Now use the hint given. 
-
-Another technique (possibly an easier one) is to consider the deck as made of one ace of spade and
- 51 identical dummy cards.  
-</ANS>
+<LINK to="https://youtu.be/nhcusJwHeOw">Video containing a complete discussion</LINK>
 
 </EXR>
 ::<EXR><CIMG web="rosscond28.png"/>
