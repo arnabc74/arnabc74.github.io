@@ -1,3 +1,9 @@
+**August 31, 2025:**
+
+:   Corrected some typos in the 
+      [basic concepts](basic.html){target="naya"} page.
+    Thanks to Sayantan. 
+
 **August 28, 2025:**
 
 :   Added a [video](https://youtu.be/nhcusJwHeOw){target="naya"}
