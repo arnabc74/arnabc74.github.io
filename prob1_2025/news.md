@@ -1,6 +1,9 @@
 **August 31, 2025:**
 
-:   - Corrected some typos in the 
+:   - Corrected a mistake in the solution of Exercise 23 in the
+      [Expectation](exp.html){target="naya"} page.
+	Thanks to Nipam.
+    - Corrected some typos in the 
       [basic concepts](basic.html){target="naya"} page.
       Thanks to Sayantan. 
     - Corrected a serious mistake in the solution of Exercise 31 in the

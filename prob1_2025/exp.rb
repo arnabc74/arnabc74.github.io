@@ -631,11 +631,13 @@ We are defining <M>T_i = S_i-S_{i-1}</M>  for <M>i=1,...,5</M>  where <M>S_0=0.<
 Then the <M>T_i</M>'s are independent random variables. 
 
 <M>T_1</M>  is degenerate at 1,  and for <M>i=2,...,5</M>  we have
-<D>P(T_i = k) = q_i^{k-1}p_i</D>  for <M>k\in\nn</M>  where <M>p_i = [[i-1][5]]</M>  and <M>q_i = 1-p_i.</M>
+<D>P(T_i = k) = q_i^{k-1}p_i</D>  for <M>k\in\nn</M>  where <M>q_i = [[i-1][5]]</M>  and <M>p_i = 1-q_i.</M>
 
 We can easily find <M>E(T_i)</M>'s. 
 
 The answer to the problem is <M>E(T_1+\cdots+T_5) = 1+E(T_2)+\cdots+E(T_5).</M>
+
+[Thanks to Nipam for correcting a mistake here.]
 </ANS>
 </EXR>
 ::<EXR><CIMG web="most15.png"/>
