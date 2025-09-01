@@ -68,10 +68,10 @@ Remember that this is the <I>definition</I> of <M>P(X\in A).</M>
 The complicated looking set <M>{#{w\in\Omega~:~X(w)\in A}#}</M> is
 often abbreviated to <M>\{X\in A\}</M> or <M>X ^{-1} (A).</M>
 
-Don't let the notation <M>X ^{-1}</M>  make you think that <M>X:\Omega\to\rr</M>  has to be
+<ALERT/>Don't let the notation <M>X ^{-1}</M>  make you think that <M>X:\Omega\to\rr</M>  has to be
  invertible. For any <M>f:A\to B</M>  we can define <M>f ^{-1}:\pow(B)\to\pow(A)</M>  as follows (here <M>\pow</M>  denotes
  power set, i.e., the set of all subsets):
-for <M>V\in\pow(B)</M>  we
+for <M>V\in\pow(B)</M>  we define <M>f  ^{-1}(V)=\{a\in A~:~f(a)\in V\}</M>. 
 
 <HEAD1>New random variables from old ones</HEAD1>
 <HEAD2>Addition, multiplication etc</HEAD2>
@@ -142,11 +142,11 @@ the function.
 
 <DEFN name="Distribution of a random variable">
 By the <TERM>distribution</TERM> of a random variable <M>X</M>  we mean any statement that gives us <M>P(X\in B)</M>  for
- any "good" set <M>B\seq\rr.</M>  
+ any  set <M>B\seq\rr.</M>  
 </DEFN>
 
-How do we specify the distribution of a random variable? Do we make a list of all the "good" sets, and label them with
-their probabilities? That would woul be insane, because there are uncountaly infinitely many "good" sets. 
+How do we specify the distribution of a random variable? Do we make a list of all the subsets of <M>\rr</M>, and label them with
+their probabilities? That would be insane, because there are uncountably infinitely many such subsets. 
 It turns out that specifying the probabilities of intervals like <M>(-\infty, a]</M>  is enough.
  This is what we discuss next.  
 <HEAD2>CDF</HEAD2>
@@ -462,21 +462,133 @@ Hence <M>P(X=1) = F(1)-F(1-).</M>
 </ANS>
 </EXR>
 
-::<EXR><CIMG web="hpsrv1.png"/></EXR>
+::<EXR><CIMG web="hpsrv1.png"/>
+<ANS>
+<M>P(|X-1|\geq 2) = P(X\leq 0\mbox{ or }X\geq 3) = P(X\leq 0) + P(X\geq 3) = P(X\leq 0) +
+ P(X \gt 3)+P(X=3) = F_X(0)+1-F_X(3)+P(X=3) =F_X(0)+1-F_X(3),</M>
+since <M>P(X=3)=0</M>.</ANS>
+</EXR>
 In all the following problems the term "density" stands for "PMF".
-::<EXR><CIMG web="hpsrv2.png"/></EXR>
-::<EXR><CIMG web="hpsrv3.png"/></EXR>
-::<EXR><CIMG web="hpsrv4.png"/></EXR>
-::<EXR><CIMG web="hpsrv5.png"/></EXR>
-::<EXR><CIMG web="hpsrv6.png"/></EXR>
-::<EXR><CIMG web="hpsrv7.png"/></EXR>
+
+::<EXR><CIMG web="hpsrv3.png"/>
+<ANS>
+(b) <M>X</M>  can take values <M>0,1,...,n</M>.  We have 
+<D>P(X=k) = \binom{n}{k} (*([[35]])*)^k (*([[25]])*)^{n-k}</D>  for <M>k=0,1,...,n</M>.
+The PMF is zero otherwise. 
+
+(a) Here <M>n</M>  ca be at most 10. For <M>k=0,...,6</M>  we have
+<D>P(X=k) = [[\binom{6}{k}\binom{4}{n-k}][\binom{10}{k}]]. </D>
+Here we have the understanding that <M>\binom{n}{r} = 0</M>  if <M>r\not\in\{0,1,...,n\}</M>. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="hpsrv4.png"/>
+<ANS>For this to be a PMF we need <M>f(1)+\cdots+f(N)=1</M>.
+
+So <M>c(2+2^2+\cdots 2^N) = 1</M>. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="hpsrv5.png"/>
+<ANS>
+(a) <M>P(X<0) = f(-3)+f(-1) = 0.1 + 0.2 = 0.3</M>.
+
+(b) <M>f(0)+f(2) +f(8) = 0.15+0.1+0.05</M>.
+
+(c) <M>f(1)+f(2)+f(3)+f(5)+f(8) = 0.2+0.1+0.15+0.05+0.05 = </M>
+
+(d) <M>P(X=-3|X\leq 0)= [[P(X=-3 \& X\leq 0)][P(X\leq 0)]] =  [[P(X=-3)][P(X\leq 0)]] = [[f(-3)][f(-3)+f(-1)+f(0)]] = </M>
+
+(e) <M>P(X\geq 3| X > 0) = [[P(X\geq 3 \& X > 0)][P(X > 0)]] = [[P(X\geq 3)][P(X>0)]]= [[f(3)+f(5)+f(8)][f(1)+f(2)+f(3)+f(5)+f(8)]].</M>
+</ANS>
+</EXR>
+::<EXR><CIMG web="hpsrv6.png"/>
+
+Here they mean an SRSWR of size 2.
+<ANS>
+Clearly <M>X</M>  can take values in <M>\{1,2,...,12\}</M>.
+
+So if <M>k\not\in\{1,2,...,12\}</M>, then <M>P(X=k) = 0</M>.
+
+Now let <M>k\in\{1,2,...,12\}</M>.
+
+Let the first number be <M>X_1</M>  and the second be <M>X_2</M>
+
+Then <M>P(X\leq k) = P(X_1\leq k \& X_2\leq k) = P(X_1\leq k)P(X_2\leq k) = (*([[k][12]])*)^2</M>.
+
+Actually this formula also holds for <M>k=0</M>.
+
+So for <M>k\in\{1,2,...,12\}</M>  we have 
+<D>P(X=k)= P(X\leq k)-P(X\leq k-1) = [[k^2-(k-1)^2][144]],</D>
+which is the required PMF. 
+</ANS>
+</EXR>
+::<EXR><CIMG web="hpsrv7.png"/>
+<ANS>
+(a) Of course we assume that <M>n\leq r</M>. 
+
+Then <M>P(Y\leq y) = 0</M>  if <M>y < 1</M>  and also
+ <M>P(Y\leq y) = 1</M>  if <M>y\geq r</M>. 
+
+Let <M>y\in [1,r)</M>. Then <M>\{Y\leq y\}</M>  means all the balls are from <M>\{1,...,[y]\}</M>. 
+
+This has probability <M>[[\binom{[y]}{n}][\binom{r}{n}]]</M>. 
+
+(b) Similar. 
+</ANS>
+</EXR>
 The nex two problems refer to the following CDF:
 <CIMG web="hpsmore1.png"/>
-::<EXR><CIMG web="hpsmore2.png"/></EXR>
-::<EXR><CIMG web="hpsmore3.png"/></EXR>
-::<EXR><CIMG web="hpsmore4.png"/></EXR>
+::<EXR><CIMG web="hpsmore2.png"/>
+<ANS>
+<M>F(m) = [[12]]</M>  means <M>1-e^{- \lambda m} = [[12]]</M>, or 
+<M>m = [[\log 2][\lambda]]</M>.
+</ANS>
+</EXR>
+::<EXR><CIMG web="hpsmore3.png"/>
+<ANS>First notice that since <M>F(x)</M>  is a continuous function, hence for any given <M>a\in\rr</M>  e must have <M>P(X=a) = 0</M>.
+
+So <M>P(X\geq 0.01) = P(X > 0.01) = 1-F(0.01) = e^{-\lambda/100}</M>.
+
+So we get <M>e^{-\lambda/100}=[[12]]</M>  or <M>\lambda=100\log 2</M>. 
+
+Again, <M>P(X\geq t) = e^{-\lambda t}</M>.
+
+So we need <M>e^{-\lambda t} = 0.9</M>. Hence <M>t = -[[\log 0.9][\lambda]] = -[[\log 0.9][100\log 2]]</M>.
+
+This is actually positive, since <M>\log 0.9 < 0</M>.
+</ANS>
+</EXR>
+::<EXR><CIMG web="hpsmore4.png"/>
+<ANS>
+(a) <M>P(*([[12]]\leq X \leq [[32]])*) = P(*(X\leq [[32]])*) - P(*(X < [[12]])*)
+= P(*(X\leq [[32]])*)-P(*(X\leq [[12]])*),</M>
+since <M>P(*(X=[[12]])*) = 0</M>  as <M>F(x)</M>  is continuous at <M>x=[[12]]</M>.
+
+So the answer is <M>F(*([[32]])*)-F(*([[12]])*) = [[34]]-[[16]]=[[7][12]]</M>.
+
+(b) <M>P(*([[12]]\leq X \leq 1)*) = P(*(X\leq 1)*) - P(*(X < [[12]])*) = F(1)-P(*(X < [[12]])*)</M>. 
+Now proceed as before. 
+
+(c) <M>P(*([[12]]\leq X < 1)*) = P(*(X< 1)*) - P(*(X < [[12]])*) = \lim_{x\to
+ 1-}F(x)-F(*([[12]])*) = [[13]]-[[16]] = [[16]].</M>. 
+
+(d) <M>P(*(1\leq X\leq [[32]])*) = P(*(X\leq[[32]])*) - P(X < 1) = F(*([[32]])*)-\lim_{x\to1-} F(x) = [[34]]-[[13]] = [[5][12]]</M>.
+
+(e) <M>P(1 < X < 2) = \lim_{x\to2-}F(x)-\lim_{x\to1-}F(x) = 1-[[13]] = [[23]]</M>.
+
+Actually here <M>F(x)</M>  is continuous at <M>x=2</M>. 
+</ANS>
+</EXR>
 ::<EXR><CIMG web="hpsmore5.png"/>
 Here are the properties (i)-(iv) from section 5.1.1:
 <CIMG web="hpsmore6.png"></CIMG>
+Here <M>F(\pm\infty) = \lim_{x\to\pm\infty} F(x)</M>  and<M>F(x+) = </M>  right hand limit of <M>F</M>  at <M>x</M>.
+<ANS>
+(a) (i), (ii), (iii) No modification. (iv) <M>F(x-) = F(x)</M>  for all <M>x</M>. 
+
+(b) (i) No modification. (ii) nonincreasing. (iii) <M>F(-\infty) = 1</M>  and <M>F(\infty) = 0</M>. (iv) No modification.
+ 
+(c) (i) No modification. (ii) nonincreasing. (iii) <M>F(-\infty) = 1</M>  and <M>F(\infty) = 0</M>. (iv) <M>F(x-) = F(x)</M>  for all <M>x</M>. 
+</ANS>
+
 </EXR>
 </NOTE>@}

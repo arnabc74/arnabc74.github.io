@@ -496,7 +496,12 @@ So <M>E(X) = 2(p^2 + q^2) + 3(2p^2q + 2pq^2)  = 2(1+pq).</M>
 
 This is maximised when <M>pq = p(1-p)</M>  is maximised, which is when <M>p=[[12]].</M>
 </ANS></EXR>
-::<EXR><CIMG web="rossrv9.png"/></EXR>
+::<EXR><CIMG web="rossrv9.png"/><ANS>
+(a) <M>E(#( (2+4X)^2 )#) = 4E(1+4X+4X^2) = 4(1+4E(X)+4E(X^2)) = \cdots</M>.
+
+(b)<M> E(X^2+(X+1)^2) = E(2X^2+2X+1) = 2E(X^2)+2E(X)+1 = \cdots</M>.
+
+</ANS></EXR>
 ::<EXR><CIMG web="rossrv11.png"/>
 <ANS>
 (a) Let <M>X_i = <CASES>1 <IF>i\mbox{-th draw is white}</IF> 0<ELSE/></CASES></M>  for <M>i=1,...,10.</M>

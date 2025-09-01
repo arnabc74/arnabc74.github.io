@@ -1,6 +1,9 @@
 **September 01, 2025:**
 
-:      - Corrected a serious mistake in the hint of Exercise 32 in the 
+:      - Added  hints to all the exercises in the 
+      [Random variables](rv.html){target="naya"} page.
+
+       - Corrected a serious mistake in the hint of Exercise 32 in the 
       [basic concepts](basic.html){target="naya"} page.
       Thanks to Sayantan. 
      
