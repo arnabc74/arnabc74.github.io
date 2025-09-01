@@ -169,4 +169,28 @@ So the final answer is:
 <LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
 Could you arrive at this impressive answer without using PGF?  
+
+::<EXR><CIMG web="jt18.png"></CIMG>
+
+A brief note about probability generating functions: If <M>X</M>  takes non-negative integer values with <M>p_i = P(X=i)</M> 
+ for <M>i=0,1,2,...</M> then its probability genrating function is 
+<D>\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.</D>
+Clearly this converges absolutely for <M>|t|\leq 1.</M>   In this problem we are assuming that it converges for all <M>t\in\rr.</M>
+<ANS>
+(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
+ for <M>t\in[0,1]</M>). 
+
+So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
+
+Hence the result.
+
+(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
+
+Hence the result follows as in (a).
+</ANS>
+</EXR>
 </NOTE>@} 
