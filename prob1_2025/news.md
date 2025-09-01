@@ -1,3 +1,9 @@
+**September 01, 2025:**
+
+:      - Corrected a serious mistake in the hint of Exercise 32 in the 
+      [basic concepts](basic.html){target="naya"} page.
+      Thanks to Sayantan. 
+     
 **August 31, 2025:**
 
 :   - Corrected a mistake in the solution of Exercise 23 in the

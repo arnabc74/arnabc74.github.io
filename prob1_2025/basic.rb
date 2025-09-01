@@ -1142,8 +1142,11 @@ is <M>(365)_n.</M> So the required probability is
  blue or yellow, each being equally likely. A buyer has bought <M>10</M>  boxes. What is the probability that (s)he has a
 at least one ball of each colour?
 <ANS>Let <M>A_1, A_2, A_3, A_4</M>  denote the events that (s)he has at least one
- red/green/blue/yellow ball, respectively.  Then you need to find <M>P(A_1\cup A_2\cup A_3\cup
- A_4)</M>. Use inclusion-exclusion.  </ANS></EXR>
+ red/green/blue/yellow ball, respectively.  Then you need to find <M>P(A_1\cap A_2\cap A_3\cap
+ A_4)</M>. Use inclusion-exclusion.  
+
+[Thanks to Sayantan for pointing out a serious mistake here. I had written union instead of intersection!]
+</ANS></EXR>
 <HEAD3>Harder</HEAD3>
 <EXR>A town has <M>n+1</M>  people: <M>p_1,...,p_{n+1}.</M> 
 A news is spreading as rumour in this town as follows. Initially,
