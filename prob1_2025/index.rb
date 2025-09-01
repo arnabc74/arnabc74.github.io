@@ -20,10 +20,10 @@ Before midsem:
 <LI><LINK to="bayes.html">Conditional probability</LINK></LI>
 <LI><LINK to="rv.html">Random variables</LINK></LI>
 <LI><LINK to="exp.html">Expectation</LINK></LI>
-<LI><LINK to="mom.html">Variance and moments</LINK></LI>
 </UL>
 After midsem:
 <UL>
+<LI><LINK to="mom.html">Variance and moments</LINK></LI>
 <LI><LINK to="joint.html">Joint distribution</LINK></LI>
 <LI><LINK to="condl.html">Conditional distribution</LINK></LI>
 <LI>Standard discrete distributions:
