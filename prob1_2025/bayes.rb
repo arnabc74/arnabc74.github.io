@@ -216,8 +216,9 @@ Let <M>A_1,...,A_n</M> be mutually exclusive and exhaustive
 events. Let <M>B</M> be any event. We
 assume <M>P(A_1),...,P(A_n), P(B)>0.</M> Then
 for any <M>k=1,...,n,</M>
-<D>P(A_k|B) = [[P(A_k)P(B|A)][\sum_{i=1}^n P(A_i)P(B|A_i)]].</D>
+<D>P(A_k|B) = [[P(A_k)P(B|A_k)][\sum_{i=1}^n P(A_i)P(B|A_i)]].</D>
 </THM>
+[Thanks to Avigyan for pointing out a typo.]
 
 ::<EXR>Look at the following diagram and write down the proof.
 <CIMG web="bayes2.png">More general form of Bayes' theorem</CIMG>

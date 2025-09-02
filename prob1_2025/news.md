@@ -1,3 +1,8 @@
+**September 02, 2025:**
+
+:       Corrected a typo in the statement of Bayes theorem (version 2).
+      Thanks to Avigyan.
+
 **September 01, 2025:**
 
 :      - Added  hints to all the exercises in the 
