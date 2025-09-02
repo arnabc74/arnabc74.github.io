@@ -1,6 +1,7 @@
 **September 02, 2025:**
 
 :     -  Corrected a typo in the statement of Bayes theorem (version 2).
+         Also the answer to Exercise 36 in the same page.
       Thanks to Avigyan.
       - Corrected a typo in the hint for Exercise 4 in the
       [Random variables](rv.html){target="naya"} page.

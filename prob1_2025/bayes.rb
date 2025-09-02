@@ -867,7 +867,7 @@ But if we want the conditional probability that she <I>worked</I>  for store C, 
 ::<EXR><CIMG web="rosscond21.png"/>
 <ANS>(a) <M>[[ [[1][2]]\times[[1][2]] ][ [[1][2]]\times[[1][2]]+[[1][2]]\times1 ]]</M>.
 
-(b) <M>[[ [[1][2]]\times[[1][2]] ][ [[1][2]]\times[[1][4]]+[[1][2]]\times1 ]]</M>.
+(b) <M>[[ [[1][2]]\times[[1][4]] ][ [[1][2]]\times[[1][4]]+[[1][2]]\times1 ]]</M>.
 
 (c) <M>1</M>.
 </ANS>
