@@ -464,9 +464,12 @@ Hence <M>P(X=1) = F(1)-F(1-).</M>
 
 ::<EXR><CIMG web="hpsrv1.png"/>
 <ANS>
-<M>P(|X-1|\geq 2) = P(X\leq 0\mbox{ or }X\geq 3) = P(X\leq 0) + P(X\geq 3) = P(X\leq 0) +
- P(X \gt 3)+P(X=3) = F_X(0)+1-F_X(3)+P(X=3) =F_X(0)+1-F_X(3),</M>
-since <M>P(X=3)=0</M>.</ANS>
+<M>P(|X-1|\geq 2) = P(X\leq -1\mbox{ or }X\geq 3) = P(X\leq -1) + P(X\geq 3) = P(X\leq -1) +
+ P(X \gt 3)+P(X=3) = F_X(-1)+1-F_X(3)+P(X=3) =F_X(-1)+1-F_X(3),</M>
+since <M>P(X=3)=0</M>.
+
+[Thanks to ''Chaitu'' for correcting a typo here.]
+</ANS>
 </EXR>
 In all the following problems the term "density" stands for "PMF".
 
@@ -544,7 +547,7 @@ The nex two problems refer to the following CDF:
 </ANS>
 </EXR>
 ::<EXR><CIMG web="hpsmore3.png"/>
-<ANS>First notice that since <M>F(x)</M>  is a continuous function, hence for any given <M>a\in\rr</M>  e must have <M>P(X=a) = 0</M>.
+<ANS>First notice that since <M>F(x)</M>  is a continuous function, hence for any given <M>a\in\rr</M>  we must have <M>P(X=a) = 0</M>.
 
 So <M>P(X\geq 0.01) = P(X > 0.01) = 1-F(0.01) = e^{-\lambda/100}</M>.
 

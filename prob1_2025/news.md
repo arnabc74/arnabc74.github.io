@@ -1,7 +1,10 @@
 **September 02, 2025:**
 
-:       Corrected a typo in the statement of Bayes theorem (version 2).
+:     -  Corrected a typo in the statement of Bayes theorem (version 2).
       Thanks to Avigyan.
+      - Corrected a typo in the hint for Exercise 4 in the
+      [Random variables](rv.html){target="naya"} page.
+      Thanks to "Chaitu".
 
 **September 01, 2025:**
 
