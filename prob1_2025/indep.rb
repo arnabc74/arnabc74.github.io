@@ -292,10 +292,10 @@ divides the second. </EXR>
 Let <M>f = P(</M>Elmer beats father<M>),</M> and <M>c =
 P(</M>Elmer beats champion<M>).</M> Then Elmer's chance of
 winning for the father-champion-father case is <M>2fc(1-f) 
- + +f^2(1-c)+f^2c=A,</M> say.
+ +f^2c=A,</M> say.
 
 The winning probability for the other case is: <M>2cf(1-c) +
-  c^2f+c^2(1-f)=B,</M> say.
+  c^2f=B,</M> say.
 
 We have <M>f > c.</M> 
 
