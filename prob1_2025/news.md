@@ -3,6 +3,9 @@
 :     -  Corrected a mistake in the solution of Exercise 29 in the 
       [Basic concepts](basic.html){target="naya"} page.
       Thanks to Nipam.
+      - Corrected a typo in the solution of Exercise 13 in the
+      [Random variables](rv.html){target="naya"} page.
+      Thanks to Avigyan.
 
 **September 02, 2025:**
 

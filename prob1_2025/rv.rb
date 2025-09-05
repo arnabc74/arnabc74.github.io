@@ -576,9 +576,11 @@ Now proceed as before.
 
 (d) <M>P(*(1\leq X\leq [[32]])*) = P(*(X\leq[[32]])*) - P(X < 1) = F(*([[32]])*)-\lim_{x\to1-} F(x) = [[34]]-[[13]] = [[5][12]]</M>.
 
-(e) <M>P(1 < X < 2) = \lim_{x\to2-}F(x)-\lim_{x\to1-}F(x) = 1-[[13]] = [[23]]</M>.
+(e) <M>P(1 < X < 2) = P(X<2)-P(X\leq1) = \lim_{x\to2-}F(x)-F(1) = 1-[[12]] = [[12]]</M>.
 
 Actually here <M>F(x)</M>  is continuous at <M>x=2</M>. 
+
+[Thanks to Avigyan for correcting a silly mistake in the solution to part (e).] 
 </ANS>
 </EXR>
 ::<EXR><CIMG web="hpsmore5.png"/>
