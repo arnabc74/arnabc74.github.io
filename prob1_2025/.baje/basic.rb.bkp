@@ -693,7 +693,7 @@ the event that of <M>E,F,G</M>
 <LI><M>E\cap F\cup F\cap G\cup E\cap G.</M></LI>
 <LI><M>E\cap F\cap G.</M></LI>
 <LI><M>E^c\cap F^c\cap G^c.</M></LI>
-<LI><M>(E\cap F^c\cap G^c)\cup ((E\cap F^c\cap G^c)\cup (E\cap
+<LI><M>(E\cap F^c\cap G^c)\cup (E\cap F^c\cap G^c)\cup (E\cap
 F^c\cap G^c)\cup (E^c\cap F^c\cap G^c).</M> (Can you come up
 with something simpler?)</LI>
 <LI><M>(E\cap F\cap G)^c.</M></LI>

@@ -694,8 +694,10 @@ the event that of <M>E,F,G</M>
 <LI><M>E\cap F\cap G.</M></LI>
 <LI><M>E^c\cap F^c\cap G^c.</M></LI>
 <LI><M>(E\cap F^c\cap G^c)\cup (E\cap F^c\cap G^c)\cup (E\cap
-F^c\cap G^c)\cup (E^c\cap F^c\cap G^c).</M> (Can you come up
-with something simpler?)</LI>
+F^c\cap G^c)\cup (E^c\cap F^c\cap G^c).</M> A student has come up with a simpler expression: 
+<M>(E^c\cup F^c)\cap (F^c\cup G^c)\cap (G^c\cup E^c)</M>.
+(Can you come up
+with something even simpler?)</LI>
 <LI><M>(E\cap F\cap G)^c.</M></LI>
 <LI><M>(E\cap F\cap G^c)\cup (E\cap F^c\cap G)\cup (E^c\cap F\cap G).</M></LI>
 <LI><M>(E\cap F^c\cap G^c)\cup (E^c\cap F\cap G^c)\cup (E^c\cap
