@@ -1,3 +1,9 @@
+**September 05, 2025:**
+
+:     -  Corrected a mistake in the solution of Exercise 29 in the 
+      [Basic concepts](basic.html){target="naya"} page.
+      Thanks to Nipam.
+
 **September 02, 2025:**
 
 :     -  Corrected a typo in the statement of Bayes theorem (version 2).

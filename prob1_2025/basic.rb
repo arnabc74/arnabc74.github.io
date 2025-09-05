@@ -1095,10 +1095,12 @@ exactly <M>r</M> men between <M>A</M> and <M>B?</M><ANS>
 Total number of possible outcomes is <M>n!.</M> To find
 total number of favourable outcomes make the other <M>n-2</M>
 men stand in a row (<M>(n-2)!</M> ways), take a stretch of
-length <M>r</M> (<M>n-r+1</M> ways), place <M>A,B</M> at two
+length <M>r</M> (can be done in <M>n-2-r+1 = n-r-1</M> ways), place <M>A,B</M> at two
 ends (2 ways). So the required probability
-is <M>[[(n-2)!\times(n-r+1)\times 2][n!]] =
-[[2(n-r+1)][n(n-1)]].</M> 
+is <M>[[(n-2)!\times(n-r-1)\times 2][n!]] =
+[[2(n-r-1)][n(n-1)]].</M> 
+
+[Thanks to Nipam for correcting a mistake here.]
 </ANS></EXR>
 
 <EXR>What is the probability that two throws with three dice each
