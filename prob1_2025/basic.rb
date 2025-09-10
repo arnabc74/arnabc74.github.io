@@ -1181,7 +1181,9 @@ So <M>r+b\equiv 0,1 (\mod 4).</M>
 The least case is when <M>r=3</M> and <M>b=1.</M> For
 even <M>b</M> it is <M>r=15,</M> <M>b=6.</M></ANS></EXR>
 
-<EXR><CIMG web="most8.png"/><ANS><M>[[13!][52!]]\approx 10^{-60}.</M>
+<EXR><CIMG web="most8.png"/><ANS><M>[[4\times13!\times39!][52!]]\approx 6\times10^{-12}.</M>
+
+[Thanks to Titeer for correcting a mistake here.]
 </ANS></EXR>
 
 <EXR><CIMG web="most19.png"/><ANS>First experiment:<M>1-([[56]])^6\approx 0.67.</M>
