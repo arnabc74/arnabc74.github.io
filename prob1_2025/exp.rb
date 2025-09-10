@@ -416,7 +416,7 @@ Then
 <MULTILINE>
 P(X\geq 1) & = & p_1 + p_2 + p_3+\cdots\\
 P(X\geq 2) & = & \phantom{p_1 +} p_2 + p_3+\cdots\\
-P(X\geq 1) & = & \phantom{p_1 + p_2 +} p_3+\cdots\\
+P(X\geq 3) & = & \phantom{p_1 + p_2 +} p_3+\cdots\\
 \cdots
 </MULTILINE>
 Now add columnwise. Non-negative series do not change value when 
@@ -705,9 +705,13 @@ So the function is maximised at <M>n=364</M>  and <M>365.</M>
 <ANS>
 Let <M>X=</M> number of cards required to be turned. 
 
-Then <M>P(X=k)=[[4\times {}^48P_{k-1}(52-k)!][52!]].</M>
+Then <M>P(X=k)=[[4\times {}^{48}P_{k-1}(52-k)!][52!]].</M>
 
-So
+So you can now find <M>E(X) = \sum_{k=1}^{49} k P(X=k)</M>. 
+
+But here is a smarter solution (taken from Mosteller's book and also given by a student via Whatsapp):
+<CIMG web="mostsol.png"/>
+ 
 </ANS>
 </EXR>
 

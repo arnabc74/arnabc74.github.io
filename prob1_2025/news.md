@@ -1,9 +1,12 @@
 **September 10, 2025:**
 
-:	Corrected a mistake in the solution to Exercise 35 in the 
+:     - Corrected a mistake in the solution to Exercise 35 in the 
       [Basic concepts](basic.html){target="naya"} page.
       Thanks to Titeer.
  
+	- Added a smart solution to Exercise 28 in the 
+      [Expectation](exp.html){target="naya"} page.
+
 **September 05, 2025:**
 
 :     -  Corrected a mistake in the solution of Exercise 29 in the 
