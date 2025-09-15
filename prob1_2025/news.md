@@ -1,5 +1,6 @@
 **September 15, 2025:**
-      - Added proof of a theorem regarding expectation of max in the 
+
+:      - Added proof of a theorem regarding expectation of max in the 
       [Expectation](exp.html){target="naya"} page.
 
       - Also added an example of a random variable with undefined expectation
