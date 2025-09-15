@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Expectation</TITLE>
 <HEAD1>Expectation of a random variable</HEAD1>
 
 For many random variables we see a striking example of
@@ -98,6 +98,17 @@ Notice that we leave the case <M>E(X_+), E(X_-)=\infty </M>
 unmentioned in the definition. This means <M>E(X)</M> is
 undefined in this case.
 
+<EXM>A random variable takes the values <M>\pm 2^n</M>  for <M>n\in\nn</M>  with probabilities
+ <M>P(X=2^n) = P(X=-2^n) = 2^{-n-1}</M>  for <M>n\in\nn</M>. What is <M>E(X)</M>?
+<SOLN/>
+Here <M>X_+</M>  takes the values 0, 2, <M>2^2, 2^3,...</M> with probabilities <M>2^{-1}, 2^{-2}, 2^{-3},...</M>.  
+
+So <M>E(X_+) = 0 + [[12]]+[[12]]+[[12]]+\cdots = \infty</M>.
+
+Similarly, <M>E(X_-) = \infty</M>.
+
+Hence <M>E(X)</M>  is undefined.
+</EXM>  
 
 <THM>
 If <M>X</M>  takes only countably many values <M>x_1, x_2, ...</M>   with probabilities
@@ -377,9 +388,18 @@ Let <M>X,Y</M>  be random variables defined on the same probability space. Let <
  Then <M>E(\max\{X,Y\})</M>  must also be finite.
 </THM>
 <PF>
- Do it yourself.
-</PF>
+<B>Step 1:</B>  First we shall prove it for nonnegative <M>X,Y</M>. Since <M>E(X)</M>  and <M>E(Y)</M>  are both finite,
+ so must be <M>E(X+Y)</M>. 
 
+Now, thanks to nonnegativity of <M>X,Y</M>  we must have <M>\max\{X,Y\}\leq X+Y</M>. 
+
+So, by the last theorem, <M>E(\max\{X,Y\})</M>  must be finite. 
+
+<B>Step 2:</B>  Apply <U>step 1</U>  to <M>|X|</M>  and <M>|Y|</M>  and use the fact that
+ for any <M>a,b\in\rr</M>  we have <M>|\max\{a,b\}|\leq \max\{|a|,|b|\}</M>.
+</PF>
+It is possible to combine the two steps into a single line proof. But stepwise thinking starting with the nonnegative case
+ is a good habit. 
 <THM>
 Let <M>m<n</M> be any two positive integers. If <M>E(X^n)</M>
 exists finitely, then <M>E(X^m)</M> must also exist finitely.

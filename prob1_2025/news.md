@@ -1,3 +1,10 @@
+**September 15, 2025:**
+      - Added proof of a theorem regarding expectation of max in the 
+      [Expectation](exp.html){target="naya"} page.
+
+      - Also added an example of a random variable with undefined expectation
+	in the same page. The example is thanks to Bodhisatva. 
+
 **September 10, 2025:**
 
 :     - Corrected a mistake in the solution to Exercise 35 in the 

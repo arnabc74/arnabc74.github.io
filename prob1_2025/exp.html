@@ -149,7 +149,7 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
-<h3/>
+<h3>Expectation</h3>
 <ul>
 <li>
 <a href="#Expectation of a random variable">Expectation of a random variable</a>
@@ -183,8 +183,9 @@ function myFunction() {
 </li>
 </ul>
 <hr/>
+<title xmlns="">Expectation</title>
 
-<h1 xmlns=""><a
+<h1><a
 name="Expectation of a random variable">Expectation of a random variable</a></h1>
 
 <p></p>
@@ -331,6 +332,23 @@ unmentioned in the definition. This means $E(X)$ is
 undefined in this case.
 <p></p>
 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;A random variable takes the values $\pm 2^n$  for $n\in{\mathbb N}$  with probabilities
+ $P(X=2^n) = P(X=-2^n) = 2^{-n-1}$  for $n\in{\mathbb N}$. What is $E(X)$?
+<p></p>
+<b>SOLUTION:</b>
+Here $X_+$  takes the values 0, 2, $2^2, 2^3,...$ with probabilities $2^{-1}, 2^{-2}, 2^{-3},...$.  
+<p></p>
+So $E(X_+) = 0 + \frac 12+\frac 12+\frac 12+\cdots = \infty$.
+<p></p>
+Similarly, $E(X_-) = \infty$.
+<p></p>
+Hence $E(X)$  is undefined.
+ ■
+</p>  
+
+<p></p>
+
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 If $X$  takes only countably many values $x_1, x_2, ...$   with probabilities
@@ -428,7 +446,7 @@ that $E(X)=\infty.$ Of course, we cannot get a counterexample using simple rando
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;
+<b>EXAMPLE 2:</b>&nbsp;
 It is a standard fact that $\sum\frac{1}{n^2}&lt;\infty.$ Let the
 sum be $c.$ (The exact value of $c$
 which is $\frac{\pi^2}{6},$ is of no importance here).
@@ -560,7 +578,7 @@ that both exist finitely.</p>
 name="Expectation of a function">Expectation of a function</a></h2>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;
+<b>EXAMPLE 3:</b>&nbsp;
 Suppose I have a random variable that takes values $-1,0$ and $1$
 with probabilities $0.1, 0.5$ and $0.4,$ respectively.
 What is $E(X^2)?$
@@ -625,7 +643,7 @@ Often we have to find $E(X)$  where $X$  is the count of something, <i>e.g.</i>,
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;We have a ring of 20 lamps. A wind blows and a random subset of lamps go out. Find
+<b>EXAMPLE 4:</b>&nbsp;We have a ring of 20 lamps. A wind blows and a random subset of lamps go out. Find
  the expected number of singleton lights (<i>i.e.</i>, lighted lamps with both neighbours off).
 <center>
 <table width="100%">
@@ -740,12 +758,20 @@ Let $X,Y$  be random variables defined on the same probability space. Let $E(X)$
 
 <p>
 <b><i>Proof:</i></b>
- Do it yourself.
-<b><i>[QED]</i></b>
-</p>
-
+<b>Step 1:</b>  First we shall prove it for nonnegative $X,Y$. Since $E(X)$  and $E(Y)$  are both finite,
+ so must be $E(X+Y)$. 
+<p></p>
+Now, thanks to nonnegativity of $X,Y$  we must have $\max\{X,Y\}\leq X+Y$. 
+<p></p>
+So, by the last theorem, $E(\max\{X,Y\})$  must be finite. 
 <p></p>
 
+<b>Step 2:</b>  Apply <u>step 1</u>  to $|X|$  and $|Y|$  and use the fact that
+ for any $a,b\in{\mathbb R}$  we have $|\max\{a,b\}|\leq \max\{|a|,|b|\}$.
+<b><i>[QED]</i></b>
+</p>
+It is possible to combine the two steps into a single line proof. But stepwise thinking starting with the nonnegative case
+ is a good habit. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $m&lt;n$ be any two positive integers. If $E(X^n)$
