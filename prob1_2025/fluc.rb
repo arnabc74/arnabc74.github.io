@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Random walks</TITLE>
 <HEAD1>Random walks</HEAD1>
 The material here is taken from chapter 3 of Feller, Volume
 1.

@@ -1,5 +1,5 @@
-@{<NOTE>
-<HEAD1>Standard discrete distributions </HEAD1>
+@{<NOTE><TITLE>Finite support discrete distributions</TITLE>
+<HEAD1>Standard discrete distributions</HEAD1>
 <HEAD1>Finite sample space</HEAD1>
 We shall now discuss four different PMF's: discrete uniform, Bernoulli,
 binomial and hypergeometric. In all these cases the sample space is a

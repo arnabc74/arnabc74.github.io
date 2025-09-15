@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Conditional Probability</TITLE>
 <M>\newcommand{\ev}{{\mathcal F}}</M>
 <HEAD1>Conditional Probability</HEAD1>
 

@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Random variables</TITLE>
 <M>\newcommand{\pow}{{\mathcal P}}</M>
 <HEAD1>Random variables</HEAD1>
 <HEAD2>What they are</HEAD2>

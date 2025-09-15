@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Independence</TITLE>
 <HEAD1>Independence</HEAD1>
 <HEAD2>Two events</HEAD2>
 <DEFN name="Independence">

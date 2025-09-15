@@ -1,5 +1,5 @@
-<NOTE>
-@{<E>
+@{<NOTE><TITLE>Elementary concepts</TITLE>
+<E>
 <HEAD1>Elementary concepts</HEAD1>
 Toss a coin. You can't be sure whether it will come up head first
 or tail first. Wait, is that true? After all, the coin is

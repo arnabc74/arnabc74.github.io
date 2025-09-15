@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Probability Generating Function</TITLE>
 <CSS>branch.css</CSS>
 <HEAD1>Probability Generating Function (PGF)</HEAD1>
 <DEFN name="Probability generating function (PGF)">Let a random variable <M>X</M>  take only nonnegative integer values. Then

@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Conditional distribution</TITLE>
 <HEAD1>Conditional distribution</HEAD1>
 <DEFN name="Conditional distribution">
 Let <M>X:\Omega\to S</M> and <M>Y:\Omega\to T</M> be joint distributed discrete random

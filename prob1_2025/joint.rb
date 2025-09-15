@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Joint distribution</TITLE>
 <HEAD1>Joint distribution</HEAD1>
 
 <DEFN name="Jointly distributed random variables">

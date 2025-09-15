@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Infinite support discrete distributions</TITLE>
 <HEAD1>Infinite sample space</HEAD1>
 <HEAD2>Geometric distribution</HEAD2>
 <B>Notation:</B> <B>Geom</B><M>(\theta),</M> where <M>0 < \theta <1.</M>
