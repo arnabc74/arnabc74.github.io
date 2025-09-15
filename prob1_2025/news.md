@@ -3,7 +3,7 @@
 :      - Added proof of a theorem regarding expectation of max in the 
       [Expectation](exp.html){target="naya"} page.
 
-      - Also added an example of a random variable with undefined expectation
+      - Also added an example (Example 1) of a random variable with undefined expectation
 	in the same page. The example is thanks to Bodhisatva. 
 
 **September 10, 2025:**
