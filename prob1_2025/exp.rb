@@ -122,6 +122,19 @@ Unless noted otherwise, we
  shall only prove them for the case of simple random variables. These proofs are actually the first steps in the general proofs
  that will come next semester. 
 
+<HEAD2>A couple of warnings</HEAD2>
+<ALERT/>Many students somehow get the idea that if a (discrete) random variable <M>X</M>  takes
+ the values <M>x_1,x_2,..</M>. with probabilities <M>p_1,p_2,...</M> where <M>\sum p_i = 1</M>,
+ then <M>E(X) = \sum_i x_i p_i</M>. <B>But this is wrong! It is wrong even if the sum converges!</B> 
+This formula is true in the following special cases:
+<OL><LI>If <M>X</M>  is simple, i.e., takes only finitely many values.</LI>
+<LI>If <M>X</M>  takes only nonnegative (or only nonpositive) values (and here the formula holds even if the sum
+diverges).</LI>
+<LI>If <M>\sum_i |x_i| p_i < \infty</M>.</LI>
+</OL> 
+
+Here is another point that students sometimes get wrong. When we say <M>E(X)</M>  is <B>undefined</B>  we mean <M>E(X)</M> 
+ is meaningless in that context, and <I>not</I> that <M>E(X)</M>  can be anything there. 
 
 <HEAD1>Properties of expectation</HEAD1>
 <HEAD2>Relation of <M>E(X)</M> with values of <M>X</M></HEAD2>
@@ -284,7 +297,7 @@ This technique is often easier because here we do not need to
 find the distribution of <M>Y=X^2</M> first. Both these
 techniques will always give the same answer. 
 
-<THM>
+<THM name="Law of the lazy statistician">
 Let a (discrete) random variable <M>X</M> take
 values <M>x_1,x_2,...</M> with
 probabilities <M>p_1,p_2,...</M>. Let <M>h(\cdot)</M> be any

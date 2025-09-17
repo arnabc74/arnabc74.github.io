@@ -1,4 +1,4 @@
-@{<NOTE>
+@{<NOTE><TITLE>Variance</TITLE>
 
 <HEAD1>Variance</HEAD1>
 A random variable is, well,  random. So it may very well differ from
@@ -41,29 +41,29 @@ Let <M>V(X)<\infty.</M> Then
 <PF>
 Take any <M>\epsilon>0.</M>
 <P/>
-Let <M>E(X)</M> be denoted by <M>\mu.</M>
-<P/>
 Define 
 <D>
-f(x) = <CASES>
-\epsilon^2 <IF>|x-\mu|\geq \epsilon</IF>
+Y = <CASES>
+\epsilon^2 <IF>|X-E(X)|\geq \epsilon</IF>
 0 <ELSE/>
 </CASES>
 </D>
 
-Then <M>\forall x~~f(x)\leq (x-\mu)^2.</M>
-<P/>
+Then <M>(X-E(X))^2\geq Y.</M>
 
 So
 <MULTILINE>
 V(X) 
-& = & E(X-\mu)^2\\
-& \geq & E(f(X))\\
-& = & \epsilon^2 P(|X_i-\mu| \geq\epsilon) + 0\times P(|X_i-\mu| <\epsilon).
+& = & E(X-E(X))^2\\
+& \geq & E(Y)\\
+& = & \epsilon^2 P(|X_i-E(X)| \geq\epsilon) + 0\times P(|X_i-E(X)| <\epsilon).
 </MULTILINE>
 Hence the result.
 </PF>
-
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+ Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
+ weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
+ get <M>0 < 0</M>  for a degenerate <M>X</M>.
 
 
 <HEAD1>Moments</HEAD1>
@@ -88,7 +88,7 @@ function</B> as the function
 m_X(t) =  E(e^{tX}).
 </D>
 The domain of this function conists of all <M>t\in\rr</M> for
-which the expectation exists.
+which the expectation exists <I>finitely</I>.
 </DEFN>
 
 Clearly, <M>m_X(0)</M> always exists and equals <M>1.</M>
@@ -180,8 +180,8 @@ distribution.</THM>
 Too difficult for this course.
 </PF>
 
-<B>We shall not spend proving any result on MGF here. We shall
-learn the proofs for CFs in the next semester.</B>
+<B>We shall not spend time proving any result on MGF here. We shall
+learn the proofs for CFs in the third semester.</B>
 
 <HEAD1>Problems for practice</HEAD1>
 

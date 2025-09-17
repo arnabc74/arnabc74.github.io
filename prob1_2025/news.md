@@ -1,3 +1,11 @@
+**September 17, 2025:**
+
+:      - Added a couple of warnings to the  
+      [Expectation](exp.html){target="naya"} page.
+
+	- Improved the presentation in the 
+      [Joint distribution](joint.html){target="naya"} page.
+
 **September 15, 2025:**
 
 :      - Added proof of a theorem regarding expectation of max in the 

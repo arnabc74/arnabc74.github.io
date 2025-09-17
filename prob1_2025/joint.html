@@ -160,9 +160,6 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Expectation">Expectation</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Indicator trick">Indicator trick</a>
-</li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Independent random variables">Independent random variables</a>
 </li>
@@ -366,46 +363,33 @@ the univariate case.
 <p></p>
 
 <fieldset>
-<legend><b>Definition: Expectation</b></legend>
+<legend><b>Definition: Expectation of an ${\mathbb R}^n$-values random variable</b></legend>
+If $X=\left[\begin{array}{ccccccccccc}X_1\\\vdots\\X_n
+\end{array}\right]$ is an ${\mathbb R}^n$-valued random variable,
+then we define $E(X)$  as the vector 
+$$E(X) = \left[\begin{array}{ccccccccccc}E(X_1)\\\vdots\\E(X_n)
+\end{array}\right].$$
+We say that $E(X)$  exists (or is defined) if each of the $E(X_i)$'s exists.</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>The law of the lazy statistician</i></b></legend>
 Let $X$ be an ${\mathbb R}^n$-valued discrete random
 variable with PMF $p(x)$. Let $f:{\mathbb R}^n\rightarrow {\mathbb R}$ be any
-function. Then $E(h(X))$ is defined as follows.
-<ul>
-
-<li>If $\sum_x |h(x)| p(x) &lt; \infty,$ then 
-$$
-E(h(X)) = \sum_x h(x) p(x).
-$$
-</li>
-
-<li>If $\sum_x |h(x)| p(x) = \infty,$ then 
+function. Then $E(h(X))$ may be computed as follows.
 <ol type="">
 
-<li>if all but finitely many terms in the sum are positive, we
-define $E(h(X))=\infty.$</li>
+<li>If $\sum_x |h(x)| p(x) &lt; \infty,$ then 
+$$E(h(X)) = \sum_x h(x) p(x).$$
+</li>
 
-<li>if all but finitely many terms in the sum are negative, we
-define $E(h(X))=-\infty.$</li>
-
-<li>if there are infinitely many positive and negative terms,
-then $E(h(X))$ is undefined.</li>
+<li>If $h(x)$ takes only nonnegative (or only nonpositive) values, then the above formula holds even if the
+ series divereges.</li>
 
 </ol>
 
-</li>
-
-</ul>
-
-<p></p>
-
 </fieldset>
-
-<p></p>
-If $X$ is an ${\mathbb R}^n$-valued random variable,
-and $h:{\mathbb R}^n\rightarrow {\mathbb R}^m$ is any function, 
-then $E(h(X))$ is defined component by component, and is said
-to exists finitely iff all the component expectations exist finitely.
-<p></p>
 
 <p></p>
 
@@ -421,95 +405,37 @@ $$
 
 <p>
 <b><i>Proof:</i></b>
-In this course we shall prove this  only when $X,Y$ are both
-discrete random
-variables.
-<p></p>
-First, notice that $X+Y$ is again discrete. 
-<blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">
-If $X$ takes values in the countable
-set $\{x_1,x_2,...\}$ and $Y$ take values in the
-countable set $\{y_1,y_2,...\},$ then each possible value
-of $X+Y$ must be of the form $x_i+y_j.$ There are only
-countably many such values.
-</div></blockquote>
-Let $p_{ij} = P(X=x_i~\&amp;~ Y=y_j).$
-<p></p>
-Then $P(X=x_i) = \sum_j p_{ij}$ and $P(Y=y_j) = \sum_i p_{ij}.$
-<p></p>
-So $E(X) = \sum_i x_i P(X=x_i) =  \sum_i x_i \sum_j p_{ij},$
-and $E(Y) = \sum_j y_j P(Y=y_j) =  \sum_j y_j \sum_i p_{ij} .$
-<p></p>
-By the given condition both these series converges absolutely,
-and may be grouped and arranged in any way without changing the
-sum. 
-<p></p>
-So $\sum_i\sum_j |x_i p_{ij}|&lt; \infty,$ and $\sum_j\sum_i |y_j p_{ij}|&lt; \infty.$
-<p></p>
-Now $|x_i+y_j|\leq |x_i|+|y_j|$ by triangle
-inequality.
-<p></p>
+We have already seen the proof for the simple case.
 
-<p></p>
-Hence $\sum_{i,j} |(x_i+y_j)p_{ij}| &lt;\infty$ and
-so $E(X+Y)$ exists finitely. Also 
-$$
-E(X+Y) = \sum_{i,j} (x_i+y_j)p_{ij} = \sum_i\sum_j x_ip_{ij} +
-\sum_j\sum_i y_jp_{ij}  = E(X)+E(Y),
-$$
-as required.
 <b><i>[QED]</i></b>
 </p>
 
-<p></p>
-This result leads to simple trick that we discuss next.
-<p></p>
-
-<h3><a
-name="Indicator trick">Indicator trick</a></h3>
-Suppose that you are to find expected number of something. For
-example, $n$ letters are randomly put into $n$
-addressed envelops, and you are to find $E(X),$
-where $X$ is the number of correctly placed letters. 
-would you count $X$ In any given situation like the 
-following, you can find $X$ by first putting a check mark
-for each correctly placed letter and then counting the total
-number of check marks. 
-<p></p>
-Mathematically each ckec mark is an <b>indicator</b>. For
-example, the indicator for the $i$-th letter is 
-$$
-I_i = \left\{\begin{array}{ll}1&\text{if }i\mbox{-th letter is placed correctly}\\0&\text{otherwise.}\end{array}\right..
-$$
-Counting the number of check marks amounts to
-summing $I_i$'.s Thus, $X = \sum I_i.$ 
-<p></p>
-Notice that each $I_i$ is a random variable, and $E(X) = \sum E(I_i).$
-<p></p>
-Since each $I_i$ takes only the values $1$
-and $0,$ hence $E(I_i) = P(I_i=1).$
-<p></p>
-Now $I_i=1$ means $i$-th letter has been placed
-correctly. This is has probability $\frac{(n-1)!}{n!} = \frac 1n.$
-<p></p>
-So $E(X) = n\times \frac 1n = 1.$ 
-<p></p>
-It's a bit surprising that $E(X)$ does not depend on $n.$
 <p></p>
 
 <h2><a
 name="Independent random variables">Independent random variables</a></h2>
 An important special case of jointly distributed random variables
 is that of independent random variables. To state the definition
-we shall intriduce a new terminology: If $X:\Omega\rightarrow S$ is
+we shall introduce a new terminology: If $X:\Omega\rightarrow S$ is
 a random variable, then by "an event in terms of $X$" we
 shall mean $\{w\in\Omega~:~ X(w)\in A\}$ for some $A\in
 S.$ Similarly, if $X:\Omega\rightarrow S$ and $Y:\Omega\rightarrow
 T$ are jointly distributed random
 variables, then "an event in terms of $X,Y$" means 
-$\{w\in\Omega~:~ (X(w),Y(w))\in A\},$ where $A\subseteq S\times T.$
+$\{w\in\Omega~:~ (X(w),Y(w))\in A\},$ for some $A\subseteq S\times T.$
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;If we pick a number randomly from the set {1,2,...,7} and define two random variables $X$  and
+ $Y$  as $X(\omega) =
+ \omega (\mod 2)$  and  $Y(\omega) = \omega (\mod 3)$. Then $\{X=Y\}$  is an event in
+ terms of $X,Y$. Are the events {6} and {1}  events in terms of $X,Y$?<p></p>
+<b>SOLUTION:</b>
+{6} is, because it can be written as $\{X =0, Y=0\}$. But {1} is not, because just knowing $X$  and $Y$  you
+ cannot distinguish 1 from 7. 
+  ■
+</p>
+
 <p></p>
 
 <fieldset>
@@ -524,7 +450,7 @@ of $\{X_i~:~i\in B\}.$
 <p></p>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;
+<b>EXAMPLE 3:</b>&nbsp;
 If $X,Y,Z$ are independent random variables, then 
 $$
 P(X^2+Y^2 \leq 4~\&amp;~ Z\neq 5) = P(X^2+Y^2 \leq 4)P(Z\neq 5).
@@ -599,7 +525,7 @@ expectations, then $E(XY) = E(X)E(Y).$
 <p>
 <b><i>Proof:</i></b>
 We shall prove this for the case where $X,Y$ are both
-discrete (hence so is $(X,Y)$). 
+simple (hence so is $(X,Y)$). 
 <p></p>
 
 <p></p>
@@ -611,8 +537,7 @@ $$
 E(XY) = \sum_{x,y} xy p(x,y) = \sum_{x,y} xy p_X(x)p_Y(y) =
 \sum_x x p_X(x)\times \sum _y yp_Y(y) = E(X)E(Y).
 $$
-The grouping and rearranging were justified since the series were
-absolutely convergent. 
+Interchanging the sums is justified since the sums have only finitely many terms.
 <b><i>[QED]</i></b>
 </p>
 
@@ -700,7 +625,7 @@ $cov(aX+b,cY+d) = ac cov(X,Y).$
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;
+<b>EXAMPLE 4:</b>&nbsp;
 The analog of $(a+b)^2 = a^2+2ab+b^2$ here is $V(X+Y) =
 V(X)+2 cov(X,Y) +V(Y).$ This also shows that if $X,Y$ are
 independent, then $V(X+Y) = V(X)+V(Y).$
@@ -811,10 +736,36 @@ if $X,Y$ are linearly linearly related with probability 1,
 <i>i.e.</i>, $\exists a,b,c\in{\mathbb R}$ such that $P(aX+bY=c)=1.$
 <h1><a
 name="Problems for practice">Problems for practice</a></h1>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;
+We have $n$ letters are randomly put into $n$
+addressed envelopes. Find $E(X),$
+where $X$ is the number of correctly placed letters.<p>
+<b>Hint:</b>
+<blockquote>Use indicator variables.</blockquote>
+</p>
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3"> 
+Let $$
+I_i = \left\{\begin{array}{ll}1&\text{if }i\mbox{-th letter is placed correctly}\\0&\text{otherwise.}\end{array}\right..
+$$
+Then $X = \sum I_i.$ 
+<p></p>
+Notice that each $I_i$ is a random variable, and $E(X) = \sum E(I_i)= P(I_i=1).$
+<p></p>
+Now $I_i=1$ means $i$-th letter has been placed
+correctly. This is has probability $\frac{(n-1)!}{n!} = \frac 1n.$
+<p></p>
+So $E(X) = n\times \frac 1n = 1.$ 
+<p></p>
+It's a bit surprising that $E(X)$ does not depend on $n.$
+</div></p>
+</p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;<center>
+<b>EXERCISE 4:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most45.png"></th>
@@ -826,8 +777,8 @@ name="Problems for practice">Problems for practice</a></h1>
 </center>
 
 <p><a
-href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
-class="ans" id="lab3">
+href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
+class="ans" id="lab4">
 (a) 
 Let $X$  be the number of matching pairs.
 <p></p>
@@ -844,7 +795,7 @@ So $E(X) = 1.$
 
 </p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;<center>
+<b>EXERCISE 5:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt1.png"></th>
@@ -856,8 +807,8 @@ So $E(X) = 1.$
 </center>
 Here "discrete density" means "PMF".
 <p><a
-href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
-class="ans" id="lab4">
+href="javascript:hideShow('lab5')"><b>[Hint]</b></a><div
+class="ans" id="lab5">
 We need to check that $\forall x\in{\mathbb R}~~f(x)\geq 0$  and $\sum_{x=1}^N f(x) = 1.$
 <p></p>
 Both are immediate.
@@ -869,7 +820,7 @@ $E(X) = \sum_{x=1}^N x f(x) = \frac{2}{N(N+1)}\sum_{x=1}^N x^2 = \frac{2}{N(N+1)
 
 </p>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;<center>
+<b>EXERCISE 6:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt2.png"></th>
@@ -881,8 +832,8 @@ $E(X) = \sum_{x=1}^N x f(x) = \frac{2}{N(N+1)}\sum_{x=1}^N x^2 = \frac{2}{N(N+1)
 </center>
 
 <p><a
-href="javascript:hideShow('lab5')"><b>[Hint]</b></a><div
-class="ans" id="lab5">Since $P(|X-Y|\leq M)=1$,  hence $E|X-Y| \leq E(M) = M.$
+href="javascript:hideShow('lab6')"><b>[Hint]</b></a><div
+class="ans" id="lab6">Since $P(|X-Y|\leq M)=1$,  hence $E|X-Y| \leq E(M) = M.$
 <p></p>
 Also we know that $X = Y + (X-Y)$  and so, by triangle inequality, 
 $|X| \leq |Y| + |X-Y|.$
@@ -899,7 +850,7 @@ Hence $|E(X)-E(Y)| \leq M,$  as required.
 
 </p>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;<center>
+<b>EXERCISE 7:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt3.png"></th>
@@ -911,14 +862,14 @@ Hence $|E(X)-E(Y)| \leq M,$  as required.
 </center>
 
 <p><a
-href="javascript:hideShow('lab6')"><b>[Hint]</b></a><div
-class="ans" id="lab6">
+href="javascript:hideShow('lab7')"><b>[Hint]</b></a><div
+class="ans" id="lab7">
 $E(X) = \frac N2$  and $V(X) = \frac{N(2n+1)}{6}-\frac{N^2}{4} = \frac{N^2+2N}{12}. $
 </div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<center>
+<b>EXERCISE 8:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt4.png"></th>
@@ -932,8 +883,8 @@ $E(X) = \frac N2$  and $V(X) = \frac{N(2n+1)}{6}-\frac{N^2}{4} = \frac{N^2+2N}{1
 <p></p>
 Here "density" means "PMF".
 <p><a
-href="javascript:hideShow('lab7')"><b>[Hint]</b></a><div
-class="ans" id="lab7">
+href="javascript:hideShow('lab8')"><b>[Hint]</b></a><div
+class="ans" id="lab8">
 We know from analysis that $\sum_1^\infty x^{-(r+2)} &lt;\infty$  since $r&gt;0.$  
 <p></p>
 Let $c = \frac{1}{\sum_1^\infty x^{-(r+2)}}.$
@@ -944,7 +895,7 @@ is a PMF with the required property.
 
 </p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;<center>
+<b>EXERCISE 9:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt5.png"></th>
@@ -956,8 +907,8 @@ is a PMF with the required property.
 </center>
 
 <p><a
-href="javascript:hideShow('lab8')"><b>[Hint]</b></a><div
-class="ans" id="lab8">
+href="javascript:hideShow('lab9')"><b>[Hint]</b></a><div
+class="ans" id="lab9">
 $V(X^2Y) =E(X^4Y^2)-E^2(X^2Y) = E(X^4)E(Y^2)-E^2(X^2)E^2(Y),$
 since $X,Y$  are independent (and so any function of $X$  is independent of any function of $Y$). 
 <p></p>
@@ -966,7 +917,7 @@ Now $E(X^4)E(Y^2)-E^2(X^2)E^2(Y) = E(X^4)E(Y^2) -0 = 2\times1 = 2.$
 
 </p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;<center>
+<b>EXERCISE 10:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt6.png"></th>
@@ -978,14 +929,14 @@ Now $E(X^4)E(Y^2)-E^2(X^2)E^2(Y) = E(X^4)E(Y^2) -0 = 2\times1 = 2.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab9')"><b>[Hint]</b></a><div
-class="ans" id="lab9">
+href="javascript:hideShow('lab10')"><b>[Hint]</b></a><div
+class="ans" id="lab10">
 $E(2X+3Y) = 2E(X)+3E(Y)$  and $V(2X+3Y) = 4V(X)+9V(Y).$
 </div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;<center>
+<b>EXERCISE 11:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt7.png"></th>
@@ -997,8 +948,8 @@ $E(2X+3Y) = 2E(X)+3E(Y)$  and $V(2X+3Y) = 4V(X)+9V(Y).$
 </center>
 
 <p><a
-href="javascript:hideShow('lab10')"><b>[Hint]</b></a><div
-class="ans" id="lab10">
+href="javascript:hideShow('lab11')"><b>[Hint]</b></a><div
+class="ans" id="lab11">
 (a) Use the fact that $\sum_{k=1}^n (X_k-\overline X) = 0.$
 <p></p>
 (b) 
@@ -1014,7 +965,7 @@ Hence $E\left(\sum (X_k-\overline X)^2\right) = n\sigma^2- n\times \frac{\sigma^
 
 </p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;<center>
+<b>EXERCISE 12:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt8.png"></th>
@@ -1026,8 +977,8 @@ Hence $E\left(\sum (X_k-\overline X)^2\right) = n\sigma^2- n\times \frac{\sigma^
 </center>
 
 <p><a
-href="javascript:hideShow('lab11')"><b>[Hint]</b></a><div
-class="ans" id="lab11">
+href="javascript:hideShow('lab12')"><b>[Hint]</b></a><div
+class="ans" id="lab12">
 (a) $E(X_i) = P(i$-th box empty$) = \left(\frac{r-1}{r}\right)^n.$
 <p></p>
 (b) Let $i\neq j.$  Then $E(X_iX_j) = P(i$-th and $j$-th boxes empty$) = \left(\frac{r-2}{r}\right)^n.$
@@ -1044,7 +995,7 @@ Now simplify.
 
 </p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;<center>
+<b>EXERCISE 13:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt9.png"></th>
@@ -1056,8 +1007,8 @@ Now simplify.
 </center>
 
 <p><a
-href="javascript:hideShow('lab12')"><b>[Hint]</b></a><div
-class="ans" id="lab12">
+href="javascript:hideShow('lab13')"><b>[Hint]</b></a><div
+class="ans" id="lab13">
 (a) 1.
 <p></p>
 (b) $E(X_i^2) = E(X_i) = \frac 1n.$  Also for $i\neq j$  we have $E(X_iX_j) = \frac{1}{n(n-1)}.$
@@ -1074,7 +1025,7 @@ V(S_n)
 
 </p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;<center>
+<b>EXERCISE 14:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt10.png"></th>
@@ -1086,8 +1037,8 @@ V(S_n)
 </center>
 
 <p><a
-href="javascript:hideShow('lab13')"><b>[Hint]</b></a><div
-class="ans" id="lab13">
+href="javascript:hideShow('lab14')"><b>[Hint]</b></a><div
+class="ans" id="lab14">
 $cor(X_1-X_2,X_2+X_3) = \frac{cov(X_1-X_2,X_2+X_3)}{\sqrt{V(X_1-X_2)\cdot V(X_2+X_3)}}.$
 <p></p>
 Now $V(X_1-X_2) = V(X_1)+V(X_2) = \sigma_1^2 + \sigma_2^2,$  since $X_1,X_2$  independent.
@@ -1100,7 +1051,7 @@ Also $cov(X_1-X_2,X_2+X_3) = cov(X_1,X_2)+\cov(X_1,X_3)-cov(X_2,X_2)-cov(X_2,X_3
 
 </p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;<center>
+<b>EXERCISE 15:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt11.png"></th>
@@ -1112,14 +1063,14 @@ Also $cov(X_1-X_2,X_2+X_3) = cov(X_1,X_2)+\cov(X_1,X_3)-cov(X_2,X_2)-cov(X_2,X_3
 </center>
 
 <p><a
-href="javascript:hideShow('lab14')"><b>[Hint]</b></a><div
-class="ans" id="lab14">
+href="javascript:hideShow('lab15')"><b>[Hint]</b></a><div
+class="ans" id="lab15">
 $V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times \frac 12\times \sqrt{1\times 2}.$
 </div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;<center>
+<b>EXERCISE 16:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt12.png"></th>
@@ -1131,15 +1082,15 @@ $V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times \frac 12\times \sqrt{1\times 2}.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab15')"><b>[Hint]</b></a><div
-class="ans" id="lab15">
+href="javascript:hideShow('lab16')"><b>[Hint]</b></a><div
+class="ans" id="lab16">
 Here $U+V=2.$  Since $V=2-U$  is a linear relation with negative slope, 
 $cor(U,V)=-1.$
 </div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<center>
+<b>EXERCISE 17:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt13.png"></th>
@@ -1151,8 +1102,8 @@ $cor(U,V)=-1.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab16')"><b>[Hint]</b></a><div
-class="ans" id="lab16">
+href="javascript:hideShow('lab17')"><b>[Hint]</b></a><div
+class="ans" id="lab17">
 The joint PMF of $(X,Y)$  is 
 <center>
 <table style="" border="1">
@@ -1187,7 +1138,7 @@ Hence $cor(X,Y) =-\frac 12. $
 
 </p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<center>
+<b>EXERCISE 18:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt14.png"></th>
@@ -1199,8 +1150,8 @@ Hence $cor(X,Y) =-\frac 12. $
 </center>
 
 <p><a
-href="javascript:hideShow('lab17')"><b>[Hint]</b></a><div
-class="ans" id="lab17">
+href="javascript:hideShow('lab18')"><b>[Hint]</b></a><div
+class="ans" id="lab18">
 (a) This is because the $i$-th trial cannot produce both 1 and 2 together!
 <p></p>
 (b) The trials are indep. So $E(I_iJ_j) = E(I_i)E(J_j) = p_ip_j.$
@@ -1210,7 +1161,7 @@ class="ans" id="lab17">
 
 </p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<center>
+<b>EXERCISE 19:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt15.png"></th>
@@ -1222,8 +1173,8 @@ class="ans" id="lab17">
 </center>
 
 <p><a
-href="javascript:hideShow('lab18')"><b>[Hint]</b></a><div
-class="ans" id="lab18">
+href="javascript:hideShow('lab19')"><b>[Hint]</b></a><div
+class="ans" id="lab19">
 (a) $E(I_i) = P(i$-th elt in sample is of type 1$)=\frac{r_1}{r}.$
 <p></p>
 SImilarly, $E(J_i) = \frac{r_2}{r}.$
@@ -1248,7 +1199,7 @@ The rest follows using simpe algebra.
 
 </p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<center>
+<b>EXERCISE 20:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt16.png"></th>
@@ -1262,8 +1213,8 @@ The rest follows using simpe algebra.
 <p></p>
 Here "density" means "PMF". Also $\mu=E(X).$
 <p><a
-href="javascript:hideShow('lab19')"><b>[Hint]</b></a><div
-class="ans" id="lab19">
+href="javascript:hideShow('lab20')"><b>[Hint]</b></a><div
+class="ans" id="lab20">
 By symmtry around $2$  we see that $\mu = 2.$
 <p></p>
 Also $V(X) = E(X-\mu)^2 = 0^2\times \frac{16}{18}+1^2\times \frac{2}{18} = \frac 19.$
@@ -1277,7 +1228,7 @@ So $\delta=1$  makes both sides $\frac 19.$
 
 </p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<center>
+<b>EXERCISE 21:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/jt17.png"></th>
@@ -1290,8 +1241,8 @@ So $\delta=1$  makes both sides $\frac 19.$
 </center>
 
 <p><a
-href="javascript:hideShow('lab20')"><b>[Hint]</b></a><div
-class="ans" id="lab20">
+href="javascript:hideShow('lab21')"><b>[Hint]</b></a><div
+class="ans" id="lab21">
 Let $X=$ number of defective bolts in a random shipment. 
 <p></p>
 We want to choose $a$  such that $P(X&gt; a) &lt; 0.05.$
