@@ -396,7 +396,7 @@ Then
 Use the exercise above and Chebyshev inequality.
 </PF>
 
-<THM name="Cauchy-Scwartz inequality">
+<THM name="Cauchy-Schwarz inequality">
 <M>cov(X,Y)^2 \leq V(X)V(Y).</M>
 Equality holds iff <M>\exists a,b,c\in\rr~~P(aX+bY=c)=1.</M>
 </THM>
@@ -435,7 +435,7 @@ as
 \rho(X,Y)= [[ cov(X,Y) ][ \sqrt{V(X)V(Y)} ]].
 </D>
 </DEFN>
-By  Cauchy-Scwartz inequality, <M>rho(X,Y) \in [-1,1].</M> Also,
+By  Cauchy-Schwarz inequality, <M>rho(X,Y) \in [-1,1].</M> Also,
 <M>\rho(X,Y)=-1</M> or <M>\rho(X,Y)=1</M> if and only
 if <M>X,Y</M> are linearly linearly related with probability 1,
 i.e., <M>\exists a,b,c\in\rr</M> such that <M>P(aX+bY=c)=1.</M>
