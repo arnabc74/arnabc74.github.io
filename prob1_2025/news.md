@@ -1,3 +1,8 @@
+**September 19, 2025:**
+
+:	Added a picture to the 
+      [Joint distribution](joint.html){target="naya"} page.
+
 **September 17, 2025:**
 
 :      - Added a couple of warnings to the  

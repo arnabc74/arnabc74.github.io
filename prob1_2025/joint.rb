@@ -78,13 +78,19 @@ Also, the joint CDF is
 F(a,b) = P(X\leq a~\&~1\leq b) = <CASES>0<IF>b <
 1</IF>F(a)<IF>b\geq 1.</IF></CASES>
 </D>
+Its plot as a surface looks like this:
+<CIMG web="bivcdf.png" w="700">Notice the discontinuity</CIMG>
+We can see that it is discontinuous because if you imagine the surface as a handkerchief, then clearly there is a slit halfway
+ through. 
+
+More mathematically, we can take a sequence <M>( (a_n, b_n) )\to (a,b)</M>  and show that <M>F(a_n,b_n)\not\to F(a,b)</M>.
+ We just have to place <M>(a,b)</M>  on the slit, and make the sequence approach it from a suitable direction.
+
 If we take <M>(a_n,b_n) =(*( [[12]], 1-[[1n]])*),</M>
 then <M>(a_n,b_n)\to (*([[12]],1)*).</M> 
 
-<P/>
 Now <M>F(a_n,b_n)\equiv 0,</M> and so <M>F(a_n,b_n)\to 0.</M>
 
-<P/>
 But <M>F(*([[12]],1)*) = [[12]]\neq 0.</M>
 </EXM>
 
