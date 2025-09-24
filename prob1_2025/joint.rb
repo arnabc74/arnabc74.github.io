@@ -676,7 +676,7 @@ So <M>\delta=1</M>  makes both sides <M>[[19]].</M>
 <ANS>
 Let <M>X=</M> number of defective bolts in a random shipment. 
 
-We want to choose <M>a</M>  such that <M>P(X> a) < 0.05.</M>
+We want to choose <M>a</M>  such that <M>P(X> a) < 0.01.</M>
 
 Here <M>X</M>  can take values 0,1,2,...,10000 with the probabilities
 <D>P(X=k) = \binom{10000}{k} 0.05^k 0.95^{10000-k}=p_k,\mbox{ say.}</D>
@@ -688,6 +688,8 @@ Finding this <M>a</M>  is not easy by hand, though trivial using a computer.
 
 There is a theorem called the
  Central Limit Theorem which allows a simple approximate way to find <M>a.</M>  We shall learn it in the next semester.
+
+[Thanks to Samyak for correcting a typo here.]
 </ANS>
 </EXR>
 

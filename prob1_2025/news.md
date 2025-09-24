@@ -1,3 +1,8 @@
+**September 24, 2025:**
+
+:	Corrected a typo in the hint of Exercise 21 in the 
+      [Joint distribution](joint.html){target="naya"} page.
+
 **September 19, 2025:**
 
 :	Added a picture to the 
