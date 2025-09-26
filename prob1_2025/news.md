@@ -1,3 +1,8 @@
+**Sepetember 26, 2025:**
+
+:	Added two important exercises in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+
 **September 24, 2025:**
 
 :	Corrected a typo in the hint of Exercise 21 in the 

@@ -49,14 +49,38 @@ expectation/variance is a random variable, which is a function of
 the conditioning random variable.
 
 <HEAD2>Unconditionals in terms of conditionals</HEAD2>
-Remember the theorem of total probability: 
+Arriving at the unconditional distribution from the conditional distribution is easy. There are different ways, all of which
+ depend on these two facts:
+<UL><LI><M>P(A\cap B) = P(B)P(A|B)</M>,</LI><LI>
+the theorem of total probability: 
 <D>
 P(A) = P(B) P(A|B) + P(B^c)P(A|B^c),
-</D>
-where combined the two conditional probabilities of <M>A</M> to
-arrive at the (unconditional) probability of <M>A?</M> 
-<P/>
-Well, we can do similar things with conditional
+</D></LI></UL>
+In both these facts we have expressed unconditional probabilities in terms of conditional ones. 
+
+The following two exercises have simple solutions, but are conceptually very important. 
+
+::<EXR>
+Let <M>(X,Y)</M>  be discrete with <M>X</M>  having support <M>\{x_1,x_2,...,x_m\}</M>  and <M>Y</M>  having support
+<M>\{y_1,y_2,...,y_n\}</M>.
+
+ For <M>B\seq \rr</M>, let <M>f(x_i, B) = P(Y\in B | X=x_i)</M>. Then for <M>A\seq \rr</M>  show that
+<D>P(X\in A,\, Y\in B) = \sum_{i=1}^m f(x_i, B)P(X=x_i).</D>
+<ANS>Directly from the theorem of total probability.</ANS></EXR>
+
+What may not be readily obvious is that the converse of the exercise is also true. This is given in
+ the following exercise.
+
+::<EXR>Let <M>(X,Y)</M>  be as in the last exercise. For <M>B\seq\rr</M>, let  <M>g(x_i, B)</M>  be such
+ that for every <M>A\seq \rr</M>  we have 
+<D>P(X\in A,\, Y\in B) = \sum_{i=1}^m g(x_i, B)P(X=x_i).</D>
+Then show that we must have <M>g(x_i, B) = P(Y\in B|X=x_i)</M>  for <M>B\seq\rr</M>  and <M>i=1,...,m</M>.
+<ANS>Take <M>B=\{y_j\}</M>.</ANS></EXR>
+The above exercise will prove very important later, since it provides a definition of <M>P(Y\in
+ B|X=x_i)</M>  free of explicit division by <M>P(X=x_i)</M>. This  freedom will later allow us to defined conditional distribution
+ of <M>Y</M>  given <M>X</M>   when <M>X</M>  is continuous. 
+
+We can do similar things with conditional
 expectation/variance also. 
 
 <THM name="Tower property">
@@ -81,7 +105,7 @@ Expectation of this is
 as required.
 </PF>
 
-Many expectation problems can be handled step-bystep using this
+Many expectation problems can be handled step-by-step using this
 result. Here are some examples.
 
 <EXM>
