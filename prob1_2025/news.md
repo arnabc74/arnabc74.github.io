@@ -1,8 +1,10 @@
 **Sepetember 27, 2025:**
 
-:	Corrected a serious typo in the  two important exercises added 
+:	- Corrected a serious typo in the  two important exercises added 
 	yesterday in the 
 	[Conditional distribution](condl.html){target="naya"} page.
+
+        - Updated the [Random walk](fluc.html){target="naya"} page.
 
 **Sepetember 26, 2025:**
 

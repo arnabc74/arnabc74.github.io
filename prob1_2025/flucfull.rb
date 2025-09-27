@@ -126,16 +126,17 @@ mean(event)
 </RC>
 </EXR>
 
-
+Now we are going to learn some theorems that are
+interconnected. Their interconnections are shown below:
+<CIMG web="pflink.png"/>
 Since we are assuming that all paths in the sample space are
 equally likely, computing probabilities of different events
 amounts to finding the size of the events (i.e., counting the
 number of paths in the event). So the theorems are presented in
 terms of sizes of events rather than in terms of their probabilities. 
 
-<COMMENT>
 We shall start with a discrete version of the intermediate value
-theorem. See the following diagram.
+theorem. See the followin diagram.
 <CIMG web="inter.png">The path meets the horizontal line twice.</CIMG>
 Here we have taken a horizontal line at an integer height and two points on two sides
 of it. Then any path between these two points must meet this
@@ -186,7 +187,7 @@ We cannot have <M>p(t)< L</M>, since <M>t > \max(M).</M>
 Also since <M>p(k) < L,</M> hence <M>p(t)=p(k+1)< L+1.</M>
 </BECAUSE>
 </PF>
-</COMMENT>
+
 <HEAD2>Reflection principle</HEAD2>
 Our aim here is to find probabilities of various sets of paths, or, equivalently to find the sizes of
 of these sets. We can often express them easily using the <M>N_{n,r}</M> notation.
@@ -227,7 +228,8 @@ Enough to show that there is a bijection  <M>f:S\to PATH(\alpha',\beta).</M>
 <B>Step 1: Constructing <M>f</M></B>:
 
 Take any path <M>p\in S.</M> Let <M>\gamma</M> be the first point where the
-path meets <M>L.</M>
+path meets <M>L.</M> This is well-defined thanks to the
+intermediate value theorem for paths.
 
 Reflect around <M>L</M> the part of the path
 between <M>\alpha</M> and <M>\gamma.</M> This will give a path
@@ -304,6 +306,7 @@ Hence the final answer is <M>N_{b-a,q-p}-N_{b-a,q-2h+p}.</M>
 How many paths are there from <M>(0,0)</M> to <M>(10,4)</M> that
 are strictly positive at all times <M>>0?</M>
 
+[Thanks to Krishnam Baregama for pointing out an inconsistency in the problem, which has now been corrected.]
 <SOLN/>
 This is very similar to the exercise above (with <M>L</M> given
 by the horizontal line at height <M>0</M>), except that we start
@@ -313,15 +316,8 @@ However, it is obvious that our path must go to <M>(1,1)</M>
 after the first step. So the last exercise may be applied
 between <M>A:(1,1)</M> and <M>B:(10,4).</M>
 </EXM>
-<HEAD2>Applications of the reflection principle</HEAD2>
-Now we shall look at three theorems that are corolaries to the reflection principle. These are:
-<UL><LI>the first passage theorem</LI>
-<LI>the maximum theorem</LI>
-<LI>the no 0-return theorem</LI>
-</UL>
-These names, by the way, are not standard. 
 
-<HEAD3>First passage theorem</HEAD3>
+<HEAD2>First passage theorem</HEAD2>
 <EXM>
 How many paths are there from <M>(0,0)</M> to <M>(6,2)</M> that do not attain the value <M>2</M> 
  before time 6? Pictorially,  we are counting  paths like the second one in the following diagram. 
@@ -359,7 +355,7 @@ Hence the result.
 </PF>
 
 
-<HEAD3>Maximum theorem</HEAD3>
+<HEAD2>Maximum theorem</HEAD2>
 Here is another application of the reflection principle.
 <EXM>
 How many paths are there from <M>(0,0)</M>  to <M>(11,1)</M>  that have maximum height
@@ -434,7 +430,7 @@ parities. Hence the result.
 </PF>
 
 
-<HEAD3>No 0-return theorem</HEAD3>
+<HEAD2>No 0-return theorem</HEAD2>
 <THM name="No 0-return theorem">
 Consider all paths of length <M>2n</M> starting
 at <M>(0,0)</M>. The number of these paths
@@ -477,9 +473,68 @@ Combining all-positive and all-negative paths, the total count is
 Isn't this surprising? The number of <M>2n</M>-length paths never returning to 0
 equals the number of <M>2n</M>-length paths ending at 0. Could you prove it directly by establishing a bijection between
  these two sets of paths?
+<HEAD2>First 0-return theorem</HEAD2>
+<THM name="First 0-return theorem">
+Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
+The number of these paths that return to <M>0</M> at <M>2n</M>
+for the first time is <M>4N_{2n-2,0}-N_{2n,0}=[[N_{2n,0}][2n-1]].</M>
+</THM>
+<PF>
+Let <M>A</M> be the set of all <M>2n</M>-length paths that never return to 0.
+<P/>
+Let <M>B</M> be the set of all <M>2n</M>-length paths that never return to
+before or at time <M>2n-2.</M> 
+<P/>
+Then we want to find <M>|B\setminus A|.</M>
+<P/>
+Since <M>A\seq B,</M> this is <M>|B|-|A|.</M>
+<P/>
+Now <M>|A| = N_{2n,0}</M> by the <B>No 0-return theorem</B>.
+<P/>
+Also, by the same theorem, <M>|B| = 2^2N_{2n-2,0}.</M>
+<HIDE lab="ext"><MSG>(Why?)</MSG>
+<HIDDEN>By the <B>No 0-return theorem</B>, total number of paths
+of length <M>2n-2</M> that never returns to <M>0</M>
+is <M>N_{2n-2,0}.</M> Then we are free to choose the next two
+steps (from time <M>2n-2</M> to time <M>2n</M>), which may be
+done in <M>2^2</M> ways.</HIDDEN>
+</HIDE>
+<P/>
+Hence the result.
+</PF>
 
+
+<EXR>
+Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
+What is the number of these paths that return to <M>0</M>
+at <M>2r</M> for some given <M>r < n?</M> Also, how many of these
+return to 0 from the positive side?
+</EXR>
+
+<HEAD2>Last 0-return theorem</HEAD2>
+<THM name="Last 0-return theorem">
+Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
+Take any <M>k\in\{1,...,n\}.</M> The number of these paths that
+hit 0 for last time at <M>2k</M> is <M>N_{2k,0}\times N_{2n-2k,0}.</M>
+</THM>
+<PF>
 <COMMENT>
-<THEAD2>Positive duration theorem</THEAD2>
+x = c(1,1,0,0,0,1,0,1,0,0,0,0,1,0)
+y = max(which(cumsum(2*x-1)==0))
+col = rep(1,length(x))
+col[y+1]=2
+rw(x,'pathrg',col)
+</COMMENT>
+<CIMG web="pathrg.png">A typical such path</CIMG>
+The red dot shows the last 0 hit, which occurs at time <M>2k.</M>
+<P/>
+
+We can choose the part before the red dot in <M>N_{2k,0}</M> ways. Also
+independently of that, we can choose the part after the red dot
+in <M>N_{2n-2k,0}</M> ways, by the <B>no 0-return theorem</B>. Hence the result.
+</PF>
+
+<HEAD2>Positive duration theorem</HEAD2>
 We shall now consider the amount of time a path spends in the
 positive side. 
 
@@ -638,69 +693,9 @@ This immediately leads to
  <D>|A_{2n,2k}| = N_{2k,0}N_{2n-2k,0},</D>
 as required. 
 </PF>
-</COMMENT>
+
 
 <HEAD2>Problems for practice</HEAD2>
-<EXR>Prove the following theorem:
-<THM name="First 0-return theorem">
-Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
-The number of these paths that return to <M>0</M> at <M>2n</M>
-for the first time is <M>4N_{2n-2,0}-N_{2n,0}=[[N_{2n,0}][2n-1]].</M>
-</THM>
-<ANS>
-Let <M>A</M> be the set of all <M>2n</M>-length paths that never return to 0.
-<P/>
-Let <M>B</M> be the set of all <M>2n</M>-length paths that never return to
-before or at time <M>2n-2.</M> 
-<P/>
-Then we want to find <M>|B\setminus A|.</M>
-<P/>
-Since <M>A\seq B,</M> this is <M>|B|-|A|.</M>
-<P/>
-Now <M>|A| = N_{2n,0}</M> by the <B>No 0-return theorem</B>.
-<P/>
-Also, by the same theorem, <M>|B| = 2^2N_{2n-2,0}.</M>
-<HIDE lab="ext"><MSG>(Why?)</MSG>
-<HIDDEN>By the <B>No 0-return theorem</B>, total number of paths
-of length <M>2n-2</M> that never returns to <M>0</M>
-is <M>N_{2n-2,0}.</M> Then we are free to choose the next two
-steps (from time <M>2n-2</M> to time <M>2n</M>), which may be
-done in <M>2^2</M> ways.</HIDDEN>
-</HIDE>
-<P/>
-Hence the result.
-</ANS>
-</EXR>
-
-<EXR>
-Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
-What is the number of these paths that return to <M>0</M>
-at <M>2r</M> for some given <M>r < n?</M> Also, how many of these
-return to 0 from the positive side?
-</EXR>
-
-<EXR>Prove the following theorem:
-<THM name="Last 0-return theorem">
-Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
-Take any <M>k\in\{1,...,n\}.</M> The number of these paths that
-hit 0 for last time at <M>2k</M> is <M>N_{2k,0}\times N_{2n-2k,0}.</M>
-</THM>
-<ANS>
-<COMMENT>
-x = c(1,1,0,0,0,1,0,1,0,0,0,0,1,0)
-y = max(which(cumsum(2*x-1)==0))
-col = rep(1,length(x))
-col[y+1]=2
-rw(x,'pathrg',col)
-</COMMENT>
-<CIMG web="pathrg.png">A typical such path</CIMG>
-The red dot shows the last 0 hit, which occurs at time <M>2k.</M>
-<P/>
-
-We can choose the part before the red dot in <M>N_{2k,0}</M> ways. Also
-independently of that, we can choose the part after the red dot
-in <M>N_{2n-2k,0}</M> ways, by the <B>no 0-return theorem</B>. Hence the result.
-</ANS></EXR>
 <EXR>
 (Ballot problem) two candidates are contesting in
 a vote. There are <M>n</M> voters who have cast their votes. The
@@ -870,6 +865,7 @@ of <M>u_{2n}</M> and <M>v_{2n}</M> that
 <D>
 v_2 u_{2n-2} + \cdots + v_{2n} u_0 = u_{2n}.
 </D>
+[Corrected an error pointed out by Krishnam Baregama.]
 <ANS>Condition on the first time the path returns to zero, and then use the theorem of total probability.</ANS>
 </EXR>
 
