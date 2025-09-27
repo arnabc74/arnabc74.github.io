@@ -722,9 +722,21 @@ Var(X_1)+\cdots+Var(X_r).$</blockquote>
 It is also possible to derive these directly without using the Geometric
 distribution. The direct proof is more complicated and uses the result 
 $$
-{x-1\choose r-1} = (-1)^{x-r} {r\choose x-r},
+{x-1\choose r-1} = (-1)^{x-r} {-r\choose x-r},
 $$
-which is proved in the appendix.
+[Thanks to Mayukh for pointing out a typo here.]
+<a href="javascript:hideShow('pf');">[Proof]</a>
+<div id="pf" style="display:none;background-color:#ffcccc;">
+$$\begin{eqnarray*}
+{x-1\choose r-1} 
+&amp; =&amp;  {x-1\choose x-r}\\
+&amp; =&amp; \frac{(x-1)(x-2)\cdots(\not x-\not 1-\not x+r+\not1)}{(x-r)!}\\
+&amp; =&amp; \frac{(x-1)(x-2)\cdots(r)}{(x-r)!}\\
+&amp; =&amp; (-1)^{x-r}\frac{(-r)(-r-1)\cdots(-r-(x-r)+1)}{(x-r)!}\\
+&amp; =&amp; (-1)^{x-r}{ -r \choose x-r}.
+\end{eqnarray*}$$
+</div>
+
 <font color="red">
 <pre>
 barplot(dnbinom(0:10, size=3, prob=0.5))

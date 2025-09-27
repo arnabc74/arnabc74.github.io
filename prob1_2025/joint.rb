@@ -595,7 +595,9 @@ Also <M>cov(X_1-X_2,X_2+X_3) = cov(X_1,X_2)+\cov(X_1,X_3)-cov(X_2,X_2)-cov(X_2,X
 </EXR>
 ::<EXR><CIMG web="jt11.png"></CIMG>
 <ANS>
-<M>V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8+4\times [[12]]\times \sqrt{1\times 2}.</M>
+<M>V(X-2Y) = V(X)+4V(Y)-4cov(X,Y) = 1+8-4\times [[12]]\times \sqrt{1\times 2}.</M>
+
+[Thanks to Mayukh for correcting typo here.]
 </ANS>
 </EXR>
 ::<EXR><CIMG web="jt12.png"></CIMG>

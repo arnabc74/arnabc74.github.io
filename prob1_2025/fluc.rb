@@ -40,7 +40,7 @@ of up's and down's. So the number is <M>\binom{10}{5}.</M>
 </EXM>
 
 
-<EXR>Find the probability that the drunkard ends up at any given
+::<EXR>Find the probability that the drunkard ends up at any given
 <M>k\in\zz</M> in exactly <M>n</M> steps.</EXR>
 
 <HEAD2>Notation</HEAD2>
@@ -112,7 +112,7 @@ So <M>P(A) = [[|A|][|\Omega|]] =
 </M>
 </EXM>
 
-<EXR>
+::<EXR>
 Find the numerical value of the probability you found in the
 above example for <M>n=5.</M> Check it by running the following
 code:
@@ -204,7 +204,7 @@ Let
  <M>\alpha'</M> be the reflection
 of <M>\alpha</M> along <M>L.</M> Thus here, <M>\alpha' = (2,4).</M>  
 Then the required number 
-the same as <M>|PATH(\alpha',\beta).</M>
+the same as <M>|PATH(\alpha',\beta)|.</M>
 
 <BOX name="Reflection principle">
 Draw any horizontal line <M>L</M> at an integer height. Pick any two
@@ -641,7 +641,7 @@ as required.
 </COMMENT>
 
 <HEAD2>Problems for practice</HEAD2>
-<EXR>Prove the following theorem:
+::<EXR>Prove the following theorem:
 <THM name="First 0-return theorem">
 Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
 The number of these paths that return to <M>0</M> at <M>2n</M>
@@ -672,14 +672,14 @@ Hence the result.
 </ANS>
 </EXR>
 
-<EXR>
+::<EXR>
 Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
 What is the number of these paths that return to <M>0</M>
 at <M>2r</M> for some given <M>r < n?</M> Also, how many of these
 return to 0 from the positive side?
 </EXR>
 
-<EXR>Prove the following theorem:
+::<EXR>Prove the following theorem:
 <THM name="Last 0-return theorem">
 Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
 Take any <M>k\in\{1,...,n\}.</M> The number of these paths that
@@ -701,7 +701,7 @@ We can choose the part before the red dot in <M>N_{2k,0}</M> ways. Also
 independently of that, we can choose the part after the red dot
 in <M>N_{2n-2k,0}</M> ways, by the <B>no 0-return theorem</B>. Hence the result.
 </ANS></EXR>
-<EXR>
+::<EXR>
 (Ballot problem) two candidates are contesting in
 a vote. There are <M>n</M> voters who have cast their votes. The
 votes are being counted with the <M>n</M> ballot papers ordered
@@ -740,11 +740,11 @@ Hence #{paths from (0,0) to <M>(p+q,p-q)</M> never returning to 0}
 So the required probability is <M>[[p-q][p+q]],</M> as required.
 </ANS>
 </EXR>
-<EXR><CIMG web="most22.png"/>
+::<EXR><CIMG web="most22.png"/>
 <ANS>This is just the complement of the last problem. So the answer is <M>1-[[a-b][a+b]]=[[2b][a+b]].</M></ANS>
 </EXR>
 
-<EXR>Let <M>a,b>0.</M> Show that the number of paths from <M>(0,0)</M> to <M>(n,a)</M> that are
+::<EXR>Let <M>a,b>0.</M> Show that the number of paths from <M>(0,0)</M> to <M>(n,a)</M> that are
 always <M>>-b</M> is <M>N_{n,a}-N_{n,a+2b}.</M> <ANS>
 #{paths from <M>(0,0)</M> to <M>(n,a)</M> that are always <M>>-b</M>}<BR/>
 =#{paths from <M>(0,0)</M> to <M>(n,a)</M>}-#{paths from <M>(0,0)</M> to <M>(n,-a-2b)</M>} by reflection principle<BR/>
@@ -753,7 +753,7 @@ always <M>>-b</M> is <M>N_{n,a}-N_{n,a+2b}.</M> <ANS>
 
 </ANS></EXR>
 
-<EXR>Let <M>b> a> 0.</M> Show that the number of paths
+::<EXR>Let <M>b> a> 0.</M> Show that the number of paths
 from <M>(0,0)</M> to <M>(n,a)</M> that are
 always <M><b</M> is <M>N_{n,a}-N_{n,2b-a}.</M>
 <ANS>
@@ -762,13 +762,13 @@ always <M><b</M> is <M>N_{n,a}-N_{n,2b-a}.</M>
  = <M>N_{n,a}-N_{n,2b-a}.</M> 
 </ANS></EXR>
 
-<EXR>Show that if <M>a> c> 0</M>  and <M>b>0</M>, then  the number of paths from (0,0) to <M>(n,c)</M>
+::<EXR>Show that if <M>a> c> 0</M>  and <M>b>0</M>, then  the number of paths from (0,0) to <M>(n,c)</M>
   that attain height <M>a</M>  and <I>then</I>  attain height <M>-b</M>  before finishing at <M>(n,c),</M>  is <M>N_{n,2a+2b+c}.</M> 
  The paths may have also attained height <M>-b</M>  before attaining height  <M>a.</M>
 <ANS>
 <CIMG web="drefl.png"/>
 </ANS> </EXR>
-<EXR>Let <M>a>c>0</M> and <M>b>0.</M> Show that the number of
+::<EXR>Let <M>a>c>0</M> and <M>b>0.</M> Show that the number of
 paths from <M>(0,0)</M> which hit the
 horizontal line at height <M>a</M> and then lead to <M>(n,c)</M>
 without having touched the horizontal line at height <M>-b</M> is  
@@ -784,7 +784,7 @@ Hence the result.
 <CIMG web="flucex9.png">How <M>|B|</M>  is found by 2 reflections</CIMG>
 </ANS></EXR>
 
-<EXR>Prove that there are as many paths from (0,0)
+::<EXR>Prove that there are as many paths from (0,0)
 to <M>(2n+2,0)</M> with all interior vertices <M>>0</M> as there
 are paths from (0,0) to <M>(2n,0)</M> where all interior
 vertices are <M>\geq 0.</M><ANS>
@@ -803,7 +803,7 @@ to <M>(2n,0)</M> with all interior vertices <M>\geq 0</M>}.
 </ANS></EXR>
 
 
-<EXR>True or false: The probability that before time <M>2n</M> there occur
+::<EXR>True or false: The probability that before time <M>2n</M> there occur
 exactly <M>r</M> returns to the origin equals the probability
 that a return occurs at time <M>2n</M>  preceded by at
 least <M>r</M> returns.
@@ -811,7 +811,7 @@ least <M>r</M> returns.
  But the second probability is <M>[[14]].</M></ANS>
 </EXR>
 
-<EXR>Consider random paths of length <M>2n</M> starting
+::<EXR>Consider random paths of length <M>2n</M> starting
 from <M>(0,0).</M> Let <M>k\in\{1,...,n\}.</M> Consider the two events:
 <Q>
 <M>A = </M> the path passes through <M>(2n,0)</M> and the maximum
@@ -827,7 +827,7 @@ For <M>k\in\{1,...,n\},</M>  the result follows directly from reflection princip
  One counterexample, if when <M>k=-10</M>  and <M>n=1.</M>  The result holds if <M>k>n,</M>  because then <M>P(A)=P(B)=0.</M>
 </ANS></EXR>
 
-<EXR>Find the fallacy in the following argument:
+::<EXR>Find the fallacy in the following argument:
 Consider the set of all paths of length 10 starting
 from <M>(0,0).</M>
 <P/>
@@ -847,7 +847,7 @@ Hence <M>|A|=|B|.</M>
 <ANS>The "<M>|B|\leq |A|</M> " argument is wrong. What it says is: number of paths <I>of length 8</I>
  that never return to 0 is <M>\leq |A|</M> ".</ANS> </EXR>
 
-<EXR><CIMG web="most56.png"/>
+::<EXR><CIMG web="most56.png"/>
 <ANS>
 Let the total number of balls in either box be <M>k.</M>  Let there be <M>w_i</M>  white balls in box <M>i.</M>  Then the
  given condition says 

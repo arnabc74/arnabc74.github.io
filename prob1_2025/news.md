@@ -6,6 +6,9 @@
 
         - Updated the [Random walk](fluc.html){target="naya"} page.
 
+	- Corrected a few typos in the [Infinite support](distrib2.html){target="naya"}
+	  page. Thanks to Mayukh.
+
 **Sepetember 26, 2025:**
 
 :	Added two important exercises in the 
