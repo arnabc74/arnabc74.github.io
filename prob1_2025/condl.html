@@ -169,7 +169,7 @@ function myFunction() {
 </ul>
 <hr/>
 <title xmlns="">Conditional distribution</title>
-
+$\newcommand{\ind}{\mathbf I}$
 <h1><a
 name="Conditional distribution">Conditional distribution</a></h1>
 
@@ -263,8 +263,10 @@ Let $(X,Y)$  be discrete with $X$  having support $\{x_1,x_2,...,x_m\}$  and $Y$
 $\{y_1,y_2,...,y_n\}$.
 <p></p>
  For $B\subseteq {\mathbb R}$, let $f(x_i, B) = P(Y\in B | X=x_i)$. Then for $A\subseteq {\mathbb R}$  show that
-$$P(X\in A,\, Y\in B) = E\big(f(X,B)\big).$$
-The expectation in the RHS is $E\big(f(X,B)\big) =  \sum_{i=1}^m f(x_i, B)P(X=x_i)$.
+$$P(X\in A,\, Y\in B) = E\big(f(X,B)\ind_{\{X\in A\}}\big).$$
+Here $\ind_{\{X\in A\}}$  is the indicator variable for the event $\{X\in A\}$.
+<p></p>
+The expectation in the RHS is $E\big(f(X,B)\ind_{\{X\in A\}}\big) =  \sum_{i:x_i\in A} f(x_i, B)P(X=x_i)$.
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">Directly from the theorem of total probability.</div></p>
@@ -277,7 +279,7 @@ What may not be readily obvious is that the converse of the exercise is also tru
 ::<p>
 <b>EXERCISE 2:</b>&nbsp;Let $(X,Y)$  be as in the last exercise. For $B\subseteq{\mathbb R}$, let  $g(x_i, B)$  be such
  that for every $A\subseteq {\mathbb R}$  we have 
-$$P(X\in A,\, Y\in B) = E\big(g(X, B)\big).$$
+$$P(X\in A,\, Y\in B) = E\big(g(X, B)\ind_{\{X\in A\}}\big).$$
 Then show that we must have $g(x_i, B) = P(Y\in B|X=x_i)$  for $B\subseteq{\mathbb R}$  and $i=1,...,m$.
 <p><a
 href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
