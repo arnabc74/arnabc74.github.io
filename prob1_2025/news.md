@@ -1,3 +1,9 @@
+**Sepetember 28, 2025:**
+
+:	Corrected some silly typos in the solution of Exercise 6 in the
+	[Conditional distribution](condl.html){target="naya"} page.
+	Thanks to Tanmay Rai.
+
 **Sepetember 27, 2025:**
 
 :	- Corrected a serious typo in the  two important exercises added 

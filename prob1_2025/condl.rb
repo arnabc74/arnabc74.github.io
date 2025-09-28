@@ -259,13 +259,15 @@ The third equality follows directly from these two.
 
 You might like to solve (b) first.
 <ANS>
-(b) <M>P(X=Y) = [[1N]].</M>
+(b) <M>P(X=Y) = [[1][N+1]].</M>
 
-(a) <M>P(X< Y) = P(Y < X) </M>  and <M>P(X< Y) + P(Y < X) P(X=Y)=1.</M>
+(a) <M>P(X< Y) = P(Y < X) </M>  and <M>P(X< Y) + P(Y < X) +P(X=Y)=1.</M>
 
-Hence <M>P(X> Y) = [[12]]\times(*(1-[[19]])*) = [[49]].</M>
+Hence <M>P(X> Y) = [[12]]\times(*(1-[[1][N+1]])*) = [[N][2(N+1)]].</M>
 
-So <M>P(X\geq Y) = [[49]]+[[19]]=[[59]].</M>
+So <M>P(X\geq Y) = [[1][N+1]]+[[N][2(N+1)]] = [[N+2][2(N+1)]].</M>
+
+[Thanks to Tanmay for pointing out a couple of silly mistakes here.]
 </ANS>
 <HR/></EXR>
 ::<EXR><EIMG web="condist5.png"></EIMG>
