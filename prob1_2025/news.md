@@ -1,10 +1,20 @@
-**Sepetember 28, 2025:**
+**September 28, 2025:**
+
+:	- Corrected a typos in the hint of Exercise 2 in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+        Thanks to Samyak.
+
+:	- Corrected a typos in the proof of Cauchy-Schwarz inequality in the 
+      [Joint distribution](joint.html){target="naya"} page.
+        Thanks to Nuhad.
+
+**September 28, 2025:**
 
 :	Corrected some silly typos in the solution of Exercise 6 in the
 	[Conditional distribution](condl.html){target="naya"} page.
 	Thanks to Tanmay Rai.
 
-**Sepetember 27, 2025:**
+**September 27, 2025:**
 
 :	- Corrected a serious typo in the  two important exercises added 
 	yesterday in the 
@@ -15,7 +25,7 @@
 	- Corrected a few typos in the [Infinite support](distrib2.html){target="naya"}
 	  page. Thanks to Mayukh.
 
-**Sepetember 26, 2025:**
+**September 26, 2025:**
 
 :	Added two important exercises in the 
 	[Conditional distribution](condl.html){target="naya"} page.
