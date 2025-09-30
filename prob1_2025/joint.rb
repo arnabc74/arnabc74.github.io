@@ -421,10 +421,15 @@ Since this is <M>\geq0,</M> the inequality follows immediately.
 <P/>
 Also equality holds iff <M>V(Z)=0</M>, i.e., <M>Z</M> is degenerate.
 <P/>
-So we have <M>V(X) X - cov(X,Y) Y = kV(X)</M> for some <M>k\in\rr.</M>
+So we have <M>P(Z=k)=1</M> for some <M>k\in\rr,</M>
 
-<P/>
-This completes the proof.
+i.e., <M>P(Y - \beta X = k) = 1</M>. 
+
+Thus, if we take <M>a=-\beta</M>, <M>b = 1</M>  and <M>c = k</M>, then 
+<M>P(aX+bY=c)=1</M>, as
+ required, completing the proof.
+
+[Thanks to Nuhad for pointing out a typo in the proof.]
 </PF>
 
 <DEFN name="Correlation">
