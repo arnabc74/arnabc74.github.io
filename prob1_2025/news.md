@@ -1,10 +1,14 @@
 **September 28, 2025:**
 
-:	- Corrected a typos in the hint of Exercise 2 in the 
+:	- Corrected a typo in the hint of Exercise 2 in the 
 	[Conditional distribution](condl.html){target="naya"} page.
         Thanks to Samyak.
 
-:	- Corrected a typos in the proof of Cauchy-Schwarz inequality in the 
+:	- Corrected a typo in the proof of Cauchy-Schwarz inequality in the 
+      [Joint distribution](joint.html){target="naya"} page.
+        Thanks to Nuhad.
+
+:	- Corrected a typo in the hint of Exercise 21 in the 
       [Joint distribution](joint.html){target="naya"} page.
         Thanks to Nuhad.
 

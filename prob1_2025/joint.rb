@@ -690,13 +690,13 @@ Here <M>X</M>  can take values 0,1,2,...,10000 with the probabilities
 The probability of refund is <M>\sum_{k>a} p_k.</M>  
 
 So <M>a</M>  needs to be chosen such that 
-<D>\sum_{k>a} p_k \leq 0.01 <\sum_{k\geq a} p_k.</D>
+<D>\sum_{k>a} p_k < 0.01 \leq\sum_{k\geq a} p_k.</D>
 Finding this <M>a</M>  is not easy by hand, though trivial using a computer. 
 
 There is a theorem called the
  Central Limit Theorem which allows a simple approximate way to find <M>a.</M>  We shall learn it in the next semester.
 
-[Thanks to Samyak for correcting a typo here.]
+[Thanks to Samyak and Nuhad for correcting a couple of typos here.]
 </ANS>
 </EXR>
 
