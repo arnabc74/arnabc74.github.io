@@ -79,7 +79,7 @@ What may not be readily obvious is that the converse of the exercise is also tru
  that for every <M>A\seq \rr</M>  we have 
 <D>P(X\in A,\, Y\in B) = E(#(g(X, B)\ind_{\{X\in A\}})#).</D>
 Then show that we must have <M>g(x_i, B) = P(Y\in B|X=x_i)</M>  for <M>B\seq\rr</M>  and <M>i=1,...,m</M>.
-<ANS>Take <M>B=\{y_j\}</M>.</ANS></EXR>
+<ANS>Take <M>A=\{x_i\}</M>. [Thanks to Samyak for correcting a typo even in this short answer!]</ANS></EXR>
 The above exercise will prove very important later, since it provides a definition of <M>P(Y\in
  B|X=x_i)</M>  free of explicit division by <M>P(X=x_i)</M>. This  freedom will later allow us to defined conditional distribution
  of <M>Y</M>  given <M>X</M>   when <M>X</M>  is continuous. 
