@@ -167,15 +167,17 @@ Then the total number of lonely balls is <M>X = \sum I_i.</M>
 So we are to find <M>E(X) = \sum E(I_i).</M>
 <P/>
 Let <M>Y_i = </M> the hole where the <M>i</M>-th ball has fallen.
-<P/>
+
 Then <M>E(I_i|Y_i=1)</M> is the conditional probability that
 all the balls except the <M>i</M>-th one has landed in
-holes <M>2,...,10</M> given that the <M>i</M>-th ball has landed
+holes <M>3,...,10</M> given that the <M>i</M>-th ball has landed
 in hole 1.
-<P/>
+
+[Thanks to Nuhad for correcting a typo in the line above.]
+
 You should be able to compute this easily. Similarly, you can
 compute <M>E(I_i|Y_i=k)</M> for <M>k=1,...,10.</M>
-<P/>
+
 Notice that <M>Y_i</M> can take values <M>1,...,10</M> with equal probabilities.
 <P/>
 So tower property should provide the answer as
@@ -272,7 +274,7 @@ So <M>P(X\geq Y) = [[1][N+1]]+[[N][2(N+1)]] = [[N+2][2(N+1)]].</M>
 <HR/></EXR>
 ::<EXR><EIMG web="condist5.png"></EIMG>
 
-Here Exercise 14 means the last exercise (i.e., Exercise 4 according to our numbering).
+Here Exercise 14 means the last exercise.
 <HR/>
 <ANS>
 (a) Let <M>U = \min(X,Y).</M>   Then <M>U</M>  can take values <M>0,...,N.</M>  
@@ -289,11 +291,11 @@ So <M>P(U=k) = [[(N-k)^2-(N-k+1)^2][(N+1)^2]] = ... .</M>
 
 <M>P(T=k) = P(U\leq k)-P(T\leq k-1).</M>
 
-Now <M>P(T\leq k) = P(X,Y\leq k) = P(X\leq k)P(Y\leq k) = (*([[k+1][N]])*)^2.</M>
+Now <M>P(T\leq k) = P(X,Y\leq k) = P(X\leq k)P(Y\leq k) = (*([[k+1][N+1]])*)^2.</M>
 
-Similarly, <M>P(T\leq k-1) = (*([[k][N]])*)^2.</M>
+Similarly, <M>P(T\leq k-1) = (*([[k][N+1]])*)^2.</M>
 
-So <M>P(T=k) = (*([[(k+1)^2-k^2][N^2]] = [[2k+1][N^2]].</M>
+So <M>P(T=k) = [[(k+1)^2-k^2][(N+1)^2]] = [[2k+1][(N+1)^2]].</M>
 
 (c)   <M>R=|Y-X|</M>  can take values in 0,1,...,<M>N.</M> 
 
@@ -305,11 +307,13 @@ Now <M>P(R=k \& X=Y) =0.</M>
 
 Also <M>P(R=k \& X < Y) =P(R=k \& X > Y).</M>
 
-For <M>\{R=k\ & X < Y\}</M>  to happen we must have <M>X = 0,...,N-k</M>  and correspondingly <M>Y = k,...,N.</M>  
+For <M>\{R=k\& X < Y\}</M>  to happen we must have <M>X = 0,...,N-k</M>  and correspondingly <M>Y = k,...,N.</M>  
 
-So <M>P(R=k\ & X < Y) = [[N-k+1][N]].</M>
+So <M>P(R=k\& X < Y) = [[N-k+1][(N+1)^2]].</M>
 
-Hence <M>P(R=k) = [[2(N-k+1)][N]].</M>
+Hence <M>P(R=k) = [[2(N-k+1)][(N+1)^2]].</M>
+
+[Thanks to Nuhad for correcting a couple of typos here.]
 </ANS>
 </EXR>
 ::<EXR><EIMG web="condist6.png"></EIMG>

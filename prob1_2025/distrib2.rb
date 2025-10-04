@@ -88,25 +88,25 @@ following probabilities.
 </LI><LI><M>P(G\leq 3)</M>
 </LI><LI><M>P(G>3)</M>
 </LI></FL>
-</EXR><ANS ref="geo1"><FL><LI><M>0.128</M>
+<ANS ref="geo1"><FL><LI><M>0.128</M>
 </LI><LI><M>0</M>
 </LI><LI><M>0.2</M>
 </LI><LI><M>0.488</M>
 </LI><LI><M>1-0.488=0.512.</M>
-</LI></FL></ANS>
+</LI></FL></ANS></EXR>
 <P/>
 
 <EXR ref="geo2">
 Find <M>P(T\mbox{ is even})</M> where <M>T\sim</M><B>Geom</B><M>(0.4).</M> 
-</EXR><ANS ref="geo2"><M>\frac{1-\theta}{2-\theta}.</M></ANS>
-<HINT ref="geo2"> You will need the geometric series here.
+<ANS ref="geo2"> You will need the geometric series here.
 <MULTILINE>P(X\mbox{ is even})&=& P(X=2)+P(X=4)+\cdots\\
                    &=&(1-\theta)\theta +(1-\theta)^3 \theta+
                               (1-\theta)^5 \theta+\cdots\\
                    &=& \theta(1-\theta)\left[
 1+(1-\theta)^2 + (1-\theta)^4+\cdots\right].
-</MULTILINE></HINT>
-
+</MULTILINE>
+The answer is <M>\frac{1-\theta}{2-\theta}.</M></ANS>
+</EXR>
 <EXM>
 Some versions of Ludo require you to get a `6' on the die before your
 counter can move. Sometimes it takes frustratingly long time before you
@@ -120,7 +120,7 @@ probability 1/6 of turning up), then what is the distribution of <M>X?</M>
 <EXR ref="geo3">
 In the above example compute the probability of getting the first `6' within
 the first 3 rolls. 
-</EXR><ANS ref="geo3"><M>\frac{91}{216}</M></ANS>
+<ANS ref="geo3"><M>\frac{91}{216}</M></ANS></EXR>
 <P/>
 <EXR ref="geo4">
 Some couples are so keen about having a son that they go on producing
@@ -129,12 +129,12 @@ babies until they get their first son, and then they stop having children.
 either gender is equally likely. Also assume that the births are
 independent. Compute the probability that such a  couple has exactly 2
 daughters. 
-</EXR><ANS ref="geo4"><M>\frac18</M></ANS>
-<HINT ref="geo4">
+<ANS ref="geo4">
 Let <M>D</M> denote the number of daughters. Then notice that 
 <M>D+1</M>
-is a <B>Geom</B>(0.5) random variable.
-</HINT>
+is a <B>Geom</B>(0.5) random variable. So answer is <M>[[18]]</M>.
+</ANS></EXR>
+
 <B>Expectation and variance:</B> If <M>X</M> is a <B>Geom</B><M>(\theta)</M>
 random variable, then
 <MULTILINE>
@@ -181,11 +181,11 @@ variable for the following values of <M>\theta.</M>
 </LI><LI><M>\theta = \frac59.</M>
 </LI><LI><M>\theta = \frac89.</M>
 </LI></FL>
-</EXR>
 <ANS ref="geoxv1"><FL><LI><M>\frac43,\frac23.</M>
 </LI><LI><M>\frac95,\frac65.</M>
 </LI><LI><M>\frac98 \frac38.</M>
 </LI></FL></ANS>
+</EXR>
 <P/>
 <EXM>
 When a computer tries to connect to another computer, it
@@ -207,7 +207,10 @@ E(X) = 1/0.8 = 1.25
 <P/>
 <EXR ref="geo5">
 Compute <M>E(D)</M> and <M>Var(D)</M> in the son-daughter exercise above.
-</EXR><ANS ref="geo5"><M>E(D)=2,</M> <M>Var(D)=2.</M></ANS>
+<ANS><M>E(D)=1,</M> <M>Var(D)=2.</M>  
+
+[Thanks to Mayukh for correcting a typo here.]
+</ANS></EXR>
 
 <HEAD3>Memoryless property</HEAD3>
 Suppose you pick a random man of 18 years. What is the probability that he would survive for one more year? Let's say it
@@ -311,11 +314,12 @@ probabilities.
 </LI><LI><M>P(T=3)</M>
 </LI><LI><M>P(T\leq5)</M>
 </LI></FL>
-</EXR><ANS ref="nb1"><FL><LI><M>\frac{27}{512}</M>
+<ANS ref="nb1"><FL><LI><M>\frac{27}{512}</M>
 </LI><LI><M>0</M>
 </LI><LI><M>\frac3{32}</M>
 </LI><LI><M>\frac9{128}</M>
 </LI></FL></ANS>
+</EXR>
 <P/>
 <B>Expectation and variance:</B> 
 If <M>X\sim</M><B>NegBin</B><M>(\theta,r),</M> then
@@ -331,12 +335,12 @@ Var(X) & = & \frac{r(1-\theta)}{\theta^2}
 </LI><LI><M>r=1, \theta=\frac23</M>
 </LI><LI><M>r=5, \theta=\frac13</M>
 </LI></FL>
-</EXR>
 <ANS ref="nbxv1"><FL><LI><M>6,r=3, \theta=\frac12</M>
 </LI><LI><M>10, 40 r=2.</M>
 </LI><LI><M>\frac32,\frac34.</M>
 </LI><LI><M>15, 30.</M>
 </LI></FL></ANS>
+</EXR>
 <P/>
 It should be apparent from the description of the distribution that
 Negative Binomial distribution is related with the Geometric
@@ -370,11 +374,10 @@ variables, then
 Using the above result and the mean and variance of
 <B>Geom</B><M>(\theta),</M>
 derive the formula for mean and variance of <B>NegBin</B><M>(r,\theta).</M>
-</EXR>
-<HINT ref="nbxv2">Use the result that <M>E(X_1+\cdots+X_r)=
+<ANS ref="nbxv2">Use the result that <M>E(X_1+\cdots+X_r)=
 E(X_1)+\cdots+E(X_r).</M> Also, since <M>X_1,...,X_r</M> are independent,
 so  <M>Var(X_1+\cdots+X_r)=
-Var(X_1)+\cdots+Var(X_r).</M></HINT>
+Var(X_1)+\cdots+Var(X_r).</M></ANS></EXR>
 <P/>
 It is also possible to derive these directly without using the Geometric
 distribution. The direct proof is more complicated and uses the result 
@@ -419,15 +422,17 @@ If <M>X\sim</M><B>Poi</B><M>(3),</M> then find the following probabilities.
 </LI><LI><M>P(X= -1)</M>
 </LI><LI><M>P(X\leq 3)</M>
 </LI></FL>
-</EXR><ANS ref="poi1"><FL><LI><M>27e^{-3}/8</M>
+<ANS ref="poi1"><FL><LI><M>27e^{-3}/8</M>
 </LI><LI><M>e^{-3}</M>
 </LI><LI><M>0</M>
-</LI><LI><M>43e^{-3}/4</M>
+</LI><LI><M>13e^{-3}</M>  [Thanks to Mayukh for correcting a typo here.]
 </LI></FL></ANS>
+</EXR>
 <P/>
 <EXR ref="poi2">
 What is the probability that a <B>Poi</B><M>(5)</M> random variable is even?
-</EXR><ANS ref="poi2"><M>(e^5+e^{-5})/2</M></ANS>
+<ANS ref="poi2"><M>(1+e^{-10})/2</M>  [Thanks to Mayukh for correcting a typo here.]</ANS>
+</EXR>
 <P/>
 <B>Where used:</B> One use of Poisson distribution is in approximating
 Binomial distribution.
@@ -461,7 +466,8 @@ box is rejected by the quality control inspector. It is known that each
 item is OK with probability 0.01, and that the items are independent. Use
 Poisson approximation to compute the probability that a box is not
 rejected.
-</EXR><ANS ref="poi3"><M>1-\frac{8}{3e}</M></ANS>
+<ANS ref="poi3"><M>1-\frac{8}{3e}</M></ANS>
+</EXR>
 <P/>
 <B>Expectation and variance:</B> If <M>X</M> has <B>Poi</B><M>(\lambda)</M>
 distribution then
@@ -526,11 +532,11 @@ Find the expected values of the following random variables.
 </LI><LI><M>Y\sim</M><B>Poi</B><M>(\frac12).</M>
 </LI><LI><M>Z\sim</M><B>Poi</B><M>(2.5).</M>
 </LI></FL>
-</EXR>
 <ANS ref="poixv1"><FL><LI><M>E(X)=2.</M>
 </LI><LI><M>E(Y)=\frac12.</M>
 </LI><LI><M>E(Z)=2.5.</M>
 </LI></FL></ANS>
+</EXR>
 <P/>
 <EXR ref="poixv2">
 Find the variance of a <B>Poi</B><M>(\lambda)</M> random variable for the
@@ -539,11 +545,11 @@ following values of <M>\lambda.</M>
 </LI><LI><M>9</M>
 </LI><LI><M>0.01</M>
 </LI></FL>
-</EXR>
 <ANS ref="poixv2"><FL><LI><M>1</M>
 </LI><LI><M>9</M>
 </LI><LI><M>0.01</M>
 </LI></FL></ANS>
+</EXR>
 <P/>
 <BOX>
 If <M>X</M> is a <B>Poi</B><M>(\alpha)</M> random variable, <M>Y</M> is a
@@ -556,7 +562,8 @@ If <M>X_1,X_2,X_3,X_4</M> are independent random variables with
  distributions <B>Poi</B>(1),<B>Poi</B>(2),<B>Poi</B>(4) and <B>Poi</B>(5),
  respectively.
 Find the distribution of <M>(X_1+\cdots+X_4).</M>
-</EXR><ANS ref="poi4"><B>Poi</B>(12)</ANS>
+<ANS ref="poi4"><B>Poi</B>(12)</ANS>
+</EXR>
 
 <HEAD3>Sum of independent Poissons</HEAD3>
 <THM>

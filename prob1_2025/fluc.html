@@ -164,19 +164,25 @@ function myFunction() {
 <a href="#Reflection principle">Reflection principle</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
-<a href="#Applications of the reflection principle">Applications of the reflection principle</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#First passage theorem">First passage theorem</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Maximum theorem">Maximum theorem</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#No 0-return theorem">No 0-return theorem</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problems for practice">Problems for practice</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises about first time visits">Exercises about first time visits</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises regarding never returning to 0">Exercises regarding never returning to 0</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises about the maximum place visited">Exercises about the maximum place visited</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises about first return to 0">Exercises about first return to 0</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercises about last return to 0">Exercises about last return to 0</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Other problems">Other problems</a>
 </li>
 </ul>
 <hr/>
@@ -568,26 +574,17 @@ between $A:(1,1)$ and $B:(10,4).$
 </p>
 
 <h2><a
-name="Applications of the reflection principle">Applications of the reflection principle</a></h2>
-Now we shall look at three theorems that are corolaries to the reflection principle. These are:
-<ul>
-<li>the first passage theorem</li>
-
-<li>the maximum theorem</li>
-
-<li>the no 0-return theorem</li>
-
-</ul>
-These names, by the way, are not standard. 
+name="Problems for practice">Problems for practice</a></h2>
+Here are a few exercises that will demonstrate some application of the reflection principle.
 <p></p>
 
 <h3><a
-name="First passage theorem">First passage theorem</a></h3>
+name="Exercises about first time visits">Exercises about first time visits</a></h3>
 
 <p>
-<b>EXAMPLE 6:</b>&nbsp;
-How many paths are there from $(0,0)$ to $(6,2)$ that do not attain the value $2$ 
- before time 6? Pictorially,  we are counting  paths like the second one in the following diagram. 
+<b>EXERCISE 3:</b>&nbsp;Consider a simple, symmetric random walk starting from 0. What is the chance it visits 2 for
+ the first time at time 6? 
+Pictorially,  we need to  count  paths like the second one in the following diagram. 
 <center>
 <table width="100%">
 <tr>
@@ -600,8 +597,9 @@ OK. (c) Attains 2 before times 6.</th>
 </table>
 </center>
 
-<p></p>
-<b>SOLUTION:</b>
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
 Notice that any valid path must pass through $(5,1)$, and
 you have no choice about the last segment (it must be upwards).  So we are
  counting all paths from
@@ -609,21 +607,19 @@ you have no choice about the last segment (it must be upwards).  So we are
  meeting the horizontal line at 6. 
 <p></p>
 The answer may now be obtained easily using the reflection principle.
- ■
+</div></p>
+
 </p>
-This logic immediately leads to the next theorem.
-<fieldset>
-<legend><b><i>First passage theorem</i></b></legend>
-Consider all paths of length $n$ starting at $(0,0).$
-Let $r\in\{1,...,n\}.$ Then the number of paths that attain
-height $r$ for the first time at time $n$ is 
-$$
-N_{n-1,r-1}-N_{n-1,r+1}.
-$$
-</fieldset>
-First let us look at some sample paths for $n=6$ and $r=2:$
+The next exercise is an obvious generalisation.
 <p>
-<b><i>Proof:</i></b>
+<b>EXERCISE 4:</b>&nbsp;Let $r,n\in{\mathbb N}$ with $r\leq n$.   Consider a simple, symmetric random walk starting from 0. Then
+ the chance of its visiting
+ $r$  for the first time
+ at time $n$  is 
+$$\frac{N_{n-1,r-1}-N_{n-1,r+1}}{2^{-n}}.$$
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">
 Such a path must pass through $(n-1,r-1)$ and $(n,r).$
 Also it must never meet the the line at height $r$ up to and
 including time $n-1.$
@@ -631,33 +627,118 @@ including time $n-1.$
 By reflection principle the path up to time $n-1$ may be
 chosen in $N_{n-1,r-1}-N_{n-1,r+1}$ ways. The step from
 time $n-1$ to $n$ is forced (it has to move up). 
-<p></p>
-Hence the result.
-<b><i>[QED]</i></b>
+</div></p>
 </p>
 
 <p></p>
 
 <h3><a
-name="Maximum theorem">Maximum theorem</a></h3>
-Here is another application of the reflection principle.
+name="Exercises regarding never returning to 0">Exercises regarding never returning to 0</a></h3>
+
 <p>
-<b>EXAMPLE 7:</b>&nbsp;
-How many paths are there from $(0,0)$  to $(11,1)$  that have maximum height
- $4$ (<i>i.e.</i>, touches 4, but does not cross it)?
+<b>EXERCISE 5:</b>&nbsp;What is conditional probability that a simple, symmetric random walk starting from 0 will end
+ at (6,2) without ever returning to 0 before that?
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
+Clearly in the second step the path must be at (1,1). So we need to count the number of paths from there to (6,2) without
+ hitting 0 in between. 
+<p></p>
+Now apply the reflection principle.
+</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;What is the conditional probability that a simple, symmetric random walk starting from 0 will end
+ at $(2n,2r)$ without ever returning to 0 before that? Assume $1\leq r\leq n$.
+<p><a
+href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
+class="ans" id="lab4">
+Clearly in the second step the path must be at (1,1). So we need to count the number of paths from there to $(2n,2r)$ without
+ hitting 0 in between. 
+<p></p>
+By the reflection principle, the number of paths from $(1,-1)$  to $(2n,2r)$  hitting 0 in-between is
+$N_{2n-1,2r+1}$. Also the total number of paths is $N_{2n-1,2r-1}$.
+<p></p>
+Hence the answer is $N_{2n-1,2r-1}-N_{2n-1,2r+1}$.
+</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;
+Consider all paths of length $2n$ starting
+at $(0,0)$. The number of these paths
+that never return to $0$ is $N_{2n,0}.$
+<p><a
+href="javascript:hideShow('lab5')"><b>[Hint]</b></a><div
+class="ans" id="lab5">
+<p></p>
+Such a path must either always be positive. Or always be
+negative. Clearly, the number of all-positive paths is the same
+as that of all-negative paths.
+<p></p>
+An all-positive path must visit $(1,1)$ immediately
+after $(0,0).$ So enough to compute the number of
+all-positive paths starting from $(1,1).$
+<p></p>
+Where can such a path end? It can end at $2r$ for
+some $r\in\{1,...,n\}.$
+<p></p>
+By the <b>reflection principle</b>, 
+the total number of all-positive paths from $(1,1)$
+to $(2n,2r)$ is 
+$$|PATH\big((1,1),(2n,2r)\big)|-|PATH\big((1,-1),(2n,2r)\big)|,$$ 
+ <i>i.e.</i>, $N_{2n-1,2r-1}-N_{2n-1,2r+1}.$
+<p></p>
+So the total number of all-positive paths is the telescoping sum
+$$
+(N_{2n-1,1}-N_{2n-1,3}) +
+(N_{2n-1,3}-N_{2n-1,5}) + \cdots + (N_{2n-1,2n-1}-N_{2n-1,2n+1})
+= N_{2n-1,1}-N_{2n-1,2n+1} = N_{2n-1,1},
+$$
+since $N_{2n-1,2n+1}=0$ ($\because 2n+1 &gt; 2n-1$).
+<p></p>
+Combining all-positive and all-negative paths, the total count is
+$2N_{2n-1,1} =
+2\binom{2n-1}{n}=\frac{2(2n-1)!}{(n-1)!n!} =\frac{(2n!)}{n!n!}
+=\binom{2n}{n} = N_{2n,0}.$
+Isn't this surprising? The number of $2n$-length paths never returning to 0
+equals the number of $2n$-length paths ending at 0. Could you prove it directly by establishing a bijection between
+ these two sets of paths?
+</div></p>
+
+</p>
+
+<p></p>
+
+<h3><a
+name="Exercises about the maximum place visited">Exercises about the maximum place visited</a></h3>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;
+Consider a simple, symmetric random walk of length 11 starting from 0. Given that it has eneded at
+ 1, what is the conditional probability that the maximum position it has visited is 4?
+Basically, we need to count paths like the following? 
 <center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/max.png"></th>
 </tr>
 <tr>
-<th></th>
+<th>A path from $(0,0)$  to $(11,1)$  with maximum $4$  (<i>i.e.</i>, hitting 4 but not 5)</th>
 </tr>
 </table>
 </center>
 
-<p></p>
-<b>SOLUTION:</b>
+<p><a
+href="javascript:hideShow('lab6')"><b>[Hint]</b></a><div
+class="ans" id="lab6">
 Find the number of paths from (0,0) to (11,1) that meet 4 (may or may not cross it). This is easy to compute using the reflection
  principle. The answer is $N_{11,7}.$
 <p></p>
@@ -665,35 +746,37 @@ Next find similarly
 the number of paths from (0,0) to (11,1) that meet 5 (may or may not cross it). The answer is $N_{11,9}.$
 <p></p>
 The difference should give you the answer: $N_{11,7}-N_{11,9}.$
-  ■
+ </div></p>
 </p>
 
 <p></p>
 
 <p>
-<b>EXAMPLE 8:</b>&nbsp;
+<b>EXERCISE 9:</b>&nbsp;
 How many paths of length 11 are there from $(0,0)$   that have maximum height
  $4$?
-<p></p>
-<b>SOLUTION:</b>
+<p><a
+href="javascript:hideShow('lab7')"><b>[Hint]</b></a><div
+class="ans" id="lab7">
 This is very much like the last problem, except that the final height is not specified. Clearly the final height is something
  $\leq 4.$  and $\geq -11.$  
 <p></p>
 Find the number of all such paths with each of these final heights, and add. Don't worry, the sum is telescopic, and a massive
  cancellation will save computational labour. 
- ■
+</div></p>
 </p>
 
-<fieldset>
-<legend><b><i>Maximum theorem</i></b></legend>
-Consider all paths of length $n$ starting from $(0,0).$
-Let $r\in\{0,...,n\}.$ Then 
-the number of paths with maximum $r$ is $N_{n,r}$
-if $n,r$ have the same parity, and $N_{n,r+1}$ else.
-</fieldset>
+<p></p>
 
 <p>
-<b><i>Proof:</i></b>
+<b>EXERCISE 10:</b>&nbsp;
+Consider all paths of length $n$ starting from $(0,0).$
+Let $r\in\{0,...,n\}.$ Then show that
+the number of paths with maximum $r$ is $N_{n,r}$
+if $n,r$ have the same parity, and $N_{n,r+1}$ else.
+<p><a
+href="javascript:hideShow('lab8')"><b>[Hint]</b></a><div
+class="ans" id="lab8">
 We need to  find the number of paths with maximum $r.$
 <p></p>
 Let $A$ be the set of all such paths. 
@@ -732,82 +815,24 @@ So only the first halves of the first two terms survive, <i>i.e.</i>, $N_{n,r}+N
 <p></p>
 We know that $N_{a,b}$ is 0 if $a,b$ have opposite
 parities. Hence the result.
-<b><i>[QED]</i></b>
+</div></p>
 </p>
+
+<p></p>
+
 
 <p></p>
 
 <h3><a
-name="No 0-return theorem">No 0-return theorem</a></h3>
-
-<fieldset>
-<legend><b><i>No 0-return theorem</i></b></legend>
-Consider all paths of length $2n$ starting
-at $(0,0)$. The number of these paths
-that never return to $0$ is $N_{2n,0}.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Such a path must either always be positive. Or always be
-negative. Clearly, the number of all-positive paths is the same
-as that of all-negative paths.
-<p></p>
-An all-positive path must visit $(1,1)$ immediately
-after $(0,0).$ So enough to compute the number of
-all-positive paths starting from $(1,1).$
-<p></p>
-Where can such a path end? It can end at $2r$ for
-some $r\in\{1,...,n\}.$
-<p></p>
-
-<p></p>
-By the <b>reflection principle</b>, 
-the total number of all-positive paths from $(1,1)$
-to $(2n,2r)$ is 
-$$|PATH\big((1,1),(2n,2r)\big)|-|PATH\big((1,-1),(2n,2r)\big)|,$$ 
- <i>i.e.</i>, $N_{2n-1,2r-1}-N_{2n-1,2r+1}.$
-<p></p>
-
-<p></p>
-So the total number of all-positive paths is the telescoping sum
-$$
-(N_{2n-1,1}-N_{2n-1,3}) +
-(N_{2n-1,3}-N_{2n-1,5}) + \cdots + (N_{2n-1,2n-1}-N_{2n-1,2n+1})
-= N_{2n-1,1}-N_{2n-1,2n+1} = N_{2n-1,1},
-$$
-since $N_{2n-1,2n+1}=0$ ($\because 2n+1 &gt; 2n-1$).
-<p></p>
-
-<p></p>
-Combining all-positive and all-negative paths, the total count is
-$2N_{2n-1,1} =
-2\binom{2n-1}{n}=\frac{2(2n-1)!}{(n-1)!n!} =\frac{(2n!)}{n!n!}
-=\binom{2n}{n} = N_{2n,0}.$
-<b><i>[QED]</i></b>
-</p>
-Isn't this surprising? The number of $2n$-length paths never returning to 0
-equals the number of $2n$-length paths ending at 0. Could you prove it directly by establishing a bijection between
- these two sets of paths?
-<p></p>
-
-
-<p></p>
-
-<h2><a
-name="Problems for practice">Problems for practice</a></h2>
+name="Exercises about first return to 0">Exercises about first return to 0</a></h3>
 ::<p>
-<b>EXERCISE 3:</b>&nbsp;Prove the following theorem:
-<fieldset>
-<legend><b><i>First 0-return theorem</i></b></legend>
+<b>EXERCISE 11:</b>&nbsp;
 Consider all paths of length $2n$ starting at $(0,0).$
-The number of these paths that return to $0$ at $2n$
+Prove that the number of these paths that return to $0$ at $2n$
 for the first time is $4N_{2n-2,0}-N_{2n,0}=\frac{N_{2n,0}}{2n-1}.$
-</fieldset>
-
 <p><a
-href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
-class="ans" id="lab1">
+href="javascript:hideShow('lab9')"><b>[Hint]</b></a><div
+class="ans" id="lab9">
 Let $A$ be the set of all $2n$-length paths that never return to 0.
 <p></p>
 Let $B$ be the set of all $2n$-length paths that never return to
@@ -835,26 +860,23 @@ Hence the result.
 
 <p></p>
 ::<p>
-<b>EXERCISE 4:</b>&nbsp;
+<b>EXERCISE 12:</b>&nbsp;
 Consider all paths of length $2n$ starting at $(0,0).$
 What is the number of these paths that return to $0$
 at $2r$ for some given $r &lt; n?$ Also, how many of these
 return to 0 from the positive side?
 </p>
 
-<p></p>
+<h3><a
+name="Exercises about last return to 0">Exercises about last return to 0</a></h3>
 ::<p>
-<b>EXERCISE 5:</b>&nbsp;Prove the following theorem:
-<fieldset>
-<legend><b><i>Last 0-return theorem</i></b></legend>
+<b>EXERCISE 13:</b>&nbsp;
 Consider all paths of length $2n$ starting at $(0,0).$
-Take any $k\in\{1,...,n\}.$ The number of these paths that
-hit 0 for last time at $2k$ is $N_{2k,0}\times N_{2n-2k,0}.$
-</fieldset>
-
+Take any $k\in\{1,...,n\}.$ Show that the number of these paths that
+return to 0 for last time at $2k$ is $N_{2k,0}\times N_{2n-2k,0}.$
 <p><a
-href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
-class="ans" id="lab2">
+href="javascript:hideShow('lab10')"><b>[Hint]</b></a><div
+class="ans" id="lab10">
 
 <center>
 <table width="100%">
@@ -875,8 +897,11 @@ independently of that, we can choose the part after the red dot
 in $N_{2n-2k,0}$ ways, by the <b>no 0-return theorem</b>. Hence the result.
 </div></p>
 </p>
+
+<h3><a
+name="Other problems">Other problems</a></h3>
 ::<p>
-<b>EXERCISE 6:</b>&nbsp;
+<b>EXERCISE 14:</b>&nbsp;
 (Ballot problem) two candidates are contesting in
 a vote. There are $n$ voters who have cast their votes. The
 votes are being counted with the $n$ ballot papers ordered
@@ -889,8 +914,8 @@ $$
 \frac{p-q}{p+q}.
 $$
 <p><a
-href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
-class="ans" id="lab3">
+href="javascript:hideShow('lab11')"><b>[Hint]</b></a><div
+class="ans" id="lab11">
 Let $y_i$ be the lead of $A$ over $B$
 after $i$ ballot papers have been counted. If we
 plot $y_i$ against $i,$ we shall get a random walk
@@ -919,7 +944,7 @@ So the required probability is $\frac{p-q}{p+q},$ as required.
 
 </p>
 ::<p>
-<b>EXERCISE 7:</b>&nbsp;<center>
+<b>EXERCISE 15:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most22.png"></th>
@@ -931,17 +956,17 @@ So the required probability is $\frac{p-q}{p+q},$ as required.
 </center>
 
 <p><a
-href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
-class="ans" id="lab4">This is just the complement of the last problem. So the answer is $1-\frac{a-b}{a+b}=\frac{2b}{a+b}.$</div></p>
+href="javascript:hideShow('lab12')"><b>[Hint]</b></a><div
+class="ans" id="lab12">This is just the complement of the last problem. So the answer is $1-\frac{a-b}{a+b}=\frac{2b}{a+b}.$</div></p>
 
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 8:</b>&nbsp;Let $a,b&gt;0.$ Show that the number of paths from $(0,0)$ to $(n,a)$ that are
+<b>EXERCISE 16:</b>&nbsp;Let $a,b&gt;0.$ Show that the number of paths from $(0,0)$ to $(n,a)$ that are
 always $&gt;-b$ is $N_{n,a}-N_{n,a+2b}.$ <p><a
-href="javascript:hideShow('lab5')"><b>[Hint]</b></a><div
-class="ans" id="lab5">
+href="javascript:hideShow('lab13')"><b>[Hint]</b></a><div
+class="ans" id="lab13">
 #{paths from $(0,0)$ to $(n,a)$ that are always $&gt;-b$}<br>
 =#{paths from $(0,0)$ to $(n,a)$}-#{paths from $(0,0)$ to $(n,-a-2b)$} by reflection principle<br>
  = $N_{n,a}-N_{n,-a-2b}$<br> 
@@ -952,12 +977,12 @@ class="ans" id="lab5">
 
 <p></p>
 ::<p>
-<b>EXERCISE 9:</b>&nbsp;Let $b&gt; a&gt; 0.$ Show that the number of paths
+<b>EXERCISE 17:</b>&nbsp;Let $b&gt; a&gt; 0.$ Show that the number of paths
 from $(0,0)$ to $(n,a)$ that are
 always $&lt;b$ is $N_{n,a}-N_{n,2b-a}.$
 <p><a
-href="javascript:hideShow('lab6')"><b>[Hint]</b></a><div
-class="ans" id="lab6">
+href="javascript:hideShow('lab14')"><b>[Hint]</b></a><div
+class="ans" id="lab14">
 #{paths from $(0,0)$ to $(n,a)$ that are always $&lt;b$}<br>
 =#{paths from $(0,0)$ to $(n,a)$}-#{paths from $(0,0)$ to $(n,2b-a)$} by reflection principle<br>
  = $N_{n,a}-N_{n,2b-a}.$ 
@@ -966,12 +991,12 @@ class="ans" id="lab6">
 
 <p></p>
 ::<p>
-<b>EXERCISE 10:</b>&nbsp;Show that if $a&gt; c&gt; 0$  and $b&gt;0$, then  the number of paths from (0,0) to $(n,c)$
+<b>EXERCISE 18:</b>&nbsp;Show that if $a&gt; c&gt; 0$  and $b&gt;0$, then  the number of paths from (0,0) to $(n,c)$
   that attain height $a$  and <i>then</i>  attain height $-b$  before finishing at $(n,c),$  is $N_{n,2a+2b+c}.$ 
  The paths may have also attained height $-b$  before attaining height  $a.$
 <p><a
-href="javascript:hideShow('lab7')"><b>[Hint]</b></a><div
-class="ans" id="lab7">
+href="javascript:hideShow('lab15')"><b>[Hint]</b></a><div
+class="ans" id="lab15">
 <center>
 <table width="100%">
 <tr>
@@ -985,15 +1010,15 @@ class="ans" id="lab7">
 </div></p> 
 </p>
 ::<p>
-<b>EXERCISE 11:</b>&nbsp;Let $a&gt;c&gt;0$ and $b&gt;0.$ Show that the number of
+<b>EXERCISE 19:</b>&nbsp;Let $a&gt;c&gt;0$ and $b&gt;0.$ Show that the number of
 paths from $(0,0)$ which hit the
 horizontal line at height $a$ and then lead to $(n,c)$
 without having touched the horizontal line at height $-b$ is  
 $N_{n,2a-c}-N_{n,2a+2b+c}.$ (Note that the path may touch
 the horizontal line at height $-b$ <i>before</i> hitting
 the line at height $a.$)<p><a
-href="javascript:hideShow('lab8')"><b>[Hint]</b></a><div
-class="ans" id="lab8">
+href="javascript:hideShow('lab16')"><b>[Hint]</b></a><div
+class="ans" id="lab16">
 Let $A = $ {paths from $(0,0)$ which hit the
 horizontal line at height $a$ and then lead to $(n,c)$ }.
 Let $B = ${paths in $A$  that  attain height $-b$  <i>after</i>  attaining height $a$ }.
@@ -1015,12 +1040,12 @@ Hence the result.
 
 <p></p>
 ::<p>
-<b>EXERCISE 12:</b>&nbsp;Prove that there are as many paths from (0,0)
+<b>EXERCISE 20:</b>&nbsp;Prove that there are as many paths from (0,0)
 to $(2n+2,0)$ with all interior vertices $&gt;0$ as there
 are paths from (0,0) to $(2n,0)$ where all interior
 vertices are $\geq 0.$<p><a
-href="javascript:hideShow('lab9')"><b>[Hint]</b></a><div
-class="ans" id="lab9">
+href="javascript:hideShow('lab17')"><b>[Hint]</b></a><div
+class="ans" id="lab17">
 Any path from (0,0)
 to $(2n+2,0)$ with all interior vertices $&gt;0$ must
 visit (1,1) after $(0,0)$, and $(2n+1,1)$
@@ -1038,20 +1063,20 @@ to $(2n,0)$ with all interior vertices $\geq 0$}.
 
 <p></p>
 ::<p>
-<b>EXERCISE 13:</b>&nbsp;True or false: The probability that before time $2n$ there occur
+<b>EXERCISE 21:</b>&nbsp;True or false: The probability that before time $2n$ there occur
 exactly $r$ returns to the origin equals the probability
 that a return occurs at time $2n$  preceded by at
 least $r$ returns.
 <p><a
-href="javascript:hideShow('lab10')"><b>[Hint]</b></a><div
-class="ans" id="lab10">False. Consider $r=1$  and $n=2.$  Then the first probability is $\frac 12.$ 
+href="javascript:hideShow('lab18')"><b>[Hint]</b></a><div
+class="ans" id="lab18">False. Consider $r=1$  and $n=2.$  Then the first probability is $\frac 12.$ 
  But the second probability is $\frac 14.$</div></p>
 
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 14:</b>&nbsp;Consider random paths of length $2n$ starting
+<b>EXERCISE 22:</b>&nbsp;Consider random paths of length $2n$ starting
 from $(0,0).$ Let $k\in\{1,...,n\}.$ Consider the two events:
 <blockquote>
 $A = $ the path passes through $(2n,0)$ and the maximum
@@ -1063,8 +1088,8 @@ $B = $ the path passes through $(2n,2k).$
 </blockquote>
 Show that $P(A) = P(B).$  Is this true if $k\leq 0?$  Is it true if $k&gt;n?$
 <p><a
-href="javascript:hideShow('lab11')"><b>[Hint]</b></a><div
-class="ans" id="lab11">
+href="javascript:hideShow('lab19')"><b>[Hint]</b></a><div
+class="ans" id="lab19">
 For $k\in\{1,...,n\},$  the result follows directly from reflection principle. The result fails if $k\leq 0.$ 
  One counterexample, if when $k=-10$  and $n=1.$  The result holds if $k&gt;n,$  because then $P(A)=P(B)=0.$
 </div></p>
@@ -1072,7 +1097,7 @@ For $k\in\{1,...,n\},$  the result follows directly from reflection principle. T
 
 <p></p>
 ::<p>
-<b>EXERCISE 15:</b>&nbsp;Find the fallacy in the following argument:
+<b>EXERCISE 23:</b>&nbsp;Find the fallacy in the following argument:
 Consider the set of all paths of length 10 starting
 from $(0,0).$
 <p></p>
@@ -1090,14 +1115,14 @@ continued for two more time units without hitting
 <p></p>
 Hence $|A|=|B|.$ 
 <p><a
-href="javascript:hideShow('lab12')"><b>[Hint]</b></a><div
-class="ans" id="lab12">The "$|B|\leq |A|$ " argument is wrong. What it says is: number of paths <i>of length 8</i>
+href="javascript:hideShow('lab20')"><b>[Hint]</b></a><div
+class="ans" id="lab20">The "$|B|\leq |A|$ " argument is wrong. What it says is: number of paths <i>of length 8</i>
  that never return to 0 is $\leq |A|$ ".</div></p> 
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<center>
+<b>EXERCISE 24:</b>&nbsp;<center>
 <table width="100%">
 <tr>
 <th><img width="" src="image/most56.png"></th>
@@ -1109,8 +1134,8 @@ class="ans" id="lab12">The "$|B|\leq |A|$ " argument is wrong. What it says is: 
 </center>
 
 <p><a
-href="javascript:hideShow('lab13')"><b>[Hint]</b></a><div
-class="ans" id="lab13">
+href="javascript:hideShow('lab21')"><b>[Hint]</b></a><div
+class="ans" id="lab21">
 Let the total number of balls in either box be $k.$  Let there be $w_i$  white balls in box $i.$  Then the
  given condition says 
 $$\left(\frac{w_1}{k}\right)^n = \left(\frac{w_2}{k}\right)^n + \left(1-\frac{w_2}{k}\right)^n,$$
@@ -1124,7 +1149,7 @@ So either $w_1 = 0$  or $w_2 = 0$  or $k-w_2 = 0.$  Here $w_1$  cannot be zero, 
 
 </p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;Let $u_{2n}$ denote the probability that a random path
+<b>EXERCISE 25:</b>&nbsp;Let $u_{2n}$ denote the probability that a random path
 of length $2n$ starting from $(0,0)$ passes
 through $(2n,0).$ Also, let $u_0=1.$ Let $v_{2n}$
 denote the probability that a random path of length $2n$
@@ -1135,8 +1160,8 @@ $$
 v_2 u_{2n-2} + \cdots + v_{2n} u_0 = u_{2n}.
 $$
 <p><a
-href="javascript:hideShow('lab14')"><b>[Hint]</b></a><div
-class="ans" id="lab14">Condition on the first time the path returns to zero, and then use the theorem of total probability.</div></p>
+href="javascript:hideShow('lab22')"><b>[Hint]</b></a><div
+class="ans" id="lab22">Condition on the first time the path returns to zero, and then use the theorem of total probability.</div></p>
 
 </p>
 

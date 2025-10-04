@@ -1,3 +1,18 @@
+**October 04, 2025:**
+
+:	- Corrected a few typos in the solution of Example 4 and the hint for
+	  Exercise 7 in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+        Thanks to Nuhad.
+
+	- Corrected a typo in the answer of Exercise 7 in the 
+	[Distributions with finite supports](distrib1.html){target="naya"} page.
+	Thanks to Mayukh.
+
+	- Corrected a typo in the answers of Exercises 6, 11 and 12 in the 
+	[Distributions with infinite supports](distrib2.html){target="naya"} page.
+	Thanks to Mayukh.
+
 **September 28, 2025:**
 
 :	- Corrected a typo in the hint of Exercise 2 in the 
