@@ -7,7 +7,7 @@
 
 **October 04, 2025:**
 
-	- Corrected a typo in the answer of Exercise 7 in the 
+:	- Corrected a typo in the answer of Exercise 7 in the 
 	[Distributions with finite supports](distrib1.html){target="naya"} page.
 	Thanks to Mayukh.
 
