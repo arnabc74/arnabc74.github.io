@@ -1,9 +1,9 @@
-**October 04, 2025:**
+**October 06, 2025:**
 
-:	- Corrected a few typos in the solution of Example 4 and the hint for
-	  Exercise 7 in the 
+:	- Slightly reworded the tower property and it proof. Also corrected a minor typo
+	  in the solution of Example 2 in the 
 	[Conditional distribution](condl.html){target="naya"} page.
-        Thanks to Nuhad.
+        Thanks to Ankush and Arindrajit.
 
 	- Corrected a typo in the answer of Exercise 7 in the 
 	[Distributions with finite supports](distrib1.html){target="naya"} page.

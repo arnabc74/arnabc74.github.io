@@ -88,11 +88,11 @@ We can do similar things with conditional
 expectation/variance also. 
 
 <THM name="Tower property">
-<M>E(Y) = E(E(Y|X)).</M>
+<M>E(Y) = E(E(Y|X))</M>  assuming that the expectations all exist finitely. 
 </THM>
-<PF>
-Let <M>X</M> take values <M>x_1,x_2,...</M> and <M>Y</M> take
-values <M>y_1,y_2,...</M>. Let the joint PMF of <M>(X,Y)</M> be 
+<PF>(For simple <M>X,Y</M>): 
+Let <M>X</M> take values <M>x_1,x_2,...,x_m</M> and <M>Y</M> take
+values <M>y_1,y_2,...,y_m</M>. Let the joint PMF of <M>(X,Y)</M> be 
 <D>
 P(X=x_i~\&~Y=y_j) = p_{ij}.
 </D>
@@ -107,8 +107,14 @@ Expectation of this is
 \sum_j y_j  \sum_i p_{ij} = \sum_j y_j   p_{\bullet j} = E(Y),
 </D>
 as required.
-</PF>
 
+</PF>
+The proof uses little more than rearranginf terms in a sum using associativity and commutativity
+ of addition. If <M>(X,Y)</M> 
+ could take countably infinitely
+ many values, then also
+ the same proof would work, because all the infinite series involved would be absolutely convergent (thanks to the assumption
+ of finite existence of the
 Many expectation problems can be handled step-by-step using this
 result. Here are some examples.
 
@@ -129,7 +135,9 @@ toss.
 <P/>
 Then <M>E(X|Y=Head) = 3.5</M> and <M>E(X|Y=Tail) = 5\times[[6-30][36]]=-[[10][3]].</M> 
 <P/>
-So, by the tower property, <M>E(X) = P(X|Y=Head)\times P(Y=Head)+P(X|Y=Tail)\times P(Y=Tail) = \cdots.</M>
+So, by the tower property, <M>E(X) = E(X|Y=Head)\times P(Y=Head)+E(X|Y=Tail)\times P(Y=Tail) = \cdots.</M>
+
+[Thanks to Arindrajit for correcting a typo here.]
 </EXM>
 
 The tower property is very useful for computing expectations
@@ -313,7 +321,7 @@ So <M>P(R=k\& X < Y) = [[N-k+1][(N+1)^2]].</M>
 
 Hence <M>P(R=k) = [[2(N-k+1)][(N+1)^2]].</M>
 
-[Thanks to Nuhad for correcting a
+[Thanks to Nuhad for correcting a couple of typos here.]
 </ANS>
 </EXR>
 ::<EXR><EIMG web="condist6.png"></EIMG>

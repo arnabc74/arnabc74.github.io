@@ -295,13 +295,13 @@ expectation/variance also.
 
 <fieldset>
 <legend><b><i>Tower property</i></b></legend>
-$E(Y) = E(E(Y|X)).$
+$E(Y) = E(E(Y|X))$  assuming that the expectations all exist finitely. 
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>
-Let $X$ take values $x_1,x_2,...$ and $Y$ take
-values $y_1,y_2,...$. Let the joint PMF of $(X,Y)$ be 
+<b><i>Proof:</i></b>(For simple $X,Y$): 
+Let $X$ take values $x_1,x_2,...,x_m$ and $Y$ take
+values $y_1,y_2,...,y_m$. Let the joint PMF of $(X,Y)$ be 
 $$
 P(X=x_i~\&amp;~Y=y_j) = p_{ij}.
 $$
@@ -316,9 +316,17 @@ $$
 \sum_j y_j  \sum_i p_{ij} = \sum_j y_j   p_{\bullet j} = E(Y),
 $$
 as required.
+<p></p>
+
 <b><i>[QED]</i></b>
 </p>
-
+The proof uses little more than rearranginf terms in a sum using associativity and commutativity
+ of addition. If $(X,Y)$ 
+ could take countably infinitely
+ many values, then also
+ the same proof would have worked, because all the infinite series involved would have been absolutely
+ convergent (thanks to the assumption
+ of finite existence of the expectations involved). 
 <p></p>
 Many expectation problems can be handled step-by-step using this
 result. Here are some examples.
@@ -346,7 +354,9 @@ toss.
 <p></p>
 Then $E(X|Y=Head) = 3.5$ and $E(X|Y=Tail) = 5\times\frac{6-30}{36}=-\frac{10}{3}.$ 
 <p></p>
-So, by the tower property, $E(X) = P(X|Y=Head)\times P(Y=Head)+P(X|Y=Tail)\times P(Y=Tail) = \cdots.$
+So, by the tower property, $E(X) = E(X|Y=Head)\times P(Y=Head)+E(X|Y=Tail)\times P(Y=Tail) = \cdots.$
+<p></p>
+[Thanks to Arindrajit for correcting a typo here.]
  ■
 </p>
 
