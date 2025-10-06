@@ -1,9 +1,11 @@
 **October 06, 2025:**
 
-:	- Slightly reworded the tower property and it proof. Also corrected a minor typo
+:	- Slightly reworded the tower property and its proof. Also corrected a minor typo
 	  in the solution of Example 2 in the 
 	[Conditional distribution](condl.html){target="naya"} page.
         Thanks to Ankush and Arindrajit.
+
+**October 04, 2025:**
 
 	- Corrected a typo in the answer of Exercise 7 in the 
 	[Distributions with finite supports](distrib1.html){target="naya"} page.
