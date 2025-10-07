@@ -772,29 +772,39 @@ Also for $i\neq j$  we have $E(X_iX_j) = \frac{2}{(n+2)(n+1)}$    (because out o
  and $b_j$  any of the $\binom{n+2}{2}$  pairs can come first with equal probability).
 <p></p>
 (b) Let $Y_i$  be as given in the hint. Let's take an example to 
-understand how $Y_i$'s are defined. Suppose that we have $m=20$  black and $n=3$  white balls. 
-Here is one way they may turn up:
+understand how $Y_i$'s are defined. Suppose that we have $m=n=2.$
+Here is a list of all possible ways these may turn up:
+<pre>
+W W B B
+W B W B
+W B B W
+B W B W
+B B W W
+B W W B
+</pre>
+All these are equally likely as the draws are random and do not care about the colours. 
+Now consider the events $\{Y_1=1\}$  and $\{Y_2=1\}$. These are 
+$$\{Y_1 = 1\} = \{BWBW, BWWB\}\mbox{ and } \{Y_2 = 1\} = \{WBWB, BWBW\}.$$
+As both these have the same size, they also have the same probability. Similarly,
+$$\{Y_1 = 0\} = \{WWBB, WBWB, WBBW\}\mbox{ and } \{Y_2 = 0\} = \{WWBB, BWWB, BBWW\}$$
+also have the same size, and hence the same probability.
+<p></p>
+We claim that for any values of $m$  and $n$  and any $i&lt; j$ and any $k$,   the events
+ $\{Y_i=k\}$  and $\{Y_j=k\}$ 
+ must have the same size (and hence the same probability). 
+<p></p>
+We show this by demontraiting a bijection $f:\{Y_i=k\}\rightarrow\{Y_j=k\}$  defined as $f(\omega)
+ = $  the sequence of $W$'s and $B$'s obtained by swapping the $i$-th $W$ 
+ and its preceding $B$'s with the $j$-th $W$  and its preceding $B$'s. For
+ instance, if $m=10, n=5, i=1, j=4, k=2$
+ then here is an $\omega\in\{Y_i=k\}:$
 <blockquote>
-B B Y Y B B B B B  Y
-</blockquote>
-Then $Y_1 = 2$  (as there are two B's preceding the first W), $Y_2=0$  (since the second W is immediately after
- the first), and $Y_3 = 5$  (because there are as many B's between the second and third W). 
-<p></p>
-We shall argue using bijection that $Y_i$'s are all identically distributed. Let's 
-try to show that $P(Y_1=0) = P(Y_2=0).$  The outcome shown above is in the event $\{Y_2=0\}.$  
-<p></p>
-Now just swap the first two W's (along with B's  immediately preceding it) to get:
+<font color="#ff0000">BBW</font>BWBBW<font color="#0000ff">BBBW</font>BBW</blockquote>
+Then $f(\omega)$  is 
 <blockquote>
- Y B B Y B B B B B  Y
-</blockquote>
-Clearly, this is another possible outcome which is inside $\{Y_1=0\}.$  
-It is not difficult to see (check!) that this swap is a bijection between the events $\{Y_1=0\}.$  and $\{Y_2=0\}.$ 
-If the bijection is denoted by $f,$  then $\forall \omega\in\Omega~~P(\omega) = P(f(\omega))$  (why?)
-<p></p>
-Hence $P\{Y_1=0\} = P\{Y_2=0\}.$
-<p></p>
-In general, we see that $Y_i$'s are all identically distributed. Now (b) follows immediately from (a) applied to each
- $Y_i$  separately. 
+<font color="#0000ff">BBBW</font>BWBBW<font color="#ff0000">BBW</font>BBW</blockquote>
+All swaps are one-one (repeating a swap restores original order). Also $\omega\in\{Y_i=k\}\Leftrightarrow
+ f(\omega)\in\{Y_j=k\}$. Hence $|\{Y_i=k\}|=|\{Y_j=k\}|$, as required. 
 </div></p>
 
 <hr>

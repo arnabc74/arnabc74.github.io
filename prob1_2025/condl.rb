@@ -446,29 +446,37 @@ Also for <M>i\neq j</M>  we have <M>E(X_iX_j) = [[2][(n+2)(n+1)]]</M>    (becaus
  and <M>b_j</M>  any of the <M>\binom{n+2}{2}</M>  pairs can come first with equal probability).
 
 (b) Let <M>Y_i</M>  be as given in the hint. Let's take an example to 
-understand how <M>Y_i</M>'s are defined. Suppose that we have <M>m=20</M>  black and <M>n=3</M>  white balls. 
-Here is one way they may turn up:
-<Q>
-B B Y Y B B B B B  Y
-</Q>
-Then <M>Y_1 = 2</M>  (as there are two B's preceding the first W), <M>Y_2=0</M>  (since the second W is immediately after
- the first), and <M>Y_3 = 5</M>  (because there are as many B's between the second and third W). 
+understand how <M>Y_i</M>'s are defined. Suppose that we have <M>m=n=2.</M>
+Here is a list of all possible ways these may turn up:
+<PRE>
+W W B B
+W B W B
+W B B W
+B W B W
+B B W W
+B W W B
+</PRE>
+All these are equally likely as the draws are random and do not care about the colours. 
+Now consider the events <M>\{Y_1=1\}</M>  and <M>\{Y_2=1\}</M>. These are 
+<D>\{Y_1 = 1\} = \{BWBW, BWWB\}\mbox{ and } \{Y_2 = 1\} = \{WBWB, BWBW\}.</D>
+As both these have the same size, they also have the same probability. Similarly,
+<D>\{Y_1 = 0\} = \{WWBB, WBWB, WBBW\}\mbox{ and } \{Y_2 = 0\} = \{WWBB, BWWB, BBWW\}</D>
+also have the same size, and hence the same probability.
 
-We shall argue using bijection that <M>Y_i</M>'s are all identically distributed. Let's 
-try to show that <M>P(Y_1=0) = P(Y_2=0).</M>  The outcome shown above is in the event <M>\{Y_2=0\}.</M>  
+We claim that for any values of <M>m</M>  and <M>n</M>  and any <M>i< j</M> and any <M>k</M>,   the events
+ <M>\{Y_i=k\}</M>  and <M>\{Y_j=k\}</M> 
+ must have the same size (and hence the same probability). 
 
-Now just swap the first two W's (along with B's  immediately preceding it) to get:
-<Q>
- Y B B Y B B B B B  Y
-</Q>
-Clearly, this is another possible outcome which is inside <M>\{Y_1=0\}.</M>  
-It is not difficult to see (check!) that this swap is a bijection between the events <M>\{Y_1=0\}.</M>  and <M>\{Y_2=0\}.</M> 
-If the bijection is denoted by <M>f,</M>  then <M>\forall \omega\in\Omega~~P(\omega) = P(f(\omega))</M>  (why?)
-
-Hence <M>P\{Y_1=0\} = P\{Y_2=0\}.</M>
-
-In general, we see that <M>Y_i</M>'s are all identically distributed. Now (b) follows immediately from (a) applied to each
- <M>Y_i</M>  separately. 
+We show this by demontraiting a bijection <M>f:\{Y_i=k\}\to\{Y_j=k\}</M>  defined as <M>f(\omega)
+ = </M>  the sequence of <M>W</M>'s and <M>B</M>'s obtained by swapping the <M>i</M>-th <M>W</M> 
+ and its preceding <M>B</M>'s with the <M>j</M>-th <M>W</M>  and its preceding <M>B</M>'s. For
+ instance, if <M>m=10, n=5, i=1, j=4, k=2</M>
+ then here is an <M>\omega\in\{Y_i=k\}:</M>
+<Q><RED>BBW</RED>BWBBW<BLUE>BBBW</BLUE>BBW</Q>
+Then <M>f(\omega)</M>  is 
+<Q><BLUE>BBBW</BLUE>BWBBW<RED>BBW</RED>BBW</Q>
+All swaps are one-one (repeating a swap restores original order). Also <M>\omega\in\{Y_i=k\}\iff
+ f(\omega)\in\{Y_j=k\}</M>. Hence <M>|\{Y_i=k\}|=|\{Y_j=k\}|</M>, as required. 
 </ANS>
 <HR/></EXR>
 ::<EXR><EIMG web="morecond5.png"></EIMG>

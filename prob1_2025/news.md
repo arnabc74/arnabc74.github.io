@@ -1,3 +1,8 @@
+**October 07, 2025:**
+
+:	- Made the hint of Exercise 18 more lucid (hopefully!) in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+
 **October 06, 2025:**
 
 :	- Slightly reworded the tower property and its proof. Also corrected a minor typo
