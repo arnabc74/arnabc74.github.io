@@ -530,7 +530,19 @@ Will the result hold in general if the <M>X_i</M>'s are not independent?
  asymetric. A counterexample is as follows. 
 
 <M>X_1 = </M>  outcome of a roll of a fair die. <M>X_2</M>  is obtained from <M>X_1</M>  by
- swapping 1 and 2. <M>X_3</M>  is obtained from <M>X_1</M>  by swapping 1 and 3. Then <M>E(X_1|X_1+X_2+X_3=6)=1\neq [[63]].</M> 
+ swapping 1 and 2. <M>X_3</M>  is obtained from <M>X_1</M>  by swapping 1 and 3. If the definitions
+ of <M>X_2,X_3</M>  are not clear, then see their values below for all the possible values of <M>X_1:</M>
+<TABLE>
+<TR><TD><M>X_1</M></TD><TD><M>X_2</M></TD><TD><M>X_3</M></TD></TR>
+<TR><TD>1</TD><TD>2</TD><TD>3</TD></TR>
+<TR><TD>2</TD><TD>1</TD><TD>same as <M>X_1</M></TD></TR>
+<TR><TD>3</TD><TD>same as <M>X_1</M></TD><TD>1</TD></TR>
+<TR><TD>4</TD><TD>same as <M>X_1</M></TD><TD>same as <M>X_1</M></TD></TR>
+<TR><TD>5</TD><TD>same as <M>X_1</M></TD><TD>same as <M>X_1</M></TD></TR>
+<TR><TD>6</TD><TD>same as <M>X_1</M></TD><TD>same as <M>X_1</M></TD></TR>
+</TABLE>
+Then
+ <M>E(X_1|X_1+X_2+X_3=6)=1\neq [[63]].</M> 
 </ANS>
 <HR/></EXR>
 ::<EXR><EIMG web="morecond12.png"></EIMG><HR/></EXR>

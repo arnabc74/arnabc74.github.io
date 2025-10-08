@@ -1,3 +1,8 @@
+**October 08, 2025:**
+
+:	- Made the hint of Exercise 25 more lucid in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+
 **October 07, 2025:**
 
 :	- Made the hint of Exercise 18 more lucid (hopefully!) in the 
