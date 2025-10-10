@@ -1,0 +1,221 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Power series">Power series</a>
+</li>
+</ul>
+<hr/>
+
+<h1 xmlns=""><a
+name="Power series">Power series</a></h1>
+Qe shall learn about a concept called <b><font color="red" size="40">power series</font></b>  in this page. Here is the definition.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Power series</b></legend>
+By a <b><font color="red" size="40">power series</font></b> (centred at 0) we mean an infinite series of the form 
+$$f(t) = a_0+a_1t+a_2t^2+\cdots$$,
+where $a_i$'s are real numbers, and $t$  is a real variable. 
+</fieldset>
+Clearly a power series must converge at $t=0$. For what other values will it converge. As you can guess, the answer
+ depends on the $a_i$'s. It is possible to choose $a_i$'s in such a way that the power series fails to converge
+ for all nonzero values of $t$. At the other extreme, it is also possible to choose $a_i$'s in a way so that we
+ have convergence for all values of $t$. 
+<p></p>
+But whatever the $a_i$'s may be, the following theorem must hold.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+For every power series there is a number $R\geq 0$  such that the power series converges
+ $\forall t\in (-R, R)$  and fails to converge outside $[-R,R]$.  
+</fieldset>
+Two points to note:
+<ul>
+<li>If $R=0$, then $(-R,R) = \phi$.</li>
+
+<li>The theorem is silent about the behaviour at $t=-R$  and $t=R$. Indeed, nothing
+ conclusive may be said in general at those points. All the possibilities are possible. (Yes, I
+ know it sounds like a bad pun!) </li>
+
+</ul>
+The $R$  is obviously unique for a given power series. It is called the <b><font color="red" size="40">radius of convergence</font></b>  of the pws.
+<p></p>
+A power series behaves very nicely in $(-R,R)$  as shown in the following theorem. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $f(t) = \sum a_n t^n$  be a power series with radius of convergence $R&gt;0$. Then $\forall t\in (-R,R)$
+<ol type="">
+<li>$f(t)$  converges absolutely</li>
+
+<li>f(t) is differentiable the derivative may be computed term by term 
+<i>i.e.</i>, $f'(t) = \sum_1^\infty n a_n t^{n-1}.$
+This new power series also converges everywhere in $(-R,R)$  (may have even larger radius of convergence). 
+</li>
+
+</ol>
+
+</fieldset>
+By using the second property repeatedly, you may differentiate a power series as many time as you wish inside $(-R,R)$.
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

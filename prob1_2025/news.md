@@ -1,3 +1,10 @@
+**October 10, 2025:**
+
+:	- Added some AI-generated interactive simulation of the capture-recapture
+	method. See it [here](caprecap2.html){target="naya"}. It is also linked from the 
+	[Distributions with finite supports](distrib1.html){target="naya"} page.
+	The code is completely written by ChatGPT.
+ 
 **October 08, 2025:**
 
 :	- Made the hint of Exercise 25 more lucid in the 

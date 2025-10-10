@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Fish Capture + Intersection</title>
+<style>
+  body { font-family: system-ui, Arial; display:flex; gap:16px; padding:16px; }
+  #controls { width:260px; }
+  canvas { background: linear-gradient(#cfeffd, #7fcff6); border: 2px solid #0b6; border-radius:8px;}
+  button { display:block; width:100%; margin:8px 0; padding:8px; font-size:15px; }
+  .stat { margin:6px 0; padding:8px; background:#fff; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .legend { margin-top:10px; font-size:13px; }
+  .legend span { display:inline-block; margin-right:8px; padding:4px 8px; border-radius:6px; }
+  .tag { background: #ff6b6b; color: white; }
+  .circ { background: #ffd166; color: #000; border:1px solid rgba(0,0,0,0.08); }
+  .both { background: #9b5de5; color: white; }
+</style>
+</head>
+<body>
+  <div id="controls">
+    <h3>Lake Controls</h3>
+    <button id="captureBtn">Capture (tag 200)</button>
+    <button id="recaptureBtn">Recapture (circle 100)</button>
+    <div class="stat">Total fish: <strong id="totalFish">1000</strong></div>
+    <div class="stat">Tagged (capture): <strong id="taggedCount">0</strong></div>
+    <div class="stat">Circled (recapture): <strong id="circledCount">0</strong></div>
+    <div class="stat">Intersection size (tagged ∩ circled): <strong id="intersectionCount">0</strong></div>
+
+    <div class="legend">
+      <div><span class="tag">Tagged</span> = captured fish (colored)</div>
+      <div><span class="circ">Circled</span> = recaptured fish (ring)</div>
+      <div><span class="both">Both</span> = belong to both sets</div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:#444">Click "Capture" to randomly tag 200 fish. Click "Recapture" to pick a fresh 100 fish to circle. Intersection count is shown above.</p>
+  </div>
+
+  <canvas id="lake" width="900" height="600"></canvas>
+
+<script>
+(() => {
+  const canvas = document.getElementById('lake');
+  const ctx = canvas.getContext('2d');
+
+  const TOTAL = 1000;
+  const TAG_COUNT = 200;
+  const CIRCLE_COUNT = 100;
+
+  const totalFishEl = document.getElementById('totalFish');
+  const taggedCountEl = document.getElementById('taggedCount');
+  const circledCountEl = document.getElementById('circledCount');
+  const intersectionCountEl = document.getElementById('intersectionCount');
+
+  totalFishEl.textContent = TOTAL;
+
+  // simple fish model
+  class Fish {
+    constructor(i) {
+      this.i = i;
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      const speed = 0.3 + Math.random() * 1.1;
+      const angle = Math.random() * Math.PI * 2;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed;
+      this.size = 3 + Math.random() * 4; // radius
+      this.tagged = false;
+      this.circled = false;
+      this.colorBaseHue = Math.floor(Math.random()*360);
+    }
+    step(dt) {
+      this.x += this.vx * dt;
+      this.y += this.vy * dt;
+
+      // gentle wandering
+      if (Math.random() < 0.005) {
+        const angle = Math.random() * Math.PI*2;
+        this.vx = Math.cos(angle) * (0.3 + Math.random()*1.2);
+        this.vy = Math.sin(angle) * (0.3 + Math.random()*1.2);
+      }
+
+      // wrap edges
+      if (this.x < -10) this.x = canvas.width + 10;
+      if (this.x > canvas.width + 10) this.x = -10;
+      if (this.y < -10) this.y = canvas.height + 10;
+      if (this.y > canvas.height + 10) this.y = -10;
+    }
+    draw(ctx) {
+      // choose color depending on state
+      // default: bluish
+      let fillStyle = `hsl(${this.colorBaseHue}, 70%, 60%)`;
+      if (this.tagged && this.circled) {
+        fillStyle = '#9b5de5'; // both
+      } else if (this.tagged) {
+        fillStyle = '#ff6b6b'; // tagged red
+      } else {
+        fillStyle = `hsl(${200 + (this.colorBaseHue % 60)}, 70%, 45%)`;
+      }
+
+      // body
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+      ctx.fillStyle = fillStyle;
+      ctx.fill();
+
+      // circled => draw ring
+      if (this.circled) {
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255, 209, 102, 0.95)';
+        ctx.arc(this.x, this.y, this.size + 5, 0, Math.PI*2);
+        ctx.stroke();
+      }
+    }
+  }
+
+  const fishes = new Array(TOTAL).fill(0).map((_,i)=>new Fish(i));
+
+  // pick n unique indices from range [0..TOTAL-1]
+  function pickRandomIndices(n, total) {
+    if (n >= total) {
+      const all = new Set();
+      for (let i=0;i<total;i++) all.add(i);
+      return all;
+    }
+    const set = new Set();
+    while (set.size < n) {
+      set.add(Math.floor(Math.random()*total));
+    }
+    return set;
+  }
+
+  function applyTaggedSet(taggedSet) {
+    // set flags for all fish
+    for (let i=0;i<TOTAL;i++) fishes[i].tagged = false;
+    for (const idx of taggedSet) fishes[idx].tagged = true;
+  }
+
+  function applyCircledSet(circledSet) {
+    for (let i=0;i<TOTAL;i++) fishes[i].circled = false;
+    for (const idx of circledSet) fishes[idx].circled = true;
+  }
+
+  // statistics
+  let lastTaggedSet = new Set();
+  let lastCircledSet = new Set();
+
+  function updateStats() {
+    const taggedCount = [...lastTaggedSet].length;
+    const circledCount = [...lastCircledSet].length;
+    // compute intersection size quickly
+    let inter = 0;
+    // iterate smaller set
+    const [a,b] = lastTaggedSet.size < lastCircledSet.size ? [lastTaggedSet, lastCircledSet] : [lastCircledSet, lastTaggedSet];
+    for (const v of a) if (b.has(v)) inter++;
+    taggedCountEl.textContent = taggedCount;
+    circledCountEl.textContent = circledCount;
+    intersectionCountEl.textContent = inter;
+  }
+
+  // UI handlers
+  document.getElementById('captureBtn').addEventListener('click', () => {
+    lastTaggedSet = pickRandomIndices(TAG_COUNT, TOTAL);
+    applyTaggedSet(lastTaggedSet);
+    updateStats();
+  });
+
+  document.getElementById('recaptureBtn').addEventListener('click', () => {
+    // fresh 100: pick new set of 100 indices (they can overlap with tagged set)
+    lastCircledSet = pickRandomIndices(CIRCLE_COUNT, TOTAL);
+    applyCircledSet(lastCircledSet);
+    updateStats();
+  });
+
+  // animation loop
+  let lastTime = performance.now();
+  function animate(now) {
+    const dt = (now - lastTime) * 0.06; // scale for comfortable motion
+    lastTime = now;
+
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+
+    // draw lake border subtle grid (optional)
+    ctx.save();
+    ctx.globalAlpha = 0.08;
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.fillRect(0,0,canvas.width, canvas.height);
+    ctx.restore();
+
+    // update + draw fishes
+    for (let i=0;i<TOTAL;i++) {
+      fishes[i].step(dt);
+      fishes[i].draw(ctx);
+    }
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+
+  // initialize with no capture
+  updateStats();
+
+})();
+</script>
+</body>
+</html>

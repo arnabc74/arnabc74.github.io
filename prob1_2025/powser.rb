@@ -1,0 +1,42 @@
+ @{<NOTE>
+<HEAD1>Power series</HEAD1>
+Qe shall learn about a concept called <TERM>power series</TERM>  in this page. Here is the definition.
+
+<DEFN name="Power series">
+By a <TERM>power series</TERM> (centred at 0) we mean an infinite series of the form 
+<D>f(t) = a_0+a_1t+a_2t^2+\cdots</D>,
+where <M>a_i</M>'s are real numbers, and <M>t</M>  is a real variable. 
+</DEFN>
+Clearly a power series must converge at <M>t=0</M>. For what other values will it converge. As you can guess, the answer
+ depends on the <M>a_i</M>'s. It is possible to choose <M>a_i</M>'s in such a way that the power series fails to converge
+ for all nonzero values of <M>t</M>. At the other extreme, it is also possible to choose <M>a_i</M>'s in a way so that we
+ have convergence for all values of <M>t</M>. 
+
+But whatever the <M>a_i</M>'s may be, the following theorem must hold.
+
+<THM>
+For every power series there is a number <M>R\geq 0</M>  such that the power series converges
+ <M>\forall t\in (-R, R)</M>  and fails to converge outside <M>[-R,R]</M>.  
+</THM>
+Two points to note:
+<UL><LI>If <M>R=0</M>, then <M>(-R,R) = \phi</M>.</LI>
+<LI>The theorem is silent about the behaviour at <M>t=-R</M>  and <M>t=R</M>. Indeed, nothing
+ conclusive may be said in general at those points. All the possibilities are possible. (Yes, I
+ know it sounds like a bad pun!) </LI>
+</UL>
+The <M>R</M>  is obviously unique for a given power series. It is called the <TERM>radius of convergence</TERM>  of the pws.
+
+A power series behaves very nicely in <M>(-R,R)</M>  as shown in the following theorem. 
+
+<THM>
+Let <M>f(t) = \sum a_n t^n</M>  be a power series with radius of convergence <M>R>0</M>. Then <M>\forall t\in (-R,R)</M>
+<OL><LI><M>f(t)</M>  converges absolutely</LI>
+<LI>f(t) is differentiable the derivative may be computed term by term 
+i.e., <M>f'(t) = \sum_1^\infty n a_n t^{n-1}.</M>
+This new power series also converges everywhere in <M>(-R,R)</M>  (may have even larger radius of convergence). 
+</LI>
+</OL>
+</THM>
+By using the second property repeatedly, you may differentiate a power series as many time as you wish inside <M>(-R,R)</M>.
+
+</NOTE>@}

@@ -228,8 +228,7 @@ Is it possible for a random variable <M>X</M>  to have a distribution such that 
  remember its age. Here is exact definition:
 <DEFN name="Memoryless">
 A random variable <M>X</M>  is called <TERM>memoryless</TERM>  if for all <M>x</M>  and all
- <M>a>0</M>  the conditional probability  <M>[[P(X\geq x+a)][P( X\geq
- x)]]</M>  is free of <M>x</M>  (need not be free of <M>a</M>). 
+ <M>a>0</M>  the conditional probability  <M>P(X\geq x+a|X\geq x)</M>  is free of <M>x</M>  (need not be free of <M>a</M>). 
 </DEFN>
 The lifespans of certain types of
  electronic components are believed to be memoryless. Such components die only due to sudden random shocks, and not due to
@@ -260,7 +259,7 @@ You may like to explore this for integer-valued random variables.
 <B>PMF:</B> 
 <D>
 P(X=x) = <CASES>
-            {x-1\choose r-1}\theta^r (1-\theta)^{x-r}<IF><M>x=r,r+1,...</M></IF>
+            {x-1\choose r-1}\theta^r (1-\theta)^{x-r}<IF>x=r,r+1,...</IF>
             0 <ELSE/>
          </CASES>
 </D>
@@ -402,7 +401,7 @@ barplot(dnbinom(0:10, size=3, prob=0.5))
 <HEAD2>Poisson distribution</HEAD2>
 <B>Notation:</B> <B>Poi</B><M>(\lambda),</M> where <M>\lambda > 0.</M>
 <P/>
-<B>Sample space:</B> \{0,1,2,...\}
+<B>Sample space:</B> {0,1,2,...}
 <P/>
 <B>PMF:</B> 
 <D>
@@ -619,7 +618,6 @@ Now
 (*(1-[[\lambda n]] )*)^{-k}\to 1,
 </D>
 since <M>k</M> is fixed. Also
-and 
 <D>
 (*(1-[[\lambda n]] )*)^n \to e^{-\lambda}.
 </D>
