@@ -1,3 +1,8 @@
+**October 11, 2025:**
+
+:	- Corrected a serious mistake in the hint of Exercise 16 in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+
 **October 10, 2025:**
 
 :	- Added some AI-generated interactive simulation of the capture-recapture

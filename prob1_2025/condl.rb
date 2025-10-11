@@ -416,13 +416,20 @@ By symmetry, the answer is <M>[[1n]]</M>  if <M>k=1.</M>  So, for general <M>k</
 </ANS>
 <HR/></EXR>
 ::<EXR><EIMG web="morecond2.png"></EIMG>
+Here you should use the fact that for continuous joint distribition <M>P(X_i=X_j)=0</M>  for <M>i\neq j</M>. Thus, you may
+ assume that all the <M>X_j</M>'s are distinct. 
 <ANS>Let <M>I_j</M> be the indicator variable for whether there is a
-record at position <M>j.</M> Then <M>P(I_j=1)</M> may be computed
+record at position <M>j.</M> Let <M>R_j</M>  be the rank of <M>X_j</M>. The smallest of the
+ <M>X_j</M>'s has rank <M>1</M>, the largest has rank <M>n</M>. Then
+ <M>P(I_j=1)</M> may be computed
 by total probability:
 <D>
-P(I_j=1) = \sum_{k=j}^n P(X_j=k)P(I_j=1|X_j=k).
+P(I_j=1) = \sum_{k=j}^n P(R_j=k)P(I_j=1|R_j=k).
 </D>
-Similarly for <M>P(I_jI_k=1).</M></ANS>
+Similarly for <M>P(I_jI_k=1).</M>
+
+[Thanks to Nuhad for pointing out a serious mistake here.]
+</ANS>
 <HR/></EXR>
 ::<EXR><EIMG web="morecond3.png"></EIMG>
 <ANS>The problem is basically optimising <M>\sum P_i^2</M> subject
