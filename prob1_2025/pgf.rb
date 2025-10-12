@@ -116,8 +116,8 @@ Let us compute <M>E(t^{X_2}|X_1=k)</M>  for <M>k=0,1,2,... </M>. In particular w
  consists of their children. 
 <CIMG web="xixi.png">The second generation colour coded by parents</CIMG>
 We have colour-coded the second generation individuals by the their parents. Let <M>Y_i</M>  be the contribution of the <M>i</M>-th
- individual of the first generation. We have assumed that each individual splits independently and
- identically of the rest. So <M>Y_1, Y_2, Y_3</M>  are IID random variables. 
+ individual of the first generation. We have assumed that each individual splits  identically and independently
+ of the rest. So <M>Y_1, Y_2, Y_3</M>  are IID random variables. 
 
 So <M>E(t^{X_2}|X_1=3) = E(t^{Y_1+Y_2+Y_3}|X_1=3) = E(t^{Y_1+Y_2+Y_3})</M>, since <M>Y_i</M>'s are
  independent of <M>X_1</M>  (number of my children has nothing to do with the number of my siblings!). 
