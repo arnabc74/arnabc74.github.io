@@ -1,7 +1,13 @@
+**October 12, 2025:**
+
+:	- Added a detailed hint to Exercise 7 (the most important result) in the
+	[PGF](pgf.html){target="naya"} page. 
+
 **October 11, 2025:**
 
 :	- Corrected a serious mistake in the hint of Exercise 16 in the 
 	[Conditional distribution](condl.html){target="naya"} page.
+	Thanks to Nuhad. 
 
 **October 10, 2025:**
 
@@ -19,7 +25,7 @@
 
 :	- Made the hint of Exercise 18 more lucid (hopefully!) in the 
 	[Conditional distribution](condl.html){target="naya"} page.
-
+	
 **October 06, 2025:**
 
 :	- Slightly reworded the tower property and its proof. Also corrected a minor typo

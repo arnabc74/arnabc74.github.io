@@ -104,7 +104,38 @@ But if <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have births, and the inter
 <HEAD3>Using PGF</HEAD3>
 Let <M>\xi(t)</M>  be the PGF of <M>X_1</M>. In other words, 
 <D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
-<EXR>Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>.</EXR>
+
+The next exercise is of central importance. 
+<EXR>Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>  for <M>|t| < 1</M>.
+<ANS>
+<M>\xi_2(t) = E(t^{X_2}) = E(#( E(t^{X_2}|X_1) )#)</M>  by the tower property. 
+
+Let us compute <M>E(t^{X_2}|X_1=k)</M>  for <M>k=0,1,2,... </M>. In particular we shall focus on <M>k=3</M>  (the other cases
+ being similar). Thus we are in a situation where the first generation consists of the 3
+ individuals, and the second generation
+ consists of their children. 
+<CIMG web="xixi.png">The second generation colour coded by parents</CIMG>
+We have colour-coded the second generation individuals by the their parents. Let <M>Y_i</M>  be the contribution of the <M>i</M>-th
+ individual of the first generation. We have assumed that each individual splits independently and
+ identically of the rest. So <M>Y_1, Y_2, Y_3</M>  are IID random variables. 
+
+So <M>E(t^{X_2}|X_1=3) = E(t^{Y_1+Y_2+Y_3}|X_1=3) = E(t^{Y_1+Y_2+Y_3})</M>, since <M>Y_i</M>'s are
+ independent of <M>X_1</M>  (number of my children has nothing to do with the number of my siblings!). 
+
+Now <M>E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1}t^{Y_2}t^{Y_3}) = E(t^{Y_1})E(t^{Y_2})E(t^{Y_3})</M>, since
+ <M>Y_i</M>'s are independent (number of my children has nothing to do with how many children my siblings have!). 
+
+Finally, <M>E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1})E(t^{Y_2})E(t^{Y_3}) = \xi(t)\xi(t)\xi(t) =
+ (#(\xi(t))#)^3</M>, since <M>Y_i</M>'s all have the same distribution. 
+
+Clearly, the <M>3</M>  in the exponent came from our choice of <M>k</M>. So, in general,
+ <M>E(t^{X_2}|X_1=k) = \xi(t)^k</M>  for <M>k=0,1,2,..</M>. 
+
+Thus, <M>E(t^{X_2}) = E(#(E(t^{X_2}|X_1) )#) = \sum_{k=0}^\infty \xi(t)^k p_k =\xi(\xi(t))</M>.     
+
+Notice that convergence is not a problem, because we have assumed <M>|t| < 1</M>, and so <M>|\xi(t)| < 1</M>  as well. 
+</ANS>
+</EXR>
 
 <EXR>In general show that for <M>n\in\nn</M>  the PGF of <M>X_n</M>  is <M>\xi_n(t) = \xi(\xi_{n-1}(t))</M>.</EXR>
 

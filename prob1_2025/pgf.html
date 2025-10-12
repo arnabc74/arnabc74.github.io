@@ -345,8 +345,51 @@ But if $p_n&gt;0 $ for some $n\geq 2$, then we have births, and the interaction 
 name="Using PGF">Using PGF</a></h3>
 Let $\xi(t)$  be the PGF of $X_1$. In other words, 
 $$\xi(t) = p_0+p_1t+p_2t^2+\cdots.$$
+<p></p>
+The next exercise is of central importance. 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Show that $X_2 $ has PGF $\xi_2(t)=\xi(\xi(t))$.</p>
+<b>EXERCISE 7:</b>&nbsp;Show that $X_2 $ has PGF $\xi_2(t)=\xi(\xi(t))$  for $|t| &lt; 1$.
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">
+$\xi_2(t) = E(t^{X_2}) = E\big( E(t^{X_2}|X_1) \big)$  by the tower property. 
+<p></p>
+Let us compute $E(t^{X_2}|X_1=k)$  for $k=0,1,2,... $. In particular we shall focus on $k=3$  (the other cases
+ being similar). Thus we are in a situation where the first generation consists of the 3
+ individuals, and the second generation
+ consists of their children. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/xixi.png"></th>
+</tr>
+<tr>
+<th>The second generation colour coded by parents</th>
+</tr>
+</table>
+</center>
+We have colour-coded the second generation individuals by the their parents. Let $Y_i$  be the contribution of the $i$-th
+ individual of the first generation. We have assumed that each individual splits independently and
+ identically of the rest. So $Y_1, Y_2, Y_3$  are IID random variables. 
+<p></p>
+So $E(t^{X_2}|X_1=3) = E(t^{Y_1+Y_2+Y_3}|X_1=3) = E(t^{Y_1+Y_2+Y_3})$, since $Y_i$'s are
+ independent of $X_1$  (number of my children has nothing to do with the number of my siblings!). 
+<p></p>
+Now $E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1}t^{Y_2}t^{Y_3}) = E(t^{Y_1})E(t^{Y_2})E(t^{Y_3})$, since
+ $Y_i$'s are independent (number of my children has nothing to do with how many children my siblings have!). 
+<p></p>
+Finally, $E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1})E(t^{Y_2})E(t^{Y_3}) = \xi(t)\xi(t)\xi(t) =
+ \big(\xi(t)\big)^3$, since $Y_i$'s all have the same distribution. 
+<p></p>
+Clearly, the $3$  in the exponent came from our choice of $k$. So, in general,
+ $E(t^{X_2}|X_1=k) = \xi(t)^k$  for $k=0,1,2,..$. 
+<p></p>
+Thus, $E(t^{X_2}) = E\big(E(t^{X_2}|X_1) \big) = \sum_{k=0}^\infty \xi(t)^k p_k =\xi(\xi(t))$.     
+<p></p>
+Notice that convergence is not a problem, because we have assumed $|t| &lt; 1$, and so $|\xi(t)| &lt; 1$  as well. 
+</div></p>
+
+</p>
 
 <p></p>
 
@@ -466,8 +509,8 @@ A brief note about probability generating functions: If $X$  takes non-negative 
 $$\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.$$
 Clearly this converges absolutely for $|t|\leq 1.$   In this problem we are assuming that it converges for all $t\in{\mathbb R}.$
 <p><a
-href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
-class="ans" id="lab2">
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
 (a) Let $Y =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\leq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
 <p></p>
 Then, for $t\in[0,1],$  we have $Y\leq t^X.$    (Remember that $x\mapsto t^x$  is a non-increasing function
