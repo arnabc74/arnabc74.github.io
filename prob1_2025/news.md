@@ -1,3 +1,8 @@
+**October 13, 2025:**
+
+	- Corrected hint to Exercise 9 in the 
+	[Conditional distribution](condl.html){target="naya"} page.
+
 **October 12, 2025:**
 
 :	- Added a detailed hint to Exercise 7 (the most important result) in the
