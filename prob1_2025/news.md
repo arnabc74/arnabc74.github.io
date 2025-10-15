@@ -1,3 +1,10 @@
+**October 15, 2025:**
+
+:	- Classified most of the exercises as Easy, Medium or Hard. The classification
+	  is not yet complete. 
+
+	- Added video links to the [Random walk](fluc.html){target="naya"} page. 
+
 **October 13, 2025:**
 
 	- Corrected hint to Exercise 9 in the 

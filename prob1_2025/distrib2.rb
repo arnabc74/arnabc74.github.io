@@ -692,6 +692,22 @@ find <M>P(X=n).</M> This means he has been using the same
 box <M>n</M> times without ever using the other box.]
 <HR/>
 </EXR>
+::<EXR>(Medium) Should go to next page.<EIMG web="dtwo13.png"/></EXR>
+::<EXR><EIMG web="dtwo14.png"/></EXR>
+::<EXR><EIMG web="dtwo15.png"/></EXR>
 
-<P/>
+::<EXR><EIMG web="dtwo17.png"/>
+<ANS>
+Let <M>X_i</M>  be indicator for there being a changeover at position <M>i</M>  for <M>i=2,...,n.</M>  By definition, there
+ cannot be a changeover at <M>i=1.</M>  
+
+Then the answer is <M>\sum_2^n E(X_i). </M>  Now <M>X_i = 1</M>  iff the <M>(i-1)</M>-th and
+ <M>i</M>-th tosses result in either <M>HT</M>  or <M>TH.</M>  
+
+So <M>E(X_i) = \cdots.</M>
+</ANS>
+</EXR>
+::<EXR><EIMG web="dtwo37.png"/></EXR>
+::<EXR><EIMG web="dtwo38.png"/></EXR>
+
 </NOTE>@}

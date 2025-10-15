@@ -428,17 +428,17 @@ which the PMF is <M>p(x)</M>  given above.
 The CDF of a discrete random variable is a step function like the one we saw in our example.
 
 <HEAD1>Problems for practice</HEAD1>
-::<EXR><CIMG web="rossrv1.png"/>
+::<EXR>(Easy)<CIMG web="rossrv1.png"/>
 <ANS>
 <M>P(X=i) = [[^5P_{i-1}\times 5\times (10-i)!][10!]]</M>  for <M>i=1,2,3,4,5,6.</M>  The probability is
  0 for <M>i=7,8,9,10.</M>
 </ANS>
 </EXR>
-::<EXR><CIMG web="rossrv2.png"/>
+::<EXR>(Easy)<CIMG web="rossrv2.png"/>
 <ANS>If <M>n</M>  is even, then all even values between <M>0</M>  and <M>n.</M>  If <M>n</M>  is
  odd, then all the odd values in the same range.</ANS>
 </EXR>
-::<EXR><CIMG web="rossrv3.png"/>
+::<EXR>(Easy)<CIMG web="rossrv3.png"/>
 <ANS>
 (a) <CIMG web="cdf.png">Plot of CDF</CIMG>
 
@@ -452,7 +452,7 @@ The CDF of a discrete random variable is a step function like the one we saw in 
 </ANS>
 </EXR>
 
-::<EXR><CIMG web="rossrv4.png"/>
+::<EXR>(Easy)<CIMG web="rossrv4.png"/>
 <ANS><M>P(X=1) = P(X\leq 1)-P(X< 1).</M>
 
 Now <M>\{X < 1\} = \lim_n {*{X\leq 1-[[1n]]}*}.</M>  Since this is an increasing limit, hence by continuity of 
@@ -462,7 +462,7 @@ Hence <M>P(X=1) = F(1)-F(1-).</M>
 </ANS>
 </EXR>
 
-::<EXR><CIMG web="hpsrv1.png"/>
+::<EXR>(Easy)<CIMG web="hpsrv1.png"/>
 <ANS>
 <M>P(|X-1|\geq 2) = P(X\leq -1\mbox{ or }X\geq 3) = P(X\leq -1) + P(X\geq 3) = P(X\leq -1) +
  P(X \gt 3)+P(X=3) = F_X(-1)+1-F_X(3)+P(X=3) =F_X(-1)+1-F_X(3),</M>
@@ -473,7 +473,7 @@ since <M>P(X=3)=0</M>.
 </EXR>
 In all the following problems the term "density" stands for "PMF".
 
-::<EXR><CIMG web="hpsrv3.png"/>
+::<EXR>(Easy)<CIMG web="hpsrv3.png"/>
 <ANS>
 (b) <M>X</M>  can take values <M>0,1,...,n</M>.  We have 
 <D>P(X=k) = \binom{n}{k} (*([[35]])*)^k (*([[25]])*)^{n-k}</D>  for <M>k=0,1,...,n</M>.
@@ -484,13 +484,13 @@ The PMF is zero otherwise.
 Here we have the understanding that <M>\binom{n}{r} = 0</M>  if <M>r\not\in\{0,1,...,n\}</M>. 
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsrv4.png"/>
+::<EXR>(Easy)<CIMG web="hpsrv4.png"/>
 <ANS>For this to be a PMF we need <M>f(1)+\cdots+f(N)=1</M>.
 
 So <M>c(2+2^2+\cdots 2^N) = 1</M>. 
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsrv5.png"/>
+::<EXR>(Easy)<CIMG web="hpsrv5.png"/>
 <ANS>
 (a) <M>P(X<0) = f(-3)+f(-1) = 0.1 + 0.2 = 0.3</M>.
 
@@ -503,7 +503,7 @@ So <M>c(2+2^2+\cdots 2^N) = 1</M>.
 (e) <M>P(X\geq 3| X > 0) = [[P(X\geq 3 \& X > 0)][P(X > 0)]] = [[P(X\geq 3)][P(X>0)]]= [[f(3)+f(5)+f(8)][f(1)+f(2)+f(3)+f(5)+f(8)]].</M>
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsrv6.png"/>
+::<EXR>(Medium)<CIMG web="hpsrv6.png"/>
 
 Here they mean an SRSWR of size 2.
 <ANS>
@@ -524,7 +524,7 @@ So for <M>k\in\{1,2,...,12\}</M>  we have
 which is the required PMF. 
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsrv7.png"/>
+::<EXR>(Medium)<CIMG web="hpsrv7.png"/>
 <ANS>
 (a) Of course we assume that <M>n\leq r</M>. 
 
@@ -540,13 +540,13 @@ This has probability <M>[[\binom{[y]}{n}][\binom{r}{n}]]</M>.
 </EXR>
 The nex two problems refer to the following CDF:
 <CIMG web="hpsmore1.png"/>
-::<EXR><CIMG web="hpsmore2.png"/>
+::<EXR>(Easy)<CIMG web="hpsmore2.png"/>
 <ANS>
 <M>F(m) = [[12]]</M>  means <M>1-e^{- \lambda m} = [[12]]</M>, or 
 <M>m = [[\log 2][\lambda]]</M>.
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsmore3.png"/>
+::<EXR>(Easy)<CIMG web="hpsmore3.png"/>
 <ANS>First notice that since <M>F(x)</M>  is a continuous function, hence for any given <M>a\in\rr</M>  we must have <M>P(X=a) = 0</M>.
 
 So <M>P(X\geq 0.01) = P(X > 0.01) = 1-F(0.01) = e^{-\lambda/100}</M>.
@@ -560,7 +560,7 @@ So we need <M>e^{-\lambda t} = 0.9</M>. Hence <M>t = -[[\log 0.9][\lambda]] = -[
 This is actually positive, since <M>\log 0.9 < 0</M>.
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsmore4.png"/>
+::<EXR>(Easy)<CIMG web="hpsmore4.png"/>
 <ANS>
 (a) <M>P(*([[12]]\leq X \leq [[32]])*) = P(*(X\leq [[32]])*) - P(*(X < [[12]])*)
 = P(*(X\leq [[32]])*)-P(*(X\leq [[12]])*),</M>
@@ -583,7 +583,7 @@ Actually here <M>F(x)</M>  is continuous at <M>x=2</M>.
 [Thanks to Avigyan for correcting a silly mistake in the solution to part (e).] 
 </ANS>
 </EXR>
-::<EXR><CIMG web="hpsmore5.png"/>
+::<EXR>(Medium)<CIMG web="hpsmore5.png"/>
 Here are the properties (i)-(iv) from section 5.1.1:
 <CIMG web="hpsmore6.png"></CIMG>
 Here <M>F(\pm\infty) = \lim_{x\to\pm\infty} F(x)</M>  and <M>F(x+) = \lim_{t\to x-} F(t).</M>
