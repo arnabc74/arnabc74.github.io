@@ -79,7 +79,7 @@ P(X>2) &=& 1-P(X\leq 2)\\
 </MULTILINE>
 </EXM>
 <P/>
-<EXR ref="geo1">
+::<EXR ref="geo1">(Easy)
 If <M>G</M> is a <B>Geom</B><M>(0.2)</M> random variable, then compute the
 following probabilities.
 <FL><LI><M>P(G=3)</M>
@@ -96,7 +96,7 @@ following probabilities.
 </LI></FL></ANS></EXR>
 <P/>
 
-<EXR ref="geo2">
+::<EXR ref="geo2">(Easy)
 Find <M>P(T\mbox{ is even})</M> where <M>T\sim</M><B>Geom</B><M>(0.4).</M> 
 <ANS ref="geo2"> You will need the geometric series here.
 <MULTILINE>P(X\mbox{ is even})&=& P(X=2)+P(X=4)+\cdots\\
@@ -117,12 +117,12 @@ probability 1/6 of turning up), then what is the distribution of <M>X?</M>
 <SOLN/> <M>X</M> is a <B>Geom</B>(1/6) random variable. 
 </EXM>
 <P/>
-<EXR ref="geo3">
+::<EXR ref="geo3">(Easy)
 In the above example compute the probability of getting the first `6' within
 the first 3 rolls. 
 <ANS ref="geo3"><M>\frac{91}{216}</M></ANS></EXR>
 <P/>
-<EXR ref="geo4">
+::<EXR ref="geo4">(Easy)
 Some couples are so keen about having a son that they go on producing
 babies until they get their first son, and then they stop having children. 
  Assume that at each birth a baby of
@@ -174,7 +174,7 @@ Var(X) &=& E(X^2) - (E(X))^2 \\
        &=& \frac{1-\theta}{\theta^2}
 </MULTILINE>
 <P/>
-<EXR ref="geoxv1">
+::<EXR ref="geoxv1">(Easy)
 Find the mean and standard deviation of a <B>Geom</B><M>(\theta)</M> random
 variable for the following values of <M>\theta.</M>
 <FL><LI><M>\theta = \frac34.</M>
@@ -205,7 +205,7 @@ E(X) = 1/0.8 = 1.25
 </D> 
 </EXM>
 <P/>
-<EXR ref="geo5">
+::<EXR ref="geo5">(Easy)
 Compute <M>E(D)</M> and <M>Var(D)</M> in the son-daughter exercise above.
 <ANS><M>E(D)=1,</M> <M>Var(D)=2.</M>  
 
@@ -236,7 +236,7 @@ The lifespans of certain types of
 
 The Geometric distributions are all memoryless. The next exercise asks you to prove this.
 
-<EXR>
+::<EXR>(Easy)
 Let <M>X\sim Geom(p).</M>  Let <M>x\in\nn</M>  show that <M>P(X\geq x+a | X\geq x)</M>  is free of <M>x.</M>
 <ANS>
 <M>P(X\geq x+a | X\geq x) = [[P(X\geq x+a \& X\geq x)][P( X\geq x)]] = [[P(X\geq x+a)][P( X\geq x)]]</M>
@@ -305,7 +305,7 @@ So
 P(X=5) = {5-1\choose 3-1}  \theta^3(1-\theta)^2 = 6\theta^3(1-\theta)^2.
 </D>
 <P/>
-<EXR ref="nb1">
+::<EXR ref="nb1">(Easy)
 If <M>X</M> follows <B>NegBin</B><M>(3,\frac14)</M> distribution, find the following
 probabilities.
 <FL><LI><M>P(T=5)</M>
@@ -327,7 +327,7 @@ E(X) & = & \frac{r}{\theta}\\
 Var(X) & = & \frac{r(1-\theta)}{\theta^2} 
 </MULTILINE>
 <P/>
-<EXR ref="nbxv1"> <M>Y\sim</M><B>NegBin</B><M>(r,\theta).</M> Compute <M>E(Y)</M> and
+::<EXR ref="nbxv1">(Easy) <M>Y\sim</M><B>NegBin</B><M>(r,\theta).</M> Compute <M>E(Y)</M> and
 <M>Var(Y)</M> for the following values of <M>r</M> and <M>\theta.</M>
 <FL><LI><M>r=3, \theta=\frac12</M>
 </LI><LI><M>r=2, \theta=\frac15</M>
@@ -369,7 +369,7 @@ variables, then
 <M>X_1+\cdots+X_r\sim </M><B>NegBin</B><M>(\theta,r)</M>.
 </Q>
 </BOX>
-<EXR ref="nbxv2">
+::<EXR ref="nbxv2">(Easy)
 Using the above result and the mean and variance of
 <B>Geom</B><M>(\theta),</M>
 derive the formula for mean and variance of <B>NegBin</B><M>(r,\theta).</M>
@@ -414,7 +414,7 @@ P(X=x) = <CASES>
 distribution. We also say that <M>X</M> is a <B>Poi</B><M>(\lambda)</M> random
 variable, and write <M>X\sim</M><B>Poi</B><M>(\lambda).</M>
 <P/>
-<EXR ref="poi1">
+::<EXR ref="poi1">(Easy)
 If <M>X\sim</M><B>Poi</B><M>(3),</M> then find the following probabilities.
 <FL><LI><M>P(X=4)</M>
 </LI><LI><M>P(X=0)</M>
@@ -428,7 +428,7 @@ If <M>X\sim</M><B>Poi</B><M>(3),</M> then find the following probabilities.
 </LI></FL></ANS>
 </EXR>
 <P/>
-<EXR ref="poi2">
+::<EXR ref="poi2">(Easy)
 What is the probability that a <B>Poi</B><M>(5)</M> random variable is even?
 <ANS ref="poi2"><M>(1+e^{-10})/2</M>  [Thanks to Mayukh for correcting a typo here.]</ANS>
 </EXR>
@@ -458,7 +458,7 @@ P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
 </D>
 </EXM>
 <P/>
-<EXR ref="poi3">
+::<EXR ref="poi3">(Medium)
 A box has 100 items, each of which either passes a quality control test
 (OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
 box is rejected by the quality control inspector. It is known that each
@@ -525,7 +525,7 @@ Var(X)   &=& E(X^2) - (E(X))^2\\
          &=& \lambda.
 </MULTILINE>
 <P/>
-<EXR ref="poixv1">
+::<EXR ref="poixv1">(Easy)
 Find the expected values of the following random variables.
 <FL><LI><M>X\sim</M><B>Poi</B><M>(2).</M>
 </LI><LI><M>Y\sim</M><B>Poi</B><M>(\frac12).</M>
@@ -537,7 +537,7 @@ Find the expected values of the following random variables.
 </LI></FL></ANS>
 </EXR>
 <P/>
-<EXR ref="poixv2">
+::<EXR ref="poixv2">(Easy)
 Find the variance of a <B>Poi</B><M>(\lambda)</M> random variable for the
 following values of <M>\lambda.</M>
 <FL><LI><M>1</M>
@@ -556,7 +556,7 @@ If <M>X</M> is a <B>Poi</B><M>(\alpha)</M> random variable, <M>Y</M> is a
 then <M>X+Y</M> is a <B>Poi</B><M>(\alpha+\beta)</M> random variable.
 </BOX>
 <P/>
-<EXR ref="poi4">
+::<EXR ref="poi4">(Easy)
 If <M>X_1,X_2,X_3,X_4</M> are independent random variables with
  distributions <B>Poi</B>(1),<B>Poi</B>(2),<B>Poi</B>(4) and <B>Poi</B>(5),
  respectively.
@@ -646,21 +646,21 @@ This interpretation is clearly an over-simplification of the situation. However,
  
 <HEAD1>Problems for practice</HEAD1>
 
-<EXR><EIMG web="infdist1.png"/><HR/></EXR>
-<EXR><EIMG web="infdist2.png"/><HR/></EXR>
-<EXR><EIMG web="infdist3.png"/><HR/></EXR>
-<EXR><EIMG web="infdist4.png"/><HR/></EXR>
-<EXR><EIMG web="infdist5.png"/><HR/></EXR>
-<EXR><EIMG web="infdist6.png"/><HR/></EXR>
-<EXR><EIMG web="infdist7.png"/><HR/></EXR>
-<EXR><EIMG web="infdist8.png"/><HR/></EXR>
-<EXR><EIMG web="infdist9.png"/><HR/></EXR>
-<EXR><EIMG web="infdist10.png"/><HR/></EXR>
-<EXR><EIMG web="infdist11.png"/><HR/></EXR>
-<EXR><EIMG web="infdist12.png"/><HR/></EXR>
-<EXR><EIMG web="infdist13.png"/><HR/></EXR>
-<EXR><EIMG web="infdist14.png"/><HR/></EXR>
-<EXR>Show that 
+::<EXR>(Medium)<EIMG web="infdist1.png"/><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist2.png"/><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist3.png"/><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist4.png"/><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist5.png"/><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist6.png"/><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist7.png"/>Use Poisson distribution.<HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist8.png"/>Use Poisson distribution.<HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist9.png"/><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist10.png"/><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist11.png"/><HR/></EXR>
+::<EXR>(Hard)<EIMG web="infdist12.png"/><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist13.png"/><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist14.png"/><HR/></EXR>
+::<EXR>(Medium)Show that 
 <D>
 [[\lambda^k][k!]] (*(1-[[\lambda n]])*)^{n-k} 
 \geq
@@ -669,7 +669,7 @@ This interpretation is clearly an over-simplification of the situation. However,
 </D>
 where <M>\lambda = np.</M>
 <HR/></EXR>
-<EXR>Use the above inequality to show that 
+::<EXR>(Medium)Use the above inequality to show that 
 <D>
 [[e^{-\lambda}\lambda^k][k!]] e^{k \lambda/n}
 >
@@ -678,7 +678,7 @@ where <M>\lambda = np.</M>
 [[e^{-\lambda}\lambda^k][k!]] e^{-k^2/(n-k)-\lambda^2/(n-\lambda)}.
 </D>
 <HR/></EXR>
-<EXR>(Banach's matchbox problem)
+::<EXR>(Hard)(Banach's matchbox problem)
 A certain mathematician has two matchboxes (containing <M>n</M>
 matches each), one in his left pocket, the other in the
 right. When he needs to light a cigar (smoking which, BTW, is
@@ -692,11 +692,11 @@ find <M>P(X=n).</M> This means he has been using the same
 box <M>n</M> times without ever using the other box.]
 <HR/>
 </EXR>
-::<EXR>(Medium) Should go to next page.<EIMG web="dtwo13.png"/></EXR>
-::<EXR><EIMG web="dtwo14.png"/></EXR>
-::<EXR><EIMG web="dtwo15.png"/></EXR>
+::::<EXR>(Medium) <EIMG web="dtwo13.png"/></EXR>
+::<EXR>(Easy)<EIMG web="dtwo14.png"/></EXR>
+::::<EXR>(Easy)<EIMG web="dtwo15.png"/></EXR>
 
-::<EXR><EIMG web="dtwo17.png"/>
+::<EXR>(Easy)Find the distribution of <M>X</M>  where <EIMG web="dtwo17.png"/>
 <ANS>
 Let <M>X_i</M>  be indicator for there being a changeover at position <M>i</M>  for <M>i=2,...,n.</M>  By definition, there
  cannot be a changeover at <M>i=1.</M>  
@@ -707,7 +707,7 @@ Then the answer is <M>\sum_2^n E(X_i). </M>  Now <M>X_i = 1</M>  iff the <M>(i-1
 So <M>E(X_i) = \cdots.</M>
 </ANS>
 </EXR>
-::<EXR><EIMG web="dtwo37.png"/></EXR>
-::<EXR><EIMG web="dtwo38.png"/></EXR>
+::<EXR>(Easy)<EIMG web="dtwo37.png"/></EXR>
+::<EXR>(Easy)<EIMG web="dtwo38.png"/></EXR>
 
 </NOTE>@}

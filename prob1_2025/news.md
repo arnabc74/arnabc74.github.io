@@ -1,3 +1,7 @@
+**October 17, 2025:**
+
+:	- Finished classifying all the exercises as Easy, Medium or Hard.
+
 **October 15, 2025:**
 
 :	- Classified most of the exercises as Easy, Medium or Hard. The classification
