@@ -6,7 +6,9 @@
 	  nonnegative random variables. The change, though minor to look at, is important. 
           Earlier I was allowing x to be negative also (by mistake), so Geometric was not 
           memoryless according to that wrong definition! 
-  
+
+	- Added videos to the [PGF](pgf.html){target="naya"} page. 
+
 **October 17, 2025:**
 
 :	- Finished classifying all the exercises as Easy, Medium or Hard.
