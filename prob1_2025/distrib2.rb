@@ -227,7 +227,7 @@ Is it possible for a random variable <M>X</M>  to have a distribution such that 
  <M>x?</M>  Such a random variable is called <TERM>memoryless</TERM>  in the sense that is cannot
  remember its age. Here is exact definition:
 <DEFN name="Memoryless">
-A random variable <M>X</M>  is called <TERM>memoryless</TERM>  if for all <M>x</M>  and all
+A nonnegative random variable <M>X</M>  is called <TERM>memoryless</TERM>  if for all <M>x\geq 0</M>  and all
  <M>a>0</M>  the conditional probability  <M>P(X\geq x+a|X\geq x)</M>  is free of <M>x</M>  (need not be free of <M>a</M>). 
 </DEFN>
 The lifespans of certain types of

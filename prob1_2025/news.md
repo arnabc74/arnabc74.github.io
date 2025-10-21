@@ -1,7 +1,12 @@
 **October 21, 2025:**
 
 :	- Corrected minor typos here and there. Thanks to Tushti and Mayukh.
- 
+
+	- Slightly reworded the definition of memorylessness. Now it referes to only 
+	  nonnegative random variables. The change, though minor to look at, is important. 
+          Earlier I was allowing x to be negative also (by mistake), so Geometric was not 
+          memoryless according to that wrong definition! 
+  
 **October 17, 2025:**
 
 :	- Finished classifying all the exercises as Easy, Medium or Hard.
