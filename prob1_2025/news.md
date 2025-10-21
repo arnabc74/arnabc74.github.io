@@ -1,3 +1,7 @@
+**October 21, 2025:**
+
+:	- Corrected minor typos here and there. Thanks to Tushti and Mayukh.
+ 
 **October 17, 2025:**
 
 :	- Finished classifying all the exercises as Easy, Medium or Hard.

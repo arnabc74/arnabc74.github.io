@@ -326,9 +326,11 @@ Notice that any valid path must pass through <M>(5,1)</M>, and
 you have no choice about the last segment (it must be upwards).  So we are
  counting all paths from
  <M>(0,0)</M>  to <M>(5,1)</M>   not
- meeting the horizontal line at 6. 
+ meeting the horizontal line at 2. 
 
 The answer may now be obtained easily using the reflection principle.
+
+[Thanks to Mayukh for correcting a typo here.]
 </ANS>
 </EXR>
 The next exercise is an obvious generalisation.
