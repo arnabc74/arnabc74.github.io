@@ -537,7 +537,15 @@ Then <M>E(g(X)Y|X=x_i) = \sum_y g(x_i) y P(Y=y|X=x_i) = g(x_i) \sum_y y P(Y=y|X=
 </ANS>
 <HR/></EXR>
 ::<EXR>(Medium) <EIMG web="morecond9.png"></EIMG><HR/></EXR>
-::<EXR>(Medium) <EIMG web="morecond10.png"></EIMG><HR/></EXR>
+::<EXR>(Medium) <EIMG web="morecond10.png"></EIMG><ANS>
+<MULTILINE>cov(X,E(Y|X)) 
+& = & E(X\, E(Y|X))-E(X)E(E(Y|X))\\
+& = & E(E(XY|X))-E(X)E(E(Y|X))<SINCE>substitution</SINCE> \\
+& = & E(XY)-E(X)E(Y)<SINCE>tower</SINCE> \\
+& = & cov(X,Y),
+  </MULTILINE>
+as required.
+</ANS><HR/></EXR>
 ::<EXR>(Medium) <EIMG web="morecond11.png"></EIMG>
 
 Will the result hold in general if the <M>X_i</M>'s are not independent?
@@ -560,17 +568,69 @@ Then
  <M>E(X_1|X_1+X_2+X_3=6)=1\neq [[63]].</M> 
 </ANS>
 <HR/></EXR>
-::<EXR>(Hard) <EIMG web="morecond12.png"></EIMG><HR/></EXR>
-::<EXR>(Hard) <EIMG web="morecond13.png"></EIMG><HR/></EXR>
-::<EXR>(Medium) <EIMG web="morecond14.png"></EIMG><HR/></EXR>
-::<EXR>(Medium) <EIMG web="morecond15.png"></EIMG><HR/></EXR>
-::<EXR>(Hard) <EIMG web="morecond16.png"></EIMG><HR/></EXR>
-::<EXR>(Hard) <EIMG web="morecond17.png"></EIMG><HR/></EXR>
-::<EXR>(Medium) <EIMG web="morecond18.png"></EIMG><HR/></EXR>
+::<EXR>(Medium) <EIMG web="morecond12.png"></EIMG> 
 
-::<EXR>(Medium) <EIMG web="morecond19.png"></EIMG><HR/></EXR>
-::<EXR><EIMG web="morecond20.png"></EIMG><HR/></EXR>
-::<EXR><EIMG web="morecond21.png"></EIMG>
+Here the random variable of interest is the number of white balls <I>remaining in the urn</I> 
+ after stage <M>t</M>. In particular, for <M>=0</M>, this numer is <M>w</M>.
+<ANS>Use induction on <M>t</M>. Basically, solve the problem only for <M>t=1</M>, and use the
+ argument for the induction step.</ANS>
+<HR/></EXR>
+::<EXR>(Hard) <EIMG web="morecond13.png"></EIMG><ANS>
+Let's take an example with <M>r=4</M>. Consider the tosses until  the first tail: <M>T, HT, HHT, HHHT</M>  or <M>HHHH\cdots T</M> 
+ (i.e., the first tail occurs after toss 4).  
+
+Let us encode these cases using a random variable <M>K</M>  defined as 
+<D>K = <CASES>i <IF>i\mbox{th toss gives first tail and } i\leq 4</IF> 5<ELSE/></CASES></D>
+ In the last case, <M>X = 4</M>. 
+
+In the other cases the search starts all over again after the first tail. 
+
+So, for <M>i=1,2,3,4</M>,  we have  <M>E(X|K=i) = i+E(X)</M>.
+
+Now use tower property.
+</ANS><HR/></EXR>
+::<EXR>(Easy) <EIMG web="morecond14.png"></EIMG>
+<ANS>Let <M>Y = <CASES>0<IF>X<a</IF> 1<ELSE/></CASES>.</M>  Now use the tower property.</ANS>
+<HR/></EXR>
+::<EXR>(Medium) <EIMG web="morecond15.png"></EIMG><ANS>
+Let <M>X</M>  be the number of balls remaining at the end. Let <M>Y</M>  be the indicator variable that the the first selected
+ ball is white. Then <M>E(X) = M_{a,b}</M>  (given)  and <M>E(X|Y=1) = M_{a-1,b}</M>  and <M>E(X|Y=0) = M_{a,b-1}</M>. 
+
+Now use tower property to get a recursion.  
+</ANS><HR/></EXR>
+::<EXR>(Hard) <EIMG web="morecond16.png"></EIMG><ANS>
+You may expand the expectation as a quadratic expression in <M>a,b,c</M>  and partially differentiate it wrt <M>a,b,c</M> 
+ and equate to zero to get a set of equations. Then you need to justify that this indeed corresponds to the global minimum.
+ 
+Or, you may use linear algebra as follows.
+
+Consider the space <M>span\{1,X_1,X_2\}</M>. We are trying to find the vector in it that is the closest to <M>Y</M>  where
+ the distance between two random variables <M>W,Z</M>  is being measured by <M>E(W-Z)^2</M>. 
+
+The minimiser must be the foot <M>\hat Y = a+bX_1+cX_2</M>  of the perpendicular dropped from
+ <M>Y</M>  onto <M>span\{1,X_1,X_2\}</M>. 
+
+So we need <M>Y-\hat Y</M>  to be orthogonal to <M>1, X_1</M>  and <M>X_2</M>, i.e., <M>E(1(Y-\hat Y) = 0</M>  and <M>E(X_1(Y-\hat Y) = 0</M> 
+ and <M>E(X_2(Y-\hat Y) = 0</M>. This gives rise to the <M>3\times 3</M>  system
+<D><MAT>1 & E(X_1) & E(X_2)\\E(X_1) & E(X_1^2) & E(X_1X_2)\\E(X_2) & E(X_1X_2) & E(X_2^2)</MAT><MAT>a\\b\\c</MAT> =<MAT>E(Y)\\E(X_1Y)\\E(X_2Y)</MAT>.</D>
+
+</ANS><HR/></EXR>
+::<EXR>(Hard) <EIMG web="morecond17.png"></EIMG><ANS>
+Similar to the last exercise.
+</ANS><HR/></EXR>
+::<EXR>(Medium) <EIMG web="morecond18.png"></EIMG><ANS>
+(a) Tower property.
+
+(b) Induction.
+
+(c) Use the theorem for computing unconditional variance from conditional quantities.
+
+(d) Induction.
+</ANS><HR/></EXR>
+
+::<EXR>(Medium) <EIMG web="morecond19.png"></EIMG><ANS>Use indicator variables.</ANS><HR/></EXR>
+::<EXR>(Hard) <EIMG web="morecond20.png"></EIMG><HR/></EXR>
+::<EXR>(Hard) <EIMG web="morecond21.png"></EIMG>
 <ANS>
 Let <M>X_i</M>  be the indicator for <M>i</M>-th red ball being a win. 
 
@@ -594,7 +654,7 @@ Now you should be able to complete the rest.
 
 </ANS>
 <HR/></EXR>
-::<EXR><EIMG web="morecond22.png"></EIMG>
+::<EXR>(Hard) <EIMG web="morecond22.png"></EIMG>
 <ANS>
 (a) Let's take an example with <M>n=10</M>  and <M>k=3.</M>  We are showing the selected balls in red:
 <Q>

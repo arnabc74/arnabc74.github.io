@@ -1,3 +1,7 @@
+**October 22, 2025:**
+
+:	Added hints to all the conditional distribution problems. 
+
 **October 21, 2025:**
 
 :	- Corrected minor typos here and there. Thanks to Tushti and Mayukh.

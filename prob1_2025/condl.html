@@ -898,15 +898,26 @@ Then $E(g(X)Y|X=x_i) = \sum_y g(x_i) y P(Y=y|X=x_i) = g(x_i) \sum_y y P(Y=y|X=x_
 <b>EXERCISE 23:</b>&nbsp;(Medium) <font size="-2">[morecond9.png]</font><img width="" src="image/morecond9.png" style="vertical-align:text-top;"><hr>
 </p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;(Medium) <font size="-2">[morecond10.png]</font><img width="" src="image/morecond10.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 24:</b>&nbsp;(Medium) <font size="-2">[morecond10.png]</font><img width="" src="image/morecond10.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab23')"><b>[Hint]</b></a><div
+class="ans" id="lab23">
+$$\begin{eqnarray*}cov(X,E(Y|X)) 
+&amp; = &amp; E(X\, E(Y|X))-E(X)E(E(Y|X))\\
+&amp; = &amp; E(E(XY|X))-E(X)E(E(Y|X))~~\left[\mbox{substitution}\right] \\
+&amp; = &amp; E(XY)-E(X)E(Y)~~\left[\mbox{tower}\right] \\
+&amp; = &amp; cov(X,Y),
+  \end{eqnarray*}$$
+as required.
+</div></p>
+<hr>
 </p>
 ::<p>
 <b>EXERCISE 25:</b>&nbsp;(Medium) <font size="-2">[morecond11.png]</font><img width="" src="image/morecond11.png" style="vertical-align:text-top;">
 <p></p>
 Will the result hold in general if the $X_i$'s are not independent?
 <p><a
-href="javascript:hideShow('lab23')"><b>[Hint]</b></a><div
-class="ans" id="lab23">No, the result may not hold if the $X_i$'s have a dependence structure that is
+href="javascript:hideShow('lab24')"><b>[Hint]</b></a><div
+class="ans" id="lab24">No, the result may not hold if the $X_i$'s have a dependence structure that is
  asymetric. A counterexample is as follows. 
 <p></p>
 $X_1 = $  outcome of a roll of a fair die. $X_2$  is obtained from $X_1$  by
@@ -952,39 +963,128 @@ Then
 <hr>
 </p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;(Hard) <font size="-2">[morecond12.png]</font><img width="" src="image/morecond12.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 26:</b>&nbsp;(Medium) <font size="-2">[morecond12.png]</font><img width="" src="image/morecond12.png" style="vertical-align:text-top;"> 
+<p></p>
+Here the random variable of interest is the number of white balls <i>remaining in the urn</i> 
+ after stage $t$. In particular, for $=0$, this numer is $w$.
+<p><a
+href="javascript:hideShow('lab25')"><b>[Hint]</b></a><div
+class="ans" id="lab25">Use induction on $t$. Basically, solve the problem only for $t=1$, and use the
+ argument for the induction step.</div></p>
+
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;(Hard) <font size="-2">[morecond13.png]</font><img width="" src="image/morecond13.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 27:</b>&nbsp;(Hard) <font size="-2">[morecond13.png]</font><img width="" src="image/morecond13.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab26')"><b>[Hint]</b></a><div
+class="ans" id="lab26">
+Let's take an example with $r=4$. Consider the tosses until  the first tail: $T, HT, HHT, HHHT$  or $HHHH\cdots T$ 
+ (<i>i.e.</i>, the first tail occurs after toss 4).  
+<p></p>
+Let us encode these cases using a random variable $K$  defined as 
+$$K = \left\{\begin{array}{ll}i &\text{if }i\mbox{th toss gives first tail and } i\leq 4\\ 5&\text{otherwise.}\end{array}\right.$$
+ In the last case, $X = 4$. 
+<p></p>
+In the other cases the search starts all over again after the first tail. 
+<p></p>
+So, for $i=1,2,3,4$,  we have  $E(X|K=i) = i+E(X)$.
+<p></p>
+Now use tower property.
+</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;(Medium) <font size="-2">[morecond14.png]</font><img width="" src="image/morecond14.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 28:</b>&nbsp;(Easy) <font size="-2">[morecond14.png]</font><img width="" src="image/morecond14.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab27')"><b>[Hint]</b></a><div
+class="ans" id="lab27">Let $Y = \left\{\begin{array}{ll}0&\text{if }X&lt;a\\ 1&\text{otherwise.}\end{array}\right..$  Now use the tower property.</div></p>
+
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 29:</b>&nbsp;(Medium) <font size="-2">[morecond15.png]</font><img width="" src="image/morecond15.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 29:</b>&nbsp;(Medium) <font size="-2">[morecond15.png]</font><img width="" src="image/morecond15.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab28')"><b>[Hint]</b></a><div
+class="ans" id="lab28">
+Let $X$  be the number of balls remaining at the end. Let $Y$  be the indicator variable that the the first selected
+ ball is white. Then $E(X) = M_{a,b}$  (given)  and $E(X|Y=1) = M_{a-1,b}$  and $E(X|Y=0) = M_{a,b-1}$. 
+<p></p>
+Now use tower property to get a recursion.  
+</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 30:</b>&nbsp;(Hard) <font size="-2">[morecond16.png]</font><img width="" src="image/morecond16.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 30:</b>&nbsp;(Hard) <font size="-2">[morecond16.png]</font><img width="" src="image/morecond16.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab29')"><b>[Hint]</b></a><div
+class="ans" id="lab29">
+You may expand the expectation as a quadratic expression in $a,b,c$  and partially differentiate it wrt $a,b,c$ 
+ and equate to zero to get a set of equations. Then you need to justify that this indeed corresponds to the global minimum.
+<p></p>
+Or, you may use linear algebra as follows.
+<p></p>
+Consider the space $span\{1,X_1,X_2\}$. We are trying to find the vector in it that is the closest to $Y$  where
+ the distance between two random variables $W,Z$  is being measured by $E(W-Z)^2$. 
+<p></p>
+The minimiser must be the foot $\hat Y = a+bX_1+cX_2$  of the perpendicular dropped from
+ $Y$  onto $span\{1,X_1,X_2\}$. 
+<p></p>
+So we need $Y-\hat Y$  to be orthogonal to $1, X_1$  and $X_2$, <i>i.e.</i>, $E(1(Y-\hat Y) = 0$  and $E(X_1(Y-\hat Y) = 0$ 
+ and $E(X_2(Y-\hat Y) = 0$. This gives rise to the $3\times 3$  system
+$$\left[\begin{array}{ccccccccccc}1 &amp; E(X_1) &amp; E(X_2)\\E(X_1) &amp; E(X_1^2) &amp; E(X_1X_2)\\E(X_2) &amp; E(X_1X_2) &amp; E(X_2^2)
+\end{array}\right]\left[\begin{array}{ccccccccccc}a\\b\\c
+\end{array}\right] =\left[\begin{array}{ccccccccccc}E(Y)\\E(X_1Y)\\E(X_2Y)
+\end{array}\right].$$
+<p></p>
+</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 31:</b>&nbsp;(Hard) <font size="-2">[morecond17.png]</font><img width="" src="image/morecond17.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 31:</b>&nbsp;(Hard) <font size="-2">[morecond17.png]</font><img width="" src="image/morecond17.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab30')"><b>[Hint]</b></a><div
+class="ans" id="lab30">
+Similar to the last exercise.
+</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 32:</b>&nbsp;(Medium) <font size="-2">[morecond18.png]</font><img width="" src="image/morecond18.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 32:</b>&nbsp;(Medium) <font size="-2">[morecond18.png]</font><img width="" src="image/morecond18.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab31')"><b>[Hint]</b></a><div
+class="ans" id="lab31">
+(a) Tower property.
+<p></p>
+(b) Induction.
+<p></p>
+(c) Use the theorem for computing unconditional variance from conditional quantities.
+<p></p>
+(d) Induction.
+</div></p>
+<hr>
 </p>
 
 <p></p>
 ::<p>
-<b>EXERCISE 33:</b>&nbsp;(Medium) <font size="-2">[morecond19.png]</font><img width="" src="image/morecond19.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 33:</b>&nbsp;(Medium) <font size="-2">[morecond19.png]</font><img width="" src="image/morecond19.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab32')"><b>[Hint]</b></a><div
+class="ans" id="lab32">Use indicator variables.</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 34:</b>&nbsp;(Hard) <font size="-2">[morecond20.png]</font><img width="" src="image/morecond20.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 34:</b>&nbsp;(Hard) <font size="-2">[morecond20.png]</font><img width="" src="image/morecond20.png" style="vertical-align:text-top;">
+<p></p>
+Assume that the die is fair.
+<p><a
+href="javascript:hideShow('lab33')"><b>[Hint]</b></a><div
+class="ans" id="lab33">
+Condition on the number of times you have rolled the die. If you have rolled it $k$ times, then the $k$-th outcome
+ could not have occured earlier also. 
+</div></p>
+
+<hr>
 </p>
 ::<p>
 <b>EXERCISE 35:</b>&nbsp;(Hard) <font size="-2">[morecond21.png]</font><img width="" src="image/morecond21.png" style="vertical-align:text-top;">
 <p><a
-href="javascript:hideShow('lab24')"><b>[Hint]</b></a><div
-class="ans" id="lab24">
+href="javascript:hideShow('lab34')"><b>[Hint]</b></a><div
+class="ans" id="lab34">
 Let $X_i$  be the indicator for $i$-th red ball being a win. 
 <p></p>
 There are $\binom{2n}{n}$  sequences of $n$  R's and $n$  B's in all. Let us count
@@ -1012,8 +1112,8 @@ Now you should be able to complete the rest.
 ::<p>
 <b>EXERCISE 36:</b>&nbsp;(Hard) <font size="-2">[morecond22.png]</font><img width="" src="image/morecond22.png" style="vertical-align:text-top;">
 <p><a
-href="javascript:hideShow('lab25')"><b>[Hint]</b></a><div
-class="ans" id="lab25">
+href="javascript:hideShow('lab35')"><b>[Hint]</b></a><div
+class="ans" id="lab35">
 (a) Let's take an example with $n=10$  and $k=3.$  We are showing the selected balls in red:
 <blockquote>
 1 <font color="#ff0000">2 3</font> 4 5 <font color="#ff0000">6</font> 7 8 9 10

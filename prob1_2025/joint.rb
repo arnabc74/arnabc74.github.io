@@ -700,5 +700,12 @@ There is a theorem called the
 </ANS>
 </EXR>
 
+::<EXR>Prove that if <M>(X,Y)</M>  are jointly distributed random variables with <M>X</M>  and
+ <M>Y</M>  both (marginally) continuous, then <M>(X,Y)</M>  must be jointly continuous as well. 
+<ANS>
+Follows from the fact that if <M>x\leq a</M>  and <M>y\leq b</M>, then <M>F(a,b)-F(x,y) \leq P(x< X
+ \leq a) + P(y< Y\leq b)</M>.
+</ANS>
+</EXR>
 
 </NOTE>@}
