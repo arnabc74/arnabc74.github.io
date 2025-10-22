@@ -1,7 +1,8 @@
 **October 22, 2025:**
 
-:	Added hints to all the conditional distribution problems. 
-
+:	- Added hints to all the conditional distribution problems. 
+        - Also added a last exercise in the joint distributions page.
+	  
 **October 21, 2025:**
 
 :	- Corrected minor typos here and there. Thanks to Tushti and Mayukh.
