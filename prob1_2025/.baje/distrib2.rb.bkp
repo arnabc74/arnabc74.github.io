@@ -227,7 +227,7 @@ Is it possible for a random variable <M>X</M>  to have a distribution such that 
  <M>x?</M>  Such a random variable is called <TERM>memoryless</TERM>  in the sense that is cannot
  remember its age. Here is exact definition:
 <DEFN name="Memoryless">
-A random variable <M>X</M>  is called <TERM>memoryless</TERM>  if for all <M>x</M>  and all
+A nonnegative random variable <M>X</M>  is called <TERM>memoryless</TERM>  if for all <M>x\geq 0</M>  and all
  <M>a>0</M>  the conditional probability  <M>P(X\geq x+a|X\geq x)</M>  is free of <M>x</M>  (need not be free of <M>a</M>). 
 </DEFN>
 The lifespans of certain types of
@@ -646,17 +646,58 @@ This interpretation is clearly an over-simplification of the situation. However,
  
 <HEAD1>Problems for practice</HEAD1>
 
-::<EXR>(Medium)<EIMG web="infdist1.png"/><HR/></EXR>
-::<EXR>(Medium)<EIMG web="infdist2.png"/><HR/></EXR>
-::<EXR>(Easy)<EIMG web="infdist3.png"/><HR/></EXR>
-::<EXR>(Easy)<EIMG web="infdist4.png"/><HR/></EXR>
-::<EXR>(Easy)<EIMG web="infdist5.png"/><HR/></EXR>
-::<EXR>(Easy)<EIMG web="infdist6.png"/><HR/></EXR>
-::<EXR>(Easy)<EIMG web="infdist7.png"/>Use Poisson distribution.<HR/></EXR>
-::<EXR>(Medium)<EIMG web="infdist8.png"/>Use Poisson distribution.<HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist1.png"/><ANS>
+The chance that 7 does not occur in a sequence of length <M>n</M>  is <M>(0.9)^n.</M>  So we are looking for the smallest
+ <M>n</M>  such that <M>1-0.9^n \geq 0.9</M>. 
+</ANS><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist2.png"/><ANS>Let us find the probability that the preassigned player
+ has all the 4 aces in one dealing. 
+
+<UL>
+<LI><B>Step 1:</B> Give the 4 aces to that player: 1 way</LI>
+<LI><B>Step 2:</B> Give the 9 more cards to  that player: <M>\binom{52-4}{9}</M> ways</LI>
+<LI><B>Step 3:</B> Deal the remaining 39 cards  among the other 3 playes:  <M>[[39!][13!13!13!]]</M> ways.</LI>
+</UL>
+Total number of ways of dealing is <M>[[52!][13!13!13!13!]]</M>. So the probability is <M>[[13\times\cdots\times10][52\times\cdots\times49]] = p</M>,
+ say. 
+
+Then the probability of this happening at lest once in <M>n</M>  independent dealings is <M>1-(1-p)^n</M>. We are looking
+ for the smallest <M>n</M>  such that <M>1-(1-p)^n\geq [[12]]</M>. 
+</ANS>  <HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist3.png"/><ANS>
+Let <M>X</M>  be the number of times the target is hit. Then <M>X\sim Binom(*(10,[[15]])*)</M>. We
+ are looking for <M>P(X\geq 2) = 1-P(X=0)-P(X=1)</M>.
+</ANS><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist4.png"/><ANS>
+Wit <M>X</M>  as in the last hint, find <M>P(X\geq 2|X\geq 1)</M>. 
+</ANS><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist5.png"/><ANS>Let <M>X = </M> number of lefties among 200 people. 
+
+Then <M>X\sim Binom(200, 0.01)</M>. Find <M>P(X\geq 4)</M>.
+</ANS><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist7.png"/>Use Poisson distribution.<ANS>
+Let a random page have <M>X</M>  misprints. Then we assume <M>X\sim Poi(\lambda)</M>  for some <M>\lambda</M>. Now <M>E(X) = \lambda</M>.
+ We estimate <M>\lambda</M>  as <M>[[500][500]] = 1</M>. So the problem is to find <M>P(X\geq 3)</M>  where <M>X\sim Poi(1)</M>.
+</ANS><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist8.png"/>
+
+Use Poisson distribution.<ANS>
+If <M>X</M>  is the number of colour-blind persons in an SRSWR of size <M>n</M>, then <M>X\sim Binom(n,0.01)</M>. 
+
+We want <M>n</M>  such that <M>P(X\geq 1) \geq 0.95</M>, i.e., <M>1-P(X=0) \geq 0.95</M>.  
+</ANS><HR/></EXR>
+
 ::<EXR>(Medium)<EIMG web="infdist9.png"/><HR/></EXR>
-::<EXR>(Medium)<EIMG web="infdist10.png"/><HR/></EXR>
-::<EXR>(Easy)<EIMG web="infdist11.png"/><HR/></EXR>
+::<EXR>(Medium)<EIMG web="infdist10.png"/><ANS>
+Think of the problem like this. The pedestrian arrives, and starts tossing a coin with <M>P(head)=0</M>  once every second.
+ If the outcome is a head, he waits for that second, and tosses the coin again the next second. If it is tail, (s)he crosses.
+ 
+With this formulation waiting for 0 second is like having a tail in the first toss. Waiting for
+ exactly 1 second is like having head, tail.  
+ 
+</ANS><HR/></EXR>
+::<EXR>(Easy)<EIMG web="infdist11.png"/><ANS>Let <M>X,Y</M>  be the their numbers of heads (I mean
+of  their tosses, not their own!)</ANS><HR/></EXR>
 ::<EXR>(Hard)<EIMG web="infdist12.png"/><HR/></EXR>
 ::<EXR>(Medium)<EIMG web="infdist13.png"/><HR/></EXR>
 ::<EXR>(Medium)<EIMG web="infdist14.png"/><HR/></EXR>

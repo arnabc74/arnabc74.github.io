@@ -618,7 +618,7 @@ The joint PMF of <M>(X,Y)</M>  is
 <TR><TD></TD><TD><M>Y=1</M></TD><TD><M>Y=2</M></TD><TD><M>Y=3</M></TD></TR>
 <TR><TD><M>X=1</M></TD><TD><M>0</M></TD><TD><M>[[16]]</M></TD><TD><M>[[16]]</M></TD></TR>
 <TR><TD><M>X=2</M></TD><TD><M>[[16]]</M></TD><TD><M>0</M></TD><TD><M>[[16]]</M></TD></TR>
-<TR><TD><M>X=1</M></TD><TD><M>[[16]]</M></TD><TD><M>[[16]]</M></TD><TD><M>0</M></TD></TR>
+<TR><TD><M>X=3</M></TD><TD><M>[[16]]</M></TD><TD><M>[[16]]</M></TD><TD><M>0</M></TD></TR>
 </TABLE>
 So <M>XY</M>  takes the values <M>2,3,6</M>  each with probability <M>[[13]].</M>  Hence
 <M>E(XY) = [[11][3]].</M>  

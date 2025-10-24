@@ -482,7 +482,7 @@ Expected number of multiple birthdays is <M>365{*{1-(*([[364][365]])*)^n - [[n\t
 </EXR>
 ::<EXR>(Hard)<CIMG web="rossrv5.png"/>
 <ANS>
-Here <M>p</M>  is he says, and <M>p^*</M>  is what he believes. The meteorologist is not an honest one, and may 
+Here <M>p</M>  is what he says, and <M>p^*</M>  is what he believes. The meteorologist is not an honest one, and may 
 say something different from what he believes. His only aim is to maximise the expected score. 
 
 The expected score is 

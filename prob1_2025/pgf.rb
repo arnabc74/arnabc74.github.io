@@ -141,7 +141,7 @@ Notice that convergence is not a problem, because we have assumed <M>|t| < 1</M>
 </EXR>
 
 ::<EXR>(Medium) In general show that for <M>n\in\nn</M>  the PGF of <M>X_n</M>  is <M>\xi_n(t) =
- \xi(\xi_{n-1}(t))</M>.</EXR>
+ \xi_{n-1}(\xi(t))=(\underbrace{\xi\circ\cdots\circ\xi}_{n})(t)</M>.</EXR>
 
 Now <M>P(X_n=0) = \xi_n(0)</M>. 
 
