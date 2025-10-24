@@ -391,7 +391,7 @@ mean(event)
 Since we are assuming that all paths in the sample space are
 equally likely, computing probabilities of different events
 amounts to finding the size of the events (<i>i.e.</i>, counting the
-number of paths in the event). So the theorems are presented in
+number of paths in the event). So the exercises are presented in
 terms of sizes of events rather than in terms of their probabilities. 
 <p></p>
 
@@ -843,31 +843,18 @@ name="Exercises about first return to 0">Exercises about first return to 0</a></
 <b>EXERCISE 11:</b>&nbsp;(Medium)
 Consider all paths of length $2n$ starting at $(0,0).$
 Prove that the number of these paths that return to $0$ at $2n$
-for the first time is $4N_{2n-2,0}-N_{2n,0}=\frac{N_{2n,0}}{2n-1}.$
+for the first time is $\frac{N_{2n,0}}{2n-1}.$
 <p><a
 href="javascript:hideShow('lab9')"><b>[Hint]</b></a><div
 class="ans" id="lab9">
-Let $A$ be the set of all $2n$-length paths that never return to 0.
+Since we have no return to 0 before $2n$, the paths are of two types: nonnegative ones and
+ nonpositive ones. Clearly their numbers are equal. So we shall count only the nonnegative ones
+ and double the count to get the final answer. Any such path must be at (1,1) after the first step and
+ be at $(2n-1,1)$  before the last step. 
 <p></p>
-Let $B$ be the set of all $2n$-length paths that never return to
-before or at time $2n-2.$ 
+So enough to count paths from (1,1) to $(2n-1,1)$  not hitting 0 inbetween. 
 <p></p>
-Then we want to find $|B\setminus A|.$
-<p></p>
-Since $A\subseteq B,$ this is $|B|-|A|.$
-<p></p>
-Now $|A| = N_{2n,0}$ by the <b>No 0-return theorem</b>.
-<p></p>
-Also, by the same theorem, $|B| = 2^2N_{2n-2,0}.$
-<a href="javascript:hideShow('ext');">(Why?)</a>
-<div id="ext" style="display:none;background-color:#ffcccc;">By the <b>No 0-return theorem</b>, total number of paths
-of length $2n-2$ that never returns to $0$
-is $N_{2n-2,0}.$ Then we are free to choose the next two
-steps (from time $2n-2$ to time $2n$), which may be
-done in $2^2$ ways.</div>
-
-<p></p>
-Hence the result.
+Now use the reflection principle.
 </div></p>
 
 </p>
@@ -888,6 +875,8 @@ name="Exercises about last return to 0">Exercises about last return to 0</a></h3
 Consider all paths of length $2n$ starting at $(0,0).$
 Take any $k\in\{1,...,n\}.$ Show that the number of these paths that
 return to 0 for last time at $2k$ is $N_{2k,0}\times N_{2n-2k,0}.$
+<p></p>
+You'll need the result of Exercise 7 here.
 <p><a
 href="javascript:hideShow('lab10')"><b>[Hint]</b></a><div
 class="ans" id="lab10">
@@ -908,7 +897,7 @@ The red dot shows the last 0 hit, which occurs at time $2k.$
 <p></p>
 We can choose the part before the red dot in $N_{2k,0}$ ways. Also
 independently of that, we can choose the part after the red dot
-in $N_{2n-2k,0}$ ways, by the <b>no 0-return theorem</b>. Hence the result.
+in $N_{2n-2k,0}$ ways, by the conclusion of Exercise 7. Hence the result.
 </div></p>
 </p>
 

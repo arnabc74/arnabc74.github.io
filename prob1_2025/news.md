@@ -2,6 +2,8 @@
 
 :	- Added  hints to more problems. 
 
+	- Simplified the hint of Exercise 11 in the Random Walk page. 
+
 **October 22, 2025:**
 
 :	- Added hints to all the conditional distribution problems. 

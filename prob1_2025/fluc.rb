@@ -129,7 +129,7 @@ mean(event)
 Since we are assuming that all paths in the sample space are
 equally likely, computing probabilities of different events
 amounts to finding the size of the events (i.e., counting the
-number of paths in the event). So the theorems are presented in
+number of paths in the event). So the exercises are presented in
 terms of sizes of events rather than in terms of their probabilities. 
 
 <COMMENT>
@@ -663,29 +663,16 @@ as required.
 ::<EXR>(Medium)
 Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
 Prove that the number of these paths that return to <M>0</M> at <M>2n</M>
-for the first time is <M>4N_{2n-2,0}-N_{2n,0}=[[N_{2n,0}][2n-1]].</M>
+for the first time is <M>[[N_{2n,0}][2n-1]].</M>
 <ANS>
-Let <M>A</M> be the set of all <M>2n</M>-length paths that never return to 0.
-<P/>
-Let <M>B</M> be the set of all <M>2n</M>-length paths that never return to
-before or at time <M>2n-2.</M> 
-<P/>
-Then we want to find <M>|B\setminus A|.</M>
-<P/>
-Since <M>A\seq B,</M> this is <M>|B|-|A|.</M>
-<P/>
-Now <M>|A| = N_{2n,0}</M> by the <B>No 0-return theorem</B>.
-<P/>
-Also, by the same theorem, <M>|B| = 2^2N_{2n-2,0}.</M>
-<HIDE lab="ext"><MSG>(Why?)</MSG>
-<HIDDEN>By the <B>No 0-return theorem</B>, total number of paths
-of length <M>2n-2</M> that never returns to <M>0</M>
-is <M>N_{2n-2,0}.</M> Then we are free to choose the next two
-steps (from time <M>2n-2</M> to time <M>2n</M>), which may be
-done in <M>2^2</M> ways.</HIDDEN>
-</HIDE>
-<P/>
-Hence the result.
+Since we have no return to 0 before <M>2n</M>, the paths are of two types: nonnegative ones and
+ nonpositive ones. Clearly their numbers are equal. So we shall count only the nonnegative ones
+ and double the count to get the final answer. Any such path must be at (1,1) after the first step and
+ be at <M>(2n-1,1)</M>  before the last step. 
+
+So enough to count paths from (1,1) to <M>(2n-1,1)</M>  not hitting 0 inbetween. 
+
+Now use the reflection principle.
 </ANS>
 </EXR>
 
@@ -700,6 +687,8 @@ return to 0 from the positive side?
 Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
 Take any <M>k\in\{1,...,n\}.</M> Show that the number of these paths that
 return to 0 for last time at <M>2k</M> is <M>N_{2k,0}\times N_{2n-2k,0}.</M>
+
+You'll need the result of Exercise 7 here.
 <ANS>
 <COMMENT>
 x = c(1,1,0,0,0,1,0,1,0,0,0,0,1,0)
@@ -714,7 +703,7 @@ The red dot shows the last 0 hit, which occurs at time <M>2k.</M>
 
 We can choose the part before the red dot in <M>N_{2k,0}</M> ways. Also
 independently of that, we can choose the part after the red dot
-in <M>N_{2n-2k,0}</M> ways, by the <B>no 0-return theorem</B>. Hence the result.
+in <M>N_{2n-2k,0}</M> ways, by the conclusion of Exercise 7. Hence the result.
 </ANS></EXR>
 <HEAD3>Other problems</HEAD3>
 ::<EXR>(Medium)
