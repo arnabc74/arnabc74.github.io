@@ -1,3 +1,7 @@
+**October 26, 2025:**
+
+:	- Added hints to more problems.
+
 **October 24, 2025:**
 
 :	- Added  hints to more problems. 

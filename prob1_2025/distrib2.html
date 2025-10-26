@@ -1111,8 +1111,6 @@ The chance that 7 does not occur in a sequence of length $n$  is $(0.9)^n.$  So 
 href="javascript:hideShow('lab18')"><b>[Hint]</b></a><div
 class="ans" id="lab18">Let us find the probability that the preassigned player
  has all the 4 aces in one dealing. 
-<p></p>
-
 <ul>
 
 <li>
@@ -1183,12 +1181,34 @@ We want $n$  such that $P(X\geq 1) \geq 0.95$, <i>i.e.</i>, $1-P(X=0) \geq 0.95$
 
 <p></p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;(Medium)<font size="-2">[infdist9.png]</font><img width="" src="image/infdist9.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 24:</b>&nbsp;(Medium)<font size="-2">[infdist9.png]</font><img width="" src="image/infdist9.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab24')"><b>[Hint]</b></a><div
+class="ans" id="lab24">
+Let $X$  be the number of misprints in a random page. We assume $X$  has a Poisson
+ distribution (Texbookish weak rationale: The
+ page has many words, each word has a misprint or not with some probability. Assuming independence, $X$  should be binomially
+ distributed. Since the number of words is large, and the chance of misprints per word is small, hence we can use Poisson
+ approximation.) 
+<p></p>
+So $X\sim Poi(\lambda)$  since $E(X) = \lambda$. 
+<p></p>
+So probability that there are at least $k$  misprints in a random page is $P(X\geq
+ k)=1-P(X&lt;k) = 1- e^{-\lambda}\sum_0^{k-1} \frac{\lambda^i}{i!} = p$, say.
+<p></p>
+Let $Y$  be the number of pages with at least $k$  misprints among those $n$  pages. 
+<p></p>
+Assuming the numbers
+ of misprints in different
+ pages are independent,   $Y\sim Binom(n,p)$. 
+<p></p>
+The required probability is $P(Y\geq 1) = 1-P(Y=0) = 1-(1-p)^n$.
+</div></p>
+<hr>
 </p>
 ::<p>
 <b>EXERCISE 25:</b>&nbsp;(Medium)<font size="-2">[infdist10.png]</font><img width="" src="image/infdist10.png" style="vertical-align:text-top;"><p><a
-href="javascript:hideShow('lab24')"><b>[Hint]</b></a><div
-class="ans" id="lab24">
+href="javascript:hideShow('lab25')"><b>[Hint]</b></a><div
+class="ans" id="lab25">
 Think of the problem like this. The pedestrian arrives, and starts tossing a coin with $P(head)=0$  once every second.
  If the outcome is a head, he waits for that second, and tosses the coin again the next second. If it is tail, (s)he crosses.
 <p></p>
@@ -1200,20 +1220,54 @@ With this formulation waiting for 0 second is like having a tail in the first to
 </p>
 ::<p>
 <b>EXERCISE 26:</b>&nbsp;(Easy)<font size="-2">[infdist11.png]</font><img width="" src="image/infdist11.png" style="vertical-align:text-top;"><p><a
-href="javascript:hideShow('lab25')"><b>[Hint]</b></a><div
-class="ans" id="lab25">Let $X,Y$  be the their numbers of heads (I mean
+href="javascript:hideShow('lab26')"><b>[Hint]</b></a><div
+class="ans" id="lab26">Let $X,Y$  be the their numbers of heads (I mean
 of  their tosses, not their own!) Then $X,Y$  are IID $Binom\left(n,\frac 12\right)$. Find
  $P(X=Y) = \sum_0^n P(X=k)^2=\cdots.$.</div></p>
 <hr>
 </p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;(Hard)<font size="-2">[infdist12.png]</font><img width="" src="image/infdist12.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 27:</b>&nbsp;(Hard)<font size="-2">[infdist12.png]</font><img width="" src="image/infdist12.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab27')"><b>[Hint]</b></a><div
+class="ans" id="lab27">
+Let $X$  be the number of trials needed to get the first $a$  successes. Then $X\sim
+ NegBin(p,a)$. We are looking for $P(X&lt;a+b)$. 
+<p></p>
+This may also be computed directly by considering all possible success-failure sequences of length
+ $a+b-1$  and locating the sequences favourable to our event (<i>i.e.</i>, all sequences with at
+ least $a$  successes).  
+</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;(Medium)<font size="-2">[infdist13.png]</font><img width="" src="image/infdist13.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 28:</b>&nbsp;(Medium)<font size="-2">[infdist13.png]</font><img width="" src="image/infdist13.png" style="vertical-align:text-top;"><p><a
+href="javascript:hideShow('lab28')"><b>[Hint]</b></a><div
+class="ans" id="lab28">
+Let $X_i = $  number of animals trapped in the $i$-th trapping. 
+<p></p>
+Then $X_1\sim Binom(n,q)$, $X_2|X_1\sim Binom(n-X_1,q)$, $X_3|X_1,X_2\sim Binom(n-X_1-X_2,q)$, etc. 
+<p></p>
+We have to find $P(\forall i~~X_i = n_i) = P(X_1=n1)P(X_2=n_2|X_1=n_1)P(X_3=n_3|X_1=n_1,\,X_2=n_2)\cdots$.
+</div></p>
+<hr>
 </p>
 ::<p>
-<b>EXERCISE 29:</b>&nbsp;(Medium)<font size="-2">[infdist14.png]</font><img width="" src="image/infdist14.png" style="vertical-align:text-top;"><hr>
+<b>EXERCISE 29:</b>&nbsp;(Medium)An insect lays $X$  eggs where $X\sim Poi(\lambda)$. Each of the eggs may hatch or perish independently
+ of the others. The chance of a random egg hatching is $p$. Let $Y$  be the total number of eggs
+ that hatch. Show that
+ $Y\sim Poi(\lambda p)$.
+<p><a
+href="javascript:hideShow('lab29')"><b>[Hint]</b></a><div
+class="ans" id="lab29">
+Clearly, $Y$  takes nonnegative integer values. For $y=0,1,2,3,...$ we have 
+$$\begin{eqnarray*}
+P(Y=y)&amp; = &amp; E\big( P(Y=y|X) \big)\\
+&amp; = &amp; E\left( \binom{X}{y} p^y (1-p)^{X-y}\right)\\
+&amp; = &amp;  e^{-\lambda}\sum_{x=0}^\infty \binom{x}{y} p^y (1-p)^{x-y} \frac{\lambda^x}{x!}\\
+&amp; = &amp; \cdots\\ 
+&amp; = &amp; e^{-\lambda p} \frac{(\lambda p)^y}{y!}.\end{eqnarray*}$$
+</div></p>
+<hr>
 </p>
 ::<p>
 <b>EXERCISE 30:</b>&nbsp;(Medium)Show that 
@@ -1250,6 +1304,19 @@ distribution of the number ($X$) of matches remaining in
 the other box? [Hint: To get yourself started first
 find $P(X=n).$ This means he has been using the same
 box $n$ times without ever using the other box.]
+<p><a
+href="javascript:hideShow('lab30')"><b>[Hint]</b></a><div
+class="ans" id="lab30">
+Let's work out $P(X=3)$  when $n=5$. This means he has already used up 7 matches (5 matches from the
+ current pocket and 5-3=2 matches from the other). So this must be his 8th search. Each of these
+ 8th searches was either in his left (L) or right (R) pocket. So there are $2^8$  ways in all. 
+<p></p>
+Now let us count the  outcomes leading to our event. Exactly half of these end with L, the other
+ half ending with R. Let's count the ones ending with L. There must be exactly 5 L's among the
+ first 7 entries. So the total numbr is $\binom75$. 
+<p></p>
+Hence $P(X=3) = \frac{2\binom75}{2^8}$.   
+</div></p>
 <hr>
 
 </p>
@@ -1264,8 +1331,8 @@ box $n$ times without ever using the other box.]
 ::<p>
 <b>EXERCISE 36:</b>&nbsp;(Easy)Find the distribution of $X$  where <font size="-2">[dtwo17.png]</font><img width="" src="image/dtwo17.png" style="vertical-align:text-top;">
 <p><a
-href="javascript:hideShow('lab26')"><b>[Hint]</b></a><div
-class="ans" id="lab26">
+href="javascript:hideShow('lab31')"><b>[Hint]</b></a><div
+class="ans" id="lab31">
 Let $X_i$  be indicator for there being a changeover at position $i$  for $i=2,...,n.$  By definition, there
  cannot be a changeover at $i=1.$  
 <p></p>
