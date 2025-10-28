@@ -678,7 +678,7 @@ Now use the reflection principle.
 
 ::<EXR>(Medium)
 Consider all paths of length <M>2n</M> starting at <M>(0,0).</M>
-What is the number of these paths that return to <M>0</M>
+What is the number of these paths that return to <M>0</M>  <I>for the first time</I>
 at <M>2r</M> for some given <M>r < n?</M> Also, how many of these
 return to 0 from the positive side?
 </EXR>

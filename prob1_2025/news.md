@@ -1,5 +1,10 @@
 **October 26, 2025:**
 
+:	- Added hint to Exercise 22 of the
+	[Distributions with finite supports](distrib1.html){target="naya"} page.
+
+**October 26, 2025:**
+
 :	- Added hints to more problems.
 
 **October 24, 2025:**
@@ -10,7 +15,7 @@
 
 **October 22, 2025:**
 
-:	- Added hints to all the conditional distribution problems. 
+:	- Added hints to all the conditional distribution problems.
 
         - Also added a last exercise in the joint distributions page.
 	  
@@ -20,7 +25,7 @@
 
 	- Slightly reworded the definition of memorylessness. Now it referes to only 
 	  nonnegative random variables. The change, though minor to look at, is important. 
-          Earlier I was allowing x to be negative also (by mistake), so Geometric was not 
+          Earlier I was allowing X to be negative also (by mistake), so Geometric was not 
           memoryless according to that wrong definition! 
 
 	- Added videos to the [PGF](pgf.html){target="naya"} page. 
