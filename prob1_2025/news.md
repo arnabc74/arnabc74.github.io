@@ -1,4 +1,9 @@
-**October 26, 2025:**
+**October 29, 2025:**
+
+:	- Added some extra discussion to the existing hint of Exercise 25 in the
+	[Conditional distribution](condl.html){target="naya"} page.
+
+**October 28, 2025:**
 
 :	- Added hint to Exercise 22 of the
 	[Distributions with finite supports](distrib1.html){target="naya"} page.

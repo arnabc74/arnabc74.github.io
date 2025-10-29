@@ -566,6 +566,14 @@ Will the result hold in general if the <M>X_i</M>'s are not independent?
 </TABLE>
 Then
  <M>E(X_1|X_1+X_2+X_3=6)=1\neq [[63]].</M> 
+
+Here <M>(X_1,X_2,X_3)</M>  are jointly distributed with identical marginal distributions. But that does not mean that the
+ joint distribution of <M>(X_1,X_2,X_3)</M>  and <M>(X_2,X_1,X_3)</M>  is the same. So in
+ particular, <M>E(X_1|X_1+X_2+X_3)</M>  need not equal <M>E(X_2|X_1+X_2+X_3)</M>. 
+
+But in the original problem the <M>X_i</M>'s were also given to be independent. So there indeed for any permutation <M>\pi</M> 
+ of <M>(1,2,...,n)</M>  the joint distribution of <M>(X_1,...,X_n)</M>  was the same as that of <M>(X_{\pi(1)},...,X_{\pi(n)})</M>.
+ So <M>E(X_i|X_1+\cdots+X_n)</M>  was free of <M>i</M>.
 </ANS>
 <HR/></EXR>
 ::<EXR>(Medium) <EIMG web="morecond12.png"></EIMG> 
