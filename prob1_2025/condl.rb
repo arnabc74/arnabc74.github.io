@@ -440,8 +440,28 @@ Similarly for <M>P(I_jI_k=1).</M>
 </ANS>
 <HR/></EXR>
 ::<EXR>(Medium) <EIMG web="morecond3.png"></EIMG>
-<ANS>The problem is basically optimising <M>\sum P_i^2</M> subject
-to <M>\sum P_i</M> being fixed. Cauchy-Scwartz might help.  </ANS>
+<ANS>(a) <M>\mu=\sum P_i</M>.
+
+(b) The problem is basically minimising <M>\sum P_i^2</M> subject
+to <M>\sum P_i=\mu</M> being fixed. Cauchy-Scwartz might help.  
+
+(c) Here we have to maximise <M>\sum P_i^2</M>  subject to <M>\sum P_i=\mu.</M>  First notice that
+ in any maximising <M>(P_1,...,P_n)</M>  al but at most one <M>P_i</M>  must be either <M>0</M> 
+ or <M>1</M>. Because if  <M>P_i,P_j\in(0,1)</M>  for <M>i\neq j</M>, then take the smaller one
+ closer to zero and the larger one closer to 1 by the same amount. Then <M>\sum P_i</M>  remains unaltered, but <M>\sum P_i^2</M> 
+ increases. 
+
+So the only canidates are where there are exactly <M>[\mu]</M>  many <M>P_i</M>'s equal to <M>1</M>, and (if <M>\mu</M> 
+ is not an integer) exactly one <M>P_i</M>  equal to <M>\{\mu\}</M>, the fractional part of
+ <M>\mu</M>, and the rest equal to 0. 
+For example, if <M>n=5</M>  and <M>\mu=2.3</M>, then one candidate is <M>(1,1,0.3,0,0)</M>. 
+
+Clearly,
+ for any such candidate the value of <M>\sum P_i^2</M>  is the same <M>([\mu]+\{\mu\}^2)</M>. Also since we are maximising
+ a continuous function over a compact set, maximum exists. So these must be the maximising choices. 
+
+[Thanks to Samyak for providing the answer to part (c).]
+</ANS>
 <HR/></EXR>
 ::<EXR>(Hard) <EIMG web="morecond4.png"></EIMG>
 <ANS>
