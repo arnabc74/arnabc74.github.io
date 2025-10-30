@@ -3,6 +3,8 @@
 :	- Added Samyak's brilliant solution of Exercise 17(c) to the  
 	[Conditional distribution](condl.html){target="naya"} page.
 
+	- More hints added.
+
 **October 29, 2025:**
 
 :	- Added some extra discussion to the existing hint of Exercise 25 in the
