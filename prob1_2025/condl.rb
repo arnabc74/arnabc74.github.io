@@ -443,7 +443,7 @@ Similarly for <M>P(I_jI_k=1).</M>
 <ANS>(a) <M>\mu=\sum P_i</M>.
 
 (b) The problem is basically minimising <M>\sum P_i^2</M> subject
-to <M>\sum P_i=\mu</M> being fixed. Cauchy-Scwartz might help.  
+to <M>\sum P_i=\mu</M> being fixed. Cauchy-Schwarz might help.  
 
 (c) Here we have to maximise <M>\sum P_i^2</M>  subject to <M>\sum P_i=\mu.</M>  First notice that
  in any maximising <M>(P_1,...,P_n)</M>  al but at most one <M>P_i</M>  must be either <M>0</M> 
