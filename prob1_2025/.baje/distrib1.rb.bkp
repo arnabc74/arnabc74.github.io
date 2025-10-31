@@ -775,9 +775,19 @@ Hence <M>X_1+\cdots+X_k \sim Binom(n,p_1+\cdots+p_r)</M>.
 Now you can write down the required PMF esily. 
 </ANS>
 </EXR>
-::<EXR>(Medium)<EIMG web="dtwo6.png"/></EXR>
+::<EXR>(Medium)<EIMG web="dtwo6.png"/><ANS>
+Model the situation as follows. Each customer rolls a 3 faced die. The three faces are "Ordinary", "Colour" and "Browse". The probabilities
+ are <M>0.5, 0.3, 0.2</M>, respectively.  The rolls are independent. 
+
+Let <M>X_1, X_2, X_3</M>  be the numbers of customers (out of 5) in each category. 
+
+So the required probability is <M>[[5!][1!2!2!]] (0.5)^1(0.2)^2(0.3)^2</M>.
+</ANS></EXR>
 ::<EXR>(Medium)<EIMG web="dtwo7.png"/></EXR>
-::<EXR>(Medium)<EIMG web="dtwo8.png"/></EXR>
+::<EXR>(Medium)<EIMG web="dtwo8.png"/><ANS>
+Toss a coin with <M>P(head)=p</M>  independently until you get <M>r</M>  heads. Let <M>X</M>  be the number of tails obtained.
+ 
+</ANS></EXR>
 ::<EXR>(Hard)<EIMG web="dtwo9.png"/>
 <ANS><B>First part:</B> Let us start by considering one possible sequence of results that will require exactly 7 games: AAABBBB.
  But BBBBAAA is not possible, because here the decision is already clear after the fourth game. So we need a sequence of
@@ -791,8 +801,27 @@ All that remains is to count how many sequences of these two types there are. It
  at least 2 games. Find the probability of each as in the first part. The case <M>i=3</M>  is similar.
 </ANS>
 </EXR>
-::<EXR>(Medium)<EIMG web="dtwo10.png"/></EXR>
-::<EXR>(Hard)<EIMG web="dtwo11.png"/></EXR>
+::<EXR>(Medium)<EIMG web="dtwo10.png"/><ANS>
+Let <M>X,Y</M>  be, respectively, the number of heads obtained by <M>A,B</M>. Then <M>X\sim Binom(k,0.5)</M>  and <M>Y\sim Binom(n-k,0.5)</M>.
+ Also they are independent. Also <M>X+Y\sim Binom(n,0.5)</M>.
+
+<MULTILINE>
+P(X = Y) 
+& = & \sum_{i=0}^k P(X=i,\, Y=i)\\
+& = & \sum_{i=0}^k P(X=i)P(Y=i)<SINCE><M>\because X,Y</M>  independent</SINCE>\\
+& = & 2^{-n}\sum_{i=0}^k \binom k i \binom {n-k} i<SINCE><M>\because X,Y</M>  independent</SINCE>\\
+</MULTILINE> 
+Also <M>P(X+Y=k) = \binom n k 2^{-n}</M>.
+
+So we need to show <M>\sum_{i=0}^k \binom k i \binom {n-k} i = \binom n k</M>.
+
+Now <M>\sum_{i=0}^k \binom k i \binom {n-k} i = \sum_{i=0}^k \binom k {k-i} \binom {n-k} i = \binom {k+(n-k)} {(k-i)+i} =\binom n k</M>.
+</ANS></EXR>
+::<EXR>(Hard)<EIMG web="dtwo11.png"/><ANS>
+(b) Let <M>A = \{\underbrace{TT...T}_kH~:~k\in\nn\}</M>  and <M>B =
+ \{\underbrace{HH...H}_kT~:~k\in\nn\}</M>. Then we need to check if <M>P(A) = P(B)</M>. But
+ <M>P(A) = p(1-p)\times[[1][1-p]] = p</M>  and <M>P(B) = p(1-p)\times[[1p]] = 1-p</M>. 
+</ANS></EXR>
 ::<EXR>(Hard)<EIMG web="dtwo12.png"/></EXR>
 ::<EXR>(Hard)<EIMG web="dtwo16.png"/></EXR>
 ::<EXR>(Medium)<EIMG web="dtwo18.png"/></EXR>
