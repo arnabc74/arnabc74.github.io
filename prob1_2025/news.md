@@ -1,3 +1,7 @@
+**October 31, 2025:**
+
+:	- More hints added.
+
 **October 30, 2025:**
 
 :	- Added Samyak's brilliant solution of Exercise 17(c) to the  
@@ -29,7 +33,7 @@
 
 :	- Added hints to all the conditional distribution problems.
 
-        - Also added a last exercise in the joint distributions page.
+	- Also added a last exercise in the joint distributions page.
 
 
 **October 21, 2025:**
