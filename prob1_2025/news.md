@@ -1,3 +1,8 @@
+**November 02, 2025:**
+
+:	- Corrected a copy-paste error in the finite and infinite supports pages.
+	  Thanks to Arshia for pointing out the error.
+
 **October 31, 2025:**
 
 :	- More hints added.
@@ -60,7 +65,7 @@
 
 **October 13, 2025:**
 
-	- Corrected hint to Exercise 9 in the 
+:	- Corrected hint to Exercise 9 in the 
 	[Conditional distribution](condl.html){target="naya"} page.
 
 **October 12, 2025:**

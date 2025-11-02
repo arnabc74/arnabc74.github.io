@@ -822,8 +822,19 @@ Now <M>\sum_{i=0}^k \binom k i \binom {n-k} i = \sum_{i=0}^k \binom k {k-i} \bin
  \{\underbrace{HH...H}_kT~:~k\in\nn\}</M>. Then we need to check if <M>P(A) = P(B)</M>. But
  <M>P(A) = p(1-p)\times[[1][1-p]] = p</M>  and <M>P(B) = p(1-p)\times[[1p]] = 1-p</M>. 
 </ANS></EXR>
-::<EXR>(Hard)<EIMG web="dtwo12.png"/></EXR>
-::<EXR>(Hard)<EIMG web="dtwo16.png"/></EXR>
+::<EXR>(Medium)<EIMG web="dtwo12.png"/><ANS>
+Let <M>X_i</M>  be indicator for there being a changeover at position <M>i</M>  for <M>i=2,...,n.</M>  By definition, there
+ cannot be a changeover at <M>i=1.</M>  
+
+Then the answer is <M>\sum_2^n E(X_i). </M>  Now <M>X_i = 1</M>  iff the <M>(i-1)</M>-th and
+ <M>i</M>-th tosses result in either <M>HT</M>  or <M>TH.</M>  
+
+So <M>E(X_i) = \cdots.</M>
+</ANS>
+</EXR>
+::<EXR>(Medium)<EIMG web="dtwo16.png"/>
+<ANS>Already given in the hint above.</ANS>
+</EXR>
 ::<EXR>(Medium)<EIMG web="dtwo18.png"/></EXR>
 ::<EXR>(Hard)<EIMG web="dtwo19.png"/></EXR>
 ::<EXR><EIMG web="dtwo20.png"/></EXR>

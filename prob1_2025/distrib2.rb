@@ -805,16 +805,9 @@ according as <M>\lambda \lesseqgtr i</M>.
 ::<EXR>(Easy)<EIMG web="dtwo14.png"/></EXR>
 ::<EXR>(Easy)<EIMG web="dtwo15.png"/></EXR>
 
-::<EXR>(Easy)Find the distribution of <M>X</M>  where <EIMG web="dtwo17.png"/>
-<ANS>
-Let <M>X_i</M>  be indicator for there being a changeover at position <M>i</M>  for <M>i=2,...,n.</M>  By definition, there
- cannot be a changeover at <M>i=1.</M>  
-
-Then the answer is <M>\sum_2^n E(X_i). </M>  Now <M>X_i = 1</M>  iff the <M>(i-1)</M>-th and
- <M>i</M>-th tosses result in either <M>HT</M>  or <M>TH.</M>  
-
-So <M>E(X_i) = \cdots.</M>
-</ANS>
+::<EXR>(Easy)Find the distribution of <M>X=\sum_{i=1}^n</M>
+where <M>X_1,...,X_n</M> are IID Geometric random variables.
+<ANS>If <M>X_i\sim Geom(p),</M> then <M>X\sim NegBin(n,p).</M></ANS> 
 </EXR>
 ::<EXR>(Easy)<EIMG web="dtwo37.png"/>
 <ANS>
