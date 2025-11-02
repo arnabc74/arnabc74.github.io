@@ -3,6 +3,8 @@
 :	- Corrected a copy-paste error in the finite and infinite supports pages.
 	  Thanks to Arshia for pointing out the error.
 
+	- More minor typos fixed here and there. 
+
 **October 31, 2025:**
 
 :	- More hints added.

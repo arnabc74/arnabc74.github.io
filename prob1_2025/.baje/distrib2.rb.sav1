@@ -241,9 +241,11 @@ Let <M>X\sim Geom(p).</M>  Let <M>x\in\nn</M>  show that <M>P(X\geq x+a | X\geq 
 <ANS>
 <M>P(X\geq x+a | X\geq x) = [[P(X\geq x+a \& X\geq x)][P( X\geq x)]] = [[P(X\geq x+a)][P( X\geq x)]]</M>
 
-Now <M>P(X\geq x) = \sum_{i\geq x}p^{i-1}p = (1-p)^{x-1}</M>  (check!). 
+Now <M>P(X\geq x) = \sum_{i\geq x}(1-p)^{i-1}p = (1-p)^{x-1}</M>  (check!). 
 
-Hence <M>[[P(X\geq x+1)][P( X\geq x)]] = (1-p)^a,</M>  free of <M>x.</M>
+Hence <M>[[P(X\geq x+a)][P( X\geq x)]] = (1-p)^a,</M>  free of <M>x.</M>
+
+[Thanks to Anant for correcting some typos here.]
 </ANS>
 </EXR>
 
@@ -308,16 +310,18 @@ P(X=5) = {5-1\choose 3-1}  \theta^3(1-\theta)^2 = 6\theta^3(1-\theta)^2.
 ::<EXR ref="nb1">(Easy)
 If <M>X</M> follows <B>NegBin</B><M>(3,\frac14)</M> distribution, find the following
 probabilities.
-<FL><LI><M>P(T=5)</M>
-</LI><LI><M>P(T=2)</M>
-</LI><LI><M>P(T=3)</M>
-</LI><LI><M>P(T\leq5)</M>
+<FL><LI><M>P(X=5)</M>
+</LI><LI><M>P(X=2)</M>
+</LI><LI><M>P(X=3)</M>
+</LI><LI><M>P(X\leq5)</M>
 </LI></FL>
 <ANS ref="nb1"><FL><LI><M>\frac{27}{512}</M>
 </LI><LI><M>0</M>
-</LI><LI><M>\frac3{32}</M>
-</LI><LI><M>\frac9{128}</M>
-</LI></FL></ANS>
+</LI><LI><M>[[1][64]]</M>
+</LI><LI><M>[[53][512]]</M>
+</LI></FL>
+[Thanks to Anant for correcting a couple of typos here.]
+</ANS>
 </EXR>
 <P/>
 <B>Expectation and variance:</B> 
@@ -334,11 +338,13 @@ Var(X) & = & \frac{r(1-\theta)}{\theta^2}
 </LI><LI><M>r=1, \theta=\frac23</M>
 </LI><LI><M>r=5, \theta=\frac13</M>
 </LI></FL>
-<ANS ref="nbxv1"><FL><LI><M>6,r=3, \theta=\frac12</M>
-</LI><LI><M>10, 40 r=2.</M>
-</LI><LI><M>\frac32,\frac34.</M>
-</LI><LI><M>15, 30.</M>
-</LI></FL></ANS>
+<ANS ref="nbxv1"><FL><LI><M>E(Y)=6</M>, <M>V(Y)=6</M>.
+</LI><LI><M>E(Y)=10</M>, <M>V(Y)=40</M>.
+</LI><LI><M>E(Y)=\frac32</M>, <M>V(Y)=\frac34.</M>
+</LI><LI><M>E(Y)=15</M>, <M>V(Y)=30.</M>
+</LI></FL>
+[Thanks to Anant for pointing out
+</ANS>
 </EXR>
 <P/>
 It should be apparent from the description of the distribution that
@@ -805,16 +811,9 @@ according as <M>\lambda \lesseqgtr i</M>.
 ::<EXR>(Easy)<EIMG web="dtwo14.png"/></EXR>
 ::<EXR>(Easy)<EIMG web="dtwo15.png"/></EXR>
 
-::<EXR>(Easy)Find the distribution of <M>X</M>  where <EIMG web="dtwo17.png"/>
-<ANS>
-Let <M>X_i</M>  be indicator for there being a changeover at position <M>i</M>  for <M>i=2,...,n.</M>  By definition, there
- cannot be a changeover at <M>i=1.</M>  
-
-Then the answer is <M>\sum_2^n E(X_i). </M>  Now <M>X_i = 1</M>  iff the <M>(i-1)</M>-th and
- <M>i</M>-th tosses result in either <M>HT</M>  or <M>TH.</M>  
-
-So <M>E(X_i) = \cdots.</M>
-</ANS>
+::<EXR>(Easy)Find the distribution of <M>X=\sum_{i=1}^n</M>
+where <M>X_1,...,X_n</M> are IID Geometric random variables.
+<ANS>If <M>X_i\sim Geom(p),</M> then <M>X\sim NegBin(n,p).</M></ANS> 
 </EXR>
 ::<EXR>(Easy)<EIMG web="dtwo37.png"/>
 <ANS>
@@ -843,7 +842,7 @@ where <M>p = [[\lambda_2][\lambda_1+\lambda_2]]</M>.
 [[e^{-\lambda_3} \lambda_3^z][z!]] \times
 [[(x+y+z)!][e^{-\lambda_1-\lambda_2-\lambda_3} (\lambda_1+\lambda_2+\lambda_3)^{x+y+z}]]
  <SINCE><M>\because X+ Y+ Z\sim Poi(\lambda_1+\lambda_2+\lambda_3)</M></SINCE>\\
-& = & [[(x+y+z)!][x!y!z!]] p^x q^y r^z,
+& = & [[(x+y+z)!][x!y!z!]] p_1^x p_2^y p_3^z,
 </MULTILINE>
 where <M>p_i = [[\lambda_i][\lambda_1+\lambda_2+\lambda3]]</M>.
 </ANS>

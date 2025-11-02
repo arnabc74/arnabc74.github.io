@@ -241,9 +241,11 @@ Let <M>X\sim Geom(p).</M>  Let <M>x\in\nn</M>  show that <M>P(X\geq x+a | X\geq 
 <ANS>
 <M>P(X\geq x+a | X\geq x) = [[P(X\geq x+a \& X\geq x)][P( X\geq x)]] = [[P(X\geq x+a)][P( X\geq x)]]</M>
 
-Now <M>P(X\geq x) = \sum_{i\geq x}p^{i-1}p = (1-p)^{x-1}</M>  (check!). 
+Now <M>P(X\geq x) = \sum_{i\geq x}(1-p)^{i-1}p = (1-p)^{x-1}</M>  (check!). 
 
-Hence <M>[[P(X\geq x+1)][P( X\geq x)]] = (1-p)^a,</M>  free of <M>x.</M>
+Hence <M>[[P(X\geq x+a)][P( X\geq x)]] = (1-p)^a,</M>  free of <M>x.</M>
+
+[Thanks to Anant for correcting some typos here.]
 </ANS>
 </EXR>
 
@@ -308,16 +310,18 @@ P(X=5) = {5-1\choose 3-1}  \theta^3(1-\theta)^2 = 6\theta^3(1-\theta)^2.
 ::<EXR ref="nb1">(Easy)
 If <M>X</M> follows <B>NegBin</B><M>(3,\frac14)</M> distribution, find the following
 probabilities.
-<FL><LI><M>P(T=5)</M>
-</LI><LI><M>P(T=2)</M>
-</LI><LI><M>P(T=3)</M>
-</LI><LI><M>P(T\leq5)</M>
+<FL><LI><M>P(X=5)</M>
+</LI><LI><M>P(X=2)</M>
+</LI><LI><M>P(X=3)</M>
+</LI><LI><M>P(X\leq5)</M>
 </LI></FL>
 <ANS ref="nb1"><FL><LI><M>\frac{27}{512}</M>
 </LI><LI><M>0</M>
-</LI><LI><M>\frac3{32}</M>
-</LI><LI><M>\frac9{128}</M>
-</LI></FL></ANS>
+</LI><LI><M>[[1][64]]</M>
+</LI><LI><M>[[53][512]]</M>
+</LI></FL>
+[Thanks to Anant for correcting a couple of typos here.]
+</ANS>
 </EXR>
 <P/>
 <B>Expectation and variance:</B> 
@@ -334,13 +338,14 @@ Var(X) & = & \frac{r(1-\theta)}{\theta^2}
 </LI><LI><M>r=1, \theta=\frac23</M>
 </LI><LI><M>r=5, \theta=\frac13</M>
 </LI></FL>
-<ANS ref="nbxv1"><FL><LI><M>6,r=3, \theta=\frac12</M>
-</LI><LI><M>10, 40 r=2.</M>
-</LI><LI><M>\frac32,\frac34.</M>
-</LI><LI><M>15, 30.</M>
-</LI></FL></ANS>
+<ANS ref="nbxv1"><FL><LI><M>E(Y)=6</M>, <M>V(Y)=6</M>.
+</LI><LI><M>E(Y)=10</M>, <M>V(Y)=40</M>.
+</LI><LI><M>E(Y)=\frac32</M>, <M>V(Y)=\frac34.</M>
+</LI><LI><M>E(Y)=15</M>, <M>V(Y)=30.</M>
+</LI></FL>
+[Thanks to Anant for pointing out typos here.]
+</ANS>
 </EXR>
-<P/>
 It should be apparent from the description of the distribution that
 Negative Binomial distribution is related with the Geometric
 distribution. In Geometric distribution we keep on tossing until we get the
