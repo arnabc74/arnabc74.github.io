@@ -446,7 +446,7 @@ Similarly for <M>P(I_jI_k=1).</M>
 to <M>\sum P_i=\mu</M> being fixed. Cauchy-Schwarz might help.  
 
 (c) Here we have to maximise <M>\sum P_i^2</M>  subject to <M>\sum P_i=\mu.</M>  First notice that
- in any maximising <M>(P_1,...,P_n)</M>  al but at most one <M>P_i</M>  must be either <M>0</M> 
+ in any maximising <M>(P_1,...,P_n)</M>  all but at most one <M>P_i</M>  must be either <M>0</M> 
  or <M>1</M>. Because if  <M>P_i,P_j\in(0,1)</M>  for <M>i\neq j</M>, then take the smaller one
  closer to zero and the larger one closer to 1 by the same amount. Then <M>\sum P_i</M>  remains unaltered, but <M>\sum P_i^2</M> 
  increases. 
@@ -685,8 +685,18 @@ Then, for any sequence in <M>\{X_i=1\}</M>  the red part may be selected in
 ways. Here <M>j</M>  denotes the number of B's in the red part. Once we also count the matching number
  of blue parts for each value of <M>j</M>, we get the size of <M>\{X_i=1\}</M>  as
 <D>\sum_{j=0}^{i-1} \binom{i+j-1}{j}\binom{2n-i-j}{n-j}.</D>
-Now you should be able to complete the rest.     
+Quite mysteriously (to me), this is free of <M>i</M>  and indeed equals <M>[[12]]\binom{2n}{n}</M>. 
 
+[Thanks to Souradip for observing this.] 
+
+So we see that <M>P(X_i=1) = [[12]]</M>. In other words, all the <M>X_i</M>'s are actually
+ identically distributed. (There must be a direct intuitive proof of this, but it beats me!). 
+
+So the final answer is just <M>[[n2]]</M>. 
+
+[Souradip found this identity from the web which immediately leads to the mysterious result:
+<CIMG web="soura.png"></CIMG>
+But I do not know an intuitive proof of this identity either!]
 </ANS>
 <HR/></EXR>
 ::<EXR>(Hard) <EIMG web="morecond22.png"></EIMG>

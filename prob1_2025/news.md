@@ -1,3 +1,9 @@
+**November 07, 2025:**
+
+:	- Added Souradip's mysterious simplification of the solution to Exercise 35 
+	  in the
+	[Conditional distribution](condl.html){target="naya"} page.
+  
 **November 02, 2025:**
 
 :	- Corrected a copy-paste error in the finite and infinite supports pages.
