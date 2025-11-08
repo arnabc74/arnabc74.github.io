@@ -1,3 +1,9 @@
+**November 08, 2025:**
+
+:	- Updated the hints to Exercises 25 and 26 in the 
+	[Distributions with finite supports](distrib1.html){target="naya"} page.
+	Thanks to Mayukh for pointing out the need.
+
 **November 07, 2025:**
 
 :	- Added Souradip's mysterious simplification of the solution to Exercise 35 
