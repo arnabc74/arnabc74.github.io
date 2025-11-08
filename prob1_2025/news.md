@@ -1,6 +1,10 @@
 **November 08, 2025:**
 
-:	- Updated the hints to Exercises 25 and 26 in the 
+:	- Updated the hints to Exercise 25  in the 
+	[Distributions with infinite supports](distrib2.html){target="naya"} page.
+	Thanks to Souradip for pointing out the need.
+
+	- Updated the hints to Exercises 25 and 26 in the 
 	[Distributions with finite supports](distrib1.html){target="naya"} page.
 	Thanks to Mayukh for pointing out the need.
 

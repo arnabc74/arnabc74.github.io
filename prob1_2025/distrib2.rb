@@ -712,11 +712,15 @@ Assuming the numbers
 The required probability is <M>P(Y\geq 1) = 1-P(Y=0) = 1-(1-p)^n</M>.
 </ANS><HR/></EXR>
 ::<EXR>(Medium)<EIMG web="infdist10.png"/><ANS>
-Think of the problem like this. The pedestrian arrives, and starts tossing a coin with <M>P(head)=0</M>  once every second.
- If the outcome is a head, he waits for that second, and tosses the coin again the next second. If it is tail, (s)he crosses.
- 
-With this formulation waiting for 0 second is like having a tail in the first toss. Waiting for
- exactly 1 second is like having head, tail.  
+Think of the problem like this: The god of traffic is tossing a coin with <M>P(H)=p</M> 
+ repeatedly (and independently), resulting in a sequence of H's and T's. The pedestrian can view the sequence at least 3
+ steps into the future. Thus, initially he knows at least first three outcomes, then in the next second he knows at least
+ the first four outcomes, and so on. He would cross if an only if the next 3 outcomes are all tails. 
+
+With this formulation waiting for 0 second is having TTT.  Waiting for
+ exactly 1 second is having  HTTT, and so on. Waiting for 2 seconds correspond to {HHTTT, THTTT} but not to HTTTT. 
+
+[Thanks to Souradip for pointing out a mistake here.]
  
 </ANS><HR/></EXR>
 ::<EXR>(Easy)<EIMG web="infdist11.png"/><ANS>Let <M>X,Y</M>  be the their numbers of heads (I mean
