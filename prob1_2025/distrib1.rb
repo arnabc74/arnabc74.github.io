@@ -707,10 +707,12 @@ P(X_1=x_1|X_1+X_2=k)
 & = & [[P(X_1=x_1~\&~X_1+X_2=k)][P(X_1+X_2=k)]]\\
 & = & [[P(X_1=x_1~\&~X_2=k-x_1)][P(X_1+X_2=k)]]\\
 & = & [[P(X_1=x_1)P(X_2=k-x_1)][P(X_1+X_2=k)]]\\
-& = & [[\binom{n_1}{x_1}p^{x_1}(1-p)^{n_1-x_1}\binom{n_2}{k-x_1}p^{k-x_1}(1-p)^{x_1}][\binom{n_1+n_2}{k}p^k(1-p)^{n_1+n_2-k}]]\\
+& = & [[\binom{n_1}{x_1}p^{x_1}(1-p)^{n_1-x_1}\binom{n_2}{k-x_1}p^{k-x_1}(1-p)^{n_2-k+x_1}][\binom{n_1+n_2}{k}p^k(1-p)^{n_1+n_2-k}]]\\
 & = & [[\binom{n_1}{x_1}\binom{n_2}{k-x_1}][\binom{n_1+n_2}{k}]],
 </MULTILINE>
 as required.
+
+[Thanks to Avigyan for pointing out a minor typo.]
 </PF>
 
 <THM>

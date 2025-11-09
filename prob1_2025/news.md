@@ -3,6 +3,8 @@
 :	- Added hint to Exercise 31  in the 
 	[Distributions with finite supports](distrib1.html){target="naya"} page.
 
+	- Also corrected a minor typo in the same page pointed out by Avigyan. 
+
 **November 08, 2025:**
 
 :	- Updated the hints to Exercise 25  in the 
