@@ -1,3 +1,8 @@
+**November 09, 2025:**
+
+:	- Added hint to Exercise 31  in the 
+	[Distributions with finite supports](distrib1.html){target="naya"} page.
+
 **November 08, 2025:**
 
 :	- Updated the hints to Exercise 25  in the 

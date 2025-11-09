@@ -842,7 +842,13 @@ So <M>E(X_i) = \cdots.</M>
 ::<EXR>(Hard)<EIMG web="dtwo19.png"/></EXR>
 ::<EXR><EIMG web="dtwo20.png"/></EXR>
 ::<EXR><EIMG web="dtwo21.png"/></EXR>
-::<EXR><EIMG web="dtwo22.png"/></EXR>
+::<EXR><EIMG web="dtwo22.png"/><ANS>
+Let <M>X_i=<CASES>1<IF><M>i</M>-th coupon was not seen before</IF> 0<ELSE/></CASES>. </M>
+
+Let <M>X = \sum_1^k X_i</M>. To find <M>E(X_i)</M>  and <M>V(X_i)</M>. 
+
+Clearly, <M>X_1\equiv 1</M>. Now find <M>E(X_i)</M>  and <M>E(X_iX_j)</M>  for <M>i]\neq j</M>.
+</ANS></EXR>
 ::<EXR><EIMG web="dtwo23.png"/></EXR>
 ::<EXR>At a party <M>N</M> men throw their hats into a corner, and
 each man picks up a hat randomly. Let <M>X</M> be the number of
