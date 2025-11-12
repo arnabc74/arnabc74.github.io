@@ -777,7 +777,8 @@ The second follows from <M>n(n-1)\cdots (n-k+1) \leq (n-k)^k</M>.
 </D>
 <ANS>For the first inequality use the fact that <M>\log(1+x) < x</M>  for <M>|x| < 1</M>.
 
-For the second use the fact that <M>\log(1+x) > x-[[x^2][2]]</M>  for <M>|x| < 1</M>.
+For the second use the fact that <M>\log(1+x) > x-[[x^2][2]]</M>  for <M>|x| < 1</M>. You may also proceed using just <M>e^x > 1+ x</M> 
+ for <M>x >0</M>.
 </ANS>
 <HR/></EXR>
 ::<EXR>(Hard)(Banach's matchbox problem)

@@ -467,7 +467,7 @@ P(X=5) = {1000\choose 5} (0.01)^5(1-0.01)^{1000-5} = 0.03745.
 A box has 100 items, each of which either passes a quality control test
 (OK) or fails the test (BAD). If a box has more than 3 BAD items, then the
 box is rejected by the quality control inspector. It is known that each
-item is OK with probability 0.01, and that the items are independent. Use
+item is BAD with probability 0.01, and that the items are independent. Use
 Poisson approximation to compute the probability that a box is not
 rejected.
 <ANS ref="poi3"><M>1-\frac{8}{3e}</M></ANS>
