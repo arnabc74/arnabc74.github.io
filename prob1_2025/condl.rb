@@ -397,7 +397,7 @@ Direct computation shows <M>n\geq 4.</M>
 <HR/></EXR>
 ::<EXR>(Medium) <EIMG web="condist10.png"></EIMG>
 
-Imagine this set up: A coin with <M>P(H)=p</M>  is repeadly tossed. Success means <M>H.</M>
+Imagine this set up: A coin with <M>P(H)=p</M>  is repeatedly tossed. Success means <M>H.</M>
 <ANS>
 <M>(1-p)^{x_r-r} p^r.</M>
 
@@ -409,7 +409,7 @@ Thanks to Amit Prakash Jena for correcting a mistake here.
 
 This is a continuation of the last problem.
 <ANS>
-<M>P(T_1=x|N_n=1) = [[P(T_1=x\& N_n=1)][P(N_n=1)]] = [[p(1-p)^{n-1}][np(1-p)^{n-1}}] = [[1n]].</M>
+<M>P(T_1=x|N_n=1) = [[P(T_1=x\& N_n=1)][P(N_n=1)]] = [[p(1-p)^{n-1}][np(1-p)^{n-1}]] = [[1n]].</M>
 </ANS>
 <HR/></EXR>
 ::<EXR>(Hard) <EIMG web="condist12.png"></EIMG>
