@@ -609,13 +609,13 @@ Here <M>P(X=k) = \binom{k-1}{r-1}p^rq^{k-r}</M>  for <M>k=r,r+1,...</M>  where <
 
 So 
 <D>E(*([[rX]])*) = \sum_{k=r}^\infty \binom{k-1}{r-1}p^rq^{k-r}[[rk]].</D>
-Ignoring the  terms free of <M>k</M>, and massaging the rest a little, the sum  reduces to 
-<D>\sum_{k=0}^\infty [[k(k-1)\cdots(k-r+2)][k+1]] q^k.</D>
 This may be handled by repeated term by term integration and differentiation of the power series
 <D>1+q+q^2+\cdots = [[1][1-q]]</D>
 for <M>|q|<1.</M>
 
-You may like to deal with the <M>r=1</M>  case first.
+For example, if <M>r=1</M>, then the sum is 
+<D>p\sum_{k=1}^\infty [[q^{k-1}][k]]  = [[pq]]\sum_1^\infty [[q^k][k]] = [[pq]]\sum_1^\infty \int_0^q t^{k-1}\, dt =
+[[pq]]\int_0^q \sum_1^\infty  t^{k-1}\, dt =[[pq]]\int_0^q [[dt][1-t]] = \cdots. </D>
 </ANS>
 </EXR>
 ::<EXR>(Medium)<CIMG web="most4.png"/>
