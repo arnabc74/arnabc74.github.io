@@ -1,3 +1,8 @@
+**November 11, 2025:**
+
+:	- Modified the wording and hint of Exercise 18 in the 
+	  [Random walk](fluc.html){target="naya"} page. 
+
 **November 09, 2025:**
 
 :	- Added hint to Exercise 31  in the 

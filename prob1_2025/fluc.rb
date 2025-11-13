@@ -769,9 +769,13 @@ always <M><b</M> is <M>N_{n,a}-N_{n,2b-a}.</M>
 
 ::<EXR>(Hard) Show that if <M>a> c> 0</M>  and <M>b>0</M>, then  the number of paths from (0,0) to <M>(n,c)</M>
   that attain height <M>a</M>  and <I>then</I>  attain height <M>-b</M>  before finishing at <M>(n,c),</M>  is <M>N_{n,2a+2b+c}.</M> 
- The paths may have also attained height <M>-b</M>  before attaining height  <M>a.</M>
+If the path is at <M>X_t</M>  at time <M>t</M>  for <M>t\in\{0,...,n\},</M>  then we are talking about the set of all those
+ paths for which <M>\exists t_1 < t_2 ~~X_{t_1} = a~~X_{t_2}=-b.</M>  
 <ANS>
-<CIMG web="drefl.png"/>
+Consider any such path. Let <M>t_1</M>  be the first time it hits <M>a.</M>  Reflect the path from time <M>t_1</M>  to <M>n</M> 
+ wrt the horizontal line through <M>a.</M>  This gives a path that is bound to hit <M>2a+b</M> and
+ end at <M>2a-c.</M>  Let <M>t_2</M>  be the first time it hits <M>2a+b.</M>  Reflect the path
+ again from <M>t_2</M>  to <M>n</M>  wrt the horizontal line through <M>2a+b.</M>  This gives a path that ends at <M>(n,2a+2b+c).</M> 
 </ANS> </EXR>
 ::<EXR>(Hard) Let <M>a>c>0</M> and <M>b>0.</M> Show that the number of
 paths from <M>(0,0)</M> which hit the
