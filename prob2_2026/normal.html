@@ -1,0 +1,1297 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Multivariate normal and related distributions</h3>
+<ul>
+<li>
+<a href="#Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Justifying the defintion using characteristic function">Justifying the defintion using characteristic function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Back to normal">Back to normal</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Two corollaries">Two corollaries</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+<li>
+<a href="#Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Mean and dispersion">Mean and dispersion</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 4">Problem set 4</a>
+</li>
+<li>
+<a href="#Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Independent vs zero covariance">Independent vs zero covariance</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 5">Problem set 5</a>
+</li>
+<li>
+<a href="#Multivariate normal distribution (part 6)">Multivariate normal distribution (part 6)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Nonsingular: When density exists">Nonsingular: When density exists</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Singular: when density does not exist">Singular: when density does not exist</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
+<a href="#$\chi^2$  distribution">$\chi^2$  distribution</a>
+</li>
+<li>
+<a href="#Geometry of $\chi^2_{(k)}$">Geometry of $\chi^2_{(k)}$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
+</li>
+<li>
+<a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 8">Problem set 8</a>
+</li>
+<li>
+<a href="#$t$  distribution">$t$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 9">Problem set 9</a>
+</li>
+<li>
+<a href="#$F$  distribution">$F$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 10">Problem set 10</a>
+</li>
+<li>
+<a href="#Distribution of quadratic forms (part 1)">Distribution of quadratic forms (part 1)</a>
+</li>
+<li>
+<a href="#Distribution of quadratic forms (part 2)">Distribution of quadratic forms (part 2)</a>
+</li>
+<li>
+<a href="#Miscellaneous problems">Miscellaneous problems</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+$\newcommand{\k}[1]{\chi^2_{(#1)}}$
+<title>Multivariate normal and related distributions</title>
+
+<h1><a
+name="Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a></h1>
+<a href="https://youtu.be/3EQggZLAYKY">Video for this section</a>
+<p></p>
+
+<p></p>
+Here we shall discuss the most commonly used multivariate distribution, the multivariate normal distribution. 
+<p></p>
+First we shall recast the defnition of univariate normal from the last chapter to a form suitable for generalisation to higher
+ dimensions. Instead of defining $N(\mu,\sigma^2)$  via density, we shall start with just $N(0,1)$  and define
+ it via the density $\frac{1}{\sqrt{2\pi}} e^{-x^2/2},~~x\in{\mathbb R}.$  Then for any $\sigma^2 \geq 0$  we can define $N(\mu,\sigma^2)$ 
+ as the distribution of $\sigma X+\mu,$  whre $X\sim N(0,1).$  Convince yourself that this is equivalent to what
+the definition of univariate normal given  in the last chapter, and that this includes the $\sigma^2=0$  case also.
+<p></p>
+Now we are ready for the multivariate generalisation. For $N(\mu, \sigma^2)$  the parameters were $\mu\in{\mathbb R}$ 
+ and $\sigma^2\geq 0.$  In $m$-dim our parameters will be a vector $\v\mu\in{\mathbb R}^m$  and a NND matrix
+ $\Sigma_{m\times m}. $  We shall need the following fact about NND matrices from linear algebra:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A matrix $\Sigma_{m\times m}$  is NND if and only if $\Sigma = AA'$  for some $A_{m\times n}$  for some $n\in{\mathbb N}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Should be covered in your Vectors and Matrices course.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+At last we come to the definition of multivariate normal.
+<fieldset>
+<legend><b>Definition:  Multivariate normal</b></legend>
+For any $\v\mu\in{\mathbb R}^m$  and any NND $\Sigma_{m\times m}$  we define  $N_m(\v\mu, \Sigma)$, the $m$-dimensional
+ <b><font color="red" size="40">multivariate normal distribution</font></b>  as the distribution of 
+ $\v Y=A\v X + \v \mu$, where $\v X_{m\times 1}$  has IID $N(0,1)$  components, and
+ $A_{m\times m}$  is any matrix
+ such that $\Sigma = AA'.$
+</fieldset>
+The only point that you might feel uncomfortable about is the choice of $A.$  In the univariate
+ case, obtaining $\sigma$ 
+ from $\sigma^2$  was straightforward: we could just take the (unique) nonnegative square root. But in
+ the multivariate set up
+ there are, in general, infinitely many choices for $A$  such that $\Sigma=AA'.$  Which
+ one should we take? Fortunately
+ it does not matter here, because as we are going to show now, any choice leads to the same distribution of $A\v X+\v\mu.$ 
+<p></p>
+For this purpose we shall use characteristic functions. 
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Follow the definition to obtain the density of $\v Y = \left[\begin{array}{ccccccccccc}Y_1\\Y_2
+\end{array}\right]\sim N_2\left(\left[\begin{array}{ccccccccccc}10\\20
+\end{array}\right],\left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 4
+\end{array}\right]\right).$
+You may use $A = \left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 2
+\end{array}\right].$  
+</p>
+
+<p></p>
+
+<h1><a
+name="Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a></h1>
+<a href="https://youtu.be/EJd_YvDzI_s">Video for this section</a>
+<p></p>
+
+<h2><a
+name="Justifying the defintion using characteristic function">Justifying the defintion using characteristic function</a></h2>
+In the multivariate set up, characteristic function is  defined as follows.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Multivariate characteristic function</b></legend>
+Let $\v U = (U_1,...,U_m)'$  be a random vector. Then its <b><font color="red" size="40">characteristic function</font></b>  is defined as $\xi:{\mathbb R}^m\rightarrow{\mathbb C}$ 
+ where
+$$\xi(t_1,...,t_m)\equiv \xi(\v t) = E(e^{i\v t'\v U}).$$
+</fieldset>
+The following theorem, which is an obvious analogue for the corresponding univariate theorem, is what makes characteristic function
+ useful.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+For any ${\mathbb R}^m$-valued random vector, its characteristic function exists. Also, the characteristic function uniquely
+ determines the distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Not in this course.<b><i>[QED]</i></b>
+</p>
+Now let us return to the definition multivariate normal. 
+<p></p>
+
+<h2><a
+name="Back to normal">Back to normal</a></h2>
+We shall take any $A$  with
+ $\Sigma=AA',$  and show that the 
+ characteristic function of $\Sigma\v X+\v\mu$  will depend on $A$  only through $AA'=\Sigma.$  So the particular
+ choice of $A$  will not matter.
+<p></p>
+We shall start with the characteristic function of  $\v X$:
+$$E(\exp(i\v t'\v X) = E(e^{it_1X_1+\cdots it_nX_n}) =E(e^{it_1X_1}\cdots e^{it_nX_n})=
+ E(e^{it_1X_1})\cdots E(e^{it_nX_n})) = e^{-t_1^2/2}\cdots e^{-t_n^2/2} = \exp\left(-\frac 12\v t'\v t\right).$$ 
+So the characteristic function of $A\v X + \v \mu$  is 
+$$\begin{eqnarray*}
+E(\exp(i\v t'(A\v X+\v \mu)) 
+&amp; = &amp; E(\exp(i((A'\v t)'\v X+\v t'\v \mu))\\
+&amp; = &amp; \exp\left(-\frac 12\v t'AA'\v t+i\v t'\v\mu\right)\\
+&amp; = &amp; \exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right),
+\end{eqnarray*}$$
+which indeed does not involve $A.$ 
+<p></p>
+As a by product of the above steps we also get the characteristic function of $N_m(\v\mu,\Sigma).$ 
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Write down the characteristic function of $N_2(\v\mu,\Sigma)$  where $\v\mu=\left[\begin{array}{ccccccccccc}1\\2
+\end{array}\right]$  and $\Sigma=\left[\begin{array}{ccccccccccc}2&amp;1\\1&amp;3
+\end{array}\right].$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;There are algorithms that will take $\Sigma$  as input and produce an $A$  as
+ output suh that $\Sigma=AA'.$  The Cholsesky (read as ko-less-key) decomposition algorithm is
+ one such (implemeted in the R function chol). But for small matrices, it is possible to
+ construct $A$  by hand. Suppose $\Sigma=\left[\begin{array}{ccccccccccc}2&amp;1\\1&amp;3
+\end{array}\right].$  Find a lower triangular $A$  with $\Sigma=AA'.$ </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Find $$\v\mu$ $  and $\Sigma$  if $N_2(\v\mu,\Sigma)$  has characteristic function
+ $\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)$  for $(t_1,t_2)\in{\mathbb R}^2.$</p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;True or false: The characteristic function of $N_m(\v\mu,\Sigma)$  is real-valued if and only if $\v\mu=\v0.$</p>
+
+<p></p>
+
+<h1><a
+name="Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a></h1>
+<a href="https://youtu.be/r5R0ZXMAOYw">Video for this section</a>
+<p></p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v Y\sim N_m(\v \mu, \Sigma)$  and $B_{n\times m}$  and $\v c_{n\times 1}$  are
+ fixed, then $\v Z = B\v Y+\v c\sim N_n(B\v \mu + \v c, B\Sigma B').$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Be careful that the variance matrix is $B\Sigma B'$  and not $B'\Sigma B.$
+<p></p>
+Let $\Sigma = AA'.$  Then, by definition,  $\v Y$  has the same distribution as that of $A\v
+ X+\v\mu,$  where $\v X\sim N_m(\v,I).$ 
+<p></p>
+So $B\v Y+\v c$  has the same distribution as that of $B(A\v X+\v\mu)+\v c = BA\v X + (B\v\mu+\v c).$  This is,
+ by definition, $N_n(B\v\mu+\v c, BAA'B') = N_n(B\v\mu+\v c, B \Sigma B').$
+<b><i>[QED]</i></b>
+</p>
+The theorem could also be proved using characteristic function. 
+<p></p>
+
+<h2><a
+name="Two corollaries">Two corollaries</a></h2>
+Here is the first corollary.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X = (X_1,...,X_n)'\sim N_n(\v \mu,\Sigma),$  then any subvector of  $\v X$  has multivariate normal distribution
+ with the corresponding subsector of $\v \mu$  and corresponding principal submatrix of $\Sigma.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Extracting a subvector is same as premultiplying by a matrix. The matrix is obtained by selecting appropriate rows of the
+ identity matrix. 
+<p></p>
+Apply the affine transform result with $B=$ this matrix and $\v c=\v0$  to prove this theorem.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The second corollary is the multivariate analogue of univariate standardisation: If $X\sim N(\mu,\sigma^2)$  for $\sigma^2&gt;0,$ 
+ then $\frac{X-\mu}{\sigma}\sim N(0,1).$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X\sim N_n(\v\mu,\Sigma)$  where $\Sigma$  is nonsingular. Let $\Sigma = AA'$  for $A_{n\times n}.$
+Then $A ^{-1} (\v X-\v\mu)\sim N_n(\v0,I).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Direct application of the theorem. Just notice that $A$  must be nonsingular, because had it
+ been singular,  $AA'$ 
+ would have been singular, as well. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let 
+$$\left[\begin{array}{ccccccccccc}X_1\\X_2\\X_3\\X_5\\X_5
+\end{array}\right]\sim N_5\left(\left[\begin{array}{ccccccccccc}1\\2\\3\\4\\5
+\end{array}\right],\left[\begin{array}{ccccccccccc}50 &amp; 42 &amp; 41 &amp; 48 &amp; 27\\ 42 &amp; 40 &amp; 38 &amp; 40 &amp; 25\\
+ 41 &amp; 38 &amp; 51 &amp; 53 &amp; 39\\ 48 &amp; 40 &amp; 53 &amp; 61 &amp; 39\\ 27 &amp; 25 &amp; 39 &amp; 39 &amp; 38
+\end{array}\right]\right). $$
+Find the distribution of $\v Y = (2X_1-3X_4+X_5,~~X_1+X_4)'.$
+<p></p>
+[Hint: Don't struggle with the full $5\times5$  matrix.]
+</p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;
+If $X_1,...,X_n$  are IID $N(0,1).$  Let $\v X = (X_1,...,X_n)'.$  Let $A_{n\times n}$  be any orthogonal
+ matrix. Then show that the components of $A\v X$  are again IID $N(0,1).$
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+Here $\v X\sim N_n(\v0,I).$  So $A\v X\sim N_n(A\v0,AIA') = N_n(\v0,I),$
+since $A$  is orthogonal.
+</div></p>
+</p>
+
+<h1><a
+name="Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a></h1>
+<a href="https://youtu.be/wFf2WTW_5M0">Video for this section</a>
+<p></p>
+
+<h2><a
+name="Mean and dispersion">Mean and dispersion</a></h2>
+It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v Y\sim N_m(\v\mu,\Sigma)$, then  $E(\v Y)=\v \mu$   and $V(\v Y) = \Sigma.$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\Sigma = AA'.$  Then $\v Y$  has the same distribution as $A\v X+\v \mu$  where the $\v X$  has
+ components IID $N(0,1).$
+<p></p>
+So $E(\v X) = \v 0$  and $V(\v X) = I.$  
+<p></p>
+Hence $E(\v Y) = E(A\v X+\v\mu) = A E(\v X)+\v\mu = \v\mu,$
+and $V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.$ 
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Find $E(\v X)$  and $V(\v X)$  if $\v X$  has characteristic function
+ $\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)$  for $(t_1,t_2)\in{\mathbb R}^2.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;If $\v X\sim N_m(\v\mu,\Sigma)$  and the components of $\v X$  are all independent,
+ then what can you say about the structure of $\Sigma?$</p>
+
+<p></p>
+
+<h1><a
+name="Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a></h1>
+<a href="https://youtu.be/Y9Y1bHsltoA">Video for this section</a>
+<p></p>
+
+<p></p>
+
+<h2><a
+name="Independent vs zero covariance">Independent vs zero covariance</a></h2>
+If two random variables are
+independent, they must also have covariance zero. However, the converse is not true in general. For multivariate
+ normal the converse is also
+ true. For this we need the following result about characteristic function:
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X$  and $\v Y$  are two random vectors with characteristic functions $\xi_X(\v s)$  and
+ $\xi_Y(\v t)$, then the characteristic function of $\v Z = \left[\begin{array}{ccccccccccc}\v X\\\v
+ Y
+\end{array}\right]$  is $\xi_Z(\v s,\v t)=\xi_X(\v s)\xi_Y(\v t)$  if and only if $\v X$  and
+ $\v Y $ are independent.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Direct application of definition.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If 
+$$\v X = \left[\begin{array}{ccccccccccc}\v X_1\\\v X_2
+\end{array}\right]'\sim N_n\left(\underbrace{\left[\begin{array}{ccccccccccc}\v \mu_1\\\v \mu_2
+\end{array}\right] }_{\v\mu},
+\underbrace{\left[\begin{array}{ccccccccccc}\Sigma_{11} &amp;  \Sigma_{12}\\\Sigma_{12}' &amp; \Sigma_{22}
+\end{array}\right] }_\Sigma\right),$$  then
+ $\v X_1$  and $\v X_2$  are
+ independent if and only if $\Sigma_{12} = O.$</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The characteristic function of $\v X$  is 
+$\xi_{\v X}(\v t)=\exp\left(-\frac 12\v t'\Sigma\v t+i\v t'\v \mu\right).$
+<p></p>
+Writing $\v t =\left[\begin{array}{ccccccccccc}\v t_1\\\v t_2
+\end{array}\right], $  we have
+$$\v t'\Sigma\v t =\left[\begin{array}{ccccccccccc}\v t_1' &amp; \v t_2'
+\end{array}\right]\left[\begin{array}{ccccccccccc}\Sigma_{11} &amp;  \Sigma_{12}\\\Sigma_{12}' &amp; \Sigma_{22}
+\end{array}\right]\left[\begin{array}{ccccccccccc}\v t_1\\\v t_2
+\end{array}\right]
+= \v t_1'\Sigma_{11}\v t_1+ \v t_1'\Sigma_{22}\v t_2,$$
+since $\Sigma_{12}=O.$
+<p></p>
+Again
+$$\v t'\v \mu = \left[\begin{array}{ccccccccccc}\v t_1' &amp; \v t_2'
+\end{array}\right]\left[\begin{array}{ccccccccccc}\v \mu_1 &amp; \v \mu_2
+\end{array}\right]  = \v t_1'\v \mu_1+\v t_2'\v \mu_2$$
+So the characteristic function factorises as
+$$\xi_{\v X}(\v t)\equiv \xi_{\v X_1}(\v t_1)\xi_{\v X_1}(\v t_2),$$
+and hence $\v X_1$  and $\v X_2$  are independent, as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+An important corollary is the following result.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_n(\v\mu, I)$  and $A_{p\times n}$  qr $B_{q\times n}$  are any
+ two fixed matrices with $AB'=O,$  then $A\v X$  and $B\v X$  must be independent.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Immediate rom the theorem (try it!).
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+A further corollary is 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Suppose that $\v X\sim N_n(\v\mu, I)$  and let $S, T$  be two mutually orthogonal
+ subspaces of ${\mathbb R}^n.$  Let $\v Y$ and $\v Z$  be orthogonal projections of $\v
+ X$  on $S$  and $T,$  respectively. Then $\v Y$  and $\v Z$  must be independent.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+
+<p></p>
+Let $P_S$  and $P_T$  be the orthogonal projection operators for $S$  and $T.$
+  Then they are both symmetric idempotent matrices with $P_SP_T = 0.$
+<p></p>
+Now apply the last theorem.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Let $\v X\sim N_n(\v\mu,I).$  Let $\v a, \v b\in{\mathbb R}^n$  be orthogonal to each
+ other. Show that $\v a'\v X$  and $\v b'\v X$  must be independent.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Let $\left[\begin{array}{ccccccccccc}\v X_{m\times 1}\\\v Y
+\end{array}\right] \sim N_{m+n}\left(\left[\begin{array}{ccccccccccc}\v \mu_1\\\v\mu_2
+\end{array}\right], \left[\begin{array}{ccccccccccc}A_{m\times m} &amp; B\\B' &amp;
+ C
+\end{array}\right]\right).$  What is the distribution of $\v X$  and $\v Y$  separately? </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;(Continuation of the last problem) If $A$ is nonsingular, then show that $\v
+ Y-B'A ^{-1}\v X$  and
+ $\v X$  are independent.
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;(Continuation of the last problem) Write $\v Y = B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)$  and 
+ show that the conditional distribution of $\v Y$  given $\v X=\v x$  is 
+$N_n (\v \mu_2+B'A ^{-1}(\v x-\v\mu_1), C-B'A ^{-1} B).$  [Does this remind you of multiple regression?]
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">
+Let us write the condl distribution as $Distr(\v Y|\v X=\v x)$.
+<p></p>
+Then 
+$$\begin{eqnarray*}
+Distr(\v Y|\v X=\v x) 
+&amp; = &amp; Distr(B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)|\v X=\v x)\\
+&amp; = &amp; Distr(B'A ^{-1} \v x + (\v Y-B'A ^{-1}\v X)|\v X=\v x)\\
+&amp; = &amp; B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X|\v X=\v x)\\
+&amp; = &amp; B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X)~~\left[\mbox{$\because$  indep}\right]
+\end{eqnarray*}$$
+Now 
+$$\v Y-B'A ^{-1}\v X = \left[\begin{array}{ccccccccccc}-B A ^{-1} &amp; I 
+\end{array}\right]\left[\begin{array}{ccccccccccc}\v X\\\v Y
+\end{array}\right].$$
+So $Distr( \v Y-B'A ^{-1}\v X)$  may be computed easily.
+</div></p>
+
+</p> 
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Let $\v X\sim N_n(\v0,I).$  We take some subspace of ${\mathbb R}^n,$  and project $\v
+ X$  on it to get a vector $\v Y.$  Let $\v Z = \v X-\v Y.$  The situation is
+ depicted pictorially below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/projrej.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Show that $\v Y$  and $\v Z$  are independent.
+</p>
+
+<p></p>
+
+<h1><a
+name="Multivariate normal distribution (part 6)">Multivariate normal distribution (part 6)</a></h1>
+<a href="https://youtu.be/rawtkxZq4fA">Video for this section</a>
+<p></p>
+As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
+ special case, it does. This case is called the nonsingular
+ case, while the other case is called singular. The  case is determined by the $\Sigma$ 
+ matrix. If it is nonsingular, then we have density, else not.  We prove these next.
+<p></p>
+
+<h2><a
+name="Nonsingular: When density exists">Nonsingular: When density exists</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\Sigma$  is a nonsingular  matrix, then $N_m(\v\mu,\Sigma)$  has density  
+$$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n,$$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Since $\Sigma$  is NND, we can write $\Sigma = AA'$  for some 
+ $A_{m\times m}.$ 
+ So $N_m(\v\mu,\Sigma)$ 
+ is the distribution of $A\v X+\v\mu,$  where $\v X$  has IID $N(0,1)$  components.
+<p></p>
+Clearly, the density of $\v X$  is 
+$$\frac{1}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12\v x'\v x\right)\mbox{ for }\v x\in{\mathbb R}^n.$$
+Now, since $\Sigma$  is nonsingular, so must be $A$, and hence
+ the transform $\v Y =  A\v X+\v \mu$  is a bijection. 
+<p></p>
+The inverse transform is $\v X = A ^{-1}(\v Y-\v\mu).$
+<p></p>
+The Jacobian of this inverse transform is $A ^{-1}.$
+<p></p>
+So the Jacobian formula
+ gives (check!) the following density for $\v Y = A\v X+\v \mu$
+$$\frac{|det(A ^{-1})|}{\sqrt{(2\pi)^n}}\exp\left(-\frac 12(\v y-\v\mu)'(A ^{-1})'A ^{-1}(\v y-\v\mu)\right)\mbox{
+ for }\v y\in{\mathbb R}^n.$$ 
+Since $\Sigma = AA',$  hence  $|det(A ^{-1})| = \frac{1}{\sqrt{det(\Sigma)}}$  and $(A ^{-1})'A ^{-1} = (AA') ^{-1} = \Sigma ^{-1}.$
+<p></p>
+So the density may be written as
+$$\frac{1}{\sqrt{(2\pi)^n det(\Sigma)}}\exp\left(-\frac 12(\v y-\v\mu)'\Sigma ^{-1}(\v y-\v\mu)\right)\mbox{ for }\v y\in{\mathbb R}^n,$$ 
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Singular: when density does not exist">Singular: when density does not exist</a></h2>
+The other half does not even need any normality assumption.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $V(\v Y)$  is a singular  matrix, then $\v Y$  cannot have a density.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v Y$  have
+ dispersion matrix $\Sigma$ 
+ which is singular. 
+<p></p>
+Let, if possible, $\v Y$  have density.
+<p></p>
+Then $\exists \v a\neq\v0~~\Sigma \v a = \v 0.$  So $\v a'\Sigma \v a = 0.$   
+<p></p>
+But $\v a'\Sigma \v a = V(\v a' \v Y),$  hence we see that $\v a'\v Y$  must be a constant with probability 1.
+<p></p>
+We can extend $\{\v a\}$  to a basis $\{\v a,...\}$  of ${\mathbb R}^m.$ 
+<p></p>
+Let $P = \left[\begin{array}{ccccccccccc}\v a &amp; \cdots 
+\end{array}\right]$  be the matrix with these as columns.
+<p></p>
+Then $P$  is nonsingular, and so $\v Z = P'\v Y$  is a bijective transform of $\v Y.$
+<p></p>
+So, by the Jacobian formula, $\v Z$  must also have joint density. Then its first component $\v a'\v Y$  must also
+ have a (marginal) density. But that is impossible, since it is a degenerate random variable.
+<p></p>
+Hence the result. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="Problem set 6">Problem set 6</a></h2>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;Describe $N_2(\v0,I)$  distribution.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;Let
+$$\left[\begin{array}{ccccccccccc}X\\Y
+\end{array}\right] \sim N_2\left(\left[\begin{array}{ccccccccccc}1\\2
+\end{array}\right], \left[\begin{array}{ccccccccccc}1 &amp; -1\\-1 &amp; 1
+\end{array}\right]\right).$$
+If we take data $(x_1,y_1),...,(x_n,y_n)$  from $(X,Y)$, what will the scatterplot look like?
+</p>
+
+<p></p>
+
+<h1><a
+name="$\chi^2$  distribution">$\chi^2$  distribution</a></h1>
+<a href="https://youtu.be/3r6klLqHPpA">Video for this section</a>
+<p></p>
+Starting from this section, we shall discuss some distributions related to the normal distribution.
+<fieldset>
+<legend><b>Definition: $\chi^2$</b></legend>If $X_1,...,X_n$  are IID $N(0,1)$  then the distribution of $\sum_1^n X_i^2$ 
+ is called <b><font color="red" size="40">chi-square distribution with degrees of freedom</font></b> 
+ $n.$  We write 
+$$\sum_1^n X_i^2\sim \chi_{(n)}^2.$$
+</fieldset>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$\k n$  is the same as $Gamma\left(\frac 12,\frac n2\right).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $X_1,...,X_n$  be IID $N(0,1).$
+<p></p>
+Then $X_1^2$  has CDF $F(\cdot),$  where $F(a)=0$  for $a&lt;0$  and for $a\geq 0$  we have
+$$F(a) = P(X_1^2\leq a) =\frac{1}{\sqrt{2\pi}} \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=\frac{2}{\sqrt{2\pi}} \int_0^{\sqrt a} e^{-x^2/2}\, dx.$$
+Differentiating wrt $a$  we get the density
+$$f(a) = F'(a) = \frac{2}{\sqrt{2\pi}} e^{-a/2}\mbox{ for }a&gt;0.$$
+We immediately recognise it as the $Gamma\left(\frac 12,\frac 12\right)$  density.
+<p></p>
+So $X_i^2\sim Gamma\left(\frac 12,\frac 12\right)$   for $i=1,2,...,n.$
+<p></p>
+Also they are independent. 
+<p></p>
+So, by the additivity property of the $Gamma$  distribution, we have 
+ $\sum_1^n X_i^2 \sim  Gamma\left(\frac{1}{2},\frac n2\right).$
+<p></p>
+Hence $\k n\equiv  Gamma\left(\frac{1}{2},\frac n2\right),$   as required. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Since we have already learned that the characteristic function of $Gamma(p,\alpha)$  is $\left(\frac{p}{p-it}\right)^\alpha,$ 
+ hence we have the following characteristic function for the $\k n$  distribution:
+<p></p>
+
+<fieldset>
+<legend><b><i>Characteristic function of $\chi^2_{(n)}$</i></b></legend>
+The characteristic function of $\k n$  is $\xi(t) = (1-2it)^{-n/2}$  for $t\in{\mathbb R}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Put $p=\frac 12$  and $\alpha=\frac n2$  in the characteristic function of $Gamma(p,\alpha).$
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Geometry of $\chi^2_{(k)}$">Geometry of $\chi^2_{(k)}$</a></h1>
+<a href="https://youtu.be/xDLG6SCBg_Q">Video for this section</a>
+<p></p>
+If we consider a random vetor $\v X$  in ${\mathbb R}^k$  with IID $N(0,1)$  components, $\|\v X\|^2\sim \k k.$ 
+ This is little more than the definition. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Now let be $\v X\sim N_n(\v 0, I).$  Let $S$  be any $k$-dimensional subspace of
+ ${\mathbb R}^n. $  Consider the orthogonal projection $\v Y$  of $\v X$  onto $S.$ Then $$\|\v Y\|^2\sim \k k.$$ 
+ </fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We take any ONB of $S$  and extend it to an ONB of ${\mathbb R}^n. $  Pack the ONB as rows to get an orthogonal matrix
+ $Q.$  
+<p></p>
+Then $\v Z=Q\v X\sim N_n(\v 0, I).$
+<p></p>
+Also $\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,$  as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Non-central $\chi^2$</b></legend>
+If $X_1,...,X_n$  are independent $N(\mu_i,1),$  then the distribution $\sum X_i^2$  is
+ called <b><font color="red" size="40">noncentral $\k n$  with noncentralty parameter $\sum_i\mu_i^2.$</font></b> 
+
+</fieldset>
+
+<h2><a
+name="Problem set 7">Problem set 7</a></h2>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
+ containing $\v \mu.$  Then show that the orthogonal projection of $\v X$  onto
+ $S^\perp$  must have $\k {n-k}$  distribution.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;(Continuation of the last problem) How will the answer to the last problem change if $\v\mu\not\in S?$</p>
+
+<h1><a
+name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
+<a href="https://youtu.be/BRwFMYfb4rE">Video for this section</a>
+<p></p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, IID) from $N(\mu, \sigma^2).$ We consider
+ the sampe mean $\bar X=\frac 1n\sum _1^nX_i$  and sample variance $S^2=\frac 1n\sum_1^n (X_i-\bar X)^2.$   Then 
+<ol type="">
+
+<li>$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)$</li>
+
+<li>$\frac{nS^2}{\sigma^2}\sim \k {n-1}$</li>
+
+<li>$\bar X$  and $S^2$  are independent.</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Without loss of generality, we take $\mu=0$  and $\sigma=1.$
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">Once we have proved the $\mu=0$  case, we can work with $\mu+\sigma X_i$  to
+ get the general form.</div></blockquote>
+In ${\mathbb R}^n$  consider the subspace $V=span\{\v 1\},$  where $\v 1$  is the vector of al $1$'s. Clearly,
+ $dim(V)=1$  and $dim(V^\perp)=n-1.$
+<p></p>
+We have learnt that in ${\mathbb R}^n$  the component (<i>i.e.</i>, orthogonal projection) of one vector $\v v$  along
+ another vector $\v u$  is $\frac{\v u'\v v}{\v u'\v u}\v u.$ 
+<p></p>
+So the orthogonal projection of $\v X$  along $\v 1$  (<i>i.e.</i>, on $V$) is $\bar X\v 1.$  
+<p></p>
+Hence the orthogonal projection of $\v X$  on $V^\perp$  is  
+$$\v Y = \v X-\bar X\v 1 = \left[\begin{array}{ccccccccccc}X_1-\bar X\\\vdots\\X_n-\bar X
+\end{array}\right].$$
+So from earlier result, we immediately see that these two projections must be independent.
+<p></p>
+Now $\bar X$  is a function of the first projection, while $S^2$  is a function of the second. So they are independent.
+<p></p>
+Also $nS^2 = \|\v Y\|^2\sim \k{n-1}.$
+<p></p>
+The distribution of $\bar X$  is obvious from an earlier theorem.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 8">Problem set 8</a></h2>
+
+<p>
+<b>EXERCISE 19:</b>&nbsp;
+Same set up as in the theorem above. What will  the distribution of $\sum_1^n (X_i-a)^2$ be, where $a\in{\mathbb R}$  is
+a fixed number?
+</p>
+
+<h1><a
+name="$t$  distribution">$t$  distribution</a></h1>
+<a href="https://youtu.be/mv62pUoznVI">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $t$-distribution</b></legend>
+If $X\sim N(0,1)$  and $Y\sim\k n$  and they are independent, then the distribution of $X/(\sqrt{Y/n})$  is
+ called $t$-distribution with $n$  degrees of freedom. Here $n&gt;0$  need not be an integer.
+</fieldset>
+Let us derive density of $t$-distribution with $n$  degrees of freedom. We shall do this step by step. 
+<p></p>
+From $Y$  we shall pass on to $Z = \sqrt{\frac Yn}$  and then to $\frac XZ.$  
+<p></p>
+Y has density $f_Y(y) =\left\{\begin{array}{ll}\mbox{const } e^{-\frac y2}y^{\frac n2-1}&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+The transform to go from $Y$  to $Z$  is $z = h(y) = \sqrt{\frac yn}$  with inverse $y = h ^{-1}(z) = n z^2.$ 
+<p></p>
+Hence, by the Jacobian formula, $Z$  has density
+$$f_Z(z) = 2nz f_Y(nz^2) = \left\{\begin{array}{ll}\mbox{const } e^{-nz^2/2} z^{n-2}&\text{if }z&gt;0\\ 0&\text{otherwise.}\end{array}\right.$$
+Next we shall employ the quotient formula to find density of $T = \frac XZ$  as 
+$$\begin{eqnarray*}
+f_T(t) 
+&amp; = &amp; \int_0^\infty u f_X(tu) f_Z(u)\, du\\
+&amp; = &amp; \mbox{const} \int_0^\infty u e^{-t^2u^2/2} e^{-nu^2/2} u^{n-2}\, du\\
+&amp; = &amp; \mbox{const} \int_0^\infty  u^{n-1} e^{-(t^2+n)u^2/2}\, du.
+\end{eqnarray*}$$
+Substituting $v = \frac{u^2}{2}$  we have 
+$$\begin{eqnarray*}
+&amp; = &amp; \mbox{const} \int_0^\infty  v^{\frac{n-1}{2}} e^{-(t^2+n)v}\, dv\\
+&amp; = &amp; \mbox{const} \int_0^\infty  v^{\frac{n+1}{2}-1} e^{-(t^2+n)v}\, dv\\
+&amp; = &amp; \mbox{const } \Gamma\left(\frac{n+1}{2}\right) (t^2+n)^{-\frac{n+1}{2}}
+&amp; = &amp; \mbox{const } (t^2+n)^{-\frac{n+1}{2}}.
+\end{eqnarray*}$$
+If you keep track of the constants, you will find that it is
+$$\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\times n^{\frac{n+1}{2}}.$$
+It should not be difficult to see that $t$-density is symmetric around 0. The densities are much like the $N(0,1)$ 
+ density. They lie somewhere in-between the Cauchy density and $N(0,1)$  density. As the degrees of freedom increase
+ to $\infty,$  the $t$-distribution approaches $N(0,1).$  For degrees of freedom more than 40, the $t$-density
+ is virtually indisguishable from that of $N(0,1)$  density.
+<p></p>
+
+<h2><a
+name="Problem set 9">Problem set 9</a></h2>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
+$$\frac{\sqrt n(\bar X-\mu)}{\sqrt{\sum(X_i-\bar X)^2/(n-1)}}?$$
+</p>
+
+<p></p>
+
+<h1><a
+name="$F$  distribution">$F$  distribution</a></h1>
+<a href="https://youtu.be/xTL6asmWxA8">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $F$-distribution</b></legend>
+If $X\sim \k m$  and $Y\sim \k n$  are independent random variables, then the distribution of $\frac{X/m}{Y/n}$  is
+ called $F$ -distribution with numerator degrees of freedom $m$  and denominator degrees of freedom $n.$
+</fieldset>
+The density of $X$  is $f_X(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}e^{-\frac x2}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+Similarly, 
+the density of $Y$  is $f_Y(x) =\left\{\begin{array}{ll}\mbox{const }y^{\frac n2-1}e^{-\frac y2}&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+Hence density of $Z = \frac XY$  is 
+$$\begin{eqnarray*}
+f_Z(z)
+&amp; = &amp; \int_0^\infty u f_X(zu)f_Y(u)\, du\\
+&amp; = &amp; \mbox{const}\int_0^\infty u (zu)^{\frac m2-1}e^{-\frac{zu}{2}} u^{\frac n2-1}e^{-\frac u2}\, du\\
+&amp; = &amp; \mbox{const }z^{\frac m2-1}\int_0^\infty  u^{\frac{m+n}{2}-1}e^{-\frac{z+1}{2}u}\, du\\
+&amp; = &amp; \mbox{const }z^{\frac m2-1}\Gamma\left(\frac{m+n}{2}\right) \left(\frac{z+1}{2}\right)^{-\frac{m+n}{2}}\\
+&amp; = &amp; \mbox{const }z^{\frac m2-1}(z+1)^{-\frac{m+n}{2}}.
+\end{eqnarray*}$$
+Hence the density of $\frac nmZ$  is 
+$$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2}}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $$
+<p></p>
+
+<h2><a
+name="Problem set 10">Problem set 10</a></h2>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from
+ $N(\mu_1,\sigma^2)$  and $N(\mu_2,\sigma^2)$, respectively (same $\sigma^2).$  
+Then what
+ is the distribution of 
+$$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
+</p>
+
+<h1><a
+name="Distribution of quadratic forms (part 1)">Distribution of quadratic forms (part 1)</a></h1>
+<a href="https://youtu.be/XCtgYh2ux7M">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Quadratic form</b></legend>
+By a <b><font color="red" size="40">quadratic form</font></b>  in $n$-variables we understand a function $q:{\mathbb R}^n\rightarrow{\mathbb R}$  of the form
+$$q(\v x) = \v x' A \v x$$
+for some fixed real, symmetric matrix $A$.
+</fieldset>
+Any quadratic form is a linear combination of terms like $x_i^2$  or $x_ix_j$  (for $i\neq j$). The definition
+ implies that every real, symmetric matrix produces a quadratic form. Conversely, every quadratic form has a unique real,
+ symmetric matrix associated with it. 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Write down the real, symmetric matrix associated with the quadratic form $q(x,y) = x_1x_2-x_2^2.$
+<p></p>
+<b>SOLUTION:</b>
+There are two variables, so the matrix will be a $2\times 2$  one. The diagonal entries will come from the coefficcients
+ of the square terms: $\left[\begin{array}{ccccccccccc}0 &amp; ?\\? &amp; -1
+\end{array}\right]$, and the off-diagonal entries will come from the cross product terms:
+$\left[\begin{array}{ccccccccccc}0 &amp; \frac 12\\\frac 12 &amp; -1
+\end{array}\right].$  The rule is: $(i,j)$-th entry is half the coefficient of $x_ix_j.$
+ ■
+</p>
+In this section we shall deal with the following set up:
+<blockquote>
+$X_1,...,X_n$  are IID $N(0,1),$  or, equivalently $\v X = (X_1,...,X_n)'\sim N_n(\v0,I).$  We have some real, symmetric matrix
+ $A.$  We want to explore various necessary and sufficient condtions under which the quadratic form $\v X'A\v X$ 
+ will have a $\k k$  distribution, and how $k$  is related with $A.$
+</blockquote>
+
+<p></p>
+We had seen earlier that if $\v Y$  is the orthogonal projection of $\v X$  onto some subspace $T$  of ${\mathbb R}^n,$ 
+ then $\|\v Y\|^2\sim \k {dim(T)}.$  
+Since a matrix is an orthogonal projection matrix iff it is symmetric and idempotent, and the rank
+ of he matrix equals the dimension of the space we project on, we
+get  the following result. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $A$  be a symmetric, idempotent matrix. Then $\v X'A\v X\sim\k{rank(A)}.$ 
+</fieldset>
+A  sort of converse is also true, as shown in the next theorem.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X\sim N_n(\v 0,I).$  Let $A$  be a real symmetric matrix.  Then $\v X'A\v X\sim \k r$  for some $r\in{\mathbb N}.$ 
+ Then $A$  must be idempotent, and $r = rank(A).$
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+This proof requires spectral representation of real, symmetric matrices whch allows us to write $A$  as $A = P'DP$ 
+ for some orthogonal matrix $P$  and diagonal matrix $D.$  
+<p></p>
+Then $\v X' A\v X = \v X'P' D P \v X = (P\v X)' D (P\v X).$  
+<p></p>
+Now $\v Y=P\v X\sim N_n(\v0,I)$  and so we can write $(P\v X)' D (P\v X) = \sum_1^k d_i Y_i^2$, where $k=rank(A).$
+<p></p>
+The $Y_j$'s are IID $N(0,1)$  and so $Y_j^2$'s are IID $\k 1$  random variables with characteristic function
+ $(1-2it)^{-1/2}.$
+<p></p>
+So the characteristic function of $\sum_1^k d_i Y_i^2$  is
+$$E\left[\exp\left(it\sum_1^k d_j Y_j^2\right)\right] = \prod_1^k E\left[\exp\left(it d_j Y_j^2\right)\right] = \prod_1^k \xi(t d_j) = \prod_1^k (1-2it d_j)^{-1/2}.$$
+We want this to be the characteristic function of $\k r$  for some $r.$  So 
+$$\prod_1^k (1-2it d_j)^{-1/2}=(1-2it)^{-r/2}.$$
+In other words, we need 
+$$(1-2it d_1)\cdots (1-2it d_k)=(1-2it)^r.$$
+Matching degrees of both sides, we see $r=k.$  
+<p></p>
+Also, matching coefficients of powers of $t,$  we 
+ see that $d_1=\cdots=d_k=1.$  Hence $A = P'\left[\begin{array}{ccccccccccc}I &amp; O\\O &amp; O
+\end{array}\right]P$. We know that any matrix of this form must
+ be idempotent. This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Distribution of quadratic forms (part 2)">Distribution of quadratic forms (part 2)</a></h1>
+<a href="https://youtu.be/ObK-yPeTs7E">Video for this section</a>
+<p></p>
+We know that sum of independent $\chi^2$  random variables is a again a $\chi^2$  random variable with degrees of freedom
+ adding up. Here is a partial converse.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X\sim\k m$  and $Y$  is a nondegenerate independent random variable such that $X+Y\sim\k n$,
+ then we must have $n&gt; m$ and $Y\sim\k{n-m}.$
+ </fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $Y$  have characteristic function $\xi(t).$  Then we have $(1-2it)^{-m/2} \xi(t) = (1-2it)^{-n/2}.$  
+<p></p>
+Hence we must have $\xi(t) = (1-2it)^{-(n-m)/2}.$  
+<p></p>
+Since $\xi(t)$  is the characteristic function of some nondegenerate random variable, hence
+ $\xi(t)$  must be bounded and not identically
+ equal to 1. So $n &gt; m.$  
+<p></p>
+Since characteristic function determines the distribution, hence $Y\sim\k{n-m},$  as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Fact from linear algebra</i></b></legend>
+If $A$  is idempotent, then $rank(A)=tr(A).$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Fisher-Cochran theorem</i></b></legend>
+Let $A_1,...,A_k$  be some $n\times n$  nonzero, real, symmetric matrices with
+ $A_1+\cdots+A_k = I.$  Then the following
+ are equivalent:
+<ol type="">
+
+<li>$\forall i~~ A_i^2 =A_i.$</li>
+
+<li>$r(A_1)+\cdots+r(A_k) = n.$</li>
+
+<li>$\forall i\neq j~~ A_iA_j =O.$</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+<u>(2) implies (1), (3)</u>: Let $A_i = B_iC_i$  be a rank factorisation. Then 
+$$I = B_1C_1+\cdots+B_kC_k = \underbrace{\left[\begin{array}{ccccccccccc}B_1 &amp; \cdots &amp; B_k
+\end{array}\right] }_B\underbrace{\left[\begin{array}{ccccccccccc}C_1\\ \vdots \\ C_k
+\end{array}\right] }_C. $$
+By (2) $B$  and $C$  are  $n\times n.$  So they are inverse of each other. 
+<p></p>
+Hence $CB = I,$  as well. In other words,
+ $$\left[\begin{array}{ccccccccccc}C_1\\ \vdots \\ C_k
+\end{array}\right]\left[\begin{array}{ccccccccccc}B_1 &amp; \cdots &amp; B_k
+\end{array}\right]=I.$$
+Hence $\forall i~~C_iB_i = I$  and $\forall i\neq j~~C_iB_j = O.$
+<p></p>
+So $A_i^2 = B_iC_iB_iC_i = B_iC_i= A_i.$  
+<p></p>
+Also for $i\neq j$  we have  $A_iA_j = B_iC_iB_jC_j = O.$
+<p></p>
+
+<u>(3) implies (1)</u>: We have $A_1+\cdots+A_k=I.$  Multiplying both sides with $A_i$  we get $A_iA_1+\cdots+A_iA_k=A_i.$ 
+<p></p>
+Thanks to (3), only the $i$-th term survives in the LHS. So we have $A_i^2 = A_i,$  as required.
+<p></p>
+
+<u>(1) implies (2)</u>: We have $tr(A_1)+\cdots+tr(A_k) = tr(I)=n.$
+<p></p>
+Since we have assumed (1), hence $tr(A_i)=r(A_i).$  So (2) follows.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
+ $\v X\sim N_n(0,I),$  and split $\|\v X\|^2$  into some quadratic forms $\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.$
+Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
+ $\chi^2$-distributions, then must also be independent, and their degrees of freedom must add
+ up to $n.$
+<p></p>
+
+<h1><a
+name="Miscellaneous problems">Miscellaneous problems</a></h1>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
+find $E(X)$  and $V(X)$  in terms of $a,b,c.$  Also find median of $X.$</p>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;Construct $(X,Y)$ such that marginally $X$
+and $Y$ have $N(0,1)$ distribution, but $(X,Y)$
+is not bivariate normal.</p>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;Suppose that you have a software to generate IID replications from $N(0,1).$  Let
+$\mu\in{\mathbb R}^n$  and  $\Sigma$  be any $n\times n$  PD matrix. Suggest how you can
+ use the software to generate a single observation from $N_n(\mu,\Sigma).$  Assume that the
+ software can perform matrix operations.</p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;If $X,Y$  are IID $N(0,1)$, then what is the chance that the random point
+ $(X,Y)$  lies in the annulus shown below?
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/annulus.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Express you answer in terms CDF of some standard distribution.
+</p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2)$  for some
+ $\mu\in{\mathbb R}$  and $\sigma^2&gt;0.$  Find $a&lt;b$  such that $P\left(a&lt; \frac{\bar
+ X-\mu}{S/\sqrt{n}} &lt; b\right) = 0.95$  and $b-a$  is the least possible subject to this.</p>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;<font size="-2">[rossfcpnorm1.png]</font><img width="" src="image/rossfcpnorm1.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 28:</b>&nbsp;<font size="-2">[rossfcpnorm2.png]</font><img width="" src="image/rossfcpnorm2.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 29:</b>&nbsp;<font size="-2">[rossfcpnorm3.png]</font><img width="" src="image/rossfcpnorm3.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 30:</b>&nbsp;<font size="-2">[rossfcpnorm4.png]</font><img width="" src="image/rossfcpnorm4.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 31:</b>&nbsp;<font size="-2">[rossfcpnorm5.png]</font><img width="" src="image/rossfcpnorm5.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossfcpnorm6.png]</font><img width="" src="image/rossfcpnorm6.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 33:</b>&nbsp;<font size="-2">[rossfcpnorm7.png]</font><img width="" src="image/rossfcpnorm7.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 34:</b>&nbsp;<font size="-2">[rossfcpnorm8.png]</font><img width="" src="image/rossfcpnorm8.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 35:</b>&nbsp;<font size="-2">[rossipmnorm1.png]</font><img width="" src="image/rossipmnorm1.png" style="vertical-align:text-top;"></p>
+
+<p>
+<b>EXERCISE 36:</b>&nbsp;<font size="-2">[rossipmnorm2.png]</font><img width="" src="image/rossipmnorm2.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 37:</b>&nbsp;<font size="-2">[hpstrans19.png]</font><img width="" src="image/hpstrans19.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 38:</b>&nbsp;<font size="-2">[wilks9.png]</font><img width="" src="image/wilks9.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

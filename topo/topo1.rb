@@ -44,7 +44,7 @@ If the collection is infinite, or if <M>\nn</M>  is in this collection, then <M>
  \Lambda} B_ \alpha = \nn\in\tau.</M>
 
 Otherwise, there is a maximum element <M>m</M>  in <M>\cup_{\alpha\in \Lambda} B_ \alpha.</M>  This means <M>A_m</M>  is
- in the collection, and all other memmbers are its subsets. So <M>\cup_{\alpha\in \Lambda} B_ \alpha=A_m\in\tau.</M>
+ in the collection, and all other members are its subsets. So <M>\cup_{\alpha\in \Lambda} B_ \alpha=A_m\in\tau.</M>
 
 Hence closed under arbitrary union.
 

@@ -1,6 +1,7 @@
  <NOTE>
-@{<E>Windows</E>@}-e @{<E>C</E>@}  niye kAj shuru karATA ekTu beshI jhakmAri. tAr janya ei viDioTA dekhe nAo. 
-<Q>
-@{<TT>https://www.youtube.com/watch?v=FEeFG9OR-QU&t=48s</TT>@}
-</Q>
+@{<E>Windows</E>@}-e @{<E>C</E>@}  niye kAj shuru karATA ekTu beshI jhakmAri. tAr janya  
+<LINK to="https://www.youtube.com/watch?v=FEeFG9OR-QU">ei viDioTA</LINK>  dekhe nAo. ei viDioTA
+ AmAr bAnAo nay, kAraN Ami 
+@{<E>Windows</E>@}  byabahAr kari nA (eba.n ghrriNA kari). du.Hkher kathA viDioTA i.nrAjIte. 
+  
 </NOTE>

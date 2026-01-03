@@ -1,0 +1,373 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Multinomial and Dirichlet distributions</h3>
+<ul>
+<li>
+<a href="#Multinomial distribution (part 1)">Multinomial distribution (part 1)</a>
+</li>
+<li>
+<a href="#Multinomial distribution (part 2)">Multinomial distribution (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Dirichlet distribution">Dirichlet distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#Miscellaneous problems">Miscellaneous problems</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+<title>Multinomial and Dirichlet distributions</title>
+
+<h1><a
+name="Multinomial distribution (part 1)">Multinomial distribution (part 1)</a></h1>
+<a href="https://youtu.be/VGn9MEDk888">Video for this section</a>
+<p></p>
+The multinomial distribution is a direct generalisation of the binomial distribution. We often think of the $Binom(n,p)$ 
+ distribution as the distribution of the number, $X$, of heads obtained in $n$ 
+ independent tosses of a coin with
+ $P(head)=p.$  If we replace the coin with a die with probabilities $p_1,...,p_6$  for the
+ different faces, and let
+ $X_i$  denote the frequency of the $i$-th face  in $n$  independent rolls of the die, then
+ the joint distribution of
+ $(X_1,...,X_6)$  is called <b><font color="red" size="40">multinomial</font></b>  with parameters $n,\v p$, where $\v p=(p_1,...,p_6)'.$
+<p></p>
+In general, we have the following definition.
+<fieldset>
+<legend><b>Definition: Multinomial distribution</b></legend>
+Let $n\in{\mathbb N}$  and let $\v p=(p_1,...,p_k)'$  be a probability vector. Then $Multinom(n,\v p)$  is the discrete
+ distribution with PMF
+$$f(x_1,...,x_k) =\left\{\begin{array}{ll}\frac{n!}{x_1!\cdots x_k!} p_1^{x_1}\cdots p_k^{x_k}&\text{if }\sum x_i=n \mbox{
+ and } \forall i~~x_i\in\{0,1,2,...,n\}\\ 0&\text{otherwise.}\end{array}\right. $$
+</fieldset>
+
+<p></p>
+Just as $Bernoulli(p)\equiv Binom(1,p)$  is an important special case, and deals with a single toss of the coin, similarly
+ $Multinom(1,\v p)$  deals with a single roll of the die. 
+<p></p>
+The following facts are simple generalisations of corresponding facts from the binomial distribution.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X\sim Multinom(m,\v p)$  and $\v Y\sim Multinom(n,\v p)$  are independent, then 
+$$\v X + \v Y\sim Multinom(m+n,\v p).$$
+</fieldset>
+In particular, we can think of $Multinom(n,\v p)$  as the distribution of the sum of $n$  independent $Multinom(1,\v p)$ 
+ random vectors. 
+<h1><a
+name="Multinomial distribution (part 2)">Multinomial distribution (part 2)</a></h1>
+<a href="https://youtu.be/tyckoyNxRXQ">Video for this section</a>
+<p></p>
+
+<p></p>
+Suppose we roll the same die twice independently. Accordingly we get 
+$\v X,\v Y$  both having $ Multinom(1,\v p)$  distribution.  Let $\v
+ X=(X_1,...,X_k)$, $\v Y=(Y_1,...,Y_k)$    and $\v
+ p=(p_1,...,p_k)$, then 
+<ul>
+<li>$\forall i~~E(X_i) = E(X_i^2)=p_i.$  
+</li>
+
+<li>$\forall i\neq j~~E(X_iX_j) = 0$
+</li>
+
+<li>
+$\forall i,j~~E(X_iY_j) = p_ip_j$ 
+</li>
+</ul> 
+An immediate consequence of this is the following theorem.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\v X\sim Multinom(n,\v p)$  where $\v X=(X_1,...,X_k)$  and $\v p=(p_1,...,p_k)$, then 
+<ul>
+
+<li>$\forall i~~E(X_i) = np_i$</li>
+
+<li>$\forall i~~V(X_i) = np_i(1-p_i)$</li>
+
+<li>$\forall i\neq j~~cov(X_i,X_j) = -np_ip_j.$</li>
+
+</ul>
+
+</fieldset>
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;If $(X_1,...,X_k)\sim Multinom(n,(p_1,...,p_k))$  for $k\geq 3,$  then find the
+ distribution of $X_1+X_3.$</p>
+
+<p></p>
+
+<h1><a
+name="Dirichlet distribution">Dirichlet distribution</a></h1>
+<a href="https://youtu.be/eby4pP_vWQA">Video for this section</a>
+<p></p>
+Now we are going to work with a multivariate distribution called the <b><font color="red" size="40">Dirichlet distribution</font></b>,
+ which is a multivariate generalisation of the Beta distribution. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Dirichlet distribution</b></legend>
+We say that $(X_1,...,X_p)$  has <b><font color="red" size="40">Dirichlet distribution</font></b>  with parameters
+ $a_1,...,a_p,a_{p+1}&gt;0$  and write $(X_1,...,X_p)\sim Dir(a_1,...,a_p,a_{p+1}),$  if the joint
+density is 
+$$f(x_1,...,x_p) = \left\{\begin{array}{ll}c x_1^{a_1-1}x_2^{a_2-1}\cdots x_p^{a_p-1}(1-x_1-\cdots-x_p)^{a_{p+1}-1}&\text{if }(x_1,...,x_p)\in D_p\\ 0&\text{otherwise.}\end{array}\right.
+ $$
+where 
+$$D_p = \{(x_1,...,x_p)~:~\forall i~~x_i\geq 0,~~\sum_1^p x_i\leq1\},$$
+and 
+$$c = \frac{\Gamma(a_1+\cdots+a_{p+1})}{\Gamma(a_1)\cdots \Gamma(a_{p+1})}.$$
+</fieldset>
+Look at this density carefully and get comfortable with the fact that there are only $p$  of the $x_i$'s, while
+ we have $p+1$  of the $a_i$'s. 
+<p></p>
+When $p=1$  we have $X_1\sim Beta(a_1,a_2).$  This is supported on $D_1 = [0,1].$  
+<p></p>
+For $p=2$  and $p=3$  the supports are shown below. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dirsupp.png"></th>
+</tr>
+<tr>
+<th>Supports of Dirichlet distribution</th>
+</tr>
+</table>
+</center>  
+In general, shapes like $D_p$  are called <b><font color="red" size="40">simplices</font></b>  (singular <b><font color="red" size="40">simplex</font></b>) in ${\mathbb R}^p.$
+<p></p>
+It is not immediately obvious that the total integral of this function is indeed 1. However, it is easy for $p=1,$ because
+ if $X_1\sim Dir(a_1,a_2)$  then $X_1\sim Beta(a_1,a_2).$ 
+Starting with this as the basis, we can use induction over $p$  to establish the general case (easy, try it!).
+<p></p>
+The following properties are all obvious from the definition.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $(X_1,X_2,...,X_p)\sim Dir(a_1,a_2,...,a_p,a_{p+1})$, then 
+<ol type="">
+
+<li>for any $k\geq 2$  and distinct $i_1,...,i_k\in\{1,...,p\}$  we have
+ $(X_{i_1},...,X_{i_k})\sim Dir(a_{i_1},...,a_{i_k},a-(a_{i_1}+\cdots+a_{i_k})),$
+where $a = a_1+\cdots+a_{p+1}$.
+</li>
+
+<li>each $X_i\sim Beta\left(a_i,\sum_{j\neq i} a_j\right).$</li>
+
+</ol>
+
+</fieldset>
+
+<p></p>
+We can immediately write down the mean (<i>i.e.</i>, expectation) and variance of each $X_i$  from results of Beta distribution.
+<p></p>
+
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;If $(X_1,...,X_p)\sim Dir(a_1,...,a_p,a_{p+1}),$  then find the joint distribution of $(X_1+X_2,X_3,...,X_p).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Let $\v \Pi$  be a random vector $(\Pi_1,...,\Pi_k,1-\Pi_1-\cdots\Pi_k),$  where
+ $(\Pi_1,...,\Pi_k)\sim Dir(a_1,...,a_{k+1}).$  Let the conditional distribution of $\v
+ X$  given $(\Pi_1,...,\Pi_k)$  be $Multinom(n,\v \Pi).$ 
+Then show that  the conditional distribution
+ of $\v \Pi$  given $\v X$  is $Dir(a_1+X_1,...,a_{k+1}+X_{k+1}).$
+<p></p>
+This is the multivariate analogue of beta-binomial distribution used in Bayesian machine learning that we had discussed earlier.
+<p></p>
+
+</p>
+
+<h1><a
+name="Miscellaneous problems">Miscellaneous problems</a></h1>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;<font size="-2">[wilks1.png]</font><img width="" src="image/wilks1.png" style="vertical-align:text-top;">
+<p></p>
+The abbreviation "p.f." means PMF.  Equation  (6.3.3) referred to in the problem is as follows. 
+<center>
+<fieldset>
+<legend><b>Equation 6.3.3</b></legend><img width="80%" src="image/wilks2.png"></fieldset>
+</center>
+</p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;<font size="-2">[wilks3.png]</font><img width="" src="image/wilks3.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;<font size="-2">[wilks4.png]</font><img width="" src="image/wilks4.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 7:</b>&nbsp;<font size="-2">[wilks5.png]</font><img width="" src="image/wilks5.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;<font size="-2">[wilks6.png]</font><img width="" src="image/wilks6.png" style="vertical-align:text-top;">
+<p></p>
+This problem is wrong. The distribution should be $Dir\left(\frac 12,...,\frac 12\right)$. 
+</p>
+::<p>
+<b>EXERCISE 9:</b>&nbsp;<font size="-2">[wilks8.png]</font><img width="" src="image/wilks8.png" style="vertical-align:text-top;"></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

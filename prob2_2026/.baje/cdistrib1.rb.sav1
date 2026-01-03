@@ -1,0 +1,488 @@
+ @{<NOTE>
+<TITLE>Some standard densities</TITLE>
+Last semester, we had learned some standard discrete distributions like binomial and geometric. Similarly, here we shall
+ learn about some standard distributions with densities. 
+
+<HEAD1 u="https://youtu.be/AFBXben1hRE"><M>Unif(a,b)</M></HEAD1>
+This distribution captures the idea of a random variable that take any value in <M>(a,b)</M>  with equal probability. It
+ has PDF <M>f(x) =<CASES>[[1][b-a]]<IF>a < x < b</IF> 0<ELSE/></CASES> </M>
+Notice that a PDF must be defined over entire <M>\rr.</M>  Hence we need the "else" clause. Also <M>a< x < b</M>  could be
+ replaced by <M>a\leq x < b</M>  or <M>a\leq x \leq b</M>  or <M>a< x \leq b</M>  without any change in meaning. 
+
+The CDF is 
+<D>F(x) = <CASES>0<IF>x < a</IF> [[x-a][b-a]]<IF>a\leq x < b</IF> 1<IF>b\leq x</IF></CASES>.</D>
+Of a great importance is the special case <M>Unif(0,1)</M>, whose <M>CDF</M>  you must never forget:
+<CIMG web="ucdf.png">CDF of <M>Unif(0,1)</M>  distribution</CIMG>
+
+<THM>If <M>X\sim Unif(0,1)</M>, then <M>E(X) = [[12]]</M>  and <M>V(X)= [[1][12]].</M></THM>
+<PF>Direct computation.</PF>
+
+<THM>If <M>X\sim Unif(0,1)</M>, and <M>a>0</M>  and <M>b\in\rr</M>, then <M>aX+b\sim Unif(b,a+b).</M></THM>
+<PF>Can prove using CDF or Jacobian. But most importantly you should <I>feel</I>  why this should be true.</PF>
+
+<HEAD2>Problem set<PS/></HEAD2>
+<EXR>Using the last theorem (and <I>not</I>  direct computation, find <M>V(X)</M>  if <M>X\sim
+ Unif(a,b)</M>  for some <M>a<b.</M></EXR>
+
+<EXR>Find CF of <M>X\sim Unif(0,1).</M></EXR>
+
+<EXR>If <M>X,Y</M>  are IID <M>Unif(0,1)</M>  find densities of 
+<OL><LI>
+<M>X+Y.</M>
+</LI><LI><M>\min\{X,Y\}</M>
+</LI><LI><M>\max\{X,Y\}.</M></LI></OL>
+  </EXR>
+<EXR>Let <M>X\sim Unif(0,1),</M>  <M>Y\sim Unif(10,20),</M>  and <M>Z\sim Unif(100,101).</M>
+  Without explicitly computing their variances pick the correct option below:
+<OL type="A">
+<LI><M>V(X) <  V(Y) <  V(Z)</M></LI>
+<LI><M>V(X) >  V(Y) >  V(Z)</M></LI>
+<LI><M>V(X) = V(Z) <  V(Y)</M></LI>
+<LI><M>V(Y) =  V(Z) <  V(X)</M></LI>
+</OL>
+</EXR>
+
+<EXR>If <M>X\sim Unif(0,\theta),</M> for some <M>\theta>0.</M>  Fix any density <M>f_\theta(x)</M> of <M>X.</M>
+Plot <M>f_\theta(1)</M>  as a function of <M>\theta.</M></EXR>
+
+<EXR>Let <M>X\sim Unif(0,1].</M>
+Define, for <M>k=1,...,n</M>,  the interval <M>I_k =
+ (*( [[k-1][n]], [[kn]] ]*].</M>  Fix any
+ permutation <M>\pi</M>  of
+ <M>\{1,2,...,n\}.</M>  We shall
+ ''scramble'' <M>X</M>  using <M>\pi</M>  to obtain <M>Y.</M>  More precisely, we define <M>Y =
+ f(X)</M>, where for each <M>x\in (0,1],</M>  if <M>x\in I_k,</M>  then we define <M>f(x)</M> to be the corresponding point
+ in <M>I_{\pi(k)}.</M>  
+ What is the distribution of <M>Y?</M></EXR>
+
+
+<HEAD1 u="https://youtu.be/JKZDQ_xFhH4">Any continuous distribution to <M>Unif(0,1)</M></HEAD1>
+In this and the following sections we shall present two surprising properties of the <M>Unif(0,1)</M>  distribution. The
+ first property says that you can turn any continuous random variable into a
+ <M>Unif(0,1)</M>  random variable!
+<THM>
+Let <M>X</M>  be any random variable with continuous CDF <M>F(x).</M>  Then the random variable <M>F(X)</M>  has <M>Unif(0,1)</M> 
+ distribution.
+</THM>
+<PF>
+Let <M>Y=F(X).</M>  Shall show that it has the CDF of <M>Unif(0,1)</M>  distribution:
+<D>P(Y\leq y) = <CASES>0<IF>y<0</IF> y<IF>0\leq y < 1</IF> 1<IF>1 \leq y</IF></CASES></D>
+This will complete the proof, since <M>CDF</M>  uniquely determines a distribution. 
+
+We know that <M>F:\rr\to[0,1].</M>  So <M>Y = F(X)\in[0,1].</M>  Hence <M>G(y) = 0</M>  if <M>y < 0</M>  and <M>G(y)=1</M> 
+ if <M>y\geq 1.</M>  Also <M>G(0) = 0.</M>
+<BECAUSE>
+If <M>F(x)</M>  never attains the value 0, then clearly <M>G(0)=0.</M>  
+
+Otherwise, <M>G(0) = P(Y\leq 0) = P(F(X)\leq 0) =
+ P(X\leq a)</M> , where <M>a =
+ \sup\{x~:~F(x)=0\}.</M>  
+
+Then <M>F(a-) = 0.</M>  By continuity of <M>F,</M>  we have <M>F(a)=0.</M>
+
+So <M>P(X\leq 0) = 0.</M>  Hence <M>G(0)=0.</M>
+</BECAUSE>
+
+Take any <M>y\in(0,1).</M>
+What we plan to do now is best understood with a diagram:
+<CIMG web="interf.png">Want to find <M>b</M>, the rightmost point with <M>F(b)=y</M></CIMG>
+This <M>b</M>  will be useful, because <M>\{F(x)\leq y\}= \{x\leq b\}.</M>  
+
+We shall obtain <M>b</M>  as the supremum of the set <M>A = \{x~:~F(x)\leq y\}.</M>  Then <M>A</M> is non-empty and bounded above.
+<BECAUSE> Non-empty: <M>\because \lim_{x\to -\infty} F(x) = 0</M>  and <M>y>0,</M>  <M>\therefore \exists t\in\rr ~~F(t) < y.</M>
+
+Bounded above:  <M>\because\lim_{x\to \infty} F(x) = 1</M>,
+ and <M>y < 1,</M>  hence <M>\exists s\in\rr ~~F(s) > y.</M>  
+
+<M>F</M>  is non-decreasing,  hence <M>F</M>  is bounded above by this <M>s.</M>
+</BECAUSE> 
+
+Let <M>b = \sup(A).</M>  
+
+By continuity of <M>F,</M>  we have <M>F(b) = y.</M>  (Use the argument you used to prove intermediate value theorem
+ in you Analysis 1 course.)
+<BECAUSE>If <M>F(b) < y</M>  then no value in <M>(F(b),y)</M>  can be taken by <M>F</M>, which is
+impossible since <M>F</M>  is continuous.
+
+If <M>F(b) > y</M>, then consider any <M>t\in (y,F(b)).</M>  We shall have some <M>r\in\rr~~F(r)=t.</M>  Then <M>r < b</M> 
+ will also be an upper bound for <M>A.</M>
+</BECAUSE>
+Also <M>\{Y\leq y\}=\{X\leq b\}.</M>
+
+So <M>G(y) = P(X\leq b) = F(b) =y,</M>
+as required.
+</PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+
+
+<HEAD1 u="https://youtu.be/W80bkQQyEYA"><M>Unif(0,1)</M> to any distribution</HEAD1>
+<ALERT/>The video has been corrected.
+
+We have seen how we can arrive at the  <M>Unif(0,1)</M> from any <I>continuous</I>  distribution.
+ Here we shall see its converse which is even stronger: Given <M>X\sim Unif(0,1)</M>  we can
+ manufacture a random variable <M>Y</M>  with <I>any</I>  given distribution (not necessairily continuous)!
+
+This result plays a
+ crucial role in the proof of
+ the fundamental theorem
+ of probability as well as random number generation using a computer.
+
+ To prepare for the theorem we define a sort of inverse of any CDF. 
+
+<DEFN>
+Let <M>F</M>  be any CDF. Then define <M>F^-:(0,1)\to\rr</M>  as 
+<D>F^-(x) = \inf\{t~:~F(t)\geq x\}.</D>
+</DEFN>
+This is well-defined since if <M>a\in (0,1)</M>  then <M>\{t~:~F(t)\geq a\}</M>  is nonempty (as
+ <M>\lim_{x\to \infty}F(x)= 1</M>), and is bounded below (as <M>\lim_{x\to -\infty}F(x)= 0</M>  and <M>F</M>  is non-decreasing).
+
+Here are some properties of <M>F^-</M>:
+<THM>
+Let <M>F</M>  be any CDF. Then 
+<OL>
+<LI>  <M>\forall y\in(0,1)~~y\leq F(F^-(y)).</M> 
+</LI>
+<LI>
+<M>\forall x\in\rr, y\in(0,1)~~(F^-(y)\leq x \iff y \leq F(x)).</M>
+</LI>
+</OL>
+</THM>
+<PF>
+<OL>
+<LI>Follows from right continuity of <M>F.</M>
+</LI>
+<LI>
+Take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>F^-(y)\leq x.</M>  
+
+Since
+ <M>F</M>  is non-decreasing, hence
+ <M>F(F^-(y))\leq F(x)</M>.
+
+Hence <M>y\leq F(x)</M>, since <M>y\leq F(F^-(y))</M>  by part 1.
+
+Conversely, take any <M>x\in\rr</M>  and <M>y\in (0,1)</M>  such that <M>y\leq F(x).</M> 
+
+Then <M>x\in \{t~:~y\leq F(t)\}</M>. So <M>x\geq \inf\{t~:~y\leq F(t)\} = F^-(y).</M>
+</LI></OL>
+</PF>
+Now for the all-important theorem.  
+<THM>
+Let <M>U\sim Unif(0,1).</M>  Let <M>F(x)</M>  be any CDF.
+ Then <M>F^-(U)</M>  must have CDF <M>F.</M>
+</THM>
+<PF>
+ Let <M>Y = F^-(U).</M>  Then for any <M>a\in\rr</M>  we have 
+<D>P(Y\leq a) = P(F^-(U)\leq a) = P(U\leq F(a)) = F(a),</D>
+completing the proof.
+</PF>
+This shows that if we can show the existence of (or generate random numbers from)  <M>Unif(0,1)</M>, then we can do so for
+ any CDF.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Show that <M>F^-</M>  is a non-decreasing.</EXR>
+
+::<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
+ may generate a random variable with this PDF starting from a <M>Unif(0,1)</M>  random variable.</EXR>
+::<EXR>Suggest how you
+ may generate a random variable with <M>Unif(-2,3)</M>  distribution starting from a <M>Unif(0,1)</M> 
+ random variable.</EXR>
+
+<HEAD1 u="https://youtu.be/97jNaookC_Q">Exponential distribution</HEAD1>
+<DEFN>We say that <M>X</M>  has an <TERM>Exponential distribution</TERM>  with <TERM>rate</TERM> 
+ <M>\lambda>0</M>  if it has PDF <M>f(x)=<CASES>\lambda e^{-\lambda x}<IF>x>0</IF> 0<ELSE/></CASES></M></DEFN>
+
+Some typical exponential densities  are shown  below.
+<CIMG web="expodens.png">Higher <M>\lambda</M>  means faster decay</CIMG>
+<COMMENT>
+svg("image/expodensraw.svg")
+x = seq(0,5,len=1000)
+y1 = dexp(x,rate=1)
+y2 = dexp(x,rate=2)
+y3 = dexp(x,rate=0.5)
+bareplot(x,y1,t='l',ylim=range(-0.1,y1,y2,y3),xlim=c(-0.1,5))
+lines(x,y2)
+lines(x,y3)
+abline(h=0,v=0)
+dev.off()
+</COMMENT>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X\sim Expo(\lambda)</M>  for <M>\lambda>0,</M>  find <M>E(X)</M>  and <M>V(X).</M></EXR>
+
+
+<EXR>Find the CDF of <M>Expo(\lambda)</M>  for <M>\lambda>0.</M>  If you have <M>X\sim
+ Unif(0,1),</M>  suggest a function <M>f(\cdot)</M>  such that <M>f(X)\sim Expo(\lambda).</M></EXR>
+
+
+<EXR>If <M>1-X\sim Expo(\lambda)</M>, then show that <M>[X]</M>  has a geometric distribution.
+ Find the parameter of the Geometric distribution.</EXR>
+
+<EXR>If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then show that <M>\min\{X_1,...,X_n\}\sim Expo(n \lambda).</M>
+</EXR>
+
+<HEAD1 u="https://youtu.be/zi44GVvRKJU">Memorylessness of exponential</HEAD1>
+Suppose that we have a light bulb that we turn on at time 0, and keep it on as long as it lasts. We note the time when it
+ finally burns itself out. This time is the lifespan of the bulb, and is clearly a random variable. It is a non-negative
+ variable. Let us denote it by <M>X.</M>  
+
+For any such lifespan random variable,  we are generally interested in <M>P(X\geq a+b|X\geq a)</M>  for <M>a,b\geq 0.</M> 
+In plain words, in means 
+<Q>"If I take a bulb at has already been used continuously for <M>a</M>  units of time, then what is
+ the chance that it will last for at least <M>b</M>  more time units?" </Q>
+From our everyday experience with light bulbs, we know that for a fixed <M>b</M>, this probability will go down with <M>a</M>,
+ as older bulbs are less likely to burn longer.
+
+However, if <M>X\sim Expo(\lambda)</M>  for some <M>\lambda>0</M>, then this "aging effect" is curiously absent, the bulb
+ simply "forgets its age": 
+<MULTILINE>
+P(X\geq a+b|X\geq a)
+& = & [[P(X\geq a+b,\,X\geq a)][P(X\geq a)]]\\
+& = & [[P(X\geq a+b)][P(X\geq a)]]<SINCE><M>\because \{X\geq a+b\}\seq\{X\geq a\}</M></SINCE>\\
+& = & [[\int_{a+b}^iy \lambda e^{-\lambda x}\, dx][\int_a^iy \lambda e^{-\lambda x}\, dx]]\\
+& = & \cdots = e^{\lambda b},
+</MULTILINE>
+ which is free of <M>a.</M>  
+
+This is called the <TERM>memorylessness</TERM>  of the exponential distribution.
+
+We had encountered another memoryless distribution earlier: the geometric distribution. That was a discrete distribution
+ supported on <M>\nn.</M>  Indeed, it was the only memoryless discrete distribution supported on <M>\nn.</M>  
+
+Similarly, one may show that <M>Expo(\lambda)</M>  is the only memoryless distribution with density supported on <M>[0,\infty).</M> 
+ 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Consider the <M>Geom(\theta)</M>  distribution supported on <M>\{0,1,2,3,...\}.</M>  It is the number of tails you get
+ before the first head in an IID sequence of tosses of a coin with <M>P(head)=\theta.</M>  
+Show that if <M>X\sim Expo(\lambda)</M>  then <M>\lceil X\rceil\sim(Geom(\theta).</M>   Express <M>\theta</M>  in terms of
+ <M>\lambda.</M>
+</EXR>
+
+<EXR>
+then the only discrete memoryless distribution is <M>Geom(\theta)</M>  distribution supported on <M>\{0\}\cup\nn</M>  (counting
+ number of failures before the first success). Show that this geometric is the distribution of <M>\lfloor X\rfloor</M>  for
+ <M>X\sim Expo(\lambda).</M>
+</EXR>
+
+
+<HEAD1 u="https://youtu.be/71p1B5aO6KI">Gamma distribution</HEAD1>
+We are about to learn a new distribution called the gamma distribution. We need some mathematical preliminaries to get started.
+ 
+It may be shown (using comparison test with <M>e^{-x}</M>) that the improper integral 
+<D>\int_0^\infty x^{\alpha-1} e^{-x}\, dx</D>
+converges. Clearly, its value depends on <M>\alpha</M>, i.e., it is a function of <M>\alpha.</M>
+  However, it may also be shown (though
+ not easily) that this function cannot be expressed in terms of any algebraic, logarithmic, exponential or triginometric
+ function. Yet, this function occurs in many computation. So we give it a name, the <TERM>gamma function</TERM>:
+<DEFN name="Gamma function">
+The   <TERM>gamma function</TERM> <M>\Gamma:(0,\infty)\to(0,\infty)</M>  is defined as
+<D>\Gamma(x) = \int_0^\infty t^{x-1}e^{-t}\, dt.</D>
+</DEFN>
+There are numerical methods to compute its value. All standard mathematical softwares have means
+ to compute it (e.g., <CODE>Gamma(x)</CODE> 
+ in R). 
+
+The gamma function has an interesting property similar to that of factorials.
+
+<THM>
+<OL><LI><M>\Gamma(x+1) = x\Gamma(x)</M>  for <M>x>0</M></LI>
+<LI><M>\Gamma(n) = (n-1)!</M>  for <M>n\in\nn.</M></LI>
+</OL>
+</THM>
+<PF>
+
+</PF>
+It is easy to show (using the substitution <M>u = px</M>) that 
+<D>\int_0^\infty x^{\alpha-1} e^{-px}\, dx = p^{-\alpha}\int_0^\infty u^{\alpha-1} e^{-u}\, du = [[\Gamma(\alpha)][p^\alpha]].</D>
+This motivates the definion of a density:
+
+<DEFN name="Gamma distribution">
+We say that a random variable <M>X</M>  has <TERM>Gamma distribution</TERM>  with
+ <TERM>shape</TERM>  parameter <M>\alpha</M> and <TERM>rate</TERM> parameter <M>p</M>  if <M>X</M>  has
+density
+<D>f(x) =<CASES> [[p^\alpha][\Gamma(\alpha)]] x^{\alpha-1} e^{-px}<IF>x>0</IF> 0<ELSE/></CASES></D>
+</DEFN>
+We shall denote it by <M>Gamma(p,\alpha).</M>  The order of the two parameters in this notation is not standard. Some books
+ use the reverse order.
+
+Some typical gamma densities  are shown  below.
+<CIMG web="gammadens1.png">All these have <M>p=1.</M>  Note how <M>a</M>  controls the overall shape</CIMG>
+<CIMG web="gammadens2.png">All these have <M>p=2.</M>  Again, <M>a</M>  controls the overall shape</CIMG>
+<CIMG web="gammadens3.png">All these have <M>p=0.5.</M>  Here also <M>a</M>  controls the overall</CIMG>
+<COMMENT>
+svg("image/gammadens%draw.svg")
+x = seq(0,5,len=1000)
+r = 1
+y1 = dgamma(x,rate=r,shape=1)
+y2 = dgamma(x,rate=r,shape=2)
+y3 = dgamma(x,rate=r,shape=0.5)
+bareplot(x,y1,t='l',ylim=range(-0.1,5),xlim=c(-0.1,5))
+lines(x,y2)
+lines(x,y3)
+abline(h=0,v=0)
+r = 2
+y1 = dgamma(x,rate=r,shape=1)
+y2 = dgamma(x,rate=r,shape=2)
+y3 = dgamma(x,rate=r,shape=0.5)
+bareplot(x,y1,t='l',ylim=range(-0.1,5),xlim=c(-0.1,5))
+lines(x,y2)
+lines(x,y3)
+abline(h=0,v=0)
+r = 0.5
+y1 = dgamma(x,rate=r,shape=1)
+y2 = dgamma(x,rate=r,shape=2)
+y3 = dgamma(x,rate=r,shape=0.5)
+bareplot(x,y1,t='l',ylim=range(-0.1,5),xlim=c(-0.1,5))
+lines(x,y2)
+lines(x,y3)
+abline(h=0,v=0)
+
+dev.off()
+</COMMENT>
+
+The gamma density is a product of a power of <M>x</M>  and an exponential of <M>x.</M>  So  if you multiply a
+ gamma density with further powers
+of
+ <M>x</M>  , then you again get  a function of the same form, which may be integrated in terms of the gamma function. Hence
+ it is easy to find moments of gamma distribution:
+<THM>
+If <M>X\sim Gamma(p,\alpha,)</M>  then 
+<D>E(X^k) = [[\Gamma(\alpha+k)][\Gamma(\alpha)p^k]] = [[\alpha(\alpha+1)\cdots(\alpha+k-1)][p^k]]  \mbox{ for } k\in\nn.</D>
+</THM>
+<HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>
+Find <M>\Gamma(1)</M>  and <M>\Gamma(2).</M>
+</EXR>
+
+<EXR>Use integration by parts to show that for <M>x>0</M>  we have <M>\Gamma(x) = x\Gamma(x).</M>
+Hence argue that for <M>n\in\nn</M> 
+ we have <M>\Gamma(n) = (n-1)!.</M></EXR>
+<EXR>Simplify <M>[[\Gamma(\alpha+5)][\Gamma(\alpha)]]</M>  for <M>\alpha>0.</M></EXR>
+
+<EXR>If <M>X\sim Gamma(p,\alpha)</M>, then find <M>V(X).</M></EXR>
+
+<HEAD1 u="https://youtu.be/xdRiUmDEVeg">Transformation properties of gamma distribution</HEAD1>
+As we have already seen, the gamma density is a product of a power of <M>x</M>  and an exponential of
+ <M>x.</M>  So  if you multiply a
+ gamma density with further  exponentials of
+ <M>x</M>  , then you again get  a function of the same form, which may be integrated in terms of the gamma function. Hence
+ it is easy to find th CF of gamma distribution:
+<THM>
+If <M>X\sim Gamma(p,\alpha)</M>,  then its CF is given by
+<D>\xi_X(t) = E(e^{itX}) = (*([[p][p-it]])*)^{\alpha} \mbox{ for } t\in\rr..</D>
+</THM>
+
+<THM name="Additivity of gamma">
+If <M>X, Y</M>  are independent <M>Gamma(p,a_1)</M>  and <M>Gamma(p,a_2)</M>  (same rate), then <M>X+Y\sim Gamma(p,a_1+a_2).</M>
+</THM>
+<PF>
+Direct application of the convolution formula. Or you may use MGF. 
+</PF>
+
+There is an interesting relation linking the gamma distribution with the exponential distribution. 
+
+<THM name="Gamma to exponential">
+<M>Gamma(p,1) \equiv Expo(p).</M>
+</THM>
+<PF>
+Hardly anything to prove.
+</PF>
+
+<THM name="Exponential to gamma">
+If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then <M>\sim_1^n X_i\sim Gamma(\lambda,n).</M>
+</THM>
+<PF>
+Direct application of CF.
+</PF>
+
+
+<HEAD2>Problem set <PS/></HEAD2>
+
+<EXR>If <M>X_1,...,X_{10}</M>  constitute a random sample from <M>Expo(2)</M>  distribution, then
+ find <M>P(\bar X \leq 1)</M>  in terms of <M>Gamma(p,\alpha)</M>  CDF for suitable <M>p</M>  and <M>\alpha.</M></EXR>
+
+::<EXR><EIMG web="rossipmjoint7.png"/></EXR>
+
+<HEAD1>Problems for practice</HEAD1>
+::<EXR><EIMG web="rossdistrib1.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib2.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib3.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib4.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib6.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib7.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib8.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib9.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib11.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib13.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib14.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib15.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib16.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib17.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib18.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib19.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib20.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib21.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib22.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib23.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib24.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib25.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib26.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib27.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib28.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib29.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib30.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib31.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib32.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib33.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib34.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib35.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib36.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib37.png"></EIMG></EXR>
+::<EXR><EIMG web="rosspdf9.png"/>
+
+Here is Example 5b that is refered above:
+<IMG web="rosspdf10.png">Example 5b</IMG>
+</EXR>
+
+::<EXR><EIMG web="rosspdf15.png"/></EXR>
+::<EXR><EIMG web="hpspdf21.png"/></EXR>
+::<EXR><EIMG web="hpspdf23.png"/></EXR>
+::<EXR><EIMG web="hpspdf25.png"/></EXR>
+::<EXR><EIMG web="hpspdf27.png"/></EXR>
+---
+::<EXR><EIMG web="hpspdf28.png"/></EXR>
+::<EXR><EIMG web="hpspdf29.png"/></EXR>
+::<EXR><EIMG web="hpspdf30.png"/></EXR>
+::<EXR><EIMG web="hpspdf31.png"/></EXR>
+::<EXR><EIMG web="hpspdf32.png"/></EXR>
+::<EXR><EIMG web="hpspdf33.png"/></EXR>
+::<EXR><EIMG web="hpspdf34.png"/></EXR>
+::<EXR><EIMG web="hpspdf35.png"/></EXR>
+::<EXR><EIMG web="hpspdf36.png"/></EXR>
+::<EXR><EIMG web="hpspdf37.png"/></EXR>
+::<EXR><EIMG web="hpspdf38.png"/></EXR>
+::<EXR><EIMG web="hpspdf39.png"/></EXR>
+---
+::<EXR><EIMG web="hpspdf41.png"/></EXR>
+::<EXR><EIMG web="hpspdf42.png"/></EXR>
+::<EXR><EIMG web="hpspdf43.png"/></EXR>
+::<EXR><EIMG web="hpspdf44.png"/></EXR>
+----
+::<EXR><EIMG web="hpstrans3.png"/></EXR>
+::<EXR><EIMG web="hpstrans6.png"/></EXR>
+::<EXR><EIMG web="hpstrans10.png"/></EXR>
+::<EXR><EIMG web="hpstrans11.png"/></EXR>
+::<EXR><EIMG web="hpstrans13.png"/></EXR>
+::<EXR><EIMG web="hpstrans15.png"/></EXR>
+::<EXR><EIMG web="hpstrans16.png"/></EXR>
+::<EXR><EIMG web="hpstrans17.png"/></EXR>
+::<EXR><EIMG web="hpstrans18.png"/></EXR>
+::<EXR><EIMG web="hpstrans20.png"/></EXR>
+::<EXR><EIMG web="hpstrans22.png"/></EXR>
+::<EXR><EIMG web="hpstrans25.png"/></EXR>
+::<EXR><EIMG web="hpstrans26.png"/></EXR>
+
+</NOTE>@}

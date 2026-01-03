@@ -1,0 +1,1261 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Transformations</h3>
+<ul>
+<li>
+<a href="#Via CDF">Via CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Order statistics (part 1)">Order statistics (part 1)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#Order statistics (part 2)">Order statistics (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+<li>
+<a href="#Order statistics (part 3)">Order statistics (part 3)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 4">Problem set 4</a>
+</li>
+<li>
+<a href="#Jacobian formula (1 dim)">Jacobian formula (1 dim)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 5">Problem set 5</a>
+</li>
+<li>
+<a href="#Jacobian formula (intuition)">Jacobian formula (intuition)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
+<a href="#Jacobian matrix">Jacobian matrix</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Multivariate differentiation">Multivariate differentiation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
+</li>
+<li>
+<a href="#Multivariate Jacobian formula">Multivariate Jacobian formula</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 8">Problem set 8</a>
+</li>
+<li>
+<a href="#Sum">Sum</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 9">Problem set 9</a>
+</li>
+<li>
+<a href="#Quotient">Quotient</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 10">Problem set 10</a>
+</li>
+<li>
+<a href="#Characteristic function (CF)">Characteristic function (CF)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Complex random variables">Complex random variables</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Complex calculus">Complex calculus</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#An example">An example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 11">Problem set 11</a>
+</li>
+<li>
+<a href="#Properties of CF">Properties of CF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 12">Problem set 12</a>
+</li>
+<li>
+<a href="#Miscellaneous problems">Miscellaneous problems</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\x}[1]{X_{(#1)}}$
+$\newcommand{\v}[1]{{\mathbf #1}}$
+<title>Transformations</title>
+We often work with functions of random variables. New random variables are created out of existing ones via functions. 
+So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
+ ones. There are quite a few techniques to do this. 
+<p></p>
+
+<h1><a
+name="Via CDF">Via CDF</a></h1>
+<a href="https://youtu.be/I-bRxjHDWNU">Video for this section</a>
+<p></p>
+If we working with univariate distributions, then the most general (and often the simplest)
+ technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+If $X$  is uniformly distributed over $[0,2],$  then find a density for $X^2.$  
+<p></p>
+<b>SOLUTION:</b>
+Let $Y = X^2.$  A density for $X$  is $f(x) = \frac 12$  if $0\leq x\leq 2$  (and 0 else). We shall pass
+ to the CDF of $X:$
+$$F(x) = \left\{\begin{array}{ll}0&\text{if }x &lt; 0\\ \frac x2&\text{if }0\leq x &lt; 2\\ 1&\text{otherwise.}\end{array}\right. $$
+From this we shall compute the CDF of $Y.$  Clearly, $Y$  cannot take values outside $[0,4].$  So $G(y) = 0$ 
+ if $y&lt;0$ and $G(y) = 1$  if $y\geq 4.$  
+<p></p>
+Let $y\in[0,4).$
+<p></p>
+Then 
+$$G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = \frac 12\sqrt y.$$
+Differentiating this, we arrive at the required density of $Y$  as
+$$g(y) = G'(y) = \left\{\begin{array}{ll}\frac{1}{4\sqrt y}&\text{if }y\in[0,4]\\ 0&\text{otherwise.}\end{array}\right.$$
+ ■
+</p> 
+You see the advantage of monotonicity. Even though $x\mapsto x^2$  is a not a monotone function over ${\mathbb R},$  it
+ is so when restricted to $[0,2].$  The CDF technique can handle even some simple non-monotonic cases, as we show now.
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Let $X$  be uniform over $[-1,1].$  Find the density of $X^2.$  
+<p></p>
+<b>SOLUTION:</b>
+Clearly, $Y=X^2$  cannot go outside $[0,1].$  So its CDF $G(y)$  must have $G(y)=0$  for $y&lt;0$ 
+ and $G(y)=1$  for $y\geq 1.$  
+<p></p>
+For $y\in[0,1)$  we have
+$$G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.$$
+Differentiating we get the density
+$$g(y) = \left\{\begin{array}{ll}\frac{1}{2\sqrt y}&\text{if }y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right. $$
+ ■
+</p>
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+If $X$  has density $f(x)=\left\{\begin{array}{ll}2x&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$, then find density of $X^2.$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;If $X$  has constant density over $(0,1)$  and zero outside it, then guess the
+ density of $1-X$, and prove your guess.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;If $X$  has density $f(x)$, then the density of $-X$  is 
+<ol type="A">
+<li>$f(x)$</li>
+<li>$-f(x)$</li>
+<li>$f(-x)$</li>
+<li>$-f(-x)$</li>
+</ol>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y) = \frac{1}{2\pi} e^{-\frac 12(x^2+y^2)},$  then
+ find the density of $R = \sqrt{X^2+Y^2}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the unit disc in ${\mathbb R}^2,$  and we write
+ $(X,Y)$  as $(R,\Theta)$  in polar coordinates where $\Theta\in[0,2\pi),$  then
+ find density of $R$  and also the density of $\Theta.$</p>
+
+<p></p>
+
+<h1><a
+name="Order statistics (part 1)">Order statistics (part 1)</a></h1>
+<a href="https://youtu.be/iXBVeR0qeEA">Video for this section</a>
+<p></p>
+An interesting application of non-monotonic transformation that can be handled by CDF is about
+ <b><font color="red" size="40">order statistic</font></b>s.   If we have a random sample $X_1,...,X_n$, and sort them as $X_{(1)}\leq X_{(2)}\leq \cdots X_{(n)},$ 
+ then $X_{(i)}$  is called the <b><font color="red" size="40">$i$-th order statistic</font></b>. 
+<p></p>
+We shall start with the simplest case $\x n$, the maximum. Let $X_i$'s be IID with common density $f(x)$ 
+ and CDF $F(x).$  Let us find the density of $\x n.$  
+<p></p>
+We shall first compute the CDF $G(x)$of $\x n.$  
+$$G(x) = P(\x n\leq x) = P(\forall i~~X_i\leq x) = P(X_1\leq x)\cdots P(X_n\leq x) =(F(x))^n.$$
+Hence a density of $\x n$  is $g(x) = G'(x) = n(F(x))^{n-1}f(x).$  
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let $X_1,...,X_n$  be IID with density $f(x).$  Find a density for $\x 1$, the minimum.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;If $X_1,...,X_5$  are IID with density $f(x)=\left\{\begin{array}{ll}2 e^{-2x}&\text{if }x&gt;0\\
+ 0&\text{otherwise.}\end{array}\right.$, find density of $\x 5.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;If $X_1,...,X_n$  are IID with density 
+$f(x)=\left\{\begin{array}{ll}\frac 1\theta&\text{if }x\in(0,\theta)\\
+ 0&\text{otherwise.}\end{array}\right.$, find a constant $c$  such that $E(c\x n)=\theta.$</p>
+
+<p></p>
+
+<h1><a
+name="Order statistics (part 2)">Order statistics (part 2)</a></h1>
+<a href="https://youtu.be/4Jm_oZYM4xY">Video for this section</a>
+<p></p>
+If $X_1,...,X_n$  are IID with density $f(x)$  then there is a particularly simple formula for the joint density of $(\x 1,...,\x n).$
+Before giving the general form, let us warm up with a simple example.
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Let $X_1, X_2$  be IID with density $f(x)$  and CDF $F(x).$
+Show that the joint CDF of $(\x 1, \x 2)$  (call it $G(x,y)$, say)  is free of
+ $x$  when $x&gt;y.$  So what will be $\frac{\partial^2}{\partial x\partial y} G(x,y)$  in this case?
+<p></p>
+<b>SOLUTION:</b>
+To keep things concrete, let's first work with $x=3$  and $y=2.$  Then
+$G(3,2) = P(\x 1\leq 3,\x 2\leq 2) = P(\x 2\leq 2),$ 
+ since $\{\x 1\leq 3,\, \x 2\leq 2\} = \{\x 2\leq 2\}. $  
+<p></p>
+More generally, if $x &gt; y,$  then $G(x,y)$  is going to be free of $x.$
+<p></p>
+So we have $\frac{\partial^2}{\partial x\partial y} G(x,y) = 0$  if $x &gt; y.$
+ ■
+</p>
+If we work with $X_1,...,X_n$  instead of just $X_1,X_2,$  then the same argument would show that 
+$\frac{\partial^n}{\partial x_1\cdots\partial x_n} G(x_1,...,x_n) = 0$  unless $x_1\leq x_2\leq\cdots\leq x_n.$ 
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Same set up as in the last example. Now find $G(x,y)$  for $x &lt; y.$  Again find $\frac{\partial^2}{\partial x\partial y} G(x,y).$
+<p></p>
+<b>SOLUTION:</b>
+Let us start with $x=3$  and $y=2.$  Then
+$G(2,3) = P(\x 1\leq 2,\, \x 2\leq 3).$ 
+<p></p>
+By the inclusion-exclusion principle, this is $P(X_1\leq 2,\, X_2\leq 3)+P(X_1\leq 3,\, X_2\leq 2)-P(X_1\leq 2,\, X_2\leq 2)=F(2)F(3)+F(3)F(2)-F(2)^2.$
+<p></p>
+In general, for $x &lt; y$  we have $G(x,y) = 2F(x)F(y)-F(x)^2.$
+<p></p>
+The last term will be killed when we differentiate wrt $y.$  The first term will
+ produce $2f(x)f(y).$     So $\frac{\partial^2}{\partial x\partial y} G(x,y)= 2f(x)f(y).$
+ ■
+</p> 
+Again, if we work with $X_1,...,X_n$  instead of just $X_1,X_2,$  then the same argument would show that 
+$\frac{\partial^n}{\partial x_1\cdots\partial x_n} G(x_1,...,x_n) = n!f(x_1)f(x_2)\cdots f(x_n)$ if
+ $x_1\leq x_2\leq\cdots\leq x_n.$ 
+<p></p>
+Combining our findings from the two example,  
+we get the following theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X_1,...,X_n$  are IID with density $f(x),$  then the joint density
+ of the order statistics $(\x 1,...,\x n)$  is 
+$$g(x_1,...,x_n)=\left\{\begin{array}{ll}n!f(x_1)\cdots f(x_n)&\text{if }x_1 &lt; \cdots &lt; x_n\\ 0&\text{otherwise.}\end{array}\right..$$
+</fieldset>
+
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;If $X_1,X_2,X_3$  are IID with density 
+$f(x)=\left\{\begin{array}{ll}1&\text{if }x\in(0,1)\\
+ 0&\text{otherwise.}\end{array}\right.$, find density of $\x 2.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;If $X_1,...,X_n$  are IID with common CDF $F(x),$  then show that the CDF of $\x k$  is
+$$P(\x k\leq x) = \sum_{j=k}^n \binom n j F(x)^j(1-F(x))^{n-j}.$$
+</p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;If $X_1,...,X_n$  are IID with common density $f(x),$  then find density of $\x k.$
+</p>
+
+<p></p>
+
+<h1><a
+name="Order statistics (part 3)">Order statistics (part 3)</a></h1>
+<a href="https://youtu.be/7HN_a4n5oDo">Video for this section</a>
+<p></p>
+ Here we shall dicuss an interesting heuristics. 
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;If $X_1,...,X_{20}$  are IID with density $f(x),$  then write down the joint density of $(\x 3, \x 4, \x 7, \x {15}).$
+<p></p>
+<b>SOLUTION:</b>
+We can of course derive the required joint density by starting with the joint density of $(\x 1,...,\x {20})$  and then
+ integrating over all $\x i$  for $i\not\in\{3,4,7,15\}.$  But there is a simple heuristic alternative worth learning.
+<p></p>
+Let the required joint density be $g(a,b,c,d).$  Think of it like this: if, for some very
+ small $\epsilon &gt; 0$  we write $x\approx y$  to mean $x\in\left(y-\frac \epsilon2,y+\frac \epsilon2\right),$  then
+$$P(\x 3\approx a,\, \x 4\approx b,\, \x 7\approx c,\, \x {15}\approx d)\approx g(a,b,c,d) \epsilon^4.$$
+The heuristic technique tries to find the probability directly using combinatorics (and a pinch of salt). Consider the number
+ line below, and think of how the $\x i$'s are scattered along it.
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ordline0.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+From this we can see how many $X_i$'s need to be where:
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ordline1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Partition $\{1,2,...,20\}$  into $2+1+1+2+1+7+5.$  This may be done in $\frac{20!}{2!2!7!5!}$  ways.
+Now we write down the probability for each "block". The singleton blocks have approximate probability as "density $\times \epsilon.$ 
+ <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/ordline2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Multiplying everything we get the final answer
+$$g(a,b,c,d) = \left\{\begin{array}{ll}\frac{20!}{2!2!7!5!} f(a)f(b)f(c)f(d)(F(a))^2(F(c)-F(b))^2 (F(d)-F(c))^7 (1-F(d))^5&\text{if }a &lt; b &lt; c &lt; d\\ 0&\text{otherwise.}\end{array}\right.$$
+ ■
+</p>
+
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Check that this heutistic method gives the same density for $\x 1$  and $\x n$  that we obtained earlier.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Write down the joint density of $(\x 1, \x n)$  using this heuristic method.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Let $X_1,...,X_{15}$  be a random sample from a distribution with density $f(x).$ 
+ Write down a density for the sample median. Sample median is the central value among the
+ $X_i$'s, <i>i.e.</i>, $\x 8$  in this case.</p>
+
+<p></p>
+
+<h1><a
+name="Jacobian formula (1 dim)">Jacobian formula (1 dim)</a></h1>
+<a href="https://youtu.be/lw4-9KY6MW0">Video for this section</a>
+<p></p>
+To understand the Jacobian method, it will help to look at the univariate CDF method. Let $f(x)$  be a density of $X$ 
+ and let $Y=h(X),$  where $h(\cdot)$  is an increasing bijection with differentiable $h ^{-1}(y).$
+<p></p>
+Then the CDF of $Y$  is $G(y) = P(Y\leq y) = P(h(X)\leq y) = P(X\leq h ^{-1}(y)) = F(h
+ ^{-1}(y)),$  where $F(\cdot)$  is the
+ CDF of $X.$  
+<p></p>
+So $Y$  has density given by
+$$g(y) = G'(y) = \frac{d}{dy}F(h ^{-1}(y)) = f(h ^{-1}(y))\frac{d}{dy}h ^{-1}(y).$$
+So far we are assuming that $h(\cdot)$  is an increasing function. A very similar argument works for a decreasing function
+ as well. In general for any bijection $h(\cdot),$  we have
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|.\hspace{1in} \mbox{(*)}$$
+<p></p>
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;If $X$  has density $f(x)$, then find density of $aX+b$  for $a\neq 0$  and $b\in{\mathbb R}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;If $X$  has density $f(x) =\left\{\begin{array}{ll}c\, x e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $, then
+ find density of $Y = \sqrt{X}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;Let $X$  have density $f(x) = \left\{\begin{array}{ll}2 e^{-2x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  Find
+ density of $Y=X^2$  using (*).</p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;Let $X$  have density $f(x).$  Find
+ density of $Y=a X+b$  using (*) if $a\neq 0.$  </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 19:</b>&nbsp;Let $X$  have uniform distribution over $(-1,1).$  Find density of $Y=\sin X$  using (*).</p>
+
+<h1><a
+name="Jacobian formula (intuition)">Jacobian formula (intuition)</a></h1>
+<a href="https://youtu.be/sGlCID43YeE">Video for this section</a>
+<p></p>
+
+<p></p>
+Let's first massage (*) into a more elegant form. We know that $h(h ^{-1} (y))\equiv y.$
+<p></p>
+Differentiating this wrt $y$  we have $h'(h ^{-1} (y))\frac{d}{dy} h ^{-1}(y) \equiv 1,$  <i>i.e.</i>, 
+$$\frac{d}{dy} h ^{-1}(y) = \frac{1}{h'(h ^{-1}(y))}.$$
+So we get 
+$$g(y) = \frac{f(h ^{-1}(y))}{ |h'(h ^{-1}(y))| }.$$
+If we write $x = h ^{-1}(y),$  this will look less complicated:
+$$g(y) = \frac{f(x)}{ |h'(x)| }.$$
+So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$   
+<p></p>
+ Suppose that $X$  has uniform distribution over $[0,1].$
+Consider the density of $X.$   Imagine 10 equal length subintervals along $[0,1].$  Since the total 
+area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
+ say that each subinterval accounts for $\frac{1}{10}$  mass. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/squeeze1.png"></th>
+</tr>
+<tr>
+<th>All the rectangles are identical</th>
+</tr>
+</table>
+</center>
+When you compute $Y=X^2,$  the intervals close to 0 get squeezed further down to 0,
+ while those closer to 1 are stretched. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/squeeze2.png"></th>
+</tr>
+<tr>
+<th>Rectangles are squeezed and stretched</th>
+</tr>
+</table>
+</center>
+But still each rectangle has to account for $\frac{1}{10}$  mass. So the squeezed rectangles have
+to  compensate by growing taller,
+ while the stretched ones compensate by getting shorter.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/squeeze3.png"></th>
+</tr>
+<tr>
+<th>All rectangles now again have area $\frac{1}{10}.$</th>
+</tr>
+</table>
+</center>
+ This
+ leads to $Y$  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
+ squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. 
+<h2><a
+name="Problem set 6">Problem set 6</a></h2>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;
+If $X$  has uniform distribution over (2,4)
+then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian formula
+ algeraically. Think in terms of which part
+ gets squeezed/expanded. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
+ Guess the form of the density of $Y.$  Do you see why we needed the transform to be bijective in our intuition?
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">We were assuming that density of $Y$  at any given point was controlled by the density
+ of $X$  at only one point. But in this example, the density of $Y$  at, say,
+ $y=\frac 14$  is governed by the density of $X$  at $x=\frac 12$  as well as $x=-\frac 12.$</div></p>
+ 
+</p>
+
+<p></p>
+
+<h1><a
+name="Jacobian matrix">Jacobian matrix</a></h1>
+<a href="https://youtu.be/GMC3sHP9HWg">Video for this section</a>
+<p></p>
+In (*) above we had
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|,$$
+where $h$  was assumed to be a bijection with differentiable $h ^{-1}.$  
+<p></p>
+In order to  generalise this  to the multivariate set up, we need to work with a bijection $h:{\mathbb R}^n\rightarrow{\mathbb R}^n.$ 
+   We need to do two things:
+<ul>
+<li>we need to define differentiability for functions from ${\mathbb R}^n$  to ${\mathbb R}^n.$
+</li>
+<li>
+we need to compute derivative of such functions.</li>
+</ul>
+
+<h2><a
+name="Multivariate differentiation">Multivariate differentiation</a></h2>
+$f:{\mathbb R}\rightarrow{\mathbb R}$  is called differentiable at some $a$, if 
+$$\lim_{x\rightarrow a} \frac{f(x)-f(a)}{x-a}\mbox{ exists finitely.}$$
+If this limit is called $m$, then this can be recast in the geometrically more applealing way as 
+$$\exists m\in{\mathbb R}~~ \lim_{x\rightarrow a}\frac{f(x)-\{f(a)+m\cdot(x-a)\}}{x-a} = 0.$$
+This is geometrically more appealing because you can think of this as $f(x)-f(a)\approx m\cdot(x-a),$  <i>i.e.</i>, near $a$ 
+ the graph of $f$  looks like the line passing through $(a,f(a))$  with slope $m.$  
+<p></p>
+This immediately generalises to $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  as follows.
+<fieldset>
+<legend><b>Definition: Multivariate differentiation</b></legend>
+Call $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  <b><font color="red" size="40">differentiable</font></b> at $\v a\in{\mathbb R}^n$  if 
+$$\exists M_{m\times n} ~~ \lim_{\v x\rightarrow \v a}\frac{f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}}{\|\v x-\v a\|} = \v 0.$$
+</fieldset>
+Such a matrix $M$  may depend on $\v a,$  and will be unique, and its $(i,j)$-th entry will be given by 
+$$m_{ij} = \frac{\partial f_i}{\partial x_j}.$$
+Here $f_i$  is the $i$-th component of $f.$  
+<p></p>
+Let us digest this using an example. 
+<p></p>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;
+Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
+ of the Jacobian.
+<p></p>
+<b>SOLUTION:</b>
+Note that $f$  consists of two function $f_1,f_2:{\mathbb R}^2,\rightarrow{\mathbb R}.$  These are its <b><font color="red" size="40">component</font></b>  functions,
+ $f_1(x_1,x_2) = \sin(x_1x_2)$  and $f_2(x_1,x_2) = x_1-x_2^2.$  
+<p></p>
+The Jacobian is a $2\times 2$  matrix with $(i,j)$-th entry $\frac{\partial f_i}{\partial x_j}.$  Note that each
+ row is devoted to a single $f_i$  and each column to a single $x_j.$  In general, if we had $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ 
+ the matrix would have been $m\times n.$  
+<p></p>
+In our case 
+$$\begin{eqnarray*}
+\frac{\partial f_1}{\partial x_1} &amp; = &amp; x_2\cos (x_1x_2),\\
+\frac{\partial f_1}{\partial x_2} &amp; = &amp; x_1\cos (x_1x_2),\\
+\frac{\partial f_2}{\partial x_1} &amp; = &amp; 1\\
+\frac{\partial f_2}{\partial x_2} &amp; = &amp; -2x_2.
+\end{eqnarray*}$$
+So the Jacobian is 
+$$\left[\begin{array}{ccccccccccc}x_2\cos (x_1x_2) &amp; x_1\cos (x_1x_2)\\ 1 &amp; -2x_2
+\end{array}\right].$$
+Its determinant is 
+$$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).$$
+ ■
+</p>  
+
+<p></p>
+
+<blockquote>
+<img src="image/alert.png">If all this looks like unmotivated magic, you might benefit from <a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+ that I have made for Jacobians</a>. The video is about 21 min long, which is too long for my taste. You may like to navigate
+ to relevant portions of it using the following guideline:
+<ul>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=0s">0:00</a>: Casting univariate
+ differentiation into a form suitable for generalisation. </li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=271s">4:31</a>: Differentiation of $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ </li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=514s">8:34</a>: Geometric
+ interpretation of Jacobian matrices </li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</a>: Why
+ care about the determinant of Jacobian </li>
+
+</ul>
+
+</blockquote>
+
+
+<h2><a
+name="Problem set 7">Problem set 7</a></h2>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;Compute the Jacobian matrix for $h(x,y) = (x+y,x-y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;What is the Jacobian matrix for the transform $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $h(\v x) = A\v
+ x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$?</p>
+
+<p></p>
+
+<h1><a
+name="Multivariate Jacobian formula">Multivariate Jacobian formula</a></h1>
+<a href="https://youtu.be/9pWai6cA7no">Video for this section</a>
+<p></p>
+We shall imitate our familiar  univariate Jacobian formula
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|$$
+to get the following theorem. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
+bijection with differentiable inverse. Let $\v Y = h(\v X).$ 
+ Then $\v Y$  has density
+$$g(\v y) = f(h ^{-1}(\v y)) J,$$
+where $J$  is the absolute determinant of Jacobian of $h ^{-1}(\v y).$
+</fieldset>
+ We shall not prove this theorem here. But the intuitive argument is just as in the univariate case. 
+<p></p>
+
+<p>
+<b>EXAMPLE 7:</b>&nbsp;
+Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y_1 =
+ X_1X_2$  and $Y_2 = X_1.$  Find the joint
+ density of $\v Y = (Y_1,Y_2).$  
+<p></p>
+<b>SOLUTION:</b>
+Let $S = [1,2]\times[3,4].$  
+<p></p>
+Here the transform is $h(x_1,x_2) = (x_1x_2,x_1).$
+<p></p>
+Clearly, $h:S\rightarrow h(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
+ uniquely. 
+<p></p>
+The inverse transform is $h ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
+The Jacobian of this is 
+$$\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac{1}{y_2} &amp; -\frac{y_1}{y_2^2}
+\end{array}\right],$$
+which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
+<p></p>
+So the required density will be 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }\left(y_2,\frac{y_1}{y_2}\right)\in S\\ 0&\text{otherwise.}\end{array}\right.$$
+Often we want to write it as 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in T\\ 0&\text{otherwise.}\end{array}\right.$$
+for some suitably defined $T.$  This may be done as follows.  
+<p></p>
+$\left(y_2,\frac{y_1}{y_2}\right)\in S$  means 
+$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 4.$$
+Sketching these restrictions we get this region:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jreg.png"></th>
+</tr>
+<tr>
+<th>$T$  shown in red</th>
+</tr>
+</table>
+</center>
+ ■
+</p>
+
+<h2><a
+name="Problem set 8">Problem set 8</a></h2>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
+ then find the joint density of $(X+Y, X-Y).$ </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
+non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independent.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rotrect.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<h1><a
+name="Sum">Sum</a></h1>
+<a href="https://youtu.be/xAPiZWIYiF4">Video for this section</a>
+<p></p>
+Suppose that we are given the joint density of $(X,Y).$  We want to find the density of
+ $X+Y.$  Can we use Jacobians for this? Yes, but not directly. The Jacobian technique works
+ directly only when we are dealing with transformations from ${\mathbb R}^n$  to ${\mathbb R}^n,$  and
+ the transformation must be bijective with nonsingular Jacobian. Unfortunately, $(X,Y)\mapsto
+ X+Y$  does not satisfy any of these conditions, it is from ${\mathbb R}^2$  to ${\mathbb R},$  and
+ is not bijective. But we can remdy this by considering the transformation $h(X,Y) =
+ (X,X+Y).$  This is a bijective nonsingular linear transformation. So the Jacobian technique will apply.
+<p></p>
+
+<p>
+<b>EXAMPLE 8:</b>&nbsp;
+Let $(X_1,X_2)$  have joint density $f(x_1,x_2).$ Find  density of $X_1+X_2.$
+<p></p>
+<b>SOLUTION:</b>
+Consider $(Y_1,Y_2) = (X_1,X_1+X_2).$  
+<p></p>
+Here the transform is $h(x_1,x_2) = (x_1,x_1+x_2).$  This is a bijection from ${\mathbb R}^2$  to ${\mathbb R}^2$  with inverse
+ $h ^{-1}(y_1,y_2) = (y_1,y_2-y_1).$
+<p></p>
+The Jacobian matrix is $\left[\begin{array}{ccccccccccc}1 &amp; 0\\-1 &amp; 1
+\end{array}\right]$, with absolute determinant  1. So the required density is 
+$$g(y_1,y_2) = f(y_1,y_2-y_1). $$
+Now we need to find the marginal density of $Y_2.$  This is 
+$$g_2(y_2) = \int_{-\infty}^\infty g(y_1,y_2)\, dy_1 = \int_{-\infty}^\infty f(y_1,y_2-y_1)\, dy_1.$$
+ ■
+</p>
+The result is quite useful, and worth recording as a theorem:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $(X,Y)$  had joint density $f(x,y)$ 
+ for $(x,y)\in{\mathbb R}^2$, then  the density of $X+Y$  is 
+$$f_{X+Y}(u) = \int_{-\infty}^\infty f(x,u-x)\, dx.$$
+</fieldset>
+A special case is when the two random variables are independent:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X,Y$  are indenedent random variables with densities $f(x)$  and $g(y),$  respectively, then 
+the density of $X+Y$  is 
+$$f_{X+Y}(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.$$
+</fieldset>
+This gives us a way to manufacture a new density by combining two existing densities. This is called <b><font color="red" size="40">convolution</font></b>.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Convolution</b></legend>
+If $f,g$  are two densities, then their <b><font color="red" size="40">convolution</font></b>  is the density $f*g$  given by
+$$(f*g)(u) = \int_{-\infty}^\infty f(x)g(u-x)\, dx.$$
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 9:</b>&nbsp;
+If $X,Y$  are independent uniform over $(0,1),$  then find  density of $X+Y.$  
+<p></p>
+<b>SOLUTION:</b>
+The answer is $f*f,$  where $f(x) =\left\{\begin{array}{ll}1&\text{if }0 &lt; x &lt; 1\\ 0&\text{otherwise.}\end{array}\right. $  
+<p></p>
+So 
+$$(f*f)(u) = \int_{-\infty}^\infty f(x)f(u-x)\, dx = \int_{\max\{0,u-1\}}^{\min\{1,u\}}dx=\left\{\begin{array}{ll}u&\text{if }0 &lt;u &lt; 1\\ 2-u&\text{if }1 &lt;u &lt; 2\\ 0&\text{otherwise.}\end{array}\right.$$
+To see this notice that for  $f(x)$  to be nonzero we need $0 &lt; x &lt; 1,$  while for $f(u-x)$  to be non-zero
+ we need $0 &lt; u-x &lt; 1,$  or $u &gt; x &gt;u-1.$  So for $f(x)f(u-x)$  to be non-zero we need $1,u &gt; x &gt;0,u-1.$ 
+ Also, the non-zero value of $f(x)f(u-x)$  is 1.
+ ■
+</p>
+
+<h2><a
+name="Problem set 9">Problem set 9</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;Show that $f*g = g*f.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 28:</b>&nbsp;Does there exist a density $i(x)$  such that for all densities $f$  we have $i*f = f?$
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">Think in terms of random variables.</div></p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 29:</b>&nbsp;If $X,Y$  are IID with common density $\lambda e^{-\lambda x}$  ($x&gt;0$), then
+ find the density of $X+Y.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 30:</b>&nbsp;If $X,Y$  are independently distributed uniformly over $(0,1),$  the sketch density of $X+Y.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 31:</b>&nbsp;If $X,Y$  are independent with common density $f(x)$, what will density of $X-Y$  be? </p>
+
+<h1><a
+name="Quotient">Quotient</a></h1>
+<a href="https://youtu.be/8XC0IhfmOUM">Video for this section</a>
+<p></p>
+Sometimes we need to work with the quotient of two independent random variables. The following theorem helps when the random variables
+ are both positive and independent.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X,Y$  are independent  random variables with densities $f_X(x)$  and $f_Y(y),$  respectively. Let $Y$ 
+ be always positive. 
+ Then $Z=X/Y$  has density
+$$f_Z(z) = \int_0^\infty uf_X(zu)f_Y(u)\, du.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Use the Jacobian technique for the transform $(X,Y)\mapsto \left(\frac XY,Y\right)\equiv(Z,U).$
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 10">Problem set 10</a></h2>
+
+<p>
+<b>EXERCISE 32:</b>&nbsp;Prove the above theorem using Jacobian.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 33:</b>&nbsp;If $X,Y$  are independent and uniformly distributed over $[1,2],$  then find density of $X/Y.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 34:</b>&nbsp;If $X,Y$  are IID with common density $f(x)=\left\{\begin{array}{ll}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$,
+  then find density of $X/Y.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 35:</b>&nbsp;A point $Q$  is chosen at random from the unit square. Let $Q$  be
+ $(R,\Theta)$  in polar coordinates. Find density of $\tan\Theta.$</p>
+
+<p></p>
+
+<h1><a
+name="Characteristic function (CF)">Characteristic function (CF)</a></h1>
+<a href="https://youtu.be/VwmX-rmTLUw">Video for this section</a>
+<p></p>
+
+<img src="image/alert.png">(The video has been corrected.)
+<p></p>
+We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
+ you have forgotten about  the
+ concept of a <b><font color="red" size="40">moment
+ generating function (MGF)</font></b> that we briefly touched upon last
+ semester, here is the definition
+ again:
+<fieldset>
+<legend><b>Definition:  Moment generating function (MGF)</b></legend>
+The MGF of a random variable $X$  is defined as the function 
+$M_X(t) = E(e^{Xt})$
+for whatever $t\in{\mathbb R}$  the expectation is finite. (Since $e^{Xt}$  is a positive random
+ variable, it's expectation is always defined.)  
+</fieldset>
+Out of these only CDF is guaranteed to exist for any random variable. And also uniquely determines
+  a distribution (<i>i.e.</i>, if the CDFs of two random variables match, then their distributions must
+ also match). Unfortunately, CDF does not "play well" with convolution, <i>i.e.</i>, if $X,Y$  are
+ independent then there is no nice formula expressing  the CDF of $X+Y$  in terms of those of $X$  and $Y.$ 
+ There is, however, one such function that combines all the good properties: it exists finitely
+ for all random variables, it uniquely determines a distribution and "plays well" with
+ convolution. Its definition is given below.
+<fieldset>
+<legend><b>Definition: Characteristic function (CF)</b></legend>
+The  <b><font color="red" size="40">characteristic function (CF)</font></b>  of a random variable $X$  is defined as the
+ function $\xi_X:{\mathbb R}\rightarrow{\mathbb C}$  as 
+$\xi_X(t) = E(e^{iXt})$
+for  $t\in{\mathbb R}.$
+</fieldset>
+You may be scared by the unexpected appearance of complex numbers inside the expectation! 
+Let's learn about complex random variables.
+<p></p>
+
+<h2><a
+name="Complex random variables">Complex random variables</a></h2>
+Just remember that 
+A complex random variable $Z$   means $Z = X+i Y,$  where $X,Y$  are (real) random variables. We define $E(Z)=E(X)+iE(Y)$ 
+ (and say $E(Z)$  does not exist if at least one of $E(X), E(Y)$  does not). 
+<p></p>
+Since we have $e^{iXt} = \cos (Xt)+i\sin(Xt)$, the characteristic function is just 
+$\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).$
+Since $\cos$  and $\sin$  are both bounded, finite existence of the expectation is not a problem. 
+<p></p>
+
+<h2><a
+name="Complex calculus">Complex calculus</a></h2>
+For $f:{\mathbb R}\rightarrow{\mathbb C}$  write $f(x) = g(x) + i h(x) $  for $g,h:{\mathbb R}\rightarrow{\mathbb R}.$  Then differentiation and integration
+ are defined in the obvious way:
+$$\begin{eqnarray*}
+f'(x) &amp; = &amp; g'(x) + i h'(x),\\
+\int f(x)\, dx &amp; = &amp; \int g(x)\, dx + i\int h(x)\, dx.
+\end{eqnarray*}$$
+From this it immediate follows (check!) that
+$\frac{d}{dx}e^{ix} = i e^{ix}$  and $\int e^{ix}\, dx = \frac 1ie^{ix}+$ arbit
+ constant.
+<h2><a
+name="An example">An example</a></h2>
+
+<p>
+<b>EXAMPLE 10:</b>&nbsp;
+Find the CF of $X$  having density $f(x) = \left\{\begin{array}{ll} 3 e^{-3x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+<b>SOLUTION:</b>
+$$E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = \frac{3}{3-it}$$
+for $t\in{\mathbb R}.$  
+ ■
+</p>
+Clearly, for any random variable $X$  we have $\xi_X(0) = 1.$
+<h2><a
+name="Problem set 11">Problem set 11</a></h2>
+
+<p>
+<b>EXERCISE 36:</b>&nbsp;Find CF for the degenerate distribution at $5.$</p>
+
+<p>
+<b>EXERCISE 37:</b>&nbsp;Find CF for the uniform distribution over $(-1,1).$</p>
+
+<p></p>
+
+<h1><a
+name="Properties of CF">Properties of CF</a></h1>
+<a href="https://youtu.be/9lsO1kR9OaQ">Video for this section</a>
+<p></p>
+The following two theorems are what make CF useful.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$  are two random variables such that 
+$\xi_X(t) \equiv \xi_Y(t)$,   then $X$  and $Y$  must have the same distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Will be done next semester.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$  are independent random variables, then $\xi_{X+Y}(t) = \xi_X(t)\xi_Y(t)$  for $t\in{\mathbb R}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Since $X,Y$  are independent, hence so are their functions $e^{iXt}$  and $e^{iYt}.$  
+<p></p>
+Since their expectations are finite, so $E(e^{iXt}\times e^{iYt}) = E(e^{iXt})\times E(e^{iYt}).$  Hence the result. 
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+If we know a list of CFs for some standard distributions, then these two results often help us to
+ identify if the convolution
+ of two distributions in our list again belong to the list. 
+Here is an example.
+<p></p>
+
+<p>
+<b>EXAMPLE 11:</b>&nbsp;
+Suppose that you are told that, for $a&gt;0$, the distribution with density 
+$f_a(x) = \left\{\begin{array}{ll}c x^{a-1}e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  has CF
+ $\xi_a(t) = (1-it)^{-a}.$ for $t&lt; 1.$  
+<p></p>
+Show that for $a,b&gt;0$  we have $f_a* f_b = f_{a+b}.$
+<p></p>
+<b>SOLUTION:</b>
+You can of course show this directly using the definition of convolution. But that would require you to compute an integral.
+ But it is trivial using CF: $\xi_a(t)\xi_b(t) = (1-it)^{-a} (1-it)^{-b} = (1-it)^{-(a+b)}$  for $t \in{\mathbb R}.$  
+<p></p>
+Since CF uniquely determines the distribution, we get the result.
+ ■
+</p>
+
+<h2><a
+name="Problem set 12">Problem set 12</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 38:</b>&nbsp;Let $X$  have CF $\xi_X(t).$  Let $Y = ax+b.$  Find $\xi_Y(t),$  the CF of $Y.$</p>
+
+<p></p>
+
+<h1><a
+name="Miscellaneous problems">Miscellaneous problems</a></h1>
+::<p>
+<b>EXERCISE 39:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 40:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 41:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 42:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;">
+<center>
+<fieldset>
+<legend><b>Here is Exercise 8:</b></legend><img width="80%" src="image/hpsref8.png"></fieldset>
+</center> 
+
+</p>
+::<p>
+<b>EXERCISE 43:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 44:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 45:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 46:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;">
+<center>
+<fieldset>
+<legend><b>Here is Exercise 19:</b></legend><img width="80%" src="image/hpsref19.png"></fieldset>
+</center> 
+
+</p>
+::<p>
+<b>EXERCISE 47:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 48:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;">
+<center>
+<fieldset>
+<legend><b>Here is Exercise 38:</b></legend><img width="80%" src="image/hpsrefs1.png"></fieldset>
+</center> 
+
+</p>
+::<p>
+<b>EXERCISE 49:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 50:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 51:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;">
+<center>
+<fieldset>
+<legend><b>Here is Exercise 4:</b></legend><img width="80%" src="image/hpsrefs2.png"></fieldset>
+</center> 
+
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 52:</b>&nbsp;<font size="-2">[hpspdf15.png]</font><img width="" src="image/hpspdf15.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 53:</b>&nbsp;<font size="-2">[hpspdf16.png]</font><img width="" src="image/hpspdf16.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 54:</b>&nbsp;<font size="-2">[hpspdf17.png]</font><img width="" src="image/hpspdf17.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 55:</b>&nbsp;<font size="-2">[hpspdf18.png]</font><img width="" src="image/hpspdf18.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 56:</b>&nbsp;<font size="-2">[hpspdf19.png]</font><img width="" src="image/hpspdf19.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 57:</b>&nbsp;<font size="-2">[hpspdf20.png]</font><img width="" src="image/hpspdf20.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 58:</b>&nbsp;<font size="-2">[hpspdf24.png]</font><img width="" src="image/hpspdf24.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 59:</b>&nbsp;<font size="-2">[hpspdf40.png]</font><img width="" src="image/hpspdf40.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 60:</b>&nbsp;<font size="-2">[hpspdf45.png]</font><img width="" src="image/hpspdf45.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 61:</b>&nbsp;<font size="-2">[rosspdf19.png]</font><img width="" src="image/rosspdf19.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+::<p>
+<b>EXERCISE 62:</b>&nbsp;<font size="-2">[rosspdf23.png]</font><img width="" src="image/rosspdf23.png" style="vertical-align:text-top;">
+<center>
+<fieldset>
+<legend><b>Here is Theoretical Exercise 2:</b></legend><img width="80%" src="image/rossrefs1.png"></fieldset>
+</center> 
+
+</p>
+::<p>
+<b>EXERCISE 63:</b>&nbsp;<font size="-2">[rosspdf24.png]</font><img width="" src="image/rosspdf24.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 64:</b>&nbsp;<font size="-2">[rosspdf35.png]</font><img width="" src="image/rosspdf35.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

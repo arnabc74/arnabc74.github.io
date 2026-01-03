@@ -1,0 +1,7 @@
+ <NOTE>
+@{<E>Quicksort</E>@}  byApArTA bojhAnor janya tinTe viDior <LINK to="https://www.youtube.com/playlist?list=PLx--gUxue3Z_mLQk1zNSbHf8BU8czBiPW">ei plelis+TTA</LINK> 
+bAniyechhi.  
+
+pratham viDiote dhAraNATA progrAmi.n chhARA bujhiyechhi. dwitIyaTAy progrAm karAr mata kare kAydATAke likhechhi. Ar tin 
+nambar viDiote giye progrAmTA karechhi. 
+</NOTE>

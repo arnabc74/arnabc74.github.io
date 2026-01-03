@@ -1,0 +1,1412 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Notions from measure theory</h3>
+<ul>
+<li>
+<a href="#Riemann's approach">Riemann's approach</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Lebesgue's approach">Lebesgue's approach</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#Riemann vs Lebesgue">Riemann vs Lebesgue</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+<li>
+<a href="#First taste of measure theory">First taste of measure theory</a>
+</li>
+<li>
+<a href="#Borel $\sigma$-algebra">Borel $\sigma$-algebra</a>
+</li>
+<li>
+<a href="#Caratheodory extension">Caratheodory extension</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A toy example">A toy example</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 4">Problem set 4</a>
+</li>
+<li>
+<a href="#Back to Lebesgue integral">Back to Lebesgue integral</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 5">Problem set 5</a>
+</li>
+<li>
+<a href="#Generalising the solution">Generalising the solution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Allowing unbounded functions and unbounded domains">Allowing unbounded functions and unbounded domains</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Allowing negative values">Allowing negative values</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 6">Problem set 6</a>
+</li>
+<li>
+<a href="#General measures">General measures</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 7">Problem set 7</a>
+</li>
+<li>
+<a href="#Expectation as Lebesgue integral">Expectation as Lebesgue integral</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 8">Problem set 8</a>
+</li>
+<li>
+<a href="#Two technical results">Two technical results</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 9">Problem set 9</a>
+</li>
+<li>
+<a href="#Additivity">Additivity</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 10">Problem set 10</a>
+</li>
+<li>
+<a href="#Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 11">Problem set 11</a>
+</li>
+<li>
+<a href="#Fatou and DCT">Fatou and DCT</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 12">Problem set 12</a>
+</li>
+<li>
+<a href="#Radon-Nikodym theorem">Radon-Nikodym theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 13">Problem set 13</a>
+</li>
+</ul>
+<hr/>
+<title>Notions from measure theory</title>$
+\newcommand{\calF}{{\mathcal F}}
+\newcommand{\calP}{{\mathcal P}}
+\newcommand{\calB}{{\mathcal B}}
+\newcommand{\calD}{{\mathcal D}}
+\newcommand{\ind}{{\mathbb 1}}
+\newcommand{\area}{\mathrm {area}}
+$
+<p></p>
+This page will develop the concept of Lebesgue integration starting from Riemann integration. 
+<h1><a
+name="Riemann's approach">Riemann's approach</a></h1>
+<a href="https://youtu.be/dU4iTBrXbaI">Video for this section</a>
+<p></p>
+We all know about
+ Riemann integration. We shall illustrate the idea with a positive, bounded function
+ $f:[a,b]\rightarrow{\mathbb R}$. The idea is to measure
+ the area under its graph by  approximating it with steps
+ functions with finitely many steps. We do this from both above and below. For this we partition the domain of the function
+ into finitely many intervals and raise rectangles on them as follows.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rul.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+The intuition is that if we take finer and finer partitions and raise the red rectangles as much as we can under the graph,
+ we shall come arbitrarily close to the area under the graph. If we do the same from above  the graph using the blue rectangles,
+ then also we should come arbitrarily close to the same area. So our intuition dictates that 
+<blockquote>
+sup (red area) = inf(blue area),
+</blockquote>
+and we plan to use this common value as the area under the curve. This brilliant intuition has just one loop hole, for many
+ functions the sup does not equal the inf! We call such functions non-Riemann integrable, and try
+ to avoid them at all costs.  However, these
+ bad functions cannot be completely avoided, as they crop up naturally from time to time, usually as the limit of Riemann integrable
+ functions. 
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+Draw the upper and lower set of rectangles for the following function using the given partition of the domain. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/exfun1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<h1><a
+name="Lebesgue's approach">Lebesgue's approach</a></h1>
+<a href="https://youtu.be/Wwig5sZ0IN4">Video for this section</a>
+<p></p>
+Lebesgue had a solution for this. Instead of partitioning the domain his plan was to partition the codomain. So he also
+ got red rectangles below the graph and blue rectangles above as follows.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lul.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ And like Riemann he also hoped that
+<blockquote>
+sup (red area) = inf(blue area),
+</blockquote>
+and he wanted to call this the area under the curve. Before exploring this idea further, let's get comfortable with splitting
+ the codomain. Here is how you get the red approaximation: draw horizontal lines through the given partition of the codomain.
+ This gives you some storeys as in a multi-storeyed building. For each point of the graph in a storey, bring it down to the
+ floor of the storey to get
+ the red approximation. Raise it to the ceiling of the storey to get the blue approximation. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/astep.png"></th>
+</tr>
+<tr>
+<th>The black point gives rise to the red and blue points.</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Consider the following graph of a bounded, nonnegative function. Finitely many values are marked
+ on the $y$-axis.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/splitex1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ Draw horizontal lines through them, and obtain the red and blue areas. </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Repeat for the following function.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/splitex2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<p></p>
+
+<h1><a
+name="Riemann vs Lebesgue">Riemann vs Lebesgue</a></h1>
+<a href="https://youtu.be/8XY4dBDhOkQ">Video for this section</a>
+<p></p>
+Just based on these diagrams, you may think that Lebesgue's idea is no different from Riemann's
+ idea. But actually, Lebesgue's
+approximations are more flexible than Riemann's. To understand this look at the graph below, where
+ we have shown the lower Lebesgue approximation using just 4 points in the codomain.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lul2.png"></th>
+</tr>
+<tr>
+<th>Just three heights, but so many rectangles!</th>
+</tr>
+</table>
+</center>
+Each value in the codomain, can give birth to many rectangles, depending on the ups and downs of the curve. 
+<p></p>
+Indeed, a single height can give rise to infinitely many "rectangles"! 
+For instance, the function
+$$f(x) =\left\{\begin{array}{ll}1&\text{if }x\in{\mathbb Q}\cap[0,1]\\ 0&\text{otherwise.}\end{array}\right. $$ 
+takes only two values, 0 and 1. Yet each value is taken infinitely often. 
+So you can now feel why Lebesgue's approximations are more flexible than Riemann's:
+<blockquote>
+Riemann's approximations are special cases of Lebesgue's approximations, but
+ not <i>vice versa</i>. 
+</blockquote>
+
+<p></p>
+As a result here
+ the sup(red) and inf(blue)
+ match for a more general class
+ of functions. 
+This  also shows that if Riemann's sup(red) and inf(blue) areas meet, then so must Lebesgue's, and the meeting
+ point would be the same. 
+<p></p>
+Now we shall take a rigourous look at Lebesgue's idea. First we need a name for the functions that Lebesgue is using to approximate
+ areas. We shall call them <b><font color="red" size="40">simple</font></b>  functions.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Simple function</b></legend>
+A function is called <b><font color="red" size="40">simple</font></b>  if it takes only finitely many values.
+</fieldset>
+
+<p></p>
+We can  express a simple function mathematically using indicator functions. Let a simple function take only the values $c_1,...,c_k$ 
+ (all distinct). Let $A_i = \{\omega\in\Omega~:~f(\omega) = c_i\}.$  An example is shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/simpstep2.png"></th>
+</tr>
+<tr>
+<th>Clearly the $A_i$'s partition $\Omega$.</th>
+</tr>
+</table>
+</center>
+The $A_i$'s need not always be just finite union of intervals. For example, in case of the Dirichlet function, we have
+ just two $A_i$'s, one is ${\mathbb Q}\cap [0,1]$  and the other ${\mathbb Q}^c\cap [0,1].$  However, we always have only
+ finitely many $A_i$'s. We can now write the simple function as 
+$$f(\omega) = \sum_{i=1}^k c_i\ind_{A_i}(\omega).$$
+Lebesgue wanted to think that each $c_i$  constributes a "rectangle" with  height $c_i$  on
+ the base $A_i.$ Such a "rectangle" should have
+ area $c_i\times$ length
+ of $A_i$. But how to measure length of $A_i$'s? 
+It is this question that first
+ led him to create measure
+ theory. 
+<p></p>
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;There are two countries $T$  and $S.$  Every inhabitant of $T$  is at least as
+ tall as every inhabitant of $B.$  Consider the two statements:
+<ol type="">
+
+<li>the height of shortest inhabitant of $T$  equals that of the tallest inhabitant of $S.$</li>
+
+<li>the height of shortest lady of $T$  equals that of the tallest lady of $S.$</li>
+
+</ol>
+Then which of the following is/are true?
+<ol class="hl">
+
+<li>$1\Rightarrow 2$  but $2\not\Rightarrow 1$</li>
+
+<li>$2\Rightarrow 1$  but $1\not\Rightarrow 2$</li>
+
+<li>$1\Leftrightarrow 2$</li>
+
+<li>$1\not\Rightarrow 2$  and $2\not\Rightarrow 1$</li>
+
+</ol>
+ 
+</p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;Let $A$  be the set of all step functions with domain $[0,1]$  with finitely many steps.
+ Let $B$  be the set of all simple functions with the same domain. Then which of the following is true?
+<ol type="">
+
+<li>$A\subsetneq B$</li>
+
+<li>$B\subsetneq A$</li>
+
+</ol>
+
+</p>
+
+<p></p>
+
+<h1><a
+name="First taste of measure theory">First taste of measure theory</a></h1>
+<a href="https://youtu.be/h6X-K_D7JXY">Video for this section</a>
+<p></p>
+Suppose that we are trying to defined Lebesgue integral over an
+interval $[a,b].$ Then we need to define 'length's of subsets of $[a,b].$
+Instead of writing 'length', we shall use the
+letter $length(A)$ to mean 'length' of $A\subseteq[a,b].$
+<ul>
+<li>
+We know that if $A = [s,t]$, then $length(A)=t-s.$
+<p></p>
+In particular, $length(\{t\}) = length([a,a]= 0$ have length 0, and
+so $length((s,t))=length((s,t])=length([s,t))=t-s.$
+</li>
+
+<li>Length should satisfy  countable additivity (over disjoint
+sets). In other words, if $A_1,A_2,...\subseteq [a,b]$ are
+disjoint sets for which we have defined length,
+then $length(\cup A_n)$ should be $\sum length (A_n).$ 
+<p></p>
+Thus, the "length" of the set of all rationals
+in $length({\mathbb Q}\cap [a,b])=0,$ and hence 
+The "length" of all irrationals in $length({\mathbb Q}^c\cap[0,1])=b-a.$
+</li>
+</ul>
+ Proceeding in this way we can <i>reasonably hope</i> to extend the
+definition of $length$ to a class of subsets of ${\mathbb R}$ which
+contains all the intervals, and is
+closed wrt countable union, intersection and complementation. Can
+ we really do this? The short answer is "Yes". We shall next see a more detailed answer.
+<p></p>
+
+<h1><a
+name="Borel $\sigma$-algebra">Borel $\sigma$-algebra</a></h1>
+<a href="https://youtu.be/OCNS43-6rzs">Video for this section</a>
+<p></p>
+First, let
+ us make it clear what we
+ mean by sets generated by a (possibly infinite) collection of subsets of $\Omega.$  For the finite case, we expanded
+ the collection of sets step by step, and the procedure had stopped after the finitely many steps. If we start with infinitely
+ many sets, the process won't end. So we need a careful definition of what we mean by the collection of sets generated by
+ a given initial collection of sets:
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Generated $ \sigma $-algebra</b></legend>
+Let $\calF$  be the initial (nonempty) collection of subsets of $\Omega.$  We shall call a
+ collection (denoted by $\sigma(\calF)$)  of subsets of $\Omega$  the <b><font color="red" size="40">$\sigma$-algebra generated by</font></b>
+ $\calF$  if 
+<ul>
+
+<li>$\sigma(\calF)$  is closed under countable set operations (union, intersection, complementation)</li>
+
+<li>$\calF\subseteq \sigma(\calF)$</li>
+
+<li>$\sigma(\calF)$  is the smallest collection subject to the two condtions above.</li>
+
+</ul>
+By the way, any nonempty collection satisfying the first condition is called a <b><font color="red" size="40">$\sigma$-algebra</font></b>.
+</fieldset>
+Here the term "smallest" needs some attention. How do we know
+there is indeed such "the smallest" collection? 
+<p></p>
+
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+The power set of $\Omega$ is a $\sigma$-algebra containing $\calF$. Also, the intersection of any arbitrary
+ number of $\sigma$-algebras is again a $\sigma$-algebra, as is trivially obvious from the definition. So we can
+ take $\sigma(\calF)$  to be the interection of all $\sigma$-algebras containing $\calF.$  
+</div></blockquote>
+
+<p></p>
+For our case, the initial collection consists of all the intervals. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Borel $ \sigma $-algebra</b></legend>
+The <b><font color="red" size="40">Borel $ \sigma $-algebra</font></b> over $[a,b]$ is
+defined as the $\sigma$-algebra over $[a,b]$  generated by 
+all the intervals in $[a,b].$
+</fieldset>
+
+<p></p>
+We shall denote the  <b><font color="red" size="40">Borel $\sigma $-algebra</font></b> over $[a,b]$  by
+ $\calB([a,b])$ or just $\calB$  if $[a,b]$  is obvious from the context. The members of $\calB([a,b]).$are
+ called <b><font color="red" size="40">Borel sets</font></b>  of $[a,b].$
+<p></p>
+
+<h1><a
+name="Caratheodory extension">Caratheodory extension</a></h1>
+<a href="https://youtu.be/awTpjHeyXOw">Video for this section</a>
+<p></p>
+The Borel $\sigma$-algebra is generated by the intervals. Since we know how to define lengths
+ of intervals, it seems a reasonable hope that we should be able to define length of each $B\in\calB$.
+Let us explore this hope with a little toy example.  
+<h2><a
+name="A toy example">A toy example</a></h2>
+Let $\Omega=[0,10]$  which has length $10$. Also let $A,B$  be two intervals in $\Omega$  each having
+ length $6$. Convince yourself that you can generate
+a collection of 16 sets starting with these.
+If you are confused, then look at the following diagram.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/caravenn.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Now consider the question: since you the lengths of $\Omega, A$  and $B$, can you find out the
+ lengths of all these 16 sets? Now,
+ the answer will be "No", because you need to know how much $A$  and $B$  overlap. So you also need to know $length(A\cap B).$ 
+<p></p>
+It should not be difficult to see that this works for any finite initial collection,
+ $\{A_1,...,A_n\}.$  If I tell you their
+ lengths and the lengths of all the possible intersections, then you can find out the lengths of
+ all the sets in the collection generated by
+ these. 
+This result has direct proof by induction.
+<p></p>
+Now, in our case, we know the lengths of all intervals in $[a,b].$  So we are starting with
+ an infinite collection of sets for which the lengths are known. Since intersections of intervals are again intervals (possibly
+ empty), we indeed know the lengths of all possible intersections, as well. Unfortunately, our induction argument does not
+work in  the infinite case. Of course, intuitive imagination leads us to hope that it would be so. But
+ intuitive imagination
+sometimes leads to wrong results:
+<blockquote>Sum of two natural numbers is a natural number. So by induction the sum of any finite of
+ number of natural numbers is also a natural number. So by the law of intuitive imagination, the sum
+ of all natural numbers
+ $1+2+3+\cdots$ should again be a natural number! Proof: Just keep on adding!</blockquote>
+ However, intuitive imagination is not always a liar. It does lead us to a plausible guess, which
+ we need to prove/disprove using rigorous argument (in this case, using limits). 
+And that's precisely what we shall do now.
+<p></p>
+As we have already commented it seems to be a <i>reasonable hope</i>  that we should be able to define $length(B)$ 
+ for all $B\in\calB.$  This hope indeed comes true, thanks to the following theorem. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Caratheodory extension (one version)</i></b></legend>
+Let $\Omega$  be a nonempty set and $\calF$  be a collection of its subsets, closed
+ under (finite) intersection  such that $\Omega\in\calF.$ We
+ have a function $\mu:\calF\rightarrow[0,\infty)$  that is countably additive, and $\mu(\Omega) &lt; \infty.$ Then we can
+ uniquely extend it to $\sigma(\calF).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>We shall not prove this in this course.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+Our <i>reasonable hope</i>  comes true once we take $\calF$  to be the collection of all
+ intervals in $[a,b].$
+<p></p>
+Thus we are now able to define $length(B)$  for all Borel $B\subseteq[a,b].$
+Usually, $length(B)$ is called
+the <b><font color="red" size="40">Lebesgue measure</font></b>  of $B,$  and is denoted by $\lambda(B).$
+If $B$  is not Borel, then we take $\lambda(B)$  to be undefined.
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+The following exercises show that what we did with "length" can be done with "probability", as well.
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;
+Consider two a nonempty set $\Omega$  and two subsets $A,B$  in it. What is the smallest collection of subsets
+of $\Omega$  that contains $A,B$  and is closed under  union, intesection and complementation? In other
+ words, make a list of all subsets of $\Omega$  that you can make using union, intersection and complementation starting
+ with $\Omega.$  Call this collection $\calB.$  Is this is a $\sigma$-algebra? 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;(Continuation of the last exercise) Take $\calF = \{A,B\}.$  Then clearly $\calB$ 
+ is the $\sigma$-algebra generated by $\calF.$  Does this mean that if I specify
+ probabilities for all elements of $\calF,$  then that would uniquely determine probabilities
+ of all elements of $\calB?$  Just to get you started, I am specifying $P(A) = 0.4$  and
+ $P(B) = 0.5.$  Compute (if possible) the probabilities of all events in $\calB.$</p>
+
+<p></p>
+
+<h1><a
+name="Back to Lebesgue integral">Back to Lebesgue integral</a></h1>
+
+<p></p>
+As not all subsets  are measurable, he naturally  restricted his attention to only those simple functions $\sum_i
+ c_i\ind_{A_i}$, where the $A_i\in\calB.$
+<p></p>
+
+<img src="image/alert.png">Historically, Lebesgue did not use Borel $\sigma$-algebra. He had constructed his own $\sigma$-algebra
+ (which is now called the Lebesgue $\sigma$-algebra). It is a much larger superset of the
+ Borel $\sigma$-algebra,
+ and is also more difficult to work with. That is why most modern treatments of measure theory
+ work with the Borel $\sigma$-algebra instead of  the Lebesgue $\sigma$-algebra. 
+<p></p>
+The next step in Lebesgue's intuition is to approximate the given function using simple functions,
+ from below and from above. 
+<p></p>
+We want to  make sup(red) and inf(blue) equal. It turns out (a non-trivial theorem) that this will
+ happen if and only if 
+$$\forall B\in\calB~~f ^{-1} (B)\in \calB.$$
+Such  functions are called <b><font color="red" size="40">measurable</font></b> 
+ functions. A word or warning here: Don't forget that we are working with only nonnegative, bounded functions over $[a,b].$ 
+So we are stating that <i>such a function</i> is Lebesgue integrable iff it is measurable. 
+<p></p>
+You will recall that we had arrived at precisely the same condition while defining random variables. 
+<p></p>
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Find $\int f\, d \lambda,$  where 
+$$f(x) = \left\{\begin{array}{ll}1&\text{if }x\in{\mathbb Q}^c\cap [0,1]\\ 0&\text{otherwise.}\end{array}\right. $$
+What is $\int_0^1 f(x)\, dx$  using Riemann integration?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;Prove that  $\sum_i c_i\ind_{A_i}$    is measureable if and only if $\forall i~~A_i\in\calB.$</p>
+
+<p></p>
+
+<h1><a
+name="Generalising the solution">Generalising the solution</a></h1>
+Lebesgue's approach can be generalised in different ways. We shall discuss these now.
+<h2><a
+name="Allowing unbounded functions and unbounded domains">Allowing unbounded functions and unbounded domains</a></h2>
+Since the Lebesgue integral exists for all bounded, non-negative measurable functions, hence it is enough to consider only
+ the sup of the approximations from below. This immediately allows us to define Lebesgue integral
+ for unbounded, measurable functions
+ as well. We just allow the sup to be $\infty.$  
+<p></p>
+Similarly we may now carry out the procedure
+ over an unbounded  domain, like ${\mathbb R}$  or $(0,\infty)$  etc.  There are just a few 
+ problems that are easily sorted out:
+<ul>
+
+<li> In Caratheodory extension theorem we had a condition $\mu(\Omega)&lt; \infty.$ This worked well with us since
+ for any $a \leq b $ we had $\lambda([a,b]) = b-a &lt; \infty.$  But clearly $\lambda({\mathbb R}) =\infty.$  Fortunately,
+ Caratheodory extension theorem has a version that replaces the condition $\mu(\Omega)&lt; \infty$  with $\mu(\Omega_i) &lt; \infty$ 
+ where $\Omega = \cup_{i=1}^\infty \Omega_i$  is a disjoint union, and each $\Omega_i\in\calF.$
+ This condition is
+ satisfied here as $\lambda((n,n+1]) &lt; \infty.$ 
+</li>
+<li>
+Also, now we need to make
+ sure that for every set in the initial collection, we also know the length of its complement
+ (earlier we could infer $length(A^c)$  as $length(\Omega)-length(A),$  which now may
+ lead to $\infty-\infty.$).
+ </li>
+<li>
+There is also a minor trouble involving defining area of rectangles with base length infinite. 
+ Any "rectangle" with base
+length $\infty$  and positive height has area $\infty$, and any "rectangle" with zero
+ height has zero area (even if its base has length $\infty$).  
+</li>
+</ul>
+Now that we are allowing the Lebesgue integral to equal $\infty,$  we need a little shift in terminology: We shall say
+ that a nonnegative function is <b><font color="red" size="40">Lebesgue integrable</font></b>  if its Lebesgue integral is finite.
+<p></p>
+With this shift in terminology it is possible to have measurable functions that are not Lebesgue
+ integrable (just take some unbounded, measurable function with Lebesgue integral infinite).  
+<h2><a
+name="Allowing negative values">Allowing negative values</a></h2>
+Moving from non-negative functions to general functions is easy. For $f:{\mathbb R}\rightarrow{\mathbb R}$  we define $f_+ =\max\{f,0\}$ 
+ and $f_- =\max\{-f,0\}.$  Then $f = f_+-f_-.$  We define $\int f\, d \lambda = \int f_+\, d \lambda -\int f_-\, d \lambda,$  if
+ both the integrals on the rhs are not $\infty.$
+<p></p>
+We shall say a function $f$  (possibly taking both positive and negative values)
+ <b><font color="red" size="40">Lebesgue integrable</font></b>  if both $f_+$  and $f_-$  are Lebesgue integrable. This is equivalent to requiring
+ $|f|$  to be Lebesgue integrable.
+<p></p>
+
+<h2><a
+name="Problem set 6">Problem set 6</a></h2>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Find $\int f(x)\, d \lambda$  where $f:{\mathbb R}\rightarrow{\mathbb R}$  is defined as  $f(x)
+ =\left\{\begin{array}{ll}2&\text{if }x\in{\mathbb Q}^c\\-1&\text{otherwise.}\end{array}\right.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Find $\int f(x)\, d \lambda$  where $f(x)=x.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Show that $\int f\, d \lambda$  exists, then so must $\int (-f)\, d \lambda$  and $\int (-f)\, d \lambda = -\int f\, d \lambda.$</p>
+
+<p></p>
+
+<h1><a
+name="General measures">General measures</a></h1>
+For a simple function $\sum_{i=1}^n c_i 1_{A_i}$ we defined the Lebesgue integral as
+$$\sum_{i=1}^n c_i \lambda(A_i),$$
+where $c_i$  is the height of the $i$-th rectangle, and $\lambda(A_i)$  is the "length" of its base. Then
+ we took supremum and infimum etc. It
+ turns out that the entire process of defining Lebesgue integrals need only two properties of
+ Lebesgue measure: its non-negativity and countable additivity over disjoint sets. The fact that
+ the length of $(a,b)$  is $b-a$  is not important. This motivates the following
+ generalisation of the concept of "length":
+<ul>
+<li>
+Our $f:{\mathbb R}\rightarrow{\mathbb R}$   may be replaced by $f:\Omega\rightarrow{\mathbb R}$  for any non-empty set $\Omega.$  Typical choices
+ for $\Omega$  could be ${\mathbb R}^2$  or ${\mathbb R}^3$  or some finite set. However, any non-empty set would do in general. 
+</li>
+
+<li>We just need some way to measuring the size of subsets of $\Omega.$  For ${\mathbb R}$  we
+ used "length". For subsets of
+ ${\mathbb R}^2$  we may use "area", while "volume" may be used for subsets of ${\mathbb R}^3.$  For a
+ finite $\Omega$  we may use "cardinality". All
+ that we need is that the measure
+ should be non-negative, and should add up over countably many disjoint sets, <i>i.e.</i>, if
+ we denote the "measure of size" of a set $A\subseteq\Omega$  by $\mu(A)$  then we want
+ $\mu(A)\geq 0$  and 
+$\mu(\cup_i A_i) = \sum_i\mu(A_i)$  for disjoint subsets  $A_1,A_2,...$
+ of $\Omega.$
+</li>
+
+<li>As in the case of "length", it may not be possible  in general to define such $\mu$  for
+ <i>all</i>  subsets of $\Omega.$  It is enough to be able to define it for a class of
+ subsets of $\Omega$. But in order to do mathematical manipulations, that class should be
+ closed under countable set
+ operations (union, intersection,
+ complementation). Any such class, as we have already learned, is called a  $\sigma$-algebra.
+Once we have decided upon the $\sigma$-algebra and the measure to use, we shall work with simple functions
+ $\sum_{i=1}^n c_i  1_{A_i}$  where the
+ $A_i$'s are in the $\sigma$-algebra, so that we may compute $\mu(A_i).$</li>
+</ul>
+
+<p></p>
+Let us write down the definition of a <b><font color="red" size="40">measure</font></b>  clearly.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Measure</b></legend>
+Let $\Omega$  be any non-empty set. Let $\calF$  be any $\sigma$-algebra on
+ $\Omega.$  Then by a <b><font color="red" size="40">measure</font></b>  we understand a function $\mu:\calF\rightarrow[0,\infty]$  such that 
+$$\forall \mbox{disjoint }A_1,A_2,...\in\calF~~\mu(\cup A_i) = \sum\mu(A_i)$$
+</fieldset>
+Notice that we have allowed $\mu(A) = \infty.$  For instance, "length" of $(0,\infty)$  is $\infty,$  and
+ "area" of ${\mathbb R}^2$  is also $\infty.$
+<p></p>
+Everything else now follows as in case of "length", we have "red rectangles" from below and "blue
+ rectangles" from above. For a very general class of functions we have sup(red) = inf(blue). For
+any such nice function, $f$,  we define this common value to be the <b><font color="red" size="40">Lebesgue
+ integral</font></b>  of $f$  wrt $\mu$, and write it as 
+$$\int f\, d\mu.$$
+In particular, if $f$  is itself a simple function 
+$$f(x) = \sum_{i=1}^n c_i 1_{A_i},$$ 
+then we have 
+$$\int f\, d\mu = \sum_{i=1}^n c_i \mu(A_i).$$ 
+Of course, we need all the $A_i$'s to be in the $\sigma$-algebra we are using. Otherwise, $\mu(A_i)$  would
+ not make any sense.
+<p></p>
+
+<h2><a
+name="Problem set 7">Problem set 7</a></h2>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Let $\Omega = \{1,...,9\}.$  We defne, for any $A\subseteq\Omega$, its measure as
+$\mu(A) = |A|,$  the
+ number of elements in $A.$  Consider $f:\Omega\rightarrow{\mathbb R}$  as $f(i) = i (\mbox{mod }2) + 1.$  Find $\int f\, d\mu.$</p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Show that any $\sigma$-algebra on $\Omega$  must contain $\phi$  and $\Omega.$</p>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;Is $\calP(\Omega)$  a $\sigma$-algebra on $\Omega?$
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+Yes. It is the largest $\sigma$-algebra on $\Omega.$
+</div></p>
+</p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;Is $\{\phi,\Omega\}$  a $\sigma$-algebra on $\Omega?$
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">Yes, it is the smallest $\sigma$-algebra on $\Omega.$</div></p>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;Show that for any measure $\mu(\phi)=0.$</p>  
+
+<p></p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;If $\mu(A) = 3$  and $\mu(B) = 5.5$  and $\mu(A\cap B) = 2$, then what is $\mu(A\cup B)?$</p>
+
+<p></p>
+When we take some probability measure in place of $\mu,$  we get the familiar definition of expectation. 
+<p></p>
+
+
+<h1><a
+name="Expectation as Lebesgue integral">Expectation as Lebesgue integral</a></h1>
+We have mentioned earlier that for Lebesgue integrals sup(red)=inf(blue) for a rather general class
+ of functions. In particular, when we worked with $f$  defined on   ${\mathbb R}$  equipped with $\calB$
+  and $\lambda$, we had given a characterisation of all functions for which the Lebesgue
+ integral $\int f\, d \lambda$  exists: 
+$$\forall B\in\calB~~f ^{-1}(B)\in\calB.$$
+It is not unexpected that if $f$  is defined on $\Omega$  equipped with $\calF$  and $\mu,$  then the
+ characterisation is
+$$\forall B\in\calB~~f ^{-1}(B)\in\calF.$$
+Such functions are called <b><font color="red" size="40">measurable</font></b>  functions. These functions are very nicely behaved. In particular, limits
+ of measurable functions are again measurable. This is the most important reason for preferring Lebesgue integration over Riemann integration.
+ If $f_n\rightarrow f$  pointwise, and $\int f_n\, d \mu$  exist for each $n,$  then the existence of $\int f\, d \mu$ 
+ is immediately guaraneteed. 
+<p></p>
+Interestingly, the concept of a measurable function also arises in a different way in probability theory. Let $X$  be
+ a random variable. We know that underlying every random variable there is a random experiment, or
+ more precisely, a  probability space
+ $(\Omega,\calF, P)$  such that
+ $X:\Omega\rightarrow{\mathbb R}.$  When we want to talk
+ about things like  $P(X\in
+ B)$  we actually mean
+ $P(\{\omega~:~X(\omega)\in B\})$ or $P(X ^{-1}(B)).$ In order for this to be defined we need $X ^{-1}(B)\in\calF.$ 
+ In other words, we need a random variable to be measurable. Indeed, this is part of the definition of a random variable.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Random variable</b></legend>
+Let $(\Omega,\calF, P)$  be a probability space. By a <b><font color="red" size="40">random variable</font></b>  we mean a measurable function $X:\Omega\rightarrow{\mathbb R},$ 
+ <i>i.e.</i>, 
+$$\forall B\in\calB~~X^{-1}(B)\in\calF.$$
+</fieldset>
+
+<p></p>
+
+<h2><a
+name="Problem set 8">Problem set 8</a></h2>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;Characterise measurable functions from $({\mathbb R},\calP({\mathbb R}))$  to $({\mathbb R},\{\phi,{\mathbb R}\}).$ 
+</p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;Characterise measurable functions from  $({\mathbb R},\{\phi,{\mathbb R}\})$  to $({\mathbb R},\calP({\mathbb R}))$. 
+</p>
+
+<p></p>
+
+<h1><a
+name="Two technical results">Two technical results</a></h1>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $f:\Omega\rightarrow[0,\infty)$  is any  function, then there is a non-decreasing sequence $(s_n)$  of simple
+functions such that
+$$\forall \omega\in\Omega~~s_n(\omega) \uparrow f(\omega).$$ 
+</fieldset>
+In our course we shall call any such sequence $(s_n)$   a <b><font color="red" size="40">simplification</font></b>  of
+ $f$   It is not a standard term.
+<p>
+<b><i>Proof:</i></b>
+For $n\in{\mathbb N}$  and $\omega\in\Omega$  we define $s_n$  as follows. First partition the codomain
+ $[0,\infty)$  into $2$  intervals $[0,n)$  and $[n,\infty)$  and then
+ subdivide the first into equal subintervals of length $2^{-n}.$  So you get $N=n2^n+1$  subintervals in all. Call
+ these $[a_1,a_2),[a_2,a_3),...,[a_N,a_{N+1}),$  where $a_N=n$  and $a_{N+1}=\infty$.   These
+ constitute a partition of the codomain.
+<p></p>
+Now  set $s_n(\omega) = a_k$  if $f(\omega) \in[ a_k,a_{k+1})$  for $k\in\{1,...,N\}$.
+<p></p>
+The following picture shows this process for $n=1$  and $n=2.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/subdiv.png"></th>
+</tr>
+<tr>
+<th>Notice how the subdivisions for $n=2$  fit into those for $n=1.$</th>
+</tr>
+</table>
+</center>     
+
+<p></p>
+For each $\omega\in\Omega$  and for each $n\in{\mathbb N}$  we have $s_n(\omega)\leq s_{n+1}(\omega).$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/onestep.png"></th>
+</tr>
+<tr>
+<th>A blue point cannot fall below the corresponding red point</th>
+</tr>
+</table>
+</center>
+
+<blockquote><a
+href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
+class="ans" id="reason2">
+If $s_n(\omega) = a$   and $s_{n+1}(\omega) = b,$  then $f(\omega)\in[a,a+2^{-n})$  and also $f(\omega)\in[b+2^{-n-1}).$ 
+<p></p>
+So, by the contruction of the partitions, $[b,b+2^{-n-1})\subseteq[a,2^{-n}).$
+<p></p>
+Thus, $a\leq b,$  as required.
+</div></blockquote>
+
+<p></p>
+Again, for each $\omega\in\Omega$  we have $s_n(\omega)\rightarrow f(\omega).$  
+<blockquote><a
+href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
+class="ans" id="reason3">
+To show:
+<p></p>
+
+<div class="box">Target</div>$\forall \omega\in\Omega~~\forall \epsilon&gt;0~~\exists M\in{\mathbb N}~~\forall n\geq M ~~|f(\omega)-s_n(\omega)| &lt; \epsilon.$
+<p></p>
+
+<div class="box">$\forall \omega$</div> Take any $\omega\in\Omega.$
+<p></p>
+
+<div class="box">$\forall \epsilon$</div> Take any $\epsilon&gt;0.$
+<p></p>
+
+<div class="box">$\exists M$</div> Choose $M\in{\mathbb N}$  such that $M&gt; f(\omega)$  and $2^{-M} &lt; \epsilon.$  (Possible since ${\mathbb N}$ 
+ is unbounded above and $2^{-n}\rightarrow 0$  as $n\rightarrow \infty.$
+<p></p>
+
+<div class="box">$\forall n$</div> Take any $n\geq M.$
+<p></p>
+
+<div class="box">Check</div>Since $f(\omega) &lt; M\leq n,$  hence $s_n(\omega) &lt; n.$  
+<p></p>
+Thus, $f(\omega) \in [s_n(\omega),s_n(\omega)+2^{-n}).$
+</div></blockquote>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The next step is to show that the red areas indeed converge to the supremum (since we are also
+ allowing the supremum to be $\infty$, we should better say <i>diverge</i> to the supremum in that case). 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $P$  be a probability on $\Omega$. 
+If $f:\Omega\rightarrow[0,\infty)$  is  measurable, and $s_n:\Omega\rightarrow[0,\infty)$'s constitute a
+ measurable simplification of $f$,
+ then $\int s_n\, dP\uparrow \int f\, dP.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall only deal with the case $\int f\, dP &lt; \infty.$  The case $\int f\, dP = \infty$ 
+ is left as an exercise.
+<p></p>
+The proof proceeds in a somewhat counterintuitive way. So read carefully. 
+<p></p>
+We shall start by noticing that $\lim\int s_n\, dP$  indeed exists. 
+<blockquote><a
+href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
+class="ans" id="reason4">$\left(\int s_n\, dP\right)$  is a non-decreasing sequence bounded above (by $\int f\, dP$). </div></blockquote>
+We want to show that this limit equals $\int f\, dP$. For this it is enough to show 
+it is $\geq \int z\, dP$ 
+ for any nonnegative, simple function $z\leq f$. 
+<blockquote><a
+href="javascript:hideShow('reason5')"><b>[Because...]</b></a><div
+class="ans" id="reason5">
+$\int f\, dP = \sup\{\int z\, dP~:~  z\leq f,~~z \mbox{ simple}\},$
+</div></blockquote>
+For this it is enough to show that 
+ $\forall \delta&gt;0~~\lim \int s_n\, dP \geq \int z\, dP- \delta.$  
+<blockquote><a
+href="javascript:hideShow('reason6')"><b>[Because...]</b></a><div
+class="ans" id="reason6">
+Then  $\lim \int s_n\, dP - \int z\, dP\geq -\delta.$  
+<p></p>
+Since  $\delta&gt;0$  is arbitrary, this means $\lim \int s_n\, dP - \int z\, dP \geq $  all negative numbers. Only non-negative
+ numbers can have that property!</div></blockquote>
+
+<p></p>
+So far, we have been just rewording our target. Now we start the main argument. 
+We are showing: 
+<blockquote>$\forall$ simple measurable $0\leq z\leq f~~\forall \delta&gt;0~~\lim \int s_n\, dP \geq
+ \int z\, dP- \delta.$  </blockquote>
+
+<p></p>
+Take  any simple, measurable function $0\leq z\leq f$. 
+<p></p>
+Take any $\delta&gt;0.$
+<p></p>
+Let $A_n =\{s_n\geq z-\delta\}.$
+<p></p>
+Then $A_n\uparrow\Omega.$
+<blockquote><a
+href="javascript:hideShow('reason7')"><b>[Because...]</b></a><div
+class="ans" id="reason7">
+Since $s_n$'s are non-decreasing, hence $A_1\subseteq A_2\subseteq A_3\subseteq\cdots.$  
+<p></p>
+Also since $\forall\omega\in\Omega~~s_n(w)\uparrow f(w),$  hence $\cup_n A_n=\Omega.$  
+</div></blockquote>  
+
+<p></p>
+So 
+$$\begin{eqnarray*}
+\int s_n\, dP &amp; \geq &amp; \int_{A_n} s_n\, dP ~~\left[\mbox{$\because s_n\geq 0$}\right] \\
+&amp; \geq &amp; \int_{A_n}z-\delta\, dP~~\left[\mbox{$\because s_n \geq z-\delta$  over $A_n$.}\right]\\
+&amp;  = &amp; \int z\, dP-\int_{A_n^c}z\, dP-\delta P(A_n)\\
+&amp;  = &amp; \int z\, dP-\int_{A_n^c}z\, dP-\delta~~\left[\mbox{$\because P(A_n)\leq 1$.}\right]\\
+&amp;  \geq &amp; \int z\, dP-M\mu(A_n^c)-\delta,
+\end{eqnarray*}$$
+where $M = \max Z$  (exists finitely, since $z$  is simple).  
+<p></p>
+Hence $\lim \int s_n\, dP &gt; \int z\, dP- M\times 0-\delta,$  completing the proof.
+<b><i>[QED]</i></b>
+</p>
+Since this last result deals with a probability, hence the integral is just expectation. So we can write the result as follows.
+<blockquote>
+If $X$  is a non-negative random variable, and $X_n$'s are non-negative simple random variables such that $X_n\uparrow X$,
+ then $E(X_n)\uparrow E(X)$.
+</blockquote>
+
+<p></p>
+
+<h2><a
+name="Problem set 9">Problem set 9</a></h2>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;Show that if $f$  in the first theorem is a measurable function, then the simplification
+ constructed in the proof is also measurable.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 28:</b>&nbsp;
+Show that the convergence in the first theorem is uniform if $f$  is bounded.
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 29:</b>&nbsp;
+Show that if, in the first theorem above,  $f$  is measurable (w.r.t. any given $\sigma$-field $\calF$
+ over $\Omega$  and the Borel $\sigma$-field over ${\mathbb R}$), then so must be each $s_n.$ 
+</p>
+
+<p></p>
+
+<h1><a
+name="Additivity">Additivity</a></h1>
+We had stated last semester that if $X,Y$  are two jointly distributed random variables with expectations, and $a,b\in{\mathbb R}$ 
+ are any two numbers, then $aX+bY$  is also a random variable with expectation, and $E(aX+bY) = aE(X)+bE(Y).$
+<p></p>
+First we show that $E(X+Y) = E(X)+E(Y)$  in three steps.
+<p></p>
+
+<u>Step 1</u>: Show this when $X,Y$  are  simple random variables. We have already done this last semester.
+<p></p>
+
+<u>Step 2</u>: Show this for non-negative $X,Y.$  Let $(S_n)$  and $(T_n)$  be simplifications for $X$ 
+ and $Y,$  respectively. Then $(S_n+T_n)$  is a simplification for $X+Y.$  
+<p></p>
+Also $E(S_n+T_n) = E(S_n)+E(T_n).$  Te result now follows on taking limit of both sides.
+<p></p>
+
+<u>Step 3</u>: Show this for general $X,Y.$  Here we apply step 2 to $X_+, X_-, Y_+$  and $Y_-.$  
+<p></p>
+Then we show that for $a&gt;0$  we have $E(aX) = aE(X).$  This proof also proceeds in three steps (left as an exercise).
+<p></p>
+Finally, we show $E(-X)= -E(X).$  Let $Y = -X.$  Then $Y_+ = X_-$  and $Y_- = X_+.$  So $E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).$
+<p></p>
+
+<h2><a
+name="Problem set 10">Problem set 10</a></h2>
+
+<h1><a
+name="Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a></h1>
+We would have been very happy, had there been a result saying: Whenever $X_n\rightarrow X$  we have $E(X_n)\rightarrow E(X)$. Unfortunately,
+ this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
+<p></p>
+The following theorem is just a restatement of the second technical result discussed earlier:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_n\rightarrow X$. Assume
+<ul>
+<li>$(X_n)$  is a non-negative, non-decreasing sequence,</li>
+
+<li>$X_n$'s are all simple.</li>
+
+</ul>
+Then $E(X_n) \rightarrow E(X)$.
+</fieldset>
+ Interestingly, the last condition may be dropped (<i>i.e.</i>, $X_n$'s need not be simple). This gives rise to the theorem
+ below.
+<p></p>
+
+<fieldset>
+<legend><b><i>Monotone convergence theorem (MCT)</i></b></legend>
+Let $X_n\rightarrow X$. Assume
+<ul>
+<li>$(X_n)$  is a non-negative, non-decreasing sequence.</li>
+
+</ul>
+Then $E(X_n) \rightarrow E(X)$.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason8')"><b>[Because...]</b></a><div
+class="ans" id="reason8">
+We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
+</div></blockquote>
+Let $(Z_{n,k})_k$  be a simplification of $X_n.$  
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mctarr.png"></th>
+</tr>
+<tr>
+<th>Think of the $Z_{n,k}$'s like an infinite "matrix".</th>
+</tr>
+</table>
+</center>
+Each row of this "matrix" is a non-decreasing sequence. 
+<p></p>
+Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$  
+<p></p>
+It is like extracting the upper triangular half of the "matrix" and taking maximum
+ of each column.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mctarr2.png"></th>
+</tr>
+<tr>
+<th>How $Y_n$'s are computed</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+Then $Y_1\leq Y_2\leq\cdots$
+<blockquote><a
+href="javascript:hideShow('reason9')"><b>[Because...]</b></a><div
+class="ans" id="reason9">
+$$\begin{eqnarray*}
+Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
+&amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
+&amp; \geq &amp; \max\{Z_{1,n},...,Z_{n,n}\},
+\end{eqnarray*}$$
+by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
+</div></blockquote>
+Also $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason10')"><b>[Because...]</b></a><div
+class="ans" id="reason10">
+$Z_{k,n}\leq X_k\leq X_n.$
+</div></blockquote>
+Finally, $Y_n\uparrow X.$
+<blockquote><a
+href="javascript:hideShow('reason11')"><b>[Because...]</b></a><div
+class="ans" id="reason11">
+We have $Y_k\leq X_k\leq X$. So $(Y_k)$  is a non-decreasing sequence bounded from above. So $\lim_k Y_k$ 
+ exists and $\lim_k Y_k\leq X$.
+<p></p>
+We have $Z_{n,k} \leq Y_k$  for $k\geq n$.  
+<p></p>
+Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$
+<p></p>
+Now taking limit as $n\rightarrow \infty,$  we have $X\leq \lim_k Y_k.$  
+<p></p>
+Hence $\lim_k Y_k= X.$
+</div></blockquote>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 11">Problem set 11</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 30:</b>&nbsp;
+If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
+ and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
+ dropped?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 31:</b>&nbsp;
+Suppose that $X_n$'s are nonnegative random variables. Show that 
+$$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
+</p>
+
+<h1><a
+name="Fatou and DCT">Fatou and DCT</a></h1>
+
+<fieldset>
+<legend><b><i>Fatou's lemma</i></b></legend>
+Let $(X_n)$  be  a sequence of nonnegative random variables.  Then
+$$E(\liminf X_n) \leq \liminf E(X_n).$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $Y_n = \inf\{X_k~:~k\geq n\}.$
+<p></p>
+Then, by the definition of $\liminf$, we have  $Y_n\uparrow \liminf X_n.$
+<p></p>
+So, by MCT, $E(Y_n)\rightarrow E(\liminf X_n).$
+<p></p>
+Now $Y_n \leq X_n,$  and hence $E(Y_n) \leq E(X_n).$
+<p></p>
+Hence 
+$$E(\liminf X_n) \leq \liminf E(X_n),$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Dominated Convergence Theorem (DCT)</i></b></legend>
+Let $X_n\rightarrow X.$  If  $\forall n~~|X_n|\leq Y$  for some $Y$  with $E(|Y|)&lt; \infty$, 
+ then $E|X_n-X|\rightarrow 0$  and so, in particular, $E(X_n)\rightarrow E(X).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Clearly, $|X|\leq Y.$
+<p></p>
+So, by triangle inequality, $|X_n-X|\leq |X_n|+|X|\leq 2Y.$
+<p></p>
+Let $Z_n = 2Y-|X_n-X|.$  Then $Z_n$'s are all nonnegative random variables. 
+<p></p>
+Applying Fatou's lemma to $(Z_n)$, we have 
+$$E(\liminf Z_n)\leq \liminf E(Z_n).\hspace{1in} \mbox{(*)}$$
+Now 
+$$\liminf Z_n = 2Y-\limsup|X_n-X| = 2Y,$$
+and 
+$$\liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| .$$
+So (*) becomes 
+$$2E(Y)\leq 2E(Y)-\limsup E|X_n-X|,$$
+or $\limsup E|X_n-X|\leq 0.$
+<p></p>
+Hence $E|X_n-X|\rightarrow 0,$  as required.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 12">Problem set 12</a></h2>
+
+<p>
+<b>EXERCISE 32:</b>&nbsp;Show that $E(|X_n-X|)\rightarrow 0$  implies $E(X_n)\rightarrow E(X)$. Show that the converse is not true in general.
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
+Toss an unbaised coin. For each $n\in{\mathbb N}$  we let $X_n = \left\{\begin{array}{ll}1&\text{if }\mbox{head}\\-1&\text{otherwise.}\end{array}\right..$  Thus
+ all the $X_n$'s are exactly the same (based on the <i>same</i>  toss). Also take $X\equiv 0$.
+<p></p>
+Then $\forall n\in{\mathbb N}~~E(X_n) =0$, and hence $E(X_n)\rightarrow E(X)$.
+<p></p>
+But $|X_n-X| \equiv 1$. SO $E(|X_n-X|) \not\rightarrow0$. 
+</div></p>
+
+</p>
+
+<h1><a
+name="Radon-Nikodym theorem">Radon-Nikodym theorem</a></h1>
+
+<fieldset>
+<legend><b><i>Radon-Nikodym theorem</i></b></legend>
+Let $\mu$  be any $sigma$-finite measure on $(\Omega,\calF).$  Let $\nu$  be another meaure on $(\Omega,\calF)$ 
+ with the property that 
+$$\forall B\in\calF~~(\mu(B)=0\Rightarrow\nu(B)=0).$$
+Then there is a measurable f $f:\Omega\rightarrow{\mathbb R}$  such that for any measurable function $h:\Omega\rightarrow{\mathbb R}$  we have
+ $$\int h\, d\nu = \int hf\, d\mu.$$ 
+This $f$  is called a <b><font color="red" size="40">density</font></b>  of $\nu$  wrt $\mu.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Omitted.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+We have used a special case of this theorem, where $\nu$  is a probability measure and $\mu$  is the Lebesgue measure.
+ Such probability measures are called <b><font color="red" size="40">absolutely continuous</font></b>. We have worked with the special case where we had
+ a density that was Riemann integrable as well.
+<p></p>
+
+<h2><a
+name="Problem set 13">Problem set 13</a></h2>
+
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

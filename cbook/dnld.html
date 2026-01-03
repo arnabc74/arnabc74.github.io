@@ -1,0 +1,1917 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3>C Programming: Download page</h3>
+<ul>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap1.rb">Files from chap1.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap2.rb">Files from chap2.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap3.rb">Files from chap3.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap4.rb">Files from chap4.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap5.rb">Files from chap5.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap6.rb">Files from chap6.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap7.rb">Files from chap7.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap8.rb">Files from chap8.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap9.rb">Files from chap9.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap10.rb">Files from chap10.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap10past.rb">Files from chap10past.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap11.rb">Files from chap11.rb</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Files from chap12.rb">Files from chap12.rb</a>
+</li>
+</ul>
+<hr/>
+
+<title xmlns="">C Programming: Download page</title>
+এইখানে C Programming  বইতে যা যা প্রোগ্রাম দিয়েছি সেগুলো সব ডাউনলোড করতে পারবে৷ 
+
+<p></p>
+
+<h2><a
+name="Files from chap1.rb">Files from chap1.rb</a></h2>
+প্রথম অধ্যায়ে তো খালি গল্প করেছি, তাই ডাউনলোড করার মত কোনো প্রোগ্রাম নেই৷ 
+
+<p></p>
+
+<h2><a
+name="Files from chap2.rb">Files from chap2.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/nameans.c">nameans.c</a>
+</li>
+
+<li>
+<a href="prog/line2.c">line2.c</a>
+</li>
+
+<li>
+<a href="prog/comm.c">comm.c</a>
+</li>
+
+<li>
+<a href="prog/overwrite.c">overwrite.c</a>
+</li>
+
+<li>
+<a href="prog/uninit.c">uninit.c</a>
+</li>
+
+<li>
+<a href="prog/typeerr.c">typeerr.c</a>
+</li>
+
+<li>
+<a href="prog/iderr.c">iderr.c</a>
+</li>
+
+<li>
+<a href="prog/declerr.c">declerr.c</a>
+</li>
+
+<li>
+<a href="prog/declerr2.c">declerr2.c</a>
+</li>
+
+<li>
+<a href="prog/keyerr.c">keyerr.c</a>
+</li>
+
+<li>
+<a href="prog/fmterr.c">fmterr.c</a>
+</li>
+
+<li>
+<a href="prog/fmterrex.c">fmterrex.c</a>
+</li>
+
+<li>
+<a href="prog/showaddress.c">showaddress.c</a>
+</li>
+
+<li>
+<a href="prog/typecastex.c">typecastex.c</a>
+</li>
+
+<li>
+<a href="prog/full1.c">full1.c</a>
+</li>
+
+<li>
+<a href="prog/twoinp1.c">twoinp1.c</a>
+</li>
+
+<li>
+<a href="prog/full2.c">full2.c</a>
+</li>
+
+<li>
+<a href="prog/nextans.c">nextans.c</a>
+</li>
+
+<li>
+<a href="prog/addans.c">addans.c</a>
+</li>
+
+<li>
+<a href="prog/full4.c">full4.c</a>
+</li>
+
+<li>
+<a href="prog/rollmarks.c">rollmarks.c</a>
+</li>
+
+<li>
+<a href="prog/hang.c">hang.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap3.rb">Files from chap3.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/arith1.c">arith1.c</a>
+</li>
+
+<li>
+<a href="prog/intdiv.c">intdiv.c</a>
+</li>
+
+<li>
+<a href="prog/floatdiv.c">floatdiv.c</a>
+</li>
+
+<li>
+<a href="prog/typecast1.c">typecast1.c</a>
+</li>
+
+<li>
+<a href="prog/r2d1b.c">r2d1b.c</a>
+</li>
+
+<li>
+<a href="prog/rem1.c">rem1.c</a>
+</li>
+
+<li>
+<a href="prog/mathdemo1.c">mathdemo1.c</a>
+</li>
+
+<li>
+<a href="prog/r2d.c">r2d.c</a>
+</li>
+
+<li>
+<a href="prog/mathdemo2.c">mathdemo2.c</a>
+</li>
+
+<li>
+<a href="prog/asinans.c">asinans.c</a>
+</li>
+
+<li>
+<a href="prog/mathh.c">mathh.c</a>
+</li>
+
+<li>
+<a href="prog/zerodiv1.c">zerodiv1.c</a>
+</li>
+
+<li>
+<a href="prog/zerodiv2.c">zerodiv2.c</a>
+</li>
+
+<li>
+<a href="prog/negroot1.c">negroot1.c</a>
+</li>
+
+<li>
+<a href="prog/neglog.c">neglog.c</a>
+</li>
+
+<li>
+<a href="prog/nansc.c">nansc.c</a>
+</li>
+
+<li>
+<a href="prog/infnan.c">infnan.c</a>
+</li>
+
+<li>
+<a href="prog/multinp.c">multinp.c</a>
+</li>
+
+<li>
+<a href="prog/stamp.c">stamp.c</a>
+</li>
+
+<li>
+<a href="prog/decl2.c">decl2.c</a>
+</li>
+
+<li>
+<a href="prog/decl3.c">decl3.c</a>
+</li>
+
+<li>
+<a href="prog/decbad.c">decbad.c</a>
+</li>
+
+<li>
+<a href="prog/fdrex.c">fdrex.c</a>
+</li>
+
+<li>
+<a href="prog/r2d2.c">r2d2.c</a>
+</li>
+
+<li>
+<a href="prog/r2d2b.c">r2d2b.c</a>
+</li>
+
+<li>
+<a href="prog/defif.c">defif.c</a>
+</li>
+
+<li>
+<a href="prog/macro.c">macro.c</a>
+</li>
+
+<li>
+<a href="prog/macro2.c">macro2.c</a>
+</li>
+
+<li>
+<a href="prog/macfun.c">macfun.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap4.rb">Files from chap4.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/senior.c">senior.c</a>
+</li>
+
+<li>
+<a href="prog/senior2.c">senior2.c</a>
+</li>
+
+<li>
+<a href="prog/div13.c">div13.c</a>
+</li>
+
+<li>
+<a href="prog/approx.c">approx.c</a>
+</li>
+
+<li>
+<a href="prog/blood1.c">blood1.c</a>
+</li>
+
+<li>
+<a href="prog/blood2.c">blood2.c</a>
+</li>
+
+<li>
+<a href="prog/blood3.c">blood3.c</a>
+</li>
+
+<li>
+<a href="prog/grade.c">grade.c</a>
+</li>
+
+<li>
+<a href="prog/ghus.c">ghus.c</a>
+</li>
+
+<li>
+<a href="prog/ghusans.c">ghusans.c</a>
+</li>
+
+<li>
+<a href="prog/gst.c">gst.c</a>
+</li>
+
+<li>
+<a href="prog/trouble.c">trouble.c</a>
+</li>
+
+<li>
+<a href="prog/trouble2.c">trouble2.c</a>
+</li>
+
+<li>
+<a href="prog/cube.c">cube.c</a>
+</li>
+
+<li>
+<a href="prog/triangle.c">triangle.c</a>
+</li>
+
+<li>
+<a href="prog/sqrt1.c">sqrt1.c</a>
+</li>
+
+<li>
+<a href="prog/quadratic.c">quadratic.c</a>
+</li>
+
+<li>
+<a href="prog/shortckt1.c">shortckt1.c</a>
+</li>
+
+<li>
+<a href="prog/shortckt2.c">shortckt2.c</a>
+</li>
+
+<li>
+<a href="prog/shortckt3.c">shortckt3.c</a>
+</li>
+
+<li>
+<a href="prog/shckex.c">shckex.c</a>
+</li>
+
+<li>
+<a href="prog/switch.c">switch.c</a>
+</li>
+
+<li>
+<a href="prog/switchex.c">switchex.c</a>
+</li>
+
+<li>
+<a href="prog/eq1.c">eq1.c</a>
+</li>
+
+<li>
+<a href="prog/eq1int.c">eq1int.c</a>
+</li>
+
+<li>
+<a href="prog/eq2.c">eq2.c</a>
+</li>
+
+<li>
+<a href="prog/eq3.c">eq3.c</a>
+</li>
+
+<li>
+<a href="prog/fullsys.c">fullsys.c</a>
+</li>
+
+<li>
+<a href="prog/factrec.c">factrec.c</a>
+</li>
+
+<li>
+<a href="prog/factrec2.c">factrec2.c</a>
+</li>
+
+<li>
+<a href="prog/fib.c">fib.c</a>
+</li>
+
+<li>
+<a href="prog/factrecerr.c">factrecerr.c</a>
+</li>
+
+<li>
+<a href="prog/fib1.c">fib1.c</a>
+</li>
+
+<li>
+<a href="prog/fib2.c">fib2.c</a>
+</li>
+
+<li>
+<a href="prog/indrec.c">indrec.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap5.rb">Files from chap5.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/forerr.c">forerr.c</a>
+</li>
+
+<li>
+<a href="prog/infloop.c">infloop.c</a>
+</li>
+
+<li>
+<a href="prog/drawline.c">drawline.c</a>
+</li>
+
+<li>
+<a href="prog/drawdottedline.c">drawdottedline.c</a>
+</li>
+
+<li>
+<a href="prog/variant.c">variant.c</a>
+</li>
+
+<li>
+<a href="prog/rev.c">rev.c</a>
+</li>
+
+<li>
+<a href="prog/cubes.c">cubes.c</a>
+</li>
+
+<li>
+<a href="prog/factors.c">factors.c</a>
+</li>
+
+<li>
+<a href="prog/loopsev.c">loopsev.c</a>
+</li>
+
+<li>
+<a href="prog/braclist.c">braclist.c</a>
+</li>
+
+<li>
+<a href="prog/factors2.c">factors2.c</a>
+</li>
+
+<li>
+<a href="prog/comma.c">comma.c</a>
+</li>
+
+<li>
+<a href="prog/sum1.c">sum1.c</a>
+</li>
+
+<li>
+<a href="prog/sum2.c">sum2.c</a>
+</li>
+
+<li>
+<a href="prog/avg.c">avg.c</a>
+</li>
+
+<li>
+<a href="prog/avev.c">avev.c</a>
+</li>
+
+<li>
+<a href="prog/perfect.c">perfect.c</a>
+</li>
+
+<li>
+<a href="prog/prod.c">prod.c</a>
+</li>
+
+<li>
+<a href="prog/min.c">min.c</a>
+</li>
+
+<li>
+<a href="prog/max.c">max.c</a>
+</li>
+
+<li>
+<a href="prog/countpos.c">countpos.c</a>
+</li>
+
+<li>
+<a href="prog/countneg.c">countneg.c</a>
+</li>
+
+<li>
+<a href="prog/compound.c">compound.c</a>
+</li>
+
+<li>
+<a href="prog/sumprod.c">sumprod.c</a>
+</li>
+
+<li>
+<a href="prog/meanvar.c">meanvar.c</a>
+</li>
+
+<li>
+<a href="prog/factorial2.c">factorial2.c</a>
+</li>
+
+<li>
+<a href="prog/means.c">means.c</a>
+</li>
+
+<li>
+<a href="prog/countposornot.c">countposornot.c</a>
+</li>
+
+<li>
+<a href="prog/count23610.c">count23610.c</a>
+</li>
+
+<li>
+<a href="prog/quad.c">quad.c</a>
+</li>
+
+<li>
+<a href="prog/quadans.c">quadans.c</a>
+</li>
+
+<li>
+<a href="prog/trapquad.c">trapquad.c</a>
+</li>
+
+<li>
+<a href="prog/prime1.c">prime1.c</a>
+</li>
+
+<li>
+<a href="prog/prime2.c">prime2.c</a>
+</li>
+
+<li>
+<a href="prog/prime3.c">prime3.c</a>
+</li>
+
+<li>
+<a href="prog/prime4.c">prime4.c</a>
+</li>
+
+<li>
+<a href="prog/prime5.c">prime5.c</a>
+</li>
+
+<li>
+<a href="prog/prime6.c">prime6.c</a>
+</li>
+
+<li>
+<a href="prog/prime7.c">prime7.c</a>
+</li>
+
+<li>
+<a href="prog/marks.c">marks.c</a>
+</li>
+
+<li>
+<a href="prog/bmi.c">bmi.c</a>
+</li>
+
+<li>
+<a href="prog/bmi2.c">bmi2.c</a>
+</li>
+
+<li>
+<a href="prog/series1.c">series1.c</a>
+</li>
+
+<li>
+<a href="prog/series2.c">series2.c</a>
+</li>
+
+<li>
+<a href="prog/series3.c">series3.c</a>
+</li>
+
+<li>
+<a href="prog/series4.c">series4.c</a>
+</li>
+
+<li>
+<a href="prog/seriesans.c">seriesans.c</a>
+</li>
+
+<li>
+<a href="prog/seriesans2.c">seriesans2.c</a>
+</li>
+
+<li>
+<a href="prog/pi1.c">pi1.c</a>
+</li>
+
+<li>
+<a href="prog/lolo1.c">lolo1.c</a>
+</li>
+
+<li>
+<a href="prog/patt4.c">patt4.c</a>
+</li>
+
+<li>
+<a href="prog/spacebox.c">spacebox.c</a>
+</li>
+
+<li>
+<a href="prog/patta.c">patta.c</a>
+</li>
+
+<li>
+<a href="prog/pattb.c">pattb.c</a>
+</li>
+
+<li>
+<a href="prog/pattc.c">pattc.c</a>
+</li>
+
+<li>
+<a href="prog/pattd.c">pattd.c</a>
+</li>
+
+<li>
+<a href="prog/patte.c">patte.c</a>
+</li>
+
+<li>
+<a href="prog/nestedbreak.c">nestedbreak.c</a>
+</li>
+
+<li>
+<a href="prog/format.c">format.c</a>
+</li>
+
+<li>
+<a href="prog/namta.c">namta.c</a>
+</li>
+
+<li>
+<a href="prog/namta.c">namta.c</a>
+</li>
+
+<li>
+<a href="prog/game.c">game.c</a>
+</li>
+
+<li>
+<a href="prog/digits.c">digits.c</a>
+</li>
+
+<li>
+<a href="prog/countdigits.c">countdigits.c</a>
+</li>
+
+<li>
+<a href="prog/armstrong.c">armstrong.c</a>
+</li>
+
+<li>
+<a href="prog/rem.c">rem.c</a>
+</li>
+
+<li>
+<a href="prog/euclidwrong.c">euclidwrong.c</a>
+</li>
+
+<li>
+<a href="prog/euclid2.c">euclid2.c</a>
+</li>
+
+<li>
+<a href="prog/while1.c">while1.c</a>
+</li>
+
+<li>
+<a href="prog/while2.c">while2.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap6.rb">Files from chap6.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/comarr.c">comarr.c</a>
+</li>
+
+<li>
+<a href="prog/access1.c">access1.c</a>
+</li>
+
+<li>
+<a href="prog/hard.c">hard.c</a>
+</li>
+
+<li>
+<a href="prog/hard2.c">hard2.c</a>
+</li>
+
+<li>
+<a href="prog/nonint.c">nonint.c</a>
+</li>
+
+<li>
+<a href="prog/dnew.c">dnew.c</a>
+</li>
+
+<li>
+<a href="prog/dold.c">dold.c</a>
+</li>
+
+<li>
+<a href="prog/arraysum.c">arraysum.c</a>
+</li>
+
+<li>
+<a href="prog/minpos.c">minpos.c</a>
+</li>
+
+<li>
+<a href="prog/minallpos.c">minallpos.c</a>
+</li>
+
+<li>
+<a href="prog/maxpos.c">maxpos.c</a>
+</li>
+
+<li>
+<a href="prog/evav.c">evav.c</a>
+</li>
+
+<li>
+<a href="prog/diff1.c">diff1.c</a>
+</li>
+
+<li>
+<a href="prog/ma.c">ma.c</a>
+</li>
+
+<li>
+<a href="prog/ma2.c">ma2.c</a>
+</li>
+
+<li>
+<a href="prog/sym.c">sym.c</a>
+</li>
+
+<li>
+<a href="prog/skewsym.c">skewsym.c</a>
+</li>
+
+<li>
+<a href="prog/linsort.c">linsort.c</a>
+</li>
+
+<li>
+<a href="prog/linsort2.c">linsort2.c</a>
+</li>
+
+<li>
+<a href="prog/qsort1.c">qsort1.c</a>
+</li>
+
+<li>
+<a href="prog/linear1.c">linear1.c</a>
+</li>
+
+<li>
+<a href="prog/linear2.c">linear2.c</a>
+</li>
+
+<li>
+<a href="prog/linear3.c">linear3.c</a>
+</li>
+
+<li>
+<a href="prog/linear4.c">linear4.c</a>
+</li>
+
+<li>
+<a href="prog/linear4b.c">linear4b.c</a>
+</li>
+
+<li>
+<a href="prog/negpos.c">negpos.c</a>
+</li>
+
+<li>
+<a href="prog/sortdefect.c">sortdefect.c</a>
+</li>
+
+<li>
+<a href="prog/slinear1.c">slinear1.c</a>
+</li>
+
+<li>
+<a href="prog/slinear2.c">slinear2.c</a>
+</li>
+
+<li>
+<a href="prog/binary.c">binary.c</a>
+</li>
+
+<li>
+<a href="prog/binary2.c">binary2.c</a>
+</li>
+
+<li>
+<a href="prog/matwri.c">matwri.c</a>
+</li>
+
+<li>
+<a href="prog/matadd.c">matadd.c</a>
+</li>
+
+<li>
+<a href="prog/matmult.c">matmult.c</a>
+</li>
+
+<li>
+<a href="prog/matrans.c">matrans.c</a>
+</li>
+
+<li>
+<a href="prog/matrans2.c">matrans2.c</a>
+</li>
+
+<li>
+<a href="prog/input.c">input.c</a>
+</li>
+
+<li>
+<a href="prog/dump.c">dump.c</a>
+</li>
+
+<li>
+<a href="prog/gaussimp.c">gaussimp.c</a>
+</li>
+
+<li>
+<a href="prog/gauss.c">gauss.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap7.rb">Files from chap7.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/readchar1.c">readchar1.c</a>
+</li>
+
+<li>
+<a href="prog/readchar2.c">readchar2.c</a>
+</li>
+
+<li>
+<a href="prog/readchar3.c">readchar3.c</a>
+</li>
+
+<li>
+<a href="prog/ctype1.c">ctype1.c</a>
+</li>
+
+<li>
+<a href="prog/ctype2.c">ctype2.c</a>
+</li>
+
+<li>
+<a href="prog/toup.c">toup.c</a>
+</li>
+
+<li>
+<a href="prog/tolo.c">tolo.c</a>
+</li>
+
+<li>
+<a href="prog/charcode1.c">charcode1.c</a>
+</li>
+
+<li>
+<a href="prog/charcode2.c">charcode2.c</a>
+</li>
+
+<li>
+<a href="prog/toupper2.c">toupper2.c</a>
+</li>
+
+<li>
+<a href="prog/strl.c">strl.c</a>
+</li>
+
+<li>
+<a href="prog/guardex.c">guardex.c</a>
+</li>
+
+<li>
+<a href="prog/readstring.c">readstring.c</a>
+</li>
+
+<li>
+<a href="prog/marriage.c">marriage.c</a>
+</li>
+
+<li>
+<a href="prog/capinit.c">capinit.c</a>
+</li>
+
+<li>
+<a href="prog/replace.c">replace.c</a>
+</li>
+
+<li>
+<a href="prog/pan.c">pan.c</a>
+</li>
+
+<li>
+<a href="prog/lenmis.c">lenmis.c</a>
+</li>
+
+<li>
+<a href="prog/chop.c">chop.c</a>
+</li>
+
+<li>
+<a href="prog/anagram1.c">anagram1.c</a>
+</li>
+
+<li>
+<a href="prog/anagram2.c">anagram2.c</a>
+</li>
+
+<li>
+<a href="prog/anagram.c">anagram.c</a>
+</li>
+
+<li>
+<a href="prog/badlen.c">badlen.c</a>
+</li>
+
+<li>
+<a href="prog/pass.c">pass.c</a>
+</li>
+
+<li>
+<a href="prog/s2i.c">s2i.c</a>
+</li>
+
+<li>
+<a href="prog/calc.c">calc.c</a>
+</li>
+
+<li>
+<a href="prog/lex.c">lex.c</a>
+</li>
+
+<li>
+<a href="prog/strcmp.c">strcmp.c</a>
+</li>
+
+<li>
+<a href="prog/linsortstr.c">linsortstr.c</a>
+</li>
+
+<li>
+<a href="prog/substr.c">substr.c</a>
+</li>
+
+<li>
+<a href="prog/sbhul.c">sbhul.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap8.rb">Files from chap8.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/file1.c">file1.c</a>
+</li>
+
+<li>
+<a href="prog/fwrite2.c">fwrite2.c</a>
+</li>
+
+<li>
+<a href="prog/filew.c">filew.c</a>
+</li>
+
+<li>
+<a href="prog/cust.c">cust.c</a>
+</li>
+
+<li>
+<a href="prog/fappend1.c">fappend1.c</a>
+</li>
+
+<li>
+<a href="prog/fappend2.c">fappend2.c</a>
+</li>
+
+<li>
+<a href="prog/cust2.c">cust2.c</a>
+</li>
+
+<li>
+<a href="prog/fread1.c">fread1.c</a>
+</li>
+
+<li>
+<a href="prog/fread2.c">fread2.c</a>
+</li>
+
+<li>
+<a href="prog/favg.c">favg.c</a>
+</li>
+
+<li>
+<a href="prog/ferr1.c">ferr1.c</a>
+</li>
+
+<li>
+<a href="prog/ferr2.c">ferr2.c</a>
+</li>
+
+<li>
+<a href="prog/freaderr1.c">freaderr1.c</a>
+</li>
+
+<li>
+<a href="prog/freaderr2.c">freaderr2.c</a>
+</li>
+
+<li>
+<a href="prog/fwriteerr1.c">fwriteerr1.c</a>
+</li>
+
+<li>
+<a href="prog/fclose1.c">fclose1.c</a>
+</li>
+
+<li>
+<a href="prog/nomore.c">nomore.c</a>
+</li>
+
+<li>
+<a href="prog/errout.c">errout.c</a>
+</li>
+
+<li>
+<a href="prog/writemat.c">writemat.c</a>
+</li>
+
+<li>
+<a href="prog/errout2.c">errout2.c</a>
+</li>
+
+<li>
+<a href="prog/baka.c">baka.c</a>
+</li>
+
+<li>
+<a href="prog/fp.c">fp.c</a>
+</li>
+
+<li>
+<a href="prog/fscret.c">fscret.c</a>
+</li>
+
+<li>
+<a href="prog/fp2.c">fp2.c</a>
+</li>
+
+<li>
+<a href="prog/fp3.c">fp3.c</a>
+</li>
+
+<li>
+<a href="prog/seekex.c">seekex.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap9.rb">Files from chap9.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/dist.c">dist.c</a>
+</li>
+
+<li>
+<a href="prog/areastruct.c">areastruct.c</a>
+</li>
+
+<li>
+<a href="prog/areastruct.c">areastruct.c</a>
+</li>
+
+<li>
+<a href="prog/areastruct2.c">areastruct2.c</a>
+</li>
+
+<li>
+<a href="prog/areastruct2.c">areastruct2.c</a>
+</li>
+
+<li>
+<a href="prog/unionex.c">unionex.c</a>
+</li>
+
+<li>
+<a href="prog/structbhul1.c">structbhul1.c</a>
+</li>
+
+<li>
+<a href="prog/structbhul2.c">structbhul2.c</a>
+</li>
+
+<li>
+<a href="prog/structbhul3.c">structbhul3.c</a>
+</li>
+
+<li>
+<a href="prog/td1.c">td1.c</a>
+</li>
+
+<li>
+<a href="prog/skewdist.c">skewdist.c</a>
+</li>
+
+<li>
+<a href="prog/adv.c">adv.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap10.rb">Files from chap10.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/size1.c">size1.c</a>
+</li>
+
+<li>
+<a href="prog/showaddr1.c">showaddr1.c</a>
+</li>
+
+<li>
+<a href="prog/ptad.c">ptad.c</a>
+</li>
+
+<li>
+<a href="prog/poi1.c">poi1.c</a>
+</li>
+
+<li>
+<a href="prog/poi2.c">poi2.c</a>
+</li>
+
+<li>
+<a href="prog/poi3.c">poi3.c</a>
+</li>
+
+<li>
+<a href="prog/poi5.c">poi5.c</a>
+</li>
+
+<li>
+<a href="prog/poi6.c">poi6.c</a>
+</li>
+
+<li>
+<a href="prog/poi7.c">poi7.c</a>
+</li>
+
+<li>
+<a href="prog/papp1.c">papp1.c</a>
+</li>
+
+<li>
+<a href="prog/papp2.c">papp2.c</a>
+</li>
+
+<li>
+<a href="prog/papp3.c">papp3.c</a>
+</li>
+
+<li>
+<a href="prog/calloc1.c">calloc1.c</a>
+</li>
+
+<li>
+<a href="prog/callocmat.c">callocmat.c</a>
+</li>
+
+<li>
+<a href="prog/calloc2.c">calloc2.c</a>
+</li>
+
+<li>
+<a href="prog/callocmat2.c">callocmat2.c</a>
+</li>
+
+<li>
+<a href="prog/funcall1.c">funcall1.c</a>
+</li>
+
+<li>
+<a href="prog/findpsum.c">findpsum.c</a>
+</li>
+
+<li>
+<a href="prog/fundiff1.c">fundiff1.c</a>
+</li>
+
+<li>
+<a href="prog/fundiff2.c">fundiff2.c</a>
+</li>
+
+<li>
+<a href="prog/twice.c">twice.c</a>
+</li>
+
+<li>
+<a href="prog/tip.c">tip.c</a>
+</li>
+
+<li>
+<a href="prog/stringcap.c">stringcap.c</a>
+</li>
+
+<li>
+<a href="prog/stringcap2.c">stringcap2.c</a>
+</li>
+
+<li>
+<a href="prog/stringdelim.c">stringdelim.c</a>
+</li>
+
+<li>
+<a href="prog/marksheet1.c">marksheet1.c</a>
+</li>
+
+<li>
+<a href="prog/afp.c">afp.c</a>
+</li>
+
+<li>
+<a href="prog/afp.c">afp.c</a>
+</li>
+
+<li>
+<a href="prog/afp.c">afp.c</a>
+</li>
+
+<li>
+<a href="prog/afp.c">afp.c</a>
+</li>
+
+<li>
+<a href="prog/askforvec.c">askforvec.c</a>
+</li>
+
+<li>
+<a href="prog/uvec2.c">uvec2.c</a>
+</li>
+
+<li>
+<a href="prog/uvec2.c">uvec2.c</a>
+</li>
+
+<li>
+<a href="prog/uvec3.c">uvec3.c</a>
+</li>
+
+<li>
+<a href="prog/uvec3.c">uvec3.c</a>
+</li>
+
+<li>
+<a href="prog/badstruct.c">badstruct.c</a>
+</li>
+
+<li>
+<a href="prog/card1a.c">card1a.c</a>
+</li>
+
+<li>
+<a href="prog/card2.c">card2.c</a>
+</li>
+
+<li>
+<a href="prog/lltrav.c">lltrav.c</a>
+</li>
+
+<li>
+<a href="prog/llcount.c">llcount.c</a>
+</li>
+
+<li>
+<a href="prog/lltrav2.c">lltrav2.c</a>
+</li>
+
+<li>
+<a href="prog/lljump.c">lljump.c</a>
+</li>
+
+<li>
+<a href="prog/llfind.c">llfind.c</a>
+</li>
+
+<li>
+<a href="prog/llfind.c">llfind.c</a>
+</li>
+
+<li>
+<a href="prog/llprev.c">llprev.c</a>
+</li>
+
+<li>
+<a href="prog/lldel1.c">lldel1.c</a>
+</li>
+
+<li>
+<a href="prog/llremove.c">llremove.c</a>
+</li>
+
+<li>
+<a href="prog/llinsert.c">llinsert.c</a>
+</li>
+
+<li>
+<a href="prog/dp1.c">dp1.c</a>
+</li>
+
+<li>
+<a href="prog/dp2.c">dp2.c</a>
+</li>
+
+<li>
+<a href="prog/dp3.c">dp3.c</a>
+</li>
+
+<li>
+<a href="prog/dp4.c">dp4.c</a>
+</li>
+
+<li>
+<a href="prog/dp5.c">dp5.c</a>
+</li>
+
+<li>
+<a href="prog/dp6.c">dp6.c</a>
+</li>
+
+<li>
+<a href="prog/dp7.c">dp7.c</a>
+</li>
+
+<li>
+<a href="prog/dangex.c">dangex.c</a>
+</li>
+
+<li>
+<a href="prog/ml1.c">ml1.c</a>
+</li>
+
+<li>
+<a href="prog/ml2.c">ml2.c</a>
+</li>
+
+<li>
+<a href="prog/memleakex.c">memleakex.c</a>
+</li>
+
+<li>
+<a href="prog/ml4.c">ml4.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap10past.rb">Files from chap10past.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/size1.c">size1.c</a>
+</li>
+
+<li>
+<a href="prog/showaddr1.c">showaddr1.c</a>
+</li>
+
+<li>
+<a href="prog/poi1.c">poi1.c</a>
+</li>
+
+<li>
+<a href="prog/poi2.c">poi2.c</a>
+</li>
+
+<li>
+<a href="prog/poi3.c">poi3.c</a>
+</li>
+
+<li>
+<a href="prog/poi5.c">poi5.c</a>
+</li>
+
+<li>
+<a href="prog/poi6.c">poi6.c</a>
+</li>
+
+<li>
+<a href="prog/poi7.c">poi7.c</a>
+</li>
+
+<li>
+<a href="prog/papp1.c">papp1.c</a>
+</li>
+
+<li>
+<a href="prog/papp2.c">papp2.c</a>
+</li>
+
+<li>
+<a href="prog/papp3.c">papp3.c</a>
+</li>
+
+<li>
+<a href="prog/calloc1.c">calloc1.c</a>
+</li>
+
+<li>
+<a href="prog/calloc2.c">calloc2.c</a>
+</li>
+
+<li>
+<a href="prog/calloc3.c">calloc3.c</a>
+</li>
+
+<li>
+<a href="prog/calloc4.c">calloc4.c</a>
+</li>
+
+<li>
+<a href="prog/funcall1.c">funcall1.c</a>
+</li>
+
+<li>
+<a href="prog/fundiff1.c">fundiff1.c</a>
+</li>
+
+<li>
+<a href="prog/fundiff2.c">fundiff2.c</a>
+</li>
+
+<li>
+<a href="prog/badstruct.c">badstruct.c</a>
+</li>
+
+<li>
+<a href="prog/card1.c">card1.c</a>
+</li>
+
+<li>
+<a href="prog/card2.c">card2.c</a>
+</li>
+
+<li>
+<a href="prog/dp1.c">dp1.c</a>
+</li>
+
+<li>
+<a href="prog/dp2.c">dp2.c</a>
+</li>
+
+<li>
+<a href="prog/dp3.c">dp3.c</a>
+</li>
+
+<li>
+<a href="prog/dp4.c">dp4.c</a>
+</li>
+
+<li>
+<a href="prog/dp5.c">dp5.c</a>
+</li>
+
+<li>
+<a href="prog/dp6.c">dp6.c</a>
+</li>
+
+<li>
+<a href="prog/dp7.c">dp7.c</a>
+</li>
+
+<li>
+<a href="prog/dangex.c">dangex.c</a>
+</li>
+
+<li>
+<a href="prog/ml1.c">ml1.c</a>
+</li>
+
+<li>
+<a href="prog/ml2.c">ml2.c</a>
+</li>
+
+<li>
+<a href="prog/ml3.c">ml3.c</a>
+</li>
+
+<li>
+<a href="prog/memleakex.c">memleakex.c</a>
+</li>
+
+<li>
+<a href="prog/ml4.c">ml4.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap11.rb">Files from chap11.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/secret.c">secret.c</a>
+</li>
+
+<li>
+<a href="prog/other.c">other.c</a>
+</li>
+
+<li>
+<a href="prog/other2.c">other2.c</a>
+</li>
+
+<li>
+<a href="prog/user.c">user.c</a>
+</li>
+
+<li>
+<a href="prog/secret.h">secret.h</a>
+</li>
+
+<li>
+<a href="prog/other3.c">other3.c</a>
+</li>
+
+<li>
+<a href="prog/password.h">password.h</a>
+</li>
+
+<li>
+<a href="prog/scope1.c">scope1.c</a>
+</li>
+
+<li>
+<a href="prog/externb.c">externb.c</a>
+</li>
+
+<li>
+<a href="prog/externa.c">externa.c</a>
+</li>
+
+<li>
+<a href="prog/exa.c">exa.c</a>
+</li>
+
+<li>
+<a href="prog/exb.c">exb.c</a>
+</li>
+
+<li>
+<a href="prog/block1.c">block1.c</a>
+</li>
+
+<li>
+<a href="prog/block2.c">block2.c</a>
+</li>
+
+<li>
+<a href="prog/blocks.c">blocks.c</a>
+</li>
+
+<li>
+<a href="prog/externc.c">externc.c</a>
+</li>
+
+<li>
+<a href="prog/static1.c">static1.c</a>
+</li>
+
+<li>
+<a href="prog/staex1.c">staex1.c</a>
+</li>
+
+<li>
+<a href="prog/staex2.c">staex2.c</a>
+</li>
+
+<li>
+<a href="prog/clash1.c">clash1.c</a>
+</li>
+
+<li>
+<a href="prog/clash2a.c">clash2a.c</a>
+</li>
+
+<li>
+<a href="prog/clash2b.c">clash2b.c</a>
+</li>
+
+<li>
+<a href="prog/staex3.c">staex3.c</a>
+</li>
+
+</ul>
+
+<h2><a
+name="Files from chap12.rb">Files from chap12.rb</a></h2>
+
+<ul>
+
+<li>
+<a href="prog/d2h.c">d2h.c</a>
+</li>
+
+<li>
+<a href="prog/d2o.c">d2o.c</a>
+</li>
+
+<li>
+<a href="prog/h2d.c">h2d.c</a>
+</li>
+
+<li>
+<a href="prog/o2d.c">o2d.c</a>
+</li>
+
+<li>
+<a href="prog/mix.c">mix.c</a>
+</li>
+
+<li>
+<a href="prog/roll.c">roll.c</a>
+</li>
+
+<li>
+<a href="prog/rollover.c">rollover.c</a>
+</li>
+
+<li>
+<a href="prog/signed.c">signed.c</a>
+</li>
+
+<li>
+<a href="prog/signed2.c">signed2.c</a>
+</li>
+
+<li>
+<a href="prog/sigun1.c">sigun1.c</a>
+</li>
+
+<li>
+<a href="prog/sigdou.c">sigdou.c</a>
+</li>
+
+<li>
+<a href="prog/bitnot1.c">bitnot1.c</a>
+</li>
+
+<li>
+<a href="prog/bitand.c">bitand.c</a>
+</li>
+
+<li>
+<a href="prog/bitor.c">bitor.c</a>
+</li>
+
+<li>
+<a href="prog/bitxor.c">bitxor.c</a>
+</li>
+
+<li>
+<a href="prog/bitshift.c">bitshift.c</a>
+</li>
+
+<li>
+<a href="prog/readbit.c">readbit.c</a>
+</li>
+
+<li>
+<a href="prog/readbitans.c">readbitans.c</a>
+</li>
+
+<li>
+<a href="prog/setbit.c">setbit.c</a>
+</li>
+
+<li>
+<a href="prog/setbitans.c">setbitans.c</a>
+</li>
+
+<li>
+<a href="prog/d2b.c">d2b.c</a>
+</li>
+
+<li>
+<a href="prog/inf.c">inf.c</a>
+</li>
+
+<li>
+<a href="prog/unicode.c">unicode.c</a>
+</li>
+
+</ul>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

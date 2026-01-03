@@ -1,0 +1,437 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Wierd distributions</h3>
+<ul>
+<li>
+<a href="#Different types of distributions">Different types of distributions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Neither continuous nor discrete">Neither continuous nor discrete</a>
+</li>
+<li>
+<a href="#Cantor distribution (graphically)">Cantor distribution (graphically)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The sequence">The sequence</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Convergence of $F_n$">Convergence of $F_n$</a>
+</li>
+<li>
+<a href="#Cantor distribution (rigorously) (part 1)">Cantor distribution (rigorously) (part 1)</a>
+</li>
+<li>
+<a href="#Cantor distribution (rigorously) (part 2)">Cantor distribution (rigorously) (part 2)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#The limit is a CDF">The limit is a CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#A &quot;loose&quot; definition">A "loose" definition</a>
+</li>
+<li>
+<a href="#Cantor distribution (properties)">Cantor distribution (properties)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Moments">Moments</a>
+</li>
+</ul>
+<hr/>
+<title>Wierd distributions</title>
+
+<h1><a
+name="Different types of distributions">Different types of distributions</a></h1>
+<a href="https://youtu.be/FbfrRKz1-54">Video for this section</a>
+<p></p>
+We hae talked about many different types of distributions. Here is a Venn diagram for the different types. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/vendis.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+As this diagram shows, there are distributions that are neither discrete nor continuous (green dot in the diagram). Also
+ there are continuous distributions
+ that do not admit a density (blue dot). We shall now take  a closer look at two such examples.
+<p></p>
+
+<h2><a
+name="Neither continuous nor discrete">Neither continuous nor discrete</a></h2>
+Such distributions abound in reality. Here is a simple example. Imagine a random light bulb with
+ light span $X.$  This means if you turn it on, and never switch it off, and monitor it
+ continuously to record the time when it gets fused, then that time is $X.$   Now, lifespans need to be found for lamps
+ for quality control purposes. But it is not feasible to wait all the way until the toughest bulb burns itself out. Instead,
+ the monotoring is done only up to a fixed time $t$, say. If the true life span is $X,$  then we record $Y$ 
+ where
+$$Y = \left\{\begin{array}{ll}X&\text{if }X\leq t\\ t&\text{otherwise.}\end{array}\right.$$
+We say that $Y$  is a obtained by <b><font color="red" size="40">truncating</font></b>  $X$   at $t.$
+<p></p>
+If $X$  has a CDF like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/trunc1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+then $Y$  has a CDF like this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/trunc2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Though, strictly speaking it is neither continuous nor discrete, yet, colloqually, we often say
+ that here we have <i>both</i>  density and mass. The density is up to $t,$  and the mass is at $t.$
+<p></p>
+
+<h1><a
+name="Cantor distribution (graphically)">Cantor distribution (graphically)</a></h1>
+<a href="https://youtu.be/VKjHQ4K-3D0">Video for this section</a>
+<p></p>
+
+<p></p>
+The example we are going to describe is called <b><font color="red" size="40">Cantor distribution</font></b>. As it has neither a PMF nor a density, we
+ shall describe it using its CDF. But its CDF is not easy to write down directly. Instead, we shall construct a sequence
+ of CDFs $(F_n)$  and express the Cantor CDF as their limit. 
+<p></p>
+
+<h2><a
+name="The sequence">The sequence</a></h2>
+Consider the interval $S_0 = [0,1].$  If you remove its middle open one-third, then you will be
+ left with $S_1 = \left[0,\frac 13 \right]\cup\left[ \frac 23,1 \right].$ 
+ If you apply the same thing to each of the intervals in $S_1$  you will be left with
+$$S_2 = \left[ \frac 09,\frac 19 \right]\cup\left[ \frac 29, \frac 39 \right]\cup\left[ \frac 69, \frac 79 \right]\cup\left[ \frac 89, \frac 99 \right].$$
+This recursive process is perhaps better understood diagrammatically:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/canrec.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Now we shall define $F_n$  as the CDF of the uniform distribution over $S_n$  for $n=0,1,2,...$
+<p></p>
+Here the graphs of $F_0, F_1$  and $F_2$: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cangrsep.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+
+<p></p>
+Note that each oblique part in $F_n$  has ertical height $2^{-n}.$
+It is possible to write down an algebraic formula for $F_n.$  But it is preferable to think
+ in terms of graphs to appreciate
+ the following discussion.
+<p></p>
+
+<h2><a
+name="Convergence of $F_n$">Convergence of $F_n$</a></h2>
+We are going to claim that $F_n$'s converge. Indeed, they converge uniformly. This should be readily apparent if we
+ overlay their graphs. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cangrall.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+To move from one $F_n$  to the next we are leaving horizontal parts unchanged and replacing each oblique segment like
+ this:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/repl.png"></th>
+</tr>
+<tr>
+<th>Replace the black with the red</th>
+</tr>
+</table>
+</center>
+Thus, the change from $F_n$  to any $F_m$   for $m&gt;n$  is at most $2^{-n}.$ 
+ Digest this well from the graphs, as this will form the main argument in the proof coming up in the next video.  
+<h1><a
+name="Cantor distribution (rigorously) (part 1)">Cantor distribution (rigorously) (part 1)</a></h1>
+<a href="https://youtu.be/9YGu4b8x9dA">Video for this section</a>
+<p></p>
+Here we shall  formally prove the uniform convergence of $(F_n).$  We shall employ the uniform Cauchy
+ criterion, <i>i.e.</i>, we shall show that
+<p></p>
+
+<div class="box">Target</div>$\forall \epsilon&gt;0~~\exists N\in{\mathbb N}~~ \forall m,n\geq N~~ \forall x\in{\mathbb R}~~|F_m(x)-F_n(x)| &lt; \epsilon.$
+<p></p>
+You should know from your analysis course that this is equivalent to uniform conergence of $(F_n).$  
+<p></p>
+
+<div class="box">$\forall \epsilon$</div> Take any $\epsilon&gt;0.$
+<p></p>
+Then we can find $N\in{\mathbb N}$  for which $2^{-N} &lt; \epsilon.$
+<p></p>
+
+<div class="box">$\exists N$</div> Choose this $N\in{\mathbb N}.$
+<p></p>
+
+<div class="box">$\forall m,n$</div> Take any $m,n\geq N.$
+<p></p>
+
+<div class="box">$\forall x$</div> Take any $x\in{\mathbb R}.$
+<p></p>
+
+<div class="box">Check</div>
+
+<u>Case 1: $F_N$  is flat at $x$</u>: Then $F_m(x) = F_n(x),$  and so $|F_m(x) - F_n(x)| = 0 &lt; \epsilon$,
+ as required.
+<p></p>
+
+<u>Case 2: $F_N$  is oblique at $x$</u>: Let $[a,b]$  be the oblique interval of $F_N$  containing $x.$ 
+<p></p>
+Then $F_N(a) = F_m(a) $  and $F_N(b) = F_m(b).$  because $a,b$ are end points of the neighbouring flat regions.
+<p></p>
+Also $F_m(a) \leq F_m(x)\leq F_m(b).$  
+<p></p>
+So $F_N(a) \leq F_m(x)\leq F_N(b).$  Similarly, $F_N(a) \leq F_n(x)\leq F_N(b).$
+<p></p>
+Hence $|F_m(x)-F_n(x)|\leq F_N(b)-F_N(a) = 2^{-N} &lt; \epsilon$, as required. 
+<p></p>
+
+<h1><a
+name="Cantor distribution (rigorously) (part 2)">Cantor distribution (rigorously) (part 2)</a></h1>
+<a href="https://youtu.be/ry7jBBkmGNw">Video for this section</a>
+<p></p>
+
+<h2><a
+name="The limit is a CDF">The limit is a CDF</a></h2>
+Next we claim that $F$, the uniform limit of $F_n$'s, is indeed a CDF. Each $F_n$  is continuous, and 
+ uniform limits of continuous functions must be continuous. So $F$  is continuous (and hence, in particular, right continuous).
+ Also each $F_n$  is non-decreasing, and so must be their limit. Also $F(x) = 0$  if $x&lt; 0$  and $F(x) = 1$ 
+ if $x\geq 1.$
+<p></p>
+By the fundamental theorem of probability, this $F$  must be the CDF of the distribution of some random variable. It
+ is this distribution that we call the <b><font color="red" size="40">Cantor distribution</font></b>. 
+<p></p>
+
+<h2><a
+name="A "loose" definition">A "loose" definition</a></h2>
+Some books provide the following loose definition of the Cantor distribution:
+They start by defining the <b><font color="red" size="40">Cantor set</font></b>  as $S = \cap_n S_n$.  Then the define the Cantor distribution as
+ the uniform distribution on $S$.
+<p></p>
+While this does capture the spirit of the distribution, it is not a rigourous definition, because we have not defined "uniform
+ distribution" only for finite sample spaces, and for distributions with densities. The Cantor distribution does not have
+ PMF or density (shall show in the next section). So it is not clear what "uniform distribution" means here. 
+<p></p>
+
+<h1><a
+name="Cantor distribution (properties)">Cantor distribution (properties)</a></h1>
+<a href="https://youtu.be/aEVbWTCPLwE">Video for this section</a>
+<p></p>
+We have already seen that $F$  is continuous. However, it does not admit a density, as we show below.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Cantor distribution does not admit a density.</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let us consider $T_n = [0,1]\setminus S_n$  for $n=0,1,2,...$ 
+ This is the set of points where the graph of $F_n$  is horizontal.   Then the length of $T_n$  increases to $1.$ 
+Now, $F$  is differentiable at each point of $\cup T_n.$  and the derivtive is 0. If we set the derivative 0 everywhere
+ else, we get $f(x)\equiv 0.$  
+<p></p>
+For $F$  to admit a density, this $f$  must be a density. But clearly this $f$ 
+ cannot be a density (since its total integral is 0, not 1). Hence
+ $F$  cannot admit a density.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Moments">Moments</a></h2>
+If $X$ is a random variable having the  Cantor distribution, then $X$  is a bounded,
+ nonnegative random variable (since it must lie in $[0,1]$). So all its moments must exist
+ finitely. However, computing them may not appear easy. 
+<p></p>
+For $E(X)$  we note that $1-X$  is again a Cantor random variable (since flipping the unit interval around $\frac 12$ 
+ does not change the $S_n$'s). So by symmetry argument, we have $E(X) = \frac 12$.
+<p></p>
+We need machinery beyond the present syllabus to  compute $E(X^k)$  for general $k\in{\mathbb N}$.
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

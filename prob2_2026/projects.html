@@ -1,0 +1,236 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
+
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Projects</h3>
+<ul>
+<li>
+<a href="#Project 1">Project 1</a>
+</li>
+<li>
+<a href="#Project 2">Project 2</a>
+</li>
+<li>
+<a href="#Project 3">Project 3</a>
+</li>
+</ul>
+<hr/>
+<title>Projects</title>
+This page lists a few fun projects related to things we have learned. These are totally optional, and will have no bearing
+ on the marks that you will get. Indeed, unless you are finding the course super easy, I would advise you to think about
+ the projects only after the semester is over. 
+<h1><a
+name="Project 1">Project 1</a></h1>
+In one of the exercises about $Unif(0,1)$  distribution, we had partitioned $(0,1)$  into a number of equal subintervals,
+ and had permuted them. This "scrambling" had produced a new random variable from an $Unif(0,1)$  random variable. Your
+ first task is to redo that exercise to convince yourself that the new random variable again has $Unif(0,1)$  distribution.
+<p></p>
+Now take any $X\sim Unif(0,1),$  and split $(0,1)$  into $n$  equal subintervals
+ where $n\in{\mathbb N}.$  Call these subintervals the <i>states</i>, labelled $1,...,n.$  Now
+ split each state into $n$  further subintervals (equal width) called <i>districts</i>, again
+ lablled $1,...,n.$  Thus, effectively you have split $(0,1)$  into $n^2$ 
+ subintervals that may be labelled as $(i,j)$  for $i,j\in\{1,...,n\},$  where $i$  denotes the state, and
+ $j$  denotes the district within the state. 
+<p></p>
+Let $Y$  be obtained by scrambling $X$  as follows: Swap $(i,j)$-th subinterval with the $(j,i)$-th subinterval.
+<p></p>
+Your next task is to find the joint distribution of $(X,Y).$  For this draw the joint distribution of $(X,X)$ 
+ as the $45^\circ$  line drawn as a diagonal in the unit square. The entire mass 1 is uniformly distributed along this
+ line. Take $n=2$  and do the swaps in the vertical axis, and sketch how the diagonal line
+ gets split into $n^2=4$  equal pieces and gets redistributed. 
+<p></p>
+Obtain the joint CDF of $(X,Y)$  as the points $\left(\frac in,\frac jn\right).$  
+<p></p>
+Compare with the CDF had $X, Y$  been IID $Unif(0,1).$  
+<p></p>
+Do you notice anything funny?
+<p></p>
+
+<h1><a
+name="Project 2">Project 2</a></h1>
+For this project you need to know how to extract pixel values from an image. There are R and
+ Python packages/functions for this purpose. You may Google, or ask me to learn about them.
+<p></p>
+Take printed text, preferrably large font, black ink on white paper. Hold your camera fixed in
+ from of it, and take 50 greylevel photos of the same thing without moving th camera or the page. Many
+ cameras have a "burst mode" that will help you to take a bunch of photos with a single click.
+ Extract the pixel values for each. Compute $V_{ij}=$  variance of the 50 meaurements of the
+ $(i,j)$-th pixel.  Would you expect all the $V_{ij}$'s to be nearly the same? Think, and make a guess. Now actually
+ compute and see. 
+<p></p>
+Can you explain what you see? 
+<p></p>
+
+<h1><a
+name="Project 3">Project 3</a></h1>
+THere are 5 bridges linking two shores of a river as shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/bridges.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Each brindge is either open or closed with probability $\frac 12$  independently of the others. What is the probability
+ that the man on shore 1 would be able to get to the other shore? Of course, you can compute the
+ probability using brute force enumeration.
+ But there is a smart way to get the answer. Can you find it? 
+<p></p>
+<hr/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
