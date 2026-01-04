@@ -85,7 +85,7 @@ is a density.
 
 <HEAD2>Problem set <PS/></HEAD2>
 
-<EXR>Is <M>f(x) = [[1][\pi(1+x^2]]</M>  a density?</EXR>
+<EXR>Is <M>f(x) = [[1][\pi(1+x^2)]]</M>  a density?</EXR>
 
 <EXR>Is it possible to find <M>c\in\rr</M>  such that <M>f(x)=ce^{-|x|}</M>  is a density? Sketch the graph of <M>f(x).</M></EXR>
 
