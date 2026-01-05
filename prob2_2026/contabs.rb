@@ -179,11 +179,11 @@ This <M>f</M>  must be a PDF for our CDF. For most applications, <M>F</M>  will 
  many points.
 
 For this technique to work <M>F</M>  must actually have a density. Otherwise, the
- <M>f(x)</M>  obtained by this procedure will not be a density. 
+function  <M>f(x)</M>  obtained by this procedure will not be a density. 
 For example, for a
  discrete distribution, the CDF is a step function, and so the above prescription would lead to <M>f(x)\equiv 0.</M>
 
-If you are given a CDF <M>F</M>, and you do not know if it has a density, then you should stll define <M>f</M>  as above,
+<ALERT/>If you are given a CDF <M>F</M>, and you do not know if it has a density, then you could still define <M>f</M>  as above,
  and actually check if <M>\forall x\in\rr~~F(x) = \int_{-\infty}^x f(t)\, dt.</M>  
 
 <HEAD2>Problem set <PS/></HEAD2>
@@ -281,7 +281,7 @@ State true or false: if <M>f(x)</M>  is a density, and <M>g(x)</M>  is obtained 
 <LI><M>f</M>  is continuous on <M>I</M>.</LI></UL>
   Let <M>f,g</M>  be two densities
  for the same distribution. If <M>f</M>  "sits on"an interval  <M>I</M>  and <M>g</M>  "sits on"
- an interval <M>J</M>, then show that the closure if <M>I</M>  and <M>J</M>   must match. (This closure is called the
+ an interval <M>J</M>, then show that the closures of <M>I</M>  and <M>J</M>   must match. (This closure is called the
 <TERM>support</TERM>  of the distribution).
   </EXR>
 <HEAD1 u="https://youtu.be/SDGTjfYfOZ4">Physical interpretation of density</HEAD1>
