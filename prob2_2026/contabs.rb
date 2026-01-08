@@ -417,7 +417,8 @@ The following theorem is also of a familiar form:
 <THM>
 Let <M>X</M>  be a random variable with density <M>f.</M>  Let <M>h:\rr\to\rr</M>  be a any function such that <M>h(X)</M> 
  is  a random variable. Then <M>E(h(X))=\int_{-\infty}^\infty h(x) f(x)\, dx</M>  if <M>\int_{-\infty}^\infty |h(x) f(x)|\, dx < \infty.</M> 
- If <M>\int_{-\infty}^\infty |h(x) f(x)|\, dx = \infty,</M>  then <M>E(h(X))</M>  does not exist.
+ If <M>\int_{-\infty}^\infty |h(x) f(x)|\, dx = \infty,</M>  then <M>E(h(X))</M>  does not exist finitely (may be <M>\infty</M> 
+ or <M>-\infty</M>  or non-existent).
 </THM>
 While we shall not prove this here, you should be aware of one subtle implication. Suppose that
  <M>X</M>  has density <M>f</M>  and we are trying to find <M>E(X^2).</M>  Then here are two ways of proceeding:
