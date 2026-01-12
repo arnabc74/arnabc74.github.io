@@ -453,7 +453,8 @@ We pick one element at random and follow it until it dies.  Let <M>X</M>  be the
 If a non-negative <M>X</M>  has density <M>f</M>  and CDF <M>F,</M>  then its its <TERM>hazard rate</TERM>  at time <M>t\leq 0</M> 
  is 
 <D>h(t) = [[f(t)][1-F(t)]],</D>
-when <M>F(t) < 1.</M>
+when <M>F(t) < 1.</M>  Here we are assuming that <M>f</M>  is continuous at all values of <M>t</M>  where we are computing
+ the hazard rate.
 </DEFN>
 We can think of it as 
 <D>\lim_{\delta t\to 0+} [[P(X\leq t+\delta t | X > t)][\delta t]] =\lim_{\delta t\to 0+} [[P(X\in
