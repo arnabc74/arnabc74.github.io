@@ -13,10 +13,27 @@ When we
 <HEAD2>Continuity</HEAD2>
 For  <M>f:\rr\to\rr</M>  continuity means its graph has no break. Similarly, <M>f:\rr^2\to\rr</M>  is called continuous,
  when its graph is an unbroken surface, no hole, cut or gap. More rigourously, you can think of 
- continuity in terms limits:
+ continuity in terms of the <M>\epsilon</M>-<M>\delta</M>  definition, much as in real analysis. In real analysis we say
+ that a function <M>f:\rr\to\rr</M>  is continuous at some <M>a\in\rr</M>  if 
+<D>\forall \epsilon>0~~\exists \delta>0~~\forall x\in N_1(a,\delta)~~f(x)\in N_1(f(a),\epsilon).</D>
+Here we have used the neighbourhood notation <M>N_1(a,r)</M>  to mean 
+<D>N_1(c,r):=\{x\in\rr~:~|x-c|<r\}.</D>
+Now the natural way to measure distance between two points <M>x,y\in\rr</M>  is <M>|x-y|.</M>  But if we want to find the
+ distance between two points <M>\v x = (x_1,x_2), \v y = (y_1,y_2)\in\rr^2,</M>  then the natural way is 
+<D>d(\v x, \v y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2}.</D>
+So we should update the definition of neighbourhood in <M>\rr^2</M>  accordingly:
+<D>N_2(\v c,r):=\{\v x\in\rr^2~:~f(\v x,\v c)<r\}.</D>
+Pictorially, this is the disc (without the circumference) of radius <M>r</M>  centred at <M>\v c.</M>  If we plug <M>N_2(\cdot, \cdot)</M> 
+ in place of <M>N_1(\cdot, \cdot)</M>  approparitely in the definition of continuity from real analysis, we shall get the
+ following definition:
+<DEFN name="Continuity">
+A function <M>f:\rr^2\to\rr</M>  is called <TERM>continuous</TERM>  at some <M>\v a\in\rr^2</M>  if
+<D>\forall \epsilon>0~~\exists \delta>0 ~~\forall \v x\in N_2(\v a, \delta)~~f(\v x)\in N_1(f(\v a),\epsilon).</D>
+</DEFN>
+Since the codomain is still <M>\rr,</M>  we are using subscript 1 in  <M>N_1(f(\v a),\epsilon).</M>  
+If our function was <M>f:\rr^2\to\rr^2,</M>  then we would have used <M>N_2(f(\v a),\epsilon).</M>  
+By the way, we can similarly define continuity of any <M>f:\rr^m\to\rr^n.</M>  
 
- <M>f:\rr^2\to\rr</M>  is continuous at <M>\v a</M>  means, whenever <M>\v x\to \v a</M> 
- we have <M>f(\v x)\to f(\v a).</M>  
 
 <HEAD2>Differentiability</HEAD2>
 We say that <M>f:\rr\to\rr</M>  is differentiable at some point <M>a</M>  if the graph is smooth
