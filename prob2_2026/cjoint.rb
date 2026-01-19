@@ -607,7 +607,7 @@ Let <M>X_1,...,X_n</M>  be jointly distributed random variables. We say they are
 </DEFN> 
 Incidentally, it is not enough to have <M>P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i)P( X_j\in B_j)</M>  for all <M>i\neq j.</M> 
  If only this holds, then we call <M>X_1,...,X_n</M>  only <TERM>pairwise independent</TERM>, which is weaker than mutual
- independent.
+ independence.
 
 So in particular if <M>X,Y</M>  are independent, then 
 <D>\forall x,y\in\rr~~P(X\leq x,\, Y\leq y) = P(X\leq x)\times P(Y\leq y).</D>

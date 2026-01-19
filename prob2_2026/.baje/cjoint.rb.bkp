@@ -22,7 +22,7 @@ Now the natural way to measure distance between two points <M>x,y\in\rr</M>  is 
  distance between two points <M>\v x = (x_1,x_2), \v y = (y_1,y_2)\in\rr^2,</M>  then the natural way is 
 <D>d(\v x, \v y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2}.</D>
 So we should update the definition of neighbourhood in <M>\rr^2</M>  accordingly:
-<D>N_2(\v c,r):=\{\v x\in\rr^2~:~f(\v x,\v c)<r\}.</D>
+<D>N_2(\v c,r):=\{\v x\in\rr^2~:~d(\v x,\v c)<r\}.</D>
 Pictorially, this is the disc (without the circumference) of radius <M>r</M>  centred at <M>\v c.</M>  If we plug <M>N_2(\cdot, \cdot)</M> 
  in place of <M>N_1(\cdot, \cdot)</M>  approparitely in the definition of continuity from real analysis, we shall get the
  following definition:
