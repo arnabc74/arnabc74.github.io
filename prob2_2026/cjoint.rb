@@ -494,7 +494,11 @@ Find it and fill in the cells below with appropriate formulae for <M>F(x,y).</M>
  you.
 <CIMG web="fexp.png"></CIMG>
  Is it continuous everywhere? What is
- <M>P(X=a,\,Y=b)</M>  for any given <M>(a,b)?</M></EXR>
+ <M>P(X=a,\,Y=b)</M>  for any given <M>(a,b)?</M>
+<ANS>
+<CIMG web="contcex.png"/>
+</ANS>
+</EXR>
 
 Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
 <BECAUSE>You can put rationals
