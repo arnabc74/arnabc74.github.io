@@ -1,0 +1,16 @@
+r = seq(0,10,len=50)
+theta = seq(0,2*pi, len=300)
+xx = function(r,theta) r*cos(theta)
+yy = function(r,theta) r*sin(theta)
+zz = function(r,theta) sin(r)
+paraObj(outer(r,theta,xx),outer(r,theta,yy),outer(r,theta,zz),"ripple.obj")
+
+x = y = seq(-1,1,len=51)
+sink("saddle.obj")
+surfObj(x,y,outer(x,y,"*"))
+sink()
+
+x = y = seq(0,1,len=51)
+sink("saddle.obj")
+surfObj(x,y,outer(x,y,"*"))
+sink()

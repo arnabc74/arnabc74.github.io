@@ -224,7 +224,7 @@ We could have done it the other way around, too:
 This should also lead to the same answer (check!). 
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x)=<CASES>cxy<IF>x,y\in[0,1],\,x\leq y</IF>
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x,y)=<CASES>cxy<IF>x,y\in[0,1],\,x\leq y</IF>
  0<ELSE/></CASES>.</M>  Find <M>P(Y< \sqrt{X}).</M></EXR>
 
 <EXR>Let <M>(X,Y)</M>  have joint density <M>f(x)=<CASES>c(x+y)<IF>x,y\in[0,1]</IF>
@@ -599,7 +599,7 @@ We already know the following general definition of  jointly distributed random 
 <DEFN name="Independence">
 Let <M>X_1,...,X_n</M>  be jointly distributed random variables. We say they are <TERM>(mutually) independent</TERM>  if
  for all <M>\{i_1,...,i_k\}\seq \{1,...,n\}</M>  and any <M>B_1,...,B_k\seq\rr</M>  we have
-<D>P(X_{i_1}\in B_1, ..., X_{i_k}\in B_k) = P(X_{i_1}\in B_1)\times\cdotsP( X_{i_k}\in B_k).</D>
+<D>P(X_{i_1}\in B_1, ..., X_{i_k}\in B_k) = P(X_{i_1}\in B_1)\times\cdots P( X_{i_k}\in B_k).</D>
 </DEFN> 
 Incidentally, it is not enough to have <M>P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i)P( X_j\in B_j)</M>  for all <M>i\neq j.</M> 
  If only this holds, then we call <M>X_1,...,X_n</M>  only <TERM>pairwise independent</TERM>, which is weaker than mutual
