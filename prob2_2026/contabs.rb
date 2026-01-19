@@ -33,7 +33,7 @@ Let <M>X</M>  have a density <M>f(x).</M>  Then
 <LI><M>\forall a<b\in\rr~~P(a < X < b) =P(a < X \leq b) =P(a \leq X < b) =P(a \leq X \leq b) = \int_a^b f(x)\, dx.</M></LI>
 <LI><M>\forall a\in\rr~~P(a < X )  = P(a\leq X)=\int_a^\infty f(x)\, dx.</M></LI>
 <LI><M>\forall a\in\rr~~P(X < a)  = P(X\leq a)=\int_ \infty^a f(x)\, dx.</M></LI>
-<LI><M>\int_ \infty^ \infty f(x)\, dx = 1.</M></LI>
+<LI><M>\int_{-\infty}^ \infty f(x)\, dx = 1.</M></LI>
 </OL>
 </THM>
 
@@ -450,7 +450,7 @@ We pick one element at random and follow it until it dies.  Let <M>X</M>  be the
  random variable. Typically we consider it as having a density. Then a quantity of interest is what is the chance of death
  at a given age. This gives rise to the following definition.
 <DEFN name="Hazard rate">
-If a non-negative <M>X</M>  has density <M>f</M>  and CDF <M>F,</M>  then its its <TERM>hazard rate</TERM>  at time <M>t\leq 0</M> 
+If a non-negative <M>X</M>  has density <M>f</M>  and CDF <M>F,</M>  then its its <TERM>hazard rate</TERM>  at time <M>t\geq 0</M> 
  is 
 <D>h(t) = [[f(t)][1-F(t)]],</D>
 when <M>F(t) < 1.</M>  Here we are assuming that <M>f</M>  is continuous at all values of <M>t</M>  where we are computing
