@@ -554,8 +554,6 @@ If <M>(X,Y)</M>  has a joint density <M>f(x,y)</M>, then a marginal density of <
 <D>f_X(x) = \int_{-\infty}^\infty f(x,y)\, dy</D>
 and a marginal density of <M>Y</M>  by 
 <D>f_Y(y) = \int_{-\infty}^\infty f(x,y)\, dx</D>
-provided these are continuous and <M>\forall x\in\rr~~\int_{-\infty}^x f_X(t)\, dt = F_X(x)</M>  and <M>\forall
- y\in\rr~~\int_{-\infty}^y f_Y(t)\, dt = F_Y(y).</M>
 </THM>
 <PF>
 Enough to show that <M>\forall a\leq b\in\rr~~P(a\leq X\leq b) = \int_a^b f_X(x)\, dx.</M>
