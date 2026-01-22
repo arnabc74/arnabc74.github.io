@@ -22,7 +22,7 @@ Now the natural way to measure distance between two points <M>x,y\in\rr</M>  is 
  distance between two points <M>\v x = (x_1,x_2), \v y = (y_1,y_2)\in\rr^2,</M>  then the natural way is 
 <D>d(\v x, \v y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2}.</D>
 So we should update the definition of neighbourhood in <M>\rr^2</M>  accordingly:
-<D>N_2(\v c,r):=\{\v x\in\rr^2~:~f(\v x,\v c)<r\}.</D>
+<D>N_2(\v c,r):=\{\v x\in\rr^2~:~d(\v x,\v c)<r\}.</D>
 Pictorially, this is the disc (without the circumference) of radius <M>r</M>  centred at <M>\v c.</M>  If we plug <M>N_2(\cdot, \cdot)</M> 
  in place of <M>N_1(\cdot, \cdot)</M>  approparitely in the definition of continuity from real analysis, we shall get the
  following definition:
@@ -495,9 +495,9 @@ Find it and fill in the cells below with appropriate formulae for <M>F(x,y).</M>
 <CIMG web="fexp.png"></CIMG>
  Is it continuous everywhere? What is
  <M>P(X=a,\,Y=b)</M>  for any given <M>(a,b)?</M>
-<HINT>
-<CIMG
-</HINT>
+<ANS>
+<CIMG web="contcex.png"/>
+</ANS>
 </EXR>
 
 Univariate CDFs are nondecreasing functions, and hence can have only countably many discontinuities.
@@ -554,8 +554,6 @@ If <M>(X,Y)</M>  has a joint density <M>f(x,y)</M>, then a marginal density of <
 <D>f_X(x) = \int_{-\infty}^\infty f(x,y)\, dy</D>
 and a marginal density of <M>Y</M>  by 
 <D>f_Y(y) = \int_{-\infty}^\infty f(x,y)\, dx</D>
-provided these are continuous and <M>\forall x\in\rr~~\int_{-\infty}^x f_X(t)\, dt = F_X(x)</M>  and <M>\forall
- y\in\rr~~\int_{-\infty}^y f_Y(t)\, dt = F_Y(y).</M>
 </THM>
 <PF>
 Enough to show that <M>\forall a\leq b\in\rr~~P(a\leq X\leq b) = \int_a^b f_X(x)\, dx.</M>
@@ -586,10 +584,18 @@ Here the CDF of <M>(X,Y)</M>  is
 <D>
 F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = <CASES>0<IF>\min\{x,y\}<0</IF> \min\{x,y\}<IF>0\leq \min\{x,y\} < 1</IF> 1<IF>\min\{x,y\} \geq 1</IF></CASES>.
 </D>
-Hence, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
+<CIMG web="nodens.png">Different parts of <M>F(x,y)</M></CIMG>
+If you'd like to see it in 3D, then here it is:
+<CIMG web="nodens.png">Different parts of <M>F(x,y)</M></CIMG>
+
+Now, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
  by <M>f(x,y)</M>, where 
 <D>f(x,y) = [[\partial^2][\partial x\partial y]] F(x,y).</D>
-This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
+But the above diagram shows that each part of <M>F(x,y)</M>  either does not involve <M>x</M>  or does not involve <M>y.</M> 
+ So after partial differentiation wrt both the variables we must have <M>f(x,y)\equiv 0,</M>  which is not a PDF (since does
+ not integrate to 1). 
+
+This proves that <M>F(x,y)</M>  does not admit a density. 
   </EXM>
 However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M>  must also have (marginal) densities.
 
@@ -607,7 +613,7 @@ Let <M>X_1,...,X_n</M>  be jointly distributed random variables. We say they are
 </DEFN> 
 Incidentally, it is not enough to have <M>P(X_i\in B_i, X_j\in B_j) = P(X_i\in B_i)P( X_j\in B_j)</M>  for all <M>i\neq j.</M> 
  If only this holds, then we call <M>X_1,...,X_n</M>  only <TERM>pairwise independent</TERM>, which is weaker than mutual
- independent.
+ independence.
 
 So in particular if <M>X,Y</M>  are independent, then 
 <D>\forall x,y\in\rr~~P(X\leq x,\, Y\leq y) = P(X\leq x)\times P(Y\leq y).</D>

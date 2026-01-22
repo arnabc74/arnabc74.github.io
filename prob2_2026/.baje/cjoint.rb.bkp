@@ -584,10 +584,18 @@ Here the CDF of <M>(X,Y)</M>  is
 <D>
 F(x,y)=P(X\leq x,\, Y\leq y) = P(X\leq\min\{x,y\}) = <CASES>0<IF>\min\{x,y\}<0</IF> \min\{x,y\}<IF>0\leq \min\{x,y\} < 1</IF> 1<IF>\min\{x,y\} \geq 1</IF></CASES>.
 </D>
-Hence, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
+<CIMG web="nodens.png">Different parts of <M>F(x,y)</M></CIMG>
+If you'd like to see it in 3D, then here it is:
+<CIMG web="nodens3d.png">Surface of <M>F(x,y)</M></CIMG>
+
+Now, if <M>(X,Y)</M>  indeed had a joint density, then a joint density would be given
  by <M>f(x,y)</M>, where 
 <D>f(x,y) = [[\partial^2][\partial x\partial y]] F(x,y).</D>
-This forces <M>f(x,y)\equiv 0,</M>  which is not a PDF.
+But the above diagram shows that each part of <M>F(x,y)</M>  either does not involve <M>x</M>  or does not involve <M>y.</M> 
+ So after partial differentiation wrt both the variables we must have <M>f(x,y)\equiv 0,</M>  which is not a PDF (since does
+ not integrate to 1). 
+
+This proves that <M>F(x,y)</M>  does not admit a density. 
   </EXM>
 However, if <M>(X,Y)</M>  has a joint density, then both <M>X</M>  and <M>Y</M>  must also have (marginal) densities.
 
