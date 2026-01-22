@@ -874,7 +874,7 @@ Here we talked about 1-dim projection of 2-dim. In general, we do 1-dim projecti
 </EXR>
 
 <EXR>Let the dispersion matrix of <M>(X,Y)</M>  be <M><MAT>1 & 0\\0 & 2</MAT></M>. Find
- <M>\theta\in [0,\pi)</M>  such that <M>V(\cos (\theta) X + \sin(\theta) Y)</M>  is maximum. When is the variance minimum.</EXR>
+ <M>\theta\in [0,\pi)</M>  such that <M>V(\cos (\theta) X + \sin(\theta) Y)</M>  is maximum. When is the variance minimum?</EXR>
 
  <HEAD1 u="https://youtu.be/7hEYnZoKuJg">Properties of expectation, variance of random vectors</HEAD1>
 The following facts are immediate from the definition.

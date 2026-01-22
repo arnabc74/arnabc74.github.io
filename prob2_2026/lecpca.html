@@ -1,0 +1,197 @@
+<html>
+
+<body>
+<h1>Principal component analysis</h1>
+[Update:[Thu Jan 22 IST 2026]]
+<p>
+Consider the 3D scatterplot <a href="tstpca.html">here</a>. Rotate it to see that the points are all actually in a plane. So the intrinsic dimension of the data set is 2, and not 3.  
+
+<P/>
+
+Given a high dimensional data set principal component analysis
+detects if it actually resides in a low dimensional subspace.  If
+so, it also finds an orthonormal basis (just a set of mutually
+perpendicular Cartesian axes, with origin at the centre of the
+data cloud). The 3D scatterplot above shows such a coordinate
+system. The coordinate system has the additional feature that the
+spread of the data cloud along the first direction is the
+maximum, that along the second direction is the second maximum
+etc. 
+<p>
+The technique is to compute the covariance matrix: First we
+subtract the mean from all the data points, call the centred
+points Yi's. Then find average of all Yi'Yi. If we create a
+matrix Y with Yi's as columns then this is just Y'Y divided by n.
+Then we find the eigenvalues and eigenvectors of this matrix (or
+equivalently of Y'Y).
+<p>
+We shall now carry this out for an image data set [Download the
+data set <a href="https://drive.google.com/file/d/0B-bSIBx-Bg8_bEt3NFc2anVOYkk/edit?usp=sharing">here</a>].
+<p>
+The data set consists of 50 photos (faces of 5 men and 5 women,
+each photographed 5 times). All the images are in jpg format. So
+we need the jpeg package in R. (You'll need to install it from the
+web first.)  
+<pre>
+library(jpeg)
+</pre>
+Next we make a vector of the names:
+<pre>
+name = c("male.pacole","male.pspliu","male.sjbeck","male.skumar","male.rsanti",
+         "female.anpage","female.asamma","female.klclar","female.ekavaz","female.drbost")
+</pre>
+The filenames are like <tt>male.pacole.1.jpg</tt>, the number
+ranging from 1 to 5 (as we have 5 photos of each). Each photo is
+200 by 180 in size. So each photo may be considered as a point in
+36000 dimensional space. We first allocate a huge matrix to hold the data.
+<pre>  
+  x = matrix( 0, nrow = 10 * 5, ncol = 200 * 180 )
+</pre>
+Each row of x will hold a photo.
+<pre>
+  k = 0
+  for(i in 1 : 10) {
+    for(j in 1 : 5) {
+      k = k + 1
+      filename = paste( "grayfaces/", name[i], ".", j, ".jpg", sep="" )
+      x[k, ] = as.vector( readJPEG( filename ) )
+    }
+  }
+</pre>
+Notice how the expression <tt> paste( "grayfaces/", name[i], ".",
+j, ".jpg", sep="" )</tt>
+creates the full file path. (All the photos are in a folder
+called grayfaces in my computer).
+<p>
+The only way we can visualise the points in this high dimensonal
+space, is by plotting them as images. The following function does
+this. See the online helps of <tt>rasterImage</tt> to understand
+how it works. 
+<pre>
+drawPic = function(y,title) {
+  dim(y) = c(200,180)
+  plot(1:2,ty='n',main=title)
+  rasterImage(as.raster(y),1,1,2,2)
+}
+</pre>
+Let's see how a typical face looks.
+<pre>
+drawPic( x[1, ], "A male face" )
+drawPic( x[30, ], "A female face" )
+</pre>
+Let's find the centre of the data cloud, and visualise the point
+as an image. 
+<pre>
+meanx = apply(x,2,mean)
+drawPic( meanx, "The mean face" )
+</pre>
+Now we head for computing Y and Y'Y.
+<pre>  
+y = scale(x, scale = F)
+</pre>
+Lookup the help of the <tt>scale</tt> function to see how it
+works. Now we shall try to find Y'Y, which is a 36000 by 36000 matrix: 
+<pre>
+A = t(y) %*% y
+</pre>
+Oops! This is too big a matrix for R! So we need a little linear
+algebra to help R. If S and T are two matrices such that ST and
+TS are both defined (and square), then ST and TS have the nonzero
+eigenvalues. Also it is easy to see that if <M>v</M> is an
+eigenvector of ST for eigenvalue k, then Tv must be an
+eigenvector of TS for the same eigenvalue. 
+<p>
+So we perform eigen analysis of YY', istead which is just 50 by
+50 in size.
+<pre>
+A = y %*% t(y)
+eig = eigen(A)
+</pre>
+All the nonzero eigenvalues are obtained by this. Of course some
+zero eigenvalues may also be present. In our case the smallest
+one is 0. Check the last entry of <tt>values</tt> below: 
+<pre>
+values = eig$values
+P = t(y) %*% eig$vec[,-50] #Columns are e vecs of Y'Y
+
+Q = apply(P,2,function(x) x/sqrt(sum(x*x)))
+</pre>
+The columns of Q constitute the required orthonormal basis we
+were looking for. Let's express the 50 photos in this basis.
+<pre>
+scores = y %*% Q #i-th row is for i-th image
+</pre>
+
+It is instructive to visualise the eigenvectors (alsocalled
+eigenfaces) as images:
+<pre>
+showEigFace = function(vec) {
+  y = abs(vec)
+  extreme = range(y)
+  y = (y-extreme[1])/(extreme[2]-extreme[1])
+  drawPic(y, paste("Eigenface",i))
+}
+</pre>
+<pre>
+showEigFace(Q[,1])
+</pre>
+All the photos are linear combinations of these? Do we indeed
+need all these? No, we actually need only a first few, the rest
+adds only minor details.  
+<pre>
+expl = 100 * cumsum(values) / sum(values)
+barplot(expl,main="Cumulative screeplot")
+</pre>
+Noticehow rapidly the bars converge to 100%.
+<p>
+A more vivid representation is as follows. For any given photo we
+can write
+<blockquote>
+photo = meanface + a1 * eigface1 + ... + a49 * eigface49.
+</blockquote>
+The contributions of the higher terms are smaller and smaller.
+<p>
+We shall work with the 30-th photo. We extract the ai's first:
+<pre>
+coeff = as.vector(scores[30, ])
+</pre>
+Now draw the meanface:
+<pre>
+drawPic(meanx,0)
+</pre>
+And progessively add more and more details: 
+<pre>
+meanface
+meanface + a1 * eigface1
+meanface + a1 * eigface1 + a2 * eigface2
+etc
+</pre>
+In the loop below details are added in each pass. You'll need to
+hit enter after each step.
+<pre>
+for(k in 1:49) {
+  if(k==1)
+    temp = Q[,1]*coeff[1]
+  else
+    temp=Q[,1:k] %*% as.vector(coeff[1:k])
+
+  recons = meanx + temp
+  recons[ recons &lt; 0 ] = 0
+  drawPic( recons, paste( k, ":", values[k], ",", expl[k] ) )
+  readline()
+}
+</pre>
+Observe that the face is quite recognisable after just 10
+steps. The same is true about the other photos also. Thus the
+intrinsic diemnsion is actually as low as 10, instead of 36000.
+<p>
+The graylevel faces used in class are <a href="https://drive.google.com/file/d/0B-bSIBx-Bg8_bEt3NFc2anVOYkk/edit?usp=sharing">here</a>.
+<p>
+The complete data set (full color facial images)
+is <a href="https://drive.google.com/file/d/0B-bSIBx-Bg8_MEMxejg4QnJmUnc/edit?usp=sharing">here (17M)</a>. 
+<p>
+Also <a href="https://drive.google.com/file/d/0B-bSIBx-Bg8_WlNOSFBwa3RrVVU/edit?usp=sharing">here</a> is a 
+similar data set of digits. Try this method
+to find the intrinsic dimension.  
+</body>
+</html>
