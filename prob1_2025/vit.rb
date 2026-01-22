@@ -3,7 +3,7 @@
 <HEAD1>First taste of measure theory</HEAD1>
 If we keep on tossing a coin again and again, we are bound to get head sometime or other (assuming that <M>P(H)>0</M>). 
 A proof of this may be given like this:
-<Q>Let <M>A_n</M>  be the event that the first <M>n</M>  tosses have all resulted in heads. Let
+<Q>Let <M>A_n</M>  be the event that the first <M>n</M>  tosses have all resulted in tails. Let
  <M>A</M>  be the event that we never get a head. Then clearly <M>A_n\searrow A</M>. So by
  continuity of probability we must have <M>P(A_n)\to P(A).</M>  Now <M>P(A_n) = (*([[12]])*)^n \to
  0.</M>  Hence <M>P(A)=0.</M>  Hence <M>P(A^c)=1,</M>  i.e., we are bound to get a head some time or other.</Q>
