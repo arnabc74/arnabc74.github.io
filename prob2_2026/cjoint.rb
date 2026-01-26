@@ -296,7 +296,7 @@ The red-blue-green break up remains the same here as in the last example, as the
  square. The values (0 and 1) of the CDF over the white regions are also as before. 
 
 For <M>(x,y)</M>  in the red region,
-<D>F(x,y) = \int_0^x\int_0^y (u+v)\, dudv  = \int_0^x[[12]]y^2+yv\,dv = [[12]]xy^2+xy.</D>
+<D>F(x,y) = \int_0^x\int_0^y (u+v)\, dudv  = \int_0^x[[12]]y^2+yv\,dv = [[12]]xy^2+[[12]]x^2y.</D>
 Similarly, work out the values for the blue and green regions.</EXM>
 
 
