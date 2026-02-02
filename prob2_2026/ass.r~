@@ -1,0 +1,51 @@
+roll1 = sprintf("bs25%02d",(1:63)[-11])
+roll2 = sprintf("bs24%02d",c(15,16,21,23,45))
+roll = c(roll1,roll2)
+x = sample(read.table('ass.txt')[,1])
+frq = rep(4,length(x))
+frq[1] = frq[2] = 5
+
+allot = list()
+stud = list()
+for(qn in 1:167) stud[[qn]] = c(-1)
+
+for(i in 1:67) {
+    nLeft = length(which(frq>0))
+    if(nLeft >= 10) {
+        qns = sample(which(frq>0),10)
+    }
+    else {
+        qns = sample(which(frq>0))
+        cat("Before ", qns,"\n")
+        cat("Sampling",10-nLeft," from\n")
+        cat(setdiff(1:167,qns),"\n")
+        qns = c(qns,sample(setdiff(1:167,qns),10-nLeft))
+        cat("After ",qns,"\n")
+    }
+    allot[[i]] = qns
+    cat("qns= ",qns,"\n")
+    for(qn in qns) stud[[qn]] = c(stud[[qn]],i) 
+    frq[qns] = frq[qns] - 1
+}
+
+
+makeAss = function(i) {
+    sink(sprintf("%s_a1.rb",roll[i]))
+    cat("<NOTE>\n")
+    for(qn in allot[[i]]) cat("<EXR><EIMG web=\"",x[qn],"\"/></EXR>\n",sep='')
+    cat("\n</NOTE>\n")
+    sink()
+}
+sink("stud2qn.txt")
+for(i in 1:67) {
+    cat("Student",roll[i],"got",allot[[i]],"\n")
+}
+sink()
+sink("qn2stud.txt")
+for(i in 1:167) {
+    cat("Question",x[i],"is alloted to",stud[[i]],"\n")
+}
+sink()
+for(i in 1:67) makeAss(i)
+
+

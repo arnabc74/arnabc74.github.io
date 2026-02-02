@@ -1108,7 +1108,7 @@ So, in general, <M>Y|\Pi=p\sim Binom(5,p).</M>
 Hence the joint distribution has a probability density-cum-mass function (which is often called just a <I>density</I>  with
  some abuse of notation): 
 <D>g(p,x) = <CASES>f(p)\binom{5}{x} p^x(1-p)^{5-x}<IF>p\in(0,1),~~x\in\{0,1,...,5\}</IF> 0<ELSE/></CASES></D>
-To find <M>P(\Pi\in A,\, X\in B)</M>  just sum this over <M>p\in A</M>  and integrate over <M>x\in B.</M>
+To find <M>P(\Pi\in A,\, X\in B)</M>  just integrate  this over <M>p\in A</M>  and sum over <M>x\in B.</M>
 
 Conditional density of <M>\Pi</M>  given <M>X=x</M>  is <M>g(p, x) / P(X=x),</M>  where <M>P(X=x) = \int_{-\infty}^\infty g(p,x)\, dp.</M>
 </EXM>

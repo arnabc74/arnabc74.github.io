@@ -23,7 +23,7 @@ Let <M>y\in[0,4).</M>
 Then 
 <D>G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = [[12]]\sqrt y.</D>
 Differentiating this, we arrive at the required density of <M>Y</M>  as
-<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in[0,4]</IF> 0<ELSE/></CASES></D>
+<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in(0,4)</IF> 0<ELSE/></CASES></D>
 </EXM> 
 You see the advantage of monotonicity. Even though <M>x\mapsto x^2</M>  is a not a monotone function over <M>\rr,</M>  it
  is so when restricted to <M>[0,2].</M>  The CDF technique can handle even some simple non-monotonic cases, as we show now.
@@ -37,7 +37,7 @@ Clearly, <M>Y=X^2</M>  cannot go outside <M>[0,1].</M>  So its CDF <M>G(y)</M>  
 For <M>y\in[0,1)</M>  we have
 <D>G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.</D>
 Differentiating we get the density
-<D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in[0,1]</IF> 0<ELSE/></CASES> </D>
+<D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in(0,1)</IF> 0<ELSE/></CASES> </D>
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
