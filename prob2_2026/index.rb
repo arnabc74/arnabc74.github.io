@@ -4,7 +4,7 @@ URL: https://arnabc74.github.io/prob2_2026/
 
 <HEAD2>Assignments</HEAD2>
 Here is a assignment 1. If your roll number is <B>bs2xxxx</B>, then download the assignment from the following address:
-<Q><TT>https://arnabc.github.io/prob2_2026/a1_bs2xxxx.html</TT></Q>
+<Q><TT>https://arnabc74.github.io/prob2_2026/a1_bs2xxxx.html</TT></Q>
 There will be 10 problems (all from the class webpage). These are randomly assigned (and hence fairly, even though the difficulty
  levels may be somewhat different). Anyway, each student is supposed to solve all the problems in the class webpage. 
 
