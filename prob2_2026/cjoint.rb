@@ -662,7 +662,8 @@ Similarly, <M>Y=1</M>  or <M>0</M>  according as the second toss shows head or n
 <EXR><M>(X,Y)</M>  is distributed uniformly over the unit disc in <M>\rr^2.</M>  Are <M>X,Y</M>  independent?</EXR>
 
 <EXR>If the joint density of <M>(X,Y)</M>  is of the form <M>f(x)g(y),</M>  then show that
- <M>X</M>  and <M>Y</M>  must be independent. Also show that <M>f_X\propto f</M>  and <M>f_Y\propto g.</M></EXR>
+ <M>X</M>  and <M>Y</M>  must be independent. Also show that <M>X</M>  has a density
+ proportional to <M>f</M>,   and <M>Y</M>  has a density proportional to  <M>g.</M></EXR>
 
 <EXR>If <M>(X,Y)</M>  are independent, then is it true that the joint CDF
 is the product of the marginal CDFs?
