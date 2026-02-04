@@ -629,19 +629,23 @@ Two jointly distributed random variables <M>X,Y</M>  are independent if and only
 This is the general case. Now, if there is a joint density, then that can be factored
  into marginal densities, as well:
 <THM>
-Two jointly distributed random variables <M>X,Y</M> having joint density <M>f(x,y)</M> are independent if and only if
+Let <M>X,Y</M> be jointly distributed random variables. 
+<OL><LI>If <M>(X,Y)</M>  has  joint density <M>f(x,y)</M> where 
 <D>\forall x,y\in\rr~~f(x,y) = f_X(x)f_Y(y),</D>
-for some marginal densities <M>f_X</M>  and <M>f_Y.</M>
+for some marginal densities <M>f_X</M>  and <M>f_Y</M>, then <M>X</M>  and <M>Y</M>  must be independent.</LI>
+<LI>If <M>X,Y</M>  are independent, and <M>f_X, f_Y</M>  are some (marginal) densities of <M>X,Y</M>, then <M>f(x,y):=f_X(x)f_Y(y)</M> 
+ must be a joint density of <M>(X,Y).</M></LI></OL>
 </THM>
  <PF>
-<U>If part</U>: For any <M>x,y\in\rr</M>  we have
+<OL><LI> For any <M>x,y\in\rr</M>  we have
 <D>F(x,y) = P(X\leq x,\,Y\leq y) = \int_{-\infty}^y\int_{-\infty}^x f(x,y)\, dx\,dy =\int_{-\infty}^y\int_{-\infty}^x f_X(x)f_Y(y)\, dx\,dy = [*[\int_{-\infty}^xf_X(x)\,dx]*]\times[*[\int_{-\infty}^y f_Y(y)\,dy]*] = F_X(x)F_Y(y).</D>
-
-<U>Only if part</U>: Let <M>X,Y</M>  be independent. Let <M>f_X</M>  and <M>f_Y</M>  be densities for <M>X</M> and <M>Y.</M>
+</LI><LI>
+ Let <M>X,Y</M>  be independent. Let <M>f_X</M>  and <M>f_Y</M>  be densities for <M>X</M> and <M>Y.</M>
 Then for any <M>[a,b]</M> and <M>[c,d]</M> we have 
 <D>\int_a^b\int_c^d f_X(x)f_Y(y)\,dy\,dx =\int_a^b f_X(x) \, dx \int_c^d f_Y(y)\,dy =
  P(X\in[a,b])P(Y\in[c,d]) = P(X\in[a,b],\,Y\in[c,d]).</D>
 Hence <M>f_X(x)f_Y(y)</M>  is a joint density for <M>(X,Y).</M>  
+</LI></OL>
 </PF>
 
 As in the discrete case, here also we have the result that if <M>X,Y</M>  are independent, and <M>E(X), E(Y)</M>  exist,
@@ -695,7 +699,7 @@ unless both the expectation on the rhs are <M>\infty</M>, in which case <M>E(h(X
 This follows immediately from the general definition of expectation.
 </PF>
 
-Again, as in univriate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
+Again, as in univariate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a  random variable with <M>E(|h(X,Y)|) < \infty</M>,, then 
 <D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)f(x,y)\, dx\,dy.</D>

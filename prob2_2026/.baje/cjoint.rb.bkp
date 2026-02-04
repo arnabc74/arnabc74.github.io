@@ -629,9 +629,12 @@ Two jointly distributed random variables <M>X,Y</M>  are independent if and only
 This is the general case. Now, if there is a joint density, then that can be factored
  into marginal densities, as well:
 <THM>
-Two jointly distributed random variables <M>X,Y</M> having joint density <M>f(x,y)</M> are independent if and only if
+Let <M>X,Y</M> be jointly distributed random variables. 
+<OL><LI>If <M>(X,Y)</M>  has  joint density <M>f(x,y)</M> where 
 <D>\forall x,y\in\rr~~f(x,y) = f_X(x)f_Y(y),</D>
-for some marginal densities <M>f_X</M>  and <M>f_Y.</M>
+for some marginal densities <M>f_X</M>  and <M>f_Y</M>, then <M>X</M>  and <M>Y</M>  must be independent.</LI>
+<LI>If <M>X,Y</M>  are independent, and <M>f_X, f_Y</M>  are some (marginal) densities of <M>X,Y</M>, then <M>f(x,y):=f_X(x)f_Y(y)</M> 
+ must be a joint density of <M>(X,Y).</M></LI></OL>
 </THM>
  <PF>
 <U>If part</U>: For any <M>x,y\in\rr</M>  we have
@@ -695,7 +698,7 @@ unless both the expectation on the rhs are <M>\infty</M>, in which case <M>E(h(X
 This follows immediately from the general definition of expectation.
 </PF>
 
-Again, as in univriate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
+Again, as in univariate density case, we have a simpler formula for the special case where <M>E(|h(X,Y)|) < \infty.</M>
 <THM>
 Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  If <M>h(X,Y)</M>  is a  random variable with <M>E(|h(X,Y)|) < \infty</M>,, then 
 <D>E(h(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty h(x,y)f(x,y)\, dx\,dy.</D>
@@ -1108,7 +1111,7 @@ So, in general, <M>Y|\Pi=p\sim Binom(5,p).</M>
 Hence the joint distribution has a probability density-cum-mass function (which is often called just a <I>density</I>  with
  some abuse of notation): 
 <D>g(p,x) = <CASES>f(p)\binom{5}{x} p^x(1-p)^{5-x}<IF>p\in(0,1),~~x\in\{0,1,...,5\}</IF> 0<ELSE/></CASES></D>
-To find <M>P(\Pi\in A,\, X\in B)</M>  just sum this over <M>p\in A</M>  and integrate over <M>x\in B.</M>
+To find <M>P(\Pi\in A,\, X\in B)</M>  just integrate  this over <M>p\in A</M>  and sum over <M>x\in B.</M>
 
 Conditional density of <M>\Pi</M>  given <M>X=x</M>  is <M>g(p, x) / P(X=x),</M>  where <M>P(X=x) = \int_{-\infty}^\infty g(p,x)\, dp.</M>
 </EXM>

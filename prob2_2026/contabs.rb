@@ -371,22 +371,22 @@ It may seem counterintuitive that  <M>\forall a\in\rr~~P(X=a)=0</M>, and yet <M>
 <HEAD2>Problem set <PS/></HEAD2>
 ::<EXR>
 If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show that 
-<D>\lim_{\epsilon\to0+}[[P(1-\epsilon,1+\epsilon)][2 \epsilon]] = [[1e]].</D>
+<D>\lim_{\epsilon\to0+}[[P(#(X\in(1-\epsilon,1+\epsilon))#)][2 \epsilon]] = [[1e]].</D>
 </EXR>
 ::<EXR>
 If <M>X</M>  has density <M>e^{-x}</M>  for <M>x>0</M>  (and 0 else), then show that 
-<D>\lim_{\epsilon\to0+}[[P[2,2+\epsilon)][\epsilon]] = e^{-2}.</D>
+<D>\lim_{\epsilon\to0+}[[P(#(X\in[2,2+\epsilon))#)][\epsilon]] = e^{-2}.</D>
 </EXR>
 
 <EXR>
 If <M>X</M>  has density <M>f(x)</M>  which is continuous over a neighbourhood of <M>x=a,</M>  then prove that
-<D>\lim_{\epsilon\to0+}[[P(a-\epsilon,a+\epsilon)][2 \epsilon]] = f(a).</D>
+<D>\lim_{\epsilon\to0+}[[P(#(X\in(a-\epsilon,a+\epsilon))#)][2 \epsilon]] = f(a).</D>
 Can you drop the continuity assumption?
 </EXR>
 
 <EXR>
 Let <M>X</M>  have density <M>f(x)=<CASES>1<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M>  Find 
-<D>\lim_{\epsilon\to0+}[[P(1-\epsilon,1+\epsilon)][2 \epsilon]].</D>  
+<D>\lim_{\epsilon\to0+}[[P(#(X\in(1-\epsilon,1+\epsilon))#)][2 \epsilon]].</D>  
 </EXR>
 <HEAD1 u="https://youtu.be/NbjZeS88QkE">Expectation and moments</HEAD1>
 
