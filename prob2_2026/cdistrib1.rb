@@ -481,8 +481,19 @@ Here is Example 5b that is refered above:
 ::<EXR><EIMG web="hpstrans17.png"/></EXR>
 ::<EXR><EIMG web="hpstrans18.png"/></EXR>
 ::<EXR><EIMG web="hpstrans20.png"/></EXR>
+::<EXR><EIMG web="hpstrans21.png"/>
+
+This exercise is actually from the last page. But it is repeated here as it is referred to in the next exercise. 
+</EXR>
 ::<EXR><EIMG web="hpstrans22.png"/></EXR>
-::<EXR><EIMG web="hpstrans25.png"/></EXR>
+::<EXR><EIMG web="hpstrans24.png"/>
+
+This exercise is actually from the last page. But it is repeated here as it is referred to in the next exercise. 
+</EXR>
+::<EXR><EIMG web="hpstrans25.png"/>
+
+Exercise 41 is the previous exercise.  
+</EXR>
 ::<EXR><EIMG web="hpstrans26.png"/></EXR>
 
 </NOTE>@}
