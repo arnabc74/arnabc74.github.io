@@ -106,19 +106,11 @@ Also <M>\{Y\leq y\}=\{X\leq b\}.</M>
 So <M>G(y) = P(X\leq b) = F(b) =y,</M>
 
 <U>Case 3</U>: Consider <M>y = 0.</M>
+Since we have show <M>G(y) = y</M>  for <M>y\in (0,1)</M>  and since <M>G(y)</M>  is right continuous, hence we must have
+ <M>G(0) = 0.</M>
 
-A very similar argument shows that  <M>G(0) = 0.</M>
-<BECAUSE>
-If <M>F(x)</M>  never attains the value 0, then clearly <M>G(0)=0.</M>  
 
-Otherwise, we can use the sup argument as in case 2: Let <M>a = \sup\{x~:~F(x)\leq 0\}</M>, which
- is defined since <M>F(x)</M>  attains the value 0. 
-
-Then 
- <M>G(0) = P(Y\leq 0) = P(F(X)\leq 0) =
- P(X\leq a) = F(a) = 0,</M>  by continuity argument as in case 2.
-</BECAUSE>
-So <M>G(y)</M> is the <M>Unif(0,1)</M>  CDF, as required. 
+So, combining the three cases, <M>G(y)</M> is the <M>Unif(0,1)</M>  CDF, as required. 
 </PF>
 
 <HEAD2>Problem set <PS/></HEAD2>
