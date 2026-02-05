@@ -316,6 +316,8 @@ name="Any continuous distribution to $Unif(0,1)$">Any continuous distribution to
 In this and the following sections we shall present two surprising properties of the $Unif(0,1)$  distribution. The
  first property says that you can turn any continuous random variable into a
  $Unif(0,1)$  random variable!
+<p></p>
+
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $X$  be any random variable with continuous CDF $F(x).$  Then the random variable $F(X)$  has $Unif(0,1)$ 
@@ -328,25 +330,16 @@ Let $Y=F(X).$  Shall show that it has the CDF of $Unif(0,1)$  distribution:
 $$P(Y\leq y) = \left\{\begin{array}{ll}0&\text{if }y&lt;0\\ y&\text{if }0\leq y &lt; 1\\ 1&\text{if }1 \leq y\\\end{array}\right.$$
 This will complete the proof, since $CDF$  uniquely determines a distribution. 
 <p></p>
-We know that $F:{\mathbb R}\rightarrow[0,1].$  So $Y = F(X)\in[0,1].$  Hence $G(y) = 0$  if $y &lt; 0$  and $G(y)=1$ 
- if $y\geq 1.$  Also $G(0) = 0.$
-<blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">
-If $F(x)$  never attains the value 0, then clearly $G(0)=0.$  
-<p></p>
-Otherwise, $G(0) = P(Y\leq 0) = P(F(X)\leq 0) =
- P(X\leq a)$ , where $a =
- \sup\{x~:~F(x)=0\}.$  
-<p></p>
-Then $F(a-) = 0.$  By continuity of $F,$  we have $F(a)=0.$
-<p></p>
-So $P(X\leq 0) = 0.$  Hence $G(0)=0.$
-</div></blockquote>
 
+<u>Case 1</u>: Consider $y&lt;0$  or $y\geq 1.$
 <p></p>
-Take any $y\in(0,1).$
-What we plan to do now is best understood with a diagram:
+We know that $F:{\mathbb R}\rightarrow[0,1].$  So $Y = F(X)\in[0,1].$  Hence $G(y) = 0$  if $y &lt; 0$  and $G(y)=1$ 
+ if $y\geq 1.$  
+<p></p>
+
+<u>Case 2</u>: Consider $y\in(0,1).$
+<p></p>
+Our next plan is best understood with a diagram:
 <center>
 <table width="100%">
 <tr>
@@ -361,8 +354,8 @@ This $b$  will be useful, because $\{F(x)\leq y\}= \{x\leq b\}.$
 <p></p>
 We shall obtain $b$  as the supremum of the set $A = \{x~:~F(x)\leq y\}.$  Then $A$ is non-empty and bounded above.
 <blockquote><a
-href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
-class="ans" id="reason2"> Non-empty: $\because \lim_{x\rightarrow -\infty} F(x) = 0$  and $y&gt;0,$  $\therefore \exists t\in{\mathbb R} ~~F(t) &lt; y.$
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1"> Non-empty: $\because \lim_{x\rightarrow -\infty} F(x) = 0$  and $y&gt;0,$  $\therefore \exists t\in{\mathbb R} ~~F(t) &lt; y.$
 <p></p>
 Bounded above:  $\because\lim_{x\rightarrow \infty} F(x) = 1$,
  and $y &lt; 1,$  hence $\exists s\in{\mathbb R} ~~F(s) &gt; y.$  
@@ -376,8 +369,8 @@ Let $b = \sup(A).$
 By continuity of $F,$  we have $F(b) = y.$  (Use the argument you used to prove intermediate value theorem
  in you Analysis 1 course.)
 <blockquote><a
-href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
-class="ans" id="reason3">If $F(b) &lt; y$  then no value in $(F(b),y)$  can be taken by $F$, which is
+href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
+class="ans" id="reason2">If $F(b) &lt; y$  then no value in $(F(b),y)$  can be taken by $F$, which is
 impossible since $F$  is continuous.
 <p></p>
 If $F(b) &gt; y$, then consider any $t\in (y,F(b)).$  We shall have some $r\in{\mathbb R}~~F(r)=t.$  Then $r &lt; b$ 
@@ -386,7 +379,24 @@ If $F(b) &gt; y$, then consider any $t\in (y,F(b)).$  We shall have some $r\in{\
 Also $\{Y\leq y\}=\{X\leq b\}.$
 <p></p>
 So $G(y) = P(X\leq b) = F(b) =y,$
-as required.
+<p></p>
+
+<u>Case 3</u>: Consider $y = 0.$
+<p></p>
+A very similar argument shows that  $G(0) = 0.$
+<blockquote><a
+href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
+class="ans" id="reason3">
+If $F(x)$  never attains the value 0, then clearly $G(0)=0.$  
+<p></p>
+Otherwise, we can use the sup argument as in case 2: Let $a = \sup\{x~:~F(x)\leq 0\}$, which
+ is defined since $F(x)$  attains the value 0. 
+<p></p>
+Then 
+ $G(0) = P(Y\leq 0) = P(F(X)\leq 0) =
+ P(X\leq a) = F(a) = 0,$  by continuity argument as in case 2.
+</div></blockquote>
+So $G(y)$ is the $Unif(0,1)$  CDF, as required. 
 <b><i>[QED]</i></b>
 </p>
 
@@ -402,7 +412,6 @@ name="$Unif(0,1)$ to any distribution">$Unif(0,1)$ to any distribution</a></h1>
 <a href="https://youtu.be/W80bkQQyEYA">Video for this section</a>
 <p></p>
 
-<img src="image/alert.png">The video has been corrected.
 <p></p>
 We have seen how we can arrive at the  $Unif(0,1)$ from any <i>continuous</i>  distribution.
  Here we shall see its converse which is even stronger: Given $X\sim Unif(0,1)$  we can
@@ -571,7 +580,7 @@ $$\begin{eqnarray*}
 P(X\geq a+b|X\geq a)
 &amp; = &amp; \frac{P(X\geq a+b,\,X\geq a)}{P(X\geq a)}\\
 &amp; = &amp; \frac{P(X\geq a+b)}{P(X\geq a)}~~\left[\mbox{$\because \{X\geq a+b\}\subseteq\{X\geq a\}$}\right]\\
-&amp; = &amp; \frac{\int_{a+b}^iy \lambda e^{-\lambda x}\, dx}{\int_a^iy \lambda e^{-\lambda x}\, dx}\\
+&amp; = &amp; \frac{\int_{a+b}^\infty \lambda e^{-\lambda x}\, dx}{\int_a^\infty \lambda e^{-\lambda x}\, dx}\\
 &amp; = &amp; \cdots = e^{\lambda b},
 \end{eqnarray*}$$
  which is free of $a.$  
@@ -784,7 +793,7 @@ Hardly anything to prove.
 
 <fieldset>
 <legend><b><i>Exponential to gamma</i></b></legend>
-If $X_1,...,X_n$  are IID $Expo(\lambda),$  then $\sim_1^n X_i\sim Gamma(\lambda,n).$
+If $X_1,...,X_n$  are IID $Expo(\lambda),$  then $\sum_1^n X_i\sim Gamma(\lambda,n).$
 </fieldset>
 
 <p>

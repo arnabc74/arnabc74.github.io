@@ -60,6 +60,8 @@ Define, for <M>k=1,...,n</M>,  the interval <M>I_k =
 In this and the following sections we shall present two surprising properties of the <M>Unif(0,1)</M>  distribution. The
  first property says that you can turn any continuous random variable into a
  <M>Unif(0,1)</M>  random variable!
+
+ 
 <THM>
 Let <M>X</M>  be any random variable with continuous CDF <M>F(x).</M>  Then the random variable <M>F(X)</M>  has <M>Unif(0,1)</M> 
  distribution.
@@ -69,22 +71,14 @@ Let <M>Y=F(X).</M>  Shall show that it has the CDF of <M>Unif(0,1)</M>  distribu
 <D>P(Y\leq y) = <CASES>0<IF>y<0</IF> y<IF>0\leq y < 1</IF> 1<IF>1 \leq y</IF></CASES></D>
 This will complete the proof, since <M>CDF</M>  uniquely determines a distribution. 
 
+<U>Case 1</U>: Consider <M>y<0</M>  or <M>y\geq 1.</M>
+
 We know that <M>F:\rr\to[0,1].</M>  So <M>Y = F(X)\in[0,1].</M>  Hence <M>G(y) = 0</M>  if <M>y < 0</M>  and <M>G(y)=1</M> 
- if <M>y\geq 1.</M>  Also <M>G(0) = 0.</M>
-<BECAUSE>
-If <M>F(x)</M>  never attains the value 0, then clearly <M>G(0)=0.</M>  
+ if <M>y\geq 1.</M>  
 
-Otherwise, <M>G(0) = P(Y\leq 0) = P(F(X)\leq 0) =
- P(X\leq a)</M> , where <M>a =
- \sup\{x~:~F(x)=0\}.</M>  
+<U>Case 2</U>: Consider <M>y\in(0,1).</M>
 
-Then <M>F(a-) = 0.</M>  By continuity of <M>F,</M>  we have <M>F(a)=0.</M>
-
-So <M>P(X\leq 0) = 0.</M>  Hence <M>G(0)=0.</M>
-</BECAUSE>
-
-Take any <M>y\in(0,1).</M>
-What we plan to do now is best understood with a diagram:
+Our next plan is best understood with a diagram:
 <CIMG web="interf.png">Want to find <M>b</M>, the rightmost point with <M>F(b)=y</M></CIMG>
 This <M>b</M>  will be useful, because <M>\{F(x)\leq y\}= \{x\leq b\}.</M>  
 
@@ -110,14 +104,27 @@ If <M>F(b) > y</M>, then consider any <M>t\in (y,F(b)).</M>  We shall have some 
 Also <M>\{Y\leq y\}=\{X\leq b\}.</M>
 
 So <M>G(y) = P(X\leq b) = F(b) =y,</M>
-as required.
+
+<U>Case 3</U>: Consider <M>y = 0.</M>
+
+A very similar argument shows that  <M>G(0) = 0.</M>
+<BECAUSE>
+If <M>F(x)</M>  never attains the value 0, then clearly <M>G(0)=0.</M>  
+
+Otherwise, we can use the sup argument as in case 2: Let <M>a = \sup\{x~:~F(x)\leq 0\}</M>, which
+ is defined since <M>F(x)</M>  attains the value 0. 
+
+Then 
+ <M>G(0) = P(Y\leq 0) = P(F(X)\leq 0) =
+ P(X\leq a) = F(a) = 0,</M>  by continuity argument as in case 2.
+</BECAUSE>
+So <M>G(y)</M> is the <M>Unif(0,1)</M>  as required. 
 </PF>
 
 <HEAD2>Problem set <PS/></HEAD2>
 
 
 <HEAD1 u="https://youtu.be/W80bkQQyEYA"><M>Unif(0,1)</M> to any distribution</HEAD1>
-<ALERT/>The video has been corrected.
 
 We have seen how we can arrive at the  <M>Unif(0,1)</M> from any <I>continuous</I>  distribution.
  Here we shall see its converse which is even stronger: Given <M>X\sim Unif(0,1)</M>  we can
@@ -481,10 +488,14 @@ Here is Example 5b that is refered above:
 ::<EXR><EIMG web="hpstrans17.png"/></EXR>
 ::<EXR><EIMG web="hpstrans18.png"/></EXR>
 ::<EXR><EIMG web="hpstrans20.png"/></EXR>
+::<EXR><EIMG web="hpstrans21.png"/>
+
+This exercise is actually from the last page. But it is repeated here as it is referred to in the next exercise. 
+</EXR>
 ::<EXR><EIMG web="hpstrans22.png"/></EXR>
 ::<EXR><EIMG web="hpstrans24.png"/>
 
-This exercise is actually from the last page. But it is repeated here as it is refered to in the next 
+This exercise is actually from the last page. But it is repeated here as it is referred to in the next exercise. 
 </EXR>
 ::<EXR><EIMG web="hpstrans25.png"/>
 
