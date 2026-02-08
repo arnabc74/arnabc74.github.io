@@ -179,7 +179,7 @@ This shows that if we can show the existence of (or generate random numbers from
  any CDF.
 
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Show that <M>F^-</M>  is a non-decreasing.</EXR>
+<EXR>Show that <M>F^-</M>  is non-decreasing.</EXR>
 
 ::<EXR>Show that <M>f(x) = <CASES>e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  is a PDF. Suggest how you
  may generate a random variable with this PDF starting from a <M>Unif(0,1)</M>  random variable.</EXR>
@@ -213,7 +213,7 @@ dev.off()
  Unif(0,1),</M>  suggest a function <M>f(\cdot)</M>  such that <M>f(X)\sim Expo(\lambda).</M></EXR>
 
 
-<EXR>If <M>1-X\sim Expo(\lambda)</M>, then show that <M>[X]</M>  has a geometric distribution.
+<EXR>If <M>X\sim Expo(\lambda)</M>, then show that <M>[X]</M>  has a geometric distribution.
  Find the parameter of the Geometric distribution.</EXR>
 
 <EXR>If <M>X_1,...,X_n</M>  are IID <M>Expo(\lambda),</M>  then show that <M>\min\{X_1,...,X_n\}\sim Expo(n \lambda).</M>
