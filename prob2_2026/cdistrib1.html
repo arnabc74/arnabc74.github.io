@@ -609,9 +609,14 @@ name="Gamma distribution">Gamma distribution</a></h1>
 <p></p>
 We are about to learn a new distribution called the gamma distribution. We need some mathematical preliminaries to get started.
 <p></p>
-It may be shown (using comparison test with $e^{-x}$) that the improper integral 
+It may be shown (using comparison test with $e^{-x}$  for large $x$, and comparison with
+ $x^{\alpha-1}$  small $x$  near 0)
+ that the improper integral 
 $$\int_0^\infty x^{\alpha-1} e^{-x}\, dx$$
-converges. Clearly, its value depends on $\alpha$, <i>i.e.</i>, it is a function of $\alpha.$
+converges for each $\alpha&gt;0.$  
+<p></p>
+ Clearly, its value depends on $\alpha$, <i>i.e.</i>, it is a
+ function of $\alpha.$
   However, it may also be shown (though
  not easily) that this function cannot be expressed in terms of any algebraic, logarithmic, exponential or triginometric
  function. Yet, this function occurs in many computation. So we give it a name, the <b><font color="red" size="40">gamma function</font></b>:
@@ -641,9 +646,7 @@ The gamma function has an interesting property similar to that of factorials.
 
 <p>
 <b><i>Proof:</i></b>
-
-<p></p>
-
+Use integration by parts to show the first result. Then use it (an induction) to prove the second.
 <b><i>[QED]</i></b>
 </p>
 It is easy to show (using the substitution $u = px$) that 
@@ -654,7 +657,7 @@ This motivates the definion of a density:
 <fieldset>
 <legend><b>Definition: Gamma distribution</b></legend>
 We say that a random variable $X$  has <b><font color="red" size="40">Gamma distribution</font></b>  with
- <b><font color="red" size="40">shape</font></b>  parameter $\alpha$ and <b><font color="red" size="40">rate</font></b> parameter $p$  if $X$  has
+ <b><font color="red" size="40">shape</font></b>  parameter $\alpha&gt;0$ and <b><font color="red" size="40">rate</font></b> parameter $p&gt;0$  if $X$  has
 density
 $$f(x) =\left\{\begin{array}{ll} \frac{p^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-px}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$$
 </fieldset>
@@ -721,7 +724,7 @@ Find $\Gamma(1)$  and $\Gamma(2).$
 <p></p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;Use integration by parts to show that for $x&gt;0$  we have $\Gamma(x) = x\Gamma(x).$
+<b>EXERCISE 17:</b>&nbsp;Use integration by parts to show that for $x&gt;0$  we have $\Gamma(x+1) = x\Gamma(x).$
 Hence argue that for $n\in{\mathbb N}$ 
  we have $\Gamma(n) = (n-1)!.$</p>
 
@@ -743,7 +746,23 @@ As we have already seen, the gamma density is a product of a power of $x$  and a
  $x.$  So  if you multiply a
  gamma density with further  exponentials of
  $x$  , then you again get  a function of the same form, which may be integrated in terms of the gamma function. Hence
- it is easy to find th CF of gamma distribution:
+ it is easy to find the MGF of gamma distribution:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X\sim Gamma(p,\alpha)$,  then its MGF is given by
+$$M_X(t) = E(e^{tX}) = \left(\frac{p}{p-t}\right)^{\alpha} \mbox{ for } t&lt; p.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$M_X(t) = \frac{p^\alpha}{\Gamma(\alpha)}\int_0^ \infty x^{\alpha-1}e^{-(p-t)x}\, dx =
+ \frac{p^\alpha}{\Gamma(\alpha)}\times \frac{\Gamma(\alpha)}{(p-t)^\alpha},$  since the integral is
+ again of the gamma integral type. 
+<b><i>[QED]</i></b>
+</p>
+Note that this defined over a neighbourhood of 0, and hence characterises the distribution.
+<p></p>
+The CF may also be computed  using complex integration beyond the scope of the present course:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 If $X\sim Gamma(p,\alpha)$,  then its CF is given by

@@ -251,13 +251,13 @@ Similarly, one may show that <M>Expo(\lambda)</M>  is the only memoryless distri
  
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Consider the <M>Geom(\theta)</M>  distribution supported on <M>\{1,2,3,...\}.</M>  It is the number of tosses you need
-to the first head in an IID sequence of tosses of a coin with <M>P(head)=\theta.</M>  
+to get the first head in an IID sequence of tosses of a coin with <M>P(head)=\theta.</M>  
 Show that if <M>X\sim Expo(\lambda)</M>  then <M>\lceil X\rceil\sim(Geom(\theta).</M>   Express <M>\theta</M>  in terms of
  <M>\lambda.</M>
 </EXR>
 
 <EXR>
-then the only discrete memoryless distribution is <M>Geom(\theta)</M>  distribution supported on <M>\{0\}\cup\nn</M>  (counting
+The only discrete memoryless distribution is <M>Geom(\theta)</M>  distribution supported on <M>\{0\}\cup\nn</M>  (counting
  number of failures before the first success). Show that this geometric is the distribution of <M>\lfloor X\rfloor</M>  for
  <M>X\sim Expo(\lambda).</M>
 </EXR>
@@ -266,9 +266,14 @@ then the only discrete memoryless distribution is <M>Geom(\theta)</M>  distribut
 <HEAD1 u="https://youtu.be/71p1B5aO6KI">Gamma distribution</HEAD1>
 We are about to learn a new distribution called the gamma distribution. We need some mathematical preliminaries to get started.
  
-It may be shown (using comparison test with <M>e^{-x}</M>) that the improper integral 
+It may be shown (using comparison test with <M>e^{-x}</M>  for large <M>x</M>, and comparison with
+ <M>x^{\alpha-1}</M>  small <M>x</M>  near 0)
+ that the improper integral 
 <D>\int_0^\infty x^{\alpha-1} e^{-x}\, dx</D>
-converges. Clearly, its value depends on <M>\alpha</M>, i.e., it is a function of <M>\alpha.</M>
+converges for each <M>\alpha>0.</M>  
+
+ Clearly, its value depends on <M>\alpha</M>, i.e., it is a
+ function of <M>\alpha.</M>
   However, it may also be shown (though
  not easily) that this function cannot be expressed in terms of any algebraic, logarithmic, exponential or triginometric
  function. Yet, this function occurs in many computation. So we give it a name, the <TERM>gamma function</TERM>:
@@ -288,7 +293,7 @@ The gamma function has an interesting property similar to that of factorials.
 </OL>
 </THM>
 <PF>
-
+Use integration by parts to show the first result. Then use it (an induction) to prove the second.
 </PF>
 It is easy to show (using the substitution <M>u = px</M>) that 
 <D>\int_0^\infty x^{\alpha-1} e^{-px}\, dx = p^{-\alpha}\int_0^\infty u^{\alpha-1} e^{-u}\, du = [[\Gamma(\alpha)][p^\alpha]].</D>
@@ -296,7 +301,7 @@ This motivates the definion of a density:
 
 <DEFN name="Gamma distribution">
 We say that a random variable <M>X</M>  has <TERM>Gamma distribution</TERM>  with
- <TERM>shape</TERM>  parameter <M>\alpha</M> and <TERM>rate</TERM> parameter <M>p</M>  if <M>X</M>  has
+ <TERM>shape</TERM>  parameter <M>\alpha>0</M> and <TERM>rate</TERM> parameter <M>p>0</M>  if <M>X</M>  has
 density
 <D>f(x) =<CASES> [[p^\alpha][\Gamma(\alpha)]] x^{\alpha-1} e^{-px}<IF>x>0</IF> 0<ELSE/></CASES></D>
 </DEFN>
@@ -353,7 +358,7 @@ If <M>X\sim Gamma(p,\alpha,)</M>  then
 Find <M>\Gamma(1)</M>  and <M>\Gamma(2).</M>
 </EXR>
 
-<EXR>Use integration by parts to show that for <M>x>0</M>  we have <M>\Gamma(x) = x\Gamma(x).</M>
+<EXR>Use integration by parts to show that for <M>x>0</M>  we have <M>\Gamma(x+1) = x\Gamma(x).</M>
 Hence argue that for <M>n\in\nn</M> 
  we have <M>\Gamma(n) = (n-1)!.</M></EXR>
 <EXR>Simplify <M>[[\Gamma(\alpha+5)][\Gamma(\alpha)]]</M>  for <M>\alpha>0.</M></EXR>
@@ -365,7 +370,19 @@ As we have already seen, the gamma density is a product of a power of <M>x</M>  
  <M>x.</M>  So  if you multiply a
  gamma density with further  exponentials of
  <M>x</M>  , then you again get  a function of the same form, which may be integrated in terms of the gamma function. Hence
- it is easy to find th CF of gamma distribution:
+ it is easy to find the MGF of gamma distribution:
+<THM>
+If <M>X\sim Gamma(p,\alpha)</M>,  then its MGF is given by
+<D>M_X(t) = E(e^{tX}) = (*([[p][p-t]])*)^{\alpha} \mbox{ for } t< p.</D>
+</THM>
+<PF>
+<M>M_X(t) = [[p^\alpha][\Gamma(\alpha)]]\int_0^ \infty x^{\alpha-1}e^{(t-p)x}\, dx =
+ [[p^\alpha][\Gamma(\alpha)]]\times [[\Gamma(\alpha)][(p-t)^\alpha]],</M>  since the is
+ again of the gamma integral type. 
+</PF>
+Note that this defined over a neighbourhood of 0, and hence characterises the distribution.
+
+The CF may also be computed  using complex integration beyond the scope of the present course:
 <THM>
 If <M>X\sim Gamma(p,\alpha)</M>,  then its CF is given by
 <D>\xi_X(t) = E(e^{itX}) = (*([[p][p-it]])*)^{\alpha} \mbox{ for } t\in\rr..</D>
