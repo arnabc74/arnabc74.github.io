@@ -293,7 +293,7 @@ The gamma function has an interesting property similar to that of factorials.
 </OL>
 </THM>
 <PF>
-Use integration by parts to show the first result. Then use it (an induction) to prove the second.
+Use integration by parts to show the first result. Then use it (and induction) to prove the second.
 </PF>
 It is easy to show (using the substitution <M>u = px</M>) that 
 <D>\int_0^\infty x^{\alpha-1} e^{-px}\, dx = p^{-\alpha}\int_0^\infty u^{\alpha-1} e^{-u}\, du = [[\Gamma(\alpha)][p^\alpha]].</D>
