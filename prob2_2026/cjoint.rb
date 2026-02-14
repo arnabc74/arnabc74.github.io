@@ -360,8 +360,8 @@ Let <M>F(x,y)</M>  be a bivariate CDF. Then
 <M>\forall x,y\in\rr~~\forall a,b \geq 0~~ F(x,y)-F(x,y-b)-F(x-a,y)+F(x-a,y-b)\geq 0.</M>
 </THM>
 <PF>
-Let <M>A = \{x-a < X \leq x,\, y-b < Y \leq y\}</M>, <M>B = \{x-a < X \leq x,\, Y \leq y\}</M>, <M>C = \{ X \leq x,\, y-b < Y \leq y\}</M>,
- and <M>C = \{ X \leq x-a,\, Y \leq y-b\}.</M>
+Let <M>A = \{x-a < X \leq x,\, y-b < Y \leq y\}</M>, <M>B = \{x-a < X \leq x,\, Y \leq y-b\}</M>, <M>C = \{ X \leq x-a,\, y-b < Y \leq y\}</M>,
+ and <M>D = \{ X \leq x-a,\, Y \leq y-b\}.</M>
 <CIMG web="parts.png"/>
 Then
 <MULTILINE>
