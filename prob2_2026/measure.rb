@@ -304,12 +304,12 @@ What is <M>\int_0^1 f(x)\, dx</M>  using Riemann integration?
 
 <HEAD1>Generalising the solution</HEAD1>
 Lebesgue's approach can be generalised in different ways. We shall discuss these now.
-<HEAD2>Allowing unbounded functions and unbounded domains</HEAD2>
+<HEAD2>Allowing unbounded functions</HEAD2>
 Since the Lebesgue integral exists for all bounded, non-negative measurable functions, hence it is enough to consider only
  the sup of the approximations from below. This immediately allows us to define Lebesgue integral
  for unbounded, measurable functions
  as well. We just allow the sup to be <M>\infty.</M>  
-
+<COMMENT>
 Similarly we may now carry out the procedure
  over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  There are just a few 
  problems that are easily sorted out:
@@ -331,6 +331,7 @@ There is also a minor trouble involving defining area of rectangles with base le
 length <M>\infty</M>  and positive height has area <M>\infty</M>, and any "rectangle" with zero
  height has zero area (even if its base has length <M>\infty</M>).  
 </LI></UL>
+</COMMENT>
 Now that we are allowing the Lebesgue integral to equal <M>\infty,</M>  we need a little shift in terminology: We shall say
  that a nonnegative function is <TERM>Lebesgue integrable</TERM>  if its Lebesgue integral is finite.
 
@@ -557,7 +558,7 @@ functions such that
 <D>\forall \omega\in\Omega~~s_n(\omega) \uparrow f(\omega).</D> 
 </THM>
 In our course we shall call any such sequence <M>(s_n)</M>   a <TERM>simplification</TERM>  of
- <M>f</M>   It is not a standard term.
+ <M>f.</M>   It is not a standard term.
 <PF>
 For <M>n\in\nn</M>  and <M>\omega\in\Omega</M>  we define <M>s_n</M>  as follows. First partition the codomain
  <M>[0,\infty)</M>  into <M>2</M>  intervals <M>[0,n)</M>  and <M>[n,\infty)</M>  and then
@@ -833,7 +834,7 @@ But <M>|X_n-X| \equiv 1</M>. SO <M>E(|X_n-X|) \not\to0</M>.
 </EXR>
 <HEAD1>Radon-Nikodym theorem</HEAD1>
 <THM name="Radon-Nikodym theorem">
-Let <M>\mu</M>  be any <M>sigma</M>-finite measure on <M>(\Omega,\calF).</M>  Let <M>\nu</M>  be another meaure on <M>(\Omega,\calF)</M> 
+Let <M>\mu</M>  be any <M>\sigma</M>-finite measure on <M>(\Omega,\calF).</M>  Let <M>\nu</M>  be another meaure on <M>(\Omega,\calF)</M> 
  with the property that 
 <D>\forall B\in\calF~~(\mu(B)=0\Rightarrow\nu(B)=0).</D>
 Then there is a measurable f <M>f:\Omega\to\rr</M>  such that for any measurable function <M>h:\Omega\to\rr</M>  we have

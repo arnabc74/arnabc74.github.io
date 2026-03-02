@@ -638,7 +638,7 @@ Since CF uniquely determines the distribution, we get the result.
 ::<EXR><EIMG web="rosspdf23.png"/>
 <IMG web="rossrefs1.png">Here is Theoretical Exercise 2:</IMG> 
 </EXR>
-::<EXR><EIMG web="rosspdf24.png"/></EXR>
+::<EXR><EIMG web="rosspdf24corr.png"/></EXR>
 ::<EXR><EIMG web="rosspdf35.png"/></EXR>
 
 </NOTE>@}

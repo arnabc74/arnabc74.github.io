@@ -27,6 +27,8 @@ AmAr @{<E>C Programming</E>@}  baiyer @{<E>webpage</E>@}  eTA. chArrakam jinis p
 <LINK to="quicksort.html">@{<E>Quicksort</E>@}</LINK>-er janya tinTe viDior ekTA plelis+T pAbe ekhAne.
 </LI></UL>
 <HEAD2>bhulbhrAnti</HEAD2>  
-ekhano kichhu beroy ni!
-
+<UL><LI>
+<IMG web="p88.png">@{<M>88</M>@}  pAtAr a.nsha</IMG>  
+bhulTA dharechhe sujan dAs. 
+</LI></UL>
 </NOTE>
