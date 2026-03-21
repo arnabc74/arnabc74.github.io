@@ -5,9 +5,6 @@
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="Q7jTbrCq"></script>
-
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
 <script>
@@ -148,7 +145,7 @@ function myFunction() {
 <script src="../tools/rglWebGL.js"></script>
 </head><body>
 <div class="sticky" id="topholder"> </div>
-<a href="http://www.isical.ac.in/~arnabc/">[Home]</a>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
 <h3>Multivariate normal and related distributions</h3>
 <ul>
 <li>
@@ -248,7 +245,7 @@ function myFunction() {
 <hr/>
 $\newcommand{\v}[1]{\boldsymbol{#1}}$
 $\newcommand{\k}[1]{\chi^2_{(#1)}}$
-<title>Multivariate normal and related distributions</title>
+<title xmlns="">Multivariate normal and related distributions</title>
 
 <h1><a
 name="Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a></h1>
@@ -343,7 +340,7 @@ Now let us return to the definition multivariate normal.
 name="Back to normal">Back to normal</a></h2>
 We shall take any $A$  with
  $\Sigma=AA',$  and show that the 
- characteristic function of $\Sigma\v X+\v\mu$  will depend on $A$  only through $AA'=\Sigma.$  So the particular
+ characteristic function of $A\v X+\v\mu$  will depend on $A$  only through $AA'=\Sigma.$  So the particular
  choice of $A$  will not matter.
 <p></p>
 We shall start with the characteristic function of  $\v X$:
@@ -372,15 +369,16 @@ name="Problem set 2">Problem set 2</a></h2>
 <p>
 <b>EXERCISE 3:</b>&nbsp;There are algorithms that will take $\Sigma$  as input and produce an $A$  as
  output suh that $\Sigma=AA'.$  The Cholsesky (read as ko-less-key) decomposition algorithm is
- one such (implemeted in the R function chol). But for small matrices, it is possible to
+ one such (implemented in the R function chol). But for small matrices, it is possible to
  construct $A$  by hand. Suppose $\Sigma=\left[\begin{array}{ccccccccccc}2&amp;1\\1&amp;3
 \end{array}\right].$  Find a lower triangular $A$  with $\Sigma=AA'.$ </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;Find $$\v\mu$ $  and $\Sigma$  if $N_2(\v\mu,\Sigma)$  has characteristic function
- $\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)$  for $(t_1,t_2)\in{\mathbb R}^2.$</p>
+<b>EXERCISE 4:</b>&nbsp;Find $\v\mu $  and $\Sigma$  if $N_2(\v\mu,\Sigma)$  has characteristic function
+ $\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)$  for
+ $(t_1,t_2)\in{\mathbb R}^2.$</p>
 
 <p>
 <b>EXERCISE 5:</b>&nbsp;True or false: The characteristic function of $N_m(\v\mu,\Sigma)$  is real-valued if and only if $\v\mu=\v0.$</p>
@@ -459,7 +457,7 @@ name="Problem set 3">Problem set 3</a></h2>
 
 <p>
 <b>EXERCISE 6:</b>&nbsp;Let 
-$$\left[\begin{array}{ccccccccccc}X_1\\X_2\\X_3\\X_5\\X_5
+$$\left[\begin{array}{ccccccccccc}X_1\\X_2\\X_3\\X_4\\X_5
 \end{array}\right]\sim N_5\left(\left[\begin{array}{ccccccccccc}1\\2\\3\\4\\5
 \end{array}\right],\left[\begin{array}{ccccccccccc}50 &amp; 42 &amp; 41 &amp; 48 &amp; 27\\ 42 &amp; 40 &amp; 38 &amp; 40 &amp; 25\\
  41 &amp; 38 &amp; 51 &amp; 53 &amp; 39\\ 48 &amp; 40 &amp; 53 &amp; 61 &amp; 39\\ 27 &amp; 25 &amp; 39 &amp; 39 &amp; 38
@@ -818,7 +816,7 @@ Let $X_1,...,X_n$  be IID $N(0,1).$
 Then $X_1^2$  has CDF $F(\cdot),$  where $F(a)=0$  for $a&lt;0$  and for $a\geq 0$  we have
 $$F(a) = P(X_1^2\leq a) =\frac{1}{\sqrt{2\pi}} \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=\frac{2}{\sqrt{2\pi}} \int_0^{\sqrt a} e^{-x^2/2}\, dx.$$
 Differentiating wrt $a$  we get the density
-$$f(a) = F'(a) = \frac{2}{\sqrt{2\pi}} e^{-a/2}\mbox{ for }a&gt;0.$$
+$$f(a) = F'(a) = \frac{2}{\sqrt{2\pi}} e^{-a/2}\times \frac{1}{2\sqrt a}\mbox{ for }a&gt;0.$$
 We immediately recognise it as the $Gamma\left(\frac 12,\frac 12\right)$  density.
 <p></p>
 So $X_i^2\sim Gamma\left(\frac 12,\frac 12\right)$   for $i=1,2,...,n.$
@@ -1018,7 +1016,7 @@ If $X\sim \k m$  and $Y\sim \k n$  are independent random variables, then the di
 The density of $X$  is $f_X(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}e^{-\frac x2}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
 <p></p>
 Similarly, 
-the density of $Y$  is $f_Y(x) =\left\{\begin{array}{ll}\mbox{const }y^{\frac n2-1}e^{-\frac y2}&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+the density of $Y$  is $f_Y(y) =\left\{\begin{array}{ll}\mbox{const }y^{\frac n2-1}e^{-\frac y2}&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
 <p></p>
 Hence density of $Z = \frac XY$  is 
 $$\begin{eqnarray*}
@@ -1205,9 +1203,9 @@ Since we have assumed (1), hence $tr(A_i)=r(A_i).$  So (2) follows.
 
 <p></p>
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
- $\v X\sim N_n(0,I),$  and split $\|\v X\|^2$  into some quadratic forms $\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.$
+ $\v X\sim N_n(0,I),$  and split $\|\v X\|^2$  into some quadratic forms $\|\v X\|^2 = \v X'\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.$
 Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
- $\chi^2$-distributions, then must also be independent, and their degrees of freedom must add
+ $\chi^2$-distributions, then they must also be independent, and their degrees of freedom must add
  up to $n.$
 <p></p>
 
@@ -1287,7 +1285,7 @@ Express you answer in terms CDF of some standard distribution.
 <b>EXERCISE 38:</b>&nbsp;<font size="-2">[wilks9.png]</font><img width="" src="image/wilks9.png" style="vertical-align:text-top;"></p>
 
 <p></p>
-<hr/>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>
 <td align="left"/>

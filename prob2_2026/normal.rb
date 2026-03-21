@@ -64,7 +64,7 @@ Now let us return to the definition multivariate normal.
 <HEAD2>Back to normal</HEAD2>
 We shall take any <M>A</M>  with
  <M>\Sigma=AA',</M>  and show that the 
- characteristic function of <M>\Sigma\v X+\v\mu</M>  will depend on <M>A</M>  only through <M>AA'=\Sigma.</M>  So the particular
+ characteristic function of <M>A\v X+\v\mu</M>  will depend on <M>A</M>  only through <M>AA'=\Sigma.</M>  So the particular
  choice of <M>A</M>  will not matter.
 
 We shall start with the characteristic function of  <M>\v X</M>:
@@ -85,11 +85,12 @@ As a by product of the above steps we also get the characteristic function of <M
 
 <EXR>There are algorithms that will take <M>\Sigma</M>  as input and produce an <M>A</M>  as
  output suh that <M>\Sigma=AA'.</M>  The Cholsesky (read as ko-less-key) decomposition algorithm is
- one such (implemeted in the R function <TT>chol</TT>). But for small matrices, it is possible to
+ one such (implemented in the R function <TT>chol</TT>). But for small matrices, it is possible to
  construct <M>A</M>  by hand. Suppose <M>\Sigma=<MAT>2&1\\1&3</MAT>.</M>  Find a lower triangular <M>A</M>  with <M>\Sigma=AA'.</M> </EXR>
 
-<EXR>Find <M><M>\v\mu</M> </M>  and <M>\Sigma</M>  if <M>N_2(\v\mu,\Sigma)</M>  has characteristic function
- <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
+<EXR>Find <M>\v\mu </M>  and <M>\Sigma</M>  if <M>N_2(\v\mu,\Sigma)</M>  has characteristic function
+ <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for
+ <M>(t_1,t_2)\in\rr^2.</M></EXR>
 <EXR>True or false: The characteristic function of <M>N_m(\v\mu,\Sigma)</M>  is real-valued if and only if <M>\v\mu=\v0.</M></EXR>
 
 <HEAD1 u="https://youtu.be/r5R0ZXMAOYw">Multivariate normal distribution (part 3)</HEAD1>
@@ -142,7 +143,7 @@ A%*%t(A)
 mat2lat(A%*%t(A))
 </COMMENT>
 <EXR>Let 
-<D><MAT>X_1\\X_2\\X_3\\X_5\\X_5</MAT>\sim N_5(*(<MAT>1\\2\\3\\4\\5</MAT>,<MAT>50 & 42 & 41 & 48 & 27\\ 42 & 40 & 38 & 40 & 25\\
+<D><MAT>X_1\\X_2\\X_3\\X_4\\X_5</MAT>\sim N_5(*(<MAT>1\\2\\3\\4\\5</MAT>,<MAT>50 & 42 & 41 & 48 & 27\\ 42 & 40 & 38 & 40 & 25\\
  41 & 38 & 51 & 53 & 39\\ 48 & 40 & 53 & 61 & 39\\ 27 & 25 & 39 & 39 & 38</MAT>)*). </D>
 Find the distribution of <M>\v Y = (2X_1-3X_4+X_5,~~X_1+X_4)'.</M>
 
@@ -364,7 +365,7 @@ Let <M>X_1,...,X_n</M>  be IID <M>N(0,1).</M>
 Then <M>X_1^2</M>  has CDF <M>F(\cdot),</M>  where <M>F(a)=0</M>  for <M>a<0</M>  and for <M>a\geq 0</M>  we have
 <D>F(a) = P(X_1^2\leq a) =[[1][\sqrt{2\pi}]] \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=[[2][\sqrt{2\pi}]] \int_0^{\sqrt a} e^{-x^2/2}\, dx.</D>
 Differentiating wrt <M>a</M>  we get the density
-<D>f(a) = F'(a) = [[2][\sqrt{2\pi}]] e^{-a/2}\mbox{ for }a>0.</D>
+<D>f(a) = F'(a) = [[2][\sqrt{2\pi}]] e^{-a/2}\times [[1][2\sqrt a]]\mbox{ for }a>0.</D>
 We immediately recognise it as the <M>Gamma(*([[12]],[[12]])*)</M>  density.
 
 So <M>X_i^2\sim Gamma(*([[12]],[[12]])*)</M>   for <M>i=1,2,...,n.</M>
@@ -500,7 +501,7 @@ If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, t
 The density of <M>X</M>  is <M>f_X(x) =<CASES>\mbox{const }x^{[[m2]]-1}e^{-[[x2]]}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 
 Similarly, 
-the density of <M>Y</M>  is <M>f_Y(x) =<CASES>\mbox{const }y^{[[n2]]-1}e^{-[[y2]]}<IF>y>0</IF> 0<ELSE/></CASES> </M>
+the density of <M>Y</M>  is <M>f_Y(y) =<CASES>\mbox{const }y^{[[n2]]-1}e^{-[[y2]]}<IF>y>0</IF> 0<ELSE/></CASES> </M>
 
 Hence density of <M>Z = [[XY]]</M>  is 
 <MULTILINE>
@@ -637,9 +638,9 @@ Since we have assumed (1), hence <M>tr(A_i)=r(A_i).</M>  So (2) follows.
 
 
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
- <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
+ <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X'\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
 Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
- <M>\chi^2</M>-distributions, then must also be independent, and their degrees of freedom must add
+ <M>\chi^2</M>-distributions, then they must also be independent, and their degrees of freedom must add
  up to <M>n.</M>
 
 <HEAD1>Miscellaneous problems</HEAD1>

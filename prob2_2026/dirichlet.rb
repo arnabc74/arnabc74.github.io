@@ -34,8 +34,8 @@ In particular, we can think of <M>Multinom(n,\v p)</M>  as the distribution of t
 
 Suppose we roll the same die twice independently. Accordingly we get 
 <M>\v X,\v Y</M>  both having <M> Multinom(1,\v p)</M>  distribution.  Let <M>\v
- X=(X_1,...,X_k)</M>, <M>\v Y=(Y_1,...,Y_k)</M>    and <M>\v
- p=(p_1,...,p_k)</M>, then 
+ X=(X_1,...,X_k)'</M>, <M>\v Y=(Y_1,...,Y_k)'</M>    and <M>\v
+ p=(p_1,...,p_k)'</M>, then 
 <UL><LI><M>\forall i~~E(X_i) = E(X_i^2)=p_i.</M>  
 </LI>
 <LI><M>\forall i\neq j~~E(X_iX_j) = 0</M>
@@ -45,7 +45,7 @@ Suppose we roll the same die twice independently. Accordingly we get
 </LI></UL> 
 An immediate consequence of this is the following theorem.
 <THM>
-If <M>\v X\sim Multinom(n,\v p)</M>  where <M>\v X=(X_1,...,X_k)</M>  and <M>\v p=(p_1,...,p_k)</M>, then 
+If <M>\v X\sim Multinom(n,\v p)</M>  where <M>\v X=(X_1,...,X_k)'</M>  and <M>\v p=(p_1,...,p_k)'</M>, then 
 <UL>
 <LI><M>\forall i~~E(X_i) = np_i</M></LI>
 <LI><M>\forall i~~V(X_i) = np_i(1-p_i)</M></LI>

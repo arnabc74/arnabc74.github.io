@@ -64,7 +64,7 @@ Now let us return to the definition multivariate normal.
 <HEAD2>Back to normal</HEAD2>
 We shall take any <M>A</M>  with
  <M>\Sigma=AA',</M>  and show that the 
- characteristic function of <M>\Sigma\v X+\v\mu</M>  will depend on <M>A</M>  only through <M>AA'=\Sigma.</M>  So the particular
+ characteristic function of <M>A\v X+\v\mu</M>  will depend on <M>A</M>  only through <M>AA'=\Sigma.</M>  So the particular
  choice of <M>A</M>  will not matter.
 
 We shall start with the characteristic function of  <M>\v X</M>:
@@ -85,11 +85,12 @@ As a by product of the above steps we also get the characteristic function of <M
 
 <EXR>There are algorithms that will take <M>\Sigma</M>  as input and produce an <M>A</M>  as
  output suh that <M>\Sigma=AA'.</M>  The Cholsesky (read as ko-less-key) decomposition algorithm is
- one such (implemeted in the R function <TT>chol</TT>). But for small matrices, it is possible to
+ one such (implemented in the R function <TT>chol</TT>). But for small matrices, it is possible to
  construct <M>A</M>  by hand. Suppose <M>\Sigma=<MAT>2&1\\1&3</MAT>.</M>  Find a lower triangular <M>A</M>  with <M>\Sigma=AA'.</M> </EXR>
 
-<EXR>Find <M><M>\v\mu</M> </M>  and <M>\Sigma</M>  if <M>N_2(\v\mu,\Sigma)</M>  has characteristic function
- <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for <M>(t_1,t_2)\in\rr^2.</M></EXR>
+<EXR>Find <M>\v\mu </M>  and <M>\Sigma</M>  if <M>N_2(\v\mu,\Sigma)</M>  has characteristic function
+ <M>\xi(t_1,t_2) = \exp(-2t_1^2-t_2^2+t_1t_2)</M>  for
+ <M>(t_1,t_2)\in\rr^2.</M></EXR>
 <EXR>True or false: The characteristic function of <M>N_m(\v\mu,\Sigma)</M>  is real-valued if and only if <M>\v\mu=\v0.</M></EXR>
 
 <HEAD1 u="https://youtu.be/r5R0ZXMAOYw">Multivariate normal distribution (part 3)</HEAD1>
@@ -142,7 +143,7 @@ A%*%t(A)
 mat2lat(A%*%t(A))
 </COMMENT>
 <EXR>Let 
-<D><MAT>X_1\\X_2\\X_3\\X_5\\X_5</MAT>\sim N_5(*(<MAT>1\\2\\3\\4\\5</MAT>,<MAT>50 & 42 & 41 & 48 & 27\\ 42 & 40 & 38 & 40 & 25\\
+<D><MAT>X_1\\X_2\\X_3\\X_4\\X_5</MAT>\sim N_5(*(<MAT>1\\2\\3\\4\\5</MAT>,<MAT>50 & 42 & 41 & 48 & 27\\ 42 & 40 & 38 & 40 & 25\\
  41 & 38 & 51 & 53 & 39\\ 48 & 40 & 53 & 61 & 39\\ 27 & 25 & 39 & 39 & 38</MAT>)*). </D>
 Find the distribution of <M>\v Y = (2X_1-3X_4+X_5,~~X_1+X_4)'.</M>
 
@@ -260,11 +261,11 @@ Distr(\v Y|\v X=\v x)
 & = & Distr(B'A ^{-1} \v X + (\v Y-B'A ^{-1}\v X)|\v X=\v x)\\
 & = & Distr(B'A ^{-1} \v x + (\v Y-B'A ^{-1}\v X)|\v X=\v x)\\
 & = & B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X|\v X=\v x)\\
-& = & B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X)<SINCE><M>\bc</M>  indep</SINCE>
+& = & B'A ^{-1} \v x +Distr( \v Y-B'A ^{-1}\v X)<SINCE><M>\because</M>  indep</SINCE>
 </MULTILINE>
 Now 
 <D>\v Y-B'A ^{-1}\v X = <MAT>-B A ^{-1} & I </MAT><MAT>\v X\\\v Y</MAT>.</D>
-So <M>Distr( \v Y-B'A ^{-1}\v X)</M>  may be computed easi;y.
+So <M>Distr( \v Y-B'A ^{-1}\v X)</M>  may be computed easily.
 </ANS>
 </EXR> 
 
@@ -364,7 +365,7 @@ Let <M>X_1,...,X_n</M>  be IID <M>N(0,1).</M>
 Then <M>X_1^2</M>  has CDF <M>F(\cdot),</M>  where <M>F(a)=0</M>  for <M>a<0</M>  and for <M>a\geq 0</M>  we have
 <D>F(a) = P(X_1^2\leq a) =[[1][\sqrt{2\pi}]] \int_{-\sqrt a}^{\sqrt a} e^{-x^2/2}\, dx=[[2][\sqrt{2\pi}]] \int_0^{\sqrt a} e^{-x^2/2}\, dx.</D>
 Differentiating wrt <M>a</M>  we get the density
-<D>f(a) = F'(a) = [[2][\sqrt{2\pi}]] e^{-a/2}\mbox{ for }a>0.</D>
+<D>f(a) = F'(a) = [[2][\sqrt{2\pi}]] e^{-a/2}\times\mbox{ for }a>0.</D>
 We immediately recognise it as the <M>Gamma(*([[12]],[[12]])*)</M>  density.
 
 So <M>X_i^2\sim Gamma(*([[12]],[[12]])*)</M>   for <M>i=1,2,...,n.</M>
@@ -413,7 +414,7 @@ If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution
  <M>S^\perp</M>  must have <M>\k {n-k}</M>  distribution.</EXR>
 
 <EXR>(Continuation of the last problem) How will the answer to the last problem change if <M>\v\mu\not\in S?</M></EXR>
-<HEAD1>Sampling distributions for normal sample</HEAD1>
+<HEAD1 u="https://youtu.be/BRwFMYfb4rE">Sampling distributions for normal sample</HEAD1>
 
 <THM>
 Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
@@ -450,7 +451,7 @@ The distribution of <M>\bar X</M>  is obvious from an earlier theorem.
 Same set up as in the theorem above. What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
 a fixed number?
 </EXR>
-<HEAD1><M>t</M>  distribution</HEAD1>
+<HEAD1 u="https://youtu.be/mv62pUoznVI"><M>t</M>  distribution</HEAD1>
 <DEFN name="$t$-distribution">
 If <M>X\sim N(0,1)</M>  and <M>Y\sim\k n</M>  and they are independent, then the distribution of <M>X/(\sqrt{Y/n})</M>  is
  called <M>t</M>-distribution with <M>n</M>  degrees of freedom. Here <M>n>0</M>  need not be an integer.
@@ -492,7 +493,7 @@ It should not be difficult to see that <M>t</M>-density is symmetric around 0. T
 </EXR>
 
 
-<HEAD1><M>F</M>  distribution</HEAD1>
+<HEAD1 u="https://youtu.be/xTL6asmWxA8"><M>F</M>  distribution</HEAD1>
 <DEFN name="$F$-distribution">
 If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, then the distribution of <M>[[X/m][Y/n]]</M>  is
  called <M>F</M> -distribution with numerator degrees of freedom <M>m</M>  and denominator degrees of freedom <M>n.</M>
@@ -500,7 +501,7 @@ If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, t
 The density of <M>X</M>  is <M>f_X(x) =<CASES>\mbox{const }x^{[[m2]]-1}e^{-[[x2]]}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 
 Similarly, 
-the density of <M>Y</M>  is <M>f_Y(x) =<CASES>\mbox{const }y^{[[n2]]-1}e^{-[[y2]]}<IF>y>0</IF> 0<ELSE/></CASES> </M>
+the density of <M>Y</M>  is <M>f_Y(y) =<CASES>\mbox{const }y^{[[n2]]-1}e^{-[[y2]]}<IF>y>0</IF> 0<ELSE/></CASES> </M>
 
 Hence density of <M>Z = [[XY]]</M>  is 
 <MULTILINE>
@@ -521,7 +522,7 @@ Then what
  is the distribution of 
 <D>[[\sum(X_i-\bar X)^2/(m-1)][\sum(Y_i-\bar Y)^2/(n-1)]]?</D>
 </EXR>
-<HEAD1>Distribution of quadratic forms</HEAD1>
+<HEAD1 u="https://youtu.be/XCtgYh2ux7M">Distribution of quadratic forms (part 1)</HEAD1>
 <DEFN name="Quadratic form">
 By a <TERM>quadratic form</TERM>  in <M>n</M>-variables we understand a function <M>q:\rr^n\to\rr</M>  of the form
 <D>q(\v x) = \v x' A \v x</D>
@@ -539,7 +540,7 @@ There are two variables, so the matrix will be a <M>2\times 2</M>  one. The diag
 </EXM>
 In this section we shall deal with the following set up:
 <Q>
-<M>X_1,...,X_n</M>  are IID <M>N(0,1),</M>  or, equivalently <M>\v X = (X_1,...,X_n)'\sim N_N(\v0,I).</M>  We have some real, symmetric matrix
+<M>X_1,...,X_n</M>  are IID <M>N(0,1),</M>  or, equivalently <M>\v X = (X_1,...,X_n)'\sim N_n(\v0,I).</M>  We have some real, symmetric matrix
  <M>A.</M>  We want to explore various necessary and sufficient condtions under which the quadratic form <M>\v X'A\v X</M> 
  will have a <M>\k k</M>  distribution, and how <M>k</M>  is related with <M>A.</M>
 </Q>
@@ -574,12 +575,13 @@ We want this to be the characteristic function of <M>\k r</M>  for some <M>r.</M
 <D>\prod_1^k (1-2it d_j)^{-1/2}=(1-2it)^{-r/2}.</D>
 In other words, we need 
 <D>(1-2it d_1)\cdots (1-2it d_k)=(1-2it)^r.</D>
-Matching degrees of sides, we see <M>r=k.</M>  
+Matching degrees of both sides, we see <M>r=k.</M>  
 
 Also, matching coefficients of powers of <M>t,</M>  we 
  see that <M>d_1=\cdots=d_k=1.</M>  Hence <M>A = P'<MAT>I & O\\O & O</MAT>P</M>. We know that any matrix of this form must
  be idempotent. This completes the proof.
 </PF>
+<HEAD1 u="https://youtu.be/ObK-yPeTs7E">Distribution of quadratic forms (part 2)</HEAD1>
 We know that sum of independent <M>\chi^2</M>  random variables is a again a <M>\chi^2</M>  random variable with degrees of freedom
  adding up. Here is a partial converse.
 <THM>
@@ -636,9 +638,9 @@ Since we have assumed (1), hence <M>tr(A_i)=r(A_i).</M>  So (2) follows.
 
 
 Why do we care about the Fisher-Cochran theorem in probability or statistics? Because we often start with a random vector
- <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
+ <M>\v X\sim N_n(0,I),</M>  and split <M>\|\v X\|^2</M>  into some quadratic forms <M>\|\v X\|^2 = \v X'\v X = \v X'A_1\v X+\cdots+\v X'A_k\v X.</M>
 Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
- <M>\chi^2</M>-distributions, then must also be independent, and their degrees of freedom must add
+ <M>\chi^2</M>-distributions, then they must also be independent, and their degrees of freedom must add
  up to <M>n.</M>
 
 <HEAD1>Miscellaneous problems</HEAD1>

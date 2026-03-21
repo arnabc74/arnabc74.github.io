@@ -1,0 +1,30 @@
+ @{<NOTE>
+<HEAD1>Midsem solution</HEAD1>
+
+<HEAD2>Question 1</HEAD2>
+
+Let <M>U = X+2Y</M>  and <M>V = Y.</M>  
+
+Here <M>X,Y\in[0,1]</M>  and so <M>U\in[0,3].</M>  Similarly <M>V\in[0,1].</M>  
+
+We have <M>X = U-2V</M>  and <M>Y = V.</M>  
+
+Thus, the map <M>(X,Y)\mapsto (U,V)</M>  is bijective. 
+
+Since it is linear, the Jacobian is just the matrix <M><MAT>1 & -2\\0 & 1</MAT>,</M>  which has determinant 1. 
+
+Now the joint density of <M>(X,Y)</M>  is <M>f_{X,Y}(x,y) =<CASES>6<IF>(x,y)\in S</IF> 0<ELSE/></CASES>, </M>
+since area of <M>S</M>  is <M>\int_0^1 (x-x^2)\, dx = [[12]]-[[13]] = [[16]].</M>
+
+So the joint density of <M>(U,V)</M>  is <M>f_{U,V}(u,v) = f_{X,Y}(u-2v, v) = <CASES>6<IF>(u-2v,v)\in S</IF> 0<ELSE/></CASES>.</M>
+
+Let <M>T = \{(u,v)~:~(u-2v,v)\in S\}.</M>
+
+<M>0\leq u-2v \leq 1</M>  and <M>(u-2v)^2\leq v \leq u-2v.</M>  
+
+So we have <M>v\leq [[u2]]</M>, <M>v\leq [[u3]]</M>, <M>v\geq [[u-1][2]]</M>    and <M>(u-2v)^2\leq v.</M>  
+
+Now <M>u-2v\geq 0,</M>  and so <M>u-2v\leq \sqrt v</M>  or <M>u\leq 2v+\sqrt v.</M>  
+ 
+Combining all these we have <M>v\in [0,1]</M>  and  <M>u\in[].</M>
+</NOTE>@}
