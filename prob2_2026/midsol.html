@@ -2,6 +2,7 @@
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -111,6 +112,11 @@ body,table {
 .hl {
   list-style-type: upper-alpha;
 }
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
 </style>
 <script>
 window.onscroll = function() {myFunction()};
@@ -154,43 +160,227 @@ function myFunction() {
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Question 1">Question 1</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Question 2">Question 2</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Question 3">Question 3</a>
+</li>
 </ul>
 <hr/>
 
 <h1 xmlns=""><a
 name="Midsem solution">Midsem solution</a></h1>
+In all the solutions below part of the text is written in <div class="hand">handwriting style.</div>
+This is the part that a student may write in the exam (along with the relevant diagrams). 
+<h2><a
+name="Question 1">Question 1</a></h2>
+Here $(X,Y)\sim Unif(S),$  where $S=\{(x,y)~:~x\in[0,1],~y\in[x^2,x]\}.$  To find the desnity of $X+2Y.$
+<p></p>
+The first thing you should do here is to make a sketch of the region $S.$  
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/midq11.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then decide the support of $X+2Y.$
+<div class="hand">
+Here $X+2Y$  must lie in $[0,3].$  
+</div> 
+You are starting with a bivariate distribution, and want to arrive at an univariate one. So our modus operandi could be
+ to first use the Jacobian method to 
+ transform from $(X,Y)$  to some $(U,V),$  where either $U$  or $V$  is the random variable of our interest. 
+Then we can integrate out the other variable.
+<p></p>
+ For the Jacobian part we need a bijection:
+<div class="hand">
+Let $U = X+2Y$  and $V = Y.$  
+</div>
+You could have chosen $V = X$  also. I chose $Y$  so that I could avoid dividing by $2$  in the inverse.
+Before you start algebraic manipulations, you should visualise the transform. Here $(1,0)\mapsto (1,0)$  and $(0,1)\mapsto (2,1).$ 
+ So the graph paper transforms as follows. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/midq12.png"></th>
+</tr>
+<tr>
+<th>The red dot of the original graph goes to the blue dot in the new graph</th>
+</tr>
+</table>
+</center>
+So our region of interest should transform as shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/midq13.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Or original distribution was uniform, the transform is linear (so no uneven stretching). Hence $(U,V)$  must be uniform
+ over the green region. 
+<p></p>
+First we find the inverse map (proving as a side effect that the transform is a bijection):
+<div class="hand">
+We have $X = U-2V$  and $Y = V,$  ie
+$$\left[\begin{array}{ccccccccccc}X\\Y
+\end{array}\right]  = \left[\begin{array}{ccccccccccc}1 &amp; -2\\0&amp; 1
+\end{array}\right]\left[\begin{array}{ccccccccccc}U\\V
+\end{array}\right]$$  
+<p></p>
+Thus, the map $(X,Y)\mapsto (U,V)$  is bijective. 
+</div>
+Next we compute the Jacobian. 
+<div class="hand">
+Since it is linear, the Jacobian is just the matrix $\left[\begin{array}{ccccccccccc}1 &amp; -2\\0 &amp; 1
+\end{array}\right],$  which has determinant 1. 
+</div>
+So there is no change in area.
+<p></p>
+Let's work out the the density of $(X,Y).$  
+<div class="hand">
+Now the joint density of $(X,Y)$  is $f_{X,Y}(x,y) =\left\{\begin{array}{ll}6&\text{if }(x,y)\in S\\ 0&\text{otherwise.}\end{array}\right., $
+since area of $S$  is $\int_0^1 (x-x^2)\, dx = \frac 12-\frac 13 = \frac 16.$
+</div>
+So we can apply the Jacobian transform to get the new density for $(U,V).$
+<div class="hand">
+So the joint density of $(U,V)$  is $f_{U,V}(u,v) = f_{X,Y}(u-2v, v) = \left\{\begin{array}{ll}6&\text{if }(u-2v,v)\in S\\ 0&\text{otherwise.}\end{array}\right..$
+</div>
+We now need a new name for the green region.
+<div class="hand">
+Let $T = \{(u,v)~:~(u-2v,v)\in S\}.$
+</div>
+We are now to integrate over $v.$ 
+<p></p>
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/midq14.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ This amounts to finding the length
+ of the thick part of the vertical line through $u.$ Understand this well before reading the
+ algebraic manipulations below.  
+For a given $u\in[0,3]$  we need to find the two end points of the thick segment. The upper end point is obviously $v = u/3.$ 
+<p></p>
+To find the lower end point ($A$) we need to see where the $y = x^2$  curve is in the $(u,v)$-plane. This
+ curve will intersect the vertical line through $u$  at two points ($A$  and $B$). The diagram shows that
+ we need the lower one. 
+<div class="hand">
+$y = x^2$  becomes $v = (u-2v)^2.$  
+</div>
+We may write this as a quadratic in $u$  or as a quadratic in $v.$  But since we need to find $v$  for a given
+ $u,$ we shall prefer the latter.
+<div class="hand">
+This is $4v^2-(4u+1)v+u^2 = 0.$
+<p></p>
+Hence $v = \frac{4u+1\pm\sqrt{8u+1}}{8}.$
+<p></p>
+Keeping only the smaller root, we have
+$v = \frac{4u+1-\sqrt{8u+1}}{8}.$
+<p></p>
+So the thick line segment has length 
+$$\frac u3- \frac{4u+1-\sqrt{8u+1}}{8}.$$
+Since the density is the constant $6$  over the green region, the required marginal density is 
+$$f_U(u) = \int_{- \infty}^ \infty f_{U,V}(u,v) dv = \left\{\begin{array}{ll}6\left(\frac u3- \frac{4u+1-\sqrt{8u+1}}{8}\right)&\text{if }u\in[0,3]\\ 0&\text{otherwise.}\end{array}\right..$$
+</div>
+Here is a little R code to check what we have done:
+<font color="red">
+<pre>
+x = runif(10000)
+y = runif(10000)
+keep = (x &gt;= y) &amp; (y &gt;= x*x)
+png('image/midoverlay.png')
+hist(x[keep]+2*y[keep],prob=T)
+f = function(u) {
+    6*(u/3-(4*u+1-sqrt(8*u+1))/8)
+}
+curve(f(x),add=T)
+dev.off()
+</pre>
+</font>
+You may like to carefully at the code to learn how we simulated from $Unif(S).$
+<p></p>
+Here is the resulting plot:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/midoverlay.png"></th>
+</tr>
+<tr>
+<th>Pretty good fit!</th>
+</tr>
+</table>
+</center> 
+
+<h2><a
+name="Question 2">Question 2</a></h2>
+$\newcommand{\x}[1]{X_{(#1)}}$
+Here we are to find the joint density of $(X_{(2)}, X_{(5)})$   where $X_1,...,X_5$  are iid $Unif(0,1).$ 
+<p></p>
+We shall start by finding the joint distribution function, $F(a,b) = P(\x 2\leq a, \x 5\leq b)$, and then differentiate
+ it partially wrt $a,b$  to obtain the required density. 
+<div class="hand">
+Clearly, $(\x 2, \x 5)$  can take values in $S=\{(a,b)~:~ 0\leq a \leq b\leq 1\}.$  So the required joint density
+ must vanish outside $S$. 
+<p></p>
+Let $(a,b)\in S.$
+<p></p>
+Let $F(a,b) = P(\x 2\leq a, \x 5\leq b).$
+<p></p>
+Then $\{\x 2 \leq a, \x 5\leq b\}$  means all the $X_i$'s are in $[0 b],$  and at
+ least two are in $[0, a].$ 
+<p></p>
+If the number of $X_i$'s in $[0, a]$  is $k$, then the remaining $5-k$  are in $(a, b].$  
+<p></p>
+Pick the $k$ of the $5$  $X_i$'s:  $\binom 5 2$  ways.
+<p></p>
+Put them in $[0,a]:$  $a^k.$
+<p></p>
+Put the remaining $5-k$  in $(a, b]:$  $(b-a)^{5-k}.$
+<p></p>
+So  $F(a,b) = b^5- \underbrace{(b-a)^5}_{k=0}-\underbrace{5  a(b-a)^4}_{k=1}.$
+<p></p>
+Hence $f(a,b) = \frac{\partial^2}{\partial a\partial b} F(a,b) =\cdots=60 a(b-a)^2.$
+<p></p>
+Thus the required joint density is 
+$$f(a,b) = \left\{\begin{array}{ll}60a(b-a)^2&\text{if }0&lt;a&lt;b&lt;1\\ 0&\text{otherwise.}\end{array}\right.. $$
+</div>
 
 <p></p>
 
 <h2><a
-name="Question 1">Question 1</a></h2>
+name="Question 3">Question 3</a></h2>
+We have $X\sim Expo(1)$  and $Y|X=x\sim Unif(0,x).$  To find $E(Y)$  and $P(Y &lt; X).$
+<p></p>
 
+<div class="hand">
+Since $Y|X=x\sim Unif(0,x),$  hence $E(Y|X) = \frac X2.$
 <p></p>
-Let $U = X+2Y$  and $V = Y.$  
+By the tower property, $E(Y) = E(E(Y|X)) = E\left(\frac X2\right) = \frac 12 E(X) = \frac 12,$  since $X\sim Expo(1),$  and
+ hence $E(X) = 1.$
 <p></p>
-Here $X,Y\in[0,1]$  and so $U\in[0,3].$  Similarly $V\in[0,1].$  
+Let $Z =\left\{\begin{array}{ll}1&\text{if }Y&lt; X\\ 0&\text{otherwise.}\end{array}\right.. $
 <p></p>
-We have $X = U-2V$  and $Y = V.$  
+Then $P(X&lt; Y)= E(Z).$
 <p></p>
-Thus, the map $(X,Y)\mapsto (U,V)$  is bijective. 
+Now $E(Z|X) = 1,$  since $Y|X=x\sim Unif(0,x).$  
 <p></p>
-Since it is linear, the Jacobian is just the matrix $\left[\begin{array}{ccccccccccc}1 &amp; -2\\0 &amp; 1
-\end{array}\right],$  which has determinant 1. 
-<p></p>
-Now the joint density of $(X,Y)$  is $f_{X,Y}(x,y) =\left\{\begin{array}{ll}6&\text{if }(x,y)\in S\\ 0&\text{otherwise.}\end{array}\right., $
-since area of $S$  is $\int_0^1 (x-x^2)\, dx = \frac 12-\frac 13 = \frac 16.$
-<p></p>
-So the joint density of $(U,V)$  is $f_{U,V}(u,v) = f_{X,Y}(u-2v, v) = \left\{\begin{array}{ll}6&\text{if }(u-2v,v)\in S\\ 0&\text{otherwise.}\end{array}\right..$
-<p></p>
-Let $T = \{(u,v)~:~(u-2v,v)\in S\}.$
-<p></p>
-$0\leq u-2v \leq 1$  and $(u-2v)^2\leq v \leq u-2v.$  
-<p></p>
-So we have $v\leq \frac u2$, $v\leq \frac u3$, $v\geq \frac{u-1}{2}$    and $(u-2v)^2\leq v.$  
-<p></p>
-Now $u-2v\geq 0,$  and so $u-2v\leq \sqrt v$  or $u\leq 2v+\sqrt v.$  
-<p></p>
-Combining all these we have $v\in [0,1]$  and  $u\in[].$
+So, by the tower property, $P(X &lt; Y) = E(Z) = E(E(Z|X)) = 1.$
+</div>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>
