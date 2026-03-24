@@ -1,6 +1,6 @@
  @{<NOTE>
 <HEAD1>Midsem solution</HEAD1>
-In all the solutions below part of the text is written in <WR>handwriting style.</WR>
+In all the solutions below, part of the text is written in <WR>handwriting style.</WR>
 This is the part that a student may write in the exam (along with the relevant diagrams). 
 <HEAD2>Question 1</HEAD2>
 Here <M>(X,Y)\sim Unif(S),</M>  where <M>S=\{(x,y)~:~x\in[0,1],~y\in[x^2,x]\}.</M>  To find the desnity of <M>X+2Y.</M>

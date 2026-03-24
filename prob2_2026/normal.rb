@@ -195,7 +195,7 @@ If <M>\v X</M>  and <M>\v Y</M>  are two random vectors with characteristic func
 <PF>Direct application of definition.</PF>
 
 <THM>If 
-<D>\v X = <MAT>\v X_1\\\v X_2</MAT>'\sim N_n(*(\underbrace{<MAT>\v \mu_1\\\v \mu_2</MAT> }_{\v\mu},
+<D>\v X = <MAT>\v X_1\\\v X_2</MAT>\sim N_n(*(\underbrace{<MAT>\v \mu_1\\\v \mu_2</MAT> }_{\v\mu},
 \underbrace{<MAT>\Sigma_{11} &  \Sigma_{12}\\\Sigma_{12}' & \Sigma_{22}</MAT> }_\Sigma)*),</D>  then
  <M>\v X_1</M>  and <M>\v X_2</M>  are
  independent if and only if <M>\Sigma_{12} = O.</M></THM>
