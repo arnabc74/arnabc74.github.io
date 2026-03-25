@@ -2,6 +2,8 @@
 <HEAD1>Probability II (B1, 2026)</HEAD1>
 URL: https://arnabc74.github.io/prob2_2026/
 
+<HEAD2>Projects</HEAD2>
+Click <LINK to="projects.html">here</LINK>  to access the projects.
 <HEAD2>Midsem solutions</HEAD2>
 Click <LINK to="midsol.html">here</LINK>  to access the solutions.
 <HEAD2>Assignments</HEAD2>
