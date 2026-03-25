@@ -388,7 +388,7 @@ The characteristic function of <M>\k n</M>  is <M>\xi(t) = (1-2it)^{-n/2}</M>  f
 Put <M>p=[[12]]</M>  and <M>\alpha=[[n2]]</M>  in the characteristic function of <M>Gamma(p,\alpha).</M>
 </PF>
 <HEAD1 u="https://youtu.be/xDLG6SCBg_Q">Geometry of <M>\chi^2_{(k)}</M></HEAD1>
-If we consider a random vetor <M>\v X</M>  in <M>\rr^k</M>  with IID <M>N(0,1)</M>  components, <M>\|\v X\|^2\sim \k k.</M> 
+If we consider a random vector <M>\v X</M>  in <M>\rr^k</M>  with IID <M>N(0,1)</M>  components, <M>\|\v X\|^2\sim \k k.</M> 
  This is little more than the definition. 
 
 <THM>Now let be <M>\v X\sim N_n(\v 0, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace of
@@ -406,7 +406,7 @@ Also <M>\|\v Y\|^2 = \sum_1^k Z_i^2\sim\k k,</M>  as required.
 
 <DEFN name="Non-central $\chi^2$">
 If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution <M>\sum X_i^2</M>  is
- called <TERM>noncentral <M>\k n</M>  with noncentralty parameter <M>\sum_i\mu_i^2.</M></TERM> 
+ called <TERM>noncentral <M>\k n</M>  with noncentrality parameter <M>\sum_i\mu_i^2.</M></TERM> 
 </DEFN>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Let <M>\v X\sim N_n(\v \mu, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace
@@ -418,7 +418,7 @@ If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution
 
 <THM>
 Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
- the sampe mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
+ the sample mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and sample variance <M>S^2=[[1n]]\sum_1^n (X_i-\bar X)^2.</M>   Then 
 <OL>
 <LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
 <LI><M>[[nS^2][\sigma^2]]\sim \k {n-1}</M></LI>
@@ -483,7 +483,7 @@ Substituting <M>v = [[u^2][2]]</M>  we have
 If you keep track of the constants, you will find that it is
 <D>[[\Gamma(*([[n+1][2]])*)][\sqrt{n\pi}\Gamma(*([[n][2]])*)]]\times n^{[[n+1][2]]}.</D>
 It should not be difficult to see that <M>t</M>-density is symmetric around 0. The densities are much like the <M>N(0,1)</M> 
- density. They lie somewhere in-between the Cauchy density and <M>N(0,1)</M>  density. As the degrees of freedom increase
+ density. They lie somewhere between the Cauchy density and <M>N(0,1)</M>  density. As the degrees of freedom increase
  to <M>\infty,</M>  the <M>t</M>-distribution approaches <M>N(0,1).</M>  For degrees of freedom more than 40, the <M>t</M>-density
  is virtually indisguishable from that of <M>N(0,1)</M>  density.
 
