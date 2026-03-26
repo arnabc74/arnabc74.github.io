@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch JSON Example</title>
+</head>
+<body>
+
+<button onclick="sendData()">Send Data</button>
+
+<pre id="output"></pre>
+
+<script>
+
+async function sendData() {
+
+    const data = {
+        name: "Alice",
+        value: 7
+    };
+
+    alert(JSON.stringify(data))
+    const response = await fetch("http://localhost:3000/process", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    alert("After fetch:"+response.ok)
+    
+    const result = await response.json();
+
+    document.getElementById("output").textContent =
+        JSON.stringify(result, null, 2);
+
+}
+
+</script>
+
+</body>
+</html>

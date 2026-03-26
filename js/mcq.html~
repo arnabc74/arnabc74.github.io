@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta
+                                                     http-equiv="Content-Type"
+                                                     content="text/html;charset=UTF-8"
+                                                     />
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<link href="../tools/style.css" rel="stylesheet" type="text/css" /> 
+
+  <title>MCQ Quiz</title>
+
+</head>
+<body>
+এটা কাজ করছে 
+<h2 id="header"></h2>
+
+<div id="qbody"></div>
+<ol>
+<li><input type=radio name="option" id='q0' onclick='selectOption(0)' /> <span id="o0"></span></li>
+<li><input type=radio name="option" id='q1' onclick='selectOption(1)' /> <span id="o1"></span></li>
+<li><input type=radio name="option" id='q2' onclick='selectOption(2)' /> <span id="o2"></span></li>
+<li><input type=radio name="option" id='q3' onclick='selectOption(3)' /> <span id="o3"></span></li>
+</ol>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<input type="button" id="nextBtn" value="Next" onclick="nextQuestion()"></input>
+
+<script>
+const queryString = window.location.search;
+console.log(window.location.search)
+const urlParams = new URLSearchParams(queryString);
+qFile = urlParams.get("q")+".json"
+
+let marks = 0
+let questions = [];
+let currentIndex = 0;
+let answered = false;
+
+// Fetch JSON
+fetch(qFile,{cache:'no-store'})
+  .then(res => res.json())
+  .then(data => {
+    questions = data;
+    loadQuestion();
+  })
+  .catch(err => {
+    document.getElementById('header').innerText = "Error loading questions.";
+    console.error(err);
+  });
+
+function loadQuestion() {
+  document.getElementById('nextBtn').disabled=(currentIndex==questions.length-1)
+  document.getElementById("header").innerHTML="Question "+(currentIndex+1)+" of "+questions.length
+  const q = questions[currentIndex];
+
+  // Set question (with LaTeX)
+  const qEl = document.getElementById('qbody');
+  qEl.innerHTML = q.question;
+
+  // Clear feedback
+  document.getElementById('result').innerText = "";
+  document.getElementById('explanation').innerHTML = "";
+
+
+  for(i=0;i<4;i++) {
+    document.getElementById('q'+i).disabled = false
+    document.getElementById('q'+i).checked = false
+    document.getElementById('o'+i).innerHTML = q.options[i]
+  }
+}
+
+  // 🔥 IMPORTANT: Render LaTeX
+  //MathJax.typesetPromise();
+
+
+function selectOption(index) {
+  for(i=0;i<4;i++) 
+    document.getElementById('q'+i).disabled = true
+
+  const q = questions[currentIndex];
+  console.log("After selection: is "+index+" in "+q.correct+"?")
+  if(q.correct==index) {
+    marks += 10
+    document.getElementById('result').innerHTML=
+     "Correct. Your total marks = "+marks
+  }
+  else {
+    document.getElementById('result').innerHTML=
+     "Wrong. Your total marks = "+marks
+  }
+
+  document.getElementById('explanation').innerText = q.explanation;
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex < questions.length) {
+    loadQuestion();
+  } else {
+    document.body.innerHTML = "<h2>Quiz Finished!</h2>";
+  }
+};
+
+alert("All loaded!");
+</script>
+
+</body>
+</html>

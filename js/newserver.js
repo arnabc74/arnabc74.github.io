@@ -1,0 +1,38 @@
+const http = require('http');
+const fs = require('fs');
+
+
+const PORT = 3000;
+
+
+
+function work(req, res) {
+    console.log("e="+res)
+    console.log("url = "+req.url)
+
+    if(req.url.length==1) {
+        function tarpar(err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        }
+        
+        fs.readFile("public/index.html", tarpar)
+    }
+    else {
+        idir = Number(req.url.substr(1))
+        if(!isNaN(idir)) {
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end("The computed value is "+(2*idir-1));
+        }
+        else {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end("What's that?");
+        }
+    }
+}
+                
+const server = http.createServer(work);
+
+server.listen(3000)
+
+
