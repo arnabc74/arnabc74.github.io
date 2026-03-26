@@ -2,6 +2,7 @@
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
 <link type="text/css" rel="stylesheet" href="../tools/style.css"/>
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -110,6 +111,11 @@ body,table {
 
 .hl {
   list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
 }
 </style>
 <script>
@@ -1051,6 +1057,43 @@ Since we have $e^{iXt} = \cos (Xt)+i\sin(Xt)$, the characteristic function is ju
 $\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).$
 Since $\cos$  and $\sin$  are both bounded, finite existence of the expectation is not a problem. 
 <p></p>
+We know that for any (real-valued) random variable $X$  with $E|X|&lt; \infty,$  we have
+ finite existence of $E(X)$  and  $|E(X)|\leq E|X|.$  This also implies the following similar fact for complex-valued
+ random variables.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $E|Z|&lt; \infty,$  then $E(Z)$  exists finitely (<i>i.e.</i>, both the real and the
+ imaginary parts have finite expectations) and $|E(Z)|\leq E|Z|.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $X = Re(Z)$  and $Y = Im(Z).$  
+<p></p>
+Then $|X|= \sqrt{X^2}\leq \sqrt{X^2+Y^2} = |Z|.$
+<p></p>
+So $E|X|\leq E|Z|&lt; \infty.$
+<p></p>
+Similarly, $E|Y|\leq E|Z|&lt; \infty.$
+<p></p>
+Hence, by the real case, $E(X), E(Y)$  exist finitely and $|E(X)|\leq E|X|$  and $|E(Y)|\leq E|Y|.$  
+<p></p>
+So $E(Z)$  exists finitely.
+<p></p>
+Also 
+$$\begin{eqnarray*}
+|E(Z)| &amp; = &amp; |E(X)+iE(Y)|\\
+&amp; \leq &amp; |E(X)|+|E(Y)|~~\left[\mbox{by triangle inequality in ${\mathbb C}$}\right]\\
+&amp; \leq &amp; E|X|+E|Y|~~\left[\mbox{by the real case}\right]\\
+&amp; = &amp; E(|X|+|Y|)\\
+&amp; \leq &amp; E(\sqrt{X^2+Y^2})~~\left[\mbox{by triangle inequality in ${\mathbb R}^2$}\right]\\
+&amp; = &amp; E(|Z|),
+\end{eqnarray*}$$
+as required.
+<b><i>[QED]</i></b>
+</p>
 
 <h2><a
 name="Complex calculus">Complex calculus</a></h2>
@@ -1091,6 +1134,20 @@ name="Problem set 11">Problem set 11</a></h2>
 name="Properties of CF">Properties of CF</a></h1>
 <a href="https://youtu.be/9lsO1kR9OaQ">Video for this section</a>
 <p></p>
+We start with two simple properties.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\xi(t)$  be the CF of some random variable $X.$  Then $\xi(0) = 1$  and $\forall t\in{\mathbb R}~~|\xi(t)|\leq 1.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>The first one is trivial.
+<p></p>
+The second follows from the fact that $|e^{itX}| = 1.$  
+<p></p>
+So $|\xi(t)|= |E(e^{itX})|\leq E(|e^{itX}|)\leq 1.$
+<b><i>[QED]</i></b>
+</p>
 The following two theorems are what make CF useful.
 <p></p>
 

@@ -536,6 +536,38 @@ Since we have <M>e^{iXt} = \cos (Xt)+i\sin(Xt)</M>, the characteristic function 
 <M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
 Since <M>\cos</M>  and <M>\sin</M>  are both bounded, finite existence of the expectation is not a problem. 
 
+We know that for any (real-valued) random variable <M>X</M>  with <M>E|X|< \infty,</M>  we have
+ finite existence of <M>E(X)</M>  and  <M>|E(X)|\leq E|X|.</M>  This also implies the following similar fact for complex-valued
+ random variables.
+
+<THM>
+If <M>E|Z|< \infty,</M>  then <M>E(Z)</M>  exists finitely (i.e., both the real and the
+ imaginary parts have finite expectations) and <M>|E(Z)|\leq E|Z|.</M>
+</THM>
+<PF>
+Let <M>X = Re(Z)</M>  and <M>Y = Im(Z).</M>  
+
+Then <M>|X|= \sqrt{X^2}\leq \sqrt{X^2+Y^2} = |Z|.</M>
+
+So <M>E|X|\leq E|Z|< \infty.</M>
+
+Similarly, <M>E|Y|\leq E|Z|< \infty.</M>
+
+Hence, by the real case, <M>E(X), E(Y)</M>  exist finitely and <M>|E(X)|\leq E|X|</M>  and <M>|E(Y)|\leq E|Y|.</M>  
+
+So <M>E(Z)</M>  exists finitely.
+
+Also 
+<MULTILINE>
+|E(Z)| & = & |E(X)+iE(Y)|\\
+& \leq & |E(X)|+|E(Y)|<SINCE>by triangle inequality in <M>\cc</M></SINCE>\\
+& \leq & E|X|+E|Y|<SINCE>by the real case</SINCE>\\
+& = & E(|X|+|Y|)\\
+& \leq & E(\sqrt{X^2+Y^2})<SINCE>by triangle inequality in <M>\rr^2</M></SINCE>\\
+& = & E(|Z|),
+</MULTILINE>
+as required.
+</PF>
 <HEAD2>Complex calculus</HEAD2>
 For <M>f:\rr\to\cc</M>  write <M>f(x) = g(x) + i h(x) </M>  for <M>g,h:\rr\to\rr.</M>  Then differentiation and integration
  are defined in the obvious way:
@@ -559,6 +591,16 @@ Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
 <EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
 
 <HEAD1 u="https://youtu.be/9lsO1kR9OaQ">Properties of CF</HEAD1>
+We start with two simple properties.
+<THM>
+Let <M>\xi(t)</M>  be the CF of some random variable <M>X.</M>  Then <M>\xi(0) = 1</M>  and <M>\forall t\in\rr~~|\xi(t)|\leq 1.</M>
+</THM>
+<PF>The first one is trivial.
+
+The second follows from the fact that <M>|e^{itX}| = 1.</M>  
+
+So <M>|\xi(t)|= |E(e^{itX})|\leq E(|e^{itX}|)\leq 1.</M>
+</PF>
 The following two theorems are what make CF useful.
 
 <THM>

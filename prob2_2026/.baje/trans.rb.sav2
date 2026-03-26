@@ -16,14 +16,14 @@ Let <M>Y = X^2.</M>  A density for <M>X</M>  is <M>f(x) = [[12]]</M>  if <M>0\le
  to the CDF of <M>X:</M>
 <D>F(x) = <CASES>0<IF>x < 0</IF> [[x2]]<IF>0\leq x < 2</IF> 1<ELSE/></CASES> </D>
 From this we shall compute the CDF of <M>Y.</M>  Clearly, <M>Y</M>  cannot take values outside <M>[0,4].</M>  So <M>G(y) = 0</M> 
- if <M>y<0</M> and <M>G(y) = 1</M>  if <M>y\geq 2.</M>  
+ if <M>y<0</M> and <M>G(y) = 1</M>  if <M>y\geq 4.</M>  
 
-Let <M>y\in[0,2).</M>
+Let <M>y\in[0,4).</M>
 
 Then 
 <D>G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = [[12]]\sqrt y.</D>
 Differentiating this, we arrive at the required density of <M>Y</M>  as
-<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in[0,2]</IF> 0<ELSE/></CASES></D>
+<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in(0,4)</IF> 0<ELSE/></CASES></D>
 </EXM> 
 You see the advantage of monotonicity. Even though <M>x\mapsto x^2</M>  is a not a monotone function over <M>\rr,</M>  it
  is so when restricted to <M>[0,2].</M>  The CDF technique can handle even some simple non-monotonic cases, as we show now.
@@ -37,7 +37,7 @@ Clearly, <M>Y=X^2</M>  cannot go outside <M>[0,1].</M>  So its CDF <M>G(y)</M>  
 For <M>y\in[0,1)</M>  we have
 <D>G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.</D>
 Differentiating we get the density
-<D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in[0,1]</IF> 0<ELSE/></CASES> </D>
+<D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in(0,1)</IF> 0<ELSE/></CASES> </D>
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>
@@ -536,6 +536,38 @@ Since we have <M>e^{iXt} = \cos (Xt)+i\sin(Xt)</M>, the characteristic function 
 <M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
 Since <M>\cos</M>  and <M>\sin</M>  are both bounded, finite existence of the expectation is not a problem. 
 
+We know that for any (real-valued) random variable <M>X</M>  with <M>E|X|< \infty,</M>  we have
+ finite existence of <M>E(X)</M>  and  <M>|E(X)|\leq E|X|.</M>  This also implies the following similar fact for complex-valued
+ random variables.
+
+<THM>
+If <M>E|Z|< \infty,</M>  then <M>E(Z)</M>  exists finitely (i.e., both the real and the
+ imaginary parts have finite expectations) and <M>|E(Z)|\leq E|Z|.</M>
+</THM>
+<PF>
+Let <M>X = Re(Z)</M>  and <M>Y = Im(Z).</M>  
+
+Then <M>|X|= \sqrt{X^2}\leq \sqrt{X^2+Y^2} = |Z|.</M>
+
+So <M>E|X|\leq E|Z|< \infty.</M>
+
+Similarly, <M>E|Y|\leq E|Z|< \infty.</M>
+
+Hence, by the real case, <M>E(X), E(Y)</M>  exist finitely and <M>|E(X)|\leq E|X|</M>  and <M>|E(Y)|\leq E|Y|.</M>  
+
+So <M>E(Z)</M>  exists finitely.
+
+Also 
+<MULTILINE>
+|E(Z)| & = & |E(X)+iE(Y)|\\
+& \leq & |E(X)|+|E(Y)|<SINCE>by triangle inequality in <M>\cc</M></SINCE>\\
+& \leq & E|X|+E|Y|<SINCE>by the real case</SINCE>\\
+& = & E(|X|+|Y|)\\
+& \leq & E(\sqrt{X^2+Y^2})<SINCE>by triangle inequality in <M>\rr^2</M></SINCE>\\
+& = & E(|Z|),
+</MULTILINE>
+as required.
+</PF>
 <HEAD2>Complex calculus</HEAD2>
 For <M>f:\rr\to\cc</M>  write <M>f(x) = g(x) + i h(x) </M>  for <M>g,h:\rr\to\rr.</M>  Then differentiation and integration
  are defined in the obvious way:
@@ -559,6 +591,14 @@ Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
 <EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
 
 <HEAD1 u="https://youtu.be/9lsO1kR9OaQ">Properties of CF</HEAD1>
+We start with two simple properties.
+<THM>
+Let <M>\xi(t)</M>  be the CF of some random variable <M>X.</M>  Then <M>\xi(0) = 1</M>  and <M>\forall t\in\rr~~|\xi(t)|\leq 1.</M>
+</THM>
+<PF>The first one is trivial.
+
+The second follows from the
+</PF>
 The following two theorems are what make CF useful.
 
 <THM>
@@ -603,17 +643,23 @@ Since CF uniquely determines the distribution, we get the result.
 ::<EXR><EIMG web="hpstrans2.png"/></EXR>
 ::<EXR><EIMG web="hpstrans4.png"/></EXR>
 ::<EXR><EIMG web="hpstrans7.png"/>
-<IMGHere is Exercise 8: 
+<IMG web="hpsref8.png">Here is Exercise 8:</IMG> 
 </EXR>
 ::<EXR><EIMG web="hpstrans8.png"/></EXR>
 ::<EXR><EIMG web="hpstrans9.png"/></EXR>
 ::<EXR><EIMG web="hpstrans12.png"/></EXR>
-::<EXR><EIMG web="hpstrans14.png"/></EXR>
+::<EXR><EIMG web="hpstrans14.png"/>
+<IMG web="hpsref19.png">Here is Exercise 19:</IMG> 
+</EXR>
 ::<EXR><EIMG web="hpstrans21.png"/></EXR>
-::<EXR><EIMG web="hpstrans23.png"/></EXR>
+::<EXR><EIMG web="hpstrans23.png"/>
+<IMG web="hpsrefs1.png">Here is Exercise 38:</IMG> 
+</EXR>
 ::<EXR><EIMG web="hpstrans24.png"/></EXR>
 ::<EXR><EIMG web="hpspdf7.png"/></EXR>
-::<EXR><EIMG web="hpspdf11.png"/></EXR>
+::<EXR><EIMG web="hpspdf11.png"/>
+<IMG web="hpsrefs2.png">Here is Exercise 4:</IMG> 
+</EXR>
 
 ::<EXR><EIMG web="hpspdf15.png"/></EXR>
 ::<EXR><EIMG web="hpspdf16.png"/></EXR>
@@ -630,8 +676,9 @@ Since CF uniquely determines the distribution, we get the result.
 
 
 ::<EXR><EIMG web="rosspdf23.png"/>
-Which is Theo Exr 2??</EXR>
-::<EXR><EIMG web="rosspdf24.png"/></EXR>
+<IMG web="rossrefs1.png">Here is Theoretical Exercise 2:</IMG> 
+</EXR>
+::<EXR><EIMG web="rosspdf24corr.png"/></EXR>
 ::<EXR><EIMG web="rosspdf35.png"/></EXR>
 
 </NOTE>@}
