@@ -110,6 +110,10 @@ Then show that  the conditional distribution
 This is the multivariate analogue of beta-binomial distribution used in Bayesian machine learning that we had discussed earlier.
  
 </EXR>
+
+::<EXR>Let <M>X_1,...,X_{p+1}</M>  be independent with <M>X_i\sim Gamma(1,\alpha_i).</M>  Then 
+<D>(*( [[X_1][S]],...,[[X_p][S]] )*)\sim Dir(\alpha_1,...,a_{p+1}).</D>
+</EXR>
 <HEAD1>Miscellaneous problems</HEAD1>
 ::<EXR><EIMG web="wilks1.png"/>
 
