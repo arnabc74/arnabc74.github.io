@@ -9,43 +9,70 @@
                                                      />
 <style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
 
+<script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        rr: "{\\mathbb R}",
+        cc: "{\\mathbb C}",
+        bar: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+
 
   <title>MCQ Quiz</title>
 
 </head>
 <body>
-এটা কাজ করছে 
-<h2 id="header"></h2>
 
+<h2 id="header"></h2>
+<font size=+2><div id="exam">
 <div id="qbody"></div>
-<ol>
+<ol type='A'>
 <li><input type=radio name="option" id='q0' onclick='selectOption(0)' /> <span id="o0"></span></li>
 <li><input type=radio name="option" id='q1' onclick='selectOption(1)' /> <span id="o1"></span></li>
 <li><input type=radio name="option" id='q2' onclick='selectOption(2)' /> <span id="o2"></span></li>
 <li><input type=radio name="option" id='q3' onclick='selectOption(3)' /> <span id="o3"></span></li>
 </ol>
-
 <p id="result"></p>
 <p id="explanation"></p>
-
+<p id="score"></p>
+</font>
 <input type="button" id="nextBtn" value="Next" onclick="nextQuestion()"></input>
-
+</div>
+<div id="convo" width="100%"></div>
 <script>
 const queryString = window.location.search;
 console.log(window.location.search)
 const urlParams = new URLSearchParams(queryString);
 qFile = urlParams.get("q")+".json"
 
+var nq, allotted, obtained
 let marks = 0
 let questions = [];
 let currentIndex = 0;
 let answered = false;
-
+let alpha = ['A','B','C','D']
 // Fetch JSON
 fetch(qFile,{cache:'no-store'})
   .then(res => res.json())
   .then(data => {
     questions = data;
+    nq = questions.length
+    allotted = new Array(nq)
+    obtained = new Array(nq)
     loadQuestion();
   })
   .catch(err => {
@@ -53,10 +80,28 @@ fetch(qFile,{cache:'no-store'})
     console.error(err);
   });
 
+tot = 0
+pi = [1,2,3,4]
+
+function randPerm(lastFixed) {
+  n = (lastFixed? 2: 3)
+  pi = [0,1,2,3]
+  for(i=0;i<n;i++) {
+    newI = i+Math.floor(Math.random()*(n-i))
+    tmp = pi[newI]
+    pi[newI] = pi[i]
+    pi[i] = tmp
+  }
+}
+
 function loadQuestion() {
-  document.getElementById('nextBtn').disabled=(currentIndex==questions.length-1)
-  document.getElementById("header").innerHTML="Question "+(currentIndex+1)+" of "+questions.length
+  //document.getElementById('nextBtn').disabled=(currentIndex==questions.length-1)
   const q = questions[currentIndex];
+  allotted[currentIndex] = q.marks
+  tot += q.marks
+  randPerm(q.hasNota) 
+  document.getElementById("header").innerHTML="Question "
+      +(currentIndex+1)+" of "+questions.length+"<br>["+q.marks+" marks]"
 
   // Set question (with LaTeX)
   const qEl = document.getElementById('qbody');
@@ -65,17 +110,20 @@ function loadQuestion() {
   // Clear feedback
   document.getElementById('result').innerText = "";
   document.getElementById('explanation').innerHTML = "";
+  document.getElementById('score').innerHTML = "";
 
 
   for(i=0;i<4;i++) {
     document.getElementById('q'+i).disabled = false
     document.getElementById('q'+i).checked = false
-    document.getElementById('o'+i).innerHTML = q.options[i]
+    document.getElementById('o'+i).innerHTML = q.options[pi[i]]
   }
+  MathJax.Hub.Typeset()
+
 }
 
-  // 🔥 IMPORTANT: Render LaTeX
-  //MathJax.typesetPromise();
+
+
 
 
 function selectOption(index) {
@@ -83,18 +131,32 @@ function selectOption(index) {
     document.getElementById('q'+i).disabled = true
 
   const q = questions[currentIndex];
-  console.log("After selection: is "+index+" in "+q.correct+"?")
-  if(q.correct==index) {
-    marks += 10
-    document.getElementById('result').innerHTML=
-     "Correct. Your total marks = "+marks
+  //console.log("After selection: is "+index+" in "+q.correct+"?")
+
+  if(pi[index]==q.ans) {
+    obtained[currentIndex] = q.marks
+    marks += q.marks
+    document.getElementById('result').innerHTML = "ঠিক বলেছ !"
   }
   else {
-    document.getElementById('result').innerHTML=
-     "Wrong. Your total marks = "+marks
+    obtained[currentIndex] = 0
+    document.getElementById('result').innerHTML = "উঁহু, হল না ! ঠিক উত্তরটা ছিল "+alpha[pi.indexOf(q.ans)]+"."
   }
+  document.getElementById('explanation').innerHTML = q.explanation;
+  document.getElementById('score').innerHTML = "<br>তোমার মোট নম্বর এখন হল "+marks+"/"+tot+"."
 
-  document.getElementById('explanation').innerText = q.explanation;
+  MathJax.Hub.Typeset()
+}
+
+function showResult() {
+   str =
+   "<center><h3>Marksheet</h3><table border=1><tr><th>প্রশ্ন</th><th>নির্ধারিত নম্বর</th><th>প্রাপ্ত নম্বর</th>"
+   for(i=0;i<nq;i++) {
+     str += "<tr><th>"+i+"</th><th>"+allotted[i]+"</th><th>"+obtained[i]+"</th></tr>"
+   }
+   str += "<tr><th>Total</th><th>"+tot+"</th><th>"+marks+"</th></tr></table></center>"
+   document.getElementById('convo').innerHTML=str
+   document.getElementById('exam').innerHTML=""
 }
 
 function nextQuestion() {
@@ -102,7 +164,7 @@ function nextQuestion() {
   if (currentIndex < questions.length) {
     loadQuestion();
   } else {
-    document.body.innerHTML = "<h2>Quiz Finished!</h2>";
+    showResult()
   }
 };
 
