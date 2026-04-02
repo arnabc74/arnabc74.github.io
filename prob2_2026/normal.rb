@@ -410,7 +410,7 @@ If <M>X_1,...,X_n</M>  are independent <M>N(\mu_i,1),</M>  then the distribution
 </DEFN>
 <HEAD2>Problem set <PS/></HEAD2>
 <EXR>Let <M>\v X\sim N_n(\v \mu, I).</M>  Let <M>S</M>  be any <M>k</M>-dimensional subspace
- containing <M>\v \mu.</M>  Then show that the orthogonal projection of <M>\v X</M>  onto
+ containing <M>\v \mu.</M>  Then show that the squared norm of the orthogonal projection of <M>\v X</M>  onto
  <M>S^\perp</M>  must have <M>\k {n-k}</M>  distribution.</EXR>
 
 <EXR>(Continuation of the last problem) How will the answer to the last problem change if <M>\v\mu\not\in S?</M></EXR>

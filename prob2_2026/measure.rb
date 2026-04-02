@@ -576,7 +576,7 @@ For each <M>\omega\in\Omega</M>  and for each <M>n\in\nn</M>  we have <M>s_n(\om
 <BECAUSE>
 If <M>s_n(\omega) = a</M>   and <M>s_{n+1}(\omega) = b,</M>  then <M>f(\omega)\in[a,a+2^{-n})</M>  and also <M>f(\omega)\in[b+2^{-n-1}).</M> 
  
-So, by the contruction of the partitions, <M>[b,b+2^{-n-1})\seq[a,2^{-n}).</M>
+Now, by the construction of the partitions, <M>[b,b+2^{-n-1})\seq[a,2^{-n}).</M>
 
 Thus, <M>a\leq b,</M>  as required.
 </BECAUSE>
