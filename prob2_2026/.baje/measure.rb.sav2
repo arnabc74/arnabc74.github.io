@@ -4,6 +4,7 @@
 \newcommand{\calP}{{\mathcal P}}
 \newcommand{\calB}{{\mathcal B}}
 \newcommand{\calD}{{\mathcal D}}
+\newcommand{\calS}{{\mathcal S}}
 \newcommand{\ind}{{\mathbb 1}}
 \newcommand{\area}{\mathrm {area}}
 </M>
@@ -302,14 +303,39 @@ What is <M>\int_0^1 f(x)\, dx</M>  using Riemann integration?
 
 <EXR>Prove that  <M>\sum_i c_i\ind_{A_i}</M>    is measureable if and only if <M>\forall i~~A_i\in\calB.</M></EXR>
 
+<HEAD1>A smarter way to write</HEAD1>
+While the "partition the codomain" idea is intuitively very nice, there is notationally a much
+ neater way to arrive at the definition of Lebesgue integral. It is this definition that we will
+ see most often in books, and is very similar to the definition of Riemann  integration in appearance. 
+
+Let, as usual, <M>f:[a,b]\to[0,M]</M>  be any function. Let <M>\calS</M>  denote the set of all
+ nonnegative simple measurable functions   on <M>[a,b].</M>  Then we define, for <M>s=\sum_1^n c_i
+ 1_{A_i} \in\calS,</M>
+  its Lebesgue integral as the area under it:
+<D>\int s\, d \lambda = \sum_1^n c_i \lambda(A_i).</D> 
+Then for a general <M>f:[a,b]\to[0,M]</M>  we consider
+<D>\sup{*{\int s\, d \lambda~:~s\in\calS,~~s\leq f }*}</D>
+and
+<D>\inf{*{\int s\, d \lambda~:~s\in\calS,~~f\leq s }*}.</D>
+It may not be immediately apparent that the sup will be same as what we had called sup(red area). SImilarly, the inf actually
+ equals our inf(blue area). 
+
+If this appears to be trivial to you, consider the following diagram:
+<CIMG web="reform1.png"/>
+This <M>s\leq f</M>  is in <M>\calS.</M>  But never it cannot occur as the lower approximation by 
+ partitioning the codomain. However, this is "too far below <M>f</M>" and will never contribute to
+ the sup, as it gets beaten by <M>s'</M>  shown below. 
+<CIMG web="reform2.png"/>
+    This <M>s'</M>  is obtained by the partition codomain technique using the values of <M>s</M>  above. Thus, for any finite
+ set of values, the "best candidate" comes from the "partition the
 <HEAD1>Generalising the solution</HEAD1>
 Lebesgue's approach can be generalised in different ways. We shall discuss these now.
-<HEAD2>Allowing unbounded functions and unbounded domains</HEAD2>
+<HEAD2>Allowing unbounded functions</HEAD2>
 Since the Lebesgue integral exists for all bounded, non-negative measurable functions, hence it is enough to consider only
  the sup of the approximations from below. This immediately allows us to define Lebesgue integral
  for unbounded, measurable functions
  as well. We just allow the sup to be <M>\infty.</M>  
-
+<COMMENT>
 Similarly we may now carry out the procedure
  over an unbounded  domain, like <M>\rr</M>  or <M>(0,\infty)</M>  etc.  There are just a few 
  problems that are easily sorted out:
@@ -331,6 +357,7 @@ There is also a minor trouble involving defining area of rectangles with base le
 length <M>\infty</M>  and positive height has area <M>\infty</M>, and any "rectangle" with zero
  height has zero area (even if its base has length <M>\infty</M>).  
 </LI></UL>
+</COMMENT>
 Now that we are allowing the Lebesgue integral to equal <M>\infty,</M>  we need a little shift in terminology: We shall say
  that a nonnegative function is <TERM>Lebesgue integrable</TERM>  if its Lebesgue integral is finite.
 
@@ -557,7 +584,7 @@ functions such that
 <D>\forall \omega\in\Omega~~s_n(\omega) \uparrow f(\omega).</D> 
 </THM>
 In our course we shall call any such sequence <M>(s_n)</M>   a <TERM>simplification</TERM>  of
- <M>f</M>   It is not a standard term.
+ <M>f.</M>   It is not a standard term.
 <PF>
 For <M>n\in\nn</M>  and <M>\omega\in\Omega</M>  we define <M>s_n</M>  as follows. First partition the codomain
  <M>[0,\infty)</M>  into <M>2</M>  intervals <M>[0,n)</M>  and <M>[n,\infty)</M>  and then
@@ -575,7 +602,7 @@ For each <M>\omega\in\Omega</M>  and for each <M>n\in\nn</M>  we have <M>s_n(\om
 <BECAUSE>
 If <M>s_n(\omega) = a</M>   and <M>s_{n+1}(\omega) = b,</M>  then <M>f(\omega)\in[a,a+2^{-n})</M>  and also <M>f(\omega)\in[b+2^{-n-1}).</M> 
  
-So, by the contruction of the partitions, <M>[b,b+2^{-n-1})\seq[a,2^{-n}).</M>
+Now, by the construction of the partitions, <M>[b,b+2^{-n-1})\seq[a,2^{-n}).</M>
 
 Thus, <M>a\leq b,</M>  as required.
 </BECAUSE>
@@ -626,7 +653,7 @@ it is <M>\geq \int z\, dP</M>
 <M>\int f\, dP = \sup\{\int z\, dP~:~  z\leq f,~~z \mbox{ simple}\},</M>
 </BECAUSE>
 For this it is enough to show that 
- <M>\forall \delta>0~~\lim \int s_n\, dP \geq \int z\,- \delta.</M>  
+ <M>\forall \delta>0~~\lim \int s_n\, dP \geq \int z\, dP- \delta.</M>  
 <BECAUSE>
 Then  <M>\lim \int s_n\, dP - \int z\, dP\geq -\delta.</M>  
 
@@ -635,7 +662,8 @@ Since  <M>\delta>0</M>  is arbitrary, this means <M>\lim \int s_n\, dP - \int z\
 
 So far, we have been just rewording our target. Now we start the main argument. 
 We are showing: 
-<Q><M>\forall</M> simple measurable <M>0\leq z\leq f~~\forall \delta>0~~\lim \int s_n\, dP \geq z- \delta.</M>  </Q>
+<Q><M>\forall</M> simple measurable <M>0\leq z\leq f~~\forall \delta>0~~\lim \int s_n\, dP \geq
+ \int z\, dP- \delta.</M>  </Q>
 
 Take  any simple, measurable function <M>0\leq z\leq f</M>. 
 
@@ -696,7 +724,7 @@ Also <M>E(S_n+T_n) = E(S_n)+E(T_n).</M>  Te result now follows on taking limit o
 
 <U>Step 3</U>: Show this for general <M>X,Y.</M>  Here we apply step 2 to <M>X_+, X_-, Y_+</M>  and <M>Y_-.</M>  
 
-Then we show that for <M>a>0</M>  we have <M>E(aX) = E(X).</M>  This proof also proceeds in three steps (left as an exercise).
+Then we show that for <M>a>0</M>  we have <M>E(aX) = aE(X).</M>  This proof also proceeds in three steps (left as an exercise).
 
 Finally, we show <M>E(-X)= -E(X).</M>  Let <M>Y = -X.</M>  Then <M>Y_+ = X_-</M>  and <M>Y_- = X_+.</M>  So <M>E(Y) = E(Y_+)-E(Y_-) = E(X_-)-E(X_+) = -E(X).</M>
 
@@ -832,7 +860,7 @@ But <M>|X_n-X| \equiv 1</M>. SO <M>E(|X_n-X|) \not\to0</M>.
 </EXR>
 <HEAD1>Radon-Nikodym theorem</HEAD1>
 <THM name="Radon-Nikodym theorem">
-Let <M>\mu</M>  be any <M>sigma</M>-finite measure on <M>(\Omega,\calF).</M>  Let <M>\nu</M>  be another meaure on <M>(\Omega,\calF)</M> 
+Let <M>\mu</M>  be any <M>\sigma</M>-finite measure on <M>(\Omega,\calF).</M>  Let <M>\nu</M>  be another meaure on <M>(\Omega,\calF)</M> 
  with the property that 
 <D>\forall B\in\calF~~(\mu(B)=0\Rightarrow\nu(B)=0).</D>
 Then there is a measurable f <M>f:\Omega\to\rr</M>  such that for any measurable function <M>h:\Omega\to\rr</M>  we have

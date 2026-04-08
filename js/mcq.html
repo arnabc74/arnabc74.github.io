@@ -148,10 +148,12 @@ function selectOption(index) {
 }
 
 function showResult() {
+   document.getElementById("header").innerHTML="Marksheet"
    str =
-   "<center><h3>Marksheet</h3><table border=1><tr><th>প্রশ্ন</th><th>নির্ধারিত নম্বর</th><th>প্রাপ্ত নম্বর</th>"
+   "<center><table border=1><tr><th>প্রশ্ন</th><th>নির্ধারিত নম্বর</th><th>প্রাপ্ত নম্বর</th>"
    for(i=0;i<nq;i++) {
-     str += "<tr><th>"+i+"</th><th>"+allotted[i]+"</th><th>"+obtained[i]+"</th></tr>"
+     let no = (obtained[i]==undefined? "-" : obtained[i])
+     str += "<tr><th>"+i+"</th><th>"+allotted[i]+"</th><th>"+no+"</th></tr>"
    }
    str += "<tr><th>Total</th><th>"+tot+"</th><th>"+marks+"</th></tr></table></center>"
    document.getElementById('exam').innerHTML=str

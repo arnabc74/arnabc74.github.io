@@ -1,0 +1,94 @@
+<MCQ>
+<QN m="10">
+<BODY>@{<M>9-8i</M>@}-er @{<E>conjugate</E>@}  kI?</BODY>
+<C>@{<M>9+8i</M>@}</C>
+<C>@{<M>9-8i</M>@}  nijei.</C>
+<C>@{<M>8+9i</M>@}</C>
+<C>@{<M>8-9i</M>@}</C>
+<SOLN>
+@{<E>real</E>@}  a.nsha aparibar+tita, khAli @{<E>imaginary</E>@}  a.nsher chihna ol+TAbe. ekhAne @{<M>9-8i</M>@}-er @{<E>real</E>@}  
+a.nsha hala @{<M>9,</M>@}  Ar @{<E>imaginary</E>@}  a.nsha hala @{<M>-8</M>@}, yAr chihna ol+TAle
+ habe @{<M>8.</M>@}    tAi
+ @{<E>conjugate</E>@}  hachchhe @{<M>9+8i.</M>@}
+</SOLN>
+</QN>
+<QN m="10">
+<BODY>@{<M>i</M>@}-er @{<E>complex conjugate</E>@}  bAr karo.</BODY>
+<C>@{<M>-i</M>@}</C>
+<C>@{<M>i</M>@}  nijei.</C>
+<C>@{<M>1+i</M>@}</C>
+<C>@{<M>1-i.</M>@}</C>
+<SOLN>
+ekhAne @{<M>i</M>@}-ke bhAbte pAro @{<M>i=0+1i.</M>@}  tAi er @{<E>conjugate</E>@}  habe @{<M>0-1i = -i.</M>@}
+</SOLN>
+</QN>
+<QN m="10">
+<BODY>@{<M>2i+10</M>@}-er @{<E>complex conjugate</E>@}  bAr karo.</BODY>
+<C>@{<M>-2i+10</M>@}</C>
+<C>@{<M>2i-10</M>@}  nijei.</C>
+<C>@{<M>10i-2</M>@}</C>
+<C>@{<M>2-10i.</M>@}</C>
+<SOLN>
+ekhAne @{<E>imaginary</E>@}  a.nshaTA hala @{<M>2</M>@}  (yeTA @{<M>i</M>@}-er sAthe guN haye Achhe). seTAr chihna ol+TAke 
+habe @{<M>-2.</M>@}  tAi @{<E>conjugate</E>@}-TA habe @{<M>-2i+10.</M>@}  
+</SOLN>
+</QN>
+
+<QN m="15" nota="y">
+<BODY>yadi @{<M>z\in\cc</M>@}  eman hay yAte @{<M>\overline z = 4+5i,</M>@}  tabe @{<M>z = ?</M>@}</BODY>
+<C>@{<M>4-5i</M>@}</C>
+<C>@{<M>5+4i</M>@}</C>
+<C>@{<M>5-4i</M>@}</C>
+<C>eder konoTAi nay.</C>
+<SOLN>
+AmrA shikhechhi ye, kono @{<E>complex</E>@}  sa.nkhyAr @{<E>conjugate</E>@}-er
+ @{<E>conjugate</E>@}  nile mUl sa.nkhyATAi fer fire Ase. yehetu @{<M>z</M>@}-er
+ @{<E>conjugate</E>@}  neoyAr par AmrA @{<M>4+5i</M>@}  peyechhi,   tAi er ArekbAr @{<E>conjugate</E>@}  nile @{<M>z</M>@}  
+fire pAoyA uchit, mAne 
+ @{<M>z=\overline{4+5i} = 4-5i.</M>@}
+</SOLN>
+</QN>
+
+
+<QN m="15">
+<BODY>yekono @{<E>complex</E>@}  sa.nkhyA @{<M>z</M>@}-er janyai @{<M>\overline{iz}=?</M>@}</BODY>
+<C>@{<M> -i\overline z.</M>@}</C>
+<C>@{<M> i\overline z.</M>@}</C>
+<C>@{<M> \overline z.</M>@}</C>
+<C>@{<M> -\overline z.</M>@}</C>
+<SOLN>
+yathArIti dhare nAo @{<M>z=x+yi,</M>@}  yekhAne @{<M>x,y\in\rr.</M>@}  tabe @{<M>\overline{iz} = \overline(i(x+iy)) = \overline{xi-y} = -xi+y.</M>@}
+
+AbAr @{<M>-i\overline{z} = -i (x-yi) = y-xi.</M>@}
+</SOLN>
+</QN>
+<QN m="20">
+<BODY>duTo bAkya deoyA hayechhe--
+<UL>
+<LI>yekono @{<M>z\in\cc</M>@}-er janyai @{<M>\overline{-z}=-\overline z.</M>@}</LI>
+<LI>yekono @{<M>z,w\in\cc</M>@}-er janyai @{<M>\overline{z+w}=\overline z + \overline w.</M>@}</LI>
+</UL>
+tabe nIcher konTA saThik?
+</BODY>
+<C>duTo bAkyai saThik.</C>
+<C>duToi bhul.</C>
+<C>prathamTA saThik, dwitIyaTA bhul.</C>
+<C>dwitIyaTA bhul, prathamTA saThik.</C>
+<SOLN>
+yekono @{<M>z\in\cc</M>@}  mAne ye kono @{<E>complex</E>@}  sa.nkhyA @{<M>z.</M>@}  AmrA jAni ye, yekono @{<E>complex</E>@}  
+sa.nkhyAkei @{<M>z = x+yi</M>@}  AkAre lekhA yAy, yekhAne @{<M>x,y\in\rr.</M>@}  ebAr AmrA @{<M>\overline{-z}</M>@}  Ar 
+@{<M>-\overline z</M>@}  duTokei bAr kare dekhba samAn hay kinA. ekhAne @{<M>\overline{-z} =\overline{-x-yi} = -x+yi.</M>@}  
+Ar @{<M>-\overline z = -(x-yi) = -x+yi.</M>@}  yehetu duTo ekai jinis ela (tAr janya @{<M>x,y</M>@}  jAnAr darkAr paRla 
+nA), tAi pratham bAkyaTA saThik.
+<P/>
+ekaibhAbe yadi @{<M>w = a+bi</M>@}  nii, yekhAne @{<M>a,b\in\rr,</M>@}  tabe @{<M>\overline{z+w}</M>@}  eba.n @{<M>\overline z + \overline w</M>@}  
+duToi bAr kare dekhA yAk, ekai jinis pAchchhi kinA. 
+<P/>
+ekhAne @{<M>\overline{z+w} = \overline{(x+a)+(y+b)i} = (x+a)-(y+b)i.</M>@}
+
+AbAr @{<M>\overline z + \overline w = (x-yi)+(a-bi) = (x+a)-(y+b)i.</M>@}
+yehetu duToi ekai jinis ela, tAi dwitIya bAkyaTAo saThik.
+</SOLN>
+</QN>
+
+</MCQ>

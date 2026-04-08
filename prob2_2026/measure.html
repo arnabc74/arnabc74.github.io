@@ -194,6 +194,9 @@ function myFunction() {
 <a href="#Problem set 5">Problem set 5</a>
 </li>
 <li>
+<a href="#A smarter way to write">A smarter way to write</a>
+</li>
+<li>
 <a href="#Generalising the solution">Generalising the solution</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
@@ -255,6 +258,7 @@ function myFunction() {
 \newcommand{\calP}{{\mathcal P}}
 \newcommand{\calB}{{\mathcal B}}
 \newcommand{\calD}{{\mathcal D}}
+\newcommand{\calS}{{\mathcal S}}
 \newcommand{\ind}{{\mathbb 1}}
 \newcommand{\area}{\mathrm {area}}
 $
@@ -734,6 +738,50 @@ What is $\int_0^1 f(x)\, dx$  using Riemann integration?
 
 <p></p>
 
+<h1><a
+name="A smarter way to write">A smarter way to write</a></h1>
+While the "partition the codomain" idea is intuitively very nice, there is notationally a much
+ neater way to arrive at the definition of Lebesgue integral. It is this definition that we will
+ see most often in books, and is very similar to the definition of Riemann  integration in appearance. 
+<p></p>
+ Let $\calS$  denote the set of all
+ nonnegative simple measurable functions   on $[a,b].$  Then we define, for $s=\sum_1^n c_i
+ 1_{A_i} \in\calS,$
+  its Lebesgue integral as the area under it:
+$$\int s\, d \lambda = \sum_1^n c_i \lambda(A_i).$$ 
+Then for a general measurable $f:[a,b]\rightarrow[0,M]$  we consider
+$$\sup\left\{\int s\, d \lambda~:~s\in\calS,~~s\leq f \right\}$$
+and
+$$\inf\left\{\int s\, d \lambda~:~s\in\calS,~~f\leq s \right\}.$$
+It may not be immediately apparent that the sup will be same as what we had called sup(red area). SImilarly, the inf actually
+ equals our inf(blue area). 
+<p></p>
+If this appears to be trivial to you, consider the following diagram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/reform1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+This $s\leq f$  is in $\calS.$  But it cannot occur as the lower approximation by 
+ partitioning the codomain. However, this is "too far below $f$" and will never contribute to
+ the sup, as it gets beaten by $s'$  shown below. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/reform2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+    This $s'$  is obtained by the partition codomain technique using the values of $s$  above. Thus, for any finite
+ set of values, the "best candidate" comes from the "partition the codomain" approach. 
 <h1><a
 name="Generalising the solution">Generalising the solution</a></h1>
 Lebesgue's approach can be generalised in different ways. We shall discuss these now.
