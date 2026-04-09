@@ -1,51 +1,62 @@
 <MCQ>
 <QN m="10">
 <BODY>@{<M>(2-7i)^2=?</M>@}</BODY>
-<C></C>
-<C></C>
-<C></C>
-<C></C>
+<C>@{<M>-45 - 28i</M>@}</C>
+<C>@{<M>-45 + 28i</M>@}</C>
+<C>@{<M>45 - 56i</M>@}</C>
+<C>@{<M>45 + 56i</M>@}</C>
 <SOLN>
+@{<M>\begin{eqnarray} 
+(2-7i)^2 &=& 2^2-2\times2\times 7i + (7i)^2\\ &=& 4 - 28i  + 49i^2 \\ &=& 4 - 28i - 49 \\ &=& -45 - 28i
+ \end{eqnarray}</M>@}
 </SOLN>
 </QN>
 
 <QN m="10">
 <BODY>@{<M>(4+2i)^3=?</M>@}</BODY>
-<C></C>
-<C></C>
-<C></C>
-<C></C>
+<C>@{<M>16+88i</M>@}</C>
+<C>@{<M>16-88i</M>@}</C>
+<C>@{<M>26+88i</M>@}</C>
+<C>@{<M>16+86i</M>@}</C>
 <SOLN>
+ekhAne prathamei @{<M>2</M>@}  kaman nile subidhA habe. tArpar @{<M>(a+b)^3</M>@}-er farmulA. 
+<P/>
+@{<M>(4+2i)^3= (2(2+i))^3 = 2^3(2+i)^3 = 8(2+i)^3 = 
+8(2^3+3\times2^2\times i+3\times2\times i^2 + i^3) = 8(8+12i+6i^2+i^3)=8(8+12i-6-i)=8(2+11i)=16+88i.</M>@}
 </SOLN>
 </QN>
 
-<QN m="10">
+<QN m="20" nota="y">
 <BODY>yadi @{<M>w=2+i</M>@}  eba.n @{<M>z=1-3i</M>@}  hay, tabe @{<M>[[z^3-w^3][z-w]]=?</M>@}</BODY>
-<C></C>
-<C></C>
-<C></C>
-<C></C>
+<C>@{<M>-7i.</M>@}</C>
+<C>@{<M>7.</M>@}</C>
+<C>@{<M>1-i.</M>@}</C>
+<C>egulor konoTAi nay.</C>
 <SOLN>
+@{<M>[[z^3-w^3][z-w]]=z^2+zw+w^2 =\cdots = -7i. </M>@}
+ekhAne tumi @{<M>z^2</M>@}  Ar @{<M>w^2</M>@}  bAr karAr janya @{<M>(a\pm b)^2</M>@}  farmulA byabahAr karte pAro. 
 </SOLN>
 </QN>
 
 <QN m="10">
 <BODY>@{<M>(2+5i)(2-5i)=?</M>@}</BODY>
-<C></C>
-<C></C>
-<C></C>
-<C></C>
+<C>@{<M>29</M>@}</C>
+<C>@{<M>30</M>@}</C>
+<C>@{<M>-21.</M>@}</C>
+<C>@{<M>21.</M>@}</C>
 <SOLN>
+@{<M>(2+5i)(2-5i)=2^2-(5i)^2=4-25i^2 = 2+25 = 29.</M>@}
 </SOLN>
 </QN>
 
 <QN m="10">
-<BODY>@{<M>z=1+i</M>@}  Ar @{<M>w=2-9i</M>@}  hale @{<M>[[z^2-4w^2][z+2w]]=?</M>@}</BODY>
-<C></C>
-<C></C>
-<C></C>
-<C></C>
+<BODY>@{<M>z=1+i</M>@}  Ar @{<M>w=2-9i</M>@}  hale @{<M>[[z^2-4w^2][z-2w]]=?</M>@}</BODY>
+<C>@{<M>5-17i</M>@}</C>
+<C>@{<M>9-35i</M>@}</C>
+<C>@{<M>5+17i</M>@}</C>
+<C>@{<M>9+35i.</M>@}</C>
 <SOLN>
+@{<M>[[z^2-4w^2][z-2w]]=[[(z+2w)(z-2w)][z-2w]] = z+2w = (1+i)+2(2-9i)=5-17i.</M>@}
 </SOLN>
 </QN>
 </MCQ>
