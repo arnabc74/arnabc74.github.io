@@ -1,0 +1,69 @@
+<MCQ>
+<QN m="10" nota="y">
+<BODY>@{<M>1+i</M>@}-ke tAr @{<E>conjugate</E>@}   diye guN karle uttar kata habe?</BODY>
+<C>@{<M>2</M>@}</C>
+<C>@{<M>\sqrt2</M>@}</C>
+<C>@{<M>2i</M>@}</C>
+<C>eder konoTAi nay.</C>
+<SOLN>
+@{<M>1+i</M>@}-er @{<E>real</E>@}  a.nsha hala @{<M>1,</M>@}  AbAr @{imaginary@} a.nshao hala @{<M>1.</M>@}
+ tAi uttar habe @{<M>1^2+1^2=2.</M>@}}
+</SOLN>
+</QN>
+
+<QN m="10">
+<BODY>dharo @{<M>z</M>@}  kono @{<E>complex</E>@}  sa.nkhyA. yadi @{<M>A = z+\overline{z}</M>@} 
+ Ar @{<M>B = z-\overline{z}</M>@}  hay, tabe nIcher kon.h bAkyaTA yekono @{<M>z</M>@}-er janyai saThik hate bAdhya?</BODY>
+<C>@{<M>A</M>@}  ekTA @{<E>real</E>@}  sa.nkhyA, Ar @{<M>B</M>@}  ekTA @{<E>purely imaginary</E>@}  sa.nkhyA.</C>
+<C>@{<M>B</M>@}  ekTA @{<E>real</E>@}  sa.nkhyA, Ar @{<M>A</M>@}  ekTA @{<E>purely imaginary</E>@}  sa.nkhyA.</C>
+<C>@{<M>A, B</M>@}  dujanei @{<E>real</E>@}  sa.nkhyA.</C>
+<C>@{<M>A, B</M>@} dujanei  @{<E>purely imaginary</E>@}  sa.nkhyA.</C>
+<SOLN>
+yathArIti dhare nAo @{<M>z=x+yi,</M>@}  yekhAne @{<M>x,y</M>@}  hala @{real@} sa.nkhyA. tabe @{<M>\overline{z} = a-bi.</M>@}  
+tAi @{<M>A = z+\overline z = (a+bi)+(a-bi) = 2a,</M>@}  yeTA ekTA @{real@} sa.nkhyA (kAraN @{<M>i</M>@}-oyAlA a.nshaTA keTe 
+gechhe). 
+
+AbAr @{<M>B = z-\overline z = (a+bi)-(a-bi) = 2bi,</M>@}  yeTA @{<E>purely imaginary.</E>@}
+</SOLN>
+</QN>
+
+<QN m="10">
+<BODY>@{<M>(-6i+5)\overline{(-6i+5)}=?</M>@}</BODY>
+<C>@{<M>61.</M>@}</C>
+<C>@{<M>60</M>@}</C>
+<C>@{<M>11</M>@}</C>
+<C>@{<M>\sqrt{61}</M>@}</C>
+<SOLN>
+ekhAne ye duTo @{complex@} sa.nkhyA guN karA hAchchhe, tAr madhye dwitIyaTA hala prathamTAr
+ @{<E>conjugate.</E>@}  edike prathamTAr @{real@} a.nsha hala
+ @{<M>5,</M>@}  Ar @{imaginary@}
+ a.nsha hala @{<M>-6.</M>@}  tAi uttar habe @{<M>5^2+(-6)^2 = 25+36 = 61.</M>@}
+</SOLN>
+</QN>
+
+<QN m="10">
+<BODY>dharo @{<M>z=2+yi,</M>@}  yekhAne @{<M>y</M>@}  ekTA bAs+tab sa.nkhyA. yadi @{<M>z\overline
+ z = 5</M>@}  hay, tabe @{<M>z</M>@}  kata habe?</BODY>
+<C>@{<M>z=2+i</M>@}  bA @{<M>z=2-i</M>@}  hate bAdhya.</C>
+<C>@{<M>z=2+i</M>@}  hate bAdhya.</C>
+<C>@{<M>z=2-i</M>@}  hate bAdhya.</C>
+<C>@{<M>z=2+3i</M>@}  hate bAdhya.</C>
+<SOLN>
+ekhAne @{<M>z\overline z = (2+yi)(2-yi) = 2^2+y^2 = 5.</M>@}  sutarA.n @{<M>y^2 = 5-4 = 1.</M>@}  tAi @{<M>y = \pm 1.</M>@}
+</SOLN>
+</QN>
+
+<QN m="20">
+<BODY>yadi @{<M>z=x+5i</M>@}  hay, yekhAne @{<M>x</M>@}  ekTA bAs+tab sa.nkhyA, Ar
+ @{<M>z\overline z\leq29</M>@}  hay, tabe @{<M>x</M>@}  sabcheye kam kata hate pAre? sabcheye beshI kata hate pAre?
+</BODY>
+<C>sabcheye kam @{<M>-2,</M>@}  sabcheye beshI @{<M>2.</M>@}</C>
+<C>sabcheye kam @{<M>0,</M>@}  sabcheye beshI @{<M>2.</M>@}</C>
+<C>sabcheye kam @{<M>-4,</M>@}  sabcheye beshI @{<M>4.</M>@}</C>
+<C>sabcheye kam @{<M>0,</M>@}  sabcheye beshI @{<M>4.</M>@}</C>
+<SOLN>
+ekhAne @{<M>z\overline z = x^2+5^2,</M>@}  yeTA ekTA @{real@} sa.nkhyA. balechhe @{<M>x^2+5^2 \leq 29.</M>@}  tAr mAne @{<M>x^2\leq 29-25 = 4.</M>@}  
+tAi @{<M>-2\leq x\leq 2.</M>@}
+</SOLN>
+</QN>
+</MCQ>

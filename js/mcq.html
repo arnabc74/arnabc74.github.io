@@ -153,9 +153,26 @@ function showResult() {
    "<center><table border=1><tr><th>প্রশ্ন</th><th>নির্ধারিত নম্বর</th><th>প্রাপ্ত নম্বর</th>"
    for(i=0;i<nq;i++) {
      let no = (obtained[i]==undefined? "-" : obtained[i])
-     str += "<tr><th>"+i+"</th><th>"+allotted[i]+"</th><th>"+no+"</th></tr>"
+     str += "<tr><th>"+(i+1)+"</th><th>"+allotted[i]+"</th><th>"+no+"</th></tr>"
    }
-   str += "<tr><th>Total</th><th>"+tot+"</th><th>"+marks+"</th></tr></table></center>"
+   str +=
+   "<tr><th>Total</th><th>"+tot+"</th><th>"+marks+"</th></tr></table></center>"
+   if(tot==marks) {
+   str += `
+<p/><font size="+2">
+খুব ভালো যে তুমি পুরো নম্বর পেয়েছ. কিন্তু যদি কোনো উত্তর আন্দাজে লাগিয়ে
+   দিয়ে থাকো, তবে এই page-টাকে reload করে পরীক্ষাটা আরেকবার দিয়ে
+   নিতে পারো. প্রশ্নগুলো একই থাকবে, কিন্তু option-গুলোর ক্রম বদলে যাবে. </font>
+`
+   }
+   else {
+   str += `
+<p/><font size="+2">
+নম্বর কম হল কেন? কিছু বোঝার অসুবিধা হয়ে থাকলে video-টার দেখা অংশ
+   আরেকবার দেখে নিতে পারো. আর নয়তো এই page-টাকে reload করে পরীক্ষাটা আরেকবার দিয়ে
+   নাও. প্রশ্নগুলো একই থাকবে, কিন্তু option-গুলোর ক্রম বদলে যাবে.</font> 
+`
+}
    document.getElementById('exam').innerHTML=str
 }
 

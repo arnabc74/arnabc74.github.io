@@ -236,6 +236,12 @@ function myFunction() {
 <a href="#Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#MCT for Riemann integration?">MCT for Riemann integration?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Why not decreasing?">Why not decreasing?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#Problem set 11">Problem set 11</a>
 </li>
 <li>
@@ -1309,13 +1315,72 @@ This completes the proof.
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
+
+<h2><a
+name="MCT for Riemann integration?">MCT for Riemann integration?</a></h2>
+Do we have an MCT for Riemann integrals, as well? Well, no, because even if $X_n$'s are
+ Riemann integrable, and they increase to $X,$  there is a no guaranty that $X$  will be Riemann integrable.
+<p></p>
+Here is the standard counterexample. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;We consider $[0,1]$  equipped with the $Unif[0,1]$   probability distribution.
+Here density exists in a Riemann sense. Let $X$  be the Dirichlet function on $[0,1].$  
+<p></p>
+Since ${\mathbb Q}\cap[0,1]$  is countable, we may enumerate it as $\{r_1,r_2,...\}.$  Take $X_n=1_{\{r_1,...,r_n\}}.$ 
+<p></p>
+Then the Riemann integral of each $X_n$  is $0.$  The $X_n$'s increase to $X.$  But $X$  is not
+ Riemann integrable.
+ ■
+</p>
+
+<p></p>
+However, it may be shown that if the limit
+ is a Riemann integrable, then MCT holds for Riemann integration also. 
+<p></p>
+
+<h2><a
+name="Why not decreasing?">Why not decreasing?</a></h2>
+The 'M' in MCT refers to <i>monotone</i>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
+ However, in the theorem we require the sequence of functions to be non-increasing. 
+<p></p>
+Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Here we shall work with $[0,1]$  again, equipped with $Unif[0,1]$  probability distribution. Let $X_n = \frac{1}{nx}$ 
+ (set $X_n=0$  at $x=0$). Also, take $X\equi0.$  Then $\forall
+ \omega\in[0,1]~~X_n(w)\downarrow X(w).$  But $E(X_n)=\infty$  though $E(X)=0.$  
+<p></p>
+The problem is that the Lebesgue integral is <i>defined</i>  as sup of approximations <i>from below</i>.  
+ ■
+</p>
+
 <h2><a
 name="Problem set 11">Problem set 11</a></h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 30:</b>&nbsp;
+<b>EXERCISE 30:</b>&nbsp;Give $X_n, X$  on $[0,1]$  equipped with $Unif[0,1]$  such that 
+<ol type="">
+<li>$X_n\rightarrow X$  but not monotonically</li>
+
+<li>$E(X_n), E(X)$  exist finitely.</li>
+
+<li>But $E(X_n)\not\rightarrow E(X).$</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">Think of constant functions and step functions with just two steps.</div></p>
+</p>
+
+<p>
+<b>EXERCISE 31:</b>&nbsp;
 If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
  and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
  dropped?
@@ -1324,10 +1389,12 @@ If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables c
 <p></p>
 
 <p>
-<b>EXERCISE 31:</b>&nbsp;
+<b>EXERCISE 32:</b>&nbsp;
 Suppose that $X_n$'s are nonnegative random variables. Show that 
 $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 </p>
+
+<p></p>
 
 <h1><a
 name="Fatou and DCT">Fatou and DCT</a></h1>
@@ -1388,10 +1455,10 @@ Hence $E|X_n-X|\rightarrow 0,$  as required.
 name="Problem set 12">Problem set 12</a></h2>
 
 <p>
-<b>EXERCISE 32:</b>&nbsp;Show that $E(|X_n-X|)\rightarrow 0$  implies $E(X_n)\rightarrow E(X)$. Show that the converse is not true in general.
+<b>EXERCISE 33:</b>&nbsp;Show that $E(|X_n-X|)\rightarrow 0$  implies $E(X_n)\rightarrow E(X)$. Show that the converse is not true in general.
 <p><a
-href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
-class="ans" id="lab3">
+href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
+class="ans" id="lab4">
 Toss an unbaised coin. For each $n\in{\mathbb N}$  we let $X_n = \left\{\begin{array}{ll}1&\text{if }\mbox{head}\\-1&\text{otherwise.}\end{array}\right..$  Thus
  all the $X_n$'s are exactly the same (based on the <i>same</i>  toss). Also take $X\equiv 0$.
 <p></p>

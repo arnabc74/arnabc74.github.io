@@ -322,7 +322,7 @@ It may not be immediately apparent that the sup will be same as what we had call
 
 If this appears to be trivial to you, consider the following diagram:
 <CIMG web="reform1.png"/>
-This <M>s\leq f</M>  is in <M>\calS.</M>  But never it cannot occur as the lower approximation by 
+This <M>s\leq f</M>  is in <M>\calS.</M>  But it cannot occur as the lower approximation by 
  partitioning the codomain. However, this is "too far below <M>f</M>" and will never contribute to
  the sup, as it gets beaten by <M>s'</M>  shown below. 
 <CIMG web="reform2.png"/>
@@ -793,8 +793,47 @@ Hence <M>\lim_k Y_k= X.</M>
 </BECAUSE>
 This completes the proof.
 </PF>
+
+<HEAD2>MCT for Riemann integration?</HEAD2>
+Do we have an MCT for Riemann integrals, as well? Well, no, because even if <M>X_n</M>'s are
+ Riemann integrable, and they increase to <M>X,</M>  there is a no guaranty that <M>X</M>  will be Riemann integrable.
+
+Here is the standard counterexample. 
+
+<EXM>We consider <M>[0,1]</M>  equipped with the <M>Unif[0,1]</M>   probability distribution.
+Here density exists in a Riemann sense. Let <M>X</M>  be the Dirichlet function on <M>[0,1].</M>  
+
+Since <M>\qq\cap[0,1]</M>  is countable, we may enumerate it as <M>\{r_1,r_2,...\}.</M>  Take <M>X_n=1_{\{r_1,...,r_n\}}.</M> 
+ 
+Then the Riemann integral of each <M>X_n</M>  is <M>0.</M>  The <M>X_n</M>'s increase to <M>X.</M>  But <M>X</M>  is not
+ Riemann integrable.
+</EXM>
+
+However, it may be shown that if the limit
+ is a Riemann integrable, then MCT holds for Riemann integration also. 
+
+<HEAD2>Why not decreasing?</HEAD2>
+The 'M' in MCT refers to <I>monotone</I>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
+ However, in the theorem we require the sequence of functions to be non-increasing. 
+
+
+Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
+
+<EXM>
+Here we shall work with <M>[0,1]</M>  again, equipped with <M>Unif[0,1]</M>  probability distribution. Let <M>X_n = [[1][nx]]</M> 
+ (set <M>X_n=0</M>  at <M>x=0</M>). Also, take <M>X\equi0.</M>  Then <M>\forall
+ \omega\in[0,1]~~X_n(w)\downarrow X(w).</M>  But <M>E(X_n)=\infty</M>  though <M>E(X)=0.</M>  
+
+
+The problem is that the Lebesgue integral is <I>defined</I>  as sup of approximations <I>from below</I>.  
+</EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 
+<EXR>Give <M>X_n, X</M>  on <M>[0,1]</M>  equipped with <M>Unif[0,1]</M>  such that 
+<OL><LI><M>X_n\to X</M>  but not monotonically</LI>
+<LI><M>E(X_n), E(X)</M>  exist finitely.</LI>
+<LI>But <M>E(X_n)\not\to E(X).</M></LI></OL>
+<HINT>Think of constant functions and step functions with just two steps.</HINT></EXR>
 <EXR>
 If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variables converging to some random variable <M>X,</M> 
  and <M>E(X_1)<\infty,</M>  then show that <M>E(X_n)\downarrow E(X).</M>  What if the assumption <M>E(X_1)<\infty</M>  is
@@ -805,6 +844,8 @@ If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variab
 Suppose that <M>X_n</M>'s are nonnegative random variables. Show that 
 <D>E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).</D>
 </EXR>
+
+
 <HEAD1>Fatou and DCT</HEAD1>
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
