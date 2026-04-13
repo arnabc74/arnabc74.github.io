@@ -30,26 +30,25 @@ tabe uttar habe--</BODY>
 <SOLN>@{<M>-2(5-i) = -10+2i.</M>@}
 </SOLN>
 </QN>
-<QN m="10" a="3">
-<BODY>yadi @{<M>5</M>@}  theke @{<M>i</M>@}  biyog kari, eba.n biyogfalTAke @{<M>-2</M>@}  diye
+<QN m="10">
+<BODY>yadi @{<M>2</M>@}  theke @{<M>i</M>@}  biyog kari, eba.n biyogfalTAke @{<M>-1</M>@}  diye
  guN kari, 
 tabe uttar habe--</BODY>
-<C>@{<M>10-i</M>@}</C>
-<C>@{<M>-10-i</M>@}</C>
-<C>@{<M>10-2i</M>@}</C>
-<C>@{<M>-10+2i</M>@}</C>
-<SOLN>@{<M>-2(5-i) = -10+2i.</M>@}
+<C>@{<M>i-2</M>@}</C>
+<C>@{<M>-2-i</M>@}</C>
+<C>@{<M>i+2i</M>@}</C>
+<C>@{<M>2i</M>@}</C>
+<SOLN>@{<M>-1(2-i) = -2+i=i-2.</M>@}
 </SOLN>
 </QN>
-<QN m="10" a="3">
-<BODY>yadi @{<M>5</M>@}  theke @{<M>i</M>@}  biyog kari, eba.n biyogfalTAke @{<M>-2</M>@}  diye
- guN kari, 
+<QN m="10">
+<BODY>yadi @{<M>i</M>@} -ke @{<M>3</M>@}  guN kare, guNfalTAke @{<M>2</M>@}  diye guN kari,
 tabe uttar habe--</BODY>
-<C>@{<M>10-i</M>@}</C>
-<C>@{<M>-10-i</M>@}</C>
-<C>@{<M>10-2i</M>@}</C>
-<C>@{<M>-10+2i</M>@}</C>
-<SOLN>@{<M>-2(5-i) = -10+2i.</M>@}
+<C>@{<M>6i</M>@}</C>
+<C>@{<M>3i+2</M>@}</C>
+<C>@{<M>2i+3</M>@}</C>
+<C>@{<M>5i</M>@}</C>
+<SOLN>@{<M>2(3i) = 6i.</M>@}
 </SOLN>
 </QN>
 </MCQ>
