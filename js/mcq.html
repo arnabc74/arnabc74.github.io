@@ -30,7 +30,13 @@
     }
   });
 </script>
+<style>
+.ans {
+  display:none;
+  background: #ccffcc;
+}
 
+</style>
 
   <title>MCQ Quiz</title>
 
@@ -40,6 +46,7 @@
 <h2 id="header"></h2>
 <font size=+2><div id="exam" width="100%">
 <div id="qbody"></div>
+<div id="qhint"></div>
 <ol type='A'>
 <li><input type=radio name="option" id='q0' onclick='selectOption(0)' /> <span id="o0"></span></li>
 <li><input type=radio name="option" id='q1' onclick='selectOption(1)' /> <span id="o1"></span></li>
@@ -93,6 +100,16 @@ function randPerm(lastFixed) {
   }
 }
 
+function hideShow(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
 function loadQuestion() {
   //document.getElementById('nextBtn').disabled=(currentIndex==questions.length-1)
   const q = questions[currentIndex];
@@ -105,6 +122,16 @@ function loadQuestion() {
   // Set question (with LaTeX)
   const qEl = document.getElementById('qbody');
   qEl.innerHTML = q.question;
+
+  const qHt = document.getElementById('qhint');
+  if(q.hint==undefined) {
+     qHt.innerHTML = ""
+  }
+  else {
+      let str="<blockquote><a href=\"javascript:hideShow('hint"+currentIndex+"')\"><b>[Hint...]</b></a>"
+      str += "<div class=ans id=hint"+currentIndex+">"+q.hint+"</div></blockquote>"
+      qHt.innerHTML = str
+  }
 
   // Clear feedback
   document.getElementById('result').innerText = "";
