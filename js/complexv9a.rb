@@ -1,0 +1,113 @@
+<MCQ>
+<QN m="10">
+<BODY>nIcher chhabite ekTA bindu Ar ekTA tIr dekhiyechhi. 
+<IMG web="9a1.png"/>
+erA ye @{complex@} sa.nkhyAgulo bojhAchchhe segulo kI kI?</BODY>
+<C>binduTA hala @{<M>-5-3i</M>@}  Ar tIrTA hala @{<M>3-5i.</M>@}</C>
+<C>binduTA hala @{<M>-3-5i</M>@}  Ar tIrTA hala @{<M>3-5i.</M>@}</C>
+<C>binduTA hala @{<M>-5-3i</M>@}  Ar tIrTA hala @{<M>5-3i.</M>@}</C>
+<C>binduTA hala @{<M>3-5i</M>@}  Ar tIrTA hala @{<M>-5-3i.</M>@}</C>
+<SOLN>
+<IMG web="9a1sol.png"/>
+</SOLN>
+</QN>
+
+<QN m="10" nota="y">
+<BODY>yadi tomAke ekTA @{purely imaginary@} sa.nkhyA dii, tabe seTA chhabite kothAy thAkte bAdhya? </BODY>
+<C>@{<E>vertical</E>@}  axer upare.</C>
+<C>@{<E>horizontal</E>@}  axer upare.</C>
+<C>nIcher chhabir lAl a.nsher madhye--
+<IMG web="9a3.png"></IMG>
+</C>
+<C>eder konoTAi nay.</C>
+<SOLN>
+@{<E>Purely imaginary</E>@}  mAne sa.nkhyATA @{<M>0+yi</M>@}  yAtIya, tAi A,nkA habe @{<M>(0,y)</M>@}  bindute, yeTA @{<E>vertical</E>@}-axer 
+upare ekTA bindu. 
+</SOLN>
+</QN>
+
+<QN m="10" nota="y">
+<BODY>AmrA jAni @{real@} sa.nkhyAderao @{complex@} sa.nkhyA bale bhAbA yAy. erakam @{complex@}
+ sa.nkhyAder tIr chihna A,nkle kIrakam habe? yehetu tIr chihna A,nkchhi, tAi dhare nAo ye
+ sa.nkhyATA @{<M>0+0i</M>@}  nay. </BODY>
+<C>anubhUmik habe</C>
+<C>khARA habe</C>
+<C>anubhUmikao habe nA, khARAo habe nA.</C>
+<C>uparer konoTAi jor diye balA yAy nA.</C>
+<SOLN>
+@{<E>Real</E>@}-der @{complex@} sa.nkhyA bale bhAble @{<M>x+0i</M>@}  chehArAr. tAi tIrer DagATA
+ thAkbe @{<M>(x,0)</M>@}  bindute. yehetu tIrer goRATA Achhe @{<M>(0,0)</M>@}-te, tAi   tIrTA anubhUmik hate bAdhya.  
+</SOLN>
+</QN>
+<QN m="10" nota="y">
+<BODY>AmrA ye grAf kAgajer upar @{complex@} sa.nkhyAder chhabi A,nkchhi, seTAke bale @{<E>complex
+ plane.</E>@}  Ar er @{<E>axis</E>@}  (axa) duToke bale @{<E>real axis</E>@}  Ar @{<E>imaginary
+ axis.</E>@}  kon.hTAke kI bale AndAj karo.</BODY>
+<C>@{<E>Vertical</E>@}  @{<E>axis</E>@}-TAke bale @{<E>imaginary axis,</E>@}  Ar @{<E>horizontal</E>@}-TAke bale @{<E>real axis.</E>@}</C>
+<C>@{<E>Vertical</E>@}  @{<E>axis</E>@}-TAke bale @{<E>real axis,</E>@}  Ar @{<E>horizontal</E>@}-TAke bale @{<E>imaginary axis.</E>@}</C>
+<C>@{<E>Vertical</E>@}  @{<E>axis</E>@}-er @{<E>positive</E>@}  a.nshaTAke  bale @{<E>imaginary axis,</E>@}  Ar
+ @{<E>horizontal</E>@}-TAr @{<E>positive</E>@}  a.nshaTAke bale @{<E>real axis.</E>@}</C>
+<C>eder konoTAi nay.</C>
+<SOLN>
+@{Real@} sa.nkhyAder niye t\oirI axaTAkei @{<E>real axis</E>@}, Ar @{<E>purely imaginary</E>@}-der niye t\oirI axaTAkei 
+@{<E>imaginary axis</E>@}  balAi to  swAbhAbik, tAi nay ki? 
+</SOLN>
+</QN>
+
+
+<QN m="10">
+<BODY>kono @{complex@} sa.nkhyAr tIrTA khARA nIcher dike. tAr mAne nIcher kon.hTA hate bAdhya?</BODY>
+<C>sa.nkhyATA @{<E>purely imaginary</E>@}, eba.n er @{imaginary@} a.nsha @{<M><0.</M>@}</C>
+<C>sa.nkhyATA @{<E>purely imaginary</E>@}, eba.n er @{imaginary@} a.nsha @{<M>>0.</M>@}</C>
+<C>sa.nkhyATA @{<E>real</E>@}, eba.n er @{real@} a.nsha @{<M><0.</M>@}</C>
+<C>sa.nkhyATA @{<E>real</E>@}, eba.n er @{real@} a.nsha @{<M>>0.</M>@}</C>
+<SOLN>
+ekhAne DagATA @{<M>(0,y)</M>@}  jAtIya eba.n @{<M>y < 0.</M>@}  tAr @{complex@} sa.nkhyATA @{<M>0+yi,</M>@}  yekhAne @{<M>y < 0.</M>@}
+</SOLN>
+</QN>
+
+<QN m="15">
+<BODY>kono @{complex@} sa.nkhyA @{<M>z</M>@}-er tIr eirakam dekhte--
+<IMG web="9a2.png"/>
+tabe nIcher kon.hTA hate bAdhya?</BODY>
+<C>@{<M>Re(z)=Im(z).</M>@}</C>
+<C>@{<M>Re(z)=-Im(z).</M>@}</C>
+<C>@{<M>Re(z)=0.</M>@}</C>
+<C>@{<M>Im(z)=0.</M>@}</C>
+<SOLN>
+AmrA jAni ye, nIcher  grAfe dekhAno @{<M>45^\circ</M>@}  lAinTA hala @{<M>y=x</M>@}-er grAph. 
+<IMG web="9a2sol.png"/>
+tAi @{<M>z=x+iy</M>@}  nile (yekhAne @{<M>x,y\in\rr</M>@}), @{<M>x</M>@}  Ar @{<M>y</M>@}  samAn hate bAdhya. 
+</SOLN>
+</QN>
+
+<QN m="15">
+<BODY>AmAr kAchhe duTo @{complex@} sa.nkhyA Achhe @{<M>2+3i</M>@}  eba.n @{<M>2+4i.</M>@}  ederke Ami bindu hisebe A,nklAm, 
+eba.n binduduToke ekTA lAin Tene yog karlAm. puro lAinTA nay, khAli bindu duTor madhyekAr a.nshaTuku (mAne yAke i.nrAjIte 
+bale @{<E>line segment</E>@}  Ar bA.nlAy bale rekhA.nsha). tabe ei @{<E>line segment</E>@}-TA dekhte kIrakam habe?
+</BODY>
+<C>@{<E>vertical</E>@}  eba.n d\oirghye @{<M>1</M>@}</C>
+<C>@{<E>vertical</E>@}  eba.n d\oirghye @{<M>2</M>@}</C>
+<C>@{<E>horizontal</E>@}  eba.n d\oirghye @{<M>2</M>@}</C>
+<C>@{<E>horizontal</E>@}  eba.n d\oirghye @{<M>1</M>@}</C>
+<SOLN>
+chhabite e,nkei dekhA yAk-- 
+<IMG web="9asol1.png"/>
+Asale yehetu eder @{real@} a.nsha samAn, tAi erA ekai @{<E>vertical</E>@}  lAiner upare Achhe. Ar oder @{imaginary@} a.nshaduTor 
+pArthakyaTAi hachchhe @{<E>line segment</E>@}-TAr d\oirghya. 
+</SOLN>
+</QN>
+<QN m="15" nota="y">
+<BODY>AmAr kAchhe duTo @{complex@} sa.nkhyA Achhe yAderke Ami bindu hisebe A,nklAm.  
+dekhA gela orA ekai @{<E>horizontal</E>@}  lAiner upare Achhe. tAr mAne nIcher kon.hTA hate bAdhya? 
+</BODY>
+<C>oder @{imaginary@} a.nshagulo samAn.</C>
+<C>oder @{real@} a.nshagulo samAn.</C>
+<C>oder pratyeker nijeder madhye @{real@} a.nsha Ar @{imaginary@} a.nsha samAn.</C>
+<C>er konoTAi jor diye balA yAy nA.</C>
+<SOLN>
+bindugulor uchchatA niyantraN karchhe oder @{imaginary@} a.nshagulo. yehetu orA ekai @{<E>horizontal</E>@}  lAine Achhe, 
+mAne ekai uchchatAy, tAi oder @{imaginary@} a.nshagulo samAn hate bAdhya.
+</SOLN>
+</QN>
+</MCQ>
