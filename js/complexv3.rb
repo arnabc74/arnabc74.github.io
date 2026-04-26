@@ -49,7 +49,7 @@ a.nsha bAr karAr samaye tAr madhye @{<M>i</M>@}-TAke dharA hay nA!
 </QN>
 
 <QN m="15"><BODY>duTo jaTil sa.nkhyA Achhe @{<M>w = 3-7i</M>@}  Ar @{<M>z = x+iy</M>@}, yekhAne @{<M>x,y\in\rr.</M>@}    yadi
- @{<M>w</M>@}  theke @{<M>2z</M>@}  theke @{<M>w</M>@}  biyog karle @{<M>1+9i</M>@}  hay, tabe
+@{<M>2z</M>@}  theke @{<M>w</M>@}  biyog karle @{<M>1+9i</M>@}  hay, tabe
  @{<M>x,y</M>@}  kI kI?
 
 mane Achhe nishchayai ye @{<M>x,y\in\rr</M>@}  mAne hala '@{<M>x,y</M>@}  dujanei bAs+tab sa.nkhyA'. 
