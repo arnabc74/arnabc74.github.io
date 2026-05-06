@@ -1,0 +1,173 @@
+@i main
+@$@<Label@>==@{INTRO@}
+@O@<intro.html@>==@{
+@<Head@>@(Lecture 1@, Statistical Inference 2@)
+@<Section@>@(Introduction@)
+This course deals with two topics:
+<ul> 
+<li>Nonparametric inference:
+<ul>
+<li>Classical nonparametric inference
+<li>Modern computation-intensive nonparametric methods
+</ul>
+<li>Sequential inference
+</ul>
+
+@<Section@>@(Nonparametric inference@)
+Stat Inference 1 dealt with parametric inference. The first half of this
+course will deal with nonparametric inference.
+
+<p>Any statistical inference problem has the following basic structure.
+@<Disp@>@(
+We have some random data having joint distribution F which is not
+entirely known. We want to make inference about the unknown aspects of F
+based on observed data. The inference is typically either an estimation
+problem or a testing problem.
+@)
+
+The difference between nonparametric and parametric problems has to do
+with how much we already assume known about F. 
+<p>
+@<Example@>@((Parametric problem)
+Suppose X@<sub@>@(1@),...,X@<sub@>@(n@)  are iid
+N(@<mu@>,@<sigmasqd@>). We want to estimate @<mu@> 
+and @<sigmasqd@>. This is a typical problem from Statistical  Inference 1.
+ Here we
+assume that distribution of the X's is completely known except for only
+two unknown numbers @<mu@>  and @<sigmasqd@>. 
+@)
+
+<p>
+@<Defn@>@(
+If the distribution of the data is completely known except for finitely
+many unknown numbers, then the problem is called a <b>parametric</b>
+problem. Otherwise, we have a <b>nonparametric</b> problem.
+@)
+
+<p>
+@<Example@>@((Nonparametric problem)
+Supose that we are testing the efficacy of a sleeping pill. 
+Let X@<sub@>@(1@),...,X@<sub@>@(n@)
+be the amount of sleep of n patients before taking the pill, and let
+Y@<sub@>@(1@),...,Y@<sub@>@(n@) be the corresponding amounts after taking
+it. We want to test if 
+the pill really increases one's amount of sleep. Assuming that the
+patients behave indepependently we may reasonably assume that
+@<Disp@>@(
+(X@<sub@>@(1@),Y@<sub@>@(1@)),...,(X@<sub@>@(n@),Y@<sub@>@(n@))@)
+ are independent, but not
+necessarily identically 
+distributed. We model the effect of the drug as follows. There is an
+unknown number theta denoting the median increase of sleep, ie
+@<Disp@>@(Z@<sub@>@(i@) = Y@<sub@>@(i@)-X@<sub@>@(i@)@)
+have theta as its median. Note that we are not assuming that 
+Z's all have
+the same distribution. We are merely assuming that they have a common
+median. We want to test 
+@<Disp@>@(
+H@<sub@>@(0@): @<theta@>  = 0 Vs H@<sub@>@(1@): @<theta@>  &gt;  0
+@)
+@)
+
+In this example we have not assumed any knowledge about the underlying
+distribution except for the exisitence of a common median 
+@<theta@>  for the
+Z's. Thus our ignorance cannot be summed up as finitely many unknown
+numbers. Hence this is a nonparametric statistical inference problem. 
+
+<p>
+@<Example@>@(
+Suppose we X@<sub@>@(1@),...,X@<sub@>@(n@)
+ iid with continuous density f, which is unknown. We
+want to estimate f. 
+@)
+
+<p>
+@<Exercise@>@(1@,
+Why did we need the continuity assumption on f?@)
+<p>@<Exercise@>@(2@,
+Think of a nonparametric inference situation in regression.
+<br>@<Hint@>@(
+In the model "Y=@<alpha@>+@<beta@>X+@<epsilon@>, we may have @<epsilon@>'s
+iid with some unknown distribution F. Or, we may have the model 
+Y=f(X)+@<epsilon@>, where f itself is some unknown continuous function.
+@)
+
+@)
+
+@<Section@>@(Semiparametric problems@)
+Some people like to call the sleeping pill example as a
+<i>semiparametric</i> 
+problem, because here we are interested in only one unknown number,
+@<theta@>, though @<theta@> is not the only unknown quantity. 
+
+@<Digress@>@(Confusing terminology@)
+ It may seem that a parametric problem is a problem that
+involves parameters, while a nonparametric problem has no parameter
+involved in it. However, this is not exactly the case if we use the term
+"parameter" in its formal sense as defined below.
+
+@<Defn@>@(
+Suppose we have data X with distribution F. We do not known F entirely, we
+only know that F is in some known family @<calF@>.
+ Any function 
+@<Disp@>@(@<mu@>: @<calF@> @<rarrow@> M @)
+is called a <i>parameter</i>. Here M is any 
+set, not necessarily a subset of R or 
+R<sup>k</sup>. We call @<mu@>(@<calF@>) as the 
+parameter space.@)
+<p>
+ If @<mu@> is 1-1 then we 
+say that @<mu@> is the only unknown parameter.
+If @<mu@>(@<calF@>) is a subset of 
+R<sup>k</sup> and @<mu@> is the only unknown parameter,
+we call the problem a 
+parametric problem. Otherwise, it is a 
+nonparametric problem.  Thus, any statistical inference problem involves
+parameters, for parametric problems we have finite dimensional parameter,
+for nonparametric problems our parameters are infinite dimensional. If we
+are interested in a finite dimensional part of an infinite dimensional
+parameter, the problem is called a semiparametric one.
+@<DigressOver@>    
+
+
+@<Section@>@(Distribution-free techniques@)
+At the heart of any nonparametric statistical  inference
+ problem sits a distribution-free technique. 
+
+@<Example@>@((Sign test) We are continuing with the sleeping pill
+example. Assume that the Z@<sub@>@(i@)'s are continuous random variables. 
+Let the observed Z@<sub@>@(i@)'s be
+@<Disp@>@(-2.3, 3.9, 2.5, -2.1, -3.4, 1.4, 2.4, 1.9@)
+Consider the signs
+@<Disp@>@(-1,+1,+1,-1,-1,+1,+1,+1@)
+Count the +1's: T = 5. Reject H@<sub@>@(0@) for "large" T. How large is
+"large"? To answer this 
+we need to know the distribution of the test statistic T under
+H@<sub@>@(0@). It is
+Bin(8,0.5). If n is large, T is approxly N(n/2, n/4)) under H@<sub@>@(0@).@)
+
+In this example T is called a <i>distribution-free</i> test statistic
+under H@<sub@>@(0@). Here
+H@<sub@>@(0@) 
+is a composite hypothesis. In fact it is infinite dimensional in the sense
+that a null distribution cannot be specified completely by specifying just
+a finite collection of numbers. But still T has a distribution that is
+free of F. Classical nonparametric inference proceeds by cleverly
+constructing such distribution-free statistics. Thus classical
+nonparametric statistical inference is more or lesss a list of such
+statistics. However, not all problems have such a handy distribution-free
+statistic. For these problems one uses computation-intensive modern
+nonparametric inference, that we shall learn about.
+
+@<Exercise@>@(3@,
+Compute the power of the sign test for the alternative
+ @<theta@> = 5, assuming
+that the Z@<sub@>@(i@)'s are iid with some unknown, common, continuous
+distribution. Sample size, n=1000.<br>
+<i>[Hint: Can you do it if the Z@<sub@>@(i@)'s are iid N(5,1)?]</i> 
+@)
+
+@<Tail@>
+@}
+

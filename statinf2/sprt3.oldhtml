@@ -1,0 +1,439 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Some results about stopping time</h1>
+
+
+
+
+<h3>Wald's first equation</h3>
+
+<!-- problem idea: Ask to prove for general fn Z = f(X).-->
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+(Wald's first equation)
+Suppose that X<sub>1</sub>,X<sub>2</sub>, ... are iid and
+E|X<sub>i</sub>| is finite. Let T be any
+stopping time wrt the X's such that E(T) is finite. Define for n=1,2,...
+
+<blockquote>
+S<sub>n</sub> = X<sub>1</sub>+...+X<sub>n</sub>.
+</blockquote>
+
+Then 
+
+<blockquote>
+E(S<sub>T</sub>) = E(T) E(X<sub>1</sub>).
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+We shall break the proof into a number of exercises.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.1:</font></b> 
+   
+   First show that
+   
+   <blockquote>
+   E(S<sub>T</sub>) = E 
+                        <img src=
+                        "resources/statinf2/sum.gif"
+                        align=middle>
+                        
+                         X<sub>n</sub> 
+   I<sub>T &gt; n-1</sub>.
+   </blockquote>
+   
+   Here the summation is an infinite series over n=1,2,...upto infinity.
+   
+   </td></tr></table>
+   </blockquote>
+   
+There is a theorem (called Fubini's theorem, as you'll learn in MI
+measure theory course) which allows us to interchange expectation and
+infinite summation whenever each summand is integrable (we call a random
+variable U integrable if E|U| is finite.) 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.2:</font></b> 
+   
+   Argue that each summand in the infinite series above is indeed
+   integrable. So you can bring the expectation inside the summation. Hence
+   prove Wald's first equation.<br>
+   <br>
+       <i>[Hint:
+       
+       You may like to use the following exercise.]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.3:</font></b> 
+   
+   Show 
+    that if a random variable U takes only
+   nonnegative integer values, then 
+   
+   <blockquote>
+   E(U) = P(U &gt; 0)+P(U &gt; 1)+P(U &gt; 2)+...
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+<h4>An amusing consequence</h4>
+
+Suppose there is a gambling scheme with expected value 0. If you play it
+n many times, then your expected payoff remains zero, whatever n may
+be. You may think that this fact would dissuade a gambler from wasting
+money in the casino. However, it doesn't. Gamblers like to think
+themselves smart, and they would say, "I never play for a fixed number of
+times. The moment I win a goodly amount, say Rs 500 I quit playing, and
+go home with that amount. I just don't take any further risk. That keeps
+me from getting ruined, you see! Again, if my loss exceeds Rs 100.00, I
+quit. This keeps my loss under control." Real gamblers may come up with
+even more complicated clever schemes as to the right time to stop playing
+so that you keep your profit intact, without risking too much loss. It may
+be mind-boggling to counter all their arguments, but Wald's first equality
+shows in one single stroke that howsoever cleverly the gambler chooses his
+stopping time, his expected payoff always remains zero. 
+
+
+<h4>What if E(T) is infinite?</h4>
+
+For Wald's first equation we need E(T) to be finite. Here is what may
+happen if this condition is not met.
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Let X<sub>i</sub>'s be iid with the following distribution
+   
+   <blockquote>
+   
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   X<sub>i</sub> = 
+   </td>
+   <td>
+   1
+   </td>
+   <td align=left>
+    with probability 0.5
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+                   
+   </td>
+   <td>
+   -1
+   </td>
+   <td align=left>
+    with probability 0.5
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   
+   </blockquote>
+   
+   Thus we have a simple symmetric random walk. Consider the stopping time T
+   which is the first time an S<sub>i</sub> is 1. Thus,
+   
+   <blockquote>
+   {T = n} is same as {S<sub>i</sub>
+                                    <img src=
+                                    "resources/statinf2/neq.png"
+                                    align=top>
+                                    
+                                     1 for i &lt; n, and
+   S<sub>n</sub> = 1}.
+   </blockquote>
+   
+   The following exercises will explore if Wald's first equation holds here.
+   
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise SPRT3.4:</font></b> 
+      
+      Show that 
+      
+      <blockquote>
+      P(T is finite) = 1
+      </blockquote>
+      
+      
+      </td></tr></table>
+      </blockquote>
+      
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise SPRT3.5:</font></b> 
+      
+      Show that
+      
+      <blockquote>
+      E(T) = 
+             <img src=
+             "resources/statinf2/inf.png"
+             align=top>
+             
+             .
+      </blockquote>
+      
+      
+      </td></tr></table>
+      </blockquote>
+      
+   <p>
+   Obviously, E(S<sub>T</sub>) = 1 (why?). So Wald's first equation takes the
+   meaningless form
+   
+   <blockquote>
+   1 = 
+       <img src=
+       "resources/statinf2/inf.png"
+       align=top>
+       
+        times 0.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Wald's second equation</h3>
+
+This is similar to the first equation except that it deals with the second
+moment. 
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+(Wald's second equality)
+If T is a stopping time wrt iid 
+
+<blockquote>
+X<sub>1</sub>,X<sub>2</sub>,...
+</blockquote>
+
+such that
+
+<blockquote>
+
+<ul>
+<li>E(T) is finite
+<li>E(X<sub>i</sub>) = 0
+<li>Var(X<sub>i</sub>) is finite
+</ul>
+
+</blockquote>
+
+then
+
+<blockquote>
+Var(S<sub>T</sub>) = E(T) Var(X<sub>i</sub>)
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+
+We shall not prove it in this course.
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+
+<h3>Wald's fundamental identity</h3>
+
+Consider 
+
+<blockquote>
+X<sub>1</sub>,X<sub>2</sub>,... iid with some density f.
+</blockquote>
+
+Let T be some stopping time with P(T is finite) = 1.
+<p>
+Consider the m.g.f. defined as
+
+<blockquote>
+&phi;(t) = E(exp(t X)),
+</blockquote>
+
+where X has distribution F. Fix some t such that &phi;(t) is finite. 
+Consider the density g defined as
+
+<blockquote>
+g(x) = (exp(t x)/ &phi;(t)) * f(x).
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.6:</font></b> 
+   
+   Show that g is indeed a density function.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Let 
+
+<blockquote>
+S<sub>n</sub> = X<sub>1</sub>+...+X<sub>n</sub>.
+</blockquote>
+
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+(Wald's fundamental identity)
+In the above set up we have
+
+<blockquote>
+
+E(exp(t S<sub>T</sub>)/ &phi;(t)<sup>T</sup>) = 
+P<sub>g</sub>(T is finite)
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+
+Let's start with the lhs. It is of the form E(h(T)) for some function h. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.7:</font></b> 
+   
+   Show that if h(T) is any integrable function of T, then 
+   
+   <blockquote>
+   E(h(T)) = 
+             <img src=
+             "resources/statinf2/sum.gif"
+             align=middle>
+             
+             P(T=n) E(h(T)|T=n).
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.8:</font></b> 
+   
+   Show that the conditional density of
+   (X<sub>1</sub>,...,X<sub>n</sub>)
+   given T=n is
+   
+   <blockquote>
+   f(x<sub>1</sub>)...f(x<sub>n</sub>)/P(T=n),
+   </blockquote>
+   
+   over the set of (x<sub>1</sub>,...,x<sub>n</sub>) such that T=n. The
+   density is zero outside this set. Why can we not write this set as
+   
+   <blockquote>
+   {(x<sub>1</sub>,...,x<sub>n</sub>) :
+   T(x<sub>1</sub>,...,x<sub>n</sub>)=n}?
+   </blockquote>
+    
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT3.9:</font></b> 
+   
+   Use the definition of g  and the above exercises to complete the proof.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+
+<hr>
+
+</body>
+</html>
+

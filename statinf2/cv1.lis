@@ -1,0 +1,163 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    79    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    80    79| <td>
+    81    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    82    81| @1
+    83    82| </td></tr></table>
+.................
+    90    89| <td>
+    91    90| <b><font color="#cc0000">
+    92    91| Exercise @<Label@>.@1:</font></b> 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    93    92| @2
+    94    93| </td></tr></table>
+.................
+   112   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   113   112| <td>
+   114   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   115   114| @1
+   116   115| <img src="resources/statinf2/square.gif">
+.................
+   121   120| @$@<Jst@>@(@1@)@Z@M==@{
+   122   121| <blockquote>
+   123   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   124   123| @1
+   125   124| <b>///</b>
+.................
+   425    26| The above algorithm will produce for a given data and given modelling
+   426    27| strategy a single number called the <i>cross-validation score</i>. This
+   427    28| score measures the good-of-fit of this modelling strategy for this data. 
+     Warning|.........................................................................^Line has trailing spaces up to and including this space.
+   428    29| <h3>Models and Modelling strategies</h3>
+   429    30| A modelling strategy is like a
+.................
+   432    33| strategy.</i> A modelling strategy is a function that maps a dataset to a
+   433    34| model. The model-fitting is just another name for the evaluating this
+   434    35| function. 
+     Warning|..........^Line has trailing spaces up to and including this space.
+   435    36| 
+   436    37| <p>@<Example@>@("Least square fitting of a quadratic equation" is a
+   437    38| modelling strategy that may result in the model 
+     Warning|................................................^Line has trailing spaces up to and including this space.
+   438    39| 
+   439    40| @<Disp@>@(
+   440    41| y<sub>i</sub> = 1.2 - 5.64*x<sub>i</sub> + 
+     Warning|...........................................^Line has trailing spaces up to and including this space.
+   441    42| 2.3*x<sub>i</sub><sup>2</sup> + 
+     Warning|................................^Line has trailing spaces up to and including this space.
+   442    43| epsilon<sub>i</sub>, where epsilon<sub>i</sub> ~ N(0,0.342)@)
+   443    44| 
+.................
+   450    51| @<Disp@>@({MS<sub>1</sub>,...,MS<sub>k</sub>}@)
+   451    52| Let M denote the set of all possible models, and let DAT denote the set of
+   452    53| all possible datasets. So each MS<sub>i</sub> is a map from DAT to MOD. 
+     Warning|........................................................................^Line has trailing spaces up to and including this space.
+   453    54| @<Disp@>@(MS<sub>i</sub> : DAT --> MOD@)
+   454    55| For each model M in MOD and D in DAT we have a way to measure how well the
+   455    56| model M fits the data D. This is captured by a loss function
+   456    57| @<Disp@>@(L : DAT x MOD ---> R,@)
+   457    58| where R is the set of reals. 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   458    59| 
+   459    60| <p>@<Example@>@(
+.................
+   462    63| giving values of x, the other giving the corresponding values of y. So
+   463    64| here DAT consists of all possible pairs of columns. Suppose that MOD
+   464    65| consists of all 
+     Warning|................^Line has trailing spaces up to and including this space.
+   465    66| linear equations of the form 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   466    67| @<Disp@>@(y = alpha + beta * x + epsilon,@)
+   467    68| where epsilons are iid N(0,sigma<sup>2</sup>). A popular modelling
+.................
+   469    70| a dataset this modelling strategy will produce alphaHat, betaHat and
+   470    71| sigma<sup>2</sup>Hat. The loss function L may be taken to be the squared
+   471    72| error loss, ie, 
+     Warning|................^Line has trailing spaces up to and including this space.
+   472    73| @<Disp@>@(L(X,M) = sum of squares of (y-yHat)'s,@)
+   473    74| where 
+     Warning|......^Line has trailing spaces up to and including this space.
+   474    75| @<Disp@>@(yHat = alphaHat + betaHat*x@)
+   475    76| @)
+   476    77| 
+   477    78| <p>We want to know which modelling strategy 
+     Warning|............................................^Line has trailing spaces up to and including this space.
+   478    79| is the best based on a given dataset X in DAT. Each strategy produces a
+   479    80| model:
+   480    81| @<Disp@>@(M<sub>i</sub> = MS<sub>i</sub>(X).@) 
+     Warning|...............................................^Line has trailing spaces up to and including this space.
+   481    82| One may now think of three ways to compare the modelling strategies:
+   482    83| <ul>
+.................
+   489    90| Here we collect more data Y afresh after finding M<sub>i</sub> based on
+   490    91| the already available data X. Then we test how well M<sub>i</sub> performs
+   491    92| on Y by considering 
+     Warning|....................^Line has trailing spaces up to and including this space.
+   492    93| @<Disp@>@(L(Y,M<sub>i</sub>).@)
+   493    94| This is, as we have already said, the ideal way of doing things, and
+.................
+   498    99| This is a naive way to compare the modelling strategies when fresh
+   499   100| data are not available. Here we just test M<sub>i</sub> on the original
+   500   101| data X, ie we look at 
+     Warning|......................^Line has trailing spaces up to and including this space.
+   501   102| @<Disp@>@(L(X,M<sub>i</sub>).@)
+   502   103| 
+.................
+   504   105| of the risk of overfitting. Since M<sub>i</sub> was fitted based on X, it
+   505   106| is likely that L(X,M<sub>i</sub>) will be smaller than L(Y,M<sub>i</sub>)
+   506   107| where Y is some fresh data. If  L(X,M<sub>i</sub>) is much smaller than 
+     Warning|........................................................................^Line has trailing spaces up to and including this space.
+   507   108|  L(Y,M<sub>i</sub>) then the loss is underestimated, and we have a 
+     Warning|...................................................................^Line has trailing spaces up to and including this space.
+   508   109| case of overfitting. 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   509   110| 
+   510   111| <h4>Crossvalidation</h4>
+.................
+   512   113| yet does not require fresh data. Here
+   513   114| we look at the CV score of each MS<sub>i</sub>, and choose the
+   514   115| strategy with the minimum CV score. 
+     Warning|....................................^Line has trailing spaces up to and including this space.
+   515   116| 
+   516   117| <p>To do this we need some standard way of doing the (training,test)
+.................
+   522   123| <h3>p-fold CV</h3>
+   523   124| Here we first split the data randomly into p equal parts (or almost equal
+   524   125| parts if the sample size is not divisible by p). Let the parts be called 
+     Warning|.........................................................................^Line has trailing spaces up to and including this space.
+   525   126| X<sub>1</sub>,...,X<sub>p</sub>. Use X<sub>t</sub>  as the
+   526   127| test set, and the rest of X as the training set. Let us denote by 
+     Warning|..................................................................^Line has trailing spaces up to and including this space.
+   527   128| X<sub>-t</sub> this remaining part of X. Then we apply the modelling
+   528   129| strategies on X<sub>-t</sub> to get
+.................
+   531   132| @<Disp@>@(L(X<sub>t</sub>,M<sub>it</sub>)@)
+   532   133| Do this as t ranges from
+   533   134| 1 to 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   534   135| p, and then average to get the CV score for MS<sub>i</sub>:
+   535   136| @<Disp@>@(CV<sub>i</sub> =
+   536   137| sum<sub>t</sub>(L(X<sub>t</sub>,M<sub>it</sub>))/p@) 
+     Warning|.....................................................^Line has trailing spaces up to and including this space.
+   537   138| Now choose the modelling strategy that minimises this. However, observe
+   538   139| that CV<sub>i</sub>'s are themselves random quantities. So minor
+.................
+   549   150| 
+   550   151| @<Tail@>@}
+            | <End-Of-File>
+     Warning|.^The last line of the input file was terminated by EOF.
+            |.^An EOL was inserted at the end of the last line.
+------------+-------------------------------------------------------------------
+
+Tangle: Completed cv1.html.
+
+There were 28 Warnings.

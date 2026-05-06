@@ -1,0 +1,189 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    79    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    80    79| <td>
+    81    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    82    81| @1
+    83    82| </td></tr></table>
+.................
+    90    89| <td>
+    91    90| <b><font color="#cc0000">
+    92    91| Exercise @<Label@>.@1:</font></b> 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    93    92| @2
+    94    93| </td></tr></table>
+.................
+   112   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   113   112| <td>
+   114   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   115   114| @1
+   116   115| <img src="resources/statinf2/square.gif">
+.................
+   121   120| @$@<Jst@>@(@1@)@Z@M==@{
+   122   121| <blockquote>
+   123   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   124   123| @1
+   125   124| <b>///</b>
+.................
+   405     6| Sometimes we have to simulate from complicated distributions, for which no
+   406     7| direct method is available. Often the target distribution is not even
+   407     8| available 
+     Warning|..........^Line has trailing spaces up to and including this space.
+   408     9| in a closed form! However, often it is possible to have an easily
+   409    10| implementable Markov Chain (MC) that has the target distribution as its
+.................
+   426    27| Beta(3,3) rv p. Then toss a coin with P(H) = p 100 times. If I observe 34
+   427    28| heads then what p was generated in the first stage? This may be done by a
+   428    29| application of Bayes theorem (density version) as follows. 
+     Warning|...........................................................^Line has trailing spaces up to and including this space.
+   429    30| 
+   430    31| @<Disp@>@(
+   431    32| Prior density: pi(p) =  p<sup>2</sup>(1-p)<sup>2</sup>/beta(3,3)<br>
+   432    33| Model:  f(X=x | p) = <sup>100</sup>C<sub>x</sub> *
+   433    34| p<sup>x</sup>(1-p)<sup>100-x</sup><br> 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   434    35| Joint density: P(x, p) = pi(p) * f(X=x | p) * pi(p) = 
+     Warning|......................................................^Line has trailing spaces up to and including this space.
+   435    36| <sup>100</sup>C<sub>x</sub>/beta(3,3) *
+   436    37| p<sup>2+x</sup>(1-p)<sup>102-x</sup><br> 
+     Warning|.........................................^Line has trailing spaces up to and including this space.
+   437    38| Marginal of X: g(x) = integral P(x,p) dp =<div width=100>
+   438    39| <sup>100</sup>C<sub>x</sub>/beta(3,3)* beta(3+x,103-x)</div><br>
+   439    40| Posterior: xi(p) = P(x,p)/g(x) =
+   440    41| p<sup>2+x</sup>(1-p)<sup>102-x</sup>/beta(3+x,103-x) 
+     Warning|.....................................................^Line has trailing spaces up to and including this space.
+   441    42| @)@)
+   442    43| 
+.................
+   448    49| information about P(H) and expect that if take a large number of coins
+   449    50| then the P(H)'s will have a density curve like the left one below rather
+   450    51| than the other one. 
+     Warning|....................^Line has trailing spaces up to and including this space.
+   451    52| 
+   452    53| <p>
+.................
+   461    62| <i>distribution.</i> Bayesian inference now requires us to summarize this
+   462    63| distribution, eg if we want a point estimate for p, then we may use
+   463    64| the mean or mode. 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   464    65| 
+   465    66| <p>In the example above the posterior also turns out to be a Beta
+   466    67| distribution. But even if the prior and the model are both simple, the
+   467    68| posterior may still be complicated (eg, fail to have a closed-form
+   468    69| expression).  
+     Warning|..............^Line has trailing spaces up to and including this space.
+   469    70| 
+   470    71| <p>@<Example@>@(X ~ N(0,sigma^2) sigma~Exp(1). Note that it is quite
+   471    72| easy to get the numerator of the joint density (it is just the product of
+   472    73| the prior and the model densities) but the denominator is just a nasty
+   473    74| integral. 
+     Warning|..........^Line has trailing spaces up to and including this space.
+   474    75| 
+   475    76| @<Disp@>@(
+.................
+   480    81| <h3>Geman brothers</h3>
+   481    82| In 1984 a paper by Geman and Geman introduced a
+   482    83| novel idea that marked the 
+     Warning|...........................^Line has trailing spaces up to and including this space.
+   483    84| inception of a new way of simulating from posteriors. The method was
+   484    85| already in use by physicists, but Geman and Geman first proposed its use
+.................
+   488    89| <p>Any a b/w image is just a matrix with each element either 0 (=black) or
+   489    90| 1 (=white). While any such matrix may be called an image, but not all
+   490    91| matrices 
+     Warning|.........^Line has trailing spaces up to and including this space.
+   491    92| correspond to "interesting" images.
+   492    93| 
+.................
+   514   115| <p>The probability space is finite and consists of all images of size say
+   515   116| 275x215. The two images above, for instance, are two points in that
+   516   117| space. The size 
+     Warning|................^Line has trailing spaces up to and including this space.
+   517   118| of the space is 2<sup>275x215</sup> which is, well, pretty huge! We are
+   518   119| about to define a probability on this set so that "interesting" images
+   519   120| will have high probability masses attached to them. 
+     Warning|....................................................^Line has trailing spaces up to and including this space.
+   520   121| 
+   521   122| <p>Let's define a function f(x,y), where x, y are pixels (thus each of x,y
+.................
+   526   127|          1/3 if x,y are neighbours and x is equal to y
+   527   128|         -1/3 if x,y are neighbours and x is not equal y
+   528   129| </pre>  
+     Warning|........^Line has trailing spaces up to and including this space.
+   529   130| @)
+   530   131| Now define the probability of an image as
+.................
+   534   135| where the sum is over all pixels x,y and Z is the normalising
+   535   136| constant. Z is H..U..G..E, and computing it is very difficult, if not
+   536   137| impossible. This probability is called a <i>Gibbs 
+     Warning|..................................................^Line has trailing spaces up to and including this space.
+   537   138| distribution</i>. It may seem impossible to do
+   538   139| anything with this model. Geman and Geman introduced a clever way to
+.................
+   543   144| <h3>An example</h3>
+   544   145| Consider the 3 by 3 b/w image shown left below. Let us compute
+   545   146| exp(sum(f(x,y))) for it. 
+     Warning|.........................^Line has trailing spaces up to and including this space.
+   546   147| <img src="image/img1.gif" align=left>
+   547   148| 
+.................
+   551   152| us compute the same quantity for the other image. It is found to be exp(2/3).
+   552   153| 
+   553   154| <img src="image/img2.gif" align=right> 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   554   155| <p>There are 2<sup>3x3</sup> = 512 such images. If we compute this number 
+     Warning|..........................................................................^Line has trailing spaces up to and including this space.
+   555   156| for each of them and add, then we shall get Z. 
+     Warning|...............................................^Line has trailing spaces up to and including this space.
+   556   157| 
+   557   158| <h3>Some information on Gibbs distribution</h3>
+.................
+   561   162| <p>
+   562   163| We have just now seen one example of a Gibbs distribution. In general
+   563   164| Gibbs distribution is defined as follows. 
+     Warning|..........................................^Line has trailing spaces up to and including this space.
+   564   165| 
+   565   166| <p>Statistical physicists try to explain various macroscopic features of
+   566   167| materials in terms of simple microscopic constituent "particles."
+   567   168| Somewhere in your high school you may have come across the "kinetic theory
+   568   169| of gases" which is a typical statistical physics model. 
+     Warning|........................................................^Line has trailing spaces up to and including this space.
+   569   170| 
+   570   171| <p>In order to explain magnetic properties of solids one imagines them to
+.................
+   575   176| by a lattice edge. The lattice itself may be just any connected graph.)
+   576   177| The interaction is local, ie, if you fix all its neighbouring magnets then
+   577   178| each magnet is independent of the magnets farther away. 
+     Warning|........................................................^Line has trailing spaces up to and including this space.
+   578   179| 
+   579   180| <p>A collection of magnets is called a <i>clique</i> if each of them is a
+   580   181| neighbour to every other in the collection. Each clique is like a
+   581   182| family. Note that a magnet usually belongs to more than one clique. For
+   582   183| each clique, C, of size k we have a function 
+     Warning|.............................................^Line has trailing spaces up to and including this space.
+   583   184| 
+   584   185| @<Disp@>@(V<sub>C</sub>(x<sub>1</sub>,...,x<sub>k</sub>)@)
+.................
+   600   201| almost equally likely. This corresponds to our experience that at high
+   601   202| temperature a system is more chaotic. The constant of proportionality is
+   602   203| found by the condition that the probs must add up to 1. 
+     Warning|........................................................^Line has trailing spaces up to and including this space.
+   603   204| 
+   604   205| @<Tail@>
+   605   206| @}
+            | <End-Of-File>
+     Warning|.^The last line of the input file was terminated by EOF.
+            |.^An EOL was inserted at the end of the last line.
+------------+-------------------------------------------------------------------
+
+Tangle: Completed mcmc1.html.
+
+There were 30 Warnings.

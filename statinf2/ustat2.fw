@@ -1,0 +1,89 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{USTAT2@}
+@O@<ustat2.html@>==@{
+@<Head@>@(??@, U-statistics@)
+
+
+@<Section@>@(Computing variance of 1-sample U-statistics@)
+We have already seen that if U is a one sample U-statistic with kernel ,
+h then 
+@<Disp@>@(E(U) = E(h)@)
+Now we shall compute Var(U).
+
+<p>@<Exercise@>@(1@,
+Let h be a kernel and let g be another defined as
+@<Disp@>@(g(.) = h(.) - c,@)
+where c is some constant. If U@<sub@>@(h@) and U@<sub@>@(g@) are the
+U-statistics with kernels h and g, respectively, then show that
+@<Disp@>@(U@<sub@>@(g@) = U@<sub@>@(h@)-c.@)
+Hence argue that for computing Var(U@<sub@>@(h@)) we can assume wlg that E(h)=0.
+@)
+We shall also assume wlg that h: <b>R</b><sup>m</sup>@<rarrow@><b>R</b> is
+symmetric. Define for 1@<Leq@> k @<Leq@> m,
+@<Disp@>@(h@<sub@>@(k@)(X@<sub@>@(1@),...,X@<sub@>@(k@)) = 
+E(h(X@<sub@>@(1@),...,X@<sub@>@(m@))| X@<sub@>@(1@),...,X@<sub@>@(k@))
+@)
+<p>
+We shall use the following notation:
+@<Disp@>@(If K @<Subset@> {1,...,n} then <u>X</u>@<sub@>@(K@) will
+ denote the
+collection of X@<sub@>@(i@)'s with i in K.@)
+
+<p>@<Exercise@>@(2@,
+Show, using symmetry of h, that h@<sub@>@(k@) is also symmetric in its k
+arguments.
+Also show that if K @<Subset@> I @<Subset@> {1,...,n} with
+|I| = m and |K| = k then  
+@<Disp@>@(E(h(<u>X</u>@<sub@>@(I@)|<u>X</u>@<sub@>@(K@))) =
+ h@<sub@>@(K@)(<u>X</u>@<sub@>@(K@)).@)
+@)
+
+<p>@<Exercise@>@(3@,
+Show that E(h@<sub@>@(k@)(X@<sub@>@(1@),...,X@<sub@>@(k@)) = 0.
+@)
+
+Define
+@<Disp@>@(S@<sub@>@(k@) = Var(h@<sub@>@(k@)) =
+E(h@<sub@>@(k@)<sup>2</sup>)@)
+We shall compute Var(U) in terms of the S@<sub@>@(k@)'s.
+
+<p>
+Let K = I @<Inter@> J and |K| = k  &gt; 0.
+Then 
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(cov(h(X@<sub@>@(I@)), h(X@<sub@>@(J@))@,=@,
+ E(h(X@<sub@>@(I@)), h(X@<sub@>@(J@)))@)
+@<Row@>@(@,=@,E[E(h(X@<sub@>@(I@)).h(X@<sub@>@(J@)|X@<sub@>@(K@))]@)
+@)
+@) 
+<p>@<Exercise@>@(4@,
+Show that
+@<Disp@>@(E[ h(X@<sub@>@(I@)).h(X@<sub@>@(J@))|X@<sub@>@(K@) ] = 
+h@<sub@>@(k@)<sup>2</sup>(X@<sub@>@(K@)).@)
+Hence show that
+@<Disp@>@(cov(h(X@<sub@>@(I@)), h(X@<sub@>@(J@))) = S@<sub@>@(k@).@)
+@)
+
+<p>@<Exercise@>@(5@,
+Show that the number of subsets I,J of {1,...,n} of size
+m with |I @<Inter@> J| = k, is 
+@<Disp@>@(@<C@>@(n@,m@) @<C@>@(m@,k@) @<C@>@(n-m@,m-k@).@)
+
+@)
+
+<p>@<Exercise@>@(6@,
+Conclude that 
+@<Disp@>@(Var(U) = @<Sum@>@<C@>@(n@,m@) @<C@>@(m@,k@) @<C@>@(n-m@,m-k@)
+S@<sub@>@(k@)/ (@<C@>@(n@,m@))<sup>2</sup>.@)
+@)
+
+<p>@<Exercise@>@(7@,
+Use the above exercise to compute Var(sample variance).
+@)
+
+
+
+@<Tail@>
+@}

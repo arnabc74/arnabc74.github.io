@@ -1,0 +1,366 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Two sample inference</h1>
+
+
+
+
+<h3>Rank statistics</h3>
+
+So far we have seen a number of two sample tests. These as well as many
+others all use test statistics of a general form called <i>linear rank
+statistics</i>. We discuss this below.
+<p>
+Our set up is as before:
+
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>m</sub> iid F<br>
+Y<sub>1</sub>,...,Y<sub>n</sub> iid G<br>
+X's and Y's are mutually independent<br>
+F, G both continuous and unknown.
+</blockquote>
+
+<p>
+Pool the samples together as
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>m</sub>,Y<sub>1</sub>,...,Y<sub>n</sub>
+</blockquote>
+
+Let the rank vector of the pooled data be
+
+<blockquote>
+R<sub>1</sub>,...,R<sub>m</sub>,R<sub>m+1</sub>,...,
+R<sub>m+n</sub>
+</blockquote>
+
+Thus, 
+
+<blockquote>
+R<sub>i</sub> = rank of X<sub>i</sub> in the pooled data for 1
+
+<img src=
+"resources/leq.png"
+align=top>
+
+ i 
+   <img src=
+   "resources/leq.png"
+   align=top>
+   
+    m
+</blockquote>
+
+and
+
+<blockquote>
+R<sub>m+j</sub> = rank of Y<sub>j</sub> in the pooled data for 1
+
+<img src=
+"resources/leq.png"
+align=top>
+
+ j 
+   <img src=
+   "resources/leq.png"
+   align=top>
+   
+    n.
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   In a controlled experiment to measure the effectiveness of a treatment
+   suppose that the control group yields the following measurements:
+   
+   <blockquote>
+   X<sub>1</sub> = 2, X<sub>2</sub> = 4, X<sub>3</sub> = 9,
+   </blockquote>
+   
+   and the treatment group produces
+   
+   <blockquote>
+   Y<sub>1</sub> = 5, Y<sub>2</sub> = 8.
+   </blockquote>
+   
+   Then here are the pooled data and the rank vector:
+   
+   <blockquote>
+   <pre>
+   pooled data: 2  4  9  5  8
+   rank vector: 1  2  5  3  4
+   </pre>
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   
+   A statistic that is a function of the rank vector is called a <i>rank
+   statistic</i>. 
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   
+   Let A be any known (m+n) by (m+n) matrix with (i,j)-th element denoted by
+   a(i,j). The 
+   
+   <blockquote>
+   
+   <img src=
+   "resources/sum.gif"
+   align=middle>
+   
+   a(i,R<sub>i</sub>)
+   </blockquote>
+   
+   is called a <i>linear</i> rank statistic.
+   
+   </td></tr></table>
+   
+How to check that a given rank statistic is indeed a linear rank
+statistic? The following theorem helps you to do this.
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+
+Suppose that T(<u>R</u>) is a rank statistics, where <u>R</u> denotes the
+rank vector, ie, permutations of 1,...,N, say. 
+Let <u>S</u> be any rank vector, and i,j be in {1,...,N}. 
+Define <u>S(i,j)</u> as the permutation obtained from <u>S</u> by swapping
+i and j. Then T is a linear rank statistic iff 
+
+<blockquote>
+T(<u>S</u>)-T(<u>S(i,j)</u>) is free of S<sub>k</sub> for all
+k 
+  <img src=
+  "resources/neq.png"
+  align=top>
+  
+   i,j.
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   Direct argument.
+   <img src="resources/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.1:</font></b> 
+   
+   Is the Mann-Whitney U-statistic a rank statistic? Is it linear? If so, find A.
+   <br><i>[Hint: Explicitly write down
+    the U-statistic in terms of the ranks.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.2:</font></b> 
+   
+   Do the same for the 2-stample KS test statistic, D<sub>+</sub>
+   <br>
+       <i>[Hint:
+       
+       Use the theorem above.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.3:</font></b> 
+   
+   Do the same for the Wald-Wolfowitz run test.
+   <br>
+       <i>[Hint:
+       
+       Use the theorem above.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   
+   A statistic of the form 
+   
+   <blockquote>
+   
+   <img src=
+   "resources/sum.gif"
+   align=middle>
+   
+    c<sub>i</sub> a(R<sub>i</sub>)
+   </blockquote>
+   
+   is called a <i>simple, linear rank statistic</i>, where c<sub>i</sub>'s
+   are any constants and a(.) is any function.
+   
+   </td></tr></table>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.4:</font></b> 
+   
+   To justify the terminology used we need to show that a simple linear rank
+   statistic is indeed a linear rank statistic as we have defined earlier. In
+   particular, show that a simple linear rank statistic corresponds to a A
+   matrix of the form 
+   
+   <blockquote>
+   A = u v' 
+   </blockquote>
+   
+   where u and v are column vectors.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h4>Computing moments of simple linear rank statistics</h4>
+
+Let
+ 
+ <blockquote>
+ S = 
+     <img src=
+     "resources/sum.gif"
+     align=middle>
+     
+      c<sub>i</sub> a(R<sub>i</sub>)
+ </blockquote>
+ 
+We shall compute E(S) and Var(S) under H<sub>0</sub>: F = G. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.5:</font></b> 
+   
+   Show that under H<sub>0</sub>, 
+   
+   <blockquote>
+   each R<sub>i</sub> ~ discrete uniform {1,...,m+n}
+   </blockquote>
+   
+   and 
+   
+   <blockquote>
+   (R<sub>1</sub>,...,R<sub>m+n)</sub>) ~ discrete uniform over all
+   (m+n)! possible permutations of {1,...,m+n}
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.6:</font></b> 
+   
+   Use the last exercise to show that
+   
+   <blockquote>
+   E(S) = (m+n)cbar * abar
+   </blockquote>
+   
+   where cbar and abar of averages of c<sub>i</sub>'s and a(i)'s respectively.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.7:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   cov(a(R<sub>i</sub>),a(R<sub>j</sub>))= 
+   -&sigma;<sup>2</sup><sub>a</sub>/(m+n)
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RANK.8:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   Var(S) = (m+n-1) &sigma;<sup>2</sup><sub>a</sub>
+   &sigma;<sup>2</sup><sub>c</sub>,
+   </blockquote>
+   
+   where  &sigma;<sup>2</sup><sub>c</sub> is the variance of the
+   c<sub>i</sub>'s. The denominator in &sigma;<sup>2</sup><sub>c</sub> is 
+   (m+n-1).
+   Similarly for &sigma;<sup>2</sup><sub>a</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

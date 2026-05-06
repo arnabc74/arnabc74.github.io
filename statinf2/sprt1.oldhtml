@@ -1,0 +1,323 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Sequential tests</h1>
+
+
+
+
+<h3>Introduction</h3>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose that we have data
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>10</sub> iid N(&mu;,1).
+   </blockquote>
+   
+   We want to test
+   
+   <blockquote>
+   H<sub>0</sub>: &mu; =0 Vs. H<sub>1</sub>: &mu; = 5.
+   </blockquote>
+   
+   A typical test is of this  form: Reject
+   H<sub>0</sub> if 
+                    <img src=
+                    "resources/statinf2/xbar.png"
+                    align=top>
+                    
+                      &gt;  3.7, else accept H<sub>0</sub>.
+   <p>
+   Now suppose that 
+                    <img src=
+                    "resources/statinf2/xbar.png"
+                    align=top>
+                    
+                     = 3.701. So we should reject H<sub>0</sub>. But
+   had 
+       <img src=
+       "resources/statinf2/xbar.png"
+       align=top>
+       
+        been 3.699, we should have accepted H<sub>0</sub>. Is this
+   sensible? Since, 
+                    <img src=
+                    "resources/statinf2/xbar.png"
+                    align=top>
+                    
+                     is based on only 10 observations from N(m,1),
+   its variance is 0.1. So the difference between 3.699 and 3.701 is a minor
+   one for 
+           <img src=
+           "resources/statinf2/xbar.png"
+           align=top>
+           
+           . Yet the entire conclusion changed based on that. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>This is a borderline case. Ideally one would like to say that the based
+on the present data the test in inconclusive. Rather than accept or reject
+H<sub>0</sub> right now, we should better get some more data. This is the
+main idea behind <i>sequential tests</i>. 
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+Suppose that we have data
+
+<blockquote>
+X<sub>1</sub>,X<sub>2</sub>,...
+</blockquote>
+
+A sequential test based on this data is a decision rule that tells for each
+n to take one of the following actions based on the observed values of 
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>n</sub>:
+</blockquote>
+
+<OL>
+<LI>accept H<sub>0</sub>
+<li> reject H<sub>0</sub>
+<li>
+get one more sample
+</UL>
+<p>Equivalently, a sequential test is a stopping time, T, together with a
+decision rule telling us whether to accept/reject H<sub>0</sub> based on 
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>T</sub>
+</blockquote>
+
+once we stop.
+
+</td></tr></table>
+
+
+
+<h3>Sequential Probability Ratio Test (SPRT)</h3>
+
+In classical statistics we have likelihood ratio tests. In such a test the
+test statistic is the ratio of the likelihood of the observed data under
+H<sub>0</sub> and H<sub>1</sub>. If this ratio is large then we reject
+H<sub>0</sub>, else we accept H<sub>0</sub>. Neyman-Pearson lemma tells us
+that this is the optimal test for a given level. <p>
+It is customary to work with log-likelihood ratio than the likelihood
+ratio. 
+<p>Suppose we have data
+
+<blockquote>
+X<sub>1</sub>,,X<sub>2</sub>,... iid with density f.
+</blockquote>
+
+We want to test 
+
+<blockquote>
+H<sub>0</sub>: f = f<sub>0</sub> Vs H<sub>1</sub>: f =
+f<sub>1</sub>
+</blockquote>
+ 
+Define 
+
+<blockquote>
+Z<sub>i</sub> = log(
+f<sub>1</sub>(X<sub>i</sub>)/f<sub>0</sub>(X<sub>i</sub>)).
+</blockquote>
+ 
+Then the Z<sub>i</sub>'s are iid, and the log-likelihood ratio is their
+sum.
+
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+In this set up a SPRT with cutoffs A, B (0 &lt; B &lt; 1 &lt; A) (also
+written as
+SPRT(A,B)) is defined as the sequential test that goes on sampling until 
+the likelihood ratio(LR) goes outside (B,A).
+Once it falls outside this interval, we stop sampling and accept
+H<sub>0</sub> if the LR is below B, reject H<sub>0</sub> if the LR is
+above A. 
+
+</td></tr></table>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT1.1:</font></b> 
+   
+   Suppose that we are doing SPRT(2,0.5) for the test given in the first
+   example in 
+   this page. Find the chance (under H<sub>0</sub>) that we accept
+   H<sub>0</sub> exactly after 5 
+   steps. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT1.2:</font></b> 
+   
+   Why do you think we have the condition 
+   
+   <blockquote>
+   0 &lt; B &lt; 1 &lt; A?
+   </blockquote>
+   
+   Also, consider the general f<sub>0</sub> and f<sub>1</sub>. Consider
+   Z<sub>1</sub> as defined above. Construct an example where P(Z<sub>1</sub>
+   = 0) =1 under f<sub>0</sub>. Show that it is natural to assume
+   
+   <blockquote>
+   P(Z<sub>1</sub> = 0)  &lt;  1 under both f<sub>0</sub> and
+   f<sub>1</sub>.
+   </blockquote>
+    
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   (Stein's lemma)
+   Under the condition 
+   
+   <blockquote>
+   P(Z<sub>1</sub> = 0)  &lt;  1 under both f<sub>0</sub> and
+   f<sub>1</sub>
+   </blockquote>
+    
+   the stopping time, T, of SPRT(A,B) is finite with probability 1 under both
+   f<sub>0</sub> and f<sub>1</sub>.
+   
+   </td></tr></table>
+   
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+
+The proof involves two ideas that we develop through some exercises. 
+
+<p>If we have any nonzero &epsilon;, howsoever small, and keep on adding
+it to itself, then the sequence
+
+<blockquote>
+|&epsilon;|,|2 &epsilon;|, |3 &epsilon;|,...
+</blockquote>
+
+will eventually cross  any given bound, howsoever large. What if
+&epsilon; were random? More specifically we have the following exercise.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT1.3:</font></b> 
+   
+   Suppose the U<sub>1</sub>, U<sub>2</sub>,... are iid with any distribution
+   that is not degenerate at zero. Consider the sequence
+   
+   <blockquote>
+   V<sub>n</sub> = U<sub>1</sub>+...+U<sub>n</sub>.
+   </blockquote>
+   
+   Show that given any c &gt; 0, there exists N such that 
+   P(|V<sub>N</sub>|
+   &gt; c)  &gt; 0. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+But this is not strong enough for us. It merely says that after a large
+enough number of steps (N), the V-sequence has <i>some chance</i> of going
+out beyond [-c,c]. We would like to have a result that says: given any 
+interval [b,a] the V-sequence will eventually step out of it <i>with
+probability 1.</i>  For this purpose define c = a-b. Obtain N from the
+last exercise using this c. Now bunch up the U<sub>i</sub>'s in
+groups of N: the sum of the first N of the U's is called W<sub>1</sub>,
+the sum of the next N of the U's is called W<sub>2</sub>, and so on. Note
+that the W<sub>i</sub>'s are iid. They have a positive chance of  going
+out of [-c,c], by the last exercise. Let 
+
+<blockquote>
+p = P(W<sub>1</sub> is in [-c,c])  &lt; 1.
+</blockquote>
+
+Given any n, let q(n) denote the
+quotient [n/N]. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT1.4:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+    P(V<sub>1</sub>,...,V<sub>n</sub> all inside [b,a]) 
+                                                        <img src=
+                                                        "resources/statinf2/leq.png"
+                                                        align=top>
+                                                        
+                                                        
+   p<sup>q(n)</sup>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT1.5:</font></b> 
+   
+   Use the last two exercises to complete the proof.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+
+
+
+<hr>
+
+</body>
+</html>
+

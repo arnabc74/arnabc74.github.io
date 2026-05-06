@@ -1,0 +1,218 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SPRT6@}
+@O@<sprt6.html@>==@{
+@<Head@>@(??@,Optimality of SPRT@)
+
+
+@<Section@>@(A Bayesian perspective@)
+Consider testing a simple H@<sub@>@(0@) against a simple
+H@<sub@>@(1@). Given a (sequential) test, @<phi@>, we define 
+@<alpha@>@<sub@>@(i@)(@<phi@>) as the probability of rejecting
+H@<sub@>@(i@) when it is actually true. Denote by ASN@<sub@>@(i@)(@<phi@>) the
+expected sample size of @<phi@> under H@<sub@>@(i@).
+Assume that we have the following.
+<ul>
+<li>Prior probability p
+ of whether H@<sub@>@(0@) is true. Thus, 1-p is the prior probability
+for H@<sub@>@(1@).
+<li>Losses W@<sub@>@(0@) and W@<sub@>@(1@). We incur loss W@<sub@>@(i@) if
+we reject H@<sub@>@(i@) when it is actually true.
+<li>A cost c per sample (thus, to take a sample of size n, you have to pay
+c*n) 
+</ul>
+
+So the expected risk in using a test @<phi@> is
+@<Disp@>@( R(p,@<phi@>)= p@<lbrace@>
+                  @<alpha@>@<sub@>@(0@)(@<phi@>)W@<sub@>@(0@) + 
+                  c*ASN@<sub@>@(0@)(@<phi@>)@<rbrace@>
+                  +(1-p)@<lbrace@>
+                  @<alpha@>@<sub@>@(1@)(@<phi@>)W@<sub@>@(1@) + 
+                  c*ASN@<sub@>@(1@)(@<phi@>)@<rbrace@>
+@)
+We want to minimise it. Note that R is a function of
+many things: p, @<phi@>,W@<sub@>@(0@),W@<sub@>@(1@) and c. However, in
+the notation we have only shown the dependence of R on p and @<phi@>
+explicitly. 
+
+A test that mimimises this (if one exists) is called a Bayes test. We
+shall now set out to find such a test. Observe first that this is
+again a dynamic programming problem (DPP), much like the secretary
+problem or minesweeper. At every step you have three choices: accept
+H@<sub@>@(0@), reject H@<sub@>@(0@) or continue sampling. The tree
+is shown to the left.
+
+@<LImg@>@(sprtree.gif@)
+
+However, there is one important difference between this tree and those
+of the secretary problem or minesweeper. Those were <i>finite</i>
+trees, whereas this tree is infinite. Recall that for a finite tree
+we could work backward starting from the leaf nodes. This expedient,
+which we called
+backward induction, is no more there for an
+infinite tree. However, here we shall employ a neat, little trick.
+
+<p>Suppose that we are at the root of the tree. We have three options:
+accept without collecting any data, reject without collecting any
+data, and collect one sample. In the first two cases, we have two
+trivial tests. In either case the game stops
+and so we can compute the expected risks.
+
+<p>@<Exercise@>@(1@,
+Show that the two trivial tests have expected risks given by
+@<Disp@>@(p W@<sub@>@(0@)   and   (1-p) W@<sub@>@(1@).@)
+@)
+
+If, however, we choose to draw a sample, then the game continues and
+we move to the next step, where we are faced with all possible
+sequential tests that use at least one sample.
+
+Define 
+@<Disp@>@(R(p) = inf{R(p,@<phi@>): @<phi@> uses at least one sample}@)
+How do we know that the infimum exists? It is because, the set is
+nonempty (there is at least one nontrivial test; in fact there are
+many!) and the set is bounded from below by 0 (since risk is
+nonnegative.) This R(p) is as yet unknown to us. 
+@<RImg@>@(sprtloss.gif@)
+However, we can
+express the expected risk r(p) at the root in terms of
+R(p):
+@<Disp@>@(r(p) = min@<lbrace@>p W@<sub@>@(0@),
+                              R(p),
+                              (1-p) W@<sub@>@(1@)@<rbrace@>@)
+Consider the digram to the right to see why this is so.
+
+Next let us explore R(p). 
+<p>@<Exercise@>@(2@,
+Show that 
+@<Disp@>@(c @<Leq@> R(p) @<Leq@> c+p W@<sub@>@(0@).@)
+Hence conclude that R(0) = c and that R(p) is continuous at p=0.
+<br>@<Hint@>@(
+Consider the non-trivial test based on a single observation that always
+rejects H@<sub@>@(0@).
+@)
+@)
+
+<p>@<Exercise@>@(3@,
+Show that R(p) is continuous at p=1, and that R(1)=c.
+@)
+
+<p>@<Exercise@>@(4@,
+Show that R(p) is concave, i.e., for any two points
+p@<sub@>@(1@),p@<sub@>@(2@) in (0,1) and any a in [0,1],
+@<Disp@>@(R(a*p@<sub@>@(1@) + (1-a)*p@<sub@>@(2@)) @<Geq@> 
+a*R(p@<sub@>@(1@)) + (1-a)*R(p@<sub@>@(2@)).
+@)
+Hence conclude that R(p) is continuous on (0,1).
+<br>@<Hint@>@(For any @<phi@>, we have
+R(a*p@<sub@>@(1@) + (1-a)*p@<sub@>@(2@), @<phi@>) =
+a*R(p@<sub@>@(1@),@<phi@>) + (1-a)*R(p@<sub@>@(2@),@<phi@>)
+@)
+@)
+
+Combining the last three exercises we see that R(p) looks like the blue
+line below. The red and green lines show the expected risks for the trivial
+tests that do not collect any sample at all. Their minimum is r(p), as we
+have already noted.
+
+@<Img@>@(rp.gif@)
+
+
+
+
+<p>@<Exercise@>@(5@,
+Show that if p @<Leq@> L, then the best strategy is to reject
+H@<sub@>@(0@). Similarly, if p @<Geq@> U, then the best strategy is to
+reject H@<sub@>@(0@).  
+@)
+
+Now suppose that p happens to lie between L and U. Then we have to
+take one more sample. Now comes the trick. Since we have an infinite
+tree this second stage is again essentially the same as the first
+stage. We have the same W@<sub@>@(i@)'s and c. However, in light of
+the single sample, x@<sub@>@(1@), we have drawn, the prior p should be
+updated to the 
+posterior, which we shall call p(x@<sub@>@(1@)).
+
+<p>@<Exercise@>@(6@,
+Compute p(x@<sub@>@(1@)) in terms of f@<sub@>@(i@)'s and x@<sub@>@(1@).
+<br>@<Hint@>@(
+You may like to use the following diagram, where f@<sub@>@(i@) is the
+density under H@<sub@>@(i@).
+@<Img@>@(post.gif@)
+@)
+@)
+
+Thus, if p(x) @<Leq@> L then the best strategy is to reject
+H@<sub@>@(0@), and if p(x) @<Geq@> U, then you should accept it. If
+p(x@<sub@>@(1@)) is inside (L,U), then you collect another sample,
+x@<sub@>@(2@), and look at p(x@<sub@>@(1@),x@<sub@>@(2@)). 
+<p>
+In general, you keep on collecting data x@<sub@>@(i@)'s until
+p(x@<sub@>@(1@),x@<sub@>@(2@),...) steps out of (L,U). Let n be the first
+time 
+p(x@<sub@>@(1@),...,x@<sub@>@(n@)) goes out of (L,U). Then you accept
+or 
+reject H@<sub@>@(0@) according as p(x@<sub@>@(1@),...,x@<sub@>@(n@))
+@<Geq@> U or @<Leq@> L.
+<p>
+So you may be tempted to think that we can now carry out the Bayes
+test. Wrong! We do not know L or U!!! We merely know that such cut off
+points <i>exist</i> by continuity of the as yet unknown function
+R(p). However, we have achieved one significant thing: we now know the
+form of the Bayes test. This leads us to the following theorem.
+
+<p>@<Thm@>@(
+The Bayes test is SPRT(A,B) for some suitable A,B.@)
+<p>@<Pf@>@(
+<p>@<Exercise@>@(7@,
+Prove the theorem by expressing p(x@<sub@>@(1@),...,x@<sub@>@(n@)) in
+terms of the likelihood ratio. 
+<br>@<Hint@>@(
+You may consider taking
+@<Disp@>@(A = p(1-U)/((1-p)U), and B = p(1-L)/((1-p)L).@)
+@)
+@)
+@)
+
+<p>@<Exercise@>@(8@,
+Show that for any given A,B and p in (0,1) we can find
+W@<sub@>@(0@),W@<sub@>@(1@) and c, such that SPRT(A,B) is the Bayes test.
+@)
+
+Observe the fact that we still cannot compute either L,U or A,B
+since R(p) is unknown. But still we are getting these results by
+merely using the continuity of R(p). 
+
+@<Subsection@>@(Optimality of SPRT@)
+The above Bayesian optimality is not of much direct use, because we rarely
+have explicit prior probabilities or quantifiable losses. However, it is
+an important technical tool that will let us prove a more practical
+optimality of SPRTs. 
+
+<p>@<Thm@>@(
+Suppose that @<phi@> is a SPRT, and @<xi@> is any other test. If 
+@<Disp@>@(@<alpha@>@<sub@>@(i@)(@<xi@>)
+@<Leq@>@<alpha@>@<sub@>@(i@)(@<phi@>) for both i=0,1,  @)
+then 
+@<Disp@>@(ASN@<sub@>@(i@)(@<phi@>) @<Leq@> ASN@<sub@>@(i@)(@<xi@>)
+for i=0,1.@)
+@)
+<p>
+@<Pf@>@(
+<p>@<Exercise@>@(9@,
+Show that for all p in (0,1) we have
+@<Disp@>@(p ASN@<sub@>@(0@)(@<phi@>) + (1-p) ASN@<sub@>@(1@)(@<phi@>)
+@<Leq@> 
+p ASN@<sub@>@(0@)(@<xi@>) + (1-p) ASN@<sub@>@(1@)(@<xi@>)
+@) 
+Hence complete the proof of the theorem.
+<br>@<Hint@>@(
+Compare R(p,@<phi@>) and R(p,@<xi@>) for suitably chosen W@<sub@>@(i@)'s
+and c.
+@)
+
+@)
+@)
+@<Tail@>
+@}

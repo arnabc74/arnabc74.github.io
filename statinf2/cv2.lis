@@ -1,0 +1,230 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    79    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    80    79| <td>
+    81    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    82    81| @1
+    83    82| </td></tr></table>
+.................
+    90    89| <td>
+    91    90| <b><font color="#cc0000">
+    92    91| Exercise @<Label@>.@1:</font></b> 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    93    92| @2
+    94    93| </td></tr></table>
+.................
+   112   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   113   112| <td>
+   114   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   115   114| @1
+   116   115| <img src="resources/statinf2/square.gif">
+.................
+   121   120| @$@<Jst@>@(@1@)@Z@M==@{
+   122   121| <blockquote>
+   123   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   124   123| @1
+   125   124| <b>///</b>
+.................
+   414    15| see three examples of this.
+   415    16| <h3>Polynomial fit by least squares</h3>
+   416    17| We know how to fit a polynomial of a given degree (k) to a data 
+     Warning|................................................................^Line has trailing spaces up to and including this space.
+   417    18| (x<sub>i</sub>,y<sub>i</sub>) by
+   418    19| the 
+     Warning|....^Line has trailing spaces up to and including this space.
+   419    20| method of least squares. 
+     Warning|.........................^Line has trailing spaces up to and including this space.
+   420    21| If we denote the coefficients as a<sub>0</sub>,...,a<sub>p</sub> then we
+   421    22| know how to estimate these given k. But how to estimate p? We can use CV
+.................
+   438    39| >> fittedPoly = polyfit(x,y,5);@)
+   439    40| 
+   440    41| Next we need to have a loss function. Suppose we use squared error loss. 
+     Warning|.........................................................................^Line has trailing spaces up to and including this space.
+   441    42| Matlab lets us compute it as
+   442    43| @<Ms@>@(
+.................
+   457    58| for i = 1:10
+   458    59|   testRows = (cvIndex==i); %see text below
+   459    60|   trainRows = ~testRows; %others are used for training 
+     Warning|.......................................................^Line has trailing spaces up to and including this space.
+   460    61| 
+   461    62|   testData = X(testRows,:);
+.................
+   471    72| <ol>
+   472    73| <li>Note the use of the @<F@>@(min@) function. It returns two values, the
+   473    74| minimum 
+     Warning|........^Line has trailing spaces up to and including this space.
+   474    75| value as well as the argmin (the index to the <i>first</i> occurrence of
+   475    76| the minimum value.)
+   476    77| <li>Here we have used a nifty way to allocate test training data in a
+   477    78| p-fold CV program 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   478    79| to  avoid worrying about whether the total sample size is divisible
+   479    80| by p or not. @<F@>@(cvIndex =  1+mod(1:100,10);@) produces a vector 
+     Warning|....................................................................^Line has trailing spaces up to and including this space.
+   480    81| @<F@>@([1 ... 10 1 ... 10 ... 1 ... 10]@).</ol>
+   481    82| @)
+.................
+   485    86| a quick description of CART before we go into how to use CV in
+   486    87| CART. We shall use it only for classification, and not for
+   487    88| regression. 
+     Warning|............^Line has trailing spaces up to and including this space.
+   488    89| 
+   489    90| <p>
+   490    91| @<Example@>@(Consider students seeking admission to ISI. 
+     Warning|.........................................................^Line has trailing spaces up to and including this space.
+   491    92| The record for
+   492    93| each student consists of 4 explanatory variables: Bachelor's degree
+   493    94| grade, screening test score, main test score, interview score.
+   494    95| Based on these we decide whether a student should be admitted or not
+   495    96| (PASS or FAIL). 
+     Warning|................^Line has trailing spaces up to and including this space.
+   496    97| As we all know the decision process used at ISI may be expressed as a
+   497    98| tree.
+.................
+   504   105| <p>This is called a (binary) classification tree. It puts each student in
+   505   106| a class: PASS or FAIL.  Each leaf
+   506   107| node is labelled with a class 
+     Warning|..............................^Line has trailing spaces up to and including this space.
+   507   108| name ("PASS" or "FAIL"). Each inner node is labelled with an
+   508   109| inequality of the form 
+     Warning|.......................^Line has trailing spaces up to and including this space.
+   509   110| @<Disp@>@(X<sub>i</sub> &lt; some number,@)
+   510   111| where X<sub>i</sub> is one of the explanatory variables. If the inequality
+   511   112| holds for a student we follow the left branch, else we follow the right
+   512   113| branch. 
+     Warning|........^Line has trailing spaces up to and including this space.
+   513   114| 
+   514   115| <p>
+.................
+   519   120| devise a classification tree that will later do the classification
+   520   121| automatically. So our dataset is a n by 5 matrix with
+   521   122| the 
+     Warning|....^Line has trailing spaces up to and including this space.
+   522   123| last column being categorical, "PASS" or "FAIL". The set of all such
+   523   124| matrices is DAT in this case. The set of models, MOD, consists of all
+   524   125| classification trees as 
+     Warning|........................^Line has trailing spaces up to and including this space.
+   525   126| above.  Any modelling strategy is a function that produces a
+   526   127| classification tree given a data.@)
+.................
+   534   135| tree has put him/her in the correct class. Do this for all the classes and
+   535   136| count the number (m, say) of students for which the tree has made a
+   536   137| mistake. Divide 
+     Warning|................^Line has trailing spaces up to and including this space.
+   537   138| this number by the total number of students in the dataset (n) to get the
+   538   139| misclassification proportion 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   539   140| @<Disp@>@(misclassification proportion = m/n.@)
+   540   141| 
+.................
+   546   147| a trade-off between the size of a tree and its misclassification
+   547   148| proportion. Larger the tree  less is the misclassification, but
+   548   149| too large a tree will produce overfit. 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   549   150| 
+   550   151| <p>CART is a <i>family</i> of modelling strategies to achieve a balance 
+     Warning|........................................................................^Line has trailing spaces up to and including this space.
+   551   152| between size and misclassification proportion. Each member in the
+   552   153| family is 
+     Warning|..........^Line has trailing spaces up to and including this space.
+   553   154| specified by a nonnegative index, alpha (also called a 
+     Warning|.......................................................^Line has trailing spaces up to and including this space.
+   554   155| <i>tuning parameter</i>. It is just a fancy term, and has nothing to do
+   555   156| with the parameters of the model.) We shall call the modelling
+   556   157| strategy for a given value of alpha as CART<sub>alpha</sub>. 
+     Warning|.............................................................^Line has trailing spaces up to and including this space.
+   557   158| CART<sub>alpha</sub> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   558   159| produces a tree that minimises 
+     Warning|...............................^Line has trailing spaces up to and including this space.
+   559   160| @<Disp@>@(misclassification proportion + alpha * #nodes@)
+   560   161| Here #nodes include the leaf nodes as well as the inner nodes. For the ISI
+   561   162| admission tree, for instance, #nodes = 9.  
+     Warning|...........................................^Line has trailing spaces up to and including this space.
+   562   163| <p>
+   563   164| We shall not discuss here how this minimisation is done. Functions are
+.................
+   566   167| CART<sub>alpha</sub> is more likely to produce smaller trees. It is not
+   567   168| obvious how to choose alpha. We shall use CV for this purpose. But before
+   568   169| going 
+     Warning|......^Line has trailing spaces up to and including this space.
+   569   170| into CV for CART, let us see how to do CART<sub>alpha</sub> for a given
+   570   171| alpha using Matlab. (You may also do this in S-plus using the 
+     Warning|..............................................................^Line has trailing spaces up to and including this space.
+   571   172| @<F@>@(tree@) function. But read <a href="splustree.html">here</a> before
+   572   173| using it. You are advised to you Matlab for the CART problem in the
+   573   174| assignment.) 
+     Warning|.............^Line has trailing spaces up to and including this space.
+   574   175| 
+   575   176| <p>
+.................
+   584   185| there are only finitely many trees possible based n data points. For a
+   585   186| range of alpha values the same tree continues to be best. When alpha
+   586   187| crosses a threshold then another tree becomes the best tree and so on. 
+     Warning|.......................................................................^Line has trailing spaces up to and including this space.
+   587   188| These threshold values of alpha may be seen as follows.
+   588   189| @<Ms@>@(
+.................
+   603   204| >> treedisp(treeList);@)
+   604   205| In order to apply CART<sub>alpha</sub> to some fresh data testX you have
+   605   206| to  
+     Warning|....^Line has trailing spaces up to and including this space.
+   606   207| first grab the tree for that alpha. This is done as follows.
+   607   208| @<Ms@>@(
+.................
+   613   214|  is sorted upwards, and @<F@>@(alpha@) is some number.
+   614   215| You want to find the index
+   615   216| @<F@>@(i@) such that @<F@>@(alpha@) is between 
+     Warning|...............................................^Line has trailing spaces up to and including this space.
+   616   217| @<F@>@(v(i)@) and 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   617   218| @<F@>@(v(i+1)@). 
+     Warning|.................^Line has trailing spaces up to and including this space.
+   618   219| It is 
+     Warning|......^Line has trailing spaces up to and including this space.
+   619   220| easy to do this in Matlab 
+     Warning|..........................^Line has trailing spaces up to and including this space.
+   620   221| by the command 
+     Warning|...............^Line has trailing spaces up to and including this space.
+   621   222| @<F@>@(i = sum(v &lt; alpha)@). It is because 
+     Warning|..............................................^Line has trailing spaces up to and including this space.
+   622   223| @<F@>@(v &lt; alpha@) is an
+   623   224| array like @<F@>@([1 1 ... 1 0 0 ... 0]@) where the first 
+     Warning|..........................................................^Line has trailing spaces up to and including this space.
+   624   225| @<F@>@(i@)
+   625   226|  elements are 1.
+.................
+   627   228| 
+   628   229| <p>Now cross-validating CART should not pose much of a problem. You'll
+   629   230| need a loss function, which is just the proportion of misclassification. 
+     Warning|.........................................................................^Line has trailing spaces up to and including this space.
+   630   231| If yPred is the array of predicted classes, then you just need to find the
+   631   232| proportion of cases where the y is not equal to yPred:
+.................
+   636   237|  in Matlab. For
+   637   238| instance, here @<F@>@(y ~= yPred@)
+   638   239|  is an array of the same length as y. Its entires 
+     Warning|..................................................^Line has trailing spaces up to and including this space.
+   639   240| are 0's and 1's. If @<F@>@(y(i)@) is not equal to 
+     Warning|..................................................^Line has trailing spaces up to and including this space.
+   640   241| @<F@>@(yPred(i)@) then the @<F@>@(i@)-th entry of
+   641   242| this array 1, else it is 0.
+   642   243| @<Tail@>@}
+            | <End-Of-File>
+     Warning|.^The last line of the input file was terminated by EOF.
+            |.^An EOL was inserted at the end of the last line.
+------------+-------------------------------------------------------------------
+
+Tangle: Completed cv2.html.
+
+There were 47 Warnings.

@@ -1,0 +1,132 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1> Propp-Wilson algorithm</h1>
+
+
+
+<h3>Why the name CFTP?</h3>
+
+Why is the backward coupling called CFTP? This is because of the following
+interpretation of the chain. In this note we shall call this the
+"trial-and-error" interpretation.
+<p>
+Start K copies of the chain, one starting at each of the K states. Call
+the starting time as t = -1. Generate F<sub>1</sub>, and move all the
+chains forward by one step using the same F<sub>1</sub>. Now we are at
+t=0. Check if the chains have coalesced. If so stop and report the
+coalescent state. Else, again start the K chains at the K states. Call the
+start time as t=-2, generate F<sub>2</sub> (indep of F<sub>1</sub>), move
+all the chains to t=-1 
+using this F<sub>2</sub>. Then use the <i>old</i> F<sub>1</sub> to
+move all the chains to t=0. Check for coalescence. If coalesced, report the
+coalescence state. Else, start all the chains from the K states at
+t=-3. Move from t=-3 to t=-2 using a fresh F<sub>3</sub>, but move from
+t=-2 to t=-1, and then to t=0, using the old F<sub>1</sub> and
+F<sub>2</sub>. 
+<p>
+Thus, the idea is that you start further and further back in the past, and
+run the chain upto t=0, and check for coalescence. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise PW2.1:</font></b> 
+   
+   Check that this indeed
+   generates the same MC as before. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+
+<h4>Implementing the algorithm</h4>
+
+The above description may appear cumbersome, but usually that is the
+version that is used for implementing the chain. This version does not
+need us to think about function composition. Rather, we have to just run K
+chains in parallel. 
+
+<p>
+Let us consider the function-valued version once again.
+The chain is {F<sub>1,j</sub>:j=1,2,3,...}
+Consider instead the chain {F<sub>1,2^j</sub>:j=1,2,3,...}
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise PW2.2:</font></b> 
+   
+   Show that this chain also converges to the same thing.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise PW2.3:</font></b> 
+   
+   What is the "trial-and-error" interpretation of the above function-valued
+   chain? 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Monotonicity</h3>
+
+As we have noted earlier, the basic PW algorithm is computationally very
+cumbersome, since it requires running K chains in parallel, where K is the
+size of the state space. In fact our initial motivation to use indirect
+sampling methods (like MCMC, PW) was the huge size of the state space. So
+the requirement of running K chains apparently defeats our
+purpose. However, there are a number of ways to drastically reduce the
+computational burden. We shall discuss one of them here.
+<p>
+For this method to work we need the state space to be a poset (partially
+ordered set). Let 
+                  <img src=
+                  "resources/statinf2/geq.png"
+                  align=top>
+                  
+                   be the partial order, and let S have a
+minimum 0 and maximum 1 wrt this order. We also assume that we have a set
+of random maps that are <i>monotone</i> in the following sense: 
+
+<blockquote>
+If x 
+     <img src=
+     "resources/statinf2/geq.png"
+     align=top>
+     
+      y, then f(x) 
+                   <img src=
+                   "resources/statinf2/geq.png"
+                   align=top>
+                   
+                    f(y).
+</blockquote>
+
+Then we do not need to run all the K chains. It is enough to run only two
+coupled chains, one starting at 0, the other at 1. When these coalesce the
+rest must coalesce too, thanks to monotonicity.
+
+<hr>
+
+</body>
+</html>
+

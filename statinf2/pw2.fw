@@ -1,0 +1,71 @@
+@i main.fwi
+@$@<Label@>==@{PW2@}
+@O@<pw2.html@>==@{
+@<Head@>@(Lecture 23@, Propp-Wilson algorithm@)
+
+@<Section@>@(Why the name CFTP?@)
+Why is the backward coupling called CFTP? This is because of the following
+interpretation of the chain. In this note we shall call this the
+"trial-and-error" interpretation.
+<p>
+Start K copies of the chain, one starting at each of the K states. Call
+the starting time as t = -1. Generate F@<sub@>@(1@), and move all the
+chains forward by one step using the same F@<sub@>@(1@). Now we are at
+t=0. Check if the chains have coalesced. If so stop and report the
+coalescent state. Else, again start the K chains at the K states. Call the
+start time as t=-2, generate F@<sub@>@(2@) (indep of F@<sub@>@(1@)), move
+all the chains to t=-1 
+using this F@<sub@>@(2@). Then use the <i>old</i> F@<sub@>@(1@) to
+move all the chains to t=0. Check for coalescence. If coalesced, report the
+coalescence state. Else, start all the chains from the K states at
+t=-3. Move from t=-3 to t=-2 using a fresh F@<sub@>@(3@), but move from
+t=-2 to t=-1, and then to t=0, using the old F@<sub@>@(1@) and
+F@<sub@>@(2@). 
+<p>
+Thus, the idea is that you start further and further back in the past, and
+run the chain upto t=0, and check for coalescence. 
+<p>@<Exercise@>@(1@,
+Check that this indeed
+generates the same MC as before. 
+@)
+
+
+@<Subsection@>@(Implementing the algorithm@)
+The above description may appear cumbersome, but usually that is the
+version that is used for implementing the chain. This version does not
+need us to think about function composition. Rather, we have to just run K
+chains in parallel. 
+
+<p>
+Let us consider the function-valued version once again.
+The chain is {F@<sub@>@(1,j@):j=1,2,3,...}
+Consider instead the chain {F@<sub@>@(1,2^j@):j=1,2,3,...}
+
+<p>@<Exercise@>@(2@,
+Show that this chain also converges to the same thing.
+@)
+
+<p>@<Exercise@>@(3@,
+What is the "trial-and-error" interpretation of the above function-valued
+chain? 
+@)
+
+@<Section@>@(Monotonicity@)
+As we have noted earlier, the basic PW algorithm is computationally very
+cumbersome, since it requires running K chains in parallel, where K is the
+size of the state space. In fact our initial motivation to use indirect
+sampling methods (like MCMC, PW) was the huge size of the state space. So
+the requirement of running K chains apparently defeats our
+purpose. However, there are a number of ways to drastically reduce the
+computational burden. We shall discuss one of them here.
+<p>
+For this method to work we need the state space to be a poset (partially
+ordered set). Let @<Geq@> be the partial order, and let S have a
+minimum 0 and maximum 1 wrt this order. We also assume that we have a set
+of random maps that are <i>monotone</i> in the following sense: 
+@<Disp@>@(If x @<Geq@> y, then f(x) @<Geq@> f(y).@)
+Then we do not need to run all the K chains. It is enough to run only two
+coupled chains, one starting at 0, the other at 1. When these coalesce the
+rest must coalesce too, thanks to monotonicity.
+@<Tail@>
+@}

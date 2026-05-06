@@ -1,0 +1,157 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{DENS@}
+@$@<fhat@>@M==@{<img src="image/fhat.png" align=top>@}
+@$@<ftilde@>@M==@{<img src="image/ftilde.png" align=top>@}
+@$@<intft@>@M==@{<img src="image/intft.png" align=center>@}
+@O@<dens1.html@>==@{
+@<Head@>@(??@,Density estimation I@)
+
+
+@<Section@>@(Introduction@)
+Suppose we have data
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@) iid with unknown continuous
+density f.@)
+We want to estimate f. Our estimator will be random function,
+@<Disp@>@(@<fhat@>(X@<sub@>@(1@),...,X@<sub@>@(n@);x),@)
+where x is the point where the estimated density is being evaluated. Often
+we shall not show its dependence on the data explicitly and abbreviate it to
+just @<fhat@>(x). 
+
+
+<p>@<Defn@>@(
+Call @<fhat@> <i>unbiased</i> if 
+@<Disp@>@(E(@<fhat@>(x)) = f(x) for all f and all x.@)
+@)
+
+<p>@<Thm@>@(
+If @<fhat@>(x) @<Geq@> 0 for all x, the @<fhat@> cannot be unbiased.
+@)
+<p>@<Pf@>@(
+Let if possible there exist some @<fhat@> which is both nonnegative and
+unbiased. Consider the the order statistics (o.s.) 
+@<Disp@>@(X@<sub@>@((1)@) @<Leq@> ... @<Leq@> X@<sub@>@((n)@)@)
+
+<p>@<Exercise@>@(1@,
+Show that o.s. is sufficient. 
+@)
+
+Define 
+@<Disp@>@(@<ftilde@>(x) = E(@<fhat@>(x) | o.s.) for all x@)
+Notice that by virtue of the last exercise it is indeed a statistic. In
+particular it is a function of the o.s.
+<p>For any a,b define
+@<Disp@>@(P(a,b) = P(X@<sub@>@(1@) in (a,b))@)
+
+<p>@<Exercise@>@(2@,
+Show that
+@<Disp@>@(@<intft@>@)
+is an unbiased estimator of P(a,b) for all a,b.
+@)
+<p>
+Let F@<sub@>@(n@) be the empirical distribution function. 
+<p>@<Exercise@>@(3@,
+Show that 
+@<Disp@>@(F@<sub@>@(n@)(b) - F@<sub@>@(n@)(a)@)
+is another unbiased estimator of P(a,b) for all a,b. Show further that
+this estimator is a function of the O.S.
+@)
+So we have two unbiased estimators of P(a,b) for all a,b:
+@<Disp@>@(F@<sub@>@(n@)(b)-F@<sub@>@(n@)(a) and 
+@<intft@>@) 
+<p>@<Exercise@>@(4@,
+Show that O.S. is <i>complete</i> sufficient.
+@)
+
+<p>@<Exercise@>@(5@,
+Hence arrive at a contradiction to complete the proof.
+@)
+@)
+Other than bias, two other quantities relevant here are variance and
+mse. These are defined in the usual way:
+@<Disp@>@(MSE at x = E((@<fhat@>(x)-f(x))<sup>2</sup>)<br>
+variance at x = var(@<fhat@>(x))@)
+
+<p>
+Note that these involve both the unknown density f and the point x. If we
+want to judge the performance of @<fhat@> <i>as a function</i> we define Mean
+Integrated Squared Error (MISE) as
+@<Disp@>@(MISE = E(integral of (@<fhat@>(x)-f(x))<sup>2</sup>)dx@)
+We shall not work with MISE in this course. Here are some popular density
+estimation techniques:
+<ol>
+<li>Histogram-like kernel estimator
+<li>General kernel estimator
+<li>Nearest neighbour/variable width kernel estimators
+<li>Spline estimators
+</ol>
+@<Section@>@(Histogram-like kernel estimator@)
+Let x be the point where we want to estimate f. Then define 
+@<Disp@>@(@<fhat@>(x) = #{X@<sub@>@(i@)'s with h distance of x}/(2nh)@)
+Here h is called the bandwidth, and is chosen appropriately (more on this
+later). The motivation behind this comes from the fact that
+@<Disp@>@((F(x+h)-F(x-h))/(2h) @<rarrow@> f(x),@)
+as h @<rarrow@> 0. So we hope that if h is sufficiently small then for
+large n the @<fhat@> will be close to f.
+
+<p>How to choose h? We shall choose it so that the MSE is minimised
+asymptotically. 
+<p>@<Exercise@>@(6@,
+Show that 
+@<Disp@>@(Var(@<fhat@>(x)) = p*(1-p)/(4nh<sup>2</sup>)@)
+where p = F(x+h)-F(x-h).
+@)
+<p>@<Exercise@>@(7@,
+Show that
+@<Disp@>@(Bias(@<fhat@>(x)) = p/(2*h)-f(x),@)
+where p is as in the last exercise.
+@)
+<p>@<Exercise@>@(8@,
+Expand F in Taylor series around x and show that
+@<Disp@>@(
+p = 2h f(x)+h<sup>3</sup> f<sup>(2)</sup>(x)/3 + higher terms.
+@)
+
+@)
+
+<p>@<Exercise@>@(9@,
+Hence conclude that bias is of order O(h<sup>2</sup>) and variance is of
+order O&nbsp;(1/nh)
+@)
+
+<p>@<Exercise@>@(10@,
+Using the last exercise argue that the lowest order of MSE is achieved
+when h = O(n<sup>-1/5</sup>). Also show that this lowest order is 
+O(n<sup>-4/5</sup>).
+@)
+
+
+@<Section@>@(Kernel density estimation@)
+Let K be a density function symmetric around 0, e.g., N(0,1) density. Then
+check that 
+@<Disp@>@(K(x; a, h) := K((x-a)/h)/h@)
+is also a valid density for any a in R and any h &gt; 0. K(.;a,h) is a
+shifted-scaled version of K. We call K as our kernel. We define the kernel
+density estimator using this kernel as
+@<Disp@>@(@<fhat@>(a) = @<Sum@> K(X@<sub@>@(i@); a, h)/n.@)
+
+<p>@<Exercise@>@(11@,
+Show that for a particular choice of K, we get the histogram type
+estimator that we discussed earlier. 
+@)
+<p>@<Exercise@>@(12@,
+Show that 
+@<Disp@>@(Var(@<fhat@>(x)) = O(1/(nh))@)
+@)
+<p>@<Exercise@>@(13@,
+Show that 
+@<Disp@>@(Bias(@<fhat@>(x)) = O(h<sup>2</sup>)@)
+@)
+
+Hence the best choice for h is again O(n<sup>-1/5</sup>).
+<p>@<Exercise@>@(14@,
+Suggest a method to simulate from kernel density estimate.
+@)
+
+@<Tail@>
+@}

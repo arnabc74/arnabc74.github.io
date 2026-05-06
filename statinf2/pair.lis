@@ -1,0 +1,168 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    79    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    80    79| <td>
+    81    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    82    81| @1
+    83    82| </td></tr></table>
+.................
+    90    89| <td>
+    91    90| <b><font color="#cc0000">
+    92    91| Exercise @<Label@>.@1:</font></b> 
+       Error|..........^Call to undefined macro.
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    93    92| @2
+    94    93| </td></tr></table>
+.................
+   112   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   113   112| <td>
+   114   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   115   114| @1
+   116   115| <img src="resources/statinf2/square.gif">
+.................
+   121   120| @$@<Jst@>@(@1@)@Z@M==@{
+   122   121| <blockquote>
+   123   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   124   123| @1
+   125   124| <b>///</b>
+.................
+   405     6| Supose that we have a drug that is claimed to reduce blood pressure. We
+   406     7| want to test if it really is effective or not. For this we take n patients
+   407     8| and measure their blood pressures: 
+     Warning|...................................^Line has trailing spaces up to and including this space.
+   408     9| X@<sub@>@(1@),...,X@<sub@>@(n@).
+   409    10|  The the drug is administered to them and blood pressures are
+   410    11| measured again after the drug has taken its effect. Call the new
+   411    12| measurements as Y@<sub@>@(1@),...,Y@<sub@>@(n@).
+   412    13|  It is reasonable to assume that 
+     Warning|.................................^Line has trailing spaces up to and including this space.
+   413    14| @<Disp@>@((X@<sub@>@(1@),Y@<sub@>@(1@)),...,
+   414    15| (X@<sub@>@(n@),Y@<sub@>@(n@))@)
+   415    16| are indep but not necessarily identically distributed. This is called a
+   416    17| <b>paired sample</b> set up. Define 
+     Warning|....................................^Line has trailing spaces up to and including this space.
+   417    18| @<Disp@>@(Z@<sub@>@(i@) = Y@<sub@>@(i@)-X@<sub@>@(i@).@) 
+     Warning|.........................................................^Line has trailing spaces up to and including this space.
+   418    19| If the drug is really
+   419    20| effective we would expect mmost of the Z's to be positive. If the drug
+.................
+   421    22| negative. [Placebo?] In nonparametric statistical inference it is
+   422    23| customary to assume that Z's all have continuous distributions with a
+   423    24| common median, @<theta@> which is unknown. 
+     Warning|...........................................^Line has trailing spaces up to and including this space.
+   424    25| ^hen the problem is to test 
+     Warning|............................^Line has trailing spaces up to and including this space.
+   425    26| @<Disp@>@(H@<sub@>@(0@): @<theta@> = 0 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   426    27| Vs H@<sub@>@(1@): @<theta@>  &gt; 0@)
+   427    28| We can of course similarly be interested in the other onesided test or a
+   428    29| two sided test. 
+     Warning|................^Line has trailing spaces up to and including this space.
+   429    30| 
+   430    31| <h3>Nonparametric tests</h3>
+.................
+   432    33| uses uses nothing but but the sign sign and hence loses much of the
+   433    34| information present in the data. This is partly remedied in Wilcoxon's
+   434    35| Signed Rank test. 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   435    36| 
+   436    37| @<Eqn@>@(
+.................
+   440    41| 
+   441    42| Let R@<sub@>@(i@) be the ranks of |Z@<sub@>@(i@)|'s,
+   442    43|  eg, if |Z@<sub@>@(7@)| is the largest |Z@<sub@>@(i@)| 
+     Warning|.......................................................^Line has trailing spaces up to and including this space.
+   443    44| then R@<sub@>@(7@)=1,
+   444    45| and so on. Then the test statistic is 
+     Warning|......................................^Line has trailing spaces up to and including this space.
+   445    46| @<Disp@>@(T = @<Sum@> s@<sub@>@(i@) R@<sub@>@(i@)@)
+   446    47| It is called Wilcoxon's signed rank statistics. 
+     Warning|................................................^Line has trailing spaces up to and including this space.
+   447    48| 
+   448    49| <p>@<Example@>@(
+   449    50| Suppose that the Z@<sub@>@(i@)'s are
+   450    51| @<Disp@>@(1.4 -2.9 2.4 -3.4 5.9 2.5@)
+   451    52| The we compute the following 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   452    53| @<Disp@>@(<pre>
+   453    54| |Z@<sub@>@(i@)| 1.4 2.9 2.4 3.4 5.9 2.5
+.................
+   459    60| @)
+   460    61| <p>
+   461    62| We should reject H@<sub@>@(0@) if T is large. 
+     Warning|..............................................^Line has trailing spaces up to and including this space.
+   462    63| 
+   463    64| @<Claim@>@(
+.................
+   468    69| Undr H@<sub@>@(0@), Z's are symmetric around 0. So |Z| and s are indep. Since
+   469    70| R's are functions of |Z|'s, hence the s's are indep of the R's. Also s's are
+   470    71| iid Bern(1/2) under H@<sub@>@(0@). 
+     Warning|...................................^Line has trailing spaces up to and including this space.
+   471    72| 
+   472    73| <p>Let's compute the conditional null distribution of 
+     Warning|......................................................^Line has trailing spaces up to and including this space.
+   473    74| T|R@<sub@>@(i@)'s = @<Sum@>s@<sub@>@(i@)R@<sub@>@(i@)
+   474    75| R@<sub@>@(i@). 
+     Warning|...............^Line has trailing spaces up to and including this space.
+   475    76| In this conditional distribution, Ri's are just some <i>fixed</i>
+   476    77| permutation of {1,...,n}. Multiplying them with si's and adding, amounts
+.................
+   478    79| corresponding to the heads. This distribution obviously does not depend
+   479    80| upon the permutation. So T is indep of the R@<sub@>@(i@)'s and T is
+   480    81| distribution-free under H@<sub@>@(0@). 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   481    82| @)
+   482    83| @<Exercise@>@(
+       Error|.^Call has 1 parameter, but the macro
+            |.^definition at line 88 specifies 2 parameters.
+   483    84| Why is |Z| indep of s if Z has distribution symmetric around 0?
+   484    85| @)
+   485    86| @<Exercise@>@(
+       Error|.^Call has 1 parameter, but the macro
+            |.^definition at line 88 specifies 2 parameters.
+   486    87| Compute the distribution of T explicitly for n = 4.
+   487    88| @)
+   488    89| <p>@<Exercise@>@(
+       Error|....^Call has 1 parameter, but the macro
+            |....^definition at line 88 specifies 2 parameters.
+   489    90| Show that E(T) = n(n+1)/4 and V(T) = n(n+1)(2n+1)/24.
+   490    91| @)
+   491    92| <p>
+   492    93| <p>@<Exercise@>@(
+       Error|....^Call has 1 parameter, but the macro
+            |....^definition at line 88 specifies 2 parameters.
+   493    94| Write a computer program to verify the upper-tail probabilities
+   494    95| mentioned in table a.4 of the Myles and Hollander for n=10.
+.................
+   502   103| Let X be the blood pressure of some patient before the treatment, and let
+   503   104| Y be that after the treatment. Asue that X,Y are independent and that
+   504   105| their distrn differs only in location. 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   505   106| @<Img@>@(locshift.gif@)
+   506   107| In other word, if X ~ F and Y ~ G, then 
+     Warning|........................................^Line has trailing spaces up to and including this space.
+   507   108| @<Disp@>@(F(x) = G(x-@<theta@>) 
+     Warning|................................^Line has trailing spaces up to and including this space.
+   508   109| for some @<theta@> @)
+   509   110| @)
+   510   111| <p>@<Exercise@>@(
+       Error|....^Call has 1 parameter, but the macro
+            |....^definition at line 88 specifies 2 parameters.
+   511   112| Show that in this case X-Y has distribution symmetric around 
+     Warning|.............................................................^Line has trailing spaces up to and including this space.
+   512   113| @<theta@>.
+   513   114| @)
+.................
+------------+-------------------------------------------------------------------
+
+Errors caused tangle phase to be skipped.
+
+There were 6 Errors and 26 Warnings.

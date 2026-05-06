@@ -1,0 +1,118 @@
+@i main
+@O@<pair.html@>==@{
+@<Head@>@(??@,Paired sample problem@)
+
+@<Section@>@(Introduction@)
+Supose that we have a drug that is claimed to reduce blood pressure. We
+want to test if it really is effective or not. For this we take n patients
+and measure their blood pressures: 
+X@<sub@>@(1@),...,X@<sub@>@(n@).
+ The the drug is administered to them and blood pressures are
+measured again after the drug has taken its effect. Call the new
+measurements as Y@<sub@>@(1@),...,Y@<sub@>@(n@).
+ It is reasonable to assume that 
+@<Disp@>@((X@<sub@>@(1@),Y@<sub@>@(1@)),...,
+(X@<sub@>@(n@),Y@<sub@>@(n@))@)
+are indep but not necessarily identically distributed. This is called a
+<b>paired sample</b> set up. Define 
+@<Disp@>@(Z@<sub@>@(i@) = Y@<sub@>@(i@)-X@<sub@>@(i@).@) 
+If the drug is really
+effective we would expect mmost of the Z's to be positive. If the drug
+has no effect then Z's are as likely to be positive as
+negative. [Placebo?] In nonparametric statistical inference it is
+customary to assume that Z's all have continuous distributions with a
+common median, @<theta@> which is unknown. 
+^hen the problem is to test 
+@<Disp@>@(H@<sub@>@(0@): @<theta@> = 0 
+Vs H@<sub@>@(1@): @<theta@>  &gt; 0@)
+We can of course similarly be interested in the other onesided test or a
+two sided test. 
+
+<h3>Nonparametric tests</h3>
+We have already seen one test for this, viz, the sign test. However, it
+uses uses nothing but but the sign sign and hence loses much of the
+information present in the data. This is partly remedied in Wilcoxon's
+Signed Rank test. 
+
+@<Eqn@>@(
+@<Row@>@(s@<sub@>@(i@) = @, 1 @,if Zi  &gt;  0@)
+@<Row@>@(   @,0 @,else@)
+@)
+
+Let R@<sub@>@(i@) be the ranks of |Z@<sub@>@(i@)|'s,
+ eg, if |Z@<sub@>@(7@)| is the largest |Z@<sub@>@(i@)| 
+then R@<sub@>@(7@)=1,
+and so on. Then the test statistic is 
+@<Disp@>@(T = @<Sum@> s@<sub@>@(i@) R@<sub@>@(i@)@)
+It is called Wilcoxon's signed rank statistics. 
+
+<p>@<Example@>@(
+Suppose that the Z@<sub@>@(i@)'s are
+@<Disp@>@(1.4 -2.9 2.4 -3.4 5.9 2.5@)
+The we compute the following 
+@<Disp@>@(<pre>
+|Z@<sub@>@(i@)| 1.4 2.9 2.4 3.4 5.9 2.5
+s@<sub@>@(i@)    1   0   1   0   1   1
+R@<sub@>@(i@)    6   3   5   2   1   4
+</pre>
+@)
+This produces T = 6+5+1+4 = 16.
+@)
+<p>
+We should reject H@<sub@>@(0@) if T is large. 
+
+@<Claim@>@(
+T is distribution-free under H@<sub@>@(0@).
+@)
+
+<p>@<Jst@>@(
+Undr H@<sub@>@(0@), Z's are symmetric around 0. So |Z| and s are indep. Since
+R's are functions of |Z|'s, hence the s's are indep of the R's. Also s's are
+iid Bern(1/2) under H@<sub@>@(0@). 
+
+<p>Let's compute the conditional null distribution of 
+T|R@<sub@>@(i@)'s = @<Sum@>s@<sub@>@(i@)R@<sub@>@(i@)
+R@<sub@>@(i@). 
+In this conditional distribution, Ri's are just some <i>fixed</i>
+permutation of {1,...,n}. Multiplying them with si's and adding, amounts
+to performing iid unbaised coin tosses for each i, and then add the Ri's
+corresponding to the heads. This distribution obviously does not depend
+upon the permutation. So T is indep of the R@<sub@>@(i@)'s and T is
+distribution-free under H@<sub@>@(0@). 
+@)
+@<Exercise@>@(
+Why is |Z| indep of s if Z has distribution symmetric around 0?
+@)
+@<Exercise@>@(
+Compute the distribution of T explicitly for n = 4.
+@)
+<p>@<Exercise@>@(
+Show that E(T) = n(n+1)/4 and V(T) = n(n+1)(2n+1)/24.
+@)
+<p>
+<p>@<Exercise@>@(
+Write a computer program to verify the upper-tail probabilities
+mentioned in table a.4 of the Myles and Hollander for n=10.
+@)
+<p>
+<h3>Why is the symmetry assumption reasonable?</h3>
+Note that Wilcoxon's signed rank test uses more information than the sign
+test. But it also requires an extra symmetry assumption. This assumption
+is often a reasonable one as we see below.
+<p>@<Example@>@(
+Let X be the blood pressure of some patient before the treatment, and let
+Y be that after the treatment. Asue that X,Y are independent and that
+their distrn differs only in location. 
+@<Img@>@(locshift.gif@)
+In other word, if X ~ F and Y ~ G, then 
+@<Disp@>@(F(x) = G(x-@<theta@>) 
+for some @<theta@> @)
+@)
+<p>@<Exercise@>@(
+Show that in this case X-Y has distribution symmetric around 
+@<theta@>.
+@)
+
+@<Tail@>
+@}
+

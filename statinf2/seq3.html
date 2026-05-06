@@ -1,0 +1,646 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Some applications</h1>
+
+
+
+
+<h3>Backward induction</h3>
+
+Backward induction, as its name suggests, starts at the very end, and
+works its way backward. It is easy to start at the end as shown below.
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Consider the game tree for n=3.
+   
+   <p><center>
+   <img src="resources/tree.gif">
+   </center><p>
+   
+   Suppose that we are at the 132 node. (Thus, we have said "no" at all
+   previous steps). What is the chance that we'll win? Well, at the very last
+   step we do not have any choice but to accept the last number. Since the
+   last number has rank other than 3 , we lose, i.e., the chance of win is
+   0. In fact, each of the 3! leaf nodes has chance of win either 1 or
+   0. These are shown below the nodes. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>Next let us work our way up by one step. 
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose we are at the 12 node, which is in the last-but-one layer. What
+   is the chance of winning if we say "no"? If we say "no" then we have to
+   follow one of the three branches at random. Since only one of these three
+   has a 1 at the end the rest being 0, the chance is 1/3. <p>
+   Note that all the nodes in this layer have the same probability 1/3 of win
+   by rejection.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.1:</font></b> 
+   
+   Show that the chance of win by "yes" at a node in layer k is
+   
+   <blockquote>
+   0 if the permutation does not end in k<br>
+   k/n  else.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   We have redrawn the tree for n=3, showing the chances of win by (yes, no)
+   for each node in the last two layers.
+   
+   <p><center>
+   <img src="resources/tree1.gif">
+   </center><p>
+   
+   Obviously, if the first number is larger we
+   should say "yes" at that node, else "no". The maximum of the pair is
+   called the <i>value</i> of the node. It is the probability of win that you
+   can guarantee by using the best possible strategy given that you are
+   already at that node. The nodes for which you should say "yes" have been
+   circled. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+Here are the values of all the nodes in the last two layers. 
+
+<p><center>
+<img src="resources/tree2.gif">
+</center><p>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.2:</font></b> 
+    
+   Work out the value of the root node. What is best strategy for n=3? What is
+   the probability of win with this strategy?
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.3:</font></b> 
+   
+   Work out the values for all the nodes for n=4. What is the best strategy?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Generalisation</h4>
+
+So we now know how to find the best strategy for any given n. For large n
+this is of course very difficult. So we want a simpler method to work with
+general n.
+<p>
+First note the following properties for the game tree for any n:
+<ul>
+<li>it has n layers
+<li>the k-th layer has k! nodes, each node corresponds to a permutation in
+S<sub>k</sub>. Each possible permutation occurs exactly once.
+<li>each node in the k-th layer has (k+1) branches for k &lt; n.
+<li>the k-th layer has (k-1)! groups of "brothers" (we call two nodes
+"brothers" if they have the same parent). Each group has exactly one
+candidate.
+</ul>
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.4:</font></b> 
+   
+   Use backward induction to show that the probability of winning by "no" at
+   any node in layer k is the same. Call it r<sub>k</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.5:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   r<sub>k-1</sub> = 1/k max{k/n,r<sub>k</sub>} + 
+                               (k-1)/k r<sub>k</sub>
+   </blockquote>
+   
+   where r<sub>n</sub> = 0.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Thus the probability pair for a node in the k-th layer is
+
+<blockquote>
+(0, r<sub>k</sub>) if not a candidate<br>
+(k/n, r<sub>k</sub>) if a candidate
+</blockquote>
+
+We should of course say "no" at any non-candidate node. For the candidate
+nodes we need to compare k/n and r<sub>k</sub>.
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+Call the k-th layer a NO layer if 
+
+<blockquote>
+k/n  &lt;  r<sub>k</sub>
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.6:</font></b> 
+   
+   Show that if k is a NO layer, so is its preceding layer. Hence conclude
+   that be best strategy is to go on saying "no" up to some fixed k, and then
+   say "yes" at the very first candidate that turns up, if any.
+   
+   </td></tr></table>
+   </blockquote>
+   
+Call the above strategy as STRAT(k). 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.7:</font></b> 
+   
+   Show that STRAT(k) wins for a permutation in S<sub>n</sub> if and only if
+   both the following conditions are true:
+   <ol>
+   <li>n occurs after k-th position
+   <li>Let n occur at m-th location m  &gt; k. Consider the relative
+   permutation in S<sub>m-1</sub> up to (and excluding) the m-th location. Then
+   m-1 occurs among the first k locations in this permutation.
+   </ol>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.8:</font></b> 
+   
+   By direct computation show that the chance of winning by STRAT(k) is 
+   
+   <blockquote>
+   
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   W(k) = 
+   </td>
+   <td>
+    k * (1/k + 1/(k+1) +...+ 1/(n-1) ) / n&nbsp;&nbsp;
+   
+   </td>
+   <td align=left>
+   if k &gt; 0
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+           
+   </td>
+   <td>
+    1/n 
+   </td>
+   <td align=left>
+    if k = 0.
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.9:</font></b> 
+   
+   Show that W(k) is maximised at k(n) where k(n) is the smallest k such that
+   
+   <blockquote>
+   1/(k+1) +...+ 1/(n-1)  &lt; 1.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.10:</font></b> 
+   
+   Show that as n tends to infinity k(n) goes to n/e. What is the limit of
+   the chance of win?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Generalising further: Dynamic Programming principle</h3>
+
+Notice that the optimal method requires us to interview a random number of
+candidates. The random sample size itself depends on the sample collected
+so far. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.11:</font></b> 
+   
+   Consider the following sampling strategy: say "yes" to the last
+   candidate. What is wrong about this?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+To avoid such problems we use the following definition.
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+Suppose that X<sub>1</sub>,X<sub>2</sub>,.... is a given sequence of
+random variables, not necessarily indep. A random variable T is called a
+<i>stopping time</i> for this sequence if 
+<ol>
+<li>it takes values in {1,2,...}
+                                <img src="resources/union.png">
+                                {NEVER}
+<li>for all m in {1,2,...} the event {T=m} is describable in terms of 
+X<sub>1</sub>,...,X<sub>m</sub> only.
+
+</td></tr></table>
+
+
+The word "describable" may need some explanation: it means that if I tell
+you the values of X<sub>1</sub>,...,X<sub>m</sub> for some m, you should
+be able to tell me if T equals m or not. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Let X<sub>1</sub>,X<sub>2</sub> be iid Bern(&theta;). Let our sampling
+   from these stop when we meet the first the first 1, i.e.,
+   
+   <blockquote>
+   T=m iff X<sub>1</sub>=...=X<sub>m-1</sub>=0 and
+   X<sub>m</sub>=1
+   </blockquote>
+   
+   Thus, the set {T=m} is describable in terms of
+   X<sub>1</sub>,...,X<sub>m</sub>. Note that T is <i>not</i> a function of 
+   X<sub>1</sub>,...,X<sub>m</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.12:</font></b> 
+   
+   Let T be a stopping time wrt X<sub>1</sub>,X<sub>2</sub>,... . Show that 
+   
+   <blockquote>
+   U = min{T, 5}
+   </blockquote>
+   
+   is another stopping time. Describe it in words.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Suppose that we have a game that can last for at most n steps. At each
+step we can either stop or continue to the next step. In the latter case
+the next step will be unravelled to us. If we are at step n we must stop.
+
+<p>
+Let X<sub>1</sub>,...,X<sub>n</sub> denote the random variables that we
+learn at each step. In general these are not independent. <p>
+If we stop at step k, then we get a random reward R<sub>k</sub>, which may
+depend on the X<sub>i</sub>'s (even X<sub>k+1</sub>,...,X<sub>n</sub>). 
+<p>You may like to visualise the game as follows.
+
+<blockquote>
+Nature starts by generating a single realisation of the random
+vector (X<sub>1</sub>,...,X<sub>n</sub>) and also of
+(R<sub>1</sub>,...,R<sub>n</sub>). Then she shows us only
+X<sub>1</sub>. We have to decide whether to stop or continue. If we stop
+we get R<sub>1</sub>, else nature shows us X<sub>2</sub>, and so on.
+</blockquote>
+
+<p>Any strategy to play this game is a stopping time, T. If we use
+stopping time T, then our expected reward is E(R<sub>T</sub>). We want to
+maximise this over all possible stopping times, T.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.13:</font></b> 
+   
+   Cast the secretary problem in this form. What are the X<sub>i</sub>'s?
+   What are the R<sub>i</sub>'s? 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Backward induction for DPP</h4>
+
+Any such game can be solved in the same way as we solved the secretary
+problem, viz., by backward induction. <p>
+
+A step k our dataset consists of
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>k</sub>.
+</blockquote>
+
+So our decision at step k must utilise the information contained in this
+sample. So it must be conditioned on X<sub>1</sub>,...,X<sub>k</sub>.
+Hence it will be useful to define the notation
+
+<blockquote>
+E<sub>k</sub>(.) = E(. | X<sub>1</sub>,...,X<sub>k</sub>).
+</blockquote>
+
+
+<p>
+If we stop at k, then we get reward R<sub>k</sub>, which is a random
+variable. Based on our present sample the expected reward, therefore is, 
+
+<blockquote>
+E<sub>k</sub>(R<sub>k</sub>).
+</blockquote>
+
+We need to compare this with the expected reward if we continue. Let us
+call this as C<sub>k</sub>. As in the secretary problem we need to compute
+C<sub>k</sub>'s using backward induction:
+
+<blockquote>
+C<sub>n</sub> = E(R<sub>n</sub>) since we have no choice at last
+step<br>
+C<sub>k-1</sub> = max{ E<sub>k-1</sub>(R<sub>k</sub>),
+                       E<sub>k-1</sub>(C<sub>k</sub>) } for k  &lt; n.
+</blockquote>
+
+<p>When should we stop? If we are at step k, let T(k) denote the best time
+to stop. Since we are already at step k, T(k) can takes only the values
+{k,..,n}. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.14:</font></b> 
+   
+   Using backward induction argue that
+   
+   <blockquote>
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   T(k) =
+   </td>
+   <td>
+   k
+   </td>
+   <td align=left>
+    if E(R<sub>k</sub>) 
+                        <img src=
+                        "resources/geq.png"
+                        align=top>
+                        
+                         C<sub>k</sub>
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   T(k+1)
+   </td>
+   <td align=left>
+    else
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   </blockquote>
+   
+   for k  &lt; n. We start the backward induction with T(n) = n.
+   
+   </td></tr></table>
+   </blockquote>
+   
+Thus, T(k) is the best strategy if we are already at step k. Hence, T(1)
+is the best strategy for the entire game, i.e.,
+
+<blockquote>
+E(R<sub>T(1)</sub>) 
+                    <img src=
+                    "resources/geq.png"
+                    align=top>
+                    
+                     E(R<sub>T</sub>) for any stopping
+time T.
+</blockquote>
+
+
+
+<h4>Another perspective for DPP</h4>
+
+We often play two-player games where moves alternate, and at each step
+there are finitely many moves. Typically each move of either player
+changes some board configuration. Certain configurations are considered
+"Final Positions" (win/loss/draw). The game continues until such a
+configuration is arrived at. We shall consider a slightly more general
+case where each final position is labelled by some payoff value (your loss)
+Any such game can be represented by a tree. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Consider the familiar game of noughts-n-crosses. The first player has 9
+   possible moves where to place his `X'. So the root node has 9
+   branches. The second player now has 8 places to place a `O' in, so each
+   node in the second layer has 8 branches, and so on.  
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+The standard technique to play such a game is the so-called minimax
+strategy. A strategy is just a decision rule that associates what to do at
+each node that you are playing. Note that you need a decision rule for
+only every other node, since at the remaining nodes your opponent is
+making the decision. Let us assume that your opponent is a clever
+player, and will always play the best available move. We have showed the
+opponent's moves in red, and yours in green. Then to compute the value of
+each node you need to work backward (starting from the final positions)
+maximising over red branches (your opponent maximises) and minimising over
+green branches (you minimise). Now just go on following the path of least
+loss.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.15:</font></b> 
+   
+   Compute the values and the strategy for the following tree. 
+   
+   <p><center>
+   <img src="resources/detree.gif">
+   </center><p>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+These games are always straightforward to analyse (at least theoretically.)
+Of course, sometimes the tree is so huge (as in chess) that you need
+clever ways to approximate this ideal strategy. (If you like game
+programming, then do a Google search for "alpha-beta pruning" which is one
+popular technique to reduce the tree search). 
+
+<p> These games are called games of complete information. At each step you
+know the exact the board configuration. There are some one player game
+where this is not the case, e.g., solitaire or minesweeper. There the
+board configuration unfurls itself gradually. These games always involve
+chance. Such a game can be though of as a two player game where you are
+playing against nature. So the green branches are chosen by Nature. Unlike
+a human opponent, however, she does not choose her moves to maximise your
+loss, rather she just chooses one move randomly (say, uniformly). Then
+again you can apply a minimax-like rule, except that it should better be
+called minimean rule (not a standard term!). 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.16:</font></b> 
+   
+   Find the mini-mean values for each green node and 
+   the mini-mean strategy for the above tree.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+DPP is a special case of this. Here each green node has exactly two
+branches ("Stop" or "Continue"). Of course, for a green leaf node
+"Continue" is the same  as "Stop". Then DPP is same as the mini-mean rule.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SEC.17:</font></b> 
+   
+   Consider the secretary problem with n=3. Draw the game tree by treating it
+   as game against nature. (Care! This is not the same as the secretary
+   problem 
+   tree we had earlier!) Compute the mini-mean rule. Show that you get the
+   same answer as before.
+   
+   </td></tr></table>
+   </blockquote>
+   
+ 
+
+<hr>
+
+</body>
+</html>
+

@@ -1,0 +1,136 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{USTAT3@}
+@$@<S@>@(@1@)@Z@M==@{
+:<b>R</b><sup>@1</sup> @<rarrow@> <b>R</b>@}
+
+@$@<sq@>@Z@M==@{<sup>2</sup>@}
+
+@$@<norm@>@(@1@)@Z@M==@{
+||@1||<sup>2</sup>
+@}
+
+@O@<ustat3.html@>==@{
+@<Head@>@(??@, U-statistics@)
+
+@<Section@>@(Some asymptotics@)
+Suppose that we have fixed a kernel h: <b>R</b><sup>m</sup>
+@<rarrow@><b>R</b>. Let U@<sub@>@(n@) denote the corresponding
+U-statistic based on an iid sample of size n.
+<p>@<Exercise@>@(1@,
+Show that if E(h<sup>2</sup>)  &lt;  @<inf@> then
+@<Disp@>@(n Var(U@<sub@>@(n@)) @<rarrow@> m S@<sub@>@(1@)@)
+@)
+<p>@<Exercise@>@(2@,Use the last exercise to show
+that
+@<Disp@>@(U@<sub@>@(n@) @<rarrow@> @<theta@> in probability@)
+if E(h<sup>2</sup>)  &lt;  @<inf@>, where @<theta@> = E(U@<sub@>@(n@)).
+
+@)
+<p>Actually something much stronger is true, as we shall see below.
+
+@<Subsection@>@(The Hajek projection@)
+Suppose X@<sub@>@(1@),...,X@<sub@>@(n@) are iid F.
+Define 
+@<Disp@>@(L@<sub@>@(2@) = {f @<S@>@(n@) such that
+E(f(X@<sub@>@(1@),...,X@<sub@>@(n@))<sup>2</sup>)  &lt;  @<inf@>}@)
+For f in L@<sub@>@(2@) define its norm
+@<Disp@>@(||f||<sup>2</sup> = E[
+f(X@<sub@>@(1@),...,X@<sub@>@(n@))<sup>2</sup> ]@)
+
+Define V @<Subset@> L@<sub@>@(2@) as consisting of all f such that E(f)=0.
+
+
+Define L @<Subset@> V as consisting of all f in V
+such that
+@<Disp@>@(f = @<Sum@> g(X@<sub@>@(i@)) for some g with E(g(X))=0.@)
+<p>@<Exercise@>@(3@,Show that V is a subspace of L@<sub@>@(2@), and L is a
+subspace of V. 
+
+@)
+
+<p>
+Given <i>symmetric</i> f in V define g@<S@>@(n@) as 
+@<Disp@>@(g(x@<sub@>@(1@),...,x@<sub@>@(n@)) = @<Sum@>
+E(f(X@<sub@>@(1@),...,X@<sub@>@(n@)) | X@<sub@>@(i@) = x@<sub@>@(i@))@)
+<p>@<Exercise@>@(4@,Show that g is in L. Why do you need the symmetry
+assumption? 
+@)
+<p>@<Exercise@>@(5@,Show that for any b in L,
+@<Disp@>@(@<norm@>@(f-b@) = @<norm@>@(g-b@) + @<norm@>@(f-g@).@)
+Hence conclude that g is the orthogonal projection of f onto L.
+
+@)
+
+@<Subsection@>@(Application to U-statistics@)
+Consider a U-statistic U@<sub@>@(n@) with kernel h@<S@>@(m@) 
+based on iid
+sample of size n @<Geq@> m. 
+We shall assume that h is symmetric, h is in L@<sub@>@(2@) and E(h) = 0.
+
+<p>@<Exercise@>@(6@,Show that the orthogonal projection of U@<sub@>@(n@) onto
+L is
+@<Disp@>@(W@<sub@>@(n@) = (m/n) @<Sum@> h@<sub@>@(1@)(X@<sub@>@(i@))@)
+
+@)
+<p>@<Exercise@>@(7@,Show that Var(W@<sub@>@(n@)) = O(1/n)
+
+@)
+
+Define R@<sub@>@(n@) = U@<sub@>@(n@) - W@<sub@>@(n@). 
+
+<p>@<Exercise@>@(8@,Show that Var(R@<sub@>@(n@)) = O(1/n@<sq@>) and
+E(R@<sub@>@(n@)) = 0.
+
+@)
+
+<p>@<Exercise@>@(9@,Hence show that 
+@<Disp@>@(sqrt(n) R@<sub@>@(n@) @<rarrow@> 0 in probability.@)
+
+@)
+
+<p>@<Exercise@>@(10@,Prove the following theorem by using Slutsky's theorem.
+
+@)
+<p>@<Thm@>@(
+(CLT for U-statistics)
+Let @<theta@> = E(U@<sub@>@(n@)). Then
+@<Disp@>@(sqrt(n) (U@<sub@>@(n@)-@<theta@>) ~ AN(0,m@<sq@>S@<sub@>@(1@))@)
+@)
+<p>@<Thm@>@(
+@<Disp@>@(R@<sub@>@(n@) @<rarrow@> 0 a.s.@)
+@)
+<p>@<Pf@>@(
+We have already shown that E(R@<sub@>@(n@)) = 0 and 
+Var(R@<sub@>@(n@) = O(1/n@<sq@>). So 
+@<Disp@>@(@<Sum@> E(R@<sq@>) is finite.@)
+We shall need two steps to arrive from here to the required conclusion.
+<p>@<Exercise@>@(11@,
+Show that for all positive @<epsilon@> 
+@<Disp@>@(@<Sum@> P(|R@<sub@>@(n@)|  &gt; @<epsilon@>) is finite@)
+<br>
+<i>[Hint: Chebyshev.]</i>
+@)
+<p>@<Exercise@>@(12@,
+Show that if Y@<sub@>@(n@) are such that 
+@<Disp@>@(@<Sum@> P(|Y@<sub@>@(n@)|  &gt; @<epsilon@>) is finite@)
+for all positive @<epsilon@>, then 
+@<Disp@>@(Y@<sub@>@(n@) @<rarrow@> 0 a.s.@)
+<br>
+<i>[Hint: Use Borel-Cantelli.]</i>
+@)
+
+@)
+
+<p>@<Exercise@>@(13@,Prove the following theorem.
+
+@)
+<p>
+@<Thm@>@(
+(SLLN for U-statistics) Let @<theta@> = E(U@<sub@>@(n@)). Then
+@<Disp@>@(U@<sub@>@(n@) @<rarrow@> @<theta@> a.s.@)
+@)
+
+
+@<Tail@>
+@}

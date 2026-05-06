@@ -1,0 +1,243 @@
+@i main
+@$@<Label@>==@{CV2@}
+@O@<cv2.html@>==@{
+@<Head@>@(??@, Cross-validation II@)
+
+<h3>Two applications</h3>
+Often we have families of modelling strategies that differ by the choice
+of some tuning parameter. Once we decide on the value of the tuning
+parameter there is an automated way to fit a model, but there is no
+obvious way to choose a good value of the tuning parameter. In such a
+situation CV often proves helpful. Let the tuning parameter be called
+lambda. Let CV(lambda) be the CV score for lambda. In many practical
+problems a plot of CV(lambda) against lambda shows a clear minimum at some
+lambda*. Then we choose lambda* as a good value for lambda. Below we shall
+see three examples of this.
+<h3>Polynomial fit by least squares</h3>
+We know how to fit a polynomial of a given degree (k) to a data 
+(x<sub>i</sub>,y<sub>i</sub>) by
+the 
+method of least squares. 
+If we denote the coefficients as a<sub>0</sub>,...,a<sub>p</sub> then we
+know how to estimate these given k. But how to estimate p? We can use CV
+for that as follows.
+
+<p>
+@<Example@>@(
+Suppose we are given a dataset X which is a n by 2 matrix. The first
+column contains values for x and the second column holds y. We want to fit
+a polynomial of some degree d to the data. We shall consider d at most 10,
+say. Thus we have 11 modelling strategies
+MS<sub>0</sub>,...,MS<sub>10</sub> where
+@<Disp@>@(MS<sub>d</sub> = "fit a polynomial of degree d by least
+square."@)
+We can evaluate MS<sub>d</sub> using Matlab as follows. It would help you
+to write a Matlab function fitMS. We take d=5 here.
+@<Ms@>@(
+>> x = X(:,1);
+>> y = X(:,2);
+>> fittedPoly = polyfit(x,y,5);@)
+
+Next we need to have a loss function. Suppose we use squared error loss. 
+Matlab lets us compute it as
+@<Ms@>@(
+>> yHat = polyval(fittedPoly,x);
+>> loss = sum((y-yHat)<font color="#ff0000">.^</font>2);@)
+Let's turn this into a function called L.
+<p>
+
+
+<p>Now to carry out 10-fold CV we have to randomly partition the data into
+10 approximately equal mutually exclusive and exhaustive parts. This we can
+do by first taking a random permutation  the rows of X and then by taking
+the first 10 rows, next 10 rows and so on. The entire CV loop now becomes
+@<Mf@>@(
+randomRows = randperm(100); %a random permutation
+cvIndex = 1+mod(1:100,10); %see text below
+cvIndex = cvIndex(randomRows); %see text below
+for i = 1:10
+  testRows = (cvIndex==i); %see text below
+  trainRows = ~testRows; %others are used for training 
+
+  testData = X(testRows,:);
+  trainData = X(trainRows,:);
+
+  fittedPoly = fitMS(trainData,d);
+  loss(i) = L(testData,fittedPoly);
+end
+[minm, minimiser] = min(loss);  %see text below@)
+
+<p>
+A couple of implementational notes:
+<ol>
+<li>Note the use of the @<F@>@(min@) function. It returns two values, the
+minimum 
+value as well as the argmin (the index to the <i>first</i> occurrence of
+the minimum value.)
+<li>Here we have used a nifty way to allocate test training data in a
+p-fold CV program 
+to  avoid worrying about whether the total sample size is divisible
+by p or not. @<F@>@(cvIndex =  1+mod(1:100,10);@) produces a vector 
+@<F@>@([1 ... 10 1 ... 10 ... 1 ... 10]@).</ol>
+@)
+
+<h3>CART</h3>
+CART is the abbreviation for Classification And Regression Trees. Here is
+a quick description of CART before we go into how to use CV in
+CART. We shall use it only for classification, and not for
+regression. 
+
+<p>
+@<Example@>@(Consider students seeking admission to ISI. 
+The record for
+each student consists of 4 explanatory variables: Bachelor's degree
+grade, screening test score, main test score, interview score.
+Based on these we decide whether a student should be admitted or not
+(PASS or FAIL). 
+As we all know the decision process used at ISI may be expressed as a
+tree.
+
+<p>
+<center>
+<img src="image/isitree.gif">
+</center>
+
+<p>This is called a (binary) classification tree. It puts each student in
+a class: PASS or FAIL.  Each leaf
+node is labelled with a class 
+name ("PASS" or "FAIL"). Each inner node is labelled with an
+inequality of the form 
+@<Disp@>@(X<sub>i</sub> &lt; some number,@)
+where X<sub>i</sub> is one of the explanatory variables. If the inequality
+holds for a student we follow the left branch, else we follow the right
+branch. 
+
+<p>
+The various cut off points a,b,c and d are parameters of this model and
+need to be estimated from data. Suppose we have n students for whom we
+collect data about all the 4 variables and also somehow decide whether
+each student should pass or fail. Using this dataset we may try to
+devise a classification tree that will later do the classification
+automatically. So our dataset is a n by 5 matrix with
+the 
+last column being categorical, "PASS" or "FAIL". The set of all such
+matrices is DAT in this case. The set of models, MOD, consists of all
+classification trees as 
+above.  Any modelling strategy is a function that produces a
+classification tree given a data.@)
+
+<h4>Misclassification proportion</h4>
+Suppose someone gives us a classification tree as above (with a,b,c,d
+replaced by actual numbers.) Based on a dataset how do we assess its
+performance? One way is to apply the tree to each student in the data and
+see what class he/she is assigned to by the tree. Since the dataset also
+tells us where the student <i>should</i> be assigned we can check if the
+tree has put him/her in the correct class. Do this for all the classes and
+count the number (m, say) of students for which the tree has made a
+mistake. Divide 
+this number by the total number of students in the dataset (n) to get the
+misclassification proportion 
+@<Disp@>@(misclassification proportion = m/n.@)
+
+<h4>Using CART</h4>
+While we prefer trees with small misclassification proportion, we also
+want our tree to as small as possible. Large trees require us to find
+many cut-off points and usually tend to overfit the data, just like
+polynomials with large degrees in the last example. There is
+a trade-off between the size of a tree and its misclassification
+proportion. Larger the tree  less is the misclassification, but
+too large a tree will produce overfit. 
+
+<p>CART is a <i>family</i> of modelling strategies to achieve a balance 
+between size and misclassification proportion. Each member in the
+family is 
+specified by a nonnegative index, alpha (also called a 
+<i>tuning parameter</i>. It is just a fancy term, and has nothing to do
+with the parameters of the model.) We shall call the modelling
+strategy for a given value of alpha as CART<sub>alpha</sub>. 
+CART<sub>alpha</sub> 
+produces a tree that minimises 
+@<Disp@>@(misclassification proportion + alpha * #nodes@)
+Here #nodes include the leaf nodes as well as the inner nodes. For the ISI
+admission tree, for instance, #nodes = 9.  
+<p>
+We shall not discuss here how this minimisation is done. Functions are
+available in both S-plus and Matlab to do this for you. The tuning
+parameter tries to penalise large trees. If alpha is large then
+CART<sub>alpha</sub> is more likely to produce smaller trees. It is not
+obvious how to choose alpha. We shall use CV for this purpose. But before
+going 
+into CV for CART, let us see how to do CART<sub>alpha</sub> for a given
+alpha using Matlab. (You may also do this in S-plus using the 
+@<F@>@(tree@) function. But read <a href="splustree.html">here</a> before
+using it. You are advised to you Matlab for the CART problem in the
+assignment.) 
+
+<p>
+Suppose the grades are stored in a n by 4 matrix X, and the corresponding
+class names  in a n by 1 vector y. We are given a nonnegative value for
+alpha. Then the command
+@<Ms@>@(
+>> treeList = treefit(X,y,'method','classification');@)
+will get you the trees for <i>all</i> possible values of alpha. Thus,
+treeList will store not just one tree, but a list of trees. How is that
+possible, since alpha can take infinitely many values? It is because,
+there are only finitely many trees possible based n data points. For a
+range of alpha values the same tree continues to be best. When alpha
+crosses a threshold then another tree becomes the best tree and so on. 
+These threshold values of alpha may be seen as follows.
+@<Ms@>@(
+>> treeList.alpha
+ans =
+
+         0
+    0.0067
+    0.0133
+    0.2933
+    0.3333@)
+
+<p>Here, for instance, treeList stores 5 trees. The first tree is best
+when alpha is in [0,0.0067), the second tree is best when alpha is in
+[0.0067, 0.0133), and so on. The 5th tree is best when alpha is in
+[0.3333, infinity). To see the trees on the screen use
+@<Ms@>@(
+>> treedisp(treeList);@)
+In order to apply CART<sub>alpha</sub> to some fresh data testX you have
+to  
+first grab the tree for that alpha. This is done as follows.
+@<Ms@>@(
+>> level = sum(treeList.alpha &lt; alpha);
+>> predY = treeval(treeList,testX,level);@)
+
+<p>
+Suppose that an array @<F@>@(v@)
+ is sorted upwards, and @<F@>@(alpha@) is some number.
+You want to find the index
+@<F@>@(i@) such that @<F@>@(alpha@) is between 
+@<F@>@(v(i)@) and 
+@<F@>@(v(i+1)@). 
+It is 
+easy to do this in Matlab 
+by the command 
+@<F@>@(i = sum(v &lt; alpha)@). It is because 
+@<F@>@(v &lt; alpha@) is an
+array like @<F@>@([1 1 ... 1 0 0 ... 0]@) where the first 
+@<F@>@(i@)
+ elements are 1.
+
+
+<p>Now cross-validating CART should not pose much of a problem. You'll
+need a loss function, which is just the proportion of misclassification. 
+If yPred is the array of predicted classes, then you just need to find the
+proportion of cases where the y is not equal to yPred:
+@<Ms@>@(
+>> sum(y ~= yPred)/length(y)@)
+The total number of entries in an array satisfying some
+condition may be found by @<F@>@(sum(<i>the condition</i>)@)
+ in Matlab. For
+instance, here @<F@>@(y ~= yPred@)
+ is an array of the same length as y. Its entires 
+are 0's and 1's. If @<F@>@(y(i)@) is not equal to 
+@<F@>@(yPred(i)@) then the @<F@>@(i@)-th entry of
+this array 1, else it is 0.
+@<Tail@>@}

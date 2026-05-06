@@ -1,0 +1,516 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Two sample inference</h1>
+
+
+
+
+<h3>Mann Whitney U-test</h3>
+
+We have same set up as before. We want to test
+
+<blockquote>
+H<sub>0</sub>: F = G Vs H<sub>1</sub>: F 
+                                         <img src=
+                                         "resources/neq.png"
+                                         align=top>
+                                         
+                                          G
+</blockquote>
+
+or
+
+<blockquote>
+H<sub>0</sub>: F = G Vs H<sub>1</sub>: F 
+                                         <img src=
+                                         "resources/sgt.png"
+                                         align=top>
+                                         
+                                          G
+</blockquote>
+
+or
+
+<blockquote>
+H<sub>0</sub>: F = G Vs H<sub>1</sub>: F 
+                                         <img src=
+                                         "resources/slt.png"
+                                         align=top>
+                                         
+                                          G
+</blockquote>
+
+
+Define 
+
+<blockquote>
+D<sub>ij</sub> = I{X<sub>i</sub>  &lt;  Y<sub>j</sub>}, for all
+i,j.
+</blockquote>
+
+Then Mann Whitney U-test uses the test statistic
+
+<blockquote>
+U = 
+    <img src=
+    "resources/sum.gif"
+    align=middle>
+    
+    <sub>i</sub>
+                <img src=
+                "resources/sum.gif"
+                align=middle>
+                
+                <sub>j</sub> D<sub>ij</sub>
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.1:</font></b> 
+   
+   Consider the three alternative hypothesies listed
+   above. When should we reject H<sub>0</sub> in favour of each of them, for
+   large or small U?
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Let 
+
+<blockquote>
+&theta; = E(D<sub>ij</sub>)<br>
+&theta;<sub>1</sub> = E(D<sub>ij</sub>D<sub>ik</sub>)<br>
+&theta;<sub>2</sub> = E(D<sub>ij</sub>D<sub>kj</sub>)
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.2:</font></b> 
+   
+   Compute &theta; under H<sub>0</sub>.
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.3:</font></b> 
+   
+   Show that if H<sub>0</sub> is true then 
+   
+   <blockquote>
+   &theta;<sub>1</sub> = &theta;<sub>2</sub> = 1/3.
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.4:</font></b> 
+   
+   Compute E(U) in general, as well as under H<sub>0</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.5:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   cov(D<sub>ij</sub>D<sub>kl</sub>) = 
+   </td>
+   <td>
+    0 
+   </td>
+   <td align=left>
+   
+   if i 
+        <img src=
+        "resources/neq.png"
+        align=top>
+        
+         k and j 
+                 <img src=
+                 "resources/neq.png"
+                 align=top>
+                 
+                  l
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+    &theta;-&theta;<sup2</sup>
+   </td>
+   <td align=left>
+   
+   if i=k and j=l
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+    &theta;<sub>1</sub>-&theta;<sup2</sup>
+   </td>
+   <td align=left>
+   
+   if i=k and j 
+                <img src=
+                "resources/neq.png"
+                align=top>
+                
+                 l
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   &theta;<sub>2</sub>-&theta;<sup2</sup>
+   </td>
+   <td align=left>
+   
+   if i 
+        <img src=
+        "resources/neq.png"
+        align=top>
+        
+         k and j=l
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.6:</font></b> 
+   
+   Use the last exercise to show that 
+   
+   <blockquote>
+   Var(U) = 
+   mn(&theta;-&theta;<sup2</sup>)
+   +mn(m-1)(&theta;<sub>2</sub>-&theta;<sup2</sup>)
+   +mn(n-1)(&theta;<sub>1</sub>-&theta;<sup2</sup>),
+   </blockquote>
+   
+   in general. Check that this reduces to
+   
+   <blockquote>
+   mn(m+n+1)/12
+   </blockquote>
+   
+   under H<sub>0</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.7:</font></b> 
+   
+   Argue that U is distribution-free under H<sub>0</sub> by showing that
+   
+   <blockquote>
+   P(U = u) = r<sub>mn</sub>(u)/
+                                <sup>m+n</sup>C<sub>m</sub>
+   </blockquote>
+   
+   under H<sub>0</sub>, where
+   
+   <blockquote>
+   r<sub>mn</sub>(u) = number of arrangements of m X's and n Y's
+   such that the number of times an X precedes an Y is u.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.8:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   r<sub>mn</sub>(u) = r<sub>mn</sub>(mn-u)
+   </blockquote>
+   
+   Hnece conclude that undr H<sub>0</sub>, U is distributed symmetrically
+   around mn/2. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   For large m,n,
+   
+   <blockquote>
+   (U-E(U))/sqrt(Var(U)) ~ AN(0,1).
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+Shall do later using a theorem for U-statistics.
+<img src="resources/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+
+<h3>An estimation problem</h3>
+
+We can use the above idea to get a confidence interval for a two sample
+location problem. We have the same set up as above. But now we also assume
+that G is a location shift of F, i.e.,
+
+<blockquote>
+G(x) = F(x- &theta;) for all x,
+</blockquote>
+
+where &theta; is  unknown. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.9:</font></b> 
+   
+   Which of the following two statements is true under this model?
+   
+   <blockquote>
+   Y<sub>1</sub>-&theta;, ..., Y<sub>n</sub>-&theta; are iid
+   F
+   </blockquote>
+   
+   or 
+   
+   <blockquote>
+   Y<sub>1</sub>+&theta;, ..., Y<sub>n</sub>+&theta; are iid
+   F ?
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Define 
+
+<blockquote>
+U(&theta;) = 
+             <img src=
+             "resources/sum.gif"
+             align=middle>
+             
+             <sub>i</sub>
+                         <img src=
+                         "resources/sum.gif"
+                         align=middle>
+                         
+                         <sub>j</sub> I{Zij
+  &gt;  0)
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.10:</font></b> 
+   
+   Show that U(&theta;) has distribution free of &theta;. In particular,
+   show that its distribution is same as the null distribution of the
+   Mann-Whitney U statistic under H<sub>0</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+Suppose that we are given &alpha;, and we want to get a
+(1-&alpha;)-level CI for &theta;. Since U(&theta;) has a completely
+known distribution, hence we can find integer c such that
+
+<blockquote>
+P(c 
+    <img src=
+    "resources/leq.png"
+    align=top>
+    
+     U(&theta;) 
+                <img src=
+                "resources/leq.png"
+                align=top>
+                
+                 mn-c) = 1-&alpha;.
+</blockquote>
+
+Due to the discrete nature of U(&theta;), the equality may not
+hold exactly. Next, order the mn differences, Z<sub>ij</sub>'s, as
+
+<blockquote>
+W<sub>1</sub> &lt; ... &lt; W<sub>mn</sub>
+</blockquote>
+
+The inequalities are strict with probability 1, because of the
+continuity assumption on F. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.11:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   {c 
+      <img src=
+      "resources/leq.png"
+      align=top>
+      
+       U(&theta;) 
+                  <img src=
+                  "resources/leq.png"
+                  align=top>
+                  
+                   mn-c}  iff  {W<sub>c</sub> &lt;
+   &theta;  &lt;  W<sub>mn-c+1</sub>}
+   </blockquote>
+   
+   Hnece argue that (W<sub>c</sub>, W<sub>mn-c+1</sub>) is a
+   (1-&alpha;)-level CI for &theta;. 
+   <br>
+       <i>[Hint:
+       
+       See the hint for ONE.7.
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h4>Hodges-Lehmann approach</h4>
+
+Recall that we had described the HL approach for one sample problem as a
+method to obtain point estimates from a test. We can apply this aproach to
+Mann-Whitney U-test to get a two sample HL estimate for &theta; as
+follows.
+<p>
+Notice that U(&theta;) is distributed symmetrically around mn/2. The HL
+approach suggests choosing 
+                           <img src=
+                           "resources/thetahat.png"
+                           align=top>
+                           
+                            in a way so that U(
+                                               <img src=
+                                               "resources/thetahat.png"
+                                               align=top>
+                                               
+                                               )
+is as close 
+to mn/2 as possible. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise MANN.12:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   
+   <img src=
+   "resources/thetahat.png"
+   align=top>
+   
+    = median of the Z<sub>ij</sub>'s.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

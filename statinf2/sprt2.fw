@@ -1,0 +1,149 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SPRT2@}
+@O@<sprt2.html@>==@{
+@<Head@>@(??@,Sequential tests@)
+
+
+@<Section@>@(Computing error probabilities@)
+A SPRT involves two numbers A and B. We shall compute the probabilities of
+type I and type II errors in terms of these. This will help us to choose A
+and B in a way so that the resulting test has specified error
+probabilities.<p>
+In the following discussion we shall use the notation P@<sub@>@(0@)(.) to
+denote probabilities under H@<sub@>@(0@), and similarly P@<sub@>@(1@) for
+probabilities under H@<sub@>@(1@). Also let S@<sub@>@(m@) denote the sum
+of Z@<sub@>@(1@),...,Z@<sub@>@(m@).
+
+<p>@<Exercise@>@(1@,
+Let C be an event involving X@<sub@>@(1@),...,X@<sub@>@(m@) only, i.e., if
+I tell you the values of these m random variables, you should be able to
+tell me <i>for certain</i> whether C has happened. Suppose that 
+@<Disp@>@(C @<Subset@> {S@<sub@>@(m@) @<Geq@> log(A)}.@)
+Then show that 
+@<Disp@>@(
+P@<sub@>@(1@)(C) @<Geq@> A P@<sub@>@(0@)(C).@)
+@)
+<p>@<Exercise@>@(2@,
+Show that 
+@<LabDisp@>@((*)@,@<alpha@> @<Leq@> (1-@<beta@>)/A@)
+[Hint: Consider the events
+@<Disp@>@(C@<sub@>@(m@) = {T=m & S@<sub@>@(m@) @<Geq@> A}, m=1,2,...@)
+Relate @<alpha@> to P@<sub@>@(0@)(C@<sub@>@(m@))'s and @<beta@> to 
+P@<sub@>@(1@)(C@<sub@>@(m@))'s. Now apply the last exercise.]
+@)
+
+<p>@<Exercise@>@(3@,
+Let D be an event involving X@<sub@>@(1@),...,X@<sub@>@(m@) only, i.e., if
+I tell you the values of these m random variables, you should be able to
+tell me <i>for certain</i> whether D has happened. Suppose that 
+@<Disp@>@(D @<Subset@> {S@<sub@>@(m@) @<Leq@> log(B)}.@)
+Then show that 
+@<Disp@>@(
+P@<sub@>@(0@)(D) @<Geq@> P@<sub@>@(1@)(D)/B.@)
+@)
+<p>@<Exercise@>@(4@,
+Show that 
+@<LabDisp@>@((**)@,@<beta@> @<Leq@> B (1-@<alpha@>)@)
+<br>@<Hint@>@(
+ Consider the events
+@<Disp@>@(D@<sub@>@(m@) = {T=m & S@<sub@>@(m@) @<Leq@> B}, m=1,2,...@)
+Relate @<alpha@> to P@<sub@>@(0@)(D@<sub@>@(m@))'s and @<beta@> to 
+P@<sub@>@(1@)(D@<sub@>@(m@))'s. Now apply the last exercise.@)
+@)
+
+<p>(*) and (**) are called <b>Wald's inequalities</b>.
+<p>If you treat these as equalities then you get <b>Wald's
+approximation</b>:
+@<Disp@>@(A = (1-@<beta@>)/@<alpha@><br>
+B = @<beta@>/(1-@<alpha@>).
+@)
+Of course, these are not exact. But Wald suggested using these to compute
+A and B from specified @<alpha@> and @<beta@>. Here is the basic argument
+that Wald provided for this approximation.
+<p>
+Notice first that if we could change the test to 
+@<Disp@>@(Accept if LR = B, and reject if LR=A,@)
+then Wald's approximation would be exact. The only problem with these is
+that the LR may very well jump out of [B,A] without actually taking the
+values B or A. In other words, S@<sub@>@(T@) may be below log(B) or above
+log(A). This is called <i>excess over boundaries.</i> The excess is never
+more than one Z@<sub@>@(i@). Hopefully, the Z@<sub@>@(i@)'s take large
+values with small probabilities, and hence the excess over boundaries will
+be small with large probabilities. This is all heuristics. Let us explore
+it using computer simulation. Here we want to relate the error incurred
+due to Wald's approximation with the excess over boundaries.
+
+<p>@<Exercise@>@(5@,
+Suppose we want to test 
+@<Disp@>@(H@<sub@>@(0@): @<mu@> =0 Vs. H@<sub@>@(1@): @<mu@> = 1,@)
+based on data X@<sub@>@(1@),...iid N(@<mu@>,1). Write a computer program
+that performs simulation to estimate @<alpha@>, @<beta@> from A,B. Call
+these estimates a and b, resp. Define the
+quantities
+@<Disp@>@(x@<sub@>@(A@) = (1-b)/a-A<br>
+x@<sub@>@(B@) = B-b/(1-a)<br>
+y@<sub@>@(A@) = mean(S@<sub@>@(m@)-log(A)), mean over all rejection cases<br>
+y@<sub@>@(B@) = mean(log(B)-S@<sub@>@(m@)), mean over all acceptance cases<br>
+@)
+Get these 4 numbers for 20 different choices of (A,B). Make two
+scatter plots, one for the (x@<sub@>@(A@), y@<sub@>@(A@))'s, the other for
+the (x@<sub@>@(A@), y@<sub@>@(A@))'s. Interpret.
+<br>@<Hint@>@(
+To estimate @<alpha@> you may perform  SPRT(A,B) 100 times based
+on data from H@<sub@>@(0@), and the consider the proportion of
+rejections. 
+@)
+@)
+
+<p>@<Exercise@>@(6@,
+Wald's approximation affects the error probabilities conservatively. Show
+this as follows. Suppose we want a SPRT with error probabilities @<alpha@>
+and @<beta@>. We apply Wald's approximation to get A, B. Since we did an
+approximation, the actual error probabilities (call them @<alpha@>' and
+@<beta@>', say) need not equal @<alpha@> and @<beta@>. Show that
+@<Disp@>@(@<alpha@>' + @<beta@>' @<Leq@> @<alpha@> + @<beta@>.@)
+@)
+We would be happier if we could say something like
+@<Disp@>@(@<alpha@>' @<Leq@> @<alpha@> and
+@<beta@>' @<Leq@> @<beta@>.@)
+Indeed, Wald had some intuitive argument to suggest that this is so. The
+following exercise explores this using simulation.
+<p>@<Exercise@>@(7@,
+Take different values of @<alpha@> and @<beta@>. Compute A, B using Wald's
+approximation. Obtain @<alpha@>' and @<beta@>' by simulation. Plot
+@<alpha@>' against @<alpha@>, and @<beta@>' against @<beta@>.
+@)
+@<Subsection@>@(Expected sample size@)
+A sequential statistical procedure needs random sample size. It is a
+natural 
+question to ask what the expected sample size is. If T is the stopping
+rule used, then this is E(T). We shall show later how to find this for
+SPRT. We shall also show that SPRT minimises E(T) in the following sense.
+
+<p>
+@<Thm@>@((Optimality of SPRT)
+Let @<phi@> be a SPRT with error probabilities @<alpha@> and @<beta@>. Let
+its stopping rule be called T. Let @<xi@> be any sequential test with
+stopping time T' such that
+<ul>
+<li>P(type I error) @<Leq@> @<alpha@>
+<li>P(type II error) @<Leq@> @<beta@>
+<li> E(T') is finite under both the hypothesis.
+</ul>
+Then 
+@<Disp@>@(E(T) @<Leq@> E(T').@)
+@)
+<p>
+@<Pf@>@(We shall do later in this course.@)
+<p>@<Exercise@>@(8@,
+Let a SPRT have stopping time T. Suppose that a fixed sample size test
+based on sample of size n also has the same error probabilities. Is it
+true that we must have
+@<Disp@>@(E(T) @<Leq@> n?@)
+@)
+<p>
+Before we can compute E(T) for SPRT or prove the above theorem, we need to
+develop some general machinery to work with stopping times.
+@<Tail@>
+@}

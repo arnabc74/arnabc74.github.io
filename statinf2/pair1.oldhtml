@@ -1,0 +1,448 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Paired sample problem</h1>
+
+
+
+<h3>Introduction</h3>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   If you take a bar of steel, and apply a large enough force on it, it will
+   snap. The minimum force to snap it is called the breaking strength of the
+   steel. To increase the breaking strength of steel manufacturers treat the
+   steel in 
+   various ways in the factory, e.g., they add carbon to it, anneal it (i.e.,
+   heat and then slowly cool it) and so on. Suppose that someone has proposed
+   such a treatment, and we want to test if it really increases the breaking
+   strength. For this we take n steel bars and cut each into two halves. Then
+   we measure the breaking strength of the first halves. Call these as
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>n</sub>.
+   </blockquote>
+   
+   Next we apply the treatment on the other halves, and measure their
+   breaking strengths:
+   
+   <blockquote>
+   Y<sub>1</sub>,...,Y<sub>n</sub>.
+   </blockquote>
+   
+   <p>
+    It is reasonable to assume that 
+   
+   <blockquote>
+   (X<sub>1</sub>,Y<sub>1</sub>),...,
+   (X<sub>n</sub>,Y<sub>n</sub>)
+   </blockquote>
+   
+   are indep but not necessarily identically distributed. This is called a
+   <b>paired sample</b> set up. Define 
+   
+   <blockquote>
+   Z<sub>i</sub> = Y<sub>i</sub>-X<sub>i</sub>.
+   </blockquote>
+    
+   If the treatment is really
+   effective we would expect mmost of the Z's to be positive. If the treatment
+   has no effect then Z's are as likely to be positive as
+   negative. In nonparametric statistical inference it is
+   customary to assume that Z's all have continuous distributions with a
+   common median, &theta; which is unknown. 
+   Then the problem is to test 
+   
+   <blockquote>
+   H<sub>0</sub>: &theta; = 0 
+   Vs H<sub>1</sub>: &theta;  &gt; 0
+   </blockquote>
+   
+   We can of course similarly be interested in the other onesided test or a
+   two sided test. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Wilcoxon's signed rank test</h3>
+
+We have already seen one test for this, viz, the sign test. However, it
+uses uses nothing but but the sign sign and hence loses much of the
+information present in the data. This is partly remedied in Wilcoxon's
+Signed Rank test. Here we assume that the Z<sub>i</sub>'s are iid and
+symmetric around &theta;. Define
+
+<blockquote>
+
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+s<sub>i</sub> = 
+</td>
+<td>
+ 1 
+</td>
+<td align=left>
+if Z<sub>i</sub>  &gt;  0
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+   
+</td>
+<td>
+0 
+</td>
+<td align=left>
+else
+</td>
+</tr>
+
+
+</table>
+
+
+</blockquote>
+
+Let R<sub>i</sub> be the ranks of |Z<sub>i</sub>|'s,
+ eg, if |Z<sub>7</sub>| is the largest |Z<sub>i</sub>| 
+then R<sub>7</sub>=n,
+and so on. Then our test statistic is 
+
+<blockquote>
+T = 
+    <img src=
+    "resources/statinf2/sum.gif"
+    align=middle>
+    
+     s<sub>i</sub> R<sub>i</sub>
+</blockquote>
+
+It is called Wilcoxon's signed rank statistic. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose that the Z<sub>i</sub>'s are
+   
+   <blockquote>
+   1.4 -2.9 2.4 -3.4 5.9 2.5
+   </blockquote>
+   
+   The we compute the following 
+   
+   <blockquote>
+   <pre>
+   |Z<sub>i</sub>| 1.4 2.9 2.4 3.4 5.9 2.5
+   s<sub>i</sub>    1   0   1   0   1   1
+   R<sub>i</sub>    1   4   2   5   6   3
+   </pre>
+   
+   </blockquote>
+   
+   This produces T = 1+2+6+3 = 9.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+We should reject H<sub>0</sub> if T is large. 
+
+
+<p><b>Claim:</b>
+
+T is distribution-free under H<sub>0</sub>.
+
+<p>
+
+
+<p>
+   <blockquote>
+   <b><i>Justification:</i></b> 
+   
+   Undr H<sub>0</sub>, Z's are symmetric around 0. So |Z| and s are indep.
+   [See the exercise below.] Since
+   R's are functions of |Z|'s, hence the s's are indep of the R's. Also s's are
+   iid +1 or -1 with probability 1/2 under H<sub>0</sub>. 
+   
+   <p>Let's compute the conditional null distribution of 
+   T | R<sub>i</sub>'s = 
+                         <img src=
+                         "resources/statinf2/sum.gif"
+                         align=middle>
+                         
+                         s<sub>i</sub>R<sub>i</sub> |
+   R<sub>i</sub>. 
+   In this conditional distribution, Ri's are just some <i>fixed</i>
+   permutation of {1,...,n}. Multiplying them with si's and adding, amounts
+   to performing iid unbaised coin tosses for each i, and then adding
+   the Ri's corresponding to the heads. The distribution of the sum 
+   obviously does not depend
+   upon the permutation. So T is indep of the R<sub>i</sub>'s and T is
+   distribution-free under H<sub>0</sub>. 
+   
+   <b>///</b>
+   </blockquote>
+   
+
+<table><tr><td width=2 bgcolor="#cc0000"></td>
+<td>
+<b><font color="#cc0000">
+Exercise WSR.1:</font></b> 
+
+Show that |Z| is indep of s if Z has distribution symmetric around 0.
+
+</td></tr></table>
+</blockquote>
+
+
+<table><tr><td width=2 bgcolor="#cc0000"></td>
+<td>
+<b><font color="#cc0000">
+Exercise WSR.2:</font></b> 
+
+Compute the null distribution of T explicitly for n = 4.
+
+</td></tr></table>
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.3:</font></b> 
+   
+   Show that, under H<sub>0</sub>, E(T) = n(n+1)/4 and that T has symmetric
+   distribution around E(T). 
+   <br>
+       <i>[Hint:
+       
+       Interchange 0's and 1's.
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+<b>Please note that the definition of T here is slightly different from
+that done in class. There the signs were -1 and +1. Here they are 0 and
+1. However, both the definitions produce equivalent tests in the sense that T
+defined in class is large iff T defined here is large. Both the
+definitions are used for Wilcoxon signed rank test.</b>
+<p>
+Next we shall compute Var(T) under H<sub>0</sub>. In order to do this it
+will be helpful to rewrite T as follows.
+<p>Define D<sub>i</sub>'s as "inverse" of R<sub>i</sub>'s in the following
+sense:
+
+<blockquote>
+D<sub>i</sub> = j iff R<sub>j</sub> = i.
+</blockquote>
+
+Sometimes D<sub>i</sub>'s are called <i>antiranks</i>. Define 
+
+<blockquote>
+
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+U<sub>i</sub> = 
+</td>
+<td>
+ 1 
+</td>
+<td align=left>
+ if Z<sub>D<sub>i</sub></sub> &gt; 0
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+
+</td>
+<td>
+0
+</td>
+<td align=left>
+ else
+</td>
+</tr>
+
+
+</table>
+
+
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.4:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   T = 
+       <img src=
+       "resources/statinf2/sum.gif"
+       align=middle>
+       
+        i U<sub>i</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.5:</font></b> 
+   
+   Show that, under H<sub>0</sub>, E(U<sub>i</sub>) = 1/2, and 
+   Var(U<sub>i</sub>) = 1/4. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.6:</font></b> 
+   
+   Show that, under H<sub>0</sub>, 
+   
+   <blockquote>
+   E(U<sub>i</sub>U<sub>j</sub>) = 1/4 if i
+                                           <img src=
+                                           "resources/statinf2/neq.png"
+                                           align=top>
+                                           
+                                           j.
+   </blockquote>
+   
+   Hence conclude that if i 
+                            <img src=
+                            "resources/statinf2/neq.png"
+                            align=top>
+                            
+                             j, then 
+   cov(U<sub>i</sub>,U<sub>j</sub>)=0.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.7:</font></b> 
+   
+   Use the above exercises to show that
+   
+   <blockquote>
+   V(T) = n(n+1)(2n+1)/24
+   
+   </blockquote>
+   
+   under H<sub>0</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.8:</font></b> 
+   
+   Write a computer program to verify the upper-tail probabilities
+   mentioned in table a.4 of the book by Hollander and Wolfe for n=10. If you
+   cannot find the book, then just write a program to find the P(T &gt; a)
+   for any given a.
+   <br>
+       <i>[Hint:
+       
+       Use binary addition to step through all the 2<sup>n</sup> patterns of 0's
+       and 1's.
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+<h3>Why is the symmetry assumption reasonable?</h3>
+Note that Wilcoxon's signed rank test uses more information than the sign
+test. But it also requires an extra symmetry assumption. This assumption
+is often a reasonable one as we see below.
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Let X be the breaking strength before the treatment, and let
+   Y be that after the treatment. Assume that X,Y are independent and that
+   their distribution differs only in location. 
+   In other word, if X ~ F and Y ~ G, then 
+   
+   <blockquote>
+   F(x) = G(x-&theta;) 
+   for some &theta; 
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise WSR.9:</font></b> 
+   
+   Show that in this case X-Y has distribution symmetric around 
+   &theta;.
+   <i>[Hint: First consider the case &theta;=0.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

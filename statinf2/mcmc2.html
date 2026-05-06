@@ -1,0 +1,100 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1> An example of MCMC</h1>
+
+<h3>A little theory</h3>
+While the Gibbs distribution may be complicated, it is easy to compute the
+conditional distribution of a single pixel given the other
+pixels. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+    Suppose we draw one random 3 x 3 image from the Gibbs
+   distribution mentioned in the last page. I show you all its pixels except
+   one (the one marked with a red question mark.)
+   <center>
+   <img src="image/img3.gif">
+   </center>
+   Clearly, depending on the colour of that pixel we can have the following
+   two images. 
+   <center>
+   <img src="image/img1.gif">
+   </center>
+   We have already computed the probailities of these two images in an
+   earlier page. The probs were 1/Z and exp(2/3)/Z, respectively, where Z was
+   the normalising constant (that we did not care to compute). Elementary
+   probaility now gives the necessary conditional probability as
+   <blockquote>
+   <pre>
+         1/Z                     exp(2/3)/Z
+   ----------------    and    ---------------- , 
+   1/Z + exp(2/3)/Z           1/Z + exp(2/3)/Z
+   
+   ie, 
+        1                  exp(2/3)
+   ------------    and   ------------, respectively.
+   1 + exp(2/3)          1 + exp(2/3)
+   </pre>
+   </blockquote>
+   Note that Z has cancelled out nicely.
+   </td></tr></table>
+   </blockquote>
+   
+ 
+<p>
+The argument above can be easily generalised. Let W be a random image
+drawn from a Gibbs distribution. Let X be one pixel. Let W\X denote the
+collection of al the other pixels. The random variable X
+can take only two values. Given W\X, the conditional probs  are as
+follows.
+<blockquote>
+<pre>
+P(X=1|W\X) =
+                 exp(-sum(f(1,y)))
+   ------------------------------------------- ,
+         exp(-sum(f(0,y)))+exp(-sum(f(1,y)))
+</pre>
+</blockquote>
+where the sum is over all y <i>that are neighbours of X.</i>
+
+<h3>The algorithm</h3>
+The algorithm is an iterative one that starts with a random image (ie,
+pixels 
+determined by iid unbiased coin tosses)
+white) and at each step does some random modification to it as
+follows. 
+
+<center>
+<img src="image/gibbs.gif">
+</center>
+Here the pixels are visited one by one in some order, say row by row.
+
+<h3>Perfomance</h3>
+Geman and Geman proved nice properties of this algorithm. In particular,
+  they showed that as N tends to infinity the distribution of the
+  generated image converges to the Gibbs distribution. 
+
+  <p>The algorithm is a spcial case of a Markov Chain. Note the contrast
+  between the complexity of the distribution and the simplicity of the
+  algorithm. 
+ This contrast is the key idea 
+behind MCMC: it is possible to have simple MCs that converge to
+  complicated distributions. They key idea behind MCMC is as
+  follows. Given a complicated distribution try to get simple Markov Chain
+  that converges to it. We shall now explore this systematically. 
+
+<hr>
+
+</body>
+</html>
+

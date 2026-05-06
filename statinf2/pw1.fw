@@ -1,0 +1,316 @@
+@i main.fwi
+@p maximum_output_line_length = 200
+@$@<Label@>==@{PW@}
+@O@<pw1.html@>==@{
+@<Head@>@(@, Coupling from the past (CFTP)@)
+
+@<Subsection@>@(Trouble with MCMC@)
+MCMC suffers from one great problem, viz, choice of the
+length of the chain. Unless we have good ways to check convergence the
+distribution that we get may be a poor approximation to the target
+distribution. One way to remedy this is by using CFTP. The basic idea is
+as follows.
+
+<p>Run more than one version of the chain in parallel. Based on
+their relative
+behaviour decide when to stop.
+Thus, instead of running the chain for a
+prespecified length, here we run it until a stopping time.
+This is again our familiar sequential
+sampling idea. 
+
+
+@<Subsection@>@(MC from another perspective@)
+Propp-Wilson algorithm works only for finite sample space. There are
+generalisations for infinite cases, that we shall not go into. 
+A MC on a
+finite sample space S is essentially determined by a transition
+matrix. (We do not care about the initial distribution here.)
+This is the traditional view of MC. Here we shall introduce
+another approach: random map view. 
+
+<p>In this view we have a bunch of maps from S to S. Call these as
+
+@<Disp@>@(f<sub>1</sub>,...,f<sub>N</sub>,@)
+
+and attach probabilities 
+
+@<Disp@>@(p<sub>1</sub>,...,p<sub>N</sub>@)
+
+to them. p<sub>i</sub>'s add up to 1. Now, our
+step is made as follows. Suppose that we are at x. Pick one of the N maps
+at random, say, f<sub>i</sub> with probability p@<sub@>@(i@).
+Then move to f<sub>i</sub>(x). 
+
+<p>
+@<Example@>@( Consider the simple symmetric random walk modulo 7.
+<table border="0" align=left>
+<tr><td><img src="image/circ7.gif">
+<td width=50></table>
+ Here n=7. We consider
+only two maps (ie, N=2 here): f<sub>1</sub>(x) = x+1 (mod 7) and
+f<sub>2</sub>(x) = x-1 (mod 7). Each has prob 
+0.5.@)
+
+
+<p>
+@<Example@>@( In Ludo we have 6 maps of the form "advance i steps"
+i=1,...,6. Each roll of die chooses one of these and applies it to the
+present state. 
+@)
+<p>
+@<Example@>@(Consider S={1,2}. We shall work with 4 maps:  
+@<Disp@>@(
+f<sub>1</sub>(1) = 1 f<sub>1</sub>(2) = 1<br>
+f<sub>2</sub>(1) = 2 f<sub>2</sub>(2) = 2<br>
+f<sub>3</sub>(1) = 1 f<sub>3</sub>(2) = 2<br>
+f<sub>4</sub>(1) = 2 f<sub>4</sub>(2) = 1
+@)
+We attach prob 1/6, 1/3, 1/3, 1/6, respectively, to these. Check that the
+transition matrix is
+<blockquote>
+<pre>
+1/2 1/2
+1/3 2/3
+</pre>
+</blockquote>
+@)
+
+@<Example@>@(Computer scientists are
+fond of the random map view of MCs. 
+Here is a simple but interesting example. Our state space
+is <b>R</b><sup>2</sup>. So each X<sub>i</sub> is a point in the plane. We
+move from X<sub>i</sub> to X<sub>i+1</sub> as follows. 
+
+<p>There are 4 functions f<sub>k</sub> from
+<b>R</b><sup>2</sup>
+to  <b>R</b><sup>2</sup> of the form 
+@<Disp@>@(f<sub>k</sub>(x) = A<sub>k</sub> x + b<sub>k</sub>,@)
+where A<sub>k</sub>'s are known 2x2 matrices and b<sub>k</sub>'s are
+known 2x1 vectors. Each f<sub>k</sub> has a probability p<sub>k</sub>
+attached with it (sum(p<sub>k</sub>) = 1). To move from  X<sub>i</sub> to
+X<sub>i+1</sub> we pick one of the f<sub>k</sub>'s at random (with
+probability p<sub>k</sub>) and move to f<sub>k</sub>(X<sub>i</sub>), ie, 
+@<Disp@>@(X<sub>i+1</sub> = f<sub>k</sub>(X<sub>i</sub>).@)
+
+<p>
+These MC's are very useful for data compression. To see how, download this
+little <a href="ifs.m">Matlab code</a> and run it. All that it does
+is to run a MC (the A's and b's are given in the Matlab code) for 10000
+steps and plots all the 10000 X's. Is the resulting picture familiar? Here
+the 4 A's and b's store the picture in a compressed form. @)
+
+<p>@<Exercise@>@(1@,
+Show that given finite MC, there is at least one set of random maps for it.
+@)
+
+@<Subsection@>@(Coupling@)
+Suppose that we run two instances of the same MC. For instance, when two
+players play a game of Ludo, their counters are two realisations of the same
+MC. Now consider the random map view discussed above. Let both the MCs
+always use the same random map (they may have different initial
+distributions). Then we say that the MCs are <i>coupled.</i> Suppose they
+start at X@<sub@>@(0@) and Y@<sub@>@(0@), respectively. Then we pick one
+of the maps randomly, say f@<sub@>@(i1@). The MCs move to X@<sub@>@(1@) = 
+f@<sub@>@(i1@)(X@<sub@>@(0@)) and Y@<sub@>@(1@) =
+f@<sub@>@(i1@)(Y@<sub@>@(0@)), respectively. Then we pick a random map
+f@<sub@>@(i2@), say, and move to X@<sub@>@(2@) = 
+f@<sub@>@(i2@)(X@<sub@>@(1@)) and Y@<sub@>@(2@) =
+f@<sub@>@(i2@)(Y@<sub@>@(1@)), and so on. 
+<p>
+Similarly, we can run any number of MCs in a coupled way.
+Notice that the trajectories of coupled MCs 
+may look quite different. However, if the chains happen to hit a
+common state at some time point, then they would continue together ever
+afterward.  
+
+@<Img@>@(pw2.gif@)
+
+In this case we say that the two coupled MCs have <i>coalesced.</i> The
+first time (T) they meet is called the <i>coalescence point.</i> Note that
+in general coalescence may never take place.
+
+
+
+@<Subsection@>@(Forward coupling until coalescence@)
+Suppose that our state space is of size K, and our MC is irreducible and
+aperiodic. So we have unique limiting distribution @<pi@>. 
+ We run K coupled versions of the
+MC, one version starting from each state. We show a set of typical
+trajectories for state space S = {1,2,3,4,5,6}.
+
+@<Img@>@(pwall.gif@)
+
+In this picture we have coalescence at time T. The coalescence state is
+s. However, it is <i>not</i> true in general that all these coupled MC's has to
+eventually coalesce. In this note we shall call a set of random maps (ie,
+some f@<sub@>@(i@)'s and their corresponding p@<sub@>@(i@)'s) as
+irreducible and aperiodic, if the MC they generate is so. We shall call an
+irreducible and aperiodic set of random maps as <i>surely coalescent</i>
+if all the coupled versions (one version starting at each state) must
+eventually coalesce, as in the above diagram. 
+
+<p>@<Exercise@>@(2@,
+Show that a set of random maps is surely coalescent if and only if there
+is a finite sequence F@<sub@>@(1@),...,F@<sub@>@(a@) of these such that 
+@<Disp@>@(F@<sub@>@(1@)#...#F@<sub@>@(a@) = some constant map.@)
+@)
+
+<p>@<Exercise@>@(3@,
+Show that it is possible to have an irreducible and aperiodic set of
+random maps that is not surely coalescent.<br>@<Hint@>@(
+We have already seen an example of this!
+@)
+@)
+
+
+<p>@<Exercise@>@(4@,
+Consider simple symmetric random walk on the vertices of a
+triangle. One possible set of random maps is {f@<sub@>@(1@),f@<sub@>@(2@)}
+each with probability 0.5, where f@<sub@>@(1@)(x) = x+1 mod 3, and
+f@<sub@>@(2@)(x) = x-1 mod 3. However, this set is not surely coalescent (why?)
+Obtain a set of surely coalescent random maps for this MC.
+@)
+
+Generalize this argument to get the following result.
+
+<p>@<Exercise@>@(5@,
+Consider any irreducible and aperiodic MC. Show that we can
+<i>always choose</i> a surely coalescent set of random maps for it.
+@)
+
+
+
+<p>@<Exercise@>@(6@,
+Get a counterexample to show that the coalescence state need not be
+distributed according to  
+@<pi@>.
+@)
+Forward couping until coalescence  can be expressed mathematically as
+follows. Let F@<sub@>@(1@),F@<sub@>@(2@),... be iid from the
+f@<sub@>@(i@)'s according to probabilities p@<sub@>@(i@)'s. Write the
+state space as {1,2,...,K}. Then the i-th
+chain is 
+@<Disp@>@(i, F@<sub@>@(1@)(i), F@<sub@>@(2@)(F@<sub@>@(1@)(i)),...@)
+Coalescence at step T means that the map
+@<Disp@>@(F@<sub@>@(T@)#...#F@<sub@>@(1@)@)
+is a constant map. Here # is the function composition operator. In other
+words, we can say that we are running a <i>function-valued</i> MC 
+@<Disp@>@(ID, F@<sub@>@(1@), F@<sub@>@(2@)#F@<sub@>@(1@), 
+F@<sub@>@(3@)F@<sub@>@(2@)F@<sub@>@(1@),...,@)
+until the map becomes a constant map.
+
+<p>@<Example@>@(
+Consider the 2-state MC again. 
+We shall denote a map from
+S to S by a vector of length 2, eg, [a b] denotes the function f where
+f(1) = a and f(2)=b. The map will be a constant map if a=b. Thus, there
+are two constant maps [1 1] and [2 2].
+<p>We start by generating an iid sequence of maps:
+F@<sub@>@(1@),F@<sub@>@(2@),...
+Suppose that these turn out as follows
+@<Disp@>@(F@<sub@>@(1@) = [2 1], F@<sub@>@(2@) = [1 1], F@<sub@>@(3@) = [1
+2], F@<sub@>@(4@) = [2 1], ...@)
+Then our function-valued MC is
+@<Disp@>@(ID=[1 2], [2 1]#[1 2]=[2 1], 
+<font color="#ff0000">[1 1]#[2 1] = [1 1], [1 2]#[1 1] =
+[2 2],...</font>.@)
+The red part shows the chain after coalescence. Note that the map always
+constant after coalescence, but sometimes it is [1 1] and sometimes [2 2].
+@)
+
+@<Subsection@>@(Backward coupling until coalescence@)
+Propp-Wilson introduced a new use of coupling, namely, backward coupling
+or coupling from the past (CFTP), for which the coalescence state is
+indeed distributed as @<pi@>. <p>
+Here also we assume that F@<sub@>@(1@),F@<sub@>@(2@),... be iid from the
+f@<sub@>@(i@)'s according to probabilities p@<sub@>@(i@)'s. But now we
+shall compose the F@<sub@>@(i@)'s in the <i>reverse</i> order to get the
+function-valued MC
+@<Disp@>@(ID, F@<sub@>@(1@), F@<sub@>@(1@)#F@<sub@>@(2@), 
+F@<sub@>@(1@)F@<sub@>@(2@)F@<sub@>@(3@),...@)
+and run it until the map becomes a constant map. Due to a reason that we
+shall explain a bit later, this is called <i>coupling from the past
+(CFTP).</i> Note that unlike forward coupling, the chain 
+@<Disp@>@(X@<sub@>@(0@),
+F@<sub@>@(1@)(X@<sub@>@(0@)),F@<sub@>@(1@)F@<sub@>@(2@)(X@<sub@>@(0@)),...,
+F@<sub@>@(1@)#...#F@<sub@>@(n@)(X@<sub@>@(0@)),...@) 
+need not be a MC. However,
+@<Disp@>@(ID, F@<sub@>@(1@),
+F@<sub@>@(1@)#F@<sub@>@(2@),F@<sub@>@(1@)#F@<sub@>@(2@)#F@<sub@>@(3@),...@)
+is a function-values MC.
+<p>
+Note that like forward coupling, here also the map remains a constant map
+ever since coalescence. But unlike forward coupling, here it is the same
+constant map. This is shown in the example below.
+
+<p>@<Example@>@(
+Consider the same 2-state MC again, and the same F@<sub@>@(i@)'s.
+Now the MC is
+@<Disp@>@(ID=[1 2], [1 2]#[2 1]=[2 1],
+<font color="#ff0000">[2 1]#[1 1] =
+[2 2], [2 2]#[1 2] = 
+[2 2],...</font>.@)
+Now after coalescence the map is always [2 2]. 
+@)
+
+<p>@<Exercise@>@(7@,
+Show that even for backward coupling, the same condition for sure
+coalescence holds: a set of random maps is surely coalescent (under
+backward coupling) iff there is a finite sequence of the maps whose
+composition is a constant map.
+@)
+
+<h3>Basic Propp-Wilson (PW) algo</h3> 
+Suppose that we are given an irreducible and aperiodic MC, and a surely
+coalescent set of random maps for it. Let @<pi@> be the unique limiting
+distribution for the MC. Then the PW algorithm generates from @<pi@> as
+follows. 
+<p>
+Let the size of the state space be K. 
+The algorithm runs K backward coupled versions of the MC with one version
+starting from each state. The algorithm   stops at coalescence (which
+surely occurs eventually), and outputs the
+coalescent state.
+<p>
+It need not be at all obvious why the coalescence should ever occur, and
+why  the coalescent state is indeed
+distributed as @<pi@>. Also, the algorithm as stated looks quite messy,
+since in practice K may be very large (as in the Gibbs example) and then
+running the K MC's in parallel is a difficult job. We shall see how to get
+rid of the computational burden later. For now let us prove that the
+algorithm is correct, ie, the output is indeed distribute as @<pi@>.
+First notice that if X is any S-valued random variable (S is our state
+space), then showing that X has distribution @<pi@> is same as showing
+that F@<sub@>@(1@)(X) has same distribution as X, where F@<sub@>@(1@) is a
+<i>random</i> map drawn from the given set of random maps.
+
+Define
+(for nonnegative integers i &lt; j), 
+@<Disp@>@(F@<sub@>@(i,j@) = F@<sub@>@(i@)#...#F@<sub@>@(j@),@)
+where the F@<sub@>@(k@)'s are iid as before. Then clearly
+@<Disp@>@(F@<sub@>@(i,j@) has same distribution as F@<sub@>@(k,l@),@)
+if j-i = l-k.
+
+Notice that, since the set of random maps we have started with is a surely
+coalescent 
+one, we must have
+@<Disp@>@(F@<sub@>@(1,j@) = constant map eventually.@)
+
+
+<p>
+Also, if F@<sub@>@(1,j@) is a constant map, then for all k @<Geq@> j, we
+have F@<sub@>@(1,k@) = F@<sub@>@(1,j@). We shall call this constant map as
+F@<sub@>@(1,*@). Note that it is just a random state, and is the output of
+the algorithm. 
+
+Similarly, we can define F@<sub@>@(2,*@). Notice that
+F@<sub@>@(2,*@) has same distribution as F@<sub@>@(1,*@),
+and 
+@<Disp@>@(F@<sub@>@(1,*@) = F@<sub@>@(1@)#F@<sub@>@(2,*@).@)
+
+These two things together prove that F@<sub@>@(1,*@) is indeed distributed
+as @<pi@>. 
+
+@<Tail@>
+@}

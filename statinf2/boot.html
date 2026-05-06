@@ -1,0 +1,815 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Bootstrap</h1>
+
+<h3>Introduction</h3>
+<b>Set up:</b> We have data <u>X</u> from unknown (joint) distribution
+F. We want to compute (some aspect of) the distribution of the random variable
+T(F, <u>X</u>) possibly involving both the unknown distribution and the
+data. 
+T is a known <i>function</i>. We shall denote this distribution as
+
+<blockquote>
+Law(T(F,<u>X</u>); F),
+</blockquote>
+
+the second occurence of F signifying the fact that <u>X</u> is distributed
+as F. It is not difficult to see that any statisitical inference problem
+(parametric/nonparametric) may be cast into this form.
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   Suppose that X<sub>1</sub>,...,X<sub>n</sub> are iid
+   with common distribution F. Let &theta; be mean(F). We want to estimate F by
+   the median, M, of X<sub>i</sub>'s. Suppose we are interested in knowing the
+   MSE of this estimator, ie,
+   
+   <blockquote>
+   E (M(<u>X</u>)-&theta;)<sup>2</sup>
+   </blockquote>
+   
+   This is a function the distribution of the random variable
+   
+   <blockquote>
+   T(F,<u>X</u>) = M(<u>X</u>)-&theta;(F)
+   </blockquote>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>The bootstrap idea</h3> 
+Note that <u>X</u> is already given to you, so if you know F then you can
+always compute Law(T(F,<u>X</u>); F) in principle, since T is a known
+function. If direct computation turns out to be too complicated, we may
+approximate Law(T(F,<u>X</u>); F) by simulation from F. 
+However, this is never
+going to happen in practice because if you already <i>know</i> F, why on
+earth would you ever think of <i>estimating </i> its mean? So the entire
+subject of statistical inference revolves around the issue of computing 
+Law(T(F,<u>X</u>); F) when F is unknown.  Parametric statistical inference
+solves this problem by assuming that F is known except for finitely many
+unknown constants. Classical non-parametric statistics (i.e., the methods
+we have learned so far in this course) looks for distribution-free
+techniques, i.e., situations where  Law(T(F,<u>X</u>); F) is completely known 
+even though F is not. The idea is that somehow the two occurences of F in
+Law(T(F,<u>X</u>); F) cancel each other out. 
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Let X<sub>1</sub>,...,X<sub>n</sub> be iid continuous unknown F with
+   median &theta;(F). Define 
+   
+   <blockquote>
+   T(F,<u>X</u>) = sign test statistic based on
+   (X<sub>i</sub>-&theta;(F))'s
+   </blockquote>
+    
+   Then 
+   
+   <blockquote>
+   Law(T(F,<u>X</u>); F) = Binomial(n,1/2),
+   </blockquote>
+   
+   free of F.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>This is a smart technique, but the trouble is that there are many
+situations where such distribution-free technique is not known to
+exist. Even 
+when one does exist, it often fails to utilise the entire data (e.g., 
+it is
+based only ranks or signs, and not the actual values.) 
+<p>
+Now we are going to learn about a third method called <b>bootstrapping</b>
+that lets us approaximate 
+
+<blockquote>
+Law(T(F,<u>X</u>); F)
+</blockquote>
+
+where F is unknown in even non-distrn-free situations. Thus, 
+bootstrapping is a method that lets you have the advantage of knowing F,
+even when you actually do not know it. Here's the idea:
+
+<blockquote>
+<table bgcolor="#cccccc">
+<tr><td>Try to approximate F by some
+distribution F* (may depend on the data <u>X</u>) that  
+<ol>
+<li>is "close" to F
+<li>is <i>completely</i> known 
+<li>can be easily simulated from. 
+</ol>
+Use F* as a proxy for F.
+</table>
+</blockquote>
+
+Thus, instead of computing Law(T(F,<u>X</u>); F) we actually compute Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>). Note
+that Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>) is a <i>known</i> function of <u>X</u>. So at least in
+principle we can compute it for any given <u>X</u>. This is called the
+<b>ideal bootstrap distribution</b>. In practice, however, even Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>)
+may be very complicated. So then we can simulate <u>X</u><sup>*</sup> from
+F<sup>*</sup>, and approximate Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>) by a histogram. This called 
+<b>empirical bootstrap distribution</b>. 
+
+<h3>Parametric bootstrap</h3>
+This is a trivial example just to illustrate ideas. Suppose <b>X</b>
+consists of X<sub>1</sub>,...,X<sub>200</sub> iid 
+N(&mu;,&sigma;<sup>2</sup>),
+&mu; and  &sigma;<sup>2</sup> being
+unknown. 
+
+
+<p>Estimate &mu;, &sigma;<sup>2</sup> from the data as 
+                                                       <img src=
+                                                       "resources/xbar.png"
+                                                       align=top>
+                                                       
+                                                        and
+S<sup>2</sup>. Take F<sup>*</sup> = N(
+                                      <img src=
+                                      "resources/xbar.png"
+                                      align=top>
+                                      
+                                      ,S<sup>2</sup>).
+Clearly it is completely known and easy to simulate from.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.1:</font></b> 
+   
+   Compute the idea bootstrap estimate of the bias of 
+                                                      <img src=
+                                                      "resources/xbar.png"
+                                                      align=top>
+                                                      
+                                                       for
+   &mu;,i.e.,
+   
+   <blockquote>
+   E(
+     <img src=
+     "resources/xbar.png"
+     align=top>
+     
+     -&mu;).
+   </blockquote>
+   
+   Also, compute the ideal bootstrap estimate of the MSE.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>Of course, we would never do bootstrap for this problem, because here
+we could have done direct computation. It was only for didactic purpose.
+The next exercise is slightly more nontrivial.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.2:</font></b> 
+   
+   Suppose that X<sub>1</sub>,...,X<sub>1000</sub> are iid
+   N(0,&sigma;<sup>2</sup>). We want to estimate E(X<sub>1</sub><sup>4</sup>) by 
+   
+   <blockquote>
+   
+   <img src=
+   "resources/sum.gif"
+   align=middle>
+   
+    X<sub>i</sub><sup>4</sup>/1000.
+   </blockquote>
+   
+   Compute the ideal bootstrap estimate of its MSE. If that seems too
+   complicated, then simulate to get emipirical bootstrap estimate.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h3>Nonparametric bootstrap</h3>
+This is by far the most common form of bootstrap. Many people mean
+only this when they talk about bootstrap. 
+<h4>Simplest case</h4>
+<p>Let us consider the simplest case of nonparametric bootstrap. Here
+<u>X</u> consists of  X<sub>1</sub>,...,X<sub>n</sub>
+ iid from some unknown F. We know
+nothing about F. One popular choice of F* here is F<sub>n</sub>, the
+empirical 
+distribution function, defined as follows.
+
+
+<blockquote>
+ F<sub>n</sub>(x) = (# X<sub>i</sub>'s <= x)/n
+</blockquote>
+
+
+ Let us check if  F<sub>n</sub> satisfies the three
+conditions above.
+<p>
+<dl>
+<dt><font color="#cc0000"><u>Close to F ?</u></font>
+<dd> The following results are well known about the
+proximity of  F<sub>n</sub> to F.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.3:</font></b> 
+   
+   Prove the following theorem.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   For any number c,  F<sub>n</sub>(c) ~
+   AN(F(c),F(c)*(1-F(c))/n). <br>Here AN means "asymptotically normal."
+   </td></tr></table>
+   
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   (Glivenko-Cantelli)</b> sup {| F<sub>n</sub>(c) - F(c)| :c
+   in R} --> 0 ae.
+   </td></tr></table>
+    
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   Shall not prove in this course.
+   <img src="resources/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+
+<dt><font color="#cc0000"><u>Completely known ?</u></font>
+<dd> F<sub>n</sub> is completely known, since it is just a function of the
+ data. 
+
+ <dt><font color="#cc0000"><u>Easy to simulate ?</u></font>
+ <dd> 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.4:</font></b> 
+   
+   Suggest an algortihm to simulate iid from F<sub>n</sub>. In particular,
+   show that if x is a vector of length n storing the original sample then
+   the Matlab code 
+   
+   
+   <blockquote>
+   <table><tr>
+   <td width=1 bgcolor="#009900"></td>
+   <td width=5></td>
+   <td>
+   <pre>
+   
+   bootData = x(unidrnd(n,1,n));</pre></td>
+   </tr>
+   </table>
+   </blockquote>
+   
+   
+   fills up the vector bootData with n iid sample from F<sub>n</sub>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+A sample of size n drawn from F<sub>n</sub> is called a <b>resample</b>. 
+In S-plus the function 
+
+<code><font color="#cc0055">
+sample
+</font></code> lets you draw
+ such a sample (read its help to learn how!) 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.5:</font></b> 
+   
+   The file <a href="boot.txt">boot.txt</a> 
+   has a sample of size 1000. Draw 100
+   resamples each of size 1000. Make the histogram of the 100 (5%-)trimmed
+   means. Actually, the data came from N(0,1) distribution. Generate 100
+   samples (each of size 1000) from N(0,1), compute (5%-)trimmed means
+   for each of these samples, and draw the histogram of the 100 trimmed
+   means. Compare with the bootstrap histogram. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+ Both S-plus and Matlab have more sophisticated functions to
+ perform bootstrapping. We shall learn about them in due course.
+ </dl>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.6:</font></b> 
+   
+   Suppose that we have some iid data of size n. R(<u>X</u>) is an estimator
+   for &theta;, which is some parameter
+   of interest. Write down the algorithm for computing empirical nonparametric 
+   bootstrap estimates of bias, variance and MSE of R(<u>X</u>). 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.7:</font></b> 
+   
+   Estimate mse, bias and variance of the sample median based on the sample
+   stored in the file <a href="boot2.txt">boot2.txt</a>.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h3>Working like a pro</h3>
+Now, bootstrapping is such a popular method, that it is only expected that
+S-plus/Matlab will provide special functions to write the above code more
+compactly. Indeed, S-plus provides a function called 
+
+<code><font color="#cc0055">
+bootstrap
+</font></code>
+to implement 
+the loop in the bootstrap flowchart. If we have a function called, say,
+myStatistic(data), that computes T from data, then the code
+
+
+<blockquote>
+<table><tr>
+<td width=1 bgcolor="#0000cc"></td>
+<td width=5></td>
+<td>
+<pre>
+
+> bootVal <- bootstrap(data, 1000, myStatistic)</pre></td>
+</tr>
+</table>
+</blockquote>
+
+
+
+will perform the above loop and store various relevant things in the
+variable 
+         <code><font color="#cc0055">
+         bootVal
+         </font></code>. Here 1000 is the number of bootstrap
+resamples drawn. In particular, bootVal$replicates will
+store T<sub>i</sub>'s. Type 
+
+
+<blockquote>
+<table><tr>
+<td width=1 bgcolor="#000099"></td>
+<td width=5></td>
+<td>
+<pre>
+
+> names(bootVal)</pre></td>
+</tr>
+</table>
+</blockquote>
+
+
+
+to see what other info 
+                       <code><font color="#cc0055">
+                       bootVal
+                       </font></code> stores. 
+
+
+<p>Though the 
+              <code><font color="#cc0055">
+              bootstrap
+              </font></code> function is easy to use, it is
+important to be able to write your own code for bootstrap. This is because
+there are certain scenarios where the standard function cannot be used. We
+shall take a look at one such case in a later lecture.
+
+<p>Matlab has a similar function called 
+                                        <code><font color="#cc0055">
+                                        bootstrp
+                                        </font></code> 
+(no 'a' !). However, we prefer S-plus for
+bootstrapping, because S-plus provides some nice supporting
+routines for bootstrap for computing various related quantities.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.8:</font></b> 
+   
+   We have some iid data, and some statistic T and a parameter &theta;.
+   Suggest how we can use bootstrapping to estimate
+   
+   <blockquote>
+   P(sqrt(n)*(T-&theta;))  &lt; a,
+   </blockquote>
+   
+   for some given number a.<br>
+   <i>[Hint: If the underlying distribution is F, then &theta; =
+   &theta;(F). &theta; is a known function.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.9:</font></b> 
+   
+   suppose that we want to estimate standard error of sample mean based on
+   iid data
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>n</sub>.
+   </blockquote>
+   
+   Let R(<u>X</u>;B) be the empirical bootstrap estimator based on B resamples.
+   Does R(<u>X</u>;B) converge as B goes to infinity?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.10:</font></b> 
+   
+   Draw a resample of size n from
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>n</sub>,
+   </blockquote>
+   
+   The X<sub>i</sub>'s are all  distinct.
+    What is the chance that X<sub>1</sub> is not
+   in the resample? Find the limit as n goes to infinity.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.11:</font></b> 
+   
+   Suggest how you can use bootstrapping to get CI for a parameter. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Trouble with bootstrap</h3>
+
+The bootstrap intuition relies on the hope that if F<sup>*</sup> is close
+to F, then Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>) is close to Law(T(F,<u>X</u>); F). Unfortunately, this is not
+always true. One such case is given below.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.12:</font></b> 
+   
+   Suppose that we have an iid data from Unif(0,&theta;). Compute mle
+   
+   <img src=
+   "resources/thetahat.png"
+   align=top>
+   
+   . We want to compare 
+   
+   <blockquote>
+   Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>) with Law(T(F,<u>X</u>); F),
+   </blockquote>
+   
+   where
+   
+   <blockquote>
+   T(F,<u>X</u>) = 
+                   <img src=
+                   "resources/thetahat.png"
+                   align=top>
+                   
+                   (<u>X</u>)
+   </blockquote>
+   
+   Suppose that for a particular dataset of size n, the maximum is 1.97. 
+   Compute true P(
+                  <img src=
+                  "resources/thetahat.png"
+                  align=top>
+                  
+                   = 1.97), and also ideal bootstrap estimator of
+   the same quantity. Take limit of both as  n goes to infinity.  Do they
+   match?
+   What is the implication?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>More general set up</h3>
+
+So far we have performed bootstrapping only for univariate iid data. It is
+possible to do bootstrapping for general data. 
+
+<h4>Multivariate iid data</h4>
+
+It is easy to
+generalise to multivariate set up. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.13:</font></b> 
+   
+   Suppose we have paired data
+   
+   <blockquote>
+   (X<sub>1</sub>,Y<sub>1</sub>),...,(X<sub>n</sub>,Y<sub>n</sub>),
+   </blockquote>
+   
+   such that the n pairs are iid some bivariate F(x,y) having correlation
+   coefficient &theta;. We plan to estimate &theta; by the sample
+   correlation coefficient 
+                           <img src=
+                           "resources/thetahat.png"
+                           align=top>
+                           
+                           . Suggest how you may use boostrapping
+   to estimate bias, variance, MSE of 
+                                      <img src=
+                                      "resources/thetahat.png"
+                                      align=top>
+                                      
+                                      .
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<hr>
+<table width=100% bgcolor="#cccccc">
+<tr><td align=center><b><i>Digression:
+Pricipal Component Analysis (PCA)
+</b></i></td></tr></table>
+<hr>
+
+Suppose that 
+
+<blockquote>
+<u>X</u><sub>1</sub>,...,<u>X</u><sub>n</sub>
+</blockquote>
+
+are iid k-dimensional random vectors with mean 0 and variance matrix A.
+Then for any fixed vector v, the random variable
+
+<blockquote>
+v'<u>X</u>
+</blockquote>
+
+has mean 0 and variance &sigma;<sup>2</sup>(v) = v'Av. Let v be some unit
+vector. Then v'<u>X</u> is the projection of <u>X</u> along v. 
+If &sigma;<sup>2</sup>(v) is large then we would expect a large scatter of
+<u>X</u> along v. Thus, the value of &sigma;<sup>2</sup>(v) for different unit
+vectors v, provide an idea about the structure of the multivariate
+distribution of <u>X</u>. 
+<p>PCA is a systematic approach towards finding the v which maximises
+&sigma;<sup>2</sup>(v). Then it finds w to maximise &sigma;<sup>2</sup>(w) among all w
+orthogonal to v, and so on.<p>
+The technique is simple and based on the following theorem.
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   If A is any positive definite matrix with eigen values 
+   
+   <blockquote>
+   &theta;<sub>1</sub> 
+                       <img src=
+                       "resources/geq.png"
+                       align=top>
+                       
+                        ... 
+                            <img src=
+                            "resources/geq.png"
+                            align=top>
+                            
+                            
+   &theta;<sub>k</sub>
+   </blockquote>
+   
+   and corresponding unit eigen vectors 
+   
+   <blockquote>
+   v<sub>1</sub>,...,v<sub>k</sub>,
+   </blockquote>
+   
+   then 
+   v<sub>1</sub> maximises &sigma;<sup>2</sup>(v). In general, 
+   v<sub>i</sub> maximises &sigma;<sup>2</sup>(v) over all v orthogonal to
+   
+   <blockquote>
+   v<sub>1</sub>,...,v<sub>i-1</sub>.
+   </blockquote>
+   
+   Also, &sigma;<sup>2</sup>(v<sub>i</sub>) = &theta;<sub>i</sub>. 
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   You should know from B-I.
+   <img src="resources/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+PCA proceeds just by computing the eigen values of the sample variance
+matrix, S, say. 
+
+<hr>
+<table width=100% bgcolor="#cccccc">
+<tr><td align=center><b><i>Digression over
+</i></b></td></tr></table>
+<hr>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.14:</font></b> 
+   
+   Consider the PCA set up as given above. Let the PCA algorithm produce 
+   v<sub>1</sub> as the maximiser of &sigma;<sup>2</sup>(v). Note that v<sub>1</sub>
+   is itself a random vector. We want to estimate its variance
+   matrix. Suggest how you may use bootstrapping here. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h4>Bootstrap for non-iid data</h4>
+
+It is possible to do bootstrap for non-iid data like time series. We shall
+consider a regression situation. Suppose that we have two variables X and
+Y related by the following formula:
+
+<blockquote>
+Y = a+b*X + error,
+</blockquote>
+
+errors are iid with some unknown F.
+We take some <i>fixed</i> values 
+
+<blockquote>
+x<sub>1</sub>,...,x<sub>n</sub>
+</blockquote>
+
+for X, and observe Y to get the data
+
+<blockquote>
+Y<sub>1</sub>,...,Y<sub>n</sub>.
+</blockquote>
+
+Assume that the errors are iid. Let ahat and bhat denote the 
+(least square or whatever)
+estimators of a and b. Here the data Y<sub>i</sub>'s are not iid (they are
+indep, but not identically distributed.) So here we perform bootstrap as
+follows.
+We first compute the residuals as
+
+<blockquote>
+R<sub>i</sub> = Y<sub>i</sub> - ahat - bhat*x<sub>i</sub>,
+</blockquote>
+
+Then we approximate F by the empirical distribution, F<sub>n</sub>, of
+these. Finally we 
+approximate the distribution of Y<sub>i</sub> by that of 
+
+<blockquote>
+ahat + bhat*x<sub>i</sub> + error<sup>*</sup>,
+</blockquote>
+
+where error<sup>*</sup> ~  F<sub>n</sub>.
+This is called <b>bootstrapping the residuals</b>.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.15:</font></b> 
+   
+   As you might have guessed from the above description, computing the ideal
+   boostrap distribution is very difficult. So we have to go for the
+   empirical bootstrap distribution. Suggest how to compute empirical
+   bootstrap estmate for MSE of ahat.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise BOOT1.16:</font></b> 
+   
+   So now you have two ways to perform empirical bootstrap in a regression set up:
+   <ul>
+   <li>Draw a resample of (x<sub>i</sub>,Y<sub>i</sub>)'s (just as for the
+   sample correlation problem above.)
+   <li>Bootstrap the residuals.
+   </ul>
+   Discuss merits and demerits of either over the other.
+   <br>
+       <i>[Hint:
+       
+       While bootstrapping the residuals we pretend that the residuals are iid,
+       but they are not (though the original errors were), since to compute the
+       i-th residual we have used ahat, bhat that were obtained from all the data
+       points, not just the i-th one. On the other hand, bootstrapping the
+       original data suffers from no such approximation problem.<p>
+       
+       However, since the x's are fixed, it is not very meaningful to resample
+       them. Consider for example a design of expts situation:
+       
+       <blockquote>
+       Y<sub>ij</sub> = &mu; + &alpha;<sub>i</sub> +
+       &epsilon;<sub>ij</sub> i=1,...,5, j=1,...,10.
+       </blockquote>
+       
+       Thus there are 5 groups with 10 observations from each. 
+       Here the design matrix X has rows like 
+       
+       <blockquote>
+       (1,e<sub>i</sub>')
+       </blockquote>
+       
+       where the 5-dim vector e<sub>i</sub> has a 1 in the i-th position and 0
+       elsewhere. This row corresponds to the i-th group. 
+       These are our x's. If we resample from these we may very well not have any
+       data from some group making it impossible to estimate &alpha; for that
+       group based on the resample. But if we bootstrap the residuals, there is no
+       such problem.
+       
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+ 
+
+<hr>
+
+</body>
+</html>
+

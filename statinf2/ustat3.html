@@ -1,0 +1,450 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1> U-statistics</h1>
+
+
+
+<h3>Some asymptotics</h3>
+
+Suppose that we have fixed a kernel h: <b>R</b><sup>m</sup>
+
+<img src=
+"resources/rarrow.png"
+align=middle>
+
+<b>R</b>. Let U<sub>n</sub> denote the corresponding
+U-statistic based on an iid sample of size n.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.1:</font></b> 
+   
+   Show that if E(h<sup>2</sup>)  &lt;  
+                                        <img src=
+                                        "resources/inf.png"
+                                        align=top>
+                                        
+                                         then
+   
+   <blockquote>
+   n Var(U<sub>n</sub>) 
+                        <img src=
+                        "resources/rarrow.png"
+                        align=middle>
+                        
+                         m S<sub>1</sub>
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.2:</font></b> 
+   Use the last exercise to show
+   that
+   
+   <blockquote>
+   U<sub>n</sub> 
+                 <img src=
+                 "resources/rarrow.png"
+                 align=middle>
+                 
+                  &theta; in probability
+   </blockquote>
+   
+   if E(h<sup>2</sup>)  &lt;  
+                              <img src=
+                              "resources/inf.png"
+                              align=top>
+                              
+                              , where &theta; = E(U<sub>n</sub>).
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>Actually something much stronger is true, as we shall see below.
+
+
+<h4>The Hajek projection</h4>
+
+Suppose X<sub>1</sub>,...,X<sub>n</sub> are iid F.
+Define 
+
+<blockquote>
+L<sub>2</sub> = {f 
+                   :<b>R</b><sup>n</sup> 
+                                         <img src=
+                                         "resources/rarrow.png"
+                                         align=middle>
+                                         
+                                          <b>R</b> such that
+E(f(X<sub>1</sub>,...,X<sub>n</sub>)<sup>2</sup>)  &lt;  
+                                                         <img src=
+                                                         "resources/inf.png"
+                                                         align=top>
+                                                         
+                                                         }
+</blockquote>
+
+For f in L<sub>2</sub> define its norm
+
+<blockquote>
+||f||<sup>2</sup> = E[
+f(X<sub>1</sub>,...,X<sub>n</sub>)<sup>2</sup> ]
+</blockquote>
+
+
+Define V 
+         <img src="resources/subset.png"
+         align=top>
+          L<sub>2</sub> as consisting of all f such that E(f)=0.
+
+
+Define L 
+         <img src="resources/subset.png"
+         align=top>
+          V as consisting of all f in V
+such that
+
+<blockquote>
+f = 
+    <img src=
+    "resources/sum.gif"
+    align=middle>
+    
+     g(X<sub>i</sub>) for some g with E(g(X))=0.
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.3:</font></b> 
+   Show that V is a subspace of L<sub>2</sub>, and L is a
+   subspace of V. 
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+Given <i>symmetric</i> f in V define g
+                                      :<b>R</b><sup>n</sup> 
+                                                            <img src=
+                                                            "resources/rarrow.png"
+                                                            align=middle>
+                                                            
+                                                             <b>R</b> as 
+
+<blockquote>
+g(x<sub>1</sub>,...,x<sub>n</sub>) = 
+                                     <img src=
+                                     "resources/sum.gif"
+                                     align=middle>
+                                     
+                                     
+E(f(X<sub>1</sub>,...,X<sub>n</sub>) | X<sub>i</sub> = x<sub>i</sub>)
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.4:</font></b> 
+   Show that g is in L. Why do you need the symmetry
+   assumption? 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.5:</font></b> 
+   Show that for any b in L,
+   
+   <blockquote>
+   
+   ||f-b||<sup>2</sup>
+    = 
+      ||g-b||<sup>2</sup>
+       + 
+         ||f-g||<sup>2</sup>
+         .
+   </blockquote>
+   
+   Hence conclude that g is the orthogonal projection of f onto L.
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Application to U-statistics</h4>
+
+Consider a U-statistic U<sub>n</sub> with kernel h
+                                                  :<b>R</b><sup>m</sup> 
+                                                                        <img src=
+                                                                        "resources/rarrow.png"
+                                                                        align=middle>
+                                                                        
+                                                                         <b>R</b> 
+based on iid
+sample of size n 
+                 <img src=
+                 "resources/geq.png"
+                 align=top>
+                 
+                  m. 
+We shall assume that h is symmetric, h is in L<sub>2</sub> and E(h) = 0.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.6:</font></b> 
+   Show that the orthogonal projection of U<sub>n</sub> onto
+   L is
+   
+   <blockquote>
+   W<sub>n</sub> = (m/n) 
+                         <img src=
+                         "resources/sum.gif"
+                         align=middle>
+                         
+                          h<sub>1</sub>(X<sub>i</sub>)
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.7:</font></b> 
+   Show that Var(W<sub>n</sub>) = O(1/n)
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Define R<sub>n</sub> = U<sub>n</sub> - W<sub>n</sub>. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.8:</font></b> 
+   Show that Var(R<sub>n</sub>) = O(1/n<sup>2</sup>) and
+   E(R<sub>n</sub>) = 0.
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.9:</font></b> 
+   Hence show that 
+   
+   <blockquote>
+   sqrt(n) R<sub>n</sub> 
+                         <img src=
+                         "resources/rarrow.png"
+                         align=middle>
+                         
+                          0 in probability.
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.10:</font></b> 
+   Prove the following theorem by using Slutsky's theorem.
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   (CLT for U-statistics)
+   Let &theta; = E(U<sub>n</sub>). Then
+   
+   <blockquote>
+   sqrt(n) (U<sub>n</sub>-&theta;) ~ AN(0,m<sup>2</sup>S<sub>1</sub>)
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   
+   <blockquote>
+   R<sub>n</sub> 
+                 <img src=
+                 "resources/rarrow.png"
+                 align=middle>
+                 
+                  0 a.s.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   
+   We have already shown that E(R<sub>n</sub>) = 0 and 
+   Var(R<sub>n</sub> = O(1/n<sup>2</sup>). So 
+   
+   <blockquote>
+   
+   <img src=
+   "resources/sum.gif"
+   align=middle>
+   
+    E(R<sup>2</sup>) is finite.
+   </blockquote>
+   
+   We shall need two steps to arrive from here to the required conclusion.
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise USTAT3.11:</font></b> 
+      
+      Show that for all positive &epsilon; 
+      
+      <blockquote>
+      
+      <img src=
+      "resources/sum.gif"
+      align=middle>
+      
+       P(|R<sub>n</sub>|  &gt; &epsilon;) is finite
+      </blockquote>
+      
+      <br>
+      <i>[Hint: Chebyshev.]</i>
+      
+      </td></tr></table>
+      </blockquote>
+      
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise USTAT3.12:</font></b> 
+      
+      Show that if Y<sub>n</sub> are such that 
+      
+      <blockquote>
+      
+      <img src=
+      "resources/sum.gif"
+      align=middle>
+      
+       P(|Y<sub>n</sub>|  &gt; &epsilon;) is finite
+      </blockquote>
+      
+      for all positive &epsilon;, then 
+      
+      <blockquote>
+      Y<sub>n</sub> 
+                    <img src=
+                    "resources/rarrow.png"
+                    align=middle>
+                    
+                     0 a.s.
+      </blockquote>
+      
+      <br>
+      <i>[Hint: Use Borel-Cantelli.]</i>
+      
+      </td></tr></table>
+      </blockquote>
+      
+   
+   
+   <img src="resources/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT3.13:</font></b> 
+   Prove the following theorem.
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+
+(SLLN for U-statistics) Let &theta; = E(U<sub>n</sub>). Then
+
+<blockquote>
+U<sub>n</sub> 
+              <img src=
+              "resources/rarrow.png"
+              align=middle>
+              
+               &theta; a.s.
+</blockquote>
+
+
+</td></tr></table>
+
+
+
+
+<hr>
+
+</body>
+</html>
+

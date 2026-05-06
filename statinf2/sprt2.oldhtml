@@ -1,0 +1,402 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Sequential tests</h1>
+
+
+
+
+<h3>Computing error probabilities</h3>
+
+A SPRT involves two numbers A and B. We shall compute the probabilities of
+type I and type II errors in terms of these. This will help us to choose A
+and B in a way so that the resulting test has specified error
+probabilities.<p>
+In the following discussion we shall use the notation P<sub>0</sub>(.) to
+denote probabilities under H<sub>0</sub>, and similarly P<sub>1</sub> for
+probabilities under H<sub>1</sub>. Also let S<sub>m</sub> denote the sum
+of Z<sub>1</sub>,...,Z<sub>m</sub>.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.1:</font></b> 
+   
+   Let C be an event involving X<sub>1</sub>,...,X<sub>m</sub> only, i.e., if
+   I tell you the values of these m random variables, you should be able to
+   tell me <i>for certain</i> whether C has happened. Suppose that 
+   
+   <blockquote>
+   C 
+     <img src="resources/statinf2/subset.png"
+     align=top>
+      {S<sub>m</sub> 
+                     <img src=
+                     "resources/statinf2/geq.png"
+                     align=top>
+                     
+                      log(A)}.
+   </blockquote>
+   
+   Then show that 
+   
+   <blockquote>
+   
+   P<sub>1</sub>(C) 
+                    <img src=
+                    "resources/statinf2/geq.png"
+                    align=top>
+                    
+                     A P<sub>0</sub>(C).
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.2:</font></b> 
+   
+   Show that 
+   
+   <p><a name="(*)">
+   <table><tr>
+   <td width=50 align=left>(*)</td>
+   <td width=5></td>
+   <td width=1 bgcolor="#000000"></td>
+   <td>
+   &alpha; 
+           <img src=
+           "resources/statinf2/leq.png"
+           align=top>
+           
+            (1-&beta;)/A
+   </td></tr></table></a><p>
+   
+   [Hint: Consider the events
+   
+   <blockquote>
+   C<sub>m</sub> = {T=m & S<sub>m</sub> 
+                                        <img src=
+                                        "resources/statinf2/geq.png"
+                                        align=top>
+                                        
+                                         A}, m=1,2,...
+   </blockquote>
+   
+   Relate &alpha; to P<sub>0</sub>(C<sub>m</sub>)'s and &beta; to 
+   P<sub>1</sub>(C<sub>m</sub>)'s. Now apply the last exercise.]
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.3:</font></b> 
+   
+   Let D be an event involving X<sub>1</sub>,...,X<sub>m</sub> only, i.e., if
+   I tell you the values of these m random variables, you should be able to
+   tell me <i>for certain</i> whether D has happened. Suppose that 
+   
+   <blockquote>
+   D 
+     <img src="resources/statinf2/subset.png"
+     align=top>
+      {S<sub>m</sub> 
+                     <img src=
+                     "resources/statinf2/leq.png"
+                     align=top>
+                     
+                      log(B)}.
+   </blockquote>
+   
+   Then show that 
+   
+   <blockquote>
+   
+   P<sub>0</sub>(D) 
+                    <img src=
+                    "resources/statinf2/geq.png"
+                    align=top>
+                    
+                     P<sub>1</sub>(D)/B.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.4:</font></b> 
+   
+   Show that 
+   
+   <p><a name="(**)">
+   <table><tr>
+   <td width=50 align=left>(**)</td>
+   <td width=5></td>
+   <td width=1 bgcolor="#000000"></td>
+   <td>
+   &beta; 
+          <img src=
+          "resources/statinf2/leq.png"
+          align=top>
+          
+           B (1-&alpha;)
+   </td></tr></table></a><p>
+   
+   <br>
+       <i>[Hint:
+       
+        Consider the events
+       
+       <blockquote>
+       D<sub>m</sub> = {T=m & S<sub>m</sub> 
+                                            <img src=
+                                            "resources/statinf2/leq.png"
+                                            align=top>
+                                            
+                                             B}, m=1,2,...
+       </blockquote>
+       
+       Relate &alpha; to P<sub>0</sub>(D<sub>m</sub>)'s and &beta; to 
+       P<sub>1</sub>(D<sub>m</sub>)'s. Now apply the last exercise.]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>(*) and (**) are called <b>Wald's inequalities</b>.
+<p>If you treat these as equalities then you get <b>Wald's
+approximation</b>:
+
+<blockquote>
+A = (1-&beta;)/&alpha;<br>
+B = &beta;/(1-&alpha;).
+
+</blockquote>
+
+Of course, these are not exact. But Wald suggested using these to compute
+A and B from specified &alpha; and &beta;. Here is the basic argument
+that Wald provided for this approximation.
+<p>
+Notice first that if we could change the test to 
+
+<blockquote>
+Accept if LR = B, and reject if LR=A,
+</blockquote>
+
+then Wald's approximation would be exact. The only problem with these is
+that the LR may very well jump out of [B,A] without actually taking the
+values B or A. In other words, S<sub>T</sub> may be below log(B) or above
+log(A). This is called <i>excess over boundaries.</i> The excess is never
+more than one Z<sub>i</sub>. Hopefully, the Z<sub>i</sub>'s take large
+values with small probabilities, and hence the excess over boundaries will
+be small with large probabilities. This is all heuristics. Let us explore
+it using computer simulation. Here we want to relate the error incurred
+due to Wald's approximation with the excess over boundaries.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.5:</font></b> 
+   
+   Suppose we want to test 
+   
+   <blockquote>
+   H<sub>0</sub>: &mu; =0 Vs. H<sub>1</sub>: &mu; = 1,
+   </blockquote>
+   
+   based on data X<sub>1</sub>,...iid N(&mu;,1). Write a computer program
+   that performs simulation to estimate &alpha;, &beta; from A,B. Call
+   these estimates a and b, resp. Define the
+   quantities
+   
+   <blockquote>
+   x<sub>A</sub> = (1-b)/a-A<br>
+   x<sub>B</sub> = B-b/(1-a)<br>
+   y<sub>A</sub> = mean(S<sub>m</sub>-log(A)), mean over all rejection cases<br>
+   y<sub>B</sub> = mean(log(B)-S<sub>m</sub>), mean over all acceptance cases<br>
+   
+   </blockquote>
+   
+   Get these 4 numbers for 20 different choices of (A,B). Make two
+   scatter plots, one for the (x<sub>A</sub>, y<sub>A</sub>)'s, the other for
+   the (x<sub>A</sub>, y<sub>A</sub>)'s. Interpret.
+   <br>
+       <i>[Hint:
+       
+       To estimate &alpha; you may perform  SPRT(A,B) 100 times based
+       on data from H<sub>0</sub>, and the consider the proportion of
+       rejections. 
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.6:</font></b> 
+   
+   Wald's approximation affects the error probabilities conservatively. Show
+   this as follows. Suppose we want a SPRT with error probabilities &alpha;
+   and &beta;. We apply Wald's approximation to get A, B. Since we did an
+   approximation, the actual error probabilities (call them &alpha;' and
+   &beta;', say) need not equal &alpha; and &beta;. Show that
+   
+   <blockquote>
+   &alpha;' + &beta;' 
+                      <img src=
+                      "resources/statinf2/leq.png"
+                      align=top>
+                      
+                       &alpha; + &beta;.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+We would be happier if we could say something like
+
+<blockquote>
+&alpha;' 
+         <img src=
+         "resources/statinf2/leq.png"
+         align=top>
+         
+          &alpha; and
+&beta;' 
+        <img src=
+        "resources/statinf2/leq.png"
+        align=top>
+        
+         &beta;.
+</blockquote>
+
+Indeed, Wald had some intuitive argument to suggest that this is so. The
+following exercise explores this using simulation.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.7:</font></b> 
+   
+   Take different values of &alpha; and &beta;. Compute A, B using Wald's
+   approximation. Obtain &alpha;' and &beta;' by simulation. Plot
+   &alpha;' against &alpha;, and &beta;' against &beta;.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h4>Expected sample size</h4>
+
+A sequential statistical procedure needs random sample size. It is a
+natural 
+question to ask what the expected sample size is. If T is the stopping
+rule used, then this is E(T). We shall show later how to find this for
+SPRT. We shall also show that SPRT minimises E(T) in the following sense.
+
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+(Optimality of SPRT)
+Let &phi; be a SPRT with error probabilities &alpha; and &beta;. Let
+its stopping rule be called T. Let &xi; be any sequential test with
+stopping time T' such that
+<ul>
+<li>P(type I error) 
+                    <img src=
+                    "resources/statinf2/leq.png"
+                    align=top>
+                    
+                     &alpha;
+<li>P(type II error) 
+                     <img src=
+                     "resources/statinf2/leq.png"
+                     align=top>
+                     
+                      &beta;
+<li> E(T') is finite under both the hypothesis.
+</ul>
+Then 
+
+<blockquote>
+E(T) 
+     <img src=
+     "resources/statinf2/leq.png"
+     align=top>
+     
+      E(T').
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+We shall do later in this course.
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT2.8:</font></b> 
+   
+   Let a SPRT have stopping time T. Suppose that a fixed sample size test
+   based on sample of size n also has the same error probabilities. Is it
+   true that we must have
+   
+   <blockquote>
+   E(T) 
+        <img src=
+        "resources/statinf2/leq.png"
+        align=top>
+        
+         n?
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Before we can compute E(T) for SPRT or prove the above theorem, we need to
+develop some general machinery to work with stopping times.
+
+<hr>
+
+</body>
+</html>
+

@@ -1,0 +1,151 @@
+@i main
+@$@<Label@>==@{CV1@}
+@O@<cv1.html@>==@{
+@<Head@>@(??@, Cross-validation I@)
+<h3>Cross-validation concept</h3>
+When we model some random scenario our aim is to have predictions as close
+as possible to the data that will come in the future.  However, this
+validation can only be done when the future data arrive, which may be too
+late. So we often use the already available data as a proxy for future
+data, and look at the residuals that result from the very data based on
+which we have fit our model. This procedure runs the risk of "overfitting"
+the data, ie the residual from the present data may be small but that for
+future data may be large.
+
+<p>Cross-validation is a way to counter overfitting. The main idea is as
+follows.
+<ol>
+<li>Split the available data into two parts, called <i>training</i> and
+<i>test</i> data.
+<li> Perform the modelling using only the training data.
+<li>Judge the goodness-of-fit of the fitted model using only the test
+data.
+<li>Repeat the above three steps a number of times using different
+(training,test) partitions, and average the goodness-of-fit.
+</ol>
+The above algorithm will produce for a given data and given modelling
+strategy a single number called the <i>cross-validation score</i>. This
+score measures the good-of-fit of this modelling strategy for this data. 
+<h3>Models and Modelling strategies</h3>
+A modelling strategy is like a
+computer program that takes as its input a dataset, and produces a fitted
+model. <i>Be careful to distinguish between a model and a modelling
+strategy.</i> A modelling strategy is a function that maps a dataset to a
+model. The model-fitting is just another name for the evaluating this
+function. 
+
+<p>@<Example@>@("Least square fitting of a quadratic equation" is a
+modelling strategy that may result in the model 
+
+@<Disp@>@(
+y<sub>i</sub> = 1.2 - 5.64*x<sub>i</sub> + 
+2.3*x<sub>i</sub><sup>2</sup> + 
+epsilon<sub>i</sub>, where epsilon<sub>i</sub> ~ N(0,0.342)@)
+
+for some given data set. The same model could also be obtained from a
+"least absolute deviation fitting of a quadratic equation", which is a
+<i>different</i> modelling strategy.@)
+
+<h3>CV to choose between modelling strategies</h3>
+Suppose we have k different modelling strategies:
+@<Disp@>@({MS<sub>1</sub>,...,MS<sub>k</sub>}@)
+Let M denote the set of all possible models, and let DAT denote the set of
+all possible datasets. So each MS<sub>i</sub> is a map from DAT to MOD. 
+@<Disp@>@(MS<sub>i</sub> : DAT --> MOD@)
+For each model M in MOD and D in DAT we have a way to measure how well the
+model M fits the data D. This is captured by a loss function
+@<Disp@>@(L : DAT x MOD ---> R,@)
+where R is the set of reals. 
+
+<p>@<Example@>@(
+In simple linear regression with one regressor variable x and one response
+variable y a typical dataset consists of two columns of numbers, one
+giving values of x, the other giving the corresponding values of y. So
+here DAT consists of all possible pairs of columns. Suppose that MOD
+consists of all 
+linear equations of the form 
+@<Disp@>@(y = alpha + beta * x + epsilon,@)
+where epsilons are iid N(0,sigma<sup>2</sup>). A popular modelling
+strategy here is the mle, which is just the least squares method. So given
+a dataset this modelling strategy will produce alphaHat, betaHat and
+sigma<sup>2</sup>Hat. The loss function L may be taken to be the squared
+error loss, ie, 
+@<Disp@>@(L(X,M) = sum of squares of (y-yHat)'s,@)
+where 
+@<Disp@>@(yHat = alphaHat + betaHat*x@)
+@)
+
+<p>We want to know which modelling strategy 
+is the best based on a given dataset X in DAT. Each strategy produces a
+model:
+@<Disp@>@(M<sub>i</sub> = MS<sub>i</sub>(X).@) 
+One may now think of three ways to compare the modelling strategies:
+<ul>
+<li>Ideal method
+<li>Resubstitution method
+<li>Crossvalidation
+</ul>
+
+<h4>Ideal method</h4>
+Here we collect more data Y afresh after finding M<sub>i</sub> based on
+the already available data X. Then we test how well M<sub>i</sub> performs
+on Y by considering 
+@<Disp@>@(L(Y,M<sub>i</sub>).@)
+This is, as we have already said, the ideal way of doing things, and
+should be used whenever possible. However, often collecting fresh data Y
+is prohibitively expensive. Then the ideal method is not applicable.
+
+<h4>Resubstitution method</h4>
+This is a naive way to compare the modelling strategies when fresh
+data are not available. Here we just test M<sub>i</sub> on the original
+data X, ie we look at 
+@<Disp@>@(L(X,M<sub>i</sub>).@)
+
+<p>This is <i>not</i> a good way to compare modelling strategies because
+of the risk of overfitting. Since M<sub>i</sub> was fitted based on X, it
+is likely that L(X,M<sub>i</sub>) will be smaller than L(Y,M<sub>i</sub>)
+where Y is some fresh data. If  L(X,M<sub>i</sub>) is much smaller than 
+ L(Y,M<sub>i</sub>) then the loss is underestimated, and we have a 
+case of overfitting. 
+
+<h4>Crossvalidation</h4>
+This is a balance between the two methods above. It avoids overfitting,
+yet does not require fresh data. Here
+we look at the CV score of each MS<sub>i</sub>, and choose the
+strategy with the minimum CV score. 
+
+<p>To do this we need some standard way of doing the (training,test)
+partition of the available data. There are two popular techniques:
+<ul>
+<li>p-fold CV (more popular)
+<li>leave-one-out CV (less popular)
+</ul>
+<h3>p-fold CV</h3>
+Here we first split the data randomly into p equal parts (or almost equal
+parts if the sample size is not divisible by p). Let the parts be called 
+X<sub>1</sub>,...,X<sub>p</sub>. Use X<sub>t</sub>  as the
+test set, and the rest of X as the training set. Let us denote by 
+X<sub>-t</sub> this remaining part of X. Then we apply the modelling
+strategies on X<sub>-t</sub> to get
+@<Disp@>@(M<sub>it</sub> = MS<sub>i</sub>(X<sub>-t</sub>)@)
+Apply this to the test set, ie, X<sub>t</sub> to get the loss
+@<Disp@>@(L(X<sub>t</sub>,M<sub>it</sub>)@)
+Do this as t ranges from
+1 to 
+p, and then average to get the CV score for MS<sub>i</sub>:
+@<Disp@>@(CV<sub>i</sub> =
+sum<sub>t</sub>(L(X<sub>t</sub>,M<sub>it</sub>))/p@) 
+Now choose the modelling strategy that minimises this. However, observe
+that CV<sub>i</sub>'s are themselves random quantities. So minor
+differences between them may very well be due to chance rather than any
+real performance difference among the corresponding modelling strategies.
+
+<h3>leave-one-out CV</h3>
+This is just like p-fold CV with p=n, the sample size. Thus, here we leave
+one datapoint out, fit a model and check the performance of the model on
+that left-out datapoint. We do it separately for each of the n datapoints,
+and then average. This has the advantage that it involves no randomness,
+so may sometimes be compute analytically. But a test data of size 1 is
+often judged inadequate.
+
+@<Tail@>@}

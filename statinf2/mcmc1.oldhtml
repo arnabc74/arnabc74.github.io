@@ -1,0 +1,264 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1> MCMC</h1>
+
+
+<h3>Markov chain Monte Carlo (MCMC)</h3>
+
+Sometimes we have to simulate from complicated distributions, for which no
+direct method is available. Often the target distribution is not even
+available 
+in a closed form! However, often it is possible to have an easily
+implementable Markov Chain (MC) that has the target distribution as its
+unique limiting distribution, where the MC will converge
+<i>irrespective of the initial state.</i> This motivates the idea of MCMC:
+Start the chain in some initial state (we do not care how!) and then keep
+on running the chain for a sufficiently long number of steps. Let
+X<sub>n</sub> denote the state after n steps. Then the law of
+X<sub>n</sub> will converge to the target distribution. So if n is "large
+enough" then we can say that X<sub>n</sub> is approximately distributed
+according to the target distribution. Bayesian inference and graphical
+models provide us with many such cases where obtaining a MC is
+straightforward, but simulating directly from the target distribution is
+difficult. In such cases MCMC is a popular alternative.
+<p>
+But first let us see how such complicated distributions arise.
+
+
+<h4>Bayesian paradigm</h4>
+
+
+<table><tr><td width=2 bgcolor="#995555"></td>
+<td>
+<b>Example:</b> 
+ Consider a two stage random experiment. I generate a
+Beta(3,3) rv p. Then toss a coin with P(H) = p 100 times. If I observe 34
+heads then what p was generated in the first stage? This may be done by a
+application of Bayes theorem (density version) as follows. 
+
+
+<blockquote>
+
+Prior density: pi(p) =  p<sup>2</sup>(1-p)<sup>2</sup>/beta(3,3)<br>
+Model:  f(X=x | p) = <sup>100</sup>C<sub>x</sub> *
+p<sup>x</sup>(1-p)<sup>100-x</sup><br> 
+Joint density: P(x, p) = pi(p) * f(X=x | p) * pi(p) = 
+<sup>100</sup>C<sub>x</sub>/beta(3,3) *
+p<sup>2+x</sup>(1-p)<sup>102-x</sup><br> 
+Marginal of X: g(x) = integral P(x,p) dp =<div width=100>
+<sup>100</sup>C<sub>x</sub>/beta(3,3)* beta(3+x,103-x)</div><br>
+Posterior: xi(p) = P(x,p)/g(x) =
+p<sup>2+x</sup>(1-p)<sup>102-x</sup>/beta(3+x,103-x) 
+
+</blockquote>
+
+</td></tr></table>
+</blockquote>
+
+
+<p>Here is why one might want to do such a computation.
+When we pick a coin to toss we are actually picking up one coin
+out of many possible coin. Now,
+is a typical coin likely to have P(H)=0.99 or 0.00001? No. It is more
+likely to have P(H) somewhere around 0.5. So we do have some prior
+information about P(H) and expect that if take a large number of coins
+then the P(H)'s will have a density curve like the left one below rather
+than the other one. 
+
+<p>
+ So picking a typical coin may
+be statistically formulated as drawing p from this prior
+distribution. Here we have chosen Beta(3,3) as the prior. Thus Beta(3,3)
+encapsulates all the info we had <i>before</i> tossing the coin. When we
+toss the coin 100 times we have gathered more information about p. We want
+to combine both these pieces of information into the posterior
+distribution. Observe that the combined information still does not pin
+down a single value for p, that is why we still have a posterior
+<i>distribution.</i> Bayesian inference now requires us to summarize this
+distribution, eg if we want a point estimate for p, then we may use
+the mean or mode. 
+
+<p>In the example above the posterior also turns out to be a Beta
+distribution. But even if the prior and the model are both simple, the
+posterior may still be complicated (eg, fail to have a closed-form
+expression).  
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   X ~ N(0,sigma^2) sigma~Exp(1). Note that it is quite
+   easy to get the numerator of the joint density (it is just the product of
+   the prior and the model densities) but the denominator is just a nasty
+   integral. 
+   
+   
+   <blockquote>
+   
+   const * exp(-sigma)* exp(-x<sup>2</sup>/(2*sigma<sup>2</sup>))/sigma
+   
+   </blockquote>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Geman brothers</h3>
+In 1984 a paper by Geman and Geman introduced a
+novel idea that marked the 
+inception of a new way of simulating from posteriors. The method was
+already in use by physicists, but Geman and Geman first proposed its use
+for statistical image processing. Here is a somewhat simplified version of
+the idea.
+
+<p>Any a b/w image is just a matrix with each element either 0 (=black) or
+1 (=white). While any such matrix may be called an image, but not all
+matrices 
+correspond to "interesting" images.
+
+<p>
+<center>
+<table width="100%">
+<tr><th>"Interesting" image<th>Random image</tr>
+<tr><td align=center>
+<img src="image/face.gif" border=1>
+<td align=center>
+<img src="image/random.png" border=1>
+</tr></table>
+
+</center>
+ The image to the left, for instance is
+a 275 x 215 matrix and so is the one to the right. But the second one is
+made by tossing an unbiased coin for each pixel (head=black
+tail=white). The lack of pattern in the random picture is apparent from
+the fact that there is hardly any large black or white region. The Geman
+brothers argued that when we pick up a typical interesting image we are
+more likely to choose ones with large regions. They formalised this by
+defining  a probability distribution on the set of all images (275 x
+215, say) as follows.
+
+<p>The probability space is finite and consists of all images of size say
+275x215. The two images above, for instance, are two points in that
+space. The size 
+of the space is 2<sup>275x215</sup> which is, well, pretty huge! We are
+about to define a probability on this set so that "interesting" images
+will have high probability masses attached to them. 
+
+<p>Let's define a function f(x,y), where x, y are pixels (thus each of x,y
+can take values 0 or 1)
+
+<blockquote>
+
+<pre>
+f(x,y) = 0 if x,y are not neighbours (vertical/horizontal/diagonal)
+         1/3 if x,y are neighbours and x is equal to y
+        -1/3 if x,y are neighbours and x is not equal y
+</pre>  
+
+</blockquote>
+
+Now define the probability of an image as
+
+
+<blockquote>
+P(image) = exp(-sum(f(x,y)))/Z,
+</blockquote>
+
+
+where the sum is over all pixels x,y and Z is the normalising
+constant. Z is H..U..G..E, and computing it is very difficult, if not
+impossible. This probability is called a <i>Gibbs 
+distribution</i>. It may seem impossible to do
+anything with this model. Geman and Geman introduced a clever way to
+simulate approximately from this distribution. It is called <i>Gibbs
+sampler</i>. But let us do some examples to get used to Gibbs
+distribution.
+
+<h3>An example</h3>
+Consider the 3 by 3 b/w image shown left below. Let us compute
+exp(sum(f(x,y))) for it. 
+<img src="image/img1.gif" align=left>
+
+It should be easy to check that there are 6 f(x,y)'s equal to 1/3 and 6
+others equal to -1/3, the rest being 0 (see the coloured lines).
+ So sum(f(x,y)) = 0 here, hence exp(sum(f(x,y))) =1. Next, let
+us compute the same quantity for the other image. It is found to be exp(2/3).
+
+<img src="image/img2.gif" align=right> 
+<p>There are 2<sup>3x3</sup> = 512 such images. If we compute this number 
+for each of them and add, then we shall get Z. 
+
+<h3>Some information on Gibbs distribution</h3>
+<i>This part is not required
+anywhere in this course. It is provided for general reading only.</i>
+
+<p>
+We have just now seen one example of a Gibbs distribution. In general
+Gibbs distribution is defined as follows. 
+
+<p>Statistical physicists try to explain various macroscopic features of
+materials in terms of simple microscopic constituent "particles."
+Somewhere in your high school you may have come across the "kinetic theory
+of gases" which is a typical statistical physics model. 
+
+<p>In order to explain magnetic properties of solids one imagines them to
+consist of tiny bar magnets spaced at nodes of a rigid lattice. Each
+magnet may be in one of two orientations or <i>spins</i>, as they call
+them in this corner of the scientific world. Each magnet interacts with
+its neighbours. (Two magnets are called "neighbours" if they are connected
+by a lattice edge. The lattice itself may be just any connected graph.)
+The interaction is local, ie, if you fix all its neighbouring magnets then
+each magnet is independent of the magnets farther away. 
+
+<p>A collection of magnets is called a <i>clique</i> if each of them is a
+neighbour to every other in the collection. Each clique is like a
+family. Note that a magnet usually belongs to more than one clique. For
+each clique, C, of size k we have a function 
+
+
+<blockquote>
+V<sub>C</sub>(x<sub>1</sub>,...,x<sub>k</sub>)
+</blockquote>
+
+
+that measures how nicely the k members of C are getting along
+together. Physicists call it the potential energy. The total potential
+energy of the system is their sum over all cliques:
+
+
+<blockquote>
+sum(V<sub>C</sub>)
+</blockquote>
+
+
+Left to itself, the system tends to settle down at a configuration with
+low potential energy. Some physics considerations suggests that the
+probability that the system is in a certain configuration is proportional to
+
+
+<blockquote>
+exp(-sum(V<sub>C</sub>)/T),
+</blockquote>
+
+
+where T is the absolute temperature of the system. Note that if T is large
+then the effect of potential energy gets diluted, and all states become
+almost equally likely. This corresponds to our experience that at high
+temperature a system is more chaotic. The constant of proportionality is
+found by the condition that the probs must add up to 1. 
+
+
+<hr>
+
+</body>
+</html>
+

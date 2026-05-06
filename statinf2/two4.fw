@@ -1,0 +1,134 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{RANK@}
+@O@<two4.html@>==@{
+@<Head@>@(??@,Two sample inference@)
+
+
+@<Section@>@(Rank statistics@)
+So far we have seen a number of two sample tests. These as well as many
+others all use test statistics of a general form called <i>linear rank
+statistics</i>. We discuss this below.
+<p>
+Our set up is as before:
+
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(m@) iid F<br>
+Y@<sub@>@(1@),...,Y@<sub@>@(n@) iid G<br>
+X's and Y's are mutually independent<br>
+F, G both continuous and unknown.@)
+<p>
+Pool the samples together as
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(m@),Y@<sub@>@(1@),...,Y@<sub@>@(n@)@)
+Let the rank vector of the pooled data be
+@<Disp@>@(R@<sub@>@(1@),...,R@<sub@>@(m@),R@<sub@>@(m+1@),...,
+R@<sub@>@(m+n@)@)
+Thus, 
+@<Disp@>@(R@<sub@>@(i@) = rank of X@<sub@>@(i@) in the pooled data for 1
+@<Leq@> i @<Leq@> m@)
+and
+@<Disp@>@(R@<sub@>@(m+j@) = rank of Y@<sub@>@(j@) in the pooled data for 1
+@<Leq@> j @<Leq@> n.@)
+<p>@<Example@>@(
+In a controlled experiment to measure the effectiveness of a treatment
+suppose that the control group yields the following measurements:
+@<Disp@>@(X@<sub@>@(1@) = 2, X@<sub@>@(2@) = 4, X@<sub@>@(3@) = 9,@)
+and the treatment group produces
+@<Disp@>@(Y@<sub@>@(1@) = 5, Y@<sub@>@(2@) = 8.@)
+Then here are the pooled data and the rank vector:
+@<Disp@>@(<pre>
+pooled data: 2  4  9  5  8
+rank vector: 1  2  5  3  4
+</pre>@)
+@)
+<p>@<Defn@>@(
+A statistic that is a function of the rank vector is called a <i>rank
+statistic</i>. 
+@)
+<p>@<Defn@>@(
+Let A be any known (m+n) by (m+n) matrix with (i,j)-th element denoted by
+a(i,j). The 
+@<Disp@>@(@<Sum@>a(i,R@<sub@>@(i@))@)
+is called a <i>linear</i> rank statistic.
+@)
+How to check that a given rank statistic is indeed a linear rank
+statistic? The following theorem helps you to do this.
+<p>
+@<Thm@>@(
+Suppose that T(<u>R</u>) is a rank statistics, where <u>R</u> denotes the
+rank vector, ie, permutations of 1,...,N, say. 
+Let <u>S</u> be any rank vector, and i,j be in {1,...,N}. 
+Define <u>S(i,j)</u> as the permutation obtained from <u>S</u> by swapping
+i and j. Then T is a linear rank statistic iff 
+@<Disp@>@(T(<u>S</u>)-T(<u>S(i,j)</u>) is free of S@<sub@>@(k@) for all
+k @<Neq@> i,j.@)
+@)
+<p>@<Pf@>@(Direct argument.@)
+<p>@<Exercise@>@(1@,
+Is the Mann-Whitney U-statistic a rank statistic? Is it linear? If so, find A.
+<br><i>[Hint: Explicitly write down
+ the U-statistic in terms of the ranks.]</i>
+@)
+<p>@<Exercise@>@(2@,
+Do the same for the 2-stample KS test statistic, D@<sub@>@(+@)
+<br>@<Hint@>@(
+Use the theorem above.
+@)
+@)
+<p>@<Exercise@>@(3@,
+Do the same for the Wald-Wolfowitz run test.
+<br>@<Hint@>@(
+Use the theorem above.
+@)
+@)
+
+<p>@<Defn@>@(
+A statistic of the form 
+@<Disp@>@(@<Sum@> c@<sub@>@(i@) a(R@<sub@>@(i@))@)
+is called a <i>simple, linear rank statistic</i>, where c@<sub@>@(i@)'s
+are any constants and a(.) is any function.
+@)
+
+<p>@<Exercise@>@(4@,
+To justify the terminology used we need to show that a simple linear rank
+statistic is indeed a linear rank statistic as we have defined earlier. In
+particular, show that a simple linear rank statistic corresponds to a A
+matrix of the form 
+@<Disp@>@(A = u v' @)
+where u and v are column vectors.
+@)
+@<Subsection@>@(Computing moments of simple linear rank statistics@)
+Let
+ @<Disp@>@(S = @<Sum@> c@<sub@>@(i@) a(R@<sub@>@(i@))@)
+We shall compute E(S) and Var(S) under H@<sub@>@(0@): F = G. 
+<p>@<Exercise@>@(5@,
+Show that under H@<sub@>@(0@), 
+@<Disp@>@(each R@<sub@>@(i@) ~ discrete uniform {1,...,m+n}@)
+and 
+@<Disp@>@((R@<sub@>@(1@),...,R@<sub@>@(m+n)@)) ~ discrete uniform over all
+(m+n)! possible permutations of {1,...,m+n}@)
+@)
+
+<p>@<Exercise@>@(6@,
+Use the last exercise to show that
+@<Disp@>@(E(S) = (m+n)cbar * abar@)
+where cbar and abar of averages of c@<sub@>@(i@)'s and a(i)'s respectively.
+@)
+
+<p>@<Exercise@>@(7@,
+Show that
+@<Disp@>@(cov(a(R@<sub@>@(i@)),a(R@<sub@>@(j@)))= 
+-@<sigmasqd@>@<sub@>@(a@)/(m+n)@)
+@)
+
+<p>@<Exercise@>@(8@,
+Show that 
+@<Disp@>@(Var(S) = (m+n-1) @<sigmasqd@>@<sub@>@(a@)
+@<sigmasqd@>@<sub@>@(c@),@)
+where  @<sigmasqd@>@<sub@>@(c@) is the variance of the
+c@<sub@>@(i@)'s. The denominator in @<sigmasqd@>@<sub@>@(c@) is 
+(m+n-1).
+Similarly for @<sigmasqd@>@<sub@>@(a@).
+@)
+
+@<Tail@>
+@}

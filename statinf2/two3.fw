@@ -1,0 +1,156 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{MANN@}
+@O@<two3.html@>==@{
+@<Head@>@(??@,Two sample inference@)
+
+
+@<Section@>@(Mann Whitney U-test@)
+We have same set up as before. We want to test
+@<Disp@>@(H@<sub@>@(0@): F = G Vs H@<sub@>@(1@): F @<Neq@> G@)
+or
+@<Disp@>@(H@<sub@>@(0@): F = G Vs H@<sub@>@(1@): F @<sGt@> G@)
+or
+@<Disp@>@(H@<sub@>@(0@): F = G Vs H@<sub@>@(1@): F @<sLt@> G@)
+
+Define 
+@<Disp@>@(D@<sub@>@(ij@) = I{X@<sub@>@(i@)  &lt;  Y@<sub@>@(j@)}, for all
+i,j.@)
+Then Mann Whitney U-test uses the test statistic
+@<Disp@>@(U = @<Sum@>@<sub@>@(i@)@<Sum@>@<sub@>@(j@) D@<sub@>@(ij@)@)
+<p>@<Exercise@>@(1@,
+Consider the three alternative hypothesies listed
+above. When should we reject H@<sub@>@(0@) in favour of each of them, for
+large or small U?
+
+@)
+<p>
+Let 
+@<Disp@>@(@<theta@> = E(D@<sub@>@(ij@))<br>
+@<theta@>@<sub@>@(1@) = E(D@<sub@>@(ij@)D@<sub@>@(ik@))<br>
+@<theta@>@<sub@>@(2@) = E(D@<sub@>@(ij@)D@<sub@>@(kj@))@)
+<p>@<Exercise@>@(2@,
+Compute @<theta@> under H@<sub@>@(0@).@)
+<p>@<Exercise@>@(3@,
+Show that if H@<sub@>@(0@) is true then 
+@<Disp@>@(@<theta@>@<sub@>@(1@) = @<theta@>@<sub@>@(2@) = 1/3.@)
+
+@)
+
+<p>@<Exercise@>@(4@,
+Compute E(U) in general, as well as under H@<sub@>@(0@).
+@)
+
+<p>@<Exercise@>@(5@,
+Show that
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(cov(D@<sub@>@(ij@)D@<sub@>@(kl@)) = @, 0 @,
+if i @<Neq@> k and j @<Neq@> l@)
+@<Row@>@(@, @<theta@>-@<thetasqd@>@,
+if i=k and j=l@)
+@<Row@>@(@, @<theta@>@<sub@>@(1@)-@<thetasqd@>@,
+if i=k and j @<Neq@> l@)
+@<Row@>@(@,@<theta@>@<sub@>@(2@)-@<thetasqd@>@,
+if i @<Neq@> k and j=l@)
+@)
+@)
+@)
+
+
+
+<p>@<Exercise@>@(6@,
+Use the last exercise to show that 
+@<Disp@>@(Var(U) = 
+mn(@<theta@>-@<thetasqd@>)
++mn(m-1)(@<theta@>@<sub@>@(2@)-@<thetasqd@>)
++mn(n-1)(@<theta@>@<sub@>@(1@)-@<thetasqd@>),@)
+in general. Check that this reduces to
+@<Disp@>@(mn(m+n+1)/12@)
+under H@<sub@>@(0@).
+@)
+
+<p>@<Exercise@>@(7@,
+Argue that U is distribution-free under H@<sub@>@(0@) by showing that
+@<Disp@>@(P(U = u) = r@<sub@>@(mn@)(u)/@<C@>@(m+n@,m@)@)
+under H@<sub@>@(0@), where
+@<Disp@>@(r@<sub@>@(mn@)(u) = number of arrangements of m X's and n Y's
+such that the number of times an X precedes an Y is u.@)
+@)
+
+<p>@<Exercise@>@(8@,
+Show that
+@<Disp@>@(r@<sub@>@(mn@)(u) = r@<sub@>@(mn@)(mn-u)@)
+Hnece conclude that undr H@<sub@>@(0@), U is distributed symmetrically
+around mn/2. 
+@)
+
+
+<p>@<Thm@>@(
+For large m,n,
+@<Disp@>@((U-E(U))/sqrt(Var(U)) ~ AN(0,1).@)
+@)
+<p>
+@<Pf@>@(Shall do later using a theorem for U-statistics.@)
+
+@<Section@>@(An estimation problem@)
+We can use the above idea to get a confidence interval for a two sample
+location problem. We have the same set up as above. But now we also assume
+that G is a location shift of F, i.e.,
+@<Disp@>@(G(x) = F(x- @<theta@>) for all x,@)
+where @<theta@> is  unknown. 
+<p>@<Exercise@>@(9@,
+Which of the following two statements is true under this model?
+@<Disp@>@(Y@<sub@>@(1@)-@<theta@>, ..., Y@<sub@>@(n@)-@<theta@> are iid
+F@)
+or 
+@<Disp@>@(Y@<sub@>@(1@)+@<theta@>, ..., Y@<sub@>@(n@)+@<theta@> are iid
+F ?@)
+
+@)
+
+Define 
+@<Disp@>@(U(@<theta@>) = @<Sum@>@<sub@>@(i@)@<Sum@>@<sub@>@(j@) I{Zij
+  &gt;  0)@)
+<p>@<Exercise@>@(10@,
+Show that U(@<theta@>) has distribution free of @<theta@>. In particular,
+show that its distribution is same as the null distribution of the
+Mann-Whitney U statistic under H@<sub@>@(0@).
+@)
+Suppose that we are given @<alpha@>, and we want to get a
+(1-@<alpha@>)-level CI for @<theta@>. Since U(@<theta@>) has a completely
+known distribution, hence we can find integer c such that
+@<Disp@>@(P(c @<Leq@> U(@<theta@>) @<Leq@> mn-c) = 1-@<alpha@>.@)
+Due to the discrete nature of U(@<theta@>), the equality may not
+hold exactly. Next, order the mn differences, Z@<sub@>@(ij@)'s, as
+@<Disp@>@(W@<sub@>@(1@) &lt; ... &lt; W@<sub@>@(mn@)@)
+The inequalities are strict with probability 1, because of the
+continuity assumption on F. 
+<p>@<Exercise@>@(11@,
+Show that
+@<Disp@>@({c @<Leq@> U(@<theta@>) @<Leq@> mn-c}  iff  {W@<sub@>@(c@) &lt;
+@<theta@>  &lt;  W@<sub@>@(mn-c+1@)}@)
+Hnece argue that (W@<sub@>@(c@), W@<sub@>@(mn-c+1@)) is a
+(1-@<alpha@>)-level CI for @<theta@>. 
+<br>@<Hint@>@(
+See the hint for ONE.7.
+@)
+
+@)
+@<Subsection@>@(Hodges-Lehmann approach@)
+Recall that we had described the HL approach for one sample problem as a
+method to obtain point estimates from a test. We can apply this aproach to
+Mann-Whitney U-test to get a two sample HL estimate for @<theta@> as
+follows.
+<p>
+Notice that U(@<theta@>) is distributed symmetrically around mn/2. The HL
+approach suggests choosing @<thetahat@> in a way so that U(@<thetahat@>)
+is as close 
+to mn/2 as possible. 
+<p>@<Exercise@>@(12@,
+Show that 
+@<Disp@>@(@<thetahat@> = median of the Z@<sub@>@(ij@)'s.@)
+@)
+
+@<Tail@>
+@}

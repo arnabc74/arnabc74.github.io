@@ -1,0 +1,429 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Asymptotic properties of tests</h1>
+
+
+
+
+<h3>Consistency</h3>
+
+We want our tests to be powerful. For any reasonable test we would expect
+that the power will grow with increasing sample size, n. Pwoer being a
+probability its maximum possible value is 1. So we would like to have
+
+<p><a name="(*)">
+<table><tr>
+<td width=50 align=left>(*)</td>
+<td width=5></td>
+<td width=1 bgcolor="#000000"></td>
+<td>
+E(&phi;) 
+         <img src=
+         "resources/statinf2/rarrow.png"
+         align=middle>
+         
+          1 under H<sub>1</sub>
+as n 
+     <img src=
+     "resources/statinf2/rarrow.png"
+     align=middle>
+     
+      
+      <img src=
+      "resources/statinf2/inf.png"
+      align=top>
+      
+      
+</td></tr></table></a><p>
+
+Where is 'n' in E(&phi;)? Actually, &phi; involves n. Thus, we should
+better write &phi; as &phi;<sub>n</sub>. In other words, all thes tests we
+have considered so far may be thought of as a sequence
+{&phi;<sub>n</sub>}.  
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+If 
+   <a href="#(*)">(*)</a>
+    holds then we say that  the test (sequence) 
+is <i>consistent</i>.
+</td></tr></table>
+
+<p>
+All the tests considered so far are consistent. The general argument is as
+follows. We shall work with only upper one-sided tests (the argument is
+similar for lower one-sided or two-sided tests.) 
+<p>
+All such test have rejection regions of the form
+
+<blockquote>
+T<sub>n</sub> 
+              <img src=
+              "resources/statinf2/geq.png"
+              align=top>
+              
+               c<sub>n</sub>,
+</blockquote>
+
+for some test statistic T<sub>n</sub> and some critical value
+c<sub>n</sub>. For all the tests we have considered T<sub>n</sub>'s are 
+some form of averages, and we have 
+
+<blockquote>
+T<sub>n</sub> 
+              <img src=
+              "resources/statinf2/rarrow.png"
+              align=middle>
+              
+               b(&theta;) a.e.,
+</blockquote>
+
+for some function b(.) of unknown parameter &theta;. 
+<p>
+Also, for our tests we have
+
+<blockquote>
+c<sub>n</sub> 
+              <img src=
+              "resources/statinf2/rarrow.png"
+              align=middle>
+              
+               c,
+</blockquote>
+ 
+for some c. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ASYMP.1:</font></b> 
+   Show that if 
+   
+   <blockquote>
+   b(&theta;)  &gt; c for all &theta; under H<sub>1</sub>,
+   </blockquote>
+   
+   then the test is consistent.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Relative efficiency</h4>
+
+The two properties discussed so far, viz., unbiasedness and consistency,
+are sort of sanity checks. A test not meeting these criteria is not worth
+considering. Any reasonable test satisfies these. The next question is
+given two reasonable tests, how to decide which one is better. 
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose we have data X<sub>1</sub>,...,X<sub>n</sub> iid N(&theta;,1).
+   We want to test
+   
+   <blockquote>
+   H<sub>0</sub>: &theta; = 0 Vs H<sub>1</sub>: &theta;  &gt;
+   0.
+   </blockquote>
+    
+   We already have the usual normal test which rejects H<sub>0</sub> for
+   large values of 
+                   <img src=
+                   "resources/statinf2/xbar.png"
+                   align=top>
+                   
+                   . Also, we have learned about sign test which
+   rejects H<sub>0</sub> for large values of 
+   
+   <blockquote>
+   S = 
+       <img src=
+       "resources/statinf2/sum.gif"
+       align=middle>
+       
+        sign(X<sub>i</sub>).
+   </blockquote>
+   
+   Both the tests are unbiased and consistent. Which one is better and byhow
+   much? 
+   <p>
+   It is not difficult to guess that the normal test is better, because it
+   uses more information. Our aim below is to quantify this idea.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+Let &xi; and &phi; be two tests based on the same data. Fix a 
+&beta; in (0,1). Fix &theta; in H<sub>1</sub>. 
+Let m be the sample size required by &phi; to attain
+this power at &theta;. Similarly, &xi; needs sample size n for the
+same. Then the ratio
+
+<blockquote>
+RE(&theta;,&beta;) = m/n
+</blockquote>
+
+is called the <i>relative efficiency</i> of &phi; w.r.t &xi; for power
+&beta; at &theta;. 
+
+</td></tr></table>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ASYMP.2:</font></b> 
+   
+   We could also define a similar quantity as the ratio of the powers
+   attained for a given sample size:
+   
+   <blockquote>
+   PowerRatio(&theta;,n) = ratio of powers at &theta; for
+   sample size n.
+   </blockquote>
+   
+   Discuss why RE is more applealing than this definition.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+The crucial step in computing RE is to be able to compute the sample size
+required to achive a given power &beta; at a given point &theta; in
+H<sub>1</sub>. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ASYMP.3:</font></b> 
+   
+   Suppose that we have data
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>n</sub> iid N(&theta;,1).
+   </blockquote>
+   
+   We want to test 
+   
+   <blockquote>
+   H<sub>0</sub>: &theta; = 0 Vs H<sub>1</sub>: &theta;  &gt; 0
+   
+   </blockquote>
+   
+   at 5% level.
+   We shall use the usual parametric test. What sample size do you need to
+   get power &beta; = 0.8 if actual &theta; = 1?
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Finding required sample size is easy if the distribution of the test
+statistic is manageable for the given &theta;. For most nonparametric
+tests, however, it is difficult. So one needs to use asymptotic
+approximations. This is shown below.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ASYMP.4:</font></b> 
+   
+   Again consider the same problem as above. But this time we shall use the sign
+   test. The exact distribution of the sign test statistic, S,  is Binomial(n,p)
+   where p = P(X  &gt; 0). Since binomial distribution is difficult to work
+   with for large n, we shall use the normal approximation:
+   
+   <blockquote>
+   S ~ AN(np, np(1-p))
+   </blockquote>
+   
+   Compute p for &theta;=1. Using the above approximate distribution find
+   the sample size required to achieve power &beta;=0.8 at &theta;=1.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Taking the ratio of the sample sizes obtained in the last two exercises
+yields approximate RE(1,0.8) for sign test at level 5% wrt normal test at
+the same level. It is
+approximate because we have approximated the distribution of S with a
+normal 
+distribution using CLT.
+
+
+<h4>Asymptotic relative efficiency (ARE)</h4>
+
+There is a little mathematical flaw in the way we computed RE for sign test
+wrt normal test above. 
+To use CLT we need n going to 
+                              <img src=
+                              "resources/statinf2/inf.png"
+                              align=top>
+                              
+                              . Now, here n is not a free
+parameter. It is just a finite number which is computed from &beta; and
+&theta;. So the problem does not involve any limit whatsoever yet we
+have used CLT to get an "aproximation". In the eye of the practising
+statistician this is of course a minor point. But in order to keep our
+mathematical concsience clear, we define an asymptotic version of RE where
+the large sample approximation can be mathematically justified.<p>
+The main idea behind the definition that we are about to present is
+this. We want to compare two test sequences
+ with power &beta; at some point
+&theta; in H<sub>1</sub>. Also, we want to let sample size, n,
+ tend to infinity. 
+Since out of the three quantities 
+
+<blockquote>
+&beta;, &theta; and n
+</blockquote>
+
+any two determines the other, we cannot keep both &beta; and &theta;
+fixed and yet let n tend to infinity. So we let &theta; vary as
+follows. 
+<p><b>Notation:</b>For a test sequence &phi; = {&phi;<sub>n</sub>} and
+a sequence of simple alternatives 
+&theta;={&theta;<sub>n</sub>}, define 
+
+<blockquote>
+power(&phi;,&theta;,n) = 
+E(&phi;<sub>n</sub>) at &theta;<sub>n</sub>.
+</blockquote>
+
+<p>
+This notation is not standard. It is only for use in these classnotes.
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+We have a test (sequence) {&phi;<sub>n</sub>}. 
+Fix &beta; in (0,1).
+Call a sequence 
+&theta;={&theta;<sub>n</sub>} in H<sub>1</sub> <i>contiguous</i> if 
+
+<blockquote>
+power(&phi;,&theta;,n) 
+                       <img src=
+                       "resources/statinf2/rarrow.png"
+                       align=middle>
+                       
+                        &beta;
+</blockquote>
+
+as n goes to infinity.
+
+</td></tr></table>
+
+Note that for a given &phi; and &beta; there may be many contiguous
+sequences. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ASYMP.5:</font></b> 
+   
+   Consider the normal test above at level 5%. Show that
+   {&theta;<sub>n</sub>}
+   is contiguous  at &beta; = 0.8 iff 
+   
+   <blockquote>
+   sqrt(n)*&theta;<sub>n</sub> 
+                               <img src=
+                               "resources/statinf2/rarrow.png"
+                               align=middle>
+                               
+                                
+   
+   <img src=
+   "resources/statinf2/phiinv.png"
+   align=top>(0.95)+
+                    <img src=
+                    "resources/statinf2/phiinv.png"
+                    align=top>(0.8)
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+Let &phi; and &xi; be two test sequences 
+for the same H<sub>0</sub> and H<sub>1</sub>. Fix &beta; in
+(0,1). Let {&theta;<sub>n</sub>} be one contiguous sequence for
+&phi;. Let f(n) be the sample size such that
+
+<blockquote>
+power(&xi;,&theta;,f(n)) 
+                         <img src=
+                         "resources/statinf2/rarrow.png"
+                         align=middle>
+                         
+                          &beta;.
+</blockquote>
+
+If the limit of
+
+<blockquote>
+n/f(n)
+</blockquote>
+
+exists as n tends to infinity, and the limit is free of
+{&theta;<sub>n</sub>} then we call this limit as the <i>asymptotic
+relative 
+efficiency (ARE)</i> of &xi; wrt &phi; at &theta; for power
+&beta;.
+
+</td></tr></table>
+
+<p>
+You should remember that the not-too-rigourous method of
+approximating the RE yields essentially the same result as ARE. The latter
+is useful only to soothe our mathematical conscience.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ASYMP.6:</font></b> 
+   
+   Use the contiguous sequence from the last exercise
+   to show that the ARE of the sign test wrt the
+   normal test (both at level 5%) at &beta; = 0.8 is 2/&pi; (about 64%).
+    In particular, note that this ARE does
+   not depend on &beta;. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

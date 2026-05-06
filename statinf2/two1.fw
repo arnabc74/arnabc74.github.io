@@ -1,0 +1,134 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{RUN@}
+@O@<two1.html@>==@{
+@<Head@>@(??@,Two sample inference@)
+
+
+@<Section@>@(Introduction@)
+<p>@<Example@>@(
+Suppose that we want to test the efficacy of a sleeping pill. A simple way
+to do this would be to administer the drug to a sample of insomnia
+patients and then to measure the increase in the amounts of their
+sleep. However, it is usually not enough to measure just this
+increase. Some patients are so fond of medicines, that they "feel better"
+whenever they think they have taken a medicine. Even giving them a lump of
+sugar in the form of a pill would make them "feel better". This is called
+the <i>placebo effect</i>, the sugar pill being called a <i>placebo.</i>
+<p>
+So in order to test the efficacy of a sleeping pill, it is not enough to
+check if it increases sleep or not, but also to check if it outperforms
+the placebo. So we perform the following blind experiment. 
+<p>
+Take m+n insomnia patients. They should represent the population as much
+as possible wrt characteristics that might affect the performance of the
+drug (e.g., gender, age etc). Randomly split this sample into a
+<i>control</i> and a <i>treatment</i> group of sizes m and n,
+respectively. Administer placebo to the control group, and the pill to the
+treatment group. Then the mesuare the increase in amount of sleep of each
+m+n patients. Let
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(m@)@)
+be the measurements for the control group, and let
+@<Disp@>@(Y@<sub@>@(1@),...,Y@<sub@>@(n@)@)
+be the corresponding measurements for the treatment group. We assume that
+the X's are iid with some unknown continuous distribution F, and the Y's
+are iid with some unknown continuous distribution G. We want to check if F
+and G are different.
+@)
+<p>
+@<Digress@>@(A couple of points@)
+<ol>
+<li><b>Why not take m=n ? </b> Usually such an expeirment involves a
+follow up study, e.g. a request like 
+@<Disp@>@("Please come back after a month of medication and report your
+amount of sleep."@)
+is made to each patient.
+Some patients may not honour this request, and just drop out of
+the experiment. So the final sample sizes may differ for the two groups.
+<li><b>Why is the experiment called a "blind" experiment ?</b>
+Because, we do not want the patients to know to which group they have been
+put (else, the control patients will not expeirnce the placebo effect.)
+Sometimes even the investigators are not told which patients belong to
+which group. This is called a "double blind" experiment.
+</ol>
+@<DigressOver@>
+
+@<Section@>@(Wald-Wolfowitz Run Test@)
+We have the set up as described above. We want to test
+@<Disp@>@(H@<sub@>@(0@): F = G  Vs. H@<sub@>@(1@): F @<Neq@> G@)
+
+This test is only for two-sided alternatives. Here is the test procedure:
+<p>
+First combine the two samples and order the (m+n) numbers. Then write the
+combined, ordered sample as a string of X's and Y's, e.g.,
+@<Disp@>@(X Y Y X X X Y Y Y X X X Y X X@)
+We expect that under H@<sub@>@(0@) the X's and the Y's would be "well
+mixed" in this string. In order to check this we count the number, R,  of
+runs 
+(i.e., a stretch of the same letter). In this example R= 7, the runs being
+@<Disp@>@(X, YY, XXX, YYY, XXX, Y and XX@)
+This R is our test statistic. We shall reject H@<sub@>@(0@) if R is
+"small" To quantify how small is "small" we need to find the null
+distribution of R. 
+<p>@<Exercise@>@(1@,
+What are the possible values that R can take?
+@)
+<p>@<Exercise@>@(2@,
+Show the number of ways in which a positive integer N can be split into K
+strictly positive parts is 
+@<Disp@>@(@<C@>@(N-1@,K-1@).@)
+@)
+
+<p>@<Exercise@>@(3@,
+Let 2k+1 be a possible value for R. Show that under H@<sub@>@(0@)
+@<Disp@>@(P(R=2k+1) = (@<C@>@(m-1@,k-1@) @<C@>@(n-1@,k@)+
+@<C@>@(m-1@,k@) @<C@>@(n-1@,k-1@))/@<C@>@(m+n@,m@)@)
+@)
+
+<p>@<Exercise@>@(4@,
+If 2k is a possible value for R then show that under H@<sub@>@(0@)
+@<Disp@>@(P(R=2k) = 
+2@<C@>@(m-1@,k-1@)@<C@>@(n-1@,k-1@)/@<C@>@(m+n@,m@)@)
+@)
+<p>Thus, observe that R is distribution-free under H@<sub@>@(0@), i.e.,
+its distribution does not involve F. 
+<p>Next we want to find the moments of R. For this mark each of the X or Y
+with a 1 or 0 according as it is the 
+start of a new run. Call the i-th mark as U@<sub@>@(i@).
+Thus, U@<sub@>@(1@) is always 1. The
+sequence 
+@<Disp@>@(XYYXXXYYYXXXYXX@)
+is marked as
+@<Disp@>@(110100100100110@)
+
+Clearly, R = @<Sum@>U@<sub@>@(i@). 
+<p>@<Exercise@>@(5@,
+Show that under H@<sub@>@(0@)
+@<Disp@>@(E(R) = (2mn/(m+n)) + 1@)
+<i>[Hint: Compute E(U@<sub@>@(i@)) and add.]</i>
+@)
+<p>@<Exercise@>@(6@,
+Take any 1 &lt; i  &lt; j-1 in {1,...,m+n}. Show that 
+@<Disp@>@(E(U@<sub@>@(i@)U@<sub@>@(j@)) = 
+4*@<C@>@(m+n-4@,m-2@)/@<C@>@(m+n@,n@)@)
+<i>[Hint: Look at i-1, i j-1 and j-th locations. There are four cases
+that will make U@<sub@>@(i@) and U@<sub@>@(j@) both 1:
+@<Disp@>@(XYXY,XYYX,YXYX,YXXY.@)
+Compute proababilities of these and add.]</i> 
+@)
+
+<p>@<Exercise@>@(7@,
+Show that  under H@<sub@>@(0@)
+@<Disp@>@(Var(R) = 2mn(2mn-m-n)/(m+n)<sup>2</sup>(m+n-1))@)
+<i>[Hint: You need to find E(U@<sub@>@(i@)U@<sub@>@(j@)) for all 
+i &lt; j. One case has already been done in the last exercise.]</i>
+@)
+
+@<Thm@>@(As min(m,n) @<rarrow@> @<inf@>, we have  under H@<sub@>@(0@)
+@<Disp@>@((R-E(R))/sqrt(Var(R)) ~ AN(0,1).@)
+@)
+<p>
+@<Pf@>@(Not to be done in this course.@)
+
+@<Tail@>
+@}

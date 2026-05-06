@@ -1,0 +1,251 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SEQ2@}
+@O@<seq2.html@>==@{
+@<Head@>@(??@,Some applications@)
+
+
+@<Section@>@(Statistical quality control@)
+<p>@<Exercise@>@(1@,
+Suppose that
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@)@)
+are iid Bern(p). We want to test
+@<Disp@>@(H@<sub@>@(0@): p = 0.9 Vs H@<sub@>@(1@): p = 0.2@)
+Derive a 5% test. Decide upon n large enough to ensure power = 0.99.
+@)
+<p>
+Here is a real life situation where you might like to do such a test.
+<p>@<Exercise@>@(2@,
+Items are manufactured in a production line. The machine can be in one of
+two possible modes: correct or faulty. From prior information we know that
+the machine is in the faulty mode with probability 0.1. We produce items
+in lots of 20. Thus, for all the 20 items the machine is in the same
+(unknown) mode.
+When in the correct mode the items
+are OK with probability 0.9. In the faulty mode the items are
+OK with probability 0.2. We assume that the items are iid. Each item has
+production cost Rs 5. You are the quality control official. As the items
+are coming out you have to pick them up and perform a test to determine if
+the production mode is faulty or not.
+Every time you test the quality of an item this
+amount is lost (the test is destructive). Similarly, if an item is faulty
+then it cannot be sold, so again the production cost is lost. Your job
+therefore is to test the first few items and based on that to estimate the
+mode of the machine. If you guess that the machine is in faulty mode, you
+will stop the production. 
+@)
+
+This is the crucial idea behind a statistical quality control problem. You
+need to stop the production as soon as possible.
+
+@<Subsection@>@(Tracking problem@)
+Sequential statistics is very useful in tracking problems where we want to
+draw inference about a parameter that is changing over time. We can of
+course, consider such a changing parameter as a function-valued parameter,
+and try to estimate the entire function. However, often the "changing
+parameter" approach is easier to work with than the "function-valued
+parameter" approach. In the SQC problem, the changing parameter is p, the
+probability that the machine produces a defective item. We want to detect
+the moment when p crosses some danger threshold. We assume that p varies
+slowly. In particular it hardly changes while we are drawing a sample of
+size n. (It may change appreciably before we draw the next sample of size
+n.) 
+
+<p>In this context one talks about the Operating Characteristic (OC)
+curve. Suppose that our sample sizes are n. We plan to ring the alarm bell
+if the sample contains c or more defective items. Ringing the alarm bell
+corresponds to rejecting the null hypothesis that the p is within the
+proper limit. Obviously P(accept) is a function of p (as well as n and c,
+which are keeping fixed). The plot of P(accept) against p is called the OC
+curve for the given (n,c) pair. As we change (n,c) we get a family of OC
+curves. 
+
+<p>@<Exercise@>@(3@,
+Plot the OC curve for n=10 and c=4.
+@)
+
+
+@<Section@>@(Secretary problem@)
+In real life we often have to choose the best among some available
+options. In certain situations the options present themselves one by one,
+and you have to choose an option the moment it comes. If you reject the
+option, then the option goes away for ever. A classical simplified version
+of the problem is given below.
+<p>@<Example@>@(
+The managing director(MD) of the firm is hiring a secretary. n applicants
+have appeared, and they are to be interviewed one by one. Each candidate is
+to be told <i>right after</i> her interview if the she has been selected
+or not. If she is not selected then she will go away and cannot be
+contacted later. The MD wants to select the best girl. The question is how
+should the MD maximise the chance of his getting the best applicant?
+@)
+Sometimes this problem is easier to think about in the following form.
+<p>@<Example@>@(
+Suppose that I have n pieces of papers with some real number written on
+each piece. The numbers are all distinct, but you have no idea about the
+range of the values. The papers are all shuffled together and are shown to
+you 
+one by one in some random order. Suppose that the first number turns out
+to be 2.6. You have to 
+say if you think it is the largest number. Of course, you have no way to
+be certain. If you say "Yes" then the game is over. If 2.6 is indeed the
+largest number, I'll pay you Rs100, else you'll pay me the same
+amount. <p>
+Now let's pretend that you say no. Then the next number is shown to
+you. Suppose it is 1.2. You have to say if this is the
+largest. Well, this time you are sure that the answer is "no", since you
+have already seen a larger number, viz., 2.6. After you say "no", the
+third number is shown to you, say, 100.5. If you say "yes" now the game
+will be over and you'll pay me Rs100 or I'll pay you Rs 100 depending on
+whether 100.5 is really the largest or not.<p>
+In this way, you are shown the numbers one by one until you say "yes" at
+some some step. If you never say "yes" then also you lose (i.e., you pay
+Rs 100 to me.)<p>
+How should you play?
+@)
+
+Here are a couple of exercises to warm you up.
+<p>@<Exercise@>@(4@,
+Suppose that you have n = 10. Consider the strategy:
+@<Disp@>@(Always select the third applicant.@)
+Find the probability of success of this strategy.
+@)
+<p>
+In fact, it is stupid strategy, since if the first/second applicants were
+already better than the third one, then there is no point in choosing the
+third girl. This reasoning works in general, motivating the following
+definition.
+<p>
+@<Defn@>@(
+Call the k-th applicant a <i>candidate</i> if she beats all her precedents.
+@)
+Note that whether an applicant is a candidate or not depends on the order
+the applicants are interviewed. 
+<p>@<Example@>@(
+The first applicant is always a candidate.
+If the applicants happen to arrive in decreasing order of merit, then she
+is the only candidate. On the other hand, if they arrive in increasing
+order of merit, then every one is a candidate.
+@)
+<p>
+First notice that the only important point is th ranking of the numbers,
+which is a random permutation.
+<p>@<Example@>@(
+The numbers
+@<LabDisp@>@((*)@,-2.3, 2.9, 0.1, 100.6@)
+have the ranking
+@<Disp@>@(1,3,2,4@)
+This is also the ranking of 
+@<LabDisp@>@((**)@,200, 500, 10, 201@)
+Thus any strategy that wins for (*) also wins for (**), and vice
+versa. Hence we can ignore the exact numbers and work with only the ranks.
+@)
+
+<p>@<Example@>@(
+Suppose out permutation is
+@<Disp@>@(2, 1, 5, 3, 4@)
+This permutation unravels itself step by step as follows.
+@<Disp@>@(1<br>
+2 1<br>
+2 1 3<br>
+2 1 4 3<br>
+2 1 5 3 4@)
+Of course, you do not get to see up to the end of this sequence if you say
+"yes" at some stage. Note that at step k we have a permutation of
+{1,...,k}. This is the relative ranking of the k numbers <i>seen so
+far</i>.
+@)
+<p>@<Exercise@>@(5@,
+Get the sequence of permutations for
+@<Disp@>@(6 1 5 3 2 4@)
+@)
+
+<p>
+@<Defn@>@(Define
+@<Disp@>@(S@<sub@>@(n@) = the set of all n! permutations of {1,...,n}@)
+@)
+
+<p>
+@<Defn@>@(
+Let p be a permutation in S@<sub@>@(t@) and let q be a permutation in
+S@<sub@>@(u@), for some u  &gt; t. Call q a <i>follower</i> of p if the
+first t entries of q has ranking p.
+@)
+<p>@<Example@>@(
+(1,3,2) is a follower of (1,2), but not of(2,1).
+@)
+<p>@<Exercise@>@(6@,
+If p is in S@<sub@>@(t@), how many followers does it have in
+S@<sub@>@(t+1@)? Does this number depend on p?
+@)
+<p>@<Exercise@>@(7@,
+Suppose at step 5 we have the following permutation
+@<Disp@>@(5 3 1 2 4.@)
+List all the possible permutations that you can see at step 6.
+@)
+
+<p>@<Example@>@(
+Consider the following tree showing all the possible permutation sequences
+with n=3.
+
+@<Img@>@(tree0.gif@)
+
+This gives all the ways that the game can progress. At each node
+(including the leaf nodes) you have two choices : yes or no. If yes, then
+the game stops and payoffs are calculated, if no, one the branches is
+chosen at random and you move to the next node (a "no" at a leaf node,
+results in your losing the game.)
+@)
+
+<p>@<Exercise@>@(8@,
+Draw the tree for n=4.
+@)
+<p>Any strategy that we may use can be expressed as a subtree of this
+tree. 
+<p>@<Example@>@(
+Consider the strategy that always chooses the 2nd number. This corresponds
+to the following subtree. The greyed out part of the original tree is
+never seen by the player. 
+
+@<Img@>@(treegray.gif@)
+@)
+<p>@<Exercise@>@(9@,
+Does the following subtree correspond to any valid strategy? Why or why
+not.? 
+@<Img@>@(treegray1.gif@)
+@)
+
+<p>@<Exercise@>@(10@,
+Here is a strategy: choose the second candidate, if there is any, else
+select the last one.
+For n=4 show this as a subtree.
+@)
+
+<p>@<Exercise@>@(11@,
+Consider the following tree. Suppose you say "yes" at the red node. What
+is the chance of winning? What is the chance of winning if you say "yes" at
+the green node?
+
+@<Img@>@(rgtree.gif@)
+@)
+
+<p>Computing the chance of winning if you say "yes" is easy, because the
+game does not progress any further. But the chance of win if you say "no"
+is slightly trickier because the game is not yet over. So you need to take
+into account the best that you can do in the future. This is systematically
+done using <i>backward induction</i>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+@<Tail@>
+@}

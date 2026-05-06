@@ -1,0 +1,386 @@
+@p maximum_output_line_length = 200
+@i main
+
+@$@<Label@>==@{BOOT1@}
+@$@<True@>@M==@{Law(T(F,<u>X</u>); F)@}
+@$@<Ideal@>@M==@{Law(T(F<sup>*</sup>,<u>X</u>); F<sup>*</sup>)@}
+
+@O@<boot.html@>==@{
+@<Head@>@(??@,Bootstrap@)
+<h3>Introduction</h3>
+<b>Set up:</b> We have data <u>X</u> from unknown (joint) distribution
+F. We want to compute (some aspect of) the distribution of the random variable
+T(F, <u>X</u>) possibly involving both the unknown distribution and the
+data. 
+T is a known <i>function</i>. We shall denote this distribution as
+@<Disp@>@(Law(T(F,<u>X</u>); F),@)
+the second occurence of F signifying the fact that <u>X</u> is distributed
+as F. It is not difficult to see that any statisitical inference problem
+(parametric/nonparametric) may be cast into this form.
+
+<p>@<Example@>@(Suppose that X<sub>1</sub>,...,X<sub>n</sub> are iid
+with common distribution F. Let @<theta@> be mean(F). We want to estimate F by
+the median, M, of X<sub>i</sub>'s. Suppose we are interested in knowing the
+MSE of this estimator, ie,
+@<Disp@>@(E (M(<u>X</u>)-@<theta@>)<sup>2</sup>@)
+This is a function the distribution of the random variable
+@<Disp@>@(T(F,<u>X</u>) = M(<u>X</u>)-@<theta@>(F)@)@)
+
+
+<h3>The bootstrap idea</h3> 
+Note that <u>X</u> is already given to you, so if you know F then you can
+always compute Law(T(F,<u>X</u>); F) in principle, since T is a known
+function. If direct computation turns out to be too complicated, we may
+approximate Law(T(F,<u>X</u>); F) by simulation from F. 
+However, this is never
+going to happen in practice because if you already <i>know</i> F, why on
+earth would you ever think of <i>estimating </i> its mean? So the entire
+subject of statistical inference revolves around the issue of computing 
+Law(T(F,<u>X</u>); F) when F is unknown.  Parametric statistical inference
+solves this problem by assuming that F is known except for finitely many
+unknown constants. Classical non-parametric statistics (i.e., the methods
+we have learned so far in this course) looks for distribution-free
+techniques, i.e., situations where  Law(T(F,<u>X</u>); F) is completely known 
+even though F is not. The idea is that somehow the two occurences of F in
+Law(T(F,<u>X</u>); F) cancel each other out. 
+<p>@<Example@>@(
+Let X@<sub@>@(1@),...,X@<sub@>@(n@) be iid continuous unknown F with
+median @<theta@>(F). Define 
+@<Disp@>@(T(F,<u>X</u>) = sign test statistic based on
+(X@<sub@>@(i@)-@<theta@>(F))'s@) 
+Then 
+@<Disp@>@(Law(T(F,<u>X</u>); F) = Binomial(n,1/2),@)
+free of F.
+@)
+<p>This is a smart technique, but the trouble is that there are many
+situations where such distribution-free technique is not known to
+exist. Even 
+when one does exist, it often fails to utilise the entire data (e.g., 
+it is
+based only ranks or signs, and not the actual values.) 
+<p>
+Now we are going to learn about a third method called <b>bootstrapping</b>
+that lets us approaximate 
+@<Disp@>@(Law(T(F,<u>X</u>); F)@)
+where F is unknown in even non-distrn-free situations. Thus, 
+bootstrapping is a method that lets you have the advantage of knowing F,
+even when you actually do not know it. Here's the idea:
+
+<blockquote>
+<table bgcolor="#cccccc">
+<tr><td>Try to approximate F by some
+distribution F* (may depend on the data <u>X</u>) that  
+<ol>
+<li>is "close" to F
+<li>is <i>completely</i> known 
+<li>can be easily simulated from. 
+</ol>
+Use F* as a proxy for F.
+</table>
+</blockquote>
+
+Thus, instead of computing @<True@> we actually compute @<Ideal@>. Note
+that @<Ideal@> is a <i>known</i> function of <u>X</u>. So at least in
+principle we can compute it for any given <u>X</u>. This is called the
+<b>ideal bootstrap distribution</b>. In practice, however, even @<Ideal@>
+may be very complicated. So then we can simulate <u>X</u><sup>*</sup> from
+F<sup>*</sup>, and approximate @<Ideal@> by a histogram. This called 
+<b>empirical bootstrap distribution</b>. 
+
+<h3>Parametric bootstrap</h3>
+This is a trivial example just to illustrate ideas. Suppose <b>X</b>
+consists of X<sub>1</sub>,...,X<sub>200</sub> iid 
+N(@<mu@>,@<sigmasqd@>),
+@<mu@> and  @<sigmasqd@> being
+unknown. 
+
+
+<p>Estimate @<mu@>, @<sigmasqd@> from the data as @<xbar@> and
+S<sup>2</sup>. Take F<sup>*</sup> = N(@<xbar@>,S<sup>2</sup>).
+Clearly it is completely known and easy to simulate from.
+<p>@<Exercise@>@(1@,
+Compute the idea bootstrap estimate of the bias of @<xbar@> for
+@<mu@>,i.e.,
+@<Disp@>@(E(@<xbar@>-@<mu@>).@)
+Also, compute the ideal bootstrap estimate of the MSE.
+@)
+<p>Of course, we would never do bootstrap for this problem, because here
+we could have done direct computation. It was only for didactic purpose.
+The next exercise is slightly more nontrivial.
+<p>@<Exercise@>@(2@,
+Suppose that X@<sub@>@(1@),...,X@<sub@>@(1000@) are iid
+N(0,@<sigmasqd@>). We want to estimate E(X@<sub@>@(1@)<sup>4</sup>) by 
+@<Disp@>@(@<Sum@> X@<sub@>@(i@)<sup>4</sup>/1000.@)
+Compute the ideal bootstrap estimate of its MSE. If that seems too
+complicated, then simulate to get emipirical bootstrap estimate.
+@)
+
+<h3>Nonparametric bootstrap</h3>
+This is by far the most common form of bootstrap. Many people mean
+only this when they talk about bootstrap. 
+<h4>Simplest case</h4>
+<p>Let us consider the simplest case of nonparametric bootstrap. Here
+<u>X</u> consists of  X@<sub@>@(1@),...,X@<sub@>@(n@)
+ iid from some unknown F. We know
+nothing about F. One popular choice of F* here is F<sub>n</sub>, the
+empirical 
+distribution function, defined as follows.
+
+@<Disp@>@( F<sub>n</sub>(x) = (# X<sub>i</sub>'s <= x)/n@)
+
+ Let us check if  F<sub>n</sub> satisfies the three
+conditions above.
+<p>
+<dl>
+<dt><font color="#cc0000"><u>Close to F ?</u></font>
+<dd> The following results are well known about the
+proximity of  F<sub>n</sub> to F.
+
+<p>@<Exercise@>@(3@,
+Prove the following theorem.
+@)
+
+<p>@<Thm@>@(For any number c,  F<sub>n</sub>(c) ~
+AN(F(c),F(c)*(1-F(c))/n). <br>Here AN means "asymptotically normal."@)
+
+<p>@<Thm@>@((Glivenko-Cantelli)</b> sup {| F<sub>n</sub>(c) - F(c)| :c
+in R} --> 0 ae.@) 
+<p>@<Pf@>@(Shall not prove in this course.@)
+
+<dt><font color="#cc0000"><u>Completely known ?</u></font>
+<dd> F<sub>n</sub> is completely known, since it is just a function of the
+ data. 
+
+ <dt><font color="#cc0000"><u>Easy to simulate ?</u></font>
+ <dd> 
+<p>@<Exercise@>@(4@,
+Suggest an algortihm to simulate iid from F@<sub@>@(n@). In particular,
+show that if x is a vector of length n storing the original sample then
+the Matlab code 
+@<Ms@>@(
+bootData = x(unidrnd(n,1,n));@)
+fills up the vector bootData with n iid sample from F@<sub@>@(n@).
+@)
+<p>
+A sample of size n drawn from F@<sub@>@(n@) is called a <b>resample</b>. 
+In S-plus the function 
+@<F@>@(sample@) lets you draw
+ such a sample (read its help to learn how!) 
+<p>@<Exercise@>@(5@,
+The file <a href="boot.txt">boot.txt</a> 
+has a sample of size 1000. Draw 100
+resamples each of size 1000. Make the histogram of the 100 (5%-)trimmed
+means. Actually, the data came from N(0,1) distribution. Generate 100
+samples (each of size 1000) from N(0,1), compute (5%-)trimmed means
+for each of these samples, and draw the histogram of the 100 trimmed
+means. Compare with the bootstrap histogram. 
+@)
+
+ Both S-plus and Matlab have more sophisticated functions to
+ perform bootstrapping. We shall learn about them in due course.
+ </dl>
+
+<p>@<Exercise@>@(6@,
+Suppose that we have some iid data of size n. R(<u>X</u>) is an estimator
+for @<theta@>, which is some parameter
+of interest. Write down the algorithm for computing empirical nonparametric 
+bootstrap estimates of bias, variance and MSE of R(<u>X</u>). 
+@)
+
+<p>@<Exercise@>@(7@,
+Estimate mse, bias and variance of the sample median based on the sample
+stored in the file <a href="boot2.txt">boot2.txt</a>.
+@)
+
+<h3>Working like a pro</h3>
+Now, bootstrapping is such a popular method, that it is only expected that
+S-plus/Matlab will provide special functions to write the above code more
+compactly. Indeed, S-plus provides a function called 
+@<F@>@(bootstrap@)
+to implement 
+the loop in the bootstrap flowchart. If we have a function called, say,
+myStatistic(data), that computes T from data, then the code
+@<Sf@>@(
+> bootVal <- bootstrap(data, 1000, myStatistic)@)
+
+will perform the above loop and store various relevant things in the
+variable @<F@>@(bootVal@). Here 1000 is the number of bootstrap
+resamples drawn. In particular, bootVal$replicates will
+store T<sub>i</sub>'s. Type 
+@<Ss@>@(
+> names(bootVal)@)
+
+to see what other info @<F@>@(bootVal@) stores. 
+
+
+<p>Though the @<F@>@(bootstrap@) function is easy to use, it is
+important to be able to write your own code for bootstrap. This is because
+there are certain scenarios where the standard function cannot be used. We
+shall take a look at one such case in a later lecture.
+
+<p>Matlab has a similar function called @<F@>@(bootstrp@) 
+(no 'a' !). However, we prefer S-plus for
+bootstrapping, because S-plus provides some nice supporting
+routines for bootstrap for computing various related quantities.
+
+<p>@<Exercise@>@(8@,
+We have some iid data, and some statistic T and a parameter @<theta@>.
+Suggest how we can use bootstrapping to estimate
+@<Disp@>@(P(sqrt(n)*(T-@<theta@>))  &lt; a,@)
+for some given number a.<br>
+<i>[Hint: If the underlying distribution is F, then @<theta@> =
+@<theta@>(F). @<theta@> is a known function.]</i>
+@)
+<p>@<Exercise@>@(9@,
+suppose that we want to estimate standard error of sample mean based on
+iid data
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@).@)
+Let R(<u>X</u>;B) be the empirical bootstrap estimator based on B resamples.
+Does R(<u>X</u>;B) converge as B goes to infinity?
+@)
+
+
+<p>@<Exercise@>@(10@,
+Draw a resample of size n from
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@),@)
+The X@<sub@>@(i@)'s are all  distinct.
+ What is the chance that X@<sub@>@(1@) is not
+in the resample? Find the limit as n goes to infinity.
+@)
+<p>@<Exercise@>@(11@,
+Suggest how you can use bootstrapping to get CI for a parameter. 
+@)
+
+@<Section@>@(Trouble with bootstrap@)
+The bootstrap intuition relies on the hope that if F<sup>*</sup> is close
+to F, then @<Ideal@> is close to @<True@>. Unfortunately, this is not
+always true. One such case is given below.
+<p>@<Exercise@>@(12@,
+Suppose that we have an iid data from Unif(0,@<theta@>). Compute mle
+@<thetahat@>. We want to compare 
+@<Disp@>@(@<Ideal@> with @<True@>,@)
+where
+@<Disp@>@(T(F,<u>X</u>) = @<thetahat@>(<u>X</u>)@)
+Suppose that for a particular dataset of size n, the maximum is 1.97. 
+Compute true P(@<thetahat@> = 1.97), and also ideal bootstrap estimator of
+the same quantity. Take limit of both as  n goes to infinity.  Do they
+match?
+What is the implication?
+@)
+
+@<Section@>@(More general set up@)
+So far we have performed bootstrapping only for univariate iid data. It is
+possible to do bootstrapping for general data. 
+@<Subsection@>@(Multivariate iid data@)
+It is easy to
+generalise to multivariate set up. 
+<p>@<Exercise@>@(13@,
+Suppose we have paired data
+@<Disp@>@((X@<sub@>@(1@),Y@<sub@>@(1@)),...,(X@<sub@>@(n@),Y@<sub@>@(n@)),@)
+such that the n pairs are iid some bivariate F(x,y) having correlation
+coefficient @<theta@>. We plan to estimate @<theta@> by the sample
+correlation coefficient @<thetahat@>. Suggest how you may use boostrapping
+to estimate bias, variance, MSE of @<thetahat@>.
+@)
+@<Digress@>@(Pricipal Component Analysis (PCA)@)
+Suppose that 
+@<Disp@>@(<u>X</u>@<sub@>@(1@),...,<u>X</u>@<sub@>@(n@)@)
+are iid k-dimensional random vectors with mean 0 and variance matrix A.
+Then for any fixed vector v, the random variable
+@<Disp@>@(v'<u>X</u>@)
+has mean 0 and variance @<sigmasqd@>(v) = v'Av. Let v be some unit
+vector. Then v'<u>X</u> is the projection of <u>X</u> along v. 
+If @<sigmasqd@>(v) is large then we would expect a large scatter of
+<u>X</u> along v. Thus, the value of @<sigmasqd@>(v) for different unit
+vectors v, provide an idea about the structure of the multivariate
+distribution of <u>X</u>. 
+<p>PCA is a systematic approach towards finding the v which maximises
+@<sigmasqd@>(v). Then it finds w to maximise @<sigmasqd@>(w) among all w
+orthogonal to v, and so on.<p>
+The technique is simple and based on the following theorem.
+<p>@<Thm@>@(
+If A is any positive definite matrix with eigen values 
+@<Disp@>@(@<theta@>@<sub@>@(1@) @<Geq@> ... @<Geq@>
+@<theta@>@<sub@>@(k@)@)
+and corresponding unit eigen vectors 
+@<Disp@>@(v@<sub@>@(1@),...,v@<sub@>@(k@),@)
+then 
+v@<sub@>@(1@) maximises @<sigmasqd@>(v). In general, 
+v@<sub@>@(i@) maximises @<sigmasqd@>(v) over all v orthogonal to
+@<Disp@>@(v@<sub@>@(1@),...,v@<sub@>@(i-1@).@)
+Also, @<sigmasqd@>(v@<sub@>@(i@)) = @<theta@>@<sub@>@(i@). 
+@)
+<p>@<Pf@>@(You should know from B-I.@)
+<p>
+PCA proceeds just by computing the eigen values of the sample variance
+matrix, S, say. 
+@<DigressOver@>
+<p>@<Exercise@>@(14@,
+Consider the PCA set up as given above. Let the PCA algorithm produce 
+v@<sub@>@(1@) as the maximiser of @<sigmasqd@>(v). Note that v@<sub@>@(1@)
+is itself a random vector. We want to estimate its variance
+matrix. Suggest how you may use bootstrapping here. 
+@)
+@<Subsection@>@(Bootstrap for non-iid data@)
+It is possible to do bootstrap for non-iid data like time series. We shall
+consider a regression situation. Suppose that we have two variables X and
+Y related by the following formula:
+@<Disp@>@(Y = a+b*X + error,@)
+errors are iid with some unknown F.
+We take some <i>fixed</i> values 
+@<Disp@>@(x@<sub@>@(1@),...,x@<sub@>@(n@)@)
+for X, and observe Y to get the data
+@<Disp@>@(Y@<sub@>@(1@),...,Y@<sub@>@(n@).@)
+Assume that the errors are iid. Let ahat and bhat denote the 
+(least square or whatever)
+estimators of a and b. Here the data Y@<sub@>@(i@)'s are not iid (they are
+indep, but not identically distributed.) So here we perform bootstrap as
+follows.
+We first compute the residuals as
+@<Disp@>@(R@<sub@>@(i@) = Y@<sub@>@(i@) - ahat - bhat*x@<sub@>@(i@),@)
+Then we approximate F by the empirical distribution, F@<sub@>@(n@), of
+these. Finally we 
+approximate the distribution of Y@<sub@>@(i@) by that of 
+@<Disp@>@(ahat + bhat*x@<sub@>@(i@) + error<sup>*</sup>,@)
+where error<sup>*</sup> ~  F@<sub@>@(n@).
+This is called <b>bootstrapping the residuals</b>.
+<p>@<Exercise@>@(15@,
+As you might have guessed from the above description, computing the ideal
+boostrap distribution is very difficult. So we have to go for the
+empirical bootstrap distribution. Suggest how to compute empirical
+bootstrap estmate for MSE of ahat.
+@)
+<p>@<Exercise@>@(16@,
+So now you have two ways to perform empirical bootstrap in a regression set up:
+<ul>
+<li>Draw a resample of (x@<sub@>@(i@),Y@<sub@>@(i@))'s (just as for the
+sample correlation problem above.)
+<li>Bootstrap the residuals.
+</ul>
+Discuss merits and demerits of either over the other.
+<br>@<Hint@>@(
+While bootstrapping the residuals we pretend that the residuals are iid,
+but they are not (though the original errors were), since to compute the
+i-th residual we have used ahat, bhat that were obtained from all the data
+points, not just the i-th one. On the other hand, bootstrapping the
+original data suffers from no such approximation problem.<p>
+
+However, since the x's are fixed, it is not very meaningful to resample
+them. Consider for example a design of expts situation:
+@<Disp@>@(Y@<sub@>@(ij@) = @<mu@> + @<alpha@>@<sub@>@(i@) +
+@<epsilon@>@<sub@>@(ij@) i=1,...,5, j=1,...,10.@)
+Thus there are 5 groups with 10 observations from each. 
+Here the design matrix X has rows like 
+@<Disp@>@((1,e@<sub@>@(i@)')@)
+where the 5-dim vector e@<sub@>@(i@) has a 1 in the i-th position and 0
+elsewhere. This row corresponds to the i-th group. 
+These are our x's. If we resample from these we may very well not have any
+data from some group making it impossible to estimate @<alpha@> for that
+group based on the resample. But if we bootstrap the residuals, there is no
+such problem.
+
+@)
+@)
+ 
+@<Tail@>
+@}

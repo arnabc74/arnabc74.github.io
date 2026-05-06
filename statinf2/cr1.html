@@ -1,0 +1,352 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Sequential Cramer-Rao Bound</h1>
+
+
+
+
+<h3>Cramer-Rao Lower Bound</h3>
+
+Consider the following fixed sample size case. Suppose we have iid data 
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>n</sub>
+</blockquote>
+
+from some distribution involving a real-valued parameter &theta;. We
+assume that the "usual regularity conditions" hold. Let I(&theta;)
+denote Fisher's Information per observation. 
+
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+<b>(Fixed sample size Cramer-Rao bound)</b>
+If U<sub>n</sub> is any unbiased estimator of &theta; based on the
+sample of size n, then 
+
+<blockquote>
+Var(U<sub>n</sub>) 
+                   <img src=
+                   "resources/geq.png"
+                   align=top>
+                   
+                    1/(n*I(&theta;)).
+</blockquote>
+
+
+</td></tr></table>
+
+
+We want to extend this to the following theorem of sequential statistics.
+
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+<b>(Sequential Cramer-Rao bound)</b>
+Let U<sub>T</sub> be some sequential unbiased estimator of &theta; based
+on stopping time T. We assume E(T) is finite. Then 
+
+<blockquote>
+Var(U<sub>T</sub>) 
+                   <img src=
+                   "resources/geq.png"
+                   align=top>
+                   
+                    1/(E(T)I(&theta;)).
+</blockquote>
+
+
+</td></tr></table>
+
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+Shall do a bit later.
+<img src="resources/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+
+<h4>Sequential estimation</h4>
+
+To make sense out of the theorem, we need to understand sequential
+estimation. Suppose that we have iid data
+X<sub>1</sub>,X<sub>2</sub>,... and some stopping time T. Then a sequential
+estimator is a function of X<sub>1</sub>,...,X<sub>T</sub>. Notice that
+randomness enters into it in two ways: first through the X's, second
+through the random sample size, T.
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   <b>(Haldane's inverse sampling)</b>
+   Suppose that we have a population of objects each of which belongs to
+   exactly one of two classes: A and not-A. The proportion of A's in the
+   population is &theta;, the unknown parameter that we want to
+   estimate. 
+   <p>
+   One simple approach is to draw a sample of size n, and estimate &theta;
+   by  the proportion of A's
+   in the sample. But if &theta; is too small then we may not have any A at
+   all in the sample, producing poor estimate of &theta;.
+   <p>
+   Haldane proposed the following sampling scheme to cope with this
+   situation. It is called <i>inverse sampling:</i>
+   
+   <blockquote>
+   Go on sampling the objects with replacement until you get an
+   A. This is a stopping time. Call it T. Then use 1/T to estimate &theta;.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.1:</font></b> 
+   
+   Work out the distribution of T. Hence show that 1/T is biased for &theta;.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.2:</font></b> 
+   
+   Show that T is unbiased for 1/&theta;. 
+   <br>
+       <i>[Hint:
+       
+       You may do it either directly, or by using Wald's first equality.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<!Problem idea: Sample until you get 2. Use 2/T.>
+
+Any sequential estimator, U<sub>T</sub>, is actually made of two things: a
+stopping time, T, that is finite with probability 1,
+and a sequence of estimators {U<sub>n</sub>, n 
+                                               <img src=
+                                               "resources/geq.png"
+                                               align=top>
+                                               
+                                                1}. If for a
+given sequence we stop at T=n, then we apply U<sub>n</sub>. 
+
+<p>As for any estimator, we call U<sub>T</sub> an unbiased estimator of
+&theta;, if 
+
+<blockquote>
+E(U<sub>T</sub>) = &theta;.
+</blockquote>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.3:</font></b> 
+   
+   Suppose that the density of the X's is f<sub>&theta;</sub>(x). 
+   Then show that 
+   U<sub>T</sub> is unbiased for &theta; if and only if
+   
+   <p><center>
+   <img src="resources/unb.png">
+   </center><p>
+   
+   for all &theta;.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Proof of Sequential Cramer-Rao Bound</h4>
+
+Define 
+
+<blockquote>
+W = d log(f<sub>&theta;</sub>(X))/d &theta;
+</blockquote>
+
+Notice that 
+
+<blockquote>
+E(W<sup>2</sup>) = I(&theta;).
+</blockquote>
+
+Define, for all n,
+
+<blockquote>
+V<sub>n</sub> =W<sub>1</sub>+...+W<sub>n</sub>.
+</blockquote>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.3:</font></b> 
+   
+   Show that 
+   
+   <p><a name="(1)">
+   <table><tr>
+   <td width=50 align=left>(1)</td>
+   <td width=5></td>
+   <td width=1 bgcolor="#000000"></td>
+   <td>
+   E(U<sub>T</sub>*V<sub>T</sub>)) = 1
+   </td></tr></table></a><p>
+   
+   for all &theta;.
+   <br>
+       <i>[Hint:
+       
+       Differentiate both sides of the identity in the last exercise wrt
+       &theta;. Assume regularity conditions to perform differentiation 
+       under the integral.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.5:</font></b> 
+   
+   Show by assuming suitable regularity conditions that E(W)=0.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.6:</font></b> 
+   
+   Show that 
+   
+   <p><a name="(2)">
+   <table><tr>
+   <td width=50 align=left>(2)</td>
+   <td width=5></td>
+   <td width=1 bgcolor="#000000"></td>
+   <td>
+   E(V<sub>T</sub>) = 0.
+   </td></tr></table></a><p>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.7:</font></b> 
+   
+   Show that 
+   
+   <p><a name="(3)">
+   <table><tr>
+   <td width=50 align=left>(3)</td>
+   <td width=5></td>
+   <td width=1 bgcolor="#000000"></td>
+   <td>
+   E(V<sub>T</sub><sup>2</sup>) = E(T) I(&theta;).
+   </td></tr></table></a><p>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.8:</font></b> 
+   
+   Use (1), (2) and (3) above to complete the proof.
+   <br>
+       <i>[Hint:
+       
+       Use Cauchy-Schwartz inequality.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Haldane's method and CR bound</h4>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CR1.9:</font></b> 
+   
+   Consider Haldane's inverse sampling method. Let us use 
+   
+   <blockquote>
+   U<sub>T</sub> = T
+   </blockquote>
+   
+   to estimate 1/&theta;. Show that U<sub>T</sub> attains the CR bound.
+   <br>
+       <i>[Hint:
+       
+       Enough to show that equality holds in the CS inequality used in the proof
+       above.
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+However, it has been shown (though we shall not do so here) that Haldane's
+method is the <i>only</i> sequential estimator that attains this bound!
+
+
+ 
+
+<hr>
+
+</body>
+</html>
+

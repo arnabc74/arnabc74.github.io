@@ -1,0 +1,411 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Density estimation I</h1>
+
+
+
+
+<h3>Introduction</h3>
+
+Suppose we have data
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>n</sub> iid with unknown continuous
+density f.
+</blockquote>
+
+We want to estimate f. Our estimator will be random function,
+
+<blockquote>
+<img src="image/fhat.png" align=top>(X<sub>1</sub>,...,X<sub>n</sub>;x),
+</blockquote>
+
+where x is the point where the estimated density is being evaluated. Often
+we shall not show its dependence on the data explicitly and abbreviate it to
+just <img src="image/fhat.png" align=top>(x). 
+
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   
+   Call <img src="image/fhat.png" align=top> <i>unbiased</i> if 
+   
+   <blockquote>
+   E(<img src="image/fhat.png" align=top>(x)) = f(x) for all f and all x.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   If <img src="image/fhat.png" align=top>(x) 
+                                              <img src=
+                                              "resources/statinf2/geq.png"
+                                              align=top>
+                                              
+                                               0 for all x, the <img src="image/fhat.png" align=top> cannot be unbiased.
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   
+   Let if possible there exist some <img src="image/fhat.png" align=top> which is both nonnegative and
+   unbiased. Consider the the order statistics (o.s.) 
+   
+   <blockquote>
+   X<sub>(1)</sub> 
+                   <img src=
+                   "resources/statinf2/leq.png"
+                   align=top>
+                   
+                    ... 
+                        <img src=
+                        "resources/statinf2/leq.png"
+                        align=top>
+                        
+                         X<sub>(n)</sub>
+   </blockquote>
+   
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise DENS.1:</font></b> 
+      
+      Show that o.s. is sufficient. 
+      
+      </td></tr></table>
+      </blockquote>
+      
+   
+   Define 
+   
+   <blockquote>
+   <img src="image/ftilde.png" align=top>(x) = E(<img src="image/fhat.png" align=top>(x) | o.s.) for all x
+   </blockquote>
+   
+   Notice that by virtue of the last exercise it is indeed a statistic. In
+   particular it is a function of the o.s.
+   <p>For any a,b define
+   
+   <blockquote>
+   P(a,b) = P(X<sub>1</sub> in (a,b))
+   </blockquote>
+   
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise DENS.2:</font></b> 
+      
+      Show that
+      
+      <blockquote>
+      <img src="image/intft.png" align=center>
+      </blockquote>
+      
+      is an unbiased estimator of P(a,b) for all a,b.
+      
+      </td></tr></table>
+      </blockquote>
+      
+   <p>
+   Let F<sub>n</sub> be the empirical distribution function. 
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise DENS.3:</font></b> 
+      
+      Show that 
+      
+      <blockquote>
+      F<sub>n</sub>(b) - F<sub>n</sub>(a)
+      </blockquote>
+      
+      is another unbiased estimator of P(a,b) for all a,b. Show further that
+      this estimator is a function of the O.S.
+      
+      </td></tr></table>
+      </blockquote>
+      
+   So we have two unbiased estimators of P(a,b) for all a,b:
+   
+   <blockquote>
+   F<sub>n</sub>(b)-F<sub>n</sub>(a) and 
+   <img src="image/intft.png" align=center>
+   </blockquote>
+    
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise DENS.4:</font></b> 
+      
+      Show that O.S. is <i>complete</i> sufficient.
+      
+      </td></tr></table>
+      </blockquote>
+      
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise DENS.5:</font></b> 
+      
+      Hence arrive at a contradiction to complete the proof.
+      
+      </td></tr></table>
+      </blockquote>
+      
+   
+   <img src="resources/statinf2/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+Other than bias, two other quantities relevant here are variance and
+mse. These are defined in the usual way:
+
+<blockquote>
+MSE at x = E((<img src="image/fhat.png" align=top>(x)-f(x))<sup>2</sup>)<br>
+variance at x = var(<img src="image/fhat.png" align=top>(x))
+</blockquote>
+
+
+<p>
+Note that these involve both the unknown density f and the point x. If we
+want to judge the performance of <img src="image/fhat.png" align=top> <i>as a function</i> we define Mean
+Integrated Squared Error (MISE) as
+
+<blockquote>
+MISE = E(integral of (<img src="image/fhat.png" align=top>(x)-f(x))<sup>2</sup>)dx
+</blockquote>
+
+We shall not work with MISE in this course. Here are some popular density
+estimation techniques:
+<ol>
+<li>Histogram-like kernel estimator
+<li>General kernel estimator
+<li>Nearest neighbour/variable width kernel estimators
+<li>Spline estimators
+</ol>
+
+<h3>Histogram-like kernel estimator</h3>
+
+Let x be the point where we want to estimate f. Then define 
+
+<blockquote>
+<img src="image/fhat.png" align=top>(x) = #{X<sub>i</sub>'s with h distance of x}/(2nh)
+</blockquote>
+
+Here h is called the bandwidth, and is chosen appropriately (more on this
+later). The motivation behind this comes from the fact that
+
+<blockquote>
+(F(x+h)-F(x-h))/(2h) 
+                     <img src=
+                     "resources/statinf2/rarrow.png"
+                     align=middle>
+                     
+                      f(x),
+</blockquote>
+
+as h 
+     <img src=
+     "resources/statinf2/rarrow.png"
+     align=middle>
+     
+      0. So we hope that if h is sufficiently small then for
+large n the <img src="image/fhat.png" align=top> will be close to f.
+
+<p>How to choose h? We shall choose it so that the MSE is minimised
+asymptotically. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.6:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   Var(<img src="image/fhat.png" align=top>(x)) = p*(1-p)/(4nh<sup>2</sup>)
+   </blockquote>
+   
+   where p = F(x+h)-F(x-h).
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.7:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   Bias(<img src="image/fhat.png" align=top>(x)) = p/(2*h)-f(x),
+   </blockquote>
+   
+   where p is as in the last exercise.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.8:</font></b> 
+   
+   Expand F in Taylor series around x and show that
+   
+   <blockquote>
+   
+   p = 2h f(x)+h<sup>3</sup> f<sup>(2)</sup>(x)/3 + higher terms.
+   
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.9:</font></b> 
+   
+   Hence conclude that bias is of order O(h<sup>2</sup>) and variance is of
+   order O&nbsp;(1/nh)
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.10:</font></b> 
+   
+   Using the last exercise argue that the lowest order of MSE is achieved
+   when h = O(n<sup>-1/5</sup>). Also show that this lowest order is 
+   O(n<sup>-4/5</sup>).
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+
+<h3>Kernel density estimation</h3>
+
+Let K be a density function symmetric around 0, e.g., N(0,1) density. Then
+check that 
+
+<blockquote>
+K(x; a, h) := K((x-a)/h)/h
+</blockquote>
+
+is also a valid density for any a in R and any h &gt; 0. K(.;a,h) is a
+shifted-scaled version of K. We call K as our kernel. We define the kernel
+density estimator using this kernel as
+
+<blockquote>
+<img src="image/fhat.png" align=top>(a) = 
+                                          <img src=
+                                          "resources/statinf2/sum.gif"
+                                          align=middle>
+                                          
+                                           K(X<sub>i</sub>; a, h)/n.
+</blockquote>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.11:</font></b> 
+   
+   Show that for a particular choice of K, we get the histogram type
+   estimator that we discussed earlier. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.12:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   Var(<img src="image/fhat.png" align=top>(x)) = O(1/(nh))
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.13:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   Bias(<img src="image/fhat.png" align=top>(x)) = O(h<sup>2</sup>)
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Hence the best choice for h is again O(n<sup>-1/5</sup>).
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise DENS.14:</font></b> 
+   
+   Suggest a method to simulate from kernel density estimate.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

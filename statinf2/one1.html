@@ -1,0 +1,574 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>One sample Problem</h1>
+
+
+<h3>Introduction</h3>
+
+So far we have seen the paired sample problem. However, it was effectively
+a one sample problem , since we always worked with the differences
+Z<sub>1</sub>,...,Z<sub>n</sub>. We now restate our findings in the one
+sample problem set up.  
+<p>
+In the one problem set up we have a single sample
+
+<blockquote>
+Z<sub>1</sub>,...,Z<sub>n</sub>
+</blockquote>
+
+where Z<sub>i</sub>'s  are
+ independent, but not necessarily identically distributed. Each
+Z<sub>i</sub> is a continuous variable. They have
+a common median &theta; , which is unknown. We want to test 
+
+<blockquote>
+H<sub>0</sub>: &theta; = 0 
+Vs 
+H<sub>1</sub>: &theta;  &gt; 0
+</blockquote>
+
+
+We have already discussed two test procedures for this. 
+<ul>
+<li><b>Sign test:</b> uses only the signs of Z's. 
+<li><b>Wilcoxon's signed rank test:</b> 
+uses both the signs of Z's as well as the ranks of the |Z|'s. 
+(We need an extra symmetry assumption for this.) 
+</ul>
+
+
+<h3>Estimation</h3>
+
+Suppose we are interested in estimating &theta;. The first estimator
+that comes 
+to mind is the sample median. It is defined as follows. Order the
+Z's as
+
+<blockquote>
+Z<sub>(1)</sub> 
+                <img src=
+                "resources/leq.png"
+                align=top>
+                
+                 ... 
+                     <img src=
+                     "resources/leq.png"
+                     align=top>
+                     
+                      Z<sub>(n)</sub>.
+</blockquote>
+
+ Then define
+the sample median  as 
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+
+<img src=
+"resources/thetahat.png"
+align=top>
+
+ =
+</td>
+<td>
+ Z<sub>(n+1/2)</sub>
+</td>
+<td align=left>
+ if n is odd
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+             
+</td>
+<td>
+ (Z<sub>(n/2)</sub>+Z<sub>(n/2+1)</sub>)/2
+</td>
+<td align=left>
+ 
+if n is even.
+</td>
+</tr>
+
+
+</table>
+
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   Suppose that Z<sub>1</sub>,...,Z<sub>n</sub> are iid with some common 
+   continuous distribution. Then show that 
+                                           <img src=
+                                           "resources/thetahat.png"
+                                           align=top>
+                                           
+                                            is median
+   unbiased for &theta;, i.e.,
+   
+   <blockquote>
+   P(
+     <img src=
+     "resources/thetahat.png"
+     align=top>
+     
+       &lt; &theta;) = 
+   P(
+     <img src=
+     "resources/thetahat.png"
+     align=top>
+     
+       &gt; &theta;).
+   </blockquote>
+   
+   In other words, &theta; is the median of 
+                                            <img src=
+                                            "resources/thetahat.png"
+                                            align=top>
+                                            
+                                            .
+   
+   </td></tr></table>
+   
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+We shall only do the proof when n=odd. The n=even case is similar
+but notationally more involved. Define
+
+<blockquote>
+
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+U<sub>i</sub>= 
+</td>
+<td>
+1
+</td>
+<td align=left>
+ if Z<sub>i</sub>  &gt; &theta;
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+               
+</td>
+<td>
+0
+</td>
+<td align=left>
+ else
+</td>
+</tr>
+
+
+</table>
+
+
+</blockquote>
+
+Then U<sub>i</sub>'s are iid Bern(1/2). The U-vector is distributed
+uniformly over the set A, which consists of all possible 2<sup>n</sup> 
+vectors of 0's and 1's. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.1:</font></b> 
+   
+   Suppose that n=2k+1. Let B 
+                              <img src="resources/subset.png"
+                              align=top>
+                               A consist of all the vectors with at
+   least k+1 0's. Similarly define C 
+                                     <img src="resources/subset.png"
+                                     align=top>
+                                      A consisting of all vectors
+   with at least k+1 1's. Show that 
+   
+   <blockquote>
+   A = B 
+         <img src="resources/union.png">
+          C  and B 
+                   <img src="resources/inter.png">
+                    C = &phi;.
+   </blockquote>
+   
+   Next, show that 
+   
+   <blockquote>
+   P(U-vector in B) = P(U-vector in C)
+   </blockquote>
+   
+   Hence conclude the theorem for n=odd.
+   
+   </td></tr></table>
+   </blockquote>
+   
+For even n, you have first work with n=2. Then for n=2k, split A into 3
+parts, those with at least k+1 1's, those with at least k+1 0's and those 
+with exactly k 0's and 1's. The first two parts may be dealt with as in
+the odd case. The last part needs to split further into two parts using
+the n=2 argument. We shall not go into the details in this course. 
+
+<img src="resources/square.gif">
+</td></tr></table>
+</blockquote>
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   (Bahadur's represenation) Let Z<sub>1</sub>,...,Z<sub>n</sub>
+   be iid with some common continuous density, f. Let &theta; be its
+   median. Assume that f(&theta;)  &gt;  0. Let 
+                                                <img src=
+                                                "resources/thetahat.png"
+                                                align=top>
+                                                
+                                                 denote the
+   sample median based on the sample. Then 
+   
+   <blockquote>
+   
+   <img src=
+   "resources/thetahat.png"
+   align=top>
+   
+    = &theta; +
+   (0.5-F<sub>n</sub>(&theta;))/f(&theta;) + R<sub>n</sub>,
+   </blockquote>
+   
+   for some R<sub>n</sub> where 
+   
+   <blockquote>
+   sqrt(n)*R<sub>n</sub> goes to zero as n goes to infinity.
+   </blockquote>
+    Here
+   F<sub>n</sub> denotes the empirical distributin function of the
+   Z<sub>i</sub>'s. 
+   
+   </td></tr></table>
+   
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+Not to be done in this course.
+<img src="resources/square.gif">
+</td></tr></table>
+</blockquote>
+
+Bahadur's representation has more than one form depending on the
+assumptions made on the distribution of Z's and the order of
+R<sub>n</sub>.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.2:</font></b> 
+   
+   Use the above theorem to show that sample median has an asymptotic normal
+   distribution. Find out the mean and variance of this normal distribution. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Hodges-Lehmann approach</h3>
+
+Here is another method of estimation. This is more general in the sense we
+do not require the Z<sub>i</sub>'s to be identically distributed. This
+approach, called the Hodges Lehmann (HL) approach, is as follows.
+<p>
+Once again consider the Wilcoxon's signed rank test. Let us call its test
+statistic as
+
+<blockquote>
+T(Z<sub>1</sub>,...,Z<sub>n</sub>)
+</blockquote>
+
+Define the function 
+
+<blockquote>
+f(x) = T(Z<sub>1</sub>-x,...,Z<sub>n</sub>-x)
+</blockquote>
+
+Note that f(&theta;) has mean n(n+1)/4. We can interpret this n(n+1)/4 
+as the ideal value for f(&theta;). The HL approach suggests
+estimating &theta; using 
+                         <img src=
+                         "resources/thetahat.png"
+                         align=top>
+                         
+                         <sub>HL</sub> such that 
+f(
+  <img src=
+  "resources/thetahat.png"
+  align=top>
+  
+  <sub>HL</sub>) is close to n(n+1)/4 as possible. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.3:</font></b> 
+   
+   Show that f(x) = 
+   #{(Z<sub>i</sub>+Z<sub>j</sub>)/2  
+   &gt;  x : i  
+                <img src=
+                "resources/leq.png"
+                align=top>
+                
+                 j }.
+   <br>
+       <i>[Hint:
+       
+       Let h<sub>i</sub>=|Z<sub>i</sub>-x|.
+       Define
+       
+       <blockquote>
+       a<sub>ik</sub> = I{|h<sub>i</sub>| 
+                                          <img src=
+                                          "resources/geq.png"
+                                          align=top>
+                                          
+                                           |h<sub>k</sub>|} 
+       I{h<sub>i</sub> &gt; 0}
+       </blockquote>
+       
+       Show that f(x) = 
+                        <img src=
+                        "resources/sum.gif"
+                        align=middle>
+                        
+                        <sub>i,k</sub> a<sub>ik</sub>. Check that 
+       
+       <blockquote>
+       {a<sub>ik</sub>+a<sub>ki</sub> = 1} iff 
+       {(h<sub>i</sub>+h<sub>k</sub>) &gt; 0}
+       </blockquote>
+       
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.4:</font></b> 
+   
+   Show that 
+             <img src=
+             "resources/thetahat.png"
+             align=top>
+             
+             <sub>HL</sub> is the median of the above set.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.5:</font></b> 
+   
+   For symmetric distributions 
+                               <img src=
+                               "resources/thetahat.png"
+                               align=top>
+                               
+                               <sub>HL</sub> 
+   is claimed to outperform the sample median. Do a simple
+   simulation to check this as follows. Generate 1000 samples each of size
+   100 from N(0,1). Compute sample median as well as
+   
+   <img src=
+   "resources/thetahat.png"
+   align=top>
+   
+   <sub>HL</sub> for each of the 1000 samples. Estimate bias,
+   variance and MSE, and compare. Also, plot the two histograms. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+The same approach may also be used to obtain confidence intervals. For
+this order the m = n(n+1)/2 numbers 
+
+<blockquote>
+(Z<sub>i</sub>+Z<sub>j</sub>)/2 for i 
+                                      <img src=
+                                      "resources/leq.png"
+                                      align=top>
+                                      
+                                       j,
+</blockquote>
+
+as 
+
+<blockquote>
+A<sub>1</sub> 
+              <img src=
+              "resources/leq.png"
+              align=top>
+              
+               ... 
+                   <img src=
+                   "resources/leq.png"
+                   align=top>
+                   
+                    A<sub>m</sub>.
+</blockquote>
+
+ Then 
+
+<blockquote>
+f(x) = #{j : A<sub>j</sub>  &gt;  x}
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.6:</font></b> 
+   
+   Show that f(&theta;) is distribution-free, i.e., the distribution of 
+   f(&theta;) does not depend on the distribution of the Z's (not even on
+   the value of &theta;).
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+So we can find an integer k such that 
+
+<blockquote>
+P(k 
+    <img src=
+    "resources/leq.png"
+    align=top>
+    
+     f(&theta;) 
+                <img src=
+                "resources/leq.png"
+                align=top>
+                
+                 m-k) = 0.95.
+</blockquote>
+
+[Since, f(&theta;) is a discrete random variable the equality may not be
+exactly achievable.]
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.7:</font></b> 
+   
+   Show that for this k we have
+   
+   <blockquote>
+   P(A<sub>k</sub> 
+   
+   <img src=
+   "resources/leq.png"
+   align=top>
+   
+    
+   &theta; 
+           <img src=
+           "resources/leq.png"
+           align=top>
+           
+            
+   A<sub>m-k+1</sub>) =
+   0.95.
+   </blockquote>
+   
+   <br>
+       <i>[Hint:
+       
+       {f(&theta;) 
+                   <img src=
+                   "resources/geq.png"
+                   align=top>
+                   
+                    k} iff #{A<sub>i</sub>  &gt; &theta;} 
+                                                          <img src=
+                                                          "resources/geq.png"
+                                                          align=top>
+                                                          
+                                                           k.
+       In this case, A<sub>m-k+1</sub> is guaranteed to be above &theta;.
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE.8:</font></b> 
+   
+   Apply the HL approach to the sign test to get another estimator of 
+   &theta;.<br>
+   <i>[Hint: Define f(x) as the sign test statistic computed based on data
+   shifted by x. Then choose 
+                             <img src=
+                             "resources/thetahat.png"
+                             align=top>
+                             
+                              so that f(
+                                        <img src=
+                                        "resources/thetahat.png"
+                                        align=top>
+                                        
+                                        ) is as close
+   to Ef(&theta;) as possible.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

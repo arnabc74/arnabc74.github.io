@@ -1,0 +1,323 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>More on KS procedure</h1>
+
+
+
+<h3>Asymptotic distribution of KS statistics</h3>
+
+Computing the exact distribution of the KS statistic is prohibitively
+difficult for large n. In this case we use the asymptotic distributions of
+D, D<sub>+</sub> and D<sub>-</sub>. 
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   Suppose we have computed D based on iid sample of size n. Then 
+   
+   <blockquote>
+   P(sqrt(n) D 
+               <img src=
+               "resources/statinf2/leq.png"
+               align=top>
+               
+                x) 
+                   <img src=
+                   "resources/statinf2/rarrow.png"
+                   align=middle>
+                   
+                    H(x),
+   </blockquote>
+   
+   where
+   
+   <blockquote>
+   
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   H(x) = 
+   </td>
+   <td>
+   1-2 
+       <img src=
+       "resources/statinf2/sum.gif"
+       align=middle>
+       
+       <sub>j&gt;0</sub>
+   (-1)<sup>j-1</sup> exp(-2 j<sup>2</sup>
+   x<sup>2</sup>)
+   </td>
+   <td align=left>
+    if x  &gt;  0
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   0
+   </td>
+   <td align=left>
+   else
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+Not to be done in this course.
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+<p>
+H(x) is indeed a valid continuous distribution function. It appears quite
+difficult to prove that it is indeed so. The simplest proof that I know of
+is by Feller. It is a few page long (however, it actually proves something
+stronger.) H(x) is an example of what mathematicians call a theta function. 
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   Let D<sub>+</sub> and D<sub>-</sub> be computed based on iid sample of ize
+   n. Then
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   P(sqrt(n) D<sub>+</sub>) 
+                            <img src=
+                            "resources/statinf2/rarrow.png"
+                            align=middle>
+                            
+                            
+   </td>
+   <td>
+    1-exp(-2x<sup>2</sup>)
+   </td>
+   <td align=left>
+   if x
+   
+   <img src=
+   "resources/statinf2/geq.png"
+   align=top>
+   
+    0
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   0
+   </td>
+   <td align=left>
+   else
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   P(sqrt(n) D<sub>-</sub> 
+                           <img src=
+                           "resources/statinf2/leq.png"
+                           align=top>
+                           
+                            x) has the same limit, as well.
+   
+   </td></tr></table>
+   
+
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   Not to be done in this course.
+   <img src="resources/statinf2/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KS.4:</font></b> 
+   
+   Show that nD<sub>+</sub><sup>2</sup> is asymptotically distributed as
+   Expo(2). 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KS.5:</font></b> 
+   
+   The file <a href="data.txt">data.txt</a> contains iid data from some
+   unknown continuous distribution, F. We want to test 
+   
+   <blockquote>
+   H<sub>0</sub>: F = N(0,1) Vs. H<sub>1</sub>: F 
+                                                  <img src=
+                                                  "resources/statinf2/slt.png"
+                                                  align=top>
+                                                  
+                                                   N(0,1).
+   </blockquote>
+   
+   Perform KS test using the asymptotic distribution. Report the P-value.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Confidence intervals using KS procedure</h3>
+
+Suppose that X<sub>1</sub>,...,X<sub>n</sub> are iid with unknown
+continuous distribution G. We want to get a &alpha;-level CI for G. For
+this consider the random variable 
+
+<blockquote>
+D = sup<sub>x</sub> |F<sub>n</sub>(x)-G(x)|
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KS.6:</font></b> 
+   
+   Can you compute D if G is not known? Does the distribution of D depend on G?
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>Find a constant c such that
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+
+</td>
+<td>
+P(D
+   <img src=
+   "resources/statinf2/leq.png"
+   align=top>
+   
+   c)
+</td>
+<td align=left>
+ 1-&alpha;
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+i.e., 
+</td>
+<td>
+ P(|F<sub>n</sub>(x)-G(x)| 
+                           <img src=
+                           "resources/statinf2/leq.png"
+                           align=top>
+                           
+                            c for all x)
+</td>
+<td align=left>
+ = 1-
+&alpha;
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+i.e., 
+</td>
+<td>
+ P(F<sub>n</sub>(x)-c 
+                      <img src=
+                      "resources/statinf2/leq.png"
+                      align=top>
+                      
+                       G(x) 
+                            <img src=
+                            "resources/statinf2/leq.png"
+                            align=top>
+                            
+                            
+F<sub>n</sub>(x)+c  for all x)
+</td>
+<td align=left>
+ = 1-
+&alpha;
+</td>
+</tr>
+
+</table>
+
+This provides a CI for G. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KS.7:</font></b> 
+   
+   The file <a href="data.txt">data.txt</a> contains iid data from some
+   unknown continuous distribution, F. Obtain a 95% CI for F using 2-sided KS
+   statistic. Plot the CI. <br>
+   <i>[Hint: You need to compute cut-off point c based on the infinite series
+   given earlier. Use Matlab.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+
+<hr>
+
+</body>
+</html>
+

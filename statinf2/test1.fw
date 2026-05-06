@@ -1,0 +1,144 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{TEST@}
+@O@<test1.html@>==@{
+@<Head@>@(??@,Properties of tests@)
+
+
+@<Section@>@(Are these tests any "good"?@)
+So far we have presented a number of tests based on ad hoc justification
+only. The natuaral question that arises now is how "good" are they?
+
+@<Digress@>@(Randomised tests@)
+Suppose that we have data, X, taking values in some sample space, S. We
+also have two hypotheses, H@<sub@>@(0@) and H@<sub@>@(1@), that we want to
+test. <p>
+
+A (non-randomised) test is a function
+@<Disp@>@(@<phi@> : S @<rarrow@> {"accept H@<sub@>@(0@)", "reject
+H@<sub@>@(0@)"}@)
+<p>
+
+A <i>randomised</i> test is a generalisation of this concept that allows
+mixtures of "accept" and "reject". Thus, for instance, 
+@<Disp@>@("1/3 accept+ 2/3 reject"@)
+mean
+@<Disp@>@("toss a coin (independently of the data) with P(head) = 2/3. If
+you get a head, then reject, else accept."@)
+<p>@<Exercise@>@(1@,Suppose that X ~ Binomial(10,p). We want to test 
+@<Disp@>@(H@<sub@>@(0@): p = 1/2 Vs. H@<sub@>@(1@): p  &gt;  1/2@)
+Consider the following randomised test:
+@<Disp@>@(@<Eqn@>@(
+@<Row@>@(@<phi@>(x)@,=@, accept if x = 0,...,6@)
+@<Row@>@(@,=@,0.25 accept + 0.75 reject if x=7@)
+@<Row@>@(@,=@,reject if x=8,9,10@)
+@)@)
+Compute P(type I error) for this test. Show that no non-randomised test
+can achieve this P(type I error).
+
+@)
+This is the main reason why randomised tests are used. They can achieve
+values of P(type I error) unachievable by nonrandomised tests. <p>
+If we denote "accept H@<sub@>@(0@)" by 0, and "reject H@<sub@>@(0@)" by 1,
+then a non-randomised test is a function
+@<Disp@>@(@<phi@>: S @<rarrow@> {0,1}@)
+In this notation a randomised test is a function
+@<Disp@>@(@<phi@>: S @<rarrow@> [0,1]@)
+<p>@<Example@>@(The test in the last exercise, for instance, is
+@<Disp@>@(@<Eqn@>@(
+@<Row@>@(@<phi@>(x)@,=@, 0 if x = 0,...,6@)
+@<Row@>@(@,=@,0.75  if x=7@)
+@<Row@>@(@,=@,1 if x=8,9,10@)
+@)@)
+@)
+<p>
+Notice that in this notation E(@<phi@>) is the chance that we reject
+H@<sub@>@(0@). 
+
+<p>@<Exercise@>@(2@,Fix any @<alpha@> in [0,1]. Conside the "coin toss test"
+@<Disp@>@(@<phi@>(x) = @<alpha@>   for all x in S.
+
+@)
+Describe it in words. Compute its level  (i.e., P(type I error)) and power.
+@)
+@<DigressOver@>
+
+@<Subsection@>@(Unbiasedness@)
+Let @<phi@> and @<xi@> be two (randomised) tests. To compare between them
+we need to compare probabilities of both types of errors. If @<phi@> has
+<i>both</i> the probabilities less than those of @<xi@>, then of course
+@<phi@> is a better test than @<xi@>. In this case, we shall say that
+@<phi@> beats @<xi@>. 
+<p>
+@<Defn@>@(
+Call a test @<phi@> <i>unbiased</i> if it cannot be beaten by a coin toss test.
+@)
+
+<p>@<Exercise@>@(3@,Suppose that I am testing a simple H@<sub@>@(0@) Vs a
+simple H@<sub@>@(1@). Let @<phi@> be a test with 
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(E(@<phi@>)@,=@, 0.05 under H@<sub@>@(0@)@)
+@<Row@>@(@,=@,0.03 under H@<sub@>@(1@)@)
+@)
+@)
+Is this test unbiased? 
+@)
+
+<p>@<Exercise@>@(4@,Show that a test @<phi@> is unbiased iff 
+@<Disp@>@(sup@<sub@>@(0@) E(@<phi@>) @<Leq@> sup@<sub@>@(1@) E(@<phi@>)@)
+
+@)
+<p> Many authors use this as the definition of unbiasedness. However, we
+would suggest that you remember the definition of unbiasedness that we
+have given earlier in terms of the coin toss test. That one is easier to
+remember and is more intuitive.<p>
+An estimator that is biased may be  an estimator worth considering. But a
+testr that is not 
+unbiased is worthless. Even a simple coin toss outpefroms it. <p>
+We want to show that all the tests that we performed so far are
+unbiased. This will follow from the theorem below.
+<p>
+@<Thm@>@(
+Suppose we have data
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@)@)
+from a location family F(x-@<theta@>). We want to test 
+@<Disp@>@(H@<sub@>@(0@): @<theta@> = 0 Vs @<theta@>  &gt; 0.@)
+Suppose we have a test @<phi@> that rejects H@<sub@>@(0@) iff 
+T(X@<sub@>@(1@),...,X@<sub@>@(n@)) @<Geq@> c, for some test statistic T(.)
+and some critical value c. If for all b @<Geq@> 0,
+@<Disp@>@(T(X@<sub@>@(1@)+b,...,X@<sub@>@(n@)+b) @<Geq@>
+T(X@<sub@>@(1@),...,X@<sub@>@(n@))@)
+then @<phi@> is an unbiased test.
+@)
+<p>
+@<Pf@>@(Simple straightforward computation, that we shall split up into
+two exercises.
+<p>@<Exercise@>@(5@,
+Show that if b @<Geq@> 0, then
+@<Disp@>@(T(X@<sub@>@(1@)+b,...,X@<sub@>@(n@)+b) @<sGeq@>
+T(X@<sub@>@(1@),...,X@<sub@>@(n@))@)
+@)
+<p>@<Exercise@>@(6@,Show that
+@<Disp@>@(T(X@<sub@>@(1@),...,X@<sub@>@(n@)) under H@<sub@>@(1@)
+@<sGeq@>
+T(X@<sub@>@(1@),...,X@<sub@>@(n@)) under H@<sub@>@(0@)@)
+@)
+Hence conclude the theorem.
+@)
+
+<p>@<Exercise@>@(7@,Show that the sign test is unbiased.
+
+@)
+
+We can similarly state and prove a theorem for scale family or two sample
+problems. 
+
+
+
+
+
+
+
+@<Tail@>
+@}

@@ -1,0 +1,35 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SPLINE@}
+@O@<dens2.html@>==@{
+@<Head@>@(??@,Density estimation II@)
+
+
+@<Section@>@(Spline curves@)
+@<Defn@>@(A spline curve of order k is a piecewise polynomial of degree k
+having continuous (k-1)-th derivatives. The junction points are called
+<i>knots</i>. @)
+<p>@<Example@>@(
+@<Eqn@>@(
+@<Row@>@(f(x)=@, x<sup>2</sup>@, if x  &gt; 0@)
+@<Row@>@(    @, 0@,else@)
+@)
+is a cubic spline, i.e., spline of degree 3. The only knot is 0.
+@)
+
+<p>@<Thm@>@(Suppose that we are given k points
+@<Disp@>@((x@<sub@>@(1@),y@<sub@>@(1@)),...,(x@<sub@>@(k@),y@<sub@>@(k@)),@)
+where x@<sub@>@(1@)  &lt; ...  &lt; x@<sub@>@(k@). Then among all
+square-integrable, twice-differentiable interpolants f(x) (with zero
+derivative at the two ends) the unique
+minimiser of 
+@<Disp@>@(integral(f<sup>(2)</sup>(x))<sup>2</sup> dx@)
+is a cubic spline function. We call it <i>the</i> cubic spline interpolant
+for the given points.@)
+
+To estimate density using cubic splines we first consider the empirical
+distribution function: F@<sub@>@(n@). It passes through
+(X@<sub@>@((i)@),i/n). We find the cubic spline interpolant for these
+points. Then we differentiate it to get the density estimator. 
+@<Tail@>
+@}

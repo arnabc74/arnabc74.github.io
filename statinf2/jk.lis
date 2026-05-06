@@ -1,0 +1,258 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    79    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    80    79| <td>
+    81    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    82    81| @1
+    83    82| </td></tr></table>
+.................
+    90    89| <td>
+    91    90| <b><font color="#cc0000">
+    92    91| Exercise @<Label@>.@1:</font></b> 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    93    92| @2
+    94    93| </td></tr></table>
+.................
+   112   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   113   112| <td>
+   114   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   115   114| @1
+   116   115| <img src="resources/statinf2/square.gif">
+.................
+   121   120| @$@<Jst@>@(@1@)@Z@M==@{
+   122   121| <blockquote>
+   123   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   124   123| @1
+   125   124| <b>///</b>
+.................
+   417    18| produces a number as its output. We want to estimate bias(T).
+   418    19| 
+   419    20| <p><b>Jackknife procedure:</b> Call the entire sample as <b>X</b>. 
+     Warning|...................................................................^Line has trailing spaces up to and including this space.
+   420    21| Define the <i>i-deleted sample</i>,
+   421    22| <b>X</b><sub>-i</sub> as 
+     Warning|.........................^Line has trailing spaces up to and including this space.
+   422    23| 
+   423    24| @<Disp@>@(
+   424    25|  <b>X</b><sub>-i</sub> = 
+     Warning|.........................^Line has trailing spaces up to and including this space.
+   425    26| { X<sub>1</sub>,..., X<sub>i-1</sub>, X<sub>i+1</sub>,..., X<sub>n</sub>}
+   426    27| @)
+   427    28| 
+   428    29| This is our training set when the test set is {X<sub>i</sub>}. Now compute 
+     Warning|...........................................................................^Line has trailing spaces up to and including this space.
+   429    30| 
+   430    31| @<Disp@>@(T<sub>-i</sub> = T(<b>X</b><sub>-i</sub>)@)
+   431    32| 
+   432    33| and 
+     Warning|....^Line has trailing spaces up to and including this space.
+   433    34| 
+   434    35| @<Disp@>@(T<sub>(.)</sub> = sum(T(<b>X</b><sub>-i</sub>))/n@)
+   435    36| 
+   436    37| 
+   437    38| Then the jackknife bias estimator is defined as 
+     Warning|................................................^Line has trailing spaces up to and including this space.
+   438    39| 
+   439    40| @<Disp@>@(bias<sub>jack</sub>(T) = (n-1)*(T<sub>(.)</sub> - T(X))@)
+.................
+   441    42| 
+   442    43| <p>@<Example@>@( Suppose we have data <b>X</b> = {2,5,6,3}. Thus n=4
+   443    44| here. T is the sample mean.  
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   444    45| 
+   445    46| <p>
+.................
+   455    56| Using same set up and notation as above
+   456    57| @<Disp@>@(
+   457    58| var<sub>jack</sub>(T) = sum(T<sub>-i</sub> - 
+     Warning|.............................................^Line has trailing spaces up to and including this space.
+   458    59| T<sub>(.)</sub>)<sup>2</sup>)*(n-1)/n
+   459    60| @)
+   460    61| 
+   461    62| <p>@<Example@>@(Continuing with the last example, 
+     Warning|..................................................^Line has trailing spaces up to and including this space.
+   462    63| @<Disp@>@(
+   463    64| var<sub>jack</sub>(T) = ((4-1)/4)* [(4.67-4)<sup>2</sup> +
+.................
+   468    69| Jackknifing is easy with S-plus. First we show the simple but crude
+   469    70| way. Assume that the data is stored in an array called x. You already have
+   470    71| a function T to compute the statistic. 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   471    72| 
+   472    73| <p>S-plus allows negative index in an array to delete elements as
+   473    74| follows. If x=(-9,2.5,4.6,5) then x[-3] = (-9,2.5,5). This makes it easy
+   474    75| to create the deleted samples. 
+     Warning|...............................^Line has trailing spaces up to and including this space.
+   475    76| 
+   476    77| @<Ss@>@(
+.................
+   490    91| @)
+   491    92| 
+   492    93| Then the variable val will store many important quantities. Type 
+     Warning|.................................................................^Line has trailing spaces up to and including this space.
+   493    94| @<Ss@>@(
+   494    95| > names(val)
+   495    96| @)
+   496    97| to get a list of these. Also see the help of jackknife for more
+   497    98| information. 
+     Warning|.............^Line has trailing spaces up to and including this space.
+   498    99| 
+   499   100| <h3>Justification of the jackknife estimator of variance</h3>
+.................
+   509   110| @<Disp@>@(varHat(T) = sum(T<sub>i</sub> - Tbar)<sup>2</sup>/n,@)
+   510   111| 
+   511   112| where Tbar is the mean of the T<sub>i</sub>'s. Now compare this with 
+     Warning|.....................................................................^Line has trailing spaces up to and including this space.
+   512   113| @<Disp@>@(
+   513   114| var<sub>jack</sub>(T) = 
+     Warning|........................^Line has trailing spaces up to and including this space.
+   514   115| sum(T<sub>-i</sub> - T<sub>(.)</sub>)<sup>2</sup>*(n-1)/n
+   515   116| @)
+   516   117| You can see that in the jackknife formula <b>X</b><sub>-i</sub>'s are
+   517   118| playing the role of the fresh datasets. So T<sub>-i</sub>'s are used in
+   518   119| place of T<sub>i</sub>'s, and T<sub>(.)</sub> in place of Tbar. 
+     Warning|................................................................^Line has trailing spaces up to and including this space.
+   519   120| 
+   520   121| <p>The only thing that is still not explained is the choice of the
+.................
+   527   128| by the following formula:
+   528   129| 
+   529   130| @<Disp@>@(const*sum(T<sub>-i</sub> - T<sub>(.)</sub>)<sup>2</sup>@) 
+     Warning|....................................................................^Line has trailing spaces up to and including this space.
+   530   131| 
+   531   132| and we want to choose const in a way that this estimator is unbiased if T
+.................
+   537   138| A very similar interpretation exists for the jackknife estimate of
+   538   139| bias. The constant is chosen to make the bias match the exact value for
+   539   140| sample variance. 
+     Warning|.................^Line has trailing spaces up to and including this space.
+   540   141| 
+   541   142| <p>However, note one curious point. If T(X) is a constant function, then
+.................
+   545   146| this estimator is also "good". The following result makes this precise.
+   546   147| 
+   547   148| <p>@<Thm@>@(If 
+     Warning|...............^Line has trailing spaces up to and including this space.
+   548   149| @<Disp@>@(E(T(X) = theta + b/n + O(1/n<sup>2</sup>),@)
+   549   150| then 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   550   151| @<Disp@>@(E(Jackknife estimator of bias) = b/n + O(1/n<sup>2</sup>),@)
+   551   152| and hence 
+     Warning|..........^Line has trailing spaces up to and including this space.
+   552   153| @<Disp@>@(E(Jackknife bias-corrected T) = theta +  O(1/n<sup>2</sup>).@)
+   553   154| @)
+.................
+   563   164| Jackknife is certainly easier to compute, but it uses less information. It
+   564   165| may be viewed as an approximation to bootstrap. We shall explore this in an
+   565   166| assignment. 
+     Warning|............^Line has trailing spaces up to and including this space.
+   566   167| 
+   567   168| <p>The main advantage of the bootstrap is its generality. One can do
+.................
+   569   170| generalise the notion of jackknifing beyond estimation of bias and
+   570   171| variance. In fact, with bootstrap available, one would hardly consider
+   571   172| doing jackknife. 
+     Warning|.................^Line has trailing spaces up to and including this space.
+   572   173| 
+   573   174| <p>Jackknife fails if the statistic is not "smooth". The median, for
+   574   175| instance, is not smooth. Jackknife estimate of its std err is <i>not</i>
+   575   176| consistent. However, the bootstrap estimate is. 
+     Warning|................................................^Line has trailing spaces up to and including this space.
+   576   177| <p>@<Exercise@>@(3@,
+   577   178| Suppose that we have iid sample X@<sub@>@(1@),...,X@<sub@>@(n@). Let T(.)
+.................
+   593   194| out the entire bootstrap process every time, which is very computation
+   594   195| intensive. Jackknife-after-bootstrap is a clever method to reduce the
+   595   196| computational load. 
+     Warning|....................^Line has trailing spaces up to and including this space.
+   596   197| 
+   597   198| <p>Suppose we draw N bootstrap resamples. Each bootstrap resample may be
+   598   199| considered as drawing a set of n indices with replacement from {1,...,n}. 
+     Warning|..........................................................................^Line has trailing spaces up to and including this space.
+   599   200|  Let the set  B<sub>k</sub> denote this set for the k-th resample. 
+     Warning|...................................................................^Line has trailing spaces up to and including this space.
+   600   201| 
+   601   202|  <p>@<Example@>@(Suppose that our original sample is
+.................
+   605   206| @<Disp@>@({X<sub>3</sub>, X<sub>6</sub>, X<sub>6</sub>, X<sub>1</sub>,
+   606   207| X<sub>2</sub>, X<sub>3</sub>}@)
+   607   208| If this is the k-th resample then 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+   608   209| @<Disp@>@(B<sub>k</sub> = {3,6,1,2}@)
+   609   210| @)
+   610   211| <p>
+   611   212| Next define  C<sub>i</sub> as follows for i=1,...,n. 
+     Warning|.....................................................^Line has trailing spaces up to and including this space.
+   612   213| 
+   613   214| @<Disp@>@(
+.................
+   618   219| B<sub>k</sub> sets:
+   619   220| @<Disp@>@(
+   620   221| <pre>   
+     Warning|........^Line has trailing spaces up to and including this space.
+   621   222| B<sub>1</sub>={3,6,1,2}<br>
+   622   223| B<sub>2</sub>={2,5,4,3}<br>
+.................
+   624   225| B<sub>4</sub>={3,6,2,4,1,5}<br>
+   625   226| B<sub>5</sub>={4,6,2}</pre>@)
+   626   227| Then 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   627   228| @<Disp@>@(C<sub>1</sub>={2,5}, since B<sub>2</sub> and B<sub>5</sub> does
+   628   229| not contain 1.@)
+.................
+   630   231| 
+   631   232| Assume C<sub>i</sub>'s are all nonempty. Let T<sub>k</sub> denote the
+   632   233|    T-statistic computed from the k-th resample. For each i consider the 
+     Warning|........................................................................^Line has trailing spaces up to and including this space.
+   633   234|  T<sub>k</sub>'s such that k is in C<sub>i</sub>. 
+     Warning|..................................................^Line has trailing spaces up to and including this space.
+   634   235| These do not involve X<sub>i</sub>. Use the empirical distribution of
+   635   236| these T<sub>k</sub>'s as a proxy for the sampling distribution of T.
+.................
+   637   238| 
+   638   239| <p>@<Example@>@((contd)
+   639   240| Suppose that we take theta = variance. 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   640   241| Let's compute theta<sub>1</sub> in the above example. For this we shall
+   641   242| need 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   642   243| T<sub>2</sub> and T<sub>5</sub>. Let's say these are 3 and 29,
+   643   244| respectively. So 
+     Warning|.................^Line has trailing spaces up to and including this space.
+   644   245| @<Disp@>@(theta<sub>1</sub> = (3<sup>2</sup> + 29<sup>2</sup>)/2 -
+   645   246| ((3+29)/2)<sup>2</sup>.@) 
+     Warning|..........................^Line has trailing spaces up to and including this space.
+   646   247| @)
+   647   248| 
+   648   249| <p>Let 
+     Warning|.......^Line has trailing spaces up to and including this space.
+   649   250| @<Disp@>@(thetaBar = mean(theta<sub>i</sub>).@)
+   650   251| Then the jackknife-after-bootstrap estimate of variance is defined as 
+     Warning|......................................................................^Line has trailing spaces up to and including this space.
+   651   252| @<Disp@>@(
+   652   253| Var<sub>jack</sub>(theta) = 
+     Warning|............................^Line has trailing spaces up to and including this space.
+   653   254| [(n-1)/n] * sum((theta<sub>i</sub> - thetaBar)<sup>2</sup>)
+   654   255| @)
+   655   256| 
+   656   257| <p>Fortunately, there is a S-plus function to do all these for you. Find it
+   657   258| out! 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   658   259| @<Tail@>
+   659   260| @}
+            | <End-Of-File>
+     Warning|.^The last line of the input file was terminated by EOF.
+            |.^An EOL was inserted at the end of the last line.
+------------+-------------------------------------------------------------------
+
+Tangle: Completed jk.html.
+
+There were 46 Warnings.

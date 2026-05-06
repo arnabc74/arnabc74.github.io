@@ -1,0 +1,182 @@
+@i main
+@$@<Label@>==@{ONE@}
+@O@<one1.html@>==@{
+@<Head@>@(??@,One sample Problem@)
+@<Section@>@(Introduction@)
+So far we have seen the paired sample problem. However, it was effectively
+a one sample problem , since we always worked with the differences
+Z@<sub@>@(1@),...,Z@<sub@>@(n@). We now restate our findings in the one
+sample problem set up.  
+<p>
+In the one problem set up we have a single sample
+@<Disp@>@(Z@<sub@>@(1@),...,Z@<sub@>@(n@)@)
+where Z@<sub@>@(i@)'s  are
+ independent, but not necessarily identically distributed. Each
+Z@<sub@>@(i@) is a continuous variable. They have
+a common median @<theta@> , which is unknown. We want to test 
+@<Disp@>@(H@<sub@>@(0@): @<theta@> = 0 
+Vs 
+H@<sub@>@(1@): @<theta@>  &gt; 0@)
+
+We have already discussed two test procedures for this. 
+<ul>
+<li><b>Sign test:</b> uses only the signs of Z's. 
+<li><b>Wilcoxon's signed rank test:</b> 
+uses both the signs of Z's as well as the ranks of the |Z|'s. 
+(We need an extra symmetry assumption for this.) 
+</ul>
+
+@<Section@>@(Estimation@)
+Suppose we are interested in estimating @<theta@>. The first estimator
+that comes 
+to mind is the sample median. It is defined as follows. Order the
+Z's as
+@<Disp@>@(Z@<sub@>@((1)@) @<Leq@> ... @<Leq@> Z@<sub@>@((n)@).@)
+ Then define
+the sample median  as 
+@<Eqn@>@(
+@<Row@>@(@<thetahat@> =@, Z@<sub@>@((n+1/2)@)@, if n is odd@)
+@<Row@>@(             @, (Z@<sub@>@((n/2)@)+Z@<sub@>@((n/2+1)@))/2@, 
+if n is even.@)
+@)
+
+<p>@<Thm@>@(
+Suppose that Z@<sub@>@(1@),...,Z@<sub@>@(n@) are iid with some common 
+continuous distribution. Then show that @<thetahat@> is median
+unbiased for @<theta@>, i.e.,
+@<Disp@>@(P(@<thetahat@>  &lt; @<theta@>) = 
+P(@<thetahat@>  &gt; @<theta@>).@)
+In other words, @<theta@> is the median of @<thetahat@>.
+@)
+<p>
+@<Pf@>@(We shall only do the proof when n=odd. The n=even case is similar
+but notationally more involved. Define
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(U@<sub@>@(i@)= @,1@, if Z@<sub@>@(i@)  &gt; @<theta@>@)
+@<Row@>@(               @,0@, else@)
+@)
+@)
+Then U@<sub@>@(i@)'s are iid Bern(1/2). The U-vector is distributed
+uniformly over the set A, which consists of all possible 2<sup>n</sup> 
+vectors of 0's and 1's. 
+<p>@<Exercise@>@(1@,
+Suppose that n=2k+1. Let B @<Subset@> A consist of all the vectors with at
+least k+1 0's. Similarly define C @<Subset@> A consisting of all vectors
+with at least k+1 1's. Show that 
+@<Disp@>@(A = B @<Union@> C  and B @<Inter@> C = @<phi@>.@)
+Next, show that 
+@<Disp@>@(P(U-vector in B) = P(U-vector in C)@)
+Hence conclude the theorem for n=odd.
+@)
+For even n, you have first work with n=2. Then for n=2k, split A into 3
+parts, those with at least k+1 1's, those with at least k+1 0's and those 
+with exactly k 0's and 1's. The first two parts may be dealt with as in
+the odd case. The last part needs to split further into two parts using
+the n=2 argument. We shall not go into the details in this course. 
+@)
+<p>@<Thm@>@((Bahadur's represenation) Let Z@<sub@>@(1@),...,Z@<sub@>@(n@)
+be iid with some common continuous density, f. Let @<theta@> be its
+median. Assume that f(@<theta@>)  &gt;  0. Let @<thetahat@> denote the
+sample median based on the sample. Then 
+@<Disp@>@(@<thetahat@> = @<theta@> +
+(0.5-F@<sub@>@(n@)(@<theta@>))/f(@<theta@>) + R@<sub@>@(n@),@)
+for some R@<sub@>@(n@) where 
+@<Disp@>@(sqrt(n)*R@<sub@>@(n@) goes to zero as n goes to infinity.@) Here
+F@<sub@>@(n@) denotes the empirical distributin function of the
+Z@<sub@>@(i@)'s. 
+@)
+<p>
+@<Pf@>@(Not to be done in this course.@)
+Bahadur's representation has more than one form depending on the
+assumptions made on the distribution of Z's and the order of
+R@<sub@>@(n@).
+
+<p>@<Exercise@>@(2@,
+Use the above theorem to show that sample median has an asymptotic normal
+distribution. Find out the mean and variance of this normal distribution. 
+@)
+
+@<Section@>@(Hodges-Lehmann approach@)
+Here is another method of estimation. This is more general in the sense we
+do not require the Z@<sub@>@(i@)'s to be identically distributed. This
+approach, called the Hodges Lehmann (HL) approach, is as follows.
+<p>
+Once again consider the Wilcoxon's signed rank test. Let us call its test
+statistic as
+@<Disp@>@(T(Z@<sub@>@(1@),...,Z@<sub@>@(n@))@)
+Define the function 
+@<Disp@>@(f(x) = T(Z@<sub@>@(1@)-x,...,Z@<sub@>@(n@)-x)@)
+Note that f(@<theta@>) has mean n(n+1)/4. We can interpret this n(n+1)/4 
+as the ideal value for f(@<theta@>). The HL approach suggests
+estimating @<theta@> using @<thetahat@>@<sub@>@(HL@) such that 
+f(@<thetahat@>@<sub@>@(HL@)) is close to n(n+1)/4 as possible. 
+<p>@<Exercise@>@(3@,
+Show that f(x) = 
+#{(Z@<sub@>@(i@)+Z@<sub@>@(j@))/2  
+&gt;  x : i  @<Leq@> j }.
+<br>@<Hint@>@(
+Let h@<sub@>@(i@)=|Z@<sub@>@(i@)-x|.
+Define
+@<Disp@>@(a@<sub@>@(ik@) = I{|h@<sub@>@(i@)| @<Geq@> |h@<sub@>@(k@)|} 
+I{h@<sub@>@(i@) &gt; 0}@)
+Show that f(x) = @<Sum@>@<sub@>@(i,k@) a@<sub@>@(ik@). Check that 
+@<Disp@>@({a@<sub@>@(ik@)+a@<sub@>@(ki@) = 1} iff 
+{(h@<sub@>@(i@)+h@<sub@>@(k@)) &gt; 0}@)
+@)
+
+@)
+
+<p>@<Exercise@>@(4@,
+Show that @<thetahat@>@<sub@>@(HL@) is the median of the above set.
+@)
+<p>@<Exercise@>@(5@,
+For symmetric distributions @<thetahat@>@<sub@>@(HL@) 
+is claimed to outperform the sample median. Do a simple
+simulation to check this as follows. Generate 1000 samples each of size
+100 from N(0,1). Compute sample median as well as
+@<thetahat@>@<sub@>@(HL@) for each of the 1000 samples. Estimate bias,
+variance and MSE, and compare. Also, plot the two histograms. 
+@)
+
+The same approach may also be used to obtain confidence intervals. For
+this order the m = n(n+1)/2 numbers 
+@<Disp@>@((Z@<sub@>@(i@)+Z@<sub@>@(j@))/2 for i @<Leq@> j,@)
+as 
+@<Disp@>@(A@<sub@>@(1@) @<Leq@> ... @<Leq@> A@<sub@>@(m@).@)
+ Then 
+@<Disp@>@(f(x) = #{j : A@<sub@>@(j@)  &gt;  x}@)
+<p>@<Exercise@>@(6@,
+Show that f(@<theta@>) is distribution-free, i.e., the distribution of 
+f(@<theta@>) does not depend on the distribution of the Z's (not even on
+the value of @<theta@>).
+@)
+
+<p>
+So we can find an integer k such that 
+@<Disp@>@(P(k @<Leq@> f(@<theta@>) @<Leq@> m-k) = 0.95.@)
+[Since, f(@<theta@>) is a discrete random variable the equality may not be
+exactly achievable.]
+<p>@<Exercise@>@(7@,
+Show that for this k we have
+@<Disp@>@(P(A@<sub@>@(k@) 
+@<Leq@> 
+@<theta@> @<Leq@> 
+A@<sub@>@(m-k+1@)) =
+0.95.@)
+<br>@<Hint@>@(
+{f(@<theta@>) @<Geq@> k} iff #{A@<sub@>@(i@)  &gt; @<theta@>} @<Geq@> k.
+In this case, A@<sub@>@(m-k+1@) is guaranteed to be above @<theta@>.
+@)
+
+@)
+<p>@<Exercise@>@(8@,
+Apply the HL approach to the sign test to get another estimator of 
+@<theta@>.<br>
+<i>[Hint: Define f(x) as the sign test statistic computed based on data
+shifted by x. Then choose @<thetahat@> so that f(@<thetahat@>) is as close
+to Ef(@<theta@>) as possible.]</i>
+@)
+
+@<Tail@>
+@}

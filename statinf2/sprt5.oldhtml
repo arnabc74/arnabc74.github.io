@@ -1,0 +1,139 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Truncation</h1>
+
+
+
+
+<h3>Truncation</h3>
+
+So far we have seen that in sequential statistics we go on sampling until
+our sample becomes "informative enough". Since the "information" depends
+on the particular values observed, the duration of sampling is a random
+number, which we call the stopping time or random sample size. We
+naturally want to keep our sampling size low, since sampling usually
+involves some cost. In case of random sampling size, T, we may try to keep 
+E(T) low. Indeed, we have already seen while proving optimality of SPRT,
+that E(T) is mimimised by SPRT among all tests (including fixed sample
+size tests) with comparable type I and type II error probabilities.
+Thus, if SPRT with sample size T achieves error probabilities &alpha;
+and &beta;, and a fixed sample size test with sample size n achieves the
+same error probabilities, then 
+
+<blockquote>
+E(T) 
+     <img src=
+     "resources/statinf2/leq.png"
+     align=top>
+     
+      n.
+</blockquote>
+
+However, with
+some positive probability T might exceed n by a large margin. In fact, T
+may become so very large that it becomes impossible to continue sampling
+for that long. Though this rarely happens in practice, this is certainly a
+drawback of the SPRT in principle. To redress this Wald suggested the
+method of <i>truncation,</i> which is the following rule of thumb.
+
+
+<blockquote>
+Suppose you want to attain probabilities &alpha; and &beta;
+of errors. Let nbe the smallest sample size required
+by a fixed sample size test to achieve these. Let T be the random sampling
+size required by SPRT. Then define a truncated stopping time T' as
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+T' =
+</td>
+<td>
+ T 
+</td>
+<td align=left>
+ if T 
+      <img src=
+      "resources/statinf2/leq.png"
+      align=top>
+      
+       3 n
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+    
+</td>
+<td>
+ 3 n 
+</td>
+<td align=left>
+ else
+</td>
+</tr>
+
+
+</table>
+
+Observe that T' is again a stopping time.
+Now choose a cut-off point, C. (Often C is chosen to be 1.) Continue
+sampling up to T'. If T'  &lt; n, then use the original SPRT, else
+consider the likelihood ratio (LR) of the sample collected so far. 
+Reject H<sub>0</sub> if and only if LR exceeds C.
+
+</blockquote>
+
+Thus, the truncated SPRT(A,B) may be graphically represented as
+follows. Here we are considering the graph of LR(m) against m, where LR(m)
+is the likelihood ratio based on sample of size m. Different regions of
+the (m,LR(m)) plane correspond to "accept H<sub>0</sub>", "reject
+H<sub>0</sub>" and "continue sampling" decisions.
+
+
+<p><center>
+<img src="resources/statinf2/trunc.gif">
+</center><p>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TRUNC.1:</font></b> 
+   
+   Consider the testing 
+   
+   <blockquote>
+   H<sub>0</sub>: &theta; = 0 Vs. H<sub>1</sub>: &theta; = 1.
+   </blockquote>
+   
+   We want to achieve &alpha; = 0.05 and &beta; = 0.8, based on data
+   
+   <blockquote>
+   X<sub>1</sub>,X<sub>2</sub>,... iid N(&theta;,1).
+   </blockquote>
+   
+   Derive the truncated SPRT.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

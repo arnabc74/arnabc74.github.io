@@ -1,0 +1,164 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SPRT3@}
+@O@<sprt3.html@>==@{
+@<Head@>@(??@,Some results about stopping time@)
+
+
+@<Section@>@(Wald's first equation@)
+<!-- problem idea: Ask to prove for general fn Z = f(X).-->
+@<Thm@>@((Wald's first equation)
+Suppose that X@<sub@>@(1@),X@<sub@>@(2@), ... are iid and
+E|X@<sub@>@(i@)| is finite. Let T be any
+stopping time wrt the X's such that E(T) is finite. Define for n=1,2,...
+@<Disp@>@(S@<sub@>@(n@) = X@<sub@>@(1@)+...+X@<sub@>@(n@).@)
+Then 
+@<Disp@>@(E(S@<sub@>@(T@)) = E(T) E(X@<sub@>@(1@)).@)
+@)
+<p>
+@<Pf@>@(We shall break the proof into a number of exercises.
+<p>@<Exercise@>@(1@,
+First show that
+@<Disp@>@(E(S@<sub@>@(T@)) = E @<Sum@> X@<sub@>@(n@) 
+I@<sub@>@(T &gt; n-1@).@)
+Here the summation is an infinite series over n=1,2,...upto infinity.
+@)
+There is a theorem (called Fubini's theorem, as you'll learn in MI
+measure theory course) which allows us to interchange expectation and
+infinite summation whenever each summand is integrable (we call a random
+variable U integrable if E|U| is finite.) 
+
+<p>@<Exercise@>@(2@,
+Argue that each summand in the infinite series above is indeed
+integrable. So you can bring the expectation inside the summation. Hence
+prove Wald's first equation.<br>
+<br>@<Hint@>@(
+You may like to use the following exercise.@)
+@)
+
+<p>@<Exercise@>@(3@,
+Show 
+ that if a random variable U takes only
+nonnegative integer values, then 
+@<Disp@>@(E(U) = P(U &gt; 0)+P(U &gt; 1)+P(U &gt; 2)+...@)
+@)
+@)
+@<Subsection@>@(An amusing consequence@)
+Suppose there is a gambling scheme with expected value 0. If you play it
+n many times, then your expected payoff remains zero, whatever n may
+be. You may think that this fact would dissuade a gambler from wasting
+money in the casino. However, it doesn't. Gamblers like to think
+themselves smart, and they would say, "I never play for a fixed number of
+times. The moment I win a goodly amount, say Rs 500 I quit playing, and
+go home with that amount. I just don't take any further risk. That keeps
+me from getting ruined, you see! Again, if my loss exceeds Rs 100.00, I
+quit. This keeps my loss under control." Real gamblers may come up with
+even more complicated clever schemes as to the right time to stop playing
+so that you keep your profit intact, without risking too much loss. It may
+be mind-boggling to counter all their arguments, but Wald's first equality
+shows in one single stroke that howsoever cleverly the gambler chooses his
+stopping time, his expected payoff always remains zero. 
+
+@<Subsection@>@(What if E(T) is infinite?@)
+For Wald's first equation we need E(T) to be finite. Here is what may
+happen if this condition is not met.
+<p>@<Example@>@(
+Let X@<sub@>@(i@)'s be iid with the following distribution
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(X@<sub@>@(i@) = @,1@, with probability 0.5@)
+@<Row@>@(                @,-1@, with probability 0.5@)
+@)
+@)
+Thus we have a simple symmetric random walk. Consider the stopping time T
+which is the first time an S@<sub@>@(i@) is 1. Thus,
+@<Disp@>@({T = n} is same as {S@<sub@>@(i@)@<Neq@> 1 for i &lt; n, and
+S@<sub@>@(n@) = 1}.@)
+The following exercises will explore if Wald's first equation holds here.
+
+
+<p>@<Exercise@>@(4@,
+Show that 
+@<Disp@>@(P(T is finite) = 1@)
+@)
+
+<p>@<Exercise@>@(5@,
+Show that
+@<Disp@>@(E(T) = @<inf@>.@)
+@)
+<p>
+Obviously, E(S@<sub@>@(T@)) = 1 (why?). So Wald's first equation takes the
+meaningless form
+@<Disp@>@(1 = @<inf@> times 0.@)
+@)
+
+@<Section@>@(Wald's second equation@)
+This is similar to the first equation except that it deals with the second
+moment. 
+<p>
+@<Thm@>@((Wald's second equality)
+If T is a stopping time wrt iid 
+@<Disp@>@(X@<sub@>@(1@),X@<sub@>@(2@),...@)
+such that
+@<Disp@>@(
+<ul>
+<li>E(T) is finite
+<li>E(X@<sub@>@(i@)) = 0
+<li>Var(X@<sub@>@(i@)) is finite
+</ul>
+@)
+then
+@<Disp@>@(Var(S@<sub@>@(T@)) = E(T) Var(X@<sub@>@(i@))@)
+@)
+<p>
+@<Pf@>@(
+We shall not prove it in this course.@)
+
+@<Section@>@(Wald's fundamental identity@)
+Consider 
+@<Disp@>@(X@<sub@>@(1@),X@<sub@>@(2@),... iid with some density f.@)
+Let T be some stopping time with P(T is finite) = 1.
+<p>
+Consider the m.g.f. defined as
+@<Disp@>@(@<phi@>(t) = E(exp(t X)),@)
+where X has distribution F. Fix some t such that @<phi@>(t) is finite. 
+Consider the density g defined as
+@<Disp@>@(g(x) = (exp(t x)/ @<phi@>(t)) * f(x).@)
+<p>@<Exercise@>@(6@,
+Show that g is indeed a density function.
+@)
+<p>
+Let 
+@<Disp@>@(S@<sub@>@(n@) = X@<sub@>@(1@)+...+X@<sub@>@(n@).@)
+<p>
+@<Thm@>@((Wald's fundamental identity)
+In the above set up we have
+@<Disp@>@(
+E(exp(t S@<sub@>@(T@))/ @<phi@>(t)<sup>T</sup>) = 
+P@<sub@>@(g@)(T is finite)@)
+@)
+<p>
+@<Pf@>@(
+Let's start with the lhs. It is of the form E(h(T)) for some function h. 
+<p>@<Exercise@>@(7@,
+Show that if h(T) is any integrable function of T, then 
+@<Disp@>@(E(h(T)) = @<Sum@>P(T=n) E(h(T)|T=n).@)
+@)
+
+<p>@<Exercise@>@(8@,
+Show that the conditional density of
+(X@<sub@>@(1@),...,X@<sub@>@(n@))
+given T=n is
+@<Disp@>@(f(x@<sub@>@(1@))...f(x@<sub@>@(n@))/P(T=n),@)
+over the set of (x@<sub@>@(1@),...,x@<sub@>@(n@)) such that T=n. The
+density is zero outside this set. Why can we not write this set as
+@<Disp@>@({(x@<sub@>@(1@),...,x@<sub@>@(n@)) :
+T(x@<sub@>@(1@),...,x@<sub@>@(n@))=n}?@) 
+@)
+<p>@<Exercise@>@(9@,
+Use the definition of g  and the above exercises to complete the proof.
+@)
+@)
+
+@<Tail@>
+@}

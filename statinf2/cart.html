@@ -1,0 +1,297 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Classification and Regression Tree (CART)</h1>
+
+<h3>Introduction</h3>
+We have already had a taste of CART in the last lecture. There we
+considered CART as a family of modelling strategies, each member of which
+was indexed by a nonnegative tuning parameter alpha. However, the
+individual modelling strategies, CART <sub>alpha</sub>'s, were considered
+as blackboxes. Here we shall take a look inside these.
+
+<h3>How CART<sub>alpha</sub> works</h3>
+Suppose we are given a learning sample of size n. Each record in the data
+is a triple (X<sub>1</sub>,X<sub>2</sub>,C). Here the X's are the
+explanatory variables and C is the class. The idea is that in future we
+shall have more cases for which only the X's will be known. Then we shall
+use our tree to predict their classes.
+
+<p>First note that any classification tree defines a recursive partitioning
+the sample space of the explanatory variables. Each block of the partition
+is assigned a class. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   In this case the sample space is the plane. The tree below
+   corresponds to the partition shown beside it. 
+   
+   <p><center>
+   <img src="resources/treepart.gif">
+   </center><p>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CART.1:</font></b> 
+   
+   Consider the partition below involving two classes (red and blue). Make a
+   tree for this. Is the tree unique?
+   
+   <p><center>
+   <img src="resources/cartex.gif">
+   </center><p>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>Thus CART<sub>alpha</sub> effectively finds a good way to partition the
+space recursively, so that each block is as homogeneous as possible. 
+This is done through two steps: 
+<ul>
+<li>GROW
+<li>PRUNE
+</ul>
+<h4>GROW</h4>
+The first split is either a horizontal or a vertical line through the
+<i>entire</i> sample 
+space. So we have two things to determine in the first split: orientation
+(ie, horizontal/vertical) and where to draw the line. 
+Notice that due to the discrete nature of the data points it is enough to
+consider only finitely many lines of either orientation. This is because,
+until a line 
+crosses a sample point the misclassification proportion remains
+unchanged. 
+In general there are n horizontal and n vertical lines to consider. For
+each of these 2*n lines, we compute the misclassification proportion. This
+is done as follows. Label each side of the line by a class. Obviously, to
+keep misclassification to a minimum we should label each block by 
+majority vote. Now count the number of points on either side whose classes
+does not match the assigned classes. Divide this number by the sample size,
+n. 
+
+<p>Choose the line with the minimum misclassification proportion. Resolve
+ties arbitrarily. 
+
+<p>Now the sample space has been partitioned into two blocks. Each 
+block has been labeled with a classname (eg, "PASS" or
+"FAIL" in the ISI example.) This partition corresponds to
+a tree with two leaf nodes and one inner node (the root). 
+Each leaf node is labelled
+with a classname. The inner node is not labelled. Note that the
+leaf nodes correspond to the blocks of the partition. 
+<p>Carry out
+the above procedure separately for each of the blocks. 
+Thus each of these blocks
+will produce two blocks and so on. 
+<p>
+The next question now is: "When to stop?"
+The answer is: Do not split a block further if 
+<blockquote>
+<dl>
+<dt><u>either</u><dd>the number of sample points in it is less than 5
+<dt><u>or</u><dd>the block is homogeneous, ie all the points in it belongs to
+the same 
+class. 
+</dl>
+</blockquote>
+
+<p>The number 5 of course has no magic associated with it. You may choose
+any other threshold to decide when a block has too few points to warrant
+further 
+partitioning. In fact, if you make this threshold equal to 1, all the
+blocks would be homogeneous (because any block with just one point is
+trivially homogeneous!)
+
+<p>At the end of GROW you are left with a tree that is usually pretty
+huge. Each leaf node (ie, each block of the partition) is either
+homogeneous or has too few points in it.
+
+<h4>PRUNE</h4>
+The tree obtained by GROW usually overfits the data. So we need to prune
+it. It is here that alpha makes its appearance. Pruning proceeds by
+removing what we shall call <i>twigs</i>.
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   A twig is a subtree with exactly two leaf nodes.
+   </td></tr></table>
+   
+
+<p>The key to pruning is to remove the twigs one by one in the order of
+importance. 
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   Let T be a tree and S a twig in it. Let D be our learning
+   data. Then importance of S in T with respect to D is defined as 
+   
+   <blockquote>
+   misclass(T-S,D) - misclass(T,D).
+   </blockquote>
+   
+   Here T-S is the tree obtained by removing S from T. 
+   
+   </td></tr></table>
+   
+
+<p>Here is the PRUNE algorithm:
+
+<blockquote>
+
+<pre>
+Let T<sub>0</sub> = the large tree obtained by GROW
+Let k = 0
+Let alpha<sub>0</sub> = 0
+while(T<sub>k</sub> has at least one twig) {
+  Let S<sub>k</sub> = a least important twig in T<sub>k</sub>
+  Let T<sub>k+1</sub> = T<sub>k</sub> - S<sub>k</sub>
+  Let alpha<sub>k+1</sub> = misclass(T<sub>k+1</sub>)/|T<sub>k+1</sub>|
+  Let k = k + 1
+}
+</pre>
+
+</blockquote>
+
+
+<p>This process produces a nested sequence of trees 
+{T<sub>k</sub> : k=0,1,...,K} for some K, and a
+corresponding sequence of alpha's : {alpha<sub>k</sub> : k=0,1,...,K}
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   For alpha in [alpha<sub>k</sub>,alpha<sub>k+1</sub>) the tree
+   T<sub>k</sub> minimizes 
+   
+   <blockquote>
+   misclass(T,D) + alpha*|T|
+   </blockquote>
+   
+   among all subtrees T of T<sub>0</sub>. Similarly, for alpha in 
+   [alpha<sub>K</sub>, infinity), a best tree is T<sub>K</sub>
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise CART.2:</font></b> 
+      
+      First show that misclass(T<sub>k</sub>,D) is an increasing function of k.
+      
+      </td></tr></table>
+      </blockquote>
+      
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise CART.3:</font></b> 
+      
+      Show that if &alpha; is in [0,&alpha;<sub>1</sub>) then T<sub>0</sub>
+      is the best. 
+      
+      </td></tr></table>
+      </blockquote>
+      
+   <p>
+   Now apply induction. The above argument will serve both as the basis of
+   induction as well as the induction step.
+   
+   <img src="resources/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+
+<h3>CART for regression</h3>
+The above description is for classification set up. It may be easily
+adapted to the regression scenario as follows. Here the last column of D
+holds values of Y, the regressand, in stead of the class indices. The
+misclassification proportion is now replaced by mean sum of squares for
+residuals.  
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise CART.4:</font></b> 
+   
+   Suggest how you can use CART for regression. What is the nature of the
+   function fitted by CART?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<h3>Concept of dictionary methods and penalty</h3> 
+CART is one application of a general concept, viz, the concept of
+penalty. There are many modelling strategies that are made by combining a
+large number of simple components. Though each individual component is
+simple, a large number of them can often produce good approximation to
+complicated structures underlying data. These methods are called
+<b>dictionary methods</b>. Just as each word in a dictionary is made up of
+a small number of letters, yet a dictionary has many words. Applying such
+a modelling strategy is like looking up a dictionary of combinations. In
+CART each basic component is a horizontal/vertical split. A polynomial
+regression is also a dictionary method, where each x<sup>i</sup> is a
+component, and we are taking linear combinations of them to get the
+candidate polynomials. MART, MARS, neural network and fuzzy logic based
+methods  are  other examples of dictionary methods. These methods all
+provide two advantages:
+<ol>
+<li>Applying the modelling strategy to a dataset may be time consuming, but
+once the model has been computed, prediction using it is very fast, 
+(since each component is simple to compute)
+<li>These can provide highly nonlinear and complex models. 
+</ol>
+But, unfortunately, these advantages come for a very significant price:
+<ul>
+<li>These are blind methods that cannot take the structure of the sample
+space into account. As a result they have a high risk of overfitting.
+</ul>
+
+<p>This tendency to overfit the data is countered by the concept of
+<b>penalisation</b> as follows. Consider each model as a word in a
+dictionary, where the individual components are the letters comprising
+it. We put a penalty for the number of letters used in a word. Thus, if L
+denotes the loss function in use, then we try to minimise L as well as the
+number of letters. Here there is a trade off: More complex the model less
+is the loss, yet more is the number of letters. So to keep a balance we
+try to minimise 
+
+<blockquote>
+Loss + alpha * |M|,
+</blockquote>
+
+where alpha is a tuning parameter. CV is a very popular way to choose
+alpha. 
+
+
+<hr>
+
+</body>
+</html>
+

@@ -1,0 +1,290 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Approximating E(T) for SPRT</h1>
+
+
+
+Here we shall use all the machinery we have developed so far to
+approximate E(T) (also called ASN) for SPRT(A,B).
+
+<p><b>Set up:</b> We have data X<sub>1</sub>,X<sub>2</sub>,... iid with
+density unknown density f. We want to test
+
+<blockquote>
+H<sub>0</sub>: f = f = f<sub>0</sub> Vs H<sub>1</sub>: f =
+f<sub>1</sub>.
+</blockquote>
+ 
+
+We had defined 
+
+<blockquote>
+Z<sub>i</sub> = 
+log(f<sub>1</sub>(X<sub>i</sub>)/f<sub>0</sub>(X<sub>i</sub>)
+</blockquote>
+
+
+The Z<sub>i</sub>'s are iid and S<sub>m</sub> =
+
+<img src=
+"resources/sum.gif"
+align=middle>
+
+<sub>1,...,m</sub>Z<sub>i</sub> is the log likelihood ratio based
+on sample of size m. 
+
+<p>SPRT(A,B), 0 &lt; B &lt; 1 &lt; A, is the sequential test that
+continues sampling until a stopping time T, where T is the first time when 
+S<sub>T</sub> 
+              <img src=
+              "resources/leq.png"
+              align=top>
+              
+               b, or S<sub>T</sub> 
+                                   <img src=
+                                   "resources/geq.png"
+                                   align=top>
+                                   
+                                    a, where a = log(A) and
+b = log(B). In the first case we accept H<sub>0</sub>, in the latter case
+we reject it.
+
+<p>
+We have also seen the following resuts:
+<ol>
+<li>P(Z<sub>i</sub>=0)  &lt; 1 (natural assumption, else
+f<sub>0</sub>=f<sub>1</sub>, and there is nothing to test.)
+<li>P(T &lt; 
+             <img src=
+             "resources/inf.png"
+             align=top>
+             
+             ) = 1. This is Stein's lemma, and uses (1) in the
+proof.
+<li>Wald's approximation: If S<sub>T</sub> is above a then we take
+S<sub>T</sub> = a, and similarly we take S<sub>T</sub>=b, when
+S<sub>T</sub> falls below b.
+<li>If E(T) is finite, then E(S<sub>T</sub>) = E(T) E(Z<sub>1</sub>). This
+is Wald's first equation.
+<li>If E(T) is finite, and E(Z<sub>1</sub>) = 0,
+then E(S<sub>T</sub><sup>2</sup>) = E(T) E(Z<sub>1</sub><sup>2</sup>). This
+is Wald's second equation. 
+<li>Wald's fundamental identity:
+If &phi;(t) is the mgf of Z<sub>i</sub>, then
+
+<blockquote>
+E(exp(tS<sub>T</sub>)/&phi;(t)<sup>T</sup>) = P<sub>g</sub>(T
+is finite),
+</blockquote>
+
+where g is as before.
+</ol>
+We shall need all these to approximate E(T). <p>
+The basic modus operandi is follows. If E(Z) 
+                                             <img src=
+                                             "resources/neq.png"
+                                             align=top>
+                                             
+                                              0, then we shall use
+Wald's first equation to get 
+
+<blockquote>
+E(T) = E(S<sub>T</sub>)/E(Z),
+</blockquote>
+
+and then we shall try to find E(S<sub>T</sub>). If, however, E(Z)=0, then
+we shall use Wald's second equation, to get
+
+<blockquote>
+E(T) = E(S<sub>T</sub><sup>2</sup>)/E(Z<sup>2</sup>).
+</blockquote>
+
+By virtue of (1), the denominator cannot vanish. So in this case the problem
+reduces to finding E(S<sub>T</sub><sup>2</sup>). <p>
+
+Both the cases are very similar, and so we shall do only the first case
+(i.e., when E(Z) 
+                 <img src=
+                 "resources/neq.png"
+                 align=top>
+                 
+                  0.) Here we need to find E(S<sub>T</sub>). Now,
+by Wald's approximation, 
+
+<blockquote>
+E(S<sub>T</sub>) = b P(S<sub>T</sub> 
+                                     <img src=
+                                     "resources/leq.png"
+                                     align=top>
+                                     
+                                      b) + 
+a P(S<sub>T</sub> 
+                  <img src=
+                  "resources/geq.png"
+                  align=top>
+                  
+                   a).
+
+</blockquote>
+
+Also, 
+
+<blockquote>
+P(S<sub>T</sub> 
+                <img src=
+                "resources/leq.png"
+                align=top>
+                
+                 b) + P(S<sub>T</sub> 
+                                      <img src=
+                                      "resources/geq.png"
+                                      align=top>
+                                      
+                                       a) = 1.
+</blockquote>
+
+So it suffices to be able to find P(S<sub>T</sub> 
+                                                  <img src=
+                                                  "resources/geq.png"
+                                                  align=top>
+                                                  
+                                                   a).
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT4.1:</font></b> 
+   
+   Use the funadamental idenitity and Stein's lemma to show that for SPRT, we
+   have
+   
+   <blockquote>
+   E(exp(tS<sub>T</sub>)/&phi;(t)<sup>T</sup>)=1.
+   </blockquote>
+   
+   <br>
+       <i>[Hint:
+       
+       By Stein's lemma this boils down to showing P<sub>g</sub>(T
+       is finite) = 1. This follows by a simple argument from the fact that 
+       P(T is finite) = 1.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>Suppose that we find nonzero d such that &phi;(d)=1. Then with t=d,
+we have from the fact that
+
+<blockquote>
+E(exp(dS<sub>T</sub>)) = 1.
+</blockquote>
+
+Using Wald's approximation again we have
+
+<blockquote>
+1=E(exp(dS<sub>T</sub>) = exp(db) P(S<sub>T</sub> 
+                                                  <img src=
+                                                  "resources/leq.png"
+                                                  align=top>
+                                                  
+                                                   b) +
+exp(da) P(S<sub>T</sub> 
+                        <img src=
+                        "resources/geq.png"
+                        align=top>
+                        
+                         a).
+
+</blockquote>
+
+Since the two probabilities add up to 1, hence we can now solve for 
+P(S<sub>T</sub> 
+                <img src=
+                "resources/geq.png"
+                align=top>
+                
+                 a).
+
+
+<h4>Can we always find such d?</h4>
+
+Unfortunately, we cannot always find a nonzero d such that &phi;(d)=1.
+Here is one sufficient condition which guarantees the existence of such
+d. 
+
+<blockquote>
+If 
+<ul>
+<li>&phi;(t) exists (i.e., is finite) for all t in some open interval
+(r,s) containing 0, (r,s may be infinite)
+<li> &phi;(t) goes to infinity as t approaches r from right, or s from
+left,
+<li> E(Z) 
+          <img src=
+          "resources/neq.png"
+          align=top>
+          
+           0,
+</ul>
+then 
+there exists nonzero d such that &phi;(d)=1.
+
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT4.2:</font></b> 
+   
+   Show that &phi;'(0) 
+                       <img src=
+                       "resources/neq.png"
+                       align=top>
+                       
+                        0, and &phi;''(t)  &gt; 0 over (r,s).
+   <br>
+       <i>[Hint:
+       
+       Differentiate under integral sign.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT4.3:</font></b> 
+   
+   Hence conclude that the required d exists.
+   <br>
+       <i>[Hint:
+       
+       A convex function has unique minimum. Can 0 be the minimum?
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

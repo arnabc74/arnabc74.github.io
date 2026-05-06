@@ -1,0 +1,164 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>k-sample inference</h1>
+
+
+
+
+<h3>Kruskal-Wallis Test</h3>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose that we want to compare among the performance of k fertilisers on
+   growth of plants. For this we take k groups of plants, with n<sub>i</sub>
+   many plants in group i, and apply fertiliser i on the i-th group. Let
+   the j-th plant in the i-th group experience a growth of amount
+   X<sub>ij</sub>. We assume that all the X<sub>ij</sub>'s are mutually
+   independent and 
+   
+   <blockquote>
+   
+   <pre>
+   X<sub>1j</sub>'s are iid F<sub>1</sub> for j=1,...,n<sub>1</sub>
+   X<sub>2j</sub>'s are iid F<sub>2</sub> for j=1,...,n<sub>2</sub>
+   ...
+   X<sub>kj</sub>'s are iid F<sub>k</sub> for j=1,...,n<sub>k</sub>,
+   </pre>
+   
+   </blockquote>
+   
+   where the F<sub>i</sub>'s are unknown continuous distributions. 
+   We want to test
+   
+   <blockquote>
+   H<sub>0</sub>: All F<sub>i</sub>'s are the same
+   Vs. H<sub>1</sub>: not H<sub>0</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+In the Kruskal-Wallis test we first pool all the k samples. Let
+R<sub>ij</sub> denote the rank of X<sub>ij</sub> in the pooled
+sample. Define 
+
+<blockquote>
+R<sub>i</sub> = 
+                <img src=
+                "resources/sum.gif"
+                align=middle>
+                
+                <sub>j</sub> R<sub>ij</sub>.
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KSAMP.1:</font></b> 
+   
+   Find E(R<sub>i</sub>) under H<sub>0</sub>. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+In the KW test we use the test statistic 
+
+<blockquote>
+H = 12/(n(n+1) 
+               <img src=
+               "resources/sum.gif"
+               align=middle>
+               
+               <sub>i</sub>
+[R<sub>i</sub>-n<sub>i</sub>(n+1)/2]<sup>2</sup>/n<sub>i</sub>,
+</blockquote>
+
+where n = 
+          <img src=
+          "resources/sum.gif"
+          align=middle>
+          
+          n<sub>i</sub>. 
+<p>Here is the motivation behind this test. By the last exercise we see
+that H is a linear combination of the squared deviations
+ of R<sub>i</sub>'s from
+their respective null means. Thus a large value of R signals potential
+departure from H<sub>0</sub>. The constants are chosen appropriately so
+that the following asymptotic distribution holds:
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   If all the n<sub>i</sub>'s are "moderately large" then under
+   the null hypothesis
+   
+   <blockquote>
+   H is asymptotically 
+                       <img src="resources/chisqd.png" align=top>
+                       
+                       <sub>(k-1)</sub>.
+   </blockquote>
+   
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   Not to be done in this course. Note that we have not even
+   stated the theorem fully rigourously, leaving the term "moderately large"
+   undefined.
+   <img src="resources/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KSAMP.2:</font></b> 
+   
+   Argue that H is distribution-free under H<sub>0</sub>. No asymptotics here.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise KSAMP.3:</font></b> 
+   
+   Show that 
+   
+   <p><center>
+   <img src="resources/kruskwal.gif">
+   </center><p>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+
+<hr>
+
+</body>
+</html>
+

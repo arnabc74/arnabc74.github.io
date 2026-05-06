@@ -1,0 +1,83 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{KS@}
+@O@<one3.html@>==@{
+@<Head@>@(??@,More on KS procedure@)
+
+@<Section@>@(Asymptotic distribution of KS statistics@)
+Computing the exact distribution of the KS statistic is prohibitively
+difficult for large n. In this case we use the asymptotic distributions of
+D, D@<sub@>@(+@) and D@<sub@>@(-@). 
+<p>@<Thm@>@(
+Suppose we have computed D based on iid sample of size n. Then 
+@<Disp@>@(P(sqrt(n) D @<Leq@> x) @<rarrow@> H(x),@)
+where
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(H(x) = @,1-2 @<Sum@>@<sub@>@(j&gt;0@)
+(-1)<sup>j-1</sup> exp(-2 j<sup>2</sup>
+x<sup>2</sup>)@, if x  &gt;  0@)
+@<Row@>@(@,0@,else@)
+@)
+@)
+@)
+<p>
+@<Pf@>@(Not to be done in this course.@)
+<p>
+H(x) is indeed a valid continuous distribution function. It appears quite
+difficult to prove that it is indeed so. The simplest proof that I know of
+is by Feller. It is a few page long (however, it actually proves something
+stronger.) H(x) is an example of what mathematicians call a theta function. 
+
+<p>@<Thm@>@(
+Let D@<sub@>@(+@) and D@<sub@>@(-@) be computed based on iid sample of ize
+n. Then
+@<Eqn@>@(
+@<Row@>@(P(sqrt(n) D@<sub@>@(+@)) @<rarrow@>@, 1-exp(-2x<sup>2</sup>)@,if x
+@<Geq@> 0@)
+@<Row@>@(@,0@,else@)
+@)
+P(sqrt(n) D@<sub@>@(-@) @<Leq@> x) has the same limit, as well.
+@)
+
+<p>@<Pf@>@(Not to be done in this course.@)
+
+<p>@<Exercise@>@(4@,
+Show that nD@<sub@>@(+@)<sup>2</sup> is asymptotically distributed as
+Expo(2). 
+@)
+<p>@<Exercise@>@(5@,
+The file <a href="data.txt">data.txt</a> contains iid data from some
+unknown continuous distribution, F. We want to test 
+@<Disp@>@(H@<sub@>@(0@): F = N(0,1) Vs. H@<sub@>@(1@): F @<sLt@> N(0,1).@)
+Perform KS test using the asymptotic distribution. Report the P-value.
+@)
+
+@<Section@>@(Confidence intervals using KS procedure@)
+Suppose that X@<sub@>@(1@),...,X@<sub@>@(n@) are iid with unknown
+continuous distribution G. We want to get a @<alpha@>-level CI for G. For
+this consider the random variable 
+@<Disp@>@(D = sup@<sub@>@(x@) |F@<sub@>@(n@)(x)-G(x)|@)
+<p>@<Exercise@>@(6@,
+Can you compute D if G is not known? Does the distribution of D depend on G?
+@)
+<p>Find a constant c such that
+@<Eqn@>@(
+@<Row@>@(@,P(D@<Leq@>c)@, 1-@<alpha@>@)
+@<Row@>@(i.e., @, P(|F@<sub@>@(n@)(x)-G(x)| @<Leq@> c for all x)@, = 1-
+@<alpha@>@)
+@<Row@>@(i.e., @, P(F@<sub@>@(n@)(x)-c @<Leq@> G(x) @<Leq@>
+F@<sub@>@(n@)(x)+c  for all x)@, = 1-
+@<alpha@>@)@)
+This provides a CI for G. 
+
+<p>@<Exercise@>@(7@,
+The file <a href="data.txt">data.txt</a> contains iid data from some
+unknown continuous distribution, F. Obtain a 95% CI for F using 2-sided KS
+statistic. Plot the CI. <br>
+<i>[Hint: You need to compute cut-off point c based on the infinite series
+given earlier. Use Matlab.]</i>
+@)
+<p>
+@<Tail@>
+@}

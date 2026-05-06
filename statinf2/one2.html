@@ -1,0 +1,628 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>More one sample procedures</h1>
+
+
+
+<h3>Chisqd test for independence</h3>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose that we want to find out if academic accomplishment is independent
+   of gender in Kolkata. Let X denote the academic accomplishment level of a
+   randomly selected person, and let Y denote his/her gender. Here X takes
+   the following possible values:
+   
+   <blockquote>
+   Pre-school, Primary, Secondary, HS, Bachelor's degree, Masters,
+   Above.
+   </blockquote>
+   
+   We are interested in testing 
+   
+   <blockquote>
+   H<sub>0</sub>: X indep of Y Vs H<sub>1</sub> not indep.
+   </blockquote>
+   
+   To test this we collect a random sample of size 1200 from the
+   population. For each selected person
+    we observe X and Y. The resulting dataset is
+   an example of a <b>cross-classified</b> dataset. Such a dataset may be
+   presented as a two-way frequency table as follows [The following dataset
+   is hypothetical.]
+   
+   <blockquote>
+   
+   <table border=1>
+   <tr>
+   <td><th>Pre-school<th>Primary<th>Secondary<th>Higher secondary<th>Bachelor's
+   <th>Master's<th>above
+   </tr><tr>
+   <th>Male<td>20<td>57<td>279<td>166<td>104<td>31<td>10
+   </tr><tr>
+   <th>Female<td>45<td>50<td>168<td>157<td>90<td>16<td>7
+   </tr>
+   </table>
+   
+   </blockquote>
+   
+   
+   Let 
+   
+   <blockquote>
+   
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   n<sub>ij</sub> 
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+    the frquency in (i,j)-th cell.
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   p<sub>i</sub>
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+    P(X = i)
+   </td>
+   </tr>
+    
+   
+   <tr>
+   <td align=right>
+   q<sub>j</sub>
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+    P(Y = j)
+   </td>
+   </tr>
+    
+   
+   </table>
+   
+   We assume that p<sub>i</sub>, q<sub>j</sub>  &gt; 0 for all i,j.
+   
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.1:</font></b> 
+   
+   Find mle of p<sub>i</sub> and q<sub>j</sub> for all i,j. Use these to
+   estimate P(X=i, Y=j) under H<sub>0</sub>. Hence compute
+   
+   <blockquote>
+   m<sub>ij</sub> = estimated E(n<sub>ij</sub>) under H<sub>0</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Then the chisqd test rejects H<sub>0</sub> for large values of  the
+following test statistic 
+
+<blockquote>
+
+<img src="resources/chisqd.png" align=top>
+
+ = 
+   <img src=
+   "resources/sum.gif"
+   align=middle>
+   
+    
+    <img src=
+    "resources/sum.gif"
+    align=middle>
+    
+     (n<sub>ij</sub> -
+m<sub>ij</sub>)<sup>2</sup>/m<sub>ij</sub>
+</blockquote>
+ 
+
+The asymptotic distribution of this under H<sub>0</sub> is a 
+                                                             <img src="resources/chisqd.png" align=top>
+                                                             
+                                                             
+distribution. We shall not prove this here. It follows from the fact that
+under the regularity conditions the null distribution of 
+
+<blockquote>
+-2*log(likelihood ratio)
+</blockquote>
+
+converges to a 
+               <img src="resources/chisqd.png" align=top>
+               
+                distribution. For classified data the degrees of
+freedom is 
+
+<blockquote>
+number of classes - 1 - number of <i>free</i> parameters
+estimated.
+</blockquote>
+ 
+What is a <i>free</i> parameter? If &theta; is a parameter, then so is
+2*&theta;. However, if you have already estimated &theta;, then you do
+not need to estimate 2*&theta; separately. Thus we have only one free
+parameter here. Similarly, if you are estimating a probabiolity vector 
+(p<sub>1</sub>,...p<sub>k</sub>), then you have only k-1 free parameters,
+since they add up to one.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.2:</font></b> 
+   
+   What should the degrees of freedom be for the chisqd test above if there
+   are
+   I rows and J columns in the table?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+If n 
+     <img src=
+     "resources/geq.png"
+     align=top>
+     
+      30 and n<sub>ij</sub>,m<sub>ij</sub> 
+                                           <img src=
+                                           "resources/geq.png"
+                                           align=top>
+                                           
+                                            5 for all i,j,
+then it is 
+customary to consider the asymptotic distribution as a good approximation
+to the exact distribution. We reject H<sub>0</sub> for large values of the
+test statistic. 
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.3:</font></b> 
+   
+   Carry out the test for the given data. Report the P-value.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.4:</font></b> 
+   
+   The test statistic here is only <i>asymptotically</i> distribution-free
+   under H<sub>0</sub>. Get a counter example to show that the finite sample
+   distribution is not distribution free.<br>
+   <i>[Hint: In fact, even to define the test statistic you need infinite
+   sample size. Because, for any finite sample size there is some chance that
+   m<sub>ij</sub> is zero for some i,j.]</i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.5:</font></b> 
+   
+   Typically ISI students either plan to do research or take up a job after M
+   Stat. Last sem I collected some data on this. [The following data is
+   real. It is collected from the Stat Computing students (MII, 2004-2005)]
+   
+   <blockquote>
+   
+   <table border=1>
+   <tr>
+   <td><th>Research<th>Job<th>Undecided
+   </tr><tr>
+   <th>B.Stat.<td>2<td>1<td>3
+   </tr><tr>
+   <th>non B.Stat.<td>7<td>7<td>1
+   </tr>
+   </table>
+   
+   </blockquote>
+   
+   I want to use this to test if the trend differs from B. Stat to
+   non B. Stat students in the Statisitcal Computing class. 
+    However, my sample size is small. How should I proceed?
+   You do not need to compute anything numerically. Just suggest a method.
+   <br>
+       <i>[Hint:
+       
+       One method is to perform Fisher's exact test, which finds the exact
+       conditional distribution under H<sub>0</sub> given the marginals. This
+       conditional is like hypergeometric distribution. It is obtained by 
+       conditioning
+       multinomial distribution in the same way as hypergeometric distribution is
+       obtained by conditioning binomial. 
+       <p>Another solution will be to list all possible tables with the given
+       marginals. These are equally likely under H<sub>0</sub>. Compute the test
+       statistic for all these, and get a histogram. This is the true
+       distribution of the test statistic under H<sub>0</sub>. Now locate the
+       test statistic value for the given data in this histogram to find P-value.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h3>Kolmogorov-Smirnov Test</h3>
+
+We have data 
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>n</sub> iid continuous F,
+</blockquote>
+
+which is unknown. G is some completely specified continuous
+distribution. We want to test 
+
+<blockquote>
+H<sub>0</sub>: F = G Vs. H<sub>1</sub>: F 
+                                          <img src=
+                                          "resources/neq.png"
+                                          align=top>
+                                          
+                                           G.
+</blockquote>
+
+The KS test rejects H<sub>0</sub> for large values of the following test
+statistic 
+
+<blockquote>
+D = sup<sub>x</sub> | F<sub>n</sub>(x) - G(x)|.
+</blockquote>
+
+Here F<sub>n</sub>(x) is the empirical distribution function. It is
+defined as
+
+<blockquote>
+F<sub>n</sub>(x) = proportion of X<sub>i</sub>'s 
+                                                 <img src=
+                                                 "resources/leq.png"
+                                                 align=top>
+                                                 
+                                                  x.
+</blockquote>
+
+
+This is a reasonable thing to do because, for large n , the empirical
+distribution function is close to the unknown F. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.6:</font></b> 
+   
+   State some theorem that makes this concept precise.<br>
+   <i>[Hint: There are more than one such theorems that you already know.
+    Pick one.
+   You should be able to
+   state it rigourously.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.7:</font></b> 
+   
+   Show that D 
+               <img src=
+               "resources/geq.png"
+               align=top>
+               
+                1/(2n).
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.8:</font></b> 
+   
+   Suppose that 
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>n</sub>
+   </blockquote>
+   
+   are iid continuous G, and 
+   
+   <blockquote>
+   U<sub>1</sub>,...,U<sub>n</sub>
+   </blockquote>
+   
+   are iid Unif(0,1). Sort the X's as
+   
+   <blockquote>
+   X<sub>(1)</sub> 
+                   <img src=
+                   "resources/geq.png"
+                   align=top>
+                   
+                    ... 
+                        <img src=
+                        "resources/geq.png"
+                        align=top>
+                        
+                         X<sub>(n)</sub>
+   </blockquote>
+   
+   and the U's as
+   
+   <blockquote>
+   U<sub>(1)</sub> 
+                   <img src=
+                   "resources/geq.png"
+                   align=top>
+                   
+                    ... 
+                        <img src=
+                        "resources/geq.png"
+                        align=top>
+                        
+                         U<sub>(n)</sub>
+   </blockquote>
+   
+   Show that the joint distribution of the G(X<sub>(i)</sub>)'s
+   is the same as that of the U<sub>(i)</sub>'s.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.9:</font></b> 
+   
+   Write down the joint density of the U<sub>(i)</sub>'s defined
+   above for general n. 
+   For n=2 use the density to explicitly compute the distribution of
+   D<sub>2</sub>. 
+   <br>
+       <i>[Hint:
+       
+       The jt density of the U's is
+       
+       <blockquote>
+       f(u<sub>1</sub>,...,u<sub>n</sub>) = 1/n! if 
+       u<sub>1</sub> 
+                     <img src=
+                     "resources/leq.png"
+                     align=top>
+                     
+                      ... 
+                          <img src=
+                          "resources/leq.png"
+                          align=top>
+                          
+                           u<sub>n</sub>.
+       </blockquote>
+       
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>One-sided KS</h4>
+
+The KS test above is a two sided one. We can also perform one-sided KS
+tests. For this we need to introduce a partial order over the set of all
+distributions. 
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+Let X, Y be two random variables with distribution functions F, G,
+respectively. If for all c, 
+
+<blockquote>
+P(X  &gt;  c) 
+              <img src=
+              "resources/geq.png"
+              align=top>
+              
+               P(Y  &gt; c),
+</blockquote>
+
+then we say that X is stochasticaly larger than Y, and write 
+
+<blockquote>
+F 
+  <img src=
+  "resources/sgeq.png"
+  align=top>
+  
+   G.
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.10:</font></b> 
+   
+   Prove/disprove/suitably modify : 
+   
+   <blockquote>
+   F 
+     <img src=
+     "resources/sgeq.png"
+     align=top>
+     
+      G iff F(x) 
+                 <img src=
+                 "resources/geq.png"
+                 align=top>
+                 
+                  G(x) for all x.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.11:</font></b> 
+   
+   Show that 
+             <img src=
+             "resources/sgeq.png"
+             align=top>
+             
+              is a partial order on the set of all distribution
+   functions. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.12:</font></b> 
+   
+   Is it 
+         <img src=
+         "resources/sgeq.png"
+         align=top>
+         
+          a complete order as well? Why or why not?
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+In the one sided version of the KS test we test 
+
+<blockquote>
+H<sub>0</sub>: F = G Vs H<sub>1</sub>: F 
+                                         <img src=
+                                         "resources/sgt.png"
+                                         align=top>
+                                         
+                                          G
+</blockquote>
+
+or
+
+<blockquote>
+H<sub>0</sub>: F = G Vs H<sub>1</sub>: F 
+                                         <img src=
+                                         "resources/slt.png"
+                                         align=top>
+                                         
+                                          G.
+</blockquote>
+
+For this we use the following test statistics:
+
+<blockquote>
+D<sub>+</sub> = sup<sub>x</sub> (F<sub>n</sub>(x)-G(x))
+</blockquote>
+
+and
+
+<blockquote>
+D<sub>-</sub> = sup<sub>x</sub> (G(x)-F<sub>n</sub>(x))
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.13:</font></b> 
+   
+   We reject H<sub>0</sub> for large values of the test statistic. Can you
+   say which test statistic is used for which test?
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise ONE2.14:</font></b> 
+   
+   Show that D<sub>+</sub>, D<sub>-</sub> 
+                                          <img src=
+                                          "resources/geq.png"
+                                          align=top>
+                                          
+                                           0. What is the relation
+   between D, D<sub>+</sub> and D<sub>-</sub>?
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<hr>
+
+</body>
+</html>
+

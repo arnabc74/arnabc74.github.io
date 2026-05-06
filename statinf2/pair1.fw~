@@ -1,0 +1,183 @@
+@i main
+@$@<Label@>==@{WSR@}
+@O@<pair1.html@>==@{
+@<Head@>@(??@,Paired sample problem@)
+
+@<Section@>@(Introduction@)
+<p>@<Example@>@(
+If you take a bar of steel, and apply a large enough force on it, it will
+snap. The minimum force to snap it is called the breaking strength of the
+steel. To increase the breaking strength of steel manufacturers treat the
+steel in 
+various ways in the factory, e.g., they add carbon to it, anneal it (i.e.,
+heat and then slowly cool it) and so on. Suppose that someone has proposed
+such a treatment, and we want to test if it really increases the breaking
+strength. For this we take n steel bars and cut each into two halves. Then
+we measure the breaking strength of the first halves. Call these as
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@).@)
+Next we apply the treatment on the other halves, and measure their
+breaking strengths:
+@<Disp@>@(Y@<sub@>@(1@),...,Y@<sub@>@(n@).@)
+<p>
+ It is reasonable to assume that 
+@<Disp@>@((X@<sub@>@(1@),Y@<sub@>@(1@)),...,
+(X@<sub@>@(n@),Y@<sub@>@(n@))@)
+are indep but not necessarily identically distributed. This is called a
+<b>paired sample</b> set up. Define 
+@<Disp@>@(Z@<sub@>@(i@) = Y@<sub@>@(i@)-X@<sub@>@(i@).@) 
+If the treatment is really
+effective we would expect mmost of the Z's to be positive. If the treatment
+has no effect then Z's are as likely to be positive as
+negative. In nonparametric statistical inference it is
+customary to assume that Z's all have continuous distributions with a
+common median, @<theta@> which is unknown. 
+Then the problem is to test 
+@<Disp@>@(H@<sub@>@(0@): @<theta@> = 0 
+Vs H@<sub@>@(1@): @<theta@>  &gt; 0@)
+We can of course similarly be interested in the other onesided test or a
+two sided test. 
+@)
+
+@<Section@>@(Wilcoxon's signed rank test@)
+We have already seen one test for this, viz, the sign test. However, it
+uses uses nothing but but the sign sign and hence loses much of the
+information present in the data. This is partly remedied in Wilcoxon's
+Signed Rank test. Here we assume that the Z@<sub@>@(i@)'s are iid and
+symmetric around @<theta@>. Define
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(s@<sub@>@(i@) = @, 1 @,if Z@<sub@>@(i@)  &gt;  0@)
+@<Row@>@(   @,0 @,else@)
+@)
+@)
+Let R@<sub@>@(i@) be the ranks of |Z@<sub@>@(i@)|'s,
+ eg, if |Z@<sub@>@(7@)| is the largest |Z@<sub@>@(i@)| 
+then R@<sub@>@(7@)=1,
+and so on. Then our test statistic is 
+@<Disp@>@(T = @<Sum@> s@<sub@>@(i@) R@<sub@>@(i@)@)
+It is called Wilcoxon's signed rank statistic. 
+
+<p>@<Example@>@(
+Suppose that the Z@<sub@>@(i@)'s are
+@<Disp@>@(1.4 -2.9 2.4 -3.4 5.9 2.5@)
+The we compute the following 
+@<Disp@>@(<pre>
+|Z@<sub@>@(i@)| 1.4 2.9 2.4 3.4 5.9 2.5
+s@<sub@>@(i@)    1   0   1   0   1   1
+R@<sub@>@(i@)    1   4   2   5   6   3
+</pre>
+@)
+This produces T = 1+2+6+3 = 9.
+@)
+<p>
+We should reject H@<sub@>@(0@) if T is large. 
+
+@<Claim@>@(
+T is distribution-free under H@<sub@>@(0@).
+@)
+
+<p>@<Jst@>@(
+Undr H@<sub@>@(0@), Z's are symmetric around 0. So |Z| and s are indep.
+[See the exercise below.] Since
+R's are functions of |Z|'s, hence the s's are indep of the R's. Also s's are
+iid +1 or -1 with probability 1/2 under H@<sub@>@(0@). 
+
+<p>Let's compute the conditional null distribution of 
+T | R@<sub@>@(i@)'s = @<Sum@>s@<sub@>@(i@)R@<sub@>@(i@) |
+R@<sub@>@(i@). 
+In this conditional distribution, Ri's are just some <i>fixed</i>
+permutation of {1,...,n}. Multiplying them with si's and adding, amounts
+to performing iid unbaised coin tosses for each i, and then adding
+the Ri's corresponding to the heads. The distribution of the sum 
+obviously does not depend
+upon the permutation. So T is indep of the R@<sub@>@(i@)'s and T is
+distribution-free under H@<sub@>@(0@). 
+@)
+@<Exercise@>@(1@,
+Show that |Z| is indep of s if Z has distribution symmetric around 0.
+@)
+@<Exercise@>@(2@,
+Compute the null distribution of T explicitly for n = 4.
+@)
+<p>@<Exercise@>@(3@,
+Show that, under H@<sub@>@(0@), E(T) = n(n+1)/4 and that T has symmetric
+distribution around E(T). 
+<br>@<Hint@>@(
+Interchange 0's and 1's.
+@)
+
+@)
+<p>
+<b>Please note that the definition of T here is slightly different from
+that done in class. There the signs were -1 and +1. Here they are 0 and
+1. However, both the definitions produce equivalent tests in the sense that T
+defined in class is large iff T defined here is large. Both the
+definitions are used for Wilcoxon signed rank test.</b>
+<p>
+Next we shall compute Var(T) under H@<sub@>@(0@). In order to do this it
+will be helpful to rewrite T as follows.
+<p>Define D@<sub@>@(i@)'s as "inverse" of R@<sub@>@(i@)'s in the following
+sense:
+@<Disp@>@(D@<sub@>@(i@) = j iff R@<sub@>@(j@) = i.@)
+Sometimes D@<sub@>@(i@)'s are called <i>antiranks</i>. Define 
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(U@<sub@>@(i@) = @, 1 @, if Z@<sub@>@(D@<sub@>@(i@)@) &gt; 0@)
+@<Row@>@(@,0@, else@)
+@)
+@)
+<p>@<Exercise@>@(4@,
+Show that 
+@<Disp@>@(T = @<Sum@> i U@<sub@>@(i@).@)
+@)
+<p>@<Exercise@>@(5@,
+Show that, under H@<sub@>@(0@), E(U@<sub@>@(i@)) = 1/2, and 
+Var(U@<sub@>@(i@)) = 1/4. 
+@)
+<p>@<Exercise@>@(6@,
+Show that, under H@<sub@>@(0@), 
+@<Disp@>@(E(U@<sub@>@(i@)U@<sub@>@(j@)) = 1/4 if i@<Neq@>j.@)
+Hence conclude that if i @<Neq@> j, then 
+cov(U@<sub@>@(i@),U@<sub@>@(j@))=0.
+@)
+
+<p>@<Exercise@>@(7@,
+Use the above exercises to show that
+@<Disp@>@(V(T) = n(n+1)(2n+1)/24
+@)
+under H@<sub@>@(0@).
+@)
+
+<p>@<Exercise@>@(8@,
+Write a computer program to verify the upper-tail probabilities
+mentioned in table a.4 of the book by Hollander and Wolfe for n=10. If you
+cannot find the book, then just write a program to find the P(T &gt; a)
+for any given a.
+<br>@<Hint@>@(
+Use binary addition to step through all the 2<sup>n</sup> patterns of 0's
+and 1's.
+@)
+
+@)
+<p>
+<h3>Why is the symmetry assumption reasonable?</h3>
+Note that Wilcoxon's signed rank test uses more information than the sign
+test. But it also requires an extra symmetry assumption. This assumption
+is often a reasonable one as we see below.
+<p>@<Example@>@(
+Let X be the breaking strength before the treatment, and let
+Y be that after the treatment. Assume that X,Y are independent and that
+their distribution differs only in location. 
+In other word, if X ~ F and Y ~ G, then 
+@<Disp@>@(F(x) = G(x-@<theta@>) 
+for some @<theta@> @)
+@)
+<p>@<Exercise@>@(9@,
+Show that in this case X-Y has distribution symmetric around 
+@<theta@>.
+<i>[Hint: First consider the case @<theta@>=0.]</i>
+@)
+
+@<Tail@>
+@}
+

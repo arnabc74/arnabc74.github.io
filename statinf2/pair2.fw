@@ -1,0 +1,176 @@
+@i main
+@$@<Label@>==@{TAU@}
+@O@<pair2.html@>==@{
+@<Head@>@(??@,Tests of association@)
+@<Section@>@(Kendall's tau@)
+
+<p>@<Example@>@(
+Are class 10 and class 12 results associated? In other words, is a student
+doing well in the first exam also likely to do well in the second? To
+check this we collect data from n students:
+@<Disp@>@((X@<sub@>@(1@),Y@<sub@>@(1@)),...,(X@<sub@>@(n@),Y@<sub@>@(n@))@)
+where 
+@<Disp@>@(X = class 10 grade <br>
+Y = class 12 grade.@)
+@)
+<p>
+Assume that (X@<sub@>@(i@),Y@<sub@>@(i@))'s are iid with some continuous
+bivariate distribution F(x,y), which is unknown. We can compute sample
+correlation to test for the association, but it is not distribution-free
+(i.e., its distribution involves the unknown F) so we cannot compute
+critical values for a test based on the sample correlation
+coefficients. Kendall's @<tau@> test is a nonparametric way out. Here we
+proceed as follows.
+<p>
+Pick two students i, j (i@<Neq@> j). Call them <i>concordant</i> if 
+@<Disp@>@(either (X@<sub@>@(i@)  &lt;  X@<sub@>@(j@) and Y@<sub@>@(i@)
+&lt; Y@<sub@>@(j@)) <br>or
+(X@<sub@>@(i@) &gt; X@<sub@>@(j@) and
+Y@<sub@>@(i@) &gt; Y@<sub@>@(j@))@)
+
+Otherwise, call them <i>discordant</i>. Note that due to the continuity
+assumption on F, we do not need to worry about ties. Let
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(@<theta@>@, = @,P(two randomly chosen students are concordant)@)
+@<Row@>@(         @, = @,1-P(they are discordant)@)
+@)
+@)
+
+<p>@<Defn@>@(
+Kendall's @<tau@> parameter is defined as
+@<Disp@>@(@<tau@> = @<theta@> - (1-@<theta@>) = 2 @<theta@> - 1.@)
+@)
+<p>@<Exercise@>@(1@,
+If X and Y are independent then show that @<tau@> = 0.
+@)
+<p>@<Exercise@>@(2@,
+Is the converse true? <br>
+<i>[Hint: Use the next exercise. Take the
+distribution of X suitably. Then attach a random sign to X to get Y.]
+@)
+<p>@<Exercise@>@(3@,
+Show that
+@<Disp@>@(@<tau@> =
+E(sign(X@<sub@>@(1@)-X@<sub@>@(2@))*sign(Y@<sub@>@(1@)-Y@<sub@>@(2@))).@)
+Here @<Disp@>@(@<Eqn@>@(
+@<Row@>@(sign(u)@,= 1 @, if u  &gt;  0@)
+@<Row@>@(@,= 0 @, if u = 0@)
+@<Row@>@(@, = -1@, if u  &lt;  0@)
+@)@)
+@)
+<p>
+If @<tau@>  &gt;  0 then concordant pairs occur more often than discordant
+pairs, i.e., if student i did better than student j in class 10, he/she is
+likely to do better again in the class 12. Thus, "@<tau@>  &gt;  0" means
+positive association. We want to test
+@<Disp@>@(H@<sub@>@(0@): X, Y independent  Vs. 
+H@<sub@>@(1@): @<tau@> @<Neq@> 0@)
+or
+@<Disp@>@(H@<sub@>@(0@): X, Y independent   Vs. 
+H@<sub@>@(1@): @<tau@>  &gt;  0@)
+or
+@<Disp@>@(H@<sub@>@(0@): X, Y independent   Vs.
+H@<sub@>@(1@): @<tau@>  &lt;  0@)
+We can estimate @<tau@> by 
+@<Disp@>@(T = @<Sum@>@<sub@>@(i &lt;j@)
+sign(X@<sub@>@(i@)-X@<sub@>@(j@))
+sign(Y@<sub@>@(i@)-Y@<sub@>@(j@))
+/ <sup>n</sup>C@<sub@>@(2@).@)
+We shall use this as our test statistic. It is easier to compute this
+using <i>concommitants</i> than by using the definition directly. 
+<p>@<Defn@>@(
+<b>(Concommitant)</b> Suppose that we have bivariate data 
+@<Disp@>@((X@<sub@>@(1@),Y@<sub@>@(1@)), ..., X@<sub@>@(n@),Yn
+)@)
+Let R@<sub@>@(i@)'s denote the ranks of Y@<sub@>@(i@)'s.
+Sort the sample by the X's. This
+permutes the R's in some way. The permuted R's are
+called the <i>concommitants</i> of Y wrt X. 
+@)
+<p>@<Example@>@(
+Suppose that we have the data 
+@<Disp@>@(
+<pre>
+original X@<sub@>@(i@): 3    2   1.5  4     9
+Original Y@<sub@>@(i@): 5   -9   2    3.4  10
+Y-ranks: R@<sub@>@(i@): 4    1   2    3     5
+Sorted X@<sub@>@((i)@): 1.5  2   3    4     9
+Permuted R@<sub@>@(i@): 2    1   4    3     5
+</pre>@)
+The last row gives the concommitants of Y wrt X. 
+@)
+<p>@<Exercise@>@(4@,
+Show that 
+@<Disp@>@(T = -@<Sum@>@<sub@>@(i &lt; j@)
+sign(S@<sub@>@(i@)-S@<sub@>@(j@))
+/ <sup>n</sup>C@<sub@>@(2@),@)
+where the S@<sub@>@(i@)'s are the concommitants of Y wrt X (e.g.,
+in the last example S@<sub@>@(1@)=2, S@<sub@>@(2@)=1 etc.)
+@)
+<p>
+We reject H@<sub@>@(0@) if |T| is large (for the two-sided alternative.)
+Similarly for the one-sided cases. To quantify how large is large enough,
+we need to know the null distribution of T.
+<p>@<Exercise@>@(5@,
+Show that T is distribution-free under H@<sub@>@(0@). @)
+
+<p>@<Exercise@>@(6@,
+Explicitly compute the null distribution of T when n = 3.
+@)
+<p>
+Next, let us compute the moments of T.
+<p>@<Exercise@>@(7@,
+Show that E(T) = @<tau@>.
+@)
+The formula for Var(T) for general @<tau@> is complicated (it is given in the
+textbook). We shall here compute Var(T) under H@<sub@>@(0@). Since E(T) =
+0 under H@<sub@>@(0@), hence Var(T) = E(T<sup>2</sup>).
+For 1 @<Leq@> i, j @<Leq@> n, define
+@<Disp@>@(a(i,j) = sign(X@<sub@>@(i@)-X@<sub@>@(j@))
+sign(Y@<sub@>@(i@)-Y@<sub@>@(j@))@)
+<p>@<Exercise@>@(8@,
+Show that under H@<sub@>@(0@)
+@<Disp@>@(E(a(i,j) a(r,s)) = 0 if i @<Neq@> r, j @<Neq@> s@)
+@)
+
+<p>@<Exercise@>@(9@,
+Show that under H@<sub@>@(0@)
+@<Disp@>@(E(a(i,j) a(r,s)) = 1/9 if i = r, j @<Neq@> s@)
+<br>@<Hint@>@(
+If X ~ F, then E[(F(X)-1)<sup>2</sup>] = 1/3, since F(X) ~Unif(0,1).
+@)
+
+@)
+
+<p>@<Exercise@>@(10@,
+Show that under H@<sub@>@(0@)
+@<Disp@>@(E(a(i,j) a(r,s)) = 1 if i = r, j = s@)
+@)
+<p>@<Exercise@>@(11@,
+Show that the number of (i,j) and (r,s) with i=r and j @<Neq@> s, is 
+n(n-1)(n-2).
+@)
+
+<p>@<Exercise@>@(12@,
+Use the above exercises to show that,  <i>under H@<sub@>@(0@)</i>, 
+@<Disp@>@(Var(T) = (2n+5)/9n(n-1)@)
+
+@)
+
+
+@<Subsection@>@(Asymptotic distribution@)
+Computing the exact distribution of T for large sample size, is
+complicated. So one then uses the asymptotic distribution of T. 
+<p>@<Thm@>@(
+For <i>any</i> @<tau@> (not just under H@<sub@>@(0@))
+@<Disp@>@((T-E(T))/sqrt(Var(T)) ~ AN(0,1).@)
+@)
+<p>@<Pf@>@(
+This will follow from a theorem about U-statistics that we shall prove
+later. 
+@)
+
+@<Tail@>
+@}
+

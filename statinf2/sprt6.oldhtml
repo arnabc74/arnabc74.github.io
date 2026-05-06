@@ -1,0 +1,484 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Optimality of SPRT</h1>
+
+
+
+
+<h3>A Bayesian perspective</h3>
+
+Consider testing a simple H<sub>0</sub> against a simple
+H<sub>1</sub>. Given a (sequential) test, &phi;, we define 
+&alpha;<sub>i</sub>(&phi;) as the probability of rejecting
+H<sub>i</sub> when it is actually true. Denote by ASN<sub>i</sub>(&phi;) the
+expected sample size of &phi; under H<sub>i</sub>.
+Assume that we have the following.
+<ul>
+<li>Prior probability p
+ of whether H<sub>0</sub> is true. Thus, 1-p is the prior probability
+for H<sub>1</sub>.
+<li>Losses W<sub>0</sub> and W<sub>1</sub>. We incur loss W<sub>i</sub> if
+we reject H<sub>i</sub> when it is actually true.
+<li>A cost c per sample (thus, to take a sample of size n, you have to pay
+c*n) 
+</ul>
+
+So the expected risk in using a test &phi; is
+
+<blockquote>
+ R(p,&phi;)= p
+              <img src="resources/statinf2/lbrace.gif"
+              align=center>
+              
+                  &alpha;<sub>0</sub>(&phi;)W<sub>0</sub> + 
+                  c*ASN<sub>0</sub>(&phi;)
+                                          <img src="resources/statinf2/rbrace.gif"
+                                          align=center>
+                                          
+                  +(1-p)
+                        <img src="resources/statinf2/lbrace.gif"
+                        align=center>
+                        
+                  &alpha;<sub>1</sub>(&phi;)W<sub>1</sub> + 
+                  c*ASN<sub>1</sub>(&phi;)
+                                          <img src="resources/statinf2/rbrace.gif"
+                                          align=center>
+                                          
+
+</blockquote>
+
+We want to minimise it. Note that R is a function of
+many things: p, &phi;,W<sub>0</sub>,W<sub>1</sub> and c. However, in
+the notation we have only shown the dependence of R on p and &phi;
+explicitly. 
+
+A test that mimimises this (if one exists) is called a Bayes test. We
+shall now set out to find such a test. Observe first that this is
+again a dynamic programming problem (DPP), much like the secretary
+problem or minesweeper. At every step you have three choices: accept
+H<sub>0</sub>, reject H<sub>0</sub> or continue sampling. The tree
+is shown to the left.
+
+
+<table align=left border=0 cellpadding=0>
+<tr><td><img src="resources/statinf2/tl.gif"><td><td></tr>
+<tr><td><td><img src="resources/statinf2/sprtree.gif"><td></tr>
+<tr><td><td><td><img src="resources/statinf2/br.gif"></tr>
+</table>
+
+
+However, there is one important difference between this tree and those
+of the secretary problem or minesweeper. Those were <i>finite</i>
+trees, whereas this tree is infinite. Recall that for a finite tree
+we could work backward starting from the leaf nodes. This expedient,
+which we called
+backward induction, is no more there for an
+infinite tree. However, here we shall employ a neat, little trick.
+
+<p>Suppose that we are at the root of the tree. We have three options:
+accept without collecting any data, reject without collecting any
+data, and collect one sample. In the first two cases, we have two
+trivial tests. In either case the game stops
+and so we can compute the expected risks.
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.1:</font></b> 
+   
+   Show that the two trivial tests have expected risks given by
+   
+   <blockquote>
+   p W<sub>0</sub>   and   (1-p) W<sub>1</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+If, however, we choose to draw a sample, then the game continues and
+we move to the next step, where we are faced with all possible
+sequential tests that use at least one sample.
+
+Define 
+
+<blockquote>
+R(p) = inf{R(p,&phi;): &phi; uses at least one sample}
+</blockquote>
+
+How do we know that the infimum exists? It is because, the set is
+nonempty (there is at least one nontrivial test; in fact there are
+many!) and the set is bounded from below by 0 (since risk is
+nonnegative.) This R(p) is as yet unknown to us. 
+
+<table align=right border=0 cellpadding=0>
+<tr><td><img src="resources/statinf2/tl.gif"><td><td></tr>
+<tr><td><td><img src="resources/statinf2/sprtloss.gif"><td></tr>
+<tr><td><td><td><img src="resources/statinf2/br.gif"></tr>
+</table>
+
+However, we can
+express the expected risk r(p) at the root in terms of
+R(p):
+
+<blockquote>
+r(p) = min
+          <img src="resources/statinf2/lbrace.gif"
+          align=center>
+          p W<sub>0</sub>,
+                              R(p),
+                              (1-p) W<sub>1</sub>
+                                                 <img src="resources/statinf2/rbrace.gif"
+                                                 align=center>
+                                                 
+</blockquote>
+
+Consider the digram to the right to see why this is so.
+
+Next let us explore R(p). 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.2:</font></b> 
+   
+   Show that 
+   
+   <blockquote>
+   c 
+     <img src=
+     "resources/statinf2/leq.png"
+     align=top>
+     
+      R(p) 
+           <img src=
+           "resources/statinf2/leq.png"
+           align=top>
+           
+            c+p W<sub>0</sub>.
+   </blockquote>
+   
+   Hence conclude that R(0) = c and that R(p) is continuous at p=0.
+   <br>
+       <i>[Hint:
+       
+       Consider the non-trivial test based on a single observation that always
+       rejects H<sub>0</sub>.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.3:</font></b> 
+   
+   Show that R(p) is continuous at p=1, and that R(1)=c.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.4:</font></b> 
+   
+   Show that R(p) is concave, i.e., for any two points
+   p<sub>1</sub>,p<sub>2</sub> in (0,1) and any a in [0,1],
+   
+   <blockquote>
+   R(a*p<sub>1</sub> + (1-a)*p<sub>2</sub>) 
+                                            <img src=
+                                            "resources/statinf2/geq.png"
+                                            align=top>
+                                            
+                                             
+   a*R(p<sub>1</sub>) + (1-a)*R(p<sub>2</sub>).
+   
+   </blockquote>
+   
+   Hence conclude that R(p) is continuous on (0,1).
+   <br>
+       <i>[Hint:
+       For any &phi;, we have
+       R(a*p<sub>1</sub> + (1-a)*p<sub>2</sub>, &phi;) =
+       a*R(p<sub>1</sub>,&phi;) + (1-a)*R(p<sub>2</sub>,&phi;)
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Combining the last three exercises we see that R(p) looks like the blue
+line below. The red and green lines show the expected risks for the trivial
+tests that do not collect any sample at all. Their minimum is r(p), as we
+have already noted.
+
+
+<p><center>
+<img src="resources/statinf2/rp.gif">
+</center><p>
+
+
+
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.5:</font></b> 
+   
+   Show that if p 
+                  <img src=
+                  "resources/statinf2/leq.png"
+                  align=top>
+                  
+                   L, then the best strategy is to reject
+   H<sub>0</sub>. Similarly, if p 
+                                  <img src=
+                                  "resources/statinf2/geq.png"
+                                  align=top>
+                                  
+                                   U, then the best strategy is to
+   reject H<sub>0</sub>.  
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Now suppose that p happens to lie between L and U. Then we have to
+take one more sample. Now comes the trick. Since we have an infinite
+tree this second stage is again essentially the same as the first
+stage. We have the same W<sub>i</sub>'s and c. However, in light of
+the single sample, x<sub>1</sub>, we have drawn, the prior p should be
+updated to the 
+posterior, which we shall call p(x<sub>1</sub>).
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.6:</font></b> 
+   
+   Compute p(x<sub>1</sub>) in terms of f<sub>i</sub>'s and x<sub>1</sub>.
+   <br>
+       <i>[Hint:
+       
+       You may like to use the following diagram, where f<sub>i</sub> is the
+       density under H<sub>i</sub>.
+       
+       <p><center>
+       <img src="resources/statinf2/post.gif">
+       </center><p>
+       
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Thus, if p(x) 
+              <img src=
+              "resources/statinf2/leq.png"
+              align=top>
+              
+               L then the best strategy is to reject
+H<sub>0</sub>, and if p(x) 
+                           <img src=
+                           "resources/statinf2/geq.png"
+                           align=top>
+                           
+                            U, then you should accept it. If
+p(x<sub>1</sub>) is inside (L,U), then you collect another sample,
+x<sub>2</sub>, and look at p(x<sub>1</sub>,x<sub>2</sub>). 
+<p>
+In general, you keep on collecting data x<sub>i</sub>'s until
+p(x<sub>1</sub>,x<sub>2</sub>,...) steps out of (L,U). Let n be the first
+time 
+p(x<sub>1</sub>,...,x<sub>n</sub>) goes out of (L,U). Then you accept
+or 
+reject H<sub>0</sub> according as p(x<sub>1</sub>,...,x<sub>n</sub>)
+
+<img src=
+"resources/statinf2/geq.png"
+align=top>
+
+ U or 
+      <img src=
+      "resources/statinf2/leq.png"
+      align=top>
+      
+       L.
+<p>
+So you may be tempted to think that we can now carry out the Bayes
+test. Wrong! We do not know L or U!!! We merely know that such cut off
+points <i>exist</i> by continuity of the as yet unknown function
+R(p). However, we have achieved one significant thing: we now know the
+form of the Bayes test. This leads us to the following theorem.
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   The Bayes test is SPRT(A,B) for some suitable A,B.
+   </td></tr></table>
+   
+<p>
+   <table><tr><td width=1 bgcolor="#cccccc"></td>
+   <td>
+   <b><i>Proof:</i></b> 
+   
+   <p>
+      <table><tr><td width=2 bgcolor="#cc0000"></td>
+      <td>
+      <b><font color="#cc0000">
+      Exercise SPRT6.7:</font></b> 
+      
+      Prove the theorem by expressing p(x<sub>1</sub>,...,x<sub>n</sub>) in
+      terms of the likelihood ratio. 
+      <br>
+          <i>[Hint:
+          
+          You may consider taking
+          
+          <blockquote>
+          A = p(1-U)/((1-p)U), and B = p(1-L)/((1-p)L).
+          </blockquote>
+          
+          ]
+          </i>
+      
+      </td></tr></table>
+      </blockquote>
+      
+   
+   <img src="resources/statinf2/square.gif">
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.8:</font></b> 
+   
+   Show that for any given A,B and p in (0,1) we can find
+   W<sub>0</sub>,W<sub>1</sub> and c, such that SPRT(A,B) is the Bayes test.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Observe the fact that we still cannot compute either L,U or A,B
+since R(p) is unknown. But still we are getting these results by
+merely using the continuity of R(p). 
+
+
+<h4>Optimality of SPRT</h4>
+
+The above Bayesian optimality is not of much direct use, because we rarely
+have explicit prior probabilities or quantifiable losses. However, it is
+an important technical tool that will let us prove a more practical
+optimality of SPRTs. 
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Theorem:</b>
+   
+   Suppose that &phi; is a SPRT, and &xi; is any other test. If 
+   
+   <blockquote>
+   &alpha;<sub>i</sub>(&xi;)
+   
+   <img src=
+   "resources/statinf2/leq.png"
+   align=top>
+   
+   &alpha;<sub>i</sub>(&phi;) for both i=0,1,  
+   </blockquote>
+   
+   then 
+   
+   <blockquote>
+   ASN<sub>i</sub>(&phi;) 
+                          <img src=
+                          "resources/statinf2/leq.png"
+                          align=top>
+                          
+                           ASN<sub>i</sub>(&xi;)
+   for i=0,1.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise SPRT6.9:</font></b> 
+   
+   Show that for all p in (0,1) we have
+   
+   <blockquote>
+   p ASN<sub>0</sub>(&phi;) + (1-p) ASN<sub>1</sub>(&phi;)
+   
+   <img src=
+   "resources/statinf2/leq.png"
+   align=top>
+   
+    
+   p ASN<sub>0</sub>(&xi;) + (1-p) ASN<sub>1</sub>(&xi;)
+   
+   </blockquote>
+    
+   Hence complete the proof of the theorem.
+   <br>
+       <i>[Hint:
+       
+       Compare R(p,&phi;) and R(p,&xi;) for suitably chosen W<sub>i</sub>'s
+       and c.
+       ]
+       </i>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+<hr>
+
+</body>
+</html>
+

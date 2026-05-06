@@ -1,0 +1,260 @@
+@i main
+@$@<Label@>==@{JK@}
+@O@<jk.html@>==@{
+@<Head@>@(??@, Jackknife@)
+
+
+<h3>Introduction</h3>
+The jackknife is, as we have already seen, very much like CV where the test
+set is of size 1 and the training set is of size n-1. Thus, there are only
+n ways of partitioning a sample of size n into test and training set. As a
+result jackknife does not use any random sampling, rather averages over
+<i>all</i> the n possible partitions. Jackknife was originally introduced
+to estimate bias and variance of an estimator.
+
+<h3>Jackknife estimate of bias</h3>
+<b>Set up:</b> We have iid data X<sub>1</sub>,..., X<sub>n</sub>. We have
+a statistic, T. It is a function that takes the sample as its input and
+produces a number as its output. We want to estimate bias(T).
+
+<p><b>Jackknife procedure:</b> Call the entire sample as <b>X</b>. 
+Define the <i>i-deleted sample</i>,
+<b>X</b><sub>-i</sub> as 
+
+@<Disp@>@(
+ <b>X</b><sub>-i</sub> = 
+{ X<sub>1</sub>,..., X<sub>i-1</sub>, X<sub>i+1</sub>,..., X<sub>n</sub>}
+@)
+
+This is our training set when the test set is {X<sub>i</sub>}. Now compute 
+
+@<Disp@>@(T<sub>-i</sub> = T(<b>X</b><sub>-i</sub>)@)
+
+and 
+
+@<Disp@>@(T<sub>(.)</sub> = sum(T(<b>X</b><sub>-i</sub>))/n@)
+
+
+Then the jackknife bias estimator is defined as 
+
+@<Disp@>@(bias<sub>jack</sub>(T) = (n-1)*(T<sub>(.)</sub> - T(X))@)
+
+
+<p>@<Example@>@( Suppose we have data <b>X</b> = {2,5,6,3}. Thus n=4
+here. T is the sample mean.  
+
+<p>
+ <b>X</b><sub>-1</sub> = {5,6,3} T<sub>-1</sub> = 4.67<br>
+ <b>X</b><sub>-2</sub> = {2,6,3} T<sub>-2</sub> = 3.67<br>
+ <b>X</b><sub>-3</sub> = {2,5,3} T<sub>-3</sub> = 3.33<br>
+ <b>X</b><sub>-4</sub> = {2,5,6} T<sub>-4</sub> = 4.33<br>
+So T<sub>(.)</sub> = (4.67 + 3.67 + 3.33 + 4.33)/4 = 4.<br>
+Also, T(<b>X</b>) = (2 + 5 + 6 + 3)/4 = 4.<br>
+Hence  bias<sub>jack</sub>(T) = (4-1)*(T<sub>(.)</sub> - T(X)) = 0.@)
+
+<h3>Jackknife estimate of variance</h3>
+Using same set up and notation as above
+@<Disp@>@(
+var<sub>jack</sub>(T) = sum(T<sub>-i</sub> - 
+T<sub>(.)</sub>)<sup>2</sup>)*(n-1)/n
+@)
+
+<p>@<Example@>@(Continuing with the last example, 
+@<Disp@>@(
+var<sub>jack</sub>(T) = ((4-1)/4)* [(4.67-4)<sup>2</sup> +
+(3.67-4<sup>2</sup>) + (3.33-4<sup>2</sup>) + (4.33-4)<sup>2</sup>] = ...
+@)@)
+
+<h3>Using the computer</h3>
+Jackknifing is easy with S-plus. First we show the simple but crude
+way. Assume that the data is stored in an array called x. You already have
+a function T to compute the statistic. 
+
+<p>S-plus allows negative index in an array to delete elements as
+follows. If x=(-9,2.5,4.6,5) then x[-3] = (-9,2.5,5). This makes it easy
+to create the deleted samples. 
+
+@<Ss@>@(
+> n <- length(x)
+> for(i in 1:n)
++  val[i] <- T(x[-i])
+
+> biasJack <- (n-1)*(mean(val)-T(x))
+@)
+
+<p>However, S-plus also has a ready-made function called jackknife. To use
+it you need a function to compute the statistic of interest. Let's call
+this function as T. Let the original data be stored in an array x. Then
+invoke the jackknife function as
+@<Ss@>@(
+> val <- jackknife(x,T)
+@)
+
+Then the variable val will store many important quantities. Type 
+@<Ss@>@(
+> names(val)
+@)
+to get a list of these. Also see the help of jackknife for more
+information. 
+
+<h3>Justification of the jackknife estimator of variance</h3>
+Jackknife, like any other resampling method, tries to "simulate" many
+datasets based on only one dataset (the original one). To understand any
+resampling method, therefore, it is best to start with the situation where
+we really can have many independent datasets. If we have many datasets and
+we want to estimate se of a statistic T, then we shall just compute T for
+each of the N datasets to get N numbers, say,
+T<sub>1</sub>,...,T<sub>n</sub>. Then we can just compute the std dev of
+these as
+
+@<Disp@>@(varHat(T) = sum(T<sub>i</sub> - Tbar)<sup>2</sup>/n,@)
+
+where Tbar is the mean of the T<sub>i</sub>'s. Now compare this with 
+@<Disp@>@(
+var<sub>jack</sub>(T) = 
+sum(T<sub>-i</sub> - T<sub>(.)</sub>)<sup>2</sup>*(n-1)/n
+@)
+You can see that in the jackknife formula <b>X</b><sub>-i</sub>'s are
+playing the role of the fresh datasets. So T<sub>-i</sub>'s are used in
+place of T<sub>i</sub>'s, and T<sub>(.)</sub> in place of Tbar. 
+
+<p>The only thing that is still not explained is the choice of the
+constant. Why are we using (n-1)/n and not 1/n or 1/(n-1)? The answer lies
+in the following exercise.
+
+<p>
+@<Exercise@>@(1@,
+Suppose we want to estimate the variance  of a statistic T
+by the following formula:
+
+@<Disp@>@(const*sum(T<sub>-i</sub> - T<sub>(.)</sub>)<sup>2</sup>@) 
+
+and we want to choose const in a way that this estimator is unbiased if T
+is sample mean. Then show that const must be (n-1)/n. @)
+
+
+
+<h3>Justification of the jackknife estimator of bias</h3>
+A very similar interpretation exists for the jackknife estimate of
+bias. The constant is chosen to make the bias match the exact value for
+sample variance. 
+
+<p>However, note one curious point. If T(X) is a constant function, then
+the jackknife estimator of its bias is zero! This is natural since in
+jackknife estimator of bias uses T(X) as a proxy for theta. So if this
+proxy is bad, the estimator is bad, as well. However, if T is "good" then
+this estimator is also "good". The following result makes this precise.
+
+<p>@<Thm@>@(If 
+@<Disp@>@(E(T(X) = theta + b/n + O(1/n<sup>2</sup>),@)
+then 
+@<Disp@>@(E(Jackknife estimator of bias) = b/n + O(1/n<sup>2</sup>),@)
+and hence 
+@<Disp@>@(E(Jackknife bias-corrected T) = theta +  O(1/n<sup>2</sup>).@)
+@)
+<p>@<Exercise@>@(2@,
+Prove the above theorem.
+@)
+
+<p>Thus, if T is already first-order unbiased (ie, bias term being b/n
+which is O(1/n)) then jackknife bias-corrected T is second-order unbiased
+(ie, bias term is O(1/n<sup>2</sup>)).
+
+<h3>Which is better, jackknife or bootstrap?</h3>
+Jackknife is certainly easier to compute, but it uses less information. It
+may be viewed as an approximation to bootstrap. We shall explore this in an
+assignment. 
+
+<p>The main advantage of the bootstrap is its generality. One can do
+bootstrapping in a wide variety of set up. But it is quite difficult to
+generalise the notion of jackknifing beyond estimation of bias and
+variance. In fact, with bootstrap available, one would hardly consider
+doing jackknife. 
+
+<p>Jackknife fails if the statistic is not "smooth". The median, for
+instance, is not smooth. Jackknife estimate of its std err is <i>not</i>
+consistent. However, the bootstrap estimate is. 
+<p>@<Exercise@>@(3@,
+Suppose that we have iid sample X@<sub@>@(1@),...,X@<sub@>@(n@). Let T(.)
+denote the sample median. Then how many distinct values can
+T@<sub@>@(-i@)'s take as i varies? The original sample is held fixed.
+@)
+
+<h3>Jackknife after bootstrap</h3>
+<b>Set up:</b> We have iid data X<sub>1</sub>,...,X<sub>n</sub>. We also
+have a statistic T. We have applied bootstrap to estimate some parameter,
+theta, of the sampling distribution  of T. As is usual with bootstrap,
+consider theta as a function of the sampling distribution (e.g., mean or
+variance or 5% upper quantile).
+This estimator is itself a random variable. We may be
+interested in knowing how accurate it is. In particular we may want to
+estimate its variance. We may use jackknifing to do it.
+
+<p>However, this would require us to delete one point at a time and carry
+out the entire bootstrap process every time, which is very computation
+intensive. Jackknife-after-bootstrap is a clever method to reduce the
+computational load. 
+
+<p>Suppose we draw N bootstrap resamples. Each bootstrap resample may be
+considered as drawing a set of n indices with replacement from {1,...,n}. 
+ Let the set  B<sub>k</sub> denote this set for the k-th resample. 
+
+ <p>@<Example@>@(Suppose that our original sample is
+@<Disp@>@(X<sub>1</sub>, X<sub>2</sub>, X<sub>3</sub>,
+X<sub>4</sub>, X<sub>5</sub>, X<sub>6</sub>@)
+Now let us draw a resample which consists of
+@<Disp@>@({X<sub>3</sub>, X<sub>6</sub>, X<sub>6</sub>, X<sub>1</sub>,
+X<sub>2</sub>, X<sub>3</sub>}@)
+If this is the k-th resample then 
+@<Disp@>@(B<sub>k</sub> = {3,6,1,2}@)
+@)
+<p>
+Next define  C<sub>i</sub> as follows for i=1,...,n. 
+
+@<Disp@>@(
+  C<sub>i</sub> = { k : B<sub>k</sub> does not contain i}
+@)
+
+<p>@<Example@>@((contd) Suppose we draw 5 resamples with the following
+B<sub>k</sub> sets:
+@<Disp@>@(
+<pre>   
+B<sub>1</sub>={3,6,1,2}<br>
+B<sub>2</sub>={2,5,4,3}<br>
+B<sub>3</sub>={2,1}<br>
+B<sub>4</sub>={3,6,2,4,1,5}<br>
+B<sub>5</sub>={4,6,2}</pre>@)
+Then 
+@<Disp@>@(C<sub>1</sub>={2,5}, since B<sub>2</sub> and B<sub>5</sub> does
+not contain 1.@)
+@)
+
+Assume C<sub>i</sub>'s are all nonempty. Let T<sub>k</sub> denote the
+   T-statistic computed from the k-th resample. For each i consider the 
+ T<sub>k</sub>'s such that k is in C<sub>i</sub>. 
+These do not involve X<sub>i</sub>. Use the empirical distribution of
+these T<sub>k</sub>'s as a proxy for the sampling distribution of T.
+Compute theta of this empirical distribution, call it theta<sub>i</sub>.
+
+<p>@<Example@>@((contd)
+Suppose that we take theta = variance. 
+Let's compute theta<sub>1</sub> in the above example. For this we shall
+need 
+T<sub>2</sub> and T<sub>5</sub>. Let's say these are 3 and 29,
+respectively. So 
+@<Disp@>@(theta<sub>1</sub> = (3<sup>2</sup> + 29<sup>2</sup>)/2 -
+((3+29)/2)<sup>2</sup>.@) 
+@)
+
+<p>Let 
+@<Disp@>@(thetaBar = mean(theta<sub>i</sub>).@)
+Then the jackknife-after-bootstrap estimate of variance is defined as 
+@<Disp@>@(
+Var<sub>jack</sub>(theta) = 
+[(n-1)/n] * sum((theta<sub>i</sub> - thetaBar)<sup>2</sup>)
+@)
+
+<p>Fortunately, there is a S-plus function to do all these for you. Find it
+out! 
+@<Tail@>
+@}

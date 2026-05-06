@@ -1,0 +1,274 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1> U-statistics</h1>
+
+
+
+
+<h3>Computing variance of 1-sample U-statistics</h3>
+
+We have already seen that if U is a one sample U-statistic with kernel ,
+h then 
+
+<blockquote>
+E(U) = E(h)
+</blockquote>
+
+Now we shall compute Var(U).
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.1:</font></b> 
+   
+   Let h be a kernel and let g be another defined as
+   
+   <blockquote>
+   g(.) = h(.) - c,
+   </blockquote>
+   
+   where c is some constant. If U<sub>h</sub> and U<sub>g</sub> are the
+   U-statistics with kernels h and g, respectively, then show that
+   
+   <blockquote>
+   U<sub>g</sub> = U<sub>h</sub>-c.
+   </blockquote>
+   
+   Hence argue that for computing Var(U<sub>h</sub>) we can assume wlg that E(h)=0.
+   
+   </td></tr></table>
+   </blockquote>
+   
+We shall also assume wlg that h: <b>R</b><sup>m</sup>
+                                                     <img src=
+                                                     "resources/statinf2/rarrow.png"
+                                                     align=middle>
+                                                     
+                                                     <b>R</b> is
+symmetric. Define for 1
+                       <img src=
+                       "resources/statinf2/leq.png"
+                       align=top>
+                       
+                        k 
+                          <img src=
+                          "resources/statinf2/leq.png"
+                          align=top>
+                          
+                           m,
+
+<blockquote>
+h<sub>k</sub>(X<sub>1</sub>,...,X<sub>k</sub>) = 
+E(h(X<sub>1</sub>,...,X<sub>m</sub>)| X<sub>1</sub>,...,X<sub>k</sub>)
+
+</blockquote>
+
+<p>
+We shall use the following notation:
+
+<blockquote>
+If K 
+     <img src="resources/statinf2/subset.png"
+     align=top>
+      {1,...,n} then <u>X</u><sub>K</sub> will
+ denote the
+collection of X<sub>i</sub>'s with i in K.
+</blockquote>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.2:</font></b> 
+   
+   Show, using symmetry of h, that h<sub>k</sub> is also symmetric in its k
+   arguments.
+   Also show that if K 
+                       <img src="resources/statinf2/subset.png"
+                       align=top>
+                        I 
+                          <img src="resources/statinf2/subset.png"
+                          align=top>
+                           {1,...,n} with
+   |I| = m and |K| = k then  
+   
+   <blockquote>
+   E(h(<u>X</u><sub>I</sub>|<u>X</u><sub>K</sub>)) =
+    h<sub>K</sub>(<u>X</u><sub>K</sub>).
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.3:</font></b> 
+   
+   Show that E(h<sub>k</sub>(X<sub>1</sub>,...,X<sub>k</sub>) = 0.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+Define
+
+<blockquote>
+S<sub>k</sub> = Var(h<sub>k</sub>) =
+E(h<sub>k</sub><sup>2</sup>)
+</blockquote>
+
+We shall compute Var(U) in terms of the S<sub>k</sub>'s.
+
+<p>
+Let K = I 
+          <img src="resources/statinf2/inter.png">
+           J and |K| = k  &gt; 0.
+Then 
+
+<blockquote>
+
+
+<table border=0>
+
+
+<tr>
+<td align=right>
+cov(h(X<sub>I</sub>), h(X<sub>J</sub>)
+</td>
+<td>
+=
+</td>
+<td align=left>
+
+ E(h(X<sub>I</sub>), h(X<sub>J</sub>))
+</td>
+</tr>
+
+
+<tr>
+<td align=right>
+
+</td>
+<td>
+=
+</td>
+<td align=left>
+E[E(h(X<sub>I</sub>).h(X<sub>J</sub>|X<sub>K</sub>)]
+</td>
+</tr>
+
+
+</table>
+
+
+</blockquote>
+ 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.4:</font></b> 
+   
+   Show that
+   
+   <blockquote>
+   E[ h(X<sub>I</sub>).h(X<sub>J</sub>)|X<sub>K</sub> ] = 
+   h<sub>k</sub><sup>2</sup>(X<sub>K</sub>).
+   </blockquote>
+   
+   Hence show that
+   
+   <blockquote>
+   cov(h(X<sub>I</sub>), h(X<sub>J</sub>)) = S<sub>k</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.5:</font></b> 
+   
+   Show that the number of subsets I,J of {1,...,n} of size
+   m with |I 
+             <img src="resources/statinf2/inter.png">
+              J| = k, is 
+   
+   <blockquote>
+   
+   <sup>n</sup>C<sub>m</sub> 
+                             <sup>m</sup>C<sub>k</sub> 
+                                                       <sup>n-m</sup>C<sub>m-k</sub>.
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.6:</font></b> 
+   
+   Conclude that 
+   
+   <blockquote>
+   Var(U) = 
+            <img src=
+            "resources/statinf2/sum.gif"
+            align=middle>
+            
+            
+            <sup>n</sup>C<sub>m</sub> 
+                                      <sup>m</sup>C<sub>k</sub> 
+                                                                <sup>n-m</sup>C<sub>m-k</sub>
+   S<sub>k</sub>/ (
+                   <sup>n</sup>C<sub>m</sub>)<sup>2</sup>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT2.7:</font></b> 
+   
+   Use the above exercise to compute Var(sample variance).
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+
+
+<hr>
+
+</body>
+</html>
+

@@ -1,0 +1,475 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Properties of tests</h1>
+
+
+
+
+<h3>Are these tests any "good"?</h3>
+
+So far we have presented a number of tests based on ad hoc justification
+only. The natuaral question that arises now is how "good" are they?
+
+
+<hr>
+<table width=100% bgcolor="#cccccc">
+<tr><td align=center><b><i>Digression:
+Randomised tests
+</b></i></td></tr></table>
+<hr>
+
+Suppose that we have data, X, taking values in some sample space, S. We
+also have two hypotheses, H<sub>0</sub> and H<sub>1</sub>, that we want to
+test. <p>
+
+A (non-randomised) test is a function
+
+<blockquote>
+&phi; : S 
+          <img src=
+          "resources/statinf2/rarrow.png"
+          align=middle>
+          
+           {"accept H<sub>0</sub>", "reject
+H<sub>0</sub>"}
+</blockquote>
+
+<p>
+
+A <i>randomised</i> test is a generalisation of this concept that allows
+mixtures of "accept" and "reject". Thus, for instance, 
+
+<blockquote>
+"1/3 accept+ 2/3 reject"
+</blockquote>
+
+mean
+
+<blockquote>
+"toss a coin (independently of the data) with P(head) = 2/3. If
+you get a head, then reject, else accept."
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.1:</font></b> 
+   Suppose that X ~ Binomial(10,p). We want to test 
+   
+   <blockquote>
+   H<sub>0</sub>: p = 1/2 Vs. H<sub>1</sub>: p  &gt;  1/2
+   </blockquote>
+   
+   Consider the following randomised test:
+   
+   <blockquote>
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   &phi;(x)
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+    accept if x = 0,...,6
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+   0.25 accept + 0.75 reject if x=7
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+   reject if x=8,9,10
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   </blockquote>
+   
+   Compute P(type I error) for this test. Show that no non-randomised test
+   can achieve this P(type I error).
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+This is the main reason why randomised tests are used. They can achieve
+values of P(type I error) unachievable by nonrandomised tests. <p>
+If we denote "accept H<sub>0</sub>" by 0, and "reject H<sub>0</sub>" by 1,
+then a non-randomised test is a function
+
+<blockquote>
+&phi;: S 
+         <img src=
+         "resources/statinf2/rarrow.png"
+         align=middle>
+         
+          {0,1}
+</blockquote>
+
+In this notation a randomised test is a function
+
+<blockquote>
+&phi;: S 
+         <img src=
+         "resources/statinf2/rarrow.png"
+         align=middle>
+         
+          [0,1]
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   The test in the last exercise, for instance, is
+   
+   <blockquote>
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   &phi;(x)
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+    0 if x = 0,...,6
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+   0.75  if x=7
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+   1 if x=8,9,10
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Notice that in this notation E(&phi;) is the chance that we reject
+H<sub>0</sub>. 
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.2:</font></b> 
+   Fix any &alpha; in [0,1]. Conside the "coin toss test"
+   
+   <blockquote>
+   &phi;(x) = &alpha;   for all x in S.
+   
+   
+   </blockquote>
+   
+   Describe it in words. Compute its level  (i.e., P(type I error)) and power.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<hr>
+<table width=100% bgcolor="#cccccc">
+<tr><td align=center><b><i>Digression over
+</i></b></td></tr></table>
+<hr>
+
+
+
+<h4>Unbiasedness</h4>
+
+Let &phi; and &xi; be two (randomised) tests. To compare between them
+we need to compare probabilities of both types of errors. If &phi; has
+<i>both</i> the probabilities less than those of &xi;, then of course
+&phi; is a better test than &xi;. In this case, we shall say that
+&phi; beats &xi;. 
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+Call a test &phi; <i>unbiased</i> if it cannot be beaten by a coin toss test.
+
+</td></tr></table>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.3:</font></b> 
+   Suppose that I am testing a simple H<sub>0</sub> Vs a
+   simple H<sub>1</sub>. Let &phi; be a test with 
+   
+   <blockquote>
+   
+   
+   <table border=0>
+   
+   
+   <tr>
+   <td align=right>
+   E(&phi;)
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+    0.05 under H<sub>0</sub>
+   </td>
+   </tr>
+   
+   
+   <tr>
+   <td align=right>
+   
+   </td>
+   <td>
+   =
+   </td>
+   <td align=left>
+   0.03 under H<sub>1</sub>
+   </td>
+   </tr>
+   
+   
+   </table>
+   
+   
+   </blockquote>
+   
+   Is this test unbiased? 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.4:</font></b> 
+   Show that a test &phi; is unbiased iff 
+   
+   <blockquote>
+   sup<sub>0</sub> E(&phi;) 
+                            <img src=
+                            "resources/statinf2/leq.png"
+                            align=top>
+                            
+                             sup<sub>1</sub> E(&phi;)
+   </blockquote>
+   
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p> Many authors use this as the definition of unbiasedness. However, we
+would suggest that you remember the definition of unbiasedness that we
+have given earlier in terms of the coin toss test. That one is easier to
+remember and is more intuitive.<p>
+An estimator that is biased may be  an estimator worth considering. But a
+testr that is not 
+unbiased is worthless. Even a simple coin toss outpefroms it. <p>
+We want to show that all the tests that we performed so far are
+unbiased. This will follow from the theorem below.
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+
+Suppose we have data
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>n</sub>
+</blockquote>
+
+from a location family F(x-&theta;). We want to test 
+
+<blockquote>
+H<sub>0</sub>: &theta; = 0 Vs &theta;  &gt; 0.
+</blockquote>
+
+Suppose we have a test &phi; that rejects H<sub>0</sub> iff 
+T(X<sub>1</sub>,...,X<sub>n</sub>) 
+                                   <img src=
+                                   "resources/statinf2/geq.png"
+                                   align=top>
+                                   
+                                    c, for some test statistic T(.)
+and some critical value c. If for all b 
+                                        <img src=
+                                        "resources/statinf2/geq.png"
+                                        align=top>
+                                        
+                                         0,
+
+<blockquote>
+T(X<sub>1</sub>+b,...,X<sub>n</sub>+b) 
+                                       <img src=
+                                       "resources/statinf2/geq.png"
+                                       align=top>
+                                       
+                                       
+T(X<sub>1</sub>,...,X<sub>n</sub>)
+</blockquote>
+
+then &phi; is an unbiased test.
+
+</td></tr></table>
+
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+Simple straightforward computation, that we shall split up into
+two exercises.
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.5:</font></b> 
+   
+   Show that if b 
+                  <img src=
+                  "resources/statinf2/geq.png"
+                  align=top>
+                  
+                   0, then
+   
+   <blockquote>
+   T(X<sub>1</sub>+b,...,X<sub>n</sub>+b) 
+                                          <img src=
+                                          "resources/statinf2/sgeq.png"
+                                          align=top>
+                                          
+                                          
+   T(X<sub>1</sub>,...,X<sub>n</sub>)
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.6:</font></b> 
+   Show that
+   
+   <blockquote>
+   T(X<sub>1</sub>,...,X<sub>n</sub>) under H<sub>1</sub>
+   
+   <img src=
+   "resources/statinf2/sgeq.png"
+   align=top>
+   
+   
+   T(X<sub>1</sub>,...,X<sub>n</sub>) under H<sub>0</sub>
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+Hence conclude the theorem.
+
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise TEST.7:</font></b> 
+   Show that the sign test is unbiased.
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+We can similarly state and prove a theorem for scale family or two sample
+problems. 
+
+
+
+
+
+
+
+
+<hr>
+
+</body>
+</html>
+

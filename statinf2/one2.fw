@@ -1,0 +1,222 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{ONE2@}
+@O@<one2.html@>==@{
+@<Head@>@(??@,More one sample procedures@)
+
+@<Section@>@(Chisqd test for independence@)
+<p>@<Example@>@(
+Suppose that we want to find out if academic accomplishment is independent
+of gender in Kolkata. Let X denote the academic accomplishment level of a
+randomly selected person, and let Y denote his/her gender. Here X takes
+the following possible values:
+@<Disp@>@(Pre-school, Primary, Secondary, HS, Bachelor's degree, Masters,
+Above.@)
+We are interested in testing 
+@<Disp@>@(H@<sub@>@(0@): X indep of Y Vs H@<sub@>@(1@) not indep.@)
+To test this we collect a random sample of size 1200 from the
+population. For each selected person
+ we observe X and Y. The resulting dataset is
+an example of a <b>cross-classified</b> dataset. Such a dataset may be
+presented as a two-way frequency table as follows [The following dataset
+is hypothetical.]
+@<Disp@>@(
+<table border=1>
+<tr>
+<td><th>Pre-school<th>Primary<th>Secondary<th>Higher secondary<th>Bachelor's
+<th>Master's<th>above
+</tr><tr>
+<th>Male<td>20<td>57<td>279<td>166<td>104<td>31<td>10
+</tr><tr>
+<th>Female<td>45<td>50<td>168<td>157<td>90<td>16<td>7
+</tr>
+</table>
+@)
+
+Let 
+@<Disp@>@(
+@<Eqn@>@(
+@<Row@>@(n@<sub@>@(ij@) @,=@, the frquency in (i,j)-th cell.@)
+@<Row@>@(p@<sub@>@(i@)@,=@, P(X = i)@) 
+@<Row@>@(q@<sub@>@(j@)@,=@, P(Y = j)@) 
+@)
+We assume that p@<sub@>@(i@), q@<sub@>@(j@)  &gt; 0 for all i,j.
+@)
+@)
+<p>@<Exercise@>@(1@,
+Find mle of p@<sub@>@(i@) and q@<sub@>@(j@) for all i,j. Use these to
+estimate P(X=i, Y=j) under H@<sub@>@(0@). Hence compute
+@<Disp@>@(m@<sub@>@(ij@) = estimated E(n@<sub@>@(ij@)) under H@<sub@>@(0@).@)
+@)
+
+Then the chisqd test rejects H@<sub@>@(0@) for large values of  the
+following test statistic 
+@<Disp@>@(@<chisqd@> = @<Sum@> @<Sum@> (n@<sub@>@(ij@) -
+m@<sub@>@(ij@))<sup>2</sup>/m@<sub@>@(ij@)@) 
+
+The asymptotic distribution of this under H@<sub@>@(0@) is a @<chisqd@>
+distribution. We shall not prove this here. It follows from the fact that
+under the regularity conditions the null distribution of 
+@<Disp@>@(-2*log(likelihood ratio)@)
+converges to a @<chisqd@> distribution. For classified data the degrees of
+freedom is 
+@<Disp@>@(number of classes - 1 - number of <i>free</i> parameters
+estimated.@) 
+What is a <i>free</i> parameter? If @<theta@> is a parameter, then so is
+2*@<theta@>. However, if you have already estimated @<theta@>, then you do
+not need to estimate 2*@<theta@> separately. Thus we have only one free
+parameter here. Similarly, if you are estimating a probabiolity vector 
+(p@<sub@>@(1@),...p@<sub@>@(k@)), then you have only k-1 free parameters,
+since they add up to one.
+<p>@<Exercise@>@(2@,
+What should the degrees of freedom be for the chisqd test above if there
+are
+I rows and J columns in the table?
+@)
+
+If n @<Geq@> 30 and n@<sub@>@(ij@),m@<sub@>@(ij@) @<Geq@> 5 for all i,j,
+then it is 
+customary to consider the asymptotic distribution as a good approximation
+to the exact distribution. We reject H@<sub@>@(0@) for large values of the
+test statistic. 
+
+
+<p>@<Exercise@>@(3@,
+Carry out the test for the given data. Report the P-value.
+@)
+<p>@<Exercise@>@(4@,
+The test statistic here is only <i>asymptotically</i> distribution-free
+under H@<sub@>@(0@). Get a counter example to show that the finite sample
+distribution is not distribution free.<br>
+<i>[Hint: In fact, even to define the test statistic you need infinite
+sample size. Because, for any finite sample size there is some chance that
+m@<sub@>@(ij@) is zero for some i,j.]</i>
+
+@)
+<p>@<Exercise@>@(5@,
+Typically ISI students either plan to do research or take up a job after M
+Stat. Last sem I collected some data on this. [The following data is
+real. It is collected from the Stat Computing students (MII, 2004-2005)]
+@<Disp@>@(
+<table border=1>
+<tr>
+<td><th>Research<th>Job<th>Undecided
+</tr><tr>
+<th>B.Stat.<td>2<td>1<td>3
+</tr><tr>
+<th>non B.Stat.<td>7<td>7<td>1
+</tr>
+</table>
+@)
+I want to use this to test if the trend differs from B. Stat to
+non B. Stat students in the Statisitcal Computing class. 
+ However, my sample size is small. How should I proceed?
+You do not need to compute anything numerically. Just suggest a method.
+<br>@<Hint@>@(
+One method is to perform Fisher's exact test, which finds the exact
+conditional distribution under H@<sub@>@(0@) given the marginals. This
+conditional is like hypergeometric distribution. It is obtained by 
+conditioning
+multinomial distribution in the same way as hypergeometric distribution is
+obtained by conditioning binomial. 
+<p>Another solution will be to list all possible tables with the given
+marginals. These are equally likely under H@<sub@>@(0@). Compute the test
+statistic for all these, and get a histogram. This is the true
+distribution of the test statistic under H@<sub@>@(0@). Now locate the
+test statistic value for the given data in this histogram to find P-value.
+@)
+@)
+
+@<Section@>@(Kolmogorov-Smirnov Test@)
+We have data 
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@) iid continuous F,@)
+which is unknown. G is some completely specified continuous
+distribution. We want to test 
+@<Disp@>@(H@<sub@>@(0@): F = G Vs. H@<sub@>@(1@): F @<Neq@> G.@)
+The KS test rejects H@<sub@>@(0@) for large values of the following test
+statistic 
+@<Disp@>@(D = sup@<sub@>@(x@) | F@<sub@>@(n@)(x) - G(x)|.@)
+Here F@<sub@>@(n@)(x) is the empirical distribution function. It is
+defined as
+@<Disp@>@(F@<sub@>@(n@)(x) = proportion of X@<sub@>@(i@)'s @<Leq@> x.@)
+
+This is a reasonable thing to do because, for large n , the empirical
+distribution function is close to the unknown F. 
+<p>@<Exercise@>@(6@,
+State some theorem that makes this concept precise.<br>
+<i>[Hint: There are more than one such theorems that you already know.
+ Pick one.
+You should be able to
+state it rigourously.]</i>
+@)
+<p>@<Exercise@>@(7@,
+Show that D @<Geq@> 1/(2n).
+@)
+<p>@<Exercise@>@(8@,
+Suppose that 
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@)@)
+are iid continuous G, and 
+@<Disp@>@(U@<sub@>@(1@),...,U@<sub@>@(n@)@)
+are iid Unif(0,1). Sort the X's as
+@<Disp@>@(X@<sub@>@((1)@) @<Geq@> ... @<Geq@> X@<sub@>@((n)@)@)
+and the U's as
+@<Disp@>@(U@<sub@>@((1)@) @<Geq@> ... @<Geq@> U@<sub@>@((n)@)@)
+Show that the joint distribution of the G(X@<sub@>@((i)@))'s
+is the same as that of the U@<sub@>@((i)@)'s.
+@)
+<p>
+<p>@<Exercise@>@(9@,
+Write down the joint density of the U@<sub@>@((i)@)'s defined
+above for general n. 
+For n=2 use the density to explicitly compute the distribution of
+D@<sub@>@(2@). 
+<br>@<Hint@>@(
+The jt density of the U's is
+@<Disp@>@(f(u@<sub@>@(1@),...,u@<sub@>@(n@)) = 1/n! if 
+u@<sub@>@(1@) @<Leq@> ... @<Leq@> u@<sub@>@(n@).@)
+@)
+
+@)
+
+@<Subsection@>@(One-sided KS@)
+The KS test above is a two sided one. We can also perform one-sided KS
+tests. For this we need to introduce a partial order over the set of all
+distributions. 
+<p>
+@<Defn@>@(
+Let X, Y be two random variables with distribution functions F, G,
+respectively. If for all c, 
+@<Disp@>@(P(X  &gt;  c) @<Geq@> P(Y  &gt; c),@)
+then we say that X is stochasticaly larger than Y, and write 
+@<Disp@>@(F @<sGeq@> G.@)
+@)
+<p>@<Exercise@>@(10@,
+Prove/disprove/suitably modify : 
+@<Disp@>@(F @<sGeq@> G iff F(x) @<Geq@> G(x) for all x.@)
+@)
+<p>@<Exercise@>@(11@,
+Show that @<sGeq@> is a partial order on the set of all distribution
+functions. 
+@)
+<p>@<Exercise@>@(12@,
+Is it @<sGeq@> a complete order as well? Why or why not?
+@)
+<p>
+In the one sided version of the KS test we test 
+@<Disp@>@(H@<sub@>@(0@): F = G Vs H@<sub@>@(1@): F @<sGt@> G@)
+or
+@<Disp@>@(H@<sub@>@(0@): F = G Vs H@<sub@>@(1@): F @<sLt@> G.@)
+For this we use the following test statistics:
+@<Disp@>@(D@<sub@>@(+@) = sup@<sub@>@(x@) (F@<sub@>@(n@)(x)-G(x))@)
+and
+@<Disp@>@(D@<sub@>@(-@) = sup@<sub@>@(x@) (G(x)-F@<sub@>@(n@)(x))@)
+<p>@<Exercise@>@(13@,
+We reject H@<sub@>@(0@) for large values of the test statistic. Can you
+say which test statistic is used for which test?
+@)
+<p>@<Exercise@>@(14@,
+Show that D@<sub@>@(+@), D@<sub@>@(-@) @<Geq@> 0. What is the relation
+between D, D@<sub@>@(+@) and D@<sub@>@(-@)?
+@)
+@<Tail@>
+@}

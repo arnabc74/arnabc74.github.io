@@ -1,0 +1,60 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{TRUNC@}
+@O@<sprt5.html@>==@{
+@<Head@>@(??@,Truncation@)
+
+
+@<Section@>@(Truncation@)
+So far we have seen that in sequential statistics we go on sampling until
+our sample becomes "informative enough". Since the "information" depends
+on the particular values observed, the duration of sampling is a random
+number, which we call the stopping time or random sample size. We
+naturally want to keep our sampling size low, since sampling usually
+involves some cost. In case of random sampling size, T, we may try to keep 
+E(T) low. Indeed, we have already seen while proving optimality of SPRT,
+that E(T) is mimimised by SPRT among all tests (including fixed sample
+size tests) with comparable type I and type II error probabilities.
+Thus, if SPRT with sample size T achieves error probabilities @<alpha@>
+and @<beta@>, and a fixed sample size test with sample size n achieves the
+same error probabilities, then 
+@<Disp@>@(E(T) @<Leq@> n.@)
+However, with
+some positive probability T might exceed n by a large margin. In fact, T
+may become so very large that it becomes impossible to continue sampling
+for that long. Though this rarely happens in practice, this is certainly a
+drawback of the SPRT in principle. To redress this Wald suggested the
+method of <i>truncation,</i> which is the following rule of thumb.
+
+@<Disp@>@(Suppose you want to attain probabilities @<alpha@> and @<beta@>
+of errors. Let nbe the smallest sample size required
+by a fixed sample size test to achieve these. Let T be the random sampling
+size required by SPRT. Then define a truncated stopping time T' as
+@<Eqn@>@(
+@<Row@>@(T' =@, T @, if T @<Leq@> 3 n@)
+@<Row@>@(    @, 3 n @, else@)
+@)
+Observe that T' is again a stopping time.
+Now choose a cut-off point, C. (Often C is chosen to be 1.) Continue
+sampling up to T'. If T'  &lt; n, then use the original SPRT, else
+consider the likelihood ratio (LR) of the sample collected so far. 
+Reject H@<sub@>@(0@) if and only if LR exceeds C.
+@)
+Thus, the truncated SPRT(A,B) may be graphically represented as
+follows. Here we are considering the graph of LR(m) against m, where LR(m)
+is the likelihood ratio based on sample of size m. Different regions of
+the (m,LR(m)) plane correspond to "accept H@<sub@>@(0@)", "reject
+H@<sub@>@(0@)" and "continue sampling" decisions.
+
+@<Img@>@(trunc.gif@)
+
+<p>@<Exercise@>@(1@,
+Consider the testing 
+@<Disp@>@(H@<sub@>@(0@): @<theta@> = 0 Vs. H@<sub@>@(1@): @<theta@> = 1.@)
+We want to achieve @<alpha@> = 0.05 and @<beta@> = 0.8, based on data
+@<Disp@>@(X@<sub@>@(1@),X@<sub@>@(2@),... iid N(@<theta@>,1).@)
+Derive the truncated SPRT.
+@)
+
+@<Tail@>
+@}

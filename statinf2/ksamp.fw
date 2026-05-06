@@ -1,0 +1,65 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{KSAMP@}
+@O@<ksamp.html@>==@{
+@<Head@>@(??@,k-sample inference@)
+
+
+@<Section@>@(Kruskal-Wallis Test@)
+<p>@<Example@>@(
+Suppose that we want to compare among the performance of k fertilisers on
+growth of plants. For this we take k groups of plants, with n@<sub@>@(i@)
+many plants in group i, and apply fertiliser i on the i-th group. Let
+the j-th plant in the i-th group experience a growth of amount
+X@<sub@>@(ij@). We assume that all the X@<sub@>@(ij@)'s are mutually
+independent and 
+@<Disp@>@(
+<pre>
+X@<sub@>@(1j@)'s are iid F@<sub@>@(1@) for j=1,...,n@<sub@>@(1@)
+X@<sub@>@(2j@)'s are iid F@<sub@>@(2@) for j=1,...,n@<sub@>@(2@)
+...
+X@<sub@>@(kj@)'s are iid F@<sub@>@(k@) for j=1,...,n@<sub@>@(k@),
+</pre>
+@)
+where the F@<sub@>@(i@)'s are unknown continuous distributions. 
+We want to test
+@<Disp@>@(H@<sub@>@(0@): All F@<sub@>@(i@)'s are the same
+Vs. H@<sub@>@(1@): not H@<sub@>@(0@).@)
+@)
+<p>
+In the Kruskal-Wallis test we first pool all the k samples. Let
+R@<sub@>@(ij@) denote the rank of X@<sub@>@(ij@) in the pooled
+sample. Define 
+@<Disp@>@(R@<sub@>@(i@) = @<Sum@>@<sub@>@(j@) R@<sub@>@(ij@).@)
+<p>@<Exercise@>@(1@,
+Find E(R@<sub@>@(i@)) under H@<sub@>@(0@). 
+@)
+In the KW test we use the test statistic 
+@<Disp@>@(H = 12/(n(n+1) @<Sum@>@<sub@>@(i@)
+[R@<sub@>@(i@)-n@<sub@>@(i@)(n+1)/2]<sup>2</sup>/n@<sub@>@(i@),@)
+where n = @<Sum@>n@<sub@>@(i@). 
+<p>Here is the motivation behind this test. By the last exercise we see
+that H is a linear combination of the squared deviations
+ of R@<sub@>@(i@)'s from
+their respective null means. Thus a large value of R signals potential
+departure from H@<sub@>@(0@). The constants are chosen appropriately so
+that the following asymptotic distribution holds:
+<p>@<Thm@>@(If all the n@<sub@>@(i@)'s are "moderately large" then under
+the null hypothesis
+@<Disp@>@(H is asymptotically @<chisqd@>@<sub@>@((k-1)@).@)@)
+<p>@<Pf@>@(Not to be done in this course. Note that we have not even
+stated the theorem fully rigourously, leaving the term "moderately large"
+undefined.@)
+
+<p>@<Exercise@>@(2@,
+Argue that H is distribution-free under H@<sub@>@(0@). No asymptotics here.
+@)
+
+<p>@<Exercise@>@(3@,
+Show that 
+@<Img@>@(kruskwal.gif@)
+@)
+
+
+@<Tail@>
+@}

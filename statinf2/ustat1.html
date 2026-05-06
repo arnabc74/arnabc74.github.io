@@ -1,0 +1,398 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1> U-statistics</h1>
+
+
+
+
+<h3>Introduction</h3>
+
+Many of the statistics that we have dealt with so far in this course are
+related to a special family called <i>U-statistics</i>. We discuss general
+properties of this family now.
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   
+   Let h: <b>R</b><sup>m</sup>
+                              <img src=
+                              "resources/rarrow.png"
+                              align=middle>
+                              
+                              <b>R</b> be some function. Then 
+   U-statitistic with <i>kernel</i> h, based on a sample
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>n</sub> (where n 
+                                            <img src=
+                                            "resources/geq.png"
+                                            align=top>
+                                            
+                                             m)
+   </blockquote>
+   
+   is defined as 
+   
+   <blockquote>
+   U = 
+       <img src=
+       "resources/sum.gif"
+       align=middle>
+       
+       <sup>'</sup> h(x<sub>i<sub>1</sub></sub>,...,
+   x<sub>i<sub>m</sub></sub>)/
+                              <sup>n</sup>P<sub>m</sub>,
+   </blockquote>
+   
+   where 
+   
+   <img src=
+   "resources/sum.gif"
+   align=middle>
+   
+   <sup>'</sup> is over all i<sub>1</sub>,...,i<sub>m</sub> such that
+   
+   <blockquote>
+   1 
+     <img src=
+     "resources/leq.png"
+     align=top>
+     
+      i<sub>1</sub> 
+                    <img src=
+                    "resources/neq.png"
+                    align=top>
+                    
+                     ... 
+                         <img src=
+                         "resources/neq.png"
+                         align=top>
+                         
+                         
+   i<sub>m</sub> 
+                 <img src=
+                 "resources/leq.png"
+                 align=top>
+                 
+                  n
+   </blockquote>
+   
+   
+   </td></tr></table>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   If we take h(x) = x (for m=1) then the corresponding U statistics is the
+   sample mean.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.1:</font></b> 
+   
+   Suppose that we take
+   m=2, and the kernel 
+   
+   <blockquote>
+   h(x,y) = x<sup>2</sup> - xy
+   </blockquote>
+   
+   What is the U statistic? It should be something familiar.
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<p>Suppose that X<sub>1</sub>,...,X<sub>n</sub> are iid F, and
+&theta; is some real-valued parameter of interest.. 
+
+<p>
+   <table><tr><td bgcolor="#cccccc">
+   <b>Definition:</b>
+   
+   We call &theta; (unbiasedly) <i>estimable</i> if there is m 
+                                                               <img src=
+                                                               "resources/geq.png"
+                                                               align=top>
+                                                               
+                                                                1
+   and a function h(X<sub>1</sub>,...,X<sub>m</sub>) such that
+   
+   <blockquote>
+   E(h(X<sub>1</sub>,...,X<sub>m</sub>) = &theta; for all &theta;.
+   </blockquote>
+   
+   The smallest
+   value of m for which there exists such an h is called the <i>degree</i> of
+   &theta;. 
+   
+   </td></tr></table>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.2:</font></b> 
+   
+   If E(h(X<sub>1</sub>,...,X<sub>m</sub>) = &theta;, then show that 
+   E(U) = &theta;, as well. Hence conclude that every estimable parameter
+   &theta; has an unbiased estimator which is a U-statistic.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+
+<table><tr><td bgcolor="#cccccc">
+<b>Definition:</b>
+
+A function h:<b>R</b><sup>m</sup>
+                                 <img src=
+                                 "resources/rarrow.png"
+                                 align=middle>
+                                 
+                                 <b>R</b> is called <i>symmetric
+</i> if for all permutations p of {1,...,m} we have
+
+<blockquote>
+h(X<sub>1</sub>,...,X<sub>m</sub>) = 
+h(X<sub>p(1)</sub>,...,X<sub>p(m)</sub>)
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   h(x,y,z) = xy+xz+yz is a symmetric function. But
+   h(x,y) = x<sup>2</sup>y is not. h(x,y)=xy is symmetric, but
+   h(x,y,z)=xy is not!
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.3:</font></b> 
+   
+   If E(h(X<sub>1</sub>,...,X<sub>m</sub>) =  &theta;, then show that there
+   is a symmetric function 
+   
+   <blockquote>
+   g:<b>R</b><sup>m</sup>
+                         <img src=
+                         "resources/rarrow.png"
+                         align=middle>
+                         
+                         <b>R</b>
+   </blockquote>
+   
+    such that
+   E(g(X<sub>1</sub>,...,X<sub>m</sub>) = &theta;. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.4:</font></b> 
+   
+   Show that for any estimable &theta; there is a U statistic with
+   symmetric kernel
+   that is an unbiased estimator for &theta;.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+Note that if h is symmetric then the U-statistics based on h is same as
+
+<blockquote>
+U = 
+    <img src=
+    "resources/sum.gif"
+    align=middle>
+    
+    <sup>'</sup> h(x<sub>i<sub>1</sub></sub>,...,
+x<sub>i<sub>m</sub></sub>)/
+                           <sup>n</sup>C<sub>m</sub>,
+</blockquote>
+
+where 
+
+<img src=
+"resources/sum.gif"
+align=middle>
+
+<sup>'</sup> is over all i<sub>1</sub>,...,i<sub>m</sub> such that
+
+<blockquote>
+1 
+  <img src=
+  "resources/leq.png"
+  align=top>
+  
+   i<sub>1</sub>  &lt; ...  &lt; i<sub>m</sub> 
+                                               <img src=
+                                               "resources/leq.png"
+                                               align=top>
+                                               
+                                                n
+</blockquote>
+
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.5:</font></b> 
+   
+   Obtain unbiased symmetric kernel 
+   U-statistic estimators for the 3rd central moment.
+   <br>
+       <i>[Hint:
+       
+       First try to do it for product of <i>raw</i> moments.
+       ]
+       </i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.6:</font></b> 
+   
+   Show that the sign test statistic is a constant multiple of a
+   U-statistic. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.7:</font></b> 
+   
+   Show that the Wilcoxon signed rank statistic is a linear combination of
+   two U-statistics. In particular, it has the form
+   
+   <blockquote>
+   n U<sub>1</sub> + 
+                     <sup>n</sup>C<sub>2</sub> U<sub>2</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<h4>Two sample U-statistics</h4>
+
+This is defined in a way similar to the above one sample case. Here we
+have a kernel
+
+<blockquote>
+h:<b>R</b><sup>r</sup> x <b>R</b><sup>s</sup>
+                                             <img src=
+                                             "resources/rarrow.png"
+                                             align=middle>
+                                             
+                                             <b>R</b>
+</blockquote>
+
+Based on a two sample  dataset
+
+<blockquote>
+X<sub>1</sub>,...,X<sub>m</sub>,
+Y<sub>1</sub>,...,Y<sub>n</sub>,
+</blockquote>
+
+(where m 
+         <img src=
+         "resources/geq.png"
+         align=top>
+         
+          r and n 
+                  <img src=
+                  "resources/geq.png"
+                  align=top>
+                  
+                   s) we define the two-sample U-statistic
+with kernel h as
+
+<blockquote>
+U = 
+    <img src=
+    "resources/sum.gif"
+    align=middle>
+    
+    <sup>'</sup> 
+h(X<sub>i<sub>1</sub></sub>,...,
+X<sub>i<sub>m</sub></sub>,
+Y<sub>j<sub>1</sub></sub>,...,Y<sub>j<sub>n</sub></sub>)/
+(
+ <sup>m</sup>C<sub>r</sub> 
+                           <sup>n</sup>C<sub>s</sub>)
+</blockquote>
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise USTAT1.8:</font></b> 
+   
+   Consider the parameter 
+   
+   <blockquote>
+   &theta; = P(X  &lt; Y).
+   </blockquote>
+   
+   Find a kernel to estimate it unbiasedly. Find out the corresponding
+   U-statistic. Show that it is a multiple of the Mann-Whitney U-test
+   statistic. 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<hr>
+
+</body>
+</html>
+

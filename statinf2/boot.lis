@@ -1,0 +1,361 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    80    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    81    79| <td>
+    82    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    83    81| @1
+    84    82| </td></tr></table>
+.................
+    91    89| <td>
+    92    90| <b><font color="#cc0000">
+    93    91| Exercise @<Label@>.@1:</font></b> 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    94    92| @2
+    95    93| </td></tr></table>
+.................
+   113   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   114   112| <td>
+   115   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   116   114| @1
+   117   115| <img src="resources/statinf2/square.gif">
+.................
+   122   120| @$@<Jst@>@(@1@)@Z@M==@{
+   123   121| <blockquote>
+   124   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   125   123| @1
+   126   124| <b>///</b>
+.................
+   411    12| F. We want to compute (some aspect of) the distribution of the random variable
+   412    13| T(F, <u>X</u>) possibly involving both the unknown distribution and the
+   413    14| data. 
+     Warning|......^Line has trailing spaces up to and including this space.
+   414    15| T is a known <i>function</i>. We shall denote this distribution as
+   415    16| @<Disp@>@(Law(T(F,<u>X</u>); F),@)
+.................
+   427    28| 
+   428    29| 
+   429    30| <h3>The bootstrap idea</h3> 
+     Warning|............................^Line has trailing spaces up to and including this space.
+   430    31| Note that <u>X</u> is already given to you, so if you know F then you can
+   431    32| always compute Law(T(F,<u>X</u>); F) in principle, since T is a known
+   432    33| function. If direct computation turns out to be too complicated, we may
+   433    34| approximate Law(T(F,<u>X</u>); F) by simulation from F. 
+     Warning|........................................................^Line has trailing spaces up to and including this space.
+   434    35| However, this is never
+   435    36| going to happen in practice because if you already <i>know</i> F, why on
+   436    37| earth would you ever think of <i>estimating </i> its mean? So the entire
+   437    38| subject of statistical inference revolves around the issue of computing 
+     Warning|........................................................................^Line has trailing spaces up to and including this space.
+   438    39| Law(T(F,<u>X</u>); F) when F is unknown.  Parametric statistical inference
+   439    40| solves this problem by assuming that F is known except for finitely many
+   440    41| unknown constants. Classical non-parametric statistics (i.e., the methods
+   441    42| we have learned so far in this course) looks for distribution-free
+   442    43| techniques, i.e., situations where  Law(T(F,<u>X</u>); F) is completely known 
+     Warning|..............................................................................^Line has trailing spaces up to and including this space.
+   443    44| even though F is not. The idea is that somehow the two occurences of F in
+   444    45| Law(T(F,<u>X</u>); F) cancel each other out. 
+     Warning|.............................................^Line has trailing spaces up to and including this space.
+   445    46| <p>@<Example@>@(
+   446    47| Let X@<sub@>@(1@),...,X@<sub@>@(n@) be iid continuous unknown F with
+   447    48| median @<theta@>(F). Define 
+     Warning|............................^Line has trailing spaces up to and including this space.
+   448    49| @<Disp@>@(T(F,<u>X</u>) = sign test statistic based on
+   449    50| (X@<sub@>@(i@)-@<theta@>(F))'s@) 
+     Warning|.................................^Line has trailing spaces up to and including this space.
+   450    51| Then 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   451    52| @<Disp@>@(Law(T(F,<u>X</u>); F) = Binomial(n,1/2),@)
+   452    53| free of F.
+.................
+   454    55| <p>This is a smart technique, but the trouble is that there are many
+   455    56| situations where such distribution-free technique is not known to
+   456    57| exist. Even 
+     Warning|............^Line has trailing spaces up to and including this space.
+   457    58| when one does exist, it often fails to utilise the entire data (e.g., 
+     Warning|......................................................................^Line has trailing spaces up to and including this space.
+   458    59| it is
+   459    60| based only ranks or signs, and not the actual values.) 
+     Warning|.......................................................^Line has trailing spaces up to and including this space.
+   460    61| <p>
+   461    62| Now we are going to learn about a third method called <b>bootstrapping</b>
+   462    63| that lets us approaximate 
+     Warning|..........................^Line has trailing spaces up to and including this space.
+   463    64| @<Disp@>@(Law(T(F,<u>X</u>); F)@)
+   464    65| where F is unknown in even non-distrn-free situations. Thus, 
+     Warning|.............................................................^Line has trailing spaces up to and including this space.
+   465    66| bootstrapping is a method that lets you have the advantage of knowing F,
+   466    67| even when you actually do not know it. Here's the idea:
+.................
+   469    70| <table bgcolor="#cccccc">
+   470    71| <tr><td>Try to approximate F by some
+   471    72| distribution F* (may depend on the data <u>X</u>) that  
+     Warning|........................................................^Line has trailing spaces up to and including this space.
+   472    73| <ol>
+   473    74| <li>is "close" to F
+   474    75| <li>is <i>completely</i> known 
+     Warning|...............................^Line has trailing spaces up to and including this space.
+   475    76| <li>can be easily simulated from. 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+   476    77| </ol>
+   477    78| Use F* as a proxy for F.
+.................
+   484    85| <b>ideal bootstrap distribution</b>. In practice, however, even @<Ideal@>
+   485    86| may be very complicated. So then we can simulate <u>X</u><sup>*</sup> from
+   486    87| F<sup>*</sup>, and approximate @<Ideal@> by a histogram. This called 
+     Warning|.....................................................................^Line has trailing spaces up to and including this space.
+   487    88| <b>empirical bootstrap distribution</b>. 
+     Warning|.........................................^Line has trailing spaces up to and including this space.
+   488    89| 
+   489    90| <h3>Parametric bootstrap</h3>
+   490    91| This is a trivial example just to illustrate ideas. Suppose <b>X</b>
+   491    92| consists of X<sub>1</sub>,...,X<sub>200</sub> iid 
+     Warning|..................................................^Line has trailing spaces up to and including this space.
+   492    93| N(@<mu@>,@<sigmasqd@>),
+   493    94| @<mu@> and  @<sigmasqd@> being
+   494    95| unknown. 
+     Warning|.........^Line has trailing spaces up to and including this space.
+   495    96| 
+   496    97| 
+.................
+   509   110| <p>@<Exercise@>@(2@,
+   510   111| Suppose that X@<sub@>@(1@),...,X@<sub@>@(1000@) are iid
+   511   112| N(0,@<sigmasqd@>). We want to estimate E(X@<sub@>@(1@)<sup>4</sup>) by 
+     Warning|.......................................................................^Line has trailing spaces up to and including this space.
+   512   113| @<Disp@>@(@<Sum@> X@<sub@>@(i@)<sup>4</sup>/1000.@)
+   513   114| Compute the ideal bootstrap estimate of its MSE. If that seems too
+.................
+   517   118| <h3>Nonparametric bootstrap</h3>
+   518   119| This is by far the most common form of bootstrap. Many people mean
+   519   120| only this when they talk about bootstrap. 
+     Warning|..........................................^Line has trailing spaces up to and including this space.
+   520   121| <h4>Simplest case</h4>
+   521   122| <p>Let us consider the simplest case of nonparametric bootstrap. Here
+.................
+   523   124|  iid from some unknown F. We know
+   524   125| nothing about F. One popular choice of F* here is F<sub>n</sub>, the
+   525   126| empirical 
+     Warning|..........^Line has trailing spaces up to and including this space.
+   526   127| distribution function, defined as follows.
+   527   128| 
+.................
+   544   145| 
+   545   146| <p>@<Thm@>@((Glivenko-Cantelli)</b> sup {| F<sub>n</sub>(c) - F(c)| :c
+   546   147| in R} --> 0 ae.@) 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   547   148| <p>@<Pf@>@(Shall not prove in this course.@)
+   548   149| 
+   549   150| <dt><font color="#cc0000"><u>Completely known ?</u></font>
+   550   151| <dd> F<sub>n</sub> is completely known, since it is just a function of the
+   551   152|  data. 
+     Warning|.......^Line has trailing spaces up to and including this space.
+   552   153| 
+   553   154|  <dt><font color="#cc0000"><u>Easy to simulate ?</u></font>
+   554   155|  <dd> 
+     Warning|......^Line has trailing spaces up to and including this space.
+   555   156| <p>@<Exercise@>@(4@,
+   556   157| Suggest an algortihm to simulate iid from F@<sub@>@(n@). In particular,
+   557   158| show that if x is a vector of length n storing the original sample then
+   558   159| the Matlab code 
+     Warning|................^Line has trailing spaces up to and including this space.
+   559   160| @<Ms@>@(
+   560   161| bootData = x(unidrnd(n,1,n));@)
+.................
+   562   163| @)
+   563   164| <p>
+   564   165| A sample of size n drawn from F@<sub@>@(n@) is called a <b>resample</b>. 
+     Warning|.........................................................................^Line has trailing spaces up to and including this space.
+   565   166| In S-plus the function 
+     Warning|.......................^Line has trailing spaces up to and including this space.
+   566   167| @<F@>@(sample@) lets you draw
+   567   168|  such a sample (read its help to learn how!) 
+     Warning|.............................................^Line has trailing spaces up to and including this space.
+   568   169| <p>@<Exercise@>@(5@,
+   569   170| The file <a href="boot.txt">boot.txt</a> 
+     Warning|.........................................^Line has trailing spaces up to and including this space.
+   570   171| has a sample of size 1000. Draw 100
+   571   172| resamples each of size 1000. Make the histogram of the 100 (5%-)trimmed
+.................
+   573   174| samples (each of size 1000) from N(0,1), compute (5%-)trimmed means
+   574   175| for each of these samples, and draw the histogram of the 100 trimmed
+   575   176| means. Compare with the bootstrap histogram. 
+     Warning|.............................................^Line has trailing spaces up to and including this space.
+   576   177| @)
+   577   178| 
+.................
+   583   184| Suppose that we have some iid data of size n. R(<u>X</u>) is an estimator
+   584   185| for @<theta@>, which is some parameter
+   585   186| of interest. Write down the algorithm for computing empirical nonparametric 
+     Warning|............................................................................^Line has trailing spaces up to and including this space.
+   586   187| bootstrap estimates of bias, variance and MSE of R(<u>X</u>). 
+     Warning|..............................................................^Line has trailing spaces up to and including this space.
+   587   188| @)
+   588   189| 
+.................
+   595   196| Now, bootstrapping is such a popular method, that it is only expected that
+   596   197| S-plus/Matlab will provide special functions to write the above code more
+   597   198| compactly. Indeed, S-plus provides a function called 
+     Warning|.....................................................^Line has trailing spaces up to and including this space.
+   598   199| @<F@>@(bootstrap@)
+   599   200| to implement 
+     Warning|.............^Line has trailing spaces up to and including this space.
+   600   201| the loop in the bootstrap flowchart. If we have a function called, say,
+   601   202| myStatistic(data), that computes T from data, then the code
+.................
+   606   207| variable @<F@>@(bootVal@). Here 1000 is the number of bootstrap
+   607   208| resamples drawn. In particular, bootVal$replicates will
+   608   209| store T<sub>i</sub>'s. Type 
+     Warning|............................^Line has trailing spaces up to and including this space.
+   609   210| @<Ss@>@(
+   610   211| > names(bootVal)@)
+   611   212| 
+   612   213| to see what other info @<F@>@(bootVal@) stores. 
+     Warning|................................................^Line has trailing spaces up to and including this space.
+   613   214| 
+   614   215| 
+.................
+   618   219| shall take a look at one such case in a later lecture.
+   619   220| 
+   620   221| <p>Matlab has a similar function called @<F@>@(bootstrp@) 
+     Warning|..........................................................^Line has trailing spaces up to and including this space.
+   621   222| (no 'a' !). However, we prefer S-plus for
+   622   223| bootstrapping, because S-plus provides some nice supporting
+.................
+   648   249| @)
+   649   250| <p>@<Exercise@>@(11@,
+   650   251| Suggest how you can use bootstrapping to get CI for a parameter. 
+     Warning|.................................................................^Line has trailing spaces up to and including this space.
+   651   252| @)
+   652   253| 
+.................
+   657   258| <p>@<Exercise@>@(12@,
+   658   259| Suppose that we have an iid data from Unif(0,@<theta@>). Compute mle
+   659   260| @<thetahat@>. We want to compare 
+     Warning|.................................^Line has trailing spaces up to and including this space.
+   660   261| @<Disp@>@(@<Ideal@> with @<True@>,@)
+   661   262| where
+   662   263| @<Disp@>@(T(F,<u>X</u>) = @<thetahat@>(<u>X</u>)@)
+   663   264| Suppose that for a particular dataset of size n, the maximum is 1.97. 
+     Warning|......................................................................^Line has trailing spaces up to and including this space.
+   664   265| Compute true P(@<thetahat@> = 1.97), and also ideal bootstrap estimator of
+   665   266| the same quantity. Take limit of both as  n goes to infinity.  Do they
+.................
+   670   271| @<Section@>@(More general set up@)
+   671   272| So far we have performed bootstrapping only for univariate iid data. It is
+   672   273| possible to do bootstrapping for general data. 
+     Warning|...............................................^Line has trailing spaces up to and including this space.
+   673   274| @<Subsection@>@(Multivariate iid data@)
+   674   275| It is easy to
+   675   276| generalise to multivariate set up. 
+     Warning|...................................^Line has trailing spaces up to and including this space.
+   676   277| <p>@<Exercise@>@(13@,
+   677   278| Suppose we have paired data
+.................
+   683   284| @)
+   684   285| @<Digress@>@(Pricipal Component Analysis (PCA)@)
+   685   286| Suppose that 
+     Warning|.............^Line has trailing spaces up to and including this space.
+   686   287| @<Disp@>@(<u>X</u>@<sub@>@(1@),...,<u>X</u>@<sub@>@(n@)@)
+   687   288| are iid k-dimensional random vectors with mean 0 and variance matrix A.
+.................
+   689   290| @<Disp@>@(v'<u>X</u>@)
+   690   291| has mean 0 and variance @<sigmasqd@>(v) = v'Av. Let v be some unit
+   691   292| vector. Then v'<u>X</u> is the projection of <u>X</u> along v. 
+     Warning|...............................................................^Line has trailing spaces up to and including this space.
+   692   293| If @<sigmasqd@>(v) is large then we would expect a large scatter of
+   693   294| <u>X</u> along v. Thus, the value of @<sigmasqd@>(v) for different unit
+   694   295| vectors v, provide an idea about the structure of the multivariate
+   695   296| distribution of <u>X</u>. 
+     Warning|..........................^Line has trailing spaces up to and including this space.
+   696   297| <p>PCA is a systematic approach towards finding the v which maximises
+   697   298| @<sigmasqd@>(v). Then it finds w to maximise @<sigmasqd@>(w) among all w
+.................
+   699   300| The technique is simple and based on the following theorem.
+   700   301| <p>@<Thm@>@(
+   701   302| If A is any positive definite matrix with eigen values 
+     Warning|.......................................................^Line has trailing spaces up to and including this space.
+   702   303| @<Disp@>@(@<theta@>@<sub@>@(1@) @<Geq@> ... @<Geq@>
+   703   304| @<theta@>@<sub@>@(k@)@)
+   704   305| and corresponding unit eigen vectors 
+     Warning|.....................................^Line has trailing spaces up to and including this space.
+   705   306| @<Disp@>@(v@<sub@>@(1@),...,v@<sub@>@(k@),@)
+   706   307| then 
+     Warning|.....^Line has trailing spaces up to and including this space.
+   707   308| v@<sub@>@(1@) maximises @<sigmasqd@>(v). In general, 
+     Warning|.....................................................^Line has trailing spaces up to and including this space.
+   708   309| v@<sub@>@(i@) maximises @<sigmasqd@>(v) over all v orthogonal to
+   709   310| @<Disp@>@(v@<sub@>@(1@),...,v@<sub@>@(i-1@).@)
+   710   311| Also, @<sigmasqd@>(v@<sub@>@(i@)) = @<theta@>@<sub@>@(i@). 
+     Warning|...........................................................^Line has trailing spaces up to and including this space.
+   711   312| @)
+   712   313| <p>@<Pf@>@(You should know from B-I.@)
+   713   314| <p>
+   714   315| PCA proceeds just by computing the eigen values of the sample variance
+   715   316| matrix, S, say. 
+     Warning|................^Line has trailing spaces up to and including this space.
+   716   317| @<DigressOver@>
+   717   318| <p>@<Exercise@>@(14@,
+   718   319| Consider the PCA set up as given above. Let the PCA algorithm produce 
+     Warning|......................................................................^Line has trailing spaces up to and including this space.
+   719   320| v@<sub@>@(1@) as the maximiser of @<sigmasqd@>(v). Note that v@<sub@>@(1@)
+   720   321| is itself a random vector. We want to estimate its variance
+   721   322| matrix. Suggest how you may use bootstrapping here. 
+     Warning|....................................................^Line has trailing spaces up to and including this space.
+   722   323| @)
+   723   324| @<Subsection@>@(Bootstrap for non-iid data@)
+.................
+   727   328| @<Disp@>@(Y = a+b*X + error,@)
+   728   329| errors are iid with some unknown F.
+   729   330| We take some <i>fixed</i> values 
+     Warning|.................................^Line has trailing spaces up to and including this space.
+   730   331| @<Disp@>@(x@<sub@>@(1@),...,x@<sub@>@(n@)@)
+   731   332| for X, and observe Y to get the data
+   732   333| @<Disp@>@(Y@<sub@>@(1@),...,Y@<sub@>@(n@).@)
+   733   334| Assume that the errors are iid. Let ahat and bhat denote the 
+     Warning|.............................................................^Line has trailing spaces up to and including this space.
+   734   335| (least square or whatever)
+   735   336| estimators of a and b. Here the data Y@<sub@>@(i@)'s are not iid (they are
+.................
+   739   340| @<Disp@>@(R@<sub@>@(i@) = Y@<sub@>@(i@) - ahat - bhat*x@<sub@>@(i@),@)
+   740   341| Then we approximate F by the empirical distribution, F@<sub@>@(n@), of
+   741   342| these. Finally we 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   742   343| approximate the distribution of Y@<sub@>@(i@) by that of 
+     Warning|.........................................................^Line has trailing spaces up to and including this space.
+   743   344| @<Disp@>@(ahat + bhat*x@<sub@>@(i@) + error<sup>*</sup>,@)
+   744   345| where error<sup>*</sup> ~  F@<sub@>@(n@).
+.................
+   769   370| @<Disp@>@(Y@<sub@>@(ij@) = @<mu@> + @<alpha@>@<sub@>@(i@) +
+   770   371| @<epsilon@>@<sub@>@(ij@) i=1,...,5, j=1,...,10.@)
+   771   372| Thus there are 5 groups with 10 observations from each. 
+     Warning|........................................................^Line has trailing spaces up to and including this space.
+   772   373| Here the design matrix X has rows like 
+     Warning|.......................................^Line has trailing spaces up to and including this space.
+   773   374| @<Disp@>@((1,e@<sub@>@(i@)')@)
+   774   375| where the 5-dim vector e@<sub@>@(i@) has a 1 in the i-th position and 0
+   775   376| elsewhere. This row corresponds to the i-th group. 
+     Warning|...................................................^Line has trailing spaces up to and including this space.
+   776   377| These are our x's. If we resample from these we may very well not have any
+   777   378| data from some group making it impossible to estimate @<alpha@> for that
+.................
+   781   382| @)
+   782   383| @)
+   783   384|  
+     Warning|.^Line has trailing spaces up to and including this space.
+   784   385| @<Tail@>
+   785   386| @}
+            | <End-Of-File>
+     Warning|.^The last line of the input file was terminated by EOF.
+            |.^An EOL was inserted at the end of the last line.
+------------+-------------------------------------------------------------------
+
+Tangle: Completed boot.html.
+
+There were 69 Warnings.

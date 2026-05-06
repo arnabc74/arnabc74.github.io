@@ -1,0 +1,131 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{USTAT1@}
+@O@<ustat1.html@>==@{
+@<Head@>@(??@, U-statistics@)
+
+
+@<Section@>@(Introduction@)
+Many of the statistics that we have dealt with so far in this course are
+related to a special family called <i>U-statistics</i>. We discuss general
+properties of this family now.
+<p>@<Defn@>@(
+Let h: <b>R</b><sup>m</sup>@<rarrow@><b>R</b> be some function. Then 
+U-statitistic with <i>kernel</i> h, based on a sample
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@) (where n @<Geq@> m)@)
+is defined as 
+@<Disp@>@(U = @<Sum@><sup>'</sup> h(x@<sub@>@(i@<sub@>@(1@)@),...,
+x@<sub@>@(i@<sub@>@(m@)@))/@<P@>@(n@,m@),@)
+where 
+@<Sum@><sup>'</sup> is over all i@<sub@>@(1@),...,i@<sub@>@(m@) such that
+@<Disp@>@(1 @<Leq@> i@<sub@>@(1@) @<Neq@> ... @<Neq@>
+i@<sub@>@(m@) @<Leq@> n@)
+@)
+
+<p>@<Example@>@(
+If we take h(x) = x (for m=1) then the corresponding U statistics is the
+sample mean.
+@)
+
+<p>@<Exercise@>@(1@,
+Suppose that we take
+m=2, and the kernel 
+@<Disp@>@(h(x,y) = x<sup>2</sup> - xy@)
+What is the U statistic? It should be something familiar.
+@)
+
+
+<p>Suppose that X@<sub@>@(1@),...,X@<sub@>@(n@) are iid F, and
+@<theta@> is some real-valued parameter of interest.. 
+
+<p>@<Defn@>@(
+We call @<theta@> (unbiasedly) <i>estimable</i> if there is m @<Geq@> 1
+and a function h(X@<sub@>@(1@),...,X@<sub@>@(m@)) such that
+@<Disp@>@(E(h(X@<sub@>@(1@),...,X@<sub@>@(m@)) = @<theta@> for all @<theta@>.@)
+The smallest
+value of m for which there exists such an h is called the <i>degree</i> of
+@<theta@>. 
+@)
+
+<p>@<Exercise@>@(2@,
+If E(h(X@<sub@>@(1@),...,X@<sub@>@(m@)) = @<theta@>, then show that 
+E(U) = @<theta@>, as well. Hence conclude that every estimable parameter
+@<theta@> has an unbiased estimator which is a U-statistic.
+@)
+<p>
+@<Defn@>@(
+A function h:<b>R</b><sup>m</sup>@<rarrow@><b>R</b> is called <i>symmetric
+</i> if for all permutations p of {1,...,m} we have
+@<Disp@>@(h(X@<sub@>@(1@),...,X@<sub@>@(m@)) = 
+h(X@<sub@>@(p(1)@),...,X@<sub@>@(p(m)@))@)
+@)
+<p>@<Example@>@(
+h(x,y,z) = xy+xz+yz is a symmetric function. But
+h(x,y) = x<sup>2</sup>y is not. h(x,y)=xy is symmetric, but
+h(x,y,z)=xy is not!
+@)
+
+<p>@<Exercise@>@(3@,
+If E(h(X@<sub@>@(1@),...,X@<sub@>@(m@)) =  @<theta@>, then show that there
+is a symmetric function 
+@<Disp@>@(g:<b>R</b><sup>m</sup>@<rarrow@><b>R</b>@)
+ such that
+E(g(X@<sub@>@(1@),...,X@<sub@>@(m@)) = @<theta@>. 
+@)
+
+<p>@<Exercise@>@(4@,
+Show that for any estimable @<theta@> there is a U statistic with
+symmetric kernel
+that is an unbiased estimator for @<theta@>.
+@)
+<p>
+Note that if h is symmetric then the U-statistics based on h is same as
+@<Disp@>@(U = @<Sum@><sup>'</sup> h(x@<sub@>@(i@<sub@>@(1@)@),...,
+x@<sub@>@(i@<sub@>@(m@)@))/@<C@>@(n@,m@),@)
+where 
+@<Sum@><sup>'</sup> is over all i@<sub@>@(1@),...,i@<sub@>@(m@) such that
+@<Disp@>@(1 @<Leq@> i@<sub@>@(1@)  &lt; ...  &lt; i@<sub@>@(m@) @<Leq@> n@)
+
+<p>@<Exercise@>@(5@,
+Obtain unbiased symmetric kernel 
+U-statistic estimators for the 3rd central moment.
+<br>@<Hint@>@(
+First try to do it for product of <i>raw</i> moments.
+@)
+@)
+
+<p>@<Exercise@>@(6@,
+Show that the sign test statistic is a constant multiple of a
+U-statistic. 
+@)
+
+<p>@<Exercise@>@(7@,
+Show that the Wilcoxon signed rank statistic is a linear combination of
+two U-statistics. In particular, it has the form
+@<Disp@>@(n U@<sub@>@(1@) + @<C@>@(n@,2@) U@<sub@>@(2@).@)
+@)
+
+@<Subsection@>@(Two sample U-statistics@)
+This is defined in a way similar to the above one sample case. Here we
+have a kernel
+@<Disp@>@(h:<b>R</b><sup>r</sup> x <b>R</b><sup>s</sup>@<rarrow@><b>R</b>@)
+Based on a two sample  dataset
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(m@),
+Y@<sub@>@(1@),...,Y@<sub@>@(n@),@)
+(where m @<Geq@> r and n @<Geq@> s) we define the two-sample U-statistic
+with kernel h as
+@<Disp@>@(U = @<Sum@><sup>'</sup> 
+h(X@<sub@>@(i@<sub@>@(1@)@),...,
+X@<sub@>@(i@<sub@>@(m@)@),
+Y@<sub@>@(j@<sub@>@(1@)@),...,Y@<sub@>@(j@<sub@>@(n@)@))/
+(@<C@>@(m@,r@) @<C@>@(n@,s@))@)
+<p>@<Exercise@>@(8@,
+Consider the parameter 
+@<Disp@>@(@<theta@> = P(X  &lt; Y).@)
+Find a kernel to estimate it unbiasedly. Find out the corresponding
+U-statistic. Show that it is a multiple of the Mann-Whitney U-test
+statistic. 
+@)
+
+@<Tail@>
+@}

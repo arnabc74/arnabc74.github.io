@@ -1,0 +1,120 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SPRT4@}
+@O@<sprt4.html@>==@{
+@<Head@>@(??@,Approximating E(T) for SPRT@)
+
+
+Here we shall use all the machinery we have developed so far to
+approximate E(T) (also called ASN) for SPRT(A,B).
+
+<p><b>Set up:</b> We have data X@<sub@>@(1@),X@<sub@>@(2@),... iid with
+density unknown density f. We want to test
+@<Disp@>@(H@<sub@>@(0@): f = f = f@<sub@>@(0@) Vs H@<sub@>@(1@): f =
+f@<sub@>@(1@).@) 
+
+We had defined 
+@<Disp@>@(Z@<sub@>@(i@) = 
+log(f@<sub@>@(1@)(X@<sub@>@(i@))/f@<sub@>@(0@)(X@<sub@>@(i@))@)
+
+The Z@<sub@>@(i@)'s are iid and S@<sub@>@(m@) =
+@<Sum@>@<sub@>@(1,...,m@)Z@<sub@>@(i@) is the log likelihood ratio based
+on sample of size m. 
+
+<p>SPRT(A,B), 0 &lt; B &lt; 1 &lt; A, is the sequential test that
+continues sampling until a stopping time T, where T is the first time when 
+S@<sub@>@(T@) @<Leq@> b, or S@<sub@>@(T@) @<Geq@> a, where a = log(A) and
+b = log(B). In the first case we accept H@<sub@>@(0@), in the latter case
+we reject it.
+
+<p>
+We have also seen the following resuts:
+<ol>
+<li>P(Z@<sub@>@(i@)=0)  &lt; 1 (natural assumption, else
+f@<sub@>@(0@)=f@<sub@>@(1@), and there is nothing to test.)
+<li>P(T &lt; @<inf@>) = 1. This is Stein's lemma, and uses (1) in the
+proof.
+<li>Wald's approximation: If S@<sub@>@(T@) is above a then we take
+S@<sub@>@(T@) = a, and similarly we take S@<sub@>@(T@)=b, when
+S@<sub@>@(T@) falls below b.
+<li>If E(T) is finite, then E(S@<sub@>@(T@)) = E(T) E(Z@<sub@>@(1@)). This
+is Wald's first equation.
+<li>If E(T) is finite, and E(Z@<sub@>@(1@)) = 0,
+then E(S@<sub@>@(T@)<sup>2</sup>) = E(T) E(Z@<sub@>@(1@)<sup>2</sup>). This
+is Wald's second equation. 
+<li>Wald's fundamental identity:
+If @<phi@>(t) is the mgf of Z@<sub@>@(i@), then
+@<Disp@>@(E(exp(tS@<sub@>@(T@))/@<phi@>(t)<sup>T</sup>) = P@<sub@>@(g@)(T
+is finite),@)
+where g is as before.
+</ol>
+We shall need all these to approximate E(T). <p>
+The basic modus operandi is follows. If E(Z) @<Neq@> 0, then we shall use
+Wald's first equation to get 
+@<Disp@>@(E(T) = E(S@<sub@>@(T@))/E(Z),@)
+and then we shall try to find E(S@<sub@>@(T@)). If, however, E(Z)=0, then
+we shall use Wald's second equation, to get
+@<Disp@>@(E(T) = E(S@<sub@>@(T@)<sup>2</sup>)/E(Z<sup>2</sup>).@)
+By virtue of (1), the denominator cannot vanish. So in this case the problem
+reduces to finding E(S@<sub@>@(T@)<sup>2</sup>). <p>
+
+Both the cases are very similar, and so we shall do only the first case
+(i.e., when E(Z) @<Neq@> 0.) Here we need to find E(S@<sub@>@(T@)). Now,
+by Wald's approximation, 
+@<Disp@>@(E(S@<sub@>@(T@)) = b P(S@<sub@>@(T@) @<Leq@> b) + 
+a P(S@<sub@>@(T@) @<Geq@> a).
+@)
+Also, 
+@<Disp@>@(P(S@<sub@>@(T@) @<Leq@> b) + P(S@<sub@>@(T@) @<Geq@> a) = 1.@)
+So it suffices to be able to find P(S@<sub@>@(T@) @<Geq@> a).
+<p>@<Exercise@>@(1@,
+Use the funadamental idenitity and Stein's lemma to show that for SPRT, we
+have
+@<Disp@>@(E(exp(tS@<sub@>@(T@))/@<phi@>(t)<sup>T</sup>)=1.@)
+<br>@<Hint@>@(
+By Stein's lemma this boils down to showing P@<sub@>@(g@)(T
+is finite) = 1. This follows by a simple argument from the fact that 
+P(T is finite) = 1.
+@)
+@)
+<p>Suppose that we find nonzero d such that @<phi@>(d)=1. Then with t=d,
+we have from the fact that
+@<Disp@>@(E(exp(dS@<sub@>@(T@))) = 1.@)
+Using Wald's approximation again we have
+@<Disp@>@(1=E(exp(dS@<sub@>@(T@)) = exp(db) P(S@<sub@>@(T@) @<Leq@> b) +
+exp(da) P(S@<sub@>@(T@) @<Geq@> a).
+@)
+Since the two probabilities add up to 1, hence we can now solve for 
+P(S@<sub@>@(T@) @<Geq@> a).
+
+@<Subsection@>@(Can we always find such d?@)
+Unfortunately, we cannot always find a nonzero d such that @<phi@>(d)=1.
+Here is one sufficient condition which guarantees the existence of such
+d. 
+@<Disp@>@(If 
+<ul>
+<li>@<phi@>(t) exists (i.e., is finite) for all t in some open interval
+(r,s) containing 0, (r,s may be infinite)
+<li> @<phi@>(t) goes to infinity as t approaches r from right, or s from
+left,
+<li> E(Z) @<Neq@> 0,
+</ul>
+then 
+there exists nonzero d such that @<phi@>(d)=1.
+@)
+<p>@<Exercise@>@(2@,
+Show that @<phi@>'(0) @<Neq@> 0, and @<phi@>''(t)  &gt; 0 over (r,s).
+<br>@<Hint@>@(
+Differentiate under integral sign.
+@)
+@)
+
+<p>@<Exercise@>@(3@,
+Hence conclude that the required d exists.
+<br>@<Hint@>@(
+A convex function has unique minimum. Can 0 be the minimum?
+@)
+@)
+
+@<Tail@>
+@}

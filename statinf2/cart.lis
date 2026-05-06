@@ -1,0 +1,201 @@
+FUNNELWEB LISTING FILE
+======================
+
+
+Global Local| Input File
+------------+-------------------------------------------------------------------
+.................
+    79    78| <table><tr><td width=2 bgcolor="#995555"></td>
+    80    79| <td>
+    81    80| <b>Example:</b> 
+     Warning|................^Line has trailing spaces up to and including this space.
+    82    81| @1
+    83    82| </td></tr></table>
+.................
+    90    89| <td>
+    91    90| <b><font color="#cc0000">
+    92    91| Exercise @<Label@>.@1:</font></b> 
+     Warning|..................................^Line has trailing spaces up to and including this space.
+    93    92| @2
+    94    93| </td></tr></table>
+.................
+   112   111| <table><tr><td width=1 bgcolor="#cccccc"></td>
+   113   112| <td>
+   114   113| <b><i>Proof:</i></b> 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   115   114| @1
+   116   115| <img src="resources/statinf2/square.gif">
+.................
+   121   120| @$@<Jst@>@(@1@)@Z@M==@{
+   122   121| <blockquote>
+   123   122| <b><i>Justification:</i></b> 
+     Warning|.............................^Line has trailing spaces up to and including this space.
+   124   123| @1
+   125   124| <b>///</b>
+.................
+   418    19| <p>First note that any classification tree defines a recursive partitioning
+   419    20| the sample space of the explanatory variables. Each block of the partition
+   420    21| is assigned a class. 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   421    22| 
+   422    23| <p>@<Example@>@(In this case the sample space is the plane. The tree below
+   423    24| corresponds to the partition shown beside it. 
+     Warning|..............................................^Line has trailing spaces up to and including this space.
+   424    25| @<Img@>@(treepart.gif@)
+   425    26| @)
+.................
+   431    32| 
+   432    33| <p>Thus CART<sub>alpha</sub> effectively finds a good way to partition the
+   433    34| space recursively, so that each block is as homogeneous as possible. 
+     Warning|.....................................................................^Line has trailing spaces up to and including this space.
+   434    35| This is done through two steps: 
+     Warning|................................^Line has trailing spaces up to and including this space.
+   435    36| <ul>
+   436    37| <li>GROW
+.................
+   439    40| <h4>GROW</h4>
+   440    41| The first split is either a horizontal or a vertical line through the
+   441    42| <i>entire</i> sample 
+     Warning|.....................^Line has trailing spaces up to and including this space.
+   442    43| space. So we have two things to determine in the first split: orientation
+   443    44| (ie, horizontal/vertical) and where to draw the line. 
+     Warning|......................................................^Line has trailing spaces up to and including this space.
+   444    45| Notice that due to the discrete nature of the data points it is enough to
+   445    46| consider only finitely many lines of either orientation. This is because,
+   446    47| until a line 
+     Warning|.............^Line has trailing spaces up to and including this space.
+   447    48| crosses a sample point the misclassification proportion remains
+   448    49| unchanged. 
+     Warning|...........^Line has trailing spaces up to and including this space.
+   449    50| In general there are n horizontal and n vertical lines to consider. For
+   450    51| each of these 2*n lines, we compute the misclassification proportion. This
+   451    52| is done as follows. Label each side of the line by a class. Obviously, to
+   452    53| keep misclassification to a minimum we should label each block by 
+     Warning|..................................................................^Line has trailing spaces up to and including this space.
+   453    54| majority vote. Now count the number of points on either side whose classes
+   454    55| does not match the assigned classes. Divide this number by the sample size,
+   455    56| n. 
+     Warning|...^Line has trailing spaces up to and including this space.
+   456    57| 
+   457    58| <p>Choose the line with the minimum misclassification proportion. Resolve
+   458    59| ties arbitrarily. 
+     Warning|..................^Line has trailing spaces up to and including this space.
+   459    60| 
+   460    61| <p>Now the sample space has been partitioned into two blocks. Each 
+     Warning|...................................................................^Line has trailing spaces up to and including this space.
+   461    62| block has been labeled with a classname (eg, "PASS" or
+   462    63| "FAIL" in the ISI example.) This partition corresponds to
+   463    64| a tree with two leaf nodes and one inner node (the root). 
+     Warning|..........................................................^Line has trailing spaces up to and including this space.
+   464    65| Each leaf node is labelled
+   465    66| with a classname. The inner node is not labelled. Note that the
+   466    67| leaf nodes correspond to the blocks of the partition. 
+     Warning|......................................................^Line has trailing spaces up to and including this space.
+   467    68| <p>Carry out
+   468    69| the above procedure separately for each of the blocks. 
+     Warning|.......................................................^Line has trailing spaces up to and including this space.
+   469    70| Thus each of these blocks
+   470    71| will produce two blocks and so on. 
+     Warning|...................................^Line has trailing spaces up to and including this space.
+   471    72| <p>
+   472    73| The next question now is: "When to stop?"
+   473    74| The answer is: Do not split a block further if 
+     Warning|...............................................^Line has trailing spaces up to and including this space.
+   474    75| <blockquote>
+   475    76| <dl>
+   476    77| <dt><u>either</u><dd>the number of sample points in it is less than 5
+   477    78| <dt><u>or</u><dd>the block is homogeneous, ie all the points in it belongs to
+   478    79| the same 
+     Warning|.........^Line has trailing spaces up to and including this space.
+   479    80| class. 
+     Warning|.......^Line has trailing spaces up to and including this space.
+   480    81| </dl>
+   481    82| </blockquote>
+.................
+   483    84| <p>The number 5 of course has no magic associated with it. You may choose
+   484    85| any other threshold to decide when a block has too few points to warrant
+   485    86| further 
+     Warning|........^Line has trailing spaces up to and including this space.
+   486    87| partitioning. In fact, if you make this threshold equal to 1, all the
+   487    88| blocks would be homogeneous (because any block with just one point is
+.................
+   500   101| 
+   501   102| <p>The key to pruning is to remove the twigs one by one in the order of
+   502   103| importance. 
+     Warning|............^Line has trailing spaces up to and including this space.
+   503   104| 
+   504   105| <p>@<Defn@>@(Let T be a tree and S a twig in it. Let D be our learning
+   505   106| data. Then importance of S in T with respect to D is defined as 
+     Warning|................................................................^Line has trailing spaces up to and including this space.
+   506   107| @<Disp@>@(misclass(T-S,D) - misclass(T,D).@)
+   507   108| Here T-S is the tree obtained by removing S from T. 
+     Warning|....................................................^Line has trailing spaces up to and including this space.
+   508   109| @)
+   509   110| 
+.................
+   523   124| @)
+   524   125| 
+   525   126| <p>This process produces a nested sequence of trees 
+     Warning|....................................................^Line has trailing spaces up to and including this space.
+   526   127| {T<sub>k</sub> : k=0,1,...,K} for some K, and a
+   527   128| corresponding sequence of alpha's : {alpha<sub>k</sub> : k=0,1,...,K}
+   528   129| 
+   529   130| <p>@<Thm@>@(For alpha in [alpha<sub>k</sub>,alpha<sub>k+1</sub>) the tree
+   530   131| T<sub>k</sub> minimizes 
+     Warning|........................^Line has trailing spaces up to and including this space.
+   531   132| @<Disp@>@(misclass(T,D) + alpha*|T|@)
+   532   133| among all subtrees T of T<sub>0</sub>. Similarly, for alpha in 
+     Warning|...............................................................^Line has trailing spaces up to and including this space.
+   533   134| [alpha<sub>K</sub>, infinity), a best tree is T<sub>K</sub>@)
+   534   135| <p>@<Pf@>@(
+.................
+   538   139| <p>@<Exercise@>@(3@,
+   539   140| Show that if @<alpha@> is in [0,@<alpha@>@<sub@>@(1@)) then T@<sub@>@(0@)
+   540   141| is the best. 
+     Warning|.............^Line has trailing spaces up to and including this space.
+   541   142| @)
+   542   143| <p>
+.................
+   550   151| holds values of Y, the regressand, in stead of the class indices. The
+   551   152| misclassification proportion is now replaced by mean sum of squares for
+   552   153| residuals.  
+     Warning|............^Line has trailing spaces up to and including this space.
+   553   154| <p>@<Exercise@>@(4@,
+   554   155| Suggest how you can use CART for regression. What is the nature of the
+.................
+   556   157| @)
+   557   158| 
+   558   159| <h3>Concept of dictionary methods and penalty</h3> 
+     Warning|...................................................^Line has trailing spaces up to and including this space.
+   559   160| CART is one application of a general concept, viz, the concept of
+   560   161| penalty. There are many modelling strategies that are made by combining a
+.................
+   573   174| <ol>
+   574   175| <li>Applying the modelling strategy to a dataset may be time consuming, but
+   575   176| once the model has been computed, prediction using it is very fast, 
+     Warning|....................................................................^Line has trailing spaces up to and including this space.
+   576   177| (since each component is simple to compute)
+   577   178| <li>These can provide highly nonlinear and complex models. 
+     Warning|...........................................................^Line has trailing spaces up to and including this space.
+   578   179| </ol>
+   579   180| But, unfortunately, these advantages come for a very significant price:
+.................
+   590   191| number of letters. Here there is a trade off: More complex the model less
+   591   192| is the loss, yet more is the number of letters. So to keep a balance we
+   592   193| try to minimise 
+     Warning|................^Line has trailing spaces up to and including this space.
+   593   194| @<Disp@>@(Loss + alpha * |M|,@)
+   594   195| where alpha is a tuning parameter. CV is a very popular way to choose
+   595   196| alpha. 
+     Warning|.......^Line has trailing spaces up to and including this space.
+   596   197| 
+   597   198| @<Tail@>
+   598   199| @}
+            | <End-Of-File>
+     Warning|.^The last line of the input file was terminated by EOF.
+            |.^An EOL was inserted at the end of the last line.
+------------+-------------------------------------------------------------------
+
+Tangle: Completed cart.html.
+
+There were 38 Warnings.

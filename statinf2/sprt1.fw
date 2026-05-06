@@ -1,0 +1,148 @@
+@p maximum_output_line_length = 200
+@i main
+@$@<Label@>==@{SPRT1@}
+@O@<sprt1.html@>==@{
+@<Head@>@(??@,Sequential tests@)
+
+
+@<Section@>@(Introduction@)
+<p>@<Example@>@(
+Suppose that we have data
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(10@) iid N(@<mu@>,1).@)
+We want to test
+@<Disp@>@(H@<sub@>@(0@): @<mu@> =0 Vs. H@<sub@>@(1@): @<mu@> = 5.@)
+A typical test is of this  form: Reject
+H@<sub@>@(0@) if @<xbar@>  &gt;  3.7, else accept H@<sub@>@(0@).
+<p>
+Now suppose that @<xbar@> = 3.701. So we should reject H@<sub@>@(0@). But
+had @<xbar@> been 3.699, we should have accepted H@<sub@>@(0@). Is this
+sensible? Since, @<xbar@> is based on only 10 observations from N(m,1),
+its variance is 0.1. So the difference between 3.699 and 3.701 is a minor
+one for @<xbar@>. Yet the entire conclusion changed based on that. 
+@)
+<p>This is a borderline case. Ideally one would like to say that the based
+on the present data the test in inconclusive. Rather than accept or reject
+H@<sub@>@(0@) right now, we should better get some more data. This is the
+main idea behind <i>sequential tests</i>. 
+<p>
+@<Defn@>@(
+Suppose that we have data
+@<Disp@>@(X@<sub@>@(1@),X@<sub@>@(2@),...@)
+A sequential test based on this data is a decision rule that tells for each
+n to take one of the following actions based on the observed values of 
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(n@):@)
+<OL>
+<LI>accept H@<sub@>@(0@)
+<li> reject H@<sub@>@(0@)
+<li>
+get one more sample
+</UL>
+<p>Equivalently, a sequential test is a stopping time, T, together with a
+decision rule telling us whether to accept/reject H@<sub@>@(0@) based on 
+@<Disp@>@(X@<sub@>@(1@),...,X@<sub@>@(T@)@)
+once we stop.
+@)
+
+@<Section@>@(Sequential Probability Ratio Test (SPRT)@)
+In classical statistics we have likelihood ratio tests. In such a test the
+test statistic is the ratio of the likelihood of the observed data under
+H@<sub@>@(0@) and H@<sub@>@(1@). If this ratio is large then we reject
+H@<sub@>@(0@), else we accept H@<sub@>@(0@). Neyman-Pearson lemma tells us
+that this is the optimal test for a given level. <p>
+It is customary to work with log-likelihood ratio than the likelihood
+ratio. 
+<p>Suppose we have data
+@<Disp@>@(X@<sub@>@(1@),,X@<sub@>@(2@),... iid with density f.@)
+We want to test 
+@<Disp@>@(H@<sub@>@(0@): f = f@<sub@>@(0@) Vs H@<sub@>@(1@): f =
+f@<sub@>@(1@)@) 
+Define 
+@<Disp@>@(Z@<sub@>@(i@) = log(
+f@<sub@>@(1@)(X@<sub@>@(i@))/f@<sub@>@(0@)(X@<sub@>@(i@))).@) 
+Then the Z@<sub@>@(i@)'s are iid, and the log-likelihood ratio is their
+sum.
+
+<p>
+@<Defn@>@(
+In this set up a SPRT with cutoffs A, B (0 &lt; B &lt; 1 &lt; A) (also
+written as
+SPRT(A,B)) is defined as the sequential test that goes on sampling until 
+the likelihood ratio(LR) goes outside (B,A).
+Once it falls outside this interval, we stop sampling and accept
+H@<sub@>@(0@) if the LR is below B, reject H@<sub@>@(0@) if the LR is
+above A. 
+@)
+
+<p>@<Exercise@>@(1@,
+Suppose that we are doing SPRT(2,0.5) for the test given in the first
+example in 
+this page. Find the chance (under H@<sub@>@(0@)) that we accept
+H@<sub@>@(0@) exactly after 5 
+steps. 
+@)
+
+<p>@<Exercise@>@(2@,
+Why do you think we have the condition 
+@<Disp@>@(0 &lt; B &lt; 1 &lt; A?@)
+Also, consider the general f@<sub@>@(0@) and f@<sub@>@(1@). Consider
+Z@<sub@>@(1@) as defined above. Construct an example where P(Z@<sub@>@(1@)
+= 0) =1 under f@<sub@>@(0@). Show that it is natural to assume
+@<Disp@>@(P(Z@<sub@>@(1@) = 0)  &lt;  1 under both f@<sub@>@(0@) and
+f@<sub@>@(1@).@) 
+@)
+
+<p>@<Thm@>@((Stein's lemma)
+Under the condition 
+@<Disp@>@(P(Z@<sub@>@(1@) = 0)  &lt;  1 under both f@<sub@>@(0@) and
+f@<sub@>@(1@)@) 
+the stopping time, T, of SPRT(A,B) is finite with probability 1 under both
+f@<sub@>@(0@) and f@<sub@>@(1@).
+@)
+<p>
+@<Pf@>@(
+The proof involves two ideas that we develop through some exercises. 
+
+<p>If we have any nonzero @<epsilon@>, howsoever small, and keep on adding
+it to itself, then the sequence
+@<Disp@>@(|@<epsilon@>|,|2 @<epsilon@>|, |3 @<epsilon@>|,...@)
+will eventually cross  any given bound, howsoever large. What if
+@<epsilon@> were random? More specifically we have the following exercise.
+
+<p>@<Exercise@>@(3@,
+Suppose the U@<sub@>@(1@), U@<sub@>@(2@),... are iid with any distribution
+that is not degenerate at zero. Consider the sequence
+@<Disp@>@(V@<sub@>@(n@) = U@<sub@>@(1@)+...+U@<sub@>@(n@).@)
+Show that given any c &gt; 0, there exists N such that 
+P(|V@<sub@>@(N@)|
+&gt; c)  &gt; 0. 
+@)
+
+But this is not strong enough for us. It merely says that after a large
+enough number of steps (N), the V-sequence has <i>some chance</i> of going
+out beyond [-c,c]. We would like to have a result that says: given any 
+interval [b,a] the V-sequence will eventually step out of it <i>with
+probability 1.</i>  For this purpose define c = a-b. Obtain N from the
+last exercise using this c. Now bunch up the U@<sub@>@(i@)'s in
+groups of N: the sum of the first N of the U's is called W@<sub@>@(1@),
+the sum of the next N of the U's is called W@<sub@>@(2@), and so on. Note
+that the W@<sub@>@(i@)'s are iid. They have a positive chance of  going
+out of [-c,c], by the last exercise. Let 
+@<Disp@>@(p = P(W@<sub@>@(1@) is in [-c,c])  &lt; 1.@)
+Given any n, let q(n) denote the
+quotient [n/N]. 
+
+<p>@<Exercise@>@(4@,
+Show that
+@<Disp@>@( P(V@<sub@>@(1@),...,V@<sub@>@(n@) all inside [b,a]) @<Leq@>
+p<sup>q(n)</sup>.@)
+@)
+
+<p>@<Exercise@>@(5@,
+Use the last two exercises to complete the proof.
+@)
+@)
+
+
+
+@<Tail@>
+@}

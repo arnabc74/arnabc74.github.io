@@ -1,0 +1,333 @@
+
+
+<html>
+<head>
+<title>Statistical Inference II Classnote</title>
+</head>
+<body bgcolor="#ffffff">
+<table width=100%><tr><td align=right><font size=-2>[Stat Inf II
+classnotes, ISI, Kolkata]
+</td></tr></table>
+<h1>Two sample inference</h1>
+
+
+
+
+<h3>Introduction</h3>
+
+<p>
+   <table><tr><td width=2 bgcolor="#995555"></td>
+   <td>
+   <b>Example:</b> 
+   
+   Suppose that we want to test the efficacy of a sleeping pill. A simple way
+   to do this would be to administer the drug to a sample of insomnia
+   patients and then to measure the increase in the amounts of their
+   sleep. However, it is usually not enough to measure just this
+   increase. Some patients are so fond of medicines, that they "feel better"
+   whenever they think they have taken a medicine. Even giving them a lump of
+   sugar in the form of a pill would make them "feel better". This is called
+   the <i>placebo effect</i>, the sugar pill being called a <i>placebo.</i>
+   <p>
+   So in order to test the efficacy of a sleeping pill, it is not enough to
+   check if it increases sleep or not, but also to check if it outperforms
+   the placebo. So we perform the following blind experiment. 
+   <p>
+   Take m+n insomnia patients. They should represent the population as much
+   as possible wrt characteristics that might affect the performance of the
+   drug (e.g., gender, age etc). Randomly split this sample into a
+   <i>control</i> and a <i>treatment</i> group of sizes m and n,
+   respectively. Administer placebo to the control group, and the pill to the
+   treatment group. Then the mesuare the increase in amount of sleep of each
+   m+n patients. Let
+   
+   <blockquote>
+   X<sub>1</sub>,...,X<sub>m</sub>
+   </blockquote>
+   
+   be the measurements for the control group, and let
+   
+   <blockquote>
+   Y<sub>1</sub>,...,Y<sub>n</sub>
+   </blockquote>
+   
+   be the corresponding measurements for the treatment group. We assume that
+   the X's are iid with some unknown continuous distribution F, and the Y's
+   are iid with some unknown continuous distribution G. We want to check if F
+   and G are different.
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+
+<hr>
+<table width=100% bgcolor="#cccccc">
+<tr><td align=center><b><i>Digression:
+A couple of points
+</b></i></td></tr></table>
+<hr>
+
+<ol>
+<li><b>Why not take m=n ? </b> Usually such an expeirment involves a
+follow up study, e.g. a request like 
+
+<blockquote>
+"Please come back after a month of medication and report your
+amount of sleep."
+</blockquote>
+
+is made to each patient.
+Some patients may not honour this request, and just drop out of
+the experiment. So the final sample sizes may differ for the two groups.
+<li><b>Why is the experiment called a "blind" experiment ?</b>
+Because, we do not want the patients to know to which group they have been
+put (else, the control patients will not expeirnce the placebo effect.)
+Sometimes even the investigators are not told which patients belong to
+which group. This is called a "double blind" experiment.
+</ol>
+
+<hr>
+<table width=100% bgcolor="#cccccc">
+<tr><td align=center><b><i>Digression over
+</i></b></td></tr></table>
+<hr>
+
+
+
+<h3>Wald-Wolfowitz Run Test</h3>
+
+We have the set up as described above. We want to test
+
+<blockquote>
+H<sub>0</sub>: F = G  Vs. H<sub>1</sub>: F 
+                                           <img src=
+                                           "resources/statinf2/neq.png"
+                                           align=top>
+                                           
+                                            G
+</blockquote>
+
+
+This test is only for two-sided alternatives. Here is the test procedure:
+<p>
+First combine the two samples and order the (m+n) numbers. Then write the
+combined, ordered sample as a string of X's and Y's, e.g.,
+
+<blockquote>
+X Y Y X X X Y Y Y X X X Y X X
+</blockquote>
+
+We expect that under H<sub>0</sub> the X's and the Y's would be "well
+mixed" in this string. In order to check this we count the number, R,  of
+runs 
+(i.e., a stretch of the same letter). In this example R= 7, the runs being
+
+<blockquote>
+X, YY, XXX, YYY, XXX, Y and XX
+</blockquote>
+
+This R is our test statistic. We shall reject H<sub>0</sub> if R is
+"small" To quantify how small is "small" we need to find the null
+distribution of R. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.1:</font></b> 
+   
+   What are the possible values that R can take?
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.2:</font></b> 
+   
+   Show the number of ways in which a positive integer N can be split into K
+   strictly positive parts is 
+   
+   <blockquote>
+   
+   <sup>N-1</sup>C<sub>K-1</sub>.
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.3:</font></b> 
+   
+   Let 2k+1 be a possible value for R. Show that under H<sub>0</sub>
+   
+   <blockquote>
+   P(R=2k+1) = (
+                <sup>m-1</sup>C<sub>k-1</sub> 
+                                              <sup>n-1</sup>C<sub>k</sub>+
+   
+   <sup>m-1</sup>C<sub>k</sub> 
+                               <sup>n-1</sup>C<sub>k-1</sub>)/
+                                                              <sup>m+n</sup>C<sub>m</sub>
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.4:</font></b> 
+   
+   If 2k is a possible value for R then show that under H<sub>0</sub>
+   
+   <blockquote>
+   P(R=2k) = 
+   2
+    <sup>m-1</sup>C<sub>k-1</sub>
+                                 <sup>n-1</sup>C<sub>k-1</sub>/
+                                                               <sup>m+n</sup>C<sub>m</sub>
+   </blockquote>
+   
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>Thus, observe that R is distribution-free under H<sub>0</sub>, i.e.,
+its distribution does not involve F. 
+<p>Next we want to find the moments of R. For this mark each of the X or Y
+with a 1 or 0 according as it is the 
+start of a new run. Call the i-th mark as U<sub>i</sub>.
+Thus, U<sub>1</sub> is always 1. The
+sequence 
+
+<blockquote>
+XYYXXXYYYXXXYXX
+</blockquote>
+
+is marked as
+
+<blockquote>
+110100100100110
+</blockquote>
+
+
+Clearly, R = 
+             <img src=
+             "resources/statinf2/sum.gif"
+             align=middle>
+             
+             U<sub>i</sub>. 
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.5:</font></b> 
+   
+   Show that under H<sub>0</sub>
+   
+   <blockquote>
+   E(R) = (2mn/(m+n)) + 1
+   </blockquote>
+   
+   <i>[Hint: Compute E(U<sub>i</sub>) and add.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.6:</font></b> 
+   
+   Take any 1 &lt; i  &lt; j-1 in {1,...,m+n}. Show that 
+   
+   <blockquote>
+   E(U<sub>i</sub>U<sub>j</sub>) = 
+   4*
+     <sup>m+n-4</sup>C<sub>m-2</sub>/
+                                     <sup>m+n</sup>C<sub>n</sub>
+   </blockquote>
+   
+   <i>[Hint: Look at i-1, i j-1 and j-th locations. There are four cases
+   that will make U<sub>i</sub> and U<sub>j</sub> both 1:
+   
+   <blockquote>
+   XYXY,XYYX,YXYX,YXXY.
+   </blockquote>
+   
+   Compute proababilities of these and add.]</i> 
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+<p>
+   <table><tr><td width=2 bgcolor="#cc0000"></td>
+   <td>
+   <b><font color="#cc0000">
+   Exercise RUN.7:</font></b> 
+   
+   Show that  under H<sub>0</sub>
+   
+   <blockquote>
+   Var(R) = 2mn(2mn-m-n)/(m+n)<sup>2</sup>(m+n-1))
+   </blockquote>
+   
+   <i>[Hint: You need to find E(U<sub>i</sub>U<sub>j</sub>) for all 
+   i &lt; j. One case has already been done in the last exercise.]</i>
+   
+   </td></tr></table>
+   </blockquote>
+   
+
+
+<table><tr><td bgcolor="#cccccc">
+<b>Theorem:</b>
+As min(m,n) 
+            <img src=
+            "resources/statinf2/rarrow.png"
+            align=middle>
+            
+             
+             <img src=
+             "resources/statinf2/inf.png"
+             align=top>
+             
+             , we have  under H<sub>0</sub>
+
+<blockquote>
+(R-E(R))/sqrt(Var(R)) ~ AN(0,1).
+</blockquote>
+
+
+</td></tr></table>
+
+<p>
+
+<table><tr><td width=1 bgcolor="#cccccc"></td>
+<td>
+<b><i>Proof:</i></b> 
+Not to be done in this course.
+<img src="resources/statinf2/square.gif">
+</td></tr></table>
+</blockquote>
+
+
+
+<hr>
+
+</body>
+</html>
+
