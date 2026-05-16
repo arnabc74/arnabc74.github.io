@@ -653,7 +653,11 @@ Since CF uniquely determines the distribution, we get the result.
 ::<EXR><EIMG web="hpstrans14.png"/>
 <IMG web="hpsref19.png">Here is Exercise 19:</IMG> 
 </EXR>
-::<EXR><EIMG web="hpstrans21.png"/></EXR>
+::<EXR><EIMG web="hpstrans21.png"/>
+<ANS>
+<M>f(x,z) = f(x) f(z-x)</M> for <M>(x,y)\in\rr^2.</M>
+</ANS>
+</EXR>
 ::<EXR><EIMG web="hpstrans23.png"/>
 <IMG web="hpsrefs1.png">Here is Exercise 38:</IMG> 
 </EXR>

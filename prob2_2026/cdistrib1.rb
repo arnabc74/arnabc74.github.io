@@ -434,7 +434,11 @@ Direct application of CF.
 ::<EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib13.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib14.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib15.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib15.png"></EIMG>
+<ANS>
+<M>[[1e]].</M>
+</ANS>
+</EXR>
 ::<EXR><EIMG web="rossdistrib16.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib17.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib18.png"></EIMG></EXR>
@@ -454,7 +458,12 @@ Direct application of CF.
 ::<EXR><EIMG web="rossdistrib32.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib33.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib34.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib35.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib35.png"></EIMG>
+<ANS>(a) <M>1-\Phi(0.452).</M>
+
+(b) <M>0.251</M> (approx).
+</ANS>
+</EXR>
 ::<EXR><EIMG web="rossdistrib36.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib37.png"></EIMG></EXR>
 ::<EXR><EIMG web="rosspdf9.png"/>
@@ -466,7 +475,11 @@ Here is Example 5b that is refered above:
 ::<EXR><EIMG web="rosspdf15.png"/></EXR>
 ::<EXR><EIMG web="hpspdf21.png"/></EXR>
 ::<EXR><EIMG web="hpspdf23.png"/></EXR>
-::<EXR><EIMG web="hpspdf25.png"/></EXR>
+::<EXR><EIMG web="hpspdf25.png"/>
+<ANS>
+<M>f(x) = \lambda |x| e^{- \lambda x^2}</M> for <M>x\in\rr.</M>
+</ANS>
+</EXR>
 ::<EXR><EIMG web="hpspdf27.png"/></EXR>
 ---
 ::<EXR><EIMG web="hpspdf28.png"/></EXR>

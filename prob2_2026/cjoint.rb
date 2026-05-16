@@ -1140,7 +1140,17 @@ I think this problem should better be attacked after learning about order statis
 ::<EXR><EIMG web="rossipmjoint6.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint8.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint9.png"/></EXR>
-::<EXR><EIMG web="rossipmjoint10.png"/></EXR>
+::<EXR><EIMG web="rossipmjoint10.png"/>
+<ANS>
+(a) <M>[[P(x)f(x)][\int_{-\infty}^ \infty P(t) f(t)\, dt]]</M>
+for <M>x\in\rr.</M>
+
+(b) <M>[[(1-P(x))f(x)][\int_{-\infty}^ \infty (1-P(t)) f(t)\, dt]]</M>
+for <M>x\in\rr.</M>
+
+
+</ANS>
+</EXR>
 ::<EXR><EIMG web="rossipmjoint11.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint12.png"/></EXR>
 ::<EXR><EIMG web="rossipmjoint13.png"/></EXR>

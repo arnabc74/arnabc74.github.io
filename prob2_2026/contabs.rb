@@ -523,7 +523,12 @@ We could replace <M>(0,1)</M>  by <M>[0,1]</M>  or <M>(0,1]</M>  or <M>[1,0).</M
 </EXM>
 <HEAD2>Problem set <PS/></HEAD2>
 ::<EXR><EIMG web="hpspdf2.png"/></EXR>
-::<EXR><EIMG web="hpspdf3.png"/></EXR>
+::<EXR><EIMG web="hpspdf3.png"/>
+<ANS>
+<M>F(x) = <CASES>0<IF>x < 0</IF>[[x^3][R^3]]<IF>0\leq x <
+R</IF>1<IF>x > R</IF></CASES></M>
+</ANS>
+</EXR>
 ::<EXR><EIMG web="hpspdf4.png"/></EXR>
 ::<EXR><EIMG web="hpspdf5.png"/></EXR>
 ::<EXR><EIMG web="hpspdf6.png"/></EXR>
