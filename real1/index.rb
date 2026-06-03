@@ -82,6 +82,11 @@ ekhAne lAl diye ghire diyechhi ye @{<M>\frac\epsilon2</M>@}-TAke seTAr Age ekTA 
 <IMG web="bhul5.png">@{<E>79</E>@} nambar pAtAr a.nsha</IMG>
 ekhAne @{<M>\epsilon_1</M>@} Ar @{<M>\epsilon_2</M>@}-r sthAn binimay haoyA darkAr. <P/>
 ei bhulTA dharechhe praNay kumAr dAs.
+<HEAD3>@{<E>90</E>@}  pAtA</HEAD3>
+@{<E>90</E>@} pAtAr ekebAre pratham lAine Achhe--
+<IMG web="p90.png">@{<E>90</E>@} nambar pAtAr a.nsha</IMG>
+ekhAne @{<M>N(b,\epsilon)</M>@}-er jAygAy @{<M>N'(b,\epsilon)</M>@}  haoyA uchit chhila.
+ei bhulTA dharechhe rohit.
 <HEAD3>@{<E>285</E>@}  pAtA</HEAD3>
 ek jAygAy Achhe 
 <IMG web="p285.png">@{<E> 285</E>@} nambar pAtAr a.nsha</IMG>

@@ -1,0 +1,495 @@
+ @{<NOTE>
+<TITLE>Some more standard densities</TITLE>
+
+<HEAD1 u="https://youtu.be/0PoToYKWusE">Beta function</HEAD1>
+The next distribution that we shall discuss is the Beta distribution. Just as we needed to know about the Gamma function
+ in order to talk about the Gamma distribution, we need to know about the Beta function before we can get into Beta distribution.
+
+<DEFN name="Beta function">
+The Beta function is the function <M>B:(0,\infty)\times(0,\infty)\to\rr</M>  defined as
+<D>B(a,b) = \int_0^1 x^{a-1}(1-x)^{b-1}\, dx\mbox{ for } a,b>0.</D>
+</DEFN>
+Notice that if <M>a,b\geq 1,</M>  then the integrand is continuous, and so integrable over <M>[0,1].</M>  If, however, <M>a</M> 
+ or <M>b</M>  lies in <M>(0,1)</M>, then the integral is am improper one, and hence we have to worry about its existence.
+ Fortunately, it is easy to establish convergence by comparison with <M>\int_0^1 x^\alpha\, dx</M>  for <M>\alpha>-1.</M> 
+
+Most manipulations with the Beta function uses the following theorem to reduce the Beta function to the Gamma function:
+<THM>
+For <M>a,b>0</M>  we have 
+<D>B(a,b) = [[\Gamma(a)\Gamma(b)][\Gamma(a+b)]].</D>
+</THM> 
+<PF>The proof is quite easy using a bivariate change of variable. However, since that result will
+ be proved in Analysis III, we shall omit the proof of this theorem here.</PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find <M>B(4,5).</M>  Remember that <M>\Gamma(n) = (n-1)!</M>  for <M>n\in\nn.</M></EXR>
+
+<EXR>Writing the factorials in terms of the Gamma function, express <M>\binom{10}{6}</M>  in terms of the Beta function</EXR>
+
+<HEAD1 u="https://youtu.be/8U3mGT60ZJQ">Beta distribution</HEAD1>
+Now that we see that for <M>a,b>0</M>  the function <M>x^{a-1}(1-x)^{b-1}</M>  is  nonnegative and integrable 
+over  <M>(0,1)</M>  with integral <M>B(a,b),</M> 
+ we can immediately manufacture a density out of it:
+<DEFN name="Beta distribution"> 
+The distribution with density
+<D>f(x) = <CASES>[[1][B(a,b)]] x^{a-1}(1-x)^{b-1}<IF>x\in(0,1)</IF> 0<ELSE/></CASES></D>
+for <M>a,b>0</M>  is called the <TERM>Beta distribution with parameters</TERM>  <M>a,b.</M>  
+</DEFN>
+
+
+The beta densities show a wide variety of shapes. 
+<CIMG web="betadens.png">A variety of shapes from the Beta family</CIMG>
+<COMMENT>
+svg("image/betadensraw.svg")
+x = seq(0,1,len=100)
+y1 = dbeta(x,4,5)
+y2 = dbeta(x,0.5,5)
+y3 = dbeta(x,4,0.5)
+y4 = dbeta(x,4,1)
+bareplot(x,y1,t='l',ylim=range(-0.1,5),xlim=c(-0.1,1.1))
+lines(x,y2)
+lines(x,y3)
+lines(x,y4)
+abline(h=0,v=0:1)
+dev.off()
+</COMMENT>
+
+<THM>
+If <M>X\sim Beta(a,b)</M>  then <M>E(X) = [[a][a+b]].</M>
+</THM>
+<PF>
+<D>E(X) = [[1][B(a,b)]]\int_0^1 x\times x^{a-1} (1-x)^{b-1}\, dx = [[1][B(a,b)]]\int_0^1  x^{(a+1)-1} (1-x)^{b-1}\, dx = [[B(a+1,b)][B(a,b)]].</D>
+Now we shall express the Beta functions in terms of the Gamma function to get
+<D>[[B(a+1,b)][B(a,b)]] = [[\Gamma(a+1)\Gamma(b)][\Gamma(a+b+1)]]\times[[\Gamma(a+b)][\Gamma(a)\Gamma(b)]].</D>
+We know that <M>\forall \alpha >0~~\Gamma(\alpha+1) = \alpha \Gamma(\alpha).</M>
+Hence <M>[[\Gamma(a+1)][\Gamma(a)]]= a</M>  and <M>[[\Gamma(a+b)][\Gamma(a+b+1)]]=[[1][a+b]].</M>
+Hence the result.
+</PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>For particular values of <M>a,b</M>  we get the <M>Unif(0,1)</M>  distribution. Which values?</EXR>
+<EXR>
+If <M>X\sim Beta(a,b)</M>, then exactly one of the two statements is correct in general. Which one?
+<HL>
+<LI><M>E(X) = [[a][a+b]].</M></LI>
+<LI><M>E(X) = [[b][a+b]].</M></LI>
+</HL>
+Answer by thinking about the density. Now prove it mathematically.
+</EXR>
+
+<EXR>If <M>X\sim Beta(a,b)</M>, then find <M>V(X).</M></EXR>
+
+<EXR>If <M>X\sim Beta(a,b)</M>  then show that <M>1-X\sim Beta(b,a).</M></EXR>
+<HEAD1 u="https://youtu.be/u2KcYDA1yFs">Bayesian machine learning</HEAD1>
+The main use of the beta distribution in statistics is as a "distribution of probability". To
+ understand this, consider the large collection of coins, both biased and unbiased. If you pick
+ one of them at random and let <M>\Pi</M>  denote its <M>P(head),</M>  then <M>\Pi</M>  is a
+ random variable, just as the height of a random person is considered a random variable. Now
+ <M>\Pi</M>, being a probability, must have a distribution supported  on <M>[0,1].</M>  Also,
+ since <M>\Pi</M>  depends on various physical properties of the coin, it is natural to expect
+ that it will have a density. The members of the Beta family   are suitable choices. 
+This was a toy example. More often we have some event and we ask for expert opinion about its probability. Then <M>\Pi</M> 
+ denotes the opinion of a randomly selected expert. If there is a peak in its density, then that's the value most experts
+ vote for. In this sense, <M>Beta(1,1)\equiv Unif(0,1)</M>  denotes absolute ignorance.
+
+As a warm up towards the use of Beta distribution plays a role in Bayesian machine
+ learning, consider the simple set up from last semester. We have a box containing 3 white and 2 black balls. An SRSWOR of
+ size 3 is drawn from it, and transferred to a new box. Now an SRSWR of size 5 is drawn from the second box. If all the balls
+ in the SRSWR are found to be black, then what is the (conditional) probability that all the balls
+ in the first SRSWOR were black?
+ I hope you remember the following diagrammatic representation for this:
+<CIMG web="bayesdiag.png">Diagram for the above problem</CIMG>
+There are four paths. The <M>i</M>-th path has probability <M>p_iq_i</M>  for <M>i=0,1,2,3.</M>  The required probability
+ is <M>[[p_3q_3][\sum_i p_iq_i]].</M>
+
+You may think of the first stage of this experiment as "constructing a random coin" whose <M>P(head)</M>  is <M>0</M>  or
+ <M>[[13]]</M>  or <M>[[23]]</M>  or <M>1.</M>  These have probabilities <M>p_0,...,p_3,</M>  respectively. The second stage
+ is tossing the coin 5 times. Given that we get 5 heads, we want to find the probability that our coin has <M>P(head)=1.</M>
+
+In this toy example, our "random coin" could have only finitely many possible <M>P(head)</M>'s. Now let's make it more realistic.
+ We shall start by picking a random coin from th population of all coins. Let <M>\Pi</M>  denote its <M>P(head).</M>  Just
+ as the height of a randomly selected person is a random variable, similarly this <M>\Pi</M>  is a random variable. 
+It can takes values in <M>[0,1].</M>  Let us assume that <M>\Pi\sim Beta(1,1)\equiv Unif(0,1).</M>  This means we consider
+ any value of <M>\Pi</M>  in <M>[0,1]</M>  equally likely (this is one way to formalising "absolute ignorance"). 
+We shall
+now toss this coin 5 times. Given that all the tosses result in heads, what is the conditional distribution
+ of <M>\Pi?</M>  We had started with a <M>Beta(1,1)</M>  distribution. This is often called the <TERM>prior</TERM>  distribution,
+ as it represented the state of our knowledge about <M>\Pi</M>  <I>prior</I>  to collection of data. In this sense, the conditional
+ distribution we are seeking is the <TERM>posterior</TERM>  distribution, which represents our state of knowledge after seeing
+the data (the outcomes of the coin tosses). We plan to draw a diagram similar to the earlier one for this problem. But here
+ the random coin can have any <M>P(head)</M>  in <M>[0,1].</M>  So we have a contnuum of arrows, which is hard to draw:
+<CIMG web="bayesdiag2.png">Diagram with continuous sprays of arrows</CIMG>
+The 1 labelling the left hand arrow is the density of the prior <M>Beta(1,1).</M>  The <M>p^5</M>  labelling the right hand
+ arrow is the (binomial) probability of obtaining <M>5</M>  heads out of 5 tosses of a coin with <M>P(head)=p.</M>  
+Following the Bayes theorem idea as before we get the posterior density 
+<D>[[1\times p^5][\int_0^1 1\times p^5\, dp]]=6p^5,</D>
+which is the <M>Beta(6,1)</M>  density. 
+
+It is instructive to draw the two densities side by side to understand how our state of belief has been updated in light
+ of the data:
+<CIMG web="priopost1.png">After seeing the data our belief is concentrated more near 1.</CIMG>
+In this way, whenever the prior is from the Beta family, our data is <M>X|\Pi=p\sim Binom(n,p)</M>,  the
+ posterior will also be from the
+ same family. We express this by saying:
+<Q>
+Beta is the conjugate prior family for Binomial.
+</Q>
+An exercise below
+ asks you to prove this. For now let us toss the same coin 5 more times. Suppose now we get 4 tails and 1 head. If we carry
+ out the same exercise again (but this time with <M>Beta(6,1)</M>  playing the role of the prior, and "1 head, 4 tails"
+ as our data), we again get a Beta posterior that we plot below:
+<CIMG web="priopost2.png">Our belief is now peaked closer to the centre.</CIMG>
+In this way the Beta family can express our ever-changing state of belief as more and more data stream in.
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Find the posterior for <M>\Pi</M>  if the prior is <M>Beta(6,1)</M>  and the data consist of
+ 1 head and 4 tails out of 5
+ independent tosses of the coin. The answer should be a Beta distribution with parameters that you are determine.</EXR> 
+
+<EXR>Show that if  <M>\Pi</M>  has prior <M>Beta(a,b)</M>  and our data consist of exactly
+ <M>X</M>  heads out of <M>n</M>  tosses, then the posterior is again a Beta distribution. What are its parameters?</EXR>
+
+<EXR>Suppose that we have coin with <M>P(head)</M>  having prior <M>Unif(0,1).</M>  We toss the
+ coin <M>n</M>  times independently and obtain exactly <M>X</M>  heads. Let <M>f(p)</M>  be the
+ (continuous) density of the posterior. It is natural to estimate <M>p</M>  using the value where
+ <M>f</M>  is the maximum. This is called the (maximum a posteriori) MAP estimator. Derive its
+ formula in terms of <M>n</M>  and <M>X.</M> Is it the same as the "usual" estimator <M>[[Xn]]?</M></EXR>
+<HEAD1 u="https://youtu.be/qZPe1VVsWZ4">Cauchy distribution</HEAD1>
+<DEFN name="Cauchy distribution">
+By <TERM>Cauchy distribution</TERM>  we mean the distribution with density
+<D>f(x) = [[1][\pi(1+x^2)]],\quad x\in\rr.</D>
+Sometimes we also talk about <M>Cauchy(\mu,\sigma)</M>  distribution which is the distribution of <M>\mu+\sigma X</M>, where
+ <M>X</M>  has the above density. In this notation, the density corresponds to the <M>Cauchy(0,1)</M>  distribution. 
+</DEFN>
+
+The most important reason for including this distribution in our discussion is that it has one notoriously bad property. It
+ does not have any finite moment!  In particular, do not think that <M>Cauchy(\mu,\sigma)</M>  has
+ mean <M>\mu</M>  and variance <M>\sigma^2.</M>   
+
+<THM>
+If <M>X</M>  has <M>Cauchy</M>  distribution, then <M>E(X)</M>  does not exist. As a result <M>E(X^n)</M>  does not exist
+ for any <M>n\in\nn.</M>  
+</THM>
+<PF>
+<M>\int_0^\infty [[x][1+x^2]]dx\sim \int_0^\infty [[1x]]dx = \infty.</M>
+</PF>
+
+<THM>
+The characteristic function of the Cauchy distribution is <M>e^{-|t|}.</M>
+</THM>
+<PF>Needs techniques (complex contour integration/differentiation under intergal) beyond the present level.</PF>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>How can you generate a Cauchy random variable from a <M>Unif(0,1)</M>  random variable?</EXR>
+
+<EXR>Consider the unit semicircle shown below.
+<CIMG web="caupt.png"></CIMG>
+ We pick a point at random on it, and extend the ray
+  through it from the origin until it hits the <M>x=1</M>  line at some <M>(1,Y).</M>  Find the distribution of <M>Y.</M></EXR>
+
+<EXR>If <M>X</M>  is a Cauchy random variable, then show that <M>[[1X]]</M>  is also a Cauchy random variable.</EXR>
+
+<HEAD1 u="https://youtu.be/PpZTTaKJbbg">Cauchy baffles the laws of large numbers</HEAD1>
+The following R snippet will plot the running means of 10000 IID Cauchy random variables. The plot does not converge.
+<R>
+n = 10000
+x= rcauchy(n)
+y=cumsum(x)/(1:n)
+plot(y,ty='l')
+</R>
+This demonstration is theoretically justified using the following theorem.
+<THM>If <M>X</M>  and <M>Y</M>  are independent Cauchy random variables, then for any <M>a\in[0,1]</M>  
+ <M>aX+(1-a)Y</M>  is also a Cauchy variate.
+</THM>
+<PF>
+This may be proved using Jacobians, or more directly using characteristic function. The characteristic function of <M>aX+(1-a)Y</M> 
+ is 
+<D>E(e^{it(aX+(1-a)Y)}) = E(e^{itaX+it(1-a)Y}) = E(e^{itaX}\cdot e^{it(1-a)Y}) = E(e^{itaX})E(e^{it(1-a)Y}),</D>
+since <M>X,Y</M>  are independent. Now, we know that <M>E(e^{itX}) = E(e^{itY}) = e^{-|t|}.</M>  Hence
+<D> E(e^{itaX})E(e^{it(1-a)Y}) =  e^{-|ta|})\times e^{-|t(1-a)|}) = e^{-|ta|-|t(1-a)|}  = e^{-|t|},</D>
+since <M>a\in[0,1].</M>
+
+This completes the proof.
+</PF>
+The next theorem, which is a simple corollary to this theorem, shows why <M>\bar X_n</M>  failed to
+ converge to a number in
+ our simulation of the law
+ of large numbers. 
+<THM>
+If <M>X_1,...,X_n</M>  are IID
+ Cauchy, then <M>\bar X_n= [[1n]]\sum_1^n X_i</M>  is also Cauchy.
+</THM>
+<PF>
+See the exercise below.
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Prove the above theorem using induction on <M>n.</M>  You may like to use the identity
+<D>\bar X_n = [[(n-1)\bar X_{n-1} + X_n][n]].</D>
+</EXR>
+
+<EXR>If <M>X,Y</M>  are independent Cauchy random variables, and we take <M>a\not\in[0,1],</M> 
+ then is it possible for <M>aX+(1-a)Y</M>  to have Cauchy distribution? </EXR>
+
+<HEAD1 u="https://youtu.be/YWHxhk3vok4">Normal distribution</HEAD1>
+This is the most commonly used distribution in statistics.
+
+<DEFN name="Normal distribution">
+We say that <M>X\sim N(\mu,\sigma^2)</M>  to mean <M>X</M>  has density 
+ <D>\phi(x) = [[1][\sqrt{2\pi\sigma^2}]] \exp(*(-[[(x-\mu)^2][2\sigma^2]] )*), \quad x\in\rr.</D>
+</DEFN>
+The density looks like the following: 
+<CIMG web="normdens.png"><M>\mu</M>  controls centre, <M>\sigma</M>  controls spread</CIMG>
+<COMMENT>
+svg("image/normdensraw.svg")
+x = seq(-5,5,len=1001)
+y1 = dnorm(x,0,1)
+y2 = dnorm(x,2,1)
+y3 = dnorm(x,0,0.5)
+bareplot(x,y1,t='l',ylim=range(-0.1,y1,y2,y3))
+lines(x,y2)
+lines(x,y3)
+abline(h=0,v=c(0,2))
+dev.off()
+</COMMENT>
+Proving that this is indeed a density is not entirely straightforward. Howeer, we may reduce
+ the problem to a Gamma integral and use the following theorem.
+<THM>
+<M>\Gamma(*([[12]])*)= \sqrt\pi.</M>
+</THM>
+<PF>Omitted.</PF>
+To use this result in order to show that the total integral of the <M>N(\mu,\sigma^2)</M>  density is indeed 1, we proceed
+ as follows.
+<D>\int_0^\infty e^{-x^2/2}\, dx= [[1][\sqrt2]]\int_0^\infty t^{-1/2} e^{-t} \, dt</D>
+by using <M>t = x^2/2.</M>  This new integral is just 
+<D>\int_0^\infty t^{[[12]]-1} e^{-t} \, dt = \Gamma(*([[12]])*) = \sqrt\pi.</D>
+So
+<D>\int_{-\infty}^\infty e^{-x^2/2}\, dx=2\int_0^\infty e^{-x^2/2}\, dx= \sqrt{2\pi}.</D>
+Hence we have shown that the <M>N(0,1)</M>  density integrates up to 1. To prove for any general <M>N(\mu,\sigma^2)</M> 
+ we simply use the substitution <M>y = [[x-\mu][\sigma]]</M>  to reduce it to the <M>N(0,1)</M>  case.
+
+The letter lower case phi, <M>\phi</M>, is generally used for the <M>N(0,1)</M>  density, while its capital version <M>\Phi</M> 
+ is reserved for the CDF.
+<D>\Phi(x) = \int_{-\infty}^x \phi(t)\, dt</D>
+Louiville showed that <M>\Phi(x)</M>  cannot be expressed in terms of elementary functions (trigonometric, exponential, logarithmic,
+ square root, cube root etc).  However, its value may be computed numerically for any given <M>x.</M>  
+
+<THM>
+If <M>X\sim N(\mu,\sigma^2),</M>  then for any <M>a\in\rr</M>  and <M>b\neq 0</M>  we have
+ <M>a+bX\sim N(a+b\mu,b^2 \sigma^2).</M>
+</THM>
+<PF>
+Directly from Jacobian formula.
+</PF>
+
+A corollary is the following theorem.
+
+<THM>
+If <M>X\sim N(\mu,\sigma^2),</M>  then <M>[[X-\mu][\sigma]]\sim N(0,1).</M>
+</THM>
+The transformation from <M>X</M>  to <M>[[X-\mu][\sigma]]</M>  is called <TERM>standardisation</TERM>.
+<THM>If <M>X\sim N(\mu,\sigma^2),</M>  then <M>E(X)=\mu</M>  and <M>V(X)=\sigma^2.</M></THM>
+<PF>Easy, and left as an exercise. Just one reminder. As a first step you should substitute
+ <M>y=[[x-\mu][\sigma]]</M>  to arrive at <M>N(0,1).</M>  Now the expectation is given by the integral 
+<D>[[1][2\sqrt\pi]]\int_{-\infty}^\infty x e^{-x^2/2}\, dx.</D>
+Don't rush to the conclusion that this must be zero, because the integrand is an odd function. Here you are working with
+ an improper integral. So you need to make sure that <M>\int_0^\infty x e^{-x^2/2}\, dx</M>  is finite before you can use
+ the odd function argument.
+</PF>
+
+<THM>
+The characteristic function of <M>N(0,1)</M>  is <M>e^{-t^2/2}</M>  for <M>t\in\rr.</M>
+</THM>
+<PF>
+As you have not formally done complex integration yet, all our characteristic function derivations are heuristic. 
+
+Here we can show directly that for any  <M>s\in\rr</M>  we have <M>E(e^{sX}) = e^{s^2/2},</M>
+ where <M>X\sim N(0,1).</M>   This is easily shown using a simple  substitution.  
+ 
+Now, if you replace <M>s</M>  with <M>it,</M>  you get the result. This replacement is justified
+ using arguments from complex analysis beyond the present scope. 
+</PF>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X\sim N(0,1),</M>  then express the following probabilities in terms of <M>\Phi(\cdot).</M>  
+<OL><LI><M>P(X<1)</M></LI>
+<LI><M>P(|X|<1)</M></LI>
+<LI><M>P(|X|>2)</M></LI>
+</OL>
+</EXR>
+<EXR>If <M>X\sim N(2,3^2),</M>  then express the following probabilities in terms of <M>\Phi(\cdot).</M>  
+<FL><LI><M>P(X<1)</M></LI>
+<LI><M>P(|X|<1)</M></LI>
+<LI><M>P(|X|>2)</M></LI>
+</FL>
+</EXR>
+
+<EXR>If <M>\Phi ^{-1}(0.95)=1.64</M>, then find <M>c\in\rr</M>  such that <M>P(|X-1|>c) = 0.1 </M>  where <M>X\sim N(1,1^2).</M></EXR>
+
+<HEAD1>Central Limit Theorem</HEAD1>
+The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
+ and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
+
+<THM name="Central imit Theorem (CLT)">
+Let <M>X_1,X_2,...</M>  be IID with <M>E(X_i) = \mu</M>  and <M>V(X_i) = \sigma^2 < \infty.</M>  Let 
+<D>\bar X_n = [[X_1+\cdots+X_n][n]]\mbox{ for } n\in\nn.</D>
+Then the distribution of <M>[[\sqrt n(\bar X_n-\mu)][\sigma]]</M>  tends to <M>N(0,1)</M>  as <M>n\to \infty.</M>
+More precisely, if <M>F_n(\cdot)</M>  denotes the CDF of <M>[[\sqrt n(\bar X_n-\mu)][\sigma]],</M>  and <M>\Phi(\cdot)</M> 
+ denotes the <M>N(0,1)</M>  CDF, then
+<D>\forall t\in\rr~~F_n(t)\to \Phi(t) \mbox{ as } n\to \infty.</D>
+</THM>
+<PF>Next semester.</PF>
+ This theorem is a manifestation of statistical regularity. Whatever may the true
+ distribution of the <M>X_i</M>'s be, if you average a large number of <M>X_i</M>'s you get close
+ approximation to the normal distribution. This allows
+statistician to deal with averages of a large number of IID observations without knowing the true
+ underlying distribution. 
+
+Let's look at a typical example. 
+
+<EXM>If 40% of the population of a city supports a poll candidate, then what is the approximate
+ probability that a random sample of 500 persons from the city will have at least 250 supporters?
+<SOLN/>
+Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
+ from the population of the city. 
+
+We shall assume that the trials are IID. Now here we are introducing an approximation: the first
+ membr of the sample was drawn from the entire population, but since we generally sample
+ <I>without replacement</I>  in such a scenario, the second member of the sample was drawn from a
+ population of size one less than in the case of the first member. So the random experiment has
+ actually changed, and they are not independent also. But since the population is large (much
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
+
+We also have a random variable: 
+<D>X(\omega) = <CASES>1 <IF>\omega\mbox{ supports the candiate}</IF> 0<ELSE/></CASES></D> 
+Here<M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
+<M>X_1,...,X_{500}</M>  IID <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
+
+By CLT we have 
+<D>[[\sqrt n (\bar X_n-\mu)][\sigma]]\to N(0,1)</D>
+as <M>n\to \infty,</M>  where <M>\mu = E(X_i)</M>  and <M>\sigma^2 = V(X_i)< \infty.</M>  We shall write this as 
+<D>\bar X_n \stackrel{\bullet}{\sim} N(*(\mu,[[\sigma^2][n]])*)</D>
+for large <M>n.</M>  Here <M>\stackrel\bullet\sim</M>  means "approximately distributed as".
+
+In our case, <M>\mu = 0.40</M>, <M>\sigma^2 = 0.4(1-0.4) = 0.24</M>  and <M>n=500.</M>  So 
+<D>\bar X_{500} \stackrel{\bullet}{\sim} N(*(0.40,[[0.24][500]])*),</D>
+or 
+<D>\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
+Nowe we can find the required probability as
+<D>P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi(*([[250-200][\sqrt{500}]])*).</D>
+This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or using R as
+<R>
+1-pnorm((250-200)/sqrt(500))
+</R>
+ </EXM>
+In this problem we knew the distribution of the <M>X_i</M>'s, but we never really made any use of it, except to compute <M>E(X_i)</M> 
+ and <M>V(X_i).</M>  
+<HEAD2>Problem set <PS/></HEAD2>
+::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib8.png"></EIMG>
+<ANS>For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</ANS>
+</EXR>
+::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
+
+<HEAD1 u="https://youtu.be/NYFoXVF7xkE">Maxwell's derivation of the normal distribution</HEAD1>
+Generally, Gauss is credited with the "discovery" of the normal distribution, which he derived via his famous central limit
+ theorem. However, a lesser known derivation is due to James Clerk Maxwell, which we shall discuss now. 
+
+Imagine a gas without any overall flow. We know that the molecules are moving tis way and that
+ randomly. Maxwell was interested in
+ finding the distribution of velocities. Of course, he had no way of grabbing a molecule and measuring its velocity. So he
+ did a brilliant logical argument starting with little more than common sense notions available to anybody. 
+
+His first step was to set up three axes <M>x</M> , <M>y</M>  and <M>z.</M>  Then the velocity could be expressed as <M>(V_1,V_2,V_3).</M> 
+Since there is no overall flow and we have no reason to favour any one direction over the other hence <M>V_1,V_2,V_3</M>  must
+ be IID. 
+
+Now we make our first not-so-common-sense assumption: each <M>V_i</M>   has a density, say <M>f.</M> 
+Then the joint density of <M>(V_1,V_2,V_3)</M>  is  <M>f(v_1)f(v_2)f(v_3).</M>  Surely this cannot
+ depend on the direction of <M>\vec v = (v_1,v_2,v_3).</M> 
+ So we must have 
+<D>f(v_1)f(v_2)f(v_3) = g(v_1^2+v_2^2+v_3^2)</D>
+for some function <M>g(\cdot).</M>
+ 
+Now we make our second technical assumption: <M>f</M>  is differentiable. Then differentiating both sides of the above equality
+partially           wrt <M>v_i</M>  we get
+<MULTILINE>
+f'(v_1)f(v_2)f(v_3) & = & 2v_1g'(v_1^2+v_2^2+v_3^2),\\
+f(v_1)f'(v_2)f(v_3) & = & 2v_2g'(v_1^2+v_2^2+v_3^2),\\
+f(v_1)f(v_2)f'(v_3) & = & 2v_3g'(v_1^2+v_2^2+v_3^2).
+ </MULTILINE>
+So 
+<D>[[f'(v_1)f(v_2)f(v_3)][v_1]]=[[f(v_1)f'(v_2)f(v_3)][v_2]],</D>
+or
+<D>[[f'(v_1)][v_1f(v_1)]]=[[f'(v_2)][v_2f(v_2)]].</D>
+Since <M>v_1,v_2</M>  are arbitrary, hence this means 
+<D>[[f'(x)][xf(x)]]=k</D>
+for some constant <M>k.</M>   Solving the differerntial equation we get 
+<M>\log f(x) = [[k x^2][2]]+</M> constant,   or 
+<D>f(x) \propto e^{k x^2/2}.</D>
+Since <M>f</M>  is a density, hence its total intergral must be 1. Hence <M>k < 0</M>  and we get
+ the density of <M>N(*(0,-[[1][k]])*).</M>
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X</M>  is a random variable with density proportional to <M>\exp((1-x)(3+4x))</M>  for
+ <M>x\in\rr</M>,  then find the distribution of <M>X.</M> </EXR>
+
+<EXR>Let <M>\vec V = (V_1,V_2,V_3)</M>  have the joint distribution as in Maxwell's derivation.
+ Consider <M>\vec U = [[\vec V][\|\vec V\|]]</M>, the unit vector along <M>\vec V.</M>  Describe
+ the distribution of <M>\vec U.</M></EXR>
+
+<EXR>If <M>X</M>  has density proportional to <M>e^{ax^2+bx+c}</M>  for <M>x\in\rr</M>, for some
+ constants <M>a,b,c</M>, then find <M>E(X)</M>  and <M>V(X).</M></EXR>
+
+<HEAD1>Problems for practice</HEAD1>
+You may leave the answers in terms the <M>N(0,1)</M>  CDF <M>\Phi(x)</M>  or its inverse <M>\Phi ^{-1}(x).</M>
+
+::<EXR><EIMG web="rossdistrib1.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib2.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib3.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib4.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib6.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib7.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib9.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib11.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib12.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib18.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib28.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib29.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib30.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib31.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib32.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib33.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib34.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib35.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib37.png"></EIMG></EXR>
+
+
+::<EXR><EIMG web="rosspdf15.png"/></EXR>
+::<EXR><EIMG web="hpspdf23.png"/></EXR>
+::<EXR><EIMG web="hpspdf27.png"/></EXR>
+---
+::<EXR><EIMG web="hpspdf28.png"/></EXR>
+::<EXR><EIMG web="hpspdf29.png"/></EXR>
+::<EXR><EIMG web="hpspdf30.png"/></EXR>
+::<EXR><EIMG web="hpspdf31.png"/></EXR>
+::<EXR><EIMG web="hpspdf32.png"/></EXR>
+::<EXR><EIMG web="hpspdf33.png"/></EXR>
+::<EXR><EIMG web="hpspdf34.png"/></EXR>
+
+::<EXR><EIMG web="hpspdf42.png"/></EXR>
+::<EXR><EIMG web="hpspdf43.png"/></EXR>
+::<EXR><EIMG web="hpspdf44.png"/></EXR>
+----
+::<EXR><EIMG web="hpstrans3.png"/></EXR>
+::<EXR><EIMG web="hpstrans10.png"/></EXR>
+::<EXR><EIMG web="hpstrans11.png"/></EXR>
+::<EXR><EIMG web="hpstrans13.png"/></EXR>
+
+::<EXR><EIMG web="hpstrans17.png"/></EXR>
+::<EXR><EIMG web="hpstrans20.png"/></EXR>
+
+::<EXR><EIMG web="hpstrans26.png"/></EXR>
+
+::<EXR><EIMG web="wilks7.png"/></EXR>
+::<EXR><EIMG web="wilks10.png"/></EXR>
+
+</NOTE>@}
