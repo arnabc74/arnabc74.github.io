@@ -1,0 +1,450 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Convergence theorems</h3>
+<ul>
+<li>
+<a href="#Monotone Convergence Theorem">Monotone Convergence Theorem</a>
+</li>
+<li>
+<a href="#Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#MCT for Riemann integration?">MCT for Riemann integration?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Why not decreasing?">Why not decreasing?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Fatou's lemma">Fatou's lemma</a>
+</li>
+<li>
+<a href="#Dominated Convergence Theorem">Dominated Convergence Theorem</a>
+</li>
+</ul>
+<hr/>
+[Update:[Wed Jun 17 IST 2026}
+<title xmlns="">Convergence theorems</title>
+
+<h1><a
+name="Monotone Convergence Theorem">Monotone Convergence Theorem</a></h1>
+
+<h1><a
+name="Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a></h1>
+We would have been very happy, had there been a result saying: Whenever $X_n\rightarrow X$  we have $E(X_n)\rightarrow E(X)$. Unfortunately,
+ this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
+<p></p>
+The following theorem is just a restatement of the second technical result discussed earlier:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_n\rightarrow X$. Assume
+<ul>
+<li>$(X_n)$  is a non-negative, non-decreasing sequence,</li>
+
+<li>$X_n$'s are all simple.</li>
+
+</ul>
+Then $E(X_n) \rightarrow E(X)$.
+</fieldset>
+ Interestingly, the last condition may be dropped (<i>i.e.</i>, $X_n$'s need not be simple). This gives rise to the theorem
+ below.
+<p></p>
+
+<fieldset>
+<legend><b><i>Monotone convergence theorem (MCT)</i></b></legend>
+Let $X_n\rightarrow X$. Assume
+<ul>
+<li>$(X_n)$  is a non-negative, non-decreasing sequence.</li>
+
+</ul>
+Then $E(X_n) \rightarrow E(X)$.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
+</div></blockquote>
+Let $(Z_{n,k})_k$  be a simplification of $X_n.$  
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mctarr.png"></th>
+</tr>
+<tr>
+<th>Think of the $Z_{n,k}$'s like an infinite "matrix".</th>
+</tr>
+</table>
+</center>
+Each row of this "matrix" is a non-decreasing sequence. 
+<p></p>
+Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$  
+<p></p>
+It is like extracting the upper triangular half of the "matrix" and taking maximum
+ of each column.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/mctarr2.png"></th>
+</tr>
+<tr>
+<th>How $Y_n$'s are computed</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+Then $Y_1\leq Y_2\leq\cdots$
+<blockquote><a
+href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
+class="ans" id="reason2">
+$$\begin{eqnarray*}
+Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
+&amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
+&amp; \geq &amp; \max\{Z_{1,n},...,Z_{n,n}\},
+\end{eqnarray*}$$
+by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
+</div></blockquote>
+Also $Y_n\leq X_n.$
+<blockquote><a
+href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
+class="ans" id="reason3">
+$Z_{k,n}\leq X_k\leq X_n.$
+</div></blockquote>
+Finally, $Y_n\uparrow X.$
+<blockquote><a
+href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
+class="ans" id="reason4">
+We have $Y_k\leq X_k\leq X$. So $(Y_k)$  is a non-decreasing sequence bounded from above. So $\lim_k Y_k$ 
+ exists and $\lim_k Y_k\leq X$.
+<p></p>
+We have $Z_{n,k} \leq Y_k$  for $k\geq n$.  
+<p></p>
+Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$
+<p></p>
+Now taking limit as $n\rightarrow \infty,$  we have $X\leq \lim_k Y_k.$  
+<p></p>
+Hence $\lim_k Y_k= X.$
+</div></blockquote>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h2><a
+name="MCT for Riemann integration?">MCT for Riemann integration?</a></h2>
+Do we have an MCT for Riemann integrals, as well? Well, no, because even if $X_n$'s are
+ Riemann integrable, and they increase to $X,$  there is a no guaranty that $X$  will be Riemann integrable.
+<p></p>
+Here is the standard counterexample. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;We consider $[0,1]$  equipped with the $Unif[0,1]$   probability distribution.
+Here density exists in a Riemann sense. Let $X$  be the Dirichlet function on $[0,1].$  
+<p></p>
+Since ${\mathbb Q}\cap[0,1]$  is countable, we may enumerate it as $\{r_1,r_2,...\}.$  Take $X_n=1_{\{r_1,...,r_n\}}.$ 
+<p></p>
+Then the Riemann integral of each $X_n$  is $0.$  The $X_n$'s increase to $X.$  But $X$  is not
+ Riemann integrable.
+ ■
+</p>
+
+<p></p>
+However, it may be shown that if the limit
+ is a Riemann integrable, then MCT holds for Riemann integration also. 
+<p></p>
+
+<h2><a
+name="Why not decreasing?">Why not decreasing?</a></h2>
+The 'M' in MCT refers to <i>monotone</i>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
+ However, in the theorem we require the sequence of functions to be non-increasing. 
+<p></p>
+Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Here we shall work with $[0,1]$  again, equipped with $Unif[0,1]$  probability distribution. Let $X_n = \frac{1}{nx}$ 
+ (set $X_n=0$  at $x=0$). Also, take $X\equi0.$  Then $\forall
+ \omega\in[0,1]~~X_n(w)\downarrow X(w).$  But $E(X_n)=\infty$  though $E(X)=0.$  
+<p></p>
+The problem is that the Lebesgue integral is <i>defined</i>  as sup of approximations <i>from below</i>.  
+ ■
+</p>
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Give $X_n, X$  on $[0,1]$  equipped with $Unif[0,1]$  such that 
+<ol type="">
+<li>$X_n\rightarrow X$  but not monotonically</li>
+
+<li>$E(X_n), E(X)$  exist finitely.</li>
+
+<li>But $E(X_n)\not\rightarrow E(X).$</li>
+</ol>
+
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">Think of constant functions and step functions with just two steps.</div></p>
+</p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;
+If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
+ and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
+ dropped?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;
+Suppose that $X_n$'s are nonnegative random variables. Show that 
+$$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
+</p>
+
+<font color="purple"><b>To do:</b>$\int sum = \sum \int$  for noneg.</font>
+
+<h1><a
+name="Fatou's lemma">Fatou's lemma</a></h1>
+
+<fieldset>
+<legend><b><i>Fatou's lemma</i></b></legend>
+Let $(X_n)$  be  a sequence of nonnegative random variables.  Then
+$$E(\liminf X_n) \leq \liminf E(X_n).$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $Y_n = \inf\{X_k~:~k\geq n\}.$
+<p></p>
+Then, by the definition of $\liminf$, we have  $Y_n\uparrow \liminf X_n.$
+<p></p>
+So, by MCT, $E(Y_n)\rightarrow E(\liminf X_n).$
+<p></p>
+Now $Y_n \leq X_n,$  and hence $E(Y_n) \leq E(X_n).$
+<p></p>
+Hence 
+$$E(\liminf X_n) \leq \liminf E(X_n),$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h1><a
+name="Dominated Convergence Theorem">Dominated Convergence Theorem</a></h1>
+
+<fieldset>
+<legend><b><i>Dominated Convergence Theorem (DCT)</i></b></legend>
+Let $X_n\rightarrow X.$  If  $\forall n~~|X_n|\leq Y$  for some $Y$  with $E(|Y|)&lt; \infty$, 
+ then $E|X_n-X|\rightarrow 0$  and so, in particular, $E(X_n)\rightarrow E(X).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Clearly, $|X|\leq Y.$
+<p></p>
+So, by triangle inequality, $|X_n-X|\leq |X_n|+|X|\leq 2Y.$
+<p></p>
+Let $Z_n = 2Y-|X_n-X|.$  Then $Z_n$'s are all nonnegative random variables. 
+<p></p>
+Applying Fatou's lemma to $(Z_n)$, we have 
+$$E(\liminf Z_n)\leq \liminf E(Z_n).\hspace{1in} \mbox{(*)}$$
+Now 
+$$\liminf Z_n = 2Y-\limsup|X_n-X| = 2Y,$$
+and 
+$$\liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| .$$
+So (*) becomes 
+$$2E(Y)\leq 2E(Y)-\limsup E|X_n-X|,$$
+or $\limsup E|X_n-X|\leq 0.$
+<p></p>
+Hence $E|X_n-X|\rightarrow 0,$  as required.
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<font color="purple"><b>To do:</b>
+<ol type="">
+<li>Differentiation under integral.</li>
+
+<li>Conyinuity of parameter dependent integrals.</li>
+
+<li>Almost sure implies $L_1$  for dominated case.</li>
+
+<li>Continuity of CF.</li>
+
+</ol>
+</font>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

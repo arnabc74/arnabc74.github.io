@@ -1,0 +1,99 @@
+@{<NOTE>
+<M>\newcommand{\io}{~~\mathrm{i.o.}}</M>
+<M>\newcommand{\calF}{\mathcal{F}}</M>
+<M>\newcommand{\toL}[1]{\stackrel{L_#1}{\longrightarrow}}</M>
+<M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
+<M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
+[Update:[Wed Jun 17 IST 2026]]
+<HEAD1>Almost sure and probability convergences</HEAD1>
+<DEFN name="Amost sure convergence">
+Let <M>(X_n),X</M>  be  random variables all defined on some common probability space <M>(\Omega,\calF, P).</M> 
+Then we say
+ that <M>(X_n)</M> converges to <M>X</M>  <TERM>almost surely</TERM>  and write <M>X_n\toA X</M> 
+if <M>P(X_n\to X) = 1.</M>   
+</DEFN>
+
+<EXM>Let our probability space be <M>Unif(0,1)</M> with <M>\Omega = \rr.</M>   Let <M>X_n(\omega)
+ =\omega^n</M>, and let <M>X(\omega)\equiv 0.</M>  Then  <M>X_n\toA X.</M>
+
+
+However, if we replace <M>Unif(0,1)</M>  with <M>Unif(0,2),</M>  then the convergence breaks down.
+</EXM>
+
+<DEFN name="Probability convergence">
+Let <M>(X_n)</M>  be a sequence of random variables all defined on some common probability space <M>\Omega,\calF, P).</M> 
+ Let <M>X</M>  be some random variable also defined on the same probability space. Then we say
+ that <M>(X_n)</M> converges to <M>X</M>  <TERM>in probability</TERM>  and write "<M>X_n\toP X</M>  if 
+<D>\forall \epsilon>0~~P(|X_n-X|> \epsilon)\to 0.</D> 
+It is also called <TERM>weak convergence</TERM>.
+</DEFN>
+The condition that all the <M>X_n</M>'s should be defined on a common probability space may be relaxed if <M>X</M>  is a
+ degenerate random variable.
+
+<HEAD2>Infinitely often</HEAD2>
+<DEFN name="Infinitely often">
+Let <M>(\Omega,\calF,P)</M>  be any probability space. Let <M>(A_n)</M>  be a sequence of events in it. The event "<M>A_n</M>'s
+ occur infinite often" (abbreviated to "<M>A_n\io</M>") is defined as <M>\{\omega\in\Omega~:~\omega \in A_n</M>  for
+ infintely many <M>A_n\mbox{'s}\}.</M>
+</DEFN>
+
+We can express it as <M>\cap_{n}\cup_{k\geq n} A_k.</M>  
+
+
+<HEAD2>Borel-Cantelli lemmas</HEAD2>
+
+<THM name="First Borel-Cantelli lemma">
+Let <M>(A_n)</M>  be a sequence of events in some probability space. If <M>\sum P(A_n) < \infty,</M>  then <M>P(A_n\io)=0.</M>
+</THM>
+<PF>
+<MULTILINE>
+P(A_n\io)
+ & = & P(\cap_n\cup_{k\geq n} A_k)\\
+ & = & P( \lim_n\cup_{k\geq n} A_k)\\
+ & = & \lim_n P(\cup_{k\geq n} A_k).
+</MULTILINE>
+Now <M>P(\cup_{k\geq n} A_k)\leq \sum_{k\geq n} P(A_k).</M>
+
+Since <M>\sum P(A_n) < \infty</M>, hence <M>\lim_n \sum_{k\geq n} P(A_k) = 0.</M>
+
+Hence the result. 
+</PF>
+
+<THM name="Second Borel-Cantelli lemma">
+Let <M>(A_n)</M>  be a sequence of independent events in some probability space. If <M>\sum P(A_n)= \infty,</M>  then <M>P(A_n\io)=1.</M>
+</THM>
+<PF>Skipped.</PF>
+<COMMENT>
+<MULTILINE>
+P(A_n\io) 
+& = & P(\cap_n\cup_{k\geq n} A_k)\\
+& = & 1-P(\cup_n\cap_{k\geq n} A_k^c)<SINCE>by de Morgan</SINCE>\\
+</MULTILINE>
+</COMMENT>
+
+<TODO><OL><LI>random walk (1D, 2D must return i.o., but not in higher dimensions.</LI>
+<LI>infinite monkey</LI>
+<LI>P(Normal numbers)=1</LI>
+</OL></TODO>
+<HEAD2><M>L_p</M> convergence for <M>p\geq1</M></HEAD2>
+<DEFN name="$L_p$ convergence">
+Let <M>p\geq 1.</M>  Let <M>(X_n), X</M>  be random variables defined on some probability space. We say that <M>(X_n)</M> 
+ converges to <M>X</M>  <TERM>in <M>p</M>-th moment</TERM>  or <TERM>in <M>L_p</M></TERM>  if <M>E(#(|X_n-X|^p)#)\to 0.</M>
+
+We write this as <M>X_n\toL p X.</M>
+</DEFN>
+<TODO>Higher <M>p</M>  means stronger convergence. <M>E(X_n)\to E(X)</M>  is weaker than <M>L_1.</M></TODO>
+
+The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
+ moments exist finitely for all the random variables involved. 
+
+<EXM>We work with <M>Unif(0,1)</M>  probability space. Let <M>X_n(\omega) = <CASES>n<IF>\omega\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES></M>.
+
+Let <M>X\equiv 0.</M>  
+
+Then clearly <M>\forall\omega\in (0,1)~~X_n(\omega)\to X(\omega).</M>  Hence <M>X_n \toA X.</M>  
+
+But <M>\forall n\in\nn~~E(X_n) = n\times[[1n]] = 1\not\to 0 = E(X).</M>  
+</EXM>
+
+</NOTE>@}

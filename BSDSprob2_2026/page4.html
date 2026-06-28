@@ -1,0 +1,314 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Almost sure and probability convergences">Almost sure and probability convergences</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Infinitely often">Infinitely often</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Borel-Cantelli lemmas">Borel-Cantelli lemmas</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#$L_p$ convergence for $p\geq1$">$L_p$ convergence for $p\geq1$</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\io}{~~\mathrm{i.o.}}$
+$\newcommand{\calF}{\mathcal{F}}$
+$\newcommand{\rightarrowL}[1]{\stackrel{L_#1}{\longrightarrow}}$
+$\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
+$\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
+[Update:[Wed Jun 17 IST 2026}
+<h1 xmlns=""><a
+name="Almost sure and probability convergences">Almost sure and probability convergences</a></h1>
+
+<fieldset>
+<legend><b>Definition: Amost sure convergence</b></legend>
+Let $(X_n),X$  be  random variables all defined on some common probability space $(\Omega,\calF, P).$ 
+Then we say
+ that $(X_n)$ converges to $X$  <b><font color="red" size="40">almost surely</font></b>  and write $X_n\rightarrowA X$ 
+if $P(X_n\rightarrow X) = 1.$   
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;Let our probability space be $Unif(0,1)$ with $\Omega = {\mathbb R}.$   Let $X_n(\omega)
+ =\omega^n$, and let $X(\omega)\equiv 0.$  Then  $X_n\rightarrowA X.$
+<p></p>
+However, if we replace $Unif(0,1)$  with $Unif(0,2),$  then the convergence breaks down.
+ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Probability convergence</b></legend>
+Let $(X_n)$  be a sequence of random variables all defined on some common probability space $\Omega,\calF, P).$ 
+ Let $X$  be some random variable also defined on the same probability space. Then we say
+ that $(X_n)$ converges to $X$  <b><font color="red" size="40">in probability</font></b>  and write "$X_n\rightarrowP X$  if 
+$$\forall \epsilon&gt;0~~P(|X_n-X|&gt; \epsilon)\rightarrow 0.$$ 
+It is also called <b><font color="red" size="40">weak convergence</font></b>.
+</fieldset>
+The condition that all the $X_n$'s should be defined on a common probability space may be relaxed if $X$  is a
+ degenerate random variable.
+<p></p>
+
+<h2><a
+name="Infinitely often">Infinitely often</a></h2>
+
+<fieldset>
+<legend><b>Definition: Infinitely often</b></legend>
+Let $(\Omega,\calF,P)$  be any probability space. Let $(A_n)$  be a sequence of events in it. The event "$A_n$'s
+ occur infinite often" (abbreviated to "$A_n\io$") is defined as $\{\omega\in\Omega~:~\omega \in A_n$  for
+ infintely many $A_n\mbox{'s}\}.$
+</fieldset>
+
+<p></p>
+We can express it as $\cap_{n}\cup_{k\geq n} A_k.$  
+<p></p>
+
+<h2><a
+name="Borel-Cantelli lemmas">Borel-Cantelli lemmas</a></h2>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>First Borel-Cantelli lemma</i></b></legend>
+Let $(A_n)$  be a sequence of events in some probability space. If $\sum P(A_n) &lt; \infty,$  then $P(A_n\io)=0.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$$\begin{eqnarray*}
+P(A_n\io)
+ &amp; = &amp; P(\cap_n\cup_{k\geq n} A_k)\\
+ &amp; = &amp; P( \lim_n\cup_{k\geq n} A_k)\\
+ &amp; = &amp; \lim_n P(\cup_{k\geq n} A_k).
+\end{eqnarray*}$$
+Now $P(\cup_{k\geq n} A_k)\leq \sum_{k\geq n} P(A_k).$
+<p></p>
+Since $\sum P(A_n) &lt; \infty$, hence $\lim_n \sum_{k\geq n} P(A_k) = 0.$
+<p></p>
+Hence the result. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Second Borel-Cantelli lemma</i></b></legend>
+Let $(A_n)$  be a sequence of independent events in some probability space. If $\sum P(A_n)= \infty,$  then $P(A_n\io)=1.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
+</p>
+
+
+<p></p>
+
+<font color="purple"><b>To do:</b>
+<ol type="">
+<li>random walk (1D, 2D must return i.o., but not in higher dimensions.</li>
+
+<li>infinite monkey</li>
+
+<li>P(Normal numbers)=1</li>
+
+</ol>
+</font>
+
+<h2><a
+name="$L_p$ convergence for $p\geq1$">$L_p$ convergence for $p\geq1$</a></h2>
+
+<fieldset>
+<legend><b>Definition: $L_p$ convergence</b></legend>
+Let $p\geq 1.$  Let $(X_n), X$  be random variables defined on some probability space. We say that $(X_n)$ 
+ converges to $X$  <b><font color="red" size="40">in $p$-th moment</font></b>  or <b><font color="red" size="40">in $L_p$</font></b>  if $E\big(|X_n-X|^p\big)\rightarrow 0.$
+<p></p>
+We write this as $X_n\rightarrowL p X.$
+</fieldset>
+
+<font color="purple"><b>To do:</b>Higher $p$  means stronger convergence. $E(X_n)\rightarrow E(X)$  is weaker than $L_1.$</font>
+
+<p></p>
+The following example shows that almost sure convergence does not imply $L_p$  convergence, even when the $p$-th
+ moments exist finitely for all the random variables involved. 
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;We work with $Unif(0,1)$  probability space. Let $X_n(\omega) = \left\{\begin{array}{ll}n&\text{if }\omega\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
+<p></p>
+Let $X\equiv 0.$  
+<p></p>
+Then clearly $\forall\omega\in (0,1)~~X_n(\omega)\rightarrow X(\omega).$  Hence $X_n \rightarrowA X.$  
+<p></p>
+But $\forall n\in{\mathbb N}~~E(X_n) = n\times\frac 1n = 1\not\rightarrow 0 = E(X).$  
+ ■
+</p>
+
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

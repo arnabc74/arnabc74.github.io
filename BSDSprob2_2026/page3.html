@@ -1,0 +1,394 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Inequalities</h3>
+<ul>
+<li>
+<a href="#Cauchy-Schwartz">Cauchy-Schwartz</a>
+</li>
+<li>
+<a href="#Markov">Markov</a>
+</li>
+<li>
+<a href="#Chebyshev">Chebyshev</a>
+</li>
+<li>
+<a href="#WLLN">WLLN</a>
+</li>
+<li>
+<a href="#Strong law of large numbers (SLLN)">Strong law of large numbers (SLLN)</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
+[Update:[Mon Jun 22 IST 2026}
+<title xmlns="">Inequalities</title>
+
+<h1><a
+name="Cauchy-Schwartz">Cauchy-Schwartz</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Cauchy-Schwarz inequality</i></b></legend>
+$cov(X,Y)^2 \leq V(X)V(Y).$
+Equality holds iff $\exists a,b,c\in{\mathbb R}~~P(aX+bY=c)=1.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+The result is obvious if $X$ is degenerate. So let's
+consider the case where $X$ is not degenerate. Then $V(X)&gt;0.$
+<p></p>
+Define $Z = Y-\underbrace{\frac{cov(X,Y)}{V(X)}}_\beta  X.$ 
+<p></p>
+We know that $V(Z)\geq 0.$
+<p></p>
+Now, 
+$$
+V(Z) = V(Y) + V(\beta X) - 2cov(Y,\beta X) = V(Y) + \beta^2 V(X)
+- 2 \beta cov(X,Y).
+$$
+Since $\beta = \frac{cov(X,Y)}{V(X)},$ this reduces to 
+$$
+V(Y) - \frac{cov(X,Y)^2}{V(X)}.
+$$
+Since this is $\geq0,$ the inequality follows immediately.
+<p></p>
+Also equality holds iff $V(Z)=0$, <i>i.e.</i>, $Z$ is degenerate.
+<p></p>
+So we have $P(Z=k)=1$ for some $k\in{\mathbb R},$
+<p></p>
+
+<i>i.e.</i>, $P(Y - \beta X = k) = 1$. 
+<p></p>
+Thus, if we take $a=-\beta$, $b = 1$  and $c = k$, then 
+$P(aX+bY=c)=1$, as
+ required, completing the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<font color="purple"><b>To do:</b>Geometry of random variables in Cauchy-Schwartz</font>
+
+<p></p>
+
+<h1><a
+name="Markov">Markov</a></h1>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;If average salary in a company is 50,000, then no more than 20% of the employees can make
+ 250,000 or more. Since 50000/250000 = 1/5. ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Markov inequality</i></b></legend>
+Let $k\in{\mathbb N}.$  Let $X$  be a nonnegative random variable with $E(X^k) &lt; \infty.$  
+Let $\epsilon&gt;0.$
+Then $P(X \geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Compare with $Y = \left\{\begin{array}{ll} \epsilon&\text{if }x\geq \epsilon\\ 0&\text{otherwise.}\end{array}\right..$
+<p></p>
+Note that $Y\leq X.$  Hence $E(Y^k)\leq E(X^k).$  
+But $E(Y^k) = P(X\leq \epsilon) \epsilon^k.$  Hence the result.
+<b><i>[QED]</i></b>
+</p>
+Will higher values of $k$  necessarily give you lower bounds?
+<font color="purple"><b>To do:</b>
+Application areas:
+<ul>
+<li>$L_1$  convergence implies convergence in probability.</li>
+
+<li>(Las Vegas) Computer algorithm design to limit the probability that a process will exceed a certain time
+ complexity of memory usage.
+<p></p>
+
+<i>e.g.</i>, if a randomised algorithm takes $X$  steps to finish, then we often know $E(X)$ 
+ as a function of the input size. (For instance, in a randomised quicksort algorithm $E(X) =
+ 2n\log n,$  where $n$  is the length of the array.) Then $P(X&gt;10E(X))\leq \frac{1}{10}.$  
+<p></p>
+This allows engineers to guarantee system satibility without knowing the exact distribution of $X.$
+</li>
+
+<li>(Monte Carlo) A randomised primality testing algorithm (like Miller Rabin) makes $X$ 
+ errors during a single test run. By design $E(X)=0.25,$  say. We shall run this test run
+ independently $k$  times. Bound the probability of failure, $P(X\geq 1)^k\leq 0.25^k.$ </li>
+
+<li>In network and queueing theory: estimate the probability that a packet delays or queue lengths
+ will exceed a critical threshold. No distributional modelling needed.
+<p></p>
+
+<i>e.g.</i>, a router receives a random number ($X$) of packets every millisecond. We know from the
+ past that $E(X)=50.$  We do not know the distribution of $X.$  The router's buffer can
+ hold 250 packets before overflowing. The network engineer needs to estimate the failure rate,
+ which is $P(X\geq 250) \leq 20\%,$  by the Markov inequality.</li>
+
+<li>risk management and finance: wors-case estimates of extreme financial losses or insurance
+ claims relaying solely on average historical risk.
+<ul>
+<li>A bank has a large portfolio of small business loans. $X=$ number of defaulters in a
+ single month. Past experience shows $E(X)=2M.$ Liquidity crisis will arise if $X\geq
+ 20M.$  Bound probability of that.</li>
+
+<li>A financial system tracks $X$  the downtime of the system per year. Past data shows
+ $E(X)=15$  minutes. Crash would result if $X\geq 2$  hours. Bound its probability.</li>
+
+<li>During highly volatile market anomaly, an investment fund's historical data becomes useless.
+ The only certain information is the current daily expected loss $E(X)=100,000.$  Upper bound $P(X\geq 1,000,000).$</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</font>
+
+<p></p>
+
+<h1><a
+name="Chebyshev">Chebyshev</a></h1>
+
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Chebyshev is also credited with designing a <a href="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
+robot-like linkage</a>.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Chebyshev inequality</i></b></legend>
+Let $V(X)&lt;\infty.$ Then 
+$$
+\forall \epsilon&gt;0~~P(|X-E(X)| \geq \epsilon) \leq \frac{V(X)}{\epsilon^2}.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+This is just Markov inequality with $k=2$  applied to the random variable $|X-E(X)|.$
+<b><i>[QED]</i></b>
+</p>
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+ Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
+ weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
+ get $0 &lt; 0$  for a degenerate $X$.
+<p></p>
+
+<font color="purple"><b>To do:</b>
+
+<ol type="">
+
+<li>Distinct elements counting like in the BJKST algo: See pdf downloaded in mobile.</li>
+
+<li>Frequency estimation (like count-min sketch): See pdf downloaded in mobile.</li>
+
+<li>Machine learning and PAC learning: Mention PAC as probability convergence.</li>
+
+</ol>
+
+</font>
+
+<h1><a
+name="WLLN">WLLN</a></h1>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Weak Law of Large Numbers (WLLN)</i></b></legend>
+Let $X_1,X_2,...$ be a sequence of independent and
+identically distributed (IID) random variables (defined
+on the same probability space) with $E(X_1)=\mu$ and
+$V(X_1)=\sigma^2&lt;\infty.$ Let, for $n\in{\mathbb N}$, 
+$$
+\overline X_n = \frac 1n\sum_{i=1}^n X_i.
+$$
+Then 
+$$
+\forall \epsilon &gt; 0~~ P(|\overline X_n-\mu|&gt; \epsilon) \rightarrow
+0\mbox{ as } n\rightarrow \infty.
+$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Use the exercise above and Chebyshev inequality.
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Strong law of large numbers (SLLN)">Strong law of large numbers (SLLN)</a></h1>
+
+<fieldset>
+<legend><b><i>SLLN</i></b></legend>Let $(X_n)$  be an IID sequence of random variables with $E(X_1) = \mu \in{\mathbb R}.$ 
+ Let $\bar X_n = \frac 1n(X_1+\cdots+X_n).$
+<p></p>
+Then $\bar X_n \rightarrowA \mu.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
+</p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

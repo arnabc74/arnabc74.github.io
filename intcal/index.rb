@@ -9,6 +9,11 @@ thAkle ei pAtAr nIche mantabya karAr jAygAy likhe dilei Ami peye yAba.
 
 <HEAD1>bhultruTi</HEAD1>
 <UL>
+<LI><IMG web="p23_bhul.png">@{<E>23</E>@}  pAtAr a.nsha</IMG> ekhAne lAl diye ghire deoyA
+ sa.nkhyAgulo bhul. Thik hale erakam habe--
+<IMG web="p23_2.png">Thik karAr pare</IMG>
+bhulTA
+ dharechhe kochbihAr theke AkAshdIp pAl.</LI>
 <LI><IMG web="p84.png">@{<E>84</E>@}  pAtAr a.nsha</IMG> bhulTA dharechhen asImA dAs.</LI>
 <LI>
 <IMG web="p107.png">@{<E>107</E>@}  nambar pAtAr a.nsha</IMG>

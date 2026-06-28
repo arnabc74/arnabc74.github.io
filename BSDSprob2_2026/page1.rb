@@ -1,0 +1,289 @@
+@{<NOTE>
+<M>\newcommand{\x}[1]{X_{(#1)}}</M>
+<M>\newcommand{\v}[1]{{\mathbf #1}}</M>
+<TITLE>Transformation of random vectors</TITLE>
+[Update:[Wed Jun 17 IST 2026]]
+<HEAD1>Multivariate Jacobian</HEAD1>
+
+
+We often work with functions of random variables. New random variables are created out of existing ones via functions. 
+So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
+ ones. There are quite a few techniques to do this. 
+
+<HEAD1 u="https://youtu.be/I-bRxjHDWNU">Via CDF</HEAD1>
+If we working with univariate distributions, then the most general (and often the simplest)
+ technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
+<EXM>
+If <M>X</M>  is uniformly distributed over <M>[0,2],</M>  then find a density for <M>X^2.</M>  
+<SOLN/>
+Let <M>Y = X^2.</M>  A density for <M>X</M>  is <M>f(x) = [[12]]</M>  if <M>0\leq x\leq 2</M>  (and 0 else). We shall pass
+ to the CDF of <M>X:</M>
+<D>F(x) = <CASES>0<IF>x < 0</IF> [[x2]]<IF>0\leq x < 2</IF> 1<ELSE/></CASES> </D>
+From this we shall compute the CDF of <M>Y.</M>  Clearly, <M>Y</M>  cannot take values outside <M>[0,4].</M>  So <M>G(y) = 0</M> 
+ if <M>y<0</M> and <M>G(y) = 1</M>  if <M>y\geq 4.</M>  
+
+Let <M>y\in[0,4).</M>
+
+Then 
+<D>G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = [[12]]\sqrt y.</D>
+Differentiating this, we arrive at the required density of <M>Y</M>  as
+<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in(0,4)</IF> 0<ELSE/></CASES></D>
+</EXM> 
+You see the advantage of monotonicity. Even though <M>x\mapsto x^2</M>  is a not a monotone function over <M>\rr,</M>  it
+ is so when restricted to <M>[0,2].</M>  The CDF technique can handle even some simple non-monotonic cases, as we show now.
+
+<EXM>
+Let <M>X</M>  be uniform over <M>[-1,1].</M>  Find the density of <M>X^2.</M>  
+<SOLN/>
+Clearly, <M>Y=X^2</M>  cannot go outside <M>[0,1].</M>  So its CDF <M>G(y)</M>  must have <M>G(y)=0</M>  for <M>y<0</M> 
+ and <M>G(y)=1</M>  for <M>y\geq 1.</M>  
+
+For <M>y\in[0,1)</M>  we have
+<D>G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.</D>
+Differentiating we get the density
+<D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in(0,1)</IF> 0<ELSE/></CASES> </D>
+</EXM>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+If <M>X</M>  has density <M>f(x)=<CASES>2x<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M>, then find density of <M>X^2.</M>
+</EXR>
+
+<EXR>If <M>X</M>  has constant density over <M>(0,1)</M>  and zero outside it, then guess the
+ density of <M>1-X</M>, and prove your guess.</EXR>
+
+<EXR>If <M>X</M>  has density <M>f(x)</M>, then the density of <M>-X</M>  is 
+<OL type="A"><LI><M>f(x)</M></LI><LI><M>-f(x)</M></LI><LI><M>f(-x)</M></LI><LI><M>-f(-x)</M></LI></OL>
+</EXR>
+
+<EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y) = [[1][2\pi]] e^{-[[12]](x^2+y^2)},</M>  then
+ find the density of <M>R = \sqrt{X^2+Y^2}.</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  is uniformly distributed over the unit disc in <M>\rr^2,</M>  and we write
+ <M>(X,Y)</M>  as <M>(R,\Theta)</M>  in polar coordinates where <M>\Theta\in[0,2\pi),</M>  then
+ find density of <M>R</M>  and also the density of <M>\Theta.</M></EXR>
+
+
+<HEAD1 u="https://youtu.be/lw4-9KY6MW0">Jacobian formula (1 dim)</HEAD1>
+To understand the Jacobian method, it will help to look at the univariate CDF method. Let <M>f(x)</M>  be a density of <M>X</M> 
+ and let <M>Y=h(X),</M>  where <M>h(\cdot)</M>  is an increasing bijection with differentiable <M>h ^{-1}(y).</M>
+
+Then the CDF of <M>Y</M>  is <M>G(y) = P(Y\leq y) = P(h(X)\leq y) = P(X\leq h ^{-1}(y)) = F(h
+ ^{-1}(y)),</M>  where <M>F(\cdot)</M>  is the
+ CDF of <M>X.</M>  
+
+So <M>Y</M>  has density given by
+<D>g(y) = G'(y) = [[d][dy]]F(h ^{-1}(y)) = f(h ^{-1}(y))[[d][dy]]h ^{-1}(y).</D>
+So far we are assuming that <M>h(\cdot)</M>  is an increasing function. A very similar argument works for a decreasing function
+ as well. In general for any bijection <M>h(\cdot),</M>  we have
+<D lab="(*)">g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
+
+
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>X</M>  has density <M>f(x)</M>, then find density of <M>aX+b</M>  for <M>a\neq 0</M>  and <M>b\in\rr.</M></EXR>
+
+<EXR>If <M>X</M>  has density <M>f(x) =<CASES>c\, x e^{-x}<IF>x>0</IF> 0<ELSE/></CASES> </M>, then
+ find density of <M>Y = \sqrt{X}.</M></EXR>
+
+<EXR>Let <M>X</M>  have density <M>f(x) = <CASES>2 e^{-2x}<IF>x>0</IF> 0<ELSE/></CASES></M>  Find
+ density of <M>Y=X^2</M>  using (*).</EXR>
+<EXR>Let <M>X</M>  have density <M>f(x).</M>  Find
+ density of <M>Y=a X+b</M>  using (*) if <M>a\neq 0.</M>  </EXR>
+
+<EXR>Let <M>X</M>  have uniform distribution over <M>(-1,1).</M>  Find density of <M>Y=\sin X</M>  using (*).</EXR>
+<HEAD1 u="https://youtu.be/sGlCID43YeE">Jacobian formula (intuition)</HEAD1>
+ 
+Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))\equiv y.</M>
+
+Differentiating this wrt <M>y</M>  we have <M>h'(h ^{-1} (y))[[d][dy]] h ^{-1}(y) \equiv 1,</M>  i.e., 
+<D>[[d][dy]] h ^{-1}(y) = [[1][h'(h ^{-1}(y))]].</D>
+So we get 
+<D>g(y) = [[f(h ^{-1}(y))][ |h'(h ^{-1}(y))| ]].</D>
+If we write <M>x = h ^{-1}(y),</M>  this will look less complicated:
+<D>g(y) = [[f(x)][ |h'(x)| ]].</D>
+So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>h'.</M>   
+
+ Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
+Consider the density of <M>X.</M>   Imagine 10 equal length subintervals along <M>[0,1].</M>  Since the total 
+area under the density is 1, the rectangle on each  subinterval has area <M>[[1][10]].</M>  You may
+ say that each subinterval accounts for <M>[[1][10]]</M>  mass. 
+<CIMG web="squeeze1.png">All the rectangles are identical</CIMG>
+When you compute <M>Y=X^2,</M>  the intervals close to 0 get squeezed further down to 0,
+ while those closer to 1 are stretched. 
+<CIMG web="squeeze2.png">Rectangles are squeezed and stretched</CIMG>
+But still each rectangle has to account for <M>[[1][10]]</M>  mass. So the squeezed rectangles have
+to  compensate by growing taller,
+ while the stretched ones compensate by getting shorter.
+<CIMG web="squeeze3.png">All rectangles now again have area <M>[[1][10]].</M></CIMG>
+ This
+ leads to <M>Y</M>  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
+ squeezing of the transforming function, i.e., the derivative. Smaller the derivative, higher the density. 
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>
+If <M>X</M>  has uniform distribution over (2,4)
+then roughly sketch the density of <M>Y = [[1X]].</M>  Don't apply the Jacobian formula
+ algeraically. Think in terms of which part
+ gets squeezed/expanded. 
+</EXR>
+
+<EXR>Suppose that <M>X</M>  is uniform over <M>(-1,1)</M>  and <M>Y=X^2.</M>  (not a bijection!).
+ Guess the form of the density of <M>Y.</M>  Do you see why we needed the transform to be bijective in our intuition?
+<ANS>We were assuming that density of <M>Y</M>  at any given point was controlled by the density
+ of <M>X</M>  at only one point. But in this example, the density of <M>Y</M>  at, say,
+ <M>y=[[14]]</M>  is governed by the density of <M>X</M>  at <M>x=[[12]]</M>  as well as <M>x=-[[12]].</M></ANS>
+ </EXR>
+
+<HEAD1 u="https://youtu.be/GMC3sHP9HWg">Jacobian matrix</HEAD1>
+In (*) above we had
+<D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|],</D>
+where <M>h</M>  was assumed to be a bijection with differentiable <M>h ^{-1}.</M>  
+
+In order to  generalise this  to the multivariate set up, we need to work with a bijection <M>h:\rr^n\to\rr^n.</M> 
+   We need to do two things:
+<UL><LI>we need to define differentiability for functions from <M>\rr^n</M>  to <M>\rr^n.</M>
+</LI><LI>
+we need to compute derivative of such functions.</LI></UL>
+<HEAD2>Multivariate differentiation</HEAD2>
+<M>f:\rr\to\rr</M>  is called differentiable at some <M>a</M>, if 
+<D>\lim_{x\to a} [[f(x)-f(a)][x-a]]\mbox{ exists finitely.}</D>
+If this limit is called <M>m</M>, then this can be recast in the geometrically more applealing way as 
+<D>\exists m\in\rr~~ \lim_{x\to a}[[f(x)-\{f(a)+m\cdot(x-a)\}][x-a]] = 0.</D>
+This is geometrically more appealing because you can think of this as <M>f(x)-f(a)\approx m\cdot(x-a),</M>  i.e., near <M>a</M> 
+ the graph of <M>f</M>  looks like the line passing through <M>(a,f(a))</M>  with slope <M>m.</M>  
+
+This immediately generalises to <M>f:\rr^n\to\rr^m</M>  as follows.
+<DEFN name="Multivariate differentiation">
+Call <M>f:\rr^n\to\rr^m</M>  <TERM>differentiable</TERM> at <M>\v a\in\rr^n</M>  if 
+<D>\exists M_{m\times n} ~~ \lim_{\v x\to \v a}[[f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}][\|\v x-\v a\|]] = \v 0.</D>
+</DEFN>
+Such a matrix <M>M</M>  may depend on <M>\v a,</M>  and will be unique, and its <M>(i,j)</M>-th entry will be given by 
+<D>m_{ij} = [[\partial f_i][\partial x_j]].</D>
+Here <M>f_i</M>  is the <M>i</M>-th component of <M>f.</M>  
+
+Let us digest this using an example. 
+
+
+<EXM>
+Let <M>f:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find the determinant
+ of the Jacobian.
+<SOLN/>
+Note that <M>f</M>  consists of two function <M>f_1,f_2:\rr^2,\to\rr.</M>  These are its <TERM>component</TERM>  functions,
+ <M>f_1(x_1,x_2) = \sin(x_1x_2)</M>  and <M>f_2(x_1,x_2) = x_1-x_2^2.</M>  
+
+The Jacobian is a <M>2\times 2</M>  matrix with <M>(i,j)</M>-th entry <M>[[\partial f_i][\partial x_j]].</M>  Note that each
+ row is devoted to a single <M>f_i</M>  and each column to a single <M>x_j.</M>  In general, if we had <M>f:\rr^n\to\rr^m</M> 
+ the matrix would have been <M>m\times n.</M>  
+
+In our case 
+<MULTILINE>
+[[\partial f_1][\partial x_1]] & = & x_2\cos (x_1x_2),\\
+[[\partial f_1][\partial x_2]] & = & x_1\cos (x_1x_2),\\
+[[\partial f_2][\partial x_1]] & = & 1\\
+[[\partial f_2][\partial x_2]] & = & -2x_2.
+</MULTILINE>
+So the Jacobian is 
+<D><MAT>x_2\cos (x_1x_2) & x_1\cos (x_1x_2)\\ 1 & -2x_2</MAT>.</D>
+Its determinant is 
+<D>x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).</D>
+</EXM>  
+
+<Q><ALERT/>If all this looks like unmotivated magic, you might benefit from <LINK
+ to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+ that I have made for Jacobians</LINK>. The video is about 21 min long, which is too long for my taste. You may like to navigate
+ to relevant portions of it using the following guideline:
+<UL>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=0s">0:00</LINK>: Casting univariate
+ differentiation into a form suitable for generalisation. </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=271s">4:31</LINK>: Differentiation of <M>f:\rr^n\to\rr^m</M> </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=514s">8:34</LINK>: Geometric
+ interpretation of Jacobian matrices </LI>
+<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</LINK>: Why
+ care about the determinant of Jacobian </LI>
+</UL>
+</Q>
+<COMMENT>
+First we look at the bivariate case using  a simple example. Suppose we start with some <M>(X,Y)</M>
+ distributed uniformly on the unit square. As in the univariate case, we split <M>[0,1]</M>  into  10 equal subintervals.
+ We do this along both the axes, creating a square grid.
+<CIMG web="bivsq1.png"></CIMG>
+The total mass is 1. Each square accounts for <M>[[1][100]]</M>  mass. Next we transform it to <M>(U,V) = (X^2,Y^2).</M> The
+ grid now changes to the following.
+<CIMG web="bivsq2.png"></CIMG>
+To account for same mass as before, the cuboids standing on smaller bases must have largeer heights.
+<COMMENT>
+source('/home/asu/na/s/othernotes/talks/obj.r')
+x=y=(0:2/2)^2
+dx = diff(x)
+dy = diff(y)
+h=1/outer(dx,dy)
+sink('image/hist.obj')
+histObj(x,y,h)
+sink()
+</COMMENT>
+
+More generally, for a linear transformation <D><MAT>U\\V</MAT>  = A<MAT>X\\Y</MAT>,</D>
+the role of <M>[[14]]</M>  is played by <M>det(A).</M>  So the density is to be divided by <M>det(A).</M>  
+
+A differentiable nonlinear transformation can be locally approximated by a linear transformation at each point, where the
+ matrix is the Jacobian. So we have to divide by its determinant. Sometimes it is more conveneint
+ to think of this as multiplying
+ by the determinant of the Jacobian of the inverse function. Formally, we get the following theorem.
+</COMMENT>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>Compute the Jacobian matrix for <M>h(x,y) = (x+y,x-y).</M></EXR>
+
+<EXR>What is the Jacobian matrix for the transform <M>h:\rr^n\to\rr^n</M>  where <M>h(\v x) = A\v
+ x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
+
+<HEAD1 u="https://youtu.be/9pWai6cA7no">Multivariate Jacobian formula</HEAD1>
+We shall imitate our familiar  univariate Jacobian formula
+<D>g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|]</D>
+to get the following theorem. 
+<THM>
+Let <M>\v X</M>  be an <M>\rr^n</M>-valued random vector. Let <M>h:\rr^n\to\rr^n</M>  be a
+bijection with differentiable inverse. Let <M>\v Y = h(\v X).</M> 
+ Then <M>\v Y</M>  has density
+<D>g(\v y) = f(h ^{-1}(\v y)) J,</D>
+where <M>J</M>  is the absolute determinant of Jacobian of <M>h ^{-1}(\v y).</M>
+</THM>
+ We shall not prove this theorem here. But the intuitive argument is just as in the univariate case. 
+
+<EXM>
+Let <M>\v X = (X_1,X_2)</M>  be uniformly distributed over <M>[1,2]\times[3,4].</M> Let <M>Y_1 =
+ X_1X_2</M>  and <M>Y_2 = X_1.</M>  Find the joint
+ density of <M>\v Y = (Y_1,Y_2).</M>  
+<SOLN/>
+Let <M>S = [1,2]\times[3,4].</M>  
+
+Here the transform is <M>h(x_1,x_2) = (x_1x_2,x_1).</M>
+
+Clearly, <M>h:S\to h(S)</M>  is a bijection,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>(x_1,x_2)\in[1,2]\times[3,4]</M> 
+ uniquely. 
+
+The inverse transform is <M>h ^{-1}(y_1,y_2) = (*(y_2,[[y_1][y_2]])*).</M>
+The Jacobian of this is 
+<D><MAT>0 & 1\\[[1][y_2]] & -[[y_1][y_2^2]]</MAT>,</D>
+which has absolute determinant <M>[[1][y_2]],</M>  since <M>y_2 > 0.</M>
+
+So the required density will be 
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(*(y_2,[[y_1][y_2]])*)\in S</IF> 0<ELSE/></CASES></D>
+Often we want to write it as 
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(y_1,y_2)\in T</IF> 0<ELSE/></CASES></D>
+for some suitably defined <M>T.</M>  This may be done as follows.  
+
+<M>(*(y_2,[[y_1][y_2]])*)\in S</M>  means 
+<D>1\leq y_2 \leq 2 \mbox{ and } 3\leq [[y_1][y_2]]\leq 4.</D>
+Sketching these restrictions we get this region:
+<CIMG web="jreg.png"><M>T</M>  shown in red</CIMG>
+</EXM>
+<HEAD2>Problem set <PS/></HEAD2>
+<EXR>If <M>(X,Y)</M>  has joint density <M>f(x)=<CASES>x+y<IF>x,y\in[0,1]</IF> 0<ELSE/></CASES></M>,
+ then find the joint density of <M>(X+Y, X-Y).</M> </EXR>
+
+<EXR>If <M>(X,Y)</M>  is uniformly distributed over <M>[0,1]\times[0,2]</M>, then find the joint density of <M>(X^2,X+Y).</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  is uniformly distributed over the red rectangle below, then find
+non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>  are independent.
+<CIMG web="rotrect.png"></CIMG>
+</EXR>
+
+</NOTE>@}

@@ -1,0 +1,301 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Permaculture">Permaculture</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#উচিত আর অনুচিতের গল্প">উচিত আর অনুচিতের গল্প</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#পৃথিবীটার কথে খেয়াল রাখতে ভুলো না!">পৃথিবীটার কথে খেয়াল রাখতে ভুলো না!</a>
+</li>
+</ul>
+<hr/>
+
+<h1 xmlns=""><a
+name="Permaculture">Permaculture</a></h1>
+Permaculture  কথাটা অপরিচিত লাগতে পারে৷ এটা আসলে পরিচিত দুটো শব্দ মিলে তৈরী হয়েছিল--permanent  
+আর agriculture.  অর্থাৎ কিনা স্থায়ী চাষ৷  অবশ্য ব্যবহার করতে করতে শব্দটার মানে এখন খানিকটা বদলেছে, 
+তাই বর্তমান হিসেবে এটাকে বলা যেতে পারে permanent  এবং culture-এর মিশ্রণ৷ কিছুই বোঝা গেল 
+না তো? ব্যাপারটা কী করে শুরু হয়েছিল সেটা বললে বুঝতে খানিকটা সুবিধা হবে৷
+<p></p>
+বিল মলিসন নামে এক ভদ্রলোক ছিলেন অস্ট্রেলিয়ার  কোনো এক বনাঞ্চলের রেঞ্জার৷ সেই বনাঞ্চলে
+ কিছু আদিবাসী গোষ্ঠী থাকত৷ তারা কোন সুদূর প্রাচীনকাল থেকেই আছে৷ মলিসন দেখলেন যে, আমরা
+ সভ্য মানুষদের বেঁচে থাকার প্রয়োজনে বনজঙ্গল কেটে ভেঙে চুরে দক্ষযজ্ঞ না বাঁধালে
+ আমাদের সভ্যতর খিদে মেটে না৷ অথচ এই মানুষগুলো তো কতকাল থেকে দিব্যি আছে, কই বনের তো কোনো ক্ষতি হচ্ছে না তাতে৷ 
+এইভেবে তিনি এদের জিবনযাত্রার প্রতি লক্ষ রাখতে লাগলেন৷ অনেক কিছু ভালো ভালো কায়দাও যেমন শিখলেন, তেমনি অনেক কিছু 
+দেখলেন যেগুলোকে মোটেই ভালো বলা যায় না৷ খারাপগুলোকে বাদ দিয়ে খালি সেই ভালো ভালো দিকগুলো নিয়ে
+ তিনি জীবনযাত্রার একটা কায়দা বানালেন৷ এ কাজে তাঁর সঙ্গী ছিলেন তাঁরই ছাত্র ডেভিড হোমগ্রীন৷
+ দুজন মিলে ১৯৭০ সালে এইভাবে যা তৈরী করলেন সেটাই হল permaculture-এর শুরু৷ 
+<p></p>
+এর মোদ্দা কথা হল এই--আমরা জীবনধারণ করছি প্রকৃতি থেকে নানা জিনিস নিয়ে৷ খাবার, জল,
+ জ্বালানী৷ প্রকৃতিকে আমরা দিচ্ছিও নানা জিনিস, গাছ লাগাচ্ছি, বায়ুদূষণ করছি৷
+ মোটামুটিভাবে আমরা সকলেই বুঝি যে আমরা নিচ্ছি ভালো ভালো জিনিস আর দিচ্ছি বাজে বাজে জিনিস৷
+ অদূর ভবিষ্যতে কয়লা আর জ্বালানী তেল যে ফুরিয়ে যাবে সেইটা আমরা সবাই জানি, তাও গাড়ী চালিয়ে তেল
+ পোড়াচ্ছি৷ ওজোনোস্ফিয়ার ফুটো হয়ে যাচ্ছে জেনেও AC  আর fridge-এর মোহ
+ কাটাতে পারছি না৷ হায়তো কোথাও খানিকটা বৃক্ষরোপন উৎসব করে কথঞ্চিৎ সান্ত্বনা পাচ্ছি
+ যে খানিকটা প্রায়াশ্চিত্ত করা হল৷ Permaculture  হল এমন একটা জীবনযাপনের কায়দা
+ যেটা মোটামুটিভাবে সভ্য জগতের সুখ বিসর্জন না দিয়েও এমনভাবে বাঁচা যাতে  প্রকৃতির
+ সঙ্গে দেওয়া নেওয়ার ভারসাম্য থাকে৷  ফলে সেই জীবনযাত্রা permanent-ভাবে চালানো
+ যাবে, নিয়মিত রোজগার থাকলে মানুষ যেমন নিশ্চিন্তে খরচা করতে পারে, সেইরকম৷ আমার কোনো রোজগার নেই, কিন্তু 
+ প্রপিতামহ কোনো এককালে জমিদারী করতেন সেই উত্তরাধিকারের টাকা আমি ফুটানি মেরে ওড়াচ্ছি, সেরকম নয়৷ 
+<p></p>
+Permaculture-এর কিছু নিয়মকানুন আছে৷ অবশ্য তা বলে জিনিসটা মোটেই একটা
+ ধর্মমতের মত কঠিন কিছু অনুশাসনে বাঁধা নয়৷ বস্তুতঃ এর মধ্যে স্বাধীনতা অনেক,
+ যাকে বলে scope of design.  জীবন তো নানাভাবেই বাঁচা যায়৷ এটা মোটেই ঠিক রেলগাড়ির মত তো নয়, যে একটা বাঁধা
+ পথেই গড়গড়িয়ে চলতে হবে৷ এর মধ্যে একটা পরিকল্পনা বা design-এর বিলক্ষণ সুযোগ
+ আছে৷ এইভাবে না করে ওইভাবে করলেও তো হত--এই ব্যাপারটা৷ Permaculture  এই design-এরই কিছু পথের 
+হদিশ দেয়৷ 
+<p></p>
+খুঁটিনাটির মধ্যে আমরা পরে যাব৷ আপাততঃ তিনটে মূল কথা বলি--
+<ul>
+<li>প্রথম কথা, বেশী hi tech 
+ জিনিসগুলো এড়িয়ে চলাই ভালো৷ মনে হয় যেন ওগুলো দিয়ে খুব সহজে কাজ হয়ে যায়, কিন্তু ওগুলো
+ বানাতে যে কাণ্ডটা করতে হয়েছে, সেটা হিসেবে নিলে পুরো ব্যাপারটা মোটেই সহজ থাকে না৷ তখন
+ বোঝা যায় যে, low tech-ই অধিকাংশক্ষেত্রে অনেক ভালো ছিল৷</li>
+
+<li>দ্বিতীয় কথা, যা করো বাপু, সেটা যেন cost effective  হয়৷ মনে হতে পারে, এতে আবার বলার কী আছে? সকলেই 
+তো সব কাজ যথাস্মভব কম পয়সাতেই সারতে চায়৷ কিন্তু না, এখানে পয়সার কথা হচ্ছে না৷ পয়সা তো গেলে তাও আসতে পারে৷ 
+কিন্তু দুনিয়ায় এমন অনেক জিনিস আছে সেগুলো একবার গেলে আর আসবে না, আর যেগুলো ছাড়াও আমাদের চলবে না৷ Cost-এর 
+মধ্যে সেগুলো না ধরলেই শেষটা আমরাই কষ্টে পড়ব যে! 
+</li>
+
+<li>মোটামুটিভাবে এই ''যা গেলে আর ফিরে পাব না''-গোছের জিনিসগুলো সবই নানাভাবে শক্তির উৎসগুলোর সঙ্গে যুক্ত৷ তাই 
+খুব তলিয়ে যদি নাও ভাবি, তাও শক্তির অনাবশ্যক খরচ কমালেই অনেকটা হবে৷ </li>
+</ul>
+ওই যে বললুম permaculture  শব্দটার ল্যাজে ছিল agriculture  সেটা খালি agriculture-এর 
+সীমাবদ্ধ না থেকে জীবনযাত্রার একটা culture-এ পরিণত হয়েছে! কে একজন যেন বলেছিলেন যে permaculture  
+আসলে একটা বিপ্লব, বাগান করার ছদ্মবেশে রয়েছে খালি৷ 
+<p></p>
+
+<h2><a
+name="উচিত আর অনুচিতের গল্প">উচিত আর অনুচিতের গল্প</a></h2>
+এক্ষুণি বললুম যে permaculture  কোনো একটা ধরাবাঁধা নিয়ম নয়৷ সেইটা যদি হত, তবে permaculture  
+শেখানো সহজ হত, সেই নিয়মগুলো একটার পর একটা লিখে দিলেই চলত৷ এর মধ্যে নিজের বুদ্ধি খাটানোর, নিজের জীবনের সঙ্গে 
+খাপ খাওয়ানোর বিস্তর সুযোগ৷ এবং সেই কাজটা করতে গেলেই পদে পদে প্রশ্ন জাগবে, এমনটা কী করা ঠিক হচ্ছে? ওটা করলে 
+খারাপ কিছু হবে না তো? সেইটাই এবার বলব আমরা৷
+<p></p>
+
+<h3><a
+name="পৃথিবীটার কথে খেয়াল রাখতে ভুলো না!">পৃথিবীটার কথে খেয়াল রাখতে ভুলো না!</a></h3> 
+ছোটোবেলায় শিখেছিলুম পৃথিবী মানে কমলালেবুর মত গোলাকার একটা বস্তু, যেটা নিউটন সাহেবের
+ কি একটা যেন সূত্র মেনে খামোখা সূর্যের চার্দিকে পাঁই পাঁই করে ঘুরছে, তার নাকি আবার উত্তর
+ দক্ষিণে খানিকটা চাপা৷ এই কমলাবুটার যত্ন আমি নেব কী করে? না, পৃথিবী মানে ঠিক সেটা
+ বলছি না এখানে৷ পৃথিবী মানে এখানে আমাদের চারপাশে যা যা রয়েছে আর কি, এই যেমন হাওয়া,
+ জল মাটি, গাছপালা, প্রানী, জীবানু এইসব৷  কিন্তু তাদের কথা খেয়াল রাখার মানে কী?   খেয়াল
+ রাখার একটা কায়দা আছে, সেটাকে কেউ কেউ গালভারা নাম দিয়েছেন upstream downstream
+ analysis.  ব্যাপারটা এইরকম৷  মনে করো কেউ কাপড় কিনে বিক্রী করে, সেটাই তার ব্যবসা৷ সে
+ যদি বলে--জানিস, আমি গতকাল একটা কাপড় দশ হাজার টাকায় বিক্রী করেছি৷ অমনি লোকের প্রশ্ন
+ হবে, কাপরটা কিনতে কত পড়েছিল৷ অর্থাৎ বিক্রয়মূল্যটাই শেষ কথা নয়, আসল কথা হল
+ লাভটা কত? এবং তার জন্য ক্রয়মূল্যটাও জানা দরকার৷ এইটাকেই upstream downstream
+ analysis  বলে, বিক্রয়মূল্য হল গিয়ে downstream  আর ক্রয়মূল্য বা উৎপাদন মূল্য
+ হল গিয়ে upstream.  কাপড়ের বেলায় যেমন আমরা মূল্যগুলো টাকা দিয়ে প্রকাশ করি, এখানে
+ সেটা করব হাওয়া, জল, মাটী ইত্যাদি দিয়ে৷ ওই যে বললুম, পৃথিবীর কথা খেয়াল রাখতে ভুলো না!  একটা উদাহরণ দেখলে
+ ব্যাপারটা স্পষ্ট হবে৷   ধরো শহরের একটা বাড়ি৷ এখানে upstream  কী কী, মানে এর
+ মধ্যে input  কী ঢুকছে? আমাদের তালিকা দরে ধরে এগোনো যাক--
+<ul>
+<li>
+<u>হাওয়া</u>--বাড়ি কী হাওয়া খায়, নাঃ বাড়ির লোকে হাওয়া খেয়ে থাকে বটে, তবে খুব নয়৷
+ বিশুদ্ধ তাজা হাওয়াওয়ালা জায়গায় সকলেই বাড়ি বানাতে চায়৷</li>
+
+<li>
+<u>জল</u>--হ্যাঁ, জল লাগে বটে৷ বাড়ির লোকে যা জল খায়, সে তো সামান্যই৷ তোমার ওয়াশিং
+ মেশিনটা জল খায় তার চেয়ে ঢের গুণ বেশী৷ বাথরুমটা কম জল খরচ করে না৷ শাওয়ার , ফ্লাশে
+ তো অনেকটাই যায়৷ আর বাথটব থাকলে তো কথাই নেই৷ </li>
+
+<li>
+<u>মাটি</u>--বাড়িটা যে জমির উপর দাঁড়িয়ে আছে সেটুকুর বেশী কিছু লাগে না৷  ফ্ল্যাট বাড়ি
+ হলে আরো কম, কারণ একটার উপর একটা৷</li>
+
+<li>
+<u>গাছপালা</u>--তোমার ওই চমৎকার বাড়িটা বা ফ্ল্যাটটা ওখানে তৈরী হবার আগে ওই জায়গাটায় কী
+ ছিল? জঙ্গল? চাষের জমি৷ সরকারকে বা চাষিকে পয়সা দিয়ে জমিটাকেনার সময়ে সেই গাছপালাগুলোর
+ কথা ঠিক ভাবা হয়নি৷ ওরা স্রেফ কাটা পড়েছে৷</li>
+
+<li>
+<u>প্রাণী</u>--আগে এই জায়গাটা বড্ড মশা ছিল, আর সাপখোপের কি উপদ্রব ছিল৷ ওই দিকটায়
+ শ্যাল ডাকত৷ আর ওই দিকে যে পুকুরটা ছিল সেখানে কি ব্যাং ডাকত! আজকাল আর সেগুলো আমাদের জ্বালায়
+ না৷ আগে শুনেছি অনেক জোনাকি পোকাও ছিল, আমার ছেলে তো firefly  দেখেই নি৷ </li>
+
+<li>
+<u>জীবানু</u>--</li>
+
+<li>
+<u>আরো কিছু?</u>  শহুরে বাড়ি যখন বিদ্যুতের কথা ভুলে গেলে তো চলবে না! সরকারী বিদ্যুৎ
+ বা digital generator  সেগুলো প্রচুর জ্বালানী পোড়াচ্ছে৷ এবং জল, এবং জমি৷</li>
+
+</ul> 
+এই গেলে upstream-এর গল্প৷ এবার downstream-এর কথা শোনা যাক৷ এই যে শহুরে বাড়িটা বা ফ্ল্যাটটা, এর 
+থেকে কি বেরোচ্ছে? আবার আমাদের তালিকা ধরে ধরে এগোব--
+<ul>
+<li>
+<u>জল</u>--
+বিস্তর জল বেরোচ্ছে৷ তবে কিনা সেগুলো কলুষিত৷ 
+</li>
+
+<li>
+<u>হাওয়া</u>--না, বাড়ির লোক যে সামান্য CO2  ছাড়ছে সেটা ধরছি না৷ তোমার
+ AC-গুলো যেটা ছাড়ছে সেটা ঠিক ভালো জিনিস নয়৷ </li>
+</ul>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

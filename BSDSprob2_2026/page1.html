@@ -1,0 +1,630 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Transformation of random vectors</h3>
+<ul>
+<li>
+<a href="#Multivariate Jacobian">Multivariate Jacobian</a>
+</li>
+<li>
+<a href="#Via CDF">Via CDF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#Jacobian formula (1 dim)">Jacobian formula (1 dim)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#Jacobian formula (intuition)">Jacobian formula (intuition)</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+<li>
+<a href="#Jacobian matrix">Jacobian matrix</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Multivariate differentiation">Multivariate differentiation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 4">Problem set 4</a>
+</li>
+<li>
+<a href="#Multivariate Jacobian formula">Multivariate Jacobian formula</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 5">Problem set 5</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\x}[1]{X_{(#1)}}$
+$\newcommand{\v}[1]{{\mathbf #1}}$
+<title xmlns="">Transformation of random vectors</title>
+[Update:[Wed Jun 17 IST 2026}
+<h1><a
+name="Multivariate Jacobian">Multivariate Jacobian</a></h1>
+
+<p></p>
+We often work with functions of random variables. New random variables are created out of existing ones via functions. 
+So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
+ ones. There are quite a few techniques to do this. 
+<p></p>
+
+<h1><a
+name="Via CDF">Via CDF</a></h1>
+<a href="https://youtu.be/I-bRxjHDWNU">Video for this section</a>
+<p></p>
+If we working with univariate distributions, then the most general (and often the simplest)
+ technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+If $X$  is uniformly distributed over $[0,2],$  then find a density for $X^2.$  
+<p></p>
+<b>SOLUTION:</b>
+Let $Y = X^2.$  A density for $X$  is $f(x) = \frac 12$  if $0\leq x\leq 2$  (and 0 else). We shall pass
+ to the CDF of $X:$
+$$F(x) = \left\{\begin{array}{ll}0&\text{if }x &lt; 0\\ \frac x2&\text{if }0\leq x &lt; 2\\ 1&\text{otherwise.}\end{array}\right. $$
+From this we shall compute the CDF of $Y.$  Clearly, $Y$  cannot take values outside $[0,4].$  So $G(y) = 0$ 
+ if $y&lt;0$ and $G(y) = 1$  if $y\geq 4.$  
+<p></p>
+Let $y\in[0,4).$
+<p></p>
+Then 
+$$G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = \frac 12\sqrt y.$$
+Differentiating this, we arrive at the required density of $Y$  as
+$$g(y) = G'(y) = \left\{\begin{array}{ll}\frac{1}{4\sqrt y}&\text{if }y\in(0,4)\\ 0&\text{otherwise.}\end{array}\right.$$
+ ■
+</p> 
+You see the advantage of monotonicity. Even though $x\mapsto x^2$  is a not a monotone function over ${\mathbb R},$  it
+ is so when restricted to $[0,2].$  The CDF technique can handle even some simple non-monotonic cases, as we show now.
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Let $X$  be uniform over $[-1,1].$  Find the density of $X^2.$  
+<p></p>
+<b>SOLUTION:</b>
+Clearly, $Y=X^2$  cannot go outside $[0,1].$  So its CDF $G(y)$  must have $G(y)=0$  for $y&lt;0$ 
+ and $G(y)=1$  for $y\geq 1.$  
+<p></p>
+For $y\in[0,1)$  we have
+$$G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.$$
+Differentiating we get the density
+$$g(y) = \left\{\begin{array}{ll}\frac{1}{2\sqrt y}&\text{if }y\in(0,1)\\ 0&\text{otherwise.}\end{array}\right. $$
+ ■
+</p>
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+If $X$  has density $f(x)=\left\{\begin{array}{ll}2x&\text{if }x\in(0,1)\\ 0&\text{otherwise.}\end{array}\right.$, then find density of $X^2.$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;If $X$  has constant density over $(0,1)$  and zero outside it, then guess the
+ density of $1-X$, and prove your guess.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;If $X$  has density $f(x)$, then the density of $-X$  is 
+<ol type="A">
+<li>$f(x)$</li>
+<li>$-f(x)$</li>
+<li>$f(-x)$</li>
+<li>$-f(-x)$</li>
+</ol>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y) = \frac{1}{2\pi} e^{-\frac 12(x^2+y^2)},$  then
+ find the density of $R = \sqrt{X^2+Y^2}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the unit disc in ${\mathbb R}^2,$  and we write
+ $(X,Y)$  as $(R,\Theta)$  in polar coordinates where $\Theta\in[0,2\pi),$  then
+ find density of $R$  and also the density of $\Theta.$</p>
+
+<p></p>
+
+<h1><a
+name="Jacobian formula (1 dim)">Jacobian formula (1 dim)</a></h1>
+<a href="https://youtu.be/lw4-9KY6MW0">Video for this section</a>
+<p></p>
+To understand the Jacobian method, it will help to look at the univariate CDF method. Let $f(x)$  be a density of $X$ 
+ and let $Y=h(X),$  where $h(\cdot)$  is an increasing bijection with differentiable $h ^{-1}(y).$
+<p></p>
+Then the CDF of $Y$  is $G(y) = P(Y\leq y) = P(h(X)\leq y) = P(X\leq h ^{-1}(y)) = F(h
+ ^{-1}(y)),$  where $F(\cdot)$  is the
+ CDF of $X.$  
+<p></p>
+So $Y$  has density given by
+$$g(y) = G'(y) = \frac{d}{dy}F(h ^{-1}(y)) = f(h ^{-1}(y))\frac{d}{dy}h ^{-1}(y).$$
+So far we are assuming that $h(\cdot)$  is an increasing function. A very similar argument works for a decreasing function
+ as well. In general for any bijection $h(\cdot),$  we have
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|.\hspace{1in} \mbox{(*)}$$
+<p></p>
+
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;If $X$  has density $f(x)$, then find density of $aX+b$  for $a\neq 0$  and $b\in{\mathbb R}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;If $X$  has density $f(x) =\left\{\begin{array}{ll}c\, x e^{-x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $, then
+ find density of $Y = \sqrt{X}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Let $X$  have density $f(x) = \left\{\begin{array}{ll}2 e^{-2x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right.$  Find
+ density of $Y=X^2$  using (*).</p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;Let $X$  have density $f(x).$  Find
+ density of $Y=a X+b$  using (*) if $a\neq 0.$  </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Let $X$  have uniform distribution over $(-1,1).$  Find density of $Y=\sin X$  using (*).</p>
+
+<h1><a
+name="Jacobian formula (intuition)">Jacobian formula (intuition)</a></h1>
+<a href="https://youtu.be/sGlCID43YeE">Video for this section</a>
+<p></p>
+
+<p></p>
+Let's first massage (*) into a more elegant form. We know that $h(h ^{-1} (y))\equiv y.$
+<p></p>
+Differentiating this wrt $y$  we have $h'(h ^{-1} (y))\frac{d}{dy} h ^{-1}(y) \equiv 1,$  <i>i.e.</i>, 
+$$\frac{d}{dy} h ^{-1}(y) = \frac{1}{h'(h ^{-1}(y))}.$$
+So we get 
+$$g(y) = \frac{f(h ^{-1}(y))}{ |h'(h ^{-1}(y))| }.$$
+If we write $x = h ^{-1}(y),$  this will look less complicated:
+$$g(y) = \frac{f(x)}{ |h'(x)| }.$$
+So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$   
+<p></p>
+ Suppose that $X$  has uniform distribution over $[0,1].$
+Consider the density of $X.$   Imagine 10 equal length subintervals along $[0,1].$  Since the total 
+area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
+ say that each subinterval accounts for $\frac{1}{10}$  mass. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/squeeze1.png"></th>
+</tr>
+<tr>
+<th>All the rectangles are identical</th>
+</tr>
+</table>
+</center>
+When you compute $Y=X^2,$  the intervals close to 0 get squeezed further down to 0,
+ while those closer to 1 are stretched. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/squeeze2.png"></th>
+</tr>
+<tr>
+<th>Rectangles are squeezed and stretched</th>
+</tr>
+</table>
+</center>
+But still each rectangle has to account for $\frac{1}{10}$  mass. So the squeezed rectangles have
+to  compensate by growing taller,
+ while the stretched ones compensate by getting shorter.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/squeeze3.png"></th>
+</tr>
+<tr>
+<th>All rectangles now again have area $\frac{1}{10}.$</th>
+</tr>
+</table>
+</center>
+ This
+ leads to $Y$  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
+ squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. 
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;
+If $X$  has uniform distribution over (2,4)
+then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian formula
+ algeraically. Think in terms of which part
+ gets squeezed/expanded. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
+ Guess the form of the density of $Y.$  Do you see why we needed the transform to be bijective in our intuition?
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">We were assuming that density of $Y$  at any given point was controlled by the density
+ of $X$  at only one point. But in this example, the density of $Y$  at, say,
+ $y=\frac 14$  is governed by the density of $X$  at $x=\frac 12$  as well as $x=-\frac 12.$</div></p>
+ 
+</p>
+
+<p></p>
+
+<h1><a
+name="Jacobian matrix">Jacobian matrix</a></h1>
+<a href="https://youtu.be/GMC3sHP9HWg">Video for this section</a>
+<p></p>
+In (*) above we had
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|,$$
+where $h$  was assumed to be a bijection with differentiable $h ^{-1}.$  
+<p></p>
+In order to  generalise this  to the multivariate set up, we need to work with a bijection $h:{\mathbb R}^n\rightarrow{\mathbb R}^n.$ 
+   We need to do two things:
+<ul>
+<li>we need to define differentiability for functions from ${\mathbb R}^n$  to ${\mathbb R}^n.$
+</li>
+<li>
+we need to compute derivative of such functions.</li>
+</ul>
+
+<h2><a
+name="Multivariate differentiation">Multivariate differentiation</a></h2>
+$f:{\mathbb R}\rightarrow{\mathbb R}$  is called differentiable at some $a$, if 
+$$\lim_{x\rightarrow a} \frac{f(x)-f(a)}{x-a}\mbox{ exists finitely.}$$
+If this limit is called $m$, then this can be recast in the geometrically more applealing way as 
+$$\exists m\in{\mathbb R}~~ \lim_{x\rightarrow a}\frac{f(x)-\{f(a)+m\cdot(x-a)\}}{x-a} = 0.$$
+This is geometrically more appealing because you can think of this as $f(x)-f(a)\approx m\cdot(x-a),$  <i>i.e.</i>, near $a$ 
+ the graph of $f$  looks like the line passing through $(a,f(a))$  with slope $m.$  
+<p></p>
+This immediately generalises to $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  as follows.
+<fieldset>
+<legend><b>Definition: Multivariate differentiation</b></legend>
+Call $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  <b><font color="red" size="40">differentiable</font></b> at $\v a\in{\mathbb R}^n$  if 
+$$\exists M_{m\times n} ~~ \lim_{\v x\rightarrow \v a}\frac{f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}}{\|\v x-\v a\|} = \v 0.$$
+</fieldset>
+Such a matrix $M$  may depend on $\v a,$  and will be unique, and its $(i,j)$-th entry will be given by 
+$$m_{ij} = \frac{\partial f_i}{\partial x_j}.$$
+Here $f_i$  is the $i$-th component of $f.$  
+<p></p>
+Let us digest this using an example. 
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;
+Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
+ of the Jacobian.
+<p></p>
+<b>SOLUTION:</b>
+Note that $f$  consists of two function $f_1,f_2:{\mathbb R}^2,\rightarrow{\mathbb R}.$  These are its <b><font color="red" size="40">component</font></b>  functions,
+ $f_1(x_1,x_2) = \sin(x_1x_2)$  and $f_2(x_1,x_2) = x_1-x_2^2.$  
+<p></p>
+The Jacobian is a $2\times 2$  matrix with $(i,j)$-th entry $\frac{\partial f_i}{\partial x_j}.$  Note that each
+ row is devoted to a single $f_i$  and each column to a single $x_j.$  In general, if we had $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ 
+ the matrix would have been $m\times n.$  
+<p></p>
+In our case 
+$$\begin{eqnarray*}
+\frac{\partial f_1}{\partial x_1} &amp; = &amp; x_2\cos (x_1x_2),\\
+\frac{\partial f_1}{\partial x_2} &amp; = &amp; x_1\cos (x_1x_2),\\
+\frac{\partial f_2}{\partial x_1} &amp; = &amp; 1\\
+\frac{\partial f_2}{\partial x_2} &amp; = &amp; -2x_2.
+\end{eqnarray*}$$
+So the Jacobian is 
+$$\left[\begin{array}{ccccccccccc}x_2\cos (x_1x_2) &amp; x_1\cos (x_1x_2)\\ 1 &amp; -2x_2
+\end{array}\right].$$
+Its determinant is 
+$$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).$$
+ ■
+</p>  
+
+<p></p>
+
+<blockquote>
+<img src="image/alert.png">If all this looks like unmotivated magic, you might benefit from <a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+ that I have made for Jacobians</a>. The video is about 21 min long, which is too long for my taste. You may like to navigate
+ to relevant portions of it using the following guideline:
+<ul>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=0s">0:00</a>: Casting univariate
+ differentiation into a form suitable for generalisation. </li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=271s">4:31</a>: Differentiation of $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ </li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=514s">8:34</a>: Geometric
+ interpretation of Jacobian matrices </li>
+
+<li>
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=905s">15:05</a>: Why
+ care about the determinant of Jacobian </li>
+
+</ul>
+
+</blockquote>
+
+
+<h2><a
+name="Problem set 4">Problem set 4</a></h2>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Compute the Jacobian matrix for $h(x,y) = (x+y,x-y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;What is the Jacobian matrix for the transform $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $h(\v x) = A\v
+ x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$?</p>
+
+<p></p>
+
+<h1><a
+name="Multivariate Jacobian formula">Multivariate Jacobian formula</a></h1>
+<a href="https://youtu.be/9pWai6cA7no">Video for this section</a>
+<p></p>
+We shall imitate our familiar  univariate Jacobian formula
+$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|$$
+to get the following theorem. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
+bijection with differentiable inverse. Let $\v Y = h(\v X).$ 
+ Then $\v Y$  has density
+$$g(\v y) = f(h ^{-1}(\v y)) J,$$
+where $J$  is the absolute determinant of Jacobian of $h ^{-1}(\v y).$
+</fieldset>
+ We shall not prove this theorem here. But the intuitive argument is just as in the univariate case. 
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;
+Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y_1 =
+ X_1X_2$  and $Y_2 = X_1.$  Find the joint
+ density of $\v Y = (Y_1,Y_2).$  
+<p></p>
+<b>SOLUTION:</b>
+Let $S = [1,2]\times[3,4].$  
+<p></p>
+Here the transform is $h(x_1,x_2) = (x_1x_2,x_1).$
+<p></p>
+Clearly, $h:S\rightarrow h(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
+ uniquely. 
+<p></p>
+The inverse transform is $h ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
+The Jacobian of this is 
+$$\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac{1}{y_2} &amp; -\frac{y_1}{y_2^2}
+\end{array}\right],$$
+which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
+<p></p>
+So the required density will be 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }\left(y_2,\frac{y_1}{y_2}\right)\in S\\ 0&\text{otherwise.}\end{array}\right.$$
+Often we want to write it as 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in T\\ 0&\text{otherwise.}\end{array}\right.$$
+for some suitably defined $T.$  This may be done as follows.  
+<p></p>
+$\left(y_2,\frac{y_1}{y_2}\right)\in S$  means 
+$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 4.$$
+Sketching these restrictions we get this region:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jreg.png"></th>
+</tr>
+<tr>
+<th>$T$  shown in red</th>
+</tr>
+</table>
+</center>
+ ■
+</p>
+
+<h2><a
+name="Problem set 5">Problem set 5</a></h2>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
+ then find the joint density of $(X+Y, X-Y).$ </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
+non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independent.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rotrect.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

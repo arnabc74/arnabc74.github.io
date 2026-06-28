@@ -1,0 +1,145 @@
+@{<NOTE>
+<M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
+[Update:[Mon Jun 22 IST 2026]]
+<TITLE>Inequalities</TITLE>
+<HEAD1>Cauchy-Schwartz</HEAD1>
+
+<THM name="Cauchy-Schwarz inequality">
+<M>cov(X,Y)^2 \leq V(X)V(Y).</M>
+Equality holds iff <M>\exists a,b,c\in\rr~~P(aX+bY=c)=1.</M>
+</THM>
+<PF>
+The result is obvious if <M>X</M> is degenerate. So let's
+consider the case where <M>X</M> is not degenerate. Then <M>V(X)>0.</M>
+<P/>
+Define <M>Z = Y-\underbrace{[[cov(X,Y)][V(X)]]}_\beta  X.</M> 
+<P/>
+We know that <M>V(Z)\geq 0.</M>
+<P/>
+Now, 
+<D>
+V(Z) = V(Y) + V(\beta X) - 2cov(Y,\beta X) = V(Y) + \beta^2 V(X)
+- 2 \beta cov(X,Y).
+</D>
+Since <M>\beta = [[cov(X,Y)][V(X)]],</M> this reduces to 
+<D>
+V(Y) - [[cov(X,Y)^2][V(X)]].
+</D>
+Since this is <M>\geq0,</M> the inequality follows immediately.
+<P/>
+Also equality holds iff <M>V(Z)=0</M>, i.e., <M>Z</M> is degenerate.
+<P/>
+So we have <M>P(Z=k)=1</M> for some <M>k\in\rr,</M>
+
+i.e., <M>P(Y - \beta X = k) = 1</M>. 
+
+Thus, if we take <M>a=-\beta</M>, <M>b = 1</M>  and <M>c = k</M>, then 
+<M>P(aX+bY=c)=1</M>, as
+ required, completing the proof.
+</PF>
+<TODO>Geometry of random variables in Cauchy-Schwartz</TODO>
+
+<HEAD1>Markov</HEAD1>
+<EXM>If average salary in a company is 50,000, then no more than 20% of the employees can make
+ 250,000 or more. Since 50000/250000 = 1/5.</EXM>
+
+<THM name="Markov inequality">
+Let <M>k\in\nn.</M>  Let <M>X</M>  be a nonnegative random variable with <M>E(X^k) < \infty.</M>  
+Let <M>\epsilon>0.</M>
+Then <M>P(X \geq \epsilon) \leq [[E(X^k)][\epsilon^k]].</M> 
+</THM>
+<PF>
+Compare with <M>Y = <CASES> \epsilon<IF>x\geq \epsilon</IF> 0<ELSE/></CASES>.</M>
+
+Note that <M>Y\leq X.</M>  Hence <M>E(Y^k)\leq E(X^k).</M>  
+But <M>E(Y^k) = P(X\leq \epsilon) \epsilon^k.</M>  Hence the result.
+</PF>
+Will higher values of <M>k</M>  necessarily give you lower bounds?
+<TODO>
+Application areas:
+<UL><LI><M>L_1</M>  convergence implies convergence in probability.</LI>
+<LI>(Las Vegas) Computer algorithm design to limit the probability that a process will exceed a certain time
+ complexity of memory usage.
+
+e.g., if a randomised algorithm takes <M>X</M>  steps to finish, then we often know <M>E(X)</M> 
+ as a function of the input size. (For instance, in a randomised quicksort algorithm <M>E(X) =
+ 2n\log n,</M>  where <M>n</M>  is the length of the array.) Then <M>P(X>10E(X))\leq [[1][10]].</M>  
+
+This allows engineers to guarantee system satibility without knowing the exact distribution of <M>X.</M>
+</LI>
+<LI>(Monte Carlo) A randomised primality testing algorithm (like Miller Rabin) makes <M>X</M> 
+ errors during a single test run. By design <M>E(X)=0.25,</M>  say. We shall run this test run
+ independently <M>k</M>  times. Bound the probability of failure, <M>P(X\geq 1)^k\leq 0.25^k.</M> </LI>
+<LI>In network and queueing theory: estimate the probability that a packet delays or queue lengths
+ will exceed a critical threshold. No distributional modelling needed.
+
+e.g., a router receives a random number (<M>X</M>) of packets every millisecond. We know from the
+ past that <M>E(X)=50.</M>  We do not know the distribution of <M>X.</M>  The router's buffer can
+ hold 250 packets before overflowing. The network engineer needs to estimate the failure rate,
+ which is <M>P(X\geq 250) \leq 20\%,</M>  by the Markov inequality.</LI>
+<LI>risk management and finance: wors-case estimates of extreme financial losses or insurance
+ claims relaying solely on average historical risk.
+<UL><LI>A bank has a large portfolio of small business loans. <M>X=</M> number of defaulters in a
+ single month. Past experience shows <M>E(X)=2M.</M> Liquidity crisis will arise if <M>X\geq
+ 20M.</M>  Bound probability of that.</LI>
+<LI>A financial system tracks <M>X</M>  the downtime of the system per year. Past data shows
+ <M>E(X)=15</M>  minutes. Crash would result if <M>X\geq 2</M>  hours. Bound its probability.</LI>
+<LI>During highly volatile market anomaly, an investment fund's historical data becomes useless.
+ The only certain information is the current daily expected loss <M>E(X)=100,000.</M>  Upper bound <M>P(X\geq 1,000,000).</M></LI>
+</UL>
+</LI>
+</UL>
+</TODO>
+
+
+<HEAD1>Chebyshev</HEAD1>
+<FNOTE>Chebyshev is also credited with designing a <LINK to="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
+robot-like linkage</LINK>.</FNOTE>
+<THM name="Chebyshev inequality">
+Let <M>V(X)<\infty.</M> Then 
+<D>
+\forall \epsilon>0~~P(|X-E(X)| \geq \epsilon) \leq [[V(X)][\epsilon^2]].
+</D>
+</THM>
+<PF>
+This is just Markov inequality with <M>k=2</M>  applied to the random variable <M>|X-E(X)|.</M>
+</PF>
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+ Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
+ weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
+ get <M>0 < 0</M>  for a degenerate <M>X</M>.
+
+<TODO>
+<OL>
+<LI>Distinct elements counting like in the BJKST algo: See pdf downloaded in mobile.</LI>
+<LI>Frequency estimation (like count-min sketch): See pdf downloaded in mobile.</LI>
+<LI>Machine learning and PAC learning: Mention PAC as</LI>
+</OL>
+</TODO>
+<HEAD1>WLLN</HEAD1>
+
+<THM name="Weak Law of Large Numbers (WLLN)">
+Let <M>X_1,X_2,...</M> be a sequence of independent and
+identically distributed (IID) random variables (defined
+on the same probability space) with <M>E(X_1)=\mu</M> and
+<M>V(X_1)=\sigma^2<\infty.</M> Let, for <M>n\in\nn</M>, 
+<D>
+\overline X_n = [[1n]]\sum_{i=1}^n X_i.
+</D>
+Then 
+<D>
+\forall \epsilon > 0~~ P(|\overline X_n-\mu|> \epsilon) \to
+0\mbox{ as } n\to \infty.
+</D>
+</THM>
+<PF>
+Use the exercise above and Chebyshev inequality.
+</PF>
+<HEAD1>Strong law of large numbers (SLLN)</HEAD1>
+<THM name="SLLN">Let <M>(X_n)</M>  be an IID sequence of random variables with <M>E(X_1) = \mu \in\rr.</M> 
+ Let <M>\bar X_n = [[1n]](X_1+\cdots+X_n).</M>
+
+Then <M>\bar X_n \toA \mu.</M>
+</THM>
+<PF>Skipped.</PF>
+</NOTE>@}

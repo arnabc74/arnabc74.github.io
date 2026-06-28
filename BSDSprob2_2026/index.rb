@@ -6,12 +6,14 @@ This
 <HEAD2>Marks distribution</HEAD2>
 <UL><LI>Midsem: 30</LI><LI>Assignments: 20</LI><LI>End sem: 50</LI></UL>
 <HEAD2>Class notes</HEAD2>
-Before midsem:
 <OL>
-<LI><LINK to="trans.html">Transformations of random variables</LINK></LI>
-<LI><LINK to="normal.html">Multivariate normal and related distributions</LINK></LI>
-<LI><LINK to="cf.html">Multivariate normal and related distributions</LINK></LI>
-<LI><LINK to="conv.html">Multivariate normal and related distributions</LINK></LI>
+<LI><LINK to="page1.html">Transformation of random vectors using Jacobian</LINK></LI>
+<LI><LINK to="page2.html">Sampling distributions of normal mean and variance</LINK></LI>
+<LI><LINK to="page3.html">Inequalities and laws of large numbers</LINK></LI>
+<LI><LINK to="page4.html">Almost sure convergence, Borel-Cantelli, <M>L_p</M></LINK></LI>
+<LI><LINK to="page5.html">Convergence theorems</LINK></LI>
+<LI><LINK to="page6.html">Convergence in distribution, CLT</LINK></LI>
+<LI><LINK to="page7.html">Generating functions</LINK></LI>
 
 </OL>
 <HEAD2>References</HEAD2>

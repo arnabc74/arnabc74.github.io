@@ -1,0 +1,439 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3/>
+<ul>
+<li>
+<a href="#Convergence in distribution">Convergence in distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Central Limit Theorem">Central Limit Theorem</a>
+</li>
+<li>
+<a href="#Central Limit Theorem">Central Limit Theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Slutsky's theorem">Slutsky's theorem</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Delta method">Delta method</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Multivariate CLT">Multivariate CLT</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Cramer-Wold device">Cramer-Wold device</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
+$\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+[Update:[Mon Jun 22 IST 2026}
+<h1 xmlns=""><a
+name="Convergence in distribution">Convergence in distribution</a></h1>
+
+<fieldset>
+<legend><b>Definition: Convergence in distribution</b></legend>
+Let $(X_n), X$  be some random variables (not necessarily defined on the same probability space). Let $X_n$  have
+ distribution function $F_n$  and $X $ have distribution function $F.$  We say $X_n$  converges to $X$ 
+ <b><font color="red" size="40">in distribution</font></b>  and write $X_n\rightarrowD X$  if for all continuity point $x$  of $F$ we have $F_n(x)\rightarrow F(x).$
+</fieldset>
+
+<h2><a
+name="Central Limit Theorem">Central Limit Theorem</a></h2>
+
+<h1><a
+name="Central Limit Theorem">Central Limit Theorem</a></h1>
+The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
+ and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
+<p></p>
+
+<fieldset>
+<legend><b><i>Central imit Theorem (CLT)</i></b></legend>
+Let $X_1,X_2,...$  be IID with $E(X_i) = \mu$  and $V(X_i) = \sigma^2 &lt; \infty.$  Let 
+$$\bar X_n = \frac{X_1+\cdots+X_n}{n}\mbox{ for } n\in{\mathbb N}.$$
+Then the distribution of $\frac{\sqrt n(\bar X_n-\mu)}{\sigma}$  tends to $N(0,1)$  as $n\rightarrow \infty.$
+More precisely, if $F_n(\cdot)$  denotes the CDF of $\frac{\sqrt n(\bar X_n-\mu)}{\sigma},$  and $\Phi(\cdot)$ 
+ denotes the $N(0,1)$  CDF, then
+$$\forall t\in{\mathbb R}~~F_n(t)\rightarrow \Phi(t) \mbox{ as } n\rightarrow \infty.$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Next semester.<b><i>[QED]</i></b>
+</p>
+ This theorem is a manifestation of statistical regularity. Whatever may the true
+ distribution of the $X_i$'s be, if you average a large number of $X_i$'s you get close
+ approximation to the normal distribution. This allows
+statistician to deal with averages of a large number of IID observations without knowing the true
+ underlying distribution. 
+<p></p>
+Let's look at a typical example. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;If 40% of the population of a city supports a poll candidate, then what is the approximate
+ probability that a random sample of 500 persons from the city will have at least 250 supporters?
+<p></p>
+<b>SOLUTION:</b>
+Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
+ from the population of the city. 
+<p></p>
+We shall assume that the trials are IID. Now here we are introducing an approximation: the first
+ membr of the sample was drawn from the entire population, but since we generally sample
+ <i>without replacement</i>  in such a scenario, the second member of the sample was drawn from a
+ population of size one less than in the case of the first member. So the random experiment has
+ actually changed, and they are not independent also. But since the population is large (much
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
+<p></p>
+We also have a random variable: 
+$$X(\omega) = \left\{\begin{array}{ll}1 &\text{if }\omega\mbox{ supports the candiate}\\ 0&\text{otherwise.}\end{array}\right.$$ 
+Here$\omega$  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
+$X_1,...,X_{500}$  IID $Bernoulli(0.4).$  This $0.4$  came from the 40% given in the problem. 
+<p></p>
+By CLT we have 
+$$\frac{\sqrt n (\bar X_n-\mu)}{\sigma}\rightarrow N(0,1)$$
+as $n\rightarrow \infty,$  where $\mu = E(X_i)$  and $\sigma^2 = V(X_i)&lt; \infty.$  We shall write this as 
+$$\bar X_n \stackrel{\bullet}{\sim} N\left(\mu,\frac{\sigma^2}{n}\right)$$
+for large $n.$  Here $\stackrel\bullet\sim$  means "approximately distributed as".
+<p></p>
+In our case, $\mu = 0.40$, $\sigma^2 = 0.4(1-0.4) = 0.24$  and $n=500.$  So 
+$$\bar X_{500} \stackrel{\bullet}{\sim} N\left(0.40,\frac{0.24}{500}\right),$$
+or 
+$$\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).$$
+Nowe we can find the required probability as
+$$P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi\left(\frac{250-200}{\sqrt{120}}\right).$$
+This probability may be obtained by looking up standard $N(0,1)$  tables or using R as
+<font color="red">
+<pre>
+1-pnorm((250-200)/sqrt(120))
+</pre>
+</font>
+  ■
+</p>
+In this problem we knew the distribution of the $X_i$'s, but we never really made any use of it, except to compute $E(X_i)$ 
+ and $V(X_i).$  
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;<font size="-2">[rossdistrib10.png]</font><img width="" src="image/rossdistrib10.png" style="vertical-align:text-top;"></p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;<font size="-2">[rossdistrib8.png]</font><img width="" src="image/rossdistrib8.png" style="vertical-align:text-top;">
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</div></p>
+
+</p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;<font size="-2">[rossdistrib5.png]</font><img width="" src="image/rossdistrib5.png" style="vertical-align:text-top;"></p>
+
+<p></p>
+
+<h2><a
+name="Slutsky's theorem">Slutsky's theorem</a></h2>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $(X_n), (Y_n), X$  be random variables defined on the same probability space. $c\in{\mathbb R}.$  Let
+ $X_n\rightarrowD X$  and $Y_n\rightarrowP c.$
+<p></p>
+Then <ol type="">
+
+<li>$X_n+Y_n\rightarrowD X+c.$</li>
+
+<li>$X_n-Y_n\rightarrowD X-c.$</li>
+
+<li>$X_nY_n\rightarrowD cX.$</li>
+
+<li>$X_n/Y_n\rightarrowD X/c$  if $c\neq 0.$</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Recall that convergence in probability means that for every $\varepsilon &gt; 0$,
+$$
+P(|X_n - X| &gt; \varepsilon) \rightarrow 0.
+$$
+<p></p>
+We must show that for every $\varepsilon &gt; 0$,
+$$
+P\bigl(|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr) \rightarrow 0.
+$$
+<p></p>
+Fix $\varepsilon &gt; 0$.
+<p></p>
+By the triangle inequality,
+$$
+|(X_n + Y_n) - (X + c)|
+=
+|(X_n - X) + (Y_n - c)|
+\leq
+|X_n - X| + |Y_n - c|.
+$$
+<p></p>
+Hence,
+$$
+\bigl\{|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr\}
+\subseteq
+\bigl\{|X_n - X| + |Y_n - c| &gt; \varepsilon\bigr\}.
+$$
+<p></p>
+Now observe that
+$$
+\bigl\{|X_n - X| + |Y_n - c| &gt; \varepsilon\bigr\}
+\subseteq
+\bigl\{|X_n - X| &gt; \varepsilon/2\bigr\}
+\cup
+\bigl\{|Y_n - c| &gt; \varepsilon/2\bigr\}.
+$$
+<p></p>
+Indeed, if both
+$$
+|X_n - X| \leq \varepsilon/2
+\quad\text{and}\quad
+|Y_n - c| \leq \varepsilon/2,
+$$
+then
+$$
+|X_n - X| + |Y_n - c|
+\leq
+\varepsilon.
+$$
+<p></p>
+Therefore, by the union bound,
+$$
+P\bigl(|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr)
+\leq
+P(|X_n - X| &gt; \varepsilon/2)
++
+P(|Y_n - c| &gt; \varepsilon/2).
+$$
+<p></p>
+Since $X_n \rightarrow X$ in probability,
+$$
+P(|X_n - X| &gt; \varepsilon/2) \rightarrow 0.
+$$
+<p></p>
+Since $Y_n \rightarrow c$ in probability,
+$$
+P(|Y_n - c| &gt; \varepsilon/2) \rightarrow 0.
+$$
+<p></p>
+Taking limits as $n \rightarrow \infty$, we obtain
+$$
+\lim_{n\rightarrow\infty}
+P\bigl(|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr)
+= 0.
+$$
+<p></p>
+Hence,
+$$
+X_n + Y_n \xrightarrow{P} X + c.
+$$
+<p></p>
+Therefore $X_n + Y_n$ converges in probability to $X + c$.
+\end{proof}
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Delta method">Delta method</a></h2>
+
+<fieldset>
+<legend><b><i>Delta method</i></b></legend>
+Let $\frac{\sqrt{n}(X_n-\mu)}{\sigma}\rightarrowD$  some distribution. Let $f:{\mathbb R}\rightarrow{\mathbb R}$  be a 
+ differentiable function with $f'(\mu)\neq 0.$
+<p></p>
+ Then $\frac{\sqrt{n}(f(X_n)-f(\mu))}{\sigma f'(\mu)}\rightarrowD$  the same distribution.
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Nice proof using Skorohod in Resnick (p262).<b><i>[QED]</i></b>
+</p>
+Lots of applications. 
+<h2><a
+name="Multivariate CLT">Multivariate CLT</a></h2>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Multivariate CLT</i></b></legend>
+Let $(\v X_n)$  be iid $k$-dimensional random vectors with mean vector $\v \mu$  and
+ variance matrix $\Sigma.$  Then 
+$$\sqrt{n}(\v{\bar X}_n-\v\mu)\rightarrowD N_k(\v 0, \Sigma).$$
+</fieldset>
+
+<h2><a
+name="Cramer-Wold device">Cramer-Wold device</a></h2>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Cramer Wold theorem</i></b></legend>
+Let $(\v X_n), \v X $ be random vectors. Then $\v X_n\rightarrowD \v X$  if and only if 
+$$\forall \v \ell\in{\mathbb R}^k~~\v\ell' \v X_n\rightarrowD \v X.$$
+</fieldset>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

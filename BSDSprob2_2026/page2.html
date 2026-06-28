@@ -1,0 +1,340 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<h3>Sampling distrbutions for normal mean and variance</h3>
+<ul>
+<li>
+<a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 1">Problem set 1</a>
+</li>
+<li>
+<a href="#$t$  distribution">$t$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 2">Problem set 2</a>
+</li>
+<li>
+<a href="#$F$  distribution">$F$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Problem set 3">Problem set 3</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+$\newcommand{\k}[1]{\chi^2_{(#1)}}$
+[Update:[Wed Jun 17 IST 2026}
+<title xmlns="">Sampling distrbutions for normal mean and variance</title>
+
+<h1><a
+name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
+<a href="https://youtu.be/BRwFMYfb4rE">Video for this section</a>
+<p></p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, IID) from $N(\mu, \sigma^2).$ We consider
+ the sample mean $\bar X=\frac 1n\sum _1^nX_i$  and sample variance $S^2=\frac 1n\sum_1^n (X_i-\bar X)^2.$   Then 
+<ol type="">
+
+<li>$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)$</li>
+
+<li>$\frac{nS^2}{\sigma^2}\sim \k {n-1}$</li>
+
+<li>$\bar X$  and $S^2$  are independent.</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Without loss of generality, we take $\mu=0$  and $\sigma=1.$
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">Once we have proved the $\mu=0$  case, we can work with $\mu+\sigma X_i$  to
+ get the general form.</div></blockquote>
+In ${\mathbb R}^n$  consider the subspace $V=span\{\v 1\},$  where $\v 1$  is the vector of al $1$'s. Clearly,
+ $dim(V)=1$  and $dim(V^\perp)=n-1.$
+<p></p>
+We have learnt that in ${\mathbb R}^n$  the component (<i>i.e.</i>, orthogonal projection) of one vector $\v v$  along
+ another vector $\v u$  is $\frac{\v u'\v v}{\v u'\v u}\v u.$ 
+<p></p>
+So the orthogonal projection of $\v X$  along $\v 1$  (<i>i.e.</i>, on $V$) is $\bar X\v 1.$  
+<p></p>
+Hence the orthogonal projection of $\v X$  on $V^\perp$  is  
+$$\v Y = \v X-\bar X\v 1 = \left[\begin{array}{ccccccccccc}X_1-\bar X\\\vdots\\X_n-\bar X
+\end{array}\right].$$
+So from earlier result, we immediately see that these two projections must be independent.
+<p></p>
+Now $\bar X$  is a function of the first projection, while $S^2$  is a function of the second. So they are independent.
+<p></p>
+Also $nS^2 = \|\v Y\|^2\sim \k{n-1}.$
+<p></p>
+The distribution of $\bar X$  is obvious from an earlier theorem.
+<b><i>[QED]</i></b>
+</p>
+
+<h2><a
+name="Problem set 1">Problem set 1</a></h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+Same set up as in the theorem above. What will  the distribution of $\sum_1^n (X_i-a)^2$ be, where $a\in{\mathbb R}$  is
+a fixed number?
+</p>
+
+<h1><a
+name="$t$  distribution">$t$  distribution</a></h1>
+<a href="https://youtu.be/mv62pUoznVI">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $t$-distribution</b></legend>
+If $X\sim N(0,1)$  and $Y\sim\k n$  and they are independent, then the distribution of $X/(\sqrt{Y/n})$  is
+ called $t$-distribution with $n$  degrees of freedom. Here $n&gt;0$  need not be an integer.
+</fieldset>
+Let us derive density of $t$-distribution with $n$  degrees of freedom. We shall do this step by step. 
+<p></p>
+From $Y$  we shall pass on to $Z = \sqrt{\frac Yn}$  and then to $\frac XZ.$  
+<p></p>
+Y has density $f_Y(y) =\left\{\begin{array}{ll}\mbox{const } e^{-\frac y2}y^{\frac n2-1}&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+The transform to go from $Y$  to $Z$  is $z = h(y) = \sqrt{\frac yn}$  with inverse $y = h ^{-1}(z) = n z^2.$ 
+<p></p>
+Hence, by the Jacobian formula, $Z$  has density
+$$f_Z(z) = 2nz f_Y(nz^2) = \left\{\begin{array}{ll}\mbox{const } e^{-nz^2/2} z^{n-2}&\text{if }z&gt;0\\ 0&\text{otherwise.}\end{array}\right.$$
+Next we shall employ the quotient formula to find density of $T = \frac XZ$  as 
+$$\begin{eqnarray*}
+f_T(t) 
+&amp; = &amp; \int_0^\infty u f_X(tu) f_Z(u)\, du\\
+&amp; = &amp; \mbox{const} \int_0^\infty u e^{-t^2u^2/2} e^{-nu^2/2} u^{n-2}\, du\\
+&amp; = &amp; \mbox{const} \int_0^\infty  u^{n-1} e^{-(t^2+n)u^2/2}\, du.
+\end{eqnarray*}$$
+Substituting $v = \frac{u^2}{2}$  we have 
+$$\begin{eqnarray*}
+&amp; = &amp; \mbox{const} \int_0^\infty  v^{\frac{n-1}{2}} e^{-(t^2+n)v}\, dv\\
+&amp; = &amp; \mbox{const} \int_0^\infty  v^{\frac{n+1}{2}-1} e^{-(t^2+n)v}\, dv\\
+&amp; = &amp; \mbox{const } \Gamma\left(\frac{n+1}{2}\right) (t^2+n)^{-\frac{n+1}{2}}
+&amp; = &amp; \mbox{const } (t^2+n)^{-\frac{n+1}{2}}.
+\end{eqnarray*}$$
+If you keep track of the constants, you will find that it is
+$$\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\times n^{\frac{n+1}{2}}.$$
+It should not be difficult to see that $t$-density is symmetric around 0. The densities are much like the $N(0,1)$ 
+ density. They lie somewhere between the Cauchy density and $N(0,1)$  density. As the degrees of freedom increase
+ to $\infty,$  the $t$-distribution approaches $N(0,1).$  For degrees of freedom more than 40, the $t$-density
+ is virtually indisguishable from that of $N(0,1)$  density.
+<p></p>
+
+<h2><a
+name="Problem set 2">Problem set 2</a></h2>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
+$$\frac{\sqrt n(\bar X-\mu)}{\sqrt{\sum(X_i-\bar X)^2/(n-1)}}?$$
+</p>
+
+<p></p>
+
+<h1><a
+name="$F$  distribution">$F$  distribution</a></h1>
+<a href="https://youtu.be/xTL6asmWxA8">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b>Definition: $F$-distribution</b></legend>
+If $X\sim \k m$  and $Y\sim \k n$  are independent random variables, then the distribution of $\frac{X/m}{Y/n}$  is
+ called $F$ -distribution with numerator degrees of freedom $m$  and denominator degrees of freedom $n.$
+</fieldset>
+The density of $X$  is $f_X(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}e^{-\frac x2}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+Similarly, 
+the density of $Y$  is $f_Y(y) =\left\{\begin{array}{ll}\mbox{const }y^{\frac n2-1}e^{-\frac y2}&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
+<p></p>
+Hence density of $Z = \frac XY$  is 
+$$\begin{eqnarray*}
+f_Z(z)
+&amp; = &amp; \int_0^\infty u f_X(zu)f_Y(u)\, du\\
+&amp; = &amp; \mbox{const}\int_0^\infty u (zu)^{\frac m2-1}e^{-\frac{zu}{2}} u^{\frac n2-1}e^{-\frac u2}\, du\\
+&amp; = &amp; \mbox{const }z^{\frac m2-1}\int_0^\infty  u^{\frac{m+n}{2}-1}e^{-\frac{z+1}{2}u}\, du\\
+&amp; = &amp; \mbox{const }z^{\frac m2-1}\Gamma\left(\frac{m+n}{2}\right) \left(\frac{z+1}{2}\right)^{-\frac{m+n}{2}}\\
+&amp; = &amp; \mbox{const }z^{\frac m2-1}(z+1)^{-\frac{m+n}{2}}.
+\end{eqnarray*}$$
+Hence the density of $\frac nmZ$  is 
+$$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2}}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $$
+<p></p>
+
+<h2><a
+name="Problem set 3">Problem set 3</a></h2>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from
+ $N(\mu_1,\sigma^2)$  and $N(\mu_2,\sigma^2)$, respectively (same $\sigma^2).$  
+Then what
+ is the distribution of 
+$$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
+</p>
+
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
