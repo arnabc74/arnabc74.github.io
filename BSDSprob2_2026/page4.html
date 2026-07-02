@@ -164,16 +164,28 @@ function myFunction() {
 <a href="#Borel-Cantelli lemmas">Borel-Cantelli lemmas</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
+<a href="#Demonstrations">Demonstrations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Monkey typing Hamlet">Monkey typing Hamlet</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Normal numbers">Normal numbers</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Random walk in 3D">Random walk in 3D</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
 <a href="#$L_p$ convergence for $p\geq1$">$L_p$ convergence for $p\geq1$</a>
 </li>
 </ul>
 <hr/>
 $\newcommand{\io}{~~\mathrm{i.o.}}$
 $\newcommand{\calF}{\mathcal{F}}$
-$\newcommand{\rightarrowL}[1]{\stackrel{L_#1}{\longrightarrow}}$
+$\newcommand{\rightarrowL}[1]{\stackrel{L_{#1}}{\longrightarrow}}$
 $\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
 $\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
-[Update:[Wed Jun 17 IST 2026}
+[Update:[Thu Jul 02 IST 2026}
 <h1 xmlns=""><a
 name="Almost sure and probability convergences">Almost sure and probability convergences</a></h1>
 
@@ -278,6 +290,12 @@ Here $\sum_n P(A_n) = \sum_n \frac 1n = \infty,$  but $P(A_n \io) = 0.$
 
 
 <p></p>
+
+<h2><a
+name="Demonstrations">Demonstrations</a></h2>
+
+<h3><a
+name="Monkey typing Hamlet">Monkey typing Hamlet</a></h3>
 A common demonstration of the second Borel-Canteli lemma is show that if a monkey types a keyboard
  randomly, then it will type the exact text of Hamlet infinitely often. 
 <p></p>
@@ -288,20 +306,37 @@ Let the exact text of Hamlet have $h$ letters.  Consider packets of $h$  letters
 <p></p>
 However, you really do not need to use the second Borel Cantelli lemma here. It also follows from continuity of probability.  
 <p></p>
+
+<h3><a
+name="Normal numbers">Normal numbers</a></h3>
 Consider a uniform random number between 0 and 1. Let $d_n$  be the $n$-th digit after
  the decimal point in its (unique) non-terminating decimal expansion. Then
  $\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.$ So, in particular, $P(0\mbox{ occurs }\io)=1.$  Hence, $P(0,1\mbox{ occur }\io)=1.$ 
  Proceeding similarly, $P(\mbox{each digit occurs }\io)=1.$
+<h3><a
+name="Random walk in 3D">Random walk in 3D</a></h3>
+Let $S = X_1+\cdots+X_n$  a simple, symmetric random walk in 3D. We shall show that $P(S_n=0\io)=0.$  Thanks to
+ the first Borel Cantelli lemma, it is enough to show
+that $\sum P(S_n=0) &lt; \infty.$ 
 <p></p>
-
-<font color="purple"><b>To do:</b>
-<ol type="">
-<li>random walk (1D, 2D must return i.o., but not in higher dimensions.</li>
-
-<li>P(Normal numbers)=1</li>
-
-</ol>
-</font>
+Now, $P(S_n=0)=0$ if $n$ is odd. So let us
+take $n=2(a+b+c),$ where $a$ is the number of $+x$
+steps (and $-x$ steps). Similarly, for $b,c.$
+<p></p>
+Total number of paths of length $2k$ is $6^{2k}.$
+Number of favourable paths is    
+$$
+\sum_{a,b,c:a+b+c=k} \frac{(2k)!}{a!^2 b!^2 c!^2}.
+$$
+By convexity of $\log m!$, the maximum term occurs
+when $a,b,c$ are as equal as possible. Hence $T_n\leq C
+n^2/((n/3)!)^6.$
+<p></p>
+Using Stirling's approximation $m!\sim \sqrt{2\pi
+m}(m/e)^m,$ we have $P(S_{2k}=0)\leq C n^{-3/2}.$ 
+<p></p>
+Hence the result.
+<p></p>
 
 <h2><a
 name="$L_p$ convergence for $p\geq1$">$L_p$ convergence for $p\geq1$</a></h2>
@@ -314,7 +349,49 @@ Let $p\geq 1.$  Let $(X_n), X$  be random variables defined on some probability 
 We write this as $X_n\rightarrowL p X.$
 </fieldset>
 
-<font color="purple"><b>To do:</b>Higher $p$  means stronger convergence. $E(X_n)\rightarrow E(X)$  is weaker than $L_1.$</font>
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $p &gt; q \geq 1.$ Then if $X_n\rightarrowL p X$ we
+must also have $X_n\rightarrowL q X.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $Y_n = X_n-X.$ 
+<p></p>
+Take $r=\frac pq$ and $s=\frac{p}{p-q}$ so
+that $\frac 1r+\frac 1s = 1.$
+<p></p>
+We have $|Y_n|^q = |Y_n|^q \cdot 1.$
+<p></p>
+Then by Holder inequality
+$$
+(\|Y_n\|_q)^q \leq (\|Y_n^q\|_r)^q \|1\|_s.  
+$$ 
+Since $qr = p,$
+$$
+(\|Y_n\|_q)^q \leq (\|Y_n\|_p)^q   
+$$ 
+Hence the result. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;
+If $X_n\rightarrow L 1 X,$ then $E(X_n)\rightarrow E(X),$ but the
+converse is not true.
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
+Take $X_n\equiv (-1)^n$ and $X\equiv 1$ as a
+counterexample for the converse.
+</div></p>
+
+</p>
 
 <p></p>
 The following example shows that almost sure convergence does not imply $L_p$  convergence, even when the $p$-th

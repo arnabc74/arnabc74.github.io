@@ -1,10 +1,10 @@
 @{<NOTE>
 <M>\newcommand{\io}{~~\mathrm{i.o.}}</M>
 <M>\newcommand{\calF}{\mathcal{F}}</M>
-<M>\newcommand{\toL}[1]{\stackrel{L_#1}{\longrightarrow}}</M>
+<M>\newcommand{\toL}[1]{\stackrel{L_{#1}}{\longrightarrow}}</M>
 <M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
 <M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
-[Update:[Wed Jun 17 IST 2026]]
+[Update:[Thu Jul 02 IST 2026]]
 <HEAD1>Almost sure and probability convergences</HEAD1>
 <DEFN name="Amost sure convergence">
 Let <M>(X_n),X</M>  be  random variables all defined on some common probability space <M>(\Omega,\calF, P).</M> 
@@ -83,6 +83,8 @@ P(A_n\io)
 </MULTILINE>
 </COMMENT>
 
+<HEAD2>Demonstrations</HEAD2>
+<HEAD3>Monkey typing Hamlet</HEAD3>
 A common demonstration of the second Borel-Canteli lemma is show that if a monkey types a keyboard
  randomly, then it will type the exact text of Hamlet infinitely often. 
 
@@ -93,14 +95,34 @@ Let the exact text of Hamlet have <M>h</M> letters.  Consider packets of <M>h</M
 
 However, you really do not need to use the second Borel Cantelli lemma here. It also follows from continuity of probability.  
 
+<HEAD3>Normal numbers</HEAD3>
 Consider a uniform random number between 0 and 1. Let <M>d_n</M>  be the <M>n</M>-th digit after
  the decimal point in its (unique) non-terminating decimal expansion. Then
  <M>\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.</M> So, in particular, <M>P(0\mbox{ occurs }\io)=1.</M>  Hence, <M>P(0,1\mbox{ occur }\io)=1.</M> 
  Proceeding similarly, <M>P(\mbox{each digit occurs }\io)=1.</M>
+<HEAD3>Random walk in 3D</HEAD3>
+Let <M>S = X_1+\cdots+X_n</M>  a simple, symmetric random walk in 3D. We shall show that <M>P(S_n=0\io)=0.</M>  Thanks to
+ the first Borel Cantelli lemma, it is enough to show
+that <M>\sum P(S_n=0) < \infty.</M> 
 
-<TODO><OL><LI>random walk (1D, 2D must return i.o., but not in higher dimensions.</LI>
-<LI>P(Normal numbers)=1</LI>
-</OL></TODO>
+Now, <M>P(S_n=0)=0</M> if <M>n</M> is odd. So let us
+take <M>n=2(a+b+c),</M> where <M>a</M> is the number of <M>+x</M>
+steps (and <M>-x</M> steps). Similarly, for <M>b,c.</M>
+
+Total number of paths of length <M>2k</M> is <M>6^{2k}.</M>
+Number of favourable paths is    
+<D>
+\sum_{a,b,c:a+b+c=k} [[(2k)!][a!^2 b!^2 c!^2]].
+</D>
+By convexity of <M>\log m!</M>, the maximum term occurs
+when <M>a,b,c</M> are as equal as possible. Hence <M>T_n\leq C
+n^2/((n/3)!)^6.</M>
+
+Using Stirling's approximation <M>m!\sim \sqrt{2\pi
+m}(m/e)^m,</M> we have <M>P(S_{2k}=0)\leq C n^{-3/2}.</M> 
+
+Hence the result.
+
 <HEAD2><M>L_p</M> convergence for <M>p\geq1</M></HEAD2>
 <DEFN name="$L_p$ convergence">
 Let <M>p\geq 1.</M>  Let <M>(X_n), X</M>  be random variables defined on some probability space. We say that <M>(X_n)</M> 
@@ -108,7 +130,39 @@ Let <M>p\geq 1.</M>  Let <M>(X_n), X</M>  be random variables defined on some pr
 
 We write this as <M>X_n\toL p X.</M>
 </DEFN>
-<TODO>Higher <M>p</M>  means stronger convergence. <M>E(X_n)\to E(X)</M>  is weaker than <M>L_1.</M></TODO>
+
+<THM>
+Let <M>p > q \geq 1.</M> Then if <M>X_n\toL p X</M> we
+must also have <M>X_n\toL q X.</M>
+</THM>
+<PF>
+Let <M>Y_n = X_n-X.</M> 
+
+Take <M>r=[[pq]]</M> and <M>s=[[p][p-q]]</M> so
+that <M>[[1r]]+[[1s]] = 1.</M>
+
+We have <M>|Y_n|^q = |Y_n|^q \cdot 1.</M>
+
+Then by Holder inequality
+<D>
+(\|Y_n\|_q)^q \leq (\|Y_n^q\|_r)^q \|1\|_s.  
+</D> 
+Since <M>qr = p,</M>
+<D>
+(\|Y_n\|_q)^q \leq (\|Y_n\|_p)^q   
+</D> 
+Hence the result. 
+</PF>
+
+<EXR>
+If <M>X_n\to L 1 X,</M> then <M>E(X_n)\to E(X),</M> but the
+converse is not true.
+<ANS>
+Take <M>X_n\equiv (-1)^n</M> and <M>X\equiv 1</M> as a
+counterexample for the converse.
+</ANS>
+</EXR>
+
 
 The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
  moments exist finitely for all the random variables involved. 
