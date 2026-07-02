@@ -1,5 +1,8 @@
 @{<NOTE>
 <M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
+<M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
+<M>\newcommand{\v}{\mathbf}</M>
+<M>\newcommand{\cov}{\mathrm{cov}}</M>
 [Update:[Mon Jun 22 IST 2026]]
 <TITLE>Inequalities</TITLE>
 <HEAD1>Cauchy-Schwartz</HEAD1>
@@ -37,8 +40,24 @@ Thus, if we take <M>a=-\beta</M>, <M>b = 1</M>  and <M>c = k</M>, then
 <M>P(aX+bY=c)=1</M>, as
  required, completing the proof.
 </PF>
-<TODO>Geometry of random variables in Cauchy-Schwartz</TODO>
+It is instructive to think about the  Cauchy-Schwartz inequality from a geometric perspective. If
+ we take two vectors , <M>\v u</M>  and <M>\v v</M>  in
+ 2D or 3D, we have the identity 
+<D>\v u\bullet\v v = \| \v u\| \cdot \|\v v\|\cos \theta,</D>
+where <M>\theta</M>  is the angle between the two vectors. 
+<CIMG web="dot.png"></CIMG>
+Now, if we replace the two vectors by the random variables <M>X</M>  and <M>Y</M>, then their covariance plays the role of
+ dot product. Indeed, covariance satisfies all the properties of a dot product (also called inner product in linear algebra).
+ Then the role of length of a vector (called norm in linear algebra) is played by standard deviation, since <M>\|\v u\| = \sqrt{\v u\bullet\v u}.</M>
 
+Similarly, <M>\sqrt{\cov(X,X)} = \sqrt{V(X)}.</M>  
+
+In this sense <M>\cos \theta = [[\cov(X,Y)][\sqrt{V(X)V(Y)}]].</M>
+
+Can we recover <M>\theta</M>  from this? Yes, using <M>cos ^{-1},</M>  provided the RHS is between <M>-1</M>  and <M>1.</M>
+Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometric interpretation,
+ <M>\cos ^2 \theta</M>  is called the correlation coefficient between <M>X</M>  and <M>Y.</M>  
+ 
 <HEAD1>Markov</HEAD1>
 <EXM>If average salary in a company is 50,000, then no more than 20% of the employees can make
  250,000 or more. Since 50000/250000 = 1/5.</EXM>
@@ -55,43 +74,142 @@ Note that <M>Y\leq X.</M>  Hence <M>E(Y^k)\leq E(X^k).</M>
 But <M>E(Y^k) = P(X\leq \epsilon) \epsilon^k.</M>  Hence the result.
 </PF>
 Will higher values of <M>k</M>  necessarily give you lower bounds?
-<TODO>
-Application areas:
-<UL><LI><M>L_1</M>  convergence implies convergence in probability.</LI>
-<LI>(Las Vegas) Computer algorithm design to limit the probability that a process will exceed a certain time
- complexity of memory usage.
 
-e.g., if a randomised algorithm takes <M>X</M>  steps to finish, then we often know <M>E(X)</M> 
- as a function of the input size. (For instance, in a randomised quicksort algorithm <M>E(X) =
- 2n\log n,</M>  where <M>n</M>  is the length of the array.) Then <M>P(X>10E(X))\leq [[1][10]].</M>  
+A direct application of this proves the following important result.
 
+<THM>If <M>X_n\to X</M>  in <M>L_1</M>  then <M>X_n\toP X.</M></THM>
+<PF>
+Take any <M>\epsilon>0.</M>  Then <M>P(|X_n-X|>\epsilon)\leq [[E(|X_n-X|)][\epsilon]]\to 0.</M>
+</PF>
+An interesting application is in computer science. There is a class of algorithms called Las Vegas algorithms. Such algorithms
+approach a problem in a random way that is sure to arrive at the answer, but after a random number
+ of steps.  If <M>X</M>  denotes the number steps,  we often know <M>E(X)</M>  as a function of the input size. For instance,
+ in the randomised quicksort algorithm <M>E(X) = n\log n,</M>  where <M>n</M>  is the number of entries to be sorted.
+Then Markov inequality helps us to get an upper bound on the probability that the
+ algorithm will take too long.
 This allows engineers to guarantee system satibility without knowing the exact distribution of <M>X.</M>
-</LI>
-<LI>(Monte Carlo) A randomised primality testing algorithm (like Miller Rabin) makes <M>X</M> 
- errors during a single test run. By design <M>E(X)=0.25,</M>  say. We shall run this test run
- independently <M>k</M>  times. Bound the probability of failure, <M>P(X\geq 1)^k\leq 0.25^k.</M> </LI>
-<LI>In network and queueing theory: estimate the probability that a packet delays or queue lengths
- will exceed a critical threshold. No distributional modelling needed.
 
-e.g., a router receives a random number (<M>X</M>) of packets every millisecond. We know from the
+<EXR>Prove that <M>P(X>10E(X))\leq [[1][10]].</M></EXR>  
+
+<EXR>
+A router receives a random number (<M>X</M>) of packets every millisecond. We know from the
  past that <M>E(X)=50.</M>  We do not know the distribution of <M>X.</M>  The router's buffer can
  hold 250 packets before overflowing. The network engineer needs to estimate the failure rate,
- which is <M>P(X\geq 250) \leq 20\%,</M>  by the Markov inequality.</LI>
-<LI>risk management and finance: wors-case estimates of extreme financial losses or insurance
- claims relaying solely on average historical risk.
-<UL><LI>A bank has a large portfolio of small business loans. <M>X=</M> number of defaulters in a
+ which is <M>P(X\geq 250) \leq 20\%,</M>  by the Markov inequality.
+</EXR>
+
+<EXR>
+A bank has a large portfolio of small business loans. <M>X=</M> number of defaulters in a
  single month. Past experience shows <M>E(X)=2M.</M> Liquidity crisis will arise if <M>X\geq
- 20M.</M>  Bound probability of that.</LI>
-<LI>A financial system tracks <M>X</M>  the downtime of the system per year. Past data shows
- <M>E(X)=15</M>  minutes. Crash would result if <M>X\geq 2</M>  hours. Bound its probability.</LI>
-<LI>During highly volatile market anomaly, an investment fund's historical data becomes useless.
- The only certain information is the current daily expected loss <M>E(X)=100,000.</M>  Upper bound <M>P(X\geq 1,000,000).</M></LI>
-</UL>
+ 20M.</M>  Bound probability of that.
+</EXR>
+<EXR>A financial system tracks <M>X</M>  the downtime of the system per year. Past data shows
+ <M>E(X)=15</M>  minutes. Crash would result if <M>X\geq 2</M>  hours. Bound its probability.</EXR>
+<EXR>
+During highly volatile market anomaly, an investment fund's historical data becomes useless.
+ The only certain information is the current daily expected loss <M>E(X)=100,000.</M>  Upper bound <M>P(X\geq 1,000,000).</M>
+</EXR>
+<LI>A randomised primality testing algorithm called the Miller Rabin test applies a random
+ experiment on an input integer <M>n.</M>  The (random) output is either "Composite" or "Prime".
+ There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
+ But if it says "Prime" then the input is composite with 0.25 probability. If this experiment is
+ run <M>k</M>  times independently, and we get "Prime" every times, then the cance that number is
+ actually composite is <M>\leq 0.25^k.</M>
+<M>X</M> 
+ errors during a single test run. By design <M>E(X)=0.25,</M>  say. We shall run this test run
+ independently <M>k</M>  times. Bound the probability of failure, <M>P(X\geq 1)^k\leq 0.25^k.</M> </LI>
+<TODO>
+Application areas:
+<UL>
+<LI>In network and queueing theory: estimate the probability that a packet delays or queue lengths
+ will exceed a critical threshold. No distributional modelling needed.
 </LI>
+<LI>risk management and finance: wors-case estimates of extreme financial losses or insurance
+ claims relaying solely on average historical risk.</LI>
 </UL>
 </TODO>
 
 
+<HEAD2>Count-min sketch</HEAD2>
+Imagine a stream of items going past you (like cars of different brands or trees of different
+ types as you walk through a forest). Each item belongs to one of a finite number of categories.
+ The stream is running for a really long time (think of information packets passing through a busy
+ computer connected to the internet). Your job is to keep track of the frequencies of the
+ different  types you have seen so far. Tally marking is a very simple technique to achieve this.
+ But if the number of categories is really huge, and most of them occur with negligible
+ frequencies, tally marking is inefficient. 
+
+Here the count-min technique provides a more efficient approximate alternative. It uses 
+ functions that maps the huge set of categories to a much smaller set (whose elements we shall call buckets).   Such functions
+ may be constructed in a way that if <M>X_1,X_2,...</M>  are incoming categories and <M>h(\cdot)</M>  is the function, then
+ <M>h(X_1), h(X_2),...</M>  behave like IID uniform random variables on the bucket set. Also, it is possible to construct
+ different such functions <M>h_1,h_2,...</M>  such that the sequences generated from them behave line independent random variables.
+The functions, by the way, are themseleves deterministic, and are closely related to how a computer generates pseudo random
+ numbers. Such functions are called <TERM>hash function</TERM>s. 
+
+While such a function cannot be one-one (it maps a finite set to a much smaller set), they are often used as quick-and-dirty
+versions of one-one functions (eg, checking integrity of downloaded files). This is the main idea behind the count-min algo,
+ as well.
+
+The algorithm starts by choosing a small bucket set and a small number of independent hash functions. Then it uses tally
+ marking for the buckets generated by each hash function. 
+
+When we need to estimate the frequency of some category we translate it to the corresponding
+ buckets (one for each hash function), and report the minimum of the frequecies of those buckets. 
+
+For example, suppose the original categories were <M>A,B,C,D</M>  and <M>E.</M>  The bucket set is
+ <M>\{1,2,3\}.</M>  We use two hash functions <M>h_1</M>  and <M>h_2</M> :
+<D>h_1(A)=3, h_1(B)=2, h_1(C)=3, h_1(D)=1, h_1(E)=1,</D>
+and 
+<D>h_2(A)=1, h_2(B)=2, h_2(C)=3, h_2(D)=2, h_2(E)=3.</D>
+Let the input stream be <M>AABCBBBCA.</M>  Then the bucket stream generated by <M>h_1</M>  is 
+<D>3,3,2,3,2,2,2,3,3.</D>  
+Its frequencies are <M>f_1(1)=0, f_1(2)=4, f_1(3)=4.</M>
+ 
+Similarly, the  bucket stream generated by <M>h_2</M>  is
+<D>1,1,2,3,2,2,2,3,1.</D>
+Its frequencies are <M>f_2(1)=3, f_2(2)=4, f_2(3)=2.</M>  
+
+Let's estimate the frequency of <M>A.</M>   We first obtain the bucket to which <M>h_1</M>  maps <M>A.</M>  This is <M>h_1(A) = 3.</M>
+So based on <M>h_1</M>  alone the estimate is <M>f_1(3)=4.</M>  Based on the other hash function, it is <M>f_2(h_2(A)) = 3.</M>
+
+To obtain a combined estimator use the minimum of these, viz. <M>3.</M>  In this case, it happens to be exactly the number
+ of <M>A</M>'s in the input stream. 
+
+In general, however, thanks to the many-to-one nature of the hash functions, the estimates will be over-estimates (they can
+ never be underestimates). We hope that for a large stream the errors are not too high. This hope may be turned into a result
+ using Markov inequality.
+
+First, we consider only one hash function (call it <M>h</M>). We want to find the frequency of
+ <M>A.</M>  Let the true frequencies be denotes by the function <M>F.</M>  So <M>F(A)</M>  is what we want to estimate.
+Surely, <M>f(h(A))\geq F(A).</M> The error <M>X=f(h(A))- F(A)</M>  is nonnegative, and is due to
+ the many-to-one nature of
+ <M>h.</M>  
+
+For <M>x\in\{A,...,E\}</M>  define
+<D>I(x)=<CASES>1<IF>h(x)=h(A)</IF> 0<ELSE/></CASES>.</D>
+  Then <M>X=\sum_{x\neq A} F(x) I(x).</M>  
+
+So <M>E(X)=\sum_{x\neq A} F(x) E(I(x)) = [[1b]]\sum_{x\neq A} F(x)\leq [[Nw]].</M>
+
+Fix any <M>\epsilon>0.</M>  Then, by Markov inequality, we have 
+<D>P(X\geq \epsilon N) \leq  [[E(X)][\epsilon N]]\leq [[1][w \epsilon]].</D>  
+So far we were working with a single hash function. If we have <M>d</M>  hash functions, then <M>X
+ = \min\{X_1,...,X_d\},</M> 
+ where <M>X_i</M>  is the error from the <M>i</M>-th hash function. So 
+<D>P(X\geq \epsilon N) = P(X_1\geq \epsilon N)^d\leq (*([[1][w \epsilon]])*)^d.</D>
+Hence 
+<D>P(X< \epsilon N) \geq 1-(*([[1][w \epsilon]])*)^d</D>
+or
+<D>P(*([[XN]]< \epsilon )*) \geq 1-(*([[1][w \epsilon]])*)^d.</D>
+So if we choose <M>w = [[2\epsilon]]</M>  and <M>d=10,</M> 
+<TODO>
+<OL>
+<LI>Distinct elements counting like in the BJKST algo: See pdf downloaded in mobile.</LI>
+<LI>Frequency estimation (like count-min sketch): See pdf downloaded in mobile.</LI>
+<LI>Machine learning and PAC learning: Mention PAC as probability convergence.</LI>
+</OL>
+</TODO>
 <HEAD1>Chebyshev</HEAD1>
 <FNOTE>Chebyshev is also credited with designing a <LINK to="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
 robot-like linkage</LINK>.</FNOTE>
@@ -108,14 +226,6 @@ A point about the inequalities in the above theorem. There are two inequalities,
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
  get <M>0 < 0</M>  for a degenerate <M>X</M>.
-
-<TODO>
-<OL>
-<LI>Distinct elements counting like in the BJKST algo: See pdf downloaded in mobile.</LI>
-<LI>Frequency estimation (like count-min sketch): See pdf downloaded in mobile.</LI>
-<LI>Machine learning and PAC learning:</LI>
-</OL>
-</TODO>
 <HEAD1>WLLN</HEAD1>
 
 <THM name="Weak Law of Large Numbers (WLLN)">
