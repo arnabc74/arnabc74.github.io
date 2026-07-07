@@ -4,9 +4,10 @@ URL: https://arnabc74.github.io/BSDSprob2_2026/
 
 This 
 <HEAD2>Marks distribution</HEAD2>
-<UL><LI>Midsem: 30</LI><LI>Assignments: 20</LI><LI>End sem: 50</LI></UL>
+<UL><LI>Midsem: 20</LI><LI>Assignments: 30</LI><LI>End sem: 50</LI></UL>
 <HEAD2>Class notes</HEAD2>
 <OL>
+<LI><LINK to="elem.html">Statistical regularity</LINK></LI>
 <LI><LINK to="page1.html">Transformation of random vectors using Jacobian</LINK></LI>
 <LI><LINK to="page2.html">Sampling distributions of normal mean and variance</LINK></LI>
 <LI><LINK to="page3.html">Inequalities and laws of large numbers</LINK></LI>

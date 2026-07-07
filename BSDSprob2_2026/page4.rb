@@ -38,7 +38,20 @@ Let <M>(\Omega,\calF,P)</M>  be any probability space. Let <M>(A_n)</M>  be a se
 </DEFN>
 
 We can express it as <M>\cap_{n}\cup_{k\geq n} A_k.</M>  
+<BECAUSE>
+This is basically word-play:
 
+<M>\omega\in {A_n\io}</M>  
+<Q><M>\iff</M><Q> <M>\omega</M>  is in infinitely many <M>A_n</M>'s.</Q></Q>
+<Q><M>\iff</M><Q>Whatever <M>n</M>  you choose
+ there is bound to be some <M>A_k</M>  with <M>k\geq n</M>  such that <M>\omega\in A_k.</M>  </Q></Q>
+
+<Q><M>\iff</M><Q>Whatever <M>n</M>  you choose <M>\omega\in \cup_{k\geq n} A_k.</M>  </Q></Q>
+
+<Q><M>\iff</M><Q><M>\forall n\in\nn~~\omega\in\cup_{k\geq n} A_k.</M></Q></Q>
+
+<Q><M>\iff</M><Q><M>\omega\in\cap_n \cup_{k\geq n} A_k.</M> </Q></Q>
+</BECAUSE>
 
 <HEAD2>Borel-Cantelli lemmas</HEAD2>
 
@@ -93,11 +106,53 @@ Let the exact text of Hamlet have <M>h</M> letters.  Consider packets of <M>h</M
  <M>A_n</M>'s are independent and <M>P(A_n)>0.</M>  So <M>\sum_n P(A_n) = \infty.</M>  Hence by
  the second Borel-Canteli lemma, <M>P(A_n\io)=1.</M>  
 
-However, you really do not need to use the second Borel Cantelli lemma here. It also follows from continuity of probability.  
+<EXR>However, if you want to just show that the monkey will surely write Hamlet <I>at least
+ once</I>, then you really do not need
+ to use the second Borel
+ Cantelli lemma. You can prove it much more easily using continuity of probability.  How?</EXR>
 
 <HEAD3>Normal numbers</HEAD3>
 Consider a uniform random number between 0 and 1. Let <M>d_n</M>  be the <M>n</M>-th digit after
- the decimal point in its (unique) non-terminating decimal expansion. Then
+ the decimal point in its (unique) non-terminating decimal expansion. For example, if the number
+ is <M>[[12]],</M>  then the non-terminating decimal expansion
+ is <M>0.499999...,</M>  and so <M>d_1 = 4,</M>  while <M>d_n=9</M>  for each <M>n\geq 2.</M>  
+
+Consider the event <M>\{d_1=3\}.</M>  Clearly it is <M>(0.3,0.4].</M>  So this has probability
+ <M>[[1][10]].</M>  Next consider the event <M>\{d_2=3\}.</M>  This is <M>\cup_{d_1=0}^9
+ [[d_1][10]]+(0.03,0.04].</M>  Again, the probability is <M>[[1][10]].</M>  In particular we have the following theorem:
+
+<THM>
+<UL>
+<LI>For each <M>n</M>  the random variable <M>d_n</M>  is uniformly distributed over <M>\{0,1,...,9\}.</M></LI>
+<LI>If <M>m\neq n,</M>  then <M>d_m</M>  and <M>d_n</M>  are independent.</LI>
+</UL> 
+</THM>
+
+Next we shall fix a single number <M>\omega\in(0,1)</M>  and check how many times any given digit (say 3) occurs in it. 
+
+Let
+<M>S_n(\omega) = </M>  number of times the digit 3 occurs among the first <M>n</M>  digits of <M>\omega.</M>  
+For instance of <M>\omega=[[13]],</M>  then <M>S_n(\omega) = n.</M>
+
+
+We are interested in the proportion of times a digit occurs in the expansion. Mathematically, we
+ work with <M>\lim_{n\to \infty} [[S_n(\omega)][n]]</M> (which may not exist).  For instance, if <M>\omega=[[13]],</M> 
+ then the limit exists and equals <M>1.</M>  If <M>\omega=0.3,</M>  then the limit exists and equals <M>0.</M>  
+
+<EXR>Can you construct an expansion for which the limit does <I>not</I>  exist? <HINT>You can get one using only 0's
+ and 3's. </HINT></EXR>
+
+Let <M>A_3 = </M> set of all numbers for which the limit equals <M>[[1][10]].</M>  What do you expect <M>P(A_3)</M>  to be?
+The following theorem provides the answer.
+<THM>
+<M>P(A_n) = [[1][10]].</M>
+</THM>
+<PF>
+We shall prove it for <M>n=3.</M>  (the other cases are exactly similar).
+
+
+</PF>
+Then
  <M>\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.</M> So, in particular, <M>P(0\mbox{ occurs }\io)=1.</M>  Hence, <M>P(0,1\mbox{ occur }\io)=1.</M> 
  Proceeding similarly, <M>P(\mbox{each digit occurs }\io)=1.</M>
 <HEAD3>Random walk in 3D</HEAD3>
@@ -163,7 +218,21 @@ counterexample for the converse.
 </ANS>
 </EXR>
 
+<THM>Let <M>p\in[1,\infty).</M>  If <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>, then <M>X_n+Y_n\toL p X+Y.</M></THM>
+<PF>Follows from Minkowski inequality.</PF>
 
+However, even if <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>  and <M>X_nY_n, XY</M>  have finite <M>p</M>-th
+ moments, we may have <M>X_nY_n\not\toL p XY.</M>
+
+The following exercise provides  a counterexample.
+
+<EXR> Let <M>U\sim Unif(0,1).</M>  Define 
+<D>X_n = Y_n = <CASES>n^{1/(2p)}<IF>U\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES>.</D>
+Also, let <M>X=Y\equiv 0.</M>  
+
+Show that <M>E|X_nY_n|^p=1.</M>  Hence show that this provides a counterexample to the statement above.
+</EXR>
+ 
 The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
  moments exist finitely for all the random variables involved. 
 

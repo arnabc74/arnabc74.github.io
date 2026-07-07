@@ -158,7 +158,28 @@ function myFunction() {
 <a href="#Cauchy-Schwartz">Cauchy-Schwartz</a>
 </li>
 <li>
-<a href="#Markov">Markov</a>
+<a href="#Holder inequality">Holder inequality</a>
+</li>
+<li>
+<a href="#Markov inequality">Markov inequality</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Real life applications">Real life applications</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Analysing Las Vegas algorithms">Analysing Las Vegas algorithms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Router overload">Router overload</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Chance of liquidity crisis">Chance of liquidity crisis</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Chance of too long system downtime ">Chance of too long system downtime </a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Primality testing">Primality testing</a>
 </li>
 <li>&nbsp;&nbsp;&nbsp;
 <a href="#Count-min sketch">Count-min sketch</a>
@@ -249,24 +270,63 @@ In this sense $\cos \theta = \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}.$
 <p></p>
 Can we recover $\theta$  from this? Yes, using $cos ^{-1},$  provided the RHS is between $-1$  and $1.$
 Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometric interpretation,
- $\cos ^2 \theta$  is called the correlation coefficient between $X$  and $Y.$  
+ $\cos \theta$  is called the correlation coefficient between $X$  and $Y.$  
 <p></p>
 
 <h1><a
-name="Markov">Markov</a></h1>
+name="Holder inequality">Holder inequality</a></h1>
+
+<fieldset>
+<legend><b><i>Holder inequality</i></b></legend>
+Let $p,q&gt;1$ be such that $\frac 1p+\frac 1q = 1.$ Let $X,Y$  be random variables with $E|X|^p, E|Y|^q &lt; \infty.$
+<p></p>
+Then
+$$E|XY| \leq \big(E|X|^p\big)^{1/p}\big(E|Y|^q\big)^{1/q}.$$ 
+</fieldset>
+If you take $p=q=2,$  then you get back Cauchy-Schwartz inequality. 
+<p>
+<b><i>Proof:</i></b>
+We shall make use of Young's inequality:
+$$\forall a,b\geq 0~~ab\leq \frac{a^p}{p}+\frac{b^q}{q}.$$
+Now take 
+$$A = \big(E|X|^p\big)^{1/p}\mbox{ and } B = \big(E|Y|^q\big)^{1/q}.$$
+If $A=0$  or $B=0,$  then the result is trivially proved. 
+<p></p>
+So let's assume $A,B&gt;0.$
+<p></p>
+Let $X_1 = \frac{|X|}{A}$  and $Y_1 = \frac{|Y|}{B}.$  
+<p></p>
+Apply Young's inequality to $X_1$  and $Y_1.$  Then take expectation to complete the proof. 
+<b><i>[QED]</i></b>
+</p>
+
+<h1><a
+name="Markov inequality">Markov inequality</a></h1>
+Let us start with a commonsense example.
+<p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;If average salary in a company is 50,000, then no more than 20% of the employees can make
+<b>EXAMPLE 1:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employess are getting
+ a salary of Rs 250,000
+ or more. Can this claim be true?<p></p>
+<b>SOLUTION:</b>
+Of course not! Even if the other employess get no salary at all, the average must be at least $0.3\times 250,000,$ 
+ which exceeds the stated average.
+<p></p>
+In fact, no more than 20% of
+ the employees can make
  250,000 or more. Since 50000/250000 = 1/5. ■
 </p>
 
 <p></p>
+This commonsense notion leads to the following very useful inequality.
+<p></p>
 
 <fieldset>
 <legend><b><i>Markov inequality</i></b></legend>
-Let $k\in{\mathbb N}.$  Let $X$  be a nonnegative random variable with $E(X^k) &lt; \infty.$  
+Let $X$  be a nonnegative random variable.
 Let $\epsilon&gt;0.$
-Then $P(X \geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$ 
+Then $P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon}.$ 
 </fieldset>
 
 <p>
@@ -277,35 +337,90 @@ Note that $Y\leq X.$  Hence $E(Y^k)\leq E(X^k).$
 But $E(Y^k) = P(X\leq \epsilon) \epsilon^k.$  Hence the result.
 <b><i>[QED]</i></b>
 </p>
-Will higher values of $k$  necessarily give you lower bounds?
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+ Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
+ weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
+ get $0 &lt; 0$  for the degenerate random variable $X\equiv0$.
 <p></p>
-A direct application of this proves the following important result.
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
+$$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^2)}{\epsilon^2}.$$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
+ variable $X$  and any $\epsilon&gt;0$  we have for each $k\in{\mathbb N},$  
+$$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$$
+Will higher values of $k$  necessarily give you better bounds?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Prove that $\frac{1}{\sqrt{2\pi}\int_{-\infty}^ \infty e^{-x^2/2}\, dx \leq \frac{1}{\epsilon^4}.$</p>
+
+<p></p>
+The following important result is a direct corollary to Markov inequality. 
 <p></p>
 
 <fieldset>
-<legend><b><i>Theorem</i></b></legend>If $X_n\rightarrow X$  in $L_1$  then $X_n\rightarrowP X.$</fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X_n\rightarrowL 1 X$    then $X_n\rightarrowP X.$</fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-Take any $\epsilon&gt;0.$  Then $P(|X_n-X|&gt;\epsilon)\leq \frac{E(|X_n-X|)}{\epsilon}\rightarrow 0.$
+Take any $\epsilon&gt;0.$  Then, by Markov inequality applied to $|X_n-X|$  (which is
+ nonnegative thanks to the modulus), we have  
+$$P(|X_n-X|&gt;\epsilon)\leq \frac{E(|X_n-X|)}{\epsilon}\rightarrow 0.$$
 <b><i>[QED]</i></b>
 </p>
-An interesting application is in computer science. There is a class of algorithms called Las Vegas algorithms. Such algorithms
-approach a problem in a random way that is sure to arrive at the answer, but after a random number
- of steps.  If $X$  denotes the number steps,  we often know $E(X)$  as a function of the input size. For instance,
- in the randomised quicksort algorithm $E(X) = n\log n,$  where $n$  is the number of entries to be sorted.
+
+<p></p>
+
+<h2><a
+name="Real life applications">Real life applications</a></h2>
+Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
+ lies in the fact that it makes no use of the distribution of the the random variable other than through its expectation.
+For many real life random variables, estimating the mean is far easier than estimating the entire distribution. 
+<p></p>
+
+<h3><a
+name="Analysing Las Vegas algorithms">Analysing Las Vegas algorithms</a></h3> 
+Let us start with an interesting application from computer science. A class of algorithms called Las
+ Vegas algorithms, approach a problem in a random way that is sure to arrive at the answer, but after a random number
+ of steps.  
+<p></p>
+One example is the randomised quick sort algorithm. Here we sort an array of numbers by picking a random element from the
+ araay, and dividing the rest into two groups, depending on whether a number is $\leq$  or $&gt;$  than the picked
+ element. Then we to the same things recursively to both the groups separately. 
+<p></p>
+Let $X$  denote the number steps in a Las Vegas algorithm.   We often know $E(X)$  as a function of the
+ input size (under suitable assumptions on the input). For instance,
+ in the randomised quicksort algorithm $E(X) = n\log n,$  where $n$  is the length of
+ the array (proof not part
+ of this course). 
 Then Markov inequality helps us to get an upper bound on the probability that the
  algorithm will take too long.
 This allows engineers to guarantee system satibility without knowing the exact distribution of $X.$
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;Prove that $P(X&gt;10E(X))\leq \frac{1}{10}.$</p>  
+<b>EXERCISE 5:</b>&nbsp;Prove that $P(X&gt;10E(X))\leq \frac{1}{10}.$</p>  
 
 <p></p>
 
+<h3><a
+name="Router overload">Router overload</a></h3>
+
 <p>
-<b>EXERCISE 2:</b>&nbsp;
+<b>EXERCISE 6:</b>&nbsp;
 A router receives a random number ($X$) of packets every millisecond. We know from the
  past that $E(X)=50.$  We do not know the distribution of $X.$  The router's buffer can
  hold 250 packets before overflowing. The network engineer needs to estimate the failure rate,
@@ -314,47 +429,52 @@ A router receives a random number ($X$) of packets every millisecond. We know fr
 
 <p></p>
 
+<h3><a
+name="Chance of liquidity crisis">Chance of liquidity crisis</a></h3>
+
 <p>
-<b>EXERCISE 3:</b>&nbsp;
+<b>EXERCISE 7:</b>&nbsp;
 A bank has a large portfolio of small business loans. $X=$ number of defaulters in a
  single month. Past experience shows $E(X)=2M.$ Liquidity crisis will arise if $X\geq
  20M.$  Bound probability of that.
 </p>
 
+<p></p>
+
+<h3><a
+name="Chance of too long system downtime ">Chance of too long system downtime </a></h3>
+
 <p>
-<b>EXERCISE 4:</b>&nbsp;A financial system tracks $X$  the downtime of the system per year. Past data shows
+<b>EXERCISE 8:</b>&nbsp;A financial system tracks $X$  the downtime of the system per year. Past data shows
  $E(X)=15$  minutes. Crash would result if $X\geq 2$  hours. Bound its probability.</p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;
+<b>EXERCISE 9:</b>&nbsp;
 During highly volatile market anomaly, an investment fund's historical data becomes useless.
  The only certain information is the current daily expected loss $E(X)=100,000.$  Upper bound $P(X\geq 1,000,000).$
 </p>
 
-<li>A randomised primality testing algorithm called the Miller Rabin test applies a random
+<p></p>
+
+<h3><a
+name="Primality testing">Primality testing</a></h3>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;A randomised primality testing algorithm called the Miller Rabin test applies a random
  experiment on an input integer $n.$  The (random) output is either "Composite" or "Prime".
  There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
- But if it says "Prime" then the input is composite with 0.25 probability. If this experiment is
- run $k$  times independently, and we get "Prime" every times, then the cance that number is
- actually composite is $\leq 0.25^k.$
-$X$ 
- errors during a single test run. By design $E(X)=0.25,$  say. We shall run this test run
- independently $k$  times. Bound the probability of failure, $P(X\geq 1)^k\leq 0.25^k.$ </li>
+ But if it says "Prime" then the input is composite with 0.25 probability. 
+<p></p>
+Mathematically, let 
+$$X = \left\{\begin{array}{ll}1&\text{if }\mbox{error}\\ 0&\text{otherwise.}\end{array}\right..$$
+Then we have $E(X) = \frac 14.$
+We run this experiment $k$  times independently (on the same input), and we output
+ "Composite" if at least one run says so. Otherwise, we say "Prime".
+<p></p>
+Give an uppoer bound on the probability that this battery of $k$  tests makes an error. [This problem can be solved
+ merely by commonsense, without explicit use of Markov inequality, which by the way is little more than commonsense itself!]
 
-<font color="purple"><b>To do:</b>
-Application areas:
-<ul>
-
-<li>In network and queueing theory: estimate the probability that a packet delays or queue lengths
- will exceed a critical threshold. No distributional modelling needed.
-</li>
-
-<li>risk management and finance: wors-case estimates of extreme financial losses or insurance
- claims relaying solely on average historical risk.</li>
-
-</ul>
-
-</font>
+</p>
 
 <p></p>
 
@@ -469,10 +589,7 @@ $$
 This is just Markov inequality with $k=2$  applied to the random variable $|X-E(X)|.$
 <b><i>[QED]</i></b>
 </p>
-A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
- Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
- weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
- get $0 &lt; 0$  for a degenerate $X$.
+
 <h1><a
 name="WLLN">WLLN</a></h1>
 
@@ -496,7 +613,17 @@ $$
 
 <p>
 <b><i>Proof:</i></b>
-Use the exercise above and Chebyshev inequality.
+Take any $\epsilon &gt; 0.$
+<p></p>
+Applying Chebyshev inequality to the random variable $\bar X_n$  we have 
+$$P(|\overline X_n-\mu|&gt; \epsilon) \leq \frac{V(\overline X_n)}{\epsilon^2}.$$
+Now 
+$$V(\overline X_n) = V\left(\frac 1n\sum_1^n X_i\right) = \frac{1}{n^2} \sum_1^n V(X_i),$$  
+since $X_i$'s are independent. Also each $V(X_i) = \sigma^2.$  Hence 
+$$V(\overline X_n) = V\left(\frac 1n\sum_1^n X_i\right) = \frac{\sigma^2}{n}.$$
+Hence we have 
+$$P(|\overline X_n-\mu|&gt; \epsilon) \leq \frac{\sigma^2}{n\epsilon^2}\rightarrow 0,$$
+as $n\rightarrow \infty.$
 <b><i>[QED]</i></b>
 </p>
 

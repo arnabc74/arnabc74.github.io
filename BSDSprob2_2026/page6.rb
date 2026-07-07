@@ -2,13 +2,18 @@
 <M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
 <M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
 <M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
-[Update:[Mon Jun 22 IST 2026]]
+[Update:[Thu Jul 02 IST 2026]]
 <HEAD1>Convergence in distribution</HEAD1>
 <DEFN name="Convergence in distribution">
 Let <M>(X_n), X</M>  be some random variables (not necessarily defined on the same probability space). Let <M>X_n</M>  have
  distribution function <M>F_n</M>  and <M>X </M> have distribution function <M>F.</M>  We say <M>X_n</M>  converges to <M>X</M> 
  <TERM>in distribution</TERM>  and write <M>X_n\toD X</M>  if for all continuity point <M>x</M>  of <M>F</M> we have <M>F_n(x)\to F(x).</M>
 </DEFN>
+
+<THM>If <M>X_n\toD X,</M>  then <M>X_n\toP X.</M></THM>
+<PF>
+Let <M>Y_n = X_n-X.</M>  Since 
+</PF>
 <HEAD2>Central Limit Theorem</HEAD2>
 <HEAD1>Central Limit Theorem</HEAD1>
 The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
@@ -171,6 +176,29 @@ X_n + Y_n \xrightarrow{P} X + c.
 Therefore $X_n + Y_n$ converges in probability to $X + c$.
 \end{proof}
 </PF>
+
+<EXR>Let <M>X_n\toD N(0,1)</M>  and <M>Y_n\toP 5.</M>  Then what is the limiting distribution of <M>X_n+Y_n?</M></EXR>
+
+<EXR>Let <M>X_n\toD X</M>  and <M>Y_n\toP Y.</M>  Show that <M>X_n+Y_n\toD X+Y</M>  need not hold.</EXR>
+
+<EXR>Let <M>X_n\toD N(0,1)</M>, <M>Y_n\toP 5</M>  and <M>Z_n\toP 4</M> with <M>z_n > 0.</M>     Then what is the
+ limiting distribution of <M>[[X_n+Y_n][\sqrt {Z_n}]]?</M></EXR>
+
+<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Show that <M>\sqrt n(X_nY_n-a\theta)\toD aZ.</M></EXR>
+
+<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
+
+<EXR>Let <M>T_n</M>  be a consistent estimator of <M>\theta,</M>  and let <M>S_n</M>  be a
+ consistent estimator of <M>\sigma^2.</M>  Show that the Studentized statistic
+ <M>[[T_n-\theta][\sqrt{S_n}]]</M>  has the the same asymptotic distribution as
+ <M>[[T_n-\theta][\sigma]],</M>  whenever an asymptotic distribution exists. </EXR>
+
+<EXR>Let <M>X_n\toD X</M>  and <M>X_n+Y_n\toD X+1.</M> Does this imply that <M>Y_n\toP 1?</M> </EXR>
+<COMMENT>
+<LINK to="chat/Slutsky_Counterexamples_Exercises.pdf">chat/Slutsky_Counterexamples_Exercises.pdf</LINK>
+<LINK to="chat/Slutsky_Qualifying_Exam_Problems.pdf">chat/Slutsky_Qualifying_Exam_Problems.pdf</LINK>
+<LINK to="chat/Slutsky_Theorem_Exercises.pdf">chat/Slutsky_Theorem_Exercises.pdf</LINK>
+</COMMENT>
 <HEAD2>Delta method</HEAD2>
 <THM name="Delta method">
 Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
@@ -180,6 +208,31 @@ Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to
 </THM>
 <PF>Nice proof using Skorohod in Resnick (p262).</PF>
 Lots of applications. 
+<EXR>Suppose that <M>\sqrt n(S_n^2-\sigma^2)\toD N(0,\theta^2).</M>  Show that <M>\sqrt n(S_n-\sigma)\toD N(*(0,[[\theta^2][4 \sigma^2]])*).</M></EXR>
+
+<EXR>If <M>\sqrt n(\bar X_n-\mu)\toD N(0,1),</M>  show that <M>\sqrt n(\log \bar X_n-\log \mu)\toD N(0,[[1][\mu^2]]).</M></EXR>
+<EXR>If <M>\sqrt n(T_n-\theta)\toD N(0,\sigma^2)</M>  for some <M>\theta\neq 0,</M>  then show that <M>\sqrt n(*([[1][T_n]]-[[1\theta]])*)\toD N(0,[[\sigma^2][\theta^2]])*).</M></EXR>
+
+<EXR>
+We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportion of heads. Find an asymptotic distribution
+ for the odds ratio <M>[[X_n][1-X_n]].</M>  
+</EXR>
+
+<EXR><M>T_n</M>  is an estimator for a parameter <M>\theta</M>  with asymptotic distribution
+ <M>N(*(\theta, [[\sigma^2][n]])*).</M>  Use deltan method to obtain an approximate 95% confidene interval for
+ <M>e^\theta.</M></EXR>
+<EXR>Variance stabilising transform</EXR>
+
+
+
+<THM name="Multivariate delta method">
+If <M>\sqrt(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrtn(g(T_n)-g(\theta))\toD N_d(\v 0, \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
+</THM>
+<EXR>Use the above theorem to obtain asymptotic variabce of the sample CV.</EXR>
+
+<LINK to="chat/Multivariate_Delta_Method_Solution_Manual.pdf">chat/Multivariate_Delta_Method_Solution_Manual.pdf</LINK>
+<LINK to="chat/Delta_Method_Applications.pdf">chat/Delta_Method_Applications.pdf</LINK>
+
 <HEAD2>Multivariate CLT</HEAD2>
 
 <THM name="Multivariate CLT">
@@ -189,8 +242,27 @@ Let <M>(\v X_n)</M>  be iid <M>k</M>-dimensional random vectors with mean vector
 </THM>
 <HEAD2>Cramer-Wold device</HEAD2>
 
+<EXM>Suppose that <M>X_n\toD X</M> and <M>Y_n\toD Y.</M> Does
+this imply <M>(X_n,Y_n)\to (X,Y)?</M></EXM>
+
 <THM name="Cramer Wold theorem">
 Let <M>(\v X_n), \v X </M> be random vectors. Then <M>\v X_n\toD \v X</M>  if and only if 
 <D>\forall \v \ell\in\rr^k~~\v\ell' \v X_n\toD \v X.</D>
 </THM>
+<PF>
+Use characteristic function (to be covered in the next page).
+</PF>
+
+<EXR>Prove multivariate CLT from univariate CLT using the Cramer-Wold device.</EXR>
+<EXR>Prove multivariate delta method from univariate delta method using the Cramer-Wold device.</EXR>
+<EXR>Let <M>(X_n,Y_n)</M>  be an iid sequence of random vectors with mean <M>(\mu, \nu)</M>  and
+ some (finite) covariance matrix. Find the  asymptotic distribution of <M>(\bar X_n,\bar Y_n).</M></EXR>
+
+<EXR>A (pssibly biased) die is rolled <M>n</M>  times. Let <M>X_{i,n}</M>  be the proportion of
+ face <M>i.</M>  Find the asymptotic joint distribution of <M>(X_{1,n),...,X_{6,n}).</M></EXR>
+
+<COMMENT>
+<LINK to="chat/Cramer_Wold_Device_Exercises.pdf">chat/Cramer_Wold_Device_Exercises.pdf</LINK>
+<LINK to="chat/Cramer_Wold_Device_Solution_Manual.pdf">chat/Cramer_Wold_Device_Solution_Manual.pdf</LINK>
+</COMMENT>
 </NOTE>@}

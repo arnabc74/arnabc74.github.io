@@ -175,9 +175,24 @@ function myFunction() {
 <li>
 <a href="#Dominated Convergence Theorem">Dominated Convergence Theorem</a>
 </li>
+<li>&nbsp;&nbsp;&nbsp;
+<a href="#Applications">Applications</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Almost sure implies $L_1$  for dominated case">Almost sure implies $L_1$  for dominated case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Continuity of characteristic function">Continuity of characteristic function</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Continuity of expectations involving a secondary variable">Continuity of expectations involving a secondary variable</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Differentiation under expectation">Differentiation under expectation</a>
+</li>
 </ul>
 <hr/>
-[Update:[Wed Jun 17 IST 2026}
+[Update:[Thu Jul 02 IST 2026}
 <title xmlns="">Convergence theorems</title>
 
 <h1><a
@@ -366,7 +381,7 @@ Suppose that $X_n$'s are nonnegative random variables. Show that
 $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 </p>
 
-<font color="purple"><b>To do:</b>$\int sum = \sum \int$  for noneg.</font>
+<p></p>
 
 <h1><a
 name="Fatou's lemma">Fatou's lemma</a></h1>
@@ -394,6 +409,59 @@ as required.
 </p>
 
 <p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Consider $U\sim Unif(0,1).$  Let $X_n = U^n$  for $n\in{\mathbb N}$. Compute both
+ sides of Fatou's lemma explicitly.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;Again let $U\sim Unif(0,1).$  Let $X_n=\left\{\begin{array}{ll}n&\text{if }U\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
+Compute both sides of Fatou's lemma explicitly.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let $U\sim Expo(1).$  Let $X_n = \left\{\begin{array}{ll}e^x&\text{if }x\in(n-1,n]\\ 0&\text{otherwise.}\end{array}\right.$ 
+ for $n\in{\mathbb N}.$  Compute both sides of Fatou's lemma explicitly.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Suppose that $(X_n)$  is a sequence of  random variables with $X_n\rightarrow
+ X.$  If $\forall n\in{\mathbb N}~~ E(X_n)\in [2,5]$, then which of the following must be true?
+
+<li>$E(X)\geq 2$</li>
+$E(X)\leq 5.$
+
+Prove and/or provide counterexample(s) accordingly. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Give examples to show that equality or strict inequality may prevail in Fatou's lemma.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;We proved Fatou's lemma from MCT. It is possible to prove MCT using Fatou's lemma quite easily. How?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) \leq
+ M$  for some $M\in{\mathbb R}.$  If $X_n\rightarrow X,$  then show that $E(X) &lt; \infty.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) &lt;
+ \infty.$  If $X_n\rightarrow X,$  then must  it be true that $E(X) &lt; \infty?$</p>
+
+<p></p>
+
 
 <h1><a
 name="Dominated Convergence Theorem">Dominated Convergence Theorem</a></h1>
@@ -426,20 +494,92 @@ Hence $E|X_n-X|\rightarrow 0,$  as required.
 <b><i>[QED]</i></b>
 </p>
 
+<h2><a
+name="Applications">Applications</a></h2>
+We can think of the conclusion of MCT or DCT as limit passing through expectation: $\lim E(X_n) = E(\lim X_n).$ This
+ proves handy in many situations as we discuss next.
+<h3><a
+name="Almost sure implies $L_1$  for dominated case">Almost sure implies $L_1$  for dominated case</a></h3>
+We have seen earlier that mere a.s. convergence (along with finite existence of expectation) does not guarantee $L_1$ 
+ convergence. The counterexample we had given used an unbounded sequence of random variables.  Indeed, it is not possible
+ to have a counterexample using a bounded (or even dominated) sequence of  random variables.
 <p></p>
 
-<font color="purple"><b>To do:</b>
-<ol type="">
-<li>Differentiation under integral.</li>
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $(X_n),X$  be  random variables such that $X_n\rightarrowA X$  and   $\forall n\in{\mathbb N}~~|X_n|\leq
+ Y$  for some random variable $Y$  with $E(Y) &lt; \infty.$  Then $X_n\rightarrowL 1 X.$</fieldset> 
 
-<li>Conyinuity of parameter dependent integrals.</li>
+<p>
+<b><i>Proof:</i></b>Just a restatement of the DCT.<b><i>[QED]</i></b>
+</p>
 
-<li>Almost sure implies $L_1$  for dominated case.</li>
+<h3><a
+name="Continuity of characteristic function">Continuity of characteristic function</a></h3>
+Let a random variable $X$  have characteristic function $\xi(t)$  or $t\in{\mathbb R}.$  We want to show that $\xi$ 
+ is a continuous function, <i>i.e.</i>,
+$$\forall t\in{\mathbb R}~~\forall (t_n)\subseteq {\mathbb R} ~~(t_n\rightarrow t\Rightarrow \xi(t_n)\rightarrow \xi(t)).$$
+<p></p>
+Take any $t\in{\mathbb R}$   any $(t_n)\subseteq{\mathbb R}$  with $t_n\rightarrow{\mathbb R}.$  
+<p></p>
+To show $\xi(t_n)\rightarrow \xi(t),$  <i>i.e.</i>, $E(e^{it_n X}) \rightarrow E(e^{it X})&gt;$
+<p></p>
+Let $Y_n = e^{it_n X}$  and $Y = e^{it X}.$  
+<p></p>
+Then $Y_n\rightarrow Y$  and $|Y_n|,|Y|\leq 1.$
+<p></p>
+Hence by DCT $E(Y_n)\rightarrow E(Y),$  as required. 
+<p></p>
 
-<li>Continuity of CF.</li>
+<p>
+<b>EXERCISE 12:</b>&nbsp;Show that a characteristic function must also be uniformly continuous.</p>
 
-</ol>
-</font>
+<p></p>
+
+<h3><a
+name="Continuity of expectations involving a secondary variable">Continuity of expectations involving a secondary variable</a></h3>
+The characteristic function $E(e^{i t X})$  is an example of an expectation involving a secondary variable, $t.$ 
+ The technique we used above may be used to prove continuity of other similar expectations. This may be stated as a theorem.
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $f(x,t)$  be some bounded continuous function. Then for any random variable $E(X,t)$
+  is a continuous function of $t.$ 
+</fieldset>
+
+<p></p>
+
+<h3><a
+name="Differentiation under expectation">Differentiation under expectation</a></h3>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $X(t)$  be a random differentiabl function of $t.$  Suppose that 
+$$\exists Z~~\forall t\in{\mathbb R} ~~|X'(t)|\leq Z$$  and $E(Z) &lt; \infty.$  Then 
+$$\frac{d}{dt} E(X(t)) = E(X'(t)).$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+To show $\frac{E(X(t+h)) - E(X(t))}{h} \rightarrow E(X'(t))$  as $h\rightarrow 0.$
+<p></p>
+Enough to show that for every $(h_n)$  with $h_n\rightarrow 0$  we have $\frac{E(X(t+h_n)) - E(X(t))}{h_n} \rightarrow E(X'(t))$ 
+ as $n\rightarrow \infty.$
+<p></p>
+Take any such $(h_n).$
+<p></p>
+Define $Y_n = \frac{X(t+h_n) - X(t)}{h_n},$  and $Y = X'(t).$  
+<p></p>
+Then by the given condition $Y_n\rightarrow Y$.
+<p></p>
+Also by the mean value theorem $Y_n = X'(t_n)$  for some $t_n$  between $t$  and $t+h_n.$
+<p></p>
+Hence $|Y_n| = |X'(t_n)| \leq Z,$  which has finite expecation.
+<p></p>
+Hence $(Y_n)$  is a dominated sequence. 
+<p></p>
+So, by the DCT, $E(Y_n)\rightarrow E(Y),$  completing the proof.
+<b><i>[QED]</i></b>
+</p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>

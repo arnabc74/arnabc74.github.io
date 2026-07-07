@@ -56,16 +56,48 @@ In this sense <M>\cos \theta = [[\cov(X,Y)][\sqrt{V(X)V(Y)}]].</M>
 
 Can we recover <M>\theta</M>  from this? Yes, using <M>cos ^{-1},</M>  provided the RHS is between <M>-1</M>  and <M>1.</M>
 Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometric interpretation,
- <M>\cos ^2 \theta</M>  is called the correlation coefficient between <M>X</M>  and <M>Y.</M>  
+ <M>\cos \theta</M>  is called the correlation coefficient between <M>X</M>  and <M>Y.</M>  
+
+<HEAD1>Holder inequality</HEAD1>
+<THM name="Holder inequality">
+Let <M>p,q>1</M> be such that <M>[[1p]]+[[1q]] = 1.</M> Let <M>X,Y</M>  be random variables with <M>E|X|^p, E|Y|^q < \infty.</M>
+
+Then
+<D>E|XY| \leq (#(E|X|^p)#)^{1/p}(#(E|Y|^q)#)^{1/q}.</D> 
+</THM>
+If you take <M>p=q=2,</M>  then you get back Cauchy-Schwartz inequality. 
+<PF>
+We shall make use of Young's inequality:
+<D>\forall a,b\geq 0~~ab\leq [[a^p][p]]+[[b^q][q]].</D>
+Now take 
+<D>A = (#(E|X|^p)#)^{1/p}\mbox{ and } B = (#(E|Y|^q)#)^{1/q}.</D>
+If <M>A=0</M>  or <M>B=0,</M>  then the result is trivially proved. 
+
+So let's assume <M>A,B>0.</M>
+
+Let <M>X_1 = [[|X|][A]]</M>  and <M>Y_1 = [[|Y|][B]].</M>  
+
+Apply Young's inequality to <M>X_1</M>  and <M>Y_1.</M>  Then take expectation to
+</PF>
+<HEAD1>Markov inequality</HEAD1>
+:et us start with a commonsense example.
  
-<HEAD1>Markov</HEAD1>
-<EXM>If average salary in a company is 50,000, then no more than 20% of the employees can make
+<EXM>Average salary in a company is Rs 50,000. It is claimed that 30% of the employess are getting
+ a salary of Rs 250,000
+ or more. Can this claim be true?<SOLN/>
+Of course not! Even if the other employess get no salary at all, the average must be at least <M>0.3\times 250,000,</M> 
+ which exceeds the stated average.
+ 
+In fact, no more than 20% of
+ the employees can make
  250,000 or more. Since 50000/250000 = 1/5.</EXM>
 
+This commonsense notion leads to the following very useful inequality.
+
 <THM name="Markov inequality">
-Let <M>k\in\nn.</M>  Let <M>X</M>  be a nonnegative random variable with <M>E(X^k) < \infty.</M>  
+Let <M>X</M>  be a nonnegative random variable.
 Let <M>\epsilon>0.</M>
-Then <M>P(X \geq \epsilon) \leq [[E(X^k)][\epsilon^k]].</M> 
+Then <M>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</M> 
 </THM>
 <PF>
 Compare with <M>Y = <CASES> \epsilon<IF>x\geq \epsilon</IF> 0<ELSE/></CASES>.</M>
@@ -73,24 +105,60 @@ Compare with <M>Y = <CASES> \epsilon<IF>x\geq \epsilon</IF> 0<ELSE/></CASES>.</M
 Note that <M>Y\leq X.</M>  Hence <M>E(Y^k)\leq E(X^k).</M>  
 But <M>E(Y^k) = P(X\leq \epsilon) \epsilon^k.</M>  Hence the result.
 </PF>
-Will higher values of <M>k</M>  necessarily give you lower bounds?
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+ Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
+ weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
+ get <M>0 < 0</M>  for the degenerate random variable <M>X\equiv0</M>.
 
-A direct application of this proves the following important result.
+<EXR>Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</EXR>
 
-<THM>If <M>X_n\to X</M>  in <M>L_1</M>  then <M>X_n\toP X.</M></THM>
+<EXR>Let <M>X</M>  be any random variable (not necessarily nonnegative). Show that 
+<D>\forall \epsilon>0~~P(X\geq \epsilon) \leq [[E(X^2)][\epsilon^2]].</D>
+</EXR>
+
+<EXR>If you have solved the above exercise, you can also show that for any nonnegative random
+ variable <M>X</M>  and any <M>\epsilon>0</M>  we have for each <M>k\in\nn,</M>  
+<D>\forall \epsilon>0~~P(X\geq \epsilon) \leq [[E(X^k)][\epsilon^k]].</D>
+Will higher values of <M>k</M>  necessarily give you better bounds?
+</EXR>
+
+<EXR>Prove that <M>[[1][\sqrt{2\pi]]\int_{-\infty}^ \infty e^{-x^2/2}\, dx \leq [[1][\epsilon^4]].</M></EXR>
+
+The following important result is a direct corollary to Markov inequality. 
+
+<THM>If <M>X_n\toL 1 X</M>    then <M>X_n\toP X.</M></THM>
 <PF>
-Take any <M>\epsilon>0.</M>  Then <M>P(|X_n-X|>\epsilon)\leq [[E(|X_n-X|)][\epsilon]]\to 0.</M>
+Take any <M>\epsilon>0.</M>  Then, by Markov inequality applied to <M>|X_n-X|</M>  (which is
+ nonnegative thanks to the modulus), we have  
+<D>P(|X_n-X|>\epsilon)\leq [[E(|X_n-X|)][\epsilon]]\to 0.</D>
 </PF>
-An interesting application is in computer science. There is a class of algorithms called Las Vegas algorithms. Such algorithms
-approach a problem in a random way that is sure to arrive at the answer, but after a random number
- of steps.  If <M>X</M>  denotes the number steps,  we often know <M>E(X)</M>  as a function of the input size. For instance,
- in the randomised quicksort algorithm <M>E(X) = n\log n,</M>  where <M>n</M>  is the number of entries to be sorted.
+
+<HEAD2>Real life applications</HEAD2>
+Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
+ lies in the fact that it makes no use of the distribution of the the random variable other than through its expectation.
+For many real life random variables, estimating the mean is far easier than estimating the entire distribution. 
+
+<HEAD3>Analysing Las Vegas algorithms</HEAD3> 
+Let us start with an interesting application from computer science. A class of algorithms called Las
+ Vegas algorithms, approach a problem in a random way that is sure to arrive at the answer, but after a random number
+ of steps.  
+
+One example is the randomised quick sort algorithm. Here we sort an array of numbers by picking a random element from the
+ araay, and dividing the rest into two groups, depending on whether a number is <M>\leq</M>  or <M>></M>  than the picked
+ element. Then we to the same things recursively to both the groups separately. 
+
+Let <M>X</M>  denote the number steps in a Las Vegas algorithm.   We often know <M>E(X)</M>  as a function of the
+ input size (under suitable assumptions on the input). For instance,
+ in the randomised quicksort algorithm <M>E(X) = n\log n,</M>  where <M>n</M>  is the length of
+ the array (proof not part
+ of this course). 
 Then Markov inequality helps us to get an upper bound on the probability that the
  algorithm will take too long.
 This allows engineers to guarantee system satibility without knowing the exact distribution of <M>X.</M>
 
 <EXR>Prove that <M>P(X>10E(X))\leq [[1][10]].</M></EXR>  
 
+<HEAD3>Router overload</HEAD3>
 <EXR>
 A router receives a random number (<M>X</M>) of packets every millisecond. We know from the
  past that <M>E(X)=50.</M>  We do not know the distribution of <M>X.</M>  The router's buffer can
@@ -98,37 +166,37 @@ A router receives a random number (<M>X</M>) of packets every millisecond. We kn
  which is <M>P(X\geq 250) \leq 20\%,</M>  by the Markov inequality.
 </EXR>
 
+<HEAD3>Chance of liquidity crisis</HEAD3>
 <EXR>
 A bank has a large portfolio of small business loans. <M>X=</M> number of defaulters in a
  single month. Past experience shows <M>E(X)=2M.</M> Liquidity crisis will arise if <M>X\geq
  20M.</M>  Bound probability of that.
 </EXR>
+
+<HEAD3>Chance of too long system downtime </HEAD3>
 <EXR>A financial system tracks <M>X</M>  the downtime of the system per year. Past data shows
  <M>E(X)=15</M>  minutes. Crash would result if <M>X\geq 2</M>  hours. Bound its probability.</EXR>
 <EXR>
 During highly volatile market anomaly, an investment fund's historical data becomes useless.
  The only certain information is the current daily expected loss <M>E(X)=100,000.</M>  Upper bound <M>P(X\geq 1,000,000).</M>
 </EXR>
-<LI>A randomised primality testing algorithm called the Miller Rabin test applies a random
+
+<HEAD3>Primality testing</HEAD3>
+<EXR>A randomised primality testing algorithm called the Miller Rabin test applies a random
  experiment on an input integer <M>n.</M>  The (random) output is either "Composite" or "Prime".
  There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
- But if it says "Prime" then the input is composite with 0.25 probability. If this experiment is
- run <M>k</M>  times independently, and we get "Prime" every times, then the cance that number is
- actually composite is <M>\leq 0.25^k.</M>
-<M>X</M> 
- errors during a single test run. By design <M>E(X)=0.25,</M>  say. We shall run this test run
- independently <M>k</M>  times. Bound the probability of failure, <M>P(X\geq 1)^k\leq 0.25^k.</M> </LI>
-<TODO>
-Application areas:
-<UL>
-<LI>In network and queueing theory: estimate the probability that a packet delays or queue lengths
- will exceed a critical threshold. No distributional modelling needed.
-</LI>
-<LI>risk management and finance: wors-case estimates of extreme financial losses or insurance
- claims relaying solely on average historical risk.</LI>
-</UL>
-</TODO>
+ But if it says "Prime" then the input is composite with 0.25 probability. 
 
+Mathematically, let 
+<D>X = <CASES>1<IF>\mbox{error}</IF> 0<ELSE/></CASES>.</D>
+Then we have <M>E(X) = [[14]].</M>
+We run this experiment <M>k</M>  times independently (on the same input), and we output
+ "Composite" if at least one run says so. Otherwise, we say "Prime".
+
+Give an uppoer bound on the probability that this battery of <M>k</M>  tests makes an error. [This problem can be solved
+ merely by commonsense, without explicit use of Markov inequality, which by the way is little more than commonsense itself!]
+<COMMENT><M>\leq 0.25^k.</M></COMMENT>
+</EXR>
 
 <HEAD2>Count-min sketch</HEAD2>
 Imagine a stream of items going past you (like cars of different brands or trees of different
@@ -202,7 +270,7 @@ Hence
 <D>P(X< \epsilon N) \geq 1-(*([[1][w \epsilon]])*)^d</D>
 or
 <D>P(*([[XN]]< \epsilon )*) \geq 1-(*([[1][w \epsilon]])*)^d.</D>
-So if we choose <M>w = [[2\epsilon]]</M>  and <M>d=10,</M> 
+So if we choose <M>w = [[2\epsilon]]</M>  and <M>d=10,</M>  then the probability is below <M>2^{-10}.</M>
 <TODO>
 <OL>
 <LI>Distinct elements counting like in the BJKST algo: See pdf downloaded in mobile.</LI>
@@ -222,10 +290,6 @@ Let <M>V(X)<\infty.</M> Then
 <PF>
 This is just Markov inequality with <M>k=2</M>  applied to the random variable <M>|X-E(X)|.</M>
 </PF>
-A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
- Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
- weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
- get <M>0 < 0</M>  for a degenerate <M>X</M>.
 <HEAD1>WLLN</HEAD1>
 
 <THM name="Weak Law of Large Numbers (WLLN)">
@@ -243,7 +307,17 @@ Then
 </D>
 </THM>
 <PF>
-Use the exercise above and Chebyshev inequality.
+Take any <M>\epsilon > 0.</M>
+
+Applying Chebyshev inequality to the random variable <M>\bar X_n</M>  we have 
+<D>P(|\overline X_n-\mu|> \epsilon) \leq [[V(\overline X_n)][\epsilon^2]].</D>
+Now 
+<D>V(\overline X_n) = V(*([[1n]]\sum_1^n X_i)*) = [[1][n^2]] \sum_1^n V(X_i),</D>  
+since <M>X_i</M>'s are independent. Also each <M>V(X_i) = \sigma^2.</M>  Hence 
+<D>V(\overline X_n) = V(*([[1n]]\sum_1^n X_i)*) = [[\sigma^2][n]].</D>
+Hence we have 
+<D>P(|\overline X_n-\mu|> \epsilon) \leq [[\sigma^2][n\epsilon^2]]\to 0,</D>
+as <M>n\to \infty.</M>
 </PF>
 <HEAD1>Strong law of large numbers (SLLN)</HEAD1>
 <THM name="SLLN">Let <M>(X_n)</M>  be an IID sequence of random variables with <M>E(X_1) = \mu \in\rr.</M> 

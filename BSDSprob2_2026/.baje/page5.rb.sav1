@@ -1,5 +1,5 @@
 @{<NOTE>
-[Update:[Wed Jun 17 IST 2026]]
+[Update:[Thu Jul 02 IST 2026]]
 <TITLE>Convergence theorems</TITLE>
 <HEAD1>Monotone Convergence Theorem</HEAD1>
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
@@ -117,7 +117,7 @@ If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variab
 Suppose that <M>X_n</M>'s are nonnegative random variables. Show that 
 <D>E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).</D>
 </EXR>
-<TODO><M>\int sum = \sum \int</M>  for noneg.</TODO>
+
 <HEAD1>Fatou's lemma</HEAD1>
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
@@ -137,6 +137,38 @@ Hence
 as required.
 </PF>
 
+<EXR>Consider <M>U\sim Unif(0,1).</M>  Let <M>X_n = U^n</M>  for <M>n\in\nn</M>. Compute both
+ sides of Fatou's lemma explicitly.</EXR>
+
+<EXR>Again let <M>U\sim Unif(0,1).</M>  Let <M>X_n=<CASES>n<IF>U\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES></M>.
+Compute both sides of Fatou's lemma explicitly.</EXR>
+
+<EXR>Let <M>U\sim Expo(1).</M>  Let <M>X_n = <CASES>e^x<IF>x\in(n-1,n]</IF> 0<ELSE/></CASES></M> 
+ for <M>n\in\nn.</M>  Compute both sides of Fatou's lemma explicitly.</EXR>
+
+<EXR>Suppose that <M>(X_n)</M>  is a sequence of  random variables with <M>X_n\to
+ X.</M>  If <M>\forall n\in\nn~~ E(X_n)\in [2,5]</M>, then which of the following must be true?
+<VL>
+<LI><M>E(X)\geq 2</M></LI>
+<M>E(X)\leq 5.</M>
+</VL>
+Prove and/or provide counterexample(s) accordingly. 
+</EXR>
+
+<EXR>Give examples to show that equality or strict inequality may prevail in Fatou's lemma.</EXR>
+
+
+<EXR>We proved Fatou's lemma from MCT. It is possible to prove MCT using Fatou's lemma quite easily. How?</EXR>
+
+<EXR>Let <M>(X_n)</M>  be nonnegative random variables such that <M>\forall n\in\nn~~E(X_n) \leq
+ M</M>  for some <M>M\in\rr.</M>  If <M>X_n\to X,</M>  then show that <M>E(X) < \infty.</M></EXR>
+
+<EXR>Let <M>(X_n)</M>  be nonnegative random variables such that <M>\forall n\in\nn~~E(X_n) <
+ \infty.</M>  If <M>X_n\to X,</M>  then is that <M>E(X) < \infty.</M></EXR>
+
+<TODO>
+<LINK to="chat/Fatou_Lemma_Exercises.pdf">Fatou_Lemma_Exercises.pdf</LINK>
+</TODO>
 <HEAD1>Dominated Convergence Theorem</HEAD1>
 <THM name="Dominated Convergence Theorem (DCT)">
 Let <M>X_n\to X.</M>  If  <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  with <M>E(|Y|)< \infty</M>, 
@@ -161,10 +193,67 @@ or <M>\limsup E|X_n-X|\leq 0.</M>
 
 Hence <M>E|X_n-X|\to 0,</M>  as required.
 </PF>
+<HEAD2>Applications</HEAD2>
+We can think of the conclusion of MCT or DCT as limit passing through expectation: <M>\lim E(X_n) = E(\lim X_n).</M> This
+ proves handy in many situations as we discuss next.
+<HEAD3>Almost sure implies <M>L_1</M>  for dominated case</HEAD3>
+We have seen earlier that mere a.s. convergence (along with finite existence of expectation) does not guarantee <M>L_1</M> 
+ convergence. The counterexample we had given used an unbounded sequence of random variables.  Indeed, it is not possible
+ to have a counterexample using a bounded (or even dominated) sequence of  random variables.
 
-<TODO><OL><LI>Differentiation under integral.</LI>
-<LI>Conyinuity of parameter dependent integrals.</LI>
-<LI>Almost sure implies <M>L_1</M>  for dominated case.</LI>
-<LI>Continuity of</LI>
-</OL></TODO>
+<THM>Let <M>(X_n),X</M>  be  random variables such that <M>X_n\toA X</M>  and   <M>\forall n\in\nn~~|X_n|\leq
+ Y</M>  for some random variable <M>Y</M>  with <M>E(Y) < \infty.</M>  Then <M>X_n\toL 1 X.</M></THM> 
+<PF>Just a restatement of the DCT.</PF>
+<HEAD3>Continuity of characteristic function</HEAD3>
+Let a random variable <M>X</M>  have characteristic function <M>\xi(t)</M>  or <M>t\in\rr.</M>  We want to show that <M>\xi</M> 
+ is a continuous function, i.e.,
+<D>\forall t\in\rr~~\forall (t_n)\seq \rr ~~(t_n\to t\implies \xi(t_n)\to \xi(t)).</D>
+
+Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to\rr.</M>  
+
+To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X})></M>
+
+Let <M>Y_n = e^{it_n X}</M>  and <M>Y = e^{it X}.</M>  
+
+Then <M>Y_n\to Y</M>  and <M>|Y_n|,|Y|\leq 1.</M>
+
+Hence by DCT <M>E(Y_n)\to E(Y),</M>  as required. 
+
+<EXR>Show that a characteristic function must also be uniformly continuous.</EXR>
+
+<HEAD3>Continuity of expectations involving a secondary variable</HEAD3>
+The characteristic function <M>E(e^{i t X})</M>  is an example of an expectation involving a secondary variable, <M>t.</M> 
+ The technique we used above may be used to prove continuity of other similar expectations. This may be stated as a theorem.
+
+<THM>
+Let <M>f(x,t)</M>  be some bounded continuous function. Then for any random variable <M>E(X,t)</M>
+  is a continuous function of <M>t.</M> 
+</THM>
+
+
+<HEAD3>Differentiation under expectation</HEAD3>
+<THM>Let <M>X(t)</M>  be a random differentiabl function of <M>t.</M>  Suppose that 
+<D>\exists Z~~\forall t\in\rr ~~|X'(t)|\leq Z</D>  and <M>E(Z) < \infty.</M>  Then 
+<D>[[d][dt]] E(X(t)) = E(X'(t)).</D>
+</THM>
+<PF>
+To show <M>[[E(X(t+h)) - E(X(t))][h]] \to E(X'(t))</M>  as <M>h\to 0.</M>
+
+Enough to show that for every <M>(h_n)</M>  with <M>h_n\to 0</M>  we have <M>[[E(X(t+h_n)) - E(X(t))][h_n]] \to E(X'(t))</M> 
+ as <M>n\to \infty.</M>
+
+Take any such <M>(h_n).</M>
+
+Define <M>Y_n = [[X(t+h_n) - X(t)][h_n]],</M>  and <M>Y = X'(t).</M>  
+
+Then by the given condition <M>Y_n\to Y</M>.
+
+Also by the mean value theorem <M>Y_n = X'(t_n)</M>  for some <M>t_n</M>  between <M>t</M>  and <M>t+h_n.</M>
+
+Hence <M>|Y_n| = |X'(t_n)| \leq Z,</M>  which has finite expecation.
+
+Hence <M>(Y_n)</M>  is a dominated sequence. 
+
+So, by the DCT, <M>E(Y_n)\to E(Y),</M>  completing the proof.
+</PF>
 </NOTE>@}

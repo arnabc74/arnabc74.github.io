@@ -233,6 +233,35 @@ Let $(\Omega,\calF,P)$  be any probability space. Let $(A_n)$  be a sequence of 
 
 <p></p>
 We can express it as $\cap_{n}\cup_{k\geq n} A_k.$  
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+This is basically word-play:
+<p></p>
+$\omega\in {A_n\io}$  
+<blockquote>$\Leftrightarrow$<blockquote> $\omega$  is in infinitely many $A_n$'s.</blockquote>
+</blockquote>
+
+<blockquote>$\Leftrightarrow$<blockquote>Whatever $n$  you choose
+ there is bound to be some $A_k$  with $k\geq n$  such that $\omega\in A_k.$  </blockquote>
+</blockquote>
+
+<p></p>
+
+<blockquote>$\Leftrightarrow$<blockquote>Whatever $n$  you choose $\omega\in \cup_{k\geq n} A_k.$  </blockquote>
+</blockquote>
+
+<p></p>
+
+<blockquote>$\Leftrightarrow$<blockquote>$\forall n\in{\mathbb N}~~\omega\in\cup_{k\geq n} A_k.$</blockquote>
+</blockquote>
+
+<p></p>
+
+<blockquote>$\Leftrightarrow$<blockquote>$\omega\in\cap_n \cup_{k\geq n} A_k.$ </blockquote>
+</blockquote>
+</div></blockquote>
+
 <p></p>
 
 <h2><a
@@ -304,13 +333,76 @@ Let the exact text of Hamlet have $h$ letters.  Consider packets of $h$  letters
  $A_n$'s are independent and $P(A_n)&gt;0.$  So $\sum_n P(A_n) = \infty.$  Hence by
  the second Borel-Canteli lemma, $P(A_n\io)=1.$  
 <p></p>
-However, you really do not need to use the second Borel Cantelli lemma here. It also follows from continuity of probability.  
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;However, if you want to just show that the monkey will surely write Hamlet <i>at least
+ once</i>, then you really do not need
+ to use the second Borel
+ Cantelli lemma. You can prove it much more easily using continuity of probability.  How?</p>
+
 <p></p>
 
 <h3><a
 name="Normal numbers">Normal numbers</a></h3>
 Consider a uniform random number between 0 and 1. Let $d_n$  be the $n$-th digit after
- the decimal point in its (unique) non-terminating decimal expansion. Then
+ the decimal point in its (unique) non-terminating decimal expansion. For example, if the number
+ is $\frac 12,$  then the non-terminating decimal expansion
+ is $0.499999...,$  and so $d_1 = 4,$  while $d_n=9$  for each $n\geq 2.$  
+<p></p>
+Consider the event $\{d_1=3\}.$  Clearly it is $(0.3,0.4].$  So this has probability
+ $\frac{1}{10}.$  Next consider the event $\{d_2=3\}.$  This is $\cup_{d_1=0}^9
+ \frac{d_1}{10}+(0.03,0.04].$  Again, the probability is $\frac{1}{10}.$  In particular we have the following theorem:
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+
+<ul>
+
+<li>For each $n$  the random variable $d_n$  is uniformly distributed over $\{0,1,...,9\}.$</li>
+
+<li>If $m\neq n,$  then $d_m$  and $d_n$  are independent.</li>
+
+</ul> 
+
+</fieldset>
+
+<p></p>
+Next we shall fix a single number $\omega\in(0,1)$  and check how many times any given digit (say 3) occurs in it. 
+<p></p>
+Let
+$S_n(\omega) = $  number of times the digit 3 occurs among the first $n$  digits of $\omega.$  
+For instance of $\omega=\frac 13,$  then $S_n(\omega) = n.$
+<p></p>
+We are interested in the proportion of times a digit occurs in the expansion. Mathematically, we
+ work with $\lim_{n\rightarrow \infty} \frac{S_n(\omega)}{n}$ (which may not exist).  For instance, if $\omega=\frac 13,$ 
+ then the limit exists and equals $1.$  If $\omega=0.3,$  then the limit exists and equals $0.$  
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Can you construct an expansion for which the limit does <i>not</i>  exist? <p>
+<b>Hint:</b>
+<blockquote>You can get one using only 0's
+ and 3's. </blockquote>
+</p>
+</p>
+
+<p></p>
+Let $A_3 = $ set of all numbers for which the limit equals $\frac{1}{10}.$  What do you expect $P(A_3)$  to be?
+The following theorem provides the answer.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$P(A_n) = \frac{1}{10}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall prove it for $n=3.$  (the other cases are exactly similar).
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+Then
  $\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.$ So, in particular, $P(0\mbox{ occurs }\io)=1.$  Hence, $P(0,1\mbox{ occur }\io)=1.$ 
  Proceeding similarly, $P(\mbox{each digit occurs }\io)=1.$
 <h3><a
@@ -381,7 +473,7 @@ Hence the result.
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;
+<b>EXERCISE 3:</b>&nbsp;
 If $X_n\rightarrow L 1 X,$ then $E(X_n)\rightarrow E(X),$ but the
 converse is not true.
 <p><a
@@ -391,6 +483,30 @@ Take $X_n\equiv (-1)^n$ and $X\equiv 1$ as a
 counterexample for the converse.
 </div></p>
 
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $p\in[1,\infty).$  If $X_n\rightarrowL p X$  and $Y_n\rightarrowL p Y$, then $X_n+Y_n\rightarrowL p X+Y.$</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Follows from Minkowski inequality.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+However, even if $X_n\rightarrowL p X$  and $Y_n\rightarrowL p Y$  and $X_nY_n, XY$  have finite $p$-th
+ moments, we may have $X_nY_n\not\rightarrowL p XY.$
+<p></p>
+The following exercise provides  a counterexample.
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp; Let $U\sim Unif(0,1).$  Define 
+$$X_n = Y_n = \left\{\begin{array}{ll}n^{1/(2p)}&\text{if }U\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right..$$
+Also, let $X=Y\equiv 0.$  
+<p></p>
+Show that $E|X_nY_n|^p=1.$  Hence show that this provides a counterexample to the statement above.
 </p>
 
 <p></p>
