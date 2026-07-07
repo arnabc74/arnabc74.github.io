@@ -9,87 +9,9 @@ We often work with functions of random variables. New random variables are creat
 So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
  ones. In your Probability I class you have already learned the (univariate) Jacobian formula for this:
 <IMG web="jac1.png">Excerpt from Probability I notes</IMG>
-
-<HEAD1 u="https://youtu.be/I-bRxjHDWNU">Via CDF</HEAD1>
-If we working with univariate distributions, then the most general (and often the simplest)
- technique is to use CDF. This is particularly so, if the transformation is a monotone one. 
-<EXM>
-If <M>X</M>  is uniformly distributed over <M>[0,2],</M>  then find a density for <M>X^2.</M>  
-<SOLN/>
-Let <M>Y = X^2.</M>  A density for <M>X</M>  is <M>f(x) = [[12]]</M>  if <M>0\leq x\leq 2</M>  (and 0 else). We shall pass
- to the CDF of <M>X:</M>
-<D>F(x) = <CASES>0<IF>x < 0</IF> [[x2]]<IF>0\leq x < 2</IF> 1<ELSE/></CASES> </D>
-From this we shall compute the CDF of <M>Y.</M>  Clearly, <M>Y</M>  cannot take values outside <M>[0,4].</M>  So <M>G(y) = 0</M> 
- if <M>y<0</M> and <M>G(y) = 1</M>  if <M>y\geq 4.</M>  
-
-Let <M>y\in[0,4).</M>
-
-Then 
-<D>G(y) = P(Y\leq y) = P(X^2\leq y) = P(X\leq \sqrt y) = [[12]]\sqrt y.</D>
-Differentiating this, we arrive at the required density of <M>Y</M>  as
-<D>g(y) = G'(y) = <CASES>[[1][4\sqrt y]]<IF>y\in(0,4)</IF> 0<ELSE/></CASES></D>
-</EXM> 
-You see the advantage of monotonicity. Even though <M>x\mapsto x^2</M>  is a not a monotone function over <M>\rr,</M>  it
- is so when restricted to <M>[0,2].</M>  The CDF technique can handle even some simple non-monotonic cases, as we show now.
-
-<EXM>
-Let <M>X</M>  be uniform over <M>[-1,1].</M>  Find the density of <M>X^2.</M>  
-<SOLN/>
-Clearly, <M>Y=X^2</M>  cannot go outside <M>[0,1].</M>  So its CDF <M>G(y)</M>  must have <M>G(y)=0</M>  for <M>y<0</M> 
- and <M>G(y)=1</M>  for <M>y\geq 1.</M>  
-
-For <M>y\in[0,1)</M>  we have
-<D>G(y) = P(X^2\leq y) = P(-\sqrt y \leq X \leq \sqrt y) = \sqrt y.</D>
-Differentiating we get the density
-<D>g(y) = <CASES>[[1][2\sqrt y]]<IF>y\in(0,1)</IF> 0<ELSE/></CASES> </D>
-</EXM>
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>
-If <M>X</M>  has density <M>f(x)=<CASES>2x<IF>x\in(0,1)</IF> 0<ELSE/></CASES></M>, then find density of <M>X^2.</M>
-</EXR>
-
-<EXR>If <M>X</M>  has constant density over <M>(0,1)</M>  and zero outside it, then guess the
- density of <M>1-X</M>, and prove your guess.</EXR>
-
-<EXR>If <M>X</M>  has density <M>f(x)</M>, then the density of <M>-X</M>  is 
-<OL type="A"><LI><M>f(x)</M></LI><LI><M>-f(x)</M></LI><LI><M>f(-x)</M></LI><LI><M>-f(-x)</M></LI></OL>
-</EXR>
-
-<EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y) = [[1][2\pi]] e^{-[[12]](x^2+y^2)},</M>  then
- find the density of <M>R = \sqrt{X^2+Y^2}.</M></EXR>
-
-<EXR>If <M>(X,Y)</M>  is uniformly distributed over the unit disc in <M>\rr^2,</M>  and we write
- <M>(X,Y)</M>  as <M>(R,\Theta)</M>  in polar coordinates where <M>\Theta\in[0,2\pi),</M>  then
- find density of <M>R</M>  and also the density of <M>\Theta.</M></EXR>
-
-
-<HEAD1 u="https://youtu.be/lw4-9KY6MW0">Jacobian formula (1 dim)</HEAD1>
-To understand the Jacobian method, it will help to look at the univariate CDF method. Let <M>f(x)</M>  be a density of <M>X</M> 
- and let <M>Y=h(X),</M>  where <M>h(\cdot)</M>  is an increasing bijection with differentiable <M>h ^{-1}(y).</M>
-
-Then the CDF of <M>Y</M>  is <M>G(y) = P(Y\leq y) = P(h(X)\leq y) = P(X\leq h ^{-1}(y)) = F(h
- ^{-1}(y)),</M>  where <M>F(\cdot)</M>  is the
- CDF of <M>X.</M>  
-
-So <M>Y</M>  has density given by
-<D>g(y) = G'(y) = [[d][dy]]F(h ^{-1}(y)) = f(h ^{-1}(y))[[d][dy]]h ^{-1}(y).</D>
-So far we are assuming that <M>h(\cdot)</M>  is an increasing function. A very similar argument works for a decreasing function
- as well. In general for any bijection <M>h(\cdot),</M>  we have
-<D lab="(*)">g(y) =  f(h ^{-1}(y)) [|[ [[d][dy]]h ^{-1}(y) ]|].</D>
-
-
-<HEAD2>Problem set <PS/></HEAD2>
-<EXR>If <M>X</M>  has density <M>f(x)</M>, then find density of <M>aX+b</M>  for <M>a\neq 0</M>  and <M>b\in\rr.</M></EXR>
-
-<EXR>If <M>X</M>  has density <M>f(x) =<CASES>c\, x e^{-x}<IF>x>0</IF> 0<ELSE/></CASES> </M>, then
- find density of <M>Y = \sqrt{X}.</M></EXR>
-
-<EXR>Let <M>X</M>  have density <M>f(x) = <CASES>2 e^{-2x}<IF>x>0</IF> 0<ELSE/></CASES></M>  Find
- density of <M>Y=X^2</M>  using (*).</EXR>
-<EXR>Let <M>X</M>  have density <M>f(x).</M>  Find
- density of <M>Y=a X+b</M>  using (*) if <M>a\neq 0.</M>  </EXR>
-
-<EXR>Let <M>X</M>  have uniform distribution over <M>(-1,1).</M>  Find density of <M>Y=\sin X</M>  using (*).</EXR>
+We plan to generalise this to the multivariate case. For this, let us first understand the
+ geometric interpretation of this univariate formula. 
+ 
 <HEAD1 u="https://youtu.be/sGlCID43YeE">Jacobian formula (intuition)</HEAD1>
  
 Let's first massage (*) into a more elegant form. We know that <M>h(h ^{-1} (y))\equiv y.</M>
