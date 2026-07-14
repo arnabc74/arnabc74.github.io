@@ -5,11 +5,14 @@
 <TITLE>Transformation of random vectors</TITLE>
 
 <HEAD1>Warm up</HEAD1>
-We often work with functions of random variables. New random variables are created out of existing ones via functions. 
-So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
- ones. In your Probability I class you have already learned about univariate transforms (i.e.,
- from <M>\rr</M>  to <M>\rr</M>). Here we shall generalise it to multivariate transforms (i.e.,
- from <M>\rr^n</M>  to <M>\rr^n</M>). Let us start reviewing some basic concepts.
+We often work with functions of random variables. Old random variables are transformed into new random variables using
+functions. 
+So a natural requirement is to be able to work out the distributions of the new random variables
+ in terms of those of the old
+ ones. In Probability I, you have already learned about univariate transforms (i.e.,
+ from <M>\rr</M>  to <M>\rr</M>). Here we shall generalise them to multivariate transforms (i.e.,
+ from <M>\rr^n</M>  to <M>\rr^n</M>  and later from <M>\rr^n</M>  to <M>\rr^m</M>  where <M>m < n</M>). Let us start
+by reviewing some basic concepts.
 
 <HEAD2>Random vectors</HEAD2>
 An <M>n</M>-dimensional random vector is just <M>n</M>  random variables packed together as a vector. All the random variables
@@ -24,18 +27,18 @@ An <M>n</M>-dimensional random vector is just <M>n</M>  random variables packed 
 Then <M>(X,Y)</M>  is a random vector. 
 </EXM>
 
-<EXM>Roll a fair die and a fair coin independently.  Let the outcome be denoted by
+<EXM>Roll a fair die and a fair coin independently together.  Let the outcome be denoted by
  <M>\omega\equiv(\omega_1,\omega_2),</M>  where <M>\omega_1</M>  is the outcome of the die, and
  <M>\omega_2</M>  is that of the coin. 
  
- Define the random variables
- <M>X</M>, <M>Y</M>  and <M>Z</M>  as 
+ Define the random variables  <M>X</M>, <M>Y</M>  and <M>Z</M>  as 
 <UL>
 <LI><M>X(\omega) = \omega_1</M></LI>
 <LI><M>Y(\omega) = <CASES>1<IF>\omega_2=Head</IF> 0<IF>\omega_2=Tail</IF></CASES></M></LI>
 <LI><M>Z(\omega) = <CASES>\omega_1<IF>\omega_2=Head</IF> \omega_1+3<IF>\omega_2=Tail</IF></CASES></M></LI>
 </UL>
-Then <M>(X,Y,Z,XY)</M>  is a random vector. 
+Then <M>(X,Y,Z,XY)</M>  is a random vector. This example shows how "a coin toss and a die roll" is considered a <I>single</I> 
+
 </EXM>
 
 <HEAD2>Multivariate function</HEAD2>
@@ -236,22 +239,23 @@ Let us zoom in upon the little square (before and after the transformation):
 If the two components of <M>\phi(x,y)</M>  are called <M>u(x,y)</M>  and <M>v(x,y),</M>  then 
  <MULTILINE>
 \phi(a, b) & = & (u(a, b), v(a, b)),\\
-\phi(a+\delta x, b) & = & (u(a+\delta x, b), v(a+\delta x, b))\approx 
-(*(u(a,b)+\pd u x(a,b) \delta x, v(a,b)+\pd v  x (a,b) \delta x)*)\\
-\phi(a, b+\delta y) & = & (u(a, b+\delta x), v(a, b+\delta x))\approx (*(u(a,b)+\pd u y(a,b) \delta y, v(a,b)+\pd v
- y (a,b) \delta y)*).
+\phi(a+\delta x, b) & = & (u(a+\delta, b), v(a+\delta, b))\approx 
+(*(u(a,b)+\pd u x\delta, v(a,b)+\pd v  x \delta)*)\\
+\phi(a, b+\delta y) & = & (u(a, b+\delta x), v(a, b+\delta))\approx (*(u(a,b)+\pd u y \delta, v(a,b)+\pd v
+ y \delta)*).
 </MULTILINE>
 So after the transform, the little green square is approximately the following parallelogram:
 <CIMG web="jacoex3.png">A parallelogram</CIMG>
-The blue edge is given by the vector <M>(*(\pd u x(a,b), \pd v  x (a,b) )*)\delta x,</M>  and red side by the vector
- <M>(*(\pd u y(a,b), \pd v  y (a,b) )*)\delta y.</M>
+The blue edge is given by the vector <M>(*(\pd u x, \pd v  x  )*)\delta,</M>  and red side by the vector
+ <M>(*(\pd u y, \pd v  y )*)\delta.</M>
 
 Now, it is known that the area of a parallelogram with sides given by <M>(a,b)</M>  and
- <M>(c,d)</M>  is <M>[|[\det(*(<MAT>a & c\\b & d</MAT>)*)]|].</M>
+ <M>(c,d)</M>  is <M>[|[\det<MAT>a & c\\b & d</MAT>]|].</M>
 Hence the area of the green parallelogram is 
-<D>[|[ \det(*(<MAT>\pd u x & \pd u y\\\pd v x & \pd v y</MAT>)*)]|] dd exponential \delta y,</D>
+<D>[|[ \det<MAT>\pd u x & \pd u y\\\pd v x & \pd v y</MAT>]|] \delta^2,</D>
 evaluated at <M>(a,b).</M>  Since the original green square had area <M>\delta^2,</M>  hence the scaling factor is given
- by the absolute
+ by the absolute determinant of the Jacobian.
+
  into the curve of <M>\phi(a,y)</M>  and blue line changes into the curve of <M>\phi(x,b).</M> 
  When <M>x</M>  increases from <M>a</M>  to <M>a+\delta x,</M>  the corresponding change in
  <M>\phi(x,b)</M>  is from <M>\phi(a,b)</M>  to  

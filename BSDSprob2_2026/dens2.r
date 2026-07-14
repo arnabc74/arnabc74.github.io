@@ -4,7 +4,7 @@ A = matrix(c(1,0,0,2),2)
 B = matrix(c(1,0.8,1,0.2),2)
 n = rbinom(1,1000,0.5)
 x = rbind(dat[1:n,]%*%A,c(5,5)+dat[(n+1):1000,]%*%B)
-plot(x[,1],-x[,2],pch=20,xlab='',ylab='')
+plot(x[,1],x[,2],pch=20,xlab='',ylab='')
 dev.off()
 
 library(mclust)

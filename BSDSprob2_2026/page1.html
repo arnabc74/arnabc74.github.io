@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Jul 13 22:03:40 IST 2026</i>
+Tue Jul 14 15:31:16 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -167,37 +167,37 @@ Mon Jul 13 22:03:40 IST 2026</i>
 <ul>
 <li>1. <a href="#N10012">Warm up</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10029">Random vectors</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10032">Random vectors</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10089">Multivariate function</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10095">Multivariate function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100CD">Jacobian</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100D9">Jacobian</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N100FA">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N10106">Problem set</a>
 </li>
-<li>2. <a href="#N100FD">Review of the univariate case</a>
+<li>2. <a href="#N10109">Review of the univariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10115">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10121">Problem set</a>
 </li>
-<li>3. <a href="#N10118">Multivariate Jacobian formula</a>
+<li>3. <a href="#N10124">Multivariate Jacobian formula</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101C8">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101D4">Problem set</a>
 </li>
-<li>4. <a href="#N101FE">Special case: (Affine) linear tranforms</a>
+<li>4. <a href="#N1020A">Special case: (Affine) linear tranforms</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10227">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10233">Problem set</a>
 </li>
-<li>5. <a href="#N1022A">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<li>5. <a href="#N10236">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10287">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10293">Problem set</a>
 </li>
-<li>6. <a href="#N1028A">Geometry in the univariate case</a>
+<li>6. <a href="#N10296">Geometry in the univariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N102D6">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N102E2">Problem set</a>
 </li>
-<li>7. <a href="#N1030A">Geometry in the multivariate case</a>
+<li>7. <a href="#N10316">Geometry in the multivariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N103E1">Problem set </a>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N103ED">Problem set </a>
 </li>
 </ul>
 <hr/>
@@ -211,15 +211,18 @@ $\newcommand{\v}[1]{{\mathbf #1}}$
 <h1>
 <a name="N10012"><span class="header">1</span>. Warm up</a>
 </h1>
-We often work with functions of random variables. New random variables are created out of existing ones via functions. 
-So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
- ones. In your Probability I class you have already learned about univariate transforms (<i>i.e.</i>,
- from ${\mathbb R}$  to ${\mathbb R}$). Here we shall generalise it to multivariate transforms (<i>i.e.</i>,
- from ${\mathbb R}^n$  to ${\mathbb R}^n$). Let us start reviewing some basic concepts.
+We often work with functions of random variables. Old random variables are transformed into new random variables using
+functions. 
+So a natural requirement is to be able to work out the distributions of the new random variables
+ in terms of those of the old
+ ones. In Probability I, you have already learned about univariate transforms (<i>i.e.</i>,
+ from ${\mathbb R}$  to ${\mathbb R}$). Here we shall generalise them to multivariate transforms (<i>i.e.</i>,
+ from ${\mathbb R}^n$  to ${\mathbb R}^n$  and later from ${\mathbb R}^n$  to ${\mathbb R}^m$  where $m &lt; n$). Let us start
+by reviewing some basic concepts.
 <p></p>
 
 <h2>
-<a name="N10029"><span class="header">1.1</span>.
+<a name="N10032"><span class="header">1.1</span>.
 Random vectors</a>
 </h2>
 An $n$-dimensional random vector is just $n$  random variables packed together as a vector. All the random variables
@@ -243,12 +246,11 @@ Then $(X,Y)$  is a random vector.
 <p></p>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;Roll a fair die and a fair coin independently.  Let the outcome be denoted by
+<b>EXAMPLE 2:</b>&nbsp;Roll a fair die and a fair coin independently together.  Let the outcome be denoted by
  $\omega\equiv(\omega_1,\omega_2),$  where $\omega_1$  is the outcome of the die, and
  $\omega_2$  is that of the coin. 
 <p></p>
- Define the random variables
- $X$, $Y$  and $Z$  as 
+ Define the random variables  $X$, $Y$  and $Z$  as 
 <ul>
 
 <li>$X(\omega) = \omega_1$</li>
@@ -258,14 +260,15 @@ Then $(X,Y)$  is a random vector.
 <li>$Z(\omega) = \left\{\begin{array}{ll}\omega_1&\text{if }\omega_2=Head\\ \omega_1+3&\text{if }\omega_2=Tail\\\end{array}\right.$</li>
 
 </ul>
-Then $(X,Y,Z,XY)$  is a random vector. 
+Then $(X,Y,Z,XY)$  is a random vector. This example shows how "a coin toss and a die roll" is considered a <i>single</i> 
+ random experiment. 
  ■
 </p>
 
 <p></p>
 
 <h2>
-<a name="N10089"><span class="header">1.2</span>.
+<a name="N10095"><span class="header">1.2</span>.
 Multivariate function</a>
 </h2>
 When we say $\phi$  is a function from ${\mathbb R}^2$  to ${\mathbb R}^3,$  we think of $\phi$  as a machine with $2 $ inputs
@@ -304,7 +307,7 @@ Note that, as in the  case of the first and third components, not all the input 
 <p></p>
 
 <h2>
-<a name="N100CD"><span class="header">1.3</span>.
+<a name="N100D9"><span class="header">1.3</span>.
 Jacobian</a>
 </h2>
 Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m$  be a function with $i$-th component function denoted by
@@ -321,12 +324,12 @@ $$\left[\begin{array}{ccccccccccc}1 &amp; 0\\1 &amp; 1\\2x_1 &amp; 0
 </p>
  
 <h2>
-<a name="N100FA"><span class="header">1.4</span>.
+<a name="N10106"><span class="header">1.4</span>.
 Problem set</a>
 </h2>
 
 <h1>
-<a name="N100FD"><span class="header">2</span>. Review of the univariate case</a>
+<a name="N10109"><span class="header">2</span>. Review of the univariate case</a>
 </h1>
 We already know this (at least we <i>should</i> !):
 <center>
@@ -339,12 +342,12 @@ Here $\phi$  is assumed to be strictly monotone and differentiable. Actually, we
 <p></p>
 
 <h2>
-<a name="N10115"><span class="header">2.1</span>.
+<a name="N10121"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
 <h1>
-<a name="N10118"><span class="header">3</span>. Multivariate Jacobian formula</a>
+<a name="N10124"><span class="header">3</span>. Multivariate Jacobian formula</a>
 </h1>
 In higher dimensions, we want to have $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n.$  Now, if $n\geq 2,$  then 
 we do not have the concept of
@@ -426,7 +429,7 @@ Sketching these restrictions we get this region:
 </p>
 
 <h2>
-<a name="N101C8"><span class="header">3.1</span>.
+<a name="N101D4"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -458,7 +461,7 @@ non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independe
 </p>
 
 <h1>
-<a name="N101FE"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
+<a name="N1020A"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
 </h1>
 If our transformation is $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the form $\phi(\v x) = A\v x + \v b,$  where $A_{n\times n}$ 
  is a fixed matrix, and $\v b$  is a fixed vector, then $\phi$  is a a bijection if any only if $A$  is nonsingular.
@@ -467,12 +470,12 @@ If our transformation is $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the
 <p></p>
 
 <h2>
-<a name="N10227"><span class="header">4.1</span>.
+<a name="N10233"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
 <h1>
-<a name="N1022A"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<a name="N10236"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </h1>
 So far we have been talking only about trasnformas from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
  where $m\neq n?$  
@@ -501,12 +504,12 @@ bijective function from ${\mathbb R}^2$  to ${\mathbb R}^2.$  So we can let $V =
 <p></p>
 
 <h2>
-<a name="N10287"><span class="header">5.1</span>.
+<a name="N10293"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
 <h1>
-<a name="N1028A"><span class="header">6</span>. Geometry in the univariate case</a>
+<a name="N10296"><span class="header">6</span>. Geometry in the univariate case</a>
 </h1>
 
 <p></p>
@@ -567,7 +570,7 @@ to  compensate by growing taller,
 <p></p>
 
 <h2>
-<a name="N102D6"><span class="header">6.1</span>.
+<a name="N102E2"><span class="header">6.1</span>.
 Problem set</a>
 </h2>
 
@@ -593,7 +596,7 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 </p>
 
 <h1>
-<a name="N1030A"><span class="header">7</span>. Geometry in the multivariate case</a>
+<a name="N10316"><span class="header">7</span>. Geometry in the multivariate case</a>
 </h1>
 First let us understand how a function from ${\mathbb R}^2$  to ${\mathbb R}^2$  may be visualised graphically. 
 <center>
@@ -730,7 +733,7 @@ $$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (
 </blockquote>
 
 <h2>
-<a name="N103E1"><span class="header">7.1</span>.
+<a name="N103ED"><span class="header">7.1</span>.
 Problem set </a>
 </h2>
 
