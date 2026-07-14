@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -8,6 +8,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
 <script>
 aha = function(code) {
   window.open("https://rdrr.io/snippets/embed/?code="+code)
@@ -85,7 +87,7 @@ body,table {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -152,76 +154,54 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:15:19 IST 2026</i>
+</td>
+</tr>
+</table>
 <h3>Convergence theorems</h3>
 <ul>
-<li>
-<a href="#Monotone Convergence Theorem">Monotone Convergence Theorem</a>
+<li>1.<a href="#N10007">Monotone convergence theorem (MCT)</a>
 </li>
-<li>
-<a href="#Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a>
+<li>&nbsp;&nbsp;&nbsp;1.1.<a href="#N100AA">MCT for Riemann integration?</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#MCT for Riemann integration?">MCT for Riemann integration?</a>
+<li>&nbsp;&nbsp;&nbsp;1.2.<a href="#N100E9">Why not decreasing?</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Why not decreasing?">Why not decreasing?</a>
+<li>&nbsp;&nbsp;&nbsp;1.3.<a href="#N10119">Problem set 1</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 1">Problem set 1</a>
+<li>2.<a href="#N1015F">Fatou's lemma</a>
 </li>
-<li>
-<a href="#Fatou's lemma">Fatou's lemma</a>
+<li>3.<a href="#N1020D">Dominated Convergence Theorem</a>
 </li>
-<li>
-<a href="#Dominated Convergence Theorem">Dominated Convergence Theorem</a>
+<li>&nbsp;&nbsp;&nbsp;3.1.<a href="#N10253">Applications</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Applications">Applications</a>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1.<a href="#N10259">Almost sure implies $L_1$  for dominated case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Almost sure implies $L_1$  for dominated case">Almost sure implies $L_1$  for dominated case</a>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2.<a href="#N1027B">Continuity of characteristic function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Continuity of characteristic function">Continuity of characteristic function</a>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3.<a href="#N102C2">Continuity of expectations involving a secondary variable</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Continuity of expectations involving a secondary variable">Continuity of expectations involving a secondary variable</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Differentiation under expectation">Differentiation under expectation</a>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.4.<a href="#N102DB">Differentiation under expectation</a>
 </li>
 </ul>
 <hr/>
-[Update:[Thu Jul 02 IST 2026}
+
 <title xmlns="">Convergence theorems</title>
 
-<h1><a
-name="Monotone Convergence Theorem">Monotone Convergence Theorem</a></h1>
-
-<h1><a
-name="Monotone convergence theorem (MCT)">Monotone convergence theorem (MCT)</a></h1>
-We would have been very happy, had there been a result saying: Whenever $X_n\rightarrow X$  we have $E(X_n)\rightarrow E(X)$. Unfortunately,
+<h1>
+<a name="N10007"><span class="header">1</span>. Monotone convergence theorem (MCT)</a>
+</h1>
+We would have been very happy, had there been a result saying: Whenever $X_n\rightarrowA X$  we have $E(X_n)\rightarrow E(X)$. Unfortunately,
  this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
-<p></p>
-The following theorem is just a restatement of the second technical result discussed earlier:
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $X_n\rightarrow X$. Assume
-<ul>
-<li>$(X_n)$  is a non-negative, non-decreasing sequence,</li>
-
-<li>$X_n$'s are all simple.</li>
-
-</ul>
-Then $E(X_n) \rightarrow E(X)$.
-</fieldset>
- Interestingly, the last condition may be dropped (<i>i.e.</i>, $X_n$'s need not be simple). This gives rise to the theorem
- below.
 <p></p>
 
 <fieldset>
 <legend><b><i>Monotone convergence theorem (MCT)</i></b></legend>
-Let $X_n\rightarrow X$. Assume
+Let $X_n\rightarrowA X$. Assume
 <ul>
 <li>$(X_n)$  is a non-negative, non-decreasing sequence.</li>
 
@@ -229,83 +209,11 @@ Let $X_n\rightarrow X$. Assume
 Then $E(X_n) \rightarrow E(X)$.
 </fieldset>
 
-<p>
-<b><i>Proof:</i></b>
-Enough to show simple random variables $Y_n$  such that $Y_n\uparrow X $ and $Y_n\leq X_n.$
-<blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">
-We already know $E(Y_n)\uparrow E(X).$  But $E(X_n)$  is sandwiched between $E(Y_n)$  and $E(X).$
-</div></blockquote>
-Let $(Z_{n,k})_k$  be a simplification of $X_n.$  
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/mctarr.png"></th>
-</tr>
-<tr>
-<th>Think of the $Z_{n,k}$'s like an infinite "matrix".</th>
-</tr>
-</table>
-</center>
-Each row of this "matrix" is a non-decreasing sequence. 
-<p></p>
-Let $Y_n = \max\{Z_{1,n},...,Z_{n,n}\}.$  
-<p></p>
-It is like extracting the upper triangular half of the "matrix" and taking maximum
- of each column.
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/mctarr2.png"></th>
-</tr>
-<tr>
-<th>How $Y_n$'s are computed</th>
-</tr>
-</table>
-</center>
 
-<p></p>
-Then $Y_1\leq Y_2\leq\cdots$
-<blockquote><a
-href="javascript:hideShow('reason2')"><b>[Because...]</b></a><div
-class="ans" id="reason2">
-$$\begin{eqnarray*}
-Y_{n+1} &amp; = &amp; \max\{Z_{1,n+1},...,Z_{n+1,n+1}\}\\
-&amp; \geq &amp; \max\{Z_{1,n+1},...,Z_{n,n+1}\}~~\left[\mbox{$\because$ superset cannot have smaller max}\right]\\
-&amp; \geq &amp; \max\{Z_{1,n},...,Z_{n,n}\},
-\end{eqnarray*}$$
-by non-decreasing property of $Z_{n,k}$  w.r.t. $k.$
-</div></blockquote>
-Also $Y_n\leq X_n.$
-<blockquote><a
-href="javascript:hideShow('reason3')"><b>[Because...]</b></a><div
-class="ans" id="reason3">
-$Z_{k,n}\leq X_k\leq X_n.$
-</div></blockquote>
-Finally, $Y_n\uparrow X.$
-<blockquote><a
-href="javascript:hideShow('reason4')"><b>[Because...]</b></a><div
-class="ans" id="reason4">
-We have $Y_k\leq X_k\leq X$. So $(Y_k)$  is a non-decreasing sequence bounded from above. So $\lim_k Y_k$ 
- exists and $\lim_k Y_k\leq X$.
-<p></p>
-We have $Z_{n,k} \leq Y_k$  for $k\geq n$.  
-<p></p>
-Taking limit as $k\rightarrow \infty,$  we have $X_n\leq \lim_k Y_k.$
-<p></p>
-Now taking limit as $n\rightarrow \infty,$  we have $X\leq \lim_k Y_k.$  
-<p></p>
-Hence $\lim_k Y_k= X.$
-</div></blockquote>
-This completes the proof.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<h2><a
-name="MCT for Riemann integration?">MCT for Riemann integration?</a></h2>
+<h2>
+<a name="N100AA"><span class="header">1.1</span>.
+MCT for Riemann integration?</a>
+</h2>
 Do we have an MCT for Riemann integrals, as well? Well, no, because even if $X_n$'s are
  Riemann integrable, and they increase to $X,$  there is a no guaranty that $X$  will be Riemann integrable.
 <p></p>
@@ -328,8 +236,10 @@ However, it may be shown that if the limit
  is a Riemann integrable, then MCT holds for Riemann integration also. 
 <p></p>
 
-<h2><a
-name="Why not decreasing?">Why not decreasing?</a></h2>
+<h2>
+<a name="N100E9"><span class="header">1.2</span>.
+Why not decreasing?</a>
+</h2>
 The 'M' in MCT refers to <i>monotone</i>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
  However, in the theorem we require the sequence of functions to be non-increasing. 
 <p></p>
@@ -346,8 +256,10 @@ The problem is that the Lebesgue integral is <i>defined</i>  as sup of approxima
  ■
 </p>
 
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
+<h2>
+<a name="N10119"><span class="header">1.3</span>.
+Problem set 1</a>
+</h2>
 
 <p></p>
 
@@ -383,8 +295,9 @@ $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 
 <p></p>
 
-<h1><a
-name="Fatou's lemma">Fatou's lemma</a></h1>
+<h1>
+<a name="N1015F"><span class="header">2</span>. Fatou's lemma</a>
+</h1>
 
 <fieldset>
 <legend><b><i>Fatou's lemma</i></b></legend>
@@ -463,8 +376,9 @@ Prove and/or provide counterexample(s) accordingly.
 <p></p>
 
 
-<h1><a
-name="Dominated Convergence Theorem">Dominated Convergence Theorem</a></h1>
+<h1>
+<a name="N1020D"><span class="header">3</span>. Dominated Convergence Theorem</a>
+</h1>
 
 <fieldset>
 <legend><b><i>Dominated Convergence Theorem (DCT)</i></b></legend>
@@ -494,12 +408,15 @@ Hence $E|X_n-X|\rightarrow 0,$  as required.
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Applications">Applications</a></h2>
+<h2>
+<a name="N10253"><span class="header">3.1</span>.
+Applications</a>
+</h2>
 We can think of the conclusion of MCT or DCT as limit passing through expectation: $\lim E(X_n) = E(\lim X_n).$ This
  proves handy in many situations as we discuss next.
-<h3><a
-name="Almost sure implies $L_1$  for dominated case">Almost sure implies $L_1$  for dominated case</a></h3>
+<h3>
+<a name="N10259"><span class="header">3.1.1</span>. Almost sure implies $L_1$  for dominated case</a>
+</h3>
 We have seen earlier that mere a.s. convergence (along with finite existence of expectation) does not guarantee $L_1$ 
  convergence. The counterexample we had given used an unbounded sequence of random variables.  Indeed, it is not possible
  to have a counterexample using a bounded (or even dominated) sequence of  random variables.
@@ -513,8 +430,9 @@ We have seen earlier that mere a.s. convergence (along with finite existence of 
 <b><i>Proof:</i></b>Just a restatement of the DCT.<b><i>[QED]</i></b>
 </p>
 
-<h3><a
-name="Continuity of characteristic function">Continuity of characteristic function</a></h3>
+<h3>
+<a name="N1027B"><span class="header">3.1.2</span>. Continuity of characteristic function</a>
+</h3>
 Let a random variable $X$  have characteristic function $\xi(t)$  or $t\in{\mathbb R}.$  We want to show that $\xi$ 
  is a continuous function, <i>i.e.</i>,
 $$\forall t\in{\mathbb R}~~\forall (t_n)\subseteq {\mathbb R} ~~(t_n\rightarrow t\Rightarrow \xi(t_n)\rightarrow \xi(t)).$$
@@ -535,8 +453,9 @@ Hence by DCT $E(Y_n)\rightarrow E(Y),$  as required.
 
 <p></p>
 
-<h3><a
-name="Continuity of expectations involving a secondary variable">Continuity of expectations involving a secondary variable</a></h3>
+<h3>
+<a name="N102C2"><span class="header">3.1.3</span>. Continuity of expectations involving a secondary variable</a>
+</h3>
 The characteristic function $E(e^{i t X})$  is an example of an expectation involving a secondary variable, $t.$ 
  The technique we used above may be used to prove continuity of other similar expectations. This may be stated as a theorem.
 <p></p>
@@ -549,8 +468,9 @@ Let $f(x,t)$  be some bounded continuous function. Then for any random variable 
 
 <p></p>
 
-<h3><a
-name="Differentiation under expectation">Differentiation under expectation</a></h3>
+<h3>
+<a name="N102DB"><span class="header">3.1.4</span>. Differentiation under expectation</a>
+</h3>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>Let $X(t)$  be a random differentiabl function of $t.$  Suppose that 

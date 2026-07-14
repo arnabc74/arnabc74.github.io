@@ -1,355 +1,10 @@
 @{<NOTE>
 <M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
-<CSS>branch.css</CSS>
-[Update:[Mon Jun 22 IST 2026]]
-<HEAD1>Generating functions</HEAD1>
 
-<HEAD2>Probability generating functions (pgf)</HEAD2>
-<HEAD1 u="https://youtu.be/MS8akAOsBlI">What is a PGF?</HEAD1>
-<DEFN name="Probability generating function (PGF)">Let a random variable <M>X</M>  take only nonnegative integer values. Then
- its <TERM>probability
- generating function (PGF)</TERM>  is defined as the power series
-<D>p(t) = p_0 + p_1 t + p_2 t^2 +\cdots, </D>
-where <M>p_k = P(X=k)</M>  for <M>k=0,1,2,..</M>.
-</DEFN>
+<HEAD1>Characteristic function (CF)</HEAD1>
 
-<EXM>A random variable takes the values <M>1,2,5</M>  each with probability <M>[[13]].</M>  Find its PGF.<SOLN/>
-<M>p(t) = [[13]](t+t^2+t^5)</M>.
- </EXM>
-
-::<EXR>(Easy) Find the PGF of a random variable with <M>Binom(n,p)</M>  distribution.</EXR>
-
-<HEAD1 u="https://youtu.be/bBF3gt0-JBk">Analytical properties</HEAD1>
-We have defined  PGF as a power series, but we have not mentioned anything about its convergence yet. 
-
-<THM>
-Any PGF <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>. 
-</THM>
-<PF>If <M>|t|\leq 1</M>, then <M>\sum_k |p_k t^k| \leq \sum_k p_k = 1</M>.</PF>
-
-::<EXR>(Easy) Think of a case where the radius of convergence is <M>\infty</M>.</EXR>
-
-::<EXR>(Easy) Think of a case where the radius of convergence is <M>1</M>.</EXR>
-
-<THM>A power series can be differentiated term by term any number of times in the interior of its
- interval of convergence.</THM><PF>Standard theorem from real analysis.</PF>
-
-<HEAD1 u="https://youtu.be/9dtUu6bg6xM">Probabilistic properties</HEAD1>
-Thanks to the above theorem, 
-we can recover the probabilities from the PGF by repeated differentiation at <M>t=0</M>:
-<D>p_n = [[p^{(n)}(0)][n!]]</D>.
-Hence we get the following theorem.
-<THM>
-If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative integer values, and they have PGFs matching
- over any open neighbourhood of <M>0</M>, then their distributions must match.
-</THM>
-
-::<EXR>(Easy) Show that for <M>n\in\nn</M>  we have
-<D>E(X(X-1)\cdots (X-n+1)) = p^{(n)}(1)</D>.
-</EXR>
-
-::<EXR>(Easy) Show that <M>E(t^X) = p(t)</M>.</EXR>
-
-::<EXR>(Easy) Show that if <M>X,Y</M>  are independent random variables taking nonnegative integer values,
- with PGFs <M>\xi(t)</M>  and <M>\psi(t)</M>, then the PGF of <M>X+Y</M>  is
- <M>\xi(t)\psi(t)</M>.<ANS>Use the last exercise.</ANS></EXR>
-
-<HEAD1>An application: Branching process</HEAD1>
-Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
- will again split into two. If it goes on like this, then we shall have<M>2^n</M>  cells in the <M>n</M>-th generation. Clearly
- understand how the generations are numbered. The initial cell belonged to generation 0. We shall
- call the number of cells in the <M>n</M>-th generation <M>X_n</M>. Thus, <M>X_n = 2^n</M>. Also,
- notice that when a cell splits into children, the original cell ceases to exist. 
-
-  This
- branching process is a deterministic
- one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus <M>X_0 = 1</M>.
- After a minute this cell "splits into" a random number of cells. The number may be any
- nonnegative integer. In particular, we allow the number to be 0 or 1 with the following interpretations:
-<UL><LI>If the number is 0, then the
- original cell has died without leaving any children. </LI><LI>If the number is 1, then the original cell
- just continues into the next generation.  </LI></UL>
-This number is the size of generation 1. We shall call it <M>X_1</M>. Let the distribution of <M>X_1</M>  be
-given by <M>P(X_1=k) = p_k</M>  for <M>k=0,1,2,...</M>. 
-
-After one more minute each cell in generation 1 will independently split into children following the same distribution. And
- the process will continue. 
-
-As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
-
-<HEAD2>Animation</HEAD2>
-<NUMINP id="generations" value="5" min="1"/>
-<BUTTON o="doit()">(Re)start</BUTTON>
-
-Cells will be shown as dots. The red dots denote cells that 
-have died without leaving any child. Try the animation a number of times to explore various possibilities. 
-<SVG id="branchingTree" width="100%" height="600"/>
-<LOCSCRIPT>branch.js</LOCSCRIPT>
-
-
-<HEAD2>Math</HEAD2>
-We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
- address is "What is the <TERM>extinction probability</TERM> for this process?" 
-
-By extinction we mean the event that <M>X_n=0</M>  for some <M>n\in\nn</M>. Notice that if some <M>X_n=0</M>, then we must
- have <M>X_{n+1}= X_{n+2}=\cdots = 0</M>  also. So the extinction event is 
-<D>\bigcup_{n\in\nn}\{X_n=0\}</D>.
-Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probability is
- <M>\lim_{n\to\infty} P(X_n=0)=\theta</M>, say.  
-
-How to find it in terms of <M>p_0,p_1,p_2,..</M>.?
-
-<HEAD3>Simple cases</HEAD3>
- If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then the extinction probability is surely 1. 
-
-If <M>p_0>0</M>,  but <M>p_0+p_1 =1</M>  (which implies <M>p_2=p_3=\cdots=0</M>), then also  the extinction probability is
- 1 (why?) 
-
-In these cases, we had no births to counter the deaths. 
-But if <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have births, and the interaction between
- births and deaths becomes rather complicated. That is where PGFs come to our help.
-
-<HEAD3>Using PGF</HEAD3>
-Let <M>\xi(t)</M>  be the PGF of <M>X_1</M>. In other words, 
-<D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
-
-The next exercise is of central importance. 
-::<EXR>(Medium) Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>  for <M>|t| < 1</M>.
-<ANS>
-<M>\xi_2(t) = E(t^{X_2}) = E(#( E(t^{X_2}|X_1) )#)</M>  by the tower property. 
-
-Let us compute <M>E(t^{X_2}|X_1=k)</M>  for <M>k=0,1,2,... </M>. In particular we shall focus on <M>k=3</M>  (the other cases
- being similar). Thus we are in a situation where the first generation consists of the 3
- individuals, and the second generation
- consists of their children. 
-<CIMG web="xixi.png">The second generation colour coded by parents</CIMG>
-We have colour-coded the second generation individuals by the their parents. Let <M>Y_i</M>  be the contribution of the <M>i</M>-th
- individual of the first generation. We have assumed that each individual splits  identically and independently
- of the rest. So <M>Y_1, Y_2, Y_3</M>  are IID random variables. 
-
-So <M>E(t^{X_2}|X_1=3) = E(t^{Y_1+Y_2+Y_3}|X_1=3) = E(t^{Y_1+Y_2+Y_3})</M>, since <M>Y_i</M>'s are
- independent of <M>X_1</M>  (number of my children has nothing to do with the number of my siblings!). 
-
-Now <M>E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1}t^{Y_2}t^{Y_3}) = E(t^{Y_1})E(t^{Y_2})E(t^{Y_3})</M>, since
- <M>Y_i</M>'s are independent (number of my children has nothing to do with how many children my siblings have!). 
-
-Finally, <M>E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1})E(t^{Y_2})E(t^{Y_3}) = \xi(t)\xi(t)\xi(t) =
- (#(\xi(t))#)^3</M>, since <M>Y_i</M>'s all have the same distribution. 
-
-Clearly, the <M>3</M>  in the exponent came from our choice of <M>k</M>. So, in general,
- <M>E(t^{X_2}|X_1=k) = \xi(t)^k</M>  for <M>k=0,1,2,..</M>. 
-
-Thus, <M>E(t^{X_2}) = E(#(E(t^{X_2}|X_1) )#) = \sum_{k=0}^\infty \xi(t)^k p_k =\xi(\xi(t))</M>.     
-
-Notice that convergence is not a problem, because we have assumed <M>|t| < 1</M>, and so <M>|\xi(t)| < 1</M>  as well. 
-</ANS>
-</EXR>
-
-::<EXR>(Medium) In general show that for <M>n\in\nn</M>  the PGF of <M>X_n</M>  is <M>\xi_n(t) =
- \xi_{n-1}(\xi(t))=(\underbrace{\xi\circ\cdots\circ\xi}_{n})(t)</M>.</EXR>
-
-Now <M>P(X_n=0) = \xi_n(0)</M>. 
-
-So the extinction probability is <M>\theta = \lim_n \xi_n(0)</M>. 
-
-Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)</M>. In other words, <M>\theta</M>  must
- be a <I>fixed point</I>  of the PGF. 
-
-<HEAD3>Exploring fixed points</HEAD3>
-How many fixed points can <M>\xi(t) </M> have? Surely <M>1</M>  is a fixed point, since <M>\xi(1) = 1</M>. If
- it is the only one, then
- <M>\theta</M>  must be <M>1</M>.
-
-::<EXR>(Easy) Show that in the simple cases discussed earlier <M>1</M>  is the only fixed point.</EXR>
-
-Notice that <M>\xi'(t)</M>  is always nonnegative. In fact, except in the trivial case of
- <M>p_0=1</M>, it is positive. So <M>\xi(t)</M>  is a strictly increasing function. Again, except
- in the case where <M>p_0+p_1=1</M>, the second derivative <M>\xi''(t)</M>  is positive, and so
- <M>\xi(t)</M>  is a convex function. Such a function can intersect the <M>y=x </M> line at most twice. 
-
-<COMMENT>
-png("image/pgfplot.png")
-xi = function(t) 0.1*(1+t*(5+4*t))
-t = seq(0,1,0.05)
-plot(t,xi(t), ty='l', lwd=3,xlim=c(0,1),ylim=c(0,1))
-abline(a=0,b=1, lwd=3,col="red")
-dev.off()
-</COMMENT>
-<EXM>If <M>p_0=0.1, p_1=0.5</M>  and <M>p_2=0.4</M>  (so the other <M>p_k</M>'s are all zeroes),
- then the graph of <M>\xi(t)</M>  looks as shown below.
-<CIMG web="pgfplot.png"></CIMG>
-</EXM>       
-You can notice two fixed points (i.e., points where the black curve cuts the red diagonal). One of the fixed points is at
- <M>t=1</M>. The other is in <M>(0,1)</M>. Which of the two fixed points will <M>\theta</M>  equal? 
-
-The answer is <M>\theta</M>  will always be the <I>smallest</I>  fixed point. This follows from the exercises below.
-
-::<EXR>(Medium) Let <M>\mu</M>  be any fixed point of <M>\xi(t)</M>. Then show that <M>\forall
- n\in\nn~~\xi_n(0)\leq \mu</M>.</EXR>
-
-::<EXR>(Easy) Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed
- points of <M>\xi(t)</M>.</EXR>
-
-<HEAD3>Wrapping up</HEAD3>
-
-We have seen that (excepting the trivial case <M>p_0=0</M>) there are only two possibilities:
- exactly one fixed point (which must be
- <M>1</M>) or exactly two. In the first case, <M>\theta=1</M>  and in the second it is the smaller fixed point. 
-
-It will be nice if we have a quick way to know (based on the <M>p_n</M>'s) which case we are in. 
-
-The two cases are shown below graphically: 
-<CIMG web="pgfcases.png"></CIMG>
- One simple way to distinguish them is by <M>\xi'(1)</M>. In the first case <M>\xi'(1) \leq 1</M>  and in the other <M>\xi'(1) > 1</M>.
- Just a little point here: we know that <M>\xi(t)</M>  converges over <M>[-1,1]</M>, but may not converge beyond <M>1</M>.
- So when we talk about the derivative at <M>1</M>, we mean the left hand derivative. But fortunately, the term by term differentiation
- rule works for finding this one-sided derivative as well. So <M>\xi'(1) = p_1+2p_2+3p_3+\cdots</M>  (may be <M>\infty</M>).
-
-So the final answer is:
-<UL><LI>If <M>p_0=0</M>, the <M>\theta=0</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots \leq 1</M>, then <M>\theta=1</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
- </UL>
-Could you arrive at this impressive answer without using PGF?  
-
-::<EXR>(Medium) <CIMG web="jt18.png"></CIMG>
-
-A brief note about probability generating functions: If <M>X</M>  takes non-negative integer values with <M>p_i = P(X=i)</M> 
- for <M>i=0,1,2,...</M> then its probability genrating function is 
-<D>\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.</D>
-Clearly this converges absolutely for <M>|t|\leq 1.</M>   In this problem we are assuming that it converges for all <M>t\in\rr.</M>
-<ANS>
-(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
-
-Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
- for <M>t\in[0,1]</M>). 
-
-So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
-
-Hence the result.
-
-(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
-
-Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
-
-Hence the result follows as in (a).
-</ANS>
-</EXR>
-
-<HEAD2>Moment generating functions (mgf)</HEAD2>
-<HEAD1>Moment generating function</HEAD1>
-
-<DEFN name="Moment generating function (MGF)">
-For any random variable <M>X</M> we define its <B>moment generating
-function</B> as the function 
-<D>
-m_X(t) =  E(e^{tX}).
-</D>
-The domain of this function conists of all <M>t\in\rr</M> for
-which the expectation exists <I>finitely</I>.
-</DEFN>
-
-Clearly, <M>m_X(0)</M> always exists and equals <M>1.</M>
-
-<THM>
-If, for some <M>k\in\nn</M>, the moment <M>E(X^k)</M> exists
-finitely, then the <M>k</M>-th derivative  of <M>m_X(t)</M>
-exists at <M>t=0,</M> and equals <M>E(X^k).</M>
-</THM>
-<PF>
-We shall not do the proof here. But here is the main idea: 
-<D>
-e^{tX} = 1 + [[tX][1!]] + [[t^2X^2][2!]] + [[t^3X^3][3!]] + \cdots.
-</D>
-From this we want to write 
-<D>
-E(e^{tX}) = 1 + [[tE(X)][1!]] + [[t^2E(X^2)][2!]] + [[t^3E(X^3)][3!]] + \cdots.
-</D>
-This is not a precise statement, because we do not know if all
-raw moments of <M>X</M> exist finitely. Also, even if they do, is
-it valid to "distribute" expectation over an <I>infinite</I> sum?
-<P/>
-Answers to these questions require deeper real analysis results
-than we know at this point.
-<P/>
-However, assuming that this is valid, we may try to differentiate
-both sides to get
-<D>
-[[d][dt]] E(e^{tX}) = E(X) + [[2tE(X^2)][2!]] + [[3t^2E(X^3)][3!]] + \cdots.
-</D>
-Again this step needs justification. Can we "distribute"
-differentiation over an <I>infinite</I> sum?
-<P/>
-Assuming that we can, puting <M>t=0</M> indeed gives us <M>E(X).</M>
-<P/>
-SImilarly, differentiating once again, and putting <M>t=0</M>
-gives us <M>E(X^2),</M> and so on.
-</PF>
-
-We shall not spend much time with MGFs, because there is a better
-alternative called the <B>characteristic function (CF)</B>.
-
-<DEFN name="Characteristic function (CF)">
-For any (real-valued) random variable <M>X</M> we define its <B>characteristic
-function</B> as the function 
-<D>
-\phi_X(t) =  E(e^{itX}),~~t\in\rr.
-</D>
-</DEFN>
-Don't be nervous to see expectation of a complex random
-variable. It is simply 
-<D>
-E(\cos tX) + i E(\sin tX).
-</D>
-CFs are better than MGFs because of two reasons, that we give as
-theorems below.
-
-<THM>
-For any (real-valued) random variable, the CF is defined over
-entire <M>\rr.</M>
-</THM>
-<PF>
-This is obvious, since <M>\sin tX</M> and <M>\cos tX</M> are both
-bounded random variables, and hence have finite expectations.
-</PF>
-
-<THM>
-If <M>X,Y</M> are two random variables with the same CF, then
-they must have the same distribution.
-</THM>
-<PF>
-Not in this course. 
-</PF>
-Indeed, this property has earned characteristic functions their name.
-<P/>
-MGFs do not have this proprty. It is possible to get (rather
-ugly) counter-examples of random variables <M>X</M> and <M>Y</M>
-that both have the same MGF (in particluar both have the same
-domain <M>D\seq\rr</M>), but still <M>X</M> and <M>Y</M> have
-different distributions. However, if the domain includes a
-neighbourhood of <M>0,</M> then <M>X,Y</M> must have the same
-distribution. This is stated in the following theorem.
-
-<THM>Let <M>m_X(t)</M> be defined for <M>t\in (-a,a)</M> for
-some <M>a>0.</M> Let <M>Y</M> be a random variable with the same
-MGF. Then <M>X</M> and <M>Y</M> must have the same
-distribution.</THM>
-<PF>
-Too difficult for this course.
-</PF>
-
-<B>We shall not spend time proving any result on MGF here. You will
-learn the proofs for CFs in the third semester.</B>
-<HEAD2>Characteristic functions (chf)</HEAD2>
-<HEAD1 u="https://youtu.be/VwmX-rmTLUw">Characteristic function (CF)</HEAD1>
-<ALERT/>(The video has been corrected.)
-
-We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
- you have forgotten about  the
- concept of a <TERM>moment
- generating function (MGF)</TERM> that we briefly touched upon last
- semester, here is the definition
- again:
+We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. 
+Here is the definition of MGF that you have learned in Probability I:
 <DEFN name=" Moment generating function (MGF)">
 The MGF of a random variable <M>X</M>  is defined as the function 
 <M>M_X(t) = E(e^{Xt})</M>
@@ -373,7 +28,6 @@ You may be scared by the unexpected appearance of complex numbers inside the exp
 Let's learn about complex random variables.
 
 <HEAD2>Complex random variables</HEAD2>
-Just remember that 
 A complex random variable <M>Z</M>   means <M>Z = X+i Y,</M>  where <M>X,Y</M>  are (real) random variables. We define <M>E(Z)=E(X)+iE(Y)</M> 
  (and say <M>E(Z)</M>  does not exist if at least one of <M>E(X), E(Y)</M>  does not). 
 
@@ -413,6 +67,7 @@ Also
 </MULTILINE>
 as required.
 </PF>
+
 <HEAD2>Complex calculus</HEAD2>
 For <M>f:\rr\to\cc</M>  write <M>f(x) = g(x) + i h(x) </M>  for <M>g,h:\rr\to\rr.</M>  Then differentiation and integration
  are defined in the obvious way:
@@ -423,7 +78,27 @@ f'(x) & = & g'(x) + i h'(x),\\
 From this it immediate follows (check!) that
 <M>[[d][dx]]e^{ix} = i e^{ix}</M>  and <M>\int e^{ix}\, dx = [[1i]]e^{ix}+</M> arbit
  constant.
-<HEAD2>An example</HEAD2>
+<HEAD2>Examples</HEAD2>
+<EXM>Find the CF of the degenerate distribution at <M>c.</M><SOLN/>
+Here <M>X = c </M> with probability 1. So <M>\xi_X(t) = E(e^{it X}) = e^{itc}</M>  for <M>t\in\rr.</M>
+</EXM>
+
+<EXR>Find <M>\xi_X(t)</M> if <M>X\sim Bern(p).</M></EXR>
+
+<EXR>Find <M>\xi_X(t)</M> if <M>X\sim Binom(n,p).</M></EXR>
+
+<EXM>Find <M>\xi_X(t)</M> if <M>X\sim Poi(\lambda).</M><SOLN/>
+<MULTILINE>
+\xi_X(t) 
+& = & E(e^{it X})\\
+& = & e^{-\lambda} \sum_{k=0}^ \infty e^{itk} [[\lambda^k][k!]]\\
+& = & e^{-\lambda}  \sum_{k=0}^ \infty  [[(e^{it}\lambda)^k][k!]]\\
+ = e^{-\lambda} e^{\lambda e^{it}}\\  
+ = e^{\lambda(e^{it}-1)  
+</MULTILINE>
+for <M>t\in\rr.</M>
+</EXM>
+
 <EXM>
 Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 <SOLN/>
@@ -432,10 +107,15 @@ for <M>t\in\rr.</M>
 </EXM>
 Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
 <HEAD2>Problem set <PS/></HEAD2>
-<EXR>Find CF for the degenerate distribution at <M>5.</M></EXR>
 <EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
+<EXR>Find CF for the Double Exponential distribution with rate <M>\lambda.</M></EXR>
 
-<HEAD1 u="https://youtu.be/9lsO1kR9OaQ">Properties of CF</HEAD1>
+<THM>CF of <M>N(0,1)</M>  distribution is <M>e^{-t^2/2}</M>  for <M>t\in\rr.</M>  CF for
+ <M>N(\mu,\sigma^2)</M>  distribution is <M>e^{it \mu-\sigma^2 t^2/2}</M>  for <M>t\in\rr.</M></THM>
+
+<THM>CF for the Cauchy distribution is <M>e^{-|t|}</M>  for <M>t\in\rr.</M></THM>
+
+<HEAD1>Properties of CF</HEAD1>
 We start with two simple properties.
 <THM>
 Let <M>\xi(t)</M>  be the CF of some random variable <M>X.</M>  Then <M>\xi(0) = 1</M>  and <M>\forall t\in\rr~~|\xi(t)|\leq 1.</M>
@@ -499,7 +179,7 @@ Suppose that <M>X</M>  is a random variable with characteristic function <M>\phi
 <PF>See <LINK to="ref/CLTinversion.pdf">this note</LINK>.</PF>
 <THM name="Continuity theorem">
 Let <M>(X_n), X</M>  be random variables with characteristic functions <M>(\phi_n),
- \phi,</M>  respectively. Then <M>X_n\toD F</M>  if and only if <M>\phi_n\to \phi</M>  pointwise.  
+ \phi,</M>  respectively. Then <M>X_n\toD X</M>  if and only if <M>\phi_n\to \phi</M>  pointwise.  
 </THM>
 <PF>See <LINK to="ref/CLTinversion.pdf">this note</LINK>.</PF>
 The "if part" of this result may be strenghthened to some extent: If <M>(\phi_n)</M>  converges pointswise to

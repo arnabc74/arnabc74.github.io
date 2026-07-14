@@ -1,24 +1,87 @@
 @{<NOTE>
+<M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <M>\newcommand{\io}{~~\mathrm{i.o.}}</M>
 <M>\newcommand{\calF}{\mathcal{F}}</M>
 <M>\newcommand{\toL}[1]{\stackrel{L_{#1}}{\longrightarrow}}</M>
 <M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
+<M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
 <M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
-[Update:[Thu Jul 02 IST 2026]]
-<HEAD1>Almost sure and probability convergences</HEAD1>
-<DEFN name="Amost sure convergence">
+<TITLE>Convergence of random variables</TITLE>
+The main theme of probability theory is exploring statistical regularity. This phenomenon is all about 
+the limiting behaviour
+ of a sequence of random variables. So it is only natural that convergence of random variables
+ occupies a central position in probability theory. What is surprising, however, is that a sequence random variables may
+ converge in many different ways. So there is no single definition of a "limit of a sequence of
+ random variables". In this page we shall define 4 different notions of convergence of a sequence of random variables:
+<OL>
+<LI>Almost sure convergence</LI>
+<LI>convergence in probability</LI>
+<LI>convergence in distribution</LI>
+<LI><M>L_p</M>  convergence</LI>
+</OL> 
+ Each captures one aspect of our intuitive idea  about convergence of random variables. 
+
+<HEAD1>Almost sure convergence</HEAD1>
+Since random variables are just functions (from a probability space <M>(\Omega,\calF,P)</M>  to
+ <M>\rr</M>), the very first definition of convergence
+ that comes to our mind is pointwise convergence, i.e., we want 
+<Q>"<M>X_n\to X</M>"</Q>
+ to mean <Q>"<M>\forall \omega\in \Omega~~X_n(\omega)\to X(\omega).</M>"</Q>
+However, we also know that random variables are used only in probability computation, and so if we take some <M>A\seq \Omega</M> 
+ such that <M>P(A)=0,</M>  then the behaviour of a random variable over <M>A</M>  "does not really matter".  
+ Hence instead of wanting to have <M>X_n(\omega)\to X(\omega)</M>  everywhere (i.e., <M>\forall \omega\in
+ \Omega</M>) it is enough to have it <I>almost everywhere</I>  (i.e., <M>\forall \omega\in</M> a set of probability 1). 
+
+<DEFN name="Almost sure convergence">
 Let <M>(X_n),X</M>  be  random variables all defined on some common probability space <M>(\Omega,\calF, P).</M> 
 Then we say
- that <M>(X_n)</M> converges to <M>X</M>  <TERM>almost surely</TERM>  and write <M>X_n\toA X</M> 
+ that <M>(X_n)</M> converges to <M>X</M>  <TERM>almost surely</TERM>  (or <TERM>almost
+ everywhere</TERM>) and write <M>X_n\toA X</M> 
 if <M>P(X_n\to X) = 1.</M>   
 </DEFN>
 
-<EXM>Let our probability space be <M>Unif(0,1)</M> with <M>\Omega = \rr.</M>   Let <M>X_n(\omega)
+<EXM>Let our probability space be <M>Unif[0,1]</M> with <M>\Omega = \rr.</M>   Let <M>X_n(\omega)
  =\omega^n</M>, and let <M>X(\omega)\equiv 0.</M>  Then  <M>X_n\toA X.</M>
 
 
 However, if we replace <M>Unif(0,1)</M>  with <M>Unif(0,2),</M>  then the convergence breaks down.
 </EXM>
+<THM>
+Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability space. Let
+ <M>a,b</M>  be fixed numbers. If <M>X_n\toA X</M>  and <M>Y_n\toA Y,</M>  then
+<OL>
+<LI><M>aX_n+b\toA aX+b</M>.</LI>
+<LI><M>X_n\pm Y_n\toA X\pm Y.</M></LI>
+<LI><M>X_nY_n\toA XY.</M></LI>
+<LI><M>X_n/ Y_n\toA X/Y</M>  if <M>P(Y\neq 0)=1.</M>
+</LI>
+</OL> 
+</THM>
+<PF>
+Let <M>A=\{\omega~:~X_n(\omega)\to X(\omega)\}</M>  and <M>B=\{\omega~:~Y_n(\omega)\to Y(\omega)\}.</M>
+
+Then <M>P(A)=1</M>  and <M>P(B)=1</M>  and hence <M>P(A\cap B)=1.</M>
+
+Now apply the corresponding results from real analysis for each <M>\omega\in A</M>  (for 1) and for <M>\omega\in A\cap B</M> 
+ (for 2 and 3).
+
+For <M>4,</M>  let <M>C=\{\omega~:~Y(\omega)\neq 0\}.</M>  Then <M>P(A\cap B\cap C)=1.</M>  Now apply the corresponding result
+ from real analysis for each <M>\omega\in C.</M>
+</PF>
+Possibly the most famous use of almost sure convergence in exploring statistical regularity is the following theorem. 
+ 
+<HEAD2>Strong law of large numbers (SLLN)</HEAD2>
+<THM name="SLLN">Let <M>(X_n)</M>  be an iid sequence of random variables with <M>E(X_1) = \mu \in\rr.</M> 
+ Let <M>\bar X_n = [[1n]](X_1+\cdots+X_n).</M>
+
+Then <M>\bar X_n \toA \mu.</M>
+</THM>
+<PF>Skipped.</PF>
+This is essentially what we saw when we did the coin tossing example of statistical regularity. Though we have skipped the
+ proof we have a project that explores some ideas related to the proof. 
+
+<HEAD1>Convergence in probability</HEAD1>
+This is historically the first notion of convergence of random variables that was defined mathematically. 
 
 <DEFN name="Probability convergence">
 Let <M>(X_n)</M>  be a sequence of random variables all defined on some common probability space <M>\Omega,\calF, P).</M> 
@@ -30,161 +93,88 @@ It is also called <TERM>weak convergence</TERM>.
 The condition that all the <M>X_n</M>'s should be defined on a common probability space may be relaxed if <M>X</M>  is a
  degenerate random variable.
 
-<HEAD2>Infinitely often</HEAD2>
-<DEFN name="Infinitely often">
-Let <M>(\Omega,\calF,P)</M>  be any probability space. Let <M>(A_n)</M>  be a sequence of events in it. The event "<M>A_n</M>'s
- occur infinite often" (abbreviated to "<M>A_n\io</M>") is defined as <M>\{\omega\in\Omega~:~\omega \in A_n</M>  for
- infintely many <M>A_n\mbox{'s}\}.</M>
-</DEFN>
-
-We can express it as <M>\cap_{n}\cup_{k\geq n} A_k.</M>  
-<BECAUSE>
-This is basically word-play:
-
-<M>\omega\in {A_n\io}</M>  
-<Q><M>\iff</M><Q> <M>\omega</M>  is in infinitely many <M>A_n</M>'s.</Q></Q>
-<Q><M>\iff</M><Q>Whatever <M>n</M>  you choose
- there is bound to be some <M>A_k</M>  with <M>k\geq n</M>  such that <M>\omega\in A_k.</M>  </Q></Q>
-
-<Q><M>\iff</M><Q>Whatever <M>n</M>  you choose <M>\omega\in \cup_{k\geq n} A_k.</M>  </Q></Q>
-
-<Q><M>\iff</M><Q><M>\forall n\in\nn~~\omega\in\cup_{k\geq n} A_k.</M></Q></Q>
-
-<Q><M>\iff</M><Q><M>\omega\in\cap_n \cup_{k\geq n} A_k.</M> </Q></Q>
-</BECAUSE>
-
-<HEAD2>Borel-Cantelli lemmas</HEAD2>
-
-<THM name="First Borel-Cantelli lemma">
-Let <M>(A_n)</M>  be a sequence of events in some probability space. If <M>\sum P(A_n) < \infty,</M>  then <M>P(A_n\io)=0.</M>
-</THM>
-<PF>
-<MULTILINE>
-P(A_n\io)
- & = & P(\cap_n\cup_{k\geq n} A_k)\\
- & = & P( \lim_n\cup_{k\geq n} A_k)\\
- & = & \lim_n P(\cup_{k\geq n} A_k).
-</MULTILINE>
-Now <M>P(\cup_{k\geq n} A_k)\leq \sum_{k\geq n} P(A_k).</M>
-
-Since <M>\sum P(A_n) < \infty</M>, hence <M>\lim_n \sum_{k\geq n} P(A_k) = 0.</M>
-
-Hence the result. 
-</PF>
-
-<THM name="Second Borel-Cantelli lemma">
-Let <M>(A_n)</M>  be a sequence of independent events in some probability space. If <M>\sum P(A_n)= \infty,</M>  then <M>P(A_n\io)=1.</M>
-</THM>
-<PF>Skipped.</PF>
-
-The second lemma makes the assumption of independence. The following counterexample shows what may happen if this assumption
- were dropped.
-
-<EXM>
-Let <M>U\sim Unif(0,1)</M>  and for <M>n\in\nn</M>  let 
-<D>A_n = {*{U\in(*(0,[[1n]])*)}*}.</D>
-Notice how we are defining <I>all</I> the <M>A_n</M>'s based on the <I>same</I>  <M>U.</M>  Clearly, <M>A_n</M>'s are not
- independent. For instance, <M>P(A_n)=[[1n]]</M>,  but <M>P(A_n|A_{n+1})=1.</M>  
-
-Here <M>\sum_n P(A_n) = \sum_n [[1n]] = \infty,</M>  but <M>P(A_n \io) = 0.</M>
-</EXM>
-<COMMENT>
-<MULTILINE>
-P(A_n\io) 
-& = & P(\cap_n\cup_{k\geq n} A_k)\\
-& = & 1-P(\cup_n\cap_{k\geq n} A_k^c)<SINCE>by de Morgan</SINCE>\\
-</MULTILINE>
-</COMMENT>
-
-<HEAD2>Demonstrations</HEAD2>
-<HEAD3>Monkey typing Hamlet</HEAD3>
-A common demonstration of the second Borel-Canteli lemma is show that if a monkey types a keyboard
- randomly, then it will type the exact text of Hamlet infinitely often. 
-
-Let the exact text of Hamlet have <M>h</M> letters.  Consider packets of <M>h</M>  letters. Let
- <M>A_n</M>  be the event that the <M>n</M>-th packet is an exact copy of Hamlet. Then
- <M>A_n</M>'s are independent and <M>P(A_n)>0.</M>  So <M>\sum_n P(A_n) = \infty.</M>  Hence by
- the second Borel-Canteli lemma, <M>P(A_n\io)=1.</M>  
-
-<EXR>However, if you want to just show that the monkey will surely write Hamlet <I>at least
- once</I>, then you really do not need
- to use the second Borel
- Cantelli lemma. You can prove it much more easily using continuity of probability.  How?</EXR>
-
-<HEAD3>Normal numbers</HEAD3>
-Consider a uniform random number between 0 and 1. Let <M>d_n</M>  be the <M>n</M>-th digit after
- the decimal point in its (unique) non-terminating decimal expansion. For example, if the number
- is <M>[[12]],</M>  then the non-terminating decimal expansion
- is <M>0.499999...,</M>  and so <M>d_1 = 4,</M>  while <M>d_n=9</M>  for each <M>n\geq 2.</M>  
-
-Consider the event <M>\{d_1=3\}.</M>  Clearly it is <M>(0.3,0.4].</M>  So this has probability
- <M>[[1][10]].</M>  Next consider the event <M>\{d_2=3\}.</M>  This is <M>\cup_{d_1=0}^9
- [[d_1][10]]+(0.03,0.04].</M>  Again, the probability is <M>[[1][10]].</M>  In particular we have the following theorem:
-
 <THM>
-<UL>
-<LI>For each <M>n</M>  the random variable <M>d_n</M>  is uniformly distributed over <M>\{0,1,...,9\}.</M></LI>
-<LI>If <M>m\neq n,</M>  then <M>d_m</M>  and <M>d_n</M>  are independent.</LI>
-</UL> 
+Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability space. Let
+ <M>a,b</M>  be fixed numbers. If <M>X_n\toP X</M>  and <M>Y_n\toP Y,</M>  then
+<OL>
+<LI><M>aX_n+b\toP aX+b</M>.</LI>
+<LI><M>X_n\pm Y_n\toP X\pm Y.</M></LI>
+<LI><M>X_nY_n\toP XY.</M></LI>
+<LI><M>X_n/ Y_n\toP X/Y</M>  if <M>P(Y\neq 0)=1.</M>
+</LI>
+</OL> 
 </THM>
+<HEAD2>Weak law of large numbers (WLLN)</HEAD2>
+The coin tossing example of statistical regularity had intrigued many people. The first ever proven result
+ on statistical regularity  was formulated and proved by Jacob Bernoulli "after having meditated on it for twenty years".
+The notion of convergence that he used was convergence in probability. The following theorem is a slightly general version
+ of what he had proved after twenty years of work.
 
-Next we shall fix a single number <M>\omega\in(0,1)</M>  and check how many times any given digit (say 3) occurs in it. 
-
-Let
-<M>S_n(\omega) = </M>  number of times the digit 3 occurs among the first <M>n</M>  digits of <M>\omega.</M>  
-For instance of <M>\omega=[[13]],</M>  then <M>S_n(\omega) = n.</M>
-
-
-We are interested in the proportion of times a digit occurs in the expansion. Mathematically, we
- work with <M>\lim_{n\to \infty} [[S_n(\omega)][n]]</M> (which may not exist).  For instance, if <M>\omega=[[13]],</M> 
- then the limit exists and equals <M>1.</M>  If <M>\omega=0.3,</M>  then the limit exists and equals <M>0.</M>  
-
-<EXR>Can you construct an expansion for which the limit does <I>not</I>  exist? <HINT>You can get one using only 0's
- and 3's. </HINT></EXR>
-
-Let <M>A_3 = </M> set of all numbers for which the limit equals <M>[[1][10]].</M>  What do you expect <M>P(A_3)</M>  to be?
-The following theorem provides the answer.
-<THM>
-<M>P(A_n) = [[1][10]].</M>
-</THM>
-<PF>
-We shall prove it for <M>n=3.</M>  (the other cases are exactly similar).
-
-
-</PF>
-Then
- <M>\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.</M> So, in particular, <M>P(0\mbox{ occurs }\io)=1.</M>  Hence, <M>P(0,1\mbox{ occur }\io)=1.</M> 
- Proceeding similarly, <M>P(\mbox{each digit occurs }\io)=1.</M>
-<HEAD3>Random walk in 3D</HEAD3>
-Let <M>S = X_1+\cdots+X_n</M>  a simple, symmetric random walk in 3D. We shall show that <M>P(S_n=0\io)=0.</M>  Thanks to
- the first Borel Cantelli lemma, it is enough to show
-that <M>\sum P(S_n=0) < \infty.</M> 
-
-Now, <M>P(S_n=0)=0</M> if <M>n</M> is odd. So let us
-take <M>n=2(a+b+c),</M> where <M>a</M> is the number of <M>+x</M>
-steps (and <M>-x</M> steps). Similarly, for <M>b,c.</M>
-
-Total number of paths of length <M>2k</M> is <M>6^{2k}.</M>
-Number of favourable paths is    
+<THM name="Weak Law of Large Numbers (WLLN)">
+Let <M>X_1,X_2,...</M> be a sequence of iid
+random variables with <M>E(X_1)=\mu</M> and
+<M>V(X_1)=\sigma^2<\infty.</M> Let, for <M>n\in\nn</M>, 
 <D>
-\sum_{a,b,c:a+b+c=k} [[(2k)!][a!^2 b!^2 c!^2]].
+\overline X_n = [[1n]]\sum_{i=1}^n X_i.
 </D>
-By convexity of <M>\log m!</M>, the maximum term occurs
-when <M>a,b,c</M> are as equal as possible. Hence <M>T_n\leq C
-n^2/((n/3)!)^6.</M>
+Then <M>\bar X_n\toP \mu.</M>
+</THM>
+<PF>
+To show
+<D>\forall \epsilon > 0~~ P(|\overline X_n-\mu|> \epsilon) \to 0\mbox{ as } n\to \infty.</D>
+Take any <M>\epsilon > 0.</M>
 
-Using Stirling's approximation <M>m!\sim \sqrt{2\pi
-m}(m/e)^m,</M> we have <M>P(S_{2k}=0)\leq C n^{-3/2}.</M> 
+Applying Chebyshev inequality to the random variable <M>\bar X_n</M>  we have 
+<D>P(|\overline X_n-\mu|> \epsilon) \leq [[V(\overline X_n)][\epsilon^2]].</D>
+Now 
+<D>V(\overline X_n) = V(*([[1n]]\sum_1^n X_i)*) = [[1][n^2]] \sum_1^n V(X_i),</D>  
+since <M>X_i</M>'s are independent. Also each <M>V(X_i) = \sigma^2.</M>  Hence 
+<D>V(\overline X_n) = V(*([[1n]]\sum_1^n X_i)*) = [[\sigma^2][n]].</D>
+Hence we have 
+<D>P(|\overline X_n-\mu|> \epsilon) \leq [[\sigma^2][n\epsilon^2]]\to 0,</D>
+as <M>n\to \infty.</M>
+</PF>
 
-Hence the result.
 
-<HEAD2><M>L_p</M> convergence for <M>p\geq1</M></HEAD2>
+
+
+<HEAD1><M>L_p</M> convergence for <M>p\geq1</M></HEAD1>
+When we think of a sequence <M>(X_n)</M>  of random variables converging to a random variable <M>X,</M>  we tend to believe
+ that for large enough <M>n</M>  the random variable <M>X_n</M>  behaves "just like" <M>X.</M>  In particular, <M>E(X_n)</M> 
+ should be close to <M>E(X)</M>  (assuming the expectations exist). 
+However, that is not the general case. We shall see
+ such counterexamples soon, but first let us learn about a new mode of convergence,
+ where convergence of  expectation (or higher  moments) is required by the definition.
+
 <DEFN name="$L_p$ convergence">
 Let <M>p\geq 1.</M>  Let <M>(X_n), X</M>  be random variables defined on some probability space. We say that <M>(X_n)</M> 
  converges to <M>X</M>  <TERM>in <M>p</M>-th moment</TERM>  or <TERM>in <M>L_p</M></TERM>  if <M>E(#(|X_n-X|^p)#)\to 0.</M>
 
 We write this as <M>X_n\toL p X.</M>
 </DEFN>
+
+A couple of points are in order here:
+<OL>
+<LI>Why are we putting the <M>p\geq 1</M>  condition?</LI>
+<LI>Would it not be more natural to write  <M>E(X_n^p)\to E(X^p)</M>  instead of <M>E|X_n-X|^p?</M></LI>
+</OL>
+The answer to the first question lies in Minkowski inequality, which  provides a triangle
+ inequality, that will make <M>L_p</M>  convergence well-behaved for <M>p\geq 1.</M>  It is
+ possible to have a similar definition for <M>0< p < 1,</M>  but it is not of much use. 
+
+Now let us explore the second question using <M>p=1.</M> 
+
+<EXR>
+Let <M>(X_n), X </M>  be random variables on the same probability space. Consider the following two statements:
+<UL><LI> <M>E|X_n-X|\to 0.</M></LI>
+<LI> <M>E(X_n)\to E(X).</M></LI></UL>
+One of these is strictly stronger. Which one?
+<HINT>Consider 
+<M>X_n\equiv (-1)^n</M> and <M>X\equiv 1.</M>
+</HINT></EXR>
+
+If you ever need <M>E(X_n)\to E(X)</M>  and <M>E(X_n^2)\to E(X^2),</M>  then you do not need to assume <M>L_1</M>  and <M>L_2</M> convergence
+ separately. <M>L_2</M>  automatically implies <M>L_1.</M>  Indeed, we have the following theorem.
 
 <THM>
 Let <M>p > q \geq 1.</M> Then if <M>X_n\toL p X</M> we
@@ -209,17 +199,20 @@ Since <M>qr = p,</M>
 Hence the result. 
 </PF>
 
-<EXR>
-If <M>X_n\to L 1 X,</M> then <M>E(X_n)\to E(X),</M> but the
-converse is not true.
-<ANS>
-Take <M>X_n\equiv (-1)^n</M> and <M>X\equiv 1</M> as a
-counterexample for the converse.
-</ANS>
-</EXR>
+I mentioned earlier that Minkowski inequality keeps <M>L_p</M>  convergence well-behaved for <M>p\geq 1.</M>  The next theorem
+ is one example. 
 
-<THM>Let <M>p\in[1,\infty).</M>  If <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>, then <M>X_n+Y_n\toL p X+Y.</M></THM>
-<PF>Follows from Minkowski inequality.</PF>
+<THM>
+Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability space. Let
+ <M>a,b</M>  be fixed numbers. Let <M>p\in[1,\infty).</M>  If <M>X_n\toL p X</M>  and <M>Y_n\toL p Y,</M>  then
+<OL>
+<LI><M>aX_n+b\toL p aX+b</M>.</LI>
+<LI><M>X_n\pm Y_n\toL p X\pm Y.</M></LI>
+</OL> 
+</THM>
+<PF>The first property follows directly. 
+
+The second property follows from Minkowski inequality.</PF>
 
 However, even if <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>  and <M>X_nY_n, XY</M>  have finite <M>p</M>-th
  moments, we may have <M>X_nY_n\not\toL p XY.</M>
@@ -233,6 +226,206 @@ Also, let <M>X=Y\equiv 0.</M>
 Show that <M>E|X_nY_n|^p=1.</M>  Hence show that this provides a counterexample to the statement above.
 </EXR>
  
+
+<HEAD1>Convergence in distribution</HEAD1>
+<DEFN name="Convergence in distribution">
+Let <M>(X_n), X</M>  be some random variables (not necessarily defined on the same probability space). Let <M>X_n</M>  have
+ distribution function <M>F_n</M>  and <M>X </M> have distribution function <M>F.</M>  We say <M>X_n</M>  converges to <M>X</M> 
+ <TERM>in distribution</TERM>  and write <M>X_n\toD X</M>  if for all continuity point <M>x</M>  of <M>F</M> we have <M>F_n(x)\to F(x).</M>
+Many books also write <M>F_n\implies F</M>  or <M>X_n\implies X.</M>
+</DEFN>
+
+Since the behaviour of a random variable is captured completely by its distribution, this is quite a natural definition,
+ except for the mention of "continuity points". Why not demand <M>\forall x\in \rr ~~F_n(x)\to
+ F(x)</M> "? Why relax the requirement at the  discontinuity points of <M>F?</M>  
+<THM>
+Let <M>X_n,X</M>  be all random variables defined on a common probability space. Let
+ <M>a,b</M>  be fixed numbers.  If <M>X_n\toD X</M>, then
+<M>aX_n+b\toL p aX+b</M>.
+</THM>
+<PF>Direct.</PF> 
+
+<HEAD2>Central Limit Theorem</HEAD2>
+<HEAD1>Central Limit Theorem</HEAD1>
+The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
+ and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
+
+<THM name="Central imit Theorem (CLT)">
+Let <M>X_1,X_2,...</M>  be IID with <M>E(X_i) = \mu</M>  and <M>V(X_i) = \sigma^2 < \infty.</M>  Let 
+<D>\bar X_n = [[X_1+\cdots+X_n][n]]\mbox{ for } n\in\nn.</D>
+Then the distribution of <M>[[\sqrt n(\bar X_n-\mu)][\sigma]]</M>  tends to <M>N(0,1)</M>  as <M>n\to \infty.</M>
+More precisely, if <M>F_n(\cdot)</M>  denotes the CDF of <M>[[\sqrt n(\bar X_n-\mu)][\sigma]],</M>  and <M>\Phi(\cdot)</M> 
+ denotes the <M>N(0,1)</M>  CDF, then
+<D>\forall t\in\rr~~F_n(t)\to \Phi(t) \mbox{ as } n\to \infty.</D>
+</THM>
+<PF>Next semester.</PF>
+ This theorem is a manifestation of statistical regularity. Whatever may the true
+ distribution of the <M>X_i</M>'s be, if you average a large number of <M>X_i</M>'s you get close
+ approximation to the normal distribution. This allows
+statistician to deal with averages of a large number of IID observations without knowing the true
+ underlying distribution. 
+
+Let's look at a typical example. 
+
+<EXM>If 40% of the population of a city supports a poll candidate, then what is the approximate
+ probability that a random sample of 500 persons from the city will have at least 250 supporters?
+<SOLN/>
+Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
+ from the population of the city. 
+
+We shall assume that the trials are IID. Now here we are introducing an approximation: the first
+ membr of the sample was drawn from the entire population, but since we generally sample
+ <I>without replacement</I>  in such a scenario, the second member of the sample was drawn from a
+ population of size one less than in the case of the first member. So the random experiment has
+ actually changed, and they are not independent also. But since the population is large (much
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
+
+We also have a random variable: 
+<D>X(\omega) = <CASES>1 <IF>\omega\mbox{ supports the candiate}</IF> 0<ELSE/></CASES></D> 
+Here<M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
+<M>X_1,...,X_{500}</M>  IID <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
+
+By CLT we have 
+<D>[[\sqrt n (\bar X_n-\mu)][\sigma]]\to N(0,1)</D>
+as <M>n\to \infty,</M>  where <M>\mu = E(X_i)</M>  and <M>\sigma^2 = V(X_i)< \infty.</M>  We shall write this as 
+<D>\bar X_n \stackrel{\bullet}{\sim} N(*(\mu,[[\sigma^2][n]])*)</D>
+for large <M>n.</M>  Here <M>\stackrel\bullet\sim</M>  means "approximately distributed as".
+
+In our case, <M>\mu = 0.40</M>, <M>\sigma^2 = 0.4(1-0.4) = 0.24</M>  and <M>n=500.</M>  So 
+<D>\bar X_{500} \stackrel{\bullet}{\sim} N(*(0.40,[[0.24][500]])*),</D>
+or 
+<D>\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
+Nowe we can find the required probability as
+<D>P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi(*([[250-200][\sqrt{120}]])*).</D>
+This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or using R as
+<R>
+1-pnorm((250-200)/sqrt(120))
+</R>
+ </EXM>
+In this problem we knew the distribution of the <M>X_i</M>'s, but we never really made any use of it, except to compute <M>E(X_i)</M> 
+ and <M>V(X_i).</M>  
+<HEAD2>Problem set <PS/></HEAD2>
+::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
+::<EXR><EIMG web="rossdistrib8.png"></EIMG>
+<ANS>For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</ANS>
+</EXR>
+::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
+
+
+<EXR>Let <M>X_n\toD N(0,1)</M>  and <M>Y_n\toP 5.</M>  Then what is the limiting distribution of <M>X_n+Y_n?</M></EXR>
+
+<EXR>Let <M>X_n\toD X</M>  and <M>Y_n\toP Y.</M>  Show that <M>X_n+Y_n\toD X+Y</M>  need not hold.</EXR>
+
+<EXR>Let <M>X_n\toD N(0,1)</M>, <M>Y_n\toP 5</M>  and <M>Z_n\toP 4</M> with <M>z_n > 0.</M>     Then what is the
+ limiting distribution of <M>[[X_n+Y_n][\sqrt {Z_n}]]?</M></EXR>
+
+<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Show that <M>\sqrt n(X_nY_n-a\theta)\toD aZ.</M></EXR>
+
+<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
+
+<EXR>Let <M>T_n</M>  be a consistent estimator of <M>\theta,</M>  and let <M>S_n</M>  be a
+ consistent estimator of <M>\sigma^2.</M>  Show that the Studentized statistic
+ <M>[[T_n-\theta][\sqrt{S_n}]]</M>  has the the same asymptotic distribution as
+ <M>[[T_n-\theta][\sigma]],</M>  whenever an asymptotic distribution exists. </EXR>
+
+<EXR>Let <M>X_n\toD X</M>  and <M>X_n+Y_n\toD X+1.</M> Does this imply that <M>Y_n\toP 1?</M> </EXR>
+<COMMENT>
+<LINK to="chat/Slutsky_Counterexamples_Exercises.pdf">chat/Slutsky_Counterexamples_Exercises.pdf</LINK>
+<LINK to="chat/Slutsky_Qualifying_Exam_Problems.pdf">chat/Slutsky_Qualifying_Exam_Problems.pdf</LINK>
+<LINK to="chat/Slutsky_Theorem_Exercises.pdf">chat/Slutsky_Theorem_Exercises.pdf</LINK>
+</COMMENT>
+<HEAD1>Relative strengths of different modes</HEAD1>
+We have learned about four different modes of convergence (counting all the <M>L_p</M>s as a single mode). It is surprising
+ and somewhat disconcerting that these modes are not equivalent. The following diagram shows the relative strengths of the
+ these modes.
+<IMG web="rel.png">Relative strengths</IMG>
+Whenever there is a blue arrow from one mode to another, the first  mode implies the second mode. 
+None of the other implications hold in general. 
+Since <M>L_1</M>  is the weakest member of the <M>L_p</M>  family (for <M>p\geq 1</M>), we shall
+ take <M>L_1</M>  as the representative of <M>L_p</M>  in the following discussion. 
+ 
+
+<THM>If <M>X_n\toA X</M>  then <M>X_n\toP X.</M></THM>
+<PF>
+To show <M>\forall \epsilon>0~~P(|X_n-X|\geq \epsilon) \to 0</M>  as <M>n\to \infty.</M>  
+
+Take any <M>\epsilon>0.</M>
+
+
+
+Let  <M>A_n = \{|X_n-X|\geq \epsilon\}</M>.
+
+Since <M>X_n\toA X,</M>  hence 
+<M>P(A_n\io) = 0.</M>
+
+Hence <M>P(A_n)\to 0.</M>
+</PF>
+<THM>If <M>X_n\toL 1 X</M>    then <M>X_n\toP X.</M></THM>
+<PF>
+Take any <M>\epsilon>0.</M>  Then, by Markov inequality applied to <M>|X_n-X|</M>  (which is
+ nonnegative thanks to the modulus), we have  
+<D>P(|X_n-X|>\epsilon)\leq [[E(|X_n-X|)][\epsilon]]\to 0.</D>
+</PF>
+
+<THM>If <M>X_n\toP X,</M>  then <M>X_n\toD X.</M></THM>
+<PF>
+<ALERT>This proof requires the concept of liminf and limsup.</ALERT>
+Let <M>X_n\toP X.</M>  To show <M>X_n\toD X,</M>  i.e., if <M>X_n</M>  and <M>X </M> have distribution functions <M>F_n</M> 
+ and <M>F,</M>  then 
+<Q><M>\forall</M>  continuity point <M>x</M>  of <M>F</M>  we have <M>F_n(x)\to F(x).</M></Q>
+
+Take any continuity point <M>x</M>  of <M>F.</M>
+
+Enough to show that <M>\forall \epsilon>0~~F(x-\epsilon) \leq \liminf F_n(x)\leq \limsup F_n(x) \leq F(x+\epsilon).</M>
+<BECAUSE>The result will follow by taking limit as <M>\epsilon\downarrow 0.</M></BECAUSE>
+Now 
+<MULTILINE>
+F(x-\epsilon)
+& = & P(X\leq x-\epsilon)\\
+& = & P(X\leq x-\epsilon ~\&~ |X_n-X|<\epsilon) + P(X\leq x-\epsilon ~\&~ |X_n-X|\geq\epsilon)\\
+& \leq & P(X\leq x-\epsilon ~\&~ |X_n-X|<\epsilon) + P(|X_n-X|\geq\epsilon)\\
+& \leq & P(X_n\leq x) + P(|X_n-X|\geq\epsilon)\\
+& = & F_n(x) + P(|X_n-X|\geq\epsilon).
+</MULTILINE>
+So 
+<D>F(x-\epsilon) - P(|X_n-X|\geq\epsilon) \leq F_n(x).</D> 
+
+Again, 
+<MULTILINE>
+F_n(x)
+& = & P(X_n\leq x)\\
+& = & P(X_n\leq x ~\&~ |X_n-X|< \epsilon) +  P(X_n\leq x ~\&~ |X_n-X| \geq \epsilon)\\
+& \leq & P(X_n\leq x ~\&~ |X_n-X|< \epsilon) +  P(|X_n-X| \geq \epsilon)\\
+& \leq & P(X\leq x + \epsilon) +  P(|X_n-X| \geq \epsilon)\\
+& = & F(x + \epsilon) +  P(|X_n-X| \geq \epsilon)\\
+</MULTILINE>
+So
+<D>F(x-\epsilon) - P(|X_n-X|\geq\epsilon) \leq F_n(x) \leq  F(x + \epsilon) +  P(|X_n-X| \geq \epsilon).</D>
+Taking limit as <M>n\to \infty,</M>  we get
+<D>F(x-\epsilon)  \leq \liminf F_n(x) \leq \limsup F_n(x) \leq  F(x + \epsilon).</D>
+Hence the result.
+</PF>
+
+Though convergence in distribution does not imply convergence in probability in general, but there is one important special
+ ase where it does! This is given in the theorem below.
+
+<THM>Let <M>(X_n)</M>  be a sequence of random variables (not necessarily defined on a common
+ probability space). Let <M>c\in\rr</M>  be fixed. If <M>X_n\toP c</M>  then <M>X_n\toD c.</M></THM>
+<PF>
+<B>Step 1:</B>  Shall show <M>\forall x < c~~P(X_n\leq x)\to 0.</M>  
+
+Take any <M>x < c.</M>
+
+Then, for  <M>\epsilon = c-x > 0,</M>  we have
+<M>P(|X_n-c| \geq \epsilon) \to 0.</M>  
+
+So <M>P(X_n \leq c-\epsilon) \to 0</M>  or <M>P(X_n \leq x) \to 0.</M>
+
+<B>Step 2:</B>  Shall show <M>\forall x > c~~P(X_n\leq x)\to 1.</M>  
+
+Similar argument.
+</PF>
+<HEAD2>Counterexamples</HEAD2>
 The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
  moments exist finitely for all the random variables involved. 
 
@@ -245,4 +438,28 @@ Then clearly <M>\forall\omega\in (0,1)~~X_n(\omega)\to X(\omega).</M>  Hence <M>
 But <M>\forall n\in\nn~~E(X_n) = n\times[[1n]] = 1\not\to 0 = E(X).</M>  
 </EXM>
 
+Other counterexamples are in the problem set below. 
+
+<HEAD2>Problem set</HEAD2>
+<EXR>Let <M>f_1,f_2,f_3,...:[0,1]\to\rr</M>  be defined as indicator functions of 
+
+<M>[0,1],</M> 
+
+ <M>[*[0, [[12]] ]*], [*[ [[12]], 1 ]*], </M>  
+
+<M>[*[0,[[13]] ]*], [*[ [[13]], [[23]] ]*], [*[ [[13]], 1 ]*], </M>
+
+  etc. Let <M>U\sim Unif[0,1].</M>  Let <M>X_n = f_n(U).</M>  Let <M>X\equiv 0.</M>  Show that 
+ <M>X_n\toL 1 X</M>  but <M>X_n\not\toA X.</M></EXR>
+
+<EXR>Consider <M>X_n, X</M>  as in the last exercise. Show that <M>X_n\toP X.</M>  </EXR>
+
+<EXR>Among the examples discussed so far, there is one counterexample that shows that
+ convergence is probability does not imply  <M>L_1</M>  counterexample. What is that example? </EXR>
+
+<EXR>Convergence in distribution obviously cannot imply convergence in probability, because
+ convergence in distribution does not even require the random variables to be defined on the same
+ probability space. But even if all the random variables are defined on a common probability
+ space, we can get a counterexample. Let <M>U\sim Unif(0,1).</M>  Let <M>X_n = (-1)^n U.</M>  Then
+show that  <M>X_n\toD U,</M>  but <M>X_n\not\toP U.</M></EXR>
 </NOTE>@}

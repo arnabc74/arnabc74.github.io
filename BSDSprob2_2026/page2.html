@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -8,6 +8,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
 <script>
 aha = function(code) {
   window.open("https://rdrr.io/snippets/embed/?code="+code)
@@ -85,7 +87,7 @@ body,table {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -152,85 +154,209 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:15:07 IST 2026</i>
+</td>
+</tr>
+</table>
 <h3>Sampling distrbutions for normal mean and variance</h3>
 <ul>
-<li>
-<a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
+<li>1.<a href="#N10012">Multivariate normal</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 1">Problem set 1</a>
+<li>2.<a href="#N100AD">Sampling distributions for normal sample</a>
 </li>
-<li>
-<a href="#$t$  distribution">$t$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;2.1.<a href="#N101A2">Problem set 1</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 2">Problem set 2</a>
+<li>3.<a href="#N101AF">$t$  distribution</a>
 </li>
-<li>
-<a href="#$F$  distribution">$F$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;3.1.<a href="#N1022D">Problem set 2</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 3">Problem set 3</a>
+<li>4.<a href="#N1023F">$F$  distribution</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;4.1.<a href="#N1028E">Problem set 3</a>
 </li>
 </ul>
 <hr/>
 $\newcommand{\v}[1]{\boldsymbol{#1}}$
 $\newcommand{\k}[1]{\chi^2_{(#1)}}$
-[Update:[Wed Jun 17 IST 2026}
+$\newcommand{\cov}{\mathrm{cov}}$
+[Update:[Thu Jul 09 IST 2026}
 <title xmlns="">Sampling distrbutions for normal mean and variance</title>
 
-<h1><a
-name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
-<a href="https://youtu.be/BRwFMYfb4rE">Video for this section</a>
 <p></p>
+
+<h1>
+<a name="N10012"><span class="header">1</span>. Multivariate normal</a>
+</h1>
+You have already learned about normal and bivarate normal  distributions in Probability I. These are all special cases of
+ the multivariate normal distribution. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Multivariate normal distribution</b></legend>
+Let  $\v X$ be a $d$-dimensional random vector with components iid $N(0,1).$  Let
+ $A_{r\times n}$ be any fixed matrix and $\v b\in{\mathbb R}^r$ be any fixed vector. Then the
+ distribution of the random vector $A\v X + \v b$  is called a $r$-dimensional multivariate normal distribution.
+</fieldset>
 
 <p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
+Let  $\v X$ be a $d$-dimensional random vector with components iid $N(0,1).$  Let
+ $A_{r\times n}$ be any fixed matrix and $\v b\in{\mathbb R}^r$ be any fixed vector. Then the
+ MGF of the random vector $A\v X + \v b$  is given by 
+$$M(\v t)  = e^{\v b'\v t+\frac 12\v t' AA'\v t}$$
+for $\v t\in{\mathbb R}^d.$
+Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
+Thus, the distribution is characterised by $\v b$  and $AA'.$  
+</fieldset>
+
+<p></p>
+
+<b>Notation:</b>  Let $\v \mu\in{\mathbb R}^d$  be a fixed vector, and $\Sigma_{d\times d}$  be any fixed nnd
+ matrix. The distribution with mgf $M(\v t) = e^{\v \mu't + \frac 12 \v t' \Sigma \v t}$  for
+ $\v t\in {\mathbb R}^d$  is denoted by $N_d(\v \mu, \Sigma).$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu \Sigma),$  then $E(\v X) = \v \mu$  and $V(\v X) = \Sigma.$</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$ and $A_{r\times d}$  is any fixed  matrix and  
+$\v b\in{\mathbb R}^r$  is any fixed vector, then $AX+\v b\sim N_r(A\v\mu+\v b, A \Sigma A').)$
+</fieldset>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $X_1,...,.X_n$  are iid $N(0,1)$  random variables, then $\v X =
+ \left[\begin{array}{ccccccccccc}X_1\\\vdots\\X_n
+\end{array}\right]$  has $N_n(\v 0, I)$  distribution.</fieldset>
+
+<p></p>
+We can easily compute marginal distributions of a multivariate normal using this theorem. 
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Let 
+ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $X_1,...,.X_n$  are (mutually) independent
+ iff $\Sigma$  is diagonal.</fieldset>
+
+<p></p>
+
+<h1>
+<a name="N100AD"><span class="header">2</span>. Sampling distributions for normal sample</a>
+</h1>
+Our main theme in this page is the following theorem. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
 Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, IID) from $N(\mu, \sigma^2).$ We consider
- the sample mean $\bar X=\frac 1n\sum _1^nX_i$  and sample variance $S^2=\frac 1n\sum_1^n (X_i-\bar X)^2.$   Then 
+ the sample mean $\bar X=\frac 1n\sum _1^nX_i$  and the statistic $S^2=\sum_1^n (X_i-\bar X)^2.$   Then 
 <ol type="">
 
 <li>$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)$</li>
 
-<li>$\frac{nS^2}{\sigma^2}\sim \k {n-1}$</li>
+<li>$\frac{S^2}{\sigma^2}\sim \k {n-1}$</li>
 
 <li>$\bar X$  and $S^2$  are independent.</li>
 
 </ol>
 
 </fieldset>
+Before we start to prove this theorem, let us recall a few relevant things.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: </b></legend>If $U_1,...,U_k$  are iid $N(0,1),$  then the distribution of $\sum_1^k
+ U_i^2$  is called <b><font color="red" size="40">(central) chi-square</font></b>  with $k$  <b><font color="red" size="40">degrees of
+ freedom</font></b>. This distribution is denoted by $\k k$.</fieldset>
+
+<p></p>
+Thus, we say $X\sim\k k,$  then you can assume that there are $k$  random variables $U_1,...,U_k$  all
+ defined on the same probability space such that $X = U_1^2+\cdots+U_k^2.$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $x_1,...,x_n$  be any $n$  numbers. 
+Let  $\bar x_k=\frac 1k\sum _1^kx_i$  for $k=1,...,n$  and  $S_k^2=\sum_1^k
+ (x_i-\bar x_k)^2.$   Then for $k=1,...,n-1$
+$$S_k^2 = \sum_1^{k-1} \frac{i}{i+1}(x_{i+1}-\bar x_i)^2.$$
+</fieldset>
 
 <p>
-<b><i>Proof:</i></b>Without loss of generality, we take $\mu=0$  and $\sigma=1.$
-<blockquote><a
-href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
-class="ans" id="reason1">Once we have proved the $\mu=0$  case, we can work with $\mu+\sigma X_i$  to
- get the general form.</div></blockquote>
-In ${\mathbb R}^n$  consider the subspace $V=span\{\v 1\},$  where $\v 1$  is the vector of al $1$'s. Clearly,
- $dim(V)=1$  and $dim(V^\perp)=n-1.$
+<b><i>Proof:</i></b>
+Obvious for $k=1.$  
+High school algebra shows $S_k^2-S_{k-1}^2 = \frac{k-1}{k} (x_k-\bar x_{k-1})^2$  for $k=2,...,n-1.$
 <p></p>
-We have learnt that in ${\mathbb R}^n$  the component (<i>i.e.</i>, orthogonal projection) of one vector $\v v$  along
- another vector $\v u$  is $\frac{\v u'\v v}{\v u'\v u}\v u.$ 
-<p></p>
-So the orthogonal projection of $\v X$  along $\v 1$  (<i>i.e.</i>, on $V$) is $\bar X\v 1.$  
-<p></p>
-Hence the orthogonal projection of $\v X$  on $V^\perp$  is  
-$$\v Y = \v X-\bar X\v 1 = \left[\begin{array}{ccccccccccc}X_1-\bar X\\\vdots\\X_n-\bar X
-\end{array}\right].$$
-So from earlier result, we immediately see that these two projections must be independent.
-<p></p>
-Now $\bar X$  is a function of the first projection, while $S^2$  is a function of the second. So they are independent.
-<p></p>
-Also $nS^2 = \|\v Y\|^2\sim \k{n-1}.$
-<p></p>
-The distribution of $\bar X$  is obvious from an earlier theorem.
+Hence the result.
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
+<p></p>
+
+<p>
+<b><i>Proof:</i></b>
+Let $Y_k = X_{k+1}-\bar X_k$  for $k=1,...,n-1$  and   $Y_n = \bar X_n.$
+<p></p>
+Then $\v Y = A\v X$  for 
+$$A = \left[\begin{array}{ccccccccccc}
+-1 &amp; 1\\
+-\frac 12 &amp; -\frac 12 &amp; 1\\
+-\frac 13 &amp; -\frac 13 &amp; -\frac 13 &amp; 1\\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \ddots\\
+-\frac{1}{n-1} &amp; \cdots &amp;  &amp; &amp; -\frac{1}{n-1} &amp; 1\\
+\frac 1n  &amp; \frac 1n &amp; \frac 1n &amp; \cdots &amp; \frac 1n &amp; \frac 1n
+\end{array}\right].$$
+<p></p>
+Clearly, $A$  is nonsingular (why?). 
+<p></p>
+So $\v Y$  has a multivariate normal distribution.
+<p></p>
+It is easy to work out the mean vector and covariance matrix:
+<ul>
+
+<li>$E(Y_k) = \cdots  =0 $  for $k=1,...,n-1,$  and $E(Y_n) = \mu.$</li>
+
+<li>$V(Y_k) = \sigma^2\left(1+\frac 1k\right)$  for $k=1,...,n-1,$  and $V(Y_n) = \frac{\sigma^2}{n}.$</li>
+
+<li>$\cov(Y_i,Y_j)=  \cdots = 0$  for $i\neq j\in\{1,...,n-1\}$  and
+ $\cov(Y_i,Y_n)=  \cdots = 0$  for $i\in\{1,...,n-1\}.$    
+</li>
+</ul>
+So $Y_1,...,Y_n$  are independent random variables. 
+<p></p>
+In particular, $\bar X_n = Y_n \sim N\left(\mu,\frac{\sigma^2}{n}\right)$, as required.
+<p></p>
+Also,
+$$S_n^2 = \sum_1^{n-1} \frac{i}{i+1}(X_{i+1}-\bar X_i)^2 = \sum_1^{n-1} \frac{i}{i+1} Y_i^2.$$
+Since $Y_1,...,Y_{n-1}$  are independent with $Y_i\sim N\left(0, (1+\frac 1i) \sigma^2 \right),$  
+<p></p>
+hence $\sqrt{\frac{i}{i+1}} \frac{Y_i}{\sigma}$'s are IID $N(0,1)$  random variables (for $i=1,...,n-1).$
+<p></p>
+Hence $\frac{S_n^2}{\sigma^2}\sim\k {n-1},$  as required.
+<p></p>
+Notice that $S_n^2$  is a function of only $Y_1,...,Y_{n-1}$  only, which are
+ independent of $Y_n,$  <i>i.e.</i>, $\bar X_n,$  as required. 
+<b><i>[QED]</i></b>
+</p>
+
+<h2>
+<a name="N101A2"><span class="header">2.1</span>.
+Problem set 1</a>
+</h2>
 
 <p>
 <b>EXERCISE 1:</b>&nbsp;
@@ -238,8 +364,9 @@ Same set up as in the theorem above. What will  the distribution of $\sum_1^n (X
 a fixed number?
 </p>
 
-<h1><a
-name="$t$  distribution">$t$  distribution</a></h1>
+<h1>
+<a name="N101AF"><span class="header">3</span>. $t$  distribution</a>
+</h1>
 <a href="https://youtu.be/mv62pUoznVI">Video for this section</a>
 <p></p>
 
@@ -280,8 +407,10 @@ It should not be difficult to see that $t$-density is symmetric around 0. The de
  is virtually indisguishable from that of $N(0,1)$  density.
 <p></p>
 
-<h2><a
-name="Problem set 2">Problem set 2</a></h2>
+<h2>
+<a name="N1022D"><span class="header">3.1</span>.
+Problem set 2</a>
+</h2>
 
 <p>
 <b>EXERCISE 2:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
@@ -290,8 +419,9 @@ $$\frac{\sqrt n(\bar X-\mu)}{\sqrt{\sum(X_i-\bar X)^2/(n-1)}}?$$
 
 <p></p>
 
-<h1><a
-name="$F$  distribution">$F$  distribution</a></h1>
+<h1>
+<a name="N1023F"><span class="header">4</span>. $F$  distribution</a>
+</h1>
 <a href="https://youtu.be/xTL6asmWxA8">Video for this section</a>
 <p></p>
 
@@ -318,8 +448,10 @@ Hence the density of $\frac nmZ$  is
 $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2}}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $$
 <p></p>
 
-<h2><a
-name="Problem set 3">Problem set 3</a></h2>
+<h2>
+<a name="N1028E"><span class="header">4.1</span>.
+Problem set 3</a>
+</h2>
 
 <p>
 <b>EXERCISE 3:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from

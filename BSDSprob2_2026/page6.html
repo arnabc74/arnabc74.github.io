@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -8,6 +8,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
 <script>
 aha = function(code) {
   window.open("https://rdrr.io/snippets/embed/?code="+code)
@@ -85,7 +87,7 @@ body,table {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -152,150 +154,41 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
-<h3/>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:15:28 IST 2026</i>
+</td>
+</tr>
+</table>
+<h3>Miscellaneous tools</h3>
 <ul>
-<li>
-<a href="#Convergence in distribution">Convergence in distribution</a>
+<li>1.<a href="#N10012">Slutsky's theorem</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Central Limit Theorem">Central Limit Theorem</a>
+<li>2.<a href="#N100BD">Delta method</a>
 </li>
-<li>
-<a href="#Central Limit Theorem">Central Limit Theorem</a>
+<li>&nbsp;&nbsp;&nbsp;2.1.<a href="#N1010F">Variance stabilising transform</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 1">Problem set 1</a>
+<li>3.<a href="#N10167">Cramer-Wold device</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Slutsky's theorem">Slutsky's theorem</a>
+<li>&nbsp;&nbsp;&nbsp;3.1.<a href="#N1018B">Multivariate CLT</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Delta method">Delta method</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Multivariate CLT">Multivariate CLT</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Cramer-Wold device">Cramer-Wold device</a>
+<li>&nbsp;&nbsp;&nbsp;3.2.<a href="#N101D5">Multivariate delta method</a>
 </li>
 </ul>
 <hr/>
 $\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
 $\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
 $\newcommand{\v}[1]{\boldsymbol{#1}}$
-[Update:[Thu Jul 02 IST 2026}
-<h1 xmlns=""><a
-name="Convergence in distribution">Convergence in distribution</a></h1>
-
-<fieldset>
-<legend><b>Definition: Convergence in distribution</b></legend>
-Let $(X_n), X$  be some random variables (not necessarily defined on the same probability space). Let $X_n$  have
- distribution function $F_n$  and $X $ have distribution function $F.$  We say $X_n$  converges to $X$ 
- <b><font color="red" size="40">in distribution</font></b>  and write $X_n\rightarrowD X$  if for all continuity point $x$  of $F$ we have $F_n(x)\rightarrow F(x).$
-</fieldset>
+<title xmlns="">Miscellaneous tools</title>
 
 <p></p>
 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>If $X_n\rightarrowD X,$  then $X_n\rightarrowP X.$</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Let $Y_n = X_n-X.$  Since 
-<b><i>[QED]</i></b>
-</p>
-
-<h2><a
-name="Central Limit Theorem">Central Limit Theorem</a></h2>
-
-<h1><a
-name="Central Limit Theorem">Central Limit Theorem</a></h1>
-The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
- and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
-<p></p>
-
-<fieldset>
-<legend><b><i>Central imit Theorem (CLT)</i></b></legend>
-Let $X_1,X_2,...$  be IID with $E(X_i) = \mu$  and $V(X_i) = \sigma^2 &lt; \infty.$  Let 
-$$\bar X_n = \frac{X_1+\cdots+X_n}{n}\mbox{ for } n\in{\mathbb N}.$$
-Then the distribution of $\frac{\sqrt n(\bar X_n-\mu)}{\sigma}$  tends to $N(0,1)$  as $n\rightarrow \infty.$
-More precisely, if $F_n(\cdot)$  denotes the CDF of $\frac{\sqrt n(\bar X_n-\mu)}{\sigma},$  and $\Phi(\cdot)$ 
- denotes the $N(0,1)$  CDF, then
-$$\forall t\in{\mathbb R}~~F_n(t)\rightarrow \Phi(t) \mbox{ as } n\rightarrow \infty.$$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>Next semester.<b><i>[QED]</i></b>
-</p>
- This theorem is a manifestation of statistical regularity. Whatever may the true
- distribution of the $X_i$'s be, if you average a large number of $X_i$'s you get close
- approximation to the normal distribution. This allows
-statistician to deal with averages of a large number of IID observations without knowing the true
- underlying distribution. 
-<p></p>
-Let's look at a typical example. 
-<p></p>
-
-<p>
-<b>EXAMPLE 1:</b>&nbsp;If 40% of the population of a city supports a poll candidate, then what is the approximate
- probability that a random sample of 500 persons from the city will have at least 250 supporters?
-<p></p>
-<b>SOLUTION:</b>
-Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
- from the population of the city. 
-<p></p>
-We shall assume that the trials are IID. Now here we are introducing an approximation: the first
- membr of the sample was drawn from the entire population, but since we generally sample
- <i>without replacement</i>  in such a scenario, the second member of the sample was drawn from a
- population of size one less than in the case of the first member. So the random experiment has
- actually changed, and they are not independent also. But since the population is large (much
- larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
-<p></p>
-We also have a random variable: 
-$$X(\omega) = \left\{\begin{array}{ll}1 &\text{if }\omega\mbox{ supports the candiate}\\ 0&\text{otherwise.}\end{array}\right.$$ 
-Here$\omega$  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
-$X_1,...,X_{500}$  IID $Bernoulli(0.4).$  This $0.4$  came from the 40% given in the problem. 
-<p></p>
-By CLT we have 
-$$\frac{\sqrt n (\bar X_n-\mu)}{\sigma}\rightarrow N(0,1)$$
-as $n\rightarrow \infty,$  where $\mu = E(X_i)$  and $\sigma^2 = V(X_i)&lt; \infty.$  We shall write this as 
-$$\bar X_n \stackrel{\bullet}{\sim} N\left(\mu,\frac{\sigma^2}{n}\right)$$
-for large $n.$  Here $\stackrel\bullet\sim$  means "approximately distributed as".
-<p></p>
-In our case, $\mu = 0.40$, $\sigma^2 = 0.4(1-0.4) = 0.24$  and $n=500.$  So 
-$$\bar X_{500} \stackrel{\bullet}{\sim} N\left(0.40,\frac{0.24}{500}\right),$$
-or 
-$$\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).$$
-Nowe we can find the required probability as
-$$P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi\left(\frac{250-200}{\sqrt{120}}\right).$$
-This probability may be obtained by looking up standard $N(0,1)$  tables or using R as
-<font color="red">
-<pre>
-1-pnorm((250-200)/sqrt(120))
-</pre>
-</font>
-  ■
-</p>
-In this problem we knew the distribution of the $X_i$'s, but we never really made any use of it, except to compute $E(X_i)$ 
- and $V(X_i).$  
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
-::<p>
-<b>EXERCISE 1:</b>&nbsp;<font size="-2">[rossdistrib10.png]</font><img width="" src="image/rossdistrib10.png" style="vertical-align:text-top;"></p>
-::<p>
-<b>EXERCISE 2:</b>&nbsp;<font size="-2">[rossdistrib8.png]</font><img width="" src="image/rossdistrib8.png" style="vertical-align:text-top;">
-<p><a
-href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
-class="ans" id="lab1">For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</div></p>
-
-</p>
-::<p>
-<b>EXERCISE 3:</b>&nbsp;<font size="-2">[rossdistrib5.png]</font><img width="" src="image/rossdistrib5.png" style="vertical-align:text-top;"></p>
-
-<p></p>
-
-<h2><a
-name="Slutsky's theorem">Slutsky's theorem</a></h2>
+<h1>
+<a name="N10012"><span class="header">1</span>. Slutsky's theorem</a>
+</h1>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>Let $(X_n), (Y_n), X$  be random variables defined on the same probability space. $c\in{\mathbb R}.$  Let
@@ -317,122 +210,42 @@ Then <ol type="">
 
 <p>
 <b><i>Proof:</i></b>
-Recall that convergence in probability means that for every $\varepsilon &gt; 0$,
-$$
-P(|X_n - X| &gt; \varepsilon) \rightarrow 0.
-$$
+
 <p></p>
-We must show that for every $\varepsilon &gt; 0$,
-$$
-P\bigl(|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr) \rightarrow 0.
-$$
-<p></p>
-Fix $\varepsilon &gt; 0$.
-<p></p>
-By the triangle inequality,
-$$
-|(X_n + Y_n) - (X + c)|
-=
-|(X_n - X) + (Y_n - c)|
-\leq
-|X_n - X| + |Y_n - c|.
-$$
-<p></p>
-Hence,
-$$
-\bigl\{|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr\}
-\subseteq
-\bigl\{|X_n - X| + |Y_n - c| &gt; \varepsilon\bigr\}.
-$$
-<p></p>
-Now observe that
-$$
-\bigl\{|X_n - X| + |Y_n - c| &gt; \varepsilon\bigr\}
-\subseteq
-\bigl\{|X_n - X| &gt; \varepsilon/2\bigr\}
-\cup
-\bigl\{|Y_n - c| &gt; \varepsilon/2\bigr\}.
-$$
-<p></p>
-Indeed, if both
-$$
-|X_n - X| \leq \varepsilon/2
-\quad\text{and}\quad
-|Y_n - c| \leq \varepsilon/2,
-$$
-then
-$$
-|X_n - X| + |Y_n - c|
-\leq
-\varepsilon.
-$$
-<p></p>
-Therefore, by the union bound,
-$$
-P\bigl(|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr)
-\leq
-P(|X_n - X| &gt; \varepsilon/2)
-+
-P(|Y_n - c| &gt; \varepsilon/2).
-$$
-<p></p>
-Since $X_n \rightarrow X$ in probability,
-$$
-P(|X_n - X| &gt; \varepsilon/2) \rightarrow 0.
-$$
-<p></p>
-Since $Y_n \rightarrow c$ in probability,
-$$
-P(|Y_n - c| &gt; \varepsilon/2) \rightarrow 0.
-$$
-<p></p>
-Taking limits as $n \rightarrow \infty$, we obtain
-$$
-\lim_{n\rightarrow\infty}
-P\bigl(|(X_n + Y_n) - (X + c)| &gt; \varepsilon\bigr)
-= 0.
-$$
-<p></p>
-Hence,
-$$
-X_n + Y_n \xrightarrow{P} X + c.
-$$
-<p></p>
-Therefore $X_n + Y_n$ converges in probability to $X + c$.
-\end{proof}
+
 <b><i>[QED]</i></b>
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;Let $X_n\rightarrowD N(0,1)$  and $Y_n\rightarrowP 5.$  Then what is the limiting distribution of $X_n+Y_n?$</p>
+<b>EXERCISE 1:</b>&nbsp;Let $X_n\rightarrowD N(0,1)$  and $Y_n\rightarrowP 5.$  Then what is the limiting distribution of $X_n+Y_n?$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Let $X_n\rightarrowD X$  and $Y_n\rightarrowP Y.$  Show that $X_n+Y_n\rightarrowD X+Y$  need not hold.</p>
+<b>EXERCISE 2:</b>&nbsp;Let $X_n\rightarrowD X$  and $Y_n\rightarrowP Y.$  Show that $X_n+Y_n\rightarrowD X+Y$  need not hold.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Let $X_n\rightarrowD N(0,1)$, $Y_n\rightarrowP 5$  and $Z_n\rightarrowP 4$ with $z_n &gt; 0.$     Then what is the
+<b>EXERCISE 3:</b>&nbsp;Let $X_n\rightarrowD N(0,1)$, $Y_n\rightarrowP 5$  and $Z_n\rightarrowP 4$ with $z_n &gt; 0.$     Then what is the
  limiting distribution of $\frac{X_n+Y_n}{\sqrt {Z_n}}?$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Suppose that $\sqrt n(X_n-\theta)\rightarrowD Z$  and $Y_n\rightarrowP a.$  Show that $\sqrt n(X_nY_n-a\theta)\rightarrowD aZ.$</p>
+<b>EXERCISE 4:</b>&nbsp;Suppose that $\sqrt n(X_n-\theta)\rightarrowD Z$  and $Y_n\rightarrowP a.$  Show that $\sqrt n(X_nY_n-a\theta)\rightarrowD aZ.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Let $X_n$  be asymptotically $N\left(\mu,\frac{\sigma^2}{n}\right).$  What is the asymptotic distribution of $\frac{X_n}{1+X_n}?$</p>
+<b>EXERCISE 5:</b>&nbsp;Let $X_n$  be asymptotically $N\left(\mu,\frac{\sigma^2}{n}\right).$  What is the asymptotic distribution of $\frac{X_n}{1+X_n}?$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let $T_n$  be a consistent estimator of $\theta,$  and let $S_n$  be a
+<b>EXERCISE 6:</b>&nbsp;Let $T_n$  be a consistent estimator of $\theta,$  and let $S_n$  be a
  consistent estimator of $\sigma^2.$  Show that the Studentized statistic
  $\frac{T_n-\theta}{\sqrt{S_n}}$  has the the same asymptotic distribution as
  $\frac{T_n-\theta}{\sigma},$  whenever an asymptotic distribution exists. </p>
@@ -440,11 +253,12 @@ Therefore $X_n + Y_n$ converges in probability to $X + c$.
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Let $X_n\rightarrowD X$  and $X_n+Y_n\rightarrowD X+1.$ Does this imply that $Y_n\rightarrowP 1?$ </p>
+<b>EXERCISE 7:</b>&nbsp;Let $X_n\rightarrowD X$  and $X_n+Y_n\rightarrowD X+1.$ Does this imply that $Y_n\rightarrowP 1?$ </p>
 
 
-<h2><a
-name="Delta method">Delta method</a></h2>
+<h1>
+<a name="N100BD"><span class="header">2</span>. Delta method</a>
+</h1>
 
 <fieldset>
 <legend><b><i>Delta method</i></b></legend>
@@ -459,20 +273,21 @@ Let $\frac{\sqrt{n}(X_n-\mu)}{\sigma}\rightarrowD$  some distribution. Let $f:{\
 </p>
 Lots of applications. 
 <p>
-<b>EXERCISE 11:</b>&nbsp;Suppose that $\sqrt n(S_n^2-\sigma^2)\rightarrowD N(0,\theta^2).$  Show that $\sqrt n(S_n-\sigma)\rightarrowD N\left(0,\frac{\theta^2}{4 \sigma^2}\right).$</p>
+<b>EXERCISE 8:</b>&nbsp;Suppose that $\sqrt n(S_n^2-\sigma^2)\rightarrowD N(0,\theta^2).$  Show that $\sqrt n(S_n-\sigma)\rightarrowD N\left(0,\frac{\theta^2}{4 \sigma^2}\right).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;If $\sqrt n(\bar X_n-\mu)\rightarrowD N(0,1),$  show that $\sqrt n(\log \bar X_n-\log \mu)\rightarrowD N(0,\frac{1}{\mu^2}).$</p>
+<b>EXERCISE 9:</b>&nbsp;If $\sqrt n(\bar X_n-\mu)\rightarrowD N(0,1),$  show that $\sqrt n(\log \bar X_n-\log \mu)\rightarrowD N(0,\frac{1}{\mu^2}).$</p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;If $\sqrt n(T_n-\theta)\rightarrowD N(0,\sigma^2)$  for some $\theta\neq 0,$  then show that $\sqrt n\left(\frac{1}{T_n}-\frac 1\theta\right)\rightarrowD N(0,\frac{\sigma^2}{\theta^2}\right).$</p>
+<b>EXERCISE 10:</b>&nbsp;If $\sqrt n(T_n-\theta)\rightarrowD N(0,\sigma^2)$  for some $\theta\neq 0,$  then show that 
+$\sqrt n\left( \frac{1}{T_n}-\frac 1\theta\right) \rightarrowD N\left(0,\frac{\sigma^2}{\theta^2}\right).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;
+<b>EXERCISE 11:</b>&nbsp;
 We toss a coin with unknown $P(H)=p\in (0,1).$  Let $X_n = $ proportion of heads. Find an asymptotic distribution
  for the odds ratio $\frac{X_n}{1-X_n}.$  
 </p>
@@ -480,49 +295,49 @@ We toss a coin with unknown $P(H)=p\in (0,1).$  Let $X_n = $ proportion of heads
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;$T_n$  is an estimator for a parameter $\theta$  with asymptotic distribution
+<b>EXERCISE 12:</b>&nbsp;$T_n$  is an estimator for a parameter $\theta$  with asymptotic distribution
  $N\left(\theta, \frac{\sigma^2}{n}\right).$  Use deltan method to obtain an approximate 95% confidene interval for
  $e^\theta.$</p>
 
-<p>
-<b>EXERCISE 16:</b>&nbsp;Variance stabilising transform</p>
-
-<p></p>
+<h2>
+<a name="N1010F"><span class="header">2.1</span>.
+Variance stabilising transform</a>
+</h2>
 
 <fieldset>
-<legend><b><i>Multivariate delta method</i></b></legend>
-If $\sqrt(T_n-\theta)\rightarrowD N_d(\v 0, \Sigma),$  then $\sqrtn(g(T_n)-g(\theta))\rightarrowD N_d(\v 0, \nabla g(\theta)'\Sigma\nabla g(\theta))$
+<legend><b><i>Variance stabilising transform</i></b></legend>
+Let $\frac{\sqrt{n}(X_n-\mu)}{\sigma(\mu)}\rightarrowD$  some distribution. Let $f:{\mathbb R}\rightarrow{\mathbb R}$  be a 
+ differentiable function with $f'(\mu) = \frac{1}{\sigma(\mu)}.$
+<p></p>
+ Then $\sqrt{n}(f(X_n)-f(\mu))\rightarrowD$  the same distribution.
+<p></p>
+Such an $f$  is called a <b><font color="red" size="40">variance stabilising transform</font></b>.
 </fieldset>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;Use the above theorem to obtain asymptotic variabce of the sample CV.</p>
+<b><i>Proof:</i></b>Immediate from the last theorem.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The most common application of this is when we have an estimator $T_n$  for some parameter $\mu$  with $\frac{\sqrt n(T_n-\mu)}{\sigma}\rightarrow N(0,1).$
+This allows us to obtain a (large sample) confidence interval for $\mu$  as $(T_n-a \sigma/\sqrt n,T_n+a \sigma/\sqrt n).$ 
+ But this requires $\sigma$  to be known. Often $\sigma$  is a function of the unknown $\mu.$  
+Then we can use a variance stabilising transform $f(\cdot)$  to get $\sqrt n(f(T_n)-f(\mu))\rightarrow N(0,1),$  from which
+ we can obtain a confidence interval for $f(\mu).$  Since $f$  is one-one we can obtain a confidence et for $\mu$ 
+ from it.
+<p></p>
+
 
 <p></p>
 
-<a href="chat/Multivariate_Delta_Method_Solution_Manual.pdf">chat/Multivariate_Delta_Method_Solution_Manual.pdf</a>
-<a href="chat/Delta_Method_Applications.pdf">chat/Delta_Method_Applications.pdf</a>
-
-<p></p>
-
-<h2><a
-name="Multivariate CLT">Multivariate CLT</a></h2>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Multivariate CLT</i></b></legend>
-Let $(\v X_n)$  be iid $k$-dimensional random vectors with mean vector $\v \mu$  and
- variance matrix $\Sigma.$  Then 
-$$\sqrt{n}(\v{\bar X}_n-\v\mu)\rightarrowD N_k(\v 0, \Sigma).$$
-</fieldset>
-
-<h2><a
-name="Cramer-Wold device">Cramer-Wold device</a></h2>
+<h1>
+<a name="N10167"><span class="header">3</span>. Cramer-Wold device</a>
+</h1>
 
 <p></p>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
+<b>EXAMPLE 1:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
 this imply $(X_n,Y_n)\rightarrow (X,Y)?$ ■
 </p>
 
@@ -542,21 +357,60 @@ Use characteristic function (to be covered in the next page).
 
 <p></p>
 
-<p>
-<b>EXERCISE 18:</b>&nbsp;Prove multivariate CLT from univariate CLT using the Cramer-Wold device.</p>
+<h2>
+<a name="N1018B"><span class="header">3.1</span>.
+Multivariate CLT</a>
+</h2>
+
+<p></p>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;Prove multivariate delta method from univariate delta method using the Cramer-Wold device.</p>
+<b>EXAMPLE 2:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
+this imply $(X_n,Y_n)\rightarrow (X,Y)?$ ■
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Multivariate CLT</i></b></legend>
+Let $(\v X_n)$  be iid $k$-dimensional random vectors with mean vector $\v \mu$  and
+ variance matrix $\Sigma.$  Then 
+$$\sqrt{n}(\v{\bar X}_n-\v\mu)\rightarrowD N_k(\v 0, \Sigma).$$
+</fieldset>
+
+<p></p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;Let $(X_n,Y_n)$  be an iid sequence of random vectors with mean $(\mu, \nu)$  and
+<b>EXERCISE 13:</b>&nbsp;Prove multivariate CLT from univariate CLT using the Cramer-Wold device.</p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Prove multivariate delta method from univariate delta method using the Cramer-Wold device.</p>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;Let $(X_n,Y_n)$  be an iid sequence of random vectors with mean $(\mu, \nu)$  and
  some (finite) covariance matrix. Find the  asymptotic distribution of $(\bar X_n,\bar Y_n).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;A (pssibly biased) die is rolled $n$  times. Let $X_{i,n}$  be the proportion of
- face $i.$  Find the asymptotic joint distribution of $(X_{1,n),...,X_{6,n}).$</p>
+<b>EXERCISE 16:</b>&nbsp;A (pssibly biased) die is rolled $n$  times. Let $X_{i,n}$  be the proportion of
+ face $i.$  Find the asymptotic joint distribution of $(X_{1,n},...,X_{6,n}).$</p>
+
+<p></p>
+
+<h2>
+<a name="N101D5"><span class="header">3.2</span>.
+Multivariate delta method</a>
+</h2>
+
+<fieldset>
+<legend><b><i>Multivariate delta method</i></b></legend>
+If $\sqrt(T_n-\theta)\rightarrowD N_d(\v 0, \Sigma),$  then $\sqrt n(g(T_n)-g(\theta))\rightarrowD N_d(\v 0,
+ \nabla g(\theta)'\Sigma\nabla g(\theta))$
+</fieldset>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;Use the above theorem to obtain asymptotic variance of the sample CV.</p>
 
 <p></p>
 

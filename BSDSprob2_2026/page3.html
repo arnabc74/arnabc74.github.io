@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -8,6 +8,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
 <script>
 aha = function(code) {
   window.open("https://rdrr.io/snippets/embed/?code="+code)
@@ -85,7 +87,7 @@ body,table {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -152,46 +154,30 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:15:11 IST 2026</i>
+</td>
+</tr>
+</table>
 <h3>Inequalities</h3>
 <ul>
-<li>
-<a href="#Cauchy-Schwartz">Cauchy-Schwartz</a>
+<li>1.<a href="#N10015">Cauchy-Schwartz</a>
 </li>
-<li>
-<a href="#Holder inequality">Holder inequality</a>
+<li>2.<a href="#N100A9">Markov inequality</a>
 </li>
-<li>
-<a href="#Markov inequality">Markov inequality</a>
+<li>&nbsp;&nbsp;&nbsp;2.1.<a href="#N1011A">Real life applications</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Real life applications">Real life applications</a>
+<li>&nbsp;&nbsp;&nbsp;2.2.<a href="#N101B6">Project: Count-min sketch</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Analysing Las Vegas algorithms">Analysing Las Vegas algorithms</a>
+<li>&nbsp;&nbsp;&nbsp;2.3.<a href="#N10276">Project: BJKST algorithm for counting distinct elements </a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Router overload">Router overload</a>
+<li>3.<a href="#N10279">Chebyshev</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Chance of liquidity crisis">Chance of liquidity crisis</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Chance of too long system downtime ">Chance of too long system downtime </a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Primality testing">Primality testing</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Count-min sketch">Count-min sketch</a>
-</li>
-<li>
-<a href="#Chebyshev">Chebyshev</a>
-</li>
-<li>
-<a href="#WLLN">WLLN</a>
-</li>
-<li>
-<a href="#Strong law of large numbers (SLLN)">Strong law of large numbers (SLLN)</a>
+<li>4.<a href="#N10298">Holder inequality</a>
 </li>
 </ul>
 <hr/>
@@ -199,11 +185,20 @@ $\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
 $\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
 $\newcommand{\v}{\mathbf}$
 $\newcommand{\cov}{\mathrm{cov}}$
-[Update:[Mon Jun 22 IST 2026}
+[Update:[Thu Jul 09 IST 2026}
 <title xmlns="">Inequalities</title>
 
-<h1><a
-name="Cauchy-Schwartz">Cauchy-Schwartz</a></h1>
+<table width="100%">
+<tr>
+<td align="right"><i>Last
+updated on:
+Sun Jul 12 10:15:11 IST 2026</i></td>
+</tr>
+</table>
+
+<h1>
+<a name="N10015"><span class="header">1</span>. Cauchy-Schwartz</a>
+</h1>
 
 <p></p>
 
@@ -215,34 +210,23 @@ Equality holds iff $\exists a,b,c\in{\mathbb R}~~P(aX+bY=c)=1.$
 
 <p>
 <b><i>Proof:</i></b>
-The result is obvious if $X$ is degenerate. So let's
-consider the case where $X$ is not degenerate. Then $V(X)&gt;0.$
+The result is obvious if $V(X)=0$ or $V(Y)=0.$   So let's
+consider the case where $V(X), V(Y)&gt;0.$
 <p></p>
-Define $Z = Y-\underbrace{\frac{cov(X,Y)}{V(X)}}_\beta  X.$ 
+Define $Z_1 = \frac{X-E(X)}{V(X)}$  and $Z_2 = \frac{Y-E(Y)}{V(Y)}.$  
 <p></p>
-We know that $V(Z)\geq 0.$
+We know that $V(Z_1+Z_2)\geq 0.$
 <p></p>
-Now, 
-$$
-V(Z) = V(Y) + V(\beta X) - 2cov(Y,\beta X) = V(Y) + \beta^2 V(X)
-- 2 \beta cov(X,Y).
-$$
-Since $\beta = \frac{cov(X,Y)}{V(X)},$ this reduces to 
-$$
-V(Y) - \frac{cov(X,Y)^2}{V(X)}.
-$$
-Since this is $\geq0,$ the inequality follows immediately.
+Derive from this $\cov(X,Y)\geq -1.$  
 <p></p>
-Also equality holds iff $V(Z)=0$, <i>i.e.</i>, $Z$ is degenerate.
+Similarly, derive $\cov(X,Y)\leq 1$  from $V(Z_1-Z_2)\geq 0.$
 <p></p>
-So we have $P(Z=k)=1$ for some $k\in{\mathbb R},$
+Also equality holds iff $V(Z_1+Z_2)=0$  or $V(Z_1-Z_2)=0$, <i>i.e.</i>, if
+$Z_1+Z_2$ or $Z_1-Z_2$  is degenerate.
 <p></p>
-
-<i>i.e.</i>, $P(Y - \beta X = k) = 1$. 
+So we have either $P(Z_1+Z_2=k)=1$ or $P(Z_1-Z_2=k)=1$  for some $k\in{\mathbb R}.$
 <p></p>
-Thus, if we take $a=-\beta$, $b = 1$  and $c = k$, then 
-$P(aX+bY=c)=1$, as
- required, completing the proof.
+In both cases we have $P(aX+bY=c)=1$  for some constants, $a,b,c,$  as required.
 <b><i>[QED]</i></b>
 </p>
 It is instructive to think about the  Cauchy-Schwartz inequality from a geometric perspective. If
@@ -273,53 +257,28 @@ Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometri
  $\cos \theta$  is called the correlation coefficient between $X$  and $Y.$  
 <p></p>
 
-<h1><a
-name="Holder inequality">Holder inequality</a></h1>
-
-<fieldset>
-<legend><b><i>Holder inequality</i></b></legend>
-Let $p,q&gt;1$ be such that $\frac 1p+\frac 1q = 1.$ Let $X,Y$  be random variables with $E|X|^p, E|Y|^q &lt; \infty.$
-<p></p>
-Then
-$$E|XY| \leq \big(E|X|^p\big)^{1/p}\big(E|Y|^q\big)^{1/q}.$$ 
-</fieldset>
-If you take $p=q=2,$  then you get back Cauchy-Schwartz inequality. 
-<p>
-<b><i>Proof:</i></b>
-We shall make use of Young's inequality:
-$$\forall a,b\geq 0~~ab\leq \frac{a^p}{p}+\frac{b^q}{q}.$$
-Now take 
-$$A = \big(E|X|^p\big)^{1/p}\mbox{ and } B = \big(E|Y|^q\big)^{1/q}.$$
-If $A=0$  or $B=0,$  then the result is trivially proved. 
-<p></p>
-So let's assume $A,B&gt;0.$
-<p></p>
-Let $X_1 = \frac{|X|}{A}$  and $Y_1 = \frac{|Y|}{B}.$  
-<p></p>
-Apply Young's inequality to $X_1$  and $Y_1.$  Then take expectation to complete the proof. 
-<b><i>[QED]</i></b>
-</p>
-
-<h1><a
-name="Markov inequality">Markov inequality</a></h1>
+<h1>
+<a name="N100A9"><span class="header">2</span>. Markov inequality</a>
+</h1>
 Let us start with a commonsense example.
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employess are getting
+<b>EXERCISE 1:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employess are getting
  a salary of Rs 250,000
- or more. Can this claim be true?<p></p>
-<b>SOLUTION:</b>
+ or more. Can this claim be true?<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
 Of course not! Even if the other employess get no salary at all, the average must be at least $0.3\times 250,000,$ 
  which exceeds the stated average.
 <p></p>
-In fact, no more than 20% of
+In fact, no more than $\frac 15$ of
  the employees can make
- 250,000 or more. Since 50000/250000 = 1/5. ■
+ 250,000 or more. Since 50000/250000 = $\frac 15$.</div></p>
 </p>
 
 <p></p>
-This commonsense notion leads to the following very useful inequality.
+The same reasoning leads to the following very useful inequality.
 <p></p>
 
 <fieldset>
@@ -344,19 +303,19 @@ A point about the inequalities in the above theorem. There are two inequalities,
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
+<b>EXERCISE 2:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
+<b>EXERCISE 3:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^2)}{\epsilon^2}.$$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
+<b>EXERCISE 4:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
  variable $X$  and any $\epsilon&gt;0$  we have for each $k\in{\mathbb N},$  
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$$
 Will higher values of $k$  necessarily give you better bounds?
@@ -365,44 +324,32 @@ Will higher values of $k$  necessarily give you better bounds?
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;Prove that $\frac{1}{\sqrt{2\pi}\int_{-\infty}^ \infty e^{-x^2/2}\, dx \leq \frac{1}{\epsilon^4}.$</p>
-
-<p></p>
-The following important result is a direct corollary to Markov inequality. 
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>If $X_n\rightarrowL 1 X$    then $X_n\rightarrowP X.$</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Take any $\epsilon&gt;0.$  Then, by Markov inequality applied to $|X_n-X|$  (which is
- nonnegative thanks to the modulus), we have  
-$$P(|X_n-X|&gt;\epsilon)\leq \frac{E(|X_n-X|)}{\epsilon}\rightarrow 0.$$
-<b><i>[QED]</i></b>
-</p>
+<b>EXERCISE 5:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
+ \frac{1}{\epsilon^4}.$</p>
 
 <p></p>
 
-<h2><a
-name="Real life applications">Real life applications</a></h2>
+<h2>
+<a name="N1011A"><span class="header">2.1</span>.
+Real life applications</a>
+</h2>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
- lies in the fact that it makes no use of the distribution of the the random variable other than through its expectation.
+ lies in the fact that it makes no assumption about the distribution of the the random variable other
+ than through its expectation.
 For many real life random variables, estimating the mean is far easier than estimating the entire distribution. 
 <p></p>
-
-<h3><a
-name="Analysing Las Vegas algorithms">Analysing Las Vegas algorithms</a></h3> 
 Let us start with an interesting application from computer science. A class of algorithms called Las
  Vegas algorithms, approach a problem in a random way that is sure to arrive at the answer, but after a random number
  of steps.  
 <p></p>
-One example is the randomised quick sort algorithm. Here we sort an array of numbers by picking a random element from the
- araay, and dividing the rest into two groups, depending on whether a number is $\leq$  or $&gt;$  than the picked
- element. Then we to the same things recursively to both the groups separately. 
+One example is the randomised quick sort algorithm:
+<blockquote> Here we sort an array of numbers by picking a random element from the
+ array, and dividing the rest into two groups, depending on whether a number is $\leq$  or $&gt;$  than the picked
+ element. Then we do the same thing recursively to both the groups separately, and stop when the entire array is sorted.</blockquote> 
+
 <p></p>
 Let $X$  denote the number steps in a Las Vegas algorithm.   We often know $E(X)$  as a function of the
- input size (under suitable assumptions on the input). For instance,
+ input size. For instance,
  in the randomised quicksort algorithm $E(X) = n\log n,$  where $n$  is the length of
  the array (proof not part
  of this course). 
@@ -412,55 +359,48 @@ This allows engineers to guarantee system satibility without knowing the exact d
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Prove that $P(X&gt;10E(X))\leq \frac{1}{10}.$</p>  
+<b>EXERCISE 6:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
+ if the $n$  is the length of the array to be sorted.
+Find an upper bound for  $P(X&gt;10^6)$  if the input array has length $10^4.$</p>  
 
 <p></p>
 
-<h3><a
-name="Router overload">Router overload</a></h3>
-
 <p>
-<b>EXERCISE 6:</b>&nbsp;
+<b>EXERCISE 7:</b>&nbsp;<b>(Router overload)</b>
 A router receives a random number ($X$) of packets every millisecond. We know from the
  past that $E(X)=50.$  We do not know the distribution of $X.$  The router's buffer can
- hold 250 packets before overflowing. The network engineer needs to estimate the failure rate,
- which is $P(X\geq 250) \leq 20\%,$  by the Markov inequality.
+ hold 250 packets before overflowing. Help the network engineer to provide an uppr bound to 
+the failure rate,
+$P(X\geq 250).$
 </p>
 
 <p></p>
 
-<h3><a
-name="Chance of liquidity crisis">Chance of liquidity crisis</a></h3>
-
 <p>
-<b>EXERCISE 7:</b>&nbsp;
+<b>EXERCISE 8:</b>&nbsp;<b>(Liquidity crisis)</b>
 A bank has a large portfolio of small business loans. $X=$ number of defaulters in a
  single month. Past experience shows $E(X)=2M.$ Liquidity crisis will arise if $X\geq
- 20M.$  Bound probability of that.
+ 20M.$  Bound the probability of that.
 </p>
 
 <p></p>
 
-<h3><a
-name="Chance of too long system downtime ">Chance of too long system downtime </a></h3>
-
 <p>
-<b>EXERCISE 8:</b>&nbsp;A financial system tracks $X$  the downtime of the system per year. Past data shows
+<b>EXERCISE 9:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
  $E(X)=15$  minutes. Crash would result if $X\geq 2$  hours. Bound its probability.</p>
 
+<p></p>
+
 <p>
-<b>EXERCISE 9:</b>&nbsp;
-During highly volatile market anomaly, an investment fund's historical data becomes useless.
+<b>EXERCISE 10:</b>&nbsp;<b>(Volatile market)</b>
+When the market is  highly volatile market, an investment fund's historical data becomes useless.
  The only certain information is the current daily expected loss $E(X)=100,000.$  Upper bound $P(X\geq 1,000,000).$
 </p>
 
 <p></p>
 
-<h3><a
-name="Primality testing">Primality testing</a></h3>
-
 <p>
-<b>EXERCISE 10:</b>&nbsp;A randomised primality testing algorithm called the Miller Rabin test applies a random
+<b>EXERCISE 11:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
  experiment on an input integer $n.$  The (random) output is either "Composite" or "Prime".
  There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
  But if it says "Prime" then the input is composite with 0.25 probability. 
@@ -471,20 +411,25 @@ Then we have $E(X) = \frac 14.$
 We run this experiment $k$  times independently (on the same input), and we output
  "Composite" if at least one run says so. Otherwise, we say "Prime".
 <p></p>
-Give an uppoer bound on the probability that this battery of $k$  tests makes an error. [This problem can be solved
- merely by commonsense, without explicit use of Markov inequality, which by the way is little more than commonsense itself!]
+Give an uppoer bound on the probability that this battery of $k$  tests makes an error. [This
+ problem can also be solved
+without explicit use of Markov inequality.]
 
 </p>
 
 <p></p>
 
-<h2><a
-name="Count-min sketch">Count-min sketch</a></h2>
-Imagine a stream of items going past you (like cars of different brands or trees of different
+<h2>
+<a name="N101B6"><span class="header">2.2</span>.
+Project: Count-min sketch</a>
+</h2>
+Imagine a stream of items going past you (like cars of different brands going down a road, or trees of different
  types as you walk through a forest). Each item belongs to one of a finite number of categories.
  The stream is running for a really long time (think of information packets passing through a busy
- computer connected to the internet). Your job is to keep track of the frequencies of the
- different  types you have seen so far. Tally marking is a very simple technique to achieve this.
+ computer connected to the internet). The number of categories is also huge (and not known
+ beforehand).  Your job is to keep track
+ of the frequencies of the
+ different  categories you have seen so far. Tally marking is a very simple technique to achieve this.
  But if the number of categories is really huge, and most of them occur with negligible
  frequencies, tally marking is inefficient. 
 <p></p>
@@ -552,22 +497,14 @@ $$P(X&lt; \epsilon N) \geq 1-\left(\frac{1}{w \epsilon}\right)^d$$
 or
 $$P\left(\frac XN&lt; \epsilon \right) \geq 1-\left(\frac{1}{w \epsilon}\right)^d.$$
 So if we choose $w = \frac 2\epsilon$  and $d=10,$  then the probability is below $2^{-10}.$
-<font color="purple"><b>To do:</b>
+<h2>
+<a name="N10276"><span class="header">2.3</span>.
+Project: BJKST algorithm for counting distinct elements </a>
+</h2>
 
-<ol type="">
-
-<li>Distinct elements counting like in the BJKST algo: See pdf downloaded in mobile.</li>
-
-<li>Frequency estimation (like count-min sketch): See pdf downloaded in mobile.</li>
-
-<li>Machine learning and PAC learning: Mention PAC as probability convergence.</li>
-
-</ol>
-
-</font>
-
-<h1><a
-name="Chebyshev">Chebyshev</a></h1>
+<h1>
+<a name="N10279"><span class="header">3</span>. Chebyshev</a>
+</h1>
 
 <table align="right" width="20%" border="1">
 <tr>
@@ -590,56 +527,49 @@ This is just Markov inequality with $k=2$  applied to the random variable $|X-E(
 <b><i>[QED]</i></b>
 </p>
 
-<h1><a
-name="WLLN">WLLN</a></h1>
-
 <p></p>
+
+<h1>
+<a name="N10298"><span class="header">4</span>. Holder inequality</a>
+</h1>
 
 <fieldset>
-<legend><b><i>Weak Law of Large Numbers (WLLN)</i></b></legend>
-Let $X_1,X_2,...$ be a sequence of independent and
-identically distributed (IID) random variables (defined
-on the same probability space) with $E(X_1)=\mu$ and
-$V(X_1)=\sigma^2&lt;\infty.$ Let, for $n\in{\mathbb N}$, 
-$$
-\overline X_n = \frac 1n\sum_{i=1}^n X_i.
-$$
-Then 
-$$
-\forall \epsilon &gt; 0~~ P(|\overline X_n-\mu|&gt; \epsilon) \rightarrow
-0\mbox{ as } n\rightarrow \infty.
-$$
+<legend><b><i>Holder inequality</i></b></legend>
+Let $p,q&gt;1$ be such that $\frac 1p+\frac 1q = 1.$ Let $X,Y$  be random variables with $E|X|^p, E|Y|^q &lt; \infty.$
+<p></p>
+Then
+$$E|XY| \leq \big(E|X|^p\big)^{1/p}\big(E|Y|^q\big)^{1/q}.$$ 
 </fieldset>
-
+If you take $p=q=2,$  then you get back Cauchy-Schwartz inequality. 
 <p>
 <b><i>Proof:</i></b>
-Take any $\epsilon &gt; 0.$
+We shall make use of Young's inequality:
+$$\forall a,b\geq 0~~ab\leq \frac{a^p}{p}+\frac{b^q}{q}.$$
+Now take 
+$$A = \big(E|X|^p\big)^{1/p}\mbox{ and } B = \big(E|Y|^q\big)^{1/q}.$$
+If $A=0$  or $B=0,$  then the result is trivially proved. 
 <p></p>
-Applying Chebyshev inequality to the random variable $\bar X_n$  we have 
-$$P(|\overline X_n-\mu|&gt; \epsilon) \leq \frac{V(\overline X_n)}{\epsilon^2}.$$
-Now 
-$$V(\overline X_n) = V\left(\frac 1n\sum_1^n X_i\right) = \frac{1}{n^2} \sum_1^n V(X_i),$$  
-since $X_i$'s are independent. Also each $V(X_i) = \sigma^2.$  Hence 
-$$V(\overline X_n) = V\left(\frac 1n\sum_1^n X_i\right) = \frac{\sigma^2}{n}.$$
-Hence we have 
-$$P(|\overline X_n-\mu|&gt; \epsilon) \leq \frac{\sigma^2}{n\epsilon^2}\rightarrow 0,$$
-as $n\rightarrow \infty.$
+So let's assume $A,B&gt;0.$
+<p></p>
+Let $X_1 = \frac{|X|}{A}$  and $Y_1 = \frac{|Y|}{B}.$  
+<p></p>
+Apply Young's inequality to $X_1$  and $Y_1.$  Then take expectation to complete the proof. 
 <b><i>[QED]</i></b>
 </p>
 
-<h1><a
-name="Strong law of large numbers (SLLN)">Strong law of large numbers (SLLN)</a></h1>
+<p></p>
 
 <fieldset>
-<legend><b><i>SLLN</i></b></legend>Let $(X_n)$  be an IID sequence of random variables with $E(X_1) = \mu \in{\mathbb R}.$ 
- Let $\bar X_n = \frac 1n(X_1+\cdots+X_n).$
-<p></p>
-Then $\bar X_n \rightarrowA \mu.$
+<legend><b><i>Minkowski inequality</i></b></legend>
+Let $1\leq p &lt; \infty.$ Let $X,Y$ have
+finite $p$-th moment. Then
+$$
+E|X+Y|^p\leq E|X|^p+E|Y|^p.
+$$
+This is a form of the triangle inequality. 
 </fieldset>
 
-<p>
-<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
-</p>
+<p></p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>

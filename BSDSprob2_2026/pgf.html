@@ -1,0 +1,583 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+<link
+rel="stylesheet" href="branch.css"></link></head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:16:57 IST 2026</i>
+</td>
+</tr>
+</table>
+<h3/>
+<ul>
+<li>1.<a href="#N1000A">Generating functions</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;1.1.<a href="#N1000F">Probability generating functions (pgf)</a>
+</li>
+<li>2.<a href="#N10012">What is a PGF?</a>
+</li>
+<li>3.<a href="#N10043">Analytical properties</a>
+</li>
+<li>4.<a href="#N10074">Probabilistic properties</a>
+</li>
+<li>5.<a href="#N100B5">An application: Branching process</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;5.1.<a href="#N100EA">Animation</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;5.2.<a href="#N10102">Math</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.1.<a href="#N10126">Simple cases</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.2.<a href="#N10144">Using PGF</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.3.<a href="#N101DA">Exploring fixed points</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.4.<a href="#N10254">Wrapping up</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
+
+<h1 xmlns="">
+<a name="N1000A"><span class="header">1</span>. Generating functions</a>
+</h1>
+
+<p></p>
+
+<h2>
+<a name="N1000F"><span class="header">1.1</span>.
+Probability generating functions (pgf)</a>
+</h2>
+
+<h1>
+<a name="N10012"><span class="header">2</span>. What is a PGF?</a>
+</h1>
+<a href="https://youtu.be/MS8akAOsBlI">Video for this section</a>
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Probability generating function (PGF)</b></legend>Let a random variable $X$  take only nonnegative integer values. Then
+ its <b><font color="red" size="40">probability
+ generating function (PGF)</font></b>  is defined as the power series
+$$p(t) = p_0 + p_1 t + p_2 t^2 +\cdots, $$
+where $p_k = P(X=k)$  for $k=0,1,2,..$.
+</fieldset>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;A random variable takes the values $1,2,5$  each with probability $\frac 13.$  Find its PGF.<p></p>
+<b>SOLUTION:</b>
+$p(t) = \frac 13(t+t^2+t^5)$.
+  ■
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 1:</b>&nbsp;(Easy) Find the PGF of a random variable with $Binom(n,p)$  distribution.</p>
+
+<p></p>
+
+<h1>
+<a name="N10043"><span class="header">3</span>. Analytical properties</a>
+</h1>
+<a href="https://youtu.be/bBF3gt0-JBk">Video for this section</a>
+<p></p>
+We have defined  PGF as a power series, but we have not mentioned anything about its convergence yet. 
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Any PGF $p(t)$  must converge absolutely for $|t|\leq 1$. 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>If $|t|\leq 1$, then $\sum_k |p_k t^k| \leq \sum_k p_k = 1$.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 2:</b>&nbsp;(Easy) Think of a case where the radius of convergence is $\infty$.</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 3:</b>&nbsp;(Easy) Think of a case where the radius of convergence is $1$.</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>A power series can be differentiated term by term any number of times in the interior of its
+ interval of convergence.</fieldset>
+<p>
+<b><i>Proof:</i></b>Standard theorem from real analysis.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<h1>
+<a name="N10074"><span class="header">4</span>. Probabilistic properties</a>
+</h1>
+<a href="https://youtu.be/9dtUu6bg6xM">Video for this section</a>
+<p></p>
+Thanks to the above theorem, 
+we can recover the probabilities from the PGF by repeated differentiation at $t=0$:
+$$p_n = \frac{p^{(n)}(0)}{n!}$$.
+Hence we get the following theorem.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X$  are $Y$  are two random variables both taking only nonnegative integer values, and they have PGFs matching
+ over any open neighbourhood of $0$, then their distributions must match.
+</fieldset>
+
+<p></p>
+::<p>
+<b>EXERCISE 4:</b>&nbsp;(Easy) Show that for $n\in{\mathbb N}$  we have
+$$E(X(X-1)\cdots (X-n+1)) = p^{(n)}(1)$$.
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 5:</b>&nbsp;(Easy) Show that $E(t^X) = p(t)$.</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 6:</b>&nbsp;(Easy) Show that if $X,Y$  are independent random variables taking nonnegative integer values,
+ with PGFs $\xi(t)$  and $\psi(t)$, then the PGF of $X+Y$  is
+ $\xi(t)\psi(t)$.<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">Use the last exercise.</div></p>
+</p>
+
+<p></p>
+
+<h1>
+<a name="N100B5"><span class="header">5</span>. An application: Branching process</a>
+</h1>
+Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
+ will again split into two. If it goes on like this, then we shall have$2^n$  cells in the $n$-th generation. Clearly
+ understand how the generations are numbered. The initial cell belonged to generation 0. We shall
+ call the number of cells in the $n$-th generation $X_n$. Thus, $X_n = 2^n$. Also,
+ notice that when a cell splits into children, the original cell ceases to exist. 
+<p></p>
+  This
+ branching process is a deterministic
+ one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus $X_0 = 1$.
+ After a minute this cell "splits into" a random number of cells. The number may be any
+ nonnegative integer. In particular, we allow the number to be 0 or 1 with the following interpretations:
+<ul>
+<li>If the number is 0, then the
+ original cell has died without leaving any children. </li>
+<li>If the number is 1, then the original cell
+ just continues into the next generation.  </li>
+</ul>
+This number is the size of generation 1. We shall call it $X_1$. Let the distribution of $X_1$  be
+given by $P(X_1=k) = p_k$  for $k=0,1,2,...$. 
+<p></p>
+After one more minute each cell in generation 1 will independently split into children following the same distribution. And
+ the process will continue. 
+<p></p>
+As before, $X_n$  will denote the number of cells in the $n$-th generation. 
+<p></p>
+
+<h2>
+<a name="N100EA"><span class="header">5.1</span>.
+Animation</a>
+</h2>
+
+<input min="1" value="5" style="font-size:30px;" id="generations" type="number">
+
+<input type="button" style="font-size:30px;" 
+value="(Re)start" 
+onclick="doit()"/>
+<p></p>
+Cells will be shown as dots. The red dots denote cells that 
+have died without leaving any child. Try the animation a number of times to explore various possibilities. 
+<svg height="600" id="branchingTree" width="100%">svg</svg>
+<script
+language="javascript" src="branch.js">Dummy</script>
+<p></p>
+
+<h2>
+<a name="N10102"><span class="header">5.2</span>.
+Math</a>
+</h2>
+We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
+ address is "What is the <b><font color="red" size="40">extinction probability</font></b> for this process?" 
+<p></p>
+By extinction we mean the event that $X_n=0$  for some $n\in{\mathbb N}$. Notice that if some $X_n=0$, then we must
+ have $X_{n+1}= X_{n+2}=\cdots = 0$  also. So the extinction event is 
+$$\bigcup_{n\in{\mathbb N}}\{X_n=0\}$$.
+Since $\{X_1=0\}\subseteq \{X_2=0\}\subseteq\cdots, $ hence the extinction probability is
+ $\lim_{n\rightarrow\infty} P(X_n=0)=\theta$, say.  
+<p></p>
+How to find it in terms of $p_0,p_1,p_2,..$.?
+<p></p>
+
+<h3>
+<a name="N10126"><span class="header">5.2.1</span>. Simple cases</a>
+</h3>
+ If $p_0 = 1$  (which implies $p_1=p_2=\cdots=0$), then the extinction probability is surely 1. 
+<p></p>
+If $p_0&gt;0$,  but $p_0+p_1 =1$  (which implies $p_2=p_3=\cdots=0$), then also  the extinction probability is
+ 1 (why?) 
+<p></p>
+In these cases, we had no births to counter the deaths. 
+But if $p_n&gt;0 $ for some $n\geq 2$, then we have births, and the interaction between
+ births and deaths becomes rather complicated. That is where PGFs come to our help.
+<p></p>
+
+<h3>
+<a name="N10144"><span class="header">5.2.2</span>. Using PGF</a>
+</h3>
+Let $\xi(t)$  be the PGF of $X_1$. In other words, 
+$$\xi(t) = p_0+p_1t+p_2t^2+\cdots.$$
+<p></p>
+The next exercise is of central importance. 
+::<p>
+<b>EXERCISE 7:</b>&nbsp;(Medium) Show that $X_2 $ has PGF $\xi_2(t)=\xi(\xi(t))$  for $|t| &lt; 1$.
+<p><a
+href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
+class="ans" id="lab2">
+$\xi_2(t) = E(t^{X_2}) = E\big( E(t^{X_2}|X_1) \big)$  by the tower property. 
+<p></p>
+Let us compute $E(t^{X_2}|X_1=k)$  for $k=0,1,2,... $. In particular we shall focus on $k=3$  (the other cases
+ being similar). Thus we are in a situation where the first generation consists of the 3
+ individuals, and the second generation
+ consists of their children. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/xixi.png"></th>
+</tr>
+<tr>
+<th>The second generation colour coded by parents</th>
+</tr>
+</table>
+</center>
+We have colour-coded the second generation individuals by the their parents. Let $Y_i$  be the contribution of the $i$-th
+ individual of the first generation. We have assumed that each individual splits  identically and independently
+ of the rest. So $Y_1, Y_2, Y_3$  are IID random variables. 
+<p></p>
+So $E(t^{X_2}|X_1=3) = E(t^{Y_1+Y_2+Y_3}|X_1=3) = E(t^{Y_1+Y_2+Y_3})$, since $Y_i$'s are
+ independent of $X_1$  (number of my children has nothing to do with the number of my siblings!). 
+<p></p>
+Now $E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1}t^{Y_2}t^{Y_3}) = E(t^{Y_1})E(t^{Y_2})E(t^{Y_3})$, since
+ $Y_i$'s are independent (number of my children has nothing to do with how many children my siblings have!). 
+<p></p>
+Finally, $E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1})E(t^{Y_2})E(t^{Y_3}) = \xi(t)\xi(t)\xi(t) =
+ \big(\xi(t)\big)^3$, since $Y_i$'s all have the same distribution. 
+<p></p>
+Clearly, the $3$  in the exponent came from our choice of $k$. So, in general,
+ $E(t^{X_2}|X_1=k) = \xi(t)^k$  for $k=0,1,2,..$. 
+<p></p>
+Thus, $E(t^{X_2}) = E\big(E(t^{X_2}|X_1) \big) = \sum_{k=0}^\infty \xi(t)^k p_k =\xi(\xi(t))$.     
+<p></p>
+Notice that convergence is not a problem, because we have assumed $|t| &lt; 1$, and so $|\xi(t)| &lt; 1$  as well. 
+</div></p>
+
+</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 8:</b>&nbsp;(Medium) In general show that for $n\in{\mathbb N}$  the PGF of $X_n$  is $\xi_n(t) =
+ \xi_{n-1}(\xi(t))=(\underbrace{\xi\circ\cdots\circ\xi}_{n})(t)$.</p>
+
+<p></p>
+Now $P(X_n=0) = \xi_n(0)$. 
+<p></p>
+So the extinction probability is $\theta = \lim_n \xi_n(0)$. 
+<p></p>
+Clearly, since $\xi(t)$  is a continuous function, $\theta = \xi(\theta)$. In other words, $\theta$  must
+ be a <i>fixed point</i>  of the PGF. 
+<p></p>
+
+<h3>
+<a name="N101DA"><span class="header">5.2.3</span>. Exploring fixed points</a>
+</h3>
+How many fixed points can $\xi(t) $ have? Surely $1$  is a fixed point, since $\xi(1) = 1$. If
+ it is the only one, then
+ $\theta$  must be $1$.
+<p></p>
+::<p>
+<b>EXERCISE 9:</b>&nbsp;(Easy) Show that in the simple cases discussed earlier $1$  is the only fixed point.</p>
+
+<p></p>
+Notice that $\xi'(t)$  is always nonnegative. In fact, except in the trivial case of
+ $p_0=1$, it is positive. So $\xi(t)$  is a strictly increasing function. Again, except
+ in the case where $p_0+p_1=1$, the second derivative $\xi''(t)$  is positive, and so
+ $\xi(t)$  is a convex function. Such a function can intersect the $y=x $ line at most twice. 
+<p></p>
+
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;If $p_0=0.1, p_1=0.5$  and $p_2=0.4$  (so the other $p_k$'s are all zeroes),
+ then the graph of $\xi(t)$  looks as shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pgfplot.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ ■
+</p>       
+You can notice two fixed points (<i>i.e.</i>, points where the black curve cuts the red diagonal). One of the fixed points is at
+ $t=1$. The other is in $(0,1)$. Which of the two fixed points will $\theta$  equal? 
+<p></p>
+The answer is $\theta$  will always be the <i>smallest</i>  fixed point. This follows from the exercises below.
+<p></p>
+::<p>
+<b>EXERCISE 10:</b>&nbsp;(Medium) Let $\mu$  be any fixed point of $\xi(t)$. Then show that $\forall
+ n\in{\mathbb N}~~\xi_n(0)\leq \mu$.</p>
+
+<p></p>
+::<p>
+<b>EXERCISE 11:</b>&nbsp;(Easy) Use the last exercise to show that $\theta$  must be $\leq$  all fixed
+ points of $\xi(t)$.</p>
+
+<p></p>
+
+<h3>
+<a name="N10254"><span class="header">5.2.4</span>. Wrapping up</a>
+</h3>
+
+<p></p>
+We have seen that (excepting the trivial case $p_0=0$) there are only two possibilities:
+ exactly one fixed point (which must be
+ $1$) or exactly two. In the first case, $\theta=1$  and in the second it is the smaller fixed point. 
+<p></p>
+It will be nice if we have a quick way to know (based on the $p_n$'s) which case we are in. 
+<p></p>
+The two cases are shown below graphically: 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/pgfcases.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ One simple way to distinguish them is by $\xi'(1)$. In the first case $\xi'(1) \leq 1$  and in the other $\xi'(1) &gt; 1$.
+ Just a little point here: we know that $\xi(t)$  converges over $[-1,1]$, but may not converge beyond $1$.
+ So when we talk about the derivative at $1$, we mean the left hand derivative. But fortunately, the term by term differentiation
+ rule works for finding this one-sided derivative as well. So $\xi'(1) = p_1+2p_2+3p_3+\cdots$  (may be $\infty$).
+<p></p>
+So the final answer is:
+<ul>
+<li>If $p_0=0$, the $\theta=0$.</li>
+
+<li>If $p_1+2p_2+3p_3+\cdots \leq 1$, then $\theta=1$.</li>
+
+<li>If $p_1+2p_2+3p_3+\cdots &gt; 1$, then $\theta$  is the unique fixed point of $\xi(t)$  for $t\in(0,1)$.</li> 
+ 
+</ul>
+Could you arrive at this impressive answer without using PGF?  
+<p></p>
+::<p>
+<b>EXERCISE 12:</b>&nbsp;(Medium) <center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jt18.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+<p></p>
+A brief note about probability generating functions: If $X$  takes non-negative integer values with $p_i = P(X=i)$ 
+ for $i=0,1,2,...$ then its probability genrating function is 
+$$\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.$$
+Clearly this converges absolutely for $|t|\leq 1.$   In this problem we are assuming that it converges for all $t\in{\mathbb R}.$
+<p><a
+href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
+class="ans" id="lab3">
+(a) Let $Y =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\leq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
+<p></p>
+Then, for $t\in[0,1],$  we have $Y\leq t^X.$    (Remember that $x\mapsto t^x$  is a non-increasing function
+ for $t\in[0,1]$). 
+<p></p>
+So $E(Y)\leq E(t^X).$  Now $E(Y) = t^{x_0}P(X\leq x_0).$  
+<p></p>
+Hence the result.
+<p></p>
+(b) Let $Z =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\geq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
+<p></p>
+Then, for $t\geq 1,$  we have $Z \leq t^X.$  
+<p></p>
+Hence the result follows as in (a).
+</div></p>
+
+</p>
+
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

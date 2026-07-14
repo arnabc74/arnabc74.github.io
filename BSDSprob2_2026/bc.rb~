@@ -1,0 +1,264 @@
+@{<NOTE>
+<M>\newcommand{\io}{~~\mathrm{i.o.}}</M>
+<M>\newcommand{\calF}{\mathcal{F}}</M>
+<M>\newcommand{\toL}[1]{\stackrel{L_{#1}}{\longrightarrow}}</M>
+<M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
+<M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
+[Update:[Thu Jul 09 IST 2026]]
+
+<HEAD1>Infinitely often</HEAD1>
+<DEFN name="Infinitely often">
+Let <M>(\Omega,\calF,P)</M>  be any probability space. Let <M>(A_n)</M>  be a sequence of events in it. The event "<M>A_n</M>'s
+ occur infinite often" (abbreviated to "<M>A_n\io</M>") is defined as <M>\{\omega\in\Omega~:~\omega \in A_n</M>  for
+ infintely many <M>A_n\mbox{'s}\}.</M>
+</DEFN>
+
+We can express it as <M>\cap_{n}\cup_{k\geq n} A_k.</M>  
+<BECAUSE>
+This is basically word-play:
+
+<M>\omega\in {A_n\io}</M>  
+<Q><M>\iff</M><Q> <M>\omega</M>  is in infinitely many <M>A_n</M>'s.</Q></Q>
+<Q><M>\iff</M><Q>Whatever <M>n</M>  you choose
+ there is bound to be some <M>A_k</M>  with <M>k\geq n</M>  such that <M>\omega\in A_k.</M>  </Q></Q>
+
+<Q><M>\iff</M><Q>Whatever <M>n</M>  you choose <M>\omega\in \cup_{k\geq n} A_k.</M>  </Q></Q>
+
+<Q><M>\iff</M><Q><M>\forall n\in\nn~~\omega\in\cup_{k\geq n} A_k.</M></Q></Q>
+
+<Q><M>\iff</M><Q><M>\omega\in\cap_n \cup_{k\geq n} A_k.</M> </Q></Q>
+</BECAUSE>
+
+<HEAD1>Borel-Cantelli lemmas</HEAD1>
+
+<THM name="First Borel-Cantelli lemma">
+Let <M>(A_n)</M>  be a sequence of events in some probability space. If <M>\sum P(A_n) < \infty,</M>  then <M>P(A_n\io)=0.</M>
+</THM>
+<PF>
+<MULTILINE>
+P(A_n\io)
+ & = & P(\cap_n\cup_{k\geq n} A_k)\\
+ & = & P( \lim_n\cup_{k\geq n} A_k)\\
+ & = & \lim_n P(\cup_{k\geq n} A_k).
+</MULTILINE>
+Now <M>P(\cup_{k\geq n} A_k)\leq \sum_{k\geq n} P(A_k).</M>
+
+Since <M>\sum P(A_n) < \infty</M>, hence <M>\lim_n \sum_{k\geq n} P(A_k) = 0.</M>
+
+Hence the result. 
+</PF>
+
+<THM name="Second Borel-Cantelli lemma">
+Let <M>(A_n)</M>  be a sequence of independent events in some probability space. If <M>\sum P(A_n)= \infty,</M>  then <M>P(A_n\io)=1.</M>
+</THM>
+<PF>Skipped.</PF>
+
+The second lemma makes the assumption of independence. The following counterexample shows what may happen if this assumption
+ were dropped.
+
+<EXM>
+Let <M>U\sim Unif(0,1)</M>  and for <M>n\in\nn</M>  let 
+<D>A_n = {*{U\in(*(0,[[1n]])*)}*}.</D>
+Notice how we are defining <I>all</I> the <M>A_n</M>'s based on the <I>same</I>  <M>U.</M>  Clearly, <M>A_n</M>'s are not
+ independent. For instance, <M>P(A_n)=[[1n]]</M>,  but <M>P(A_n|A_{n+1})=1.</M>  
+
+Here <M>\sum_n P(A_n) = \sum_n [[1n]] = \infty,</M>  but <M>P(A_n \io) = 0.</M>
+</EXM>
+<COMMENT>
+<MULTILINE>
+P(A_n\io) 
+& = & P(\cap_n\cup_{k\geq n} A_k)\\
+& = & 1-P(\cup_n\cap_{k\geq n} A_k^c)<SINCE>by de Morgan</SINCE>\\
+</MULTILINE>
+</COMMENT>
+
+<HEAD1>Demonstrations</HEAD1>
+<HEAD1>Monkey typing Hamlet</HEAD1>
+A common demonstration of the second Borel-Canteli lemma is show that if a monkey types a keyboard
+ randomly, then it will type the exact text of Hamlet infinitely often. 
+
+Let the exact text of Hamlet have <M>h</M> letters.  Consider packets of <M>h</M>  letters. Let
+ <M>A_n</M>  be the event that the <M>n</M>-th packet is an exact copy of Hamlet. Then
+ <M>A_n</M>'s are independent and <M>P(A_n)>0.</M>  So <M>\sum_n P(A_n) = \infty.</M>  Hence by
+ the second Borel-Canteli lemma, <M>P(A_n\io)=1.</M>  
+
+<EXR>However, if you want to just show that the monkey will surely write Hamlet <I>at least
+ once</I>, then you really do not need
+ to use the second Borel
+ Cantelli lemma. You can prove it much more easily using continuity of probability.  How?</EXR>
+
+<HEAD2>Project: Normal numbers</HEAD2>
+Consider a uniform random number between 0 and 1. Let <M>d_n</M>  be the <M>n</M>-th digit after
+ the decimal point in its (unique) non-terminating decimal expansion. For example, if the number
+ is <M>[[12]],</M>  then the non-terminating decimal expansion
+ is <M>0.499999...,</M>  and so <M>d_1 = 4,</M>  while <M>d_n=9</M>  for each <M>n\geq 2.</M>  
+
+Consider the event <M>\{d_1=3\}.</M>  Clearly it is <M>(0.3,0.4].</M>  So this has probability
+ <M>[[1][10]].</M>  Next consider the event <M>\{d_2=3\}.</M>  This is <M>\cup_{d_1=0}^9
+ [[d_1][10]]+(0.03,0.04].</M>  Again, the probability is <M>[[1][10]].</M>  In particular we have the following theorem:
+
+<THM>
+<UL>
+<LI>For each <M>n</M>  the random variable <M>d_n</M>  is uniformly distributed over <M>\{0,1,...,9\}.</M></LI>
+<LI>If <M>m\neq n,</M>  then <M>d_m</M>  and <M>d_n</M>  are independent.</LI>
+</UL> 
+</THM>
+
+Next we shall fix a single number <M>\omega\in(0,1)</M>  and check how many times any given digit (say 3) occurs in it. 
+
+Let
+<M>S_n(\omega) = </M>  number of times the digit 3 occurs among the first <M>n</M>  digits of <M>\omega.</M>  
+For instance of <M>\omega=[[13]],</M>  then <M>S_n(\omega) = n.</M>
+
+
+We are interested in the proportion of times a digit occurs in the expansion. Mathematically, we
+ work with <M>\lim_{n\to \infty} [[S_n(\omega)][n]]</M> (which may not exist).  For instance, if <M>\omega=[[13]],</M> 
+ then the limit exists and equals <M>1.</M>  If <M>\omega=0.3,</M>  then the limit exists and equals <M>0.</M>  
+
+<EXR>Can you construct an expansion for which the limit does <I>not</I>  exist? <HINT>You can get one using only 0's
+ and 3's. </HINT></EXR>
+
+Let <M>A_3 = </M> set of all numbers for which the limit equals <M>[[1][10]].</M>  What do you expect <M>P(A_3)</M>  to be?
+The following theorem provides the answer.
+<THM>
+<M>P(A_n) = [[1][10]].</M>
+</THM>
+<PF>
+We shall prove it for <M>n=3.</M>  (the other cases are exactly similar).
+
+
+</PF>
+Then
+ <M>\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.</M> So, in particular, <M>P(0\mbox{ occurs }\io)=1.</M>  Hence, <M>P(0,1\mbox{ occur }\io)=1.</M> 
+ Proceeding similarly, <M>P(\mbox{each digit occurs }\io)=1.</M>
+
+<HEAD2>Project: Random walk in 3D</HEAD2>
+Let <M>S = X_1+\cdots+X_n</M>  a simple, symmetric random walk in 3D. We shall show that <M>P(S_n=0\io)=0.</M>  Thanks to
+ the first Borel Cantelli lemma, it is enough to show
+that <M>\sum P(S_n=0) < \infty.</M> 
+
+Now, <M>P(S_n=0)=0</M> if <M>n</M> is odd. So let us
+take <M>n=2(a+b+c),</M> where <M>a</M> is the number of <M>+x</M>
+steps (and <M>-x</M> steps). Similarly, for <M>b,c.</M>
+
+Total number of paths of length <M>2k</M> is <M>6^{2k}.</M>
+Number of favourable paths is    
+<D>
+\sum_{a,b,c:a+b+c=k} [[(2k)!][a!^2 b!^2 c!^2]].
+</D>
+By convexity of <M>\log m!</M>, the maximum term occurs
+when <M>a,b,c</M> are as equal as possible. Hence <M>T_n\leq C
+n^2/((n/3)!)^6.</M>
+
+Using Stirling's approximation <M>m!\sim \sqrt{2\pi
+m}(m/e)^m,</M> we have <M>P(S_{2k}=0)\leq C n^{-3/2}.</M> 
+
+Hence the result.
+
+<HEAD2><M>L_p</M> convergence for <M>p\geq1</M></HEAD2>
+<DEFN name="$L_p$ convergence">
+Let <M>p\geq 1.</M>  Let <M>(X_n), X</M>  be random variables defined on some probability space. We say that <M>(X_n)</M> 
+ converges to <M>X</M>  <TERM>in <M>p</M>-th moment</TERM>  or <TERM>in <M>L_p</M></TERM>  if <M>E(#(|X_n-X|^p)#)\to 0.</M>
+
+We write this as <M>X_n\toL p X.</M>
+</DEFN>
+
+<HEAD1>Holder inequality</HEAD1>
+<THM name="Holder inequality">
+Let <M>p,q>1</M> be such that <M>[[1p]]+[[1q]] = 1.</M> Let <M>X,Y</M>  be random variables with <M>E|X|^p, E|Y|^q < \infty.</M>
+
+Then
+<D>E|XY| \leq (#(E|X|^p)#)^{1/p}(#(E|Y|^q)#)^{1/q}.</D> 
+</THM>
+If you take <M>p=q=2,</M>  then you get back Cauchy-Schwartz inequality. 
+<PF>
+We shall make use of Young's inequality:
+<D>\forall a,b\geq 0~~ab\leq [[a^p][p]]+[[b^q][q]].</D>
+Now take 
+<D>A = (#(E|X|^p)#)^{1/p}\mbox{ and } B = (#(E|Y|^q)#)^{1/q}.</D>
+If <M>A=0</M>  or <M>B=0,</M>  then the result is trivially proved. 
+
+So let's assume <M>A,B>0.</M>
+
+Let <M>X_1 = [[|X|][A]]</M>  and <M>Y_1 = [[|Y|][B]].</M>  
+
+Apply Young's inequality to <M>X_1</M>  and <M>Y_1.</M>  Then take expectation to complete the proof. 
+</PF>
+
+<THM name="Minkowski inequality">
+Let <M>1\leq p < \infty.</M> Let <M>X,Y</M> have
+finite <M>p</M>-th moment. Then
+<D>
+E|X+Y|^p\leq E|X|^p+E|Y|^p.
+</D>
+This is a form of the triangle inequality. 
+</THM>
+<THM>
+Let <M>p > q \geq 1.</M> Then if <M>X_n\toL p X</M> we
+must also have <M>X_n\toL q X.</M>
+</THM>
+<PF>
+Let <M>Y_n = X_n-X.</M> 
+
+Take <M>r=[[pq]]</M> and <M>s=[[p][p-q]]</M> so
+that <M>[[1r]]+[[1s]] = 1.</M>
+
+We have <M>|Y_n|^q = |Y_n|^q \cdot 1.</M>
+
+Then by Holder inequality
+<D>
+(\|Y_n\|_q)^q \leq (\|Y_n^q\|_r)^q \|1\|_s.  
+</D> 
+Since <M>qr = p,</M>
+<D>
+(\|Y_n\|_q)^q \leq (\|Y_n\|_p)^q   
+</D> 
+Hence the result. 
+</PF>
+
+<EXR>
+If <M>X_n\to L 1 X,</M> then <M>E(X_n)\to E(X),</M> but the
+converse is not true.
+<ANS>
+Take <M>X_n\equiv (-1)^n</M> and <M>X\equiv 1</M> as a
+counterexample for the converse.
+</ANS>
+</EXR>
+
+<THM>Let <M>p\in[1,\infty).</M>  If <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>, then <M>X_n+Y_n\toL p X+Y.</M></THM>
+<PF>Follows from Minkowski inequality.</PF>
+
+However, even if <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>  and <M>X_nY_n, XY</M>  have finite <M>p</M>-th
+ moments, we may have <M>X_nY_n\not\toL p XY.</M>
+
+The following exercise provides  a counterexample.
+
+<EXR> Let <M>U\sim Unif(0,1).</M>  Define 
+<D>X_n = Y_n = <CASES>n^{1/(2p)}<IF>U\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES>.</D>
+Also, let <M>X=Y\equiv 0.</M>  
+
+Show that <M>E|X_nY_n|^p=1.</M>  Hence show that this provides a counterexample to the statement above.
+</EXR>
+ 
+The following important result is a direct corollary to Markov inequality. 
+
+<THM>If <M>X_n\toL 1 X</M>    then <M>X_n\toP X.</M></THM>
+<PF>
+Take any <M>\epsilon>0.</M>  Then, by Markov inequality applied to <M>|X_n-X|</M>  (which is
+ nonnegative thanks to the modulus), we have  
+<D>P(|X_n-X|>\epsilon)\leq [[E(|X_n-X|)][\epsilon]]\to 0.</D>
+</PF>
+
+The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
+ moments exist finitely for all the random variables involved. 
+
+<EXM>We work with <M>Unif(0,1)</M>  probability space. Let <M>X_n(\omega) = <CASES>n<IF>\omega\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES></M>.
+
+Let <M>X\equiv 0.</M>  
+
+Then clearly <M>\forall\omega\in (0,1)~~X_n(\omega)\to X(\omega).</M>  Hence <M>X_n \toA X.</M>  
+
+But <M>\forall n\in\nn~~E(X_n) = n\times[[1n]] = 1\not\to 0 = E(X).</M>  
+</EXM>
+
+</NOTE>@}

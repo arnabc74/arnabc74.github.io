@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -87,7 +87,7 @@ body,table {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -154,69 +154,372 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Mon Jul 13 22:03:40 IST 2026</i>
+</td>
+</tr>
+</table>
 <h3>Transformation of random vectors</h3>
 <ul>
-<li>
-<a href="#Multivariate Jacobian">Multivariate Jacobian</a>
+<li>1. <a href="#N10012">Warm up</a>
 </li>
-<li>
-<a href="#Jacobian formula (intuition)">Jacobian formula (intuition)</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10029">Random vectors</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 1">Problem set 1</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10089">Multivariate function</a>
 </li>
-<li>
-<a href="#Jacobian matrix">Jacobian matrix</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100CD">Jacobian</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Multivariate differentiation">Multivariate differentiation</a>
+<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N100FA">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 2">Problem set 2</a>
+<li>2. <a href="#N100FD">Review of the univariate case</a>
 </li>
-<li>
-<a href="#Multivariate Jacobian formula">Multivariate Jacobian formula</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10115">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 3">Problem set 3</a>
+<li>3. <a href="#N10118">Multivariate Jacobian formula</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101C8">Problem set</a>
+</li>
+<li>4. <a href="#N101FE">Special case: (Affine) linear tranforms</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10227">Problem set</a>
+</li>
+<li>5. <a href="#N1022A">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10287">Problem set</a>
+</li>
+<li>6. <a href="#N1028A">Geometry in the univariate case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N102D6">Problem set</a>
+</li>
+<li>7. <a href="#N1030A">Geometry in the multivariate case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N103E1">Problem set </a>
 </li>
 </ul>
 <hr/>
+$\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}$
 $\newcommand{\x}[1]{X_{(#1)}}$
 $\newcommand{\v}[1]{{\mathbf #1}}$
 <title xmlns="">Transformation of random vectors</title>
 
-<h1><a
-name="Multivariate Jacobian">Multivariate Jacobian</a></h1>
-
 <p></p>
+
+<h1>
+<a name="N10012"><span class="header">1</span>. Warm up</a>
+</h1>
 We often work with functions of random variables. New random variables are created out of existing ones via functions. 
 So a natural requirement is to be able to work out the distributions of the new random variables in terms those of the existing
- ones. In your Probability I class you have already learned the (univariate) Jacobian formula for this:
+ ones. In your Probability I class you have already learned about univariate transforms (<i>i.e.</i>,
+ from ${\mathbb R}$  to ${\mathbb R}$). Here we shall generalise it to multivariate transforms (<i>i.e.</i>,
+ from ${\mathbb R}^n$  to ${\mathbb R}^n$). Let us start reviewing some basic concepts.
+<p></p>
+
+<h2>
+<a name="N10029"><span class="header">1.1</span>.
+Random vectors</a>
+</h2>
+An $n$-dimensional random vector is just $n$  random variables packed together as a vector. All the random variables
+ must be defined on the same probability space. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;Roll a fair die. Let the outcome be denoted by $\omega.$  Define the random variables
+ $X$  and $Y$  as 
+<ul>
+
+<li>$X(\omega) = \omega$</li>
+
+<li>$Y(\omega) = \omega+3$</li>
+
+</ul>
+Then $(X,Y)$  is a random vector. 
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;Roll a fair die and a fair coin independently.  Let the outcome be denoted by
+ $\omega\equiv(\omega_1,\omega_2),$  where $\omega_1$  is the outcome of the die, and
+ $\omega_2$  is that of the coin. 
+<p></p>
+ Define the random variables
+ $X$, $Y$  and $Z$  as 
+<ul>
+
+<li>$X(\omega) = \omega_1$</li>
+
+<li>$Y(\omega) = \left\{\begin{array}{ll}1&\text{if }\omega_2=Head\\ 0&\text{if }\omega_2=Tail\\\end{array}\right.$</li>
+
+<li>$Z(\omega) = \left\{\begin{array}{ll}\omega_1&\text{if }\omega_2=Head\\ \omega_1+3&\text{if }\omega_2=Tail\\\end{array}\right.$</li>
+
+</ul>
+Then $(X,Y,Z,XY)$  is a random vector. 
+ ■
+</p>
+
+<p></p>
+
+<h2>
+<a name="N10089"><span class="header">1.2</span>.
+Multivariate function</a>
+</h2>
+When we say $\phi$  is a function from ${\mathbb R}^2$  to ${\mathbb R}^3,$  we think of $\phi$  as a machine with $2 $ inputs
+ and $3$ outputs. It takes $2 $ numbers in, and produces 3 numbers out.
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;$\phi(x_1,x_2) = (x_1,x_1+x_2,x_2^2)$  is one such example. It has two inputs and 3 outputs:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/funbox.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ ■
+</p>
+
+<p></p>
+In general, each of the output numbers is a function of all the input numbers. 
+ These are called the
+ <b><font color="red" size="40">component function</font></b>s. 
+<p></p>
+For example, our $\phi$  has component functions $\phi_1(x_1,x_2) = x_1,$  $\phi_2(x_1,x_2) = x_1+x_2$  and
+ $\phi_2(x_1,x_2) = x_2^2.$  
+Note that, as in the  case of the first and third components, not all the input variables
+ need to appear explicitly in all the components.
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;How many component functions does $\phi:{\mathbb R}^6\rightarrow{\mathbb R}^2$  have? $6?$  or $2?$</p>
+
+<p></p>
+
+<h2>
+<a name="N100CD"><span class="header">1.3</span>.
+Jacobian</a>
+</h2>
+Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m$  be a function with $i$-th component function denoted by
+ $\phi_i(x_1,...,x_n).$ Assume that $\pd {\phi_i}{x_j}$  is defined for all $i,j.$ 
+ Then the Jacobian matrix of $\phi$  is defined as the $m\times n$  matrix with $(i,j)$-th entry 
+$$\pd{\phi_i}{x_j}.$$
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Find Jacobian of $\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)$<p></p>
+<b>SOLUTION:</b>
+The Jacobian is going to be a $3\times 2 $ matrix:
+$$\left[\begin{array}{ccccccccccc}1 &amp; 0\\1 &amp; 1\\2x_1 &amp; 0
+\end{array}\right].$$
+ ■
+</p>
+ 
+<h2>
+<a name="N100FA"><span class="header">1.4</span>.
+Problem set</a>
+</h2>
+
+<h1>
+<a name="N100FD"><span class="header">2</span>. Review of the univariate case</a>
+</h1>
+We already know this (at least we <i>should</i> !):
 <center>
 <fieldset>
 <legend><b>Excerpt from Probability I notes</b></legend><img width="80%" src="image/jac1.png"></fieldset>
 </center>
-We plan to generalise this to the multivariate case. For this, let us first understand the
+Here $\phi$  is assumed to be strictly monotone and differentiable. Actually, we also need
+ $\phi ^{-1}$  to be differentiable. The strict monotonicity guaranteed that $\phi$  was one-one, so that $\phi ^{-1}$ 
+ made sense. 
+<p></p>
+
+<h2>
+<a name="N10115"><span class="header">2.1</span>.
+Problem set</a>
+</h2>
+
+<h1>
+<a name="N10118"><span class="header">3</span>. Multivariate Jacobian formula</a>
+</h1>
+In higher dimensions, we want to have $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n.$  Now, if $n\geq 2,$  then 
+we do not have the concept of
+ monotonicity (since there is no natural
+ ordering in ${\mathbb R}^n$  for $n\geq 2$).
+<p></p>
+So, to generalise to higher dimensions, we shall drop the strict monotonicity condition and
+ explicitly require 
+ $\phi$  to be one-one with
+ differentiable $\phi ^{-1}.$  
+<p></p>
+Next we need to know two things:
+<ul>
+<li>How to define differentiability for functions from ${\mathbb R}^n$  to ${\mathbb R}^n.$
+</li>
+<li>how to compute the derivative (Jacobian) of such a function.</li>
+</ul>
+You should know both of these from your Mathematics II course. Here I have put together a <a href="muldiff.html">quick refresher</a>.
+The refresher is also provided in the 
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=0s">first 8 minutes of this video</a>.
+<p></p>
+We shall imitate our familiar  univariate Jacobian formula
+$$g(y) =  f(\phi ^{-1}(y)) \left| \frac{d}{dy}\phi ^{-1}(y) \right|$$
+to get the following theorem. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
+bijection with differentiable inverse. Let $\v Y = \phi(\v X).$ 
+ Then $\v Y$  has density
+$$g(\v y) = f(\phi ^{-1}(\v y)) J,$$
+where $J$  is the absolute determinant of Jacobian of $\phi ^{-1}(\v y).$
+</fieldset>
+ We shall not prove this theorem here. This is actually just a restatement of the change of variable formula for multivariate
+ integration that you have learned in Mathematics II. 
+<p></p>
+Let us digest the theorem with an example. 
+<p></p>
+
+<p>
+<b>EXAMPLE 5:</b>&nbsp;
+Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y_1 =
+ X_1X_2$  and $Y_2 = X_1.$  Find the joint
+ density of $\v Y = (Y_1,Y_2).$  
+<p></p>
+<b>SOLUTION:</b>
+Let $S = [1,2]\times[3,4].$  
+<p></p>
+Here the transform is $\phi(x_1,x_2) = (x_1x_2,x_1).$
+<p></p>
+Clearly, $\phi:S\rightarrow \phi(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
+ uniquely. 
+<p></p>
+The inverse transform is $\phi ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
+The Jacobian of this is 
+$$\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac{1}{y_2} &amp; -\frac{y_1}{y_2^2}
+\end{array}\right],$$
+which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
+<p></p>
+So the required density will be 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }\left(y_2,\frac{y_1}{y_2}\right)\in S\\ 0&\text{otherwise.}\end{array}\right.$$
+Often we want to write it as 
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in T\\ 0&\text{otherwise.}\end{array}\right.$$
+for some suitably defined $T.$  This may be done as follows.  
+<p></p>
+$\left(y_2,\frac{y_1}{y_2}\right)\in S$  means 
+$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 4.$$
+Sketching these restrictions we get this region:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jreg.png"></th>
+</tr>
+<tr>
+<th>$T$  shown in red</th>
+</tr>
+</table>
+</center>
+ ■
+</p>
+
+<h2>
+<a name="N101C8"><span class="header">3.1</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
+ then find the joint density of $(X+Y, X-Y).$ </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
+non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independent.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rotrect.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<h1>
+<a name="N101FE"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
+</h1>
+If our transformation is $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the form $\phi(\v x) = A\v x + \v b,$  where $A_{n\times n}$ 
+ is a fixed matrix, and $\v b$  is a fixed vector, then $\phi$  is a a bijection if any only if $A$  is nonsingular.
+ In this case, the Jacobian of $ \phi ^{-1}$  is $A ^{-1}.$  So, if the density of $\v X$  is $f(\v x),$ 
+ then density of $\v Y$  is $g(\v y) = \frac{1}{|A|} f( A ^{-1} (\v x - \v b)).$
+<p></p>
+
+<h2>
+<a name="N10227"><span class="header">4.1</span>.
+Problem set</a>
+</h2>
+
+<h1>
+<a name="N1022A"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+</h1>
+So far we have been talking only about trasnformas from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
+ where $m\neq n?$  
+<p></p>
+If $m &gt; n,$  then it can be shown (with help from measure theory beyond the present scope) that $\phi(\v X)$  cannot
+ have a density even if $\v X$  has. So we shall not discuss this case here. 
+<p></p>
+But, it is quite common to have the $m &lt; n$  case. In this case, the Jacobian formula is not applicable directly. However,
+ we can "pad up" $\phi$  to make the codomain equal to ${\mathbb R}^n$  keeping the padded function bijective. Here is
+ an example. 
+<p></p>
+
+<p>
+<b>EXAMPLE 6:</b>&nbsp;We are given the joint density of $(X,Y)$  and want to find the joint density of
+ $2X+3Y.$  How can you "pad it up" and use the Jacobian formula?<p></p>
+<b>SOLUTION:</b>
+Here the function is $\phi(x,y) = 2x+3y.$  Since the codomain is ${\mathbb R},$  we make it
+ ${\mathbb R}^2$  by padding it with another
+ function of our choice, say $\xi(x,y) = x.$  Then the padded function is $(x,y)\mapsto (2x+3y,x).$  This is a
+bijective function from ${\mathbb R}^2$  to ${\mathbb R}^2.$  So we can let $V = X,$  and find the joint density of
+ $(U,V)$  from that of $(X,Y)$  using the Jacobian formula. Then we can integrate out $V$  to find the marginal
+ density of $U.$
+ ■
+</p>
+
+<p></p>
+
+<h2>
+<a name="N10287"><span class="header">5.1</span>.
+Problem set</a>
+</h2>
+
+<h1>
+<a name="N1028A"><span class="header">6</span>. Geometry in the univariate case</a>
+</h1>
+
+<p></p>
+In order to generalise this to the multivariate case, we need to understand the
  geometric interpretation of this univariate formula. 
 <p></p>
-
-<h1><a
-name="Jacobian formula (intuition)">Jacobian formula (intuition)</a></h1>
-<a href="https://youtu.be/sGlCID43YeE">Video for this section</a>
+Let's first massage the above formula into a form more useful for the present purpose:
+$$g(y) = f(x) \left| \frac{dx}{dy} \right|,$$
+or 
+$$g(y) = \frac{f(x)}{ | \phi'(x)| }.$$
+So we may say that $g$  is just same as $f,$  except that it is scaled by $\phi'.$   
 <p></p>
-
-<p></p>
-Let's first massage (*) into a more elegant form. We know that $h(h ^{-1} (y))\equiv y.$
-<p></p>
-Differentiating this wrt $y$  we have $h'(h ^{-1} (y))\frac{d}{dy} h ^{-1}(y) \equiv 1,$  <i>i.e.</i>, 
-$$\frac{d}{dy} h ^{-1}(y) = \frac{1}{h'(h ^{-1}(y))}.$$
-So we get 
-$$g(y) = \frac{f(h ^{-1}(y))}{ |h'(h ^{-1}(y))| }.$$
-If we write $x = h ^{-1}(y),$  this will look less complicated:
-$$g(y) = \frac{f(x)}{ |h'(x)| }.$$
-So we may say that $g$  is just same as $f,$  except that it is scaled by $h'.$   
-<p></p>
+When we view it in this way, a geometric interpretation becomes immediate. 
  Suppose that $X$  has uniform distribution over $[0,1].$
 Consider the density of $X.$   Imagine 10 equal length subintervals along $[0,1].$  Since the total 
 area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
@@ -258,12 +561,18 @@ to  compensate by growing taller,
 </center>
  This
  leads to $Y$  having higher density near 0 than near 1. Thus, the non-uniformity of the density is controlled by the
- squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. 
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
+ squeezing of the transforming function, <i>i.e.</i>, the derivative. Smaller the derivative, higher the density. And, that is precisely
+ what we achieve when we <i>divide</i>  by $|\phi'(x)|.$  We use the absolute value, because we care about only the
+ amount of stretching or squishing, not the direction. 
+<p></p>
+
+<h2>
+<a name="N102D6"><span class="header">6.1</span>.
+Problem set</a>
+</h2>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;
+<b>EXERCISE 5:</b>&nbsp;
 If $X$  has uniform distribution over (2,4)
 then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian formula
  algeraically. Think in terms of which part
@@ -273,7 +582,7 @@ then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian for
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
+<b>EXERCISE 6:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
  Guess the form of the density of $Y.$  Do you see why we needed the transform to be bijective in our intuition?
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
@@ -283,49 +592,87 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
  
 </p>
 
+<h1>
+<a name="N1030A"><span class="header">7</span>. Geometry in the multivariate case</a>
+</h1>
+First let us understand how a function from ${\mathbb R}^2$  to ${\mathbb R}^2$  may be visualised graphically. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jaco.png"></th>
+</tr>
+<tr>
+<th>A transform from ${\mathbb R}^2$  to ${\mathbb R}^2$</th>
+</tr>
+</table>
+</center>
+The above picture shows the effect of the function $\phi(x_1,x_2)=\big( (2x_1+x_2)^2,\, (x_1-x_2)^3\big)$ 
+ on the rectangle $[1,2]\times[3,4].$  Notice how the square grid has been deformed unevenly. The diagram also shows
+ the positions of three points (red, green and blue) before and after the transform. The green and
+ blue squares were of equal area originally. But after the transform blue region has much larger
+ area than the green one. 
 <p></p>
-
-<h1><a
-name="Jacobian matrix">Jacobian matrix</a></h1>
-<a href="https://youtu.be/GMC3sHP9HWg">Video for this section</a>
+We want to measure which square will grow and which square will be squeezed. For this we consider
+ some point $(a,b)$   in the domain, and a little square $[a,a+\delta x]\times[b , b+ \delta y].$  
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jacoex1.png"></th>
+</tr>
+<tr>
+<th>Notice how the little green square changes</th>
+</tr>
+</table>
+</center>
+Let us zoom in upon the little square (before and after the transformation):
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jacoex2.png"></th>
+</tr>
+<tr>
+<th>A closer look</th>
+</tr>
+</table>
+</center>
+If the two components of $\phi(x,y)$  are called $u(x,y)$  and $v(x,y),$  then 
+ $$\begin{eqnarray*}
+\phi(a, b) &amp; = &amp; (u(a, b), v(a, b)),\\
+\phi(a+\delta x, b) &amp; = &amp; (u(a+\delta, b), v(a+\delta, b))\approx 
+\left(u(a,b)+\pd u x\delta, v(a,b)+\pd v  x \delta\right)\\
+\phi(a, b+\delta y) &amp; = &amp; (u(a, b+\delta x), v(a, b+\delta))\approx \left(u(a,b)+\pd u y \delta, v(a,b)+\pd v
+ y \delta\right).
+\end{eqnarray*}$$
+So after the transform, the little green square is approximately the following parallelogram:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jacoex3.png"></th>
+</tr>
+<tr>
+<th>A parallelogram</th>
+</tr>
+</table>
+</center>
+The blue edge is given by the vector $\left(\pd u x, \pd v  x  \right)\delta,$  and red side by the vector
+ $\left(\pd u y, \pd v  y \right)\delta.$
 <p></p>
-In (*) above we had
-$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|,$$
-where $h$  was assumed to be a bijection with differentiable $h ^{-1}.$  
+Now, it is known that the area of a parallelogram with sides given by $(a,b)$  and
+ $(c,d)$  is $\left|\det\left[\begin{array}{ccccccccccc}a &amp; c\\b &amp; d
+\end{array}\right]\right|.$
+Hence the area of the green parallelogram is 
+$$\left| \det\left[\begin{array}{ccccccccccc}\pd u x &amp; \pd u y\\\pd v x &amp; \pd v y
+\end{array}\right]\right| \delta^2,$$
+evaluated at $(a,b).$  Since the original green square had area $\delta^2,$  hence the scaling factor is given
+ by the absolute determinant of the Jacobian.
 <p></p>
-In order to  generalise this  to the multivariate set up, we need to work with a bijection $h:{\mathbb R}^n\rightarrow{\mathbb R}^n.$ 
-   We need to do two things:
-<ul>
-<li>we need to define differentiability for functions from ${\mathbb R}^n$  to ${\mathbb R}^n.$
-</li>
-<li>
-we need to compute derivative of such functions.</li>
-</ul>
-
-<h2><a
-name="Multivariate differentiation">Multivariate differentiation</a></h2>
-$f:{\mathbb R}\rightarrow{\mathbb R}$  is called differentiable at some $a$, if 
-$$\lim_{x\rightarrow a} \frac{f(x)-f(a)}{x-a}\mbox{ exists finitely.}$$
-If this limit is called $m$, then this can be recast in the geometrically more applealing way as 
-$$\exists m\in{\mathbb R}~~ \lim_{x\rightarrow a}\frac{f(x)-\{f(a)+m\cdot(x-a)\}}{x-a} = 0.$$
-This is geometrically more appealing because you can think of this as $f(x)-f(a)\approx m\cdot(x-a),$  <i>i.e.</i>, near $a$ 
- the graph of $f$  looks like the line passing through $(a,f(a))$  with slope $m.$  
-<p></p>
-This immediately generalises to $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  as follows.
-<fieldset>
-<legend><b>Definition: Multivariate differentiation</b></legend>
-Call $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$  <b><font color="red" size="40">differentiable</font></b> at $\v a\in{\mathbb R}^n$  if 
-$$\exists M_{m\times n} ~~ \lim_{\v x\rightarrow \v a}\frac{f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}}{\|\v x-\v a\|} = \v 0.$$
-</fieldset>
-Such a matrix $M$  may depend on $\v a,$  and will be unique, and its $(i,j)$-th entry will be given by 
-$$m_{ij} = \frac{\partial f_i}{\partial x_j}.$$
-Here $f_i$  is the $i$-th component of $f.$  
-<p></p>
-Let us digest this using an example. 
+ into the curve of $\phi(a,y)$  and blue line changes into the curve of $\phi(x,b).$ 
+ When $x$  increases from $a$  to $a+\delta x,$  the corresponding change in
+ $\phi(x,b)$  is from $\phi(a,b)$  to  
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;
+<b>EXAMPLE 7:</b>&nbsp;
 Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
  of the Jacobian.
 <p></p>
@@ -355,7 +702,10 @@ $$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (
 <p></p>
 
 <blockquote>
-<img src="image/alert.png">If all this looks like unmotivated magic, you might benefit from <a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
+<fieldset>
+<legend><img src="image/alert.png"></legend>
+</fieldset>If all this looks like unmotivated magic, you might benefit from 
+<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
  that I have made for Jacobians</a>. The video is about 21 min long, which is too long for my taste. You may like to navigate
  to relevant portions of it using the following guideline:
 <ul>
@@ -379,110 +729,19 @@ $$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (
 
 </blockquote>
 
-
-<h2><a
-name="Problem set 2">Problem set 2</a></h2>
+<h2>
+<a name="N103E1"><span class="header">7.1</span>.
+Problem set </a>
+</h2>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;Compute the Jacobian matrix for $h(x,y) = (x+y,x-y).$</p>
+<b>EXERCISE 7:</b>&nbsp;Compute the Jacobian matrix for $\phi(x,y) = (x+y,x-y).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;What is the Jacobian matrix for the transform $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $h(\v x) = A\v
+<b>EXERCISE 8:</b>&nbsp;What is the Jacobian matrix for the transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $\phi(\v x) = A\v
  x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$?</p>
-
-<p></p>
-
-<h1><a
-name="Multivariate Jacobian formula">Multivariate Jacobian formula</a></h1>
-<a href="https://youtu.be/9pWai6cA7no">Video for this section</a>
-<p></p>
-We shall imitate our familiar  univariate Jacobian formula
-$$g(y) =  f(h ^{-1}(y)) \left| \frac{d}{dy}h ^{-1}(y) \right|$$
-to get the following theorem. 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $h:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
-bijection with differentiable inverse. Let $\v Y = h(\v X).$ 
- Then $\v Y$  has density
-$$g(\v y) = f(h ^{-1}(\v y)) J,$$
-where $J$  is the absolute determinant of Jacobian of $h ^{-1}(\v y).$
-</fieldset>
- We shall not prove this theorem here. But the intuitive argument is just as in the univariate case. 
-<p></p>
-
-<p>
-<b>EXAMPLE 2:</b>&nbsp;
-Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y_1 =
- X_1X_2$  and $Y_2 = X_1.$  Find the joint
- density of $\v Y = (Y_1,Y_2).$  
-<p></p>
-<b>SOLUTION:</b>
-Let $S = [1,2]\times[3,4].$  
-<p></p>
-Here the transform is $h(x_1,x_2) = (x_1x_2,x_1).$
-<p></p>
-Clearly, $h:S\rightarrow h(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
- uniquely. 
-<p></p>
-The inverse transform is $h ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
-The Jacobian of this is 
-$$\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac{1}{y_2} &amp; -\frac{y_1}{y_2^2}
-\end{array}\right],$$
-which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
-<p></p>
-So the required density will be 
-$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }\left(y_2,\frac{y_1}{y_2}\right)\in S\\ 0&\text{otherwise.}\end{array}\right.$$
-Often we want to write it as 
-$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in T\\ 0&\text{otherwise.}\end{array}\right.$$
-for some suitably defined $T.$  This may be done as follows.  
-<p></p>
-$\left(y_2,\frac{y_1}{y_2}\right)\in S$  means 
-$$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 4.$$
-Sketching these restrictions we get this region:
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/jreg.png"></th>
-</tr>
-<tr>
-<th>$T$  shown in red</th>
-</tr>
-</table>
-</center>
- ■
-</p>
-
-<h2><a
-name="Problem set 3">Problem set 3</a></h2>
-
-<p>
-<b>EXERCISE 5:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
- then find the joint density of $(X+Y, X-Y).$ </p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 6:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 7:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
-non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independent.
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/rotrect.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
-
-</p>
 
 <p></p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>

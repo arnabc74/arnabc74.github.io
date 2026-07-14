@@ -1,0 +1,25 @@
+x = seq(1,2,len=11)
+y = seq(3,4,len=11)
+
+fu = function(x,y) (2*x+y)^2
+fv = function(x,y) (x-y)^3
+
+fx = function(x,y) x
+fy = function(x,y) y
+
+showGrid = function(x,y,fu,fv) {
+    u=outer(x,y,fu)
+    v=outer(x,y,fv)
+
+    bareplot(as.vector(u),as.vector(v),asp=1,pch=20)
+    for(i in 1:nrow(u)) lines(u[i,],v[i,],col='red')
+    
+    for(i in 1:ncol(u)) lines(u[,i],v[,i],col='blue')
+    points(u[1],v[1],pch=20)
+}
+
+svg('jaco%draw.svg')
+showGrid(x,y,fx,fy)
+showGrid(x,y,fu,fv)
+par(opar)
+dev.off()

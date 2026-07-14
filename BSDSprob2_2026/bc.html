@@ -1,0 +1,482 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:16:17 IST 2026</i>
+</td>
+</tr>
+</table>
+<h3/>
+<ul>
+<li>1.<a href="#N10018">Infinitely often</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;1.1.<a href="#N10088">Problem set</a>
+</li>
+<li>2.<a href="#N100F1">Borel-Cantelli lemmas</a>
+</li>
+<li>3.<a href="#N10160">Demonstrations</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;3.1.<a href="#N10163">Monkey typing Hamlet</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;3.2.<a href="#N1018A">Project: Normal numbers</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;3.3.<a href="#N1022D">Project: Random walk in 3D</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\io}{~~\mathrm{i.o.}}$
+$\newcommand{\ev}{~~\mathrm{ev.}}$
+$\newcommand{\calF}{\mathcal{F}}$
+$\newcommand{\rightarrowL}[1]{\stackrel{L_{#1}}{\longrightarrow}}$
+$\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
+$\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
+<p xmlns=""></p>
+
+<h1>
+<a name="N10018"><span class="header">1</span>. Infinitely often</a>
+</h1>
+Suppose that we have  a sequence of subsets of some universal set. We shall define a new set 
+from
+ this sequence as follows.
+<fieldset>
+<legend><b>Definition: Infinitely often (i.o.)</b></legend>
+Let $(A_n)$  be a sequence of subsets of some universal set. Then we define
+$$\{A_n\io\} = \cap_n \cup_{k\geq n} A_k.$$
+</fieldset>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Suppose that $A_n = \left[ -\frac 1n, 1-\frac 1n \right].$  Find $\{A_n\io\}.$
+<p></p>
+<b>SOLUTION:</b>
+You can think of this sequence as $[-1,0]$  travelling towards $[0,1].$  
+<p></p>
+Here $\cup_{k\geq n} A_k = \left[ -\frac 1n, 1\right).$
+<p></p>
+So $\{A_n\io\} = \cap_n \cup_{k\geq n} A_k = \cap_n [0, 1).$
+ ■
+</p>
+
+<p></p>
+The definition may appear rather complicated. Let us digest itintuitively: 
+<ul>
+<li>
+Consider all the elements which
+ are in all the $A_n$ s. The set of all such elements is $\cup_{k\geq 1} A_k. $    
+</li>
+<li>
+Next consider all the elements which are in all the $A_n$ s except possibly $A_1.$  All the earlier elements are
+ already there, plus possibly some extra. The set of all these elements is $\cup_{k\geq 2} A_k. $
+</li>
+<li>
+Similarly, $\cup_{k\geq 3} A_k $  is the set of all elements that are in all the $A_n$ s except possible the first
+ two. 
+</li>
+</ul>
+If we take the intersection of all such unions of the form $\cup_{k\geq n} A_k,$  we get $\{A_n\io\}.$  Thus $\liminf A_n$ 
+ is the set all elements that are in all the $A_n$'s except for a finitely many, <i>i.e.</i>, all the lements are are infinitely
+ many of the $A_n\$'s. Hence the name <b><font color="red" size="40">infinite often</font></b>.
+<p></p>
+The following result often proves handy when proving $P(A_n)\rightarrow 0.$
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>Let $(A_n)$  be a sequence of events with $P(A_n\io) = 0.$  Then we must have $P(A_n)\rightarrow0.$</fieldset>
+
+<p></p>
+A proof of this theorem is outlined in the exercises below.
+<h2>
+<a name="N10088"><span class="header">1.1</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;If $A_n = [-n,n]$  find $\{A_n\io\}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;If $A_1 \subseteq A_2 \subseteq A_2\subseteq \cdots,$  then show that $\{A_n\io\} = \cup_n A_n.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;If $A_1 \supseteq A_2 \supseteq A_2\supseteq \cdots,$  then is it true that $\{A_n\io\} = \cap_n A_n?$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Let $B_n = \cup_{k\geq n} A_k.$  Show that $P(B_n)\rightarrow P\{A_n\io\}.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;We can define a set called $\{A_n\ev\}$  (where $\ev$  is the abbreviation of
+ <b><font color="red" size="40">eventually</font></b>) as 
+$$\{A_n\ev\} = \cup_n \cap_{k\geq n} A_k.$$
+Do you see why we call it "eventually" (compare with the statement "We shall all be eventually dead."). 
+</p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Show that $\{A_n\ev\}\subseteq\{A_n\io\}.$</p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Let $P\{A_n\ev\}=1.$  Show that $P(A_n)\rightarrow 1.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;
+We shall say $A_n\rightarrow A $ if $\{ A_n\ev\} = \{ A_n\io\} = A.$  Show that in this case $P(A_n)\rightarrow P(A).$
+This is a generalisation of the theorem on continuity of probability that you have learned in Probability I.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;Let $(A_n)$  be a sequence of events with $P(\liminf A_n) = P(\limsup A_n) = p.$  Show that $P(A_n)\rightarrow p.$</p>
+
+<p></p>
+
+
+<p></p>
+
+<h1>
+<a name="N100F1"><span class="header">2</span>. Borel-Cantelli lemmas</a>
+</h1>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>First Borel-Cantelli lemma</i></b></legend>
+Let $(A_n)$  be a sequence of events in some probability space. If $\sum P(A_n) &lt; \infty,$  then $P(A_n\io)=0.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+$$\begin{eqnarray*}
+P(A_n\io)
+ &amp; = &amp; P(\cap_n\cup_{k\geq n} A_k)\\
+ &amp; = &amp; P( \lim_n\cup_{k\geq n} A_k)\\
+ &amp; = &amp; \lim_n P(\cup_{k\geq n} A_k).
+\end{eqnarray*}$$
+Now $P(\cup_{k\geq n} A_k)\leq \sum_{k\geq n} P(A_k).$
+<p></p>
+Since $\sum P(A_n) &lt; \infty$, hence $\lim_n \sum_{k\geq n} P(A_k) = 0.$
+<p></p>
+Hence the result. 
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Second Borel-Cantelli lemma</i></b></legend>
+Let $(A_n)$  be a sequence of independent events in some probability space. If $\sum P(A_n)= \infty,$  then $P(A_n\io)=1.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The second lemma makes the assumption of independence. The following counterexample shows what may happen if this assumption
+ were dropped.
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;
+Let $U\sim Unif(0,1)$  and for $n\in{\mathbb N}$  let 
+$$A_n = \left\{U\in\left(0,\frac 1n\right)\right\}.$$
+Notice how we are defining <i>all</i> the $A_n$'s based on the <i>same</i>  $U.$  Clearly, $A_n$'s are not
+ independent. For instance, $P(A_n)=\frac 1n$,  but $P(A_n|A_{n+1})=1.$  
+<p></p>
+Here $\sum_n P(A_n) = \sum_n \frac 1n = \infty,$  but $P(A_n \io) = 0.$
+ ■
+</p>
+
+
+<p></p>
+
+<h1>
+<a name="N10160"><span class="header">3</span>. Demonstrations</a>
+</h1>
+
+<h2>
+<a name="N10163"><span class="header">3.1</span>.
+Monkey typing Hamlet</a>
+</h2>
+A common demonstration of the second Borel-Canteli lemma is show that if a monkey types a keyboard
+ randomly, then it will type the exact text of Hamlet infinitely often. 
+<p></p>
+Let the exact text of Hamlet have $h$ letters.  Consider packets of $h$  letters. Let
+ $A_n$  be the event that the $n$-th packet is an exact copy of Hamlet. Then
+ $A_n$'s are independent and $P(A_n)&gt;0.$  So $\sum_n P(A_n) = \infty.$  Hence by
+ the second Borel-Canteli lemma, $P(A_n\io)=1.$  
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;However, if you want to just show that the monkey will surely write Hamlet <i>at least
+ once</i>, then you really do not need
+ to use the second Borel
+ Cantelli lemma. You can prove it much more easily using continuity of probability.  How?</p>
+
+<p></p>
+
+<h2>
+<a name="N1018A"><span class="header">3.2</span>.
+Project: Normal numbers</a>
+</h2>
+Consider a uniform random number between 0 and 1. Let $d_n$  be the $n$-th digit after
+ the decimal point in its (unique) non-terminating decimal expansion. For example, if the number
+ is $\frac 12,$  then the non-terminating decimal expansion
+ is $0.499999...,$  and so $d_1 = 4,$  while $d_n=9$  for each $n\geq 2.$  
+<p></p>
+Consider the event $\{d_1=3\}.$  Clearly it is $(0.3,0.4].$  So this has probability
+ $\frac{1}{10}.$  Next consider the event $\{d_2=3\}.$  This is $\cup_{d_1=0}^9
+ \frac{d_1}{10}+(0.03,0.04].$  Again, the probability is $\frac{1}{10}.$  In particular we have the following theorem:
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+
+<ul>
+
+<li>For each $n$  the random variable $d_n$  is uniformly distributed over $\{0,1,...,9\}.$</li>
+
+<li>If $m\neq n,$  then $d_m$  and $d_n$  are independent.</li>
+
+</ul> 
+
+</fieldset>
+
+<p></p>
+Next we shall fix a single number $\omega\in(0,1)$  and check how many times any given digit (say 3) occurs in it. 
+<p></p>
+Let
+$S_n(\omega) = $  number of times the digit 3 occurs among the first $n$  digits of $\omega.$  
+For instance of $\omega=\frac 13,$  then $S_n(\omega) = n.$
+<p></p>
+We are interested in the proportion of times a digit occurs in the expansion. Mathematically, we
+ work with $\lim_{n\rightarrow \infty} \frac{S_n(\omega)}{n}$ (which may not exist).  For instance, if $\omega=\frac 13,$ 
+ then the limit exists and equals $1.$  If $\omega=0.3,$  then the limit exists and equals $0.$  
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Can you construct an expansion for which the limit does <i>not</i>  exist? <p>
+<b>Hint:</b>
+<blockquote>You can get one using only 0's
+ and 3's. </blockquote>
+</p>
+</p>
+
+<p></p>
+Let $A_3 = $ set of all numbers for which the limit equals $\frac{1}{10}.$  What do you expect $P(A_3)$  to be?
+The following theorem provides the answer.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$P(A_n) = \frac{1}{10}.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+We shall prove it for $n=3.$  (the other cases are exactly similar).
+<p></p>
+
+<b><i>[QED]</i></b>
+</p>
+Then
+ $\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.$ So, in particular, $P(0\mbox{ occurs }\io)=1.$  Hence, $P(0,1\mbox{ occur }\io)=1.$ 
+ Proceeding similarly, $P(\mbox{each digit occurs }\io)=1.$
+<p></p>
+
+<h2>
+<a name="N1022D"><span class="header">3.3</span>.
+Project: Random walk in 3D</a>
+</h2>
+Let $S = X_1+\cdots+X_n$  a simple, symmetric random walk in 3D. We shall show that $P(S_n=0\io)=0.$  Thanks to
+ the first Borel Cantelli lemma, it is enough to show
+that $\sum P(S_n=0) &lt; \infty.$ 
+<p></p>
+Now, $P(S_n=0)=0$ if $n$ is odd. So let us
+take $n=2(a+b+c),$ where $a$ is the number of $+x$
+steps (and $-x$ steps). Similarly, for $b,c.$
+<p></p>
+Total number of paths of length $2k$ is $6^{2k}.$
+Number of favourable paths is    
+$$
+\sum_{a,b,c:a+b+c=k} \frac{(2k)!}{a!^2 b!^2 c!^2}.
+$$
+By convexity of $\log m!$, the maximum term occurs
+when $a,b,c$ are as equal as possible. Hence $T_n\leq C
+n^2/((n/3)!)^6.$
+<p></p>
+Using Stirling's approximation $m!\sim \sqrt{2\pi
+m}(m/e)^m,$ we have $P(S_{2k}=0)\leq C n^{-3/2}.$ 
+<p></p>
+Hence the result.
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

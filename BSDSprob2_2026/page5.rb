@@ -1,28 +1,17 @@
 @{<NOTE>
-[Update:[Thu Jul 02 IST 2026]]
 <TITLE>Convergence theorems</TITLE>
-<HEAD1>Monotone Convergence Theorem</HEAD1>
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
-We would have been very happy, had there been a result saying: Whenever <M>X_n\to X</M>  we have <M>E(X_n)\to E(X)</M>. Unfortunately,
+We would have been very happy, had there been a result saying: Whenever <M>X_n\toA X</M>  we have <M>E(X_n)\to E(X)</M>. Unfortunately,
  this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
 
-The following theorem is just a restatement of the second technical result discussed earlier:
-<THM>
-Let <M>X_n\to X</M>. Assume
-<UL><LI><M>(X_n)</M>  is a non-negative, non-decreasing sequence,</LI>
-<LI><M>X_n</M>'s are all simple.</LI>
-</UL>
-Then <M>E(X_n) \to E(X)</M>.
-</THM>
- Interestingly, the last condition may be dropped (i.e., <M>X_n</M>'s need not be simple). This gives rise to the theorem
- below.
  
 <THM name="Monotone convergence theorem (MCT)">
-Let <M>X_n\to X</M>. Assume
+Let <M>X_n\toA X</M>. Assume
 <UL><LI><M>(X_n)</M>  is a non-negative, non-decreasing sequence.</LI>
 </UL>
 Then <M>E(X_n) \to E(X)</M>.
 </THM>
+<COMMENT>
 <PF>
 Enough to show simple random variables <M>Y_n</M>  such that <M>Y_n\uparrow X </M> and <M>Y_n\leq X_n.</M>
 <BECAUSE>
@@ -66,7 +55,7 @@ Hence <M>\lim_k Y_k= X.</M>
 </BECAUSE>
 This completes the proof.
 </PF>
-
+</COMMENT>
 <HEAD2>MCT for Riemann integration?</HEAD2>
 Do we have an MCT for Riemann integrals, as well? Well, no, because even if <M>X_n</M>'s are
  Riemann integrable, and they increase to <M>X,</M>  there is a no guaranty that <M>X</M>  will be Riemann integrable.

@@ -1,0 +1,51 @@
+hor = function(x1,x2,y,...) {    
+    segments(x1*u[1]+y*v[1],x1*u[2]+y*v[2],
+             x2*u[1]+y*v[1],x2*u[2]+y*v[2],...)
+}
+
+ver = function(x,y1,y2,...) {
+    segments(x*u[1]+y1*v[1],x*u[2]+y1*v[2],
+             x*u[1]+y2*v[1],x*u[2]+y2*v[2],...)
+}
+
+drawScale = function(len=10) {
+    hi = -2
+    lo = -1
+    w = 1.5*hi
+    hor(-len,len,0,lwd=2)
+    hor(-len,len,hi*1.5,lwd=2)
+    ver(-len,0,w,lwd=2)
+    ver(len,0,w,lwd=2)
+    for(x in (-len):len) ver(x,0,hi)
+    for(x in seq(-len,len,0.25)) ver(x,0,lo)
+}
+
+proj = function(p) {
+    foot = (p%*%u) * u
+
+
+}
+set.seed(3367363)
+tx = rnorm(30)
+ty = 3*rnorm(30)
+dat = cbind(tx+ty-5,tx-ty+5)
+
+
+doit = function(theta) {
+    theta = theta*pi/180
+  u<<-c(cos(theta),sin(theta))
+  v<<-c(-sin(theta),cos(theta))
+pval = dat%*%u
+varValue = var(pval)
+feet = pval%*%t(u)
+  bareplot(dat,xlim=c(-12,12),ylim=c(-12,12),asp=1,pch=20,col='blue',cex=2,main=varValue)
+
+  drawScale(12)
+  abline(h=0,v=0)
+
+  for(i in 1:30) {
+    segments(dat[i,1],dat[i,2],feet[i,1],feet[i,2])
+    points(feet[i,1],feet[i,2],col='red',pch=20,cex=2)
+  }
+}
+doit(30)

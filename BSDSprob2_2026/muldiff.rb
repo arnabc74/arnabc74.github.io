@@ -1,0 +1,24 @@
+@{<NOTE>
+<M>\newcommand{\v}[1]{{\mathbf #1}}</M>
+<TITLE>Multivariate differentiation</TITLE>
+We start by recalling the univariate case: A function
+<M>f:\rr\to\rr</M>  is called differentiable at some <M>a</M>, if 
+<D>\lim_{x\to a} [[f(x)-f(a)][x-a]]\mbox{ exists finitely.}</D>
+If this limit is called <M>m</M>, then this can be recast in the geometrically more appealing way as 
+<D>\exists m\in\rr~~ \lim_{x\to a}[[f(x)-\{f(a)+m\cdot(x-a)\}][x-a]] = 0.</D>
+This is geometrically more appealing because you can think of this as <M>f(x)-f(a)\approx m\cdot(x-a),</M>  i.e., near <M>a</M> 
+ the graph of <M>f</M>  looks like the line passing through <M>(a,f(a))</M>  with slope <M>m.</M>  
+
+This immediately generalises to <M>f:\rr^n\to\rr^m</M>  as follows.
+<DEFN name="Multivariate differentiation">
+Call <M>f:\rr^n\to\rr^m</M>  <TERM>differentiable</TERM> at <M>\v a\in\rr^n</M>  if 
+<D>\exists M_{m\times n} ~~ \lim_{\v x\to \v a}[[f(\v x)-\{f(\v a)+M\cdot(\v x-\v a)\}][\|\v x-\v a\|]] = \v 0.</D>
+</DEFN>
+Such a matrix <M>M</M>  may depend on <M>\v a,</M>  and will be unique, and its <M>(i,j)</M>-th entry will be given by 
+<D>m_{ij} = [[\partial f_i][\partial x_j]].</D>
+Here <M>f_i</M>  is the <M>i</M>-th component of <M>f.</M>  
+
+Let us digest this using an example. 
+
+
+</NOTE>@}

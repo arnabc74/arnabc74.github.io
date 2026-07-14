@@ -1,0 +1,443 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  //background: #000;
+  //color: #fff;
+}
+
+.ans {
+  display:none;
+  background: #ccffcc;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:16:12 IST 2026</i>
+</td>
+</tr>
+</table>
+<h3>Expectation and variance of random vectors</h3>
+<ul>
+<li>1.<a href="#N10010">Expectation, variance of random vectors</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;1.1.<a href="#N10054">Problem set 1</a>
+</li>
+<li>2.<a href="#N10094">Motivation behind the definition of dispersion matrix</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.1.<a href="#N100E3">Problem set 2</a>
+</li>
+<li>3.<a href="#N10104">Properties of expectation, variance of random vectors</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;3.1.<a href="#N1018B">Problem set 3</a>
+</li>
+</ul>
+<hr/>
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+$\newcommand{\k}[1]{\chi^2_{(#1)}}$
+$\newcommand{\cov}{\mathrm{cov}}$
+[Update:[Thu Jul 09 IST 2026}
+<title xmlns="">Expectation and variance of random vectors</title>
+
+<h1>
+<a name="N10010"><span class="header">1</span>. Expectation, variance of random vectors</a>
+</h1>
+If $X_1,...,X_n$  are jointly distributed random variables, then $\v X=(X_1,...,X_n)'$ 
+ is called a <b><font color="red" size="40">random vector</font></b>, and is usually considered as an $n\times 1$  column vector. We define 
+$E(\v X)$  as
+$$E(\v X) = \left[\begin{array}{ccccccccccc}E(X_1)\\\vdots\\E(X_n)
+\end{array}\right].$$
+The motivation is again from statistical regularity. If you take many IID replications of 
+$\v X$  and average them, then (under very general conditions) the average will converge to $E(\v X).$ 
+<p></p>
+The case of dispersion is slightly trickier. We shall start with the main definition and provide the motivation later. 
+<fieldset>
+<legend><b>Definition: Dispersion matrix</b></legend>
+Let $\v X$  be a random vector with components $X_1,...,X_n.$  Then its <b><font color="red" size="40">dispersion matrix</font></b>  or <b><font color="red" size="40">variance matrix</font></b> 
+ or <b><font color="red" size="40">variance-covariance matrix</font></b>  is defined as the $n\times n$  symmetric matrix with $(i,j)$-th entry
+ $cov(X_i,X_j).$  In particular, its $i$-th diagonal entry is $V(X_i).$
+</fieldset> 
+
+<p></p>
+
+<h2>
+<a name="N10054"><span class="header">1.1</span>.
+Problem set 1</a>
+</h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;If $X_1,...,X_n$  are IID with mean 2 and variance 5, and $\v X = (X_1,...,X_n)'$,
+ then find $E(\v X)$  and $V(\v X).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;If $X_1\sim Binom\left(10,\frac 13\right)$  and $X_2=10-X_1$  and $\v X = (X_1,X_2)'$ 
+ then find $E(\v X)$  and $V(\v X).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Let $\v X = (X_1,X_2,X_3)'$  have 
+$$V(\v X) = \left[\begin{array}{ccccccccccc}
+3 &amp; 2 &amp; 1\\
+2 &amp; 4 &amp; 2\\
+1 &amp; 2 &amp; 5
+
+\end{array}\right].$$
+Find $cor(X_1,X_3).$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;In the last problem, also find $V(X_1-3X_2)$  and $cov(X_1+X_2,X_3).$</p>
+
+<h1>
+<a name="N10094"><span class="header">2</span>. Motivation behind the definition of dispersion matrix</a>
+</h1>
+A multivariate data set may appear to have different amounts of dispersion depending how you view
+ it. <a href="tstpca.html">This 3D scatterplot</a>,  for example, will show this phenomenon
+ when you drag it with a mouse. The
+ dispersion matrix is a way to take all possible viewpoints into account. 
+<p></p>
+To
+ motivate the definition of
+ dispersion matrix consider the
+ bivariate case. Let the
+ two components of our random
+ vector be $X$  and $Y.$  If we take
+ many IID replications, we get points like $(X_1,Y_1),...,(X_n,Y_n).$  Think of these like a scatterplot. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/scat1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+If you look at this cloud of points from position A, then the points appear more scatterred than when we look from B. This
+ is an interesting feature of multivariate dispersion, it depends on how you look at it. A good  measure of dispersion
+ should not depend on the direction you are looking from, rather it should capture the comprehensive picture,
+from which we should be able to work out the dispersion from any desired direction. To achieve 
+ this, imagine a ruler placed on the scatterplot with its 0 mark at the origin. See <a href="https://acbsds.shinyapps.io/varmat/">this
+ demo</a>  for better understanding. Parallel rays of
+ light are shining perpendicularly down on the ruler from both
+ sides, casting shadows of the points on the ruler:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/scat2.png"></th>
+</tr>
+<tr>
+<th>Light rays (shown in red) are dropping perpendicularly on the ruler</th>
+</tr>
+</table>
+</center>
+Then each bivariate point reduces to a single number along the scale, and we may compute variance of the numbers to measure
+ the dispersion when looking from that particular direction. To quantify the placement of the ruler, imagine a unit
+ vector $\v u$  along the
+ ruler from its 0 mark (at the origin) reaching up to its 1 mark.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/scat3.png"></th>
+</tr>
+<tr>
+<th>Projecting a typical point perpendicularly on the ruler</th>
+</tr>
+</table>
+</center>
+Then
+ a point $\v v \equiv (X,Y)$ 
+ will project to the vector  
+$$\frac{\v v'\v u}{\v u'\v u} \v u,$$
+shown in blue. Measured in units of $\v u$,  this will show up at the mark $\frac{\v v'\v u}{\v u'\v u}$  of the ruler.
+<p></p>
+Now, $\frac{\v v'\v u}{\v u'\v u} = pX+qY$ for some $p,q\in{\mathbb R}.$  
+Then the
+ variance of $pX+qY$ 
+ will be $p^2 V(X)+q^2 V(Y) + 2pq\, cov(X,Y),$  which may be written as  (check!)
+$$\left[\begin{array}{ccccccccccc}p &amp; q
+\end{array}\right]\left[\begin{array}{ccccccccccc}V(X) &amp; cov(X,Y)\\cov(X,Y) &amp; V(Y)
+\end{array}\right]\left[\begin{array}{ccccccccccc}p\\q
+\end{array}\right].$$
+Here $p,q$  are controlled by the ruler. Notice that the matrix in the middle does not
+ involve $p,q.$  Thus, it contains
+ information about dispersion for every
+ possible way of placing the ruler.
+ This matrix is indeed the dispersion matrix we  defined above.
+<p></p>
+
+<h2>
+<a name="N100E3"><span class="header">2.1</span>.
+Problem set 2</a>
+</h2>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;Consider the toy bivariate data set $(1, 2), (3, 4), (2.1, 3.1), (4, 5).$  Draw the
+ scatterplot. Imagine that we are looking down as shown. Guess the variance as seen from that
+ direction. Check your guess by actual computation.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/lookex.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Let the dispersion matrix of $(X,Y)$  be $\left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 2
+\end{array}\right]$. Find
+ $\theta\in [0,\pi)$  such that $V(\cos (\theta) X + \sin(\theta) Y)$  is maximum. When is the variance minimum?</p>
+
+<p></p>
+ 
+<h1>
+<a name="N10104"><span class="header">3</span>. Properties of expectation, variance of random vectors</a>
+</h1>
+The following facts are immediate from the definition.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $E(\v X)=\v\mu$  and $V(\v X) = \Sigma,$  then for any matrix $A_{m\times n}$  and any vector $\v b_{m\times 1}$ 
+ we have
+<ol type="">
+
+<li>$E(A\v X+\v b) = A\v\mu+\v b$,</li>
+
+<li>$V(A\v X+\v b) = A\Sigma A'$</li>
+
+</ol>
+
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v Y = A\v X+\v b.$  Then $\v Y = (Y_1,...,Y_m)'$, where $Y_i = \sum_j a_{ij}X_j + b_i.$  Here I have
+ denoted the $(i,j)$-th entry of $A$  by $a_{ij}.$  
+<p></p>
+Now compute $E(Y_i)$  and $cov(Y_i,Y_j)$  directly to get the result. 
+<p></p>
+By the way, the $(i,j)$-th entry of $A\Sigma A'$  is $\sum_r\sum_s a_{ir} \sigma_{rs} a_{js}.$  
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Any dispersion matrix is NND. In other words, if $\Sigma_{n\times n}=V(\v X)$, then $\forall \v\ell\in{\mathbb R}^n~~\v\ell'\Sigma\v\ell\geq 0.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+By the last theorem, $\v\ell'\Sigma\v\ell=V(\v\ell'\v X)\geq 0.$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The converse is also true:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\Sigma_{n\times n}$  is any NND matrix, then it $V(\v X)$  for some random vector $\v X_{n\times 1}.$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $U_1,...,U_n$  be independent with $\forall i~~V(U_i)=1.$    Then $\v U=
+ (U_1,...,U_n)'$  has $V(\v U) = I_n.$  
+<p></p>
+Since $\Sigma$  is NND, hence $\Sigma = AA'$  for some $A_{n\times n}.$  
+<p></p>
+Let $\v X = A\v U.$  Then $V(\v X) = A I_n A' = AA' = \Sigma.$ 
+<b><i>[QED]</i></b>
+</p>
+
+<h2>
+<a name="N1018B"><span class="header">3.1</span>.
+Problem set 3</a>
+</h2>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;Show that for $\left[\begin{array}{ccccccccccc}a &amp; b\\b &amp; c
+\end{array}\right]$  to be a dispersion matrix, a necessary
+ condition is that $b^2\leq ac.$  Is it a sufficient condition?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Show that $V(\v X)$  is singular if and only if $P(a_1X_1+\cdots+a_n X_n=c)=1$  for
+ some constants $a_i$'s and $c$  such that not all $a_i$'s are zero.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;If $\v X=(X,Y)'$  and $V(\v X)$  is a singular, then how will a scatterplot of
+ replications from $\v X$  look like? Here we are running the random experiment underlying $\v
+ X$  repeatedly, and getting $(X_1,Y_1), (X_2,Y_2),...,(X_n,Y_n),$  and plotting these
+ $n$  points as a scatterplot. Your job is a to identify some geometric pattern in the plot. </p>
+
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

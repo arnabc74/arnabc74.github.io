@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -8,6 +8,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
 <script>
 aha = function(code) {
   window.open("https://rdrr.io/snippets/embed/?code="+code)
@@ -85,7 +87,7 @@ body,table {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -149,608 +151,50 @@ function myFunction() {
 <script src="../tools/rglClass.src.js"></script>
 <script src="../tools/CanvasMatrix.src.js"></script>
 <script src="../tools/rglWebGL.js"></script>
-<link
-rel="stylesheet" href="branch.css"></link></head><body>
+</head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sun Jul 12 10:15:33 IST 2026</i>
+</td>
+</tr>
+</table>
 <h3/>
 <ul>
-<li>
-<a href="#Generating functions">Generating functions</a>
+<li>1.<a href="#N10009">Characteristic function (CF)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Probability generating functions (pgf)">Probability generating functions (pgf)</a>
+<li>&nbsp;&nbsp;&nbsp;1.1.<a href="#N10045">Complex random variables</a>
 </li>
-<li>
-<a href="#What is a PGF?">What is a PGF?</a>
+<li>&nbsp;&nbsp;&nbsp;1.2.<a href="#N100C3">Complex calculus</a>
 </li>
-<li>
-<a href="#Analytical properties">Analytical properties</a>
+<li>&nbsp;&nbsp;&nbsp;1.3.<a href="#N100D8">Examples</a>
 </li>
-<li>
-<a href="#Probabilistic properties">Probabilistic properties</a>
+<li>&nbsp;&nbsp;&nbsp;1.4.<a href="#N10131">Problem set 1</a>
 </li>
-<li>
-<a href="#An application: Branching process">An application: Branching process</a>
+<li>2.<a href="#N10161">Properties of CF</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Animation">Animation</a>
+<li>3.<a href="#N101E2">Inversion, density, continuity theorems</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Math">Math</a>
+<li>&nbsp;&nbsp;&nbsp;3.1.<a href="#N10243">Problem set 2</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Simple cases">Simple cases</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Using PGF">Using PGF</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Exploring fixed points">Exploring fixed points</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#Wrapping up">Wrapping up</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Moment generating functions (mgf)">Moment generating functions (mgf)</a>
-</li>
-<li>
-<a href="#Moment generating function">Moment generating function</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Characteristic functions (chf)">Characteristic functions (chf)</a>
-</li>
-<li>
-<a href="#Characteristic function (CF)">Characteristic function (CF)</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Complex random variables">Complex random variables</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Complex calculus">Complex calculus</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#An example">An example</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 1">Problem set 1</a>
-</li>
-<li>
-<a href="#Properties of CF">Properties of CF</a>
-</li>
-<li>
-<a href="#Inversion, density, continuity theorems">Inversion, density, continuity theorems</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 2">Problem set 2</a>
-</li>
-<li>
-<a href="#Miscellaneous problems">Miscellaneous problems</a>
+<li>4.<a href="#N1025C">Miscellaneous problems</a>
 </li>
 </ul>
 <hr/>
 $\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
+<p xmlns=""></p>
 
-[Update:[Wed Jun 17 IST 2026}
-<h1 xmlns=""><a
-name="Generating functions">Generating functions</a></h1>
+<h1>
+<a name="N10009"><span class="header">1</span>. Characteristic function (CF)</a>
+</h1>
 
 <p></p>
-
-<h2><a
-name="Probability generating functions (pgf)">Probability generating functions (pgf)</a></h2>
-
-<h1><a
-name="What is a PGF?">What is a PGF?</a></h1>
-<a href="https://youtu.be/MS8akAOsBlI">Video for this section</a>
-<p></p>
-
-<fieldset>
-<legend><b>Definition: Probability generating function (PGF)</b></legend>Let a random variable $X$  take only nonnegative integer values. Then
- its <b><font color="red" size="40">probability
- generating function (PGF)</font></b>  is defined as the power series
-$$p(t) = p_0 + p_1 t + p_2 t^2 +\cdots, $$
-where $p_k = P(X=k)$  for $k=0,1,2,..$.
-</fieldset>
-
-<p></p>
-
-<p>
-<b>EXAMPLE 1:</b>&nbsp;A random variable takes the values $1,2,5$  each with probability $\frac 13.$  Find its PGF.<p></p>
-<b>SOLUTION:</b>
-$p(t) = \frac 13(t+t^2+t^5)$.
-  ■
-</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 1:</b>&nbsp;(Easy) Find the PGF of a random variable with $Binom(n,p)$  distribution.</p>
-
-<p></p>
-
-<h1><a
-name="Analytical properties">Analytical properties</a></h1>
-<a href="https://youtu.be/bBF3gt0-JBk">Video for this section</a>
-<p></p>
-We have defined  PGF as a power series, but we have not mentioned anything about its convergence yet. 
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Any PGF $p(t)$  must converge absolutely for $|t|\leq 1$. 
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>If $|t|\leq 1$, then $\sum_k |p_k t^k| \leq \sum_k p_k = 1$.<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 2:</b>&nbsp;(Easy) Think of a case where the radius of convergence is $\infty$.</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 3:</b>&nbsp;(Easy) Think of a case where the radius of convergence is $1$.</p>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>A power series can be differentiated term by term any number of times in the interior of its
- interval of convergence.</fieldset>
-<p>
-<b><i>Proof:</i></b>Standard theorem from real analysis.<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<h1><a
-name="Probabilistic properties">Probabilistic properties</a></h1>
-<a href="https://youtu.be/9dtUu6bg6xM">Video for this section</a>
-<p></p>
-Thanks to the above theorem, 
-we can recover the probabilities from the PGF by repeated differentiation at $t=0$:
-$$p_n = \frac{p^{(n)}(0)}{n!}$$.
-Hence we get the following theorem.
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $X$  are $Y$  are two random variables both taking only nonnegative integer values, and they have PGFs matching
- over any open neighbourhood of $0$, then their distributions must match.
-</fieldset>
-
-<p></p>
-::<p>
-<b>EXERCISE 4:</b>&nbsp;(Easy) Show that for $n\in{\mathbb N}$  we have
-$$E(X(X-1)\cdots (X-n+1)) = p^{(n)}(1)$$.
-</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 5:</b>&nbsp;(Easy) Show that $E(t^X) = p(t)$.</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 6:</b>&nbsp;(Easy) Show that if $X,Y$  are independent random variables taking nonnegative integer values,
- with PGFs $\xi(t)$  and $\psi(t)$, then the PGF of $X+Y$  is
- $\xi(t)\psi(t)$.<p><a
-href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
-class="ans" id="lab1">Use the last exercise.</div></p>
-</p>
-
-<p></p>
-
-<h1><a
-name="An application: Branching process">An application: Branching process</a></h1>
-Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
- will again split into two. If it goes on like this, then we shall have$2^n$  cells in the $n$-th generation. Clearly
- understand how the generations are numbered. The initial cell belonged to generation 0. We shall
- call the number of cells in the $n$-th generation $X_n$. Thus, $X_n = 2^n$. Also,
- notice that when a cell splits into children, the original cell ceases to exist. 
-<p></p>
-  This
- branching process is a deterministic
- one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus $X_0 = 1$.
- After a minute this cell "splits into" a random number of cells. The number may be any
- nonnegative integer. In particular, we allow the number to be 0 or 1 with the following interpretations:
-<ul>
-<li>If the number is 0, then the
- original cell has died without leaving any children. </li>
-<li>If the number is 1, then the original cell
- just continues into the next generation.  </li>
-</ul>
-This number is the size of generation 1. We shall call it $X_1$. Let the distribution of $X_1$  be
-given by $P(X_1=k) = p_k$  for $k=0,1,2,...$. 
-<p></p>
-After one more minute each cell in generation 1 will independently split into children following the same distribution. And
- the process will continue. 
-<p></p>
-As before, $X_n$  will denote the number of cells in the $n$-th generation. 
-<p></p>
-
-<h2><a
-name="Animation">Animation</a></h2>
-
-<input min="1" value="5" style="font-size:30px;" id="generations" type="number">
-
-<input type="button" style="font-size:30px;" 
-value="(Re)start" 
-onclick="doit()"/>
-<p></p>
-Cells will be shown as dots. The red dots denote cells that 
-have died without leaving any child. Try the animation a number of times to explore various possibilities. 
-<svg height="600" id="branchingTree" width="100%">svg</svg>
-<script
-language="javascript" src="branch.js">Dummy</script>
-<p></p>
-
-<h2><a
-name="Math">Math</a></h2>
-We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
- address is "What is the <b><font color="red" size="40">extinction probability</font></b> for this process?" 
-<p></p>
-By extinction we mean the event that $X_n=0$  for some $n\in{\mathbb N}$. Notice that if some $X_n=0$, then we must
- have $X_{n+1}= X_{n+2}=\cdots = 0$  also. So the extinction event is 
-$$\bigcup_{n\in{\mathbb N}}\{X_n=0\}$$.
-Since $\{X_1=0\}\subseteq \{X_2=0\}\subseteq\cdots, $ hence the extinction probability is
- $\lim_{n\rightarrow\infty} P(X_n=0)=\theta$, say.  
-<p></p>
-How to find it in terms of $p_0,p_1,p_2,..$.?
-<p></p>
-
-<h3><a
-name="Simple cases">Simple cases</a></h3>
- If $p_0 = 1$  (which implies $p_1=p_2=\cdots=0$), then the extinction probability is surely 1. 
-<p></p>
-If $p_0&gt;0$,  but $p_0+p_1 =1$  (which implies $p_2=p_3=\cdots=0$), then also  the extinction probability is
- 1 (why?) 
-<p></p>
-In these cases, we had no births to counter the deaths. 
-But if $p_n&gt;0 $ for some $n\geq 2$, then we have births, and the interaction between
- births and deaths becomes rather complicated. That is where PGFs come to our help.
-<p></p>
-
-<h3><a
-name="Using PGF">Using PGF</a></h3>
-Let $\xi(t)$  be the PGF of $X_1$. In other words, 
-$$\xi(t) = p_0+p_1t+p_2t^2+\cdots.$$
-<p></p>
-The next exercise is of central importance. 
-::<p>
-<b>EXERCISE 7:</b>&nbsp;(Medium) Show that $X_2 $ has PGF $\xi_2(t)=\xi(\xi(t))$  for $|t| &lt; 1$.
-<p><a
-href="javascript:hideShow('lab2')"><b>[Hint]</b></a><div
-class="ans" id="lab2">
-$\xi_2(t) = E(t^{X_2}) = E\big( E(t^{X_2}|X_1) \big)$  by the tower property. 
-<p></p>
-Let us compute $E(t^{X_2}|X_1=k)$  for $k=0,1,2,... $. In particular we shall focus on $k=3$  (the other cases
- being similar). Thus we are in a situation where the first generation consists of the 3
- individuals, and the second generation
- consists of their children. 
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/xixi.png"></th>
-</tr>
-<tr>
-<th>The second generation colour coded by parents</th>
-</tr>
-</table>
-</center>
-We have colour-coded the second generation individuals by the their parents. Let $Y_i$  be the contribution of the $i$-th
- individual of the first generation. We have assumed that each individual splits  identically and independently
- of the rest. So $Y_1, Y_2, Y_3$  are IID random variables. 
-<p></p>
-So $E(t^{X_2}|X_1=3) = E(t^{Y_1+Y_2+Y_3}|X_1=3) = E(t^{Y_1+Y_2+Y_3})$, since $Y_i$'s are
- independent of $X_1$  (number of my children has nothing to do with the number of my siblings!). 
-<p></p>
-Now $E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1}t^{Y_2}t^{Y_3}) = E(t^{Y_1})E(t^{Y_2})E(t^{Y_3})$, since
- $Y_i$'s are independent (number of my children has nothing to do with how many children my siblings have!). 
-<p></p>
-Finally, $E(t^{Y_1+Y_2+Y_3}) =E(t^{Y_1})E(t^{Y_2})E(t^{Y_3}) = \xi(t)\xi(t)\xi(t) =
- \big(\xi(t)\big)^3$, since $Y_i$'s all have the same distribution. 
-<p></p>
-Clearly, the $3$  in the exponent came from our choice of $k$. So, in general,
- $E(t^{X_2}|X_1=k) = \xi(t)^k$  for $k=0,1,2,..$. 
-<p></p>
-Thus, $E(t^{X_2}) = E\big(E(t^{X_2}|X_1) \big) = \sum_{k=0}^\infty \xi(t)^k p_k =\xi(\xi(t))$.     
-<p></p>
-Notice that convergence is not a problem, because we have assumed $|t| &lt; 1$, and so $|\xi(t)| &lt; 1$  as well. 
-</div></p>
-
-</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 8:</b>&nbsp;(Medium) In general show that for $n\in{\mathbb N}$  the PGF of $X_n$  is $\xi_n(t) =
- \xi_{n-1}(\xi(t))=(\underbrace{\xi\circ\cdots\circ\xi}_{n})(t)$.</p>
-
-<p></p>
-Now $P(X_n=0) = \xi_n(0)$. 
-<p></p>
-So the extinction probability is $\theta = \lim_n \xi_n(0)$. 
-<p></p>
-Clearly, since $\xi(t)$  is a continuous function, $\theta = \xi(\theta)$. In other words, $\theta$  must
- be a <i>fixed point</i>  of the PGF. 
-<p></p>
-
-<h3><a
-name="Exploring fixed points">Exploring fixed points</a></h3>
-How many fixed points can $\xi(t) $ have? Surely $1$  is a fixed point, since $\xi(1) = 1$. If
- it is the only one, then
- $\theta$  must be $1$.
-<p></p>
-::<p>
-<b>EXERCISE 9:</b>&nbsp;(Easy) Show that in the simple cases discussed earlier $1$  is the only fixed point.</p>
-
-<p></p>
-Notice that $\xi'(t)$  is always nonnegative. In fact, except in the trivial case of
- $p_0=1$, it is positive. So $\xi(t)$  is a strictly increasing function. Again, except
- in the case where $p_0+p_1=1$, the second derivative $\xi''(t)$  is positive, and so
- $\xi(t)$  is a convex function. Such a function can intersect the $y=x $ line at most twice. 
-<p></p>
-
-
-<p>
-<b>EXAMPLE 2:</b>&nbsp;If $p_0=0.1, p_1=0.5$  and $p_2=0.4$  (so the other $p_k$'s are all zeroes),
- then the graph of $\xi(t)$  looks as shown below.
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/pgfplot.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
- ■
-</p>       
-You can notice two fixed points (<i>i.e.</i>, points where the black curve cuts the red diagonal). One of the fixed points is at
- $t=1$. The other is in $(0,1)$. Which of the two fixed points will $\theta$  equal? 
-<p></p>
-The answer is $\theta$  will always be the <i>smallest</i>  fixed point. This follows from the exercises below.
-<p></p>
-::<p>
-<b>EXERCISE 10:</b>&nbsp;(Medium) Let $\mu$  be any fixed point of $\xi(t)$. Then show that $\forall
- n\in{\mathbb N}~~\xi_n(0)\leq \mu$.</p>
-
-<p></p>
-::<p>
-<b>EXERCISE 11:</b>&nbsp;(Easy) Use the last exercise to show that $\theta$  must be $\leq$  all fixed
- points of $\xi(t)$.</p>
-
-<p></p>
-
-<h3><a
-name="Wrapping up">Wrapping up</a></h3>
-
-<p></p>
-We have seen that (excepting the trivial case $p_0=0$) there are only two possibilities:
- exactly one fixed point (which must be
- $1$) or exactly two. In the first case, $\theta=1$  and in the second it is the smaller fixed point. 
-<p></p>
-It will be nice if we have a quick way to know (based on the $p_n$'s) which case we are in. 
-<p></p>
-The two cases are shown below graphically: 
-<center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/pgfcases.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
- One simple way to distinguish them is by $\xi'(1)$. In the first case $\xi'(1) \leq 1$  and in the other $\xi'(1) &gt; 1$.
- Just a little point here: we know that $\xi(t)$  converges over $[-1,1]$, but may not converge beyond $1$.
- So when we talk about the derivative at $1$, we mean the left hand derivative. But fortunately, the term by term differentiation
- rule works for finding this one-sided derivative as well. So $\xi'(1) = p_1+2p_2+3p_3+\cdots$  (may be $\infty$).
-<p></p>
-So the final answer is:
-<ul>
-<li>If $p_0=0$, the $\theta=0$.</li>
-
-<li>If $p_1+2p_2+3p_3+\cdots \leq 1$, then $\theta=1$.</li>
-
-<li>If $p_1+2p_2+3p_3+\cdots &gt; 1$, then $\theta$  is the unique fixed point of $\xi(t)$  for $t\in(0,1)$.</li> 
- 
-</ul>
-Could you arrive at this impressive answer without using PGF?  
-<p></p>
-::<p>
-<b>EXERCISE 12:</b>&nbsp;(Medium) <center>
-<table width="100%">
-<tr>
-<th><img width="" src="image/jt18.png"></th>
-</tr>
-<tr>
-<th></th>
-</tr>
-</table>
-</center>
-
-<p></p>
-A brief note about probability generating functions: If $X$  takes non-negative integer values with $p_i = P(X=i)$ 
- for $i=0,1,2,...$ then its probability genrating function is 
-$$\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.$$
-Clearly this converges absolutely for $|t|\leq 1.$   In this problem we are assuming that it converges for all $t\in{\mathbb R}.$
-<p><a
-href="javascript:hideShow('lab3')"><b>[Hint]</b></a><div
-class="ans" id="lab3">
-(a) Let $Y =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\leq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
-<p></p>
-Then, for $t\in[0,1],$  we have $Y\leq t^X.$    (Remember that $x\mapsto t^x$  is a non-increasing function
- for $t\in[0,1]$). 
-<p></p>
-So $E(Y)\leq E(t^X).$  Now $E(Y) = t^{x_0}P(X\leq x_0).$  
-<p></p>
-Hence the result.
-<p></p>
-(b) Let $Z =\left\{\begin{array}{ll}t^{x_0}&\text{if }X\geq x_0\\ 0&\text{otherwise.}\end{array}\right.. $
-<p></p>
-Then, for $t\geq 1,$  we have $Z \leq t^X.$  
-<p></p>
-Hence the result follows as in (a).
-</div></p>
-
-</p>
-
-<p></p>
-
-<h2><a
-name="Moment generating functions (mgf)">Moment generating functions (mgf)</a></h2>
-
-<h1><a
-name="Moment generating function">Moment generating function</a></h1>
-
-<p></p>
-
-<fieldset>
-<legend><b>Definition: Moment generating function (MGF)</b></legend>
-For any random variable $X$ we define its <b>moment generating
-function</b> as the function 
-$$
-m_X(t) =  E(e^{tX}).
-$$
-The domain of this function conists of all $t\in{\mathbb R}$ for
-which the expectation exists <i>finitely</i>.
-</fieldset>
-
-<p></p>
-Clearly, $m_X(0)$ always exists and equals $1.$
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If, for some $k\in{\mathbb N}$, the moment $E(X^k)$ exists
-finitely, then the $k$-th derivative  of $m_X(t)$
-exists at $t=0,$ and equals $E(X^k).$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-We shall not do the proof here. But here is the main idea: 
-$$
-e^{tX} = 1 + \frac{tX}{1!} + \frac{t^2X^2}{2!} + \frac{t^3X^3}{3!} + \cdots.
-$$
-From this we want to write 
-$$
-E(e^{tX}) = 1 + \frac{tE(X)}{1!} + \frac{t^2E(X^2)}{2!} + \frac{t^3E(X^3)}{3!} + \cdots.
-$$
-This is not a precise statement, because we do not know if all
-raw moments of $X$ exist finitely. Also, even if they do, is
-it valid to "distribute" expectation over an <i>infinite</i> sum?
-<p></p>
-Answers to these questions require deeper real analysis results
-than we know at this point.
-<p></p>
-However, assuming that this is valid, we may try to differentiate
-both sides to get
-$$
-\frac{d}{dt} E(e^{tX}) = E(X) + \frac{2tE(X^2)}{2!} + \frac{3t^2E(X^3)}{3!} + \cdots.
-$$
-Again this step needs justification. Can we "distribute"
-differentiation over an <i>infinite</i> sum?
-<p></p>
-Assuming that we can, puting $t=0$ indeed gives us $E(X).$
-<p></p>
-SImilarly, differentiating once again, and putting $t=0$
-gives us $E(X^2),$ and so on.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-We shall not spend much time with MGFs, because there is a better
-alternative called the <b>characteristic function (CF)</b>.
-<p></p>
-
-<fieldset>
-<legend><b>Definition: Characteristic function (CF)</b></legend>
-For any (real-valued) random variable $X$ we define its <b>characteristic
-function</b> as the function 
-$$
-\phi_X(t) =  E(e^{itX}),~~t\in{\mathbb R}.
-$$
-</fieldset>
-Don't be nervous to see expectation of a complex random
-variable. It is simply 
-$$
-E(\cos tX) + i E(\sin tX).
-$$
-CFs are better than MGFs because of two reasons, that we give as
-theorems below.
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-For any (real-valued) random variable, the CF is defined over
-entire ${\mathbb R}.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-This is obvious, since $\sin tX$ and $\cos tX$ are both
-bounded random variables, and hence have finite expectations.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $X,Y$ are two random variables with the same CF, then
-they must have the same distribution.
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Not in this course. 
-<b><i>[QED]</i></b>
-</p>
-Indeed, this property has earned characteristic functions their name.
-<p></p>
-MGFs do not have this proprty. It is possible to get (rather
-ugly) counter-examples of random variables $X$ and $Y$
-that both have the same MGF (in particluar both have the same
-domain $D\subseteq{\mathbb R}$), but still $X$ and $Y$ have
-different distributions. However, if the domain includes a
-neighbourhood of $0,$ then $X,Y$ must have the same
-distribution. This is stated in the following theorem.
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>Let $m_X(t)$ be defined for $t\in (-a,a)$ for
-some $a&gt;0.$ Let $Y$ be a random variable with the same
-MGF. Then $X$ and $Y$ must have the same
-distribution.</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Too difficult for this course.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<b>We shall not spend time proving any result on MGF here. You will
-learn the proofs for CFs in the third semester.</b>
-
-<h2><a
-name="Characteristic functions (chf)">Characteristic functions (chf)</a></h2>
-
-<h1><a
-name="Characteristic function (CF)">Characteristic function (CF)</a></h1>
-<a href="https://youtu.be/VwmX-rmTLUw">Video for this section</a>
-<p></p>
-
-<img src="image/alert.png">(The video has been corrected.)
-<p></p>
-We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. In case,
- you have forgotten about  the
- concept of a <b><font color="red" size="40">moment
- generating function (MGF)</font></b> that we briefly touched upon last
- semester, here is the definition
- again:
+We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. 
+Here is the definition of MGF that you have learned in Probability I:
 <fieldset>
 <legend><b>Definition:  Moment generating function (MGF)</b></legend>
 The MGF of a random variable $X$  is defined as the function 
@@ -776,9 +220,10 @@ You may be scared by the unexpected appearance of complex numbers inside the exp
 Let's learn about complex random variables.
 <p></p>
 
-<h2><a
-name="Complex random variables">Complex random variables</a></h2>
-Just remember that 
+<h2>
+<a name="N10045"><span class="header">1.1</span>.
+Complex random variables</a>
+</h2>
 A complex random variable $Z$   means $Z = X+i Y,$  where $X,Y$  are (real) random variables. We define $E(Z)=E(X)+iE(Y)$ 
  (and say $E(Z)$  does not exist if at least one of $E(X), E(Y)$  does not). 
 <p></p>
@@ -824,8 +269,12 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Complex calculus">Complex calculus</a></h2>
+<p></p>
+
+<h2>
+<a name="N100C3"><span class="header">1.2</span>.
+Complex calculus</a>
+</h2>
 For $f:{\mathbb R}\rightarrow{\mathbb C}$  write $f(x) = g(x) + i h(x) $  for $g,h:{\mathbb R}\rightarrow{\mathbb R}.$  Then differentiation and integration
  are defined in the obvious way:
 $$\begin{eqnarray*}
@@ -835,8 +284,46 @@ f'(x) &amp; = &amp; g'(x) + i h'(x),\\
 From this it immediate follows (check!) that
 $\frac{d}{dx}e^{ix} = i e^{ix}$  and $\int e^{ix}\, dx = \frac 1ie^{ix}+$ arbit
  constant.
-<h2><a
-name="An example">An example</a></h2>
+<h2>
+<a name="N100D8"><span class="header">1.3</span>.
+Examples</a>
+</h2>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;Find the CF of the degenerate distribution at $c.$<p></p>
+<b>SOLUTION:</b>
+Here $X = c $ with probability 1. So $\xi_X(t) = E(e^{it X}) = e^{itc}$  for $t\in{\mathbb R}.$
+ ■
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Bern(p).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Binom(n,p).$</p>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 2:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Poi(\lambda).$<p></p>
+<b>SOLUTION:</b>
+$$\begin{eqnarray*}
+\xi_X(t) 
+&amp; = &amp; E(e^{it X})\\
+&amp; = &amp; e^{-\lambda} \sum_{k=0}^ \infty e^{itk} \frac{\lambda^k}{k!}\\
+&amp; = &amp; e^{-\lambda}  \sum_{k=0}^ \infty  \frac{(e^{it}\lambda)^k}{k!}\\
+ = e^{-\lambda} e^{\lambda e^{it}}\\  
+ = e^{\lambda(e^{it}-1)  
+\end{eqnarray*}$$
+for $t\in{\mathbb R}.$
+ ■
+</p>
+
+<p></p>
 
 <p>
 <b>EXAMPLE 3:</b>&nbsp;
@@ -848,21 +335,33 @@ for $t\in{\mathbb R}.$
  ■
 </p>
 Clearly, for any random variable $X$  we have $\xi_X(0) = 1.$
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
+<h2>
+<a name="N10131"><span class="header">1.4</span>.
+Problem set 1</a>
+</h2>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;Find CF for the degenerate distribution at $5.$</p>
+<b>EXERCISE 3:</b>&nbsp;Find CF for the uniform distribution over $(-1,1).$</p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;Find CF for the uniform distribution over $(-1,1).$</p>
+<b>EXERCISE 4:</b>&nbsp;Find CF for the Double Exponential distribution with rate $\lambda.$</p>
 
 <p></p>
 
-<h1><a
-name="Properties of CF">Properties of CF</a></h1>
-<a href="https://youtu.be/9lsO1kR9OaQ">Video for this section</a>
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>CF of $N(0,1)$  distribution is $e^{-t^2/2}$  for $t\in{\mathbb R}.$  CF for
+ $N(\mu,\sigma^2)$  distribution is $e^{it \mu-\sigma^2 t^2/2}$  for $t\in{\mathbb R}.$</fieldset>
+
 <p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>CF for the Cauchy distribution is $e^{-|t|}$  for $t\in{\mathbb R}.$</fieldset>
+
+<p></p>
+
+<h1>
+<a name="N10161"><span class="header">2</span>. Properties of CF</a>
+</h1>
 We start with two simple properties.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -932,8 +431,9 @@ Since CF uniquely determines the distribution, we get the result.
 
 <p></p>
 
-<h1><a
-name="Inversion, density, continuity theorems">Inversion, density, continuity theorems</a></h1>
+<h1>
+<a name="N101E2"><span class="header">3</span>. Inversion, density, continuity theorems</a>
+</h1>
 
 <p></p>
 
@@ -945,7 +445,9 @@ Let $\phi$  be the CF corresponding to the  the distribution function $F.$  Let
 $$f(x) = \frac{1}{2\pi}\int_{-\infty}^\infty e^{-itx} \phi(t)\, dt.$$
 </fieldset>
 
-<p></p>
+<p>
+<b>EXAMPLE 5:</b>&nbsp;Normal and Cauchy density ■
+</p>
 
 <fieldset>
 <legend><b><i>Levy inversion</i></b></legend>
@@ -961,7 +463,7 @@ $$\lim_{T\rightarrow \infty}\frac{1}{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it
 <fieldset>
 <legend><b><i>Continuity theorem</i></b></legend>
 Let $(X_n), X$  be random variables with characteristic functions $(\phi_n),
- \phi,$  respectively. Then $X_n\rightarrowD F$  if and only if $\phi_n\rightarrow \phi$  pointwise.  
+ \phi,$  respectively. Then $X_n\rightarrowD X$  if and only if $\phi_n\rightarrow \phi$  pointwise.  
 </fieldset>
 
 <p>
@@ -971,26 +473,29 @@ The "if part" of this result may be strenghthened to some extent: If $(\phi_n)$ 
  <i>some</i>  function $\phi$ 
  that is continuous in a neighbourhood of 0,  then $\phi$  must be the characteristic function of some random variable
  $X$  and $X_n\rightarrowD X.$
-<h2><a
-name="Problem set 2">Problem set 2</a></h2>
+<h2>
+<a name="N10243"><span class="header">3.1</span>.
+Problem set 2</a>
+</h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;Let $X$  have CF $\xi_X(t).$  Let $Y = ax+b.$  Find $\xi_Y(t),$  the CF of $Y.$</p>
+<b>EXERCISE 5:</b>&nbsp;Let $X$  have CF $\xi_X(t).$  Let $Y = ax+b.$  Find $\xi_Y(t),$  the CF of $Y.$</p>
 
 <p></p>
 
-<h1><a
-name="Miscellaneous problems">Miscellaneous problems</a></h1>
+<h1>
+<a name="N1025C"><span class="header">4</span>. Miscellaneous problems</a>
+</h1>
 ::<p>
-<b>EXERCISE 16:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 6:</b>&nbsp;<font size="-2">[hpstrans1.png]</font><img width="" src="image/hpstrans1.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 17:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 7:</b>&nbsp;<font size="-2">[hpstrans2.png]</font><img width="" src="image/hpstrans2.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 18:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 8:</b>&nbsp;<font size="-2">[hpstrans4.png]</font><img width="" src="image/hpstrans4.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 19:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;">
+<b>EXERCISE 9:</b>&nbsp;<font size="-2">[hpstrans7.png]</font><img width="" src="image/hpstrans7.png" style="vertical-align:text-top;">
 <center>
 <fieldset>
 <legend><b>Here is Exercise 8:</b></legend><img width="80%" src="image/hpsref8.png"></fieldset>
@@ -998,13 +503,13 @@ name="Miscellaneous problems">Miscellaneous problems</a></h1>
 
 </p>
 ::<p>
-<b>EXERCISE 20:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 10:</b>&nbsp;<font size="-2">[hpstrans8.png]</font><img width="" src="image/hpstrans8.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 21:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 11:</b>&nbsp;<font size="-2">[hpstrans9.png]</font><img width="" src="image/hpstrans9.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 22:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 12:</b>&nbsp;<font size="-2">[hpstrans12.png]</font><img width="" src="image/hpstrans12.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 23:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;">
+<b>EXERCISE 13:</b>&nbsp;<font size="-2">[hpstrans14.png]</font><img width="" src="image/hpstrans14.png" style="vertical-align:text-top;">
 <center>
 <fieldset>
 <legend><b>Here is Exercise 19:</b></legend><img width="80%" src="image/hpsref19.png"></fieldset>
@@ -1012,16 +517,16 @@ name="Miscellaneous problems">Miscellaneous problems</a></h1>
 
 </p>
 ::<p>
-<b>EXERCISE 24:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;">
+<b>EXERCISE 14:</b>&nbsp;<font size="-2">[hpstrans21.png]</font><img width="" src="image/hpstrans21.png" style="vertical-align:text-top;">
 <p><a
-href="javascript:hideShow('lab4')"><b>[Hint]</b></a><div
-class="ans" id="lab4">
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">
 $f(x,z) = f(x) f(z-x)$ for $(x,y)\in{\mathbb R}^2.$
 </div></p>
 
 </p>
 ::<p>
-<b>EXERCISE 25:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;">
+<b>EXERCISE 15:</b>&nbsp;<font size="-2">[hpstrans23.png]</font><img width="" src="image/hpstrans23.png" style="vertical-align:text-top;">
 <center>
 <fieldset>
 <legend><b>Here is Exercise 38:</b></legend><img width="80%" src="image/hpsrefs1.png"></fieldset>
@@ -1029,11 +534,11 @@ $f(x,z) = f(x) f(z-x)$ for $(x,y)\in{\mathbb R}^2.$
 
 </p>
 ::<p>
-<b>EXERCISE 26:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 16:</b>&nbsp;<font size="-2">[hpstrans24.png]</font><img width="" src="image/hpstrans24.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 27:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
+<b>EXERCISE 17:</b>&nbsp;<font size="-2">[hpspdf7.png]</font><img width="" src="image/hpspdf7.png" style="vertical-align:text-top;"></p>
 ::<p>
-<b>EXERCISE 28:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;">
+<b>EXERCISE 18:</b>&nbsp;<font size="-2">[hpspdf11.png]</font><img width="" src="image/hpspdf11.png" style="vertical-align:text-top;">
 <center>
 <fieldset>
 <legend><b>Here is Exercise 4:</b></legend><img width="80%" src="image/hpsrefs2.png"></fieldset>
