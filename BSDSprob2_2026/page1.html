@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Tue Jul 14 15:31:16 IST 2026</i>
+Wed Jul 15 14:33:56 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -171,33 +171,39 @@ Tue Jul 14 15:31:16 IST 2026</i>
 </li>
 <li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10095">Multivariate function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100D9">Jacobian</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100CF">Jacobian</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N10106">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N10111">Problem set</a>
 </li>
-<li>2. <a href="#N10109">Review of the univariate case</a>
+<li>2. <a href="#N10187">Univariate Jacobian formula (review)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10121">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101D8">Problem set</a>
 </li>
-<li>3. <a href="#N10124">Multivariate Jacobian formula</a>
+<li>3. <a href="#N1020D">Multivariate Jacobian formula</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101D4">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10210">Theory</a>
 </li>
-<li>4. <a href="#N1020A">Special case: (Affine) linear tranforms</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10273">Example</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10233">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N102E4">Problem set</a>
 </li>
-<li>5. <a href="#N10236">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<li>4. <a href="#N10342">Project: Box-Muller transform</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10293">Problem set</a>
+<li>5. <a href="#N10345">Special case: (Affine) linear tranforms</a>
 </li>
-<li>6. <a href="#N10296">Geometry in the univariate case</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1036E">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N102E2">Problem set</a>
+<li>6. <a href="#N103B5">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </li>
-<li>7. <a href="#N10316">Geometry in the multivariate case</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10471">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N103ED">Problem set </a>
+<li>7. <a href="#N104BD">Geometry in the univariate case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N10509">Problem set</a>
+</li>
+<li>8. <a href="#N1053D">Geometry in the multivariate case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;8.1. <a href="#N10597">Problem set </a>
 </li>
 </ul>
 <hr/>
@@ -295,43 +301,112 @@ In general, each of the output numbers is a function of all the input numbers.
  These are called the
  <b><font color="red" size="40">component function</font></b>s. 
 <p></p>
-For example, our $\phi$  has component functions $\phi_1(x_1,x_2) = x_1,$  $\phi_2(x_1,x_2) = x_1+x_2$  and
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;The $\phi$ from the last example  has component functions $\phi_1(x_1,x_2) = x_1,$ 
+ $\phi_2(x_1,x_2) = x_1+x_2$  and
  $\phi_2(x_1,x_2) = x_2^2.$  
 Note that, as in the  case of the first and third components, not all the input variables
  need to appear explicitly in all the components.
-<p></p>
-
-<p>
-<b>EXERCISE 1:</b>&nbsp;How many component functions does $\phi:{\mathbb R}^6\rightarrow{\mathbb R}^2$  have? $6?$  or $2?$</p>
+ ■
+</p>
 
 <p></p>
 
 <h2>
-<a name="N100D9"><span class="header">1.3</span>.
+<a name="N100CF"><span class="header">1.3</span>.
 Jacobian</a>
 </h2>
 Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m$  be a function with $i$-th component function denoted by
- $\phi_i(x_1,...,x_n).$ Assume that $\pd {\phi_i}{x_j}$  is defined for all $i,j.$ 
+ $\phi_i(x_1,...,x_n).$ Assume that the partial derivative $\pd {\phi_i}{x_j}$  is
+ defined for all $i,j.$ 
  Then the Jacobian matrix of $\phi$  is defined as the $m\times n$  matrix with $(i,j)$-th entry 
 $$\pd{\phi_i}{x_j}.$$
+Notice the order of the Jacobian matrix: it is $m\times n$  and not $n\times m.$  
 <p>
-<b>EXAMPLE 4:</b>&nbsp;Find Jacobian of $\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)$<p></p>
+<b>EXAMPLE 5:</b>&nbsp;
+Let $\phi:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
+ of the Jacobian.
+<p></p>
 <b>SOLUTION:</b>
-The Jacobian is going to be a $3\times 2 $ matrix:
-$$\left[\begin{array}{ccccccccccc}1 &amp; 0\\1 &amp; 1\\2x_1 &amp; 0
+The component functions are
+ $\phi_1(x_1,x_2) = \sin(x_1x_2)$  and $\phi_2(x_1,x_2) = x_1-x_2^2.$  
+<p></p>
+In our case 
+$$\begin{eqnarray*}
+\frac{\partial \phi_1}{\partial x_1} &amp; = &amp; x_2\cos (x_1x_2),\\
+\frac{\partial \phi_1}{\partial x_2} &amp; = &amp; x_1\cos (x_1x_2),\\
+\frac{\partial \phi_2}{\partial x_1} &amp; = &amp; 1\\
+\frac{\partial \phi_2}{\partial x_2} &amp; = &amp; -2x_2.
+\end{eqnarray*}$$
+So the Jacobian is 
+$$\left[\begin{array}{ccccccccccc}x_2\cos (x_1x_2) &amp; x_1\cos (x_1x_2)\\ 1 &amp; -2x_2
 \end{array}\right].$$
+Its determinant is 
+$$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).$$
  ■
-</p>
+</p>  
  
 <h2>
-<a name="N10106"><span class="header">1.4</span>.
+<a name="N10111"><span class="header">1.4</span>.
 Problem set</a>
 </h2>
 
+<p>
+<b>EXERCISE 1:</b>&nbsp;Consider the random vector $(X,Y)$, where $X,Y$  are iid $N(0,1)$  random
+ variables. If we generate a random sample of size 100 of this random variable, how will the scatterplot look like?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Consider the random vector $(X,X)$, where $X$  is a $N(0,1)$  random
+ variable. If we generate  a random sample of size 100 of this random vector, how will the scatterplot look like?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;How many component functions does $\phi:{\mathbb R}^6\rightarrow{\mathbb R}^2$  have? $6?$  or $2?$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Find Jacobian of $\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;Compute the Jacobian matrix for $\phi(x,y,z) = (sin(2x+3y),x^2z).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;What is the Jacobian matrix for the transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $\phi(\v x) = A\v
+ x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;If $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is given by $\phi(\v x) = A\v
+ x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$, then show
+ that $\phi$  is one-one if and only if $A$  is nonsingular.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;If $\phi:{\mathbb R}^2\rightarrow{\mathbb R}^2$  is a one-one function, then must both its component functions also be one-one?</p> 
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;If $\phi:{\mathbb R}^2\rightarrow{\mathbb R}^2$  has one-one component functions, then must $\phi$  itself also be one-one?</p> 
+
+<p></p>
+
 <h1>
-<a name="N10109"><span class="header">2</span>. Review of the univariate case</a>
+<a name="N10187"><span class="header">2</span>. Univariate Jacobian formula (review)</a>
 </h1>
-We already know this (at least we <i>should</i> !):
+You already know this (at least you <i>should</i> !):
 <center>
 <fieldset>
 <legend><b>Excerpt from Probability I notes</b></legend><img width="80%" src="image/jac1.png"></fieldset>
@@ -341,15 +416,72 @@ Here $\phi$  is assumed to be strictly monotone and differentiable. Actually, we
  made sense. 
 <p></p>
 
+<p>
+<b>EXAMPLE 6:</b>&nbsp;Let $X$ have exponential distribution with rate $\lambda&gt;0.$  Find the density of $X^2.$<p></p>
+<b>SOLUTION:</b>
+Here $X$  has density $f(x) = \left\{\begin{array}{ll} \lambda e^{-\lambda x}&\text{if }x &gt; 0\\ 0&\text{otherwise.}\end{array}\right..$  
+<p></p>
+Also $\phi:(0,\infty)\rightarrow(0,\infty)$  is a bijection, with differentiable $\phi ^{-1}(y) = \sqrt y.$  
+So $X^2$  has density
+$$\begin{eqnarray*}
+g(y) 
+&amp; = &amp; f(\phi ^{-1}(y)) \left| \frac{d\phi ^{-1}(y)}{dy} \right|\\
+&amp; = &amp; \left\{\begin{array}{ll}\lambda e^{-\lambda\sqrt y} \left| \frac{1}{2\sqrt y} \right|&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right.\\
+&amp; = &amp; \left\{\begin{array}{ll}\frac{ \lambda e^{-\lambda\sqrt y}}{2\sqrt y} &\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right..
+\end{eqnarray*}$$
+<font color="red">
+<pre>
+g = function(y) {exp(-2*sqrt(y))/sqrt(y)}
+x = rexp(1000,rate=2)
+hist(x^2,prob=T)
+curve(g,add=T)
+</pre>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+g = function(y) {exp(-2*sqrt(y))/sqrt(y)}
+x = rexp(1000,rate=2)
+hist(x^2,prob=T)
+curve(g,add=T)
+`));"/>
+  ■
+</p>
+
 <h2>
-<a name="N10121"><span class="header">2.1</span>.
+<a name="N101D8"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
+<p>
+<b>EXERCISE 10:</b>&nbsp;If $X$  has exponential distribution with rate $\lambda&gt;0,$  find the density of $\log X.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;If $X\sim Unif(0,1)$  then what is the density of $\cos X$?</p>  
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;If $X$  has density $f(x),$  and $a,b\in{\mathbb R}$  are fixed, then find the density of $aX+b.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;If $X\sim Unif\left(-\frac \pi2,\frac \pi2\right),$  find the density of $\tan X.$</p>
+
+<p></p>
+
 <h1>
-<a name="N10124"><span class="header">3</span>. Multivariate Jacobian formula</a>
+<a name="N1020D"><span class="header">3</span>. Multivariate Jacobian formula</a>
 </h1>
-In higher dimensions, we want to have $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n.$  Now, if $n\geq 2,$  then 
+
+<h2>
+<a name="N10210"><span class="header">3.1</span>.
+Theory</a>
+</h2>
+In higher dimensions, we shall first consider transforms of the form $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n.$  
+If $n\geq 2,$  
 we do not have the concept of
  monotonicity (since there is no natural
  ordering in ${\mathbb R}^n$  for $n\geq 2$).
@@ -363,7 +495,7 @@ Next we need to know two things:
 <ul>
 <li>How to define differentiability for functions from ${\mathbb R}^n$  to ${\mathbb R}^n.$
 </li>
-<li>how to compute the derivative (Jacobian) of such a function.</li>
+<li>How to compute the derivative (Jacobian) of such a function.</li>
 </ul>
 You should know both of these from your Mathematics II course. Here I have put together a <a href="muldiff.html">quick refresher</a>.
 The refresher is also provided in the 
@@ -374,8 +506,8 @@ $$g(y) =  f(\phi ^{-1}(y)) \left| \frac{d}{dy}\phi ^{-1}(y) \right|$$
 to get the following theorem. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $\v X$  be an ${\mathbb R}^n$-valued random vector. Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
-bijection with differentiable inverse. Let $\v Y = \phi(\v X).$ 
+Let $\v X$  be an $n$-dimensional random vector. Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  be a
+one-one with differentiable inverse. Let $\v Y = \phi(\v X).$ 
  Then $\v Y$  has density
 $$g(\v y) = f(\phi ^{-1}(\v y)) J,$$
 where $J$  is the absolute determinant of Jacobian of $\phi ^{-1}(\v y).$
@@ -383,11 +515,19 @@ where $J$  is the absolute determinant of Jacobian of $\phi ^{-1}(\v y).$
  We shall not prove this theorem here. This is actually just a restatement of the change of variable formula for multivariate
  integration that you have learned in Mathematics II. 
 <p></p>
-Let us digest the theorem with an example. 
+Most of the time our $\v X$  will take values only in some subset $S\subseteq {\mathbb R}^n.$  Then we need $\phi$  to
+ be one-one only over $S.$  Also $\phi ^{-1}$  then is defined over only $\phi(S).$  
+<p></p>
+
+<h2>
+<a name="N10273"><span class="header">3.2</span>.
+Example</a>
+</h2>
+
 <p></p>
 
 <p>
-<b>EXAMPLE 5:</b>&nbsp;
+<b>EXAMPLE 7:</b>&nbsp;
 Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y_1 =
  X_1X_2$  and $Y_2 = X_1.$  Find the joint
  density of $\v Y = (Y_1,Y_2).$  
@@ -395,9 +535,11 @@ Let $\v X = (X_1,X_2)$  be uniformly distributed over $[1,2]\times[3,4].$ Let $Y
 <b>SOLUTION:</b>
 Let $S = [1,2]\times[3,4].$  
 <p></p>
+This has area 1. So $\v X $ has density
+$$f(x_1,x_2) = \left\{\begin{array}{ll}1&\text{if }(x_1,x_2)\in S\\ 0&\text{otherwise.}\end{array}\right..$$
 Here the transform is $\phi(x_1,x_2) = (x_1x_2,x_1).$
 <p></p>
-Clearly, $\phi:S\rightarrow \phi(S)$  is a bijection,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
+Clearly, $\phi:S\rightarrow \phi(S)$  is one-one,  because given $y_1=x_1x_2$  and $y_2=x_1$   you can recover $(x_1,x_2)\in[1,2]\times[3,4]$ 
  uniquely. 
 <p></p>
 The inverse transform is $\phi ^{-1}(y_1,y_2) = \left(y_2,\frac{y_1}{y_2}\right).$
@@ -429,23 +571,35 @@ Sketching these restrictions we get this region:
 </p>
 
 <h2>
-<a name="N101D4"><span class="header">3.1</span>.
+<a name="N102E4"><span class="header">3.3</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
+<b>EXERCISE 14:</b>&nbsp;If $(X,Y)$  has joint density $f(x)=\left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\ 0&\text{otherwise.}\end{array}\right.$,
  then find the joint density of $(X+Y, X-Y).$ </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
+<b>EXERCISE 15:</b>&nbsp;If $(X,Y)$  is uniformly distributed over $[0,1]\times[0,2]$, then find the joint density of $(X^2,X+Y).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
+<b>EXERCISE 16:</b>&nbsp;If $X,Y$  are iid $N(0,1)$  random variables, and $(R,\Theta)$  is the polar
+ representation of $(X,Y),$  then find the density of $(R,\Theta).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 17:</b>&nbsp;If $X,Y$  are iid exponential random variables with rate 1, and $(R,\Theta)$  is the polar
+ representation of $(X,Y),$  then find the density of $(R,\Theta).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 18:</b>&nbsp;If $(X,Y)$  is uniformly distributed over the red rectangle below, then find
 non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independent.
 <center>
 <table width="100%">
@@ -458,58 +612,168 @@ non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independe
 </table>
 </center>
 
+<p>
+<b>Hint:</b>
+<blockquote>The answer is not unique.</blockquote>
 </p>
 
+</p>
+
+<p></p>
+
 <h1>
-<a name="N1020A"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
+<a name="N10342"><span class="header">4</span>. Project: Box-Muller transform</a>
 </h1>
-If our transformation is $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the form $\phi(\v x) = A\v x + \v b,$  where $A_{n\times n}$ 
- is a fixed matrix, and $\v b$  is a fixed vector, then $\phi$  is a a bijection if any only if $A$  is nonsingular.
- In this case, the Jacobian of $ \phi ^{-1}$  is $A ^{-1}.$  So, if the density of $\v X$  is $f(\v x),$ 
- then density of $\v Y$  is $g(\v y) = \frac{1}{|A|} f( A ^{-1} (\v x - \v b)).$
+
+<h1>
+<a name="N10345"><span class="header">5</span>. Special case: (Affine) linear tranforms</a>
+</h1>
+If our transformation $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the form $\phi(\v x) = A\v x + \v b,$  where $A_{n\times n}$ 
+ is a fixed matrix, and $\v b$  is a fixed vector, then $\phi$  is a a bijection if and only if $A$  is nonsingular.
+ In this case, $\phi ^{-1}(\v y) = A ^{-1}(\v y-\v b ),$  with Jacobian 
+ $A ^{-1}.$  So, if the density of $\v X$  is $f(\v x),$ 
+ then density of $\v Y$  is $g(\v y) = f( A ^{-1} (\v y - \v b)) |det(A ^{-1})| = \frac{1}{|det(A)|}
+ f( A ^{-1} (\v y - \v b)).$
 <p></p>
 
 <h2>
-<a name="N10233"><span class="header">4.1</span>.
+<a name="N1036E"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
+<p>
+<b>EXERCISE 19:</b>&nbsp;Let $(X,Y)\sim Unif([0,1]\times[0,2]).$  Find the joint density of $(U,V),$  where
+ $U = X+2Y+1$, $V = 3X+Y.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 20:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\
+ 0&\text{otherwise.}\end{array}\right.,$  then find the joint density of $(X+Y,X-Y).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 21:</b>&nbsp;If $X,Y$  are iid Cauchy, then find the joint density of $((X+Y)/2, X+1).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;If $X,Y,Z$  are iid $N(0,1)$  random variables, Find the joint density of
+ $A\left[\begin{array}{ccccccccccc}X\\Y\\Z
+\end{array}\right]$  where $A$  is some fixed nonsingular matrix and $\v b$  is some fixed vector.</p>
+
+<p></p>
+
 <h1>
-<a name="N10236"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<a name="N103B5"><span class="header">6</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </h1>
-So far we have been talking only about trasnformas from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
+So far we have been talking only about transforms from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
  where $m\neq n?$  
 <p></p>
 If $m &gt; n,$  then it can be shown (with help from measure theory beyond the present scope) that $\phi(\v X)$  cannot
  have a density even if $\v X$  has. So we shall not discuss this case here. 
 <p></p>
-But, it is quite common to have the $m &lt; n$  case. In this case, the Jacobian formula is not applicable directly. However,
- we can "pad up" $\phi$  to make the codomain equal to ${\mathbb R}^n$  keeping the padded function bijective. Here is
- an example. 
+But, it is quite common to have the $m &lt; n$  case. In this case, the Jacobian formula is not applicable directly,
+because the Jacobian mx in this case is not square, and hence we cannot take its determinant. 
+However,
+ we can "pad up" $\phi$  to make the codomain equal to ${\mathbb R}^n$,  while keeping the padded function bijective.
 <p></p>
 
 <p>
-<b>EXAMPLE 6:</b>&nbsp;We are given the joint density of $(X,Y)$  and want to find the joint density of
- $2X+3Y.$  How can you "pad it up" and use the Jacobian formula?<p></p>
+<b>EXAMPLE 8:</b>&nbsp;Let the joint density of $(X,Y)$ be 
+$$f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right..$$
+Find the joint density of
+ $2X+3Y.$<p></p>
 <b>SOLUTION:</b>
-Here the function is $\phi(x,y) = 2x+3y.$  Since the codomain is ${\mathbb R},$  we make it
+Here the function is $\phi_1(x,y) = 2x+3y.$  Since the codomain is ${\mathbb R},$  we make it
  ${\mathbb R}^2$  by padding it with another
- function of our choice, say $\xi(x,y) = x.$  Then the padded function is $(x,y)\mapsto (2x+3y,x).$  This is a
-bijective function from ${\mathbb R}^2$  to ${\mathbb R}^2.$  So we can let $V = X,$  and find the joint density of
- $(U,V)$  from that of $(X,Y)$  using the Jacobian formula. Then we can integrate out $V$  to find the marginal
- density of $U.$
+ function of our choice, say $\phi_2(x,y) = x.$  Then the padded function is $\phi(x,y)\mapsto (2x+3y,x).$  This is a
+bijective function from ${\mathbb R}^2$  to ${\mathbb R}^2.$  Taking $(u,v) = (2x+3y,x)$  the
+ inverse transform is $(x,y) = \left(v,\frac{u-2v}{3}\right),$  with Jacobian $\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac 13 &amp;
+ -\frac 23
+\end{array}\right].$  Its absolute determinant is $\frac 13.$  
+So the joint density of
+ $(U,V)$  is 
+$$g(u,v) = \frac 13f\left(v,\frac{u-2v}{3}\right) =\left\{\begin{array}{ll}\frac{u+v}{3}&\text{if }0\leq v,\frac{u-2v}{3}\leq 1\\ 0&\text{otherwise.}\end{array}\right..$$ 
+In other words, 
+$$g(u,v)  =\left\{\begin{array}{ll}$\frac{u+v}{3}$&\text{if }(u,v)\in T\\ 0&\text{otherwise.}\end{array}\right.,$$ 
+where $T$  is the red region below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/marden1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Next, we shall  integrate out $V$  to find the marginal
+ density of $U.$  This will be done in three parts:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/marden2.png"></th>
+</tr>
+<tr>
+<th>The three parts</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+When $u\in[0,2],$  we have 
+$$\int_{-\infty}^\infty g(u,v)\, dv = \frac 13 \int_0^{u/2} u+v\, dv = \frac{5u^2}{24}.$$
+When $u\in[2,3],$  we have 
+$$\int_{-\infty}^\infty g(u,v)\, dv = \frac 13 \int_0^1 u+v\, dv = \frac u3+\frac 16.$$
+When $u\in[3,5],$  we have 
+$$\int_{-\infty}^\infty g(u,v)\, dv = \frac 13 \int_{(u-3)/2}^1 u+v\, dv = \frac{-5u^2+26u-5}{24}.$$
+Otherwise, the integral is 0.
+<p></p>
+Thus, the density of $U$  is 
+$$g(u) = \left\{\begin{array}{ll}\frac{5u^2}{24}&\text{if }u\in[0,2]\\\frac u3+\frac 16&\text{if }u\in[2,3]\\\frac{-5u^2+26u-5}{24}&\text{if }u\in[3,5]\\ 0&\text{otherwise.}\end{array}\right..$$
+<center>
+<fieldset>
+<legend><b>A graph of the density</b></legend><img width="80%" src="image/densplot.png"></fieldset>
+</center>
+
+<p></p>
  ■
 </p>
 
 <p></p>
 
 <h2>
-<a name="N10293"><span class="header">5.1</span>.
+<a name="N10471"><span class="header">6.1</span>.
 Problem set</a>
 </h2>
 
+<p>
+<b>EXERCISE 23:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X+Y$  by "padding" it up with $X.$</p>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X+Y$  by "padding" it up with $Y.$
+Did you get the same answer as in the exercise above?
+</p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;Let $X,Y$ be iid Cauchy random variables. Find density of $\frac{X+Y}{2}.$</p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X-Y.$</p>
+
+<p>
+<b>EXERCISE 27:</b>&nbsp;Let $(X,Y)$  have uniform density over $[1,2]\times[3,4].$  Find the density of $XY.$</p>
+
+<p>
+<b>EXERCISE 28:</b>&nbsp;Let $X,Y$ be iid exponential random variables with rate $1.$  Find density of $\frac XY.$
+</p>
+
+<p></p>
+
 <h1>
-<a name="N10296"><span class="header">6</span>. Geometry in the univariate case</a>
+<a name="N104BD"><span class="header">7</span>. Geometry in the univariate case</a>
 </h1>
 
 <p></p>
@@ -570,12 +834,12 @@ to  compensate by growing taller,
 <p></p>
 
 <h2>
-<a name="N102E2"><span class="header">6.1</span>.
+<a name="N10509"><span class="header">7.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;
+<b>EXERCISE 29:</b>&nbsp;
 If $X$  has uniform distribution over (2,4)
 then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian formula
  algeraically. Think in terms of which part
@@ -585,7 +849,7 @@ then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian for
 <p></p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
+<b>EXERCISE 30:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
  Guess the form of the density of $Y.$  Do you see why we needed the transform to be bijective in our intuition?
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
@@ -596,8 +860,11 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 </p>
 
 <h1>
-<a name="N10316"><span class="header">7</span>. Geometry in the multivariate case</a>
+<a name="N1053D"><span class="header">8</span>. Geometry in the multivariate case</a>
 </h1>
+We have seen the geometric interpretation of the univariate Jacobian formula. Now we shall do the same for its multivariate
+ version.
+<p></p>
 First let us understand how a function from ${\mathbb R}^2$  to ${\mathbb R}^2$  may be visualised graphically. 
 <center>
 <table width="100%">
@@ -609,14 +876,15 @@ First let us understand how a function from ${\mathbb R}^2$  to ${\mathbb R}^2$ 
 </tr>
 </table>
 </center>
-The above picture shows the effect of the function $\phi(x_1,x_2)=\big( (2x_1+x_2)^2,\, (x_1-x_2)^3\big)$ 
+The above picture shows the effect of the function $\phi(x,y)=\big( (2x+y)^2,\, (x-y)^3\big)$ 
  on the rectangle $[1,2]\times[3,4].$  Notice how the square grid has been deformed unevenly. The diagram also shows
- the positions of three points (red, green and blue) before and after the transform. The green and
- blue squares were of equal area originally. But after the transform blue region has much larger
- area than the green one. 
+ the positions of three points (red, green and blue) and two square adjacent to them before and after the
+ transform. The green and
+ blue squares were of equal area originally. But after the transform blue region has expanded, while 
+the green one has shrunk in area. 
 <p></p>
-We want to measure which square will grow and which square will be squeezed. For this we consider
- some point $(a,b)$   in the domain, and a little square $[a,a+\delta x]\times[b , b+ \delta y].$  
+We want to measure how much a square will expand or shrink in area. For this we consider
+a typical point $(a,b)$   in the domain, and a little square $[a,a+\delta]\times[b , b+ \delta].$  
 <center>
 <table width="100%">
 <tr>
@@ -641,12 +909,18 @@ Let us zoom in upon the little square (before and after the transformation):
 If the two components of $\phi(x,y)$  are called $u(x,y)$  and $v(x,y),$  then 
  $$\begin{eqnarray*}
 \phi(a, b) &amp; = &amp; (u(a, b), v(a, b)),\\
-\phi(a+\delta x, b) &amp; = &amp; (u(a+\delta, b), v(a+\delta, b))\approx 
+\phi(a+\delta, b) &amp; = &amp; (u(a+\delta, b), v(a+\delta, b))\\
+\phi(a, b+\delta y) &amp; = &amp; (u(a, b+\delta x), v(a, b+\delta)).
+\end{eqnarray*}$$
+Now, since $\delta$  is "small" we can write $u(a+\delta,b)\approx \pd u x \delta,$  etc. So we have
+ $$\begin{eqnarray*}
+\phi(a, b) &amp; = &amp; (u(a, b), v(a, b)),\\
+\phi(a+\delta, b) &amp; = &amp; (u(a+\delta, b), v(a+\delta, b))\approx 
 \left(u(a,b)+\pd u x\delta, v(a,b)+\pd v  x \delta\right)\\
 \phi(a, b+\delta y) &amp; = &amp; (u(a, b+\delta x), v(a, b+\delta))\approx \left(u(a,b)+\pd u y \delta, v(a,b)+\pd v
  y \delta\right).
 \end{eqnarray*}$$
-So after the transform, the little green square is approximately the following parallelogram:
+Thus, after the transform, the little green square is approximately the following parallelogram:
 <center>
 <table width="100%">
 <tr>
@@ -657,94 +931,53 @@ So after the transform, the little green square is approximately the following p
 </tr>
 </table>
 </center>
-The blue edge is given by the vector $\left(\pd u x, \pd v  x  \right)\delta,$  and red side by the vector
+The blue side is given by the vector $\left(\pd u x, \pd v  x  \right)\delta,$  and the red side by the vector
  $\left(\pd u y, \pd v  y \right)\delta.$
 <p></p>
-Now, it is known that the area of a parallelogram with sides given by $(a,b)$  and
- $(c,d)$  is $\left|\det\left[\begin{array}{ccccccccccc}a &amp; c\\b &amp; d
-\end{array}\right]\right|.$
+Now, we shall use the following standard result from linear algebra. 
+<center>
+<fieldset>
+<legend><b>Fact from linear algebra</b></legend><img width="80%" src="image/jacoex4.png"></fieldset>
+</center>
 Hence the area of the green parallelogram is 
 $$\left| \det\left[\begin{array}{ccccccccccc}\pd u x &amp; \pd u y\\\pd v x &amp; \pd v y
-\end{array}\right]\right| \delta^2,$$
-evaluated at $(a,b).$  Since the original green square had area $\delta^2,$  hence the scaling factor is given
+\end{array}\right]\right| \delta^2.$$
+Since the original green square had area $\delta^2,$  hence the scaling factor is given
  by the absolute determinant of the Jacobian.
 <p></p>
- into the curve of $\phi(a,y)$  and blue line changes into the curve of $\phi(x,b).$ 
- When $x$  increases from $a$  to $a+\delta x,$  the corresponding change in
- $\phi(x,b)$  is from $\phi(a,b)$  to  
-<p></p>
-
-<p>
-<b>EXAMPLE 7:</b>&nbsp;
-Let $f:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
- of the Jacobian.
-<p></p>
-<b>SOLUTION:</b>
-Note that $f$  consists of two function $f_1,f_2:{\mathbb R}^2,\rightarrow{\mathbb R}.$  These are its <b><font color="red" size="40">component</font></b>  functions,
- $f_1(x_1,x_2) = \sin(x_1x_2)$  and $f_2(x_1,x_2) = x_1-x_2^2.$  
-<p></p>
-The Jacobian is a $2\times 2$  matrix with $(i,j)$-th entry $\frac{\partial f_i}{\partial x_j}.$  Note that each
- row is devoted to a single $f_i$  and each column to a single $x_j.$  In general, if we had $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ 
- the matrix would have been $m\times n.$  
-<p></p>
-In our case 
-$$\begin{eqnarray*}
-\frac{\partial f_1}{\partial x_1} &amp; = &amp; x_2\cos (x_1x_2),\\
-\frac{\partial f_1}{\partial x_2} &amp; = &amp; x_1\cos (x_1x_2),\\
-\frac{\partial f_2}{\partial x_1} &amp; = &amp; 1\\
-\frac{\partial f_2}{\partial x_2} &amp; = &amp; -2x_2.
-\end{eqnarray*}$$
-So the Jacobian is 
-$$\left[\begin{array}{ccccccccccc}x_2\cos (x_1x_2) &amp; x_1\cos (x_1x_2)\\ 1 &amp; -2x_2
-\end{array}\right].$$
-Its determinant is 
-$$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).$$
- ■
-</p>  
-
-<p></p>
-
-<blockquote>
-<fieldset>
-<legend><img src="image/alert.png"></legend>
-</fieldset>If all this looks like unmotivated magic, you might benefit from 
-<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
- that I have made for Jacobians</a>. The video is about 21 min long, which is too long for my taste. You may like to navigate
- to relevant portions of it using the following guideline:
-<ul>
-
-<li>
-<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=0s">0:00</a>: Casting univariate
- differentiation into a form suitable for generalisation. </li>
-
-<li>
-<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=271s">4:31</a>: Differentiation of $f:{\mathbb R}^n\rightarrow{\mathbb R}^m$ </li>
-
-<li>
-<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=514s">8:34</a>: Geometric
- interpretation of Jacobian matrices </li>
-
-<li>
-<a href="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&amp;t=905s">15:05</a>: Why
- care about the determinant of Jacobian </li>
-
-</ul>
-
-</blockquote>
 
 <h2>
-<a name="N103ED"><span class="header">7.1</span>.
+<a name="N10597"><span class="header">8.1</span>.
 Problem set </a>
 </h2>
 
+<p></p>
+
 <p>
-<b>EXERCISE 7:</b>&nbsp;Compute the Jacobian matrix for $\phi(x,y) = (x+y,x-y).$</p>
+<b>EXERCISE 31:</b>&nbsp;Consider the transformation $\phi(x,y) = (x,2y).$  Sketch how a square
+ $[a,a+\delta]\times[b,b+\delta]$  is transformed by it. By what factor does the area grow?
+ Answer this both from your diagram as well as Jacobian determinant.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;What is the Jacobian matrix for the transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $\phi(\v x) = A\v
- x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$?</p>
+<b>EXERCISE 32:</b>&nbsp;Consider the transformation $\phi(x,y) = (x,-2y).$  Sketch how a square
+ $[a,a+\delta]\times[b,b+\delta]$  is transformed by it. By what factor does the area grow?
+ Answer this both from your diagram as well as Jacobian determinant.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 33:</b>&nbsp;Consider the transformation $\phi(x,y) = (2x,3y).$  Sketch how a square
+ $[a,a+\delta]\times[b,b+\delta]$  is transformed by it. By what factor does the area grow?
+ Answer this both from your diagram as well as Jacobian determinant.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 34:</b>&nbsp;Consider the transformation $\phi(x,y) = (x^3,y^3).$  Which point in the region
+ $[1,2]\times[3,4]$  experiences the maximum stretch?
+</p>
 
 <p></p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>

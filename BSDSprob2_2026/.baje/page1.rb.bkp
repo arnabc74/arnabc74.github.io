@@ -37,7 +37,8 @@ Then <M>(X,Y)</M>  is a random vector.
 <LI><M>Y(\omega) = <CASES>1<IF>\omega_2=Head</IF> 0<IF>\omega_2=Tail</IF></CASES></M></LI>
 <LI><M>Z(\omega) = <CASES>\omega_1<IF>\omega_2=Head</IF> \omega_1+3<IF>\omega_2=Tail</IF></CASES></M></LI>
 </UL>
-Then <M>(X,Y,Z,XY)</M>  is a random vector. 
+Then <M>(X,Y,Z,XY)</M>  is a random vector. This example shows how "a coin toss and a die roll" is considered a <I>single</I> 
+ random experiment. 
 </EXM>
 
 <HEAD2>Multivariate function</HEAD2>
@@ -52,33 +53,104 @@ In general, each of the output numbers is a function of all the input numbers.
  These are called the
  <TERM>component function</TERM>s. 
  
-For example, our <M>\phi</M>  has component functions <M>\phi_1(x_1,x_2) = x_1,</M>  <M>\phi_2(x_1,x_2) = x_1+x_2</M>  and
+<EXM>The <M>\phi</M> from the last example  has component functions <M>\phi_1(x_1,x_2) = x_1,</M> 
+ <M>\phi_2(x_1,x_2) = x_1+x_2</M>  and
  <M>\phi_2(x_1,x_2) = x_2^2.</M>  
 Note that, as in the  case of the first and third components, not all the input variables
  need to appear explicitly in all the components.
-
-<EXR>How many component functions does <M>\phi:\rr^6\to\rr^2</M>  have? <M>6?</M>  or <M>2?</M></EXR>
+</EXM>
 
 <HEAD2>Jacobian</HEAD2>
 Let <M>\phi:\rr^n\to\rr^m</M>  be a function with <M>i</M>-th component function denoted by
- <M>\phi_i(x_1,...,x_n).</M> Assume that <M>\pd {\phi_i}{x_j}</M>  is defined for all <M>i,j.</M> 
+ <M>\phi_i(x_1,...,x_n).</M> Assume that the partial derivative <M>\pd {\phi_i}{x_j}</M>  is
+ defined for all <M>i,j.</M> 
  Then the Jacobian matrix of <M>\phi</M>  is defined as the <M>m\times n</M>  matrix with <M>(i,j)</M>-th entry 
 <D>\pd{\phi_i}{x_j}.</D>
-<EXM>Find Jacobian of <M>\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)</M><SOLN/>
-The Jacobian is going to be a <M>3\times 2 </M> matrix:
-<D><MAT>1 & 0\\1 & 1\\2x_1 & 0</MAT>.</D>
-</EXM>
+Notice the order of the Jacobian matrix: it is <M>m\times n</M>  and not <M>n\times m.</M>  
+<EXM>
+Let <M>\phi:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find the determinant
+ of the Jacobian.
+<SOLN/>
+The component functions are
+ <M>\phi_1(x_1,x_2) = \sin(x_1x_2)</M>  and <M>\phi_2(x_1,x_2) = x_1-x_2^2.</M>  
+
+In our case 
+<MULTILINE>
+[[\partial \phi_1][\partial x_1]] & = & x_2\cos (x_1x_2),\\
+[[\partial \phi_1][\partial x_2]] & = & x_1\cos (x_1x_2),\\
+[[\partial \phi_2][\partial x_1]] & = & 1\\
+[[\partial \phi_2][\partial x_2]] & = & -2x_2.
+</MULTILINE>
+So the Jacobian is 
+<D><MAT>x_2\cos (x_1x_2) & x_1\cos (x_1x_2)\\ 1 & -2x_2</MAT>.</D>
+Its determinant is 
+<D>x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).</D>
+</EXM>  
  <HEAD2>Problem set</HEAD2>
-<HEAD1>Review of the univariate case</HEAD1>
-We already know this (at least we <I>should</I> !):
+<EXR>Consider the random vector <M>(X,Y)</M>, where <M>X,Y</M>  are iid <M>N(0,1)</M>  random
+ variables. If we generate a random sample of size 100 of this random variable, how will the scatterplot look like?</EXR>
+
+
+<EXR>Consider the random vector <M>(X,X)</M>, where <M>X</M>  is a <M>N(0,1)</M>  random
+ variable. If we generate  a random sample of size 100 of this random vector, how will the scatterplot look like?</EXR>
+
+
+<EXR>How many component functions does <M>\phi:\rr^6\to\rr^2</M>  have? <M>6?</M>  or <M>2?</M></EXR>
+
+<EXR>Find Jacobian of <M>\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)</M>
+</EXR>
+
+<EXR>Compute the Jacobian matrix for <M>\phi(x,y,z) = (sin(2x+3y),x^2z).</M></EXR>
+
+<EXR>What is the Jacobian matrix for the transform <M>\phi:\rr^n\to\rr^n</M>  where <M>\phi(\v x) = A\v
+ x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
+
+<EXR>If <M>\phi:\rr^n\to\rr^n</M>  is given by <M>\phi(\v x) = A\v
+ x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>, then show
+ that <M>\phi</M>  is one-one if and only if <M>A</M>  is nonsingular.</EXR>
+
+<EXR>If <M>\phi:\rr^2\to\rr^2</M>  is a one-one function, then must both its component functions also be one-one?</EXR> 
+
+<EXR>If <M>\phi:\rr^2\to\rr^2</M>  has one-one component functions, then must <M>\phi</M>  itself also be one-one?</EXR> 
+ 
+<HEAD1>Univariate Jacobian formula (review)</HEAD1>
+You already know this (at least you <I>should</I> !):
 <IMG web="jac1.png">Excerpt from Probability I notes</IMG>
 Here <M>\phi</M>  is assumed to be strictly monotone and differentiable. Actually, we also need
  <M>\phi ^{-1}</M>  to be differentiable. The strict monotonicity guaranteed that <M>\phi</M>  was one-one, so that <M>\phi ^{-1}</M> 
  made sense. 
 
+<EXM>Let <M>X</M> have exponential distribution with rate <M>\lambda>0.</M>  Find the density of <M>X^2.</M><SOLN/>
+Here <M>X</M>  has density <M>f(x) = <CASES> \lambda e^{-\lambda x}<IF>x > 0</IF> 0<ELSE/></CASES>.</M>  
+
+Also <M>\phi:(0,\infty)\to(0,\infty)</M>  is a bijection, with differentiable <M>\phi ^{-1}(y) = \sqrt y.</M>  
+So <M>X^2</M>  has density
+<MULTILINE>
+g(y) 
+& = & f(\phi ^{-1}(y)) [|[ [[d\phi ^{-1}(y)][dy]] ]|]\\
+& = & <CASES>\lambda e^{-\lambda\sqrt y} [|[ [[1][2\sqrt y]] ]|]<IF>y>0</IF> 0<ELSE/></CASES>\\
+& = & <CASES>[[ \lambda e^{-\lambda\sqrt y}][2\sqrt y]] <IF>y>0</IF> 0<ELSE/></CASES>.
+</MULTILINE>
+<RC>
+g = function(y) {exp(-2*sqrt(y))/sqrt(y)}
+x = rexp(1000,rate=2)
+hist(x^2,prob=T)
+curve(g,add=T)
+</RC>
+ </EXM>
 <HEAD2>Problem set</HEAD2>
+<EXR>If <M>X</M>  has exponential distribution with rate <M>\lambda>0,</M>  find the density of <M>\log X.</M></EXR>
+
+<EXR>If <M>X\sim Unif(0,1)</M>  then what is the density of <M>\cos X</M>?</EXR>  
+
+<EXR>If <M>X</M>  has density <M>f(x),</M>  and <M>a,b\in\rr</M>  are fixed, then find the density of <M>aX+b.</M></EXR>
+
+<EXR>If <M>X\sim Unif(*(-[[\pi2]],[[\pi2]])*),</M>  find the density of <M>\tan X.</M></EXR>
+
 <HEAD1>Multivariate Jacobian formula</HEAD1>
-In higher dimensions, we want to have <M>\phi:\rr^n\to\rr^n.</M>  Now, if <M>n\geq 2,</M>  then 
+<HEAD2>Theory</HEAD2>
+In higher dimensions, we shall first consider transforms of the form <M>\phi:\rr^n\to\rr^n.</M>  
+If <M>n\geq 2,</M>  
 we do not have the concept of
  monotonicity (since there is no natural
  ordering in <M>\rr^n</M>  for <M>n\geq 2</M>).
@@ -90,7 +162,7 @@ So, to generalise to higher dimensions, we shall drop the strict monotonicity co
 
 Next we need to know two things:
 <UL><LI>How to define differentiability for functions from <M>\rr^n</M>  to <M>\rr^n.</M>
-</LI><LI>how to compute the derivative (Jacobian) of such a function.</LI></UL>
+</LI><LI>How to compute the derivative (Jacobian) of such a function.</LI></UL>
 You should know both of these from your Mathematics II course. Here I have put together a <LINK to="muldiff.html">quick refresher</LINK>.
 The refresher is also provided in the 
 <LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=0s">first 8 minutes of this video</LINK>.
@@ -99,8 +171,8 @@ We shall imitate our familiar  univariate Jacobian formula
 <D>g(y) =  f(\phi ^{-1}(y)) [|[ [[d][dy]]\phi ^{-1}(y) ]|]</D>
 to get the following theorem. 
 <THM>
-Let <M>\v X</M>  be an <M>\rr^n</M>-valued random vector. Let <M>\phi:\rr^n\to\rr^n</M>  be a
-bijection with differentiable inverse. Let <M>\v Y = \phi(\v X).</M> 
+Let <M>\v X</M>  be an <M>n</M>-dimensional random vector. Let <M>\phi:\rr^n\to\rr^n</M>  be a
+one-one with differentiable inverse. Let <M>\v Y = \phi(\v X).</M> 
  Then <M>\v Y</M>  has density
 <D>g(\v y) = f(\phi ^{-1}(\v y)) J,</D>
 where <M>J</M>  is the absolute determinant of Jacobian of <M>\phi ^{-1}(\v y).</M>
@@ -108,7 +180,10 @@ where <M>J</M>  is the absolute determinant of Jacobian of <M>\phi ^{-1}(\v y).<
  We shall not prove this theorem here. This is actually just a restatement of the change of variable formula for multivariate
  integration that you have learned in Mathematics II. 
 
-Let us digest the theorem with an example. 
+Most of the time our <M>\v X</M>  will take values only in some subset <M>S\seq \rr^n.</M>  Then we need <M>\phi</M>  to
+ be one-one only over <M>S.</M>  Also <M>\phi ^{-1}</M>  then is defined over only <M>\phi(S).</M>  
+
+<HEAD2>Example</HEAD2>
 
 <EXM>
 Let <M>\v X = (X_1,X_2)</M>  be uniformly distributed over <M>[1,2]\times[3,4].</M> Let <M>Y_1 =
@@ -117,9 +192,11 @@ Let <M>\v X = (X_1,X_2)</M>  be uniformly distributed over <M>[1,2]\times[3,4].<
 <SOLN/>
 Let <M>S = [1,2]\times[3,4].</M>  
 
+This has area 1. So <M>\v X </M> has density
+<D>f(x_1,x_2) = <CASES>1<IF>(x_1,x_2)\in S</IF> 0<ELSE/></CASES>.</D>
 Here the transform is <M>\phi(x_1,x_2) = (x_1x_2,x_1).</M>
 
-Clearly, <M>\phi:S\to \phi(S)</M>  is a bijection,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>(x_1,x_2)\in[1,2]\times[3,4]</M> 
+Clearly, <M>\phi:S\to \phi(S)</M>  is one-one,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>(x_1,x_2)\in[1,2]\times[3,4]</M> 
  uniquely. 
 
 The inverse transform is <M>\phi ^{-1}(y_1,y_2) = (*(y_2,[[y_1][y_2]])*).</M>
@@ -144,39 +221,96 @@ Sketching these restrictions we get this region:
 
 <EXR>If <M>(X,Y)</M>  is uniformly distributed over <M>[0,1]\times[0,2]</M>, then find the joint density of <M>(X^2,X+Y).</M></EXR>
 
+<EXR>If <M>X,Y</M>  are iid <M>N(0,1)</M>  random variables, and <M>(R,\Theta)</M>  is the polar
+ representation of <M>(X,Y),</M>  then find the density of <M>(R,\Theta).</M></EXR>
+
+<EXR>If <M>X,Y</M>  are iid exponential random variables with rate 1, and <M>(R,\Theta)</M>  is the polar
+ representation of <M>(X,Y),</M>  then find the density of <M>(R,\Theta).</M></EXR>
+
+
 <EXR>If <M>(X,Y)</M>  is uniformly distributed over the red rectangle below, then find
 non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>  are independent.
 <CIMG web="rotrect.png"></CIMG>
+<HINT>The answer is not unique.</HINT>
 </EXR>
+
+<HEAD1>Project: Box-Muller transform</HEAD1>
 <HEAD1>Special case: (Affine) linear tranforms</HEAD1>
-If our transformation is <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = A\v x + \v b,</M>  where <M>A_{n\times n}</M> 
- is a fixed matrix, and <M>\v b</M>  is a fixed vector, then <M>\phi</M>  is a a bijection if any only if <M>A</M>  is nonsingular.
- In this case, the Jacobian of <M> \phi ^{-1}</M>  is <M>A ^{-1}.</M>  So, if the density of <M>\v X</M>  is <M>f(\v x),</M> 
- then density of <M>\v Y</M>  is <M>g(\v y) = [[1][|A|]] f( A ^{-1} (\v x - \v b)).</M>
+If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = A\v x + \v b,</M>  where <M>A_{n\times n}</M> 
+ is a fixed matrix, and <M>\v b</M>  is a fixed vector, then <M>\phi</M>  is a a bijection if and only if <M>A</M>  is nonsingular.
+ In this case, <M>\phi ^{-1}(\v y) = A ^{-1}(\v y-\v b ),</M>  with Jacobian 
+ <M>A ^{-1}.</M>  So, if the density of <M>\v X</M>  is <M>f(\v x),</M> 
+ then density of <M>\v Y</M>  is <M>g(\v y) = f( A ^{-1} (\v y - \v b)) |det(A ^{-1})| = [[1][|det(A)|]]
+ f( A ^{-1} (\v y - \v b)).</M>
 
 <HEAD2>Problem set</HEAD2>
+<EXR>Let <M>(X,Y)\sim Unif([0,1]\times[0,2]).</M>  Find the joint density of <M>(U,V),</M>  where
+ <M>U = X+2Y+1</M>, <M>V = 3X+Y.</M></EXR>
+
+<EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y) = <CASES>x+y<IF>x,y\in[0,1]</IF>
+ 0<ELSE/></CASES>,</M>  then find the joint density of <M>(X+Y,X-Y).</M></EXR>
+
+<EXR>If <M>X,Y</M>  are iid Cauchy, then find the joint density of <M>((X+Y)/2, X+1).</M></EXR>
+
+<EXR>If <M>X,Y,Z</M>  are iid <M>N(0,1)</M>  random variables, Find the joint density of
+ <M>A<MAT>X\\Y\\Z</MAT></M>  where <M>A</M>  is some fixed nonsingular matrix and <M>\v b</M>  is some fixed vector.</EXR>
+
 <HEAD1>Transformations from <M>\rr^n</M>  to <M>\rr^m</M></HEAD1>
-So far we have been talking only about trasnformas from <M>\rr^n</M>  to <M>\rr^n.</M>  What if we have a transform <M>\phi:\rr^n\to\rr^m,</M> 
+So far we have been talking only about transforms from <M>\rr^n</M>  to <M>\rr^n.</M>  What if we have a transform <M>\phi:\rr^n\to\rr^m,</M> 
  where <M>m\neq n?</M>  
 
 If <M>m > n,</M>  then it can be shown (with help from measure theory beyond the present scope) that <M>\phi(\v X)</M>  cannot
  have a density even if <M>\v X</M>  has. So we shall not discuss this case here. 
 
-But, it is quite common to have the <M>m < n</M>  case. In this case, the Jacobian formula is not applicable directly. However,
- we can "pad up" <M>\phi</M>  to make the codomain equal to <M>\rr^n</M>  keeping the padded function bijective. Here is
- an example. 
+But, it is quite common to have the <M>m < n</M>  case. In this case, the Jacobian formula is not applicable directly,
+because the Jacobian mx in this case is not square, and hence we cannot take its determinant. 
+However,
+ we can "pad up" <M>\phi</M>  to make the codomain equal to <M>\rr^n</M>,  while keeping the padded function bijective.
 
-<EXM>We are given the joint density of <M>(X,Y)</M>  and want to find the joint density of
- <M>2X+3Y.</M>  How can you "pad it up" and use the Jacobian formula?<SOLN/>
-Here the function is <M>\phi(x,y) = 2x+3y.</M>  Since the codomain is <M>\rr,</M>  we make it
+<EXM>Let the joint density of <M>(X,Y)</M> be 
+<D>f(x,y)=<CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>.</D>
+Find the joint density of
+ <M>2X+3Y.</M><SOLN/>
+Here the function is <M>\phi_1(x,y) = 2x+3y.</M>  Since the codomain is <M>\rr,</M>  we make it
  <M>\rr^2</M>  by padding it with another
- function of our choice, say <M>\xi(x,y) = x.</M>  Then the padded function is <M>(x,y)\mapsto (2x+3y,x).</M>  This is a
-bijective function from <M>\rr^2</M>  to <M>\rr^2.</M>  So we can let <M>V = X,</M>  and find the joint density of
- <M>(U,V)</M>  from that of <M>(X,Y)</M>  using the Jacobian formula. Then we can integrate out <M>V</M>  to find the marginal
- density of <M>U.</M>
+ function of our choice, say <M>\phi_2(x,y) = x.</M>  Then the padded function is <M>\phi(x,y)\mapsto (2x+3y,x).</M>  This is a
+bijective function from <M>\rr^2</M>  to <M>\rr^2.</M>  Taking <M>(u,v) = (2x+3y,x)</M>  the
+ inverse transform is <M>(x,y) = (*(v,[[u-2v][3]])*),</M>  with Jacobian <M><MAT>0 & 1\\[[13]] &
+ -[[23]]</MAT>.</M>  Its absolute determinant is <M>[[13]].</M>  
+So the joint density of
+ <M>(U,V)</M>  is 
+<D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][3]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
+In other words, 
+<D>g(u,v)  =<CASES><M>[[u+v][3]]</M><IF>(u,v)\in T</IF> 0<ELSE/></CASES>,</D> 
+where <M>T</M>  is the red region below.
+<CIMG web="marden1.png"></CIMG>
+Next, we shall  integrate out <M>V</M>  to find the marginal
+ density of <M>U.</M>  This will be done in three parts:
+<CIMG web="marden2.png">The three parts</CIMG>
+
+When <M>u\in[0,2],</M>  we have 
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_0^{u/2} u+v\, dv = [[5u^2][24]].</D>
+When <M>u\in[2,3],</M>  we have 
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_0^1 u+v\, dv = [[u3]]+[[16]].</D>
+When <M>u\in[3,5],</M>  we have 
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_{(u-3)/2}^1 u+v\, dv = [[-5u^2+26u-5][24]].</D>
+Otherwise, the integral is 0.
+
+Thus, the density of <M>U</M>  is 
+<D>g(u) = <CASES>[[5u^2][24]]<IF>u\in[0,2]</IF>[[u3]]+[[16]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][24]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
 </EXM>
 
 <HEAD2>Problem set</HEAD2>
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  Find the density of <M>X+Y</M>  by "padding" it up with <M>X.</M></EXR>
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  Find the density of <M>X+Y</M>  by "padding" it up with <M>Y.</M>
+Did you get the same answer as in the exercise above?
+</EXR>
+<EXR>Let <M>X,Y</M> be iid Cauchy random variables. Find density of <M>[[X+Y][2]].</M></EXR>
+<EXR>Let <M>(X,Y)</M>  have joint density <M>f(x,y).</M>  Find the density of <M>X-Y.</M></EXR>
+<EXR>Let <M>(X,Y)</M>  have uniform density over <M>[1,2]\times[3,4].</M>  Find the density of <M>XY.</M></EXR>
+<EXR>Let <M>X,Y</M> be iid exponential random variables with rate <M>1.</M>  Find density of <M>[[XY]].</M>
+</EXR>
+
 <HEAD1>Geometry in the univariate case</HEAD1>
 
 In order to generalise this to the multivariate case, we need to understand the
@@ -222,89 +356,67 @@ then roughly sketch the density of <M>Y = [[1X]].</M>  Don't apply the Jacobian 
  <M>y=[[14]]</M>  is governed by the density of <M>X</M>  at <M>x=[[12]]</M>  as well as <M>x=-[[12]].</M></ANS>
  </EXR>
 <HEAD1>Geometry in the multivariate case</HEAD1>
+We have seen the geometric interpretation of the univariate Jacobian formula. Now we shall do the same for its multivariate
+ version.
+
 First let us understand how a function from <M>\rr^2</M>  to <M>\rr^2</M>  may be visualised graphically. 
 <CIMG web="jaco.png">A transform from <M>\rr^2</M>  to <M>\rr^2</M></CIMG>
-The above picture shows the effect of the function <M>\phi(x_1,x_2)=(#( (2x_1+x_2)^2,\, (x_1-x_2)^3)#)</M> 
+The above picture shows the effect of the function <M>\phi(x,y)=(#( (2x+y)^2,\, (x-y)^3)#)</M> 
  on the rectangle <M>[1,2]\times[3,4].</M>  Notice how the square grid has been deformed unevenly. The diagram also shows
- the positions of three points (red, green and blue) before and after the transform. The green and
- blue squares were of equal area originally. But after the transform blue region has much larger
- area than the green one. 
+ the positions of three points (red, green and blue) and two square adjacent to them before and after the
+ transform. The green and
+ blue squares were of equal area originally. But after the transform blue region has expanded, while 
+the green one has shrunk in area. 
 
-We want to measure which square will grow and which square will be squeezed. For this we consider
- some point <M>(a,b)</M>   in the domain, and a little square <M>[a,a+\delta x]\times[b , b+ \delta y].</M>  
+We want to measure how much a square will expand or shrink in area. For this we consider
+a typical point <M>(a,b)</M>   in the domain, and a little square <M>[a,a+\delta]\times[b , b+ \delta].</M>  
 <CIMG web="jacoex1.png">Notice how the little green square changes</CIMG>
 Let us zoom in upon the little square (before and after the transformation):
 <CIMG web="jacoex2.png">A closer look</CIMG>
 If the two components of <M>\phi(x,y)</M>  are called <M>u(x,y)</M>  and <M>v(x,y),</M>  then 
  <MULTILINE>
 \phi(a, b) & = & (u(a, b), v(a, b)),\\
-\phi(a+\delta x, b) & = & (u(a+\delta, b), v(a+\delta, b))\approx 
+\phi(a+\delta, b) & = & (u(a+\delta, b), v(a+\delta, b))\\
+\phi(a, b+\delta y) & = & (u(a, b+\delta x), v(a, b+\delta)).
+</MULTILINE>
+Now, since <M>\delta</M>  is "small" we can write <M>u(a+\delta,b)\approx \pd u x \delta,</M>  etc. So we have
+ <MULTILINE>
+\phi(a, b) & = & (u(a, b), v(a, b)),\\
+\phi(a+\delta, b) & = & (u(a+\delta, b), v(a+\delta, b))\approx 
 (*(u(a,b)+\pd u x\delta, v(a,b)+\pd v  x \delta)*)\\
 \phi(a, b+\delta y) & = & (u(a, b+\delta x), v(a, b+\delta))\approx (*(u(a,b)+\pd u y \delta, v(a,b)+\pd v
  y \delta)*).
 </MULTILINE>
-So after the transform, the little green square is approximately the following parallelogram:
+Thus, after the transform, the little green square is approximately the following parallelogram:
 <CIMG web="jacoex3.png">A parallelogram</CIMG>
-The blue edge is given by the vector <M>(*(\pd u x, \pd v  x  )*)\delta,</M>  and red side by the vector
+The blue side is given by the vector <M>(*(\pd u x, \pd v  x  )*)\delta,</M>  and the red side by the vector
  <M>(*(\pd u y, \pd v  y )*)\delta.</M>
 
-Now, it is known that the area of a parallelogram with sides given by <M>(a,b)</M>  and
- <M>(c,d)</M>  is <M>[|[\det<MAT>a & c\\b & d</MAT>]|].</M>
+Now, we shall use the following standard result from linear algebra. 
+<IMG web="jacoex4.png">Fact from linear algebra</IMG>
 Hence the area of the green parallelogram is 
-<D>[|[ \det<MAT>\pd u x & \pd u y\\\pd v x & \pd v y</MAT>]|] \delta^2,</D>
-evaluated at <M>(a,b).</M>  Since the original green square had area <M>\delta^2,</M>  hence the scaling factor is given
+<D>[|[ \det<MAT>\pd u x & \pd u y\\\pd v x & \pd v y</MAT>]|] \delta^2.</D>
+Since the original green square had area <M>\delta^2,</M>  hence the scaling factor is given
  by the absolute determinant of the Jacobian.
 
- into the curve of <M>\phi(a,y)</M>  and blue line changes into the curve of <M>\phi(x,b).</M> 
- When <M>x</M>  increases from <M>a</M>  to <M>a+\delta x,</M>  the corresponding change in
- <M>\phi(x,b)</M>  is from <M>\phi(a,b)</M>  to  
- 
 
-<EXM>
-Let <M>f:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find the determinant
- of the Jacobian.
-<SOLN/>
-Note that <M>f</M>  consists of two function <M>f_1,f_2:\rr^2,\to\rr.</M>  These are its <TERM>component</TERM>  functions,
- <M>f_1(x_1,x_2) = \sin(x_1x_2)</M>  and <M>f_2(x_1,x_2) = x_1-x_2^2.</M>  
-
-The Jacobian is a <M>2\times 2</M>  matrix with <M>(i,j)</M>-th entry <M>[[\partial f_i][\partial x_j]].</M>  Note that each
- row is devoted to a single <M>f_i</M>  and each column to a single <M>x_j.</M>  In general, if we had <M>f:\rr^n\to\rr^m</M> 
- the matrix would have been <M>m\times n.</M>  
-
-In our case 
-<MULTILINE>
-[[\partial f_1][\partial x_1]] & = & x_2\cos (x_1x_2),\\
-[[\partial f_1][\partial x_2]] & = & x_1\cos (x_1x_2),\\
-[[\partial f_2][\partial x_1]] & = & 1\\
-[[\partial f_2][\partial x_2]] & = & -2x_2.
-</MULTILINE>
-So the Jacobian is 
-<D><MAT>x_2\cos (x_1x_2) & x_1\cos (x_1x_2)\\ 1 & -2x_2</MAT>.</D>
-Its determinant is 
-<D>x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (x_1x_2).</D>
-</EXM>  
-
-<Q><ALERT/>If all this looks like unmotivated magic, you might benefit from 
-<LINK  to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R">this introductory  video
- that I have made for Jacobians</LINK>. The video is about 21 min long, which is too long for my taste. You may like to navigate
- to relevant portions of it using the following guideline:
-<UL>
-<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=0s">0:00</LINK>: Casting univariate
- differentiation into a form suitable for generalisation. </LI>
-<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=271s">4:31</LINK>: Differentiation of <M>f:\rr^n\to\rr^m</M> </LI>
-<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=514s">8:34</LINK>: Geometric
- interpretation of Jacobian matrices </LI>
-<LI><LINK to="https://youtu.be/zm3L8Dw79xA?si=IVz7PWwway-myQ3R&t=905s">15:05</LINK>: Why
- care about the determinant of Jacobian </LI>
-</UL>
-</Q>
 <HEAD2>Problem set </HEAD2>
-<EXR>Compute the Jacobian matrix for <M>\phi(x,y) = (x+y,x-y).</M></EXR>
 
-<EXR>What is the Jacobian matrix for the transform <M>\phi:\rr^n\to\rr^n</M>  where <M>\phi(\v x) = A\v
- x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
+<EXR>Consider the transformation <M>\phi(x,y) = (x,2y).</M>  Sketch how a square
+ <M>[a,a+\delta]\times[b,b+\delta]</M>  is transformed by it. By what factor does the area grow?
+ Answer this both from your diagram as well as Jacobian determinant.</EXR>
 
+<EXR>Consider the transformation <M>\phi(x,y) = (x,-2y).</M>  Sketch how a square
+ <M>[a,a+\delta]\times[b,b+\delta]</M>  is transformed by it. By what factor does the area grow?
+ Answer this both from your diagram as well as Jacobian determinant.</EXR>
 
+<EXR>Consider the transformation <M>\phi(x,y) = (2x,3y).</M>  Sketch how a square
+ <M>[a,a+\delta]\times[b,b+\delta]</M>  is transformed by it. By what factor does the area grow?
+ Answer this both from your diagram as well as Jacobian determinant.</EXR>
+
+<EXR>Consider the transformation <M>\phi(x,y) = (x^3,y^3).</M>  Which point in the region
+ <M>[1,2]\times[3,4]</M>  experiences the maximum stretch?
+</EXR>
 
 
 

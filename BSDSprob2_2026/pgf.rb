@@ -1,62 +1,105 @@
 @{<NOTE>
 <M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
 <CSS>branch.css</CSS>
-<HEAD1>Generating functions</HEAD1>
 
-<HEAD2>Probability generating functions (pgf)</HEAD2>
-<HEAD1 u="https://youtu.be/MS8akAOsBlI">What is a PGF?</HEAD1>
-<DEFN name="Probability generating function (PGF)">Let a random variable <M>X</M>  take only nonnegative integer values. Then
+<HEAD1>Probability generating function (pgf)</HEAD1>
+<DEFN name="Probability generating function (pgf)">Let a random variable <M>X</M>  take only nonnegative integer values
+with <M>P(X=k) = p_k</M>  for <M>k=0,1,2,...</M>  Then
  its <TERM>probability
- generating function (PGF)</TERM>  is defined as the power series
+ generating function (pgf)</TERM>  is defined as the power series
 <D>p(t) = p_0 + p_1 t + p_2 t^2 +\cdots, </D>
-where <M>p_k = P(X=k)</M>  for <M>k=0,1,2,..</M>.
 </DEFN>
 
-<EXM>A random variable takes the values <M>1,2,5</M>  each with probability <M>[[13]].</M>  Find its PGF.<SOLN/>
+<EXM>A random variable takes the values <M>1,2,5</M>  each with probability <M>[[13]].</M>  Find its pgf.<SOLN/>
 <M>p(t) = [[13]](t+t^2+t^5)</M>.
  </EXM>
+<HEAD2>Problem set</HEAD2>
+<EXR>Find the pgf of a random variable with <M>Binom(n,p)</M>  distribution.</EXR>
+<EXR>Find the pgf of  <M>Poi(\lambda)</M>  distribution.</EXR>
+<EXR>Find the pgf of  <M>Geom(p)</M>  distribution that takes all nonnegative integer values.</EXR>
+<EXR>Find the pgf of  <M>Geom(p)</M>  distribution that takes all positive integer values.</EXR>
+<EXR>If <M>X</M>  has pgf <M>p(t),</M>  then what is the pgf of <M>X+1?</M></EXR>
+<EXR>If <M>p(t)</M>  is a pgf, then what must the value of <M>p(0)</M>  be?</EXR>
+<EXR>Let <M>P(X=n) = [[1][cn^2]]</M>  for <M>n\in\nn</M>  where <M>c = \sum_n [[1][n^2]] <
+ \infty.</M>  Find the pgf <M>p(t)</M>  of <M>X.</M>  Does it converge at
+ <M>t=[[12]]</M>? At <M>t=1?</M>  At <M>t=-1?</M>  At <M>t=2</M>?</EXR>
 
-::<EXR>(Easy) Find the PGF of a random variable with <M>Binom(n,p)</M>  distribution.</EXR>
-
-<HEAD1 u="https://youtu.be/bBF3gt0-JBk">Analytical properties</HEAD1>
-We have defined  PGF as a power series, but we have not mentioned anything about its convergence yet. 
+<HEAD1>Properties of pgf</HEAD1>
+As we have defined  pgf as a power series,  we need to talk about its convergence. 
 
 <THM>
-Any PGF <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>. 
+Any pgf <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>. 
 </THM>
-<PF>If <M>|t|\leq 1</M>, then <M>\sum_k |p_k t^k| \leq \sum_k p_k = 1</M>.</PF>
+<PF>If <M>|t|\leq 1</M>, then <M>\sum_k |p_k t^k| \leq \sum_k p_k = 1</M>. So we 
+have convergence by comparison test.</PF>
 
-::<EXR>(Easy) Think of a case where the radius of convergence is <M>\infty</M>.</EXR>
+<THM>A power series can be differentiated term by term any number of times term-by-term in the interior of its
+ interval of convergence. Also, if the power series converges at a boundary point of its interval of
+ convergence, we may compute its one-sided derivative using term-by-term differentiation.</THM><PF>Standard
+ theorem from real analysis.</PF>
 
-::<EXR>(Easy) Think of a case where the radius of convergence is <M>1</M>.</EXR>
 
-<THM>A power series can be differentiated term by term any number of times in the interior of its
- interval of convergence.</THM><PF>Standard theorem from real analysis.</PF>
 
-<HEAD1 u="https://youtu.be/9dtUu6bg6xM">Probabilistic properties</HEAD1>
+
 Thanks to the above theorem, 
-we can recover the probabilities from the PGF by repeated differentiation at <M>t=0</M>:
+we can recover the probabilities from the pgf by repeated differentiation at <M>t=0</M>:
 <D>p_n = [[p^{(n)}(0)][n!]]</D>.
 Hence we get the following theorem.
 <THM>
-If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative integer values, and they have PGFs matching
+If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative integer values, and they have pgf-s matching
  over any open neighbourhood of <M>0</M>, then their distributions must match.
 </THM>
 
-::<EXR>(Easy) Show that for <M>n\in\nn</M>  we have
-<D>E(X(X-1)\cdots (X-n+1)) = p^{(n)}(1)</D>.
-</EXR>
+<THM>If <M>X</M>  has pgf <M>p(t),</M>  then 
+<UL>
+<LI><M>p'(1) = E(X)</M></LI>
+<LI><M>p''(1) = E(X(X-1))</M></LI>
+<LI><M>p^{(k)}(1) = E(X(X-1)\cdots(X-k+1))</M></LI>
+</UL>
+</THM>
+<PF>Since <M>p(t)</M>  has radius of convergence at least <M>1,</M>  hence we may use term-by-term
+ differentiation any number of times at <M>t=1.</M>  </PF>
+<HEAD2>Problem set</HEAD2>
+<EXR> Think of a pgf where the radius of convergence is <M>\infty</M>.</EXR>
 
-::<EXR>(Easy) Show that <M>E(t^X) = p(t)</M>.</EXR>
+<EXR> Think of a pgf where the radius of convergence is <M>1</M>.</EXR>
 
-::<EXR>(Easy) Show that if <M>X,Y</M>  are independent random variables taking nonnegative integer values,
- with PGFs <M>\xi(t)</M>  and <M>\psi(t)</M>, then the PGF of <M>X+Y</M>  is
+<EXR>Show that a pgf must always be a nondecreasing function. Must it be a strictly increasing function?</EXR>
+
+<EXR>Show that a pgf must be a convex function (i.e., second derivative must be nonnegative). When
+ will it be strictly convex?</EXR>
+
+<EXR> Show that <M>E(t^X) = p(t)</M>.</EXR>
+
+<EXR> Show that if <M>X,Y</M>  are independent random variables taking nonnegative integer values,
+ with pgfs <M>\xi(t)</M>  and <M>\psi(t)</M>, then the pgf of <M>X+Y</M>  is
  <M>\xi(t)\psi(t)</M>.<ANS>Use the last exercise.</ANS></EXR>
+
+<EXR>Use pgf to show that if <M>X\sim Poi(\lambda)</M>  and <M>Y\sim Poi(\mu)</M>  are independent, then <M>X+Y\sim Poi(\lambda+\mu).</M></EXR>
+::<EXR>(Medium) <CIMG web="jt18.png"></CIMG>
+In this problem we are assuming that it converges for all <M>t\in\rr.</M>
+<ANS>
+(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
+ for <M>t\in[0,1]</M>). 
+
+So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
+
+Hence the result.
+
+(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
+
+Hence the result follows as in (a).
+</ANS>
+</EXR>
 
 <HEAD1>An application: Branching process</HEAD1>
 Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
- will again split into two. If it goes on like this, then we shall have<M>2^n</M>  cells in the <M>n</M>-th generation. Clearly
- understand how the generations are numbered. The initial cell belonged to generation 0. We shall
+ will again split into two. If it goes on like this, then we shall have <M>2^n</M>  cells in the
+ <M>n</M>-th generation (the initial cell belonged to generation 0). We shall
  call the number of cells in the <M>n</M>-th generation <M>X_n</M>. Thus, <M>X_n = 2^n</M>. Also,
  notice that when a cell splits into children, the original cell ceases to exist. 
 
@@ -64,12 +107,12 @@ Imagine a cell that will split into two cells after exactly one minute. Then, af
  branching process is a deterministic
  one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus <M>X_0 = 1</M>.
  After a minute this cell "splits into" a random number of cells. The number may be any
- nonnegative integer. In particular, we allow the number to be 0 or 1 with the following interpretations:
+ nonnegative integer. In particular, we also allow the number to be 0 or 1 with the following interpretations:
 <UL><LI>If the number is 0, then the
  original cell has died without leaving any children. </LI><LI>If the number is 1, then the original cell
  just continues into the next generation.  </LI></UL>
 This number is the size of generation 1. We shall call it <M>X_1</M>. Let the distribution of <M>X_1</M>  be
-given by <M>P(X_1=k) = p_k</M>  for <M>k=0,1,2,...</M>. 
+given by <M>P(X_1=k) = p_k</M>  for <M>k=0,1,2,...</M>. Obviously, <M>\sum_0^\infty p_k = 1.</M>
 
 After one more minute each cell in generation 1 will independently split into children following the same distribution. And
  the process will continue. 
@@ -77,44 +120,59 @@ After one more minute each cell in generation 1 will independently split into ch
 As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
 
 <HEAD2>Animation</HEAD2>
-<NUMINP id="generations" value="5" min="1"/>
+Simulate up to generation: <NUMINP id="generations" value="5" min="1"/>
 <BUTTON o="doit()">(Re)start</BUTTON>
 
-Cells will be shown as dots. The red dots denote cells that 
-have died without leaving any child. Try the animation a number of times to explore various possibilities. 
+Here the <TERM>progeny distribution</TERM>  is as follows.
+<TABLE>
+<TR><TH>Number of children</TH><TH>0</TH><TH>1</TH><TH>2</TH><TH>3</TH><TH>Total</TH></TR>
+<TR><TH>Probability</TH><TH>0.2</TH><TH>0.5</TH><TH>0.2</TH><TH>0.1</TH><TH>1</TH></TR>
+</TABLE>
+Cells will be shown as dots. Cells that 
+die without leaving any child are shown in red. Try the animation a number of times to explore various possibilities. 
 <SVG id="branchingTree" width="100%" height="600"/>
 <LOCSCRIPT>branch.js</LOCSCRIPT>
 
 
-<HEAD2>Math</HEAD2>
-We can do various interesting math with this process. But our aim is to show case a use of PGFs. So the problem we shall
- address is "What is the <TERM>extinction probability</TERM> for this process?" 
+<HEAD2>Extinction probability</HEAD2>
+We want to find the <TERM>extinction probability</TERM> for this process. 
 
-By extinction we mean the event that <M>X_n=0</M>  for some <M>n\in\nn</M>. Notice that if some <M>X_n=0</M>, then we must
+By <TERM>extinction</TERM> we mean the event that <M>X_n=0</M>  for some <M>n\in\nn</M>. Notice that if some <M>X_n=0</M>, then we must
  have <M>X_{n+1}= X_{n+2}=\cdots = 0</M>  also. So the extinction event is 
-<D>\bigcup_{n\in\nn}\{X_n=0\}</D>.
+<D>\bigcup_{n\in\nn}\{X_n=0\}.</D>
 Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probability is
  <M>\lim_{n\to\infty} P(X_n=0)=\theta</M>, say.  
 
-How to find it in terms of <M>p_0,p_1,p_2,..</M>.?
+We want to express <M>\theta</M> in terms of <M>p_0,p_1,p_2,..</M>.?
 
-<HEAD3>Simple cases</HEAD3>
- If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then the extinction probability is surely 1. 
+<HEAD2>Problem set</HEAD2>
+<EXR> If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then what is the extinction probability?</EXR>
 
-If <M>p_0>0</M>,  but <M>p_0+p_1 =1</M>  (which implies <M>p_2=p_3=\cdots=0</M>), then also  the extinction probability is
- 1 (why?) 
+<EXR>If <M>p_0=p_1=[[12]],</M>  then what will the extinction probability be?</EXR>
 
-In these cases, we had no births to counter the deaths. 
-But if <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have births, and the interaction between
- births and deaths becomes rather complicated. That is where PGFs come to our help.
+<EXR>If <M>p_0\in(0,1)</M>,  but <M>p_0+p_1 =1</M>  (which implies <M>p_2=p_3=\cdots=0</M>), then
+ find the extinction probability.
+</EXR>
+<EXR>If <M>p_0+p_1\in(0,1)</M>,  but <M>p_0+p_1+p_2 =1</M>  (which implies <M>p_3=p_4=\cdots=0</M>), then
+must the extinction probability be 1?
+</EXR>
 
-<HEAD3>Using PGF</HEAD3>
-Let <M>\xi(t)</M>  be the PGF of <M>X_1</M>. In other words, 
+<EXR>Find the extinction probability if <M>p_0=0.</M></EXR>
+
+<EXR>Find <M>P(X_2=0)</M>  for the progeny distribution used in the simulation above.</EXR>
+<HEAD1>Using pgf</HEAD1>
+In the simple cases, where <M>p_0+p_1=0</M>  or <M>p_0+p_1=1</M>, we either have no birth or no death. 
+But if <M>p_0>0</M>  and also <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have both deaths and births, and
+ the interaction between them
+becomes rather complicated. That is where pgfs come to our help.
+
+Let <M>\xi(t)</M>  be the pgf of the progeny distribution. In other words, 
 <D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
+Since <M>X_0=1,</M>  hence the pgf of <M>X_1</M>  is also <M>\xi(t).</M>
 
-The next exercise is of central importance. 
-::<EXR>(Medium) Show that <M>X_2 </M> has PGF <M>\xi_2(t)=\xi(\xi(t))</M>  for <M>|t| < 1</M>.
-<ANS>
+The next theorem is of central importance. 
+<THM><M>X_2 </M> has pgf <M>\xi_2(t)=\xi(\xi(t))</M>  for <M>|t| < 1</M>.</THM>
+<PF>
 <M>\xi_2(t) = E(t^{X_2}) = E(#( E(t^{X_2}|X_1) )#)</M>  by the tower property. 
 
 Let us compute <M>E(t^{X_2}|X_1=k)</M>  for <M>k=0,1,2,... </M>. In particular we shall focus on <M>k=3</M>  (the other cases
@@ -141,25 +199,40 @@ Clearly, the <M>3</M>  in the exponent came from our choice of <M>k</M>. So, in 
 Thus, <M>E(t^{X_2}) = E(#(E(t^{X_2}|X_1) )#) = \sum_{k=0}^\infty \xi(t)^k p_k =\xi(\xi(t))</M>.     
 
 Notice that convergence is not a problem, because we have assumed <M>|t| < 1</M>, and so <M>|\xi(t)| < 1</M>  as well. 
-</ANS>
-</EXR>
-
-::<EXR>(Medium) In general show that for <M>n\in\nn</M>  the PGF of <M>X_n</M>  is <M>\xi_n(t) =
- \xi_{n-1}(\xi(t))=(\underbrace{\xi\circ\cdots\circ\xi}_{n})(t)</M>.</EXR>
-
+</PF>
+In general, we have the following theorem.
+<THM>For <M>n\in\nn</M>,  the pgf of <M>X_n</M>  is <M>\xi_n(t) =
+ \xi_{n-1}(\xi(t))=(\underbrace{\xi\circ\cdots\circ\xi}_{n})(t)</M>.</THM>
+<PF>
+The proof is by induction on <M>n.</M>  We have already seen the <M>n=1</M>  and <M>n=2</M>  cases. The inductive step will
+ be done in the problem set below.
+</PF>
 Now <M>P(X_n=0) = \xi_n(0)</M>. 
 
 So the extinction probability is <M>\theta = \lim_n \xi_n(0)</M>. 
 
 Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)</M>. In other words, <M>\theta</M>  must
- be a <I>fixed point</I>  of the PGF. 
+ be a <I>fixed point</I>  of the pgf. 
 
-<HEAD3>Exploring fixed points</HEAD3>
+<HEAD2>Problem set</HEAD2>
+<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=1.</M></EXR>
+<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=[[13]]</M>  nd <M>p_1=[[23]].</M></EXR>
+<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=0.4, p_1=0.2, p_2=0.4.</M></EXR>
+
+<EXR>Show that <M>\xi_n(t) = \xi(\xi_{n-1}(t)).</M>  
+<HINT>Use the conditioning argument employed in
+ proof for <M>\xi_2(t)</M>  earlier.</HINT></EXR>
+
+<EXR>Is the sequence <M>(\xi_n(0))</M>  nonincreasing? Or nondecreasing?</EXR>
+
+<EXR>Is the sequence <M>(\xi_n(0))</M>  bounded?</EXR>
+
+
+<HEAD1>Exploring fixed points</HEAD1>
 How many fixed points can <M>\xi(t) </M> have? Surely <M>1</M>  is a fixed point, since <M>\xi(1) = 1</M>. If
  it is the only one, then
  <M>\theta</M>  must be <M>1</M>.
 
-::<EXR>(Easy) Show that in the simple cases discussed earlier <M>1</M>  is the only fixed point.</EXR>
 
 Notice that <M>\xi'(t)</M>  is always nonnegative. In fact, except in the trivial case of
  <M>p_0=1</M>, it is positive. So <M>\xi(t)</M>  is a strictly increasing function. Again, except
@@ -209,30 +282,7 @@ So the final answer is:
 <LI>If <M>p_1+2p_2+3p_3+\cdots \leq 1</M>, then <M>\theta=1</M>.</LI>
 <LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
-Could you arrive at this impressive answer without using PGF?  
+Could you arrive at this impressive answer without using pgf?  
 
-::<EXR>(Medium) <CIMG web="jt18.png"></CIMG>
-
-A brief note about probability generating functions: If <M>X</M>  takes non-negative integer values with <M>p_i = P(X=i)</M> 
- for <M>i=0,1,2,...</M> then its probability genrating function is 
-<D>\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.</D>
-Clearly this converges absolutely for <M>|t|\leq 1.</M>   In this problem we are assuming that it converges for all <M>t\in\rr.</M>
-<ANS>
-(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
-
-Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
- for <M>t\in[0,1]</M>). 
-
-So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
-
-Hence the result.
-
-(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
-
-Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
-
-Hence the result follows as in (a).
-</ANS>
-</EXR>
 
 </NOTE>@}

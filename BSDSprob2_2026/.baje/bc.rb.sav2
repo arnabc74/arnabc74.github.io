@@ -19,7 +19,7 @@ Suppose that <M>A_n = [*[ -[[1n]], 1-[[1n]] ]*].</M>  Find <M>\{A_n\io\}.</M>
 <SOLN/>
 You can think of this sequence as <M>[-1,0]</M>  travelling towards <M>[0,1].</M>  
 
-Here <M>\cup_{k\geq n} A_k = [*[ -[[1k]], 1)*).</M>
+Here <M>\cup_{k\geq n} A_k = [*[ -[[1n]], 1)*).</M>
 
 So <M>\{A_n\io\} = \cap_n \cup_{k\geq n} A_k = \cap_n [0, 1).</M>
 </EXM>
@@ -63,27 +63,8 @@ Do you see why we call it "eventually" (compare with the statement "We shall all
 
 <EXR>
 We shall say <M>A_n\to A </M> if <M>\{ A_n\ev\} = \{ A_n\io\} = A.</M>  Show that in this case <M>P(A_n)\to P(A).</M>
-This is a generalisation of the theorem on continuity of probability that you have learned in</EXR>
+This is a generalisation of the theorem on continuity of probability that you have learned in Probability I.</EXR>
 
-In Probability I you learned about continuity of probability. There you worked with monotone sequences only. That result
- may now be generalised to the following theorem.
-
-<THM>Let <M>(A_n), A</M>  be events in some probability space <M>(\Omega,calF,P).</M>   If
- <M>A_n\to A </M> then <M>P(A_n)\to P(A).</M></THM>
-<PF>
-Notice that <M>\cap_{k\geq n} A_k</M> s decrease to <M>\liminf A_n</M>  and <M>\cup_{k\geq n} A_k</M>
- s increase to <M>\limsup A_n</M>.
-
-So, by the continuity of  probability learned in Probability I, we have <M>P(\cap_{k\geq n} A_k)
- \to P(\liminf A_n)</M> 
- and <M>P(\cup_{k\geq n} A_k) \to P(\limsup A_n).</M>
-
-But <M>P(\cap_{k\geq n} A_k)\leq P(A_n) \leq P(\cup_{k\geq n} A_k).</M>
-
-So the result now follows from the sandwich law of limit.
-</PF>
-
-If you have followed this argument, the exercise below should be easy.
 
 <EXR>Let <M>(A_n)</M>  be a sequence of events with <M>P(\liminf A_n) = P(\limsup A_n) = p.</M>  Show that <M>P(A_n)\to p.</M></EXR>
 
@@ -133,6 +114,42 @@ P(A_n\io)
 & = & 1-P(\cup_n\cap_{k\geq n} A_k^c)<SINCE>by de Morgan</SINCE>\\
 </MULTILINE>
 </COMMENT>
+<HEAD2>Problem set</HEAD2>
+
+<EXR>If a coin with <M>P(head)=0.01</M>  is tossed repeatedly (independently of course), then find
+ the probability that there will be infinitely many heads.</EXR>
+<EXR>A fair coin is tossed independently infinitely many times. What is the chance that there
+ would be infinitely many consecutive heads?
+<HINT>Be careful: If <M>X_n</M>  denotes the outcome ofthe <M>n</M>-th toss, then <M>(X_1,X_2)</M>  is not
+ independent of <M>(X_2,X_3)</M>.</HINT>
+</EXR>
+<EXR>Let <M>(X_n)</M> be any jointly distributed sequence of <M>Unif(0,1)</M>  random variables. Show that
+ <M>P(*(X_n < [[1][n^2]] \io)*) = 0.</M> </EXR>
+
+<EXR>Let <M>(X_n)</M> be an iid sequence of <M>Unif(0,1)</M>  random variables. Show that
+ <M>P(*(X_n < [[1n]] \io)*) = 1.</M> </EXR>
+
+<EXR>Toss a fair coin repeatedly (independently). What is the probability that heads occur on
+ all <M>n</M>-th tosses where <M>n</M>  is a square number?
+<HINT>You really do not need the Borel Cantelli lemmas here.</HINT>
+</EXR>
+
+<EXR>
+Construct a sequence of events <M>(A_n)</M>  such that <M>\sum_n P(A_n) = \infty</M>  but <M>P(A_n\io) = 0.</M>
+</EXR>
+<COMMENT>All <M>A_n</M> s same.</COMMENT>
+
+
+<EXR>Consider <M>[-1,1]</M>  as a 1-dimensional dart board, 0 being the bull's eye. A drunkard is throwing
+ darts at this board hitting the board at any random points (all points equally likely). After the
+each attempt he gets a prize if he hits within <M>[[1n]]</M>  distance of the bull's eye (if
+it is the  <M>n</M>-th attempt). What is the chance that he gets infinitely many prizes? [Assume
+ infinite life for the guy, but don't drink to it!]</EXR>
+
+<EXR>Same problem as before except that  <M>[-1,1]</M> is replaced by the unit disc in
+ <M>\rr^2,</M>  the bull's eye being at the origin. 
+What is the chance that he gets at leaast one prize? Wht is theinfinitely many prizes? [Assume
+ infinite life for the guy, but don't drink to it!]</EXR>
 
 <HEAD1>Demonstrations</HEAD1>
 <HEAD2>Monkey typing Hamlet</HEAD2>

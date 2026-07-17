@@ -255,6 +255,11 @@ captured by the (joint) density of <M>(X,Y).</M>
 <CIMG web="gaumixscat.png"></CIMG></TH></TR></RAWTABLE>
 Observe how the random points crowd more densely near the peaks.
 </EXM>
+
+A special case that will occur frequntly in our discussions is  <M>Unif(S)</M>  for a bounded subset <M>S\seq\rr^2.</M>  Here
+ the density is a <M>[[1][area(S)]]</M>  over <M>S</M>  (and 0 outside). If we draw a random point from this density, the
+ point must lie inside <M>S</M>  and is equally likely to land anywhere in <M>S.</M>
+
 <HEAD2>Problem set</HEAD2>
 
 <EXR>I have a random sample of size 1000 from the <M>Unif(0,1)</M>  distribution. If I square all

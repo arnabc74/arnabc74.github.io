@@ -48,6 +48,7 @@ Let
  iff <M>\Sigma</M>  is diagonal.</THM>
 
 
+<HEAD2>Problem set</HEAD2>
 <HEAD1>Sampling distributions for normal sample</HEAD1>
 Our main theme in this page is the following theorem. 
 <THM>
@@ -121,7 +122,7 @@ Hence <M>[[S_n^2][\sigma^2]]\sim\k {n-1},</M>  as required.
 Notice that <M>S_n^2</M>  is a function of only <M>Y_1,...,Y_{n-1}</M>  only, which are
  independent of <M>Y_n,</M>  i.e., <M>\bar X_n,</M>  as required. 
 </PF>
-<HEAD2>Problem set <PS/></HEAD2>
+<HEAD2>Problem set</HEAD2>
 <EXR>
 Same set up as in the theorem above. What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
 a fixed number?
@@ -162,7 +163,7 @@ It should not be difficult to see that <M>t</M>-density is symmetric around 0. T
  to <M>\infty,</M>  the <M>t</M>-distribution approaches <M>N(0,1).</M>  For degrees of freedom more than 40, the <M>t</M>-density
  is virtually indisguishable from that of <M>N(0,1)</M>  density.
 
-<HEAD2>Problem set <PS/></HEAD2>
+<HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X_1,...,X_n</M>  be a random sample from <M>N(\mu,\sigma^2).</M>  Then what is the distribution of 
 <D>[[\sqrt n(\bar X-\mu)][\sqrt{\sum(X_i-\bar X)^2/(n-1)}]]?</D>
 </EXR>
@@ -190,7 +191,7 @@ f_Z(z)
 Hence the density of <M>[[nm]]Z</M>  is 
 <D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES> </D>
 
-<HEAD2>Problem set <PS/></HEAD2>
+<HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X_1,...,X_m</M>  and <M>Y_1,...,Y_n</M>  be random samples from
  <M>N(\mu_1,\sigma^2)</M>  and <M>N(\mu_2,\sigma^2)</M>, respectively (same <M>\sigma^2).</M>  
 Then what
