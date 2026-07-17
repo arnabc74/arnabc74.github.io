@@ -114,6 +114,13 @@ P(A_n\io)
 & = & 1-P(\cup_n\cap_{k\geq n} A_k^c)<SINCE>by de Morgan</SINCE>\\
 </MULTILINE>
 </COMMENT>
+<EXM>Show that if a monkey types a keyboard
+ randomly, then it will type the exact text of Hamlet infinitely often. 
+<SOLN/>
+Let the exact text of Hamlet have <M>h</M> letters.  Consider packets of <M>h</M>  letters. Let
+ <M>A_n</M>  be the event that the <M>n</M>-th packet is an exact copy of Hamlet. Then
+ <M>A_n</M>'s are independent and <M>P(A_n)>0.</M>  So <M>\sum_n P(A_n) = \infty.</M>  Hence by
+ the second Borel-Canteli lemma, <M>P(A_n\io)=1.</M>  </EXM>
 <HEAD2>Problem set</HEAD2>
 
 <EXR>If a coin with <M>P(head)=0.01</M>  is tossed repeatedly (independently of course), then find
@@ -151,15 +158,6 @@ it is the  <M>n</M>-th attempt). What is the chance that he gets infinitely many
 What is the chance that he gets at leaast one prize? Wht is the chance he gets infinitely many prizes?
 </EXR>
 
-<HEAD1>Demonstrations</HEAD1>
-<HEAD2>Monkey typing Hamlet</HEAD2>
-A common demonstration of the second Borel-Canteli lemma is show that if a monkey types a keyboard
- randomly, then it will type the exact text of Hamlet infinitely often. 
-
-Let the exact text of Hamlet have <M>h</M> letters.  Consider packets of <M>h</M>  letters. Let
- <M>A_n</M>  be the event that the <M>n</M>-th packet is an exact copy of Hamlet. Then
- <M>A_n</M>'s are independent and <M>P(A_n)>0.</M>  So <M>\sum_n P(A_n) = \infty.</M>  Hence by
- the second Borel-Canteli lemma, <M>P(A_n\io)=1.</M>  
 
 <EXR>However, if you want to just show that the monkey will surely write Hamlet <I>at least
  once</I>, then you really do not need

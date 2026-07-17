@@ -60,6 +60,8 @@ If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative
 <PF>Since <M>p(t)</M>  has radius of convergence at least <M>1,</M>  hence we may use term-by-term
  differentiation any number of times at <M>t=1.</M>  </PF>
 <HEAD2>Problem set</HEAD2>
+<EXR>Show that pgf maps <M>[0,1]</M>  to <M>[0,1],</M>  i.e., if <M>p(t)</M>  is a pgf, then <M>\forall t\in[0,1]~~p(t)\in[0,1].</M></EXR>
+
 <EXR> Think of a pgf where the radius of convergence is <M>\infty</M>.</EXR>
 
 <EXR> Think of a pgf where the radius of convergence is <M>1</M>.</EXR>
@@ -76,6 +78,25 @@ If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative
  <M>\xi(t)\psi(t)</M>.<ANS>Use the last exercise.</ANS></EXR>
 
 <EXR>Use pgf to show that if <M>X\sim Poi(\lambda)</M>  and <M>Y\sim Poi(\mu)</M>  are independent, then <M>X+Y\sim Poi(\lambda+\mu).</M></EXR>
+::<EXR>(Medium) <CIMG web="jt18.png"></CIMG>
+In this problem we are assuming that it converges for all <M>t\in\rr.</M>
+<ANS>
+(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
+ for <M>t\in[0,1]</M>). 
+
+So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
+
+Hence the result.
+
+(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
+
+Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
+
+Hence the result follows as in (a).
+</ANS>
+</EXR>
 
 <HEAD1>An application: Branching process</HEAD1>
 Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
@@ -198,7 +219,7 @@ Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)<
 <HEAD2>Problem set</HEAD2>
 <EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=1.</M></EXR>
 <EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=[[13]]</M>  nd <M>p_1=[[23]].</M></EXR>
-<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=0.5,</M></EXR>
+<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=0.4, p_1=0.2, p_2=0.4.</M></EXR>
 
 <EXR>Show that <M>\xi_n(t) = \xi(\xi_{n-1}(t)).</M>  
 <HINT>Use the conditioning argument employed in
@@ -214,12 +235,7 @@ How many fixed points can <M>\xi(t) </M> have? Surely <M>1</M>  is a fixed point
  it is the only one, then
  <M>\theta</M>  must be <M>1</M>.
 
-::<EXR>(Easy) Show that in the simple cases discussed earlier <M>1</M>  is the only fixed point.</EXR>
 
-Notice that <M>\xi'(t)</M>  is always nonnegative. In fact, except in the trivial case of
- <M>p_0=1</M>, it is positive. So <M>\xi(t)</M>  is a strictly increasing function. Again, except
- in the case where <M>p_0+p_1=1</M>, the second derivative <M>\xi''(t)</M>  is positive, and so
- <M>\xi(t)</M>  is a convex function. Such a function can intersect the <M>y=x </M> line at most twice. 
 
 <COMMENT>
 png("image/pgfplot.png")
@@ -232,21 +248,22 @@ dev.off()
 <EXM>If <M>p_0=0.1, p_1=0.5</M>  and <M>p_2=0.4</M>  (so the other <M>p_k</M>'s are all zeroes),
  then the graph of <M>\xi(t)</M>  looks as shown below.
 <CIMG web="pgfplot.png"></CIMG>
-</EXM>       
 You can notice two fixed points (i.e., points where the black curve cuts the red diagonal). One of the fixed points is at
- <M>t=1</M>. The other is in <M>(0,1)</M>. Which of the two fixed points will <M>\theta</M>  equal? 
+ <M>t=1</M>. The other is in <M>(0,1)</M>. 
+</EXM>       
+Is it possible to have a case where there are three or more fixed points, i.e., where <M>\xi(t)</M>  intersects the <M>y=x</M> 
+ line at more than two points? No, because either <M>\xi(t)\equiv 1</M>  or it is strictly
+ increasing and strictly convex.
 
-The answer is <M>\theta</M>  will always be the <I>smallest</I>  fixed point. This follows from the exercises below.
+So the only question that remains to be settled is: In case of two fixed points, which one will
+ <M>\theta</M> be equal to? 
 
-::<EXR>(Medium) Let <M>\mu</M>  be any fixed point of <M>\xi(t)</M>. Then show that <M>\forall
- n\in\nn~~\xi_n(0)\leq \mu</M>.</EXR>
+The answer is provided by the theorem below.
 
-::<EXR>(Easy) Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed
- points of <M>\xi(t)</M>.</EXR>
+<THM><M>\theta</M>  will always be the <I>smallest</I>  fixed point.</THM>
+<PF>We shall prove it step by step in the problem set below.</PF>
 
-<HEAD3>Wrapping up</HEAD3>
-
-We have seen that (excepting the trivial case <M>p_0=0</M>) there are only two possibilities:
+Let us wrap up our findings. There are only two possibilities:
  exactly one fixed point (which must be
  <M>1</M>) or exactly two. In the first case, <M>\theta=1</M>  and in the second it is the smaller fixed point. 
 
@@ -260,34 +277,25 @@ The two cases are shown below graphically:
  rule works for finding this one-sided derivative as well. So <M>\xi'(1) = p_1+2p_2+3p_3+\cdots</M>  (may be <M>\infty</M>).
 
 So the final answer is:
-<UL><LI>If <M>p_0=0</M>, the <M>\theta=0</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots \leq 1</M>, then <M>\theta=1</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
+<UL>
+<LI>If <M>\xi'(t) < 1</M>, then <M>\theta=1</M>.</LI>
+<LI>If <M>\xi'(1)\geq 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
-Could you arrive at this impressive answer without using pgf?  
+Could you arrive at this answer without using pgf?  
 
-::<EXR>(Medium) <CIMG web="jt18.png"></CIMG>
+<HEAD2>Problem set</HEAD2>
+In the following exercises we consider <M>\xi(\cdot)</M>  as a function from <M>[0,1]</M>  to <M>[0,1].</M>
 
-A brief note about probability generating functions: If <M>X</M>  takes non-negative integer values with <M>p_i = P(X=i)</M> 
- for <M>i=0,1,2,...</M> then its probability genrating function is 
-<D>\Phi_X(t) = p_0 + p_1t + p_2 t^2 +\cdots.</D>
-Clearly this converges absolutely for <M>|t|\leq 1.</M>   In this problem we are assuming that it converges for all <M>t\in\rr.</M>
-<ANS>
-(a) Let <M>Y =<CASES>t^{x_0}<IF>X\leq x_0</IF> 0<ELSE/></CASES>. </M>
+<EXR>Let <M>\mu</M>  be any fixed point of <M>\xi(t)</M>. Then show that <M>\forall
+ n\in\nn~~\xi_n(0)\leq \mu</M>.</EXR>
 
-Then, for <M>t\in[0,1],</M>  we have <M>Y\leq t^X.</M>    (Remember that <M>x\mapsto t^x</M>  is a non-increasing function
- for <M>t\in[0,1]</M>). 
+<EXR> Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed
+ points of <M>\xi(t)</M>.</EXR>
 
-So <M>E(Y)\leq E(t^X).</M>  Now <M>E(Y) = t^{x_0}P(X\leq x_0).</M>  
 
-Hence the result.
+<EXR>Find  <M>\theta</M>  when <M>p_0=0.4, p_1=0.2, p_2=0.4.</M></EXR>
 
-(b) Let <M>Z =<CASES>t^{x_0}<IF>X\geq x_0</IF> 0<ELSE/></CASES>. </M>
+<EXR>If <M>\xi(0.5)\leq 0.5,</M>  show that <M>\theta\leq 0.5.</M></EXR>
 
-Then, for <M>t\geq 1,</M>  we have <M>Z \leq t^X.</M>  
-
-Hence the result follows as in (a).
-</ANS>
-</EXR>
-
+<EXR>Show <M>\theta\geq p_0.</M></EXR>
 </NOTE>@}

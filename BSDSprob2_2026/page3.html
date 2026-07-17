@@ -159,25 +159,29 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 12 10:15:11 IST 2026</i>
+Fri Jul 17 13:11:31 IST 2026</i>
 </td>
 </tr>
 </table>
 <h3>Inequalities</h3>
 <ul>
-<li>1.<a href="#N10015">Cauchy-Schwartz</a>
+<li>1. <a href="#N10015">Cauchy-Schwartz</a>
 </li>
-<li>2.<a href="#N100A9">Markov inequality</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N100A9">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1.<a href="#N1011A">Real life applications</a>
+<li>2. <a href="#N100DC">Markov and Chebyshev inequalities</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.2.<a href="#N101B6">Project: Count-min sketch</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1013C">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.3.<a href="#N10276">Project: BJKST algorithm for counting distinct elements </a>
+<li>3. <a href="#N10168">Real life applications</a>
 </li>
-<li>3.<a href="#N10279">Chebyshev</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1018B">Problem set</a>
 </li>
-<li>4.<a href="#N10298">Holder inequality</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10207">Project: Count-min sketch</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N102C7">Project: BJKST algorithm for counting distinct elements </a>
+</li>
+<li>4. <a href="#N102CC">Holder and Minkowski inequalities</a>
 </li>
 </ul>
 <hr/>
@@ -192,7 +196,7 @@ $\newcommand{\cov}{\mathrm{cov}}$
 <tr>
 <td align="right"><i>Last
 updated on:
-Sun Jul 12 10:15:11 IST 2026</i></td>
+Fri Jul 17 13:11:31 IST 2026</i></td>
 </tr>
 </table>
 
@@ -257,14 +261,45 @@ Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometri
  $\cos \theta$  is called the correlation coefficient between $X$  and $Y.$  
 <p></p>
 
+<h2>
+<a name="N100A9"><span class="header">1.1</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;$X$  is a nonnegative random variable with finite second moment. Show that $P(X&gt;0)\geq \frac{E^2(X)}{E(X^2)}.
+<p>
+<b>Hint:</b>
+<blockquote>Think of $X$  as  $X1_{X&gt;0}.$
+</blockquote>
+</p>
+$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Let $X_1,...,X_n$  be random variables with finite second moments. Show that
+$$V\left(\sum X_i\right) \leq \left(\sum\sqrt{V(X_i)}\right)^2.$$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Show that $E|X-E(X)|\leq \sqrt{V(X)}$  for any random variable $X$  with finite second moment.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;If $E(X^2)=E(Y^2) = E(XY),$  then show that $P(X=Y)=1.$</p>
+
 <h1>
-<a name="N100A9"><span class="header">2</span>. Markov inequality</a>
+<a name="N100DC"><span class="header">2</span>. Markov and Chebyshev inequalities</a>
 </h1>
 Let us start with a commonsense example.
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employess are getting
+<b>EXERCISE 5:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
  a salary of Rs 250,000
  or more. Can this claim be true?<p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
@@ -301,21 +336,47 @@ A point about the inequalities in the above theorem. There are two inequalities,
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
  get $0 &lt; 0$  for the degenerate random variable $X\equiv0$.
 <p></p>
+The following variant of the Markov inequality is due to Chebyshev.
+<table align="right" width="20%" border="1">
+<tr>
+<td bgcolor="pink">Chebyshev is also credited with designing a <a href="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
+robot-like linkage</a>.</td>
+</tr>
+</table>
+
+<fieldset>
+<legend><b><i>Chebyshev inequality</i></b></legend>
+Let $V(X)&lt;\infty.$ Then 
+$$
+\forall \epsilon&gt;0~~P(|X-E(X)| \geq \epsilon) \leq \frac{V(X)}{\epsilon^2}.
+$$
+</fieldset>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
+<b><i>Proof:</i></b>
+This is just Markov inequality with $k=2$  applied to the random variable $|X-E(X)|.$
+<b><i>[QED]</i></b>
+</p>
+
+<h2>
+<a name="N1013C"><span class="header">2.1</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
+<b>EXERCISE 7:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^2)}{\epsilon^2}.$$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
+<b>EXERCISE 8:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
  variable $X$  and any $\epsilon&gt;0$  we have for each $k\in{\mathbb N},$  
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$$
 Will higher values of $k$  necessarily give you better bounds?
@@ -324,15 +385,12 @@ Will higher values of $k$  necessarily give you better bounds?
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
+<b>EXERCISE 9:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
  \frac{1}{\epsilon^4}.$</p>
 
-<p></p>
-
-<h2>
-<a name="N1011A"><span class="header">2.1</span>.
-Real life applications</a>
-</h2>
+<h1>
+<a name="N10168"><span class="header">3</span>. Real life applications</a>
+</h1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
  than through its expectation.
@@ -358,15 +416,20 @@ Then Markov inequality helps us to get an upper bound on the probability that th
 This allows engineers to guarantee system satibility without knowing the exact distribution of $X.$
 <p></p>
 
+<h2>
+<a name="N1018B"><span class="header">3.1</span>.
+Problem set</a>
+</h2>
+
 <p>
-<b>EXERCISE 6:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
+<b>EXERCISE 10:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
  if the $n$  is the length of the array to be sorted.
 Find an upper bound for  $P(X&gt;10^6)$  if the input array has length $10^4.$</p>  
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;<b>(Router overload)</b>
+<b>EXERCISE 11:</b>&nbsp;<b>(Router overload)</b>
 A router receives a random number ($X$) of packets every millisecond. We know from the
  past that $E(X)=50.$  We do not know the distribution of $X.$  The router's buffer can
  hold 250 packets before overflowing. Help the network engineer to provide an uppr bound to 
@@ -377,7 +440,7 @@ $P(X\geq 250).$
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;<b>(Liquidity crisis)</b>
+<b>EXERCISE 12:</b>&nbsp;<b>(Liquidity crisis)</b>
 A bank has a large portfolio of small business loans. $X=$ number of defaulters in a
  single month. Past experience shows $E(X)=2M.$ Liquidity crisis will arise if $X\geq
  20M.$  Bound the probability of that.
@@ -386,13 +449,13 @@ A bank has a large portfolio of small business loans. $X=$ number of defaulters 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
+<b>EXERCISE 13:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
  $E(X)=15$  minutes. Crash would result if $X\geq 2$  hours. Bound its probability.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;<b>(Volatile market)</b>
+<b>EXERCISE 14:</b>&nbsp;<b>(Volatile market)</b>
 When the market is  highly volatile market, an investment fund's historical data becomes useless.
  The only certain information is the current daily expected loss $E(X)=100,000.$  Upper bound $P(X\geq 1,000,000).$
 </p>
@@ -400,7 +463,7 @@ When the market is  highly volatile market, an investment fund's historical data
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
+<b>EXERCISE 15:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
  experiment on an input integer $n.$  The (random) output is either "Composite" or "Prime".
  There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
  But if it says "Prime" then the input is composite with 0.25 probability. 
@@ -420,7 +483,7 @@ without explicit use of Markov inequality.]
 <p></p>
 
 <h2>
-<a name="N101B6"><span class="header">2.2</span>.
+<a name="N10207"><span class="header">3.2</span>.
 Project: Count-min sketch</a>
 </h2>
 Imagine a stream of items going past you (like cars of different brands going down a road, or trees of different
@@ -498,39 +561,14 @@ or
 $$P\left(\frac XN&lt; \epsilon \right) \geq 1-\left(\frac{1}{w \epsilon}\right)^d.$$
 So if we choose $w = \frac 2\epsilon$  and $d=10,$  then the probability is below $2^{-10}.$
 <h2>
-<a name="N10276"><span class="header">2.3</span>.
+<a name="N102C7"><span class="header">3.3</span>.
 Project: BJKST algorithm for counting distinct elements </a>
 </h2>
-
-<h1>
-<a name="N10279"><span class="header">3</span>. Chebyshev</a>
-</h1>
-
-<table align="right" width="20%" border="1">
-<tr>
-<td bgcolor="pink">Chebyshev is also credited with designing a <a href="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
-robot-like linkage</a>.</td>
-</tr>
-</table>
-
-<fieldset>
-<legend><b><i>Chebyshev inequality</i></b></legend>
-Let $V(X)&lt;\infty.$ Then 
-$$
-\forall \epsilon&gt;0~~P(|X-E(X)| \geq \epsilon) \leq \frac{V(X)}{\epsilon^2}.
-$$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-This is just Markov inequality with $k=2$  applied to the random variable $|X-E(X)|.$
-<b><i>[QED]</i></b>
-</p>
 
 <p></p>
 
 <h1>
-<a name="N10298"><span class="header">4</span>. Holder inequality</a>
+<a name="N102CC"><span class="header">4</span>. Holder and Minkowski inequalities</a>
 </h1>
 
 <fieldset>

@@ -234,7 +234,7 @@ non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>
 <HINT>The answer is not unique.</HINT>
 </EXR>
 
-<HEAD1>Project: Box-Muller transform</HEAD1>
+<HEAD2>Project: Box-Muller transform</HEAD2>
 <HEAD1>Special case: (Affine) linear tranforms</HEAD1>
 If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = A\v x + \v b,</M>  where <M>A_{n\times n}</M> 
  is a fixed matrix, and <M>\v b</M>  is a fixed vector, then <M>\phi</M>  is a a bijection if and only if <M>A</M>  is nonsingular.

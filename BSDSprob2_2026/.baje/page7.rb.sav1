@@ -106,14 +106,14 @@ Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 
 for <M>t\in\rr.</M>  
 </EXM>
 Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
-<HEAD2>Problem set <PS/></HEAD2>
+<HEAD2>Problem set</HEAD2>
 <EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
 <EXR>Find CF for the Double Exponential distribution with rate <M>\lambda.</M></EXR>
 
 <THM>CF of <M>N(0,1)</M>  distribution is <M>e^{-t^2/2}</M>  for <M>t\in\rr.</M>  CF for
  <M>N(\mu,\sigma^2)</M>  distribution is <M>e^{it \mu-\sigma^2 t^2/2}</M>  for <M>t\in\rr.</M></THM>
 
-<THM>CF for the Cauchy</THM>
+<THM>CF for the Cauchy distribution is <M>e^{-|t|}</M>  for <M>t\in\rr.</M></THM>
 
 <HEAD1>Properties of CF</HEAD1>
 We start with two simple properties.
@@ -162,6 +162,36 @@ You can of course show this directly using the definition of convolution. But th
 Since CF uniquely determines the distribution, we get the result.
 </EXM>
 
+<THM>
+Let a random variable <M>X</M>  have characteristic function <M>\xi(t)</M>  for <M>t\in\rr.</M>  Then
+<M>\xi(t)</M> is a continuous function.
+</THM>
+<PF>To show:
+<D>\forall t\in\rr~~\forall (t_n)\seq \rr ~~(t_n\to t\implies \xi(t_n)\to \xi(t)).</D>
+
+Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to\rr.</M>  
+
+To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X})></M>
+
+Let <M>Y_n = e^{it_n X}</M>  and <M>Y = e^{it X}.</M>  
+
+Then <M>Y_n\to Y</M>  and <M>|Y_n|,|Y|\leq 1.</M>
+
+Hence by DCT <M>E(Y_n)\to E(Y),</M>  as required. 
+</PF>
+
+<HEAD2>Problem set</HEAD2>
+
+<EXR>Assuming the validity of term-by-term differentiation,
+suggest how you may find <M>E(X^n)</M> from the characteristic
+function <M>\xi(t)</M> of <M>X.</M></EXR>
+
+<EXR>Let <M>X</M>  have CF <M>\xi_X(t).</M>  Let <M>Y = ax+b.</M>  Find <M>\xi_Y(t),</M>  the CF of <M>Y.</M></EXR>
+
+<EXR>Let <M>X</M>  be a random variable with  characteristic function <M>\phi(t).</M>  Let
+ <M>(a_n),(b_n)</M>  be two real sequences with <M>a_n-b_n\to 0.</M>  Then show that <M>\phi(a_n)-\phi(b_n)\to 0.</M>
+<HINT>Imitate the proof of the continuity</HINT></EXR>
+
 <HEAD1>Inversion, density, continuity theorems</HEAD1>
 
 <THM name="Fourier inversion">
@@ -186,34 +216,11 @@ The "if part" of this result may be strenghthened to some extent: If <M>(\phi_n)
  <I>some</I>  function <M>\phi</M> 
  that is continuous in a neighbourhood of 0,  then <M>\phi</M>  must be the characteristic function of some random variable
  <M>X</M>  and <M>X_n\toD X.</M>
-<HEAD2>Problem set <PS/></HEAD2>
+<HEAD2>Problem set</HEAD2>
+<EXR>Let <M>X_n</M>  be a random variable with characteristic function <M>\phi_n(t) =
+ (*(1-[[it][n]])*)^{-n}</M>  for <M>t\in\rr.</M>  Show that <M>(X_n)</M>  converges in
+ distribution. Identify the limiting distribution.</EXR>
 
-<EXR>Let <M>X</M>  have CF <M>\xi_X(t).</M>  Let <M>Y = ax+b.</M>  Find <M>\xi_Y(t),</M>  the CF of <M>Y.</M></EXR>
-
-<HEAD1>Miscellaneous problems</HEAD1>
-::<EXR><EIMG web="hpstrans1.png"/></EXR>
-::<EXR><EIMG web="hpstrans2.png"/></EXR>
-::<EXR><EIMG web="hpstrans4.png"/></EXR>
-::<EXR><EIMG web="hpstrans7.png"/>
-<IMG web="hpsref8.png">Here is Exercise 8:</IMG> 
-</EXR>
-::<EXR><EIMG web="hpstrans8.png"/></EXR>
-::<EXR><EIMG web="hpstrans9.png"/></EXR>
-::<EXR><EIMG web="hpstrans12.png"/></EXR>
-::<EXR><EIMG web="hpstrans14.png"/>
-<IMG web="hpsref19.png">Here is Exercise 19:</IMG> 
-</EXR>
-::<EXR><EIMG web="hpstrans21.png"/>
-<ANS>
-<M>f(x,z) = f(x) f(z-x)</M> for <M>(x,y)\in\rr^2.</M>
-</ANS>
-</EXR>
-::<EXR><EIMG web="hpstrans23.png"/>
-<IMG web="hpsrefs1.png">Here is Exercise 38:</IMG> 
-</EXR>
-::<EXR><EIMG web="hpstrans24.png"/></EXR>
-::<EXR><EIMG web="hpspdf7.png"/></EXR>
-::<EXR><EIMG web="hpspdf11.png"/>
-<IMG web="hpsrefs2.png">Here is Exercise 4:</IMG> 
-</EXR>
+<EXR>Check the Levy inversion formula for <M>X\sim Bern(*([[13]])*)</M>    with <M>a = -1</M>  and <M>b=0.</M>  </EXR>
+<EXR>Check the Fourier inversion formula for <M>X\sim</M> exponential with rate <M>1.</M> </EXR>
 </NOTE>@}

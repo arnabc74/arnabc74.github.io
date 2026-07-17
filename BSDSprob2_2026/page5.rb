@@ -1,4 +1,6 @@
 @{<NOTE>
+<M>\newcommand{\toL}[1]{\stackrel{L_{#1}}{\longrightarrow}}</M>
+<M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
 <TITLE>Convergence theorems</TITLE>
 <HEAD1>Monotone convergence theorem (MCT)</HEAD1>
 We would have been very happy, had there been a result saying: Whenever <M>X_n\toA X</M>  we have <M>E(X_n)\to E(X)</M>. Unfortunately,
@@ -126,6 +128,7 @@ Hence
 as required.
 </PF>
 
+<HEAD2>Problem set</HEAD2>
 <EXR>Consider <M>U\sim Unif(0,1).</M>  Let <M>X_n = U^n</M>  for <M>n\in\nn</M>. Compute both
  sides of Fatou's lemma explicitly.</EXR>
 
@@ -182,44 +185,28 @@ or <M>\limsup E|X_n-X|\leq 0.</M>
 
 Hence <M>E|X_n-X|\to 0,</M>  as required.
 </PF>
-<HEAD2>Applications</HEAD2>
 We can think of the conclusion of MCT or DCT as limit passing through expectation: <M>\lim E(X_n) = E(\lim X_n).</M> This
- proves handy in many situations as we discuss next.
-<HEAD3>Almost sure implies <M>L_1</M>  for dominated case</HEAD3>
-We have seen earlier that mere a.s. convergence (along with finite existence of expectation) does not guarantee <M>L_1</M> 
- convergence. The counterexample we had given used an unbounded sequence of random variables.  Indeed, it is not possible
- to have a counterexample using a bounded (or even dominated) sequence of  random variables.
+ proves handy in many situations as we shall see in the problems below.
 
-<THM>Let <M>(X_n),X</M>  be  random variables such that <M>X_n\toA X</M>  and   <M>\forall n\in\nn~~|X_n|\leq
- Y</M>  for some random variable <M>Y</M>  with <M>E(Y) < \infty.</M>  Then <M>X_n\toL 1 X.</M></THM> 
-<PF>Just a restatement of the DCT.</PF>
-<HEAD3>Continuity of characteristic function</HEAD3>
-Let a random variable <M>X</M>  have characteristic function <M>\xi(t)</M>  or <M>t\in\rr.</M>  We want to show that <M>\xi</M> 
- is a continuous function, i.e.,
-<D>\forall t\in\rr~~\forall (t_n)\seq \rr ~~(t_n\to t\implies \xi(t_n)\to \xi(t)).</D>
+<HEAD2>Problem set</HEAD2>
 
-Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to\rr.</M>  
-
-To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X})></M>
-
-Let <M>Y_n = e^{it_n X}</M>  and <M>Y = e^{it X}.</M>  
-
-Then <M>Y_n\to Y</M>  and <M>|Y_n|,|Y|\leq 1.</M>
-
-Hence by DCT <M>E(Y_n)\to E(Y),</M>  as required. 
-
-<EXR>Show that a characteristic function must also be uniformly continuous.</EXR>
-
-<HEAD3>Continuity of expectations involving a secondary variable</HEAD3>
-The characteristic function <M>E(e^{i t X})</M>  is an example of an expectation involving a secondary variable, <M>t.</M> 
- The technique we used above may be used to prove continuity of other similar expectations. This may be stated as a theorem.
-
-<THM>
-Let <M>f(x,t)</M>  be some bounded continuous function. Then for any random variable <M>E(X,t)</M>
-  is a continuous function of <M>t.</M> 
-</THM>
+<EXR>Let <M>(X_n),X</M>  be  random variables such that <M>X_n\toA X</M>  and   <M>\forall n\in\nn~~|X_n|\leq
+ Y</M>  for some random variable <M>Y</M>  with <M>E(Y) < \infty.</M>  Then show that <M>X_n\toL 1 X.</M>
+</EXR> 
 
 
+
+<EXR>Let <M>X</M>  be any random variable. Show that <M>f(t) = E(sin(tX))</M>  is a continuous function.
+<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>f(a_n)\to f(a).</M></HINT>
+</EXR>
+
+<EXR>Let <M>X</M>  be any random variable. Show that <M>f(t) = E(\sin(t+X))</M>  is a differentiable function, with <M>f'(t) = E(\cos(t+X)).</M>
+<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>Y_n = [[f(a_n)-f(a)][a_n-a]]\to E(\cos(t+X)).</M>
+Use the mean value theorem and boundedness of <M>\cos.</M>
+</HINT>
+</EXR>
+
+<COMMENT>
 <HEAD3>Differentiation under expectation</HEAD3>
 <THM>Let <M>X(t)</M>  be a random differentiabl function of <M>t.</M>  Suppose that 
 <D>\exists Z~~\forall t\in\rr ~~|X'(t)|\leq Z</D>  and <M>E(Z) < \infty.</M>  Then 
@@ -244,5 +231,5 @@ Hence <M>|Y_n| = |X'(t_n)| \leq Z,</M>  which has finite expecation.
 Hence <M>(Y_n)</M>  is a dominated sequence. 
 
 So, by the DCT, <M>E(Y_n)\to E(Y),</M>  completing the proof.
-</PF>
+</PF></COMMENT>
 </NOTE>@}

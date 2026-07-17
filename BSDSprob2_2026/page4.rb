@@ -323,6 +323,34 @@ Let <M>X_n,X</M>  be all random variables defined on a common probability space.
 <PF>Direct.</PF> 
 
 <HEAD2>Problem set</HEAD2>
+<EXR>Let <M>(a_n)</M>  be a fixed sequence with <M>a_n\to a.</M>  Let <M>X_n\equiv a_n</M>  and
+ <M>X\equiv a.</M>  Then is it true that <M>X_n\toD X</M>?</EXR>
+
+<EXR>Let <M>X_n\sim Bern(*([[1n]])*).</M>  Then show that <M>X_n</M>  converge in distribution. Find the limit.</EXR>
+
+<EXR>Let <M>(X_n)</M>  be  a sequence of  random variable with distribution function <M>F_n,</M>  where
+
+<D>F_n(x) = <CASES>0<IF>x < 0</IF> x^n<IF>x\in[0,1)</IF> 1<ELSE/></CASES>. </D>
+Show that <M>\X_n\toD X</M>  for some <M>X.</M>  What is the distribution of <M>X</M>?
+</EXR>
+<COMMENT>
+<EXR>We have mentioned that if <M>X_n\sim N(*(0,[[1n]])*),</M>  and <M>X\equiv0,</M>  then
+ <M>X_n\toD X.</M>  Let <M>F_n, F</M> be the distribution functions of <M>X_n,X</M> 
+ respectively. Then <M>\forall x\in(0,1)~~F_n(x)\to F(x).</M>  Is the convergence uniform over <M>(0,\infty)</M>?</EXR>
+</COMMENT>
+
+<EXR>If <M>X_n\sim Unif(*([[\sqrt n-\sqrt 2][2\sqrt n]],[[\sqrt n+\sqrt 2][2\sqrt n]])*),</M> 
+ then does <M>(X_n)</M>  converge in distribution? If so, find the limiting distribution.</EXR>
+
+<EXR>If <M>X_n\sim Unif(*(n-[[1n]],n+[[1n]])*),</M> 
+ then does <M>(X_n)</M>  converge in distribution? If so, find the limiting distribution.</EXR>
+
+<EXR>Let <M>U_1,...,U_n</M>  be iid <M>Unif(0,1)</M>  random variables. Let <M>X_n = \min_i U_i.</M>  Show that <M>X_n\toD 0.</M></EXR>
+
+<EXR><M>(X_n), X</M>  are discrete random variables taking values in <M>\{1,...,10\}.</M>  If  pmf
+ of <M>X_n</M>  converges pointwise
+ to pmf of <M>X,</M>  then show that <M>X_n\toD X.</M></EXR>
+
 <HEAD1>Central Limit Theorem</HEAD1>
 The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
  and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
@@ -335,7 +363,7 @@ More precisely, if <M>F_n(\cdot)</M>  denotes the CDF of <M>[[\sqrt n(\bar X_n-\
  denotes the <M>N(0,1)</M>  CDF, then
 <D>\forall t\in\rr~~F_n(t)\to \Phi(t) \mbox{ as } n\to \infty.</D>
 </THM>
-<PF>Next semester.</PF>
+<PF>Skipped.</PF>
  This theorem is a manifestation of statistical regularity. Whatever may the true
  distribution of the <M>X_i</M>'s be, if you average a large number of <M>X_i</M>'s you get close
  approximation to the normal distribution. This allows
@@ -350,17 +378,17 @@ Let's look at a typical example.
 Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
  from the population of the city. 
 
-We shall assume that the trials are IID. Now here we are introducing an approximation: the first
+We shall assume that the trials are iid. Now here we are introducing an approximation: the first
  membr of the sample was drawn from the entire population, but since we generally sample
  <I>without replacement</I>  in such a scenario, the second member of the sample was drawn from a
  population of size one less than in the case of the first member. So the random experiment has
  actually changed, and they are not independent also. But since the population is large (much
- larger than 500), so we are ignoring both the non-identical and dependent nature and assuming IID. 
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming iid. 
 
 We also have a random variable: 
 <D>X(\omega) = <CASES>1 <IF>\omega\mbox{ supports the candiate}</IF> 0<ELSE/></CASES></D> 
-Here<M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
-<M>X_1,...,X_{500}</M>  IID <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
+Here <M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
+<M>X_1,...,X_{500}</M>  iid <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
 
 By CLT we have 
 <D>[[\sqrt n (\bar X_n-\mu)][\sigma]]\to N(0,1)</D>

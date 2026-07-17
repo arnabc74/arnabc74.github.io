@@ -50,11 +50,23 @@ Can we recover <M>\theta</M>  from this? Yes, using <M>cos ^{-1},</M>  provided 
 Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometric interpretation,
  <M>\cos \theta</M>  is called the correlation coefficient between <M>X</M>  and <M>Y.</M>  
 
+<HEAD2>Problem set</HEAD2>
+<EXR><M>X</M>  is a nonnegative random variable with finite second moment. Show that <M>P(X>0)\geq [[E^2(X)][E(X^2)]].
+<HINT>Think of <M>X</M>  as  <M>X1_{X>0}.</M>
+</HINT>
+</M></EXR>
 
-<HEAD1>Markov inequality</HEAD1>
+<EXR>Let <M>X_1,...,X_n</M>  be random variables with finite second moments. Show that
+<D>V(*(\sum X_i)*) \leq (*(\sum\sqrt{V(X_i)})*)^2.</D>
+</EXR>
+
+<EXR>Show that <M>E|X-E(X)|\leq \sqrt{V(X)}</M>  for any random variable <M>X</M>  with finite second moment.</EXR>
+
+<EXR>If <M>E(X^2)=E(Y^2) = E(XY),</M>  then show that <M>P(X=Y)=1.</M></EXR>
+<HEAD1>Markov and Chebyshev inequalities</HEAD1>
 Let us start with a commonsense example.
  
-<EXR>Average salary in a company is Rs 50,000. It is claimed that 30% of the employess are getting
+<EXR>Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
  a salary of Rs 250,000
  or more. Can this claim be true?<ANS>
 Of course not! Even if the other employess get no salary at all, the average must be at least <M>0.3\times 250,000,</M> 
@@ -82,6 +94,19 @@ A point about the inequalities in the above theorem. There are two inequalities,
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
  get <M>0 < 0</M>  for the degenerate random variable <M>X\equiv0</M>.
 
+The following variant of the Markov inequality is due to Chebyshev.
+<FNOTE>Chebyshev is also credited with designing a <LINK to="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
+robot-like linkage</LINK>.</FNOTE>
+<THM name="Chebyshev inequality">
+Let <M>V(X)<\infty.</M> Then 
+<D>
+\forall \epsilon>0~~P(|X-E(X)| \geq \epsilon) \leq [[V(X)][\epsilon^2]].
+</D>
+</THM>
+<PF>
+This is just Markov inequality with <M>k=2</M>  applied to the random variable <M>|X-E(X)|.</M>
+</PF>
+<HEAD2>Problem set</HEAD2>
 <EXR>Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</EXR>
 
 <EXR>Let <M>X</M>  be any random variable (not necessarily nonnegative). Show that 
@@ -96,9 +121,7 @@ Will higher values of <M>k</M>  necessarily give you better bounds?
 
 <EXR>Prove that <M>\forall \epsilon>0~~[[1][\sqrt{2\pi}]]\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
  [[1][\epsilon^4]].</M></EXR>
-
-
-<HEAD2>Real life applications</HEAD2>
+<HEAD1>Real life applications</HEAD1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
  than through its expectation.
@@ -122,6 +145,7 @@ Then Markov inequality helps us to get an upper bound on the probability that th
  algorithm will take too long.
 This allows engineers to guarantee system satibility without knowing the exact distribution of <M>X.</M>
 
+<HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X</M>  be the number of steps needed in a randomised quick sort algorithm. It is known that <M>E(X)=n\log n</M> 
  if the <M>n</M>  is the length of the array to be sorted.
 Find an upper bound for  <M>P(X>10^6)</M>  if the input array has length <M>10^4.</M></EXR>  
@@ -164,6 +188,7 @@ Give an uppoer bound on the probability that this battery of <M>k</M>  tests mak
 without explicit use of Markov inequality.]
 <COMMENT><M>\leq 0.25^k.</M></COMMENT>
 </EXR>
+
 
 <HEAD2>Project: Count-min sketch</HEAD2>
 Imagine a stream of items going past you (like cars of different brands going down a road, or trees of different
@@ -241,21 +266,9 @@ or
 <D>P(*([[XN]]< \epsilon )*) \geq 1-(*([[1][w \epsilon]])*)^d.</D>
 So if we choose <M>w = [[2\epsilon]]</M>  and <M>d=10,</M>  then the probability is below <M>2^{-10}.</M>
 <HEAD2>Project: BJKST algorithm for counting distinct elements </HEAD2>
-<HEAD1>Chebyshev</HEAD1>
-<FNOTE>Chebyshev is also credited with designing a <LINK to="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
-robot-like linkage</LINK>.</FNOTE>
-<THM name="Chebyshev inequality">
-Let <M>V(X)<\infty.</M> Then 
-<D>
-\forall \epsilon>0~~P(|X-E(X)| \geq \epsilon) \leq [[V(X)][\epsilon^2]].
-</D>
-</THM>
-<PF>
-This is just Markov inequality with <M>k=2</M>  applied to the random variable <M>|X-E(X)|.</M>
-</PF>
 
 
-<HEAD1>Holder inequality</HEAD1>
+<HEAD1>Holder and Minkowski inequalities</HEAD1>
 <THM name="Holder inequality">
 Let <M>p,q>1</M> be such that <M>[[1p]]+[[1q]] = 1.</M> Let <M>X,Y</M>  be random variables with <M>E|X|^p, E|Y|^q < \infty.</M>
 

@@ -18,6 +18,7 @@ Then <OL>
 <PF>
 
 </PF>
+<HEAD2>Problem set</HEAD2>
 
 <EXR>Let <M>X_n\toD N(0,1)</M>  and <M>Y_n\toP 5.</M>  Then what is the limiting distribution of <M>X_n+Y_n?</M></EXR>
 
@@ -49,7 +50,8 @@ Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to
  Then <M>[[\sqrt{n}(f(X_n)-f(\mu))][\sigma f'(\mu)]]\toD</M>  the same distribution.
 </THM>
 <PF>Nice proof using Skorohod in Resnick (p262).</PF>
-Lots of applications. 
+<HEAD2>Problem set</HEAD2>
+
 <EXR>Suppose that <M>\sqrt n(S_n^2-\sigma^2)\toD N(0,\theta^2).</M>  Show that <M>\sqrt n(S_n-\sigma)\toD N(*(0,[[\theta^2][4 \sigma^2]])*).</M></EXR>
 
 <EXR>If <M>\sqrt n(\bar X_n-\mu)\toD N(0,1),</M>  show that <M>\sqrt n(\log \bar X_n-\log \mu)\toD N(0,[[1][\mu^2]]).</M></EXR>
@@ -64,7 +66,7 @@ We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportio
 <EXR><M>T_n</M>  is an estimator for a parameter <M>\theta</M>  with asymptotic distribution
  <M>N(*(\theta, [[\sigma^2][n]])*).</M>  Use deltan method to obtain an approximate 95% confidene interval for
  <M>e^\theta.</M></EXR>
-<HEAD2>Variance stabilising transform</HEAD2>
+<HEAD1>Variance stabilising transform</HEAD1>
 <THM name="Variance stabilising transform">
 Let <M>[[\sqrt{n}(X_n-\mu)][\sigma(\mu)]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
  differentiable function with <M>f'(\mu) = [[1][\sigma(\mu)]].</M>
@@ -79,15 +81,20 @@ The most common application of this is when we have an estimator <M>T_n</M>  for
 This allows us to obtain a (large sample) confidence interval for <M>\mu</M>  as <M>(T_n-a \sigma/\sqrt n,T_n+a \sigma/\sqrt n).</M> 
  But this requires <M>\sigma</M>  to be known. Often <M>\sigma</M>  is a function of the unknown <M>\mu.</M>  
 Then we can use a variance stabilising transform <M>f(\cdot)</M>  to get <M>\sqrt n(f(T_n)-f(\mu))\to N(0,1),</M>  from which
- we can obtain a confidence interval for <M>f(T).</M>  Since <M>f</M>  is one-one we can obtain a confidence et for <M>\mu</M> 
- from
-<THM name="Multivariate delta method">
-If <M>\sqrt(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrtn(g(T_n)-g(\theta))\toD N_d(\v 0, \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
-</THM>
-<EXR>Use the above theorem to obtain asymptotic variabce of the sample CV.</EXR>
+ we can obtain a confidence interval for <M>f(\mu).</M>  Since <M>f</M>  is one-one we can obtain a confidence et for <M>\mu</M> 
+ from it.
+<HEAD2>Problem set</HEAD2>
+<EXR>We know that if <M>X\Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
+ stabilising transform for <M>X,</M>  i.e., some function <M>f(\cdot)</M>  such that <M>f(X)</M> 
+ has variance free of <M>\lambda</M>  (approximately). What is this constant variance?</EXR>
 
-<LINK to="chat/Multivariate_Delta_Method_Solution_Manual.pdf">chat/Multivariate_Delta_Method_Solution_Manual.pdf</LINK>
-<LINK to="chat/Delta_Method_Applications.pdf">chat/Delta_Method_Applications.pdf</LINK>
+<EXR>Let <M>X\sim Binom(n,p).</M>  Find a variance stabilising transform for <M>[[Xn]].</M></EXR>
+<EXR>Let <M>X\sim</M> Exponential distribution with rate <M>\lambda</M>.  Find a variance
+ stabilising transform for <M>X.</M></EXR>
+<EXR>Let <M>X</M> satisfy <M>V(X) = k E(X)^ \alpha.</M>, where <M>k</M>  and <M>\alpha</M>
+  are known constants.
+Find a variance
+ stabilising transform for <M>X.</M></EXR>
 
 
 <HEAD1>Cramer-Wold device</HEAD1>
@@ -113,14 +120,20 @@ Let <M>(\v X_n)</M>  be iid <M>k</M>-dimensional random vectors with mean vector
  variance matrix <M>\Sigma.</M>  Then 
 <D>\sqrt{n}(\v{\bar X}_n-\v\mu)\toD N_k(\v 0, \Sigma).</D>
 </THM>
-
+<HEAD2>Problem set</HEAD2>
 <EXR>Prove multivariate CLT from univariate CLT using the Cramer-Wold device.</EXR>
 <EXR>Prove multivariate delta method from univariate delta method using the Cramer-Wold device.</EXR>
 <EXR>Let <M>(X_n,Y_n)</M>  be an iid sequence of random vectors with mean <M>(\mu, \nu)</M>  and
  some (finite) covariance matrix. Find the  asymptotic distribution of <M>(\bar X_n,\bar Y_n).</M></EXR>
 
 <EXR>A (pssibly biased) die is rolled <M>n</M>  times. Let <M>X_{i,n}</M>  be the proportion of
- face <M>i.</M>  Find the asymptotic joint distribution of <M>(X_{1,n),...,X_{6,n}).</M></EXR>
+ face <M>i.</M>  Find the asymptotic joint distribution of <M>(X_{1,n},...,X_{6,n}).</M></EXR>
+<EXR>Prove the following theorem using the Cramer-Wold 
+<THM name="Multivariate delta method">
+If <M>\sqrt(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(T_n)-g(\theta))\toD N_d(\v 0,
+ \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
+</THM>
+<EXR>Use the above theorem to obtain asymptotic variance of the sample CV.</EXR>
 
 <COMMENT>
 <LINK to="chat/Cramer_Wold_Device_Exercises.pdf">chat/Cramer_Wold_Device_Exercises.pdf</LINK>

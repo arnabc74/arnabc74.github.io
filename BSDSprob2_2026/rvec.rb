@@ -207,5 +207,5 @@ Is this true for <I>any</I> symmetric <M>\Sigma</M>?
 
 <EXR>Let <M>V(\v X)=\Sigma</M>  be a pd matrix with  Cholesky square root <M>A.</M> What is the
  disperstion matrix of <M>(A ^{-1})'\v X</M>? </EXR>
-<HEAD1>Project: Face recognition</HEAD1>
+<HEAD2>Project: Face recognition</HEAD2>
 </NOTE>@}

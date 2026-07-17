@@ -60,6 +60,8 @@ If <M>X</M>  are <M>Y</M>  are two random variables both taking only nonnegative
 <PF>Since <M>p(t)</M>  has radius of convergence at least <M>1,</M>  hence we may use term-by-term
  differentiation any number of times at <M>t=1.</M>  </PF>
 <HEAD2>Problem set</HEAD2>
+<EXR>Show that pgf maps <M>[0,1]</M>  to <M>[0,1],</M>  i.e., if <M>p(t)</M>  is a pgf, then <M>\forall t\in[0,1]~~p(t)\in[0,1].</M></EXR>
+
 <EXR> Think of a pgf where the radius of convergence is <M>\infty</M>.</EXR>
 
 <EXR> Think of a pgf where the radius of convergence is <M>1</M>.</EXR>
@@ -160,7 +162,7 @@ must the extinction probability be 1?
 <EXR>Find the extinction probability if <M>p_0=0.</M></EXR>
 
 <EXR>Find <M>P(X_2=0)</M>  for the progeny distribution used in the simulation above.</EXR>
-<HEAD1>Using pgf</HEAD1>
+<HEAD1>Branching process: Using pgf</HEAD1>
 In the simple cases, where <M>p_0+p_1=0</M>  or <M>p_0+p_1=1</M>, we either have no birth or no death. 
 But if <M>p_0>0</M>  and also <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have both deaths and births, and
  the interaction between them
@@ -228,16 +230,12 @@ Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)<
 <EXR>Is the sequence <M>(\xi_n(0))</M>  bounded?</EXR>
 
 
-<HEAD1>Exploring fixed points</HEAD1>
+<HEAD1>Branching process: Exploring fixed points</HEAD1>
 How many fixed points can <M>\xi(t) </M> have? Surely <M>1</M>  is a fixed point, since <M>\xi(1) = 1</M>. If
  it is the only one, then
  <M>\theta</M>  must be <M>1</M>.
 
 
-Notice that <M>\xi'(t)</M>  is always nonnegative. In fact, except in the trivial case of
- <M>p_0=1</M>, it is positive. So <M>\xi(t)</M>  is a strictly increasing function. Again, except
- in the case where <M>p_0+p_1=1</M>, the second derivative <M>\xi''(t)</M>  is positive, and so
- <M>\xi(t)</M>  is a convex function. Such a function can intersect the <M>y=x </M> line at most twice. 
 
 <COMMENT>
 png("image/pgfplot.png")
@@ -250,21 +248,22 @@ dev.off()
 <EXM>If <M>p_0=0.1, p_1=0.5</M>  and <M>p_2=0.4</M>  (so the other <M>p_k</M>'s are all zeroes),
  then the graph of <M>\xi(t)</M>  looks as shown below.
 <CIMG web="pgfplot.png"></CIMG>
-</EXM>       
 You can notice two fixed points (i.e., points where the black curve cuts the red diagonal). One of the fixed points is at
- <M>t=1</M>. The other is in <M>(0,1)</M>. Which of the two fixed points will <M>\theta</M>  equal? 
+ <M>t=1</M>. The other is in <M>(0,1)</M>. 
+</EXM>       
+Is it possible to have a case where there are three or more fixed points, i.e., where <M>\xi(t)</M>  intersects the <M>y=x</M> 
+ line at more than two points? No, because either <M>\xi(t)\equiv 1</M>  or it is strictly
+ increasing and strictly convex.
 
-The answer is <M>\theta</M>  will always be the <I>smallest</I>  fixed point. This follows from the exercises below.
+So the only question that remains to be settled is: In case of two fixed points, which one will
+ <M>\theta</M> be equal to? 
 
-::<EXR>(Medium) Let <M>\mu</M>  be any fixed point of <M>\xi(t)</M>. Then show that <M>\forall
- n\in\nn~~\xi_n(0)\leq \mu</M>.</EXR>
+The answer is provided by the theorem below.
 
-::<EXR>(Easy) Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed
- points of <M>\xi(t)</M>.</EXR>
+<THM><M>\theta</M>  will always be the <I>smallest</I>  fixed point.</THM>
+<PF>We shall prove it step by step in the problem set below.</PF>
 
-<HEAD3>Wrapping up</HEAD3>
-
-We have seen that (excepting the trivial case <M>p_0=0</M>) there are only two possibilities:
+Let us wrap up our findings. There are only two possibilities:
  exactly one fixed point (which must be
  <M>1</M>) or exactly two. In the first case, <M>\theta=1</M>  and in the second it is the smaller fixed point. 
 
@@ -278,11 +277,25 @@ The two cases are shown below graphically:
  rule works for finding this one-sided derivative as well. So <M>\xi'(1) = p_1+2p_2+3p_3+\cdots</M>  (may be <M>\infty</M>).
 
 So the final answer is:
-<UL><LI>If <M>p_0=0</M>, the <M>\theta=0</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots \leq 1</M>, then <M>\theta=1</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
+<UL>
+<LI>If <M>\xi'(t) < 1</M>, then <M>\theta=1</M>.</LI>
+<LI>If <M>\xi'(1)\geq 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
-Could you arrive at this impressive answer without using pgf?  
+Could you arrive at this answer without using pgf?  
+
+<HEAD2>Problem set</HEAD2>
+In the following exercises we consider <M>\xi(\cdot)</M>  as a function from <M>[0,1]</M>  to <M>[0,1].</M>
+
+<EXR>Let <M>\mu</M>  be any fixed point of <M>\xi(t)</M>. Then show that <M>\forall
+ n\in\nn~~\xi_n(0)\leq \mu</M>.</EXR>
+
+<EXR> Use the last exercise to show that <M>\theta</M>  must be <M>\leq</M>  all fixed
+ points of <M>\xi(t)</M>.</EXR>
 
 
+<EXR>Find  <M>\theta</M>  when <M>p_0=0.4, p_1=0.2, p_2=0.4.</M></EXR>
+
+<EXR>If <M>\xi(0.5)\leq 0.5,</M>  show that <M>\theta\leq 0.5.</M></EXR>
+
+<EXR>Show <M>\theta\geq p_0.</M></EXR>
 </NOTE>@}
