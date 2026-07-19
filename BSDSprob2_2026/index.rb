@@ -28,13 +28,14 @@ URL: https://arnabc74.github.io/BSDSprob2_2026/
 <LI><LINK to="page7.html">Characteristic function (CF)</LINK></LI>
 </OL>
 <HEAD2>Projects</HEAD2>
-Each of the following project is a group project to be done by around 5 students each. The same project will be done by multiple
- groups. Each group does one project. The evaluation will be based on a written report and a class
- presentation. Exact logistics
+Each of the following project is a group project to be done by around 5 students each. Each
+ project will be done by multiple
+ groups. Each group does one project. 
+Exact logistics
  will be communicated later. 
 <OL>
 <LI>Box-Muller transform and other related simulation techniques</LI>
-<LI>Face recognition using eigenanalysis.</LI>
+<LI>Face recognition using eigenanalysis (computational aspect, moderate).</LI>
 <LI>Count-min sketch to approximate frequencies from an input stream.</LI>
 <LI>BJKST algorithm for counting distinct elements from an input stream.</LI>
 <LI>Showing almost every number is a normal number.</LI>
