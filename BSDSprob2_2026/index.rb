@@ -2,9 +2,17 @@
 <HEAD1>Probability II (BSDS 2nd year, 2026)</HEAD1>
 URL: https://arnabc74.github.io/BSDSprob2_2026/
 <NEWS src="news.html">Updates will be notified here:</NEWS>
-This 
+<HEAD2>Instructor and TAs</HEAD2>
+<B>Instructor:</B>  Arnab Chakraborty (arnabc74 at gmail)
+
+<B>TA for Kolkata:</B>  Debanjan Bhattacharjee (debanjanbhattacharjee2002 at gmail)
+
+<B>TA for Delhi:</B>  Niladri Patra (niladript at gmail)
+
+<B>TA for Bangalore:</B>  Sayan Roy (rs_math2404 at isibang)
+
 <HEAD2>Marks distribution</HEAD2>
-<UL><LI>Midsem: 20</LI><LI>Assignments: 30</LI><LI>End sem: 50</LI></UL>
+<UL><LI>Midsem: 20</LI><LI>Assignments: 20</LI><LI>Project:10</LI><LI>End sem: 50</LI></UL>
 <HEAD2>Class notes</HEAD2>
 <OL>
 <LI><LINK to="elem.html">Motivation behind probability</LINK></LI>
@@ -18,15 +26,36 @@ This
 <LI><LINK to="page5.html">Convergence of expectations</LINK></LI>
 <LI><LINK to="page6.html">Miscellaneous tools</LINK></LI>
 <LI><LINK to="page7.html">Characteristic function (CF)</LINK></LI>
-
 </OL>
+<HEAD2>Projects</HEAD2>
+Each of the following project is a group project to be done by around 5 students each. The same project will be done by multiple
+ groups. Each group does one project. The evaluation will be based on a written report and a class
+ presentation. Exact logistics
+ will be communicated later. 
+<OL>
+<LI>Box-Muller transform and other related simulation techniques</LI>
+<LI>Face recognition using eigenanalysis.</LI>
+<LI>Count-min sketch to approximate frequencies from an input stream.</LI>
+<LI>BJKST algorithm for counting distinct elements from an input stream.</LI>
+<LI>Showing almost every number is a normal number.</LI>
+<LI>Showing that a random walk in 3D may not return.</LI>
+</OL>
+These are more like elaborate assignments than projects demanding original research. You are
+ welcome to discuss the projects among yourselves. All the projects will be introduced during the lectures at appropriate
+ time points. 
+ 
 <HEAD2>References</HEAD2>
-The class notes constitute the main reference. It is based on the following books:
+The class notes constitute the main reference. It is based on many sources including the following books:
 <UL>
 <LI>Ross: A First Course in Probability Theory</LI>
 <LI>Hoel, Port and Stone: Probability Theory</LI>
-<LI>Ross: Introduction to Probability Models</LI>
-<LI>Royden and Fitzpatrick: Real Analysis</LI>
-<LI>Allan Gut: Probability--A Graduate Course</LI>
+<LI>Resnick: A Probability Path</LI>
+<LI>Rosenthal: A First Look at Rigorous Probability Theory</LI>
 </UL> 
+Unfortunately, to my knowledge, there is no textbook just suitable for this course. The first two books mentioned above are
+the closest from the easier side. They, however, do not mention many of the advanced topics included in our syllabus. The
+ last two books do mention them, but contain way too much discussion and is written at a level much higher than the present
+ course. 
+
+In short: the class notes are your best reference! 
 </NOTE>@}

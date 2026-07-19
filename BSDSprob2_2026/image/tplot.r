@@ -1,0 +1,13 @@
+svg('tplotraw.svg')
+curve(dnorm(x),xlim=c(-4,4))
+curve(dcauchy(x),add=T)
+curve(dt(x,df=5),add=T)
+curve(dt(x,df=10),add=T)
+dev.off()
+
+svg('chiplotraw.svg')
+curve(dchisq(x,df=1),xlim=c(0,20),ylab="")
+curve(dchisq(x,df=5),add=T)
+curve(dchisq(x,df=10),add=T)
+abline(h=0,v=0)
+dev.off()

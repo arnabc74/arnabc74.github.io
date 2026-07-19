@@ -2,8 +2,11 @@
 <M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <M>\newcommand{\k}[1]{\chi^2_{(#1)}}</M>
 <M>\newcommand{\cov}{\mathrm{cov}}</M>
-[Update:[Thu Jul 09 IST 2026]]
-<TITLE>Sampling distrbutions for normal mean and variance</TITLE>
+<TITLE>Sampling distributions for normal mean and variance</TITLE>
+Every random variable has a distribution. If <M>X_1,...,X_n</M>  is a random sample, and <M>T:\rr^n\to\rr</M>  is any given
+ function, then <M>T(X_1,...,X_n)</M>  is a random variable. It is called a <TERM>statistic</TERM>. Its distribution is called
+ its <TERM>sampling distribution</TERM>. We shall learn about the sampling distribution of the sample mean and sample variance
+ when <M>X_i</M> s are iid <M>N(\mu,\sigma^2).</M>  In order to derive these we need to first know about the <TERM>multivariate normal distribution</TERM>.
 
 <HEAD1>Multivariate normal</HEAD1>
 You have already learned about normal and bivarate normal  distributions in Probability I. These are all special cases of
@@ -14,61 +17,171 @@ Let  <M>\v X</M> be a <M>d</M>-dimensional random vector with components iid <M>
  <M>A_{r\times n}</M> be any fixed matrix and <M>\v b\in\rr^r</M> be any fixed vector. Then the
  distribution of the random vector <M>A\v X + \v b</M>  is called a <M>r</M>-dimensional multivariate normal distribution.
 </DEFN>
+This is defined in a way slightly different from the way you defined bivariate normal in Probability I. But it is equivalent.
+ 
+Unfortunately, this distribution may or may not have a density, and its distribution function is
+ not easy to write down (even for univariate normal the distribution function cannot be written in
+ a closed form). So in order to work with the multivariate normal distribution, we shall use mgf.
+ We quickly recall the definition of mgf that you have learned in Probability I.
+
+<DEFN name="(Multivariate) mgf">
+The <TERM>(multivariate) mgf</TERM>  of a random vector <M>\v X</M>  is  
+<D>M(\v t) = E(e^{\v t'\v X}).</D>
+If we write <M>\v X = (X_1,...,X_d)'</M>  and <M>\v t = (t_1,...,t_d)',</M>  then we have
+<D>M(t_1,...,t_d) = E(e^{t_1X_1+\cdots+t_dX_d}).</D>
+</DEFN> 
+It enjoys all the important properties of univariate mgf:
+
 
 <THM>
 Let  <M>\v X</M> be a <M>d</M>-dimensional random vector with components iid <M>N(0,1).</M>  Let
  <M>A_{r\times n}</M> be any fixed matrix and <M>\v b\in\rr^r</M> be any fixed vector. Then the
  MGF of the random vector <M>A\v X + \v b</M>  is given by 
-<D>M(\v t)  = e^{\v b'\v t+[[12]]\v t' AA'\v t}</D>
-for <M>\v t\in\rr^d.</M>
-Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
-Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  
+<D>M(\v t)  = e^{\v b'\v t+[[12]]\v t' AA'\v t}\mbox{ for }\v t\in\rr^d.</D>
 </THM>
+<PF>
+<LINK to="image/nmgf1.png">Recall from Probability I</LINK> that mgf of each <M>X_i</M>  is <M>E(e^{sX_1})=e^{s^2/2}</M>  for <M>s\in\rr.</M>  
+
+So the mgf of <M>\v X = (X_1,...,X_d)'</M>  is 
+<MULTILINE>
+E(e^{s_1X_1+\cdots+s_dX_d})
+& = & E(e^{s_1X_1})\cdots E(e^{s_dX_d}) <SINCE><M>\because</M>independent</SINCE> \\
+& = & e^{[[12]](s_1^2+\cdots+s_d^2)} = e^{\v s'\v s/2}
+</MULTILINE>
+for all <M>\v s=(s_1,...,s_d)'\in\rr^d.</M>
+
+So mgf of <M>A\v X + \v b</M>  is 
+<MULTILINE>
+E(e^{\v t'(A\v X+\v b)})
+& = & E(e^{\v t'A\v X+\v t'\v b)})\\
+& = & e^{\v t'\v b)}E(\v t'A\v X)\\
+& = & e^{\v t'\v b)}E((A'\v t)'\v X)\\
+& = &
+ e^{\v t'\v b)}e^{(A'\v t)'(A'\v t)/2}\\
+& = & e^{\v t'\v b+\v t' AA'\v t/2},
+</MULTILINE> 
+as required.
+</PF>
+Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
+Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  Quickly recall from Mathematics II that any matrix
+ of the form <M>A'A</M>  (for a real matrix <M>A</M>) is called a nnd matrix. 
+
 
 <B>Notation:</B>  Let <M>\v \mu\in\rr^d</M>  be a fixed vector, and <M>\Sigma_{d\times d}</M>  be any fixed nnd
  matrix. The distribution with mgf <M>M(\v t) = e^{\v \mu't + [[12]] \v t' \Sigma \v t}</M>  for
  <M>\v t\in \rr^d</M>  is denoted by <M>N_d(\v \mu, \Sigma).</M>
 
-<THM>If <M>\v X\sim N_d(\v \mu \Sigma),</M>  then <M>E(\v X) = \v \mu</M>  and <M>V(\v X) = \Sigma.</M></THM>
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>E(\v X) = \v \mu</M>  and <M>V(\v X) = \Sigma.</M></THM>
+<PF>Here <M>\v X = \v \mu + A\v Z</M>  for some matrix <M>A</M>  where <M>\Sigma = AA'</M>  and
+ the components of <M>\v Z</M>  are iid <M>N(0,1).</M>
 
-<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M> and <M>A_{r\times d}</M>  is any fixed  matrix and  
-<M>\v b\in\rr^r</M>  is any fixed vector, then <M>AX+\v b\sim N_r(A\v\mu+\v b, A \Sigma A').)</M>
-</THM>
+Hence <M>E(\v Z) = \v 0</M>  and <M>V(\v Z) = I.</M>
 
+So <M>E(\v X) = \v \mu + A E(\v Z) = \v \mu</M>  and <M>V(\v X) = A V(\v Z)A' = AA' = \Sigma.</M>
+</PF>
 <THM>If <M>X_1,...,.X_n</M>  are iid <M>N(0,1)</M>  random variables, then <M>\v X =
- <MAT>X_1\\\vdots\\X_n</MAT></M>  has <M>N_n(\v 0, I)</M>  distribution.</THM>
+ <MAT>X_1\\\vdots\\X_n</MAT></M>  has <M>N_n(\v 0, I)</M>  distribution.</THM><PF>Direct.</PF>
 
 
-We can easily compute marginal distributions of a multivariate normal using this theorem. 
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M> and <M>B_{r\times d}</M>  is any fixed  matrix and  
+<M>\v c\in\rr^r</M>  is any fixed vector, then <M>BX+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)</M>
+</THM>
+<PF>Here <M>\v X = \v \mu + A\v Z</M>  for some matrix <M>A</M>  where <M>\Sigma = AA'</M>  and
+ the components of <M>\v Z</M>  are iid <M>N(0,1).</M>
+
+So <M>B\v X + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v \mu+\v
+ c,BAA'B')\equiv  N_r(B\v \mu+\v c,B \Sigma B'),</M>  as required.
+</PF>
+
+
+We can easily compute the marginals  of a multivariate normal distribution using this theorem. 
 <EXM>
-Let 
+Let <M>\v X = <MAT>X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\2\\3</MAT>,<MAT>2 & 0 & 1\\1 & 20 & 2\\2 & 3 & 100</MAT>)*).</M>
+  Find the distributions of
+ <M>Y</M>  and <M>(X,Z).</M><SOLN/>
+Take <M>B = <MAT>0 & 1 & 0</MAT>.</M>  Then <M>B\v X = Y\sim N(2,20).</M>
+
+Again, taking <M>B = <MAT>1 & 0 & 0\\0 & 0  & 1</MAT></M>, 
+we have <M>B\v X = <MAT>X\\Z</MAT>\sim N_2(*(<MAT>1\\3</MAT>,<MAT>2 & 1\\2 & 100</MAT>)*)</M>.
 </EXM>
+Thus, we see that the various marginals are also normal with the "corresponding" parts of the
+ original mean vector and covariance matrix.
 
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_n</M>  are (mutually) independent
  iff <M>\Sigma</M>  is diagonal.</THM>
+<PF>We already know from the last theorem that <M>X_i\sim N(\mu_i, \sigma_{ii}),</M>  where
+ <M>\mu_i</M>  is the <M>i</M>-th entry of <M>\v \mu,</M>  and <M>\sigma_{ii}</M>  is the
+ <M>i</M>-th diagonal entry of <M>\Sigma.</M>
 
+So mgf of <M>X_i</M>  is <M>M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}.</M>
+If the <M>X_i</M> s were independent, then the mgf of <M>\v X</M>  would have been 
+<M>M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</M>  where <M>diag(\Sigma)</M>  is the diagonal part
+ of <M>\Sigma.</M>
 
+Also mgf of <M>\v X</M>  is <M>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t}.</M>  
+
+Thus, <M>X_i</M> s are independent iff 
+<D>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t} = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</D>
+and this must hold for all <M>\v t\in\rr^d.</M>  
+
+So  we must have <M>\v t'\Sigma\v t=\v t'diag(\Sigma)\v t.</M>
+Since <M>\Sigma</M>  is symmetric, hence this forces <M>\Sigma=diag(\Sigma),</M>  i.e., <M>\Sigma</M>  must be a diagonal
+ matrix, as required.
+</PF>
+
+<HEAD2>Problem set</HEAD2>
+
+Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\1 & 20 & 2 & 1\\2 &
+ 3 & 100 & 1\\0 & 0 & 0 & 3</MAT>)*).</M>
+
+<EXR>Find the distribution of <M>Y.</M></EXR>
+<EXR>Find the distribution of <M>(X,Z).</M></EXR>
+<EXR>Find the distribution of <M>(X+Y,X+W).</M></EXR>
+<EXR>If <M>X_1,X_2,X_3</M>  are iid <M>N(0,1),</M>  then show that <M>X_1+X_2+X_3</M>  and
+ <M>X_1-2X_2+X_3</M>  are independent.</EXR>
+<EXR>If <M>\v X\sim N_d(\v \mu, I)</M> and <M>\v a, \v b\in\rr^d</M>  are two fixed vectors with
+ <M>\v a'\v b = 0</M>  (i.e., they are orthogonal to each other), then show that <M>\v a'\v X</M>  and <M>\v b'\v X</M> 
+ are independent.</EXR>
+
+<EXR>Show that <M>N_d(\v 0, I)</M>  has joint density <M>f(\v x) = (2\pi)^{-[[d2]]} e^{-[[12]]\v x'\v x} </M>  for <M>\v x\in\rr^d.</M>
+<HINT>Just multiply the <M>N(0,1)</M>  densities of the <M>d</M>  components.</HINT>
+</EXR>
+
+<EXR>Show that if <M>\Sigma</M>  is pd, then <M>N_d(\v \mu, \Sigma)</M>  has density
+<D>f(\v x) = (2\pi det(\Sigma))^{-[[d2]]} e^{-[[12]]\v x' \Sigma ^{-1}\v x } \mbox{ for }\v x\in\rr^d.</D>
+<ANS>
+Since <M>\Sigma</M>  is pd, <M>\Sigma = AA'</M>  for a <I>nonsingular</I>  matrix <M>A.</M>  
+
+So you can think that <M>X = \v \mu + A\v Z</M>  where <M>\v Z\sim N_d(\v 0, I).</M>
+
+The last exercise gives density of <M>\v Z.</M> 
+
+The transform <M>X = \v \mu + A\v Z</M>  is a bijection. Apply Jacobian formula. 
+</ANS>
+</EXR>
 <HEAD1>Sampling distributions for normal sample</HEAD1>
-Our main theme in this page is the following theorem. 
-<THM>
-Let <M>X_1,...,X_n</M>  be a random sample (i.e., IID) from <M>N(\mu, \sigma^2).</M> We consider
- the sample mean <M>\bar X=[[1n]]\sum _1^nX_i</M>  and the statistic <M>S^2=\sum_1^n (X_i-\bar X)^2.</M>   Then 
-<OL>
-<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
-<LI><M>[[S^2][\sigma^2]]\sim \k {n-1}</M></LI>
-<LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
-</OL>
-</THM>
-Before we start to prove this theorem, let us recall a few relevant things.
+First a definition that you already know. 
 
-<DEFN>If <M>U_1,...,U_k</M>  are iid <M>N(0,1),</M>  then the distribution of <M>\sum_1^k
+<DEFN name="(Central) $\k k$-distribution">If <M>U_1,...,U_k</M>  are iid <M>N(0,1),</M>  then the
+ distribution of <M>\sum_1^k
  U_i^2</M>  is called <TERM>(central) chi-square</TERM>  with <M>k</M>  <TERM>degrees of
  freedom</TERM>. This distribution is denoted by <M>\k k</M>.</DEFN>
-
 Thus, we say <M>X\sim\k k,</M>  then you can assume that there are <M>k</M>  random variables <M>U_1,...,U_k</M>  all
  defined on the same probability space such that <M>X = U_1^2+\cdots+U_k^2.</M>
 
+It is good to know how the densities of the <M>\k k</M>-distribution look like for different degrees of freedom:
+<CIMG web="chiplot.png">Some <M>\k k</M>  densities</CIMG> 
 
+And here is a slight generalisation of this definition.
+
+<DEFN name="Noncentral $\k k$-distribution">If <M>U_1,...,U_k</M>  are independent
+ <M>N(\mu_i,1),</M>  then the distribution of <M>\sum_1^k
+ U_i^2</M>  is called <TERM>noncentral chi-square</TERM>  with <M>k</M>  <TERM>degrees of
+ freedom</TERM>  and <TERM>noncentrality</TERM>  <M>\sum \mu_i^2.</M>. This distribution is
+sometimes  denoted by <M>\k k(*(\sum \mu_i^2)*)</M>.</DEFN>
+
+
+Here is a little fact that can be proved using high school algebra. 
 <THM>
 Let <M>x_1,...,x_n</M>  be any <M>n</M>  numbers. 
 Let  <M>\bar x_k=[[1k]]\sum _1^kx_i</M>  for <M>k=1,...,n</M>  and  <M>S_k^2=\sum_1^k
@@ -82,8 +195,19 @@ High school algebra shows <M>S_k^2-S_{k-1}^2 = [[k-1][k]] (x_k-\bar x_{k-1})^2</
 Hence the result.
 </PF>
 
-
+Now for the main theme in this page:
+<THM>
+Let <M>X_1,...,X_n</M>  be a random sample (i.e., iid) from <M>N(\mu, \sigma^2).</M> 
+Let <M>\bar X=[[1n]]\sum _1^nX_i</M>  and  <M>S^2=\sum_1^n (X_i-\bar X)^2.</M>   Then 
+<OL>
+<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
+<LI><M>[[S^2][\sigma^2]]\sim \k {n-1}</M></LI>
+<LI><M>\bar X</M>  and <M>S^2</M>  are independent.</LI>
+</OL>
+</THM>
 <PF>
+Let <M>\bar X_k=[[1k]]\sum _1^kX_i</M>  for <M>k=1,...,n.</M>
+
 Let <M>Y_k = X_{k+1}-\bar X_k</M>  for <M>k=1,...,n-1</M>  and   <M>Y_n = \bar X_n.</M>
 
 Then <M>\v Y = A\v X</M>  for 
@@ -95,17 +219,15 @@ Then <M>\v Y = A\v X</M>  for
 -[[1][n-1]] & \cdots &  & & -[[1][n-1]] & 1\\
 [[1n]]  & [[1n]] & [[1n]] & \cdots & [[1n]] & [[1n]]</MAT>.</D>
 
-Clearly, <M>A</M>  is nonsingular (why?). 
-
 So <M>\v Y</M>  has a multivariate normal distribution.
 
-It is easy to work out the mean vector and covariance matrix:
-<UL>
-<LI><M>E(Y_k) = \cdots  =0 </M>  for <M>k=1,...,n-1,</M>  and <M>E(Y_n) = \mu.</M></LI>
+It is easy (?) to work out the mean vector and covariance matrix:
+<OL>
+<LI><M>E(Y_k) =0 </M>  for <M>k=1,...,n-1,</M>  and <M>E(Y_n) = \mu.</M></LI>
 <LI><M>V(Y_k) = \sigma^2(*(1+[[1k]])*)</M>  for <M>k=1,...,n-1,</M>  and <M>V(Y_n) = [[\sigma^2][n]].</M></LI>
-<LI><M>\cov(Y_i,Y_j)=  \cdots = 0</M>  for <M>i\neq j\in\{1,...,n-1\}</M>  and
- <M>\cov(Y_i,Y_n)=  \cdots = 0</M>  for <M>i\in\{1,...,n-1\}.</M>    
-</LI></UL>
+<LI><M>\cov(Y_i,Y_j)= 0</M>  for <M>i\neq j\in\{1,...,n-1\}</M> and
+ <M>\cov(Y_i,Y_n)=   0</M>  for <M>i\in\{1,...,n-1\}</M>      
+</LI></OL>
 So <M>Y_1,...,Y_n</M>  are independent random variables. 
 
 In particular, <M>\bar X_n = Y_n \sim N(*(\mu,[[\sigma^2][n]])*)</M>, as required.
@@ -114,23 +236,45 @@ Also,
 <D>S_n^2 = \sum_1^{n-1} [[i][i+1]](X_{i+1}-\bar X_i)^2 = \sum_1^{n-1} [[i][i+1]] Y_i^2.</D>
 Since <M>Y_1,...,Y_{n-1}</M>  are independent with <M>Y_i\sim N(*(0, (1+[[1i]]) \sigma^2 )*),</M>  
 
-hence <M>\sqrt{[[i][i+1]]} [[Y_i][\sigma]]</M>'s are IID <M>N(0,1)</M>  random variables (for <M>i=1,...,n-1).</M>
+hence <M>\sqrt{[[i][i+1]]} [[Y_i][\sigma]]</M>'s are iid <M>N(0,1)</M>  random variables (for <M>i=1,...,n-1).</M>
 
 Hence <M>[[S_n^2][\sigma^2]]\sim\k {n-1},</M>  as required.
 
-Notice that <M>S_n^2</M>  is a function of only <M>Y_1,...,Y_{n-1}</M>  only, which are
+Notice that <M>S_n^2</M>  is a function of <M>Y_1,...,Y_{n-1}</M>  only, which are
  independent of <M>Y_n,</M>  i.e., <M>\bar X_n,</M>  as required. 
 </PF>
 <HEAD2>Problem set</HEAD2>
+
+<EXR>If <M>X_1,...,X_{100}</M>  are iid <M>N(3,4^2),</M>  then what is the sampling distribution of sample mean?</EXR>
+
+
+<EXR> If
+ <M>(X_1,...,X_{100})</M> is a random sample from <M>N(3,2^2),</M>  then what is the probability that the sample variance
+exceeds 5? Express your answer in terms of <M>F_k(x)</M>,  the distribution function of <M>\k k</M>  distribution.
+Assume that the sample variance is computed with <M>n-1</M>  in the denominator.
+ </EXR>
+
+<EXR>If <M>X_1,...,X_n</M>  are iid <M>N(2,3^2).</M>  Find <M>P(\bar X \in (1,3))</M>  in terms of
+ the standard normal distribution function <M>\Phi(\cdot).</M></EXR>
+
+<EXR>If <M>X_1,X_2,...</M>  are iid <M>N(0,1)</M>  and <M>\bar X_n = [[1n]]\sum_1^n X_i</M>  and
+ <M>S_n^2 = \sum_1^n (X_i-\bar X_n)^2,</M>  then which of the following statements is/are true? 
+<UL>
+<LI><M>\bar X_n</M>  and <M>S_{n-1}^2</M>  are independent for every <M>n\geq 2.</M></LI>
+<LI><M>\bar X_{n-1}</M>  and <M>S_n^2</M>  are independent for every <M>n\geq 2.</M></LI>
+</UL>
+</EXR>
 <EXR>
-Same set up as in the theorem above. What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
+<M>X_i</M> s iid <M>N(0,1).</M>  What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
 a fixed number?
 </EXR>
-<HEAD1 u="https://youtu.be/mv62pUoznVI"><M>t</M>  distribution</HEAD1>
+<HEAD1><M>t</M>  distribution</HEAD1>
 <DEFN name="$t$-distribution">
 If <M>X\sim N(0,1)</M>  and <M>Y\sim\k n</M>  and they are independent, then the distribution of <M>X/(\sqrt{Y/n})</M>  is
- called <M>t</M>-distribution with <M>n</M>  degrees of freedom. Here <M>n>0</M>  need not be an integer.
+ called <TERM><M>t</M>-distribution</TERM> with <M>n</M>  <TERM>degrees of freedom</TERM>.
 </DEFN>
+
+<COMMENT>
 Let us derive density of <M>t</M>-distribution with <M>n</M>  degrees of freedom. We shall do this step by step. 
 
 From <M>Y</M>  we shall pass on to <M>Z = \sqrt{[[Yn]]}</M>  and then to <M>[[XZ]].</M>  
@@ -157,22 +301,36 @@ Substituting <M>v = [[u^2][2]]</M>  we have
 </MULTILINE>
 If you keep track of the constants, you will find that it is
 <D>[[\Gamma(*([[n+1][2]])*)][\sqrt{n\pi}\Gamma(*([[n][2]])*)]]\times n^{[[n+1][2]]}.</D>
-It should not be difficult to see that <M>t</M>-density is symmetric around 0. The densities are much like the <M>N(0,1)</M> 
- density. They lie somewhere between the Cauchy density and <M>N(0,1)</M>  density. As the degrees of freedom increase
+</COMMENT>
+It should not be difficult to see that <M>t</M>-density is symmetric around 0. 
+Using Jacobian formula (and some patience) once may show that the density of <M>t_{(n)}</M>-distribution is of the form <M>f_n(t)=\mbox{const } (t^2+n)^{-[[n+1][2]]}.</M>
+The densities are much like the <M>N(0,1)</M> 
+ density. They lie somewhere between the Cauchy density and <M>N(0,1)</M>  density. 
+<CIMG web="tplot.png">Some <M>t</M>-densities</CIMG>
+As the degrees of freedom increase
  to <M>\infty,</M>  the <M>t</M>-distribution approaches <M>N(0,1).</M>  For degrees of freedom more than 40, the <M>t</M>-density
  is virtually indisguishable from that of <M>N(0,1)</M>  density.
 
 <HEAD2>Problem set</HEAD2>
+<EXR>Consider the density of <M>t_{(k)}</M>-distribution. Do you recognise the
+ <M>t_{(1)}</M>-distribution as something already familiar?</EXR>
+
 <EXR>Let <M>X_1,...,X_n</M>  be a random sample from <M>N(\mu,\sigma^2).</M>  Then what is the distribution of 
 <D>[[\sqrt n(\bar X-\mu)][\sqrt{\sum(X_i-\bar X)^2/(n-1)}]]?</D>
 </EXR>
 
+<EXR>Let <M>X_1,...,X_{100}</M>  be a random sample from <M>N(\mu,\sigma^2).</M>  Find <M>a>0</M>  such that 
+<M>P(\mu\in (\hat \mu-a \hat \sigma^2,\hat \mu+a \hat \sigma^2)) = 0.95,</M>  where <M>\hat \mu</M>  is the sample mean and
+ <M>\hat \sigma^2</M>  is the sample variance (with <M>n-1</M>  in the denominator). Express your answer in terms of the
+ distribution function, <M>F_k(\cdot)</M>  of the <M>t_{(k)}</M>-distribution. 
+</EXR>
 
-<HEAD1 u="https://youtu.be/xTL6asmWxA8"><M>F</M>  distribution</HEAD1>
+<HEAD1><M>F</M>  distribution</HEAD1>
 <DEFN name="$F$-distribution">
 If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, then the distribution of <M>[[X/m][Y/n]]</M>  is
- called <M>F</M> -distribution with numerator degrees of freedom <M>m</M>  and denominator degrees of freedom <M>n.</M>
+ called <TERM><M>F</M>-distribution</TERM> with <TERM>numerator degrees of freedom</TERM> <M>m</M>  and <TERM>denominator degrees of freedom</TERM> <M>n.</M>
 </DEFN>
+<COMMENT>
 The density of <M>X</M>  is <M>f_X(x) =<CASES>\mbox{const }x^{[[m2]]-1}e^{-[[x2]]}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 
 Similarly, 
@@ -189,13 +347,20 @@ f_Z(z)
 </MULTILINE>
 Hence the density of <M>[[nm]]Z</M>  is 
 <D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES> </D>
-
+</COMMENT>
+The density of the <M>F_{m,n}</M>-distribution is of the form
+<D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES>.</D>
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X_1,...,X_m</M>  and <M>Y_1,...,Y_n</M>  be random samples from
- <M>N(\mu_1,\sigma^2)</M>  and <M>N(\mu_2,\sigma^2)</M>, respectively (same <M>\sigma^2).</M>  
+ <M>N(\mu_1,\sigma^2)</M>  and <M>N(\mu_2,\sigma^2)</M>, respectively (same <M>\sigma^2</M>).  
 Then what
  is the distribution of 
 <D>[[\sum(X_i-\bar X)^2/(m-1)][\sum(Y_i-\bar Y)^2/(n-1)]]?</D>
 </EXR>
+
+<EXR>If <M>X\sim t_{(1)},</M>  then what is the distribution of <M>X^2?</M></EXR>
+
+<EXR>If <M>X\sim F_{(2,3)},</M>  then what is the distribution of <M>[[1X]]?</M></EXR>
+
 
 </NOTE>@}

@@ -207,5 +207,13 @@ Is this true for <I>any</I> symmetric <M>\Sigma</M>?
 
 <EXR>Let <M>V(\v X)=\Sigma</M>  be a pd matrix with  Cholesky square root <M>A.</M> What is the
  disperstion matrix of <M>(A ^{-1})'\v X</M>? </EXR>
-<HEAD2>Project: Face recognition</HEAD2>
+<PROJ><NAME>Face recognition using eigenanalysis</NAME><DESCR>
+This is a simplified version of a classical machine learning application. You start with a
+ database of face images (I can provide you with one. Or, if you are really ambitious, you may
+ take photos of your classmates). Then the project computes the  covariance matrix of the data, and reduces the data to just
+ a few numbers (say 10 to 15) per face. These numbers store most of the "relevant" information for
+ recognising the face.  Formally, this project is about dimensionality reduction using principal compnent analysis. Requires
+ good knowledge about the spectral decomposition of real symmetric matrices. Not a super easy project, but if done properly,
+ will lead to a final "Wow!". 
+</DESCR></PROJ>
 </NOTE>@}

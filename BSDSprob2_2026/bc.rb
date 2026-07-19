@@ -164,16 +164,29 @@ What is the chance that he gets at leaast one prize? Wht is the chance he gets i
  to use the second Borel
  Cantelli lemma. You can prove it much more easily using continuity of probability.  How?</EXR>
 
-<HEAD2>Project: Normal numbers</HEAD2>
-Consider a uniform random number between 0 and 1. Let <M>d_n</M>  be the <M>n</M>-th digit after
- the decimal point in its (unique) non-terminating decimal expansion. For example, if the number
+<PROJ><NAME>Almost all numbers are normal</NAME><DESCR>
+
+Consider a number between 0 and 1. Consider its 
+ (unique) non-terminating decimal expansion. Pick any natural number <M>k</M>  and any of the
+ <M>10^k</M>  digit patterns of length <M>k.</M>  Is any pattern more likely than another? For
+ instance, in <M>[[13]] = 0.33333...</M>  then pattern <M>333</M>  is the only pattern. If every
+ patten in "equally frequent" in the number, then it is called a <TERM>normal number</TERM>. For
+ instance, <M>[[13]]</M>  is not a normal number. Only a very few
+ normal numbers are known. Nobody yet knows if <M>\pi</M>  or <M>e </M>  is a normal number. Yet,
+ the surprising fact is that if you generate a random number from <M>Unif(0,1),</M>  then it is
+ normal with probability 1. This project is about exploring this proof.
+
+This project is of a more theoretical nature. 
+<COMMENT>
+But  For
+ example, if the number
  is <M>[[12]],</M>  then the non-terminating decimal expansion
  is <M>0.499999...,</M>  and so <M>d_1 = 4,</M>  while <M>d_n=9</M>  for each <M>n\geq 2.</M>  
 
 Consider the event <M>\{d_1=3\}.</M>  Clearly it is <M>(0.3,0.4].</M>  So this has probability
  <M>[[1][10]].</M>  Next consider the event <M>\{d_2=3\}.</M>  This is <M>\cup_{d_1=0}^9
  [[d_1][10]]+(0.03,0.04].</M>  Again, the probability is <M>[[1][10]].</M>  In particular we have the following theorem:
-
+</COMMENT></DESCR></PROJ>
 <THM>
 <UL>
 <LI>For each <M>n</M>  the random variable <M>d_n</M>  is uniformly distributed over <M>\{0,1,...,9\}.</M></LI>
@@ -209,7 +222,14 @@ Then
  <M>\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.</M> So, in particular, <M>P(0\mbox{ occurs }\io)=1.</M>  Hence, <M>P(0,1\mbox{ occur }\io)=1.</M> 
  Proceeding similarly, <M>P(\mbox{each digit occurs }\io)=1.</M>
 
-<HEAD2>Project: Random walk in 3D</HEAD2>
+<PROJ><NAME>Random walk in 3D may not return</NAME><DESCR>
+A bird starts at the origin, and in each second moves one unit parallel to one of the three axes (the axis and direction
+ chosen randomly). Is the bird sure to fly back to the origin sometime or other during the course of its random flight? The
+ answer is "No!". But if we force the bird to stay in the <M>xy</M>-plane (i.e., vertical movements are not allowed), then
+ the answer is "Yes". This project is about using the first Borel-Cantelli lemma to prove the general case. 
+
+It is a classical application of the Borel-Cantelli lemmas. Theoretical project. Not too difficult. 
+<COMMENT>
 Let <M>S = X_1+\cdots+X_n</M>  a simple, symmetric random walk in 3D. We shall show that <M>P(S_n=0\io)=0.</M>  Thanks to
  the first Borel Cantelli lemma, it is enough to show
 that <M>\sum P(S_n=0) < \infty.</M> 
@@ -231,7 +251,7 @@ Using Stirling's approximation <M>m!\sim \sqrt{2\pi
 m}(m/e)^m,</M> we have <M>P(S_{2k}=0)\leq C n^{-3/2}.</M> 
 
 Hence the result.
-
+</COMMENT></DESCR></PROJ>
 
 
 </NOTE>@}
