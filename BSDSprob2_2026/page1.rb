@@ -15,7 +15,7 @@ So a natural requirement is to be able to work out the distributions of the new 
 by reviewing some basic concepts.
 
 <HEAD2>Random vectors</HEAD2>
-An <M>n</M>-dimensional random vector is just <M>n</M>  random variables packed together as a vector. All the random variables
+An <M>n</M>-dimensional <TERM>random vector</TERM> is just <M>n</M>  random variables packed together as a vector. All the random variables
  must be defined on the same probability space. 
 
 <EXM>Roll a fair die. Let the outcome be denoted by <M>\omega.</M>  Define the random variables
@@ -38,14 +38,16 @@ Then <M>(X,Y)</M>  is a random vector.
 <LI><M>Z(\omega) = <CASES>\omega_1<IF>\omega_2=Head</IF> \omega_1+3<IF>\omega_2=Tail</IF></CASES></M></LI>
 </UL>
 Then <M>(X,Y,Z,XY)</M>  is a random vector. This example shows how "a coin toss and a die roll" is considered a <I>single</I> 
- random experiment. 
+ random experiment. A random variable defined on this experiment may depend on just the coin toss, or just the die roll,
+ or both. 
 </EXM>
 
 <HEAD2>Multivariate function</HEAD2>
-When we say <M>\phi</M>  is a function from <M>\rr^2</M>  to <M>\rr^3,</M>  we think of <M>\phi</M>  as a machine with <M>2 </M> inputs
- and <M>3</M> outputs. It takes <M>2 </M> numbers in, and produces 3 numbers out.
+When we say <M>\phi</M>  is a function from <M>\rr^n</M>  to <M>\rr^m,</M>  we think of <M>\phi</M>  as a machine with <M>n </M> inputs
+ and <M>m</M> outputs. It takes <M>n </M> numbers in, and produces <M>m</M> numbers out.
 
-<EXM><M>\phi(x_1,x_2) = (x_1,x_1+x_2,x_2^2)</M>  is one such example. It has two inputs and 3 outputs:
+<EXM><M>\phi(x_1,x_2) = (x_1,x_1+x_2,x_2^2)</M>  is one such example. Here
+ <M>\phi:\rr^2\to\rr^3.</M>  It has two inputs and 3 outputs:
 <CIMG web="funbox.png"></CIMG>
 </EXM>
 
@@ -53,11 +55,12 @@ In general, each of the output numbers is a function of all the input numbers.
  These are called the
  <TERM>component function</TERM>s. 
  
-<EXM>The <M>\phi</M> from the last example  has component functions <M>\phi_1(x_1,x_2) = x_1,</M> 
- <M>\phi_2(x_1,x_2) = x_1+x_2</M>  and
- <M>\phi_2(x_1,x_2) = x_2^2.</M>  
+<EXM>The <M>\phi</M> from the last example  has component functions 
+<D>\phi_1(x_1,x_2) = x_1,~~
+\phi_2(x_1,x_2) = x_1+x_2\mbox{ and }
+\phi_3(x_1,x_2) = x_2^2.</D>  
 Note that, as in the  case of the first and third components, not all the input variables
- need to appear explicitly in all the components.
+ need to appear in all the components.
 </EXM>
 
 <HEAD2>Jacobian</HEAD2>
@@ -97,13 +100,13 @@ Its determinant is
 
 <EXR>How many component functions does <M>\phi:\rr^6\to\rr^2</M>  have? <M>6?</M>  or <M>2?</M></EXR>
 
-<EXR>Find Jacobian of <M>\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)</M>
+<EXR>Find the Jacobian of <M>\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)</M>
 </EXR>
 
-<EXR>Compute the Jacobian matrix for <M>\phi(x,y,z) = (sin(2x+3y),x^2z).</M></EXR>
+<EXR>Compute the Jacobian matrix for <M>\phi(x,y,z) = (\sin(2x+3y),x^2z).</M></EXR>
 
 <EXR>What is the Jacobian matrix for the transform <M>\phi:\rr^n\to\rr^n</M>  where <M>\phi(\v x) = A\v
- x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>?</EXR>
+ x+\v b</M>  for some fixed matrix <M>A_{n\times n}</M>  and fixed vector <M>\v b_{n\times 1}</M>?</EXR>
 
 <EXR>If <M>\phi:\rr^n\to\rr^n</M>  is given by <M>\phi(\v x) = A\v
  x+\v b</M>  for some matrix <M>A_{n\times n}</M>  and vector <M>\v b_{n\times 1}</M>, then show
@@ -116,8 +119,9 @@ Its determinant is
 <HEAD1>Univariate Jacobian formula (review)</HEAD1>
 You already know this (at least you <I>should</I> !):
 <IMG web="jac1.png">Excerpt from Probability I notes</IMG>
-Here <M>\phi</M>  is assumed to be strictly monotone and differentiable. Actually, we also need
- <M>\phi ^{-1}</M>  to be differentiable. The strict monotonicity guaranteed that <M>\phi</M>  was one-one, so that <M>\phi ^{-1}</M> 
+Here <M>\phi</M>  is assumed to be strictly monotone and differentiable. Actually, we need
+Give one Give oneGaebgsebdd <M>\phi ^{-1}</M>  to be differentiable. The strict monotonicity guaranteed that <M>\phi</M> 
+ was one-one, so that <M>\phi ^{-1}</M> 
  made sense. 
 
 <EXM>Let <M>X</M> have exponential distribution with rate <M>\lambda>0.</M>  Find the density of <M>X^2.</M><SOLN/>
@@ -131,6 +135,8 @@ g(y)
 & = & <CASES>\lambda e^{-\lambda\sqrt y} [|[ [[1][2\sqrt y]] ]|]<IF>y>0</IF> 0<ELSE/></CASES>\\
 & = & <CASES>[[ \lambda e^{-\lambda\sqrt y}][2\sqrt y]] <IF>y>0</IF> 0<ELSE/></CASES>.
 </MULTILINE>
+You may check the  statistical regularity behind this exercise by direct simulation. In the following
+ snippet I have used <M>\lambda=2.</M>
 <RC>
 g = function(y) {exp(-2*sqrt(y))/sqrt(y)}
 x = rexp(1000,rate=2)
@@ -143,7 +149,7 @@ curve(g,add=T)
 
 <EXR>If <M>X\sim Unif(0,1)</M>  then what is the density of <M>\cos X</M>?</EXR>  
 
-<EXR>If <M>X</M>  has density <M>f(x),</M>  and <M>a,b\in\rr</M>  are fixed, then find the density of <M>aX+b.</M></EXR>
+<EXR>If <M>X</M>  has density <M>f(x),</M>  and <M>a(\neq0),b\in\rr</M>  are fixed, then find the density of <M>aX+b.</M></EXR>
 
 <EXR>If <M>X\sim Unif(*(-[[\pi2]],[[\pi2]])*),</M>  find the density of <M>\tan X.</M></EXR>
 

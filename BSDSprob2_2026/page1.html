@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:06 IST 2026</i>
+Wed Jul 22 04:30:43 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -169,39 +169,39 @@ Sun Jul 19 09:18:06 IST 2026</i>
 </li>
 <li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10032">Random vectors</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10095">Multivariate function</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10098">Multivariate function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100CF">Jacobian</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100D2">Jacobian</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N10111">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N10114">Problem set</a>
 </li>
-<li>2. <a href="#N10187">Univariate Jacobian formula (review)</a>
+<li>2. <a href="#N1018A">Univariate Jacobian formula (review)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101D8">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101DE">Problem set</a>
 </li>
-<li>3. <a href="#N1020D">Multivariate Jacobian formula</a>
+<li>3. <a href="#N10213">Multivariate Jacobian formula</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10210">Theory</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10216">Theory</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10273">Example</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10279">Example</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N102E4">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N102EA">Problem set</a>
 </li>
-<li>4. <a href="#N10350">Special case: (Affine) linear tranforms</a>
+<li>4. <a href="#N10356">Special case: (Affine) linear tranforms</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10379">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1037F">Problem set</a>
 </li>
-<li>5. <a href="#N103C0">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<li>5. <a href="#N103C6">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1047C">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10482">Problem set</a>
 </li>
-<li>6. <a href="#N104C8">Geometry in the univariate case</a>
+<li>6. <a href="#N104CE">Geometry in the univariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10514">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N1051A">Problem set</a>
 </li>
-<li>7. <a href="#N10548">Geometry in the multivariate case</a>
+<li>7. <a href="#N1054E">Geometry in the multivariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N105A2">Problem set </a>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N105A8">Problem set </a>
 </li>
 </ul>
 <hr/>
@@ -229,7 +229,7 @@ by reviewing some basic concepts.
 <a name="N10032"><span class="header">1.1</span>.
 Random vectors</a>
 </h2>
-An $n$-dimensional random vector is just $n$  random variables packed together as a vector. All the random variables
+An $n$-dimensional <b><font color="red" size="40">random vector</font></b> is just $n$  random variables packed together as a vector. All the random variables
  must be defined on the same probability space. 
 <p></p>
 
@@ -265,22 +265,24 @@ Then $(X,Y)$  is a random vector.
 
 </ul>
 Then $(X,Y,Z,XY)$  is a random vector. This example shows how "a coin toss and a die roll" is considered a <i>single</i> 
- random experiment. 
+ random experiment. A random variable defined on this experiment may depend on just the coin toss, or just the die roll,
+ or both. 
  ■
 </p>
 
 <p></p>
 
 <h2>
-<a name="N10095"><span class="header">1.2</span>.
+<a name="N10098"><span class="header">1.2</span>.
 Multivariate function</a>
 </h2>
-When we say $\phi$  is a function from ${\mathbb R}^2$  to ${\mathbb R}^3,$  we think of $\phi$  as a machine with $2 $ inputs
- and $3$ outputs. It takes $2 $ numbers in, and produces 3 numbers out.
+When we say $\phi$  is a function from ${\mathbb R}^n$  to ${\mathbb R}^m,$  we think of $\phi$  as a machine with $n $ inputs
+ and $m$ outputs. It takes $n $ numbers in, and produces $m$ numbers out.
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;$\phi(x_1,x_2) = (x_1,x_1+x_2,x_2^2)$  is one such example. It has two inputs and 3 outputs:
+<b>EXAMPLE 3:</b>&nbsp;$\phi(x_1,x_2) = (x_1,x_1+x_2,x_2^2)$  is one such example. Here
+ $\phi:{\mathbb R}^2\rightarrow{\mathbb R}^3.$  It has two inputs and 3 outputs:
 <center>
 <table width="100%">
 <tr>
@@ -301,18 +303,19 @@ In general, each of the output numbers is a function of all the input numbers.
 <p></p>
 
 <p>
-<b>EXAMPLE 4:</b>&nbsp;The $\phi$ from the last example  has component functions $\phi_1(x_1,x_2) = x_1,$ 
- $\phi_2(x_1,x_2) = x_1+x_2$  and
- $\phi_2(x_1,x_2) = x_2^2.$  
+<b>EXAMPLE 4:</b>&nbsp;The $\phi$ from the last example  has component functions 
+$$\phi_1(x_1,x_2) = x_1,~~
+\phi_2(x_1,x_2) = x_1+x_2\mbox{ and }
+\phi_3(x_1,x_2) = x_2^2.$$  
 Note that, as in the  case of the first and third components, not all the input variables
- need to appear explicitly in all the components.
+ need to appear in all the components.
  ■
 </p>
 
 <p></p>
 
 <h2>
-<a name="N100CF"><span class="header">1.3</span>.
+<a name="N100D2"><span class="header">1.3</span>.
 Jacobian</a>
 </h2>
 Let $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m$  be a function with $i$-th component function denoted by
@@ -346,7 +349,7 @@ $$x_2\cos (x_1x_2)\times(-2x_2)- x_1\cos (x_1x_2)\times 1  = -(2x_2^2+x_1)\cos (
 </p>  
  
 <h2>
-<a name="N10111"><span class="header">1.4</span>.
+<a name="N10114"><span class="header">1.4</span>.
 Problem set</a>
 </h2>
 
@@ -368,19 +371,19 @@ Problem set</a>
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;Find Jacobian of $\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)$
+<b>EXERCISE 4:</b>&nbsp;Find the Jacobian of $\phi(x_1,x_2) = (x_1,x_1+x_2,x_1^2)$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Compute the Jacobian matrix for $\phi(x,y,z) = (sin(2x+3y),x^2z).$</p>
+<b>EXERCISE 5:</b>&nbsp;Compute the Jacobian matrix for $\phi(x,y,z) = (\sin(2x+3y),x^2z).$</p>
 
 <p></p>
 
 <p>
 <b>EXERCISE 6:</b>&nbsp;What is the Jacobian matrix for the transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  where $\phi(\v x) = A\v
- x+\v b$  for some matrix $A_{n\times n}$  and vector $\v b_{n\times 1}$?</p>
+ x+\v b$  for some fixed matrix $A_{n\times n}$  and fixed vector $\v b_{n\times 1}$?</p>
 
 <p></p>
 
@@ -402,15 +405,16 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N10187"><span class="header">2</span>. Univariate Jacobian formula (review)</a>
+<a name="N1018A"><span class="header">2</span>. Univariate Jacobian formula (review)</a>
 </h1>
 You already know this (at least you <i>should</i> !):
 <center>
 <fieldset>
 <legend><b>Excerpt from Probability I notes</b></legend><img width="80%" src="image/jac1.png"></fieldset>
 </center>
-Here $\phi$  is assumed to be strictly monotone and differentiable. Actually, we also need
- $\phi ^{-1}$  to be differentiable. The strict monotonicity guaranteed that $\phi$  was one-one, so that $\phi ^{-1}$ 
+Here $\phi$  is assumed to be strictly monotone and differentiable. Actually, we need
+Give one Give oneGaebgsebdd $\phi ^{-1}$  to be differentiable. The strict monotonicity guaranteed that $\phi$ 
+ was one-one, so that $\phi ^{-1}$ 
  made sense. 
 <p></p>
 
@@ -427,6 +431,8 @@ g(y)
 &amp; = &amp; \left\{\begin{array}{ll}\lambda e^{-\lambda\sqrt y} \left| \frac{1}{2\sqrt y} \right|&\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right.\\
 &amp; = &amp; \left\{\begin{array}{ll}\frac{ \lambda e^{-\lambda\sqrt y}}{2\sqrt y} &\text{if }y&gt;0\\ 0&\text{otherwise.}\end{array}\right..
 \end{eqnarray*}$$
+You may check the  statistical regularity behind this exercise by direct simulation. In the following
+ snippet I have used $\lambda=2.$
 <font color="red">
 <pre>
 g = function(y) {exp(-2*sqrt(y))/sqrt(y)}
@@ -446,7 +452,7 @@ curve(g,add=T)
 </p>
 
 <h2>
-<a name="N101D8"><span class="header">2.1</span>.
+<a name="N101DE"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
@@ -461,7 +467,7 @@ Problem set</a>
 <p></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;If $X$  has density $f(x),$  and $a,b\in{\mathbb R}$  are fixed, then find the density of $aX+b.$</p>
+<b>EXERCISE 12:</b>&nbsp;If $X$  has density $f(x),$  and $a(\neq0),b\in{\mathbb R}$  are fixed, then find the density of $aX+b.$</p>
 
 <p></p>
 
@@ -471,11 +477,11 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N1020D"><span class="header">3</span>. Multivariate Jacobian formula</a>
+<a name="N10213"><span class="header">3</span>. Multivariate Jacobian formula</a>
 </h1>
 
 <h2>
-<a name="N10210"><span class="header">3.1</span>.
+<a name="N10216"><span class="header">3.1</span>.
 Theory</a>
 </h2>
 In higher dimensions, we shall first consider transforms of the form $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n.$  
@@ -518,7 +524,7 @@ Most of the time our $\v X$  will take values only in some subset $S\subseteq {\
 <p></p>
 
 <h2>
-<a name="N10273"><span class="header">3.2</span>.
+<a name="N10279"><span class="header">3.2</span>.
 Example</a>
 </h2>
 
@@ -569,7 +575,7 @@ Sketching these restrictions we get this region:
 </p>
 
 <h2>
-<a name="N102E4"><span class="header">3.3</span>.
+<a name="N102EA"><span class="header">3.3</span>.
 Problem set</a>
 </h2>
 
@@ -628,7 +634,7 @@ non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independe
  distribution function" method (you need to know about that as well, if you do not already know it).</fieldset>
 
 <h1>
-<a name="N10350"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
+<a name="N10356"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
 </h1>
 If our transformation $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the form $\phi(\v x) = A\v x + \v b,$  where $A_{n\times n}$ 
  is a fixed matrix, and $\v b$  is a fixed vector, then $\phi$  is a a bijection if and only if $A$  is nonsingular.
@@ -639,7 +645,7 @@ If our transformation $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the fo
 <p></p>
 
 <h2>
-<a name="N10379"><span class="header">4.1</span>.
+<a name="N1037F"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -668,7 +674,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N103C0"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<a name="N103C6"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </h1>
 So far we have been talking only about transforms from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
  where $m\neq n?$  
@@ -747,7 +753,7 @@ $$g(u) = \left\{\begin{array}{ll}\frac{5u^2}{24}&\text{if }u\in[0,2]\\\frac u3+\
 <p></p>
 
 <h2>
-<a name="N1047C"><span class="header">5.1</span>.
+<a name="N10482"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
@@ -775,7 +781,7 @@ Did you get the same answer as in the exercise above?
 <p></p>
 
 <h1>
-<a name="N104C8"><span class="header">6</span>. Geometry in the univariate case</a>
+<a name="N104CE"><span class="header">6</span>. Geometry in the univariate case</a>
 </h1>
 
 <p></p>
@@ -836,7 +842,7 @@ to  compensate by growing taller,
 <p></p>
 
 <h2>
-<a name="N10514"><span class="header">6.1</span>.
+<a name="N1051A"><span class="header">6.1</span>.
 Problem set</a>
 </h2>
 
@@ -862,7 +868,7 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 </p>
 
 <h1>
-<a name="N10548"><span class="header">7</span>. Geometry in the multivariate case</a>
+<a name="N1054E"><span class="header">7</span>. Geometry in the multivariate case</a>
 </h1>
 We have seen the geometric interpretation of the univariate Jacobian formula. Now we shall do the same for its multivariate
  version.
@@ -949,7 +955,7 @@ Since the original green square had area $\delta^2,$  hence the scaling factor i
 <p></p>
 
 <h2>
-<a name="N105A2"><span class="header">7.1</span>.
+<a name="N105A8"><span class="header">7.1</span>.
 Problem set </a>
 </h2>
 
