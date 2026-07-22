@@ -183,7 +183,10 @@ one-one with differentiable inverse. Let <M>\v Y = \phi(\v X).</M>
 <D>g(\v y) = f(\phi ^{-1}(\v y)) J,</D>
 where <M>J</M>  is the absolute determinant of Jacobian of <M>\phi ^{-1}(\v y).</M>
 </THM>
- We shall not prove this theorem here. This is actually just a restatement of the change of variable formula for multivariate
+ We shall not prove this theorem here (though the geometric intuition behind it is discussed later in this page).
+ This is actually just a
+ restatement of the change of
+ variable formula for multivariate
  integration that you have learned in Mathematics II. 
 
 Most of the time our <M>\v X</M>  will take values only in some subset <M>S\seq \rr^n.</M>  Then we need <M>\phi</M>  to
@@ -203,9 +206,9 @@ This has area 1. So <M>\v X </M> has density
 Here the transform is <M>\phi(x_1,x_2) = (x_1x_2,x_1).</M>
 
 Clearly, <M>\phi:S\to \phi(S)</M>  is one-one,  because given <M>y_1=x_1x_2</M>  and <M>y_2=x_1</M>   you can recover <M>(x_1,x_2)\in[1,2]\times[3,4]</M> 
- uniquely. 
+ uniquely as <M>x_1 = y_2</M>  and <M>x_2 = [[y_1][y_2]].</M>
 
-The inverse transform is <M>\phi ^{-1}(y_1,y_2) = (*(y_2,[[y_1][y_2]])*).</M>
+Thus, the inverse transform is <M>\phi ^{-1}(y_1,y_2) = (*(y_2,[[y_1][y_2]])*).</M>
 The Jacobian of this is 
 <D><MAT>0 & 1\\[[1][y_2]] & -[[y_1][y_2^2]]</MAT>,</D>
 which has absolute determinant <M>[[1][y_2]],</M>  since <M>y_2 > 0.</M>
@@ -246,7 +249,10 @@ non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>
  done in most softwares (R, Python etc). The basic technique is just a simple application of the
  Jacobian formula. The project requires you to understand and implement the method (in a language
  of your choice). Also you should understand why it is better than the regular "invert the
- distribution function" method (you need to know about that as well, if you do not already know it).</DESCR>
+ distribution function" method (you need to know about that as well, if you do not already know it).
+
+It is a relatively easy project. So each group doing this should have size <M>\leq 3.</M>
+</DESCR>
 </PROJ>
 <HEAD1>Special case: (Affine) linear tranforms</HEAD1>
 If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = A\v x + \v b,</M>  where <M>A_{n\times n}</M> 
