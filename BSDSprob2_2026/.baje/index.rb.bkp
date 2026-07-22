@@ -7,7 +7,7 @@ URL: https://arnabc74.github.io/BSDSprob2_2026/
 
 <B>TA for Kolkata:</B>  Debanjan Bhattacharjee (debanjanbhattacharjee2002 at gmail)
 
-<B>TA for Delhi:</B>  Niladri Patra (niladript at gmail)
+<B>TA for Delhi:</B>  Sumangar Bhattacharya (sumangalbisi82 at gmail)
 
 <B>TA for Bangalore:</B>  Sayan Roy (rs_math2404 at isibang)
 
