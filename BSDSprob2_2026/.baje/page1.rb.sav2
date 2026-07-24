@@ -228,20 +228,20 @@ Sketching these restrictions we get this region:
 <CIMG web="jreg.png"><M>\phi(S)</M>  shown in red</CIMG>
 </EXM>
 <HEAD2>Problem set</HEAD2>
-<EXR>If <M>(X,Y)</M>  has joint density <M>f(x)=<CASES>x+y<IF>x,y\in[0,1]</IF> 0<ELSE/></CASES></M>,
- then find the joint density of <M>(X+Y, X-Y).</M> </EXR>
+<EXR>If <M>(X_1,X_2)</M>  has joint density <M>f(x)=<CASES>x_1+x_2<IF>x_1,x_2\in[0,1]</IF> 0<ELSE/></CASES></M>,
+ then find the joint density of <M>(X_1+X_2, X_1-X_2).</M> </EXR>
 
-<EXR>If <M>(X,Y)</M>  is uniformly distributed over <M>[0,1]\times[0,2]</M>, then find the joint density of <M>(X^2,X+Y).</M></EXR>
+<EXR>If <M>(X_1,X_2)</M>  is uniformly distributed over <M>[0,1]\times[0,2]</M>, then find the joint density of <M>(X_1^2,X_1+X_2).</M></EXR>
 
-<EXR>If <M>X,Y</M>  are iid <M>N(0,1)</M>  random variables, and <M>(R,\Theta)</M>  is the polar
+<EXR>If <M>X_1,X_2</M>  are iid <M>N(0,1)</M>  random variables, and <M>(R,\Theta)</M>  is the polar
  representation of <M>(X,Y),</M>  then find the density of <M>(R,\Theta).</M></EXR>
 
 <EXR>If <M>X,Y</M>  are iid exponential random variables with rate 1, and <M>(R,\Theta)</M>  is the polar
  representation of <M>(X,Y),</M>  then find the density of <M>(R,\Theta).</M></EXR>
 
 
-<EXR>If <M>(X,Y)</M>  is uniformly distributed over the red rectangle below, then find
-non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>  are independent.
+<EXR>If <M>(X_1,X_2)</M>  is uniformly distributed over the red rectangle below, then find
+non-zero constants  <M>a,b,c,d</M>  such that <M>Y_1=aX_1+bX_2</M>  and <M>Y_2=cX_1+dX_2</M>  are independent.
 <CIMG web="rotrect.png"></CIMG>
 <HINT>The answer is not unique.</HINT>
 </EXR>
@@ -266,16 +266,20 @@ If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = 
  f( A ^{-1} (\v y - \v b)).</M>
 
 <HEAD2>Problem set</HEAD2>
-<EXR>Let <M>(X,Y)\sim Unif([0,1]\times[0,2]).</M>  Find the joint density of <M>(U,V),</M>  where
- <M>U = X+2Y+1</M>, <M>V = 3X+Y.</M></EXR>
+<EXR>Let <M>(X_1,X_2)\sim Unif([0,1]\times[0,2]).</M>  Find the joint density of <M>(Y_1,Y_2),</M>  where
+ <M>Y_1 = X_1+2X_2+1</M>, <M>Y_2 = 3X_1+X_2.</M></EXR>
 
-<EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y) = <CASES>x+y<IF>x,y\in[0,1]</IF>
- 0<ELSE/></CASES>,</M>  then find the joint density of <M>(X+Y,Y).</M></EXR>
+<EXR>If <M>(X_1,X_2)</M>  has joint density <M>f(x_1,x_2) = <CASES>x_1+x_2<IF>x_1,x_2\in[0,1]</IF>
+ 0<ELSE/></CASES>,</M>  then find the joint density of <M>(X_1+X_2,X_2).</M></EXR>
 
-<EXR>If <M>X,Y</M>  are iid Cauchy, then find the joint density of <M>((X+Y)/2, X+1).</M></EXR>
+<EXR>If <M>X_1,X_2</M>  are iid Cauchy, then find the joint density of <M>((X_1+X_2)/2, X_1+1).</M></EXR>
 
-<EXR>If <M>X,Y,Z</M>  are iid <M>N(0,1)</M>  random variables, Find the joint density of
- <M>A<MAT>X\\Y\\Z</MAT></M>  where <M>A</M>  is some fixed nonsingular matrix and <M>\v b</M>  is some fixed vector.</EXR>
+<EXR>If <M>X_1,X_2,X_3</M>  are iid <M>N(0,1)</M>  random variables, Find the joint density of
+ <M>A<MAT>X_1\\X_2\\X_3</MAT></M>  where <M>A</M>  is some fixed nonsingular matrix and <M>\v b</M>  is some fixed vector.
+<HINT>The joint density of <M>\v X = <MAT>X_1\\X_2\\X_3</MAT></M>  is
+<D>f(\v x) = (2\pi)^{-[[32]]} \exp(*(-[[12]]\v x' \v x)*)\mbox{ for } \v x\in\rr^3.</D>
+</HINT>
+</EXR>
 
 <HEAD1>Transformations from <M>\rr^n</M>  to <M>\rr^m</M></HEAD1>
 So far we have been talking only about transforms from <M>\rr^n</M>  to <M>\rr^n.</M>  What if we have a transform <M>\phi:\rr^n\to\rr^m,</M> 
@@ -288,7 +292,7 @@ But, it is quite common to have the <M>m < n</M>  case. In this case, the Jacobi
 because the Jacobian matrix in this case is not square, and hence we cannot take its determinant. 
 However,
  we can "pad up" <M>\phi</M>  with <M>n-m</M>  extra dummy components,  so that the padded
- function is good,takes values in <M>\rr^n</M>, is one-one, 
+ function is good, i.e., takes values in <M>\rr^n</M>, is one-one, 
  and has differentiable inverse.
 
 <EXM>Let the joint density of <M>(X,Y)</M> be 
@@ -305,8 +309,8 @@ So the joint density of
  <M>(U,V)</M>  is 
 <D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][3]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
 In other words, 
-<D>g(u,v)  =<CASES><M>[[u+v][3]]</M><IF>(u,v)\in T</IF> 0<ELSE/></CASES>,</D> 
-where <M>T</M>  is the red region below.
+<D>g(u,v)  =<CASES>[[u+v][3]]<IF>(u,v)\in \phi(S)</IF> 0<ELSE/></CASES>,</D> 
+where <M>\phi(S)</M>  is the red region below.
 <CIMG web="marden1.png"></CIMG>
 Next, we shall  integrate out <M>V</M>  to find the marginal
  density of <M>U.</M>  This will be done in three parts:
