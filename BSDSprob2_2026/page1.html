@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Wed Jul 22 09:51:59 IST 2026</i>
+Fri Jul 24 09:46:09 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -183,25 +183,25 @@ Wed Jul 22 09:51:59 IST 2026</i>
 </li>
 <li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10216">Theory</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10279">Example</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10288">Example</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N102F0">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N1030B">Problem set</a>
 </li>
-<li>4. <a href="#N10361">Special case: (Affine) linear tranforms</a>
+<li>4. <a href="#N1037C">Special case: (Affine) linear tranforms</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1038A">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N103A5">Problem set</a>
 </li>
-<li>5. <a href="#N103D1">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<li>5. <a href="#N103EC">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1048D">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N104AD">Problem set</a>
 </li>
-<li>6. <a href="#N104D9">Geometry in the univariate case</a>
+<li>6. <a href="#N104F9">Geometry in the univariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10525">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10545">Problem set</a>
 </li>
-<li>7. <a href="#N10559">Geometry in the multivariate case</a>
+<li>7. <a href="#N10579">Geometry in the multivariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N105B3">Problem set </a>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N105D3">Problem set </a>
 </li>
 </ul>
 <hr/>
@@ -326,7 +326,7 @@ $$\pd{\phi_i}{x_j}.$$
 Notice the order of the Jacobian matrix: it is $m\times n$  and not $n\times m.$  
 <p>
 <b>EXAMPLE 5:</b>&nbsp;
-Let $\phi:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
+Let $\phi:{\mathbb R}^2\rightarrow{\mathbb R}^2$  be $\phi(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).$  Find its Jacobian. Also find the determinant
  of the Jacobian.
 <p></p>
 <b>SOLUTION:</b>
@@ -523,11 +523,13 @@ where $J$  is the absolute determinant of Jacobian of $\phi ^{-1}(\v y).$
  integration that you have learned in Mathematics II. 
 <p></p>
 Most of the time our $\v X$  will take values only in some subset $S\subseteq {\mathbb R}^n.$  Then we need $\phi$  to
- be one-one only over $S.$  Also $\phi ^{-1}$  then is defined over only $\phi(S).$  
+ be one-one only over $S.$  Also $\phi ^{-1}$  then is defined over only $\phi(S).$  Here $\phi(S)$ 
+ means the set of all points of the form $\phi(\v x)$  where $\v x\in S,$  <i>i.e.</i>,
+$$\phi(S) = \{\phi(\v x)~:~\v x\in S\}.$$ 
 <p></p>
 
 <h2>
-<a name="N10279"><span class="header">3.2</span>.
+<a name="N10288"><span class="header">3.2</span>.
 Example</a>
 </h2>
 
@@ -558,10 +560,11 @@ which has absolute determinant $\frac{1}{y_2},$  since $y_2 &gt; 0.$
 So the required density will be 
 $$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }\left(y_2,\frac{y_1}{y_2}\right)\in S\\ 0&\text{otherwise.}\end{array}\right.$$
 Often we want to write it as 
-$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in T\\ 0&\text{otherwise.}\end{array}\right.$$
-for some suitably defined $T.$  This may be done as follows.  
+$$g(y_1,y_2)  = \left\{\begin{array}{ll}\frac{1}{y_2}&\text{if }(y_1,y_2)\in \phi(S)\\ 0&\text{otherwise.}\end{array}\right.$$
+To find out $\phi(S)$ remember that $\v x\in S\Leftrightarrow \v y\in \phi(S).$  We shall start with $\v x\in S,$  <i>i.e.</i>,
+ $\phi ^{-1}(\v y)\in S,$  which, in our example, is $\left(y_2,\frac{y_1}{y_2}\right)\in S.$  
 <p></p>
-$\left(y_2,\frac{y_1}{y_2}\right)\in S$  means 
+This means 
 $$1\leq y_2 \leq 2 \mbox{ and } 3\leq \frac{y_1}{y_2}\leq 4.$$
 Sketching these restrictions we get this region:
 <center>
@@ -570,7 +573,7 @@ Sketching these restrictions we get this region:
 <th><img width="" src="image/jreg.png"></th>
 </tr>
 <tr>
-<th>$T$  shown in red</th>
+<th>$\phi(S)$  shown in red</th>
 </tr>
 </table>
 </center>
@@ -578,7 +581,7 @@ Sketching these restrictions we get this region:
 </p>
 
 <h2>
-<a name="N102F0"><span class="header">3.3</span>.
+<a name="N1030B"><span class="header">3.3</span>.
 Problem set</a>
 </h2>
 
@@ -634,13 +637,13 @@ non-zero constants  $a,b,c,d$  such that $U=aX+bY$  and $V=cX+dY$  are independe
  done in most softwares (R, Python etc). The basic technique is just a simple application of the
  Jacobian formula. The project requires you to understand and implement the method (in a language
  of your choice). Also you should understand why it is better than the regular "invert the
- distribution function" method (you need to know about that as well, if you do not already know it).
+ distribution function" method (you need to learn about that as well, if you do not already know it).
 <p></p>
 It is a relatively easy project. So each group doing this should have size $\leq 3.$
 </fieldset>
 
 <h1>
-<a name="N10361"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
+<a name="N1037C"><span class="header">4</span>. Special case: (Affine) linear tranforms</a>
 </h1>
 If our transformation $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the form $\phi(\v x) = A\v x + \v b,$  where $A_{n\times n}$ 
  is a fixed matrix, and $\v b$  is a fixed vector, then $\phi$  is a a bijection if and only if $A$  is nonsingular.
@@ -651,7 +654,7 @@ If our transformation $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$  is of the fo
 <p></p>
 
 <h2>
-<a name="N1038A"><span class="header">4.1</span>.
+<a name="N103A5"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -663,7 +666,7 @@ Problem set</a>
 
 <p>
 <b>EXERCISE 20:</b>&nbsp;If $(X,Y)$  has joint density $f(x,y) = \left\{\begin{array}{ll}x+y&\text{if }x,y\in[0,1]\\
- 0&\text{otherwise.}\end{array}\right.,$  then find the joint density of $(X+Y,X-Y).$</p>
+ 0&\text{otherwise.}\end{array}\right.,$  then find the joint density of $(X+Y,Y).$</p>
 
 <p></p>
 
@@ -680,7 +683,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N103D1"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<a name="N103EC"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </h1>
 So far we have been talking only about transforms from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
  where $m\neq n?$  
@@ -689,9 +692,11 @@ If $m &gt; n,$  then it can be shown (with help from measure theory beyond the p
  have a density even if $\v X$  has. So we shall not discuss this case here. 
 <p></p>
 But, it is quite common to have the $m &lt; n$  case. In this case, the Jacobian formula is not applicable directly,
-because the Jacobian mx in this case is not square, and hence we cannot take its determinant. 
+because the Jacobian matrix in this case is not square, and hence we cannot take its determinant. 
 However,
- we can "pad up" $\phi$  to make the codomain equal to ${\mathbb R}^n$,  while keeping the padded function bijective.
+ we can "pad up" $\phi$  with $n-m$  extra dummy components,  so that the padded
+ function is good, <i>i.e.</i>, takes values in ${\mathbb R}^n$, is one-one, 
+ and has differentiable inverse.
 <p></p>
 
 <p>
@@ -711,8 +716,8 @@ So the joint density of
  $(U,V)$  is 
 $$g(u,v) = \frac 13f\left(v,\frac{u-2v}{3}\right) =\left\{\begin{array}{ll}\frac{u+v}{3}&\text{if }0\leq v,\frac{u-2v}{3}\leq 1\\ 0&\text{otherwise.}\end{array}\right..$$ 
 In other words, 
-$$g(u,v)  =\left\{\begin{array}{ll}$\frac{u+v}{3}$&\text{if }(u,v)\in T\\ 0&\text{otherwise.}\end{array}\right.,$$ 
-where $T$  is the red region below.
+$$g(u,v)  =\left\{\begin{array}{ll}\frac{u+v}{3}&\text{if }(u,v)\in \phi(S)\\ 0&\text{otherwise.}\end{array}\right.,$$ 
+where $\phi(S)$  is the red region below.
 <center>
 <table width="100%">
 <tr>
@@ -759,7 +764,7 @@ $$g(u) = \left\{\begin{array}{ll}\frac{5u^2}{24}&\text{if }u\in[0,2]\\\frac u3+\
 <p></p>
 
 <h2>
-<a name="N1048D"><span class="header">5.1</span>.
+<a name="N104AD"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
@@ -787,7 +792,7 @@ Did you get the same answer as in the exercise above?
 <p></p>
 
 <h1>
-<a name="N104D9"><span class="header">6</span>. Geometry in the univariate case</a>
+<a name="N104F9"><span class="header">6</span>. Geometry in the univariate case</a>
 </h1>
 
 <p></p>
@@ -848,7 +853,7 @@ to  compensate by growing taller,
 <p></p>
 
 <h2>
-<a name="N10525"><span class="header">6.1</span>.
+<a name="N10545"><span class="header">6.1</span>.
 Problem set</a>
 </h2>
 
@@ -874,7 +879,7 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 </p>
 
 <h1>
-<a name="N10559"><span class="header">7</span>. Geometry in the multivariate case</a>
+<a name="N10579"><span class="header">7</span>. Geometry in the multivariate case</a>
 </h1>
 We have seen the geometric interpretation of the univariate Jacobian formula. Now we shall do the same for its multivariate
  version.
@@ -961,7 +966,7 @@ Since the original green square had area $\delta^2,$  hence the scaling factor i
 <p></p>
 
 <h2>
-<a name="N105B3"><span class="header">7.1</span>.
+<a name="N105D3"><span class="header">7.1</span>.
 Problem set </a>
 </h2>
 

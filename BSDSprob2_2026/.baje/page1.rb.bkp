@@ -71,7 +71,7 @@ Let <M>\phi:\rr^n\to\rr^m</M>  be a function with <M>i</M>-th component function
 <D>\pd{\phi_i}{x_j}.</D>
 Notice the order of the Jacobian matrix: it is <M>m\times n</M>  and not <M>n\times m.</M>  
 <EXM>
-Let <M>\phi:\rr^2\to\rr^2</M>  be <M>f(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find the determinant
+Let <M>\phi:\rr^2\to\rr^2</M>  be <M>\phi(x_1,x_2) = (\sin (x_1x_2),\, x_1-x_2^2).</M>  Find its Jacobian. Also find the determinant
  of the Jacobian.
 <SOLN/>
 The component functions are
@@ -190,7 +190,9 @@ where <M>J</M>  is the absolute determinant of Jacobian of <M>\phi ^{-1}(\v y).<
  integration that you have learned in Mathematics II. 
 
 Most of the time our <M>\v X</M>  will take values only in some subset <M>S\seq \rr^n.</M>  Then we need <M>\phi</M>  to
- be one-one only over <M>S.</M>  Also <M>\phi ^{-1}</M>  then is defined over only <M>\phi(S).</M>  
+ be one-one only over <M>S.</M>  Also <M>\phi ^{-1}</M>  then is defined over only <M>\phi(S).</M>  Here <M>\phi(S)</M> 
+ means the set of all points of the form <M>\phi(\v x)</M>  where <M>\v x\in S,</M>  i.e.,
+<D>\phi(S) = \{\phi(\v x)~:~\v x\in S\}.</D> 
 
 <HEAD2>Example</HEAD2>
 
@@ -216,13 +218,14 @@ which has absolute determinant <M>[[1][y_2]],</M>  since <M>y_2 > 0.</M>
 So the required density will be 
 <D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(*(y_2,[[y_1][y_2]])*)\in S</IF> 0<ELSE/></CASES></D>
 Often we want to write it as 
-<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(y_1,y_2)\in T</IF> 0<ELSE/></CASES></D>
-for some suitably defined <M>T.</M>  This may be done as follows.  
+<D>g(y_1,y_2)  = <CASES>[[1][y_2]]<IF>(y_1,y_2)\in \phi(S)</IF> 0<ELSE/></CASES></D>
+To find out <M>\phi(S)</M> remember that <M>\v x\in S\iff \v y\in \phi(S).</M>  We shall start with <M>\v x\in S,</M>  i.e.,
+ <M>\phi ^{-1}(\v y)\in S,</M>  which, in our example, is <M>(*(y_2,[[y_1][y_2]])*)\in S.</M>  
 
-<M>(*(y_2,[[y_1][y_2]])*)\in S</M>  means 
+This means 
 <D>1\leq y_2 \leq 2 \mbox{ and } 3\leq [[y_1][y_2]]\leq 4.</D>
 Sketching these restrictions we get this region:
-<CIMG web="jreg.png"><M>T</M>  shown in red</CIMG>
+<CIMG web="jreg.png"><M>\phi(S)</M>  shown in red</CIMG>
 </EXM>
 <HEAD2>Problem set</HEAD2>
 <EXR>If <M>(X,Y)</M>  has joint density <M>f(x)=<CASES>x+y<IF>x,y\in[0,1]</IF> 0<ELSE/></CASES></M>,
@@ -249,7 +252,10 @@ non-zero constants  <M>a,b,c,d</M>  such that <M>U=aX+bY</M>  and <M>V=cX+dY</M>
  done in most softwares (R, Python etc). The basic technique is just a simple application of the
  Jacobian formula. The project requires you to understand and implement the method (in a language
  of your choice). Also you should understand why it is better than the regular "invert the
- distribution function" method (you need to know about that as well, if you do not already know it).</DESCR>
+ distribution function" method (you need to learn about that as well, if you do not already know it).
+
+It is a relatively easy project. So each group doing this should have size <M>\leq 3.</M>
+</DESCR>
 </PROJ>
 <HEAD1>Special case: (Affine) linear tranforms</HEAD1>
 If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = A\v x + \v b,</M>  where <M>A_{n\times n}</M> 
@@ -264,7 +270,7 @@ If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = 
  <M>U = X+2Y+1</M>, <M>V = 3X+Y.</M></EXR>
 
 <EXR>If <M>(X,Y)</M>  has joint density <M>f(x,y) = <CASES>x+y<IF>x,y\in[0,1]</IF>
- 0<ELSE/></CASES>,</M>  then find the joint density of <M>(X+Y,X-Y).</M></EXR>
+ 0<ELSE/></CASES>,</M>  then find the joint density of <M>(X+Y,Y).</M></EXR>
 
 <EXR>If <M>X,Y</M>  are iid Cauchy, then find the joint density of <M>((X+Y)/2, X+1).</M></EXR>
 
@@ -279,9 +285,11 @@ If <M>m > n,</M>  then it can be shown (with help from measure theory beyond the
  have a density even if <M>\v X</M>  has. So we shall not discuss this case here. 
 
 But, it is quite common to have the <M>m < n</M>  case. In this case, the Jacobian formula is not applicable directly,
-because the Jacobian mx in this case is not square, and hence we cannot take its determinant. 
+because the Jacobian matrix in this case is not square, and hence we cannot take its determinant. 
 However,
- we can "pad up" <M>\phi</M>  to make the codomain equal to <M>\rr^n</M>,  while keeping the padded function bijective.
+ we can "pad up" <M>\phi</M>  with <M>n-m</M>  extra dummy components,  so that the padded
+ function is good, i.e., takes values in <M>\rr^n</M>, is one-one, 
+ and has differentiable inverse.
 
 <EXM>Let the joint density of <M>(X,Y)</M> be 
 <D>f(x,y)=<CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>.</D>
@@ -297,8 +305,8 @@ So the joint density of
  <M>(U,V)</M>  is 
 <D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][3]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
 In other words, 
-<D>g(u,v)  =<CASES><M>[[u+v][3]]</M><IF>(u,v)\in T</IF> 0<ELSE/></CASES>,</D> 
-where <M>T</M>  is the red region below.
+<D>g(u,v)  =<CASES>[[u+v][3]]<IF>(u,v)\in \phi(S)</IF> 0<ELSE/></CASES>,</D> 
+where <M>\phi(S)</M>  is the red region below.
 <CIMG web="marden1.png"></CIMG>
 Next, we shall  integrate out <M>V</M>  to find the marginal
  density of <M>U.</M>  This will be done in three parts:
