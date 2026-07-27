@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Jul 27 12:34:46 IST 2026</i>
+Mon Jul 27 16:37:04 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -201,11 +201,11 @@ Mon Jul 27 12:34:46 IST 2026</i>
 </li>
 <li>7. <a href="#N105C3">Geometry in the univariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N1060F">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N10616">Problem set</a>
 </li>
-<li>8. <a href="#N10643">Geometry in the multivariate case</a>
+<li>8. <a href="#N1064A">Geometry in the multivariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;8.1. <a href="#N1069D">Problem set </a>
+<li>&nbsp;&nbsp;&nbsp;8.1. <a href="#N106AA">Problem set </a>
 </li>
 </ul>
 <hr/>
@@ -906,10 +906,16 @@ Did you get the same answer as in the exercise above?
 <h1>
 <a name="N105C3"><span class="header">7</span>. Geometry in the univariate case</a>
 </h1>
-
+You had seen the univariate Jacobian formula in Probability I, and we have now seen its multivariate generalisation. Both
+ these formulae were presented as magic formulae without any intuition. In this and the next section we shall try to provide
+ a geometric intuition behind them. 
 <p></p>
-In order to generalise this to the multivariate case, we need to understand the
- geometric interpretation of this univariate formula. 
+Here is the univariate formula from Probability I once again:
+<center>
+<fieldset>
+<legend><b>Excerpt from Probability I notes</b></legend><img width="80%" src="image/jac1.png"></fieldset>
+</center>
+
 <p></p>
 Let's first massage the above formula into a form more useful for the present purpose:
 $$g(y) = f(x) \left| \frac{dx}{dy} \right|,$$
@@ -917,11 +923,10 @@ or
 $$g(y) = \frac{f(x)}{ | \phi'(x)| }.$$
 So we may say that $g$  is just same as $f,$  except that it is scaled by $\phi'.$   
 <p></p>
-When we view it in this way, a geometric interpretation becomes immediate. 
+We shall provide a geometric interpretation of this.
  Suppose that $X$  has uniform distribution over $[0,1].$
-Consider the density of $X.$   Imagine 10 equal length subintervals along $[0,1].$  Since the total 
-area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
- say that each subinterval accounts for $\frac{1}{10}$  mass. 
+Then the density of $X$  is constant at 1 over $[0,1].$     Split $[0,1]$  into  10 
+subintervals of equal lengths.
 <center>
 <table width="100%">
 <tr>
@@ -932,6 +937,9 @@ area under the density is 1, the rectangle on each  subinterval has area $\frac{
 </tr>
 </table>
 </center>
+Since the total 
+area under the density is 1, the rectangle on each  subinterval has area $\frac{1}{10}.$  You may
+ say that each subinterval accounts for $\frac{1}{10}$  probability. 
 When you compute $Y=X^2,$  the intervals close to 0 get squeezed further down to 0,
  while those closer to 1 are stretched. 
 <center>
@@ -940,11 +948,11 @@ When you compute $Y=X^2,$  the intervals close to 0 get squeezed further down to
 <th><img width="" src="image/squeeze2.png"></th>
 </tr>
 <tr>
-<th>Rectangles are squeezed and stretched</th>
+<th>The subintervals are scaled non-uniformly</th>
 </tr>
 </table>
 </center>
-But still each rectangle has to account for $\frac{1}{10}$  mass. So the squeezed rectangles have
+But still each rectangle has to account for $\frac{1}{10}$  probability. So the squeezed rectangles have
 to  compensate by growing taller,
  while the stretched ones compensate by getting shorter.
 <center>
@@ -965,7 +973,7 @@ to  compensate by growing taller,
 <p></p>
 
 <h2>
-<a name="N1060F"><span class="header">7.1</span>.
+<a name="N10616"><span class="header">7.1</span>.
 Problem set</a>
 </h2>
 
@@ -991,7 +999,7 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 </p>
 
 <h1>
-<a name="N10643"><span class="header">8</span>. Geometry in the multivariate case</a>
+<a name="N1064A"><span class="header">8</span>. Geometry in the multivariate case</a>
 </h1>
 We have seen the geometric interpretation of the univariate Jacobian formula. Now we shall do the same for its multivariate
  version.
@@ -1007,9 +1015,11 @@ First let us understand how a function from ${\mathbb R}^2$  to ${\mathbb R}^2$ 
 </tr>
 </table>
 </center>
-The above picture shows the effect of the function $\phi(x,y)=\big( (2x+y)^2,\, (x-y)^3\big)$ 
+If you prefer to see this transformation in an animated way <a href="image/jacoanim.webm">click here</a>.
+<p></p>
+Here we see the effect of the function $\phi(x,y)=\big( (2x+y)^2,\, (x-y)^3\big)$ 
  on the rectangle $[1,2]\times[3,4].$  Notice how the square grid has been deformed unevenly. The diagram also shows
- the positions of three points (red, green and blue) and two square adjacent to them before and after the
+ the positions of three points (red, green and blue) and two squares adjacent to them before and after the
  transform. The green and
  blue squares were of equal area originally. But after the transform blue region has expanded, while 
 the green one has shrunk in area. 
@@ -1078,7 +1088,7 @@ Since the original green square had area $\delta^2,$  hence the scaling factor i
 <p></p>
 
 <h2>
-<a name="N1069D"><span class="header">8.1</span>.
+<a name="N106AA"><span class="header">8.1</span>.
 Problem set </a>
 </h2>
 

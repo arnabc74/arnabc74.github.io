@@ -380,7 +380,7 @@ When <M>u\in[3,5],</M>  we have
 Otherwise, the integral is 0.
 
 Thus, the density of <M>U</M>  is 
-<D>g(u) = <CASES>[[5u^2][24]]<IF>u\in[0,2]</IF>[[u3]]+[[16]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][24]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
+<D>g(u) = <CASES>[[5u^2][72]]<IF>u\in[0,2]</IF>[[u9]]+[[1][18]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][72]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
 <IMG web="densplot.png">A graph of the density</IMG>
 
 </EXM>
@@ -397,26 +397,31 @@ Did you get the same answer as in the exercise above?
 </EXR>
 
 <HEAD1>Geometry in the univariate case</HEAD1>
-
-In order to generalise this to the multivariate case, we need to understand the
- geometric interpretation of this univariate formula. 
+You had seen the univariate Jacobian formula in Probability I, and we have now seen its multivariate generalisation. Both
+ these formulae were presented as magic formulae without any intuition. In this and the next section we shall try to provide
+ a geometric intuition behind them. 
  
+Here is the univariate formula from Probability I once again:
+<IMG web="jac1.png">Excerpt from Probability I notes</IMG>
+
 Let's first massage the above formula into a form more useful for the present purpose:
 <D>g(y) = f(x) [|[ [[dx][dy]] ]|],</D>
 or 
 <D>g(y) = [[f(x)][ | \phi'(x)| ]].</D>
 So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>\phi'.</M>   
 
-When we view it in this way, a geometric interpretation becomes immediate. 
+We shall provide a geometric interpretation of this.
  Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
-Consider the density of <M>X.</M>   Imagine 10 equal length subintervals along <M>[0,1].</M>  Since the total 
-area under the density is 1, the rectangle on each  subinterval has area <M>[[1][10]].</M>  You may
- say that each subinterval accounts for <M>[[1][10]]</M>  mass. 
+Then the density of <M>X</M>  is constant at 1 over <M>[0,1].</M>     Split <M>[0,1]</M>  into  10 
+subintervals of equal lengths.
 <CIMG web="squeeze1.png">All the rectangles are identical</CIMG>
+Since the total 
+area under the density is 1, the rectangle on each  subinterval has area <M>[[1][10]].</M>  You may
+ say that each subinterval accounts for <M>[[1][10]]</M>  probability. 
 When you compute <M>Y=X^2,</M>  the intervals close to 0 get squeezed further down to 0,
  while those closer to 1 are stretched. 
-<CIMG web="squeeze2.png">Rectangles are squeezed and stretched</CIMG>
-But still each rectangle has to account for <M>[[1][10]]</M>  mass. So the squeezed rectangles have
+<CIMG web="squeeze2.png">The subintervals are scaled non-uniformly</CIMG>
+But still each rectangle has to account for <M>[[1][10]]</M>  probability. So the squeezed rectangles have
 to  compensate by growing taller,
  while the stretched ones compensate by getting shorter.
 <CIMG web="squeeze3.png">All rectangles now again have area <M>[[1][10]].</M></CIMG>
@@ -446,9 +451,11 @@ We have seen the geometric interpretation of the univariate Jacobian formula. No
 
 First let us understand how a function from <M>\rr^2</M>  to <M>\rr^2</M>  may be visualised graphically. 
 <CIMG web="jaco.png">A transform from <M>\rr^2</M>  to <M>\rr^2</M></CIMG>
-The above picture shows the effect of the function <M>\phi(x,y)=(#( (2x+y)^2,\, (x-y)^3)#)</M> 
+If you prefer to see this transformation in an animated way <LINK to="image/jacoanim.webm">click here</LINK>.
+
+Here we see the effect of the function <M>\phi(x,y)=(#( (2x+y)^2,\, (x-y)^3)#)</M> 
  on the rectangle <M>[1,2]\times[3,4].</M>  Notice how the square grid has been deformed unevenly. The diagram also shows
- the positions of three points (red, green and blue) and two square adjacent to them before and after the
+ the positions of three points (red, green and blue) and two squares adjacent to them before and after the
  transform. The green and
  blue squares were of equal area originally. But after the transform blue region has expanded, while 
 the green one has shrunk in area. 

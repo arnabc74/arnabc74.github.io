@@ -318,7 +318,7 @@ f_{X_1}(x_1)
 & = & <CASES>2\int_0^{x_1} (x_1+x_2)\, dx_2<IF>x_1\in[0,1]</IF> 0<ELSE/></CASES>.
 </MULTILINE>
 Now for <M>x_1\in[0,1]</M>  we have 
-<D>2\int_0^{x_1} (x_1+x_2)\, dx_2 = 2(*(x_1^2 + [[12]]x_1^2)*)3x_1^2.</D>
+<D>2\int_0^{x_1} (x_1+x_2)\, dx_2 = 2(*(x_1^2 + [[12]]x_1^2)*)=3x_1^2.</D>
 Hence the required density of <M>X_1</M>  is 
 <D>f_{X_1}(x_1) = <CASES>3x_1^2<IF>x_1\in[0,1]</IF> 0<ELSE/></CASES>.</D>
 </EXM>
@@ -348,8 +348,7 @@ Then the strategy is to   "pad up" <M>\phi_1</M>
 
 Then we can apply the Jacobian technique to find the density of <M>\phi(\v X).</M>  This
  <M>\phi(\v X)</M>  consists of  <M>\phi_1(\v X)</M> plus some extra dummy variables.
-We
-Then we can integrate out the dummy variables. 
+We obtain the density of <M>\phi_1(\v X)</M>  by  integrating out the dummy variables. 
 
 <EXM>Let the joint density of <M>(X,Y)</M> be 
 <D>f(x,y)=<CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>.</D>
@@ -358,14 +357,14 @@ Find the joint density of
 Here the function is <M>\phi_1(x,y) = 2x+3y.</M>  Since the codomain is <M>\rr,</M>  we make it
  <M>\rr^2</M>  by padding it with another
  function of our choice, say <M>\phi_2(x,y) = x.</M>  Then the padded function is <M>\phi(x,y)\mapsto (2x+3y,x).</M>  This is a
-bijective function from <M>\rr^2</M>  to <M>\rr^2.</M>  Taking <M>(u,v) = (2x+3y,x)</M>  the
+one-one function from <M>\rr^2</M>  to <M>\rr^2.</M>  Taking <M>(u,v) = (2x+3y,x)</M>  the
  inverse transform is <M>(x,y) = (*(v,[[u-2v][3]])*),</M>  with Jacobian <M><MAT>0 & 1\\[[13]] &
  -[[23]]</MAT>.</M>  Its absolute determinant is <M>[[13]].</M>  
 So the joint density of
  <M>(U,V)</M>  is 
-<D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][3]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
+<D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][9]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
 In other words, 
-<D>g(u,v)  =<CASES>[[u+v][3]]<IF>(u,v)\in \phi(S)</IF> 0<ELSE/></CASES>,</D> 
+<D>g(u,v)  =<CASES>[[u+v][9]]<IF>(u,v)\in \phi(S)</IF> 0<ELSE/></CASES>,</D> 
 where <M>\phi(S)</M>  is the red region below.
 <CIMG web="marden1.png"></CIMG>
 Next, we shall  integrate out <M>V</M>  to find the marginal
@@ -373,15 +372,15 @@ Next, we shall  integrate out <M>V</M>  to find the marginal
 <CIMG web="marden2.png">The three parts</CIMG>
 
 When <M>u\in[0,2],</M>  we have 
-<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_0^{u/2} u+v\, dv = [[5u^2][24]].</D>
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[19]] \int_0^{u/2} u+v\, dv = [[5u^2][72]].</D>
 When <M>u\in[2,3],</M>  we have 
-<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_0^1 u+v\, dv = [[u3]]+[[16]].</D>
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[19]] \int_0^1 u+v\, dv = [[u9]]+[[1][18]].</D>
 When <M>u\in[3,5],</M>  we have 
-<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_{(u-3)/2}^1 u+v\, dv = [[-5u^2+26u-5][24]].</D>
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[19]] \int_{(u-3)/2}^1 u+v\, dv = [[-5u^2+26u-5][72]].</D>
 Otherwise, the integral is 0.
 
 Thus, the density of <M>U</M>  is 
-<D>g(u) = <CASES>[[5u^2][24]]<IF>u\in[0,2]</IF>[[u3]]+[[16]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][24]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
+<D>g(u) = <CASES>[[5u^2][72]]<IF>u\in[0,2]</IF>[[u9]]+[[1][18]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][72]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
 <IMG web="densplot.png">A graph of the density</IMG>
 
 </EXM>
@@ -398,26 +397,31 @@ Did you get the same answer as in the exercise above?
 </EXR>
 
 <HEAD1>Geometry in the univariate case</HEAD1>
-
-In order to generalise this to the multivariate case, we need to understand the
- geometric interpretation of this univariate formula. 
+You had seen the univariate Jacobian formula in Probability I, and we have now seen its multivariate generalisation. Both
+ these formulae were presented as magic formulae without any intuition. In this and the next section we shall try to provide
+ a geometric intuition behind them. 
  
+Here is the univariate formula from Probability I once again:
+<IMG web="jac1.png">Excerpt from Probability I notes</IMG>
+
 Let's first massage the above formula into a form more useful for the present purpose:
 <D>g(y) = f(x) [|[ [[dx][dy]] ]|],</D>
 or 
 <D>g(y) = [[f(x)][ | \phi'(x)| ]].</D>
 So we may say that <M>g</M>  is just same as <M>f,</M>  except that it is scaled by <M>\phi'.</M>   
 
-When we view it in this way, a geometric interpretation becomes immediate. 
+We shall provide a geometric interpretation of this.
  Suppose that <M>X</M>  has uniform distribution over <M>[0,1].</M>
-Consider the density of <M>X.</M>   Imagine 10 equal length subintervals along <M>[0,1].</M>  Since the total 
-area under the density is 1, the rectangle on each  subinterval has area <M>[[1][10]].</M>  You may
- say that each subinterval accounts for <M>[[1][10]]</M>  mass. 
+Then the density of <M>X</M>  is constant at 1 over <M>[0,1].</M>     Split <M>[0,1]</M>  into  10 
+subintervals of equal lengths.
 <CIMG web="squeeze1.png">All the rectangles are identical</CIMG>
+Since the total 
+area under the density is 1, the rectangle on each  subinterval has area <M>[[1][10]].</M>  You may
+ say that each subinterval accounts for <M>[[1][10]]</M>  probability. 
 When you compute <M>Y=X^2,</M>  the intervals close to 0 get squeezed further down to 0,
  while those closer to 1 are stretched. 
-<CIMG web="squeeze2.png">Rectangles are squeezed and stretched</CIMG>
-But still each rectangle has to account for <M>[[1][10]]</M>  mass. So the squeezed rectangles have
+<CIMG web="squeeze2.png">The subintervals are scaled non-uniformly</CIMG>
+But still each rectangle has to account for <M>[[1][10]]</M>  probability. So the squeezed rectangles have
 to  compensate by growing taller,
  while the stretched ones compensate by getting shorter.
 <CIMG web="squeeze3.png">All rectangles now again have area <M>[[1][10]].</M></CIMG>
@@ -447,6 +451,7 @@ We have seen the geometric interpretation of the univariate Jacobian formula. No
 
 First let us understand how a function from <M>\rr^2</M>  to <M>\rr^2</M>  may be visualised graphically. 
 <CIMG web="jaco.png">A transform from <M>\rr^2</M>  to <M>\rr^2</M></CIMG>
+If you prefer to see this transformation in an animated way <LINK>click here</LINK>.
 The above picture shows the effect of the function <M>\phi(x,y)=(#( (2x+y)^2,\, (x-y)^3)#)</M> 
  on the rectangle <M>[1,2]\times[3,4].</M>  Notice how the square grid has been deformed unevenly. The diagram also shows
  the positions of three points (red, green and blue) and two square adjacent to them before and after the

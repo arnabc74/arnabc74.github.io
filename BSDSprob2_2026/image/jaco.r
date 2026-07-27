@@ -21,5 +21,11 @@ showGrid = function(x,y,fu,fv) {
 svg('jaco%draw.svg')
 showGrid(x,y,fx,fy)
 showGrid(x,y,fu,fv)
-par(opar)
 dev.off()
+
+f = function(i,p) {
+ ft1 = function(x,y) (1-p)*fx(x,y)+p*fu(x,y)
+ ft2 = function(x,y) (1-p)*fy(x,y)+p*fv(x,y)
+ showGrid(x,y,ft1,ft2)
+}
+process('jacoanim',f,nf=100)
