@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Fri Jul 24 12:35:45 IST 2026</i>
+Mon Jul 27 09:58:55 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -191,17 +191,21 @@ Fri Jul 24 12:35:45 IST 2026</i>
 </li>
 <li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N103A5">Problem set</a>
 </li>
-<li>5. <a href="#N103F7">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<li>5. <a href="#N103F7">Finding marginal density from joint density</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N104B8">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1047C">Problem set</a>
 </li>
-<li>6. <a href="#N10504">Geometry in the univariate case</a>
+<li>6. <a href="#N104B6">Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10550">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10577">Problem set</a>
 </li>
-<li>7. <a href="#N10584">Geometry in the multivariate case</a>
+<li>7. <a href="#N105C3">Geometry in the univariate case</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N105DE">Problem set </a>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N1060F">Problem set</a>
+</li>
+<li>8. <a href="#N10643">Geometry in the multivariate case</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;8.1. <a href="#N1069D">Problem set </a>
 </li>
 </ul>
 <hr/>
@@ -692,7 +696,7 @@ $$f(\v x) = (2\pi)^{-\frac 32} \exp\left(-\frac 12\v x' \v x\right)\mbox{ for } 
 <p></p>
 
 <h1>
-<a name="N103F7"><span class="header">5</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+<a name="N103F7"><span class="header">5</span>. Finding marginal density from joint density</a>
 </h1>
 So far we have been talking only about transforms from ${\mathbb R}^n$  to ${\mathbb R}^n.$  What if we have a transform $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^m,$ 
  where $m\neq n?$  
@@ -702,14 +706,113 @@ If $m &gt; n,$  then it can be shown (with help from measure theory beyond the p
 <p></p>
 But, it is quite common to have the $m &lt; n$  case. In this case, the Jacobian formula is not applicable directly,
 because the Jacobian matrix in this case is not square, and hence we cannot take its determinant. 
-However,
- we can "pad up" $\phi$  with $n-m$  extra dummy components,  so that the padded
- function is good, <i>i.e.</i>, takes values in ${\mathbb R}^n$, is one-one, 
- and has differentiable inverse.
+However, the following fact comes to our help here:
+<blockquote>
+Let $(X_1,X_2)$  have joint density $f(x_1,x_2).$  Then the (marginal) density of $X_1$  is $f_{X_1}(x_1) = \int_{-\infty}^\infty f(x_1,x_2)\, dx_2.$ 
+</blockquote>
+In other words, you can "integrate out" the unwanted variables. This works in higher dimensions also, as shown in the example
+ below.
+<p>
+<b>EXAMPLE 8:</b>&nbsp;Let $(X_1,X_2,X_3,X_4)$  have joint density $f(x_1,x_2,x_3,x_4).$  How would you
+ find the density of $(X_1,X_3)?$<p></p>
+<b>SOLUTION:</b>
+It is $f_{X_1,X_3}(x_1,x_3) = \int_{-\infty}^\infty\int_{-\infty}^\infty f(x_1,x_2,x_3,x_4)\, dx_2dx_4.$
+<p></p>
+This integral may look complicated. But in order to evaluate it, just perform two integrations, once wrt $x_2$  and
+ once wrt $x_4$  (each time considering all other $x_i$'s as constants). You may perform the two integrations in
+ any order you like.
+ ■
+</p>
+Here is a more numerical example.
 <p></p>
 
 <p>
-<b>EXAMPLE 8:</b>&nbsp;Let the joint density of $(X,Y)$ be 
+<b>EXAMPLE 9:</b>&nbsp;If $(X_1,X_2)$  has joint density 
+$$f(x_1,x_2) = \left\{\begin{array}{ll}2(x_1 + x_2)&\text{if }x_1\in[0,1], x_2\in[0,x_1]\\ 0&\text{otherwise.}\end{array}\right.,$$
+then find the (marginal) density of $X_1.$<p></p>
+<b>SOLUTION:</b>
+Let's start by sketching the support of the joint density:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/denmar.png"></th>
+</tr>
+<tr>
+<th>The red triangle is where the density is positive.</th>
+</tr>
+</table>
+</center>
+Here we need to "integrate out" $x_2$
+$$\begin{eqnarray*}
+f_{X_1}(x_1) 
+&amp; = &amp; \int_{-\infty}^\infty f(x_1,x_2)\, dx_2\\
+&amp; = &amp; \left\{\begin{array}{ll}2\int_0^{x_1} (x_1+x_2)\, dx_2&\text{if }x_1\in[0,1]\\ 0&\text{otherwise.}\end{array}\right..
+\end{eqnarray*}$$
+Now for $x_1\in[0,1]$  we have 
+$$2\int_0^{x_1} (x_1+x_2)\, dx_2 = 2\left(x_1^2 + \frac 12x_1^2\right)=3x_1^2.$$
+Hence the required density of $X_1$  is 
+$$f_{X_1}(x_1) = \left\{\begin{array}{ll}3x_1^2&\text{if }x_1\in[0,1]\\ 0&\text{otherwise.}\end{array}\right..$$
+ ■
+</p>
+
+<p></p>
+
+<h2>
+<a name="N1047C"><span class="header">5.1</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;Work out the (marginal) density of $X_2$  in the example above.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 24:</b>&nbsp;Let $(X_1,X_2)$  have joint density 
+$$f(x_1,x_2) = \left\{\begin{array}{ll}24x_1x_2&\text{if }x_1,x_2\geq 0\mbox{ and }x_1+x_2\leq 1\\ 0&\text{otherwise.}\end{array}\right..$$
+Find the (marginal) density of $X_1.$  Don't forget to sketch the support first!</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 25:</b>&nbsp;Find the density of $X_2$  for the joint density in the exercise above.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 26:</b>&nbsp;Let $(X_1,X_2)$  be distributed uniformly over the set $S$  shown below.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/denmar2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Find the densities of $X_1$  and $X_2.$
+</p>
+
+<h1>
+<a name="N104B6"><span class="header">6</span>. Transformations from ${\mathbb R}^n$  to ${\mathbb R}^m$</a>
+</h1>
+Suppose that we are given the joint density of some $n$-dimensional random vector $\v X$, and what to find the
+ density of $\phi_1(\v X)$  for some $\phi_1:{\mathbb R}^n\rightarrow{\mathbb R}^m$  where $m &lt; n.$
+<p></p>
+Then the strategy is to   "pad up" $\phi_1$ 
+ with $n-m$  extra dummy
+ components,  so that the padded
+ function $\phi:{\mathbb R}^n\rightarrow{\mathbb R}^n$   is one-one, 
+ and has differentiable inverse. 
+<p></p>
+Then we can apply the Jacobian technique to find the density of $\phi(\v X).$  This
+ $\phi(\v X)$  consists of  $\phi_1(\v X)$ plus some extra dummy variables.
+We obtain the density of $\phi_1(\v X)$  by  integrating out the dummy variables. 
+<p></p>
+
+<p>
+<b>EXAMPLE 10:</b>&nbsp;Let the joint density of $(X,Y)$ be 
 $$f(x,y)=\left\{\begin{array}{ll}x+y&\text{if }0\leq x,y\leq 1\\ 0&\text{otherwise.}\end{array}\right..$$
 Find the joint density of
  $2X+3Y.$<p></p>
@@ -717,7 +820,7 @@ Find the joint density of
 Here the function is $\phi_1(x,y) = 2x+3y.$  Since the codomain is ${\mathbb R},$  we make it
  ${\mathbb R}^2$  by padding it with another
  function of our choice, say $\phi_2(x,y) = x.$  Then the padded function is $\phi(x,y)\mapsto (2x+3y,x).$  This is a
-bijective function from ${\mathbb R}^2$  to ${\mathbb R}^2.$  Taking $(u,v) = (2x+3y,x)$  the
+one-one function from ${\mathbb R}^2$  to ${\mathbb R}^2.$  Taking $(u,v) = (2x+3y,x)$  the
  inverse transform is $(x,y) = \left(v,\frac{u-2v}{3}\right),$  with Jacobian $\left[\begin{array}{ccccccccccc}0 &amp; 1\\\frac 13 &amp;
  -\frac 23
 \end{array}\right].$  Its absolute determinant is $\frac 13.$  
@@ -773,35 +876,35 @@ $$g(u) = \left\{\begin{array}{ll}\frac{5u^2}{24}&\text{if }u\in[0,2]\\\frac u3+\
 <p></p>
 
 <h2>
-<a name="N104B8"><span class="header">5.1</span>.
+<a name="N10577"><span class="header">6.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X+Y$  by "padding" it up with $X.$</p>
+<b>EXERCISE 27:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X+Y$  by "padding" it up with $X.$</p>
 
 <p>
-<b>EXERCISE 24:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X+Y$  by "padding" it up with $Y.$
+<b>EXERCISE 28:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X+Y$  by "padding" it up with $Y.$
 Did you get the same answer as in the exercise above?
 </p>
 
 <p>
-<b>EXERCISE 25:</b>&nbsp;Let $X,Y$ be iid Cauchy random variables. Find density of $\frac{X+Y}{2}.$</p>
+<b>EXERCISE 29:</b>&nbsp;Let $X,Y$ be iid Cauchy random variables. Find density of $\frac{X+Y}{2}.$</p>
 
 <p>
-<b>EXERCISE 26:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X-Y.$</p>
+<b>EXERCISE 30:</b>&nbsp;Let $(X,Y)$  have joint density $f(x,y).$  Find the density of $X-Y.$</p>
 
 <p>
-<b>EXERCISE 27:</b>&nbsp;Let $(X,Y)$  have uniform density over $[1,2]\times[3,4].$  Find the density of $XY.$</p>
+<b>EXERCISE 31:</b>&nbsp;Let $(X,Y)$  have uniform density over $[1,2]\times[3,4].$  Find the density of $XY.$</p>
 
 <p>
-<b>EXERCISE 28:</b>&nbsp;Let $X,Y$ be iid exponential random variables with rate $1.$  Find density of $\frac XY.$
+<b>EXERCISE 32:</b>&nbsp;Let $X,Y$ be iid exponential random variables with rate $1.$  Find density of $\frac XY.$
 </p>
 
 <p></p>
 
 <h1>
-<a name="N10504"><span class="header">6</span>. Geometry in the univariate case</a>
+<a name="N105C3"><span class="header">7</span>. Geometry in the univariate case</a>
 </h1>
 
 <p></p>
@@ -862,12 +965,12 @@ to  compensate by growing taller,
 <p></p>
 
 <h2>
-<a name="N10550"><span class="header">6.1</span>.
+<a name="N1060F"><span class="header">7.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 29:</b>&nbsp;
+<b>EXERCISE 33:</b>&nbsp;
 If $X$  has uniform distribution over (2,4)
 then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian formula
  algeraically. Think in terms of which part
@@ -877,7 +980,7 @@ then roughly sketch the density of $Y = \frac 1X.$  Don't apply the Jacobian for
 <p></p>
 
 <p>
-<b>EXERCISE 30:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
+<b>EXERCISE 34:</b>&nbsp;Suppose that $X$  is uniform over $(-1,1)$  and $Y=X^2.$  (not a bijection!).
  Guess the form of the density of $Y.$  Do you see why we needed the transform to be bijective in our intuition?
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
@@ -888,7 +991,7 @@ class="ans" id="lab1">We were assuming that density of $Y$  at any given point w
 </p>
 
 <h1>
-<a name="N10584"><span class="header">7</span>. Geometry in the multivariate case</a>
+<a name="N10643"><span class="header">8</span>. Geometry in the multivariate case</a>
 </h1>
 We have seen the geometric interpretation of the univariate Jacobian formula. Now we shall do the same for its multivariate
  version.
@@ -975,35 +1078,35 @@ Since the original green square had area $\delta^2,$  hence the scaling factor i
 <p></p>
 
 <h2>
-<a name="N105DE"><span class="header">7.1</span>.
+<a name="N1069D"><span class="header">8.1</span>.
 Problem set </a>
 </h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 31:</b>&nbsp;Consider the transformation $\phi(x,y) = (x,2y).$  Sketch how a square
+<b>EXERCISE 35:</b>&nbsp;Consider the transformation $\phi(x,y) = (x,2y).$  Sketch how a square
  $[a,a+\delta]\times[b,b+\delta]$  is transformed by it. By what factor does the area grow?
  Answer this both from your diagram as well as Jacobian determinant.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 32:</b>&nbsp;Consider the transformation $\phi(x,y) = (x,-2y).$  Sketch how a square
+<b>EXERCISE 36:</b>&nbsp;Consider the transformation $\phi(x,y) = (x,-2y).$  Sketch how a square
  $[a,a+\delta]\times[b,b+\delta]$  is transformed by it. By what factor does the area grow?
  Answer this both from your diagram as well as Jacobian determinant.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 33:</b>&nbsp;Consider the transformation $\phi(x,y) = (2x,3y).$  Sketch how a square
+<b>EXERCISE 37:</b>&nbsp;Consider the transformation $\phi(x,y) = (2x,3y).$  Sketch how a square
  $[a,a+\delta]\times[b,b+\delta]$  is transformed by it. By what factor does the area grow?
  Answer this both from your diagram as well as Jacobian determinant.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 34:</b>&nbsp;Consider the transformation $\phi(x,y) = (x^3,y^3).$  Which point in the region
+<b>EXERCISE 38:</b>&nbsp;Consider the transformation $\phi(x,y) = (x^3,y^3).$  Which point in the region
  $[1,2]\times[3,4]$  experiences the maximum stretch?
 </p>
 

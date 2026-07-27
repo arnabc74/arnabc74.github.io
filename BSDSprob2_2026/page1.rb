@@ -281,7 +281,7 @@ If our transformation <M>\phi:\rr^n\to\rr^n</M>  is of the form <M>\phi(\v x) = 
 </HINT>
 </EXR>
 
-<HEAD1>Transformations from <M>\rr^n</M>  to <M>\rr^m</M></HEAD1>
+<HEAD1>Finding marginal density from joint density</HEAD1>
 So far we have been talking only about transforms from <M>\rr^n</M>  to <M>\rr^n.</M>  What if we have a transform <M>\phi:\rr^n\to\rr^m,</M> 
  where <M>m\neq n?</M>  
 
@@ -290,10 +290,65 @@ If <M>m > n,</M>  then it can be shown (with help from measure theory beyond the
 
 But, it is quite common to have the <M>m < n</M>  case. In this case, the Jacobian formula is not applicable directly,
 because the Jacobian matrix in this case is not square, and hence we cannot take its determinant. 
-However,
- we can "pad up" <M>\phi</M>  with <M>n-m</M>  extra dummy components,  so that the padded
- function is good, i.e., takes values in <M>\rr^n</M>, is one-one, 
- and has differentiable inverse.
+However, the following fact comes to our help here:
+<Q>
+Let <M>(X_1,X_2)</M>  have joint density <M>f(x_1,x_2).</M>  Then the (marginal) density of <M>X_1</M>  is <M>f_{X_1}(x_1) = \int_{-\infty}^\infty f(x_1,x_2)\, dx_2.</M> 
+</Q>
+In other words, you can "integrate out" the unwanted variables. This works in higher dimensions also, as shown in the example
+ below.
+<EXM>Let <M>(X_1,X_2,X_3,X_4)</M>  have joint density <M>f(x_1,x_2,x_3,x_4).</M>  How would you
+ find the density of <M>(X_1,X_3)?</M><SOLN/>
+It is <M>f_{X_1,X_3}(x_1,x_3) = \int_{-\infty}^\infty\int_{-\infty}^\infty f(x_1,x_2,x_3,x_4)\, dx_2dx_4.</M>
+
+This integral may look complicated. But in order to evaluate it, just perform two integrations, once wrt <M>x_2</M>  and
+ once wrt <M>x_4</M>  (each time considering all other <M>x_i</M>'s as constants). You may perform the two integrations in
+ any order you like.
+</EXM>
+Here is a more numerical example.
+
+<EXM>If <M>(X_1,X_2)</M>  has joint density 
+<D>f(x_1,x_2) = <CASES>2(x_1 + x_2)<IF>x_1\in[0,1], x_2\in[0,x_1]</IF> 0<ELSE/></CASES>,</D>
+then find the (marginal) density of <M>X_1.</M><SOLN/>
+Let's start by sketching the support of the joint density:
+<CIMG web="denmar.png">The red triangle is where the density is positive.</CIMG>
+Here we need to "integrate out" <M>x_2</M>
+<MULTILINE>
+f_{X_1}(x_1) 
+& = & \int_{-\infty}^\infty f(x_1,x_2)\, dx_2\\
+& = & <CASES>2\int_0^{x_1} (x_1+x_2)\, dx_2<IF>x_1\in[0,1]</IF> 0<ELSE/></CASES>.
+</MULTILINE>
+Now for <M>x_1\in[0,1]</M>  we have 
+<D>2\int_0^{x_1} (x_1+x_2)\, dx_2 = 2(*(x_1^2 + [[12]]x_1^2)*)=3x_1^2.</D>
+Hence the required density of <M>X_1</M>  is 
+<D>f_{X_1}(x_1) = <CASES>3x_1^2<IF>x_1\in[0,1]</IF> 0<ELSE/></CASES>.</D>
+</EXM>
+
+<HEAD2>Problem set</HEAD2>
+<EXR>Work out the (marginal) density of <M>X_2</M>  in the example above.</EXR>
+
+<EXR>Let <M>(X_1,X_2)</M>  have joint density 
+<D>f(x_1,x_2) = <CASES>24x_1x_2<IF>x_1,x_2\geq 0\mbox{ and }x_1+x_2\leq 1</IF> 0<ELSE/></CASES>.</D>
+Find the (marginal) density of <M>X_1.</M>  Don't forget to sketch the support first!</EXR>
+
+<EXR>Find the density of <M>X_2</M>  for the joint density in the exercise above.</EXR>
+
+<EXR>Let <M>(X_1,X_2)</M>  be distributed uniformly over the set <M>S</M>  shown below.
+<CIMG web="denmar2.png"></CIMG>
+Find the densities of <M>X_1</M>  and <M>X_2.</M>
+</EXR>
+<HEAD1>Transformations from <M>\rr^n</M>  to <M>\rr^m</M></HEAD1>
+Suppose that we are given the joint density of some <M>n</M>-dimensional random vector <M>\v X</M>, and what to find the
+ density of <M>\phi_1(\v X)</M>  for some <M>\phi_1:\rr^n\to\rr^m</M>  where <M>m < n.</M>
+
+Then the strategy is to   "pad up" <M>\phi_1</M> 
+ with <M>n-m</M>  extra dummy
+ components,  so that the padded
+ function <M>\phi:\rr^n\to\rr^n</M>   is one-one, 
+ and has differentiable inverse. 
+
+Then we can apply the Jacobian technique to find the density of <M>\phi(\v X).</M>  This
+ <M>\phi(\v X)</M>  consists of  <M>\phi_1(\v X)</M> plus some extra dummy variables.
+We obtain the density of <M>\phi_1(\v X)</M>  by  integrating out the dummy variables. 
 
 <EXM>Let the joint density of <M>(X,Y)</M> be 
 <D>f(x,y)=<CASES>x+y<IF>0\leq x,y\leq 1</IF> 0<ELSE/></CASES>.</D>
@@ -302,7 +357,7 @@ Find the joint density of
 Here the function is <M>\phi_1(x,y) = 2x+3y.</M>  Since the codomain is <M>\rr,</M>  we make it
  <M>\rr^2</M>  by padding it with another
  function of our choice, say <M>\phi_2(x,y) = x.</M>  Then the padded function is <M>\phi(x,y)\mapsto (2x+3y,x).</M>  This is a
-bijective function from <M>\rr^2</M>  to <M>\rr^2.</M>  Taking <M>(u,v) = (2x+3y,x)</M>  the
+one-one function from <M>\rr^2</M>  to <M>\rr^2.</M>  Taking <M>(u,v) = (2x+3y,x)</M>  the
  inverse transform is <M>(x,y) = (*(v,[[u-2v][3]])*),</M>  with Jacobian <M><MAT>0 & 1\\[[13]] &
  -[[23]]</MAT>.</M>  Its absolute determinant is <M>[[13]].</M>  
 So the joint density of
