@@ -55,7 +55,7 @@ The class notes constitute the main reference. It is based on many sources inclu
 </UL> 
 Unfortunately, to my knowledge, there is no textbook just suitable for this course. The first two books mentioned above are
 the closest from the easier side. They, however, do not mention many of the advanced topics included in our syllabus. The
- last two books do mention them, but contain way too much discussion and is written at a level much higher than the present
+ last two books do mention them, but contain way too much discussion and are written at a level much higher than the present
  course. 
 
 In short: the class notes are your best reference! 
