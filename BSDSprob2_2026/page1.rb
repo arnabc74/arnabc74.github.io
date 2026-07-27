@@ -362,9 +362,9 @@ one-one function from <M>\rr^2</M>  to <M>\rr^2.</M>  Taking <M>(u,v) = (2x+3y,x
  -[[23]]</MAT>.</M>  Its absolute determinant is <M>[[13]].</M>  
 So the joint density of
  <M>(U,V)</M>  is 
-<D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][3]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
+<D>g(u,v) = [[13]]f(*(v,[[u-2v][3]])*) =<CASES>[[u+v][9]]<IF>0\leq v,[[u-2v][3]]\leq 1</IF> 0<ELSE/></CASES>.</D> 
 In other words, 
-<D>g(u,v)  =<CASES>[[u+v][3]]<IF>(u,v)\in \phi(S)</IF> 0<ELSE/></CASES>,</D> 
+<D>g(u,v)  =<CASES>[[u+v][9]]<IF>(u,v)\in \phi(S)</IF> 0<ELSE/></CASES>,</D> 
 where <M>\phi(S)</M>  is the red region below.
 <CIMG web="marden1.png"></CIMG>
 Next, we shall  integrate out <M>V</M>  to find the marginal
@@ -372,15 +372,15 @@ Next, we shall  integrate out <M>V</M>  to find the marginal
 <CIMG web="marden2.png">The three parts</CIMG>
 
 When <M>u\in[0,2],</M>  we have 
-<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_0^{u/2} u+v\, dv = [[5u^2][24]].</D>
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[19]] \int_0^{u/2} u+v\, dv = [[5u^2][72]].</D>
 When <M>u\in[2,3],</M>  we have 
-<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_0^1 u+v\, dv = [[u3]]+[[16]].</D>
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[19]] \int_0^1 u+v\, dv = [[u9]]+[[1][18]].</D>
 When <M>u\in[3,5],</M>  we have 
-<D>\int_{-\infty}^\infty g(u,v)\, dv = [[13]] \int_{(u-3)/2}^1 u+v\, dv = [[-5u^2+26u-5][24]].</D>
+<D>\int_{-\infty}^\infty g(u,v)\, dv = [[19]] \int_{(u-3)/2}^1 u+v\, dv = [[-5u^2+26u-5][72]].</D>
 Otherwise, the integral is 0.
 
 Thus, the density of <M>U</M>  is 
-<D>g(u) = <CASES>[[5u^2][24]]<IF>u\in[0,2]</IF>[[u3]]+[[16]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][24]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
+<D>g(u) = <CASES>[[5u^2][72]]<IF>u\in[0,2]</IF>[[u9]]+[[1][18]]<IF>u\in[2,3]</IF>[[-5u^2+26u-5][72]]<IF>u\in[3,5]</IF> 0<ELSE/></CASES>.</D>
 <IMG web="densplot.png">A graph of the density</IMG>
 
 </EXM>
