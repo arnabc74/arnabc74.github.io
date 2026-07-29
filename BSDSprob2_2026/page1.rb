@@ -469,14 +469,15 @@ If the two components of <M>\phi(x,y)</M>  are called <M>u(x,y)</M>  and <M>v(x,
  <MULTILINE>
 \phi(a, b) & = & (u(a, b), v(a, b)),\\
 \phi(a+\delta, b) & = & (u(a+\delta, b), v(a+\delta, b))\\
-\phi(a, b+\delta y) & = & (u(a, b+\delta x), v(a, b+\delta)).
+\phi(a, b+\delta ) & = & (u(a, b+\delta ), v(a, b+\delta)).
 </MULTILINE>
-Now, since <M>\delta</M>  is "small" we can write <M>u(a+\delta,b)\approx u(a,b)+\pd u x \delta,</M>  etc. So we have
+Now, since <M>\delta</M>  is "small" we can write <M>u(a+\delta,b)\approx u(a,b)+\pd u x \delta,</M>  etc.
+ So we have
  <MULTILINE>
 \phi(a, b) & = & (u(a, b), v(a, b)),\\
 \phi(a+\delta, b) & = & (u(a+\delta, b), v(a+\delta, b))\approx 
 (*(u(a,b)+\pd u x\delta, v(a,b)+\pd v  x \delta)*)\\
-\phi(a, b+\delta y) & = & (u(a, b+\delta x), v(a, b+\delta))\approx (*(u(a,b)+\pd u y \delta, v(a,b)+\pd v
+\phi(a, b+\delta) & = & (u(a, b+\delta), v(a, b+\delta))\approx (*(u(a,b)+\pd u y \delta, v(a,b)+\pd v
  y \delta)*).
 </MULTILINE>
 Thus, after the transform, the little green square is approximately the following parallelogram:
