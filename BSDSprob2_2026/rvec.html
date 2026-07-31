@@ -159,64 +159,137 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:08 IST 2026</i>
+Fri Jul 31 09:55:39 IST 2026</i>
 </td>
 </tr>
 </table>
 <h3>Expectation and variance of random vectors</h3>
 <ul>
-<li>1. <a href="#N10010">Expectation, variance of random vectors</a>
+<li>1. <a href="#N10013">Expectation, variance of random vectors</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10054">Problem set 1</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N100BB">Problem set 1</a>
 </li>
-<li>2. <a href="#N100D2">Motivation behind the definition of dispersion matrix</a>
+<li>2. <a href="#N10152">Properties of expectation, variance of random vectors</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10134">Problem set 2</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1019B">A little linear algebra</a>
 </li>
-<li>3. <a href="#N1017F">Properties of expectation, variance of random vectors</a>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N101D5">Back to probability theory</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101CD">A little linear algebra</a>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N1021C">Problem set 2</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10201">Back to probability theory</a>
+<li>3. <a href="#N102D2">Motivation behind the definition of dispersion matrix</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N10248">Problem set 3</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1032B">Problem set 3</a>
 </li>
 </ul>
 <hr/>
 $\newcommand{\v}[1]{\boldsymbol{#1}}$
 $\newcommand{\k}[1]{\chi^2_{(#1)}}$
 $\newcommand{\cov}{\mathrm{cov}}$
+$\newcommand{\cor}{\mathrm{corr}}$
 <title xmlns="">Expectation and variance of random vectors</title>
 
 <h1>
-<a name="N10010"><span class="header">1</span>. Expectation, variance of random vectors</a>
+<a name="N10013"><span class="header">1</span>. Expectation, variance of random vectors</a>
 </h1>
 We know that if $X_1,...,X_n$  are jointly distributed random variables, then $\v X=(X_1,...,X_n)'$ 
  is called a <b><font color="red" size="40">random vector</font></b>, and is usually considered as an $n\times 1$  column vector. We define 
 $E(\v X)$  as
 $$E(\v X) = \left[\begin{array}{ccccccccccc}E(X_1)\\\vdots\\E(X_n)
 \end{array}\right].$$
-The motivation is again from statistical regularity. If you take many IID replications of 
-$\v X$  and average them, then (under very general conditions) the average will converge to $E(\v X).$ 
+
 <p></p>
 The case of dispersion is slightly trickier. We shall start with the definition and provide the motivation later. 
 <fieldset>
 <legend><b>Definition: Dispersion matrix</b></legend>
 Let $\v X$  be a random vector with components $X_1,...,X_n.$  Then its <b><font color="red" size="40">dispersion matrix</font></b>  or <b><font color="red" size="40">variance matrix</font></b> 
- or <b><font color="red" size="40">variance-covariance matrix</font></b>  is defined as the $n\times n$  symmetric matrix with $(i,j)$-th entry
+ or <b><font color="red" size="40">variance-covariance matrix</font></b>  is defined as the $n\times n$  symmetric matrix
+ $V(\v X)$  with $(i,j)$-th entry
  $\cov(X_i,X_j).$  In particular, its $i$-th diagonal entry is $V(X_i).$
 </fieldset> 
+One simple motivation behind this definition comes from the definitions of variance and covariance:
+$$V(X) = E(X-E(X))^2\mbox{ and } \cov(X,Y) = E(X-E(X))(Y-E(Y)).$$  
+If we mimick this definition as follows in the multivariate case, we get the definition of covariance matrix:
+$$V(\v X) = E\big[(\v X-E(\v X))(\v X-E(\v X))'\big].$$
+The following example demonstrates this in the 2D case.
+<p>
+<b>EXAMPLE 1:</b>&nbsp;
+Let $\v X = \left[\begin{array}{ccccccccccc}X_1\\X_2
+\end{array}\right].$  Then 
+$$\v X-E(\v X) = \left[\begin{array}{ccccccccccc}X_1-E(X_1)\\X_2-E(X_2)
+\end{array}\right].$$
+So 
+$$\begin{eqnarray*}
+&amp; &amp; (\v X-E(\v X))(\v X-E(\v X))'\\
+&amp; = &amp; \left[\begin{array}{ccccccccccc}X_1-E(X_1)\\X_2-E(X_2)
+\end{array}\right]\left[\begin{array}{ccccccccccc}X_1-E(X_1) &amp; X_2-E(X_2)
+\end{array}\right] \\
+&amp; = &amp; \left[\begin{array}{ccccccccccc}(X_1-E(X_1))^2 &amp; (X_1-E(X_1))(X_2-E(X_2))\\
+(X_1-E(X_1))(X_2-E(X_2)) &amp; (X_2-E(X_2))^2
+\end{array}\right].
+\end{eqnarray*}$$
+When we take expectation of this matrix (entry by entry), we get the dispersion matrix.
+ ■
+</p>
+The following results should be familiar to you from Probability I.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $X,Y$  be random variables defined on the same probability space. Let them have finite second moments. Then 
+<ol type="">
+<li>$\cov(X,Y) = \cov(Y,X)$.</li>
+
+<li>$V(X) = \cov(X,X)$.</li>
+
+<li>For fixed $a,b\in{\mathbb R}$  we have $\cov(aX,bY) = ab\,\cov(X,Y).$</li>
+
+<li>For fixed $a\in{\mathbb R}$  we have $V(aX) = a^2V(X).$</li>
+
+</ol>
+
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b> Direct application of the definition.<b><i>[QED]</i></b>
+</p>
 
 <p></p>
 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $X,Y$  are two random variables (both defined on the same probability space) and $a,b,c,d\in{\mathbb R}$  are fixed
+ numbers, then 
+$$\cov(aX+bY,cX+dY) = ac\,V(X)+(ad+bc)\,\cov(X,Y)+bd\, V(Y).$$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Notice the similarity of this result with usual algebraic multiplication that we learn at school:
+$$(ax+by)(cx+dy) = ac\,x^2+(ad+bc)\,xy+bd\, y^2.$$
+Thus, covariance plays the role of multiplication (and so $V(X) = \cov(X,X)$  plays the role of squaring). Indeed, that
+ is how the result is proved:
+$$$$\begin{eqnarray*}
+\cov(aX+bY,cX+dY) 
+&amp; = &amp; E\big[ \big(aX+bY- E(aX+bY) \big)\big( cX+dY- E(cX+dY) \big) \big]\\
+&amp; = &amp; E\big[ \big( aX+bY- (aE(X)+bE(Y)) \big)\big( cX+dY- (cE(X)+dE(Y)) \big) \big]\\
+&amp; = &amp; E\big[ \big(  a(X-E(X))+b(Y- E(Y)) \big)\big(c(X-E(X))+d(Y- E(Y)) \big) \big]\\
+&amp; = &amp; E\big[ \big( ac(X-E(X))^2+(ad+bc)(X-E(X))(Y- E(Y)) +bd(Y- E(Y))^2 \big) \big]\\
+&amp; = &amp; acE(X-E(X))^2+(ad+bc)E(X-E(X))(Y- E(Y)) +bdE(Y- E(Y))^2 \\
+&amp; = &amp; ac\,V(X)+(ad+bc)\,\cov(X,Y)+bd\, V(Y),
+\end{eqnarray*}$$$$
+as required.
+<b><i>[QED]</i></b>
+</p>
+
 <h2>
-<a name="N10054"><span class="header">1.1</span>.
+<a name="N100BB"><span class="header">1.1</span>.
 Problem set 1</a>
 </h2>
 
 <p>
 <b>EXERCISE 1:</b>&nbsp;If $X_1,...,X_n$  are IID with mean 2 and variance 5, and $\v X = (X_1,...,X_n)'$,
- then find $E(\v X)$  and $V(\v X).$ Express $V(\v X)$  as a linear combination of
+ then find $E(\v X)$  and $V(\v X).$ Express $E(\v X)$  in terms of $\v
+ 1_n$, the $n\times 1$  vector of all $1$'s. Also express $V(\v X)$  as a
+ linear combination of
  identity matrix $I_n$  and $J_n,$  the $n\times n$  matrix with all entries equal to $1.$</p>
 
 <p></p>
@@ -235,10 +308,17 @@ $$V(\v X) = \left[\begin{array}{ccccccccccc}
 1 &amp; 2 &amp; 5
 
 \end{array}\right].$$
-Find $cor(X_1,X_3).$
+Find $\cor(X_1,X_3).$  
+<p>
+<b>Hint:</b>
+<blockquote>
+The correlation between two random variables $X$  and $Y$  is defined as 
+$$\cor(X,Y) = \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}.$$
+</blockquote>
 </p>
 
-<p></p>
+</p>
+
 
 <p>
 <b>EXERCISE 4:</b>&nbsp;In the last problem, also find $V(X_1-3X_2)$  and $\cov(X_1+X_2,X_3).$</p>
@@ -246,7 +326,7 @@ Find $cor(X_1,X_3).$
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;If $X_1,...,X_n$  are iid $Poi(1),$  then find $\cov(\v X),$  where$\v X = (X_1,...,X_n).$</p>
+<b>EXERCISE 5:</b>&nbsp;If $X_1,...,X_n$  are iid $Poi(1),$  then find $V(\v X),$  where$\v X = (X_1,...,X_n).$</p>
 
 <p></p>
 
@@ -257,12 +337,166 @@ Find $cor(X_1,X_3).$
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Let $\v X = (U,U^2),$  where $U\sim Unif(-1,1).$  Find $\cov(\v X).$</p>
+<b>EXERCISE 7:</b>&nbsp;Let $\v X = (U,U^2),$  where $U\sim Unif(-1,1).$  Find $V(\v X).$</p>
+
+<p></p>
+ 
+<h1>
+<a name="N10152"><span class="header">2</span>. Properties of expectation, variance of random vectors</a>
+</h1>
+The following facts are immediate from the definition.
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Let $\v X_{n\times 1}$  be a random vector with $E(\v X)=\v\mu$  and $V(\v X) = \Sigma.$  Then, for any
+ matrix $A_{m\times n}$
+  and any vector $\v b_{m\times 1}$, 
+ we have
+<ol type="">
+
+<li>$E(A\v X+\v b) = A\v\mu+\v b$,</li>
+
+<li>$V(A\v X+\v b) = A\Sigma A'$</li>
+
+</ol>
+
+</fieldset> 
+
+<p>
+<b><i>Proof:</i></b>
+Let $\v Y = A\v X+\v b.$  Then $\v Y = (Y_1,...,Y_m)'$, where $Y_i = \sum_j a_{ij}X_j + b_i.$  Here I have
+ denoted the $(i,j)$-th entry of $A$  by $a_{ij}.$  
+<p></p>
+Now compute $E(Y_i)$  and $\cov(Y_i,Y_j)$  directly to get the result.
+<p></p>
+By the way, the $(i,j)$-th entry of $A\Sigma A'$  is $\sum_{r=1}^n\sum_{s=1}^n a_{ir} \sigma_{rs} a_{js}.$  
+<b><i>[QED]</i></b>
+</p>
+
+<h2>
+<a name="N1019B"><span class="header">2.1</span>.
+A little linear algebra</a>
+</h2>
+You should already know the following definition from your Mathematics II course.
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Nonnegative definite (nnd) and positive definite (pd)</b></legend>
+A real, symmetric matrix $A_{n\times n}$  is called <b><font color="red" size="40">nonnegative definite (nnd)</font></b>  if 
+$\forall \v\ell\in{\mathbb R}^n~~\v\ell'A\v\ell\geq 0.$
+<p></p>
+A real, symmetric matrix $A_{n\times n}$ is called <b><font color="red" size="40">positive definite (pd)</font></b>  if $\forall$ nonzero 
+$ \v\ell\in{\mathbb R}^n~~\v\ell'\Sigma\v\ell&gt; 0.$
+</fieldset>
+Here is one important property of these matrices. 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+A real matrix $A$  is nnd if and only if $A = BB'$  for some matrix $B.$
+<p></p>
+A real matrix $A$  is pd if and only if $A = BB'$  for some <i>nonsingular</i> matrix $B.$
+</fieldset>
+
+<h2>
+<a name="N101D5"><span class="header">2.2</span>.
+Back to probability theory</a>
+</h2>
 
 <p></p>
 
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+Any dispersion matrix is nnd. In other words, if $\Sigma_{n\times n}=V(\v X)$, then $\forall \v\ell\in{\mathbb R}^n~~\v\ell'\Sigma\v\ell\geq 0.$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+By the last theorem, $\v\ell'\Sigma\v\ell=V(\v\ell'\v X)\geq 0.$
+<b><i>[QED]</i></b>
+</p>
+
+<p></p>
+The converse is also true:
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+If $\Sigma_{n\times n}$  is any nnd matrix, then it is $V(\v X)$  for some random vector
+ $\v X_{n\times 1}.$ 
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Let $U_1,...,U_n$  be independent with $V(U_i)=1$  for all $i.$    Then $\v U=
+ (U_1,...,U_n)'$  has $V(\v U) = I_n.$  
+<p></p>
+Since $\Sigma$  is nnd, hence $\Sigma = AA'$  for some $A_{n\times n}.$  
+<p></p>
+Let $\v X = A\v U.$  Then $V(\v X) = A I_n A' = AA' = \Sigma.$ 
+<b><i>[QED]</i></b>
+</p>
+
+<h2>
+<a name="N1021C"><span class="header">2.3</span>.
+Problem set 2</a>
+</h2>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;If $V(\v X_{n\times 1}) = \Sigma,$  and $\v b$  is a fixed
+ $n$-dimensional vector, then what will be the dispersion matrix of $\v X+\v b$?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 9:</b>&nbsp;Let $\v X = \left[\begin{array}{ccccccccccc}X_1\\X_2
+\end{array}\right].$  If $V(\v X) = \Sigma,$  
+then find $\cov(X_1+2X_2,3X_1-5X_2)$  in terms of $\Sigma.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;If $V(\v X_{n\times 1}) = \Sigma,$  and $\v a$  and $\v b$  are fixed
+ $n$-dimensional vectors, then find $\cov(\v a'\v X,\v b' \v X).$</p>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Show that for $\left[\begin{array}{ccccccccccc}a &amp; b\\b &amp; c
+\end{array}\right]$  to be a dispersion matrix, a necessary
+ condition is that $b^2\leq ac.$  Is it a sufficient condition?</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 12:</b>&nbsp;Show that $V(\v X)$  is singular if and only if $P(a_1X_1+\cdots+a_n X_n=c)=1$  for
+ some constants $a_i$'s and $c$  such that not all $a_i$'s are zero.</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;If $\v X=(X,Y)'$  and $V(\v X)$  is a singular, then how will a scatterplot of
+ replications from $\v X$  look like? Here we are running the random experiment underlying $\v
+ X$  repeatedly, and getting $(X_1,Y_1), (X_2,Y_2),...,(X_n,Y_n),$  and plotting these
+ $n$  points as a scatterplot. Your job is to identify some geometric pattern in the plot. </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;If $V(\v X_{n\times 1}) = \Sigma,$  and $A_{r\times n}$  and $B_{s\times n}$  are fixed
+matrices, then find a $r\times s$  matrix whose $(i,j)$-th entry is the covariance
+ between the $i$-th entry of $A\v X$  and the $j$-th entry of $B\v X.$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 15:</b>&nbsp;If $V(\v X) = \Sigma,$  and $\v a$  and $\v b$  are fixed
+ $n$-dimensional vectors, then show that $\v a' \Sigma \v b =\v b' \Sigma \v a.$
+Is this true for <i>any</i> symmetric $\Sigma$?
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 16:</b>&nbsp;Let $V(\v X)=\Sigma$  be a pd matrix with  Cholesky square root $A.$ What is the
+ dispersion matrix of $(A ^{-1})'\v X$? </p>
+
 <h1>
-<a name="N100D2"><span class="header">2</span>. Motivation behind the definition of dispersion matrix</a>
+<a name="N102D2"><span class="header">3</span>. Motivation behind the definition of dispersion matrix</a>
 </h1>
 A multivariate data set may appear to have different amounts of dispersion depending how you view
  it. <a href="tstpca.html">This 3D scatterplot</a>,  for example, will show this phenomenon
@@ -329,12 +563,12 @@ Then
  a point $\v v \equiv (X,Y)$ 
  will project to the vector  
 $$\frac{\v v'\v u}{\v u'\v u} \v u,$$
-shown in blue.1 Measured in units of $\v u$,  this will show up at the mark $\frac{\v v'\v u}{\v u'\v u}$  of the ruler.
+shown in blue. Measured in units of $\v u$,  this will show up at the mark $\frac{\v v'\v u}{\v u'\v u}$  of the ruler.
 <p></p>
-Now, $\frac{\v v'\v u}{\v u'\v u} = pX+qY$ for some $p,q\in{\mathbb R}.$  2
+Now, $\frac{\v v'\v u}{\v u'\v u} = pX+qY$ for some $p,q\in{\mathbb R}.$
 Then the
  variance of $pX+qY$ 
- will be $p^2 V(X)+q^2 V(Y) + 2pq\, \cov(X,Y),$  which may be written as  3
+ will be $p^2 V(X)+q^2 V(Y) + 2pq\, \cov(X,Y),$  which may be written as 
 $$\left[\begin{array}{ccccccccccc}p &amp; q
 \end{array}\right]\left[\begin{array}{ccccccccccc}V(X) &amp; \cov(X,Y)\\\cov(X,Y) &amp; V(Y)
 \end{array}\right]\left[\begin{array}{ccccccccccc}p\\q
@@ -347,12 +581,12 @@ Here $p,q$  are controlled by the position of the ruler. Notice that the matrix 
 <p></p>
 
 <h2>
-<a name="N10134"><span class="header">2.1</span>.
-Problem set 2</a>
+<a name="N1032B"><span class="header">3.1</span>.
+Problem set 3</a>
 </h2>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Consider the toy bivariate data set $(1, 2), (3, 4), (2.1, 3.1), (4, 5).$  Draw the
+<b>EXERCISE 17:</b>&nbsp;Consider the toy bivariate data set $(1, 2), (3, 4), (2.1, 3.1), (4, 5).$  Draw the
  scatterplot. Imagine that we are looking down as shown. Guess the variance as seen from that
  direction. Check your guess by actual computation.
 <center>
@@ -371,14 +605,14 @@ Problem set 2</a>
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let the dispersion matrix of $(X,Y)$  be $\left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 2
+<b>EXERCISE 18:</b>&nbsp;Let the dispersion matrix of $(X,Y)$  be $\left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 2
 \end{array}\right]$. Find
  $\theta\in [0,\pi)$  such that $V(\cos (\theta) X + \sin(\theta) Y)$  is maximum. When is the variance minimum?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Let the dispersion matrix of $\v X$  be $\left[\begin{array}{ccccccccccc}2 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 3
+<b>EXERCISE 19:</b>&nbsp;Let the dispersion matrix of $\v X$  be $\left[\begin{array}{ccccccccccc}2 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 3
 \end{array}\right]$. Find
 a unit vector $\v \ell$  such that $V(\v \ell' \v X)$  is minimum. Is this $\v \ell$  unique?
 </p>
@@ -386,7 +620,7 @@ a unit vector $\v \ell$  such that $V(\v \ell' \v X)$  is minimum. Is this $\v \
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;Consider the four scatterplots below. 
+<b>EXERCISE 20:</b>&nbsp;Consider the four scatterplots below. 
 <center>
 <table width="100%">
 <tr>
@@ -406,163 +640,15 @@ $$C_1=\left[\begin{array}{ccccccccccc}2.5 &amp; 1\\1 &amp; 2.5
 \end{array}\right].$$
 Which corresponds to which?
 </p>
- 
-<h1>
-<a name="N1017F"><span class="header">3</span>. Properties of expectation, variance of random vectors</a>
-</h1>
-The following facts are immediate from the definition.
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $\v X_{n\times 1}$  be a random vector with $E(\v X)=\v\mu$  and $V(\v X) = \Sigma.$  Then, for any
- matrix $A_{m\times n}$
-  and any vector $\v b_{m\times 1}$, 
- we have
-<ol type="">
-
-<li>$E(A\v X+\v b) = A\v\mu+\v b$,</li>
-
-<li>$V(A\v X+\v b) = A\Sigma A'$</li>
-
-</ol>
-
-</fieldset> 
-
-<p>
-<b><i>Proof:</i></b>
-Let $\v Y = A\v X+\v b.$  Then $\v Y = (Y_1,...,Y_m)'$, where $Y_i = \sum_j a_{ij}X_j + b_i.$  4Here I have
- denoted the $(i,j)$-th entry of $A$  by $a_{ij}.$  
-<p></p>
-Now compute $E(Y_i)$  and $\cov(Y_i,Y_j)$  directly to get the result. 
-<p></p>
-By the way, the $(i,j)$-th entry of $A\Sigma A'$  is $\sum_{r=1}^n\sum_{s=1}^n a_{ir} \sigma_{rs} a_{js}.$  
-<b><i>[QED]</i></b>
-</p>
-
-<h2>
-<a name="N101CD"><span class="header">3.1</span>.
-A little linear algebra</a>
-</h2>
-You should already know the following definition from your Mathematics II course.
-<p></p>
-
-<fieldset>
-<legend><b>Definition: Nonnegative definite (nnd) and positive definite (pd)</b></legend>
-A real, symmetricmatrix $A_{n\times n}$  is called <b><font color="red" size="40">nonnegative definite (nnd)</font></b>  if 
-$\forall \v\ell\in{\mathbb R}^n~~\v\ell'A\v\ell\geq 0.$
-<p></p>
-It is called <b><font color="red" size="40">positive definite (pd)</font></b>  if $\forall$ nonzero 
-$ \v\ell\in{\mathbb R}^n~~\v\ell'\Sigma\v\ell&gt; 0.$
-</fieldset>
-Here is one important property of these matrices. 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-A real matrix $A$  is nnd if and only if $A = BB'$  for some matrix $B.$
-<p></p>
-A real matrix $A$  is pd if and only if $A = BB'$  for some nonsingular matrix $B.$
-</fieldset>
-
-<h2>
-<a name="N10201"><span class="header">3.2</span>.
-Back to probability theory</a>
-</h2>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Any dispersion matrix is nnd. In other words, if $\Sigma_{n\times n}=V(\v X)$, then $\forall \v\ell\in{\mathbb R}^n~~\v\ell'\Sigma\v\ell\geq 0.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-By the last theorem, $\v\ell'\Sigma\v\ell=V(\v\ell'\v X)\geq 0.$
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-The converse is also true:
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $\Sigma_{n\times n}$  is any nnd matrix, then it is $V(\v X)$  for some random vector
- $\v X_{n\times 1}.$ 
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Let $U_1,...,U_n$  be independent with $V(U_i)=1$  for all $i.$    Then $\v U=
- (U_1,...,U_n)'$  has $V(\v U) = I_n.$  
-<p></p>
-Since $\Sigma$  is nnd, hence $\Sigma = AA'$  for some $A_{n\times n}.$  
-<p></p>
-Let $\v X = A\v U.$  Then $V(\v X) = A I_n A' = AA' = \Sigma.$ 
-<b><i>[QED]</i></b>
-</p>
-
-<h2>
-<a name="N10248"><span class="header">3.3</span>.
-Problem set 3</a>
-</h2>
-
-<p>
-<b>EXERCISE 12:</b>&nbsp;Show that for $\left[\begin{array}{ccccccccccc}a &amp; b\\b &amp; c
-\end{array}\right]$  to be a dispersion matrix, a necessary
- condition is that $b^2\leq ac.$  Is it a sufficient condition?</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 13:</b>&nbsp;Show that $V(\v X)$  is singular if and only if $P(a_1X_1+\cdots+a_n X_n=c)=1$  for
- some constants $a_i$'s and $c$  such that not all $a_i$'s are zero.</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 14:</b>&nbsp;If $\v X=(X,Y)'$  and $V(\v X)$  is a singular, then how will a scatterplot of
- replications from $\v X$  look like? Here we are running the random experiment underlying $\v
- X$  repeatedly, and getting $(X_1,Y_1), (X_2,Y_2),...,(X_n,Y_n),$  and plotting these
- $n$  points as a scatterplot. Your job is to identify some geometric pattern in the plot. </p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 15:</b>&nbsp;If $\cov(\v X_{n\times 1}) = \Sigma,$  and $\v b$  is a fixed
- $n$-dimensional vector, then what will be the dispersion matrix of $\v X+\v b$?</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 16:</b>&nbsp;If $\cov(\v X_{n\times 1}) = \Sigma,$  and $\v a$  and $\v b$  are fixed
- $n$-dimensional vectors, then find $\cov(\v a'\v X,\v b' \v X).$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 17:</b>&nbsp;If $\cov(\v X_{n\times 1}) = \Sigma,$  and $A_{r\times n}$  and $B_{s\times n}$  are fixed
-matrices, then find a $r\times s$  matrix whose $(i,j)$-th entry is the covariance
- between the $i$-th entry of $A\v X$  and the $j$-th entry of $B\v X.$
-</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 18:</b>&nbsp;If $\cov(\v X) = \Sigma,$  and $\v a$  and $\v b$  are fixed
- $n$-dimensional vectors, then show that $\v a' \Sigma \v b =\v b' \Sigma \v a.$
-Is this true for <i>any</i> symmetric $\Sigma$?
-</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 19:</b>&nbsp;Let $V(\v X)=\Sigma$  be a pd matrix with  Cholesky square root $A.$ What is the
- disperstion matrix of $(A ^{-1})'\v X$? </p>
 
 <fieldset>
 <legend><b>Project: Face recognition using eigenanalysis</b></legend>
 This is a simplified version of a classical machine learning application. You start with a
- database of face images (I can provide you with one. Or, if you are really ambitious, you may
- take photos of your classmates). Then the project computes the  covariance matrix of the data, and reduces the data to just
+ database of face images. (You may use <a href="grayfaces.tar.gz">this one</a>. Or, if you are
+ really ambitious, you may
+ take photos of your classmates). Then compute the  covariance matrix of the data, and reduce the data to just
  a few numbers (say 10 to 15) per face. These numbers store most of the "relevant" information for
- recognising the face.  Formally, this project is about dimensionality reduction using principal compnent analysis. Requires
+ recognising the face.  Formally, this project is about dimensionality reduction using principal component analysis. Requires
  good knowledge about the spectral decomposition of real symmetric matrices. Not a super easy project, but if done properly,
  will lead to a final "Wow!". 
 </fieldset>
