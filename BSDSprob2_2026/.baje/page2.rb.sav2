@@ -13,63 +13,25 @@ You have already learned about normal and bivarate normal  distributions in Prob
  the multivariate normal distribution. 
 
 <DEFN name="Multivariate normal distribution">
-Let  <M>\v X</M> be a <M>d</M>-dimensional random vector with components iid <M>N(0,1).</M>  Let
- <M>A_{r\times n}</M> be any fixed matrix and <M>\v b\in\rr^r</M> be any fixed vector. Then the
- distribution of the random vector <M>A\v X + \v b</M>  is called a <M>r</M>-dimensional multivariate normal distribution.
+Let  <M>\v X=(X_1,...,X_n)'</M> be a random vector with <M>X_i</M>'s iid <M>N(0,1).</M>  Let
+ <M>A_{d\times n}</M> be any fixed matrix and <M>\v \mu\in\rr^d</M> be any fixed vector. Then the
+ distribution of the random vector <M>A\v X + \v \mu</M>  is called a <M>d</M>-dimensional multivariate normal distribution
+ and is denoted by <M>N_d(\v \mu, \Sigma),</M>  where <M>\Sigma=AA'.</M>
 </DEFN>
-This is defined in a way slightly different from the way you defined bivariate normal in Probability I. But it is equivalent.
- 
-Unfortunately, this distribution may or may not have a density, and its distribution function is
- not easy to write down (even for univariate normal the distribution function cannot be written in
- a closed form). So in order to work with the multivariate normal distribution, we shall use mgf.
- We quickly recall the definition of mgf that you have learned in Probability I.
+ Notice a subtle point here: Though we defined the random vector using <M>A,</M>  yet we labelled it with <M>AA',</M>  and
+ not <M>A</M>  itself. This is because the distribution of <M>A\v X + \v \mu</M>  will depend on <M>A</M>  only through
+ <M>AA'.</M>  In other words, if I use <M>A_1</M>  and you use <M>A_2</M>  such that <M>A_1A_1' = A_2A_2',</M>  then the
+<M>A_1\v X + \v \mu</M>  and <M>A_2\v X + \v \mu</M>  will have the same distribution. We shall
+ prove this point in the final section of this page.
 
-<DEFN name="(Multivariate) mgf">
-The <TERM>(multivariate) mgf</TERM>  of a random vector <M>\v X</M>  is  
-<D>M(\v t) = E(e^{\v t'\v X}).</D>
-If we write <M>\v X = (X_1,...,X_d)'</M>  and <M>\v t = (t_1,...,t_d)',</M>  then we have
-<D>M(t_1,...,t_d) = E(e^{t_1X_1+\cdots+t_dX_d}).</D>
-</DEFN> 
-It enjoys all the important properties of univariate mgf:
+<THM>Let <M>\v X =  <MAT>X_1\\\vdots\\X_d</MAT></M>. Then <M>\v X\sim N_d(\v 0, I)</M>  if and only if 
+ <M>X_1,...,.X_n</M>  are iid <M>N(0,1)</M>. 
+</THM><PF><B>Only if part:</B>  Take <M>A = I_d</M>  and <M>\v \mu = \v 0_{d\times 1}.</M>  Then by the above definition
+<D>A\v X + \v \mu = \v X\sim N_d(\v 0, I),</D>  because <M>AA' = I.</M>
 
-
-<THM>
-Let  <M>\v X</M> be a <M>d</M>-dimensional random vector with components iid <M>N(0,1).</M>  Let
- <M>A_{r\times n}</M> be any fixed matrix and <M>\v b\in\rr^r</M> be any fixed vector. Then the
- MGF of the random vector <M>A\v X + \v b</M>  is given by 
-<D>M(\v t)  = e^{\v b'\v t+[[12]]\v t' AA'\v t}\mbox{ for }\v t\in\rr^d.</D>
-</THM>
-<PF>
-<LINK to="image/nmgf1.png">Recall from Probability I</LINK> that mgf of each <M>X_i</M>  is <M>E(e^{sX_1})=e^{s^2/2}</M>  for <M>s\in\rr.</M>  
-
-So the mgf of <M>\v X = (X_1,...,X_d)'</M>  is 
-<MULTILINE>
-E(e^{s_1X_1+\cdots+s_dX_d})
-& = & E(e^{s_1X_1})\cdots E(e^{s_dX_d}) <SINCE><M>\because</M>independent</SINCE> \\
-& = & e^{[[12]](s_1^2+\cdots+s_d^2)} = e^{\v s'\v s/2}
-</MULTILINE>
-for all <M>\v s=(s_1,...,s_d)'\in\rr^d.</M>
-
-So mgf of <M>A\v X + \v b</M>  is 
-<MULTILINE>
-E(e^{\v t'(A\v X+\v b)})
-& = & E(e^{\v t'A\v X+\v t'\v b)})\\
-& = & e^{\v t'\v b)}E(\v t'A\v X)\\
-& = & e^{\v t'\v b)}E((A'\v t)'\v X)\\
-& = &
- e^{\v t'\v b)}e^{(A'\v t)'(A'\v t)/2}\\
-& = & e^{\v t'\v b+\v t' AA'\v t/2},
-</MULTILINE> 
-as required.
+<B>If part:</B>  Shall do later in the final section of this page.
 </PF>
-Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
-Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  Quickly recall from Mathematics II that any matrix
- of the form <M>A'A</M>  (for a real matrix <M>A</M>) is called a nnd matrix. 
 
-
-<B>Notation:</B>  Let <M>\v \mu\in\rr^d</M>  be a fixed vector, and <M>\Sigma_{d\times d}</M>  be any fixed nnd
- matrix. The distribution with mgf <M>M(\v t) = e^{\v \mu't + [[12]] \v t' \Sigma \v t}</M>  for
- <M>\v t\in \rr^d</M>  is denoted by <M>N_d(\v \mu, \Sigma).</M>
 
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>E(\v X) = \v \mu</M>  and <M>V(\v X) = \Sigma.</M></THM>
 <PF>Here <M>\v X = \v \mu + A\v Z</M>  for some matrix <M>A</M>  where <M>\Sigma = AA'</M>  and
@@ -79,8 +41,6 @@ Hence <M>E(\v Z) = \v 0</M>  and <M>V(\v Z) = I.</M>
 
 So <M>E(\v X) = \v \mu + A E(\v Z) = \v \mu</M>  and <M>V(\v X) = A V(\v Z)A' = AA' = \Sigma.</M>
 </PF>
-<THM>If <M>X_1,...,.X_n</M>  are iid <M>N(0,1)</M>  random variables, then <M>\v X =
- <MAT>X_1\\\vdots\\X_n</MAT></M>  has <M>N_n(\v 0, I)</M>  distribution.</THM><PF>Direct.</PF>
 
 
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M> and <M>B_{r\times d}</M>  is any fixed  matrix and  
@@ -107,28 +67,10 @@ we have <M>B\v X = <MAT>X\\Z</MAT>\sim N_2(*(<MAT>1\\3</MAT>,<MAT>2 & 1\\2 & 100
 Thus, we see that the various marginals are also normal with the "corresponding" parts of the
  original mean vector and covariance matrix.
 
-<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_n</M>  are (mutually) independent
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_d</M>  are (mutually) independent
  iff <M>\Sigma</M>  is diagonal.</THM>
-<PF>We already know from the last theorem that <M>X_i\sim N(\mu_i, \sigma_{ii}),</M>  where
- <M>\mu_i</M>  is the <M>i</M>-th entry of <M>\v \mu,</M>  and <M>\sigma_{ii}</M>  is the
- <M>i</M>-th diagonal entry of <M>\Sigma.</M>
 
-So mgf of <M>X_i</M>  is <M>M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}.</M>
-If the <M>X_i</M> s were independent, then the mgf of <M>\v X</M>  would have been 
-<M>M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</M>  where <M>diag(\Sigma)</M>  is the diagonal part
- of <M>\Sigma.</M>
-
-Also mgf of <M>\v X</M>  is <M>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t}.</M>  
-
-Thus, <M>X_i</M> s are independent iff 
-<D>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t} = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</D>
-and this must hold for all <M>\v t\in\rr^d.</M>  
-
-So  we must have <M>\v t'\Sigma\v t=\v t'diag(\Sigma)\v t.</M>
-Since <M>\Sigma</M>  is symmetric, hence this forces <M>\Sigma=diag(\Sigma),</M>  i.e., <M>\Sigma</M>  must be a diagonal
- matrix, as required.
-</PF>
-
+<PF>Will be done in the final section of this page.</PF>
 <HEAD2>Problem set</HEAD2>
 
 Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\1 & 20 & 2 & 1\\2 &
@@ -144,7 +86,7 @@ Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 
  are independent.</EXR>
 
 <EXR>Show that <M>N_d(\v 0, I)</M>  has joint density <M>f(\v x) = (2\pi)^{-[[d2]]} e^{-[[12]]\v x'\v x} </M>  for <M>\v x\in\rr^d.</M>
-<HINT>Just multiply the <M>N(0,1)</M>  densities of the <M>d</M>  components.</HINT>
+<HINT>The components are iid <M>N(0,1)</M>. Multiply their densities.</HINT>
 </EXR>
 
 <EXR>Show that if <M>\Sigma</M>  is pd, then <M>N_d(\v \mu, \Sigma)</M>  has density
@@ -162,17 +104,20 @@ The transform <M>X = \v \mu + A\v Z</M>  is a bijection. Apply Jacobian formula.
 <HEAD1>Sampling distributions for normal sample</HEAD1>
 First a definition that you already know. 
 
-<DEFN name="(Central) $\k$-distribution">If <M>U_1,...,U_k</M>  are iid <M>N(0,1),</M>  then the distribution of <M>\sum_1^k
+<DEFN name="(Central) $\chi^2$-distribution">If <M>U_1,...,U_k</M>  are iid <M>N(0,1),</M>  then the
+ distribution of <M>\sum_1^k
  U_i^2</M>  is called <TERM>(central) chi-square</TERM>  with <M>k</M>  <TERM>degrees of
  freedom</TERM>. This distribution is denoted by <M>\k k</M>.</DEFN>
-It is good to know how the densities of the <M>\k</M>-distribution look like for different degrees of freedom:
-<CIMG></CIMG> 
 Thus, we say <M>X\sim\k k,</M>  then you can assume that there are <M>k</M>  random variables <M>U_1,...,U_k</M>  all
  defined on the same probability space such that <M>X = U_1^2+\cdots+U_k^2.</M>
 
+It is good to know how the densities of the <M>\k k</M>-distribution look like for different degrees of freedom:
+<CIMG web="chiplot.png">Some <M>\k k</M>  densities</CIMG> 
+
 And here is a slight generalisation of this definition.
 
-<DEFN name="Noncentral $\k$-distribution">If <M>U_1,...,U_k</M>  are independent <M>N(\mu_i,1),</M>  then the distribution of <M>\sum_1^k
+<DEFN name="Noncentral $\chi^2$-distribution">If <M>U_1,...,U_k</M>  are independent
+ <M>N(\mu_i,1),</M>  then the distribution of <M>\sum_1^k
  U_i^2</M>  is called <TERM>noncentral chi-square</TERM>  with <M>k</M>  <TERM>degrees of
  freedom</TERM>  and <TERM>noncentrality</TERM>  <M>\sum \mu_i^2.</M>. This distribution is
 sometimes  denoted by <M>\k k(*(\sum \mu_i^2)*)</M>.</DEFN>
@@ -325,7 +270,7 @@ As the degrees of freedom increase
 <HEAD1><M>F</M>  distribution</HEAD1>
 <DEFN name="$F$-distribution">
 If <M>X\sim \k m</M>  and <M>Y\sim \k n</M>  are independent random variables, then the distribution of <M>[[X/m][Y/n]]</M>  is
- called <M>F</M> -distribution with numerator degrees of freedom <M>m</M>  and denominator degrees of freedom <M>n.</M>
+ called <TERM><M>F</M>-distribution</TERM> with <TERM>numerator degrees of freedom</TERM> <M>m</M>  and <TERM>denominator degrees of freedom</TERM> <M>n.</M>
 </DEFN>
 <COMMENT>
 The density of <M>X</M>  is <M>f_X(x) =<CASES>\mbox{const }x^{[[m2]]-1}e^{-[[x2]]}<IF>x>0</IF> 0<ELSE/></CASES> </M>
@@ -346,7 +291,7 @@ Hence the density of <M>[[nm]]Z</M>  is
 <D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES> </D>
 </COMMENT>
 The density of the <M>F_{m,n}</M>-distribution is of the form
-<D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES> </D>
+<D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES>.</D>
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X_1,...,X_m</M>  and <M>Y_1,...,Y_n</M>  be random samples from
  <M>N(\mu_1,\sigma^2)</M>  and <M>N(\mu_2,\sigma^2)</M>, respectively (same <M>\sigma^2</M>).  
@@ -359,5 +304,131 @@ Then what
 
 <EXR>If <M>X\sim F_{(2,3)},</M>  then what is the distribution of <M>[[1X]]?</M></EXR>
 
+<HEAD1>Multivariate mgf</HEAD1>
+We had left a number of results unproved in the first section of this page.  
+To achieve this, we need a mathematically conveneient way to express <M>N_d(\v \mu, \Sigma)</M>  distribution. 
+ Unfortunately, this distribution may
+ not always have a density, and its
+ distribution function is
+ not easy to write down (even for univariate normal the distribution function cannot be written in
+ a closed form). So in order to work with the multivariate normal distribution, we shall use its <TERM>Moment generating function (mgf)</TERM>.
+
+ We quickly recall the definition of mgf that you have learned in Probability I.
+
+<DEFN name="(Multivariate) mgf">
+The <TERM>(multivariate) mgf</TERM>  of a random vector <M>\v X</M>  is  
+<D>M(\v t) = E(e^{\v t'\v X}).</D>
+If we write <M>\v X = (X_1,...,X_d)'</M>  and <M>\v t = (t_1,...,t_d)',</M>  then we have
+<D>M(t_1,...,t_d) = E(e^{t_1X_1+\cdots+t_dX_d}).</D>
+</DEFN> 
+It enjoys all the important properties of univariate mgf.
+<THM name="Determines the distribution">If <M>\v X, \v Y</M>  have mgf's matching over a
+ neighbourhood of <M>\v 0,</M>  then they
+ must have the same distribution.</THM>
+<PF>Not to be done in this course.</PF>
+<THM name="Sum of Independents">If <M>\v X, \v Y</M>  are independent random vectors of same dimension with
+ mgf's <M>M_X(\v t)</M>  and <M>M_Y(\v t),</M>  then <M>\v X+\v Y</M>  has mgf <M>M_X(\v t)M_Y(\v t).</M></THM>
+<PF>
+<MULTILINE>
+M_{\v X+\v Y}(\v t) 
+& = & E(e^{\v t'(\v X + \v Y)})\\
+& = & E(e^{\v t'\v X}e^{\v t'\v Y)})\\
+& = & E(e^{\v t'\v  X})E(e^{\v t'\v Y})<SINCE><M>\v X, \v Y</M>  independent</SINCE>\\
+& = & M_X(\v t)M_Y(\v t).
+</MULTILINE>
+</PF>
+<THM name="List of Independents">  If <M>\v X, \v Y</M>  are independent random vectors (of possibly
+ different dimensions) with
+ mgf's <M>M_X(\v s)</M>  and <M>M_Y(\v t),</M>  then <M>\v Z=<MAT>\v X\\\v Y</MAT></M>  has mgf
+ <M>M_Z(\v s, \v t) = M_X(\v s)M_Y(\v t).</M></THM>
+<PF>
+<MULTILINE>
+M_{\v Z} (\v s, \v t)
+& = & E[*[\exp(*(<MAT>\v s' & \v t'</MAT><MAT>\v X\\\v Y</MAT> )*) ]*]\\
+& = & E(e^{\v s'\v X}e^{\v t'\v Y)})\\
+& = & E(e^{\v s'\v  X})E(e^{\v t'\v Y})<SINCE><M>\v X, \v Y</M>  independent</SINCE>\\
+& = & M_X(\v s)M_Y(\v t).
+</MULTILINE>
+</PF>
+<HEAD2>Problem set</HEAD2>
+<EXR>If <M>X_1,X_2,X_3</M>  are iid <M>N(0,1),</M>  then find the mgf <M>M(\v t)</M>  of <M>\v X =
+ <MAT>X_1\\X_2\\X_3</MAT>.</M><HINT><M>N(0,1)</M>  has mgf <M>e^{t^2/2}</M>  for <M>t\in\rr.</M></HINT></EXR>
+
+<EXR>Find the mgf of <M>N_d(\v 0, I)</M>  distribution.</EXR>
+
+<EXR>If <M>\v X_{d\times 1}</M>  has mgf <M>M(\v t)</M>, then find the mgf of <M>A\v X+\v b</M>  where
+ <M>A_{n\times d}</M>  and <M>\v b_{n\times 1}</M>  are fixed.</EXR>
+
+<HEAD1>The proofs</HEAD1>
+In this section we shall finally prove the leftovers from the first section:
+<OL><LI>If <M>X_1,...,X_n</M>  are iid <M>N(0,1)</M>, and <M>\v X =
+ <MAT>X_1\\\vdots\\X_n</MAT>,</M>  then for any fixed <M>A_{d\times n}</M>  and <M>\v \mu_{d\times
+ 1}</M>  the distribution of <M>A\v X + \v \mu</M>  depends only on <M>AA'</M>  and <M>\v \mu</M> 
+ (and not on <M>A</M>  directly).</LI>
+<LI>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_d</M>  are (mutually) independent
+ iff <M>\Sigma</M>  is diagonal.</LI>
+<LI>If <M>\v X\sim N_d(\v 0, I),</M>  then the components of <M>\v X</M>  are iid <M>N(0,1).</M></LI>
+</OL>
+The last fact is actually a special case of the second. 
+
+The first fact is a direct consequence of the
+<THM>
+Let  <M>\v X</M> be a <M>d</M>-dimensional random vector with components iid <M>N(0,1).</M>  Let
+ <M>A_{r\times n}</M> be any fixed matrix and <M>\v b\in\rr^r</M> be any fixed vector. Then the
+ MGF of the random vector <M>A\v X + \v b</M>  is given by 
+<D>M(\v t)  = e^{\v b'\v t+[[12]]\v t' AA'\v t}\mbox{ for }\v t\in\rr^d.</D>
+</THM>
+<PF>
+<LINK to="image/nmgf1.png">Recall from Probability I</LINK> that mgf of each <M>X_i</M>  is <M>E(e^{sX_1})=e^{s^2/2}</M>  for <M>s\in\rr.</M>  
+
+So the mgf of <M>\v X = (X_1,...,X_d)'</M>  is 
+<MULTILINE>
+E(e^{s_1X_1+\cdots+s_dX_d})
+& = & E(e^{s_1X_1})\cdots E(e^{s_dX_d}) <SINCE><M>\because</M>independent</SINCE> \\
+& = & e^{[[12]](s_1^2+\cdots+s_d^2)} = e^{\v s'\v s/2}
+</MULTILINE>
+for all <M>\v s=(s_1,...,s_d)'\in\rr^d.</M>
+
+So mgf of <M>A\v X + \v b</M>  is 
+<MULTILINE>
+E(e^{\v t'(A\v X+\v b)})
+& = & E(e^{\v t'A\v X+\v t'\v b)})\\
+& = & e^{\v t'\v b)}E(\v t'A\v X)\\
+& = & e^{\v t'\v b)}E((A'\v t)'\v X)\\
+& = &
+ e^{\v t'\v b)}e^{(A'\v t)'(A'\v t)/2}\\
+& = & e^{\v t'\v b+\v t' AA'\v t/2},
+</MULTILINE> 
+as required.
+</PF>
+Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
+Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  Quickly recall from Mathematics II that any matrix
+ of the form <M>A'A</M>  (for a real matrix <M>A</M>) is called a nnd matrix. 
+
+
+<B>Notation:</B>  Let <M>\v \mu\in\rr^d</M>  be a fixed vector, and <M>\Sigma_{d\times d}</M>  be any fixed nnd
+ matrix. The distribution with mgf <M>M(\v t) = e^{\v \mu't + [[12]] \v t' \Sigma \v t}</M>  for
+ <M>\v t\in \rr^d</M>  is denoted by <M>N_d(\v \mu, \Sigma).</M>
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_n</M>  are (mutually) independent
+ iff <M>\Sigma</M>  is diagonal.</THM>
+<PF>We already know from the last theorem that <M>X_i\sim N(\mu_i, \sigma_{ii}),</M>  where
+ <M>\mu_i</M>  is the <M>i</M>-th entry of <M>\v \mu,</M>  and <M>\sigma_{ii}</M>  is the
+ <M>i</M>-th diagonal entry of <M>\Sigma.</M>
+
+So mgf of <M>X_i</M>  is <M>M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}.</M>
+If the <M>X_i</M> s were independent, then the mgf of <M>\v X</M>  would have been 
+<M>M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</M>  where <M>diag(\Sigma)</M>  is the diagonal part
+ of <M>\Sigma.</M>
+
+Also mgf of <M>\v X</M>  is <M>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t}.</M>  
+
+Thus, <M>X_i</M> s are independent iff 
+<D>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t} = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</D>
+and this must hold for all <M>\v t\in\rr^d.</M>  
+
+So  we must have <M>\v t'\Sigma\v t=\v t'diag(\Sigma)\v t.</M>
+Since <M>\Sigma</M>  is symmetric, hence this forces <M>\Sigma=diag(\Sigma),</M>  i.e., <M>\Sigma</M>  must be a diagonal
+ matrix, as required.
+</PF>
 
 </NOTE>@}

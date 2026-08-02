@@ -2,17 +2,6 @@
 <HEAD1>Probability II (BSDS 2nd year, 2026)</HEAD1>
 URL: https://arnabc74.github.io/BSDSprob2_2026/
 <NEWS src="news.html">Updates will be notified here:</NEWS>
-<HEAD2>Instructor and TAs</HEAD2>
-<B>Instructor:</B>  Arnab Chakraborty (arnabc74 at gmail)
-
-<B>TA for Kolkata:</B>  Debanjan Bhattacharjee (debanjanbhattacharjee2002 at gmail)
-
-<B>TA for Delhi:</B>  Sumangal Bhattacharya (sumangalbisi82 at gmail)
-
-<B>TA for Bangalore:</B>  Sayan Roy (rs_math2404 at isibang)
-
-<HEAD2>Marks distribution</HEAD2>
-<UL><LI>Midsem: 20</LI><LI>Assignments: 20</LI><LI>Project:10</LI><LI>End sem: 50</LI></UL>
 <HEAD2>Class notes</HEAD2>
 <OL>
 <LI><LINK to="elem.html">Motivation behind probability</LINK></LI>
@@ -44,6 +33,17 @@ Exact logistics
 These are more like elaborate assignments than projects demanding original research. You are
  welcome to discuss the projects among yourselves. All the projects will be introduced during the lectures at appropriate
  time points. 
+<HEAD2>Instructor and TAs</HEAD2>
+<B>Instructor:</B>  Arnab Chakraborty (arnabc74 at gmail)
+
+<B>TA for Kolkata:</B>  Debanjan Bhattacharjee (debanjanbhattacharjee2002 at gmail)
+
+<B>TA for Delhi:</B>  Sumangal Bhattacharya (sumangalbisi82 at gmail)
+
+<B>TA for Bangalore:</B>  Sayan Roy (rs_math2404 at isibang)
+
+<HEAD2>Marks distribution</HEAD2>
+<UL><LI>Midsem: 20</LI><LI>Assignments: 20</LI><LI>Project:10</LI><LI>End sem: 50</LI></UL>
  
 <HEAD2>References</HEAD2>
 The class notes constitute the main reference. It is based on many sources including the following books:
