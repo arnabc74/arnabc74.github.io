@@ -56,13 +56,13 @@ So <M>B\v X + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v 
 
 We can easily compute the marginals  of a multivariate normal distribution using this theorem. 
 <EXM>
-Let <M>\v X = <MAT>X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\2\\3</MAT>,<MAT>2 & 0 & 1\\1 & 20 & 2\\2 & 3 & 100</MAT>)*).</M>
+Let <M>\v X = <MAT>X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\2\\3</MAT>,<MAT>2 & 0 & 1\\0 & 20 & 2\\1 & 2 & 100</MAT>)*).</M>
   Find the distributions of
  <M>Y</M>  and <M>(X,Z).</M><SOLN/>
 Take <M>B = <MAT>0 & 1 & 0</MAT>.</M>  Then <M>B\v X = Y\sim N(2,20).</M>
 
 Again, taking <M>B = <MAT>1 & 0 & 0\\0 & 0  & 1</MAT></M>, 
-we have <M>B\v X = <MAT>X\\Z</MAT>\sim N_2(*(<MAT>1\\3</MAT>,<MAT>2 & 1\\2 & 100</MAT>)*)</M>.
+we have <M>B\v X = <MAT>X\\Z</MAT>\sim N_2(*(<MAT>1\\3</MAT>,<MAT>2 & 1\\1 & 100</MAT>)*)</M>.
 </EXM>
 Thus, we see that the various marginals are also normal with the "corresponding" parts of the
  original mean vector and covariance matrix.
@@ -73,8 +73,8 @@ Thus, we see that the various marginals are also normal with the "corresponding"
 <PF>Will be done in the final section of this page.</PF>
 <HEAD2>Problem set</HEAD2>
 
-Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\1 & 20 & 2 & 1\\2 &
- 3 & 100 & 1\\0 & 0 & 0 & 3</MAT>)*).</M>
+Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\0 & 20 & 2 & 1\\1 &
+ 2 & 100 & 1\\2 & 1 & 1 & 3</MAT>)*).</M>
 
 <EXR>Find the distribution of <M>Y.</M></EXR>
 <EXR>Find the distribution of <M>(X,Z).</M></EXR>
@@ -402,14 +402,9 @@ E(e^{\v t'(A\v X+\v b)})
 as required.
 </PF>
 Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
-Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  Quickly recall from Mathematics II that any matrix
- of the form <M>A'A</M>  (for a real matrix <M>A</M>) is called a nnd matrix. 
+Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  
 <HEAD2>Proof 2</HEAD2>
 
-
-<B>Notation:</B>  Let <M>\v \mu\in\rr^d</M>  be a fixed vector, and <M>\Sigma_{d\times d}</M>  be any fixed nnd
- matrix. The distribution with mgf <M>M(\v t) = e^{\v \mu't + [[12]] \v t' \Sigma \v t}</M>  for
- <M>\v t\in \rr^d</M>  is denoted by <M>N_d(\v \mu, \Sigma).</M>
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_n</M>  are (mutually) independent
  iff <M>\Sigma</M>  is diagonal.</THM>
 <PF>We already know from the last theorem that <M>X_i\sim N(\mu_i, \sigma_{ii}),</M>  where

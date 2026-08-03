@@ -56,13 +56,13 @@ So <M>B\v X + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v 
 
 We can easily compute the marginals  of a multivariate normal distribution using this theorem. 
 <EXM>
-Let <M>\v X = <MAT>X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\2\\3</MAT>,<MAT>2 & 0 & 1\\1 & 20 & 2\\2 & 3 & 100</MAT>)*).</M>
+Let <M>\v X = <MAT>X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\2\\3</MAT>,<MAT>2 & 0 & 1\\0 & 20 & 2\\1 & 2 & 100</MAT>)*).</M>
   Find the distributions of
  <M>Y</M>  and <M>(X,Z).</M><SOLN/>
 Take <M>B = <MAT>0 & 1 & 0</MAT>.</M>  Then <M>B\v X = Y\sim N(2,20).</M>
 
 Again, taking <M>B = <MAT>1 & 0 & 0\\0 & 0  & 1</MAT></M>, 
-we have <M>B\v X = <MAT>X\\Z</MAT>\sim N_2(*(<MAT>1\\3</MAT>,<MAT>2 & 1\\2 & 100</MAT>)*)</M>.
+we have <M>B\v X = <MAT>X\\Z</MAT>\sim N_2(*(<MAT>1\\3</MAT>,<MAT>2 & 1\\1 & 100</MAT>)*)</M>.
 </EXM>
 Thus, we see that the various marginals are also normal with the "corresponding" parts of the
  original mean vector and covariance matrix.
@@ -73,8 +73,8 @@ Thus, we see that the various marginals are also normal with the "corresponding"
 <PF>Will be done in the final section of this page.</PF>
 <HEAD2>Problem set</HEAD2>
 
-Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\1 & 20 & 2 & 1\\2 &
- 3 & 100 & 1\\0 & 0 & 0 & 3</MAT>)*).</M>
+Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\0 & 20 & 2 & 1\\1 &
+ 2 & 100 & 1\\2 & 1 & 1 & 3</MAT>)*).</M>
 
 <EXR>Find the distribution of <M>Y.</M></EXR>
 <EXR>Find the distribution of <M>(X,Z).</M></EXR>
