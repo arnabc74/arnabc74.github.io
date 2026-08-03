@@ -225,7 +225,7 @@ Then each bivariate point reduces to a single number along the scale, and we may
 See <LINK to="https://acbsds.shinyapps.io/varmat/">this interactive
  demo</LINK>  to understand this better.
 
-In the biavariate case we can quantify the position of the ruler by the anngle it makes with the positive <M>x</M>-axis.
+In the biavariate case, we can quantify the position of the ruler by the angle it makes with the positive <M>x</M>-axis.
  But 
 in general <M>\rr^n</M>  we  imagine a unit
  vector <M>\v u</M>  along the
@@ -234,16 +234,16 @@ in general <M>\rr^n</M>  we  imagine a unit
 Then
  a point <M>\v v \equiv (X,Y)</M> 
  will project to the vector  
-<D>[[\v v'\v u][\v u'\v u]] \v u,</D>
+<D>[[\v u'\v v][\v u'\v u]] \v u = (\v u'\v v)\v u~~(\because \v u'\v u=1),</D>
 shown in blue. Measured in units of <M>\v u</M>,  this will show up at the mark <M>[[\v v'\v u][\v u'\v u]]</M>  of the ruler.
 
-Now, <M>[[\v v'\v u][\v u'\v u]] = pX+qY</M> for some <M>p,q\in\rr.</M>
+Now, <M>\v u'\v v = u_1X+u_2Y</M> where <M>\v u = <MAT>u_1\\u_2</MAT>.</M>
 Then the
- variance of <M>pX+qY</M> 
- will be <M>p^2 V(X)+q^2 V(Y) + 2pq\, \cov(X,Y),</M>  which may be written as 
-<D><MAT>p & q</MAT><MAT>V(X) & \cov(X,Y)\\\cov(X,Y) & V(Y)</MAT><MAT>p\\q</MAT>.</D>
-Here <M>p,q</M>  are controlled by the position of the ruler. Notice that the matrix in the middle does not
- involve <M>p,q.</M>  Thus, it contains
+ variance of <M>u_1X+u_2Y</M> 
+ will be <M>u_1^2 V(X)+u_2^2 V(Y) + 2u_1u_2\, \cov(X,Y),</M>  which may be written as 
+<D><MAT>u_1 & u_2</MAT><MAT>V(X) & \cov(X,Y)\\\cov(X,Y) & V(Y)</MAT><MAT>\u_1\\u_2</MAT>.</D>
+Here <M>u_1,u_2</M>  are controlled by the position of the ruler. Notice that the matrix in the middle does not
+ involve <M>u_1,u_2.</M>  Thus, it contains
  information about dispersion for every
  possible way of placing the ruler.
  This matrix is indeed the dispersion matrix we  defined above.
