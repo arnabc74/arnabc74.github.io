@@ -235,13 +235,15 @@ Then
  a point <M>\v v \equiv (X,Y)</M> 
  will project to the vector  
 <D>[[\v u'\v v][\v u'\v u]] \v u = (\v u'\v v)\v u~~(\because \v u'\v u=1),</D>
-shown in blue. Measured in units of <M>\v u</M>,  this will show up at the mark <M>[[\v v'\v u][\v u'\v u]]</M>  of the ruler.
+shown in blue. This will show up at the mark <M>\v u'\v v</M>  of the ruler.
 
 Now, <M>\v u'\v v = u_1X+u_2Y</M> where <M>\v u = <MAT>u_1\\u_2</MAT>.</M>
-Then the
+
+Each point will give rise to one such number (the <M>X</M>'s and <M>Y's</M>  will vary, but not <M>u_1,u_2</M>). 
+Thus, the
  variance of <M>u_1X+u_2Y</M> 
  will be <M>u_1^2 V(X)+u_2^2 V(Y) + 2u_1u_2\, \cov(X,Y),</M>  which may be written as 
-<D><MAT>u_1 & u_2</MAT><MAT>V(X) & \cov(X,Y)\\\cov(X,Y) & V(Y)</MAT><MAT>\u_1\\u_2</MAT>.</D>
+<D><MAT>u_1 & u_2</MAT><MAT>V(X) & \cov(X,Y)\\\cov(X,Y) & V(Y)</MAT><MAT>u_1\\u_2</MAT>.</D>
 Here <M>u_1,u_2</M>  are controlled by the position of the ruler. Notice that the matrix in the middle does not
  involve <M>u_1,u_2.</M>  Thus, it contains
  information about dispersion for every
