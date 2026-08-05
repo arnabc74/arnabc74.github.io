@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Wed Aug 05 10:12:34 IST 2026</i>
+Wed Aug 05 15:19:33 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -167,31 +167,35 @@ Wed Aug 05 10:12:34 IST 2026</i>
 <ul>
 <li>1. <a href="#N1002A">Multivariate normal</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10137">Quick summary</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10137">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10181">Problem set</a>
+<li>2. <a href="#N101BF">Sampling distributions for normal sample</a>
 </li>
-<li>2. <a href="#N10209">Sampling distributions for normal sample</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101D0">Sampling distribution of $\bar X$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10343">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N101F9">Sampling distribution of $S^2$</a>
 </li>
-<li>3. <a href="#N103AC">$t$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N10354">Independence of $\bar X $ and $S^2$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1043D">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.4. <a href="#N103A2">Problem set</a>
 </li>
-<li>4. <a href="#N10479">$F$  distribution</a>
+<li>3. <a href="#N1040B">$t$  distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N104DD">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1049C">Problem set</a>
 </li>
-<li>5. <a href="#N1050B">Multivariate mgf</a>
+<li>4. <a href="#N104D8">$F$  distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1057C">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1053C">Problem set</a>
 </li>
-<li>6. <a href="#N105B7">The proofs</a>
+<li>5. <a href="#N1056A">Multivariate mgf</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N105F4">Proof 1</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N105DB">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N1063D">Proof 2</a>
+<li>6. <a href="#N10616">The proofs</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10653">Proof 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N1069C">Proof 2</a>
 </li>
 </ul>
 <hr/>
@@ -311,33 +315,6 @@ Thus, we see that the various marginals are also normal with the "corresponding"
 
 <h2>
 <a name="N10137"><span class="header">1.1</span>.
-Quick summary</a>
-</h2>
-
-<fieldset>
-<legend><b>Definition: Multivariate normal distribution</b></legend>
-Let  $\v X=(X_1,...,X_n)'$ be a random vector with $X_i$'s iid $N(0,1).$  Let
- $A_{d\times n}$ be any fixed matrix and $\v \mu\in{\mathbb R}^d$ be any fixed vector. Then the
- distribution of the random vector $A\v X + \v \mu$  is called a $d$-dimensional multivariate normal distribution
- and is denoted by $N_d(\v \mu, \Sigma),$  where $\Sigma=AA'.$
-</fieldset>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $E(\v X) = \v \mu$  and $V(\v X) = \Sigma.$</fieldset>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$ and $B_{r\times d}$  is any fixed  matrix and  
-$\v c\in{\mathbb R}^r$  is any fixed vector, then $BX+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)$
-</fieldset>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $X_1,...,.X_d$  are (mutually) independent
- iff $\Sigma$  is diagonal.</fieldset>
-
-<p></p>
-
-<h2>
-<a name="N10181"><span class="header">1.2</span>.
 Problem set</a>
 </h2>
 
@@ -398,18 +375,53 @@ The transform $X = \v \mu + A\v Z$  is a bijection. Apply Jacobian formula.
 </p>
 
 <h1>
-<a name="N10209"><span class="header">2</span>. Sampling distributions for normal sample</a>
+<a name="N101BF"><span class="header">2</span>. Sampling distributions for normal sample</a>
 </h1>
-First a definition that you already know. 
+Let $X_1,...,X_n$  be  a random sample from $N(\mu, \sigma^2).$  Then we are interested in finding the distributions
+ of $\bar X$  and $S^2 = \sum (X_i-\bar X)^2.$  
+<p></p>
+We shall present the results as three theorems.
+<h2>
+<a name="N101D0"><span class="header">2.1</span>.
+Sampling distribution of $\bar X$</a>
+</h2>
+
+<fieldset>
+<legend><b><i>Theorem 1</i></b></legend>
+Let $X_1,...,X_n$  be  a random sample from $N(\mu, \sigma^2).$  Then $\bar X\sim N\left( \mu, \frac{\sigma^2}{n}\right).$
+</fieldset>
+
+<p>
+<b><i>Proof:</i></b>
+Note that $\bar X$  is a linear combination of $X_1,...,X_n.$  So $\bar X$  must be a normal random variable.
+ Its parameters will be 
+$$E(\bar X) = E\left(\frac 1n\sum_1^n X_i\right) = \frac 1n(\underbrace{\mu+\cdots+\mu}_{n\mbox{ times}}) = \mu,$$
+and
+$$V(\bar X) = V\left(\frac 1n\sum_1^n X_i\right) = \frac{1}{n^2}(\underbrace{\sigma^2+\cdots+\sigma^2}_{n\mbox{ times}}) = \frac{\sigma^2}{n},$$
+since the $X_i$'s are independent (making the covariance terms zero).
+<p></p>
+This completes the proof.
+<b><i>[QED]</i></b>
+</p>
+
+<h2>
+<a name="N101F9"><span class="header">2.2</span>.
+Sampling distribution of $S^2$</a>
+</h2>
+
+<fieldset>
+<legend><img src="image/alert.png"></legend>If you feel exhausted, just skim through this part!</fieldset>
+Next we shall find the distribution of $S^2 = \sum (X_i-\bar X)^2.$  
+We need the following definition for this.
 <p></p>
 
 <fieldset>
-<legend><b>Definition: (Central) $\chi^2$-distribution</b></legend>If $U_1,...,U_k$  are iid $N(0,1),$  then the
+<legend><b>Definition: $\chi^2$-distribution</b></legend>If $U_1,...,U_k$  are iid $N(0,1),$  then the
  distribution of $\sum_{i=1}^k
  U_i^2$  is called <b><font color="red" size="40">(central) chi-square</font></b>  with $k$  <b><font color="red" size="40">degrees of
  freedom</font></b>. This distribution is denoted by $\k k$.</fieldset>
-Thus, we say $X\sim\k k,$  then you can assume that there are $k$  random variables $U_1,...,U_k$  all
- defined on the same probability space such that $X = U_1^2+\cdots+U_k^2.$
+Thus, we say $X\sim\k k,$  then you can assume that there are $k$  random variables $U_1,...,U_k\sim N(0,1)$ 
+such that $X = U_1^2+\cdots+U_k^2.$
 <p></p>
 It is good to know how the densities of the $\k k$-distribution look like for different degrees of freedom:
 <center>
@@ -424,104 +436,157 @@ It is good to know how the densities of the $\k k$-distribution look like for di
 </center> 
 
 <p></p>
-And here is a slight generalisation of this definition.
+
+
+<fieldset>
+<legend><b><i>Theorem 2</i></b></legend>
+Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, iid) from $N(\mu, \sigma^2).$ 
+Let $S^2=\sum_1^n (X_i-\bar X)^2.$   Then 
+$\frac{S^2}{\sigma^2}\sim \k {n-1}.$
+</fieldset>
+The proof is somewhat long. So let us first understand the main line of thought running behind the proof. We want to prove
+ that $\frac{S^2}{\sigma^2}$  has $\k{n-1}$  distribution. Now $\k{n-1}$  is the distribution of the sum of $n-1$ 
+ squares. But the way we have defined it $S^2$  is the sum of $n$  squares. So we need a way to rewrite $S^2$ 
+ as a sum of $n-1$  squares. This is just algebraic manipulation and is provided by the following result.
 <p></p>
 
 <fieldset>
-<legend><b>Definition: Noncentral $\chi^2$-distribution</b></legend>If $U_1,...,U_k$  are independent
- $N(\mu_i,1),$  then the distribution of $\sum_{i=1}^k
- U_i^2$  is called <b><font color="red" size="40">noncentral chi-square</font></b>  with $k$  <b><font color="red" size="40">degrees of
- freedom</font></b>  and <b><font color="red" size="40">noncentrality</font></b>  $\sum_{i=1}^k \mu_i^2.$. This distribution is
-sometimes  denoted by $\k k\left(\sum_i \mu_i^2\right)$.</fieldset>
-
+<legend><b><i>Lemma</i></b></legend>
+Let $x_1,x_2,...$  be any  sequence of numbers. 
+Let  $\bar x_k=\frac 1k\sum _1^kx_i$    and  
+$S_k^2=\sum_{i=1}^k  (x_i-\bar x_k)^2$  for $k=1,2,...$.    
 <p></p>
-Here is a little fact that can be proved using high school algebra. 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-Let $x_1,...,x_n$  be any $n$  numbers. 
-Let  $\bar x_k=\frac 1k\sum _1^kx_i$    and  $S_k^2=\sum_{i=1}^k
- (x_i-\bar x_k)^2$  for $k=1,...,n$.    Then for $k=1,...,n-1$
+Then for $k=1,2,...$
 $$S_k^2 = \sum_{i=1}^{k-1} \frac{i}{i+1}(x_{i+1}-\bar x_i)^2.$$
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>
-Obvious for $k=1.$  
+<b><i>Proof:</i></b>(Induction on $k$):
 <p></p>
-Notice that $S_k^2$  is the sum of $k$  terms, the first $k-1$  of which makes up $S_{k_1}^2.$  So
- $S_k^2-S_{k-1}^2$  is just the last term of $S_k^2$  which is $\frac{k-1}{k} (x_k-\bar x_{k-1})^2$ 
- for $k=2,...,n-1.$
+
+<b>Basis:</b>  For $k=1$, we have $S_1^2 = \sum_{i=1}^1 (x_1-\bar x_1)^2 = 0,$  since $\bar x_1 = x_1.$  
 <p></p>
-Hence the result.
+Also the rhs is a sum from $i=1$  to $0 (&lt; 1),$  and hence is 0.
+<p></p>
+
+<b>Hypothesis:</b> We assume the result for $k=1,2,...,n$  for some $n\geq 1.$
+<p></p>
+
+<b>Step:</b> Shall show the result for $k=n+1.$  
+<p></p>
+Now
+$$\begin{eqnarray*}
+S_{n+1}^2 
+&amp; = &amp; \sum_{i=1}^{n+1} (X_i-\bar X_{n+1})^2\\
+&amp; = &amp; \sum_{i=1}^{n+1} \left(X_i-\frac{n\bar X_n+X_{n+1}}{n+1}\right)^2\\
+&amp; = &amp; \sum_{i=1}^{n+1} \left(\underbrace{X_i-\bar X_n}_a - \underbrace{\frac{X_{n+1}-\bar X_n}{n+1}}_b\right)^2\mbox{(Be careful!)}\\
+&amp; &amp; \mbox{Applying $(a-b)^2$  formula,}\\
+&amp; = &amp; \sum_{i=1}^{n+1} \left[ (X_i-\bar X_n)^2 + \frac{(X_{n+1}-\bar X_n)^2}{(n+1)^2} -2 \frac{(X_i-\bar
+ X_n)(X_{n+1}-\bar X_n)}{n+1}  \right]\\
+&amp; = &amp; \sum_{i=1}^{n+1} (X_i-\bar X_n)^2 + \frac{(X_{n+1}-\bar X_n)^2}{n+1} 
+-\frac{2(X_{n+1}-\bar X_n)}{n+1} \sum_{i=1}^{n+1}(X_i-\bar X_n)  \\
+&amp; = &amp; \big[S_n^2+ (X_{n+1}-\bar X_n)^2\big] + \frac{(X_{n+1}-\bar X_n)^2}{n+1} 
+-\frac{2(X_{n+1}-\bar X_n)}{n+1} (X_{n+1}-\bar X_n)~~\left[\mbox{$\because\sum_1^n (X_i-\bar X_n)=0.$}\right]  \\
+&amp; = &amp; S_n^2+ (X_{n+1}-\bar X_n)^2 - \frac{(X_{n+1}-\bar X_n)^2}{n+1} \\
+&amp; = &amp; S_n^2+ \frac{n}{n+1}(X_{n+1}-\bar X_n)^2.
+\end{eqnarray*}$$
+Now, by the induction hypothesis, we have 
+$$S_n^2 =\sum_{i=1}^{n-1}  \frac{i}{i+1}(x_i-\bar x_n)^2.$$
+So we have
+$$S_{n+1}^2 =\sum_{i=1}^{n-1}  \frac{i}{i+1}(x_i-\bar x_n)^2+\frac{n}{n+1}(X_{n+1}-\bar X_n)^2 = \sum_{i=1}^n  \frac{i}{i+1}(x_i-\bar x_n)^2,$$
+as required.
+<p></p>
+So the result is proved by the principle of mathematical induction.
 <b><i>[QED]</i></b>
 </p>
+Now we are in a position to prove <b>Theorem 2</b>.
+<p></p>
+
+<i>Proof of Theorem 2:</i>
 
 <p></p>
-Now for the main theorem in this page:
+The theorem expresses $S_n^2$  as $\sum_{i=1}^{n-1} U_i^2,$  where $U_i = \sqrt{\frac{i}{i+1}} (X_{i+1}-\bar X_i).$ 
+<p></p>
+ Hence the required $\k{n-1}$  distribution will be proved once we show that $U_1,...,U_{n-1}$  are iid $N(0,1).$ 
+<p></p>
+Notice that the $U_i$'s are all linear combinations of  $X_1,...,X_n.$  So
+ $(U_1,...,U_{n-1})'$  has a multivariate normal distribution. 
+<p></p>
+So enough to show that $E(U_i) = 0$, $V(U_i) = 1$  and for $i\neq j$  $\cov(U_1,U_j) = 0.$
+ <ul>
+<li>
+$E(U_i) = \sqrt{\frac{i}{i+1}} E(X_{i+1}-\bar X_i) =  \sqrt{\frac{i}{i+1}}(\mu-\mu)=0.$
+</li>
+
+<li>$$\begin{eqnarray*}
+V(U_i) &amp; = &amp; \frac{i}{i+1} V(X_{i+1}-\bar X_i)\\
+&amp; = &amp; \frac{i}{i+1} \big[V(X_{i+1})+V(\bar X_i)+2\cov(X_{i+1},\bar X_i) \big]\\
+&amp; = &amp; \frac{i}{i+1} \big[V(X_{i+1})+V(\bar X_i)+0 \big]~~\left[\mbox{$\because X_{i+1}$  independent of
+ $(X_1,...,X_i)$}\right]\\
+&amp; = &amp; \frac{i}{i+1} \left[\sigma^2+\frac{\sigma^2}{i} \right] = \sigma^2.
+\end{eqnarray*}$$
+</li>
+
+<li>Finally, for $i &lt;  j,$  we have
+$$\begin{eqnarray*}
+\cov(U_i,U_j)
+&amp; = &amp; \sqrt{\frac{ij}{(i+1)(j+1)}} \cov (X_{i+1}-\bar X_i,X_{j+1}-\bar X_j)\\
+&amp; = &amp; \sqrt{\frac{ij}{(i+1)(j+1)}} \big[\cov (X_{i+1},X_{j+1})-\cov (X_{i+1},\bar X_j)-\cov (\bar X_i,X_{j+1})+\cov (\bar X_i,\bar X_j)\big]\\
+&amp; = &amp; \sqrt{\frac{ij}{(i+1)(j+1)}} \big[0-\cov (X_{i+1},\bar X_j)-0+\cov (\bar X_i,\bar  X_j)\big]~~\left[\mbox{$\because X$'s independent}\right]\\
+\end{eqnarray*}$$
+Now notice that $\cov(X_{i+1},\bar X_j) = \frac 1j\cov\left(X_{i+1},X_1+\cdots+X_j\right) = \frac{\sigma^2}{j}.$
+<p></p>
+Also, $\cov (\bar X_i,\bar  X_j) = \frac{1}{ij}\cov(X_1+\cdots+X_i,X_1+\cdots+X_j) = \frac{1}{ij}V(X_1+\cdots+X_i) = \frac{\sigma^2}{j}.$
+<p></p>
+Combining all these, 
+$$\cov(U_i,U_j) = -\frac{\sigma^2}{j}+\frac{\sigma^2}{j} = 0.$$
+</li>
+
+</ul>
+This completes the proof of <b>Theorem 2</b>.
+<p></p>
+
+<b><i>[QED]</i></b>
+
+<h2>
+<a name="N10354"><span class="header">2.3</span>.
+Independence of $\bar X $ and $S^2$</a>
+</h2>
+
 <fieldset>
-<legend><b><i>Theorem</i></b></legend>
+<legend><img src="image/alert.png"></legend>If you feel exhausted, just skim through this part!</fieldset>
+
+<fieldset>
+<legend><b><i>Theorem 3</i></b></legend>
 Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, iid) from $N(\mu, \sigma^2).$ 
 Let $\bar X=\frac 1n\sum _1^nX_i$  and  $S^2=\sum_1^n (X_i-\bar X)^2.$   Then 
-<ol type="">
-
-<li>$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)$</li>
-
-<li>$\frac{S^2}{\sigma^2}\sim \k {n-1}$</li>
-
-<li>$\bar X$  and $S^2$  are independent.</li>
-
-</ol>
-
+$\bar X$  and $S^2$  are independent.
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-Let $\bar X_k=\frac 1k\sum _1^kX_i$  for $k=1,...,n.$
+In the last proof we showed that $S^2$  is a function of $U_1^2,...,U_{n-1}^2.$  
 <p></p>
-Let $Y_k = X_{k+1}-\bar X_k$  for $k=1,...,n-1$  and   $Y_n = \bar X_n.$
+So it is enough to show that $\bar X$  is independent of $(U_1,...,U_{n-1}).$  
 <p></p>
-Then $\v Y = A\v X$  for 
-$$A = \left[\begin{array}{ccccccccccc}
--1 &amp; 1\\
--\frac 12 &amp; -\frac 12 &amp; 1\\
--\frac 13 &amp; -\frac 13 &amp; -\frac 13 &amp; 1\\
-\vdots &amp; \vdots &amp; \vdots &amp; &amp; \ddots\\
--\frac{1}{n-1} &amp; \cdots &amp;  &amp; &amp; -\frac{1}{n-1} &amp; 1\\
-\frac 1n  &amp; \frac 1n &amp; \frac 1n &amp; \cdots &amp; \frac 1n &amp; \frac 1n
-\end{array}\right].$$
+Since $\bar X$  as well as the $U_i$'s are linear combinations of $X_1,...,X_n,$  hence $(\bar X,U_1,...,U_{n-1})$ 
+ has multivariate normal distribution. So to prove independence, it is enough to show that $\cov(\bar X, U_i) = 0$ 
+ for $i=1,...,n-1.$
 <p></p>
-So $\v Y$  has a multivariate normal distribution.
-<p></p>
-It is easy (?) to work out the mean vector and covariance matrix:
-<ol type="">
-
-<li>$E(Y_k) =0 $  for $k=1,...,n-1,$  and $E(Y_n) = \mu.$</li>
-
-<li>$V(Y_k) = \sigma^2\left(1+\frac 1k\right)$  for $k=1,...,n-1,$  and $V(Y_n) = \frac{\sigma^2}{n}.$</li>
-
-<li>$\cov(Y_i,Y_j)= 0$  for $i\neq j\in\{1,...,n-1\}$ and
- $\cov(Y_i,Y_n)=   0$  for $i\in\{1,...,n-1\}$      
-</li>
-</ol>
-So $Y_1,...,Y_n$  are independent random variables. 
-<p></p>
-In particular, $\bar X_n = Y_n \sim N\left(\mu,\frac{\sigma^2}{n}\right)$, as required.
-<p></p>
-Also,
-$$S_n^2 = \sum_1^{n-1} \frac{i}{i+1}(X_{i+1}-\bar X_i)^2 = \sum_1^{n-1} \frac{i}{i+1} Y_i^2.$$
-Since $Y_1,...,Y_{n-1}$  are independent with $Y_i\sim N\left(0, (1+\frac 1i) \sigma^2 \right),$  
-<p></p>
-hence $\sqrt{\frac{i}{i+1}} \frac{Y_i}{\sigma}$'s are iid $N(0,1)$  random variables (for $i=1,...,n-1).$
-<p></p>
-Hence $\frac{S_n^2}{\sigma^2}\sim\k {n-1},$  as required.
-<p></p>
-Notice that $S_n^2$  is a function of $Y_1,...,Y_{n-1}$  only, which are
- independent of $Y_n,$  <i>i.e.</i>, $\bar X_n,$  as required. 
+Now 
+$$\begin{eqnarray*}
+\cov(\bar X, U_i)
+&amp; = &amp; \sqrt{\frac{i}{i+1}}\cov(\bar X, X_{i+1}-\bar X_i)\\
+&amp; = &amp; \sqrt{\frac{i}{i+1}}\big[\cov(\bar X, X_{i+1})-\cov(\bar X,\bar X_i) \big]\\
+&amp; = &amp; \sqrt{\frac{i}{i+1}}\left[ \frac 1n\cov(X_1+\cdots X_n, X_{i+1})-\frac{1}{ni}\cov(X_1+\cdots+X_n,X_1+\cdots+\cdots X_i) \right]\\
+&amp; = &amp; \sqrt{\frac{i}{i+1}}\left[ \frac{\sigma^2}{n}-\frac{\sigma^2}{n} \right] = 0,
+\end{eqnarray*}$$
+as required.
 <b><i>[QED]</i></b>
 </p>
 
 <h2>
-<a name="N10343"><span class="header">2.1</span>.
+<a name="N103A2"><span class="header">2.4</span>.
 Problem set</a>
 </h2>
 
@@ -567,7 +632,7 @@ a fixed number?
 </p>
 
 <h1>
-<a name="N103AC"><span class="header">3</span>. $t$  distribution</a>
+<a name="N1040B"><span class="header">3</span>. $t$  distribution</a>
 </h1>
 
 <fieldset>
@@ -598,7 +663,7 @@ As the degrees of freedom increase
 <p></p>
 
 <h2>
-<a name="N1043D"><span class="header">3.1</span>.
+<a name="N1049C"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -625,7 +690,7 @@ $P(\mu\in (\hat \mu-a \hat \sigma^2,\hat \mu+a \hat \sigma^2)) = 0.95,$  where $
 <p></p>
 
 <h1>
-<a name="N10479"><span class="header">4</span>. $F$  distribution</a>
+<a name="N104D8"><span class="header">4</span>. $F$  distribution</a>
 </h1>
 
 <fieldset>
@@ -637,7 +702,7 @@ If $X\sim \k m$  and $Y\sim \k n$  are independent random variables, then the di
 The density of the $F_{m,n}$-distribution is of the form
 $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2}}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right..$$
 <h2>
-<a name="N104DD"><span class="header">4.1</span>.
+<a name="N1053C"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -662,7 +727,7 @@ $$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 <p></p>
 
 <h1>
-<a name="N1050B"><span class="header">5</span>. Multivariate mgf</a>
+<a name="N1056A"><span class="header">5</span>. Multivariate mgf</a>
 </h1>
 We had left a number of results unproved in the first section of this page.  
 To prove them, we need a mathematically conveneient way to express $N_d(\v \mu, \Sigma)$  distribution. 
@@ -730,7 +795,7 @@ M_{\v Z} (\v s, \v t)
 </p>
 
 <h2>
-<a name="N1057C"><span class="header">5.1</span>.
+<a name="N105DB"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
@@ -757,7 +822,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N105B7"><span class="header">6</span>. The proofs</a>
+<a name="N10616"><span class="header">6</span>. The proofs</a>
 </h1>
 In this section we shall finally prove the leftovers from the first section:
 <ol type="">
@@ -775,7 +840,7 @@ In this section we shall finally prove the leftovers from the first section:
 </ol>
 The last fact is actually a special case of the second. 
 <h2>
-<a name="N105F4"><span class="header">6.1</span>.
+<a name="N10653"><span class="header">6.1</span>.
 Proof 1</a>
 </h2>
 The first fact is a direct consequence of the following theorem.
@@ -815,7 +880,7 @@ as required.
 Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
 Thus, the distribution is characterised by $\v b$  and $AA'.$  
 <h2>
-<a name="N1063D"><span class="header">6.2</span>.
+<a name="N1069C"><span class="header">6.2</span>.
 Proof 2</a>
 </h2>
 
