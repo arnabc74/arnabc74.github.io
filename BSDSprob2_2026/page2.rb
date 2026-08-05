@@ -269,7 +269,7 @@ The densities are much like the <M>N(0,1)</M>
 <CIMG web="tplot.png">Some <M>t</M>-densities</CIMG>
 As the degrees of freedom increase
  to <M>\infty,</M>  the <M>t</M>-distribution approaches <M>N(0,1).</M>  For degrees of freedom more than 40, the <M>t</M>-density
- is virtually indisguishable from that of <M>N(0,1)</M>  density.
+ is virtually indisguishable from the <M>N(0,1)</M>  density.
 
 <HEAD2>Problem set</HEAD2>
 <EXR>Consider the density of <M>t_{(k)}</M>-distribution. Do you recognise the
