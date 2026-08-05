@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 03 12:12:41 IST 2026</i>
+Wed Aug 05 08:43:55 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -167,29 +167,31 @@ Mon Aug 03 12:12:41 IST 2026</i>
 <ul>
 <li>1. <a href="#N1002A">Multivariate normal</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10135">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10137">Quick summary</a>
 </li>
-<li>2. <a href="#N101BD">Sampling distributions for normal sample</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10181">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N102E3">Problem set</a>
+<li>2. <a href="#N10209">Sampling distributions for normal sample</a>
 </li>
-<li>3. <a href="#N1034C">$t$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10343">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N103DD">Problem set</a>
+<li>3. <a href="#N103AC">$t$  distribution</a>
 </li>
-<li>4. <a href="#N10419">$F$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1043D">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1047D">Problem set</a>
+<li>4. <a href="#N10479">$F$  distribution</a>
 </li>
-<li>5. <a href="#N104AB">Multivariate mgf</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N104DD">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1051C">Problem set</a>
+<li>5. <a href="#N1050B">Multivariate mgf</a>
 </li>
-<li>6. <a href="#N10557">The proofs</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1057C">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10594">Proof 1</a>
+<li>6. <a href="#N105B7">The proofs</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N105DD">Proof 2</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N105F4">Proof 1</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N1063D">Proof 2</a>
 </li>
 </ul>
 <hr/>
@@ -305,16 +307,45 @@ Thus, we see that the various marginals are also normal with the "corresponding"
 <b><i>Proof:</i></b>Will be done in the final section of this page.<b><i>[QED]</i></b>
 </p>
 
+<p></p>
+
 <h2>
-<a name="N10135"><span class="header">1.1</span>.
+<a name="N10137"><span class="header">1.1</span>.
+Quick summary</a>
+</h2>
+
+<fieldset>
+<legend><b>Definition: Multivariate normal distribution</b></legend>
+Let  $\v X=(X_1,...,X_n)'$ be a random vector with $X_i$'s iid $N(0,1).$  Let
+ $A_{d\times n}$ be any fixed matrix and $\v \mu\in{\mathbb R}^d$ be any fixed vector. Then the
+ distribution of the random vector $A\v X + \v \mu$  is called a $d$-dimensional multivariate normal distribution
+ and is denoted by $N_d(\v \mu, \Sigma),$  where $\Sigma=AA'.$
+</fieldset>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $E(\v X) = \v \mu$  and $V(\v X) = \Sigma.$</fieldset>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$ and $B_{r\times d}$  is any fixed  matrix and  
+$\v c\in{\mathbb R}^r$  is any fixed vector, then $BX+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)$
+</fieldset>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $X_1,...,.X_d$  are (mutually) independent
+ iff $\Sigma$  is diagonal.</fieldset>
+
+<p></p>
+
+<h2>
+<a name="N10181"><span class="header">1.2</span>.
 Problem set</a>
 </h2>
 
 <p></p>
 Let $\left[\begin{array}{ccccccccccc}W\\X\\Y\\Z
 \end{array}\right]\sim N_3\left(\left[\begin{array}{ccccccccccc}1\\-2\\0\\3
-\end{array}\right],\left[\begin{array}{ccccccccccc}30 &amp; 0 &amp; 1 &amp; 2\\0 &amp; 20 &amp; 2 &amp; 1\\1 &amp;
- 2 &amp; 100 &amp; 1\\2 &amp; 1 &amp; 1 &amp; 3
+\end{array}\right],\left[\begin{array}{ccccccccccc}30 &amp; 0 &amp; 1 &amp; 2\\0 &amp; 20 &amp; 5 &amp; 1\\1 &amp;
+ 5 &amp; 100 &amp; 1\\2 &amp; 1 &amp; 1 &amp; 3
 \end{array}\right]\right).$
 <p></p>
 
@@ -367,14 +398,14 @@ The transform $X = \v \mu + A\v Z$  is a bijection. Apply Jacobian formula.
 </p>
 
 <h1>
-<a name="N101BD"><span class="header">2</span>. Sampling distributions for normal sample</a>
+<a name="N10209"><span class="header">2</span>. Sampling distributions for normal sample</a>
 </h1>
 First a definition that you already know. 
 <p></p>
 
 <fieldset>
 <legend><b>Definition: (Central) $\chi^2$-distribution</b></legend>If $U_1,...,U_k$  are iid $N(0,1),$  then the
- distribution of $\sum_1^k
+ distribution of $\sum_{i=1}^k
  U_i^2$  is called <b><font color="red" size="40">(central) chi-square</font></b>  with $k$  <b><font color="red" size="40">degrees of
  freedom</font></b>. This distribution is denoted by $\k k$.</fieldset>
 Thus, we say $X\sim\k k,$  then you can assume that there are $k$  random variables $U_1,...,U_k$  all
@@ -398,32 +429,35 @@ And here is a slight generalisation of this definition.
 
 <fieldset>
 <legend><b>Definition: Noncentral $\chi^2$-distribution</b></legend>If $U_1,...,U_k$  are independent
- $N(\mu_i,1),$  then the distribution of $\sum_1^k
+ $N(\mu_i,1),$  then the distribution of $\sum_{i=1}^k
  U_i^2$  is called <b><font color="red" size="40">noncentral chi-square</font></b>  with $k$  <b><font color="red" size="40">degrees of
- freedom</font></b>  and <b><font color="red" size="40">noncentrality</font></b>  $\sum \mu_i^2.$. This distribution is
-sometimes  denoted by $\k k\left(\sum \mu_i^2\right)$.</fieldset>
+ freedom</font></b>  and <b><font color="red" size="40">noncentrality</font></b>  $\sum_{i=1}^k \mu_i^2.$. This distribution is
+sometimes  denoted by $\k k\left(\sum_i \mu_i^2\right)$.</fieldset>
 
 <p></p>
 Here is a little fact that can be proved using high school algebra. 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $x_1,...,x_n$  be any $n$  numbers. 
-Let  $\bar x_k=\frac 1k\sum _1^kx_i$  for $k=1,...,n$  and  $S_k^2=\sum_1^k
- (x_i-\bar x_k)^2.$   Then for $k=1,...,n-1$
-$$S_k^2 = \sum_1^{k-1} \frac{i}{i+1}(x_{i+1}-\bar x_i)^2.$$
+Let  $\bar x_k=\frac 1k\sum _1^kx_i$    and  $S_k^2=\sum_{i=1}^k
+ (x_i-\bar x_k)^2$  for $k=1,...,n$.    Then for $k=1,...,n-1$
+$$S_k^2 = \sum_{i=1}^{k-1} \frac{i}{i+1}(x_{i+1}-\bar x_i)^2.$$
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
 Obvious for $k=1.$  
-High school algebra shows $S_k^2-S_{k-1}^2 = \frac{k-1}{k} (x_k-\bar x_{k-1})^2$  for $k=2,...,n-1.$
+<p></p>
+Notice that $S_k^2$  is the sum of $k$  terms, the first $k-1$  of which makes up $S_{k_1}^2.$  So
+ $S_k^2-S_{k-1}^2$  is just the last term of $S_k^2$  which is $\frac{k-1}{k} (x_k-\bar x_{k-1})^2$ 
+ for $k=2,...,n-1.$
 <p></p>
 Hence the result.
 <b><i>[QED]</i></b>
 </p>
 
 <p></p>
-Now for the main theme in this page:
+Now for the main theorem in this page:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $X_1,...,X_n$  be a random sample (<i>i.e.</i>, iid) from $N(\mu, \sigma^2).$ 
@@ -487,7 +521,7 @@ Notice that $S_n^2$  is a function of $Y_1,...,Y_{n-1}$  only, which are
 </p>
 
 <h2>
-<a name="N102E3"><span class="header">2.1</span>.
+<a name="N10343"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
@@ -533,7 +567,7 @@ a fixed number?
 </p>
 
 <h1>
-<a name="N1034C"><span class="header">3</span>. $t$  distribution</a>
+<a name="N103AC"><span class="header">3</span>. $t$  distribution</a>
 </h1>
 
 <fieldset>
@@ -564,7 +598,7 @@ As the degrees of freedom increase
 <p></p>
 
 <h2>
-<a name="N103DD"><span class="header">3.1</span>.
+<a name="N1043D"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -591,7 +625,7 @@ $P(\mu\in (\hat \mu-a \hat \sigma^2,\hat \mu+a \hat \sigma^2)) = 0.95,$  where $
 <p></p>
 
 <h1>
-<a name="N10419"><span class="header">4</span>. $F$  distribution</a>
+<a name="N10479"><span class="header">4</span>. $F$  distribution</a>
 </h1>
 
 <fieldset>
@@ -603,7 +637,7 @@ If $X\sim \k m$  and $Y\sim \k n$  are independent random variables, then the di
 The density of the $F_{m,n}$-distribution is of the form
 $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2}}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right..$$
 <h2>
-<a name="N1047D"><span class="header">4.1</span>.
+<a name="N104DD"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -628,10 +662,10 @@ $$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 <p></p>
 
 <h1>
-<a name="N104AB"><span class="header">5</span>. Multivariate mgf</a>
+<a name="N1050B"><span class="header">5</span>. Multivariate mgf</a>
 </h1>
 We had left a number of results unproved in the first section of this page.  
-To achieve this, we need a mathematically conveneient way to express $N_d(\v \mu, \Sigma)$  distribution. 
+To prove them, we need a mathematically conveneient way to express $N_d(\v \mu, \Sigma)$  distribution. 
  Unfortunately, this distribution may
  not always have a density, and its
  distribution function is
@@ -696,7 +730,7 @@ M_{\v Z} (\v s, \v t)
 </p>
 
 <h2>
-<a name="N1051C"><span class="header">5.1</span>.
+<a name="N1057C"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
@@ -723,7 +757,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N10557"><span class="header">6</span>. The proofs</a>
+<a name="N105B7"><span class="header">6</span>. The proofs</a>
 </h1>
 In this section we shall finally prove the leftovers from the first section:
 <ol type="">
@@ -741,7 +775,7 @@ In this section we shall finally prove the leftovers from the first section:
 </ol>
 The last fact is actually a special case of the second. 
 <h2>
-<a name="N10594"><span class="header">6.1</span>.
+<a name="N105F4"><span class="header">6.1</span>.
 Proof 1</a>
 </h2>
 The first fact is a direct consequence of the following theorem.
@@ -781,7 +815,7 @@ as required.
 Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
 Thus, the distribution is characterised by $\v b$  and $AA'.$  
 <h2>
-<a name="N105DD"><span class="header">6.2</span>.
+<a name="N1063D"><span class="header">6.2</span>.
 Proof 2</a>
 </h2>
 

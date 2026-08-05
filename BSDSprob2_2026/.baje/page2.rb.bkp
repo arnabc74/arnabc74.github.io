@@ -71,10 +71,25 @@ Thus, we see that the various marginals are also normal with the "corresponding"
  iff <M>\Sigma</M>  is diagonal.</THM>
 
 <PF>Will be done in the final section of this page.</PF>
+
+<HEAD2>Quick summary</HEAD2>
+<DEFN name="Multivariate normal distribution">
+Let  <M>\v X=(X_1,...,X_n)'</M> be a random vector with <M>X_i</M>'s iid <M>N(0,1).</M>  Let
+ <M>A_{d\times n}</M> be any fixed matrix and <M>\v \mu\in\rr^d</M> be any fixed vector. Then the
+ distribution of the random vector <M>A\v X + \v \mu</M>  is called a <M>d</M>-dimensional multivariate normal distribution
+ and is denoted by <M>N_d(\v \mu, \Sigma),</M>  where <M>\Sigma=AA'.</M>
+</DEFN>
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>E(\v X) = \v \mu</M>  and <M>V(\v X) = \Sigma.</M></THM>
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M> and <M>B_{r\times d}</M>  is any fixed  matrix and  
+<M>\v c\in\rr^r</M>  is any fixed vector, then <M>BX+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)</M>
+</THM>
+<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_d</M>  are (mutually) independent
+ iff <M>\Sigma</M>  is diagonal.</THM>
+
 <HEAD2>Problem set</HEAD2>
 
-Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\0 & 20 & 2 & 1\\1 &
- 2 & 100 & 1\\2 & 1 & 1 & 3</MAT>)*).</M>
+Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 2\\0 & 20 & 5 & 1\\1 &
+ 5 & 100 & 1\\2 & 1 & 1 & 3</MAT>)*).</M>
 
 <EXR>Find the distribution of <M>Y.</M></EXR>
 <EXR>Find the distribution of <M>(X,Z).</M></EXR>
@@ -105,7 +120,7 @@ The transform <M>X = \v \mu + A\v Z</M>  is a bijection. Apply Jacobian formula.
 First a definition that you already know. 
 
 <DEFN name="(Central) $\chi^2$-distribution">If <M>U_1,...,U_k</M>  are iid <M>N(0,1),</M>  then the
- distribution of <M>\sum_1^k
+ distribution of <M>\sum_{i=1}^k
  U_i^2</M>  is called <TERM>(central) chi-square</TERM>  with <M>k</M>  <TERM>degrees of
  freedom</TERM>. This distribution is denoted by <M>\k k</M>.</DEFN>
 Thus, we say <M>X\sim\k k,</M>  then you can assume that there are <M>k</M>  random variables <M>U_1,...,U_k</M>  all
@@ -117,22 +132,25 @@ It is good to know how the densities of the <M>\k k</M>-distribution look like f
 And here is a slight generalisation of this definition.
 
 <DEFN name="Noncentral $\chi^2$-distribution">If <M>U_1,...,U_k</M>  are independent
- <M>N(\mu_i,1),</M>  then the distribution of <M>\sum_1^k
+ <M>N(\mu_i,1),</M>  then the distribution of <M>\sum_{i=1}^k
  U_i^2</M>  is called <TERM>noncentral chi-square</TERM>  with <M>k</M>  <TERM>degrees of
- freedom</TERM>  and <TERM>noncentrality</TERM>  <M>\sum \mu_i^2.</M>. This distribution is
-sometimes  denoted by <M>\k k(*(\sum \mu_i^2)*)</M>.</DEFN>
+ freedom</TERM>  and <TERM>noncentrality</TERM>  <M>\sum_{i=1}^k \mu_i^2.</M>. This distribution is
+sometimes  denoted by <M>\k k(*(\sum_i \mu_i^2)*)</M>.</DEFN>
 
 
 Here is a little fact that can be proved using high school algebra. 
 <THM>
 Let <M>x_1,...,x_n</M>  be any <M>n</M>  numbers. 
-Let  <M>\bar x_k=[[1k]]\sum _1^kx_i</M>  for <M>k=1,...,n</M>  and  <M>S_k^2=\sum_1^k
- (x_i-\bar x_k)^2.</M>   Then for <M>k=1,...,n-1</M>
-<D>S_k^2 = \sum_1^{k-1} [[i][i+1]](x_{i+1}-\bar x_i)^2.</D>
+Let  <M>\bar x_k=[[1k]]\sum _1^kx_i</M>    and  <M>S_k^2=\sum_{i=1}^k
+ (x_i-\bar x_k)^2</M>  for <M>k=1,...,n</M>.    Then for <M>k=1,...,n-1</M>
+<D>S_k^2 = \sum_{i=1}^{k-1} [[i][i+1]](x_{i+1}-\bar x_i)^2.</D>
 </THM>
 <PF>
 Obvious for <M>k=1.</M>  
-High school algebra shows <M>S_k^2-S_{k-1}^2 = [[k-1][k]] (x_k-\bar x_{k-1})^2</M>  for <M>k=2,...,n-1.</M>
+
+Notice that <M>S_k^2</M>  is the sum of <M>k</M>  terms, the first <M>k-1</M>  of which makes up <M>S_{k_1}^2.</M>  So
+ <M>S_k^2-S_{k-1}^2</M>  is just the last term of <M>S_k^2</M>  which is <M>[[k-1][k]] (x_k-\bar x_{k-1})^2</M> 
+ for <M>k=2,...,n-1.</M>
 
 Hence the result.
 </PF>
@@ -306,7 +324,7 @@ Then what
 
 <HEAD1>Multivariate mgf</HEAD1>
 We had left a number of results unproved in the first section of this page.  
-To achieve this, we need a mathematically conveneient way to express <M>N_d(\v \mu, \Sigma)</M>  distribution. 
+To prove them, we need a mathematically conveneient way to express <M>N_d(\v \mu, \Sigma)</M>  distribution. 
  Unfortunately, this distribution may
  not always have a density, and its
  distribution function is
