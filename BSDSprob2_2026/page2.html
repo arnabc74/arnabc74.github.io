@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Fri Aug 07 09:58:32 IST 2026</i>
+Fri Aug 07 22:21:57 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -195,7 +195,9 @@ Fri Aug 07 09:58:32 IST 2026</i>
 </li>
 <li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10659">Proof 1</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N106A2">Proof 2</a>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N106B2">Proof 2</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.3. <a href="#N1075A">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -511,7 +513,7 @@ The theorem expresses $S_n^2$  as $\sum_{i=1}^{n-1} U_i^2,$  where $U_i = \sqrt{
 Notice that the $U_i$'s are all linear combinations of  $X_1,...,X_n.$  So
  $(U_1,...,U_{n-1})'$  has a multivariate normal distribution. 
 <p></p>
-So enough to show that $E(U_i) = 0$, $V(U_i) = 1$  and for $i\neq j$  $\cov(U_1,U_j) = 0.$
+So enough to show that $E(U_i) = 0$, $V(U_i) = 1$  and for $i\neq j$  $\cov(U_i,U_j) = 0.$
  <ul>
 <li>
 $E(U_i) = \sqrt{\frac{i}{i+1}} E(X_{i+1}-\bar X_i) =  \sqrt{\frac{i}{i+1}}(\mu-\mu)=0.$
@@ -751,7 +753,7 @@ $$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 <a name="N10570"><span class="header">5</span>. Multivariate mgf</a>
 </h1>
 We had left a number of results unproved in the first section of this page.  
-To prove them, we need a mathematically conveneient way to express $N_d(\v \mu, \Sigma)$  distribution. 
+To prove them, we need a mathematically convenient way to express $N_d(\v \mu, \Sigma)$  distribution. 
  Unfortunately, this distribution may
  not always have a density, and its
  distribution function is
@@ -900,40 +902,85 @@ as required.
 </p>
 Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
 Thus, the distribution is characterised by $\v b$  and $AA'.$  
+<p></p>
+Thus, we have also proved:
+<p></p>
+
+<fieldset>
+<legend><b><i>Theorem</i></b></legend>
+$N_d(\v \mu, \Sigma)$  has mgf $M(\v t) = e^{\v t'\v \mu + \frac 12 \v t' \Sigma \v t}$  for $\v t\in{\mathbb R}^d.$
+</fieldset>
+
 <h2>
-<a name="N106A2"><span class="header">6.2</span>.
+<a name="N106B2"><span class="header">6.2</span>.
 Proof 2</a>
 </h2>
+A little fact from linear algebra:
+<fieldset>
+<legend><b><i>Fact from linear algebra</i></b></legend>
+If $A,B$  are two $\n\times n$  symmetric matrices for which $\forall \v x\in{\mathbb R}^d~~\v
+ x'A\v x = \v x' B\v x,$  then $A=B.$ 
+</fieldset>
 
+<p>
+<b><i>Proof:</i></b>Let $\{\v e_1,...,\v e_n\}$  be the canonical basis. Then for $i\in\{1,...,n\}$  we
+ have $\v e_i'A\v e_i = \v e_i'B\v e_i$, or $a_{ii} = b_{ii}.$
 <p></p>
+Similarly, $\forall i,j\in\{1,...,n\}$  if we take $\v x = \v e_i+\v e_j,$  then $\v
+ x'A\v x = \v x' B\v x$, or 
+$$a_{ii}+a_{ij}+a_{ji}+a_{jj}=b_{ii}+b_{ij}+b_{ji}+b_{jj}.$$  Since the diagonal entries match, have $a_{ij}+a_{ji}=b_{ij}+b_{ji}.$ 
+<p></p>
+Since $A,B$  are symmetric,
+ hence this forces $a_{ij} = b_{ij}.$   
+ <b><i>[QED]</i></b>
+</p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $X_1,...,.X_n$  are (mutually) independent
  iff $\Sigma$  is diagonal.</fieldset>
 
 <p>
-<b><i>Proof:</i></b>We already know from the last theorem that $X_i\sim N(\mu_i, \sigma_{ii}),$  where
+<b><i>Proof:</i></b>We already know that $X_i\sim N(\mu_i, \sigma_{ii}),$  where
  $\mu_i$  is the $i$-th entry of $\v \mu,$  and $\sigma_{ii}$  is the
  $i$-th diagonal entry of $\Sigma.$
 <p></p>
-So mgf of $X_i$  is $M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}.$
+So mgf of $X_i$  is $M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}$  for $t\in{\mathbb R}.$
+<p></p>
 If the $X_i$ s were independent, then the mgf of $\v X$  would have been 
-$M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +\frac 12\v t' diag(\Sigma)\v t},$  where $diag(\Sigma)$  is the diagonal part
+$M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +\frac 12\v t' diag(\Sigma)\v t}$ for $\v t\in{\mathbb R}^d,$ where
+ $diag(\Sigma)$  is the diagonal part
  of $\Sigma.$
 <p></p>
-Also mgf of $\v X$  is $e^{\v t'\v \mu + \frac 12\v t'\Sigma\v t}.$  
+Also mgf of $\v X$  is $e^{\v t'\v \mu + \frac 12\v t'\Sigma\v t}$  for $\v t\in{\mathbb R}^d.$  
 <p></p>
 Thus, $X_i$ s are independent iff 
 $$e^{\v t'\v \mu + \frac 12\v t'\Sigma\v t} = e^{\v t' \v\mu +\frac 12\v t' diag(\Sigma)\v t},$$
 and this must hold for all $\v t\in{\mathbb R}^d.$  
 <p></p>
 So  we must have $\v t'\Sigma\v t=\v t'diag(\Sigma)\v t.$
-Since $\Sigma$  is symmetric, hence this forces $\Sigma=diag(\Sigma),$  <i>i.e.</i>, $\Sigma$  must be a diagonal
+Since $\Sigma$  is symmetric, hence the <b>fact from libear algebra</b> forces $\Sigma=diag(\Sigma),$  <i>i.e.</i>,
+ $\Sigma$  must be a diagonal
  matrix, as required.
 <b><i>[QED]</i></b>
 </p>
 
+<h2>
+<a name="N1075A"><span class="header">6.3</span>.
+Problem set</a>
+</h2>
+
 <p></p>
+
+<p>
+<b>EXERCISE 22:</b>&nbsp;$(X,Y)$  has mgf
+$$M(s,t) = \exp(s-t+20s^2+42t^2-12st)\mbox{ for }(s,t)\in{\mathbb R}^2.$$
+Find the distribution of $(X,Y).$ 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 23:</b>&nbsp;Write the density of $X$  if it has mgf $M(t) = \exp(1+2t+3t^2)$  for $t\in{\mathbb R}.$  </p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>

@@ -200,7 +200,7 @@ The theorem expresses <M>S_n^2</M>  as <M>\sum_{i=1}^{n-1} U_i^2,</M>  where <M>
 Notice that the <M>U_i</M>'s are all linear combinations of  <M>X_1,...,X_n.</M>  So
  <M>(U_1,...,U_{n-1})'</M>  has a multivariate normal distribution. 
 
-So enough to show that <M>E(U_i) = 0</M>, <M>V(U_i) = 1</M>  and for <M>i\neq j</M>  <M>\cov(U_1,U_j) = 0.</M>
+So enough to show that <M>E(U_i) = 0</M>, <M>V(U_i) = 1</M>  and for <M>i\neq j</M>  <M>\cov(U_i,U_j) = 0.</M>
  <UL><LI>
 <M>E(U_i) = \sqrt{[[i][i+1]]} E(X_{i+1}-\bar X_i) =  \sqrt{[[i][i+1]]}(\mu-\mu)=0.</M>
 </LI>
@@ -386,7 +386,7 @@ Then what
 
 <HEAD1>Multivariate mgf</HEAD1>
 We had left a number of results unproved in the first section of this page.  
-To prove them, we need a mathematically conveneient way to express <M>N_d(\v \mu, \Sigma)</M>  distribution. 
+To prove them, we need a mathematically convenient way to express <M>N_d(\v \mu, \Sigma)</M>  distribution. 
  Unfortunately, this distribution may
  not always have a density, and its
  distribution function is
@@ -483,28 +483,59 @@ as required.
 </PF>
 Since the MGF is defined over a neighbourhood of the origin (in fact everywhere), the MGF characterises the distribution.
 Thus, the distribution is characterised by <M>\v b</M>  and <M>AA'.</M>  
-<HEAD2>Proof 2</HEAD2>
 
+Thus, we have also proved:
+
+<THM>
+<M>N_d(\v \mu, \Sigma)</M>  has mgf <M>M(\v t) = e^{\v t'\v \mu + [[12]] \v t' \Sigma \v t}</M>  for <M>\v t\in\rr^d.</M>
+</THM>
+<HEAD2>Proof 2</HEAD2>
+A little fact from linear algebra:
+<THM name="Fact from linear algebra">
+If <M>A,B</M>  are two <M>\n\times n</M>  symmetric matrices for which <M>\forall \v x\in\rr^d~~\v
+ x'A\v x = \v x' B\v x,</M>  then <M>A=B.</M> 
+</THM>
+<PF>Let <M>\{\v e_1,...,\v e_n\}</M>  be the canonical basis. Then for <M>i\in\{1,...,n\}</M>  we
+ have <M>\v e_i'A\v e_i = \v e_i'B\v e_i</M>, or <M>a_{ii} = b_{ii}.</M>
+
+Similarly, <M>\forall i,j\in\{1,...,n\}</M>  if we take <M>\v x = \v e_i+\v e_j,</M>  then <M>\v
+ x'A\v x = \v x' B\v x</M>, or 
+<D>a_{ii}+a_{ij}+a_{ji}+a_{jj}=b_{ii}+b_{ij}+b_{ji}+b_{jj}.</D>  Since the diagonal entries match, have <M>a_{ij}+a_{ji}=b_{ij}+b_{ji}.</M> 
+
+Since <M>A,B</M>  are symmetric,
+ hence this forces <M>a_{ij} = b_{ij}.</M>   
+ </PF>
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_n</M>  are (mutually) independent
  iff <M>\Sigma</M>  is diagonal.</THM>
-<PF>We already know from the last theorem that <M>X_i\sim N(\mu_i, \sigma_{ii}),</M>  where
+<PF>We already know that <M>X_i\sim N(\mu_i, \sigma_{ii}),</M>  where
  <M>\mu_i</M>  is the <M>i</M>-th entry of <M>\v \mu,</M>  and <M>\sigma_{ii}</M>  is the
  <M>i</M>-th diagonal entry of <M>\Sigma.</M>
 
-So mgf of <M>X_i</M>  is <M>M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}.</M>
+So mgf of <M>X_i</M>  is <M>M(t) = e^{t \mu_i + \sigma_{ii} t^2/2}</M>  for <M>t\in\rr.</M>
+
 If the <M>X_i</M> s were independent, then the mgf of <M>\v X</M>  would have been 
-<M>M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</M>  where <M>diag(\Sigma)</M>  is the diagonal part
+<M>M(t_1)\cdots M(t_d) = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t}</M> for <M>\v t\in\rr^d,</M> where
+ <M>diag(\Sigma)</M>  is the diagonal part
  of <M>\Sigma.</M>
 
-Also mgf of <M>\v X</M>  is <M>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t}.</M>  
+Also mgf of <M>\v X</M>  is <M>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t}</M>  for <M>\v t\in\rr^d.</M>  
+
 
 Thus, <M>X_i</M> s are independent iff 
 <D>e^{\v t'\v \mu + [[12]]\v t'\Sigma\v t} = e^{\v t' \v\mu +[[12]]\v t' diag(\Sigma)\v t},</D>
 and this must hold for all <M>\v t\in\rr^d.</M>  
 
 So  we must have <M>\v t'\Sigma\v t=\v t'diag(\Sigma)\v t.</M>
-Since <M>\Sigma</M>  is symmetric, hence this forces <M>\Sigma=diag(\Sigma),</M>  i.e., <M>\Sigma</M>  must be a diagonal
+Since <M>\Sigma</M>  is symmetric, hence the <B>fact from libear algebra</B> forces <M>\Sigma=diag(\Sigma),</M>  i.e.,
+ <M>\Sigma</M>  must be a diagonal
  matrix, as required.
 </PF>
+<HEAD2>Problem set</HEAD2>
 
+<EXR><M>(X,Y)</M>  has mgf
+<D>M(s,t) = \exp(s-t+20s^2+42t^2-12st)\mbox{ for }(s,t)\in\rr^2.</D>
+Find the distribution of <M>(X,Y).</M> 
+</EXR>
+
+<EXR>Write the density of <M>X</M>  if it has mgf <M>M(t) = \exp(1+2t+3t^2)</M>  for <M>t\in\rr.</M>  </EXR>
 </NOTE>@}
