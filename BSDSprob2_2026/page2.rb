@@ -371,6 +371,7 @@ Hence the density of <M>[[nm]]Z</M>  is
 </COMMENT>
 The density of the <M>F_{m,n}</M>-distribution is of the form
 <D>f(x) =<CASES>\mbox{const }x^{[[m2]]-1}(mx+n)^{-[[m+n][2]]}<IF>x>0</IF> 0<ELSE/></CASES>.</D>
+<CIMG web="fplot.png">Some <M>F</M>-densities</CIMG>
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X_1,...,X_m</M>  and <M>Y_1,...,Y_n</M>  be random samples from
  <M>N(\mu_1,\sigma^2)</M>  and <M>N(\mu_2,\sigma^2)</M>, respectively (same <M>\sigma^2</M>).  
