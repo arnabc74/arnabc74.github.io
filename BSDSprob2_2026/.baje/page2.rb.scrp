@@ -1,100 +1,15 @@
+<COMMENT>
+And here is a slight generalisation of this definition.
 
+<DEFN name="Noncentral $\chi^2$-distribution">If <M>U_1,...,U_k</M>  are independent
+ <M>N(\mu_i,1),</M>  then the distribution of <M>\sum_{i=1}^k
+ U_i^2</M>  is called <TERM>noncentral chi-square</TERM>  with <M>k</M>  <TERM>degrees of
+ freedom</TERM>  and <TERM>noncentrality</TERM>  <M>\sum_{i=1}^k \mu_i^2.</M>. This distribution is
+sometimes  denoted by <M>\k k(*(\sum_i \mu_i^2)*)</M>.</DEFN>
+</COMMENT>
 -------EOD-------
-First a definition that you already know. 
-
+</COMMENT>
 -------EOD-------
-<OL>
-<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
--------EOD-------
-Here is a little fact that can be proved using high school algebra. 
--------EOD-------
-& = & [#[S_n^2+(X_{n+1}-\bar X_n)^2]#] +(n+1) (\bar X_n-\bar X_{n+1})^2 + (\bar X_n-\bar X_{n+1})\sum_{i=1}^{n+1}(X_i-\bar X_n)\\
--------EOD-------
-& = & \sum_{i=1}^{n+1} (X_i-\bar X_n+\bar X_n-\bar X_{n+1})^2\\
-& = & \sum_{i=1}^{n+1} (X_i-\bar X_n)^2 +\sum_{i=1}^{n+1} (\bar X_n-\bar X_{n+1})^2 + 2\sum_{i=1}^{n+1}(X_i-\bar X_n)(\bar X_n-\bar X_{n+1})\\
--------EOD-------
--[[2(X_{n+1}-\bar X_n)][n+1]] (X_{n+1}-\bar X_n)  \\
--------EOD-------
-Now let us massage the three terms a bit. 
-<UL><LI>First term:
-<D>\sum_{i=1}^{n+1} (X_i-\bar X_n)^2 = \sum_{i=1}^n (X_i-\bar X_n)^2 + (X_{n+1}-\bar X_n)^2 = S_n^2+(X_{n+1}-\bar X_n)^2.</D>
-</LI>
-<LI>Second term:
-<D>\sum_{i=1}^{n+1} (\bar X_n-\bar X_{n+1})^2 = (n+1) (\bar X_n-\bar X_{n+1})^2.</D>
-</LI>
-<LI>Third term:
-<D> 2\sum_{i=1}^{n+1}(X_i-\bar X_n)(\bar X_n-\bar X_{n+1})=2(\bar X_n-\bar
- X_{n+1})\sum_{i=1}^{n+1}(X_i-\bar X_n) = 2(\bar X_n-\bar X_{n+1})(X_{n+1}-\bar X_n),</D>
-since <M>\sum_1^n(X_i-\bar X_n) = 0.</M></LI>
-</UL>
-
-
-Notice that <M>S_k^2</M>  is the sum of <M>k</M>  terms, the first <M>k-1</M>  of which makes up <M>S_{k_1}^2.</M>  So
- <M>S_k^2-S_{k-1}^2</M>  is just the last term of <M>S_k^2</M>  which is <M>[[k-1][k]] (x_k-\bar x_{k-1})^2</M> 
- for <M>k=2,...,n-1.</M>
-
--------EOD-------
-& = & 
--------EOD-------
-
--------EOD-------
-Now for the main theorem in this page:
--------EOD-------
-<OL>
-<LI><M>\bar X\sim N(*(\mu,[[\sigma^2][n]])*)</M></LI>
-<LI><M>[[S^2][\sigma^2]]\sim \k {n-1}</M></LI>
--------EOD-------
-</OL>
--------EOD-------
-
-Let <M>\bar X_k=[[1k]]\sum _1^kX_i</M>  for <M>k=1,...,n.</M>
-
-Let <M>Y_k = X_{k+1}-\bar X_k</M>  for <M>k=1,...,n-1</M>  and   <M>Y_n = \bar X_n.</M>
-
-Then <M>\v Y = A\v X</M>  for 
-<D>A = <MAT>
--1 & 1\\
--[[12]] & -[[12]] & 1\\
--[[13]] & -[[13]] & -[[13]] & 1\\
-\vdots & \vdots & \vdots & & \ddots\\
--[[1][n-1]] & \cdots &  & & -[[1][n-1]] & 1\\
-[[1n]]  & [[1n]] & [[1n]] & \cdots & [[1n]] & [[1n]]</MAT>.</D>
-
-So <M>\v Y</M>  has a multivariate normal distribution.
-
-It is easy (?) to work out the mean vector and covariance matrix:
-<OL>
-<LI><M>E(Y_k) =0 </M>  for <M>k=1,...,n-1,</M>  and <M>E(Y_n) = \mu.</M></LI>
-<LI><M>V(Y_k) = \sigma^2(*(1+[[1k]])*)</M>  for <M>k=1,...,n-1,</M>  and <M>V(Y_n) = [[\sigma^2][n]].</M></LI>
-<LI><M>\cov(Y_i,Y_j)= 0</M>  for <M>i\neq j\in\{1,...,n-1\}</M> and
- <M>\cov(Y_i,Y_n)=   0</M>  for <M>i\in\{1,...,n-1\}</M>      
-</LI></OL>
-So <M>Y_1,...,Y_n</M>  are independent random variables. 
-
-In particular, <M>\bar X_n = Y_n \sim N(*(\mu,[[\sigma^2][n]])*)</M>, as required.
-
-Also,
-<D>S_n^2 = \sum_1^{n-1} [[i][i+1]](X_{i+1}-\bar X_i)^2 = \sum_1^{n-1} [[i][i+1]] Y_i^2.</D>
-Since <M>Y_1,...,Y_{n-1}</M>  are independent with <M>Y_i\sim N(*(0, (1+[[1i]]) \sigma^2 )*),</M>  
-
-hence <M>\sqrt{[[i][i+1]]} [[Y_i][\sigma]]</M>'s are iid <M>N(0,1)</M>  random variables (for <M>i=1,...,n-1).</M>
-
-Hence <M>[[S_n^2][\sigma^2]]\sim\k {n-1},</M>  as required.
-
-Notice that <M>S_n^2</M>  is a function of <M>Y_1,...,Y_{n-1}</M>  only, which are
- independent of <M>Y_n,</M>  i.e., <M>\bar X_n,</M>  as required. 
--------EOD-------
-<HEAD2>Quick summary</HEAD2>
-<DEFN name="Multivariate normal distribution">
-Let  <M>\v X=(X_1,...,X_n)'</M> be a random vector with <M>X_i</M>'s iid <M>N(0,1).</M>  Let
- <M>A_{d\times n}</M> be any fixed matrix and <M>\v \mu\in\rr^d</M> be any fixed vector. Then the
- distribution of the random vector <M>A\v X + \v \mu</M>  is called a <M>d</M>-dimensional multivariate normal distribution
- and is denoted by <M>N_d(\v \mu, \Sigma),</M>  where <M>\Sigma=AA'.</M>
-</DEFN>
-<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>E(\v X) = \v \mu</M>  and <M>V(\v X) = \Sigma.</M></THM>
-<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M> and <M>B_{r\times d}</M>  is any fixed  matrix and  
-<M>\v c\in\rr^r</M>  is any fixed vector, then <M>BX+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)</M>
-</THM>
-<THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>X_1,...,.X_d</M>  are (mutually) independent
- iff <M>\Sigma</M>  is diagonal.</THM>
+<COMMENT>
+And here is a slight generalisation of this definition.
 -------EOD-------
