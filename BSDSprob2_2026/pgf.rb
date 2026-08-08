@@ -25,7 +25,49 @@ with <M>P(X=k) = p_k</M>  for <M>k=0,1,2,...</M>  Then
  <M>t=[[12]]</M>? At <M>t=1?</M>  At <M>t=-1?</M>  At <M>t=2</M>?</EXR>
 
 <HEAD1>Properties of pgf</HEAD1>
-As we have defined  pgf as a power series,  we need to talk about its convergence. 
+As we have defined  pgf as a power series,  we need to remember some properties of power
+ series that you have learned in Mathematics II. 
+<HEAD2>Power series</HEAD2>
+<UL>
+<LI>
+By a power series we shall mean an expression of the form <M>a_0+a_1t+a_2t^2+\cdots,</M>  where
+ <M>a_0,a_1,a_2,...</M>  are fixed real numbers and <M>t</M>  is a variable taking values in <M>\rr.</M>  
+</LI><LI>
+For each value of <M>t\in\rr</M>  the power series is an infinite series, which may or may not converge. 
+</LI><LI>
+Any power series must converge at <M>t=0,</M>  because then only the first term remains. Any polynomial is also a power series,
+ which converges for all <M>t\in\rr.</M>
+</LI><LI>
+For any power series there is a number <M>r\in[0,\infty]</M>  such that the power series converges for all <M>t\in (-r,r)</M> and
+ diverges for all <M>t\not\in[-r,r].</M>  This <M>r</M>  is called the <TERM>radius of convergence</TERM>  of that power series.
+If <M>r=0,</M>  then the power series converges <I>only</I>  at <M>t=0.</M>  If <M>t=\infty,</M>  then it converges everywhere
+ in <M>\rr.</M>
+</LI>
+<LI>
+ </LI><LI>
+If <M>r\in(0,\infty),</M>  The power series may or may not converge at <M>t = -r</M>  and <M>t=r.</M>  (depends on the
+ particular power series).  
+Thus, a power series defines a function 
+<D>f(t) = a_0+a_1t+a_2t^2+\cdots,</D>
+which has domain <M>(-r,r)</M>  or <M>[-r,r)</M>  or <M>(-r,r]</M>  or <M>[-r,r].</M>   
+</LI><LI>
+If the radius of convergence <M>r>0,</M>  then a power series can be differentiated term by term any number of
+ times for <M>t\in (-r,r)</M>, i.e., if
+<D>
+f(t)  = a_0+a_1t+a_2t^2+\cdots,
+</D>
+then
+<MULTILINE>
+f'(t)  & = & a_1+2a_2t+3a_3t^2+\cdots\\
+f''(t)  & = & a_2+6a_3t+12a_4t^2+\cdots\\
+& \mbox{ etc}
+</MULTILINE>
+ The differentiate power series each has radius of convergence <M>\geq r.</M>  
+</LI><LI>
+Also, if the power series converges at a boundary point of its interval of
+ convergence, we may compute its one-sided derivative using term-by-term differentiation.
+</LI></UL>
+ <HEAD2>Back to probability</HEAD2>
 
 <THM>
 Any pgf <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>. 
@@ -33,10 +75,6 @@ Any pgf <M>p(t)</M>  must converge absolutely for <M>|t|\leq 1</M>.
 <PF>If <M>|t|\leq 1</M>, then <M>\sum_k |p_k t^k| \leq \sum_k p_k = 1</M>. So we 
 have convergence by comparison test.</PF>
 
-<THM>A power series can be differentiated term by term any number of times term-by-term in the interior of its
- interval of convergence. Also, if the power series converges at a boundary point of its interval of
- convergence, we may compute its one-sided derivative using term-by-term differentiation.</THM><PF>Standard
- theorem from real analysis.</PF>
 
 
 
@@ -101,39 +139,44 @@ Hence the result follows as in (a).
 <HEAD1>An application: Branching process</HEAD1>
 Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
  will again split into two. If it goes on like this, then we shall have <M>2^n</M>  cells in the
- <M>n</M>-th generation (the initial cell belonged to generation 0). We shall
- call the number of cells in the <M>n</M>-th generation <M>X_n</M>. Thus, <M>X_n = 2^n</M>. Also,
+ <M>n</M>-th generation (the initial cell belonged to generation 0).
+<CIMG web="detree.png"></CIMG>
+Here <M>X_n</M>  is  the number of cells in the <M>n</M>-th generation. Thus, <M>X_n = 2^n</M>. Also,
  notice that when a cell splits into children, the original cell ceases to exist. 
 
   This
  branching process is a deterministic
  one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus <M>X_0 = 1</M>.
- After a minute this cell "splits into" a random number of cells. The number may be any
+ After a minute this cell splits into a random number of cells. The number may be any
  nonnegative integer. In particular, we also allow the number to be 0 or 1 with the following interpretations:
 <UL><LI>If the number is 0, then the
  original cell has died without leaving any children. </LI><LI>If the number is 1, then the original cell
  just continues into the next generation.  </LI></UL>
-This number is the size of generation 1. We shall call it <M>X_1</M>. Let the distribution of <M>X_1</M>  be
-given by <M>P(X_1=k) = p_k</M>  for <M>k=0,1,2,...</M>. Obviously, <M>\sum_0^\infty p_k = 1.</M>
+
 
 After one more minute each cell in generation 1 will independently split into children following the same distribution. And
  the process will continue. 
-
-As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
-
 <HEAD2>Animation</HEAD2>
+
 Simulate up to generation: <NUMINP id="generations" value="5" min="1"/>
 <BUTTON o="doit()">(Re)start</BUTTON>
+<SVG id="branchingTree" width="100%" height="600"/>
+<LOCSCRIPT>branch.js</LOCSCRIPT>
+<HEAD2>Progeny distribution</HEAD2>
+Notice that each cell behaves in an iid fashion using the same distribution to decide the number of children. This common
+ distribution is called the <TERM>progeny distribution</TERM>  of the branching process. Since <M>X_0=1</M>, the progeny
+ distribution is the same as the distribution of <M>X_1.</M>
 
-Here the <TERM>progeny distribution</TERM>  is as follows.
+The progeny distribution is a distribution on the set of nonnegative integers. Let <M>p_k</M>  be
+ the probability that it
+ assigns to <M>k\in\{0,1,2,...\}.</M>
+Obviously, we need <M>\sum_0^\infty p_k = 1.</M>
+
+In the above animation we used the following progeny distribution:
 <TABLE>
 <TR><TH>Number of children</TH><TH>0</TH><TH>1</TH><TH>2</TH><TH>3</TH><TH>Total</TH></TR>
 <TR><TH>Probability</TH><TH>0.2</TH><TH>0.5</TH><TH>0.2</TH><TH>0.1</TH><TH>1</TH></TR>
 </TABLE>
-Cells will be shown as dots. Cells that 
-die without leaving any child are shown in red. Try the animation a number of times to explore various possibilities. 
-<SVG id="branchingTree" width="100%" height="600"/>
-<LOCSCRIPT>branch.js</LOCSCRIPT>
 
 
 <HEAD2>Extinction probability</HEAD2>

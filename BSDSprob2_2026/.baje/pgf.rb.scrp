@@ -1,37 +1,35 @@
-Notice that <M>\xi'(t)</M>  is always nonnegative. In fact, except in the trivial case of
- <M>p_0=1</M>, it is positive. So <M>\xi(t)</M>  is a strictly increasing function. Again, except
- in the case where <M>p_0+p_1=1</M>, the second derivative <M>\xi''(t)</M>  is positive, and so
- <M>\xi(t)</M>  is a convex function. Such a function can intersect the <M>y=x </M> line at most twice. 
+This number is the size of generation 1. We shall call it <M>X_1</M>. Let the distribution of <M>X_1</M>  be
+given by <M>P(X_1=k) = p_k</M>  for <M>k=0,1,2,...</M>. Obviously, <M>\sum_0^\infty p_k = 1.</M>
 -------EOD-------
-</EXM>       
+<SVG id="branchingTree" width="100%" height="600"/>
+<LOCSCRIPT>branch.js</LOCSCRIPT>
 -------EOD-------
- This follows
- from the exercises below.
+Simulate up to generation: <NUMINP id="generations" value="5" min="1"/>
+<BUTTON o="doit()">(Re)start</BUTTON>
+<SVG id="branchingTree" width="100%" height="600"/>
+<LOCSCRIPT>branch.js</LOCSCRIPT>
+-------EOD-------
+<HEAD2>Animation</HEAD2>
+-------EOD-------
+As before, <M>X_n</M>  will denote the number of cells in the <M>n</M>-th generation. 
+-------EOD-------
+ 
+This number is the size of generation 1. We shall call it <M>X_1</M>. Let the distribution of <M>X_1</M>  be
+-------EOD-------
+Cells will be shown as dots. Cells that 
+die without leaving any child are shown in red. Try the animation a number of times to explore various possibilities. 
+-------EOD-------
+<THM>A power series can be differentiated term by term any number of times term-by-term in the interior of its
+ interval of convergence. Also, if the power series converges at a boundary point of its interval of
+ convergence, we may compute its one-sided derivative using term-by-term differentiation.</THM><PF>Standard
+ theorem from real analysis.</PF>
+-------EOD-------
+ theorem from real analysis.</PF>
+-------EOD-------
+Thus, the power series defines a function <M>f:(-r,r)\to \rr</M>  where 
+<D>f(t) = a_0+a_1t+a_2t^2+\cdots.</D>
+-------EOD-------
 
 -------EOD-------
-<HEAD3>Wrapping up</HEAD3>
--------EOD-------
-We have seen that (excepting the trivial case <M>p_0=0</M>) there are only two possibilities:
- exactly one fixed point (which must be
- <M>1</M>) or exactly two. In the first case, <M>\theta=1</M>  and in the second it is the smaller fixed point. 
 
-It will be nice if we have a quick way to know (based on the <M>p_n</M>'s) which case we are in. 
-
-The two cases are shown below graphically: 
-<CIMG web="pgfcases.png"></CIMG>
- One simple way to distinguish them is by <M>\xi'(1)</M>. In the first case <M>\xi'(1) \leq 1</M>  and in the other <M>\xi'(1) > 1</M>.
- Just a little point here: we know that <M>\xi(t)</M>  converges over <M>[-1,1]</M>, but may not converge beyond <M>1</M>.
- So when we talk about the derivative at <M>1</M>, we mean the left hand derivative. But fortunately, the term by term differentiation
- rule works for finding this one-sided derivative as well. So <M>\xi'(1) = p_1+2p_2+3p_3+\cdots</M>  (may be <M>\infty</M>).
-
-So the final answer is:
-<UL><LI>If <M>p_0=0</M>, the <M>\theta=0</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots \leq 1</M>, then <M>\theta=1</M>.</LI>
-<LI>If <M>p_1+2p_2+3p_3+\cdots > 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
- </UL>
-Could you arrive at this impressive answer without using pgf?  
--------EOD-------
-<UL><LI>If <M>p_0=0</M>, the <M>\theta=0</M>.</LI>
--------EOD-------
-<EXR>Show that a </EXR>
 -------EOD-------

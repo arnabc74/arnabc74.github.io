@@ -92,7 +92,7 @@ Let <M><MAT>W\\X\\Y\\Z</MAT>\sim N_3(*(<MAT>1\\-2\\0\\3</MAT>,<MAT>30 & 0 & 1 & 
 </EXR>
 
 <EXR>Show that if <M>\Sigma</M>  is pd, then <M>N_d(\v \mu, \Sigma)</M>  has density
-<D>f(\v x) = (2\pi det(\Sigma))^{-[[d2]]} e^{-[[12]]\v x' \Sigma ^{-1}\v x } \mbox{ for }\v x\in\rr^d.</D>
+<D>f(\v x) = (2\pi det(\Sigma))^{-[[12]]} e^{-[[12]](\v x-\v \mu)' \Sigma ^{-1}(\v x-\v \mu) } \mbox{ for }\v x\in\rr^d.</D>
 <ANS>
 Since <M>\Sigma</M>  is pd, <M>\Sigma = AA'</M>  for a <I>nonsingular</I>  matrix <M>A.</M>  
 

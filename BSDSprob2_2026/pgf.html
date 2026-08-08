@@ -160,7 +160,7 @@ rel="stylesheet" href="branch.css"></link></head><body>
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:13 IST 2026</i>
+Sat Aug 08 12:26:47 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -172,23 +172,29 @@ Sun Jul 19 09:18:13 IST 2026</i>
 </li>
 <li>2. <a href="#N10081">Properties of pgf</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N100D9">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10084">Power series</a>
 </li>
-<li>3. <a href="#N1017B">An application: Branching process</a>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N100F8">Back to probability</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101B3">Animation</a>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N10149">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N101ED">Extinction probability</a>
+<li>3. <a href="#N101EB">An application: Branching process</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N10217">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1020D">Animation</a>
 </li>
-<li>4. <a href="#N10254">Branching process: Using pgf</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10223">Progeny distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10308">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N1025D">Extinction probability</a>
 </li>
-<li>5. <a href="#N10345">Branching process: Exploring fixed points</a>
+<li>&nbsp;&nbsp;&nbsp;3.4. <a href="#N10287">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N103E3">Problem set</a>
+<li>4. <a href="#N102C4">Branching process: Using pgf</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10378">Problem set</a>
+</li>
+<li>5. <a href="#N103B5">Branching process: Exploring fixed points</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10453">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -250,7 +256,68 @@ Problem set</a>
 <h1>
 <a name="N10081"><span class="header">2</span>. Properties of pgf</a>
 </h1>
-As we have defined  pgf as a power series,  we need to talk about its convergence. 
+As we have defined  pgf as a power series,  we need to remember some properties of power
+ series that you have learned in Mathematics II. 
+<h2>
+<a name="N10084"><span class="header">2.1</span>.
+Power series</a>
+</h2>
+
+<ul>
+
+<li>
+By a power series we shall mean an expression of the form $a_0+a_1t+a_2t^2+\cdots,$  where
+ $a_0,a_1,a_2,...$  are fixed real numbers and $t$  is a variable taking values in ${\mathbb R}.$  
+</li>
+<li>
+For each value of $t\in{\mathbb R}$  the power series is an infinite series, which may or may not converge. 
+</li>
+<li>
+Any power series must converge at $t=0,$  because then only the first term remains. Any polynomial is also a power series,
+ which converges for all $t\in{\mathbb R}.$
+</li>
+<li>
+For any power series there is a number $r\in[0,\infty]$  such that the power series converges for all $t\in (-r,r)$ and
+ diverges for all $t\not\in[-r,r].$  This $r$  is called the <b><font color="red" size="40">radius of convergence</font></b>  of that power series.
+If $r=0,$  then the power series converges <i>only</i>  at $t=0.$  If $t=\infty,$  then it converges everywhere
+ in ${\mathbb R}.$
+</li>
+
+<li>
+ 
+</li>
+<li>
+If $r\in(0,\infty),$  The power series may or may not converge at $t = -r$  and $t=r.$  (depends on the
+ particular power series).  
+Thus, a power series defines a function 
+$$f(t) = a_0+a_1t+a_2t^2+\cdots,$$
+which has domain $(-r,r)$  or $[-r,r)$  or $(-r,r]$  or $[-r,r].$   
+</li>
+<li>
+If the radius of convergence $r&gt;0,$  then a power series can be differentiated term by term any number of
+ times for $t\in (-r,r)$, <i>i.e.</i>, if
+$$
+f(t)  = a_0+a_1t+a_2t^2+\cdots,
+$$
+then
+$$\begin{eqnarray*}
+f'(t)  &amp; = &amp; a_1+2a_2t+3a_3t^2+\cdots\\
+f''(t)  &amp; = &amp; a_2+6a_3t+12a_4t^2+\cdots\\
+&amp; \mbox{ etc}
+\end{eqnarray*}$$
+ The differentiate power series each has radius of convergence $\geq r.$  
+</li>
+<li>
+Also, if the power series converges at a boundary point of its interval of
+ convergence, we may compute its one-sided derivative using term-by-term differentiation.
+</li>
+</ul>
+ 
+<h2>
+<a name="N100F8"><span class="header">2.2</span>.
+Back to probability</a>
+</h2>
+
 <p></p>
 
 <fieldset>
@@ -261,17 +328,6 @@ Any pgf $p(t)$  must converge absolutely for $|t|\leq 1$.
 <p>
 <b><i>Proof:</i></b>If $|t|\leq 1$, then $\sum_k |p_k t^k| \leq \sum_k p_k = 1$. So we 
 have convergence by comparison test.<b><i>[QED]</i></b>
-</p>
-
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>A power series can be differentiated term by term any number of times term-by-term in the interior of its
- interval of convergence. Also, if the power series converges at a boundary point of its interval of
- convergence, we may compute its one-sided derivative using term-by-term differentiation.</fieldset>
-<p>
-<b><i>Proof:</i></b>Standard
- theorem from real analysis.<b><i>[QED]</i></b>
 </p>
 
 <p></p>
@@ -307,7 +363,7 @@ If $X$  are $Y$  are two random variables both taking only nonnegative integer v
 </p>
 
 <h2>
-<a name="N100D9"><span class="header">2.1</span>.
+<a name="N10149"><span class="header">2.3</span>.
 Problem set</a>
 </h2>
 
@@ -390,18 +446,28 @@ Hence the result follows as in (a).
 <p></p>
 
 <h1>
-<a name="N1017B"><span class="header">3</span>. An application: Branching process</a>
+<a name="N101EB"><span class="header">3</span>. An application: Branching process</a>
 </h1>
 Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
  will again split into two. If it goes on like this, then we shall have $2^n$  cells in the
- $n$-th generation (the initial cell belonged to generation 0). We shall
- call the number of cells in the $n$-th generation $X_n$. Thus, $X_n = 2^n$. Also,
+ $n$-th generation (the initial cell belonged to generation 0).
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/detree.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here $X_n$  is  the number of cells in the $n$-th generation. Thus, $X_n = 2^n$. Also,
  notice that when a cell splits into children, the original cell ceases to exist. 
 <p></p>
   This
  branching process is a deterministic
  one. Now let us consider a random branching process. Here again we start with a single cell in generation 0. Thus $X_0 = 1$.
- After a minute this cell "splits into" a random number of cells. The number may be any
+ After a minute this cell splits into a random number of cells. The number may be any
  nonnegative integer. In particular, we also allow the number to be 0 or 1 with the following interpretations:
 <ul>
 <li>If the number is 0, then the
@@ -409,26 +475,38 @@ Imagine a cell that will split into two cells after exactly one minute. Then, af
 <li>If the number is 1, then the original cell
  just continues into the next generation.  </li>
 </ul>
-This number is the size of generation 1. We shall call it $X_1$. Let the distribution of $X_1$  be
-given by $P(X_1=k) = p_k$  for $k=0,1,2,...$. Obviously, $\sum_0^\infty p_k = 1.$
+
 <p></p>
 After one more minute each cell in generation 1 will independently split into children following the same distribution. And
  the process will continue. 
-<p></p>
-As before, $X_n$  will denote the number of cells in the $n$-th generation. 
-<p></p>
-
 <h2>
-<a name="N101B3"><span class="header">3.1</span>.
+<a name="N1020D"><span class="header">3.1</span>.
 Animation</a>
 </h2>
+
+<p></p>
 Simulate up to generation: <input min="1" value="5" style="font-size:30px;" id="generations" type="number">
 
 <input type="button" style="font-size:30px;" 
 value="(Re)start" 
 onclick="doit()"/>
+<svg height="600" id="branchingTree" width="100%">svg</svg>
+<script
+language="javascript" src="branch.js">Dummy</script>
+<h2>
+<a name="N10223"><span class="header">3.2</span>.
+Progeny distribution</a>
+</h2>
+Notice that each cell behaves in an iid fashion using the same distribution to decide the number of children. This common
+ distribution is called the <b><font color="red" size="40">progeny distribution</font></b>  of the branching process. Since $X_0=1$, the progeny
+ distribution is the same as the distribution of $X_1.$
 <p></p>
-Here the <b><font color="red" size="40">progeny distribution</font></b>  is as follows.
+The progeny distribution is a distribution on the set of nonnegative integers. Let $p_k$  be
+ the probability that it
+ assigns to $k\in\{0,1,2,...\}.$
+Obviously, we need $\sum_0^\infty p_k = 1.$
+<p></p>
+In the above animation we used the following progeny distribution:
 <center>
 <table style="" border="1">
 
@@ -442,15 +520,11 @@ Here the <b><font color="red" size="40">progeny distribution</font></b>  is as f
 
 </table>
 </center>
-Cells will be shown as dots. Cells that 
-die without leaving any child are shown in red. Try the animation a number of times to explore various possibilities. 
-<svg height="600" id="branchingTree" width="100%">svg</svg>
-<script
-language="javascript" src="branch.js">Dummy</script>
+
 <p></p>
 
 <h2>
-<a name="N101ED"><span class="header">3.2</span>.
+<a name="N1025D"><span class="header">3.3</span>.
 Extinction probability</a>
 </h2>
 We want to find the <b><font color="red" size="40">extinction probability</font></b> for this process. 
@@ -465,7 +539,7 @@ We want to express $\theta$ in terms of $p_0,p_1,p_2,..$.?
 <p></p>
 
 <h2>
-<a name="N10217"><span class="header">3.3</span>.
+<a name="N10287"><span class="header">3.4</span>.
 Problem set</a>
 </h2>
 
@@ -500,7 +574,7 @@ must the extinction probability be 1?
 <b>EXERCISE 22:</b>&nbsp;Find $P(X_2=0)$  for the progeny distribution used in the simulation above.</p>
 
 <h1>
-<a name="N10254"><span class="header">4</span>. Branching process: Using pgf</a>
+<a name="N102C4"><span class="header">4</span>. Branching process: Using pgf</a>
 </h1>
 In the simple cases, where $p_0+p_1=0$  or $p_0+p_1=1$, we either have no birth or no death. 
 But if $p_0&gt;0$  and also $p_n&gt;0 $ for some $n\geq 2$, then we have both deaths and births, and
@@ -574,7 +648,7 @@ Clearly, since $\xi(t)$  is a continuous function, $\theta = \xi(\theta)$. In ot
 <p></p>
 
 <h2>
-<a name="N10308"><span class="header">4.1</span>.
+<a name="N10378"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -611,7 +685,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N10345"><span class="header">5</span>. Branching process: Exploring fixed points</a>
+<a name="N103B5"><span class="header">5</span>. Branching process: Exploring fixed points</a>
 </h1>
 How many fixed points can $\xi(t) $ have? Surely $1$  is a fixed point, since $\xi(1) = 1$. If
  it is the only one, then
@@ -688,7 +762,7 @@ Could you arrive at this answer without using pgf?
 <p></p>
 
 <h2>
-<a name="N103E3"><span class="header">5.1</span>.
+<a name="N10453"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 In the following exercises we consider $\xi(\cdot)$  as a function from $[0,1]$  to $[0,1].$
