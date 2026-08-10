@@ -229,20 +229,36 @@ A couple of points are in order here:
 <LI>Why are we putting the <M>p\geq 1</M>  condition?</LI>
 <LI>Would it not be more natural to write  <M>E(X_n^p)\to E(X^p)</M>  instead of <M>E|X_n-X|^p?</M></LI>
 </OL>
-The answer to the first question lies in Minkowski inequality, which  provides a triangle
- inequality, that will make <M>L_p</M>  convergence well-behaved for <M>p\geq 1.</M>  It is
- possible to have a similar definition for <M>0< p < 1,</M>  but it is not of much use. 
+The answer to the first question lies in the following
+ inequality:
+<THM name="Minkowski inequality">
+Let <M>1\leq p < \infty.</M> Let <M>X,Y</M> have
+finite <M>p</M>-th moment. Then
+<D>
+E|X+Y|^p\leq E|X|^p+E|Y|^p.
+</D>
+This is a form of the triangle inequality. 
+</THM>
+This inequality makes <M>L_p</M>  convergence well-behaved
+ for <M>p\geq 1.</M> Unfortunately, the inequality does not hold
+ in general for <M>p < 1.</M>
+
 
 Now let us explore the second question using <M>p=1.</M> 
 
-<EXR>
+<EXM>
 Let <M>(X_n), X </M>  be random variables on the same probability space. Consider the following two statements:
 <UL><LI> <M>E|X_n-X|\to 0.</M></LI>
 <LI> <M>E(X_n)\to E(X).</M></LI></UL>
 One of these is strictly stronger. Which one?
-<HINT>Consider 
+<SOLN/> 
+The first one is strictly stronger. 
+<D>
+|E(X_n)-E(X)| \leq |E(X_n-X)|\leq E|X_n-X|\to 0.
+</D>
+Consider 
 <M>X_n\equiv (-1)^n</M> and <M>X\equiv 1.</M>
-</HINT></EXR>
+</EXM>
 
 If you ever need <M>E(X_n)\to E(X)</M>  and <M>E(X_n^2)\to E(X^2),</M>  then you do not need to assume <M>L_1</M>  and <M>L_2</M> convergence
  separately. <M>L_2</M>  automatically implies <M>L_1.</M>  Indeed, we have the following theorem.
@@ -251,7 +267,8 @@ If you ever need <M>E(X_n)\to E(X)</M>  and <M>E(X_n^2)\to E(X^2),</M>  then you
 Let <M>p > q \geq 1.</M> Then if <M>X_n\toL p X</M> we
 must also have <M>X_n\toL q X.</M>
 </THM>
-<PF>
+<PF>Shall not prove in this course.</PF>
+<COMMENT><PF>
 Let <M>Y_n = X_n-X.</M> 
 
 Take <M>r=[[pq]]</M> and <M>s=[[p][p-q]]</M> so
@@ -268,7 +285,7 @@ Since <M>qr = p,</M>
 (\|Y_n\|_q)^q \leq (\|Y_n\|_p)^q   
 </D> 
 Hence the result. 
-</PF>
+</PF></COMMENT>
 
 I mentioned earlier that Minkowski inequality keeps <M>L_p</M>  convergence well-behaved for <M>p\geq 1.</M>  The next theorem
  is one example. 
@@ -387,7 +404,7 @@ We shall assume that the trials are iid. Now here we are introducing an approxim
 
 We also have a random variable: 
 <D>X(\omega) = <CASES>1 <IF>\omega\mbox{ supports the candiate}</IF> 0<ELSE/></CASES></D> 
-Here<M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
+Here <M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
 <M>X_1,...,X_{500}</M>  iid <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
 
 By CLT we have 

@@ -45,13 +45,13 @@ If <M>r=0,</M>  then the power series converges <I>only</I>  at <M>t=0.</M>  If 
 </LI>
 <LI>
  </LI><LI>
-If <M>r\in(0,\infty),</M>  The power series may or may not converge at <M>t = -r</M>  and <M>t=r.</M>  (depends on the
+If <M>r\in(0,\infty),</M>  the power series may or may not converge at <M>t = -r</M>  and <M>t=r.</M>  (depends on the
  particular power series).  
 Thus, a power series defines a function 
 <D>f(t) = a_0+a_1t+a_2t^2+\cdots,</D>
 which has domain <M>(-r,r)</M>  or <M>[-r,r)</M>  or <M>(-r,r]</M>  or <M>[-r,r].</M>   
 </LI><LI>
-If the radius of convergence <M>r>0,</M>  then a power series can be differentiated term by term any number of
+If <M>r>0,</M>  then the power series can be differentiated term by term any number of
  times for <M>t\in (-r,r)</M>, i.e., if
 <D>
 f(t)  = a_0+a_1t+a_2t^2+\cdots,
@@ -59,14 +59,18 @@ f(t)  = a_0+a_1t+a_2t^2+\cdots,
 then
 <MULTILINE>
 f'(t)  & = & a_1+2a_2t+3a_3t^2+\cdots\\
-f''(t)  & = & a_2+6a_3t+12a_4t^2+\cdots\\
-\mbox{
+f''(t)  & = & 2a_2+6a_3t+12a_4t^2+\cdots\\
+& \mbox{ etc}
 </MULTILINE>
-
- The differentiate power series has radius of convergence <M>\geq r.</M>  
+Each differentiated power series has radius of convergence <M>\geq r.</M>  
 </LI><LI>
-Also, if the power series converges at a boundary point of its interval of
- convergence, we may compute its one-sided derivative using term-by-term differentiation.
+Also, if the power series converges at <M>t=r</M>  or <M>t=-r</M>, 
+we may compute its one-sided derivative using term-by-term differentiation, i.e., 
+if <M>f(t) = a_0+a_1t+a_2t^2+\cdots</M>  has radius of convergence <M>r\in(0,\infty),</M>  and
+ it converges at <M>t=r</M>, then  
+<D>\lim_{h\to0+}[[f(r)-f(r-h)][h]] = a_1+2a_2r+3a_3r^2+\cdots.</D>
+ SImilarly, if the original power series converges at <M>t=-r,</M>  then
+<D>\lim_{h\to0+}[[f(r)-f(r-h)][h]] = a_1+2a_2r+3a_3r^2+\cdots.</D>
 </LI></UL>
  <HEAD2>Back to probability</HEAD2>
 
@@ -189,7 +193,7 @@ By <TERM>extinction</TERM> we mean the event that <M>X_n=0</M>  for some <M>n\in
 Since <M>\{X_1=0\}\seq \{X_2=0\}\seq\cdots, </M> hence the extinction probability is
  <M>\lim_{n\to\infty} P(X_n=0)=\theta</M>, say.  
 
-We want to express <M>\theta</M> in terms of <M>p_0,p_1,p_2,..</M>.?
+We want to express <M>\theta</M> in terms of the progeny distribution.
 
 <HEAD2>Problem set</HEAD2>
 <EXR> If <M>p_0 = 1</M>  (which implies <M>p_1=p_2=\cdots=0</M>), then what is the extinction probability?</EXR>
@@ -210,7 +214,7 @@ must the extinction probability be 1?
 In the simple cases, where <M>p_0+p_1=0</M>  or <M>p_0+p_1=1</M>, we either have no birth or no death. 
 But if <M>p_0>0</M>  and also <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have both deaths and births, and
  the interaction between them
-becomes rather complicated. That is where pgfs come to our help.
+becomes rather complicated. That is where probability generating functions come to our help.
 
 Let <M>\xi(t)</M>  be the pgf of the progeny distribution. In other words, 
 <D>\xi(t) = p_0+p_1t+p_2t^2+\cdots.</D>
@@ -325,7 +329,7 @@ So the final answer is:
 <LI>If <M>\xi'(t) < 1</M>, then <M>\theta=1</M>.</LI>
 <LI>If <M>\xi'(1)\geq 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
-Could you arrive at this answer without using pgf?  
+It is not easy to arrive at this answer without using pgf.  
 
 <HEAD2>Problem set</HEAD2>
 In the following exercises we consider <M>\xi(\cdot)</M>  as a function from <M>[0,1]</M>  to <M>[0,1].</M>
