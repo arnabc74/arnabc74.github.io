@@ -453,28 +453,28 @@ The last fact is actually a special case of the second.
 <HEAD2>Proof 1</HEAD2>
 The first fact is a direct consequence of the following theorem.
 <THM>
-Let  <M>\v X</M> be a <M>d</M>-dimensional random vector with components iid <M>N(0,1).</M>  Let
- <M>A_{r\times n}</M> be any fixed matrix and <M>\v b\in\rr^r</M> be any fixed vector. Then the
+Let  <M>\v X</M> be a <M>n</M>-dimensional random vector with components iid <M>N(0,1).</M>  Let
+ <M>A_{d\times n}</M> be any fixed matrix and <M>\v b\in\rr^d</M> be any fixed vector. Then the
  MGF of the random vector <M>A\v X + \v b</M>  is given by 
 <D>M(\v t)  = e^{\v b'\v t+[[12]]\v t' AA'\v t}\mbox{ for }\v t\in\rr^d.</D>
 </THM>
 <PF>
 <LINK to="image/nmgf1.png">Recall from Probability I</LINK> that mgf of each <M>X_i</M>  is <M>E(e^{sX_1})=e^{s^2/2}</M>  for <M>s\in\rr.</M>  
 
-So the mgf of <M>\v X = (X_1,...,X_d)'</M>  is 
+So the mgf of <M>\v X = (X_1,...,X_n)'</M>  is 
 <MULTILINE>
-E(e^{s_1X_1+\cdots+s_dX_d})
-& = & E(e^{s_1X_1})\cdots E(e^{s_dX_d}) <SINCE><M>\because</M>independent</SINCE> \\
-& = & e^{[[12]](s_1^2+\cdots+s_d^2)} = e^{\v s'\v s/2}
+M_{\v X}(\underbrace{s_1,...,s_n}_{\v s})=E(e^{s_1X_1+\cdots+s_nX_n})
+& = & E(e^{s_1X_1})\cdots E(e^{s_nX_n}) <SINCE><M>\because</M>independent</SINCE> \\
+& = & e^{[[12]](s_1^2+\cdots+s_n^2)} = e^{\v s'\v s/2}
 </MULTILINE>
-for all <M>\v s=(s_1,...,s_d)'\in\rr^d.</M>
+for all <M>\v s=(s_1,...,s_n)'\in\rr^n.</M>
 
-So mgf of <M>A\v X + \v b</M>  is 
+So mgf of <M>\v Y = A\v X + \v b</M>  is 
 <MULTILINE>
-E(e^{\v t'(A\v X+\v b)})
+M_{\v Y}(\v t) & = & E(e^{\v t'(A\v X+\v b)})\\
 & = & E(e^{\v t'A\v X+\v t'\v b})\\
-& = & e^{\v t'\v b}E(\v t'A\v X)\\
-& = & e^{\v t'\v b}E((A'\v t)'\v X)\\
+& = & e^{\v t'\v b}E(e^{\v t'A\v X})\\
+& = & e^{\v t'\v b}E(e^{(A'\v t)'\v X})\\
 & = &
  e^{\v t'\v b}e^{(A'\v t)'(A'\v t)/2}\\
 & = & e^{\v t'\v b+\v t' AA'\v t/2},
@@ -537,5 +537,5 @@ Since <M>\Sigma</M>  is symmetric, hence the <B>fact from linear algebra</B> for
 Find the distribution of <M>(X,Y).</M> 
 </EXR>
 
-<EXR>Write the density of <M>X</M>  if it has mgf <M>M(t) = \exp(1+2t+3t^2)</M>  for <M>t\in\rr.</M>  </EXR>
+<EXR>Write the density of <M>X</M>  if it has mgf <M>M(t) = \exp(2t+3t^2)</M>  for <M>t\in\rr.</M>  </EXR>
 </NOTE>@}

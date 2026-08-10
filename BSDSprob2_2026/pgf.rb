@@ -19,7 +19,10 @@ with <M>P(X=k) = p_k</M>  for <M>k=0,1,2,...</M>  Then
 <EXR>Find the pgf of  <M>Geom(p)</M>  distribution that takes all nonnegative integer values.</EXR>
 <EXR>Find the pgf of  <M>Geom(p)</M>  distribution that takes all positive integer values.</EXR>
 <EXR>If <M>X</M>  has pgf <M>p(t),</M>  then what is the pgf of <M>X+1?</M></EXR>
-<EXR>If <M>p(t)</M>  is a pgf, then what must the value of <M>p(0)</M>  be?</EXR>
+<EXR>If <M>X</M>  is a random variable with pgf <M>p(t)</M>, then express <M>p(0)</M>  as the probability of some event in
+ terms of <M>X.</M>
+</EXR>
+<EXR>If <M>p(t)</M>  is a pgf, then what must the value of <M>p(1)</M>  be?</EXR>
 <EXR>Let <M>P(X=n) = [[1][cn^2]]</M>  for <M>n\in\nn</M>  where <M>c = \sum_n [[1][n^2]] <
  \infty.</M>  Find the pgf <M>p(t)</M>  of <M>X.</M>  Does it converge at
  <M>t=[[12]]</M>? At <M>t=1?</M>  At <M>t=-1?</M>  At <M>t=2</M>?</EXR>

@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 10 08:26:23 IST 2026</i>
+Mon Aug 10 12:15:29 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -869,8 +869,8 @@ Proof 1</a>
 The first fact is a direct consequence of the following theorem.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let  $\v X$ be a $d$-dimensional random vector with components iid $N(0,1).$  Let
- $A_{r\times n}$ be any fixed matrix and $\v b\in{\mathbb R}^r$ be any fixed vector. Then the
+Let  $\v X$ be a $n$-dimensional random vector with components iid $N(0,1).$  Let
+ $A_{d\times n}$ be any fixed matrix and $\v b\in{\mathbb R}^d$ be any fixed vector. Then the
  MGF of the random vector $A\v X + \v b$  is given by 
 $$M(\v t)  = e^{\v b'\v t+\frac 12\v t' AA'\v t}\mbox{ for }\v t\in{\mathbb R}^d.$$
 </fieldset>
@@ -879,20 +879,20 @@ $$M(\v t)  = e^{\v b'\v t+\frac 12\v t' AA'\v t}\mbox{ for }\v t\in{\mathbb R}^d
 <b><i>Proof:</i></b>
 <a href="image/nmgf1.png">Recall from Probability I</a> that mgf of each $X_i$  is $E(e^{sX_1})=e^{s^2/2}$  for $s\in{\mathbb R}.$  
 <p></p>
-So the mgf of $\v X = (X_1,...,X_d)'$  is 
+So the mgf of $\v X = (X_1,...,X_n)'$  is 
 $$\begin{eqnarray*}
-E(e^{s_1X_1+\cdots+s_dX_d})
-&amp; = &amp; E(e^{s_1X_1})\cdots E(e^{s_dX_d}) ~~\left[\mbox{$\because$independent}\right] \\
-&amp; = &amp; e^{\frac 12(s_1^2+\cdots+s_d^2)} = e^{\v s'\v s/2}
+M_{\v X}(\underbrace{s_1,...,s_n}_{\v s})=E(e^{s_1X_1+\cdots+s_nX_n})
+&amp; = &amp; E(e^{s_1X_1})\cdots E(e^{s_nX_n}) ~~\left[\mbox{$\because$independent}\right] \\
+&amp; = &amp; e^{\frac 12(s_1^2+\cdots+s_n^2)} = e^{\v s'\v s/2}
 \end{eqnarray*}$$
-for all $\v s=(s_1,...,s_d)'\in{\mathbb R}^d.$
+for all $\v s=(s_1,...,s_n)'\in{\mathbb R}^n.$
 <p></p>
-So mgf of $A\v X + \v b$  is 
+So mgf of $\v Y = A\v X + \v b$  is 
 $$\begin{eqnarray*}
-E(e^{\v t'(A\v X+\v b)})
+M_{\v Y}(\v t) &amp; = &amp; E(e^{\v t'(A\v X+\v b)})\\
 &amp; = &amp; E(e^{\v t'A\v X+\v t'\v b})\\
-&amp; = &amp; e^{\v t'\v b}E(\v t'A\v X)\\
-&amp; = &amp; e^{\v t'\v b}E((A'\v t)'\v X)\\
+&amp; = &amp; e^{\v t'\v b}E(e^{\v t'A\v X})\\
+&amp; = &amp; e^{\v t'\v b}E(e^{(A'\v t)'\v X})\\
 &amp; = &amp;
  e^{\v t'\v b}e^{(A'\v t)'(A'\v t)/2}\\
 &amp; = &amp; e^{\v t'\v b+\v t' AA'\v t/2},
@@ -980,7 +980,7 @@ Find the distribution of $(X,Y).$
 <p></p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;Write the density of $X$  if it has mgf $M(t) = \exp(1+2t+3t^2)$  for $t\in{\mathbb R}.$  </p>
+<b>EXERCISE 23:</b>&nbsp;Write the density of $X$  if it has mgf $M(t) = \exp(2t+3t^2)$  for $t\in{\mathbb R}.$  </p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>
