@@ -160,7 +160,7 @@ rel="stylesheet" href="branch.css"></link></head><body>
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 10 12:21:56 IST 2026</i>
+Wed Aug 12 08:45:57 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -174,27 +174,27 @@ Mon Aug 10 12:21:56 IST 2026</i>
 </li>
 <li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10093">Power series</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N10122">Back to probability</a>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N10137">Back to probability</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N10173">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N10193">Problem set</a>
 </li>
-<li>3. <a href="#N10215">An application: Branching process</a>
+<li>3. <a href="#N1023B">An application: Branching process</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10237">Animation</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1025D">Animation</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N1024D">Progeny distribution</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N10273">Progeny distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N10287">Extinction probability</a>
+<li>&nbsp;&nbsp;&nbsp;3.3. <a href="#N102AD">Extinction probability</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.4. <a href="#N102AE">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.4. <a href="#N102D4">Problem set</a>
 </li>
-<li>4. <a href="#N102EB">Branching process: Using pgf</a>
+<li>4. <a href="#N10311">Branching process: Using pgf</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1039F">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N103C5">Problem set</a>
 </li>
-<li>5. <a href="#N103DC">Branching process: Exploring fixed points</a>
+<li>5. <a href="#N10402">Branching process: Exploring fixed points</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1047A">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N104A0">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -275,22 +275,29 @@ By a power series we shall mean an expression of the form $a_0+a_1t+a_2t^2+\cdot
  $a_0,a_1,a_2,...$  are fixed real numbers and $t$  is a variable taking values in ${\mathbb R}.$  
 </li>
 <li>
-For each value of $t\in{\mathbb R}$  the power series is an infinite series, which may or may not converge. 
+For each value of $t\in{\mathbb R}$  the power series is an infinite series, which may or may not converge. Also, if 
+$\sum|a_k t^k|$  converges, then $\sum a_k t^k$  must also converge. This special case is called <b><font color="red" size="40">absolute convergence</font></b>.
 </li>
 <li>
 Any power series must converge at $t=0,$  because then only the first term remains. Any polynomial is also a power series,
- which converges for all $t\in{\mathbb R}.$
+ which converges for all $t\in{\mathbb R}$, since only finitely many terms remain.
 </li>
 <li>
-For any power series there is a number $r\in[0,\infty]$  such that the power series converges for all $t\in (-r,r)$ and
- diverges for all $t\not\in[-r,r].$  This $r$  is called the <b><font color="red" size="40">radius of convergence</font></b>  of that power series.
-If $r=0,$  then the power series converges <i>only</i>  at $t=0.$  If $t=\infty,$  then it converges everywhere
+For any power series there is a unique number $r\in[0,\infty]$  such that:
+<ul>
+<li>if $r\in(0,\infty),$  then  the power series converges for all $t\in (-r,r)$ and
+ diverges for all $t\not\in[-r,r].$ </li>
+
+<li> 
+If $r=0,$  then the power series converges <i>only</i>  at $t=0.$ 
+</li>
+<li> If $r=\infty,$  then it converges everywhere
  in ${\mathbb R}.$
 </li>
-
-<li>
- 
+</ul>
+This $r$  is called the <b><font color="red" size="40">radius of convergence</font></b>  of that power series.
 </li>
+
 <li>
 If $r\in(0,\infty),$  the power series may or may not converge at $t = -r$  and $t=r.$  (depends on the
  particular power series).  
@@ -322,9 +329,11 @@ $$\lim_{h\rightarrow0+}\frac{f(r)-f(r-h)}{h} = a_1+2a_2r+3a_3r^2+\cdots.$$
 $$\lim_{h\rightarrow0+}\frac{f(-r)-f(-r+h)}{h} = a_1+2a_2(-r)+3a_3(-r)^2+\cdots.$$
 </li>
 </ul>
+In short, a power series is a nicely behaved thing, where all the intuitive things hold!
+<p></p>
  
 <h2>
-<a name="N10122"><span class="header">2.2</span>.
+<a name="N10137"><span class="header">2.2</span>.
 Back to probability</a>
 </h2>
 
@@ -337,11 +346,19 @@ Any pgf $p(t)$  must converge absolutely for $|t|\leq 1$.
 
 <p>
 <b><i>Proof:</i></b>If $|t|\leq 1$, then $\sum_k |p_k t^k| \leq \sum_k p_k = 1$. So we 
-have convergence by comparison test.<b><i>[QED]</i></b>
+have absolute convergence.<b><i>[QED]</i></b>
 </p>
 
 <p></p>
-Thanks to the above theorem, 
+So we can differentiate it term-by-term any number of times:
+$$\begin{eqnarray*}
+p(t) &amp; = &amp; p_0+p_1t+p_2t^2+\cdots,\\
+p'(t)  &amp; = &amp; p_1+2p_2t+3p_3t^2+\cdots\\
+p''(t)  &amp; = &amp; 2p_2+6p_3t+12p_4t^2+\cdots\\
+p'''(t)  &amp; = &amp; 6p_3+24p_4t+60p_5t^2+\cdots\\
+&amp; \mbox{ etc}
+\end{eqnarray*}$$
+Notice the pattern. Thanks to this pattern,
 we can recover the probabilities from the pgf by repeated differentiation at $t=0$:
 $$p_n = \frac{p^{(n)}(0)}{n!}$$.
 Hence we get the following theorem.
@@ -369,11 +386,14 @@ If $X$  are $Y$  are two random variables both taking only nonnegative integer v
 
 <p>
 <b><i>Proof:</i></b>Since $p(t)$  has radius of convergence at least $1,$  hence we may use term-by-term
- differentiation any number of times at $t=1.$  <b><i>[QED]</i></b>
+ differentiation any number of times at $t=1.$  
+<p></p>
+For example, $p'(t) = \sum_0^\infty kp_k t^{k-1}.$  So $p'(1) = \sum_0^\infty kp_k = E(X).$
+<b><i>[QED]</i></b>
 </p>
 
 <h2>
-<a name="N10173"><span class="header">2.3</span>.
+<a name="N10193"><span class="header">2.3</span>.
 Problem set</a>
 </h2>
 
@@ -393,12 +413,13 @@ Problem set</a>
 <p></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;Show that a pgf must always be a nondecreasing function. Must it be a strictly increasing function?</p>
+<b>EXERCISE 12:</b>&nbsp;Show that a pgf must always be a nondecreasing function over $[0,1].$   Must it be a
+ strictly increasing function there?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;Show that a pgf must be a convex function (<i>i.e.</i>, second derivative must be nonnegative). When
+<b>EXERCISE 13:</b>&nbsp;Show that a pgf must be a convex function (<i>i.e.</i>, second derivative must be nonnegative) over $[0,1]$. When
  will it be strictly convex?</p>
 
 <p></p>
@@ -456,7 +477,7 @@ Hence the result follows as in (a).
 <p></p>
 
 <h1>
-<a name="N10215"><span class="header">3</span>. An application: Branching process</a>
+<a name="N1023B"><span class="header">3</span>. An application: Branching process</a>
 </h1>
 Imagine a cell that will split into two cells after exactly one minute. Then, after one more minute, each of these two cells
  will again split into two. If it goes on like this, then we shall have $2^n$  cells in the
@@ -490,7 +511,7 @@ Here $X_n$  is  the number of cells in the $n$-th generation. Thus, $X_n = 2^n$.
 After one more minute each cell in generation 1 will independently split into children following the same distribution. And
  the process will continue. 
 <h2>
-<a name="N10237"><span class="header">3.1</span>.
+<a name="N1025D"><span class="header">3.1</span>.
 Animation</a>
 </h2>
 
@@ -504,7 +525,7 @@ onclick="doit()"/>
 <script
 language="javascript" src="branch.js">Dummy</script>
 <h2>
-<a name="N1024D"><span class="header">3.2</span>.
+<a name="N10273"><span class="header">3.2</span>.
 Progeny distribution</a>
 </h2>
 Notice that each cell behaves in an iid fashion using the same distribution to decide the number of children. This common
@@ -534,7 +555,7 @@ In the above animation we used the following progeny distribution:
 <p></p>
 
 <h2>
-<a name="N10287"><span class="header">3.3</span>.
+<a name="N102AD"><span class="header">3.3</span>.
 Extinction probability</a>
 </h2>
 We want to find the <b><font color="red" size="40">extinction probability</font></b> for this process. 
@@ -549,7 +570,7 @@ We want to express $\theta$ in terms of the progeny distribution.
 <p></p>
 
 <h2>
-<a name="N102AE"><span class="header">3.4</span>.
+<a name="N102D4"><span class="header">3.4</span>.
 Problem set</a>
 </h2>
 
@@ -584,7 +605,7 @@ must the extinction probability be 1?
 <b>EXERCISE 23:</b>&nbsp;Find $P(X_2=0)$  for the progeny distribution used in the simulation above.</p>
 
 <h1>
-<a name="N102EB"><span class="header">4</span>. Branching process: Using pgf</a>
+<a name="N10311"><span class="header">4</span>. Branching process: Using pgf</a>
 </h1>
 In the simple cases, where $p_0+p_1=0$  or $p_0+p_1=1$, we either have no birth or no death. 
 But if $p_0&gt;0$  and also $p_n&gt;0 $ for some $n\geq 2$, then we have both deaths and births, and
@@ -658,7 +679,7 @@ Clearly, since $\xi(t)$  is a continuous function, $\theta = \xi(\theta)$. In ot
 <p></p>
 
 <h2>
-<a name="N1039F"><span class="header">4.1</span>.
+<a name="N103C5"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -695,7 +716,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N103DC"><span class="header">5</span>. Branching process: Exploring fixed points</a>
+<a name="N10402"><span class="header">5</span>. Branching process: Exploring fixed points</a>
 </h1>
 How many fixed points can $\xi(t) $ have? Surely $1$  is a fixed point, since $\xi(1) = 1$. If
  it is the only one, then
@@ -772,7 +793,7 @@ It is not easy to arrive at this answer without using pgf.
 <p></p>
 
 <h2>
-<a name="N1047A"><span class="header">5.1</span>.
+<a name="N104A0"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 In the following exercises we consider $\xi(\cdot)$  as a function from $[0,1]$  to $[0,1].$
