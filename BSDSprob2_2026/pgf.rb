@@ -230,7 +230,7 @@ must the extinction probability be 1?
 
 <EXR>Find <M>P(X_2=0)</M>  for the progeny distribution used in the simulation above.</EXR>
 <HEAD1>Branching process: Using pgf</HEAD1>
-In the simple cases, where <M>p_0+p_1=0</M>  or <M>p_0+p_1=1</M>, we either have no birth or no death. 
+In the simple cases, where <M>p_0=0</M>  or <M>p_0+p_1=1</M>, we either have no death or no birth. 
 But if <M>p_0>0</M>  and also <M>p_n>0 </M> for some <M>n\geq 2</M>, then we have both deaths and births, and
  the interaction between them
 becomes rather complicated. That is where probability generating functions come to our help.
@@ -285,10 +285,10 @@ Clearly, since <M>\xi(t)</M>  is a continuous function, <M>\theta = \xi(\theta)<
 
 <HEAD2>Problem set</HEAD2>
 <EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=1.</M></EXR>
-<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=[[13]]</M>  nd <M>p_1=[[23]].</M></EXR>
+<EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=[[13]]</M>  and <M>p_1=[[23]].</M></EXR>
 <EXR>Find all fixed points of <M>\xi(t)</M>  when <M>p_0=0.4, p_1=0.2, p_2=0.4.</M></EXR>
 
-<EXR>Show that <M>\xi_n(t) = \xi(\xi_{n-1}(t)).</M>  
+<EXR>*Show that <M>\xi_n(t) = \xi(\xi_{n-1}(t)).</M>  
 <HINT>Use the conditioning argument employed in
  proof for <M>\xi_2(t)</M>  earlier.</HINT></EXR>
 
@@ -345,8 +345,8 @@ The two cases are shown below graphically:
 
 So the final answer is:
 <UL>
-<LI>If <M>\xi'(t) < 1</M>, then <M>\theta=1</M>.</LI>
-<LI>If <M>\xi'(1)\geq 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
+<LI>If <M>\xi'(t) \leq 1</M>, then <M>\theta=1</M>.</LI>
+<LI>If <M>\xi'(1)> 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
 It is not easy to arrive at this answer without using pgf.  
 
