@@ -10,7 +10,7 @@ Find the density of <M>(X^2+Y, Y).</M>  Do not forget to mention the support.
 </EXR>
 
 <EXR>
-If <M>X_1,...,X_{10}</M>  are iid <M>N(\mu, \sigma^2)</M>  where <M>mm\in\rr</M>  and
+If <M>X_1,...,X_{10}</M>  are iid <M>N(\mu, \sigma^2)</M>  where <M>\mu\in\rr</M>  and
  <M>\sigma^2>0</M>  are both unknown. Find <M>a > 0</M>  such that <M>P(*(-a \leq [[\hat
  \mu-\mu][\hat \sigma]] \leq a)*) = 0.95,</M>  where <M>\hat \mu = \bar X</M>  and <M>\hat \sigma^2 = [[1][9]]\sum_1^{10}(X_i-\bar X)^2.</M>  
 Your answer should be in terms of <M>F_k(\cdot),</M>  the distribution function of the <M>t_{(k)}</M>  distribution.
