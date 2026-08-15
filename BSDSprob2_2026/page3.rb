@@ -5,7 +5,7 @@
 <M>\newcommand{\cov}{\mathrm{cov}}</M>
 <TITLE>Inequalities</TITLE>
 <UPDT/>
-<HEAD1>Cauchy-Schwartz</HEAD1>
+<HEAD1>Cauchy-Schwarz</HEAD1>
 
 <THM name="Cauchy-Schwarz inequality">
 <M>cov(X,Y)^2 \leq V(X)V(Y).</M>
@@ -31,7 +31,7 @@ So we have either <M>P(Z_1+Z_2=k)=1</M> or <M>P(Z_1-Z_2=k)=1</M>  for some <M>k\
 
 In both cases we have <M>P(aX+bY=c)=1</M>  for some constants, <M>a,b,c,</M>  as required.
 </PF>
-It is instructive to think about the  Cauchy-Schwartz inequality from a geometric perspective. If
+It is instructive to think about the  Cauchy-Schwarz inequality from a geometric perspective. If
  we take two vectors , <M>\v u</M>  and <M>\v v</M>  in
  2D or 3D, we have the identity 
 <D>\v u\bullet\v v = \| \v u\| \cdot \|\v v\|\cos \theta,</D>
@@ -46,7 +46,7 @@ Similarly, <M>\sqrt{\cov(X,X)} = \sqrt{V(X)}.</M>
 In this sense <M>\cos \theta = [[\cov(X,Y)][\sqrt{V(X)V(Y)}]].</M>
 
 Can we recover <M>\theta</M>  from this? Yes, using <M>cos ^{-1},</M>  provided the RHS is between <M>-1</M>  and <M>1.</M>
-Well, the Cauchy-Schwartz inequality guarantees precisely that. In this geometric interpretation,
+Well, the Cauchy-Schwarz inequality guarantees precisely that. In this geometric interpretation,
  <M>\cos \theta</M>  is called the correlation coefficient between <M>X</M>  and <M>Y.</M>  
 
 <HEAD2>Problem set</HEAD2>
