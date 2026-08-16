@@ -8,21 +8,38 @@
 <HEAD1>Cauchy-Schwarz</HEAD1>
 
 <THM name="Cauchy-Schwarz inequality">
+Let <M>X,Y</M>  be two jointly distributed random variables (i.e., both defined on the same
+ probability space) with finite variances. Then   
 <M>cov(X,Y)^2 \leq V(X)V(Y).</M>
 Equality holds iff <M>\exists a,b,c\in\rr~~P(aX+bY=c)=1.</M>
 </THM>
 <PF>
-The result is obvious if <M>V(X)=0</M> or <M>V(Y)=0.</M>   So let's
-consider the case where <M>V(X), V(Y)>0.</M>
+<U>Case 1: <M>V(X)=0</M></U>: Then <M>X</M>  is a constant (say <M>c</M>) with probability 1. So
+ <M>E(X)=c.</M>  
 
-Define <M>Z_1 = [[X-E(X)][V(X)]]</M>  and <M>Z_2 = [[Y-E(Y)][V(Y)]].</M>  
+In this case,  
+<D>\cov(X,Y) = E(#( (X-E(X))(Y-E(Y)) )#) = E(#( (c-c) (Y-E(Y)) )#) = 0,</D>
+and so the inequality holds trivially (both sides being 0).
 
-We know that <M>V(Z_1+Z_2)\geq 0.</M>
+<U>Case 2: <M>V(Y)=0</M></U>: Similar to <B>Case 1</B>.
 
-Derive from this <M>\cov(X,Y)\geq -1.</M>  
+<U>Case 3: <M>V(X), V(Y)>0</M></U>: 
 
+Define <M>Z_1 = [[X-E(X)][\sqrt{V(X)}]]</M>  and <M>Z_2 = [[Y-E(Y)][\sqrt{V(Y)}]].</M>  
 
-Similarly, derive <M>\cov(X,Y)\leq 1</M>  from <M>V(Z_1-Z_2)\geq 0.</M>
+Notice that <M>E(Z_1^2) = E(Z_2^2) = 1</M>  and <M>E(Z_1Z_2) = [[\cov(X,Y)][\sqrt{V(X)V(Y)}]].</M>
+
+Now
+<MULTILINE>
+& &  E(Z_1\pm Z_2)^2 \geq 0\\
+&\mbox{or } & E(Z_1^2) + E(Z_2^2) \pm 2E(Z_1Z_2) \geq 0\\
+&\mbox{or } & 1 + 1 \pm  [[2\cov(X,Y)][\sqrt{V(X)V(Y)}]]\geq 0\\
+&\mbox{or } & 1  \pm  [[\cov(X,Y)][\sqrt{V(X)V(Y)}]]\geq 0\\
+&\mbox{or } & \pm  [[\cov(X,Y)][\sqrt{V(X)V(Y)}]]\leq 1\\
+&\mbox{or } & (*([[\cov(X,Y)][\sqrt{V(X)V(Y)}]])*)^2\leq 1\\
+&\mbox{or } & \cov(X,Y)^2\leq V(X)V(Y),
+</MULTILINE>
+as required. 
 
 Also equality holds iff <M>V(Z_1+Z_2)=0</M>  or <M>V(Z_1-Z_2)=0</M>, i.e., if
 <M>Z_1+Z_2</M> or <M>Z_1-Z_2</M>  is degenerate.
@@ -47,13 +64,21 @@ In this sense <M>\cos \theta = [[\cov(X,Y)][\sqrt{V(X)V(Y)}]].</M>
 
 Can we recover <M>\theta</M>  from this? Yes, using <M>cos ^{-1},</M>  provided the RHS is between <M>-1</M>  and <M>1.</M>
 Well, the Cauchy-Schwarz inequality guarantees precisely that. In this geometric interpretation,
- <M>\cos \theta</M>  is called the correlation coefficient between <M>X</M>  and <M>Y.</M>  
+ <M>\cos \theta</M>  is called the <TERM>correlation coefficient</TERM> between <M>X</M>  and <M>Y.</M>  
 
 <HEAD2>Problem set</HEAD2>
-<EXR><M>X</M>  is a nonnegative random variable with finite second moment. Show that <M>P(X>0)\geq [[E^2(X)][E(X^2)]].
-<HINT>Think of <M>X</M>  as  <M>X1_{X>0}.</M>
+
+<EXR>Let <M>V(X) = 2</M>, <M>V(Y) = 4.5</M>  and <M>\cov(X,Y) = -3.</M>  If <M>E(X) = 1</M>,
+ <M>E(Y) = 2,</M>  then find <M>a,b,c\in\rr</M>  such that <M>P(aX+bY+c=0)=1.</M>
+<HINT>Here equality holds in Cauchy-Schwarz inequality. Define <M>Z_1,Z_2</M>  as in the proof of
+ Cauchy-Schwarz inequality. Either
+ <M>V(Z_1+Z_2)=0</M>  or <M>V(Z_1-Z_2)=0.</M>  Which one? </HINT>
+</EXR>
+
+<EXR><M>X</M>  is a nonnegative random variable with finite second moment. Show that <M>P(X>0)\geq [[E^2(X)][E(X^2)]].</M>
+<HINT>Think of <M>X</M>  as  <M>X\times 1_{X>0}.</M>
 </HINT>
-</M></EXR>
+</EXR>
 
 <EXR>Let <M>X_1,...,X_n</M>  be random variables with finite second moments. Show that
 <D>V(*(\sum X_i)*) \leq (*(\sum\sqrt{V(X_i)})*)^2.</D>
@@ -62,13 +87,21 @@ Well, the Cauchy-Schwarz inequality guarantees precisely that. In this geometric
 <EXR>Show that <M>E|X-E(X)|\leq \sqrt{V(X)}</M>  for any random variable <M>X</M>  with finite second moment.</EXR>
 
 <EXR>If <M>E(X^2)=E(Y^2) = E(XY),</M>  then show that <M>P(X=Y)=1.</M></EXR>
+
+
 <HEAD1>Markov and Chebyshev inequalities</HEAD1>
 Let us start with a commonsense example.
- 
+
+<EXM>10 nonnegative numbers have a total of 100. Three of the numbers are <M>\geq 35</M>. Can this statement be true?<SOLN/>
+No, because just these three numbers already have a total exceeding 100. Since the other numbers are nonnegative,
+ they cannot bring the total down!</EXM> 
+
+A slightly less trivial version of the same idea is used below.
+
 <EXR>Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
- a salary of Rs 250,000
- or more. Can this claim be true?<ANS>
-Of course not! Even if the other employess get no salary at all, the average must be at least <M>0.3\times 250,000,</M> 
+salaries of <M>\geq</M>Rs 250,000.
+Can this claim be true?<ANS>
+Of course not! Even if the other employees get no salary at all, the average must be at least <M>0.3\times 250,000,</M> 
  which exceeds the stated average.
  
 In fact, no more than <M>[[15]]</M> of

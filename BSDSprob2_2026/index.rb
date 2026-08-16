@@ -2,6 +2,8 @@
 <HEAD1>Probability II (BSDS 2nd year, 2026)</HEAD1>
 URL: https://arnabc74.github.io/BSDSprob2_2026/
 <NEWS src="news.html">Updates will be notified here:</NEWS>
+<ALERT>The <LINK to="ass1.html">first assignment</LINK> is out. Submission date is Aug 31, 2026.</ALERT>
+
 <HEAD2>Class notes</HEAD2>
 <OL>
 <LI><LINK to="elem.html">Motivation behind probability</LINK></LI>

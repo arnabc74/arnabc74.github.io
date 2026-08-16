@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sat Aug 15 18:22:53 IST 2026</i>
+Sun Aug 16 21:27:43 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -167,15 +167,15 @@ Sat Aug 15 18:22:53 IST 2026</i>
 <ul>
 <li>1. <a href="#N10015">Cauchy-Schwarz</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N100A9">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N100C8">Problem set</a>
 </li>
-<li>2. <a href="#N100DC">Markov and Chebyshev inequalities</a>
+<li>2. <a href="#N10126">Markov and Chebyshev inequalities</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1013C">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10195">Problem set</a>
 </li>
-<li>3. <a href="#N10168">Real life applications</a>
+<li>3. <a href="#N101C1">Real life applications</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1018B">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101E4">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -189,7 +189,7 @@ $\newcommand{\cov}{\mathrm{cov}}$
 <tr>
 <td align="right"><i>Last
 updated on:
-Sat Aug 15 18:22:53 IST 2026</i></td>
+Sun Aug 16 21:27:43 IST 2026</i></td>
 </tr>
 </table>
 
@@ -201,22 +201,42 @@ Sat Aug 15 18:22:53 IST 2026</i></td>
 
 <fieldset>
 <legend><b><i>Cauchy-Schwarz inequality</i></b></legend>
+Let $X,Y$  be two jointly distributed random variables (<i>i.e.</i>, both defined on the same
+ probability space) with finite variances. Then   
 $cov(X,Y)^2 \leq V(X)V(Y).$
 Equality holds iff $\exists a,b,c\in{\mathbb R}~~P(aX+bY=c)=1.$
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>
-The result is obvious if $V(X)=0$ or $V(Y)=0.$   So let's
-consider the case where $V(X), V(Y)&gt;0.$
+<u>Case 1: $V(X)=0$</u>: Then $X$  is a constant (say $c$) with probability 1. So
+ $E(X)=c.$  
 <p></p>
-Define $Z_1 = \frac{X-E(X)}{V(X)}$  and $Z_2 = \frac{Y-E(Y)}{V(Y)}.$  
+In this case,  
+$$\cov(X,Y) = E\big( (X-E(X))(Y-E(Y)) \big) = E\big( (c-c) (Y-E(Y)) \big) = 0,$$
+and so the inequality holds trivially (both sides being 0).
 <p></p>
-We know that $V(Z_1+Z_2)\geq 0.$
+
+<u>Case 2: $V(Y)=0$</u>: Similar to <b>Case 1</b>.
 <p></p>
-Derive from this $\cov(X,Y)\geq -1.$  
+
+<u>Case 3: $V(X), V(Y)&gt;0$</u>: 
 <p></p>
-Similarly, derive $\cov(X,Y)\leq 1$  from $V(Z_1-Z_2)\geq 0.$
+Define $Z_1 = \frac{X-E(X)}{\sqrt{V(X)}}$  and $Z_2 = \frac{Y-E(Y)}{\sqrt{V(Y)}}.$  
+<p></p>
+Notice that $E(Z_1^2) = E(Z_2^2) = 1$  and $E(Z_1Z_2) = \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}.$
+<p></p>
+Now
+$$\begin{eqnarray*}
+&amp; &amp;  E(Z_1\pm Z_2)^2 \geq 0\\
+&amp;\mbox{or } &amp; E(Z_1^2) + E(Z_2^2) \pm 2E(Z_1Z_2) \geq 0\\
+&amp;\mbox{or } &amp; 1 + 1 \pm  \frac{2\cov(X,Y)}{\sqrt{V(X)V(Y)}}\geq 0\\
+&amp;\mbox{or } &amp; 1  \pm  \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}\geq 0\\
+&amp;\mbox{or } &amp; \pm  \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}\leq 1\\
+&amp;\mbox{or } &amp; \left(\frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}\right)^2\leq 1\\
+&amp;\mbox{or } &amp; \cov(X,Y)^2\leq V(X)V(Y),
+\end{eqnarray*}$$
+as required. 
 <p></p>
 Also equality holds iff $V(Z_1+Z_2)=0$  or $V(Z_1-Z_2)=0$, <i>i.e.</i>, if
 $Z_1+Z_2$ or $Z_1-Z_2$  is degenerate.
@@ -251,53 +271,83 @@ In this sense $\cos \theta = \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}.$
 <p></p>
 Can we recover $\theta$  from this? Yes, using $cos ^{-1},$  provided the RHS is between $-1$  and $1.$
 Well, the Cauchy-Schwarz inequality guarantees precisely that. In this geometric interpretation,
- $\cos \theta$  is called the correlation coefficient between $X$  and $Y.$  
+ $\cos \theta$  is called the <b><font color="red" size="40">correlation coefficient</font></b> between $X$  and $Y.$  
 <p></p>
 
 <h2>
-<a name="N100A9"><span class="header">1.1</span>.
+<a name="N100C8"><span class="header">1.1</span>.
 Problem set</a>
 </h2>
-
-<p>
-<b>EXERCISE 1:</b>&nbsp;$X$  is a nonnegative random variable with finite second moment. Show that $P(X&gt;0)\geq \frac{E^2(X)}{E(X^2)}.
-<p>
-<b>Hint:</b>
-<blockquote>Think of $X$  as  $X1_{X&gt;0}.$
-</blockquote>
-</p>
-$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 2:</b>&nbsp;Let $X_1,...,X_n$  be random variables with finite second moments. Show that
+<b>EXERCISE 1:</b>&nbsp;Let $V(X) = 2$, $V(Y) = 4.5$  and $\cov(X,Y) = -3.$  If $E(X) = 1$,
+ $E(Y) = 2,$  then find $a,b,c\in{\mathbb R}$  such that $P(aX+bY+c=0)=1.$
+<p>
+<b>Hint:</b>
+<blockquote>Here equality holds in Cauchy-Schwarz inequality. Define $Z_1,Z_2$  as in the proof of
+ Cauchy-Schwarz inequality. Either
+ $V(Z_1+Z_2)=0$  or $V(Z_1-Z_2)=0.$  Which one? </blockquote>
+</p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;$X$  is a nonnegative random variable with finite second moment. Show that $P(X&gt;0)\geq \frac{E^2(X)}{E(X^2)}.$
+<p>
+<b>Hint:</b>
+<blockquote>Think of $X$  as  $X\times 1_{X&gt;0}.$
+</blockquote>
+</p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Let $X_1,...,X_n$  be random variables with finite second moments. Show that
 $$V\left(\sum X_i\right) \leq \left(\sum\sqrt{V(X_i)}\right)^2.$$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 3:</b>&nbsp;Show that $E|X-E(X)|\leq \sqrt{V(X)}$  for any random variable $X$  with finite second moment.</p>
+<b>EXERCISE 4:</b>&nbsp;Show that $E|X-E(X)|\leq \sqrt{V(X)}$  for any random variable $X$  with finite second moment.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;If $E(X^2)=E(Y^2) = E(XY),$  then show that $P(X=Y)=1.$</p>
+<b>EXERCISE 5:</b>&nbsp;If $E(X^2)=E(Y^2) = E(XY),$  then show that $P(X=Y)=1.$</p>
+
+<p></p>
 
 <h1>
-<a name="N100DC"><span class="header">2</span>. Markov and Chebyshev inequalities</a>
+<a name="N10126"><span class="header">2</span>. Markov and Chebyshev inequalities</a>
 </h1>
 Let us start with a commonsense example.
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
- a salary of Rs 250,000
- or more. Can this claim be true?<p><a
+<b>EXAMPLE 1:</b>&nbsp;10 nonnegative numbers have a total of 100. Three of the numbers are $\geq 35$. Can this statement be true?<p></p>
+<b>SOLUTION:</b>
+No, because just these three numbers already have a total exceeding 100. Since the other numbers are nonnegative,
+ they cannot bring the total down! ■
+</p> 
+
+<p></p>
+A slightly less trivial version of the same idea is used below.
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
+salaries of $\geq$Rs 250,000.
+Can this claim be true?<p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">
-Of course not! Even if the other employess get no salary at all, the average must be at least $0.3\times 250,000,$ 
+Of course not! Even if the other employees get no salary at all, the average must be at least $0.3\times 250,000,$ 
  which exceeds the stated average.
 <p></p>
 In fact, no more than $\frac 15$ of
@@ -352,24 +402,24 @@ This is just Markov inequality with $k=2$  applied to the random variable $|X-E(
 </p>
 
 <h2>
-<a name="N1013C"><span class="header">2.1</span>.
+<a name="N10195"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
+<b>EXERCISE 7:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
+<b>EXERCISE 8:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^2)}{\epsilon^2}.$$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
+<b>EXERCISE 9:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
  variable $X$  and any $\epsilon&gt;0$  we have for each $k\in{\mathbb N},$  
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$$
 Will higher values of $k$  necessarily give you better bounds?
@@ -378,11 +428,11 @@ Will higher values of $k$  necessarily give you better bounds?
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
+<b>EXERCISE 10:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
  \frac{1}{\epsilon^4}.$</p>
 
 <h1>
-<a name="N10168"><span class="header">3</span>. Real life applications</a>
+<a name="N101C1"><span class="header">3</span>. Real life applications</a>
 </h1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
@@ -410,19 +460,19 @@ This allows engineers to guarantee system satibility without knowing the exact d
 <p></p>
 
 <h2>
-<a name="N1018B"><span class="header">3.1</span>.
+<a name="N101E4"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
+<b>EXERCISE 11:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
  if the $n$  is the length of the array to be sorted.
 Find an upper bound for  $P(X&gt;10^6)$  if the input array has length $10^4.$</p>  
 
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;<b>(Router overload)</b>
+<b>EXERCISE 12:</b>&nbsp;<b>(Router overload)</b>
 A router receives a random number ($X$) of packets every millisecond. We know from the
  past that $E(X)=50.$  We do not know the distribution of $X.$  The router's buffer can
  hold 250 packets before overflowing. Help the network engineer to provide an uppr bound to 
@@ -433,7 +483,7 @@ $P(X\geq 250).$
 <p></p>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;<b>(Liquidity crisis)</b>
+<b>EXERCISE 13:</b>&nbsp;<b>(Liquidity crisis)</b>
 A bank has a large portfolio of small business loans. $X=$ number of defaulters in a
  single month. Past experience shows $E(X)=2M.$ Liquidity crisis will arise if $X\geq
  20M.$  Bound the probability of that.
@@ -442,13 +492,13 @@ A bank has a large portfolio of small business loans. $X=$ number of defaulters 
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
+<b>EXERCISE 14:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
  $E(X)=15$  minutes. Crash would result if $X\geq 2$  hours. Bound its probability.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;<b>(Volatile market)</b>
+<b>EXERCISE 15:</b>&nbsp;<b>(Volatile market)</b>
 When the market is  highly volatile market, an investment fund's historical data becomes useless.
  The only certain information is the current daily expected loss $E(X)=100,000.$  Upper bound $P(X\geq 1,000,000).$
 </p>
@@ -456,7 +506,7 @@ When the market is  highly volatile market, an investment fund's historical data
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
+<b>EXERCISE 16:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
  experiment on an input integer $n.$  The (random) output is either "Composite" or "Prime".
  There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
  But if it says "Prime" then the input is composite with 0.25 probability. 
