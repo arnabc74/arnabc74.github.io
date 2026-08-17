@@ -10,7 +10,7 @@
 <THM name="Cauchy-Schwarz inequality">
 Let <M>X,Y</M>  be two jointly distributed random variables (i.e., both defined on the same
  probability space) with finite variances. Then   
-<M>cov(X,Y)^2 \leq V(X)V(Y).</M>
+<M>\cov(X,Y)^2 \leq V(X)V(Y).</M>
 Equality holds iff <M>\exists a,b,c\in\rr~~P(aX+bY=c)=1.</M>
 </THM>
 <PF>
@@ -42,7 +42,7 @@ Now
 as required. 
 
 Also equality holds iff <M>V(Z_1+Z_2)=0</M>  or <M>V(Z_1-Z_2)=0</M>, i.e., if
-<M>Z_1+Z_2</M> or <M>Z_1-Z_2</M>  is degenerate.
+<M>Z_1+Z_2</M> or <M>Z_1-Z_2</M>  is a constant with probability 1.
 
 So we have either <M>P(Z_1+Z_2=k)=1</M> or <M>P(Z_1-Z_2=k)=1</M>  for some <M>k\in\rr.</M>
 
@@ -62,21 +62,26 @@ Similarly, <M>\sqrt{\cov(X,X)} = \sqrt{V(X)}.</M>
 
 In this sense <M>\cos \theta = [[\cov(X,Y)][\sqrt{V(X)V(Y)}]].</M>
 
-Can we recover <M>\theta</M>  from this? Yes, using <M>cos ^{-1},</M>  provided the RHS is between <M>-1</M>  and <M>1.</M>
+Can we recover <M>\theta</M>  from this? Yes, using <M>\cos ^{-1},</M>  provided the RHS is between <M>-1</M>  and <M>1.</M>
 Well, the Cauchy-Schwarz inequality guarantees precisely that. In this geometric interpretation,
  <M>\cos \theta</M>  is called the <TERM>correlation coefficient</TERM> between <M>X</M>  and <M>Y.</M>  
 
 <HEAD2>Problem set</HEAD2>
-
 <EXR>Let <M>V(X) = 2</M>, <M>V(Y) = 4.5</M>  and <M>\cov(X,Y) = -3.</M>  If <M>E(X) = 1</M>,
- <M>E(Y) = 2,</M>  then find <M>a,b,c\in\rr</M>  such that <M>P(aX+bY+c=0)=1.</M>
+ <M>E(Y) = 2,</M>  then find <M>a,b,c\in\rr</M>  such that <M>P(aX+bY=c)=1.</M>
 <HINT>Here equality holds in Cauchy-Schwarz inequality. Define <M>Z_1,Z_2</M>  as in the proof of
  Cauchy-Schwarz inequality. Either
  <M>V(Z_1+Z_2)=0</M>  or <M>V(Z_1-Z_2)=0.</M>  Which one? </HINT>
 </EXR>
+<EXR>Here is another variant of the Cauchy-Schwarz inequality: <Q>If <M>X,Y</M>  are jointly
+ distributed random variables with <M>E(X^2),E(Y^2) < \infty,</M>  then <M>E^2(XY)\leq E(X^2)E(Y^2).</M>  
+</Q>Prove this.
+<HINT>Just mimick the proof above. Cases 1 and 2 for <M>E(X^2)=0</M>  and <M>E(Y^2)=0.</M>  In
+ case 3 take <M>Z_1=[[X][\sqrt{E(X^2)}]]</M>  and <M>Z_2=[[Y][\sqrt{E(Y^2)}]].</M></HINT>
+</EXR>
 
 <EXR><M>X</M>  is a nonnegative random variable with finite second moment. Show that <M>P(X>0)\geq [[E^2(X)][E(X^2)]].</M>
-<HINT>Think of <M>X</M>  as  <M>X\times 1_{X>0}.</M>
+<HINT>Take <M>Y = <CASES>1<IF>X>0</IF> 0<ELSE/></CASES>.</M>  Apply the form of Cauchy-Schwarz inequality in the last exercise.
 </HINT>
 </EXR>
 
@@ -116,10 +121,10 @@ Let <M>\epsilon>0.</M>
 Then <M>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</M> 
 </THM>
 <PF>
-Compare with <M>Y = <CASES> \epsilon<IF>x\geq \epsilon</IF> 0<ELSE/></CASES>.</M>
+Compare with <M>Y = <CASES> \epsilon<IF>X\geq \epsilon</IF> 0<ELSE/></CASES>.</M>
 
-Note that <M>Y\leq X.</M>  Hence <M>E(Y^k)\leq E(X^k).</M>  
-But <M>E(Y^k) = P(X\leq \epsilon) \epsilon^k.</M>  Hence the result.
+Note that <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
+But <M>E(Y) = P(X\leq \epsilon) \epsilon.</M>  Hence the result.
 </PF>
 A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
@@ -136,7 +141,8 @@ Let <M>V(X)<\infty.</M> Then
 </D>
 </THM>
 <PF>
-This is just Markov inequality with <M>k=2</M>  applied to the random variable <M>|X-E(X)|.</M>
+Note that <M>P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).</M>  Now apply Markov
+ inequality to the random variable <M>(X-E(X))^2.</M>
 </PF>
 <HEAD2>Problem set</HEAD2>
 <EXR>Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</EXR>

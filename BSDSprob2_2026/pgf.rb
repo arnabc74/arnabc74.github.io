@@ -345,7 +345,7 @@ The two cases are shown below graphically:
 
 So the final answer is:
 <UL>
-<LI>If <M>\xi'(t) \leq 1</M>, then <M>\theta=1</M>.</LI>
+<LI>If <M>\xi'(1) \leq 1</M>, then <M>\theta=1</M>.</LI>
 <LI>If <M>\xi'(1)> 1</M>, then <M>\theta</M>  is the unique fixed point of <M>\xi(t)</M>  for <M>t\in(0,1)</M>.</LI> 
  </UL>
 It is not easy to arrive at this answer without using pgf.  
@@ -361,6 +361,7 @@ In the following exercises we consider <M>\xi(\cdot)</M>  as a function from <M>
 
 
 <EXR>Find  <M>\theta</M>  when <M>p_0=0.4, p_1=0.2, p_2=0.4.</M></EXR>
+<EXR>Find  <M>\theta</M>  when <M>p_0=0.3, p_1=0.2, p_2=0.5.</M></EXR>
 
 <EXR>If <M>\xi(0.5)\leq 0.5,</M>  show that <M>\theta\leq 0.5.</M></EXR>
 
