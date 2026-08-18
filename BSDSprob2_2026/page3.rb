@@ -126,7 +126,8 @@ Compare with <M>Y = <CASES> \epsilon<IF>X\geq \epsilon</IF> 0<ELSE/></CASES>.</M
 Note that <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
 But <M>E(Y) = P(X\leq \epsilon) \epsilon.</M>  Hence the result.
 </PF>
-A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside:
+<D>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</D> 
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
  get <M>0 < 0</M>  for the degenerate random variable <M>X\equiv0</M>.
@@ -157,13 +158,13 @@ Note that <M>P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).</M>  Now
 Will higher values of <M>k</M>  necessarily give you better bounds?
 </EXR>
 
-<EXR>Prove that <M>\forall \epsilon>0~~[[1][\sqrt{2\pi}]]\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
- [[1][\epsilon^4]].</M></EXR>
+<EXR>Prove that <M>\forall \epsilon>0~~[[1][\sqrt{2\pi}]]\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \geq
+ [[\epsilon^2-1][\epsilon^2]].</M></EXR>
 <HEAD1>Real life applications</HEAD1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
  than through its expectation.
-For many real life random variables, estimating the mean is far easier than estimating the entire distribution. 
+For many real life random variables, estimating the expectation is far easier than estimating the entire distribution. 
 
 Let us start with an interesting application from computer science. A class of algorithms called Las
  Vegas algorithms, approach a problem in a random way that is sure to arrive at the answer, but after a random number
@@ -181,7 +182,7 @@ Let <M>X</M>  denote the number steps in a Las Vegas algorithm.   We often know 
  of this course). 
 Then Markov inequality helps us to get an upper bound on the probability that the
  algorithm will take too long.
-This allows engineers to guarantee system satibility without knowing the exact distribution of <M>X.</M>
+This allows engineers to guarantee system stability without knowing the exact distribution of <M>X.</M>
 
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X</M>  be the number of steps needed in a randomised quick sort algorithm. It is known that <M>E(X)=n\log n</M> 
@@ -245,8 +246,8 @@ So far as probability theory goes, it is a use of the Markov inequality. But bef
  the probability, you need to know about hash functions: 
  functions that maps the huge set of categories to a much smaller set (whose elements we shall call buckets).   Such functions
  may be constructed in a way that if <M>X_1,X_2,...</M>  are incoming categories and <M>h(\cdot)</M>  is the function, then
- <M>h(X_1), h(X_2),...</M>  behave like IID uniform random variables on the bucket set. Also, it is possible to construct
- different such functions <M>h_1,h_2,...</M>  such that the sequences generated from them behave line independent random variables.
+ <M>h(X_1), h(X_2),...</M>  behave like iid uniform random variables on the bucket set. Also, it is possible to construct
+ different such functions <M>h_1,h_2,...</M>  such that the sequences generated from them behave like independent random variables.
 The functions, by the way, are themseleves deterministic, and are closely related to how a computer generates pseudo random
  numbers. Such functions are called <TERM>hash function</TERM>s. 
 

@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 17 10:03:33 IST 2026</i>
+Tue Aug 18 23:26:16 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -171,11 +171,11 @@ Mon Aug 17 10:03:33 IST 2026</i>
 </li>
 <li>2. <a href="#N10145">Markov and Chebyshev inequalities</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101B4">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101B7">Problem set</a>
 </li>
-<li>3. <a href="#N101E0">Real life applications</a>
+<li>3. <a href="#N101E3">Real life applications</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10203">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10206">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -189,7 +189,7 @@ $\newcommand{\cov}{\mathrm{cov}}$
 <tr>
 <td align="right"><i>Last
 updated on:
-Mon Aug 17 10:03:33 IST 2026</i></td>
+Tue Aug 18 23:26:16 IST 2026</i></td>
 </tr>
 </table>
 
@@ -384,7 +384,8 @@ Note that $Y\leq X.$  Hence $E(Y)\leq E(X).$
 But $E(Y) = P(X\leq \epsilon) \epsilon.$  Hence the result.
 <b><i>[QED]</i></b>
 </p>
-A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside:
+$$P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon}.$$ 
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
  get $0 &lt; 0$  for the degenerate random variable $X\equiv0$.
@@ -413,7 +414,7 @@ Note that $P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).$  Now appl
 </p>
 
 <h2>
-<a name="N101B4"><span class="header">2.1</span>.
+<a name="N101B7"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
@@ -439,16 +440,16 @@ Will higher values of $k$  necessarily give you better bounds?
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
- \frac{1}{\epsilon^4}.$</p>
+<b>EXERCISE 11:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \geq
+ \frac{\epsilon^2-1}{\epsilon^2}.$</p>
 
 <h1>
-<a name="N101E0"><span class="header">3</span>. Real life applications</a>
+<a name="N101E3"><span class="header">3</span>. Real life applications</a>
 </h1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
  than through its expectation.
-For many real life random variables, estimating the mean is far easier than estimating the entire distribution. 
+For many real life random variables, estimating the expectation is far easier than estimating the entire distribution. 
 <p></p>
 Let us start with an interesting application from computer science. A class of algorithms called Las
  Vegas algorithms, approach a problem in a random way that is sure to arrive at the answer, but after a random number
@@ -467,11 +468,11 @@ Let $X$  denote the number steps in a Las Vegas algorithm.   We often know $E(X)
  of this course). 
 Then Markov inequality helps us to get an upper bound on the probability that the
  algorithm will take too long.
-This allows engineers to guarantee system satibility without knowing the exact distribution of $X.$
+This allows engineers to guarantee system stability without knowing the exact distribution of $X.$
 <p></p>
 
 <h2>
-<a name="N10203"><span class="header">3.1</span>.
+<a name="N10206"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -554,8 +555,8 @@ So far as probability theory goes, it is a use of the Markov inequality. But bef
  the probability, you need to know about hash functions: 
  functions that maps the huge set of categories to a much smaller set (whose elements we shall call buckets).   Such functions
  may be constructed in a way that if $X_1,X_2,...$  are incoming categories and $h(\cdot)$  is the function, then
- $h(X_1), h(X_2),...$  behave like IID uniform random variables on the bucket set. Also, it is possible to construct
- different such functions $h_1,h_2,...$  such that the sequences generated from them behave line independent random variables.
+ $h(X_1), h(X_2),...$  behave like iid uniform random variables on the bucket set. Also, it is possible to construct
+ different such functions $h_1,h_2,...$  such that the sequences generated from them behave like independent random variables.
 The functions, by the way, are themseleves deterministic, and are closely related to how a computer generates pseudo random
  numbers. Such functions are called <b><font color="red" size="40">hash function</font></b>s. 
 <p></p>
