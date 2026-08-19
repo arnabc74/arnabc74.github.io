@@ -40,6 +40,18 @@ grabData = function(data){
             data.photo.secret+".jpg"
 }
 
+const actionButton = document.querySelector('.action-btn');
+
+// Change cursor on enter
+actionButton.addEventListener('mouseenter', () =&gt; {
+  document.body.style.cursor = "url('../image/cursor.png'), auto";
+});
+
+// Reset cursor on mouse leave
+actionButton.addEventListener('mouseleave', () =&gt; {
+  document.body.style.cursor = 'default';
+});
+
 fromFlickr = function(photoId) {
 
 $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
@@ -79,6 +91,10 @@ body,table {
   //color: #fff;
 }
 
+body {
+  /* Syntax: url(path), x-hotspot y-hotspot, fallback keyword */
+  cursor: url('../image/cursor.png') 0 0, auto;
+}
 .ans {
   display:none;
   background: #ccffcc;
@@ -159,7 +175,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Wed Aug 19 09:51:28 IST 2026</i>
+Wed Aug 19 12:37:28 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -189,7 +205,7 @@ $\newcommand{\cov}{\mathrm{cov}}$
 <tr>
 <td align="right"><i>Last
 updated on:
-Wed Aug 19 09:51:28 IST 2026</i></td>
+Wed Aug 19 12:37:29 IST 2026</i></td>
 </tr>
 </table>
 
@@ -406,14 +422,14 @@ Then $P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon}.$
 As in the examples above, we consider the "minimum possible version of $X$":
  $$Y =  \left\{\begin{array}{ll} \epsilon&\text{if }X\geq  \epsilon\\ 0&\text{otherwise.}\end{array}\right..$$
 We must have $Y\leq X.$  Hence $E(Y)\leq E(X).$  
-But $E(Y) = P(X\leq \epsilon) \epsilon.$  Hence the result.
+But $E(Y) = P(X\geq \epsilon) \epsilon.$  Hence the result.
 <b><i>[QED]</i></b>
 </p>
 A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside:
 $$P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon}.$$ 
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
- get $0 &lt; 0$  for the degenerate random variable $X\equiv0$.
+ get $1 &lt; 0$  for the degenerate random variable $X\equiv0$.
 <p></p>
 The following variant of the Markov inequality is due to Chebyshev.
 <table align="right" width="20%" border="1">

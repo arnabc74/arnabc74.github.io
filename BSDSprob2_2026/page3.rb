@@ -132,13 +132,13 @@ Then <M>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</M>
 As in the examples above, we consider the "minimum possible version of <M>X</M>":
  <D>Y =  <CASES> \epsilon<IF>X\geq  \epsilon</IF> 0<ELSE/></CASES>.</D>
 We must have <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
-But <M>E(Y) = P(X\leq \epsilon) \epsilon.</M>  Hence the result.
+But <M>E(Y) = P(X\geq \epsilon) \epsilon.</M>  Hence the result.
 </PF>
 A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside:
 <D>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</D> 
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
- get <M>0 < 0</M>  for the degenerate random variable <M>X\equiv0</M>.
+ get <M>1 < 0</M>  for the degenerate random variable <M>X\equiv0</M>.
 
 The following variant of the Markov inequality is due to Chebyshev.
 <FNOTE>Chebyshev is also credited with designing a <LINK to="https://www.youtube.com/watch?v=ISfVS4mDTKs">quadruped
