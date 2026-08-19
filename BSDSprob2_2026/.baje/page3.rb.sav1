@@ -99,19 +99,27 @@ Let us start with a commonsense example.
 
 <EXM>10 nonnegative numbers have a total of 100. Three of the numbers are <M>\geq 35</M>. Can this statement be true?<SOLN/>
 No, because just these three numbers already have a total exceeding 100. Since the other numbers are nonnegative,
- they cannot bring the total down!</EXM> 
+ they cannot bring the total down!
+
+You can think of it as trying to satisfy the given conditions using the smallest possible numbers:
+<CIMG web="min1.png"></CIMG>
+So the lowest possible sum is <M>3\times35=105.</M>  Since the required sum falls below that minimum, it is impossible.
+</EXM> 
 
 A slightly less trivial version of the same idea is used below.
 
-<EXR>Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
-salaries of <M>\geq</M>Rs 250,000.
-Can this claim be true?<ANS>
-Of course not! Even if the other employees get no salary at all, the average must be at least <M>0.3\times 250,000,</M> 
- which exceeds the stated average.
+<EXM>Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
+salaries <M>\geq</M>Rs 2,50,000.
+Can this claim be true?<SOLN/>
+Again consider the smallest possible numbers subject to the given conditions:
+<CIMG web="min2.png"></CIMG>
+Even in this extreme low situation the average salary of all the employees is
+ <M>0.30\times 250000 + 0.00 \times0=75000,</M> 
+ which exceeds the stated average. So the claim
  
 In fact, no more than <M>[[15]]</M> of
  the employees can make
- 250,000 or more. Since 50000/250000 = <M>[[15]]</M>.</ANS></EXR>
+ 2,50,000 or more. Since 50000/250000 = <M>[[15]]</M>.</EXM>
 
 The same reasoning leads to the following very useful inequality.
 
@@ -121,12 +129,13 @@ Let <M>\epsilon>0.</M>
 Then <M>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</M> 
 </THM>
 <PF>
-Compare with <M>Y = <CASES> \epsilon<IF>X\geq \epsilon</IF> 0<ELSE/></CASES>.</M>
-
-Note that <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
+As in the examples above, we consider the "minimum possible version of <M>X</M>":
+ <D>Y =  <CASES> \epsilon<IF>X\geq  \epsilon</IF> 0<ELSE/></CASES>.</D>
+We must have <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
 But <M>E(Y) = P(X\leq \epsilon) \epsilon.</M>  Hence the result.
 </PF>
-A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside.
+A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside:
+<D>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</D> 
  Both are mixed inequalities. Obviously, you may make the first inequality strict (thereby
  weakening the result). However, you may  not replace the other inequality with a strict one, because otherwise you will
  get <M>0 < 0</M>  for the degenerate random variable <M>X\equiv0</M>.
@@ -141,8 +150,8 @@ Let <M>V(X)<\infty.</M> Then
 </D>
 </THM>
 <PF>
-Note that <M>P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).</M>  Now Markov
- inequality with <M>k=2</M>  applied to the random variable <M>|X-E(X)|.</M>
+Note that <M>P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).</M>  Now apply Markov
+ inequality to the random variable <M>(X-E(X))^2.</M>
 </PF>
 <HEAD2>Problem set</HEAD2>
 <EXR>Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</EXR>
@@ -157,13 +166,13 @@ Note that <M>P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).</M>  Now
 Will higher values of <M>k</M>  necessarily give you better bounds?
 </EXR>
 
-<EXR>Prove that <M>\forall \epsilon>0~~[[1][\sqrt{2\pi}]]\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \leq
- [[1][\epsilon^4]].</M></EXR>
+<EXR>Prove that <M>\forall \epsilon>0~~[[1][\sqrt{2\pi}]]\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \geq
+ [[\epsilon^2-1][\epsilon^2]].</M></EXR>
 <HEAD1>Real life applications</HEAD1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
  than through its expectation.
-For many real life random variables, estimating the mean is far easier than estimating the entire distribution. 
+For many real life random variables, estimating the expectation is far easier than estimating the entire distribution. 
 
 Let us start with an interesting application from computer science. A class of algorithms called Las
  Vegas algorithms, approach a problem in a random way that is sure to arrive at the answer, but after a random number
@@ -181,7 +190,7 @@ Let <M>X</M>  denote the number steps in a Las Vegas algorithm.   We often know 
  of this course). 
 Then Markov inequality helps us to get an upper bound on the probability that the
  algorithm will take too long.
-This allows engineers to guarantee system satibility without knowing the exact distribution of <M>X.</M>
+This allows engineers to guarantee system stability without knowing the exact distribution of <M>X.</M>
 
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>X</M>  be the number of steps needed in a randomised quick sort algorithm. It is known that <M>E(X)=n\log n</M> 
@@ -221,7 +230,7 @@ Then we have <M>E(X) = [[14]].</M>
 We run this experiment <M>k</M>  times independently (on the same input), and we output
  "Composite" if at least one run says so. Otherwise, we say "Prime".
 
-Give an uppoer bound on the probability that this battery of <M>k</M>  tests makes an error. [This
+Give an upper bound on the probability that this battery of <M>k</M>  tests makes an error. [This
  problem can also be solved
 without explicit use of Markov inequality.]
 <COMMENT><M>\leq 0.25^k.</M></COMMENT>
@@ -245,8 +254,8 @@ So far as probability theory goes, it is a use of the Markov inequality. But bef
  the probability, you need to know about hash functions: 
  functions that maps the huge set of categories to a much smaller set (whose elements we shall call buckets).   Such functions
  may be constructed in a way that if <M>X_1,X_2,...</M>  are incoming categories and <M>h(\cdot)</M>  is the function, then
- <M>h(X_1), h(X_2),...</M>  behave like IID uniform random variables on the bucket set. Also, it is possible to construct
- different such functions <M>h_1,h_2,...</M>  such that the sequences generated from them behave line independent random variables.
+ <M>h(X_1), h(X_2),...</M>  behave like iid uniform random variables on the bucket set. Also, it is possible to construct
+ different such functions <M>h_1,h_2,...</M>  such that the sequences generated from them behave like independent random variables.
 The functions, by the way, are themseleves deterministic, and are closely related to how a computer generates pseudo random
  numbers. Such functions are called <TERM>hash function</TERM>s. 
 

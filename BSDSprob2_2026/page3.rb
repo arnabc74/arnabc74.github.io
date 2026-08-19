@@ -99,19 +99,27 @@ Let us start with a commonsense example.
 
 <EXM>10 nonnegative numbers have a total of 100. Three of the numbers are <M>\geq 35</M>. Can this statement be true?<SOLN/>
 No, because just these three numbers already have a total exceeding 100. Since the other numbers are nonnegative,
- they cannot bring the total down!</EXM> 
+ they cannot bring the total down!
+
+You can think of it as trying to satisfy the given conditions using the smallest possible numbers:
+<CIMG web="min1.png"></CIMG>
+So the lowest possible sum is <M>3\times35=105.</M>  Since the required sum falls below that minimum, it is impossible.
+</EXM> 
 
 A slightly less trivial version of the same idea is used below.
 
-<EXR>Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
-salaries of <M>\geq</M>Rs 250,000.
-Can this claim be true?<ANS>
-Of course not! Even if the other employees get no salary at all, the average must be at least <M>0.3\times 250,000,</M> 
- which exceeds the stated average.
+<EXM>Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
+salaries <M>\geq</M>Rs 2,50,000.
+Can this claim be true?<SOLN/>
+Again consider the smallest possible numbers subject to the given conditions:
+<CIMG web="min2.png"></CIMG>
+Even in this extreme low situation the average salary of all the employees is
+ <M>0.30\times 250000 + 0.00 \times0=75000,</M> 
+ which exceeds the stated average. So the claim cannot be true.
  
 In fact, no more than <M>[[15]]</M> of
  the employees can make
- 250,000 or more. Since 50000/250000 = <M>[[15]]</M>.</ANS></EXR>
+ 2,50,000 or more. Since 50000/250000 = <M>[[15]]</M>.</EXM>
 
 The same reasoning leads to the following very useful inequality.
 
@@ -121,9 +129,9 @@ Let <M>\epsilon>0.</M>
 Then <M>P(X \geq \epsilon) \leq [[E(X)][\epsilon]].</M> 
 </THM>
 <PF>
-Compare with <M>Y = <CASES> \epsilon<IF>X\geq \epsilon</IF> 0<ELSE/></CASES>.</M>
-
-Note that <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
+As in the examples above, we consider the "minimum possible version of <M>X</M>":
+ <D>Y =  <CASES> \epsilon<IF>X\geq  \epsilon</IF> 0<ELSE/></CASES>.</D>
+We must have <M>Y\leq X.</M>  Hence <M>E(Y)\leq E(X).</M>  
 But <M>E(Y) = P(X\leq \epsilon) \epsilon.</M>  Hence the result.
 </PF>
 A point about the inequalities in the above theorem. There are two inequalities, one inside the probability, and one outside:
@@ -222,7 +230,7 @@ Then we have <M>E(X) = [[14]].</M>
 We run this experiment <M>k</M>  times independently (on the same input), and we output
  "Composite" if at least one run says so. Otherwise, we say "Prime".
 
-Give an uppoer bound on the probability that this battery of <M>k</M>  tests makes an error. [This
+Give an upper bound on the probability that this battery of <M>k</M>  tests makes an error. [This
  problem can also be solved
 without explicit use of Markov inequality.]
 <COMMENT><M>\leq 0.25^k.</M></COMMENT>

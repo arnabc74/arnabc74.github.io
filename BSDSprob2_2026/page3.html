@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Tue Aug 18 23:26:16 IST 2026</i>
+Wed Aug 19 09:51:28 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -171,11 +171,11 @@ Tue Aug 18 23:26:16 IST 2026</i>
 </li>
 <li>2. <a href="#N10145">Markov and Chebyshev inequalities</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101B7">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101C3">Problem set</a>
 </li>
-<li>3. <a href="#N101E3">Real life applications</a>
+<li>3. <a href="#N101EF">Real life applications</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10206">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10212">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -189,7 +189,7 @@ $\newcommand{\cov}{\mathrm{cov}}$
 <tr>
 <td align="right"><i>Last
 updated on:
-Tue Aug 18 23:26:16 IST 2026</i></td>
+Wed Aug 19 09:51:28 IST 2026</i></td>
 </tr>
 </table>
 
@@ -344,7 +344,21 @@ Let us start with a commonsense example.
 <b>EXAMPLE 1:</b>&nbsp;10 nonnegative numbers have a total of 100. Three of the numbers are $\geq 35$. Can this statement be true?<p></p>
 <b>SOLUTION:</b>
 No, because just these three numbers already have a total exceeding 100. Since the other numbers are nonnegative,
- they cannot bring the total down! ■
+ they cannot bring the total down!
+<p></p>
+You can think of it as trying to satisfy the given conditions using the smallest possible numbers:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/min1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+So the lowest possible sum is $3\times35=105.$  Since the required sum falls below that minimum, it is impossible.
+ ■
 </p> 
 
 <p></p>
@@ -352,17 +366,28 @@ A slightly less trivial version of the same idea is used below.
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
-salaries of $\geq$Rs 250,000.
-Can this claim be true?<p><a
-href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
-class="ans" id="lab1">
-Of course not! Even if the other employees get no salary at all, the average must be at least $0.3\times 250,000,$ 
- which exceeds the stated average.
+<b>EXAMPLE 2:</b>&nbsp;Average salary in a company is Rs 50,000. It is claimed that 30% of the employees are getting
+salaries $\geq$Rs 2,50,000.
+Can this claim be true?<p></p>
+<b>SOLUTION:</b>
+Again consider the smallest possible numbers subject to the given conditions:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/min2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Even in this extreme low situation the average salary of all the employees is
+ $0.30\times 250000 + 0.00 \times0=75000,$ 
+ which exceeds the stated average. So the claim cannot be true.
 <p></p>
 In fact, no more than $\frac 15$ of
  the employees can make
- 250,000 or more. Since 50000/250000 = $\frac 15$.</div></p>
+ 2,50,000 or more. Since 50000/250000 = $\frac 15$. ■
 </p>
 
 <p></p>
@@ -378,9 +403,9 @@ Then $P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon}.$
 
 <p>
 <b><i>Proof:</i></b>
-Compare with $Y = \left\{\begin{array}{ll} \epsilon&\text{if }X\geq \epsilon\\ 0&\text{otherwise.}\end{array}\right..$
-<p></p>
-Note that $Y\leq X.$  Hence $E(Y)\leq E(X).$  
+As in the examples above, we consider the "minimum possible version of $X$":
+ $$Y =  \left\{\begin{array}{ll} \epsilon&\text{if }X\geq  \epsilon\\ 0&\text{otherwise.}\end{array}\right..$$
+We must have $Y\leq X.$  Hence $E(Y)\leq E(X).$  
 But $E(Y) = P(X\leq \epsilon) \epsilon.$  Hence the result.
 <b><i>[QED]</i></b>
 </p>
@@ -414,24 +439,24 @@ Note that $P(|X-E(X)| \geq \epsilon) = P((X-E(X))^2 \geq \epsilon^2).$  Now appl
 </p>
 
 <h2>
-<a name="N101B7"><span class="header">2.1</span>.
+<a name="N101C3"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
+<b>EXERCISE 7:</b>&nbsp;Give a counterexample to show that the nonnegativity assumption in the inequality may not be dropped.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
+<b>EXERCISE 8:</b>&nbsp;Let $X$  be any random variable (not necessarily nonnegative). Show that 
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^2)}{\epsilon^2}.$$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
+<b>EXERCISE 9:</b>&nbsp;If you have solved the above exercise, you can also show that for any nonnegative random
  variable $X$  and any $\epsilon&gt;0$  we have for each $k\in{\mathbb N},$  
 $$\forall \epsilon&gt;0~~P(X\geq \epsilon) \leq \frac{E(X^k)}{\epsilon^k}.$$
 Will higher values of $k$  necessarily give you better bounds?
@@ -440,11 +465,11 @@ Will higher values of $k$  necessarily give you better bounds?
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \geq
+<b>EXERCISE 10:</b>&nbsp;Prove that $\forall \epsilon&gt;0~~\frac{1}{\sqrt{2\pi}}\int_{-\epsilon}^ \epsilon e^{-x^2/2}\, dx \geq
  \frac{\epsilon^2-1}{\epsilon^2}.$</p>
 
 <h1>
-<a name="N101E3"><span class="header">3</span>. Real life applications</a>
+<a name="N101EF"><span class="header">3</span>. Real life applications</a>
 </h1>
 Markov inequality is little more than commonsense, and naturally it finds many practical applications. Its greatest strength
  lies in the fact that it makes no assumption about the distribution of the the random variable other
@@ -472,19 +497,19 @@ This allows engineers to guarantee system stability without knowing the exact di
 <p></p>
 
 <h2>
-<a name="N10206"><span class="header">3.1</span>.
+<a name="N10212"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 12:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
+<b>EXERCISE 11:</b>&nbsp;Let $X$  be the number of steps needed in a randomised quick sort algorithm. It is known that $E(X)=n\log n$ 
  if the $n$  is the length of the array to be sorted.
 Find an upper bound for  $P(X&gt;10^6)$  if the input array has length $10^4.$</p>  
 
 <p></p>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;<b>(Router overload)</b>
+<b>EXERCISE 12:</b>&nbsp;<b>(Router overload)</b>
 A router receives a random number ($X$) of packets every millisecond. We know from the
  past that $E(X)=50.$  We do not know the distribution of $X.$  The router's buffer can
  hold 250 packets before overflowing. Help the network engineer to provide an uppr bound to 
@@ -495,7 +520,7 @@ $P(X\geq 250).$
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;<b>(Liquidity crisis)</b>
+<b>EXERCISE 13:</b>&nbsp;<b>(Liquidity crisis)</b>
 A bank has a large portfolio of small business loans. $X=$ number of defaulters in a
  single month. Past experience shows $E(X)=2M.$ Liquidity crisis will arise if $X\geq
  20M.$  Bound the probability of that.
@@ -504,13 +529,13 @@ A bank has a large portfolio of small business loans. $X=$ number of defaulters 
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
+<b>EXERCISE 14:</b>&nbsp;<b>(System downtime)</b>  A financial system tracks $X$  the downtime of the system per year. Past data shows
  $E(X)=15$  minutes. Crash would result if $X\geq 2$  hours. Bound its probability.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 16:</b>&nbsp;<b>(Volatile market)</b>
+<b>EXERCISE 15:</b>&nbsp;<b>(Volatile market)</b>
 When the market is  highly volatile market, an investment fund's historical data becomes useless.
  The only certain information is the current daily expected loss $E(X)=100,000.$  Upper bound $P(X\geq 1,000,000).$
 </p>
@@ -518,7 +543,7 @@ When the market is  highly volatile market, an investment fund's historical data
 <p></p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
+<b>EXERCISE 16:</b>&nbsp; <b>(Primality testing)</b>  A randomised primality testing algorithm called the Miller Rabin test applies a random
  experiment on an input integer $n.$  The (random) output is either "Composite" or "Prime".
  There is theoretical guarantee that if it says "Composite", then the input is indeed composite.
  But if it says "Prime" then the input is composite with 0.25 probability. 
@@ -529,7 +554,7 @@ Then we have $E(X) = \frac 14.$
 We run this experiment $k$  times independently (on the same input), and we output
  "Composite" if at least one run says so. Otherwise, we say "Prime".
 <p></p>
-Give an uppoer bound on the probability that this battery of $k$  tests makes an error. [This
+Give an upper bound on the probability that this battery of $k$  tests makes an error. [This
  problem can also be solved
 without explicit use of Markov inequality.]
 
