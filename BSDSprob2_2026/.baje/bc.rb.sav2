@@ -21,23 +21,27 @@ You can think of this sequence as <M>[-1,0]</M>  travelling towards <M>[0,1].</M
 
 Here <M>\cup_{k\geq n} A_k = [*[ -[[1n]], 1)*).</M>
 
-So <M>\{A_n\io\} = \cap_n \cup_{k\geq n} A_k = \cap_n [0, 1).</M>
+So <M>\{A_n\io\} = \cap_n \cup_{k\geq n} A_k = \cap_n [*[ -[[1n]], 1)*) = [0, 1).</M>
 </EXM>
 
-The definition may appear rather complicated. Let us digest itintuitively: 
-<UL><LI>
-Consider all the elements which
- are in all the <M>A_n</M> s. The set of all such elements is <M>\cup_{k\geq 1} A_k. </M>    
-</LI><LI>
-Next consider all the elements which are in all the <M>A_n</M> s except possibly <M>A_1.</M>  All the earlier elements are
- already there, plus possibly some extra. The set of all these elements is <M>\cup_{k\geq 2} A_k. </M>
-</LI><LI>
-Similarly, <M>\cup_{k\geq 3} A_k </M>  is the set of all elements that are in all the <M>A_n</M> s except possible the first
- two. 
-</LI></UL>
-If we take the intersection of all such unions of the form <M>\cup_{k\geq n} A_k,</M>  we get <M>\{A_n\io\}.</M>  Thus <M>\liminf A_n</M> 
- is the set all elements that are in all the <M>A_n</M>'s except for a finitely many, i.e., all the lements are are infinitely
- many of the <M>A_n\</M>'s. Hence the name <TERM>infinite often</TERM>.
+The definition may appear rather complicated. But it has a simple intuitive meaning. It is the set of all elements that are
+ in infinitely many of the <M>A_n</M>'s. 
+<BECAUSE>
+The statement <D>\omega\in \cap_n\cup_{k\geq n} A_k</D>  
+means
+<D>\omega\in \cup_{k\geq 1}A_k\mbox{ and }\cup_{k\geq 2}A_k\mbox{ and }\cup_{k\geq 3}A_k\mbox{ and }\cup_{k\geq 4}A_k\mbox{ and }\cup_{k\geq 5}A_k\mbox{ and }\cdots,</D>
+that is 
+<MULTILINE>
+\omega & \in &  A_1\mbox{ or }A_2\mbox{ or }A_3\mbox{ or }A_4\mbox{ or }A_5\mbox{ or }\cdots\\
+\mbox{and }\omega & \in &  \phantom{A_1\mbox{ or }}A_2\mbox{ or }A_3\mbox{ or }A_4\mbox{ or }A_5\mbox{ or }\cdots\\
+\mbox{and }\omega & \in &  \phantom{A_1\mbox{ or }A_2\mbox{ or }}A_3\mbox{ or }A_4\mbox{ or }A_5\mbox{ or }\cdots\\
+\mbox{and }\omega & \in &  \phantom{A_1\mbox{ or }A_2\mbox{ or }A_3\mbox{ or }}A_4\mbox{ or }A_5\mbox{ or }\cdots.
+</MULTILINE>
+In other words, whatever <M>n</M>  you give me <M>\omega</M>  is in at least one <M>A_k</M>  after the <M>n</M>-th stage.
+ 
+In other words <M>\omega</M>  is is in infinitely many of the <M>A_n</M>'s.
+</BECAUSE>
+Hence the name <TERM>infinite often</TERM>.
 
 The following result often proves handy when proving <M>P(A_n)\to 0.</M>
 
@@ -51,7 +55,14 @@ A proof of this theorem is outlined in the exercises below.
 
 <EXR>If <M>A_1 \supseteq A_2 \supseteq A_2\supseteq \cdots,</M>  then is it true that <M>\{A_n\io\} = \cap_n A_n?</M></EXR>
 
-<EXR>Let <M>B_n = \cup_{k\geq n} A_k.</M>  Show that <M>P(B_n)\to P\{A_n\io\}.</M></EXR>
+<EXR>Let <M>B_n = \cup_{k\geq n} A_k.</M> 
+<OL><LI>
+ Show that <M>P(B_n)\to P\{A_n\io\}.</M>
+</LI>
+<LI>Show that for each <M>n\in\nn</M>  we have <M>0\leq P(A_n)\leq P(B_n).</M> 
+</LI>
+<LI>Show that if <M>P\{A_n\io\}=0,</M>  then <M>P(A_n)\to 0.</M> </LI></OL>
+</EXR>
 
 <EXR>We can define a set called <M>\{A_n\ev\}</M>  (where <M>\ev</M>  is the abbreviation of
  <TERM>eventually</TERM>) as 
@@ -228,7 +239,7 @@ A bird starts at the origin, and in each second moves one unit parallel to one o
  answer is "No!". But if we force the bird to stay in the <M>xy</M>-plane (i.e., vertical movements are not allowed), then
  the answer is "Yes". This project is about using the first Borel-Cantelli lemma to prove the general case. 
 
-It is a classical application of the Borel-Cantelli lemmas. Theoretical project. Not 
+It is a classical application of the Borel-Cantelli lemmas. Theoretical project. Not too difficult. 
 <COMMENT>
 Let <M>S = X_1+\cdots+X_n</M>  a simple, symmetric random walk in 3D. We shall show that <M>P(S_n=0\io)=0.</M>  Thanks to
  the first Borel Cantelli lemma, it is enough to show

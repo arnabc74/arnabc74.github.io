@@ -159,7 +159,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:17 IST 2026</i>
+Fri Aug 21 06:38:47 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -167,11 +167,11 @@ Sun Jul 19 09:18:17 IST 2026</i>
 <ul>
 <li>1. <a href="#N10018">Infinitely often</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10088">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N1007C">Problem set</a>
 </li>
-<li>2. <a href="#N100F1">Borel-Cantelli lemmas</a>
+<li>2. <a href="#N100FC">Borel-Cantelli lemmas</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1017B">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10186">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -204,29 +204,31 @@ You can think of this sequence as $[-1,0]$  travelling towards $[0,1].$
 <p></p>
 Here $\cup_{k\geq n} A_k = \left[ -\frac 1n, 1\right).$
 <p></p>
-So $\{A_n\io\} = \cap_n \cup_{k\geq n} A_k = \cap_n [0, 1).$
+So $\{A_n\io\} = \cap_n \cup_{k\geq n} A_k = \cap_n \left[ -\frac 1n, 1\right) = [0, 1).$
  ■
 </p>
 
 <p></p>
-The definition may appear rather complicated. Let us digest itintuitively: 
-<ul>
-<li>
-Consider all the elements which
- are in all the $A_n$ s. The set of all such elements is $\cup_{k\geq 1} A_k. $    
-</li>
-<li>
-Next consider all the elements which are in all the $A_n$ s except possibly $A_1.$  All the earlier elements are
- already there, plus possibly some extra. The set of all these elements is $\cup_{k\geq 2} A_k. $
-</li>
-<li>
-Similarly, $\cup_{k\geq 3} A_k $  is the set of all elements that are in all the $A_n$ s except possible the first
- two. 
-</li>
-</ul>
-If we take the intersection of all such unions of the form $\cup_{k\geq n} A_k,$  we get $\{A_n\io\}.$  Thus $\liminf A_n$ 
- is the set all elements that are in all the $A_n$'s except for a finitely many, <i>i.e.</i>, all the lements are are infinitely
- many of the $A_n\$'s. Hence the name <b><font color="red" size="40">infinite often</font></b>.
+The definition may appear rather complicated. But it has a simple intuitive meaning. It is the set of all elements that are
+ in infinitely many of the $A_n$'s. 
+<blockquote><a
+href="javascript:hideShow('reason1')"><b>[Because...]</b></a><div
+class="ans" id="reason1">
+The statement $$\omega\in \cap_n\cup_{k\geq n} A_k$$  
+means
+$$\omega\in \cup_{k\geq 1}A_k\mbox{ and }\cup_{k\geq 2}A_k\mbox{ and }\cup_{k\geq 3}A_k\mbox{ and }\cup_{k\geq 4}A_k\mbox{ and }\cup_{k\geq 5}A_k\mbox{ and }\cdots,$$
+that is 
+$$\begin{eqnarray*}
+\omega &amp; \in &amp;  A_1\mbox{ or }A_2\mbox{ or }A_3\mbox{ or }A_4\mbox{ or }A_5\mbox{ or }\cdots\\
+\mbox{and }\omega &amp; \in &amp;  \phantom{A_1\mbox{ or }}A_2\mbox{ or }A_3\mbox{ or }A_4\mbox{ or }A_5\mbox{ or }\cdots\\
+\mbox{and }\omega &amp; \in &amp;  \phantom{A_1\mbox{ or }A_2\mbox{ or }}A_3\mbox{ or }A_4\mbox{ or }A_5\mbox{ or }\cdots\\
+\mbox{and }\omega &amp; \in &amp;  \phantom{A_1\mbox{ or }A_2\mbox{ or }A_3\mbox{ or }}A_4\mbox{ or }A_5\mbox{ or }\cdots.
+\end{eqnarray*}$$
+In other words, whatever $n$  you give me $\omega$  is in at least one $A_k$  after the $n$-th stage.
+<p></p>
+In other words $\omega$  is is in infinitely many of the $A_n$'s.
+</div></blockquote>
+Hence the name <b><font color="red" size="40">infinite often</font></b>.
 <p></p>
 The following result often proves handy when proving $P(A_n)\rightarrow 0.$
 <p></p>
@@ -237,7 +239,7 @@ The following result often proves handy when proving $P(A_n)\rightarrow 0.$
 <p></p>
 A proof of this theorem is outlined in the exercises below.
 <h2>
-<a name="N10088"><span class="header">1.1</span>.
+<a name="N1007C"><span class="header">1.1</span>.
 Problem set</a>
 </h2>
 
@@ -257,7 +259,19 @@ Problem set</a>
 <p></p>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;Let $B_n = \cup_{k\geq n} A_k.$  Show that $P(B_n)\rightarrow P\{A_n\io\}.$</p>
+<b>EXERCISE 4:</b>&nbsp;Let $B_n = \cup_{k\geq n} A_k.$ 
+<ol type="">
+<li>
+ Show that $P(B_n)\rightarrow P\{A_n\io\}.$
+</li>
+
+<li>Show that for each $n\in{\mathbb N}$  we have $0\leq P(A_n)\leq P(B_n).$ 
+</li>
+
+<li>Show that if $P\{A_n\io\}=0,$  then $P(A_n)\rightarrow 0.$ </li>
+</ol>
+
+</p>
 
 <p></p>
 
@@ -284,7 +298,7 @@ This is a generalisation of the theorem on continuity of probability that you ha
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let $(A_n)$  be a sequence of events with $P(\liminf A_n) = P(\limsup A_n) = p.$  Show that $P(A_n)\rightarrow p.$</p>
+<b>EXERCISE 9:</b>&nbsp;Let $(A_n)$  be a sequence of events with $P\{ A_n\ev\} = P\{A_n\io\} = p.$  Show that $P(A_n)\rightarrow p.$</p>
 
 <p></p>
 
@@ -292,7 +306,7 @@ This is a generalisation of the theorem on continuity of probability that you ha
 <p></p>
 
 <h1>
-<a name="N100F1"><span class="header">2</span>. Borel-Cantelli lemmas</a>
+<a name="N100FC"><span class="header">2</span>. Borel-Cantelli lemmas</a>
 </h1>
 
 <p></p>
@@ -358,7 +372,7 @@ Let the exact text of Hamlet have $h$ letters.  Consider packets of $h$  letters
 </p>
 
 <h2>
-<a name="N1017B"><span class="header">2.1</span>.
+<a name="N10186"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
@@ -453,65 +467,13 @@ Consider a number between 0 and 1. Consider its
 This project is of a more theoretical nature. 
 </fieldset>
 
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-
-<ul>
-
-<li>For each $n$  the random variable $d_n$  is uniformly distributed over $\{0,1,...,9\}.$</li>
-
-<li>If $m\neq n,$  then $d_m$  and $d_n$  are independent.</li>
-
-</ul> 
-
-</fieldset>
-
-<p></p>
-Next we shall fix a single number $\omega\in(0,1)$  and check how many times any given digit (say 3) occurs in it. 
-<p></p>
-Let
-$S_n(\omega) = $  number of times the digit 3 occurs among the first $n$  digits of $\omega.$  
-For instance of $\omega=\frac 13,$  then $S_n(\omega) = n.$
-<p></p>
-We are interested in the proportion of times a digit occurs in the expansion. Mathematically, we
- work with $\lim_{n\rightarrow \infty} \frac{S_n(\omega)}{n}$ (which may not exist).  For instance, if $\omega=\frac 13,$ 
- then the limit exists and equals $1.$  If $\omega=0.3,$  then the limit exists and equals $0.$  
-<p></p>
-
-<p>
-<b>EXERCISE 19:</b>&nbsp;Can you construct an expansion for which the limit does <i>not</i>  exist? <p>
-<b>Hint:</b>
-<blockquote>You can get one using only 0's
- and 3's. </blockquote>
-</p>
-</p>
-
-<p></p>
-Let $A_3 = $ set of all numbers for which the limit equals $\frac{1}{10}.$  What do you expect $P(A_3)$  to be?
-The following theorem provides the answer.
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-$P(A_n) = \frac{1}{10}.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-We shall prove it for $n=3.$  (the other cases are exactly similar).
-<p></p>
-
-<b><i>[QED]</i></b>
-</p>
-Then
- $\forall k\in\{0,1,2,...,9\}~~P(d_n=k\io) = 1.$ So, in particular, $P(0\mbox{ occurs }\io)=1.$  Hence, $P(0,1\mbox{ occur }\io)=1.$ 
- Proceeding similarly, $P(\mbox{each digit occurs }\io)=1.$
-<p></p>
 
 <fieldset>
 <legend><b>Project: Random walk in 3D may not return</b></legend>
 A bird starts at the origin, and in each second moves one unit parallel to one of the three axes (the axis and direction
  chosen randomly). Is the bird sure to fly back to the origin sometime or other during the course of its random flight? The
  answer is "No!". But if we force the bird to stay in the $xy$-plane (<i>i.e.</i>, vertical movements are not allowed), then
- the answer is "Yes". This project is about using the first Borel-Cantelli lemma to prove the general case. 
+ the answer is "Yes". This project is about using the first Borel-Cantelli lemma to prove <i>only</i> the 3D case.
 <p></p>
 It is a classical application of the Borel-Cantelli lemmas. Theoretical project. Not too difficult. 
 </fieldset>
