@@ -41,11 +41,19 @@ if <M>P(X_n\to X) = 1.</M>
 </DEFN>
 
 <EXM>Let our probability space be <M>Unif[0,1]</M> with <M>\Omega = \rr.</M>   Let <M>X_n(\omega)
- =\omega^n</M>, and let <M>X(\omega)\equiv 0.</M>  Then  <M>X_n\toA X.</M>
+ =\omega^n</M>, and let <M>X(\omega)\equiv 0.</M>  
+
+Then the event <M>\{X_n\to X\}</M>  is the set of all <M>\omega</M>  such that <M>X_n(\omega)\to X(w)</M>, which is <M>(-1,1).</M> 
+ 
+
+Then  <M>X_n\toA X,</M>  since under <M>Unif(0,1),</M>  the set <M>(-1,1)</M>  has probability 1
+ (it is a superset of <M>[0,1)</M>).  
 
 
-However, if we replace <M>Unif(0,1)</M>  with <M>Unif(0,2),</M>  then the convergence breaks down.
+However, if we replace <M>Unif(0,1)</M>  with <M>Unif(0,2),</M>  then the convergence breaks down since now <M>(-1,1)</M> 
+ has probability only <M>[[12]]<1.</M>
 </EXM>
+
 <THM>
 Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability space. Let
  <M>a,b</M>  be fixed numbers. If <M>X_n\toA X</M>  and <M>Y_n\toA Y,</M>  then
@@ -61,6 +69,12 @@ Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability 
 Let <M>A=\{\omega~:~X_n(\omega)\to X(\omega)\}</M>  and <M>B=\{\omega~:~Y_n(\omega)\to Y(\omega)\}.</M>
 
 Then <M>P(A)=1</M>  and <M>P(B)=1</M>  and hence <M>P(A\cap B)=1.</M>
+<BECAUSE>We know that <M>P(A\cup B)\geq P(A) = 1.</M>  So <M>P(A\cup B)= 1.</M>
+
+But <M>P(A\cup B) = P(A)+P(B)-P(A\cap B).</M>
+
+Hence <M>P(A\cap B) = P(A)+P(B)-P(A\cup B) = 1+1-1 = 1.</M>
+</BECAUSE>
 
 Now apply the corresponding results from real analysis for each <M>\omega\in A</M>  (for 1) and for <M>\omega\in A\cap B</M> 
  (for 2 and 3).
@@ -77,33 +91,8 @@ Possibly the most famous use of almost sure convergence in exploring statistical
 Then <M>\bar X_n \toA \mu.</M>
 </THM>
 <PF>Skipped.</PF>
-This is essentially what we saw when we did the coin tossing example of statistical regularity. Though we have skipped the
- proof we have a project that explores some ideas related to the proof. 
+This is essentially what we saw when we did the coin tossing example of statistical regularity. 
 <HEAD2>Problem set</HEAD2>
-<EXR>Let <M>N</M> be an <M>\nn</M>-valued random variable. Let <M>(X_n)</M>  be a sequence of
- random variables defined on the same probability space as follows.
-<D>X_n(\omega) =<CASES>1<IF>n\leq N(\omega)</IF> 0<ELSE/></CASES>. </D>
-Show that <M>X_n\toA 0.</M>
- </EXR>
-
-<EXR>
-Let <M>(A_n)</M>  be a sequence of events in some probability space such that <M>P(A_n)=[[1][n^2]].</M>  Show that <M>I_{A_n}\toA 0.</M> 
- Here <M>I_{A_n}</M>  is the indicator variable for <M>A_n.</M>
-</EXR>
-<EXR>
-Let <M>(A_n)</M>  be a sequence of <I>independent</I>  events in some probability space such that
- <M>P(A_n)=[[1n]].</M>  Check if <M>I_{A_n}\toA 0.</M> 
-</EXR>
-
-<EXR>
-Let <M>(X_n)</M>  be iid <M>Bernoulli(p)</M>  for some <M>p\in (0,1).</M>  Let
-<M>Y_n = \max_{1\leq k\leq n} X_k.</M>  Show that <M>Y_n\toA 1</M>. 
-</EXR>
-<EXR>
-Let <M>(X_n)</M>  be iid <M>Unif[0,1].</M>  Let
-<M>Y_n = \max_{1\leq k\leq n} X_k.</M>  Show that <M>Y_n\toA 1</M>. 
-</EXR>
-
 <EXR>
 Let <M>(X_n)</M>  be iid <M>Poi(\lambda).</M>  Let
 <M>Y_n = [[1n]]\sum_1^n X_k^2.</M>  Show that <M>(Y_n)</M>  converges a.s. Find the limit. 
@@ -116,6 +105,7 @@ Let <M>(X_n)</M>  be iid <M>Poi(\lambda).</M>  Let
 
 <EXR>Let <M>(X_n)</M>  be iid with finite variance <M>\sigma^2.</M>  Show that 
 <D>[[1][n-1]]\sum_1^n (X_k-\bar X_n)^2\toA \sigma^2.</D>
+<HINT>Be careful: <M>(X_1-\bar X_n)^2</M>, <M>(X_2-\bar X_n)^2,...</M>  etc are not independent.</HINT>
 </EXR>
 
 <EXR>Let <M>(X_n)</M>  be iid <M>Unif(1,2).</M>  Let <M>G_n</M>  be the geometric mean of the
@@ -123,6 +113,37 @@ Let <M>(X_n)</M>  be iid <M>Poi(\lambda).</M>  Let
 <D>G_n = (*(\prod_1^n X_k)*)^{[[1n]]}.</D>
 Show that <M>G_n</M>  converges a.s. Find the limit.
 </EXR>
+<EXR>Let <M>N</M> be an <M>\nn</M>-valued random variable. Let <M>(X_n)</M>  be a sequence of
+ random variables defined on the same probability space as follows.
+<D>X_n(\omega) =<CASES>1<IF>n\leq N(\omega)</IF> 0<ELSE/></CASES>. </D>
+Show that <M>X_n\toA 0.</M>
+ </EXR>
+
+<EXR>
+Let <M>(A_n)</M>  be a sequence of events in some probability space. Show that <M>I_{A_n}\toA
+ 0</M>  if and only if <M>P(A_n\io)=0.</M> 
+</EXR>
+
+<EXR>
+Let <M>(A_n)</M>  be a sequence of events in some probability space such that <M>P(A_n)=[[1][n^2]].</M>  Show that <M>I_{A_n}\toA 0.</M> 
+ Here <M>I_{A_n}</M>  is the indicator variable for <M>A_n.</M>
+<HINT>Use the first Borel-Cantelli lemma.</HINT>
+</EXR>
+<EXR>
+Let <M>(A_n)</M>  be a sequence of <I>independent</I>  events in some probability space such that
+ <M>P(A_n)=[[1n]].</M>  Check if <M>I_{A_n}\toA 0.</M> 
+<HINT>Use the second Borel-Cantelli lemma.</HINT>
+</EXR>
+
+<EXR>
+Let <M>(X_n)</M>  be iid <M>Bernoulli(p)</M>  for some <M>p\in (0,1).</M>  Let
+<M>Y_n = \max_{1\leq k\leq n} X_k.</M>  Show that <M>Y_n\toA 1</M>. 
+</EXR>
+<EXR>
+Let <M>(X_n)</M>  be iid <M>Unif[0,1].</M>  Let
+<M>Y_n = \max_{1\leq k\leq n} X_k.</M>  Show that <M>Y_n\toA 1</M>. 
+</EXR>
+
 
 <EXR>Let <M>(X_n)</M>  be an independent sequence of random variables with 
 <D>P(X_n=n) = [[1][n^2]]\mbox{ and } P(X_n=0) = 1-[[1][n^2]].</D>
@@ -132,7 +153,7 @@ Show that <M>X_n\toA 0.</M>
 This is historically the first notion of convergence of random variables that was defined mathematically. 
 
 <DEFN name="Probability convergence">
-Let <M>(X_n)</M>  be a sequence of random variables all defined on some common probability space <M>\Omega,\calF, P).</M> 
+Let <M>(X_n)</M>  be a sequence of random variables all defined on some common probability space <M>(\Omega,\calF, P).</M> 
  Let <M>X</M>  be some random variable also defined on the same probability space. Then we say
  that <M>(X_n)</M> converges to <M>X</M>  <TERM>in probability</TERM>  and write "<M>X_n\toP X</M>  if 
 <D>\forall \epsilon>0~~P(|X_n-X|> \epsilon)\to 0.</D> 
@@ -198,17 +219,19 @@ as <M>n\to \infty.</M>
  <M>f(X_n)\toP f(X).</M></EXR>
 
 <EXR>Suppose <M>P(X_n=n)=[[1n]]</M>  and <M>P(X_n=0)=1-[[1n]].</M>  
-Then must we have <M>X_n\toP 0</M>?
+Then is it true that <M>X_n\toP 0</M>?
 </EXR>
 
 <EXR>If <M>E(X_n)=0</M>  and <M>V(X_n) = (*([[1n]])*)^{1/3},</M>  then show that <M>X_n\toP 0.</M></EXR>
-
+<COMMENT>
 <EXR>Let <M>(X_n)</M>  be an iid sequence of Cauchy random variables. Let <M>\bar X_n</M>  denote
- the mean of the first <M>n</M>  of them. Show that <M>\bar X_n</M>  does <I>not</I>  converge in probability.
+ the mean of the first <M>n</M>  of them. Show that <M>\bar X_n</M>  does <I>not</I>  converge to
+ any constant in probability.
 
 <HINT>If <M>X,Y</M>  are independent Cauchy and <M>\alpha\in (0,1)</M>  is fixed, then <M>\alpha
  X+(1-\alpha) Y</M>  again has Cauchy distribution.</HINT>
 </EXR>
+</COMMENT>
 <HEAD1><M>L_p</M> convergence for <M>p\geq1</M></HEAD1>
 When we think of a sequence <M>(X_n)</M>  of random variables converging to a random variable <M>X,</M>  we tend to believe
  that for large enough <M>n</M>  the random variable <M>X_n</M>  behaves "just like" <M>X.</M>  In particular, <M>E(X_n)</M> 
@@ -348,7 +371,7 @@ Let <M>X_n,X</M>  be all random variables defined on a common probability space.
 <EXR>Let <M>(X_n)</M>  be  a sequence of  random variable with distribution function <M>F_n,</M>  where
 
 <D>F_n(x) = <CASES>0<IF>x < 0</IF> x^n<IF>x\in[0,1)</IF> 1<ELSE/></CASES>. </D>
-Show that <M>\X_n\toD X</M>  for some <M>X.</M>  What is the distribution of <M>X</M>?
+Show that <M>X_n\toD X</M>  for some <M>X.</M>  What is the distribution of <M>X</M>?
 </EXR>
 <COMMENT>
 <EXR>We have mentioned that if <M>X_n\sim N(*(0,[[1n]])*),</M>  and <M>X\equiv0,</M>  then
@@ -426,7 +449,7 @@ This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or
  </EXM>
 In this problem we knew the distribution of the <M>X_i</M>'s, but we never really made any use of it, except to compute <M>E(X_i)</M> 
  and <M>V(X_i).</M>  
-<HEAD2>Problem set <PS/></HEAD2>
+<HEAD2>Problem set</HEAD2>
 ::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
 ::<EXR><EIMG web="rossdistrib8.png"></EIMG>
 <ANS>For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</ANS>
@@ -488,7 +511,7 @@ Take any <M>\epsilon>0.</M>  Then, by Markov inequality applied to <M>|X_n-X|</M
  nonnegative thanks to the modulus), we have  
 <D>P(|X_n-X|>\epsilon)\leq [[E(|X_n-X|)][\epsilon]]\to 0.</D>
 </PF>
-
+<COMMENT>
 <THM>If <M>X_n\toP X,</M>  then <M>X_n\toD X.</M></THM>
 <PF>
 <ALERT>This proof requires the concept of liminf and limsup.</ALERT>
@@ -527,26 +550,28 @@ Taking limit as <M>n\to \infty,</M>  we get
 <D>F(x-\epsilon)  \leq \liminf F_n(x) \leq \limsup F_n(x) \leq  F(x + \epsilon).</D>
 Hence the result.
 </PF>
-
+</COMMENT>
 Though convergence in distribution does not imply convergence in probability in general, but there is one important special
  ase where it does! This is given in the theorem below.
 
 <THM>Let <M>(X_n)</M>  be a sequence of random variables (not necessarily defined on a common
- probability space). Let <M>c\in\rr</M>  be fixed. If <M>X_n\toP c</M>  then <M>X_n\toD c.</M></THM>
+ probability space). Let <M>c\in\rr</M>  be fixed. If <M>X_n\toD c</M>  then <M>X_n\toP c.</M></THM>
 <PF>
-<B>Step 1:</B>  Shall show <M>\forall x < c~~P(X_n\leq x)\to 0.</M>  
+Since <M>X_n\toD C,</M>  hence <M>\forall x < c~~P(X_n\leq x)\to 0</M> and  <M>\forall x \geq c~~P(X_n\leq x)\to 1</M> 
 
-Take any <M>x < c.</M>
+Shall show <M>X_n\toP c,</M>  i.e., <M>\forall \epsilon>0~~P(|X_n-c| > \epsilon)\to 0.</M>
 
-Then, for  <M>\epsilon = c-x > 0,</M>  we have
-<M>P(|X_n-c| \geq \epsilon) \to 0.</M>  
+Take any <M>\epsilon>0.</M>
 
-So <M>P(X_n \leq c-\epsilon) \to 0</M>  or <M>P(X_n \leq x) \to 0.</M>
-
-<B>Step 2:</B>  Shall show <M>\forall x > c~~P(X_n\leq x)\to 1.</M>  
-
-Similar argument.
-</PF>
+Then 
+<MULTILINE>
+P(|X_n-c| > \epsilon) & = & P(X_n < c-\epsilon \mbox{ or } X_n > c+ \epsilon)\\
+& = & P(X_n <  c-\epsilon)+P(X_n > c+ \epsilon)\\
+& = & P(X_n <  c-\epsilon)+1-P(X_n \leq c+ \epsilon)\\
+& \leq & P(X_n <  c-\epsilon)+1-P(X_n \leq c+ \epsilon)\\
+& \to & 0 + 1-1 = 0.
+  </MULTILINE>
+Hence, by sandwich law of limit, <M>P(|X_n-c| > \epsilon\to 0,</M>  as required.</PF>
 <HEAD2>Counterexamples</HEAD2>
 The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
  moments exist finitely for all the random variables involved. 
