@@ -75,17 +75,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 body,table {
   margin: 0;
   font-size: 40;
-  background: #000;
-  color: #fff;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
 }
 
 a:link {
-  color: #ff0;
+  color: var(--link-col,#00f);
 }
 
 .ans {
   display:none;
-  background: #222;
+  background: var(--ans-bg,#cfc);
 }
 
 .sticky {
@@ -164,10 +164,30 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Aug 23 22:36:26 IST 2026</i>
+Mon Aug 24 08:45:16 IST 2026</i>
 </td>
 </tr>
 </table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
 <h3>Convergence of random variables</h3>
 <ul>
 <li>1. <a href="#N1002F">Almost sure convergence</a>
