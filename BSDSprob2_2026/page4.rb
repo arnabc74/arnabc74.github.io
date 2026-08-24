@@ -44,7 +44,23 @@ if <M>P(X_n\to X) = 1.</M>
  =\omega^n</M>, and let <M>X(\omega)\equiv 0.</M>  
 
 Then the event <M>\{X_n\to X\}</M>  is the set of all <M>\omega</M>  such that <M>X_n(\omega)\to X(w)</M>, which is <M>(-1,1).</M> 
- 
+<BECAUSE>
+Let's understand this with some examples. We shall consider different values of <M>\omega\in\rr</M>  and see when <M>X_n(\omega) \to X(\omega)</M> 
+ holds, i.e., when <M>\omega^n\to 0</M>  holds.
+<UL><LI>If <M>\omega=[[12]],</M>  then <M>\omega^n = (*([[12]])*)^n\to 0.</M>  More generally, for
+ all <M>\omega\in[0,1)</M>  we have <M>\omega^n \to 0.</M></LI>
+<LI>If <M>\omega = -[[12]],</M>  then also <M>\omega^n = (*(-[[12]])*)^n\to 0,</M>  and in
+ general, for all <M>\omega\in(-1,0)</M>  we have <M>\omega^n \to 0.</M></LI>
+<LI>If <M>\omega = 1,</M>  then <M>\omega^n=1^n = 1 \to 1,</M>  and hence <M>\omega^n \not\to 0.</M></LI>
+<LI>If <M>\omega=2,</M>  then <M>\omega^n = 2^n\to \infty,</M>  and hence again <M>\omega^n
+ \not\to 0.</M>  More generally, for all <M>\omega > 1,</M>  we have <M>\omega^n \not\to 0.</M></LI>
+<LI>If <M>\omega = -2,</M>  then <M>\omega^n</M>  keeps on oscillating, and does not converge. So
+ here also <M>\omega^n \not\to 0.</M>  This behaviour is shared by all <M>\omega\leq -1.</M></LI>
+</UL>
+So we see that <M>X_n(\omega) \to X(\omega)</M>  if and only if <M>\omega\in(-1,1).</M>
+<CIMG web="powplot.png">Notice how the graphs of <M>x^{13}</M>  and <M>x^{14}</M>  over
+ <M>(-1,1)</M>  approach the <M>x</M>-axis.</CIMG>
+</BECAUSE> 
 
 Then  <M>X_n\toA X,</M>  since under <M>Unif(0,1),</M>  the set <M>(-1,1)</M>  has probability 1
  (it is a superset of <M>[0,1)</M>).  
