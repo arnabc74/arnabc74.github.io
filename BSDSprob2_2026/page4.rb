@@ -446,11 +446,14 @@ Show that <M>X_n\toD X</M>  for some <M>X.</M>  What is the distribution of <M>X
 <EXR>If <M>X_n\sim Unif(*(n-[[1n]],n+[[1n]])*),</M> 
  then does <M>(X_n)</M>  converge in distribution? If so, find the limiting distribution.</EXR>
 
-<EXR>Let <M>U_1,...,U_n</M>  be iid <M>Unif(0,1)</M>  random variables. Let <M>X_n = \min_i U_i.</M>  Show that <M>X_n\toD 0.</M></EXR>
+<EXR>Let <M>U_1,...,U_n</M>  be iid <M>Unif(0,1)</M>  random variables. Let <M>X_n = \min_i U_i.</M>  Show that <M>X_n\toD 0.</M>
+<HINT>Distribution function of <M>X_n</M>  is <M>F_n(x) = P(X_n\leq x) = 1-P(X_n > x) = 1-P(\forall i~~X_i > x).</M></HINT>
+</EXR>
 
 <EXR><M>(X_n), X</M>  are discrete random variables taking values in <M>\{1,...,10\}.</M>  If  pmf
  of <M>X_n</M>  converges pointwise
- to pmf of <M>X,</M>  then show that <M>X_n\toD X.</M></EXR>
+ to pmf of <M>X,</M>  then show that <M>X_n\toD X.</M>
+</EXR>
 
 <HEAD1>Central Limit Theorem</HEAD1>
 The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
