@@ -58,7 +58,8 @@ Let's understand this with some examples. We shall consider different values of 
  here also <M>\omega^n \not\to 0.</M>  This behaviour is shared by all <M>\omega\leq -1.</M></LI>
 </UL>
 So we see that <M>X_n(\omega) \to X(\omega)</M>  if and only if <M>\omega\in(-1,1).</M>
-<CIMG web="powplot.png">Notice how the graphs of <M>x^{13}</M>  and <M>x^{14}</M>  over <M>(-1,1)</M>  approach</CIMG>
+<CIMG web="powplot.png">Notice how the graphs of <M>x^{13}</M>  and <M>x^{14}</M>  over
+ <M>(-1,1)</M>  approach the <M>x</M>-axis.</CIMG>
 </BECAUSE> 
 
 Then  <M>X_n\toA X,</M>  since under <M>Unif(0,1),</M>  the set <M>(-1,1)</M>  has probability 1
@@ -267,20 +268,16 @@ A couple of points are in order here:
 <LI>Why are we putting the <M>p\geq 1</M>  condition?</LI>
 <LI>Would it not be more natural to write  <M>E(X_n^p)\to E(X^p)</M>  instead of <M>E|X_n-X|^p?</M></LI>
 </OL>
-The answer to the first question lies in the following
- inequality:
-<THM name="Minkowski inequality">
-Let <M>1\leq p < \infty.</M> Let <M>X,Y</M> have
-finite <M>p</M>-th moment. Then
-<D>
-E|X+Y|^p\leq E|X|^p+E|Y|^p.
-</D>
-This is a form of the triangle inequality. 
-</THM>
-This inequality makes <M>L_p</M>  convergence well-behaved
- for <M>p\geq 1.</M> Unfortunately, the inequality does not hold
- in general for <M>p < 1.</M>
+If we define <M>\|X\|_p = (#(E(|X|^p)#)^{[[1p]]},</M>  then <M>\|\cdot\|_p</M>  behaves like "distance from origin",
+i.e., 
+<UL>
+<LI> <M>\|X\|_p \geq 0.</M></LI>
+<LI>For any <M>a\in\rr</M>  we have <M>\|aX\|_p = |a|\cdot \|X\|_p.</M></LI>
+<LI><M>\|X+Y\|_p \leq \|X\|_p+\|Y\|_p.</M>  This holds if <M>p\geq 1.</M></LI>
+</UL>
+More technically, <M>\|\cdot\|_p</M>  is called a <TERM>norm</TERM>  when <M>p\geq 1.</M>  
 
+Using this norm-notation, we can define <M>X_n\toL p X</M>  as simply <M>\|X_n-X\|_p\to0.</M>
 
 Now let us explore the second question using <M>p=1.</M> 
 
@@ -325,8 +322,6 @@ Since <M>qr = p,</M>
 Hence the result. 
 </PF></COMMENT>
 
-I mentioned earlier that Minkowski inequality keeps <M>L_p</M>  convergence well-behaved for <M>p\geq 1.</M>  The next theorem
- is one example. 
 
 <THM>
 Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability space. Let
@@ -338,7 +333,7 @@ Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability 
 </THM>
 <PF>The first property follows directly. 
 
-The second property follows from Minkowski inequality.</PF>
+The second property follows from the norm properties of <M>\|\cdot\|_p.</M>.</PF>
 
 However, even if <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>  and <M>X_nY_n, XY</M>  have finite <M>p</M>-th
  moments, we may have <M>X_nY_n\not\toL p XY.</M>
@@ -369,13 +364,67 @@ Many books also write <M>F_n\implies F</M>  or <M>X_n\implies X.</M>
 
 Since the behaviour of a random variable is captured completely by its distribution, this is quite a natural definition,
  except for the mention of "continuity points". Why not demand <M>\forall x\in \rr ~~F_n(x)\to
- F(x)</M> "? Why relax the requirement at the  discontinuity points of <M>F?</M>  
+ F(x)</M> "? Why relax the requirement at the  discontinuity points of <M>F?</M>  Let us see the reason with an example.
+To appreciate the discussion better, you need to recall the following graphfrom Probability 1 that
+ the distribution function
+ of <M>Unif(a,b)</M>  is
+ the following function:
+<CIMG web="unifabcdf.png">Distribution function of <M>Unif(a,b)</M></CIMG>
+
+<EXM>Suppose that <M>X_n\sim Unif(*(1,1+[[1n]])*).</M>  Intuitively, what distribution does <M>(X_n)</M>  approach? 
+<SOLN/>
+Intuitively the limiting distribution should be degenerate at <M>0</M>, i.e., <M>X_n\toD X,</M>  where <M>X\equiv 0.</M>
+
+Now let us consider the distribution functions of <M>X_n</M>  and <M>X</M>:
+<CIMG web="cdfs.png"></CIMG>
+It might help to see an animation of the convergence of the <M>F_n</M>'s:
+<VID src="cdfs.webm">Click to animate</VID>  
+Notice that we have <M>F_n(x)\to F(x)</M>  whenever <M>x\neq 0.</M>  But at <M>x=0,</M>  we have <M>F_n(0)\equiv 0</M>  while
+ <M>F(0) = 1.</M>  So <M>F_n(0)\not\to F(0).</M>  
+
+So to make the mathematics behave intuitively, we need to relax the convergence requirement at the
+ discontinuity point of
+<M>F.</M>  
+</EXM>
+
+While convergence in distribution is a natural concept, you should be aware of one pitfall that is illustrated in the next
+ example.
+
+<EXM>Consider a <M>Unif(0,1)</M>  probability space, and let <M>X_n(\omega) = \omega.</M>  Also
+ let <M>X(\omega) = \omega.</M>  Then obviously <M>X_n\toD X</M>, because they are all actually
+ the same random variable! But is the following statement also true: <M>X_n\toD 1-X</M>?
+<SOLN/>
+While it might surprise you, the answer is "Yes!", because <M>X</M>  and <M>1-X</M>  both have the same distribution, viz.,
+ <M>Unif(0,1).</M>  
+
+When we say <M>X_n\toD X</M>,  we actually mean 
+<Q>"distribution of <M>X_n</M>  <M>\to</M>  distribution of <M>X</M> ".</Q>
+Since distribution of <M>X</M>  is the same as as the distribution of <M>1-X,</M>  convergence in distribution does not distinguish
+ between <M>X</M>  and <M>1-X.</M>  
+
+Indeed, a more reasonable notation is <M>X_n\to Unif(0,1).</M>  Here we are writing the
+ distribution itself after the arrow, and hence there is no need to use the <M>\toD</M>  notation. 
+</EXM>
+
 <THM>
 Let <M>X_n,X</M>  be all random variables defined on a common probability space. Let
  <M>a,b</M>  be fixed numbers.  If <M>X_n\toD X</M>, then
-<M>aX_n+b\toL p aX+b</M>.
+<M>aX_n+b\toD  aX+b</M>.
 </THM>
 <PF>Direct.</PF> 
+However, we do not have any result like "If  <M>X_n\toD X</M>  and <M>Y_n\toD Y</M>, then <M>X_n\pm Y_n\toD X\pm Y.</M>"
+ 
+The following example explains why.
+<EXM>
+Show that <M>X_n\toD X</M>  and <M>Y_n\toD Y</M>  do not imply <M>X_n+ Y_n\toD X+ Y.</M>
+<SOLN/>
+We consider a <M>Unif(0,1)</M>  probability space. Define <M>X_n(\omega) = \omega</M>  and <M>Y_n(\omega) = \omega.</M> 
+ Also let <M>X(\omega) = \omega</M>  and <M>Y(\omega) = 1-\omega.</M>
+
+Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  But <M>X+Y\equiv 0,</M>  while for each <M>n</M>  we have <M>X_n+Y_n \sim Unif(0,2).</M> 
+ 
+So <M>X_n+ Y_n\not\toD X+ Y,</M>  as required. 
+</EXM>
 
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>(a_n)</M>  be a fixed sequence with <M>a_n\to a.</M>  Let <M>X_n\equiv a_n</M>  and

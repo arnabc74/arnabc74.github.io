@@ -1,0 +1,97 @@
+ @{<NOTE>
+<HEAD1>Android programming from CLI</HEAD1>
+First create the following file structure:
+<PRE>
+MyApp/
+|
+|--- settings.gradle
+|--- build.gradle
+|--- gradle.properties
+|
+|--- gradle/
+|   +--- wrapper/
+|       |--- gradle-wrapper.jar
+|       +--- gradle-wrapper.properties
+|
++--- app/
+    |--- build.gradle
+    |
+    +--- src/
+        +--- main/
+            |
+            |--- AndroidManifest.xml
+            |
+            |--- java/
+            |   +--- com/
+            |       +--- example/
+            |           +--- myapp/
+            |               |--- MainActivity.java
+            |               +--- ...
+            |
+            +--- res/
+                |--- drawable/
+                |--- mipmap-hdpi/
+                |--- mipmap-mdpi/
+                |--- mipmap-xhdpi/
+                |--- mipmap-xxhdpi/
+                |--- mipmap-xxxhdpi/
+                |
+                |--- layout/
+                |   +--- activity_main.xml
+                |
+                |--- values/
+                |   |--- strings.xml
+                |   |--- colors.xml
+                |   +--- themes.xml
+                |
+                +--- ...
+</PRE> 
+
+Here is the simple mental picture:
+<PRE>
+MyApp/
+|
+|--- build.gradle
+|--- settings.gradle
+|
++--- app/
+    |--- build.gradle
+    |
+    +--- src/main/
+        |--- AndroidManifest.xml
+        |
+        |--- java/
+        |   +--- com/example/myapp/
+        |       +--- MainActivity.java
+        |
+        +--- res/
+            |--- layout/
+            |   +--- activity_main.xml
+            |
+            +--- values/
+                +--- strings.xml
+</PRE>
+Next enter the top folder (just inside MyApp) and issue the
+command:
+<PRE>
+./gradlew build
+</PRE>
+It will build the project (or produce error messages). If it is
+successful, the final apk will be in 
+<PRE>
+app/build/outputs/apk/debug/app-debug.apk
+</PRE> 
+To install it, connect the mobile to the laptop via USB (no need
+to set any mode like charging, file transfer etc). The mobile
+should have developer option on (tap build number in about phone
+7 times to enable it) and usb debug option on under developer
+option. 
+Check by 
+<PRE>adb devices</PRE>
+to see if the connected device is listed. 
+
+If it is, then issue the command 
+<PRE>
+adb install [the path to apk]
+</PRE>
+</NOTE>@}

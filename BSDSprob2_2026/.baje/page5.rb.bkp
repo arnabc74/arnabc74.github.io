@@ -2,9 +2,26 @@
 <M>\newcommand{\toL}[1]{\stackrel{L_{#1}}{\longrightarrow}}</M>
 <M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
 <TITLE>Convergence theorems</TITLE>
-<HEAD1>Monotone convergence theorem (MCT)</HEAD1>
+<HEAD1>Monotone and dominated convergence theorems</HEAD1>
 We would have been very happy, had there been a result saying: Whenever <M>X_n\toA X</M>  we have <M>E(X_n)\to E(X)</M>. Unfortunately,
- this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
+ this is not true in general. For one thing we need <M>E(X_n)</M>  and <M>E(X)</M>  to exist. But even if they do, <M>E(X_n)</M> 
+ need not converge to <M>E(X).</M>
+
+<EXM>Construct an example where <M>X_n\toA X</M> and <M>E(X_n), E(X)</M>  are all finite, but <M>E(X_n)\not\to E(X).</M>
+<SOLN/>
+Consider <M>Unif(0,1)</M>
+  probability space with <M>X_n(\omega)
+ =<CASES>n<IF>\omega\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES></M>  and <M>X\equiv 0.</M>
+<CIMG web="boxexp.png">Graph of <M>X_3</M></CIMG>
+Here <M>X_n(\omega)\to X(\omega)</M>  everywhere. 
+
+Let's find <M>E(X_n).</M>  Notice that <M>P(X_n=n) = [[1n]]</M>  and <M>P(X_n=0) = 1-[[1n]].</M>  So <M>E(X_n) = n\times [[1n]] + 0\times (*(1-[[1n]])*) = 1.</M> 
+ 
+Since <M>E(X) = 0,</M>  hence <M>E(X_n)\not\to E(X).</M>
+</EXM>
+So
+ we search for extra conditions under
+ which <M>E(X_n)\to E(X)</M>  will hold. The following two theorems each provide one such extra condition. 
 
  
 <THM name="Monotone convergence theorem (MCT)">
@@ -57,7 +74,7 @@ Hence <M>\lim_k Y_k= X.</M>
 </BECAUSE>
 This completes the proof.
 </PF>
-</COMMENT>
+
 <HEAD2>MCT for Riemann integration?</HEAD2>
 Do we have an MCT for Riemann integrals, as well? Well, no, because even if <M>X_n</M>'s are
  Riemann integrable, and they increase to <M>X,</M>  there is a no guaranty that <M>X</M>  will be Riemann integrable.
@@ -75,40 +92,77 @@ Then the Riemann integral of each <M>X_n</M>  is <M>0.</M>  The <M>X_n</M>'s inc
 
 However, it may be shown that if the limit
  is a Riemann integrable, then MCT holds for Riemann integration also. 
+</COMMENT>
 
-<HEAD2>Why not decreasing?</HEAD2>
+<THM name="Dominated Convergence Theorem (DCT)">
+Let <M>X_n\to X.</M>  If  <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  with <M>E(Y)< \infty</M>, 
+ then <M>E|X_n-X|\to 0</M>  and so, in particular, <M>E(X_n)\to E(X).</M>
+</THM>
+<COMMENT><PF>
+Clearly, <M>|X|\leq Y.</M>
+
+So, by triangle inequality, <M>|X_n-X|\leq |X_n|+|X|\leq 2Y.</M>
+
+Let <M>Z_n = 2Y-|X_n-X|.</M>  Then <M>Z_n</M>'s are all nonnegative random variables. 
+
+Applying Fatou's lemma to <M>(Z_n)</M>, we have 
+<D lab="(*)">E(\liminf Z_n)\leq \liminf E(Z_n).</D>
+Now 
+<D>\liminf Z_n = 2Y-\limsup|X_n-X| = 2Y,</D>
+and 
+<D>\liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| .</D>
+So (*) becomes 
+<D>2E(Y)\leq 2E(Y)-\limsup E|X_n-X|,</D>
+or <M>\limsup E|X_n-X|\leq 0.</M>
+
+Hence <M>E|X_n-X|\to 0,</M>  as required.
+</PF>
+We can think of the conclusion of MCT or DCT as limit passing through expectation: <M>\lim E(X_n) = E(\lim X_n).</M> This
+ proves handy in many situations as we shall see in the problems below.
+</COMMENT>
+<HEAD3>Why not decreasing?</HEAD3>
 The 'M' in MCT refers to <I>monotone</I>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
- However, in the theorem we require the sequence of functions to be non-increasing. 
+ However, in the theorem we require the sequence of functions to be <I>non-increasing</I>. 
 
 
 Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
 
 <EXM>
 Here we shall work with <M>[0,1]</M>  again, equipped with <M>Unif[0,1]</M>  probability distribution. Let <M>X_n = [[1][nx]]</M> 
- (set <M>X_n=0</M>  at <M>x=0</M>). Also, take <M>X\equi0.</M>  Then <M>\forall
+ (set <M>X_n=0</M>  at <M>x=0</M>). Also, take <M>X\equiv0.</M>  Then <M>\forall
  \omega\in[0,1]~~X_n(w)\downarrow X(w).</M>  But <M>E(X_n)=\infty</M>  though <M>E(X)=0.</M>  
 
-
-The problem is that the Lebesgue integral is <I>defined</I>  as sup of approximations <I>from below</I>.  
 </EXM>
-<HEAD2>Problem set <PS/></HEAD2>
 
-<EXR>Give <M>X_n, X</M>  on <M>[0,1]</M>  equipped with <M>Unif[0,1]</M>  such that 
-<OL><LI><M>X_n\to X</M>  but not monotonically</LI>
-<LI><M>E(X_n), E(X)</M>  exist finitely.</LI>
-<LI>But <M>E(X_n)\not\to E(X).</M></LI></OL>
-<ANS>Think of constant functions and step functions with just two steps.</ANS></EXR>
-<EXR>
-If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variables converging to some random variable <M>X,</M> 
- and <M>E(X_1)<\infty,</M>  then show that <M>E(X_n)\downarrow E(X).</M>  What if the assumption <M>E(X_1)<\infty</M>  is
- dropped?
-</EXR>
 
-<EXR>
+<HEAD2>Problem set</HEAD2>
+
+<EXR>(MCT) 
 Suppose that <M>X_n</M>'s are nonnegative random variables. Show that 
 <D>E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).</D>
 </EXR>
 
+<EXR>(DCT) Let <M>(X_n),X</M>  be  random variables such that <M>X_n\toA X</M>  and   <M>\forall n\in\nn~~|X_n|\leq
+ Y</M>  for some random variable <M>Y</M>  with <M>E(Y) < \infty.</M>  Then show that <M>X_n\toL 1 X.</M>
+</EXR> 
+
+
+
+<EXR>(DCT) Let <M>X</M>  be any random variable. Show that <M>f(t) = E(\sin(tX))</M>  is a continuous function.
+<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>f(a_n)\to f(a).</M></HINT>
+</EXR>
+
+<EXR>(DCT) Let <M>X</M>  be any random variable. Show that <M>f(t) = E(\sin(t+X))</M>  is a
+ differentiable function, with <M>f'(t) = E(\cos(t+X)).</M>
+<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>Y_n = [[f(a_n)-f(a)][a_n-a]]\to E(\cos(t+X)).</M>
+Use the mean value theorem and boundedness of <M>\cos.</M>
+</HINT>
+</EXR>
+<EXR>(MCT or DCT)
+If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variables converging to some random variable <M>X,</M> 
+ and <M>E(X_1)<\infty,</M>  then show that <M>E(X_n)\downarrow E(X).</M>  What if the assumption <M>E(X_1)<\infty</M>  is
+ dropped?
+</EXR>
 <HEAD1>Fatou's lemma</HEAD1>
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
@@ -138,12 +192,12 @@ Compute both sides of Fatou's lemma explicitly.</EXR>
 <EXR>Let <M>U\sim Expo(1).</M>  Let <M>X_n = <CASES>e^x<IF>x\in(n-1,n]</IF> 0<ELSE/></CASES></M> 
  for <M>n\in\nn.</M>  Compute both sides of Fatou's lemma explicitly.</EXR>
 
-<EXR>Suppose that <M>(X_n)</M>  is a sequence of  random variables with <M>X_n\to
+<EXR>Suppose that <M>(X_n)</M>  is a sequence of  random variables with <M>X_n\toA
  X.</M>  If <M>\forall n\in\nn~~ E(X_n)\in [2,5]</M>, then which of the following must be true?
-<VL>
+<OL>
 <LI><M>E(X)\geq 2</M></LI>
-<M>E(X)\leq 5.</M>
-</VL>
+<LI><M>E(X)\leq 5.</M></LI>
+</OL>
 Prove and/or provide counterexample(s) accordingly. 
 </EXR>
 
@@ -161,49 +215,6 @@ Prove and/or provide counterexample(s) accordingly.
 <COMMENT>
 <LINK to="chat/Fatou_Lemma_Exercises.pdf">Fatou_Lemma_Exercises.pdf</LINK>
 </COMMENT>
-<HEAD1>Dominated Convergence Theorem</HEAD1>
-<THM name="Dominated Convergence Theorem (DCT)">
-Let <M>X_n\to X.</M>  If  <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  with <M>E(|Y|)< \infty</M>, 
- then <M>E|X_n-X|\to 0</M>  and so, in particular, <M>E(X_n)\to E(X).</M>
-</THM>
-<PF>
-Clearly, <M>|X|\leq Y.</M>
-
-So, by triangle inequality, <M>|X_n-X|\leq |X_n|+|X|\leq 2Y.</M>
-
-Let <M>Z_n = 2Y-|X_n-X|.</M>  Then <M>Z_n</M>'s are all nonnegative random variables. 
-
-Applying Fatou's lemma to <M>(Z_n)</M>, we have 
-<D lab="(*)">E(\liminf Z_n)\leq \liminf E(Z_n).</D>
-Now 
-<D>\liminf Z_n = 2Y-\limsup|X_n-X| = 2Y,</D>
-and 
-<D>\liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| .</D>
-So (*) becomes 
-<D>2E(Y)\leq 2E(Y)-\limsup E|X_n-X|,</D>
-or <M>\limsup E|X_n-X|\leq 0.</M>
-
-Hence <M>E|X_n-X|\to 0,</M>  as required.
-</PF>
-We can think of the conclusion of MCT or DCT as limit passing through expectation: <M>\lim E(X_n) = E(\lim X_n).</M> This
- proves handy in many situations as we discuss next.
-<HEAD2>Problem set</HEAD2>
-
-<EXR>Let <M>(X_n),X</M>  be  random variables such that <M>X_n\toA X</M>  and   <M>\forall n\in\nn~~|X_n|\leq
- Y</M>  for some random variable <M>Y</M>  with <M>E(Y) < \infty.</M>  Then show that <M>X_n\toL 1 X.</M>
-</EXR> 
-
-
-
-<EXR>Let <M>X</M>  be any random variable. Show that <M>f(t) = E(sin(tX))</M>  is a continuous function.
-<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>f(a_n)\to f(a).</M></HINT>
-</EXR>
-
-<EXR>Let <M>X</M>  be any random variable. Show that <M>f(t) = E(\sin(t+X))</M>  is a differentiable function, with <M>f'(t) = E(\cos(t+X)).</M>
-<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>Y_n = [[f(a_n)-f(a)][a_n-a]]\to E(\cos(t+X)).</M>
-Use the mean value theorem and boundedness of <M>\cos.</M>
-</HINT>
-</EXR>
 
 <COMMENT>
 <HEAD3>Differentiation under expectation</HEAD3>

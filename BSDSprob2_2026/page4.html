@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 24 23:32:56 IST 2026</i>
+Tue Aug 25 19:21:57 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -204,21 +204,21 @@ function daynight() {
 </li>
 <li>3. <a href="#N10388">$L_p$ convergence for $p\geq1$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1049F">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N104B2">Problem set</a>
 </li>
-<li>4. <a href="#N104E8">Convergence in distribution</a>
+<li>4. <a href="#N104FB">Convergence in distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10535">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10619">Problem set</a>
 </li>
-<li>5. <a href="#N105CD">Central Limit Theorem</a>
+<li>5. <a href="#N106B1">Central Limit Theorem</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10662">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10746">Problem set</a>
 </li>
-<li>6. <a href="#N106F1">Relative strengths of different modes</a>
+<li>6. <a href="#N107D5">Relative strengths of different modes</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N107D5">Counterexamples</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N108B9">Counterexamples</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N10805">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N108E9">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -633,20 +633,20 @@ A couple of points are in order here:
 <li>Would it not be more natural to write  $E(X_n^p)\rightarrow E(X^p)$  instead of $E|X_n-X|^p?$</li>
 
 </ol>
-The answer to the first question lies in the following
- inequality:
-<fieldset>
-<legend><b><i>Minkowski inequality</i></b></legend>
-Let $1\leq p &lt; \infty.$ Let $X,Y$ have
-finite $p$-th moment. Then
-$$
-E|X+Y|^p\leq E|X|^p+E|Y|^p.
-$$
-This is a form of the triangle inequality. 
-</fieldset>
-This inequality makes $L_p$  convergence well-behaved
- for $p\geq 1.$ Unfortunately, the inequality does not hold
- in general for $p &lt; 1.$
+If we define $\|X\|_p = \big(E(|X|^p\big)^{\frac 1p},$  then $\|\cdot\|_p$  behaves like "distance from origin",
+<i>i.e.</i>, 
+<ul>
+
+<li> $\|X\|_p \geq 0.$</li>
+
+<li>For any $a\in{\mathbb R}$  we have $\|aX\|_p = |a|\cdot \|X\|_p.$</li>
+
+<li>$\|X+Y\|_p \leq \|X\|_p+\|Y\|_p.$  This holds if $p\geq 1.$</li>
+
+</ul>
+More technically, $\|\cdot\|_p$  is called a <b><font color="red" size="40">norm</font></b>  when $p\geq 1.$  
+<p></p>
+Using this norm-notation, we can define $X_n\rightarrowL p X$  as simply $\|X_n-X\|_p\rightarrow0.$
 <p></p>
 Now let us explore the second question using $p=1.$ 
 <p></p>
@@ -688,9 +688,6 @@ must also have $X_n\rightarrowL q X.$
 
 
 <p></p>
-I mentioned earlier that Minkowski inequality keeps $L_p$  convergence well-behaved for $p\geq 1.$  The next theorem
- is one example. 
-<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -709,7 +706,7 @@ Let $X_n,Y_n,X,Y$  be all random variables defined on a common probability space
 <p>
 <b><i>Proof:</i></b>The first property follows directly. 
 <p></p>
-The second property follows from Minkowski inequality.<b><i>[QED]</i></b>
+The second property follows from the norm properties of $\|\cdot\|_p.$.<b><i>[QED]</i></b>
 </p>
 
 <p></p>
@@ -718,7 +715,7 @@ However, even if $X_n\rightarrowL p X$  and $Y_n\rightarrowL p Y$  and $X_nY_n, 
 <p></p>
 The first exercise below provides  a counterexample.
 <h2>
-<a name="N1049F"><span class="header">3.1</span>.
+<a name="N104B2"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -749,7 +746,7 @@ Show that $E|X_nY_n|^p=1.$  Hence show that this provides a counterexample to th
 <p></p>
 
 <h1>
-<a name="N104E8"><span class="header">4</span>. Convergence in distribution</a>
+<a name="N104FB"><span class="header">4</span>. Convergence in distribution</a>
 </h1>
 
 <fieldset>
@@ -763,22 +760,110 @@ Many books also write $F_n\Rightarrow F$  or $X_n\Rightarrow X.$
 <p></p>
 Since the behaviour of a random variable is captured completely by its distribution, this is quite a natural definition,
  except for the mention of "continuity points". Why not demand $\forall x\in {\mathbb R} ~~F_n(x)\rightarrow
- F(x)$ "? Why relax the requirement at the  discontinuity points of $F?$  
+ F(x)$ "? Why relax the requirement at the  discontinuity points of $F?$  Let us see the reason with an example.
+To appreciate the discussion better, you need to recall the following graph from Probability 1:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/unifabcdf.png"></th>
+</tr>
+<tr>
+<th>Distribution function of $Unif(a,b)$</th>
+</tr>
+</table>
+</center>
+
+<p></p>
+
+<p>
+<b>EXAMPLE 3:</b>&nbsp;Suppose that $X_n\sim Unif\left(0,\frac 1n\right).$  Intuitively, what distribution does $(X_n)$  approach? 
+<p></p>
+<b>SOLUTION:</b>
+Intuitively the limiting distribution should be degenerate at $0$, <i>i.e.</i>, $X_n\rightarrowD X,$  where $X\equiv 0.$
+<p></p>
+Now let us consider the distribution functions of $X_n$  and $X$:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/cdfs.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+It might help to see an animation of the convergence of the $F_n$'s:
+<center>
+<video onclick="this.play()">
+<source type="video/webm" src="image/cdfs.webm"></source>
+</video>
+</center>  
+Notice that we have $F_n(x)\rightarrow F(x)$  whenever $x\neq 0.$  But at $x=0,$  we have $F_n(0)\equiv 0$  while
+ $F(0) = 1.$  So $F_n(0)\not\rightarrow F(0).$  
+<p></p>
+So to make the mathematics behave intuitively, we need to relax the convergence requirement at the
+ discontinuity point of
+$F.$  
+ ■
+</p>
+
+<p></p>
+While convergence in distribution is a natural concept, you should be aware of one pitfall that is illustrated in the next
+ example.
+<p></p>
+
+<p>
+<b>EXAMPLE 4:</b>&nbsp;Consider a $Unif(0,1)$  probability space, and let $X_n(\omega) = \omega.$  Also
+ let $X(\omega) = \omega.$  Then obviously $X_n\rightarrowD X$, because they are all actually
+ the same random variable! But is the following statement also true: $X_n\rightarrowD 1-X$?
+<p></p>
+<b>SOLUTION:</b>
+While it might surprise you, the answer is "Yes!", because $X$  and $1-X$  both have the same distribution, <i>viz.</i>,
+ $Unif(0,1).$  
+<p></p>
+When we say $X_n\rightarrowD X$,  we actually mean 
+<blockquote>"distribution of $X_n$  $\rightarrow$  distribution of $X$ ".</blockquote>
+Since distribution of $X$  is the same as as the distribution of $1-X,$  convergence in distribution does not distinguish
+ between $X$  and $1-X.$  
+<p></p>
+Indeed, a more reasonable notation is $X_n\rightarrow Unif(0,1).$  Here we are writing the
+ distribution itself after the arrow, and hence there is no need to use the $\rightarrowD$  notation. 
+ ■
+</p>
+
+<p></p>
+
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
 Let $X_n,X$  be all random variables defined on a common probability space. Let
  $a,b$  be fixed numbers.  If $X_n\rightarrowD X$, then
-$aX_n+b\rightarrowL p aX+b$.
+$aX_n+b\rightarrowD  aX+b$.
 </fieldset>
 
 <p>
 <b><i>Proof:</i></b>Direct.<b><i>[QED]</i></b>
 </p> 
+However, we do not have any result like "If  $X_n\rightarrowD X$  and $Y_n\rightarrowD Y$, then $X_n\pm Y_n\rightarrowD X\pm Y.$"
+<p></p>
+The following example explains why.
+<p>
+<b>EXAMPLE 5:</b>&nbsp;
+Show that $X_n\rightarrowD X$  and $Y_n\rightarrowD Y$  do not imply $X_n+ Y_n\rightarrowD X+ Y.$
+<p></p>
+<b>SOLUTION:</b>
+We consider a $Unif(0,1)$  probability space. Define $X_n(\omega) = \omega$  and $Y_n(\omega) = \omega.$ 
+ Also let $X(\omega) = \omega$  and $Y(\omega) = 1-\omega.$
+<p></p>
+Then $X_n\rightarrowD X$  and $Y_n\rightarrowD Y.$  But $X+Y\equiv 0,$  while for each $n$  we have $X_n+Y_n \sim Unif(0,2).$ 
+<p></p>
+So $X_n+ Y_n\not\rightarrowD X+ Y,$  as required. 
+ ■
+</p>
 
 <p></p>
 
 <h2>
-<a name="N10535"><span class="header">4.1</span>.
+<a name="N10619"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -828,7 +913,7 @@ Show that $X_n\rightarrowD X$  for some $X.$  What is the distribution of $X$?
 <p></p>
 
 <h1>
-<a name="N105CD"><span class="header">5</span>. Central Limit Theorem</a>
+<a name="N106B1"><span class="header">5</span>. Central Limit Theorem</a>
 </h1>
 The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
  and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
@@ -857,7 +942,7 @@ Let's look at a typical example.
 <p></p>
 
 <p>
-<b>EXAMPLE 3:</b>&nbsp;If 40% of the population of a city supports a poll candidate, then what is the approximate
+<b>EXAMPLE 6:</b>&nbsp;If 40% of the population of a city supports a poll candidate, then what is the approximate
  probability that a random sample of 500 persons from the city will have at least 250 supporters?
 <p></p>
 <b>SOLUTION:</b>
@@ -899,7 +984,7 @@ This probability may be obtained by looking up standard $N(0,1)$  tables or usin
 In this problem we knew the distribution of the $X_i$'s, but we never really made any use of it, except to compute $E(X_i)$ 
  and $V(X_i).$  
 <h2>
-<a name="N10662"><span class="header">5.1</span>.
+<a name="N10746"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 ::<p>
@@ -955,7 +1040,7 @@ class="ans" id="lab1">For the second part, just drop the 6's. This means you are
 
 
 <h1>
-<a name="N106F1"><span class="header">6</span>. Relative strengths of different modes</a>
+<a name="N107D5"><span class="header">6</span>. Relative strengths of different modes</a>
 </h1>
 We have learned about four different modes of convergence (counting all the $L_p$s as a single mode). It is surprising
  and somewhat disconcerting that these modes are not equivalent. The following diagram shows the relative strengths of the
@@ -1027,7 +1112,7 @@ Hence, by sandwich law of limit, $P(|X_n-c| &gt; \epsilon\rightarrow 0,$  as req
 </p>
 
 <h2>
-<a name="N107D5"><span class="header">6.1</span>.
+<a name="N108B9"><span class="header">6.1</span>.
 Counterexamples</a>
 </h2>
 The following example shows that almost sure convergence does not imply $L_p$  convergence, even when the $p$-th
@@ -1035,7 +1120,7 @@ The following example shows that almost sure convergence does not imply $L_p$  c
 <p></p>
 
 <p>
-<b>EXAMPLE 4:</b>&nbsp;We work with $Unif(0,1)$  probability space. Let $X_n(\omega) = \left\{\begin{array}{ll}n&\text{if }\omega\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
+<b>EXAMPLE 7:</b>&nbsp;We work with $Unif(0,1)$  probability space. Let $X_n(\omega) = \left\{\begin{array}{ll}n&\text{if }\omega\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
 <p></p>
 Let $X\equiv 0.$  
 <p></p>
@@ -1050,7 +1135,7 @@ Other counterexamples are in the problem set below.
 <p></p>
 
 <h2>
-<a name="N10805"><span class="header">6.2</span>.
+<a name="N108E9"><span class="header">6.2</span>.
 Problem set</a>
 </h2>
 

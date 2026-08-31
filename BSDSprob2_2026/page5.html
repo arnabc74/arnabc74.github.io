@@ -75,13 +75,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 body,table {
   margin: 0;
   font-size: 40;
-  //background: #000;
-  //color: #fff;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
 }
 
 .ans {
   display:none;
-  background: #ccffcc;
+  background: var(--ans-bg,#cfc);
 }
 
 .sticky {
@@ -102,6 +106,7 @@ body,table {
 
 .scrpt {
   margin:10px;
+  background: #222;
   border-left: 5px solid black;
 }
 
@@ -159,27 +164,41 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:22 IST 2026</i>
+Tue Aug 25 10:51:20 IST 2026</i>
 </td>
 </tr>
 </table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
 <h3>Convergence theorems</h3>
 <ul>
-<li>1. <a href="#N1000D">Monotone convergence theorem (MCT)</a>
+<li>1. <a href="#N1000D">Monotone and dominated convergence theorems</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N100B0">MCT for Riemann integration?</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10186">Why not decreasing?</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N100EF">Why not decreasing?</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N101B5">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N1011F">Problem set 1</a>
+<li>2. <a href="#N1021C">Fatou's lemma</a>
 </li>
-<li>2. <a href="#N10165">Fatou's lemma</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10194">Problem set</a>
-</li>
-<li>3. <a href="#N10216">Dominated Convergence Theorem</a>
-</li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10261">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1024B">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -188,10 +207,40 @@ $\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
 <title xmlns="">Convergence theorems</title>
 
 <h1>
-<a name="N1000D"><span class="header">1</span>. Monotone convergence theorem (MCT)</a>
+<a name="N1000D"><span class="header">1</span>. Monotone and dominated convergence theorems</a>
 </h1>
 We would have been very happy, had there been a result saying: Whenever $X_n\rightarrowA X$  we have $E(X_n)\rightarrow E(X)$. Unfortunately,
- this is not true in general (think of counterexamples). So we search for extra conditions under which it will be true. 
+ this is not true in general. For one thing we need $E(X_n)$  and $E(X)$  to exist. But even if they do, $E(X_n)$ 
+ need not converge to $E(X).$
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;Construct an example where $X_n\rightarrowA X$ and $E(X_n), E(X)$  are all finite, but $E(X_n)\not\rightarrow E(X).$
+<p></p>
+<b>SOLUTION:</b>
+Consider $Unif(0,1)$
+  probability space with $X_n(\omega)
+ =\left\{\begin{array}{ll}n&\text{if }\omega\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$  and $X\equiv 0.$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/boxexp.png"></th>
+</tr>
+<tr>
+<th>Graph of $X_3$</th>
+</tr>
+</table>
+</center>
+Here $X_n(\omega)\rightarrow X(\omega)$  everywhere. 
+<p></p>
+Let's find $E(X_n).$  Notice that $P(X_n=n) = \frac 1n$  and $P(X_n=0) = 1-\frac 1n.$  So $E(X_n) = n\times \frac 1n + 0\times \left(1-\frac 1n\right) = 1.$ 
+<p></p>
+Since $E(X) = 0,$  hence $E(X_n)\not\rightarrow E(X).$
+ ■
+</p>
+So
+ we search for extra conditions under
+ which $E(X_n)\rightarrow E(X)$  will hold. The following two theorems each provide one such extra condition. 
 <p></p>
 
 <fieldset>
@@ -205,93 +254,90 @@ Then $E(X_n) \rightarrow E(X)$.
 </fieldset>
 
 
-<h2>
-<a name="N100B0"><span class="header">1.1</span>.
-MCT for Riemann integration?</a>
-</h2>
-Do we have an MCT for Riemann integrals, as well? Well, no, because even if $X_n$'s are
- Riemann integrable, and they increase to $X,$  there is a no guaranty that $X$  will be Riemann integrable.
-<p></p>
-Here is the standard counterexample. 
 <p></p>
 
-<p>
-<b>EXAMPLE 1:</b>&nbsp;We consider $[0,1]$  equipped with the $Unif[0,1]$   probability distribution.
-Here density exists in a Riemann sense. Let $X$  be the Dirichlet function on $[0,1].$  
-<p></p>
-Since ${\mathbb Q}\cap[0,1]$  is countable, we may enumerate it as $\{r_1,r_2,...\}.$  Take $X_n=1_{\{r_1,...,r_n\}}.$ 
-<p></p>
-Then the Riemann integral of each $X_n$  is $0.$  The $X_n$'s increase to $X.$  But $X$  is not
- Riemann integrable.
- ■
-</p>
+<fieldset>
+<legend><b><i>Dominated Convergence Theorem (DCT)</i></b></legend>
+Let $X_n\rightarrow X.$  If  $\forall n~~|X_n|\leq Y$  for some $Y$  with $E(Y)&lt; \infty$, 
+ then $E|X_n-X|\rightarrow 0$  and so, in particular, $E(X_n)\rightarrow E(X).$
+</fieldset>
 
-<p></p>
-However, it may be shown that if the limit
- is a Riemann integrable, then MCT holds for Riemann integration also. 
-<p></p>
 
 <h2>
-<a name="N100EF"><span class="header">1.2</span>.
+<a name="N10186"><span class="header">1.2</span>.
 Why not decreasing?</a>
 </h2>
 The 'M' in MCT refers to <i>monotone</i>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
- However, in the theorem we require the sequence of functions to be non-increasing. 
+ However, in the theorem we require the sequence of functions to be <i>non-increasing</i>. 
 <p></p>
 Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
 <p></p>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;
+<b>EXAMPLE 3:</b>&nbsp;
 Here we shall work with $[0,1]$  again, equipped with $Unif[0,1]$  probability distribution. Let $X_n = \frac{1}{nx}$ 
- (set $X_n=0$  at $x=0$). Also, take $X\equi0.$  Then $\forall
+ (set $X_n=0$  at $x=0$). Also, take $X\equiv0.$  Then $\forall
  \omega\in[0,1]~~X_n(w)\downarrow X(w).$  But $E(X_n)=\infty$  though $E(X)=0.$  
 <p></p>
-The problem is that the Lebesgue integral is <i>defined</i>  as sup of approximations <i>from below</i>.  
  ■
 </p>
 
+<p></p>
+
 <h2>
-<a name="N1011F"><span class="header">1.3</span>.
-Problem set 1</a>
+<a name="N101B5"><span class="header">1.3</span>.
+Problem set</a>
 </h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;Give $X_n, X$  on $[0,1]$  equipped with $Unif[0,1]$  such that 
-<ol type="">
-<li>$X_n\rightarrow X$  but not monotonically</li>
-
-<li>$E(X_n), E(X)$  exist finitely.</li>
-
-<li>But $E(X_n)\not\rightarrow E(X).$</li>
-</ol>
-
-<p><a
-href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
-class="ans" id="lab1">Think of constant functions and step functions with just two steps.</div></p>
-</p>
-
-<p>
-<b>EXERCISE 2:</b>&nbsp;
-If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
- and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
- dropped?
-</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 3:</b>&nbsp;
+<b>EXERCISE 1:</b>&nbsp;(MCT) 
 Suppose that $X_n$'s are nonnegative random variables. Show that 
 $$E(\sum_1^\infty X_n) = \sum_1^\infty E(X_n).$$
 </p>
 
 <p></p>
 
+<p>
+<b>EXERCISE 2:</b>&nbsp;(DCT) Let $(X_n),X$  be  random variables such that $X_n\rightarrowA X$  and   $\forall n\in{\mathbb N}~~|X_n|\leq
+ Y$  for some random variable $Y$  with $E(Y) &lt; \infty.$  Then show that $X_n\rightarrowL 1 X.$
+</p> 
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;(DCT) Let $X$  be any random variable. Show that $f(t) = E(\sin(tX))$  is a continuous function.
+<p>
+<b>Hint:</b>
+<blockquote>Enough to show that if $a_n\rightarrow a,$  then $f(a_n)\rightarrow f(a).$</blockquote>
+</p>
+
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;(DCT) Let $X$  be any random variable. Show that $f(t) = E(\sin(t+X))$  is a
+ differentiable function, with $f'(t) = E(\cos(t+X)).$
+<p>
+<b>Hint:</b>
+<blockquote>Enough to show that if $a_n\rightarrow a,$  then $Y_n = \frac{f(a_n)-f(a)}{a_n-a}\rightarrow E(\cos(t+X)).$
+Use the mean value theorem and boundedness of $\cos.$
+</blockquote>
+</p>
+
+</p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;(MCT or DCT)
+If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables converging to some random variable $X,$ 
+ and $E(X_1)&lt;\infty,$  then show that $E(X_n)\downarrow E(X).$  What if the assumption $E(X_1)&lt;\infty$  is
+ dropped?
+</p>
+
 <h1>
-<a name="N10165"><span class="header">2</span>. Fatou's lemma</a>
+<a name="N1021C"><span class="header">2</span>. Fatou's lemma</a>
 </h1>
 
 <fieldset>
@@ -319,133 +365,65 @@ as required.
 <p></p>
 
 <h2>
-<a name="N10194"><span class="header">2.1</span>.
+<a name="N1024B"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 4:</b>&nbsp;Consider $U\sim Unif(0,1).$  Let $X_n = U^n$  for $n\in{\mathbb N}$. Compute both
+<b>EXERCISE 6:</b>&nbsp;Consider $U\sim Unif(0,1).$  Let $X_n = U^n$  for $n\in{\mathbb N}$. Compute both
  sides of Fatou's lemma explicitly.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Again let $U\sim Unif(0,1).$  Let $X_n=\left\{\begin{array}{ll}n&\text{if }U\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
+<b>EXERCISE 7:</b>&nbsp;Again let $U\sim Unif(0,1).$  Let $X_n=\left\{\begin{array}{ll}n&\text{if }U\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
 Compute both sides of Fatou's lemma explicitly.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Let $U\sim Expo(1).$  Let $X_n = \left\{\begin{array}{ll}e^x&\text{if }x\in(n-1,n]\\ 0&\text{otherwise.}\end{array}\right.$ 
+<b>EXERCISE 8:</b>&nbsp;Let $U\sim Expo(1).$  Let $X_n = \left\{\begin{array}{ll}e^x&\text{if }x\in(n-1,n]\\ 0&\text{otherwise.}\end{array}\right.$ 
  for $n\in{\mathbb N}.$  Compute both sides of Fatou's lemma explicitly.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Suppose that $(X_n)$  is a sequence of  random variables with $X_n\rightarrow
+<b>EXERCISE 9:</b>&nbsp;Suppose that $(X_n)$  is a sequence of  random variables with $X_n\rightarrowA
  X.$  If $\forall n\in{\mathbb N}~~ E(X_n)\in [2,5]$, then which of the following must be true?
+<ol type="">
 
 <li>$E(X)\geq 2$</li>
-$E(X)\leq 5.$
 
+<li>$E(X)\leq 5.$</li>
+
+</ol>
 Prove and/or provide counterexample(s) accordingly. 
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Give examples to show that equality or strict inequality may prevail in Fatou's lemma.</p>
+<b>EXERCISE 10:</b>&nbsp;Give examples to show that equality or strict inequality may prevail in Fatou's lemma.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;We proved Fatou's lemma from MCT. It is possible to prove MCT using Fatou's lemma quite easily. How?</p>
+<b>EXERCISE 11:</b>&nbsp;We proved Fatou's lemma from MCT. It is possible to prove MCT using Fatou's lemma quite easily. How?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) \leq
+<b>EXERCISE 12:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) \leq
  M$  for some $M\in{\mathbb R}.$  If $X_n\rightarrow X,$  then show that $E(X) &lt; \infty.$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 11:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) &lt;
+<b>EXERCISE 13:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) &lt;
  \infty.$  If $X_n\rightarrow X,$  then must  it be true that $E(X) &lt; \infty?$</p>
 
 <p></p>
 
-
-<h1>
-<a name="N10216"><span class="header">3</span>. Dominated Convergence Theorem</a>
-</h1>
-
-<fieldset>
-<legend><b><i>Dominated Convergence Theorem (DCT)</i></b></legend>
-Let $X_n\rightarrow X.$  If  $\forall n~~|X_n|\leq Y$  for some $Y$  with $E(|Y|)&lt; \infty$, 
- then $E|X_n-X|\rightarrow 0$  and so, in particular, $E(X_n)\rightarrow E(X).$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Clearly, $|X|\leq Y.$
-<p></p>
-So, by triangle inequality, $|X_n-X|\leq |X_n|+|X|\leq 2Y.$
-<p></p>
-Let $Z_n = 2Y-|X_n-X|.$  Then $Z_n$'s are all nonnegative random variables. 
-<p></p>
-Applying Fatou's lemma to $(Z_n)$, we have 
-$$E(\liminf Z_n)\leq \liminf E(Z_n).\hspace{1in} \mbox{(*)}$$
-Now 
-$$\liminf Z_n = 2Y-\limsup|X_n-X| = 2Y,$$
-and 
-$$\liminf E(Z_n) = 2E(Y)-\limsup E|X_n-X| .$$
-So (*) becomes 
-$$2E(Y)\leq 2E(Y)-\limsup E|X_n-X|,$$
-or $\limsup E|X_n-X|\leq 0.$
-<p></p>
-Hence $E|X_n-X|\rightarrow 0,$  as required.
-<b><i>[QED]</i></b>
-</p>
-We can think of the conclusion of MCT or DCT as limit passing through expectation: $\lim E(X_n) = E(\lim X_n).$ This
- proves handy in many situations as we shall see in the problems below.
-<p></p>
-
-<h2>
-<a name="N10261"><span class="header">3.1</span>.
-Problem set</a>
-</h2>
-
-<p></p>
-
-<p>
-<b>EXERCISE 12:</b>&nbsp;Let $(X_n),X$  be  random variables such that $X_n\rightarrowA X$  and   $\forall n\in{\mathbb N}~~|X_n|\leq
- Y$  for some random variable $Y$  with $E(Y) &lt; \infty.$  Then show that $X_n\rightarrowL 1 X.$
-</p> 
-
-<p></p>
-
-<p>
-<b>EXERCISE 13:</b>&nbsp;Let $X$  be any random variable. Show that $f(t) = E(sin(tX))$  is a continuous function.
-<p>
-<b>Hint:</b>
-<blockquote>Enough to show that if $a_n\rightarrow a,$  then $f(a_n)\rightarrow f(a).$</blockquote>
-</p>
-
-</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 14:</b>&nbsp;Let $X$  be any random variable. Show that $f(t) = E(\sin(t+X))$  is a differentiable function, with $f'(t) = E(\cos(t+X)).$
-<p>
-<b>Hint:</b>
-<blockquote>Enough to show that if $a_n\rightarrow a,$  then $Y_n = \frac{f(a_n)-f(a)}{a_n-a}\rightarrow E(\cos(t+X)).$
-Use the mean value theorem and boundedness of $\cos.$
-</blockquote>
-</p>
-
-</p>
 
 <p></p>
 
