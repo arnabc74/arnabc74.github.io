@@ -287,12 +287,21 @@ Let <M>(X_n), X </M>  be random variables on the same probability space. Conside
 <LI> <M>E(X_n)\to E(X).</M></LI></UL>
 One of these is strictly stronger. Which one?
 <SOLN/> 
-The first one is strictly stronger. 
-<D>
-|E(X_n)-E(X)| \leq |E(X_n-X)|\leq E|X_n-X|\to 0.
-</D>
-Consider 
-<M>X_n\equiv (-1)^n</M> and <M>X\equiv 1.</M>
+The first one is strictly stronger. The following steps show that the first one implies the second one.
+<MULTILINE>
+|E(X_n)-E(X)| 
+& = &  |E(X_n-X)|\\
+& \leq & E|X_n-X|<SINCE>by Jensen's inequality</SINCE> \\
+& & \to 0.
+</MULTILINE>
+The following counterexample shows that the second statement does not imply the first one.
+
+Consider a fair coin toss, and let, for each <M>n\in\nn</M>, <M>X_n(head) = -1</M>  and
+ <M>X_n(tail) = 1.</M> Also, let <M>X(head) = X(tail) = 0.</M>  
+
+Then <M>E(X_n) = (-1)\times [[12]]+1\times[[12]] = 0</M>  and <M>E(X) = 0.</M>  So we have <M>E(X_n)\to E(X).</M>  
+
+But <M>E(|X_n-X|) = E(|X_n|) = 1,</M>  since <M>|X_n|\equiv 1.</M> 
 </EXM>
 
 If you ever need <M>E(X_n)\to E(X)</M>  and <M>E(X_n^2)\to E(X^2),</M>  then you do not need to assume <M>L_1</M>  and <M>L_2</M> convergence
@@ -447,7 +456,7 @@ Show that <M>X_n\toD X</M>  for some <M>X.</M>  What is the distribution of <M>X
  then does <M>(X_n)</M>  converge in distribution? If so, find the limiting distribution.</EXR>
 
 <EXR>Let <M>U_1,...,U_n</M>  be iid <M>Unif(0,1)</M>  random variables. Let <M>X_n = \min_i U_i.</M>  Show that <M>X_n\toD 0.</M>
-<HINT>distribution function of <M>X_n</M> </HINT>
+<HINT>Distribution function of <M>X_n</M>  is <M>F_n(x) = P(X_n\leq x) = 1-P(X_n > x) = 1-P(\forall i~~U_i > x).</M></HINT>
 </EXR>
 
 <EXR><M>(X_n), X</M>  are discrete random variables taking values in <M>\{1,...,10\}.</M>  If  pmf

@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 31 08:46:01 IST 2026</i>
+Mon Aug 31 13:13:12 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -204,21 +204,21 @@ function daynight() {
 </li>
 <li>3. <a href="#N10388">$L_p$ convergence for $p\geq1$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N104B2">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N104D3">Problem set</a>
 </li>
-<li>4. <a href="#N104FB">Convergence in distribution</a>
+<li>4. <a href="#N1051C">Convergence in distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10619">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1063A">Problem set</a>
 </li>
-<li>5. <a href="#N106BB">Central Limit Theorem</a>
+<li>5. <a href="#N106DC">Central Limit Theorem</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10750">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10771">Problem set</a>
 </li>
-<li>6. <a href="#N107DF">Relative strengths of different modes</a>
+<li>6. <a href="#N10800">Relative strengths of different modes</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N108C3">Counterexamples</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N108E4">Counterexamples</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N108F3">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N10914">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -662,12 +662,21 @@ Let $(X_n), X $  be random variables on the same probability space. Consider the
 One of these is strictly stronger. Which one?
 <p></p>
 <b>SOLUTION:</b> 
-The first one is strictly stronger. 
-$$
-|E(X_n)-E(X)| \leq |E(X_n-X)|\leq E|X_n-X|\rightarrow 0.
-$$
-Consider 
-$X_n\equiv (-1)^n$ and $X\equiv 1.$
+The first one is strictly stronger. The following steps show that the first one implies the second one.
+$$\begin{eqnarray*}
+|E(X_n)-E(X)| 
+&amp; = &amp;  |E(X_n-X)|\\
+&amp; \leq &amp; E|X_n-X|~~\left[\mbox{by Jensen's inequality}\right] \\
+&amp; &amp; \rightarrow 0.
+\end{eqnarray*}$$
+The following counterexample shows that the second statement does not imply the first one.
+<p></p>
+Consider a fair coin toss, and let, for each $n\in{\mathbb N}$, $X_n(head) = -1$  and
+ $X_n(tail) = 1.$ Also, let $X(head) = X(tail) = 0.$  
+<p></p>
+Then $E(X_n) = (-1)\times \frac 12+1\times\frac 12 = 0$  and $E(X) = 0.$  So we have $E(X_n)\rightarrow E(X).$  
+<p></p>
+But $E(|X_n-X|) = E(|X_n|) = 1,$  since $|X_n|\equiv 1.$  So $E(|X_n-X|) \not\rightarrow 0.$
  ■
 </p>
 
@@ -715,7 +724,7 @@ However, even if $X_n\rightarrowL p X$  and $Y_n\rightarrowL p Y$  and $X_nY_n, 
 <p></p>
 The first exercise below provides  a counterexample.
 <h2>
-<a name="N104B2"><span class="header">3.1</span>.
+<a name="N104D3"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -746,7 +755,7 @@ Show that $E|X_nY_n|^p=1.$  Hence show that this provides a counterexample to th
 <p></p>
 
 <h1>
-<a name="N104FB"><span class="header">4</span>. Convergence in distribution</a>
+<a name="N1051C"><span class="header">4</span>. Convergence in distribution</a>
 </h1>
 
 <fieldset>
@@ -854,7 +863,7 @@ Show that $X_n\rightarrowD X$  and $Y_n\rightarrowD Y$  do not imply $X_n+ Y_n\r
 We consider a $Unif(0,1)$  probability space. Define $X_n(\omega) = \omega$  and $Y_n(\omega) = \omega.$ 
  Also let $X(\omega) = \omega$  and $Y(\omega) = 1-\omega.$
 <p></p>
-Then $X_n\rightarrowD X$  and $Y_n\rightarrowD Y.$  But $X+Y\equiv 0,$  while for each $n$  we have $X_n+Y_n \sim Unif(0,2).$ 
+Then $X_n\rightarrowD X$  and $Y_n\rightarrowD Y.$  But $X+Y\equiv 1,$  while for each $n$  we have $X_n+Y_n \sim Unif(0,2).$ 
 <p></p>
 So $X_n+ Y_n\not\rightarrowD X+ Y,$  as required. 
  ■
@@ -863,7 +872,7 @@ So $X_n+ Y_n\not\rightarrowD X+ Y,$  as required.
 <p></p>
 
 <h2>
-<a name="N10619"><span class="header">4.1</span>.
+<a name="N1063A"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -920,7 +929,7 @@ Show that $X_n\rightarrowD X$  for some $X.$  What is the distribution of $X$?
 <p></p>
 
 <h1>
-<a name="N106BB"><span class="header">5</span>. Central Limit Theorem</a>
+<a name="N106DC"><span class="header">5</span>. Central Limit Theorem</a>
 </h1>
 The Central imit Theorem (CLT) is possibly the most famous theorem in probability theory and statistics. Originally stated
  and proved by Gauss, the theorem has many variants due to other mathematicians. Here we shall state the simplest version.
@@ -991,7 +1000,7 @@ This probability may be obtained by looking up standard $N(0,1)$  tables or usin
 In this problem we knew the distribution of the $X_i$'s, but we never really made any use of it, except to compute $E(X_i)$ 
  and $V(X_i).$  
 <h2>
-<a name="N10750"><span class="header">5.1</span>.
+<a name="N10771"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 ::<p>
@@ -1047,7 +1056,7 @@ class="ans" id="lab1">For the second part, just drop the 6's. This means you are
 
 
 <h1>
-<a name="N107DF"><span class="header">6</span>. Relative strengths of different modes</a>
+<a name="N10800"><span class="header">6</span>. Relative strengths of different modes</a>
 </h1>
 We have learned about four different modes of convergence (counting all the $L_p$s as a single mode). It is surprising
  and somewhat disconcerting that these modes are not equivalent. The following diagram shows the relative strengths of the
@@ -1119,7 +1128,7 @@ Hence, by sandwich law of limit, $P(|X_n-c| &gt; \epsilon\rightarrow 0,$  as req
 </p>
 
 <h2>
-<a name="N108C3"><span class="header">6.1</span>.
+<a name="N108E4"><span class="header">6.1</span>.
 Counterexamples</a>
 </h2>
 The following example shows that almost sure convergence does not imply $L_p$  convergence, even when the $p$-th
@@ -1142,7 +1151,7 @@ Other counterexamples are in the problem set below.
 <p></p>
 
 <h2>
-<a name="N108F3"><span class="header">6.2</span>.
+<a name="N10914"><span class="header">6.2</span>.
 Problem set</a>
 </h2>
 

@@ -287,12 +287,21 @@ Let <M>(X_n), X </M>  be random variables on the same probability space. Conside
 <LI> <M>E(X_n)\to E(X).</M></LI></UL>
 One of these is strictly stronger. Which one?
 <SOLN/> 
-The first one is strictly stronger. 
-<D>
-|E(X_n)-E(X)| \leq |E(X_n-X)|\leq E|X_n-X|\to 0.
-</D>
-Consider 
-<M>X_n\equiv (-1)^n</M> and <M>X\equiv 1.</M>
+The first one is strictly stronger. The following steps show that the first one implies the second one.
+<MULTILINE>
+|E(X_n)-E(X)| 
+& = &  |E(X_n-X)|\\
+& \leq & E|X_n-X|<SINCE>by Jensen's inequality</SINCE> \\
+& & \to 0.
+</MULTILINE>
+The following counterexample shows that the second statement does not imply the first one.
+
+Consider a fair coin toss, and let, for each <M>n\in\nn</M>, <M>X_n(head) = -1</M>  and
+ <M>X_n(tail) = 1.</M> Also, let <M>X(head) = X(tail) = 0.</M>  
+
+Then <M>E(X_n) = (-1)\times [[12]]+1\times[[12]] = 0</M>  and <M>E(X) = 0.</M>  So we have <M>E(X_n)\to E(X).</M>  
+
+But <M>E(|X_n-X|) = E(|X_n|) = 1,</M>  since <M>|X_n|\equiv 1.</M>  So <M>E(|X_n-X|) \not\to 0.</M>
 </EXM>
 
 If you ever need <M>E(X_n)\to E(X)</M>  and <M>E(X_n^2)\to E(X^2),</M>  then you do not need to assume <M>L_1</M>  and <M>L_2</M> convergence
@@ -418,7 +427,7 @@ Show that <M>X_n\toD X</M>  and <M>Y_n\toD Y</M>  do not imply <M>X_n+ Y_n\toD X
 We consider a <M>Unif(0,1)</M>  probability space. Define <M>X_n(\omega) = \omega</M>  and <M>Y_n(\omega) = \omega.</M> 
  Also let <M>X(\omega) = \omega</M>  and <M>Y(\omega) = 1-\omega.</M>
 
-Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  But <M>X+Y\equiv 0,</M>  while for each <M>n</M>  we have <M>X_n+Y_n \sim Unif(0,2).</M> 
+Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  But <M>X+Y\equiv 1,</M>  while for each <M>n</M>  we have <M>X_n+Y_n \sim Unif(0,2).</M> 
  
 So <M>X_n+ Y_n\not\toD X+ Y,</M>  as required. 
 </EXM>
