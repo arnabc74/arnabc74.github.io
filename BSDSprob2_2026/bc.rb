@@ -45,8 +45,9 @@ Hence the name <TERM>infinite often</TERM>.
 
 The following result often proves handy when proving <M>P(A_n)\to 0.</M>
 
+<DEST name="io">
 <THM>Let <M>(A_n)</M>  be a sequence of events with <M>P(A_n\io) = 0.</M>  Then we must have <M>P(A_n)\to0.</M></THM>
-
+</DEST>
 A proof of this theorem is outlined in the exercises below.
 <HEAD2>Problem set</HEAD2>
 <EXR>If <M>A_n = [-n,n]</M>  find <M>\{A_n\io\}.</M></EXR>

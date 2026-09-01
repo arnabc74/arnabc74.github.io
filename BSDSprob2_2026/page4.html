@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 31 13:13:12 IST 2026</i>
+Tue Sep 01 14:34:40 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -212,13 +212,17 @@ function daynight() {
 </li>
 <li>5. <a href="#N106DC">Central Limit Theorem</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10771">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10778">Problem set</a>
 </li>
-<li>6. <a href="#N10800">Relative strengths of different modes</a>
+<li>6. <a href="#N1078D">Relative strengths of different modes</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N108E4">Counterexamples</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10796">$a.s.$   implies $P$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N10914">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N107D4">$L_p$  implies $P$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.3. <a href="#N1088D">$a.s$  does not imply $L_p$</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.4. <a href="#N108C1">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -949,7 +953,7 @@ $$\forall t\in{\mathbb R}~~F_n(t)\rightarrow \Phi(t) \mbox{ as } n\rightarrow \i
 <b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
 </p>
  This theorem is a manifestation of statistical regularity. Whatever may the true
- distribution of the $X_i$'s be, if you average a large number of $X_i$'s you get close
+ distribution of the $X_i$'s be, if you average a large number of $X_i$'s you get a close
  approximation to the normal distribution. This allows
 statistician to deal with averages of a large number of IID observations without knowing the true
  underlying distribution. 
@@ -965,14 +969,20 @@ Let's look at a typical example.
 Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
  from the population of the city. 
 <p></p>
-We shall assume that the trials are iid. Now here we are introducing an approximation: the first
- membr of the sample was drawn from the entire population, but since we generally sample
- <i>without replacement</i>  in such a scenario, the second member of the sample was drawn from a
- population of size one less than in the case of the first member. So the random experiment has
- actually changed, and they are not independent also. But since the population is large (much
- larger than 500), so we are ignoring both the non-identical and dependent nature and assuming iid. 
+We shall assume that the trials are iid. <blockquote><a
+href="javascript:hideShow('hide1')"><b>[Details...]</b></a><div
+class="ans" id="hide1">Actually the trials are neither independent nor identially distributed,
+ because we typically 
+sample
+ <i>without replacement</i>  in such a scenario. So the first
+ member of the sample was drawn from the entire population, while
+the second member was drawn from the <i>rest of the
+ population</i>.
 <p></p>
-We also have a random variable: 
+However, since the population is large (much
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming iid. 
+</div></blockquote>
+Our random variable is: 
 $$X(\omega) = \left\{\begin{array}{ll}1 &\text{if }\omega\mbox{ supports the candiate}\\ 0&\text{otherwise.}\end{array}\right.$$ 
 Here $\omega$  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
 $X_1,...,X_{500}$  iid $Bernoulli(0.4).$  This $0.4$  came from the 40% given in the problem. 
@@ -986,79 +996,48 @@ for large $n.$  Here $\stackrel\bullet\sim$  means "approximately distributed as
 In our case, $\mu = 0.40$, $\sigma^2 = 0.4(1-0.4) = 0.24$  and $n=500.$  So 
 $$\bar X_{500} \stackrel{\bullet}{\sim} N\left(0.40,\frac{0.24}{500}\right),$$
 or 
-$$\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).$$
-Nowe we can find the required probability as
+$$\sum_1^{500} X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).$$
+Now we can find the required probability as
 $$P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi\left(\frac{250-200}{\sqrt{120}}\right).$$
 This probability may be obtained by looking up standard $N(0,1)$  tables or using R as
 <font color="red">
 <pre>
 1-pnorm((250-200)/sqrt(120))
 </pre>
-</font>
+</font><input type="button"
+value="Run in cloud"
+onclick="javascript:aha(encodeURI(`
+1-pnorm((250-200)/sqrt(120))
+`));"/>
   ■
 </p>
 In this problem we knew the distribution of the $X_i$'s, but we never really made any use of it, except to compute $E(X_i)$ 
  and $V(X_i).$  
 <h2>
-<a name="N10771"><span class="header">5.1</span>.
+<a name="N10778"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
-::<p>
+
+<p>
 <b>EXERCISE 32:</b>&nbsp;<font size="-2">[rossdistrib10.png]</font><img width="" src="image/rossdistrib10.png" style="vertical-align:text-top;"></p>
-::<p>
+
+<p>
 <b>EXERCISE 33:</b>&nbsp;<font size="-2">[rossdistrib8.png]</font><img width="" src="image/rossdistrib8.png" style="vertical-align:text-top;">
 <p><a
 href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
 class="ans" id="lab1">For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</div></p>
 
 </p>
-::<p>
+
+<p>
 <b>EXERCISE 34:</b>&nbsp;<font size="-2">[rossdistrib5.png]</font><img width="" src="image/rossdistrib5.png" style="vertical-align:text-top;"></p>
 
 <p></p>
 
-<p>
-<b>EXERCISE 35:</b>&nbsp;Let $X_n\rightarrowD N(0,1)$  and $Y_n\rightarrowP 5.$  Then what is the limiting distribution of $X_n+Y_n?$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 36:</b>&nbsp;Let $X_n\rightarrowD X$  and $Y_n\rightarrowP Y.$  Show that $X_n+Y_n\rightarrowD X+Y$  need not hold.</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 37:</b>&nbsp;Let $X_n\rightarrowD N(0,1)$, $Y_n\rightarrowP 5$  and $Z_n\rightarrowP 4$ with $z_n &gt; 0.$     Then what is the
- limiting distribution of $\frac{X_n+Y_n}{\sqrt {Z_n}}?$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 38:</b>&nbsp;Suppose that $\sqrt n(X_n-\theta)\rightarrowD Z$  and $Y_n\rightarrowP a.$  Show that $\sqrt n(X_nY_n-a\theta)\rightarrowD aZ.$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 39:</b>&nbsp;Let $X_n$  be asymptotically $N\left(\mu,\frac{\sigma^2}{n}\right).$  What is the asymptotic distribution of $\frac{X_n}{1+X_n}?$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 40:</b>&nbsp;Let $T_n$  be a consistent estimator of $\theta,$  and let $S_n$  be a
- consistent estimator of $\sigma^2.$  Show that the Studentized statistic
- $\frac{T_n-\theta}{\sqrt{S_n}}$  has the the same asymptotic distribution as
- $\frac{T_n-\theta}{\sigma},$  whenever an asymptotic distribution exists. </p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 41:</b>&nbsp;Let $X_n\rightarrowD X$  and $X_n+Y_n\rightarrowD X+1.$ Does this imply that $Y_n\rightarrowP 1?$ </p>
-
-
 <h1>
-<a name="N10800"><span class="header">6</span>. Relative strengths of different modes</a>
+<a name="N1078D"><span class="header">6</span>. Relative strengths of different modes</a>
 </h1>
-We have learned about four different modes of convergence (counting all the $L_p$s as a single mode). It is surprising
+We have learned about four different modes of convergence. It is surprising
  and somewhat disconcerting that these modes are not equivalent. The following diagram shows the relative strengths of the
  these modes.
 <center>
@@ -1067,8 +1046,14 @@ We have learned about four different modes of convergence (counting all the $L_p
 </center>
 Whenever there is a blue arrow from one mode to another, the first  mode implies the second mode. 
 None of the other implications hold in general. 
-Since $L_1$  is the weakest member of the $L_p$  family (for $p\geq 1$), we shall
- take $L_1$  as the representative of $L_p$  in the following discussion. 
+<p></p>
+
+<h2>
+<a name="N10796"><span class="header">6.1</span>.
+$a.s.$   implies $P$</a>
+</h2>
+Here we shall use the fact that if for a sequence of events $(A_n)$  we have $P(A_n\io)=0$  then $P(A_n)\rightarrow 0.$ 
+ We had seen this in the <a href="bc.html#io">Borel-Cantelli page</a>. 
 <p></p>
 
 <fieldset>
@@ -1088,6 +1073,14 @@ $P(A_n\io) = 0.$
 Hence $P(A_n)\rightarrow 0.$
 <b><i>[QED]</i></b>
 </p>
+
+<h2>
+<a name="N107D4"><span class="header">6.2</span>.
+$L_p$  implies $P$</a>
+</h2> 
+Since $L_1$  is the weakest member of the $L_p$  family (for $p\geq 1$), we shall
+ take $L_1$  as the representative of $L_p$  in the following discussion. 
+<p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $X_n\rightarrowL 1 X$    then $X_n\rightarrowP X.$</fieldset>
@@ -1128,8 +1121,8 @@ Hence, by sandwich law of limit, $P(|X_n-c| &gt; \epsilon\rightarrow 0,$  as req
 </p>
 
 <h2>
-<a name="N108E4"><span class="header">6.1</span>.
-Counterexamples</a>
+<a name="N1088D"><span class="header">6.3</span>.
+$a.s$  does not imply $L_p$</a>
 </h2>
 The following example shows that almost sure convergence does not imply $L_p$  convergence, even when the $p$-th
  moments exist finitely for all the random variables involved. 
@@ -1151,12 +1144,12 @@ Other counterexamples are in the problem set below.
 <p></p>
 
 <h2>
-<a name="N10914"><span class="header">6.2</span>.
+<a name="N108C1"><span class="header">6.4</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 42:</b>&nbsp;Let $f_1,f_2,f_3,...:[0,1]\rightarrow{\mathbb R}$  be defined as indicator functions of 
+<b>EXERCISE 35:</b>&nbsp;Let $f_1,f_2,f_3,...:[0,1]\rightarrow{\mathbb R}$  be defined as indicator functions of 
 <p></p>
 $[0,1],$ 
 <p></p>
@@ -1170,21 +1163,22 @@ $\left[0,\frac 13 \right], \left[ \frac 13, \frac 23 \right], \left[ \frac 13, 1
 <p></p>
 
 <p>
-<b>EXERCISE 43:</b>&nbsp;Consider $X_n, X$  as in the last exercise. Show that $X_n\rightarrowP X.$  </p>
+<b>EXERCISE 36:</b>&nbsp;Consider $X_n, X$  as in the last exercise. Show that $X_n\rightarrowP X.$  </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 44:</b>&nbsp;Among the examples discussed so far, there is one counterexample that shows that
+<b>EXERCISE 37:</b>&nbsp;Among the examples discussed so far, there is one counterexample that shows that
  convergence is probability does not imply  $L_1$  counterexample. What is that example? </p>
 
 <p></p>
-
-<p>
-<b>EXERCISE 45:</b>&nbsp;Convergence in distribution obviously cannot imply convergence in probability, because
+Convergence in distribution obviously cannot imply convergence in probability, because
  convergence in distribution does not even require the random variables to be defined on the same
  probability space. But even if all the random variables are defined on a common probability
- space, we can get a counterexample. Let $U\sim Unif(0,1).$  Let $X_n = (-1)^n U.$  Then
+ space, we can get a counterexample, as shown in the next problem.
+<p>
+<b>EXERCISE 38:</b>&nbsp;
+ Let $U\sim Unif(0,1).$  Let $X_n = (-1)^n U.$  Then
 show that  $X_n\rightarrowD U,$  but $X_n\not\rightarrowP U.$</p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">

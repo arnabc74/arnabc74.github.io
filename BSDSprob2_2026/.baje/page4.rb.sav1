@@ -301,7 +301,7 @@ Consider a fair coin toss, and let, for each <M>n\in\nn</M>, <M>X_n(head) = -1</
 
 Then <M>E(X_n) = (-1)\times [[12]]+1\times[[12]] = 0</M>  and <M>E(X) = 0.</M>  So we have <M>E(X_n)\to E(X).</M>  
 
-But <M>E(|X_n-X|) = E(|X_n|) = 1,</M>  since <M>|X_n|\equiv 1.</M> 
+But <M>E(|X_n-X|) = E(|X_n|) = 1,</M>  since <M>|X_n|\equiv 1.</M>  So <M>E(|X_n-X|) \not\to 0.</M>
 </EXM>
 
 If you ever need <M>E(X_n)\to E(X)</M>  and <M>E(X_n^2)\to E(X^2),</M>  then you do not need to assume <M>L_1</M>  and <M>L_2</M> convergence
@@ -427,7 +427,7 @@ Show that <M>X_n\toD X</M>  and <M>Y_n\toD Y</M>  do not imply <M>X_n+ Y_n\toD X
 We consider a <M>Unif(0,1)</M>  probability space. Define <M>X_n(\omega) = \omega</M>  and <M>Y_n(\omega) = \omega.</M> 
  Also let <M>X(\omega) = \omega</M>  and <M>Y(\omega) = 1-\omega.</M>
 
-Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  But <M>X+Y\equiv 0,</M>  while for each <M>n</M>  we have <M>X_n+Y_n \sim Unif(0,2).</M> 
+Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  But <M>X+Y\equiv 1,</M>  while for each <M>n</M>  we have <M>X_n+Y_n \sim Unif(0,2).</M> 
  
 So <M>X_n+ Y_n\not\toD X+ Y,</M>  as required. 
 </EXM>
@@ -478,7 +478,7 @@ More precisely, if <M>F_n(\cdot)</M>  denotes the CDF of <M>[[\sqrt n(\bar X_n-\
 </THM>
 <PF>Skipped.</PF>
  This theorem is a manifestation of statistical regularity. Whatever may the true
- distribution of the <M>X_i</M>'s be, if you average a large number of <M>X_i</M>'s you get close
+ distribution of the <M>X_i</M>'s be, if you average a large number of <M>X_i</M>'s you get a close
  approximation to the normal distribution. This allows
 statistician to deal with averages of a large number of IID observations without knowing the true
  underlying distribution. 
@@ -491,14 +491,18 @@ Let's look at a typical example.
 Here we think of the sampling procedure as 500 trials of the same  random experiment: Pick a person at random
  from the population of the city. 
 
-We shall assume that the trials are iid. Now here we are introducing an approximation: the first
- membr of the sample was drawn from the entire population, but since we generally sample
- <I>without replacement</I>  in such a scenario, the second member of the sample was drawn from a
- population of size one less than in the case of the first member. So the random experiment has
- actually changed, and they are not independent also. But since the population is large (much
- larger than 500), so we are ignoring both the non-identical and dependent nature and assuming iid. 
+We shall assume that the trials are iid. <HIDE lab="Details">Actually the trials are neither independent nor identially distributed,
+ because we typically 
+sample
+ <I>without replacement</I>  in such a scenario. So the first
+ member of the sample was drawn from the entire population, while
+the second member was drawn from the <I>rest of the
+ population</I>.
 
-We also have a random variable: 
+However, since the population is large (much
+ larger than 500), so we are ignoring both the non-identical and dependent nature and assuming iid. 
+</HIDE>
+Our random variable is: 
 <D>X(\omega) = <CASES>1 <IF>\omega\mbox{ supports the candiate}</IF> 0<ELSE/></CASES></D> 
 Here <M>\omega</M>  is the person sampled. Each trial gives rise to one copy of this random variable, so we have 
 <M>X_1,...,X_{500}</M>  iid <M>Bernoulli(0.4).</M>  This <M>0.4</M>  came from the 40% given in the problem. 
@@ -512,64 +516,40 @@ for large <M>n.</M>  Here <M>\stackrel\bullet\sim</M>  means "approximately dist
 In our case, <M>\mu = 0.40</M>, <M>\sigma^2 = 0.4(1-0.4) = 0.24</M>  and <M>n=500.</M>  So 
 <D>\bar X_{500} \stackrel{\bullet}{\sim} N(*(0.40,[[0.24][500]])*),</D>
 or 
-<D>\sum_1^n X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
-Nowe we can find the required probability as
+<D>\sum_1^{500} X_i \stackrel{\bullet}{\sim} N(0.40\times 500,0.24\times 500)\equiv N(200, 120).</D>
+Now we can find the required probability as
 <D>P(\sum_1^{500} X_i \geq 250) \approx 1-\Phi(*([[250-200][\sqrt{120}]])*).</D>
 This probability may be obtained by looking up standard <M>N(0,1)</M>  tables or using R as
-<R>
+<RC>
 1-pnorm((250-200)/sqrt(120))
-</R>
+</RC>
  </EXM>
 In this problem we knew the distribution of the <M>X_i</M>'s, but we never really made any use of it, except to compute <M>E(X_i)</M> 
  and <M>V(X_i).</M>  
 <HEAD2>Problem set</HEAD2>
-::<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
-::<EXR><EIMG web="rossdistrib8.png"></EIMG>
+<EXR><EIMG web="rossdistrib10.png"></EIMG></EXR>
+<EXR><EIMG web="rossdistrib8.png"></EIMG>
 <ANS>For the second part, just drop the 6's. This means you are rolling a 5-faced die 800 times.</ANS>
 </EXR>
-::<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
+<EXR><EIMG web="rossdistrib5.png"></EIMG></EXR>
 
-
-<EXR>Let <M>X_n\toD N(0,1)</M>  and <M>Y_n\toP 5.</M>  Then what is the limiting distribution of <M>X_n+Y_n?</M></EXR>
-
-<EXR>Let <M>X_n\toD X</M>  and <M>Y_n\toP Y.</M>  Show that <M>X_n+Y_n\toD X+Y</M>  need not hold.</EXR>
-
-<EXR>Let <M>X_n\toD N(0,1)</M>, <M>Y_n\toP 5</M>  and <M>Z_n\toP 4</M> with <M>z_n > 0.</M>     Then what is the
- limiting distribution of <M>[[X_n+Y_n][\sqrt {Z_n}]]?</M></EXR>
-
-<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Show that <M>\sqrt n(X_nY_n-a\theta)\toD aZ.</M></EXR>
-
-<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
-
-<EXR>Let <M>T_n</M>  be a consistent estimator of <M>\theta,</M>  and let <M>S_n</M>  be a
- consistent estimator of <M>\sigma^2.</M>  Show that the Studentized statistic
- <M>[[T_n-\theta][\sqrt{S_n}]]</M>  has the the same asymptotic distribution as
- <M>[[T_n-\theta][\sigma]],</M>  whenever an asymptotic distribution exists. </EXR>
-
-<EXR>Let <M>X_n\toD X</M>  and <M>X_n+Y_n\toD X+1.</M> Does this imply that <M>Y_n\toP 1?</M> </EXR>
-<COMMENT>
-<LINK to="chat/Slutsky_Counterexamples_Exercises.pdf">chat/Slutsky_Counterexamples_Exercises.pdf</LINK>
-<LINK to="chat/Slutsky_Qualifying_Exam_Problems.pdf">chat/Slutsky_Qualifying_Exam_Problems.pdf</LINK>
-<LINK to="chat/Slutsky_Theorem_Exercises.pdf">chat/Slutsky_Theorem_Exercises.pdf</LINK>
-</COMMENT>
 <HEAD1>Relative strengths of different modes</HEAD1>
-We have learned about four different modes of convergence (counting all the <M>L_p</M>s as a single mode). It is surprising
+We have learned about four different modes of convergence. It is surprising
  and somewhat disconcerting that these modes are not equivalent. The following diagram shows the relative strengths of the
  these modes.
 <IMG web="rel.png">Relative strengths</IMG>
 Whenever there is a blue arrow from one mode to another, the first  mode implies the second mode. 
 None of the other implications hold in general. 
-Since <M>L_1</M>  is the weakest member of the <M>L_p</M>  family (for <M>p\geq 1</M>), we shall
- take <M>L_1</M>  as the representative of <M>L_p</M>  in the following discussion. 
- 
+
+<HEAD2><M>a.s.</M>   implies <M>P</M></HEAD2>
+Here we shall use the fact that if for a sequence of events <M>(A_n)</M>  we have <M>P(A_n\io)=0</M>  then <M>P(A_n)\to 0.</M> 
+ We had seen this in the <LINK to="bc.html#io">Borel-Cantelli page</LINK>. 
 
 <THM>If <M>X_n\toA X</M>  then <M>X_n\toP X.</M></THM>
 <PF>
 To show <M>\forall \epsilon>0~~P(|X_n-X|\geq \epsilon) \to 0</M>  as <M>n\to \infty.</M>  
 
 Take any <M>\epsilon>0.</M>
-
-
 
 Let  <M>A_n = \{|X_n-X|\geq \epsilon\}</M>.
 
@@ -578,6 +558,10 @@ Since <M>X_n\toA X,</M>  hence
 
 Hence <M>P(A_n)\to 0.</M>
 </PF>
+<HEAD2><M>L_p</M>  implies <M>P</M></HEAD2> 
+Since <M>L_1</M>  is the weakest member of the <M>L_p</M>  family (for <M>p\geq 1</M>), we shall
+ take <M>L_1</M>  as the representative of <M>L_p</M>  in the following discussion. 
+
 <THM>If <M>X_n\toL 1 X</M>    then <M>X_n\toP X.</M></THM>
 <PF>
 Take any <M>\epsilon>0.</M>  Then, by Markov inequality applied to <M>|X_n-X|</M>  (which is
@@ -645,7 +629,7 @@ P(|X_n-c| > \epsilon) & = & P(X_n < c-\epsilon \mbox{ or } X_n > c+ \epsilon)\\
 & \to & 0 + 1-1 = 0.
   </MULTILINE>
 Hence, by sandwich law of limit, <M>P(|X_n-c| > \epsilon\to 0,</M>  as required.</PF>
-<HEAD2>Counterexamples</HEAD2>
+<HEAD2><M>a.s</M>  does not imply <M>L_p</M></HEAD2>
 The following example shows that almost sure convergence does not imply <M>L_p</M>  convergence, even when the <M>p</M>-th
  moments exist finitely for all the random variables involved. 
 
@@ -677,9 +661,10 @@ Other counterexamples are in the problem set below.
 <EXR>Among the examples discussed so far, there is one counterexample that shows that
  convergence is probability does not imply  <M>L_1</M>  counterexample. What is that example? </EXR>
 
-<EXR>Convergence in distribution obviously cannot imply convergence in probability, because
+<EXR>
+Convergence in distribution obviously cannot imply convergence in probability, because
  convergence in distribution does not even require the random variables to be defined on the same
  probability space. But even if all the random variables are defined on a common probability
- space, we can get a counterexample. Let <M>U\sim Unif(0,1).</M>  Let <M>X_n = (-1)^n U.</M>  Then
+ space, we can get a counterexample, as shown in the next Let <M>U\sim Unif(0,1).</M>  Let <M>X_n = (-1)^n U.</M>  Then
 show that  <M>X_n\toD U,</M>  but <M>X_n\not\toP U.</M></EXR>
 </NOTE>@}
