@@ -651,7 +651,7 @@ Other counterexamples are in the problem set below.
 
  <M>[*[0, [[12]] ]*], [*[ [[12]], 1 ]*], </M>  
 
-<M>[*[0,[[13]] ]*], [*[ [[13]], [[23]] ]*], [*[ [[13]], 1 ]*], </M>
+<M>[*[0,[[13]] ]*], [*[ [[13]], [[23]] ]*], [*[ [[23]], 1 ]*], </M>
 
   etc. Let <M>U\sim Unif[0,1].</M>  Let <M>X_n = f_n(U).</M>  Let <M>X\equiv 0.</M>  Show that 
  <M>X_n\toL 1 X</M>  but <M>X_n\not\toA X.</M></EXR>
