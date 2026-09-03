@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Tue Aug 25 10:51:20 IST 2026</i>
+Thu Sep 03 19:45:17 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -192,13 +192,15 @@ function daynight() {
 <ul>
 <li>1. <a href="#N1000D">Monotone and dominated convergence theorems</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10186">Why not decreasing?</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N10194">Why not decreasing?</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N101B5">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N101C8">Problem set</a>
 </li>
-<li>2. <a href="#N1021C">Fatou's lemma</a>
+<li>2. <a href="#N1022F">Fatou's lemma</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1024B">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10276">What is liminf?</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N102AD">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -245,12 +247,8 @@ So
 
 <fieldset>
 <legend><b><i>Monotone convergence theorem (MCT)</i></b></legend>
-Let $X_n\rightarrowA X$. Assume
-<ul>
-<li>$(X_n)$  is a non-negative, non-decreasing sequence.</li>
-
-</ul>
-Then $E(X_n) \rightarrow E(X)$.
+Let $X_n\rightarrowA X$. If $(X_n)$  is a non-negative, non-decreasing sequence, then
+$E(X_n) \rightarrow E(X)$.
 </fieldset>
 
 
@@ -258,13 +256,15 @@ Then $E(X_n) \rightarrow E(X)$.
 
 <fieldset>
 <legend><b><i>Dominated Convergence Theorem (DCT)</i></b></legend>
-Let $X_n\rightarrow X.$  If  $\forall n~~|X_n|\leq Y$  for some $Y$  with $E(Y)&lt; \infty$, 
+Let $X_n\rightarrowA X.$  If  $\forall n~~|X_n|\leq Y$  for some $Y$  with $E(Y)&lt; \infty$, 
  then $E|X_n-X|\rightarrow 0$  and so, in particular, $E(X_n)\rightarrow E(X).$
 </fieldset>
-
+A sequence $(X_n)$  satisfying the condition <blockquote> $\forall n~~|X_n|\leq Y$  for some $Y$
+</blockquote>
+ is called <b><font color="red" size="40">dominated</font></b>  by $Y.$  Hence the name dominated convergence theorem.
 
 <h2>
-<a name="N10186"><span class="header">1.2</span>.
+<a name="N10194"><span class="header">1.2</span>.
 Why not decreasing?</a>
 </h2>
 The 'M' in MCT refers to <i>monotone</i>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
@@ -275,9 +275,29 @@ Does MCT hold for the non-increasing case? Unfortunately no, as the following co
 
 <p>
 <b>EXAMPLE 3:</b>&nbsp;
-Here we shall work with $[0,1]$  again, equipped with $Unif[0,1]$  probability distribution. Let $X_n = \frac{1}{nx}$ 
- (set $X_n=0$  at $x=0$). Also, take $X\equiv0.$  Then $\forall
- \omega\in[0,1]~~X_n(w)\downarrow X(w).$  But $E(X_n)=\infty$  though $E(X)=0.$  
+Here we shall again work with $Unif(0,1)$  probability space. Let $X_n(\omega) = \frac{1}{n \omega}$ 
+and $X\equiv0.$  
+<p></p>
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/monocex.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Then $\forall
+ \omega\in(0,1)~~X_n(\omega)\downarrow X(\omega).$  
+<p></p>
+But $E(X_n)=\int_0^1 \frac{1}{n \omega} d \omega = \frac 1n\int_0^1 \frac{d \omega}{\omega} = \left. \frac 1n
+ \log \omega \right|_0^1 = \infty.$ 
+<p></p>
+But $E(X)=0.$
+<p></p>
+So $E(X_n)\not\rightarrow E(X).$  
 <p></p>
  ■
 </p>
@@ -285,7 +305,7 @@ Here we shall work with $[0,1]$  again, equipped with $Unif[0,1]$  probability d
 <p></p>
 
 <h2>
-<a name="N101B5"><span class="header">1.3</span>.
+<a name="N101C8"><span class="header">1.3</span>.
 Problem set</a>
 </h2>
 
@@ -337,52 +357,97 @@ If $(X_n)$  is a <i>nonincreasing</i> sequence of nonnegative random variables c
 </p>
 
 <h1>
-<a name="N1021C"><span class="header">2</span>. Fatou's lemma</a>
+<a name="N1022F"><span class="header">2</span>. Fatou's lemma</a>
 </h1>
-
+We just now saw that if $X_n\rightarrowA X$  and $(X_n)$  is "nice" <a
+href="javascript:hideShow('hide0')"><b>[?]</b></a><div
+class="ans" id="hide0"><i>e.g.</i>, nonnegative,
+ nondecreasing (for MCT) OR dominated by some random variable with finite expectation (for DCT).</div> then
+ $E(X_n)\rightarrow E(X).$  
+<p></p>
+But what if nothing is given about $(X_n)$  except that the random variables are all nonnegative? Not even that $X_n$'s
+ converge anywhere? The barebone statement that we can make even here is:
 <fieldset>
 <legend><b><i>Fatou's lemma</i></b></legend>
 Let $(X_n)$  be  a sequence of nonnegative random variables.  Then
 $$E(\liminf X_n) \leq \liminf E(X_n).$$
 </fieldset>
 
-<p>
-<b><i>Proof:</i></b>
-Let $Y_n = \inf\{X_k~:~k\geq n\}.$
-<p></p>
-Then, by the definition of $\liminf$, we have  $Y_n\uparrow \liminf X_n.$
-<p></p>
-So, by MCT, $E(Y_n)\rightarrow E(\liminf X_n).$
-<p></p>
-Now $Y_n \leq X_n,$  and hence $E(Y_n) \leq E(X_n).$
-<p></p>
-Hence 
-$$E(\liminf X_n) \leq \liminf E(X_n),$$
-as required.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
 
 <h2>
-<a name="N1024B"><span class="header">2.1</span>.
+<a name="N10276"><span class="header">2.1</span>.
+What is liminf?</a>
+</h2>
+Think of a sequence as a graph made of dots. 
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dots1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+In all these cases we can talk about the limit of the sequence (even if the limit is not finite). But thre are sequences
+ for which limit does not make sense.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dots2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here one part of the sequence is approaching one point, while the rest is going elsewhere.  It is as if the sequence has
+ two limits. The precise mathematical term here is <b><font color="red" size="40">subsequential limit</font></b>. Here we call
+ the largest  subsequential limit the <b><font color="red" size="40">limsup</font></b>  and the smallest subsequential limit the
+ <b><font color="red" size="40">liminf</font></b>  of the sequence. The advantage of working with liminf and limsup is that
+ they exist for <i>all</i>  real sequences. However, just like limits, they may be $\infty $ or $-\infty.$  
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dots3.png"></th>
+</tr>
+<tr>
+<th>Here limsup$=\infty$  and liminf$=0$.</th>
+</tr>
+</table>
+</center>
+
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dots4.png"></th>
+</tr>
+<tr>
+<th>Here limsup$=\infty$  and liminf$=-\infty.$</th>
+</tr>
+</table>
+</center>
+It should be obvious that for any real sequence we must have liminf $\leq$  limsup. Also they are equal if and only
+ if the sequence has a limit (and then limit, limsup, liminf are all equal, may be $\infty$  or $-\infty$). 
+<h2>
+<a name="N102AD"><span class="header">2.2</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 6:</b>&nbsp;Consider $U\sim Unif(0,1).$  Let $X_n = U^n$  for $n\in{\mathbb N}$. Compute both
+<b>EXERCISE 6:</b>&nbsp;Consider $Unif(0,1)$ probability space. Let $X_n(\omega) = \omega^n$  for $n\in{\mathbb N}$. Compute both
  sides of Fatou's lemma explicitly.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Again let $U\sim Unif(0,1).$  Let $X_n=\left\{\begin{array}{ll}n&\text{if }U\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
+<b>EXERCISE 7:</b>&nbsp;Again consider $Unif(0,1)$ probability space. Let $X_n(\omega)=\left\{\begin{array}{ll}n&\text{if }\omega\in\left(0,\frac 1n\right)\\ 0&\text{otherwise.}\end{array}\right.$.
 Compute both sides of Fatou's lemma explicitly.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Let $U\sim Expo(1).$  Let $X_n = \left\{\begin{array}{ll}e^x&\text{if }x\in(n-1,n]\\ 0&\text{otherwise.}\end{array}\right.$ 
+<b>EXERCISE 8:</b>&nbsp;Consider  $Expo(1)$  probability space.  Let $X_n(\omega) = \left\{\begin{array}{ll}e^\omega&\text{if }\omega\in(n-1,n]\\ 0&\text{otherwise.}\end{array}\right.$ 
  for $n\in{\mathbb N}.$  Compute both sides of Fatou's lemma explicitly.</p>
 
 <p></p>
@@ -407,16 +472,6 @@ Prove and/or provide counterexample(s) accordingly.
 
 <p></p>
 
-<p>
-<b>EXERCISE 11:</b>&nbsp;We proved Fatou's lemma from MCT. It is possible to prove MCT using Fatou's lemma quite easily. How?</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 12:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) \leq
- M$  for some $M\in{\mathbb R}.$  If $X_n\rightarrow X,$  then show that $E(X) &lt; \infty.$</p>
-
-<p></p>
 
 <p>
 <b>EXERCISE 13:</b>&nbsp;Let $(X_n)$  be nonnegative random variables such that $\forall n\in{\mathbb N}~~E(X_n) &lt;

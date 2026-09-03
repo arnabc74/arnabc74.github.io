@@ -25,10 +25,8 @@ So
 
  
 <THM name="Monotone convergence theorem (MCT)">
-Let <M>X_n\toA X</M>. Assume
-<UL><LI><M>(X_n)</M>  is a non-negative, non-decreasing sequence.</LI>
-</UL>
-Then <M>E(X_n) \to E(X)</M>.
+Let <M>X_n\toA X</M>. If <M>(X_n)</M>  is a non-negative, non-decreasing sequence, then
+<M>E(X_n) \to E(X)</M>.
 </THM>
 <COMMENT>
 <PF>
@@ -95,9 +93,12 @@ However, it may be shown that if the limit
 </COMMENT>
 
 <THM name="Dominated Convergence Theorem (DCT)">
-Let <M>X_n\to X.</M>  If  <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  with <M>E(Y)< \infty</M>, 
+Let <M>X_n\toA X.</M>  If  <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>  with <M>E(Y)< \infty</M>, 
  then <M>E|X_n-X|\to 0</M>  and so, in particular, <M>E(X_n)\to E(X).</M>
 </THM>
+A sequence <M>(X_n)</M>  satisfying the condition <Q> <M>\forall n~~|X_n|\leq Y</M>  for some <M>Y</M>
+</Q>
+ is called <TERM>dominated</TERM>  by <M>Y.</M>  Hence the name dominated convergence theorem.
 <COMMENT><PF>
 Clearly, <M>|X|\leq Y.</M>
 
@@ -128,9 +129,19 @@ The 'M' in MCT refers to <I>monotone</I>, which may mean both increasing as well
 Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
 
 <EXM>
-Here we shall work with <M>[0,1]</M>  again, equipped with <M>Unif[0,1]</M>  probability distribution. Let <M>X_n = [[1][nx]]</M> 
- (set <M>X_n=0</M>  at <M>x=0</M>). Also, take <M>X\equiv0.</M>  Then <M>\forall
- \omega\in[0,1]~~X_n(w)\downarrow X(w).</M>  But <M>E(X_n)=\infty</M>  though <M>E(X)=0.</M>  
+Here we shall again work with <M>Unif(0,1)</M>  probability space. Let <M>X_n(\omega) = [[1][n \omega]]</M> 
+and <M>X\equiv0.</M>  
+
+<CIMG web="monocex.png"/>
+Then <M>\forall
+ \omega\in(0,1)~~X_n(\omega)\downarrow X(\omega).</M>  
+
+But <M>E(X_n)=\int_0^1 [[1][n \omega]] d \omega = [[1n]]\int_0^1 [[d \omega][\omega]] = .[. [[1n]]
+ \log \omega ]|]_0^1 = \infty.</M> 
+
+But <M>E(X)=0.</M>
+
+So <M>E(X_n)\not\to E(X).</M>  
 
 </EXM>
 
@@ -164,10 +175,17 @@ If <M>(X_n)</M>  is a <I>nonincreasing</I> sequence of nonnegative random variab
  dropped?
 </EXR>
 <HEAD1>Fatou's lemma</HEAD1>
+We just now saw that if <M>X_n\toA X</M>  and <M>(X_n)</M>  is "nice" <IHIDE lab="?">e.g., nonnegative,
+ nondecreasing (for MCT) OR dominated by some random variable with finite expectation (for DCT).</IHIDE> then
+ <M>E(X_n)\to E(X).</M>  
+
+But what if nothing is given about <M>(X_n)</M>  except that the random variables are all nonnegative? Not even that <M>X_n</M>'s
+ converge anywhere? The barebone statement that we can make even here is:
 <THM name="Fatou's lemma">
 Let <M>(X_n)</M>  be  a sequence of nonnegative random variables.  Then
 <D>E(\liminf X_n) \leq \liminf E(X_n).</D>
 </THM>
+<COMMENT>
 <PF>
 Let <M>Y_n = \inf\{X_k~:~k\geq n\}.</M>
 
@@ -181,15 +199,30 @@ Hence
 <D>E(\liminf X_n) \leq \liminf E(X_n),</D>
 as required.
 </PF>
-
+</COMMENT>
+<HEAD2>What is liminf?</HEAD2>
+Think of a sequence as a graph made of dots. 
+<CIMG web="dots1.png"></CIMG>
+In all these cases we can talk about the limit of the sequence (even if the limit is not finite). But thre are sequences
+ for which limit does not make sense.
+<CIMG web="dots2.png"></CIMG>
+Here one part of the sequence is approaching one point, while the rest is going elsewhere.  It is as if the sequence has
+ two limits. The precise mathematical term here is <TERM>subsequential limit</TERM>. Here we call
+ the largest  subsequential limit the <TERM>limsup</TERM>  and the smallest subsequential limit the
+ <TERM>liminf</TERM>  of the sequence. The advantage of working with liminf and limsup is that
+ they exist for <I>all</I>  real sequences. However, just like limits, they may be <M>\infty </M> or <M>-\infty.</M>  
+<CIMG web="dots3.png">Here limsup<M>=\infty</M>  and liminf<M>=0</M>.</CIMG>
+<CIMG web="dots4.png">Here limsup<M>=\infty</M>  and liminf<M>=-\infty.</M></CIMG>
+It should be obvious that for any real sequence we must have liminf <M>\leq</M>  limsup. Also they are equal if and only
+ if the sequence has a limit (and then limit, limsup, liminf are all equal, may be <M>\infty</M>  or <M>-\infty</M>). 
 <HEAD2>Problem set</HEAD2>
-<EXR>Consider <M>U\sim Unif(0,1).</M>  Let <M>X_n = U^n</M>  for <M>n\in\nn</M>. Compute both
+<EXR>Consider <M>Unif(0,1)</M> probability space. Let <M>X_n(\omega) = \omega^n</M>  for <M>n\in\nn</M>. Compute both
  sides of Fatou's lemma explicitly.</EXR>
 
-<EXR>Again let <M>U\sim Unif(0,1).</M>  Let <M>X_n=<CASES>n<IF>U\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES></M>.
+<EXR>Again consider <M>Unif(0,1)</M> probability space. Let <M>X_n(\omega)=<CASES>n<IF>\omega\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES></M>.
 Compute both sides of Fatou's lemma explicitly.</EXR>
 
-<EXR>Let <M>U\sim Expo(1).</M>  Let <M>X_n = <CASES>e^x<IF>x\in(n-1,n]</IF> 0<ELSE/></CASES></M> 
+<EXR>Consider  <M>Expo(1)</M>  probability space.  Let <M>X_n(\omega) = <CASES>e^\omega<IF>\omega\in(n-1,n]</IF> 0<ELSE/></CASES></M> 
  for <M>n\in\nn.</M>  Compute both sides of Fatou's lemma explicitly.</EXR>
 
 <EXR>Suppose that <M>(X_n)</M>  is a sequence of  random variables with <M>X_n\toA
@@ -203,12 +236,12 @@ Prove and/or provide counterexample(s) accordingly.
 
 <EXR>Give examples to show that equality or strict inequality may prevail in Fatou's lemma.</EXR>
 
-
+<COMMENT>
 <EXR>We proved Fatou's lemma from MCT. It is possible to prove MCT using Fatou's lemma quite easily. How?</EXR>
 
 <EXR>Let <M>(X_n)</M>  be nonnegative random variables such that <M>\forall n\in\nn~~E(X_n) \leq
  M</M>  for some <M>M\in\rr.</M>  If <M>X_n\to X,</M>  then show that <M>E(X) < \infty.</M></EXR>
-
+</COMMENT>
 <EXR>Let <M>(X_n)</M>  be nonnegative random variables such that <M>\forall n\in\nn~~E(X_n) <
  \infty.</M>  If <M>X_n\to X,</M>  then must  it be true that <M>E(X) < \infty?</M></EXR>
 
