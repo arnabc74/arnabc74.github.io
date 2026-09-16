@@ -125,7 +125,7 @@ We can think of the conclusion of MCT or DCT as limit passing through expectatio
 </COMMENT>
 <HEAD2>Why not decreasing?</HEAD2>
 The 'M' in MCT refers to <I>monotone</I>, which may mean both increasing as well as decreasing (or non-decreasing or non-incresing).
- However, in the theorem we require the sequence of functions to be <I>non-increasing</I>. 
+ However, in the theorem we require the sequence of functions to be <I>non-decreasing</I>. 
 
 
 Does MCT hold for the non-increasing case? Unfortunately no, as the following counterexample shows. 
