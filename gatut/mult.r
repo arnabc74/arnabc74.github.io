@@ -47,6 +47,24 @@ grade = apply(pat,1,sum)
 gtab = makeGTab()
 dimnames(gtab) = list(bname,bname,bname)
 
+mat2java = function(mat,javaName) {
+    cat("int",javaName,"[][][]={\n")
+    for(i in 1:N2) {
+        cat("\t{\n")
+        for(j in 1:N2) {
+            cat("\t\t{")
+            cat(mat[i,j,],sep=',')
+            cat("}")
+            if(j<ncol(mat)) cat(", ")
+            cat("\n")
+        }
+        cat("\t}");
+        if(i<nrow(mat)) cat(",")
+        cat("\n")
+    }
+    cat("};\n");
+}
+
 gshow = function(cf) {
     keep = which(cf!=0)
     cf[keep]
