@@ -6,8 +6,8 @@
 <TITLE>Miscellaneous tools</TITLE>
 
 <HEAD1>Slutsky's theorem</HEAD1>
-We have seen that there are different modes of convergence for random variables. As long as we are working within the ame
- mode, things are more or less like what we learn in real analysis. But things may go out of the control if we try to mix
+We have seen that there are different modes of convergence for random variables. As long as we are working within the same
+ mode, things are more or less like what we learn in real analysis. But things may get complicated if we try to mix
  different modes of convergence in the same statement. 
 
 <EXM>If <M>X_n\toA X</M>  and
@@ -26,7 +26,7 @@ A particularly interesting situation is when <M>X_n\toD X</M>  and <M>Y_n\toP Y,
  where <M>X_n+Y_n</M>  does not converge to
  <M>X+Y</M>  in distribution. 
 
-However, the following theorem comes to our help.
+However, the following theorem comes to our help in a special case.
 
 <THM name="Slutsty's theorem">Let <M>(X_n), (Y_n), X</M>  be random variables defined on the same
  probability space. <M>c\in\rr.</M>  Let

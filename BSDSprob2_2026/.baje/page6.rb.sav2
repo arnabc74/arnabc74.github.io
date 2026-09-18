@@ -6,8 +6,8 @@
 <TITLE>Miscellaneous tools</TITLE>
 
 <HEAD1>Slutsky's theorem</HEAD1>
-We have seen that there are different modes of convergence for random variables. As long as we are working within the ame
- mode, things are more or less like what we learn in real analysis. But things may go out of the control if we try to mix
+We have seen that there are different modes of convergence for random variables. As long as we are working within the same
+ mode, things are more or less like what we learn in real analysis. But things may get complicated if we try to mix
  different modes of convergence in the same statement. 
 
 <EXM>If <M>X_n\toA X</M>  and
@@ -26,7 +26,7 @@ A particularly interesting situation is when <M>X_n\toD X</M>  and <M>Y_n\toP Y,
  where <M>X_n+Y_n</M>  does not converge to
  <M>X+Y</M>  in distribution. 
 
-However, the following theorem comes to our help.
+However, the following theorem comes to our help in
 
 <THM name="Slutsty's theorem">Let <M>(X_n), (Y_n), X</M>  be random variables defined on the same
  probability space. <M>c\in\rr.</M>  Let
@@ -82,10 +82,12 @@ Now the input is random, and so is the output. But if <M>X</M>  is pretty close 
  to remain pretty close to <M>f(\mu)</M>? Yes, since  <M>f</M>  is continuous. Since there is
  jitter in the input, there may be jitter in the output. Which aspect of
  <M>f</M>  would control the amount of output jitter (if the level of input jitter is unchanged)?
+<CIMG web="jitter.png"></CIMG>
  It should not be difficult to see that the derivative of <M>f</M>  controls this. Higher the
- derivative (in absolute value), the more jittery the outout.  
+ derivative (in absolute value), the more jittery the output.  
  
-The following theorem takes this one step
+The following theorem takes this one step further.
+
 <THM name="Delta method">
 Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
  differentiable function with <M>f'(\mu)\neq 0.</M>
@@ -101,11 +103,11 @@ Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to
 <EXR>If <M>\sqrt n(T_n-\theta)\toD N(0,\sigma^2)</M>  for some <M>\theta\neq 0,</M>  then show that 
 <M>\sqrt n(*( [[1][T_n]]-[[1\theta]])*) \toD N(*(0,[[\sigma^2][\theta^2]])*).</M></EXR>
 
+<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
 <EXR>
 We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportion of heads. Find an asymptotic distribution
  for the odds ratio <M>[[X_n][1-X_n]].</M>  
 </EXR>
-<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
 
 <EXR><M>T_n</M>  is an estimator for a parameter <M>\theta</M>  with asymptotic distribution
  <M>N(*(\theta, [[\sigma^2][n]])*).</M>  Use deltan method to obtain an approximate 95% confidene interval for
@@ -128,7 +130,7 @@ Then we can use a variance stabilising transform <M>f(\cdot)</M>  to get <M>\sqr
  we can obtain a confidence interval for <M>f(\mu).</M>  Since <M>f</M>  is one-one we can obtain a confidence et for <M>\mu</M> 
  from it.
 <HEAD2>Problem set</HEAD2>
-<EXR>We know that if <M>X\Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
+<EXR>We know that if <M>X\sim Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
  stabilising transform for <M>X,</M>  i.e., some function <M>f(\cdot)</M>  such that <M>f(X)</M> 
  has variance free of <M>\lambda</M>  (approximately). What is this constant variance?</EXR>
 
@@ -144,7 +146,7 @@ Find a variance
 <HEAD1>Cramer-Wold device</HEAD1>
 
 <EXM>Suppose that <M>X_n\toD X</M> and <M>Y_n\toD Y.</M> Does
-this imply <M>(X_n,Y_n)\to (X,Y)?</M></EXM>
+this imply <M>(X_n,Y_n)\toD (X,Y)?</M></EXM>
 
 <THM name="Cramer Wold theorem">
 Let <M>(\v X_n), \v X </M> be random vectors. Then <M>\v X_n\toD \v X</M>  if and only if 
