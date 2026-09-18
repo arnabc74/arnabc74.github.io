@@ -75,13 +75,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 body,table {
   margin: 0;
   font-size: 40;
-  //background: #000;
-  //color: #fff;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
 }
 
 .ans {
   display:none;
-  background: #ccffcc;
+  background: var(--ans-bg,#cfc);
 }
 
 .sticky {
@@ -102,6 +106,7 @@ body,table {
 
 .scrpt {
   margin:10px;
+  background: #222;
   border-left: 5px solid black;
 }
 
@@ -159,32 +164,53 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:24 IST 2026</i>
+Fri Sep 18 10:03:11 IST 2026</i>
 </td>
 </tr>
 </table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
 <h3>Miscellaneous tools</h3>
 <ul>
-<li>1. <a href="#N10012">Slutsky's theorem</a>
+<li>1. <a href="#N10015">Slutsky's theorem</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10041">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N1007C">Problem set</a>
 </li>
-<li>2. <a href="#N100C0">Delta method</a>
+<li>2. <a href="#N10107">Delta method</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N100D8">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1014C">Problem set</a>
 </li>
-<li>3. <a href="#N10117">Variance stabilising transform</a>
+<li>3. <a href="#N10196">Variance stabilising transform</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10160">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N101DF">Problem set</a>
 </li>
-<li>4. <a href="#N101A3">Cramer-Wold device</a>
+<li>4. <a href="#N10222">Cramer-Wold device</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N101C7">Multivariate CLT</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10246">Multivariate CLT</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N101EC">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N1026B">Problem set</a>
 </li>
 </ul>
 <hr/>
+$\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
 $\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
 $\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
 $\newcommand{\v}[1]{\boldsymbol{#1}}$
@@ -193,11 +219,47 @@ $\newcommand{\v}[1]{\boldsymbol{#1}}$
 <p></p>
 
 <h1>
-<a name="N10012"><span class="header">1</span>. Slutsky's theorem</a>
+<a name="N10015"><span class="header">1</span>. Slutsky's theorem</a>
 </h1>
+We have seen that there are different modes of convergence for random variables. As long as we are working within the ame
+ mode, things are more or less like what we learn in real analysis. But things may go out of the control if we try to mix
+ different modes of convergence in the same statement. 
+<p></p>
+
+<p>
+<b>EXAMPLE 1:</b>&nbsp;If $X_n\rightarrowA X$  and
+ $Y_n\rightarrowP Y$, then what   can we say about the convergence of
+ $X_n+Y_n$?<p></p>
+<b>SOLUTION:</b>
+ One technique is to use the strength hierarchy of the different modes:
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/rel.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center> Here, for instance, we know that
+ a.s. convergence is stronger than convergence in probability, and so we can reduce the given condition to the weakest mode
+ involved: $X_n\rightarrowP X$  and $Y_n\rightarrowP Y$, and so by using property of convergence in probability, we can say $X_n+Y_n\rightarrowP X+Y.$
+ ■
+</p>
+A particularly interesting situation is when $X_n\rightarrowD X$  and $Y_n\rightarrowP Y,$   and we are interested in the limiting
+ behaviour of $X_n+Y_n.$  Here the weakest mode involved in convergence in distribution, and so we can reduce the given
+ statement to: $X_n\rightarrowD X$  and  $Y_n\rightarrowD Y.$  But, unfortunately, convergence in distribution does not always
+ respect addition. Indeed, one can get counterexamples (see <a href="#cex">this problem</a> 
+ in the problem set below)
+ where $X_n+Y_n$  does not converge to
+ $X+Y$  in distribution. 
+<p></p>
+However, the following theorem comes to our help.
+<p></p>
 
 <fieldset>
-<legend><b><i>Theorem</i></b></legend>Let $(X_n), (Y_n), X$  be random variables defined on the same probability space. $c\in{\mathbb R}.$  Let
+<legend><b><i>Slutsty's theorem</i></b></legend>Let $(X_n), (Y_n), X$  be random variables defined on the same
+ probability space. $c\in{\mathbb R}.$  Let
  $X_n\rightarrowD X$  and $Y_n\rightarrowP c.$
 <p></p>
 Then <ol type="">
@@ -216,14 +278,12 @@ Then <ol type="">
 
 <p>
 <b><i>Proof:</i></b>
-
-<p></p>
-
+The proof is somewhat technical in nature, and will be skipped.
 <b><i>[QED]</i></b>
 </p>
 
 <h2>
-<a name="N10041"><span class="header">1.1</span>.
+<a name="N1007C"><span class="header">1.1</span>.
 Problem set</a>
 </h2>
 
@@ -234,8 +294,14 @@ Problem set</a>
 
 <p></p>
 
+<a name="cex">
 <p>
-<b>EXERCISE 2:</b>&nbsp;Let $X_n\rightarrowD X$  and $Y_n\rightarrowP Y.$  Show that $X_n+Y_n\rightarrowD X+Y$  need not hold.</p>
+<b>EXERCISE 2:</b>&nbsp;Let $X_n\rightarrowD X$  and $Y_n\rightarrowP Y.$  Show that $X_n+Y_n\rightarrowD X+Y$  need not hold.
+<p></p>
+[Hint: Take $Unif(0,1)$  probability space. Take $X_n(\omega) = Y_n(\omega) = \omega.$  Think about how you should
+ define $X(\omega)$  and $Y(\omega).$ ]
+</p>
+</a>
 
 <p></p>
 
@@ -251,25 +317,67 @@ Problem set</a>
 <p></p>
 
 <p>
-<b>EXERCISE 5:</b>&nbsp;Let $X_n$  be asymptotically $N\left(\mu,\frac{\sigma^2}{n}\right).$  What is the asymptotic distribution of $\frac{X_n}{1+X_n}?$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 6:</b>&nbsp;Let $T_n$  be a consistent estimator of $\theta,$  and let $S_n$  be a
- consistent estimator of $\sigma^2.$  Show that the Studentized statistic
+<b>EXERCISE 5:</b>&nbsp;Let $T_n$  be a consistent estimator of $\theta,$  and let $S_n$  be a
+ consistent<a
+href="javascript:hideShow('hide0')"><b>[?]</b></a><div
+class="ans" id="hide0">"S_n consistent estimator of $\sigma^2$ " means $S_n\rightarrowP
+ \sigma^2$</div> estimator of
+ $\sigma^2.$  Show
+ that the Studentized statistic
  $\frac{T_n-\theta}{\sqrt{S_n}}$  has the the same asymptotic distribution as
  $\frac{T_n-\theta}{\sigma},$  whenever an asymptotic distribution exists. </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Let $X_n\rightarrowD X$  and $X_n+Y_n\rightarrowD X+1.$ Does this imply that $Y_n\rightarrowP 1?$ </p>
+<b>EXERCISE 6:</b>&nbsp;Let $X_n\rightarrowD X$  and $X_n+Y_n\rightarrowD X+1.$ Does this imply that $Y_n\rightarrowP 1?$ </p>
 
 
 <h1>
-<a name="N100C0"><span class="header">2</span>. Delta method</a>
+<a name="N10107"><span class="header">2</span>. Delta method</a>
 </h1>
+Suppose we have a differentiable function $f:{\mathbb R}\rightarrow{\mathbb R}$  which we visualise as a blackbox.
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fbox1.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Here the input $\mu$  is deterministic, and so is the output. Now suppose that the input a slightly jitterred version
+ of $\mu:$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/fbox2.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+Now the input is random, and so is the output. But if $X$  is pretty close to $\mu,$  then can we expect $f(X)$ 
+ to remain pretty close to $f(\mu)$? Yes, since  $f$  is continuous. Since there is
+ jitter in the input, there may be jitter in the output. Which aspect of
+ $f$  would control the amount of output jitter (if the level of input jitter is unchanged)?
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/jitter.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+</center>
+ It should not be difficult to see that the derivative of $f$  controls this. Higher the
+ derivative (in absolute value), the more jittery the output.  
+<p></p>
+The following theorem takes this one step further.
+<p></p>
 
 <fieldset>
 <legend><b><i>Delta method</i></b></legend>
@@ -280,29 +388,32 @@ Let $\frac{\sqrt{n}(X_n-\mu)}{\sigma}\rightarrowD$  some distribution. Let $f:{\
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>Nice proof using Skorohod in Resnick (p262).<b><i>[QED]</i></b>
+<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
 </p>
 
 <h2>
-<a name="N100D8"><span class="header">2.1</span>.
+<a name="N1014C"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Suppose that $\sqrt n(S_n^2-\sigma^2)\rightarrowD N(0,\theta^2).$  Show that $\sqrt n(S_n-\sigma)\rightarrowD N\left(0,\frac{\theta^2}{4 \sigma^2}\right).$</p>
+<b>EXERCISE 7:</b>&nbsp;Suppose that $\sqrt n(S_n^2-\sigma^2)\rightarrowD N(0,\theta^2).$  Show that $\sqrt n(S_n-\sigma)\rightarrowD N\left(0,\frac{\theta^2}{4 \sigma^2}\right).$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;If $\sqrt n(\bar X_n-\mu)\rightarrowD N(0,1),$  show that $\sqrt n(\log \bar X_n-\log \mu)\rightarrowD N(0,\frac{1}{\mu^2}).$</p>
+<b>EXERCISE 8:</b>&nbsp;If $\sqrt n(\bar X_n-\mu)\rightarrowD N(0,1),$  show that $\sqrt n(\log \bar X_n-\log \mu)\rightarrowD N(0,\frac{1}{\mu^2}).$</p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;If $\sqrt n(T_n-\theta)\rightarrowD N(0,\sigma^2)$  for some $\theta\neq 0,$  then show that 
+<b>EXERCISE 9:</b>&nbsp;If $\sqrt n(T_n-\theta)\rightarrowD N(0,\sigma^2)$  for some $\theta\neq 0,$  then show that 
 $\sqrt n\left( \frac{1}{T_n}-\frac 1\theta\right) \rightarrowD N\left(0,\frac{\sigma^2}{\theta^2}\right).$</p>
 
 <p></p>
+
+<p>
+<b>EXERCISE 10:</b>&nbsp;Let $X_n$  be asymptotically $N\left(\mu,\frac{\sigma^2}{n}\right).$  What is the asymptotic distribution of $\frac{X_n}{1+X_n}?$</p>
 
 <p>
 <b>EXERCISE 11:</b>&nbsp;
@@ -318,7 +429,7 @@ We toss a coin with unknown $P(H)=p\in (0,1).$  Let $X_n = $ proportion of heads
  $e^\theta.$</p>
 
 <h1>
-<a name="N10117"><span class="header">3</span>. Variance stabilising transform</a>
+<a name="N10196"><span class="header">3</span>. Variance stabilising transform</a>
 </h1>
 
 <fieldset>
@@ -343,12 +454,12 @@ Then we can use a variance stabilising transform $f(\cdot)$  to get $\sqrt n(f(T
  we can obtain a confidence interval for $f(\mu).$  Since $f$  is one-one we can obtain a confidence et for $\mu$ 
  from it.
 <h2>
-<a name="N10160"><span class="header">3.1</span>.
+<a name="N101DF"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;We know that if $X\Poi(\lambda),$  then $V(X) = \lambda.$  Find a variance
+<b>EXERCISE 13:</b>&nbsp;We know that if $X\sim Poi(\lambda),$  then $V(X) = \lambda.$  Find a variance
  stabilising transform for $X,$  <i>i.e.</i>, some function $f(\cdot)$  such that $f(X)$ 
  has variance free of $\lambda$  (approximately). What is this constant variance?</p>
 
@@ -370,14 +481,14 @@ Find a variance
 <p></p>
 
 <h1>
-<a name="N101A3"><span class="header">4</span>. Cramer-Wold device</a>
+<a name="N10222"><span class="header">4</span>. Cramer-Wold device</a>
 </h1>
 
 <p></p>
 
 <p>
-<b>EXAMPLE 1:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
-this imply $(X_n,Y_n)\rightarrow (X,Y)?$ ■
+<b>EXAMPLE 2:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
+this imply $(X_n,Y_n)\rightarrowD (X,Y)?$ ■
 </p>
 
 <p></p>
@@ -397,14 +508,14 @@ Use characteristic function (to be covered in the next page).
 <p></p>
 
 <h2>
-<a name="N101C7"><span class="header">4.1</span>.
+<a name="N10246"><span class="header">4.1</span>.
 Multivariate CLT</a>
 </h2>
 
 <p></p>
 
 <p>
-<b>EXAMPLE 2:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
+<b>EXAMPLE 3:</b>&nbsp;Suppose that $X_n\rightarrowD X$ and $Y_n\rightarrowD Y.$ Does
 this imply $(X_n,Y_n)\rightarrow (X,Y)?$ ■
 </p>
 
@@ -418,7 +529,7 @@ $$\sqrt{n}(\v{\bar X}_n-\v\mu)\rightarrowD N_k(\v 0, \Sigma).$$
 </fieldset>
 
 <h2>
-<a name="N101EC"><span class="header">4.2</span>.
+<a name="N1026B"><span class="header">4.2</span>.
 Problem set</a>
 </h2>
 

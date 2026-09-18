@@ -1,11 +1,35 @@
 @{<NOTE>
+<M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
 <M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
 <M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
 <M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <TITLE>Miscellaneous tools</TITLE>
 
 <HEAD1>Slutsky's theorem</HEAD1>
-<THM>Let <M>(X_n), (Y_n), X</M>  be random variables defined on the same probability space. <M>c\in\rr.</M>  Let
+We have seen that there are different modes of convergence for random variables. As long as we are working within the ame
+ mode, things are more or less like what we learn in real analysis. But things may go out of the control if we try to mix
+ different modes of convergence in the same statement. 
+
+<EXM>If <M>X_n\toA X</M>  and
+ <M>Y_n\toP Y</M>, then what   can we say about the convergence of
+ <M>X_n+Y_n</M>?<SOLN/>
+ One technique is to use the strength hierarchy of the different modes:
+<CIMG web="rel.png"/> Here, for instance, we know that
+ a.s. convergence is stronger than convergence in probability, and so we can reduce the given condition to the weakest mode
+ involved: <M>X_n\toP X</M>  and <M>Y_n\toP Y</M>, and so by using property of convergence in probability, we can say <M>X_n+Y_n\toP X+Y.</M>
+</EXM>
+A particularly interesting situation is when <M>X_n\toD X</M>  and <M>Y_n\toP Y,</M>   and we are interested in the limiting
+ behaviour of <M>X_n+Y_n.</M>  Here the weakest mode involved in convergence in distribution, and so we can reduce the given
+ statement to: <M>X_n\toD X</M>  and  <M>Y_n\toD Y.</M>  But, unfortunately, convergence in distribution does not always
+ respect addition. Indeed, one can get counterexamples (see <LINK to="#cex">this problem</LINK> 
+ in the problem set below)
+ where <M>X_n+Y_n</M>  does not converge to
+ <M>X+Y</M>  in distribution. 
+
+However, the following theorem comes to our help.
+
+<THM name="Slutsty's theorem">Let <M>(X_n), (Y_n), X</M>  be random variables defined on the same
+ probability space. <M>c\in\rr.</M>  Let
  <M>X_n\toD X</M>  and <M>Y_n\toP c.</M>
 
 Then <OL>
@@ -16,23 +40,29 @@ Then <OL>
 </OL>
 </THM>
 <PF>
-
+The proof is somewhat technical in nature, and will be skipped.
 </PF>
 <HEAD2>Problem set</HEAD2>
 
 <EXR>Let <M>X_n\toD N(0,1)</M>  and <M>Y_n\toP 5.</M>  Then what is the limiting distribution of <M>X_n+Y_n?</M></EXR>
 
-<EXR>Let <M>X_n\toD X</M>  and <M>Y_n\toP Y.</M>  Show that <M>X_n+Y_n\toD X+Y</M>  need not hold.</EXR>
+<DEST name="cex"><EXR>Let <M>X_n\toD X</M>  and <M>Y_n\toP Y.</M>  Show that <M>X_n+Y_n\toD X+Y</M>  need not hold.
+
+[Hint: Take <M>Unif(0,1)</M>  probability space. Take <M>X_n(\omega) = Y_n(\omega) = \omega.</M>  Think about how you should
+ define <M>X(\omega)</M>  and <M>Y(\omega).</M> ]
+</EXR></DEST>
 
 <EXR>Let <M>X_n\toD N(0,1)</M>, <M>Y_n\toP 5</M>  and <M>Z_n\toP 4</M> with <M>z_n > 0.</M>     Then what is the
  limiting distribution of <M>[[X_n+Y_n][\sqrt {Z_n}]]?</M></EXR>
 
 <EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Show that <M>\sqrt n(X_nY_n-a\theta)\toD aZ.</M></EXR>
 
-<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
 
 <EXR>Let <M>T_n</M>  be a consistent estimator of <M>\theta,</M>  and let <M>S_n</M>  be a
- consistent estimator of <M>\sigma^2.</M>  Show that the Studentized statistic
+ consistent<IHIDE lab="?">"S_n consistent estimator of <M>\sigma^2</M> " means <M>S_n\toP
+ \sigma^2</M></IHIDE> estimator of
+ <M>\sigma^2.</M>  Show
+ that the Studentized statistic
  <M>[[T_n-\theta][\sqrt{S_n}]]</M>  has the the same asymptotic distribution as
  <M>[[T_n-\theta][\sigma]],</M>  whenever an asymptotic distribution exists. </EXR>
 
@@ -43,13 +73,28 @@ Then <OL>
 <LINK to="chat/Slutsky_Theorem_Exercises.pdf">chat/Slutsky_Theorem_Exercises.pdf</LINK>
 </COMMENT>
 <HEAD1>Delta method</HEAD1>
+Suppose we have a differentiable function <M>f:\rr\to\rr</M>  which we visualise as a blackbox.
+<CIMG web="fbox1.png"></CIMG>
+Here the input <M>\mu</M>  is deterministic, and so is the output. Now suppose that the input a slightly jitterred version
+ of <M>\mu:</M>
+<CIMG web="fbox2.png"></CIMG>
+Now the input is random, and so is the output. But if <M>X</M>  is pretty close to <M>\mu,</M>  then can we expect <M>f(X)</M> 
+ to remain pretty close to <M>f(\mu)</M>? Yes, since  <M>f</M>  is continuous. Since there is
+ jitter in the input, there may be jitter in the output. Which aspect of
+ <M>f</M>  would control the amount of output jitter (if the level of input jitter is unchanged)?
+<CIMG web="jitter.png"></CIMG>
+ It should not be difficult to see that the derivative of <M>f</M>  controls this. Higher the
+ derivative (in absolute value), the more jittery the output.  
+ 
+The following theorem takes this one step further.
+
 <THM name="Delta method">
 Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
  differentiable function with <M>f'(\mu)\neq 0.</M>
 
  Then <M>[[\sqrt{n}(f(X_n)-f(\mu))][\sigma f'(\mu)]]\toD</M>  the same distribution.
 </THM>
-<PF>Nice proof using Skorohod in Resnick (p262).</PF>
+<PF>Skipped.<COMMENT>Nice proof using Skorohod in Resnick (p262)</COMMENT></PF>
 <HEAD2>Problem set</HEAD2>
 
 <EXR>Suppose that <M>\sqrt n(S_n^2-\sigma^2)\toD N(0,\theta^2).</M>  Show that <M>\sqrt n(S_n-\sigma)\toD N(*(0,[[\theta^2][4 \sigma^2]])*).</M></EXR>
@@ -58,6 +103,7 @@ Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to
 <EXR>If <M>\sqrt n(T_n-\theta)\toD N(0,\sigma^2)</M>  for some <M>\theta\neq 0,</M>  then show that 
 <M>\sqrt n(*( [[1][T_n]]-[[1\theta]])*) \toD N(*(0,[[\sigma^2][\theta^2]])*).</M></EXR>
 
+<EXR>Let <M>X_n</M>  be asymptotically <M>N(*(\mu,[[\sigma^2][n]])*).</M>  What is the asymptotic distribution of <M>[[X_n][1+X_n]]?</M></EXR>
 <EXR>
 We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportion of heads. Find an asymptotic distribution
  for the odds ratio <M>[[X_n][1-X_n]].</M>  
@@ -84,7 +130,7 @@ Then we can use a variance stabilising transform <M>f(\cdot)</M>  to get <M>\sqr
  we can obtain a confidence interval for <M>f(\mu).</M>  Since <M>f</M>  is one-one we can obtain a confidence et for <M>\mu</M> 
  from it.
 <HEAD2>Problem set</HEAD2>
-<EXR>We know that if <M>X\Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
+<EXR>We know that if <M>X\sim Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
  stabilising transform for <M>X,</M>  i.e., some function <M>f(\cdot)</M>  such that <M>f(X)</M> 
  has variance free of <M>\lambda</M>  (approximately). What is this constant variance?</EXR>
 
@@ -100,7 +146,7 @@ Find a variance
 <HEAD1>Cramer-Wold device</HEAD1>
 
 <EXM>Suppose that <M>X_n\toD X</M> and <M>Y_n\toD Y.</M> Does
-this imply <M>(X_n,Y_n)\to (X,Y)?</M></EXM>
+this imply <M>(X_n,Y_n)\toD (X,Y)?</M></EXM>
 
 <THM name="Cramer Wold theorem">
 Let <M>(\v X_n), \v X </M> be random vectors. Then <M>\v X_n\toD \v X</M>  if and only if 
