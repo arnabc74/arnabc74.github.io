@@ -31,8 +31,8 @@ Each of the following project is a group project to be done by around 5 students
  produce output during the presentation.<BR/>
 <B>Resource:</B>  Just Google search would give you enough material.
 <UL>
-<LI> Jeevantej, Varshini, Vinay, Siva Ganesh</LI>
-<LI>Satya Prakash, Priyansh, Chinmay</LI>
+<LI> Vinay, Siva Ganesh</LI>
+<LI>Priyansh, Chinmay</LI>
 </UL>
 </LI>
 <LI>Face recognition using eigenanalysis (computational aspect, moderate).
@@ -67,11 +67,12 @@ Each of the following project is a group project to be done by around 5 students
 <LI>BJKST algorithm for counting distinct elements from an input stream.
 <UL><LI><RED><TICK/></RED>Aditya, Raunak, Siddhant, Antareep</LI>
 <LI><RED><TICK/></RED> Arka, Ashish, Pritham, Sagnik</LI>
+<LI><RED><TICK/></RED> Jeevantej, Satya Prakash, Lakshmi Narayana Naidu, Varshini</LI>
 </UL>
 </LI>
 <LI>Showing almost every number is a normal number.
-<UL><LI><RED><TICK/></RED>Priyanshu, Shreyas, Mahima, Pawan</LI>
-<LI><RED><TICK/></RED>Omhari, Utkarsh, Kavadi Shyam, Harsh, Abhinav</LI>
+<UL><LI><RED><TICK/></RED>Priyanshu, Shreyas, Mahima, Pawan, Abhinav(?)</LI>
+<LI><RED><TICK/></RED>Omhari, Utkarsh, Kavadi Shyam, Harsh, Abhinav (?)</LI>
 </UL>
 </LI>
 <LI>Showing that a random walk in 3D may not return.
