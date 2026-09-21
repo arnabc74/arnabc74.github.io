@@ -1,4 +1,5 @@
 @{<NOTE>
+<M>\newcommand{\simA}{\stackrel{\bullet}{\sim}}</M>
 <M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
 <M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
 <M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
@@ -26,7 +27,7 @@ A particularly interesting situation is when <M>X_n\toD X</M>  and <M>Y_n\toP Y,
  where <M>X_n+Y_n</M>  does not converge to
  <M>X+Y</M>  in distribution. 
 
-However, the following theorem comes to our help in a special
+However, the following theorem comes to our help in a special case.
 
 <THM name="Slutsty's theorem">Let <M>(X_n), (Y_n), X</M>  be random variables defined on the same
  probability space. <M>c\in\rr.</M>  Let
@@ -92,7 +93,7 @@ The following theorem takes this one step further.
 Let <M>[[\sqrt{n}(X_n-\mu)][\sigma]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
  differentiable function with <M>f'(\mu)\neq 0.</M>
 
- Then <M>[[\sqrt{n}(f(X_n)-f(\mu))][\sigma f'(\mu)]]\toD</M>  the same distribution.
+ Then <M>[[\sqrt{n}(f(X_n)-f(\mu))][\sigma |f'(\mu)|]]\toD</M>  the same distribution.
 </THM>
 <PF>Skipped.<COMMENT>Nice proof using Skorohod in Resnick (p262)</COMMENT></PF>
 <HEAD2>Problem set</HEAD2>
@@ -112,41 +113,129 @@ We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportio
 <EXR><M>T_n</M>  is an estimator for a parameter <M>\theta</M>  with asymptotic distribution
  <M>N(*(\theta, [[\sigma^2][n]])*).</M>  Use deltan method to obtain an approximate 95% confidene interval for
  <M>e^\theta.</M></EXR>
-<HEAD1>Variance stabilising transform</HEAD1>
-<THM name="Variance stabilising transform">
-Let <M>[[\sqrt{n}(X_n-\mu)][\sigma(\mu)]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
- differentiable function with <M>f'(\mu) = [[1][\sigma(\mu)]].</M>
+<HEAD1>Variance stabilizing transform</HEAD1>
+<EXM>Suppose <M>X\sim N(\mu, \sigma^2),</M>  where <M>\sigma^2</M>  is known. How can you obtain
+ the 90% confidence interval for <M>\mu</M>  based on <M>X</M>?<SOLN/>
+We have 
+<D>Z = [[X-\mu][\sigma]]\sim N(0,1),</D>
+and so taking <M>a = \phi ^{-1}(0.95),</M>  we have <M>P(-a < Z < a) = 0.90.</M>
+In terms of <M>X,</M>  this is becomes <M>P(\mu-a \sigma < X < \mu + a \sigma) = 0.90.</M>  
 
- Then <M>\sqrt{n}(f(X_n)-f(\mu))\toD</M>  the same distribution.
+This may be rewritten as <M>P(X-a \sigma < \mu < X + a \sigma) = 0.90.</M>  So <M>P(X-a \sigma,X + a \sigma)</M>  is a 90%
+ confidence interval for <M>\mu.</M>
+</EXM>
 
-Such an <M>f</M>  is called a <TERM>variance stabilising transform</TERM>.
+This example is a rather textbookish one.  Often we encounter a similar situation where the
+ normality comes from CLT. There we usually have a further complication as shown in the next example.
+  
+<EXM><EBODY>
+We have a coin with unknown probability <M>p</M>  of head. We toss it <M>n=</M>1000 times to get <M>X</M>  heads. We want to get a
+ 90% confidence interval for it. How to go about it?
+</EBODY><SOLN/>
+We can  use the CLT to conclude <M>[[Xn]]\simA N(p, [[p(1-p)][n]]).</M>
+But the variance itself is a function of the unknown parameter to be estimated. Thus, even though we
+ can write
+<D>P(*( [[Xn]]-a\sqrt{[[p(1-p)][n]]} < p < [[Xn]]+a\sqrt{[[p(1-p)][n]]} )*)\approx 0.90,</D>  
+we cannot propose <M>(*( [[Xn]]-a\sqrt{[[p(1-p)][n]]},~[[Xn]]+a\sqrt{[[p(1-p)][n]]} )*)</M>  as a confidence interval for
+ <M>p</M>, since it involves <M>p</M>  itself!  
+</EXM>
+In general,  we often have an estimator <M>T_n</M>  for some parameter <M>\mu</M>  such that 
+<D>[[\sqrt  n(T_n-\mu)][\sigma(\mu)]]\to N(0,1),</D>
+for some known function <M>\sigma(\cdot).</M>  
+In such a situation  we can sometimes "stabilize the variance", i.e., transform the data in a one-one way to make the
+ variance free of the unknown parameter. 
+
+<THM name="Variance stabilizing transform">
+Let <M>[[\sqrt{n}(T_n-\mu)][\sigma(\mu)]]\toD</M>  some distribution. Let <M>f:\rr\to\rr</M>  be a 
+strictly increasing differentiable function with <M>f'(\mu) = [[1][\sigma(\mu)]].</M>
+
+ Then <M>\sqrt{n}(f(T_n)-f(\mu))\toD</M>  the same distribution.
+
+Such an <M>f</M>  is called a <TERM>variance stabilizing transform</TERM>.
 </THM>
-<PF>Immediate from the last theorem.</PF>
+<PF>By  delta method, we have 
+<Q><M>[[\sqrt{n}(f(T_n)-f(\mu))][\sigma(\mu)|f'(\mu)|]]\toD</M>  the same distribution.</Q>
+Now, since <M>f</M>  is strictly increasing, hence <M>f'(\mu) > 0.</M>  
 
-The most common application of this is when we have an estimator <M>T_n</M>  for some parameter <M>\mu</M>  with <M>[[\sqrt n(T_n-\mu)][\sigma]]\to N(0,1).</M>
-This allows us to obtain a (large sample) confidence interval for <M>\mu</M>  as <M>(T_n-a \sigma/\sqrt n,T_n+a \sigma/\sqrt n).</M> 
- But this requires <M>\sigma</M>  to be known. Often <M>\sigma</M>  is a function of the unknown <M>\mu.</M>  
-Then we can use a variance stabilising transform <M>f(\cdot)</M>  to get <M>\sqrt n(f(T_n)-f(\mu))\to N(0,1),</M>  from which
- we can obtain a confidence interval for <M>f(\mu).</M>  Since <M>f</M>  is one-one we can obtain a confidence et for <M>\mu</M> 
- from it.
+Also
+ <M>\sigma(\mu)f'(\mu) = 1,</M> and so  the theorem follows.
+</PF>
+
+<EXM>Find a variance stabilizing transform for the last example. Hence obtain a 90% confidence
+ interval for <M>p</M>  when <M>X = 352</M> and <M>n=1000.</M><SOLN/>
+There <M>E([[Xn]]) = p</M>  and <M>V([[Xn]]) = [[p(1-p)][n]].</M>  So we need <M>f'(p) = \sqrt{[[n][p(1-p)]]}.</M>  
+
+Solving we have 
+<D>f(p) = \int \sqrt{[[n][p(1-p)]]}\, dp = \cdots = \sqrt{n}\sin ^{-1} (2p-1).</D>
+
+Using this transform we can say <M>\sqrt{n}(f(X/n)-f(p))\toD N(0,1).</M>
+
+Hence with <M>a = \Phi ^{-1}(0.95)</M>  we have 
+<D>P(*(-a < \sqrt{n}(f(X/n)-f(p)) < a)*) \approx 0.90,</D>
+or
+<D>P(*(f(X/n)-[[a][\sqrt n]] < f(p) < f(X/n)+[[a][\sqrt n]])*) \approx 0.90.</D>
+This gives us the following confidence interval for <M>f(p)</M>:
+<D>(*(f(X/n)-[[a][\sqrt n]],~f(X/n)+[[a][\sqrt n]])*) = ( -9.554731, -9.450701).</D>
+Since <M>f</M>  is a strictly increasing function, we can obtain confidence interval for <M>p</M> 
+ by applying <M>f  ^{-1}</M>  to this: <M>(0.8512146, 0.8527858).</M>
+</EXM>
+<COMMENT>
+a = qnorm(0.95)
+X = 352; n = 1000
+f= function(x) sqrt(n)*asin(2*x-1)
+finv = function(t) sin(t/sqrt(n))/2+1
+c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n))
+finv(c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n)))
+</COMMENT>
+The thorem gives us a variance stabilizing transform that makes the variance equal to 1. However, it is enough to make it
+ a constant (free of the unknown parameter). So instead of using <M>f(p) = \sqrt{n} \sin ^{-1}(2p-1),</M>  we generally use
+ <M>f(p) =sin ^{-1} (2p-1).</M>  
 <HEAD2>Problem set</HEAD2>
 <EXR>We know that if <M>X\sim Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
- stabilising transform for <M>X,</M>  i.e., some function <M>f(\cdot)</M>  such that <M>f(X)</M> 
- has variance free of <M>\lambda</M>  (approximately). What is this constant variance?</EXR>
+ stabilizing transform for <M>X.</M></EXR>
 
-<EXR>Let <M>X\sim Binom(n,p).</M>  Find a variance stabilising transform for <M>[[Xn]].</M></EXR>
+<EXR>Let <M>X\sim Binom(n,p).</M>  Find a variance stabilizing transform for <M>[[Xn]].</M></EXR>
 <EXR>Let <M>X\sim</M> Exponential distribution with rate <M>\lambda</M>.  Find a variance
- stabilising transform for <M>X.</M></EXR>
+ stabilizing transform for <M>X.</M></EXR>
 <EXR>Let <M>X</M> satisfy <M>V(X) = k E(X)^ \alpha.</M>, where <M>k</M>  and <M>\alpha</M>
   are known constants.
 Find a variance
- stabilising transform for <M>X.</M></EXR>
+ stabilizing transform for <M>X.</M></EXR>
 
 
 <HEAD1>Cramer-Wold device</HEAD1>
+To understand what we are about to discuss now, we need to understand what is meant by convergence in distribution for <I>random vectors</I>.
+ A random vector, you will recall, is a just bunch of random variables (all defined on the same
+ probability space) stacked together, e.g., <M><MAT>X\\Y</MAT></M>  or <M><MAT>X_1\\X_2\\X_3</MAT></M>. The distribution
+ of a random vector <M>\v X = (X_1,...,X_d)'</M>  is defined as <M>F:\rr^d\to[0,1],</M>  where
+<D>F(x_1,...,x_d) = P(X_1\leq x_1,...X_d\leq x_d).</D>
+Now let <M>(\v X_n)</M>  be a sequence of random vectors. Also let <M>\v X</M>  be some random vector. Then we say <M>\v X_n\toD \v X</M> 
+ if the distribution function of <M>\v X_n</M>  converges to the distribution function of <M>\v X,</M>  at every continuity
+ point of the latter. More formally, let <M>F_n(\cdot)</M>  and <M>F(\cdot)</M>  be the
+ distribution functions of <M>\v X_n</M>  and <M>\v X,</M>  respectively. Then we say <M>\v X_n\toD \v X</M> if for
+ each continuity point <M>\v
+ a</M>  of <M>F</M>  we
+ have <M>F_n(\v a)\to F(\v a).</M>
 
+As you might guess, working with random vectors is less fun than working with random variables. So we somehow want to reduce
+ working with random vectors to working with the individual components. This naturally leads to the following question.
+ 
 <EXM>Suppose that <M>X_n\toD X</M> and <M>Y_n\toD Y.</M> Does
-this imply <M>(X_n,Y_n)\toD (X,Y)?</M></EXM>
+this imply <M>(X_n,Y_n)\toD (X,Y)?</M><SOLN/>
+No! As a counterexample, consider <M>Unif(0,1)</M>  probability space. Let <M>X_n(\omega) = Y_n(\omega) = \omega</M>.
+
+Also, let <M>X(\omega) = \omega</M>  and <M>Y(\omega) = 1-\omega.</M>  
+
+Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  
+
+But for the joint distribution consider the two diagonals shown below.
+<CIMG web="diags.png"></CIMG>
+<M>(X_n,Y_n)</M>  has uniform distribution on the red diagonal, while <M>(X,Y)</M>  has uniform distribution on the blue
+ one. 
+</EXM>
+Indeed, for <M>(X_n,Y_n)\toD (X,Y)</M>  to hold, we need all linear combinations of <M>X_n</M>  and <M>Y_n</M>  to converge
+ in distribution to the corresponding linear combination of <M>X</M>  and <M>Y.</M>  For example, <M>2X_n-3Y_n\toD 2X-3Y.</M> 
+ In general we have the following theorem.
 
 <THM name="Cramer Wold theorem">
 Let <M>(\v X_n), \v X </M> be random vectors. Then <M>\v X_n\toD \v X</M>  if and only if 
@@ -155,30 +244,46 @@ Let <M>(\v X_n), \v X </M> be random vectors. Then <M>\v X_n\toD \v X</M>  if an
 <PF>
 Use characteristic function (to be covered in the next page).
 </PF>
-
 <HEAD2>Multivariate CLT</HEAD2>
-
-<EXM>Suppose that <M>X_n\toD X</M> and <M>Y_n\toD Y.</M> Does
-this imply <M>(X_n,Y_n)\to (X,Y)?</M></EXM>
+Here are two direct applications of the Cramer-Wold device.
 
 <THM name="Multivariate CLT">
 Let <M>(\v X_n)</M>  be iid <M>k</M>-dimensional random vectors with mean vector <M>\v \mu</M>  and
  variance matrix <M>\Sigma.</M>  Then 
 <D>\sqrt{n}(\v{\bar X}_n-\v\mu)\toD N_k(\v 0, \Sigma).</D>
 </THM>
+<THM name="Multivariate delta method">
+If <M>\sqrt n(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(T_n)-g(\theta))\toD N_d(\v 0,
+ \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
+</THM>
 <HEAD2>Problem set</HEAD2>
+<EXR>
+If <M>\v X_n\toD \v X</M>, then show  that each component of <M>\v X_n</M>  
+ converges in distribution
+ to the corresponding component of <M>\v X.</M>
+</EXR>
 <EXR>Prove multivariate CLT from univariate CLT using the Cramer-Wold device.</EXR>
-<EXR>Prove multivariate delta method from univariate delta method using the Cramer-Wold device.</EXR>
+<EXR>Consider the <M>Unif(0,1)</M>  probability space. Define <M>X(\omega) = <CASES>1<IF>w\in(*(0,[[12]])*)</IF> 0<ELSE/></CASES> </M>
+and <M>Y(\omega) = <CASES>1<IF>w\in(*([[13]],[[23]])*)</IF> 0<ELSE/></CASES>.</M>  Let
+ <M>(X_1,Y_1), (X_2,Y_2),...</M>  be iid versions of <M>(X,Y).</M>  Find the asymptotic distribution of <M>(\bar X_n,\bar Y_n).</M></EXR>
+
 <EXR>Let <M>(X_n,Y_n)</M>  be an iid sequence of random vectors with mean <M>(\mu, \nu)</M>  and
  some (finite) covariance matrix. Find the  asymptotic distribution of <M>(\bar X_n,\bar Y_n).</M></EXR>
 
-<EXR>A (pssibly biased) die is rolled <M>n</M>  times. Let <M>X_{i,n}</M>  be the proportion of
+<EXR>A (possibly biased) die is rolled <M>n</M>  times. Let <M>X_{i,n}</M>  be the proportion of
  face <M>i.</M>  Find the asymptotic joint distribution of <M>(X_{1,n},...,X_{6,n}).</M></EXR>
-<EXR>Prove the following theorem using the Cramer-Wold device. 
-<THM name="Multivariate delta method">
-If <M>\sqrt(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(T_n)-g(\theta))\toD N_d(\v 0,
- \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
-</THM>
+<EXR>Prove the multivariate delta method using the Cramer-Wold device. 
 </EXR>
-<EXR>Use the above theorem to obtain asymptotic variance of the sample CV.</EXR>
+<EXR>Let <M>X_1,X_2,...</M>  be iid with some distribution having finite moments <M>E(X_1^k) =
+ \mu_k</M>  for <M>k=1,2,3,4.</M>  We are interested in the sample <M>CV</M>  of <M>X_1,...,X_n:</M>
+<D>CV_n = [[S_n][\bar X_n]],</D>
+where <M>\bar X_n</M>  and <M>S^2_n</M>  are the sample mean and variance of <M>X_1,...,X_n.</M>  
+Use the
+ multivariate CLT and delta
+ method to obtain the asymptotic
+distribution of <M>CV_n</M>. 
+<HINT>Notice that <M>CV_n</M>  is a function of <M>(*([[1n]]\sum_1^n X_i, ~[[1n]]\sum_1^n
+ X_i^2)*).</M>  Use multivariate CLT to obtain an asymptotic normal distribution for this. Next,
+ write <M>CV_n</M>  as <M>g(*([[1n]]\sum_1^n X_i,~[[1n]]\sum_1^n X_i^2)*)</M>, and apply multivariate delta method. </HINT>
+</EXR>
 </NOTE>@}

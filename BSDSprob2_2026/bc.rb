@@ -52,9 +52,9 @@ A proof of this theorem is outlined in the exercises below.
 <HEAD2>Problem set</HEAD2>
 <EXR>If <M>A_n = [-n,n]</M>  find <M>\{A_n\io\}.</M></EXR>
 
-<EXR>If <M>A_1 \seq A_2 \seq A_2\seq \cdots,</M>  then show that <M>\{A_n\io\} = \cup_n A_n.</M></EXR>
+<EXR>If <M>A_1 \seq A_2 \seq A_3\seq \cdots,</M>  then show that <M>\{A_n\io\} = \cup_n A_n.</M></EXR>
 
-<EXR>If <M>A_1 \supseteq A_2 \supseteq A_2\supseteq \cdots,</M>  then is it true that <M>\{A_n\io\} = \cap_n A_n?</M></EXR>
+<EXR>If <M>A_1 \supseteq A_2 \supseteq A_3\supseteq \cdots,</M>  then is it true that <M>\{A_n\io\} = \cap_n A_n?</M></EXR>
 
 <EXR>Let <M>B_n = \cup_{k\geq n} A_k.</M> 
 <OL><LI>
