@@ -196,6 +196,29 @@ finv = function(t) sin(t/sqrt(n))/2+1
 c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n))
 finv(c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n)))
 </COMMENT>
+
+<HEAD2>Box-Cox transform</HEAD2>
+This is a family of variance stabilizing transforms that have an extra benefit: they also correct
+ skewness in data. 
+
+<DEFN name="Box-Cox transform">
+For <M>\lambda\in\rr</M>  we define the <TERM>Box-Cox transform</TERM>  as a function <M>f_ \lambda:\rr\to\rr</M>  as
+<D>f_ \lambda(x) = <CASES>[[x^ \lambda-1][\lambda]]<IF>\lambda\neq 0</IF> \log x<IF>\lambda=0</IF></CASES>.</D>
+</DEFN> 
+Notice that for each <M>\lambda\in\rr</M>
+ you have one transform. <LINK to="#box">This exercise</LINK> in the problem set below will give
+ one condition under which the Box=Cox transform emerges as a variance-stabilizing transform.
+
+But arguably its "skew-correcting role" is more helpful in practice. Many statistical methods are designed with normal data
+ in mind. But often in practice the sample histogram of a variable shows a marked amount of
+ skewness. Then we can play with  <M>\lambda</M>  to come up with an optimal value for which the
+ transformed data is nearly symmetric.
+ While mathematical methods have been devised to ascertain such an optimal value, a brute-force
+ visual inspection technique is
+ often a simpler alternative. You may have a taste of this with simulated data using <LINK to="https://acbsds.shinyapps.io/boxcox/">this
+ interactive demo</LINK>. There is a slider to control the value of <M>\lambda.</M>  The initial value is <M>\lambda=1,</M> 
+ which basically gives the shape of the histogram of the raw data. It is highly skewed. Play with the slider, and see how
+ the histogram changes shape. Try to find <M>\lambda</M>  for which the histogram
 <HEAD2>Problem set</HEAD2>
 <EXR>We know that if <M>X\sim Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
  stabilizing transform for <M>X.</M></EXR>
@@ -203,11 +226,11 @@ finv(c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n)))
 <EXR>Let <M>X\sim Binom(n,p).</M>  Find a variance stabilizing transform for <M>[[Xn]].</M></EXR>
 <EXR>Let <M>X\sim</M> Exponential distribution with rate <M>\lambda</M>.  Find a variance
  stabilizing transform for <M>X.</M></EXR>
-<EXR>Let <M>X</M> satisfy <M>V(X) = k E(X)^ \alpha.</M>, where <M>k</M>  and <M>\alpha</M>
+<DEST name="box"><EXR>Let <M>X</M> satisfy <M>V(X) = k E(X)^ \alpha.</M>, where <M>k</M>  and <M>\alpha</M>
   are known constants.
 Find a variance
  stabilizing transform for <M>X.</M></EXR>
-
+</DEST>
 
 <HEAD1>Cramer-Wold device</HEAD1>
 To understand what we are about to discuss now, we need to understand what is meant by convergence in distribution for <I>random vectors</I>.
@@ -241,12 +264,12 @@ But for the joint distribution consider the two diagonals shown below.
 </EXM>
 Indeed, for <M>(X_n,Y_n)\toD (X,Y)</M>  to hold, we need <I>every</I> linear combination of <M>X_n</M>  and <M>Y_n</M>  to converge
  in distribution to the corresponding linear combination of <M>X</M>  and <M>Y.</M>  For example,
- we<M>2X_n-3Y_n\toD 2X-3Y.</M> 
+ we demand that <M>2X_n-3Y_n\toD 2X-3Y.</M> 
  In general we have the following theorem.
 
 <THM name="Cramer Wold theorem">
 Let <M>(\v X_n), \v X </M> be random vectors. Then <M>\v X_n\toD \v X</M>  if and only if 
-<D>\forall \v \ell\in\rr^k~~\v\ell' \v X_n\toD \v X.</D>
+<D>\forall \v \ell\in\rr^k~~\v\ell' \v X_n\toD \v \ell'\v X.</D>
 </THM>
 <PF>
 Use characteristic function (to be covered in the next page).
@@ -260,8 +283,8 @@ Let <M>(\v X_n)</M>  be iid <M>k</M>-dimensional random vectors with mean vector
 <D>\sqrt{n}(\v{\bar X}_n-\v\mu)\toD N_k(\v 0, \Sigma).</D>
 </THM>
 <THM name="Multivariate delta method">
-If <M>\sqrt n(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(T_n)-g(\theta))\toD N_d(\v 0,
- \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
+If <M>\sqrt n(\v T_n-\v \theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(\v T_n)-g(\v \theta))\toD N_d(\v 0,
+ \nabla g(\v \theta)'\Sigma\nabla g(\v \theta))</M>
 </THM>
 <HEAD2>Problem set</HEAD2>
 <EXR>
@@ -289,8 +312,8 @@ Use the
  multivariate CLT and delta
  method to obtain the asymptotic
 distribution of <M>CV_n</M>. 
-<HINT>Notice that <M>CV_n</M>  is a function of <M>(*([[1n]]\sum_1^n X_i, ~[[1n]]\sum_1^n
+<ANS>Notice that <M>CV_n</M>  is a function of <M>(*([[1n]]\sum_1^n X_i, ~[[1n]]\sum_1^n
  X_i^2)*).</M>  Use multivariate CLT to obtain an asymptotic normal distribution for this. Next,
- write <M>CV_n</M>  as <M>g(*([[1n]]\sum_1^n X_i,~[[1n]]\sum_1^n X_i^2)*)</M>, and apply multivariate delta method. </HINT>
+ write <M>CV_n</M>  as <M>g(*([[1n]]\sum_1^n X_i,~[[1n]]\sum_1^n X_i^2)*)</M>, and apply multivariate delta method. </ANS>
 </EXR>
 </NOTE>@}

@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Sep 21 10:03:38 IST 2026</i>
+Mon Sep 21 13:25:12 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -200,13 +200,15 @@ function daynight() {
 </li>
 <li>3. <a href="#N10199">Variance stabilizing transform</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1026B">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1026D">Box-Cox transform</a>
 </li>
-<li>4. <a href="#N102A1">Cramer-Wold device</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N102A5">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1033B">Applications</a>
+<li>4. <a href="#N102DE">Cramer-Wold device</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N1035D">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10378">Applications</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N1039A">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -528,8 +530,39 @@ Since $f$  is a strictly increasing function, we can obtain confidence interval 
 </p>
 
 
+<p></p>
+
 <h2>
-<a name="N1026B"><span class="header">3.1</span>.
+<a name="N1026D"><span class="header">3.1</span>.
+Box-Cox transform</a>
+</h2>
+This is a family of variance stabilizing transforms that have an extra benefit: they also correct
+ skewness in data. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Box-Cox transform</b></legend>
+For $\lambda\in{\mathbb R}$  we define the <b><font color="red" size="40">Box-Cox transform</font></b>  as a function $f_ \lambda:{\mathbb R}\rightarrow{\mathbb R}$  as
+$$f_ \lambda(x) = \left\{\begin{array}{ll}\frac{x^ \lambda-1}{\lambda}&\text{if }\lambda\neq 0\\ \log x&\text{if }\lambda=0\\\end{array}\right..$$
+</fieldset> 
+Notice that for each $\lambda\in{\mathbb R}$
+ you have one transform. <a href="#box">This exercise</a> in the problem set below will give
+ one condition under which the Box=Cox transform emerges as a variance-stabilizing transform.
+<p></p>
+But arguably its "skew-correcting role" is more helpful in practice. Many statistical methods are designed with normal data
+ in mind. But often in practice the sample histogram of a variable shows a marked amount of
+ skewness. Then we can play with  $\lambda$  to come up with an optimal value for which the
+ transformed data is nearly symmetric.
+ While mathematical methods have been devised to ascertain such an optimal value, a brute-force
+ visual inspection technique is
+ often a simpler alternative. You may have a taste of this with simulated data using <a href="https://acbsds.shinyapps.io/boxcox/">this
+ interactive demo</a>. There is a slider to control the value of $\lambda.$  The initial value is $\lambda=1,$ 
+ which basically gives the shape of the histogram of the raw data. It is highly skewed. Play with the slider, and see how
+ the histogram changes shape. Try to find $\lambda$  for which the histogram is nearly symmetric.
+<p></p>
+
+<h2>
+<a name="N102A5"><span class="header">3.2</span>.
 Problem set</a>
 </h2>
 
@@ -546,16 +579,19 @@ Problem set</a>
 <b>EXERCISE 15:</b>&nbsp;Let $X\sim$ Exponential distribution with rate $\lambda$.  Find a variance
  stabilizing transform for $X.$</p>
 
+<a name="box">
 <p>
 <b>EXERCISE 16:</b>&nbsp;Let $X$ satisfy $V(X) = k E(X)^ \alpha.$, where $k$  and $\alpha$
   are known constants.
 Find a variance
  stabilizing transform for $X.$</p>
 
+</a>
+
 <p></p>
 
 <h1>
-<a name="N102A1"><span class="header">4</span>. Cramer-Wold device</a>
+<a name="N102DE"><span class="header">4</span>. Cramer-Wold device</a>
 </h1>
 To understand what we are about to discuss now, we need to understand what is meant by convergence in distribution for <i>random vectors</i>.
  A random vector, you will recall, is just a bunch of random variables (all defined on the same
@@ -610,7 +646,7 @@ Indeed, for $(X_n,Y_n)\rightarrowD (X,Y)$  to hold, we need <i>every</i> linear 
 <fieldset>
 <legend><b><i>Cramer Wold theorem</i></b></legend>
 Let $(\v X_n), \v X $ be random vectors. Then $\v X_n\rightarrowD \v X$  if and only if 
-$$\forall \v \ell\in{\mathbb R}^k~~\v\ell' \v X_n\rightarrowD \v X.$$
+$$\forall \v \ell\in{\mathbb R}^k~~\v\ell' \v X_n\rightarrowD \v \ell'\v X.$$
 </fieldset>
 
 <p>
@@ -620,7 +656,7 @@ Use characteristic function (to be covered in the next page).
 </p>
 
 <h2>
-<a name="N1033B"><span class="header">4.1</span>.
+<a name="N10378"><span class="header">4.1</span>.
 Applications</a>
 </h2>
 Here are two direct applications of the Cramer-Wold device.
@@ -640,7 +676,7 @@ If $\sqrt n(\v T_n-\v \theta)\rightarrowD N_d(\v 0, \Sigma),$  then $\sqrt n(g(\
 </fieldset>
 
 <h2>
-<a name="N1035D"><span class="header">4.2</span>.
+<a name="N1039A"><span class="header">4.2</span>.
 Problem set</a>
 </h2>
 
