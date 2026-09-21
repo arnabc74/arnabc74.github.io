@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Sep 21 09:31:15 IST 2026</i>
+Mon Sep 21 10:03:38 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -200,13 +200,13 @@ function daynight() {
 </li>
 <li>3. <a href="#N10199">Variance stabilizing transform</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1026F">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1026B">Problem set</a>
 </li>
-<li>4. <a href="#N102A5">Cramer-Wold device</a>
+<li>4. <a href="#N102A1">Cramer-Wold device</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1033C">Applications</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1033B">Applications</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N1035E">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N1035D">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -439,15 +439,25 @@ We toss a coin with unknown $P(H)=p\in (0,1).$  Let $X_n = $ proportion of heads
 <b>SOLUTION:</b>
 We have 
 $$Z = \frac{X-\mu}{\sigma}\sim N(0,1),$$
-and so taking $a = \phi ^{-1}(0.95),$  we have $P(-a &lt; Z &lt; a) = 0.90.$
-In terms of $X,$  this is becomes $P(\mu-a \sigma &lt; X &lt; \mu + a \sigma) = 0.90.$  
-<p></p>
-This may be rewritten as $P(X-a \sigma &lt; \mu &lt; X + a \sigma) = 0.90.$  So $P(X-a \sigma,X + a \sigma)$  is a 90%
+and so taking $a = \phi ^{-1}(0.95),$  we have 
+$$P(-a &lt; Z &lt; a) = 0.90,$$
+<table align="right">
+<tr>
+<th><img width="" src="image/gautail.png"></th>
+</tr>
+<tr>
+<th></th>
+</tr>
+</table>
+or
+$$P\left(-a  &lt;  \frac{X-\mu}{\sigma} &lt; a \right) = 0.90.$$  
+In terms of $\mu,$  this is becomes 
+$$P(X-a \sigma &lt; \mu &lt; X + a \sigma) = 0.90.$$  
+So $(X-a \sigma,X + a \sigma)$  is a 90%
  confidence interval for $\mu.$
  ■
 </p>
 
-<p></p>
 This example is a rather textbookish one.  Often we encounter a similar situation where the
  normality comes from CLT. There we usually have a further complication as shown in the next example.
 <p></p>
@@ -517,11 +527,9 @@ Since $f$  is a strictly increasing function, we can obtain confidence interval 
  ■
 </p>
 
-The thorem gives us a variance stabilizing transform that makes the variance equal to 1. However, it is enough to make it
- a constant (free of the unknown parameter). So instead of using $f(p) = \sqrt{n} \sin ^{-1}(2p-1),$  we generally use
- $f(p) =sin ^{-1} (2p-1).$  
+
 <h2>
-<a name="N1026F"><span class="header">3.1</span>.
+<a name="N1026B"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -547,10 +555,10 @@ Find a variance
 <p></p>
 
 <h1>
-<a name="N102A5"><span class="header">4</span>. Cramer-Wold device</a>
+<a name="N102A1"><span class="header">4</span>. Cramer-Wold device</a>
 </h1>
 To understand what we are about to discuss now, we need to understand what is meant by convergence in distribution for <i>random vectors</i>.
- A random vector, you will recall, is a just bunch of random variables (all defined on the same
+ A random vector, you will recall, is just a bunch of random variables (all defined on the same
  probability space) stacked together, <i>e.g.</i>, $\left[\begin{array}{ccccccccccc}X\\Y
 \end{array}\right]$  or $\left[\begin{array}{ccccccccccc}X_1\\X_2\\X_3
 \end{array}\right]$. The distribution
@@ -593,8 +601,9 @@ $(X_n,Y_n)$  has uniform distribution on the red diagonal, while $(X,Y)$  has un
  one. 
  ■
 </p>
-Indeed, for $(X_n,Y_n)\rightarrowD (X,Y)$  to hold, we need all linear combinations of $X_n$  and $Y_n$  to converge
- in distribution to the corresponding linear combination of $X$  and $Y.$  For example, $2X_n-3Y_n\rightarrowD 2X-3Y.$ 
+Indeed, for $(X_n,Y_n)\rightarrowD (X,Y)$  to hold, we need <i>every</i> linear combination of $X_n$  and $Y_n$  to converge
+ in distribution to the corresponding linear combination of $X$  and $Y.$  For example,
+ we demand that $2X_n-3Y_n\rightarrowD 2X-3Y.$ 
  In general we have the following theorem.
 <p></p>
 
@@ -611,7 +620,7 @@ Use characteristic function (to be covered in the next page).
 </p>
 
 <h2>
-<a name="N1033C"><span class="header">4.1</span>.
+<a name="N1033B"><span class="header">4.1</span>.
 Applications</a>
 </h2>
 Here are two direct applications of the Cramer-Wold device.
@@ -626,12 +635,12 @@ $$\sqrt{n}(\v{\bar X}_n-\v\mu)\rightarrowD N_k(\v 0, \Sigma).$$
 
 <fieldset>
 <legend><b><i>Multivariate delta method</i></b></legend>
-If $\sqrt n(T_n-\theta)\rightarrowD N_d(\v 0, \Sigma),$  then $\sqrt n(g(T_n)-g(\theta))\rightarrowD N_d(\v 0,
- \nabla g(\theta)'\Sigma\nabla g(\theta))$
+If $\sqrt n(\v T_n-\v \theta)\rightarrowD N_d(\v 0, \Sigma),$  then $\sqrt n(g(\v T_n)-g(\v \theta))\rightarrowD N_d(\v 0,
+ \nabla g(\v \theta)'\Sigma\nabla g(\v \theta))$
 </fieldset>
 
 <h2>
-<a name="N1035E"><span class="header">4.2</span>.
+<a name="N1035D"><span class="header">4.2</span>.
 Problem set</a>
 </h2>
 
@@ -675,12 +684,11 @@ Use the
  multivariate CLT and delta
  method to obtain the asymptotic
 distribution of $CV_n$. 
-<p>
-<b>Hint:</b>
-<blockquote>Notice that $CV_n$  is a function of $\left(\frac 1n\sum_1^n X_i, ~\frac 1n\sum_1^n
+<p><a
+href="javascript:hideShow('lab1')"><b>[Hint]</b></a><div
+class="ans" id="lab1">Notice that $CV_n$  is a function of $\left(\frac 1n\sum_1^n X_i, ~\frac 1n\sum_1^n
  X_i^2\right).$  Use multivariate CLT to obtain an asymptotic normal distribution for this. Next,
- write $CV_n$  as $g\left(\frac 1n\sum_1^n X_i,~\frac 1n\sum_1^n X_i^2\right)$, and apply multivariate delta method. </blockquote>
-</p>
+ write $CV_n$  as $g\left(\frac 1n\sum_1^n X_i,~\frac 1n\sum_1^n X_i^2\right)$, and apply multivariate delta method. </div></p>
 
 </p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>

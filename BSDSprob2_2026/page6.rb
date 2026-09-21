@@ -118,13 +118,22 @@ We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportio
  the 90% confidence interval for <M>\mu</M>  based on <M>X</M>?<SOLN/>
 We have 
 <D>Z = [[X-\mu][\sigma]]\sim N(0,1),</D>
-and so taking <M>a = \phi ^{-1}(0.95),</M>  we have <M>P(-a < Z < a) = 0.90.</M>
-In terms of <M>X,</M>  this is becomes <M>P(\mu-a \sigma < X < \mu + a \sigma) = 0.90.</M>  
-
-This may be rewritten as <M>P(X-a \sigma < \mu < X + a \sigma) = 0.90.</M>  So <M>P(X-a \sigma,X + a \sigma)</M>  is a 90%
+and so taking <M>a = \phi ^{-1}(0.95),</M>  we have 
+<D>P(-a < Z < a) = 0.90,</D>
+<RIMG web="gautail.png"></RIMG>
+or
+<D>P(*(-a  <  [[X-\mu][\sigma]] < a )*) = 0.90.</D>  
+In terms of <M>\mu,</M>  this is becomes 
+<D>P(X-a \sigma < \mu < X + a \sigma) = 0.90.</D>  
+So <M>(X-a \sigma,X + a \sigma)</M>  is a 90%
  confidence interval for <M>\mu.</M>
 </EXM>
-
+<COMMENT>
+svg('image/gautailraw.svg')
+curve(dnorm(x),xlim=c(-4,4))
+abline(v=qnorm(0.95))
+dev.off()
+</COMMENT>
 This example is a rather textbookish one.  Often we encounter a similar situation where the
  normality comes from CLT. There we usually have a further complication as shown in the next example.
   
@@ -187,9 +196,6 @@ finv = function(t) sin(t/sqrt(n))/2+1
 c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n))
 finv(c(f(X/n)-a  / sqrt(n),f(X/n)+a  / sqrt(n)))
 </COMMENT>
-The thorem gives us a variance stabilizing transform that makes the variance equal to 1. However, it is enough to make it
- a constant (free of the unknown parameter). So instead of using <M>f(p) = \sqrt{n} \sin ^{-1}(2p-1),</M>  we generally use
- <M>f(p) =sin ^{-1} (2p-1).</M>  
 <HEAD2>Problem set</HEAD2>
 <EXR>We know that if <M>X\sim Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
  stabilizing transform for <M>X.</M></EXR>
@@ -205,7 +211,7 @@ Find a variance
 
 <HEAD1>Cramer-Wold device</HEAD1>
 To understand what we are about to discuss now, we need to understand what is meant by convergence in distribution for <I>random vectors</I>.
- A random vector, you will recall, is a just bunch of random variables (all defined on the same
+ A random vector, you will recall, is just a bunch of random variables (all defined on the same
  probability space) stacked together, e.g., <M><MAT>X\\Y</MAT></M>  or <M><MAT>X_1\\X_2\\X_3</MAT></M>. The distribution
  of a random vector <M>\v X = (X_1,...,X_d)'</M>  is defined as <M>F:\rr^d\to[0,1],</M>  where
 <D>F(x_1,...,x_d) = P(X_1\leq x_1,...X_d\leq x_d).</D>
@@ -233,8 +239,9 @@ But for the joint distribution consider the two diagonals shown below.
 <M>(X_n,Y_n)</M>  has uniform distribution on the red diagonal, while <M>(X,Y)</M>  has uniform distribution on the blue
  one. 
 </EXM>
-Indeed, for <M>(X_n,Y_n)\toD (X,Y)</M>  to hold, we need all linear combinations of <M>X_n</M>  and <M>Y_n</M>  to converge
- in distribution to the corresponding linear combination of <M>X</M>  and <M>Y.</M>  For example, <M>2X_n-3Y_n\toD 2X-3Y.</M> 
+Indeed, for <M>(X_n,Y_n)\toD (X,Y)</M>  to hold, we need <I>every</I> linear combination of <M>X_n</M>  and <M>Y_n</M>  to converge
+ in distribution to the corresponding linear combination of <M>X</M>  and <M>Y.</M>  For example,
+ we demand that <M>2X_n-3Y_n\toD 2X-3Y.</M> 
  In general we have the following theorem.
 
 <THM name="Cramer Wold theorem">
@@ -253,8 +260,8 @@ Let <M>(\v X_n)</M>  be iid <M>k</M>-dimensional random vectors with mean vector
 <D>\sqrt{n}(\v{\bar X}_n-\v\mu)\toD N_k(\v 0, \Sigma).</D>
 </THM>
 <THM name="Multivariate delta method">
-If <M>\sqrt n(T_n-\theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(T_n)-g(\theta))\toD N_d(\v 0,
- \nabla g(\theta)'\Sigma\nabla g(\theta))</M>
+If <M>\sqrt n(\v T_n-\v \theta)\toD N_d(\v 0, \Sigma),</M>  then <M>\sqrt n(g(\v T_n)-g(\v \theta))\toD N_d(\v 0,
+ \nabla g(\v \theta)'\Sigma\nabla g(\v \theta))</M>
 </THM>
 <HEAD2>Problem set</HEAD2>
 <EXR>
@@ -282,8 +289,8 @@ Use the
  multivariate CLT and delta
  method to obtain the asymptotic
 distribution of <M>CV_n</M>. 
-<HINT>Notice that <M>CV_n</M>  is a function of <M>(*([[1n]]\sum_1^n X_i, ~[[1n]]\sum_1^n
+<ANS>Notice that <M>CV_n</M>  is a function of <M>(*([[1n]]\sum_1^n X_i, ~[[1n]]\sum_1^n
  X_i^2)*).</M>  Use multivariate CLT to obtain an asymptotic normal distribution for this. Next,
- write <M>CV_n</M>  as <M>g(*([[1n]]\sum_1^n X_i,~[[1n]]\sum_1^n X_i^2)*)</M>, and apply multivariate delta method. </HINT>
+ write <M>CV_n</M>  as <M>g(*([[1n]]\sum_1^n X_i,~[[1n]]\sum_1^n X_i^2)*)</M>, and apply multivariate delta method. </ANS>
 </EXR>
 </NOTE>@}
