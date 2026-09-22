@@ -44,7 +44,7 @@ Each of the following project is a group project to be done by around 5 students
 <UL><LI><RED><TICK/></RED>Pinak, Kaustuv, Rabi</LI>
 <LI><RED><TICK/></RED>Saptarshi, Neerav</LI>
 <LI><RED><TICK/></RED> Lakshya, Leela Sai Krishna</LI>
-<LI><RED><TICK/></RED>Gagan (B), Garg,  Manish, Parnika, Abinaya, Priyansh</LI>
+<LI><RED><TICK/></RED>Gagan (B), Garg,  Manish, Parnika, Abinaya</LI>
 <LI><RED><TICK/></RED> Samriddha, Sandip, Mayank, Sourish, Tenzing</LI>
 <LI><RED><TICK/></RED>Chinmay</LI>
 </UL>
@@ -59,7 +59,7 @@ Each of the following project is a group project to be done by around 5 students
 <UL><LI><RED><TICK/></RED>Shinjan M, Anmol, Ankesh, Danish, Pardha Sarathi</LI>
 <LI><RED><TICK/></RED>Aarav, Diksha, Disha, Divyansh, Sejal</LI>
 <LI><RED><TICK/></RED> Daksh, Shaurya, Swapnil, Tridham, Akshay, Shinjan G</LI>
-<LI><RED><TICK/></RED> Rishikesh, Siva Lakshmi, Saurav, Manogna</LI>
+<LI><RED><TICK/></RED> Rishikesh, Siva Lakshmi, Saurav, Manogna, Priyansh</LI>
 </UL>
 </LI>
 <LI>BJKST algorithm for counting distinct elements from an input stream.
