@@ -75,13 +75,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 body,table {
   margin: 0;
   font-size: 40;
-  //background: #000;
-  //color: #fff;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
 }
 
 .ans {
   display:none;
-  background: #ccffcc;
+  background: var(--ans-bg,#cfc);
 }
 
 .sticky {
@@ -102,6 +106,7 @@ body,table {
 
 .scrpt {
   margin:10px;
+  background: #222;
   border-left: 5px solid black;
 }
 
@@ -159,37 +164,59 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Sun Jul 19 09:18:26 IST 2026</i>
+Tue Sep 22 23:07:32 IST 2026</i>
 </td>
 </tr>
 </table>
-<h3/>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
+<h3>Characteristic function</h3>
 <ul>
-<li>1. <a href="#N10009">Characteristic function (CF)</a>
+<li>1. <a href="#N1000C">Characteristic function (CF)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10045">Complex random variables</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10048">Complex random variables</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N100C3">Complex calculus</a>
+<li>&nbsp;&nbsp;&nbsp;1.2. <a href="#N100C5">Complex calculus</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100D8">Examples</a>
+<li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100DC">Examples</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N10131">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N1014D">Problem set</a>
 </li>
-<li>2. <a href="#N10160">Properties of CF</a>
+<li>2. <a href="#N10179">Properties of CF</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10223">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1024F">Problem set</a>
 </li>
-<li>3. <a href="#N1025E">Inversion, density, continuity theorems</a>
+<li>3. <a href="#N102AA">Inversion, density, continuity theorems</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N102BF">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1030B">Problem set</a>
 </li>
 </ul>
 <hr/>
 $\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
 <p xmlns=""></p>
 
+<title>Characteristic function</title>
+
 <h1>
-<a name="N10009"><span class="header">1</span>. Characteristic function (CF)</a>
+<a name="N1000C"><span class="header">1</span>. Characteristic function (CF)</a>
 </h1>
 
 <p></p>
@@ -198,8 +225,8 @@ Here is the definition of MGF that you have learned in Probability I:
 <fieldset>
 <legend><b>Definition:  Moment generating function (MGF)</b></legend>
 The MGF of a random variable $X$  is defined as the function 
-$M_X(t) = E(e^{Xt})$
-for whatever $t\in{\mathbb R}$  the expectation is finite. (Since $e^{Xt}$  is a positive random
+$M_X(t) = E(e^{tX})$
+for whatever $t\in{\mathbb R}$  the expectation is finite. (Since $e^{tX}$  is a positive random
  variable, it's expectation is always defined.)  
 </fieldset>
 Out of these only CDF is guaranteed to exist for any random variable. And also uniquely determines
@@ -213,7 +240,7 @@ Out of these only CDF is guaranteed to exist for any random variable. And also u
 <legend><b>Definition: Characteristic function (CF)</b></legend>
 The  <b><font color="red" size="40">characteristic function (CF)</font></b>  of a random variable $X$  is defined as the
  function $\xi_X:{\mathbb R}\rightarrow{\mathbb C}$  as 
-$\xi_X(t) = E(e^{iXt})$
+$\xi_X(t) = E(e^{itX})$
 for  $t\in{\mathbb R}.$
 </fieldset>
 You may be scared by the unexpected appearance of complex numbers inside the expectation! 
@@ -221,58 +248,18 @@ Let's learn about complex random variables.
 <p></p>
 
 <h2>
-<a name="N10045"><span class="header">1.1</span>.
+<a name="N10048"><span class="header">1.1</span>.
 Complex random variables</a>
 </h2>
 A complex random variable $Z$   means $Z = X+i Y,$  where $X,Y$  are (real) random variables. We define $E(Z)=E(X)+iE(Y)$ 
  (and say $E(Z)$  does not exist if at least one of $E(X), E(Y)$  does not). 
 <p></p>
-Since we have $e^{iXt} = \cos (Xt)+i\sin(Xt)$, the characteristic function is just 
-$\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).$
+Since we have $e^{itX} = \cos (tX)+i\sin(tX)$, the characteristic function is just 
+$\xi_X(t) = E(\cos(tX))+i E(\sin(tX)).$
 Since $\cos$  and $\sin$  are both bounded, finite existence of the expectation is not a problem. 
-<p></p>
-We know that for any (real-valued) random variable $X$  with $E|X|&lt; \infty,$  we have
- finite existence of $E(X)$  and  $|E(X)|\leq E|X|.$  This also implies the following similar fact for complex-valued
- random variables.
-<p></p>
-
-<fieldset>
-<legend><b><i>Theorem</i></b></legend>
-If $E|Z|&lt; \infty,$  then $E(Z)$  exists finitely (<i>i.e.</i>, both the real and the
- imaginary parts have finite expectations) and $|E(Z)|\leq E|Z|.$
-</fieldset>
-
-<p>
-<b><i>Proof:</i></b>
-Let $X = Re(Z)$  and $Y = Im(Z).$  
-<p></p>
-Then $|X|= \sqrt{X^2}\leq \sqrt{X^2+Y^2} = |Z|.$
-<p></p>
-So $E|X|\leq E|Z|&lt; \infty.$
-<p></p>
-Similarly, $E|Y|\leq E|Z|&lt; \infty.$
-<p></p>
-Hence, by the real case, $E(X), E(Y)$  exist finitely and $|E(X)|\leq E|X|$  and $|E(Y)|\leq E|Y|.$  
-<p></p>
-So $E(Z)$  exists finitely.
-<p></p>
-Also 
-$$\begin{eqnarray*}
-|E(Z)| &amp; = &amp; |E(X)+iE(Y)|\\
-&amp; \leq &amp; |E(X)|+|E(Y)|~~\left[\mbox{by triangle inequality in ${\mathbb C}$}\right]\\
-&amp; \leq &amp; E|X|+E|Y|~~\left[\mbox{by the real case}\right]\\
-&amp; = &amp; E(|X|+|Y|)\\
-&amp; \leq &amp; E(\sqrt{X^2+Y^2})~~\left[\mbox{by triangle inequality in ${\mathbb R}^2$}\right]\\
-&amp; = &amp; E(|Z|),
-\end{eqnarray*}$$
-as required.
-<b><i>[QED]</i></b>
-</p>
-
-<p></p>
 
 <h2>
-<a name="N100C3"><span class="header">1.2</span>.
+<a name="N100C5"><span class="header">1.2</span>.
 Complex calculus</a>
 </h2>
 For $f:{\mathbb R}\rightarrow{\mathbb C}$  write $f(x) = g(x) + i h(x) $  for $g,h:{\mathbb R}\rightarrow{\mathbb R}.$  Then differentiation and integration
@@ -284,8 +271,10 @@ f'(x) &amp; = &amp; g'(x) + i h'(x),\\
 From this it immediate follows (check!) that
 $\frac{d}{dx}e^{ix} = i e^{ix}$  and $\int e^{ix}\, dx = \frac 1ie^{ix}+$ arbit
  constant.
+<p></p>
+
 <h2>
-<a name="N100D8"><span class="header">1.3</span>.
+<a name="N100DC"><span class="header">1.3</span>.
 Examples</a>
 </h2>
 
@@ -299,27 +288,17 @@ Here $X = c $ with probability 1. So $\xi_X(t) = E(e^{it X}) = e^{itc}$  for $t\
 <p></p>
 
 <p>
-<b>EXERCISE 1:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Bern(p).$</p>
-
-<p></p>
-
-<p>
-<b>EXERCISE 2:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Binom(n,p).$</p>
-
-<p></p>
-
-<p>
 <b>EXAMPLE 2:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Poi(\lambda).$<p></p>
 <b>SOLUTION:</b>
+Take any $t\in{\mathbb R}.$  Then 
 $$\begin{eqnarray*}
 \xi_X(t) 
 &amp; = &amp; E(e^{it X})\\
 &amp; = &amp; e^{-\lambda} \sum_{k=0}^ \infty e^{itk} \frac{\lambda^k}{k!}\\
 &amp; = &amp; e^{-\lambda}  \sum_{k=0}^ \infty  \frac{(e^{it}\lambda)^k}{k!}\\
  = e^{-\lambda} e^{\lambda e^{it}}\\  
- = e^{\lambda(e^{it}-1)  
+ = e^{\lambda(e^{it}-1)}.  
 \end{eqnarray*}$$
-for $t\in{\mathbb R}.$
  ■
 </p>
 
@@ -330,37 +309,71 @@ for $t\in{\mathbb R}.$
 Find the CF of $X$  having density $f(x) = \left\{\begin{array}{ll} 3 e^{-3x}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $
 <p></p>
 <b>SOLUTION:</b>
-$$E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = \frac{3}{3-it}$$
+$$E(e^{itX}) = 3\int_0^ \infty e^{itx}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = \frac{3}{3-it}$$
 for $t\in{\mathbb R}.$  
  ■
 </p>
-Clearly, for any random variable $X$  we have $\xi_X(0) = 1.$
-<h2>
-<a name="N10131"><span class="header">1.4</span>.
-Problem set</a>
-</h2>
-
-<p>
-<b>EXERCISE 3:</b>&nbsp;Find CF for the uniform distribution over $(-1,1).$</p>
-
-<p>
-<b>EXERCISE 4:</b>&nbsp;Find CF for the Double Exponential distribution with rate $\lambda.$</p>
-
+There is a "trick" called <b><font color="red" size="40">contour integration</font></b>  which may be used to find integrals of complicated complex functions.
+ While the trick itself is beyond the scope of this course, we shall use the following two results which are easily proved
+ using that trick.
 <p></p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>CF of $N(0,1)$  distribution is $e^{-t^2/2}$  for $t\in{\mathbb R}.$  CF for
  $N(\mu,\sigma^2)$  distribution is $e^{it \mu-\sigma^2 t^2/2}$  for $t\in{\mathbb R}.$</fieldset>
 
-<p></p>
+<p>
+<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
+</p>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>CF for the Cauchy distribution is $e^{-|t|}$  for $t\in{\mathbb R}.$</fieldset>
 
+<p>
+<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
+</p>
+Incidentally, the Cauchy distribution does not have an MGF (as $E(e^{tX})$  does not exist
+ finitely for any value of $t$  except $t=0$).!
+<p></p>
+
+<h2>
+<a name="N1014D"><span class="header">1.4</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Bern(p).$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;Find $\xi_X(t)$ if $X\sim Binom(n,p).$</p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Find CF for the uniform distribution over $(-1,1).$</p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;Find CF for the Double Exponential distribution with rate $\lambda.$  This distribution
+ has a density made by combining two exponential densities back to back (and halving to keep the total integral 1):
+$$f(x) = \frac \lambda2e^{-\lambda |x|},~~x\in{\mathbb R}.$$
+<center>
+<table width="100%">
+<tr>
+<th><img width="" src="image/dblexp.png"></th>
+</tr>
+<tr>
+<th>Double exponential densities</th>
+</tr>
+</table>
+</center>
+
+</p>
+
+
 <p></p>
 
 <h1>
-<a name="N10160"><span class="header">2</span>. Properties of CF</a>
+<a name="N10179"><span class="header">2</span>. Properties of CF</a>
 </h1>
 We start with two simple properties.
 <fieldset>
@@ -371,9 +384,24 @@ Let $\xi(t)$  be the CF of some random variable $X.$  Then $\xi(0) = 1$  and $\f
 <p>
 <b><i>Proof:</i></b>The first one is trivial.
 <p></p>
-The second follows from the fact that $|e^{itX}| = 1.$  
-<p></p>
-So $|\xi(t)|= |E(e^{itX})|\leq E(|e^{itX}|)\leq 1.$
+For the second, note that
+<table align="right">
+<tr>
+<th><img width="" src="image/compltri.png"></th>
+</tr>
+<tr>
+<th>Apply Pythagoras to blue triangle</th>
+</tr>
+</table>
+$$\begin{eqnarray*}
+|\xi(t)| 
+&amp; = &amp; |E(e^{itX})|\\
+&amp; = &amp; |E(\cos tX) + iE(\sin tX)|\\
+&amp; = &amp; \sqrt{E^2(\cos tX)+E^2(\sin  tX)}\\
+&amp; \leq &amp; \sqrt{E(\cos^2 tX) + E(\sin^2 tX)}\\
+&amp; &amp; [\because E^2 (U) \leq E(U^2)\mbox{ for any }U]\\
+&amp; = &amp; \sqrt{E(\cos^2 tX + \sin^2 tX)} = 1.
+\end{eqnarray*}$$
 <b><i>[QED]</i></b>
 </p>
 The following two theorems are what make CF useful.
@@ -398,9 +426,9 @@ If $X,Y$  are independent random variables, then $\xi_{X+Y}(t) = \xi_X(t)\xi_Y(t
 
 <p>
 <b><i>Proof:</i></b>
-Since $X,Y$  are independent, hence so are their functions $e^{iXt}$  and $e^{iYt}.$  
+Since $X,Y$  are independent, hence so are their functions $e^{itX}$  and $e^{itY}.$  
 <p></p>
-Since their expectations are finite, so $E(e^{iXt}\times e^{iYt}) = E(e^{iXt})\times E(e^{iYt}).$  Hence the result. 
+Since their expectations are finite, so $E(e^{itX}\times e^{itY}) = E(e^{itX})\times E(e^{itY}).$  Hence the result. 
 <p></p>
 
 <b><i>[QED]</i></b>
@@ -408,8 +436,12 @@ Since their expectations are finite, so $E(e^{iXt}\times e^{iYt}) = E(e^{iXt})\t
 
 <p></p>
 If we know a list of CFs for some standard distributions, then these two results often help us to
- identify if the convolution
- of two distributions in our list again belong to the list. 
+ identify if the <b><font color="red" size="40">convolution</font></b><a
+href="javascript:hideShow('hide0')"><b>[?]</b></a><div
+class="ans" id="hide0">Given two distributions $D_1, D_2$
+  their convolution is the distribution of $X+Y$  where $X\sim D_1$  and $Y\sim
+ D_2$  are independent. The convolution is often denoted by $D_1 * D_2.$</div>  of two distributions in our
+ list again belong to the list. 
 Here is an example.
 <p></p>
 
@@ -456,7 +488,7 @@ Hence by DCT $E(Y_n)\rightarrow E(Y),$  as required.
 <p></p>
 
 <h2>
-<a name="N10223"><span class="header">2.1</span>.
+<a name="N1024F"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
@@ -475,7 +507,18 @@ function $\xi(t)$ of $X.$</p>
 <p></p>
 
 <p>
-<b>EXERCISE 7:</b>&nbsp;Let $X$  be a random variable with  characteristic function $\phi(t).$  Let
+<b>EXERCISE 7:</b>&nbsp;Let $X,Y$  be iid Cauchy. Let $\alpha\in[0,1]$  be any fixed number. Show that
+ $\alpha X+(1-\alpha)Y\sim$ Cauchy. Hence conclude that if $X_1,...,X_n$  are iid
+ Cauchy, then $\bar X_n\sim$ Cauchy, as well.
+<p>
+<b>Hint:</b>
+<blockquote>Express $\bar X_n$  using $\bar X_{n-1}$,   $X_n$  and $n.$</blockquote>
+</p>
+
+</p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Let $X$  be a random variable with  characteristic function $\phi(t).$  Let
  $(a_n),(b_n)$  be two real sequences with $a_n-b_n\rightarrow 0.$  Then show that $\phi(a_n)-\phi(b_n)\rightarrow 0.$
 <p>
 <b>Hint:</b>
@@ -486,7 +529,7 @@ function $\xi(t)$ of $X.$</p>
 <p></p>
 
 <h1>
-<a name="N1025E"><span class="header">3</span>. Inversion, density, continuity theorems</a>
+<a name="N102AA"><span class="header">3</span>. Inversion, density, continuity theorems</a>
 </h1>
 
 <p></p>
@@ -528,22 +571,22 @@ The "if part" of this result may be strenghthened to some extent: If $(\phi_n)$ 
  that is continuous in a neighbourhood of 0,  then $\phi$  must be the characteristic function of some random variable
  $X$  and $X_n\rightarrowD X.$
 <h2>
-<a name="N102BF"><span class="header">3.1</span>.
+<a name="N1030B"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 8:</b>&nbsp;Let $X_n$  be a random variable with characteristic function $\phi_n(t) =
+<b>EXERCISE 9:</b>&nbsp;Let $X_n$  be a random variable with characteristic function $\phi_n(t) =
  \left(1-\frac{it}{n}\right)^{-n}$  for $t\in{\mathbb R}.$  Show that $(X_n)$  converges in
  distribution. Identify the limiting distribution.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 9:</b>&nbsp;Check the Levy inversion formula for $X\sim Bern\left(\frac 13\right)$    with $a = -1$  and $b=0.$  </p>
+<b>EXERCISE 10:</b>&nbsp;Check the Levy inversion formula for $X\sim Bern\left(\frac 13\right)$    with $a = -1$  and $b=0.$  </p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Check the Fourier inversion formula for $X\sim$ exponential with rate $1.$ </p>
+<b>EXERCISE 11:</b>&nbsp;Check the Fourier inversion formula for $X\sim$ exponential with rate $1.$ </p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>

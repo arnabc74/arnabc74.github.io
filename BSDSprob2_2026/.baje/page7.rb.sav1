@@ -1,14 +1,15 @@
 @{<NOTE>
 <M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
 
+<TITLE>Characteristic function</TITLE>
 <HEAD1>Characteristic function (CF)</HEAD1>
 
 We have seen various functions connected with a distribution, PMF, PDF, CDF and MGF. 
 Here is the definition of MGF that you have learned in Probability I:
 <DEFN name=" Moment generating function (MGF)">
 The MGF of a random variable <M>X</M>  is defined as the function 
-<M>M_X(t) = E(e^{Xt})</M>
-for whatever <M>t\in\rr</M>  the expectation is finite. (Since <M>e^{Xt}</M>  is a positive random
+<M>M_X(t) = E(e^{tX})</M>
+for whatever <M>t\in\rr</M>  the expectation is finite. (Since <M>e^{tX}</M>  is a positive random
  variable, it's expectation is always defined.)  
 </DEFN>
 Out of these only CDF is guaranteed to exist for any random variable. And also uniquely determines
@@ -21,7 +22,7 @@ Out of these only CDF is guaranteed to exist for any random variable. And also u
 <DEFN name="Characteristic function (CF)">
 The  <TERM>characteristic function (CF)</TERM>  of a random variable <M>X</M>  is defined as the
  function <M>\xi_X:\rr\to\cc</M>  as 
-<M>\xi_X(t) = E(e^{iXt})</M>
+<M>\xi_X(t) = E(e^{itX})</M>
 for  <M>t\in\rr.</M>
 </DEFN>
 You may be scared by the unexpected appearance of complex numbers inside the expectation! 
@@ -31,10 +32,10 @@ Let's learn about complex random variables.
 A complex random variable <M>Z</M>   means <M>Z = X+i Y,</M>  where <M>X,Y</M>  are (real) random variables. We define <M>E(Z)=E(X)+iE(Y)</M> 
  (and say <M>E(Z)</M>  does not exist if at least one of <M>E(X), E(Y)</M>  does not). 
 
-Since we have <M>e^{iXt} = \cos (Xt)+i\sin(Xt)</M>, the characteristic function is just 
-<M>\xi_X(t) = E(\cos(Xt))+i E(\sin(Xt)).</M>
+Since we have <M>e^{itX} = \cos (tX)+i\sin(tX)</M>, the characteristic function is just 
+<M>\xi_X(t) = E(\cos(tX))+i E(\sin(tX)).</M>
 Since <M>\cos</M>  and <M>\sin</M>  are both bounded, finite existence of the expectation is not a problem. 
-
+<COMMENT>
 We know that for any (real-valued) random variable <M>X</M>  with <M>E|X|< \infty,</M>  we have
  finite existence of <M>E(X)</M>  and  <M>|E(X)|\leq E|X|.</M>  This also implies the following similar fact for complex-valued
  random variables.
@@ -67,7 +68,7 @@ Also
 </MULTILINE>
 as required.
 </PF>
-
+</COMMENT>
 <HEAD2>Complex calculus</HEAD2>
 For <M>f:\rr\to\cc</M>  write <M>f(x) = g(x) + i h(x) </M>  for <M>g,h:\rr\to\rr.</M>  Then differentiation and integration
  are defined in the obvious way:
@@ -78,42 +79,63 @@ f'(x) & = & g'(x) + i h'(x),\\
 From this it immediate follows (check!) that
 <M>[[d][dx]]e^{ix} = i e^{ix}</M>  and <M>\int e^{ix}\, dx = [[1i]]e^{ix}+</M> arbit
  constant.
+
+ 
 <HEAD2>Examples</HEAD2>
 <EXM>Find the CF of the degenerate distribution at <M>c.</M><SOLN/>
 Here <M>X = c </M> with probability 1. So <M>\xi_X(t) = E(e^{it X}) = e^{itc}</M>  for <M>t\in\rr.</M>
 </EXM>
 
-<EXR>Find <M>\xi_X(t)</M> if <M>X\sim Bern(p).</M></EXR>
-
-<EXR>Find <M>\xi_X(t)</M> if <M>X\sim Binom(n,p).</M></EXR>
 
 <EXM>Find <M>\xi_X(t)</M> if <M>X\sim Poi(\lambda).</M><SOLN/>
+Take any <M>t\in\rr.</M>  Then 
 <MULTILINE>
 \xi_X(t) 
 & = & E(e^{it X})\\
 & = & e^{-\lambda} \sum_{k=0}^ \infty e^{itk} [[\lambda^k][k!]]\\
 & = & e^{-\lambda}  \sum_{k=0}^ \infty  [[(e^{it}\lambda)^k][k!]]\\
  = e^{-\lambda} e^{\lambda e^{it}}\\  
- = e^{\lambda(e^{it}-1)  
+ = e^{\lambda(e^{it}-1)}.  
 </MULTILINE>
-for <M>t\in\rr.</M>
 </EXM>
 
 <EXM>
 Find the CF of <M>X</M>  having density <M>f(x) = <CASES> 3 e^{-3x}<IF>x>0</IF> 0<ELSE/></CASES> </M>
 <SOLN/>
-<D>E(e^{iXt}) = 3\int_0^ \infty e^{ixt}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = [[3][3-it]]</D>
+<D>E(e^{itX}) = 3\int_0^ \infty e^{itx}e^{-3x}\, dx = 3\int_0^\infty e^{(it-3)x}\, dx = [[3][3-it]]</D>
 for <M>t\in\rr.</M>  
 </EXM>
-Clearly, for any random variable <M>X</M>  we have <M>\xi_X(0) = 1.</M>
-<HEAD2>Problem set</HEAD2>
-<EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
-<EXR>Find CF for the Double Exponential distribution with rate <M>\lambda.</M></EXR>
+There is a "trick" called <TERM>contour integration</TERM>  which may be used to find integrals of complicated complex functions.
+ While the trick itself is beyond the scope of this course, we shall use the following two results which are easily proved
+ using that trick.
 
 <THM>CF of <M>N(0,1)</M>  distribution is <M>e^{-t^2/2}</M>  for <M>t\in\rr.</M>  CF for
  <M>N(\mu,\sigma^2)</M>  distribution is <M>e^{it \mu-\sigma^2 t^2/2}</M>  for <M>t\in\rr.</M></THM>
-
+<PF>Skipped.</PF>
 <THM>CF for the Cauchy distribution is <M>e^{-|t|}</M>  for <M>t\in\rr.</M></THM>
+<PF>Skipped.</PF>
+Incidentally, the Cauchy distribution does not have an MGF (as <M>E(e^{tX})</M>  does not exist
+ finitely for any value of <M>t</M>  except <M>t=0</M>).!
+
+<HEAD2>Problem set</HEAD2>
+<EXR>Find <M>\xi_X(t)</M> if <M>X\sim Bern(p).</M></EXR>
+
+<EXR>Find <M>\xi_X(t)</M> if <M>X\sim Binom(n,p).</M></EXR>
+<EXR>Find CF for the uniform distribution over <M>(-1,1).</M></EXR>
+<EXR>Find CF for the Double Exponential distribution with rate <M>\lambda.</M>  This distribution
+ has a density made by combining two exponential densities back to back (and halving to keep the total integral 1):
+<D>f(x) = [[\lambda2]]e^{-\lambda |x|},~~x\in\rr.</D>
+<CIMG web="dblexp.png">Double exponential densities</CIMG>
+</EXR>
+<COMMENT>
+x = seq(-10,10,0.1)
+f = function(x,lambda)  lambda/2*exp(-lambda*abs(x))
+svg('image/dblexpraw.svg')
+bareplot(x,f(x,2),col='red',ty='l')
+lines(x,f(x,1),col='blue')
+abline(h=0,v=0)
+dev.off()
+</COMMENT>
 
 <HEAD1>Properties of CF</HEAD1>
 We start with two simple properties.
@@ -122,9 +144,17 @@ Let <M>\xi(t)</M>  be the CF of some random variable <M>X.</M>  Then <M>\xi(0) =
 </THM>
 <PF>The first one is trivial.
 
-The second follows from the fact that <M>|e^{itX}| = 1.</M>  
-
-So <M>|\xi(t)|= |E(e^{itX})|\leq E(|e^{itX}|)\leq 1.</M>
+For the second, note that
+<RIMG web="compltri.png">Apply Pythagoras to blue triangle</RIMG>
+<MULTILINE>
+|\xi(t)| 
+& = & |E(e^{itX})|\\
+& = & |E(\cos tX) + iE(\sin tX)|\\
+& = & \sqrt{E^2(\cos tX)+E^2(\sin  tX)}\\
+& \leq & \sqrt{E(\cos^2 tX) + E(\sin^2 tX)}\\
+& & [\because E^2 (U) \leq E(U^2)\mbox{ for any }U]\\
+& = & \sqrt{E(\cos^2 tX + \sin^2 tX)} = 1.
+</MULTILINE>
 </PF>
 The following two theorems are what make CF useful.
 
@@ -138,15 +168,17 @@ If <M>X,Y</M>  are two random variables such that
 If <M>X,Y</M>  are independent random variables, then <M>\xi_{X+Y}(t) = \xi_X(t)\xi_Y(t)</M>  for <M>t\in\rr.</M>
 </THM>
 <PF>
-Since <M>X,Y</M>  are independent, hence so are their functions <M>e^{iXt}</M>  and <M>e^{iYt}.</M>  
+Since <M>X,Y</M>  are independent, hence so are their functions <M>e^{itX}</M>  and <M>e^{itY}.</M>  
 
-Since their expectations are finite, so <M>E(e^{iXt}\times e^{iYt}) = E(e^{iXt})\times E(e^{iYt}).</M>  Hence the result. 
+Since their expectations are finite, so <M>E(e^{itX}\times e^{itY}) = E(e^{itX})\times E(e^{itY}).</M>  Hence the result. 
 
 </PF>
 
 If we know a list of CFs for some standard distributions, then these two results often help us to
- identify if the convolution
- of two distributions in our list again belong to the list. 
+ identify if the <TERM>convolution</TERM><IHIDE lab="?">Given two distributions <M>D_1, D_2</M>
+  their convolution is the distribution of <M>X+Y</M>  where <M>X\sim D_1</M>  and <M>Y\sim
+ D_2</M>  are independent. The convolution is often denoted by <M>D_1 * D_2.</M></IHIDE>  of two distributions in our
+ list again belong to the list. 
 Here is an example.
 
 <EXM>
@@ -188,9 +220,14 @@ function <M>\xi(t)</M> of <M>X.</M></EXR>
 
 <EXR>Let <M>X</M>  have CF <M>\xi_X(t).</M>  Let <M>Y = ax+b.</M>  Find <M>\xi_Y(t),</M>  the CF of <M>Y.</M></EXR>
 
+<EXR>Let <M>X,Y</M>  be iid Cauchy. Let <M>\alpha\in[0,1]</M>  be any fixed number. Show that
+ <M>\alpha X+(1-\alpha)Y\sim</M> Cauchy. Hence conclude that if <M>X_1,...,X_n</M>  are iid
+ Cauchy, then <M>\bar X_n\sim</M> Cauchy, as well.
+<HINT>Express <M>\bar X_n</M>  using <M>\bar X_{n-1}</M>  and <M>X_n</M> </HINT>
+</EXR>
 <EXR>Let <M>X</M>  be a random variable with  characteristic function <M>\phi(t).</M>  Let
  <M>(a_n),(b_n)</M>  be two real sequences with <M>a_n-b_n\to 0.</M>  Then show that <M>\phi(a_n)-\phi(b_n)\to 0.</M>
-<HINT>Imitate the proof of the continuity</HINT></EXR>
+<HINT>Imitate the proof of the continuity theorem above.</HINT></EXR>
 
 <HEAD1>Inversion, density, continuity theorems</HEAD1>
 
