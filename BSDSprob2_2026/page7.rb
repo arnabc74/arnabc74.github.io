@@ -184,7 +184,7 @@ Here is an example.
 <EXM>
 Suppose that you are told that, for <M>a>0</M>, the distribution with density 
 <M>f_a(x) = <CASES>c x^{a-1}e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  has CF
- <M>\xi_a(t) = (1-it)^{-a}.</M> for <M>t< 1.</M>  
+ <M>\xi_a(t) = (1-it)^{-a}</M> for <M>t\in\rr.</M>  
 
 Show that for <M>a,b>0</M>  we have <M>f_a* f_b = f_{a+b}.</M>
 <SOLN/>
@@ -201,9 +201,9 @@ Let a random variable <M>X</M>  have characteristic function <M>\xi(t)</M>  for 
 <PF>To show:
 <D>\forall t\in\rr~~\forall (t_n)\seq \rr ~~(t_n\to t\implies \xi(t_n)\to \xi(t)).</D>
 
-Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to\rr.</M>  
+Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to t.</M>  
 
-To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X})></M>
+To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X}).</M>
 
 Let <M>Y_n = e^{it_n X}</M>  and <M>Y = e^{it X}.</M>  
 
