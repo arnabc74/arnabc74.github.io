@@ -30,9 +30,6 @@ Each of the following project is a group project to be done by around 5 students
  You must actually write some code to implement these techniques and show the code and run it to
  produce output during the presentation.<BR/>
 <B>Resource:</B>  Just Google search would give you enough material.
-<UL>
-<LI>Gagan (D)</LI>
-</UL>
 </LI>
 <LI>Face recognition using eigenanalysis (computational aspect, moderate).
 <BR/><B>Topics to be covered:</B>  Explain how eigenvalues and eigenvectors help to find the
