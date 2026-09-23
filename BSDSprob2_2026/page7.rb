@@ -145,7 +145,7 @@ Let <M>\xi(t)</M>  be the CF of some random variable <M>X.</M>  Then <M>\xi(0) =
 <PF>The first one is trivial.
 
 For the second, note that
-<RIMG web="compltri.png">Apply Pythagoras to blue triangle</RIMG>
+<RIMG web="compltri.png">Apply Pythagoras to the blue triangle</RIMG>
 <MULTILINE>
 |\xi(t)| 
 & = & |E(e^{itX})|\\
