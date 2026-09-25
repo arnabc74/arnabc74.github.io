@@ -98,6 +98,11 @@ Now apply the corresponding results from real analysis for each <M>\omega\in A</
 For <M>4,</M>  let <M>C=\{\omega~:~Y(\omega)\neq 0\}.</M>  Then <M>P(A\cap B\cap C)=1.</M>  Now apply the corresponding result
  from real analysis for each <M>\omega\in C.</M>
 </PF>
+<THM name="Continuous mapping theorem (for a.s. convergence)">
+Let <M>X_n,X</M>  be all random variables defined on a common probability space. Let <M>f:\rr\to\rr</M>  be any continuous
+ function.  If <M>X_n\toA X</M>, then <M>f(X_n)\toA f(X).</M> 
+</THM>
+<PF>Direct.</PF>
 Possibly the most famous use of almost sure convergence in exploring statistical regularity is the following theorem. 
  
 <HEAD2>Strong law of large numbers (SLLN)</HEAD2>
@@ -189,6 +194,12 @@ Let <M>X_n,Y_n,X,Y</M>  be all random variables defined on a common probability 
 </LI>
 </OL> 
 </THM>
+<THM name="Continuous mapping theorem (for convergence in probability)">
+Let <M>X_n,X</M>  be all random variables defined on a common probability space. Let <M>f:\rr\to\rr</M>  be any continuous
+ function.  If <M>X_n\toP X</M>, then <M>f(X_n)\toP f(X).</M> 
+</THM>
+<PF>Direct.</PF>
+
 <HEAD2>Weak law of large numbers (WLLN)</HEAD2>
 The coin tossing example of statistical regularity had intrigued many people. The first ever proven result
  on statistical regularity  was formulated and proved by Jacob Bernoulli "after having meditated on it for twenty years".
@@ -347,7 +358,9 @@ The second property follows from the norm properties of <M>\|\cdot\|_p.</M>.</PF
 However, even if <M>X_n\toL p X</M>  and <M>Y_n\toL p Y</M>  and <M>X_nY_n, XY</M>  have finite <M>p</M>-th
  moments, we may have <M>X_nY_n\not\toL p XY.</M>
 
-The first exercise below provides  a counterexample.
+The first exercise below provides  a counterexample. Also, we do not have a continuous mapping theorem for <M>L_p</M> convergence
+ (unless we impose additional conditions).
+
 <HEAD2>Problem set</HEAD2>
 <EXR> Let <M>U\sim Unif(0,1).</M>  Define 
 <D>X_n = Y_n = <CASES>n^{1/(2p)}<IF>U\in(*(0,[[1n]])*)</IF> 0<ELSE/></CASES>.</D>
@@ -431,6 +444,12 @@ Then <M>X_n\toD X</M>  and <M>Y_n\toD Y.</M>  But <M>X+Y\equiv 1,</M>  while for
  
 So <M>X_n+ Y_n\not\toD X+ Y,</M>  as required. 
 </EXM>
+<THM name="Continuous mapping theorem (for convergence in distribution)">
+Let <M>X_n,X</M>  be all random variables (not necessarily defined on a common probability space). Let
+ <M>f:\rr\to\rr</M>  be any continuous
+ function.  If <M>X_n\toD X</M>, then <M>f(X_n)\toD f(X).</M> 
+</THM>
+<PF>Skipped.</PF>
 
 <HEAD2>Problem set</HEAD2>
 <EXR>Let <M>(a_n)</M>  be a fixed sequence with <M>a_n\to a.</M>  Let <M>X_n\equiv a_n</M>  and
@@ -651,7 +670,7 @@ Other counterexamples are in the problem set below.
 
  <M>[*[0, [[12]] ]*], [*[ [[12]], 1 ]*], </M>  
 
-<M>[*[0,[[13]] ]*], [*[ [[13]], [[23]] ]*], [*[ [[13]], 1 ]*], </M>
+<M>[*[0,[[13]] ]*], [*[ [[13]], [[23]] ]*], [*[ [[23]], 1 ]*], </M>
 
   etc. Let <M>U\sim Unif[0,1].</M>  Let <M>X_n = f_n(U).</M>  Let <M>X\equiv 0.</M>  Show that 
  <M>X_n\toL 1 X</M>  but <M>X_n\not\toA X.</M></EXR>
