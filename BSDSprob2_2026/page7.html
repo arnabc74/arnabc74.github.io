@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Wed Sep 23 12:08:44 IST 2026</i>
+Fri Sep 25 10:03:53 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -198,15 +198,15 @@ function daynight() {
 </li>
 <li>&nbsp;&nbsp;&nbsp;1.3. <a href="#N100DC">Examples</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N1014D">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.4. <a href="#N1017E">Problem set</a>
 </li>
-<li>2. <a href="#N10179">Properties of CF</a>
+<li>2. <a href="#N101AA">Properties of CF</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1024F">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N10280">Problem set</a>
 </li>
-<li>3. <a href="#N102AA">Inversion, density, continuity theorems</a>
+<li>3. <a href="#N102DB">Inversion, density, continuity theorems</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1030B">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10353">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -330,14 +330,59 @@ There is a "trick" called <b><font color="red" size="40">contour integration</fo
 <legend><b><i>Theorem</i></b></legend>CF for the Cauchy distribution is $e^{-|t|}$  for $t\in{\mathbb R}.$</fieldset>
 
 <p>
-<b><i>Proof:</i></b>Skipped.<b><i>[QED]</i></b>
+<b><i>Proof:</i></b>Skipped.
+<blockquote><a
+href="javascript:hideShow('hide1')"><b>[Outline of proof avoiding contour integration...]</b></a><div
+class="ans" id="hide1">
+This outline is <i>not</i>  part of the syllabus. But let's have it anyway!
+$$\begin{eqnarray*}
+\xi(t) &amp; = &amp; \frac 1\pi\int_{-\infty}^\infty \frac{e^{itx}}{1+x^2}\, dx\\
+&amp; = &amp; \frac 1\pi \left[ \int_{-\infty}^\infty \frac{\cos(tx)}{1+x^2}\, dx+i\int_{-\infty}^\infty \frac{\sin(tx)}{1+x^2}\, dx\right].
+\end{eqnarray*}$$
+We want to say that the second integral is 0 by virtue of being the integral of an odd function over an interval symmetric
+ around 0. However, since the interval is unbounded, we need to ensure that each half of the integral is
+ finite (else we run into $\infty-\infty$  or undefined$-$undefined). This is indeed true, since $|\sin (tx)|\leq
+ 1,$  and so the right hand half is
+ bounded by $\int_0^\infty \frac{dx}{1+x^2} = \frac \pi2.$ 
+<p></p>
+Now we attack the first integral. Since the integrand is an even function, so it is enough to compute 
+$\int_0^\infty \frac{\cos(tx)}{1+x^2}\, dx.$  
+We shall  use a trick here. We
+ start by noticing that
+$$\frac{1}{1+x^2} = \int_0^\infty e^{-s(1+x^2)}\, ds.$$
+So 
+$$\begin{eqnarray*}
+\int_0^\infty \frac{\cos(tx)}{1+x^2}\, dx\\
+&amp; = &amp; \int_0^\infty \cos(tx) \left[\int_0^\infty e^{-s(1+x^2)}\, ds\right]\, dx\\
+&amp; = &amp; \int_0^\infty \int_0^\infty \cos(tx)  e^{-s(1+x^2)}\, ds dx\\
+&amp; = &amp; \int_0^\infty \int_0^\infty \cos(tx)  e^{-s(1+x^2)}\, dx ds~~\left[\mbox{interchanging integrals!}\right]\\
+&amp; = &amp; \int_0^\infty e^{-s} \int_0^\infty \cos(tx)  e^{-sx^2}\, dx ds.
+\end{eqnarray*}$$
+Now we may compute the inner integral by passing back to complex numbers as
+$$\begin{eqnarray*}
+\int_0^\infty \cos(tx)  e^{-sx^2}\, dx 
+&amp; = &amp; Re\left(\int_0^\infty e^{itx}  e^{-sx^2}\, dx\right)\\
+&amp; = &amp; Re\left(\int_0^\infty   e^{-sx^2+itx}\, dx\right),
+\end{eqnarray*}$$
+which is like integrating a normal density.
+<p></p>
+This outline will turn into a rigourous proof once we justify two points: 
+<ol type="">
+<li>interchanging the integrals</li>
+
+<li>integrating a complex function "like a normal density"</li>
+
+</ol>
+</div></blockquote>
+
+<b><i>[QED]</i></b>
 </p>
 Incidentally, the Cauchy distribution does not have an MGF (as $E(e^{tX})$  does not exist
  finitely for any value of $t$  except $t=0$).!
 <p></p>
 
 <h2>
-<a name="N1014D"><span class="header">1.4</span>.
+<a name="N1017E"><span class="header">1.4</span>.
 Problem set</a>
 </h2>
 
@@ -373,7 +418,7 @@ $$f(x) = \frac \lambda2e^{-\lambda |x|},~~x\in{\mathbb R}.$$
 <p></p>
 
 <h1>
-<a name="N10179"><span class="header">2</span>. Properties of CF</a>
+<a name="N101AA"><span class="header">2</span>. Properties of CF</a>
 </h1>
 We start with two simple properties.
 <fieldset>
@@ -414,7 +459,7 @@ $\xi_X(t) \equiv \xi_Y(t)$,   then $X$  and $Y$  must have the same distribution
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>Will be done next semester.<b><i>[QED]</i></b>
+<b><i>Proof:</i></b>Follows from Levy inversion formula given in the next section.<b><i>[QED]</i></b>
 </p>
 
 <p></p>
@@ -437,8 +482,8 @@ Since their expectations are finite, so $E(e^{itX}\times e^{itY}) = E(e^{itX})\t
 <p></p>
 If we know a list of CFs for some standard distributions, then these two results often help us to
  identify if the <b><font color="red" size="40">convolution</font></b><a
-href="javascript:hideShow('hide0')"><b>[?]</b></a><div
-class="ans" id="hide0">Given two distributions $D_1, D_2$
+href="javascript:hideShow('ihide1')"><b>[?]</b></a><div
+class="ans" id="ihide1">Given two distributions $D_1, D_2$
   their convolution is the distribution of $X+Y$  where $X\sim D_1$  and $Y\sim
  D_2$  are independent. The convolution is often denoted by $D_1 * D_2.$</div>  of two distributions in our
  list again belong to the list. 
@@ -488,7 +533,7 @@ Hence by DCT $E(Y_n)\rightarrow E(Y),$  as required.
 <p></p>
 
 <h2>
-<a name="N1024F"><span class="header">2.1</span>.
+<a name="N10280"><span class="header">2.1</span>.
 Problem set</a>
 </h2>
 
@@ -529,23 +574,24 @@ function $\xi(t)$ of $X.$</p>
 <p></p>
 
 <h1>
-<a name="N102AA"><span class="header">3</span>. Inversion, density, continuity theorems</a>
+<a name="N102DB"><span class="header">3</span>. Inversion, density, continuity theorems</a>
 </h1>
-
+There are ways to recover the distribution function and density (if exists) of a distribution from its characteristic function.
+ The following theorem gives a way to recover the density.
 <p></p>
 
 <fieldset>
 <legend><b><i>Fourier inversion</i></b></legend>
-Let $\phi$  be the CF corresponding to the  the distribution function $F.$  Let
- $\phi$  be absolutely integrable. Then $F$ 
- has a bounded continuous density $f$  given by
+Let $\phi$  be the CF corresponding to the  the distribution function $F.$  If
+$\int_{-\infty}^\infty |\phi(t)|\,dt&lt; \infty$,  then $F$ 
+ has a density $f$  given by
 $$f(x) = \frac{1}{2\pi}\int_{-\infty}^\infty e^{-itx} \phi(t)\, dt.$$
 </fieldset>
-
-<p>
-<b>EXAMPLE 5:</b>&nbsp;Normal and Cauchy density ■
-</p>
-
+Unfortunately, it is not always easy to compute the complex integral required in this theorem
+ (except by using tricks like contour integration). <a href="#normalcf">This</a>  and <a href="#cauchycf">this</a> 
+ exercises in the problem set below mention two manageable cases. 
+<p></p>
+Not all distributions have a density. So the above theorem is not general. However, the next theorem is.
 <fieldset>
 <legend><b><i>Levy inversion</i></b></legend>
 Suppose that $X$  is a random variable with characteristic function $\phi.$  Then for all $a &lt; b$  in ${\mathbb R},$ 
@@ -554,9 +600,14 @@ $$\lim_{T\rightarrow \infty}\frac{1}{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>See <a href="ref/CLTinversion.pdf">this note</a>.<b><i>[QED]</i></b>
+<b><i>Proof:</i></b>SKipped.<b><i>[QED]</i></b>
 </p>
-
+A simple corollary to this theorem shows that characteristic functions indeed characterise distributions, <i>i.e.</i>, 
+<blockquote>distribution
+ $\mapsto$  characteristic function</blockquote>
+is one-one.
+<p></p>
+Characteristic functions behave nicely in terms of convergence in distribution, as the following theorem shows.
 <fieldset>
 <legend><b><i>Continuity theorem</i></b></legend>
 Let $(X_n), X$  be random variables with characteristic functions $(\phi_n),
@@ -564,29 +615,45 @@ Let $(X_n), X$  be random variables with characteristic functions $(\phi_n),
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>See <a href="ref/CLTinversion.pdf">this note</a>.<b><i>[QED]</i></b>
+<b><i>Proof:</i></b> Skipped.<b><i>[QED]</i></b>
 </p>
+This theorem is a crucial ingredient for proving the central limit theorem (CLT). 
+<p></p>
 The "if part" of this result may be strenghthened to some extent: If $(\phi_n)$  converges pointswise to
  <i>some</i>  function $\phi$ 
  that is continuous in a neighbourhood of 0,  then $\phi$  must be the characteristic function of some random variable
  $X$  and $X_n\rightarrowD X.$
 <h2>
-<a name="N1030B"><span class="header">3.1</span>.
+<a name="N10353"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
+<a name="normalcf">
 <p>
-<b>EXERCISE 9:</b>&nbsp;Let $X_n$  be a random variable with characteristic function $\phi_n(t) =
+<b>EXERCISE 9:</b>&nbsp;Check the Fourier inversion formula for $N(0,1).$<p>
+<b>Hint:</b>
+<blockquote>
+We know from $N(\mu,1)$  density that 
+$$\int_{-\infty}^\infty e^{\frac{(t-\mu)^2}{2}}\, dt = \sqrt{2\pi}.$$
+This holds for all $\mu\in{\mathbb R}.$  Well, it also holds for all $\mu\in{\mathbb C}.$  You need to use this fact here.
+</blockquote>
+</p> 
+</p>
+</a>
+<a name="cauchycf">
+<p>
+<b>EXERCISE 10:</b>&nbsp;Check the Fourier inversion formula for the Cauchy distribution. </p>
+</a>
+
+<p>
+<b>EXERCISE 11:</b>&nbsp;Let $X_n$  be a random variable with characteristic function $\phi_n(t) =
  \left(1-\frac{it}{n}\right)^{-n}$  for $t\in{\mathbb R}.$  Show that $(X_n)$  converges in
  distribution. Identify the limiting distribution.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 10:</b>&nbsp;Check the Levy inversion formula for $X\sim Bern\left(\frac 13\right)$    with $a = -1$  and $b=0.$  </p>
-
-<p>
-<b>EXERCISE 11:</b>&nbsp;Check the Fourier inversion formula for $X\sim$ exponential with rate $1.$ </p>
+<b>EXERCISE 12:</b>&nbsp;Check the Levy inversion formula for $X\sim Bern\left(\frac 13\right)$    with $a = -1$  and $b=0.$  </p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>

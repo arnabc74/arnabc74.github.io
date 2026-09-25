@@ -118,7 +118,7 @@ We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportio
  the 90% confidence interval for <M>\mu</M>  based on <M>X</M>?<SOLN/>
 We have 
 <D>Z = [[X-\mu][\sigma]]\sim N(0,1),</D>
-and so taking <M>a = \phi ^{-1}(0.95),</M>  we have 
+and so taking <M>a = \Phi ^{-1}(0.95),</M>  we have 
 <D>P(-a < Z < a) = 0.90,</D>
 <RIMG web="gautail.png"></RIMG>
 or

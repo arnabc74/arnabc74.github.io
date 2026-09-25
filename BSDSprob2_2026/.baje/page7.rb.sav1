@@ -113,7 +113,46 @@ There is a "trick" called <TERM>contour integration</TERM>  which may be used to
  <M>N(\mu,\sigma^2)</M>  distribution is <M>e^{it \mu-\sigma^2 t^2/2}</M>  for <M>t\in\rr.</M></THM>
 <PF>Skipped.</PF>
 <THM>CF for the Cauchy distribution is <M>e^{-|t|}</M>  for <M>t\in\rr.</M></THM>
-<PF>Skipped.</PF>
+<PF>Skipped.
+<HIDE lab="Outline of proof avoiding contour integration">
+This outline is <I>not</I>  part of the syllabus. But let's have it anyway!
+<MULTILINE>
+\xi(t) & = & [[1\pi]]\int_{-\infty}^\infty [[e^{itx}][1+x^2]]\, dx\\
+& = & [[1\pi]] [*[ \int_{-\infty}^\infty [[\cos(tx)][1+x^2]]\, dx+i\int_{-\infty}^\infty [[\sin(tx)][1+x^2]]\, dx]*].
+</MULTILINE>
+We want to say that the second integral is 0 by virtue of being the integral of an odd function over an interval symmetric
+ around 0. However, since the interval is unbounded, we need to ensure that each half of the integral is
+ finite (else we run into <M>\infty-\infty</M>  or undefined<M>-</M>undefined). This is indeed true, since <M>|\sin (tx)|\leq
+ 1,</M>  and so the right hand half is
+ bounded by <M>\int_{-\infty}^\infty [[dx][1+x^2]] = \pi.</M> 
+
+Now we attack the first integral. Since the integrand is an even function, so it is enough to compute 
+<M>\int_0^\infty [[\cos(tx)][1+x^2]]\, dx.</M>  
+We shall  use a trick here. We
+ start by noticing that
+<D>[[1][1+x^2]] = \int_0^\infty e^{-s(1+x^2)}\, ds.</D>
+So 
+<MULTILINE>
+\int_0^\infty [[\cos(tx)][1+x^2]]\, dx\\
+& = & \int_0^\infty \cos(tx) [*[\int_0^\infty e^{-s(1+x^2)}\, ds]*]\, dx\\
+& = & \int_0^\infty \int_0^\infty \cos(tx)  e^{-s(1+x^2)}\, ds dx\\
+& = & \int_0^\infty \int_0^\infty \cos(tx)  e^{-s(1+x^2)}\, dx ds<SINCE>interchanging integrals!</SINCE>\\
+& = & \int_0^\infty e^{-s} \int_0^\infty \cos(tx)  e^{-sx^2}\, dx ds.
+</MULTILINE>
+Now we may compute the inner integral by passing back to complex numbers as
+<MULTILINE>
+\int_0^\infty \cos(tx)  e^{-sx^2}\, dx 
+& = & Re(*(\int_0^\infty e^{itx}  e^{-sx^2}\, dx)*)\\
+& = & Re(*(\int_0^\infty   e^{-sx^2+itx}\, dx)*),
+</MULTILINE>
+which is like integrating a normal density.
+
+This outline will turn into a rigourous proof once we justify two points: 
+<OL><LI>interchanging the integrals</LI>
+<LI>integrating a complex function "like a normal density"</LI>
+</OL>
+</HIDE>
+</PF>
 Incidentally, the Cauchy distribution does not have an MGF (as <M>E(e^{tX})</M>  does not exist
  finitely for any value of <M>t</M>  except <M>t=0</M>).!
 
@@ -145,7 +184,7 @@ Let <M>\xi(t)</M>  be the CF of some random variable <M>X.</M>  Then <M>\xi(0) =
 <PF>The first one is trivial.
 
 For the second, note that
-<RIMG web="compltri.png">Apply Pythagoras to blue triangle</RIMG>
+<RIMG web="compltri.png">Apply Pythagoras to the blue triangle</RIMG>
 <MULTILINE>
 |\xi(t)| 
 & = & |E(e^{itX})|\\
@@ -162,7 +201,7 @@ The following two theorems are what make CF useful.
 If <M>X,Y</M>  are two random variables such that 
 <M>\xi_X(t) \equiv \xi_Y(t)</M>,   then <M>X</M>  and <M>Y</M>  must have the same distribution.
 </THM>
-<PF>Will be done next semester.</PF>
+<PF>Follows from Levy inversion formula given in the next section.</PF>
 
 <THM>
 If <M>X,Y</M>  are independent random variables, then <M>\xi_{X+Y}(t) = \xi_X(t)\xi_Y(t)</M>  for <M>t\in\rr.</M>
@@ -184,7 +223,7 @@ Here is an example.
 <EXM>
 Suppose that you are told that, for <M>a>0</M>, the distribution with density 
 <M>f_a(x) = <CASES>c x^{a-1}e^{-x}<IF>x>0</IF> 0<ELSE/></CASES></M>  has CF
- <M>\xi_a(t) = (1-it)^{-a}.</M> for <M>t< 1.</M>  
+ <M>\xi_a(t) = (1-it)^{-a}</M> for <M>t\in\rr.</M>  
 
 Show that for <M>a,b>0</M>  we have <M>f_a* f_b = f_{a+b}.</M>
 <SOLN/>
@@ -201,9 +240,9 @@ Let a random variable <M>X</M>  have characteristic function <M>\xi(t)</M>  for 
 <PF>To show:
 <D>\forall t\in\rr~~\forall (t_n)\seq \rr ~~(t_n\to t\implies \xi(t_n)\to \xi(t)).</D>
 
-Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to\rr.</M>  
+Take any <M>t\in\rr</M>   any <M>(t_n)\seq\rr</M>  with <M>t_n\to t.</M>  
 
-To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X})></M>
+To show <M>\xi(t_n)\to \xi(t),</M>  i.e., <M>E(e^{it_n X}) \to E(e^{it X}).</M>
 
 Let <M>Y_n = e^{it_n X}</M>  and <M>Y = e^{it X}.</M>  
 
@@ -223,41 +262,60 @@ function <M>\xi(t)</M> of <M>X.</M></EXR>
 <EXR>Let <M>X,Y</M>  be iid Cauchy. Let <M>\alpha\in[0,1]</M>  be any fixed number. Show that
  <M>\alpha X+(1-\alpha)Y\sim</M> Cauchy. Hence conclude that if <M>X_1,...,X_n</M>  are iid
  Cauchy, then <M>\bar X_n\sim</M> Cauchy, as well.
-<HINT>Express <M>\bar X_n</M>  using <M>\bar X_{n-1}</M>  and <M>X_n</M> </HINT>
+<HINT>Express <M>\bar X_n</M>  using <M>\bar X_{n-1}</M>,   <M>X_n</M>  and <M>n.</M></HINT>
 </EXR>
 <EXR>Let <M>X</M>  be a random variable with  characteristic function <M>\phi(t).</M>  Let
  <M>(a_n),(b_n)</M>  be two real sequences with <M>a_n-b_n\to 0.</M>  Then show that <M>\phi(a_n)-\phi(b_n)\to 0.</M>
 <HINT>Imitate the proof of the continuity theorem above.</HINT></EXR>
 
 <HEAD1>Inversion, density, continuity theorems</HEAD1>
+There are ways to recover the distribution function and density (if exists) of a distribution from its characteristic function.
+ The following theorem gives a way to recover the density.
 
 <THM name="Fourier inversion">
-Let <M>\phi</M>  be the CF corresponding to the  the distribution function <M>F.</M>  Let
- <M>\phi</M>  be absolutely integrable. Then <M>F</M> 
- has a bounded continuous density <M>f</M>  given by
+Let <M>\phi</M>  be the CF corresponding to the  the distribution function <M>F.</M>  If
+<M>\int_{-\infty}^\infty |\phi(t)|\,dt< \infty</M>,  then <M>F</M> 
+ has a density <M>f</M>  given by
 <D>f(x) = [[1][2\pi]]\int_{-\infty}^\infty e^{-itx} \phi(t)\, dt.</D>
 </THM>
-<EXM>Normal and Cauchy density</EXM>
+Unfortunately, it is not always easy to compute the complex integral required in this theorem
+ (except by using tricks like contour integration). <LINK to="#normalcf">This</LINK>  and <LINK to="#cauchycf">this</LINK> 
+ exercises in the problem set below mention two manageable cases. 
+
+Not all distributions have a density. So the above theorem is not general. However, the next theorem is.
 <THM name="Levy inversion">
 Suppose that <M>X</M>  is a random variable with characteristic function <M>\phi.</M>  Then for all <M>a < b</M>  in <M>\rr,</M> 
  we have
 <D>\lim_{T\to \infty}[[1][2\pi]]\int_{-T}^T[[e^{-ita}-e^{-itb}][it]]\phi(t)\, dt = P(a < X < b) + [[12]](#(P(X=a)+P(X=b) )#).</D>
 </THM>
-<PF>See <LINK to="ref/CLTinversion.pdf">this note</LINK>.</PF>
+<PF>SKipped<COMMENT>See <LINK to="ref/CLTinversion.pdf">this note</LINK></COMMENT>.</PF>
+A simple corollary to this theorem shows that characteristic functions indeed characterise distributions, i.e., 
+<Q>distribution
+ <M>\mapsto</M>  characteristic function</Q>
+is one-one.
+
+Characteristic functions behave nicely in terms of convergence in distribution, as the following theorem shows.
 <THM name="Continuity theorem">
 Let <M>(X_n), X</M>  be random variables with characteristic functions <M>(\phi_n),
  \phi,</M>  respectively. Then <M>X_n\toD X</M>  if and only if <M>\phi_n\to \phi</M>  pointwise.  
 </THM>
-<PF>See <LINK to="ref/CLTinversion.pdf">this note</LINK>.</PF>
+<PF><COMMENT>See <LINK to="ref/CLTinversion.pdf">this note</LINK></COMMENT> Skipped.</PF>
+This theorem is a crucial ingredient for proving the central limit theorem (CLT). 
+ 
 The "if part" of this result may be strenghthened to some extent: If <M>(\phi_n)</M>  converges pointswise to
  <I>some</I>  function <M>\phi</M> 
  that is continuous in a neighbourhood of 0,  then <M>\phi</M>  must be the characteristic function of some random variable
  <M>X</M>  and <M>X_n\toD X.</M>
 <HEAD2>Problem set</HEAD2>
+<DEST name="normalcf"><EXR>Check the Fourier inversion formula for <M>N(0,1).</M><HINT>
+We know from <M>N(\mu,1)</M>  density that 
+<D>\int_{-\infty}^\infty e^{[[(t-\mu)^2][2]]}\, dt = \sqrt{2\pi}.</D>
+This holds for all <M>\mu\in\rr.</M>  Well, it also holds for all <M>\mu\in\cc.</M>  You need to use this fact here.
+</HINT> </EXR></DEST>
+<DEST name="cauchycf"><EXR>Check the Fourier inversion formula for the Cauchy distribution. </EXR></DEST>
 <EXR>Let <M>X_n</M>  be a random variable with characteristic function <M>\phi_n(t) =
  (*(1-[[it][n]])*)^{-n}</M>  for <M>t\in\rr.</M>  Show that <M>(X_n)</M>  converges in
  distribution. Identify the limiting distribution.</EXR>
 
 <EXR>Check the Levy inversion formula for <M>X\sim Bern(*([[13]])*)</M>    with <M>a = -1</M>  and <M>b=0.</M>  </EXR>
-<EXR>Check the Fourier inversion formula for <M>X\sim</M> exponential with rate <M>1.</M> </EXR>
 </NOTE>@}

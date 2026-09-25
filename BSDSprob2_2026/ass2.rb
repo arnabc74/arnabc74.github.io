@@ -1,0 +1,46 @@
+@{<NOTE>
+<M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
+<M>\newcommand{\toD}{\stackrel{d}{\longrightarrow}}</M>
+<M>\newcommand{\toP}{\stackrel{P}{\longrightarrow}}</M>
+<M>\newcommand{\toA}{\stackrel{a.s.}{\longrightarrow}}</M>
+<TITLE>Assignment 1</TITLE>
+Each problem carries two marks. Please submit your solutions in handwritten hard copy to your TAs
+ on or before Oct 31, 2026.    
+
+<EXR><M>X</M>  is a nonnegative random variable with finite second moment. Show that <M>P(X>0)\geq [[E^2(X)][E(X^2)]].</M>
+</EXR>
+
+<EXR>We can define a set called <M>\{A_n\ev\}</M>  (where <M>\ev</M>  is the abbreviation of
+ <TERM>eventually</TERM>) as 
+<D>\{A_n\ev\} = \cup_n \cap_{k\geq n} A_k.</D>
+Let <M>P\{A_n\ev\}=1.</M>  Show that <M>P(A_n)\to 1.</M></EXR>
+
+<EXR>Consider <M>[-1,1]</M>  as a 1-dimensional dart board, 0 being the bull's eye. A drunkard is throwing
+ darts at this board hitting the board at any random points (all points equally likely). After the
+each attempt he gets a prize if he hits within <M>[[1n]]</M>  distance of the bull's eye (if
+it is the  <M>n</M>-th attempt). What is the chance that he gets infinitely many prizes? [Assume
+ infinite life for the guy, but don't drink to it!]</EXR>
+
+<EXR>
+Let <M>(X_n)</M>  be iid <M>Poi(\lambda).</M>  Let
+<M>Y_n = [[1n]]\sum_1^n X_k^3.</M>  Show that <M>(Y_n)</M>  converges a.s. Find the limit. 
+</EXR>
+
+<EXR>If <M>X_n\toP X,</M>  show that <M>|X_n|\toP |X|.</M></EXR>
+
+<EXR>If <M>X_n\toD 5,</M> then show that <M>X_n\toP 5.</M></EXR>
+
+<EXR>(DCT) Let <M>(X_n),X</M>  be  random variables such that <M>X_n\toA X</M>  and   <M>\forall n\in\nn~~|X_n|\leq
+ Y</M>  for some random variable <M>Y</M>  with <M>E(Y) < \infty.</M>  Then show that <M>X_n\toL 1 X.</M>
+</EXR> 
+
+<EXR>Let <M>X_1,X_2,...</M>  be iid with some distribution having finite moments <M>E(X_1^k) =
+ \mu_k</M>  for <M>k=1,2,3,4.</M>  We are interested in the sample <M>CV</M>  of <M>X_1,...,X_n:</M>
+<D>CV_n = [[S_n][\bar X_n]],</D>
+where <M>\bar X_n</M>  and <M>S^2_n</M>  are the sample mean and variance of <M>X_1,...,X_n.</M>  
+Use the
+ multivariate CLT and delta
+ method to obtain the asymptotic
+distribution of <M>CV_n</M>. </EXR>
+
+</NOTE>@} 

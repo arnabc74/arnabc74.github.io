@@ -1,0 +1,269 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
+}
+
+.ans {
+  display:none;
+  background: var(--ans-bg,#cfc);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  background: #222;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Wed Sep 23 17:44:34 IST 2026</i>
+</td>
+</tr>
+</table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
+<h3>Assignment 1</h3>
+<ul/>
+<hr/>
+$\newcommand{\v}[1]{\boldsymbol{#1}}$
+$\newcommand{\rightarrowD}{\stackrel{d}{\longrightarrow}}$
+$\newcommand{\rightarrowP}{\stackrel{P}{\longrightarrow}}$
+$\newcommand{\rightarrowA}{\stackrel{a.s.}{\longrightarrow}}$
+<title xmlns="">Assignment 1</title>
+Each problem carries two marks. Please submit your solutions in handwritten hard copy to your TAs
+ on or before Oct 31, 2026.    
+<p></p>
+
+<p>
+<b>EXERCISE 1:</b>&nbsp;$X$  is a nonnegative random variable with finite second moment. Show that $P(X&gt;0)\geq \frac{E^2(X)}{E(X^2)}.$
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 2:</b>&nbsp;We can define a set called $\{A_n\ev\}$  (where $\ev$  is the abbreviation of
+ <b><font color="red" size="40">eventually</font></b>) as 
+$$\{A_n\ev\} = \cup_n \cap_{k\geq n} A_k.$$
+Let $P\{A_n\ev\}=1.$  Show that $P(A_n)\rightarrow 1.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 3:</b>&nbsp;Consider $[-1,1]$  as a 1-dimensional dart board, 0 being the bull's eye. A drunkard is throwing
+ darts at this board hitting the board at any random points (all points equally likely). After the
+each attempt he gets a prize if he hits within $\frac 1n$  distance of the bull's eye (if
+it is the  $n$-th attempt). What is the chance that he gets infinitely many prizes? [Assume
+ infinite life for the guy, but don't drink to it!]</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 4:</b>&nbsp;
+Let $(X_n)$  be iid $Poi(\lambda).$  Let
+$Y_n = \frac 1n\sum_1^n X_k^3.$  Show that $(Y_n)$  converges a.s. Find the limit. 
+</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 5:</b>&nbsp;If $X_n\rightarrowP X,$  show that $|X_n|\rightarrowP |X|.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 6:</b>&nbsp;If $X_n\rightarrowD 5,$ then show that $X_n\rightarrowP 5.$</p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 7:</b>&nbsp;(DCT) Let $(X_n),X$  be  random variables such that $X_n\rightarrowA X$  and   $\forall n\in{\mathbb N}~~|X_n|\leq
+ Y$  for some random variable $Y$  with $E(Y) &lt; \infty.$  Then show that $X_n\rightarrowL 1 X.$
+</p> 
+
+<p></p>
+
+<p>
+<b>EXERCISE 8:</b>&nbsp;Let $X_1,X_2,...$  be iid with some distribution having finite moments $E(X_1^k) =
+ \mu_k$  for $k=1,2,3,4.$  We are interested in the sample $CV$  of $X_1,...,X_n:$
+$$CV_n = \frac{S_n}{\bar X_n},$$
+where $\bar X_n$  and $S^2_n$  are the sample mean and variance of $X_1,...,X_n.$  
+Use the
+ multivariate CLT and delta
+ method to obtain the asymptotic
+distribution of $CV_n$. </p>
+
+<p></p>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>
