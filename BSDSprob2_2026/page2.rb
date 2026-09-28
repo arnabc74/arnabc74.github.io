@@ -552,8 +552,11 @@ Say that a <M>d</M>-dimensional random vector <M>\v X</M>  follows <TERM>multiva
 </DEFN>
 
 In the discussion below we shall call this definition DEFN2, while our original definition will be
- called DEFN1. The two definitions are equivalent. 
+ called DEFN1. In your Probabilit 1 course, bivariate normal was defined along the line of DEFN2. 
 
+<THM>The two
+ definitions are equivalent. </THM>
+<PF>
 It should be clear that DEFN1 implies DEFN2. 
 
 To see the converse, suppose that <M>\v X</M>  has a multivariate normal distribution according to
@@ -578,7 +581,7 @@ Since this must be the characteristic function of <M>N(\v \ell' \mu, \v \ell' \S
  and  <M>\sigma^2(\v \ell) = \v \ell' \Sigma \v \ell.</M>
 
 Hence the result.
-
+</PF>
 <HEAD2>Problem set</HEAD2>
 
 <EXR><M>(X,Y)</M>  has mgf
