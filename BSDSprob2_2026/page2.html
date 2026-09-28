@@ -75,13 +75,17 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 body,table {
   margin: 0;
   font-size: 40;
-  //background: #000;
-  //color: #fff;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
 }
 
 .ans {
   display:none;
-  background: #ccffcc;
+  background: var(--ans-bg,#cfc);
 }
 
 .sticky {
@@ -102,6 +106,7 @@ body,table {
 
 .scrpt {
   margin:10px;
+  background: #222;
   border-left: 5px solid black;
 }
 
@@ -159,45 +164,67 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Mon Aug 10 12:15:29 IST 2026</i>
+Mon Sep 28 13:21:01 IST 2026</i>
 </td>
 </tr>
 </table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
 <h3>Sampling distributions for normal mean and variance</h3>
 <ul>
 <li>1. <a href="#N1002A">Multivariate normal</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10137">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10154">Problem set</a>
 </li>
-<li>2. <a href="#N101BF">Sampling distributions for normal sample</a>
+<li>2. <a href="#N101DC">Sampling distributions for normal sample</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101D0">Sampling distribution of $\bar X$</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N101ED">Sampling distribution of $\bar X$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N101F9">Sampling distribution of $S^2$</a>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N10216">Sampling distribution of $S^2$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N10330">Independence of $\bar X $ and $S^2$</a>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N1034D">Independence of $\bar X $ and $S^2$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;2.4. <a href="#N1037E">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;2.4. <a href="#N1039B">Problem set</a>
 </li>
-<li>3. <a href="#N1040A">$t$  distribution</a>
+<li>3. <a href="#N10427">$t$  distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1049B">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N104B8">Problem set</a>
 </li>
-<li>4. <a href="#N104D7">$F$  distribution</a>
+<li>4. <a href="#N104F4">$F$  distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10542">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N1055F">Problem set</a>
 </li>
-<li>5. <a href="#N10570">Multivariate mgf</a>
+<li>5. <a href="#N1058D">Multivariate mgf</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N105E1">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N105FE">Problem set</a>
 </li>
-<li>6. <a href="#N1061C">The proofs</a>
+<li>6. <a href="#N10639">The proofs</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10659">Proof 1</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10676">Proof 1</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N106B2">Proof 2</a>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N106CF">Proof 2</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.3. <a href="#N1075A">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;6.3. <a href="#N10779">An alternative definition of multivariate normal</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;6.4. <a href="#N107D2">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -252,12 +279,18 @@ $$A\v X + \v \mu = \v X\sim N_d(\v 0, I),$$  because $AA' = I.$
 <legend><b><i>Theorem</i></b></legend>If $\v X\sim N_d(\v \mu, \Sigma),$  then $E(\v X) = \v \mu$  and $V(\v X) = \Sigma.$</fieldset>
 
 <p>
-<b><i>Proof:</i></b>Here $\v X = \v \mu + A\v Z$  for some matrix $A$  where $\Sigma = AA'$  and
- the components of $\v Z$  are iid $N(0,1).$
+<b><i>Proof:</i></b>
+Let us take some matrix $A$  for which $\Sigma = AA'.$  Also we take a random vector $\v Z$
+whose components  are iid $N(0,1).$
 <p></p>
-Hence $E(\v Z) = \v 0$  and $V(\v Z) = I.$
+Let $\v Y = \v \mu + A\v Z.$  
 <p></p>
-So $E(\v X) = \v \mu + A E(\v Z) = \v \mu$  and $V(\v X) = A V(\v Z)A' = AA' = \Sigma.$
+Then $\v Y$  and $\v X$  has the same distribution. So enough to show $E(\v Y)=\v \mu$  and 
+$V(\v Y) = \Sigma.$
+<p></p>
+We have $E(\v Z) = \v 0$  and $V(\v Z) = I.$
+<p></p>
+So $E(\v Y) = \v \mu + A E(\v Z) = \v \mu$  and $V(\v Y) = A V(\v Z)A' = AA' = \Sigma.$
 <b><i>[QED]</i></b>
 </p>
 
@@ -269,10 +302,16 @@ $\v c\in{\mathbb R}^r$  is any fixed vector, then $BX+\v c\sim N_r(B\v\mu+\v c, 
 </fieldset>
 
 <p>
-<b><i>Proof:</i></b>Here $\v X = \v \mu + A\v Z$  for some matrix $A$  where $\Sigma = AA'$  and
- the components of $\v Z$  are iid $N(0,1).$
+<b><i>Proof:</i></b>
+Let us take some matrix $A$  for which $\Sigma = AA'.$  Also we take a random vector $\v Z$
+whose components  are iid $N(0,1).$
 <p></p>
-So $B\v X + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v \mu+\v
+Let $\v Y = \v \mu + A\v Z.$  
+<p></p>
+Then $\v Y$  and $\v X$  has the same distribution. So enough to show 
+$B\v Y+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)$
+<p></p>
+Now $B\v Y + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v \mu+\v
  c,BAA'B')\equiv  N_r(B\v \mu+\v c,B \Sigma B'),$  as required.
 <b><i>[QED]</i></b>
 </p>
@@ -316,7 +355,7 @@ Thus, we see that the various marginals are also normal with the "corresponding"
 <p></p>
 
 <h2>
-<a name="N10137"><span class="header">1.1</span>.
+<a name="N10154"><span class="header">1.1</span>.
 Problem set</a>
 </h2>
 
@@ -377,14 +416,14 @@ The transform $X = \v \mu + A\v Z$  is a bijection. Apply Jacobian formula.
 </p>
 
 <h1>
-<a name="N101BF"><span class="header">2</span>. Sampling distributions for normal sample</a>
+<a name="N101DC"><span class="header">2</span>. Sampling distributions for normal sample</a>
 </h1>
 Let $X_1,...,X_n$  be  a random sample from $N(\mu, \sigma^2).$  Then we are interested in finding the distributions
  of $\bar X$  and $S^2 = \sum (X_i-\bar X)^2.$  
 <p></p>
 We shall present the results as three theorems.
 <h2>
-<a name="N101D0"><span class="header">2.1</span>.
+<a name="N101ED"><span class="header">2.1</span>.
 Sampling distribution of $\bar X$</a>
 </h2>
 
@@ -407,7 +446,7 @@ This completes the proof.
 </p>
 
 <h2>
-<a name="N101F9"><span class="header">2.2</span>.
+<a name="N10216"><span class="header">2.2</span>.
 Sampling distribution of $S^2$</a>
 </h2>
 
@@ -550,7 +589,7 @@ This completes the proof of <b>Theorem 2</b>.
 <b><i>[QED]</i></b>
 
 <h2>
-<a name="N10330"><span class="header">2.3</span>.
+<a name="N1034D"><span class="header">2.3</span>.
 Independence of $\bar X $ and $S^2$</a>
 </h2>
 
@@ -587,7 +626,7 @@ as required.
 </p>
 
 <h2>
-<a name="N1037E"><span class="header">2.4</span>.
+<a name="N1039B"><span class="header">2.4</span>.
 Problem set</a>
 </h2>
 
@@ -644,7 +683,7 @@ a fixed number?
 </p>
 
 <h1>
-<a name="N1040A"><span class="header">3</span>. $t$  distribution</a>
+<a name="N10427"><span class="header">3</span>. $t$  distribution</a>
 </h1>
 
 <fieldset>
@@ -675,7 +714,7 @@ As the degrees of freedom increase
 <p></p>
 
 <h2>
-<a name="N1049B"><span class="header">3.1</span>.
+<a name="N104B8"><span class="header">3.1</span>.
 Problem set</a>
 </h2>
 
@@ -702,7 +741,7 @@ $P(\mu\in (\hat \mu-a \hat \sigma^2,\hat \mu+a \hat \sigma^2)) = 0.95,$  where $
 <p></p>
 
 <h1>
-<a name="N104D7"><span class="header">4</span>. $F$  distribution</a>
+<a name="N104F4"><span class="header">4</span>. $F$  distribution</a>
 </h1>
 
 <fieldset>
@@ -725,7 +764,7 @@ $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2
 </center>
 
 <h2>
-<a name="N10542"><span class="header">4.1</span>.
+<a name="N1055F"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
@@ -750,7 +789,7 @@ $$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 <p></p>
 
 <h1>
-<a name="N10570"><span class="header">5</span>. Multivariate mgf</a>
+<a name="N1058D"><span class="header">5</span>. Multivariate mgf</a>
 </h1>
 We had left a number of results unproved in the first section of this page.  
 To prove them, we need a mathematically convenient way to express $N_d(\v \mu, \Sigma)$  distribution. 
@@ -818,7 +857,7 @@ M_{\v Z} (\v s, \v t)
 </p>
 
 <h2>
-<a name="N105E1"><span class="header">5.1</span>.
+<a name="N105FE"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
@@ -845,7 +884,7 @@ Problem set</a>
 <p></p>
 
 <h1>
-<a name="N1061C"><span class="header">6</span>. The proofs</a>
+<a name="N10639"><span class="header">6</span>. The proofs</a>
 </h1>
 In this section we shall finally prove the leftovers from the first section:
 <ol type="">
@@ -863,7 +902,7 @@ In this section we shall finally prove the leftovers from the first section:
 </ol>
 The last fact is actually a special case of the second. 
 <h2>
-<a name="N10659"><span class="header">6.1</span>.
+<a name="N10676"><span class="header">6.1</span>.
 Proof 1</a>
 </h2>
 The first fact is a direct consequence of the following theorem.
@@ -912,7 +951,7 @@ $N_d(\v \mu, \Sigma)$  has mgf $M(\v t) = e^{\v t'\v \mu + \frac 12 \v t' \Sigma
 </fieldset>
 
 <h2>
-<a name="N106B2"><span class="header">6.2</span>.
+<a name="N106CF"><span class="header">6.2</span>.
 Proof 2</a>
 </h2>
 A little fact from linear algebra:
@@ -964,8 +1003,52 @@ Since $\Sigma$  is symmetric, hence the <b>fact from linear algebra</b> forces $
 <b><i>[QED]</i></b>
 </p>
 
+<p></p>
+
 <h2>
-<a name="N1075A"><span class="header">6.3</span>.
+<a name="N10779"><span class="header">6.3</span>.
+An alternative definition of multivariate normal</a>
+</h2>
+This part is not in the syllabus. I am including this as a bridge between Probability 1 and this course. 
+<p></p>
+
+<fieldset>
+<legend><b>Definition: Multivariate normal distribution</b></legend> 
+Say that a $d$-dimensional random vector $\v X$  follows <b><font color="red" size="40">multivariate normal distribution</font></b>  if
+ $\forall \v\ell\in{\mathbb R}^d~~\v \ell'\v X$  has a univariate normal distribution.  
+</fieldset>
+
+<p></p>
+In the discussion below we shall call this definition DEFN2, while our original definition will be
+ called DEFN1. The two definitions are equivalent. 
+<p></p>
+It should be clear that DEFN1 implies DEFN2. 
+<p></p>
+To see the converse, suppose that $\v X$  has a multivariate normal distribution according to
+ DEFN2. 
+<p></p>
+Then taking $\v \ell = \v e_1,...,\v e_d,$  we see that the components $X_1,...,X_d$  are all univariate normal,
+ and so have finite second moments.
+<p></p>
+Hence we can take $\v \mu = E(\v X)$  and $\Sigma = V(\v X).$  
+<p></p>
+Let $\v X$  have characteristic function $\xi(\v t).$  
+<p></p>
+Then the characteristic function of $\v \ell'\v X$  is $E(e^{i t \v \ell'\v X}) = \xi(t\v \ell),$ 
+ which must be of the form 
+$e^{it \mu(\ell)- \frac{t^2 \sigma^2(\ell)}{2}}$  for some function $\mu(\cdot)$  and
+ $\sigma^2(\cdot) \geq0.$   
+<p></p>
+So we have 
+$$\xi(t\v \ell) = e^{it \mu(\ell)- \frac{t^2 \sigma^2(\ell)}{2}}.$$
+Since this must be the characteristic function of $N(\v \ell' \mu, \v \ell' \Sigma \v \ell),$  hence $\mu(\v \ell) = \v \ell' \v \mu$ 
+ and  $\sigma^2(\v \ell) = \v \ell' \Sigma \v \ell.$
+<p></p>
+Hence the result.
+<p></p>
+
+<h2>
+<a name="N107D2"><span class="header">6.4</span>.
 Problem set</a>
 </h2>
 

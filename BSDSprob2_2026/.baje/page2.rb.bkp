@@ -34,22 +34,34 @@ Let  <M>\v X=(X_1,...,X_n)'</M> be a random vector with <M>X_i</M>'s iid <M>N(0,
 
 
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M>  then <M>E(\v X) = \v \mu</M>  and <M>V(\v X) = \Sigma.</M></THM>
-<PF>Here <M>\v X = \v \mu + A\v Z</M>  for some matrix <M>A</M>  where <M>\Sigma = AA'</M>  and
- the components of <M>\v Z</M>  are iid <M>N(0,1).</M>
+<PF>
+Let us take some matrix <M>A</M>  for which <M>\Sigma = AA'.</M>  Also we take a random vector <M>\v Z</M>
+whose components  are iid <M>N(0,1).</M>
 
-Hence <M>E(\v Z) = \v 0</M>  and <M>V(\v Z) = I.</M>
+Let <M>\v Y = \v \mu + A\v Z.</M>  
 
-So <M>E(\v X) = \v \mu + A E(\v Z) = \v \mu</M>  and <M>V(\v X) = A V(\v Z)A' = AA' = \Sigma.</M>
+Then <M>\v Y</M>  and <M>\v X</M>  has the same distribution. So enough to show <M>E(\v Y)=\v \mu</M>  and 
+<M>V(\v Y) = \Sigma.</M>
+
+We have <M>E(\v Z) = \v 0</M>  and <M>V(\v Z) = I.</M>
+
+So <M>E(\v Y) = \v \mu + A E(\v Z) = \v \mu</M>  and <M>V(\v Y) = A V(\v Z)A' = AA' = \Sigma.</M>
 </PF>
 
 
 <THM>If <M>\v X\sim N_d(\v \mu, \Sigma),</M> and <M>B_{r\times d}</M>  is any fixed  matrix and  
 <M>\v c\in\rr^r</M>  is any fixed vector, then <M>BX+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)</M>
 </THM>
-<PF>Here <M>\v X = \v \mu + A\v Z</M>  for some matrix <M>A</M>  where <M>\Sigma = AA'</M>  and
- the components of <M>\v Z</M>  are iid <M>N(0,1).</M>
+<PF>
+Let us take some matrix <M>A</M>  for which <M>\Sigma = AA'.</M>  Also we take a random vector <M>\v Z</M>
+whose components  are iid <M>N(0,1).</M>
 
-So <M>B\v X + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v \mu+\v
+Let <M>\v Y = \v \mu + A\v Z.</M>  
+
+Then <M>\v Y</M>  and <M>\v X</M>  has the same distribution. So enough to show 
+<M>B\v Y+\v c\sim N_r(B\v\mu+\v c, B \Sigma B').)</M>
+
+Now <M>B\v Y + \v c = B(\v \mu + A\v Z) +\v c= B\v \mu+\v c + BA\v Z\sim N_r(B\v \mu+\v
  c,BAA'B')\equiv  N_r(B\v \mu+\v c,B \Sigma B'),</M>  as required.
 </PF>
 
@@ -473,8 +485,8 @@ So mgf of <M>\v Y = A\v X + \v b</M>  is
 <MULTILINE>
 M_{\v Y}(\v t) & = & E(e^{\v t'(A\v X+\v b)})\\
 & = & E(e^{\v t'A\v X+\v t'\v b})\\
-& = & e^{\v t'\v b}E(\v t'A\v X)\\
-& = & e^{\v t'\v b}E((A'\v t)'\v X)\\
+& = & e^{\v t'\v b}E(e^{\v t'A\v X})\\
+& = & e^{\v t'\v b}E(e^{(A'\v t)'\v X})\\
 & = &
  e^{\v t'\v b}e^{(A'\v t)'(A'\v t)/2}\\
 & = & e^{\v t'\v b+\v t' AA'\v t/2},
@@ -530,6 +542,43 @@ Since <M>\Sigma</M>  is symmetric, hence the <B>fact from linear algebra</B> for
  <M>\Sigma</M>  must be a diagonal
  matrix, as required.
 </PF>
+
+<HEAD2>An alternative definition of multivariate normal</HEAD2>
+This part is not in the syllabus. I am including this as a bridge between Probability 1 and this course. 
+
+<DEFN name="Multivariate normal distribution"> 
+Say that a <M>d</M>-dimensional random vector <M>\v X</M>  follows <TERM>multivariate normal distribution</TERM>  if
+ <M>\forall \v\ell\in\rr^d~~\v \ell'\v X</M>  has a univariate normal distribution.  
+</DEFN>
+
+In the discussion below we shall call this definition DEFN2, while our original definition will be
+ called DEFN1. The two definitions are equivalent. 
+
+It should be clear that DEFN1 implies DEFN2. 
+
+To see the converse, suppose that <M>\v X</M>  has a multivariate normal distribution according to
+ DEFN2. 
+
+Then taking <M>\v \ell = \v e_1,...,\v e_d,</M>  we see that the components <M>X_1,...,X_d</M>  are all univariate normal,
+ and so have finite second moments.
+ 
+Hence we can take <M>\v \mu = E(\v X)</M>  and <M>\Sigma = V(\v X).</M>  
+
+
+Let <M>\v X</M>  have characteristic function <M>\xi(\v t).</M>  
+
+Then the characteristic function of <M>\v \ell'\v X</M>  is <M>E(e^{i t \v \ell'\v X}) = \xi(t\v \ell),</M> 
+ which must be of the form 
+<M>e^{it \mu(\ell)- [[t^2 \sigma^2(\ell)][2]]}</M>  for some function <M>\mu(\cdot)</M>  and
+ <M>\sigma^2(\cdot) \geq0.</M>   
+
+So we have 
+<D>\xi(t\v \ell) = e^{it \mu(\ell)- [[t^2 \sigma^2(\ell)][2]]}.</D>
+Since this must be the characteristic function of <M>N(\v \ell' \mu, \v \ell' \Sigma \v \ell),</M>  hence <M>\mu(\v \ell) = \v \ell' \v \mu</M> 
+ and  <M>\sigma^2(\v \ell) = \v \ell' \Sigma \v \ell.</M>
+
+Hence the result.
+
 <HEAD2>Problem set</HEAD2>
 
 <EXR><M>(X,Y)</M>  has mgf

@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
 <head>
 <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
 <link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
@@ -8,6 +8,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="../tools/jquery-1.10.2.min.js"></script>
 
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
 <script>
 aha = function(code) {
   window.open("https://rdrr.io/snippets/embed/?code="+code)
@@ -73,19 +75,23 @@ $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&ap
 body,table {
   margin: 0;
   font-size: 40;
-  //background: #000;
-  //color: #fff;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
 }
 
 .ans {
   display:none;
-  background: #ccffcc;
+  background: var(--ans-bg,#cfc);
 }
 
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  display: inline-block;
   background: #555;
   color: #f1f1f1;
 }
@@ -100,6 +106,7 @@ body,table {
 
 .scrpt {
   margin:10px;
+  background: #222;
   border-left: 5px solid black;
 }
 
@@ -152,100 +159,98 @@ function myFunction() {
 </head><body>
 <div class="sticky" id="topholder"> </div>
 <a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Mon Sep 28 12:03:29 IST 2026</i>
+</td>
+</tr>
+</table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
 <h3>Multivariate normal and related distributions</h3>
 <ul>
-<li>
-<a href="#Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a>
+<li>1. <a href="#N1000D">Multivariate normal distribution (part 1)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 1">Problem set 1</a>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N1008B">Problem set 1</a>
 </li>
-<li>
-<a href="#Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a>
+<li>2. <a href="#N100A6">Multivariate normal distribution (part 2)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Justifying the defintion using characteristic function">Justifying the defintion using characteristic function</a>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N100AA">Justifying the defintion using characteristic function</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Back to normal">Back to normal</a>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N100CA">Back to normal</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 2">Problem set 2</a>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N100F5">Problem set 2</a>
 </li>
-<li>
-<a href="#Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a>
+<li>3. <a href="#N10146">Multivariate normal distribution (part 3)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Two corollaries">Two corollaries</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N1017F">Two corollaries</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 3">Problem set 3</a>
+<li>&nbsp;&nbsp;&nbsp;3.2. <a href="#N101C6">Problem set 3</a>
 </li>
-<li>
-<a href="#Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a>
+<li>4. <a href="#N10203">Multivariate normal distribution (part 4)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Mean and dispersion">Mean and dispersion</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10207">Mean and dispersion</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 4">Problem set 4</a>
+<li>&nbsp;&nbsp;&nbsp;4.2. <a href="#N10238">Problem set 4</a>
 </li>
-<li>
-<a href="#Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a>
+<li>5. <a href="#N1025C">Multivariate normal distribution (part 5)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Independent vs zero covariance">Independent vs zero covariance</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N10262">Independent vs zero covariance</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 5">Problem set 5</a>
+<li>&nbsp;&nbsp;&nbsp;5.2. <a href="#N10326">Problem set 5</a>
 </li>
-<li>
-<a href="#Multivariate normal distribution (part 6)">Multivariate normal distribution (part 6)</a>
+<li>6. <a href="#N103AA">Multivariate normal distribution (part 6)</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Nonsingular: When density exists">Nonsingular: When density exists</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N103B3">Nonsingular: When density exists</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Singular: when density does not exist">Singular: when density does not exist</a>
+<li>&nbsp;&nbsp;&nbsp;6.2. <a href="#N1040B">Singular: when density does not exist</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 6">Problem set 6</a>
+<li>&nbsp;&nbsp;&nbsp;6.3. <a href="#N10460">Problem set 6</a>
 </li>
-<li>
-<a href="#$\chi^2$  distribution">$\chi^2$  distribution</a>
+<li>7. <a href="#N10482">$\chi^2$  distribution</a>
 </li>
-<li>
-<a href="#Geometry of $\chi^2_{(k)}$">Geometry of $\chi^2_{(k)}$</a>
+<li>8. <a href="#N1050A">Geometry of $\chi^2_{(k)}$</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 7">Problem set 7</a>
+<li>&nbsp;&nbsp;&nbsp;8.1. <a href="#N10566">Problem set 7</a>
 </li>
-<li>
-<a href="#Sampling distributions for normal sample">Sampling distributions for normal sample</a>
+<li>9. <a href="#N10589">Sampling distributions for normal sample</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 8">Problem set 8</a>
+<li>&nbsp;&nbsp;&nbsp;9.1. <a href="#N1061A">Problem set 8</a>
 </li>
-<li>
-<a href="#$t$  distribution">$t$  distribution</a>
+<li>10. <a href="#N10627">$t$  distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 9">Problem set 9</a>
+<li>&nbsp;&nbsp;&nbsp;10.1. <a href="#N106A5">Problem set 9</a>
 </li>
-<li>
-<a href="#$F$  distribution">$F$  distribution</a>
+<li>11. <a href="#N106B7">$F$  distribution</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;
-<a href="#Problem set 10">Problem set 10</a>
+<li>&nbsp;&nbsp;&nbsp;11.1. <a href="#N10706">Problem set 10</a>
 </li>
-<li>
-<a href="#Distribution of quadratic forms (part 1)">Distribution of quadratic forms (part 1)</a>
+<li>12. <a href="#N1071F">Distribution of quadratic forms (part 1)</a>
 </li>
-<li>
-<a href="#Distribution of quadratic forms (part 2)">Distribution of quadratic forms (part 2)</a>
+<li>13. <a href="#N107F8">Distribution of quadratic forms (part 2)</a>
 </li>
-<li>
-<a href="#Miscellaneous problems">Miscellaneous problems</a>
+<li>14. <a href="#N108CF">Miscellaneous problems</a>
 </li>
 </ul>
 <hr/>
@@ -253,8 +258,9 @@ $\newcommand{\v}[1]{\boldsymbol{#1}}$
 $\newcommand{\k}[1]{\chi^2_{(#1)}}$
 <title xmlns="">Multivariate normal and related distributions</title>
 
-<h1><a
-name="Multivariate normal distribution (part 1)">Multivariate normal distribution (part 1)</a></h1>
+<h1>
+<a name="N1000D"><span class="header">1</span>. Multivariate normal distribution (part 1)</a>
+</h1>
 <a href="https://youtu.be/3EQggZLAYKY">Video for this section</a>
 <p></p>
 
@@ -298,8 +304,10 @@ The only point that you might feel uncomfortable about is the choice of $A.$  In
  it does not matter here, because as we are going to show now, any choice leads to the same distribution of $A\v X+\v\mu.$ 
 <p></p>
 For this purpose we shall use characteristic functions. 
-<h2><a
-name="Problem set 1">Problem set 1</a></h2>
+<h2>
+<a name="N1008B"><span class="header">1.1</span>.
+Problem set 1</a>
+</h2>
 
 <p>
 <b>EXERCISE 1:</b>&nbsp;Follow the definition to obtain the density of $\v Y = \left[\begin{array}{ccccccccccc}Y_1\\Y_2
@@ -312,13 +320,16 @@ You may use $A = \left[\begin{array}{ccccccccccc}1 &amp; 0\\0 &amp; 2
 
 <p></p>
 
-<h1><a
-name="Multivariate normal distribution (part 2)">Multivariate normal distribution (part 2)</a></h1>
+<h1>
+<a name="N100A6"><span class="header">2</span>. Multivariate normal distribution (part 2)</a>
+</h1>
 <a href="https://youtu.be/EJd_YvDzI_s">Video for this section</a>
 <p></p>
 
-<h2><a
-name="Justifying the defintion using characteristic function">Justifying the defintion using characteristic function</a></h2>
+<h2>
+<a name="N100AA"><span class="header">2.1</span>.
+Justifying the defintion using characteristic function</a>
+</h2>
 In the multivariate set up, characteristic function is  defined as follows.
 <p></p>
 
@@ -342,8 +353,10 @@ For any ${\mathbb R}^m$-valued random vector, its characteristic function exists
 Now let us return to the definition multivariate normal. 
 <p></p>
 
-<h2><a
-name="Back to normal">Back to normal</a></h2>
+<h2>
+<a name="N100CA"><span class="header">2.2</span>.
+Back to normal</a>
+</h2>
 We shall take any $A$  with
  $\Sigma=AA',$  and show that the 
  characteristic function of $A\v X+\v\mu$  will depend on $A$  only through $AA'=\Sigma.$  So the particular
@@ -362,8 +375,10 @@ E(\exp(i\v t'(A\v X+\v \mu))
 which indeed does not involve $A.$ 
 <p></p>
 As a by product of the above steps we also get the characteristic function of $N_m(\v\mu,\Sigma).$ 
-<h2><a
-name="Problem set 2">Problem set 2</a></h2>
+<h2>
+<a name="N100F5"><span class="header">2.3</span>.
+Problem set 2</a>
+</h2>
 
 <p>
 <b>EXERCISE 2:</b>&nbsp;Write down the characteristic function of $N_2(\v\mu,\Sigma)$  where $\v\mu=\left[\begin{array}{ccccccccccc}1\\2
@@ -391,8 +406,9 @@ name="Problem set 2">Problem set 2</a></h2>
 
 <p></p>
 
-<h1><a
-name="Multivariate normal distribution (part 3)">Multivariate normal distribution (part 3)</a></h1>
+<h1>
+<a name="N10146"><span class="header">3</span>. Multivariate normal distribution (part 3)</a>
+</h1>
 <a href="https://youtu.be/r5R0ZXMAOYw">Video for this section</a>
 <p></p>
 
@@ -418,8 +434,10 @@ So $B\v Y+\v c$  has the same distribution as that of $B(A\v X+\v\mu)+\v c = BA\
 The theorem could also be proved using characteristic function. 
 <p></p>
 
-<h2><a
-name="Two corollaries">Two corollaries</a></h2>
+<h2>
+<a name="N1017F"><span class="header">3.1</span>.
+Two corollaries</a>
+</h2>
 Here is the first corollary.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -457,8 +475,10 @@ Direct application of the theorem. Just notice that $A$  must be nonsingular, be
 
 <p></p>
 
-<h2><a
-name="Problem set 3">Problem set 3</a></h2>
+<h2>
+<a name="N101C6"><span class="header">3.2</span>.
+Problem set 3</a>
+</h2>
 
 
 <p>
@@ -485,13 +505,16 @@ since $A$  is orthogonal.
 </div></p>
 </p>
 
-<h1><a
-name="Multivariate normal distribution (part 4)">Multivariate normal distribution (part 4)</a></h1>
+<h1>
+<a name="N10203"><span class="header">4</span>. Multivariate normal distribution (part 4)</a>
+</h1>
 <a href="https://youtu.be/wFf2WTW_5M0">Video for this section</a>
 <p></p>
 
-<h2><a
-name="Mean and dispersion">Mean and dispersion</a></h2>
+<h2>
+<a name="N10207"><span class="header">4.1</span>.
+Mean and dispersion</a>
+</h2>
 It is easy to find the mean vector and variance matrix of a multivariate normal distribution:
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
@@ -510,8 +533,10 @@ and $V(\v Y) = V(A\v X+\v\mu) = A V(\v X)A' = AA'=\Sigma.$
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Problem set 4">Problem set 4</a></h2>
+<h2>
+<a name="N10238"><span class="header">4.2</span>.
+Problem set 4</a>
+</h2>
 
 <p>
 <b>EXERCISE 8:</b>&nbsp;Find $E(\v X)$  and $V(\v X)$  if $\v X$  has characteristic function
@@ -525,15 +550,18 @@ name="Problem set 4">Problem set 4</a></h2>
 
 <p></p>
 
-<h1><a
-name="Multivariate normal distribution (part 5)">Multivariate normal distribution (part 5)</a></h1>
+<h1>
+<a name="N1025C"><span class="header">5</span>. Multivariate normal distribution (part 5)</a>
+</h1>
 <a href="https://youtu.be/Y9Y1bHsltoA">Video for this section</a>
 <p></p>
 
 <p></p>
 
-<h2><a
-name="Independent vs zero covariance">Independent vs zero covariance</a></h2>
+<h2>
+<a name="N10262"><span class="header">5.1</span>.
+Independent vs zero covariance</a>
+</h2>
 If two random variables are
 independent, they must also have covariance zero. However, the converse is not true in general. For multivariate
  normal the converse is also
@@ -621,8 +649,10 @@ Now apply the last theorem.
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Problem set 5">Problem set 5</a></h2>
+<h2>
+<a name="N10326"><span class="header">5.2</span>.
+Problem set 5</a>
+</h2>
 
 <p></p>
 
@@ -696,8 +726,9 @@ Show that $\v Y$  and $\v Z$  are independent.
 
 <p></p>
 
-<h1><a
-name="Multivariate normal distribution (part 6)">Multivariate normal distribution (part 6)</a></h1>
+<h1>
+<a name="N103AA"><span class="header">6</span>. Multivariate normal distribution (part 6)</a>
+</h1>
 <a href="https://youtu.be/rawtkxZq4fA">Video for this section</a>
 <p></p>
 As we have already mentioned, a multivariate normal distribution need not always have a density. However, for an important
@@ -706,8 +737,10 @@ As we have already mentioned, a multivariate normal distribution need not always
  matrix. If it is nonsingular, then we have density, else not.  We prove these next.
 <p></p>
 
-<h2><a
-name="Nonsingular: When density exists">Nonsingular: When density exists</a></h2>
+<h2>
+<a name="N103B3"><span class="header">6.1</span>.
+Nonsingular: When density exists</a>
+</h2>
 
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>If $\Sigma$  is a nonsingular  matrix, then $N_m(\v\mu,\Sigma)$  has density  
@@ -742,8 +775,10 @@ as required.
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Singular: when density does not exist">Singular: when density does not exist</a></h2>
+<h2>
+<a name="N1040B"><span class="header">6.2</span>.
+Singular: when density does not exist</a>
+</h2>
 The other half does not even need any normality assumption.
 <p></p>
 
@@ -779,8 +814,10 @@ Hence the result.
 
 <p></p>
 
-<h2><a
-name="Problem set 6">Problem set 6</a></h2>
+<h2>
+<a name="N10460"><span class="header">6.3</span>.
+Problem set 6</a>
+</h2>
 
 <p>
 <b>EXERCISE 15:</b>&nbsp;Describe $N_2(\v0,I)$  distribution.</p>
@@ -798,8 +835,9 @@ If we take data $(x_1,y_1),...,(x_n,y_n)$  from $(X,Y)$, what will the scatterpl
 
 <p></p>
 
-<h1><a
-name="$\chi^2$  distribution">$\chi^2$  distribution</a></h1>
+<h1>
+<a name="N10482"><span class="header">7</span>. $\chi^2$  distribution</a>
+</h1>
 <a href="https://youtu.be/3r6klLqHPpA">Video for this section</a>
 <p></p>
 Starting from this section, we shall discuss some distributions related to the normal distribution.
@@ -852,8 +890,9 @@ Put $p=\frac 12$  and $\alpha=\frac n2$  in the characteristic function of $Gamm
 <b><i>[QED]</i></b>
 </p>
 
-<h1><a
-name="Geometry of $\chi^2_{(k)}$">Geometry of $\chi^2_{(k)}$</a></h1>
+<h1>
+<a name="N1050A"><span class="header">8</span>. Geometry of $\chi^2_{(k)}$</a>
+</h1>
 <a href="https://youtu.be/xDLG6SCBg_Q">Video for this section</a>
 <p></p>
 If we consider a random vector $\v X$  in ${\mathbb R}^k$  with IID $N(0,1)$  components, $\|\v X\|^2\sim \k k.$ 
@@ -885,8 +924,10 @@ If $X_1,...,X_n$  are independent $N(\mu_i,1),$  then the distribution $\sum X_i
 
 </fieldset>
 
-<h2><a
-name="Problem set 7">Problem set 7</a></h2>
+<h2>
+<a name="N10566"><span class="header">8.1</span>.
+Problem set 7</a>
+</h2>
 
 <p>
 <b>EXERCISE 17:</b>&nbsp;Let $\v X\sim N_n(\v \mu, I).$  Let $S$  be any $k$-dimensional subspace
@@ -898,8 +939,9 @@ name="Problem set 7">Problem set 7</a></h2>
 <p>
 <b>EXERCISE 18:</b>&nbsp;(Continuation of the last problem) How will the answer to the last problem change if $\v\mu\not\in S?$</p>
 
-<h1><a
-name="Sampling distributions for normal sample">Sampling distributions for normal sample</a></h1>
+<h1>
+<a name="N10589"><span class="header">9</span>. Sampling distributions for normal sample</a>
+</h1>
 <a href="https://youtu.be/BRwFMYfb4rE">Video for this section</a>
 <p></p>
 
@@ -948,8 +990,10 @@ The distribution of $\bar X$  is obvious from an earlier theorem.
 <b><i>[QED]</i></b>
 </p>
 
-<h2><a
-name="Problem set 8">Problem set 8</a></h2>
+<h2>
+<a name="N1061A"><span class="header">9.1</span>.
+Problem set 8</a>
+</h2>
 
 <p>
 <b>EXERCISE 19:</b>&nbsp;
@@ -957,8 +1001,9 @@ Same set up as in the theorem above. What will  the distribution of $\sum_1^n (X
 a fixed number?
 </p>
 
-<h1><a
-name="$t$  distribution">$t$  distribution</a></h1>
+<h1>
+<a name="N10627"><span class="header">10</span>. $t$  distribution</a>
+</h1>
 <a href="https://youtu.be/mv62pUoznVI">Video for this section</a>
 <p></p>
 
@@ -999,8 +1044,10 @@ It should not be difficult to see that $t$-density is symmetric around 0. The de
  is virtually indisguishable from that of $N(0,1)$  density.
 <p></p>
 
-<h2><a
-name="Problem set 9">Problem set 9</a></h2>
+<h2>
+<a name="N106A5"><span class="header">10.1</span>.
+Problem set 9</a>
+</h2>
 
 <p>
 <b>EXERCISE 20:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
@@ -1009,8 +1056,9 @@ $$\frac{\sqrt n(\bar X-\mu)}{\sqrt{\sum(X_i-\bar X)^2/(n-1)}}?$$
 
 <p></p>
 
-<h1><a
-name="$F$  distribution">$F$  distribution</a></h1>
+<h1>
+<a name="N106B7"><span class="header">11</span>. $F$  distribution</a>
+</h1>
 <a href="https://youtu.be/xTL6asmWxA8">Video for this section</a>
 <p></p>
 
@@ -1037,8 +1085,10 @@ Hence the density of $\frac nmZ$  is
 $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2}}&\text{if }x&gt;0\\ 0&\text{otherwise.}\end{array}\right. $$
 <p></p>
 
-<h2><a
-name="Problem set 10">Problem set 10</a></h2>
+<h2>
+<a name="N10706"><span class="header">11.1</span>.
+Problem set 10</a>
+</h2>
 
 <p>
 <b>EXERCISE 21:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from
@@ -1048,8 +1098,9 @@ Then what
 $$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 </p>
 
-<h1><a
-name="Distribution of quadratic forms (part 1)">Distribution of quadratic forms (part 1)</a></h1>
+<h1>
+<a name="N1071F"><span class="header">12</span>. Distribution of quadratic forms (part 1)</a>
+</h1>
 <a href="https://youtu.be/XCtgYh2ux7M">Video for this section</a>
 <p></p>
 
@@ -1125,8 +1176,9 @@ Also, matching coefficients of powers of $t,$  we
 <b><i>[QED]</i></b>
 </p>
 
-<h1><a
-name="Distribution of quadratic forms (part 2)">Distribution of quadratic forms (part 2)</a></h1>
+<h1>
+<a name="N107F8"><span class="header">13</span>. Distribution of quadratic forms (part 2)</a>
+</h1>
 <a href="https://youtu.be/ObK-yPeTs7E">Video for this section</a>
 <p></p>
 We know that sum of independent $\chi^2$  random variables is a again a $\chi^2$  random variable with degrees of freedom
@@ -1215,8 +1267,9 @@ Then the Fisher-Cochran theorem implies  that if all the quadratic forms have
  up to $n.$
 <p></p>
 
-<h1><a
-name="Miscellaneous problems">Miscellaneous problems</a></h1>
+<h1>
+<a name="N108CF"><span class="header">14</span>. Miscellaneous problems</a>
+</h1>
 
 <p>
 <b>EXERCISE 22:</b>&nbsp;If $X$  has a density of the form $f(x) \propto \exp(a+b+cx^2),~~x\in{\mathbb R},$  then
