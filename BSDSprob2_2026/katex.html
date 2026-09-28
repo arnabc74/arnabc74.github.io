@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live KaTeX Editor</title>
+    
+    <!-- 1. Include KaTeX CSS and JavaScript via jsDelivr CDN -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <script defer src="https://jsdelivr.net"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #111;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: "Fira Code", Consolas, Monaco, monospace;
+            font-size: 15px;
+            resize: vertical;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        textarea:focus {
+            border-color: #0066cc;
+        }
+        .output-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        #mathOutput {
+            min-height: 100px;
+            padding: 20px;
+            background-color: #fafafa;
+            border: 1px dashed #bbb;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            overflow-x: auto;
+        }
+        .shortcuts {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-shortcut {
+            background-color: #eaeaea;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: monospace;
+            transition: background 0.2s;
+        }
+        .btn-shortcut:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live KaTeX Mathematical Renderer</h1>
+    <p class="subtitle">Type LaTeX math syntax below to see it render synchronously in real-time.</p>
+
+    <div class="container">
+        <!-- Input section -->
+        <div class="input-group">
+            <label for="mathInput">LaTeX Input:</label>
+            <textarea id="mathInput" placeholder="Type math syntax here..."></textarea>
+        </div>
+
+        <!-- Helpful Quick Shortcuts -->
+        <div class="shortcuts">
+            <button class="btn-shortcut" data-snippet="f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi)\,e^{2 \pi i x \xi}\,d\xi">Fourier Transform</button>
+            <button class="btn-shortcut" data-snippet="A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}">Matrix</button>
+            <button class="btn-shortcut" data-snippet="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}">Quadratic Formula</button>
+            <button class="btn-shortcut" data-snippet="\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}">Basel Problem</button>
+        </div>
+
+        <!-- Live Output Display section -->
+        <div class="output-group">
+            <label>Real-Time Rendered Output:</label>
+            <div id="mathOutput"></div>
+        </div>
+    </div>
+
+    <script>
+        // Wait until DOM and script files are fully ready
+        document.addEventListener("DOMContentLoaded", () => {
+            const mathInput = document.getElementById("mathInput");
+            const mathOutput = document.getElementById("mathOutput");
+            const shortcuts = document.querySelectorAll(".btn-shortcut");
+
+            // Define a starting boilerplate equation
+            const defaultEquation = "e^{i\\pi} + 1 = 0";
+            mathInput.value = defaultEquation;
+
+            // Live rendering core logic function
+            function renderMath() {
+                const rawInput = mathInput.value.trim();
+                
+                if (!rawInput) {
+                    mathOutput.innerHTML = '<span style="color: #999; font-style: italic; font-size: 14px;">Output is empty</span>';
+                    return;
+                }
+
+                // Render live using KaTeX engine
+                katex.render(rawInput, mathOutput, {
+                    displayMode: true,          // Renders centered block style math equations
+                    throwOnError: false,        // Crucial for live textfields: prevents UI crashes on partial syntax
+                    errorColor: "#cc0000"       // Highlights syntax issues gracefully in red while typing
+                });
+            }
+
+            // Bind input listener to process on-the-fly text changes instantly
+            mathInput.addEventListener("input", renderMath);
+
+            // Set up click handlers for the helper buttons
+            shortcuts.forEach(button => {
+                button.addEventListener("click", () => {
+                    mathInput.value = button.getAttribute("data-snippet");
+                    renderMath();
+                    mathInput.focus();
+                });
+            });
+
+            // Run initial execution loop to render starting math sample code
+            renderMath();
+        });
+    </script>
+
+</body>
+</html>

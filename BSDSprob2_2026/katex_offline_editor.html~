@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math board</title>
+    
+    <link rel="stylesheet" href="katex.min.css">
+    <script defer src="katex.min.js"></script>
+    <script defer src="auto-render.min.js"></script>
+
+    <style>
+        bdy {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color:#333;
+            background-color: #f4f6f8;
+        }
+        h1 {
+            color: #111;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+            display: flex;
+            justify-content: space-between;
+        }
+        label span {
+            font-weight: normal;
+            font-size: 12px;
+            color: #777;
+        }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: "Fira Code", Consolas, Monaco, monospace;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        #mathInput {
+            height: 180px;
+            resize: vertical;
+        }
+        #macroInput {
+            height: 100px;
+            resize: vertical;
+            background-color: #fafafa;
+        }
+        textarea:focus {
+            border-color: #0066cc;
+        }
+        .output-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        #mathOutput {
+            min-height: 250px;
+            height: 400px;
+            padding: 20px;
+            background-color: #000;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 3rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            color: #fff;
+        }
+        .info-box {
+            background-color: #eef6ff;
+            border-left: 4px solid #0066cc;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #222;
+        }
+        .info-box code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<div id="mathOutput" width="100%"></div>
+<textarea id="mathInput"></textarea>
+<textarea id="macroInput"></textarea>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mathInput = document.getElementById("mathInput");
+            const macroInput = document.getElementById("macroInput");
+            const mathOutput = document.getElementById("mathOutput");
+
+            // Seed boilerplate default macro dictionary definitions
+            const defaultMacros = {
+                "\\R": "\\mathbb{R}",
+                "\\C": "\\mathbb{C}",
+                "\\v": "\\boldsymbol{#1}",
+                "\\k": "\\chi^2_{(#1)}",
+                "\\toL": "\\stackrel{L_{#1}}{\\longrightarrow}",
+                "\\toA": "\\stackrel{a.s.}{\\longrightarrow}",
+                "\\toP": "\\stackrel{P}{\\longrightarrow}",
+                "\\toD": "\\stackrel{d}{\\longrightarrow}",
+                "\\mat": "\\begin{pmatrix}#1\\end{pmatrix}",
+                "\\cases": "\\begin{cases}#1\\end{cases}",
+            };
+            macroInput.value = JSON.stringify(defaultMacros, null, 4);
+
+            // Seed initial text mixed with mathematical notations
+            mathInput.value = "";
+
+            function renderLiveContent() {
+                // 1. Safely Parse custom macros defined by user in the textarea panel
+                let parsedMacros = {};
+                try {
+                    parsedMacros = JSON.parse(macroInput.value);
+                    macroInput.style.borderColor = "#ccc"; // Reset boundary color if valid JSON string
+                } catch (e) {
+                    macroInput.style.borderColor = "#cc0000"; // Visual flag showing bad json array construction
+                }
+
+                // 2. Refresh raw text inside preview target
+                const rawText = mathInput.value;
+                mathOutput.innerText = rawText;
+
+                // 3. Render using KaTeX auto-render extension
+                if (window.renderMathInElement) {
+                    renderMathInElement(mathOutput, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\(", right: "\)", display: false },
+                            { left: "\[", right: "\]", display: true }
+                        ],
+                        macros: parsedMacros,
+                        throwOnError: false,
+                        errorColor: "#cc0000"
+                    });
+                }
+            }
+
+            // Sync dynamic rendering triggers to both interface textareas
+            mathInput.addEventListener("input", renderLiveContent);
+            macroInput.addEventListener("input", renderLiveContent);
+
+            // Trigger structural rendering evaluation pass right away
+            renderLiveContent();
+        });
+    </script>
+
+</body>
+</html>
