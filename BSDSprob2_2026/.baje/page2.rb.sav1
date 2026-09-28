@@ -2,6 +2,7 @@
 <M>\newcommand{\v}[1]{\boldsymbol{#1}}</M>
 <M>\newcommand{\k}[1]{\chi^2_{(#1)}}</M>
 <M>\newcommand{\cov}{\mathrm{cov}}</M>
+<M>\newcommand{\col}{\mathcal{C}}</M>
 <TITLE>Sampling distributions for normal mean and variance</TITLE>
 Every random variable has a distribution. If <M>X_1,...,X_n</M>  is a random sample, and <M>T:\rr^n\to\rr</M>  is any given
  function, then <M>T(X_1,...,X_n)</M>  is a random variable. It is called a <TERM>statistic</TERM>. Its distribution is called
@@ -556,21 +557,24 @@ In the discussion below we shall call this definition DEFN2, while our original 
 
 <THM>The two
  definitions are equivalent. </THM>
-
+<PF>
 It should be clear that DEFN1 implies DEFN2. 
 
 To see the converse, suppose that <M>\v X</M>  has a multivariate normal distribution according to
  DEFN2. 
 
-Then taking <M>\v \ell = \v e_1,...,\v e_d,</M>  we see that the components <M>X_1,...,X_d</M>  are all univariate normal,
+
+Then taking <M>\v \ell = \v e_1,...,\v e_d,</M>  we see that the components <M>X_1,...,X_d</M>  are
+ all univariate normal,
  and so have finite second moments.
  
 Hence we can take <M>\v \mu = E(\v X)</M>  and <M>\Sigma = V(\v X).</M>  
 
+<U>Step 1</U>: <RED>Shall show that <M>\v X</M>  has characteristic function <M>\xi(\v t) = e^{i\v t'\v
+ \mu-[[12]]\v t' \Sigma \v t}.</M>  </RED>
 
-Let <M>\v X</M>  have characteristic function <M>\xi(\v t).</M>  
-
-Then the characteristic function of <M>\v \ell'\v X</M>  is <M>E(e^{i t \v \ell'\v X}) = \xi(t\v \ell),</M> 
+From the given condition, the characteristic function of <M>\v \ell'\v X</M>  is <M>E(e^{i t \v
+ \ell'\v X}) = \xi(t\v \ell),</M> 
  which must be of the form 
 <M>e^{it \mu(\ell)- [[t^2 \sigma^2(\ell)][2]]}</M>  for some function <M>\mu(\cdot)</M>  and
  <M>\sigma^2(\cdot) \geq0.</M>   
@@ -578,10 +582,51 @@ Then the characteristic function of <M>\v \ell'\v X</M>  is <M>E(e^{i t \v \ell'
 So we have 
 <D>\xi(t\v \ell) = e^{it \mu(\ell)- [[t^2 \sigma^2(\ell)][2]]}.</D>
 Since this must be the characteristic function of <M>N(\v \ell' \mu, \v \ell' \Sigma \v \ell),</M>  hence <M>\mu(\v \ell) = \v \ell' \v \mu</M> 
- and  <M>\sigma^2(\v \ell) = \v \ell' \Sigma \v \ell.</M>
+ and  <M>\sigma^2(\v \ell) = \v \ell' \Sigma \v \ell,</M>  completing Step 1.
 
-Hence the result.
+<U>Step 2</U>: <RED>Shall show that
+<M>X-\v \mu\in\col(\Sigma)</M>  with probability 1. </RED>
 
+We have <M>\forall \v\ell\in\rr^d~~\v \ell'\v X\sim N(\v \ell'\v \mu,\v\ell'\Sigma \v\ell).</M>  
+
+Now consider a basis <M>\{\v\ell_1,...,\v\ell_k\}</M>  of the orthogonal complement of <M>\col(\Sigma).</M>  
+
+Then <M>V(\v\ell_j'(\v X-\v \mu)) = 0</M>  for each <M>j=1,...,k.</M>  
+
+So <M>\exists \Omega_j\seq \Omega~~P(\Omega_j)=1~~\forall \omega\in \Omega_j~~\v\ell'(\v X(\omega)-\v \mu)=0.</M>
+
+Let <M>\Omega_* = \Omega_1\cap\cdots\cap \Omega_k.</M>
+
+Then <M>P(\Omega_*)=1</M>  and <M>\forall \omega\in \Omega_*~~\v X(\omega)-\v \mu\in\col(\Sigma).</M>
+This completes Step 2.
+
+<U>Step 3</U>: <RED>Shall manufacture <M>\v Z</M>  to be used in DEFN1.</RED>
+
+Let <M>A</M>  be any full column rank matrix such that <M>\Sigma = AA'.</M>  
+<HIDE lab="Always exists. Why?">
+Consider spectral decomposition of <M>\Sigma</M>  with nonzero eigenvalues listed first. Make <M>A</M>  with the corresponding
+ eigenvectors as columns.
+</HIDE>
+
+Then <M>\col(A) = \col(\Sigma).</M>  
+<BECAUSE>
+<M>\col(\Sigma)</M>  is a subspace of <M>\col(A)</M>  and <M>r(\Sigma)=r(A).</M>
+</BECAUSE>
+So, <M>\forall \omega\in \Omega_*</M>  we have 
+<MULTILINE>
+& & \v X(\omega)-\v \mu\in \col(A)\\
+&\mbox{or} & \exists Z(\omega)~~\v X(\omega) -\v \mu= A \v Z(\omega)\\
+&\mbox{or} & \v Z(\omega) = A^{-l}(\v X(\omega)-\v \mu).
+</MULTILINE>
+
+Define <M>\v Z(\omega) = \v0</M>  for <M>\omega\not\in \Omega_*.</M>
+
+Using the characteristic function derived in Step 1, we have <M>\v Z\sim N_r(\v0, I_r),</M>  completing the proof.
+</PF>
+
+Just note that what I have shown is this: If <M>\v X</M>  has multivariate normal distribution according to DEFN2, then 
+there is a <M>\v Z</M>  with iid <M>N(0,1)</M>  components such that <M>\v X = \v \mu + A\v Z</M> 
+ <RED>with probability 1</RED>. Indeed, there is no way I can guarantee this for
 <HEAD2>Problem set</HEAD2>
 
 <EXR><M>(X,Y)</M>  has mgf
