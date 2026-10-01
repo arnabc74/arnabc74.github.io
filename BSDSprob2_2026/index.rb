@@ -42,7 +42,7 @@ Each of the following project is a group project to be done by around 5 students
 <LI><RED><TICK/></RED>Saptarshi, Neerav<RED>(Date: Oct 12, first slot)</RED></LI>
 <LI><RED><TICK/></RED> Lakshya, Leela Sai Krishna<RED>(Date: Oct 09, first slot)</RED></LI>
 <LI><RED><TICK/></RED>Gagan (B), Garg,  Manish, Parnika, Abinaya<RED>(Date: Nov 11, first slot)</RED></LI>
-<LI><RED><TICK/></RED> Samriddha, Sandip, Mayank, Sourish, Tenzing<RED>(Date: Oct 05)</RED></LI>
+<LI><RED><TICK/></RED> Samriddha, Sandip, Mayank, Sourish, Tenzing<RED>(Dates: Nov 09 and Nov 13)</RED></LI>
 <LI><RED><TICK/></RED>Chinmay<RED>(Date: Nov 09, second slot)</RED></LI>
 </UL>
 </LI>
