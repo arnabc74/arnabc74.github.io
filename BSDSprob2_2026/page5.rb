@@ -167,7 +167,7 @@ Suppose that <M>X_n</M>'s are nonnegative random variables. Show that
 
 <EXR>(DCT) Let <M>X</M>  be any random variable. Show that <M>f(t) = E(\sin(t+X))</M>  is a
  differentiable function, with <M>f'(t) = E(\cos(t+X)).</M>
-<HINT>Enough to show that if <M>a_n\to a,</M>  then <M>Y_n = [[f(a_n)-f(a)][a_n-a]]\to E(\cos(t+X)).</M>
+<HINT>Enough to show that if <M>t_n\to t,</M>  then <M>Y_n = [[f(t_n)-f(t)][t_n-t]]\to E(\cos(t+X)).</M>
 Use the mean value theorem and boundedness of <M>\cos.</M>
 </HINT>
 </EXR>
