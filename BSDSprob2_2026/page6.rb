@@ -56,7 +56,12 @@ The proof is somewhat technical in nature, and will be skipped.
 <EXR>Let <M>X_n\toD N(0,1)</M>, <M>Y_n\toP 5</M>  and <M>Z_n\toP 4</M> with <M>z_n > 0.</M>     Then what is the
  limiting distribution of <M>[[X_n+Y_n][\sqrt {Z_n}]]?</M></EXR>
 
-<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Show that <M>\sqrt n(X_nY_n-a\theta)\toD aZ.</M></EXR>
+<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Then is it true that we must have
+<M>\sqrt  n(X_nY_n-a\theta)\toD aZ</M>?
+[Thanks to Chinmay for detecting an error in the original version of this problem.]
+<ANS>No. Counterexample: Take <M>\theta = a = 1</M>  and <M>X_n = 1+[[Z][\sqrt n]]</M>  and <M>Y_n =
+ 1+n^{-1/4},</M>  where <M>Z\sim Unif(0,1).</M></ANS>
+</EXR>
 
 
 <EXR>Let <M>T_n</M>  be a consistent estimator of <M>\theta,</M>  and let <M>S_n</M>  be a

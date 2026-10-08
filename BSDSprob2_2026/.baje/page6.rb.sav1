@@ -56,7 +56,12 @@ The proof is somewhat technical in nature, and will be skipped.
 <EXR>Let <M>X_n\toD N(0,1)</M>, <M>Y_n\toP 5</M>  and <M>Z_n\toP 4</M> with <M>z_n > 0.</M>     Then what is the
  limiting distribution of <M>[[X_n+Y_n][\sqrt {Z_n}]]?</M></EXR>
 
-<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Show that <M>\sqrt n(X_nY_n-a\theta)\toD aZ.</M></EXR>
+<EXR>Suppose that <M>\sqrt n(X_n-\theta)\toD Z</M>  and <M>Y_n\toP a.</M>  Then is it true that we must have
+<M>\sqrt  n(X_nY_n-a\theta)\toD aZ</M>?
+[Thanks to Chinmay for detecting an error in the original version of this
+<ANS>No. Counterexample: Take <M>\theta = a = 1</M>  and <M>X_n = 1+[[Z][\sqrt n]]</M>  and <M>Y_n =
+ 1+n^{-1/4},</M>  where <M>Z\sim Unif(0,1).</M></ANS>
+</EXR>
 
 
 <EXR>Let <M>T_n</M>  be a consistent estimator of <M>\theta,</M>  and let <M>S_n</M>  be a
@@ -118,7 +123,7 @@ We toss a coin with unknown <M>P(H)=p\in (0,1).</M>  Let <M>X_n = </M> proportio
  the 90% confidence interval for <M>\mu</M>  based on <M>X</M>?<SOLN/>
 We have 
 <D>Z = [[X-\mu][\sigma]]\sim N(0,1),</D>
-and so taking <M>a = \phi ^{-1}(0.95),</M>  we have 
+and so taking <M>a = \Phi ^{-1}(0.95),</M>  we have 
 <D>P(-a < Z < a) = 0.90,</D>
 <RIMG web="gautail.png"></RIMG>
 or
@@ -218,7 +223,8 @@ But arguably its "skew-correcting role" is more helpful in practice. Many statis
  often a simpler alternative. You may have a taste of this with simulated data using <LINK to="https://acbsds.shinyapps.io/boxcox/">this
  interactive demo</LINK>. There is a slider to control the value of <M>\lambda.</M>  The initial value is <M>\lambda=1,</M> 
  which basically gives the shape of the histogram of the raw data. It is highly skewed. Play with the slider, and see how
- the histogram changes shape. Try to find <M>\lambda</M>  for which the histogram is nearly
+ the histogram changes shape. Try to find <M>\lambda</M>  for which the histogram is nearly symmetric.
+
 <HEAD2>Problem set</HEAD2>
 <EXR>We know that if <M>X\sim Poi(\lambda),</M>  then <M>V(X) = \lambda.</M>  Find a variance
  stabilizing transform for <M>X.</M></EXR>
