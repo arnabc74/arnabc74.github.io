@@ -116,6 +116,7 @@ The last exercise gives density of <M>\v Z.</M>
 The transform <M>X = \v \mu + A\v Z</M>  is a bijection. Apply Jacobian formula. 
 </ANS>
 </EXR>
+
 <HEAD1>Sampling distributions for normal sample</HEAD1>
 Let <M>X_1,...,X_n</M>  be  a random sample from <M>N(\mu, \sigma^2).</M>  Then we are interested in finding the distributions
  of <M>\bar X</M>  and <M>S^2 = \sum (X_i-\bar X)^2.</M>  
@@ -302,6 +303,18 @@ sometimes  denoted by <M>\k k(*(\sum_i \mu_i^2)*)</M>.</DEFN>
 <M>X_i</M> s iid <M>N(0,1).</M>  What will  the distribution of <M>\sum_1^n (X_i-a)^2</M> be, where <M>a\in\rr</M>  is
 a fixed number?
 </EXR>
+<HEAD1>Geometry of <M>\k n</M></HEAD1>
+Consider a random sample <M>X_1,...,X_n</M>  from <M>N(0,1)</M>  as a random point <M>(X_1,...,X_n)'</M>  in <M>\rr^n.</M> 
+ Then its squared distance from the origin (i.e., its squared norm) has <M>\k n</M>  distribution.
+This follows directly from the definition of the <M>\k n</M>  distribution. 
+
+From what we hae learned about the multivariate normal distribution, the following theorem is easy to prove.
+<THM>
+Let <M>\v X\sim N_n(\v 0, I).</M>  Let <M>S\leq \rr^n</M>  be any subspace. Then the projection of <M>\v X</M>  onto <M>S</M> 
+ has <M>N_r(\v 0, I)</M>  distribution, where <M>r =dim(S).</M>
+</THM>
+
+<MV src="image/chisq.glb" a="projection"></MV> 
 <HEAD1><M>t</M>  distribution</HEAD1>
 <DEFN name="$t$-distribution">
 If <M>X\sim N(0,1)</M>  and <M>Y\sim\k n</M>  and they are independent, then the distribution of <M>X/(\sqrt{Y/n})</M>  is
