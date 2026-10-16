@@ -164,7 +164,7 @@ function myFunction() {
 <td align="right">
 <i>Last
 updated on:
-Fri Oct 16 09:15:11 IST 2026</i>
+Fri Oct 16 09:39:18 IST 2026</i>
 </td>
 </tr>
 </table>
@@ -206,27 +206,29 @@ function daynight() {
 </li>
 <li>3. <a href="#N1042C">Geometry of $\k n$</a>
 </li>
-<li>4. <a href="#N10463">$t$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;3.1. <a href="#N10483">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N104F4">Problem set</a>
+<li>4. <a href="#N104B1">$t$  distribution</a>
 </li>
-<li>5. <a href="#N10530">$F$  distribution</a>
+<li>&nbsp;&nbsp;&nbsp;4.1. <a href="#N10542">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N1059B">Problem set</a>
+<li>5. <a href="#N1057E">$F$  distribution</a>
 </li>
-<li>6. <a href="#N105C9">Multivariate mgf</a>
+<li>&nbsp;&nbsp;&nbsp;5.1. <a href="#N105E9">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N1063A">Problem set</a>
+<li>6. <a href="#N10617">Multivariate mgf</a>
 </li>
-<li>7. <a href="#N10675">The proofs</a>
+<li>&nbsp;&nbsp;&nbsp;6.1. <a href="#N10688">Problem set</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N106B2">Proof 1</a>
+<li>7. <a href="#N106C3">The proofs</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.2. <a href="#N1070B">Proof 2</a>
+<li>&nbsp;&nbsp;&nbsp;7.1. <a href="#N10700">Proof 1</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.3. <a href="#N107B5">An alternative definition of multivariate normal</a>
+<li>&nbsp;&nbsp;&nbsp;7.2. <a href="#N10759">Proof 2</a>
 </li>
-<li>&nbsp;&nbsp;&nbsp;7.4. <a href="#N108A0">Problem set</a>
+<li>&nbsp;&nbsp;&nbsp;7.3. <a href="#N10803">An alternative definition of multivariate normal</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;7.4. <a href="#N108EE">Problem set</a>
 </li>
 </ul>
 <hr/>
@@ -694,19 +696,54 @@ Consider a random sample $X_1,...,X_n$  from $N(0,1)$  as a random point $(X_1,.
  Then its squared distance from the origin (<i>i.e.</i>, its squared norm) has $\k n$  distribution.
 This follows directly from the definition of the $\k n$  distribution. 
 <p></p>
-From what we hae learned about the multivariate normal distribution, the following theorem is easy to prove.
+Slight massaging of this leads to the following theorem.
 <fieldset>
 <legend><b><i>Theorem</i></b></legend>
-Let $\v X\sim N_n(\v 0, I).$  Let $S\leq {\mathbb R}^n$  be any subspace. Then the projection of $\v X$  onto $S$ 
- has $N_r(\v 0, I)$  distribution, where $r =dim(S).$
+Let $\v X\sim N_n(\v 0, I).$  Let $S\leq {\mathbb R}^n$  be any subspace. Then the
+ orthogonal projection of $\v X$  onto $S$ 
+has norm-square following $\k {dim(S)}$  distribution.
 </fieldset>
+The situation is depicted in the 3D diagram below. Here we are working in ${\mathbb R}^3.$  Our subspace of interest is $S$,
+ the green plane (dimension 2). The red vector is $\v X.$  The yellow line denotes a sunray perpendicular to $S.$ 
+ The shadow cast by $\v X$  is the shown on black, and is the orthogonal projection of $\v X $ onto $S.$ 
+<p></p>
+
+<center>
+<model-viewer camera-controls="true" auto-rotate="true" style="width:500px;height:500px;" alt="projection" src="image/chisq1.glb"></model-viewer>
+</center>
+What happens if $\v X$  has a nonzero mean vector? The answer to this question is
+ geometrically obvious in a special case: if the mean vector is itself orthogonal to $S,$ 
+ then the conclusion of the last theorem still holds. Just subtract this mean vector to return to the last theorem without
+ the shadow changing. This is shown in the 3D diagram below.
+<center>
+<model-viewer camera-controls="true" auto-rotate="true" style="width:500px;height:500px;" alt="projection" src="image/chisq.glb"></model-viewer>
+</center>
 
 <p></p>
 
-<model-viewer camera-controls="true" auto-rotate="true" style="width:500px;height:500px;" alt="projection" src="image/chisq.glb"></model-viewer> 
+<h2>
+<a name="N10483"><span class="header">3.1</span>.
+Problem set</a>
+</h2>
+
+<p>
+<b>EXERCISE 13:</b>&nbsp;Use the above geometric argument to prove that $\sum_1^n (X_i-\bar X)^2\sim \k {n-1}$ 
+ if $X_1,...,X_n$  are iid $N(0,1).$ </p>
+
+<p></p>
+
+<p>
+<b>EXERCISE 14:</b>&nbsp;Let $x_1,...,x_n$  be some fixed numbers (not all same). Let $a,b$  be two fixed numbers. 
+Let $Y_i = a+bx_i + \epsilon_i,$  where $\epsilon_i$'s are are iid $N(0,1).$  We fit a straight line to $(x_1,Y_1),...,(x_n,Y_n)$ 
+ by least squares to get the fitted values 
+$$\hat Y_i = \hat a + \hat b x_i.$$
+What will the distribution of $\sum_1^n (Y_i-\hat Y_i)^2$  be? 
+</p>
+
+<p></p>
 
 <h1>
-<a name="N10463"><span class="header">4</span>. $t$  distribution</a>
+<a name="N104B1"><span class="header">4</span>. $t$  distribution</a>
 </h1>
 
 <fieldset>
@@ -737,25 +774,25 @@ As the degrees of freedom increase
 <p></p>
 
 <h2>
-<a name="N104F4"><span class="header">4.1</span>.
+<a name="N10542"><span class="header">4.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 13:</b>&nbsp;Consider the density of $t_{(k)}$-distribution. Do you recognise the
+<b>EXERCISE 15:</b>&nbsp;Consider the density of $t_{(k)}$-distribution. Do you recognise the
  $t_{(1)}$-distribution as something already familiar?</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 14:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
+<b>EXERCISE 16:</b>&nbsp;Let $X_1,...,X_n$  be a random sample from $N(\mu,\sigma^2).$  Then what is the distribution of 
 $$\frac{\sqrt n(\bar X-\mu)}{\sqrt{\sum(X_i-\bar X)^2/(n-1)}}?$$
 </p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 15:</b>&nbsp;Let $X_1,...,X_{100}$  be a random sample from $N(\mu,\sigma^2).$  Find $a&gt;0$  such that 
+<b>EXERCISE 17:</b>&nbsp;Let $X_1,...,X_{100}$  be a random sample from $N(\mu,\sigma^2).$  Find $a&gt;0$  such that 
 $P(\mu\in (\hat \mu-a \hat \sigma^2,\hat \mu+a \hat \sigma^2)) = 0.95,$  where $\hat \mu$  is the sample mean and
  $\hat \sigma^2$  is the sample variance (with $n-1$  in the denominator). Express your answer in terms of the
  distribution function, $F_k(\cdot)$  of the $t_{(k)}$-distribution. 
@@ -764,7 +801,7 @@ $P(\mu\in (\hat \mu-a \hat \sigma^2,\hat \mu+a \hat \sigma^2)) = 0.95,$  where $
 <p></p>
 
 <h1>
-<a name="N10530"><span class="header">5</span>. $F$  distribution</a>
+<a name="N1057E"><span class="header">5</span>. $F$  distribution</a>
 </h1>
 
 <fieldset>
@@ -787,12 +824,12 @@ $$f(x) =\left\{\begin{array}{ll}\mbox{const }x^{\frac m2-1}(mx+n)^{-\frac{m+n}{2
 </center>
 
 <h2>
-<a name="N1059B"><span class="header">5.1</span>.
+<a name="N105E9"><span class="header">5.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 16:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from
+<b>EXERCISE 18:</b>&nbsp;Let $X_1,...,X_m$  and $Y_1,...,Y_n$  be random samples from
  $N(\mu_1,\sigma^2)$  and $N(\mu_2,\sigma^2)$, respectively (same $\sigma^2$).  
 Then what
  is the distribution of 
@@ -802,17 +839,17 @@ $$\frac{\sum(X_i-\bar X)^2/(m-1)}{\sum(Y_i-\bar Y)^2/(n-1)}?$$
 <p></p>
 
 <p>
-<b>EXERCISE 17:</b>&nbsp;If $X\sim t_{(1)},$  then what is the distribution of $X^2?$</p>
+<b>EXERCISE 19:</b>&nbsp;If $X\sim t_{(1)},$  then what is the distribution of $X^2?$</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 18:</b>&nbsp;If $X\sim F_{(2,3)},$  then what is the distribution of $\frac 1X?$</p>
+<b>EXERCISE 20:</b>&nbsp;If $X\sim F_{(2,3)},$  then what is the distribution of $\frac 1X?$</p>
 
 <p></p>
 
 <h1>
-<a name="N105C9"><span class="header">6</span>. Multivariate mgf</a>
+<a name="N10617"><span class="header">6</span>. Multivariate mgf</a>
 </h1>
 We had left a number of results unproved in the first section of this page.  
 To prove them, we need a mathematically convenient way to express $N_d(\v \mu, \Sigma)$  distribution. 
@@ -880,12 +917,12 @@ M_{\v Z} (\v s, \v t)
 </p>
 
 <h2>
-<a name="N1063A"><span class="header">6.1</span>.
+<a name="N10688"><span class="header">6.1</span>.
 Problem set</a>
 </h2>
 
 <p>
-<b>EXERCISE 19:</b>&nbsp;If $X_1,X_2,X_3$  are iid $N(0,1),$  then find the mgf $M(\v t)$  of $\v X =
+<b>EXERCISE 21:</b>&nbsp;If $X_1,X_2,X_3$  are iid $N(0,1),$  then find the mgf $M(\v t)$  of $\v X =
  \left[\begin{array}{ccccccccccc}X_1\\X_2\\X_3
 \end{array}\right].$<p>
 <b>Hint:</b>
@@ -896,18 +933,18 @@ Problem set</a>
 <p></p>
 
 <p>
-<b>EXERCISE 20:</b>&nbsp;Find the mgf of $N_d(\v 0, I)$  distribution.</p>
+<b>EXERCISE 22:</b>&nbsp;Find the mgf of $N_d(\v 0, I)$  distribution.</p>
 
 <p></p>
 
 <p>
-<b>EXERCISE 21:</b>&nbsp;If $\v X_{d\times 1}$  has mgf $M(\v t)$, then find the mgf of $A\v X+\v b$  where
+<b>EXERCISE 23:</b>&nbsp;If $\v X_{d\times 1}$  has mgf $M(\v t)$, then find the mgf of $A\v X+\v b$  where
  $A_{n\times d}$  and $\v b_{n\times 1}$  are fixed.</p>
 
 <p></p>
 
 <h1>
-<a name="N10675"><span class="header">7</span>. The proofs</a>
+<a name="N106C3"><span class="header">7</span>. The proofs</a>
 </h1>
 In this section we shall finally prove the leftovers from the first section:
 <ol type="">
@@ -925,7 +962,7 @@ In this section we shall finally prove the leftovers from the first section:
 </ol>
 The last fact is actually a special case of the second. 
 <h2>
-<a name="N106B2"><span class="header">7.1</span>.
+<a name="N10700"><span class="header">7.1</span>.
 Proof 1</a>
 </h2>
 The first fact is a direct consequence of the following theorem.
@@ -974,7 +1011,7 @@ $N_d(\v \mu, \Sigma)$  has mgf $M(\v t) = e^{\v t'\v \mu + \frac 12 \v t' \Sigma
 </fieldset>
 
 <h2>
-<a name="N1070B"><span class="header">7.2</span>.
+<a name="N10759"><span class="header">7.2</span>.
 Proof 2</a>
 </h2>
 A little fact from linear algebra:
@@ -1029,7 +1066,7 @@ Since $\Sigma$  is symmetric, hence the <b>fact from linear algebra</b> forces $
 <p></p>
 
 <h2>
-<a name="N107B5"><span class="header">7.3</span>.
+<a name="N10803"><span class="header">7.3</span>.
 An alternative definition of multivariate normal</a>
 </h2>
 This part is not in the syllabus. I am including this as a bridge between Probability 1 and this course. 
@@ -1134,14 +1171,14 @@ Just note that what I have shown is this: If $\v X$  has multivariate normal dis
 there is a $\v Z$  with iid $N(0,1)$  components such that $\v X = \v \mu + A\v Z$ 
  <font color="#ff0000">with probability 1</font>. Indeed, there is no way I can guarantee this for <i>all</i>  $\omega\in \Omega.$
 <h2>
-<a name="N108A0"><span class="header">7.4</span>.
+<a name="N108EE"><span class="header">7.4</span>.
 Problem set</a>
 </h2>
 
 <p></p>
 
 <p>
-<b>EXERCISE 22:</b>&nbsp;$(X,Y)$  has mgf
+<b>EXERCISE 24:</b>&nbsp;$(X,Y)$  has mgf
 $$M(s,t) = \exp(s-t+20s^2+42t^2-12st)\mbox{ for }(s,t)\in{\mathbb R}^2.$$
 Find the distribution of $(X,Y).$ 
 </p>
@@ -1149,7 +1186,7 @@ Find the distribution of $(X,Y).$
 <p></p>
 
 <p>
-<b>EXERCISE 23:</b>&nbsp;Write the density of $X$  if it has mgf $M(t) = \exp(2t+3t^2)$  for $t\in{\mathbb R}.$  </p>
+<b>EXERCISE 25:</b>&nbsp;Write the density of $X$  if it has mgf $M(t) = \exp(2t+3t^2)$  for $t\in{\mathbb R}.$  </p>
 <hr xmlns="http://www.w3.org/1999/xhtml"/>
 <table width="100%" border="0">
 <tr>

@@ -308,13 +308,34 @@ Consider a random sample <M>X_1,...,X_n</M>  from <M>N(0,1)</M>  as a random poi
  Then its squared distance from the origin (i.e., its squared norm) has <M>\k n</M>  distribution.
 This follows directly from the definition of the <M>\k n</M>  distribution. 
 
-From what we hae learned about the multivariate normal distribution, the following theorem is easy to prove.
+Slight massaging of this leads to the following theorem.
 <THM>
-Let <M>\v X\sim N_n(\v 0, I).</M>  Let <M>S\leq \rr^n</M>  be any subspace. Then the projection of <M>\v X</M>  onto <M>S</M> 
- has <M>N_r(\v 0, I)</M>  distribution, where <M>r =dim(S).</M>
+Let <M>\v X\sim N_n(\v 0, I).</M>  Let <M>S\leq \rr^n</M>  be any subspace. Then the
+ orthogonal projection of <M>\v X</M>  onto <M>S</M> 
+has norm-square following <M>\k {dim(S)}</M>  distribution.
 </THM>
+The situation is depicted in the 3D diagram below. Here we are working in <M>\rr^3.</M>  Our subspace of interest is <M>S</M>,
+ the green plane (dimension 2). The red vector is <M>\v X.</M>  The yellow line denotes a sunray perpendicular to <M>S.</M> 
+ The shadow cast by <M>\v X</M>  is the shown on black, and is the orthogonal projection of <M>\v X </M> onto <M>S.</M> 
+ 
+<CENTER><MV src="image/chisq1.glb" a="projection"></MV></CENTER>
+What happens if <M>\v X</M>  has a nonzero mean vector? The answer to this question is
+ geometrically obvious in a special case: if the mean vector is itself orthogonal to <M>S,</M> 
+ then the conclusion of the last theorem still holds. Just subtract this mean vector to return to the last theorem without
+ the shadow changing. This is shown in the 3D diagram below.
+<CENTER><MV src="image/chisq.glb" a="projection"></MV></CENTER>
 
-<MV src="image/chisq.glb" a="projection"></MV> 
+<HEAD2>Problem set</HEAD2>
+<EXR>Use the above geometric argument to prove that <M>\sum_1^n (X_i-\bar X)^2\sim \k {n-1}</M> 
+ if <M>X_1,...,X_n</M>  are iid <M>N(0,1).</M> </EXR>
+
+<EXR>Let <M>x_1,...,x_n</M>  be some fixed numbers (not all same). Let <M>a,b</M>  be two fixed numbers. 
+Let <M>Y_i = a+bx_i + \epsilon_i,</M>  where <M>\epsilon_i</M>'s are are iid <M>N(0,1).</M>  We fit a straight line to <M>(x_1,Y_1),...,(x_n,Y_n)</M> 
+ by least squares to get the fitted values 
+<D>\hat Y_i = \hat a + \hat b x_i.</D>
+What will the distribution of <M>\sum_1^n (Y_i-\hat Y_i)^2</M>  be? 
+</EXR>
+
 <HEAD1><M>t</M>  distribution</HEAD1>
 <DEFN name="$t$-distribution">
 If <M>X\sim N(0,1)</M>  and <M>Y\sim\k n</M>  and they are independent, then the distribution of <M>X/(\sqrt{Y/n})</M>  is
