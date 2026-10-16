@@ -1,5 +1,6 @@
  <NOTE pic="image/cov.png">
 <TITLE>@{<E>C Programming</E>@}</TITLE>
+<HEAD1>@{<E>C Programming</E>@}</HEAD1>
 AmAr @{<E>C Programming</E>@}  baiyer @{<E>webpage</E>@}  eTA. chArrakam jinis pAbe ekhAne--
 <UL><LI>ek, ye sab progrAm dekhAno Achhe baiTAte, segulo DAunloD karte pArbe <LINK to="dnld.html">ekhAn theke</LINK></LI>
 <LI>dui, baiyer kayek jAygA theke bibhinna viDior @{<E>QR link</E>@}  deoyA Achhe. seguloo pAbe nIche.</LI>
