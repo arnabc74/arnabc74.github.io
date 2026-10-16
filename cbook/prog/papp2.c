@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-void f(int *px) {`\includegraphics{arrow.pdf}`
-  *px = 56;      `\includegraphics{arrow.pdf}`
+void f(int *px) {`\
+  *px = 56;      `\
 }
 
 int main() {
@@ -9,7 +9,7 @@ int main() {
   
   x = 67;
   printf("before: x = %d\n",x);
-  f(&x);`\includegraphics{arrow.pdf}`
+  f(&x);`\
   printf("after: x = %d\n",x);
 
   return 0;

@@ -5,8 +5,8 @@ int main() {
   int i;
   
   printf("Please supply a string: ");
-  scanf("%100[^\n]",str); 
-  for(i=0;str[i]!='\0';i++) {`\includegraphics{arrow.pdf}`
+  scanf("%100[^\n]",str);  
+  for(i=0;str[i]!='\0';i++) {`\
     if(str[i]=='a') str[i] = 'A';
   }
   printf("The final string is: \"%s\"\n",str);

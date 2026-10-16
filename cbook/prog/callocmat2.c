@@ -16,10 +16,10 @@ int main() {
       a[i] = calloc(col,sizeof(int));
       if(a[i]) continue;
       hasSpace = 0;
-      for(j=0;j<i;j++) {     `\includegraphics{arrow.pdf}`
-        free(a[j]); a[j] = 0;`\includegraphics{arrow.pdf}`
-      }                      `\includegraphics{arrow.pdf}`
-      free(a); a = 0;        `\includegraphics{arrow.pdf}`
+      for(j=0;j<i;j++) {     `\
+        free(a[j]); a[j] = 0;`\
+      }                      `\
+      free(a); a = 0;        `\
       break;
     }
   }

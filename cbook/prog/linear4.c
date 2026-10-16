@@ -8,19 +8,19 @@ int main() {
   int i, what, found;
   
   printf("Number to search: ");
-  scanf("%d",&what); 
+  scanf("%d",&what);  
 
   found = 0;
 
   for(i=0;i<n;i++) {
     if(x[i]==what) {
-      if(found==0) {                                       `\includegraphics{arrow.pdf}`
-        found = 1;                                         `\includegraphics{arrow.pdf}`
-        printf("The number occurs at position(s) %d ",i+1);`\includegraphics{arrow.pdf}`
-      }                                                    `\includegraphics{arrow.pdf}`
-      else {                                               `\includegraphics{arrow.pdf}`
-        printf("%d ",i+1);                                 `\includegraphics{arrow.pdf}`
-      }                                                    `\includegraphics{arrow.pdf}`
+      if(found==0) {                                       `\
+        found = 1;                                         `\
+        printf("The number occurs at position(s) %d ",i+1);`\
+      }                                                    `\
+      else {                                               `\
+        printf("%d ",i+1);                                 `\
+      }                                                    `\
     }
   }
 

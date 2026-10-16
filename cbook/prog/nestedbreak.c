@@ -10,7 +10,7 @@ int main() {
       scanf("%f",&marks); 
       if(marks==-1) break;
       sum += marks;
-    }
+    } 
     if(j>0) printf("average marks = %.2f\n",sum/j);
   }
   printf("Goodbye!\n");

@@ -6,8 +6,8 @@ int main() {
 
   printf("Supply an unsigned integer: "); 
   scanf("%u",&a); 
-  printf("a = %d (using %%d)\n",a);`\includegraphics{arrow.pdf}`
-  printf("a = %u (using %%u)\n",a);`\includegraphics{arrow.pdf}`
+  printf("a = %d (using %%d)\n",a);`\
+  printf("a = %u (using %%u)\n",a);`\
 
   return 0;
 }

@@ -18,15 +18,15 @@ double norm(struct Vector a) {
 struct Vector *pUnitVector3(struct Vector *pVec)
 {
   struct Vector *pAns = calloc(1,sizeof(struct Vector));
-  double normA = norm(*pVec);`\includegraphics{arrow.pdf}`
+  double normA = norm(*pVec);`\
   if(EQ(normA,0)) {
     fprintf(stderr,"Error: The vector has norm 0.\n");
     return 0;
   }
   else {
-    pAns->x = pVec->x/normA;`\includegraphics{arrow.pdf}`
-    pAns->y = pVec->y/normA;`\includegraphics{arrow.pdf}`
-    pAns->z = pVec->z/normA;`\includegraphics{arrow.pdf}`
+    pAns->x = pVec->x/normA;`\
+    pAns->y = pVec->y/normA;`\
+    pAns->z = pVec->z/normA;`\
   }
 
   return pAns;
@@ -40,7 +40,7 @@ int main() {
   printf("y = "); scanf("%lf",&v.y);  
   printf("z = "); scanf("%lf",&v.z);  
 
-  pu = pUnitVector3(&v);`\includegraphics{arrow.pdf}`
+  pu = pUnitVector3(&v);`\
   if(pu)
     printf("The unit vector along the vector is (%lf, %lf, %lf).\n",
          pu->x, pu->y, pu->z);

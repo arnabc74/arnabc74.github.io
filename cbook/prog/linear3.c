@@ -9,7 +9,7 @@ int main() {
   
   printf("Number to search: ");
   scanf("%d",&what);
-  
+   
 
   found = 0;
 

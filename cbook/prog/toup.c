@@ -5,7 +5,7 @@ int main() {
   char c;
 
   printf("Supply a character: ");
-  scanf("%c",&c); 
+  scanf("%c",&c);  
   printf("After toupper: %c",toupper(c));
   return 0;
 }

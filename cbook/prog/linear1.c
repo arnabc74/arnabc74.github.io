@@ -7,7 +7,7 @@ int main() {
   int i, what;
   
   printf("Number to search: ");
-  scanf("%d",&what); 
+  scanf("%d",&what);  
 
   found = 0;
   for(i=0;i<n;i++) {

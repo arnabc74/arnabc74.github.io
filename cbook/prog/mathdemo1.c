@@ -5,7 +5,7 @@ int main() {
   double x;
 
   printf("x = ");
-  scanf("%lf",&x);e();
+  scanf("%lf",&x);
   printf("sin(%lf) = %lf\n",x,sin(x));
   printf("cos(%lf) = %lf\n",x,cos(x));
   printf("tan(%lf) = %lf\n",x,tan(x));

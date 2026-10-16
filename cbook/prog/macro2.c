@@ -4,7 +4,7 @@ int main() {
   double x;
   
   printf("Supply length in inches: ");
-  scanf("%lf",&x); 
-  printf("The length in centimetres is %lf\n",2.54*x);`\includegraphics{arrow.pdf}`
+  scanf("%lf",&x);  
+  printf("The length in centimetres is %lf\n",2.54*x);`\
   return 0;
 }

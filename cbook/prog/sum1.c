@@ -5,7 +5,7 @@ int main() {
 
   printf("This program sums a list of numbers.\n");
   printf("How many numbers? ");
-  scanf("%d",&n);
+  scanf("%d",&n); 
   printf("Supply %d numbers:\n",n);
 
   for(i=0;i<n;i++) {
@@ -15,7 +15,7 @@ int main() {
     else
       sum += number;
   }
- 
+  
   printf("Sum of the numbers is %d.\n",sum);
   return 0;
 }

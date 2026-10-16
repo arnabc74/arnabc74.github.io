@@ -15,10 +15,10 @@ int main() {
   struct Point p, q;
 
   printf("Supply the coordinates of P: ");
-  scanf("%lf%lf",&p.x, &p.y);  
+  scanf("%lf%lf",&p.x, &p.y);   
 
   printf("Supply the coordinates of Q: ");
-  scanf("%lf%lf",&q.x, &q.y);  
+  scanf("%lf%lf",&q.x, &q.y);   
 
   printf("Distance between P and Q is %lf.\n",distance(p,q));
   return 0;

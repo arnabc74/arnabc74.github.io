@@ -5,7 +5,7 @@ int main() {
   int n, k, noFactorFound;
 
   printf("Please supply an integer (>=2): ");
-  scanf("%d",&n); 
+  scanf("%d",&n);  
 
   noFactorFound = 1;
   for(k=2;k<n;k++) {

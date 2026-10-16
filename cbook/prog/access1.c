@@ -5,9 +5,9 @@ int main() {
   int x[10], i, val;
 
   printf("Index = ");
-  scanf("%d",&i); 
+  scanf("%d",&i);  
   printf("Value = "); 
-  scanf("%d",&val); 
+  scanf("%d",&val);  
   
   x[i] = val;
 

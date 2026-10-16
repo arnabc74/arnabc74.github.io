@@ -3,9 +3,9 @@ isConvergent = 0;
 for(k=1;k<=1e10;k++) {
    sum += 1.0/(k*k);
    /*Test partial sums*/
-   if(k%50==0) {            `\includegraphics{arrow.pdf}`
-     /*Check change in sum*/`\includegraphics{arrow.pdf}`
-   }                        `\includegraphics{arrow.pdf}`
+   if(k%50==0) {            `\
+     /*Check change in sum*/`\
+   }                        `\
 }
 
 if(isConvergent==1) {

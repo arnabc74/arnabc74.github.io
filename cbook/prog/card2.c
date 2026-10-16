@@ -15,7 +15,7 @@ int main() {
   head = 0;
   for(i=0;;i++) {
     printf("Name: [q to end]: ");
-    scanf("%s",name); 
+    scanf("%s",name);  
     if(strcmp(name,"q")==0) break;
     if(i==0) {
       head = now = calloc(1,sizeof(struct Card));

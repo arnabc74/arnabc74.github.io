@@ -9,7 +9,7 @@ int main() {
   double h, sum;
   int i, n;
   printf("Supply n: ");
-  scanf("%d",&n); 
+  scanf("%d",&n);  
   h = 1.0/n;
   sum = 0;
   for(i=1;i<=n;i++) {

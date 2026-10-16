@@ -16,8 +16,8 @@ int main() {
     scanf("%f",&weight);
     totCount++;
     bmi = weight/(height*height);
-    if(18.5 > bmi || bmi > 24.9) continue;`\includegraphics{arrow.pdf}`
-    goodCount++;                          `\includegraphics{arrow.pdf}`
+    if(18.5 > bmi || bmi > 24.9) continue;`\
+    goodCount++;                          `\
   }
   printf("%d out of %d found to have BMI in ",
          goodCount, totCount);

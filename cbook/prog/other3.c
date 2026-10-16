@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include "secret.h"`\includegraphics{arrow.pdf}`
+#include "secret.h"`\
 int main() {
 	double value;
 

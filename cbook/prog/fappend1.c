@@ -7,7 +7,7 @@ int main() {
   f = fopen("ek.txt","w");
 
   printf("Supply an integer: ");
-  scanf("%d",&n); 
+  scanf("%d",&n);  
   fprintf(f,"The integer is %d\n",n);
 
   fclose(f);

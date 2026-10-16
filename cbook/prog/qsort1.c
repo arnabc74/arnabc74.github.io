@@ -14,6 +14,7 @@ void dump(int start, int end, int left, int right) {
     if(i==end) printf("]");
   }
   printf("\n");
+  
 }
 
 void quicksort(int start, int end) {
@@ -66,7 +67,10 @@ void quicksort(int start, int end) {
 }
 
 void main() {
+  dump(3,9,5,6);
+  /*
   quicksort(0,n-1);
   printf("Finally:\n\n");
   dump(0,n-1,-1,-1);
+  */
 }

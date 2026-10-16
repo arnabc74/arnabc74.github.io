@@ -5,7 +5,10 @@ int main() {
   
   printf("Marks: ");
   scanf("%d", &marks);
-  if(0<=marks && marks<50) {
+  if(marks<0 || marks>100) {
+    printf("Invalid marks\n");
+  }
+  else if(marks<50) {
     printf("Grade = F\n");
   }
   else if(marks<60) {
@@ -20,11 +23,8 @@ int main() {
   else if(marks<90) {
     printf("Grade = A\n");
   }
-  else if(marks<=100) {
-    printf("Grade = A+\n");
-  }
   else {
-    printf("Invalide marks\n");
+    printf("Grade = A+\n");
   }
   return 0;
 }

@@ -6,12 +6,13 @@ int main() {
   printf("This program prints the m x n  multiplication table of the first m and n numbers.\n\n");
 
   printf("Please supply m: ");
-  scanf("%d",&m); 
+  scanf("%d",&m);  
 
   printf("Please supply n: ");
-  scanf("%d",&n); 
+  scanf("%d",&n);  
 
   printf("The multiplication table is:\n");
+
 
   printf("        |");
   for(j=1;j<=n;j++) { 

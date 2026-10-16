@@ -5,7 +5,7 @@ int main() {
   int end;
   
   f = fopen("phone.txt","r");
-  fseek(f,0,SEEK_SET);
+  fseek(f,0,SEEK_END);
   end = ftell(f);
   printf("The end is at %d.\n",end);
 

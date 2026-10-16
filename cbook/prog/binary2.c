@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int x[] = {98, 93, 89, 86, 71, 65, 56, 48, 20, 12};`\includegraphics{arrow.pdf}`
+int x[] = {98, 93, 89, 86, 71, 65, 56, 48, 20, 12};`\
 int n = 10;
 int main() {
   int left, right, mid, found, what;
@@ -17,7 +17,7 @@ int main() {
       found = 1;
       break;
     }
-    else if(x[mid] < what) {`\includegraphics{arrow.pdf}`
+    else if(x[mid] < what) {`\
       right = mid-1;
     }
     else {

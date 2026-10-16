@@ -5,7 +5,7 @@ int main() {
   int n,k,isPrime;
 
   printf("Please supply an integer (>=2): ");
-  scanf("%d",&n); 
+  scanf("%d",&n);  
 
 
   for(k=2;k<n;k++) {

@@ -13,7 +13,7 @@ int main() {
   
   /* Array-ta niye ja ja korte chao, seta ekhane karo.*/
 
-  free(a);`\includegraphics{arrow.pdf}`
-  a = 0;  `\includegraphics{arrow.pdf}`
+  free(a);`\
+  a = 0;  `\
   return 0;
 }

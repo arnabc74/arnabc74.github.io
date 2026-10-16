@@ -1,5 +1,5 @@
 #include<stdio.h>
-extern double f(double x);`\includegraphics{arrow.pdf}`
+extern double f(double x);`\
 int main() {
 	double value;
 

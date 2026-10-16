@@ -4,7 +4,7 @@
 int main() {
   char c;
   printf("Supply a character: ");
-  scanf("%c",&c);
+  scanf("%c",&c); 
 
   printf("'%c' is ",c);
   if(isalpha(c)) {

@@ -4,7 +4,7 @@ int count=0;
 
 void processNumber() {
   int n, i;
-  int count;`\includegraphics{arrow.pdf}`
+  int count;`\
   printf("Supply number: "); scanf("%d",&n);
   if(n > 1) {
     count++;
@@ -14,12 +14,12 @@ void processNumber() {
     return;
   }
 
-  /* Count number of factors. */         `\includegraphics{arrow.pdf}`
-  count = 0;                             `\includegraphics{arrow.pdf}`
-  for(i = 1; i<=n; i++) {                `\includegraphics{arrow.pdf}`
-    if(n % i == 0) count++;              `\includegraphics{arrow.pdf}`
-  }                                      `\includegraphics{arrow.pdf}`
-  printf("%d has %d factors\n",n, count);`\includegraphics{arrow.pdf}`
+  /* Count number of factors. */         `\
+  count = 0;                             `\
+  for(i = 1; i<=n; i++) {                `\
+    if(n % i == 0) count++;              `\
+  }                                      `\
+  printf("%d has %d factors\n",n, count);`\
 }
 
 int main() {

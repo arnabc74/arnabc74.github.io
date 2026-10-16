@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void f() {
-  static int x = 45;`\includegraphics{arrow.pdf}`
+  static int x = 45;`\
   printf("x = %d.\n",x);
   x += 10;
 }

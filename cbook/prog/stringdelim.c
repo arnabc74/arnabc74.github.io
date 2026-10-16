@@ -17,7 +17,7 @@ int main() {
   char originalString[101], *newString;
   
   printf("Please supply a string: ");
-  scanf("%100[^\n]", originalString); 
+  scanf("%100[^\n]", originalString);  
 
   newString = stringDelim(originalString);
 

@@ -4,10 +4,9 @@ int main() {
   char a, b;
 
   printf("ekta character dao: ");
-  scanf("%c",&a); 
-
+  scanf("%c",&a); dc(a); 
   printf("arekta character dao: ");
-  scanf("%c",&b); 
+  scanf("%c",&b); dc(b); 
   printf("tumi likhecha %c ar %c\n", a,b);
 
   return 0;

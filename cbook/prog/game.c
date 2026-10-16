@@ -4,7 +4,7 @@ int main() {
   int health = 100, action;
   while(health > 0) {
     printf("What do you want to do? [1=Fight, 2=Eat] :");
-    scanf("%d",&action); 
+    scanf("%d",&action);  
     if(action==1) {
       printf("\tThe hero puts up a great fight!\n");
       health -= 50;

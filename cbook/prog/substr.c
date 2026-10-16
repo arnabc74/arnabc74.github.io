@@ -8,9 +8,9 @@ void main() {
 	int result;
 
 	printf("Supply a string: ");
-	scanf("%200[^\n]",a);  getchar();
+	scanf("%200[^\n]",a);   getchar();
 	printf("String to search: ");
-	scanf("%200[^\n]",b);  getchar();
+	scanf("%200[^\n]",b);   getchar();
         
 	if(strstr(a,b)) {
 		printf("It is there!\n");

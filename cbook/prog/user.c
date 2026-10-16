@@ -1,5 +1,5 @@
 #include <stdio.h>
-extern int checkPass(int pass);`\includegraphics{arrow.pdf}`
+extern int checkPass(int pass);`\
 int main() {
   int password;
   

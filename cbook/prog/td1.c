@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-typedef double number;`\includegraphics{arrow.pdf}`
+typedef double number;`\
 
 number oneBy(number x) {
   return 1/x;

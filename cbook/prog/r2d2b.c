@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define RAD2DEG (180.0*7/22)`\includegraphics{arrow.pdf}`
+#define RAD2DEG (180.0*7/22)`\
 
 int main() {
 
@@ -8,6 +8,6 @@ int main() {
 
   printf("Please supply x in radian: ");
   scanf("%lf",&x);
-  printf("It is %lf degrees.\n", RAD2DEG*x);`\includegraphics{arrow.pdf}`
+  printf("It is %lf degrees.\n", RAD2DEG*x);`\
   return 0;
 }

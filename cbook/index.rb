@@ -27,8 +27,22 @@ AmAr @{<E>C Programming</E>@}  baiyer @{<E>webpage</E>@}  eTA. chArrakam jinis p
 <LINK to="quicksort.html">@{<E>Quicksort</E>@}</LINK>-er janya tinTe viDior ekTA plelis+T pAbe ekhAne.
 </LI></UL>
 <HEAD2>bhulbhrAnti</HEAD2>  
-<UL><LI>
+<UL>
+<LI>
+<IMG web="p80.png">@{<M>80</M>@}  pAtAr a.nsha</IMG>  
+ekhAne duTo @{<E>inequality</E>@}-i ul+Te yAbe. progrAmTA bojhAnor samaye Thikai likhechhilAm,
+ kintu progrAmer bhitare ei lAinTA bhul rayechhe. DAunloD karle ekhan ThikTAi DAunloD habe. bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
+chaturtha adhyAyer @{<M>82</M>@}  nambar pAtAy @{<E>Exercise 4</E>@}-er uttare
+@{<CODE>grade.c</CODE>@}  bale ye progrAmTA diyechhi, tAte ekTA bAje bhul Achhe. seTA Thik karle <LINK to="prog/grade.c">erakam</LINK> habe.
+DAunloD karle ekhan ThikTAi DAunloD habe. bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
 <IMG web="p88.png">@{<M>88</M>@}  pAtAr a.nsha</IMG>  
 bhulTA dharechhe sujan dAs. 
-</LI></UL>
+</LI>
+</UL>
 </NOTE>

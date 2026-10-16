@@ -4,6 +4,6 @@ void main() {
   int i;
 
   printf("Supply an integer: ");
-  scanf("%d ",&i); `\includegraphics{arrow.pdf}`
+  scanf("%d ",&i);  `\
   printf("i = %d\n",i);
 }

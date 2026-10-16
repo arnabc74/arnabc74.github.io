@@ -5,7 +5,7 @@ struct Box {
 };
 
 int main() {
-  Box myBox;`\includegraphics{arrow.pdf}`
+  Box myBox;`\
   printf("Supply length, breadth and height: ");
   scanf("%lf%lf%lf",&myBox.length,&myBox.breadth,&myBox.height);
 

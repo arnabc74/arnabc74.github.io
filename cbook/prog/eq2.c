@@ -10,7 +10,7 @@ int main() {
   printf("\t a x + b y = c\n");
   printf("\t p x + q y = r\n\n");
   printf("Please supply a,b,c,p,q,r: ");
-  scanf("%lf%lf%lf%lf%lf%lf",&a,&b,&c,&p,&q,&r);
+  scanf("%lf%lf%lf%lf%lf%lf",&a,&b,&c,&p,&q,&r); 
   det = a*q-b*p;
   det1 = c*q-b*r;
   det2 = a*r-c*p;

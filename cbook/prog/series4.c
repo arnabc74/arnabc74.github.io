@@ -5,7 +5,7 @@ int main() {
   double sum, oldSum;
   
   sum = 0;
-  oldSum = 0;`\includegraphics{arrow.pdf}`
+  oldSum = 0;`\
   isConvergent = 0;
   for(k=1;k<=1e10;k++) {
     sum += 1.0/(k*k);
@@ -16,9 +16,9 @@ int main() {
         isConvergent = 1;
         break;
       }
-      else {         `\includegraphics{arrow.pdf}`
-        oldSum = sum;`\includegraphics{arrow.pdf}`
-      }              `\includegraphics{arrow.pdf}`
+      else {         `\
+        oldSum = sum;`\
+      }              `\
     }
   }
 

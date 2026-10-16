@@ -4,7 +4,7 @@ int main() {
   int pressure;
 
   printf("Your pressure = ");
-  scanf("%d",&pressure);
+  scanf("%d",&pressure); 
   if(pressure > 130) {
     printf("Your blood pressure is high.\n");
   }

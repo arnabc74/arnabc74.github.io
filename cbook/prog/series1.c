@@ -5,9 +5,9 @@ for(k=1;k<=1e10;k++) {
    /*Test partial sums*/
 }
 
-if(isConvergent==1) {                            `\includegraphics{arrow.pdf}`
-   printf("The sum = %lf.\n",sum);               `\includegraphics{arrow.pdf}`
-}                                                `\includegraphics{arrow.pdf}`
-else {                                           `\includegraphics{arrow.pdf}`
-   printf("No convergence within 1e10 steps.\n");`\includegraphics{arrow.pdf}`
-}                                                `\includegraphics{arrow.pdf}`
+if(isConvergent==1) {                            `\
+   printf("The sum = %lf.\n",sum);               `\
+}                                                `\
+else {                                           `\
+   printf("No convergence within 1e10 steps.\n");`\
+}                                                `\

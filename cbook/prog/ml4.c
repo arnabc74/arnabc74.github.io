@@ -4,7 +4,7 @@ int main() {
   int *a;
   float b=45.6;
 
-  a = &b;`\includegraphics{arrow.pdf}`
+  a = &b;`\
 
   printf("%d\n",*a);
   return 0;

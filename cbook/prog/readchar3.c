@@ -2,12 +2,12 @@
 
 int main() {
   char a, b;
-  char baje;`\includegraphics{arrow.pdf}`
+  char baje;`\
   printf("ekta character dao: ");
-  scanf("%c",&a); 
-  scanf("%c",&baje);`\includegraphics{arrow.pdf}`
+  scanf("%c",&a);  
+  scanf("%c",&baje);`\
   printf("arekta character dao: ");
-  scanf("%c",&b); 
+  scanf("%c",&b);  
   printf("tumi likhecha %c ar %c\n", a,b);
 
   return 0;

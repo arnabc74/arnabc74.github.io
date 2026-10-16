@@ -8,7 +8,7 @@ int main() {
 
   printf("x = %d\n",*px);
   
-  *px = 321;`\includegraphics{arrow.pdf}`
+  *px = 321;`\
   printf("x = %d\n",*px);
 
   return 0;

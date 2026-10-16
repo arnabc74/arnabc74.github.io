@@ -3,7 +3,7 @@
 int main() {
   int a, b, bhajak, bhajya, bhagshes;
   printf("Supply two positive integers: ");
-  scanf("%d%d",&a,&b); di(a), 
+  scanf("%d%d",&a,&b); di(a),  
   if(a < b) {
     bhajak = a;
     bhajya = b;

@@ -5,16 +5,16 @@ int main() {
 
   printf("This program finds sum and product of a list of numbers.\n");
   printf("How many numbers? ");
-  scanf("%d",&n);
+  scanf("%d",&n); 
   printf("Supply %d numbers:\n",n);
 
-  sum = 0; prod = 1;`\includegraphics{arrow.pdf}`
+  sum = 0; prod = 1;`\
   for(i=0;i<n;i++) {
     scanf("%d",&number);
-    sum += number; `\includegraphics{arrow.pdf}`
-    prod *= number;`\includegraphics{arrow.pdf}`
+    sum += number; `\
+    prod *= number;`\
   }
- 
+  
   printf("Sum of the numbers is %d.\n",sum);
   printf("Product of the numbers is %d.\n",prod);
   return 0;

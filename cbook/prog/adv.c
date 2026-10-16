@@ -22,7 +22,7 @@ struct Place loc[6] = {
     {"Forest","You are in a dense forest.",0,0}
 };
 
-int map[6][4] = { {-1,-1,4,5}, {-1,4,4,3}, {-1,-1,-1,-1},
+int map[6]-[4] = { {-1,-1,4,5}, {-1,4,4,3}, {-1,-1,-1,-1},
                   {1,-1,4,5}, {1,0,1,-1}, {2,0,3,-1} };
 int now, point;
 
@@ -65,10 +65,10 @@ void play() {
   getchar();
 
   switch(move) {
-  case 'n': next = map[now][0]; break;
-  case 's': next = map[now][1]; break;
-  case 'e': next = map[now][2]; break;
-  case 'w': next = map[now][3]; break;
+  case 'n': next = map[now]-[0]; break;
+  case 's': next = map[now]-[1]; break;
+  case 'e': next = map[now]-[2]; break;
+  case 'w': next = map[now]-[3]; break;
   case 'q': gameOver(); break;
   default: next = -2; break;
   }

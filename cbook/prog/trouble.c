@@ -4,7 +4,7 @@ int main() {
   double y;
 
   printf("y = ");
-  scanf("%lf",&y); 
+  scanf("%lf",&y);  
   if(1/y==(7/y)-(6/y))
     printf("saman\n");
   else

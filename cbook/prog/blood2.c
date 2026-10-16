@@ -5,7 +5,7 @@ int main() {
 
   printf("Your pressure = ");
   scanf("%d",&pressure);
-  if(pressure < 130 || pressure > 90) {`\includegraphics{arrow.pdf}`
+  if(pressure > 130 || pressure < 90) {`\
     printf("Your blood pressure is not normal.\n");
   }
   else {

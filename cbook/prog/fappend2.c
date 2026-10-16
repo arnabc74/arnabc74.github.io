@@ -4,10 +4,10 @@ int main() {
   FILE* f;
   int n;
   
-  f = fopen("dui.txt","a");`\includegraphics{arrow.pdf}`
+  f = fopen("dui.txt","a");`\
   
   printf("Supply an integer: ");
-  scanf("%d",&n); 
+  scanf("%d",&n);  
   fprintf(f,"The integer is %d\n",n);
 
   fclose(f);

@@ -5,10 +5,10 @@ for(k=1;k<=1e10;k++) {
    /*Test partial sums*/
    if(k%50==0) {
      /*Check change in sum*/
-     if(sum - oldSum < 1e-8) {`\includegraphics{arrow.pdf}`
-       isConvergent = 1;      `\includegraphics{arrow.pdf}`
-       break;                 `\includegraphics{arrow.pdf}`
-     }                        `\includegraphics{arrow.pdf}`
+     if(sum - oldSum < 1e-8) {`\
+       isConvergent = 1;      `\
+       break;                 `\
+     }                        `\
    }
 }
 

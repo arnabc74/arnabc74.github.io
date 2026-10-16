@@ -3,7 +3,7 @@
 int main() {
   int i;
 
-  for(i=0;i<5;i++); {`\includegraphics{arrow.pdf}`
+  for(i=0;i<5;i++); {`\
     printf("Hello");
   }
   return 0;

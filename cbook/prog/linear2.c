@@ -8,7 +8,7 @@ int main() {
   int i, what;
   
   printf("Number to search: ");
-  scanf("%d",&what); 
+  scanf("%d",&what);  
 
   found = 0;
   for(i=0;i<n;i++) {
@@ -20,7 +20,7 @@ int main() {
 
   if(found==1) {
     printf("The number is present.\n");
-    printf("It first occurs at position %d.\n",i+1);`\includegraphics{arrow.pdf}`
+    printf("It first occurs at position %d.\n",i+1);`\
   }
     
   return 0;
