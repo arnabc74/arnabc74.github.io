@@ -45,5 +45,10 @@ DAunloD karle ekhan ThikTAi DAunloD habe. bhulTA
 <IMG web="p88.png">@{<M>88</M>@}  pAtAr a.nsha</IMG>  
 bhulTA dharechhe sujan dAs. 
 </LI>
+<LI>
+<IMG web="p158.png">@{<M>158</M>@}  pAtAr a.nsha</IMG>  
+uttare deoyA progrAme abashya bhulTA nei. bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
 </UL>
 </NOTE>
