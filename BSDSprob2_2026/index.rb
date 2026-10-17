@@ -57,7 +57,7 @@ Each of the following project is a group project to be done by around 5 students
 <UL><LI><RED><TICK/></RED>Shinjan M, Anmol, Ankesh, Danish, Pardha Sarathi<RED>(Date: Oct 12, second slot)</RED></LI>
 <LI><RED><TICK/></RED>Aarav, Diksha, Disha, Divyansh, Sejal<RED>(Date: Nov 06, second slot)</RED></LI>
 <LI><RED><TICK/></RED> Daksh, Shaurya, Swapnil, Tridham, Akshay, Shinjan G<RED>(Date: Oct 07, first slot)</RED></LI>
-<LI><RED><TICK/></RED> Rishikesh, Siva Lakshmi, Saurav, Manogna, Priyansh<RED>(Date: Nov 02, first slot)</RED></LI>
+<LI><RED><TICK/></RED> Rishikesh, Siva Lakshmi, Saurav, Manogna, Priyansh<RED>(Date: Oct 28, first slot)</RED></LI>
 </UL>
 </LI>
 <LI>BJKST algorithm for counting distinct elements from an input stream.
@@ -70,7 +70,8 @@ Each of the following project is a group project to be done by around 5 students
 Here is a <LINK to="https://sites.ualberta.ca/~mrs/courses/Streaming19/lecture3.pdf">more mathematical exposition</LINK>.
 <UL><LI><RED><TICK/></RED>Aditya, Raunak, Siddhant, Antareep<RED>(Date: Nov 09, first slot)</RED></LI>
 <LI><RED><TICK/></RED> Arka, Ashish, Pritham, Sagnik<RED>(Date: Oct 07, second slot)</RED></LI>
-<LI><RED><TICK/></RED> Jeevantej, Satya Prakash, Lakshmi Narayana Naidu, Varshini<RED>(Date: Nov 04, second slot)</RED></LI>
+<LI><RED><TICK/></RED> Jeevantej, Satya Prakash, Lakshmi Narayana Naidu, Varshini<RED>(Date: Oct 30,
+ second slot)</RED></LI>
 <LI><RED><TICK/></RED>Nehal, Manvi<RED>(Date: Nov 11, second slot)</RED></LI>
 </UL>
 </LI>
@@ -90,8 +91,8 @@ Here is a <LINK to="https://sites.ualberta.ca/~mrs/courses/Streaming19/lecture3.
 will give a flavour of random walk. But don't get carried away by all the information provided there. Keep your focus on
  a rigourous proof. 
 <UL>
-<LI><RED><TICK/></RED> Vinay, Siva Ganesh<RED>(Date: Nov 02, second slot)</RED></LI>
-<LI><RED><TICK/></RED>Vansh, Ketan, Maharshi<RED>(Date: Nov 04, first slot)</RED></LI>
+<LI><RED><TICK/></RED> Vinay, Siva Ganesh<RED>(Date: Oct 28, second slot)</RED></LI>
+<LI><RED><TICK/></RED>Vansh, Ketan, Maharshi<RED>(Date: Oct 30, first slot)</RED></LI>
 </UL>
 </LI>
 </OL>
