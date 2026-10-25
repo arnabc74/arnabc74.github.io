@@ -55,7 +55,7 @@ Each of the following project is a group project to be done by around 5 students
 <B>Resource:</B>  <LINK to="https://sites.google.com/site/countminsketch/home/expositions">This page</LINK>  contains
  expository articles on the topic.
 <UL><LI><RED><TICK/></RED>Shinjan M, Anmol, Ankesh, Danish, Pardha Sarathi<RED>(Date: Oct 12, second slot)</RED></LI>
-<LI><RED><TICK/></RED>Aarav, Diksha, Disha, Divyansh, Sejal<RED>(Date: Nov 06, second slot)</RED></LI>
+<LI><RED><TICK/></RED>Aarav, Diksha, Disha, Divyansh, Sejal<RED>(Date: Oct 30, second slot)</RED></LI>
 <LI><RED><TICK/></RED> Daksh, Shaurya, Swapnil, Tridham, Akshay, Shinjan G<RED>(Date: Oct 07, first slot)</RED></LI>
 <LI><RED><TICK/></RED> Rishikesh, Siva Lakshmi, Saurav, Manogna, Priyansh<RED>(Date: Oct 28, first slot)</RED></LI>
 </UL>
@@ -92,7 +92,7 @@ will give a flavour of random walk. But don't get carried away by all the inform
  a rigourous proof. 
 <UL>
 <LI><RED><TICK/></RED> Vinay, Siva Ganesh<RED>(Date: Oct 28, second slot)</RED></LI>
-<LI><RED><TICK/></RED>Vansh, Ketan, Maharshi<RED>(Date: Oct 30, first slot)</RED></LI>
+<LI><RED><TICK/></RED>Vansh, Ketan, Maharshi<RED>(Date: Nov 06, first slot)</RED></LI>
 </UL>
 </LI>
 </OL>

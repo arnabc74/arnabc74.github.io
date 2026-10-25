@@ -1,0 +1,417 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
+}
+
+.ans {
+  display:none;
+  background: var(--ans-bg,#cfc);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  background: #222;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Sat Oct 24 21:43:49 IST 2026</i>
+</td>
+</tr>
+</table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
+<h3>Android programming</h3>
+<ul>
+<li>1. <a href="#N10007">Programming an Android phone</a>
+</li>
+<li>2. <a href="#N10027">Getting started</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.1. <a href="#N1002A">First hardle</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.2. <a href="#N1002D">Second hardle</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.3. <a href="#N10034">Third hardle</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.4. <a href="#N10042">Fourth hardle</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;2.5. <a href="#N10047">Fifth hardle</a>
+</li>
+<li>3. <a href="#N1004E">Our first app</a>
+</li>
+</ul>
+<hr/>
+
+<title xmlns="">Android programming</title>
+
+<h1>
+<a name="N10007"><span class="header">1</span>. Programming an Android phone</a>
+</h1>
+What makes a computer most powerful? A strong CPU? Multiple
+cores? Lots of RAM? While these indeed make the computer run
+faster, but these are not the main component behind a computer
+being powerful. The true power of a computer lies in how many
+peripherals are connected to it. A computer, in it barest
+essentials, is just a machine that processes 0's and 1's to
+produce more 0's and 1's. It becomes powerful only when
+interesting things are converted into the binary input for 
+the computer, and the output binary is converted back into
+interesting things. That's precisely what the peripherals do:
+input peripherals convert interesting things to binary, and the
+output peripherals do the opposite service.
+<p></p>
+Out of all the computers that we generally use everyday, the one
+with the maximum number of peripherals attached to it is our
+mobile phone. Little wonder  it plays a more important role in
+our life than laptops and desktops. 
+<p></p>
+Yet it is a pity that even the programmers among us often are
+quite ignorant about writing a program for aAndroid phone. When
+we think of programs running on our phones, we genrally think of
+the apps typically available from the Google Playstore. I am not
+talking about those apps here, apps that are written by experts
+to cater to general needs. I am talking about writing a little
+simple program that will run on one's <i>own</i> phone to serve
+some little personal purpose. You cannot (and should not) get
+such private apps from the web because:
+<ul>
+
+<li>you cannot expect someone to create an app for your personal
+needs!</li>
+
+<li>often you can grant permissions to your own apps that are
+rightly considered dangerous for publicly distributed apps.</li>
+
+<li>even if you find such an app, it may be a malware with some
+covert agenda.</li>
+
+</ul>    
+Yet there is a world to explore here. However, it is a world that
+Google apparently does <i>not</i> want you to explore. So the
+necessary steps and resources are shrowded in mystery, and every
+now and then Google makes the process more complex, and threatens
+to smother the creating indiiduals trying to program their own
+phones.
+<p></p>
+Some of you may have heard the term "rooting" or "jailbreaking" a
+phone. These are risky manouvres that will void your warranty and
+possibly ruin your device. I am <i>not</i> talking about these
+here. I am talking about programming an app for your own phone
+for personal use in a legal and high level way using Java. 
+<p></p>
+
+<h1>
+<a name="N10027"><span class="header">2</span>. Getting started</a>
+</h1>
+The entire process is quite simple in principle, but rendered
+rather complex by Google.
+<h2>
+<a name="N1002A"><span class="header">2.1</span>.
+First hardle</a>
+</h2>
+ The first thing you need to do to your
+phone is to prepare it for accepting code that you write. For
+this go to the "Settings" menu and locate the "Build number"
+item. Even here Google has set its first trap: different phones
+hide this  item in different ways. Searching your Settings menu
+is then best option for you. Once you locate the item, tap it
+seven times (yes, seven, that is the magic number Google has
+set). Once you do so, your mobile gets ready for programming, and
+a new submenu called "Developers' options" is added to the Settings
+menu. This submenu has various items, two of which are most
+important. One is to turn off programming (which means you have
+to again tap seven times to get back), and the option to turn on
+usb debugging. The first is important, because it is potentially
+dangerous to leave your mobile in the programmable state, and
+many other apps will refuse to work while the phone is in this
+state. The second option is important because that will allow you
+to download code from your laptop to the mobile and send
+debugging information back.
+<h2>
+<a name="N1002D"><span class="header">2.2</span>.
+Second hardle</a>
+</h2>
+The second hardle is a veritable trap that captures all aspiring
+android programmers and demotivates most hobbyist programmers.
+It is an IDE called the Adroid Studio, a heavyweight IDE that
+keeps on confusing the beginner, and squeezes out every bit of
+transparency out of the process.   Avoid using it. 
+<p></p>
+The recommended alternative is also beset with hardles, and may
+appear even more daunting at first. But believe me, it is
+actually a lot more transparent.
+<p></p>
+
+<h2>
+<a name="N10034"><span class="header">2.3</span>.
+Third hardle</a>
+</h2>
+Install ADB. This is the main workhorse that does most of the
+work behind Android Studio. It is a commandline utility. 
+Connect your mobile to your laptop via USB, and issue the
+command:
+<pre>
+adb devices
+</pre>
+Your device should be listed:
+<pre>
+$ adb devices
+List of devices attached
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+R9ZY9005X9M   unauthorized
+</pre>
+Now look at the phone screen. You should see some pop up asking for your permission to allow usb debugging. Grant that permission.
+ Now run the command again:
+<pre>
+$ adb devices
+List of devices attached
+R9ZY9005X9M   device
+</pre>
+If not, be thankful for not having
+to waste any more time crossing the next hardles.
+<p></p>
+
+<h2>
+<a name="N10042"><span class="header">2.4</span>.
+Fourth hardle</a>
+</h2>
+Install gradle. It is a nasty beast, but taking time to
+understand gradle will pay off.
+<p></p>
+
+<h2>
+<a name="N10047"><span class="header">2.5</span>.
+Fifth hardle</a>
+</h2>
+Android expects a certain file structure. Weird things would
+happen if the structure is not incorrect. This structure and
+gradle are the two complexities that Android Studio promises to
+hide (behind even more complex things).  
+<p></p>
+Much of the file structure complexity is because Android apps are
+supposed to run in diverse hardware environments. So the full
+structure expects each resource to be present in different
+versions suitable for all possibilities. However, since we shall
+program app for our own phone, we may keep only the version
+suitable for our phone. Of course, we shall need to do some
+trial-and-error to figure out the version our phone demands.
+<p></p>
+
+<h1>
+<a name="N1004E"><span class="header">3</span>. Our first app</a>
+</h1>  
+When we learn a new programming environment, our heart yearns for
+a "Hello World" program. We run it to make sure that everything
+is working right. Then we start tinkering, and gradually learn as
+we proceed. 
+<p></p>
+The file structure is complicated, and we shall explain it later. But first you should know the "root" of the structure.
+ The best way to identify it is to remember that it will hae a subfolder called "app" in it. Navigate to this folder. All
+ the commands henceforth will assume that this folder is your working directory.
+<p></p>
+Issue the command
+<pre>gradle wrapper --gradle-version 8.9</pre>
+This should create a gradlew.bat and a gradlew.sh file in the "root" folder. 
+<p></p>
+Next issue the command
+<pre>./gradlew assembleDebug</pre>
+This is where your java code is compiled. If your program has compilation errors/warnings, you'll see them now. 
+<p></p>
+If everything works fine, the output will be placed in <tt><font size="+2" color="red">app/build/outputs/apk/debug/app-debug.apk</font></tt>.
+With the phone connected to the laptop via USB cable, issue the command
+<pre>adb install app/build/outputs/apk/debug/app-debug.apk</pre>
+If there is no error, you'll get the terse message "Success". Your mobile will now have the new
+ app installed. Run it as usual. 
+<p></p>
+If you are an ordinary mortal, then you have not made it so far. Something has gone wrong
+ somewhere, and your screen is either flooded with error messages that look like gibberish. Don't despair. It is a common
+ experience. You'll need to have a basic understanding of the entire process before ypu can hope to debug the code.
+<p></p>
+But thanks to the hardles described so far, even that first
+"Hello World" program is rather complicated, and you may make too
+many errors if you plan to type everything by hand.  So start by first downloading <a href="HelloWorldAndroid.zip">this zip file</a>.And when
+you try to compile it, you will be shocked to find that the
+gradle is downloading something quite heavy! 
+<p></p>
+So before you try your first program, a brief description of
+gradle is in order. Gradle is an ugly solution to an ugly
+problem. When you write a program in some language, you use not
+only the syntactic elements of the language, but also an
+existing code base (called packages or libraries). These packages
+are often updated asynchronously. 
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left"/>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

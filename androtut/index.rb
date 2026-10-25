@@ -1,0 +1,169 @@
+@{<NOTE>
+<TITLE>Android programming</TITLE>
+<HEAD1>Programming an Android phone</HEAD1>
+What makes a computer most powerful? A strong CPU? Multiple
+cores? Lots of RAM? While these indeed make the computer run
+faster, but these are not the main component behind a computer
+being powerful. The true power of a computer lies in how many
+peripherals are connected to it. A computer, in it barest
+essentials, is just a machine that processes 0's and 1's to
+produce more 0's and 1's. It becomes powerful only when
+interesting things are converted into the binary input for 
+the computer, and the output binary is converted back into
+interesting things. That's precisely what the peripherals do:
+input peripherals convert interesting things to binary, and the
+output peripherals do the opposite service.
+
+Out of all the computers that we generally use everyday, the one
+with the maximum number of peripherals attached to it is our
+mobile phone. Little wonder  it plays a more important role in
+our life than laptops and desktops. 
+
+Yet it is a pity that even the programmers among us often are
+quite ignorant about writing a program for aAndroid phone. When
+we think of programs running on our phones, we genrally think of
+the apps typically available from the Google Playstore. I am not
+talking about those apps here, apps that are written by experts
+to cater to general needs. I am talking about writing a little
+simple program that will run on one's <I>own</I> phone to serve
+some little personal purpose. You cannot (and should not) get
+such private apps from the web because:
+<UL>
+<LI>you cannot expect someone to create an app for your personal
+needs!</LI>
+<LI>often you can grant permissions to your own apps that are
+rightly considered dangerous for publicly distributed apps.</LI>
+<LI>even if you find such an app, it may be a malware with some
+covert agenda.</LI>
+</UL>    
+Yet there is a world to explore here. However, it is a world that
+Google apparently does <I>not</I> want you to explore. So the
+necessary steps and resources are shrowded in mystery, and every
+now and then Google makes the process more complex, and threatens
+to smother the creating indiiduals trying to program their own
+phones.
+
+Some of you may have heard the term "rooting" or "jailbreaking" a
+phone. These are risky manouvres that will void your warranty and
+possibly ruin your device. I am <I>not</I> talking about these
+here. I am talking about programming an app for your own phone
+for personal use in a legal and high level way using Java. 
+
+<HEAD1>Getting started</HEAD1>
+The entire process is quite simple in principle, but rendered
+rather complex by Google.
+<HEAD2>First hardle</HEAD2>
+ The first thing you need to do to your
+phone is to prepare it for accepting code that you write. For
+this go to the "Settings" menu and locate the "Build number"
+item. Even here Google has set its first trap: different phones
+hide this  item in different ways. Searching your Settings menu
+is then best option for you. Once you locate the item, tap it
+seven times (yes, seven, that is the magic number Google has
+set). Once you do so, your mobile gets ready for programming, and
+a new submenu called "Developers' options" is added to the Settings
+menu. This submenu has various items, two of which are most
+important. One is to turn off programming (which means you have
+to again tap seven times to get back), and the option to turn on
+usb debugging. The first is important, because it is potentially
+dangerous to leave your mobile in the programmable state, and
+many other apps will refuse to work while the phone is in this
+state. The second option is important because that will allow you
+to download code from your laptop to the mobile and send
+debugging information back.
+<HEAD2>Second hardle</HEAD2>
+The second hardle is a veritable trap that captures all aspiring
+android programmers and demotivates most hobbyist programmers.
+It is an IDE called the Adroid Studio, a heavyweight IDE that
+keeps on confusing the beginner, and squeezes out every bit of
+transparency out of the process.   Avoid using it. 
+
+The recommended alternative is also beset with hardles, and may
+appear even more daunting at first. But believe me, it is
+actually a lot more transparent.
+
+<HEAD2>Third hardle</HEAD2>
+Install ADB. This is the main workhorse that does most of the
+work behind Android Studio. It is a commandline utility. 
+Connect your mobile to your laptop via USB, and issue the
+command:
+<PRE>
+adb devices
+</PRE>
+Your device should be listed:
+<PRE>
+$ adb devices
+List of devices attached
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+R9ZY9005X9M	unauthorized
+</PRE>
+Now look at the phone screen. You should see some pop up asking for your permission to allow usb debugging. Grant that permission.
+ Now run the command again:
+<PRE>
+$ adb devices
+List of devices attached
+R9ZY9005X9M	device
+</PRE>
+If not, be thankful for not having
+to waste any more time crossing the next hardles.
+
+<HEAD2>Fourth hardle</HEAD2>
+Install gradle. It is a nasty beast, but taking time to
+understand gradle will pay off.
+
+<HEAD2>Fifth hardle</HEAD2>
+Android expects a certain file structure. Weird things would
+happen if the structure is not incorrect. This structure and
+gradle are the two complexities that Android Studio promises to
+hide (behind even more complex things).  
+  
+Much of the file structure complexity is because Android apps are
+supposed to run in diverse hardware environments. So the full
+structure expects each resource to be present in different
+versions suitable for all possibilities. However, since we shall
+program app for our own phone, we may keep only the version
+suitable for our phone. Of course, we shall need to do some
+trial-and-error to figure out the version our phone demands.
+
+<HEAD1>Our first app</HEAD1>  
+When we learn a new programming environment, our heart yearns for
+a "Hello World" program. We run it to make sure that everything
+is working right. Then we start tinkering, and gradually learn as
+we proceed. 
+
+The file structure is complicated, and we shall explain it later. But first you should know the "root" of the structure.
+ The best way to identify it is to remember that it will hae a subfolder called "app" in it. Navigate to this folder. All
+ the commands henceforth will assume that this folder is your working directory.
+
+Issue the command
+<PRE>gradle wrapper --gradle-version 8.9</PRE>
+This should create a gradlew.bat and a gradlew.sh file in the "root" folder. 
+
+Next issue the command
+<PRE>./gradlew assembleDebug</PRE>
+This is where your java code is compiled. If your program has compilation errors/warnings, you'll see them now. 
+
+If everything works fine, the output will be placed in <CODE>app/build/outputs/apk/debug/app-debug.apk</CODE>.
+With the phone connected to the laptop via USB cable, issue the command
+<PRE>adb install app/build/outputs/apk/debug/app-debug.apk</PRE>
+If there is no error, you'll get the terse message "Success". Your mobile will now have the new
+ app installed. Run it as usual. 
+
+If you are an ordinary mortal, then you have not made it so far. Something has gone wrong
+ somewhere, and your screen is either flooded with error messages that look like gibberish. Don't despair. It is a common
+ experience. You'll need to have a basic understanding of the entire process before ypu can hope to debug the code.
+ 
+But thanks to the hardles described so far, even that first
+"Hello World" program is rather complicated, and you may make too
+many errors if you plan to type everything by hand.  So start by first downloading <LINK to="HelloWorldAndroid.zip">this zip file</LINK>.And when
+you try to compile it, you will be shocked to find that the
+gradle is downloading something quite heavy! 
+   
+So before you try your first program, a brief description of
+gradle is in order. Gradle is an ugly solution to an ugly
+problem. When you write a program in some language, you use not
+only the syntactic elements of the language, but also an
+existing code base (called packages or libraries). These packages
+are often updated asynchronously. 
+</NOTE>@}
