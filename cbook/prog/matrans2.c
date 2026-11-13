@@ -2,7 +2,7 @@
 
 int main() {
   int m, i, j;
-  double a[10][10];
+  double a[10][10], temp;
   
   printf("Number of rows: "); scanf("%d",&m);
 

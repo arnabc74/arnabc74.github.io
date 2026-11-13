@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-  int n,k,isPrime;
+  int n,k,factorFound;
 
   printf("Please supply an integer (>=2): ");
   scanf("%d",&n);
