@@ -1,0 +1,68 @@
+Next we shall incoorporate an existing jar file (from the laptop)
+into the android app.
+
+Let's make a jar file first to test:
+
+#+BEGIN_SRC java
+package com.example.greeting;
+
+public class Greeter {
+    public String greet(String name) {
+        return "Hello, " + name + "!";
+    }
+}
+#+END_SRC
+
+Assume that it has been turned into  greeting.jar.
+
+The MainActiity.java is:
+
+#+BEGIN_SRC java
+package com.example.myapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+import com.example.greeting.Greeter;
+
+public class MainActivity extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Greeter greeter = new Greeter();
+
+        TextView tv = new TextView(this);
+        tv.setText(greeter.greet("Camper"));
+
+        setContentView(tv);
+    }
+}
+#+END_SRC
+
+The compilation is obvious:
+
+#+BEGIN_SRC fish
+javac \
+  -classpath "$ANDROID_HOME/platforms/android-35/android.jar:/home/asu/libs/greeting.jar" \
+  -d build/classes \
+  src/com/example/myapp/MainActivity.java
+#+END_SRC
+
+Here we have assumed the greeting.jar is inside /home/asu/libs/.
+
+This puts the compiled MainActivity.class in the classes
+folder. The classes insider greeting.jar are not copied into that
+folder. So we need to present greeting.jar explicitly to d8 for
+turning into dex:
+
+#+BEGIN_SRC fish
+mkdir -p build/dex
+
+d8 \
+  --lib "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-api 23 \
+  --output build/dex \
+  build/classes/com/example/myapp/MainActivity.class \
+  /home/asu/libs/greeting.jar
+#+END_SRC 

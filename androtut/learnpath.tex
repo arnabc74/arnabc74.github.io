@@ -1,0 +1,350 @@
+% Created 2026-10-27 Tue 15:32
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Arnab Chakraborty}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Arnab Chakraborty},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Step by step creation of an Android app}
+\label{sec:org30812e2}
+
+\subsection{List of tools:}
+\label{sec:org5979edc}
+\begin{center}
+\begin{tabular}{lll}
+Tools & Source & Doc\\
+\hline
+javac, jar, keytool & JDK & \\
+android.jar & \$ANDROID\(_{\text{HOME}}\)/platforms/android-35/ & \url{https://developer.android.com/reference}\\
+aapt2 & \$ANDROID\(_{\text{HOME}}\)/build-tools/34.0.0/ & \url{https://developer.android.com/tools/aapt2}\\
+d8 & ditto & \url{https://developer.android.com/tools/d8}\\
+zipalign & ditto & \url{https://developer.android.com/tools/zipalign}\\
+apksigner & ditto & \url{https://developer.android.com/tools/apksigner}\\
+adb & \$ANDROID\(_{\text{HOME}}\)/platform-tools/ & \url{https://developer.android.com/tools/adb}\\
+ &  & \\
+\end{tabular}
+\end{center}
+
+
+\subsection{Check what you already have:}
+\label{sec:orgaf3f036}
+echo "\$ANDROID\(_{\text{HOME}}\)"
+
+ls "\$ANDROID\(_{\text{HOME}}\)/platforms/android-35/"
+ls "\$ANDROID\(_{\text{HOME}}\)/build-tools/34.0.0/"
+
+javac -version
+
+\subsection{If needed}
+\label{sec:orgc38eb1f}
+sdkmanager "build-tools;34.0.0"
+sdkmanager "platform-tools"
+
+\subsection{A little note}
+\label{sec:org6391ec8}
+One small but important detail: android.jar is not a complete
+Android runtime. It supplies the API classes needed to compile
+your application against Android. Your phone supplies the actual
+runtime when the app executes. 
+
+\section{The process starts}
+\label{sec:org7d8a4be}
+
+\subsection{Stage 1A — Java compilation and inspecting a .class file.}
+\label{sec:org5c834dd}
+
+Aim: Compile a tiny Java class in the usual way. Inspect the
+generated .class file using javap.
+
+Create a new folder and write java code:
+
+\begin{verbatim}
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, Android!");
+    }
+}
+\end{verbatim}
+
+Compile as usual:
+
+\begin{verbatim}
+javac Hello
+\end{verbatim}
+
+Inspect the .class file:
+
+\begin{verbatim}
+javap -c Hello
+javap -verbose Hello
+\end{verbatim}
+
+\subsection{Stage 1B — DEX}
+\label{sec:org60e8fbe}
+
+Use d8 to turn the Java .class files into classes.dex. Inspect
+the result. 
+
+\begin{verbatim}
+mkdir -p dex
+
+"$ANDROID_HOME/build-tools/34.0.0/d8" \
+    --output dex \
+    Hello.class
+\end{verbatim}
+
+Inspect it:
+\begin{verbatim}
+"$ANDROID_HOME/build-tools/34.0.0/dexdump" \
+                    -d dex/classes.dex
+\end{verbatim}
+This requires a tool dexdump not listed in the table
+earlier. This inspection step is optional.
+
+\subsection{Stage 2A - Compiling against android.jar}
+\label{sec:org08178ef}
+\begin{verbatim}
+mkdir -p ~/campapk/stage2/src/com/example/helloworld
+cd ~/campapk/stage2
+\end{verbatim}
+
+Write the following java code in the helloworld folder:
+\begin{verbatim}
+package com.example.helloworld;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        TextView text = new TextView(this);
+        text.setText("Hello World!");
+        text.setTextSize(32);
+
+        setContentView(text);
+    }
+}
+\end{verbatim}
+
+From the stage2 folder run:
+\begin{verbatim}
+mkdir -p classes
+
+javac \
+  -classpath "$ANDROID_HOME/platforms/android-35/android.jar" \
+  -d classes \
+  src/com/example/helloworld/MainActivity.java
+\end{verbatim}
+\subsection{Stage 2B — Android resources and manifest}
+\label{sec:org50ad3bc}
+
+An ordinary Java main() method is not the entry point Android
+uses to launch an application. Android launches components
+declared in the manifest, such as an Activity 
+
+Write AndroidManifest.xml, use aapt2 to compile and link
+resources, and examine the generated R.java and binary manifest. 
+
+Our next job is to tell Android what our application is, which
+Activity it can launch, and how its resources are packaged. 
+
+Create the following AndroidManifest.xml file in the stage2
+folder:
+\begin{verbatim}
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.helloworld">
+
+    <application
+        android:label="Hello World"
+        android:theme="@android:style/Theme.Material.Light">
+
+        <activity
+            android:name="com.example.helloworld.MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+    </application>
+</manifest>
+\end{verbatim}
+
+Explanation: 
+A few important details:
+
+\begin{itemize}
+\item android:label gives the application its displayed name.
+
+\item android:name identifies the Activity class we just compiled.
+
+\item MAIN and LAUNCHER tell Android that this is the Activity to launch from the app launcher.
+
+\item android:exported="true" is required for an Activity with this
+\end{itemize}
+intent filter when targeting modern Android versions. 
+
+\subsubsection{{\bfseries\sffamily TODO} The last two points are not clear to me.}
+\label{sec:orgfd29631}
+
+Create two folders:
+\begin{verbatim}
+mkdir -p res-compiled linked
+\end{verbatim}
+
+Now issue the main command:
+\begin{verbatim}
+"$ANDROID_HOME/build-tools/34.0.0/aapt2" link \
+  -o linked/base.apk \
+  --manifest AndroidManifest.xml \
+  -I "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-sdk-version 23 \
+  --target-sdk-version 35
+\end{verbatim}
+
+Produces base.apk in the linked folder. Let's inspect it:
+\begin{verbatim}
+unzip -l linked/base.apk
+\end{verbatim}
+The output is
+\begin{verbatim}
+Archive:  linked/base.apk
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     1788  1980-01-01 05:30   AndroidManifest.xml
+       40  1980-01-01 05:30   resources.arsc
+---------                     -------
+     1828                     2 files
+
+\end{verbatim}
+This still does not have the MainActivity bytecode. We shall
+first turn that into hex.
+\begin{verbatim}
+mkdir -p dex
+
+"$ANDROID_HOME/build-tools/34.0.0/d8" \
+  --lib "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-api 23 \
+  --output dex \
+  classes/com/example/helloworld/MainActivity.class
+\end{verbatim}
+This produces classes.dex in the dex folder.
+
+\subsubsection{Why these options?}
+\label{sec:org41cc5c9}
+\begin{itemize}
+\item --lib android.jar tells D8 where Android's API classes are
+defined. They are provided by the Android system, so we don't
+bundle them into our app.
+\item --min-api 23 sets the minimum Android API level for the generated bytecode.
+\item --output dex puts the resulting DEX file in the dex directory.
+\end{itemize}
+
+\subsection{Stage 2C — Assemble the APK}
+\label{sec:org27ad749}
+
+Combine the compiled resources, manifest, DEX file and other
+required files into an APK. Understand the APK's ZIP structure.  
+
+We shall now put classes.dex inside the APK
+An APK is essentially a ZIP archive with particular required
+contents. We can add our DEX file to the APK that aapt2 created. 
+
+\begin{verbatim}
+cp linked/base.apk app-unsigned.apk
+
+zip -j app-unsigned.apk dex/classes.dex
+\end{verbatim}
+
+
+\subsection{Stage 2D — Align}
+\label{sec:org286de6c}
+
+Run zipalign, create a development key with keytool, sign with
+apksigner, and verify the signature. 
+
+Android expects APK contents to be aligned appropriately for
+efficient access. The SDK provides zipalign for this. 
+
+\begin{verbatim}
+"$ANDROID_HOME/build-tools/34.0.0/zipalign" \
+  -f -v 4 \
+  app-unsigned.apk \
+  app-aligned.apk
+\end{verbatim}
+
+Let's check the alignment:
+
+\begin{verbatim}
+"$ANDROID_HOME/build-tools/34.0.0/zipalign" \
+  -c -v 4 app-aligned.apk
+\end{verbatim}
+
+\subsection{Stage 2E -- Sign}
+\label{sec:org1c42c1e}
+\begin{verbatim}
+keytool -genkeypair \
+  -keystore debug.keystore \
+  -alias androiddebugkey \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000 \
+  -storepass android \
+  -keypass android \
+  -dname "CN=Android Debug,O=Android,C=US"
+\end{verbatim}
+
+Now sign:
+
+\begin{verbatim}
+"$ANDROID_HOME/build-tools/34.0.0/apksigner" sign \
+  --ks debug.keystore \
+  --ks-key-alias androiddebugkey \
+  --ks-pass pass:android \
+  --key-pass pass:android \
+  --out app-debug.apk \
+  app-aligned.apk
+\end{verbatim}
+
+Check the signature:
+\begin{verbatim}
+"$ANDROID_HOME/build-tools/34.0.0/apksigner" verify \
+  --verbose \
+  --print-certs \
+  app-debug.apk
+\end{verbatim}
+\subsection{Stage 6 — Install and run}
+\label{sec:org37fef17}
+
+Use adb install to put the APK on your Android 16 phone and launch it.
+\end{document}

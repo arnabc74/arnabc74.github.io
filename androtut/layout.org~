@@ -1,0 +1,144 @@
+#+BEGIN_SRC fish
+
+cd $r/campapk/stage3
+
+mkdir -p res/layout
+
+#+END_SRC
+
+Create the following activity_main.xml: 
+
+#+BEGIN_SRC xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello from layout.xml!"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press me" />
+
+</LinearLayout>
+
+#+END_SRC
+
+Now we have to process it. Execute the following command from the
+stage3 folder.
+
+#+BEGIN_SRC fish
+mkdir -p res-compiled linked gen
+
+"$ANDROID_HOME/build-tools/34.0.0/aapt2" compile \
+  res/layout/activity_main.xml \
+  -o res-compiled/
+
+#+END_SRC
+
+This creates a file called layout_activity_main.xml.flat in the res-compiled
+folder. It is a binary file, whose octal dump shows the content of activity_main.xml.
+
+AAPT2's compilation and linking stages are deliberately separate:
+compilation transforms the individual resource; linking combines
+resources and assigns their resource IDs. 
+
+Now we shall again invoke aapt2, but this time for linking:
+
+#+BEGIN_SRC fish
+"$ANDROID_HOME/build-tools/34.0.0/aapt2" link \
+  -o linked/base.apk \
+  --manifest AndroidManifest.xml \
+  -I "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-sdk-version 23 \
+  --target-sdk-version 35 \
+  --java gen \
+  res-compiled/layout_activity_main.xml.flat
+
+#+END_SRC 
+
+The "--java gen" line causes aapt2 to create R.java inside gen folder.
+
+Also update our MainActiity.java:
+
+#+BEGIN_SRC java
+
+package com.example.helloworld;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+    }
+}
+#+END_SRC
+
+We now compile it with:
+#+BEGIN_SRC fish
+javac -d out \
+    -cp "$ANDROID_HOME/platforms/android-35/android.jar" \
+    gen/com/example/helloworld/R.java \
+    src/com/example/helloworld/MainActivity.java
+#+END_SRC
+I guess just adding "gen" to the classpath would also work
+(instead of asking explicitly to compile
+gen/com/example/helloworld/R.java)
+ 
+* Nice debugging technique
+
+#+BEGIN_SRC fish
+adb shell uiautomator dump /sdcard/window.xml
+adb pull /sdcard/window.xml .
+#+END_SRC
+
+* Suggested debugging routine for your manual build
+Whenever a layout behaves unexpectedly, use this sequence:
+1. Inspect the source XML. Check the parent and child attributes.
+2. Recompile and relink. Make sure your APK includes the latest XML.
+3. Run aapt2 dump xmltree. Verify that the intended attributes
+   and values reached the APK.
+#+BEGIN_SRC fish
+aapt2 dump xmltree linked/base.apk \
+  --file res/layout/activity_main.xml
+#+END_SRC
+4. Run aapt2 dump resources. Verify resource references and IDs
+   if necessary.
+#+BEGIN_SRC fish
+aapt2 dump resources linked/base.apk
+#+END_SRC
+5. Install the rebuilt APK and inspect the running hierarchy. Check actual bounds and visibility.
+
+
+
+Change one attribute at a time. Rebuild and compare the results.
+
+* Reference for layout xml
+
+Start with the overview: 
+
+https://developer.android.com/guide/topics/resources/layout-resource
+
+Then read the complete guide:
+
+https://developer.android.com/develop/ui/views/layout/declaring-layout
+
+Finally the API docs, eg:
+
+https://developer.android.com/reference/android/widget/LinearLayout

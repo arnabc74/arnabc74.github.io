@@ -1,0 +1,90 @@
+
+SUppose we have this dependency:
+
+#+BEGIN_SRC grooy 
+dependencies {
+    implementation 'com.google.code.gson:gson:2.11.0'
+}
+#+END_SRC
+
+* Finding the URL
+
+This is a Maven-style dependency coordinate:
+Understanding the coordinates
+
+Group = com.google.code.gson
+
+Identifies the organization or project namespace.
+
+Artifact = gson
+
+Identifies the particular library.
+
+Version = 2.11.0
+
+Selects the published version.
+
+Gradle commonly looks in repositories such as Maven Central. The
+same coordinates tell us where to look manually. 
+
+For Maven Central, the dots in the group ID become directory
+separators. The repository path is:
+com/google/code/gson/gson/2.11.0/
+
+The base repository URL is:
+
+https://repo.maven.apache.org/maven2/
+
+The artifact's JAR can therefore be downloaded directly from:
+
+https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.11.0/gson-2.11.0.jar
+
+That is the first important skill: translate the Gradle
+coordinates into a Maven repository path. 
+
+* Download the JAR and its POM
+The POM (Project Object Model) is an XML file containing metadata about the library, including its dependencies.
+
+Create a directory for our downloaded library:
+
+#+BEGIN_SRC 
+mkdir -p ~/apk-camp/libs/gson
+cd ~/apk-camp/libs/gson
+#+END_SRC
+
+Download the JAR and POM with curl:
+
+#+BEGIN_SRC 
+BASE=https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.11.0
+
+curl -fLO "$BASE/gson-2.11.0.jar"
+curl -fLO "$BASE/gson-2.11.0.pom"
+
+#+END_SRC
+
+You can read the downloaded POM file:
+
+#+BEGIN_SRC 
+less gson-2.11.0.pom
+#+END_SRC
+
+or extract its dependencies:
+
+#+BEGIN_SRC 
+grep -A 6 '<dependencies>' gson-2.11.0.pom
+#+END_SRC
+
+The POM is the library's dependency map, although interpreting it
+fully sometimes requires looking at parent POMs and other
+metadata too. Maven documents this repository layout and the
+meaning of artifact coordinates in its repository-layout guide,
+at https://maven.apache.org/repositories/layout.html?utm_source=chatgpt.com
+
+Not all dependencies need to be downloaded. These come in
+different flavours:
+
+- compile — generally relevant to the library's consumers.
+- runtime — needed at runtime, even if not needed to compile your own source.
+- test — for testing the library itself; normally not needed in your APK.
+- provided — expected to be supplied by the environment, depending on the build system and use case.
+- optional — not automatically inherited by consumers in the same way as ordinary dependencies.

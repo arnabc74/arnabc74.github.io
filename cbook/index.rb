@@ -36,7 +36,7 @@ ekhAne duTo @{<E>inequality</E>@}-i ul+Te yAbe. progrAmTA bojhAnor samaye Thikai
  dharechhe Ananda bishwAs. 
 </LI>
 <LI>
-chaturtha adhyAyer @{<M>82</M>@}  nambar pAtAy @{<E>Exercise 4</E>@}-er uttare
+chaturtha adhyAyer @{<M>82</M>@}  nambar pAtAy @{<E>Exercise 5</E>@}-er uttare
 @{<CODE>grade.c</CODE>@}  bale ye progrAmTA diyechhi, tAte ekTA bAje bhul Achhe. seTA Thik karle <LINK to="prog/grade.c">erakam</LINK> habe.
 DAunloD karle ekhan ThikTAi DAunloD habe. bhulTA
  dharechhe Ananda bishwAs. 
@@ -46,8 +46,43 @@ DAunloD karle ekhan ThikTAi DAunloD habe. bhulTA
 bhulTA dharechhe sujan dAs. 
 </LI>
 <LI>
+<IMG web="p136.png">@{<M>136</M>@}  pAtAr a.nsha</IMG>  
+lAl diye ghire deoyA @{<M>1</M>@}-TA @{<M>10</M>@}  habe.  bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
+<IMG web="p144.png">@{<M>144</M>@}  pAtAr a.nsha</IMG>  
+lAl diye ghire deoyA @{<M>1</M>@}-TA @{<M>0</M>@}  habe.  bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
+@{<M>146</M>@}  pAtAy @{<E>prime3.c</E>@}  bale ekTA progrAm Achhe. sekhAne @{<E>isPrime</E>@} 
+ bale ye @{<E>variable</E>@}-TA @{<E>declare</E>@}  karA Achhe, oTA Asale @{<E>factorFound</E>@}  habe. 
+bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
 <IMG web="p158.png">@{<M>158</M>@}  pAtAr a.nsha</IMG>  
 uttare deoyA progrAme abashya bhulTA nei. bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
+<IMG web="p191.png">@{<M>191</M>@}  pAtAr a.nsha</IMG>  
+lAl ra\nge ghire deoyA jinisTA haoyA uchit chhila @{<E>n/sumRecip</E>.@}  eTA @{<E>means.c</E>@} 
+ progrAmer a.nsha. ekhan abashya ei oyebsAiT theke progrAmTA DAunloD karle Thik progrAmai pAbe. bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
+<IMG web="p193.png">@{<M>193</M>@}  pAtAr a.nsha</IMG>  
+lAl ra\nge ghire deoyA jinisTA haoyA uchit chhila @{<E>a+i*h</E>.@}  eTA @{<E>quadans.c</E>@} 
+ progrAmer a.nsha. ekhan abashya ei oyebsAiT theke progrAmTA DAunloD karle Thik progrAmai pAbe. bhulTA
+ dharechhe Ananda bishwAs. 
+</LI>
+<LI>
+<IMG web="p271.png">@{<M>271</M>@}  pAtAr a.nsha</IMG>  
+ei progrAmTA yA tA bhul diyechhi. Thik progrAmTA <LINK to="prog/matrans2.c">eirakam</LINK> habe. ekhan ei
+ oyebsAiT theke progrAmTA DAunloD karle
+ Thik progrAmai pAbe. bhulTA
  dharechhe Ananda bishwAs. 
 </LI>
 </UL>

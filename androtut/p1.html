@@ -1,0 +1,275 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:arnab="xalan://FileDumper" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
+}
+
+.ans {
+  display:none;
+  background: var(--ans-bg,#cfc);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  background: #222;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Tue Nov 10 20:14:45 IST 2026</i>
+</td>
+</tr>
+</table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
+<h3>Android programming</h3>
+<ul>
+<li>1. <a href="#N1000B">Getting started</a>
+</li>
+<li>&nbsp;&nbsp;&nbsp;1.1. <a href="#N10024">A few more details</a>
+</li>
+</ul>
+<hr/>
+
+<title xmlns="">Android programming</title>
+
+<p></p>
+
+<h1>
+<a name="N1000B"><span class="header">1</span>. Getting started</a>
+</h1>
+The entire process is quite simple in principle, but rendered
+rather complex by Google. I shall present things in a order that should seem natural to a programmer. 
+<p></p>
+First, the aim: Our hello world app should write "Hello world" on the mobile screen, and that's it. 
+<p></p>
+Here are the main steps:
+<ol type="">
+<li>The first step is of course to write the program, <i>i.e.</i>, create source code as a text file. There
+ is nothing unexpected
+ in this. What <i>is</i> 
+ unexpected, however, is that here we have to create at least two text files, a java file containing the
+ main program and an xml file
+ containing certain overall information about the program. For most non-trivial programs you will also have a third file,
+ which is
+yet another xml file
+ describing the GUI. 
+</li>
+
+<li>The second step is to compile it. The compilation occurs in multiple phases. The first phase is our familiar javac. Then
+ we also need to compile the xml files, and then we have to link all these things. The resulting binary needs to be further
+ translated to dex code, and then processed further.
+</li>
+
+<li>The final step is to download the code into the mobile and install it. Of course, we may
+ consider the downloading and the
+ installing as different phases. But we shall use a single command that will do both the things in one go.</li>
+</ol>
+
+<p></p>
+
+<h2>
+<a name="N10024"><span class="header">1.1</span>.
+A few more details</a>
+</h2>
+Before starting writing our code, let me give you a few more details regarding the last two phases. The compilation turns
+ your source files into binary files suitable for your mobile. Clearly, this binary depends on the version of Android running
+ in your mobile. So you need have  in your laptop some build tools specific to the Andorid running in your mobile. 
+<p></p>
+In the third phase the mobile needs to be put into a programmable mode which is called "debug mode". 
+<p></p>
+We shall start by making sure that we have all the build-tools ready. The build-tools are of two
+ flavours: those which depend on the Android version running on your mobile, and those that don't.
+ First, the ones that don't. They are jdk, zip and latest-commandline-tools. The versions of
+ these are not crucial, but good to have recent versions. The first two are already familiar.  
+ The last one you can get from here. 
+<p></p>
+Next for the platform specific tools. Before obtaining them you need to know the Android version in your phone. Then translate
+ that version to another number called the build number using the mapping in this page. Google has made the next step tricky.
+The platform specific tools are in two zip files at public URLs. But Google keeps these URLs secret. In fact, it stores these
+URLs in a publicly available xml file, whose name is not public. This name is hardcoded in an indirect way in one of the
+ platform independent files. However, there is a script called the sdkmanager which can supposedly be used to download both
+ these zip files without having to explicitly specify the URLs. But this script is buggy. It claims
+ to be deprecated, while
+ its suggested relacment also claims itself to be deprecated. However, a little patient querying will cause ChatGPT to yield
+ the correct URLs, and you can download them. 
+<p></p>
+Place them in their proper places, and you are all set. 
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left">
+<a href="index.html">Previous</a>
+</td>
+<td align="right">
+<a href="p2.html">Next</a>
+</td>
+</tr>
+</table>
+<hr/></body></html>

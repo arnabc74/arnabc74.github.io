@@ -51,7 +51,74 @@ for personal use in a legal and high level way using Java.
 
 <HEAD1>Getting started</HEAD1>
 The entire process is quite simple in principle, but rendered
-rather complex by Google.
+rather complex by Google. Let us start with an overview of the components involved. 
+<OL><LI>
+The first component is obvious--your phone (or rather, the Android OS running in your phone).</LI>
+<LI> The
+ second component is the java
+ code you are going to write.</LI>
+<LI>
+ You'll need java installed
+ in your laptop to compile it. So that is your third component. We shall call it the JDK. </LI>
+<LI>Your program is going to
+ use various android specific
+ things (just as a C program may call <TT>printf</TT>). All these Android specific things constitute the fourthcomponent
+ (which is basically a jar file with some supporting things). This is called the Android SDK.  </LI>
+<LI>
+Turning your java code into  an android app is a complex process, and you have to use a software called Gradle to coordinate
+ the steps. This is the fifth component. </LI>
+<LI>Gradle by itself has nothing to do with Android
+ development (just like Java). So you
+ need to tell Gradle about the steps. This turns out to be a rather complex thing, and   
+a piece of code is already provided with the Android specific steps built into it. This is called Android Gradle Plugin (AGP),
+ the sixth memeber of our component list. </LI><LI>
+ Once your app is ready you need some way to send it to the phone and debug it if necessary. This component
+is called the platform-tools.</LI>
+<LI>The platform-tools and Android SDK need to be downloaded via a special software (which knows the URLs). This is called
+ commandline tools.</LI></OL>
+
+All these software components are maintained by different groups, and are evolving asynchronously. Naturally, this brings
+ up ugly compatibility issues. This is tackled using versioning. So all the 6 components must be labelled
+ with version numbers, and care must be exercised to make sure that the versions are compatible with each other. 
+ 
+Deciding about the versions may look daunting, but here is the general principle:
+<UL><LI>The version of your app is under your control, and does not matter much in the development process. </LI>
+<LI> In this  tutorial we shall assume that you are writing the app for running on a single phone.
+ So start by locating the version
+ number of Android installed in it. Now visit 
+<LINK to="https://developer.android.com/build/releases/about-agp">this page</LINK> 
+ to figure out the SDK and AGP versions to go with it.</LI>
+<LI> Next, find out the JDK version needed for these.</LI></UL>
+Now install JDK of that version or higher.  Also install gradle and commandline-tools of the latest versions. 
+Now use the commandline-tools to download and install the platform-tools and android SDK of the appropriate versions. 
+
+Now you have to download the android SDK. Both the commandline-tools and gradle are capable of doing it. I would suggest
+ that you use gradle. Now here comes a catch. Though you have installed the latest gradle, chances are that this ersion will
+ not remain the latest by the time you will need to update your app. Using a new version of gradle may break things. So you
+ want to keep a snapshot of the current version being used. The technique for that is create a gradle wrapper, which is an
+ executible script which mentions the current version explicitly. In future you'll run this script. This script will download
+ the gradle of that version (ignoring whether you already have gradle of that version in your system). This downloaded gradle
+ will be cached, and used. 
+The process is 
+<PRE>gradle wrapper</PRE>
+If you want the script to download and use gradle of a different version, you can specify that version in the command line
+ as
+<PRE>gradle wrapper --gradle-version 8.9</PRE>
+
+Now before you do that you need to tell gradle about the Android SDK version to be used as well as the AGP version. This
+ is done using file called <TT>build.gradle</TT>  as follows.
+<PRE>
+plugins {
+
+	id 'com.android.application' version '8.7.3' apply false
+
+}
+
+
+</PRE>
+This requests AGP
+Note that all these are to be done only once for a phone. 
+
 <HEAD2>First hardle</HEAD2>
  The first thing you need to do to your
 phone is to prepare it for accepting code that you write. For
@@ -111,9 +178,8 @@ to waste any more time crossing the next hardles.
 <HEAD2>Fourth hardle</HEAD2>
 Install gradle. It is a nasty beast, but taking time to
 understand gradle will pay off.
-<HEAD2>Fifth hardle</HEAD2>
 
-<HEAD2>Sixth hardle</HEAD2>
+<HEAD2>Fifth hardle</HEAD2>
 Android expects a certain file structure. Weird things would
 happen if the structure is not incorrect. This structure and
 gradle are the two complexities that Android Studio promises to

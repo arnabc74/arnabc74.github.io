@@ -1,0 +1,362 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:arnab="xalan://FileDumper" xmlns:java="java">
+<head>
+<meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+<link rel="stylesheet" type="text/css" href="../tools/ctut.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/>
+<link type="text/css" rel="stylesheet" href="../tools/style.css"/>
+<style type="text/css">@font-face {font-family: SHREE_BAN_OTF_0592;src: local("../tools/SHREE_BAN_OTF_0592"),url(../tools/SHREE-BAN-OTF-new.woff) format("opentype");</style>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="../tools/jquery-1.10.2.min.js"></script>
+
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module">script
+not working</script>
+<script>
+aha = function(code) {
+  window.open("https://rdrr.io/snippets/embed/?code="+code)
+}
+
+togglePhoto = function(photoId) {
+   var me = document.getElementById("pic_"+photoId)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else if (me.style.display=="none"){
+     me.style.display="block";
+   }
+}
+
+hideShow = function(lb) {
+   var me = document.getElementById(lb)
+   if(me.style.display=="block"){
+     me.style.display="none";
+   }
+   else {
+     me.style.display="block";
+   }
+}
+
+grabData = function(data){
+  return "https://farm"+data.photo.farm+".staticflickr.com/"+data.photo.server+"/"+data.photo.id+"_"+
+            data.photo.secret+".jpg"
+}
+
+fromFlickr = function(photoId) {
+
+$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=23a138c73bdbe1e68601aa7866924e62&user_id=109924623@N07&photo_id="+photoId+"&lang=en-us&format=json&jsoncallback=?",
+  function(data) {
+    imgURL = grabData(data)
+    var l = document.getElementById("lnk_"+photoId)
+    l.href = "https://www.flickr.com/photos/109924623@N07/"+photoId
+    var i = document.getElementById("pic_"+photoId)
+    i.src=imgURL
+    i.onload = function() {
+      document.getElementById("status_"+photoId).innerHTML="[Image loaded. Click to show/hide.]"
+    }
+  })
+}
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {
+      Macros: {
+        h: ["{\\hat #1}",1],
+        b: ["{\\overline #1}", 1],
+        row: "{\\mathcal R}",
+        col: "{\\mathcal C}",
+        nul: "{\\mathcal N}"
+      }
+    }
+  });
+</script>
+<style>
+body,table {
+  margin: 0;
+  font-size: 40;
+  background: var(--all-bg,#fff);
+  color: var(--all-fg,#000);
+}
+
+a:link {
+  color: var(--link-col,#00f);
+}
+
+.ans {
+  display:none;
+  background: var(--ans-bg,#cfc);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  background: #555;
+  color: #f1f1f1;
+}
+
+.cu {
+  background: #ffcccc;
+}
+
+.bu {
+  background: #ccccff;
+}
+
+.scrpt {
+  margin:10px;
+  background: #222;
+  border-left: 5px solid black;
+}
+
+.box {
+  background-color: yellow; 
+  //border: 2px solid black;
+  display: inline-block;
+}
+
+.hl {
+  list-style-type: upper-alpha;
+}
+
+.hand {
+font-family: 'Gloria Hallelujah', cursive;
+color: #055;
+}
+</style>
+<script>
+window.onscroll = function() {myFunction()};
+window.onload = function() {myInit()};
+
+var header, tphldr;
+function myInit() {
+  header = document.getElementsByClassName("header");
+  tphldr = document.getElementById("topholder");
+}
+
+function myFunction() {
+  var index = -1
+  for(i=0;i<header.length;i++) {
+    if (window.pageYOffset > header[i].offsetTop) {
+       index = i
+    }
+    else {
+       break
+    }
+  }
+
+  if(index < 0) 
+    tphldr.innerHTML = "";
+  else
+    tphldr.innerHTML = header[index].innerHTML
+}
+</script><script type="text/javascript" src="https://arnabc74.github.io/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/javascript" src="file:///home/asu/na/v/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="../tools/htmlwidgets.js"></script>
+<link href="../tools/rgl.css" rel="stylesheet"></link>
+<script src="../tools/rglClass.src.js"></script>
+<script src="../tools/CanvasMatrix.src.js"></script>
+<script src="../tools/rglWebGL.js"></script>
+</head><body>
+<div class="sticky" id="topholder"> </div>
+<a href="http://web.isical.ac.in/~arnabc/">[Home]</a>
+<table width="100%">
+<tr>
+<td align="right">
+<i>Last
+updated on:
+Tue Nov 10 20:14:53 IST 2026</i>
+</td>
+</tr>
+</table>
+<script>
+isLight = true
+function daynight() {
+  let r = document.documentElement;
+  isLight = !isLight
+  if(isLight) {
+    r.style.setProperty('--all-bg','#fff')
+    r.style.setProperty('--all-fg','#000')
+    r.style.setProperty('--ans-bg','#cfc')
+    r.style.setProperty('--link-col','#00f')
+  }
+  else {
+    r.style.setProperty('--all-bg','#000')
+    r.style.setProperty('--all-fg','#fff')
+    r.style.setProperty('--ans-bg','#222')
+    r.style.setProperty('--link-col','#ff0')
+  }
+}
+</script>
+<button onclick="daynight()">Dark/Light</button>
+<h3/>
+<ul>
+<li>1. <a href="#N10005">Step 1: Creating the source files</a>
+</li>
+<li>2. <a href="#N1002A">Step 2: Compiling</a>
+</li>
+<li>3. <a href="#N10057">Step 3: Signing</a>
+</li>
+</ul>
+<hr/>
+
+<h1 xmlns="">
+<a name="N10005"><span class="header">1</span>. Step 1: Creating the source files</a>
+</h1>
+Typically the source files are of three flavours: java files, manifestfile, GUI layout file and various assets (images, fonts
+ etc). In our first example we shall have only one java file and one manifest file. The manifest file is the main entry point,
+ and so must have an agreed upon name: AndroidManifest.xml.
+<pre>
+
+<fieldset>
+<legend>AndroidManifest.xml</legend>
+<pre>     │ &lt;?xml version="1.0" encoding="utf-8"?&gt;
+     │ &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   1 │ package="my.first"&gt;
+     │     &lt;application
+     │         android:allowBackup="false"
+   2 │         android:label="Hello World"
+     │         android:theme="@android:style/Theme.Material.Light.NoActionBar"&gt;
+     │         &lt;activity
+   3 │             android:name=".MainActivity"
+     │             android:exported="true"&gt;
+     │             &lt;intent-filter&gt;
+     │                 &lt;action android:name="android.intent.action.MAIN" /&gt;
+     │                 &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+     │             &lt;/intent-filter&gt;
+     │         &lt;/activity&gt;
+     │     &lt;/application&gt;
+     │ &lt;/manifest&gt;
+</pre>
+</fieldset>
+
+</pre>
+At this point focus only on the three numbered lines. They work together to specify the initial
+ entry point of the app. It is the class <tt><font size="+2" color="red">my.first.MainActivity</font></tt>. Note the dot before
+ <tt><font size="+2" color="red">MainActivity</font></tt>  in the line labelled 3. The idea is that the attributes in lines 1 and 3 should give the full
+ path of the class after concatenation. 
+The line labelled 2 gives the label you'll see on your phone. 
+<p></p>
+Here is the java code:
+<pre>
+
+<fieldset>
+<legend>my/first/MainActivity.java</legend>
+<pre>   1 │ package my.first;
+     │ 
+     │ import android.app.Activity;
+     │ import android.os.Bundle;
+     │ import android.view.Gravity;
+     │ import android.widget.TextView;
+     │ 
+   2 │ public class MainActivity extends Activity {
+     │ 
+   3 │     protected void onCreate(Bundle savedInstanceState) {
+     │         super.onCreate(savedInstanceState);
+     │ 
+     │         TextView message = new TextView(this);
+     │         message.setText("Hello, World!");
+     │         message.setTextSize(28);
+     │         message.setGravity(Gravity.CENTER);
+     │ 
+     │         setContentView(message);
+     │     }
+     │ }
+</pre>
+</fieldset>
+
+</pre>
+The basic structure should be clear. What we call an "app" from the user's perspective is an "Activity" from the java perspective.
+ So our app extends Activity. We need an entry point (like main in C or desktop java). Here it is <tt><font size="+2" color="red">onStartActivity</font></tt>.
+ It is passed something (some sort of environment in which to run the app). A <tt><font size="+2" color="red">TextView</font></tt>  is apparently a GUI
+ component to show text. We place the component suitably and specify the fontsize, and then add the text to it. 
+<p></p>
+Obviously all these classes are declared inside some packages. The initial imports account for that. 
+<p></p>
+
+<h1>
+<a name="N1002A"><span class="header">2</span>. Step 2: Compiling</a>
+</h1>
+Next we need to compile the source files into some binary file that can be understood by our mobile phone.
+<p></p>
+We shall use the plain old <tt><font size="+2" color="red">javac</font></tt>  that we use to compile desktop java programs. But ofc ourse, it does not know
+ about the classes like <tt><font size="+2" color="red">Activity</font></tt>  and <tt><font size="+2" color="red">TextView</font></tt>. The remedy is to pass it a jar file containing
+ the codes for those classes. 
+<pre>javac -classpath $ANDROID_HOME/platforms/android-35/android.jar -d classes my/first/MainActivity.java</pre>
+Next we convert the class file to a dex file.
+<pre>
+"$ANDROID_HOME/build-tools/34.0.0/d8" \
+  --lib "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-api 23 \
+my/first/*.class
+</pre>
+This would produce <tt><font size="+2" color="red">classes.dex</font></tt>.
+This takes care of the java file. Next we need to compile the manifest file:
+<pre>
+"$ANDROID_HOME/build-tools/34.0.0/aapt2" link \
+  -o base.apk \
+  --manifest AndroidManifest.xml \
+  -I "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-sdk-version 23 \
+  --target-sdk-version 35
+</pre>
+Basically, this command compiles the manifest file to base.apk. The exact technical term is
+ "linking", but we may explore that difference later. 
+<p></p>
+Notice that so far the manifest and java file are compiled separately. We need to put them
+ together. That is simple, since an apk file is just a zip file. We want to add <tt><font size="+2" color="red">classes.dex</font></tt>  to it.
+<pre>
+zip -j base.apk dex/classes.dex
+</pre>
+
+<p></p>
+ Next we need to align it.
+<p></p>
+
+<pre>
+
+<p></p>
+"$ANDROID_HOME/build-tools/34.0.0/zipalign" \
+  -f -v 4 \
+base.apk \
+  aligned.apk
+</pre>
+
+<p></p>
+
+<h1>
+<a name="N10057"><span class="header">3</span>. Step 3: Signing</a>
+</h1>
+First we need to create  signature. This is to be done only once. 
+<pre>
+if test ! -e debug.keystore
+<p></p>
+keytool -genkeypair \
+  -keystore debug.keystore \
+  -alias androiddebugkey \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000 \
+  -storepass android \
+  -keypass android \
+  -dname "CN=Android Debug,O=Android,C=US"
+</pre>
+And finally put the signature of the apk file:
+<pre>
+"$ANDROID_HOME/build-tools/34.0.0/apksigner" sign \
+  --ks debug.keystore \
+  --ks-key-alias androiddebugkey \
+  --ks-pass pass:android \
+  --key-pass pass:android \
+  --out app-debug.apk \
+  aligned.apk
+</pre>
+<hr xmlns="http://www.w3.org/1999/xhtml"/>
+<table width="100%" border="0">
+<tr>
+<td align="left">
+<a href="p2.html">Previous</a>
+</td>
+<td align="right"/>
+</tr>
+</table>
+<hr/></body></html>

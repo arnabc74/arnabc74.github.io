@@ -1,0 +1,61 @@
+//[Update:[Tue Nov 10 IST 2026]]
+/*History:
+**Tue Nov 10 2026
+Started.
+*/
+
+import java.util.*;
+import java.io.*;
+
+public class FileDumper {
+
+    public static String dump(String fname, int nLinetoSkip, String labString) {
+
+        String[] tokens = labString.split(",");
+        int[] labs = new int[tokens.length];
+
+        try {
+            for(int i=0;i<tokens.length;i++)
+                labs[i] = Integer.parseInt(tokens[i]);
+            }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            return "NumberFormatException in labs=["+labString+"]";
+        }
+        
+        
+        String s = "", labText="";
+        int nextLab = 0;
+        try {
+            Scanner scnr = new Scanner(new File(fname));
+            int shownLineCount = 0;
+            while(scnr.hasNextLine()) {
+                String tmp = scnr.nextLine();
+                if(nLinetoSkip > 0) {
+                    nLinetoSkip--;
+                    continue;
+                }
+                shownLineCount++;
+                if(nextLab<labs.length && shownLineCount == labs[nextLab]) {
+                    labText = String.format("%4d \u2502 ",nextLab+1);
+                    nextLab++;
+                }
+                else {
+                    labText = "     \u2502 ";
+                }
+
+                s += labText+tmp+"\n";
+            }
+            //System.err.println("Output from FileDumper"+s);
+            return s;
+            }
+        catch(Exception ex) {ex.printStackTrace();}
+        
+        return "Problem dumping file ["+fname+"]."; 
+        
+    }
+
+    public static void main(String args[]) {
+        System.out.println(dump("FileDumper.java",0,"2,4,5"));
+    }
+}

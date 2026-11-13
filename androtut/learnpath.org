@@ -1,0 +1,306 @@
+* Step by step creation of an Android app
+
+
+** List of tools:
+| Tools               | Source                              | Doc                                           |
+|---------------------+-------------------------------------+-----------------------------------------------|
+| javac, jar, keytool | JDK                                 |                                               |
+| zip                 | usual                               |                                               |
+| android.jar         | $ANDROID_HOME/platforms/android-35/ | https://developer.android.com/reference       |
+| aapt2               | $ANDROID_HOME/build-tools/34.0.0/   | https://developer.android.com/tools/aapt2     |
+| d8                  | ditto                               | https://developer.android.com/tools/d8        |
+| zipalign            | ditto                               | https://developer.android.com/tools/zipalign  |
+| apksigner           | ditto                               | https://developer.android.com/tools/apksigner |
+| adb                 | $ANDROID_HOME/platform-tools/       | https://developer.android.com/tools/adb       |
+|                     |                                     |                                               |
+
+
+** Check what you already have:
+echo "$ANDROID_HOME"
+
+ls "$ANDROID_HOME/platforms/android-35/"
+ls "$ANDROID_HOME/build-tools/34.0.0/"
+
+javac -version
+
+** If needed
+sdkmanager "build-tools;34.0.0"
+sdkmanager "platform-tools"
+But don't use sdkmanager. Just use:
+Get from: https://dl.google.com/android/repository/platform-tools-latest-linux.zip?utm_source=chatgpt.com
+** A little note
+One small but important detail: android.jar is not a complete
+Android runtime. It supplies the API classes needed to compile
+your application against Android. Your phone supplies the actual
+runtime when the app executes. 
+
+* The process starts
+
+** Stage 1A — Java compilation and inspecting a .class file.
+
+Aim: Compile a tiny Java class in the usual way. Inspect the
+generated .class file using javap.
+
+Create a new folder and write java code:
+
+#+begin_src java :classname Hello :results output :tangle yes
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, Android!");
+    }
+}
+#+end_src 
+
+Compile as usual:
+
+#+BEGIN_SRC fish  :tangle yes
+javac Hello
+#+END_SRC
+
+Inspect the .class file:
+
+#+BEGIN_SRC fish  :tangle yes
+javap -c Hello
+javap -verbose Hello
+#+END_SRC
+
+** Stage 1B — DEX
+
+Use d8 to turn the Java .class files into classes.dex. Inspect
+the result. 
+
+#+BEGIN_SRC fish  :tangle yes
+mkdir -p dex
+
+"$ANDROID_HOME/build-tools/34.0.0/d8" \
+    --output dex \
+    Hello.class
+#+END_SRC
+
+Inspect it:
+#+BEGIN_SRC fish  :tangle yes
+"$ANDROID_HOME/build-tools/34.0.0/dexdump" \
+                    -d dex/classes.dex
+#+END_SRC
+This requires a tool dexdump not listed in the table
+earlier. This inspection step is optional.
+
+** Stage 2A - Compiling against android.jar
+#+BEGIN_SRC fish  :tangle yes
+mkdir -p ~/campapk/stage2/src/com/example/helloworld
+cd ~/campapk/stage2
+#+END_SRC
+
+Write the following java code in the helloworld folder:
+#+BEGIN_SRC java :tangle yes
+package com.example.helloworld;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        TextView text = new TextView(this);
+        text.setText("Hello World!");
+        text.setTextSize(32);
+
+        setContentView(text);
+    }
+}
+#+END_SRC 
+
+From the stage2 folder run:
+#+BEGIN_SRC fish  :tangle yes
+mkdir -p classes
+
+javac \
+  -classpath "$ANDROID_HOME/platforms/android-35/android.jar" \
+  -d classes \
+  src/com/example/helloworld/MainActivity.java
+#+END_SRC
+** Stage 2B — Android resources and manifest
+
+An ordinary Java main() method is not the entry point Android
+uses to launch an application. Android launches components
+declared in the manifest, such as an Activity 
+
+Write AndroidManifest.xml, use aapt2 to compile and link
+resources, and examine the generated R.java and binary manifest. 
+
+Our next job is to tell Android what our application is, which
+Activity it can launch, and how its resources are packaged. 
+
+Create the following AndroidManifest.xml file in the stage2
+folder:
+#+BEGIN_SRC xml :tangle yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.helloworld">
+
+    <application
+        android:label="Hello World"
+        android:theme="@android:style/Theme.Material.Light">
+
+        <activity
+            android:name="com.example.helloworld.MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+    </application>
+</manifest>
+#+END_SRC
+
+Explanation: 
+A few important details:
+
+    - android:label gives the application its displayed name.
+
+    - android:name identifies the Activity class we just compiled.
+
+    - MAIN and LAUNCHER tell Android that this is the Activity to launch from the app launcher.
+
+    - android:exported="true" is required for an Activity with this
+    intent filter when targeting modern Android versions. 
+
+The last two points are not clear to me. 
+
+Create two folders:
+#+BEGIN_SRC fish  :tangle yes
+mkdir -p res-compiled linked
+#+END_SRC
+
+Now issue the main command:
+#+BEGIN_SRC fish  :tangle yes
+"$ANDROID_HOME/build-tools/34.0.0/aapt2" link \
+  -o linked/base.apk \
+  --manifest AndroidManifest.xml \
+  -I "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-sdk-version 23 \
+  --target-sdk-version 35
+#+END_SRC
+
+Produces base.apk in the linked folder. Let's inspect it:
+#+BEGIN_SRC fish  :tangle yes
+unzip -l linked/base.apk
+#+END_SRC
+The output is
+#+BEGIN_SRC  :tangle yes
+Archive:  linked/base.apk
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     1788  1980-01-01 05:30   AndroidManifest.xml
+       40  1980-01-01 05:30   resources.arsc
+---------                     -------
+     1828                     2 files
+
+#+END_SRC
+This still does not have the MainActivity bytecode. We shall
+first turn that into hex.
+#+BEGIN_SRC fish  :tangle yes
+mkdir -p dex
+
+"$ANDROID_HOME/build-tools/34.0.0/d8" \
+  --lib "$ANDROID_HOME/platforms/android-35/android.jar" \
+  --min-api 23 \
+  --output dex \
+  classes/com/example/helloworld/MainActivity.class
+#+END_SRC
+This produces classes.dex in the dex folder.
+
+*** Why these options?
+- --lib android.jar tells D8 where Android's API classes are
+  defined. They are provided by the Android system, so we don't
+  bundle them into our app. 
+- --min-api 23 sets the minimum Android API level for the generated bytecode.
+- --output dex puts the resulting DEX file in the dex directory. 
+
+** Stage 2C — Assemble the APK
+
+Combine the compiled resources, manifest, DEX file and other
+required files into an APK. Understand the APK's ZIP structure.  
+
+We shall now put classes.dex inside the APK
+An APK is essentially a ZIP archive with particular required
+contents. We can add our DEX file to the APK that aapt2 created. 
+
+#+BEGIN_SRC fish  :tangle yes
+cp linked/base.apk app-unsigned.apk
+
+zip -j app-unsigned.apk dex/classes.dex
+#+END_SRC
+
+
+** Stage 2D — Align
+
+Run zipalign, create a development key with keytool, sign with
+apksigner, and verify the signature. 
+
+Android expects APK contents to be aligned appropriately for
+efficient access. The SDK provides zipalign for this. 
+
+#+BEGIN_SRC fish  :tangle yes
+"$ANDROID_HOME/build-tools/34.0.0/zipalign" \
+  -f -v 4 \
+  app-unsigned.apk \
+  app-aligned.apk
+#+END_SRC
+
+Let's check the alignment:
+
+#+BEGIN_SRC fish  :tangle yes
+"$ANDROID_HOME/build-tools/34.0.0/zipalign" \
+  -c -v 4 app-aligned.apk
+#+END_SRC
+
+** TODO Stage 2E -- Sign
+#+BEGIN_SRC fish  :tangle yes
+keytool -genkeypair \
+  -keystore debug.keystore \
+  -alias androiddebugkey \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000 \
+  -storepass android \
+  -keypass android \
+  -dname "CN=Android Debug,O=Android,C=US"
+#+END_SRC
+
+Now sign:
+
+#+BEGIN_SRC fish  :tangle yes
+"$ANDROID_HOME/build-tools/34.0.0/apksigner" sign \
+  --ks debug.keystore \
+  --ks-key-alias androiddebugkey \
+  --ks-pass pass:android \
+  --key-pass pass:android \
+  --out app-debug.apk \
+  app-aligned.apk
+#+END_SRC
+
+Check the signature:
+#+BEGIN_SRC fish  :tangle yes
+"$ANDROID_HOME/build-tools/34.0.0/apksigner" verify \
+  --verbose \
+  --print-certs \
+  app-debug.apk
+#+END_SRC
+** Stage 6 — Install and run
+
+Use adb install to put the APK on your Android 16 phone and launch it.
+
+* Wonderful debugging technique:
+#+BEGIN_SRC fish
+adb logcat -c
+adb shell am force-stop arnab.chak
+adb shell monkey -p arnab.chak 1
+adb logcat -d -s AndroidRuntime:E
+#+END_SRC
