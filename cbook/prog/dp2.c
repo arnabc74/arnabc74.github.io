@@ -2,8 +2,8 @@
 
 int main() {
   int *pi;
-  int x;  `\
-  pi = &x;`\
+  int x;  `\includegraphics{arrow.pdf}`
+  pi = &x;`\includegraphics{arrow.pdf}`
   printf("Supply an integer: ");
   scanf("%d",pi);
   

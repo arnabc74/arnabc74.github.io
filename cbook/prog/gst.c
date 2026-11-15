@@ -10,7 +10,7 @@ int main() {
   printf("Add GST? [no=0, yes=1] ");
   scanf("%d",&showGST);
 
-  if(showGST==0) {`\
+  if(showGST==0) {`\includegraphics{arrow.pdf}`
     total = food + room;
   }
   else {

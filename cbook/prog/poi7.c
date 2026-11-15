@@ -16,7 +16,7 @@ int main() {
   printf("x = %c, y = %c, pc = %ld, ppc = %ld\n", x, y, pc, ppc);
 
   *ppc = &y;
-  **ppc = 'c';
+  *pc = 'c';
   printf("x = %c, y = %c, pc = %ld, ppc = %ld\n", x, y, pc, ppc);
   
   return 0;

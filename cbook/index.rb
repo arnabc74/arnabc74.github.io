@@ -79,6 +79,17 @@ lAl ra\nge ghire deoyA jinisTA haoyA uchit chhila @{<E>a+i*h</E>.@}  eTA @{<E>qu
  dharechhe Ananda bishwAs. 
 </LI>
 <LI>
+@{<M>263</M>@}  pAtAy @{<E>Exercise 24</E>@}-er uttare Ami likhe felechhi ye, @{<E>linear sort</E>@}  hala ekTA @{<E>stable sort.</E>@}  
+eTA ek+kebAre DAhA bhul! oi bisheS a.nkaTAy @{<M>56_A</M>@}-TA @{<M>56_B</M>@}-er Agei thAkchhe baTe, kintu yadi shurur 
+kramTA hata @{<M>23, 54_A, 76, 54_B, -3, 25</M>@}, tabe sheS parYanta ese p,n\ouchhate ei @{<E>sorted array</E>@}-TAte-- 
+@{<M>-3,23,25,54_B,54_A,76.</M>@}  ekhAne @{<M>54_B</M>@}-TA Age chale gechhe. tAi @{<E>linear sort</E>@}-ke  moTei @{<E>stable</E>@}  
+bale gyAran+Ti deoyA yAchchhe nA. 
+bhulTA
+ dharechhe Ananda bishwAs. eba.n shudhu dhare ni, ekebAre ei udAharaNTA diye chokhe A\ngul diye dekhiye diyechhe! Ar ekTA 
+jiniser pratio o AmAr drriSTi AkArSaN karechhe, Ami yeTAke baite @{<E>linear sort</E>@}  balechhi, seTAr prachalita nAm 
+hala @{<E>selection sort.</E>@}  kathATA AmAr ul+lekh karA uchit chhila. 
+</LI>
+<LI>
 <IMG web="p271.png">@{<M>271</M>@}  pAtAr a.nsha</IMG>  
 ei progrAmTA yA tA bhul diyechhi. Thik progrAmTA <LINK to="prog/matrans2.c">eirakam</LINK> habe. ekhan ei
  oyebsAiT theke progrAmTA DAunloD karle

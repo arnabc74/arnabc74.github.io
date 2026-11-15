@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
   FILE *f;
@@ -9,7 +8,7 @@ int main() {
 
   if(f==0) {
     printf("Sorry, problem opening file char.txt.\n");
-    exit(1);
+    return 1;
   }
   fscanf(f,"%d%d%d%d",&a,&b,&c,&d);
   printf("The numbers are %d %d %d %d\n",a,b,c,d);

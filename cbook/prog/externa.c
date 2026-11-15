@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-extern int x;`\
+extern int x;`\includegraphics{arrow.pdf}`
 
 int main() {
 

@@ -16,10 +16,10 @@ int main() {
       found=1;
       break;
     }
-    else if(x[i]>what) {`\
-      found = 0;        `\
-      break;            `\
-    }                   `\
+    else if(x[i]>what) {`\includegraphics{arrow.pdf}`
+      found = 0;        `\includegraphics{arrow.pdf}`
+      break;            `\includegraphics{arrow.pdf}`
+    }                   `\includegraphics{arrow.pdf}`
   }
 
   if(found==0)

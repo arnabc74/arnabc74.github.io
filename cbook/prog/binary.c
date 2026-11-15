@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 int x[] = {12, 20, 48, 56, 65, 71, 86, 89, 93, 98};
 int n = 10;
@@ -7,12 +6,12 @@ int main() {
   int left, right, mid, found, what;
 
   printf("Number to search: ");
-  scanf("%d",&what);  
+  scanf("%d",&what); 
   left = 0;
   right = n-1;
   found = 0;
   while(left<=right) {
-    /*printf("\tleft = %d, right = %d\n",left, right);*/`\
+    /*printf("\tleft = %d, right = %d\n",left, right);*/`\includegraphics{arrow.pdf}`
     mid = (left+right)/2;
     if(x[mid]==what) {
       found = 1;

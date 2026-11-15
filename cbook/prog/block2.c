@@ -7,7 +7,7 @@ int main() {
   printf("y = "); scanf("%d",&y);
 
   {
-    int tmp;`\
+    int tmp;`\includegraphics{arrow.pdf}`
     tmp = x;
     x = y;
     y = tmp;

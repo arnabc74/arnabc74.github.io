@@ -1,9 +1,9 @@
 #include<stdio.h>
 
 void main() {
-  int x;
-  int y;
+  int x, y;
+
   printf("Supply two integers: ");
   scanf("%d%d",&x,&y);
-  printf("%d/%d = %f.\n",x,y,(double)x/y);
+  printf("%d/%d = %lf.\n",x,y,(double)x/y);
 }

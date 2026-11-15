@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "wipe.c"
 
 int main() {
   int n, count, input;

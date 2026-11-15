@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-double square(double x);`\
+double square(double x);`\includegraphics{arrow.pdf}`
 
 int main() {
   double val;

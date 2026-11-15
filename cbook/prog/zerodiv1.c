@@ -2,8 +2,7 @@
 
 int main() {
   int x;
-  printf("x = ");
-  scanf("%d",&x);
+  x = 0;
   printf("%d",1/x);
   return 0;
 }

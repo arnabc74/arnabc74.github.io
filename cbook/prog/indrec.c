@@ -15,7 +15,6 @@ void g(int n) {
 	f(n-1);
 }
 
-
 int main() {
   f(4);
   return 0;

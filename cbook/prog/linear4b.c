@@ -15,10 +15,11 @@ int main() {
     if(x[i]==what) {
       if(found==0) {
         found = 1;
-        printf("The number occurs at position(s) %d",i+1);
+        printf("The number occurs at position(s) %d",
+               i+1);
       }
       else {
-        printf(", %d",i+1);`\
+        printf(", %d",i+1);`\includegraphics{arrow.pdf}`
       }
     }
   }

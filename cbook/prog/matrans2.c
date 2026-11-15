@@ -2,8 +2,8 @@
 
 int main() {
   int m, i, j;
-  double a[10][10], temp;
-  
+  double a[10][10];
+
   printf("Number of rows: "); scanf("%d",&m);
 
   printf("Supply the matrix row by row:\n");
@@ -13,13 +13,9 @@ int main() {
     }
   }
 
-  for(i=0;i<m;i++) { 
-    for(j=0;j<i;j++) {
-      temp = a[i][j];
-      a[i][j] = a[j][i];
-      a[j][i] = temp;
-    }
-  }
+  for(i=0;i<m;i++) 
+    for(j=0;j<i;j++) 
+        a[i][j] = a[j][i];
   
   printf("The transpose is\n");
   for(i=0;i<m;i++) {

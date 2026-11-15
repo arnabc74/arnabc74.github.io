@@ -4,7 +4,7 @@ int main() {
   char ki;
 
   printf("ekta character dao: ");
-  scanf("%c",&ki); dc(ki); 
+  scanf("%c",&ki); 
   printf("tumi likhecha %c\n", ki);
 
   return 0;

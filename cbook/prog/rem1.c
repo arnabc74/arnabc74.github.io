@@ -4,9 +4,9 @@ int main() {
   int bhajya, bhajak;
 
    printf("Bhajya: ");
-   scanf("%d",&bhajya);
+   scanf("%d",&bhajya);e();
    printf("Bhajak: ");
-   scanf("%d",&bhajak);
+   scanf("%d",&bhajak);e();
    printf("Bhagshes = %d\n",bhajya % bhajak);
 
    return 0;

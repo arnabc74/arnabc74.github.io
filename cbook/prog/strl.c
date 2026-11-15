@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<string.h>`\
+#include<string.h>`\includegraphics{arrow.pdf}`
 
 void main() {
   char str[20];
@@ -7,6 +7,6 @@ void main() {
 
   str[0]='a'; str[1]='b'; str[2]='c'; str[3]='\0'; str[4]='d'; 
   
-  n = strlen(str);`\
+  n = strlen(str);`\includegraphics{arrow.pdf}`
   printf("%d\n",n);
 }
