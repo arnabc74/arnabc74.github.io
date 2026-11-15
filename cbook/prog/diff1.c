@@ -7,7 +7,7 @@ int main() {
   scanf("%d",&n);  
   printf("Supply the array: ");
   for(i=0;i<n;i++) {
-    scanf("%d",&x[i]); di(x[i]);
+    scanf("%d",&x[i]);
   } 
   
   for(i=1;i<n;i++) {
