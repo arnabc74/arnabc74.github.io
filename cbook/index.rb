@@ -30,6 +30,13 @@ AmAr @{<E>C Programming</E>@}  baiyer @{<E>webpage</E>@}  eTA. chArrakam jinis p
 <HEAD2>bhulbhrAnti</HEAD2>  
 <UL>
 <LI>
+baiTAy yesab progrAm deoyA Achhe, tAr madhye kayek jAygAy kichhu rahasyajanak @{<E>di(...)</E>@}  bA @{<E>df(...)</E>@}  
+bA @{<E>e()</E>@}  chokhe paRbe. Asale egulo Ami DhukiyechhilAm baiye dekhAno
+ @{<E>output</E>@}-gulo t\oirI karte. sabAr sheSe egulo uRiye deoyAr kathA chhila, diyeochhilAm,
+ kintu kayekTA fas.hke beriye gechhe. eguloke mane mane bAd diye nilei habe. ei oyebsAiTe deoyA 
+ progrAmgulor kayekTAteo  ei bhul kichhu chhila. segulo ekhan sab Thik kare diyechhi.    
+</LI>
+<LI>
 <IMG web="p80.png">@{<M>80</M>@}  pAtAr a.nsha</IMG>  
 ekhAne duTo @{<E>inequality</E>@}-i ul+Te yAbe. progrAmTA bojhAnor samaye Thikai likhechhilAm,
  kintu progrAmer bhitare ei lAinTA bhul rayechhe. DAunloD karle ekhan ThikTAi DAunloD habe. bhulTA
